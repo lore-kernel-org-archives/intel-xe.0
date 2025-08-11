@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853B6C87FD2
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 12:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0913CC87FDB
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Aug 2025 13:13:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C81610E465;
-	Mon, 11 Aug 2025 12:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C573B10E10E;
+	Mon, 11 Aug 2025 13:13:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="A33YU2N3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nc5kQxWL";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B270A10E45F;
- Mon, 11 Aug 2025 12:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=C/ouciPejbKLferniMXIWd7m5vVLOMUZSc6dDmeKvLA=; b=A33YU2N3016jHl2pg9+J58I34w
- Juf2goOUa+yDYqfG/lbEa71pLiEVFfeZymppZtBvom9MgNKdNWHBks181gqGWGTwcWISk20XPrbnn
- u3nuAljzB5jLlcMv25Of1Cp2ALnkVNfoEFHuARkvNwfXz8hXgBRq+44lkJfHFHGqIdwWRED+1Sn0J
- Y9L/YkY1Ry7yD/uozyMH1C0oRcsH2Nbq+LkkF0h4Jgvih3Uz7zWKqX/5OsNYQqh8kERuLy5D6fPuv
- 6PnSGhx3WLioTy4FZp9tf0ZMA0l4qcN9gH4rAeJj/tX90nnx9YUqPzl+ZJ2Rnx7TEFmYLhCmmIRNE
- eMqKPyZQ==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1ulRxR-00CmFD-It; Mon, 11 Aug 2025 14:48:57 +0200
-Message-ID: <60cba603-7a18-4fc9-a1d7-376012ff30ec@igalia.com>
-Date: Mon, 11 Aug 2025 13:48:56 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F02D310E10E
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Aug 2025 13:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754918019; x=1786454019;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=htifxZKxfYrf6iAR/p20GfxVe0yUsHF4HZsRjFBnztM=;
+ b=nc5kQxWLDkIMsdKLyd7MYa+GQAMYGEYE7dHjvs5zmEdLDf4cs5GVbsBG
+ D+CGwKfOSaDSrUaXUYMp+tKB4XQcGz/SGkNSC5FeEDALrlaGRXfOvRS4U
+ CwuzoZqywEEEKwmnDSOpbMzY+lmCTweAkm937T7kb8ZdnAgsSmPYn4bcE
+ +XF3zSP5g+EOIafZV7qIspOy/698Pi0DtZ3ulz5+uS1iGEMJzs7tToF0C
+ DoUnbv80HnkmdO/FrRYLuPMQGLlwI/s3YKOzBigVEr1p67qkrkfGEnggY
+ Sb9JhwqcoHQaWQLOdKQ3EuI+XUBK5grpZqMJQMkYTEq/DLe+KujXNlw96 g==;
+X-CSE-ConnectionGUID: SEfTMZvuQTSLXhaEfWdh7g==
+X-CSE-MsgGUID: 34ri0bRJQDic9ti3yjDTxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="57311224"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="57311224"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 06:13:39 -0700
+X-CSE-ConnectionGUID: ssWuLkVFRAmjJXwDzExzfA==
+X-CSE-MsgGUID: NWV+RW0QS3+8yFN7n2E9hA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="166271043"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.155])
+ ([10.245.244.155])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 06:13:38 -0700
+Message-ID: <ba332352-f83f-41e2-b3df-5730142f386a@intel.com>
+Date: Mon, 11 Aug 2025 14:13:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 10/12] drm/sched: Break submission patterns with some
- randomness
-To: phasta@kernel.org, Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>,
- dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
-References: <20250724141921.75583-1-tvrtko.ursulin@igalia.com>
- <20250724141921.75583-11-tvrtko.ursulin@igalia.com>
- <fe05e8fd-d56f-4b32-a65b-46c9ef6df9c7@damsy.net>
- <0312116d-b216-4afb-bf9f-210b553fed7f@igalia.com>
- <dda766b27e9a7035dee2f6368b882cc628a73772.camel@mailbox.org>
+Subject: Re: [PATCH v3 1/2] drm/xe: Assign ioctl xe file handler to vm in
+ xe_vm_create
+To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20250811104358.2064150-1-piotr.piorkowski@intel.com>
+ <20250811104358.2064150-2-piotr.piorkowski@intel.com>
 Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <dda766b27e9a7035dee2f6368b882cc628a73772.camel@mailbox.org>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250811104358.2064150-2-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,212 +71,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 30/07/2025 08:56, Philipp Stanner wrote:
-> On Mon, 2025-07-28 at 12:14 +0100, Tvrtko Ursulin wrote:
->>
->> On 28/07/2025 10:28, Pierre-Eric Pelloux-Prayer wrote:
->>> Le 24/07/2025 à 16:19, Tvrtko Ursulin a écrit :
->>>> GPUs generally don't implement preemption and DRM scheduler definitely
->>>> does not support it at the front end scheduling level. This means
->>>> execution quanta can be quite long and is controlled by userspace,
->>>> consequence of which is picking the "wrong" entity to run can have a
->>>> larger negative effect than it would have with a virtual runtime based
->>>> CPU
->>>> scheduler.
->>>>
->>>> Another important consideration is that rendering clients often have
->>>> shallow submission queues, meaning they will be entering and exiting the
->>>> scheduler's runnable queue often.
->>>>
->>>> Relevant scenario here is what happens when an entity re-joins the
->>>> runnable queue with other entities already present. One cornerstone of
->>>> the
->>>> virtual runtime algorithm is to let it re-join at the head and depend on
->>>> the virtual runtime accounting to sort out the order after an execution
->>>> quanta or two.
->>>>
->>>> However, as explained above, this may not work fully reliably in the GPU
->>>> world. Entity could always get to overtake the existing entities, or not,
->>>> depending on the submission order and rbtree equal key insertion
->>>> behaviour.
->>>>
->>>> We can break this latching by adding some randomness for this specific
->>>> corner case.
->>>>
->>>> If an entity is re-joining the runnable queue, was head of the queue the
->>>> last time it got picked, and there is an already queued different entity
->>>> of an equal scheduling priority, we can break the tie by randomly
->>>> choosing
->>>> the execution order between the two.
->>>>
->>>> For randomness we implement a simple driver global boolean which selects
->>>> whether new entity will be first or not. Because the boolean is global
->>>> and
->>>> shared between all the run queues and entities, its actual effect can be
->>>> loosely called random. Under the assumption it will not always be the
->>>> same
->>>> entity which is re-joining the queue under these circumstances.
->>>>
->>>> Another way to look at this is that it is adding a little bit of limited
->>>> random round-robin behaviour to the fair scheduling algorithm.
->>>>
->>>> Net effect is a significant improvemnt to the scheduling unit tests which
->>>> check the scheduling quality for the interactive client running in
->>>> parallel with GPU hogs.
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>>> Cc: Christian König <christian.koenig@amd.com>
->>>> Cc: Danilo Krummrich <dakr@kernel.org>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Philipp Stanner <phasta@kernel.org>
->>>> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
->>>> ---
->>>>    drivers/gpu/drm/scheduler/sched_rq.c | 10 ++++++++++
->>>>    1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/
->>>> scheduler/sched_rq.c
->>>> index d16ee3ee3653..087a6bdbb824 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_rq.c
->>>> +++ b/drivers/gpu/drm/scheduler/sched_rq.c
->>>> @@ -147,6 +147,16 @@ drm_sched_entity_restore_vruntime(struct
->>>> drm_sched_entity *entity,
->>>>                 * Higher priority can go first.
->>>>                 */
->>>>                vruntime = -us_to_ktime(rq_prio - prio);
->>>> +        } else {
->>>> +            static const int shuffle[2] = { -100, 100 };
->>>> +            static bool r = 0;
->>>> +
->>>> +            /*
->>>> +             * For equal priority apply some randomness to break
->>>> +             * latching caused by submission patterns.
->>>> +             */
->>>> +            vruntime = shuffle[r];
->>>> +            r ^= 1;
->>>
->>> I don't understand why this is needed at all?
->>>
->>> I suppose this is related to how drm_sched_entity_save_vruntime saves a
->>> relative vruntime (= entity rejoins with a 0 runtime would be impossible
->>> otherwise) but I don't understand this either.
->>
->> Two things (and a bit more) to explain here for the record. And as
->> agreed off-line I need to add some more code comments for this are in
->> the next respin.
->>
->> First the saving of "vruntime - min_runtime" when entity exits the
->> run-queue.
->>
->> That is a core CFS concept AFAIU which enables the relative position of
->> the entity to be restored once it re-enters the rq.
->>
->> It only applies on the scenario when the picked entity was not the head
->> of the queue, due the actual head being not runnable due a dependency.
->>
->> If the picked entity then leaves the queue and re-joins, this relative
->> vruntime is used to put it back where it was relative to the unready
->> entity (which may have became ready by now and so it needs to be picked
->> next and not overtaken so easily.)
+On 11/08/2025 11:43, Piórkowski, Piotr wrote:
+> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 > 
-> I'm afraid I also don't get it completely. So you're saying that with
-> this jitter-mechanism we can preserve the relative order of entities?
-> But the actual patch title says that it's about breaking such patterns,
-> or isn't it? "Break submission patterns"
+> In several code paths, such as xe_pt_create(), the vm->xef field is used
+> to determine whether a VM originates from userspace or the kernel.
 > 
-> Maybe you can help improve my understanding by us reversing the
-> question:
+> Previously, this handler was only assigned in xe_vm_create_ioctl(),
+> after the VM was created by xe_vm_create(). However, xe_vm_create()
+> triggers page table creation, and that function assumes vm->xef should
+> be already set. This could lead to incorrect origin detection.
 > 
-> If that jitter-mechanism is dropped, what will be the negative
-> consequence?
-
-Some workloads would suffer. Or to better say, make smaller gains 
-compared to the current FIFO. With this they can bridge the gap to RR 
-much more.
-
-> Entities with similar vruntimes would always run in the same order,
-> correct? So the patch is not so much about GPU time fairness, but about
-> response / delay fairness.
-
-Not similar vruntimes, but it is about the _identical_. This identical 
-case happens by CFS design when idle entity (re-)joins the run queue. It 
-inherits the current min vruntime of the rq and from then on CFS relies 
-on timeslicing (preemption) to balance them out. And because with GPUs 
-time slices are long, even controlled by userspace because preemption is 
-not universally present (not at all with DRM scheduler at the frontend 
-level), making a wrong choice of what to run first can hurt us much more 
-than in the CPU world.
-
-So for example when two entities enter the rq 1ns apart, and the second 
-one was picked from head of the queue in its last activity period, the 
-new pick order is determined by the rbtree traversal order for nodes 
-with identical keys. Whether in practice or by contract that ends up 
-being FIFO. Ie. above entities which entered the rq 1ns apart will 
-always run in FIFO order.
-
-And FIFO is quite bad with light to medium usage interactive clients 
-running in parallel to GPU hogs. Regardless if the hog as a queue depth 
-or more than one job deep, or just happened to submit its long single 
-job 1ns earlier than the interactive client.
-
-This patch therefore mixes things up a bit for this specific case and 
-that seems to work quite well in practice:
-
-https://people.igalia.com/tursulin/drm-sched-fair/4-heavy-vs-interactive.png
-
-https://people.igalia.com/tursulin/drm-sched-fair/4-very-heavy-vs-interactive.png
-
-With two competing clients it ends up a bit like RR (again, for this 
-specific set of pre-requisites, not RR for everyone and everything), 
-where the two alternate as to who gets to run first.
-
-With more than two clients it all becomes much more random (compared to 
-alternating) because the "randomizer" is a one bit toggle shared across 
-the whole system. So different GPU engines, different GPUs, different 
-entities, they all toggle it and combined with the time domain I think 
-is safer from any latching behaviour induced by submission timings, 
-patterns or interactions with the CPU scheduler.
-
-Regards,
-
-Tvrtko
-
->> It has to be the relative vruntime that is preserved, ie. entity which
->> re-enters cannot simply keep its previous vruntime, since by then that
->> could lag significantly behind the vruntime of other active entities,
->> which in turn would mean the re-joining entity could be head of the
->> queue for a long time.
->>
->> Second part is the special case from the quoted patch and that only
->> applies to entities which are re-joining the queue after having been
->> picked from the head _and_ there is another entity in the rq.
->>
->> By the nature of the CFS algorithm the re-joining entity continues with
->> the vruntime assigned from the current rq min_vruntime. Which puts two
->> entities with the same vruntime at the head of the queue and the actual
->> picking order influenced by the submit order (FIFO) and rbtree sort
->> order (did not check). But in any case it is not desirable for all the
->> description of GPU scheduling weaknesses from the commit text (this patch).
->>
->> For this special case there are three sub-paths:
->>
->>    1. Re-joining entity is higher scheduling prio -> we pull its vruntime
->> a tiny bit ahead of the min_vruntime so it runs first.
->>
->>    2. Lower re-joining prio -> the opposite of the above - we explicitly
->> prevent it overtaking the higher priority head.
->>
->>    3. Equal prio -> apply some randomness as to which one runs first.
->>
->> Idea being avoidance of any "latching" of the execution order based on
->> submission patterns. Which kind of applies a little bit of
->> round/random-robin for this very specific case of equal priority entity
->> re-joining at the top of the queue.
->>
->> Regards,
->>
->> Tvrtko
->>
+> To fix this problem and ensure consistency in the initialization of
+> the VM object, let's move the assignment of this handler to
+> xe_vm_create.
 > 
+> v2:
+>   - take reference to the xe file object only when xef is not NULL
+>   - release the reference to the xe file object on the error path (Matthew)
+> 
+> Fixes: 7f387e6012b6 ("drm/xe: add XE_BO_FLAG_PINNED_LATE_RESTORE")
+> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+> ---
+>   drivers/gpu/drm/xe/xe_migrate.c    |  2 +-
+>   drivers/gpu/drm/xe/xe_pxp_submit.c |  2 +-
+>   drivers/gpu/drm/xe/xe_vm.c         | 11 ++++++-----
+>   drivers/gpu/drm/xe/xe_vm.h         |  2 +-
+>   4 files changed, 9 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index ac9f4d4988d2..915fccea7aeb 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -411,7 +411,7 @@ int xe_migrate_init(struct xe_migrate *m)
+>   
+>   	/* Special layout, prepared below.. */
+>   	vm = xe_vm_create(xe, XE_VM_FLAG_MIGRATION |
+> -			  XE_VM_FLAG_SET_TILE_ID(tile));
+> +			  XE_VM_FLAG_SET_TILE_ID(tile), NULL);
+>   	if (IS_ERR(vm))
+>   		return PTR_ERR(vm);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c b/drivers/gpu/drm/xe/xe_pxp_submit.c
+> index d92ec0f515b0..ca95f2a4d4ef 100644
+> --- a/drivers/gpu/drm/xe/xe_pxp_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
+> @@ -101,7 +101,7 @@ static int allocate_gsc_client_resources(struct xe_gt *gt,
+>   	xe_assert(xe, hwe);
+>   
+>   	/* PXP instructions must be issued from PPGTT */
+> -	vm = xe_vm_create(xe, XE_VM_FLAG_GSC);
+> +	vm = xe_vm_create(xe, XE_VM_FLAG_GSC, NULL);
+>   	if (IS_ERR(vm))
+>   		return PTR_ERR(vm);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 148a2425006f..157e11bd2121 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1640,7 +1640,7 @@ static void xe_vm_free_scratch(struct xe_vm *vm)
+>   	}
+>   }
+>   
+> -struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+> +struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+>   {
+>   	struct drm_gem_object *vm_resv_obj;
+>   	struct xe_vm *vm;
+> @@ -1661,9 +1661,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	vm->xe = xe;
+>   
+>   	vm->size = 1ull << xe->info.va_bits;
+> -
+>   	vm->flags = flags;
+>   
+> +	if (xef)
+> +		vm->xef = xe_file_get(xef);
+>   	/**
+>   	 * GSC VMs are kernel-owned, only used for PXP ops and can sometimes be
+>   	 * manipulated under the PXP mutex. However, the PXP mutex can be taken
+> @@ -1814,6 +1815,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	for_each_tile(tile, xe, id)
+>   		xe_range_fence_tree_fini(&vm->rftree[id]);
+>   	ttm_lru_bulk_move_fini(&xe->ttm, &vm->lru_bulk_move);
+> +	if (vm->xef)
+> +		xe_file_put(vm->xef);
+>   	kfree(vm);
+>   	if (flags & XE_VM_FLAG_LR_MODE)
+>   		xe_pm_runtime_put(xe);
+> @@ -2097,7 +2100,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+>   		flags |= XE_VM_FLAG_FAULT_MODE;
+>   
+> -	vm = xe_vm_create(xe, flags);
+> +	vm = xe_vm_create(xe, flags, xef);
+>   	if (IS_ERR(vm))
+>   		return PTR_ERR(vm);
+>   
+> @@ -2113,8 +2116,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   		vm->usm.asid = asid;
+>   	}
+>   
+> -	vm->xef = xe_file_get(xef);
+> -
+>   	/* Record BO memory for VM pagetable created against client */
+>   	for_each_tile(tile, xe, id)
+>   		if (vm->pt_root[id])
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 3475a118f666..2f213737c7e5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -26,7 +26,7 @@ struct xe_sync_entry;
+>   struct xe_svm_range;
+>   struct drm_exec;
+>   
+> -struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags);
+> +struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef);
+>   
+>   struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id);
+>   int xe_vma_cmp_vma_cb(const void *key, const struct rb_node *node);
 
