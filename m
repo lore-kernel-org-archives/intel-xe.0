@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 309A2CA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 09:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA160C87FCB
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 10:19:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6C9C10E112;
-	Tue, 12 Aug 2025 09:53:05 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601A010E112;
- Tue, 12 Aug 2025 09:53:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0169632785665925294=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B80510E335;
+	Tue, 12 Aug 2025 10:19:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S6h3biQa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FEE710E335;
+ Tue, 12 Aug 2025 10:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754993995; x=1786529995;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=zAFcp/QTnT1l2ukv+QsVhroNnQIXExZ6gbQ8kNI15Z4=;
+ b=S6h3biQaxWwgB07RQ8QSsK15azAhx+EqLByBMqgqlbtik/wWGEsqTx3G
+ OITkgsZ0TsS6pVFDRQyElikxLyiakmLenno92BAbBztjKyRK9z2fCefbY
+ iAho9pXHB690fkhIjC/48aqm6Y3tMQT4SrPPkU/FAGA8OAsPxyW6gEIZb
+ IHuPvT8a1/xaYBEkqTjntAGOL94h8UbytpLVbjq7ng06m4NM6q5OgaHW5
+ L/5UTbPOSJuqAhe5V1RjXLEEwi6Dd8WRLwCHWKbzVN66k5Gze8PWnXA2c
+ Ab6+v/+jsrGvil5Rmx0Po8K58XaljeliG3uAjhY3Ku/MmD8fMEnkuEV0c w==;
+X-CSE-ConnectionGUID: L4fdyhuhSY+42plUvUdTlA==
+X-CSE-MsgGUID: P6NwSb/sQj6zJoPQ/IyBEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="59878878"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="59878878"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 03:19:55 -0700
+X-CSE-ConnectionGUID: 62bdU62AR6WszWkrgbbdkg==
+X-CSE-MsgGUID: 3V+TzUoRQm6AY0MpzI0QHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="197014270"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.68])
+ ([10.245.245.68])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 03:19:53 -0700
+Message-ID: <72385b2e6aa14b31b5d24deee0bc744af834f2da.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: airlied@gmail.com, matthew.brost@intel.com
+Date: Tue, 12 Aug 2025 12:19:51 +0200
+In-Reply-To: <1ffa7bec-ed8d-47d7-9002-66c08b1c6e8f@amd.com>
+References: <20250806132838.1831-1-christian.koenig@amd.com>
+ <3ff97e0ee433817c0c071c264d3a28622d717dfa.camel@linux.intel.com>
+ <d6830af2-52aa-4ca6-85c5-2a4635ce6c7d@amd.com>
+ <be9d451d511f8bc4652d835a2c28fa823aaf05f1.camel@linux.intel.com>
+ <76b287bf-9698-4df2-ac20-70b178a3a7c1@amd.com>
+ <a0bf9d3ab00bf18783c75e453324e232633501f8.camel@linux.intel.com>
+ <1ffa7bec-ed8d-47d7-9002-66c08b1c6e8f@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Improve_wedged_mo?=
- =?utf-8?q?de_handling_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lukasz Laguna" <lukasz.laguna@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Aug 2025 09:53:04 -0000
-Message-ID: <175499238438.229711.10948346726851004045@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250812084557.7805-1-lukasz.laguna@intel.com>
-In-Reply-To: <20250812084557.7805-1-lukasz.laguna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,172 +74,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0169632785665925294==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-08-12 at 11:17 +0200, Christian K=C3=B6nig wrote:
+> On 11.08.25 17:16, Thomas Hellstr=C3=B6m wrote:
+> > >=20
+> > > > FWIW If I understand the code correctly, i915 bypasses this by
+> > > > setting
+> > > > up user-space mappings not by vm_insert_pfn_prot() but using
+> > > > apply_to_page_range(), mapping the whole bo.
+> > >=20
+> > > Yeah, that's probably not something we can do. Even filling in
+> > > 2MiB
+> > > of address space at a time caused performance problems for TTM.
+> >=20
+> > Wasn't that because of repeated calls to vmf_insert_pfn_prot(),
+> > repeating the caching checks and page-table walk all the time?=C2=A0
+>=20
+> Only partially, the main problem was that only a fraction of the BO
+> was actually CPU accessed. So filling in more than faulted was just
+> overhead.
+>=20
+> > I think apply_to_page_range() should be pretty fast. Also, to avoid
+> > regressions due to changing the number of prefaulted pages, we
+> > could
+> > perhaps honor the MADV_RANDOM and MADV_SEQUENTIAL advises for UMD
+> > to
+> > use; one faulting a single page only, one faulting the whole bo
+>=20
+> Ah! In my thinking apply_to_page_range() would always fault in the
+> whole BO, if that still works for only a partial range than that
+> should be ok.
 
-== Series Details ==
+Yes, it looks like it works with partial ranges.
 
-Series: drm/xe: Improve wedged mode handling (rev9)
-URL   : https://patchwork.freedesktop.org/series/148214/
-State : success
+>=20
+> > , but
+> > also see below:
+> >=20
+> > >=20
+> > > We should probably just drop overriding the attributes in
+> > > vmf_insert_pfn_prot().
+> >=20
+> > I think either solution will see resistance with arch people. We
+> > should
+> > probably involve them in the discussion.
+>=20
+> Any specific person I should CC or just x86@kernel.org?
 
-== Summary ==
-
-CI Bug Log - changes from xe-3531-166e998ba65e288fb50dc510e090c081c8513844_BAT -> xe-pw-148214v9_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-148214v9_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {bat-ptl-2}:        [ABORT][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#4543]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][7] ([Intel XE#5783]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+scripts/get_maintainer.pl of a tiny change into the PAT code gives me
+the following: Hopefully some of these should trigger some replies and
+insights:
 
 
-Build changes
--------------
+./scripts/get_maintainer.pl 0001-arch-mm-dummy-commit.patch=20
+Dave Hansen <dave.hansen@linux.intel.com> (maintainer:X86 MM)
+Andy Lutomirski <luto@kernel.org> (maintainer:X86 MM)
+Peter Zijlstra <peterz@infradead.org> (maintainer:X86 MM)
+Thomas Gleixner <tglx@linutronix.de> (maintainer:X86 ARCHITECTURE (32-
+BIT AND 64-BIT))
+Ingo Molnar <mingo@redhat.com> (maintainer:X86 ARCHITECTURE (32-BIT AND
+64-BIT),commit_signer:10/16=3D62%,authored:2/16=3D12%)
+Borislav Petkov <bp@alien8.de> (maintainer:X86 ARCHITECTURE (32-BIT AND
+64-BIT))
+x86@kernel.org (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT))
+"H. Peter Anvin" <hpa@zytor.com> (reviewer:X86 ARCHITECTURE (32-BIT AND
+64-BIT))
+Andrew Morton <akpm@linux-foundation.org> (commit_signer:7/16=3D44%)
+David Hildenbrand <david@redhat.com>
+(commit_signer:6/16=3D38%,authored:6/16=3D38%,added_lines:68/105=3D65%,remo=
+ve
 
-  * Linux: xe-3531-166e998ba65e288fb50dc510e090c081c8513844 -> xe-pw-148214v9
-
-  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3531-166e998ba65e288fb50dc510e090c081c8513844: 166e998ba65e288fb50dc510e090c081c8513844
-  xe-pw-148214v9: 148214v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/index.html
-
---===============0169632785665925294==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Improve wedged mode handling (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148214/">https://patchwork.freedesktop.org/series/148214/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/index.html</a></td></tr>
-
-</table>
+d_lines:214/292=3D73%)
+"Liam R. Howlett" <Liam.Howlett@oracle.com> (commit_signer:5/16=3D31%)
+Lorenzo Stoakes <lorenzo.stoakes@oracle.com> (commit_signer:5/16=3D31%)
+Sean Christopherson <seanjc@google.com>
+(authored:2/16=3D12%,added_lines:15/105=3D14%,removed_lines:31/292=3D11%)
+"Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
+(authored:1/16=3D6%)
+Shivank Garg <shivankg@amd.com> (authored:1/16=3D6%)
+Peter Xu <peterx@redhat.com> (added_lines:7/105=3D7%)
+Dan Williams <dan.j.williams@intel.com> (removed_lines:27/292=3D9%)
 
 
-    <h1>CI Bug Log - changes from xe-3531-166e998ba65e288fb50dc510e090c081c8513844_BAT -&gt; xe-pw-148214v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-148214v9_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3531-166e998ba65e288fb50dc510e090c081c8513844/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148214v9/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3531-166e998ba65e288fb50dc510e090c081c8513844 -&gt; xe-pw-148214v9</li>
-</ul>
-<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3531-166e998ba65e288fb50dc510e090c081c8513844: 166e998ba65e288fb50dc510e090c081c8513844<br />
-  xe-pw-148214v9: 148214v9</p>
+>=20
+> Thanks,
+> Christian
 
-</body>
-</html>
-
---===============0169632785665925294==--
