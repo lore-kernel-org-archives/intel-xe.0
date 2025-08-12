@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87D38CA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 08:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89599CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 08:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FFEE10E5C3;
-	Tue, 12 Aug 2025 08:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A68010E0A8;
+	Tue, 12 Aug 2025 08:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOfLFNo9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQ+kyCMO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D39010E5C3
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 08:46:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8BE910E0A8
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 08:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754988374; x=1786524374;
+ t=1754988378; x=1786524378;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hhv7SNNy4jriBP0SW5X/I5bVQyifZFphgJxrXwzDiV8=;
- b=gOfLFNo93nsLktA14ZIwY9bNgTWWSrUfhqxbhG4fZuUq2aoDLtJDsXOZ
- TXtPkKffPpj2A1dPWXPhB/Gm94uje/rqQ8Xnz9+G+pPx3tX0MO0jvMzau
- xBSMl4hBeEb+slmQCp2Yrszl5P7KdmwW7XuDETLtZw7wv9QiR3Z+PcriL
- tOIYdOHj/gnlgPgJ/MYxCo0qO3d0aqNstTYYQeASq0MZ3kQLoGQh5z8iP
- 7Kkxqmhf19FUk6lI5RNG4yqfqt6JvbEVYgLLoxhFJcJXanqVrkG8slv8R
- JlZK6Ptw1MuW2cBgvYvtIgzew82WnN7LYKwNhb68Z1DIgFmoqzW/FGIQ9 g==;
-X-CSE-ConnectionGUID: SKYuKIGCRwC526yuz9GF0Q==
-X-CSE-MsgGUID: n040rHaBSUS1V9GVDIpwUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67857794"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="67857794"
+ bh=1nx2frdyY/UPuaae90F7VCSQBadKtrUIGh+QjBCklWg=;
+ b=UQ+kyCMOBlwxeU/XaVQ/alP2PDe4qJcsJ2rAdbBbzfU71EKDC66jWDtX
+ 8ScClAaWt968qaRFEoit5d0NyJsMTXO5rcjzEQhS8wjSuy4wrH3l6cZCl
+ e86UA/GcivKBLX03gjipPvCUQKbhxykcds/DkONWuplJvogck2n5PCtEz
+ KLXb8qnrLW5neuldeCsjqZoI7Sv0O5aTic2hV2gWmXqRpyWXytl+g4Cbs
+ x1LsZUAl3j9r1QSe2fm2ErNImQItNBvqhPOv+BGcaYY1U7Xo4iYDMdkoP
+ +hLdP2kSYe6ekwnnPWa6l8BHTVyQmd8PpMjPsceW+QZXJsMTG/Dob49zf w==;
+X-CSE-ConnectionGUID: kVK42p4OT56BB5kfBeU+Cw==
+X-CSE-MsgGUID: omCsABKIRHKe/w37CGAfRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67857799"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="67857799"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 01:46:14 -0700
-X-CSE-ConnectionGUID: /lfOFp5jSOmgC8746ichfw==
-X-CSE-MsgGUID: s3hZPTT5TwKv5AdrEZmyCA==
+ 12 Aug 2025 01:46:17 -0700
+X-CSE-ConnectionGUID: /nbrD3ncQ7avj469pL2MPQ==
+X-CSE-MsgGUID: o4Mwnb3fQ1KmYraXu4jlxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="165645731"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="165645758"
 Received: from llaguna-dev.igk.intel.com (HELO localhost) ([10.91.214.40])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 01:46:13 -0700
+ 12 Aug 2025 01:46:16 -0700
 From: Lukasz Laguna <lukasz.laguna@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, rodrigo.vivi@intel.com, lukasz.laguna@intel.com
-Subject: [PATCH v9 3/4] drm/xe/vf: Disallow setting wedged mode to
- upon-any-hang
-Date: Tue, 12 Aug 2025 10:45:56 +0200
-Message-Id: <20250812084557.7805-4-lukasz.laguna@intel.com>
+Subject: [PATCH v9 4/4] drm/xe/pf: Allow upon-any-hang wedged mode only in
+ debug config
+Date: Tue, 12 Aug 2025 10:45:57 +0200
+Message-Id: <20250812084557.7805-5-lukasz.laguna@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20250812084557.7805-1-lukasz.laguna@intel.com>
 References: <20250812084557.7805-1-lukasz.laguna@intel.com>
@@ -67,32 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In upon-any-hang (2) wedged mode, engine resets need to be disabled,
-which requires changing the GuC reset policy. VFs are not permitted to
-do that.
+The GuC reset policy is global, so disabling it on PF can affect all
+running VFs. To avoid unintended side effects, restrict setting
+upon-any-hang (2) wedged mode on the PF to debug builds only.
 
 Signed-off-by: Lukasz Laguna <lukasz.laguna@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 412da766ea79..7a089999170a 100644
+index 7a089999170a..89409048703c 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1224,6 +1224,11 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
+@@ -1224,7 +1224,8 @@ int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
  	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG) {
  		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
  		return -EINVAL;
-+	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && IS_SRIOV_VF(xe)) {
-+		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
-+			mode, xe_wedged_mode_to_string(mode),
-+			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-+		return -EPERM;
- 	}
- 
- 	return 0;
+-	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && IS_SRIOV_VF(xe)) {
++	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG && (IS_SRIOV_VF(xe) ||
++		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
+ 		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
+ 			mode, xe_wedged_mode_to_string(mode),
+ 			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
 -- 
 2.40.0
 
