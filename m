@@ -4,63 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03946C87FCB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 09:06:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49D48CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 09:17:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B961210E110;
-	Tue, 12 Aug 2025 09:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFE010E5CB;
+	Tue, 12 Aug 2025 09:17:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyyWCZ5w";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CdwqiNbc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8679B10E110;
- Tue, 12 Aug 2025 09:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754989592; x=1786525592;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=8gFne/giBY9PSWZwoXTtzxujLwuZ+hsartMmWykWWk0=;
- b=lyyWCZ5wtJCxo5U1F5qwJfgNYWOp5AC/yrWkmDYoZZv5bCcLCcSK8yhg
- fFg+haICm7nCSkM6+Ovc9hCzqvVmU6U/us5nZiy0vMg1UUVERh8vurPm5
- C1ob6e51pHkfEgtAVQkhvlB5OYkmqH6kNAz0uBvf36pN2l6uBxqrQA8kK
- q/zkJLVvp3R1OeuTrafD4liOck4UAQk/OMRlzM/ouelZpsqrl/G+5zeZ6
- PqdiPThtiBn+FCoLcWxNukVjTq/fgBmREB0dB/32fDBwo/2rJseQVRLst
- W4Z2Xm9a7HmoKIJp5qMDmZAccdXyOotT7oTYbiGUKUsMKtEUiWu1xDpn4 A==;
-X-CSE-ConnectionGUID: rsiZ6jCPQSiHAp4C3p9HGQ==
-X-CSE-MsgGUID: GnOmmofVQ9W+MflwM4jrqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67860068"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="67860068"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 02:06:31 -0700
-X-CSE-ConnectionGUID: NAHuCiBMSNGpX4wmc77csA==
-X-CSE-MsgGUID: NENKvorPTfKN9BlUl1AVIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="197148858"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.68])
- ([10.245.245.68])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 02:06:28 -0700
-Message-ID: <f35bafa3c62e5f541c4f5d65f5682a0360496dde.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 6/6] drm/xe: Implement two pass MMU notifiers for SVM
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org, Jason
- Gunthorpe	 <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>,
- Simona Vetter	 <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- linux-mm@kvack.org, 	linux-kernel@vger.kernel.org
-Date: Tue, 12 Aug 2025 11:06:26 +0200
-In-Reply-To: <aJpWkig5z8tbeQDo@lstrano-desk.jf.intel.com>
-References: <20250809135137.259427-1-thomas.hellstrom@linux.intel.com>
- <20250809135137.259427-7-thomas.hellstrom@linux.intel.com>
- <aJpWkig5z8tbeQDo@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2070.outbound.protection.outlook.com [40.107.100.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34F610E110;
+ Tue, 12 Aug 2025 09:17:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GPeXO1yhnFXMTvSRzk2KHgUdJW/USrnVgC89xXGuN96C1DgDMUcHSniEJDXyE+JvH3V2psFjBiMVL6LOYmdW99j3x2yq9pSi24kTOGgF05kb5FyikYfY4zieKiWTTLjoD6EfaylXtpNsumJE0SKIki1ZVg3uccpzaaHL5FkPrzxdjOc7wM4F5BKrtZ87S+6xuQ3rkAbt2DdX9x+0CSLm32wAoRO5Fnmsy7KNMyCTuKLd8PfgOnyskBeuEDWhXKi4eboGRq4zjFAmDToJwqWDIkzqfqx+/Zk5yTyCI1iPB/E+AdZUqpRGtXyX6rpORcNnRGDNJOiTIZGSJgrGsK5L0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fn9xUOWvXOzYnq+35WK2Qfnmo2MGlvCrGiSMXC0nAWA=;
+ b=De0yecTo42u9ORdmiheohEJdm3/habfPkp2anODGpxNVlHMIMo9dvHHCzzUKGbYDGm8Z5EbiyWc7ahNCbNhauu9D3lqYxd7bDUrZxcU/S6k5XzBRcjYfIIKS4rK2YUcp8zl7g9o9wbnerOO3llq9EfwQrqFNUPGXqeNrmf4TVlXCVgW4HcJ+uI+8knZfZ4pAtKQu9BwNVxJejrokyVX2kPBJiLHJrAzqa2V8Uw0MX2Ttc0NqFGHmmMlTnIBvapXNazcCRBoQ2h3PU1S5iYtBlyzSzyD7MAMC/m1nqomZgrd9/fv7uhbh7YQ9DG6AIP6N9xwHTSq0cUOkjkneNs9O+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fn9xUOWvXOzYnq+35WK2Qfnmo2MGlvCrGiSMXC0nAWA=;
+ b=CdwqiNbcavn59788p/KINCM8CllhG+b67lL9Qv9JCeawY4llpQW8DayNn3MTgKx6GBPyESZCBcIYpRQczdxRyTmBEK6dQpTfEPu4gGUETP1j9kVyhIn0b8jXhN1+1Y8xH8FpYpG5yGDh3ZepCoSbBSH2wEMKkLMQOIS6BD9l7Pc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by BL3PR12MB6569.namprd12.prod.outlook.com (2603:10b6:208:38c::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.21; Tue, 12 Aug
+ 2025 09:17:29 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9009.018; Tue, 12 Aug 2025
+ 09:17:29 +0000
+Message-ID: <1ffa7bec-ed8d-47d7-9002-66c08b1c6e8f@amd.com>
+Date: Tue, 12 Aug 2025 11:17:23 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: airlied@gmail.com, matthew.brost@intel.com
+References: <20250806132838.1831-1-christian.koenig@amd.com>
+ <3ff97e0ee433817c0c071c264d3a28622d717dfa.camel@linux.intel.com>
+ <d6830af2-52aa-4ca6-85c5-2a4635ce6c7d@amd.com>
+ <be9d451d511f8bc4652d835a2c28fa823aaf05f1.camel@linux.intel.com>
+ <76b287bf-9698-4df2-ac20-70b178a3a7c1@amd.com>
+ <a0bf9d3ab00bf18783c75e453324e232633501f8.camel@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <a0bf9d3ab00bf18783c75e453324e232633501f8.camel@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MN2PR15CA0033.namprd15.prod.outlook.com
+ (2603:10b6:208:1b4::46) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|BL3PR12MB6569:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a4f400b-99ad-43fa-964c-08ddd9810f6b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?djJ1Y1B0Yi9pa0dya051MzZBQTNvczdrR05nc0M3RnVDTmVzUWRZSGE4R1pS?=
+ =?utf-8?B?K3VqOTJiVlJtSnNueVEzMlhEdFBrRXoyMnVkVWdFUmE0YnlqZmUzOHVpV2ds?=
+ =?utf-8?B?WDJNRHEydGNEMUJnU3U0THg4cU81dU43WFNRTXdjOEtYdGNGVDU0eGRMeDNu?=
+ =?utf-8?B?SGx3Sy9iYUg4aUZ4Uk4wUkp2cms2QkFaL2dhMG5tYnhtUEVHMldjTFVOUXBR?=
+ =?utf-8?B?VkpKdWgzUHRPL3dRV2l6ckxtTC9YNUhlam5hQW5ZcktWY2UzL3k0aEdONWdt?=
+ =?utf-8?B?dzBNY3gxbFY5VjRrYm5KM0V6d200MlROTU9DS2ZDeVZVWWFXQ2hxeEV4SHNV?=
+ =?utf-8?B?b0FNb3JFc3BQNWkxeXRsMHk1QTVmblNHYU01MEYyZ1VMa2h5M1BIeGpoL1BY?=
+ =?utf-8?B?c1pTaTZXZ1h4eTFQekZ5Zk96amtrMTNRZ2NOYXRIYk9Rdjc0ZHQ5cGpZQmRk?=
+ =?utf-8?B?S1lybEZRRWlvcVVNcHVWenlPaFZaUTM4Z0tnK0k5T2dTTyt3K29rVVZ3Q0N5?=
+ =?utf-8?B?L3ZKRTZpb2xyVkNhbVo1SUJFa3N6VEw0Y3R5QUpucTdndXl5MnJpUGRHN2Y0?=
+ =?utf-8?B?WXNlM3BaejB5UzgyclBlL2Nyd1FRUDBVN09MMUxMbGNCWDNFRHdlaTBzOC9V?=
+ =?utf-8?B?VzR0UVZiT0ZPSlNic3RHZ1JZTVpBbXV4LytSOTQ0SkdiS2VaWHdWbXFQWExV?=
+ =?utf-8?B?NFhLWTQ1dUpRRXc1TXBlQWw0Zzd4OUZlQTAxb096OGxVOVoxN250SkZlVWtT?=
+ =?utf-8?B?WHJhbWJ2Vk1Oa1M4Y1NqcUN0K0FDdFUrWjU4aWhPZHMyTlMrWTNCRGQrdkc2?=
+ =?utf-8?B?UnV2YmYyUFltU1p4Z1NrY3A3Y3pGdXZSdjVxS3p3UFAzTlpQczlDemNZZTJZ?=
+ =?utf-8?B?VHpybXZOd1BES0toT0NzSytISTFiMEZEMld0YWQ4R0N2dGJFQzR6TXM1R29S?=
+ =?utf-8?B?Qi9OdXFIQWVldERZM0krNlBVMnlPZmVreVJwQkI4ZkxHeWRwaUI5bXhRTERQ?=
+ =?utf-8?B?ZnA0bzM1cStmenZFVGtvTjhZRGxQTHdpUXE4WkxLckdHZHRYR1FVUHFuN1hM?=
+ =?utf-8?B?aDM5SlBueGpNNUZSNmFrTzZodEFZRFYvYll5ekpjMXN5bklBOTJmekgvYy9U?=
+ =?utf-8?B?d21XRnZ3SmdZckUzSVpuRnp6TzVwK3NpaloxaXpHU2NOYzhOTmUyS1RZS040?=
+ =?utf-8?B?Z1VXK25mSkgrYnVYZUpBUmNKVzlIcnJIOW93YkZ1WkhqbUdTem1lcU1BYUkw?=
+ =?utf-8?B?alFvcWZKcU5td1RTbHB1WjNadG1EL1ZyNTVSMm84SHBVb1Rma1FUVW4wdHlq?=
+ =?utf-8?B?YUx3czZPMExTc3RHdjZDR3VEaU5DU3V5KzFaaFNKOW50RkdzSXJsTndSUHJo?=
+ =?utf-8?B?c2lENEx2SGRpRVJyZ1BodVhCWXJWNEdXWVl1d0dnR0FZaU1KclFCMnUxaFRy?=
+ =?utf-8?B?RFNOWUtZbEV6bGNOb01MMU14dlZLQjB4Tkt1aTI4MHlBamFQNVRQREtSMVFB?=
+ =?utf-8?B?VStDRThLUzJtNDRCZEVSbDR0clJMak1MYjBEdG1PUWpacTBaVlpzOVI5aHRt?=
+ =?utf-8?B?Szk4d215SzdkVkRjZjltNDY1bVJWdER1Um1IZ0VPdldFZ1RYU3NzTktUZkVz?=
+ =?utf-8?B?Rk5VOUJlVUZKS2x2LzE2NlliZjhDYzJVcWpjUVkybURWelRpa1VlUVphd1FT?=
+ =?utf-8?B?VnpoenZPb0ZnVzlzbGVxK01Fc3c4NjhWWVVhMEF5NURZRG9RRVdEaWpMM2Ny?=
+ =?utf-8?B?TlY0SEVzb2lpU3d5S0lPRERQZk5PZjBUKzlHc0hXTVhuUEU2Wmtwd0pIZnp5?=
+ =?utf-8?B?cGNnMXJuNGM5a2loYzBKUURFdmF1dXBLNEhEQTRqK0RSZ1lwVTlzcWV1Skt3?=
+ =?utf-8?B?OE1mWk1mdW0wdnVGVjNlYWd6anEycS9uUThSZFVVT2E1Z29jV3JpVm1XTTl2?=
+ =?utf-8?Q?le+DMYKz6A8=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y09ZYWJtQlQwbUtoSGdGZCtYNTZkSmpqOWxRV3dyRENBUHJ2TFRSRFY5S2dB?=
+ =?utf-8?B?MWtBMkV4WDB5Q1RMVWQ0UzFFMlMwaW4zRWwrU2lvQ2lTMTZ0b1o2cGJpVGlV?=
+ =?utf-8?B?bEs2MkFuNDdLU2xVdUxFVjhFdmk4ZVlnZHJwb1pQcWJudWp3a3lLWnhuSjRS?=
+ =?utf-8?B?aFh2eVBMakpXOFhZUUJlMVV6cEIvMVZDcU5NVXZRRUV3dzlaZ2NzL1B0a1lu?=
+ =?utf-8?B?OTBYSjR3NzJxZlFzUHE1S215MEVwdWY1WEFtOS9yUmhoaTlldFUyRDBTR3Nh?=
+ =?utf-8?B?NTRzVFRtVXdBVzhXQXhBRlF4N2tBZnAyYkZ3dS9WdmlYbHhEbUxQSFQxZjNP?=
+ =?utf-8?B?dGJPNHplL1lrY0kxZHlFZVhyTStRTWoydHVNbGtKb1pXK1o1VHkrUjFydEE3?=
+ =?utf-8?B?cWVNTHcyUnZVbGdNQzBUTmp5SzR2aG1VKzJEb1lmMUFMbjBlSXRJcDdpcVNx?=
+ =?utf-8?B?L3IrMCtJQm1XQVZRdS80RG04b0g4QlBCb3NsTHVQNlQrbFJOamUxMzBRd1VW?=
+ =?utf-8?B?ZWVlcU9hdlpGQ3Y4MHBPMDI3WEtzNkZPRGEzRytOdXByMmxVdE13bzhuQ2dZ?=
+ =?utf-8?B?bFR6bVYxNVpuNE1UMVFyVjA3TGFZVWxZSzZHZ2JkRWFma3RRMlBFYnV6bFdu?=
+ =?utf-8?B?ZTh0bnhId01TVVFRd0dhaEp1Y2JFS2Y2UmhabEc1ZGZKa1lhTXYxTDVRbHBY?=
+ =?utf-8?B?b2xpc1dNK002YzZCU1R3b09PYnZuems5ZVFnaW1HcFBPbU1HSXdPOTAwU08w?=
+ =?utf-8?B?WEhZQTFRekk3czRkNUhIaDlydElFU3FhMjI5YTBodFp3VWFMMWllT0F4Z0ta?=
+ =?utf-8?B?ais4dVNzYk5DMTB5RWNFejc0U2YveDFqc1Y5NU1vZXE0K2hzK0NsYVlzSlh6?=
+ =?utf-8?B?cVpENHAyWjBJR3JWR1hqL2R3WkdwNno3QTRxNWl5NElHd3BoVWFidWN1NjdH?=
+ =?utf-8?B?aEt6VGZENWVGODNYR3Q0cEpvblo0QWtVY25JbmwwRU1ubGVLNWtCd0NUaktQ?=
+ =?utf-8?B?NDhIaHUySmsvVldiS1hjUnJzYmcxOG1idGp0anhmSEtEMlIrak5kWXprNVpn?=
+ =?utf-8?B?SmZTdm96dHBMOU1YaUtubTZ3cllWcWZxN0dhZkpiUWZrVUNYSDJ3eklHM085?=
+ =?utf-8?B?UEhvbUNWdXQybmVDUERiLyt0dnFQalQ2QnZUMVhvYnB0QXJoRnVxVEFBT2FT?=
+ =?utf-8?B?bTlyTXoySS9qR0RpbVZYNWo4blE0Rjl0N3lTSUV2cFRqM3FNTEYrTFI5TFU4?=
+ =?utf-8?B?ZVB4amErbXZaNWRnR1U0MlpvTFlhU3dDdkYwY1k4VS9Ldlo2cUZiMUw3aE1s?=
+ =?utf-8?B?QzNCQTd3MURnSjBDbW9YRHo1R2UySDF2SnRhTkRyMi9uZzRIWE54V1pWcjZx?=
+ =?utf-8?B?dldNUHkvVC9BYy9vdjVVNi9FUU5LZmFVQ2F0MEFwelhNa1hHQnFld2x1ZUg0?=
+ =?utf-8?B?OFhCM29IaDBvQ3o3YTJ3UWtwWGR1MDgzamJnYkxKY29DWkROMitaV002Rk12?=
+ =?utf-8?B?d2s3ZzlTWVFESnhSOXoyY3FxV2ZqS1VFYW43c05sSDRmRzhKZ2ZXSlZLajIx?=
+ =?utf-8?B?RzRsa05sZmJVZGMrY29NL1dZUngyUlhrMDRrWkE0VWdybjlmNnZDSWhINzFo?=
+ =?utf-8?B?VlVoZlNYN2txelZhUDRiL29HaThXWVR0Tis1ektwNGVVQlRjL3hOaWFxM1RD?=
+ =?utf-8?B?VnlPeEkxRDV1Qis1YS9mcE5QVXRmeVYrbnhSc3hpOFMxN1B2aWdqR09FbFRk?=
+ =?utf-8?B?T05pdUI1NzVUVmZLT1Y5LzV3Yjl2NnlYcFRlcnpSSHZCVEF2VmtvVWpPRmJu?=
+ =?utf-8?B?Z1hYTjBOVmhkMEorSjB0WlAyT2ZKR3pIaVBrZ1RFdGZVVzNZbjQzLzZRcGdm?=
+ =?utf-8?B?SGVnbmJWVDdORjRteXNXRHRVOWRsMDNVWENMT3hNN1h1YWNybG05STdjN3RM?=
+ =?utf-8?B?NHJnRkdJcTQ2R25hVGJScXYrQVNyRVk0cVUyYUJlVG91RFVTUVRpQWljOE5Z?=
+ =?utf-8?B?bThVQ3l6a2U4NFYyU0NRV1lZc01IZk42NUlOcktqbVZvejZicEsvMTJsUnRa?=
+ =?utf-8?B?djUvbjFsWDhvSXNZTFA4aGlCVFpWcUtOSVVydXVnSmN1eFM5YVZGSGF6eGdu?=
+ =?utf-8?Q?rzjOTSY5sE6MTetIkdoU1axCj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a4f400b-99ad-43fa-964c-08ddd9810f6b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 09:17:29.1578 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FDKnQaJeWWnn4XmdaCgvI1vaIQofRVn/gnXGzHSLJLiRLl0MZAkmZYQQc+WAGeXF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6569
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,199 +167,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-08-11 at 13:46 -0700, Matthew Brost wrote:
-> On Sat, Aug 09, 2025 at 03:51:37PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > From: Matthew Brost <matthew.brost@intel.com>
-> >=20
-> > Implement two-pass MMU notifiers for SVM, enabling multiple VMs or
-> > devices with GPU mappings to pipeline costly TLB invalidations by
-> > issuing them in the first pass and waiting for completion in the
-> > second.
-> >=20
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/drm_gpusvm.c |=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0 | 74 ++++++++++++++++++++++++++=
-++++--
-> > ----
-> > =C2=A02 files changed, 63 insertions(+), 13 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_gpusvm.c
-> > b/drivers/gpu/drm/drm_gpusvm.c
-> > index 92dc7d2bd6cf..f153df1bc862 100644
-> > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > @@ -413,7 +413,7 @@ drm_gpusvm_notifier_invalidate_twopass(struct
-> > mmu_interval_notifier *mni,
-> > =C2=A0 * drm_gpusvm_notifier_ops - MMU interval notifier operations for
-> > GPU SVM
-> > =C2=A0 */
-> > =C2=A0static const struct mmu_interval_notifier_ops
-> > drm_gpusvm_notifier_ops =3D {
-> > -	.invalidate_twopass =3D
-> > drm_gpusvm_notifier_invalidate_twopass,
-> > +	.invalidate_multipass =3D
-> > drm_gpusvm_notifier_invalidate_twopass,
->=20
-> This should be in patch #2.
+On 11.08.25 17:16, Thomas Hellström wrote:
+>>
+>>> FWIW If I understand the code correctly, i915 bypasses this by
+>>> setting
+>>> up user-space mappings not by vm_insert_pfn_prot() but using
+>>> apply_to_page_range(), mapping the whole bo.
+>>
+>> Yeah, that's probably not something we can do. Even filling in 2MiB
+>> of address space at a time caused performance problems for TTM.
+> 
+> Wasn't that because of repeated calls to vmf_insert_pfn_prot(),
+> repeating the caching checks and page-table walk all the time? 
 
-Yup. My bad fixing up for the interface change in patch 1. Sorry for
-that.
-/Thomas
+Only partially, the main problem was that only a fraction of the BO was actually CPU accessed. So filling in more than faulted was just overhead.
 
+> I think apply_to_page_range() should be pretty fast. Also, to avoid
+> regressions due to changing the number of prefaulted pages, we could
+> perhaps honor the MADV_RANDOM and MADV_SEQUENTIAL advises for UMD to
+> use; one faulting a single page only, one faulting the whole bo
 
->=20
-> Matt
->=20
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0/**
-> > diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> > b/drivers/gpu/drm/xe/xe_svm.c
-> > index 82a598c8d56e..5728394806ca 100644
-> > --- a/drivers/gpu/drm/xe/xe_svm.c
-> > +++ b/drivers/gpu/drm/xe/xe_svm.c
-> > @@ -144,15 +144,8 @@ xe_svm_range_notifier_event_begin(struct xe_vm
-> > *vm, struct drm_gpusvm_range *r,
-> > =C2=A0	 * invalidations spanning multiple ranges.
-> > =C2=A0	 */
-> > =C2=A0	for_each_tile(tile, xe, id)
-> > -		if (xe_pt_zap_ptes_range(tile, vm, range)) {
-> > +		if (xe_pt_zap_ptes_range(tile, vm, range))
-> > =C2=A0			tile_mask |=3D BIT(id);
-> > -			/*
-> > -			 * WRITE_ONCE pairs with READ_ONCE in
-> > -			 * xe_vm_has_valid_gpu_mapping()
-> > -			 */
-> > -			WRITE_ONCE(range->tile_invalidated,
-> > -				=C2=A0=C2=A0 range->tile_invalidated |
-> > BIT(id));
-> > -		}
-> > =C2=A0
-> > =C2=A0	return tile_mask;
-> > =C2=A0}
-> > @@ -161,16 +154,60 @@ static void
-> > =C2=A0xe_svm_range_notifier_event_end(struct xe_vm *vm, struct
-> > drm_gpusvm_range *r,
-> > =C2=A0				const struct mmu_notifier_range
-> > *mmu_range)
-> > =C2=A0{
-> > +	struct xe_svm_range *range =3D to_xe_range(r);
-> > =C2=A0	struct drm_gpusvm_ctx ctx =3D { .in_notifier =3D true, };
-> > =C2=A0
-> > =C2=A0	xe_svm_assert_in_notifier(vm);
-> > =C2=A0
-> > +	/*
-> > +	 * WRITE_ONCE pairs with READ_ONCE in
-> > xe_vm_has_valid_gpu_mapping()
-> > +	 */
-> > +	WRITE_ONCE(range->tile_invalidated, range->tile_present);
-> > +
-> > =C2=A0	drm_gpusvm_range_unmap_pages(&vm->svm.gpusvm, r, &ctx);
-> > =C2=A0	if (!xe_vm_is_closed(vm) && mmu_range->event =3D=3D
-> > MMU_NOTIFY_UNMAP)
-> > =C2=A0		xe_svm_garbage_collector_add_range(vm,
-> > to_xe_range(r),
-> > =C2=A0						=C2=A0=C2=A0 mmu_range);
-> > =C2=A0}
-> > =C2=A0
-> > +struct xe_svm_invalidate_pass {
-> > +	struct drm_gpusvm *gpusvm;
-> > +	struct drm_gpusvm_notifier *notifier;
-> > +#define XE_SVM_INVALIDATE_FENCE_COUNT	\
-> > +	(XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE)
-> > +	struct xe_gt_tlb_invalidation_fence
-> > fences[XE_SVM_INVALIDATE_FENCE_COUNT];
-> > +	struct mmu_interval_notifier_pass p;
-> > +};
-> > +
-> > +static struct mmu_interval_notifier_pass *
-> > +xe_svm_invalidate_second(struct mmu_interval_notifier_pass *p,
-> > +			 const struct mmu_notifier_range
-> > *mmu_range,
-> > +			 unsigned long cur_seq)
-> > +{
-> > +	struct xe_svm_invalidate_pass *pass =3D container_of(p,
-> > typeof(*pass), p);
-> > +	struct drm_gpusvm *gpusvm =3D pass->gpusvm;
-> > +	struct drm_gpusvm_notifier *notifier =3D pass->notifier;
-> > +	struct drm_gpusvm_range *r =3D NULL;
-> > +	struct xe_vm *vm =3D gpusvm_to_vm(gpusvm);
-> > +	u64 adj_start =3D mmu_range->start, adj_end =3D mmu_range-
-> > >end;
-> > +	int id;
-> > +
-> > +	/* Adjust invalidation to notifier boundaries */
-> > +	adj_start =3D max(drm_gpusvm_notifier_start(notifier),
-> > adj_start);
-> > +	adj_end =3D min(drm_gpusvm_notifier_end(notifier), adj_end);
-> > +
-> > +	for (id =3D 0; id < XE_SVM_INVALIDATE_FENCE_COUNT; ++id)
-> > +		xe_gt_tlb_invalidation_fence_wait(&pass-
-> > >fences[id]);
-> > +
-> > +	drm_gpusvm_in_notifier_lock(gpusvm);
-> > +	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
-> > +		xe_svm_range_notifier_event_end(vm, r, mmu_range);
-> > +	drm_gpusvm_in_notifier_unlock(gpusvm);
-> > +
-> > +	kfree(pass);
-> > +	return NULL;
-> > +}
-> > +
-> > =C2=A0static void xe_svm_invalidate_twopass(struct drm_gpusvm *gpusvm,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gpusvm_notifier
-> > *notifier,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct
-> > mmu_notifier_range *mmu_range,
-> > @@ -179,6 +216,8 @@ static void xe_svm_invalidate_twopass(struct
-> > drm_gpusvm *gpusvm,
-> > =C2=A0	struct xe_vm *vm =3D gpusvm_to_vm(gpusvm);
-> > =C2=A0	struct xe_device *xe =3D vm->xe;
-> > =C2=A0	struct drm_gpusvm_range *r, *first;
-> > +	struct xe_svm_invalidate_pass *pass =3D NULL;
-> > +	struct xe_gt_tlb_invalidation_fence *fences =3D NULL;
-> > =C2=A0	u64 adj_start =3D mmu_range->start, adj_end =3D mmu_range-
-> > >end;
-> > =C2=A0	u8 tile_mask =3D 0;
-> > =C2=A0	long err;
-> > @@ -226,14 +265,25 @@ static void xe_svm_invalidate_twopass(struct
-> > drm_gpusvm *gpusvm,
-> > =C2=A0
-> > =C2=A0	xe_device_wmb(xe);
-> > =C2=A0
-> > -	err =3D xe_vm_range_tilemask_tlb_invalidation(vm, NULL,
-> > adj_start,
-> > +	pass =3D kzalloc(sizeof(*pass), GFP_NOWAIT);
-> > +	if (pass) {
-> > +		pass->gpusvm =3D gpusvm;
-> > +		pass->notifier =3D notifier;
-> > +		pass->p.pass =3D xe_svm_invalidate_second;
-> > +		fences =3D pass->fences;
-> > +		*p =3D &pass->p;
-> > +	}
-> > +
-> > +	err =3D xe_vm_range_tilemask_tlb_invalidation(vm, fences,
-> > adj_start,
-> > =C2=A0						=C2=A0=C2=A0=C2=A0 adj_end,
-> > tile_mask);
-> > =C2=A0	WARN_ON_ONCE(err);
-> > =C2=A0
-> > =C2=A0range_notifier_event_end:
-> > -	r =3D first;
-> > -	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
-> > -		xe_svm_range_notifier_event_end(vm, r, mmu_range);
-> > +	if (!pass) {
-> > +		r =3D first;
-> > +		drm_gpusvm_for_each_range(r, notifier, adj_start,
-> > adj_end)
-> > +			xe_svm_range_notifier_event_end(vm, r,
-> > mmu_range);
-> > +	}
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static int __xe_svm_garbage_collector(struct xe_vm *vm,
-> > --=20
-> > 2.50.1
-> >=20
+Ah! In my thinking apply_to_page_range() would always fault in the whole BO, if that still works for only a partial range than that should be ok.
 
+> , but
+> also see below:
+> 
+>>
+>> We should probably just drop overriding the attributes in
+>> vmf_insert_pfn_prot().
+> 
+> I think either solution will see resistance with arch people. We should
+> probably involve them in the discussion.
+
+Any specific person I should CC or just x86@kernel.org?
+
+Thanks,
+Christian
