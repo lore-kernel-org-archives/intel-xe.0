@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D88ECA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 14:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABDDCA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 14:25:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E023510E5FF;
-	Tue, 12 Aug 2025 14:12:04 +0000 (UTC)
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420E610E5AC;
- Tue, 12 Aug 2025 06:59:44 +0000 (UTC)
-X-UUID: e7f04eee774911f0b29709d653e92f7d-20250812
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:e46736c3-de8c-47f0-a283-047ffdd95743, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
- release,TS:0
-X-CID-META: VersionHash:6493067, CLOUDID:9040537a3e6de48336df6fb7ddc47263,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:nil,UR
- L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
- PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: e7f04eee774911f0b29709d653e92f7d-20250812
-Received: from node2.com.cn [(10.44.16.197)] by mailgw.kylinos.cn
- (envelope-from <zhaoguohan@kylinos.cn>) (Generic MTA)
- with ESMTP id 545928281; Tue, 12 Aug 2025 14:59:35 +0800
-Received: from node2.com.cn (localhost [127.0.0.1])
- by node2.com.cn (NSMail) with SMTP id 5FB40B8258E7;
- Tue, 12 Aug 2025 14:59:35 +0800 (CST)
-X-ns-mid: postfix-689AE657-189842208
-Received: from localhost.localdomain (unknown [10.42.12.87])
- by node2.com.cn (NSMail) with ESMTPA id DE2B4B812916;
- Tue, 12 Aug 2025 06:59:33 +0000 (UTC)
-From: zhaoguohan@kylinos.cn
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, GuoHan Zhao <zhaoguohan@kylinos.cn>
-Subject: [RESEND][PATCH] drm/xe/hwmon: Return early on power limit read failure
-Date: Tue, 12 Aug 2025 14:59:30 +0800
-Message-ID: <20250812065930.15847-1-zhaoguohan@kylinos.cn>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF4F10E167;
+	Tue, 12 Aug 2025 14:25:30 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE24210E167;
+ Tue, 12 Aug 2025 14:25:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0220914539099150365=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 12 Aug 2025 14:12:03 +0000
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pm=3A_Disable_RPM_fo?=
+ =?utf-8?q?r_SR-IOV_VFs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Aug 2025 14:25:29 -0000
+Message-ID: <175500872983.230492.4696381676960199954@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250812133325.14704-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250812133325.14704-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +36,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: GuoHan Zhao <zhaoguohan@kylinos.cn>
+--===============0220914539099150365==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In xe_hwmon_pcode_rmw_power_limit(), when xe_pcode_read() fails,
-the function logs the error but continues to execute the subsequent
-logic. This can result in undefined behavior as the values val0 and
-val1 may contain invalid data.
+== Series Details ==
 
-Fix this by adding an early return after logging the read failure,
-ensuring that we don't proceed with potentially corrupted data.
+Series: drm/xe/pm: Disable RPM for SR-IOV VFs
+URL   : https://patchwork.freedesktop.org/series/152834/
+State : success
 
-Signed-off-by: GuoHan Zhao <zhaoguohan@kylinos.cn>
----
- drivers/gpu/drm/xe/xe_hwmon.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.=
-c
-index f08fc4377d25..eb410c5293e7 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -190,9 +190,11 @@ static int xe_hwmon_pcode_rmw_power_limit(const stru=
-ct xe_hwmon *hwmon, u32 attr
- 						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
- 						  &val0, &val1);
-=20
--	if (ret)
-+	if (ret) {
- 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, =
-ret %d\n",
- 			channel, val0, val1, ret);
-+			return ret;
-+	}
-=20
- 	if (attr =3D=3D PL1_HWMON_ATTR)
- 		val0 =3D (val0 & ~clr) | set;
---=20
-2.43.0
+CI Bug Log - changes from xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07_BAT -> xe-pw-152834v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152834v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-2}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5774]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5774
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+  [Intel XE#5907]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5907
+
+
+Build changes
+-------------
+
+  * Linux: xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07 -> xe-pw-152834v1
+
+  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07: fd6c93575fc337f20a8cc7b62db0307fa8b39b07
+  xe-pw-152834v1: 152834v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/index.html
+
+--===============0220914539099150365==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pm: Disable RPM for SR-IOV VFs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152834/">https://patchwork.freedesktop.org/series/152834/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07_BAT -&gt; xe-pw-152834v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152834v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07 -&gt; xe-pw-152834v1</li>
+</ul>
+<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3533-fd6c93575fc337f20a8cc7b62db0307fa8b39b07: fd6c93575fc337f20a8cc7b62db0307fa8b39b07<br />
+  xe-pw-152834v1: 152834v1</p>
+
+</body>
+</html>
+
+--===============0220914539099150365==--
