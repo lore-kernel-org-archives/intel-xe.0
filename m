@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5477AC87FCB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 16:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2095C87FCB
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 17:28:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1204A10E16B;
-	Tue, 12 Aug 2025 16:59:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EbnWze20";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 089F510E16B;
- Tue, 12 Aug 2025 16:59:02 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 591A940C1A;
- Tue, 12 Aug 2025 16:59:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6472C4CEF0;
- Tue, 12 Aug 2025 16:58:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755017941;
- bh=Jm4Xq54AgMyUvxX6Y1oShk90mxS9/3zPVIbjUzffjX4=;
- h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
- b=EbnWze20SAsWuv7OO1hhAvJ2EV3R1iyi9tBOc4Bs++hqAKch/QP1VYaJpeZ+7ZFFD
- zX91Zjk0NQnxuwl+uH6wdlswTfUc3gM/14scpB0FSgizjysCl5zX8X/lW7d7GZjnpG
- J6fyP2uuDSZG/j5Xp4dEJxv2Fn8vHlObTG4I/mW0pbJ7ZAtsm8ZhBgOtZ/gOTPCH0W
- mX3YghyENFyr3JX3HhYIt7AVdJICRIt/OaYGUeEutHx9dZhr8u5hPAxZrKX4fkeaFL
- NZNv6sotIGY99TGV95fU7IZbRGH0Yyb/8GiWOMf82snw2g256G5V2rkGrIT5HKjRJF
- tweUyL/kar+/g==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 12 Aug 2025 18:58:58 +0200
-Message-Id: <DC0LXQF855NM.1ODUF3CKB5X4K@kernel.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v6 04/26] drm/gpuvm: Introduce
- DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE flag
-Cc: <intel-xe@lists.freedesktop.org>, "Matthew Brost"
- <matthew.brost@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Boris Brezillon"
- <bbrezillon@kernel.org>, <dri-devel@lists.freedesktop.org>
-References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
- <20250807164338.1832254-5-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250807164338.1832254-5-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79AE810E341;
+	Tue, 12 Aug 2025 17:28:38 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 360A010E341;
+ Tue, 12 Aug 2025 17:28:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6241560051527292920=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pm=3A_Disable_RPM_fo?=
+ =?utf-8?q?r_SR-IOV_VFs_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Aug 2025 17:28:37 -0000
+Message-ID: <175501971721.230637.976142256354136312@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250812163613.9954-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250812163613.9954-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,111 +36,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Aug 7, 2025 at 6:43 PM CEST, Himal Prasad Ghimiray wrote:
-> @@ -2110,6 +2110,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  {
->  	struct drm_gpuva *va, *next;
->  	u64 req_end =3D req->op_map.va.addr + req->op_map.va.range;
-> +	bool is_madvise_ops =3D (req->flags & DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_M=
-ADVISE);
+--===============6241560051527292920==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Let's just call this 'madvise'.
+== Series Details ==
 
-> +	bool needs_map =3D !is_madvise_ops;
->  	int ret;
-> =20
->  	if (unlikely(!drm_gpuvm_range_valid(gpuvm, req->op_map.va.addr, req->op=
-_map.va.range)))
-> @@ -2122,26 +2124,35 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  		u64 range =3D va->va.range;
->  		u64 end =3D addr + range;
->  		bool merge =3D !!va->gem.obj;
-> +		bool skip_madvise_ops =3D is_madvise_ops && merge;
+Series: drm/xe/pm: Disable RPM for SR-IOV VFs (rev2)
+URL   : https://patchwork.freedesktop.org/series/152834/
+State : success
 
-IIUC, you're either going for continue or break in this case. I think conti=
-nue
-would always be correct and break is an optimization if end <=3D req_end?
+== Summary ==
 
-If that's correct, please just do either
+CI Bug Log - changes from xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736_BAT -> xe-pw-152834v2_BAT
+====================================================
 
-	if (madvise && va->gem.obj)
-		continue;
+Summary
+-------
 
-or
+  **SUCCESS**
 
-	if (madvise && va->gem.obj) {
-		if (end > req_end)
-			break;
-		else
-			continue;
-	}
+  No regressions found.
 
-instead of sprinkling the skip_madvise_ops checks everywhere.
+  
 
-> =20
-> +		needs_map =3D !is_madvise_ops;
->  		if (addr =3D=3D req->op_map.va.addr) {
->  			merge &=3D obj =3D=3D req->op_map.gem.obj &&
->  				 offset =3D=3D req->op_map.gem.offset;
-> =20
->  			if (end =3D=3D req_end) {
-> -				ret =3D op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret =3D op_unmap_cb(ops, priv, va, merge);
-> +					if (ret)
-> +						return ret;
-> +				}
->  				break;
->  			}
-> =20
->  			if (end < req_end) {
-> -				ret =3D op_unmap_cb(ops, priv, va, merge);
-> -				if (ret)
-> -					return ret;
-> +				if (!is_madvise_ops) {
-> +					ret =3D op_unmap_cb(ops, priv, va, merge);
+Participating hosts (11 -> 9)
+------------------------------
 
-I think we should pass madvise as argument to op_unmap_cb() and make it a n=
-oop
-internally rather than having all the conditionals.
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
 
-> +					if (ret)
-> +						return ret;
-> +				}
->  				continue;
->  			}
-> =20
->  			if (end > req_end) {
-> +				if (skip_madvise_ops)
-> +					break;
-> +
->  				struct drm_gpuva_op_map n =3D {
->  					.va.addr =3D req_end,
->  					.va.range =3D range - req->op_map.va.range,
-> @@ -2156,6 +2167,9 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
->  				ret =3D op_remap_cb(ops, priv, NULL, &n, &u);
->  				if (ret)
->  					return ret;
-> +
-> +				if (is_madvise_ops)
-> +					needs_map =3D true;
+Known issues
+------------
 
-I don't like this needs_map state...
+  Here are the changes found in xe-pw-152834v2_BAT that come from known issues:
 
-Maybe we could have
+### IGT changes ###
 
-	struct drm_gpuvm_map_req *op_map =3D madvise ? NULL : req;
+#### Possible fixes ####
 
-at the beginning of the function and then change this line to
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
 
-	if (madvise)
-		op_map =3D req;
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-and op_map_cb() can just handle a NULL pointer.
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
 
-Yeah, I feel like that's better.
+
+Build changes
+-------------
+
+  * IGT: IGT_8492 -> IGT_8493
+  * Linux: xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736 -> xe-pw-152834v2
+
+  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8493: 8493
+  xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736: 6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736
+  xe-pw-152834v2: 152834v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v2/index.html
+
+--===============6241560051527292920==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pm: Disable RPM for SR-IOV VFs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152834/">https://patchwork.freedesktop.org/series/152834/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736_BAT -&gt; xe-pw-152834v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152834v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152834v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8492 -&gt; IGT_8493</li>
+<li>Linux: xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736 -&gt; xe-pw-152834v2</li>
+</ul>
+<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8493: 8493<br />
+  xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736: 6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736<br />
+  xe-pw-152834v2: 152834v2</p>
+
+</body>
+</html>
+
+--===============6241560051527292920==--
