@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5933CA0EDB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 04:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AE2ACA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 04:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C6B210E587;
-	Tue, 12 Aug 2025 04:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF1110E58B;
+	Tue, 12 Aug 2025 04:28:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQhxJ9DS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvole2iJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFECE10E584;
- Tue, 12 Aug 2025 04:28:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AE710E58C;
+ Tue, 12 Aug 2025 04:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754972906; x=1786508906;
+ t=1754972910; x=1786508910;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GfJblR7GBE7Q7zjEnl8Eu0CVhUjGDDUrMQUmmLKVfwE=;
- b=kQhxJ9DSzbeu3BVpqYXKukPSRxk6CXuV1nZXWWMSJVdhTSqbN6dbqvkJ
- R640RwT8uW9tEX4uhyss8U/Ky+NR/PeVom9ZpfhyUOzGIR9BlN3RvKO8E
- VdKaTf9FzLfpdEjtNL7z8gvV27OWpsPCQjORTb6TMjtcM89xie0PGUkc2
- IENCM3kkROHK5sPwWSyKW6kkhrg1jiWN6qboKwTGnrqJXhIUqkk6uNHB/
- /P29zOyRMFKxeOwFfD4NOa2fJxDHcanQ3gQwhvYH1BaT6+9XCjxeFKiLp
- A/IjFKBNRAzKlQg2F6EMXDf+9C5pA7VQyY5U0PJuQKgZS0oQDFbGGp751 g==;
-X-CSE-ConnectionGUID: WVyHy0ThTMuw/c+zdRNVKA==
-X-CSE-MsgGUID: L25vqKxuSUuweIR3OIhVUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="68693387"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="68693387"
+ bh=yOQzcLNQCPgrkcmDPedSOY9xZeamKXTRlmHQv5U7xJE=;
+ b=mvole2iJyVWqzDz+Y3v9gEJbKKkHR9tvIde+nERmYqNJXIe1XncEk8Qj
+ GqrAcZXlXUEu6IxVwNkZBk+fL/dMyjkNJcRH8qT5XYU7VYpdHYGvwaJWO
+ +3Oni3bHMdUY8Bk41//B/I4ZiIvjEwRekXC5BxgPvchjBABm9zPPuJ2d8
+ VItlcSBlaLmIqq5mfauFUnSeX3e1KnOR9S+rg+MILtR82st3U7z+teFfx
+ XjGZ4ACanJbMoboLkT5zPB2zeYr9ccf59MLYZEXRJXVoCkx3TtFt87TaO
+ MnpBf8vB5rgkwbB17aIXLVNjlMAocepVYxEdWXDDDsVhmBf59xxfH+M0f Q==;
+X-CSE-ConnectionGUID: 0GZNN9Z3T1q8yEXIAjlQbA==
+X-CSE-MsgGUID: r1yGjl+fSnCi0qQI39A1Rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="68693393"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="68693393"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 21:28:25 -0700
-X-CSE-ConnectionGUID: zmE/efuWR12VqxcrLjdOww==
-X-CSE-MsgGUID: sWNDOiI+SoqD77Z6C59QtA==
+ 11 Aug 2025 21:28:30 -0700
+X-CSE-ConnectionGUID: AJQXVQwbRHyoIBPOXz04dw==
+X-CSE-MsgGUID: SpfrVnHSSyixAqIifc4ZXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="165982368"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="165982384"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 21:28:24 -0700
+ 11 Aug 2025 21:28:29 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 2/6] drm/i915/dp: Extract code to get slice and bpp to a
- separate function
-Date: Tue, 12 Aug 2025 09:44:23 +0530
-Message-ID: <20250812041428.1820109-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 5/6] drm/i915/vdsc: Account for overhead bubbles in horizontal
+ slices
+Date: Tue, 12 Aug 2025 09:44:26 +0530
+Message-ID: <20250812041428.1820109-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250812041428.1820109-1-ankit.k.nautiyal@intel.com>
 References: <20250812041428.1820109-1-ankit.k.nautiyal@intel.com>
@@ -68,120 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refactor intel_dp_mode_valid() to use a function to get maximum slices
-and compressed bpp.
+When DSC is enabled on a pipe, the pipe pixel rate input to the
+CDCLK frequency and pipe joining calculation needs an adjustment to
+account for compression overhead "bubbles" added at each horizontal
+slice boundary.
 
+Bspec:68912
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 89 +++++++++++++++----------
- 1 file changed, 55 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 45 +++++++++++++++++++++--
+ 1 file changed, 41 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1c2d4f172dfe..62f28f14423e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1407,6 +1407,54 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
- 	return true;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 8e799e225af1..7513cecdeaf3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1034,15 +1034,52 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
  }
  
-+static void get_dsc_slice_and_bpp(struct intel_connector *connector,
-+				  const struct drm_display_mode *mode,
-+				  int target_clock,
-+				  int num_joined_pipes,
-+				  enum intel_output_format output_format,
-+				  int max_link_clock,
-+				  int max_lanes,
-+				  u16 *dsc_max_compressed_bpp,
-+				  u8 *dsc_slice_count)
++static
++int intel_dsc_get_pixel_rate_with_dsc_bubbles(int pixel_rate, int htotal,
++					      int dsc_horizontal_slices)
 +{
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	int pipe_bpp;
++	int dsc_slice_factor_x100;
++	int dsc_slice_bubbles;
 +
-+	/*
-+	 * TBD pass the connector BPC,
-+	 * for now U8_MAX so that max BPC on that platform would be picked
-+	 */
-+	pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
++	if (!htotal)
++		return 0;
 +
-+	/*
-+	 * Output bpp is stored in 6.4 format so right shift by 4 to get the
-+	 * integer value since we support only integer values of bpp.
-+	 */
-+	if (intel_dp_is_edp(intel_dp)) {
-+		*dsc_max_compressed_bpp = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
-+		*dsc_slice_count = drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, true);
++	dsc_slice_bubbles = 14 * dsc_horizontal_slices;
++	dsc_slice_factor_x100 = (100 * htotal + dsc_slice_bubbles) / htotal;
 +
-+		return;
-+	}
-+
-+	if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
-+		*dsc_max_compressed_bpp =
-+			intel_dp_dsc_get_max_compressed_bpp(display, max_link_clock,
-+							    max_lanes, target_clock,
-+							    mode->hdisplay, num_joined_pipes,
-+							    output_format, pipe_bpp, 64);
-+		*dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
-+								target_clock,
-+								mode->hdisplay,
-+								num_joined_pipes);
-+		return;
-+	}
-+
-+	*dsc_max_compressed_bpp = 0;
-+	*dsc_slice_count = 0;
++	return (dsc_slice_factor_x100 * pixel_rate) / 100;
 +}
 +
- static enum drm_mode_status
- intel_dp_mode_valid(struct drm_connector *_connector,
- 		    const struct drm_display_mode *mode)
-@@ -1470,40 +1518,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 					   intel_dp_mode_min_output_bpp(connector, mode));
++static
++int pixel_rate_with_dsc_bubbles(const struct intel_crtc_state *crtc_state, int pixel_rate)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
++	int dsc_horizontal_slices;
++
++	if (drm_WARN_ON(display->drm, !vdsc_cfg->slice_width))
++		return 0;
++
++	dsc_horizontal_slices = vdsc_cfg->pic_width / vdsc_cfg->slice_width;
++
++	return intel_dsc_get_pixel_rate_with_dsc_bubbles(pixel_rate,
++							 adjusted_mode->htotal,
++							 dsc_horizontal_slices);
++}
++
+ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
++	int pixel_rate;
+ 	int min_cdclk;
  
- 	if (intel_dp_has_dsc(connector)) {
--		int pipe_bpp;
--
--		/*
--		 * TBD pass the connector BPC,
--		 * for now U8_MAX so that max BPC on that platform would be picked
--		 */
--		pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
--
--		/*
--		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
--		 * integer value since we support only integer values of bpp.
--		 */
--		if (intel_dp_is_edp(intel_dp)) {
--			dsc_max_compressed_bpp =
--				drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
--			dsc_slice_count =
--				drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd,
--								true);
--		} else if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
--			dsc_max_compressed_bpp =
--				intel_dp_dsc_get_max_compressed_bpp(display,
--								    max_link_clock,
--								    max_lanes,
--								    target_clock,
--								    mode->hdisplay,
--								    num_joined_pipes,
--								    output_format,
--								    pipe_bpp, 64);
--			dsc_slice_count =
--				intel_dp_dsc_get_slice_count(connector,
--							     target_clock,
--							     mode->hdisplay,
--							     num_joined_pipes);
--		}
-+		get_dsc_slice_and_bpp(connector, mode, target_clock,
-+				      num_joined_pipes,
-+				      output_format,
-+				      max_link_clock,
-+				      max_lanes,
-+				      &dsc_max_compressed_bpp,
-+				      &dsc_slice_count);
+ 	if (!crtc_state->dsc.compression_enable)
+ 		return 0;
  
- 		dsc = dsc_max_compressed_bpp && dsc_slice_count;
++	pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, crtc_state->pixel_rate);
++
+ 	/*
+ 	 * When we decide to use only one VDSC engine, since
+ 	 * each VDSC operates with 1 ppc throughput, pixel clock
+@@ -1050,7 +1087,7 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 	 * If there 2 VDSC engines, then pixel clock can't be higher than
+ 	 * VDSC clock(cdclk) * 2 and so on.
+ 	 */
+-	min_cdclk = DIV_ROUND_UP(crtc_state->pixel_rate, num_vdsc_instances);
++	min_cdclk = DIV_ROUND_UP(pixel_rate, num_vdsc_instances);
+ 
+ 	if (crtc_state->joiner_pipes) {
+ 		int pixel_clock = intel_dp_mode_to_fec_clock(crtc_state->hw.adjusted_mode.clock);
+@@ -1068,9 +1105,9 @@ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 		 * => CDCLK >= compressed_bpp * Pixel clock  / 2 * Bigjoiner Interface bits
+ 		 */
+ 		int bigjoiner_interface_bits = DISPLAY_VER(display) >= 14 ? 36 : 24;
+-		int min_cdclk_bj =
+-			(fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
+-			 pixel_clock) / (2 * bigjoiner_interface_bits);
++		int adjusted_pixel_rate = pixel_rate_with_dsc_bubbles(crtc_state, pixel_clock);
++		int min_cdclk_bj = (fxp_q4_to_int_roundup(crtc_state->dsc.compressed_bpp_x16) *
++				   adjusted_pixel_rate) / (2 * bigjoiner_interface_bits);
+ 
+ 		min_cdclk = max(min_cdclk, min_cdclk_bj);
  	}
 -- 
 2.45.2
