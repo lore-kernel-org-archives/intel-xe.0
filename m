@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02AE0CA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 18:12:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1121CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 18:27:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C525310E62C;
-	Tue, 12 Aug 2025 18:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9A210E0B0;
+	Tue, 12 Aug 2025 18:27:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cwtx71P6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nfhUqOvM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94FA310E62C;
- Tue, 12 Aug 2025 18:12:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 350C010E0B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 18:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755022333; x=1786558333;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WrwDZoF1RypUpbR3LZzH9S11Y3/1w03roZgfyEBlGMQ=;
- b=cwtx71P6/Y2pFjc/Uzaf4OJDMJj1BL9//ZXVMQwryOBifn6S5bp9PwFr
- LwNF6hLSGt2uQhixr5TOW+ndEp2jRch/yKFFh5CTOr+uyQ19nMX0NOyM/
- K5Vg2YO96/OnmGfM11PU+Rqf3pUHHe9ZKdMe9BOjSlkJNQmTVaHF+j3pW
- tVnIfGSQ6brbDgjTWuPlktrNxVZX+xKgD3zmIzcmGatf6U+LCXgbl9jzd
- rW6ImUaj9UT0+z9AB75ku7YRIM5EIhyBH8MCbhkrcuzp1OmJZAUydv03C
- bouQdmhQcCQ+FeBUdeOaqu7cH3xP+5+n0HD4i85ObQ4OzCEQI8eaNxv2Q Q==;
-X-CSE-ConnectionGUID: 3zeAMAnLQ5++9Xf2Rf7uoQ==
-X-CSE-MsgGUID: sDeE+AmcSE2UhII1UgafCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="82741095"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="82741095"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 11:12:12 -0700
-X-CSE-ConnectionGUID: uVtSB4jzT6qlDGIF2Xx21w==
-X-CSE-MsgGUID: zKA2rr6wTkSrA2A1MeIz9w==
+ t=1755023225; x=1786559225;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fsiXbfayP8XVScLoynfut7jBDMojEs3ltFGE12UfHxE=;
+ b=nfhUqOvMpFaSP+5++m9YlxE0/YaC2F6qTuZDvxszV5+GJKbIGLL8j60y
+ MyLTftbRfLJ8q/XAR3OxI4JCLeRvdKfePDsimnjYeR6QhX4P2t4cxb4bW
+ 82L2L3hck3xiczk/SW3XEk1vUccKsdHszGK2vAFtKQKxSp+ZEKXvSP1yb
+ vHp5ONBKhDATAd3SGwZsshUX3bAG0pWL5gPKEKc1nitK/okaFWHq53NkA
+ uRNg4tMnsCmlH2q7BSb6wZ2gwdcIrPr5aSRjC17EafWKhfLvtWdtgoxd2
+ Chcfyj9SCueqLt+jvlLSo+XVoM2iop+Ujcy0pOBjZdWwfVYsmx9WUO5Zk A==;
+X-CSE-ConnectionGUID: HicEYzeJR0yDqwCTv8zpag==
+X-CSE-MsgGUID: lYBbCsciStqiIqk6ny4tRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="74757082"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="74757082"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 11:27:05 -0700
+X-CSE-ConnectionGUID: TwmgDRm3QcaHcWxMj8gxnQ==
+X-CSE-MsgGUID: aeFEYx19T2aAEvctIxCQ8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="166263698"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 11:12:10 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v6] drm/i915/display: Optimize panel power-on wait time
-In-Reply-To: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
-Date: Tue, 12 Aug 2025 21:12:06 +0300
-Message-ID: <d83e4d1b8fc0fdf62805a7465511a8b63b4429d1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="197124875"
+Received: from fyang16-desk.jf.intel.com ([10.165.21.214])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 11:27:04 -0700
+From: fei.yang@intel.com
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com,
+ matthew.brost@intel.com, Fei Yang <fei.yang@intel.com>
+Subject: [PATCH 1/1] drm/xe: serialize store_data and user_interrupt for
+ ufence wait
+Date: Tue, 12 Aug 2025 11:28:46 -0700
+Message-ID: <20250812182846.1608209-2-fei.yang@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250812182846.1608209-1-fei.yang@intel.com>
+References: <20250812182846.1608209-1-fei.yang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,89 +68,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 Aug 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
-> The current wait_panel_status() uses intel_de_wait(),
-> which internally on Xe platforms calls  xe_mmio_wait32().
-> xe_mmio_wait32() increases poll interval exponentially.
->
-> This exponential poll interval increase causes unnessory delays
-> during resume or power-on when the panel becomes ready earlier,
-> but polling is delayed due to backoff.
->
-> Replace intel_de_wait() with read_poll_timeout() +
-> intel_de_read() to actively poll the register at a fixed 10ms interval
-> up to a 5 second timeout. This allows poll to exit
-> early  when panel is ready.
->
-> Changes in v2:
-> Replaced  two-phase intel_de_wait() with  read_poll_timeout()
->  + intel_de_read()
-> Changes in v3:
->  - Add poll_interval_ms argument  'wait_panel_status' function.
->  - Modify 'wait_panel_status' callers with proper poll interval
-> Changes in v4:
->  - Change 'wait_panel_off' poll interval to 10ms
-> Changes in v5:
->  - Dropped  poll_interval_ms parameter,use fixed polling
->    interval of 10ms (Jani Nikula)
-> Changes in v6:
->  - Removed goto in error path
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> index b64d0b30f5b1..b84eb43bd2d0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/debugfs.h>
-> +#include <linux/iopoll.h>
->  
->  #include <drm/drm_print.h>
->  
-> @@ -608,6 +609,8 @@ static void wait_panel_status(struct intel_dp *intel_dp,
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	i915_reg_t pp_stat_reg, pp_ctrl_reg;
-> +	int ret;
-> +	u32 val;
->  
->  	lockdep_assert_held(&display->pps.mutex);
->  
-> @@ -624,13 +627,20 @@ static void wait_panel_status(struct intel_dp *intel_dp,
->  		    intel_de_read(display, pp_stat_reg),
->  		    intel_de_read(display, pp_ctrl_reg));
->  
-> -	if (intel_de_wait(display, pp_stat_reg, mask, value, 5000))
-> +	ret = read_poll_timeout(intel_de_read, val,
-> +				(val & mask) == value,
-> +				10 * 1000, 5000 * 1000, true,
+From: Fei Yang <fei.yang@intel.com>
 
-Otherwise looks good, but did you have some rationale for the
-sleep_before_read == true?
+Quote BSpec, MI_STORE_DATA_IMM "simply initiates the write operation with
+command execution proceeding normally. Although the write operation is
+guaranteed to complete eventually, there is no mechanism to synchronize
+command execution with the completion (or even initiation) of these
+operations."
+The KMD currently emit MI_STORE_DATA_IMM and MI_USER_INTERRUPT consecutively
+to implement user fence. However, according to the BSpec, the data write
+operation is not guaranteed to be completed when triggering the interrupt,
+that would cause the xe_wait_user_fence_ioctl to wait until the full user
+specified timeout is reached before checking the fence value again. Great
+performance degradation has been observed in IGT xe_exec_fault_mode test
+cases due to this unnecessary wait. The worst case is that if user set the
+timeout to MAX_INT32, the wait could end up being a hang until some other
+random program triggers a user interrupt to wake it up.
+A semaphore wait is added right after the data write to avoid the unexpected
+wait.
 
-BR,
-Jani.
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+---
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 14 ++++++++++++++
+ 2 files changed, 25 insertions(+)
 
-
-> +				display, pp_stat_reg);
-> +
-> +	if (ret) {
->  		drm_err(display->drm,
->  			"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
->  			dig_port->base.base.base.id, dig_port->base.base.name,
->  			pps_name(intel_dp),
->  			intel_de_read(display, pp_stat_reg),
->  			intel_de_read(display, pp_ctrl_reg));
-> +		return;
-> +	}
->  
->  	drm_dbg_kms(display->drm, "Wait complete\n");
->  }
-
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..1c9e7b35c665 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -34,6 +34,17 @@
+ #define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
+ #define MI_MATH(n)			(__MI_INSTR(0x1A) | XE_INSTR_NUM_DW((n) + 1))
+ 
++#define MI_SEMAPHORE_WAIT		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5))
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_COMP_OP		GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_GT_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 0)
++#define   MI_SEMAPHORE_SAD_GTE_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 1)
++#define   MI_SEMAPHORE_SAD_LT_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 2)
++#define   MI_SEMAPHORE_SAD_LTE_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 3)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 4)
++#define   MI_SEMAPHORE_SAD_NEQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_COMP_OP, 5)
++
+ #define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
+ #define   MI_SDI_GGTT			REG_BIT(22)
+ #define   MI_SDI_LEN_DW			GENMASK(9, 0)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 5f15360d14bf..189e764e3914 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -169,6 +169,20 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ 	dw[i++] = upper_32_bits(addr);
+ 	dw[i++] = lower_32_bits(value);
+ 	dw[i++] = upper_32_bits(value);
++	dw[i++] = MI_SEMAPHORE_WAIT |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = lower_32_bits(value);
++	dw[i++] = lower_32_bits(addr);
++	dw[i++] = upper_32_bits(addr);
++	dw[i++] = 0;
++	dw[i++] = MI_SEMAPHORE_WAIT |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = upper_32_bits(value);
++	dw[i++] = lower_32_bits(addr + 4);
++	dw[i++] = upper_32_bits(addr);
++	dw[i++] = 0;
+ 
+ 	return i;
+ }
 -- 
-Jani Nikula, Intel
+2.43.0
+
