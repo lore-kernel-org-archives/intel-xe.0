@@ -4,27 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C265AC87FCB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 05:34:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1A53CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 06:47:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A3310E325;
-	Tue, 12 Aug 2025 05:34:32 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7800610E0D0;
- Tue, 12 Aug 2025 05:34:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1286542467255044401=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BD7510E0D1;
+	Tue, 12 Aug 2025 06:47:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="qlFkYx7J";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wRMxzebO";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="qlFkYx7J";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wRMxzebO";
+	dkim-atps=neutral
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C619A10E59D
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 06:47:15 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 35B001F452;
+ Tue, 12 Aug 2025 06:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1754981234; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WtuKeKIeuEjLg0XyFP88BorDdtzg+aRcI7SABs73KTI=;
+ b=qlFkYx7JMt6EJtIw1pvz6gwwYtnQ4tpLkA1Vdu/H3RTbJ+2bStbq1AaV/al6KhTMoWGeXd
+ px12grDeuAmKHCZAxPWuv/uydV1RSVP6L17Bbv8AZsAolEPQ/15gYEYV974rrBtXrYRL+Z
+ 7hHQS1BR50Zu6JTrJuOsYtHx6uBgdYc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1754981234;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WtuKeKIeuEjLg0XyFP88BorDdtzg+aRcI7SABs73KTI=;
+ b=wRMxzebOxX+xeGApwcvIn3qA7IFOV64/I+Y+TKbrDn8asneyDVECUG4MCW24BqBgAKTx1v
+ 5QEk0PRUwB5vdVCQ==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=qlFkYx7J;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=wRMxzebO
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1754981234; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WtuKeKIeuEjLg0XyFP88BorDdtzg+aRcI7SABs73KTI=;
+ b=qlFkYx7JMt6EJtIw1pvz6gwwYtnQ4tpLkA1Vdu/H3RTbJ+2bStbq1AaV/al6KhTMoWGeXd
+ px12grDeuAmKHCZAxPWuv/uydV1RSVP6L17Bbv8AZsAolEPQ/15gYEYV974rrBtXrYRL+Z
+ 7hHQS1BR50Zu6JTrJuOsYtHx6uBgdYc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1754981234;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WtuKeKIeuEjLg0XyFP88BorDdtzg+aRcI7SABs73KTI=;
+ b=wRMxzebOxX+xeGApwcvIn3qA7IFOV64/I+Y+TKbrDn8asneyDVECUG4MCW24BqBgAKTx1v
+ 5QEk0PRUwB5vdVCQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B5F5C1351A;
+ Tue, 12 Aug 2025 06:47:13 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id O7yXKnHjmmiUSwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 12 Aug 2025 06:47:13 +0000
+Date: Tue, 12 Aug 2025 08:47:12 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20250812064712.GA14554@2a02-2454-fd5e-fd00-2c49-c639-c55f-a125.dyn6.pyur.net>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Account_for_DSC_bubble_over?=
- =?utf-8?q?head_for_horizontal_slices?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Aug 2025 05:34:31 -0000
-Message-ID: <175497687148.229231.2789708057914931143@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250812041428.1820109-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250812041428.1820109-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[16]; MISSING_XM_UA(0.00)[];
+ ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Queue-Id: 35B001F452
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,140 +122,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1286542467255044401==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+this PR contains a number of left-over changes from drm-misc-next-fixes
+for upstream. Most importantly, there's a fix for leaking OF nodes and
+several fixes for format selection in fbdev emulation.
 
-Series: Account for DSC bubble overhead for horizontal slices
-URL   : https://patchwork.freedesktop.org/series/152803/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-next-fixes-2025-08-12:
+Short summary of fixes pull:
 
-CI Bug Log - changes from xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39_BAT -> xe-pw-152803v1_BAT
-====================================================
+bridge:
+- fix OF-node leak
+- fix documentation
 
-Summary
--------
+fbdev-emulation:
+- pass correct format info to drm_helper_mode_fill_fb_struct()
 
-  **SUCCESS**
+panfrost:
+- print correct RSS size
+The following changes since commit 6531a2cf07ef156956840853692755cc7e1621b7:
 
-  No regressions found.
+  Merge tag 'drm-xe-next-fixes-2025-07-31' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-08-01 07:09:16 +1000)
 
-  
+are available in the Git repository at:
 
-Participating hosts (11 -> 9)
-------------------------------
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-08-12
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
+for you to fetch changes up to 54d4f445517fe8350d735624d7f4225e7511d9eb:
 
-Known issues
-------------
+  drm/panfrost: Print RSS for tiler heap BO's in debugfs GEMS file (2025-08-12 08:31:47 +0200)
 
-  Here are the changes found in xe-pw-152803v1_BAT that come from known issues:
+----------------------------------------------------------------
+Short summary of fixes pull:
 
-### IGT changes ###
+bridge:
+- fix OF-node leak
+- fix documentation
 
-#### Issues hit ####
+fbdev-emulation:
+- pass correct format info to drm_helper_mode_fill_fb_struct()
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+panfrost:
+- print correct RSS size
 
-  
-#### Possible fixes ####
+----------------------------------------------------------------
+Adrián Larumbe (1):
+      drm/panfrost: Print RSS for tiler heap BO's in debugfs GEMS file
 
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+Andy Yan (1):
+      drm/bridge: Describe the newly introduced drm_connector parameter for drm_bridge_detect
 
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+Dmitry Baryshkov (1):
+      drm/bridge: document HDMI CEC callbacks
 
+Imre Deak (3):
+      drm/omap: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+      drm/nouveau: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+      drm/radeon: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
 
-Build changes
--------------
+Johan Hovold (1):
+      drm/bridge: fix OF node leak
 
-  * Linux: xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39 -> xe-pw-152803v1
+Maarten Lankhorst (1):
+      Merge remote-tracking branch 'drm/drm-next' into drm-misc-next-fixes
 
-  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39: f7a53eff4e1ae1519571ae2263f6f38462f64b39
-  xe-pw-152803v1: 152803v1
+ drivers/gpu/drm/bridge/aux-bridge.c       |  2 ++
+ drivers/gpu/drm/drm_bridge.c              |  1 +
+ drivers/gpu/drm/nouveau/nouveau_display.c |  9 ++----
+ drivers/gpu/drm/nouveau/nouveau_display.h |  3 ++
+ drivers/gpu/drm/omapdrm/omap_fb.c         | 23 +++++++--------
+ drivers/gpu/drm/omapdrm/omap_fb.h         |  2 ++
+ drivers/gpu/drm/omapdrm/omap_fbdev.c      |  5 +++-
+ drivers/gpu/drm/panfrost/panfrost_gem.c   |  2 +-
+ drivers/gpu/drm/radeon/radeon_display.c   |  5 ++--
+ drivers/gpu/drm/radeon/radeon_fbdev.c     | 11 +++----
+ drivers/gpu/drm/radeon/radeon_mode.h      |  2 ++
+ include/drm/drm_bridge.h                  | 48 +++++++++++++++++++++++++++++++
+ 12 files changed, 85 insertions(+), 28 deletions(-)
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/index.html
-
---===============1286542467255044401==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Account for DSC bubble overhead for horizontal slices</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152803/">https://patchwork.freedesktop.org/series/152803/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39_BAT -&gt; xe-pw-152803v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152803v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39 -&gt; xe-pw-152803v1</li>
-</ul>
-<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3529-f7a53eff4e1ae1519571ae2263f6f38462f64b39: f7a53eff4e1ae1519571ae2263f6f38462f64b39<br />
-  xe-pw-152803v1: 152803v1</p>
-
-</body>
-</html>
-
---===============1286542467255044401==--
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
