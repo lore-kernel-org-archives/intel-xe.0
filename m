@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57CC1C87FCB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 13:16:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5A63CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 13:17:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2297310E160;
-	Tue, 12 Aug 2025 13:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A212710E160;
+	Tue, 12 Aug 2025 13:17:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KO0BNXQk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MzUkIAjT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADFA510E160
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 13:16:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A10010E160
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 13:17:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755004602; x=1786540602;
+ t=1755004661; x=1786540661;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=bPuIIG8O1kM5Et3Cjz6T2n+1m9+m5/CpVcipiKfpfwo=;
- b=KO0BNXQksx8fkQPy7i678BDYLCmYDIvxGX6uSK6E9YKmpC5poHHn+PwF
- dKrR8GVxn+r+YtiECfhL7n1jx36f6QOVqQ/8jLgiJTH23Nv0xZeNVs8rJ
- J6FAEgU6bZcyw9MJy5TuNBLHiClZMYpDgvLGscCnvgC5P+K3vzGfpxnan
- qLL88DN5SD1zyO1vtsA+jk2XF3MVDHQF6e0hiK3RdkC5YXFv13qOhfwo1
- 2LLtQzaCDE8j/Vr8w4XbG6JKp40LSW6OKkZjq4agGMbYqOGfY3kD4jqLI
- yPzo4sWQlWcNk8QoUCblbGABZB3sbKP+mJy2xCP9/NIdK0+rH0PoAD39F Q==;
-X-CSE-ConnectionGUID: vndOZY/wRUiE8SBnCIkvZw==
-X-CSE-MsgGUID: 4/00neJPQHWLDmR51zQqsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="67542152"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="67542152"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 06:16:40 -0700
-X-CSE-ConnectionGUID: di2pkh04QlSl3iwGbFyrnw==
-X-CSE-MsgGUID: aAMP1ttaSJKm6aRa2XT0cA==
+ bh=hZvC2OsxhDtOngL69eBdhgXxIEQYQq/gRV/61xS/La8=;
+ b=MzUkIAjTlIJrEYVZmdq2y8w1fz56Esi2sJa9HfIZq/C1GymmGrNlmLuN
+ /hTHJB6oP87P/yLyAKBRwmTA07401KUqRFosg0zTflrkhH2ItYhQ9uF+9
+ O9L/xHVb9SeefppzCfLIrM7nzmzZuP1TydD5MoCi4peToVu8hGQ+jAaKS
+ d38bVEexkLkgxoZOs8h0/LysO5LfZU3NpXiU/iXciuuM1o3t663Xj2YGc
+ AHi0TWseEV0518Hm6qFmv2pMoCmsOiC0PE9li2WR8SO5EtOaB2CIHQPX+
+ w3WBcucjSwy7gVcSYHJF1IFRdvuXOULllZpHHDUuw4TiB7XVksYnUeG9s g==;
+X-CSE-ConnectionGUID: sGCKxvpNR/C3sextIIl22g==
+X-CSE-MsgGUID: zoMUEe8TRx2qbSfL64PvMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68733356"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="68733356"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 06:17:41 -0700
+X-CSE-ConnectionGUID: 22hTc4toTm+Vm4WMXkW29A==
+X-CSE-MsgGUID: u237BLyITRy6X5eko9gh+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="166083849"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa006.fm.intel.com with ESMTP; 12 Aug 2025 06:16:36 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="165379461"
+Received: from cmanszew-dev.igk.intel.com ([10.91.214.222])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 06:17:38 -0700
+From: Christoph Manszewski <christoph.manszewski@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
+Cc: Francois Dugast <francois.dugast@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v5] drm/xe/pm: Disable RPM for SR-IOV VFs
-Date: Tue, 12 Aug 2025 19:03:25 +0530
-Message-ID: <20250812133325.14704-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
+ Christoph Manszewski <christoph.manszewski@intel.com>
+Subject: [PATCH 0/1] drm/xe: Untangle vm_bind_ioctl cleanup order and fix
+ double free bug
+Date: Tue, 12 Aug 2025 15:17:27 +0200
+Message-ID: <20250812131728.42314-1-christoph.manszewski@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,74 +69,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VFs without native PCIe Power Management (PM) capabilities inherit their
-PF's power state as per PCIe specifications(§5.10.1 PCIe Base Spec 7.0).
-Enabling Runtime Power Management (RPM) for these VFs trigger unnecessary
-driver suspend/resume operations that ultimately perform no PCI-level power
-transition.
+Hi,
 
-Since VFs without PM capabilities cannot independently enter low-power
-states, the existing RPM workflow becomes redundant:
-1. Driver executes full suspend/resume sequence
-2. PCI PM transition step becomes no-op
-3. VF power state remains tied to PF's status
+recently I stumbled into a double-free bug for array-binds when the
+argument check fails. I've submitted a subtest to expose this issue
+here: https://patchwork.freedesktop.org/series/152831/
 
-Disabling RPM for VFs eliminates this redundant processing while
-maintaining proper power management through PF dependency. This
-optimization ensures VFs follow their PF's power state without superfluous
-runtime handling.
+I took the liberty to change the cleanup order in the main vm_bind
+function but if that turns out to be unnecessary/faulty, just setting
+the bind_ops to NULL on failure should be enough to fix the bug.
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
+Regards,
+Christoph
 
----
-V4 -> V5:
-- Disable RPM for VFs without checking pm_cap (Rodrigo).
-- Updated commit title.
+Christoph Manszewski (1):
+  drm/xe: Untangle vm_bind_ioctl cleanup order and fix double free bug
 
-V3 -> V4:
-- Fixed review comments (Rodrigo & Maarten)
+ drivers/gpu/drm/xe/xe_vm.c | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-V2 -> V3:
-- Fixed review comments (Michal Wajdeczko).
-
-V1 -> V2:
-- Disable RPM only for VF devices when PM cap is not implemented.
----
- drivers/gpu/drm/xe/xe_pm.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 5e8126ca8e27..11197402d2c6 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -247,6 +247,10 @@ static void xe_pm_runtime_init(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
- 
-+	/* VFs do not support RPM. so, disable it */
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
- 	/*
- 	 * Disable the system suspend direct complete optimization.
- 	 * We need to ensure that the regular device suspend/resume functions
-@@ -367,6 +371,10 @@ static void xe_pm_runtime_fini(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
- 
-+	/* VFs do not support RPM. so, disable it */
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
- 	pm_runtime_get_sync(dev);
- 	pm_runtime_forbid(dev);
- }
 -- 
-2.43.0
+2.47.1
 
