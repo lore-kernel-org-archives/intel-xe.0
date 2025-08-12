@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B870CA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 16:12:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2D5CA0EDC
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 16:19:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 058C510E604;
-	Tue, 12 Aug 2025 16:12:55 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B63D710E178;
- Tue, 12 Aug 2025 16:12:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7572995308718365340=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC8E10E604;
+	Tue, 12 Aug 2025 16:19:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LtNpwfQi";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17AE310E604
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Aug 2025 16:19:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755015564; x=1786551564;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zr6TqyeTHEmGS8mgMC4T+qHeLTxOdqNMcBexks6Qbpw=;
+ b=LtNpwfQiAnAK+XWp1HPp29muoKFauCviqabjeOYilkbkpkh9g04u6lea
+ CkmYV7nnws8QHCsxGKT/UshAi7X//wGFHdndwxuIeFOvL+cohEtWmSd9w
+ YtdbaA7YWRddlm2NVCO4F2mUELlLPTIpoPKqKayk60T2hMYWdEDiPGeAb
+ 6gbket7LDn123DUmMsJAUMBmrCzo4dF3wt5FO4rQMO5UWVO0DRKPsbwPo
+ KwzHPGFOMAMsshd+26g3PVSpNKoUCO1n+Hz6sbbUBpyalB6D2IDpOx5qx
+ aGvd9viClssOIkTfZaaZhaxUV0bsRpqglXV/149K6YHZoo9uLHone1aVU A==;
+X-CSE-ConnectionGUID: byZUh9gSSk2WsdRmHlpLEg==
+X-CSE-MsgGUID: ll3sdALUSNu6Xu0ggWk7VQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="44874058"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="44874058"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 09:19:24 -0700
+X-CSE-ConnectionGUID: oqOgOT8oQkWfH9JSIrx1Ww==
+X-CSE-MsgGUID: sS6kVVFKTZexthJ7vBMH0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="203420885"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa001.jf.intel.com with ESMTP; 12 Aug 2025 09:19:22 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v6] drm/xe/pm: Disable RPM for SR-IOV VFs
+Date: Tue, 12 Aug 2025 22:06:13 +0530
+Message-ID: <20250812163613.9954-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Return_earl?=
- =?utf-8?q?y_on_power_limit_read_failure_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: zhaoguohan@kylinos.cn
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Aug 2025 16:12:53 -0000
-Message-ID: <175501517373.230492.6363232192934249374@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250812065930.15847-1-zhaoguohan@kylinos.cn>
-In-Reply-To: <20250812065930.15847-1-zhaoguohan@kylinos.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,177 +66,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7572995308718365340==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+VFs without native PCIe Power Management (PM) capabilities inherit their
+PF's power state as per PCIe specifications(§5.10.1 PCIe Base Spec 7.0).
+Enabling Runtime Power Management (RPM) for these VFs trigger unnecessary
+driver suspend/resume operations that ultimately perform no PCI-level power
+transition.
 
-== Series Details ==
+Since VFs without PM capabilities cannot independently enter low-power
+states, the existing RPM workflow becomes redundant:
+1. Driver executes full suspend/resume sequence
+2. PCI PM transition step becomes no-op
+3. VF power state remains tied to PF's status
 
-Series: drm/xe/hwmon: Return early on power limit read failure (rev2)
-URL   : https://patchwork.freedesktop.org/series/151942/
-State : success
+Disabling RPM for VFs eliminates this redundant processing while
+maintaining proper power management through PF dependency. This
+optimization ensures VFs follow their PF's power state without superfluous
+runtime handling.
 
-== Summary ==
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>
 
-CI Bug Log - changes from xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d_BAT -> xe-pw-151942v2_BAT
-====================================================
+---
+V5 -> V6:
+- Updated comment (Rodrigo).
 
-Summary
--------
+V4 -> V5:
+- Disable RPM for VFs without checking pm_cap (Rodrigo).
+- Updated commit title.
 
-  **SUCCESS**
+V3 -> V4:
+- Fixed review comments (Rodrigo & Maarten)
 
-  No regressions found.
+V2 -> V3:
+- Fixed review comments (Michal Wajdeczko).
 
-  
+V1 -> V2:
+- Disable RPM only for VF devices when PM cap is not implemented.
+---
+ drivers/gpu/drm/xe/xe_pm.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Participating hosts (11 -> 9)
-------------------------------
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 5e8126ca8e27..51934d5dc44f 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -247,6 +247,10 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+ 
++	/* Our current VFs do not support RPM. so, disable it */
++	if (IS_SRIOV_VF(xe))
++		return;
++
+ 	/*
+ 	 * Disable the system suspend direct complete optimization.
+ 	 * We need to ensure that the regular device suspend/resume functions
+@@ -367,6 +371,10 @@ static void xe_pm_runtime_fini(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+ 
++	/* Our current VFs do not support RPM. so, disable it */
++	if (IS_SRIOV_VF(xe))
++		return;
++
+ 	pm_runtime_get_sync(dev);
+ 	pm_runtime_forbid(dev);
+ }
+-- 
+2.43.0
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-151942v2_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@core_hotunplug@unbind-rebind:
-    - {bat-ptl-2}:        [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-151942v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][3] -> [ABORT][4] ([Intel XE#5826])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#4543]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-  [Intel XE#5826]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826
-
-
-Build changes
--------------
-
-  * Linux: xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d -> xe-pw-151942v2
-
-  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d: c95d955cf0a032f2be77e6b07a3753bcc0f6915d
-  xe-pw-151942v2: 151942v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html
-
---===============7572995308718365340==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Return early on power limit read failure (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151942/">https://patchwork.freedesktop.org/series/151942/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d_BAT -&gt; xe-pw-151942v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-151942v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-151942v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826">Intel XE#5826</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d -&gt; xe-pw-151942v2</li>
-</ul>
-<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d: c95d955cf0a032f2be77e6b07a3753bcc0f6915d<br />
-  xe-pw-151942v2: 151942v2</p>
-
-</body>
-</html>
-
---===============7572995308718365340==--
