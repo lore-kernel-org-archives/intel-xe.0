@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48348CA0EC4
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 16:06:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B870CA0EC4
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Aug 2025 16:12:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 025C110E03C;
-	Tue, 12 Aug 2025 16:06:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bA7yGPDK";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0499410E03C;
- Tue, 12 Aug 2025 16:06:30 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 025195C06E0;
- Tue, 12 Aug 2025 16:06:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6555EC4CEF0;
- Tue, 12 Aug 2025 16:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755014789;
- bh=KJlgQzL63Lf/4ZsgDMTJNonmqPjVPB0OATtJA6XM/cM=;
- h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
- b=bA7yGPDKwFCCXYPBzb96UhN7/9i7HUztA3MlMspFJU+VkLhTqJmn8gBLY0Z8hpunX
- ZKuQpbhUjpPs5B+j4X9dTrK5X+IR0IGtl+RWleW+KFIpxVAAIhXJhLJe20hamnZRPv
- Ptu3eGYU1xCGUoEmz5oGp+xtXCSt+22kR4Ln3ZPT4EvLDvcWbck2PCb3JCatWTuz7Q
- yFNQBi8tPVda8hX6oKQu/IgHoq7O65/Br/cVge6luFVxZI6380f+TQifbgIvWy0U5t
- V9YPrYOHWbw/sb7spRnecw4Q+1Xnll9sGLzQ8lgLCDChuAtorUaN3J911dY/9ZdM7C
- ga0kC0Hlqcq/g==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 12 Aug 2025 18:06:26 +0200
-Message-Id: <DC0KTIPCIM2X.YRWQ3K2RLHIG@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v6 04/26] drm/gpuvm: Introduce
- DRM_GPUVM_SM_MAP_OPS_FLAG_SPLIT_MADVISE flag
-Cc: <intel-xe@lists.freedesktop.org>, "Matthew Brost"
- <matthew.brost@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Boris Brezillon"
- <bbrezillon@kernel.org>, <dri-devel@lists.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-References: <20250807164338.1832254-1-himal.prasad.ghimiray@intel.com>
- <20250807164338.1832254-5-himal.prasad.ghimiray@intel.com>
- <DBXXHBNTM105.2DTBKIO95D5UI@kernel.org>
- <f5d6e986-abc7-476c-b27b-ba22e5d114a2@intel.com>
-In-Reply-To: <f5d6e986-abc7-476c-b27b-ba22e5d114a2@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 058C510E604;
+	Tue, 12 Aug 2025 16:12:55 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63D710E178;
+ Tue, 12 Aug 2025 16:12:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7572995308718365340=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Return_earl?=
+ =?utf-8?q?y_on_power_limit_read_failure_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: zhaoguohan@kylinos.cn
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 12 Aug 2025 16:12:53 -0000
+Message-ID: <175501517373.230492.6363232192934249374@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250812065930.15847-1-zhaoguohan@kylinos.cn>
+In-Reply-To: <20250812065930.15847-1-zhaoguohan@kylinos.cn>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,112 +36,177 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon Aug 11, 2025 at 8:52 AM CEST, Himal Prasad Ghimiray wrote:
-> On 09-08-2025 18:53, Danilo Krummrich wrote:
-> Possible scenarios for ops functionality based on input start and end=20
-> address from user:
->
-> a) User-provided range is a subset of an existing drm_gpuva
-> Expected Result: Same behavior as the default sm_map logic.
-> Reference: Case 1 from [1].
->
-> b) Either start or end (but not both) is not aligned with a drm_gpuva=20
-> boundary
-> Expected Result: One REMAP and one MAP operation.
-> Reference: Case 3 from [1].
->
-> Existing GPUVMAs:
->
->           drm_gpuva1                        drm_gpuva2
-> 	[a----------------------------b-1][b-------------------c-1]
->
-> User Input to ops:
->    start =3D inside drm_gpuva1
->    end   =3D exactly at c-1 (end of drm_gpuva2)
->
-> Resulting Mapping:
-> 	drm_gpuva1:pre       drm_gpuva:New map     drm_gpuva2
-> 	[a---------start-1][start------- b-1] [b------------c-1]
->
-> Ops Created:
->    REMAP:UNMAP drm_gpuva1 a to b
->    REMAP:PREV a to start - 1
->    MAP: start to b-1
->
-> Note: No unmap of drm_gpuvma2 and no merging of New map and drm_gpuva2.
->
-> c) Both start and end are not aligned with drm_gpuva boundaries, and=20
-> they fall within different drm_gpuva regions
-> Expected Result: Two REMAP operations and two MAP operations.
-> Reference: Case 2 from [1].
->
->
-> d) User-provided range does not overlap with any existing drm_gpuva
-> Expected Result: No operations.
-> start and end exactly match the boundaries of one or more existing=20
-> drm_gpuva regions
->
-> e) This includes cases where start is at the beginning of drm_gpuva1 and=
-=20
-> end is at the end of drm_gpuva2 (drm_gpuva1 and drm_gpuva2 can be same=20
-> or different).
-> Expected Result: No operations
->
-> [1]=20
-> https://lore.kernel.org/intel-xe/4203f450-4b49-401d-81a8-cdcca02035f9@int=
-el.com/=20
+--===============7572995308718365340==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-<snip>
+== Series Details ==
 
-> I=E2=80=99ve tried to explain the behavior/usecase with madvise and expec=
-ted=20
-> outcomes of the ops logic in detail in [1]. Could you please take a=20
-> moment to review that and let me know if the explanation is sufficient=20
-> or if any part needs further clarification?
+Series: drm/xe/hwmon: Return early on power limit read failure (rev2)
+URL   : https://patchwork.freedesktop.org/series/151942/
+State : success
 
-Thanks a lot for writing this up!
+== Summary ==
 
-I think this clarifies everything, the examples from [1] are good (sorry th=
-at
-your reply from the RFC got lost somehow on my end).
+CI Bug Log - changes from xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d_BAT -> xe-pw-151942v2_BAT
+====================================================
 
->> Please add a separate section about madvise operations to the documentat=
-ion at
->> the beginning of the drivers/gpu/drm/drm_gpuvm.c file.
->
-> Sure will do that.
+Summary
+-------
 
-Great, this will help users (as well as reviewers) a lot. Please also add y=
-our
-examples from [1] to this entry, similar to the existing examples for sm_ma=
-p.
+  **SUCCESS**
 
->>> v2
->>> - use drm_gpuvm_sm_map_ops_create with flags instead of defining new
->>>    ops_create (Danilo)
->>=20
->> If this turns out not to be what I thought semantically and we still agr=
-ee it's
->> the correct approach, I think I have to take this back and it should ind=
-eed be
->> an entirely separate code path. But let's wait for your answers above.
+  No regressions found.
 
-Having the correct understanding of how this is supposed to work (and seein=
-g how
-the code turns out) I think it's still OK to integrate it into sm_map().
+  
 
-However, it probably makes sense to factor out the code into a common funct=
-ion
-and then build the madvise() and sm_map() functions on top of it.
+Participating hosts (11 -> 9)
+------------------------------
 
-Please also find some more comments on the patch itself.
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
 
->> Again, I really think this needs some proper documentation like in the
->> "DOC: Split and Merge" documentation section.
->
-> Sure
+Possible new issues
+-------------------
 
-Thanks!
+  Here are the unknown changes that may have been introduced in xe-pw-151942v2_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@core_hotunplug@unbind-rebind:
+    - {bat-ptl-2}:        [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-151942v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][3] -> [ABORT][4] ([Intel XE#5826])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#4543]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+  [Intel XE#5826]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826
+
+
+Build changes
+-------------
+
+  * Linux: xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d -> xe-pw-151942v2
+
+  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d: c95d955cf0a032f2be77e6b07a3753bcc0f6915d
+  xe-pw-151942v2: 151942v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html
+
+--===============7572995308718365340==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Return early on power limit read failure (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151942/">https://patchwork.freedesktop.org/series/151942/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d_BAT -&gt; xe-pw-151942v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-151942v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151942v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826">Intel XE#5826</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151942v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d -&gt; xe-pw-151942v2</li>
+</ul>
+<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3534-c95d955cf0a032f2be77e6b07a3753bcc0f6915d: c95d955cf0a032f2be77e6b07a3753bcc0f6915d<br />
+  xe-pw-151942v2: 151942v2</p>
+
+</body>
+</html>
+
+--===============7572995308718365340==--
