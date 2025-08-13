@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 941F0CA0EE0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 21:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7F55C87FCF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 21:43:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 232F610E08E;
-	Wed, 13 Aug 2025 21:37:52 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCFF810E08E;
- Wed, 13 Aug 2025 21:37:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0844845518581597089=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD5A710E7CE;
+	Wed, 13 Aug 2025 21:43:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ngSkj8sN";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CDBF10E661;
+ Wed, 13 Aug 2025 21:43:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=s0RkmzLcubcjM877N4Ky3zIaEdEBhfkqTGTar4HrYJ8=; b=ngSkj8sNSEUdrzqhz8mZfYARA7
+ vOns3ROb3dVohKk1qdrcsrGlS8f15uPUiJ2evKh6ecruuxC/0awZNIuZvc7yOVCTb5W3/ybSrql6X
+ fz+A51lUOuwDsWolZlJ/jsHMeJLDQ2vcIjwykieMBL9naXrpIneh1IZ8UK4qOINJKUzRY5QBYuUAC
+ Y4QABmMbFhzJk1hUJ8hJxObKn3jIrqdq18anjSRGSIJrjKa55DaQGRyT2DtlnpyRorhUSVIZbLNiq
+ oRxgFtv1L8JguL86UFVAcPUY80jf3RjC7OXLNC3aJ9EUHML1ZRR7ZNNFlB6YYiUf8VwM+oloKJIGr
+ 0U4vfFvg==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1umJFr-00Dr1r-IQ; Wed, 13 Aug 2025 23:43:31 +0200
+Date: Wed, 13 Aug 2025 22:43:30 +0100
+From: Tvrtko Ursulin <tursulin@igalia.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <aJ0HAh06VHWVdv63@linux>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_TLB_invalidation_abstra?=
- =?utf-8?q?ction_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "stuartsummers" <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Aug 2025 21:37:49 -0000
-Message-ID: <175512106976.234921.16085858490697633233@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250813194806.140500-1-stuart.summers@intel.com>
-In-Reply-To: <20250813194806.140500-1-stuart.summers@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +64,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0844845518581597089==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+Two display fixes for the RC cycle this week - one for FBC and one for PSR
+handling.
 
-Series: Add TLB invalidation abstraction (rev6)
-URL   : https://patchwork.freedesktop.org/series/152022/
-State : success
+Regards,
 
-== Summary ==
+Tvrtko
 
-CI Bug Log - changes from xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472_BAT -> xe-pw-152022v6_BAT
-====================================================
+drm-intel-fixes-2025-08-13:
+- Fix the implementation of wa_18038517565 [fbc] (Vinod Govindapillai)
+- Do not trigger Frame Change events from frontbuffer flush [psr] (Jouni Högander)
+The following changes since commit 8f5ae30d69d7543eee0d70083daf4de8fe15d585:
 
-Summary
--------
+  Linux 6.17-rc1 (2025-08-10 19:41:16 +0300)
 
-  **SUCCESS**
+are available in the Git repository at:
 
-  No regressions found.
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-08-13
 
-  
+for you to fetch changes up to 184889dfe0568528fd6d14bba864dd57ed45bbf2:
 
-Participating hosts (11 -> 9)
-------------------------------
+  drm/i915/psr: Do not trigger Frame Change events from frontbuffer flush (2025-08-12 09:05:11 +0100)
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
+----------------------------------------------------------------
+- Fix the implementation of wa_18038517565 [fbc] (Vinod Govindapillai)
+- Do not trigger Frame Change events from frontbuffer flush [psr] (Jouni Högander)
 
-Known issues
-------------
+----------------------------------------------------------------
+Jouni Högander (1):
+      drm/i915/psr: Do not trigger Frame Change events from frontbuffer flush
 
-  Here are the changes found in xe-pw-152022v6_BAT that come from known issues:
+Vinod Govindapillai (1):
+      drm/i915/fbc: fix the implementation of wa_18038517565
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v6/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472 -> xe-pw-152022v6
-
-  IGT_8493: 8493
-  xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472: b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472
-  xe-pw-152022v6: 152022v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v6/index.html
-
---===============0844845518581597089==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add TLB invalidation abstraction (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152022/">https://patchwork.freedesktop.org/series/152022/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472_BAT -&gt; xe-pw-152022v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152022v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v6/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472 -&gt; xe-pw-152022v6</li>
-</ul>
-<p>IGT_8493: 8493<br />
-  xe-3541-b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472: b6d374ca303d7b9f6456bc6db0cfe6e4d30bf472<br />
-  xe-pw-152022v6: 152022v6</p>
-
-</body>
-</html>
-
---===============0844845518581597089==--
+ drivers/gpu/drm/i915/display/intel_fbc.c |  8 ++++----
+ drivers/gpu/drm/i915/display/intel_psr.c | 14 +++++++++-----
+ 2 files changed, 13 insertions(+), 9 deletions(-)
