@@ -4,58 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39539C87FCF
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 16:53:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD30BCA0EE0
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 17:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBD4810E739;
-	Wed, 13 Aug 2025 16:53:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Upx0bcln";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2148F10E739
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 16:53:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755104036; x=1786640036;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=+I6LaP9RBtA6PbTeNOYS8yH/2CPrQbYrhwTaHUJY2Ic=;
- b=Upx0bclnth9kdNMutuIW5hW6GEy18kG1EDO+Xgpw/C4K6bo4JONYowQ4
- /v132dot5bHevRGsHtcWUxIIxv7utCpb52S7hSNFWOal/iVmMZZm/byv+
- u7XBCiUl7M2H6/Rr5avIIPTRCesAOSIJZtSJ/ZTy5xmdL5QA0Yqe3oRCh
- nBpyusI28W7MvJ6lJCMo0546is4TBh2eEo8CzTSWndS4w3gWjzbdLzBdh
- ScAm7WNdKEFLBgVA9+ogBsXAHjGB99KPbBSW6pCMsBOIvYqfL3cGsvxLj
- IPF4aPGvCc4PD8B4TRhSDPGwZZ4i3YeUVJlomI0DY2sI1IJjNnbLFzOKg A==;
-X-CSE-ConnectionGUID: Hqr/L7I9TGmDuQlxiVcEyg==
-X-CSE-MsgGUID: L5hdb+4LT0mCD+etr07SNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="44986214"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="44986214"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 09:53:55 -0700
-X-CSE-ConnectionGUID: toKxbMstSkOamyhmneaxAQ==
-X-CSE-MsgGUID: k1oh2m0cT/iGf0OXmlNp1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="167321317"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.238])
- ([10.245.245.238])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 09:53:55 -0700
-Message-ID: <9f8f4dde-ef35-4177-aa8a-f983bb89f369@intel.com>
-Date: Wed, 13 Aug 2025 17:53:53 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 815DB10E777;
+	Wed, 13 Aug 2025 17:01:27 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2F6510E777;
+ Wed, 13 Aug 2025 17:01:25 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0CD3A12FC;
+ Wed, 13 Aug 2025 10:01:17 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com
+ [10.1.196.50])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E4DF23F738;
+ Wed, 13 Aug 2025 10:01:20 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
+ mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
+ adrian.hunter@intel.com, kan.liang@linux.intel.com
+Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: [PATCH 00/19] perf: Rework event_init checks
+Date: Wed, 13 Aug 2025 18:00:52 +0100
+Message-Id: <cover.1755096883.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] drm/xe: Add initial support for separate kernel
- VRAM region on the tile
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250718081752.630122-1-piotr.piorkowski@intel.com>
- <20250718081752.630122-2-piotr.piorkowski@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250718081752.630122-2-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,313 +58,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18/07/2025 09:17, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> So far, kernel and userspace allocations have shared the same VRAM region.
-> However, in some scenarios, it may be necessary to reserve a separate
-> VRAM area exclusively for kernel allocations.
-> Let's add preliminary support for such a configuration.
-> 
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c           | 87 ++++++++++++++++++++--------
->   drivers/gpu/drm/xe/xe_bo.h           |  6 +-
->   drivers/gpu/drm/xe/xe_device_types.h | 10 +++-
->   drivers/gpu/drm/xe/xe_tile.c         |  8 +++
->   drivers/gpu/drm/xe/xe_tile.h         |  5 ++
->   drivers/gpu/drm/xe/xe_vram.c         |  6 +-
->   6 files changed, 94 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 00ce067d5fd3..12e899726534 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -33,6 +33,7 @@
->   #include "xe_pxp.h"
->   #include "xe_res_cursor.h"
->   #include "xe_shrinker.h"
-> +#include "xe_tile.h"
->   #include "xe_trace_bo.h"
->   #include "xe_ttm_stolen_mgr.h"
->   #include "xe_vm.h"
-> @@ -208,6 +209,27 @@ static bool force_contiguous(u32 bo_flags)
->   	       bo_flags & XE_BO_FLAG_PINNED;
->   }
->   
-> +static u8 vram_bo_flag_to_tile_id(struct xe_device *xe, u32 vram_bo_flag)
-> +{
-> +	xe_assert(xe, vram_bo_flag & XE_BO_FLAG_VRAM_MASK);
-> +	xe_assert(xe, (vram_bo_flag & (vram_bo_flag - 1)) == 0);
-> +
-> +	return __ffs(vram_bo_flag >> (__ffs(XE_BO_FLAG_VRAM0) - 1)) - 1;
-> +}
-> +
-> +static u32 bo_vram_flags_to_vram_placement(struct xe_device *xe, u32 bo_flags, u32 vram_flag,
+Hi all,
 
-Do you need bo_flags?
+[ Note I'm only CC'ing lists for now to avoid spamming nearly 100 
+  individual maintainers/reviewers while we work out the basics ]
 
-> +					   enum ttm_bo_type type)
-> +{
-> +	u8 tile_id = vram_bo_flag_to_tile_id(xe, vram_flag);
-> +
-> +	xe_assert(xe, tile_id < xe->info.tile_count);
-> +
-> +	if (type == ttm_bo_type_kernel)
-> +		return xe->tiles[tile_id].mem.kernel_vram->placement;
-> +	else
-> +		return xe->tiles[tile_id].mem.vram->placement;
-> +}
-> +
->   static void add_vram(struct xe_device *xe, struct xe_bo *bo,
->   		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
->   {
-> @@ -240,12 +262,17 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
->   }
->   
->   static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
-> -			 u32 bo_flags, u32 *c)
-> +			 u32 bo_flags, enum ttm_bo_type type, u32 *c)
->   {
-> -	if (bo_flags & XE_BO_FLAG_VRAM0)
-> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
-> -	if (bo_flags & XE_BO_FLAG_VRAM1)
-> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
-> +	u32 vram_flag;
-> +
-> +	for_each_bo_flag_vram(vram_flag) {
-> +		if (bo_flags & vram_flag) {
+Reviving my idea from a few years back, the aim here is to minimise
+the amount of event_init boilerplate that most new drivers have to
+implement (and so many get wrong), while also trying to establish
+some more consistent and easy-to-follow patterns for the things that
+drivers should still care about (mostly group validation).
 
-Would it be more natural to fold this into the macro somehow?
+It's ended up somewhat big and ugly, so to start with I've tried to
+optimise for ease of review - based on the typical "fixes, cleanup,
+new development" order the split of the current patches is like so:
 
-for_each_set_bo_vram_flag(vram_flag, bo_flags)
-       bo_vram_flags_to_vram_placement(xe, vram_flag, type);
+* Group validation rework (patches #1-#15)
+  - Specific drivers with functional issues by inspection (#1-#7)
+  - Specific drivers where cleanup changes were non-trivial (#8-#11)
+  - Common patterns across remaining drivers (#12-#15)
+* Capabilities rework (patches #16-#18)
+* Giant bonfire of remaining boilerplate! (patch #19)
 
-> +			u32 pl = bo_vram_flags_to_vram_placement(xe, bo_flags, vram_flag, type);
-> +
-> +			add_vram(xe, bo, bo->placements, bo_flags, pl, c);
-> +		}
-> +	}
->   }
->   
->   static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
-> @@ -264,11 +291,11 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
->   }
->   
->   static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
-> -				       u32 bo_flags)
-> +				       u32 bo_flags, enum ttm_bo_type type)
->   {
->   	u32 c = 0;
->   
-> -	try_add_vram(xe, bo, bo_flags, &c);
-> +	try_add_vram(xe, bo, bo_flags, type, &c);
->   	try_add_system(xe, bo, bo_flags, &c);
->   	try_add_stolen(xe, bo, bo_flags, &c);
->   
-> @@ -284,10 +311,10 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
->   }
->   
->   int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
-> -			      u32 bo_flags)
-> +			      u32 bo_flags, enum ttm_bo_type type)
->   {
->   	xe_bo_assert_held(bo);
-> -	return __xe_bo_placement_for_flags(xe, bo, bo_flags);
-> +	return __xe_bo_placement_for_flags(xe, bo, bo_flags, type);
->   }
->   
->   static void xe_evict_flags(struct ttm_buffer_object *tbo,
-> @@ -1895,7 +1922,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   	}
->   
->   	if (!(flags & XE_BO_FLAG_FIXED_PLACEMENT)) {
-> -		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
-> +		err = __xe_bo_placement_for_flags(xe, bo, bo->flags, type);
->   		if (WARN_ON(err)) {
->   			xe_ttm_bo_destroy(&bo->ttm);
->   			return ERR_PTR(err);
-> @@ -1953,34 +1980,33 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   }
->   
->   static int __xe_bo_fixed_placement(struct xe_device *xe,
-> -				   struct xe_bo *bo,
-> +				   struct xe_bo *bo, enum ttm_bo_type type,
->   				   u32 flags,
->   				   u64 start, u64 end, u64 size)
->   {
->   	struct ttm_place *place = bo->placements;
-> +	u32 vram_flag, vram_stolen_flags;
->   
->   	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
->   		return -EINVAL;
->   
-> +	vram_flag = flags & XE_BO_FLAG_VRAM_MASK;
-> +	vram_stolen_flags = (flags & (XE_BO_FLAG_STOLEN)) | vram_flag;
-> +
-> +	/* check if more than one VRAM/STOLEN flag is set */
-> +	if ((vram_stolen_flags & (vram_stolen_flags - 1)) != 0)
+If the overall idea is acceptable then a more relaxed merge strategy
+might be to look at landing the common parts first (#16-#18 and maybe
+#13), then rearrange the rest into per-driver patches, but I'm sure
+nobody wants a ~70-patch series out of the gate :)
 
-hweight32() > 1 is more readable here?
+Thanks,
+Robin.
 
-> +		return -EINVAL;
-> +
->   	place->flags = TTM_PL_FLAG_CONTIGUOUS;
->   	place->fpfn = start >> PAGE_SHIFT;
->   	place->lpfn = end >> PAGE_SHIFT;
->   
-> -	switch (flags & (XE_BO_FLAG_STOLEN | XE_BO_FLAG_VRAM_MASK)) {
-> -	case XE_BO_FLAG_VRAM0:
-> -		place->mem_type = XE_PL_VRAM0;
-> -		break;
-> -	case XE_BO_FLAG_VRAM1:
-> -		place->mem_type = XE_PL_VRAM1;
-> -		break;
-> -	case XE_BO_FLAG_STOLEN:
-> +	if (flags & XE_BO_FLAG_STOLEN)
->   		place->mem_type = XE_PL_STOLEN;
-> -		break;
-> -
-> -	default:
-> -		/* 0 or multiple of the above set */
-> +	else if (vram_flag)
-> +		place->mem_type = bo_vram_flags_to_vram_placement(xe, flags, vram_flag, type);
-> +	else
->   		return -EINVAL;
-> -	}
->   
->   	bo->placement = (struct ttm_placement) {
->   		.num_placement = 1,
-> @@ -2003,13 +2029,24 @@ __xe_bo_create_locked(struct xe_device *xe,
->   	if (vm)
->   		xe_vm_assert_held(vm);
->   
-> +	/*
-> +	 * In the case of kernel allocations, if the tile has dedicated kernel
-> +	 * VRAM region, and tile->id does not match to tile->vram_id, it means
-> +	 * that we are using unified VRAM and we need fix VRAM BO flags.
-> +	 */
-> +	if (tile && type == ttm_bo_type_kernel && xe_tile_has_separate_kernel_vram(tile) &&
-> +	    (flags & XE_BO_FLAG_VRAM_MASK) && tile->mem.vram->id != tile->mem.kernel_vram->id) {
-> +		flags &= ~XE_BO_FLAG_VRAM_MASK;
-> +		flags |= (XE_BO_FLAG_VRAM0 << tile->mem.kernel_vram->id);
-> +	}
-> +
->   	if (start || end != ~0ULL) {
->   		bo = xe_bo_alloc();
->   		if (IS_ERR(bo))
->   			return bo;
->   
->   		flags |= XE_BO_FLAG_FIXED_PLACEMENT;
-> -		err = __xe_bo_fixed_placement(xe, bo, flags, start, end, size);
-> +		err = __xe_bo_fixed_placement(xe, bo, type, flags, start, end, size);
->   		if (err) {
->   			xe_bo_free(bo);
->   			return ERR_PTR(err);
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 8cce413b5235..dde8e0274ff2 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -61,6 +61,10 @@
->   #define XE_BO_FLAG_GGTTx(tile) \
->   	(XE_BO_FLAG_GGTT0 << (tile)->id)
->   
-> +#define for_each_bo_flag_vram(bit__) \
-> +	for (unsigned int __bit_tmp = BIT(0); __bit_tmp <= XE_BO_FLAG_VRAM_MASK; __bit_tmp <<= 1) \
-> +		for_each_if(((bit__) = __bit_tmp) & XE_BO_FLAG_VRAM_MASK)
 
-Should this be exported or can it be moved to .c?
+Robin Murphy (19):
+  perf/arm-cmn: Fix event validation
+  perf/hisilicon: Fix group validation
+  perf/imx8_ddr: Fix group validation
+  perf/starfive: Fix group validation
+  iommu/vt-d: Fix perfmon group validation
+  ARM: l2x0: Fix group validation
+  ARM: imx: Fix MMDC PMU group validation
+  perf/arm_smmu_v3: Improve group validation
+  perf/qcom: Improve group validation
+  perf/arm-ni: Improve event validation
+  perf/arm-cci: Tidy up event validation
+  perf: Ignore event state for group validation
+  perf: Add helper for checking grouped events
+  perf: Clean up redundant group validation
+  perf: Simplify group validation
+  perf: Introduce positive capability for sampling
+  perf: Retire PERF_PMU_CAP_NO_INTERRUPT
+  perf: Introduce positive capability for raw events
+  perf: Garbage-collect event_init checks
 
-> +
->   #define XE_PTE_SHIFT			12
->   #define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
->   #define XE_PTE_MASK			(XE_PAGE_SIZE - 1)
-> @@ -127,7 +131,7 @@ struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_til
->   int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, struct xe_bo **src);
->   
->   int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
-> -			      u32 bo_flags);
-> +			      u32 bo_flags, enum ttm_bo_type type);
->   
->   static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index eb6105523f23..3a417305c1b8 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -155,7 +155,15 @@ struct xe_tile {
->   	/** @mem: memory management info for tile */
->   	struct {
->   		/**
-> -		 * @mem.vram: VRAM info for tile.
-> +		 * @mem.kernel_vram: kernel-dedicated VRAM info for tile.
-> +		 *
-> +		 * Although VRAM is associated with a specific tile, it can
-> +		 * still be accessed by all tiles' GTs.
-> +		 */
-> +		struct xe_vram_region *kernel_vram;
-> +
-> +		/**
-> +		 * @mem.vram: general purpose VRAM info for tile.
->   		 *
->   		 * Although VRAM is associated with a specific tile, it can
->   		 * still be accessed by all tiles' GTs.
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 0be0a5c57ef4..a14f549effdd 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -124,6 +124,14 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
->   		return PTR_ERR(vram);
->   	tile->mem.vram = vram;
->   
-> +	/*
-> +	 * If the kernel_vram is not already allocated,
-> +	 * it means that tile has common VRAM region for
-> +	 * kernel and user space.
-> +	 */
-> +	if (!tile->mem.kernel_vram)
-> +		tile->mem.kernel_vram = tile->mem.vram;
-> +
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-> index dceb6297aa01..5d834378b354 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.h
-> +++ b/drivers/gpu/drm/xe/xe_tile.h
-> @@ -23,4 +23,9 @@ static inline bool xe_tile_is_root(struct xe_tile *tile)
->   	return tile->id == 0;
->   }
->   
-> +static inline bool xe_tile_has_separate_kernel_vram(const struct xe_tile *tile)
-> +{
-> +	return tile->mem.vram != tile->mem.kernel_vram;
-> +}
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index b44ebf50fedb..7adfccf68e4c 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
-> @@ -13,6 +13,7 @@
->   #include "regs/xe_gt_regs.h"
->   #include "regs/xe_regs.h"
->   #include "xe_assert.h"
-> +#include "xe_bo.h"
->   #include "xe_device.h"
->   #include "xe_force_wake.h"
->   #include "xe_gt_mcr.h"
-> @@ -283,8 +284,11 @@ static void vram_fini(void *arg)
->   
->   	xe->mem.vram->mapping = NULL;
->   
-> -	for_each_tile(tile, xe, id)
-> +	for_each_tile(tile, xe, id) {
->   		tile->mem.vram->mapping = NULL;
-> +		if (tile->mem.kernel_vram)
-> +			tile->mem.kernel_vram->mapping = NULL;
-> +	}
->   }
->   
->   struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
+ arch/alpha/kernel/perf_event.c                |  5 +-
+ arch/arc/kernel/perf_event.c                  |  4 +-
+ arch/arm/mach-imx/mmdc.c                      | 29 ++----
+ arch/arm/mm/cache-l2x0-pmu.c                  | 19 +---
+ arch/csky/kernel/perf_event.c                 |  3 +-
+ arch/loongarch/kernel/perf_event.c            |  1 +
+ arch/mips/kernel/perf_event_mipsxx.c          |  1 +
+ arch/powerpc/perf/8xx-pmu.c                   |  3 +-
+ arch/powerpc/perf/core-book3s.c               |  4 +-
+ arch/powerpc/perf/core-fsl-emb.c              |  4 +-
+ arch/powerpc/perf/hv-24x7.c                   | 11 ---
+ arch/powerpc/perf/hv-gpci.c                   | 11 ---
+ arch/powerpc/perf/imc-pmu.c                   | 31 +-----
+ arch/powerpc/perf/kvm-hv-pmu.c                |  5 +-
+ arch/powerpc/perf/vpa-pmu.c                   | 13 +--
+ arch/powerpc/platforms/pseries/papr_scm.c     | 18 +---
+ arch/s390/kernel/perf_cpum_cf.c               |  8 +-
+ arch/s390/kernel/perf_cpum_sf.c               |  2 +
+ arch/s390/kernel/perf_pai_crypto.c            |  1 +
+ arch/s390/kernel/perf_pai_ext.c               |  1 +
+ arch/sh/kernel/perf_event.c                   |  1 -
+ arch/sparc/kernel/perf_event.c                |  4 +-
+ arch/x86/events/amd/ibs.c                     | 32 ++-----
+ arch/x86/events/amd/iommu.c                   | 15 ---
+ arch/x86/events/amd/power.c                   |  7 --
+ arch/x86/events/amd/uncore.c                  | 12 +--
+ arch/x86/events/core.c                        |  7 +-
+ arch/x86/events/intel/bts.c                   |  3 -
+ arch/x86/events/intel/cstate.c                | 16 +---
+ arch/x86/events/intel/pt.c                    |  3 -
+ arch/x86/events/intel/uncore.c                | 16 +---
+ arch/x86/events/intel/uncore_snb.c            | 18 ----
+ arch/x86/events/msr.c                         |  8 +-
+ arch/x86/events/rapl.c                        | 11 ---
+ arch/xtensa/kernel/perf_event.c               |  1 +
+ drivers/devfreq/event/rockchip-dfi.c          | 13 +--
+ drivers/dma/idxd/perfmon.c                    | 17 +---
+ drivers/fpga/dfl-fme-perf.c                   | 18 +---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c       |  4 -
+ drivers/gpu/drm/i915/i915_pmu.c               | 13 ---
+ drivers/gpu/drm/xe/xe_pmu.c                   | 13 ---
+ .../hwtracing/coresight/coresight-etm-perf.c  |  5 -
+ drivers/hwtracing/ptt/hisi_ptt.c              |  8 --
+ drivers/iommu/intel/perfmon.c                 | 28 +++---
+ drivers/perf/alibaba_uncore_drw_pmu.c         | 28 +-----
+ drivers/perf/amlogic/meson_ddr_pmu_core.c     |  9 --
+ drivers/perf/arm-cci.c                        | 56 +++--------
+ drivers/perf/arm-ccn.c                        | 34 -------
+ drivers/perf/arm-cmn.c                        | 15 +--
+ drivers/perf/arm-ni.c                         | 35 +++----
+ drivers/perf/arm_cspmu/arm_cspmu.c            | 34 +------
+ drivers/perf/arm_dmc620_pmu.c                 | 28 +-----
+ drivers/perf/arm_dsu_pmu.c                    | 26 +----
+ drivers/perf/arm_pmu.c                        | 19 +---
+ drivers/perf/arm_pmu_platform.c               |  2 +-
+ drivers/perf/arm_smmuv3_pmu.c                 | 35 ++-----
+ drivers/perf/arm_spe_pmu.c                    |  7 +-
+ drivers/perf/cxl_pmu.c                        |  6 --
+ drivers/perf/dwc_pcie_pmu.c                   | 21 +---
+ drivers/perf/fsl_imx8_ddr_perf.c              | 32 +------
+ drivers/perf/fsl_imx9_ddr_perf.c              | 27 ------
+ drivers/perf/hisilicon/hisi_pcie_pmu.c        | 25 ++---
+ drivers/perf/hisilicon/hisi_uncore_pmu.c      | 41 ++------
+ drivers/perf/hisilicon/hns3_pmu.c             | 24 ++---
+ drivers/perf/marvell_cn10k_ddr_pmu.c          | 18 ----
+ drivers/perf/marvell_cn10k_tad_pmu.c          | 12 +--
+ drivers/perf/marvell_pem_pmu.c                | 22 +----
+ drivers/perf/qcom_l2_pmu.c                    | 96 ++++++-------------
+ drivers/perf/qcom_l3_pmu.c                    | 33 ++-----
+ drivers/perf/riscv_pmu_legacy.c               |  1 -
+ drivers/perf/riscv_pmu_sbi.c                  |  3 +-
+ drivers/perf/starfive_starlink_pmu.c          | 32 ++-----
+ drivers/perf/thunderx2_pmu.c                  | 45 ++-------
+ drivers/perf/xgene_pmu.c                      | 29 ------
+ drivers/powercap/intel_rapl_common.c          |  9 +-
+ include/linux/perf_event.h                    | 10 +-
+ kernel/events/core.c                          | 35 +++++--
+ kernel/events/hw_breakpoint.c                 |  1 +
+ 78 files changed, 244 insertions(+), 1053 deletions(-)
+
+-- 
+2.39.2.101.g768bb238c484.dirty
 
