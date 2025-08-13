@@ -4,54 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6084C87FCF
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 12:13:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63D0DC87FCF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 12:17:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88D4E10E4EB;
-	Wed, 13 Aug 2025 12:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 158DC10E4EB;
+	Wed, 13 Aug 2025 12:17:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ffRGwOX0";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="1G9/2Oww";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AE0210E4EB;
- Wed, 13 Aug 2025 12:13:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 2BCF2601E1;
- Wed, 13 Aug 2025 12:13:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AE0CC4CEEB;
- Wed, 13 Aug 2025 12:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1755087228;
- bh=YRMUZMdrCI81xQhP38eNlaRhIFU7sGuS/mHAU4lyajc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ffRGwOX0TD4yG5vj6NulVxBtbSeY6X+Bvb+sEgzMZG22pu8ZRpzLgnZ/d6j+08wXM
- H4lhClcV1AUW6Nk+Szf+irIaKOVkTWkR8z5Q3mTku2AeGFYPiiGAyyWuHtB0kHfWGq
- UMhdavpW86dCHzkCdvh1/ifFSRZ6gJLHlGrg8bc0=
-Date: Wed, 13 Aug 2025 14:13:45 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>
-Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
- "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Subject: Re: [PATCH 2/9] mei: late_bind: add late binding component driver
-Message-ID: <2025081346-shrank-wish-e85d@gregkh>
-References: <20250710150831.3018674-11-rodrigo.vivi@intel.com>
- <20250710150831.3018674-13-rodrigo.vivi@intel.com>
- <2025071611-decode-hastiness-df63@gregkh>
- <CY5PR11MB63666310C54B48FB3624D9E0ED56A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <2025071603-guide-definite-70e3@gregkh>
- <CY5PR11MB636646E936C800D689BFBEEBED56A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <2025071619-sterile-skiing-e64b@gregkh>
- <CY5PR11MB6366AF03A73910CED71C7E37ED5BA@CY5PR11MB6366.namprd11.prod.outlook.com>
- <7aa74159-a9a8-4ca7-9635-a806c57bf7f4@intel.com>
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BB610E4CB
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 07:43:48 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id
+ 41be03b00d2f7-b2c4e46a89fso4922777a12.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 00:43:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1755071028; x=1755675828;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=0UJVq92P3ua8XtJx9QTbL1ot/TXYdNOLOGqwOrYBgLQ=;
+ b=1G9/2OwwRgaMwrWzVA0PkeGevIrBSNqe+iW3s8DYr72apwr178MbhC42Th4H/T9kt2
+ 1jeGGZWiIaVUq3mZeNfIweB4shPcCx0a14LoN9JQf8H+PDsGz00wv2m6frwc8R1ExZy5
+ tvIX2dT5D7jXXmf8j8xi/LKNse9HqKdNyQrDD8qEeOZca0/MjY8wE2sRVsJKAThGfc+0
+ 71ZpwiZi5+3pJWsyn8JtDcrl06xgALdioGmxP4hok2xBJiGl/EbQDzmsMBil3LpvwOZr
+ bjFbTjKpsEnyM5PWgJz9A2KbvOQ/R54eXKh25n+hGlGIrklPYMb9PlJjlJGkLkYb2jyt
+ CzWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755071028; x=1755675828;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=0UJVq92P3ua8XtJx9QTbL1ot/TXYdNOLOGqwOrYBgLQ=;
+ b=kIalHZ2OXcpvpkZPIDUFXufdBuwUDyEaQzDk80Oy7S43vON1O41KtqaZgGzl+xC3+7
+ Glag/9HCsZ0ZbJAGli4bXJchbdm1jK/SP+tNL3tgzlxjLg1JsA8FsEGTrJIDuL0yOLFW
+ LvcTqA5Fr22HT/E1c1vhSx36PCC2mrWcqFKHlBp17m26MC/puNFNAEOSz+ZA/N11zcxf
+ lGvlrbDZUpPp/oTbgh+J6rBiro43mQDtrozX+fpKFIiGgoTBxaw6JZSa6aMycdZ0pjFe
+ B8i9xa1p/jXw8hiQXy2VMQYgwbS641uJYdDUkYsaK0MOFWoDE1EyZJkS5IWwje9K5/0/
+ aiBQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBJp38UXHx6rwwudP/2wQWlC/a9EpET/nKBvh5OpNeELCbxgsry3FrxB7Ps6QY9vIPmcgyHgtqOw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy0QAqfX3yMVY4/KqfrHDDxls6yPSKZwJBXHPBaot+AH8ApKf8J
+ Vkoxg84CXupebpfkhiuizSRqUbALtT9rQsZI2BXTXAs9wyzXA/A67fISRxWoVpR/FcIM3Y7BuZk
+ hMBFZzrsusekv+O5JqcLcbAW6goEWhMvSzzX39CDG
+X-Gm-Gg: ASbGncsABpwVf/xXrysFB3YOOdjhd8tKbsA5/StpT0iL1b1fWjeUcTd02SdQY7Nesm4
+ icoGb47p8/4nDQhFJCAkbFayZ7Umpl/v+I4sxYHUad6IP+Cqz1PZ4UmuuQ4hN0M3gmafGt2GUyk
+ O8FJOGzEuLPX6ZCpLeOrQomv3gbzTm/gfrjd//PjcSHMpnfa44Gi+Wx/ShM7iB9FlTRDskGBcwi
+ U7g4TOygg6cqwLgtWDbhgazX8I9dXgfGZM10ooIMZrwxkg=
+X-Google-Smtp-Source: AGHT+IFBKsPepKKfAaFpZUzYXXEqL+dc/huf3CQooHPkoZL7D7ZLpBzLaNmms9yheE1Vr7uCFzHKue6E5dVtR5dKIRY=
+X-Received: by 2002:a17:902:fe97:b0:242:e0f1:f4b9 with SMTP id
+ d9443c01a7336-2430d0e6bdcmr25815355ad.20.1755071027377; Wed, 13 Aug 2025
+ 00:43:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7aa74159-a9a8-4ca7-9635-a806c57bf7f4@intel.com>
+References: <20250811221739.2694336-1-marievic@google.com>
+ <20250811221739.2694336-4-marievic@google.com>
+In-Reply-To: <20250811221739.2694336-4-marievic@google.com>
+From: Marco Elver <elver@google.com>
+Date: Wed, 13 Aug 2025 09:43:10 +0200
+X-Gm-Features: Ac12FXxjpczGPECwg-9WltDjK8Gi36eYjjkxdZ5ApzKUTkuNT451Pn6siym2g_E
+Message-ID: <CANpmjNOjStrdwpjbyZwk20DNux4nLt2e4T3=yRgAeyxtd7pJQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] kunit: Pass parameterized test context to
+ generate_params()
+To: Marie Zhussupova <marievic@google.com>
+Cc: rmoar@google.com, davidgow@google.com, shuah@kernel.org, 
+ brendan.higgins@linux.dev, mark.rutland@arm.com, dvyukov@google.com, 
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
+ rodrigo.vivi@intel.com, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, kasan-dev@googlegroups.com, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 13 Aug 2025 12:17:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,17 +90,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 13, 2025 at 03:21:09PM +0530, Nilawar, Badal wrote:
-> Hi Greg,
+On Tue, 12 Aug 2025 at 00:17, Marie Zhussupova <marievic@google.com> wrote:
+>
+> To enable more complex parameterized testing scenarios,
+> the generate_params() function needs additional context
+> beyond just the previously generated parameter. This patch
+> modifies the generate_params() function signature to
+> include an extra `struct kunit *test` argument, giving
+> test users access to the parameterized test context when
+> generating parameters.
+>
+> The `struct kunit *test` argument was added as the first parameter
+> to the function signature as it aligns with the convention
+> of other KUnit functions that accept `struct kunit *test` first.
+> This also mirrors the "this" or "self" reference found
+> in object-oriented programming languages.
+>
+> This patch also modifies xe_pci_live_device_gen_param()
+> in xe_pci.c and nthreads_gen_params() in kcsan_test.c
+> to reflect this signature change.
+>
+> Signed-off-by: Marie Zhussupova <marievic@google.com>
+> ---
+>
+> Changes in v2:
+>
+> - generate_params signature changes in
+>   xe_pci.c and kcsan_test.c were squashed
+>   into a single patch to avoid in-between
+>   breakages in the series.
+> - The comments and the commit message were changed to
+>   reflect the parameterized testing terminology. See
+>   the patch series cover letter change log for the
+>   definitions.
+>
+> ---
+>  drivers/gpu/drm/xe/tests/xe_pci.c | 2 +-
+>  include/kunit/test.h              | 9 ++++++---
+>  kernel/kcsan/kcsan_test.c         | 2 +-
 
-<snip>
+Acked-by: Marco Elver <elver@google.com>
 
-For some reason this was in html format :(
-
-Also, please follow the rules that Intel kernel developers must follow,
-which means not using me as your first-line of review.  Please work with
-your internal developers on this first, before resubmitting.
-
-thanks,
-
-greg k-h
+>  lib/kunit/test.c                  | 5 +++--
+>  4 files changed, 11 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+> index 1d3e2e50c355..62c016e84227 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+> @@ -129,7 +129,7 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_device_init);
+>   * Return: pointer to the next &struct xe_device ready to be used as a parameter
+>   *         or NULL if there are no more Xe devices on the system.
+>   */
+> -const void *xe_pci_live_device_gen_param(const void *prev, char *desc)
+> +const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc)
+>  {
+>         const struct xe_device *xe = prev;
+>         struct device *dev = xe ? xe->drm.dev : NULL;
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index d2e1b986b161..b527189d2d1c 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -128,7 +128,8 @@ struct kunit_attributes {
+>  struct kunit_case {
+>         void (*run_case)(struct kunit *test);
+>         const char *name;
+> -       const void* (*generate_params)(const void *prev, char *desc);
+> +       const void* (*generate_params)(struct kunit *test,
+> +                                      const void *prev, char *desc);
+>         struct kunit_attributes attr;
+>         int (*param_init)(struct kunit *test);
+>         void (*param_exit)(struct kunit *test);
+> @@ -1691,7 +1692,8 @@ do {                                                                             \
+>   * Define function @name_gen_params which uses @array to generate parameters.
+>   */
+>  #define KUNIT_ARRAY_PARAM(name, array, get_desc)                                               \
+> -       static const void *name##_gen_params(const void *prev, char *desc)                      \
+> +       static const void *name##_gen_params(struct kunit *test,                                \
+> +                                            const void *prev, char *desc)                      \
+>         {                                                                                       \
+>                 typeof((array)[0]) *__next = prev ? ((typeof(__next)) prev) + 1 : (array);      \
+>                 if (__next - (array) < ARRAY_SIZE((array))) {                                   \
+> @@ -1712,7 +1714,8 @@ do {                                                                             \
+>   * Define function @name_gen_params which uses @array to generate parameters.
+>   */
+>  #define KUNIT_ARRAY_PARAM_DESC(name, array, desc_member)                                       \
+> -       static const void *name##_gen_params(const void *prev, char *desc)                      \
+> +       static const void *name##_gen_params(struct kunit *test,                                \
+> +                                            const void *prev, char *desc)                      \
+>         {                                                                                       \
+>                 typeof((array)[0]) *__next = prev ? ((typeof(__next)) prev) + 1 : (array);      \
+>                 if (__next - (array) < ARRAY_SIZE((array))) {                                   \
+> diff --git a/kernel/kcsan/kcsan_test.c b/kernel/kcsan/kcsan_test.c
+> index c2871180edcc..fc76648525ac 100644
+> --- a/kernel/kcsan/kcsan_test.c
+> +++ b/kernel/kcsan/kcsan_test.c
+> @@ -1383,7 +1383,7 @@ static void test_atomic_builtins_missing_barrier(struct kunit *test)
+>   * The thread counts are chosen to cover potentially interesting boundaries and
+>   * corner cases (2 to 5), and then stress the system with larger counts.
+>   */
+> -static const void *nthreads_gen_params(const void *prev, char *desc)
+> +static const void *nthreads_gen_params(struct kunit *test, const void *prev, char *desc)
+>  {
+>         long nthreads = (long)prev;
+>
+> diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> index 49a5e6c30c86..01b20702a5a2 100644
+> --- a/lib/kunit/test.c
+> +++ b/lib/kunit/test.c
+> @@ -695,7 +695,7 @@ int kunit_run_tests(struct kunit_suite *suite)
+>                         /* Get initial param. */
+>                         param_desc[0] = '\0';
+>                         /* TODO: Make generate_params try-catch */
+> -                       curr_param = test_case->generate_params(NULL, param_desc);
+> +                       curr_param = test_case->generate_params(&test, NULL, param_desc);
+>                         test_case->status = KUNIT_SKIPPED;
+>                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT KUNIT_SUBTEST_INDENT
+>                                   "KTAP version 1\n");
+> @@ -726,7 +726,8 @@ int kunit_run_tests(struct kunit_suite *suite)
+>
+>                                 /* Get next param. */
+>                                 param_desc[0] = '\0';
+> -                               curr_param = test_case->generate_params(curr_param, param_desc);
+> +                               curr_param = test_case->generate_params(&test, curr_param,
+> +                                                                       param_desc);
+>                         }
+>                         /*
+>                          * TODO: Put into a try catch. Since we don't need suite->exit
+> --
+> 2.51.0.rc0.205.g4a044479a3-goog
+>
