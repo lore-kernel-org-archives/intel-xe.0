@@ -4,193 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2222DCA0EE0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 08:06:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 584B3CA0EE0
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 08:28:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69BA10E4CD;
-	Wed, 13 Aug 2025 08:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17EE389343;
+	Wed, 13 Aug 2025 08:28:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="msferBsE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZKw997rc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFFDB10E4CD;
- Wed, 13 Aug 2025 08:06:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9821F89343
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 08:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755072365; x=1786608365;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=QgRI3e/Tp3d+BTf4CXzonbs046/Mf24wHOyE3Pnr8us=;
- b=msferBsEyGZ6JkmgkcfD9G8YhMmfUs+Kiu3SZ08PofzKK4DHKD661+vI
- dmIpt/DRxscAHI7oan3Pvbbkfot0eh5UHGyyvFgCRx6dVkkcU0jqLAUxP
- 73Ib2VpweQEkxyQbQKuMc1fSlZTyUIQX/EImbzbG/wRsFN+oMKDp0Nbq7
- DGpeP/bxf57WhpdOIWJLcrx0bHGRFsZGyaubl/2xw4vfcANDEh6cZpzGN
- patSPAtxFHqNFv/8XtgxjDbcqOBqCdlw/+IObBOxBeQMjB6horhS8+xKX
- 0Ha6jBVtGEbhcnGDsV3aZDnlQ2oS/4+8XYmMkN4RZTGiu2POdKCau91Q2 Q==;
-X-CSE-ConnectionGUID: rgcMhi4ORCCLKpzl5DCqKQ==
-X-CSE-MsgGUID: FY/3zWjvRmGPTpQq3NnK+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="59978856"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="59978856"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 01:06:04 -0700
-X-CSE-ConnectionGUID: MwUI43gbQg2pur1CfCSvSw==
-X-CSE-MsgGUID: +uKaZ+S8TnqxYhCzt+kbKw==
+ t=1755073730; x=1786609730;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8/qTLQXBbnZiziZERqEUDszkZs3R6DvGs8LGdbbRTqY=;
+ b=ZKw997rcucxL+9GJm6OW9vhC0q/y+3RaeKWoFSXZ83sNRgcQ0qBeGu2r
+ LRmaiEyKKKaVMk7yvRaOM1BExNlNX0vVIKY6id8VMRrdS0D7wyDxR1fU6
+ cxHK+QwdQXJubWh5lg2tlsdR9yVgQhaC512fwTaACpAD96Slb2in9EKf9
+ lpp2+MkVEkTvrYdTmEZwLSDEMOTTa9MIogiUaQUShh+Pmbbaz6aDkIpIS
+ BEiLO+nMTvbO0FV6bnacHsP0JzkeIXxeNBV7RYOU3BanGSx6o1iapS+le
+ PT+RTnW551En5ejGq22J6zRbVmoJ2dq1QDm7WsyeNJAxqOpz+m3PO9SKn w==;
+X-CSE-ConnectionGUID: IU3maPC2Qvq4Ywp9il1pPw==
+X-CSE-MsgGUID: AhMUBd+sTISEMGAYKDRSlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68435459"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="68435459"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 01:28:50 -0700
+X-CSE-ConnectionGUID: /e4quWP8TfyTvHI+c6XJeg==
+X-CSE-MsgGUID: 5SMdjDMJSbK4/d8T1WVHfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="203588126"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 01:06:04 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 13 Aug 2025 01:06:03 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 13 Aug 2025 01:06:03 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.56) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 13 Aug 2025 01:05:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gWnQOoklsktVaOkMm8NYnO/LLBjZH6xc9/ArGxbEvBTUe4YDKfoKk2+5IBozQT1BlQB1A6EqOGlThbOY50f+RITYb4oMIoAyxezHGIZd24rEVL4bAXQo40sxME/tPz8hVXFrPYT8Esu60/JaG6LN1iLsZGpamobJ/zaA3mAgu0FqdkDA9n38RSd6u9UWMTauJs1snj0hbV5ov5ExlOffWlSL7Q9nlprMeYCHJHB/FzZ7gkx33fzPLZNWEMdmQJEeibDR6xPcz6SZUAbmI7OuwfCchKj4p4OT4rKUx3nTNL/jk5zP7Q95oCpHPtIxP+DuGquhDtZvVSCPiksXx7Azrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qLLMUOhLnbo5PPi2J0YzZVfF7BIxN6JXfOmPlAcy+U4=;
- b=ebKZGeyp8k6WMVzC3wTl20c2ROZijeneaZr6apC9t05kX+GAN6CkbsyQH7NWSKW2xfritj1ARWPhKxWgRstWKYliw6cWfqVRB57BC8WAKp7eNkpGpcABudRrbqYXSUUBgjUWJSt4VxQ6PKJTYZUiWU0EcosiBhUvVC3DDApEPftjI2TWO1OX3wjOpK5YdvFlny6nQL+OtlgNEGYzWflsD4tlaJ2j9J/cOmYwn3o+N4+uHhL1Ak9gmO9+5l4ezLJglpqqBR6ewZK3ZV53dUCgoTzHwP9u/NErpafZtElCL62A0Fdb9v8XzD0HuGZS8J40B9O3a8pBpNFnjyAH8m0kEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by BN9PR11MB5243.namprd11.prod.outlook.com (2603:10b6:408:134::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.17; Wed, 13 Aug
- 2025 08:05:56 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.9031.012; Wed, 13 Aug 2025
- 08:05:56 +0000
-Date: Wed, 13 Aug 2025 11:05:44 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Timur Tabi <timur@kernel.org>
-CC: <nouveau@lists.freedesktop.org>, Danilo Krummrich <dakr@kernel.org>, "Mark
- Brown" <broonie@kernel.org>, Ville Syrjala <ville.syrjala@linux.intel.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v2 19/19] drm: Make passing of format info to
- drm_helper_mode_fill_fb_struct() mandatory
-Message-ID: <aJxHWM8LBLcV5SDD@ideak-desk>
-References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
- <20250701090722.13645-20-ville.syrjala@linux.intel.com>
- <98b3a62c-91ff-4f91-a58b-e1265f84180b@sirena.org.uk>
- <aIOIX8W6olY8ryTN@finisterre.sirena.org.uk>
- <aIOTaOA6bUelUtBm@ideak-desk>
- <aIPES8pWAdCVB07L@finisterre.sirena.org.uk>
- <aIdPW1a5OgTlHweN@ideak-desk>
- <CAOZdJXWKs0ZWjpiOKFOZRn8UiSsFnAsQ86f=KaCYJwhuvqkDDg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOZdJXWKs0ZWjpiOKFOZRn8UiSsFnAsQ86f=KaCYJwhuvqkDDg@mail.gmail.com>
-X-ClientProxiedBy: DUZPR01CA0029.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:46b::18) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="171670513"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO [10.245.246.67])
+ ([10.245.246.67])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 01:28:47 -0700
+Message-ID: <d6af254b-87e9-4b6e-84a6-82f5465c7417@intel.com>
+Date: Wed, 13 Aug 2025 10:28:35 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BN9PR11MB5243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 895507b3-0e31-4ec9-d3dc-08ddda403b13
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|10070799003|1800799024|366016|376014|7416014; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OTBKY0ExYjNnMFFZSStMNjRobnhtaUJ2eis5UStMRDBiT3ZSNENwSmVpTjAw?=
- =?utf-8?B?OTZwQWpiKzZDdWJSaS9GMlhubDRwM1ZMVTBYanUwVUxodUJLTEpteUNrZFFy?=
- =?utf-8?B?MDljVXBaN2ppMGFCa0phWEFqU3ZhVmhQUkFZa1JjSjBzV2xrSjQ5aFJZZjE3?=
- =?utf-8?B?N1hkSUFqeEdlNiswK2xYR0d1OUJISlpLZGcrNnN4Q2UzVDdudVZ3OEpBeEsy?=
- =?utf-8?B?NjFhR3FKSnpDRW1CeWcwVklYdXg4ZlFnamV0cEN1OXFqZFBxOFl6TGFRVzM0?=
- =?utf-8?B?bHdVMWVBdWZRRzZabFFOcjc3Z0wwelRGVW5FNGVWZlBNanUwWVI4aVBOK2xj?=
- =?utf-8?B?Vk1NZEV0NkgvaXg0QU5VWUNmekxRUWlFSmtxdEc0YmxrRm5aWjA3S1l3VnNx?=
- =?utf-8?B?a0k2UlljYWhlSWl3dHMvYlVOZW5WblpzR2oxTDNZZytaUUNZaEl5TGVpR0xV?=
- =?utf-8?B?NDNCMG9QOTJwbExrSlNBY2UrREtzWXJRNXMzemh0bW4rWE1qOUU1YnpZR085?=
- =?utf-8?B?cWI2bFFqNzFTcGFDSDZUcllMV1VQTzJuM1MySktPeG1CbXBvQ3lMcEtoZGdh?=
- =?utf-8?B?Rlp6dlZFYXFMcWwxb3NiQk9ZY1RHWi9tRS9CYkxOTVVqeDEwT0xkd2ppVTJG?=
- =?utf-8?B?SFFLZFRHUWFEd1NJYVhad3hpaHlkMlQ4dGMxaThOdWpwU0ZsVVZ0KzJGUmhw?=
- =?utf-8?B?d3lVN243L3R2WWE2NCtoSEVYRFh1bE5UemhxSWNFMnM3Znd5WkErWFB4RVhw?=
- =?utf-8?B?RjAybTNaa0Q1K29yWkxvVkIrWERtZU0wMEQ1QTBPcHVZRUxRWlp6RFdrbFNU?=
- =?utf-8?B?S1kzTkFsMkdHdVpibE8rU04xN2ZFVHdwNEFUNjA4VXBzUGdTcGRkOEdyM2l6?=
- =?utf-8?B?TFg2Q1pDMC9rak51bU4zTzN1QzZMc3JOZzM4Y1JhZUVqeDBtRDUvdFhvUHha?=
- =?utf-8?B?SHBQSlJQbzhXL3lTUWxCU2NTN3VxangrYmRvczF1UzBlMC9waklFb3FNN2Vm?=
- =?utf-8?B?SVZSNEp2ZE5Bbk54QlRRaUFHTTRxVFVwWE5PUEFxVU5WTHBGdDI2eS9nZWlL?=
- =?utf-8?B?Mm9uV3hyN1ZFTWlEcGZId0FmcnlWb29UaVFOWGhYV0tKYm56cW56bnV6UXNm?=
- =?utf-8?B?TDMySGo2ODdUM0hQZ1RoeFNyZHRLMEV3ZmExMVoyeUViWURDaGZhTU1xUURL?=
- =?utf-8?B?ZXpFVG9xN2VqWDliOW5mL0pDUHlrVVVFbElMWTZBTitCbjJnRjllM2g4dUZH?=
- =?utf-8?B?UWVjMEtYWGd3QXJ6b2RhUXRwRnhLenRxd1pjNXgzZW5MUEhNWXMwOUtKNkdm?=
- =?utf-8?B?WGhyUHpVaDNHREhtUTZjZmNGcm92bTNHb1E3WUkzZ0g5aUhpZnVtV2tHWlUr?=
- =?utf-8?B?UnBxWEs4VXVST0wvbEMra2l0d2NyaEluVmY0WHpDZ0x5WC8waGxrTlJhQkVW?=
- =?utf-8?B?MDB1SGZhZzlQSS94eCt1eWtEVFA4bCtkQnNGSjFNUTBSc0oxQ0oxTzNaOHlN?=
- =?utf-8?B?NVVSd3ZReVVBZmpLdG9TVERBZnNKNm44U2pKcjE3MzUrT0ZPM2RaZ21ONmln?=
- =?utf-8?B?b2REV3A3dkNxd0gyL3ZkUGpMZ0V1UnpQbTh5ZFZhclM5cWxVSm00Ny9yVkhk?=
- =?utf-8?B?b3lJRy9ZVnQwYWZ5bkRLanFsWTJpejBRbHpUT1MrZFpRUFhqcWo0aml5ZzlG?=
- =?utf-8?B?L002SlZuYm1BNHQ5bVhKV0dXMlNvOWJyTElBZDg0MXhJZ3I3UTB2SGR2Nytm?=
- =?utf-8?B?MmFMVnlNS3pySkxzOHRPYTUreU5pR0FUWW9PQktYeDlvR1Y2aXBvNnpJNnJI?=
- =?utf-8?Q?BpYjJ1GvsxFxfrJHWK9QpEwpWEiNG5vU0EPy8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(1800799024)(366016)(376014)(7416014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eDVFNXk2TmZGcG9nbDl0QjRrVHZMTTA2NCt3ejFQdWxXVGxzRFZxeTJXMUtD?=
- =?utf-8?B?WTNpQk9KSkdwZHZLNGtPbXkwL1BKVXBIV0dCODBzdUY4cTJsU0Q1SW4zTmky?=
- =?utf-8?B?Mlc2UWpyYU5GOFoxZUZRR2s0QlcwRUNpMHp1Q0NJUEhFUHdJRThwUzVTWEZH?=
- =?utf-8?B?a2c4RE9iVDZpOVlKLzV5bk1Ia3pJMWpVRi9VOGlIZHl6QlhncXlFTjZXMnlW?=
- =?utf-8?B?TWkxb1FscGpRM05Ma3ZOamFMWWJ3WEdHWkdLWnlPNEhnSkFRczhCanNnb3pa?=
- =?utf-8?B?S2p2ZU9SZnd1dVNDV0Z5K3g0QlNNc09OQ3pnQkcrT2ZaTGNaU1ZGSE9yaTJV?=
- =?utf-8?B?S3p5NjNPYW8ycnpzRzBzdmwyaDBCWFdRWlRBTjlnR0lCc2xVS3VnYnZCTWRD?=
- =?utf-8?B?MFdIdTYzNmMvMEZTWHZkeWoxWEorcEVGRld0VStaVWxtMkJnY0hPWno1Ykp0?=
- =?utf-8?B?TTgwYVkwdUViN1VCVjMzNjBTSjV2UW9xWjkwMXJTU05FbG4rc3l6RmpTNTVx?=
- =?utf-8?B?K0ZkMW1HMitCS3E3eVpkMnZjQzBlRkJXYnJNd29meUthS3JMNVRSNnpwZkN5?=
- =?utf-8?B?UkQyaVo5Qk9wL0FLUzg1dmdOZUcwTmEwUDlwOWZ0bWppeVFtdGlsZXc2UjhU?=
- =?utf-8?B?SHZFaE5PUVBmRmQyQjlEYUQ0QlNRNzloQ0YxTkl5bVFVcm1RWXc5Z0M1V0J5?=
- =?utf-8?B?cTcvWXo5NGNxbWRjL2VvaGtWNlFsN0JCb01NUlB4TXcxaU13TG0xV25Wc2tm?=
- =?utf-8?B?RkhLaXhGK2JxY2ppN1ptYkhHUkRkZWpuRUM4Q2NLVkZJbVRaY1Zvb3JuSXJ5?=
- =?utf-8?B?cDlMalF5WW81OXNvZHM3Wi9EV1FVVWNhSGRYU2NEOW9jVDVybU5qam56NXlP?=
- =?utf-8?B?N0RSK1QzRVZibDl4alJCTVpkY3dRTHB3WE5WZmQrMWozQmwyUCtyRmtRczJH?=
- =?utf-8?B?YWV2eWx2Z3FuYTNtS3Z5a3JiNTJIN08ySjlkRVg2VjNXb3VZR3laMGlmRk90?=
- =?utf-8?B?ZWVoeTYvSlZnY0krU0EvSGoxcnpDd3VEQXZibDR0cUdwOWdtWUo0OE1ERnQx?=
- =?utf-8?B?M2ZCaUFWbWJGbjhiY1NQa09tRmZ2azZyd1RtNFJ6blNhS1Z0ZGVrMEFxYUJx?=
- =?utf-8?B?TWNRdlRJVUtkUVdTc3Njd2RDalRYSStwWU5SNmFLSjNRVnZCcFI3R1dlR01L?=
- =?utf-8?B?YlUzaHR2QTBWM3RqR3hWcENPVHQ5TjVjaXg4SUVpSHpzb0U5M092KzNvdVc0?=
- =?utf-8?B?VXFSN1FEQTBEUDlud0pudXNsUi81aTErNGRoR1RTaU95eUZ4QzhCMDB3VGFi?=
- =?utf-8?B?aGgzVjl5citIOGVkR0VzWmhCaENvZWlja2FhVmVVS0hlSXNnUy9vTzZZMzBh?=
- =?utf-8?B?eU95UG44MGNFdWRXaEwvajR5SXBBMlNPZngybE1rUDNIQnR2Ry9jaWRWeTJZ?=
- =?utf-8?B?QitLbHByNlRyNVp5a0FDZDN0UGhSRGVWMDd1cjFsU2drcll2eDJJWEZvVzJV?=
- =?utf-8?B?M250aENTYTIwSi9KWmd4SWhmY0MrcFFVdkozS1FqQzZWT2p1TFBrWkl0Y3E0?=
- =?utf-8?B?am1wMUxON0dPRzNHUDZhVitBRC9uYzE5NW5yMisxNWN5L1kwN2VxSUxpUGlT?=
- =?utf-8?B?cTZvMTc1RGd3eDJkTjQ3a292R2FvOXJjQnRNd2d1S09LQzIrV085dkVDYjRI?=
- =?utf-8?B?ZHYvek1OTGd3ZUVSZ1ZmcEpXc0x3aUtBWGpVY3dxM3pKM3FnM3FhaWdNZWlz?=
- =?utf-8?B?NXhvbGVXb1UzNTE1NG4zWldBU1Zya0tVd1A4U041UkVpM1dtdkdIY3BNVFEx?=
- =?utf-8?B?RW9hUzY2L3daV1BCdWdGc1dRcDh5RC9tK0F0aENqZjFKMForRjVmeXQzQ0VV?=
- =?utf-8?B?K3dNM2ZnUWRNYnlnOU5zWGdjTHR6bzUwYTBBem1NMWkrS05Od1praTRWZEw4?=
- =?utf-8?B?dFFyUzZJS0pUczhqQXV1aXZYb3k5VzcvRTFEbHZTQVJ0LzZHRmdBOGgwQVYr?=
- =?utf-8?B?dmRQZzFFMUMvR2lnRk00Q3dVaklZN1A4cmpsYiszZGNJa3ZKbjJMSGdWT2dM?=
- =?utf-8?B?cGtEZi90ZGhrSXVzSm5QaytVeUJDSmZJVDNtaStPTEYvNSttS3BHS3VvQVJF?=
- =?utf-8?B?Qmt6YnJlQzlsLzBrc2RnaTVRSnVOOVU1RnlDekx0SjY4U1RVaWZ5V29ZYU1p?=
- =?utf-8?Q?tsEJ3mupWamuGVN4sXPjeH+ReByALafedkSDB51N57Cy?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 895507b3-0e31-4ec9-d3dc-08ddda403b13
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 08:05:56.2140 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dt38FXwxCs5xzrNtqy2w3SaiemlzJTrloghWV4+6wmWXcXoTLI6QQIenHB+FTiAijxShBw3lsau91Cy1KkADVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5243
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/xe: Untangle vm_bind_ioctl cleanup order and fix
+ double free bug
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Francois Dugast <francois.dugast@intel.com>
+References: <20250812131728.42314-1-christoph.manszewski@intel.com>
+ <20250812131728.42314-2-christoph.manszewski@intel.com>
+ <aJuhBHks6FWf60Wh@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: "Manszewski, Christoph" <christoph.manszewski@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <aJuhBHks6FWf60Wh@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,36 +71,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 12, 2025 at 04:33:48PM -0500, Timur Tabi wrote:
-> On Mon, Jul 28, 2025 at 5:25 AM Imre Deak <imre.deak@intel.com> wrote:
-> >
-> > Ok, thanks for testing it. I realized that it's better to fix this
-> > aligning with the conversion for the rest of the drivers in the original
-> > [1] patchset, could you still give a try if the corresponding patch [2]
-> > also fixes the issue for you?
-> 
-> Looks like Nouveau is broken the same way:
-> 
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> > index 1ddd92901526..e1e542126310 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> > @@ -321,7 +321,7 @@ nouveau_framebuffer_new(struct drm_device *dev,
-> >         if (!(fb = *pfb = kzalloc(sizeof(*fb), GFP_KERNEL)))
-> >                 return -ENOMEM;
-> >
-> > -       drm_helper_mode_fill_fb_struct(dev, fb, mode_cmd);
-> > +       drm_helper_mode_fill_fb_struct(dev, fb, NULL, mode_cmd);
-> >         fb->obj[0] = gem;
-> >
-> >         ret = drm_framebuffer_init(dev, fb, &nouveau_framebuffer_funcs);
-> 
-> fb->format is NULL when drm_framebuffer_init() is called.  This is in
-> the drm-misc-next branch.
+Hi Matt,
 
-The issue got fixed by
-https://cgit.freedesktop.org/drm/drm-misc/commit/?h=drm-misc-next-fixes&id=d2b524c90643
+On 12.08.2025 22:16, Matthew Brost wrote:
+> On Tue, Aug 12, 2025 at 03:17:28PM +0200, Christoph Manszewski wrote:
+>> If the argument check during an array bind fails, the bind_ops are freed
+>> twice as seen in [1]. While at it, fix the ordering of resource cleanup
+>> to align with reverse allocation order.
+>>
+>> [1]:
+>> ==================================================================
+>> BUG: KASAN: double-free in xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>> Free of addr ffff88813bb9b800 by task xe_vm/14198
+>>
+>> CPU: 5 UID: 0 PID: 14198 Comm: xe_vm Not tainted 6.16.0-xe-eudebug-cmanszew+ #520 PREEMPT(full)
+>> Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR5 RVP, BIOS ADLPFWI1.R00.2411.A02.2110081023 10/08/2021
+>> Call Trace:
+>>   <TASK>
+>>   dump_stack_lvl+0x82/0xd0
+>>   print_report+0xcb/0x610
+>>   ? __virt_addr_valid+0x19a/0x300
+>>   ? xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>>   kasan_report_invalid_free+0xc8/0xf0
+>>   ? xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>>   ? xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>>   check_slab_allocation+0x102/0x130
+>>   kfree+0x10d/0x440
+>>   ? should_fail_ex+0x57/0x2f0
+>>   ? xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>>   xe_vm_bind_ioctl+0x1b2/0x21f0 [xe]
+>>   ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>>   ? __lock_acquire+0xab9/0x27f0
+>>   ? lock_acquire+0x165/0x300
+>>   ? drm_dev_enter+0x53/0xe0 [drm]
+>>   ? find_held_lock+0x2b/0x80
+>>   ? drm_dev_exit+0x30/0x50 [drm]
+>>   ? drm_ioctl_kernel+0x128/0x1c0 [drm]
+>>   drm_ioctl_kernel+0x128/0x1c0 [drm]
+>>   ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>>   ? find_held_lock+0x2b/0x80
+>>   ? __pfx_drm_ioctl_kernel+0x10/0x10 [drm]
+>>   ? should_fail_ex+0x57/0x2f0
+>>   ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>>   drm_ioctl+0x352/0x620 [drm]
+>>   ? __pfx_drm_ioctl+0x10/0x10 [drm]
+>>   ? __pfx_rpm_resume+0x10/0x10
+>>   ? do_raw_spin_lock+0x11a/0x1b0
+>>   ? find_held_lock+0x2b/0x80
+>>   ? __pm_runtime_resume+0x61/0xc0
+>>   ? rcu_is_watching+0x20/0x50
+>>   ? trace_irq_enable.constprop.0+0xac/0xe0
+>>   xe_drm_ioctl+0x91/0xc0 [xe]
+>>   __x64_sys_ioctl+0xb2/0x100
+>>   ? rcu_is_watching+0x20/0x50
+>>   do_syscall_64+0x68/0x2e0
+>>   entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>> RIP: 0033:0x7fa9acb24ded
+>> Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+>> RSP: 002b:00007fff189e1370 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>> RAX: ffffffffffffffda RBX: ffffffffffffff68 RCX: 00007fa9acb24ded
+>> RDX: 00007fff189e19f0 RSI: 0000000040886445 RDI: 0000000000000003
+>> RBP: 00007fff189e13c0 R08: 0000000000000000 R09: 00005561d3fb47d0
+>> R10: 00007fa9ace29be0 R11: 0000000000000246 R12: 00007fff189e19f0
+>> R13: 0000000040886445 R14: 0000000000000003 R15: 0000000000000003
+>>   </TASK>
+>>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Francois Dugast <francois.dugast@intel.com>
+>> Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_vm.c | 18 +++++++++++-------
+>>   1 file changed, 11 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index d40d2d43c041..0bfc32fd8399 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -3442,6 +3442,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>>   free_bind_ops:
+>>   	if (args->num_binds > 1)
+>>   		kvfree(*bind_ops);
+>> +	bind_ops = NULL;
+> 
+> This should be *bind_ops = NULL, right?
+
+Oops, yes indeed!
+
+
+> 
+> Or we could just simply delete the kvfree here are let's there be a
+> single free at the caller too. I'd slightly leanr towards this option.
+
+Hmm, isn't it a bit weird to expect the caller to free allocated memory 
+if the allocation function failed?
+
+
+> 
+>>   	return err;
+>>   }
+>>   
+>> @@ -3548,7 +3549,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>>   	struct xe_exec_queue *q = NULL;
+>>   	u32 num_syncs, num_ufence = 0;
+>>   	struct xe_sync_entry *syncs = NULL;
+>> -	struct drm_xe_vm_bind_op *bind_ops;
+>> +	struct drm_xe_vm_bind_op *bind_ops = NULL;
+>>   	struct xe_vma_ops vops;
+>>   	struct dma_fence *fence;
+>>   	int err;
+>> @@ -3566,7 +3567,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>>   		q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+>>   		if (XE_IOCTL_DBG(xe, !q)) {
+>>   			err = -ENOENT;
+> 
+> All of the following changes are not strickly required, given kvfree is
+> NULL safe? Rather this is just a preferred style cleanup. Since this is
+> a fixes patch we'd want to backport, I'd split this patch into 2 distink
+> patches - one which fixes the double free, one which cleans up the
+> style.
+
+Ok, I will split into two patches then.
+
+Thanks,
+Christoph
+
+> 
+> Matt
+> 
+>> -			goto put_vm;
+>> +			goto free_bind_ops;
+>>   		}
+>>   
+>>   		if (XE_IOCTL_DBG(xe, !(q->flags & EXEC_QUEUE_FLAG_VM))) {
+>> @@ -3612,7 +3613,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>>   			       __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+>>   		if (!ops) {
+>>   			err = -ENOMEM;
+>> -			goto release_vm_lock;
+>> +			goto free_bos;
+>>   		}
+>>   	}
+>>   
+>> @@ -3746,17 +3747,20 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>>   put_obj:
+>>   	for (i = 0; i < args->num_binds; ++i)
+>>   		xe_bo_put(bos[i]);
+>> +
+>> +	kvfree(ops);
+>> +free_bos:
+>> +	kvfree(bos);
+>>   release_vm_lock:
+>>   	up_write(&vm->lock);
+>>   put_exec_queue:
+>>   	if (q)
+>>   		xe_exec_queue_put(q);
+>> -put_vm:
+>> -	xe_vm_put(vm);
+>> -	kvfree(bos);
+>> -	kvfree(ops);
+>> +free_bind_ops:
+>>   	if (args->num_binds > 1)
+>>   		kvfree(bind_ops);
+>> +put_vm:
+>> +	xe_vm_put(vm);
+>>   	return err;
+>>   }
+>>   
+>> -- 
+>> 2.47.1
+>>
+
