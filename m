@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F031FCA0EE4
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 07:06:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2E4C87FCF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 07:24:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A66D510E4C4;
-	Wed, 13 Aug 2025 07:06:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPuEQ3V+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA0D10E4C1;
- Wed, 13 Aug 2025 07:06:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755068798; x=1786604798;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=i2jXV0iP2j8LIomo8V8Mh+xSLdErwksxd4rsJbYHo7E=;
- b=iPuEQ3V+rO+EDqsAJ0jZHoIa1+CX9HhwJV72OWytGbaa8+2GdgdQGpId
- R8J01P/S6pIqYN54lFdV7g3HcQs0bZy2tNuaehZcQTVr1qgs7oQuAQtud
- fbwExXnEv6XpSKFOrTfO06phiSUcXqMkIgrBa9GnZ7uUwYcp3xxaTNEvb
- kg4uPBo/RxO+RMaLxCdfTZjiyzfIEsNSuTWfKcETxYJov6jMkqhoez0gp
- ESgzxDdNw7WOKPj+mppfRy9hhrVRxv9OpxzN6WVkIUBC4ednQ+ARyNlfc
- 9fphobYnGHF9D6iwGWx5p6BD7Hh0PdyxvjUHfnjjLIZjBSW/iaTTBPcy9 Q==;
-X-CSE-ConnectionGUID: 1iYDEWXIRgWyH4ttFeUnlg==
-X-CSE-MsgGUID: 9mQGtnk7TzKj+X0r6TWVCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="60975110"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="60975110"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 00:06:38 -0700
-X-CSE-ConnectionGUID: kGedd+7rR5WloIE0LO6bKQ==
-X-CSE-MsgGUID: +6DMmH1mSNqwzS6raJyNXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="165578515"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.181])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 00:06:36 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 3/4] drm/i915/alpm: Replace hardcoded LFPS cycle with proper
- calculation
-Date: Wed, 13 Aug 2025 10:06:16 +0300
-Message-ID: <20250813070617.480793-4-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250813070617.480793-1-jouni.hogander@intel.com>
-References: <20250813070617.480793-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B1510E4C0;
+	Wed, 13 Aug 2025 07:24:48 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92BC210E1C3;
+ Wed, 13 Aug 2025 07:24:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9157736139812825443=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvm=3A_Use_root_tile?=
+ =?utf-8?q?_mmio?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Aug 2025 07:24:48 -0000
+Message-ID: <175506988859.231924.1595973092475670080@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250813060926.2625463-1-riana.tauro@intel.com>
+In-Reply-To: <20250813060926.2625463-1-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,127 +36,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently LFPS is hadcoded for different port clocks. Replace this with
-proper calculation.
+--===============9157736139812825443==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 90 ++++++++++-------------
- 1 file changed, 38 insertions(+), 52 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index ae556a885c2a..b2123305f128 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -58,58 +58,43 @@ static int get_silence_period_symbols(const struct intel_crtc_state *crtc_state)
- 		1000 / 1000;
- }
- 
--/*
-- * See Bspec: 71632 for the table
-- *
-- * Half cycle duration:
-- *
-- * Link rates 1.62 - 4.32 and tLFPS_Cycle = 70 ns
-- * FLOOR( (Link Rate * tLFPS_Cycle) / (2 * 10) )
-- *
-- * Link rates 5.4 - 8.1
-- * PORT_ALPM_LFPS_CTL[ LFPS Cycle Count ] = 10
-- * LFPS Period chosen is the mid-point of the min:max values from the table
-- * FLOOR( LFPS Period in Symbol clocks /
-- * (2 * PORT_ALPM_LFPS_CTL[ LFPS Cycle Count ]) )
-- */
--static bool _lnl_get_lfps_half_cycle(int link_rate, int *lfps_half_cycle)
-+static int get_lfps_cycle_min_max_time(const struct intel_crtc_state *crtc_state,
-+				       int *min, int *max)
- {
--	switch (link_rate) {
--	case 162000:
--		*lfps_half_cycle = 5;
--		break;
--	case 216000:
--		*lfps_half_cycle = 7;
--		break;
--	case 243000:
--		*lfps_half_cycle = 8;
--		break;
--	case 270000:
--		*lfps_half_cycle = 9;
--		break;
--	case 324000:
--		*lfps_half_cycle = 11;
--		break;
--	case 432000:
--		*lfps_half_cycle = 15;
--		break;
--	case 540000:
--		*lfps_half_cycle = 12;
--		break;
--	case 648000:
--		*lfps_half_cycle = 15;
--		break;
--	case 675000:
--		*lfps_half_cycle = 15;
--		break;
--	case 810000:
--		*lfps_half_cycle = 19;
--		break;
--	default:
--		*lfps_half_cycle = -1;
--		return false;
-+	if (crtc_state->port_clock < 540000) {
-+		*min = 65 * LFPS_CYCLE_COUNT;
-+		*max = 75 * LFPS_CYCLE_COUNT;
-+	} else if (crtc_state->port_clock <= 810000) {
-+		*min = 140;
-+		*max = 800;
-+	} else {
-+		*min = *max = -1;
-+		return -1;
- 	}
--	return true;
-+
-+	return 0;
-+}
-+
-+static int get_lfps_cycle_time(const struct intel_crtc_state *crtc_state)
-+{
-+	int tlfps_cycle_min, tlfps_cycle_max, ret;
-+
-+	ret = get_lfps_cycle_min_max_time(crtc_state, &tlfps_cycle_min,
-+					  &tlfps_cycle_max);
-+	if (ret)
-+		return ret;
-+
-+	return tlfps_cycle_min +  (tlfps_cycle_max - tlfps_cycle_min) / 2;
-+}
-+
-+static int get_lfps_half_cycle_clocks(const struct intel_crtc_state *crtc_state)
-+{
-+	int lfps_cycle_time = get_lfps_cycle_time(crtc_state);
-+
-+	if (lfps_cycle_time < 0)
-+		return -1;
-+
-+	return lfps_cycle_time * crtc_state->port_clock / 1000 / 1000 / 20;
- }
- 
- /*
-@@ -161,8 +146,9 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
- 	aux_less_wake_lines = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
- 						       aux_less_wake_time);
- 	silence_period = get_silence_period_symbols(crtc_state);
--	if (!_lnl_get_lfps_half_cycle(crtc_state->port_clock,
--				      &lfps_half_cycle))
-+
-+	lfps_half_cycle = get_lfps_half_cycle_clocks(crtc_state);
-+	if (lfps_half_cycle < 0)
- 		return false;
- 
- 	if (aux_less_wake_lines > ALPM_CTL_AUX_LESS_WAKE_TIME_MASK ||
--- 
-2.43.0
+Series: drm/xe/nvm: Use root tile mmio
+URL   : https://patchwork.freedesktop.org/series/152860/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736_BAT -> xe-pw-152860v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-152860v1_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:
+    - {bat-ptl-1}:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-ptl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/bat-ptl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152860v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-lnl-1:          [PASS][3] -> [ABORT][4] ([Intel XE#5826])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5826]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8492 -> IGT_8493
+  * Linux: xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736 -> xe-pw-152860v1
+
+  IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8493: 8493
+  xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736: 6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736
+  xe-pw-152860v1: 152860v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/index.html
+
+--===============9157736139812825443==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/nvm: Use root tile mmio</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152860/">https://patchwork.freedesktop.org/series/152860/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736_BAT -&gt; xe-pw-152860v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-152860v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind:<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-ptl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/bat-ptl-1/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152860v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152860v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826">Intel XE#5826</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8492 -&gt; IGT_8493</li>
+<li>Linux: xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736 -&gt; xe-pw-152860v1</li>
+</ul>
+<p>IGT_8492: 1e6c0d07b83cde9f2300b193f441c37d9dde5981 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8493: 8493<br />
+  xe-3535-6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736: 6f1fcd1c8f6cfedca8d5d6de1dfedc561c193736<br />
+  xe-pw-152860v1: 152860v1</p>
+
+</body>
+</html>
+
+--===============9157736139812825443==--
