@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15C5CA0EE4
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 19:48:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEE5FCA0EE8
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 19:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 977A310E7BC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD86B10E7C0;
 	Wed, 13 Aug 2025 19:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHqCUIff";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7A/8tAw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16EF110E12A
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 19:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCF3A10E12A
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 19:48:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1755114493; x=1786650493;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JDXA1SzjNGgH5BxpivtE6OoQ+mg1AcTBnd9NEbnnyTg=;
- b=kHqCUIffCnvmZF+YZTzOE/9mk5Si7vo8ZF8QNYBt1tX+uxDUvX8VVtCB
- ZY/xxxdIA+SXzWJ9SRmt3GkQ9I+nOOvozyxknbKr6HZ7ZzEJNe0UeALUe
- PNYd9sS/6ktqJWghwfWQqvFosv6oP2TFKmAFa+JcxxybVuEILgPNVUbIw
- lAlt5BpwqsH3ATw4XbZVvBMfrhhJRgumdspkSK1HIBzm67XeIp42yeZ0A
- 6Qv26fBZFtZs9kTWwf/ZVxK90zwDdyngsyaaKMiCSpmxXiMLcydlA1VUW
- w5ngPNoKIo/9Ln2tRRCbIKDQ7M4Q7zqIX3wjrlEpLdRArwS9HBYdxNw5w A==;
-X-CSE-ConnectionGUID: HDfdEvrmTbOPi861HhnNkQ==
-X-CSE-MsgGUID: G1r/3/jlT9myP2w2+JrxJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="60047019"
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="60047019"
+ bh=tdGi13yOly89bDp6t82p9/5wSP4bVRhYGuvAir6Ef/M=;
+ b=P7A/8tAw6NgN1Vj3hS9DhS5WhhoP9vmKYgtPT0OSWHCyGMnxqCMK29p1
+ q1WJ9LqcIutbp2okAtBAWIZe5Y1U5jqU5QNLi+rw34extOV5JdM+u7GcW
+ cPTMDbqBjlp6VtR8XRp9QUSvz8Z3Z17ZOV3rsdYuIAXzMFc2g3CCRtDIW
+ BxAUubfUtvL13KfuPru3JdlUJ3BbP0fgjirgUgK3E0gR08WqwMWFPH5wd
+ xWgavdLrJ2L+CTzaYbIGgyq/lwTO2O7v3mM2uOvYEU34LHvlLBrUkZwtH
+ dI2En5DzokpSaT7R3AKnv2BNGRyCz2UByylr1w5MJd05QPZmEE3XexBhV w==;
+X-CSE-ConnectionGUID: QNm3edkzRei/vB5yzSU06Q==
+X-CSE-MsgGUID: D4O8Qf0tT5y6v43GSldeQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="60047017"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="60047017"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Aug 2025 12:48:12 -0700
-X-CSE-ConnectionGUID: ps5Xhd3CST2nzy0QA3RmXw==
-X-CSE-MsgGUID: 0JnGGNoMQoS9oNo/aQMhOQ==
+X-CSE-ConnectionGUID: vp+wwrGcQbOR0KT5jmGqjg==
+X-CSE-MsgGUID: H0S0CN6iTd6rL6jKf43Bhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="166206188"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="166206182"
 Received: from dut137arlu.fm.intel.com ([10.105.23.66])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Aug 2025 12:48:12 -0700
 From: stuartsummers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- farah.kassabri@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 4/9] drm/xe: Add xe_tlb_inval structure
-Date: Wed, 13 Aug 2025 19:48:01 +0000
-Message-Id: <20250813194806.140500-5-stuart.summers@intel.com>
+ farah.kassabri@intel.com, stuartsummers <stuart.summers@intel.com>
+Subject: [PATCH 2/9] drm/xe: Stop the TLB fence timer on driver teardown
+Date: Wed, 13 Aug 2025 19:47:59 +0000
+Message-Id: <20250813194806.140500-3-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250813194806.140500-1-stuart.summers@intel.com>
 References: <20250813194806.140500-1-stuart.summers@intel.com>
@@ -67,120 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+There is a small window of time during the driver teardown where
+the TLB invalidation fence->gt is set to NULL but an invalidation
+worker is still alive. This won't cause an issue currently because
+the tlb_invalidation structure itself is still present. However as
+part of a future refactor, we are looking to split that structure
+out. To be safe, go ahead and cancel any outstanding TLB invalidation
+fence worker thread on _fini() since at that time we are already
+tearing down the driverworker thread on _fini() since at that time we
+are already tearing down the driver and don't need to continue
+monitoring this.
 
-Extract TLB invalidation state into a structure to decouple TLB
-invalidations from the GT, allowing the structure to be embedded
-anywhere in the driver.
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: stuartsummers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_inval_types.h | 34 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h           | 33 ++-------------------
- 2 files changed, 36 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_gt_tlb_inval_types.h
-index 919430359103..442f72b78ccf 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_inval_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_inval_types.h
-@@ -6,10 +6,44 @@
- #ifndef _XE_GT_TLB_INVAL_TYPES_H_
- #define _XE_GT_TLB_INVAL_TYPES_H_
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 75854b963d66..08e882433b13 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -44,6 +44,8 @@ static void xe_gt_tlb_invalidation_fence_fini(struct xe_gt_tlb_invalidation_fenc
+ 	if (WARN_ON_ONCE(!fence->gt))
+ 		return;
  
-+#include <linux/workqueue.h>
- #include <linux/dma-fence.h>
- 
- struct xe_gt;
- 
-+/** struct xe_tlb_inval - TLB invalidation client */
-+struct xe_tlb_inval {
-+	/** @tlb_inval.seqno: TLB invalidation seqno, protected by CT lock */
-+#define TLB_INVALIDATION_SEQNO_MAX	0x100000
-+	int seqno;
-+	/** @tlb_invalidation.seqno_lock: protects @tlb_invalidation.seqno */
-+	struct mutex seqno_lock;
-+	/**
-+	 * @tlb_inval.seqno_recv: last received TLB invalidation seqno,
-+	 * protected by CT lock
-+	 */
-+	int seqno_recv;
-+	/**
-+	 * @tlb_inval.pending_fences: list of pending fences waiting TLB
-+	 * invaliations, protected by CT lock
-+	 */
-+	struct list_head pending_fences;
-+	/**
-+	 * @tlb_inval.pending_lock: protects @tlb_inval.pending_fences
-+	 * and updating @tlb_inval.seqno_recv.
-+	 */
-+	spinlock_t pending_lock;
-+	/**
-+	 * @tlb_inval.fence_tdr: schedules a delayed call to
-+	 * xe_gt_tlb_fence_timeout after the timeut interval is over.
-+	 */
-+	struct delayed_work fence_tdr;
-+	/** @wtlb_invalidation.wq: schedules GT TLB invalidation jobs */
-+	struct workqueue_struct *job_wq;
-+	/** @tlb_inval.lock: protects TLB invalidation fences */
-+	spinlock_t lock;
-+};
++	cancel_delayed_work(&fence->gt->tlb_invalidation.fence_tdr);
 +
- /**
-  * struct xe_gt_tlb_inval_fence - XE GT TLB invalidation fence
-  *
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 85cfcc49472b..7dc5a3f310f1 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -12,6 +12,7 @@
- #include "xe_gt_sriov_pf_types.h"
- #include "xe_gt_sriov_vf_types.h"
- #include "xe_gt_stats_types.h"
-+#include "xe_gt_tlb_inval_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_hw_fence_types.h"
- #include "xe_oa_types.h"
-@@ -186,37 +187,7 @@ struct xe_gt {
- 	} reset;
- 
- 	/** @tlb_inval: TLB invalidation state */
--	struct {
--		/** @tlb_inval.seqno: TLB invalidation seqno, protected by CT lock */
--#define TLB_INVALIDATION_SEQNO_MAX	0x100000
--		int seqno;
--		/** @tlb_invalidation.seqno_lock: protects @tlb_invalidation.seqno */
--		struct mutex seqno_lock;
--		/**
--		 * @tlb_inval.seqno_recv: last received TLB invalidation seqno,
--		 * protected by CT lock
--		 */
--		int seqno_recv;
--		/**
--		 * @tlb_inval.pending_fences: list of pending fences waiting TLB
--		 * invaliations, protected by CT lock
--		 */
--		struct list_head pending_fences;
--		/**
--		 * @tlb_inval.pending_lock: protects @tlb_inval.pending_fences
--		 * and updating @tlb_inval.seqno_recv.
--		 */
--		spinlock_t pending_lock;
--		/**
--		 * @tlb_inval.fence_tdr: schedules a delayed call to
--		 * xe_gt_tlb_fence_timeout after the timeut interval is over.
--		 */
--		struct delayed_work fence_tdr;
--		/** @wtlb_invalidation.wq: schedules GT TLB invalidation jobs */
--		struct workqueue_struct *job_wq;
--		/** @tlb_inval.lock: protects TLB invalidation fences */
--		spinlock_t lock;
--	} tlb_inval;
-+	struct xe_tlb_inval tlb_inval;
- 
- 	/**
- 	 * @ccs_mode: Number of compute engines enabled.
+ 	xe_pm_runtime_put(gt_to_xe(fence->gt));
+ 	fence->gt = NULL; /* fini() should be called once */
+ }
 -- 
 2.34.1
 
