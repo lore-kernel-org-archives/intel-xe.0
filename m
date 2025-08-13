@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6E5BCA0EE5
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 07:06:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70C15C87FCF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 07:06:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB3410E4C0;
-	Wed, 13 Aug 2025 07:06:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 269C910E4C3;
+	Wed, 13 Aug 2025 07:06:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y/eu8Pfa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aLDE6uQ9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A758710E4BB;
- Wed, 13 Aug 2025 07:06:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B37E610E4C1;
+ Wed, 13 Aug 2025 07:06:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755068797; x=1786604797;
+ t=1755068800; x=1786604800;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xyVzB0Ly/v0aAs95H67RXxR5UswIhLxoNDwyreSP0hY=;
- b=Y/eu8PfaV0yW8JxsgLgdQwrTnTBq7nQpUxFkiJcR8nTskqzuYrx/1E/6
- Pqo5GJWTvFBhsdfCaPrWNeI+IR0VfXDxgwd1lBrIZ183H9laLzQADO5Dl
- cd+d7QjlvB8Cb5FSkhon0ENgF27bRt6d4O5hLyOqhR6p4zBsCs/ORg0w4
- wiaCk2ni0IJWBVvc+Ivn234Bo8SMvoOKKuYa13GqJEpAhFPcYfihHPB2X
- UAKNR/9Q2PYOLws1joSZcbWQQnRl5Vd42QdLETAwJEqDbn/tWVX6Byv8D
- C4MGIS49Z9M2DguCWkY1jeml5FEk6GqtubGRouQ7jY6vkrtQW+1N9BwhO w==;
-X-CSE-ConnectionGUID: szJA9BvlRW6OUU2jdWDqtA==
-X-CSE-MsgGUID: hA8rf0MOT/6pejFSjBncnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="60975109"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="60975109"
+ bh=IzNMQQQlrOlLE7KTMzRg3ssAayi7BTPbKTgqgMWHdRI=;
+ b=aLDE6uQ95e4s87e65j71rbl3NffhYizMfaegkLmUABUXOtMiAhobktF9
+ S/KG78eBb8prp03Lkilj/FT/q9PG9BF40YN2kwE0xu+NtEsR6Fh00FznK
+ MaLqCDK1YPSC8hxvKVV/rhh/DtBw9IpO2Hu+MA13zdq/vvHbXLqrVbsXr
+ YgqMG3Bq6aWJNCiiPsdSLdQUAg0gUKhJQoq5RaCNqGbL8uN03Za8KWXxl
+ ff5chdN+PrbJaRmswXhzE+XAGMKleRcPLmfZnQhzVAxZ6gBCChbZDghjk
+ bR++CWGVAk36hByXn8HPuAHWLRFos7tnT4RicQUQ2mGoIlysO9JrgIWTL g==;
+X-CSE-ConnectionGUID: wBGa69xrSKajqzNBU7/ccw==
+X-CSE-MsgGUID: a7mw+b5aRVWOQkHis70c5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="60975114"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="60975114"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 00:06:37 -0700
-X-CSE-ConnectionGUID: PVBefrDFSn26DpmgFycVVA==
-X-CSE-MsgGUID: f846DX6qRm270eKYpRQUtQ==
+ 13 Aug 2025 00:06:40 -0700
+X-CSE-ConnectionGUID: 3Q5mc5aPTXWiomukXCSQJw==
+X-CSE-MsgGUID: j4TIhl1rTTihZDd2og/MbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="165578508"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="165578522"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.181])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 00:06:35 -0700
+ 13 Aug 2025 00:06:38 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 2/4] drm/i915/alpm: Add own define for LFPS count
-Date: Wed, 13 Aug 2025 10:06:15 +0300
-Message-ID: <20250813070617.480793-3-jouni.hogander@intel.com>
+Subject: [PATCH 4/4] drm/i915/alpm: Use actual lfps cycle and silence periods
+ in wake time
+Date: Wed, 13 Aug 2025 10:06:17 +0300
+Message-ID: <20250813070617.480793-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250813070617.480793-1-jouni.hogander@intel.com>
 References: <20250813070617.480793-1-jouni.hogander@intel.com>
@@ -70,36 +71,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add own define for LFPS count and use it for the configuration. This new
-define will be used for calculating ALPM parameters as well.
+Currently we are using maximum lfps cycle and silence period times when
+calculating AUXLess wake time. Use actual values instead.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index e48a4218c163..ae556a885c2a 100644
+index b2123305f128..4e8aa167b97b 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -22,6 +22,8 @@
- 				(SILENCE_PERIOD_MAX_TIME -	\
- 				 SILENCE_PERIOD_MIN_TIME) / 2)
- 
-+#define LFPS_CYCLE_COUNT 10
-+
- bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp)
+@@ -116,21 +116,19 @@ static int get_lfps_half_cycle_clocks(const struct intel_crtc_state *crtc_state)
+  * tML_PHY_LOCK = TPS4 Length * ( 10 / (Link Rate in MHz) )
+  * TPS4 Length = 252 Symbols
+  */
+-static int _lnl_compute_aux_less_wake_time(int port_clock)
++static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state *crtc_state)
  {
- 	return intel_dp->alpm_dpcd & DP_ALPM_CAP;
-@@ -403,7 +405,7 @@ void intel_alpm_port_configure(struct intel_dp *intel_dp,
- 			PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
- 			PORT_ALPM_CTL_SILENCE_PERIOD(
- 				intel_dp->alpm_parameters.silence_period_sym_clocks);
--		lfps_ctl_val = PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(10) |
-+		lfps_ctl_val = PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(LFPS_CYCLE_COUNT) |
- 			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
- 				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
- 			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
+ 	int tphy2_p2_to_p0 = 12 * 1000;
+-	int tlfps_period_max = 800;
+-	int tsilence_max = 180;
+ 	int t1 = 50 * 1000;
+ 	int tps4 = 252;
+ 	/* port_clock is link rate in 10kbit/s units */
+-	int tml_phy_lock = 1000 * 1000 * tps4 / port_clock;
++	int tml_phy_lock = 1000 * 1000 * tps4 / crtc_state->port_clock;
+ 	int num_ml_phy_lock = 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
+ 	int t2 = num_ml_phy_lock * tml_phy_lock;
+ 	int tcds = 1 * t2;
+ 
+-	return DIV_ROUND_UP(tphy2_p2_to_p0 + tlfps_period_max + tsilence_max +
+-			    t1 + tcds, 1000);
++	return DIV_ROUND_UP(tphy2_p2_to_p0 + get_lfps_cycle_time(crtc_state) +
++			    SILENCE_PERIOD_TIME + t1 + tcds, 1000);
+ }
+ 
+ static int
+@@ -142,7 +140,7 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 		lfps_half_cycle;
+ 
+ 	aux_less_wake_time =
+-		_lnl_compute_aux_less_wake_time(crtc_state->port_clock);
++		_lnl_compute_aux_less_wake_time(crtc_state);
+ 	aux_less_wake_lines = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
+ 						       aux_less_wake_time);
+ 	silence_period = get_silence_period_symbols(crtc_state);
 -- 
 2.43.0
 
