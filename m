@@ -4,170 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34745CA0EE0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 16:42:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39539C87FCF
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 16:53:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC64810E0CF;
-	Wed, 13 Aug 2025 16:42:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD4810E739;
+	Wed, 13 Aug 2025 16:53:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vkub6++O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Upx0bcln";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFD3E10E0CF
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 16:42:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2148F10E739
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 16:53:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755103370; x=1786639370;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=vcVB2erV01NENQBEc1zOZE3DNXCVKNgL2qbSz1BxOfQ=;
- b=Vkub6++O+0vT4UILPOUP5f9rK7/Ih0NC96UGHXjEa/xlKxASqe3t5GU+
- quNOGTHNyzvX1eRkKZGd5Sk+uH4dtBpDPm0kdiuUTCDhqi8avZrzQ4NCa
- fnPSSmcinenJavhOB+eCTHssMDGd8f5U5/6I57hub/tFWkLDGW9c3cw3O
- igSzyCfXQ0EUB/yFLJPBiSb1IxFbYA2kWWXaZVOx9aB2ZDs488tZ2OomK
- f165q9YAl1sMsuVWyD6B9Zkeh6wbIgW2aqEa/GLIDjgoZ7HWYzSST3gi3
- eMH/mpzfk2pEmx/72tp5p2JaP6a+Aul/TMm/NlKuplvG+kPZwaKcvTWPH g==;
-X-CSE-ConnectionGUID: zvid9q3FR9qfgGcc9EDowQ==
-X-CSE-MsgGUID: 29Ri8IpxRp+NKKV6qcZVlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68783851"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="68783851"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 09:42:49 -0700
-X-CSE-ConnectionGUID: vQxNYg/gTc6DGj+49y+Nug==
-X-CSE-MsgGUID: n+ZCpYa0SqazVFzuV9ByOw==
+ t=1755104036; x=1786640036;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=+I6LaP9RBtA6PbTeNOYS8yH/2CPrQbYrhwTaHUJY2Ic=;
+ b=Upx0bclnth9kdNMutuIW5hW6GEy18kG1EDO+Xgpw/C4K6bo4JONYowQ4
+ /v132dot5bHevRGsHtcWUxIIxv7utCpb52S7hSNFWOal/iVmMZZm/byv+
+ u7XBCiUl7M2H6/Rr5avIIPTRCesAOSIJZtSJ/ZTy5xmdL5QA0Yqe3oRCh
+ nBpyusI28W7MvJ6lJCMo0546is4TBh2eEo8CzTSWndS4w3gWjzbdLzBdh
+ ScAm7WNdKEFLBgVA9+ogBsXAHjGB99KPbBSW6pCMsBOIvYqfL3cGsvxLj
+ IPF4aPGvCc4PD8B4TRhSDPGwZZ4i3YeUVJlomI0DY2sI1IJjNnbLFzOKg A==;
+X-CSE-ConnectionGUID: Hqr/L7I9TGmDuQlxiVcEyg==
+X-CSE-MsgGUID: L5hdb+4LT0mCD+etr07SNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="44986214"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="44986214"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 09:53:55 -0700
+X-CSE-ConnectionGUID: toKxbMstSkOamyhmneaxAQ==
+X-CSE-MsgGUID: k1oh2m0cT/iGf0OXmlNp1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="166892422"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 09:42:49 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 13 Aug 2025 09:42:49 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 13 Aug 2025 09:42:49 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.68) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 13 Aug 2025 09:42:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zLvhrZ5+SISuiqStf38kEz5F2x7i6c9wtYD07cWgoqZP0YjDGiih6IT0wMb7UktVDASWOQVuYGqZe1oWr5Y4wPKnpk23lA0IOrjSKzmgjVnFjWXYpJPqx4dQo3yghos1EBLBAoYO6YSSWypnUMToNZdDEtVxpuT9pOxlcnz7I/c2dVWM5YIo0Jr3kC2Jq884wsZcQjZtLCQsF4aaVo4gFcYNek8wrAtAp2xOX8Pg5TfVcE1tZD/lG29fsfh56MDvvcZfQ1O9Et0cMJs/wb6yqcaX9nHygvfcvJaRo+Qu+vKB9sbpYCzCfO2zkQoqCXD1pzXUqgZargWiZRyvkfx2cQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xIZOV2XALb9Bf7ug1Dg/IHR0DcA5hvHtTmGlsNfkPhQ=;
- b=nXsXNs9UcSnndOPcNmr1SuZVzRQs51uyYkQ4HdcVt5H1K/9v8a+PJ73BHVzOFkDkJk3RDsNN5Fg0ju7lr3ie3nT1GAy2lCrHjGNIv/SVGsy7PEYrBBM/JUqCuefU6PwQ4kAgWDNHeg5egG55xHl95fT24tjOSNx5qJnnVyhOi+A5bAwqSNfYJPaT/aQ+v980c3e1vUQerq7F3f9dIA9xRYoYQlKvooSVZ9gBT2aSgDOuWBSkuddbV5/4uXA8rxk8h09u/CwpTODazo6Qxwb2VmOODDm5Ynp1Itzq1rb0YUdTHgkbvi2cG2gvcz+3y29ppnQzAmHqjH72mHzFgqPhNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM3PPF1CEB6B7EF.namprd11.prod.outlook.com (2603:10b6:f:fc00::f10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Wed, 13 Aug
- 2025 16:42:47 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9031.014; Wed, 13 Aug 2025
- 16:42:46 +0000
-Date: Wed, 13 Aug 2025 09:42:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
- <matthew.auld@intel.com>
-Subject: Re: [PATCH 04/15] drm/xe: Pass down drm_exec context to validation
-Message-ID: <aJzAhDRi9W+iKl0b@lstrano-desk.jf.intel.com>
-References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
- <20250813105121.5945-5-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250813105121.5945-5-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0055.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::30) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="167321317"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.245.238])
+ ([10.245.245.238])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 09:53:55 -0700
+Message-ID: <9f8f4dde-ef35-4177-aa8a-f983bb89f369@intel.com>
+Date: Wed, 13 Aug 2025 17:53:53 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM3PPF1CEB6B7EF:EE_
-X-MS-Office365-Filtering-Correlation-Id: 564a0b55-55fb-46e6-9fa1-08ddda886ec9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?A1b2/h2KXfiC6TvFRMQEJF2Ij6NcBeehYYvIMxk60dKnK5QrRe0xg7f56D?=
- =?iso-8859-1?Q?XREaHQe8qhw36b80SxQDZmrbXl8ktAAXjRVzEom9b8uo2m5wqcyTuO8MGK?=
- =?iso-8859-1?Q?4vVzlItRrDaJ/ocqe9YtQEMywMyEELjHbcwENzUmOFgUYgWZQcSzab9HQ+?=
- =?iso-8859-1?Q?rPr4wuV0/gZzWqA5m665AJ0TbcQ+dKeC2ZcS07cLqP737SFkWsCRYHDk3E?=
- =?iso-8859-1?Q?LCNkJLbl8DD0EaoEeda3sj0RkPZt+fjNttsQVi1Y58Gczy/6dlEExNmbHw?=
- =?iso-8859-1?Q?TTETsJ7vEs8rxsfauCCl0i9OOfyCqbQ8i0HiVA8Dayyq2vhkRdJ5wuJWd3?=
- =?iso-8859-1?Q?fvFOJWz1xRa/CxyhBgWxbUCWxK8ctsnLLbawaC7kQNH0G+ZeBD2ml7ilzm?=
- =?iso-8859-1?Q?eVZgpuvrerIYiEzN14F+mWkrJVB8cP2p/8m99pOAXoVcUcgymQcAxgUp1s?=
- =?iso-8859-1?Q?P3BWCbapkdO7qTRbnAV6nHpwU6O4vfR//Wo9QvoIodk3KhFffLRvzwR+Na?=
- =?iso-8859-1?Q?cSGGl/vz7AbPWFxn1v2gAQUNyHx4X4idzj35SZ5vgyxxYnlyqHU6wSlyjM?=
- =?iso-8859-1?Q?pwragNLAA756KEtrtiGah4aWytXUuMc0qVaqRVG/SO88SLu2oGppoPZOvP?=
- =?iso-8859-1?Q?HcoQI449nfzaSP3u82ZxS3C64QmToON/TLxZaRxgZiSBpjNH17Vh+vMPFn?=
- =?iso-8859-1?Q?khvi5FDHs1GhaFs0aSQHw6X91ghp6Oa/vmuJwBxWgNj+nMRW1ZfJ/5CfmF?=
- =?iso-8859-1?Q?zapT/k6bNX7nknskz50o2TQoN59X4bDwXQC2AcMPjoJkb9kerwPIMw10pr?=
- =?iso-8859-1?Q?jLgmKyhzHtCnHENh3D3cxPqHqvWb3/AUi/kpFyWLjak8CQer7J5i7yIQu2?=
- =?iso-8859-1?Q?9GdniTjZMa1mcd+eNT8ILQggRnUx3+DL9riF4VbhCo87pHKRDVrvjfiMI1?=
- =?iso-8859-1?Q?ezKYU7hIWdTC/IwZUi8eLOmKg8Kbu2GGiZp3+AhzXgPdLngI6puqEnh2iB?=
- =?iso-8859-1?Q?qTiEIubYCBfsA2U0DaYaBSuWvtcIYTqIy2qtOc5klnLZRnD08/QbaIHFiC?=
- =?iso-8859-1?Q?MvrZqhyz+JoNU+8WLL8T9GaEu/kwinf6ha0mhOs5qcWDaRVpAKfF+Rjjtg?=
- =?iso-8859-1?Q?iVWE3MxKgk99do1LmBIsSsELDj/O3w1VlXGkJg0eGFv7ot0a/JnigcGAWm?=
- =?iso-8859-1?Q?qxxg8o49n9xzYmFpz6L48jqDbNcVqm+s0v6h5ogVFCe82HqNINvbahXuK5?=
- =?iso-8859-1?Q?9kl9U1vsWp4nCuB1clmrEGcqfJuXLo1+2zTxzLt+Kdz8SW2MOsOfbXmAGy?=
- =?iso-8859-1?Q?JO3z32bVT1RosAVUICLfbmlxNy34t7aBdZXSkr5WeJ6TuFei2SAw+sYoX/?=
- =?iso-8859-1?Q?TceFWfUX9X4bXS7Nl6IKIG22XWZF/pJkptnb8RdKh+UnLOEfNTrzDMs+T7?=
- =?iso-8859-1?Q?i1r8j2PEMCjdPQNhPuvyifcE8o/qfFmFeCMk50bMoaknWqgrFeVj5Vhvv2?=
- =?iso-8859-1?Q?w=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?5B3aKUxxhRk/2YTUrwZz0O9Z3VU11t9Scfbgs+daGtoWpN/i9fAG1GPNwD?=
- =?iso-8859-1?Q?BYti3BuRDyAxNcPedsmKjWi0rHp5t3nr1/KW+hcMFt/RTqOnlyq8akdn1+?=
- =?iso-8859-1?Q?moV71r8a8EpgN0MnBNiCz6+Zab2x6YxlKy6eEA9Y+Kg7q2JW1XA1fzAfpn?=
- =?iso-8859-1?Q?tBQDPiCTeo0NCXNbQOXVcasLjJE12vWf14ZVcFamXhJrUS+yJBq9Hb1/1m?=
- =?iso-8859-1?Q?5VmvMkKEUbu1WudMsPv1MlEgeYr3El/qHX3XqIeISCxMNflg7hKaUuGjMd?=
- =?iso-8859-1?Q?rW9GKUHpkuDWPUAJgvoglFO+X52HitUCCwhFm+gb9WnK5uZvI8bkzJ9vfT?=
- =?iso-8859-1?Q?u4vUawuTrRgsimSJvbyYcyHHS/lnXpgbaT88ILyx+wD9M+A7fEXWaVtr5N?=
- =?iso-8859-1?Q?jOU+2tZFjayvCTkEYF0NvrRQyJtVsrClBuRHinCAm5NpIxYgbL01+cdwU9?=
- =?iso-8859-1?Q?Ql2kxZkLZKCNGEi2EOyMciZ1Vy96IpnXSiI/eFSYD5PPt8g1NERXnIG23a?=
- =?iso-8859-1?Q?U+o5w5HIzTHsoC3boKTWXE4SGliv52xJZsRodoZVdYFOsC3/V96OyB4xXH?=
- =?iso-8859-1?Q?sRFiGqPjgmU67W54sypn5PTK5hNyu2q7TavgwBCpH1uG7USowGdI96I93Y?=
- =?iso-8859-1?Q?jUBl29+JQZv9j3HQqqZDt3HZL8kZeuL0LRyA1qxAy7xy0fIHSdXnuPtXDi?=
- =?iso-8859-1?Q?G7IajAdrg71pKem4oYVa0+ycQC7Qe4wHkZCd5WmVWWbDj8Nu+g8JRF5hB1?=
- =?iso-8859-1?Q?JPFK3eFy51QFqY3IHk/sLcvff4d/l183nfPeTrHRyR8rpGK7WVWDKVdMPZ?=
- =?iso-8859-1?Q?d0aP7fAHXV3gDyj59O4s5G3GO9DVZXVDwYafcAZavlPe130XF6+5hfBVDW?=
- =?iso-8859-1?Q?ENA+l/7N+msZv+aok/nagVhlHgTdBif9ETJC7i2ll2i7oey/sOz/aAffcR?=
- =?iso-8859-1?Q?J3rFIX1IcvksrbW5YygM8tFpyMsTMtK/KgCTe+LdBoGynrL13WSW4EmmNZ?=
- =?iso-8859-1?Q?BDVZAKNFTTBKeC6eP8+oky+4DmYmBIsg5mHplogK10yxL3cO93O2BoBGfO?=
- =?iso-8859-1?Q?ahjByCx4kh/qHwbDf+RbavL7CmBAPLEmUYcXUZYcNl3C6vnXuEwl+IA3zs?=
- =?iso-8859-1?Q?6arGR9AlAPar/FkJqDPdU5DD/fFYR27lnnEn++pRWevMWPV5IjNYta76TO?=
- =?iso-8859-1?Q?gD3FwGgvbHJhpTQXntfMGnDkKf+bTCdAbfj4ZOKjYl8DST9E7nbokvIMWz?=
- =?iso-8859-1?Q?ZZk0UVSnbfOypkgfc7lCnuB251IWMg3Bnkzxxyuhc8kVmKwRRVYlcQWHg7?=
- =?iso-8859-1?Q?UuNYAYS2GT1OK25oGtvFMIjRadswsgpzgLh//lcG8cma7+onxLWSbaMyF+?=
- =?iso-8859-1?Q?GRockUlDcY4WHbwq6OB1zAlVHRQ0XWK/zVpTMC0VOYHDKXKMieku0dtifY?=
- =?iso-8859-1?Q?VZIQ0ldoVRd/ZHIj9Hc74vCbanLSUjjdDMDO4Vn8U7eJAxPFZJcOFOim0O?=
- =?iso-8859-1?Q?kegShfi89lkbUBEgF/7p5dHMTS7soXiV/4tRsr72iI1zGYaYZOKclEBtto?=
- =?iso-8859-1?Q?0fY0BAzrEuql8lXshueDRa/EODzsTrJ672SAzZu1BTAlYcpfupEe4ppRnQ?=
- =?iso-8859-1?Q?dwCVv6r7qB37VoY52r0+IqMLrGIwbQflwPzyfHnae1CQ1YfKCJzLuo4g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 564a0b55-55fb-46e6-9fa1-08ddda886ec9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 16:42:46.8751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OxYJNTlAQ6uoMtbRwN0ZvmRKYqL39qRx1n9BE4F3RV02B+TffBVOKtcSB+mM3yHAz8yCUlBTUR8LCO/KohlJPQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF1CEB6B7EF
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/4] drm/xe: Add initial support for separate kernel
+ VRAM region on the tile
+To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20250718081752.630122-1-piotr.piorkowski@intel.com>
+ <20250718081752.630122-2-piotr.piorkowski@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250718081752.630122-2-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,1504 +71,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 13, 2025 at 12:51:10PM +0200, Thomas Hellström wrote:
-> We want all validation (potential backing store allocation) to be part
-> of a drm_exec transaction. Therefore add a drm_exec pointer argument
-> to xe_bo_validate() and ___xe_bo_create_locked(). Upcoming patches
-> will deal with making all (or nearly all) calls to these functions
-> part of a drm_exec transaction. In the meantime, define special values
-> of the drm_exec pointer:
->
-
-Would the eventual idea be pass the exec further down to TTM?
- 
-> XE_VALIDATION_UNIMPLEMENTED: Implementation of the drm_exec transaction
-> has not been done yet.
-> XE_VALIDATION_UNSUPPORTED: Some Middle-layers (dma-buf) doesn't allow
-> the drm_exec context to be passed down to map_attachment where
-> validation takes place.
-
-What is the expected longterm implictation of paths that are
-UNIMPLEMENTED and UNSUPPORTED?
-
-> XE_VALIDATION_OPT_OUT: May be used only for kunit tests where exhaustive
-> eviction isn't crucial and the ROI of converting those is very
-> small.
+On 18/07/2025 09:17, PiÃ³rkowski, Piotr wrote:
+> From: Piotr PiÃ³rkowski <piotr.piorkowski@intel.com>
 > 
-> For XE_VALIDATION_UNIMPLEMENTED and XE_VALIDATION_OPT_OUT there is also
-> a lockdep check that a drm_exec transaction can indeed start at the
-> location where the macro is expanded. This is to encourage
-> developers to take this into consideration early in the code
-> development process.
+> So far, kernel and userspace allocations have shared the same VRAM region.
+> However, in some scenarios, it may be necessary to reserve a separate
+> VRAM area exclusively for kernel allocations.
+> Let's add preliminary support for such a configuration.
 > 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Piotr PiÃ³rkowski <piotr.piorkowski@intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  .../compat-i915-headers/gem/i915_gem_stolen.h |   6 +-
->  drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +-
->  drivers/gpu/drm/xe/tests/xe_bo.c              |  20 +--
->  drivers/gpu/drm/xe/tests/xe_dma_buf.c         |  12 +-
->  drivers/gpu/drm/xe/tests/xe_migrate.c         |  45 +++---
->  drivers/gpu/drm/xe/xe_bo.c                    | 129 +++++++++++++++---
->  drivers/gpu/drm/xe/xe_bo.h                    |  20 +--
->  drivers/gpu/drm/xe/xe_dma_buf.c               |  19 ++-
->  drivers/gpu/drm/xe/xe_exec.c                  |   6 +-
->  drivers/gpu/drm/xe/xe_ggtt.c                  |  15 +-
->  drivers/gpu/drm/xe/xe_ggtt.h                  |   5 +-
->  drivers/gpu/drm/xe/xe_gt_pagefault.c          |   4 +-
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   6 +-
->  drivers/gpu/drm/xe/xe_svm.c                   |   4 +-
->  drivers/gpu/drm/xe/xe_validation.c            |  49 +++++++
->  drivers/gpu/drm/xe/xe_validation.h            |  69 ++++++++++
->  drivers/gpu/drm/xe/xe_vm.c                    |  26 +++-
->  drivers/gpu/drm/xe/xe_vm.h                    |  33 ++++-
->  drivers/gpu/drm/xe/xe_vm_types.h              |  32 +++--
->  20 files changed, 401 insertions(+), 105 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_validation.c
->  create mode 100644 drivers/gpu/drm/xe/xe_validation.h
+>   drivers/gpu/drm/xe/xe_bo.c           | 87 ++++++++++++++++++++--------
+>   drivers/gpu/drm/xe/xe_bo.h           |  6 +-
+>   drivers/gpu/drm/xe/xe_device_types.h | 10 +++-
+>   drivers/gpu/drm/xe/xe_tile.c         |  8 +++
+>   drivers/gpu/drm/xe/xe_tile.h         |  5 ++
+>   drivers/gpu/drm/xe/xe_vram.c         |  6 +-
+>   6 files changed, 94 insertions(+), 28 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 8e0c3412a757..8ee7d275128d 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -127,6 +127,7 @@ xe-y += xe_bb.o \
->  	xe_tuning.o \
->  	xe_uc.o \
->  	xe_uc_fw.o \
-> +	xe_validation.o \
->  	xe_vm.o \
->  	xe_vram.o \
->  	xe_vram_freq.o \
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-> index 41d39d67817a..1ce1e9da975b 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-> @@ -8,6 +8,7 @@
->  
->  #include "xe_ttm_stolen_mgr.h"
->  #include "xe_res_cursor.h"
-> +#include "xe_validation.h"
->  
->  struct xe_bo;
->  
-> @@ -20,6 +21,7 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
->  						       u32 size, u32 align,
->  						       u32 start, u32 end)
->  {
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_bo *bo;
->  	int err;
->  	u32 flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
-> @@ -34,13 +36,13 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
->  
->  	bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
->  				       NULL, size, start, end,
-> -				       ttm_bo_type_kernel, flags, 0);
-> +				       ttm_bo_type_kernel, flags, 0, exec);
->  	if (IS_ERR(bo)) {
->  		err = PTR_ERR(bo);
->  		bo = NULL;
->  		return err;
->  	}
-> -	err = xe_bo_pin(bo);
-> +	err = xe_bo_pin(bo, exec);
->  	xe_bo_unlock_vm_held(bo);
->  
->  	if (err) {
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index f1f8b5ab53ef..4b0748e6fdd6 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -281,6 +281,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->  	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
->  	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	int ret;
->  
->  	if (!vma)
-> @@ -313,9 +314,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->  		goto err;
->  
->  	if (IS_DGFX(xe))
-> -		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
-> +		ret = xe_bo_migrate(bo, XE_PL_VRAM0, exec);
->  	else
-> -		ret = xe_bo_validate(bo, NULL, true);
-> +		ret = xe_bo_validate(bo, NULL, true, exec);
->  	if (!ret)
->  		ttm_bo_pin(&bo->ttm);
->  	ttm_bo_unreserve(&bo->ttm);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index bb469096d072..06ceba6c3c25 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -23,7 +23,7 @@
->  
->  static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
->  			    bool clear, u64 get_val, u64 assign_val,
-> -			    struct kunit *test)
-> +			    struct kunit *test, struct drm_exec *exec)
->  {
->  	struct dma_fence *fence;
->  	struct ttm_tt *ttm;
-> @@ -35,7 +35,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
->  	u32 offset;
->  
->  	/* Move bo to VRAM if not already there. */
-> -	ret = xe_bo_validate(bo, NULL, false);
-> +	ret = xe_bo_validate(bo, NULL, false, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to validate bo.\n");
->  		return ret;
-> @@ -60,7 +60,7 @@ static int ccs_test_migrate(struct xe_tile *tile, struct xe_bo *bo,
->  	}
->  
->  	/* Evict to system. CCS data should be copied. */
-> -	ret = xe_bo_evict(bo);
-> +	ret = xe_bo_evict(bo, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to evict bo.\n");
->  		return ret;
-> @@ -132,6 +132,7 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
->  
->  	/* TODO: Sanity check */
->  	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
-> +	struct drm_exec *exec = XE_VALIDATION_OPT_OUT;
->  
->  	if (IS_DGFX(xe))
->  		kunit_info(test, "Testing vram id %u\n", tile->id);
-> @@ -149,18 +150,18 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
->  
->  	kunit_info(test, "Verifying that CCS data is cleared on creation.\n");
->  	ret = ccs_test_migrate(tile, bo, false, 0ULL, 0xdeadbeefdeadbeefULL,
-> -			       test);
-> +			       test, exec);
->  	if (ret)
->  		goto out_unlock;
->  
->  	kunit_info(test, "Verifying that CCS data survives migration.\n");
->  	ret = ccs_test_migrate(tile, bo, false, 0xdeadbeefdeadbeefULL,
-> -			       0xdeadbeefdeadbeefULL, test);
-> +			       0xdeadbeefdeadbeefULL, test, exec);
->  	if (ret)
->  		goto out_unlock;
->  
->  	kunit_info(test, "Verifying that CCS data can be properly cleared.\n");
-> -	ret = ccs_test_migrate(tile, bo, true, 0ULL, 0ULL, test);
-> +	ret = ccs_test_migrate(tile, bo, true, 0ULL, 0ULL, test, exec);
->  
->  out_unlock:
->  	xe_bo_unlock(bo);
-> @@ -210,6 +211,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->  	struct xe_bo *bo, *external;
->  	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
->  	struct xe_vm *vm = xe_migrate_get_vm(xe_device_get_root_tile(xe)->migrate);
-> +	struct drm_exec *exec = XE_VALIDATION_OPT_OUT;
->  	struct xe_gt *__gt;
->  	int err, i, id;
->  
-> @@ -236,7 +238,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->  		}
->  
->  		xe_bo_lock(external, false);
-> -		err = xe_bo_pin_external(external);
-> +		err = xe_bo_pin_external(external, exec);
->  		xe_bo_unlock(external);
->  		if (err) {
->  			KUNIT_FAIL(test, "external bo pin err=%pe\n",
-> @@ -294,7 +296,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->  		if (i) {
->  			down_read(&vm->lock);
->  			xe_vm_lock(vm, false);
-> -			err = xe_bo_validate(bo, bo->vm, false);
-> +			err = xe_bo_validate(bo, bo->vm, false, exec);
->  			xe_vm_unlock(vm);
->  			up_read(&vm->lock);
->  			if (err) {
-> @@ -303,7 +305,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->  				goto cleanup_all;
->  			}
->  			xe_bo_lock(external, false);
-> -			err = xe_bo_validate(external, NULL, false);
-> +			err = xe_bo_validate(external, NULL, false, exec);
->  			xe_bo_unlock(external);
->  			if (err) {
->  				KUNIT_FAIL(test, "external bo valid err=%pe\n",
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> index cde9530bef8c..965dd3280468 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> @@ -27,7 +27,8 @@ static bool is_dynamic(struct dma_buf_test_params *params)
->  }
->  
->  static void check_residency(struct kunit *test, struct xe_bo *exported,
-> -			    struct xe_bo *imported, struct dma_buf *dmabuf)
-> +			    struct xe_bo *imported, struct dma_buf *dmabuf,
-> +			    struct drm_exec *exec)
->  {
->  	struct dma_buf_test_params *params = to_dma_buf_test_params(test->priv);
->  	u32 mem_type;
-> @@ -62,7 +63,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
->  	 * importer is on a different device. If they're on the same device,
->  	 * the exporter and the importer should be the same bo.
->  	 */
-> -	ret = xe_bo_evict(exported);
-> +	ret = xe_bo_evict(exported, exec);
->  	if (ret) {
->  		if (ret != -EINTR && ret != -ERESTARTSYS)
->  			KUNIT_FAIL(test, "Evicting exporter failed with err=%d.\n",
-> @@ -77,7 +78,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
->  	}
->  
->  	/* Re-validate the importer. This should move also exporter in. */
-> -	ret = xe_bo_validate(imported, NULL, false);
-> +	ret = xe_bo_validate(imported, NULL, false, exec);
->  	if (ret) {
->  		if (ret != -EINTR && ret != -ERESTARTSYS)
->  			KUNIT_FAIL(test, "Validating importer failed with err=%d.\n",
-> @@ -150,11 +151,12 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
->  			KUNIT_FAIL(test,
->  				   "xe_gem_prime_import() succeeded when it shouldn't have\n");
->  		} else {
-> +			struct drm_exec *exec = XE_VALIDATION_OPT_OUT;
->  			int err;
->  
->  			/* Is everything where we expect it to be? */
->  			xe_bo_lock(import_bo, false);
-> -			err = xe_bo_validate(import_bo, NULL, false);
-> +			err = xe_bo_validate(import_bo, NULL, false, exec);
->  
->  			/* Pinning in VRAM is not allowed. */
->  			if (!is_dynamic(params) &&
-> @@ -167,7 +169,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
->  						  err == -ERESTARTSYS);
->  
->  			if (!err)
-> -				check_residency(test, bo, import_bo, dmabuf);
-> +				check_residency(test, bo, import_bo, dmabuf, exec);
->  			xe_bo_unlock(import_bo);
->  		}
->  		drm_gem_object_put(import);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index edd1e701aa1c..dfb445d09759 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -70,7 +70,7 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
->  		} } while (0)
->  
->  static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
-> -		      struct kunit *test, u32 region)
-> +		      struct kunit *test, u32 region, struct drm_exec *exec)
->  {
->  	struct xe_device *xe = tile_to_xe(m->tile);
->  	u64 retval, expected = 0;
-> @@ -84,14 +84,15 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
->  						   ttm_bo_type_kernel,
->  						   region |
->  						   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -						   XE_BO_FLAG_PINNED);
-> +						   XE_BO_FLAG_PINNED,
-> +						   exec);
->  	if (IS_ERR(remote)) {
->  		KUNIT_FAIL(test, "Failed to allocate remote bo for %s: %pe\n",
->  			   str, remote);
->  		return;
->  	}
->  
-> -	err = xe_bo_validate(remote, NULL, false);
-> +	err = xe_bo_validate(remote, NULL, false, exec);
->  	if (err) {
->  		KUNIT_FAIL(test, "Failed to validate system bo for %s: %i\n",
->  			   str, err);
-> @@ -161,13 +162,13 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
->  }
->  
->  static void test_copy_sysmem(struct xe_migrate *m, struct xe_bo *bo,
-> -			     struct kunit *test)
-> +			     struct drm_exec *exec, struct kunit *test)
->  {
-> -	test_copy(m, bo, test, XE_BO_FLAG_SYSTEM);
-> +	test_copy(m, bo, test, XE_BO_FLAG_SYSTEM, exec);
->  }
->  
->  static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
-> -			   struct kunit *test)
-> +			   struct drm_exec *exec, struct kunit *test)
->  {
->  	u32 region;
->  
-> @@ -178,10 +179,11 @@ static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
->  		region = XE_BO_FLAG_VRAM1;
->  	else
->  		region = XE_BO_FLAG_VRAM0;
-> -	test_copy(m, bo, test, region);
-> +	test_copy(m, bo, test, region, exec);
->  }
->  
-> -static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
-> +static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test,
-> +				   struct drm_exec *exec)
->  {
->  	struct xe_tile *tile = m->tile;
->  	struct xe_device *xe = tile_to_xe(tile);
-> @@ -290,10 +292,10 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
->  	check(retval, expected, "Command clear small last value", test);
->  
->  	kunit_info(test, "Copying small buffer object to system\n");
-> -	test_copy_sysmem(m, tiny, test);
-> +	test_copy_sysmem(m, tiny, exec, test);
->  	if (xe->info.tile_count > 1) {
->  		kunit_info(test, "Copying small buffer object to other vram\n");
-> -		test_copy_vram(m, tiny, test);
-> +		test_copy_vram(m, tiny, exec, test);
->  	}
->  
->  	/* Clear a big bo */
-> @@ -312,10 +314,10 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
->  	check(retval, expected, "Command clear big last value", test);
->  
->  	kunit_info(test, "Copying big buffer object to system\n");
-> -	test_copy_sysmem(m, big, test);
-> +	test_copy_sysmem(m, big, exec, test);
->  	if (xe->info.tile_count > 1) {
->  		kunit_info(test, "Copying big buffer object to other vram\n");
-> -		test_copy_vram(m, big, test);
-> +		test_copy_vram(m, big, exec, test);
->  	}
->  
->  out:
-> @@ -343,10 +345,11 @@ static int migrate_test_run_device(struct xe_device *xe)
->  
->  	for_each_tile(tile, xe, id) {
->  		struct xe_migrate *m = tile->migrate;
-> +		struct drm_exec *exec = XE_VALIDATION_OPT_OUT;
->  
->  		kunit_info(test, "Testing tile id %d.\n", id);
->  		xe_vm_lock(m->q->vm, false);
-> -		xe_migrate_sanity_test(m, test);
-> +		xe_migrate_sanity_test(m, test, exec);
->  		xe_vm_unlock(m->q->vm);
->  	}
->  
-> @@ -490,7 +493,7 @@ static struct dma_fence *blt_copy(struct xe_tile *tile,
->  
->  static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
->  			 struct xe_bo *sys_bo, struct xe_bo *vram_bo, struct xe_bo *ccs_bo,
-> -			 struct kunit *test)
-> +			 struct drm_exec *exec, struct kunit *test)
->  {
->  	struct dma_fence *fence;
->  	u64 expected, retval;
-> @@ -509,7 +512,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
->  	dma_fence_put(fence);
->  
->  	kunit_info(test, "Evict vram buffer object\n");
-> -	ret = xe_bo_evict(vram_bo);
-> +	ret = xe_bo_evict(vram_bo, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to evict bo.\n");
->  		return;
-> @@ -538,7 +541,7 @@ static void test_migrate(struct xe_device *xe, struct xe_tile *tile,
->  	dma_fence_put(fence);
->  
->  	kunit_info(test, "Restore vram buffer object\n");
-> -	ret = xe_bo_validate(vram_bo, NULL, false);
-> +	ret = xe_bo_validate(vram_bo, NULL, false, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
->  		return;
-> @@ -636,6 +639,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->  {
->  	struct xe_bo *sys_bo, *vram_bo = NULL, *ccs_bo = NULL;
->  	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
-> +	struct drm_exec *exec;
->  	long ret;
->  
->  	sys_bo = xe_bo_create_user(xe, NULL, NULL, SZ_4M,
-> @@ -650,8 +654,9 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->  		return;
->  	}
->  
-> +	exec = XE_VALIDATION_OPT_OUT;
->  	xe_bo_lock(sys_bo, false);
-> -	ret = xe_bo_validate(sys_bo, NULL, false);
-> +	ret = xe_bo_validate(sys_bo, NULL, false, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
->  		goto free_sysbo;
-> @@ -676,7 +681,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->  	}
->  
->  	xe_bo_lock(ccs_bo, false);
-> -	ret = xe_bo_validate(ccs_bo, NULL, false);
-> +	ret = xe_bo_validate(ccs_bo, NULL, false, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to validate system bo for: %li\n", ret);
->  		goto free_ccsbo;
-> @@ -700,7 +705,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->  	}
->  
->  	xe_bo_lock(vram_bo, false);
-> -	ret = xe_bo_validate(vram_bo, NULL, false);
-> +	ret = xe_bo_validate(vram_bo, NULL, false, exec);
->  	if (ret) {
->  		KUNIT_FAIL(test, "Failed to validate vram bo for: %li\n", ret);
->  		goto free_vrambo;
-> @@ -713,7 +718,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->  	}
->  
->  	test_clear(xe, tile, sys_bo, vram_bo, test);
-> -	test_migrate(xe, tile, sys_bo, vram_bo, ccs_bo, test);
-> +	test_migrate(xe, tile, sys_bo, vram_bo, ccs_bo, exec, test);
->  	xe_bo_unlock(vram_bo);
->  
->  	xe_bo_lock(vram_bo, false);
 > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 11eaf3b06766..e71addf51ed0 100644
+> index 00ce067d5fd3..12e899726534 100644
 > --- a/drivers/gpu/drm/xe/xe_bo.c
 > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1139,6 +1139,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
->  int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
->  {
->  	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_bo *backup;
->  	int ret = 0;
->  
-> @@ -1163,7 +1164,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
->  	backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
->  					DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
->  					XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -					XE_BO_FLAG_PINNED);
-> +					XE_BO_FLAG_PINNED, exec);
->  	if (IS_ERR(backup)) {
->  		ret = PTR_ERR(backup);
->  		goto out_unlock_bo;
-> @@ -1214,6 +1215,7 @@ int xe_bo_notifier_unprepare_pinned(struct xe_bo *bo)
->  int xe_bo_evict_pinned(struct xe_bo *bo)
->  {
->  	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_bo *backup = bo->backup_obj;
->  	bool backup_created = false;
->  	bool unmap = false;
-> @@ -1242,7 +1244,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
->  						NULL, xe_bo_size(bo),
->  						DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
->  						XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -						XE_BO_FLAG_PINNED);
-> +						XE_BO_FLAG_PINNED, exec);
->  		if (IS_ERR(backup)) {
->  			ret = PTR_ERR(backup);
->  			goto out_unlock_bo;
-> @@ -1718,12 +1720,14 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->  	struct xe_device *xe = to_xe_device(ddev);
->  	struct xe_bo *bo = ttm_to_xe_bo(tbo);
->  	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
-> +	struct drm_exec *exec;
->  	vm_fault_t ret;
->  	int idx;
->  
->  	if (needs_rpm)
->  		xe_pm_runtime_get(xe);
->  
-> +	exec = XE_VALIDATION_UNIMPLEMENTED;
->  	ret = ttm_bo_vm_reserve(tbo, vmf);
->  	if (ret)
->  		goto out;
-> @@ -1731,6 +1735,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->  	if (drm_dev_enter(ddev, &idx)) {
->  		trace_xe_bo_cpu_fault(bo);
->  
-> +		xe_validation_assert_exec(xe, exec, &tbo->base);
->  		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
->  					       TTM_BO_VM_NUM_PREFAULT);
->  		drm_dev_exit(idx);
-> @@ -1850,11 +1855,32 @@ void xe_bo_free(struct xe_bo *bo)
->  	kfree(bo);
->  }
->  
-> +/**
-> + * ___xe_bo_create_locked() - Initialize or create an xe_bo.
-> + * @xe: The xe device.
-> + * @bo: An already allocated buffer object or NULL
-> + * if the function should allocate a new one.
-> + * @tile: The tile to select for migration of this bo, and the tile used for
-> + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
-> + * @resv: Pointer to a locked shared reservation object to use fo this bo,
-> + * or NULL for the xe_bo to use its own.
-> + * @bulk: The bulk move to use for LRU bumping, or NULL for external bos.
-> + * @size: The storage size to use for the bo.
-> + * @cpu_caching: The cpu caching used for system memory backing store.
-> + * @type: The TTM buffer object type.
-> + * @flags: XE_BO_FLAG_ flags.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
-> + *
-> + * Initialize or create an xe buffer object. On failure, any allocated buffer
-> + * object passed in @bo will have been unreferenced.
-> + *
-> + * Return: The buffer object on success. Negative error pointer on failure.
-> + */
->  struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->  				     struct xe_tile *tile, struct dma_resv *resv,
->  				     struct ttm_lru_bulk_move *bulk, size_t size,
->  				     u16 cpu_caching, enum ttm_bo_type type,
-> -				     u32 flags)
-> +				     u32 flags, struct drm_exec *exec)
->  {
->  	struct ttm_operation_ctx ctx = {
->  		.interruptible = true,
-> @@ -1923,6 +1949,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->  		ctx.resv = resv;
->  	}
->  
-> +	xe_validation_assert_exec(xe, exec, &bo->ttm.base);
->  	if (!(flags & XE_BO_FLAG_FIXED_PLACEMENT)) {
->  		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
->  		if (WARN_ON(err)) {
-> @@ -2024,7 +2051,7 @@ __xe_bo_create_locked(struct xe_device *xe,
->  		      struct xe_tile *tile, struct xe_vm *vm,
->  		      size_t size, u64 start, u64 end,
->  		      u16 cpu_caching, enum ttm_bo_type type, u32 flags,
-> -		      u64 alignment)
-> +		      u64 alignment, struct drm_exec *exec)
->  {
->  	struct xe_bo *bo = NULL;
->  	int err;
-> @@ -2049,7 +2076,7 @@ __xe_bo_create_locked(struct xe_device *xe,
->  				    vm && !xe_vm_in_fault_mode(vm) &&
->  				    flags & XE_BO_FLAG_USER ?
->  				    &vm->lru_bulk_move : NULL, size,
-> -				    cpu_caching, type, flags);
-> +				    cpu_caching, type, flags, exec);
->  	if (IS_ERR(bo))
->  		return bo;
->  
-> @@ -2083,9 +2110,10 @@ __xe_bo_create_locked(struct xe_device *xe,
->  
->  			if (flags & XE_BO_FLAG_FIXED_PLACEMENT) {
->  				err = xe_ggtt_insert_bo_at(t->mem.ggtt, bo,
-> -							   start + xe_bo_size(bo), U64_MAX);
-> +							   start + xe_bo_size(bo), U64_MAX,
-> +							   exec);
->  			} else {
-> -				err = xe_ggtt_insert_bo(t->mem.ggtt, bo);
-> +				err = xe_ggtt_insert_bo(t->mem.ggtt, bo, exec);
->  			}
->  			if (err)
->  				goto err_unlock_put_bo;
-> @@ -2102,22 +2130,59 @@ __xe_bo_create_locked(struct xe_device *xe,
->  	return ERR_PTR(err);
->  }
->  
-> +/**
-> + * xe_bo_create_locked_range() - Create a BO with range- and alignment options
-> + * @xe: The xe device.
-> + * @tile: The tile to select for migration of this bo, and the tile used for
-> + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
-> + * @vm: The local vm or NULL for external objects.
-> + * @size: The storage size to use for the bo.
-> + * @start: Start of fixed VRAM range or 0.
-> + * @end: End of fixed VRAM range or ~0ULL.
-> + * @type: The TTM buffer object type.
-> + * @flags: XE_BO_FLAG_ flags.
-> + * @alignment: For GGTT buffer objects, the minimum GGTT alignment.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
-> + *
-> + * Create an Xe BO with range- and alignment options. If @start and @end indicate
-> + * a fixed VRAM range, this must be a ttm_bo_type_kernel bo with VRAM placement
-> + * only. The @alignment parameter can be used for GGTT alignment.
-> + *
-> + * Return: The buffer object on success. Negative error pointer on failure.
-> + */
->  struct xe_bo *
->  xe_bo_create_locked_range(struct xe_device *xe,
->  			  struct xe_tile *tile, struct xe_vm *vm,
->  			  size_t size, u64 start, u64 end,
-> -			  enum ttm_bo_type type, u32 flags, u64 alignment)
-> +			  enum ttm_bo_type type, u32 flags, u64 alignment,
-> +			  struct drm_exec *exec)
->  {
->  	return __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type,
-> -				     flags, alignment);
-> +				     flags, alignment, exec);
->  }
->  
-> +/**
-> + * xe_bo_create_locked() - Create a BO
-> + * @xe: The xe device.
-> + * @tile: The tile to select for migration of this bo, and the tile used for
-> + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
-> + * @vm: The local vm or NULL for external objects.
-> + * @size: The storage size to use for the bo.
-> + * @type: The TTM buffer object type.
-> + * @flags: XE_BO_FLAG_ flags.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
-> + *
-> + * Create a locked xe BO with no range- nor alignment restrictions.
-> + *
-> + * Return: The buffer object on success. Negative error pointer on failure.
-> + */
->  struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
->  				  struct xe_vm *vm, size_t size,
-> -				  enum ttm_bo_type type, u32 flags)
-> +				  enum ttm_bo_type type, u32 flags,
-> +				  struct drm_exec *exec)
->  {
->  	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type,
-> -				     flags, 0);
-> +				     flags, 0, exec);
->  }
->  
->  struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_tile *tile,
-> @@ -2125,9 +2190,10 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_tile *tile,
->  				u16 cpu_caching,
->  				u32 flags)
->  {
-> +	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) : XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_bo *bo = __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL,
->  						 cpu_caching, ttm_bo_type_device,
-> -						 flags | XE_BO_FLAG_USER, 0);
-> +						 flags | XE_BO_FLAG_USER, 0, exec);
->  	if (!IS_ERR(bo))
->  		xe_bo_unlock_vm_held(bo);
->  
-> @@ -2138,7 +2204,8 @@ struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_tile *tile,
->  			   struct xe_vm *vm, size_t size,
->  			   enum ttm_bo_type type, u32 flags)
->  {
-> -	struct xe_bo *bo = xe_bo_create_locked(xe, tile, vm, size, type, flags);
-> +	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) : XE_VALIDATION_UNIMPLEMENTED;
-> +	struct xe_bo *bo = xe_bo_create_locked(xe, tile, vm, size, type, flags, exec);
->  
->  	if (!IS_ERR(bo))
->  		xe_bo_unlock_vm_held(bo);
-> @@ -2166,6 +2233,7 @@ struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
->  	int err;
->  	u64 start = offset == ~0ull ? 0 : offset;
->  	u64 end = offset == ~0ull ? offset : start + size;
-> +	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) : XE_VALIDATION_UNIMPLEMENTED;
->  
->  	if (flags & XE_BO_FLAG_STOLEN &&
->  	    xe_ttm_stolen_cpu_access_needs_ggtt(xe))
-> @@ -2173,11 +2241,11 @@ struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
->  
->  	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type,
->  				       flags | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED,
-> -				       alignment);
-> +				       alignment, exec);
->  	if (IS_ERR(bo))
->  		return bo;
->  
-> -	err = xe_bo_pin(bo);
-> +	err = xe_bo_pin(bo, exec);
->  	if (err)
->  		goto err_put;
->  
-> @@ -2299,6 +2367,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
->  /**
->   * xe_bo_pin_external - pin an external BO
->   * @bo: buffer object to be pinned
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Pin an external (not tied to a VM, can be exported via dma-buf / prime FD)
->   * BO. Unique call compared to xe_bo_pin as this function has it own set of
-> @@ -2306,7 +2375,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
->   *
->   * Returns 0 for success, negative error code otherwise.
->   */
-> -int xe_bo_pin_external(struct xe_bo *bo)
-> +int xe_bo_pin_external(struct xe_bo *bo, struct drm_exec *exec)
->  {
->  	struct xe_device *xe = xe_bo_device(bo);
->  	int err;
-> @@ -2315,7 +2384,7 @@ int xe_bo_pin_external(struct xe_bo *bo)
->  	xe_assert(xe, xe_bo_is_user(bo));
->  
->  	if (!xe_bo_is_pinned(bo)) {
-> -		err = xe_bo_validate(bo, NULL, false);
-> +		err = xe_bo_validate(bo, NULL, false, exec);
->  		if (err)
->  			return err;
->  
-> @@ -2337,7 +2406,17 @@ int xe_bo_pin_external(struct xe_bo *bo)
->  	return 0;
->  }
->  
-> -int xe_bo_pin(struct xe_bo *bo)
-> +/**
-> + * xe_bo_pin() - Pin a kernel bo after potentially migrating it
-> + * @bo: The kernel bo to pin.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
-> + *
-> + * Attempts to migrate a bo to @bo->placement. If that succeeds,
-> + * pins the bo.
-> + *
-> + * Return: %0 on success, negative error code on migration failure.
-> + */
-> +int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
->  {
->  	struct ttm_place *place = &bo->placements[0];
->  	struct xe_device *xe = xe_bo_device(bo);
-> @@ -2359,7 +2438,7 @@ int xe_bo_pin(struct xe_bo *bo)
->  	/* We only expect at most 1 pin */
->  	xe_assert(xe, !xe_bo_is_pinned(bo));
->  
-> -	err = xe_bo_validate(bo, NULL, false);
-> +	err = xe_bo_validate(bo, NULL, false, exec);
->  	if (err)
->  		return err;
->  
-> @@ -2452,6 +2531,7 @@ void xe_bo_unpin(struct xe_bo *bo)
->   *      NULL. Used together with @allow_res_evict.
->   * @allow_res_evict: Whether it's allowed to evict bos sharing @vm's
->   *                   reservation object.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Make sure the bo is in allowed placement, migrating it if necessary. If
->   * needed, other bos will be evicted. If bos selected for eviction shares
-> @@ -2461,7 +2541,8 @@ void xe_bo_unpin(struct xe_bo *bo)
->   * Return: 0 on success, negative error code on failure. May return
->   * -EINTR or -ERESTARTSYS if internal waits are interrupted by a signal.
->   */
-> -int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
-> +int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
-> +		   struct drm_exec *exec)
->  {
->  	struct ttm_operation_ctx ctx = {
->  		.interruptible = true,
-> @@ -2480,6 +2561,7 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
->  
->  	xe_vm_set_validating(vm, allow_res_evict);
->  	trace_xe_bo_validate(bo);
-> +	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
->  	ret = ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
->  	xe_vm_clear_validating(vm, allow_res_evict);
->  
-> @@ -2917,6 +2999,7 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
->   * xe_bo_migrate - Migrate an object to the desired region id
->   * @bo: The buffer object to migrate.
->   * @mem_type: The TTM region type to migrate to.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Attempt to migrate the buffer object to the desired memory region. The
->   * buffer object may not be pinned, and must be locked.
-> @@ -2928,7 +3011,7 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
->   * Return: 0 on success. Negative error code on failure. In particular may
->   * return -EINTR or -ERESTARTSYS if signal pending.
->   */
-> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type)
-> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
->  {
->  	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
->  	struct ttm_operation_ctx ctx = {
-> @@ -2966,19 +3049,21 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type)
->  		add_vram(xe, bo, &requested, bo->flags, mem_type, &c);
->  	}
->  
-> +	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
->  	return ttm_bo_validate(&bo->ttm, &placement, &ctx);
->  }
->  
->  /**
->   * xe_bo_evict - Evict an object to evict placement
->   * @bo: The buffer object to migrate.
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * On successful completion, the object memory will be moved to evict
->   * placement. This function blocks until the object has been fully moved.
->   *
->   * Return: 0 on success. Negative error code on failure.
->   */
-> -int xe_bo_evict(struct xe_bo *bo)
-> +int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec)
->  {
->  	struct ttm_operation_ctx ctx = {
->  		.interruptible = false,
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 8cce413b5235..b1b6cb622d71 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -10,6 +10,7 @@
->  
->  #include "xe_bo_types.h"
->  #include "xe_macros.h"
-> +#include "xe_validation.h"
->  #include "xe_vm_types.h"
->  #include "xe_vm.h"
->  #include "xe_vram_types.h"
-> @@ -92,15 +93,17 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->  				     struct xe_tile *tile, struct dma_resv *resv,
->  				     struct ttm_lru_bulk_move *bulk, size_t size,
->  				     u16 cpu_caching, enum ttm_bo_type type,
-> -				     u32 flags);
-> +				     u32 flags, struct drm_exec *exec);
->  struct xe_bo *
->  xe_bo_create_locked_range(struct xe_device *xe,
->  			  struct xe_tile *tile, struct xe_vm *vm,
->  			  size_t size, u64 start, u64 end,
-> -			  enum ttm_bo_type type, u32 flags, u64 alignment);
-> +			  enum ttm_bo_type type, u32 flags, u64 alignment,
-> +			  struct drm_exec *exec);
->  struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
->  				  struct xe_vm *vm, size_t size,
-> -				  enum ttm_bo_type type, u32 flags);
-> +				  enum ttm_bo_type type, u32 flags,
-> +				  struct drm_exec *exec);
->  struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_tile *tile,
->  			   struct xe_vm *vm, size_t size,
->  			   enum ttm_bo_type type, u32 flags);
-> @@ -200,11 +203,12 @@ static inline void xe_bo_unlock_vm_held(struct xe_bo *bo)
->  	}
->  }
->  
-> -int xe_bo_pin_external(struct xe_bo *bo);
-> -int xe_bo_pin(struct xe_bo *bo);
-> +int xe_bo_pin_external(struct xe_bo *bo, struct drm_exec *exec);
-> +int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
->  void xe_bo_unpin_external(struct xe_bo *bo);
->  void xe_bo_unpin(struct xe_bo *bo);
-> -int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict);
-> +int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
-> +		   struct drm_exec *exec);
->  
->  static inline bool xe_bo_is_pinned(struct xe_bo *bo)
->  {
-> @@ -285,8 +289,8 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
->  
->  bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
->  
-> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type);
-> -int xe_bo_evict(struct xe_bo *bo);
-> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec);
-> +int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec);
->  
->  int xe_bo_evict_pinned(struct xe_bo *bo);
->  int xe_bo_notifier_prepare_pinned(struct xe_bo *bo);
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 346f857f3837..78a827d4e726 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -51,6 +51,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
->  	struct drm_gem_object *obj = attach->dmabuf->priv;
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
->  	struct xe_device *xe = xe_bo_device(bo);
-> +	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->  	int ret;
->  
->  	/*
-> @@ -63,7 +64,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
->  		return -EINVAL;
->  	}
->  
-> -	ret = xe_bo_migrate(bo, XE_PL_TT);
-> +	ret = xe_bo_migrate(bo, XE_PL_TT, exec);
->  	if (ret) {
->  		if (ret != -EINTR && ret != -ERESTARTSYS)
->  			drm_dbg(&xe->drm,
-> @@ -72,7 +73,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
->  		return ret;
->  	}
->  
-> -	ret = xe_bo_pin_external(bo);
-> +	ret = xe_bo_pin_external(bo, exec);
->  	xe_assert(xe, !ret);
->  
->  	return 0;
-> @@ -92,6 +93,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
->  	struct dma_buf *dma_buf = attach->dmabuf;
->  	struct drm_gem_object *obj = dma_buf->priv;
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
-> +	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->  	struct sg_table *sgt;
->  	int r = 0;
->  
-> @@ -100,9 +102,9 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
->  
->  	if (!xe_bo_is_pinned(bo)) {
->  		if (!attach->peer2peer)
-> -			r = xe_bo_migrate(bo, XE_PL_TT);
-> +			r = xe_bo_migrate(bo, XE_PL_TT, exec);
->  		else
-> -			r = xe_bo_validate(bo, NULL, false);
-> +			r = xe_bo_validate(bo, NULL, false, exec);
->  		if (r)
->  			return ERR_PTR(r);
->  	}
-> @@ -161,13 +163,14 @@ static int xe_dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
->  	bool reads =  (direction == DMA_BIDIRECTIONAL ||
->  		       direction == DMA_FROM_DEVICE);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  
->  	if (!reads)
->  		return 0;
->  
->  	/* Can we do interruptible lock here? */
->  	xe_bo_lock(bo, false);
-> -	(void)xe_bo_migrate(bo, XE_PL_TT);
-> +	(void)xe_bo_migrate(bo, XE_PL_TT, exec);
->  	xe_bo_unlock(bo);
->  
->  	return 0;
-> @@ -208,13 +211,14 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
->  {
->  	struct dma_resv *resv = dma_buf->resv;
->  	struct xe_device *xe = to_xe_device(dev);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_bo *bo;
->  	int ret;
->  
->  	dma_resv_lock(resv, NULL);
->  	bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
->  				    0, /* Will require 1way or 2way for vm_bind */
-> -				    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM);
-> +				    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, exec);
->  	if (IS_ERR(bo)) {
->  		ret = PTR_ERR(bo);
->  		goto error;
-> @@ -232,8 +236,9 @@ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
->  {
->  	struct drm_gem_object *obj = attach->importer_priv;
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
-> +	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->  
-> -	XE_WARN_ON(xe_bo_evict(bo));
-> +	XE_WARN_ON(xe_bo_evict(bo, exec));
->  }
->  
->  static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 44364c042ad7..0bcb4fb9a10e 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -97,9 +97,13 @@
->  static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
->  {
->  	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
-> +	int ret;
->  
->  	/* The fence slot added here is intended for the exec sched job. */
-> -	return xe_vm_validate_rebind(vm, &vm_exec->exec, 1);
-> +	xe_vm_set_validation_exec(vm, &vm_exec->exec);
-> +	ret = xe_vm_validate_rebind(vm, &vm_exec->exec, 1);
-> +	xe_vm_set_validation_exec(vm, NULL);
-> +	return ret;
->  }
->  
->  int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index e03222f5ac5a..a47c0131956b 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -731,7 +731,7 @@ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
->  }
->  
->  static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> -				  u64 start, u64 end)
-> +				  u64 start, u64 end, struct drm_exec *exec)
->  {
->  	u64 alignment = bo->min_align > 0 ? bo->min_align : XE_PAGE_SIZE;
->  	u8 tile_id = ggtt->tile->id;
-> @@ -746,7 +746,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->  		return 0;
->  	}
->  
-> -	err = xe_bo_validate(bo, NULL, false);
-> +	err = xe_bo_validate(bo, NULL, false, exec);
->  	if (err)
->  		return err;
->  
-> @@ -788,25 +788,28 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->   * @bo: the &xe_bo to be inserted
->   * @start: address where it will be inserted
->   * @end: end of the range where it will be inserted
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Return: 0 on success or a negative error code on failure.
->   */
->  int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> -			 u64 start, u64 end)
-> +			 u64 start, u64 end, struct drm_exec *exec)
->  {
-> -	return __xe_ggtt_insert_bo_at(ggtt, bo, start, end);
-> +	return __xe_ggtt_insert_bo_at(ggtt, bo, start, end, exec);
->  }
->  
->  /**
->   * xe_ggtt_insert_bo - Insert BO into GGTT
->   * @ggtt: the &xe_ggtt where bo will be inserted
->   * @bo: the &xe_bo to be inserted
-> + * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Return: 0 on success or a negative error code on failure.
->   */
-> -int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-> +int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> +		      struct drm_exec *exec)
->  {
-> -	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX);
-> +	return __xe_ggtt_insert_bo_at(ggtt, bo, 0, U64_MAX, exec);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index fbe1e397d05d..75fc7a1efea7 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -10,6 +10,7 @@
->  
->  struct drm_printer;
->  struct xe_tile;
-> +struct drm_exec;
->  
->  struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
->  int xe_ggtt_init_early(struct xe_ggtt *ggtt);
-> @@ -31,9 +32,9 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
->  void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
->  		    struct xe_bo *bo, u16 pat_index);
->  void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
-> -int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
-> +int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
->  int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> -			 u64 start, u64 end);
-> +			 u64 start, u64 end, struct drm_exec *exec);
->  void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
->  u64 xe_ggtt_largest_hole(struct xe_ggtt *ggtt, u64 alignment, u64 *spare);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index ab43dec52776..2c7f10cc423f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -94,12 +94,12 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
->  		}
->  
->  		/* Migrate to VRAM, move should invalidate the VMA first */
-> -		err = xe_bo_migrate(bo, vram->placement);
-> +		err = xe_bo_migrate(bo, vram->placement, exec);
->  		if (err)
->  			return err;
->  	} else if (bo) {
->  		/* Create backing store if needed */
-> -		err = xe_bo_validate(bo, vm, true);
-> +		err = xe_bo_validate(bo, vm, true, exec);
->  		if (err)
->  			return err;
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index c8f0320d032f..906011671b60 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -1452,6 +1452,7 @@ static bool pf_release_vf_config_lmem(struct xe_gt *gt, struct xe_gt_sriov_confi
->  static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
->  {
->  	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
->  	struct xe_device *xe = gt_to_xe(gt);
->  	struct xe_tile *tile = gt_to_tile(gt);
->  	struct xe_bo *bo;
-> @@ -1484,11 +1485,12 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
->  				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
->  				 XE_BO_FLAG_NEEDS_2M |
->  				 XE_BO_FLAG_PINNED |
-> -				 XE_BO_FLAG_PINNED_LATE_RESTORE);
-> +				 XE_BO_FLAG_PINNED_LATE_RESTORE,
-> +				 exec);
->  	if (IS_ERR(bo))
->  		return PTR_ERR(bo);
->  
-> -	err = xe_bo_pin(bo);
-> +	err = xe_bo_pin(bo, exec);
->  	xe_bo_unlock(bo);
->  	if (unlikely(err)) {
->  		xe_bo_put(bo);
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index e35c6d4def20..39e3aa6df25a 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -700,6 +700,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->  	struct device *dev = xe->drm.dev;
->  	struct drm_buddy_block *block;
->  	struct list_head *blocks;
-> +	struct drm_exec *exec;
->  	struct xe_bo *bo;
->  	ktime_t time_end = 0;
->  	int err, idx;
-> @@ -708,12 +709,13 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
->  		return -ENODEV;
->  
->  	xe_pm_runtime_get(xe);
-> +	exec = XE_VALIDATION_UNIMPLEMENTED;
->  
->   retry:
->  	bo = xe_bo_create_locked(vr->xe, NULL, NULL, end - start,
->  				 ttm_bo_type_device,
->  				 (IS_DGFX(xe) ? XE_BO_FLAG_VRAM(vr) : XE_BO_FLAG_SYSTEM) |
-> -				 XE_BO_FLAG_CPU_ADDR_MIRROR);
-> +				 XE_BO_FLAG_CPU_ADDR_MIRROR, exec);
->  	if (IS_ERR(bo)) {
->  		err = PTR_ERR(bo);
->  		if (xe_vm_validate_should_retry(NULL, err, &time_end))
-> diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
-> new file mode 100644
-> index 000000000000..cc0684d24e02
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_validation.c
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +#include "xe_bo.h"
-> +#include <drm/drm_exec.h>
-> +#include <drm/drm_gem.h>
-> +
-> +#include "xe_assert.h"
-> +#include "xe_validation.h"
-> +
-> +#ifdef CONFIG_DRM_XE_DEBUG
-> +/**
-> + * xe_validation_assert_exec() - Assert that the drm_exec pointer is suitable
-> + * for validation.
-> + * @xe: Pointer to the xe device.
-> + * @exec: The drm_exec pointer to check.
-> + * @obj: Pointer to the object subject to validation.
-> + *
-> + * NULL exec pointers are not allowed.
-> + * For XE_VALIDATION_UNIMPLEMENTED, no checking.
-> + * For XE_VLIDATION_OPT_OUT, check that the caller is a kunit test
-> + * For XE_VALIDATION_UNSUPPORTED, check that the object subject to
-> + * validation is a dma-buf, for which support for ww locking is
-> + * not in place in the dma-buf layer.
-> + */
-> +void xe_validation_assert_exec(const struct xe_device *xe,
-> +			       const struct drm_exec *exec,
-> +			       const struct drm_gem_object *obj)
+> @@ -33,6 +33,7 @@
+>   #include "xe_pxp.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_shrinker.h"
+> +#include "xe_tile.h"
+>   #include "xe_trace_bo.h"
+>   #include "xe_ttm_stolen_mgr.h"
+>   #include "xe_vm.h"
+> @@ -208,6 +209,27 @@ static bool force_contiguous(u32 bo_flags)
+>   	       bo_flags & XE_BO_FLAG_PINNED;
+>   }
+>   
+> +static u8 vram_bo_flag_to_tile_id(struct xe_device *xe, u32 vram_bo_flag)
 > +{
-> +	xe_assert(xe, exec);
-> +	if (IS_ERR(exec)) {
-> +		switch (PTR_ERR(exec)) {
-> +		case __XE_VAL_UNIMPLEMENTED:
-> +			break;
-> +		case __XE_VAL_UNSUPPORTED:
-> +			xe_assert(xe, !!obj->dma_buf);
-> +			break;
-> +#if IS_ENABLED(CONFIG_KUNIT)
-> +		case __XE_VAL_OPT_OUT:
-> +			xe_assert(xe, current->kunit_test);
-> +			break;
-> +#endif
-> +		default:
-> +			xe_assert(xe, false);
+> +	xe_assert(xe, vram_bo_flag & XE_BO_FLAG_VRAM_MASK);
+> +	xe_assert(xe, (vram_bo_flag & (vram_bo_flag - 1)) == 0);
+> +
+> +	return __ffs(vram_bo_flag >> (__ffs(XE_BO_FLAG_VRAM0) - 1)) - 1;
+> +}
+> +
+> +static u32 bo_vram_flags_to_vram_placement(struct xe_device *xe, u32 bo_flags, u32 vram_flag,
+
+Do you need bo_flags?
+
+> +					   enum ttm_bo_type type)
+> +{
+> +	u8 tile_id = vram_bo_flag_to_tile_id(xe, vram_flag);
+> +
+> +	xe_assert(xe, tile_id < xe->info.tile_count);
+> +
+> +	if (type == ttm_bo_type_kernel)
+> +		return xe->tiles[tile_id].mem.kernel_vram->placement;
+> +	else
+> +		return xe->tiles[tile_id].mem.vram->placement;
+> +}
+> +
+>   static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+>   		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
+>   {
+> @@ -240,12 +262,17 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+>   }
+>   
+>   static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
+> -			 u32 bo_flags, u32 *c)
+> +			 u32 bo_flags, enum ttm_bo_type type, u32 *c)
+>   {
+> -	if (bo_flags & XE_BO_FLAG_VRAM0)
+> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
+> -	if (bo_flags & XE_BO_FLAG_VRAM1)
+> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
+> +	u32 vram_flag;
+> +
+> +	for_each_bo_flag_vram(vram_flag) {
+> +		if (bo_flags & vram_flag) {
+
+Would it be more natural to fold this into the macro somehow?
+
+for_each_set_bo_vram_flag(vram_flag, bo_flags)
+       bo_vram_flags_to_vram_placement(xe, vram_flag, type);
+
+> +			u32 pl = bo_vram_flags_to_vram_placement(xe, bo_flags, vram_flag, type);
+> +
+> +			add_vram(xe, bo, bo->placements, bo_flags, pl, c);
 > +		}
 > +	}
-> +}
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_validation.h b/drivers/gpu/drm/xe/xe_validation.h
-> new file mode 100644
-> index 000000000000..db50feacad7a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_validation.h
-> @@ -0,0 +1,69 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +#ifndef _XE_VALIDATION_H_
-> +#define _XE_VALIDATION_H_
+>   }
+>   
+>   static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+> @@ -264,11 +291,11 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+>   }
+>   
+>   static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+> -				       u32 bo_flags)
+> +				       u32 bo_flags, enum ttm_bo_type type)
+>   {
+>   	u32 c = 0;
+>   
+> -	try_add_vram(xe, bo, bo_flags, &c);
+> +	try_add_vram(xe, bo, bo_flags, type, &c);
+>   	try_add_system(xe, bo, bo_flags, &c);
+>   	try_add_stolen(xe, bo, bo_flags, &c);
+>   
+> @@ -284,10 +311,10 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+>   }
+>   
+>   int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+> -			      u32 bo_flags)
+> +			      u32 bo_flags, enum ttm_bo_type type)
+>   {
+>   	xe_bo_assert_held(bo);
+> -	return __xe_bo_placement_for_flags(xe, bo, bo_flags);
+> +	return __xe_bo_placement_for_flags(xe, bo, bo_flags, type);
+>   }
+>   
+>   static void xe_evict_flags(struct ttm_buffer_object *tbo,
+> @@ -1895,7 +1922,7 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>   	}
+>   
+>   	if (!(flags & XE_BO_FLAG_FIXED_PLACEMENT)) {
+> -		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
+> +		err = __xe_bo_placement_for_flags(xe, bo, bo->flags, type);
+>   		if (WARN_ON(err)) {
+>   			xe_ttm_bo_destroy(&bo->ttm);
+>   			return ERR_PTR(err);
+> @@ -1953,34 +1980,33 @@ struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>   }
+>   
+>   static int __xe_bo_fixed_placement(struct xe_device *xe,
+> -				   struct xe_bo *bo,
+> +				   struct xe_bo *bo, enum ttm_bo_type type,
+>   				   u32 flags,
+>   				   u64 start, u64 end, u64 size)
+>   {
+>   	struct ttm_place *place = bo->placements;
+> +	u32 vram_flag, vram_stolen_flags;
+>   
+>   	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
+>   		return -EINVAL;
+>   
+> +	vram_flag = flags & XE_BO_FLAG_VRAM_MASK;
+> +	vram_stolen_flags = (flags & (XE_BO_FLAG_STOLEN)) | vram_flag;
 > +
-> +#include <linux/dma-resv.h>
-> +#include <linux/types.h>
-> +
-> +struct drm_exec;
-> +struct drm_gem_object;
-> +struct xe_device;
-> +
-> +#ifdef CONFIG_PROVE_LOCKING
-> +/**
-> + * xe_validation_lockdep() - Assert that a drm_exec locking transaction can
-> + * be initialized at this point.
-> + */
-> +static inline void xe_validation_lockdep(void)
-> +{
-> +	struct ww_acquire_ctx ticket;
-> +
-> +	ww_acquire_init(&ticket, &reservation_ww_class);
-> +	ww_acquire_fini(&ticket);
-> +}
-> +#else
-> +static inline void xe_validation_lockdep(void)
-> +{
-> +}
-> +#endif
-> +
-> +/*
-> + * Various values of the drm_exec pointer where we've not (yet)
-> + * implemented full ww locking.
-> + *
-> + * XE_VALIDATION_UNIMPLEMENTED means implementation is pending.
-> + * A lockdep check is made to assure that a drm_exec locking
-> + * transaction can actually take place where the macro is
-> + * used. If this asserts, the exec pointer needs to be assigned
-> + * higher up in the callchain and passed down.
-> + *
-> + * XE_VALIDATION_UNSUPPORTED is for dma-buf code only where
-> + * the dma-buf layer doesn't support WW locking.
-> + *
-> + * XE_VALIDATION_OPT_OUT is for simplification of kunit tests where
-> + * exhaustive eviction isn't necessary.
-> + */
-> +#define __XE_VAL_UNIMPLEMENTED -EINVAL
-> +#define XE_VALIDATION_UNIMPLEMENTED (xe_validation_lockdep(),		\
-> +				     (struct drm_exec *)ERR_PTR(__XE_VAL_UNIMPLEMENTED))
-> +
-> +#define __XE_VAL_UNSUPPORTED -EOPNOTSUPP
-> +#define XE_VALIDATION_UNSUPPORTED ((struct drm_exec *)ERR_PTR(__XE_VAL_UNSUPPORTED))
-> +
-> +#define __XE_VAL_OPT_OUT -ENOMEM
-> +#define XE_VALIDATION_OPT_OUT (xe_validation_lockdep(), \
-> +			       (struct drm_exec *)ERR_PTR(__XE_VAL_OPT_OUT))
-> +#ifdef CONFIG_DRM_XE_DEBUG
-> +void xe_validation_assert_exec(const struct xe_device *xe, const struct drm_exec *exec,
-> +			       const struct drm_gem_object *obj);
-> +#else
-> +#define xe_validation_assert_exec(_xe, _exec, _obj)	\
-> +	do {						\
-> +		(void)_xe; (void)_exec; (void)_obj;	\
-> +	} while (0)
-> +#endif
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 12e661960244..600aaadb4bee 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -393,7 +393,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
->  		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
->  			       &vm->rebind_list);
->  
-> -	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
-> +	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false, exec);
->  	if (ret)
->  		return ret;
->  
-> @@ -451,6 +451,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
->  	if (err)
->  		return err;
->  
-> +	xe_vm_set_validation_exec(vm, exec);
->  	if (xe_vm_is_idle(vm)) {
->  		vm->preempt.rebind_deactivated = true;
->  		*done = true;
-> @@ -516,6 +517,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
->  		err = xe_preempt_work_begin(&exec, vm, &done);
->  		drm_exec_retry_on_contention(&exec);
->  		if (err || done) {
-> +			xe_vm_set_validation_exec(vm, NULL);
->  			drm_exec_fini(&exec);
->  			if (err && xe_vm_validate_should_retry(&exec, err, &end))
->  				err = -EAGAIN;
-> @@ -565,6 +567,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
->  	up_read(&vm->userptr.notifier_lock);
->  
->  out_unlock:
-> +	xe_vm_set_validation_exec(vm, NULL);
->  	drm_exec_fini(&exec);
->  out_unlock_outer:
->  	if (err == -EAGAIN) {
-> @@ -1375,6 +1378,8 @@ int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma)
->  	err = drm_exec_lock_obj(exec, xe_vm_obj(vm));
->  	if (!err && bo && !bo->vm)
->  		err = drm_exec_lock_obj(exec, &bo->ttm.base);
-> +	if (!err)
-> +		xe_vm_set_validation_exec(vm, exec);
+> +	/* check if more than one VRAM/STOLEN flag is set */
+> +	if ((vram_stolen_flags & (vram_stolen_flags - 1)) != 0)
 
-Do you have imbalance here? I see this function called in xe_pf_begin
-and xe_vma_destroy_unlocked but I don't see
-xe_vm_set_validation_exec(vm, NULL) called.
+hweight32() > 1 is more readable here?
 
->  
->  	return err;
->  }
-> @@ -2889,7 +2894,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
->  			err = drm_exec_lock_obj(exec, &bo->ttm.base);
->  		if (!err && validate)
->  			err = xe_bo_validate(bo, vm,
-> -					     !xe_vm_in_preempt_fence_mode(vm));
-> +					     !xe_vm_in_preempt_fence_mode(vm), exec);
->  	}
->  
->  	return err;
-> @@ -3012,7 +3017,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->  					    false);
->  		if (!err && !xe_vma_has_no_bo(vma))
->  			err = xe_bo_migrate(xe_vma_bo(vma),
-> -					    region_to_mem_type[region]);
-> +					    region_to_mem_type[region],
-> +					    exec);
->  		break;
->  	}
->  	default:
-> @@ -3052,6 +3058,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
->  	if (err)
->  		return err;
->  
-> +	xe_vm_set_validation_exec(vm, exec);
->  	list_for_each_entry(op, &vops->list, link) {
->  		err = op_lock_and_prep(exec, vm, op);
->  		if (err)
-> @@ -3850,10 +3857,18 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
->   */
->  int xe_vm_lock(struct xe_vm *vm, bool intr)
->  {
-> +	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
-> +	int ret;
+> +		return -EINVAL;
 > +
->  	if (intr)
-> -		return dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
-> +		ret = dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
+>   	place->flags = TTM_PL_FLAG_CONTIGUOUS;
+>   	place->fpfn = start >> PAGE_SHIFT;
+>   	place->lpfn = end >> PAGE_SHIFT;
+>   
+> -	switch (flags & (XE_BO_FLAG_STOLEN | XE_BO_FLAG_VRAM_MASK)) {
+> -	case XE_BO_FLAG_VRAM0:
+> -		place->mem_type = XE_PL_VRAM0;
+> -		break;
+> -	case XE_BO_FLAG_VRAM1:
+> -		place->mem_type = XE_PL_VRAM1;
+> -		break;
+> -	case XE_BO_FLAG_STOLEN:
+> +	if (flags & XE_BO_FLAG_STOLEN)
+>   		place->mem_type = XE_PL_STOLEN;
+> -		break;
+> -
+> -	default:
+> -		/* 0 or multiple of the above set */
+> +	else if (vram_flag)
+> +		place->mem_type = bo_vram_flags_to_vram_placement(xe, flags, vram_flag, type);
 > +	else
-> +		ret = dma_resv_lock(xe_vm_resv(vm), NULL);
-> +
-> +	if (!ret)
-> +		xe_vm_set_validation_exec(vm, exec);
->  
-> -	return dma_resv_lock(xe_vm_resv(vm), NULL);
-> +	return ret;
->  }
->  
->  /**
-> @@ -3864,6 +3879,7 @@ int xe_vm_lock(struct xe_vm *vm, bool intr)
->   */
->  void xe_vm_unlock(struct xe_vm *vm)
->  {
-> +	xe_vm_set_validation_exec(vm, NULL);
->  	dma_resv_unlock(xe_vm_resv(vm));
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 2ecb417c19a2..4ba26eed7e96 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -321,7 +321,7 @@ static inline void xe_vm_set_validating(struct xe_vm *vm, bool allow_res_evict)
->  	if (vm && !allow_res_evict) {
->  		xe_vm_assert_held(vm);
->  		/* Pairs with READ_ONCE in xe_vm_is_validating() */
-> -		WRITE_ONCE(vm->validating, current);
-> +		WRITE_ONCE(vm->validation.validating, current);
->  	}
->  }
->  
-> @@ -339,7 +339,7 @@ static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict
->  {
->  	if (vm && !allow_res_evict) {
->  		/* Pairs with READ_ONCE in xe_vm_is_validating() */
-> -		WRITE_ONCE(vm->validating, NULL);
-> +		WRITE_ONCE(vm->validation.validating, NULL);
->  	}
->  }
->  
-> @@ -357,13 +357,40 @@ static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict
->  static inline bool xe_vm_is_validating(struct xe_vm *vm)
->  {
->  	/* Pairs with WRITE_ONCE in xe_vm_is_validating() */
-> -	if (READ_ONCE(vm->validating) == current) {
-> +	if (READ_ONCE(vm->validation.validating) == current) {
->  		xe_vm_assert_held(vm);
->  		return true;
->  	}
->  	return false;
->  }
->  
-> +/**
-> + * xe_vm_set_validation_exec() - Accessor to set the drm_exec object
-> + * @vm: The vm we want to register a drm_exec object with.
-> + * @exec: The exec object we want to register.
-> + *
-> + * Set the drm_exec object used to lock the vm's resv.
-> + */
-> +static inline void xe_vm_set_validation_exec(struct xe_vm *vm, struct drm_exec *exec)
-> +{
-> +	xe_vm_assert_held(vm);
-> +	vm->validation._exec = exec;
-> +}
-> +
-> +/**
-> + * xe_vm_set_validation_exec() - Accessor to read the drm_exec object
-> + * @vm: The vm we want to register a drm_exec object with.
-> + *
-> + * Return: The drm_exec object used to lock the vm's resv. The value
-> + * is a valid pointer, %NULL, or one of the special values defined in
-> + * xe_validation.h.
-> + */
-> +static inline struct drm_exec *xe_vm_validation_exec(struct xe_vm *vm)
-> +{
-> +	xe_vm_assert_held(vm);
-> +	return vm->validation._exec;
-> +}
-> +
->  /**
->   * xe_vm_has_valid_gpu_mapping() - Advisory helper to check if VMA or SVM range has
->   * a valid GPU mapping
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 8a07feef503b..2f88808e36bb 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -312,19 +312,35 @@ struct xe_vm {
->  		bool capture_once;
->  	} error_capture;
->  
-> +	/**
-> +	 * @validation: Validation data only valid with the vm resv held.
-> +	 * Note: This is really task state of the task holding the vm resv,
-> +	 * and moving forward we should
-> +	 * come up with a better way of passing this down the call-
-> +	 * chain.
-
-I've already mentioned this, attaching the _exec xe_vma_ops might be
-good option as xe_vma_ops has lifetime of only existing for the bind
-(i.e., it is stack variable) so you'd only need to set it (i.e., no
-clear required).
-
-I think patch largely makes sense.
-
-Matt 
-
+>   		return -EINVAL;
+> -	}
+>   
+>   	bo->placement = (struct ttm_placement) {
+>   		.num_placement = 1,
+> @@ -2003,13 +2029,24 @@ __xe_bo_create_locked(struct xe_device *xe,
+>   	if (vm)
+>   		xe_vm_assert_held(vm);
+>   
+> +	/*
+> +	 * In the case of kernel allocations, if the tile has dedicated kernel
+> +	 * VRAM region, and tile->id does not match to tile->vram_id, it means
+> +	 * that we are using unified VRAM and we need fix VRAM BO flags.
 > +	 */
-> +	struct {
-> +		/**
-> +		 * @validation.validating: The task that is currently making bos resident.
-> +		 * for this vm.
-> +		 * Protected by the VM's resv for writing. Opportunistic reading can be done
-> +		 * using READ_ONCE. Note: This is a workaround for the
-> +		 * TTM eviction_valuable() callback not being passed a struct
-> +		 * ttm_operation_context(). Future work might want to address this.
-> +		 */
-> +		struct task_struct *validating;
-> +		/**
-> +		 *  @validation.exec The drm_exec context used when locking the vm resv.
-> +		 *  Protected by the vm's resv.
-> +		 */
-> +		struct drm_exec *_exec;
-> +	} validation;
+> +	if (tile && type == ttm_bo_type_kernel && xe_tile_has_separate_kernel_vram(tile) &&
+> +	    (flags & XE_BO_FLAG_VRAM_MASK) && tile->mem.vram->id != tile->mem.kernel_vram->id) {
+> +		flags &= ~XE_BO_FLAG_VRAM_MASK;
+> +		flags |= (XE_BO_FLAG_VRAM0 << tile->mem.kernel_vram->id);
+> +	}
 > +
->  	/**
->  	 * @tlb_flush_seqno: Required TLB flush seqno for the next exec.
->  	 * protected by the vm resv.
->  	 */
->  	u64 tlb_flush_seqno;
-> -	/**
-> -	 * @validating: The task that is currently making bos resident for this vm.
-> -	 * Protected by the VM's resv for writing. Opportunistic reading can be done
-> -	 * using READ_ONCE. Note: This is a workaround for the
-> -	 * TTM eviction_valuable() callback not being passed a struct
-> -	 * ttm_operation_context(). Future work might want to address this.
-> -	 */
-> -	struct task_struct *validating;
->  	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
->  	bool batch_invalidate_tlb;
->  	/** @xef: XE file handle for tracking this VM's drm client */
-> -- 
-> 2.50.1
-> 
+>   	if (start || end != ~0ULL) {
+>   		bo = xe_bo_alloc();
+>   		if (IS_ERR(bo))
+>   			return bo;
+>   
+>   		flags |= XE_BO_FLAG_FIXED_PLACEMENT;
+> -		err = __xe_bo_fixed_placement(xe, bo, flags, start, end, size);
+> +		err = __xe_bo_fixed_placement(xe, bo, type, flags, start, end, size);
+>   		if (err) {
+>   			xe_bo_free(bo);
+>   			return ERR_PTR(err);
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 8cce413b5235..dde8e0274ff2 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -61,6 +61,10 @@
+>   #define XE_BO_FLAG_GGTTx(tile) \
+>   	(XE_BO_FLAG_GGTT0 << (tile)->id)
+>   
+> +#define for_each_bo_flag_vram(bit__) \
+> +	for (unsigned int __bit_tmp = BIT(0); __bit_tmp <= XE_BO_FLAG_VRAM_MASK; __bit_tmp <<= 1) \
+> +		for_each_if(((bit__) = __bit_tmp) & XE_BO_FLAG_VRAM_MASK)
+
+Should this be exported or can it be moved to .c?
+
+> +
+>   #define XE_PTE_SHIFT			12
+>   #define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
+>   #define XE_PTE_MASK			(XE_PAGE_SIZE - 1)
+> @@ -127,7 +131,7 @@ struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_til
+>   int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, struct xe_bo **src);
+>   
+>   int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+> -			      u32 bo_flags);
+> +			      u32 bo_flags, enum ttm_bo_type type);
+>   
+>   static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
+>   {
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index eb6105523f23..3a417305c1b8 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -155,7 +155,15 @@ struct xe_tile {
+>   	/** @mem: memory management info for tile */
+>   	struct {
+>   		/**
+> -		 * @mem.vram: VRAM info for tile.
+> +		 * @mem.kernel_vram: kernel-dedicated VRAM info for tile.
+> +		 *
+> +		 * Although VRAM is associated with a specific tile, it can
+> +		 * still be accessed by all tiles' GTs.
+> +		 */
+> +		struct xe_vram_region *kernel_vram;
+> +
+> +		/**
+> +		 * @mem.vram: general purpose VRAM info for tile.
+>   		 *
+>   		 * Although VRAM is associated with a specific tile, it can
+>   		 * still be accessed by all tiles' GTs.
+> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+> index 0be0a5c57ef4..a14f549effdd 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.c
+> +++ b/drivers/gpu/drm/xe/xe_tile.c
+> @@ -124,6 +124,14 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
+>   		return PTR_ERR(vram);
+>   	tile->mem.vram = vram;
+>   
+> +	/*
+> +	 * If the kernel_vram is not already allocated,
+> +	 * it means that tile has common VRAM region for
+> +	 * kernel and user space.
+> +	 */
+> +	if (!tile->mem.kernel_vram)
+> +		tile->mem.kernel_vram = tile->mem.vram;
+> +
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+> index dceb6297aa01..5d834378b354 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.h
+> +++ b/drivers/gpu/drm/xe/xe_tile.h
+> @@ -23,4 +23,9 @@ static inline bool xe_tile_is_root(struct xe_tile *tile)
+>   	return tile->id == 0;
+>   }
+>   
+> +static inline bool xe_tile_has_separate_kernel_vram(const struct xe_tile *tile)
+> +{
+> +	return tile->mem.vram != tile->mem.kernel_vram;
+> +}
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> index b44ebf50fedb..7adfccf68e4c 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.c
+> +++ b/drivers/gpu/drm/xe/xe_vram.c
+> @@ -13,6 +13,7 @@
+>   #include "regs/xe_gt_regs.h"
+>   #include "regs/xe_regs.h"
+>   #include "xe_assert.h"
+> +#include "xe_bo.h"
+>   #include "xe_device.h"
+>   #include "xe_force_wake.h"
+>   #include "xe_gt_mcr.h"
+> @@ -283,8 +284,11 @@ static void vram_fini(void *arg)
+>   
+>   	xe->mem.vram->mapping = NULL;
+>   
+> -	for_each_tile(tile, xe, id)
+> +	for_each_tile(tile, xe, id) {
+>   		tile->mem.vram->mapping = NULL;
+> +		if (tile->mem.kernel_vram)
+> +			tile->mem.kernel_vram->mapping = NULL;
+> +	}
+>   }
+>   
+>   struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
+
