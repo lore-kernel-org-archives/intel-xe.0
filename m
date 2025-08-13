@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 454FECA0EE0
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 10:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5666DCA0EE0
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Aug 2025 10:52:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB5110E6F6;
-	Wed, 13 Aug 2025 10:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 166EB10E6F7;
+	Wed, 13 Aug 2025 10:52:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mWqMjMWq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eiLKWJRT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11EE410E6FB
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 10:52:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2634810E6FC
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Aug 2025 10:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755082329; x=1786618329;
+ t=1755082331; x=1786618331;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uZv+H6hStDZgjFcD0DRt9WETnwQKw87uYnGN4SveeZE=;
- b=mWqMjMWqz5fPBm9QvB/qMko2+6HZGA+hqZMcP9idhJBi5EM/4JE93JMv
- ynXGZbPKN26rKNm9hbLRwRq0Xph9OyCFQWaeHnhcuhqGRctPDB3rGNsRY
- 2LAXgDhP29OfRrHAy2eUT4/aMHmEbB+KGsjiergjy2uBlivVb+8wAYtMc
- xR4YXzHhcdqbVZ8IidvqMC+BIEK+OYiLyJZjyUX+2JmBgUf+sdoHMSOTj
- 4DyXcOo7Q1FUflj0W6CyP8eS7Rad/M/sGE1zyD2BQo9o4u/AVU07ULYSP
- cfICdP0Jj8kmaBkVbe6kc3fbcdMlruRR5jhTAmI0jbeY9tsfR2rO+8Ldy Q==;
-X-CSE-ConnectionGUID: zyYbdeo6Tk2c0bzVJZgXqQ==
-X-CSE-MsgGUID: RCyK/M94RcKGHwnVraNxWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57450034"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="57450034"
+ bh=fz32HMJaNDq4Z/EYXXCmEuaLNuvq+wR8Q2zQavFRiWI=;
+ b=eiLKWJRTWePpHN/Ljk0fhgmj4ZRgH+WBfIZaI6ca6dbLKxmUl4GDV+mv
+ WQxDaVO1R95IYCyVYSBwbe2VYSwwXdrCKnQlD2KLh4NnJl3R+TnYndpIp
+ EEHM7E2fFLtwwSG2d5qJLsaj3zYvWxC9OLeHRAfg1/Oxddr89iCq/lZa7
+ uquJERQ4eg2XZbyaCExyl2ybhxcXzXDX0PfjbbNwQeJKrv04llWr1WVFe
+ tV7UG2rVF1YTTGBEKeZPpgl933fiF4FNzqBVD2A1plprNaNl09xc3zwrd
+ 61sqkkZtygc7QtuedtbpJZXb3YCI0ccuK2mXNRfCzxi1S0RGdQOyAKik9 g==;
+X-CSE-ConnectionGUID: ci56Z0EyTfWkLixUs1QU0w==
+X-CSE-MsgGUID: LQRB4WRdQtqkipFvx2wJ9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57450045"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="57450045"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 03:52:09 -0700
-X-CSE-ConnectionGUID: +w5JaXcdS6GLqdrENEJikg==
-X-CSE-MsgGUID: P00JYGMQTsuFobuc5Zefyw==
+ 13 Aug 2025 03:52:11 -0700
+X-CSE-ConnectionGUID: SYm8sYjlR1Oycr3LeNH10A==
+X-CSE-MsgGUID: 6aA5NGteT+ehootLVKWnVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="166069065"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="166069079"
 Received: from agladkov-desk.ger.corp.intel.com (HELO fedora)
  ([10.245.245.199])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2025 03:52:07 -0700
+ 13 Aug 2025 03:52:09 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -50,10 +50,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH 09/15] drm/xe: Convert the CPU fault handler for exhaustive
- eviction
-Date: Wed, 13 Aug 2025 12:51:15 +0200
-Message-ID: <20250813105121.5945-10-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 10/15] drm/xe/display: Convert __xe_pin_fb_vma()
+Date: Wed, 13 Aug 2025 12:51:16 +0200
+Message-ID: <20250813105121.5945-11-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
 References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
@@ -74,60 +73,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The CPU fault handler may populate bos and migrate, and in doing
-so might interfere with other tasks validing.
-
-Convert it for exhaustive eviction. To do this properly without
-potentially introducing stalls with the mmap lock held requires
-TTM work. In the meantime, let's live with those stalls that
-would typically happen on memory pressure.
+Convert __xe_pin_fb_vma() for exhaustive eviction
+using xe_validation_guard().
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 27 +++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5e40b6cb8d2a..dd1e0e9957e0 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1720,14 +1720,18 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	struct xe_device *xe = to_xe_device(ddev);
- 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
- 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
--	struct drm_exec *exec;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 4b0748e6fdd6..43c45344ea26 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -281,7 +281,8 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+-	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
 +	struct xe_validation_ctx ctx;
 +	struct drm_exec exec;
- 	vm_fault_t ret;
- 	int idx;
+ 	int ret;
  
- 	if (needs_rpm)
- 		xe_pm_runtime_get(xe);
+ 	if (!vma)
+@@ -309,17 +310,21 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+ 	 * assumptions are incorrect for framebuffers
+ 	 */
+-	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
+-	if (ret)
+-		goto err;
++	xe_validation_guard(&ctx, &xe->val, &exec, 0, ret, false) {
++		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
++		drm_exec_retry_on_contention(&exec);
++		if (ret)
++			goto err;
  
--	exec = XE_VALIDATION_UNIMPLEMENTED;
-+	if (xe_validation_ctx_init(&ctx, &xe->val, &exec,
-+				   DRM_EXEC_INTERRUPTIBLE_WAIT, 0, false))
-+		return VM_FAULT_NOPAGE;
-+
- 	ret = ttm_bo_vm_reserve(tbo, vmf);
+-	if (IS_DGFX(xe))
+-		ret = xe_bo_migrate(bo, XE_PL_VRAM0, exec);
+-	else
+-		ret = xe_bo_validate(bo, NULL, true, exec);
+-	if (!ret)
+-		ttm_bo_pin(&bo->ttm);
+-	ttm_bo_unreserve(&bo->ttm);
++		if (IS_DGFX(xe))
++			ret = xe_bo_migrate(bo, XE_PL_VRAM0, &exec);
++		else
++			ret = xe_bo_validate(bo, NULL, true, &exec);
++		drm_exec_retry_on_contention(&exec);
++		xe_validation_retry_on_oom(&ctx, &ret);
++		if (!ret)
++			ttm_bo_pin(&bo->ttm);
++	}
  	if (ret)
- 		goto out;
-@@ -1735,7 +1739,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	if (drm_dev_enter(ddev, &idx)) {
- 		trace_xe_bo_cpu_fault(bo);
- 
--		xe_validation_assert_exec(xe, exec, &tbo->base);
-+		xe_validation_assert_exec(xe, &exec, &tbo->base);
- 		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
- 					       TTM_BO_VM_NUM_PREFAULT);
- 		drm_dev_exit(idx);
-@@ -1761,6 +1765,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 
- 	dma_resv_unlock(tbo->base.resv);
- out:
-+	xe_validation_ctx_fini(&ctx);
- 	if (needs_rpm)
- 		xe_pm_runtime_put(xe);
+ 		goto err;
  
 -- 
 2.50.1
