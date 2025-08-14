@@ -4,166 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15828CA0EDC
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 11:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B894CA0EE4
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 11:49:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C54EC10E849;
-	Thu, 14 Aug 2025 11:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC89310E848;
+	Thu, 14 Aug 2025 11:49:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HP75Pl6Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uj1aFLC3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC27C10E849
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 11:13:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB5EC10E14C;
+ Thu, 14 Aug 2025 11:49:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755170033; x=1786706033;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=MfZlQljPy7Bhn7shmY02vxbPrFUvJALPAQ7VIPOzNNU=;
- b=HP75Pl6ZshMHJIzoT4OooYqYka8+ncJuvnWi2GRilnEQva5WTfa5OcEd
- PhCzg6S6NmOXmDRcIsc9HKJ5oQdjm6K0zO4b6UbaKFuO8gQiwOJrdrOo+
- vjWonfzxqDIDFL1u74Z1TdbKKbgeZi5KOYWFjsJzQCBQsWU4oH/PhG3N0
- KaxgR4B6YgRCz5PTyIE9eiXY3anVNRukJPERisqiClA+H8+o0Z6//Ryfg
- lDVF/iamKg+p9S8eHLux14sP2l8sm4Vr5gq691mmkUxYLwhOEopBSufKg
- elypikrPOXTDgK2iAQV7cz6+Jxam2PZ1IGKMhP/EByBrUGsh5J6z7rtKF g==;
-X-CSE-ConnectionGUID: 9kn4VUieTy6tm+gcUSjkOw==
-X-CSE-MsgGUID: KmDs6sOcQuCsWwF/KtedgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57598587"
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="57598587"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 04:13:53 -0700
-X-CSE-ConnectionGUID: 8xBZajAfT+C9SDHnPAzcUQ==
-X-CSE-MsgGUID: LDagUcKVQT+4OpYMj2fyHw==
+ t=1755172156; x=1786708156;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7SmLXDG2NFybikpSXYlSqjIn6xTq+yIa0+B18w30Qiw=;
+ b=Uj1aFLC3jB5G15j4Ax9mDLWjc7VKKm+QwUAgXncEqH6mNCuIHVtRq7Rt
+ G6hhSgeE5NmyOzc1ZQWaj1Wv4bCZ+Fq73LlUzwI+Xk7PQn8IfIuJ7BAq7
+ bborsm4zATua14OJvE2/yj/BzktTzlw8niC21IW6/EklrvIKrbDWJHJh1
+ V7qnGRcH9FfZyQdWKKMRxdwCbabSKgDxGmbbYlJUW01jnib6goDsIaXfk
+ 0PnkHsvPHhVLSXeLnvesUUg0suyT6g9qPEHbIz8bi8CadM8lE+srccw61
+ c+UooOHMtUK20bHKJqPBALs7KEaoPP+WO2k37HeXw4VuQ9tIbUCrFukPv A==;
+X-CSE-ConnectionGUID: kML0aweVQNexZ2Q8YmJBPg==
+X-CSE-MsgGUID: akEdcxxaS7mshFp1HdYWjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57388409"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="57388409"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 04:49:16 -0700
+X-CSE-ConnectionGUID: azIyCmSgQXuvylwyIA1o2w==
+X-CSE-MsgGUID: ChvusjzTSZ+7GWl23jia6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="203916420"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 04:13:53 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 14 Aug 2025 04:13:37 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Thu, 14 Aug 2025 04:13:37 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.50) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 14 Aug 2025 04:13:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E8YCke72KSuzrVeKGxhmPo+6yyxLmyPm/cYoxfyLjnN7QcpZAvlVClBXUQXY/zrXFxb+bWWzCaOiMCLyyOiegiXOf3W9AwvLj0svwfm9FYEwdp0wNJGRtWQxbzGcYvOvQELy4MY+3ZoNnAZBAVcsRn5D63VgZqLJREaS16Nnu1TxDqoJ1ddreDByx7LlderhrmDHVa02d1oOiCmNUl9+vuuKu/V1+xvcZa8WYS5d7QgWp87efmtm24h36zG75FtiC+TWbMibH9eYnD2eIGonfe3vve3O4tncEjngSIdaJMmCxb2+xFNAaR3AYum4pUXqfqBfQZSCyEn25BBzpEoIdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7C/ae0Ongyljcmc/shE/FFpH9n3NgE0k8esH8pb0PUY=;
- b=dY0eudBMDEw0CMYafIwOkn2zE3/xA9rk/nGiMQAeUcZUNNAkubeSwlj73CdSqIBr+rikNNjfzP+JFVrAf7+W9Qg+ZYCG4omAJkO0DR9VJt9SXKJcaX1c9I+S3momRBr8ct6m+XKYfkDYC8/y2PWrF8aiRlfLTEF7qrifQ6+lavZ0oxuDIFYbiLtyaj4V/DCueAM/JmLIVBr1SfFv2yx3VHmpBOJBGI4IOU7ETDRrPe0YGa3XrS+2Cz73FD8bRYuarIVPM2sqmofTpOZPwIfnNYiQVxaBLB++e2/gXM4eaSIUALd4Z5APjpjAGOOPD6dlYPfBe4kb5E95nWx/7R0SGw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA1PR11MB7918.namprd11.prod.outlook.com (2603:10b6:208:3ff::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.13; Thu, 14 Aug
- 2025 11:13:34 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9031.014; Thu, 14 Aug 2025
- 11:13:34 +0000
-Date: Thu, 14 Aug 2025 08:13:26 -0300
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <prashanth.kumar@intel.com>,
- <dnyaneshwar.bhadane@intel.com>, Badal Nilawar <badal.nilawar@intel.com>
-Subject: Re: [PATCH v3 04/13] drm/xe/psmi: Add Wa_14020001231
-Message-ID: <tvr47sjamlp3wpji4goscfayhd6tsog42i2zwbs5rumidoh2yd@hcagnhfdf7w4>
-References: <20250808-psmi-v3-0-a111e9f1e4b7@intel.com>
- <20250808-psmi-v3-4-a111e9f1e4b7@intel.com>
- <785763f2-7d3d-4c53-b12d-62ef345249e5@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <785763f2-7d3d-4c53-b12d-62ef345249e5@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0216.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::11) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="171967073"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 04:49:11 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, aravind.iddamsetty@linux.intel.com,
+ raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
+ frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
+Subject: [PATCH v8 00/10] Handle Firmware reported Hardware Errors
+Date: Thu, 14 Aug 2025 17:44:30 +0530
+Message-ID: <20250814121448.3380784-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB7918:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02dfa0ec-b6f5-42f7-e1cb-08dddb239bbf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wS39spq9psZbrE5fubrP0YFDllzgKAxyF9uFacE6sa8x58LWxLF52dlSagt2?=
- =?us-ascii?Q?03YpUD+gyDMWKYKyMuz6qodTsjdp+BBZB1qMKpVCgbCZ3dnRdp5/MO43gJW9?=
- =?us-ascii?Q?4e0Zh9HQZR5xiCyylQuLLf5o49s3yLvj0llZ51eUYWLWewugIY3JezcZ+4UK?=
- =?us-ascii?Q?E0Q03/llFuVwXrLqCAswJbLAqYsupBFn9l+x2LlnLYwDalRzdCTE3+7lygQS?=
- =?us-ascii?Q?bKaXaYKBkQttTL38ml6Pm6bLbd14227p7hRWHt2m8bswNF5k7Ih9bigz7BPY?=
- =?us-ascii?Q?mOFtt1WzTBCKgNvAt29TcztbC/TkS8r/XiBjw6lf4JSU9yYsuoAOpv5o28vo?=
- =?us-ascii?Q?HK+UmWVi92G9pfCAbireHwtSn2tuGaSpRybXiIOsDzLzHv9n5nm+IAWQYClY?=
- =?us-ascii?Q?x7T/JI/ZDJ2E1pTBZR1tDmxqQr9xiRLpRTpqFgMQRvd6lC13c48TKe8Ye+3w?=
- =?us-ascii?Q?kdIuevdy++ACSGvflwt9PK0mkFFsRKF8+57Ww9+WRvegrp9+ufEo4lK1ZNoQ?=
- =?us-ascii?Q?vj2PIbJSB1tHgQVbFbk/ti167bZpS9pjbhWDRedea8Em+48+YxtpiCXoey18?=
- =?us-ascii?Q?yPYyg+kiGCRNCOZ8U8lKODjscnREJK/dTYwUG+Ip8HfDP495R0PyX3jDQ2Hq?=
- =?us-ascii?Q?vXydkf4Q6Y/95Ivgm5Vu53gAhNl/ExAmabZYzDr7bPrRQg1uotYU/ajVxqH5?=
- =?us-ascii?Q?P+J7IUuXWQqD8blfVWEBqK1Wktu9HRAisZlZTNeZ60bzXdgDpIKPhDEWv3+c?=
- =?us-ascii?Q?veZYde7Yj2zTGo3W9NBjrZxB0fuxDwYiCY4lXAuzBdS9kDEDB7EHur9YcO8y?=
- =?us-ascii?Q?yZ7Skb+zQMH7+1uKJnsOvHygBH+p6pfQCcs3zTv7OqpnKy0LgzyLCBYKmrss?=
- =?us-ascii?Q?JGxpkHVdEDCC7LozpPSMFWka56A/ZTaSTf4aQuduoTB/6nzib+8gSB/35Okd?=
- =?us-ascii?Q?RTVFzxV3gzUaEvdMyCaexf1P3cRU27hhGUNFIGDfAP2oFYjttb+Byk5NMdyl?=
- =?us-ascii?Q?lStZ5ft22gNOgzoNaaUZTpzb0iALlqtKtknyOCu9vhKxySJw7ou7+C4MbiWh?=
- =?us-ascii?Q?b+MI41QURWwyrw8TaXb6uVKHm8p1Mxao+rHpuJ5RUTelQxsP44VYbmnvUxCK?=
- =?us-ascii?Q?U3jhSk2I6uxSARFEgwYUcX7aaVKiIysHIZs6v8ykQb0+9z46dvMmuT7UuRbb?=
- =?us-ascii?Q?+0Zj8p0yLZwsHiLStXgwe+Fgg4X+H1nXHpY/vMHRId+d1EixcFsxzMgj7c+w?=
- =?us-ascii?Q?YQE3jG5s2xuIyFt5lvD1XYhC7Ul0H6Kl9WKRXVB0C0ES5LrtsNQ4ZXvnv+Cy?=
- =?us-ascii?Q?fh3Ruh2BLtqNQHBSdZDBu266tj3QdJFAFvxQl8dGubOmoKr3jkqywHyDASHz?=
- =?us-ascii?Q?+SRr23X+0hNxsiboKCz/DdPpj+Um67hVJU2TlbdHXxL4c8F5AdQpg2DjlhzJ?=
- =?us-ascii?Q?Eh8O9s9OtzA=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L0A871obcoCH+rJmb7aHacHR5rTDQYH5xYGH+w6ukrXGl8BV+Hashn/7X3zQ?=
- =?us-ascii?Q?vO3BawuqzgYjBRe6VYJmMaVvdmwv/hjL/oQfzkjI3DXsHYpCzPYolLodAYac?=
- =?us-ascii?Q?Rz0SP47aBTpGIZp8JBDjhPJRH+J37b7Ko7INo8ZTcpCaVQejTMtqhYkExBfb?=
- =?us-ascii?Q?sLfV0SEKtFhNqMmdU81GY0jW6cG8EM75LbSvUJHPCDPsx3mFk4RwyK1Wui6Q?=
- =?us-ascii?Q?wSE47WvrvEtiK9hb2tom0btQs825VrRdwPfZHFeB7tatvSRH87CWT/+SQers?=
- =?us-ascii?Q?qkjNJGouLPykos9hmZsxayU2VwQ/DDvRpLwkiWtkOzQ0lKoXRQ1gaehmTkJb?=
- =?us-ascii?Q?fJ3oJiZ+7m4KXMbeQcJVa+87ieGsYzmbXozlPrYD7gHNrupfQnfK2cSTKi/6?=
- =?us-ascii?Q?yqj2XOPDKCiF5q/AQYf4K78ysQKnU0T0KXs4KfrI/x9Unqw0DVbvfdp2ihTo?=
- =?us-ascii?Q?0vO1kAdPoMU68NpKXCGX5DAYdD/tA0ZeQLjojbcjEOgG8LuOBhEFCr+Dbs7O?=
- =?us-ascii?Q?h+oWVhzVDc55W5octCR+n/gcgmq6o0V4Ide0reZB6f4lnHpYa3/uQcwvr4nu?=
- =?us-ascii?Q?rPtA7egpscX2B8ZcjtekvLs1LYdtSj8DKkhcDMsmjctqOz0Ow/vL339d+ypg?=
- =?us-ascii?Q?Z15neP35wvtbT1uNQY8TFFqqbkMKfpvn2MSxR+RtUKg15WWfifq6HuKr0nzp?=
- =?us-ascii?Q?O5iStKiiIxofAgXBlGXrfiXO2sPTE1rf2OxykmJXNuUmfjg9tgWsBVPPyvwG?=
- =?us-ascii?Q?r1x0Oa8GVojwzokw1Aswl29C26qdMccn6/vhciSiBu6Dj7jAY6Tyoeqm5XiY?=
- =?us-ascii?Q?6+1IPt25QqOHkouDrsI9ayQTARbrd0FDgqk3gBl8NE50/qyBaNyJemce1Ef8?=
- =?us-ascii?Q?khdPyQS8na4RlgfOKmY8XKh1aVVJ8FmPiCttP2Ik3xMOnHudSCJTvUvd5Ihj?=
- =?us-ascii?Q?EA+W+30x6TiKGA5BO5cDORA3Qb2CkNNxaKLksJxpMX19WKBBVEo4+h1Eqd3t?=
- =?us-ascii?Q?9g2yBDnjoC9gBoIgkbuKVFQTJIPwbqU4qKnOg9fO+rmL2sBRIxS9MCYdUi83?=
- =?us-ascii?Q?lxc+jgZnU6Tyzm486D6goa//IkuKk1tVt8jRSIlo7/v/6k+oiA/eRc6ScQth?=
- =?us-ascii?Q?ifqNPwRCBPP/vNALkV0aGQDOveHuQAjTJ2eWlmt1p+NbHI98+xzuPRyaMW4c?=
- =?us-ascii?Q?Jw8hc2tFn8j0+1v7AK4u6AJRBzD5QFBrBfnoRg9ZDCVD/giMYOak2xlO/AJ9?=
- =?us-ascii?Q?G5H4CDw0jMCskbRzl+m9+4mWtu+FIjcI4NUTlczr3rcNHl9cdtBmvSc4x7f7?=
- =?us-ascii?Q?fVvBq/nllQTx6Y27pqYyjqVlYwpBv9kJID+WYW6322NRSGzJYaYWYaBjuJOS?=
- =?us-ascii?Q?/wR+pi/QozoM9bsu23hEXtgPM5w55jCiT3b+CKWTaqgkOAamZP6TUowwD1sD?=
- =?us-ascii?Q?UbLaHDafrwjydHAuGFoiCG0q4knliI/f+nY6EBfzPrOrGPbioRdjYSYR67nj?=
- =?us-ascii?Q?L9ymhvdJVOCmLyiQlAnqNOWUzNto/rd5TG4pjcNy5n9BUAnzmgsyXGko4f0v?=
- =?us-ascii?Q?V+BOvxLD6Bf7QOHrzrEEkTMm8wrmg6lmFefAUtyN7KApnCxChjTDfuDIIgs9?=
- =?us-ascii?Q?fg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02dfa0ec-b6f5-42f7-e1cb-08dddb239bbf
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2025 11:13:34.2254 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RSMKLnaYaR+TconIpnR5IZUU7ww9XNtRBZ9S+9qEQzCTBod37pb8aEEaR30/0D5es7nnbUwAU8gZk2so1fmd9u5v0UcZisSsBY79loV7QQY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7918
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,52 +70,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 13, 2025 at 11:14:57PM +0530, Riana Tauro wrote:
->
->
->On 8/8/2025 10:59 PM, Lucas De Marchi wrote:
->>From: Badal Nilawar <badal.nilawar@intel.com>
->>
->>Enable Wa 14020001231 to block psmi interrupts during C6 entry exit
->>flow. It's only enabled if PSMI is enabled in runtime.
->>
->>Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>---
->>v2:
->>  - Enable only when PSMI is enabled
->>---
->>  drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
->>  drivers/gpu/drm/xe/xe_guc_ads.c       | 4 ++++
->>  drivers/gpu/drm/xe/xe_wa_oob.rules    | 4 ++++
->>  3 files changed, 9 insertions(+)
->>
->>diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>index 31dbfeee289e7..0e78351c6ef5a 100644
->>--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
->>@@ -390,6 +390,7 @@ enum  {
->>   */
->>  enum xe_guc_klv_ids {
->>  	GUC_WORKAROUND_KLV_BLOCK_INTERRUPTS_WHEN_MGSR_BLOCKED				= 0x9002,
->>+	GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT		= 0x9004,
->>  	GUC_WORKAROUND_KLV_ID_GAM_PFQ_SHADOW_TAIL_POLLING				= 0x9005,
->>  	GUC_WORKAROUND_KLV_ID_DISABLE_MTP_DURING_ASYNC_COMPUTE				= 0x9007,
->>  	GUC_WA_KLV_NP_RD_WRITE_TO_CLEAR_RCSM_AT_CGP_LATE_RESTORE			= 0x9008,
->>diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->>index 2ceaa197cb2f0..c42fc78798ca0 100644
->>--- a/drivers/gpu/drm/xe/xe_guc_ads.c
->>+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->>@@ -359,6 +359,10 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
->>  				 GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG);
->>  	}
->>+	if (XE_WA(gt, 14020001231))
->
->
->This commit has changed XE_WA to XE_GT_WA. Both WA patches need this change
->4d5c98eb77fe ("drm/xe: rename XE_WA to XE_GT_WA")
+Add support to handle firmware reported errors. When CSC firmware
+errors are encoutered, a error interrupt is received by the GFX device as
+a MSI interrupt. Device Source control registers indicates the source of the error
+as CSC. The HEC error status register indicates that the error is firmware reported
+Depending on the type of firmware error, the error cause is written to the HEC
+Firmware error register. On encountering such CSC firmware errors, the device is unusable
+and can be recovered only using firmware update.
 
-yep, I was waiting for reviews and comments to settle/resolve before
-spinning a new version.
+Whenever Xe KMD detects such a firmware error, system administrator/userspace needs to be
+notified to trigger a firmware flash. To address the above need, a new
+recovery method is added to drm device wedged uevent.
 
-Lucas De Marchi
+The initial proposal to add 'firmware-flash' as a recovery method was
+not applicable to other drivers and could cause multiple recovery
+methods specific to vendors to be added.
+A more generic 'vendor-specific' method is introduced in this series,
+guiding users to refer to vendor specific documentation and system
+logs, additonal indicators for detailed vendor specific recovery procedure.
+
+It is the responsibility of the consumer to refer to the correct vendor
+specific documentation and usecase before attempting a recovery.
+For example: If driver is XE KMD, the consumer must refer
+to the documentation of 'Xe Device Wedging' under 'Documentation/gpu/xe/'.
+
+The necessity of a firmware flash in Xe KMD is notified to the user with a
+combination of vendor-specific wedged uevent, runtime survivability
+mode and dmesg logs. Consumer must check both uevent and runtime
+survivability sysfs before triggering a firmware flash.
+
+Udev
+
+$ udevadm monitor --property --kernel
+monitor will print the received events for:
+KERNEL - the kernel uevent
+
+
+KERNEL[754.709341] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
+ACTION=change
+DEVPATH=/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0
+SUBSYSTEM=drm
+WEDGED=vendor-specific
+DEVNAME=/dev/dri/card0
+DEVTYPE=drm_minor
+SEQNUM=5973
+MAJOR=226
+MINOR=0
+
+
+Dmesg:
+
+xe 0000:03:00.0: [drm] *ERROR* [Hardware Error]: Tile0 reported NONFATAL error 0x20000
+xe 0000:03:00.0: [drm] *ERROR* [Hardware Error]: NONFATAL: HEC Uncorrected FW FD Corruption error reported, bit[2] is set
+xe 0000:03:00.0: Runtime Survivability mode enabled
+xe 0000:03:00.0: [drm] *ERROR* CRITICAL: Xe has declared device 0000:03:00.0 as wedged.
+               IOCTLs and executions are blocked. Only a rebind may clear the failure
+               Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/xe/kernel/issues/new
+xe 0000:03:00.0: [drm] device wedged, needs recovery
+xe 0000:03:00.0: Firmware flash required, Please refer to the userspace documentation for more details!
+
+
+Runtime survivability Sysfs:
+
+/sys/bus/pci/devices/<device>/survivability_mode
+
+Bspec: 50875, 53073, 53074, 53075, 53076
+
+IGT: https://patchwork.freedesktop.org/patch/660122/
+fwupd PR: https://github.com/fwupd/fwupd/pull/9024
+
+Rev2: add a fault injection for csc errors
+      fix review comments
+
+Rev3: add a vendor-specific recovery method
+      add support for runtime survivability mode
+      enable runtime survivability mode when csc errors are reported
+
+Rev4: refactor survivability code
+
+Rev5: Add more documentation
+      add user friendly logs
+      remove checks for BMG if not necessary
+      fix other review comments
+
+Rev6: Use consistent words
+      revert to include BMG checks
+
+Rev7: fix cosmetic changes
+
+Rev8: add more documentation
+
+Riana Tauro (10):
+  drm/xe: Add documentation for Xe Device Wedging
+  drm: Add a vendor-specific recovery method to drm device wedged uevent
+  drm/xe: Set GT as wedged before sending wedged uevent
+  drm/xe: Add a helper function to set recovery method
+  drm/xe/xe_survivability: Refactor survivability mode
+  drm/xe/xe_survivability: Add support for Runtime survivability mode
+  drm/xe/doc: Document device wedged and runtime survivability
+  drm/xe: Add support to handle hardware errors
+  drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors
+  drm/xe/xe_hw_error: Add fault injection to trigger csc error handler
+
+ Documentation/gpu/drm-uapi.rst                |  47 ++++-
+ Documentation/gpu/xe/index.rst                |   1 +
+ Documentation/gpu/xe/xe_device.rst            |  10 +
+ Documentation/gpu/xe/xe_pcode.rst             |   6 +-
+ drivers/gpu/drm/drm_drv.c                     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h         |   2 +
+ drivers/gpu/drm/xe/regs/xe_hw_error_regs.h    |  20 ++
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h         |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +
+ drivers/gpu/drm/xe/xe_device.c                |  73 ++++++-
+ drivers/gpu/drm/xe/xe_device.h                |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   5 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c              |   2 +-
+ drivers/gpu/drm/xe/xe_hw_error.c              | 182 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_error.h              |  15 ++
+ drivers/gpu/drm/xe/xe_irq.c                   |   4 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c    | 167 ++++++++++++----
+ drivers/gpu/drm/xe/xe_survivability_mode.h    |   5 +-
+ .../gpu/drm/xe/xe_survivability_mode_types.h  |   8 +
+ include/drm/drm_device.h                      |   4 +
+ 22 files changed, 509 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_device.rst
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_error.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_error.h
+
+-- 
+2.47.1
+
