@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DE6DCA0EE8
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 10:33:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E825CA0EDC
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 10:33:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBDC010E848;
-	Thu, 14 Aug 2025 10:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52F7510E849;
+	Thu, 14 Aug 2025 10:33:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bQD2nhPj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nY8UELCL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0ADF10E848
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 10:33:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA2B10E849
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 10:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755167588; x=1786703588;
+ t=1755167590; x=1786703590;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OKu34NhCla66l7lU1dASp446NhUZIEZwr1BiRLpm1Vw=;
- b=bQD2nhPjfQB35vp8DKevSfwx8ePuwYMe8QiouG1wj0O0K1nm2gWraSID
- e+Mu068eFXTeO4xdfij+h/I6YfR4bxg4RSYJIq7JPDGvSlOluvyGE+vCb
- FI4tgcNrc/7TAdfLoe/3A6asT7IXY54fsnJD5nP1EM+96JyNy3haIV/iw
- HRBAmKOaJoZdrPj242+TSaDX5rXH4vOYKIutHTrbupHZnZRK8yL68kpfM
- +rHQLMI5S0+wDrJawu93aCb1U9rYOW61W8oGTyPZZXIQw1VSyUkqgc3PU
- KYQ4xgqkvls2lpQqervXiXfZgQgLJibCIRmJ2w4PIGeMMB0tP4++EsNoF g==;
-X-CSE-ConnectionGUID: YH7bHG2wSM+stRITSPUPXA==
-X-CSE-MsgGUID: S8CQ1UpgSbuPI10UGroMdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68083771"
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="68083771"
+ bh=gh6pYXa3kQHrr0HDCd8d2s80l1fKF2XaDZvZsG52G9g=;
+ b=nY8UELCLbAQKbnFP2FsB0PRPIIIQQr8EIOBhxSIGs0CuzHVqb2MeA/lq
+ IEP6OZarwP0vHQq7F6X+tU5bscE5EP58YXpMyl4WJDLB/Jo1gg2S90gIP
+ Y0yChlEQaKxxO6Segr8GGlRQxdh9StjdEbVt1uKzrQygXWjhHEH382ps1
+ KxmV35Lf5Or1ki4hBNTGVbCikeQkMxzFdg0znk0/A56oVRdAA+m0C8eXU
+ K1Q6kfodxPSkgPg+VYdMXfwnK1xEwQH1JD2Va44KL3R4LiG7EKl2B+l1c
+ G9rqXXvgD94S5WL/S5fCNlQDD/bfnaAVMPgiLYbsHPRgg5s4DEHvToWmH g==;
+X-CSE-ConnectionGUID: hIIvLynkRUulVT6Vgkk7tA==
+X-CSE-MsgGUID: RqmT4TLwTo+GW+0r5auRDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68083780"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="68083780"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 03:33:08 -0700
-X-CSE-ConnectionGUID: rWtxhqanT6axE80tpfAA1Q==
-X-CSE-MsgGUID: 7NqKARz8S5+V/T3w4q7rtQ==
+ 14 Aug 2025 03:33:10 -0700
+X-CSE-ConnectionGUID: OzE5bGNoTGioGrswSi3gXQ==
+X-CSE-MsgGUID: B8HwCgm0Ssq7mHiYgeYSNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="197579391"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="197579401"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 14 Aug 2025 03:33:07 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 14 Aug 2025 03:33:09 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v7 14/24] drm/xe/madvise: Update migration policy based on
- preferred location
-Date: Thu, 14 Aug 2025 16:29:40 +0530
-Message-Id: <20250814105950.2177480-15-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 15/24] drm/xe/svm: Support DRM_XE_SVM_MEM_RANGE_ATTR_PAT
+ memory attribute
+Date: Thu, 14 Aug 2025 16:29:41 +0530
+Message-Id: <20250814105950.2177480-16-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
 References: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
@@ -69,189 +69,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the user sets the valid devmem_fd as a preferred location, GPU fault
-will trigger migration to tile of device associated with devmem_fd.
+This attributes sets the pat_index for the svm used vma range, which is
+utilized to ascertain the coherence.
 
-If the user sets an invalid devmem_fd the preferred location is current
-placement(smem) only.
-
-v2(Matthew Brost)
-- Default should be faulting tile
-- remove devmem_fd used as region
-
-v3 (Matthew Brost)
-- Add migration_policy
-- Fix return condition
-- fix migrate condition
-
-v4
--Rebase
-
-v5
-- Add check for userptr and bo based vmas
+v2 (Matthew Brost)
+- Pat index sanity check
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c        | 45 +++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_svm.h        |  8 ++++++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 25 ++++++++++++++++-
- 3 files changed, 76 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index c660ccb21945..19585a3d9f69 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -806,6 +806,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	};
- 	struct xe_svm_range *range;
- 	struct dma_fence *fence;
-+	struct drm_pagemap *dpagemap;
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	int migrate_try_count = ctx.devmem_only ? 3 : 1;
- 	ktime_t end = 0;
-@@ -835,8 +836,14 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	range_debug(range, "PAGE FAULT");
- 
-+	dpagemap = xe_vma_resolve_pagemap(vma, tile);
- 	if (--migrate_try_count >= 0 &&
--	    xe_svm_range_needs_migrate_to_vram(range, vma, IS_DGFX(vm->xe))) {
-+	    xe_svm_range_needs_migrate_to_vram(range, vma, !!dpagemap || ctx.devmem_only)) {
-+		/* TODO : For multi-device dpagemap will be used to find the
-+		 * remote tile and remote device. Will need to modify
-+		 * xe_svm_alloc_vram to use dpagemap for future multi-device
-+		 * support.
-+		 */
- 		err = xe_svm_alloc_vram(tile, range, &ctx);
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
- 		if (err) {
-@@ -1100,6 +1107,37 @@ static struct drm_pagemap *tile_local_pagemap(struct xe_tile *tile)
- 	return &tile->mem.vram->dpagemap;
- }
- 
-+/**
-+ * xe_vma_resolve_pagemap - Resolve the appropriate DRM pagemap for a VMA
-+ * @vma: Pointer to the xe_vma structure containing memory attributes
-+ * @tile: Pointer to the xe_tile structure used as fallback for VRAM mapping
-+ *
-+ * This function determines the correct DRM pagemap to use for a given VMA.
-+ * It first checks if a valid devmem_fd is provided in the VMA's preferred
-+ * location. If the devmem_fd is negative, it returns NULL, indicating no
-+ * pagemap is available and smem to be used as preferred location.
-+ * If the devmem_fd is equal to the default faulting
-+ * GT identifier, it returns the VRAM pagemap associated with the tile.
-+ *
-+ * Future support for multi-device configurations may use drm_pagemap_from_fd()
-+ * to resolve pagemaps from arbitrary file descriptors.
-+ *
-+ * Return: A pointer to the resolved drm_pagemap, or NULL if none is applicable.
-+ */
-+struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
-+{
-+	s32 fd = (s32)vma->attr.preferred_loc.devmem_fd;
-+
-+	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM)
-+		return NULL;
-+
-+	if (fd == DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE)
-+		return IS_DGFX(tile_to_xe(tile)) ? tile_local_pagemap(tile) : NULL;
-+
-+	/* TODO: Support multi-device with drm_pagemap_from_fd(fd) */
-+	return NULL;
-+}
-+
- /**
-  * xe_svm_alloc_vram()- Allocate device memory pages for range,
-  * migrating existing data.
-@@ -1212,6 +1250,11 @@ int xe_devm_add(struct xe_tile *tile, struct xe_vram_region *vr)
- {
- 	return 0;
- }
-+
-+struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
-+{
-+	return NULL;
-+}
- #endif
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 046a9c4e95c2..9d6a8840a8b7 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -94,6 +94,8 @@ void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end);
- 
- u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end);
- 
-+struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile);
-+
- /**
-  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-  * @range: SVM range
-@@ -318,6 +320,12 @@ u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
- 	return 0;
- }
- 
-+static inline
-+struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile)
-+{
-+	return NULL;
-+}
-+
- #define xe_svm_assert_in_notifier(...) do {} while (0)
- #define xe_svm_range_has_dma_mapping(...) false
- 
 diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 95258bb6a8ee..b5fc1eedf095 100644
+index b5fc1eedf095..3bd52063f9c2 100644
 --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
 +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -78,7 +78,23 @@ static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
- 				      struct xe_vma **vmas, int num_vmas,
- 				      struct drm_xe_madvise *op)
+@@ -9,6 +9,7 @@
+ #include <drm/xe_drm.h>
+ 
+ #include "xe_bo.h"
++#include "xe_pat.h"
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+ 
+@@ -121,7 +122,12 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
+ 			      struct xe_vma **vmas, int num_vmas,
+ 			      struct drm_xe_madvise *op)
  {
 -	/* Implementation pending */
 +	int i;
 +
-+	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC);
++	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PAT);
 +
-+	for (i = 0; i < num_vmas; i++) {
-+		/*TODO: Extend attributes to bo based vmas */
-+		if (!xe_vma_is_cpu_addr_mirror(vmas[i]))
-+			continue;
-+
-+		vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
-+
-+		/* Till multi-device support is not added migration_policy
-+		 * is of no use and can be ignored.
-+		 */
-+		vmas[i]->attr.preferred_loc.migration_policy =
-+						op->preferred_mem_loc.migration_policy;
-+	}
++	for (i = 0; i < num_vmas; i++)
++		vmas[i]->attr.pat_index = op->pat_index.val;
  }
  
- static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
-@@ -184,6 +200,12 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
+ typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm,
+@@ -229,8 +235,22 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
  
- 	switch (args->type) {
- 	case DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC:
+ 		break;
+ 	case DRM_XE_MEM_RANGE_ATTR_PAT:
+-		/*TODO: Add valid pat check */
 +	{
-+		s32 fd = (s32)args->preferred_mem_loc.devmem_fd;
++		u16 coh_mode = xe_pat_index_get_coh_mode(xe, args->pat_index.val);
 +
-+		if (XE_IOCTL_DBG(xe, fd < DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM))
++		if (XE_IOCTL_DBG(xe, !coh_mode))
 +			return false;
 +
- 		if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.migration_policy >
- 				     DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES))
- 			return false;
-@@ -194,6 +216,7 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
- 		if (XE_IOCTL_DBG(xe, args->atomic.reserved))
- 			return false;
++		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->pat_index.reserved))
++			return false;
  		break;
 +	}
- 	case DRM_XE_MEM_RANGE_ATTR_ATOMIC:
- 		if (XE_IOCTL_DBG(xe, args->atomic.val > DRM_XE_ATOMIC_CPU))
+ 	default:
+ 		if (XE_IOCTL_DBG(xe, 1))
  			return false;
 -- 
 2.34.1
