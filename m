@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55192CA0ED1
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 10:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4510CCA0EE4
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 10:33:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A7CA10E84B;
-	Thu, 14 Aug 2025 10:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 098B010E850;
+	Thu, 14 Aug 2025 10:33:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlpuM3B4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HPQJ6k4W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD22D10E849
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 10:33:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 319C010E84B
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 10:33:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755167592; x=1786703592;
+ t=1755167595; x=1786703595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ig+V85+Q858DhV8ZDCj4yrKSQ4oD1SdA9e8dhVbIy6w=;
- b=JlpuM3B4KZdq3ipxUnGVBYYpn7KUgU6yYcBhmacpKQHEXv42qYbhQ7uB
- sEmjX2G5uTMribmFinT/YW3MTQGv30pzFYaAyTa0xphJQdb0WWGwhPbBh
- MgkQjMQ04DKpo1nKdfvdaIxChawDb3a6VbW2/aahM7ToIjRf0NFEDNsB5
- p80wuhjUeDL8zVBjvIemq5W1ioxNSmumpnTWfU2EqJXaI8lb1nU2F48o0
- 9SPRMtD32+CZ78dmmfObt6ZTcg7PjM6BPJZ2in4xo14FwR2Bk2zsC7zXG
- EUkpEotq1ZN9jDGLeR+am7ZClv0eg160jYrqCQ3cBi8f3K/UUuihym1PK A==;
-X-CSE-ConnectionGUID: ng11wx9hTk+KUomg3FNH1Q==
-X-CSE-MsgGUID: 9fhGiXKvS4a6txmCD/oKuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68083782"
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="68083782"
+ bh=7r9gEQexUSkNnFM93yYxPeYXvNoHNtIxlWIWe8oDCi8=;
+ b=HPQJ6k4W7jHs1hbE9Xf9WrpyoGyYNxTFDy2n2GskMdb+PViafK2CWTPE
+ el9dL4N33Zy1WCQA3SmZQVWY1oXtlbQV+821tHu6OBk4Y7fPjOhH0EYRs
+ k0uQ/tI7S71xo5jY5uB0/2S7ReTNky6lsanlHnIVVmSw6BFyUyqm3IZRu
+ i0nNUbbASRktgLRtGD2tAQZ08+FxUU3WKK53NyJFuXhdQVwAL1/M+pe2q
+ WyUHdA5eTHkI4E8VoN3DqM9+Jp9bz1YaQQg/kXl33HzCrsTKK5nPkkgxA
+ dukW2HX6J8deL8rUKfbiP0x9tBBT+O1kGZrgzP/hhlEWXvo5FBUzYjwsb Q==;
+X-CSE-ConnectionGUID: 6Fl2P+JzToOL5Xtmekl9Kw==
+X-CSE-MsgGUID: HUa9k5ZVSKyxw52IEi0E4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="68083787"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="68083787"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 03:33:11 -0700
-X-CSE-ConnectionGUID: 4oOvIPFSQN63db3aCFvWwQ==
-X-CSE-MsgGUID: KtRBCImLSxSQmvUMS9cY/g==
+ 14 Aug 2025 03:33:15 -0700
+X-CSE-ConnectionGUID: tVBIsXckRh2zyuJNzfSqjQ==
+X-CSE-MsgGUID: dCFMA49jS8iDW0eYYoyb1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="197579406"
+X-IronPort-AV: E=Sophos;i="6.17,287,1747724400"; d="scan'208";a="197579420"
 Received: from unknown (HELO himal-Super-Server.iind.intel.com)
  ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 14 Aug 2025 03:33:10 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 14 Aug 2025 03:33:14 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v7 16/24] drm/xe/uapi: Add flag for consulting madvise hints
- on svm prefetch
-Date: Thu, 14 Aug 2025 16:29:42 +0530
-Message-Id: <20250814105950.2177480-17-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 18/24] drm/xe/bo: Add attributes field to xe_bo
+Date: Thu, 14 Aug 2025 16:29:44 +0530
+Message-Id: <20250814105950.2177480-19-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
 References: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
@@ -69,45 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce flag DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC to ensure prefetching
-in madvise-advised memory regions
+A single BO can be linked to multiple VMAs, making VMA attributes
+insufficient for determining the placement and PTE update attributes
+of the BO. To address this, an attributes field has been added to the
+BO.
 
-v2 (Matthew Brost)
-- Add kernel-doc
-
-v3 (Matthew Brost)
-- Fix kernel-doc
-
-Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_bo_types.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 4e6e9a9164ee..115b9bca2a25 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1010,6 +1010,10 @@ struct drm_xe_vm_destroy {
-  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
-  *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
-  *    handle MBZ, and the BO offset MBZ.
-+ *
-+ * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
-+ *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
-+ *    the memory region advised by madvise.
-  */
- struct drm_xe_vm_bind_op {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -1115,6 +1119,7 @@ struct drm_xe_vm_bind_op {
- 	/** @flags: Bind flags */
- 	__u32 flags;
- 
-+#define DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC	-1
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index cf604adc13a3..314652afdca7 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -61,6 +61,14 @@ struct xe_bo {
+ 	 */
+ 	struct list_head client_link;
+ #endif
++	/** @attr: User controlled attributes for bo */
++	struct {
++		/**
++		 * @atomic_access: type of atomic access bo needs
++		 * protected by bo dma-resv lock
++		 */
++		u32 atomic_access;
++	} attr;
  	/**
- 	 * @prefetch_mem_region_instance: Memory region to prefetch VMA to.
- 	 * It is a region instance, not a mask.
+ 	 * @pxp_key_instance: PXP key instance this BO was created against. A
+ 	 * 0 in this variable indicates that the BO does not use PXP encryption.
 -- 
 2.34.1
 
