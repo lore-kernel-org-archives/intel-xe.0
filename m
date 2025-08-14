@@ -4,187 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73109CA0EE4
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 18:39:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825C5CA0EE4
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Aug 2025 18:48:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15D5010E8CF;
-	Thu, 14 Aug 2025 18:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B0610E123;
+	Thu, 14 Aug 2025 18:48:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A2l3s95R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UYZEsweX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 446EE10E20A
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 18:39:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D40E10E123
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Aug 2025 18:48:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755196787; x=1786732787;
+ t=1755197316; x=1786733316;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=WQJ6Agm0VJPN4JV6VtYVhCMEhrbPmrosMPZk0Gh2qqA=;
- b=A2l3s95R6DUWjlCKiEXdPMLOpE1TOGsczL0XcK0fnuWuulVCAHBw5LaU
- xZfGouO4F4ZZtj2GN2JWXcb32aE6DD/H/KZEiHSDUCutAsVDv2TtSjErN
- 0O2W1aMFGo/cA92ofuuaf+w5wmFAd/lBLe1FY3zau73QmKRH2kzhPnZ9R
- 3ZQuBxVGvKrqjkfSvCCZg4g/CKi/XeYl985J/zqyUZcH9aWon3Nu5vjYp
- Xwz9fAw34HEpifCQLz6Am7CNbsPKlV4pwX7QJgbbL0LiEPCxyZN9t/y0p
- DQ4CyAxjgbHpuk4ShBXSjrDmNHkjn94lH/qTSUyH/EYbveN53/dhrWMAy Q==;
-X-CSE-ConnectionGUID: Fs41qKQ6QMe05DLiLMB9vQ==
-X-CSE-MsgGUID: mh+ife+iSdqH+zQKl1hYGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="68975685"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="68975685"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 11:39:47 -0700
-X-CSE-ConnectionGUID: j+WrQ+BKRHuuHYAOtuBYnw==
-X-CSE-MsgGUID: B2YrprNoQE2FVLyqwCLHIw==
+ bh=mTSJNcK3sPnYPmF0s+ZbdPk2rbOFyRng+w75b/4Pmlo=;
+ b=UYZEsweXsQTzKx50nfZRI82Y1Z0i3xCJKiC68jYKJo0NEob7mIqqEDZW
+ UwzWWQPlcuzElo0Pm5LIK0ERWBbXVPmAn+jXp6fAoLCDnCNZBV/0s0l0U
+ 8hH4TzDK6DkqqKN/FN0P2W0qrBlgcKjoMOBkoa4nlny1K6y1JXDC7m9eD
+ 2pUZvMwWko24W84vbY5MhJ/FtKd9Wnoky7aWF9XsEYZOQ1lcgmVNSrKcc
+ iPyQc4YwXDaW1mPb/VRVt8mGynQmlSkK0Kul4uYmlZVkLQp4nHndOv3eC
+ NwblXtF4vv74yUmgEKElGQI9QfYGduAWKgahudnoPwS0hPYjZPgt4kngu g==;
+X-CSE-ConnectionGUID: ZDSQL186QVK/0fHC5KKQ0w==
+X-CSE-MsgGUID: T15JuqJ9Rb+R6k2Z2MZNMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="61331333"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="61331333"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 11:48:35 -0700
+X-CSE-ConnectionGUID: P11FpsHKQxGZIZ+Jj0rWzg==
+X-CSE-MsgGUID: A9VJHLOCQnyRyhaIV2C+IQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171065680"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 11:39:47 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="167092770"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 11:48:35 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 14 Aug 2025 11:39:46 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.17; Thu, 14 Aug 2025 11:48:35 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Thu, 14 Aug 2025 11:39:46 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (40.107.212.64)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Thu, 14 Aug 2025 11:48:35 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.59) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 14 Aug 2025 11:39:46 -0700
+ 15.2.2562.17; Thu, 14 Aug 2025 11:48:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jIc2Ygu7WriU1pJfndebmkoAqzZz/n0CsrZDyW+ngmhowZe1qIRs7GCB9DnsHKLlMrZjcGXKl77WrHPe36GEX3UnLnV/s7JJQvtqV/cNh4Tj+mtsMMUr0bJzluBsYjm2NJt7IIIDS6E5fI9rGW5Ob5medI/WTh4+n0XK0+hfDZtYVyVUV3sqaztlgjn/Zhts4Nob+zD+kQC/Wb5XnwQSbFTQrsX6zU5T+qwZgyvdUYZmWw1i4mmgbH762yGL1S9nV6q7XpgbCdZbUdH4pENmBtylbRpYFAzW2lbJrcJaWkPqqchuAD15AEdw/PGE02Hzx1rp1HkUx7AV80YazuuvQw==
+ b=auEwZRjQyzmvLLzcKFdBZO7wHC5Onhsnyv+MKb0WZZRvlzRkh6PPvie2XEXAI6pBeGNMfVTJg0UIaJehaVUsQ8bhRFi1+HYz79TfhAXwXIslDQlGKMqh4fXJNXZ8TOZx0pOEYCCOqfuG2KkrQIgDFy6c+LyqB9DDlUWT/ri6YoRzwPLMWs593oPp5H6oGhcZ0118Tzs2s/MEeoNinYZmZFL9RZqDWJtnl0xRCOi+4CLognVHHMhEB1s3+eCMjjPLeh4VFK1ti0MRVyfm/O9GxWQfvWeOahpbJSSGfrMHze8ScACl/mMzS4xu8PeurNN1CN/KDcRAUEnuSoY5gjlHHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lB9YrVxSDum+MdEBNozKnjCjqeBzsaZnsJCdVMC4A9A=;
- b=d4xgbt4pZoUnE+B6JIWaAVENLpNW9ouHYXkxZMFiwcna4dokBBGBLiswCDxx8EnlHh+gsDoSreiVgvED4PQR75bWtWAkS+wIGxl1eR0jmdxCQHNcRcHu8fMEzs5Fk0HD3REf8cwA8ht4qTYCCYw83EGdPp1+4/4Gr+Uza9jF8cTR6emcW2v9FoqUQdt0I4M1f4OybRfG4WdzRbWsfwo69zI7g9EkKLfTmrlV5xcJ5EkoBiZjMa1tUawd0dWiZK87T9ILuB8LtKcEn997PLt//2GZLsizXUd8Kvy4m12ApAwPxjeFO9qtPkMMk1QWwI4NmYS6PVW1En1DDsGelM8aIA==
+ bh=CqXoYG48VpbK1/6JyhlK4Cs+3QGF0LJNIpllr1l8OHE=;
+ b=FxisZSfesjMIBkKZutZTQKZqb9LAViwgHXbqd4GTB4jVqYiJkYWgH99NDxx9xc62ZdataRjPwQ3uzGpSVOqLppZl7AJTL6uJPndKYhcSZLzSFgxWhcCVyWWqeaQGc2n5akr3R/coHJ/xadsZhttUBRkjz3Hcpi2KXnW5oIe0wYlyH9F/YU776DTWEzM8o+ruxin5F+26Y+UZ7sbv+0VGA1DONB4MpkOzDyY3VTWI7Jpa7FIVs4v+ZiWZTejpkRDq5SLQRpR0k+EWQoFowiJYboiyOJxEspBaj5bzVS4aAyAe6YizY0urDy7Wl8YEx03u0lluxPVtMW6gm40468GMEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by IA4PR11MB9250.namprd11.prod.outlook.com (2603:10b6:208:56e::11)
+ by IA0PR11MB7749.namprd11.prod.outlook.com (2603:10b6:208:442::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.17; Thu, 14 Aug
- 2025 18:39:43 +0000
+ 2025 18:48:32 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.9031.014; Thu, 14 Aug 2025
- 18:39:43 +0000
-Date: Thu, 14 Aug 2025 11:39:40 -0700
+ 18:48:32 +0000
+Date: Thu, 14 Aug 2025 11:48:29 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
  <matthew.auld@intel.com>
-Subject: Re: [PATCH 14/15] drm/xe: Convert xe_bo_create_pin_map() for
+Subject: Re: [PATCH 13/15] drm/xe: Convert xe_bo_create_pin_map_at() for
  exhaustive eviction
-Message-ID: <aJ4tbEBMtCCkMooi@lstrano-desk.jf.intel.com>
+Message-ID: <aJ4vfeIn9q9CuTTs@lstrano-desk.jf.intel.com>
 References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
- <20250813105121.5945-15-thomas.hellstrom@linux.intel.com>
- <aJ1jpOrhPEkIMA7r@lstrano-desk.jf.intel.com>
- <af2b09635de23fe4d5dd6eb57812979eec09278b.camel@linux.intel.com>
+ <20250813105121.5945-14-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <af2b09635de23fe4d5dd6eb57812979eec09278b.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0336.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::11) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <20250813105121.5945-14-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BY5PR20CA0023.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::36) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA4PR11MB9250:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04559628-2962-45fb-124a-08dddb61ef8b
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA0PR11MB7749:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6c622687-472a-4d80-6aee-08dddb632adf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SDlqbi8yeWV0aGNjN0FKTzAraDdwZmVJWndSaWMvWHR5YThscG9IT1d0dk9q?=
- =?utf-8?B?ZEFOcHZuQ2Q2S1NaWXNvRFhEclc0eXBWamZCdHJyd1A2bUJoQW9RbmVyYmF1?=
- =?utf-8?B?dERYRjVZb2V1aXhGUkV0REoza2MrdkZ4Mzd1QWIxdEhrV016QnZ1dVRmaVI1?=
- =?utf-8?B?ZmJvYXhnNWdVVlRCTWsxbWFIcGlRdVVhQUZZWEk0eHpkVWgvUndWNldGUFBH?=
- =?utf-8?B?eU9kUDZheHhMcHN4ekE1Vk9ucGgzbjY3OElDcHpidDJGWm9FTTZNcUc4UjUr?=
- =?utf-8?B?RUJGU1I1bTRqZXFwT2YydzFIQkFlaUpWYkF1NDBUdDNJdjVCcXErdFZMakxR?=
- =?utf-8?B?Uk1aYjNNTm01WjAvWm9xSDV4MkVMOERUY3l4dG1pbWg3OE9lejRyN1pJUmZF?=
- =?utf-8?B?VFhaQWcyNTkwRklRNGRwL1FPTEVGVmdtczgveXQ5bE5qVjU2UEZqaXBveG4r?=
- =?utf-8?B?OHhINmRuNWFHeC9iY1ZkQjFGOC9qM0h2NStvdEkzSEJoM2IrbW9kTHZZcDly?=
- =?utf-8?B?VHhPdXhDR21zN0cwQ0JEdUxtaUJkMWNxUlNLSlprZ3U2Zzd2K2xveS9nK1V3?=
- =?utf-8?B?anhOTld4dUV5RU9VcTlHUk5nUHpmTkx3dWkvc1hRaWtXRVQ3VFVjTjlOLzNz?=
- =?utf-8?B?cTNiSlA4VkFzMDg1cEMralVadDdyU3VuOTFtRFd3aERHb29aVlVrenFpM2JP?=
- =?utf-8?B?K3NSbHhxREtYclh2M1ZHSlg3Z1lQU1RoVHhTT2FhYTc1UW5SbkQ0R0dZSnhk?=
- =?utf-8?B?OFIrbWJaMVlIRFJ3VExESEtOckZzSkN2Yjg5KzdTSGJjQStRUzRyZ3NNamtD?=
- =?utf-8?B?NXFxM2Y5Y2RON2ZBcmY4dnpiUHRrTXlNTnNkRE1Ga0RiT3ptV3U4dVUxTXFB?=
- =?utf-8?B?YjlKQm1zai92NElGY08rZm9wZkJRM3pzejFXQWxxMDFCbnpqKzR1TDVDTkJO?=
- =?utf-8?B?UXBvTXI0Q2lEeTExUDVVVFNIWmpKQjFJUzE0RGhzejNZSS8rdGU5K1VDdEdj?=
- =?utf-8?B?NXdsakVIM1JMNGR2QjRVVXNFOVV3S3NwRDl1c0Vob1k3NWdESVluN3dMSXpw?=
- =?utf-8?B?QW9tYjBkK1Z3S2pmcG84Si9meGxlNnROSDFNeGtpMXNsazJITExITFJGd09X?=
- =?utf-8?B?bWFQY0JxeEJNd0RQMDA0eDJxT1ZyTzFTa1RRU0hiZHU5Y2tyaEtoVUpCZnVG?=
- =?utf-8?B?c0xYS1VNK1BhZmlWK0NlM0ZJV20rV2NpTFVmY1ZJUFFYKzlycVlZL3dpVEd2?=
- =?utf-8?B?VUhHdktBN3RuRFE5UlhkVk42RTlWV0V3U0VPNVEydW1XandDYzl4Q05KN0k3?=
- =?utf-8?B?RGxldVBIb0Roa1FBQUNaOEpjaHBWS2tzclF6WjlDTklnQ0p4cWxJbDFpazMw?=
- =?utf-8?B?c2FqdCtZbUE4enRJTEFsL2d4ZkxCWk04aXVGcS8xb1d2dVpxU0hJRmh3NUkx?=
- =?utf-8?B?OU5mN3dRV2dUY0dHME14bzlkaEpYb01kSCtoRWpDTm5KTGo3dllnUGYyZVE1?=
- =?utf-8?B?YVVOZGtwS2cyZDYxL0pRMzZEK1B2bGhhbVhYYUE5dDNCNUMyVXcxR04xL3Br?=
- =?utf-8?B?R01CRnpyakd3NU1zK3RROHlBYTZNWlh2eHR0cmJtaEQ4R20xL0lTNFVDSU4z?=
- =?utf-8?B?VVIzWTFPcmtlazFxaXkyVFBTY29UdzhvTmZMV2VkRVB5T1BxRmxvejFoUE03?=
- =?utf-8?B?TkdBQWxoRlpQRk5RWStZS1JlS0xYTUJrMC9WTkl4M1p1d3lpQkhIVExVbi9z?=
- =?utf-8?B?bmN3TGk3U2NQL3pDOWsrOVJiWXBSeWxXM2UwZTc5YlkxdVpUWlJ0L1NMYWlh?=
- =?utf-8?B?U28ycWtlZiswcXErSXo3UVgxS29FaWgwMmZYTnU1MlZJMElxQUhwZEZyMlo1?=
- =?utf-8?B?bmJkT2cvUFNRd3o0OW9RbmR0amcxN1E5bVpzdmFXMWs4MHRiSzh6cDRCSExn?=
- =?utf-8?Q?HQpqb6AMfzo=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SlBIYVl0N2EyOWp4NHNrMzhtamJPZEx2OE1uZnEvNWpDU2N6UnFadCt0ZXNU?=
+ =?utf-8?B?ZmVYRXhPYXp1SjNXV0hyRUt3cTAvTHovVWdCNGpaTlRzWXZNUWhqdFJCRHhp?=
+ =?utf-8?B?ejkzcUxja0xoLzhjYVc2MFNCWTQ0M1lYMGpscERHbnRObGxVWm5TT3h6VDQy?=
+ =?utf-8?B?Q3lheTR5UVFYTXc3RTZXTDB5VExnZlNjRUtGL2l5RzBtcUNzVzVWRG1IeXU0?=
+ =?utf-8?B?RXN5TGhYSmdSY2xNZ1RyRHMvMVB4d0U5ZUoySUNXYVdqTUlsSENvcms0OTBa?=
+ =?utf-8?B?WWEybHFwbU5sczhxM1ZMdzc2d25FOU12U1NiTExUcjJzVGw5V2NRNERzY09Y?=
+ =?utf-8?B?QlRyWmx0T0JUM29ML1ZJWEJFRk80YXFlTHhqMThxVEZZZDJCTE5PS3JsbHpP?=
+ =?utf-8?B?bG5vNThKcVNpM0lzY0QweXNkRVNJYWNoZTRHdk1vMjBzSFh4UTF5dmFYQXg0?=
+ =?utf-8?B?RWtUSVY3Q0F5MlVvaXJlMjVNamJjN2pvSlVTK3JuRlFCV204bDBWVWZ0VGJ6?=
+ =?utf-8?B?bFhhNVpjRVlNMDU5eEFUUTMrcms1ZEIrOGRWQk5tb21zb1lTcHJGTkVMQTIy?=
+ =?utf-8?B?SVJyU3M2ZkhNR3dVM0lOWGZXaFpLM2tyMktJZTFZdFpKN3owQ2dodkt2VFYr?=
+ =?utf-8?B?SWNTMUhPcGRaT3hMNHRNWHNtdGFYNVpjTVRPSHZMWmd0ZUVvWGF6MzRlenZs?=
+ =?utf-8?B?SUE3aStHaWhXVVJpa2F5SkNNK3JzSUt3UVl1ZnVIelJSOXU4Zlk0bmdXK0I3?=
+ =?utf-8?B?eXhMeVRqTndUNjVoVVY4andEZXg4b0pyT3hBcmRSWnord2NHOCtPcnVlNWZ5?=
+ =?utf-8?B?Z2ZNRjEzWEptRlZTR243VDhobm0xSUdlc1k2amdVbW9ycjdqT25CbVp4bjdD?=
+ =?utf-8?B?MjhiUWw4K2sxSm40eXREOFNjb0VUSklOQVIwZHVyOFRlYnJUQXc2cDlHLzAx?=
+ =?utf-8?B?NlNxZnJhUWVtd1p2ek9FVTBLcURnMktSUXNTdG5CVG9ENVZYVVVsWkd3d2Fz?=
+ =?utf-8?B?Y21aSHFOUi8rTHowTmZrY3NiU1Jod0k4UXpEMmRrOWFXR2ZvSWZERVM0TUpN?=
+ =?utf-8?B?RGhndW1zNnhjQkhyK1VGWTVFR0RBWHBSV2luZW0xVDBTRkt6cDc3U01rZ2VC?=
+ =?utf-8?B?RFFNM3IvQUxudXhZWGxlS016czlNcTdNbGpkK24vZUhLZ2RsREhSeWNUZVo4?=
+ =?utf-8?B?VmFQSTlFR0ZYcmFwcTJZUm43emxCaURTOFZXeVg5SGtud09TaWFia3VKZmNO?=
+ =?utf-8?B?Y3JHUDhHUVNmN0k0VDlWNGt6akRTMy94SmxzNkJxL2o4RjJ0eDNtc1ZCZGQr?=
+ =?utf-8?B?Z3dtejRyazF0YWlkRU9wUHdReFVlOWNCdG5qTTB0ZXdzQlNLSnNLWFQ2SDh5?=
+ =?utf-8?B?aXRXcGVNL3RsOTRnOUtGZm1qSWVJSmprRERUMXFMUnNFcERNaTg0ZFU3cVJ1?=
+ =?utf-8?B?S0lEWDBVaENKM0s1TFpUZnlkQUVZb3RneGpjN3JnbGdkSUpINVIySnMySmFN?=
+ =?utf-8?B?ajNHY2srUTFJSDlIOHJhSm9RVUJFYnBFMjd3dm5wSXU2SHAyVS9PelNoRFJT?=
+ =?utf-8?B?eE11citQZFZ3aGJuNU5hbWtNemJYOU9hV1daMnF6Qys5RGhHZXhzSXVkeEhr?=
+ =?utf-8?B?Z04ySVkyZm5OeGFHa2xpanY5ZU5JMzgxQXd4bktqKzFqTjZRUElzaXJBRmlp?=
+ =?utf-8?B?aFhaWW1md1RWRXFwR2s5bk9WM2x0VXJ5bTJ2dHBKZUdqZ3FyMmNJbHEvSThK?=
+ =?utf-8?B?NCtyOXRwaE00UmtyMWV6Z002c0s3TW8rTGwwN1p5MTkxcC9pMExnK24yVmpO?=
+ =?utf-8?B?WHZwYlVJRGhwUlZ4RlptQ1dVUnh3NXJVVGh0Ymx3ZlpGRnlhbll5UDhyWE53?=
+ =?utf-8?B?YWw5WGg4a1VyM3RmTU54K0dTZE9Lb09lS25Oc2dBMU9QbXo5Q2NrU2tBTnNQ?=
+ =?utf-8?Q?U7Cu9RKmXtY=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TG45NlU0ZUhFelNQNFA3M1RLWlFiM3RBY1Q1VzR6S1BwRk9vR01kdEFOYk9z?=
- =?utf-8?B?WGd1djE0bGVRTldXZlkyb3N3R1V3RFlOR09zcjZSUWcyUlZZbEVUbGdQTzhC?=
- =?utf-8?B?K09RRGFOeERpQTIxWVl1RFlkRzF2SkFKc0hmMXdmQm9zUHZzenNTL0x5VFhv?=
- =?utf-8?B?N2hTOGVGTkwvL2JPMEZjMm1keDYrMnh6aEJ1UDBCS1JMNlREajV0SXBobTBX?=
- =?utf-8?B?SWlnRFMzOHl1YjdoZkVzSTMwcmVyVlBYd2ZQK3JvOHNvQUg4Z1ZUaWFWeVZK?=
- =?utf-8?B?V0NxN1B5Z2Q4ZTFMSXBqTFpiSVdJbFAxeTdUZE1tZDdPOFZ5QW5SYjM5TE5q?=
- =?utf-8?B?elpLQlhvdzZQTGJEWHVZMDY2dmdRcENYMldtbjdCMHloL2hLMHBWdUlmT1Rp?=
- =?utf-8?B?NC9qc0JnNW9MK000TjNQOGVIUjRWSXp4Y1BsSUFpZ3JBRDc2Q2lnM3k5aXhr?=
- =?utf-8?B?eGdNTk5zM0NzMmY5L2VOd2NEUnliVDcvUHBTV1l0cUVyQzFsZHE1ZlMzL0Fr?=
- =?utf-8?B?WUhCM2xDcXZEaVRiTHJsb0hWc0prYVFjSmJoVmgzUldyVVVuV2Y5Q3RDNEk5?=
- =?utf-8?B?QlcwdlJqSWFxNituKzR2cEFJZE0yeE1uc1d5RjZVLzFTZ09BYTgrdllCUGxM?=
- =?utf-8?B?UDhiRFVWSkZaODl5eG9vcXJqd2dydU55VUY2aThMSWxDUnljQzc0SzhVb3FX?=
- =?utf-8?B?ZjJhdjVFczZ6Sld1RDRhS2VYMGIzNWZZTHFlWWlTcnZJSDVDVDlZNUcva3Fa?=
- =?utf-8?B?bU8rYURnREp3aFVnYmFxam95dkZCcm5LUnNkdHNUOTFMYmxHU0NIM3UrRVp2?=
- =?utf-8?B?UFBJeFU2bXRpV3JMU1BtUmFUblY1bVZEMytXVGFmVTdJV0hodGRlU0J3cWlB?=
- =?utf-8?B?VThrZ3pLMjRubXJUOTFrWmV5TW02VHpod1VMUDZsNkYwVk5pZkdMR0lLMXVL?=
- =?utf-8?B?eE1qVytZL1hnK0VIQWRsQ1lIVmlRcnBFcGplTGZ4d3V2Z3JTZ24rS2M0bnRO?=
- =?utf-8?B?ZTdJdENjMTNXZXAyY1VXTkRkTzl3QjI2b0VtWDYxekR4UVBINHBNYU9qSlla?=
- =?utf-8?B?cFY3aUdYTFpuUkxCc3EvR0swL3hTUFV2cS9IditoWTVzckhaTHJjTGhROEU5?=
- =?utf-8?B?SFhmRkhsSGR5UHdySGp4dTZUcnIwNDBOMlV6b3hXTHUxSWx2ZzFuK2pYRXI4?=
- =?utf-8?B?U1E1WUsxUmsyVktvcEhwczlDTmpUaTdnemw0VkNMQmlja1JLa1lDUTRiK1NF?=
- =?utf-8?B?QTBGRGxtZk5NZCtiTVA0SFdsSkowdXJHYmUvd1MxNkx2Zm42dllwb3RmNmpO?=
- =?utf-8?B?S0twUTN2QVYycy84WjVhc016b2JrUS9wMTJxZHlxRXEza1k3dlRqNmx0U1M5?=
- =?utf-8?B?ZjJFS1dqaGhxQWRKdFhBb3dlMUtjcWhlYnNTdG9OVkQzcW12ZDFrTFoyU2d6?=
- =?utf-8?B?bXpzdGpHRWloeVBkTWVmYVVJeEdkTC9BVEx3bGNHOVZocE9sOURMWUZ4Zmoy?=
- =?utf-8?B?dnQ4YVBCb09JNTlCbTd5Rmxrdmt3MU9sNEFvYnFOL0lINUx2RUJJYjJTMzFw?=
- =?utf-8?B?WnY5MStaZU5FVkp0NjdLbUJJUzFrSDFYM0wrOGN3ZUMyRFIwTjFDdE9qV01B?=
- =?utf-8?B?NG5nMVJCWmVNZnlSME9nY1B2V0M4MkQwVm5BbERwTlBLbWFrV1BpMGxsakl1?=
- =?utf-8?B?WVp3Q2Y3RjBYZlNrZXJkaVB2S3B6K3hZNmVBdW1tZWZDc2toRGIzMXR1Smor?=
- =?utf-8?B?L0lVUldGcXY1clRYdjVCY2VxaW1MSVJ5akVKUnNCcXliK2ZiUWpEUEZ6TzZD?=
- =?utf-8?B?N2JSeWhBYVpuUm4yTk14M0pQSFBpTGtQMGdGQ2cyRTNqM3JwVkNvTUtEMWJ3?=
- =?utf-8?B?TFlkcTdFNkVuMTIvYjZ5WDEyNDdaSEJVeDFWa1hkczJrV2I4cWtheWtrcWZh?=
- =?utf-8?B?TXEySHI0WU5sZ3NNeGxCUzNicDZ5eEMxMElmMDc2aFQ1b1lSRFFieGFiUklJ?=
- =?utf-8?B?RkEzeFF4M1JrdnBlaDA2U0V3a2Y3TWpCRU1pNjIzTVI5bmZNakp3bWVXdWRt?=
- =?utf-8?B?c2s5R3l2SlBjZzM3cmV5bWhteUpGcWtIR05yaDZpYnlBMTdpU2RiZjVUY1I2?=
- =?utf-8?B?VmU1QVRIUFBuTTRBc05GQ2daTXpiV3UwQ1F0ZDBPUHE5VzZTZjF6WFd2cHV0?=
- =?utf-8?B?VXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04559628-2962-45fb-124a-08dddb61ef8b
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1BMakc0VzVHdStyckVxaWU2bnZwd3A0VGtaOTgrTjdRZndlRXVDck5FdzRl?=
+ =?utf-8?B?R2VWdDV4aTYyY1RrR21qd0VVcXY1Rko2L29lTTc5RSs2NFNMQ29LZytaRGgw?=
+ =?utf-8?B?OGtnUitnRTBwakEvcU1HaGxyek54UVNsa0wwSHlsSWJzVEZGa3N6VjkzbjNJ?=
+ =?utf-8?B?RzBidFgwSGtMcHlJNHdJQWdsODhzT1pQMlRmVE9pMGVBZnFYQksxQlFkYWI5?=
+ =?utf-8?B?SU1NUm9IRXFLV1pmTndmUVRnRGh4ZU10amRLYU02KzZIZ1VnYmNZWTVGbmJr?=
+ =?utf-8?B?WWp1anN0d1haanFIUkkzNzU3c1EzQXZZT0t2ZHMyVmVyOUIvZUUrY2VJaitq?=
+ =?utf-8?B?YWJLbzVYVE95Slh3NGRGb2pHMlVTK1hOTjgrdmdUd0krQVQzVmxaVW9vMHgw?=
+ =?utf-8?B?UGRiMWppSDE5ZHRiL3VZOHlGRTdQT2U0OEtVa0g1eVRhTGY1THdvcTJIS25l?=
+ =?utf-8?B?L2w5Z3V5c3JIdFI4TW1OVUJZcUdxUTlRYUxzWkFTOWJKS3FGR041OWhJUURT?=
+ =?utf-8?B?SHJkTzRNbEpJNmRubGd6dklGV05YWDJXL2tSYXI0VTVnc0dXYkhpdXJkTDgv?=
+ =?utf-8?B?WWo4T3JoUW1UdmZBY2tvTzk0TEJQbFFOb2VobFBHWnJ4ekVaK1lrRjlPNGYv?=
+ =?utf-8?B?czhWdStpUlZvbW9HbEFJdlYvRkREYmEyTWQydjNxU3BaQTRFOGk1ZE5xU2xx?=
+ =?utf-8?B?TE9xZ0NGY2wvdmVDTEdHbmV3VjRNM3NqdDV5R0ZySk1VL2JxNGF2UVNTYTBo?=
+ =?utf-8?B?NFFDY0RkRWt4M3hWSldZQmo2UU5TVnRWN0pZTExjQWlIcnJyUVBZLy9LU3F4?=
+ =?utf-8?B?STJjVlNPeWxDV3lldGs0bVRYaUNQQ2tJL2JvWGpCcVJ5OEVLNXNpVGYzekJi?=
+ =?utf-8?B?VzRFMDkySjRERGw4QUlhbGNJR3Nlc3VzZEYrVmZTSXdwZTFPL3I1ZGFZRkhz?=
+ =?utf-8?B?YS9jZXhqYkxGeHJ4b3JwcGdnUjlTQ2lhSS9GV2RXMkJ1RytlSDdEMkRrVG5J?=
+ =?utf-8?B?Z2pTRkdjSnNaNnRuckt0UTJGNDI1WGI1NlNMcytFNm9wa3UxOTY1bkk4T1Jk?=
+ =?utf-8?B?OWJjcFAvdU5COUQ4K3lQenhyaUFDVXZuakNBS1BDc1JFOEVVRVZwUitaV0t5?=
+ =?utf-8?B?cnRvS0hBdWF2RG1ya3ZxMEtZWTRiMlpqSUVsNStCa0srbEVJUTd1dEhQeTZp?=
+ =?utf-8?B?cGs2cURoM2lIN2dnd3NOVWJ5d2JWR3J2UVRmUWk3ZGVNbkRnZDdlNXZ3ajZi?=
+ =?utf-8?B?U2xWQkVCMkd5My95bEIybGNUTlJ0cWlacmJVWXBweEwxSDN3Skt0MnhTdXN3?=
+ =?utf-8?B?MjJyTkVsVWdRUndLTGdpR3BVTjVZS2hiYUZkWHVjYVVHSWZ4VEErYjl3ckZE?=
+ =?utf-8?B?OEUyTnRZYXg1MXppbGI0NGIzWnV6M250Mm43aXlCMXRzZlZZTW4zMGNkSk51?=
+ =?utf-8?B?U1R1RTd4Yy9KcWR0Ui9YbDJVMm85VDRpVGRzeXdMY3dRS2NUeG5VbVF3OVVY?=
+ =?utf-8?B?b0VlMzFCejNwdXNYYjU2N0FXVytCZU80WVZtM3RpdUdmUmFXQXVZaFd6OGZS?=
+ =?utf-8?B?WW1MNmdhTFFIRkhMQmgrZkMxZ1dxNjBSeDZBb20rRVRPNXVNMWtmN3VINFBU?=
+ =?utf-8?B?RE1Ja1R6bXl0MnpMajR5UU4wemhQL000MEdvT2RvRHBCUVRQaVpRM3NLR2VU?=
+ =?utf-8?B?dW1WRXd6eDhLTTh5OXRLSlM0eTdTRm9GVDhiaE93K1VGUmc5ZkR5UUd1VWdJ?=
+ =?utf-8?B?YldzdWhSb25wQVJlNDNyNjJ0c2c1Y1E2QXI2MWxscDB4RkIwL2pzRzJ1ZEh5?=
+ =?utf-8?B?aDNSakc2LzYyRkszSkt0Z0N1cFpybTZFOGthbENqV1BDUzJEQkVoc3JoNFJL?=
+ =?utf-8?B?SFNUSXdDalhTMTVDU1NVUDI5RFNwTVNUbTAxSVlrYUo5MlZ1L2RzODRHVklw?=
+ =?utf-8?B?czJrZ0FmZjRVUmVWajBpdkNPS0VzdmRvdHNlU3BxZjl1QjRpc2doK3dkOGF0?=
+ =?utf-8?B?R3JWWi9QcWNENVZkV1dQS2xLTDlCcGdJNHRpSWVUdzk3d0VMRWk4R3dCcEZh?=
+ =?utf-8?B?MXdiemNObG92cmRpaTkza1ovZ21HWEdBeFJkbGZBcnBOcEIwUG5WRVdJcXI1?=
+ =?utf-8?B?VWoxVU5OcXVwcGFQTFljYnB0Vnl0NXhDZHFZczhQeUU0d2NTQkVWQlZyM0RD?=
+ =?utf-8?B?Z3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c622687-472a-4d80-6aee-08dddb632adf
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2025 18:39:43.5527 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2025 18:48:32.5812 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: roj8OtuKC0TdX6HJpuS2rDgyQ+dOp1XttHLrc7xJDKXQ8QbiZv02y8fyJIU1gWLyJqqFqLQGsqbS15ZX3JfLQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9250
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sv2/k2BRga5BC3uQEW1TDlGndrE6Xhbl5BzUmsvLE4S+1piLT0Ql+8w1NPSsxQOEIE4DYxBVa7+PoRlGPzXFGA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7749
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,1162 +198,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 14, 2025 at 03:14:57PM +0200, Thomas Hellström wrote:
-> On Wed, 2025-08-13 at 21:18 -0700, Matthew Brost wrote:
-> > On Wed, Aug 13, 2025 at 12:51:20PM +0200, Thomas Hellström wrote:
-> > > Introduce an xe_bo_create_pin_map_novm() function that does not
-> > > take the drm_exec paramenter to simplify the conversion of many
-> > > callsites.
-> > > For the rest, ensure that the same drm_exec context that was used
-> > > for locking the vm is passed down to validation.
-> > > 
-> > > Use xe_validation_guard() where appropriate.
-> > > 
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  18 +--
-> > >  drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |  10 +-
-> > >  drivers/gpu/drm/xe/display/xe_fb_pin.c        |  39 +++---
-> > >  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |   8 +-
-> > >  drivers/gpu/drm/xe/tests/xe_migrate.c         |   9 +-
-> > >  drivers/gpu/drm/xe/xe_bo.c                    |  53 +++++++-
-> > >  drivers/gpu/drm/xe/xe_bo.h                    |   6 +-
-> > >  drivers/gpu/drm/xe/xe_gsc.c                   |   8 +-
-> > >  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  24 ++--
-> > >  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  24 ++--
-> > >  drivers/gpu/drm/xe/xe_guc_engine_activity.c   |  13 +-
-> > >  drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
-> > >  drivers/gpu/drm/xe/xe_lrc.c                   |   7 +-
-> > >  drivers/gpu/drm/xe/xe_migrate.c               |  20 ++-
-> > >  drivers/gpu/drm/xe/xe_oa.c                    |   6 +-
-> > >  drivers/gpu/drm/xe/xe_pt.c                    |  10 +-
-> > >  drivers/gpu/drm/xe/xe_pt.h                    |   3 +-
-> > >  drivers/gpu/drm/xe/xe_pxp_submit.c            |  34 +++--
-> > >  drivers/gpu/drm/xe/xe_vm.c                    | 119 ++++++++++----
-> > > ----
-> > >  19 files changed, 252 insertions(+), 171 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> > > b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> > > index d96ba2b51065..8ea9a472113c 100644
-> > > --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> > > +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> > > @@ -42,11 +42,11 @@ struct intel_framebuffer
-> > > *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-> > >  	obj = ERR_PTR(-ENODEV);
-> > >  
-> > >  	if (!IS_DGFX(xe) && !XE_GT_WA(xe_root_mmio_gt(xe),
-> > > 22019338487_display)) {
-> > > -		obj = xe_bo_create_pin_map(xe,
-> > > xe_device_get_root_tile(xe),
-> > > -					   NULL, size,
-> > > -					   ttm_bo_type_kernel,
-> > > XE_BO_FLAG_SCANOUT |
-> > > -					   XE_BO_FLAG_STOLEN |
-> > > -					   XE_BO_FLAG_GGTT);
-> > > +		obj = xe_bo_create_pin_map_novm(xe,
-> > > xe_device_get_root_tile(xe),
-> > > +						size,
-> > > +						ttm_bo_type_kernel
-> > > , XE_BO_FLAG_SCANOUT |
-> > > +						XE_BO_FLAG_STOLEN
-> > > |
-> > > +						XE_BO_FLAG_GGTT,
-> > > false);
-> > >  		if (!IS_ERR(obj))
-> > >  			drm_info(&xe->drm, "Allocated fbdev into
-> > > stolen\n");
-> > >  		else
-> > > @@ -54,10 +54,10 @@ struct intel_framebuffer
-> > > *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-> > >  	}
-> > >  
-> > >  	if (IS_ERR(obj)) {
-> > > -		obj = xe_bo_create_pin_map(xe,
-> > > xe_device_get_root_tile(xe), NULL, size,
-> > > -					   ttm_bo_type_kernel,
-> > > XE_BO_FLAG_SCANOUT |
-> > > -					  
-> > > XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> > > -					   XE_BO_FLAG_GGTT);
-> > > +		obj = xe_bo_create_pin_map_novm(xe,
-> > > xe_device_get_root_tile(xe), size,
-> > > +						ttm_bo_type_kernel
-> > > , XE_BO_FLAG_SCANOUT |
-> > > +						XE_BO_FLAG_VRAM_IF
-> > > _DGFX(xe_device_get_root_tile(xe)) |
-> > > +						XE_BO_FLAG_GGTT,
-> > > false);
-> > >  	}
-> > >  
-> > >  	if (IS_ERR(obj)) {
-> > > diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> > > b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> > > index 9f941fc2e36b..58581d7aaae6 100644
-> > > --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> > > +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> > > @@ -43,11 +43,11 @@ bool intel_dsb_buffer_create(struct intel_crtc
-> > > *crtc, struct intel_dsb_buffer *d
-> > >  		return false;
-> > >  
-> > >  	/* Set scanout flag for WC mapping */
-> > > -	obj = xe_bo_create_pin_map(xe,
-> > > xe_device_get_root_tile(xe),
-> > > -				   NULL, PAGE_ALIGN(size),
-> > > -				   ttm_bo_type_kernel,
-> > > -				  
-> > > XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> > > -				   XE_BO_FLAG_SCANOUT |
-> > > XE_BO_FLAG_GGTT);
-> > > +	obj = xe_bo_create_pin_map_novm(xe,
-> > > xe_device_get_root_tile(xe),
-> > > +					PAGE_ALIGN(size),
-> > > +					ttm_bo_type_kernel,
-> > > +					XE_BO_FLAG_VRAM_IF_DGFX(xe
-> > > _device_get_root_tile(xe)) |
-> > > +					XE_BO_FLAG_SCANOUT |
-> > > XE_BO_FLAG_GGTT, false);
-> > >  	if (IS_ERR(obj)) {
-> > >  		kfree(vma);
-> > >  		return false;
-> > > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > > b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > > index d46ff7ebb0a1..d8e15ebb740c 100644
-> > > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > > @@ -102,32 +102,23 @@ static int __xe_pin_fb_vma_dpt(const struct
-> > > intel_framebuffer *fb,
-> > >  				 XE_PAGE_SIZE);
-> > >  
-> > >  	if (IS_DGFX(xe))
-> > > -		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-> > > -						   dpt_size,
-> > > ~0ull,
-> > > -						  
-> > > ttm_bo_type_kernel,
-> > > -						   true,
-> > > -						  
-> > > XE_BO_FLAG_VRAM0 |
-> > > -						   XE_BO_FLAG_GGTT
-> > > |
-> > > -						  
-> > > XE_BO_FLAG_PAGETABLE,
-> > > -						   alignment,
-> > > false);
-> > > +		dpt = xe_bo_create_pin_map_novm(xe, tile0,
-> > > dpt_size,
-> > > +						ttm_bo_type_kernel
-> > > ,
-> > > +						XE_BO_FLAG_VRAM0 |
-> > > +						XE_BO_FLAG_GGTT |
-> > > +						XE_BO_FLAG_PAGETAB
-> > > LE, true);
-> > >  	else
-> > > -		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-> > > -						   dpt_size, 
-> > > ~0ull,
-> > > -						  
-> > > ttm_bo_type_kernel,
-> > > -						   true,
-> > > -						  
-> > > XE_BO_FLAG_STOLEN |
-> > > -						   XE_BO_FLAG_GGTT
-> > > |
-> > > -						  
-> > > XE_BO_FLAG_PAGETABLE,
-> > > -						   alignment,
-> > > false);
-> > > +		dpt = xe_bo_create_pin_map_novm(xe, tile0,
-> > > dpt_size,
-> > > +						ttm_bo_type_kernel
-> > > ,
-> > > +						XE_BO_FLAG_STOLEN
-> > > |
-> > > +						XE_BO_FLAG_GGTT |
-> > > +						XE_BO_FLAG_PAGETAB
-> > > LE, true);
-> > >  	if (IS_ERR(dpt))
-> > > -		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
-> > > -						   dpt_size, 
-> > > ~0ull,
-> > > -						  
-> > > ttm_bo_type_kernel,
-> > > -						   true,
-> > > -						  
-> > > XE_BO_FLAG_SYSTEM |
-> > > -						   XE_BO_FLAG_GGTT
-> > > |
-> > > -						  
-> > > XE_BO_FLAG_PAGETABLE,
-> > > -						   alignment,
-> > > false);
-> > > +		dpt = xe_bo_create_pin_map_novm(xe, tile0,
-> > > dpt_size,
-> > > +						ttm_bo_type_kernel
-> > > ,
-> > > +						XE_BO_FLAG_SYSTEM
-> > > |
-> > > +						XE_BO_FLAG_GGTT |
-> > > +						XE_BO_FLAG_PAGETAB
-> > > LE, true);
-> > >  	if (IS_ERR(dpt))
-> > >  		return PTR_ERR(dpt);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> > > b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> > > index 30f1073141fc..4ae847b628e2 100644
-> > > --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> > > +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> > > @@ -72,10 +72,10 @@ static int
-> > > intel_hdcp_gsc_initialize_message(struct xe_device *xe,
-> > >  	int ret = 0;
-> > >  
-> > >  	/* allocate object of two page for HDCP command memory and
-> > > store it */
-> > > -	bo = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
-> > > NULL, PAGE_SIZE * 2,
-> > > -				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > -				  XE_BO_FLAG_GGTT);
-> > > +	bo = xe_bo_create_pin_map_novm(xe,
-> > > xe_device_get_root_tile(xe), PAGE_SIZE * 2,
-> > > +				       ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > +				       XE_BO_FLAG_GGTT, false);
-> > >  
-> > >  	if (IS_ERR(bo)) {
-> > >  		drm_err(&xe->drm, "Failed to allocate bo for HDCP
-> > > streaming command!\n");
-> > > diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> > > b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> > > index afa794e56065..5904d658d1f2 100644
-> > > --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> > > +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> > > @@ -204,7 +204,8 @@ static void xe_migrate_sanity_test(struct
-> > > xe_migrate *m, struct kunit *test,
-> > >  
-> > >  	big = xe_bo_create_pin_map(xe, tile, m->q->vm, SZ_4M,
-> > >  				   ttm_bo_type_kernel,
-> > > -				   XE_BO_FLAG_VRAM_IF_DGFX(tile));
-> > > +				   XE_BO_FLAG_VRAM_IF_DGFX(tile),
-> > > +				   exec);
-> > >  	if (IS_ERR(big)) {
-> > >  		KUNIT_FAIL(test, "Failed to allocate bo: %li\n",
-> > > PTR_ERR(big));
-> > >  		goto vunmap;
-> > > @@ -212,7 +213,8 @@ static void xe_migrate_sanity_test(struct
-> > > xe_migrate *m, struct kunit *test,
-> > >  
-> > >  	pt = xe_bo_create_pin_map(xe, tile, m->q->vm,
-> > > XE_PAGE_SIZE,
-> > >  				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_VRAM_IF_DGFX(tile));
-> > > +				  XE_BO_FLAG_VRAM_IF_DGFX(tile),
-> > > +				  exec);
-> > >  	if (IS_ERR(pt)) {
-> > >  		KUNIT_FAIL(test, "Failed to allocate fake pt:
-> > > %li\n",
-> > >  			   PTR_ERR(pt));
-> > > @@ -222,7 +224,8 @@ static void xe_migrate_sanity_test(struct
-> > > xe_migrate *m, struct kunit *test,
-> > >  	tiny = xe_bo_create_pin_map(xe, tile, m->q->vm,
-> > >  				    2 * SZ_4K,
-> > >  				    ttm_bo_type_kernel,
-> > > -				   
-> > > XE_BO_FLAG_VRAM_IF_DGFX(tile));
-> > > +				    XE_BO_FLAG_VRAM_IF_DGFX(tile),
-> > > +				    exec);
-> > >  	if (IS_ERR(tiny)) {
-> > >  		KUNIT_FAIL(test, "Failed to allocate tiny fake pt:
-> > > %li\n",
-> > >  			   PTR_ERR(tiny));
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > index c9928d4ee5a0..82bf158426ad 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -2343,16 +2343,60 @@ xe_bo_create_pin_map_at_novm(struct
-> > > xe_device *xe, struct xe_tile *tile,
-> > >  	return ret ? ERR_PTR(ret) : bo;
-> > >  }
-> > >  
-> > > +/**
-> > > + * xe_bo_create_pin_map() - Create pinned and mapped bo
-> > > + * @xe: The xe device.
-> > > + * @tile: The tile to select for migration of this bo, and the
-> > > tile used for
-> > > + * @vm: The vm to associate the buffer object with. The vm's resv
-> > > must be locked
-> > > + * with the transaction represented by @exec.
-> > > + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel
-> > > bos.
-> > > + * @size: The storage size to use for the bo.
-> > > + * @type: The TTM buffer object type.
-> > > + * @flags: XE_BO_FLAG_ flags.
-> > > + * @exec: The drm_exec transaction to use for exhaustive eviction,
-> > > and
-> > > + * previously used for locking @vm's resv.
-> > > + *
-> > > + * Create a pinned and mapped bo. The bo will be external and not
-> > > associated
-> > > + * with a VM.
-> > > + *
-> > > + * Return: The buffer object on success. Negative error pointer on
-> > > failure.
-> > > + * In particular, the function may return ERR_PTR(%-EINTR) if
-> > > @intr was set
-> > > + * to true on entry.
-> > > + */
-> > >  struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
-> > > xe_tile *tile,
-> > >  				   struct xe_vm *vm, size_t size,
-> > > -				   enum ttm_bo_type type, u32
-> > > flags)
-> > > +				   enum ttm_bo_type type, u32
-> > > flags,
-> > > +				   struct drm_exec *exec)
-> > >  {
-> > > -	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) :
-> > > XE_VALIDATION_UNIMPLEMENTED;
-> > > -
-> > > +	xe_assert(xe, exec);
-> > >  	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size,
-> > > ~0ull, type, flags,
-> > >  					       true, 0, exec);
-> > >  }
-> > >  
-> > > +/**
-> > > + * xe_bo_create_pin_map_novm() - Create pinned and mapped bo
-> > > + * @xe: The xe device.
-> > > + * @tile: The tile to select for migration of this bo, and the
-> > > tile used for
-> > > + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel
-> > > bos.
-> > > + * @size: The storage size to use for the bo.
-> > > + * @type: The TTM buffer object type.
-> > > + * @flags: XE_BO_FLAG_ flags.
-> > > + * @intr: Whether to execut any waits for backing store
-> > > interruptible.
-> > > + *
-> > > + * Create a pinned and mapped bo. The bo will be external and not
-> > > associated
-> > > + * with a VM.
-> > > + *
-> > > + * Return: The buffer object on success. Negative error pointer on
-> > > failure.
-> > > + * In particular, the function may return ERR_PTR(%-EINTR) if
-> > > @intr was set
-> > > + * to true on entry.
-> > > + */
-> > > +struct xe_bo *xe_bo_create_pin_map_novm(struct xe_device *xe,
-> > > struct xe_tile *tile,
-> > > +					size_t size, enum
-> > > ttm_bo_type type, u32 flags,
-> > > +					bool intr)
-> > > +{
-> > > +	return xe_bo_create_pin_map_at_novm(xe, tile, size, ~0ull,
-> > > type, flags, true, 0, intr);
-> > > +}
-> > > +
-> > >  static void __xe_bo_unpin_map_no_vm(void *arg)
-> > >  {
-> > >  	xe_bo_unpin_map_no_vm(arg);
-> > > @@ -2365,8 +2409,7 @@ struct xe_bo
-> > > *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile
-> > >  	int ret;
-> > >  
-> > >  	KUNIT_STATIC_STUB_REDIRECT(xe_managed_bo_create_pin_map,
-> > > xe, tile, size, flags);
-> > > -
-> > > -	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
-> > > ttm_bo_type_kernel, flags);
-> > > +	bo = xe_bo_create_pin_map_novm(xe, tile, size,
-> > > ttm_bo_type_kernel, flags, true);
-> > >  	if (IS_ERR(bo))
-> > >  		return bo;
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.h
-> > > b/drivers/gpu/drm/xe/xe_bo.h
-> > > index d06266af9662..802e3c7d7872 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > > @@ -108,7 +108,11 @@ struct xe_bo *xe_bo_create_user(struct
-> > > xe_device *xe, struct xe_vm *vm, size_t s
-> > >  				u16 cpu_caching, u32 flags, struct
-> > > drm_exec *exec);
-> > >  struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
-> > > xe_tile *tile,
-> > >  				   struct xe_vm *vm, size_t size,
-> > > -				   enum ttm_bo_type type, u32
-> > > flags);
-> > > +				   enum ttm_bo_type type, u32
-> > > flags,
-> > > +				   struct drm_exec *exec);
-> > > +struct xe_bo *xe_bo_create_pin_map_novm(struct xe_device *xe,
-> > > struct xe_tile *tile,
-> > > +					size_t size, enum
-> > > ttm_bo_type type, u32 flags,
-> > > +					bool intr);
-> > >  struct xe_bo *
-> > >  xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile
-> > > *tile,
-> > >  			     size_t size, u64 offset, enum
-> > > ttm_bo_type type,
-> > > diff --git a/drivers/gpu/drm/xe/xe_gsc.c
-> > > b/drivers/gpu/drm/xe/xe_gsc.c
-> > > index f5ae28af60d4..83d61bf8ec62 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gsc.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gsc.c
-> > > @@ -136,10 +136,10 @@ static int query_compatibility_version(struct
-> > > xe_gsc *gsc)
-> > >  	u64 ggtt_offset;
-> > >  	int err;
-> > >  
-> > > -	bo = xe_bo_create_pin_map(xe, tile, NULL, GSC_VER_PKT_SZ *
-> > > 2,
-> > > -				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > -				  XE_BO_FLAG_GGTT);
-> > > +	bo = xe_bo_create_pin_map_novm(xe, tile, GSC_VER_PKT_SZ *
-> > > 2,
-> > > +				       ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > +				       XE_BO_FLAG_GGTT, false);
-> > >  	if (IS_ERR(bo)) {
-> > >  		xe_gt_err(gt, "failed to allocate bo for GSC
-> > > version query\n");
-> > >  		return PTR_ERR(bo);
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> > > b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> > > index 906011671b60..d0a87d7b028b 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> > > @@ -1452,7 +1452,6 @@ static bool pf_release_vf_config_lmem(struct
-> > > xe_gt *gt, struct xe_gt_sriov_confi
-> > >  static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int
-> > > vfid, u64 size)
-> > >  {
-> > >  	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt,
-> > > vfid);
-> > > -	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
-> > >  	struct xe_device *xe = gt_to_xe(gt);
-> > >  	struct xe_tile *tile = gt_to_tile(gt);
-> > >  	struct xe_bo *bo;
-> > > @@ -1479,24 +1478,17 @@ static int pf_provision_vf_lmem(struct
-> > > xe_gt *gt, unsigned int vfid, u64 size)
-> > >  		return 0;
-> > >  
-> > >  	xe_gt_assert(gt, pf_get_lmem_alignment(gt) == SZ_2M);
-> > > -	bo = xe_bo_create_locked(xe, tile, NULL,
-> > > -				 ALIGN(size, PAGE_SIZE),
-> > > -				 ttm_bo_type_kernel,
-> > > -				 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > -				 XE_BO_FLAG_NEEDS_2M |
-> > > -				 XE_BO_FLAG_PINNED |
-> > > -				 XE_BO_FLAG_PINNED_LATE_RESTORE,
-> > > -				 exec);
-> > > +	bo = xe_bo_create_pin_map_at_novm(xe, tile,
-> > > +					  ALIGN(size, PAGE_SIZE),
-> > > +					  0,
-> > > +					  ttm_bo_type_kernel,
-> > > +					 
-> > > XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > +					  XE_BO_FLAG_NEEDS_2M |
-> > > +					 
-> > > XE_BO_FLAG_PINNED_LATE_RESTORE,
-> > > +					  false, 0, false);
-> > >  	if (IS_ERR(bo))
-> > >  		return PTR_ERR(bo);
-> > >  
-> > > -	err = xe_bo_pin(bo, exec);
-> > > -	xe_bo_unlock(bo);
-> > > -	if (unlikely(err)) {
-> > > -		xe_bo_put(bo);
-> > > -		return err;
-> > > -	}
-> > > -
-> > >  	config->lmem_obj = bo;
-> > >  
-> > >  	if (xe_device_has_lmtt(xe)) {
-> > > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > > b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > > index c712111aa30d..44cc612b0a75 100644
-> > > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > > @@ -55,12 +55,12 @@ static int pf_send_guc_save_vf_state(struct
-> > > xe_gt *gt, unsigned int vfid,
-> > >  	xe_gt_assert(gt, size % sizeof(u32) == 0);
-> > >  	xe_gt_assert(gt, size == ndwords * sizeof(u32));
-> > >  
-> > > -	bo = xe_bo_create_pin_map(xe, tile, NULL,
-> > > -				  ALIGN(size, PAGE_SIZE),
-> > > -				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > -				  XE_BO_FLAG_GGTT |
-> > > -				  XE_BO_FLAG_GGTT_INVALIDATE);
-> > > +	bo = xe_bo_create_pin_map_novm(xe, tile,
-> > > +				       ALIGN(size, PAGE_SIZE),
-> > > +				       ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > +				       XE_BO_FLAG_GGTT |
-> > > +				       XE_BO_FLAG_GGTT_INVALIDATE,
-> > > false);
-> > >  	if (IS_ERR(bo))
-> > >  		return PTR_ERR(bo);
-> > >  
-> > > @@ -91,12 +91,12 @@ static int pf_send_guc_restore_vf_state(struct
-> > > xe_gt *gt, unsigned int vfid,
-> > >  	xe_gt_assert(gt, size % sizeof(u32) == 0);
-> > >  	xe_gt_assert(gt, size == ndwords * sizeof(u32));
-> > >  
-> > > -	bo = xe_bo_create_pin_map(xe, tile, NULL,
-> > > -				  ALIGN(size, PAGE_SIZE),
-> > > -				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > -				  XE_BO_FLAG_GGTT |
-> > > -				  XE_BO_FLAG_GGTT_INVALIDATE);
-> > > +	bo = xe_bo_create_pin_map_novm(xe, tile,
-> > > +				       ALIGN(size, PAGE_SIZE),
-> > > +				       ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > +				       XE_BO_FLAG_GGTT |
-> > > +				       XE_BO_FLAG_GGTT_INVALIDATE,
-> > > false);
-> > >  	if (IS_ERR(bo))
-> > >  		return PTR_ERR(bo);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > index 92e1f9f41b8c..2b99c1ebdd58 100644
-> > > --- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > +++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
-> > > @@ -94,16 +94,17 @@ static int
-> > > allocate_engine_activity_buffers(struct xe_guc *guc,
-> > >  	struct xe_tile *tile = gt_to_tile(gt);
-> > >  	struct xe_bo *bo, *metadata_bo;
-> > >  
-> > > -	metadata_bo = xe_bo_create_pin_map(gt_to_xe(gt), tile,
-> > > NULL, PAGE_ALIGN(metadata_size),
-> > > -					   ttm_bo_type_kernel,
-> > > XE_BO_FLAG_SYSTEM |
-> > > -					   XE_BO_FLAG_GGTT |
-> > > XE_BO_FLAG_GGTT_INVALIDATE);
-> > > +	metadata_bo = xe_bo_create_pin_map_novm(gt_to_xe(gt),
-> > > tile, PAGE_ALIGN(metadata_size),
-> > > +						ttm_bo_type_kernel
-> > > , XE_BO_FLAG_SYSTEM |
-> > > +						XE_BO_FLAG_GGTT |
-> > > XE_BO_FLAG_GGTT_INVALIDATE,
-> > > +						false);
-> > >  
-> > >  	if (IS_ERR(metadata_bo))
-> > >  		return PTR_ERR(metadata_bo);
-> > >  
-> > > -	bo = xe_bo_create_pin_map(gt_to_xe(gt), tile, NULL,
-> > > PAGE_ALIGN(size),
-> > > -				  ttm_bo_type_kernel,
-> > > XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > -				  XE_BO_FLAG_GGTT |
-> > > XE_BO_FLAG_GGTT_INVALIDATE);
-> > > +	bo = xe_bo_create_pin_map_novm(gt_to_xe(gt), tile,
-> > > PAGE_ALIGN(size),
-> > > +				       ttm_bo_type_kernel,
-> > > XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > +				       XE_BO_FLAG_GGTT |
-> > > XE_BO_FLAG_GGTT_INVALIDATE, false);
-> > >  
-> > >  	if (IS_ERR(bo)) {
-> > >  		xe_bo_unpin_map_no_vm(metadata_bo);
-> > > diff --git a/drivers/gpu/drm/xe/xe_lmtt.c
-> > > b/drivers/gpu/drm/xe/xe_lmtt.c
-> > > index a78c9d474a6e..4ad468574174 100644
-> > > --- a/drivers/gpu/drm/xe/xe_lmtt.c
-> > > +++ b/drivers/gpu/drm/xe/xe_lmtt.c
-> > > @@ -67,12 +67,12 @@ static struct xe_lmtt_pt *lmtt_pt_alloc(struct
-> > > xe_lmtt *lmtt, unsigned int level
-> > >  		goto out;
-> > >  	}
-> > >  
-> > > -	bo = xe_bo_create_pin_map(lmtt_to_xe(lmtt),
-> > > lmtt_to_tile(lmtt), NULL,
-> > > -				  PAGE_ALIGN(lmtt->ops-
-> > > >lmtt_pte_size(level) *
-> > > -					     lmtt->ops-
-> > > >lmtt_pte_num(level)),
-> > > -				  ttm_bo_type_kernel,
-> > > -				 
-> > > XE_BO_FLAG_VRAM_IF_DGFX(lmtt_to_tile(lmtt)) |
-> > > -				  XE_BO_FLAG_NEEDS_64K);
-> > > +	bo = xe_bo_create_pin_map_novm(lmtt_to_xe(lmtt),
-> > > lmtt_to_tile(lmtt),
-> > > +				       PAGE_ALIGN(lmtt->ops-
-> > > >lmtt_pte_size(level) *
-> > > +						  lmtt->ops-
-> > > >lmtt_pte_num(level)),
-> > > +				       ttm_bo_type_kernel,
-> > > +				      
-> > > XE_BO_FLAG_VRAM_IF_DGFX(lmtt_to_tile(lmtt)) |
-> > > +				       XE_BO_FLAG_NEEDS_64K,
-> > > false);
-> > >  	if (IS_ERR(bo)) {
-> > >  		err = PTR_ERR(bo);
-> > >  		goto out_free_pt;
-> > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c
-> > > b/drivers/gpu/drm/xe/xe_lrc.c
-> > > index 8f6c3ba47882..6d52e0eb97f5 100644
-> > > --- a/drivers/gpu/drm/xe/xe_lrc.c
-> > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> > > @@ -1340,9 +1340,10 @@ static int xe_lrc_init(struct xe_lrc *lrc,
-> > > struct xe_hw_engine *hwe,
-> > >  	if (vm && vm->xef) /* userspace */
-> > >  		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
-> > >  
-> > > -	lrc->bo = xe_bo_create_pin_map(xe, tile, NULL, bo_size,
-> > > -				       ttm_bo_type_kernel,
-> > > -				       bo_flags);
-> > > +	lrc->bo = xe_bo_create_pin_map_novm(xe, tile,
-> > > +					    bo_size,
-> > > +					    ttm_bo_type_kernel,
-> > > +					    bo_flags, false);
-> > >  	if (IS_ERR(lrc->bo))
-> > >  		return PTR_ERR(lrc->bo);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> > > b/drivers/gpu/drm/xe/xe_migrate.c
-> > > index ddfad7506a82..fe0d15ab340e 100644
-> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > @@ -35,6 +35,7 @@
-> > >  #include "xe_sched_job.h"
-> > >  #include "xe_sync.h"
-> > >  #include "xe_trace_bo.h"
-> > > +#include "xe_validation.h"
-> > >  #include "xe_vm.h"
-> > >  #include "xe_vram.h"
-> > >  
-> > > @@ -173,7 +174,7 @@ static void xe_migrate_program_identity(struct
-> > > xe_device *xe, struct xe_vm *vm,
-> > >  }
-> > >  
-> > >  static int xe_migrate_prepare_vm(struct xe_tile *tile, struct
-> > > xe_migrate *m,
-> > > -				 struct xe_vm *vm)
-> > > +				 struct xe_vm *vm, struct drm_exec
-> > > *exec)
-> > >  {
-> > >  	struct xe_device *xe = tile_to_xe(tile);
-> > >  	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
-> > > @@ -200,7 +201,7 @@ static int xe_migrate_prepare_vm(struct xe_tile
-> > > *tile, struct xe_migrate *m,
-> > >  				  num_entries * XE_PAGE_SIZE,
-> > >  				  ttm_bo_type_kernel,
-> > >  				  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-> > > -				  XE_BO_FLAG_PAGETABLE);
-> > > +				  XE_BO_FLAG_PAGETABLE, exec);
-> > >  	if (IS_ERR(bo))
-> > >  		return PTR_ERR(bo);
-> > >  
-> > > @@ -404,6 +405,8 @@ int xe_migrate_init(struct xe_migrate *m)
-> > >  	struct xe_tile *tile = m->tile;
-> > >  	struct xe_gt *primary_gt = tile->primary_gt;
-> > >  	struct xe_device *xe = tile_to_xe(tile);
-> > > +	struct xe_validation_ctx ctx;
-> > > +	struct drm_exec exec;
-> > >  	struct xe_vm *vm;
-> > >  	int err;
-> > >  
-> > > @@ -413,11 +416,16 @@ int xe_migrate_init(struct xe_migrate *m)
-> > >  	if (IS_ERR(vm))
-> > >  		return PTR_ERR(vm);
-> > >  
-> > > -	xe_vm_lock(vm, false);
-> > > -	err = xe_migrate_prepare_vm(tile, m, vm);
-> > > -	xe_vm_unlock(vm);
-> > > +	err = 0;
-> > > +	xe_validation_guard(&ctx, &xe->val, &exec, 0, err, false)
-> > > {
-> > > +		err = xe_vm_drm_exec_lock(vm, &exec);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > > +		err = xe_migrate_prepare_vm(tile, m, vm, &exec);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > > +		xe_validation_retry_on_oom(&ctx, &err);
-> > > +	}
-> > >  	if (err)
-> > > -		goto err_out;
-> > > +		return err;
-> > >  
-> > >  	if (xe->info.has_usm) {
-> > >  		struct xe_hw_engine *hwe =
-> > > xe_gt_hw_engine(primary_gt,
-> > > diff --git a/drivers/gpu/drm/xe/xe_oa.c
-> > > b/drivers/gpu/drm/xe/xe_oa.c
-> > > index a188bad172ad..a4894eb0d7f3 100644
-> > > --- a/drivers/gpu/drm/xe/xe_oa.c
-> > > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> > > @@ -883,9 +883,9 @@ static int xe_oa_alloc_oa_buffer(struct
-> > > xe_oa_stream *stream, size_t size)
-> > >  {
-> > >  	struct xe_bo *bo;
-> > >  
-> > > -	bo = xe_bo_create_pin_map(stream->oa->xe, stream->gt-
-> > > >tile, NULL,
-> > > -				  size, ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_GGTT);
-> > > +	bo = xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt-
-> > > >tile,
-> > > +				       size, ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_GGTT, false);
-> > >  	if (IS_ERR(bo))
-> > >  		return PTR_ERR(bo);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_pt.c
-> > > b/drivers/gpu/drm/xe/xe_pt.c
-> > > index f3a39e734a90..33ad40418ceb 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pt.c
-> > > +++ b/drivers/gpu/drm/xe/xe_pt.c
-> > > @@ -88,6 +88,7 @@ static void xe_pt_free(struct xe_pt *pt)
-> > >   * @vm: The vm to create for.
-> > >   * @tile: The tile to create for.
-> > >   * @level: The page-table level.
-> > > + * @exec: The drm_exec object used to lock the vm.
-> > >   *
-> > >   * Allocate and initialize a single struct xe_pt metadata
-> > > structure. Also
-> > >   * create the corresponding page-table bo, but don't initialize
-> > > it. If the
-> > > @@ -99,7 +100,7 @@ static void xe_pt_free(struct xe_pt *pt)
-> > >   * error.
-> > >   */
-> > >  struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
-> > > -			   unsigned int level)
-> > > +			   unsigned int level, struct drm_exec
-> > > *exec)
-> > >  {
-> > >  	struct xe_pt *pt;
-> > >  	struct xe_bo *bo;
-> > > @@ -123,9 +124,11 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm,
-> > > struct xe_tile *tile,
-> > >  		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
-> > >  
-> > >  	pt->level = level;
-> > > +
-> > > +	drm_WARN_ON(&vm->xe->drm, IS_ERR_OR_NULL(exec));
-> > >  	bo = xe_bo_create_pin_map(vm->xe, tile, vm, SZ_4K,
-> > >  				  ttm_bo_type_kernel,
-> > > -				  bo_flags);
-> > > +				  bo_flags, exec);
-> > >  	if (IS_ERR(bo)) {
-> > >  		err = PTR_ERR(bo);
-> > >  		goto err_kfree;
-> > > @@ -589,7 +592,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent,
-> > > pgoff_t offset,
-> > >  	if (covers || !*child) {
-> > >  		u64 flags = 0;
-> > >  
-> > > -		xe_child = xe_pt_create(xe_walk->vm, xe_walk-
-> > > >tile, level - 1);
-> > > +		xe_child = xe_pt_create(xe_walk->vm, xe_walk-
-> > > >tile, level - 1,
-> > > +					xe_vm_validation_exec(vm))
-> > > ;
-> > >  		if (IS_ERR(xe_child))
-> > >  			return PTR_ERR(xe_child);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_pt.h
-> > > b/drivers/gpu/drm/xe/xe_pt.h
-> > > index 5ecf003d513c..4daeebaab5a1 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pt.h
-> > > +++ b/drivers/gpu/drm/xe/xe_pt.h
-> > > @@ -10,6 +10,7 @@
-> > >  #include "xe_pt_types.h"
-> > >  
-> > >  struct dma_fence;
-> > > +struct drm_exec;
-> > >  struct xe_bo;
-> > >  struct xe_device;
-> > >  struct xe_exec_queue;
-> > > @@ -29,7 +30,7 @@ struct xe_vma_ops;
-> > >  unsigned int xe_pt_shift(unsigned int level);
-> > >  
-> > >  struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
-> > > -			   unsigned int level);
-> > > +			   unsigned int level, struct drm_exec
-> > > *exec);
-> > >  
-> > >  void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
-> > >  			  struct xe_pt *pt);
-> > > diff --git a/drivers/gpu/drm/xe/xe_pxp_submit.c
-> > > b/drivers/gpu/drm/xe/xe_pxp_submit.c
-> > > index ca95f2a4d4ef..54bd6b64dc6d 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pxp_submit.c
-> > > +++ b/drivers/gpu/drm/xe/xe_pxp_submit.c
-> > > @@ -54,8 +54,9 @@ static int
-> > > allocate_vcs_execution_resources(struct xe_pxp *pxp)
-> > >  	 * Each termination is 16 DWORDS, so 4K is enough to
-> > > contain a
-> > >  	 * termination for each sessions.
-> > >  	 */
-> > > -	bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K,
-> > > ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT);
-> > > +	bo = xe_bo_create_pin_map_novm(xe, tile, SZ_4K,
-> > > ttm_bo_type_kernel,
-> > > +				       XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_PINNED | XE_BO_FLAG_GGTT,
-> > > +				       false);
-> > >  	if (IS_ERR(bo)) {
-> > >  		err = PTR_ERR(bo);
-> > >  		goto out_queue;
-> > > @@ -87,7 +88,9 @@ static int allocate_gsc_client_resources(struct
-> > > xe_gt *gt,
-> > >  {
-> > >  	struct xe_tile *tile = gt_to_tile(gt);
-> > >  	struct xe_device *xe = tile_to_xe(tile);
-> > > +	struct xe_validation_ctx ctx;
-> > >  	struct xe_hw_engine *hwe;
-> > > +	struct drm_exec exec;
-> > >  	struct xe_vm *vm;
-> > >  	struct xe_bo *bo;
-> > >  	struct xe_exec_queue *q;
-> > > @@ -106,15 +109,26 @@ static int
-> > > allocate_gsc_client_resources(struct xe_gt *gt,
-> > >  		return PTR_ERR(vm);
-> > >  
-> > >  	/* We allocate a single object for the batch and the
-> > > in/out memory */
-> > > -	xe_vm_lock(vm, false);
-> > > -	bo = xe_bo_create_pin_map(xe, tile, vm, PXP_BB_SIZE +
-> > > inout_size * 2,
-> > > -				  ttm_bo_type_kernel,
-> > > -				  XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_PINNED | XE_BO_FLAG_NEEDS_UC);
-> > > -	xe_vm_unlock(vm);
-> > > -	if (IS_ERR(bo)) {
-> > > -		err = PTR_ERR(bo);
-> > > -		goto vm_out;
-> > > +
-> > > +	xe_validation_guard(&ctx, &xe->val, &exec, 0, err, false)
-> > > {
-> > > +		err = xe_vm_drm_exec_lock(vm, &exec);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > > +		if (err)
-> > > +			break;
-> > > +
-> > > +		bo = xe_bo_create_pin_map(xe, tile, vm,
-> > > PXP_BB_SIZE + inout_size * 2,
-> > > +					  ttm_bo_type_kernel,
-> > > +					  XE_BO_FLAG_SYSTEM |
-> > > XE_BO_FLAG_PINNED |
-> > > +					  XE_BO_FLAG_NEEDS_UC,
-> > > &exec);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > > +		if (IS_ERR(bo)) {
-> > > +			err = PTR_ERR(bo);
-> > > +			xe_validation_retry_on_oom(&ctx, &err);
-> > > +			break;
-> > > +		}
-> > >  	}
-> > > +	if (err)
-> > > +		goto vm_out;
-> > >  
-> > >  	fence = xe_vm_bind_kernel_bo(vm, bo, NULL, 0,
-> > > XE_CACHE_WB);
-> > >  	if (IS_ERR(fence)) {
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 989d84c2e82f..b3ee65126841 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -1606,6 +1606,7 @@ static void vm_destroy_work_func(struct
-> > > work_struct *w);
-> > >   * @xe: xe device.
-> > >   * @tile: tile to set up for.
-> > >   * @vm: vm to set up for.
-> > > + * @exec: The struct drm_exec object used to lock the vm resv.
-> > >   *
-> > >   * Sets up a pagetable tree with one page-table per level and a
-> > > single
-> > >   * leaf PTE. All pagetable entries point to the single page-table
-> > > or,
-> > > @@ -1615,20 +1616,19 @@ static void vm_destroy_work_func(struct
-> > > work_struct *w);
-> > >   * Return: 0 on success, negative error code on error.
-> > >   */
-> > >  static int xe_vm_create_scratch(struct xe_device *xe, struct
-> > > xe_tile *tile,
-> > > -				struct xe_vm *vm)
-> > > +				struct xe_vm *vm, struct drm_exec
-> > > *exec)
-> > >  {
-> > >  	u8 id = tile->id;
-> > >  	int i;
-> > >  
-> > >  	for (i = MAX_HUGEPTE_LEVEL; i < vm->pt_root[id]->level;
-> > > i++) {
-> > > -		vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i);
-> > > +		vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i,
-> > > exec);
-> > >  		if (IS_ERR(vm->scratch_pt[id][i])) {
-> > >  			int err = PTR_ERR(vm->scratch_pt[id][i]);
-> > >  
-> > >  			vm->scratch_pt[id][i] = NULL;
-> > >  			return err;
-> > >  		}
-> > > -
-> > >  		xe_pt_populate_empty(tile, vm, vm-
-> > > >scratch_pt[id][i]);
-> > >  	}
-> > >  
-> > > @@ -1656,9 +1656,26 @@ static void xe_vm_free_scratch(struct xe_vm
-> > > *vm)
-> > >  	}
-> > >  }
-> > >  
-> > > +static void xe_vm_pt_destroy(struct xe_vm *vm)
-> > > +{
-> > > +	struct xe_tile *tile;
-> > > +	u8 id;
-> > > +
-> > > +	xe_vm_assert_held(vm);
-> > > +
-> > > +	for_each_tile(tile, vm->xe, id) {
-> > > +		if (vm->pt_root[id]) {
-> > > +			xe_pt_destroy(vm->pt_root[id], vm->flags,
-> > > NULL);
-> > > +			vm->pt_root[id] = NULL;
-> > > +		}
-> > > +	}
-> > > +}
-> > > +
-> > >  struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct
-> > > xe_file *xef)
-> > >  {
-> > >  	struct drm_gem_object *vm_resv_obj;
-> > > +	struct xe_validation_ctx ctx;
-> > > +	struct drm_exec exec;
-> > >  	struct xe_vm *vm;
-> > >  	int err, number_tiles = 0;
-> > >  	struct xe_tile *tile;
-> > > @@ -1745,49 +1762,64 @@ struct xe_vm *xe_vm_create(struct xe_device
-> > > *xe, u32 flags, struct xe_file *xef)
-> > >  
-> > >  	drm_gem_object_put(vm_resv_obj);
-> > >  
-> > > -	err = xe_vm_lock(vm, true);
-> > > -	if (err)
-> > > -		goto err_close;
-> > > +	err = 0;
-> > > +	xe_validation_guard(&ctx, &xe->val, &exec,
-> > > DRM_EXEC_INTERRUPTIBLE_WAIT,
-> > > +			    err, true) {
-> > > +		err = xe_vm_drm_exec_lock(vm, &exec);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > >  
-> > > -	if (IS_DGFX(xe) && xe->info.vram_flags &
-> > > XE_VRAM_FLAGS_NEED64K)
-> > > -		vm->flags |= XE_VM_FLAG_64K;
-> > > +		if (IS_DGFX(xe) && xe->info.vram_flags &
-> > > XE_VRAM_FLAGS_NEED64K)
-> > > +			vm->flags |= XE_VM_FLAG_64K;
-> > >  
-> > > -	for_each_tile(tile, xe, id) {
-> > > -		if (flags & XE_VM_FLAG_MIGRATION &&
-> > > -		    tile->id != XE_VM_FLAG_TILE_ID(flags))
-> > > -			continue;
-> > > +		for_each_tile(tile, xe, id) {
-> > > +			if (flags & XE_VM_FLAG_MIGRATION &&
-> > > +			    tile->id != XE_VM_FLAG_TILE_ID(flags))
-> > > +				continue;
-> > >  
-> > > -		vm->pt_root[id] = xe_pt_create(vm, tile, xe-
-> > > >info.vm_max_level);
-> > > -		if (IS_ERR(vm->pt_root[id])) {
-> > > -			err = PTR_ERR(vm->pt_root[id]);
-> > > -			vm->pt_root[id] = NULL;
-> > > -			goto err_unlock_close;
-> > > +			vm->pt_root[id] = xe_pt_create(vm, tile,
-> > > xe->info.vm_max_level,
-> > > +						       &exec);
-> > > +			if (IS_ERR(vm->pt_root[id])) {
-> > > +				err = PTR_ERR(vm->pt_root[id]);
-> > > +				vm->pt_root[id] = NULL;
-> > > +				xe_vm_pt_destroy(vm);
-> > > +				drm_exec_retry_on_contention(&exec
-> > > );
-> > > +				xe_validation_retry_on_oom(&ctx,
-> > > &err);
-> > > +				goto err_close;
-> > > +			}
-> > >  		}
-> > > -	}
-> > >  
-> > > -	if (xe_vm_has_scratch(vm)) {
-> > > +		if (xe_vm_has_scratch(vm)) {
-> > > +			for_each_tile(tile, xe, id) {
-> > > +				if (!vm->pt_root[id])
-> > > +					continue;
-> > > +
-> > > +				err = xe_vm_create_scratch(xe,
-> > > tile, vm, &exec);
-> > > +				if (err) {
-> > > +					xe_vm_free_scratch(vm);
-> > > +					xe_vm_pt_destroy(vm);
-> > > +					drm_exec_retry_on_contenti
-> > > on(&exec);
-> > > +					xe_validation_retry_on_oom
-> > > (&ctx, &err);
-> > > +					goto err_close;
-> > > +				}
-> > > +			}
-> > > +			vm->batch_invalidate_tlb = true;
-> > > +		}
-> > > +
-> > > +		if (vm->flags & XE_VM_FLAG_LR_MODE) {
-> > > +			INIT_WORK(&vm->preempt.rebind_work,
-> > > preempt_rebind_work_func);
-> > > +			vm->batch_invalidate_tlb = false;
-> > > +		}
-> > > +
-> > > +		/* Fill pt_root after allocating scratch tables */
-> > >  		for_each_tile(tile, xe, id) {
-> > >  			if (!vm->pt_root[id])
-> > >  				continue;
-> > >  
-> > > -			err = xe_vm_create_scratch(xe, tile, vm);
-> > > -			if (err)
-> > > -				goto err_unlock_close;
-> > > +			xe_pt_populate_empty(tile, vm, vm-
-> > > >pt_root[id]);
-> > >  		}
-> > > -		vm->batch_invalidate_tlb = true;
-> > > -	}
-> > > -
-> > > -	if (vm->flags & XE_VM_FLAG_LR_MODE)
-> > > -		vm->batch_invalidate_tlb = false;
-> > > -
-> > > -	/* Fill pt_root after allocating scratch tables */
-> > > -	for_each_tile(tile, xe, id) {
-> > > -		if (!vm->pt_root[id])
-> > > -			continue;
-> > > -
-> > > -		xe_pt_populate_empty(tile, vm, vm->pt_root[id]);
-> > >  	}
-> > > -	xe_vm_unlock(vm);
-> > > +	if (err)
-> > > +		goto err_close;
-> > >  
-> > >  	/* Kernel migration VM shouldn't have a circular loop.. */
-> > >  	if (!(flags & XE_VM_FLAG_MIGRATION)) {
-> > > @@ -1820,7 +1852,7 @@ struct xe_vm *xe_vm_create(struct xe_device
-> > > *xe, u32 flags, struct xe_file *xef)
-> > >  				      &xe->usm.next_asid,
-> > > GFP_KERNEL);
-> > >  		up_write(&xe->usm.lock);
-> > >  		if (err < 0)
-> > > -			goto err_unlock_close;
-> > > +			goto err_close;
-> > >  
-> > >  		vm->usm.asid = asid;
-> > >  	}
-> > > @@ -1829,8 +1861,6 @@ struct xe_vm *xe_vm_create(struct xe_device
-> > > *xe, u32 flags, struct xe_file *xef)
-> > >  
-> > >  	return vm;
-> > >  
-> > > -err_unlock_close:
-> > > -	xe_vm_unlock(vm);
-> > >  err_close:
-> > >  	xe_vm_close_and_put(vm);
-> > >  	return ERR_PTR(err);
-> > > @@ -1959,13 +1989,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
-> > >  	 * destroy the pagetables immediately.
-> > >  	 */
-> > >  	xe_vm_free_scratch(vm);
-> > > -
-> > > -	for_each_tile(tile, xe, id) {
-> > > -		if (vm->pt_root[id]) {
-> > > -			xe_pt_destroy(vm->pt_root[id], vm->flags,
-> > > NULL);
-> > > -			vm->pt_root[id] = NULL;
-> > > -		}
-> > > -	}
-> > > +	xe_vm_pt_destroy(vm);
-> > >  	xe_vm_unlock(vm);
-> > >  
-> > >  	/*
-> > > @@ -3845,7 +3869,6 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct
-> > > xe_vm *vm, struct xe_bo *bo,
-> > >   */
-> > >  int xe_vm_lock(struct xe_vm *vm, bool intr)
-> > >  {
-> > > -	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
-> > 
-> > You add this earlier in the series and then delete it here, which
-> > seems
-> > odd. If the intent is to apply a workaround (WA) earlier and finalize
-> > it
-> > here, that makes sense.
+On Wed, Aug 13, 2025 at 12:51:19PM +0200, Thomas Hellström wrote:
+> Most users of xe_bo_create_pin_map_at() and
+> xe_bo_create_pin_map_at_aligned() are not using the vm parameter,
+> and that simplifies conversion. Introduce an
+> xe_bo_create_pin_map_at_novm() function and make the _aligned()
+> version static. Use xe_validation_guard() for conversion.
 > 
-> Yes, the patch that introduces these identifies all the call-sites
-> where we need a fix-up, and uses lockdep to verify that a validation
-> transaction starting there doesn't violate the dma_resv locking orders.
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  .../compat-i915-headers/gem/i915_gem_stolen.h | 24 ++----
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 45 +++++-----
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |  4 +-
+>  drivers/gpu/drm/xe/xe_bo.c                    | 83 ++++++++++++++-----
+>  drivers/gpu/drm/xe/xe_bo.h                    | 13 +--
+>  drivers/gpu/drm/xe/xe_eu_stall.c              |  6 +-
+>  6 files changed, 101 insertions(+), 74 deletions(-)
 > 
-> Most of the series then eliminates these _UNIMPLEMENTED one by one.
-> Of course one could do it in the opposite order to avoid introducing
-> and then eliminating these but I think that would be harder both for
-> the developer and reviewer.
-> 
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+> index 1ce1e9da975b..ab48635ddffa 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+> @@ -21,9 +21,7 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+>  						       u32 size, u32 align,
+>  						       u32 start, u32 end)
+>  {
+> -	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
+>  	struct xe_bo *bo;
+> -	int err;
+>  	u32 flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
+>  
+>  	if (start < SZ_4K)
+> @@ -34,25 +32,15 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+>  		start = ALIGN(start, align);
+>  	}
+>  
+> -	bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
+> -				       NULL, size, start, end,
+> -				       ttm_bo_type_kernel, flags, 0, exec);
+> -	if (IS_ERR(bo)) {
+> -		err = PTR_ERR(bo);
+> -		bo = NULL;
+> -		return err;
+> -	}
+> -	err = xe_bo_pin(bo, exec);
+> -	xe_bo_unlock_vm_held(bo);
+> -
+> -	if (err) {
+> -		xe_bo_put(fb->bo);
+> -		bo = NULL;
+> -	}
+> +	bo = xe_bo_create_pin_map_at_novm(xe, xe_device_get_root_tile(xe),
+> +					  size, start, ttm_bo_type_kernel, flags,
+> +					  false, 0, true);
+> +	if (IS_ERR(bo))
+> +		return PTR_ERR(bo);
+>  
+>  	fb->bo = bo;
+>  
+> -	return err;
+> +	return 0;
+>  }
+>  
+>  static inline int i915_gem_stolen_insert_node(struct xe_device *xe,
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 43c45344ea26..d46ff7ebb0a1 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -102,29 +102,32 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>  				 XE_PAGE_SIZE);
+>  
+>  	if (IS_DGFX(xe))
+> -		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+> -						      dpt_size, ~0ull,
+> -						      ttm_bo_type_kernel,
+> -						      XE_BO_FLAG_VRAM0 |
+> -						      XE_BO_FLAG_GGTT |
+> -						      XE_BO_FLAG_PAGETABLE,
+> -						      alignment);
+> +		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+> +						   dpt_size, ~0ull,
+> +						   ttm_bo_type_kernel,
+> +						   true,
+> +						   XE_BO_FLAG_VRAM0 |
+> +						   XE_BO_FLAG_GGTT |
+> +						   XE_BO_FLAG_PAGETABLE,
+> +						   alignment, false);
+>  	else
+> -		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+> -						      dpt_size,  ~0ull,
+> -						      ttm_bo_type_kernel,
+> -						      XE_BO_FLAG_STOLEN |
+> -						      XE_BO_FLAG_GGTT |
+> -						      XE_BO_FLAG_PAGETABLE,
+> -						      alignment);
+> +		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+> +						   dpt_size,  ~0ull,
+> +						   ttm_bo_type_kernel,
+> +						   true,
+> +						   XE_BO_FLAG_STOLEN |
+> +						   XE_BO_FLAG_GGTT |
+> +						   XE_BO_FLAG_PAGETABLE,
+> +						   alignment, false);
+>  	if (IS_ERR(dpt))
+> -		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+> -						      dpt_size,  ~0ull,
+> -						      ttm_bo_type_kernel,
+> -						      XE_BO_FLAG_SYSTEM |
+> -						      XE_BO_FLAG_GGTT |
+> -						      XE_BO_FLAG_PAGETABLE,
+> -						      alignment);
+> +		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+> +						   dpt_size,  ~0ull,
+> +						   ttm_bo_type_kernel,
+> +						   true,
+> +						   XE_BO_FLAG_SYSTEM |
+> +						   XE_BO_FLAG_GGTT |
+> +						   XE_BO_FLAG_PAGETABLE,
+> +						   alignment, false);
+>  	if (IS_ERR(dpt))
+>  		return PTR_ERR(dpt);
+>  
+> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> index 826ac3d578b7..79d00127caf4 100644
+> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> @@ -140,8 +140,8 @@ initial_plane_bo(struct xe_device *xe,
+>  			page_size);
+>  	size -= base;
+>  
+> -	bo = xe_bo_create_pin_map_at(xe, tile0, NULL, size, phys_base,
+> -				     ttm_bo_type_kernel, flags);
+> +	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
+> +					  ttm_bo_type_kernel, flags, true, 0, false);
+>  	if (IS_ERR(bo)) {
+>  		drm_dbg(&xe->drm,
+>  			"Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 23b28eeef59f..c9928d4ee5a0 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -2253,29 +2253,20 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+>  	return bo;
+>  }
+>  
+> -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile,
+> -				      struct xe_vm *vm,
+> -				      size_t size, u64 offset,
+> -				      enum ttm_bo_type type, u32 flags)
+> -{
+> -	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size, offset,
+> -					       type, flags, 0);
+> -}
+> -
+> -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+> -					      struct xe_tile *tile,
+> -					      struct xe_vm *vm,
+> -					      size_t size, u64 offset,
+> -					      enum ttm_bo_type type, u32 flags,
+> -					      u64 alignment)
+> +static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+> +						     struct xe_tile *tile,
+> +						     struct xe_vm *vm,
+> +						     size_t size, u64 offset,
+> +						     enum ttm_bo_type type, u32 flags,
+> +						     bool vmap, u64 alignment,
+> +						     struct drm_exec *exec)
+>  {
+>  	struct xe_bo *bo;
+>  	int err;
+>  	u64 start = offset == ~0ull ? 0 : offset;
+>  	u64 end = offset == ~0ull ? offset : start + size;
+> -	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) : XE_VALIDATION_UNIMPLEMENTED;
+>  
 
-Fine with the ordering, just wanted to make sure I was understanding why
-this was done.
-
-> > 
-> > However, deleting it here appears to leave a problematic path in
-> > xe_svm.c around xe_vm_range_rebind, where vm->validating._exec may
-> > remain unset/stale. I’m surprised CI didn’t catch this—perhaps due to
-> > an
-> > unbalanced xe_vm_set_validation_exec leaving stale state—or I’m
-> > missing
-> > something.
-> 
-> Yes, you are correct. There was an imbalance and I will fix that.
-> 
-
-+1
+General comment for the series: should all BO-layer functions that
+allocate (or may allocate) memory include a lockdep assertion that the
+xe_validation_device->val lock is held? We already have
+xe_validation_assert_exec in several places, which is similar, but IMO
+it wouldn’t hurt to also assert xe_validation_device->val in the
+relevant driver paths. The new TTM manager functions are good candidates
+as well. Consider adding a follow-up patch at the end of the series to
+add these assertions once all allocation paths adhere to the new locking
+model.
 
 Matt
 
-> Thanks,
-> Thomas
-> 
-> > 
-> > Matt
-> > 
-> > >  	int ret;
-> > >  
-> > >  	if (intr)
-> > > @@ -3853,9 +3876,6 @@ int xe_vm_lock(struct xe_vm *vm, bool intr)
-> > >  	else
-> > >  		ret = dma_resv_lock(xe_vm_resv(vm), NULL);
-> > >  
-> > > -	if (!ret)
-> > > -		xe_vm_set_validation_exec(vm, exec);
-> > > -
-> > >  	return ret;
-> > >  }
-> > >  
-> > > @@ -3867,7 +3887,6 @@ int xe_vm_lock(struct xe_vm *vm, bool intr)
-> > >   */
-> > >  void xe_vm_unlock(struct xe_vm *vm)
-> > >  {
-> > > -	xe_vm_set_validation_exec(vm, NULL);
-> > >  	dma_resv_unlock(xe_vm_resv(vm));
-> > >  }
-> > >  
-> > > -- 
-> > > 2.50.1
-> > > 
+> -	if (flags & XE_BO_FLAG_STOLEN &&
+> +	if (flags & XE_BO_FLAG_STOLEN && vmap &&
+>  	    xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+>  		flags |= XE_BO_FLAG_GGTT;
+>  
+> @@ -2289,9 +2280,11 @@ struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+>  	if (err)
+>  		goto err_put;
+>  
+> -	err = xe_bo_vmap(bo);
+> -	if (err)
+> -		goto err_unpin;
+> +	if (vmap) {
+> +		err = xe_bo_vmap(bo);
+> +		if (err)
+> +			goto err_unpin;
+> +	}
+>  
+>  	xe_bo_unlock_vm_held(bo);
+>  
+> @@ -2305,11 +2298,59 @@ struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+>  	return ERR_PTR(err);
+>  }
+>  
+> +/**
+> + * xe_bo_create_pin_map_at_novm() - Create pinned and mapped bo at optional VRAM offset
+> + * @xe: The xe device.
+> + * @tile: The tile to select for migration of this bo, and the tile used for
+> + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
+> + * @size: The storage size to use for the bo.
+> + * @offset: Optional VRAM offset or %0 for don't care.
+> + * @type: The TTM buffer object type.
+> + * @flags: XE_BO_FLAG_ flags.
+> + * @vmap: Whether to create a buffer object map.
+> + * @alignment: GGTT alignment.
+> + * @intr: Whether to execut any waits for backing store interruptible.
+> + *
+> + * Create a pinned and optionally mapped bo with VRAM offset and GGTT alignment
+> + * options. The bo will be external and not associated with a VM.
+> + *
+> + * Return: The buffer object on success. Negative error pointer on failure.
+> + * In particular, the function may return ERR_PTR(%-EINTR) if @intr was set
+> + * to true on entry.
+> + */
+> +struct xe_bo *
+> +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile *tile,
+> +			     size_t size, u64 offset, enum ttm_bo_type type, u32 flags,
+> +			     bool vmap, u64 alignment, bool intr)
+> +{
+> +	u32 drm_exec_flags = intr ? DRM_EXEC_INTERRUPTIBLE_WAIT : 0;
+> +	struct xe_validation_ctx ctx;
+> +	struct drm_exec exec;
+> +	struct xe_bo *bo;
+> +	int ret = 0;
+> +
+> +	xe_validation_guard(&ctx, &xe->val, &exec, drm_exec_flags, ret, false) {
+> +		bo = xe_bo_create_pin_map_at_aligned(xe, tile, NULL, size, offset,
+> +						     type, flags, vmap,
+> +						     alignment, &exec);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (IS_ERR(bo)) {
+> +			ret = PTR_ERR(bo);
+> +			xe_validation_retry_on_oom(&ctx, &ret);
+> +		}
+> +	}
+> +
+> +	return ret ? ERR_PTR(ret) : bo;
+> +}
+> +
+>  struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+>  				   struct xe_vm *vm, size_t size,
+>  				   enum ttm_bo_type type, u32 flags)
+>  {
+> -	return xe_bo_create_pin_map_at(xe, tile, vm, size, ~0ull, type, flags);
+> +	struct drm_exec *exec = vm ? xe_vm_validation_exec(vm) : XE_VALIDATION_UNIMPLEMENTED;
+> +
+> +	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size, ~0ull, type, flags,
+> +					       true, 0, exec);
+>  }
+>  
+>  static void __xe_bo_unpin_map_no_vm(void *arg)
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index a625806deeb6..d06266af9662 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -109,15 +109,10 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_vm *vm, size_t s
+>  struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+>  				   struct xe_vm *vm, size_t size,
+>  				   enum ttm_bo_type type, u32 flags);
+> -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile,
+> -				      struct xe_vm *vm, size_t size, u64 offset,
+> -				      enum ttm_bo_type type, u32 flags);
+> -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+> -					      struct xe_tile *tile,
+> -					      struct xe_vm *vm,
+> -					      size_t size, u64 offset,
+> -					      enum ttm_bo_type type, u32 flags,
+> -					      u64 alignment);
+> +struct xe_bo *
+> +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile *tile,
+> +			     size_t size, u64 offset, enum ttm_bo_type type,
+> +			     u32 flags, bool vmap, u64 alignment, bool intr);
+>  struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+>  					   size_t size, u32 flags);
+>  struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index fdd514fec5ef..afabfc125488 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -617,9 +617,9 @@ static int xe_eu_stall_data_buf_alloc(struct xe_eu_stall_data_stream *stream,
+>  
+>  	size = stream->per_xecore_buf_size * last_xecore;
+>  
+> -	bo = xe_bo_create_pin_map_at_aligned(tile->xe, tile, NULL,
+> -					     size, ~0ull, ttm_bo_type_kernel,
+> -					     XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, SZ_64);
+> +	bo = xe_bo_create_pin_map_at_novm(tile->xe, tile, size, ~0ull, ttm_bo_type_kernel,
+> +					  XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT, true,
+> +					  SZ_64, false);
+>  	if (IS_ERR(bo)) {
+>  		kfree(stream->xecore_buf);
+>  		return PTR_ERR(bo);
+> -- 
+> 2.50.1
 > 
