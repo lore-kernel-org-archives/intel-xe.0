@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40942CA0EE4
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:25:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D26F5CA0ED1
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:27:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F05C710E068;
-	Fri, 15 Aug 2025 15:25:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4DE10E068;
+	Fri, 15 Aug 2025 15:27:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jHwgrCTD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="arbYLHTe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850B510E068
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:25:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D62D410E068
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755271558; x=1786807558;
+ t=1755271627; x=1786807627;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=z/b6EYGf2vXY20WiJ/5fxBE4LGkV4+jXlP0L/5VIMrk=;
- b=jHwgrCTDHFVaO50CZqQ7pCekKxseaYnpkBkq4B2o+JimEeDxniHeZIno
- LRSuKysmCMzmcIa6xN18DiNMWhy3K0bdCibaXTq8Pz0bcOu4HrVAFqCki
- 0UkN6BR5G/S3DXARnCPfpUCfr6C5yBX04efeRMdnhPQdfifNxHeeqK9yX
- RbtbbCgdWRYlGkT389zpL+mbeyOz2Z9Jp01pBkaBF88SJhPBVkgMfcFfQ
- yDqusmTJkxv9xLY/SXZVNp7izzpEvYTWwnj5okFiCkNHEqNsNKGQYT2O8
- 5fvoyK+o54pxLMSDptKV9k2ssIkHtRXDgNh1owg/PNxQEkpj8uLYdxByi g==;
-X-CSE-ConnectionGUID: 7NhJEjkMQielJileurBxmw==
-X-CSE-MsgGUID: RrFfKn3lRI+HzGxCDaa7lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="57306063"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57306063"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:25:57 -0700
-X-CSE-ConnectionGUID: k0cf8sKTTn6Pt/nYn02hzA==
-X-CSE-MsgGUID: k3nQ8kxvTfe/TzfBH93c/g==
+ bh=UfpBXRp4LHYF1u635CDKvYTE5Fm1X9VsQGKsHU3VQVA=;
+ b=arbYLHTegbZgYntC5P/3UlQXZxVZFt48bdYTUs/nv5T1tpd+eISITGvc
+ QPzdEDdovV6S+SM6QEaQBjINBw+LU3mhXr3YUdgqVyvjIDD7UXDbYkt/d
+ o0XcscgOsAYvu5qQEIv+PSOoKWQ2y6WQ7gxzP98GFRYspliIfJYTz8lUL
+ TArUie38QnO/nIpCgRSvX6Lxl0d0u3LIG6iHjQ8vGuSARD104+g5MBIBG
+ hBv0gjz7cJwBnSqu5vr0I2CgAqKiOqkkb3Tm/hju4t3QY+j3Ts4lfZPHl
+ DyutkZJN4Iz/quJfPa7MgwXAVa6oo/q8SsWxlxFV3Ihj4KRmV5UHWnnMp w==;
+X-CSE-ConnectionGUID: +IWsad24S02eDXCSRDaAoA==
+X-CSE-MsgGUID: 7EBTWMnBSUiGTTM0vk6/Mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="68298919"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="68298919"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:27:06 -0700
+X-CSE-ConnectionGUID: BMLZsRPWSfmU59xlVe4nLg==
+X-CSE-MsgGUID: 0N9DoXuSRc2NOaAMSmGqrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171282587"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171164207"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.18])
  ([10.245.245.18])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:25:56 -0700
-Message-ID: <b912ff51339e6781cd9123bbe51d021cf54bfd11.camel@linux.intel.com>
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:27:05 -0700
+Message-ID: <bee41887e76c4042926697ce3ee3b63099f21275.camel@linux.intel.com>
 Subject: Re: [PATCH 13/15] drm/xe: Convert xe_bo_create_pin_map_at() for
  exhaustive eviction
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
@@ -51,11 +51,11 @@ Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
  <matthew.auld@intel.com>
-Date: Fri, 15 Aug 2025 17:25:53 +0200
-In-Reply-To: <aJ1e5AZv/ozck/g3@lstrano-desk.jf.intel.com>
+Date: Fri, 15 Aug 2025 17:27:02 +0200
+In-Reply-To: <aJ1girRBD0ivhUvy@lstrano-desk.jf.intel.com>
 References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
  <20250813105121.5945-14-thomas.hellstrom@linux.intel.com>
- <aJ1e5AZv/ozck/g3@lstrano-desk.jf.intel.com>
+ <aJ1girRBD0ivhUvy@lstrano-desk.jf.intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-08-13 at 20:58 -0700, Matthew Brost wrote:
+On Wed, 2025-08-13 at 21:05 -0700, Matthew Brost wrote:
 > On Wed, Aug 13, 2025 at 12:51:19PM +0200, Thomas Hellstr=C3=B6m wrote:
 > > Most users of xe_bo_create_pin_map_at() and
 > > xe_bo_create_pin_map_at_aligned() are not using the vm parameter,
@@ -192,6 +192,9 @@ On Wed, 2025-08-13 at 20:58 -0700, Matthew Brost wrote:
 > > |
 > > +						=C2=A0=C2=A0
 > > XE_BO_FLAG_PAGETABLE,
+>=20
+> The flags and vmap arguments are swapped.
+>=20
 > > +						=C2=A0=C2=A0 alignment,
 > > false);
 > > =C2=A0	else
@@ -220,6 +223,20 @@ On Wed, 2025-08-13 at 20:58 -0700, Matthew Brost wrote:
 > > |
 > > +						=C2=A0=C2=A0
 > > XE_BO_FLAG_PAGETABLE,
+>=20
+> The flags and vmap arguments are swapped.
+
+Right. This was fixed in the wrong patch (14), but will drop the vmap
+argument in v2.
+
+/Thomas
+
+
+
+
+>=20
+> Matt
+>=20
 > > +						=C2=A0=C2=A0 alignment,
 > > false);
 > > =C2=A0	if (IS_ERR(dpt))
@@ -366,22 +383,6 @@ On Wed, 2025-08-13 at 20:58 -0700, Matthew Brost wrote:
 > > + * @type: The TTM buffer object type.
 > > + * @flags: XE_BO_FLAG_ flags.
 > > + * @vmap: Whether to create a buffer object map.
->=20
-> Can we stick vmap into XE_BO_FLAG_?
->=20
-> Also why do we need argument now when it what omitted previously.
-
-It's for the single vf provisioning user that wants to pin without
-mapping.
-
-But I'm open-coding that in v2 so dropping the vmap bool.
-
-/Thomas
-
-
->=20
-> Matt
->=20
 > > + * @alignment: GGTT alignment.
 > > + * @intr: Whether to execut any waits for backing store
 > > interruptible.
