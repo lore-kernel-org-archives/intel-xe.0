@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D518CA0ED1
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 06:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D79ACA0EE0
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 06:57:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 139AA10E07A;
-	Fri, 15 Aug 2025 06:56:07 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B129710E07A;
- Fri, 15 Aug 2025 06:56:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4619109423526726705=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9FC210E23E;
+	Fri, 15 Aug 2025 06:57:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k22qBZ1K";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 247CE10E23E
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 06:57:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755241039; x=1786777039;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=Gk3x/vzDyowtQqGiGbTZn35f27oq6xAKlYq/110opM0=;
+ b=k22qBZ1KdHgJE62nCNOxKEqOW/qiaZSBM6dcpIQHJGC1NNq06nmR3uqi
+ 2+/qxlo8ha408ycB5Y7Uo8VS46LQvbNAUpQpJ+xzFqVN6bDgbqyaCW7Pa
+ nBgDtzFkB3I/+x83hTmxaK/gqhEDL0c3DIX1ThKyQIH+2tYomJDtubI5B
+ BbtY0XlaOqJuaVrNtvOCabGUwsQ6c3ht7OoaHqri3bcBAYS7ABTqB5IDn
+ ovPPyxKYIIC9tTxQI1HGxmuMYVdghjYi7S9OXWDOKgyPuKWbN7ir/FrFh
+ LuIEH8NsyyDtOM+tmakLoLK2Cc/qca+e2GNKVqI8wRN0MfAtYOnF9jAh9 A==;
+X-CSE-ConnectionGUID: zJneQvfQQMiQNPsR5/7Vrw==
+X-CSE-MsgGUID: ZeK1Rf7ITguntfFCpxwEDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="82998367"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="82998367"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 23:57:18 -0700
+X-CSE-ConnectionGUID: xJLtkoJHSsytyk922IyIsg==
+X-CSE-MsgGUID: pfud7R2KTJOmWgqFwn5/5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="190663611"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.18])
+ ([10.245.245.18])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Aug 2025 23:57:17 -0700
+Message-ID: <5132cd40f871dce781be29a33ff8eb2840ef5015.camel@linux.intel.com>
+Subject: Re: [PATCH 11/15] drm/xe: Convert xe_dma_buf.c for exhaustive eviction
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen	
+ <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
+ <matthew.auld@intel.com>
+Date: Fri, 15 Aug 2025 08:57:14 +0200
+In-Reply-To: <aJ5JI3mOyxeNYS2c@lstrano-desk.jf.intel.com>
+References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
+ <20250813105121.5945-12-thomas.hellstrom@linux.intel.com>
+ <aJ5JI3mOyxeNYS2c@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Core_Xe_changes_preparing_f?=
- =?utf-8?q?or_VF_resume_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Aug 2025 06:56:05 -0000
-Message-ID: <175524096571.239647.1552259191211381747@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250815025605.2387080-1-matthew.brost@intel.com>
-In-Reply-To: <20250815025605.2387080-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,198 +71,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4619109423526726705==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 2025-08-14 at 13:37 -0700, Matthew Brost wrote:
+> On Wed, Aug 13, 2025 at 12:51:17PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Convert dma-buf migration to XE_PL_TT and dma-buf import to
+> > support exhaustive eviction, using xe_validation_guard().
+> > It seems unlikely that the import would result in an -ENOMEM,
+> > but convert import anyway for completeness.
+> >=20
+> > The dma-buf map_attachment() functionality unfortunately doesn't
+> > support passing a drm_exec, which means that foreign devices
+> > validating a dma-buf that we exported will not, unless they are
+> > xeKMD devices, participate in the exhaustive eviction scheme.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c | 59 +++++++++++++++++++++++-----=
+-
+> > ----
+> > =C2=A01 file changed, 42 insertions(+), 17 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > index 78a827d4e726..56df1d84df21 100644
+> > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > @@ -163,16 +163,27 @@ static int xe_dma_buf_begin_cpu_access(struct
+> > dma_buf *dma_buf,
+> > =C2=A0	struct xe_bo *bo =3D gem_to_xe_bo(obj);
+> > =C2=A0	bool reads =3D=C2=A0 (direction =3D=3D DMA_BIDIRECTIONAL ||
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 direction =3D=3D DMA_FROM_=
+DEVICE);
+> > -	struct drm_exec *exec =3D XE_VALIDATION_UNIMPLEMENTED;
+> > +	struct xe_validation_ctx ctx;
+> > +	struct drm_exec exec;
+> > +	int ret =3D 0;
+> > =C2=A0
+> > =C2=A0	if (!reads)
+> > =C2=A0		return 0;
+> > =C2=A0
+> > =C2=A0	/* Can we do interruptible lock here? */
+> > -	xe_bo_lock(bo, false);
+> > -	(void)xe_bo_migrate(bo, XE_PL_TT, exec);
+> > -	xe_bo_unlock(bo);
+> > -
+> > +	xe_validation_guard(&ctx, &xe_bo_device(bo)->val, &exec,
+> > 0, ret, false) {
+> > +		ret =3D drm_exec_lock_obj(&exec, &bo->ttm.base);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		if (ret)
+> > +			goto out;
+>=20
+> Does this work? The label is out of scope, which I believe is a no-no
+> with guards if I correctly understand the rules detailed in the
+> cleanup.h kernel documentation.
 
-== Series Details ==
+Good point.
 
-Series: Core Xe changes preparing for VF resume (rev2)
-URL   : https://patchwork.freedesktop.org/series/152965/
-State : success
+My impression is that it would work in this particular case, since we
+just exit a scope.
 
-== Summary ==
+But since it obviously goes against the guidelines in cleanup.h we
+shouln't be using these and replace them with a break and an error
+check after the guard if needed.
 
-CI Bug Log - changes from xe-3549-90b26f76462c96e29198988df41d6bd86d92c656_BAT -> xe-pw-152965v2_BAT
-====================================================
+I'll fix this up and look at other instances of this to.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152965v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#261] / [Intel XE#5564] / [Intel XE#688]) +9 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#288] / [Intel XE#5561]) +32 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#2229] / [Intel XE#5488])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [ABORT][5] ([Intel XE#5826]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3549-90b26f76462c96e29198988df41d6bd86d92c656/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][7] ([Intel XE#5783]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3549-90b26f76462c96e29198988df41d6bd86d92c656/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
-  [Intel XE#5488]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488
-  [Intel XE#5561]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561
-  [Intel XE#5564]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-  [Intel XE#5826]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+Thanks,
+Thomas
 
 
-Build changes
--------------
+>=20
+> > +
+> > +		ret =3D xe_bo_migrate(bo, XE_PL_TT, &exec);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		xe_validation_retry_on_oom(&ctx, &ret);
+> > +	}
+> > +out:
+> > +	/* If we failed, cpu-access takes place in current
+> > placement. */
+> > +	(void)ret;
+> > =C2=A0	return 0;
+> > =C2=A0}
+> > =C2=A0
+> > @@ -211,24 +222,38 @@ xe_dma_buf_init_obj(struct drm_device *dev,
+> > struct xe_bo *storage,
+> > =C2=A0{
+> > =C2=A0	struct dma_resv *resv =3D dma_buf->resv;
+> > =C2=A0	struct xe_device *xe =3D to_xe_device(dev);
+> > -	struct drm_exec *exec =3D XE_VALIDATION_UNIMPLEMENTED;
+> > +	struct xe_validation_ctx ctx;
+> > +	struct drm_gem_object *dummy_obj;
+> > +	struct drm_exec exec;
+> > =C2=A0	struct xe_bo *bo;
+> > -	int ret;
+> > -
+> > -	dma_resv_lock(resv, NULL);
+> > -	bo =3D ___xe_bo_create_locked(xe, storage, NULL, resv, NULL,
+> > dma_buf->size,
+> > -				=C2=A0=C2=A0=C2=A0 0, /* Will require 1way or
+> > 2way for vm_bind */
+> > -				=C2=A0=C2=A0=C2=A0 ttm_bo_type_sg,
+> > XE_BO_FLAG_SYSTEM, exec);
+> > -	if (IS_ERR(bo)) {
+> > -		ret =3D PTR_ERR(bo);
+> > -		goto error;
+> > +	int ret =3D 0;
+> > +
+> > +	dummy_obj =3D drm_gpuvm_resv_object_alloc(&xe->drm);
+> > +	if (!dummy_obj)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	dummy_obj->resv =3D resv;
+> > +	xe_validation_guard(&ctx, &xe->val, &exec, 0, ret, false)
+> > {
+> > +		ret =3D drm_exec_lock_obj(&exec, dummy_obj);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		if (ret)
+> > +			goto error;
+> > +
+> > +		bo =3D ___xe_bo_create_locked(xe, storage, NULL,
+> > resv, NULL, dma_buf->size,
+> > +					=C2=A0=C2=A0=C2=A0 0, /* Will require
+> > 1way or 2way for vm_bind */
+> > +					=C2=A0=C2=A0=C2=A0 ttm_bo_type_sg,
+> > XE_BO_FLAG_SYSTEM, &exec);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		if (IS_ERR(bo)) {
+> > +			ret =3D PTR_ERR(bo);
+> > +			xe_validation_retry_on_oom(&ctx, &ret);
+> > +			goto error;
+>=20
+> Same question / issue here with goto error label.
+>=20
+> Matt
+>=20
+> > +		}
+> > =C2=A0	}
+> > -	dma_resv_unlock(resv);
+> > +	drm_gem_object_put(dummy_obj);
+> > =C2=A0
+> > =C2=A0	return &bo->ttm.base;
+> > =C2=A0
+> > =C2=A0error:
+> > -	dma_resv_unlock(resv);
+> > =C2=A0	return ERR_PTR(ret);
+> > =C2=A0}
+> > =C2=A0
+> > --=20
+> > 2.50.1
+> >=20
 
-  * Linux: xe-3549-90b26f76462c96e29198988df41d6bd86d92c656 -> xe-pw-152965v2
-
-  IGT_8494: 8494
-  xe-3549-90b26f76462c96e29198988df41d6bd86d92c656: 90b26f76462c96e29198988df41d6bd86d92c656
-  xe-pw-152965v2: 152965v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/index.html
-
---===============4619109423526726705==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Core Xe changes preparing for VF resume (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152965/">https://patchwork.freedesktop.org/series/152965/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3549-90b26f76462c96e29198988df41d6bd86d92c656_BAT -&gt; xe-pw-152965v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152965v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564">Intel XE#5564</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561">Intel XE#5561</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488">Intel XE#5488</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3549-90b26f76462c96e29198988df41d6bd86d92c656/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5826">Intel XE#5826</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3549-90b26f76462c96e29198988df41d6bd86d92c656/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3549-90b26f76462c96e29198988df41d6bd86d92c656 -&gt; xe-pw-152965v2</li>
-</ul>
-<p>IGT_8494: 8494<br />
-  xe-3549-90b26f76462c96e29198988df41d6bd86d92c656: 90b26f76462c96e29198988df41d6bd86d92c656<br />
-  xe-pw-152965v2: 152965v2</p>
-
-</body>
-</html>
-
---===============4619109423526726705==--
