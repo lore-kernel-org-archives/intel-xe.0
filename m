@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FE3DCA0ED1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47266CA0EE8
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 08:54:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D391110E90F;
-	Fri, 15 Aug 2025 08:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07CF210E916;
+	Fri, 15 Aug 2025 08:54:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oi3DdB8K";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ibXTRzwS";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 786B310E8FC
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 08:54:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B9EA10E906
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 08:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=NlC3y8Ca4UvEvHgK/Bs8+0VGPJ4LsWoMkhDge9y+la8=; b=oi3DdB8KRk8Iroh57vCMLZsjAu
- Re0noHZxA9/vk2ie/6YmD7hY8FkcdRtUyhTGRbxS+XcX4grmAY1zWna8X83t34ydC2FExVZnygtH2
- 8inzDEZTAavtlBdl3iJgk/y6BXN9ALpflupSbgk58dNSPlfyzB7uVoNZcjzOj7AfF1M6MeQWAQCVm
- IvQgCxpGNKQK3VpK5Jhb5+ZMr68dfdxjO1ehroepSFXLnGiCb91rVlCJRRl83pjFbCVbR6FSkwGRK
- nNq4k9sILUleiAq6wPo6aezlKbwURA/xf6ltpk5gNuLQlRcvhgEGOat6nfztVuiyhWQPR4U19mwEg
- ietGlEyA==;
+ bh=8KYMRFWP3vVZkbF1S2tFKsaGM6iZPbMrNHf7rhSki2g=; b=ibXTRzwSxizJ35wF0Fanr1/xwm
+ l047wyb03QhYhs83jRxn+Jbj1W1xqRKIwITqkkLqXYLM7eXdalyQpd++Cu5e8kp0GmnQiKceVwjKU
+ 2L8rxwe/g99sZwm4SMtpXYg2UF7dWhesznHygw1x7+anUQdXvOEvKU7LZzqi5cX1PKPYELIcchEmG
+ 2xpqr+LKr9to2oOIOqB2YCZbnAF8Ou8WQbeziNtbviGOzw2bu4u74ltM0cqfyRuX7kuehFiHrOCeV
+ YoBB66lxLaF8vCADcIn755hr2Qm89qlf9HjEMjsKSB6qwtAJun38uzf7UyCo5CC3WmsvJCldBGfsD
+ IiEzvUpg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1umqCa-00EXz3-OT; Fri, 15 Aug 2025 10:54:20 +0200
+ id 1umqCb-00EXzM-HX; Fri, 15 Aug 2025 10:54:21 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v10 11/12] drm/xe: Force flush system memory AuxCCS data
- before scan out
-Date: Fri, 15 Aug 2025 09:54:00 +0100
-Message-ID: <20250815085402.19188-12-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v10 12/12] drm/i915/display: Expose AuxCCS frame buffer
+ modifiers for Xe
+Date: Fri, 15 Aug 2025 09:54:01 +0100
+Message-ID: <20250815085402.19188-13-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250815085402.19188-1-tvrtko.ursulin@igalia.com>
 References: <20250815085402.19188-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,146 +62,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Even though frame buffer objects are created as write-combined, in
-practice, on top of all the ring buffer flushing, an additional clflush
-seems to be needed before display engine can coherently scan out the
-AuxCCS compressed data without transient artifacts.
+Now that we have fixed the DPT handling we can undo the nerf which was
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+built for Xe").
 
-If for comparison we look at how i915 handles things (where AuxCCS works
-fine), as it happens it has this same clflush before a frame buffer is
-pinned for display for the first time, courtesy the dynamic tracking of
-the buffer cache mode and setting the latter to uncached before handing
-to display.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
 
-Since xe considers the buffer object caching mode as static we can
-implement the same approach by adding a flag telling us if the buffer
-was ever pinned for display and flush on the first pin. Subsequent re-pins
-will not repeat the clflush but so far I have not observed any glitching
-after the first pin.
+	[PLANE:32:plane 1A]: type=PRI
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 53 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo_types.h       | 14 ++++---
- 2 files changed, 62 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 658541422f44..bf600cad0284 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -371,6 +371,46 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	return ret;
- }
- 
-+static void xe_bo_clflush_auxccs(struct xe_bo *bo,
-+				 const struct i915_gtt_view *view)
-+{
-+	const struct intel_remapped_info *remap_info = &view->remapped;
-+	unsigned int i;
-+
-+	if (!IS_ENABLED(CONFIG_X86))
-+		return;
-+
-+	if (!static_cpu_has(X86_FEATURE_CLFLUSH))
-+		return;
-+
-+	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
-+		const struct intel_remapped_plane_info *plane =
-+						&remap_info->plane[i];
-+		const int size = boot_cpu_data.x86_clflush_size;
-+		struct sg_table *st = xe_bo_sg(bo);
-+		struct sg_page_iter sg_iter;
-+
-+		if (!plane->width && !plane->height && !plane->linear)
-+			continue;
-+
-+		if (!plane->linear)
-+			continue;
-+
-+		mb();
-+		for_each_sgtable_page(st, &sg_iter, plane->offset) {
-+			struct page *page = sg_page_iter_page(&sg_iter);
-+			uint8_t *page_virtual;
-+			unsigned int j;
-+
-+			page_virtual = kmap_local_page(page);
-+			for (j = 0; j < PAGE_SIZE; j += size)
-+				clflushopt(page_virtual + j);
-+			kunmap_local(page_virtual);
-+		}
-+		mb();
-+	}
-+}
-+
- static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 					const struct i915_gtt_view *view,
- 					unsigned int alignment)
-@@ -380,6 +420,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
-+	bool first_pin;
- 	int ret;
- 
- 	if (!vma)
-@@ -411,6 +452,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	if (ret)
- 		goto err;
- 
-+	first_pin = !bo->display_pin;
-+	bo->display_pin = true;
-+
- 	if (IS_DGFX(xe))
- 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 950dc79dbdd4..a26a42464791 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2928,12 +2928,6 @@ skl_universal_plane_create(struct intel_display *display,
  	else
-@@ -429,6 +473,15 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	if (ret)
- 		goto err_unpin;
+ 		caps = skl_plane_caps(display, pipe, plane_id);
  
-+	/*
-+	 * Force flush AuxCCS data for non-coherent display access.
-+	 */
-+	if (first_pin &&
-+	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
-+	    intel_fb_is_ccs_modifier(fb->base.modifier) &&
-+	    view->type == I915_GTT_VIEW_REMAPPED)
-+		xe_bo_clflush_auxccs(bo, view);
-+
- 	return vma;
- 
- err_unpin:
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index cf604adc13a3..d5096f7f6f9a 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -71,11 +71,6 @@ struct xe_bo {
- 	struct llist_node freed;
- 	/** @update_index: Update index if PT BO */
- 	int update_index;
--	/** @created: Whether the bo has passed initial creation */
--	bool created;
+-	/* FIXME: xe has problems with AUX */
+-	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
+-		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+-			  INTEL_PLANE_CAP_CCS_RC_CC |
+-			  INTEL_PLANE_CAP_CCS_MC);
 -
--	/** @ccs_cleared */
--	bool ccs_cleared;
+ 	modifiers = intel_fb_plane_get_modifiers(display, caps);
  
- 	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
- 	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-@@ -90,6 +85,15 @@ struct xe_bo {
- 	/** @devmem_allocation: SVM device memory allocation */
- 	struct drm_pagemap_devmem devmem_allocation;
- 
-+	/** @created: Whether the bo has passed initial creation */
-+	bool created : 1;
-+
-+	/** @ccs_cleared */
-+	bool ccs_cleared : 1;
-+
-+	/** @display_pin: Was it ever pinned to display */
-+	bool display_pin : 1;
-+
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
- 
+ 	ret = drm_universal_plane_init(display->drm, &plane->base,
 -- 
 2.48.0
 
