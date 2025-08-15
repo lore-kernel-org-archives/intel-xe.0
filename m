@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF1BCA0EDC
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 03:09:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B026ACA0EE0
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 04:06:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9249A10E134;
-	Fri, 15 Aug 2025 03:09:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H139yR60";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5833010E134
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 03:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755227381; x=1786763381;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4NPPrq8TSasWbQ8ACvrN5HkxOnNuQ69jt09qX4NseJk=;
- b=H139yR60cSiHA5kmUYxhkBpCELK06Jqy5Zisn1YVE3tdy6G2TaLRn6da
- 3/Ws5TyNKZlFmpSceh3f4qgOUZ+u7wAQolBGqAsfhIdSund10ts7Mr/Tp
- xvF5keSW1GepKk1mTY4EwzzTrX7yR2LY3dYg9/efAjlPKYa9oalc3rm3S
- YShRoT+ISTHpM6sIiXwI3nyHb9tkNga22+AZliAYVZtsleXfxrKstdqr0
- io4+DgghHYbZwsyg60vBrFC0VWVL7WOWiVzgyYHANx2kXnvPqq/0d8qmA
- TSEYQ+8R8C7hjjwkY+IWQSu5rGQ6aSQ1aZwqQg81s/7fpQKdDwOlkrwXg A==;
-X-CSE-ConnectionGUID: fgyzxDo6RG+0IWe5xJoHkA==
-X-CSE-MsgGUID: HH+j+eoxSHuIAWl8QLoZpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="67823253"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="67823253"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 20:09:40 -0700
-X-CSE-ConnectionGUID: 24zFGMEsQNeZth2ltlWRhw==
-X-CSE-MsgGUID: ELx0GUr5Qce4/OfBTh66UQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="172144054"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Aug 2025 20:09:39 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com, tomasz.lis@intel.com, stuart.summers@intel.com
-Subject: [PATCH] tests/intel/xe_exec_compute_mode: Remove non-block section
-Date: Thu, 14 Aug 2025 20:09:36 -0700
-Message-Id: <20250815030936.2387322-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E9710E958;
+	Fri, 15 Aug 2025 04:06:20 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D53E610E958;
+ Fri, 15 Aug 2025 04:06:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2609018475526545559=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Core_Xe_changes_preparing_f?=
+ =?utf-8?q?or_VF_resume?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 15 Aug 2025 04:06:18 -0000
+Message-ID: <175523077859.238346.260605478332708570@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250815025605.2387080-1-matthew.brost@intel.com>
+In-Reply-To: <20250815025605.2387080-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,148 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The non-block will become invalid and hang until the test exhausts all
-memory when LR jobs are tracked in the DRM scheduler.
+--===============2609018475526545559==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- tests/intel/xe_exec_compute_mode.c | 113 -----------------------------
- 1 file changed, 113 deletions(-)
+== Series Details ==
 
-diff --git a/tests/intel/xe_exec_compute_mode.c b/tests/intel/xe_exec_compute_mode.c
-index b904dc76b4..316f7322c1 100644
---- a/tests/intel/xe_exec_compute_mode.c
-+++ b/tests/intel/xe_exec_compute_mode.c
-@@ -320,116 +320,6 @@ test_exec(int fd, struct drm_xe_engine_class_instance *eci,
- 		close(map_fd);
- }
- 
--/**
-- * SUBTEST: non-blocking
-- * Description: Fill the ring and check we get expected errors.
-- * Test category: functionality test
-- */
--#define VM_DATA		0
--#define SPIN_DATA	1
--#define EXEC_DATA	2
--#define DATA_COUNT	3
--static void non_block(int fd, int expect)
--{
--	uint64_t addr = 0x1a0000;
--	struct drm_xe_sync sync[1] = {
--		{ .type = DRM_XE_SYNC_TYPE_USER_FENCE,
--		  .flags = DRM_XE_SYNC_FLAG_SIGNAL,
--		  .timeline_value = USER_FENCE_VALUE},
--	};
--	struct drm_xe_exec exec = {
--		.num_batch_buffer = 1,
--		.num_syncs = 1,
--		.syncs = to_user_pointer(&sync),
--	};
--	struct {
--		struct xe_spin spin;
--		uint32_t batch[16];
--		uint64_t vm_sync;
--		uint32_t data;
--		uint64_t exec_sync;
--	} *data = NULL;
--	struct xe_spin_opts spin_opts = { .preempt = false };
--	struct drm_xe_engine *engine;
--	uint64_t batch_offset = (char *)&data[EXEC_DATA].batch - (char *)data;
--	uint64_t batch_addr = addr + batch_offset;
--	uint64_t sdi_offset = (char *)&data[EXEC_DATA].data - (char *)data;
--	uint64_t sdi_addr = addr + sdi_offset;
--	size_t bo_size;
--	uint32_t vm;
--	uint32_t exec_queue;
--	int value = 0x123456;
--	uint32_t bo = 0;
--	int b, err;
--
--	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_LR_MODE, 0);
--	bo_size = sizeof(*data) * DATA_COUNT;
--	bo_size = xe_bb_size(fd, bo_size);
--
--	engine = xe_engine(fd, 1);
--	bo = xe_bo_create(fd, vm, bo_size, vram_if_possible(fd, engine->instance.gt_id),
--			  DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM);
--
--	data = xe_bo_map(fd, bo, bo_size);
--	memset(data, 0, bo_size);
--	exec_queue = xe_exec_queue_create(fd, vm, &engine->instance, 0);
--
--	sync[0].addr = to_user_pointer(&data[VM_DATA].vm_sync);
--	xe_vm_bind_async(fd, vm, engine->instance.gt_id, bo, 0,
--			       addr, bo_size, sync, 1);
--	xe_wait_ufence(fd, &data[VM_DATA].vm_sync, USER_FENCE_VALUE, 0, NSEC_PER_SEC);
--	data[VM_DATA].vm_sync = 0;
--
--	spin_opts.addr = addr + (char *)&data[SPIN_DATA].spin - (char *)data;
--	xe_spin_init(&data[SPIN_DATA].spin, &spin_opts);
--	sync[0].addr = addr + (char *)&data[SPIN_DATA].exec_sync - (char *)data;
--	exec.exec_queue_id = exec_queue;
--	exec.address = spin_opts.addr;
--	xe_exec(fd, &exec);
--	xe_spin_wait_started(&data[SPIN_DATA].spin);
--
--	b = 0;
--	data[EXEC_DATA].batch[b++] = MI_STORE_DWORD_IMM_GEN4;
--	data[EXEC_DATA].batch[b++] = sdi_addr;
--	data[EXEC_DATA].batch[b++] = sdi_addr >> 32;
--	data[EXEC_DATA].batch[b++] = value;
--	data[EXEC_DATA].batch[b++] = MI_BATCH_BUFFER_END;
--	igt_assert(b <= ARRAY_SIZE(data[EXEC_DATA].batch));
--
--	sync[0].addr = addr + (char *)&data[EXEC_DATA].exec_sync - (char *)data;
--	exec.num_syncs = 0;
--	exec.exec_queue_id = exec_queue;
--	exec.address = batch_addr;
--
--	while (1) {
--
--		err = ioctl(fd, DRM_IOCTL_XE_EXEC, &exec);
--
--		if (err == -1 && errno == EWOULDBLOCK)
--			break;
--
--		igt_assert_eq(err, 0);
--	}
--	igt_assert_eq(errno, expect);
--
--	xe_spin_end(&data[SPIN_DATA].spin);
--	xe_wait_ufence(fd, &data[SPIN_DATA].exec_sync, USER_FENCE_VALUE, 0, NSEC_PER_SEC);
--	usleep(50000);
--
--	exec.num_syncs = 1;
--	xe_exec(fd, &exec);
--	xe_wait_ufence(fd, &data[EXEC_DATA].exec_sync, USER_FENCE_VALUE, 0, NSEC_PER_SEC);
--
--	sync[0].addr = to_user_pointer(&data[VM_DATA].vm_sync);
--	xe_vm_unbind_async(fd, vm, 0, 0, addr, bo_size, sync, 1);
--	xe_wait_ufence(fd, &data[VM_DATA].vm_sync, USER_FENCE_VALUE, 0, NSEC_PER_SEC);
--	munmap(data, bo_size);
--	gem_close(fd, bo);
--
--	xe_exec_queue_destroy(fd, exec_queue);
--	xe_vm_destroy(fd, vm);
--}
--
- #define LR_SPINNER_TIME 30
- /**
-  * SUBTEST: lr-mode-workload
-@@ -570,9 +460,6 @@ igt_main
- 					  s->flags);
- 	}
- 
--	igt_subtest("non-blocking")
--		non_block(fd, EWOULDBLOCK);
--
- 	igt_subtest("lr-mode-workload")
- 		lr_mode_workload(fd);
- 
--- 
-2.34.1
+Series: Core Xe changes preparing for VF resume
+URL   : https://patchwork.freedesktop.org/series/152965/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20_BAT -> xe-pw-152965v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152965v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20 -> xe-pw-152965v1
+
+  IGT_8494: 8494
+  xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20: 915a96ac57901b60657509dfe5bfb3477e2ede20
+  xe-pw-152965v1: 152965v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v1/index.html
+
+--===============2609018475526545559==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Core Xe changes preparing for VF resume</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152965/">https://patchwork.freedesktop.org/series/152965/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20_BAT -&gt; xe-pw-152965v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152965v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152965v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20 -&gt; xe-pw-152965v1</li>
+</ul>
+<p>IGT_8494: 8494<br />
+  xe-3548-915a96ac57901b60657509dfe5bfb3477e2ede20: 915a96ac57901b60657509dfe5bfb3477e2ede20<br />
+  xe-pw-152965v1: 152965v1</p>
+
+</body>
+</html>
+
+--===============2609018475526545559==--
