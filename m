@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D26F5CA0ED1
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:27:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65DF3CA0ED1
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:29:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4DE10E068;
-	Fri, 15 Aug 2025 15:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B2910E068;
+	Fri, 15 Aug 2025 15:29:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="arbYLHTe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="frXjZQYp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D62D410E068
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:27:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D522B10E068
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:29:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755271627; x=1786807627;
+ t=1755271781; x=1786807781;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=UfpBXRp4LHYF1u635CDKvYTE5Fm1X9VsQGKsHU3VQVA=;
- b=arbYLHTegbZgYntC5P/3UlQXZxVZFt48bdYTUs/nv5T1tpd+eISITGvc
- QPzdEDdovV6S+SM6QEaQBjINBw+LU3mhXr3YUdgqVyvjIDD7UXDbYkt/d
- o0XcscgOsAYvu5qQEIv+PSOoKWQ2y6WQ7gxzP98GFRYspliIfJYTz8lUL
- TArUie38QnO/nIpCgRSvX6Lxl0d0u3LIG6iHjQ8vGuSARD104+g5MBIBG
- hBv0gjz7cJwBnSqu5vr0I2CgAqKiOqkkb3Tm/hju4t3QY+j3Ts4lfZPHl
- DyutkZJN4Iz/quJfPa7MgwXAVa6oo/q8SsWxlxFV3Ihj4KRmV5UHWnnMp w==;
-X-CSE-ConnectionGUID: +IWsad24S02eDXCSRDaAoA==
-X-CSE-MsgGUID: 7EBTWMnBSUiGTTM0vk6/Mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="68298919"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="68298919"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:27:06 -0700
-X-CSE-ConnectionGUID: BMLZsRPWSfmU59xlVe4nLg==
-X-CSE-MsgGUID: 0N9DoXuSRc2NOaAMSmGqrA==
+ bh=j9nhX+d+6uOcvSbs3xxotgVJS+mhQUnnu2eAR/vFBNM=;
+ b=frXjZQYpS4aAVGmtO0HtnzXIve519JTvonzzqPOD51tMQc3haQYQ/gZj
+ qnpDs+AnHv45E21fTHp7ShoH5gxkAL79HF5JuOxD2J737s2bGKS3RmsIh
+ uZC0NclRJWxTeWMhgfjbQs/kQiXL5Watl60rui/DcGmO1FU1O4pTyyCUC
+ 2UaMy0cyIKbWlP6EhbDp1zrT6IJpQEFKO5/cNpGzYy1py14UrAvYGVsqb
+ jQIr/Lv5SxZ+8UnABP2NIKABnHpLnhBf6p78vV8HYhL1tPq4G9E/Xng9i
+ UwfppzCWtVg2A9ddDH424/CjQxr/Su0KnNXV8VB8KDqqk7UVSbBpPFGQz A==;
+X-CSE-ConnectionGUID: aqlTd/JnQOyIsrYUQ6Ze3w==
+X-CSE-MsgGUID: 0mh1NP3ARzy7YCmDkOObGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="57503944"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57503944"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:29:41 -0700
+X-CSE-ConnectionGUID: ogypqy79Sei3I5CKwVBJPw==
+X-CSE-MsgGUID: KZUVjsqXRHajXXE8lgau2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171164207"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="167383558"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.18])
  ([10.245.245.18])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:27:05 -0700
-Message-ID: <bee41887e76c4042926697ce3ee3b63099f21275.camel@linux.intel.com>
-Subject: Re: [PATCH 13/15] drm/xe: Convert xe_bo_create_pin_map_at() for
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:29:39 -0700
+Message-ID: <25fa2789f230ca283ef0d5617bc863d99478dedc.camel@linux.intel.com>
+Subject: Re: [PATCH 15/15] drm/xe: Convert pinned suspend eviction for
  exhaustive eviction
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
@@ -51,11 +51,11 @@ Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen
  <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
  <matthew.auld@intel.com>
-Date: Fri, 15 Aug 2025 17:27:02 +0200
-In-Reply-To: <aJ1girRBD0ivhUvy@lstrano-desk.jf.intel.com>
+Date: Fri, 15 Aug 2025 17:29:36 +0200
+In-Reply-To: <aJ5HZ63s4J3rxxmx@lstrano-desk.jf.intel.com>
 References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
- <20250813105121.5945-14-thomas.hellstrom@linux.intel.com>
- <aJ1girRBD0ivhUvy@lstrano-desk.jf.intel.com>
+ <20250813105121.5945-16-thomas.hellstrom@linux.intel.com>
+ <aJ5HZ63s4J3rxxmx@lstrano-desk.jf.intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,442 +75,341 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-08-13 at 21:05 -0700, Matthew Brost wrote:
-> On Wed, Aug 13, 2025 at 12:51:19PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Most users of xe_bo_create_pin_map_at() and
-> > xe_bo_create_pin_map_at_aligned() are not using the vm parameter,
-> > and that simplifies conversion. Introduce an
-> > xe_bo_create_pin_map_at_novm() function and make the _aligned()
-> > version static. Use xe_validation_guard() for conversion.
+On Thu, 2025-08-14 at 13:30 -0700, Matthew Brost wrote:
+> On Wed, Aug 13, 2025 at 12:51:21PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Pinned suspend eviction and preparation for eviction validates
+> > system memory for eviction buffers. Do that under a
+> > validation exclusive lock to avoid interfering with other
+> > processes validating system graphics memory.
 > >=20
 > > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 > > ---
-> > =C2=A0.../compat-i915-headers/gem/i915_gem_stolen.h | 24 ++----
-> > =C2=A0drivers/gpu/drm/xe/display/xe_fb_pin.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 45 +++++-----
-> > =C2=A0drivers/gpu/drm/xe/display/xe_plane_initial.c |=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 83 ++++++++++++++-
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.c | 205 +++++++++++++++++++-------------=
+-
 > > ----
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 13 +--
-> > =C2=A0drivers/gpu/drm/xe/xe_eu_stall.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6 +-
-> > =C2=A06 files changed, 101 insertions(+), 74 deletions(-)
+> > =C2=A01 file changed, 108 insertions(+), 97 deletions(-)
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/compat-i915-
-> > headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-
-> > headers/gem/i915_gem_stolen.h
-> > index 1ce1e9da975b..ab48635ddffa 100644
-> > --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-> > +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-> > @@ -21,9 +21,7 @@ static inline int
-> > i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
-> > =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 size,
-> > u32 align,
-> > =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 start,
-> > u32 end)
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index 82bf158426ad..efb9c88b6aa7 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1139,43 +1139,47 @@ long xe_bo_shrink(struct ttm_operation_ctx
+> > *ctx, struct ttm_buffer_object *bo,
+> > =C2=A0int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
 > > =C2=A0{
+> > =C2=A0	struct xe_device *xe =3D ttm_to_xe_device(bo->ttm.bdev);
 > > -	struct drm_exec *exec =3D XE_VALIDATION_UNIMPLEMENTED;
-> > =C2=A0	struct xe_bo *bo;
-> > -	int err;
-> > =C2=A0	u32 flags =3D XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
+> > +	struct xe_validation_ctx ctx;
+> > +	struct drm_exec exec;
+> > =C2=A0	struct xe_bo *backup;
+> > =C2=A0	int ret =3D 0;
 > > =C2=A0
-> > =C2=A0	if (start < SZ_4K)
-> > @@ -34,25 +32,15 @@ static inline int
-> > i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
-> > =C2=A0		start =3D ALIGN(start, align);
+> > -	xe_bo_lock(bo, false);
+> > +	xe_validation_guard(&ctx, &xe->val, &exec, 0, ret, true) {
+> > +		ret =3D drm_exec_lock_obj(&exec, &bo->ttm.base);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		xe_assert(xe, !ret);
+> > +		xe_assert(xe, !bo->backup_obj);
+> > =C2=A0
+> > -	xe_assert(xe, !bo->backup_obj);
+> > +		/*
+> > +		 * Since this is called from the PM notifier we
+> > might have raced with
+> > +		 * someone unpinning this after we dropped the
+> > pinned list lock and
+> > +		 * grabbing the above bo lock.
+> > +		 */
+> > +		if (!xe_bo_is_pinned(bo))
+> > +			break;
+> > =C2=A0
+> > -	/*
+> > -	 * Since this is called from the PM notifier we might have
+> > raced with
+> > -	 * someone unpinning this after we dropped the pinned list
+> > lock and
+> > -	 * grabbing the above bo lock.
+> > -	 */
+> > -	if (!xe_bo_is_pinned(bo))
+> > -		goto out_unlock_bo;
+> > +		if (!xe_bo_is_vram(bo))
+> > +			break;
+> > =C2=A0
+> > -	if (!xe_bo_is_vram(bo))
+> > -		goto out_unlock_bo;
+> > +		if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+> > +			break;
+> > =C2=A0
+> > -	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+> > -		goto out_unlock_bo;
+> > +		backup =3D xe_bo_init_locked(xe, NULL, NULL, bo-
+> > >ttm.base.resv, NULL, xe_bo_size(bo),
+> > +					=C2=A0=C2=A0
+> > DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+> > +					=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
+> > XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> > +					=C2=A0=C2=A0 XE_BO_FLAG_PINNED,
+> > &exec);
+> > +		if (IS_ERR(backup)) {
+> > +			drm_exec_retry_on_contention(&exec);
+> > +			ret =3D PTR_ERR(backup);
+> > +			xe_validation_retry_on_oom(&ctx, &ret);
+> > +			break;
+> > +		}
+> > =C2=A0
+> > -	backup =3D xe_bo_init_locked(xe, NULL, NULL, bo-
+> > >ttm.base.resv, NULL, xe_bo_size(bo),
+> > -				=C2=A0=C2=A0 DRM_XE_GEM_CPU_CACHING_WB,
+> > ttm_bo_type_kernel,
+> > -				=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
+> > XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> > -				=C2=A0=C2=A0 XE_BO_FLAG_PINNED, exec);
+> > -	if (IS_ERR(backup)) {
+> > -		ret =3D PTR_ERR(backup);
+> > -		goto out_unlock_bo;
+> > +		backup->parent_obj =3D xe_bo_get(bo); /* Released by
+> > bo_destroy */
+> > +		ttm_bo_pin(&backup->ttm);
+> > +		bo->backup_obj =3D backup;
 > > =C2=A0	}
 > > =C2=A0
-> > -	bo =3D xe_bo_create_locked_range(xe,
-> > xe_device_get_root_tile(xe),
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NULL, size, start, end,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_kernel, flags,
-> > 0, exec);
-> > -	if (IS_ERR(bo)) {
-> > -		err =3D PTR_ERR(bo);
-> > -		bo =3D NULL;
-> > -		return err;
-> > -	}
-> > -	err =3D xe_bo_pin(bo, exec);
-> > -	xe_bo_unlock_vm_held(bo);
+> > -	backup->parent_obj =3D xe_bo_get(bo); /* Released by
+> > bo_destroy */
+> > -	ttm_bo_pin(&backup->ttm);
+> > -	bo->backup_obj =3D backup;
 > > -
-> > -	if (err) {
-> > -		xe_bo_put(fb->bo);
-> > -		bo =3D NULL;
-> > -	}
-> > +	bo =3D xe_bo_create_pin_map_at_novm(xe,
-> > xe_device_get_root_tile(xe),
-> > +					=C2=A0 size, start,
-> > ttm_bo_type_kernel, flags,
-> > +					=C2=A0 false, 0, true);
-> > +	if (IS_ERR(bo))
-> > +		return PTR_ERR(bo);
-> > =C2=A0
-> > =C2=A0	fb->bo =3D bo;
-> > =C2=A0
-> > -	return err;
-> > +	return 0;
+> > -out_unlock_bo:
+> > -	xe_bo_unlock(bo);
+> > =C2=A0	return ret;
 > > =C2=A0}
 > > =C2=A0
-> > =C2=A0static inline int i915_gem_stolen_insert_node(struct xe_device
-> > *xe,
-> > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > index 43c45344ea26..d46ff7ebb0a1 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> > @@ -102,29 +102,32 @@ static int __xe_pin_fb_vma_dpt(const struct
-> > intel_framebuffer *fb,
-> > =C2=A0				 XE_PAGE_SIZE);
+> > @@ -1215,99 +1219,106 @@ int xe_bo_notifier_unprepare_pinned(struct
+> > xe_bo *bo)
+> > =C2=A0int xe_bo_evict_pinned(struct xe_bo *bo)
+> > =C2=A0{
+> > =C2=A0	struct xe_device *xe =3D ttm_to_xe_device(bo->ttm.bdev);
+> > -	struct drm_exec *exec =3D XE_VALIDATION_UNIMPLEMENTED;
+> > +	struct xe_validation_ctx ctx;
+> > +	struct drm_exec exec;
+> > =C2=A0	struct xe_bo *backup =3D bo->backup_obj;
+> > =C2=A0	bool backup_created =3D false;
+> > =C2=A0	bool unmap =3D false;
+> > =C2=A0	int ret =3D 0;
 > > =C2=A0
-> > =C2=A0	if (IS_DGFX(xe))
-> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
-> > NULL,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,
-> > ~0ull,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_VRAM0 |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_GGTT |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
-> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
-> > +						=C2=A0=C2=A0 dpt_size,
-> > ~0ull,
+> > -	xe_bo_lock(bo, false);
+> > +	xe_validation_guard(&ctx, &xe->val, &exec, 0, ret, true) {
+> > +		ret =3D drm_exec_lock_obj(&exec, &bo->ttm.base);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		xe_assert(xe, !ret);
+> > =C2=A0
+> > -	if (WARN_ON(!bo->ttm.resource)) {
+> > -		ret =3D -EINVAL;
+> > -		goto out_unlock_bo;
+> > -	}
+> > +		if (WARN_ON(!bo->ttm.resource)) {
+> > +			ret =3D -EINVAL;
+> > +			break;
+> > +		}
+> > =C2=A0
+> > -	if (WARN_ON(!xe_bo_is_pinned(bo))) {
+> > -		ret =3D -EINVAL;
+> > -		goto out_unlock_bo;
+> > -	}
+> > +		if (WARN_ON(!xe_bo_is_pinned(bo))) {
+> > +			ret =3D -EINVAL;
+> > +			break;
+> > +		}
+> > =C2=A0
+> > -	if (!xe_bo_is_vram(bo))
+> > -		goto out_unlock_bo;
+> > +		if (!xe_bo_is_vram(bo))
+> > +			break;
+> > =C2=A0
+> > -	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+> > -		goto out_unlock_bo;
+> > +		if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+> > +			break;
+> > =C2=A0
+> > -	if (!backup) {
+> > -		backup =3D xe_bo_init_locked(xe, NULL, NULL, bo-
+> > >ttm.base.resv, NULL, xe_bo_size(bo),
+> > -					=C2=A0=C2=A0
+> > DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+> > -					=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
+> > XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> > -					=C2=A0=C2=A0 XE_BO_FLAG_PINNED,
+> > exec);
+> > -		if (IS_ERR(backup)) {
+> > -			ret =3D PTR_ERR(backup);
+> > -			goto out_unlock_bo;
+> > +		if (!backup) {
+> > +			backup =3D xe_bo_init_locked(xe, NULL, NULL,
+> > bo->ttm.base.resv, NULL,
+> > +						=C2=A0=C2=A0 xe_bo_size(bo),
 > > +						=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > +						=C2=A0=C2=A0 true,
+> > DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
 > > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_VRAM0 |
-> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
-> > |
+> > XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
 > > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
->=20
-> The flags and vmap arguments are swapped.
->=20
-> > +						=C2=A0=C2=A0 alignment,
+> > XE_BO_FLAG_PINNED, &exec);
+> > +			if (IS_ERR(backup)) {
+> > +				drm_exec_retry_on_contention(&exec
+> > );
+> > +				ret =3D PTR_ERR(backup);
+> > +				xe_validation_retry_on_oom(&ctx,
+> > &ret);
+> > +				break;
+> > +			}
+> > +			backup->parent_obj =3D xe_bo_get(bo); /*
+> > Released by bo_destroy */
+> > +			backup_created =3D true;
+> > =C2=A0		}
+> > -		backup->parent_obj =3D xe_bo_get(bo); /* Released by
+> > bo_destroy */
+> > -		backup_created =3D true;
+> > -	}
+> > =C2=A0
+> > -	if (xe_bo_is_user(bo) || (bo->flags &
+> > XE_BO_FLAG_PINNED_LATE_RESTORE)) {
+> > -		struct xe_migrate *migrate;
+> > -		struct dma_fence *fence;
+> > -
+> > -		if (bo->tile)
+> > -			migrate =3D bo->tile->migrate;
+> > -		else
+> > -			migrate =3D mem_type_to_migrate(xe, bo-
+> > >ttm.resource->mem_type);
+> > +		if (xe_bo_is_user(bo) || (bo->flags &
+> > XE_BO_FLAG_PINNED_LATE_RESTORE)) {
+> > +			struct xe_migrate *migrate;
+> > +			struct dma_fence *fence;
+> > =C2=A0
+> > -		ret =3D dma_resv_reserve_fences(bo->ttm.base.resv,
+> > 1);
+> > -		if (ret)
+> > -			goto out_backup;
+> > +			if (bo->tile)
+> > +				migrate =3D bo->tile->migrate;
+> > +			else
+> > +				migrate =3D mem_type_to_migrate(xe,
+> > bo->ttm.resource->mem_type);
+> > =C2=A0
+> > -		ret =3D dma_resv_reserve_fences(backup-
+> > >ttm.base.resv, 1);
+> > -		if (ret)
+> > -			goto out_backup;
+> > +			ret =3D dma_resv_reserve_fences(bo-
+> > >ttm.base.resv, 1);
+> > +			if (ret)
+> > +				goto out_backup;
+> > =C2=A0
+> > -		fence =3D xe_migrate_copy(migrate, bo, backup, bo-
+> > >ttm.resource,
+> > -					backup->ttm.resource,
 > > false);
-> > =C2=A0	else
-> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
-> > NULL,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,=C2=A0
-> > ~0ull,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_STOLEN |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_GGTT |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
-> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
-> > +						=C2=A0=C2=A0 dpt_size,=C2=A0
-> > ~0ull,
-> > +						=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > +						=C2=A0=C2=A0 true,
-> > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_STOLEN |
-> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
-> > |
-> > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
+> > -		if (IS_ERR(fence)) {
+> > -			ret =3D PTR_ERR(fence);
+> > -			goto out_backup;
+> > -		}
+> > +			ret =3D dma_resv_reserve_fences(backup-
+> > >ttm.base.resv, 1);
+> > +			if (ret)
+> > +				goto out_backup;
+> > =C2=A0
+> > -		dma_resv_add_fence(bo->ttm.base.resv, fence,
+> > -				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> > -		dma_resv_add_fence(backup->ttm.base.resv, fence,
+> > -				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> > -		dma_fence_put(fence);
+> > -	} else {
+> > -		ret =3D xe_bo_vmap(backup);
+> > -		if (ret)
+> > -			goto out_backup;
+> > +			fence =3D xe_migrate_copy(migrate, bo,
+> > backup, bo->ttm.resource,
+> > +						backup-
+> > >ttm.resource, false);
+> > +			if (IS_ERR(fence)) {
+> > +				ret =3D PTR_ERR(fence);
+> > +				goto out_backup;
+> > +			}
+> > =C2=A0
+> > -		if (iosys_map_is_null(&bo->vmap)) {
+> > -			ret =3D xe_bo_vmap(bo);
+> > +			dma_resv_add_fence(bo->ttm.base.resv,
+> > fence,
+> > +					=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> > +			dma_resv_add_fence(backup->ttm.base.resv,
+> > fence,
+> > +					=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> > +			dma_fence_put(fence);
+> > +		} else {
+> > +			ret =3D xe_bo_vmap(backup);
+> > =C2=A0			if (ret)
+> > =C2=A0				goto out_backup;
+> > -			unmap =3D true;
+> > -		}
+> > =C2=A0
+> > -		xe_map_memcpy_from(xe, backup->vmap.vaddr, &bo-
+> > >vmap, 0,
+> > -				=C2=A0=C2=A0 xe_bo_size(bo));
+> > -	}
+> > +			if (iosys_map_is_null(&bo->vmap)) {
+> > +				ret =3D xe_bo_vmap(bo);
+> > +				if (ret)
+> > +					goto out_vunmap;
+> > +				unmap =3D true;
+> > +			}
+> > =C2=A0
+> > -	if (!bo->backup_obj)
+> > -		bo->backup_obj =3D backup;
+> > +			xe_map_memcpy_from(xe, backup->vmap.vaddr,
+> > &bo->vmap, 0,
+> > +					=C2=A0=C2=A0 xe_bo_size(bo));
+> > +		}
+> > =C2=A0
+> > +		if (!bo->backup_obj)
+> > +			bo->backup_obj =3D backup;
+> > +out_vunmap:
 >=20
-> The flags and vmap arguments are swapped.
+> I just want to confirm that this is safe. The cleanup.h documentation
+> discourages the use of goto because of scoping issues. I assume that
+> since this label is within the scope of the guard, it is fine.
+>=20
+> It might be worth adding a quick note in the validation guard=E2=80=99s
+> kernel-doc mentioning that goto can be dangerous, explaining what is
+> allowed, and perhaps referencing the cleanup.h documentation. I could
+> see this being something developers might trip over.
+>=20
 
-Right. This was fixed in the wrong patch (14), but will drop the vmap
-argument in v2.
+Yes you are correct. I'll avoid the gotos in v2.
 
 /Thomas
 
 
 
-
+> Patch LGTM, though.
 >=20
 > Matt
 >=20
-> > +						=C2=A0=C2=A0 alignment,
-> > false);
-> > =C2=A0	if (IS_ERR(dpt))
-> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
-> > NULL,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,=C2=A0
-> > ~0ull,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_SYSTEM |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_GGTT |
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
-> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
-> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
-> > +						=C2=A0=C2=A0 dpt_size,=C2=A0
-> > ~0ull,
-> > +						=C2=A0=C2=A0
-> > ttm_bo_type_kernel,
-> > +						=C2=A0=C2=A0 true,
-> > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_SYSTEM |
-> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
-> > |
-> > +						=C2=A0=C2=A0
-> > XE_BO_FLAG_PAGETABLE,
-> > +						=C2=A0=C2=A0 alignment,
-> > false);
-> > =C2=A0	if (IS_ERR(dpt))
-> > =C2=A0		return PTR_ERR(dpt);
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> > b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> > index 826ac3d578b7..79d00127caf4 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> > @@ -140,8 +140,8 @@ initial_plane_bo(struct xe_device *xe,
-> > =C2=A0			page_size);
-> > =C2=A0	size -=3D base;
-> > =C2=A0
-> > -	bo =3D xe_bo_create_pin_map_at(xe, tile0, NULL, size,
-> > phys_base,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_kernel, flags);
-> > +	bo =3D xe_bo_create_pin_map_at_novm(xe, tile0, size,
-> > phys_base,
-> > +					=C2=A0 ttm_bo_type_kernel,
-> > flags, true, 0, false);
-> > =C2=A0	if (IS_ERR(bo)) {
-> > =C2=A0		drm_dbg(&xe->drm,
-> > =C2=A0			"Failed to create bo phys_base=3D%pa size %u
-> > with flags %x: %li\n",
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index 23b28eeef59f..c9928d4ee5a0 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -2253,29 +2253,20 @@ struct xe_bo *xe_bo_create_user(struct
-> > xe_device *xe,
-> > =C2=A0	return bo;
-> > =C2=A0}
-> > =C2=A0
-> > -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct
-> > xe_tile *tile,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type type, u32
-> > flags)
-> > -{
-> > -	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size,
-> > offset,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 type, flags, 0);
-> > -}
-> > -
-> > -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device
-> > *xe,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile
-> > *tile,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64
-> > offset,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type
-> > type, u32 flags,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 alignment)
-> > +static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct
-> > xe_device *xe,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct
-> > xe_tile *tile,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm
-> > *vm,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 size_t size,
-> > u64 offset,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 enum
-> > ttm_bo_type type, u32 flags,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 bool vmap,
-> > u64 alignment,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct
-> > drm_exec *exec)
-> > =C2=A0{
-> > =C2=A0	struct xe_bo *bo;
-> > =C2=A0	int err;
-> > =C2=A0	u64 start =3D offset =3D=3D ~0ull ? 0 : offset;
-> > =C2=A0	u64 end =3D offset =3D=3D ~0ull ? offset : start + size;
-> > -	struct drm_exec *exec =3D vm ? xe_vm_validation_exec(vm) :
-> > XE_VALIDATION_UNIMPLEMENTED;
-> > =C2=A0
-> > -	if (flags & XE_BO_FLAG_STOLEN &&
-> > +	if (flags & XE_BO_FLAG_STOLEN && vmap &&
-> > =C2=A0	=C2=A0=C2=A0=C2=A0 xe_ttm_stolen_cpu_access_needs_ggtt(xe))
-> > =C2=A0		flags |=3D XE_BO_FLAG_GGTT;
-> > =C2=A0
-> > @@ -2289,9 +2280,11 @@ struct xe_bo
-> > *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
-> > =C2=A0	if (err)
-> > =C2=A0		goto err_put;
-> > =C2=A0
-> > -	err =3D xe_bo_vmap(bo);
-> > -	if (err)
-> > -		goto err_unpin;
-> > +	if (vmap) {
-> > +		err =3D xe_bo_vmap(bo);
-> > +		if (err)
-> > +			goto err_unpin;
-> > +	}
-> > =C2=A0
-> > =C2=A0	xe_bo_unlock_vm_held(bo);
-> > =C2=A0
-> > @@ -2305,11 +2298,59 @@ struct xe_bo
-> > *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
-> > =C2=A0	return ERR_PTR(err);
-> > =C2=A0}
-> > =C2=A0
-> > +/**
-> > + * xe_bo_create_pin_map_at_novm() - Create pinned and mapped bo at
-> > optional VRAM offset
-> > + * @xe: The xe device.
-> > + * @tile: The tile to select for migration of this bo, and the
-> > tile used for
-> > + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel
-> > bos.
-> > + * @size: The storage size to use for the bo.
-> > + * @offset: Optional VRAM offset or %0 for don't care.
-> > + * @type: The TTM buffer object type.
-> > + * @flags: XE_BO_FLAG_ flags.
-> > + * @vmap: Whether to create a buffer object map.
-> > + * @alignment: GGTT alignment.
-> > + * @intr: Whether to execut any waits for backing store
-> > interruptible.
-> > + *
-> > + * Create a pinned and optionally mapped bo with VRAM offset and
-> > GGTT alignment
-> > + * options. The bo will be external and not associated with a VM.
-> > + *
-> > + * Return: The buffer object on success. Negative error pointer on
-> > failure.
-> > + * In particular, the function may return ERR_PTR(%-EINTR) if
-> > @intr was set
-> > + * to true on entry.
-> > + */
-> > +struct xe_bo *
-> > +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile
-> > *tile,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset, enum
-> > ttm_bo_type type, u32 flags,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 bool vmap, u64 alignment, bool intr)
-> > +{
-> > +	u32 drm_exec_flags =3D intr ? DRM_EXEC_INTERRUPTIBLE_WAIT :
-> > 0;
-> > +	struct xe_validation_ctx ctx;
-> > +	struct drm_exec exec;
-> > +	struct xe_bo *bo;
-> > +	int ret =3D 0;
-> > +
-> > +	xe_validation_guard(&ctx, &xe->val, &exec, drm_exec_flags,
-> > ret, false) {
-> > +		bo =3D xe_bo_create_pin_map_at_aligned(xe, tile,
-> > NULL, size, offset,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 type, flags,
-> > vmap,
-> > +						=C2=A0=C2=A0=C2=A0=C2=A0 alignment,
-> > &exec);
-> > +		drm_exec_retry_on_contention(&exec);
-> > +		if (IS_ERR(bo)) {
-> > +			ret =3D PTR_ERR(bo);
-> > +			xe_validation_retry_on_oom(&ctx, &ret);
-> > +		}
+> > +		xe_bo_vunmap(backup);
+> > =C2=A0out_backup:
+> > -	xe_bo_vunmap(backup);
+> > -	if (ret && backup_created)
+> > -		xe_bo_put(backup);
+> > -out_unlock_bo:
+> > -	if (unmap)
+> > -		xe_bo_vunmap(bo);
+> > -	xe_bo_unlock(bo);
+> > +		if (ret && backup_created)
+> > +			xe_bo_put(backup);
+> > +		if (unmap)
+> > +			xe_bo_vunmap(bo);
 > > +	}
 > > +
-> > +	return ret ? ERR_PTR(ret) : bo;
-> > +}
-> > +
-> > =C2=A0struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
-> > xe_tile *tile,
-> > =C2=A0				=C2=A0=C2=A0 struct xe_vm *vm, size_t size,
-> > =C2=A0				=C2=A0=C2=A0 enum ttm_bo_type type, u32
-> > flags)
-> > =C2=A0{
-> > -	return xe_bo_create_pin_map_at(xe, tile, vm, size, ~0ull,
-> > type, flags);
-> > +	struct drm_exec *exec =3D vm ? xe_vm_validation_exec(vm) :
-> > XE_VALIDATION_UNIMPLEMENTED;
-> > +
-> > +	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size,
-> > ~0ull, type, flags,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 true, 0, exec);
+> > =C2=A0	return ret;
 > > =C2=A0}
 > > =C2=A0
-> > =C2=A0static void __xe_bo_unpin_map_no_vm(void *arg)
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
-> > b/drivers/gpu/drm/xe/xe_bo.h
-> > index a625806deeb6..d06266af9662 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > @@ -109,15 +109,10 @@ struct xe_bo *xe_bo_create_user(struct
-> > xe_device *xe, struct xe_vm *vm, size_t s
-> > =C2=A0struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
-> > xe_tile *tile,
-> > =C2=A0				=C2=A0=C2=A0 struct xe_vm *vm, size_t size,
-> > =C2=A0				=C2=A0=C2=A0 enum ttm_bo_type type, u32
-> > flags);
-> > -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct
-> > xe_tile *tile,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm, size_t
-> > size, u64 offset,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type type, u32
-> > flags);
-> > -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device
-> > *xe,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile
-> > *tile,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64
-> > offset,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type
-> > type, u32 flags,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 alignment);
-> > +struct xe_bo *
-> > +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile
-> > *tile,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset, enum
-> > ttm_bo_type type,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0 u32 flags, bool vmap, u64 alignment,
-> > bool intr);
-> > =C2=A0struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe,
-> > struct xe_tile *tile,
-> > =C2=A0					=C2=A0=C2=A0 size_t size, u32
-> > flags);
-> > =C2=A0struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe=
-,
-> > struct xe_tile *tile,
-> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c
-> > b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > index fdd514fec5ef..afabfc125488 100644
-> > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> > @@ -617,9 +617,9 @@ static int xe_eu_stall_data_buf_alloc(struct
-> > xe_eu_stall_data_stream *stream,
-> > =C2=A0
-> > =C2=A0	size =3D stream->per_xecore_buf_size * last_xecore;
-> > =C2=A0
-> > -	bo =3D xe_bo_create_pin_map_at_aligned(tile->xe, tile, NULL,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0 size, ~0ull,
-> > ttm_bo_type_kernel,
-> > -					=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
-> > XE_BO_FLAG_GGTT, SZ_64);
-> > +	bo =3D xe_bo_create_pin_map_at_novm(tile->xe, tile, size,
-> > ~0ull, ttm_bo_type_kernel,
-> > +					=C2=A0 XE_BO_FLAG_SYSTEM |
-> > XE_BO_FLAG_GGTT, true,
-> > +					=C2=A0 SZ_64, false);
-> > =C2=A0	if (IS_ERR(bo)) {
-> > =C2=A0		kfree(stream->xecore_buf);
-> > =C2=A0		return PTR_ERR(bo);
 > > --=20
 > > 2.50.1
 > >=20
