@@ -4,79 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E39ACA0EE4
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 14:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A00CA0EE4
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:04:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23DA710E970;
-	Fri, 15 Aug 2025 14:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E17010E97F;
+	Fri, 15 Aug 2025 15:04:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="Izsj90MB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Set0xPgd";
 	dkim-atps=neutral
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C923E10E970
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 14:59:22 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id
- 6a1803df08f44-709e781cf2eso24832656d6.1
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 07:59:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1755269962; x=1755874762;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=50nh9ojpuXl09KZsM4s/5KZbwzDlcF/XYcNNU05X9hw=;
- b=Izsj90MBvZuZjpIKGkSAnaeCqkMmWcLCK6bI0RTvFkGssm+xG7UXL1+I05rqj0aNlm
- mptoR/JpeJSr7WaxzSxeKx5t5FBAlxeo8iM6TXas5jQSMoU8Yjw2cun1KbzVZ2/pp1Do
- 2keZkfmN6gJmr497/1JAgtbTOD0fdz5mGqjFeyWdbfAjOF2e5j+SRwue9T5EA8NJxRDk
- iLqrKFr+NxHV5GmkwrAnDdr5MFb7/LJD4erxEecjLr5mLyXMmtb/2puhpUT2BcX8Oz2V
- 8FUOx6PNBlJaG3PoESE9yh9YrhPlXfBHRjWPe+LpV8BSUjwXKH08svi0rncEWS16lAmQ
- N5KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755269962; x=1755874762;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=50nh9ojpuXl09KZsM4s/5KZbwzDlcF/XYcNNU05X9hw=;
- b=szeXZ9oMMvskkVUdl1nGbpCRvraJ1bP5GYyMLknSOYPQLZZf0NkoJOpDQgD3N6RYpq
- vExShdnaMvd+nPEUKQDD15IiaCGA7o0bjeLPL7yKhdGFXhInQi+BIxEB1i+o4WAOB7kE
- Ms6tO7xHGi8Us59WLQ5dxN761leZ64jPQPNP6BSmv2HfJgib6LtGx8/L0jGSyLRFvDU1
- 1r3NyUTduTA4eb9yrDaN7E9Nxtr3KedOGxAJvuBHIGfYY0O1lHL3as23ImzckCf+XLdb
- cLEPtmmU3b4YCOXlTOqZIk/I0p2ZHuT1Q88akY5rsOeUrpvZiu9BR5xCTdWVRSBY/rOJ
- nh+Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXrpkLiVLxvv8Fj6nAZUoi88OCjeOxlFF4A7nUaXGwkzBx4e1D1OxDk7tlyFsErl8LKpcjNDDwDUQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxt8WkyiExxnM9BCo4Sb0wmxMCPdyv5kI5shKjdYu3LgQy5Xd1k
- qUxlxI9T8vrlae8ZtRVufay2iYybpFZ1df3/4zE9nPiOsbw4CPRTOQjk98O+e5t1Q7uIQ4Ukuat
- yxrXNrjjBlMmGhOZpFcgNRaUCXeyBypJt0W87qy1H
-X-Gm-Gg: ASbGncu4Wqdd4YBWGsUS2ms567Hjvxe5vqfhn0pb/toU23X9dyYDbopFzngHzp9k/4G
- hA8y2d1ukApw9c7Obp81XQkxYGEPxtqIX2e9TbUF363EBgL+Dzjl+wSlGsicQGpnI1t07MCuS67
- fsZDSIGMYz/oiAeYIWGHXZDY1mzfTL1QAzu0DfoIrfyZGEQbsuAfJKkGjftPcVGgiftucrYP+G0
- 7elIJh/aD+y6xPKQenX+Ika+jhMSvIm0A==
-X-Google-Smtp-Source: AGHT+IHmoCmv01hy2h3YXxbNI4L4X2iTkQzlTE9WzbU7XKoVAuyRL7jMfrtER3tLM1DBnlP8vDwIioXYnsfNEIJ0kCs=
-X-Received: by 2002:a05:6214:2242:b0:704:a1c6:fff3 with SMTP id
- 6a1803df08f44-70b97e04d15mr95594636d6.15.1755269961267; Fri, 15 Aug 2025
- 07:59:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250815103604.3857930-1-marievic@google.com>
- <20250815103604.3857930-5-marievic@google.com>
-In-Reply-To: <20250815103604.3857930-5-marievic@google.com>
-From: Rae Moar <rmoar@google.com>
-Date: Fri, 15 Aug 2025 10:59:10 -0400
-X-Gm-Features: Ac12FXwK-0tPDAQTbVtLDfpATZ41CarassR39o4F4FtdW7kdqfwXD7XBdOKQgaE
-Message-ID: <CA+GJov50Q81TAg8PUVNeg=tLUn+WLi8=Y+=FctC9hjs8TVh3mw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] kunit: Enable direct registration of parameter
- arrays to a KUnit test
-To: Marie Zhussupova <marievic@google.com>
-Cc: davidgow@google.com, shuah@kernel.org, brendan.higgins@linux.dev, 
- mark.rutland@arm.com, elver@google.com, dvyukov@google.com, 
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, 
- rodrigo.vivi@intel.com, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, kasan-dev@googlegroups.com, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C1E10E980
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:04:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755270257; x=1786806257;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=96jY1iyYIB8yjhjfgPo1oDYgc4y3S7a7dF4q+sXw2I4=;
+ b=Set0xPgd7JjR5ndk1FisikH7djbceJ0/Jv7Jj+eaIiYMTz95nfLvx5+X
+ oefPXUwBN+JCVhv2RzxImx12zwLNa6VsDQLW6TvpMaZdLx3BvFvsZaS8O
+ olPiVNEUwdQ/7yxZQmsO+Tr3Pa4ElPAmDaVkNlw934l9EF7ByiMQr78n+
+ cg7Rfl0Q3hxVy25fMa9tjLpE/jMhKbj2boI4ENrc6mMwtJT64sbLfUX80
+ MdhZv05dP0z08AUV4+V/+OMmEzDFJbJ5ibPWXUbg+hl1nU/7VTcFlmkuS
+ RVTFAh0FNzVwZ1qD2eBpiJp+Tvw/u1M96ergCgKGH6YbfeN7lsmTnoJLw A==;
+X-CSE-ConnectionGUID: ThH8sHQITlOAbPI64uNjhQ==
+X-CSE-MsgGUID: o6vlsBHwRLmv32kh6B+eyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="61225218"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="61225218"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:04:17 -0700
+X-CSE-ConnectionGUID: zGp2oY5XTN63O6WrzrU1xw==
+X-CSE-MsgGUID: l7XYM0PqQAuuT8e6y7jqGA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="167288587"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.18])
+ ([10.245.245.18])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:04:15 -0700
+Message-ID: <e2748b78c6b129b96ab0c5804dafc64eb2fab107.camel@linux.intel.com>
+Subject: Re: [PATCH 05/15] drm/xe: Introduce an xe_validation wrapper around
+ drm_exec
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen	
+ <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
+ <matthew.auld@intel.com>
+Date: Fri, 15 Aug 2025 17:04:12 +0200
+In-Reply-To: <aJzKfYPutxWaObXu@lstrano-desk.jf.intel.com>
+References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
+ <20250813105121.5945-6-thomas.hellstrom@linux.intel.com>
+ <aJzKfYPutxWaObXu@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,374 +75,488 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 15, 2025 at 6:36=E2=80=AFAM Marie Zhussupova <marievic@google.c=
-om> wrote:
->
-> KUnit parameterized tests currently support two primary methods f
-> or getting parameters:
-> 1.  Defining custom logic within a generate_params() function.
-> 2.  Using the KUNIT_ARRAY_PARAM() and KUNIT_ARRAY_PARAM_DESC()
->     macros with a pre-defined static array and passing
->     the created *_gen_params() to KUNIT_CASE_PARAM().
->
-> These methods present limitations when dealing with dynamically
-> generated parameter arrays, or in scenarios where populating parameters
-> sequentially via generate_params() is inefficient or overly complex.
->
-> This patch addresses these limitations by adding a new `params_array`
-> field to `struct kunit`, of the type `kunit_params`. The
-> `struct kunit_params` is designed to store the parameter array itself,
-> along with essential metadata including the parameter count, parameter
-> size, and a get_description() function for providing custom descriptions
-> for individual parameters.
->
-> The `params_array` field can be populated by calling the new
-> kunit_register_params_array() macro from within a param_init() function.
-> This will register the array as part of the parameterized test context.
-> The user will then need to pass kunit_array_gen_params() to the
-> KUNIT_CASE_PARAM_WITH_INIT() macro as the generator function, if not
-> providing their own. kunit_array_gen_params() is a KUnit helper that will
-> use the registered array to generate parameters.
->
-> The arrays passed to KUNIT_ARRAY_PARAM(,DESC) will also be registered to
-> the parameterized test context for consistency as well as for higher
-> availability of the parameter count that will be used for outputting a KT=
-AP
-> test plan for a parameterized test.
->
-> This modification provides greater flexibility to the KUnit framework,
-> allowing  testers to easily register and utilize both dynamic and static
-> parameter arrays.
->
-> Reviewed-by: David Gow <davidgow@google.com>
-> Signed-off-by: Marie Zhussupova <marievic@google.com>
+On Wed, 2025-08-13 at 10:25 -0700, Matthew Brost wrote:
+> On Wed, Aug 13, 2025 at 12:51:11PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Introduce a validation wrapper xe_validation_guard() as a helper
+> > intended to be used around drm_exec transactions what perform
+> > validations. Once TTM can handle exhaustive eviction we could
+> > remove this wrapper or make it mostly a NO-OP unless other
+> > functionality is added to it.
+> >=20
+> > Currently the wrapper takes a read lock upon entry and if the
+> > transaction hits an OOM, all locks are released and the
+> > transaction is retried with a write-lock. If all other
+> > validations participate in this scheme, the transaction with
+> > the write lock will be the only transaction validating and
+> > should have access to all available non-pinned memory.
+> >=20
+> > There is currently a problem in that TTM converts -EDEADLOCKS to
+> > -ENOMEM, and with ww_mutex slowpath error injections, we can hit
+> > -ENOMEMs without having actually ran out of memory. We abuse
+> > ww_mutex internals to detect such situations until TTM is fixes
+> > to not convert the error code. In the meantime, injecting
+> > ww_mutex slowpath -EDEADLOCKs is a good way to test
+> > the implementation in the absence of real OOMs.
+> >=20
+> > Just introduce the wrapper in this commit. It will be hooked up
+> > to the driver in following commits.
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_validation.c | 199
+> > +++++++++++++++++++++++++++++
+> > =C2=A0drivers/gpu/drm/xe/xe_validation.h | 107 ++++++++++++++++
+> > =C2=A02 files changed, 306 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_validation.c
+> > b/drivers/gpu/drm/xe/xe_validation.c
+> > index cc0684d24e02..cd1424f04237 100644
+> > --- a/drivers/gpu/drm/xe/xe_validation.c
+> > +++ b/drivers/gpu/drm/xe/xe_validation.c
+> > @@ -5,6 +5,7 @@
+> > =C2=A0#include "xe_bo.h"
+> > =C2=A0#include <drm/drm_exec.h>
+> > =C2=A0#include <drm/drm_gem.h>
+> > +#include <drm/drm_gpuvm.h>
+> > =C2=A0
+> > =C2=A0#include "xe_assert.h"
+> > =C2=A0#include "xe_validation.h"
+> > @@ -47,3 +48,201 @@ void xe_validation_assert_exec(const struct
+> > xe_device *xe,
+> > =C2=A0	}
+> > =C2=A0}
+> > =C2=A0#endif
+> > +
+> > +static int xe_validation_lock(struct xe_validation_ctx *ctx)
+> > +{
+> > +	struct xe_validation_device *val =3D ctx->val;
+> > +	int ret =3D 0;
+> > +
+> > +	if (ctx->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
+> > +		if (ctx->request_exclusive)
+> > +			ret =3D down_write_killable(&val->lock);
+> > +		else
+> > +			ret =3D down_read_interruptible(&val->lock);
+> > +	} else {
+> > +		if (ctx->request_exclusive)
+> > +			down_write(&val->lock);
+> > +		else
+> > +			down_read(&val->lock);
+> > +	}
+> > +
+> > +	if (!ret) {
+> > +		ctx->lock_held =3D true;
+> > +		ctx->lock_held_exclusive =3D ctx->request_exclusive;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static void xe_validation_unlock(struct xe_validation_ctx *ctx)
+> > +{
+> > +	if (!ctx->lock_held)
+> > +		return;
+> > +
+> > +	if (ctx->lock_held_exclusive)
+> > +		up_write(&ctx->val->lock);
+> > +	else
+> > +		up_read(&ctx->val->lock);
+> > +
+> > +	ctx->lock_held =3D false;
+> > +}
+> > +
+> > +/**
+> > + * xe_validation_ctx_init() - Initialize an xe_validation_ctx
+> > + * @ctx: The xe_validation_ctx to initialize.
+> > + * @val: The xe_validation_device representing the validation
+> > domain.
+> > + * @exec: The struct drm_exec to use for the transaction.
+> > + * @flags: The flags to use for drm_exec initialization.
+> > + * @nr: The number of anticipated buffer object locks. Forwarded
+> > to
+> > + * drm_exec initialization.
+> > + * @exclusive: Whether to use exclusive locking already on first
+> > validation.
+> > + *
+> > + * Initialize and lock a an xe_validation transaction using the
+> > validation domain
+> > + * represented by @val. Also initialize the drm_exec object
+> > forwarding
+> > + * @flags and @nr to the drm_exec initialization. The @exclusive
+> > parameter should
+> > + * typically be set to false to avoid locking out other validators
+> > from the
+> > + * domain until an OOM is hit. For testing- or final attempt
+> > purposes it can,
+> > + * however, be set to true.
+> > + *
+> > + * Return: %0 on success, %-EINTR if interruptible initial locking
+> > failed with a
+> > + * signal pending.
+> > + */
+> > +int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct
+> > xe_validation_device *val,
+> > +			=C2=A0=C2=A0 struct drm_exec *exec, u32 flags,
+> > unsigned int nr,
+> > +			=C2=A0=C2=A0 bool exclusive)
+> > +{
+> > +	int ret;
+> > +
+> > +	ctx->exec =3D exec;
+> > +	ctx->val =3D val;
+> > +	ctx->lock_held =3D false;
+> > +	ctx->lock_held_exclusive =3D false;
+> > +	ctx->request_exclusive =3D exclusive;
+> > +	ctx->flags =3D flags;
+> > +	ctx->nr =3D nr;
+> > +
+> > +	ret =3D xe_validation_lock(ctx);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	drm_exec_init(exec, flags, nr);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+> > +/*
+> > + * This abuses both drm_exec and ww_mutex internals and should be
+> > + * replaced by checking for -EDEADLK when we can make TTM
+> > + * stop converting -EDEADLK to -ENOMEM.
+> > + * An alternative is to not have exhaustive eviction with
+> > + * CONFIG_DEBUG_WW_MUTEX_SLOWPATH until that happens.
+> > + */
+>=20
+> I vote to keep this the way you have it and live with the abuse until
+> TTM is updated.
+>=20
+> > +static bool xe_validation_contention_injected(struct drm_exec
+> > *exec)
+> > +{
+> > +	return !!exec->ticket.contending_lock;
+> > +}
+> > +
+> > +#else
+> > +
+> > +static bool xe_validation_contention_injected(struct drm_exec
+> > *exec)
+> > +{
+> > +	return false;
+> > +}
+> > +
+> > +#endif
+> > +
+> > +static bool __xe_validation_should_retry(struct xe_validation_ctx
+> > *ctx, int ret)
+> > +{
+> > +	if (ret =3D=3D -ENOMEM &&
+> > +	=C2=A0=C2=A0=C2=A0 ((ctx->request_exclusive &&
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_validation_contention_injected(ctx-=
+>exec)) ||
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 !ctx->request_exclusive)) {
+> > +		ctx->request_exclusive =3D true;
+>=20
+> Can the locking across multiple GPUs fall when request_exclusive is
+> held
+> and the GPUs are sharing dma-buffers? I suppose we'd need true WW
+> locking throughout the stack (TTM) and a ticketed retry to guarantee
+> foward progress.
 
-Hello!
+Yes. Either that or widen the validation domain to be per driver rather
+than per device.
+With the drm_exec retry, in addition dma-buf needs to support passing a
+drm_exec, but that otoh would be a layering violation. So I have
+historically advocated for abstracting the ww mutex transaction with a
+dma-buf locking context with callbacks rather than a drm_exec. Then
+drm_exec could derive from that and keep its functionality for gem
+objects.
 
-This patch series is looking great! Happy to add this as an
-improvement to the KUnit framework.
-
-Reviewed-by: Rae Moar <rmoar@google.com>
-
-Thanks!
--Rae
-
-> ---
->
-> Changes in v3:
-> v2: https://lore.kernel.org/all/20250811221739.2694336-5-marievic@google.=
-com/
-> - Commit message formatting.
->
-> Changes in v2:
-> v1: https://lore.kernel.org/all/20250729193647.3410634-7-marievic@google.=
-com/
-> - If the parameter count is available for a parameterized test, the
->   kunit_run_tests() function will now output the KTAP test plan for it.
-> - The name of the struct kunit_params field in struct kunit was changed
->   from params_data to params_array. This name change better reflects its
->   purpose, which is to encapsulate both the parameter array and its
->   associated metadata.
-> - The name of `kunit_get_next_param_and_desc` was changed to
->   `kunit_array_gen_params` to make it simpler and to better fit its purpo=
-se
->   of being KUnit's built-in generator function that uses arrays to genera=
-te
->   parameters.
-> - The signature of get_description() in `struct params_array` was changed=
- to
->   accept the parameterized test context, as well. This way test users can
->   potentially use information available in the parameterized test context=
+>=20
+> > +		return true;
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > +
+> > +/**
+> > + * xe_validation_exec_lock() - Perform drm_gpuvm_exec_lock within
+> > a validation
+> > + * transaction.
+> > + * @ctx: An uninitialized xe_validation_ctx.
+> > + * @vm_exec: An initialized struct vm_exec.
+> > + * @val: The validation domain.
+> > + *
+> > + * The drm_gpuvm_exec_lock() function internally initializes its
+> > drm_exec
+> > + * transaction and therefore doesn't lend itself very well to be
+> > using
+> > + * xe_validation_ctx_init(). Provide a helper that takes an
+> > uninitialized
+> > + * xe_validation_ctx and calls drm_gpuvm_exec_lock() with OOM
+> > retry.
+> > + *
+> > + * Return: %0 on success, negative error code on failure.
+> > + */
+> > +int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
+> > +			=C2=A0=C2=A0=C2=A0 struct drm_gpuvm_exec *vm_exec,
+> > +			=C2=A0=C2=A0=C2=A0 struct xe_validation_device *val)
+> > +{
+> > +	int ret;
+> > +
+> > +	memset(ctx, 0, sizeof(*ctx));
+> > +	ctx->exec =3D &vm_exec->exec;
+> > +	ctx->flags =3D vm_exec->flags;
+> > +	ctx->val =3D val;
+> > +retry:
+> > +	ret =3D xe_validation_lock(ctx);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret =3D drm_gpuvm_exec_lock(vm_exec);
+> > +	if (ret) {
+> > +		xe_validation_unlock(ctx);
+> > +		if (__xe_validation_should_retry(ctx, ret))
+> > +			goto retry;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * xe_validation_ctx_fini() - Finalize a validation transaction
+> > + * @ctx: The Validation transaction to finalize.
+> > + *
+> > + * Finalize a validation transaction and its related drm_exec
+> > transaction.
+> > + */
+> > +void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
+> > +{
+> > +	drm_exec_fini(ctx->exec);
+> > +	xe_validation_unlock(ctx);
+> > +}
+> > +
+> > +/**
+> > + * xe_validation_should_retry() - Determine if a validation
+> > transaction should retry
+> > + * @ctx: The validation transaction.
+> > + * @ret: Pointer to a return value variable.
+> > + *
+> > + * Determines whether a validation transaction should retry based
+> > on the
+> > + * internal transaction state and the return value pointed to by
+> > @ret.
+> > + * If a validation should be retried, the transaction is prepared
+> > for that,
+> > + * and the validation locked might be re-locked in exclusive mode,
+> > and *@ret
+> > + * is set to %0. If the re-locking errors, typically due to
+> > interruptible
+> > + * locking with signal pending, *@ret is instead set to -EINTR and
+> > the
+> > + * function returns %false.
+> > + *
+> > + * Return: %true if validation should be retried, %false
+> > otherwise.
+> > + */
+> > +bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int
+> > *ret)
+> > +{
+> > +	if (__xe_validation_should_retry(ctx, *ret)) {
+> > +		drm_exec_fini(ctx->exec);
+> > +		*ret =3D 0;
+> > +		if (ctx->request_exclusive !=3D ctx-
+> > >lock_held_exclusive) {
+> > +			xe_validation_unlock(ctx);
+> > +			*ret =3D xe_validation_lock(ctx);
+> > +		}
+> > +		drm_exec_init(ctx->exec, ctx->flags, ctx->nr);
+> > +		return !*ret;
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_validation.h
+> > b/drivers/gpu/drm/xe/xe_validation.h
+> > index db50feacad7a..a708c260cf18 100644
+> > --- a/drivers/gpu/drm/xe/xe_validation.h
+> > +++ b/drivers/gpu/drm/xe/xe_validation.h
+> > @@ -7,9 +7,11 @@
+> > =C2=A0
+> > =C2=A0#include <linux/dma-resv.h>
+> > =C2=A0#include <linux/types.h>
+> > +#include <linux/rwsem.h>
+> > =C2=A0
+> > =C2=A0struct drm_exec;
+> > =C2=A0struct drm_gem_object;
+> > +struct drm_gpuvm_exec;
+> > =C2=A0struct xe_device;
+> > =C2=A0
+> > =C2=A0#ifdef CONFIG_PROVE_LOCKING
+> > @@ -66,4 +68,109 @@ void xe_validation_assert_exec(const struct
+> > xe_device *xe, const struct drm_exec
+> > =C2=A0	} while (0)
+> > =C2=A0#endif
+> > =C2=A0
+> > +/**
+> > + * struct xe_validation_device - The domain for exhaustive
+> > eviction
+> > + * @lock: The lock used to exclude other processes from allocating
+> > graphics memory
+> > + *
+> > + * The struct xe_validation_device represents the domain for which
+> > we want to use
+> > + * exhaustive eviction. The @lock is typically grabbed in read
+> > mode for allocations
+> > + * but when graphics memory allocation fails, it is retried with
+> > the write mode held.
+> > + */
+> > +struct xe_validation_device {
+> > +	struct rw_semaphore lock;
+> > +};
+> > +
+> > +/**
+> > + * struct xe_validation_ctx - A struct drm_exec subclass with
+> > support for
+> > + * exhaustive eviction
+> > + * @exec: The drm_exec object base class. Note that we use a
+> > pointer instead of
+> > + * embedding to avoid diamond inheritance.
+> > + * @val: The exhaustive eviction domain.
+> > + * @lock_held: Whether The domain lock is currently held.
+> > + * @lock_held_exclusive: Whether the domain lock is held in
+> > exclusive mode.
+> > + * @request_exclusive: Whether to lock exclusively (write mode)
+> > the next time
+> > + * the domain lock is locked.
+> > + * @flags: The drm_exec flags used for drm_exec (re-
+> > )initialization.
+> > + * @nr: The drm_exec nr parameter used for drm_exec (re-
+> > )initializaiton.
+> > + */
+> > +struct xe_validation_ctx {
+> > +	struct drm_exec *exec;
+> > +	struct xe_validation_device *val;
+> > +	bool lock_held;
+> > +	bool lock_held_exclusive;
+> > +	bool request_exclusive;
+> > +	u32 flags;
+> > +	unsigned int nr;
+> > +};
+> > +
+> > +int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct
+> > xe_validation_device *val,
+> > +			=C2=A0=C2=A0 struct drm_exec *exec, u32 flags,
+> > unsigned int nr,
+> > +			=C2=A0=C2=A0 bool exclusive);
+> > +
+> > +int xe_validation_exec_lock(struct xe_validation_ctx *ctx, struct
+> > drm_gpuvm_exec *vm_exec,
+> > +			=C2=A0=C2=A0=C2=A0 struct xe_validation_device *val);
+> > +
+> > +void xe_validation_ctx_fini(struct xe_validation_ctx *ctx);
+> > +
+> > +bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int
+> > *ret);
+> > +
+> > +/**
+> > + * xe_validation_retry_on_oom() - Retry on oom in an xe_validaton
+> > transaction
+> > + * @_ctx: Pointer to the xe_validation_ctx
+> > + * @_ret: The current error value possibly holding -ENOMEM
+> > + *
+> > + * Use this in way similar to drm_exec_retry_on_contention().
+> > + * If @_ret contains -ENOMEM the tranaction is restarted once in a
+> > way that
+> > + * blocks other transactions and allows exhastive eviction. If the
+> > transaction
+> > + * was already restarted once, Just return the -ENOMEM. May also
+> > set
+> > + * _ret to -EINTR if not retrying and waits are interruptible.
+> > + * May only be used within a drm_exec_until_all_locked() loop.
+> > + */
+> > +#define xe_validation_retry_on_oom(_ctx,
+> > _ret)				\
+> > +	do
+> > {								\
+> > +		if (xe_validation_should_retry(_ctx,
+> > _ret))		\
+> > +			goto
+> > *__drm_exec_retry_ptr;			\
+> > +	} while (0)
+> > +
+> > +/**
+> > + * xe_validation_device_init - Initialize a struct
+> > xe_validation_device
+> > + * @val: The xe_validation_device to init.
+> > + */
+> > +static inline void
+> > +xe_validation_device_init(struct xe_validation_device *val)
+> > +{
+> > +	init_rwsem(&val->lock);
+> > +}
+> > +
+> > +/*
+> > + * Make guard() and scoped_guard() work with xe_validation_ctx
+> > + * so that we can exit transactions without caring about the
+> > + * cleanup.
+> > + */
+> > +DEFINE_CLASS(xe_validation, struct xe_validation_ctx *,
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 if (!IS_ERR(_T)) xe_validation_ctx_fini(_T);=
 ,
->   such as the parameterized test name for setting the parameter descripti=
-ons.
-> - The type of `num_params` in `struct params_array` was changed from int =
-to
->   size_t for better handling of the array size.
-> - The name of __kunit_init_params() was changed to be kunit_init_params()=
-.
->   Logic that sets the get_description() function pointer to NULL was also
->   added in there.
-> - `kunit_array_gen_params` is now exported to make it available to use
->   with modules.
-> - Instead of allowing NULL to be passed in as the parameter generator
->   function in the KUNIT_CASE_PARAM_WITH_INIT macro, users will now be ask=
-ed
->   to provide `kunit_array_gen_params` as the generator function. This wil=
-l
->   ensure that a parameterized test remains defined by the existence of a
->   parameter generation function.
-> - KUNIT_ARRAY_PARAM(,DESC) will now additionally register the passed in a=
-rray
->   in struct kunit_params. This will make things more consistent i.e. if a
->   parameter array is available then the struct kunit_params field in pare=
-nt
->   struct kunit is populated. Additionally, this will increase the
->   availability of the KTAP test plan.
-> - The comments and the commit message were changed to reflect the
->   parameterized testing terminology. See the patch series cover letter
->   change log for the definitions.
->
-> ---
->  include/kunit/test.h | 65 ++++++++++++++++++++++++++++++++++++++++----
->  lib/kunit/test.c     | 30 ++++++++++++++++++++
->  2 files changed, 89 insertions(+), 6 deletions(-)
->
-> diff --git a/include/kunit/test.h b/include/kunit/test.h
-> index b527189d2d1c..8cc9614a88d5 100644
-> --- a/include/kunit/test.h
-> +++ b/include/kunit/test.h
-> @@ -234,9 +234,13 @@ static inline char *kunit_status_to_ok_not_ok(enum k=
-unit_status status)
->   * Provides the option to register param_init() and param_exit() functio=
-ns.
->   * param_init/exit will be passed the parameterized test context and run=
- once
->   * before and once after the parameterized test. The init function can b=
-e used
-> - * to add resources to share between parameter runs, and any other setup=
- logic.
-> - * The exit function can be used to clean up resources that were not man=
-aged by
-> - * the parameterized test, and any other teardown logic.
-> + * to add resources to share between parameter runs, pass parameter arra=
-ys,
-> + * and any other setup logic. The exit function can be used to clean up =
-resources
-> + * that were not managed by the parameterized test, and any other teardo=
-wn logic.
-> + *
-> + * Note: If you are registering a parameter array in param_init() with
-> + * kunit_register_param_array() then you need to pass kunit_array_gen_pa=
-rams()
-> + * to this as the generator function.
->   */
->  #define KUNIT_CASE_PARAM_WITH_INIT(test_name, gen_params, init, exit)   =
-       \
->                 { .run_case =3D test_name, .name =3D #test_name,         =
-           \
-> @@ -289,6 +293,20 @@ struct kunit_suite_set {
->         struct kunit_suite * const *end;
->  };
->
-> +/* Stores the pointer to the parameter array and its metadata. */
-> +struct kunit_params {
-> +       /*
-> +        * Reference to the parameter array for a parameterized test. Thi=
-s
-> +        * is NULL if a parameter array wasn't directly passed to the
-> +        * parameterized test context struct kunit via kunit_register_par=
-ams_array().
-> +        */
-> +       const void *params;
-> +       /* Reference to a function that gets the description of a paramet=
-er. */
-> +       void (*get_description)(struct kunit *test, const void *param, ch=
-ar *desc);
-> +       size_t num_params;
-> +       size_t elem_size;
-> +};
-> +
->  /**
->   * struct kunit - represents a running instance of a test.
->   *
-> @@ -296,16 +314,18 @@ struct kunit_suite_set {
->   *       created in the init function (see &struct kunit_suite).
->   * @parent: reference to the parent context of type struct kunit that ca=
-n
->   *         be used for storing shared resources.
-> + * @params_array: for storing the parameter array.
->   *
->   * Used to store information about the current context under which the t=
-est
->   * is running. Most of this data is private and should only be accessed
-> - * indirectly via public functions; the two exceptions are @priv and @pa=
-rent
-> - * which can be used by the test writer to store arbitrary data and acce=
-ss the
-> - * parent context, respectively.
-> + * indirectly via public functions; the exceptions are @priv, @parent an=
-d
-> + * @params_array which can be used by the test writer to store arbitrary=
- data,
-> + * access the parent context, and to store the parameter array, respecti=
-vely.
->   */
->  struct kunit {
->         void *priv;
->         struct kunit *parent;
-> +       struct kunit_params params_array;
->
->         /* private: internal use only. */
->         const char *name; /* Read only after initialization! */
-> @@ -376,6 +396,8 @@ void kunit_exec_list_tests(struct kunit_suite_set *su=
-ite_set, bool include_attr)
->  struct kunit_suite_set kunit_merge_suite_sets(struct kunit_suite_set ini=
-t_suite_set,
->                 struct kunit_suite_set suite_set);
->
-> +const void *kunit_array_gen_params(struct kunit *test, const void *prev,=
- char *desc);
-> +
->  #if IS_BUILTIN(CONFIG_KUNIT)
->  int kunit_run_all_tests(void);
->  #else
-> @@ -1696,6 +1718,8 @@ do {                                               =
-                              \
->                                              const void *prev, char *desc=
-)                      \
->         {                                                                =
-                       \
->                 typeof((array)[0]) *__next =3D prev ? ((typeof(__next)) p=
-rev) + 1 : (array);      \
-> +               if (!prev)                                               =
-                       \
-> +                       kunit_register_params_array(test, array, ARRAY_SI=
-ZE(array), NULL);      \
->                 if (__next - (array) < ARRAY_SIZE((array))) {            =
-                       \
->                         void (*__get_desc)(typeof(__next), char *) =3D ge=
-t_desc;                  \
->                         if (__get_desc)                                  =
-                       \
-> @@ -1718,6 +1742,8 @@ do {                                               =
-                              \
->                                              const void *prev, char *desc=
-)                      \
->         {                                                                =
-                       \
->                 typeof((array)[0]) *__next =3D prev ? ((typeof(__next)) p=
-rev) + 1 : (array);      \
-> +               if (!prev)                                               =
-                       \
-> +                       kunit_register_params_array(test, array, ARRAY_SI=
-ZE(array), NULL);      \
->                 if (__next - (array) < ARRAY_SIZE((array))) {            =
-                       \
->                         strscpy(desc, __next->desc_member, KUNIT_PARAM_DE=
-SC_SIZE);              \
->                         return __next;                                   =
-                       \
-> @@ -1725,6 +1751,33 @@ do {                                              =
-                              \
->                 return NULL;                                             =
-                       \
->         }
->
-> +/**
-> + * kunit_register_params_array() - Register parameter array for a KUnit =
-test.
-> + * @test: The KUnit test structure to which parameters will be added.
-> + * @array: An array of test parameters.
-> + * @param_count: Number of parameters.
-> + * @get_desc: Function that generates a string description for a given p=
-arameter
-> + * element.
-> + *
-> + * This macro initializes the @test's parameter array data, storing info=
-rmation
-> + * including the parameter array, its count, the element size, and the p=
-arameter
-> + * description function within `test->params_array`.
-> + *
-> + * Note: If using this macro in param_init(), kunit_array_gen_params()
-> + * will then need to be manually provided as the parameter generator fun=
-ction to
-> + * KUNIT_CASE_PARAM_WITH_INIT(). kunit_array_gen_params() is a KUnit
-> + * function that uses the registered array to generate parameters
-> + */
-> +#define kunit_register_params_array(test, array, param_count, get_desc) =
-                               \
-> +       do {                                                             =
-                       \
-> +               struct kunit *_test =3D (test);                          =
-                         \
-> +               const typeof((array)[0]) * _params_ptr =3D &(array)[0];  =
-                         \
-> +               _test->params_array.params =3D _params_ptr;              =
-                         \
-> +               _test->params_array.num_params =3D (param_count);        =
-                         \
-> +               _test->params_array.elem_size =3D sizeof(*_params_ptr);  =
-                         \
-> +               _test->params_array.get_description =3D (get_desc);      =
-                         \
-> +       } while (0)
-> +
->  // TODO(dlatypov@google.com): consider eventually migrating users to exp=
-licitly
->  // include resource.h themselves if they need it.
->  #include <kunit/resource.h>
-> diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-> index ac8fa8941a6a..ce4bb93f09f4 100644
-> --- a/lib/kunit/test.c
-> +++ b/lib/kunit/test.c
-> @@ -337,6 +337,14 @@ void __kunit_do_failed_assertion(struct kunit *test,
->  }
->  EXPORT_SYMBOL_GPL(__kunit_do_failed_assertion);
->
-> +static void kunit_init_params(struct kunit *test)
-> +{
-> +       test->params_array.params =3D NULL;
-> +       test->params_array.get_description =3D NULL;
-> +       test->params_array.num_params =3D 0;
-> +       test->params_array.elem_size =3D 0;
-> +}
-> +
->  void kunit_init_test(struct kunit *test, const char *name, struct string=
-_stream *log)
->  {
->         spin_lock_init(&test->lock);
-> @@ -347,6 +355,7 @@ void kunit_init_test(struct kunit *test, const char *=
-name, struct string_stream
->                 string_stream_clear(log);
->         test->status =3D KUNIT_SUCCESS;
->         test->status_comment[0] =3D '\0';
-> +       kunit_init_params(test);
->  }
->  EXPORT_SYMBOL_GPL(kunit_init_test);
->
-> @@ -641,6 +650,23 @@ static void kunit_accumulate_stats(struct kunit_resu=
-lt_stats *total,
->         total->total +=3D add.total;
->  }
->
-> +const void *kunit_array_gen_params(struct kunit *test, const void *prev,=
- char *desc)
-> +{
-> +       struct kunit_params *params_arr =3D &test->params_array;
-> +       const void *param;
-> +
-> +       if (test->param_index < params_arr->num_params) {
-> +               param =3D (char *)params_arr->params
-> +                       + test->param_index * params_arr->elem_size;
-> +
-> +               if (params_arr->get_description)
-> +                       params_arr->get_description(test, param, desc);
-> +               return param;
-> +       }
-> +       return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(kunit_array_gen_params);
-> +
->  static void kunit_init_parent_param_test(struct kunit_case *test_case, s=
-truct kunit *test)
->  {
->         if (test_case->param_init) {
-> @@ -706,6 +732,10 @@ int kunit_run_tests(struct kunit_suite *suite)
->                                   "KTAP version 1\n");
->                         kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT =
-KUNIT_SUBTEST_INDENT
->                                   "# Subtest: %s", test_case->name);
-> +                       if (test.params_array.params)
-> +                               kunit_log(KERN_INFO, &test, KUNIT_SUBTEST=
-_INDENT
-> +                                         KUNIT_SUBTEST_INDENT "1..%zd\n"=
-,
-> +                                         test.params_array.num_params);
->
->                         while (curr_param) {
->                                 struct kunit param_test =3D {
-> --
-> 2.51.0.rc1.167.g924127e9c0-goog
->
+>=20
+> I think this should be 'if (_T)', right?
+>=20
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 ({_ret =3D xe_validation_ctx_init(_ctx, _val=
+, _exec,
+> > _flags, 0, _excl);
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _ret ? NULL : _ctx; }),
+>=20
+> Or here '_ret ? ERR_PTR(_ret) : _ctx;'
+>=20
+> One or the other if I correctly understand how DEFINE_CLASS works.
+
+Right. good catch.
+
+
+>=20
+> Matt
+>=20
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_validation_ctx *_ctx, struct
+> > xe_validation_device *_val,
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_exec *_exec, u32 _flags, int _ret=
+, bool
+> > _excl);
+> > +static inline void
+> > *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
+> > +{return *_T; }
+> > +#define class_xe_validation_is_conditional false
+> > +
+> > +/**
+> > + * xe_validation_guard() - An auto-cleanup xe_validation_ctx
+> > transaction
+> > + * @_ctx: The xe_validation_ctx.
+> > + * @_val: The xe_validation_device.
+> > + * @_exec: The struct drm_exec object
+> > + * @_flags: Flags for the drm_exec transaction. See the struct
+> > drm_exec documention!
+> > + * @_ret: Return in / out parameter. May be set by this macro.
+> > Typicall 0 when called.
+> > + * @_excl: Whether to start in exclusive mode already in the first
+> > iteration.
+> > + *
+> > + * This macro is will initiate a drm_exec transaction with
+> > additional support for
+> > + * exhaustive eviction.
+> > + */
+> > +#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret,
+> > _excl)	\
+> > +	scoped_guard(xe_validation, _ctx, _val, _exec, _flags,
+> > _ret, _excl) \
+> > +	drm_exec_until_all_locked(_exec)
+> > +
+> > =C2=A0#endif
+> > --=20
+> > 2.50.1
+> >=20
+
