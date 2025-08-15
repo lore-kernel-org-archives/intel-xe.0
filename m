@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B997CA0EE4
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:23:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40942CA0EE4
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Aug 2025 15:25:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE5810E97F;
-	Fri, 15 Aug 2025 15:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F05C710E068;
+	Fri, 15 Aug 2025 15:25:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C/OcorjU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jHwgrCTD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE0CD10E97F
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:23:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 850B510E068
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Aug 2025 15:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755271427; x=1786807427;
+ t=1755271558; x=1786807558;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=ss3+jPEtuQzUBcuS03GZIyEzNeUTyUNUmw5+9vnYwKE=;
- b=C/OcorjUJyE9lisoHCrnln0eoDZdvELH9sPnLuHdtXIXYKjFNd38X/GW
- dZsj0u0Wtj3DggdwjRDP9V59kKo0vbl0iV/M3aKfe0LevIdX6r8solsPi
- 2ufPjCOPYCddId3ElsOLNQXf+8TiviVqYIaYoZwQjLZyppBHMXWbSFEVu
- NDjs1lRxBjLJx3BiR2KYzSkmvRWJrRu3HY1AomtlFgi5aEoNWB1VPCpUB
- afOXF2z1uc6CQuRYC+whssIkapoBaM+7yUObnI0mFrvYslTlDmwWew6h3
- D41WR21DiSfHVldiBYMCASlfgIG3r/rIpITOP5t/z9RB7oK7hVSHd1tnn g==;
-X-CSE-ConnectionGUID: Y4mn66vMSyi3n+qAl68mLg==
-X-CSE-MsgGUID: CaIjgNiNTl6Jp73MkMX3LQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="60220338"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="60220338"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:23:47 -0700
-X-CSE-ConnectionGUID: kZjdXXBwSj23pB9VesmbPA==
-X-CSE-MsgGUID: QykqbG5dRnik9VWraBjs8g==
+ bh=z/b6EYGf2vXY20WiJ/5fxBE4LGkV4+jXlP0L/5VIMrk=;
+ b=jHwgrCTDHFVaO50CZqQ7pCekKxseaYnpkBkq4B2o+JimEeDxniHeZIno
+ LRSuKysmCMzmcIa6xN18DiNMWhy3K0bdCibaXTq8Pz0bcOu4HrVAFqCki
+ 0UkN6BR5G/S3DXARnCPfpUCfr6C5yBX04efeRMdnhPQdfifNxHeeqK9yX
+ RbtbbCgdWRYlGkT389zpL+mbeyOz2Z9Jp01pBkaBF88SJhPBVkgMfcFfQ
+ yDqusmTJkxv9xLY/SXZVNp7izzpEvYTWwnj5okFiCkNHEqNsNKGQYT2O8
+ 5fvoyK+o54pxLMSDptKV9k2ssIkHtRXDgNh1owg/PNxQEkpj8uLYdxByi g==;
+X-CSE-ConnectionGUID: 7NhJEjkMQielJileurBxmw==
+X-CSE-MsgGUID: RrFfKn3lRI+HzGxCDaa7lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="57306063"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57306063"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:25:57 -0700
+X-CSE-ConnectionGUID: k0cf8sKTTn6Pt/nYn02hzA==
+X-CSE-MsgGUID: k3nQ8kxvTfe/TzfBH93c/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="204214447"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171282587"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.18])
  ([10.245.245.18])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:23:44 -0700
-Message-ID: <4d5c63f723a1c95bc745ff139882f22d54a01210.camel@linux.intel.com>
-Subject: Re: [PATCH 05/15] drm/xe: Introduce an xe_validation wrapper around
- drm_exec
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:25:56 -0700
+Message-ID: <b912ff51339e6781cd9123bbe51d021cf54bfd11.camel@linux.intel.com>
+Subject: Re: [PATCH 13/15] drm/xe: Convert xe_bo_create_pin_map_at() for
+ exhaustive eviction
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen	
  <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
  <matthew.auld@intel.com>
-Date: Fri, 15 Aug 2025 17:23:41 +0200
-In-Reply-To: <aJ1LFsjFmjAY2Fcn@lstrano-desk.jf.intel.com>
+Date: Fri, 15 Aug 2025 17:25:53 +0200
+In-Reply-To: <aJ1e5AZv/ozck/g3@lstrano-desk.jf.intel.com>
 References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
- <20250813105121.5945-6-thomas.hellstrom@linux.intel.com>
- <aJ1LFsjFmjAY2Fcn@lstrano-desk.jf.intel.com>
+ <20250813105121.5945-14-thomas.hellstrom@linux.intel.com>
+ <aJ1e5AZv/ozck/g3@lstrano-desk.jf.intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,476 +75,306 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2025-08-13 at 19:33 -0700, Matthew Brost wrote:
-> On Wed, Aug 13, 2025 at 12:51:11PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > Introduce a validation wrapper xe_validation_guard() as a helper
-> > intended to be used around drm_exec transactions what perform
-> > validations. Once TTM can handle exhaustive eviction we could
-> > remove this wrapper or make it mostly a NO-OP unless other
-> > functionality is added to it.
-> >=20
-> > Currently the wrapper takes a read lock upon entry and if the
-> > transaction hits an OOM, all locks are released and the
-> > transaction is retried with a write-lock. If all other
-> > validations participate in this scheme, the transaction with
-> > the write lock will be the only transaction validating and
-> > should have access to all available non-pinned memory.
-> >=20
-> > There is currently a problem in that TTM converts -EDEADLOCKS to
-> > -ENOMEM, and with ww_mutex slowpath error injections, we can hit
-> > -ENOMEMs without having actually ran out of memory. We abuse
-> > ww_mutex internals to detect such situations until TTM is fixes
-> > to not convert the error code. In the meantime, injecting
-> > ww_mutex slowpath -EDEADLOCKs is a good way to test
-> > the implementation in the absence of real OOMs.
-> >=20
-> > Just introduce the wrapper in this commit. It will be hooked up
-> > to the driver in following commits.
+On Wed, 2025-08-13 at 20:58 -0700, Matthew Brost wrote:
+> On Wed, Aug 13, 2025 at 12:51:19PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > Most users of xe_bo_create_pin_map_at() and
+> > xe_bo_create_pin_map_at_aligned() are not using the vm parameter,
+> > and that simplifies conversion. Introduce an
+> > xe_bo_create_pin_map_at_novm() function and make the _aligned()
+> > version static. Use xe_validation_guard() for conversion.
 > >=20
 > > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 > > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.c | 199
-> > +++++++++++++++++++++++++++++
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.h | 107 ++++++++++++++++
-> > =C2=A02 files changed, 306 insertions(+)
+> > =C2=A0.../compat-i915-headers/gem/i915_gem_stolen.h | 24 ++----
+> > =C2=A0drivers/gpu/drm/xe/display/xe_fb_pin.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 45 +++++-----
+> > =C2=A0drivers/gpu/drm/xe/display/xe_plane_initial.c |=C2=A0 4 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 83 ++++++++++++++-
+> > ----
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 13 +--
+> > =C2=A0drivers/gpu/drm/xe/xe_eu_stall.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6 +-
+> > =C2=A06 files changed, 101 insertions(+), 74 deletions(-)
 > >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_validation.c
-> > b/drivers/gpu/drm/xe/xe_validation.c
-> > index cc0684d24e02..cd1424f04237 100644
-> > --- a/drivers/gpu/drm/xe/xe_validation.c
-> > +++ b/drivers/gpu/drm/xe/xe_validation.c
-> > @@ -5,6 +5,7 @@
-> > =C2=A0#include "xe_bo.h"
-> > =C2=A0#include <drm/drm_exec.h>
-> > =C2=A0#include <drm/drm_gem.h>
-> > +#include <drm/drm_gpuvm.h>
+> > diff --git a/drivers/gpu/drm/xe/compat-i915-
+> > headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-
+> > headers/gem/i915_gem_stolen.h
+> > index 1ce1e9da975b..ab48635ddffa 100644
+> > --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+> > +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
+> > @@ -21,9 +21,7 @@ static inline int
+> > i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+> > =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 size,
+> > u32 align,
+> > =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 start,
+> > u32 end)
+> > =C2=A0{
+> > -	struct drm_exec *exec =3D XE_VALIDATION_UNIMPLEMENTED;
+> > =C2=A0	struct xe_bo *bo;
+> > -	int err;
+> > =C2=A0	u32 flags =3D XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
 > > =C2=A0
-> > =C2=A0#include "xe_assert.h"
-> > =C2=A0#include "xe_validation.h"
-> > @@ -47,3 +48,201 @@ void xe_validation_assert_exec(const struct
-> > xe_device *xe,
+> > =C2=A0	if (start < SZ_4K)
+> > @@ -34,25 +32,15 @@ static inline int
+> > i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+> > =C2=A0		start =3D ALIGN(start, align);
 > > =C2=A0	}
-> > =C2=A0}
-> > =C2=A0#endif
-> > +
-> > +static int xe_validation_lock(struct xe_validation_ctx *ctx)
-> > +{
-> > +	struct xe_validation_device *val =3D ctx->val;
-> > +	int ret =3D 0;
-> > +
-> > +	if (ctx->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
-> > +		if (ctx->request_exclusive)
-> > +			ret =3D down_write_killable(&val->lock);
-> > +		else
-> > +			ret =3D down_read_interruptible(&val->lock);
-> > +	} else {
-> > +		if (ctx->request_exclusive)
-> > +			down_write(&val->lock);
-> > +		else
-> > +			down_read(&val->lock);
-> > +	}
-> > +
-> > +	if (!ret) {
-> > +		ctx->lock_held =3D true;
-> > +		ctx->lock_held_exclusive =3D ctx->request_exclusive;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void xe_validation_unlock(struct xe_validation_ctx *ctx)
-> > +{
-> > +	if (!ctx->lock_held)
-> > +		return;
-> > +
-> > +	if (ctx->lock_held_exclusive)
-> > +		up_write(&ctx->val->lock);
-> > +	else
-> > +		up_read(&ctx->val->lock);
-> > +
-> > +	ctx->lock_held =3D false;
-> > +}
-> > +
-> > +/**
-> > + * xe_validation_ctx_init() - Initialize an xe_validation_ctx
-> > + * @ctx: The xe_validation_ctx to initialize.
-> > + * @val: The xe_validation_device representing the validation
-> > domain.
-> > + * @exec: The struct drm_exec to use for the transaction.
-> > + * @flags: The flags to use for drm_exec initialization.
-> > + * @nr: The number of anticipated buffer object locks. Forwarded
-> > to
-> > + * drm_exec initialization.
-> > + * @exclusive: Whether to use exclusive locking already on first
-> > validation.
->=20
-> The last two parameters of this function are always passed as 0 and
-> false in this series. Is it worth keeping them? I don=E2=80=99t see a cas=
-e
-> where
-> nr would ever be non-zero.
-
-Right. I'll remove that from the interface but keep it in the struct so
-that if we ever need it, we can just change the interface.
-
-> exclusive is defensible, but it=E2=80=99s still
-> unused.
-
-Actually I think with vf provisioning and in the pm notifier it makes
-sense to set it to true.
-
->  Maybe drop both and reserve a bit in flags for a driver-defined
-> =E2=80=9Cexclusive.=E2=80=9D That would make the call sites more readable=
-=E2=80=94long
-> argument
-> lists make it easy to forget what each parameter means or to
-> transpose
-> them.
-
-Problem is that this is drm_exec flags. I'm not really keen on
-overloading driver defined flags there. We could add a separate const
-struct xe_validation_flags, though, but then we'd have a translation
-step?
-
->=20
-> > + *
-> > + * Initialize and lock a an xe_validation transaction using the
-> > validation domain
-> > + * represented by @val. Also initialize the drm_exec object
-> > forwarding
-> > + * @flags and @nr to the drm_exec initialization. The @exclusive
-> > parameter should
-> > + * typically be set to false to avoid locking out other validators
-> > from the
-> > + * domain until an OOM is hit. For testing- or final attempt
-> > purposes it can,
-> > + * however, be set to true.
-> > + *
-> > + * Return: %0 on success, %-EINTR if interruptible initial locking
-> > failed with a
-> > + * signal pending.
-> > + */
-> > +int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct
-> > xe_validation_device *val,
-> > +			=C2=A0=C2=A0 struct drm_exec *exec, u32 flags,
-> > unsigned int nr,
-> > +			=C2=A0=C2=A0 bool exclusive)
-> > +{
-> > +	int ret;
-> > +
-> > +	ctx->exec =3D exec;
-> > +	ctx->val =3D val;
-> > +	ctx->lock_held =3D false;
-> > +	ctx->lock_held_exclusive =3D false;
-> > +	ctx->request_exclusive =3D exclusive;
-> > +	ctx->flags =3D flags;
-> > +	ctx->nr =3D nr;
-> > +
-> > +	ret =3D xe_validation_lock(ctx);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	drm_exec_init(exec, flags, nr);
-> > +
+> > =C2=A0
+> > -	bo =3D xe_bo_create_locked_range(xe,
+> > xe_device_get_root_tile(xe),
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NULL, size, start, end,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_kernel, flags,
+> > 0, exec);
+> > -	if (IS_ERR(bo)) {
+> > -		err =3D PTR_ERR(bo);
+> > -		bo =3D NULL;
+> > -		return err;
+> > -	}
+> > -	err =3D xe_bo_pin(bo, exec);
+> > -	xe_bo_unlock_vm_held(bo);
+> > -
+> > -	if (err) {
+> > -		xe_bo_put(fb->bo);
+> > -		bo =3D NULL;
+> > -	}
+> > +	bo =3D xe_bo_create_pin_map_at_novm(xe,
+> > xe_device_get_root_tile(xe),
+> > +					=C2=A0 size, start,
+> > ttm_bo_type_kernel, flags,
+> > +					=C2=A0 false, 0, true);
+> > +	if (IS_ERR(bo))
+> > +		return PTR_ERR(bo);
+> > =C2=A0
+> > =C2=A0	fb->bo =3D bo;
+> > =C2=A0
+> > -	return err;
 > > +	return 0;
-> > +}
-> > +
-> > +#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
-> > +/*
-> > + * This abuses both drm_exec and ww_mutex internals and should be
-> > + * replaced by checking for -EDEADLK when we can make TTM
-> > + * stop converting -EDEADLK to -ENOMEM.
-> > + * An alternative is to not have exhaustive eviction with
-> > + * CONFIG_DEBUG_WW_MUTEX_SLOWPATH until that happens.
-> > + */
-> > +static bool xe_validation_contention_injected(struct drm_exec
-> > *exec)
-> > +{
-> > +	return !!exec->ticket.contending_lock;
-> > +}
-> > +
-> > +#else
-> > +
-> > +static bool xe_validation_contention_injected(struct drm_exec
-> > *exec)
-> > +{
-> > +	return false;
-> > +}
-> > +
-> > +#endif
-> > +
-> > +static bool __xe_validation_should_retry(struct xe_validation_ctx
-> > *ctx, int ret)
-> > +{
-> > +	if (ret =3D=3D -ENOMEM &&
-> > +	=C2=A0=C2=A0=C2=A0 ((ctx->request_exclusive &&
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_validation_contention_injected(ctx-=
->exec)) ||
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 !ctx->request_exclusive)) {
-> > +		ctx->request_exclusive =3D true;
-> > +		return true;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static inline int i915_gem_stolen_insert_node(struct xe_device
+> > *xe,
+> > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > index 43c45344ea26..d46ff7ebb0a1 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > @@ -102,29 +102,32 @@ static int __xe_pin_fb_vma_dpt(const struct
+> > intel_framebuffer *fb,
+> > =C2=A0				 XE_PAGE_SIZE);
+> > =C2=A0
+> > =C2=A0	if (IS_DGFX(xe))
+> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
+> > NULL,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,
+> > ~0ull,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_VRAM0 |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_GGTT |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
+> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
+> > +						=C2=A0=C2=A0 dpt_size,
+> > ~0ull,
+> > +						=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > +						=C2=A0=C2=A0 true,
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_VRAM0 |
+> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
+> > |
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > +						=C2=A0=C2=A0 alignment,
+> > false);
+> > =C2=A0	else
+> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
+> > NULL,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,=C2=A0
+> > ~0ull,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_STOLEN |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_GGTT |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
+> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
+> > +						=C2=A0=C2=A0 dpt_size,=C2=A0
+> > ~0ull,
+> > +						=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > +						=C2=A0=C2=A0 true,
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_STOLEN |
+> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
+> > |
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > +						=C2=A0=C2=A0 alignment,
+> > false);
+> > =C2=A0	if (IS_ERR(dpt))
+> > -		dpt =3D xe_bo_create_pin_map_at_aligned(xe, tile0,
+> > NULL,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dpt_size,=C2=A0
+> > ~0ull,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_SYSTEM |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_GGTT |
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > -						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 alignment);
+> > +		dpt =3D xe_bo_create_pin_map_at_novm(xe, tile0,
+> > +						=C2=A0=C2=A0 dpt_size,=C2=A0
+> > ~0ull,
+> > +						=C2=A0=C2=A0
+> > ttm_bo_type_kernel,
+> > +						=C2=A0=C2=A0 true,
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_SYSTEM |
+> > +						=C2=A0=C2=A0 XE_BO_FLAG_GGTT
+> > |
+> > +						=C2=A0=C2=A0
+> > XE_BO_FLAG_PAGETABLE,
+> > +						=C2=A0=C2=A0 alignment,
+> > false);
+> > =C2=A0	if (IS_ERR(dpt))
+> > =C2=A0		return PTR_ERR(dpt);
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > index 826ac3d578b7..79d00127caf4 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > @@ -140,8 +140,8 @@ initial_plane_bo(struct xe_device *xe,
+> > =C2=A0			page_size);
+> > =C2=A0	size -=3D base;
+> > =C2=A0
+> > -	bo =3D xe_bo_create_pin_map_at(xe, tile0, NULL, size,
+> > phys_base,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_kernel, flags);
+> > +	bo =3D xe_bo_create_pin_map_at_novm(xe, tile0, size,
+> > phys_base,
+> > +					=C2=A0 ttm_bo_type_kernel,
+> > flags, true, 0, false);
+> > =C2=A0	if (IS_ERR(bo)) {
+> > =C2=A0		drm_dbg(&xe->drm,
+> > =C2=A0			"Failed to create bo phys_base=3D%pa size %u
+> > with flags %x: %li\n",
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index 23b28eeef59f..c9928d4ee5a0 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -2253,29 +2253,20 @@ struct xe_bo *xe_bo_create_user(struct
+> > xe_device *xe,
+> > =C2=A0	return bo;
+> > =C2=A0}
+> > =C2=A0
+> > -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct
+> > xe_tile *tile,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type type, u32
+> > flags)
+> > -{
+> > -	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size,
+> > offset,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 type, flags, 0);
+> > -}
+> > -
+> > -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device
+> > *xe,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile
+> > *tile,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64
+> > offset,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type
+> > type, u32 flags,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 alignment)
+> > +static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct
+> > xe_device *xe,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct
+> > xe_tile *tile,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm
+> > *vm,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 size_t size,
+> > u64 offset,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 enum
+> > ttm_bo_type type, u32 flags,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 bool vmap,
+> > u64 alignment,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 struct
+> > drm_exec *exec)
+> > =C2=A0{
+> > =C2=A0	struct xe_bo *bo;
+> > =C2=A0	int err;
+> > =C2=A0	u64 start =3D offset =3D=3D ~0ull ? 0 : offset;
+> > =C2=A0	u64 end =3D offset =3D=3D ~0ull ? offset : start + size;
+> > -	struct drm_exec *exec =3D vm ? xe_vm_validation_exec(vm) :
+> > XE_VALIDATION_UNIMPLEMENTED;
+> > =C2=A0
+> > -	if (flags & XE_BO_FLAG_STOLEN &&
+> > +	if (flags & XE_BO_FLAG_STOLEN && vmap &&
+> > =C2=A0	=C2=A0=C2=A0=C2=A0 xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+> > =C2=A0		flags |=3D XE_BO_FLAG_GGTT;
+> > =C2=A0
+> > @@ -2289,9 +2280,11 @@ struct xe_bo
+> > *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+> > =C2=A0	if (err)
+> > =C2=A0		goto err_put;
+> > =C2=A0
+> > -	err =3D xe_bo_vmap(bo);
+> > -	if (err)
+> > -		goto err_unpin;
+> > +	if (vmap) {
+> > +		err =3D xe_bo_vmap(bo);
+> > +		if (err)
+> > +			goto err_unpin;
 > > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> > +/**
-> > + * xe_validation_exec_lock() - Perform drm_gpuvm_exec_lock within
-> > a validation
-> > + * transaction.
-> > + * @ctx: An uninitialized xe_validation_ctx.
-> > + * @vm_exec: An initialized struct vm_exec.
-> > + * @val: The validation domain.
-> > + *
-> > + * The drm_gpuvm_exec_lock() function internally initializes its
-> > drm_exec
-> > + * transaction and therefore doesn't lend itself very well to be
-> > using
-> > + * xe_validation_ctx_init(). Provide a helper that takes an
-> > uninitialized
-> > + * xe_validation_ctx and calls drm_gpuvm_exec_lock() with OOM
-> > retry.
-> > + *
-> > + * Return: %0 on success, negative error code on failure.
-> > + */
-> > +int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
-> > +			=C2=A0=C2=A0=C2=A0 struct drm_gpuvm_exec *vm_exec,
-> > +			=C2=A0=C2=A0=C2=A0 struct xe_validation_device *val)
-> > +{
-> > +	int ret;
-> > +
-> > +	memset(ctx, 0, sizeof(*ctx));
-> > +	ctx->exec =3D &vm_exec->exec;
-> > +	ctx->flags =3D vm_exec->flags;
-> > +	ctx->val =3D val;
-> > +retry:
-> > +	ret =3D xe_validation_lock(ctx);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret =3D drm_gpuvm_exec_lock(vm_exec);
-> > +	if (ret) {
-> > +		xe_validation_unlock(ctx);
-> > +		if (__xe_validation_should_retry(ctx, ret))
-> > +			goto retry;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * xe_validation_ctx_fini() - Finalize a validation transaction
-> > + * @ctx: The Validation transaction to finalize.
-> > + *
-> > + * Finalize a validation transaction and its related drm_exec
-> > transaction.
-> > + */
-> > +void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
-> > +{
-> > +	drm_exec_fini(ctx->exec);
-> > +	xe_validation_unlock(ctx);
-> > +}
-> > +
-> > +/**
-> > + * xe_validation_should_retry() - Determine if a validation
-> > transaction should retry
-> > + * @ctx: The validation transaction.
-> > + * @ret: Pointer to a return value variable.
-> > + *
-> > + * Determines whether a validation transaction should retry based
-> > on the
-> > + * internal transaction state and the return value pointed to by
-> > @ret.
-> > + * If a validation should be retried, the transaction is prepared
-> > for that,
-> > + * and the validation locked might be re-locked in exclusive mode,
-> > and *@ret
-> > + * is set to %0. If the re-locking errors, typically due to
-> > interruptible
-> > + * locking with signal pending, *@ret is instead set to -EINTR and
-> > the
-> > + * function returns %false.
-> > + *
-> > + * Return: %true if validation should be retried, %false
-> > otherwise.
-> > + */
-> > +bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int
-> > *ret)
-> > +{
-> > +	if (__xe_validation_should_retry(ctx, *ret)) {
-> > +		drm_exec_fini(ctx->exec);
-> > +		*ret =3D 0;
-> > +		if (ctx->request_exclusive !=3D ctx-
-> > >lock_held_exclusive) {
-> > +			xe_validation_unlock(ctx);
-> > +			*ret =3D xe_validation_lock(ctx);
-> > +		}
-> > +		drm_exec_init(ctx->exec, ctx->flags, ctx->nr);
-> > +		return !*ret;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_validation.h
-> > b/drivers/gpu/drm/xe/xe_validation.h
-> > index db50feacad7a..a708c260cf18 100644
-> > --- a/drivers/gpu/drm/xe/xe_validation.h
-> > +++ b/drivers/gpu/drm/xe/xe_validation.h
-> > @@ -7,9 +7,11 @@
 > > =C2=A0
-> > =C2=A0#include <linux/dma-resv.h>
-> > =C2=A0#include <linux/types.h>
-> > +#include <linux/rwsem.h>
+> > =C2=A0	xe_bo_unlock_vm_held(bo);
 > > =C2=A0
-> > =C2=A0struct drm_exec;
-> > =C2=A0struct drm_gem_object;
-> > +struct drm_gpuvm_exec;
-> > =C2=A0struct xe_device;
-> > =C2=A0
-> > =C2=A0#ifdef CONFIG_PROVE_LOCKING
-> > @@ -66,4 +68,109 @@ void xe_validation_assert_exec(const struct
-> > xe_device *xe, const struct drm_exec
-> > =C2=A0	} while (0)
-> > =C2=A0#endif
+> > @@ -2305,11 +2298,59 @@ struct xe_bo
+> > *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+> > =C2=A0	return ERR_PTR(err);
+> > =C2=A0}
 > > =C2=A0
 > > +/**
-> > + * struct xe_validation_device - The domain for exhaustive
-> > eviction
-> > + * @lock: The lock used to exclude other processes from allocating
-> > graphics memory
-> > + *
-> > + * The struct xe_validation_device represents the domain for which
-> > we want to use
-> > + * exhaustive eviction. The @lock is typically grabbed in read
-> > mode for allocations
-> > + * but when graphics memory allocation fails, it is retried with
-> > the write mode held.
-> > + */
-> > +struct xe_validation_device {
-> > +	struct rw_semaphore lock;
-> > +};
-> > +
-> > +/**
-> > + * struct xe_validation_ctx - A struct drm_exec subclass with
-> > support for
-> > + * exhaustive eviction
-> > + * @exec: The drm_exec object base class. Note that we use a
-> > pointer instead of
-> > + * embedding to avoid diamond inheritance.
-> > + * @val: The exhaustive eviction domain.
-> > + * @lock_held: Whether The domain lock is currently held.
-> > + * @lock_held_exclusive: Whether the domain lock is held in
-> > exclusive mode.
-> > + * @request_exclusive: Whether to lock exclusively (write mode)
-> > the next time
-> > + * the domain lock is locked.
-> > + * @flags: The drm_exec flags used for drm_exec (re-
-> > )initialization.
-> > + * @nr: The drm_exec nr parameter used for drm_exec (re-
-> > )initializaiton.
-> > + */
-> > +struct xe_validation_ctx {
-> > +	struct drm_exec *exec;
-> > +	struct xe_validation_device *val;
-> > +	bool lock_held;
-> > +	bool lock_held_exclusive;
-> > +	bool request_exclusive;
-> > +	u32 flags;
-> > +	unsigned int nr;
-> > +};
-> > +
-> > +int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct
-> > xe_validation_device *val,
-> > +			=C2=A0=C2=A0 struct drm_exec *exec, u32 flags,
-> > unsigned int nr,
-> > +			=C2=A0=C2=A0 bool exclusive);
-> > +
-> > +int xe_validation_exec_lock(struct xe_validation_ctx *ctx, struct
-> > drm_gpuvm_exec *vm_exec,
-> > +			=C2=A0=C2=A0=C2=A0 struct xe_validation_device *val);
-> > +
-> > +void xe_validation_ctx_fini(struct xe_validation_ctx *ctx);
-> > +
-> > +bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int
-> > *ret);
-> > +
-> > +/**
-> > + * xe_validation_retry_on_oom() - Retry on oom in an xe_validaton
-> > transaction
-> > + * @_ctx: Pointer to the xe_validation_ctx
-> > + * @_ret: The current error value possibly holding -ENOMEM
-> > + *
-> > + * Use this in way similar to drm_exec_retry_on_contention().
-> > + * If @_ret contains -ENOMEM the tranaction is restarted once in a
-> > way that
-> > + * blocks other transactions and allows exhastive eviction. If the
-> > transaction
-> > + * was already restarted once, Just return the -ENOMEM. May also
-> > set
-> > + * _ret to -EINTR if not retrying and waits are interruptible.
-> > + * May only be used within a drm_exec_until_all_locked() loop.
-> > + */
-> > +#define xe_validation_retry_on_oom(_ctx,
-> > _ret)				\
-> > +	do
-> > {								\
-> > +		if (xe_validation_should_retry(_ctx,
-> > _ret))		\
-> > +			goto
-> > *__drm_exec_retry_ptr;			\
-> > +	} while (0)
-> > +
-> > +/**
-> > + * xe_validation_device_init - Initialize a struct
-> > xe_validation_device
-> > + * @val: The xe_validation_device to init.
-> > + */
-> > +static inline void
-> > +xe_validation_device_init(struct xe_validation_device *val)
-> > +{
-> > +	init_rwsem(&val->lock);
-> > +}
-> > +
-> > +/*
-> > + * Make guard() and scoped_guard() work with xe_validation_ctx
-> > + * so that we can exit transactions without caring about the
-> > + * cleanup.
-> > + */
-> > +DEFINE_CLASS(xe_validation, struct xe_validation_ctx *,
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 if (!IS_ERR(_T)) xe_validation_ctx_fini(_T);=
-,
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 ({_ret =3D xe_validation_ctx_init(_ctx, _val=
-, _exec,
-> > _flags, 0, _excl);
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _ret ? NULL : _ctx; }),
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_validation_ctx *_ctx, struct
-> > xe_validation_device *_val,
-> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_exec *_exec, u32 _flags, int _ret=
-, bool
-> > _excl);
-> > +static inline void
-> > *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
-> > +{return *_T; }
-> > +#define class_xe_validation_is_conditional false
-> > +
-> > +/**
-> > + * xe_validation_guard() - An auto-cleanup xe_validation_ctx
-> > transaction
-> > + * @_ctx: The xe_validation_ctx.
-> > + * @_val: The xe_validation_device.
-> > + * @_exec: The struct drm_exec object
-> > + * @_flags: Flags for the drm_exec transaction. See the struct
-> > drm_exec documention!
-> > + * @_ret: Return in / out parameter. May be set by this macro.
-> > Typicall 0 when called.
-> > + * @_excl: Whether to start in exclusive mode already in the first
-> > iteration.
-> > + *
+> > + * xe_bo_create_pin_map_at_novm() - Create pinned and mapped bo at
+> > optional VRAM offset
+> > + * @xe: The xe device.
+> > + * @tile: The tile to select for migration of this bo, and the
+> > tile used for
+> > + * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel
+> > bos.
+> > + * @size: The storage size to use for the bo.
+> > + * @offset: Optional VRAM offset or %0 for don't care.
+> > + * @type: The TTM buffer object type.
+> > + * @flags: XE_BO_FLAG_ flags.
+> > + * @vmap: Whether to create a buffer object map.
 >=20
-> Same comment as above on function xe_validation_ctx_init wrt to
-> arguments.
+> Can we stick vmap into XE_BO_FLAG_?
+>=20
+> Also why do we need argument now when it what omitted previously.
 
-OK, let me know what you think given the above.
+It's for the single vf provisioning user that wants to pin without
+mapping.
+
+But I'm open-coding that in v2 so dropping the vmap bool.
 
 /Thomas
 
@@ -552,17 +382,134 @@ OK, let me know what you think given the above.
 >=20
 > Matt
 >=20
-> > + * This macro is will initiate a drm_exec transaction with
-> > additional support for
-> > + * exhaustive eviction.
+> > + * @alignment: GGTT alignment.
+> > + * @intr: Whether to execut any waits for backing store
+> > interruptible.
+> > + *
+> > + * Create a pinned and optionally mapped bo with VRAM offset and
+> > GGTT alignment
+> > + * options. The bo will be external and not associated with a VM.
+> > + *
+> > + * Return: The buffer object on success. Negative error pointer on
+> > failure.
+> > + * In particular, the function may return ERR_PTR(%-EINTR) if
+> > @intr was set
+> > + * to true on entry.
 > > + */
-> > +#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret,
-> > _excl)	\
-> > +	scoped_guard(xe_validation, _ctx, _val, _exec, _flags,
-> > _ret, _excl) \
-> > +	drm_exec_until_all_locked(_exec)
+> > +struct xe_bo *
+> > +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile
+> > *tile,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset, enum
+> > ttm_bo_type type, u32 flags,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 bool vmap, u64 alignment, bool intr)
+> > +{
+> > +	u32 drm_exec_flags =3D intr ? DRM_EXEC_INTERRUPTIBLE_WAIT :
+> > 0;
+> > +	struct xe_validation_ctx ctx;
+> > +	struct drm_exec exec;
+> > +	struct xe_bo *bo;
+> > +	int ret =3D 0;
 > > +
-> > =C2=A0#endif
+> > +	xe_validation_guard(&ctx, &xe->val, &exec, drm_exec_flags,
+> > ret, false) {
+> > +		bo =3D xe_bo_create_pin_map_at_aligned(xe, tile,
+> > NULL, size, offset,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 type, flags,
+> > vmap,
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 alignment,
+> > &exec);
+> > +		drm_exec_retry_on_contention(&exec);
+> > +		if (IS_ERR(bo)) {
+> > +			ret =3D PTR_ERR(bo);
+> > +			xe_validation_retry_on_oom(&ctx, &ret);
+> > +		}
+> > +	}
+> > +
+> > +	return ret ? ERR_PTR(ret) : bo;
+> > +}
+> > +
+> > =C2=A0struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
+> > xe_tile *tile,
+> > =C2=A0				=C2=A0=C2=A0 struct xe_vm *vm, size_t size,
+> > =C2=A0				=C2=A0=C2=A0 enum ttm_bo_type type, u32
+> > flags)
+> > =C2=A0{
+> > -	return xe_bo_create_pin_map_at(xe, tile, vm, size, ~0ull,
+> > type, flags);
+> > +	struct drm_exec *exec =3D vm ? xe_vm_validation_exec(vm) :
+> > XE_VALIDATION_UNIMPLEMENTED;
+> > +
+> > +	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size,
+> > ~0ull, type, flags,
+> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 true, 0, exec);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static void __xe_bo_unpin_map_no_vm(void *arg)
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
+> > b/drivers/gpu/drm/xe/xe_bo.h
+> > index a625806deeb6..d06266af9662 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > @@ -109,15 +109,10 @@ struct xe_bo *xe_bo_create_user(struct
+> > xe_device *xe, struct xe_vm *vm, size_t s
+> > =C2=A0struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct
+> > xe_tile *tile,
+> > =C2=A0				=C2=A0=C2=A0 struct xe_vm *vm, size_t size,
+> > =C2=A0				=C2=A0=C2=A0 enum ttm_bo_type type, u32
+> > flags);
+> > -struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct
+> > xe_tile *tile,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm, size_t
+> > size, u64 offset,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type type, u32
+> > flags);
+> > -struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device
+> > *xe,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_tile
+> > *tile,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64
+> > offset,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum ttm_bo_type
+> > type, u32 flags,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u64 alignment);
+> > +struct xe_bo *
+> > +xe_bo_create_pin_map_at_novm(struct xe_device *xe, struct xe_tile
+> > *tile,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, u64 offset, enum
+> > ttm_bo_type type,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 u32 flags, bool vmap, u64 alignment,
+> > bool intr);
+> > =C2=A0struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe,
+> > struct xe_tile *tile,
+> > =C2=A0					=C2=A0=C2=A0 size_t size, u32
+> > flags);
+> > =C2=A0struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe=
+,
+> > struct xe_tile *tile,
+> > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c
+> > b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > index fdd514fec5ef..afabfc125488 100644
+> > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > @@ -617,9 +617,9 @@ static int xe_eu_stall_data_buf_alloc(struct
+> > xe_eu_stall_data_stream *stream,
+> > =C2=A0
+> > =C2=A0	size =3D stream->per_xecore_buf_size * last_xecore;
+> > =C2=A0
+> > -	bo =3D xe_bo_create_pin_map_at_aligned(tile->xe, tile, NULL,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0 size, ~0ull,
+> > ttm_bo_type_kernel,
+> > -					=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM |
+> > XE_BO_FLAG_GGTT, SZ_64);
+> > +	bo =3D xe_bo_create_pin_map_at_novm(tile->xe, tile, size,
+> > ~0ull, ttm_bo_type_kernel,
+> > +					=C2=A0 XE_BO_FLAG_SYSTEM |
+> > XE_BO_FLAG_GGTT, true,
+> > +					=C2=A0 SZ_64, false);
+> > =C2=A0	if (IS_ERR(bo)) {
+> > =C2=A0		kfree(stream->xecore_buf);
+> > =C2=A0		return PTR_ERR(bo);
 > > --=20
 > > 2.50.1
 > >=20
