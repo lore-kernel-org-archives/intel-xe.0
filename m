@@ -4,32 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1BA4CA0EE6
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 14:25:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24082CA0EE4
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 15:08:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95F3710E376;
-	Sat, 16 Aug 2025 14:25:10 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B760110E360
- for <intel-xe@lists.freedesktop.org>; Sat, 16 Aug 2025 14:25:08 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 89CA43F108;
- Sat, 16 Aug 2025 16:25:06 +0200 (CEST)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-xe@lists.freedesktop.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH 1/1] Make page size consistent in migration
-Date: Sat, 16 Aug 2025 23:24:46 +0900
-Message-ID: <20250816142457.7950-2-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250816142457.7950-1-Simon.Richter@hogyros.de>
-References: <20250816142457.7950-1-Simon.Richter@hogyros.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C04F510E383;
+	Sat, 16 Aug 2025 15:08:48 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2199F10E381;
+ Sat, 16 Aug 2025 15:08:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0431838334068620901=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Avoid_NULL_pointer_deref_in?=
+ =?utf-8?q?_debug_stacktrace?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 16 Aug 2025 15:08:47 -0000
+Message-ID: <175535692710.241522.5109151517353457815@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250816135748.7700-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250816135748.7700-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/xe/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--===============0431838334068620901==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 836333c77a88..0c0864c8fd57 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -281,7 +281,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	}
- 
- 	/* Write PDE's that point to our BO. */
--	for (i = 0; i < map_ofs / PAGE_SIZE; i++) {
-+	for (i = 0; i < map_ofs / XE_PAGE_SIZE; i++) {
- 		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE);
- 
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
--- 
-2.47.2
+== Series Details ==
 
+Series: Avoid NULL pointer deref in debug stacktrace
+URL   : https://patchwork.freedesktop.org/series/153006/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115_BAT -> xe-pw-153006v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115 -> xe-pw-153006v1
+
+  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115: 9da9b920960cd59a6f767b3d8d0aadc95b7fd115
+  xe-pw-153006v1: 153006v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html
+
+--===============0431838334068620901==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Avoid NULL pointer deref in debug stacktrace</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153006/">https://patchwork.freedesktop.org/series/153006/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115_BAT -&gt; xe-pw-153006v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115 -&gt; xe-pw-153006v1</li>
+</ul>
+<p>IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115: 9da9b920960cd59a6f767b3d8d0aadc95b7fd115<br />
+  xe-pw-153006v1: 153006v1</p>
+
+</body>
+</html>
+
+--===============0431838334068620901==--
