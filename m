@@ -4,32 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57E57CA0EE4
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 13:58:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F69CA0EE4
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 14:04:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2036310E360;
-	Sat, 16 Aug 2025 13:58:06 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C132210E360
- for <intel-xe@lists.freedesktop.org>; Sat, 16 Aug 2025 13:58:03 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 6F55C3F108;
- Sat, 16 Aug 2025 15:58:01 +0200 (CEST)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-xe@lists.freedesktop.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH 1/1] Initialize stackdepot hash tables
-Date: Sat, 16 Aug 2025 22:56:07 +0900
-Message-ID: <20250816135748.7700-2-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250816135748.7700-1-Simon.Richter@hogyros.de>
-References: <20250816135748.7700-1-Simon.Richter@hogyros.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31AD10E09D;
+	Sat, 16 Aug 2025 14:04:26 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48B7C10E079;
+ Sat, 16 Aug 2025 14:04:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Avoid_NULL_pointer_deref_?=
+ =?utf-8?q?in_debug_stacktrace?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 16 Aug 2025 14:04:26 -0000
+Message-ID: <175535306623.241503.5184165513075920098@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250816135748.7700-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250816135748.7700-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,27 +36,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the hash table is not initialized when the xe driver attempts to
-generate debug output, the kernel tries to dereference a NULL pointer.
----
- drivers/gpu/drm/xe/Kconfig.debug | 1 +
- 1 file changed, 1 insertion(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 01735c6ece8b..70b7a817ed47 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -21,6 +21,7 @@ config DRM_XE_DEBUG
- 	depends on DRM_XE
- 	depends on EXPERT
- 	depends on !COMPILE_TEST
-+	select STACKDEPOT_ALWAYS_INIT if STACKTRACE_SUPPORT
- 	default n
- 	help
- 	  Choose this option to turn on extra driver debugging that may affect
--- 
-2.47.2
+Series: Avoid NULL pointer deref in debug stacktrace
+URL   : https://patchwork.freedesktop.org/series/153006/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8ed4cea0c078d8c113a7d9d713a99ee2e86e5571
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Sat Aug 16 22:56:07 2025 +0900
+
+    Initialize stackdepot hash tables
+    
+    If the hash table is not initialized when the xe driver attempts to
+    generate debug output, the kernel tries to dereference a NULL pointer.
++ /mt/dim checkpatch 9da9b920960cd59a6f767b3d8d0aadc95b7fd115 drm-intel
+8ed4cea0c078 Initialize stackdepot hash tables
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 0 warnings, 0 checks, 7 lines checked
+
 
