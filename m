@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24082CA0EE4
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 15:08:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0884CA0EE4
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Aug 2025 15:14:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C04F510E383;
-	Sat, 16 Aug 2025 15:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 663AC10E381;
+	Sat, 16 Aug 2025 15:14:22 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2199F10E381;
- Sat, 16 Aug 2025 15:08:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0431838334068620901=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A16110E381;
+ Sat, 16 Aug 2025 15:14:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Avoid_NULL_pointer_deref_in?=
- =?utf-8?q?_debug_stacktrace?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Make_page_size_consistent?=
+ =?utf-8?q?_in_migration?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Simon Richter" <simon.richter@hogyros.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 16 Aug 2025 15:08:47 -0000
-Message-ID: <175535692710.241522.5109151517353457815@1538d3639d33>
+Date: Sat, 16 Aug 2025 15:14:20 -0000
+Message-ID: <175535726055.241503.12478121127606274902@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250816135748.7700-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20250816135748.7700-1-Simon.Richter@hogyros.de>
+References: <20250816142457.7950-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20250816142457.7950-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,34 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0431838334068620901==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Avoid NULL pointer deref in debug stacktrace
-URL   : https://patchwork.freedesktop.org/series/153006/
-State : success
+Series: Make page size consistent in migration
+URL   : https://patchwork.freedesktop.org/series/153008/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115_BAT -> xe-pw-153006v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3c7c545cef0fcc12404428addccb51aa8a2e91d8
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Sat Aug 16 23:24:46 2025 +0900
 
-Summary
--------
+    Make page size consistent in migration
++ /mt/dim checkpatch 9da9b920960cd59a6f767b3d8d0aadc95b7fd115 drm-intel
+3c7c545cef0f Make page size consistent in migration
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  **SUCCESS**
+-:19: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115 -> xe-pw-153006v1
-
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115: 9da9b920960cd59a6f767b3d8d0aadc95b7fd115
-  xe-pw-153006v1: 153006v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html
-
---===============0431838334068620901==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Avoid NULL pointer deref in debug stacktrace</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153006/">https://patchwork.freedesktop.org/series/153006/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153006v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115_BAT -&gt; xe-pw-153006v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115 -&gt; xe-pw-153006v1</li>
-</ul>
-<p>IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3559-9da9b920960cd59a6f767b3d8d0aadc95b7fd115: 9da9b920960cd59a6f767b3d8d0aadc95b7fd115<br />
-  xe-pw-153006v1: 153006v1</p>
-
-</body>
-</html>
-
---===============0431838334068620901==--
