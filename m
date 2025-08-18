@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96C17CA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 08:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2064CA0EE9
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 08:16:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5366310E419;
-	Mon, 18 Aug 2025 08:14:54 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E254610E421;
- Mon, 18 Aug 2025 08:14:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0779463037122659637=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7837210E419;
+	Mon, 18 Aug 2025 08:16:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHmStQB8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE56010E41A;
+ Mon, 18 Aug 2025 08:16:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755504975; x=1787040975;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WKCPDXCho5aflXkFBASrM5EyCDKRoITqzqB3yk5WvU8=;
+ b=kHmStQB8ucEffUsqyT7Y8Wku2vcs+BeWpIzLkapAx+YP0XRyF1h+wF/3
+ cxmOeM7/uX0oRoNCUXLfxrKDaN3yIxkvkC40Q9i328Hh0lj6ht2olIWZn
+ 1LKrPVMWFJyk1JTybk/etSCCOo0GD6atBW5PRVbFtYkuRo/wDv8zi9GXc
+ 99fbTA72H26tslwmAXsJCwAzuy9yb+eKoZcTWAEEFXkMbZh0WHgLgJJF+
+ BXJeATwz7agQ49Ytxh6XYYlxFnrAhovjY9PMd5jTYOI0dLtpbXzu5o6d8
+ fPId5ZkmoUf0jX+ZB3eWCHBgBHydYEtkm2wCiuZDK/WxodDsIn/1wCQTI A==;
+X-CSE-ConnectionGUID: INn4atGYSxaCbCULLV7ZNw==
+X-CSE-MsgGUID: fdkGuY8LS2yxkN7WyII4Dg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68434705"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68434705"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 01:16:14 -0700
+X-CSE-ConnectionGUID: YEsdwrHeStKQNrfSHUH0Ww==
+X-CSE-MsgGUID: fVFI4v+GTgCLWLhJAlWHJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="167434161"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa006.fm.intel.com with ESMTP; 18 Aug 2025 01:16:13 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [core-for-CI] Revert "block: restore default wbt enablement"
+Date: Mon, 18 Aug 2025 13:28:38 +0530
+Message-Id: <20250818075838.444487-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_Make_page_size_consistent_?=
- =?utf-8?q?in_migration_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Simon Richter" <simon.richter@hogyros.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Aug 2025 08:14:52 -0000
-Message-ID: <175550489291.243205.12924514149133699187@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250816142457.7950-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20250816142457.7950-1-Simon.Richter@hogyros.de>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +60,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0779463037122659637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This reverts commit 8f5845e0743bf3512b71b3cb8afe06c192d6acc4.
 
-== Series Details ==
+This commit seems to cause regression in CI [1]. Revert it.
 
-Series: Make page size consistent in migration (rev2)
-URL   : https://patchwork.freedesktop.org/series/153008/
-State : success
+[1] https://intel-gfx-ci.01.org/tree/intel-xe/index.html?
 
-== Summary ==
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ block/blk-sysfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-CI Bug Log - changes from xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2_FULL -> xe-pw-153008v2_FULL
-====================================================
+diff --git a/block/blk-sysfs.c b/block/blk-sysfs.c
+index 4a7f1a349998..c5cf79a20842 100644
+--- a/block/blk-sysfs.c
++++ b/block/blk-sysfs.c
+@@ -902,9 +902,9 @@ int blk_register_queue(struct gendisk *disk)
+ 
+ 	if (queue_is_mq(q))
+ 		elevator_set_default(q);
++	wbt_enable_default(disk);
+ 
+ 	blk_queue_flag_set(QUEUE_FLAG_REGISTERED, q);
+-	wbt_enable_default(disk);
+ 
+ 	/* Now everything is ready and send out KOBJ_ADD uevent */
+ 	kobject_uevent(&disk->queue_kobj, KOBJ_ADD);
+-- 
+2.25.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2 -> xe-pw-153008v2
-
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2: e96ac495247bb459351af3e70cad06769afbb1a2
-  xe-pw-153008v2: 153008v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153008v2/index.html
-
---===============0779463037122659637==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Make page size consistent in migration (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153008/">https://patchwork.freedesktop.org/series/153008/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153008v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153008v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2_FULL -&gt; xe-pw-153008v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2 -&gt; xe-pw-153008v2</li>
-</ul>
-<p>IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3566-e96ac495247bb459351af3e70cad06769afbb1a2: e96ac495247bb459351af3e70cad06769afbb1a2<br />
-  xe-pw-153008v2: 153008v2</p>
-
-</body>
-</html>
-
---===============0779463037122659637==--
