@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C185ACA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 19:36:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3779FCA0EE4
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 19:50:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8870B10E055;
-	Mon, 18 Aug 2025 19:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F02D510E4BF;
+	Mon, 18 Aug 2025 19:50:32 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0E610E055;
- Mon, 18 Aug 2025 19:36:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1976351451859073824=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2A010E4BD;
+ Mon, 18 Aug 2025 19:50:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Core_Xe_changes_preparing_f?=
- =?utf-8?q?or_VF_resume?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_psmi_suppor?=
+ =?utf-8?q?t_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Aug 2025 19:36:41 -0000
-Message-ID: <175554580178.245368.2419430643494020964@1538d3639d33>
+Date: Mon, 18 Aug 2025 19:50:31 -0000
+Message-ID: <175554663117.245368.12945517454120001327@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250818172243.2649863-1-matthew.brost@intel.com>
-In-Reply-To: <20250818172243.2649863-1-matthew.brost@intel.com>
+References: <20250818-psmi-v4-0-a330783ce1c0@intel.com>
+In-Reply-To: <20250818-psmi-v4-0-a330783ce1c0@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,146 +40,81 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1976351451859073824==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Core Xe changes preparing for VF resume
-URL   : https://patchwork.freedesktop.org/series/153083/
-State : success
+Series: drm/xe: Add psmi support (rev4)
+URL   : https://patchwork.freedesktop.org/series/151729/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab_BAT -> xe-pw-153083v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 937127c1b58598a82248b50d2959270871f6c92c
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Aug 18 10:37:38 2025 -0700
 
-Summary
--------
+    drm/xe/configfs: Dump custom settings when binding
+    
+    Device configuration using configfs could be prepared long time prior
+    the driver load. Currently all the xe configfs entries are for things
+    that are important to have in the log if a non-default value is being
+    used. Add a info-level message about that with the individual entries
+    that are different than the default.
+    
+    Based on previous patch by Michal Wajdeczko.
+    
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch c3cf4289245819615518b536cd16ebe6612694f9 drm-intel
+da9241f9da35 drm/xe/psmi: Add GuC flag to enable PSMI
+a52d96accd7b drm/xe/psmi: Add debugfs interface for PSMI
+-:111: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#111: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 373 lines checked
+199d10e98df6 drm/xe/rtp: Add match for psmi
+36b3e80fa866 drm/xe/psmi: Add Wa_14020001231
+-:34: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#34: FILE: drivers/gpu/drm/xe/xe_guc_ads.c:364:
++				 GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT);
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+65c980a147d9 drm/xe/psmi: Add Wa_16023683509
+209855037caf drm/xe/configfs: Simplify kernel doc
+c482811d90b1 drm/xe/configfs: Allow to enable PSMI
+ffdb2ff05c91 drm/xe/configfs: Use guard() for dev->lock
+0c8a81b8619d drm/xe/configfs: Block runtime attribute changes
+ad48f73972da drm/xe/configfs: Use tree-like output in documentation
+86234c489fb9 drm/xe/configfs: Improve documentation steps
+a9c615ce10e0 drm/xe/configfs: Minor fixes to documentation
+937127c1b585 drm/xe/configfs: Dump custom settings when binding
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'attr_' - possible side-effects?
+#30: FILE: drivers/gpu/drm/xe/xe_configfs.c:489:
++#define PRI_CUSTOM_ATTR(fmt_, attr_) do { \
++		if (dev->config.attr_ != device_defaults.attr_) \
++			pci_info(pdev, "configfs: " __stringify(attr_) " = " fmt_ "\n", \
++				 dev->config.attr_); \
++	} while (0)
 
-  
+-:30: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'attr_' may be better as '(attr_)' to avoid precedence issues
+#30: FILE: drivers/gpu/drm/xe/xe_configfs.c:489:
++#define PRI_CUSTOM_ATTR(fmt_, attr_) do { \
++		if (dev->config.attr_ != device_defaults.attr_) \
++			pci_info(pdev, "configfs: " __stringify(attr_) " = " fmt_ "\n", \
++				 dev->config.attr_); \
++	} while (0)
 
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153083v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8495 -> IGT_8496
-  * Linux: xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab -> xe-pw-153083v1
-
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab: 912c10fafebf45522f7f56e33a020284e83c27ab
-  xe-pw-153083v1: 153083v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/index.html
-
---===============1976351451859073824==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 2 checks, 74 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Core Xe changes preparing for VF resume</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153083/">https://patchwork.freedesktop.org/series/153083/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab_BAT -&gt; xe-pw-153083v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153083v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153083v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8495 -&gt; IGT_8496</li>
-<li>Linux: xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab -&gt; xe-pw-153083v1</li>
-</ul>
-<p>IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3570-912c10fafebf45522f7f56e33a020284e83c27ab: 912c10fafebf45522f7f56e33a020284e83c27ab<br />
-  xe-pw-153083v1: 153083v1</p>
-
-</body>
-</html>
-
---===============1976351451859073824==--
