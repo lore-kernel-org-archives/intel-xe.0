@@ -4,155 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EC4ACA0EE4
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 14:43:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D72F8CA0ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 15:03:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D426E10E45D;
-	Mon, 18 Aug 2025 14:43:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C17810E468;
+	Mon, 18 Aug 2025 15:03:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2tF93qOC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="btjOai2V";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B45610E45D;
- Mon, 18 Aug 2025 14:43:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01C6910E1EA
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 15:03:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755529421; x=1787065421;
+ h=message-id:date:from:subject:to:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=E6/KGoEv2ODQOA+GRpuq/AvsPTY0taN+Wog9cU4IE1g=;
+ b=btjOai2VBvTRqRxCMtp6IMCPnLmMHXCm7eZmA3Wroi8DWI6ZxNwyPQv2
+ 35FY6vAM9FZQA5Hc+Vg9Z24l7zzgWVe8Hts+a7/VuXcvF8kOllEtsrLR3
+ Ojw97MPEUMzTqoURbDwdXsYNviLaxh4rs3ZHtt993DoZ6+VshFMv3VXny
+ qqpCyqre8loVOkXy8lyWVpbmv/F/TMMCnITOGJ0pSQkZ7zLLViukFC9sr
+ RScbvTnUkrzNr3Yf+sb/67TaB2c7UMadqTxwidzdor/Ww5g4tA0hUchf4
+ ReVJkoWHc1wX5NHMEiXRETkxhY0lxs53nh+J5T2zge5b1Q4zHulpkCJ70 g==;
+X-CSE-ConnectionGUID: bjQbzbhlSSmiPDZPDl7odQ==
+X-CSE-MsgGUID: NIb0lsRfR6CExfEY+iZM4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="60378978"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="60378978"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 08:03:41 -0700
+X-CSE-ConnectionGUID: NlPyjORKRGSbJOylQuz2VA==
+X-CSE-MsgGUID: 0mHTAbAUTPi1U6rVp4e30g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="166827699"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 08:03:40 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 08:03:39 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 18 Aug 2025 08:03:39 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.78)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 08:03:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oKFndPcLwBKni1Y0K+SJuQtsVWjwl1OZp2zCRQC8qDeQxMhNnn88r6ySPAjZwYjmqqFIFy178Ap161aYZK4UJX9j7fx+Vo4VfA0SRMRA2uAULhxdJRgHKTyUt1PBmJGQzodk98DpoiWlGydX1vIEyfDbqNkYs5RM77RYfJhgg0EGcIh+Mc4CgDhTts0Y9V81KjHd9nvzs/z+ltGv1Sg9hrqHAPTpwUo46jQxCMeZoXyTKLHzZvP+KY3KrgWls+DzdwZAx7VgfJ7L/FdCsnZigNr5rpo75DjSW8iRGAwU3JSxkqvBRneCjx2fGhQBVmm1OZ+MNKTg9SaUApPb0Agz9Q==
+ b=d+zsRjTTnw9EseZk0Fb6jej/0OSjV6uqpwIU0bHrkoEdm8w3cHM5eLCMPdkXuX/GU6USvGW9op6Trv6KTnJtyR5/2sFwq0oQEIZkCjxQzs1yLxoDNGiWZbuvelzT5qQ+oWpYHe4tIvZ+pWuBCu28sdjQz2AFsmZo8KUgqVY+r3HX2itlbAgnpjSQezQwHpgVoYvULk40O3PdFcZEErhbSsdOCrJOqKU3rrfBMW/3IyANkjijDFCoQGaombNaIBsNQpmBR0HOJ20mZRJMsQh40+Tye3Wt70dWsrLoJad9m3YK+SoxSNvHL1XJ0s51fgbE+PdfYaMW70II4znQ4s9T/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LcTGsoPxoOzIsECi4KMNSJHZ+KqpS5nS/sWPJB1lqSg=;
- b=fig+l93ikYtFcVGKV5SdiZ5R/03TanuqsXuXo18MYSCMYOMCPpYoQzBXaHd/08mrF9n/b52HjxD+BxBpWphli+NELitK50pQ1R35/mvfbTfEgDhXWCjr2iO73wzFdhmmj7DDtBJV0ppRLf2oMmy/fswsu9t8o7tWkU/dki08NKTQWvKCYwWEWbr7VLW3yb2S7bSa7IceW9qvVois9E/cRBaS14Y2rfrlOFnq0HQ9Ll2RuiAfAs9IzbxQDgShPPI1T5E/J7nvCMpkojbLTrlaJGjehdMwVzFlbPrqwMbU+vcRIYrtrHX43U3IhamlV3Z/nw3r3WO2CP0cwrsFbICX+w==
+ bh=eyoHaaPynF22QtJOArDsui4qcYK6KeQt2iUBJskdiu4=;
+ b=ZAgf2qrczVq9CpTWMYm5wikk3x9Qyg4Gl0flFrDnwBMAACbdGKy2RtGhgOJG+Pf2nbF8xU+O1vV54AsPHMw82JcG0SujX64eAVOuxENnVK00Fb/+AWK4SxKXDyVZ5k2ZpOty+7iy7X5hG3Tr4UJfBBqNyrG/zbM8bHWLQZ86ze4QGJLE1hTv8lICCOvm3rXHSAypdJLbK3VJtFgnQQYFd7pit0PWtHlHjM0uGd9uytePytj7B91m24n590cWeM4KYOl43+Jlb6n4MXpkwx6yydFbQe3tHxdXz6HFuxyRMEBo7ZKPsXr+KWio6oKnJas/1l4ibsUoiQi2a0MVi9Xawg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LcTGsoPxoOzIsECi4KMNSJHZ+KqpS5nS/sWPJB1lqSg=;
- b=2tF93qOC/vxHLVc8eL6Qat/ikKui9uH0YYIoyuAtnwK2XX3UDikrVY5Z/yro4SqEumMulpVGBL/74fKPVQLbKMnjC7uYtX+B5iJMERMti+KMzjb9jRJzhPnKVpQW9dnymwQi+HmSqUjGQPL1n5tBZ5j8teIT9qZuGTBCFhNiDY4=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CY8PR12MB7097.namprd12.prod.outlook.com (2603:10b6:930:51::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Mon, 18 Aug
- 2025 14:43:01 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9031.023; Mon, 18 Aug 2025
- 14:43:01 +0000
-Message-ID: <c4bac4d8-9c5b-446c-b9a1-1bc7ac6b38ff@amd.com>
-Date: Mon, 18 Aug 2025 16:42:56 +0200
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
+ by SJ5PPF0DADD6EFE.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::80d) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.21; Mon, 18 Aug
+ 2025 15:03:38 +0000
+Received: from IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
+ ([fe80::b6d:5228:91bf:469e%4]) with mapi id 15.20.9031.023; Mon, 18 Aug 2025
+ 15:03:38 +0000
+Message-ID: <0eedab5a-7365-4465-a2bd-d1f2d226993f@intel.com>
+Date: Mon, 18 Aug 2025 11:03:35 -0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dma-buf/fence-chain: Speed up processing of rearmed
- callbacks
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20250814094824.217142-6-janusz.krzysztofik@linux.intel.com>
- <20250814094824.217142-10-janusz.krzysztofik@linux.intel.com>
- <0920872a-6f8d-4301-b9fb-c8fa54b7ffe7@amd.com>
- <2443311.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
+From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+Subject: Re: [PATCH v6 1/6] drm/xe/guc: Add log init config abi definitions
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20250722013553.1266218-1-zhanjun.dong@intel.com>
+ <20250722013553.1266218-2-zhanjun.dong@intel.com>
+ <5296f505-ae99-45bd-904b-e0c6296546d3@intel.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <2443311.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <5296f505-ae99-45bd-904b-e0c6296546d3@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN2PR07CA0028.namprd07.prod.outlook.com
- (2603:10b6:208:1a0::38) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-ClientProxiedBy: MW4PR03CA0288.namprd03.prod.outlook.com
+ (2603:10b6:303:b5::23) To IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB7097:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48790f47-a178-4b16-f601-08ddde6587f3
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|SJ5PPF0DADD6EFE:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8a6cf79-d377-4971-3927-08ddde68690c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YVg5QktsZFB1Y2JKR0labk9raEZvbHpBZng2UWR1a2pnVXpsbEplZkxLM3I0?=
- =?utf-8?B?ZE5xMUNnMVFUNWRNNnpsK0RkZ2JzL3JETUVjSCt6ZlZEVnczbFN2N0RJMVRk?=
- =?utf-8?B?bHZkcmgyN2V1VlV6MVI4aUQwRjh4YkdhZFllRkVJTUR2NXBidGFSWE1jZUtp?=
- =?utf-8?B?dDNvei9EbHo2M25jSHloeHhlVU5rRERicllFVDI5SHJkcTkxZHBTOTlFSDha?=
- =?utf-8?B?dkIvWVRzVWs4Q3pTTHJmWFE5eU16RjF3Ky8xZUtYeFBaRWNJN1NHaG16Tkl6?=
- =?utf-8?B?aGt4Z3FwWGw2ZWpnU012NVFEM1pnckNaNTRDTXJhNEQxZW9xNlM4OUN5aUlQ?=
- =?utf-8?B?UVJTTDdpeUMxVVM0ampkQmNkSk05M0k5elZvcFJtS2xic0VoclFJZzFVNXVk?=
- =?utf-8?B?eXlMMTlieTZueE9zUjV6ZnJPMDM5ZjZXbUFxZHdjd2Nrc2RpUkJ1QnFCNzd6?=
- =?utf-8?B?d0JOa3dzNEJsN1YrU3c1WEY4MSt0Z25HcVNJSGtmeENXWm9YeWs1WDVyeVlp?=
- =?utf-8?B?b2xCUHV4SmVHOEN2MzFJUzFvMWJSQmlPYzhGbFhhOC8zLzUzRHl0QXJpOWVF?=
- =?utf-8?B?ZDE4ckhYaXlsTEtpckhQQ1hGRkpLSHdldXZwVEJXTERxUG12VmU0dlI3eFU0?=
- =?utf-8?B?RHNjeVJlSHBKb2hSenk3Rm0vWkVVNktuajJiUWF5b2VXaWJ1eEpXNmtvYVVN?=
- =?utf-8?B?Vmc3ZGI5ZnZ6cFlLYUVSVkdlWUxRQ2liaktlcjNhazFUd3Vib1lYcWZrVEJa?=
- =?utf-8?B?S2swZ3h1ZitaWjlXcS9MY3hNV3U0Mk9DcTcyYW5pVUUrMmloQjltL0gwSFlN?=
- =?utf-8?B?NlI4Q2RXRTZDZUdrTzIrU1FYQWtOeGNFNjJjdUo3dFBrTlRPY29pakp2dkZw?=
- =?utf-8?B?VFJ6YkcrZTJtL1lKbHU5YkJrMm14ckNKS24yTGZBaFByR1l3ZDd0TGRXWnJR?=
- =?utf-8?B?eDYrd2NTNzBpUkZ2VitvMktKSEp2RlpuU05sbVA3bzJsOEFjNll6YnBNeWtx?=
- =?utf-8?B?cnMzQ3Z3cUlWWmp5akl3YlphNHYvZEt5c0lDZ3BTbFpSdUE3cGJva2VBV0ZL?=
- =?utf-8?B?YVZ1RXE1MmRNOWtGMHlYNk1kUlY4NTFDdlBtZHRsc3pVVWFWNmhWaFpUdTFU?=
- =?utf-8?B?NmVHNXBPZ2pyRmpLbThhK0Z2UHAyTFg2MStIY1B4QkRCUmZnQkROYXdrQXE1?=
- =?utf-8?B?ZzZFSURGNGRXV3ZjdWoyQjJrK0hvZG5rR1hON254bzR3cCs5Q0RXSmowVWEv?=
- =?utf-8?B?MXd3RGd5K1EwQ3NMT3hXSWltMlVmVjI2L0FJL1BHZVdSUXZGYUt6WEJIUUds?=
- =?utf-8?B?TXdOaTk2NnBSaVdCWmV6RllZWGdwSGJ2UEtpWm9KNHdRT3JCQnpFZmtSQkFF?=
- =?utf-8?B?amRBb3JhZUxPRDN0Z25mK2lURldpeUxHdEFzc2hPcGxlVTkrZUtJQ3hkUFd4?=
- =?utf-8?B?bmpPckF6cDdSTFlYVmV3SjhsanVwU29zd0VQWTVyY2ZXdVFjZ1FMcGYrOUtG?=
- =?utf-8?B?RndsMG5PT05WNk1lV1dyaFlmU3RCWFpVSTNpYVNPOHBoRzR3WFRITi9YaEtp?=
- =?utf-8?B?R0Q1eUw0OXQrYkRFVm12cXhkS3pBMGNlT2EwMzJkTUx0Y3J5Mng1QkJVU05n?=
- =?utf-8?B?UGx5RXhpclpLTm8zbGpjSkM1MVZudDFHS1hOY3hsQjJCWGhOMzEyaExXZFR5?=
- =?utf-8?B?dmlHZnZUQXVrSUd5U3Y5Qm90b0RHNllzcFNtaW10MWFxaGlKa2Nnd3BYSnFS?=
- =?utf-8?B?am02Ni9GWHVjMlordE5QNEhRcFN5cVRXMlpCeU5jVDdmOEZpOHdMa0RScE9s?=
- =?utf-8?Q?1irsLPvp26K0+PoxKGMwavcDR6lLJDXbVDu/M=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SHdqZURNMU5OMG8yQkhoS3hTaHdobFlGeFN5U1Exa0hRc2tYbkZFUDZQSW8x?=
+ =?utf-8?B?WXFuWmExcVhEc2NGWXQrNCtPMWtXaytBbnc3eGFTNVU1cjE1b3hnc2wvakVM?=
+ =?utf-8?B?b1hWM2FYZTBYQ3Boa21hQW54K0hmUnQ3N1pUS2lsbWV5SGtTVy9qMHAxNmk1?=
+ =?utf-8?B?UFdkQmd0NUR1cVRNVHVXZm5YSTdSei9YcHNPV2YwaUVZMHViSXBKVmpqbi9j?=
+ =?utf-8?B?Q2J1a1hQY0dpUVZmRkgzTG5TQ2RFSXhZZlNHLzAwdWlTRFg4MnlEOHNBTWsx?=
+ =?utf-8?B?dDh1SUJMK2ZWbEd1R0dtTHNPSVI3OTJvN1lvZTRnVnc0MHZNcGFNdGN6K1Zq?=
+ =?utf-8?B?bFlLWFdoZno2elpnOXd3MHRIYmFJLzQvYVNKVFJkTjBkU3hxNGNoNGNhR0JR?=
+ =?utf-8?B?WlRvbE9lazQ2V3lDNzcyeHVRYmpheUo2QTdKczFlbjdFNFpmYThVd0haaGlv?=
+ =?utf-8?B?TFNqVE9IM3R2c3N6aXVZMTRXV2d4eDZzVmEwTDVOWVZXbURvY21xQnNrdVhs?=
+ =?utf-8?B?UjJGRGM5L0lyQS9MUjFMUjc1ZnhNelpOMDdrUHlrd0c4Z21GQVZoazJFOGRC?=
+ =?utf-8?B?UkdqVmlWKzJrMTRPOTRsMTY0ZGF1SThBeWptbVlZYXhJQmVYcTR5OGZwQnRx?=
+ =?utf-8?B?Zk1GenVLblFjc0MzYUVaUnl2SEEvMzdhanJ0bnhSUzc5Qkk0N1RKR3dRQ3pB?=
+ =?utf-8?B?Z3Zwekw0Ui80QkZjVzZmTDQyUjN0dkZTK29wU0V1NTM2TWZYcWpYOTF0U0Vk?=
+ =?utf-8?B?bUo1eTBMOVZzL090TWY3NmVvTmJqcnVpTG96YURTeWFLZzE1VmlMMU4yTXQ1?=
+ =?utf-8?B?eVhyV0YySHBrWEdTeFFZbVdNY2hENW9sb3phaXhmOE8wVE1WcEdGS3dtSW1H?=
+ =?utf-8?B?MG5JUk56cktxVEJmcHRwTXI0aXlKZ05yUUhjZFBxMjIyUTd5ck1xRC93aWhi?=
+ =?utf-8?B?RzJxcS9IOVpONWRDMzU5c2xMQStoVm5aWit2aTN1alpsSWxHV0Q1SFNTMFR0?=
+ =?utf-8?B?UEsrTTlYenZPU25JNGJvdDMyenY1UGlzbUpTTDVyWk9SU0R4UTdEQ3hpdHRw?=
+ =?utf-8?B?dks0djkyRStsNnhrWW56TC80WW1NWU1Ca2w4TEdaZWhBdmNFYzljS0ZVdW5K?=
+ =?utf-8?B?RWJvS1lOb3hRaVFiL0ZXTHM4Y1FKYVo2cG1oNjNHZG9TOTk5b2VIeE1mR2M4?=
+ =?utf-8?B?VUFwSkFrYk5jS2kzRysvQ2Y2UHpBUGhOby9lMUd1Rjd6RzVWM0JFZW1BcTlM?=
+ =?utf-8?B?QVczN2pncmtmaUVSTVBjWGw4NG5NWnc0THpoVUs1bTExSFFzYndJNWVJMGJM?=
+ =?utf-8?B?T245Wnp2R1l3ZFJnMllzK01XZ2laZTk2UWdLc1RCUitmUVczc2l2WnZPZzZW?=
+ =?utf-8?B?S3FNMFo4YUpNUjlMNnl1YWh1K2l0cU5ZdlkxQ0dyajFDTUF4OXdTNmNVU09E?=
+ =?utf-8?B?eGt3d2dyRjJxQWlSSXVYZnlJeEVGNVNvNmV3SVR5VXh6U3IxOTlTRDYzYzVD?=
+ =?utf-8?B?Nm0zRGxDSi9QRU5nWlNhNE9JQmNnVmEyV0lJYzZRbUJHVEZYb2g1YlBJa2Z0?=
+ =?utf-8?B?d1M0V3RLSWgveG8wWVgzNTFKNkRDVXZMa3poa2ZRVmhyUXh2cHhOTDRIQkJQ?=
+ =?utf-8?B?N3ozWnlCQnAyN2lHTHhaaEtMUkNSbVBodWZOMXhncmx3WHdlYmliN0Raci9o?=
+ =?utf-8?B?V2t4ZW1iZGYwS0dUcVFpbnU5eTR2OFF3Yk9UR3JHd1MyS2RUbUg4TVdqaXpU?=
+ =?utf-8?B?WnlKTlVVa3dSR3FvY0xZRTRZNkVNdE0vQW8vTzJZZllSVUhUVStaVHhqZVZ3?=
+ =?utf-8?B?WHZKVXFCVFA2OW5yd2drTTZPY0FTRTZ6MFlud1VDZlpVakVIcFFvWHdSb0FN?=
+ =?utf-8?B?SjBwditobVJkVkRsa0FzSUErbFZsM3FlTUtIZUpTNklLeVZxczVyaFg4Vmp4?=
+ =?utf-8?Q?tRwomYoiwhc=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OTROTEhidDMvQmM2Y04vbVpvR2FQdWdYR0VQS3U5Z25jSHRKbUhEVytHc0tR?=
- =?utf-8?B?cTZ5TTBhU29jWHg3V3lJS094Y0lxbkFGQ2NJd1JWN3o5TVNWTkRXMDF3bFVo?=
- =?utf-8?B?bFVVYlQ1b0tEVjBuTitNMG9PVVo0UVZDT1JPUVhEYnlUdHpscytHV1FZZXhu?=
- =?utf-8?B?V2IzMERydU1ZdlQ0TGZUOXk2K0tPMFRTVmxYVW9NcUJaQW4rTVJLZmlkeHF0?=
- =?utf-8?B?dmZMaE1QQmlCYjJBOUNsM0gvREtudjFNNnlKVzRGdU13aXJ6T0NMVXBHaTZs?=
- =?utf-8?B?S3J6dVJUQ1huKzN6aE1zR1I5TTFQdjNwbUZLeUxPQXVLNmVjNjcxSmIrakxw?=
- =?utf-8?B?RFYrZ2ZtRk5id1NvY1pFUndnNXFHWG94ZjJWSldFVXMzem94eVNIM3FIL1gx?=
- =?utf-8?B?bVZoUklqUlZHTk5aZm1Qa3Uwb0pVeUtOSURjVFhUOEppV24vUXVvQUhDVXV6?=
- =?utf-8?B?VEdrdEk2RDhoUEhEczlxTlhLQ080b1lvYXRwQ1UreFg2QXNIUjBqbUlWR1pP?=
- =?utf-8?B?WFRxU2hpSzhiek1TdXArUTZyNWFRNGI4dG82ckRqSmZsNjFqSVNaa0pZMnRB?=
- =?utf-8?B?aXhabnl6VjZYSzBKanJBUHp3YWcyMWRpai80U3BNUFRNVks0REVrY29lWm5s?=
- =?utf-8?B?LzJlb1FVYyt3RTQ1U0ZVbnh5R0haRmt2aDA4Vmc2SURtSE0wd284eXpqRDVn?=
- =?utf-8?B?TzA5TmZ3ZFJHZFBPZ0Z1TXg3TXZPSFI1SFBLV0NQazFQN3NhQUhPSGZsR3Yx?=
- =?utf-8?B?QlZocFhOSUdHZ2h2dDZHTnBXblY3SS84VFNvdzZGelJWamIvaHRSR2Fib2U3?=
- =?utf-8?B?MWJhTnAvY0hiN0tsRDVsWUw2Qkh5TzQ2NEg4NGNFdmlBSlBON2lMRlY1ZTFu?=
- =?utf-8?B?azJqTXQ1SjFRQlFjNTUrdlk1dWt2M1F4RU5PdE93UU1vaDFEbERjL1o1bGpK?=
- =?utf-8?B?eVpZcDJON1JacHZBV0FRdU03UGJUK0RoZDlLTUI3RXYzeWI3cEVGWjhnTzEz?=
- =?utf-8?B?Y3ZKWDNpWndjOURQR1VBTzF6TEF3Skc0YlRNU1A1WTFINCtRem43Nmp0MEJI?=
- =?utf-8?B?bS85WG0rSTZIa1RvYVQyWjVRNlphYnN0eHdIV3Z0Q2xqY1lZSTFCU1duelBN?=
- =?utf-8?B?L1YzQ1JtVWwxQmxLQXhpMTJ6SGltdkVhaXc4N2g2NllEdXRoTTZJQ0dFTFhP?=
- =?utf-8?B?RWFvZFRCOTVMTHE0UTRRTWpFekZPREZCeVBSaVI4Y0dHTnFkYmNOSEdmMmxy?=
- =?utf-8?B?ZGFrM255dGNjaGhQMG1kTzZ6Q09ubXI2Q3lNRitFWXRRVVRJbzA1UFlRTGxv?=
- =?utf-8?B?aXNPRmU2aUZuT3NZTFluUzJVZHFyQ3lhVXkyOHQ4Q1dSWWp4S21LV2FHSXZv?=
- =?utf-8?B?SGVVWHB3NUxjZjBkTEgrRWgyYnMvbmZVcTdITVVFdU9JWk96OFpQMUM3blZt?=
- =?utf-8?B?U2oxNHk4c3pvcFVMTnhNbEljWDFFblpLemg3OVBvMFgxcVpWbXJwNmpSZFdt?=
- =?utf-8?B?QUpYQUl3OGxJNmFzR1lmTzRKTWs5WStZUVBKK1NLUWYrS2dwQ041QTBHNVQ0?=
- =?utf-8?B?V3lacnlwRG5JdVg4N0NUSlROL0UwdHFwTGpCbXJsdytCenNTUmh2KysrT1JR?=
- =?utf-8?B?WTdmVk5GWFQ2QnpPVE10cGxtNGJqMUpVb1JPK1BsdXRubGJrcFRLRXgwMEhW?=
- =?utf-8?B?WDdFU1FWWHUxZjJQdEVLSnRvdGRCZXNiT3g4MUQrTXJkN00wR0JkRzdJL3RG?=
- =?utf-8?B?emNHNkg5ekpyY1MyTlgrSlM3NytVT1p2NnhHeFpya3RSdUwrRDBIa3BOb0lK?=
- =?utf-8?B?NVdJWWJIWCs0K0kyaGhHSldJOFdBbGQxMWk2bEo0ZUdRbFhBOFl3bUJZNkhH?=
- =?utf-8?B?UDJoaFNuQUVOWU1iQ01ra3V6V1JVYUY2YkJ3OXlSYjhoSjhaSkxyMVVoS1Zp?=
- =?utf-8?B?WXZKaGxoZXZsVlh5Uk1xVWpqRjNDSS9jUXRmb0NoUUFSeDZsWUVPNTBnNnhn?=
- =?utf-8?B?L2NGQ1JKbUlLR01LWjBUSHFlcHJFNDdOSnpzSEtzd3ZBK3hzc2xxZlJJVkxE?=
- =?utf-8?B?dVZvN0FXTUZCS3FWdFdmbHR6THc5VXYvSnJaYjRIQUI5aXRWZ0ZZcG8wTUdS?=
- =?utf-8?Q?vI3ulcY530ZRJ0uQYa0gssvms?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48790f47-a178-4b16-f601-08ddde6587f3
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVRQZyt4QU1ob1phZFBrcGtteUhCbDREaDBYS25mUy82Y1FwUjhGUWN3UnZX?=
+ =?utf-8?B?MHQwUU9YQ3cwcWFZemZEQWVYeVd6aEFmUDRtKytCMGpkMzVOSThkc1RqVGRo?=
+ =?utf-8?B?U0pFbnNySHJCejByR0t0TW5xcHBNNU5DNGRFMU1BN25hREt5djV6YktYWm5w?=
+ =?utf-8?B?bUxwckdwRWtZOEtUVERQOGhXRGRWenBZcStkRUFqTGl2ejNYL0EvKzErWHpD?=
+ =?utf-8?B?VFdZQkhQTHpxZWd1ZElDS1k1WXh2MitwYW5CS1FNQW9uK2c3RWhYVWRRajF4?=
+ =?utf-8?B?ejN5M2R3MTVPSVJBb2twRmY2NmUzTnJOODZzSURFazYwajFrVG04UjRiVnBy?=
+ =?utf-8?B?M0VzZlByTjJMSWRTdFpsYm53R0dicmx1alhDMjJRamxJTnhOWGJIQk9RZHFw?=
+ =?utf-8?B?L1dnVDB0a0ppRFI3QitpTVZna1gzMWdBTko0b1pCVE9pd3ZYUEt0dlZWSDE5?=
+ =?utf-8?B?Zjlpd3dMUjdIbWRtQ2w5enM3ZnFyRHZYRzVkUXdWaXc5Z2VpYnhBU3h2SHdL?=
+ =?utf-8?B?U1ZRdDM2TTVSVldlUWVubUlGVEtROE9YanZiTEI0dm0rVzBCRHB4NU80QXJy?=
+ =?utf-8?B?cEtxL0E3eGlBMDNpZVYvWWdab2RHZjRqc0Vhcmh3amFCWSt5Y1ptOHExQWlM?=
+ =?utf-8?B?YjRIb1UrUy96RXduQXlxYy9sN2pRaVpoK0lJak5qTjRnbkdLemo4cmNwZlY3?=
+ =?utf-8?B?WnllMWgzRU4wOE9yRUg3MmVieG8xSzB1UHJ4MHpxaHpMVlBCN29DN3p3RzVj?=
+ =?utf-8?B?cEEwVXpuRkNlVC83OGt1YktpdDB3OE92bTZsdnp6YzcwWGNnK1dMQ0F6VEF4?=
+ =?utf-8?B?OHhyUEpGb2dUSWczcGp3RHk4dXM2elUrMS9lU2RDRXgrR3UzMHN2RXVROGp2?=
+ =?utf-8?B?TmVoazVaZytpOVJmTG1RVHhoZ3JmaTJPUG96cm9obHovTVR3WG55cmtxazhV?=
+ =?utf-8?B?dTkzRzVwVTVWQ2M3cGJSMEdISTJpcElhK2RqcnhsSmNoTGVEeW5WV3JrSzNN?=
+ =?utf-8?B?OHRLVW1LMHkwa201K2dBcXlaN0lzSFVJSm1ja3diM2tPaDJzSm5aZVZTUSt0?=
+ =?utf-8?B?bUJhS1duTzgraGFEK2xvRVM0T2RyOTZUSG8rd1llZk5mWENNcFNGc0p1Z1hp?=
+ =?utf-8?B?aitKcXNzbnRjY2o5bmFXQ3IzNFF4QUI2TlpvR1lUYkYzZkNMRkZwbmdHK1dG?=
+ =?utf-8?B?MkczOGRKOFA5Z2w4NVVmSk1hNjg5RHBYT0NBVHY5OEcrSjBSYVVZc3BSY0VH?=
+ =?utf-8?B?Yzl4a3dzNHNVSkFpM3R0MG53b2REWFg5cm1IczJWUmt2QXhBY2JMZkU3aVd0?=
+ =?utf-8?B?Nk5MeFNCNnRBSGhjNzNJKzdxU3plQjZZbGZsSm9oU3llZHQvb0ZNcXJjSFRC?=
+ =?utf-8?B?akFBcE5hK2UyTUdhUklZU2J5cThlbjJpaDhvUjhBL29vU0l3S29FcDVrU0hT?=
+ =?utf-8?B?YVFSTFhudmcvVVZ1YnBIWkp4OEtNdFV0RVc4QXRBT0FiVWp0TENsc1NuNlpE?=
+ =?utf-8?B?bStsMk9ob2FoYWlWQkowdDdxaWNlTDJGY3IvNkFiQm1ZQWkxbExkVFhVSGlq?=
+ =?utf-8?B?OGJ3S1BiZDE3YmpzY0s0R21meDI3cFozNWRGT2VUUlZabjI3MGhHUkJ5b1Ux?=
+ =?utf-8?B?YUtNT2NUNit6SnB3NFAzMkxMNkd0aFpHbkhITWFUTFNiLys3MmVpeFVSMGcx?=
+ =?utf-8?B?RHEyeVdCUXVOVC9HVXlsZHJuRkEydlFhZEJNbUhxVHovWkRRT3o0SWl5TGht?=
+ =?utf-8?B?WENFZWZ3T1VrdTBSd01BcXFRUWxwZlJLb3h6dTExNDZNYWxJQXNMYmlVenBy?=
+ =?utf-8?B?VHV6Y3JndjFDWHpuN1hWQnpWQ2EyV0NHTi9LVk1rUVFQSUtUc2ZZREJUMnF5?=
+ =?utf-8?B?bTM3ampRU3RoWnRNN0tpWFhIeWZXMXFxSWdFSisxUk45eklGc3VFWmk1bHVZ?=
+ =?utf-8?B?Um1NSFZiMXlOQ1kvUkZsY2lkOGdhZGdQcnBrRlYxN3ZhTUdib09WVE5aVlU1?=
+ =?utf-8?B?UVZ6VEk1NkdvdTBpb1JCNkIzcG5ld0FjMS9mQXhPcWJoc0d2cURjTy9LVXdW?=
+ =?utf-8?B?NVhqRFg2ZDBjczl5NVd6WGZhT2xpRkRIcEZmNWwvWXR3TWdNNGgwZFBaVkdM?=
+ =?utf-8?B?MkxuWk9OemxIU21LMG9UNDlmKzhGcm1GYUIzT045S0hDMUhISm9tT2hTTnVw?=
+ =?utf-8?B?SWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8a6cf79-d377-4971-3927-08ddde68690c
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 14:43:01.3119 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 15:03:37.9524 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /chb0O9WPXRUxkDPY1xHH0SFfrBY7dIHIXqqUtWeY9tTYLygEpskzVf/axKeOPoL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7097
+X-MS-Exchange-CrossTenant-UserPrincipalName: sbk5OiWRjKTWUnaeycBAzg74+BfrBP1OkGr5+brpHBI2+jtspz02pzEWtM7eO/tER3iLahePcJe2dFXozE9Jww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0DADD6EFE
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,223 +196,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 18.08.25 16:30, Janusz Krzysztofik wrote:
-> Hi Christian,
+
+
+On 2025-07-29 1:40 p.m., Michal Wajdeczko wrote:
 > 
-> On Thursday, 14 August 2025 14:24:29 CEST Christian König wrote:
+> 
+> On 7/22/2025 3:35 AM, Zhanjun Dong wrote:
+>> Add GuC log init config (LIC) ABI definitions.
 >>
->> On 14.08.25 10:16, Janusz Krzysztofik wrote:
->>> When first user starts waiting on a not yet signaled fence of a chain
->>> link, a dma_fence_chain callback is added to a user fence of that link.
->>> When the user fence of that chain link is then signaled, the chain is
->>> traversed in search for a first not signaled link and the callback is
->>> rearmed on a user fence of that link.
->>>
->>> Since chain fences may be exposed to user space, e.g. over drm_syncobj
->>> IOCTLs, users may start waiting on any link of the chain, then many links
->>> of a chain may have signaling enabled and their callbacks added to their
->>> user fences.  Once an arbitrary user fence is signaled, all
->>> dma_fence_chain callbacks added to it so far must be rearmed to another
->>> user fence of the chain.  In extreme scenarios, when all N links of a
->>> chain are awaited and then signaled in reverse order, the dma_fence_chain
->>> callback may be called up to N * (N + 1) / 2 times (an arithmetic series).
->>>
->>> To avoid that potential excessive accumulation of dma_fence_chain
->>> callbacks, rearm a trimmed-down, signal only callback version to the base
->>> fence of a previous link, if not yet signaled, otherwise just signal the
->>> base fence of the current link instead of traversing the chain in search
->>> for a first not signaled link and moving all callbacks collected so far to
->>> a user fence of that link.
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/abi/guc_lic_abi.h | 107 +++++++++++++++++++++++++++
+>>   1 file changed, 107 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/xe/abi/guc_lic_abi.h
 >>
->> Well clear NAK to that! You can easily overflow the kernel stack with that!
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_lic_abi.h b/drivers/gpu/drm/xe/abi/guc_lic_abi.h
+>> new file mode 100644
+>> index 000000000000..a4e27da304cd
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/abi/guc_lic_abi.h
+>> @@ -0,0 +1,107 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2025 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _ABI_GUC_LIC_ABI_H_
+>> +#define _ABI_GUC_LIC_ABI_H_
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +/** enum guc_lic_type - Log Init Config TLV IDs. */
+>> +enum guc_lic_type {
+>> +	/**
+>> +	 * @GUC_LIC_TYPE_GUC_SW_VERSION: GuC firmware version. Value
+>> +	 * is a 32 bit number represented by guc_sw_version.
+>> +	 */
+>> +	GUC_LIC_TYPE_GUC_SW_VERSION = 0x1,
+>> +	/**
+>> +	 * @GUC_LIC_TYPE_GUC_DEVICE_ID: GuC device id. Value is a 32
+>> +	 * bit.
+>> +	 */
+>> +	GUC_LIC_TYPE_GUC_DEVICE_ID = 0x2,
+>> +	/**
+>> +	 * @GUC_LIC_TYPE_TSC_FREQUENCY: GuC timestamp counter
+>> +	 * frequency. Value is a 32 bit number representing frequency in
+>> +	 * kHz. This timestamp is utilized in log entries, timer and
+>> +	 * for engine utilization tracking.
+>> +	 */
+>> +	GUC_LIC_TYPE_TSC_FREQUENCY = 0x3,
+>> +	/**
+>> +	 * @GUC_LIC_TYPE_GMD_ID: HW GMD ID. Value is a 32 bit number
+>> +	 * representing graphics, media and display HW architecture IDs.
+>> +	 */
+>> +	GUC_LIC_TYPE_GMD_ID = 0x4,
+>> +	/**
+>> +	 * @GUC_LIC_TYPE_BUILD_PLATFORM_ID: GuC build platform ID.
+>> +	 * Value is 32 bits.
+>> +	 */
+>> +	GUC_LIC_TYPE_BUILD_PLATFORM_ID = 0x5,
+>> +};
+>> +
+>> +/**
+>> + * struct guc_sw_version - This structure describes the full version of a
+>> + * software component.
+>> + */
+>> +struct guc_sw_version {
+>> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +	u32 dw0;
+>> +#define GUC_SW_VERSION_PATCH_VERSION		GENMASK(7, 0)
+>> +#define GUC_SW_VERSION_MINOR_VERSION		GENMASK(15, 8)
+>> +#define GUC_SW_VERSION_MAJOR_VERSION		GENMASK(23, 16)
+>> +#define GUC_SW_VERSION_BRANCH_ID		GENMASK(31, 24)
 > 
-> I'll be happy to propose a better solution, but for that I need to understand 
-> better your message.  Could you please point out an exact piece of the 
-> proposed code and/or describe a scenario where you can see the risk of stack 
-> overflow?
+> in other places we start with MSB definitions first
+Sure, np
 
-The sentence "rearm .. to the base fence of a previous link" sounds like you are trying to install a callback on the signaling to the previous chain element.
-
-That is exactly what I pointed out previously where you need to be super careful because when this chain signals the callbacks will execute recursively which means that you can trivially overflow the kernel stack if you have more than a handful of chain elements.
-
-In other words A waits for B, B waits for C, C waits for D etc.... when D finally signals it will call C which in turn calls B which in turn calls A.
-
-Even if the chain is a recursive data structure you absolutely can't use recursion for the handling of it.
-
-Maybe I misunderstood your textual description but reading a sentence like this rings all alarm bells here. Otherwise I can't see what the patch is supposed to be optimizing.
-
->>
->> Additional to this messing with the fence ops outside of the dma_fence code is an absolute no-go.
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lic_format_version - Log Init Config Structure Version.
 > 
-> Could you please explain what piece of code you are referring to when you say 
-> "messing with the fence ops outside the dma_fence code"?  If not this patch 
-> then which particular one of this series did you mean?  I'm assuming you 
-> didn't mean drm_syncobj code that I mentioned in my commit descriptions.
-
-See below.
-
+>      *
 > 
-> Thanks,
-> Janusz
+>> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
+>> + * than 1.12)
+>> + */
+>> +struct guc_lic_format_version {
+>> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +	u32 dw0;
+>> +	/*
+>> +	 *  Log-Init-Config structure minor version. Must be
+>> +	 * GUC_LIC_FORMAT_VERSION_MASK_MINOR
 > 
->>
->> Regards,
->> Christian.
->>
->>>
->>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
->>> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
->>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
->>> ---
->>>  drivers/dma-buf/dma-fence-chain.c | 101 +++++++++++++++++++++++++-----
->>>  1 file changed, 84 insertions(+), 17 deletions(-)
->>>
->>> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
->>> index a8a90acf4f34d..90eff264ee05c 100644
->>> --- a/drivers/dma-buf/dma-fence-chain.c
->>> +++ b/drivers/dma-buf/dma-fence-chain.c
->>> @@ -119,46 +119,113 @@ static const char *dma_fence_chain_get_timeline_name(struct dma_fence *fence)
->>>          return "unbound";
->>>  }
->>>  
->>> -static void dma_fence_chain_irq_work(struct irq_work *work)
->>> +static void signal_irq_work(struct irq_work *work)
->>>  {
->>>  	struct dma_fence_chain *chain;
->>>  
->>>  	chain = container_of(work, typeof(*chain), work);
->>>  
->>> -	/* Try to rearm the callback */
->>> -	if (!dma_fence_chain_enable_signaling(&chain->base))
->>> -		/* Ok, we are done. No more unsignaled fences left */
->>> -		dma_fence_signal(&chain->base);
->>> +	dma_fence_signal(&chain->base);
->>>  	dma_fence_put(&chain->base);
->>>  }
->>>  
->>> -static void dma_fence_chain_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>> +static void signal_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>> +{
->>> +	struct dma_fence_chain *chain;
->>> +
->>> +	chain = container_of(cb, typeof(*chain), cb);
->>> +	init_irq_work(&chain->work, signal_irq_work);
->>> +	irq_work_queue(&chain->work);
->>> +}
->>> +
->>> +static void rearm_irq_work(struct irq_work *work)
->>> +{
->>> +	struct dma_fence_chain *chain;
->>> +	struct dma_fence *prev;
->>> +
->>> +	chain = container_of(work, typeof(*chain), work);
->>> +
->>> +	rcu_read_lock();
->>> +	prev = rcu_dereference(chain->prev);
->>> +	if (prev && dma_fence_add_callback(prev, &chain->cb, signal_cb))
->>> +		prev = NULL;
->>> +	rcu_read_unlock();
->>> +	if (prev)
->>> +		return;
->>> +
->>> +	/* Ok, we are done. No more unsignaled fences left */
->>> +	signal_irq_work(work);
->>> +}
->>> +
->>> +static inline bool fence_is_signaled__nested(struct dma_fence *fence)
->>> +{
->>> +	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->>> +		return true;
->>> +
-
->>> +	if (fence->ops->signaled && fence->ops->signaled(fence)) {
-
-Calling this outside of dma-fence.[ch] is a clear no-go.
-
-Regards,
-Christian.
-
->>> +		unsigned long flags;
->>> +
->>> +		spin_lock_irqsave_nested(fence->lock, flags, SINGLE_DEPTH_NESTING);
->>> +		dma_fence_signal_locked(fence);
->>> +		spin_unlock_irqrestore(fence->lock, flags);
->>> +
->>> +		return true;
->>> +	}
->>> +
->>> +	return false;
->>> +}
->>> +
->>> +static bool prev_is_signaled(struct dma_fence_chain *chain)
->>> +{
->>> +	struct dma_fence *prev;
->>> +	bool result;
->>> +
->>> +	rcu_read_lock();
->>> +	prev = rcu_dereference(chain->prev);
->>> +	result = !prev || fence_is_signaled__nested(prev);
->>> +	rcu_read_unlock();
->>> +
->>> +	return result;
->>> +}
->>> +
->>> +static void rearm_or_signal_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>>  {
->>>  	struct dma_fence_chain *chain;
->>>  
->>>  	chain = container_of(cb, typeof(*chain), cb);
->>> -	init_irq_work(&chain->work, dma_fence_chain_irq_work);
->>> +	if (prev_is_signaled(chain)) {
->>> +		/* Ok, we are done. No more unsignaled fences left */
->>> +		init_irq_work(&chain->work, signal_irq_work);
->>> +	} else {
->>> +		/* Try to rearm the callback */
->>> +		init_irq_work(&chain->work, rearm_irq_work);
->>> +	}
->>> +
->>>  	irq_work_queue(&chain->work);
->>> -	dma_fence_put(f);
->>>  }
->>>  
->>>  static bool dma_fence_chain_enable_signaling(struct dma_fence *fence)
->>>  {
->>>  	struct dma_fence_chain *head = to_dma_fence_chain(fence);
->>> +	int err = -ENOENT;
->>>  
->>> -	dma_fence_get(&head->base);
->>> -	dma_fence_chain_for_each(fence, &head->base) {
->>> -		struct dma_fence *f = dma_fence_chain_contained(fence);
->>> +	if (WARN_ON(!head))
->>> +		return false;
->>>  
->>> -		dma_fence_get(f);
->>> -		if (!dma_fence_add_callback(f, &head->cb, dma_fence_chain_cb)) {
->>> +	dma_fence_get(fence);
->>> +	if (head->fence)
->>> +		err = dma_fence_add_callback(head->fence, &head->cb, rearm_or_signal_cb);
->>> +	if (err) {
->>> +		if (prev_is_signaled(head)) {
->>>  			dma_fence_put(fence);
->>> -			return true;
->>> +		} else {
->>> +			init_irq_work(&head->work, rearm_irq_work);
->>> +			irq_work_queue(&head->work);
->>> +			err = 0;
->>>  		}
->>> -		dma_fence_put(f);
->>>  	}
->>> -	dma_fence_put(&head->base);
->>> -	return false;
->>> +
->>> +	return !err;
->>>  }
->>>  
->>>  static bool dma_fence_chain_signaled(struct dma_fence *fence)
->>
->>
+> you likely mean GUC_LIC_FORMAT_VERSION_MINOR here
 > 
+> and likely the guc_lic_format_version shall be defined first as all
+> other definitions depends on this being 1.0, right?
+Sure, will move the version define ahead
+
+>> +	 */
+>> +#define GUC_LIC_FORMAT_VERSION_MASK_MINOR		GENMASK(15, 0)
+>> +	/*
+>> +	 *  Log-Init-Config structure major version. Must be
+>> +	 * GUC_LIC_FORMAT_VERSION_MASK_MAJOR
 > 
+> GUC_LIC_FORMAT_VERSION_MAJOR
 > 
+>> +	 */
+>> +#define GUC_LIC_FORMAT_VERSION_MASK_MAJOR		GENMASK(31, 16)
+> 
+> again, start with MSB first
+> 
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lic - GuC lic (Log-Init-Config) structure.
+> 
+> s/GuC lic/GuC LIC
+> 
+>      *
+>> + * This is populated by the GUC at log init time and is located in the log
+>> + * buffer as per the Log Buffer Layout (In Memory). The array of guc log
+>> + * buffer states plus this structure must not exceed 4KB
+>> + */
+>> +struct guc_lic {
+>> +	/**
+>> +	 * @magic: A magic number set by GuC to identify that this
+>> +	 * structure contains valid information: magic = GUC_LIC_MAGIC.
+>> +	 * Used to verify the information in this structure is valid.
+> 
+> hmm, last sentence is redundant, please rephrase
+> 
+>> +	 */
+>> +	u32 magic;
+>> +#define GUC_LIC_MAGIC			0x8086900D
+>> +
+>> +	/**
+>> +	 * @version: The version of the this structure. Represented by
+>> +	 * guc_lic_format_version
+>> +	 */
+>> +	struct guc_lic_format_version version;
+>> +#define GUC_LIC_FORMAT_VERSION_MAJOR	1u
+>> +#define GUC_LIC_FORMAT_VERSION_MINOR	0u
+> 
+> those defs should be closer to struct guc_lic_format_version
+> where they are already referenced in description
+> 
+>> +
+>> +	/** @dw_size: Number of Dws the `data` array contains. */
+> 
+> s/Dws/DWs or DWORDs or dwords but not Dws
+>> +	u32 dw_size;
+> 
+> hmm, still dw_size name is suggesting something else...
+> maybe "@data_size: Number of dwords in the @data array"
+> 
+> or data_count or data_len
+Will be changed to data_count, as it not size, but the count of dwords
+
+>> +	/**
+>> +	 * @data: Array of dwords representing a list of LIC KLVs of
+>> +	 * type guc_klv_generic with keys represented by guc_lic_type
+>> +	 */
+>> +	u32 data[] __counted_by(dw_size);
+>> +} __packed;
+>> +
+>> +#endif
 > 
 
