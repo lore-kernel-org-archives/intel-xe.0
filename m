@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28E87CA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 14:07:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AA5ACA0ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 14:07:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E526610E454;
-	Mon, 18 Aug 2025 14:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C445910E456;
+	Mon, 18 Aug 2025 14:07:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="o6XLutSr";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZQYHDh8M";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 208E010E44D
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 14:06:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4456710E456
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 14:07:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Rth+055eSbbg3Cc98LXmZWnV9jeRYIE/sdg3ZSjSwRA=; b=o6XLutSr3nLOVmXpYG+bO39vIH
- 494V9lyBTbbgTCneO3oft6pn6tHK6lhyFcNrdpQiPkmlAmugHYtmg2+3RpAWkqXhW/dxxYg5eCr1/
- 1RhlsoJR27eYag3qtZgJ4i4ReIa8cSzH5iBomyO5NxfTbS8lw4W5pJFjMOPGVwzTJvTVzBknuoomd
- RG9FHrISYU8CwCwMEAUffhIugh78pTqus6bQMUor4tNWdaXOGv21eZjCBcbTQLuVlyqtLWv9Ym1mC
- X5DXNvf5TS+Jp0r+Yz+z0zNh9qs+hFBVTZb5fWrn4X1bBSXytwBVHlbYG/46c1khqHXTP1iCgUTDu
- atYCLfng==;
+ bh=kfP1nlQ2pHt8xODy+AxKXQ3JYh5FRVcATujE+s/shTE=; b=ZQYHDh8MHWOKDVXeuB16aQ6Bpr
+ 57lvAtO2jund6wHpGsMDGuoSUi0KRpRxG/bHHH6EEwsETWv9mCd7RiTlN0iRY1kQMTuJbRNiiKkOd
+ sNy9GhWl1H0zpKAsX1OlyNmIe1+74er2ZGNQKWbUDsPjULlGWdhh++4QLshrZWhJMfW0wV9qHNzYq
+ 4qQeOCr9TS7lslYm0k9SgQjobCtrLDd8cYxZm9NFRFD1Ird7YxB8E+/fYmd3F5zSf6nOoUsvJvq/k
+ nxYBTOffbnmI0xttNtttcXQFs6J8LBNNKM+dF7j1ITQPvrnr+KS0JLXSwjkCf6Cf4Y8yBwXdoF3NS
+ /B17BHYg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uo0Vk-00Fs0G-CU
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 16:06:56 +0200
+ id 1uo0Vr-00Fs0v-Hr
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 16:07:03 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 03/14] drm/xe/xelp: Support auxccs invalidation on blitter
-Date: Mon, 18 Aug 2025 15:06:39 +0100
-Message-ID: <20250818140653.86787-4-tvrtko.ursulin@igalia.com>
+Subject: [CI 13/14] no dpt stolen
+Date: Mon, 18 Aug 2025 15:06:49 +0100
+Message-ID: <20250818140653.86787-14-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
 References: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
@@ -57,186 +57,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Auxccs platforms need to be able to invalidate auxccs on the blitter
-engine.
-
-Add the relevant mmio register and enable this by refactoring the ring
-emission a bit to consolidate all non-render engines.
-
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
- drivers/gpu/drm/xe/xe_ring_ops.c     | 104 +++++++++++----------------
- 2 files changed, 41 insertions(+), 64 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index f96b2e2b3064..f8b1060c76c1 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -88,6 +88,7 @@
- #define CCS_AUX_INV				XE_REG(0x4208)
- 
- #define VD0_AUX_INV				XE_REG(0x4218)
-+#define BCS_AUX_INV				XE_REG(0x4248)
- #define VE0_AUX_INV				XE_REG(0x4238)
- 
- #define VE1_AUX_INV				XE_REG(0x42b8)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index f56506ebbeca..e7c23fd04011 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -248,44 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
- 	return i;
- }
- 
--/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
--static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 seqno)
--{
--	u32 dw[MAX_JOB_SIZE_DW], i = 0;
--	u32 ppgtt_flag = get_ppgtt_flag(job);
--	struct xe_gt *gt = job->q->gt;
--
--	i = emit_copy_timestamp(lrc, dw, i);
--
--	if (job->ring_ops_flush_tlb) {
--		dw[i++] = preparser_disable(true);
--		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
--		dw[i++] = preparser_disable(false);
--	} else {
--		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, dw, i);
--	}
--
--	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
--
--	if (job->user_fence.used) {
--		i = emit_flush_dw(dw, i);
--		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
--						job->user_fence.value,
--						dw, i);
--	}
--
--	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
--
--	i = emit_user_interrupt(dw, i);
--
--	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
--
--	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
--}
--
- static bool has_aux_ccs(struct xe_device *xe)
- {
- 	/*
-@@ -300,36 +262,50 @@ static bool has_aux_ccs(struct xe_device *xe)
- 	return !xe->info.has_flat_ccs;
- }
- 
--static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 seqno)
-+static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
-+				 u64 batch_addr, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
--	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
-+	const unsigned int class = job->q->class;
-+	const bool aux_ccs = has_aux_ccs(xe) &&
-+			     (class == XE_ENGINE_CLASS_COPY ||
-+			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
--	dw[i++] = preparser_disable(true);
--
--	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe)) {
--		if (decode)
--			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
--		else
--			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
--	}
--
--	if (job->ring_ops_flush_tlb)
-+	if (invalidate_tlb) {
-+		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
-+					seqno,
-+					MI_INVALIDATE_TLB,
-+					dw, i);
-+		/* hsdes: 1809175790 */
-+		if (aux_ccs) {
-+			struct xe_reg reg;
- 
--	dw[i++] = preparser_disable(false);
-+			switch (job->q->class) {
-+			case XE_ENGINE_CLASS_COPY:
-+				reg = BCS_AUX_INV;
-+				break;
-+			case XE_ENGINE_CLASS_VIDEO_DECODE:
-+				reg = VD0_AUX_INV;
-+				break;
-+			default:
-+				reg = VE0_AUX_INV;
-+			};
- 
--	if (!job->ring_ops_flush_tlb)
-+			i = emit_aux_table_inv(gt, reg, dw, i);
-+		}
-+		dw[i++] = preparser_disable(false);
-+	} else {
- 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, dw, i);
-+	}
- 
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
- 
-@@ -442,9 +418,9 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
- 
--	__emit_job_gen12_simple(job, job->q->lrc[0],
--				job->ptrs[0].batch_addr,
--				xe_sched_job_lrc_seqno(job));
-+	__emit_job_gen12_xcs(job, job->q->lrc[0],
-+			     job->ptrs[0].batch_addr,
-+			     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_copy(struct xe_sched_job *job)
-@@ -458,9 +434,9 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	}
- 
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_simple(job, job->q->lrc[i],
--					job->ptrs[i].batch_addr,
--					xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_video(struct xe_sched_job *job)
-@@ -469,9 +445,9 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 
- 	/* FIXME: Not doing parallel handshake for now */
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_video(job, job->q->lrc[i],
--				       job->ptrs[i].batch_addr,
--				       xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index bf600cad0284..56c757bffcea 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -214,13 +214,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						      XE_BO_FLAG_PAGETABLE,
+ 						      alignment);
+ 	else
+-		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+-						      dpt_size,  ~0ull,
+-						      ttm_bo_type_kernel,
+-						      XE_BO_FLAG_STOLEN |
+-						      XE_BO_FLAG_GGTT |
+-						      XE_BO_FLAG_PAGETABLE,
+-						      alignment);
++		dpt = ERR_PTR(-EINVAL);
++
+ 	if (IS_ERR(dpt))
+ 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+ 						      dpt_size,  ~0ull,
 -- 
 2.48.0
 
