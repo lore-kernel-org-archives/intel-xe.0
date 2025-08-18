@@ -4,58 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11181CA0EE4
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 13:51:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF46CA0EE4
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 14:06:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE09D10E44B;
-	Mon, 18 Aug 2025 13:51:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04F8C10E44C;
+	Mon, 18 Aug 2025 14:06:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KLfotIRB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IEyI8TKq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B20A10E44B
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 13:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755525108; x=1787061108;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=z7m9F0/5GzYOULL7LAWjI0leIcjlzIZylvOQkpkwhj8=;
- b=KLfotIRB4EWzENQly2YZbttknDkhpmfzOQHsw2OvFva/iPvyzn50ZHvf
- 3dHwiWZrAXGmvg6SdV9N4Cx7cDKWYOkIKJHKVx1Vi93PmKy9LsIjjdedL
- +RZf04NY5ToECzPCqlL1YUMgMULaMkvIRKBR19AQR+UNRy8XFlO7GZDob
- /0ZPQvEQOgNDGyIgyf0OrkaLsXj0NELAmJX5H0qtiLAINS5sTKstyd/SE
- ZP6epc9hAqPcMethj5dyeSJRJlQ/RCrSDWOy/Lh+672y80APGlq9Rp9el
- HZuLw2QuGZ3pDioMax9i3dsEhjDI3FOlC/qvo5N2A7WizFUaRJ+UHJtVU w==;
-X-CSE-ConnectionGUID: 0ZF0UhbiRaCOxr/+BkqOKQ==
-X-CSE-MsgGUID: HhQUptQORWCpmYumkCQFfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="61373718"
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="61373718"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 06:51:48 -0700
-X-CSE-ConnectionGUID: 9cP2JNYTSDit1ReAzJybBQ==
-X-CSE-MsgGUID: ZoNk7oB9Tyu95JppD0DmQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="172785492"
-Received: from cmdeoliv-mobl4.amr.corp.intel.com (HELO
- gjsousa-mobl2.amr.corp.intel.com) ([10.125.108.8])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 06:51:47 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 18 Aug 2025 10:51:03 -0300
-Subject: [PATCH v3 2/2] drm/xe: Use for_each_gt to define gt_count
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250818-gt_count-improvements-v3-2-32f6901e42e6@intel.com>
-References: <20250818-gt_count-improvements-v3-0-32f6901e42e6@intel.com>
-In-Reply-To: <20250818-gt_count-improvements-v3-0-32f6901e42e6@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5219610E1E2
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 14:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=5wyJj6a0GDD1eksSur7PZTowssQ1DAYYFThZmc+TgkY=; b=IEyI8TKql5vGOlwjaQfwXyiOpr
+ D8F3AeF4J5u/G5+IYjPM56IbWWiOF5NLRlr2s+uFP9swEVVLzHBEnHJ2L2l/jJjSTpJdiQ1HSxGAB
+ LYcL3EkkjhXTMwdelJx5eY8kK8NDlsWARrUAM4tH1iQn1TzrsGD7bFVrn0yR3PCOCLSBBXU9NhD16
+ 2+GWW3OFMfKZtqqgGTB+jZWLlBtliW++F/oXsaBeazCF3AkB2mI90cl+ar9otdgCommqAUuYgM7c7
+ Oc1j3dv7sZnlbI6NEkQaiex4QkJQkBa7OPGn7EQopheF1zn0a6G1N16a0HnEnOME5fXF0qoZ7HlkC
+ iKvHwzqg==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uo0Vj-00Fs0A-KK
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 16:06:55 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: [CI 02/14] drm/xe/xelp: Quiesce memory traffic before invalidating
+ auxccs
+Date: Mon, 18 Aug 2025 15:06:38 +0100
+Message-ID: <20250818140653.86787-3-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
+References: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,62 +58,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are currently bumping gt_count as we define GTs for each tile. While
-that works with our current code, there are reasons to improve that:
+According to i915 before invalidating auxccs we must quiesce the memory
+traffic by an extra flush.
 
-* That section of the code is dedicated to define each tile's set of GTs
-  and their respective info. The gt_count can be seen as a device level
-  property. While it is fair to bump it as we define each GT, we can
-  also focus on the GT themselves and count after we are done with the
-  definitions.
-
-* More *importantly*, gt_count should reflect the number of GTs that we
-  would get when looping over them with for_each_gt(). Bumping gt_count
-  the way we are currently doing makes that value not really connected
-  to for_each_gt(). This could bite us in the future if in the loop gets
-  extra checks that are not accounted for in each existing "gt_count++".
-
-As such, let's use for_each_gt() and extract the calculation of gt_count
-into a separate block, just after we define the set of GTs for each
-tile.
-
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 7 ++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 0d7073a04bb2..12de65756599 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -734,7 +734,6 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.id = tile->id * xe->info.max_gt_per_tile;
- 		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = graphics_desc->hw_engine_mask;
--		xe->info.gt_count++;
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 761740d7769f..f56506ebbeca 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -358,10 +358,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	const bool aux_ccs = has_aux_ccs(xe);
+ 	u32 mask_flags = 0;
  
- 		err = xe_tile_alloc_vram(tile);
- 		if (err)
-@@ -759,9 +758,15 @@ static int xe_info_init(struct xe_device *xe,
- 		gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
- 		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
- 		gt->info.engine_mask = media_desc->hw_engine_mask;
--		xe->info.gt_count++;
- 	}
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
-+	/*
-+	 * Now that we have tiles and GTs defined, let's loop over valid GTs
-+	 * in order to define gt_count.
-+	 */
-+	for_each_gt(gt, xe, id)
-+		xe->info.gt_count++;
++	/* hsdes: 1809175790 */
++	if (aux_ccs)
++		i = emit_render_cache_flush(job, dw, i);
 +
- 	return 0;
- }
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -372,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
  
-
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (aux_ccs)
+ 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
+ 
+ 	dw[i++] = preparser_disable(false);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index d7e3e150a9a5..477dc7defd72 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 58
++#define MAX_JOB_SIZE_DW 70
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
-2.50.1
+2.48.0
 
