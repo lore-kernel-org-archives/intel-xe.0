@@ -4,47 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A23D0CA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 17:32:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40D2BCA0ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 17:38:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4875910E4B4;
-	Mon, 18 Aug 2025 17:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0221010E4B5;
+	Mon, 18 Aug 2025 17:38:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tJzO5/g8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IVUB28OG";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0D010E4B0;
- Mon, 18 Aug 2025 17:32:29 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D32F443769;
- Mon, 18 Aug 2025 17:32:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BBEDC113D0;
- Mon, 18 Aug 2025 17:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755538348;
- bh=CmRgn46BZl6J8MX5ylLoEiE1qDDgfVYS/Cf/oUWsXb8=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=tJzO5/g8GoOsv1LGnoDNyLrNjSOQePx69nmeTl2UbA/cdNFyD+oUAaDYh13ANZooD
- RbY02jcA2AjN6p/nbLNWshWWxyBYLg7YZEfCGLFruceWGhUw9SH/n4Hlb7Aaakrbgg
- LbobOYTbCZMHB8nGzd3mp4dao1ZMrchcMu5qUkyCJEDSPzBtIOd/EpCXu1fFYlrZ0k
- nkFMF1fHg1tlWqObj77WnK5TIjdfmYtZaZOtgNcfQq+V4MTzovf0mMPDslk12kiPY8
- QPCEbojroOx2B82JzzRqqszJ2Zhb1rCPXAdiZe7qvMa0sXe8A1l4lTxBkhBmvNRkgT
- zyx/H3mIHkB2A==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 18 Aug 2025 19:32:25 +0200
-Message-Id: <DC5QEMCVGZVV.3F24M2TIFEN96@kernel.org>
-Subject: Re: [PATCH v7 03/24] drm/gpuvm: Introduce drm_gpuvm_madvise_ops_create
-Cc: <intel-xe@lists.freedesktop.org>, "Matthew Brost"
- <matthew.brost@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Boris Brezillon"
- <bbrezillon@kernel.org>, <dri-devel@lists.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
- <20250814105950.2177480-4-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250814105950.2177480-4-himal.prasad.ghimiray@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 007BC10E4B4
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 17:38:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755538704; x=1787074704;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F9dsPrzrV1LjzM5uV8M63nIOVGSWBK4muirUcCn+rkE=;
+ b=IVUB28OGHDzdN+pZs1PXq6jrvFUWIoAJET0fSIODe/17eo17KFF13DpU
+ 9cY0IDV6DfqeFkvvFKZdMzYwsh7g0GPbhzGJP77w3AkE0WWOxexQNwqkl
+ 6cURih5sinDOvI2T2hQmQ0SHnbCbkrIllrxZx63r7zkNqgj/hiRP4HpiG
+ Fixx/dcbluNL4SKtxvMq63Rz30N6pgMRfuspSwIV2Q8a+n+5ZbaPx/hGY
+ uuf6+C1SdcpokkPQAZAl3LJ2L8gTR4Rewo/ZORscfdhwkVtHNmCdLp99J
+ gEsAs3d4R2vDIBEBIg4M3lhFjdydGIo/MatWv15O6H500BrT5Xzoa2PH8 w==;
+X-CSE-ConnectionGUID: zCcSUrumT62NECThkHuFdw==
+X-CSE-MsgGUID: oq0fJ3C9QSSRQhwSmbx+sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57918646"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="57918646"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 10:38:23 -0700
+X-CSE-ConnectionGUID: 7Uo7U9iVSQqiQo1yQ9YXPg==
+X-CSE-MsgGUID: NiYddK7mRzeYxFvdvDkyPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="172838857"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 10:38:23 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
+ dnyaneshwar.bhadane@intel.com, Matt Roper <matthew.d.roper@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Brian Welty <brian.welty@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v4 00/13] drm/xe: Add psmi support
+Date: Mon, 18 Aug 2025 10:37:25 -0700
+Message-ID: <20250818-psmi-v4-0-a330783ce1c0@intel.com>
+X-Mailer: git-send-email 2.50.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20250618-psmi-9f270bf67895
+X-Mailer: b4 0.15-dev-b03c7
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +75,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Aug 14, 2025 at 12:59 PM CEST, Himal Prasad Ghimiray wrote:
-> This ops is used to iterate over GPUVA's in the user-provided range
-> and split the existing sparse VMA's if the start or end of the input
-> range lies within it. The operations can create up to 2 REMAPS and 2 MAPs=
-.
->
-> The primary use case is for drivers to assign attributes to GPU VAs in
-> the specified range without performing unmaps or merging mappings,
-> supporting fine-grained control over sparse va's.
->
-> v2
-> - use drm_gpuvm_sm_map_ops_create with flags instead of defining new
->   ops_create (Danilo)
-> - Add doc (Danilo)
->
-> v3
-> - Fix doc
-> - Fix unmapping check
->
-> v4
-> - Fix mapping for non madvise ops
->
-> v5
-> - Fix mapping (Matthew Brost)
-> - Rebase on top of struct changes
->
-> v6
-> - flag moved to map_req
->
-> v7 (Danilo)
-> - Use different functions
-> - Add kernel-doc
-> - Modify op_unmap_cb and op_map_cb to handle madvise and NULL ptr
-> - use gem_obj check in single place
+Add PSMI support to aid debugging. More information about PSMI is in the
+first and second patches.
 
-(Same comment as in patch 1.)
+Expose the toggle to enable it via configfs, which allows to debug just
+one of the possible cards attached.
 
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Boris Brezillon <bbrezillon@kernel.org>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v6
+The buffer allocation request is done via debugfs.
 
-This looks pretty clean now, and thanks for adding the documentation.
+In order to apply WAs conditionally to using PSMI, a new
+RTP match is also added.
 
-Acked-by: Danilo Krummrich <dakr@kernel.org>
+The rest of the patches are improvements to our configfs integration
+that I've been collecting while reviewing other semi-related patches.
 
-Feel free to take this through the Xe tree if necessary.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+Changes in v4:
+- Rebase and handle feedback from reviews as noted in individual patches
+- One open is if the reserved buffer needs to be cleared
+- Link to v3: https://lore.kernel.org/r/20250808-psmi-v3-0-a111e9f1e4b7@intel.com
+
+Changes in v3:
+- Rebase and refactor on multiple configfs changes
+- Add patches to log to dmesg when non-default configfs value is found
+- Block runtime changes of configfs attributes as they don't have any
+  effect
+- Improve documentation
+- Link to v2: https://lore.kernel.org/r/20250723-psmi-v2-0-84a04b5a3c04@intel.com
+
+Changes in v2:
+- configfs
+- some refactors as noted on individual patches
+- Link to v1: https://lore.kernel.org/r/20250716-psmi-v1-0-674c13d7028e@intel.com
+---
+Badal Nilawar (1):
+      drm/xe/psmi: Add Wa_14020001231
+
+Lucas De Marchi (11):
+      drm/xe/psmi: Add GuC flag to enable PSMI
+      drm/xe/psmi: Add debugfs interface for PSMI
+      drm/xe/rtp: Add match for psmi
+      drm/xe/configfs: Simplify kernel doc
+      drm/xe/configfs: Allow to enable PSMI
+      drm/xe/configfs: Use guard() for dev->lock
+      drm/xe/configfs: Block runtime attribute changes
+      drm/xe/configfs: Use tree-like output in documentation
+      drm/xe/configfs: Improve documentation steps
+      drm/xe/configfs: Minor fixes to documentation
+      drm/xe/configfs: Dump custom settings when binding
+
+Vinay Belgaumkar (1):
+      drm/xe/psmi: Add Wa_16023683509
+
+ drivers/gpu/drm/xe/Makefile           |   1 +
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h |   1 +
+ drivers/gpu/drm/xe/xe_configfs.c      | 211 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_configfs.h      |   4 +
+ drivers/gpu/drm/xe/xe_debugfs.c       |   3 +
+ drivers/gpu/drm/xe/xe_device.c        |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h  |   8 +
+ drivers/gpu/drm/xe/xe_guc.c           |  10 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c       |   4 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h      |   2 +
+ drivers/gpu/drm/xe/xe_pci.c           |   3 +
+ drivers/gpu/drm/xe/xe_psmi.c          | 306 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_psmi.h          |  14 ++
+ drivers/gpu/drm/xe/xe_rtp.c           |   7 +
+ drivers/gpu/drm/xe/xe_rtp.h           |   3 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |   6 +
+ 16 files changed, 555 insertions(+), 33 deletions(-)
+
+base-commit: edead24a80ae92312f75626eb92f2771ec5a7697
+change-id: 20250618-psmi-9f270bf67895
+
+Lucas De Marchi
+
