@@ -4,54 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37B0FCA0EE4
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 17:22:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20086CA0EE4
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 17:27:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F12DC10E4B4;
-	Mon, 18 Aug 2025 17:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9E8D10E4AD;
+	Mon, 18 Aug 2025 17:27:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XreaBcDx";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FeYx6TUz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB4A10E4B1
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 17:22:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755537770; x=1787073770;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=88/RvBAjGIK0C5jeYvhhandTnWQ7OIVW4+U/5DJ1P4w=;
- b=XreaBcDxSEEBLCpmwq6ktjy6anHaSvJesdE+PXoYLg/ihs61TlYnru/8
- eM0tEVTjqHvyHVFk51kxPfxDIVlX7HT8Ckwlr6w+qFTQd0ptwikmYGMQX
- iFQiwsho5FUeR8rqNEMFZbD1NNJYEoGnt+BOLxOb9tC0ailRCVRTbe1QW
- rYZ6/9y4+rXtjGkPwfTBmGzHRlvaU4Sr0zDpY+1+pODbELQGZrcEwPYnp
- TPPw74G99f/oykLe+sjdHLTwx1awSggJPZA6n4UdXPRxQPBKUBJO+QgZo
- p+9HC9UAarfPfORbEBjBgWAdzzpAZDzszyVLFlNZIsut6kVXTJrAGxr7Q A==;
-X-CSE-ConnectionGUID: 3xzatM8GTE6qbss2PTTwkA==
-X-CSE-MsgGUID: lG6P1UMoSsqIG70x/x29Lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="68478663"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="68478663"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 10:22:47 -0700
-X-CSE-ConnectionGUID: LlcvJ4niQOqz0mT81GO+Zw==
-X-CSE-MsgGUID: +knqTP7iQ+ODktbG1ewJIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="167871634"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 10:22:48 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 1/3] drm/xe: Save off position in ring in which a job was
- programmed
-Date: Mon, 18 Aug 2025 10:22:41 -0700
-Message-Id: <20250818172243.2649863-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250818172243.2649863-1-matthew.brost@intel.com>
-References: <20250818172243.2649863-1-matthew.brost@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3156910E4AD;
+ Mon, 18 Aug 2025 17:27:42 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 5E91B5C6285;
+ Mon, 18 Aug 2025 17:27:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC233C4CEEB;
+ Mon, 18 Aug 2025 17:27:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1755538058;
+ bh=T4QcEjQHxRjUEljBp1OjQ4aiDneFCNvaSRkWFCtDAGY=;
+ h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+ b=FeYx6TUzFOmEld/fC/sKDsvIEG1lMcpH9Hl4QQRptYMMzD5eudnS7VnhU+uwwB0/E
+ XVJbnZ09og0EhIaNuDo+C7TEbyNhcfsu/nHivISX0gA3ESH37YT9JsvpnJ8AKBQxXW
+ 4N3LM3OeKe7tmkZjcDFG1LZqWtN90f/OJKm9qxq4NjcCjuG436PXWTQMPyyRAmT2St
+ sFAwLWY5Nd6SQ4n6xSFMxXEeZuaItmymLXm6dgE6dH3Mkfx+A0EufNGs/ELesu0Vqt
+ PwtCZd2jv56yPTziLdNOESmewrR100ZUWdVVxQg8eSAOh53Tl4wMsfbte7U/Q20nr+
+ w+QoCQM9MmtOQ==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 18 Aug 2025 19:27:34 +0200
+Message-Id: <DC5QAWS5QUG8.28DC0DJFT5S2X@kernel.org>
+Cc: <intel-xe@lists.freedesktop.org>, "Matthew Brost"
+ <matthew.brost@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, "Boris Brezillon"
+ <boris.brezillon@collabora.com>, "Brendan King" <Brendan.King@imgtec.com>,
+ "Boris Brezillon" <bbrezillon@kernel.org>, "Caterina Shablia"
+ <caterina.shablia@collabora.com>, "Rob Clark"
+ <robin.clark@oss.qualcomm.com>, <dri-devel@lists.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v7 01/24] drm/gpuvm: Pass map arguments through a struct
+References: <20250814105950.2177480-1-himal.prasad.ghimiray@intel.com>
+ <20250814105950.2177480-2-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250814105950.2177480-2-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,145 +62,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF resume needs to modify the ring with updated GGTT addresses for
-pending jobs. Save off position in ring in which a job was programmed to
-facilitate.
+On Thu Aug 14, 2025 at 12:59 PM CEST, Himal Prasad Ghimiray wrote:
+> From: Boris Brezillon <boris.brezillon@collabora.com>
+>
+> We are about to pass more arguments to drm_gpuvm_sm_map[_ops_create](),
+> so, before we do that, let's pass arguments through a struct instead
+> of changing each call site every time a new optional argument is added.
+>
+> v5
+>  - Use drm_gpuva_op_map=E2=80=94same as drm_gpuvm_map_req
+>  - Rebase changes for drm_gpuvm_sm_map_exec_lock()
+>  - Fix kernel-docs
+>
+> v6
+>  - Use drm_gpuvm_map_req (Danilo/Matt)
+>
+> v7
+>  - change member name to map instead of op_map
+>  - use local variable to minize the code changes in _sm_map
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
- drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
- 2 files changed, 24 insertions(+), 4 deletions(-)
+I know it's a thing in DRM, but I'd rather not have the version changes in =
+the
+commit message. Please move them below "---" or into the cover letter.
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 5f15360d14bf..4dad28f0614d 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
- 
- /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
- static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 seqno)
-+				    u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	if (job->ring_ops_flush_tlb) {
-@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
- }
- 
- static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 seqno)
-+				   u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 
- static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 					    struct xe_lrc *lrc,
--					    u64 batch_addr, u32 seqno)
-+					    u64 batch_addr, u32 *head,
-+					    u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- }
- 
- static void emit_migration_job_gen12(struct xe_sched_job *job,
--				     struct xe_lrc *lrc, u32 seqno)
-+				     struct xe_lrc *lrc, u32 *head,
-+				     u32 seqno)
- {
- 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
-@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	__emit_job_gen12_simple(job, job->q->lrc[0],
- 				job->ptrs[0].batch_addr,
-+				&job->ptrs[0].head,
- 				xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 
- 	if (xe_sched_job_is_migration(job->q)) {
- 		emit_migration_job_gen12(job, job->q->lrc[0],
-+					 &job->ptrs[0].head,
- 					 xe_sched_job_lrc_seqno(job));
- 		return;
- 	}
-@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_simple(job, job->q->lrc[i],
- 					job->ptrs[i].batch_addr,
-+					&job->ptrs[i].head,
- 					xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_video(job, job->q->lrc[i],
- 				       job->ptrs[i].batch_addr,
-+				       &job->ptrs[i].head,
- 				       xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
- 						job->ptrs[i].batch_addr,
-+						&job->ptrs[i].head,
- 						xe_sched_job_lrc_seqno(job));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index dbf260dded8d..7ce58765a34a 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -24,6 +24,11 @@ struct xe_job_ptrs {
- 	struct dma_fence_chain *chain_fence;
- 	/** @batch_addr: Batch buffer address. */
- 	u64 batch_addr;
-+	/**
-+	 * @head: The tail pointer of the LRC (so head pointer of job) when the
-+	 * job was submitted
-+	 */
-+	u32 head;
- };
- 
- /**
--- 
-2.34.1
+(No need to resend for this. :)
 
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Brendan King <Brendan.King@imgtec.com>
+> Cc: Boris Brezillon <bbrezillon@kernel.org>
+> Cc: Caterina Shablia <caterina.shablia@collabora.com>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Acked-by: Danilo Krummrich <dakr@kernel.org> #v4
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com> #v6
