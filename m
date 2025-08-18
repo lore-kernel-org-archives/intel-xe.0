@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCBBFCA0EF1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE765CA0EE4
 	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 14:07:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9392B10E450;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9509D10E452;
 	Mon, 18 Aug 2025 14:07:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QUxPw8//";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D+3euMVQ";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E37E410E452
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 14:07:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C325210E450
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 14:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=376Lo59MxQoVCUo9geRZMzv377WWWyBUcEo+Y8+rKCI=; b=QUxPw8//57Wojd64Tk0Chg4fkw
- PU4bkKiaw/9JU34pjav0y55k0TRHeyNHUbqx8Bt3T7Oz6d9wQBkCtV0rZ9mfyCkFmCsTbIqrZTYew
- tkGUZcZTHZ3PbwKWZMz/tkoSQdkpr4VVShhe4aJmz4xJIszZqYfHmoHLau1CskY3P/t1cnsB02RFg
- N427hfl0NjMJ2xJh26Zh6FgbZjgtNtTFDQDuj/A6mOfGbIcWDEnf8x8f5wS2PbBoxk4agyF6M86rr
- yqrLujBGNLIeAwgUMD9GjUjlGdnmbrHyJNiVGcYOsYvilwm8ZwnWCk1nsPwWmgmQll74/8S0qsaoP
- +a6RjKJQ==;
+ bh=OIA24mClJoDIGSLhO33lpsu8LAwAaUnwnnJaw2afEgA=; b=D+3euMVQ6X1F++GE3mZk2mlw/r
+ 2m6AW46sr3jTD9QdeCsnEAVtkFJXm9h3kqwMpoAPIX/MGKE3F4x1T4reURSCVcNrDq/l1BH58ABwc
+ lwIrNP3kTCztN/rOvZxdK5ONUk20APR1H7LMzlxBsXwCb6yHiqBjak/NYcXUIXscTMOXkaSluHS8R
+ FrweTL1XYkakHDmhI72mkKly5whzfkM57Lf6eobsJYLsB7FF+8G6+/sA2glur0s+5tisdPoFhIK3G
+ WPfyprduoAdENO30BPqvabzs0z7WodBTpf1bMi7jBGWYIbvOca+2lbpf1YGsEjBJ4tRuTHALeTBVj
+ j6WnPu6Q==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uo0Vn-00Fs0W-72
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 16:06:59 +0200
+ id 1uo0Vl-00Fs0J-3B
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 16:06:57 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 07/14] drm/xe/xelp: Add AuxCCS invalidation to the indirect
- context workarounds
-Date: Mon, 18 Aug 2025 15:06:43 +0100
-Message-ID: <20250818140653.86787-8-tvrtko.ursulin@igalia.com>
+Subject: [CI 04/14] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+Date: Mon, 18 Aug 2025 15:06:40 +0100
+Message-ID: <20250818140653.86787-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
 References: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
@@ -58,105 +57,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 47 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 8f6c3ba47882..0b0ecdf09f9f 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -25,6 +25,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -75,11 +76,23 @@ lrc_to_xe(struct xe_lrc *lrc)
- static bool
- gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
- 	if (XE_GT_WA(gt, 16010904313) &&
- 	    (class == XE_ENGINE_CLASS_RENDER ||
- 	     class == XE_ENGINE_CLASS_COMPUTE))
- 		return true;
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index e7c23fd04011..752dea0a9234 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -275,15 +275,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+ 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
+ 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
++	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
++			  MI_FLUSH_DW_CCS : 0;
  
-+	/* AuxCCS invalidation */
-+	if (GRAPHICS_VERx100(xe) >= 1200 &&
-+	    GRAPHICS_VERx100(xe) <= 1210 &&
-+	    (class == XE_ENGINE_CLASS_RENDER ||
-+	     class == XE_ENGINE_CLASS_COMPUTE ||
-+	     class == XE_ENGINE_CLASS_COPY ||
-+	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return true;
-+
- 	return false;
- }
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
-@@ -1122,6 +1135,31 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-+					  struct xe_hw_engine *hwe,
-+					  u32 *batch, size_t max_len)
-+{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const unsigned int class = hwe->class;
-+	u32 *cmd;
-+
-+	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
-+	    !(class == XE_ENGINE_CLASS_RENDER ||
-+	      class == XE_ENGINE_CLASS_COMPUTE ||
-+	      class == XE_ENGINE_CLASS_COPY ||
-+	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
-+}
-+
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1251,6 +1289,10 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static struct bo_setup rcs_funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_auxccs_wa },
-+	};
-+	static struct bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 	};
- 	struct bo_setup_state state = {
- 		.lrc = lrc,
-@@ -1268,6 +1310,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
- 		state.funcs = rcs_funcs;
- 		state.num_funcs = ARRAY_SIZE(rcs_funcs);
-+	} else if (hwe->class == XE_ENGINE_CLASS_COPY ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+		   hwe->class == XE_ENGINE_CLASS_VIDEO_ENHANCE) {
-+		state.funcs = xcs_funcs;
-+		state.num_funcs = ARRAY_SIZE(xcs_funcs);
- 	}
- 
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
+ 	if (invalidate_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno,
+-					MI_INVALIDATE_TLB,
+-					dw, i);
++					seqno, MI_INVALIDATE_TLB | flags, dw,
++					i);
+ 		/* hsdes: 1809175790 */
+ 		if (aux_ccs) {
+ 			struct xe_reg reg;
 -- 
 2.48.0
 
