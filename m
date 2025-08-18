@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A744CA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 09:12:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D74CA0ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 09:19:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2553C10E1CC;
-	Mon, 18 Aug 2025 09:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C25B210E401;
+	Mon, 18 Aug 2025 09:19:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfRNXYPn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ix8b7TSg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C92F510E1CC
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 09:12:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC2F10E401
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Aug 2025 09:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755508322; x=1787044322;
+ t=1755508796; x=1787044796;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=YZK5UoKOpsEfFxvewR8+GPUYkXIAh7y79BgewJkeeM4=;
- b=SfRNXYPnP8BbO9lfJvcsuYyCXzEXBJKw8pdzrz99LitSOX7k6KP8FuJB
- Wu33qFNnRQWLra7XI1+6+SCWTcleUlYaie5ZPr3WBV3DcHJuAUbw2mk1R
- ASDXZQJAFWfZ2/SqaFFtxR1sQfUBR+05Mv+iglv5xy8F00S/A+U4YUICX
- XRA4wRMpLy/x7EGnKTQxjiEEiaR/V1YBO1c72y8HtWbgw3VxVF/dt67JA
- J7DWsFVO7caHVX0qCcs+CZIaGT5LXidSziwprWEVvbcXhPBtxVtpPR5Gd
- fnV4xO2pd9EHtXbVJ2aCUyj+jGup1Kv/63q0nf9mPBjIqFqHj/jPkyq4X Q==;
-X-CSE-ConnectionGUID: kk8TOIudQoiy2/BMSUXUQw==
-X-CSE-MsgGUID: 5Xg/RyvARdyjLRexDEegGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="57874117"
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="57874117"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 02:12:02 -0700
-X-CSE-ConnectionGUID: WfXwjTwKQdmtE7cw4GG5RQ==
-X-CSE-MsgGUID: WR8nW20nQdO8IEQHWAOBAw==
+ bh=ARlg88jpCCpn0S1nIM8WHgSoJaujkWzFrNI9X/Y1tWM=;
+ b=ix8b7TSgVMOJBEjWR+McVIzhsTZHA5h9GNm05VDEbr+vCi60SgUcr0WX
+ 8IqtnQEGULIscLVvG8EK5a/j6VTQNgZBOkdC8SeX/75DcOE5BHKHWzLvv
+ UJoGlqANjR7d9s4InYJtmAJ+XWi0JPtgJfYfU8NlIuerU/LHnV13JX8iX
+ 9o8pWzJ5LLpTNmy1WMbkvJW/KuvEY1f6HZIIlZrGPqXYXKSwOvLAob5jK
+ dBPPtjEjXthGnJ6FoS2LKsE8Zg1H0chY4gSRXWESZE3Xj6WY7RMOObE7F
+ 484qZtlzX/Sbn7G5qYguRwbCgDjb3suCJIZ6X8ldrEvBSumIiCY1wQ9+Y g==;
+X-CSE-ConnectionGUID: s7SbjGJ+Q+G9jWs9wHGp1w==
+X-CSE-MsgGUID: Q31UXDVVSBSjJaQ/GhsYQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68821149"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68821149"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 02:19:55 -0700
+X-CSE-ConnectionGUID: 2IFQ+hj9TuK+eR9WQIp1Qw==
+X-CSE-MsgGUID: NMr3t8ybQlmgaPcYrHX4nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="172868306"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="167137657"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.245.224])
  ([10.245.245.224])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 02:11:59 -0700
-Message-ID: <abbacebb1dcbfe18d3ead6e52784d176123ad36a.camel@linux.intel.com>
-Subject: Re: [PATCH 09/15] drm/xe: Convert the CPU fault handler for
- exhaustive eviction
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 02:19:52 -0700
+Message-ID: <dd4ee26cecc93ca2faff93ffa65be77c92f02196.camel@linux.intel.com>
+Subject: Re: [05/15] drm/xe: Introduce an xe_validation wrapper around drm_exec
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Joonas Lahtinen	
- <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
- <matthew.auld@intel.com>
-Date: Mon, 18 Aug 2025 11:11:42 +0200
-In-Reply-To: <aJ+E0UbTPk4FPenz@lstrano-desk.jf.intel.com>
-References: <20250813105121.5945-1-thomas.hellstrom@linux.intel.com>
- <20250813105121.5945-10-thomas.hellstrom@linux.intel.com>
- <aJ0MUTkV1j2xWAam@lstrano-desk.jf.intel.com>
- <e37e926918884fa683713db9437f2e7c0f0a07ca.camel@linux.intel.com>
- <aJ+E0UbTPk4FPenz@lstrano-desk.jf.intel.com>
+To: Simon Richter <Simon.Richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Jani Nikula
+ <jani.nikula@intel.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Matthew Auld <matthew.auld@intel.com>
+Date: Mon, 18 Aug 2025 11:19:49 +0200
+In-Reply-To: <20250817140518.GA2581807@psionic12.psi5.com>
+References: <20250813105121.5945-6-thomas.hellstrom@linux.intel.com>
+ <20250817140518.GA2581807@psionic12.psi5.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,116 +73,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-08-15 at 12:04 -0700, Matthew Brost wrote:
-> On Fri, Aug 15, 2025 at 05:16:54PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Wed, 2025-08-13 at 15:06 -0700, Matthew Brost wrote:
-> > > On Wed, Aug 13, 2025 at 12:51:15PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > The CPU fault handler may populate bos and migrate, and in
-> > > > doing
-> > > > so might interfere with other tasks validing.
-> > > >=20
-> > > > Convert it for exhaustive eviction. To do this properly without
-> > > > potentially introducing stalls with the mmap lock held requires
-> > > > TTM work. In the meantime, let's live with those stalls that
-> > > > would typically happen on memory pressure.
-> > > >=20
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > <thomas.hellstrom@linux.intel.com>
-> > > > ---
-> > > > =C2=A0drivers/gpu/drm/xe/xe_bo.c | 11 ++++++++---
-> > > > =C2=A01 file changed, 8 insertions(+), 3 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > > index 5e40b6cb8d2a..dd1e0e9957e0 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > @@ -1720,14 +1720,18 @@ static vm_fault_t xe_gem_fault(struct
-> > > > vm_fault *vmf)
-> > > > =C2=A0	struct xe_device *xe =3D to_xe_device(ddev);
-> > > > =C2=A0	struct xe_bo *bo =3D ttm_to_xe_bo(tbo);
-> > > > =C2=A0	bool needs_rpm =3D bo->flags & XE_BO_FLAG_VRAM_MASK;
-> > > > -	struct drm_exec *exec;
-> > > > +	struct xe_validation_ctx ctx;
-> > > > +	struct drm_exec exec;
-> > > > =C2=A0	vm_fault_t ret;
-> > > > =C2=A0	int idx;
-> > > > =C2=A0
-> > > > =C2=A0	if (needs_rpm)
-> > > > =C2=A0		xe_pm_runtime_get(xe);
-> > > > =C2=A0
-> > > > -	exec =3D XE_VALIDATION_UNIMPLEMENTED;
-> > > > +	if (xe_validation_ctx_init(&ctx, &xe->val, &exec,
-> > > > +				=C2=A0=C2=A0
-> > > > DRM_EXEC_INTERRUPTIBLE_WAIT, 0,
-> > > > false))
-> > > > +		return VM_FAULT_NOPAGE;
-> > >=20
-> > > Any particular reason to not use xe_validation_guard here?
-> >=20
-> > Well this is a bit complicated ATM.
-> > We would need some serious TTM rework here to support drm_exec in
-> > these
-> > helpers, and ATM I think upon closer inspection we'd need an
-> > xe_validation_ctx_init that doesn't initialize a drm_exec.
-> >=20
+On Sun, 2025-08-17 at 16:05 +0200, Simon Richter wrote:
+> Hi,
 >=20
-> Right, so I think this is an unsupported case then.
+> On Wed, Aug 13, 2025 at 12:51:11PM +0200, Thomas Hellstr=C3=B6m wrote:
+>=20
+> > +static int xe_validation_lock(struct xe_validation_ctx *ctx)
+> > +{
+> > +	struct xe_validation_device *val =3D ctx->val;
+> > +	int ret =3D 0;
+> > +
+> > +	if (ctx->flags & DRM_EXEC_INTERRUPTIBLE_WAIT) {
+> > +		if (ctx->request_exclusive)
+> > +			ret =3D down_write_killable(&val->lock);
+> > +		else
+> > +			ret =3D down_read_interruptible(&val->lock);
+> > +	} else {
+> > +		if (ctx->request_exclusive)
+> > +			down_write(&val->lock);
+> > +		else
+> > +			down_read(&val->lock);
+> > +	}
+> > +
+> > +	if (!ret) {
+> > +		ctx->lock_held =3D true;
+> > +		ctx->lock_held_exclusive =3D ctx->request_exclusive;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+>=20
+> This can fail if DRM_EXEC_INTERRUPTIBLE_WAIT is set, ...
+>=20
+> > +int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct
+> > xe_validation_device *val,
+> > +			=C2=A0=C2=A0 struct drm_exec *exec, u32 flags,
+> > unsigned int nr,
+> > +			=C2=A0=C2=A0 bool exclusive)
+> > +{
+> > +	int ret;
+> > +
+> > +	ctx->exec =3D exec;
+> > +	ctx->val =3D val;
+> > +	ctx->lock_held =3D false;
+> > +	ctx->lock_held_exclusive =3D false;
+> > +	ctx->request_exclusive =3D exclusive;
+> > +	ctx->flags =3D flags;
+> > +	ctx->nr =3D nr;
+> > +
+> > +	ret =3D xe_validation_lock(ctx);
+> > +	if (ret)
+> > +		return ret;
+>=20
+> ... causing an error to be returned here, which...
+>=20
+> > +DEFINE_CLASS(xe_validation, struct xe_validation_ctx *,
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 if (!IS_ERR(_T)) xe_validation_ctx_fini(_T);=
+,
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 ({_ret =3D xe_validation_ctx_init(_ctx, _val=
+, _exec,
+> > _flags, 0, _excl);
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _ret ? NULL : _ctx; }),
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_validation_ctx *_ctx, struct
+> > xe_validation_device *_val,
+> > +	=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_exec *_exec, u32 _flags, int _ret=
+, bool
+> > _excl);
+>=20
+> ... causes a NULL pointer to be recorded for the scoped guard here,
+> which
+> is then passed to xe_validation_ctx_fini on scope exit, causing
+>=20
+> Kernel attempted to read user page (0) - exploit attempt? (uid: 1000)
+> BUG: Kernel NULL pointer dereference on read at 0x00000000
+> Faulting instruction address: 0xc008000014bcf2a8
+> Oops: Kernel access of bad area, sig: 11 [#1]
+> LE PAGE_SIZE=3D64K MMU=3DRadix=C2=A0 SMP NR_CPUS=3D2048 NUMA PowerNV
+> Modules linked in: xt_conntrack nft_chain_nat xt_MASQUERADE nf_nat
+> nf_conntrack_netlink nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4
+> xfrm_user xfrm_algo xt_addrtype nft_compat x_tables nf_tables
+> nfnetlink br_netfilter bridge stp llc overlay binfmt_misc mei_gsc
+> mei_me snd_hda_codec_intelhdmi mei snd_hda_codec_hdmi mtd_intel_dg xe
+> joydev evdev drm_gpuvm drm_buddy gpu_sched drm_exec
+> drm_suballoc_helper drm_ttm_helper ttm drm_display_helper hid_generic
+> usbhid cec hid rc_core drm_client_lib drm_kms_helper snd_hda_intel
+> snd_intel_dspcfg drm snd_hda_codec snd_hda_core aes_gcm_p10_crypto
+> crypto_simd snd_hwdep cryptd xts snd_pcm drm_panel_orientation_quirks
+> ghash_generic ofpart snd_timer vmx_crypto powernv_flash i2c_algo_bit
+> snd ipmi_powernv gf128mul mtd ipmi_devintf configfs ipmi_msghandler
+> opal_prd at24 soundcore regmap_i2c ext4 crc16 mbcache jbd2 dm_mod
+> xhci_pci xhci_hcd nvme tg3 usbcore nvme_core libphy nvme_keyring
+> nvme_auth mdio_bus usb_common
+> CPU: 24 UID: 0 PID: 2438 Comm: Xorg Not tainted 6.17.0-rc1+ #1
+> VOLUNTARY
+> Hardware name: T2P9D01 REV 1.01 POWER9 0x4e1202 opal:skiboot-9858186
+> PowerNV
+> NIP:=C2=A0 c008000014bcf2a8 LR: c008000014bd5724 CTR: c0080000141a0248
+> REGS: c00000000fa0f4a0 TRAP: 0300=C2=A0=C2=A0 Not tainted=C2=A0 (6.17.0-r=
+c1+)
+> MSR:=C2=A0 900000000280b033 <SF,HV,VEC,VSX,EE,FP,ME,IR,DR,RI,LE>=C2=A0 CR=
+:
+> 88002844=C2=A0 XER: 00000
+>=20
+> CFAR: c008000014bd5720 DAR: 0000000000000000 DSISR: 40000000 IRQMASK:
+> 0
+> GPR00: c008000014bd5724 c00000000fa0f740 c008000014df9200
+> 0000000000000000
+> GPR04: c000000023340000 c000000023340000 0000000000000031
+> fffffffffffe0000
+> GPR08: c00000002d0075a8 fffffffffffff000 0000000000000000
+> c008000014d8d3b8
+> GPR12: c0080000141a0248 c0000007fffcc800 0000000000000000
+> 0000000000000000
+> GPR16: 0000000000000001 0000000000000000 0000000000000001
+> c0002000084dff40
+> GPR20: c000000019230308 fffffffffffff000 0000000000000000
+> fffffffffffff000
+> GPR24: 0000000000000000 0000000000000000 0000000000000001
+> c0002000134ab000
+> GPR28: 0000000000000000 c00020001333e818 0000000000000000
+> 0000000000000000
+> NIP [c008000014bcf2a8] xe_validation_ctx_fini+0x20/0x90 [xe]
+> LR [c008000014bd5724] new_vma+0x32c/0x400 [xe]
+> Call Trace:
+> [c00000000fa0f740] [0000000000000001] 0x1 (unreliable)
+> [c00000000fa0f770] [c008000014bd5724] new_vma+0x32c/0x400 [xe]
+> [c00000000fa0f860] [c008000014bd5abc]
+> vm_bind_ioctl_ops_parse+0x2c4/0x9b0 [xe]
+> [c00000000fa0f920] [c008000014bd9dac] xe_vm_bind_ioctl+0x1344/0x17a0
+> [xe]
+> [c00000000fa0faf0] [c00800001349ca58] drm_ioctl_kernel+0x100/0x1a0
+> [drm]
+> [c00000000fa0fb50] [c00800001349cd88] drm_ioctl+0x290/0x690 [drm]
+> [c00000000fa0fcc0] [c008000014b1fcdc] xe_drm_ioctl+0x74/0xd0 [xe]
+> [c00000000fa0fd10] [c0000000006ec654] sys_ioctl+0x594/0x1020
+> [c00000000fa0fe10] [c00000000002c020]
+> system_call_exception+0x120/0x240
+> [c00000000fa0fe50] [c00000000000cfdc]
+> system_call_vectored_common+0x15c/0x2ec
 
-We should be able to re-lock in write-mode, though.
-Let me have a look at this in v2.
+Right, that's been pointed out also by Matt Brost's review.=C2=A0
+The idea here is that if the interruptible lock returns -EINTR, then we
+should not enter the code within xe_validation_guard() either so on top
+of the fix for this, it looks like I need to mark it as conditional.
 
 Thanks,
 Thomas
 
 
+
 >=20
-> Matt
->=20
-> > ttm_bo_vm_reserve() might use a bo lock without a drm_exec and that
-> > will cause a lockdep splat if the drm_exec transaction has
-> > initialized
-> > the ww ctx, which happens in drm_exec_until_all_locked().=20
-> >=20
-> > I should add a comment about that.
-> >=20
-> > /Thomas
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > Matt
-> > >=20
-> > > > +
-> > > > =C2=A0	ret =3D ttm_bo_vm_reserve(tbo, vmf);
-> > > > =C2=A0	if (ret)
-> > > > =C2=A0		goto out;
-> > > > @@ -1735,7 +1739,7 @@ static vm_fault_t xe_gem_fault(struct
-> > > > vm_fault *vmf)
-> > > > =C2=A0	if (drm_dev_enter(ddev, &idx)) {
-> > > > =C2=A0		trace_xe_bo_cpu_fault(bo);
-> > > > =C2=A0
-> > > > -		xe_validation_assert_exec(xe, exec, &tbo-
-> > > > >base);
-> > > > +		xe_validation_assert_exec(xe, &exec, &tbo-
-> > > > >base);
-> > > > =C2=A0		ret =3D ttm_bo_vm_fault_reserved(vmf, vmf->vma-
-> > > > > vm_page_prot,
-> > > > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > TTM_BO_VM_NUM_PREFAULT);
-> > > > =C2=A0		drm_dev_exit(idx);
-> > > > @@ -1761,6 +1765,7 @@ static vm_fault_t xe_gem_fault(struct
-> > > > vm_fault *vmf)
-> > > > =C2=A0
-> > > > =C2=A0	dma_resv_unlock(tbo->base.resv);
-> > > > =C2=A0out:
-> > > > +	xe_validation_ctx_fini(&ctx);
-> > > > =C2=A0	if (needs_rpm)
-> > > > =C2=A0		xe_pm_runtime_put(xe);
-> > > > =C2=A0
-> > > > --=20
-> > > > 2.50.1
-> > > >=20
-> >=20
+> =C2=A0=C2=A0 Simon
 
