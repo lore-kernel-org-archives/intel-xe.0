@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C48CACA0ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 16:59:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 479ACCA0ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Aug 2025 17:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A14110E4AD;
-	Mon, 18 Aug 2025 16:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10F7F10E4B1;
+	Mon, 18 Aug 2025 17:04:15 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA68E10E4AB;
- Mon, 18 Aug 2025 16:59:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0995440602772992635=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6875410E4AB;
+ Mon, 18 Aug 2025 17:04:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_test?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Replace_xe=5Fhmm_with_gpu?=
+ =?utf-8?q?svm_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Aug 2025 16:59:16 -0000
-Message-ID: <175553635681.243875.18245619234476213118@1538d3639d33>
+Date: Mon, 18 Aug 2025 17:04:14 -0000
+Message-ID: <175553665438.244962.9187531299991112157@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
+References: <20250818152152.67815-10-matthew.auld@intel.com>
+In-Reply-To: <20250818152152.67815-10-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,111 +40,65 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0995440602772992635==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: auxccs test
-URL   : https://patchwork.freedesktop.org/series/153065/
-State : success
+Series: Replace xe_hmm with gpusvm (rev5)
+URL   : https://patchwork.freedesktop.org/series/146553/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697_BAT -> xe-pw-153065v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f9f73643ede960b986329c70a979999910f50e16
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Mon Aug 18 16:22:01 2025 +0100
 
-Summary
--------
+    drm/xe/pt: unify xe_pt_svm_pre_commit with userptr
+    
+    We now use the same notifier lock for SVM and userptr, with that we can
+    combine xe_pt_userptr_pre_commit and xe_pt_svm_pre_commit.
+    
+    v2: (Matt B)
+      - Re-use xe_svm_notifier_lock/unlock for userptr.
+      - Combine svm/userptr handling further down into op_check_svm_userptr.
+    
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 912c10fafebf45522f7f56e33a020284e83c27ab drm-intel
+11babbe1d197 drm/gpusvm: fix hmm_pfn_to_map_order() usage
+-:19: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#19: 
+Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+cd0f97a95eb3 drm/gpusvm: use more selective dma dir in get_pages()
+85d4dcd0a32a drm/gpusvm: pull out drm_gpusvm_pages substructure
+4c5b6f3e354e drm/gpusvm: refactor core API to use pages struct
+b4c94067c7a9 drm/gpusvm: export drm_gpusvm_pages API
+84568269c8b1 drm/xe/vm: split userptr bits into separate file
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 857 lines checked
+5a26add70022 drm/xe/userptr: replace xe_hmm with gpusvm
+-:102: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#102: 
+deleted file mode 100644
 
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153065v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697 -> xe-pw-153065v1
-
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697: edead24a80ae92312f75626eb92f2771ec5a7697
-  xe-pw-153065v1: 153065v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v1/index.html
-
---===============0995440602772992635==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 677 lines checked
+f9f73643ede9 drm/xe/pt: unify xe_pt_svm_pre_commit with userptr
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs test</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153065/">https://patchwork.freedesktop.org/series/153065/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697_BAT -&gt; xe-pw-153065v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153065v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697 -&gt; xe-pw-153065v1</li>
-</ul>
-<p>IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3569-edead24a80ae92312f75626eb92f2771ec5a7697: edead24a80ae92312f75626eb92f2771ec5a7697<br />
-  xe-pw-153065v1: 153065v1</p>
-
-</body>
-</html>
-
---===============0995440602772992635==--
