@@ -4,59 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6DEACA0EFA
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 07:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3C0CA0EED
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 07:34:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2D010E54D;
-	Tue, 19 Aug 2025 07:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D837310E063;
+	Tue, 19 Aug 2025 07:34:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCC78qwh";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="ItshhlnD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF9910E551;
- Tue, 19 Aug 2025 07:04:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755587058; x=1787123058;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HXA6xTnkumlIdPWNN97e4N3Ri6/KGmBdFzxQI55Zb0I=;
- b=BCC78qwhhc7GiYwLfg9h0Om4hYFWEj6rTgHloPpcof7LOAgv5mPhw9tG
- poPca3MCRFUfm9by4gADri9vYXKHlVqoCDQz9UIuc/zm6ZhNbfp/5AcU8
- EYs+sUca0AqtxHz1i4pJA6jNXgj0NZqEf41BCZGh9Jg1JE/BAXl/zg7S6
- mZCD3HZKHMAXnQVl35G3cVfaU8eOGzr6VLLC5n0jQJYQQgtFkmXePBSMh
- TQ3x06kAysgtnS4lIJ77FhS3w2qmN2bpyCfz0qJQwBAYA0ylxyvTVFz6g
- Ae3+5HARPFcVy0GyS7TSGTsFtsrq1Qbq3wAbcVjGu753pVkUm28BVz4SG A==;
-X-CSE-ConnectionGUID: DER4gRpiT7C7QBFt3jDm9g==
-X-CSE-MsgGUID: io5sZI3hRW2IWM80yRywxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392382"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392382"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:18 -0700
-X-CSE-ConnectionGUID: eSGL9VObThabGuCNrCAsTQ==
-X-CSE-MsgGUID: NqoEwHnbQsueJmHCM4xsjQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008318"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.65])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:17 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v7 5/6] drm/i915/display: Wait for vblank in case of PSR is
- using trans push
-Date: Tue, 19 Aug 2025 10:03:52 +0300
-Message-ID: <20250819070353.3062341-6-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250819070353.3062341-1-jouni.hogander@intel.com>
-References: <20250819070353.3062341-1-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Received: from mail-pf1-f201.google.com (mail-pf1-f201.google.com
+ [209.85.210.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF4710E063
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 07:34:37 +0000 (UTC)
+Received: by mail-pf1-f201.google.com with SMTP id
+ d2e1a72fcca58-76e2e60221fso11488489b3a.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 00:34:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1755588877; x=1756193677;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=0gjQmJyLWyyM34EUsK6b+yflZfBy/ykkULtt1gmp0aw=;
+ b=ItshhlnDw9wRWcOETCsoEAV2/fNYPyEN7koq9gWWY1uwlLLf3FZjL+dIATP7ZK/Llt
+ ZDnO07O0xY8nJw6UpOVxRXRPX2v3jAyV89ZnRyVVHWIaKJEyQ75InBvDSysOhTSBh7wH
+ stIRaGzkiPEbjD884q7zHsgeAgsn0HoIu5zowxBLWOgtzWhiV/J1ZHd1ZjXHX6Y4GGec
+ yPsYbkUVt6P+lFjWb0rTGrX371a/PGAbajprsM52c1qNPsJFCo2Lh2ByDVOgn6oMRCLv
+ bY5jIfTRokwA3SFUSMMgFQkSPx7PK1w3eI0pGhCzCNIMwYG0HdcYCLMEaXAPu6NR77Ne
+ lo9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755588877; x=1756193677;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=0gjQmJyLWyyM34EUsK6b+yflZfBy/ykkULtt1gmp0aw=;
+ b=ooRuOYyeszBMGSbwI/rqAeJfWJBZgiWPFlygVXBCPT6rDmRJyWBmNT6Fbgp2EFpOjH
+ L/9A3/0h/U2iAxFJA3wbfGq3D1Q1DCq543dFuLmOQ1p7xt+GdZVlm8k19Olyf8WzJM1R
+ sLUjsxeKUZBpZEDhAw7YcZHsFDc1Hh4mhfGLaLn1hmJc5gCY/J+ZVWEjiuarcryzIQau
+ L2sQQ+pclwkF7kQaWxFyG50/+a7Iz8+n8OYAAGMUGFk/OSdneupGr54Zlt4Bf6KdEffO
+ rGWd6NH6wPmnzKfy4z0n6LRs6yBJfipDEcP/VJGTLFBarrKBjmos9LVyCQ4opjykSiN1
+ OnPw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV5+kFwNgijEUFRSo8USHoYqUy9EakNxErYX1pR74+o0+dIsymJmndLYokljw1m5s2gtsOrPS/d7g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyNsZ3p9Cn4b1SqclcPn5fLsdV8O3KvM1bRXzwFMwR33sYSdBOL
+ 2whdhokvqLCmYHo41+Mklqf3UFfF8YGCAppg/qCcW8Cko/YcAoxFBS4OhvFFPsysH8WmY7bpprZ
+ Qu2ywQR2ZeWtC5w==
+X-Google-Smtp-Source: AGHT+IEQNZ2+f6e9TNwetvOQ+hPmPxwMV2Wzkl2ILCeYpSP1rxXPD78DlfuwZr89GPZOqtlPyVjHcqV/V+GqUA==
+X-Received: from pfbfy8.prod.google.com ([2002:a05:6a00:8288:b0:768:7cb5:740a])
+ (user=davidgow job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6a00:2184:b0:76e:7ae5:ec90 with SMTP id
+ d2e1a72fcca58-76e8111212emr1805413b3a.26.1755588876576; 
+ Tue, 19 Aug 2025 00:34:36 -0700 (PDT)
+Date: Tue, 19 Aug 2025 15:34:32 +0800
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.51.0.rc1.167.g924127e9c0-goog
+Message-ID: <20250819073434.1411114-1-davidgow@google.com>
+Subject: [PATCH 1/2] drm/xe/tests: Fix some additional gen_params signatures
+From: David Gow <davidgow@google.com>
+To: Rae Moar <rmoar@google.com>, Marie Zhussupova <marievic@google.com>,
+ marievictoria875@gmail.com, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: David Gow <davidgow@google.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ intel-xe@lists.freedesktop.org, 
+ kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +82,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In case PSR uses trans push as a "frame change" event and we need to wait
-vblank after triggering PSR "frame change" event. Othervise we may miss
-selective updates.
+In 444be9072fca ("kunit: Pass parameterized test context to generate_params()")
+prototype used for gen_params functions was changed to add a struct
+kunit parameter. However, a few of these used in xe were not updated.
 
-DSB skips all waits while PSR is active. Check push send is skipped as well
-because trans push send bit is not clearn by the HW if VRR is not enabled
--> we may start configuring new selective update while previous is not
-complete. Avoid this by waiting for vblank after sending trans push.
+Update these so that the xe_pci tests build and run again.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Fixes: 444be9072fca ("kunit: Pass parameterized test context to generate_params()")
+Signed-off-by: David Gow <davidgow@google.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1a3a95c65f0..95179aedf6f2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7301,9 +7301,27 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 				new_crtc_state->dsb_color);
+This should fix the issues found with the linux-next merge:
+https://lore.kernel.org/linux-next/20250818120846.347d64b1@canb.auug.org.au/
+
+The following should reproduce them:
+./tools/testing/kunit/kunit.py run --arch x86_64 --kunitconfig drivers/gpu/drm/xe
+
+Ideally, these should be squashed into the corresponding commits: let me
+know if you'd like me to re-send out the whole series with these fixes
+applied.
+
+Cheers,
+-- David
+
+---
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 12 ++++++------
+ drivers/gpu/drm/xe/tests/xe_pci_test.h |  8 ++++----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index a65705814b9a..f707e0a54295 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -44,9 +44,9 @@ KUNIT_ARRAY_PARAM(pci_id, pciidlist, xe_pci_id_kunit_desc);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc)
++const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	return graphics_ip_gen_params(prev, desc);
++	return graphics_ip_gen_params(test, prev, desc);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_pci_graphics_ip_gen_param);
  
- 	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
--		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-+		/*
-+		 * Dsb wait vblank may or may not skip. Let's remove it for PSR
-+		 * trans push case to ensure we are not waiting two vblanks
-+		 */
-+		if (!intel_psr_use_trans_push(new_crtc_state))
-+			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+@@ -61,9 +61,9 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_graphics_ip_gen_param);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_media_ip_gen_param(const void *prev, char *desc)
++const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	return media_ip_gen_params(prev, desc);
++	return media_ip_gen_params(test, prev, desc);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_pci_media_ip_gen_param);
  
- 		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-+
-+		/*
-+		 * In case PSR uses trans push as a "frame change" event and
-+		 * VRR is not in use we need to wait vblank. Othervise we may
-+		 * miss selective updates. DSB skips all waits while PSR is
-+		 * active. Check push send is skipped as well because trans push
-+		 * send bit is not clearn by the HW if VRR is not enabled -> we
-+		 * may start configuring new selective update while previous is
-+		 * not complete.
-+		 */
-+		if (intel_psr_use_trans_push(new_crtc_state))
-+			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-+
- 		intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
- 		intel_vrr_check_push_sent(new_crtc_state->dsb_commit,
- 					  new_crtc_state);
+@@ -78,9 +78,9 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_media_ip_gen_param);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_id_gen_param(const void *prev, char *desc)
++const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	const struct pci_device_id *pci = pci_id_gen_params(prev, desc);
++	const struct pci_device_id *pci = pci_id_gen_params(test, prev, desc);
+ 
+ 	return pci->driver_data ? pci : NULL;
+ }
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+index ce4d2b86b778..690b36e6500c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+@@ -25,9 +25,9 @@ struct xe_pci_fake_data {
+ 
+ int xe_pci_fake_device_init(struct xe_device *xe);
+ 
+-const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
+-const void *xe_pci_media_ip_gen_param(const void *prev, char *desc);
+-const void *xe_pci_id_gen_param(const void *prev, char *desc);
+-const void *xe_pci_live_device_gen_param(const void *prev, char *desc);
++const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc);
+ 
+ #endif
 -- 
-2.43.0
+2.51.0.rc1.167.g924127e9c0-goog
 
