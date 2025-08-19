@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 597CCCA0EEB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 15:07:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D58CA0EEB
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 15:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D335510E206;
-	Tue, 19 Aug 2025 15:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B63D10E624;
+	Tue, 19 Aug 2025 15:27:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pq+bVNyj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B7HiAKdC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D232410E1BF;
- Tue, 19 Aug 2025 15:07:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2B5210E1E9;
+ Tue, 19 Aug 2025 15:27:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755616055; x=1787152055;
+ t=1755617244; x=1787153244;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=DEC1TgMp2pcpoPdbnb+9sRNrw3Bq3pThC7/2ZLjnt+I=;
- b=Pq+bVNyjtl+qxV+UUvCfH+xLCxKAe2ULLWROHLJQNaI8MQAr3v4keyzI
- VVkisbLteqRZK5arp2vLcOCMJwkvISMV3KwjXgYHT1jZMDn/RgIIEuR1/
- 99gq0hVmbknUtQu1idaYlu13FWpspZDg8/qlQoGue6RqUcvaMKMvljaX4
- 6/krBmQGqdr9JZOekyDsNfqVYX8KivYww5uI6u4+qYb+3ISEPq+bmZQYD
- OMJLvIkjNS8MGfOFjek2v8lkJ7qiVPZbwQQSkCtv2vcmf2FJznZKU472y
- AnDJM11U3icrDIqJHm5tN7y/FpGcX+/j75GcPmdNrndQNzCW8HEMpJcaO Q==;
-X-CSE-ConnectionGUID: l8FqWBDHTxuNAupTCHlggg==
-X-CSE-MsgGUID: 0bEWISWjQOqXvAzaPsmyEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75435647"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="75435647"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 08:07:34 -0700
-X-CSE-ConnectionGUID: UjdzZ6JKTqiMHwMB5Xrqlw==
-X-CSE-MsgGUID: 6yBgTWlUQWqoPvTLr53TlQ==
+ bh=6V4v8eT2HpWG03m4gZCchCNemZHZ8VHItunqs8waB1w=;
+ b=B7HiAKdCFTVoXbRj8GSaMaL2UWsJicekeYm1SKilz7eUS6XNDRxaGZEh
+ R3Z54mI50qEKGDJRQtSwnO66eX3vqTskL0fCZFsprlsbPeSLXar8J+9WV
+ X17DH7W7MYNR8Px6cqd81rbUSa98T6RM7ONlrl9gxubzMiLRm2U+yKpAr
+ FrpS7Cu3dHyEOJ84btPpA6/PYyNL4qHbl3XrGMk6wE3hQpR/DjNR41E67
+ K3laWChk37spILYW7By1fcqDx+vxbw5n/Ek9f7ztD307YGBJ63fQ9o2p8
+ Lwfj36kuO9U2XpPsFGA/npkHZgew9Y4fSsLnVtmuprv7St3ItMKBgoTaZ Q==;
+X-CSE-ConnectionGUID: JbJ2vf3gQDGt0WZ4BH/mMQ==
+X-CSE-MsgGUID: UiaTEkESSGihk7x1hx6APw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="68467183"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="68467183"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 08:27:24 -0700
+X-CSE-ConnectionGUID: NzYO9YvvQyeKXkk5FZI+hQ==
+X-CSE-MsgGUID: rL9qKmDhQNCntrz55476yQ==
 X-ExtLoop1: 1
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa003.fm.intel.com with ESMTP; 19 Aug 2025 08:07:33 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Remove the encoder check in hdcp enable
-Date: Tue, 19 Aug 2025 20:37:29 +0530
-Message-Id: <20250819150729.88561-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="191562374"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.127])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 08:27:23 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/gpusvm: some kernel-doc fixes
+Date: Tue, 19 Aug 2025 16:27:08 +0100
+Message-ID: <20250819152707.136531-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,33 +66,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove the intel_encoder NULL check from _intel_hdcp_enable with
-all the changes it has gone through this check has become unnecessary
-since at this point the connector is supposed to have the encoder
-in it.
+This should be enough to get scripts/kernel-doc passing for
+drm_gpusvm.[ch], so we can then add them to our CI build infra.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+v2:
+ - Also drop misplaced range_evict()
+
+Link: https://gitlab.freedesktop.org/drm/xe/ci/-/merge_requests/86
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/drm_gpusvm.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 42202c8bb066..e11cf26ed0bf 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2446,12 +2446,6 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	if (!hdcp->shim)
- 		return -ENOENT;
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index 661306da6b2d..85e0e0a8718e 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -345,7 +345,7 @@ notifier_iter_first(struct rb_root_cached *root, unsigned long start,
+ /**
+  * drm_gpusvm_for_each_notifier() - Iterate over GPU SVM notifiers in a gpusvm
+  * @notifier__: Iterator variable for the notifiers
+- * @notifier__: Pointer to the GPU SVM notifier
++ * @gpusvm__: Pointer to the GPU SVM structure
+  * @start__: Start address of the notifier
+  * @end__: End address of the notifier
+  *
+@@ -360,7 +360,7 @@ notifier_iter_first(struct rb_root_cached *root, unsigned long start,
+  * drm_gpusvm_for_each_notifier_safe() - Safely iterate over GPU SVM notifiers in a gpusvm
+  * @notifier__: Iterator variable for the notifiers
+  * @next__: Iterator variable for the notifiers temporay storage
+- * @notifier__: Pointer to the GPU SVM notifier
++ * @gpusvm__: Pointer to the GPU SVM structure
+  * @start__: Start address of the notifier
+  * @end__: End address of the notifier
+  *
+@@ -1437,7 +1437,6 @@ EXPORT_SYMBOL_GPL(drm_gpusvm_range_get_pages);
  
--	if (!connector->encoder) {
--		drm_err(display->drm, "[CONNECTOR:%d:%s] encoder is not initialized\n",
--			connector->base.base.id, connector->base.name);
--		return -ENODEV;
--	}
--
- 	mutex_lock(&hdcp->mutex);
- 	mutex_lock(&dig_port->hdcp.mutex);
- 	drm_WARN_ON(display->drm,
+ /**
+  * drm_gpusvm_range_unmap_pages() - Unmap pages associated with a GPU SVM range
+- * drm_gpusvm_range_evict() - Evict GPU SVM range
+  * @gpusvm: Pointer to the GPU SVM structure
+  * @range: Pointer to the GPU SVM range structure
+  * @ctx: GPU SVM context
 -- 
-2.34.1
+2.50.1
 
