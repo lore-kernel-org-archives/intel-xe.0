@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11815CA0EE6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 23:45:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 670DACA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 23:50:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3FE10E057;
-	Tue, 19 Aug 2025 23:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEEB10E22C;
+	Tue, 19 Aug 2025 23:50:50 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 637CD10E057;
- Tue, 19 Aug 2025 23:45:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3508712588602852017=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB3810E02C;
+ Tue, 19 Aug 2025 23:50:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/tile=3A_Release_kobj?=
- =?utf-8?q?ect_for_the_failure_path_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Xe-agnostic_patches_to_su?=
+ =?utf-8?q?pport_MADVISE?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 23:45:42 -0000
-Message-ID: <175564714229.250160.12471788582435782652@1538d3639d33>
+Date: Tue, 19 Aug 2025 23:50:49 -0000
+Message-ID: <175564744963.250192.17078235378397736768@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250819003957.2868064-2-shuicheng.lin@intel.com>
-In-Reply-To: <20250819003957.2868064-2-shuicheng.lin@intel.com>
+References: <20250819162058.2777306-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250819162058.2777306-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,144 +40,108 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3508712588602852017==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/tile: Release kobject for the failure path (rev2)
-URL   : https://patchwork.freedesktop.org/series/153096/
-State : success
+Series: Xe-agnostic patches to support MADVISE
+URL   : https://patchwork.freedesktop.org/series/153156/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83_BAT -> xe-pw-153096v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4d1bf6929f31af91b32b30f895ccc833fe770b98
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Tue Aug 19 21:50:58 2025 +0530
 
-Summary
--------
+    drm/gpusvm: Make drm_gpusvm_for_each_* macros public
+    
+    The drm_gpusvm_for_each_notifier, drm_gpusvm_for_each_notifier_safe and
+    drm_gpusvm_for_each_range_safe macros are useful for locating notifiers
+    and ranges within a user-specified range. By making these macros public,
+    we enable broader access and utility for developers who need to leverage
+    them in their implementations.
+    
+    v2 (Matthew Brost)
+    - drop inline __drm_gpusvm_range_find
+    - /s/notifier_iter_first/drm_gpusvm_notifier_find
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 58aeea9c7882b70436d9c2e55e45738711a41621 drm-intel
+2762be097d16 drm/gpuvm: Pass map arguments through a struct
+61759086451e drm/gpuvm: Kill drm_gpuva_init()
+504a0e212db2 drm/gpuvm: Introduce drm_gpuvm_madvise_ops_create
+4d1bf6929f31 drm/gpusvm: Make drm_gpusvm_for_each_* macros public
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'range__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  **SUCCESS**
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  No regressions found.
+-:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#225: FILE: include/drm/drm_gpusvm.h:452:
++#define drm_gpusvm_for_each_range_safe(range__, next__, notifier__, start__, end__)	\
++	for ((range__) = drm_gpusvm_range_find((notifier__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_range_next(range__);				\
++	     (range__) && (drm_gpusvm_range_start(range__) < (end__));			\
++	     (range__) = (next__), (next__) = __drm_gpusvm_range_next(range__))
 
-  
+-:258: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#258: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-Participating hosts (11 -> 9)
-------------------------------
+-:258: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#258: FILE: include/drm/drm_gpusvm.h:485:
++#define drm_gpusvm_for_each_notifier(notifier__, gpusvm__, start__, end__)		\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__));	\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = __drm_gpusvm_notifier_next(notifier__))
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'notifier__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-Known issues
-------------
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'next__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-  Here are the changes found in xe-pw-153096v2_BAT that come from known issues:
+-:274: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'end__' - possible side-effects?
+#274: FILE: include/drm/drm_gpusvm.h:501:
++#define drm_gpusvm_for_each_notifier_safe(notifier__, next__, gpusvm__, start__, end__)	\
++	for ((notifier__) = drm_gpusvm_notifier_find((gpusvm__), (start__), (end__)),	\
++	     (next__) = __drm_gpusvm_notifier_next(notifier__);				\
++	     (notifier__) && (drm_gpusvm_notifier_start(notifier__) < (end__));		\
++	     (notifier__) = (next__), (next__) = __drm_gpusvm_notifier_next(notifier__))
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-    - {bat-ptl-2}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83 -> xe-pw-153096v2
-
-  IGT_8498: 8498
-  xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83: 8093b67375779a975c13b9a23c8fcc25cb1e9c83
-  xe-pw-153096v2: 153096v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/index.html
-
---===============3508712588602852017==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/tile: Release kobject for the failure path (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153096/">https://patchwork.freedesktop.org/series/153096/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 8 checks, 248 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83_BAT -&gt; xe-pw-153096v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153096v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153096v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83 -&gt; xe-pw-153096v2</li>
-</ul>
-<p>IGT_8498: 8498<br />
-  xe-3579-8093b67375779a975c13b9a23c8fcc25cb1e9c83: 8093b67375779a975c13b9a23c8fcc25cb1e9c83<br />
-  xe-pw-153096v2: 153096v2</p>
-
-</body>
-</html>
-
---===============3508712588602852017==--
