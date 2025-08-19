@@ -4,52 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12543CA0EE6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 18:25:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ECAFCA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 18:44:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B60F010E648;
-	Tue, 19 Aug 2025 18:25:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC35210E64C;
+	Tue, 19 Aug 2025 18:44:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AqimWClG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLDvrgrD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 435FE10E648
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 18:25:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24F5A10E64C
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 18:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755627923; x=1787163923;
- h=date:from:to:cc:subject:message-id;
- bh=RWWy/PJgn0g1aKYCzJySsPLiWrqUsIj60KzbGDlTF7E=;
- b=AqimWClGDRuQKf//K1+mYZttyxbFzGjVXpfGuKRYGwekmEjhZrBKFuEu
- QCTHRMAu/CIztThWjv1DPbXP7jD+rbfD7sKStMmgVL5xzHtEfH5O7TjAp
- Xc77iHqpFTGADVzz23iUIH4lvB5Y3ZurWqw+g3AqXxUssnLfp6JWkUqI9
- VS1nOlyQSXQQEf8H1u+6RcGU4PpE21x1BUuQJd2LXR29fE2y7mK9o2/VR
- EhUEKRG4oqJGzESIePpyETpYaGJG9oDhCs554Yg5pJlffv2LQU0EVHVmK
- yUmn/rDVngI3kcnxnhZFwICnMZC9k1IqlhE5AWwdGGJaOhKR2JqAv1YSL Q==;
-X-CSE-ConnectionGUID: bLd24UrWT0etoulRDh7Efg==
-X-CSE-MsgGUID: 0569ssu2REaD6FFRboSOxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75335998"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="75335998"
+ t=1755629057; x=1787165057;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=omG5icYrhGLPisdp81DkakML15Xpln8tYe7Lnm5uZUU=;
+ b=MLDvrgrDKX4T2SK0mkaOEsUR0AGBInUaPb/x4LBHMNnkJYYY5rFd7R5R
+ ep5S9HKRWEzMRUf3CGnhdRWw3zFCvPVsNPt/hn9RP+YKTc4p9lF3cK4Yv
+ 0W7v3kYX6+xJlNPQ25pdi9PpK9Oa97lyslaMgGIZFGbOTummdofSM/r+d
+ IDE1GhLYSE4u5l0IkwIBDoaWd8qD49hZBgPVweoZN2b/6bivxZnjxaTRG
+ VlksDBeY1rxGMWA4wvOzY1evlQaBtk/rPx4omb08vqM5Y537Wbow5N0JJ
+ ZXIN0ieN186AIWdFnBxaw17tPAb6Upc92x6RQ/ZqmYGVjgqw4xUk2LBrA A==;
+X-CSE-ConnectionGUID: 1lf+gpDYQB2wRItwzeUINw==
+X-CSE-MsgGUID: gUHZgBU+SDuKOW0IKq1w2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75338165"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="75338165"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 11:25:23 -0700
-X-CSE-ConnectionGUID: jRMtmBT/Qm6OLJdzvTjpjg==
-X-CSE-MsgGUID: C0JnP8ihROOFxIr/1Fnolg==
+ 19 Aug 2025 11:44:17 -0700
+X-CSE-ConnectionGUID: X7gj6Tx0QmqZ7PQGjMB0tA==
+X-CSE-MsgGUID: ZzezYbSXRTuWmCOQgSZuNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="191612381"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
- by fmviesa002.fm.intel.com with ESMTP; 19 Aug 2025 11:25:22 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uoR1L-000HG7-1q;
- Tue, 19 Aug 2025 18:25:19 +0000
-Date: Wed, 20 Aug 2025 02:24:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- b85bb2d677153d990924d31be9416166d22382eb
-Message-ID: <202508200250.Od2mxVRm-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="191615694"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.208])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 11:44:15 -0700
+From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>, 
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH 0/1] Fix user-fence race issue
+Date: Tue, 19 Aug 2025 20:44:03 +0200
+Message-ID: <20250819184402.1761459-3-zbigniew.kempczynski@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,146 +68,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: b85bb2d677153d990924d31be9416166d22382eb  drm/xe: Make page size consistent in loop
+I'm adding this cover-letter to explain the reproduction path which
+might be useful for reviewers.
 
-elapsed time: 1450m
+Following patch immediately triggers the race. Delay introduced after
+writing to signal user-fence reveals it influences on next vm-bind
+operation, especially if it is in a sequence:
 
-configs tested: 127
-configs skipped: 4
+vm-bind(MAP, addr, ..., ufence)
+wait_ufence(ufence)
+vm-bind(UNMAP, addr, ..., NULL)
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+UNMAP operation may start before ufence is released (because it is
+part of user_fence_worker()) so we get -EBUSY trying to operate on
+same vma (this happens on MAP).
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-alpha                               defconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                                 defconfig    gcc-15.1.0
-arc                   randconfig-001-20250819    gcc-14.3.0
-arc                   randconfig-002-20250819    gcc-11.5.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-22
-arm                              allyesconfig    gcc-15.1.0
-arm                   milbeaut_m10v_defconfig    clang-19
-arm                        mvebu_v7_defconfig    clang-22
-arm                   randconfig-001-20250819    gcc-12.5.0
-arm                   randconfig-002-20250819    gcc-10.5.0
-arm                   randconfig-003-20250819    gcc-10.5.0
-arm                   randconfig-004-20250819    clang-22
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250819    gcc-14.3.0
-arm64                 randconfig-002-20250819    clang-22
-arm64                 randconfig-003-20250819    gcc-8.5.0
-arm64                 randconfig-004-20250819    clang-16
-csky                              allnoconfig    gcc-15.1.0
-csky                                defconfig    gcc-15.1.0
-csky                  randconfig-001-20250819    gcc-15.1.0
-csky                  randconfig-002-20250819    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20250819    clang-22
-hexagon               randconfig-002-20250819    clang-18
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250819    gcc-12
-i386        buildonly-randconfig-002-20250819    clang-20
-i386        buildonly-randconfig-003-20250819    clang-20
-i386        buildonly-randconfig-004-20250819    clang-20
-i386        buildonly-randconfig-005-20250819    clang-20
-i386        buildonly-randconfig-006-20250819    clang-20
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20250819    gcc-15.1.0
-loongarch             randconfig-002-20250819    clang-18
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-mips                          ath79_defconfig    gcc-15.1.0
-mips                        bcm47xx_defconfig    clang-18
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20250819    gcc-8.5.0
-nios2                 randconfig-002-20250819    gcc-8.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20250819    gcc-10.5.0
-parisc                randconfig-002-20250819    gcc-8.5.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc               randconfig-001-20250819    clang-22
-powerpc               randconfig-002-20250819    gcc-10.5.0
-powerpc               randconfig-003-20250819    clang-22
-powerpc                    sam440ep_defconfig    gcc-15.1.0
-powerpc                     stx_gp3_defconfig    gcc-15.1.0
-powerpc64             randconfig-001-20250819    clang-22
-powerpc64             randconfig-002-20250819    clang-22
-powerpc64             randconfig-003-20250819    gcc-10.5.0
-riscv                             allnoconfig    gcc-15.1.0
-riscv                               defconfig    clang-22
-riscv                 randconfig-001-20250819    clang-22
-riscv                 randconfig-002-20250819    clang-22
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                                defconfig    clang-22
-s390                  randconfig-001-20250819    gcc-8.5.0
-s390                  randconfig-002-20250819    gcc-12.5.0
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                                  defconfig    gcc-15.1.0
-sh                    randconfig-001-20250819    gcc-15.1.0
-sh                    randconfig-002-20250819    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20250819    gcc-8.5.0
-sparc                 randconfig-002-20250819    gcc-11.5.0
-sparc64                             defconfig    clang-20
-sparc64               randconfig-001-20250819    clang-22
-sparc64               randconfig-002-20250819    gcc-8.5.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-22
-um                             i386_defconfig    gcc-12
-um                    randconfig-001-20250819    clang-18
-um                    randconfig-002-20250819    gcc-12
-um                           x86_64_defconfig    clang-22
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250819    clang-20
-x86_64      buildonly-randconfig-002-20250819    clang-20
-x86_64      buildonly-randconfig-003-20250819    clang-20
-x86_64      buildonly-randconfig-004-20250819    clang-20
-x86_64      buildonly-randconfig-005-20250819    clang-20
-x86_64      buildonly-randconfig-006-20250819    clang-20
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                           alldefconfig    gcc-15.1.0
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250819    gcc-8.5.0
-xtensa                randconfig-002-20250819    gcc-15.1.0
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 8becc3755649..d980b447b014 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -9,6 +9,7 @@
+ #include <linux/kthread.h>
+ #include <linux/sched/mm.h>
+ #include <linux/uaccess.h>
++#include <linux/delay.h>
+ 
+ #include <drm/drm_print.h>
+ #include <drm/drm_syncobj.h>
+@@ -81,6 +82,7 @@ static void user_fence_worker(struct work_struct *w)
+                kthread_use_mm(ufence->mm);
+                if (copy_to_user(ufence->addr, &ufence->value, sizeof(ufence->value)))
+                        XE_WARN_ON("Copy to user failed");
++               usleep_range(25000, 30000);
+                kthread_unuse_mm(ufence->mm);
+                mmput(ufence->mm);
+        } else {
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+
+Zbigniew Kempczyński (1):
+  drm/xe/xe_sync: avoid race during ufence signaling
+
+ drivers/gpu/drm/xe/xe_sync.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
+
