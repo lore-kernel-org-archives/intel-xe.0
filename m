@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10814CA0EEB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:38:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD32CA0EEB
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:38:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFEC810E2D3;
-	Tue, 19 Aug 2025 14:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC9710E611;
+	Tue, 19 Aug 2025 14:38:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ruO53FOM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MWbcCZcV";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC6E710E2D3
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 14:38:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F75310E610
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 14:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=nGTuB9c3AtVfumx6myXEmpFF4WG4nNKpDYqLejNuUz0=; b=ruO53FOMpAoBbuJXfT3LhNOBz5
- YotXR+NfsbzwLtRX8isldXINDYtNEzufmGlahwE6+1ueDx1iHQI4MNXtlwtyBTh7UProxCxjji5RI
- N9p1JaNRK6Wbi5739QTmztUC5aCsHPeWm5HMYZunlqjwhT+EcBZEKLBIaUhiuuDJWQvp2M0nlEvOX
- 4IvCuKzjbNw+G6DzTLwYcuIi+YJEoeEQQL9oz0bahNJS7U4HmGuIVNZYj6erEGEzHBNMxGcfeKxq5
- HPkqAwV8HP8/dXlmXNyymYbyeHn5Vg3ocMRlCuwB6SEZ8BL1OkEkgRWvxFkUBt6seg3LRe4vgIDTH
- 4qWW2zzA==;
+ bh=Rth+055eSbbg3Cc98LXmZWnV9jeRYIE/sdg3ZSjSwRA=; b=MWbcCZcVNprvMO38tIS6usR5MB
+ xg02ocCH8A26qMfLmIPhS8F/7SpyqfdUlPKCnLb5C/U5ZSm6YMqeNNVOg1qW7aBbaf/XlcxnsyzbC
+ Xt+5HYEaNLp7o3xgzdHofQ+sAJcG6+IoHUnJ88ce60emmFrFGtK6fdor4mGIYBTCMrmvtGT7Iwonk
+ XzGP+2nTTBEFE40OxHGYYptMied+5JawOvgPXqP8TSmQRQPa+oe+dwBg+YpNlIxJVDYcUz07ykzVq
+ k0P/cFEPmx5528ZybC6czLu5a+b063t3vZDY/lH697pkpRuRTvzn/F3LfSVmp6VoMu15v1das3Hvz
+ sAevMNNg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoNTi-00GLBw-8K
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 16:38:22 +0200
+ id 1uoNTk-00GLC7-FL
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 16:38:24 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 00/13] auxccs late flush
-Date: Tue, 19 Aug 2025 15:38:07 +0100
-Message-ID: <20250819143821.3158-1-tvrtko.ursulin@igalia.com>
+Subject: [CI 03/13] drm/xe/xelp: Support auxccs invalidation on blitter
+Date: Tue, 19 Aug 2025 15:38:10 +0100
+Message-ID: <20250819143821.3158-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250819143821.3158-1-tvrtko.ursulin@igalia.com>
+References: <20250819143821.3158-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,39 +57,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-...
+Auxccs platforms need to be able to invalidate auxccs on the blitter
+engine.
 
-Tvrtko Ursulin (13):
-  drm/xe/xelpg: Flush CCS when flushing caches
-  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
-  drm/xe/xelp: Support auxccs invalidation on blitter
-  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-  drm/xe/xelp: Wait for AuxCCS invalidation to complete
-  drm/xe: Export xe_emit_aux_table_inv
-  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
-    workarounds
-  drm/xe: Flush GGTT writes after populating DPT
-  drm/xe: Handle DPT in system memory
-  drm/xe/display: Add support for AuxCCS
-  drm/xe: Force flush system memory AuxCCS data before scan out
-  late flush
-  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+Add the relevant mmio register and enable this by refactoring the ring
+emission a bit to consolidate all non-render engines.
 
- drivers/gpu/drm/i915/display/intel_display.c  |  15 +-
- .../drm/i915/display/skl_universal_plane.c    |   6 -
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |   5 +
- .../compat-i915-headers/gem/i915_gem_object.h |   3 +
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 184 +++++++++++++++---
- .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
- drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |  47 +++++
- drivers/gpu/drm/xe/xe_ring_ops.c              | 161 +++++++--------
- drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
- drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
- 13 files changed, 330 insertions(+), 118 deletions(-)
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c     | 104 +++++++++++----------------
+ 2 files changed, 41 insertions(+), 64 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index f96b2e2b3064..f8b1060c76c1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -88,6 +88,7 @@
+ #define CCS_AUX_INV				XE_REG(0x4208)
+ 
+ #define VD0_AUX_INV				XE_REG(0x4218)
++#define BCS_AUX_INV				XE_REG(0x4248)
+ #define VE0_AUX_INV				XE_REG(0x4238)
+ 
+ #define VE1_AUX_INV				XE_REG(0x42b8)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index f56506ebbeca..e7c23fd04011 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -248,44 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+ 	return i;
+ }
+ 
+-/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+-static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
+-{
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
+-	struct xe_gt *gt = job->q->gt;
+-
+-	i = emit_copy_timestamp(lrc, dw, i);
+-
+-	if (job->ring_ops_flush_tlb) {
+-		dw[i++] = preparser_disable(true);
+-		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
+-		dw[i++] = preparser_disable(false);
+-	} else {
+-		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, dw, i);
+-	}
+-
+-	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+-
+-	if (job->user_fence.used) {
+-		i = emit_flush_dw(dw, i);
+-		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
+-						job->user_fence.value,
+-						dw, i);
+-	}
+-
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+-
+-	i = emit_user_interrupt(dw, i);
+-
+-	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+-
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+-}
+-
+ static bool has_aux_ccs(struct xe_device *xe)
+ {
+ 	/*
+@@ -300,36 +262,50 @@ static bool has_aux_ccs(struct xe_device *xe)
+ 	return !xe->info.has_flat_ccs;
+ }
+ 
+-static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
++				 u64 batch_addr, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
++	const unsigned int class = job->q->class;
++	const bool aux_ccs = has_aux_ccs(xe) &&
++			     (class == XE_ENGINE_CLASS_COPY ||
++			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
++	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
+ 
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+-	dw[i++] = preparser_disable(true);
+-
+-	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe)) {
+-		if (decode)
+-			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
+-		else
+-			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
+-	}
+-
+-	if (job->ring_ops_flush_tlb)
++	if (invalidate_tlb) {
++		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
++					seqno,
++					MI_INVALIDATE_TLB,
++					dw, i);
++		/* hsdes: 1809175790 */
++		if (aux_ccs) {
++			struct xe_reg reg;
+ 
+-	dw[i++] = preparser_disable(false);
++			switch (job->q->class) {
++			case XE_ENGINE_CLASS_COPY:
++				reg = BCS_AUX_INV;
++				break;
++			case XE_ENGINE_CLASS_VIDEO_DECODE:
++				reg = VD0_AUX_INV;
++				break;
++			default:
++				reg = VE0_AUX_INV;
++			};
+ 
+-	if (!job->ring_ops_flush_tlb)
++			i = emit_aux_table_inv(gt, reg, dw, i);
++		}
++		dw[i++] = preparser_disable(false);
++	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+ 					seqno, dw, i);
++	}
+ 
+ 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+ 
+@@ -442,9 +418,9 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
+ 
+-	__emit_job_gen12_simple(job, job->q->lrc[0],
+-				job->ptrs[0].batch_addr,
+-				xe_sched_job_lrc_seqno(job));
++	__emit_job_gen12_xcs(job, job->q->lrc[0],
++			     job->ptrs[0].batch_addr,
++			     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_copy(struct xe_sched_job *job)
+@@ -458,9 +434,9 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	}
+ 
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_simple(job, job->q->lrc[i],
+-					job->ptrs[i].batch_addr,
+-					xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_video(struct xe_sched_job *job)
+@@ -469,9 +445,9 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 
+ 	/* FIXME: Not doing parallel handshake for now */
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_video(job, job->q->lrc[i],
+-				       job->ptrs[i].batch_addr,
+-				       xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
 -- 
 2.48.0
 
