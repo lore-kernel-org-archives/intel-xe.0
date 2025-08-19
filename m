@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A32DECA0EFB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 08:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A78B8CA0EF5
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 08:55:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6791710E552;
-	Tue, 19 Aug 2025 08:55:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E3F10E55E;
+	Tue, 19 Aug 2025 08:55:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="r1eLqkpp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ldXNfue+";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 963A410E344
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 08:55:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FEE010E55A
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 08:55:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Rth+055eSbbg3Cc98LXmZWnV9jeRYIE/sdg3ZSjSwRA=; b=r1eLqkpph1nKYp9hYpXPanieQa
- ZxT5pj/dtOtShl45JpNDkGfZh8EXc3XjD7ziM43snXRr64NO8TBnF1v6dhLktKqYvL4VQOQyuBL/6
- X1D9Pq/k2d/0TLiLWuJt1cyHlNLruGj+TRdqQiOUcEZrW5iLM+my6SBWWz/DfyfbjmLb3pJno9DoP
- wO5iY66IFiG8WTDq1al4MKxzWJUOmdT10egO+8ZfUzRWtq02G62dug5glF4fAJ4efaV06xcBqzx5B
- IkZRR8VAlYIjqavPPSr83HAyr8+XTDHmo5t3/WJpMJ2L7W1aLPT79L/rz486jQhsongOZ8twrY4RD
- 9u8GkLNA==;
+ bh=d64Pnur6AA24rmrijDH4RPGlTIU8WQF/uVo6A1U3CYI=; b=ldXNfue+tk9vaNzCNwW71ynSAe
+ vWwSpyODFMF1r4yIPqWdEbpIZzCIjKT5lLqmj1qxOR9hx9WF2n0ZbngmmmpAxDd8smK7F/2f3bH3q
+ yt0FURreYRtHE/7xNN9xQUrt9S8i1ULpypJQbeleobLfT5hkMWrCNvTiPXjfl3GVAkbg6KRjiueYE
+ GXeU6LtHLLCBwX16mGY9AwwQ+YSfTtQOiTvlKGs4JwtOuYRa0PsCf9GHilvK2bAkmqHIiMykBAgYu
+ i+KfPWqqSf9/zi7wOwE1b0o3YS30F3Gaeejd/cloNPfodLLE+HvLs33ETqjL2HAMiEzjse2rvYDrZ
+ oKyJKWQg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoI84-00GD76-Rf
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 10:55:40 +0200
+ id 1uoI89-00GD7m-UP
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 10:55:46 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 03/13] drm/xe/xelp: Support auxccs invalidation on blitter
-Date: Tue, 19 Aug 2025 09:55:24 +0100
-Message-ID: <20250819085537.97902-4-tvrtko.ursulin@igalia.com>
+Subject: [CI 10/13] drm/xe/display: Add support for AuxCCS
+Date: Tue, 19 Aug 2025 09:55:31 +0100
+Message-ID: <20250819085537.97902-11-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
 References: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
@@ -57,186 +57,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Auxccs platforms need to be able to invalidate auxccs on the blitter
-engine.
+Add support for mapping the auxiliary CCS buffer into the DPT page tables.
 
-Add the relevant mmio register and enable this by refactoring the ring
-emission a bit to consolidate all non-render engines.
+This will allow for more power efficiency by enabling the render
+compression frame buffer modifiers such as
+I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+
+We do this by refactoring the code a bit so handling for the linear
+auxiliary frame buffer can be added in a tidy way. Also replace some
+hardcoded constants.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
- drivers/gpu/drm/xe/xe_ring_ops.c     | 104 +++++++++++----------------
- 2 files changed, 41 insertions(+), 64 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
+ 1 file changed, 81 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index f96b2e2b3064..f8b1060c76c1 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -88,6 +88,7 @@
- #define CCS_AUX_INV				XE_REG(0x4208)
- 
- #define VD0_AUX_INV				XE_REG(0x4218)
-+#define BCS_AUX_INV				XE_REG(0x4248)
- #define VE0_AUX_INV				XE_REG(0x4238)
- 
- #define VE1_AUX_INV				XE_REG(0x42b8)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index f56506ebbeca..e7c23fd04011 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -248,44 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
- 	return i;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 5819895f5a48..658541422f44 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -53,33 +53,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
--/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
--static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 seqno)
--{
--	u32 dw[MAX_JOB_SIZE_DW], i = 0;
--	u32 ppgtt_flag = get_ppgtt_flag(job);
--	struct xe_gt *gt = job->q->gt;
--
--	i = emit_copy_timestamp(lrc, dw, i);
--
--	if (job->ring_ops_flush_tlb) {
--		dw[i++] = preparser_disable(true);
--		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
--		dw[i++] = preparser_disable(false);
--	} else {
--		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, dw, i);
--	}
--
--	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
--
--	if (job->user_fence.used) {
--		i = emit_flush_dw(dw, i);
--		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
--						job->user_fence.value,
--						dw, i);
--	}
--
--	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
--
--	i = emit_user_interrupt(dw, i);
--
--	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
--
--	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
--}
--
- static bool has_aux_ccs(struct xe_device *xe)
- {
- 	/*
-@@ -300,36 +262,50 @@ static bool has_aux_ccs(struct xe_device *xe)
- 	return !xe->info.has_flat_ccs;
- }
- 
--static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 seqno)
-+static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
-+				 u64 batch_addr, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
--	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
-+	const unsigned int class = job->q->class;
-+	const bool aux_ccs = has_aux_ccs(xe) &&
-+			     (class == XE_ENGINE_CLASS_COPY ||
-+			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
--	dw[i++] = preparser_disable(true);
--
--	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe)) {
--		if (decode)
--			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
--		else
--			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
--	}
--
--	if (job->ring_ops_flush_tlb)
-+	if (invalidate_tlb) {
-+		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
-+					seqno,
-+					MI_INVALIDATE_TLB,
-+					dw, i);
-+		/* hsdes: 1809175790 */
-+		if (aux_ccs) {
-+			struct xe_reg reg;
- 
--	dw[i++] = preparser_disable(false);
-+			switch (job->q->class) {
-+			case XE_ENGINE_CLASS_COPY:
-+				reg = BCS_AUX_INV;
-+				break;
-+			case XE_ENGINE_CLASS_VIDEO_DECODE:
-+				reg = VD0_AUX_INV;
-+				break;
-+			default:
-+				reg = VE0_AUX_INV;
-+			};
- 
--	if (!job->ring_ops_flush_tlb)
-+			i = emit_aux_table_inv(gt, reg, dw, i);
-+		}
-+		dw[i++] = preparser_disable(false);
-+	} else {
- 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, dw, i);
++static unsigned int
++write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
++{
++	/* The DE ignores the PTEs for the padding tiles */
++	return dest + pad * sizeof(u64);
++}
++
++static unsigned int
++write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
++			  unsigned int dest,
++			  const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset = plane->offset * XE_PAGE_SIZE;
++	unsigned int size = plane->size;
++
++	while (size--) {
++		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++		iosys_map_wr(map, dest, u64, addr | pte);
++		dest += sizeof(u64);
++		offset += XE_PAGE_SIZE;
 +	}
++
++	return dest;
++}
++
++static unsigned int
++write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
++			 unsigned int dest,
++			 const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset, column, row;
++
++	for (row = 0; row < plane->height; row++) {
++		offset = (plane->offset + plane->src_stride * row) *
++			 XE_PAGE_SIZE;
++
++		for (column = 0; column < plane->width; column++) {
++			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++			iosys_map_wr(map, dest, u64, addr | pte);
++			dest += sizeof(u64);
++			offset += XE_PAGE_SIZE;
++		}
++
++		dest = write_dpt_padding(map, dest,
++					 plane->dst_stride - plane->width);
++	}
++
++	return dest;
++}
++
+ static void
+-write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+-		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+-		   u32 dst_stride)
++write_dpt_remapped(struct xe_bo *bo,
++		   const struct intel_remapped_info *remap_info,
++		   struct iosys_map *map)
+ {
+-	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u32 column, row;
+-	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int i, dest = 0;
  
- 	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+-	for (row = 0; row < height; row++) {
+-		u32 src_idx = src_stride * row + bo_ofs;
++	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
++		const struct intel_remapped_plane_info *plane =
++						&remap_info->plane[i];
  
-@@ -442,9 +418,9 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+-		for (column = 0; column < width; column++) {
+-			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+-			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++		if (!plane->width && !plane->height && !plane->linear)
++			continue;
  
- 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
+-			*dpt_ofs += 8;
+-			src_idx++;
++		if (remap_info->plane_alignment) {
++			const unsigned int index = dest / sizeof(u64);
++			const unsigned int pad =
++				ALIGN(index, remap_info->plane_alignment) -
++				index;
++
++			dest = write_dpt_padding(map, dest, pad);
+ 		}
  
--	__emit_job_gen12_simple(job, job->q->lrc[0],
--				job->ptrs[0].batch_addr,
--				xe_sched_job_lrc_seqno(job));
-+	__emit_job_gen12_xcs(job, job->q->lrc[0],
-+			     job->ptrs[0].batch_addr,
-+			     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_copy(struct xe_sched_job *job)
-@@ -458,9 +434,9 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - width) * 8;
++		if (plane->linear)
++			dest = write_dpt_remapped_linear(bo, map, dest, plane);
++		else
++			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
  	}
- 
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_simple(job, job->q->lrc[i],
--					job->ptrs[i].batch_addr,
--					xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     xe_sched_job_lrc_seqno(job));
+-
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
- static void emit_job_gen12_video(struct xe_sched_job *job)
-@@ -469,9 +445,9 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 
- 	/* FIXME: Not doing parallel handshake for now */
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_video(job, job->q->lrc[i],
--				       job->ptrs[i].batch_addr,
--				       xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+ static void gt_flush_ggtt_writes(struct xe_gt *gt)
+@@ -181,17 +242,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+-		const struct intel_remapped_info *remap_info = &view->remapped;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+-			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+-					   remap_info->plane[i].offset,
+-					   remap_info->plane[i].width,
+-					   remap_info->plane[i].height,
+-					   remap_info->plane[i].src_stride,
+-					   remap_info->plane[i].dst_stride);
+-
++		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
 -- 
 2.48.0
 
