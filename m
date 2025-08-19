@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2F6CA0EE6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:39:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C71B6CA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:39:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A9710E125;
-	Tue, 19 Aug 2025 06:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E34310E125;
+	Tue, 19 Aug 2025 06:39:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibZ/+MSm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UBMjeh9Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C61AA10E125
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 06:39:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D25610E125
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 06:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755585541; x=1787121541;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yaWnEOBo3m8jXxIYbP/E8iE9PhHrRlkTa10T1CKzZHI=;
- b=ibZ/+MSmNgc9H2wVyhT9IOx+yybgX17Hro5AvBIcROET4l9vNFJ7o7M8
- 2FI4AH18cCPCnFiRqJr5YtDs+4pv85OPFZRn3uQiCyj0cUjwNEG2OUZV3
- SZWEf71zjSS5iEDk+Wc603ha7JByi2JpTgGpia1nyjDQSaS3txrphmyKg
- fU4ODOLvgpEg++bTnTVjoMsSzKg6c9ZYkUA2JuxtMRNiktxnpOLjqgvPk
- 47i12504vIZkRoYUbS8vGLIy4P80cxI5QwqNT2vEhatZX/0JapWJpTvsD
- Pxq9We3xCOhJW+1+UYswKtLz7bFm0ykUTE1VvLkfP+FP0WNFfG8kKoJLQ A==;
-X-CSE-ConnectionGUID: Xl4Je+6pT6WEVX4kKI5MgA==
-X-CSE-MsgGUID: jTtev5mrQyul6wXHVA2DSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57966954"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="57966954"
+ t=1755585558; x=1787121558;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3fud4pNbUmGvE3eA44yfjPWJraS7ZszikchzudKotlo=;
+ b=UBMjeh9Y8CFWmGhfDG5mGMU8cjzI+0oX9opEKlD91JOqtRheUsQgI7AZ
+ hgjDFgZtijEhXiDURbhkYfux9HiVqG2u0cTVQ1K9nvniX87pzj+kHIkOD
+ GoAlgu5WF1dikU/8Fr3OXQmvMqHGqmIRa+bXAsWR3iipZjmOZZUMdV1wM
+ eNzf7pdH5nqCaLP9b8h08AfyZABwR+oDAP9I47yGJNhQq2NQnF7dcXegU
+ UZL/mhOubJWhe1CPJezjKlIup7n20VDPuMkHxI1iQ+lCbHmruqyM8oEOF
+ ub0g58GaaVFyPAGOeRUSfsqhNuw2ieEqKZ+yk10Z4s9KiRIdQjs5clvbK Q==;
+X-CSE-ConnectionGUID: 1nWRzpaqRTiV/5Zmr6AWEA==
+X-CSE-MsgGUID: hhQlpYtUS+2FmsPRfmKE3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57966966"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="57966966"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 23:39:01 -0700
-X-CSE-ConnectionGUID: SNCRmojJTZqW7dsuw41OBQ==
-X-CSE-MsgGUID: OzBsW/tZR7+LPq/nq9IFhg==
+ 18 Aug 2025 23:39:18 -0700
+X-CSE-ConnectionGUID: 21hEhJUZQeujXVvBQk8DmQ==
+X-CSE-MsgGUID: tgu0gL/fQOOjfYQxZJg0UQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="172009357"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="172009453"
 Received: from intel-s2600wft.iind.intel.com ([10.223.26.143])
- by orviesa003.jf.intel.com with ESMTP; 18 Aug 2025 23:39:01 -0700
+ by orviesa003.jf.intel.com with ESMTP; 18 Aug 2025 23:39:17 -0700
 From: S Sebinraj <s.sebinraj@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com,
 	S Sebinraj <s.sebinraj@intel.com>
-Subject: [PATCH 0/8] drm/xe: GPU frequency tracing support
-Date: Tue, 19 Aug 2025 12:04:09 +0530
-Message-Id: <20250819063417.918666-1-s.sebinraj@intel.com>
+Subject: [PATCH 1/8] drm/xe: Add Kconfig option for GPU frequency tracing
+Date: Tue, 19 Aug 2025 12:04:10 +0530
+Message-Id: <20250819063417.918666-2-s.sebinraj@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250819063417.918666-1-s.sebinraj@intel.com>
+References: <20250819063417.918666-1-s.sebinraj@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,60 +66,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A periodic GPU frequency monitoring and tracing program for the
-Xe driver. The implementation provides periodic sampling of
-GPU frequency through the Linux ftrace infrastructure.
+Add CONFIG_DRM_XE_GPUFREQTRACER configuration option to enable
+GPU frequency tracing support. This option depends on DRM_XE and
+FTRACE and is disabled by default.
 
-Key features:
-- Periodic GPU frequency sampling with configurable intervals
-- Immediate frequency change reporting via tracepoints
-- Integration with Linux ftrace subsystem under 'power' events
-- Per-GT (Graphics Technology) monitoring support
-- Dedicated workqueue for non-blocking frequency sampling
-- Configurable via CONFIG_DRM_XE_GPUFREQTRACER kernel option
-- The monitoring interval can be configured at runtime via the sysfs
-  (default 5sec).
-
-The module parameter is:
-/sys/module/xe/parameters/gpufreq_monitoring_interval_ms
-
-The tracepoint is exposed at:
-/sys/kernel/debug/tracing/events/power/gpu_frequency
-
-Format: {unsigned int state, unsigned int gpu_id}
-- state: GPU frequency in KHz
-- gpu_id: GPU clock domain identifier
-
-This enables userspace tools and system monitoring applications to track
-GPU frequency changes for power management analysis, performance tuning,
-and debugging purposes.
+The configuration allows users to opt-in to GPU frequency monitoring
+and tracing functionality.
 
 Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
+---
+ drivers/gpu/drm/xe/Kconfig | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-S Sebinraj (8):
-  drm/xe: Add Kconfig option for GPU frequency tracing
-  drm/xe: Add module parameter for GPU frequency monitoring
-  drm/xe: Add GPU frequency tracing tracepoint definition
-  drm/xe: Add GPU frequency tracer interface
-  drm/xe: Add basic GPU frequency tracer implementation
-  drm/xe: Add GPU frequency tracer to build system
-  drm/xe: Integrate GPU frequency tracer into device initialization
-  drm/xe: Add core GPU frequency monitoring functionality
-
- drivers/gpu/drm/xe/Kconfig                  |  22 ++
- drivers/gpu/drm/xe/Makefile                 |   3 +
- drivers/gpu/drm/xe/xe_device.c              |   5 +
- drivers/gpu/drm/xe/xe_device_types.h        |   4 +
- drivers/gpu/drm/xe/xe_gpufreqtracer.c       | 336 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gpufreqtracer.h       |  30 ++
- drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h |  48 +++
- drivers/gpu/drm/xe/xe_module.c              |  12 +
- drivers/gpu/drm/xe/xe_module.h              |   3 +
- 9 files changed, 463 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer.c
- create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer.h
- create mode 100644 drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h
-
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 714d5702dfd7..d9d07ec69875 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -129,6 +129,28 @@ config DRM_XE_FORCE_PROBE
+ 
+ 	  Use "!*" to block the probe of the driver for all known devices.
+ 
++config DRM_XE_GPUFREQTRACER
++	bool "Enable XE GPU frequency tracing"
++	depends on DRM_XE && FTRACE
++	default n
++	help
++	  Enable GPU frequency tracing support for Intel XE driver.
++	  This adds an ftrace tracepoint that reports GPU frequency changes
++	  at periodic boundaries (default 5 secs, configurable via the
++	  gpufreq_monitoring_interval_ms module parameter) and
++	  on direct frequency change events.
++
++	  The monitoring interval can be configured at runtime via the sysfs module parameter:
++	  /sys/module/xe/parameters/gpufreq_monitoring_interval_ms
++
++	  The tracepoint will be available at:
++	  /sys/kernel/debug/tracing/events/power/gpu_frequency
++
++	  Format: {unsigned int state, unsigned int gpu_id}
++	  Where state is the frequency in KHz and gpu_id is the GPU clock domain.
++
++	  If unsure, say N.
++
+ menu "drm/Xe Debugging"
+ depends on DRM_XE
+ depends on EXPERT
 -- 
 2.34.1
 
