@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB28DCA0EE6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14C43CA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:16:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F6B710E60F;
-	Tue, 19 Aug 2025 14:11:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C86CA10E60C;
+	Tue, 19 Aug 2025 14:16:32 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 348B010E60D;
- Tue, 19 Aug 2025 14:11:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2641786234004450035=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE5310E1DF;
+ Tue, 19 Aug 2025 14:16:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgYXV4Y2NzIHRlc3QgKHJldjIp?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_auxccs_late_flush?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 14:11:11 -0000
-Message-ID: <175561267120.247874.1681039529532556930@1538d3639d33>
+Date: Tue, 19 Aug 2025 14:16:32 -0000
+Message-ID: <175561299236.248501.11133760109125668176@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250818140653.86787-1-tvrtko.ursulin@igalia.com>
+References: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +39,103 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2641786234004450035==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: auxccs test (rev2)
-URL   : https://patchwork.freedesktop.org/series/153065/
-State : success
+Series: auxccs late flush
+URL   : https://patchwork.freedesktop.org/series/153121/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa_BAT -> xe-pw-153065v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 76970b8618c87dc045734223c973ba492fbb4821
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Tue Aug 19 09:55:34 2025 +0100
 
-Summary
--------
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch deb6c5d08f8b84ea7e019b7682631c6375cc17aa drm-intel
+1a64b3664875 drm/xe/xelpg: Flush CCS when flushing caches
+8a62b67b48b2 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+c0df5d7819a1 drm/xe/xelp: Support auxccs invalidation on blitter
+4b2f1b921dbf drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+7cb2694030f6 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+c677b40fc158 drm/xe: Export xe_emit_aux_table_inv
+012ca4bca58c drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+52aa1d8379e7 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+f1e1e0f3463d drm/xe: Handle DPT in system memory
+cec9376918e2 drm/xe/display: Add support for AuxCCS
+ff75f296bb63 drm/xe: Force flush system memory AuxCCS data before scan out
+-:58: WARNING:MEMORY_BARRIER: memory barrier without comment
+#58: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:399:
++		mb();
 
-  No regressions found.
+-:61: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u8' over 'uint8_t'
+#61: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:402:
++			uint8_t *page_virtual;
 
-  
+-:69: WARNING:MEMORY_BARRIER: memory barrier without comment
+#69: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:410:
++		mb();
 
-Participating hosts (11 -> 9)
-------------------------------
+total: 0 errors, 2 warnings, 1 checks, 103 lines checked
+eeeecd0a0435 late flush
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
+-:58: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#58: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:777:
++{
++
 
+-:59: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#59: FILE: drivers/gpu/drm/i915/gem/i915_gem_object.h:778:
++
++}
 
-Changes
--------
+total: 0 errors, 1 warnings, 2 checks, 145 lines checked
+76970b8618c8 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
 
-  No changes found
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
-
-Build changes
--------------
-
-  * Linux: xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa -> xe-pw-153065v2
-
-  IGT_8497: 8497
-  xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa: deb6c5d08f8b84ea7e019b7682631c6375cc17aa
-  xe-pw-153065v2: 153065v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v2/index.html
-
---===============2641786234004450035==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs test (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153065/">https://patchwork.freedesktop.org/series/153065/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153065v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa_BAT -&gt; xe-pw-153065v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa -&gt; xe-pw-153065v2</li>
-</ul>
-<p>IGT_8497: 8497<br />
-  xe-3576-deb6c5d08f8b84ea7e019b7682631c6375cc17aa: deb6c5d08f8b84ea7e019b7682631c6375cc17aa<br />
-  xe-pw-153065v2: 153065v2</p>
-
-</body>
-</html>
-
---===============2641786234004450035==--
