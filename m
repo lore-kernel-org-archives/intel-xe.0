@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E72CACA0EEB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 11:21:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E30E7CA0EEB
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 11:25:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF07A10E5AA;
-	Tue, 19 Aug 2025 11:21:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iuUHbXNz";
-	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E660410E5AA;
- Tue, 19 Aug 2025 11:21:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6F7E15C5E65;
- Tue, 19 Aug 2025 11:21:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAC2C116B1;
- Tue, 19 Aug 2025 11:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755602493;
- bh=lB1ftSYVoalO3pqD17BabvrKVzz8AuFLNPMRaJ5HxqI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iuUHbXNzm8XF0le1Y8TGFU4fPPMDcAeSi6+LYseH4dF0CDcWjxwe9mqXrbfMMi0bb
- my6E0FcmeQgM45MCDhlMn5xV7rP5sXykpv4I4Ez+RbcJyCzC/ezfHfapGRq6pNCOAG
- Hzqq6v79EMRXoKHaDsVGK0FLh6e+R8/BpsKx/A6rQjjstRfg+R28Ti0htOfA9Lqg1J
- VTxL4dU5T9cREAHYg+rTPSaehMUkPTIXfp+SXtRuOm5N+yOLMrHO6t5Rh3UMr9+Ix1
- jXvUAnYwYJueooVz6dDFsWvNem9Sx5S1CbZZFGt5tU0Gd8wEXV3sJnKIn1LctjM972
- g37z/2lNkDFNw==
-Date: Tue, 19 Aug 2025 13:21:29 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, anshuman.gupta@intel.com,
- lucas.demarchi@intel.com, 
- aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
- umesh.nerlige.ramappa@intel.com, 
- frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch, 
- =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>
-Subject: Re: [PATCH v7 1/9] drm: Add a vendor-specific recovery method to drm
- device wedged uevent
-Message-ID: <5hkngbuzoryldvjrtjwalxhosdhtweeinpjpyguzltjmee7mpu@vw44iwczytw5>
-References: <20250728102809.502324-1-riana.tauro@intel.com>
- <20250728102809.502324-2-riana.tauro@intel.com>
- <aJIb1NbxmxKbUT5U@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1B3C10E5AA;
+	Tue, 19 Aug 2025 11:25:18 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69AD810E5AA;
+ Tue, 19 Aug 2025 11:25:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2469041651013108044=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="aip5wo2wxwo2mdl2"
-Content-Disposition: inline
-In-Reply-To: <aJIb1NbxmxKbUT5U@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_devm_rele?=
+ =?utf-8?q?ase_action_to_safely_tear_down_CT_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 Aug 2025 11:25:17 -0000
+Message-ID: <175560271742.247871.10358862979177646773@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250819082234.21138-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250819082234.21138-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,164 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---aip5wo2wxwo2mdl2
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 1/9] drm: Add a vendor-specific recovery method to drm
- device wedged uevent
+--===============2469041651013108044==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 05, 2025 at 10:57:24AM -0400, Rodrigo Vivi wrote:
-> On Mon, Jul 28, 2025 at 03:57:51PM +0530, Riana Tauro wrote:
-> > Address the need for a recovery method (firmware flash on Firmware erro=
-rs)
-> > introduced in the later patches of Xe KMD.
-> > Whenever XE KMD detects a firmware error, a firmware flash is required =
-to
-> > recover the device to normal operation.
-> >=20
-> > The initial proposal to use 'firmware-flash' as a recovery method was
-> > not applicable to other drivers and could cause multiple recovery
-> > methods specific to vendors to be added.
-> > To address this a more generic 'vendor-specific' method is introduced,
-> > guiding users to refer to vendor specific documentation and system logs
-> > for detailed vendor specific recovery procedure.
-> >=20
-> > Add a recovery method 'WEDGED=3Dvendor-specific' for such errors.
-> > Vendors must provide additional recovery documentation if this method
-> > is used.
-> >=20
-> > It is the responsibility of the consumer to refer to the correct vendor
-> > specific documentation and usecase before attempting a recovery.
-> >=20
-> > For example: If driver is XE KMD, the consumer must refer
-> > to the documentation of 'Device Wedging' under 'Documentation/gpu/xe/'.
-> >=20
-> > Recovery script contributed by Raag.
-> >=20
-> > v2: fix documentation (Raag)
-> > v3: add more details to commit message (Sima, Rodrigo, Raag)
-> >     add an example script to the documentation (Raag)
-> > v4: use consistent naming (Raag)
-> > v5: fix commit message
-> >=20
-> > Cc: Andr=E9 Almeida <andrealmeid@igalia.com>
-> > Cc: Christian K=F6nig <christian.koenig@amd.com>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona.vetter@ffwll.ch>
->=20
-> Cc: Maxime Ripard <mripard@kernel.org>
->=20
-> > Co-developed-by: Raag Jadav <raag.jadav@intel.com>
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >  Documentation/gpu/drm-uapi.rst | 42 ++++++++++++++++++++++++++++------
-> >  drivers/gpu/drm/drm_drv.c      |  2 ++
-> >  include/drm/drm_device.h       |  4 ++++
-> >  3 files changed, 41 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uap=
-i.rst
-> > index 843facf01b2d..5691b29acde3 100644
-> > --- a/Documentation/gpu/drm-uapi.rst
-> > +++ b/Documentation/gpu/drm-uapi.rst
-> > @@ -418,13 +418,15 @@ needed.
-> >  Recovery
-> >  --------
-> > =20
-> > -Current implementation defines three recovery methods, out of which, d=
-rivers
-> > +Current implementation defines four recovery methods, out of which, dr=
-ivers
-> >  can use any one, multiple or none. Method(s) of choice will be sent in=
- the
-> >  uevent environment as ``WEDGED=3D<method1>[,..,<methodN>]`` in order o=
-f less to
-> > -more side-effects. If driver is unsure about recovery or method is unk=
-nown
-> > -(like soft/hard system reboot, firmware flashing, physical device repl=
-acement
-> > -or any other procedure which can't be attempted on the fly), ``WEDGED=
-=3Dunknown``
-> > -will be sent instead.
-> > +more side-effects. If recovery method is specific to vendor
-> > +``WEDGED=3Dvendor-specific`` will be sent and userspace should refer t=
-o vendor
-> > +specific documentation for the recovery procedure. As an example if th=
-e driver
-> > +is 'Xe' then the documentation for 'Device Wedging' of Xe driver needs=
- to be
-> > +referred for the recovery procedure. If driver is unsure about recover=
-y or
-> > +method is unknown, ``WEDGED=3Dunknown`` will be sent instead.
->=20
-> What if instead of this we do something like:
->=20
-> --- a/Documentation/gpu/drm-uapi.rst
-> +++ b/Documentation/gpu/drm-uapi.rst
-> @@ -441,6 +441,29 @@ following expectations.
->      unknown         consumer policy
->      =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D
-> =20
-> +Vendor-Specific Recovery
-> +++++++++++++++++++++++++
-> +
-> +When ``WEDGED=3Dvendor-specific`` is emitted, it indicates that the devi=
-ce requires a
-> +recovery method that is *not standardized* and is specific to the hardwa=
-re vendor.
-> +
-> +In this case, the vendor driver must provide detailed documentation desc=
-ribing
-> +every single recovery possibilities and its processes. It needs to inclu=
-de:
-> +
-> +- Hints: Which of the following will be used to identify the
-> +  specific device, and guide the administrator:
-> +  + Sysfs, debugfs, tracepoints, or kernel logs (e.g., ``dmesg``)
-> +- Explicit guidance: for any admin or userspace tools and scripts necess=
-ary
-> +  to carry out recovery.
-> +
-> +**Example**:
-> +    If the device uses the ``Xe`` driver, then administrators should con=
-sult the
-> +    *"Device Wedging"* section of the Xe driver's documentation to deter=
-mine
-> +    the proper steps for recovery.
-> +
-> +Notes
-> ++++++
-> +
->  The only exception to this is ``WEDGED=3Dnone``, which signifies that th=
-e device
->=20
-> ----------------------
->=20
-> Maxime, is it any better?
+== Series Details ==
 
-Yes, it is. Thanks!
-Maxime
+Series: drm/xe/guc: Add devm release action to safely tear down CT (rev2)
+URL   : https://patchwork.freedesktop.org/series/152870/
+State : success
 
---aip5wo2wxwo2mdl2
-Content-Type: application/pgp-signature; name="signature.asc"
+== Summary ==
 
------BEGIN PGP SIGNATURE-----
+CI Bug Log - changes from xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285_BAT -> xe-pw-152870v2_BAT
+====================================================
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKReOQAKCRAnX84Zoj2+
-dttNAYD6etshHfhq9diIMZ0xBJHx16i1mwsThwgR+pkeyRu+QXMgdg6yMNaZ/QTp
-p7IBR94BgKKYJXjpRtTwpySgH/OKCEfFxX4xMYpW75T24OmMLaE1WChjPjj11CQO
-exd2ePh2vA==
-=Lg6j
------END PGP SIGNATURE-----
+Summary
+-------
 
---aip5wo2wxwo2mdl2--
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152870v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285 -> xe-pw-152870v2
+
+  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285: a97df3a85c9df07e6e32db6e5fd651d375b98285
+  xe-pw-152870v2: 152870v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v2/index.html
+
+--===============2469041651013108044==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Add devm release action to safely tear down CT (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152870/">https://patchwork.freedesktop.org/series/152870/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285_BAT -&gt; xe-pw-152870v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152870v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285 -&gt; xe-pw-152870v2</li>
+</ul>
+<p>IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3575-a97df3a85c9df07e6e32db6e5fd651d375b98285: a97df3a85c9df07e6e32db6e5fd651d375b98285<br />
+  xe-pw-152870v2: 152870v2</p>
+
+</body>
+</html>
+
+--===============2469041651013108044==--
