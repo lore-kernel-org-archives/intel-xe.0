@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6010CA0EE4
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 00:41:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE66CA0EF5
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 00:52:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85D9010E1F9;
-	Tue, 19 Aug 2025 00:41:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZCi4E/IF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2905910E1F9
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 00:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755564095; x=1787100095;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n+3JkLXJ2XMLuD7P6VAmXkSdIMFKSfi8QixiKBGy0Yo=;
- b=ZCi4E/IFfbX6jahV6R9E6egsyyIp+7DT/Hi3kVNJLNJ4faj240CZAnRR
- KOfy7I4H4Nj8MvqLOXZyVBk2DX5nCgcpayIneYKX6oB2wPxV/zM1xH5X3
- lrFDEKwIURzXIepYUmid/U/3JBNgfLwqeHFfu77DmYklfhLhU5xrwFTVG
- CL8JpDPJgN9DFECf/Yub2UrqAJgpqbAZkAKr/m+YFPh6NelXCPaCE0Eug
- ZMvy2sRE4l+DN5p5chRMuxuOKRU54UphrKiDo5lobxMbwKA43uchmKBBl
- rHodaIhQlUW6fViqUTrSpNllhKodN7KapQc5yMA1mB1bHfubPTdmXT8k7 A==;
-X-CSE-ConnectionGUID: zGK/TDtvRqSDPCmfYu5Rqg==
-X-CSE-MsgGUID: n5pmVnvcQ7WvIBJMjG1/Eg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75250809"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75250809"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 17:41:35 -0700
-X-CSE-ConnectionGUID: lM5L1olOR0+w8cBBbhcwEg==
-X-CSE-MsgGUID: 3e1bXOlzRiqjpKsbwgsTuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="171951729"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by orviesa003.jf.intel.com with ESMTP; 18 Aug 2025 17:41:34 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH] drm/xe/tile: Release kobject for the failure path
-Date: Tue, 19 Aug 2025 00:39:58 +0000
-Message-ID: <20250819003957.2868064-2-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3240710E09B;
+	Tue, 19 Aug 2025 00:52:41 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3860210E19C;
+ Tue, 19 Aug 2025 00:52:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3667949743948926246=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_Fix_error_handling_if_PXP_fails_to_start?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 Aug 2025 00:52:40 -0000
+Message-ID: <175556476020.245790.6231931103463379599@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250818234639.2965656-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250818234639.2965656-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +36,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call kobject_put() for the failure path to release the kobject
+--===============3667949743948926246==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: e3d0839aa501 ("drm/xe/tile: Abort driver load for sysfs creation failure")
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_tile_sysfs.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index b804234a6551..99dbf232535a 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -44,16 +44,19 @@ int xe_tile_sysfs_init(struct xe_tile *tile)
- 	kt->tile = tile;
- 
- 	err = kobject_add(&kt->base, &dev->kobj, "tile%d", tile->id);
--	if (err) {
--		kobject_put(&kt->base);
--		return err;
--	}
-+	if (err)
-+		goto err_object;
- 
- 	tile->sysfs = &kt->base;
- 
- 	err = xe_vram_freq_sysfs_init(tile);
- 	if (err)
--		return err;
-+		goto err_object;
-+
- 
- 	return devm_add_action_or_reset(xe->drm.dev, tile_sysfs_fini, tile);
-+
-+err_object:
-+	kobject_put(&kt->base);
-+	return err;
- }
--- 
-2.49.0
+Series: series starting with [1/2] drm/xe: Fix error handling if PXP fails to start
+URL   : https://patchwork.freedesktop.org/series/153095/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3572-c3cf4289245819615518b536cd16ebe6612694f9_BAT -> xe-pw-153095v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153095v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3572-c3cf4289245819615518b536cd16ebe6612694f9 -> xe-pw-153095v1
+
+  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3572-c3cf4289245819615518b536cd16ebe6612694f9: c3cf4289245819615518b536cd16ebe6612694f9
+  xe-pw-153095v1: 153095v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153095v1/index.html
+
+--===============3667949743948926246==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Fix error handling if PXP fails to start</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153095/">https://patchwork.freedesktop.org/series/153095/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153095v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153095v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3572-c3cf4289245819615518b536cd16ebe6612694f9_BAT -&gt; xe-pw-153095v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153095v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3572-c3cf4289245819615518b536cd16ebe6612694f9 -&gt; xe-pw-153095v1</li>
+</ul>
+<p>IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3572-c3cf4289245819615518b536cd16ebe6612694f9: c3cf4289245819615518b536cd16ebe6612694f9<br />
+  xe-pw-153095v1: 153095v1</p>
+
+</body>
+</html>
+
+--===============3667949743948926246==--
