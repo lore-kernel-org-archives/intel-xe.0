@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 064A8CA0EEB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 16:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 394EECA0EEB
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 16:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AADFE10E207;
-	Tue, 19 Aug 2025 16:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F41BF10E207;
+	Tue, 19 Aug 2025 16:35:52 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4CA10E0C5;
- Tue, 19 Aug 2025 16:35:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F35310E0C5;
+ Tue, 19 Aug 2025 16:35:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_cgroups=3A_Add_support_fo?=
- =?utf-8?q?r_pinned_device_memory?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_cgroups=3A_Add_support_for_pin?=
+ =?utf-8?q?ned_device_memory?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 16:35:22 -0000
-Message-ID: <175562132236.248501.15687113419943793198@1538d3639d33>
+Date: Tue, 19 Aug 2025 16:35:51 -0000
+Message-ID: <175562135164.248501.2982832152832410994@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250819114932.597600-5-dev@lankhorst.se>
 In-Reply-To: <20250819114932.597600-5-dev@lankhorst.se>
@@ -44,91 +44,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: cgroups: Add support for pinned device memory
 URL   : https://patchwork.freedesktop.org/series/153134/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-553439844b6500767ce8aef522cfe9fbb7ece541
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 6adbd62f5794fdbd7fcbd26b53705d8e75f5b88b
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Tue Aug 19 13:49:36 2025 +0200
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_unpin_user’:
+../drivers/gpu/drm/xe/xe_bo.c:1709:17: error: implicit declaration of function ‘dmem_cgroup_unpin’; did you mean ‘mem_cgroup_init’? [-Werror=implicit-function-declaration]
+ 1709 |                 dmem_cgroup_unpin(bo->ttm.resource->css, xe_bo_size(bo));
+      |                 ^~~~~~~~~~~~~~~~~
+      |                 mem_cgroup_init
+../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_create_user’:
+../drivers/gpu/drm/xe/xe_bo.c:2154:39: error: implicit declaration of function ‘dmem_cgroup_try_pin’; did you mean ‘mem_cgroup_tryget’? [-Werror=implicit-function-declaration]
+ 2154 |                                 ret = dmem_cgroup_try_pin(bo->ttm.resource->css, size);
+      |                                       ^~~~~~~~~~~~~~~~~~~
+      |                                       mem_cgroup_tryget
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_bo.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:556: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:556: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:556: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:556: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2011: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Add DRM_XE_GEM_CREATE_FLAG_PINNED flag and implementation
-    
-    Add an option to pin memory through the science of cgroup accounting.
-    A bo will be pinned for its entire lifetime, and this allows buffers
-    that are pinned for dma-buf export without requiring the pinning to be
-    done at the dma-buf layer for all devices.
-    
-    For now only implement VRAM pinning. Dave Airlie has a series to implement
-    memcg accounting for the GPU but that is not ready yet.
-    
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 8093b67375779a975c13b9a23c8fcc25cb1e9c83 drm-intel
-d77dfce28451 page_counter: Allow for pinning some amount of memory
--:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#77: FILE: mm/page_counter.c:208:
-+bool page_counter_try_pin(struct page_counter *counter,
-+			     unsigned long nr_pages)
-
--:107: WARNING:DATA_RACE: data_race without comment
-#107: FILE: mm/page_counter.c:238:
-+				data_race(c->failcnt++);
-
-total: 0 errors, 1 warnings, 1 checks, 152 lines checked
-33d0ce53c33f cgroup/dmem: Implement pinning device memory
--:97: WARNING:TYPO_SPELLING: 'succesfully' may be misspelled - perhaps 'successfully'?
-#97: FILE: kernel/cgroup/dmem.c:674:
-+ * If the function succeeds, the memory is succesfully accounted as being pinned.
-                                            ^^^^^^^^^^^
-
--:106: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#106: FILE: kernel/cgroup/dmem.c:683:
-+
-+}
-
-total: 0 errors, 1 warnings, 1 checks, 109 lines checked
-6adbd62f5794 drm/xe: Add DRM_XE_GEM_CREATE_FLAG_PINNED flag and implementation
--:76: WARNING:BRACES: braces {} are not necessary for any arm of this statement
-#76: FILE: drivers/gpu/drm/xe/xe_bo.c:2151:
-+			if (bo->flags & XE_BO_FLAG_SYSTEM) {
-[...]
-+			} else {
-[...]
-
--:77: WARNING:ENOSYS: ENOSYS means 'invalid syscall nr' and nothing else
-#77: FILE: drivers/gpu/drm/xe/xe_bo.c:2152:
-+				ret = -ENOSYS; // TODO
-
--:110: WARNING:LONG_LINE_COMMENT: line length of 105 exceeds 100 columns
-#110: FILE: drivers/gpu/drm/xe/xe_bo.c:2793:
-+		/* Similarly, force fail at creation time for now. We may relax this requirement later */
-
--:111: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#111: FILE: drivers/gpu/drm/xe/xe_bo.c:2794:
-+		if (XE_IOCTL_DBG(xe, pinned_flag && args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING))
-
--:115: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#115: FILE: drivers/gpu/drm/xe/xe_bo.c:2798:
-+		if (XE_IOCTL_DBG(xe, pinned_flag && !IS_ENABLED(CONFIG_CGROUP_DMEM) && bo_flags & XE_BO_FLAG_VRAM_MASK) ||
-
--:116: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#116: FILE: drivers/gpu/drm/xe/xe_bo.c:2799:
-+		    XE_IOCTL_DBG(xe, pinned_flag && !IS_ENABLED(CONFIG_MEMCG) && bo_flags & XE_BO_FLAG_SYSTEM))
-
--:182: WARNING:TYPO_SPELLING: 'withing' may be misspelled - perhaps 'within'?
-#182: FILE: include/uapi/drm/xe_drm.h:776:
-+ *    on allocation, if withing cgroups limits.
-                         ^^^^^^^
-
-total: 0 errors, 7 warnings, 0 checks, 164 lines checked
+[16:35:23] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:35:27] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
