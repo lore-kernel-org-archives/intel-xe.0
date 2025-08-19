@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51CBDCA0EE6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316F5CA0EE9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:44:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1283A10E53B;
-	Tue, 19 Aug 2025 06:39:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="njiMAn1y";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 318AD10E53F
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 06:39:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755585585; x=1787121585;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QOoyFyPSAN/XNfdZeRhJKk+DwlpvYpN6dRFpVsJlsT8=;
- b=njiMAn1yxNfkq8c+2w5a/7k4Ro3+OXSk4TA0s9x/w7SF4pTYk28IcEE/
- wdcp7pVXphm3UhNY1UiROJu0eMzkG1tLjjErwu+T4mqRsiie+lYCP8vaX
- IErxnGZ0aalNaiMAtmkvHuezrTKlaK2iWtffymFm4yq3SuRy+MxdJjrhN
- 4XMA2tS7D7j+O7wn9xNmgCBJdLPlZuKYUsw0qDnUbVs3ZV7YmIonWA3jq
- gtjwqGRaRyDEBKZq51dLpqEHEd48OhmQXfe2t8HeynqcEIm8KCtUe2uss
- qQ4ZeSfZrKkpxLbdV8RT47+sgNuRJBlNtyxQU92NL5lVPx77bVQwhyJ/N Q==;
-X-CSE-ConnectionGUID: aukRp+VUSqul9GH17xrN1g==
-X-CSE-MsgGUID: 5cy6KkbRREGY5jklIduVow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="57966999"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="57966999"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 23:39:42 -0700
-X-CSE-ConnectionGUID: eQMakDKVT3ugyz3RJ7UzOA==
-X-CSE-MsgGUID: 3bfkYbZTQxCKPQAJdkmN5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="172009521"
-Received: from intel-s2600wft.iind.intel.com ([10.223.26.143])
- by orviesa003.jf.intel.com with ESMTP; 18 Aug 2025 23:39:41 -0700
-From: S Sebinraj <s.sebinraj@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: jeevaka.badrappan@intel.com,
-	S Sebinraj <s.sebinraj@intel.com>
-Subject: [PATCH 8/8] drm/xe: Add core GPU frequency monitoring functionality
-Date: Tue, 19 Aug 2025 12:04:17 +0530
-Message-Id: <20250819063417.918666-9-s.sebinraj@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250819063417.918666-1-s.sebinraj@intel.com>
-References: <20250819063417.918666-1-s.sebinraj@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E825E10E125;
+	Tue, 19 Aug 2025 06:44:04 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF50310E125;
+ Tue, 19 Aug 2025 06:44:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3989538155668608885=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/tuning=3A_Apply_=22D?=
+ =?utf-8?q?isable_NULL_query_for_Anyhit_Shader=22_to_Xe2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 19 Aug 2025 06:44:03 -0000
+Message-ID: <175558584377.246498.15545881017346020339@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250819061151.1272622-1-nitin.r.gote@intel.com>
+In-Reply-To: <20250819061151.1272622-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,287 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement the core GPU frequency monitoring and tracing logic:
+--===============3989538155668608885==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-- Workqueue-based periodic frequency sampling
-- Per-GT monitoring control (start/stop)
-- Power management integration with runtime PM and forcewake
-- Device hotplug protection using drm_dev_enter/exit
-- Automatic cleanup using DRM managed resources
-- Complete initialization with per-GT work scheduling
+== Series Details ==
 
-Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
----
- drivers/gpu/drm/xe/xe_gpufreqtracer.c | 230 +++++++++++++++++++++++++-
- 1 file changed, 227 insertions(+), 3 deletions(-)
+Series: drm/xe/tuning: Apply "Disable NULL query for Anyhit Shader" to Xe2
+URL   : https://patchwork.freedesktop.org/series/153108/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gpufreqtracer.c b/drivers/gpu/drm/xe/xe_gpufreqtracer.c
-index 3e4c1375aebd..44105e30fcec 100644
---- a/drivers/gpu/drm/xe/xe_gpufreqtracer.c
-+++ b/drivers/gpu/drm/xe/xe_gpufreqtracer.c
-@@ -33,6 +33,11 @@
- #define CREATE_TRACE_POINTS
- #include "xe_gpufreqtracer_trace.h"
- 
-+/* forward declarations */
-+static int xe_gpufreqtracer_start_monitoring(struct xe_gt *gt);
-+static void xe_gpufreqtracer_sample_work(struct work_struct *work);
-+static void xe_gpufreqtracer_cleanup_action(struct drm_device *drm, void *ptr);
-+
- /**
-  * struct xe_gpufreqtracer_gt_data - Per-GT frequency monitoring data
-  * @gt: Reference to the GT
-@@ -57,7 +62,6 @@ struct xe_gpufreqtracer_data {
- 	struct xe_gpufreqtracer_gt_data *gt_data;
- };
- 
--
- /**
-  * xe_gpufreqtracer_validate_params - Validate GPU frequency monitoring parameters
-  *
-@@ -89,6 +93,9 @@ static void xe_gpufreqtracer_validate_params(void)
- int xe_gpufreqtracer_init(struct xe_device *xe)
- {
- 	struct xe_gpufreqtracer_data *tracer_data;
-+	struct xe_gt *gt;
-+	u8 tile_id;
-+	int ret = 0;
- 
- 	/* Validate module parameters first */
- 	xe_gpufreqtracer_validate_params();
-@@ -103,10 +110,227 @@ int xe_gpufreqtracer_init(struct xe_device *xe)
- 	tracer_data->gt_data = drmm_kcalloc(&xe->drm, xe->info.gt_count,
- 				       sizeof(*tracer_data->gt_data),
- 				       GFP_KERNEL);
--	if (!tracer_data->gt_data)
--		return -ENOMEM;
-+	if (!tracer_data->gt_data) {
-+		ret = -ENOMEM;
-+		goto err_free_tracer;
-+	}
-+
-+	/* Initialize per-GT data */
-+	for_each_gt(gt, xe, tile_id) {
-+		struct xe_gpufreqtracer_gt_data *gt_data =
-+			&tracer_data->gt_data[gt->info.id];
-+
-+		drm_dbg(&xe->drm, "initializing GT%u (tile %u)", gt->info.id, tile_id);
-+
-+		gt_data->gt = gt;
-+		atomic_set(&gt_data->monitoring_active, 0);
-+		gt_data->last_frequency = 0;
-+
-+		INIT_DELAYED_WORK(&gt_data->delayed_work, xe_gpufreqtracer_sample_work);
-+
-+		drm_dbg(&xe->drm, "GT%u initialized with global interval=%u ms",
-+			 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
-+	}
- 
- 	xe->gpufreqtracer_data = tracer_data;
- 
-+	/* Start periodic monitoring on all GTs using global module parameter */
-+	for_each_gt(gt, xe, tile_id) {
-+		ret = xe_gpufreqtracer_start_monitoring(gt);
-+		if (ret) {
-+			drm_err(&xe->drm, "xe_gpufreqtracer: failed to start monitoring for GT%u, err=%d\n",
-+				gt->info.id, ret);
-+		}
-+	}
-+
-+	/* Register cleanup action for proper work cancellation */
-+	ret = drmm_add_action(&xe->drm, xe_gpufreqtracer_cleanup_action, xe);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
-+
-+err_free_tracer:
-+	drm_err(&xe->drm, "initialization failed, freeing tracer data");
-+	return ret;
-+}
-+
-+/**
-+ * xe_gpufreqtracer_sample_work - Worker function to sample GPU frequency.
-+ * @work: Pointer to the delayed_work_struct representing the scheduled work.
-+ *
-+ * This function is executed in a workqueue context to periodically sample
-+ * the GPU frequency and perform any necessary tracing or logging operations.
-+ * It reschedules itself for the next sampling interval.
-+ *
-+ * The function includes proper power management and hotplug protection:
-+ * - Uses drm_dev_enter/exit to protect against device removal
-+ * - Uses xe_pm_runtime_get_if_active to avoid waking suspended devices
-+ * - Uses xe_force_wake_get to ensure GT domain is powered for MMIO reads
-+ */
-+static void xe_gpufreqtracer_sample_work(struct work_struct *work)
-+{
-+	struct xe_gpufreqtracer_gt_data *gt_data =
-+		container_of(work, struct xe_gpufreqtracer_gt_data, delayed_work.work);
-+	struct xe_gt *gt = gt_data->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_guc_pc *pc = &gt->uc.guc.pc;
-+	u32 current_freq, last_freq;
-+	unsigned int fw_ref;
-+	int drm_idx;
-+
-+	if (!atomic_read(&gt_data->monitoring_active)) {
-+		drm_warn(&xe->drm, "monitoring not active for GT%u, exiting",
-+			 gt->info.id);
-+		return;
-+	}
-+
-+	/* Protect against device hotplug/removal */
-+	if (!drm_dev_enter(&xe->drm, &drm_idx)) {
-+		drm_err(&xe->drm, "device unplugged, stopping monitoring for GT%u",
-+			gt->info.id);
-+		atomic_set(&gt_data->monitoring_active, 0);
-+		return;
-+	}
-+
-+	/* Get runtime PM reference only if device is already active - don't wake it */
-+	if (!xe_pm_runtime_get_if_active(xe)) {
-+		drm_warn(&xe->drm, "device not active, skipping frequency read for GT%u",
-+			gt->info.id);
-+		goto out_drm;
-+	}
-+
-+	/* Get forcewake to ensure GT domain is powered */
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref) {
-+		drm_warn(&xe->drm, "failed to get forcewake for GT%u, skipping sample",
-+			 gt->info.id);
-+		goto out_pm;
-+	}
-+
-+	current_freq = xe_guc_pc_get_act_freq(pc) * 1000; /* Convert MHz to KHz */
-+	last_freq = gt_data->last_frequency;
-+
-+	/* Only report if frequency has changed or this is the first sample */
-+	if (current_freq != last_freq) {
-+		drm_dbg(&xe->drm, "GT%u frequency changed, tracing %u KHz",
-+			gt->info.id, current_freq);
-+		trace_gpu_frequency(current_freq, gt->info.id);
-+		gt_data->last_frequency = current_freq;
-+	}
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+
-+out_pm:
-+	xe_pm_runtime_put(xe);
-+out_drm:
-+	drm_dev_exit(drm_idx);
-+
-+	/* Reschedule for the next sampling interval */
-+	schedule_delayed_work(&gt_data->delayed_work,
-+			      msecs_to_jiffies(xe_modparam.gpufreq_monitoring_interval_ms));
-+}
-+
-+/**
-+ * xe_gpufreqtracer_start_monitoring - Start periodic frequency monitoring
-+ * @gt: The GT instance
-+ *
-+ * Starts periodic sampling of GPU frequency for the specified GT using the global
-+ * monitoring interval from module parameters.
-+ *
-+ * Return: 0 on success, negative error code on failure
-+ */
-+static int xe_gpufreqtracer_start_monitoring(struct xe_gt *gt)
-+{
-+	struct xe_gpufreqtracer_data *tracer_data = gt_to_xe(gt)->gpufreqtracer_data;
-+	struct xe_gpufreqtracer_gt_data *gt_data;
-+
-+	if (!tracer_data) {
-+		drm_warn(&gt_to_xe(gt)->drm, "no tracer data for GT%u, not supported", gt->info.id);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (gt->info.id >= gt_to_xe(gt)->info.gt_count) {
-+		drm_err(&gt_to_xe(gt)->drm, "invalid GT ID %u, max supported is %u",
-+			gt->info.id, gt_to_xe(gt)->info.gt_count - 1);
-+		return -EINVAL;
-+	}
-+
-+	gt_data = &tracer_data->gt_data[gt->info.id];
-+
-+	if (atomic_read(&gt_data->monitoring_active)) {
-+		drm_warn(&gt_to_xe(gt)->drm, "monitoring already active for GT%u", gt->info.id);
-+		return -EALREADY;
-+	}
-+
-+	atomic_set(&gt_data->monitoring_active, 1);
-+	gt_data->last_frequency = 0;
-+
-+	/* Start the delayed work using global interval */
-+	schedule_delayed_work(&gt_data->delayed_work,
-+			      msecs_to_jiffies(xe_modparam.gpufreq_monitoring_interval_ms));
-+
-+	drm_dbg(&gt_to_xe(gt)->drm, "monitoring started for GT%u with interval %u ms",
-+		 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_gpufreqtracer_stop_monitoring - Stop periodic frequency monitoring
-+ * @gt: The GT instance
-+ *
-+ * Stops periodic sampling of GPU frequency for the specified GT.
-+ */
-+static void xe_gpufreqtracer_stop_monitoring(struct xe_gt *gt)
-+{
-+	struct xe_gpufreqtracer_data *tracer_data = gt_to_xe(gt)->gpufreqtracer_data;
-+	struct xe_gpufreqtracer_gt_data *gt_data;
-+
-+	if (!tracer_data || gt->info.id >= gt_to_xe(gt)->info.gt_count) {
-+		drm_err(&gt_to_xe(gt)->drm, "invalid tracer data or GT ID %u for stop request",
-+			gt->info.id);
-+		return;
-+	}
-+
-+	gt_data = &tracer_data->gt_data[gt->info.id];
-+
-+	if (!atomic_read(&gt_data->monitoring_active)) {
-+		drm_warn(&gt_to_xe(gt)->drm, "monitoring not active for GT%u, nothing to stop",
-+			 gt->info.id);
-+		return;
-+	}
-+
-+	atomic_set(&gt_data->monitoring_active, 0);
-+
-+	cancel_delayed_work_sync(&gt_data->delayed_work);
-+}
-+
-+/**
-+ * xe_gpufreqtracer_cleanup_action - DRM managed cleanup action
-+ * @drm: DRM device
-+ * @ptr: Pointer to xe_device
-+ *
-+ * Cleanup function called automatically by DRM managed resource system.
-+ */
-+static void xe_gpufreqtracer_cleanup_action(struct drm_device *drm, void *ptr)
-+{
-+	struct xe_device *xe = ptr;
-+	struct xe_gpufreqtracer_data *tracer_data = xe->gpufreqtracer_data;
-+	struct xe_gt *gt;
-+	u8 tile_id;
-+
-+	if (!tracer_data) {
-+		drm_warn(drm, "no tracer data found, nothing to cleanup");
-+		return;
-+	}
-+
-+	/* Stop all monitoring */
-+	for_each_gt(gt, xe, tile_id) {
-+		drm_dbg(drm, "stopping monitoring for GT%u", gt->info.id);
-+		xe_gpufreqtracer_stop_monitoring(gt);
-+	}
-+
-+	/* Memory is automatically freed by drmm - just clear the pointer */
-+	xe->gpufreqtracer_data = NULL;
- }
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-3573-b10555761d43fc70ae7697578e50549176859dca_BAT -> xe-pw-153108v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153108v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3573-b10555761d43fc70ae7697578e50549176859dca -> xe-pw-153108v1
+
+  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3573-b10555761d43fc70ae7697578e50549176859dca: b10555761d43fc70ae7697578e50549176859dca
+  xe-pw-153108v1: 153108v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html
+
+--===============3989538155668608885==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/tuning: Apply &quot;Disable NULL query for Anyhit Shader&quot; to Xe2</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153108/">https://patchwork.freedesktop.org/series/153108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3573-b10555761d43fc70ae7697578e50549176859dca_BAT -&gt; xe-pw-153108v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153108v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3573-b10555761d43fc70ae7697578e50549176859dca -&gt; xe-pw-153108v1</li>
+</ul>
+<p>IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3573-b10555761d43fc70ae7697578e50549176859dca: b10555761d43fc70ae7697578e50549176859dca<br />
+  xe-pw-153108v1: 153108v1</p>
+
+</body>
+</html>
+
+--===============3989538155668608885==--
