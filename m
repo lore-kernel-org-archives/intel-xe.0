@@ -4,47 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 804D6CA0EED
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 08:55:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83544CA0EED
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 09:04:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48DC010E552;
-	Tue, 19 Aug 2025 08:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3326810E55F;
+	Tue, 19 Aug 2025 09:03:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Hm107o7C";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aEgxQ2C6";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8F0910E568
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 08:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=8KYMRFWP3vVZkbF1S2tFKsaGM6iZPbMrNHf7rhSki2g=; b=Hm107o7CEi3kKudWU4OCjAfj54
- 42bCET1s38DVQtGiR8818l1+b0WsP6pz38MWSHNWKC5XHDaG1NATqvdsRumCllt0KUvOev/YFHu9o
- KnTiRn+Tnr1ov4AS+oUBz5y1c8em8OspBubgbpIvxdyq5ZNCmntrAQO/cWJTJ1k/ZHr71aRH8Z6iX
- myMDex5ImDcq9jGuJ0pfDsjH5iL5r/SIeAFWnm1A8M/yeCC07CSQFBlOkRIHQJ6g4bUjLjSAPl7Ed
- mg81P3ZWQq6IzA8wV4cyAoJBD4xH/+1gNvtrbYyqQ8ztji0cOAQ3wVV4dnet4YYO8GpAaiZ7EXMMY
- CmK+pu5A==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoI8C-00GD86-4h
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 10:55:48 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 13/13] drm/i915/display: Expose AuxCCS frame buffer modifiers for
- Xe
-Date: Tue, 19 Aug 2025 09:55:34 +0100
-Message-ID: <20250819085537.97902-14-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
-References: <20250819085537.97902-1-tvrtko.ursulin@igalia.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF21E10E344;
+ Tue, 19 Aug 2025 09:03:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 1891B5C5BFD;
+ Tue, 19 Aug 2025 09:03:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 314B1C113D0;
+ Tue, 19 Aug 2025 09:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1755594235;
+ bh=U81+p77c0JQOTqk7IOzyd3hR2gXqfCNzh6rYyurZ5Eg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=aEgxQ2C69qgc/E3qFBtTnEN5YhZhnpiBwiTtNRk3f7rG92qb2o4dGHM/zWPGz5sib
+ qjOaifilW0lTtkcatgbMzeYCdiM3ORf3w62gUV7u/ou37VxECoP+mZ2M8Ww1BG5H+v
+ VLwGwUzE6Xn1qp4MFbo9BhBzu23V94p8GqHdMo0BfieN/4lrU8zsDoOh/lii49ndxg
+ t3h7P5PnNiew4XBQXz2qbKD6Ibq4ASeT0tdPcx31QNZBsQaKCBYfqRk2OkWO/Gv/Pk
+ j6e4Jy6LP/lG2SMUcJK5L/2Nqmoi9sLBSiqG/nUXu8F7Ai1wrAVBHbIYRpfSLFJuUP
+ L9W5Qw7/hz5eg==
+Date: Tue, 19 Aug 2025 11:03:52 +0200
+From: "mripard@kernel.org" <mripard@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: "liviu.dudau@arm.com" <liviu.dudau@arm.com>, 
+ "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nautiyal,
+ Ankit K" <ankit.k.nautiyal@intel.com>, 
+ "Murthy, Arun R" <arun.r.murthy@intel.com>, "Shankar,
+ Uma" <uma.shankar@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>, 
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>, 
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, 
+ "simona@ffwll.ch" <simona@ffwll.ch>, 
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>, 
+ "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, 
+ "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
+ "sean@poorly.run" <sean@poorly.run>, 
+ "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
+ "mcanal@igalia.com" <mcanal@igalia.com>, 
+ "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>, 
+ "tomi.valkeinen+renesas@ideasonboard.com"
+ <tomi.valkeinen+renesas@ideasonboard.com>, 
+ "kieran.bingham+renesas@ideasonboard.com"
+ <kieran.bingham+renesas@ideasonboard.com>,
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <wr76vyag2osox2xf7ducnkiaanzk2k5ehd2ahnoyqdm5qiywlk@penf4v5bvg5z>
+References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+ <20250811092707.3986802-2-suraj.kandpal@intel.com>
+ <20250811094429.GE21313@pendragon.ideasonboard.com>
+ <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
+ <20250811111546.GA30760@pendragon.ideasonboard.com>
+ <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
+ <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
+ <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="skbefrsfocmocpeu"
+Content-Disposition: inline
+In-Reply-To: <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +99,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have fixed the DPT handling we can undo the nerf which was
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-built for Xe").
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+--skbefrsfocmocpeu
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+MIME-Version: 1.0
 
-	[PLANE:32:plane 1A]: type=PRI
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+Hi,
 
-Display working fine - no artefacts, no DMAR/PIPE faults.
+On Sat, Aug 16, 2025 at 01:20:53AM +0300, Dmitry Baryshkov wrote:
+> On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wrote:
+> > Hi,
+> >=20
+> > On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
+> > > > > > };
+> > > > >
+> > > > > I still don't like that. This really doesn't belong here. If anyt=
+hing,
+> > > > > the drm_connector for writeback belongs to drm_crtc.
+> > > >=20
+> > > > Why? We already have generic HDMI field inside drm_connector. I am =
+really
+> > > > hoping to be able to land DP parts next to it. In theory we can hav=
+e a DVI-
+> > > > specific entry there (e.g. with the subconnector type).
+> > > > The idea is not to limit how the drivers subclass those structures.
+> > > >=20
+> > > > I don't see a good case why WB should deviate from that design.
+> > > >=20
+> > > > > If the issue is that some drivers need a custom drm_connector
+> > > > > subclass, then I'd rather turn the connector field of
+> > > > > drm_writeback_connector into a pointer.
+> > > >=20
+> > > > Having a pointer requires additional ops in order to get drm_connec=
+tor from
+> > > > WB code and vice versa. Having drm_connector_wb inside drm_connector
+> > > > saves us from those ops (which don't manifest for any other kind of=
+ structure).
+> > > > Nor will it take any more space since union will reuse space alread=
+y taken up by
+> > > > HDMI part.
+> > > >=20
+> > > > >
+> > >=20
+> > > Seems like this thread has died. We need to get a conclusion on the d=
+esign.
+> > > Laurent do you have any issue with the design given Dmitry's explanat=
+ion as to why this
+> > > Design is good for drm_writeback_connector.
+> >=20
+> > I'm with Laurent here. The idea for drm_connector (and a lot of drm str=
+uctures) are to
+> > be used as base "classes" for extended structures. I don't know why HDM=
+I connector ended
+> > up inside drm_connector as not all connectors have HDMI functionality, =
+but that's a cleanup
+> > for another day.
+>=20
+> Maybe Maxime can better comment on it, but I think it was made exactly
+> for the purpose of not limiting the driver's design. For example, a lot
+> of drivers subclass drm_connector via drm_bridge_connector. If
+> struct drm_connector_hdmi was a wrapper around struct drm_connector,
+> then it would have been impossible to use HDMI helpers for bridge
+> drivers, while current design freely allows any driver to utilize
+> corresponding library code.
 
-v2:
- * Adjust patch title. (Rodrigo)
+That's exactly why we ended up like this. With that design, we wouldn't
+have been able to "inherit" two connector "classes": bridge_connector is
+one, intel_connector another one.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
- 1 file changed, 6 deletions(-)
+See here for the rationale:
+https://lore.kernel.org/dri-devel/ZOTDKHxn2bOg+Xmg@phenom.ffwll.local/
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 950dc79dbdd4..a26a42464791 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2928,12 +2928,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
- 
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
--
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
- 
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
--- 
-2.48.0
+I don't think the "but we'll bloat drm_connector" makes sense either.
+There's already a *lot* of things that aren't useful to every connector
+(fwnode, display_info, edid in general, scaling, vrr, etc.)
 
+And it's not like we allocate more than a handful of them during a
+system's life.
+
+Maxime
+
+--skbefrsfocmocpeu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKQ99AAKCRAnX84Zoj2+
+dss/AYCDsxLbReOhvxm2/ItnX1NwLBeplh9X5QtqlMFGtACSlJY1IY0m/StI+3f5
+mo8yNFoBgN6HXqzLYYWhMVbxXRVEQKIXD0+CH717KpLuEe2LfvOxFR4OrVqtC0CA
+RG5v2F7KYw==
+=NIHR
+-----END PGP SIGNATURE-----
+
+--skbefrsfocmocpeu--
