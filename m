@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53B6BCA0EED
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:38:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695C5CA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 14:38:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AD610E610;
-	Tue, 19 Aug 2025 14:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C8710E614;
+	Tue, 19 Aug 2025 14:38:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="BQfPIylJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jAQirCpB";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B25F110E2D3
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 14:38:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 982E110E1BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 14:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=EePFk3870OEtTdLeW4qiJs73A+e84PFzvKov8fQBpL8=; b=BQfPIylJL8NoIBy7QKoiYkV2k4
- djQvi7eIra/qTb68y7UhQ5pkLZqPWOR7ReqqJ3m6PMYSvM/F7E0JYPfcCiiPGXsr5Hx57ap58RuB4
- pnKG0wcfzxIuDtjFmsQ7knT5LfZLzjNcZ6T8hGe+ZQukwJm5egNLAe6fItKajjxibDjZvkvxvAW/L
- ++WMlXDs64NUejpw6qQ/XH8pyecZko7WSQr8estpJDh+27kLQFBvTB2/Wr5FdcbPIfwlsqIw5D/vN
- Uty+aPqY9/VHeGt0Mw9B89C4JsIEpTmt6SPn58NXlV/9jgXeq8vy1kyhQymE+JgbUXv6iUOnsi35w
- nkmGjrcg==;
+ bh=Kxij2K2IcP/TRsfVJI4yse0E55mXpmB0VXI06AUsyWc=; b=jAQirCpBOKNcZJYS/9ba6QxWIG
+ 9+/wk1eUtVwcArErzM0oqvA37HK4o8hMwuaSzq7jptk/mp5KqqtkuRc9Pw9ISZ+krJ1WHfCUK1iyE
+ 84goJPgXWeuXZcODCR+FVr60H9vMhFkoDfdlHK69t/OcYMFNl8Rx99B+P4XRmRCaokPZ1cWMt4I+G
+ jUXJd4ao9LNeZaAuiPJz9u3Mzlrx2qOxt+38K3dkcrDX21EUfolzlLRbEcWaajqTyXyGx4DtBndpQ
+ 3Jk9dIHl69HZHOphKA4AQmzow0Ke+8230734gvrS+uvvWMJ8WjeFYkFpwru8QaSX8Tr61sioGyymy
+ vu9KqNmw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoNTj-00GLBz-00
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 16:38:23 +0200
+ id 1uoNTl-00GLCG-Th
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Aug 2025 16:38:25 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 01/13] drm/xe/xelpg: Flush CCS when flushing caches
-Date: Tue, 19 Aug 2025 15:38:08 +0100
-Message-ID: <20250819143821.3158-2-tvrtko.ursulin@igalia.com>
+Subject: [CI 05/13] drm/xe/xelp: Wait for AuxCCS invalidation to complete
+Date: Tue, 19 Aug 2025 15:38:12 +0100
+Message-ID: <20250819143821.3158-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250819143821.3158-1-tvrtko.ursulin@igalia.com>
 References: <20250819143821.3158-1-tvrtko.ursulin@igalia.com>
@@ -57,59 +57,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
-render caches on gfx ip 12.70+.
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 8cfcd3360896..78c0e87dbd37 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -43,6 +43,7 @@
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..49d8ffd026d5 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -81,4 +81,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
  
- #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
-+#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 5f15360d14bf..761740d7769f 100644
+index 752dea0a9234..78d8120c4a0e 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- {
- 	struct xe_gt *gt = job->q->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
- 	u32 flags;
+@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
  
- 	if (XE_GT_WA(gt, 14016712196))
- 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
- 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
- 
-+	if (GRAPHICS_VERx100(xe) >= 1270)
-+		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
-+
- 	flags = (PIPE_CONTROL_CS_STALL |
- 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
- 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
--	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-+	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+ 	return i;
  }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
  
- static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
