@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 064EBCA0EED
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8A88CA0EF8
 	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 07:04:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9373B10E54C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795DB10E547;
 	Tue, 19 Aug 2025 07:04:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNWB8D7i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJPUb3/L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACA2810E547;
- Tue, 19 Aug 2025 07:04:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB17410E543;
+ Tue, 19 Aug 2025 07:04:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755587059; x=1787123059;
+ t=1755587057; x=1787123057;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IolXGu4ndMfVxmpkPik6iqviJUiYiSu6RJEHHNh0qF8=;
- b=YNWB8D7iPuabBzWkMeFma5GDNMwDWw5djS1rkqku9f9G8qj+lOGSAZs6
- WAiP2enCaqszSJLHyKCV1qEVBcahlzeinKjZ/bskDhKHL1DDbNnF2Os6Y
- EZVWl8K4itzIiSGeasR21KbcIJOpy9Utdhb3MAluIvUPjPNQ1JYitmyD2
- 0xypTZjRBQFXh1LXWAC0ll4SUiNNBRlQqJ3H7KwzO2as17/4KPBer7Qia
- CraOtLB4gcMxJQla+zJxswjqYZU+OpjovTMNDGJ/wZ6vdIvqRd/yYsc52
- k0OF6tiiWsKjLpURiP3ARt14hLS/sPS0/PMZhE+FNQNZZTnTPoidIsj0c w==;
-X-CSE-ConnectionGUID: ilGro9FuR/eYRiwsay9GUA==
-X-CSE-MsgGUID: Vs3ReDfVTg+i3UIZ55YzUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392394"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392394"
+ bh=knhcCynXrL2U3chwauB2RRS0NMEqgjB7N8fghSlAuIM=;
+ b=kJPUb3/L90lYZOBOlj8OVdhCvEvoAVygrRb6W4VucCE3Jkj1/EQxxtLB
+ /vycOCCQomRhTIVkthKAnh59f9MzQi4Dt8mdSRhZoZ4F56/icbZ8Bn34g
+ O6ffWUo+Gw2IseoPDNthh27RJNq3iHRbqY84gVjlvmSO4Lzqtk2D1Stav
+ eLL8LdZZBXnF7xxl62jdGKL/OiqIwITTW4V44bN16//btHG3g4qkvDzIv
+ dcx/jXr8dDzQC5UgRQ4ojEslykqxLXehmCQGeCqu3kxBN+/FCequYQMQM
+ m1wNcYtmlhV7NwoK/7ECottPA79JK0nhmegWCjf+evga+UwKTGC+Xn00w g==;
+X-CSE-ConnectionGUID: MXhziKVZTvmKbgzc0TeOmg==
+X-CSE-MsgGUID: 1CA0eRWwR/Gq7zyuPJfRKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392360"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392360"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:19 -0700
-X-CSE-ConnectionGUID: rzNNvyG0TVGQcbx+RGqPhg==
-X-CSE-MsgGUID: Bv4EHvCQSlu16+2gA4Y2ng==
+ 19 Aug 2025 00:04:16 -0700
+X-CSE-ConnectionGUID: PT02Kl1xQ4GShECL/ZowXw==
+X-CSE-MsgGUID: +SzAVOu2T2y50fN8v346bQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008322"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008308"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.65])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:18 -0700
+ 19 Aug 2025 00:04:15 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v7 6/6] drm/i915/psr: Use TRANS_PUSH to trigger frame change
- event
-Date: Tue, 19 Aug 2025 10:03:53 +0300
-Message-ID: <20250819070353.3062341-7-jouni.hogander@intel.com>
+Subject: [PATCH v7 4/6] drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for
+ LunarLake and onwards
+Date: Tue, 19 Aug 2025 10:03:51 +0300
+Message-ID: <20250819070353.3062341-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250819070353.3062341-1-jouni.hogander@intel.com>
 References: <20250819070353.3062341-1-jouni.hogander@intel.com>
@@ -71,31 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now we have everything in place for triggering PSR "frame change" event
-using TRANS_PUSH: use TRANS_PUSH for LunarLake and onwards.
-
-v3: use HAS_PSR_FRAME_CHANGE macro
-v2: use AND instead of OR in intel_psr_use_trans_push
+On LunarLake we are using TRANS_PUSH mechanism to trigger "Frame Change"
+event. This way we have more control on when PSR HW is woken up. I.e. not
+every display register write is triggering sending update. This allows us
+setting DSB_SKIP_WAITS_EN chicken bit as well.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 6481e3f6eca3..09d46010d13c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4263,6 +4263,7 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 
- bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 53d8ae3a70e9..3266dd52e6d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -16,6 +16,7 @@
+ #include "intel_dsb.h"
+ #include "intel_dsb_buffer.h"
+ #include "intel_dsb_regs.h"
++#include "intel_psr.h"
+ #include "intel_vblank.h"
+ #include "intel_vrr.h"
+ #include "skl_watermark.h"
+@@ -183,18 +184,24 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
+  * definitely do not want to skip vblank wait. We also have concern what comes
+  * to skipping vblank evasion. I.e. arming registers are latched before we have
+  * managed writing them. Due to these reasons we are not setting
+- * DSB_SKIP_WAITS_EN.
++ * DSB_SKIP_WAITS_EN except when using TRANS_PUSH mechanism to trigger
++ * "frame change" event.
+  */
+ static u32 dsb_chicken(struct intel_atomic_state *state,
+ 		       struct intel_crtc *crtc)
  {
--	/* TODO: Enable using trans push when everything is in place */
--	return false;
-+	struct intel_display *display = to_intel_display(crtc_state);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
++		DSB_SKIP_WAITS_EN : 0;
 +
-+	return HAS_PSR_FRAME_CHANGE(display) && crtc_state->has_psr;
+ 	if (pre_commit_is_vrr_active(state, crtc))
+-		return DSB_CTRL_WAIT_SAFE_WINDOW |
++		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
+ 			DSB_CTRL_NO_WAIT_VBLANK |
+ 			DSB_INST_WAIT_SAFE_WINDOW |
+ 			DSB_INST_NO_WAIT_VBLANK;
+-	else
+-		return 0;
++
++	return chicken;
  }
+ 
+ static bool assert_dsb_has_room(struct intel_dsb *dsb)
 -- 
 2.43.0
 
