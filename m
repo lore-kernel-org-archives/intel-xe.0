@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 394EECA0EEB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 16:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3091CA0EF7
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 16:41:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F41BF10E207;
-	Tue, 19 Aug 2025 16:35:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9657D10E0C5;
+	Tue, 19 Aug 2025 16:41:09 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F35310E0C5;
- Tue, 19 Aug 2025 16:35:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1E9110E0C5;
+ Tue, 19 Aug 2025 16:41:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_cgroups=3A_Add_support_for_pin?=
- =?utf-8?q?ned_device_memory?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915=3A_vlv_clock_cle?=
+ =?utf-8?q?anups_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 16:35:51 -0000
-Message-ID: <175562135164.248501.2982832152832410994@1538d3639d33>
+Date: Tue, 19 Aug 2025 16:41:08 -0000
+Message-ID: <175562166878.248501.2185924908511761489@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250819114932.597600-5-dev@lankhorst.se>
-In-Reply-To: <20250819114932.597600-5-dev@lankhorst.se>
+References: <cover.1755607980.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1755607980.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,49 +42,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: cgroups: Add support for pinned device memory
-URL   : https://patchwork.freedesktop.org/series/153134/
-State : failure
+Series: drm/i915: vlv clock cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/152518/
+State : warning
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_unpin_user’:
-../drivers/gpu/drm/xe/xe_bo.c:1709:17: error: implicit declaration of function ‘dmem_cgroup_unpin’; did you mean ‘mem_cgroup_init’? [-Werror=implicit-function-declaration]
- 1709 |                 dmem_cgroup_unpin(bo->ttm.resource->css, xe_bo_size(bo));
-      |                 ^~~~~~~~~~~~~~~~~
-      |                 mem_cgroup_init
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_create_user’:
-../drivers/gpu/drm/xe/xe_bo.c:2154:39: error: implicit declaration of function ‘dmem_cgroup_try_pin’; did you mean ‘mem_cgroup_tryget’? [-Werror=implicit-function-declaration]
- 2154 |                                 ret = dmem_cgroup_try_pin(bo->ttm.resource->css, size);
-      |                                       ^~~~~~~~~~~~~~~~~~~
-      |                                       mem_cgroup_tryget
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:287: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:556: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:556: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:556: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:556: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2011: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit caa78e967a904e50ce72eeaf950bb11f60476103
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Tue Aug 19 15:53:42 2025 +0300
 
-[16:35:23] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[16:35:27] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+    drm/i915: split out vlv_clock.[ch]
+    
+    Move the VLV clock related functions to their own file.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 8093b67375779a975c13b9a23c8fcc25cb1e9c83 drm-intel
+9b03bbc04ece drm/i915: add vlv_clock_get_gpll()
+bdc4b67db526 drm/i915: add vlv_clock_get_czclk()
+a5e7e5f3a5e9 drm/i915: add vlv_clock_get_hrawclk()
+064931bd2678 drm/i915: make vlv_get_cck_clock_hpll() static
+829854818025 drm/i915: add vlv_clock_get_cdclk()
+f84a69668506 drm/i915: make vlv_get_cck_clock() static
+fdd3175ab6b0 drm/i915: rename vlv_get_hpll_vco() to vlv_clock_get_hpll_vco()
+66598e8eb487 drm/i915: cache the results in vlv_clock_get_hpll_vco() and use it more
+249a8a5cb3c0 drm/i915: remove intel_update_czclk() as unnecessary
+05e40c81cc32 drm/i915: log HPLL frequency similar to CZCLK
+f0953f0b1a3d drm/i915: move hpll and czclk caching under display
+caa78e967a90 drm/i915: split out vlv_clock.[ch]
+-:154: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#154: 
+new file mode 100644
+
+-:273: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#273: FILE: drivers/gpu/drm/i915/display/vlv_clock.h:20:
++}
++static inline int vlv_clock_get_hrawclk(struct drm_device *drm)
+
+-:277: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#277: FILE: drivers/gpu/drm/i915/display/vlv_clock.h:24:
++}
++static inline int vlv_clock_get_czclk(struct drm_device *drm)
+
+-:281: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#281: FILE: drivers/gpu/drm/i915/display/vlv_clock.h:28:
++}
++static inline int vlv_clock_get_cdclk(struct drm_device *drm)
+
+-:285: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#285: FILE: drivers/gpu/drm/i915/display/vlv_clock.h:32:
++}
++static inline int vlv_clock_get_gpll(struct drm_device *drm)
+
+total: 0 errors, 1 warnings, 4 checks, 268 lines checked
 
 
