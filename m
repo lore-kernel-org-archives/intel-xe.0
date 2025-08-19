@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316F5CA0EE9
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:44:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9CECA0EE6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Aug 2025 06:49:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E825E10E125;
-	Tue, 19 Aug 2025 06:44:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 726C110E537;
+	Tue, 19 Aug 2025 06:49:08 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF50310E125;
- Tue, 19 Aug 2025 06:44:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3989538155668608885=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1711610E537;
+ Tue, 19 Aug 2025 06:49:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/tuning=3A_Apply_=22D?=
- =?utf-8?q?isable_NULL_query_for_Anyhit_Shader=22_to_Xe2?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_GPU_frequency_t?=
+ =?utf-8?q?racing_support_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+To: "S Sebinraj" <s.sebinraj@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 06:44:03 -0000
-Message-ID: <175558584377.246498.15545881017346020339@1538d3639d33>
+Date: Tue, 19 Aug 2025 06:49:08 -0000
+Message-ID: <175558614808.246498.7846833186557649044@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250819061151.1272622-1-nitin.r.gote@intel.com>
-In-Reply-To: <20250819061151.1272622-1-nitin.r.gote@intel.com>
+References: <20250819063417.918666-1-s.sebinraj@intel.com>
+In-Reply-To: <20250819063417.918666-1-s.sebinraj@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,140 +40,101 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3989538155668608885==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/tuning: Apply "Disable NULL query for Anyhit Shader" to Xe2
-URL   : https://patchwork.freedesktop.org/series/153108/
-State : success
+Series: drm/xe: GPU frequency tracing support (rev3)
+URL   : https://patchwork.freedesktop.org/series/152701/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3573-b10555761d43fc70ae7697578e50549176859dca_BAT -> xe-pw-153108v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c9c08e5ca55fa195cacac4acfee11f49cfd1639a
+Author: S Sebinraj <s.sebinraj@intel.com>
+Date:   Tue Aug 19 12:04:17 2025 +0530
 
-Summary
--------
+    drm/xe: Add core GPU frequency monitoring functionality
+    
+    Implement the core GPU frequency monitoring and tracing logic:
+    
+    - Workqueue-based periodic frequency sampling
+    - Per-GT monitoring control (start/stop)
+    - Power management integration with runtime PM and forcewake
+    - Device hotplug protection using drm_dev_enter/exit
+    - Automatic cleanup using DRM managed resources
+    - Complete initialization with per-GT work scheduling
+    
+    Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
++ /mt/dim checkpatch 25c75d2d7cac2a2e7dc32df5a7a0f949dfafe9ee drm-intel
+2c3110bc42cf drm/xe: Add Kconfig option for GPU frequency tracing
+6c07b16c459c drm/xe: Add module parameter for GPU frequency monitoring
+419e46b9a894 drm/xe: Add GPU frequency tracing tracepoint definition
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
 
-  **SUCCESS**
+-:48: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#48: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h:24:
++TRACE_EVENT(gpu_frequency,
++	TP_PROTO(unsigned int state, unsigned int gpu_id),
 
-  No regressions found.
+-:52: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#52: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h:28:
++	TP_STRUCT__entry(
 
-  
+-:57: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#57: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer_trace.h:33:
++	TP_fast_assign(
 
-Participating hosts (11 -> 9)
-------------------------------
+total: 0 errors, 1 warnings, 3 checks, 48 lines checked
+19ad4d54b841 drm/xe: Add GPU frequency tracer interface
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
 
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+dba4fc0b9b15 drm/xe: Add basic GPU frequency tracer implementation
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
 
-Known issues
-------------
+-:84: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#84: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer.c:60:
++
++
 
-  Here are the changes found in xe-pw-153108v1_BAT that come from known issues:
+-:128: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#128: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer.c:104:
++	tracer_data->gt_data = drmm_kcalloc(&xe->drm, xe->info.gt_count,
++				       sizeof(*tracer_data->gt_data),
 
-### IGT changes ###
+total: 0 errors, 1 warnings, 2 checks, 112 lines checked
+1f297acc3ac9 drm/xe: Add GPU frequency tracer to build system
+10a2023edfe4 drm/xe: Integrate GPU frequency tracer into device initialization
+c9c08e5ca55f drm/xe: Add core GPU frequency monitoring functionality
+-:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#76: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer.c:132:
++		drm_dbg(&xe->drm, "GT%u initialized with global interval=%u ms",
++			 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
 
-#### Possible fixes ####
+-:143: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#143: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer.c:199:
++		drm_warn(&xe->drm, "device not active, skipping frequency read for GT%u",
++			gt->info.id);
 
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+-:218: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#218: FILE: drivers/gpu/drm/xe/xe_gpufreqtracer.c:274:
++	drm_dbg(&gt_to_xe(gt)->drm, "monitoring started for GT%u with interval %u ms",
++		 gt->info.id, xe_modparam.gpufreq_monitoring_interval_ms);
 
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3573-b10555761d43fc70ae7697578e50549176859dca -> xe-pw-153108v1
-
-  IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3573-b10555761d43fc70ae7697578e50549176859dca: b10555761d43fc70ae7697578e50549176859dca
-  xe-pw-153108v1: 153108v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html
-
---===============3989538155668608885==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/tuning: Apply &quot;Disable NULL query for Anyhit Shader&quot; to Xe2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153108/">https://patchwork.freedesktop.org/series/153108/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 3 checks, 256 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3573-b10555761d43fc70ae7697578e50549176859dca_BAT -&gt; xe-pw-153108v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153108v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3573-b10555761d43fc70ae7697578e50549176859dca/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153108v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3573-b10555761d43fc70ae7697578e50549176859dca -&gt; xe-pw-153108v1</li>
-</ul>
-<p>IGT_8496: acea60af09e5f4b3cb0cd6838c23ef1e92c17323 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3573-b10555761d43fc70ae7697578e50549176859dca: b10555761d43fc70ae7697578e50549176859dca<br />
-  xe-pw-153108v1: 153108v1</p>
-
-</body>
-</html>
-
---===============3989538155668608885==--
