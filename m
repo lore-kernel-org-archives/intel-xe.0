@@ -4,183 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B075ECA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 20:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2064CA0EDC
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 20:52:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7290010E286;
-	Wed, 20 Aug 2025 20:43:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C00310E28B;
+	Wed, 20 Aug 2025 20:52:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GcTZrIXX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bBE+C6Iy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1B710E286
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 20:43:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6378A10E28B
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 20:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755722637; x=1787258637;
+ t=1755723161; x=1787259161;
  h=message-id:date:from:subject:to:references:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=QNS4yN1fwxupPcYBCw0qvufLktc2TsH56yJdz3Et49Y=;
- b=GcTZrIXX8GukzK47s5rv6AyjkEjz98Aviy4KmvA0YUpZ0VV/RC0p8yp+
- PTf4f8RIAFGvfESeH59q7UV9RVerMxBVHH6+HbkYegPB0LXg0LRRXLvlx
- AGkXdiFjGEIM8StUT2IipnZztIhk7Q8vX75f5PKFuJMdl0tFJAeXwB1et
- 2W4bSjnGzNaFp7Sf8fXTMQRC9abTKQxqnP9E8uVuI4ZX48KF0mmdZuBM2
- ok4+yElp7caPF44B3ipB1NDYVbXAbaSUXg6hUe5r6G4c6zR70Tkepyv4j
- VQQKX/vmf3BASKPLgjqI0b+x4FGCMxKawFTBglMmNPyKsltrbviIyznVg A==;
-X-CSE-ConnectionGUID: 1RrxWn9iQNigaD4T03RqzQ==
-X-CSE-MsgGUID: qRfiTPcLTAGUCsKwDxJOyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="58098315"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="58098315"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 13:43:57 -0700
-X-CSE-ConnectionGUID: ZDq5x/dARXGKRO9xMNGD7g==
-X-CSE-MsgGUID: hIyMeX83RSeSCYLBff4aEQ==
+ bh=d85aYJLbHuzOyri9t6hwcIzcSVkYdCQVQPUSml2PZkI=;
+ b=bBE+C6IyGvNzFmaKcTxuQzaZw5N8SMDayMNLsQ/ZkKzl6SejPljtfUjQ
+ Mu30HWZIFhFPmta7sDGD3aS0iDi3LURcmQY2F8zN2hvGCYiZdkqFWlhdy
+ GBUM1NxHNjRf6t6S8emb7gStrxX4qj2+ckM1rkmIVmfSO5Sdy6nR5oai9
+ gr728UaNkwMvxUODiCKxxs/VUL0dA6WVO9dXLjSAt/t/5Z5L368wvJZNs
+ genCjIs7HW7vD1Z9nPT2IIez/sp8BvEqUlo4AdjgVvZIjsyd3XxG1KqgX
+ Fys10yTpHaPOxykRQ01wmkMHrXUqCFP84uXLmfHrVcxlRQNTESbrR/hBF w==;
+X-CSE-ConnectionGUID: lBikcAlHTnem6gGYLvnFGA==
+X-CSE-MsgGUID: Da62fFGASvS8dzf0FNaV4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57860322"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="57860322"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 13:52:38 -0700
+X-CSE-ConnectionGUID: 0+fapQR7Q5G0HbXRZ4dW1w==
+X-CSE-MsgGUID: KxwalJh8TUOATBJEZoD1dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="191910519"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 13:43:56 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="167449086"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 13:52:37 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 20 Aug 2025 13:43:56 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.17; Wed, 20 Aug 2025 13:52:35 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 20 Aug 2025 13:43:56 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.49)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Wed, 20 Aug 2025 13:52:35 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.50) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 20 Aug 2025 13:43:55 -0700
+ 15.2.2562.17; Wed, 20 Aug 2025 13:52:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dBvTdnijlSn4oKZDB5ARvQ6Tv+8sbApxK4GyoKcT9XTfbHxRgyI53fpHbnN+pT3m2HTTdpIQaDe3iF6vqEN7Ykbn3CnC1NOfDzoKl9KrIw7K1CPLYB0GGbwlkKwO6VBRdSo5Z2d/6habziWvWeaWeTOpT5oxEYceycclPvq6CM+YNSxP707Pof8LGPa48WGhKJTD/2EYeGQfWrlNily9fIuJUc+HcpMRXPdbU4tl+2/lFOTWyTAxlNq76JizJcdvg+y1a4waLKbW+fI4nY7K3RcKOpglh3kclBB4pihqh86MIio8GHT7PFPQ4eT38GaJPkSJwWNKjhYrKQAZY18B4Q==
+ b=RIgfvrnKeQSjzFEphtb5gaYaVtNBhaJInMpY7pyzyth2psrVh7bzGVyHPJWQMZ5sWXD+t1kuedIhfFezSjTVzAetmSCgfrhKvBurPn3kgOKfvZn1/IAj7MBe+rqwtNMCLd1j1nd8F4pLxDxBSpSgM+XAKtmqatsg7qbidJ8p8yVZXDsC4afTH465s9ZJMoxPKiqhah23oiAL9Z2t0/wGcrPaFsGNiRv67HwQsGQBL1LDMcYKuwAlug4GTmhJ3AQEyZy1uBjgvYe1pwnwTUPSrmmAQVaMT69eScAma2+/rZB/WeAfYFo73CcYhjVu+Yl4SMSvqORmnn1Ojfyrd68i+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hcvedq0HsqDFhlis8IIXzAEGzVCR2A/dfvtT/5Au/RI=;
- b=FqjJovqObCW/Jpwk6A7UxuliVIyWYYb6bZ4/NfB/VUa/1nJssx7UbMnt4xH3pcKJuqHpKb7IVo4YcO+45a5mAhFN+23cr1/nHdh6wWPr7TurEG6enzUnbAzXN5qSr7Ni5SthdnpuzLAXF8DNdBSBnmvjASCjPHyFOeV/8MG58ULo2hH7Mwb5+88/kQei+stMsGQ2jU7COKiBAaCwTJEeESccIyB6fSCBW/bmfAbL1EWWF8s0R3R7Sqm+LJZdz+DjNE/MTorgUUR3pX7e6eUnIVBIuh/P5Zwg2wyHfMR1L1s5wG5wNTiz0vAo78IZNuIi+yCnuoOsMyYAs7Mdl77Rbw==
+ bh=1cHZDinMrIu2e4oxjWU/KcC0zmsahT2C3f2sb4PKqJw=;
+ b=Xj31AAhDUgQpCFAMaFfCbNur0kXdE9zT7foWQPqurJGvTRLEV+5PrBlH6fz7wcrpxlgcPbsfczNWSLNSe34+s2hCrbK9AYIXAfLrjHYGES3FoShwh7rBErTvbklptdBePV/mi1WZG9pBbr+Vbd81xMMhcs50j2j3JjZYLeJhB9nQZnx+80nE8paXntlx80pPrWws4KZjuyVDizS9XnB77igPA7rgnVVEnwdBkYsN1mZyGsEsL93mBXdQxo2v2aUc9pcyeLbcyBfI6PkOjvWDsPprcI/Vabj25W+XitcPvWkG4ZBw6A8cGcCPDIpR9SHUjuaNGNuRZcY9bonkN9MFmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
- by PH7PR11MB7661.namprd11.prod.outlook.com (2603:10b6:510:27b::17)
+ by PH7PR11MB6499.namprd11.prod.outlook.com (2603:10b6:510:1f0::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.13; Wed, 20 Aug
- 2025 20:43:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Wed, 20 Aug
+ 2025 20:52:32 +0000
 Received: from IA1PR11MB8200.namprd11.prod.outlook.com
  ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
  ([fe80::b6d:5228:91bf:469e%4]) with mapi id 15.20.9052.013; Wed, 20 Aug 2025
- 20:43:47 +0000
-Message-ID: <effd8c89-1b57-4b16-a7bf-99af9405f06f@intel.com>
-Date: Wed, 20 Aug 2025 16:43:45 -0400
+ 20:52:32 +0000
+Message-ID: <db12b7b9-d126-488d-a768-548587e6a1ae@intel.com>
+Date: Wed, 20 Aug 2025 16:52:29 -0400
 User-Agent: Mozilla Thunderbird
 From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
 Subject: Re: [PATCH v6 2/6] drm/xe/guc: Add LFD related abi definitions
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
+To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20250722013553.1266218-1-zhanjun.dong@intel.com>
  <20250722013553.1266218-3-zhanjun.dong@intel.com>
- <dc4f3619-ff9a-4a63-bea6-978042efdb39@intel.com>
+ <662c3ac0-0fef-4c66-9827-9b6cd20b2d4d@intel.com>
 Content-Language: en-US
-In-Reply-To: <dc4f3619-ff9a-4a63-bea6-978042efdb39@intel.com>
+In-Reply-To: <662c3ac0-0fef-4c66-9827-9b6cd20b2d4d@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0162.namprd03.prod.outlook.com
- (2603:10b6:303:8d::17) To IA1PR11MB8200.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR03CA0132.namprd03.prod.outlook.com
+ (2603:10b6:303:8c::17) To IA1PR11MB8200.namprd11.prod.outlook.com
  (2603:10b6:208:454::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|PH7PR11MB7661:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6d0aee0-3a73-40e8-9a4e-08dde02a431e
+X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|PH7PR11MB6499:EE_
+X-MS-Office365-Filtering-Correlation-Id: 010c2ab6-5d2b-43b2-51f8-08dde02b7bf7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ck80QU0zRUVpWkd2eFZxa3E5Sk5SSGRSZGdRcXU3MjAzSVpUMEVZMnoyRW5x?=
- =?utf-8?B?bmFNaW8rZ1hWK0NGaUlabzhRVUhJSVk5UStFeXpwOEZPNmdNbkVvUUZyWVl0?=
- =?utf-8?B?YUR3VW1TWVZWaDRzb3VnN21sRW54ei9OcndMVURhd29sZitsSjE5ai94SVFO?=
- =?utf-8?B?WnVkd2xlYzJMWnptMy9lQ3p5a09CUXJxaGRuNWRvL3BJNTE3NllrVEQ3VmVJ?=
- =?utf-8?B?RXhOS3JJMjQ1SjEzMFRZZ3hMVjR4NmJCYWgwOUxzaGYvV2UvT3ZoRnlsc3Ni?=
- =?utf-8?B?Nm5kcXpNcWdNWG14bmcvOU9mNWZIajc3Sm11OThBR2ExTlhDYUJJSVdNd3lW?=
- =?utf-8?B?Qy9qKy9Ja3UwU0t4MS9qTDVJWVN2aTkyWHprUDFCS1hVZ3QxWTZVSTJiVUJJ?=
- =?utf-8?B?RWphZ1JFNWxEWERZMU1PYlZydXdsaldQb3B3TE5rMnRwRkg1Yk9vRThpamtk?=
- =?utf-8?B?RVRKWnRLc2hWQVZzQWF1RHBkeEVTTjltRU9xZno2RmZ3bzBKWUVYS1gySTJ5?=
- =?utf-8?B?cUswNVBTclFWZklocjJlVzRkM3h5cis1S1Arb1VrMUhKVE0vbXhmL0dMN2g5?=
- =?utf-8?B?dm9ZcXJMRU9GOFpkdW12Y1lsWldUcXRNekVFeVFFTytQSGpVWG5RS3VVSDVI?=
- =?utf-8?B?WFF2RmU0bHQwbWhqckZnd2tJR25KcHRKSXpTSFcxbThUTTE0Z21yMTh1QmVa?=
- =?utf-8?B?Rm03enh5L1hibUpoa2E0V0R2SUdFbFhOTG5ZS3BJeEdQS2hkalVCNDFIekxK?=
- =?utf-8?B?R0gxZFhlaCsxT0sxU1d5U3NXNllKbXJlMU5EY1Blc0VKV21qQndXTGNQOVZp?=
- =?utf-8?B?d0RqZ3VmOWtRaklSRUtwcnJqQ0lFbTBWQ0NPTXN6azZNbkJ1cHhPczE2bE1M?=
- =?utf-8?B?TTh5aHl2QlB2ZjIwRGNZZExMNC9EekhhZ2Z5VjV0Rk94dmV6RDh2bzZQYkJj?=
- =?utf-8?B?ZkdiTXlzQ3lqV1MxaUZHT0pZNklkdnRBNEhUc3liSk40SVpnQkFLRGNYdFZ1?=
- =?utf-8?B?bEFiM0wzSzEzRzFYMUdXcGhGRHhaYlZ4Zk8zMmFyLzJnNkpsd0ZzTE1iY3Nm?=
- =?utf-8?B?bzFqM09XdnlGenJTRjllWm9BNVVoaFNYeXBnZDYwU3JpSDNTUkt4YVBHUFVQ?=
- =?utf-8?B?blBBblkxM0Q1b1k0N2htTGRza3Y0eHR3dnNwVHZKcW9GMlEvZUpFRVFBSmR6?=
- =?utf-8?B?LytsMHhSd0twdHVGdTJYQ3djbk93dEhHUWVGS3FkRmMrbWltanE4Nm9pOGlz?=
- =?utf-8?B?dWk2VzM0VlY3ckdYcHJXQW9jOVc2Sy82eXg4YkdYN3Q2RjRPQWk3ZmRiRDUv?=
- =?utf-8?B?VjFlaTZ2TlFNRDJucGVoQi9HbDlsMk1TWm9Ta05zYmI4TkZMS2NQRG5TYmk4?=
- =?utf-8?B?R25kRkRuWFo3ME1raGhPc1V3ZkVMREFOaGpLaEIzSE8wdnd0UUp0YXVHYno0?=
- =?utf-8?B?bjZUUmMxZS9Gbk0rZ0d6YklQb1VSMW44VkpIS05iSTl6bDR0ZHgxNlJ6S2dK?=
- =?utf-8?B?U29ZSTlKTjdTbGN0SGpvNDZ0QWJrb2c4MlE2RktaSC9UYnBYKzdGUGJQQ0J4?=
- =?utf-8?B?TVBaSytuT21IUk5VbFZTMTZWWVVuRDNYSmFCRTV1KzZaNitXSXF3OXUvaHlQ?=
- =?utf-8?B?QXYvK292OHBiRGhEdHVydEsxTis5Tys1TUpGRFRvMEd4RXBVZUpsNVZUQ2pa?=
- =?utf-8?B?Y3dGTEJSMWJ0UzJ4cHROWTgwY3I3ZTk3WnFjSEM4b28xd1d1QUdtd0dEUlUv?=
- =?utf-8?B?YWVyOGVFQ1F0Yy8ycS81UDVxSm9EMU51bWE5em53UHA3SWxnS3ZLNTF2Qmow?=
- =?utf-8?B?dnEzd3p1MjFJRi9TaElYc2o0aWR4UVp6eHZ3RUQ2dXhGdzhsQ1JGZnQ3UUh5?=
- =?utf-8?B?bVBkMDRlb0gyUEsrbDJJWVRwb2xTdFcvRnI1bWxQNURlYVNiKzY5cnllNjlm?=
- =?utf-8?Q?ieIaM21KcPY=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UHB1SllZZnBQUjhyQ1RWM0RvOXZqdVBQenNYTzhZZWRKVng4RnRIWXM4OGQx?=
+ =?utf-8?B?azl5SVNYVzNSOHBkdG8yUmY1RS9UKytValJEUy9tVjU3dkhubW1SS3p0UmNx?=
+ =?utf-8?B?TXNLOU1RMGVyRlRlSFpveXh1Ung0SFpPVTQ3a1RuaVlzaDZhaEdLdHErTytw?=
+ =?utf-8?B?UW1QSENXRGhRaXd2MmlENi9GbEM2am1ORm9EL2dtRk9IUW9ReXBIMkk1OWlZ?=
+ =?utf-8?B?UjFGOW1yTDJmUWVCSTRTUCtQN3ZNT3E3Zm9jYXE2TlhkdWpFSU9iYWFYdE9L?=
+ =?utf-8?B?di9MU08xNEhlVGtjZUw2NUZmVVZBdkI1UWsrRS8xbjd4a0FFZS83bVFvTHhi?=
+ =?utf-8?B?QnFGZGVRTjJSZUlLdWRMUnp1RU1OQlRKc1ArbUpqUTdTODVFbnA2YzZMMytp?=
+ =?utf-8?B?ZUJFQnJ1RlVNdHRvbGJmdHdrTU9jTTR6WHllcFlsTU02RTgrZVNVaE9GMTFu?=
+ =?utf-8?B?amJ2cXJqVlFsRHMrVXNScWtsaFcvdG4wTVpkWUhWc2U4K3Q4bklsZ3VuVUdi?=
+ =?utf-8?B?RHp6V1F1ZForNENsMHJTNG9kRGN6RXZzZXBxenZFUXgxSHREZzVKb2JOK0Vs?=
+ =?utf-8?B?Qmx0eDI3Qng5bzRiTy9oejd0SGhuZWVzUzgxc2hyY1dTMkFWZ1h3OFVJKzFY?=
+ =?utf-8?B?bVNvTk10VGVETXdKcDRUOXJJM0FSdVJOL0d3Lzh3OCtxNUMyMXhNSkJmdTcz?=
+ =?utf-8?B?R1ZSdzY4VnFaZGo2TEVlOTBYVmlvUWc0WmNoZW9YL3pQbWI1QzlmYngvVjJD?=
+ =?utf-8?B?ejkzUkVTc3FWb3pTT2dSK3JuM3FLWnlRMnlDeGMrMHVvYXFUTEYwWmdjaXR6?=
+ =?utf-8?B?NElxQ2JNRGRHN3pKMk5GakVlUTFFamFSNGRjYVRNM3Z2a2Y2RFhrc2FQSUY3?=
+ =?utf-8?B?SkJUbTZZcFBEdUFwZjNnV2VsMlExL2kzU21iWDJSbUdTUTFyZWhwNnpGVzBp?=
+ =?utf-8?B?MFQzR1M0aUlUNmlwbzJFdkVLU3R1QUlVdm5SL1JOWkZZQnBYRC9vbVlMUUpm?=
+ =?utf-8?B?ZCtUYU5BeHZTQWp2SWdZVnFWSGQ0Q2grTXk3ZlR3OHl5RlFQWGZFODAwbmZa?=
+ =?utf-8?B?ODZpc3kvOUlTRUxNY1FwbVB3RThjYytBbU9QemtGOFBzSDRaeEpxMlRiUmJV?=
+ =?utf-8?B?bnJ0bTBpZWdyWTh6bGdCcjNnL25xZWFaeUJtcnRRdm9DYVRpd2ltRkJvNGpy?=
+ =?utf-8?B?RXF0L1hOZkQ4SndNcGlWOWdGT1ZobnNVaHFWMWNtL3pQMDRpUFN3M0JDQjBV?=
+ =?utf-8?B?V0xlVi9zZWpZKytMM0EvL291UFhqVXFuNU9BT25SWDBBUXFqS2lhUTZDQkY0?=
+ =?utf-8?B?L0NxSHdwbUJZaWhNRDYzU01YMkdmTWh4bEIxeHZ0TFNzSmpGWDVZb2hkMkh2?=
+ =?utf-8?B?cE1FZ2xtV1JpVUpQcVUwRDU5WUhSTFhKd0NKbGN4SmxOOFFJdjRSY1NicWJm?=
+ =?utf-8?B?cCtHaWNYSWFsTkFHUXoweHluMThxZ2tJR0NFd1lwMWFEYVV6cVdhNHFjUGVU?=
+ =?utf-8?B?U25Oc2xaa0FTam5tOHBqMUFldm9wSHVVa3QyVXJhL2VSaG00bXM2ckYrc2tj?=
+ =?utf-8?B?NGdWN0MydDFycjBhc1hvZjYxQkZEMHdLdmlwYU5kQ1Z6QUNURGkrRFdQekU4?=
+ =?utf-8?B?WVlFVStnZkloKzc4K3M3bytKK2JIWG05V1doSk9jUkYwd3dkQUtwam44RFBs?=
+ =?utf-8?B?SWF4N2I3bHFUYkx3MENBY295c3ZuU3lqQ2ZmT2hiWkpwYXVkUUlydjRMeThV?=
+ =?utf-8?B?eGdXNlF5K3ErSzRkU21zVzkwWFA4RGpnSWZiS2F6aldISTRlWlJlSzVmRWYv?=
+ =?utf-8?B?T3krRVNDdVFpb2JaZEdsc0Q2NkgwL01aMERONERTN3pGc2daVk1POUtpZmgw?=
+ =?utf-8?B?UnEwM05RRXFPM2xHbjR2MGp5K3hEcU1uaW4vendXRE5NQURxQndPeGlWYXJt?=
+ =?utf-8?Q?Gp+triL4W1s=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmlYY0xTWXA1ZVllMGt1NWxaTG9kbkhEUERzaE9ISjg1eWJyN0NVRHNWMS90?=
- =?utf-8?B?TXVYQzdVeThuN1BGZk5SS0daUnhRRDFqMVBIaDYxa01YV3FtTm9mbDFtZzIy?=
- =?utf-8?B?NzZZNGphSUVwcmdxc28zN0ZsMmhwVkVzTGZ2ODA5NlRKNHFJQ1ZKRHBZZ3Qv?=
- =?utf-8?B?RzBud1NVeWlXZ0JWcTh6N0ZTM0hRM2RCWGJrNm8vRHdsRm1aamJmWFliejZG?=
- =?utf-8?B?VUlINHZhU3FwY3owNEVVTnFuOGFxMjhPYlczREpnbnJMOHJzTjRBVklpSVF0?=
- =?utf-8?B?YWNWNXpHWDlhSXlNQWtpZVFTUGNBQjdOZzdtSHo4anJwelQwQXdXeWt1anE4?=
- =?utf-8?B?MDM5cnc4eDlpUVhWVG5ma2c2bGhkeExaMzhBUVJudnVRVHlDYVVybE5GZE1E?=
- =?utf-8?B?WWxLY3VvcFFJcnhvVUVTT29LWXlwNU80a2Q0SWhOMlJEb3lVT2hGQ3VqLyt5?=
- =?utf-8?B?VWpGckpGSmtkZHh3a3pvN2FLQlFDTE1SVDFEYU5JcWJWd2FoMUtEMVhPWHJH?=
- =?utf-8?B?NXhZWVN2WGYvbm9Kck1WWG5TQjNoVXBTMzQxNmpwNlpNWHZJbUIyL0llbnp1?=
- =?utf-8?B?eXBFbzkySkhmZGplYnJKMG5IRVAwclRLcmczanFPUEdjS0dVeHIza0ltNEJr?=
- =?utf-8?B?d3ZWaUVGYkkxWUs3cXNKaHlLektYQzhyTXhiRHNGVC9LUHZsWU04M3BmT1dS?=
- =?utf-8?B?UXBXd201U3hqVU5SMmJwRHMxQXh1OTJCVnFOaFV4SHQxcGNheVFHVE9Mbmsw?=
- =?utf-8?B?aHNvTGsvSFFPd0w3aG1Id0tDZ1FLb3BhUVF0TTVVdG1Nd2hqdEpMQ2xMSDc0?=
- =?utf-8?B?U1FXVGx6Wk5uNGJOenRBVHBlQnlIb2ZKT0l0cWRVY1lMWjllVmdEVFk3OFRK?=
- =?utf-8?B?QjF6anY2bklrdGdWWmhhZ1ArR2FUcVFDanN3L0lsVGpMeDhLZDd3b0FrZnZT?=
- =?utf-8?B?ZDhkWmNFemV4QnF3TUR0TG5JYkh5alhnS2VBeTZaWG9WbzVYMmd3SUdmTytR?=
- =?utf-8?B?Q1VCN1F0UTdwZm9VRnBub1RqTHZJY2o0VnhzYVExY2U0bkd2cW5FODBpVFo1?=
- =?utf-8?B?dVl6RExDSWZFdHZheStZbzN6Z3J3Nm91N2JhMUtKS1loZzhYb0xRS2I4Wmll?=
- =?utf-8?B?TDJzUlg4eVpyZnY2N3pUa0tjN2YyL0xpaDJWYU4wRk92ZGtUTnE5NDdSZjFt?=
- =?utf-8?B?dVlsVGpRdFNDRU1kd1VYeGYvY256am9aSVhXQ1NSWklERnhOY3NVU05pbko1?=
- =?utf-8?B?UDlCY2pheUdjOElkc1ovdTVVU1ZweWVtVGY4Q2k5YlVORWtGaWZZNzVkcitZ?=
- =?utf-8?B?dnErYWlTMXc5WDRKSWpmaUllRVdxVDVNMldZUDZTK21MaE9HeCtGNVdBTmVZ?=
- =?utf-8?B?UFdYSDdDaXllaE5NaEZnZmlXZ3JZNkxQcEp2TGdLSThsZUtISWFzWGpxWFE3?=
- =?utf-8?B?NWFpV1VicU9ITDc0ejVVdGVoOUNFK0pjNk1WaE04YnpST05sT1pwM1hIY21J?=
- =?utf-8?B?VGF1YUEvUk44Ymhqd2FmOGlBNW9JN0RKYkZ4UFdtVUEycTluQU8zWjFEVUQ5?=
- =?utf-8?B?bFNRMGU3UVFRNFJMSVc3a1NoQWJmTklPTHhldlVVbW1VMTY4TUI2ZTBYRWtz?=
- =?utf-8?B?ejcrSUtxSjR6RjI0S1l5aGhvOXg5cWlsLzhvWkNoc1lSdWthRXdBaFNjL25G?=
- =?utf-8?B?djQ4N0d0OTBFMU9DS3laYk5JZmN5Z0liUlJDMzA5NkpteVJnZW14d0Z0NWpB?=
- =?utf-8?B?WDBESTl6YzFYMFVWNHdjcVlzZXBSQytZNGpUZHhzQlZkaWVNZldGWW1vTDVI?=
- =?utf-8?B?Z3ZuTy9lT0p5THQxKzdUUlA1bXhJc1lzZVJvZnhydC9KdUpMR1dwdEN2Y2gy?=
- =?utf-8?B?eEE3RnQ3UzlKMU1XdndXUzRieGFVcTN4TGx5SVZSU3MwUTgvd2tTcWV6OHoy?=
- =?utf-8?B?Wm9YNVphenUzamdtRExoRlQrQlMyRmYxR2RIbnJ0eEVHcnlHNTB3YzFJaVcy?=
- =?utf-8?B?UlRmYjI5ZUkxTWp4Y0NMVlFXWmpVa1JrZ2N3NTNzYUVGV24vTElMTzRnWi9B?=
- =?utf-8?B?K201YlNLY2s1cG11UlVpcTdLa1NVNlpNK1JrNEkwOGF5Wm91ZlByRi95aUUx?=
- =?utf-8?B?QXpSUDl5ME5DVmhiSlRnUDVQYTJmTzRIVzRJcjFXN3dhRC9xbklpa0lHdFVx?=
- =?utf-8?B?Wmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6d0aee0-3a73-40e8-9a4e-08dde02a431e
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NTB2cGUwSGpwaEljNlNENVl5dk44V1FnNUZqNDJHQUtubzF0aG5ZV3Q4ckxw?=
+ =?utf-8?B?NjQ0SktEVlVXbHFmZ1lYZm5DbURvUkptU3NyL2RIT2RvelhURHpkbTJnMjQ3?=
+ =?utf-8?B?Q0JEMndFY1kzY3M5Y09nclBhVUhRcHowUTR6VzBxa0tBK3dyQzJBODlxU3hG?=
+ =?utf-8?B?dnNXcmtiTGk0ZFRBZTFDa3pzUjJKdlR3b1Ivd3NTeDJYR0k4ZS80NndnbWlk?=
+ =?utf-8?B?QlBncFpqcVMzWm8wZEI0dGF3Rmh6T1dvanRCNk0yQzFRZTJKVE1hTHhiOTJy?=
+ =?utf-8?B?YXFMQlpPUUF5U0YrbGJYSnFObW5hTXI1eWlnRjBRdW0zVGJFZ2pET2t1U3ow?=
+ =?utf-8?B?dkRpYS9od2VENGlRRG5nZytVZnMrdmoxcm96Y3FrTnJVNTRWYTAyNFp3ZGQ0?=
+ =?utf-8?B?WVVZTGdSUjBLTExocTVKSlZ6Vmgrc25oTkJkWHJFaG1abkJqVk5QOCtFem9k?=
+ =?utf-8?B?MzYzb0JUSDkrSllkN1p3VE1jTndqT1BDSlJjcVhjQ0tqa2dqMFpYb3p2NUN4?=
+ =?utf-8?B?ZlIrenBzT3E1UEExZm1VcWNXNHdUaGtGTnBNRWVLZGowdlMzVWI1aWYwcFoz?=
+ =?utf-8?B?V3A1UjUxMUJmVlA5djFCcjJ6YjExZlNlcjY5WDFhSHpHaEV1eVBkdHJTMTZo?=
+ =?utf-8?B?RnFmZ3VnUWZvYXdGWElGYVNFSFRHVjE0NDF4WTdWUWk5UzNyN1ZPR2N3MUtD?=
+ =?utf-8?B?QXo0QTgwMS9VcW1Hdkt4UFBFUm1wVU0rZGtObDJQV0dZdkFTRTVwY3VPNHR2?=
+ =?utf-8?B?dStucDZUVWFWcEwyS1dVaDAyazd3V2VjR1pDRTlvTk9TV3NzdGZNK3p4OWVa?=
+ =?utf-8?B?NkRkU0NOTFZySkhwNDdFYWNPLzE2TzZIbWxWM2luNDJNb0lVM1pzVDZYRVIw?=
+ =?utf-8?B?bmtjSVhJWlNXL3YxQXJCcFdKZk52bnRSU0N0bXVUOUxLZndBTysrWkxEQW9K?=
+ =?utf-8?B?TjZzNlJ0TWJ3WmhkWFBLV0xRNy9GdlRLazZIZE1LY2twcDdIanF4MFE4bHJH?=
+ =?utf-8?B?SXlVaW1hQ3E2M2lkRGg3MGdYYzN1eHZUWXhCN2J1ZXNiQXZsTTdVSXFSZ2lQ?=
+ =?utf-8?B?Y0xmUjRUdStPR2MvUTU0cXZSNjRGdUxhM2UvZFR4SkZoSkxKb3BJVXdQeEdD?=
+ =?utf-8?B?dWUzRjRkaHRrcE9Lb0JsbWdCZU92emd1LzFuVTZJSEpPS1czZjQ0YUZwSjQ5?=
+ =?utf-8?B?OFkwSjRMVHNLYzB0T0ZVTEkwSU5TRDFwVEc1Z1NReXRGeDE4SFZiVGFoc1dv?=
+ =?utf-8?B?WUw5WXJiYmVrcFUyZ2M4U21HRytZOXlWbWNYSktwcGtoSWRrL01wMXdJTVR5?=
+ =?utf-8?B?cDlaaVBQd2hZSzFtNUIvdjdqeW4vVWgrT3dKdEUxMFIwZVEzYmg5NDY5dU5r?=
+ =?utf-8?B?OEFLMEFvRTYrZndISmcyeTlJQ0VnQWxwVlIxZS9JZU1ORXducFV0RlQyeG5X?=
+ =?utf-8?B?VzIxYnJnYmtkdjhxU2dnK1V4R3cvNWdtZHZ3cHkzS0lBd0d1allIYTlwRHhS?=
+ =?utf-8?B?cEVnOFFxVU1CM0xyZlI2cjBWblhmV0szYmR4Snc1Q2JDU0w2UFNjekJGQmFK?=
+ =?utf-8?B?RHg5UFNKWVZRQVlFbDBZLzNpTFlBS0E5TVFCczlhajFPS0U2TTBFVzhkdG9m?=
+ =?utf-8?B?UmZTMEVJdmpUekpramZsbFNXdGlQOWNLeHNNaS9aK3piVS82R0lRTFBpeHZN?=
+ =?utf-8?B?UmR2UTZmMUpNSExQZFRrMWpVdnJTZFpBU09wemNKNXJmOUZ4RzZzRklmWkJs?=
+ =?utf-8?B?SU1pTmJVZDZOK2JZSkMzRDdBMzI3bzkzL2pMQTI0OXpBNHJEeFFDTkZqT0NC?=
+ =?utf-8?B?cDd1c3YyL3ViNFhjNUt0VVdqQ2l0L3JqSGpvbUdSZzBOakpodjJZMmxsM2wv?=
+ =?utf-8?B?U2hJaHFlQnZ5SGg1dndVK2YzK1ZvM2FtQlhzckVtUmNOaXk3SmxwemU5YWpC?=
+ =?utf-8?B?MCtlbU51ODVuMHhWTE42aGZKTlIrbWdjS2dBQWJTVVZsWUp0WUVYOUdJQ1Jj?=
+ =?utf-8?B?WDlMUXJSZHVaRXhFeU44azVTcjJUWS9QSEZ2Q2Nzbkd6QUVnZlNnTXpnRXFZ?=
+ =?utf-8?B?WnBTUCttUnN0emZtcG9xYkU5azlCR3R2eFVEdlNlS0VpS3ZrbTJXVVBzc2ky?=
+ =?utf-8?B?bWM3cmFpT0FTMzM5L0dwbjgvODVTVHFVSmkrcGhIcGpzZEtLcUc5VFU2MVZo?=
+ =?utf-8?B?VkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 010c2ab6-5d2b-43b2-51f8-08dde02b7bf7
 X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:43:47.6853 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 20:52:32.6107 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3/FfFqYPeMQy7QynVF5RFhGE5+54/qay8IauhxBrLK8/cC2coLHQvMmXUzlqKWYp7vmiwHfIaXObhw+eptsz5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7661
+X-MS-Exchange-CrossTenant-UserPrincipalName: m8Vkumr5oqgOgzvIow2YZMHUhZvNlpmH5fd4hbfuv3q343hOZfO/MGWGe8viTg4ZDoXfB0Otm2fWtI44lZ2tiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6499
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,19 +197,18 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 2025-07-29 2:07 p.m., Michal Wajdeczko wrote:
-> 
-> 
-> On 7/22/2025 3:35 AM, Zhanjun Dong wrote:
+On 2025-07-29 3:08 p.m., John Harrison wrote:
+> On 7/21/2025 6:35 PM, Zhanjun Dong wrote:
 >> Add GuC LFD (Log Format Descriptors) related ABI definitions.
 >>
 >> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/abi/guc_lfd_abi.h | 282 +++++++++++++++++++++++++++
->>   1 file changed, 282 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/abi/guc_lfd_abi.h
+>>   drivers/gpu/drm/xe/abi/guc_lfd_abi.h | 282 +++++++++++++++++++++++++++
+>>   1 file changed, 282 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/xe/abi/guc_lfd_abi.h
 >>
->> diff --git a/drivers/gpu/drm/xe/abi/guc_lfd_abi.h b/drivers/gpu/drm/xe/abi/guc_lfd_abi.h
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_lfd_abi.h b/drivers/gpu/drm/ 
+>> xe/abi/guc_lfd_abi.h
 >> new file mode 100644
 >> index 000000000000..b6888ab47e25
 >> --- /dev/null
@@ -229,209 +227,260 @@ On 2025-07-29 2:07 p.m., Michal Wajdeczko wrote:
 >> +#include "guc_lic_abi.h"
 >> +
 >> +/* Magic keys define */
->> +#define GUC_LFD_DRIVER_KEY_STREAMING		0x8086AAAA474C5346
->> +#define GUC_LFD_LOG_BUFFER_MARKER_2		0xDEADFEED
->> +#define GUC_LFD_CRASH_DUMP_BUFFER_MARKER_2	0x8086DEAD
->> +#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_2	0xBEEFFEED
->> +#define GUC_LFD_LOG_BUFFER_MARKER_1V2		0xCABBA9E6
->> +#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_1V2	0xCABBA9F7
->> +#define GUC_LFD_DATA_HEADER_MAGIC		0x8086
+>> +#define GUC_LFD_DRIVER_KEY_STREAMING        0x8086AAAA474C5346
+>> +#define GUC_LFD_LOG_BUFFER_MARKER_2        0xDEADFEED
+>> +#define GUC_LFD_CRASH_DUMP_BUFFER_MARKER_2    0x8086DEAD
+>> +#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_2    0xBEEFFEED
+>> +#define GUC_LFD_LOG_BUFFER_MARKER_1V2        0xCABBA9E6
+>> +#define GUC_LFD_STATE_CAPTURE_BUFFER_MARKER_1V2    0xCABBA9F7
+>> +#define GUC_LFD_DATA_HEADER_MAGIC        0x8086
+> These are not LFD defines. They are the in-memory buffer header magic 
+> words.
+Sure, to be moved out from abi header.
+
+> 
 >> +
 >> +/* The current major version of GuC-Log-File format. */
->> +#define GUC_LFD_FORMAT_VERSION_MAJOR		0x0001
+>> +#define GUC_LFD_FORMAT_VERSION_MAJOR        0x0001
 >> +/* The current minor version of GuC-Log-File format. */
->> +#define GUC_LFD_FORMAT_VERSION_MINOR		0x0000
+>> +#define GUC_LFD_FORMAT_VERSION_MINOR        0x0000
 >> +
 >> +/** enum guc_lfd_type - Log format descriptor type */
 >> +enum guc_lfd_type {
->> +	/**
->> +	 * @GUC_LFD_TYPE_FW_REQUIRED_RANGE_START: Start of range for
->> +	 * required LFDs from GuC
->> +	 */
->> +	GUC_LFD_TYPE_FW_REQUIRED_RANGE_START = 0x1,
->> +	/**
->> +	 * @GUC_LFD_TYPE_FW_VERSION: GuC Firmware Version structure. LFDs
->> +	 * payload is guc_lfd_data_fw_version
+>> +    /**
+>> +     * @GUC_LFD_TYPE_FW_REQUIRED_RANGE_START: Start of range for
+>> +     * required LFDs from GuC
+>> +     */
+>> +    GUC_LFD_TYPE_FW_REQUIRED_RANGE_START = 0x1,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_FW_VERSION: GuC Firmware Version structure. LFDs
+>> +     * payload is guc_lfd_data_fw_version
+>> +     */
+>> +    GUC_LFD_TYPE_FW_VERSION = GUC_LIC_TYPE_GUC_SW_VERSION,
+> This equality is coincidental not a definition. Indeed, the original 
+> spec had different numbering for the two enums. It only change to match 
+> due to an implementation bug! So you should not define them as being 
+> related and should not make any assumptions in the code about them being 
+> related.
+Got it, to be changed to numbers.
+
 > 
-> hmm, if this type identifies specific lfd payload, why it uses a lic type?
 > 
-> if both types has to match, say that, and add static_assert to check that somewhere
-> 
-> (edit: or maybe those lfd specific structures are simply redundant, and
-> you can directly say here that payload is that lic or other struct)
-To be changed to number
-> 
->> +	 */
->> +	GUC_LFD_TYPE_FW_VERSION = GUC_LIC_TYPE_GUC_SW_VERSION,
->> +	/**
->> +	 * @GUC_LFD_TYPE_GUC_DEVICE_ID: GuC microcontroller device ID.
->> +	 * LFDs payload is guc_lfd_data_guc_devid
->> +	 */
->> +	GUC_LFD_TYPE_GUC_DEVICE_ID = GUC_LIC_TYPE_GUC_DEVICE_ID,
->> +	/**
->> +	 * @GUC_LFD_TYPE_TSC_FREQUENCY: Frequency of GuC timestamps. LFDs
->> +	 * payload is guc_lfd_data_tsc_freq
->> +	 */
->> +	GUC_LFD_TYPE_TSC_FREQUENCY = GUC_LIC_TYPE_TSC_FREQUENCY,
->> +	/**
->> +	 * @GUC_LFD_TYPE_GMD_ID: HW GMD ID. LFDs payload is
->> +	 * guc_lfd_data_gmdid
->> +	 */
->> +	GUC_LFD_TYPE_GMD_ID = GUC_LIC_TYPE_GMD_ID,
->> +	/**
->> +	 * @GUC_LFD_TYPE_BUILD_PLATFORM_ID: GuC build platform ID. LFDs
->> +	 * payload is guc_lfd_data_build_platformid
->> +	 */
->> +	GUC_LFD_TYPE_BUILD_PLATFORM_ID = GUC_LIC_TYPE_BUILD_PLATFORM_ID,
->> +	/** @GUC_LFD_TYPE_FW_REQUIRED_RANGE_END: End of this range */
-> 
-> "End of this range" is repeated few times below, make it unique per enum
-Sure
-> 
->> +	GUC_LFD_TYPE_FW_REQUIRED_RANGE_END = 0x1FFF,
->> +	/**
->> +	 * @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START: Start of range for
->> +	 * required LFDs from GuC
->> +	 */
->> +	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START = 0x2000,
->> +	/**
->> +	 * @GUC_LFD_TYPE_LOG_EVENTS_BUFFER: Log-event-entries buffer. LFDs
->> +	 * payload is guc_lfd_data_log_events_buf
->> +	 */
->> +	GUC_LFD_TYPE_LOG_EVENTS_BUFFER = 0x2000,
->> +	/**
->> +	 * @GUC_LFD_TYPE_FW_CRASH_DUMP: GuC generated crash-dump blob.
->> +	 * LFDs payload is guc_lfd_data_fw_crashdump
->> +	 */
->> +	GUC_LFD_TYPE_FW_CRASH_DUMP = 0x2001,
->> +	/** @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END: End of this range */
->> +	GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END = 0x3FFF,
->> +	/**
->> +	 * @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START: Start of range for
->> +	 * required KMD LFDs
->> +	 */
->> +	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
->> +	/**
->> +	 * @GUC_LFD_TYPE_OS_ID: An identifier for the OS. LFDs payload is
->> +	 * guc_lfd_data_os_id
->> +	 */
->> +	GUC_LFD_TYPE_OS_ID = 0x4000,
->> +	/** @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END: End of this range */
->> +	GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
->> +	/**
->> +	 * @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START: Start of range for
->> +	 * optional KMD LFDs
->> +	 */
->> +	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START = 0x6000,
->> +	/**
->> +	 * @GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT: Binary representation of
->> +	 * GuC log-events schema. LFDs TLV payload is
->> +	 * guc_lfd_data_binary_schema
->> +	 */
->> +	GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT = 0x6000,
->> +	/**
->> +	 * @GUC_LFD_TYPE_HOST_COMMENT: ASCII string containing comments
->> +	 * from the host/KMD. LFDs TLV payload is
->> +	 * guc_lfd_data_host_comment
->> +	 */
->> +	GUC_LFD_TYPE_HOST_COMMENT = 0x6001,
->> +	/** @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END: End of this range */
->> +	GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END = 0x7FFF,
->> +	/** @GUC_LFD_TYPE_RESERVED_RANGE_START: Start of reserved range */
->> +	GUC_LFD_TYPE_RESERVED_RANGE_START = 0x8000,
->> +	/** @GUC_LFD_TYPE_RESERVED_RANGE_END: End of this range */
->> +	GUC_LFD_TYPE_RESERVED_RANGE_END = 0xFFFF,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_GUC_DEVICE_ID: GuC microcontroller device ID.
+>> +     * LFDs payload is guc_lfd_data_guc_devid
+>> +     */
+>> +    GUC_LFD_TYPE_GUC_DEVICE_ID = GUC_LIC_TYPE_GUC_DEVICE_ID,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_TSC_FREQUENCY: Frequency of GuC timestamps. LFDs
+>> +     * payload is guc_lfd_data_tsc_freq
+>> +     */
+>> +    GUC_LFD_TYPE_TSC_FREQUENCY = GUC_LIC_TYPE_TSC_FREQUENCY,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_GMD_ID: HW GMD ID. LFDs payload is
+>> +     * guc_lfd_data_gmdid
+>> +     */
+>> +    GUC_LFD_TYPE_GMD_ID = GUC_LIC_TYPE_GMD_ID,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_BUILD_PLATFORM_ID: GuC build platform ID. LFDs
+>> +     * payload is guc_lfd_data_build_platformid
+>> +     */
+>> +    GUC_LFD_TYPE_BUILD_PLATFORM_ID = GUC_LIC_TYPE_BUILD_PLATFORM_ID,
+>> +    /** @GUC_LFD_TYPE_FW_REQUIRED_RANGE_END: End of this range */
+>> +    GUC_LFD_TYPE_FW_REQUIRED_RANGE_END = 0x1FFF,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START: Start of range for
+>> +     * required LFDs from GuC
+>> +     */
+>> +    GUC_LFD_TYPE_FW_OPTIONAL_RANGE_START = 0x2000,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_LOG_EVENTS_BUFFER: Log-event-entries buffer. LFDs
+>> +     * payload is guc_lfd_data_log_events_buf
+>> +     */
+>> +    GUC_LFD_TYPE_LOG_EVENTS_BUFFER = 0x2000,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_FW_CRASH_DUMP: GuC generated crash-dump blob.
+>> +     * LFDs payload is guc_lfd_data_fw_crashdump
+>> +     */
+>> +    GUC_LFD_TYPE_FW_CRASH_DUMP = 0x2001,
+>> +    /** @GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END: End of this range */
+>> +    GUC_LFD_TYPE_FW_OPTIONAL_RANGE_END = 0x3FFF,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START: Start of range for
+>> +     * required KMD LFDs
+>> +     */
+>> +    GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_OS_ID: An identifier for the OS. LFDs payload is
+>> +     * guc_lfd_data_os_id
+>> +     */
+>> +    GUC_LFD_TYPE_OS_ID = 0x4000,
+>> +    /** @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END: End of this range */
+>> +    GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START: Start of range for
+>> +     * optional KMD LFDs
+>> +     */
+>> +    GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_START = 0x6000,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT: Binary representation of
+>> +     * GuC log-events schema. LFDs TLV payload is
+>> +     * guc_lfd_data_binary_schema
+>> +     */
+>> +    GUC_LFD_TYPE_BINARY_SCHEMA_FORMAT = 0x6000,
+>> +    /**
+>> +     * @GUC_LFD_TYPE_HOST_COMMENT: ASCII string containing comments
+>> +     * from the host/KMD. LFDs TLV payload is
+>> +     * guc_lfd_data_host_comment
+>> +     */
+>> +    GUC_LFD_TYPE_HOST_COMMENT = 0x6001,
+>> +    /** @GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END: End of this range */
+>> +    GUC_LFD_TYPE_KMD_OPTIONAL_RANGE_END = 0x7FFF,
+>> +    /** @GUC_LFD_TYPE_RESERVED_RANGE_START: Start of reserved range */
+>> +    GUC_LFD_TYPE_RESERVED_RANGE_START = 0x8000,
+>> +    /** @GUC_LFD_TYPE_RESERVED_RANGE_END: End of this range */
+>> +    GUC_LFD_TYPE_RESERVED_RANGE_END = 0xFFFF,
 >> +};
+> Personally, I find the above impossible to read at a glance. The 
+> comments add nothing - GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START is 
+> described as "Start of range for required KMD LFDs". Well, yeah, I can 
+> get that from the name. I think this whole section would be much easier 
+> to read if was just the enums:
+> 
+> +    GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
+> +    GUC_LFD_TYPE_OS_ID = 0x4000,
+> +    GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
+> 
+> The structure definitions and such for the individual entries can refer 
+> back to the define they are associated with. But this section would be 
+> more use if it is a simple list of enum values that is quick and easy to 
+> scan through.
+Good idea, comments for each items make it hard to read here.
+We might still want to have kernel docs, so maybe I can change each 
+range like:
+
+/**
+  *  @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START : Start of range for
+  *  required KMD LFDs
+  *  @GUC_LFD_TYPE_OS_ID: An identifier for the OS
+  *  @GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END : End of range for
+  *  required KMD LFDs
+  */
+
+     GUC_LFD_TYPE_KMD_REQUIRED_RANGE_START = 0x4000,
+     GUC_LFD_TYPE_OS_ID = 0x4000,
+     GUC_LFD_TYPE_KMD_REQUIRED_RANGE_END = 0x5FFF,
+
+
+
+> 
 >> +
 >> +/** enum guc_lfd_os_type - OS Type LFD-ID */
 >> +enum guc_lfd_os_type {
->> +	/** @GUC_LFD_OS_TYPE_OSID_WIN: Windows OS */
->> +	GUC_LFD_OS_TYPE_OSID_WIN = 0x1,
->> +	/** @GUC_LFD_OS_TYPE_OSID_LIN: Linux OS */
->> +	GUC_LFD_OS_TYPE_OSID_LIN = 0x2,
->> +	/** @GUC_LFD_OS_TYPE_OSID_VMW: VMWare OS */
->> +	GUC_LFD_OS_TYPE_OSID_VMW = 0x3,
->> +	/** @GUC_LFD_OS_TYPE_OSID_OTHER: Other */
->> +	GUC_LFD_OS_TYPE_OSID_OTHER = 0x4,
+>> +    /** @GUC_LFD_OS_TYPE_OSID_WIN: Windows OS */
+>> +    GUC_LFD_OS_TYPE_OSID_WIN = 0x1,
+>> +    /** @GUC_LFD_OS_TYPE_OSID_LIN: Linux OS */
+>> +    GUC_LFD_OS_TYPE_OSID_LIN = 0x2,
+>> +    /** @GUC_LFD_OS_TYPE_OSID_VMW: VMWare OS */
+>> +    GUC_LFD_OS_TYPE_OSID_VMW = 0x3,
+>> +    /** @GUC_LFD_OS_TYPE_OSID_OTHER: Other */
+>> +    GUC_LFD_OS_TYPE_OSID_OTHER = 0x4,
 >> +};
 >> +
 >> +/**
 >> + * struct guc_lfd_data - Log format descriptor (LFD).
 >> + * A type of KLV with custom field-sizes + magic numbers.
+> This description tells me nothing that I can't immediately see from 
+> looking at the contents. Maybe just say "A generic header structure for 
+> all LFD blocks".
+Will follow.
+
+> 
 >> + */
 >> +struct guc_lfd_data {
->> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
->> +	u32 dw0;
->> +	/*
->> +	 * Expected value: GUC_LFD_DATA_HEADER_MAGIC.
->> +	 * Helpful in detecting file errors.
->> +	 */
->> +#define GUC_LFD_DATA_MAGIC		GENMASK(15, 0)
->> +	/*
->> +	 * File descriptor type (the 'T' in TLV) is used to identify how
->> +	 * to interpret `data` below. For the range of types, see
->> +	 * guc_lfd_type
->> +	 */
->> +#define GUC_LFD_DATA_DESC_TYPE		GENMASK(31, 16)
->> +	/** @dw_size: Number of dwords the `data` field contains. */
->> +	u32 dw_size;
->> +	/** @data: Data defined by File descriptor type. */
->> +	u32 data[] __counted_by(dw_size);
->> +} __packed;
->> +
->> +/**
->> + * struct guc_lfd_version - GuC Log File Format Version.
->> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
->> + * than 1.12)
->> + */
->> +struct guc_lfd_version {
->> +	/** @dw0: A 32 bits dword, contains multiple bit fields */
->> +	u32 dw0;
->> +	/*
->> +	 * Guc-Log-File Format minor version. Must be
->> +	 * GUC_LOG_FILE_FORMAT_VERSION_MINOR
->> +	 */
->> +#define GUC_LFD_VERSION_MINOR	GENMASK(15, 0)
->> +	/*
->> +	 * Guc-Log-File Format major version. Must be
->> +	 * GUC_LOG_FILE_FORMAT_VERSION_MAJOR
->> +	 */
->> +#define GUC_LFD_VERSION_MAJOR	GENMASK(31, 16)
-> 
-> very easy to confuse with
-> 
->    #define GUC_LFD_FORMAT_VERSION_MAJOR	
->    #define GUC_LFD_FORMAT_VERSION_MINOR
-> 
-> maybe there should be:
-> 
-> GUC_LFD_VERSION_DW0_MASK_MAJOR	GENMASK()
-> GUC_LFD_VERSION_DW0_MASK_MINOR	GENMASK()
-> 
-> and
-> 
-> GUC_LFD_VERSION_MAJOR	1u
-> GUC_LFD_VERSION_MINOR	0u
+>> +    /** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +    u32 dw0;
+> 'header' would be better than 'dw0'.
+sure>
+>> +    /*
+>> +     * Expected value: GUC_LFD_DATA_HEADER_MAGIC.
+>> +     * Helpful in detecting file errors.
+> Why 'expected value'? Indeed, I don't think this comment is worth having 
+> at all.
+To be removed.>> +     */
+>> +#define GUC_LFD_DATA_MAGIC        GENMASK(15, 0)
+> Calling this 'DATA_MAGIC' implies it is related to the 'data' field 
+> below. Assuming that 'dw0' is renamed to 'header' then this shld be 
+> 'GUC_LFD_HEADER_MAGIC'.
 Will do a cleanup among this series, to rename all macros names for 
 GENMASK to be
 STRUCTURE_NAME_XXX_MASK_YYY
 XXX is structure field name
 YYY is bit field name
-
+for example:
+	GUC_LFD_DATA_HEADER_MASK_TYPE
+	GUC_LFD_DATA_HEADER_MASK_MAGIC
+>> +    /*
+>> +     * File descriptor type (the 'T' in TLV) is used to identify how
+>> +     * to interpret `data` below. For the range of types, see
+>> +     * guc_lfd_type
+> Again, this is a redundant comment. Also, the KMD uses KLV not TLV.
+Need to confirm TLV or KLV
+>> +     */
+>> +#define GUC_LFD_DATA_DESC_TYPE        GENMASK(31, 16)
+> Again, GUC_LFD_HEADER_TYPE would be a better name.
+Will be GUC_LFD_DATA_HEADER_MASK_TYPE
 
 > 
+>> +    /** @dw_size: Number of dwords the `data` field contains. */
+>> +    u32 dw_size;
+> data_size
+size might mislead to byte size, will use data_count
+>> +    /** @data: Data defined by File descriptor type. */
+> Defined by GUC_LFD_HEADER_TYPE.
+Sure
+>> +    u32 data[] __counted_by(dw_size);
 >> +} __packed;
+>> +
+>> +/**
+>> + * struct guc_lfd_version - GuC Log File Format Version.
+> LFD is Log File Descriptor not Log File Format.
+Struct to be removed
+>> + * Major-Minor is not a fractional number (i.e. Ver 1.3 would be older
+>> + * than 1.12)
+>> + */
+>> +struct guc_lfd_version {
+>> +    /** @dw0: A 32 bits dword, contains multiple bit fields */
+>> +    u32 dw0;
+>> +    /*
+>> +     * Guc-Log-File Format minor version. Must be
+>> +     * GUC_LOG_FILE_FORMAT_VERSION_MINOR
+>> +     */
+>> +#define GUC_LFD_VERSION_MINOR    GENMASK(15, 0)
+>> +    /*
+>> +     * Guc-Log-File Format major version. Must be
+>> +     * GUC_LOG_FILE_FORMAT_VERSION_MAJOR
+>> +     */
+>> +#define GUC_LFD_VERSION_MAJOR    GENMASK(31, 16)
+>> +} __packed;
+> Again, no point in having a structure defined for a single u32. Just the 
+> bit field definitions is all we need.
+Yes, will do that way>
 >> +
 >> +/**
 >> + * struct guc_lfd_data_guc_devid - GuC Device ID.
 >> + * This is mandatory fw LFD data
+> "fw" meaning firmware? But this is the LFD as created entirely by the 
+> KMD, the firmware is not involved. Should just say "This is a mandatory 
+> LFD block."
+will do>
 >> + */
 >> +struct guc_lfd_data_guc_devid {
->> +	/**
->> +	 * @guc_devid: GuC microcontroller device ID defined as described
->> +	 * in GUC_LIC_TYPE_GUC_DEVICE_ID
->> +	 */
->> +	u32 guc_devid;
+>> +    /**
+>> +     * @guc_devid: GuC microcontroller device ID defined as described
+>> +     * in GUC_LIC_TYPE_GUC_DEVICE_ID
+>> +     */
+>> +    u32 guc_devid;
 >> +} __packed;
 >> +
 >> +/**
@@ -439,77 +488,85 @@ YYY is bit field name
 >> + * This is mandatory fw LFD data
 >> + */
 >> +struct guc_lfd_data_tsc_freq {
->> +	/**
->> +	 * @tsc_freq: GuC timestamp counter frequency as described in
->> +	 * GUC_LIC_TYPE_TSC_FREQUENCY
->> +	 */
->> +	u32 tsc_freq;
+>> +    /**
+>> +     * @tsc_freq: GuC timestamp counter frequency as described in
+>> +     * GUC_LIC_TYPE_TSC_FREQUENCY
+>> +     */
+>> +    u32 tsc_freq;
 >> +} __packed;
 >> +
 >> +/** struct guc_lfd_data_gmdid - GMD ID. */
 >> +struct guc_lfd_data_gmdid {
->> +	/** @gmd_id: GMD ID as described in GUC_LIC_TYPE_GMD_ID */
->> +	u32 gmd_id;
+>> +    /** @gmd_id: GMD ID as described in GUC_LIC_TYPE_GMD_ID */
+>> +    u32 gmd_id;
 >> +} __packed;
 >> +
 >> +/** struct guc_lfd_data_build_platformid - GuC build platform ID. */
 >> +struct guc_lfd_data_build_platformid {
->> +	/**
->> +	 * @platform_build_id: GuC build platform ID as described in
->> +	 * GUC_LIC_TYPE_BUILD_PLATFORM_ID
->> +	 */
->> +	u32 platform_build_id;
+>> +    /**
+>> +     * @platform_build_id: GuC build platform ID as described in
+>> +     * GUC_LIC_TYPE_BUILD_PLATFORM_ID
+>> +     */
+>> +    u32 platform_build_id;
 >> +} __packed;
+> Again, not sure these four are worth having structure definitions for. A 
+> comment that says LFD_DEVID maps to LIC_DEVID, etc. would be sufficient.
+Agree, not worth to declare a structure, especially a single u32.
+
+There is an difference between LFD and LIC values, The payload(or value) 
+for above is one u32, and for LIC, it is KLV, which has extra length 
+field, make it possible to more than 1 u32. There is no conflict at this 
+moment, but some assertion is needed to prevent further mismatch.
 >> +
 >> +/**
 >> + * struct guc_lfd_data_log_events_buf - GuC Log Events Buffer.
 >> + * This is optional fw LFD data
+> As above, this is not a firmware generated data stream. Should just say 
+> "This is an optional LFD block.".
+> 
 >> + */
 >> +struct guc_lfd_data_log_events_buf {
->> +	/**
->> +	 * @log_events_format_version: version of GuC log format of buffer
->> +	 */
->> +	u32 log_events_format_version;
-> 
-> need defines for VER_1 and VER_2
-This header file is for LFD abi, and LFD feature do not interpret log 
-event data contents, so details inside log event buffure seems out of 
-scope. Better to avoid mention things not touched.
-
-> 
->> +	/**
->> +	 * @log_format_buf: If `log_format_version` == 1, array of
->> +	 * guc_log_format_version_1. If `log_format_version` == 2, array
->> +	 * of guc_log_format_version_2. Dword size determined by
->> +	 * guc_logfile_lfd.`desc_dw_size` - 1
->> +	 */
->> +	u32 log_format_buf[];
-Will be changed to
-	@log_event: The log event data.>> +} __packed;
+>> +    /**
+>> +     * @log_events_format_version: version of GuC log format of buffer
+>> +     */
+>> +    u32 log_events_format_version;
+>> +    /**
+>> +     * @log_format_buf: If `log_format_version` == 1, array of
+>> +     * guc_log_format_version_1. If `log_format_version` == 2, array
+>> +     * of guc_log_format_version_2. Dword size determined by
+>> +     * guc_logfile_lfd.`desc_dw_size` - 1
+> This does not match the name you used in the parent LFD header 
+> structure. Should just say "Size in dwords is LFD block size - 1".
+sure
+ >
+>> +     */
+>> +    u32 log_format_buf[];
+>> +} __packed;
 >> +
 >> +/**
 >> + * struct guc_lfd_data_os_info - OS Version Information.
 >> + * This is mandatory host LFD data
-> 
-> btw, why is it mandatory?
-That is come from LFD spec. My understanding is UMD tools need this OS 
-info for parsing.
-As John commented, not need to specify, will be removed.
-> 
+> As above, this is all being created by the host so no need to specify.
+To be removed.>
 >> + */
 >> +struct guc_lfd_data_os_info {
->> +	/**
->> +	 * @os_id: enum values to identify the OS brand (1=Windows,
->> +	 * 2=Linux, etc..). See guc_lfd_os_type for the range of types
->> +	 */
->> +	u32 os_id;
->> +	/**
->> +	 * @build_version: ASCII string containing OS build version
->> +	 * information based on os_id. String is padded with null
->> +	 * characters to ensure its DWORD aligned. Dword size determined
->> +	 * by guc_logfile_lfd.`desc_dw_size` - 1
->> +	 */
->> +	char build_version[];
+>> +    /**
+>> +     * @os_id: enum values to identify the OS brand (1=Windows,
+>> +     * 2=Linux, etc..). See guc_lfd_os_type for the range of types
+> Should not repeat a subset of the enum definition values here. Just 
+> reference the enum name.
+Sure
+ >> +     */
+>> +    u32 os_id;
+>> +    /**
+>> +     * @build_version: ASCII string containing OS build version
+>> +     * information based on os_id. String is padded with null
+>> +     * characters to ensure its DWORD aligned. Dword size determined
+>> +     * by guc_logfile_lfd.`desc_dw_size` - 1
+> As above about naming.
+Sure
+>> +     */
+>> +    char build_version[];
 >> +} __packed;
 >> +
 >> +/**
@@ -517,40 +574,50 @@ As John commented, not need to specify, will be removed.
 >> + * This is mandatory fw LFD data
 >> + */
 >> +struct guc_lfd_data_fw_version {
->> +	/**
->> +	 * @guc_sw_version: The full version of the GuC microkernel that
->> +	 * generated the logs as described in
->> +	 * GUC_LIC_TYPE_GUC_SW_VERSION.
->> +	 */
->> +	struct guc_sw_version guc_sw_version;
+>> +    /**
+>> +     * @guc_sw_version: The full version of the GuC microkernel that
+>> +     * generated the logs as described in
+>> +     * GUC_LIC_TYPE_GUC_SW_VERSION.
+> Except that the log data block is optional and so not necessarily 
+> present. Should just say "The full version of the GuC firmware.".
+> 
+>> +     */
+>> +    struct guc_sw_version guc_sw_version;
 >> +} __packed;
+> Although, again this is a single u32 structure, which seems pointless. A 
+> comment description would be sufficient.
+Yes, no need for single u32, To be removed>
 >> +
 >> +/**
->> + * struct guc_logfile_header - Header of GuC Log Streaming-LFD-File Format.
+>> + * struct guc_logfile_header - Header of GuC Log Streaming-LFD-File 
+>> Format.
 >> + * This structure encapsulates the layout of the guc-log-file format
 >> + */
 >> +struct guc_lfd_file_header {
->> +	/**
->> +	 * @magic: A magic number set by producer of a GuC log file to
->> +	 * identify that file is a valid guc-log-file containing a stream
->> +	 * of LFDs: Expected value: GUC_LFD_DRIVER_KEY_STREAMING
->> +	 */
->> +	u64 magic;
->> +	/**
->> +	 * @version: Version of this file format layout as per
->> +	 * guc_lfd_version
->> +	 */
->> +	struct guc_lfd_version version;
->> +	/**
->> +	 * @lfd_stream: A stream of one or more guc_lfd_data LFD data
->> +	 */
->> +	struct guc_lfd_data lfd_stream;
+>> +    /**
+>> +     * @magic: A magic number set by producer of a GuC log file to
+>> +     * identify that file is a valid guc-log-file containing a stream
+>> +     * of LFDs: Expected value: GUC_LFD_DRIVER_KEY_STREAMING
+>> +     */
+>> +    u64 magic;
+>> +    /**
+>> +     * @version: Version of this file format layout as per
+>> +     * guc_lfd_version
+>> +     */
+>> +    struct guc_lfd_version version;
+>> +    /**
+>> +     * @lfd_stream: A stream of one or more guc_lfd_data LFD data
+> "LFD blocks" is a better way to describe them than "LFD data". Data can 
+> mean pretty much anything, whereas block implies a discrete unit.
+will be LFD blocks>
+>> +     */
+>> +    struct guc_lfd_data lfd_stream;
+> Technically, this is just a single LFD block, not a stream. And you 
+> can't really do 'lfd_stream[]' because blocks are variable in size. 
+> Would be better to just say "u32 lfd_stream[];".
+Sounds good
+> John.
 > 
-> no need to repeat lfd from struct name in field name
-> 
-> s/lfd_stream/stream
-sure
-
 > 
 >> +} __packed;
 >> +
