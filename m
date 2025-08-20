@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E936CA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 09:19:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12728CA0EF8
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 09:19:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D96B710E6B2;
-	Wed, 20 Aug 2025 09:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFAFF10E35F;
+	Wed, 20 Aug 2025 09:19:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Lqc6Cw7K";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZVXNxUuo";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0A310E386
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 09:19:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0F5D10E6C7
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 09:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OIA24mClJoDIGSLhO33lpsu8LAwAaUnwnnJaw2afEgA=; b=Lqc6Cw7KAscuKpzZYQXJ8Jzi2/
- kn9aeDRwSU8mQ1bKCbEVHPa5S1g5JMTM48KIBOx76wrfV80omVafJRmToBaBNzVJVH5O5JbR+ypSg
- /dWqIWoEgnqjGSTl/OB905Z+D8yXDVefXUTE/XNPure3eIfkxKMpNSuYlamJ+gHV4j2qRPezVczfI
- LsoBgE6W/LJBVbFUhwA5ZHA93M15Ld6YlnfVv+CqbVNZVTuCq2XXYf1MvOMgac09olad4fnufWRFn
- HTCrY/sZ0dAut7Eya9wPjaSxFnzh9Shp3Ie/X2/j09b/NblbEqOlOPVakjPRdGcYoKsv84QPVeBrV
- DkCPM3xw==;
+ bh=sNoSrCtA1lLEaZFc5bA63Q0znJHXfriyAqlF1jmyJVQ=; b=ZVXNxUuoGIulXx1EsJiFO17Ekf
+ RhoY7kS3SQrkQO9+3Vk2KVXc5Pdsq3nqaFHGkSoBT199aum3vG4JBuT5kf+1VjI4cU/Y4Zxg3fRE6
+ 5yGruYf430ApIT0byPEJRbQJ6Zppz13mKF5MBOmi/VX2wYMJs6VGzLmL7ryo4OytmNjrAg0fnl+AY
+ NK9uFFQ8T/jrjr27b9MYp5J5ffT29VNvXDpRViaAS7UVfxjZKRQGKNKAj5eqRPZhaBhwdWaWa+Izl
+ Fegqv+CJW0eQM9aYLUBpnea4UJ/k0HDm7AomjzEucvAnGqssOlMHuhlnGjnDokYZLQ5zUBXjfE18F
+ LxszHynw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoeyT-00GhX0-Lb
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:17 +0200
+ id 1uoeyZ-00GhXh-SM
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:23 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 04/13] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-Date: Wed, 20 Aug 2025 10:19:03 +0100
-Message-ID: <20250820091913.18588-5-tvrtko.ursulin@igalia.com>
+Subject: [CI 13/13] no dpt stolen
+Date: Wed, 20 Aug 2025 10:19:12 +0100
+Message-ID: <20250820091913.18588-14-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
@@ -57,37 +57,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
-
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index e7c23fd04011..752dea0a9234 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -275,15 +275,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
- 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
- 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
- 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
-+	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
-+			  MI_FLUSH_DW_CCS : 0;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	if (invalidate_tlb) {
- 		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno,
--					MI_INVALIDATE_TLB,
--					dw, i);
-+					seqno, MI_INVALIDATE_TLB | flags, dw,
-+					i);
- 		/* hsdes: 1809175790 */
- 		if (aux_ccs) {
- 			struct xe_reg reg;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index dc912864407e..2921dca55959 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -214,13 +214,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						      XE_BO_FLAG_PAGETABLE,
+ 						      alignment);
+ 	else
+-		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+-						      dpt_size,  ~0ull,
+-						      ttm_bo_type_kernel,
+-						      XE_BO_FLAG_STOLEN |
+-						      XE_BO_FLAG_GGTT |
+-						      XE_BO_FLAG_PAGETABLE,
+-						      alignment);
++		dpt = ERR_PTR(-EINVAL);
++
+ 	if (IS_ERR(dpt))
+ 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
+ 						      dpt_size,  ~0ull,
 -- 
 2.48.0
 
