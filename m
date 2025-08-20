@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A04ECA0EF8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E936CA0EDC
 	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 09:19:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A6610E6CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D96B710E6B2;
 	Wed, 20 Aug 2025 09:19:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ry2a2qZP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Lqc6Cw7K";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4264A10E365
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 09:19:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0A310E386
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 09:19:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9jVnDYH17fNlWJ+oMfOnkTqjuPqKGk4UXbfFsfsVJPA=; b=ry2a2qZPvSLkNBimSnvNoM0YCS
- cvtLBbggMd0paf5hHupuPTctsRRbe9rTInbdYxBExpkiMuW2IVHUaIjnfyVJqJ9sWACVBQ1GGRbdb
- U67tfZaij2yxeYImOysPwEveGbiGAGfeSJcmyihfU0AffVuQGrVfnsv6nvLiLdu2EFL9cd3kVT0MK
- ktipeoaiLXf7Lgmv+Mb9zmo2AomANVdcS/miaq13mDHxWFHlsxxLsMUDRL13DMN1EcakaFzcLtW57
- KCKfXh3Au1DOZOJ3dzpgjlTHjAPd0rp/mHW2MhgB0Cs88pLzxciMFJXpEc+lb9MGSAElOdez/X/yi
- 77WDhRLw==;
+ bh=OIA24mClJoDIGSLhO33lpsu8LAwAaUnwnnJaw2afEgA=; b=Lqc6Cw7KAscuKpzZYQXJ8Jzi2/
+ kn9aeDRwSU8mQ1bKCbEVHPa5S1g5JMTM48KIBOx76wrfV80omVafJRmToBaBNzVJVH5O5JbR+ypSg
+ /dWqIWoEgnqjGSTl/OB905Z+D8yXDVefXUTE/XNPure3eIfkxKMpNSuYlamJ+gHV4j2qRPezVczfI
+ LsoBgE6W/LJBVbFUhwA5ZHA93M15Ld6YlnfVv+CqbVNZVTuCq2XXYf1MvOMgac09olad4fnufWRFn
+ HTCrY/sZ0dAut7Eya9wPjaSxFnzh9Shp3Ie/X2/j09b/NblbEqOlOPVakjPRdGcYoKsv84QPVeBrV
+ DkCPM3xw==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoeyX-00GhXN-30
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:21 +0200
+ id 1uoeyT-00GhX0-Lb
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:17 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/13] drm/xe: Handle DPT in system memory
-Date: Wed, 20 Aug 2025 10:19:08 +0100
-Message-ID: <20250820091913.18588-10-tvrtko.ursulin@igalia.com>
+Subject: [CI 04/13] drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+Date: Wed, 20 Aug 2025 10:19:03 +0100
+Message-ID: <20250820091913.18588-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,36 +57,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If DPT is allocated from system memory it will be created in the default
-write-back cached mode. This means we need to flush it after populating
-otherwise nothing works.
+Emit MI_FLUSH_DW_CCS when invalidating on auxccs platforms.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 460e330676b3..5819895f5a48 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2021 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index e7c23fd04011..752dea0a9234 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -275,15 +275,16 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+ 			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
+ 	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
++	const u32 flags = aux_ccs && class == XE_ENGINE_CLASS_COPY ?
++			  MI_FLUSH_DW_CCS : 0;
  
-+#include <drm/drm_cache.h>
- #include <drm/ttm/ttm_bo.h>
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
- #include "i915_vma.h"
-@@ -206,6 +207,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 
- 	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
- 		ggtt_flush_writes(tile0->mem.ggtt);
-+	else if (!xe_bo_is_vram(dpt) && !xe_bo_is_stolen(dpt))
-+		drm_clflush_virt_range(dpt->vmap.vaddr, dpt_size);
- 
- 	vma->dpt = dpt;
- 	vma->node = dpt->ggtt_node[tile0->id];
+ 	if (invalidate_tlb) {
+ 		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno,
+-					MI_INVALIDATE_TLB,
+-					dw, i);
++					seqno, MI_INVALIDATE_TLB | flags, dw,
++					i);
+ 		/* hsdes: 1809175790 */
+ 		if (aux_ccs) {
+ 			struct xe_reg reg;
 -- 
 2.48.0
 
