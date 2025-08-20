@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 915E0CA0EDC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3631CCA0EED
 	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 23:31:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C80A010E80A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9AF110E80B;
 	Wed, 20 Aug 2025 23:31:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V8i/kXVD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BZ0k/ekU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C29110E80B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C0A10E80A
  for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 23:30:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755732659; x=1787268659;
+ t=1755732660; x=1787268660;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=twKE6iwdmO9IGPGutbWLBZSzNtSAJM4CgyDqYKrjzOY=;
- b=V8i/kXVDLAb2U1w1EmlaADoB+NzvTRdXQSPw7fa28h9C61iwAA6SYVgM
- LnVbZ600tzuTOhF5cDH/vhJHQf+iDNs9fiYqqQfXlZlXJ0+oAltp2Xxc2
- jTbZ5VAAqgTKHYRCYRGECl8Ly7b6DxBQkQd0v1tRJ1v3PJN4rJCKtM6GN
- x61BiDWwFUGZkTiWyAYgPzICkvx67AtR7coTwHtkuhpktbhPUlbLfTvtK
- q0AwhJGk5yZUbBxvVUNZw2J1Js9S0A9PYEXL/J1OSmiHvReSslkL9Qtlo
- AdpoBgJ2Q0tybG9vJ51IttFuIxZWdeUCYg1AqFOWWL3qrWCoOgiF8czFE w==;
-X-CSE-ConnectionGUID: 0RFkFo/2QxKQbRFdt/GbnA==
-X-CSE-MsgGUID: PnJHw8BORVS1bUufFJzR/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="45586298"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="45586298"
+ bh=Dnfe9H+ec+th/zE/VB66Eziim3ZTWlh6H89Dwy/XviY=;
+ b=BZ0k/ekUVZ9BrIjJhb2MAZzM6TNEbu+BIbAqZSPJObIJfOn2mpuzUR9+
+ W2RlLF+c1s/WJPpK9RpGtVv+HxXKXp8jAxl1VTo5GG1UwMOLaOC9tALD7
+ PnJ1uhRwLWKnM+ldO/yIt1g0emqiNtxJ+kel5cPLpk1T4GvnWlRcFCZ+f
+ 5/NWxFHIyJwXnPmrhc/PZtzyPOSdY/Gcc6SjBR4/HreO5jvn52dnPCsBP
+ +h1xuAWGlL95W42V2AW1jrMdyA4KrkDKJ5vRzjAFsb+32PJwBs6nmchoY
+ pAvnKU3aJccegGQZwE65GzzwmuMmmSpxfVupQimOqbRRpkBIAo8Am9fol Q==;
+X-CSE-ConnectionGUID: tRXMgSGATZag3ChsCw3R4w==
+X-CSE-MsgGUID: e7nKSdWPTvug/LFBfRC4jA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="45586299"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="45586299"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2025 16:30:59 -0700
-X-CSE-ConnectionGUID: 3USPaYKuTsu+14EHiA7d5A==
-X-CSE-MsgGUID: nAH/QRBiSFulhVSGMlm8KA==
+X-CSE-ConnectionGUID: Qsr6eXT5Sdq7oKER5M5EGg==
+X-CSE-MsgGUID: EUMMu4YZSseriiWjlHqZ8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="167470918"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="167470921"
 Received: from dut137arlu.fm.intel.com ([10.105.23.66])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Aug 2025 16:30:59 -0700
@@ -45,9 +45,9 @@ From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  farah.kassabri@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 1/9] drm/xe: Move explicit CT lock in TLB invalidation sequence
-Date: Wed, 20 Aug 2025 23:30:49 +0000
-Message-Id: <20250820233057.83894-2-stuart.summers@intel.com>
+Subject: [PATCH 2/9] drm/xe: Cancel pending TLB inval workers on teardown
+Date: Wed, 20 Aug 2025 23:30:50 +0000
+Message-Id: <20250820233057.83894-3-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250820233057.83894-1-stuart.summers@intel.com>
 References: <20250820233057.83894-1-stuart.summers@intel.com>
@@ -67,111 +67,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently the CT lock is used to cover TLB invalidation
-sequence number updates. In an effort to separate the GuC
-back end tracking of communication with the firmware from
-the front end TLB sequence number tracking, add a new lock
-here to specifically track those sequence number updates
-coming in from the user.
+There is a small window of time during the driver teardown where
+the TLB invalidation fence->gt is set to NULL but an invalidation
+worker is still alive. This won't cause an issue currently because
+the tlb_invalidation structure itself is still present. However as
+part of a future refactor, we are looking to split that structure
+out. To be safe, go ahead and cancel any outstanding TLB invalidation
+fence worker thread on _fini() since at that time we are already
+tearing down the driverworker thread on _fini() since at that time we
+are already tearing down the driver and don't need to continue
+monitoring this.
 
-Apart from the CT lock, we also have a pending lock to
-cover both pending fences and sequence numbers received
-from the back end. Those cover interrupt cases and so
-it makes not to overload those with sequence numbers
-coming in from new transactions. In that way, we'll employ
-a mutex here.
-
-v2: Actually add the correct lock rather than just dropping
-    it... (Matt)
+Add a new _fini() routine on the GT TLB invalidation
+side to handle this worker cleanup on driver teardown.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 19 +++++++++++++------
- drivers/gpu/drm/xe/xe_gt_types.h            |  2 ++
- 2 files changed, 15 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c                  |  2 ++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 21 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  1 +
+ 3 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 02f0bb92d6e0..75854b963d66 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -118,6 +118,9 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
-  */
- int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index a3397f04abcc..bbf3f4da7f54 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -69,6 +69,8 @@ static void gt_fini(struct drm_device *drm, void *arg)
  {
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int err;
-+
- 	gt->tlb_invalidation.seqno = 1;
- 	INIT_LIST_HEAD(&gt->tlb_invalidation.pending_fences);
- 	spin_lock_init(&gt->tlb_invalidation.pending_lock);
-@@ -125,6 +128,10 @@ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt)
- 	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
- 			  xe_gt_tlb_fence_timeout);
+ 	struct xe_gt *gt = arg;
  
-+	err = drmm_mutex_init(&xe->drm, &gt->tlb_invalidation.seqno_lock);
-+	if (err)
-+		return err;
++	xe_gt_tlb_invalidation_fini(gt);
 +
- 	gt->tlb_invalidation.job_wq =
- 		drmm_alloc_ordered_workqueue(&gt_to_xe(gt)->drm, "gt-tbl-inval-job-wq",
- 					     WQ_MEM_RECLAIM);
-@@ -158,7 +165,7 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	 * appear.
- 	 */
- 
--	mutex_lock(&gt->uc.guc.ct.lock);
-+	mutex_lock(&gt->tlb_invalidation.seqno_lock);
- 	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 	cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
- 	/*
-@@ -178,7 +185,7 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 				 &gt->tlb_invalidation.pending_fences, link)
- 		invalidation_fence_signal(gt_to_xe(gt), fence);
- 	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
--	mutex_unlock(&gt->uc.guc.ct.lock);
-+	mutex_unlock(&gt->tlb_invalidation.seqno_lock);
+ 	destroy_workqueue(gt->ordered_wq);
  }
  
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 75854b963d66..170f6c97268f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -188,6 +188,27 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
+ 	mutex_unlock(&gt->tlb_invalidation.seqno_lock);
+ }
+ 
++/**
++ *
++ * xe_gt_tlb_invalidation_fini - Clean up GT TLB invalidation state
++ *
++ * Cancel pending fence workers and clean up any additional
++ * GT TLB invalidation state.
++ */
++void xe_gt_tlb_invalidation_fini(struct xe_gt *gt)
++{
++	/*
++	 * At this point, we expect any outstanding TLB transactions
++	 * to still signal through the normal channels of interrupts
++	 * or MMIO polling updates, etc. There could be some workers
++	 * triggered as a result of timeouts in those channels, though,
++	 * that we want to make sure get cleaned up during an unbind.
++	 * So here, cancel the delayed work, but let the normal fence
++	 * signaling handle the rest.
++	 */
++	cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
++}
++
  static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
-@@ -211,13 +218,13 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 	 * need to be updated.
- 	 */
+ {
+ 	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index f7f0f2eaf4b5..3e4cff3922d6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -16,6 +16,7 @@ struct xe_vm;
+ struct xe_vma;
  
--	mutex_lock(&guc->ct.lock);
-+	mutex_lock(&gt->tlb_invalidation.seqno_lock);
- 	seqno = gt->tlb_invalidation.seqno;
- 	fence->seqno = seqno;
- 	trace_xe_gt_tlb_invalidation_fence_send(xe, fence);
- 	action[1] = seqno;
--	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
--				    G2H_LEN_DW_TLB_INVALIDATE, 1);
-+	ret = xe_guc_ct_send(&guc->ct, action, len,
-+			     G2H_LEN_DW_TLB_INVALIDATE, 1);
- 	if (!ret) {
- 		spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 		/*
-@@ -248,7 +255,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 		if (!gt->tlb_invalidation.seqno)
- 			gt->tlb_invalidation.seqno = 1;
- 	}
--	mutex_unlock(&guc->ct.lock);
-+	mutex_unlock(&gt->tlb_invalidation.seqno_lock);
- 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
+ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
++void xe_gt_tlb_invalidation_fini(struct xe_gt *gt);
  
- 	return ret;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index ef0f2eecfa29..4dbc40fa6639 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -190,6 +190,8 @@ struct xe_gt {
- 		/** @tlb_invalidation.seqno: TLB invalidation seqno, protected by CT lock */
- #define TLB_INVALIDATION_SEQNO_MAX	0x100000
- 		int seqno;
-+		/** @tlb_invalidation.seqno_lock: protects @tlb_invalidation.seqno */
-+		struct mutex seqno_lock;
- 		/**
- 		 * @tlb_invalidation.seqno_recv: last received TLB invalidation seqno,
- 		 * protected by CT lock
+ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
 -- 
 2.34.1
 
