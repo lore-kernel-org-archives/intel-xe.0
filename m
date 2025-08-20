@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E465CA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 07:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4BCBCA0EED
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 07:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61DC910E162;
-	Wed, 20 Aug 2025 07:18:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DC0XF21Q";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC4710E162;
- Wed, 20 Aug 2025 07:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755674302; x=1787210302;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=B1JjAeJG33TKKBJe2aZtKaibxfa94fB+bPRH3/BQHQw=;
- b=DC0XF21QLFGkpXtUVEAZZA8Jl0rm506PtO9lDXAg9f5QEyAke4TdkXVt
- Wmu3IfETx3XehASWR/klOe8VF5XmHRNQGk9qzhPtXgZepqJb7jST2TlXM
- wciAfcxeGkjX6H3+eQk3InU4h01NQ3Mj49cdByp+u633PqdHF074dkQSC
- udHn7wEMUJZcKAmCQ5DBBrTk5YyqqM44BvFYr6UGo546btDSFpmKZ0EDB
- xMcLjCJN+02EGqpEBw5dKfCeHUb2e3c90ztbdAT9WJ387+8X3p7jhu+pE
- hJtqiTjeMI0FAn/gXiqW5HXG6z8LRGDu0XNcyxnmUa6KVK2CjVfCbHOQx w==;
-X-CSE-ConnectionGUID: vZGDYVJxSKWapJXRUZNXAg==
-X-CSE-MsgGUID: dHi2mF6KRjq+ShUMRVoJ6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="68203231"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="68203231"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 00:18:22 -0700
-X-CSE-ConnectionGUID: P8mqh3JiTXGY7YCGkIcDyw==
-X-CSE-MsgGUID: DkuxRu2yTpuw+rRIk7W6qQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168011195"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.58])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 00:18:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v2] drm/i915/backlight: Fix divide by 0 error in
- i9xx_set_backlight
-In-Reply-To: <20250819160438.145734-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250819160438.145734-1-suraj.kandpal@intel.com>
-Date: Wed, 20 Aug 2025 10:18:15 +0300
-Message-ID: <aa314e44e68404093a1956dfd8af54bc1031d3b7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64BBB10E23E;
+	Wed, 20 Aug 2025 07:29:19 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C07D10E23E;
+ Wed, 20 Aug 2025 07:29:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3591328028824745818=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pcode=3A_Initialize_?=
+ =?utf-8?q?data0_for_pcode_read_routine_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stuart Summers" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 20 Aug 2025 07:29:18 -0000
+Message-ID: <175567495817.250965.11173014847335414092@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250819201054.393220-1-stuart.summers@intel.com>
+In-Reply-To: <20250819201054.393220-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,39 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 19 Aug 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> pwm_level_max maybe 0 we do throw a warning but move ahead with
-> execution which may later cause a /0 error.
->
-> --v2
-> -return if the warn_on gets hit [Jani]
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+--===============3591328028824745818==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
+
+Series: drm/xe/pcode: Initialize data0 for pcode read routine (rev3)
+URL   : https://patchwork.freedesktop.org/series/152700/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621_BAT -> xe-pw-152700v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
 
 
-> ---
->  drivers/gpu/drm/i915/display/intel_backlight.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index e007380e9a63..3b14f929825a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -236,7 +236,8 @@ static void i9xx_set_backlight(const struct drm_connector_state *conn_state, u32
->  	struct intel_panel *panel = &connector->panel;
->  	u32 tmp, mask;
->  
-> -	drm_WARN_ON(display->drm, panel->backlight.pwm_level_max == 0);
-> +	if (drm_WARN_ON(display->drm, panel->backlight.pwm_level_max == 0))
-> +		return;
->  
->  	if (panel->backlight.combination_mode) {
->  		struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+Changes
+-------
 
--- 
-Jani Nikula, Intel
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621 -> xe-pw-152700v3
+
+  IGT_8498: 8498
+  xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621: 58aeea9c7882b70436d9c2e55e45738711a41621
+  xe-pw-152700v3: 152700v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152700v3/index.html
+
+--===============3591328028824745818==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pcode: Initialize data0 for pcode read routine (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152700/">https://patchwork.freedesktop.org/series/152700/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152700v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152700v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621_BAT -&gt; xe-pw-152700v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621 -&gt; xe-pw-152700v3</li>
+</ul>
+<p>IGT_8498: 8498<br />
+  xe-3582-58aeea9c7882b70436d9c2e55e45738711a41621: 58aeea9c7882b70436d9c2e55e45738711a41621<br />
+  xe-pw-152700v3: 152700v3</p>
+
+</body>
+</html>
+
+--===============3591328028824745818==--
