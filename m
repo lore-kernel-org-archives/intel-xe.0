@@ -4,122 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45CDECA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 15:22:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C03E4CA0EE4
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 15:23:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5B810E77F;
-	Wed, 20 Aug 2025 15:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8873810E77F;
+	Wed, 20 Aug 2025 15:23:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Xixm2oi8";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="eLcXVeQq";
 	dkim-atps=neutral
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028F110E248;
- Wed, 20 Aug 2025 08:09:30 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57JNmmLo017631;
- Wed, 20 Aug 2025 08:09:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=XyEp7P
- B6Crc5O/n3hDpRBdclhiXWepi7f2DlP7ISOnE=; b=Xixm2oi8D/e/+wAITPeDp3
- TALHrRG4EBVti1e3wM1Z6LnCfvINBVfhRGmgOPkipNfgbFhBD0MWSeZRRuGZ/NN+
- NKDq98HPciL4Zozeql4srzji2nvV3CzcZ3UlmCS5mUo4axD1CO9niYr/utY3r3nU
- R/k9YIllh44h9uoNOFLeppTj5ZpJGLc7EDb+zLBQQ5R2NO8ZqfzYF65N+NeIflzl
- gTcYt/B8t87ieiFU691ZjDHQqARPeaX+Fy6nA8Cm30nsgWe9R3Iis8b6CyGL5Xlw
- ovWuvSCaaobgeWwxqiRAGHpZnDDJ13JX7jkAK7240Uso3SZWpw/1sppbNb+XqHPQ
- ==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrww-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:13 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 57K89CuX005377;
- Wed, 20 Aug 2025 08:09:12 GMT
-Received: from ppma12.dal12v.mail.ibm.com
- (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrwp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:12 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
- by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 57K4xm2t015619;
- Wed, 20 Aug 2025 08:09:11 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
- by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 48my422cjr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:11 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
- [10.20.54.106])
- by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 57K899B961342160
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 20 Aug 2025 08:09:09 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id A734720043;
- Wed, 20 Aug 2025 08:09:09 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 407A620040;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Received: from [9.111.5.117] (unknown [9.111.5.117])
- by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Message-ID: <295ae4dd-4734-42a0-be63-2d322f00c799@linux.ibm.com>
-Date: Wed, 20 Aug 2025 10:09:07 +0200
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0B6410E77F
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 15:23:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1755703392;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=MHMC0ytWt4UnbdQQ3ai3X6E6JH7mYxGupeQxLSXwMtc=;
+ b=eLcXVeQq9scCqTXJvWZAJIAFdt2Emoff+IWyC6ot1sM4dBEX3ChCbEXHUq+h3BaiNKqPcY
+ heVRM0D8elwGhjrFlWbJt6JLeWmsua5cOu5NGD3vxa8je/NIgqNLZlnW9vBJTaiFBGcNbV
+ Ux/jTH1wYQU0N5UDQpGti0I85sGn7MU=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-464-0uge8HsLMEOb2urZhSvGyg-1; Wed, 20 Aug 2025 11:23:11 -0400
+X-MC-Unique: 0uge8HsLMEOb2urZhSvGyg-1
+X-Mimecast-MFC-AGG-ID: 0uge8HsLMEOb2urZhSvGyg_1755703390
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-45a1b05d8d0so41659925e9.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 08:23:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755703390; x=1756308190;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=MHMC0ytWt4UnbdQQ3ai3X6E6JH7mYxGupeQxLSXwMtc=;
+ b=o8GxN9rpRQpP7WpA4gs4SfrgwuGil1uHpz+GDebFKmId3wlsaMGMJToaEjpyv6wu4l
+ 7O4lIyvpdScAw21XsQthivEkl/rIdwdLZnD2UafE8+IaT8lSDVMV0wEB0eFkj5v1ampH
+ 0W9XBRjCmo8Yrg9XkIpWCWpkBXzg3lqSL6hPQZcnl3m1/Yhb2uoMWCVUIzHC1GuwRO0A
+ CTl/QC+LDM7nhKlogzpKxLEymAH0dHYwnQClIG6dunW8teib3BZQlC2kEOcYS1ZdNlbw
+ pJ0xrTl5uHS9OTxalNWrdC0k3ZUcbVV8Ol98Va5AmcxfrKsrelpfuRuQ67ZQ+OZA6GNc
+ mrSw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXIRK0ONucZzcGw9CkvpBk7sylQoVz1R7xjKkmxt3dKTNE0vW4ul1Zi11a2MpNeSp5Gka/b0jHiLQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwqGg1JqLiyVUEhPifIKk5+NYuR1oa4LQTebI3QpIW6Ep0F9gSX
+ kta2tGYwk6blkwrpO3QJhXwcjiSrVIZAWskp3YSRCfmAbgGwrdcmlgP6ohSfyW5n0jETwzlkdOF
+ td+/J0HqjLI54OIZF48n42VlgCFjaipzSPNrXYLvG2CqnUZSg6Rhgltnh0gi//39PGXOE
+X-Gm-Gg: ASbGncu5QFuQDnR+v3zOL/24rQ7yXy5pwCBrtGlKmoRx0cl4WWROa8ueac7o6oMN4tg
+ 7hNDG45x/VnZGZjIw8yCvmndaiU/RqyXRjFEs3ifhF+Jpn+cx0lYavEZhQEL92pcoIQ3QGD5XNx
+ pBGDvyp3mxWLf1YC29cxwszEKutkaHgBV1Zdz1P/OafNK5Guw4TLFqgG+3S2rnsetilm/7kLAHx
+ hHGD161cwIwgYalxfwmlgxVKCwIF9D3FvRxBBKourSyGowzmjJJhylgAaFLnuM4LJOMynHSH6AX
+ JIDebIiA7YkRjtS1qyMu42r8IMlnl3Du1EzIKLD4dzzfEjBxlVxJ1/iZA70d4BQ+gyJLpl0Zvv4
+ Qn7bNCUlS7IePJunNTact5+Psn5tIp7KiHcMQTCCedy75qbVajVlN9QJjtBcxL42T
+X-Received: by 2002:a05:600c:1c0f:b0:45b:47e1:f5ff with SMTP id
+ 5b1f17b1804b1-45b47e1f78emr19926155e9.35.1755703389806; 
+ Wed, 20 Aug 2025 08:23:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGhEZ/n8PZkcKynPCVdAwa7qiBMdV4if/4Cu2oXhVKYAe2TWTJLq5lgkm+j9KdvQrljPj3TIQ==
+X-Received: by 2002:a05:600c:1c0f:b0:45b:47e1:f5ff with SMTP id
+ 5b1f17b1804b1-45b47e1f78emr19925905e9.35.1755703389377; 
+ Wed, 20 Aug 2025 08:23:09 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f13:de00:e9f1:62b4:5bb:5d83?
+ (p200300d82f13de00e9f162b405bb5d83.dip0.t-ipconnect.de.
+ [2003:d8:2f13:de00:e9f1:62b4:5bb:5d83])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-45b47c64984sm36601325e9.23.2025.08.20.08.23.08
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 20 Aug 2025 08:23:08 -0700 (PDT)
+Message-ID: <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
+Date: Wed, 20 Aug 2025 17:23:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
-To: Robin Murphy <robin.murphy@arm.com>, peterz@infradead.org,
- mingo@redhat.com, will@kernel.org, mark.rutland@arm.com,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com, kan.liang@linux.intel.com
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
- <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
+Subject: Re:
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ x86@kernel.org
+Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
+ matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
+ peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+References: <20250820143739.3422-1-christian.koenig@amd.com>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
+ ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
+ FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
+ 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
+ opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
+ 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
+ 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
+ Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
+ lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
+ cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
+ Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
+ otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
+ LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
+ 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
+ VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
+ /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
+ iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
+ 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
+ zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
+ azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
+ FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
+ sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
+ 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
+ EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
+ IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
+ 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
+ Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
+ sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
+ yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
+ 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
+ r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
+ 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
+ CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
+ qIws/H2t
+In-Reply-To: <20250820143739.3422-1-christian.koenig@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: VNBhB5p9r39OaqDlWrgr4eiBE8U0Whs4nK8PJFuD2SI_1755703390
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-From: Thomas Richter <tmricht@linux.ibm.com>
-Organization: IBM
-In-Reply-To: <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: rc1CmpHVUr4PjN6HeVNNaTAKVoWbVX32
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE5MDIyMiBTYWx0ZWRfX4xTzLYCTQsxG
- AGD1we0J4ezItB0ejTfm7DJNuDAARyH4VivdukTDV+G2c134zt0WbxSJSEE76uDxTym3DRzLeZX
- mOf6bUkLRc8HI2z83HLeSrLnCDaUzt6ctsGigqq+Yny6dHl56O82/ysxGcmIZx9UyZO+hyMZvb/
- ecuWa/hbBYOZ6yeacF65qy/00k1eAjO++Mj45cxXjqV85T1khiwKHAStutPkN05LIcWmzIOI2N6
- JcZUW/XH3ZbwPgzY20enHnuM+rxpiC2AXWamVYRgBgnxytZoHYJTbh5BurqPVICmyND/IQHxcAh
- w3J7un0oPnbnMNdQ3B2TA6VUHKYY82ln4UWEvFzI/Jn0XaQRTQr//JuEseTSCgQIqbo5FGoTW85
- ypKOH5UDXA9ip20lItNjpe1wLNO1nQ==
-X-Proofpoint-GUID: GZ2wu60A03msHy_JXXsuf0f5WSTi9QT-
-X-Authority-Analysis: v=2.4 cv=KPwDzFFo c=1 sm=1 tr=0 ts=68a582a9 cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=7CQSdrXTAAAA:8 a=gUTjnckvcJroK4elFEgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
- a=DXsff8QfwkrTrK3sU8N1:22 a=Z5ABNNGmrOfJ6cZ5bIyy:22 a=bWyr8ysk75zN3GCy5bjg:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_03,2025-08-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508190222
-X-Mailman-Approved-At: Wed, 20 Aug 2025 15:21:59 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,155 +152,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/19/25 15:15, Robin Murphy wrote:
-> On 13/08/2025 6:01 pm, Robin Murphy wrote:
->> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
->> events without registering themselves as PERF_TYPE_RAW in the first
->> place. Add an explicit opt-in for these special cases, so that we can
->> make life easier for every other driver (and probably also speed up the
->> slow-path search) by having perf_try_init_event() do the basic type
->> checking to cover the majority of cases.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>
->> A further possibility is to automatically add the cap to PERF_TYPE_RAW
->> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
->> undecided...
->> ---
->>   arch/s390/kernel/perf_cpum_cf.c    |  1 +
->>   arch/s390/kernel/perf_pai_crypto.c |  2 +-
->>   arch/s390/kernel/perf_pai_ext.c    |  2 +-
->>   arch/x86/events/core.c             |  2 +-
->>   drivers/perf/arm_pmu.c             |  1 +
->>   include/linux/perf_event.h         |  1 +
->>   kernel/events/core.c               | 15 +++++++++++++++
->>   7 files changed, 21 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
->> index 1a94e0944bc5..782ab755ddd4 100644
->> --- a/arch/s390/kernel/perf_cpum_cf.c
->> +++ b/arch/s390/kernel/perf_cpum_cf.c
->> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
->>   /* Performance monitoring unit for s390x */
->>   static struct pmu cpumf_pmu = {
->>       .task_ctx_nr  = perf_sw_context,
->> +    .capabilities = PERF_PMU_CAP_RAW_EVENTS,
->>       .pmu_enable   = cpumf_pmu_enable,
->>       .pmu_disable  = cpumf_pmu_disable,
->>       .event_init   = cpumf_pmu_event_init,
->> diff --git a/arch/s390/kernel/perf_pai_crypto.c b/arch/s390/kernel/perf_pai_crypto.c
->> index a64b6b056a21..b5b6d8b5d943 100644
->> --- a/arch/s390/kernel/perf_pai_crypto.c
->> +++ b/arch/s390/kernel/perf_pai_crypto.c
->> @@ -569,7 +569,7 @@ static const struct attribute_group *paicrypt_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paicrypt = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paicrypt_event_init,
->>       .add          = paicrypt_add,
->>       .del          = paicrypt_del,
->> diff --git a/arch/s390/kernel/perf_pai_ext.c b/arch/s390/kernel/perf_pai_ext.c
->> index 1261f80c6d52..bcd28c38da70 100644
->> --- a/arch/s390/kernel/perf_pai_ext.c
->> +++ b/arch/s390/kernel/perf_pai_ext.c
->> @@ -595,7 +595,7 @@ static const struct attribute_group *paiext_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paiext = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paiext_event_init,
->>       .add          = paiext_add,
->>       .del          = paiext_del,
->> diff --git a/arch/x86/events/core.c b/arch/x86/events/core.c
->> index 789dfca2fa67..764728bb80ae 100644
->> --- a/arch/x86/events/core.c
->> +++ b/arch/x86/events/core.c
->> @@ -2697,7 +2697,7 @@ static bool x86_pmu_filter(struct pmu *pmu, int cpu)
->>   }
->>     static struct pmu pmu = {
->> -    .capabilities        = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities        = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>         .pmu_enable        = x86_pmu_enable,
->>       .pmu_disable        = x86_pmu_disable,
->> diff --git a/drivers/perf/arm_pmu.c b/drivers/perf/arm_pmu.c
->> index 72d8f38d0aa5..bc772a3bf411 100644
->> --- a/drivers/perf/arm_pmu.c
->> +++ b/drivers/perf/arm_pmu.c
->> @@ -877,6 +877,7 @@ struct arm_pmu *armpmu_alloc(void)
->>            * specific PMU.
->>            */
->>           .capabilities    = PERF_PMU_CAP_SAMPLING |
->> +                  PERF_PMU_CAP_RAW_EVENTS |
->>                     PERF_PMU_CAP_EXTENDED_REGS |
->>                     PERF_PMU_CAP_EXTENDED_HW_TYPE,
->>       };
->> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
->> index 183b7c48b329..c6ad036c0037 100644
->> --- a/include/linux/perf_event.h
->> +++ b/include/linux/perf_event.h
->> @@ -305,6 +305,7 @@ struct perf_event_pmu_context;
->>   #define PERF_PMU_CAP_EXTENDED_HW_TYPE    0x0100
->>   #define PERF_PMU_CAP_AUX_PAUSE        0x0200
->>   #define PERF_PMU_CAP_AUX_PREFER_LARGE    0x0400
->> +#define PERF_PMU_CAP_RAW_EVENTS        0x0800
->>     /**
->>    * pmu::scope
->> diff --git a/kernel/events/core.c b/kernel/events/core.c
->> index 71b2a6730705..2ecee76d2ae2 100644
->> --- a/kernel/events/core.c
->> +++ b/kernel/events/core.c
->> @@ -12556,11 +12556,26 @@ static inline bool has_extended_regs(struct perf_event *event)
->>              (event->attr.sample_regs_intr & PERF_REG_EXTENDED_MASK);
->>   }
->>   +static bool is_raw_pmu(const struct pmu *pmu)
->> +{
->> +    return pmu->type == PERF_TYPE_RAW ||
->> +           pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
->> +}
->> +
->>   static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
->>   {
->>       struct perf_event_context *ctx = NULL;
->>       int ret;
->>   +    /*
->> +     * Before touching anything, we can safely skip:
->> +     * - any event for a specific PMU which is not this one
->> +     * - any common event if this PMU doesn't support them
->> +     */
->> +    if (event->attr.type != pmu->type &&
->> +        (event->attr.type >= PERF_TYPE_MAX || is_raw_pmu(pmu)))
-> 
-> Ah, that should be "!is_raw_pmu(pmu)" there (although it's not entirely the cause of the LKP report on the final patch.)
-> 
-> Thanks,
-> Robin.
-> 
->> +        return -ENOENT;
->> +
->>       if (!try_module_get(pmu->module))
->>           return -ENODEV;
->>   
-> 
-> 
+CCing Lorenzo
 
-Hi Robin,
+On 20.08.25 16:33, Christian König wrote:
+> Hi everyone,
+> 
+> sorry for CCing so many people, but that rabbit hole turned out to be
+> deeper than originally thought.
+> 
+> TTM always had problems with UC/WC mappings on 32bit systems and drivers
+> often had to revert to hacks like using GFP_DMA32 to get things working
+> while having no rational explanation why that helped (see the TTM AGP,
+> radeon and nouveau driver code for that).
+> 
+> It turned out that the PAT implementation we use on x86 not only enforces
+> the same caching attributes for pages in the linear kernel mapping, but
+> also for highmem pages through a separate R/B tree.
+> 
+> That was unexpected and TTM never updated that R/B tree for highmem pages,
+> so the function pgprot_set_cachemode() just overwrote the caching
+> attributes drivers passed in to vmf_insert_pfn_prot() and that essentially
+> caused all kind of random trouble.
+> 
+> An R/B tree is potentially not a good data structure to hold thousands if
+> not millions of different attributes for each page, so updating that is
+> probably not the way to solve this issue.
+> 
+> Thomas pointed out that the i915 driver is using apply_page_range()
+> instead of vmf_insert_pfn_prot() to circumvent the PAT implementation and
+> just fill in the page tables with what the driver things is the right
+> caching attribute.
 
-what is the intention of that patch?
-Can you explain that a bit more.
+I assume you mean apply_to_page_range() -- same issue in patch subjects.
 
-Thanks.
+Oh this sounds horrible. Why oh why do we have these hacks in core-mm 
+and have drivers abuse them :(
+
+Honestly, apply_to_pte_range() is just the entry in doing all kinds of 
+weird crap to page tables because "you know better".
+
+All the sanity checks from vmf_insert_pfn(), gone.
+
+Can we please fix the underlying issue properly?
 
 -- 
-Thomas Richter, Dept 3303, IBM s390 Linux Development, Boeblingen, Germany
---
-IBM Deutschland Research & Development GmbH
+Cheers
 
-Vorsitzender des Aufsichtsrats: Wolfgang Wendt
+David / dhildenb
 
-Geschäftsführung: David Faller
-
-Sitz der Gesellschaft: Böblingen / Registergericht: Amtsgericht Stuttgart, HRB 243294
