@@ -4,26 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A903DCA0EE4
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 15:50:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6A2ACA0EDC
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 16:07:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1D610E78A;
-	Wed, 20 Aug 2025 15:50:01 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C84510E78F;
- Wed, 20 Aug 2025 15:50:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2348816968384626680=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA6210E276;
+	Wed, 20 Aug 2025 16:07:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="T3r2aOCP";
+	dkim-atps=neutral
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96BE810E276;
+ Wed, 20 Aug 2025 16:07:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1755706067;
+ bh=JZnp5yjKMKgRWTZZeJ7KCwPkVJENOyo5NMGFvtD70QU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=T3r2aOCPqSSQjm9ieCypjtClfbtwD8vNZXRNWSRpa0t+DKXkRFwLkDVna6UU/qYJx
+ 53RqWgO50xy8+KJuM8SYN8gRHiGtXpjLWyTC8T0ml/aMxYOLCB9xMqCHDt8DY4MURh
+ ToqRRnsMx51SPX08WYSOAAAfj/P+QLNdkfg18GRUor98W5x+BdpDCbTVgHg5mLrv08
+ syjBl1FkDYm16+W1vs75byfLjKAwQI74uh7r+JpsUp0Mp9Z2TbIxrsD04O2KoKeuss
+ AHaqYu2QoBzz5juKYZcEIcqolIRGYwytGRJeaFeV5QYAd3cNj2So7FAeEaYXJV+TLv
+ 5GwE90sF/c9RA==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id EC93417E0488;
+ Wed, 20 Aug 2025 18:07:46 +0200 (CEST)
+Date: Wed, 20 Aug 2025 18:07:42 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Boris Brezillon <bbrezillon@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, Matt Coster <matt.coster@imgtec.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Matthew Brost
+ <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/gpuvm: Rename 'map' to 'op' in drm_gpuvm_map_req
+Message-ID: <20250820180742.20623521@fedora>
+In-Reply-To: <20250820152335.2899501-1-himal.prasad.ghimiray@intel.com>
+References: <20250820152335.2899501-1-himal.prasad.ghimiray@intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_no_stolen?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Aug 2025 15:50:00 -0000
-Message-ID: <175570500050.253103.9178537880063503132@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,115 +59,247 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2348816968384626680==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 20 Aug 2025 20:53:35 +0530
+Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> wrote:
 
-== Series Details ==
+> Renamed 'map' to 'op' in drm_gpuvm_map_req for clarity and added
+> corresponding documentation. No functional changes introduced.
+> 
+> Fixes: baf1638c0956 ("drm/gpuvm: Introduce drm_gpuvm_madvise_ops_create")
+> Fixes: 000a45dce7ad ("drm/gpuvm: Pass map arguments through a struct")
+> Suggested-by: Boris Brezillon <bbrezillon@kernel.org>
+> Suggested-by: Danilo Krummrich <dakr@kernel.org>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matt Coster <matt.coster@imgtec.com>
+> Cc: Boris Brezillon <bbrezillon@kernel.org>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Series: auxccs no stolen
-URL   : https://patchwork.freedesktop.org/series/153202/
-State : success
+Acked-by: Boris Brezillon <boris.brezillon@collabora.com>
 
-== Summary ==
+> ---
+>  drivers/gpu/drm/drm_gpuvm.c            | 36 +++++++++++++-------------
+>  drivers/gpu/drm/imagination/pvr_vm.c   |  8 +++---
+>  drivers/gpu/drm/msm/msm_gem_vma.c      | 16 ++++++------
+>  drivers/gpu/drm/nouveau/nouveau_uvmm.c |  8 +++---
+>  drivers/gpu/drm/panthor/panthor_mmu.c  |  8 +++---
+>  drivers/gpu/drm/xe/xe_vm.c             |  8 +++---
+>  include/drm/drm_gpuvm.h                |  4 +--
+>  7 files changed, 44 insertions(+), 44 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+> index 39f934a91a7b..e9aaf9b287e7 100644
+> --- a/drivers/gpu/drm/drm_gpuvm.c
+> +++ b/drivers/gpu/drm/drm_gpuvm.c
+> @@ -552,11 +552,11 @@
+>   *				  struct drm_gem_object *obj, u64 offset)
+>   *	{
+>   *		struct drm_gpuvm_map_req map_req = {
+> - *		        .map.va.addr = addr,
+> - *	                .map.va.range = range,
+> - *	                .map.gem.obj = obj,
+> - *	                .map.gem.offset = offset,
+> - *	           };
+> + *		        .op.va.addr = addr,
+> + *	                .op.va.range = range,
+> + *	                .op.gem.obj = obj,
+> + *	                .op.gem.offset = offset,
+> + *	        };
+>   *		struct drm_gpuva_ops *ops;
+>   *		struct drm_gpuva_op *op
+>   *		struct drm_gpuvm_bo *vm_bo;
+> @@ -2132,10 +2132,10 @@ op_map_cb(const struct drm_gpuvm_ops *fn, void *priv,
+>  		return 0;
+>  
+>  	op.op = DRM_GPUVA_OP_MAP;
+> -	op.map.va.addr = req->map.va.addr;
+> -	op.map.va.range = req->map.va.range;
+> -	op.map.gem.obj = req->map.gem.obj;
+> -	op.map.gem.offset = req->map.gem.offset;
+> +	op.map.va.addr = req->op.va.addr;
+> +	op.map.va.range = req->op.va.range;
+> +	op.map.gem.obj = req->op.gem.obj;
+> +	op.map.gem.offset = req->op.gem.offset;
+>  
+>  	return fn->sm_step_map(&op, priv);
+>  }
+> @@ -2180,12 +2180,12 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  		   const struct drm_gpuvm_map_req *req,
+>  		   bool madvise)
+>  {
+> -	struct drm_gem_object *req_obj = req->map.gem.obj;
+> +	struct drm_gem_object *req_obj = req->op.gem.obj;
+>  	const struct drm_gpuvm_map_req *op_map = madvise ? NULL : req;
+>  	struct drm_gpuva *va, *next;
+> -	u64 req_offset = req->map.gem.offset;
+> -	u64 req_range = req->map.va.range;
+> -	u64 req_addr = req->map.va.addr;
+> +	u64 req_offset = req->op.gem.offset;
+> +	u64 req_range = req->op.va.range;
+> +	u64 req_addr = req->op.va.addr;
+>  	u64 req_end = req_addr + req_range;
+>  	int ret;
+>  
+> @@ -2272,8 +2272,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  
+>  				if (madvise) {
+>  					struct drm_gpuvm_map_req map_req = {
+> -						.map.va.addr =  req_addr,
+> -						.map.va.range = end - req_addr,
+> +						.op.va.addr =  req_addr,
+> +						.op.va.range = end - req_addr,
+>  					};
+>  
+>  					ret = op_map_cb(ops, priv, &map_req);
+> @@ -2340,8 +2340,8 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+>  
+>  				if (madvise) {
+>  					struct drm_gpuvm_map_req map_req = {
+> -						.map.va.addr =  addr,
+> -						.map.va.range = req_end - addr,
+> +						.op.va.addr =  addr,
+> +						.op.va.range = req_end - addr,
+>  					};
+>  
+>  					return op_map_cb(ops, priv, &map_req);
+> @@ -2583,7 +2583,7 @@ drm_gpuvm_sm_map_exec_lock(struct drm_gpuvm *gpuvm,
+>  			   struct drm_exec *exec, unsigned int num_fences,
+>  			   struct drm_gpuvm_map_req *req)
+>  {
+> -	struct drm_gem_object *req_obj = req->map.gem.obj;
+> +	struct drm_gem_object *req_obj = req->op.gem.obj;
+>  
+>  	if (req_obj) {
+>  		int ret = drm_exec_prepare_obj(exec, req_obj, num_fences);
+> diff --git a/drivers/gpu/drm/imagination/pvr_vm.c b/drivers/gpu/drm/imagination/pvr_vm.c
+> index 3d97990170bf..983165eb3e6a 100644
+> --- a/drivers/gpu/drm/imagination/pvr_vm.c
+> +++ b/drivers/gpu/drm/imagination/pvr_vm.c
+> @@ -187,10 +187,10 @@ static int pvr_vm_bind_op_exec(struct pvr_vm_bind_op *bind_op)
+>  	switch (bind_op->type) {
+>  	case PVR_VM_BIND_TYPE_MAP: {
+>  		const struct drm_gpuvm_map_req map_req = {
+> -			.map.va.addr = bind_op->device_addr,
+> -			.map.va.range = bind_op->size,
+> -			.map.gem.obj = gem_from_pvr_gem(bind_op->pvr_obj),
+> -			.map.gem.offset = bind_op->offset,
+> +			.op.va.addr = bind_op->device_addr,
+> +			.op.va.range = bind_op->size,
+> +			.op.gem.obj = gem_from_pvr_gem(bind_op->pvr_obj),
+> +			.op.gem.offset = bind_op->offset,
+>  		};
+>  
+>  		return drm_gpuvm_sm_map(&bind_op->vm_ctx->gpuvm_mgr,
+> diff --git a/drivers/gpu/drm/msm/msm_gem_vma.c b/drivers/gpu/drm/msm/msm_gem_vma.c
+> index 210604181c05..9b5d003bc5a2 100644
+> --- a/drivers/gpu/drm/msm/msm_gem_vma.c
+> +++ b/drivers/gpu/drm/msm/msm_gem_vma.c
+> @@ -1179,10 +1179,10 @@ vm_bind_job_lock_objects(struct msm_vm_bind_job *job, struct drm_exec *exec)
+>  			case MSM_VM_BIND_OP_MAP:
+>  			case MSM_VM_BIND_OP_MAP_NULL: {
+>  				struct drm_gpuvm_map_req map_req = {
+> -					.map.va.addr = op->iova,
+> -					.map.va.range = op->range,
+> -					.map.gem.obj = op->obj,
+> -					.map.gem.offset = op->obj_offset,
+> +					.op.va.addr = op->iova,
+> +					.op.va.range = op->range,
+> +					.op.gem.obj = op->obj,
+> +					.op.gem.offset = op->obj_offset,
+>  				};
+>  
+>  				ret = drm_gpuvm_sm_map_exec_lock(job->vm, exec, 1, &map_req);
+> @@ -1296,10 +1296,10 @@ vm_bind_job_prepare(struct msm_vm_bind_job *job)
+>  			fallthrough;
+>  		case MSM_VM_BIND_OP_MAP_NULL: {
+>  			struct drm_gpuvm_map_req map_req = {
+> -				.map.va.addr = op->iova,
+> -				.map.va.range = op->range,
+> -				.map.gem.obj = op->obj,
+> -				.map.gem.offset = op->obj_offset,
+> +				.op.va.addr = op->iova,
+> +				.op.va.range = op->range,
+> +				.op.gem.obj = op->obj,
+> +				.op.gem.offset = op->obj_offset,
+>  			};
+>  
+>  			ret = drm_gpuvm_sm_map(job->vm, &arg, &map_req);
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> index d94a85509176..314121a857e7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> @@ -1277,10 +1277,10 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+>  		case OP_MAP: {
+>  			struct nouveau_uvma_region *reg;
+>  			struct drm_gpuvm_map_req map_req = {
+> -				.map.va.addr = op->va.addr,
+> -				.map.va.range = op->va.range,
+> -				.map.gem.obj = op->gem.obj,
+> -				.map.gem.offset = op->gem.offset,
+> +				.op.va.addr = op->va.addr,
+> +				.op.va.range = op->va.range,
+> +				.op.gem.obj = op->gem.obj,
+> +				.op.gem.offset = op->gem.offset,
+>  			};
+>  
+>  			reg = nouveau_uvma_region_find_first(uvmm,
+> diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+> index 2003b91a8409..3799e2c6ea59 100644
+> --- a/drivers/gpu/drm/panthor/panthor_mmu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+> @@ -2204,10 +2204,10 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+>  	switch (op_type) {
+>  	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP: {
+>  		const struct drm_gpuvm_map_req map_req = {
+> -			.map.va.addr = op->va.addr,
+> -			.map.va.range = op->va.range,
+> -			.map.gem.obj = op->map.vm_bo->obj,
+> -			.map.gem.offset = op->map.bo_offset,
+> +			.op.va.addr = op->va.addr,
+> +			.op.va.range = op->va.range,
+> +			.op.gem.obj = op->map.vm_bo->obj,
+> +			.op.gem.offset = op->map.bo_offset,
+>  		};
+>  
+>  		if (vm->unusable) {
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index f35d69c0b4c6..66b54b152446 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2339,10 +2339,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+>  	case DRM_XE_VM_BIND_OP_MAP:
+>  	case DRM_XE_VM_BIND_OP_MAP_USERPTR: {
+>  		struct drm_gpuvm_map_req map_req = {
+> -			.map.va.addr = addr,
+> -			.map.va.range = range,
+> -			.map.gem.obj = obj,
+> -			.map.gem.offset = bo_offset_or_userptr,
+> +			.op.va.addr = addr,
+> +			.op.va.range = range,
+> +			.op.gem.obj = obj,
+> +			.op.gem.offset = bo_offset_or_userptr,
+>  		};
+>  
+>  		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, &map_req);
+> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+> index 4a22b9d848f7..751c96a817ed 100644
+> --- a/include/drm/drm_gpuvm.h
+> +++ b/include/drm/drm_gpuvm.h
+> @@ -1054,9 +1054,9 @@ struct drm_gpuva_ops {
+>   */
+>  struct drm_gpuvm_map_req {
+>  	/**
+> -	 * @op_map: struct drm_gpuva_op_map
+> +	 * @op: struct drm_gpuva_op_map
+>  	 */
+> -	struct drm_gpuva_op_map map;
+> +	struct drm_gpuva_op_map op;
+>  };
+>  
+>  struct drm_gpuva_ops *
 
-CI Bug Log - changes from xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f_BAT -> xe-pw-153202v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153202v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f -> xe-pw-153202v1
-
-  IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f: 7566d2cb0eb389084c208a764ce4ca287ec2242f
-  xe-pw-153202v1: 153202v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v1/index.html
-
---===============2348816968384626680==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs no stolen</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153202/">https://patchwork.freedesktop.org/series/153202/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f_BAT -&gt; xe-pw-153202v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153202v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f -&gt; xe-pw-153202v1</li>
-</ul>
-<p>IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3586-7566d2cb0eb389084c208a764ce4ca287ec2242f: 7566d2cb0eb389084c208a764ce4ca287ec2242f<br />
-  xe-pw-153202v1: 153202v1</p>
-
-</body>
-</html>
-
---===============2348816968384626680==--
