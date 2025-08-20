@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D035CCA0EF5
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 04:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAC6FCA0EDC
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 05:05:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 770C110E163;
-	Wed, 20 Aug 2025 04:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6422010E081;
+	Wed, 20 Aug 2025 05:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MgXG+2b0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQ5TeED3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEB110E163;
- Wed, 20 Aug 2025 04:32:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 620A610E081
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 05:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755664333; x=1787200333;
+ t=1755666309; x=1787202309;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=XUo8UA/ajbgi1ZMj3a4mpZ1TjVGFVd1VsfnMJHfbtGo=;
- b=MgXG+2b0wCIb84Na1N8pMAn0SJcfJpK1Y8ejd8zgDjiI70abIN4bLvrE
- Nkdr0VdQ+pSZ+ussMEhXOSFTJ7ZcaOFMT74WViZGrJVeSVh4e6lxJQX45
- f8Hni5Qk2bx0gf/F2L5o2Nay9pbCPKdu8DdZ0wNcrLomLNJ3vUCwxT//j
- 3qtzqEz6u1AyW9b+UZNrITYaWy+oqJz7UOLUTvH+rdHUM/Bx1ok8zBfZ1
- 0z+cjjZ5JBxQA0hFHdo+v+t4lnDQEpWvjinnmMYPz201DG1KiRC4p69Fg
- DLzBIt2BzPkhq8TRVfhQnkar6s/DQvg3ckm1+C/B3tqgm3NdpQzT3ixMs g==;
-X-CSE-ConnectionGUID: +iB/gucPQD+3ziP9e2Q6JA==
-X-CSE-MsgGUID: +eNxRtAaRkq1p4BvMcnhcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75503472"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="75503472"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 21:32:13 -0700
-X-CSE-ConnectionGUID: YeMPREUpSLiTs5nNiUhe6w==
-X-CSE-MsgGUID: JYuBCxDBQmaAa/ddo1S8Qw==
+ bh=HAr77ISWxatn2tH2Q7qqlpmPpIicOnYcLzQnMQEnn/c=;
+ b=AQ5TeED3NORpNKfkI932/bhQrGOrX6M7yEcjSEO0ZV5tGrgVVw8oncP6
+ vSkOGH2FuwbuqlMIMT8+T2JsMBnE31zaof3vZEM0snrhjrrBGqUGv7sYn
+ L76T/Ph/c29sW1pd6m2c5ukp2WhhiSI1loF5YiFGmyod2VlcCZxZ7/4KA
+ IJfTLNL5301Pln/FREPuqQruM5xUTpYyUWlkxOM3wF5GSMq/0U7w9LYWX
+ 2BoHAV5o0Dm+Dt12O4R9IRGO5r8qtQ/aAJHJxBhEYrlhtufSDhjtQnGCr
+ gzgOEF5oGAW84w2r9jg47Tb0VwxXA6IShPd6DPoB2zC86EbNY+RUTBzEF w==;
+X-CSE-ConnectionGUID: Z/PbGRL+TXGeF6wyBERQOg==
+X-CSE-MsgGUID: VR7+4YWDSsaGhOWgPZo03Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="80516511"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="80516511"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 22:05:09 -0700
+X-CSE-ConnectionGUID: zk2LS0NoTV67vux+w9KYRw==
+X-CSE-MsgGUID: hPNGWqYuQ8WQmxSOeYdISg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168366889"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa008.fm.intel.com with ESMTP; 19 Aug 2025 21:32:11 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, vinod.govindapillai@intel.com,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH] drm/i915/display: Remove FBC modulo 4 restriction for ADL+
-Date: Wed, 20 Aug 2025 10:14:16 +0530
-Message-ID: <20250820044416.4048117-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.42.0
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168439589"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 22:05:08 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v2 1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering() input gt
+ a const
+Date: Tue, 19 Aug 2025 22:04:57 -0700
+Message-ID: <f91cf18778cd4cf281fa5fdd26292fb39e5893eb.1755666190.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,39 +66,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-FBC restriction where FBC is disabled for non-modulo 4 plane size
-(including plane size + yoffset) is fixed from ADL onwards in h/w.
-WA:22010751166
+Make gt, input parameter to xe_gt_mcr_get_dss_steering(), a
+constant. This would allow xe_gt_mcr_get_dss_steering() to
+be called from functions that have gt as const to struct xe_gt.
 
-Relax the restriction for the same.
+v2: Rebase
 
-Credits-to: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.h | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index d4c5deff9cbe..bf257467a635 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1550,14 +1550,14 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * having a Y offset that isn't divisible by 4 causes FIFO underrun
- 	 * and screen flicker.
- 	 */
--	if (DISPLAY_VER(display) >= 9 &&
-+	if (DISPLAY_VER(display) >= 9 && DISPLAY_VER(display) <= 12 &&
- 	    plane_state->view.color_plane[0].y & 3) {
- 		plane_state->no_fbc_reason = "plane start Y offset misaligned";
- 		return 0;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 683ac021a06d..8fb1cae91724 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -362,7 +362,7 @@ static unsigned int dss_per_group(struct xe_gt *gt)
+  * @group: pointer to storage for steering group ID
+  * @instance: pointer to storage for steering instance ID
+  */
+-void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance)
++void xe_gt_mcr_get_dss_steering(const struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance)
+ {
+ 	xe_gt_assert(gt, dss < XE_MAX_DSS_FUSE_BITS);
  
- 	/* Wa_22010751166: icl, ehl, tgl, dg1, rkl */
--	if (DISPLAY_VER(display) >= 11 &&
-+	if ((DISPLAY_VER(display) == 11 || DISPLAY_VER(display) == 12) &&
- 	    (plane_state->view.color_plane[0].y +
- 	     (drm_rect_height(&plane_state->uapi.src) >> 16)) & 3) {
- 		plane_state->no_fbc_reason = "plane end Y offset misaligned";
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index bc06520befab..283a1c9770e2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -31,7 +31,8 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+ 					  u8 *group, u8 *instance);
+ 
+ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
+-void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance);
++void xe_gt_mcr_get_dss_steering(const struct xe_gt *gt,
++				unsigned int dss, u16 *group, u16 *instance);
+ u32 xe_gt_mcr_steering_info_to_dss_id(struct xe_gt *gt, u16 group, u16 instance);
+ 
+ /*
 -- 
-2.42.0
+2.48.1
 
