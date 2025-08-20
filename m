@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BC9CCA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 18:31:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7454CA0EE4
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 18:56:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11CA110E7C8;
-	Wed, 20 Aug 2025 18:31:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTtmuYZh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F0410E7C8
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 18:31:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755714693; x=1787250693;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=odKuUwppF1tAKXek3OL0+/6yPLjV/i+MWkX+owgQf/A=;
- b=UTtmuYZhXWBSRqQtSvFkMIJf1DmQkt7mm6ikbswShyD21N7PEIhRU2lx
- LJ2i4XuTL8dY+GYQ/xh5c0DVHVYdzTZw4yxZ3+gbORibwhe0404CB4GN1
- 7M78mJMLRrKy/3phqhDCr7XxA4OVed0fZuQmywgExX1jCxV9ZS6jEcQSa
- Mku78YCbeBRynXe8dkXzPzX12VoXyl8elzUptXIheWxYGSn0gJfUqBGLc
- fhcogcBJDHSzsYBSujzsjHyjc5PTh3ZIA22eZ1ci+gEyJa7Y5Ye0O5jtL
- aO650ZXe3Obo7T1Ajto95dPNAX9V8tByTXT4kjQBItLuomIYHx1tz49Dx g==;
-X-CSE-ConnectionGUID: 2V7Jz0GaR6OzRoolrUSUtQ==
-X-CSE-MsgGUID: I3h5g9bBQeaDrCJoCiVbvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="60620380"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="60620380"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 11:31:33 -0700
-X-CSE-ConnectionGUID: DWjqdWMDTSKUkQgSr9qtaw==
-X-CSE-MsgGUID: L0ZGg7U+QJiBRvH/Uax2HQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="167406830"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
- by orviesa006.jf.intel.com with ESMTP; 20 Aug 2025 11:31:29 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uonao-000Jb9-2t;
- Wed, 20 Aug 2025 18:31:26 +0000
-Date: Thu, 21 Aug 2025 02:31:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Marie Zhussupova <marievic@google.com>, marievictoria875@gmail.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- David Gow <davidgow@google.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com,
- linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm/xe/tests: Fix some additional gen_params
- signatures
-Message-ID: <202508210248.4CiPvWGD-lkp@intel.com>
-References: <20250819073434.1411114-1-davidgow@google.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 896E610E7D8;
+	Wed, 20 Aug 2025 18:56:06 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC72F10E7D8;
+ Wed, 20 Aug 2025 18:56:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7590809571748229420=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250819073434.1411114-1-davidgow@google.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Enable_CCS_sav?=
+ =?utf-8?q?e/restore_only_on_supported_GUC_versions_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 20 Aug 2025 18:56:04 -0000
+Message-ID: <175571616470.253400.6426138777133091899@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250820114829.7447-1-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250820114829.7447-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,59 +36,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi David,
+--===============7590809571748229420==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build errors:
+== Series Details ==
 
-[auto build test ERROR on shuah-kselftest/kunit]
-[also build test ERROR on linus/master v6.17-rc2 next-20250820]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Series: drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev2)
+URL   : https://patchwork.freedesktop.org/series/153061/
+State : success
 
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Gow/kunit-Only-output-a-test-plan-if-we-re-using-kunit_array_gen_params/20250819-154731
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest.git kunit
-patch link:    https://lore.kernel.org/r/20250819073434.1411114-1-davidgow%40google.com
-patch subject: [PATCH 1/2] drm/xe/tests: Fix some additional gen_params signatures
-config: x86_64-randconfig-071-20250820 (https://download.01.org/0day-ci/archive/20250821/202508210248.4CiPvWGD-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250821/202508210248.4CiPvWGD-lkp@intel.com/reproduce)
+== Summary ==
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508210248.4CiPvWGD-lkp@intel.com/
+CI Bug Log - changes from xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a_BAT -> xe-pw-153061v2_BAT
+====================================================
 
-All errors (new ones prefixed by >>):
+Summary
+-------
 
-   In file included from <built-in>:4:
->> drivers/gpu/drm/xe/tests/xe_pci_test.h:28:49: error: declaration of 'struct kunit' will not be visible outside of this function [-Werror,-Wvisibility]
-      28 | const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc);
-         |                                                 ^
-   drivers/gpu/drm/xe/tests/xe_pci_test.h:29:46: error: declaration of 'struct kunit' will not be visible outside of this function [-Werror,-Wvisibility]
-      29 | const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc);
-         |                                              ^
-   drivers/gpu/drm/xe/tests/xe_pci_test.h:30:40: error: declaration of 'struct kunit' will not be visible outside of this function [-Werror,-Wvisibility]
-      30 | const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc);
-         |                                        ^
-   drivers/gpu/drm/xe/tests/xe_pci_test.h:31:49: error: declaration of 'struct kunit' will not be visible outside of this function [-Werror,-Wvisibility]
-      31 | const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc);
-         |                                                 ^
-   4 errors generated.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153061v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+#### Possible fixes ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - {bat-ptl-1}:        [DMESG-WARN][3] ([Intel XE#5772]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - {bat-ptl-2}:        [DMESG-WARN][5] ([Intel XE#5772]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][7] ([Intel XE#5783]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-2}:        [FAIL][9] ([Intel XE#5783]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5772]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
 
 
-vim +28 drivers/gpu/drm/xe/tests/xe_pci_test.h
+Build changes
+-------------
 
-    27	
-  > 28	const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc);
-    29	const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc);
-    30	const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc);
-    31	const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc);
-    32	
+  * Linux: xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a -> xe-pw-153061v2
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a: 67f294a52e4b22d1b5bb86dd5dd3ac33e640717a
+  xe-pw-153061v2: 153061v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/index.html
+
+--===============7590809571748229420==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153061/">https://patchwork.freedesktop.org/series/153061/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a_BAT -&gt; xe-pw-153061v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153061v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-modeset:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a -&gt; xe-pw-153061v2</li>
+</ul>
+<p>IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3588-67f294a52e4b22d1b5bb86dd5dd3ac33e640717a: 67f294a52e4b22d1b5bb86dd5dd3ac33e640717a<br />
+  xe-pw-153061v2: 153061v2</p>
+
+</body>
+</html>
+
+--===============7590809571748229420==--
