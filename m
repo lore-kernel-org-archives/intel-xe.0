@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEC7FCA0EDC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 09:19:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74E0FCA0EFC
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Aug 2025 09:19:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5F8610E35F;
-	Wed, 20 Aug 2025 09:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3545610E386;
+	Wed, 20 Aug 2025 09:19:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ewBf7YeZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="eBFWPV4h";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62F4C10E386
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24E5C10E372
  for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 09:19:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5wyJj6a0GDD1eksSur7PZTowssQ1DAYYFThZmc+TgkY=; b=ewBf7YeZNiW3e0m1lbuFivjBMR
- 0A33GWtW7AWiFJelhLnEnQlxESZd8CyxBRiQJI8Nov/gCyc94mKbwWWrrnLST1G7BhoTBHzGj4+rS
- g8ctSbdmRUA8lxdgffe/lA1kmo/ra/bB9lngyUVwsWCa9KxJeNNe5Yc98W0sEzcPaz524J5afvH6i
- F5h08IS1YD7R3M25UU81kz3BH9PaLRdbCoM/OWqBWwBJ5cazYypUhC1AfipUQQQN8RifGwp8cZ0O9
- MpqDtBgTP3QAzyB3NM3QlDH6fpBFnCZnj3ceAIzS0wuxYVLmJVlT0Tt30g16IO1ikVtsZOagnZSTp
- c27Vb+fw==;
+ bh=XUC29s9cPvV5BndxvSCjU28BVgIrW+TEFbzBnc5S6oY=; b=eBFWPV4h0RRmfYJqL5dDd/y1jj
+ 2NTBpEpJy+pUml8j5DnsrrE83jZj7n/fm2u+uc5dh6CR+cdoFp9K9V+3oSrc9Zu0KZYDodLlXy9vV
+ 3c0lL/Fsd0JAJ0RypHxkySHdkabp+0epcdkM9f2dTS9JTwlU9ovgFneqdlITLpiMMPCZYnkKH8Xad
+ 6Phy1eb5RKbLsElY/ZVWLkFphcYVHNvOJDqOHSXVuYKGptGimC0Cioucv2zYxX60eVw0cpEzK0tCt
+ Sz7JO25aAqCdQQ8Y6ASSXLCTcGIW8doScwGYXeQOEyAPrJE4tau622jBOHnuJPOHusyqRwYrSan5u
+ 0Ijl6SQA==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uoeyS-00GhWt-9m
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:16 +0200
+ id 1uoeyQ-00GhWn-TK
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Aug 2025 11:19:14 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 02/13] drm/xe/xelp: Quiesce memory traffic before invalidating
- auxccs
-Date: Wed, 20 Aug 2025 10:19:01 +0100
-Message-ID: <20250820091913.18588-3-tvrtko.ursulin@igalia.com>
+Subject: [CI 00/13] auxccs no stolen
+Date: Wed, 20 Aug 2025 10:18:59 +0100
+Message-ID: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
-References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,57 +56,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 before invalidating auxccs we must quiesce the memory
-traffic by an extra flush.
+...
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c       | 7 ++++++-
- drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
- 2 files changed, 7 insertions(+), 2 deletions(-)
+Tvrtko Ursulin (13):
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe/display: Add support for AuxCCS
+  drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+  no dpt stolen
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 761740d7769f..f56506ebbeca 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -358,10 +358,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	const bool aux_ccs = has_aux_ccs(xe);
- 	u32 mask_flags = 0;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
-+	/* hsdes: 1809175790 */
-+	if (aux_ccs)
-+		i = emit_render_cache_flush(job, dw, i);
-+
- 	dw[i++] = preparser_disable(true);
- 	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
-@@ -372,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
- 
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe))
-+	if (aux_ccs)
- 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
- 
- 	dw[i++] = preparser_disable(false);
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index d7e3e150a9a5..477dc7defd72 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
- 
- struct xe_sched_job;
- 
--#define MAX_JOB_SIZE_DW 58
-+#define MAX_JOB_SIZE_DW 70
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
- 
- /**
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 178 ++++++++++++++----
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/xe_bo_types.h              |  14 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  47 +++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 161 ++++++++--------
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ 10 files changed, 295 insertions(+), 124 deletions(-)
+
 -- 
 2.48.0
 
