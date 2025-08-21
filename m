@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC561CA0EEB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2EA2CA0EFC
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 751EA10E38D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 785BA10E38E;
 	Thu, 21 Aug 2025 16:18:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9Q5x0T3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y6TREjx+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CF1A10E38E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C353910E38E
  for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1755793115; x=1787329115;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ky539BESZVCrOCZfWhlAXsGFq8yjDf7ApYJ3lPCGiWU=;
- b=W9Q5x0T36BLOETMKnH2YJlQhGdrniOMqaQVbC31Loys1rYYVYsoyyVLi
- etrBOeai2IBFaiF9uioAEtvf+yp82Zz3b/sesRTb92qa42jPuoz4JDwrV
- d45MUGiullQQ+LolyJUHIwfD4orCjBTv1edCuu4ZFVoGWESGBEPt1B9uF
- eHTEBxtngevk6RYFruaONgisJnifbLV1Vnbg/PU0dLNccofiQETH7b1vf
- kjCm6g8mLYoiNdxMO+QDPoDAj17OupdgwZOHS2ZtAM6Wv56oecPZUluTI
- CfYU95okSGUMwH02SMXhb+4w/Eakap9E8yTiOz5hl3Nni8gxxVjQmkbKb w==;
-X-CSE-ConnectionGUID: nwUtdI9jSZOzmWsxkncrcg==
-X-CSE-MsgGUID: 52hrJ7qJSq2EeUJMs81Oyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527881"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527881"
+ bh=VBVL05RZmOvH6HdZIVC0/KG2D1t4f/tIZHwFl7cWwFc=;
+ b=Y6TREjx+O04Ud2BnYjXhJ2ofmhdnLYHT0d7FAlnTO/pLaJnkCAF9PDKQ
+ RWRpIgylPpyInZsamqOrjbB4kmGoMs6MHBDu/rs5dWr8C34r9ev/8FVLB
+ 4U0n3+6wQqA5Sx2OgYXMAtEUoBwDG62ZLvBZc6HfGIV8Stvgaz5I0+zK9
+ aqJD6r4ei7HnC2rc6J6Pgk4cFLRFxPvUi9DVfsA/4VBQ3xSvcgxBVeTxS
+ cnEdg9JZARhIH/u/oBAYfOd/RNla4lFCdOqlDM9203PvOVuvx4ZSV6x5f
+ Qvzn14AFoRP8irbrEReRNnyIECzByMYR1cJltX4wZxtHoBFLbRVuN3tVq w==;
+X-CSE-ConnectionGUID: ff/KPcOkQmizHBYkGeXFiw==
+X-CSE-MsgGUID: v5syuuAXRDK8V6pmu5SoRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527883"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527883"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2025 09:18:35 -0700
-X-CSE-ConnectionGUID: xrQtQ47ETlCaBmQVxDyoew==
-X-CSE-MsgGUID: GX84RZ0ATPaHTf78OlLG2w==
+X-CSE-ConnectionGUID: Km1d5+nJSH6emGMwenGjEA==
+X-CSE-MsgGUID: XhCyh6aVQaG+Rkq3B7VRAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326701"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326708"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2025 09:18:34 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com, Matt Roper <matthew.d.roper@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
+ dnyaneshwar.bhadane@intel.com,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v5 01/12] drm/xe/psmi: Add GuC flag to enable PSMI
-Date: Thu, 21 Aug 2025 09:17:56 -0700
-Message-ID: <20250821-psmi-v5-1-34ab7550d3d8@intel.com>
+Subject: [PATCH v5 03/12] drm/xe/rtp: Add match for psmi
+Date: Thu, 21 Aug 2025 09:17:58 -0700
+Message-ID: <20250821-psmi-v5-3-34ab7550d3d8@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
 References: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
@@ -72,93 +70,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PSMI allows to capture data from the GPU useful for early
-validation. From the kernel side there isn't much to be done, just a few
-things:
+Add match to be used on WAs for only enabling workarounds if psmi is
+intended to be used.
 
-	1) Toggle the feature support in GuC
-	2) Enable some additional WAs
-	3) Allocate buffers
-
-Here is the first step, with the next ones to follow. For now everything
-is disabled through a check in configfs that is currently hardcoded to
-disabled.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
-- s/GUC_CTL_ENABLE_PSMI/GUC_CTL_ENABLE_PSMI_LOGGING/ to match the GuC
-  interface name (Vinay)
----
- drivers/gpu/drm/xe/xe_configfs.h | 2 ++
- drivers/gpu/drm/xe/xe_guc.c      | 7 ++++++-
- drivers/gpu/drm/xe/xe_guc_fwif.h | 1 +
- 3 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_rtp.c | 7 +++++++
+ drivers/gpu/drm/xe/xe_rtp.h | 3 +++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index fb87640080896..c14588b86e833 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -16,12 +16,14 @@ void xe_configfs_exit(void);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
-+static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
- #else
- static inline int xe_configfs_init(void) { return 0; }
- static inline void xe_configfs_exit(void) { }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
- static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) { }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
-+static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 95571b87aa73c..47ea1521dc80c 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -9,6 +9,7 @@
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 433abc787f7b0..883f700e532a7 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -16,6 +16,7 @@
- #include "regs/xe_guc_regs.h"
- #include "regs/xe_irq_regs.h"
- #include "xe_bo.h"
+ #include <uapi/drm/xe_drm.h>
+ 
 +#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
  #include "xe_gt.h"
-@@ -81,11 +82,15 @@ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
- 
- static u32 guc_ctl_feature_flags(struct xe_guc *guc)
+ #include "xe_gt_topology.h"
+ #include "xe_macros.h"
+@@ -363,3 +364,9 @@ bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
  {
-+	struct xe_device *xe = guc_to_xe(guc);
- 	u32 flags = GUC_CTL_ENABLE_LITE_RESTORE;
- 
--	if (!guc_to_xe(guc)->info.skip_guc_pc)
-+	if (!xe->info.skip_guc_pc)
- 		flags |= GUC_CTL_ENABLE_SLPC;
- 
-+	if (xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev)))
-+		flags |= GUC_CTL_ENABLE_PSMI_LOGGING;
-+
- 	return flags;
+ 	return !IS_SRIOV_VF(gt_to_xe(gt));
  }
++
++bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe)
++{
++	return xe_configfs_get_psmi_enabled(to_pci_dev(gt_to_xe(gt)->drm.dev));
++}
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 5ed6c14b9ae34..7951fefdbe044 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -477,4 +477,7 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
+ bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe);
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index ca9f999d38d1e..400004f1838a0 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -112,6 +112,7 @@ struct guc_update_exec_queue_policy {
- #define GUC_CTL_FEATURE			2
- #define   GUC_CTL_ENABLE_SLPC		BIT(2)
- #define   GUC_CTL_ENABLE_LITE_RESTORE	BIT(4)
-+#define   GUC_CTL_ENABLE_PSMI_LOGGING	BIT(7)
- #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
- 
- #define GUC_CTL_DEBUG			3
++bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe);
++
+ #endif
 
 -- 
 2.50.1
