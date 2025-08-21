@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDF83CA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC84CCA0FE1
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B408610E39A;
-	Thu, 21 Aug 2025 16:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B091A10E38F;
+	Thu, 21 Aug 2025 16:18:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmaPI5aI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fk9WV4+8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2297010E38D
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B2810E38F
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755793116; x=1787329116;
+ t=1755793117; x=1787329117;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E/6v1Lznvdi0PdgW4icl1+gFv2cuKXRjbfyg0qGN9zU=;
- b=GmaPI5aIY1qNjKnTGMtuLcP7suEuXWVLVnNIYZBJV1lFh9J8Krm5Lq94
- hHOtEJiuBUTkkdXlws0uZzN0deGn6RpQ+whevzkvUUun6I2BSN9WHIh5b
- OeLYOt/hPmxavYNUlMpWRXE/kFELcEav7nN8IdHSpNuA3jfvD1XyGeCko
- eyzNP4jmW37YCYzJBXwKxTDAMiK9wt253udVSaD2fwRRSqaEYILPwB9d6
- xhBzSU+Ofnwwb26YXQz1nu+IwAKRO8wMYm+/P+XbhVwF3eSxO5Ni5+S2p
- ZnataoGNzCfFImzOV6e9+hk8UT1ON/RcLng2h8CkNhOyxz/VXBLpMIyvQ A==;
-X-CSE-ConnectionGUID: 40Z9O4xwTCawdFPP/Z8apw==
-X-CSE-MsgGUID: fKMAuXRsRlijaVu419FX4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527888"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527888"
+ bh=59K19JJ6zd+mYW+Hyo4l1h47M9rs7AOejw7L26KsPqw=;
+ b=Fk9WV4+8Mqke8t6/alQr6V+qnepM/nIgSbVABwAZvuC+/gFdsBXXIvFv
+ grMzz8gbdqZP6Tel1qnDzdMdrouSXU4y39RaA8Cat1tdoVce+XQ3WW7su
+ izRd2/wFpOi/a491X0jPeitOdErWH5rF3Gd3ZRxkeO+tRIcuUik8zxNSg
+ fysm3hGa5yydTOg82cG5TPMmMWq449A+g4GAHKwmHxQXJqcGe+L2IuSM7
+ x8jovZ1BNfkojYi1InHF7ELocdjJcoDe103NP1r8f53TcLjiFFCTBSMTT
+ HqEMp4b7pZvk+Afyx14n27PF6YJGcR6mrktdTXAGR43juAbbzq9koKF2W A==;
+X-CSE-ConnectionGUID: Tc6gd9VbSoy/oBOIAH23qg==
+X-CSE-MsgGUID: p6QaMLXOT6KBuAJjLQ1btg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527897"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527897"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Aug 2025 09:18:36 -0700
-X-CSE-ConnectionGUID: vbaD+23mTmShb/vwiUS6pw==
-X-CSE-MsgGUID: I9eckhBzRpqx7/NownyLpg==
+X-CSE-ConnectionGUID: 15JTvyphS7KmUfuKWJr+QQ==
+X-CSE-MsgGUID: wFyZFqhBSGakCO7hRgPwkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326715"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326739"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 09:18:34 -0700
+ 21 Aug 2025 09:18:35 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v5 05/12] drm/xe/psmi: Add Wa_16023683509
-Date: Thu, 21 Aug 2025 09:18:00 -0700
-Message-ID: <20250821-psmi-v5-5-34ab7550d3d8@intel.com>
+ dnyaneshwar.bhadane@intel.com, Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH v5 10/12] drm/xe/configfs: Improve documentation steps
+Date: Thu, 21 Aug 2025 09:18:05 -0700
+Message-ID: <20250821-psmi-v5-10-34ab7550d3d8@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
 References: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
@@ -70,63 +69,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+The steps are roughly:
 
-This WA ensures GuC will restore the media MCFG registers at C6
-exit.
+1. Load the module without binding to the device
+2. Configure the desired device
+3. Bind the device
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Move the binding part to the "Create devices" since it's not exclusive
+to the survivability_mode attribute and better document the steps.
+
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
-- Enable only when PSMI is enabled
-v3 (Matt Atwood):
-- Fix wrong check for GRAPHICS_STEP() rather than MEDIA_STEP()
----
- drivers/gpu/drm/xe/xe_guc.c        | 3 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h   | 1 +
- drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
- 3 files changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 883f700e532a7..37d06c51180cb 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -219,6 +219,9 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- 	if (XE_GT_WA(gt, 14018913170))
- 		flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
- 
-+	if (XE_GT_WA(gt, 16023683509))
-+		flags |= GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6;
-+
- 	return flags;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 400004f1838a0..0508f1064178e 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -108,6 +108,7 @@ struct guc_update_exec_queue_policy {
- #define   GUC_WA_RENDER_RST_RC6_EXIT	BIT(19)
- #define   GUC_WA_RCS_REGS_IN_CCS_REGS_LIST	BIT(21)
- #define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
-+#define   GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6	BIT(25)
- 
- #define GUC_CTL_FEATURE			2
- #define   GUC_CTL_ENABLE_SLPC		BIT(2)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 303a5e05d9932..27cd19b98f8ea 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -72,6 +72,8 @@ no_media_l3	MEDIA_VERSION(3000)
- 		MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
-+16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
-+		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
- 
- # SoC workaround - currently applies to all platforms with the following
- # primary GT GMDID
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 25b47106413b6..089e21fefcfd8 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -29,11 +29,18 @@
+  * See Documentation/filesystems/configfs.rst for more information about how configfs works.
+  *
+  * Create devices
+- * ===============
++ * ==============
++ *
++ * To create a device, the ``xe`` module should already be loaded, but some
++ * attributes can only be set before binding the device. It can be accomplished
++ * by blocking the driver autoprobe:
+  *
+- * In order to create a device, the user has to create a directory inside ``'xe'``::
++ *	# echo 0 > /sys/bus/pci/drivers_autoprobe
++ *	# modprobe xe
+  *
+- *	mkdir /sys/kernel/config/xe/0000:03:00.0/
++ * In order to create a device, the user has to create a directory inside ``xe``::
++ *
++ *	# mkdir /sys/kernel/config/xe/0000:03:00.0/
+  *
+  * Every device created is populated by the driver with entries that can be
+  * used to configure it::
+@@ -49,6 +56,12 @@
+  *	    ├── engines_allowed
+  *	    └── enable_psmi
+  *
++ * After configuring the attributes as per next section, the device can be
++ * probed with::
++ *
++ *	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
++ *	# # or
++ *	# echo 0000:03:00.0 > /sys/bus/pci/drivers_probe
+  *
+  * Configure Attributes
+  * ====================
+@@ -60,7 +73,6 @@
+  * effect when probing the device. Example to enable it::
+  *
+  *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+- *	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind  (Enters survivability mode if supported)
+  *
+  * Allowed engines:
+  * ----------------
 
 -- 
 2.50.1
