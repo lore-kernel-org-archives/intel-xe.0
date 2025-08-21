@@ -4,72 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BB64CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 09:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 761CBCA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 09:45:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6564110E8E3;
-	Thu, 21 Aug 2025 09:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEB510E8F9;
+	Thu, 21 Aug 2025 09:45:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BMRUE834";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2dSFhES";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3721910E8E3;
- Thu, 21 Aug 2025 09:34:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F55F10E8F9;
+ Thu, 21 Aug 2025 09:45:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755768892; x=1787304892;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=6Vk2rNv6sQPb2ve7Pj2mP/GF1p2TJt4JFMI53lJXfL8=;
- b=BMRUE834p0j9cC1X4NMJeQftC3HhAU687stmcTRUyX4ke6Ba+CoOC6Cq
- tUrNFChnAQ+vsbPcFNMl/6SxUfSDSX4ibTJp7BWWybzjUQBSh/Gw/RG6S
- V0mtl6UBv6qIhLChmgwCQlTMWKeMqcfulVQnHmQZQIOs8Wr2MRKdOUKMh
- 7n+9vQhlCKsPQEs6BcSWE9p8C1ydhcDuZJpw0nZrFuiDOZfouFq1WhMwV
- B8nbG1iKPsQgdLh3vNpo4y38lkdVWhwQxQTr5wu1T7W0wN03/TwDBSMP/
- /YGVams+vazAcqFyPeBdo/W6yC8zFhE9EEQDdJDZ0q5Q7mpawrUJQlDAl A==;
-X-CSE-ConnectionGUID: i+My7hQ7RsC+HkuSwAusmA==
-X-CSE-MsgGUID: i9jw2jMFTauQOnT2hxa6CA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57978878"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="57978878"
+ t=1755769530; x=1787305530;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/tCrZZ2AFceephPBRq4Hfkgk8ftesiHYsuCXhArVXZA=;
+ b=L2dSFhES271MxyD2xtUHx+0gsdsEv+PwXDGOSHBJyw9yf/wOBCvzC/hY
+ EOkTIX4ZzvYUc7fqqKsTPzoSWJvX1W78JhJuH5pvpq+HTXON/Em+f5AoN
+ CZNTdeyG054RXYYCZiGbN2Mqy3qsYhZVdOLwlchrZhhUPDFA7pI+Prooy
+ 286aDGV9rC/CRUtWCwlW6ruTRJnWGgcZqbUUBXA0qQKF7FqhYDU/8C2wJ
+ lOtd60HmmBTmXr2/o62SuchoL+4PAmGAn1YSBVeU+TBN3zvIuGWdOWu/S
+ bcMl8hYFmz1FKMSEusQjd+dYNXpbfpNsUbBKl5k8FNmEwOqFHRrNIWgeB g==;
+X-CSE-ConnectionGUID: DtZLNNcWQLmCsrbOWe5YRA==
+X-CSE-MsgGUID: qqOYlaucSZCxC+MW8mwqhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57980124"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="57980124"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 02:34:52 -0700
-X-CSE-ConnectionGUID: Y0heiNaWTYy4UVfXra6P2w==
-X-CSE-MsgGUID: N5zt3aWDSC2Q5n+oE/9ILg==
+ 21 Aug 2025 02:45:29 -0700
+X-CSE-ConnectionGUID: SYbTXIuiTzqvBGEcaf42CQ==
+X-CSE-MsgGUID: 8FYbTqfxSfGC3yfZ5adL+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="172786862"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.201])
- ([10.245.245.201])
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="172788899"
+Received: from aiddamse-mobl3.gar.corp.intel.com (HELO [10.247.208.247])
+ ([10.247.208.247])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 02:34:31 -0700
-Message-ID: <05360f1a920afe31ddd743d21f217d7bf8ff1c45.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 1/6] mm/mmu_notifier: Allow multiple struct
- mmu_interval_notifier passes
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
- intel-xe@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>, 
- Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, 	linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>
-Date: Thu, 21 Aug 2025 11:34:25 +0200
-In-Reply-To: <aKSZ1JduQwAFSFQn@lstrano-desk.jf.intel.com>
-References: <20250809135137.259427-1-thomas.hellstrom@linux.intel.com>
- <20250809135137.259427-2-thomas.hellstrom@linux.intel.com>
- <20250818160726.GH599331@ziepe.ca>
- <aKNT8GUu0r3i4Ikq@lstrano-desk.jf.intel.com>
- <20250818163617.GI599331@ziepe.ca>
- <aKNYUaPS0PiRk/yj@lstrano-desk.jf.intel.com>
- <20250818164655.GJ599331@ziepe.ca>
- <4lsv2lcd7lssyvcjvkqe4t2foubxbhuxrt2ptzee3csymz5gg3@jwrg3xow72lm>
- <e96dcfd4ce7c84a5b66ff9d5f082ea209266ce48.camel@linux.intel.com>
- <aKSZ1JduQwAFSFQn@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+ 21 Aug 2025 02:45:25 -0700
+Message-ID: <b0447abc-5082-4c87-a21d-6a43de5c788c@linux.intel.com>
+Date: Thu, 21 Aug 2025 15:15:21 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v5 1/5] drm/netlink: Add netlink infrastructure
+To: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Hawking Zhang
+ <Hawking.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Michael J <michael.j.ruhl@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>
+References: <20250730064956.1385855-1-aravind.iddamsetty@linux.intel.com>
+ <20250730064956.1385855-2-aravind.iddamsetty@linux.intel.com>
+ <b84ccec7-3971-4497-b563-21b4807f0c98@oss.qualcomm.com>
+Content-Language: en-US
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <b84ccec7-3971-4497-b563-21b4807f0c98@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,122 +78,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-08-19 at 08:35 -0700, Matthew Brost wrote:
-> On Tue, Aug 19, 2025 at 01:33:40PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Tue, 2025-08-19 at 19:55 +1000, Alistair Popple wrote:
-> > > On Mon, Aug 18, 2025 at 01:46:55PM -0300, Jason Gunthorpe wrote:
-> > > > On Mon, Aug 18, 2025 at 09:44:01AM -0700, Matthew Brost wrote:
-> > > > > On Mon, Aug 18, 2025 at 01:36:17PM -0300, Jason Gunthorpe
-> > > > > wrote:
-> > > > > > On Mon, Aug 18, 2025 at 09:25:20AM -0700, Matthew Brost
-> > > > > > wrote:
-> > > > > > > I think this choice makes sense: it allows embedding the
-> > > > > > > wait
-> > > > > > > state from
-> > > > > > > the initial notifier call into the pass structure. Patch
-> > > > > > > [6]
-> > > > > > > shows this
-> > > > > > > by attaching the issued TLB invalidation fences to the
-> > > > > > > pass.
-> > > > > > > Since a
-> > > > > > > single notifier may be invoked multiple times with
-> > > > > > > different
-> > > > > > > ranges but
-> > > > > > > the same seqno,
-> > > > > >=20
-> > > > > > That should be explained, but also seems to be a bit of a
-> > > > > > different
-> > > > > > issue..
-> > > > > >=20
-> > > > > > If the design is really to only have two passes and this
-> > > > > > linked
-> > > > > > list
-> > > > > > is about retaining state then there should not be so much
-> > > > > > freedom to
-> > > > > > have more passes.
-> > > > >=20
-> > > > > I=E2=80=99ll let Thomas weigh in on whether we really need more t=
-han
-> > > > > two
-> > > > > passes;
-> > > > > my feeling is that two passes are likely sufficient. It=E2=80=99s
-> > > > > also
-> > > > > worth
-> > > > > noting that the linked list has an added benefit: the
-> > > > > notifier
-> > > > > tree only
-> > > > > needs to be walked once (a small time-complexity win).
-> > > >=20
-> > > > You may end up keeping the linked list just with no way to add
-> > > > a
-> > > > third
-> > > > pass.
-> > >=20
-> > > It seems to me though that linked list still adds unnecessary
-> > > complexity. I
-> > > think this would all be much easier to follow if we just added
-> > > two
-> > > new callbacks
-> > > - invalidate_start() and invalidate_end() say.
-> >=20
-> > One thing that the linked list avoids, though, is traversing the
-> > interval tree two times. It has O(n*log(n)) whereas the linked list
-> > overhead is just O(n_2pass).
-> >=20
-> > >=20
-> > > Admitedly that would still require the linked list (or something
-> > > similar) to
-> > > retain the ability to hold/pass a context between the start and
-> > > end
-> > > callbacks.
-> > > Which is bit annoying, it's a pity we need to allocate memory in
-> > > a
-> > > performance
-> > > sensitive path to effectively pass (at least in this case) a
-> > > single
-> > > pointer. I
-> > > can't think of any obvious solutions to that though.
-> >=20
-> > One idea is for any two-pass notifier implementation to use a small
-> > pool. That would also to some extent mitigate the risk of out-of-
-> > memory
-> > with GFP_NOWAIT.
-> >=20
->=20
-> I think we can attach a preallocated list entry to the driver-side
-> notifier state; then you=E2=80=99d only need to allocate (or block) if th=
-at
-> notifier is invoked more than once while a wait action (e.g., a TLB
-> invalidation) is outstanding. Multiple invocations are technically
-> possible, but in practice I=E2=80=99d expect them to be rare.
->=20
-> I=E2=80=99m not sure how much of a win this is, though. On Intel hardware=
-,
-> TLB
-> invalidations are several orders of magnitude slower than the
-> software
-> steps our notifiers perform. Ultimately, whether to allocate or
-> preallocate is a driver-side choice.
 
-I agree we shouldn't enforce anything at this point. But if we envision
-a situation where multiple subsystem two-pass notifiers subscribe, the
-GFP_NOWAIT memory might be exhausted by the notifiers called first. A
-greedy behavior that might eventually cause serialization anyway.
+On 15-08-2025 22:37, Zack McKevitt wrote:
+> On 7/30/2025 12:49 AM, Aravind Iddamsetty wrote:
+>> +static void drm_genl_family_init(struct drm_device *dev)
+>> +{
+>> +    dev->drm_genl_family = drmm_kzalloc(dev, sizeof(struct
+>> genl_family),
+>> +                        GFP_KERNEL);
+>> +
+>> +    /* Use drm primary node name eg: card0 to name the genl family */
+>> +    snprintf(dev->drm_genl_family->name,
+>> sizeof(dev->drm_genl_family->name),
+>> +         "%s", dev->primary->kdev->kobj.name);
+>> +    dev->drm_genl_family->version = DRM_GENL_VERSION;
+>> +    dev->drm_genl_family->parallel_ops = true;
+>> +    dev->drm_genl_family->ops = drm_genl_ops;
+>> +    dev->drm_genl_family->n_ops = ARRAY_SIZE(drm_genl_ops);
+>> +    dev->drm_genl_family->maxattr = DRM_ATTR_MAX;
+>> +    dev->drm_genl_family->module = dev->dev->driver->owner;
+>> +}
+>
+> We are interested in using this infrastructure at Qualcomm to
+> communicate telemetry information for the AI100 accelerators. It would
+> be nice if this function could support drm_minor accel nodes
+> (dev->accel) as well. 
 
-So to behave nicely towards other notifier subscriptions, an
-implementation should ideally have something pre-allocated.
+Glad to know the interest,  at present the code does create drm netlink
+family for accel device as well, but it is tries to register with the
+drm primary node name which might not be present for dev->accel,
+checking for the "DRIVER_COMPUTE_ACCEL" and registering with the name
+will fix that.
 
-/Thomas
+But also to bring to your attention the current series focuses on
+reporting RAS errors and hence the commands are as well oriented towards
+errors, anything specific to telemetry needs to be added. Do you have
+any thought as to what kind of data and what kind of command support you
+might need.
 
-
->=20
-> Matt
->=20
-> > /Thomas
-> >=20
-> >=20
-> > >=20
-> > > > Jason
-> > > >=20
-> >=20
-
+Thanks,
+Aravind.
+>
+> Thanks,
+>
+> Zack
