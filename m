@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F074FCA0EFC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDF83CA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B858A10E38E;
-	Thu, 21 Aug 2025 16:18:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B408610E39A;
+	Thu, 21 Aug 2025 16:18:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnEOK4dw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmaPI5aI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 404E410E38A
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2297010E38D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755793117; x=1787329117;
+ t=1755793116; x=1787329116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HqndTNVgWU46dKlNKZddJb4DoXTN2X0dvk2cRn9r3Ew=;
- b=UnEOK4dw3TT42cUMLH+uodA4DTnZ/uo5+BXXSHG+XfSQFB9lumrKISNT
- B5BwuG0r72Ss4SaJDzoGJZ7DQvZXVAWAVP0tkRPu9vpQhTE/7Xh+YqdZ1
- MGbzSwU5mrGVUXFTGbOp6CXZVNq4VKAxnHcDawMPIfPqzXIuyB+/niByu
- AmBlux/yD0m1a1jNaiF4UHhJzP8jAd1XcuStUtZ/vQXwMmidadDj3ie2b
- Xe4l7Xpf7XI8NpsRpWrWGc8QhSDfZf2Hh88nAUxe/ry1prEHopgkZCEVb
- DrFB4SnDx4zYVyCQ2rXGXD40LCH0SQcxucRNAaInwuvn9N61uV6EiL6/9 A==;
-X-CSE-ConnectionGUID: Df09fUKyTDyv1B+gonVFDQ==
-X-CSE-MsgGUID: TpaYJY9bTlS22RA8Uyhlnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527900"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527900"
+ bh=E/6v1Lznvdi0PdgW4icl1+gFv2cuKXRjbfyg0qGN9zU=;
+ b=GmaPI5aIY1qNjKnTGMtuLcP7suEuXWVLVnNIYZBJV1lFh9J8Krm5Lq94
+ hHOtEJiuBUTkkdXlws0uZzN0deGn6RpQ+whevzkvUUun6I2BSN9WHIh5b
+ OeLYOt/hPmxavYNUlMpWRXE/kFELcEav7nN8IdHSpNuA3jfvD1XyGeCko
+ eyzNP4jmW37YCYzJBXwKxTDAMiK9wt253udVSaD2fwRRSqaEYILPwB9d6
+ xhBzSU+Ofnwwb26YXQz1nu+IwAKRO8wMYm+/P+XbhVwF3eSxO5Ni5+S2p
+ ZnataoGNzCfFImzOV6e9+hk8UT1ON/RcLng2h8CkNhOyxz/VXBLpMIyvQ A==;
+X-CSE-ConnectionGUID: 40Z9O4xwTCawdFPP/Z8apw==
+X-CSE-MsgGUID: fKMAuXRsRlijaVu419FX4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527888"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527888"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 09:18:37 -0700
-X-CSE-ConnectionGUID: FkY3g3pSQFWWAdOUQic03g==
-X-CSE-MsgGUID: Ja+MKinoTFOPISiXiRmAHg==
+ 21 Aug 2025 09:18:36 -0700
+X-CSE-ConnectionGUID: vbaD+23mTmShb/vwiUS6pw==
+X-CSE-MsgGUID: I9eckhBzRpqx7/NownyLpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326748"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326715"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 09:18:36 -0700
+ 21 Aug 2025 09:18:34 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com
-Subject: [PATCH v5 11/12] drm/xe/configfs: Minor fixes to documentation
-Date: Thu, 21 Aug 2025 09:18:06 -0700
-Message-ID: <20250821-psmi-v5-11-34ab7550d3d8@intel.com>
+ dnyaneshwar.bhadane@intel.com,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [PATCH v5 05/12] drm/xe/psmi: Add Wa_16023683509
+Date: Thu, 21 Aug 2025 09:18:00 -0700
+Message-ID: <20250821-psmi-v5-5-34ab7550d3d8@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
 References: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
@@ -69,42 +70,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a few missing punctuation and line breaks and make the syntax for
-code snippets common to all of them.
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+This WA ensures GuC will restore the media MCFG registers at C6
+exit.
+
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+v2:
+- Enable only when PSMI is enabled
+v3 (Matt Atwood):
+- Fix wrong check for GRAPHICS_STEP() rather than MEDIA_STEP()
+---
+ drivers/gpu/drm/xe/xe_guc.c        | 3 +++
+ drivers/gpu/drm/xe/xe_guc_fwif.h   | 1 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 2 ++
+ 3 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 089e21fefcfd8..26c5e1b292636 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -24,9 +24,10 @@
-  * =========
-  *
-  * Configfs is a filesystem-based manager of kernel objects. XE KMD registers a
-- * configfs subsystem called ``'xe'`` that creates a directory in the mounted configfs directory
-- * The user can create devices under this directory and configure them as necessary
-- * See Documentation/filesystems/configfs.rst for more information about how configfs works.
-+ * configfs subsystem called ``xe`` that creates a directory in the mounted
-+ * configfs directory. The user can create devices under this directory and
-+ * configure them as necessary. See Documentation/filesystems/configfs.rst for
-+ * more information about how configfs works.
-  *
-  * Create devices
-  * ==============
-@@ -113,7 +114,7 @@
-  *
-  * The created device directories can be removed using ``rmdir``::
-  *
-- *	rmdir /sys/kernel/config/xe/0000:03:00.0/
-+ *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
-  */
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 883f700e532a7..37d06c51180cb 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -219,6 +219,9 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
+ 	if (XE_GT_WA(gt, 14018913170))
+ 		flags |= GUC_WA_ENABLE_TSC_CHECK_ON_RC6;
  
- struct xe_config_group_device {
++	if (XE_GT_WA(gt, 16023683509))
++		flags |= GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6;
++
+ 	return flags;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 400004f1838a0..0508f1064178e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -108,6 +108,7 @@ struct guc_update_exec_queue_policy {
+ #define   GUC_WA_RENDER_RST_RC6_EXIT	BIT(19)
+ #define   GUC_WA_RCS_REGS_IN_CCS_REGS_LIST	BIT(21)
+ #define   GUC_WA_ENABLE_TSC_CHECK_ON_RC6	BIT(22)
++#define   GUC_WA_SAVE_RESTORE_MCFG_REG_AT_MC6	BIT(25)
+ 
+ #define GUC_CTL_FEATURE			2
+ #define   GUC_CTL_ENABLE_SLPC		BIT(2)
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 303a5e05d9932..27cd19b98f8ea 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -72,6 +72,8 @@ no_media_l3	MEDIA_VERSION(3000)
+ 		MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
++16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
++		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
+ 
+ # SoC workaround - currently applies to all platforms with the following
+ # primary GT GMDID
 
 -- 
 2.50.1
