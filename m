@@ -4,61 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A547CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:06:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91014CA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:15:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA6510E9A4;
-	Thu, 21 Aug 2025 14:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54AC210E070;
+	Thu, 21 Aug 2025 14:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PSuKEii2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="YBddXAoJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF1810E9A4;
- Thu, 21 Aug 2025 14:06:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755785190; x=1787321190;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=DFZ8GzH4PMLZ7YtPaIff1L8aOJhTs+rbBfkl4xIUtc4=;
- b=PSuKEii2y/xJ/KDmkaTrprUYPwYtkskcpTQOB3GbpgPUf4Wk+lt1V3ZU
- sSd/ktnrD+LFvkoy1cewpjFSKRrEsm5Yx6/FL1pREok9zkiWia5q1PwSx
- RqPDDsHic5tDbKeeVJEHj3B9hhRAytQCZM6ODxXX0FYAfYpvTJtJeomzY
- UZFOtMPrX3/MGFk+1YeUmH2V0cX8XoWU7Nv59zIPgBgGRVWggNzxEWMt1
- omuDKzs/lWsb5vBbeVnXSYOe9aPYfjSHsIY6qRfqyYfNdiJyAXpqPxmZm
- 76Bh/PIg/qE5FJuzPhSGk4jQGaxgVMnO0H3y6vcVllC0KUkzhtRyb7vct g==;
-X-CSE-ConnectionGUID: zZxITCH2SFmDw89wthHsog==
-X-CSE-MsgGUID: 88aj76zJSQa4l0cMzKB8tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="45647399"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="45647399"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 07:06:27 -0700
-X-CSE-ConnectionGUID: MMRioP22SaKl5k3mts6Nkw==
-X-CSE-MsgGUID: pC2WanjVTLOBYekjFhfVVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="167657894"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.201])
- ([10.245.245.201])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 07:06:25 -0700
-Message-ID: <fd34b897a3223346518d3fe009772996eb25c90b.camel@linux.intel.com>
-Subject: Re: Switching over to GEM refcounts and a bunch of cleanups
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- matthew.brost@intel.com, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Thu, 21 Aug 2025 16:06:20 +0200
-In-Reply-To: <1f13c0b6-fdbb-4364-a32e-4344f8526464@amd.com>
-References: <20250716160555.20217-1-christian.koenig@amd.com>
- <c5830530bafa9806b9e1b0604d87f7907f651c82.camel@linux.intel.com>
- <5a9c2c36-d1b2-4871-b84a-7372aa547399@amd.com>
- <1f13c0b6-fdbb-4364-a32e-4344f8526464@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C94B10E36F
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:15:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=EePFk3870OEtTdLeW4qiJs73A+e84PFzvKov8fQBpL8=; b=YBddXAoJ4BtqcADXyx6sLp0Z0G
+ nAHqdB5NxUW9D+IRzqNmHDfjVJSxPuJk2oXEwigvsVzheluN3Su6jHLLFvlIiexTPUSOMtF/cGYPR
+ ddYu2XhFxxK2lUvvPnbNOxFiZSnex7kR4ZjIY+faxHoP9+ldNspY+Fp+PseuHmh/WLmvxtO7nYqqv
+ zEUdFXqeP3Wx4lkH8Xwohlz9crQ6Jj4OeXYDpQVU9Brdq3jAfQYwYRZutGkoIYlHk+Ubt5Qgb1ot2
+ YBjTPIymw3XWADALEeggtUjuQ+iHpIYLkxUIQiEn9ocdHbRN64vx5K1eC4LCtFpDNMkP7QPxUfHfQ
+ BTUq/vXQ==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1up64G-00HH9o-Sf; Thu, 21 Aug 2025 16:15:04 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v11 01/13] drm/xe/xelpg: Flush CCS when flushing caches
+Date: Thu, 21 Aug 2025 15:14:43 +0100
+Message-ID: <20250821141458.72876-2-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
+References: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,73 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Christian,
+According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
+render caches on gfx ip 12.70+.
 
-On Thu, 2025-08-21 at 14:30 +0200, Christian K=C3=B6nig wrote:
-> On 04.08.25 14:24, Christian K=C3=B6nig wrote:
-> > On 22.07.25 14:36, Thomas Hellstr=C3=B6m wrote:
-> > > Hi, Christian,
-> > >=20
-> > > On Wed, 2025-07-16 at 18:04 +0200, Christian K=C3=B6nig wrote:
-> > > > Hi guys,
-> > > >=20
-> > > > so I hope Thomas is back from vacation while I will be on
-> > > > vacation
-> > > > for
-> > > > the next two weeks.
-> > > >=20
-> > > > Here is the patch set which cleans up TTM and XE in preperation
-> > > > of
-> > > > switching to drm_exec.
-> > > >=20
-> > > > Please take a look and let me know what you think about it.
-> > >=20
-> > > I'll take a look.
-> > > BTW Did you see my comments on patch 6/6 on v1, essentially I
-> > > think
-> > > both i915 and xe rejecting some TTM callbacks if the object is a
-> > > zombie
-> > > (the GEM refcount has reached 0).
-> >=20
-> > Sorry for the delay I'm just back from vacation.
-> >=20
-> > I have seen that XE and i915 is checking the GEM refcount, but I
-> > haven't seen your comment on that.
-> >=20
-> > Going to take a look ASAP.
->=20
-> I'm not able to find that mail.
->=20
-> All I've seen is your comment on the VMWGFX stuff and that was
-> already resolved by Zack.
->=20
-> What are you referring to?
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-https://lore.kernel.org/intel-xe/a004736315d77837172418eb196d5b5f80b74e6c.c=
-amel@linux.intel.com/
-
-Thanks,
-Thomas
-
-
->=20
-> Thanks,
-> Christian.
->=20
-> >=20
-> > Regards,
-> > Christian.
-> >=20
-> > >=20
-> > > Thanks,
-> > > Thomas
-> > >=20
-> > >=20
-> > > >=20
-> > > > Regards,
-> > > > Christian.
-> > > >=20
-> > >=20
-> >=20
->=20
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index 8cfcd3360896..78c0e87dbd37 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -43,6 +43,7 @@
+ 
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
++#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
+ 
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+ #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 5f15360d14bf..761740d7769f 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+ 	struct xe_gt *gt = job->q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+ 	u32 flags;
+ 
+ 	if (XE_GT_WA(gt, 14016712196))
+ 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
++
+ 	flags = (PIPE_CONTROL_CS_STALL |
+ 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+ }
+ 
+ static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+-- 
+2.48.0
 
