@@ -4,85 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43D95CA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 10:16:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11554CA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 10:35:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0092D10E0E7;
-	Thu, 21 Aug 2025 10:16:56 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7E9410E0E7;
- Thu, 21 Aug 2025 10:16:54 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id CF0DE61157;
- Thu, 21 Aug 2025 10:16:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1503C4CEED;
- Thu, 21 Aug 2025 10:16:50 +0000 (UTC)
-Message-ID: <95dcb699-2add-46b0-959f-c2331cc775c1@redhat.com>
-Date: Thu, 21 Aug 2025 12:16:48 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF4010E0CD;
+	Thu, 21 Aug 2025 10:35:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4BE110E083;
+ Thu, 21 Aug 2025 10:35:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: your mail
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org, airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Liam Howlett <liam.howlett@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <7db27720-8cfd-457c-8133-5a7a1094004c@lucifer.local>
- <82e5e566-87e9-43a8-a0e9-00656572d65c@redhat.com>
- <f6f85c73-2a1e-438a-82c9-f3392d91020c@lucifer.local>
-From: David Hildenbrand <david@redhat.com>
-Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <f6f85c73-2a1e-438a-82c9-f3392d91020c@lucifer.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_auxccs_no_stolen_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Aug 2025 10:35:07 -0000
+Message-ID: <175577250766.255682.3714780227458705956@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,95 +36,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21.08.25 12:05, Lorenzo Stoakes wrote:
-> On Thu, Aug 21, 2025 at 11:30:43AM +0200, David Hildenbrand wrote:
->>> I will add this xen/apply_to_page_range() thing to my TODOs, which atm
->>> would invovle changing these drivers to use vmf_insert_pfn_prot() instead.
->>>
->>
->> Busy today (want to reply to Christian) but
->>
->> a) Re: performance, we would want something like
->>     vmf_insert_pfns_prot(), similar to vm_insert_pages(), to bulk-insert
->>     multiple PFNs.
->>
->> b) Re: PAT, we'll have to figure out why PAT information is wrong here
->>     (was there no previous PAT reservation from the driver?), but IF we
->>     really have to override, we'd want a way to tell
->>     vmf_insert_pfn_prot() to force the selected caching mode.
->>
-> 
-> Ack, ok good that we have a feasible way forward.
-> 
-> FYI, spoke to Peter off-list and he mentioned he had a more general series
-> to get rid of this kind of [ab]use of apply_to_page_range() (see [0]), I
-> gather he hasn't the time to resurrect but perhaps one of us can at some
-> point?
-> 
-> Perhaps we need a shorter term fix to _this_ issue (which involves not
-> using this interface), and then follow it up with an adaptation of the
-> below?
+== Series Details ==
 
-We need to understand why PAT would be wrong and why it would even be ok
-to ignore it. Not hacking around it.
+Series: auxccs no stolen (rev2)
+URL   : https://patchwork.freedesktop.org/series/153202/
+State : warning
 
-FWIW, I just recently documented:
+== Summary ==
 
-+/**
-+ * pfnmap_setup_cachemode - setup the cachemode in the pgprot for a pfn range
-+ * @pfn: the start of the pfn range
-+ * @size: the size of the pfn range in bytes
-+ * @prot: the pgprot to modify
-+ *
-+ * Lookup the cachemode for the pfn range starting at @pfn with the size
-+ * @size and store it in @prot, leaving other data in @prot unchanged.
-+ *
-+ * This allows for a hardware implementation to have fine-grained control of
-+ * memory cache behavior at page level granularity. Without a hardware
-+ * implementation, this function does nothing.
-+ *
-+ * Currently there is only one implementation for this - x86 Page Attribute
-+ * Table (PAT). See Documentation/arch/x86/pat.rst for more details.
-+ *
-+ * This function can fail if the pfn range spans pfns that require differing
-+ * cachemodes. If the pfn range was previously verified to have a single
-+ * cachemode, it is sufficient to query only a single pfn. The assumption is
-+ * that this is the case for drivers using the vmf_insert_pfn*() interface.
-+ *
-+ * Returns 0 on success and -EINVAL on error.
-+ */
-+int pfnmap_setup_cachemode(unsigned long pfn, unsigned long size,
-+               pgprot_t *prot);
-  extern int track_pfn_copy(struct vm_area_struct *dst_vma,
-                 struct vm_area_struct *src_vma, unsigned long *pfn);
-  extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
-@@ -1563,6 +1584,21 @@ extern void untrack_pfn(struct vm_area_struct *vma, unsigned long pfn,
-  extern void untrack_pfn_clear(struct vm_area_struct *vma);
-  #endif
-  
-+/**
-+ * pfnmap_setup_cachemode_pfn - setup the cachemode in the pgprot for a pfn
-+ * @pfn: the pfn
-+ * @prot: the pgprot to modify
-+ *
-+ * Lookup the cachemode for @pfn and store it in @prot, leaving other
-+ * data in @prot unchanged.
-+ *
-+ * See pfnmap_setup_cachemode() for details.
-+ */
-+static inline void pfnmap_setup_cachemode_pfn(unsigned long pfn, pgprot_t *prot)
-+{
-+       pfnmap_setup_cachemode(pfn, PAGE_SIZE, prot);
-+}
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6f1435f46a6088518e5e3b76b0a3179d0b14b5e8
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Wed Aug 20 10:19:12 2025 +0100
+
+    no dpt stolen
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
++ /mt/dim checkpatch 1f3c2c82c864322cfa8f79c10c00cf361c926d2f drm-intel
+6ee6a4003803 drm/xe/xelpg: Flush CCS when flushing caches
+b3bba9b02157 drm/xe/xelp: Quiesce memory traffic before invalidating auxccs
+2e9d3cc4847b drm/xe/xelp: Support auxccs invalidation on blitter
+ce18ce6c79bd drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+daa46578460d drm/xe/xelp: Wait for AuxCCS invalidation to complete
+7ab0b221635b drm/xe: Export xe_emit_aux_table_inv
+5ce89f4a7ddb drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+3ab72626c164 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+0f9eb75a8e90 drm/xe: Handle DPT in system memory
+03b499bb1f8d drm/xe/display: Add support for AuxCCS
+c88a5084b0c7 drm/xe: Force flush system memory AuxCCS framebuffers before scan out
+c89fbe5e19af drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+6f1435f46a60 no dpt stolen
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
 
 
-There is certainly something missing that the driver would have previously
-verified that the cachemode is as expected.
-
--- 
-Cheers
-
-David / dhildenb
