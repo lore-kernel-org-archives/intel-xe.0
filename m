@@ -4,154 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 638B6CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 11:56:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1708CA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 12:03:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6FA10E94E;
-	Thu, 21 Aug 2025 11:56:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="NJDFrpGJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Gj5tANSU";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Tnc6NDIT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="uTGuQaRo";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00E7D10E955
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 11:56:02 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E8C1D223BF;
- Thu, 21 Aug 2025 11:56:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1755777361; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=sfJDevyhbJHQ4pRUZzGgDUzFw8/hjC9NL73k+UbtfNI=;
- b=NJDFrpGJO5iUNdKMkobo3gxiDs3KVSoOo+c0Kx7YFvkYIlgx7bnpDXIsS/c0P0cQgrh+OM
- dExS90hja4MkiIhNcN5ACrES3HoMUaxtBTvpFmwjVxAsz+p2OyiAVBW8rAxUPAhgsnlwwj
- CZwQn8osw/hfaBvpa9NaTEKf6lTT/M4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1755777361;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=sfJDevyhbJHQ4pRUZzGgDUzFw8/hjC9NL73k+UbtfNI=;
- b=Gj5tANSUdM5J9dvfsooU4xEjtijJBFnr7I7ne0BmLL2IbI4EPgjzdAm3py48jgBwCGMxQT
- boIwMwnxQsGrzgBw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Tnc6NDIT;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=uTGuQaRo
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1755777360; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=sfJDevyhbJHQ4pRUZzGgDUzFw8/hjC9NL73k+UbtfNI=;
- b=Tnc6NDIT4e91MUk3u/uv4DBnosFc2L+6LZYV25zaGB1PKdcEVuIh/llq9RiUXqkK4mkPMk
- PfJV61ySMLhVweEIcriS3pU6Ueb/KxgiopzgPBhPws1+a3mjWGyK16+rO3Zyq+/M8wuFE7
- qfdE97vz5rt+BUFGKinpdAml62Ot91s=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1755777360;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=sfJDevyhbJHQ4pRUZzGgDUzFw8/hjC9NL73k+UbtfNI=;
- b=uTGuQaRowDi9JsJ2CDS0TXWPegM6sn88iHyhpAFbnDit/r3KkSK5wNpUCdTeRnRo1G9Xoi
- pAPRiwf+LpsK+VAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 30D9513867;
- Thu, 21 Aug 2025 11:56:00 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Ozw5ClAJp2j0UAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 21 Aug 2025 11:56:00 +0000
-Message-ID: <7918ea7e-8914-4c0f-97be-d660043a4aab@suse.de>
-Date: Thu, 21 Aug 2025 13:55:59 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F3E510E955;
+	Thu, 21 Aug 2025 12:03:53 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 537DD10E94E;
+ Thu, 21 Aug 2025 12:03:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6321325110487503419=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 18/25] drm/renesas/rz-du: Compute dumb-buffer sizes
- with drm_mode_size_dumb()
-To: Biju Das <biju.das.jz@bp.renesas.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>, "airlied@gmail.com" <airlied@gmail.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- geert <geert@linux-m68k.org>,
- "tomi.valkeinen" <tomi.valkeinen@ideasonboard.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "virtualization@lists.linux.dev" <virtualization@lists.linux.dev>,
- "spice-devel@lists.freedesktop.org" <spice-devel@lists.freedesktop.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>
-References: <20250821081918.79786-1-tzimmermann@suse.de>
- <20250821081918.79786-19-tzimmermann@suse.de>
- <TY3PR01MB11346A4F40CE555D24C093F278632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <TY3PR01MB11346A4F40CE555D24C093F278632A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: E8C1D223BF
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_TO(0.00)[bp.renesas.com,ffwll.ch,gmail.com,kernel.org,linux.intel.com,linux-m68k.org,ideasonboard.com];
- FUZZY_RATELIMITED(0.00)[rspamd.com];
- TO_DN_EQ_ADDR_SOME(0.00)[]; ARC_NA(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[21]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email]
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_no_stolen_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Aug 2025 12:03:52 -0000
+Message-ID: <175577783233.255682.6862603317170248351@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250820091913.18588-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,47 +35,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+--===============6321325110487503419==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Am 21.08.25 um 13:28 schrieb Biju Das:
-> Hi Thomas Zimmermann,
->
-> Thanks for the patch.
->
->> -----Original Message-----
->> From: Thomas Zimmermann <tzimmermann@suse.de>
->> Sent: 21 August 2025 09:17
->> Subject: [PATCH v6 18/25] drm/renesas/rz-du: Compute dumb-buffer sizes with drm_mode_size_dumb()
->>
->> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and buffer size. Align the pitch
->> according to hardware requirements.
->>
->> v5:
->> - include dumb-buffers header for drm_mode_size_dumb() (kernel test robot)
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: Biju Das <biju.das.jz@bp.renesas.com>
-> Tested-by: Biju Das <biju.das.jz@bp.renesas.com>
+== Series Details ==
 
-Thanks for testing. Could you also review the patch, please?
+Series: auxccs no stolen (rev2)
+URL   : https://patchwork.freedesktop.org/series/153202/
+State : success
 
-Best regards
-Thomas
+== Summary ==
 
->
-> Cheers,
-> Biju
+CI Bug Log - changes from xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f_BAT -> xe-pw-153202v2_BAT
+====================================================
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153202v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-vm}:       [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8499 -> IGT_8501
+  * Linux: xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f -> xe-pw-153202v2
+
+  IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f: 1f3c2c82c864322cfa8f79c10c00cf361c926d2f
+  xe-pw-153202v2: 153202v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/index.html
+
+--===============6321325110487503419==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>auxccs no stolen (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153202/">https://patchwork.freedesktop.org/series/153202/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f_BAT -&gt; xe-pw-153202v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153202v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@b-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153202v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8499 -&gt; IGT_8501</li>
+<li>Linux: xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f -&gt; xe-pw-153202v2</li>
+</ul>
+<p>IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3590-1f3c2c82c864322cfa8f79c10c00cf361c926d2f: 1f3c2c82c864322cfa8f79c10c00cf361c926d2f<br />
+  xe-pw-153202v2: 153202v2</p>
+
+</body>
+</html>
+
+--===============6321325110487503419==--
