@@ -4,89 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC3CCA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 08:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB933CA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 08:22:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0ED110E8A0;
-	Thu, 21 Aug 2025 08:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4D8510E8A4;
+	Thu, 21 Aug 2025 08:22:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bAXQvnzZ";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="OFiNUD19";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="shuTzpzh";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OFiNUD19";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="shuTzpzh";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9B2E10E8A3
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 08:13:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755763981;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=Iu8q1LFgRVkrut1fK3PxESRCoYM2KRGJpTnUSdfNl9I=;
- b=bAXQvnzZ9CajO3cb9UepC84bevQTS2EN/LgxGDNBN0MTh2fpiAsrsO40LXYyqBgZapmLLp
- LQx9nkKCWyQjNthqoiFavw5Efb6MgNTPdFr7SGu+1EseqqW5/7f7f1VZj6qFcHzMkpi3BU
- eQo9bn4I1NPxoSXp9sJR4+y/OdEs/Rw=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-153-hUyxF3YxNC-25QuDVvB_Gg-1; Thu, 21 Aug 2025 04:12:58 -0400
-X-MC-Unique: hUyxF3YxNC-25QuDVvB_Gg-1
-X-Mimecast-MFC-AGG-ID: hUyxF3YxNC-25QuDVvB_Gg_1755763977
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-3b9edf2d82dso356043f8f.2
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 01:12:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755763977; x=1756368777;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Iu8q1LFgRVkrut1fK3PxESRCoYM2KRGJpTnUSdfNl9I=;
- b=sjPtVPTRa8PXLq7PG3GYpPPok8rwcOO+io5LTBquwi+ebFQXouC1i5nxMx00ekf/Q9
- VsDqtD/TdpufxiifV/ibG1bIAvokHUQsqwf6rRIgnHpyauUrnAQ8ICelU9byX2K/IViS
- hilP1e269vd+1XfpWNbpGNgOuRFmEEVfS5iq81KRO/UEtGXm0acW3TCfJLWkL1j/oG4u
- +1ArsSCA/AYY9OFphu+40RhoME+9v4dcal7Yo7RblhznZZOpT1TrwnSp+TQnMh3bJ8qq
- k7ljrK4MnfeWu2+bBfqx+VW33XD7SpUH9QaJO4HGiL/JfQ+vx6Zxspt+ALdg6LEx8jyn
- SOwA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUQQbFDGyM7MSa1Bt8CA8fUhLa1IIP4J6cyvMkLBHA7YBUFn8lF3zJNajx5jZ3+06n58dNYN84wZQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxFSqHTUuYR6yXpQ5erc7v7jZlANHB2ug0Fv3zAAbun7nbIsxdN
- wd5quORzRjEP5DCWAbFzs/qPfUSGfAW6nU/ImV9oyNcg17vW2CsxRhy1SBP27/vjFBwOC/Svsg3
- t+Qe7tR5S5SVgYs2mTH10k6cVoHB0L7PBUxejzg66Q02g4GPTdbZztgxH55Dy/GEiZKgN
-X-Gm-Gg: ASbGncu5MIYSNPEEaU3o3bv0npXJe8efZaCM1auUvxawmwj4O0gLzoUVzNq/I2CRoxK
- DMeAvYR0nM8L/mQVB7Zc7QJpOcpm2V4ekxzCK/eAHkNFEwWiFQ1mVGOCx205iHhpkxs7vv1gydW
- XgTu4lLJM8iNOYE5GhZpyLAJcv+OPAJeNQtoER9QUiYA1GuLdyEW0WTGLrXGTSKghTigoMYpR7c
- IyZlaPW1hku/hvtrg8ehximV/JhvExV3DKwrkQ7TaXsggr6nfQIogn+vx5TVLIVCEw7aOaiRAp/
- BGO7gZ1DA1Mt0o0=
-X-Received: by 2002:a5d:6381:0:b0:3b8:f8e6:867b with SMTP id
- ffacd0b85a97d-3c496f92c82mr966827f8f.31.1755763976948; 
- Thu, 21 Aug 2025 01:12:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElHv2ckS6bYN4pTNyiBQ93FDKVMiUT6qg3iphXe/u2Ly6tfBIyA4Kb9p886iWiyNgkQlqzFw==
-X-Received: by 2002:a5d:6381:0:b0:3b8:f8e6:867b with SMTP id
- ffacd0b85a97d-3c496f92c82mr966797f8f.31.1755763976430; 
- Thu, 21 Aug 2025 01:12:56 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c4e6d4d439sm1143678f8f.6.2025.08.21.01.12.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 Aug 2025 01:12:55 -0700 (PDT)
-Date: Thu, 21 Aug 2025 10:12:55 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250821-economic-dandelion-rooster-c57fa9@houat>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAA710E8A6
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 08:22:13 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 23FC42263E;
+ Thu, 21 Aug 2025 08:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1755764532; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZeF/TIfQ5z2dG/JFVs8HCwL/G447604zw5bvxDPQkpQ=;
+ b=OFiNUD19W6D6N+wsG7pfg8cXNjXouyBJNxF08R6hQMVoJTSOLJvb340+JhoT/tHPbIeo1b
+ buBoQ+gYvVFOCznOEXY/oPesDMuv8sQ3ef41xmyQLnhihXjXcCRmX57muoSn3cxGncxBKY
+ IpzOGGvyBV45mzfodPsxGorq9FP6ksU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1755764532;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZeF/TIfQ5z2dG/JFVs8HCwL/G447604zw5bvxDPQkpQ=;
+ b=shuTzpzh5gftkKYzAwqtDJBw5zHjHu0ct+J/BfOsNmegojjDq03PMemmHaTV7I1oLlgd2t
+ gJhvayI84Dgh1MDw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=OFiNUD19;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=shuTzpzh
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1755764532; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZeF/TIfQ5z2dG/JFVs8HCwL/G447604zw5bvxDPQkpQ=;
+ b=OFiNUD19W6D6N+wsG7pfg8cXNjXouyBJNxF08R6hQMVoJTSOLJvb340+JhoT/tHPbIeo1b
+ buBoQ+gYvVFOCznOEXY/oPesDMuv8sQ3ef41xmyQLnhihXjXcCRmX57muoSn3cxGncxBKY
+ IpzOGGvyBV45mzfodPsxGorq9FP6ksU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1755764532;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ZeF/TIfQ5z2dG/JFVs8HCwL/G447604zw5bvxDPQkpQ=;
+ b=shuTzpzh5gftkKYzAwqtDJBw5zHjHu0ct+J/BfOsNmegojjDq03PMemmHaTV7I1oLlgd2t
+ gJhvayI84Dgh1MDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 90E5413867;
+ Thu, 21 Aug 2025 08:22:11 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id QMslIjPXpmhzEwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 21 Aug 2025 08:22:11 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, geert@linux-m68k.org,
+ tomi.valkeinen@ideasonboard.com
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v6 00/25] drm/dumb-buffers: Fix and improve buffer-size
+ calculation
+Date: Thu, 21 Aug 2025 10:17:07 +0200
+Message-ID: <20250821081918.79786-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="qaduzatttsqlmtga"
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,kernel.org,linux.intel.com,linux-m68k.org,ideasonboard.com];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[21]; MIME_TRACE(0.00)[0:+];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim];
+ RCVD_COUNT_TWO(0.00)[2]; DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Queue-Id: 23FC42263E
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,160 +122,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Dumb-buffer pitch and size is specified by width, height, bits-per-pixel
+plus various hardware-specific alignments. The calculation of these
+values is inconsistent and duplicated among drivers. The results for
+formats with bpp < 8 are sometimes incorrect.
 
---qaduzatttsqlmtga
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+This series fixes this for most drivers. Default scanline pitch and
+buffer size are now calculated with the existing 4CC helpers. There is
+a new helper drm_mode_size_dumb() that calculates scanline pitch and
+buffer size according to driver requirements.
 
-Hi Dave, Sima,
+The series fixes the common GEM implementations for DMA, SHMEM and
+VRAM. It further changes most implementations of dumb_create to use
+the new helper. A small number of drivers has more complicated
+calculations and will be updated by a later patches.
 
-Here's this week drm-misc-fixes PR.
+v6:
+- extend TODO item (Tomi)
+- fix typos in documentation (Tomi)
+v5:
+- use check_mul_overflow() for overflow test (Tomi)
+- imx: fix intermediate code (Tomi)
+- rz-du: include dumb-buffers header
+v4:
+- improve UAPI documentation
+- document bpp special cases
+- use drm_warn_once()
+- add TODO lists
+- armada: fix pitch alignment
+v3:
+- document UAPI semantics
+- fall back to bpp-based allocation for unknown color modes
+- cleanups
+v2:
+- rewrite series
+- convert many individual drivers besides the shared GEM helpers
 
-Maxime
+Thomas Zimmermann (25):
+  drm/dumb-buffers: Sanitize output on errors
+  drm/dumb-buffers: Provide helper to set pitch and size
+  drm/gem-dma: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/gem-shmem: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/gem-vram: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/armada: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/exynos: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/gma500: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/hibmc: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/imx/ipuv3: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/loongson: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/mediatek: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/msm: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/nouveau: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/omapdrm: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/qxl: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/renesas/rcar-du: Compute dumb-buffer sizes with
+    drm_mode_size_dumb()
+  drm/renesas/rz-du: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/rockchip: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/tegra: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/virtio: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/vmwgfx: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/xe: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/xen: Compute dumb-buffer sizes with drm_mode_size_dumb()
+  drm/xlnx: Compute dumb-buffer sizes with drm_mode_size_dumb()
 
-drm-misc-fixes-2025-08-21:
-A bunch of fixes for 6.17:
-  - analogix_dp: devm_drm_bridge_alloc() error handling fix
-  - gaudi: Memory deallocation fix
-  - gpuvm: Documentation warning fix
-  - hibmc: Various misc fixes
-  - nouveau: Memory leak fixes, typos
-  - panic: u64 division handling on 32 bits architecture fix
-  - rockchip: Kconfig fix, register caching fix
-  - rust: memory layout and safety fixes
-  - tests: Endianness fixes
-The following changes since commit c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9:
+ Documentation/gpu/todo.rst                    |  37 ++++
+ drivers/gpu/drm/armada/armada_gem.c           |  16 +-
+ drivers/gpu/drm/drm_dumb_buffers.c            | 170 ++++++++++++++++--
+ drivers/gpu/drm/drm_gem_dma_helper.c          |   7 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c        |  16 +-
+ drivers/gpu/drm/drm_gem_vram_helper.c         |  89 +++------
+ drivers/gpu/drm/exynos/exynos_drm_gem.c       |   8 +-
+ drivers/gpu/drm/gma500/gem.c                  |  21 +--
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  25 ++-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |  29 ++-
+ drivers/gpu/drm/loongson/lsdc_gem.c           |  29 +--
+ drivers/gpu/drm/mediatek/mtk_gem.c            |  13 +-
+ drivers/gpu/drm/msm/msm_gem.c                 |  27 ++-
+ drivers/gpu/drm/nouveau/nouveau_display.c     |   7 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c            |  15 +-
+ drivers/gpu/drm/qxl/qxl_dumb.c                |  17 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c |   7 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |   8 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c   |  12 +-
+ drivers/gpu/drm/tegra/gem.c                   |   8 +-
+ drivers/gpu/drm/virtio/virtgpu_gem.c          |  11 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_surface.c       |  21 +--
+ drivers/gpu/drm/xe/xe_bo.c                    |   8 +-
+ drivers/gpu/drm/xen/xen_drm_front.c           |   7 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c             |   7 +-
+ include/drm/drm_dumb_buffers.h                |  14 ++
+ include/drm/drm_gem_vram_helper.h             |   6 -
+ include/uapi/drm/drm_mode.h                   |  50 +++++-
+ 28 files changed, 457 insertions(+), 228 deletions(-)
+ create mode 100644 include/drm/drm_dumb_buffers.h
 
-  Linux 6.17-rc2 (2025-08-17 15:22:10 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
-25-08-21
-
-for you to fetch changes up to 1a2cf179e2973f6801c67397ecc987391b084bcf:
-
-  Merge drm/drm-fixes into drm-misc-fixes (2025-08-20 16:08:49 +0200)
-
-----------------------------------------------------------------
-A bunch of fixes for 6.17:
-  - analogix_dp: devm_drm_bridge_alloc() error handling fix
-  - gaudi: Memory deallocation fix
-  - gpuvm: Documentation warning fix
-  - hibmc: Various misc fixes
-  - nouveau: Memory leak fixes, typos
-  - panic: u64 division handling on 32 bits architecture fix
-  - rockchip: Kconfig fix, register caching fix
-  - rust: memory layout and safety fixes
-  - tests: Endianness fixes
-
-----------------------------------------------------------------
-Avizrat, Yaron (1):
-      MAINTAINERS: Change habanalabs maintainers
-
-Baihan Li (5):
-      drm/hisilicon/hibmc: fix the i2c device resource leak when vdac init =
-failed
-      drm/hisilicon/hibmc: fix irq_request()'s irq name variable is local
-      drm/hisilicon/hibmc: fix the hibmc loaded failed bug
-      drm/hisilicon/hibmc: fix rare monitors cannot display problem
-      drm/hisilicon/hibmc: fix dp and vga cannot show together
-
-Danilo Krummrich (5):
-      MAINTAINERS: entry for DRM GPUVM
-      rust: alloc: replace aligned_size() with Kmalloc::aligned_layout()
-      rust: drm: ensure kmalloc() compatible Layout
-      rust: drm: remove pin annotations from drm::Device
-      rust: drm: don't pass the address of drm::Device to drm_dev_put()
-
-Fanhua Li (1):
-      drm/nouveau/nvif: Fix potential memory leak in nvif_vmm_ctor().
-
-Javier Garcia (1):
-      drm: Add directive to format code in comment
-
-Jocelyn Falempe (1):
-      drm/panic: Add a u64 divide by 10 for arm32
-
-Jos=E9 Exp=F3sito (2):
-      drm/tests: Fix endian warning
-      drm/tests: Fix drm_test_fb_xrgb8888_to_xrgb2101010() on big-endian
-
-Liu Ying (1):
-      drm/bridge: analogix_dp: Fix bailout for devm_drm_bridge_alloc()
-
-Madhur Kumar (1):
-      drm/nouveau: fix typos in comments
-
-Maxime Ripard (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Miguel Ojeda (2):
-      drm: nova-drm: fix 32-bit arm build
-      rust: alloc: fix `rusttest` by providing `Cmalloc::aligned_layout` too
-
-Nitin Gote (1):
-      iosys-map: Fix undefined behavior in iosys_map_clear()
-
-Piotr Zalewski (1):
-      drm/rockchip: vop2: make vp registers nonvolatile
-
-Qianfeng Rong (1):
-      drm/nouveau/gsp: fix mismatched alloc/free for kvmalloc()
-
-Rudi Heitbaum (1):
-      drm/rockchip: cdn-dp: select bridge for cdp-dp
-
-Thomas Zimmermann (2):
-      Merge drm/drm-fixes into drm-misc-fixes
-      Revert "drm/amdgpu: Use dma_buf from GEM object instance"
-
-Thorsten Blum (1):
-      accel/habanalabs/gaudi2: Use kvfree() for memory allocated with kvcal=
-loc()
-
- MAINTAINERS                                        | 14 +++++++++-
- drivers/accel/habanalabs/gaudi2/gaudi2.c           |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  2 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  4 +--
- drivers/gpu/drm/drm_gpuvm.c                        |  2 ++
- drivers/gpu/drm/drm_panic_qr.rs                    | 22 ++++++++++++++-
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_link.c       | 14 ++++++++--
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    | 22 +++++++++------
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h    |  1 +
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_i2c.c    |  5 ++++
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   | 11 ++++++--
- drivers/gpu/drm/nouveau/nouveau_exec.c             |  6 ++--
- drivers/gpu/drm/nouveau/nvif/vmm.c                 |  3 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c  |  4 +--
- drivers/gpu/drm/nova/file.rs                       |  3 +-
- drivers/gpu/drm/rockchip/Kconfig                   |  1 +
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  9 +++---
- drivers/gpu/drm/tests/drm_format_helper_test.c     |  3 +-
- include/linux/iosys-map.h                          |  7 +----
- rust/kernel/alloc/allocator.rs                     | 30 ++++++++++++------=
---
- rust/kernel/alloc/allocator_test.rs                | 11 ++++++++
- rust/kernel/drm/device.rs                          | 32 +++++++++++++++++-=
-----
- 24 files changed, 154 insertions(+), 59 deletions(-)
-
---qaduzatttsqlmtga
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKbVBwAKCRAnX84Zoj2+
-dnYBAYDAQbhzmNTAbWI5BZX/lR4QgO9ENVREPE0P0i2Q/mPV8KVhc7BPjM5kdcZh
-fqAeQdUBgKbrYCoVdcCf6nFAj5xza/8GeMT5uWpbJSxBsrmoF6hzjO5symoIEhYy
-pzDqGAthPg==
-=pl7U
------END PGP SIGNATURE-----
-
---qaduzatttsqlmtga--
+-- 
+2.50.1
 
