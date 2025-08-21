@@ -4,74 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CFC4CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE7CFCA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:58:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E784810E9A2;
-	Thu, 21 Aug 2025 13:54:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="aOYbkFqq";
-	dkim-atps=neutral
-Received: from mail-pg1-f201.google.com (mail-pg1-f201.google.com
- [209.85.215.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D75C410E9A2
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 13:54:54 +0000 (UTC)
-Received: by mail-pg1-f201.google.com with SMTP id
- 41be03b00d2f7-b471a0e5a33so1832143a12.3
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 06:54:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1755784494; x=1756389294;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=XpTFpmF3LpyMWsoi7YRVPJftCPsO+iVXO+bA6kJHgfU=;
- b=aOYbkFqqZR05Fktzknv/wyxM5biChiDcrWhsebZtz5MqZbMo4oSfKAScmlpTm2ZrKh
- RLCa7/HeRUlBKBVGZfaoTS3Sat4OcNp6IBKBbdnszAItCe5U8zkIdlH9a3R20P/URFWr
- D0MvakwAap1aQAsO63KPHoFsaAlXp4u2ukWCYjEeUX7ZzWtDE0sJ1nnTnA5ixQ5sAVm9
- /oBDYgsZp8NieDKexwr96/hu40DVKq/EjBQ28ojAA7M3x30o6HUEOjnLJpA1/2X3B7DC
- ERv+DTTC8V4ORW0DYzWOPmXoQwd+pzXeVlSKMi4f09XVKYML2R+eoqlDe/klq87vg3uS
- pKRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755784494; x=1756389294;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XpTFpmF3LpyMWsoi7YRVPJftCPsO+iVXO+bA6kJHgfU=;
- b=XelgIdJM1Y+VpCGRNGgwseuBkVAN4CzS4nP3eW6CEqLoE7H0jbGOhJWmcTm13yEklc
- 1908UWYPy7GU+opv/vSTOGscKptozsCFutykrrABnXwQRsKgfNkpwjrtiCz3b0MMV0R4
- r3yfihCeapGncJu3ouGG1vU46pHxn9gbo55+UGj2gbSUXtxBWN0u6xxd0bO1nb+gp2RZ
- Vu5ftWkC+c/YRdZpam4c87XDuNGP0y7Cf4FkArEp2Gy0tUmZknb0d20PYuR1WxIVsS1u
- rVva9ekBkQepE1CI+b6lppD7ocop/dAoWQELbkpaxNl9lfImYkWCa3G+40XIxM80VX0l
- mQ4Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWowZBSiTdy34eqnLV9Jv5QwnW4s1DsfkrDEgRiiSjHqd4P/K7EMPOJgDrVt0YOG6YKbaj2eHicYg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyYZiU4ekKXRvayMRHHlYotbEkuW19JSr9nKsXdu2pifbGWXjxt
- HVl8Par8boQzF35J0p1bXrc3h1skCz0Js6iM4G+ohT3aVrmEVJI1/5J3qpGM10aTr5F4iqbifXg
- 8yEgyei07ugIUlw==
-X-Google-Smtp-Source: AGHT+IGJEX7ZclUuZ2o8JPzaPgxqgSiOjHKYAc6KuCEwQ4l/jHJHNh6xVmvyFffzu/3E1KDZ2EtRfnXg3G6H5Q==
-X-Received: from pfbmd16.prod.google.com
- ([2002:a05:6a00:7710:b0:76b:c859:e832])
- (user=davidgow job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a20:5493:b0:23f:fd87:427c with SMTP id
- adf61e73a8af0-243307cb3b7mr3418114637.18.1755784494062; 
- Thu, 21 Aug 2025 06:54:54 -0700 (PDT)
-Date: Thu, 21 Aug 2025 21:54:45 +0800
-In-Reply-To: <20250821135447.1618942-1-davidgow@google.com>
-Mime-Version: 1.0
-References: <20250821135447.1618942-1-davidgow@google.com>
-X-Mailer: git-send-email 2.51.0.rc2.233.g662b1ed5c5-goog
-Message-ID: <20250821135447.1618942-2-davidgow@google.com>
-Subject: [PATCH v2 2/2] kunit: Only output a test plan if we're using
- kunit_array_gen_params
-From: David Gow <davidgow@google.com>
-To: Rae Moar <rmoar@google.com>, Marie Zhussupova <marievic@google.com>,
- marievictoria875@gmail.com, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: David Gow <davidgow@google.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- intel-xe@lists.freedesktop.org, 
- kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C47E10E9A4;
+	Thu, 21 Aug 2025 13:58:25 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3C410E9A4;
+ Thu, 21 Aug 2025 13:58:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1152212817692854937=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_replace_basename?=
+ =?utf-8?q?=28=29_with_portable_strrchr=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Carlos Llamas" <cmllamas@google.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Aug 2025 13:58:24 -0000
+Message-ID: <175578470411.257269.10944463952899573193@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250820201612.2549797-1-cmllamas@google.com>
+In-Reply-To: <20250820201612.2549797-1-cmllamas@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,54 +36,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In 6a2a027e254b ("kunit: Enable direct registration of parameter arrays to a KUnit test"),
-we now output a test plan for parameterised tests which use parameter
-arrays. This uses the size of the array (via the ARRAY_SIZE macro) to
-determine the number of subtests, which otherwise was indeterminate.
+--===============1152212817692854937==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-However some tests (particularly xe_pci.check_platform_gt_count) use
-their own gen_params function which further filters the array, resulting
-in the test plan being inaccurate (and hence kunit.py failing).
+== Series Details ==
 
-For now, only print the test plan line if the gen_params function is the
-provided kunit_array_gen_params. Unfortunately, this catches a lot of
-tests which would work, but at least makes sure we don't regress
-anything until we can rework how some of these macros function.
+Series: drm/xe: replace basename() with portable strrchr()
+URL   : https://patchwork.freedesktop.org/series/153291/
+State : success
 
-Fixes: 6a2a027e254b ("kunit: Enable direct registration of parameter arrays to a KUnit test")
-Signed-off-by: David Gow <davidgow@google.com>
----
+== Summary ==
 
-No changes since v1:
-https://lore.kernel.org/linux-kselftest/20250819073434.1411114-2-davidgow@google.com/
+CI Bug Log - changes from xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408_BAT -> xe-pw-153291v1_BAT
+====================================================
 
-(The change was in patch 1.)
+Summary
+-------
 
----
- lib/kunit/test.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+  **SUCCESS**
 
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index b661407ad0a3..bb66ea1a3eac 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -732,10 +732,12 @@ int kunit_run_tests(struct kunit_suite *suite)
- 				  "KTAP version 1\n");
- 			kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT KUNIT_SUBTEST_INDENT
- 				  "# Subtest: %s", test_case->name);
--			if (test.params_array.params)
-+			if (test.params_array.params &&
-+			    test_case->generate_params == kunit_array_gen_params) {
- 				kunit_log(KERN_INFO, &test, KUNIT_SUBTEST_INDENT
- 					  KUNIT_SUBTEST_INDENT "1..%zd\n",
- 					  test.params_array.num_params);
-+			}
- 
- 			while (curr_param) {
- 				struct kunit param_test = {
--- 
-2.51.0.rc2.233.g662b1ed5c5-goog
+  No regressions found.
 
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153291v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +3 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8501 -> IGT_8503
+  * Linux: xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408 -> xe-pw-153291v1
+
+  IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8503: 8503
+  xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408: 16e133c7e6922a9f224b272a48ac172cf06e3408
+  xe-pw-153291v1: 153291v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html
+
+--===============1152212817692854937==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: replace basename() with portable strrchr()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153291/">https://patchwork.freedesktop.org/series/153291/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408_BAT -&gt; xe-pw-153291v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153291v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8501 -&gt; IGT_8503</li>
+<li>Linux: xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408 -&gt; xe-pw-153291v1</li>
+</ul>
+<p>IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8503: 8503<br />
+  xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408: 16e133c7e6922a9f224b272a48ac172cf06e3408<br />
+  xe-pw-153291v1: 153291v1</p>
+
+</body>
+</html>
+
+--===============1152212817692854937==--
