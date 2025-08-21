@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D0FCA0EF8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C912CA0EEB
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:31:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD96810E9B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3F9510E9B6;
 	Thu, 21 Aug 2025 14:31:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ue6ti0DJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CPQFDQiV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDA2910E9AF
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:31:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3DF510E9B0
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:31:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1755786666; x=1787322666;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=GACC5J7R3TslP6tP/THBi5kzzjBlD1g6i7tV5fYPNkg=;
- b=Ue6ti0DJL+jZphqEj1DgUEu/f3XG0J571/S59O/Op0rmzKjmROiXd6oc
- zN08jFrqZYGo8BwBVARknnUxbiRC/kcw40iu8KLpsP0QBEPyDpBCBNVYP
- DLdk7XaYrSfMJuaEhbnwieFhzHkwRFTfYNf7QBAbdV5b5R5V9n7WODAhB
- RkRuh7Z4wbpOFO2Vxyg0aeZK6n0dyi3Ibwlfe7Uqo4Qxa9Ovles8IkrjJ
- ycFvKpk7tHwrARf+H8FHBhW1yab3N/pXxESR/lG8SnBSbRAGvDL8llJ4x
- Z0n+ru78ZnwDgAA8F37XVOYc2Wwu7n35PQtgMCnQZe1AXa6TLvvKLhPvx A==;
-X-CSE-ConnectionGUID: Kk/QJVTCQwGpXMx31n8BpQ==
-X-CSE-MsgGUID: xtwmBgxsS6q4IoNMEjQOCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="58175757"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="58175757"
+ bh=SmcGQkd/xUaA9RWuW8K+O56KYwuS7Dq+cwPIL/8SQtI=;
+ b=CPQFDQiVaf6Rwx3JzwyOPa0rof0vs0VVbhESlDu5ApGDpYOmLeKDRzxq
+ KDryksL0hjTWN69fgDds7dRZxd6AdBI3RM91mWMm+/O25jqoHc/0kFyKP
+ +v1o3Je1dA37dgqxYXq53FAzNzq6KySnr3uqQ8/C1+pXUwHjuXUXKaPjS
+ 7TBDBZEU3iR4jsN8LPQBCFG9HuVVTapMrhmWk7BkK7PM77YEc1mdmUnmc
+ uX1FDHdU/4Z+ARh+aVTtuz7IX0ZlC8f/trvSgZ658T2APY648Z9a8E6mz
+ XB+ww62XfSjTH3fTRAD5N7H56G9h7QDwHfxdl9zUE8v8/wKfTm25QxOQ8 w==;
+X-CSE-ConnectionGUID: agJZzzBaRROlLdlP1r3YSg==
+X-CSE-MsgGUID: aoL7Rz+1TpeeOLszwqgPrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="58175758"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="58175758"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 07:31:05 -0700
-X-CSE-ConnectionGUID: SUKG+jMLTwezhEc4vVaUvg==
-X-CSE-MsgGUID: 6sWk2FFlQom4QFvjD45QnQ==
+ 21 Aug 2025 07:31:06 -0700
+X-CSE-ConnectionGUID: WuSj4YXBTvegkqjr6tHkkQ==
+X-CSE-MsgGUID: fuJpWBoRTmCM6ir8cMtqbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="172840846"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="172840854"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO fedora) ([10.245.245.201])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 07:31:05 -0700
+ 21 Aug 2025 07:31:06 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/xe/vm: Don't pin the vm_resv during validation
-Date: Thu, 21 Aug 2025 16:30:43 +0200
-Message-ID: <20250821143045.106005-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 2/3] drm/xe/tests/xe_dma_buf: Set the drm_object::dma_buf
+ member
+Date: Thu, 21 Aug 2025 16:30:44 +0200
+Message-ID: <20250821143045.106005-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821143045.106005-1-thomas.hellstrom@linux.intel.com>
 References: <20250821143045.106005-1-thomas.hellstrom@linux.intel.com>
@@ -66,90 +67,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The pinning has the odd side-effect that unlocking *any* resv
-during validation triggers an "unlocking pinned lock" warning.
+This member is set when exporting using prime. However
+the xe_gem_prime_export() alone doesn't set it, since it's done
+later in the prime export flow.
+For the test, set it manually and remove the hack that set it
+temporarily when it was really needed.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Fixes: 9d5558649f68 ("drm/xe: Rework eviction rejection of bound external bos")
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c |  5 ++---
- drivers/gpu/drm/xe/xe_vm.h | 15 ++-------------
- 2 files changed, 4 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6fea39842e1e..11eaf3b06766 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2468,7 +2468,6 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
- 		.no_wait_gpu = false,
- 		.gfp_retry_mayfail = true,
- 	};
--	struct pin_cookie cookie;
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index c53f67ce4b0a..cde9530bef8c 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -57,16 +57,12 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
+ 		return;
  
- 	if (vm) {
-@@ -2479,10 +2478,10 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
- 		ctx.resv = xe_vm_resv(vm);
+ 	/*
+-	 * Evict exporter. Note that the gem object dma_buf member isn't
+-	 * set from xe_gem_prime_export(), and it's needed for the move_notify()
+-	 * functionality, so hack that up here. Evicting the exported bo will
++	 * Evict exporter. Evicting the exported bo will
+ 	 * evict also the imported bo through the move_notify() functionality if
+ 	 * importer is on a different device. If they're on the same device,
+ 	 * the exporter and the importer should be the same bo.
+ 	 */
+-	swap(exported->ttm.base.dma_buf, dmabuf);
+ 	ret = xe_bo_evict(exported);
+-	swap(exported->ttm.base.dma_buf, dmabuf);
+ 	if (ret) {
+ 		if (ret != -EINTR && ret != -ERESTARTSYS)
+ 			KUNIT_FAIL(test, "Evicting exporter failed with err=%d.\n",
+@@ -139,6 +135,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 			   PTR_ERR(dmabuf));
+ 		goto out;
  	}
++	bo->ttm.base.dma_buf = dmabuf;
  
--	cookie = xe_vm_set_validating(vm, allow_res_evict);
-+	xe_vm_set_validating(vm, allow_res_evict);
- 	trace_xe_bo_validate(bo);
- 	ret = ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
--	xe_vm_clear_validating(vm, allow_res_evict, cookie);
-+	xe_vm_clear_validating(vm, allow_res_evict);
- 
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 2f213737c7e5..2ecb417c19a2 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -315,22 +315,14 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
-  * Register this task as currently making bos resident for the vm. Intended
-  * to avoid eviction by the same task of shared bos bound to the vm.
-  * Call with the vm's resv lock held.
-- *
-- * Return: A pin cookie that should be used for xe_vm_clear_validating().
-  */
--static inline struct pin_cookie xe_vm_set_validating(struct xe_vm *vm,
--						     bool allow_res_evict)
-+static inline void xe_vm_set_validating(struct xe_vm *vm, bool allow_res_evict)
- {
--	struct pin_cookie cookie = {};
--
- 	if (vm && !allow_res_evict) {
- 		xe_vm_assert_held(vm);
--		cookie = lockdep_pin_lock(&xe_vm_resv(vm)->lock.base);
- 		/* Pairs with READ_ONCE in xe_vm_is_validating() */
- 		WRITE_ONCE(vm->validating, current);
+ 	import = xe_gem_prime_import(&xe->drm, dmabuf);
+ 	if (!IS_ERR(import)) {
+@@ -186,6 +183,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 		KUNIT_FAIL(test, "dynamic p2p attachment failed with err=%ld\n",
+ 			   PTR_ERR(import));
  	}
--
--	return cookie;
- }
- 
- /**
-@@ -338,17 +330,14 @@ static inline struct pin_cookie xe_vm_set_validating(struct xe_vm *vm,
-  * @vm: Pointer to the vm or NULL
-  * @allow_res_evict: Eviction from @vm was allowed. Must be set to the same
-  * value as for xe_vm_set_validation().
-- * @cookie: Cookie obtained from xe_vm_set_validating().
-  *
-  * Register this task as currently making bos resident for the vm. Intended
-  * to avoid eviction by the same task of shared bos bound to the vm.
-  * Call with the vm's resv lock held.
-  */
--static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict,
--					  struct pin_cookie cookie)
-+static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict)
- {
- 	if (vm && !allow_res_evict) {
--		lockdep_unpin_lock(&xe_vm_resv(vm)->lock.base, cookie);
- 		/* Pairs with READ_ONCE in xe_vm_is_validating() */
- 		WRITE_ONCE(vm->validating, NULL);
- 	}
++	bo->ttm.base.dma_buf = NULL;
+ 	dma_buf_put(dmabuf);
+ out:
+ 	drm_gem_object_put(&bo->ttm.base);
 -- 
 2.50.1
 
