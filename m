@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 925DACA0EEB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDBDDCA0EFC
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 17:04:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559E810E2A4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB29D10E399;
 	Thu, 21 Aug 2025 17:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d3uuA5hv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFr+05D2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C7210E39D
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:04:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 703CB10E38D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755795848; x=1787331848;
+ t=1755795837; x=1787331837;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7r9gEQexUSkNnFM93yYxPeYXvNoHNtIxlWIWe8oDCi8=;
- b=d3uuA5hvkrKLamXFz9m/6wQPtrbmH8csPimd+0wg3OVZ1ibvEpSmbbBG
- fTf/OQciT2Se+rypuG8zIUMQY3RPiIyNm5t4+HdGbo6qxmtv08Yomx/SK
- TlCOiuEms2bpFWv6WqFwAp93PMePp0Q/lInC74a2ZuHKOb3OVGUGoNZ37
- FgdEvlES9P13nIgJdHjoRZsEl5jANCW3/3Vd7GeV55LQ3aFGl6w/USwTN
- HPR0OItDBY07dPQDcKCfygpEqcfCG/g65PIXTQvMmdUznW0/XvJ1WrfyQ
- yoIbrd+AQ0ueCKaAnuloRSglTCLeXI9pnf+yWBPo8duCQHhEcVLKauyv3 A==;
-X-CSE-ConnectionGUID: k5K2DW4FRK2nILPuR2PAXg==
-X-CSE-MsgGUID: anBR4dG7THClGSWO8wMprA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805854"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805854"
+ bh=aM49pRMgswrShjdBMG2UHPgC9VVT2M543yQcr0+RJQ0=;
+ b=JFr+05D2vgofNCrADpPZWmpfW1NS0lQvdntjGXmYwZMOTtnePQJqGHYA
+ rGevnhXSvq+a4VSCuKw0AbYy2c6JSPX3LBkTYMzgHt94g6E1KGzrxCP99
+ IhIaEzwQk6FENKaU2FZ+HkG9I9dbcAVNYbPa4V8ihxw2Wsdlq0tSxz6x4
+ VTzzNwgeB0soNiZlbfsCm+LML6xf7UVwJucAQEILYZeXyTiCQfMNdTbDw
+ vLGTmBJnEp0IcFUa7snVWeuFHGhelDCnW4jbA0P3n2en4Upkml8BeLXSY
+ 7FDlGP2SUXHFXEdUJOm9CMWLRpiv3dAqm76FmE9EhWfoq9SAdGaAkpADu g==;
+X-CSE-ConnectionGUID: MNbRqDMWSDWIrlmoVxUMhA==
+X-CSE-MsgGUID: jKCg+AjPQteNJb5xSXSLTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805839"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805839"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 10:04:07 -0700
-X-CSE-ConnectionGUID: V/QtNPxBSb+Ii43CURxGGw==
-X-CSE-MsgGUID: Se/4myzASuGXwSCF+RuWrg==
+ 21 Aug 2025 10:03:57 -0700
+X-CSE-ConnectionGUID: 9unBdAXkQvy63UjTIwKdmg==
+X-CSE-MsgGUID: 6CfLBjG+RGmZmSYY7ZQ64g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143876"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143774"
 Received: from himal-super-server.iind.intel.com ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:04:06 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:03:55 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v9 14/20] drm/xe/bo: Add attributes field to xe_bo
-Date: Thu, 21 Aug 2025 23:00:58 +0530
-Message-Id: <20250821173104.3030148-15-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v9 07/20] drm/xe/svm: Add xe_svm_ranges_zap_ptes_in_range()
+ for PTE zapping
+Date: Thu, 21 Aug 2025 23:00:51 +0530
+Message-Id: <20250821173104.3030148-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
 References: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
@@ -66,36 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A single BO can be linked to multiple VMAs, making VMA attributes
-insufficient for determining the placement and PTE update attributes
-of the BO. To address this, an attributes field has been added to the
-BO.
+Introduce xe_svm_ranges_zap_ptes_in_range(), a function to zap page table
+entries (PTEs) for all SVM ranges within a user-specified address range.
 
+-v2 (Matthew Brost)
+Lock should be called even for tlb_invalidation
+
+v3(Matthew Brost)
+- Update comment
+- s/notifier->itree.start/drm_gpusvm_notifier_start
+- s/notifier->itree.last + 1/drm_gpusvm_notifier_end
+- use WRITE_ONCE
+
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c  | 14 ++++++++++-
+ drivers/gpu/drm/xe/xe_svm.c | 50 +++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.h |  8 ++++++
+ 3 files changed, 71 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index cf604adc13a3..314652afdca7 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -61,6 +61,14 @@ struct xe_bo {
- 	 */
- 	struct list_head client_link;
- #endif
-+	/** @attr: User controlled attributes for bo */
-+	struct {
-+		/**
-+		 * @atomic_access: type of atomic access bo needs
-+		 * protected by bo dma-resv lock
-+		 */
-+		u32 atomic_access;
-+	} attr;
- 	/**
- 	 * @pxp_key_instance: PXP key instance this BO was created against. A
- 	 * 0 in this variable indicates that the BO does not use PXP encryption.
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index ba7a50bf3a2d..bf50a821853e 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -950,7 +950,19 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+ 	struct xe_pt *pt = vm->pt_root[tile->id];
+ 	u8 pt_mask = (range->tile_present & ~range->tile_invalidated);
+ 
+-	xe_svm_assert_in_notifier(vm);
++	/*
++	 * Locking rules:
++	 *
++	 * - notifier_lock (write): full protection against page table changes
++	 *   and MMU notifier invalidations.
++	 *
++	 * - notifier_lock (read) + vm_lock (write): combined protection against
++	 *   invalidations and concurrent page table modifications. (e.g., madvise)
++	 *
++	 */
++	lockdep_assert(lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 0) ||
++		       (lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 1) &&
++		       lockdep_is_held_type(&vm->lock, 0)));
+ 
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index ce42100cb753..c2306000f15e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1031,6 +1031,56 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+ 	return err;
+ }
+ 
++/**
++ * xe_svm_ranges_zap_ptes_in_range - clear ptes of svm ranges in input range
++ * @vm: Pointer to the xe_vm structure
++ * @start: Start of the input range
++ * @end: End of the input range
++ *
++ * This function removes the page table entries (PTEs) associated
++ * with the svm ranges within the given input start and end
++ *
++ * Return: tile_mask for which gt's need to be tlb invalidated.
++ */
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpusvm_notifier *notifier;
++	struct xe_svm_range *range;
++	u64 adj_start, adj_end;
++	struct xe_tile *tile;
++	u8 tile_mask = 0;
++	u8 id;
++
++	lockdep_assert(lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 1) &&
++		       lockdep_is_held_type(&vm->lock, 0));
++
++	drm_gpusvm_for_each_notifier(notifier, &vm->svm.gpusvm, start, end) {
++		struct drm_gpusvm_range *r = NULL;
++
++		adj_start = max(start, drm_gpusvm_notifier_start(notifier));
++		adj_end = min(end, drm_gpusvm_notifier_end(notifier));
++		drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end) {
++			range = to_xe_range(r);
++			for_each_tile(tile, vm->xe, id) {
++				if (xe_pt_zap_ptes_range(tile, vm, range)) {
++					tile_mask |= BIT(id);
++					/*
++					 * WRITE_ONCE pairs with READ_ONCE in
++					 * xe_vm_has_valid_gpu_mapping().
++					 * Must not fail after setting
++					 * tile_invalidated and before
++					 * TLB invalidation.
++					 */
++					WRITE_ONCE(range->tile_invalidated,
++						   range->tile_invalidated | BIT(id));
++				}
++			}
++		}
++	}
++
++	return tile_mask;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ 
+ static struct drm_pagemap *tile_local_pagemap(struct xe_tile *tile)
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 184b3f4f0b2a..046a9c4e95c2 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -92,6 +92,8 @@ u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *v
+ 
+ void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end);
+ 
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end);
++
+ /**
+  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
+  * @range: SVM range
+@@ -310,6 +312,12 @@ void xe_svm_unmap_address_range(struct xe_vm *vm, u64 start, u64 end)
+ {
+ }
+ 
++static inline
++u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	return 0;
++}
++
+ #define xe_svm_assert_in_notifier(...) do {} while (0)
+ #define xe_svm_range_has_dma_mapping(...) false
+ 
 -- 
 2.34.1
 
