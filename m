@@ -4,53 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10529CA0EFC
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E96FCA0EFC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 16:18:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8ACD10E39E;
-	Thu, 21 Aug 2025 16:18:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C437A10E389;
+	Thu, 21 Aug 2025 16:18:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StggOz1P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kf0Nl165";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9B310E38A
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E5010E393
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 16:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755793117; x=1787329117;
+ t=1755793116; x=1787329116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=myXvhJpbecdqqD2YqxBirwGfiNYJgW21IRFdQkc9e+s=;
- b=StggOz1PQst2+t1hkWrH3VyThq0IjOAUa/bLNQj7Si0LZEzJOrQBmHRv
- D4L6jBnoQWl4CHsy/207WlXvJQurxa+pVMdo7MLpFbMId1uTJxk5xe6Cz
- LSUC6hh+DNdpsHGD6LAgiOtGZx+BKQdrB/GSwoyTIJzNtj/whQzRgfdnW
- QgNAXuxtCEdyH5dj+81dw6UwX5vXNPs8TN/N1axiM0ifVqIqWn3DCX/6R
- 70nuVUpT5buA8X+1hlAvcdlYEa/X88KCJjbXM6V386iewgtyKZpDu99lo
- oqeIXn8C4Fk4OtJMUEL3GDJbz+9N8IhmrfAmkdM/5fLQcEZsDmjG/6hfs A==;
-X-CSE-ConnectionGUID: +sQUOh0gSpis0ztOAIRNaQ==
-X-CSE-MsgGUID: iWGf7pBCSJWmUiNebSfdZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527903"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527903"
+ bh=X+ej5uvebfSYvSHUJOFTuBUKuQ91yWq7l2h1lpj2SIo=;
+ b=Kf0Nl1655yBBBBGCSImHMsoR1anulERTbN0HFNXf+wRbAd6Wt3I5ix/n
+ VGmwDAt4DF1LKOxBl+Cp2brpxX1wifXTQACBibfaglxJBfbcKfFisbEkz
+ hqmvn7IYSNaGQuUH+1+AoJQYwijBGSO+J7huFUbc+nex1dOW4tJ+VncVD
+ dcFqVtZO1eFc/Ir/p+sNrzebyfwjMFjpIygKfJ1DQSPHGNvgZxDZJvOgj
+ rh6eakuApeNq7NnEukeNRiTAA1MdNHghHRABtKRgOl5USrHBZje9GfyU8
+ Xy/QHSZ9+pm8qPA0J8OoJ4WDP+R9A6YY8Qm8JhSQY0VDFJvhx/zPk0Q5n A==;
+X-CSE-ConnectionGUID: YMICAVDYSl6k+xXJLQG4rw==
+X-CSE-MsgGUID: m42Mc1SURZCraXRfdqgxKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="69527893"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="69527893"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 09:18:37 -0700
-X-CSE-ConnectionGUID: MATgmHkKT2u6gmqEKBPxJg==
-X-CSE-MsgGUID: osZLZjk7T623ANjMIyb9DA==
+ 21 Aug 2025 09:18:36 -0700
+X-CSE-ConnectionGUID: lfAv4MLnQguJ0VODtUI6GQ==
+X-CSE-MsgGUID: Xdpa64aTTyW4fX6VCDP0Kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326751"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="199326730"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 09:18:36 -0700
+ 21 Aug 2025 09:18:35 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>, prashanth.kumar@intel.com,
- dnyaneshwar.bhadane@intel.com,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v5 12/12] drm/xe/configfs: Dump custom settings when binding
-Date: Thu, 21 Aug 2025 09:18:07 -0700
-Message-ID: <20250821-psmi-v5-12-34ab7550d3d8@intel.com>
+ dnyaneshwar.bhadane@intel.com
+Subject: [PATCH v5 08/12] drm/xe/configfs: Use guard() for dev->lock
+Date: Thu, 21 Aug 2025 09:18:03 -0700
+Message-ID: <20250821-psmi-v5-8-34ab7550d3d8@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
 References: <20250821-psmi-v5-0-34ab7550d3d8@intel.com>
@@ -72,118 +69,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Device configuration using configfs could be prepared long time prior
-the driver load. Currently all the xe configfs entries are for things
-that are important to have in the log if a non-default value is being
-used. Add a info-level message about that with the individual entries
-that are different than the default.
+Instead of the manual lock()/unlock() pattern, use guard() which will
+make things easier for handling errors or early returns.
 
-Based on previous patch by Michal Wajdeczko.
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
- - Fix typo and improvement xe_configfs_check_device() doc (Vinay)
----
- drivers/gpu/drm/xe/xe_configfs.c | 39 +++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  2 ++
- drivers/gpu/drm/xe/xe_pci.c      |  3 +++
- 3 files changed, 44 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 26c5e1b292636..29a12d02443d9 100644
+index 61376dfc74bb3..de73c4ff8f4f2 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -442,6 +442,45 @@ static struct xe_config_group_device *find_xe_config_group_device(struct pci_dev
- 	return to_xe_config_group_device(item);
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/bitops.h>
+ #include <linux/configfs.h>
++#include <linux/cleanup.h>
+ #include <linux/find.h>
+ #include <linux/init.h>
+ #include <linux/module.h>
+@@ -164,9 +165,8 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 	if (ret)
+ 		return ret;
+ 
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.survivability_mode = survivability_mode;
+-	mutex_unlock(&dev->lock);
+ 
+ 	return len;
  }
+@@ -248,9 +248,8 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 		val |= mask;
+ 	}
  
-+static void dump_custom_dev_config(struct pci_dev *pdev,
-+				   struct xe_config_group_device *dev)
-+{
-+#define PRI_CUSTOM_ATTR(fmt_, attr_) do { \
-+		if (dev->config.attr_ != device_defaults.attr_) \
-+			pci_info(pdev, "configfs: " __stringify(attr_) " = " fmt_ "\n", \
-+				 dev->config.attr_); \
-+	} while (0)
-+
-+	PRI_CUSTOM_ATTR("%llx", engines_allowed);
-+	PRI_CUSTOM_ATTR("%d", enable_psmi);
-+	PRI_CUSTOM_ATTR("%d", survivability_mode);
-+
-+#undef PRI_CUSTOM_ATTR
-+}
-+
-+/**
-+ * xe_configfs_check_device() - Test if device was configured by configfs
-+ * @pdev: the &pci_dev device to test
-+ *
-+ * Try to find the configfs group that belongs to the specified pci device
-+ * and print a diagnostic message if different than the default value.
-+ */
-+void xe_configfs_check_device(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+
-+	if (!dev)
-+		return;
-+
-+	/* memcmp here is safe as both are zero-initialized */
-+	if (memcmp(&dev->config, &device_defaults, sizeof(dev->config))) {
-+		pci_info(pdev, "Found custom settings in configfs\n");
-+		dump_custom_dev_config(pdev, dev);
-+	}
-+
-+	config_group_put(&dev->group);
-+}
-+
- /**
-  * xe_configfs_get_survivability_mode - get configfs survivability mode attribute
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 603dd7796c8b2..58c8c31640008 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -13,6 +13,7 @@ struct pci_dev;
- #if IS_ENABLED(CONFIG_CONFIGFS_FS)
- int xe_configfs_init(void);
- void xe_configfs_exit(void);
-+void xe_configfs_check_device(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
-@@ -20,6 +21,7 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- #else
- static inline int xe_configfs_init(void) { return 0; }
- static inline void xe_configfs_exit(void) { }
-+static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
- static inline void xe_configfs_clear_survivability_mode(struct pci_dev *pdev) { }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index d1590d67e649f..85841442f7d5c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -18,6 +18,7 @@
- #include "display/xe_display.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_regs.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_drv.h"
- #include "xe_gt.h"
-@@ -817,6 +818,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	struct xe_device *xe;
- 	int err;
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.engines_allowed = val;
+-	mutex_unlock(&dev->lock);
  
-+	xe_configfs_check_device(pdev);
-+
- 	if (desc->require_force_probe && !id_forced(pdev->device)) {
- 		dev_info(&pdev->dev,
- 			 "Your graphics device %04x is not officially supported\n"
+ 	return len;
+ }
+@@ -272,9 +271,8 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
+ 	if (ret)
+ 		return ret;
+ 
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.enable_psmi = val;
+-	mutex_unlock(&dev->lock);
+ 
+ 	return len;
+ }
+@@ -454,9 +452,8 @@ void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
+ 	if (!dev)
+ 		return;
+ 
+-	mutex_lock(&dev->lock);
++	guard(mutex)(&dev->lock);
+ 	dev->config.survivability_mode = 0;
+-	mutex_unlock(&dev->lock);
+ 
+ 	config_group_put(&dev->group);
+ }
 
 -- 
 2.50.1
