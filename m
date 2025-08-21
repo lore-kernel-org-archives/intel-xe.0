@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE7CFCA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1382ECA0FE5
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:03:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C47E10E9A4;
-	Thu, 21 Aug 2025 13:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C931A10E9A4;
+	Thu, 21 Aug 2025 14:03:33 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3C410E9A4;
- Thu, 21 Aug 2025 13:58:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1152212817692854937=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D34810E9A4;
+ Thu, 21 Aug 2025 14:03:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_replace_basename?=
- =?utf-8?q?=28=29_with_portable_strrchr=28=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Two-pass_MMU_notifier_for?=
+ =?utf-8?q?_CI_only?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Carlos Llamas" <cmllamas@google.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Aug 2025 13:58:24 -0000
-Message-ID: <175578470411.257269.10944463952899573193@1538d3639d33>
+Date: Thu, 21 Aug 2025 14:03:32 -0000
+Message-ID: <175578501231.257269.9072728321200792800@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250820201612.2549797-1-cmllamas@google.com>
-In-Reply-To: <20250820201612.2549797-1-cmllamas@google.com>
+References: <20250821132114.97325-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250821132114.97325-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,144 +40,219 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1152212817692854937==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: replace basename() with portable strrchr()
-URL   : https://patchwork.freedesktop.org/series/153291/
-State : success
+Series: Two-pass MMU notifier for CI only
+URL   : https://patchwork.freedesktop.org/series/153295/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408_BAT -> xe-pw-153291v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 49590a511db67bc312cec103811fb56f20adae2a
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Aug 21 15:21:14 2025 +0200
 
-Summary
--------
+    Two-pass MMU notifier for CI only
+    
+    Squashed commit of the following:
+    
+    commit 44b594b3bbbdd454dcab9e499b5275aa1c9f0109
+    Author: Matthew Brost <matthew.brost@intel.com>
+    Date:   Thu Aug 7 22:27:10 2025 -0700
+    
+        drm/xe: Implement two pass MMU notifiers for SVM
+    
+        Implement two-pass MMU notifiers for SVM, enabling multiple VMs or
+        devices with GPU mappings to pipeline costly TLB invalidations by
+        issuing them in the first pass and waiting for completion in the second.
+    
+        v1:
+        - Adjust naming.
+    
+        Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    
+    commit c783c6dabdab4ed92085e4fc0bed2689cf9249ba
+    Author: Matthew Brost <matthew.brost@intel.com>
+    Date:   Thu Aug 7 22:27:10 2025 -0700
+    
+        drm/xe: Add fences argument to xe_vm_range_tilemask_tlb_invalidation
+    
+        Introduce a fences argument to xe_vm_range_tilemask_tlb_invalidation,
+        allowing callers to provide fences and defer waiting to a later point.
+    
+        Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    
+    commit 9a5708c3ccd3f99102a29888eeff4fac3e5ec574
+    Author: Matthew Brost <matthew.brost@intel.com>
+    Date:   Thu Aug 7 22:27:09 2025 -0700
+    
+        drm/xe: Skip waiting on unarmed fences in xe_gt_tlb_invalidation_fence_wait
+    
+        Avoids unnecessary waits when the TLB invalidation fence has not been
+        armed, simplifying caller logic in cases where the fence status is
+        uncertain.
+    
+        Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    
+    commit 55d8d77c804087e5fad1b5ca8d2e1d8ce816b646
+    Author: Matthew Brost <matthew.brost@intel.com>
+    Date:   Thu Aug 7 22:27:08 2025 -0700
+    
+        drm/gpusvm: Add drm_gpusvm_in_notifier_* helpers
+    
+        Abstract drm_gpusvm_in_notifier_lock/unlock with helpers. Intended usage
+        is a client side 2nd pass of a MMU notifier.
+    
+        Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    
+    commit 087aed38ceaee2daef97acd816fde538bd53b74e
+    Author: Matthew Brost <matthew.brost@intel.com>
+    Date:   Thu Aug 7 22:27:07 2025 -0700
+    
+        drm/gpusvm, drm/xe: Update GPU SVM / Xe to twopass MMU notifier
+    
+        Update GPU SVM and Xe to use two-pass MMU notifiers, enabling pipelined
+        TLB invalidations across VMs or multiple devices.
+    
+        The driver-side (Xe) implementation is not yet implemented.
+    
+        v1:
+        - Update function naming and comments.
+    
+        Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    
+    commit e43edf1f7e1a8fbe97157c10d0d9ec97aa7ba6e1
+    Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Date:   Sat Aug 9 15:35:06 2025 +0200
+    
+        mm/mmu_notifier: Allow two-pass struct mmu_interval_notifiers
+    
+        GPU use-cases for mmu_interval_notifiers with hmm often involve
+        starting a gpu operation and then waiting for it to complete.
+        These operations are typically context preemption or TLB flushing.
+    
+        With single-pass notifiers per GPU this doesn't scale in
+        multi-gpu scenarios. In those scenarios we'd want to first start
+        preemption- or TLB flushing on all GPUs and as a second pass wait
+        for them to complete.
+    
+        One can do this on per-driver basis multiplexing per-driver
+        notifiers but that would mean sharing the notifier "user" lock
+        across all GPUs and that doesn't scale well either, so adding support
+        for multi-pass in the core appears to be the right choice.
+    
+        Implement two-pass capability in the mmu_interval_notifier. Use a
+        linked list for the final passes to minimize the impact for
+        use-cases that don't need the multi-pass functionality by avoiding
+        a second interval tree walk, and to be able to easily pass data
+        between the two passes.
+    
+        v1:
+        - Restrict to two passes (Jason Gunthorpe)
+        - Improve on documentation (Jason Gunthorpe)
+        - Improve on function naming (Alistair Popple)
+    
+        Cc: Jason Gunthorpe <jgg@ziepe.ca>
+        Cc: Andrew Morton <akpm@linux-foundation.org>
+        Cc: Simona Vetter <simona.vetter@ffwll.ch>
+        Cc: Dave Airlie <airlied@gmail.com>
+        Cc: Alistair Popple <apopple@nvidia.com>
+        Cc: <dri-devel@lists.freedesktop.org>
+        Cc: <linux-mm@kvack.org>
+        Cc: <linux-kernel@vger.kernel.org>
+    
+        Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 16e133c7e6922a9f224b272a48ac172cf06e3408 drm-intel
+49590a511db6 Two-pass MMU notifier for CI only
+-:11: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '44b594b3bbbdd454dcab9e499b5275aa1c9f0109', maybe rebased or not pulled?
+#11: 
+commit 44b594b3bbbdd454dcab9e499b5275aa1c9f0109
 
-  **SUCCESS**
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+    issuing them in the first pass and waiting for completion in the second.
 
-  No regressions found.
+-:24: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#24: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  
+-:35: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#35: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Participating hosts (11 -> 11)
-------------------------------
+-:35: WARNING:BAD_SIGN_OFF: Duplicate signature
+#35: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  No changes in participating hosts
+-:47: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#47: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Known issues
-------------
+-:47: WARNING:BAD_SIGN_OFF: Duplicate signature
+#47: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  Here are the changes found in xe-pw-153291v1_BAT that come from known issues:
+-:58: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#58: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-### IGT changes ###
+-:58: WARNING:BAD_SIGN_OFF: Duplicate signature
+#58: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-#### Possible fixes ####
+-:74: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#74: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +3 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+-:74: WARNING:BAD_SIGN_OFF: Duplicate signature
+#74: 
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+-:107: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#107: 
+    Cc: Jason Gunthorpe <jgg@ziepe.ca>
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:108: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#108: 
+    Cc: Andrew Morton <akpm@linux-foundation.org>
 
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+-:109: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#109: 
+    Cc: Simona Vetter <simona.vetter@ffwll.ch>
 
+-:110: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#110: 
+    Cc: Dave Airlie <airlied@gmail.com>
 
-Build changes
--------------
+-:111: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#111: 
+    Cc: Alistair Popple <apopple@nvidia.com>
 
-  * IGT: IGT_8501 -> IGT_8503
-  * Linux: xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408 -> xe-pw-153291v1
+-:112: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#112: 
+    Cc: <dri-devel@lists.freedesktop.org>
 
-  IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8503: 8503
-  xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408: 16e133c7e6922a9f224b272a48ac172cf06e3408
-  xe-pw-153291v1: 153291v1
+-:113: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#113: 
+    Cc: <linux-mm@kvack.org>
 
-== Logs ==
+-:114: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#114: 
+    Cc: <linux-kernel@vger.kernel.org>
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html
+-:116: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#116: 
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
---===============1152212817692854937==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: replace basename() with portable strrchr()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153291/">https://patchwork.freedesktop.org/series/153291/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 20 warnings, 0 checks, 508 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408_BAT -&gt; xe-pw-153291v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153291v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153291v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8501 -&gt; IGT_8503</li>
-<li>Linux: xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408 -&gt; xe-pw-153291v1</li>
-</ul>
-<p>IGT_8501: 87027eb34ac38b8217351eeaa021aeae847b6b61 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8503: 8503<br />
-  xe-3591-16e133c7e6922a9f224b272a48ac172cf06e3408: 16e133c7e6922a9f224b272a48ac172cf06e3408<br />
-  xe-pw-153291v1: 153291v1</p>
-
-</body>
-</html>
-
---===============1152212817692854937==--
