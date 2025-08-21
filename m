@@ -4,27 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91EE3CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 09:45:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43D95CA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 10:16:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51F3910E903;
-	Thu, 21 Aug 2025 09:45:38 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA37C10E2E5;
- Thu, 21 Aug 2025 09:45:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6570007070578044135=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0092D10E0E7;
+	Thu, 21 Aug 2025 10:16:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7E9410E0E7;
+ Thu, 21 Aug 2025 10:16:54 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id CF0DE61157;
+ Thu, 21 Aug 2025 10:16:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1503C4CEED;
+ Thu, 21 Aug 2025 10:16:50 +0000 (UTC)
+Message-ID: <95dcb699-2add-46b0-959f-c2331cc775c1@redhat.com>
+Date: Thu, 21 Aug 2025 12:16:48 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dumb-buffers=3A_Fix_and?=
- =?utf-8?q?_improve_buffer-size_calculation_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Aug 2025 09:45:37 -0000
-Message-ID: <175576953782.255682.880586156733100728@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250821081918.79786-1-tzimmermann@suse.de>
-In-Reply-To: <20250821081918.79786-1-tzimmermann@suse.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: your mail
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ x86@kernel.org, airlied@gmail.com, thomas.hellstrom@linux.intel.com,
+ matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
+ peterz@infradead.org, Liam Howlett <liam.howlett@oracle.com>
+References: <20250820143739.3422-1-christian.koenig@amd.com>
+ <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
+ <7db27720-8cfd-457c-8133-5a7a1094004c@lucifer.local>
+ <82e5e566-87e9-43a8-a0e9-00656572d65c@redhat.com>
+ <f6f85c73-2a1e-438a-82c9-f3392d91020c@lucifer.local>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <f6f85c73-2a1e-438a-82c9-f3392d91020c@lucifer.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,131 +94,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6570007070578044135==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 21.08.25 12:05, Lorenzo Stoakes wrote:
+> On Thu, Aug 21, 2025 at 11:30:43AM +0200, David Hildenbrand wrote:
+>>> I will add this xen/apply_to_page_range() thing to my TODOs, which atm
+>>> would invovle changing these drivers to use vmf_insert_pfn_prot() instead.
+>>>
+>>
+>> Busy today (want to reply to Christian) but
+>>
+>> a) Re: performance, we would want something like
+>>     vmf_insert_pfns_prot(), similar to vm_insert_pages(), to bulk-insert
+>>     multiple PFNs.
+>>
+>> b) Re: PAT, we'll have to figure out why PAT information is wrong here
+>>     (was there no previous PAT reservation from the driver?), but IF we
+>>     really have to override, we'd want a way to tell
+>>     vmf_insert_pfn_prot() to force the selected caching mode.
+>>
+> 
+> Ack, ok good that we have a feasible way forward.
+> 
+> FYI, spoke to Peter off-list and he mentioned he had a more general series
+> to get rid of this kind of [ab]use of apply_to_page_range() (see [0]), I
+> gather he hasn't the time to resurrect but perhaps one of us can at some
+> point?
+> 
+> Perhaps we need a shorter term fix to _this_ issue (which involves not
+> using this interface), and then follow it up with an adaptation of the
+> below?
 
-== Series Details ==
+We need to understand why PAT would be wrong and why it would even be ok
+to ignore it. Not hacking around it.
 
-Series: drm/dumb-buffers: Fix and improve buffer-size calculation (rev6)
-URL   : https://patchwork.freedesktop.org/series/143335/
-State : success
+FWIW, I just recently documented:
 
-== Summary ==
-
-CI Bug Log - changes from xe-3589-68581247ae3de119738876845cc3a22d8e10fc15_BAT -> xe-pw-143335v6_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
++/**
++ * pfnmap_setup_cachemode - setup the cachemode in the pgprot for a pfn range
++ * @pfn: the start of the pfn range
++ * @size: the size of the pfn range in bytes
++ * @prot: the pgprot to modify
++ *
++ * Lookup the cachemode for the pfn range starting at @pfn with the size
++ * @size and store it in @prot, leaving other data in @prot unchanged.
++ *
++ * This allows for a hardware implementation to have fine-grained control of
++ * memory cache behavior at page level granularity. Without a hardware
++ * implementation, this function does nothing.
++ *
++ * Currently there is only one implementation for this - x86 Page Attribute
++ * Table (PAT). See Documentation/arch/x86/pat.rst for more details.
++ *
++ * This function can fail if the pfn range spans pfns that require differing
++ * cachemodes. If the pfn range was previously verified to have a single
++ * cachemode, it is sufficient to query only a single pfn. The assumption is
++ * that this is the case for drivers using the vmf_insert_pfn*() interface.
++ *
++ * Returns 0 on success and -EINVAL on error.
++ */
++int pfnmap_setup_cachemode(unsigned long pfn, unsigned long size,
++               pgprot_t *prot);
+  extern int track_pfn_copy(struct vm_area_struct *dst_vma,
+                 struct vm_area_struct *src_vma, unsigned long *pfn);
+  extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
+@@ -1563,6 +1584,21 @@ extern void untrack_pfn(struct vm_area_struct *vma, unsigned long pfn,
+  extern void untrack_pfn_clear(struct vm_area_struct *vma);
+  #endif
   
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-143335v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3589-68581247ae3de119738876845cc3a22d8e10fc15/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
++/**
++ * pfnmap_setup_cachemode_pfn - setup the cachemode in the pgprot for a pfn
++ * @pfn: the pfn
++ * @prot: the pgprot to modify
++ *
++ * Lookup the cachemode for @pfn and store it in @prot, leaving other
++ * data in @prot unchanged.
++ *
++ * See pfnmap_setup_cachemode() for details.
++ */
++static inline void pfnmap_setup_cachemode_pfn(unsigned long pfn, pgprot_t *prot)
++{
++       pfnmap_setup_cachemode(pfn, PAGE_SIZE, prot);
++}
 
 
-Build changes
--------------
+There is certainly something missing that the driver would have previously
+verified that the cachemode is as expected.
 
-  * Linux: xe-3589-68581247ae3de119738876845cc3a22d8e10fc15 -> xe-pw-143335v6
+-- 
+Cheers
 
-  IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3589-68581247ae3de119738876845cc3a22d8e10fc15: 68581247ae3de119738876845cc3a22d8e10fc15
-  xe-pw-143335v6: 143335v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v6/index.html
-
---===============6570007070578044135==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dumb-buffers: Fix and improve buffer-size calculation (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143335/">https://patchwork.freedesktop.org/series/143335/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3589-68581247ae3de119738876845cc3a22d8e10fc15_BAT -&gt; xe-pw-143335v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-143335v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3589-68581247ae3de119738876845cc3a22d8e10fc15/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-143335v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3589-68581247ae3de119738876845cc3a22d8e10fc15 -&gt; xe-pw-143335v6</li>
-</ul>
-<p>IGT_8499: e5e236fad9e36c3a868bc851262ee34ca57f9e5c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3589-68581247ae3de119738876845cc3a22d8e10fc15: 68581247ae3de119738876845cc3a22d8e10fc15<br />
-  xe-pw-143335v6: 143335v6</p>
-
-</body>
-</html>
-
---===============6570007070578044135==--
+David / dhildenb
