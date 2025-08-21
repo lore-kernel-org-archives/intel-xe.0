@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3382CA0FE2
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 17:04:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F202CCA0EFA
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 17:04:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A03310E3AB;
-	Thu, 21 Aug 2025 17:04:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B551810E38C;
+	Thu, 21 Aug 2025 17:04:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHpwjWjP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C6B5MABA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 988C310E2A4
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:04:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFCD10E38D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755795849; x=1787331849;
+ t=1755795839; x=1787331839;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X2jtkFeU66GlRJO9q5DY3+idcXiGghulcKIRsCV4CYQ=;
- b=aHpwjWjPvUtANcuTQgk3/ZtZZPx2YXJJkukPP2S8ybggL8SIsBJgyh4r
- dhVt3RHpnkhQ27YR0UuhTB1go+mEqO4qirn38udb1ICXg/qzF2Kj9MvJE
- q7bCVUaEk7xEq54GfY42gprB8KY91tHnJ5I18WVJ74WzSKvP166B0Gr5r
- HHdpvOgfsFGQdEkbInu4Izoob0viov1Gr2yWBhWTNfXgfeSOwTt5Muk8C
- 8D79mFOekum0XfrkUK45PcsjRK6k9hIIn0w7T9iYN4UzDKyET/YeAapGh
- +sPVs90odLDfirVJdPOtqPPx+fdU6iZnH5pfXw5rV6h0hB/EKAAEmBxsi w==;
-X-CSE-ConnectionGUID: Ab59AktFQT2E05cswy7CrQ==
-X-CSE-MsgGUID: A2FRjp/3Tda+QiEuFKOOgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805857"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805857"
+ bh=zmjw87pt+z0k+/PueNgDiL03QzNMY+4D/ZE7JVRCB/I=;
+ b=C6B5MABAfJ6FLbXkGa74Hifww8yd3QYIemD4XSycTi8lDFVf4GpOgnHn
+ liQMhA61llwXLdYM6QPfMCDxY2aFpHV51afLDN6b6y8TYCIzXngE35v5x
+ HzsGm0PrVNpxFqo4w0D1TPqWPot9FWGJhumz8lTh2Dw24DpJuCleVO73D
+ /vT/aIc9/gTkR/Edp3gjsBkLx2+qnjLX98Vl+ns+soluvCizbiy+XYj2Y
+ Jah0xqM467SaNllrlzEkbkdFJ3kO0Mn8JzPSvg8lAY3WbW9APBt/MpH7Q
+ L94evze6/QYMj+bSaSKHsuLzH+aCNaTTVc70Hz4Mc4/i7FAMVWWgXZRXx Q==;
+X-CSE-ConnectionGUID: XYl6bWUoQaKwSRrJ5q0rEg==
+X-CSE-MsgGUID: ccjSI4v8TM+3O4S12ZKOTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805841"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805841"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 10:04:09 -0700
-X-CSE-ConnectionGUID: th4JlRMLTXy/F9FRmJIAVg==
-X-CSE-MsgGUID: p/Goz/EtTYe1+ory0xN5Ag==
+ 21 Aug 2025 10:03:59 -0700
+X-CSE-ConnectionGUID: DkMPlZTTR6OmbKltoeEd+w==
+X-CSE-MsgGUID: ZTRtgKeITBytn/HwP9ef6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143887"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143784"
 Received: from himal-super-server.iind.intel.com ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:04:08 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:03:57 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v9 15/20] drm/xe/bo: Update atomic_access attribute on madvise
-Date: Thu, 21 Aug 2025 23:00:59 +0530
-Message-Id: <20250821173104.3030148-16-himal.prasad.ghimiray@intel.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH v9 08/20] drm/xe: Implement madvise ioctl for xe
+Date: Thu, 21 Aug 2025 23:00:52 +0530
+Message-Id: <20250821173104.3030148-9-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
 References: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,284 +68,394 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the bo_atomic_access based on user-provided input and determine
-the migration to smem during a CPU fault
+This driver-specific ioctl enables UMDs to control the memory attributes
+for GPU VMAs within a specified input range. If the start or end
+addresses fall within an existing VMA, the VMA is split accordingly. The
+attributes of the VMA are modified as provided by the users. The old
+mappings of the VMAs are invalidated, and TLB invalidation is performed
+if necessary.
 
-v2 (Matthew Brost)
-- Avoid cpu unmapping if bo is already in smem
-- check atomics on smem too for ioctl
-- Add comments
+v2(Matthew brost)
+- xe_vm_in_fault_mode can't be enabled by Mesa, hence allow ioctl in non
+fault mode too
+- fix tlb invalidation skip for same ranges in multiple op
+- use helper for tlb invalidation
+- use xe_svm_notifier_lock/unlock helper
+- s/lockdep_assert_held/lockdep_assert_held_write
+- Add kernel-doc
 
-v3
-- Avoid migration in prefetch
+v3(Matthew Brost)
+- make vfunc fail safe
+- Add sanitizing input args before vfunc
 
-v4 (Matthew Brost)
-- make sanity check function bool
-- add assert for smem placement
-- fix doc
+v4(Matthew Brost/Shuicheng)
+- Make locks interruptable
+- Error handling fixes
+- vm_put fixes
 
-v5 (Matthew Brost)
-- NACK atomic fault with  DRM_XE_ATOMIC_CPU
+v5(Matthew Brost)
+- Flush garbage collector before any locking.
+- Add check for null vma
 
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c           | 29 ++++++++++++--
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 35 ++++++-----------
- drivers/gpu/drm/xe/xe_vm.c           |  7 +++-
- drivers/gpu/drm/xe/xe_vm_madvise.c   | 59 +++++++++++++++++++++++++++-
- 4 files changed, 102 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/Makefile        |   1 +
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 308 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.h |  15 ++
+ 3 files changed, 324 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.h
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6fea39842e1e..72396d358a00 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1711,6 +1711,18 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
- 	}
- }
- 
-+static bool should_migrate_to_smem(struct xe_bo *bo)
-+{
-+	/*
-+	 * NOTE: The following atomic checks are platform-specific. For example,
-+	 * if a device supports CXL atomics, these may not be necessary or
-+	 * may behave differently.
-+	 */
-+
-+	return bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL ||
-+	       bo->attr.atomic_access == DRM_XE_ATOMIC_CPU;
-+}
-+
- static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- {
- 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
-@@ -1719,7 +1731,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
- 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
- 	vm_fault_t ret;
--	int idx;
-+	int idx, r = 0;
- 
- 	if (needs_rpm)
- 		xe_pm_runtime_get(xe);
-@@ -1731,8 +1743,19 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	if (drm_dev_enter(ddev, &idx)) {
- 		trace_xe_bo_cpu_fault(bo);
- 
--		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
--					       TTM_BO_VM_NUM_PREFAULT);
-+		if (should_migrate_to_smem(bo)) {
-+			xe_assert(xe, bo->flags & XE_BO_FLAG_SYSTEM);
-+
-+			r = xe_bo_migrate(bo, XE_PL_TT);
-+			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
-+				ret = VM_FAULT_NOPAGE;
-+			else if (r)
-+				ret = VM_FAULT_SIGBUS;
-+		}
-+		if (!ret)
-+			ret = ttm_bo_vm_fault_reserved(vmf,
-+						       vmf->vma->vm_page_prot,
-+						       TTM_BO_VM_NUM_PREFAULT);
- 		drm_dev_exit(idx);
- 
- 		if (ret == VM_FAULT_RETRY &&
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index ab43dec52776..4ea30fbce9bd 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -75,7 +75,7 @@ static bool vma_is_valid(struct xe_tile *tile, struct xe_vma *vma)
- }
- 
- static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
--		       bool atomic, struct xe_vram_region *vram)
-+		       bool need_vram_move, struct xe_vram_region *vram)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -85,26 +85,13 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
- 	if (err)
- 		return err;
- 
--	if (atomic && vram) {
--		xe_assert(vm->xe, IS_DGFX(vm->xe));
-+	if (!bo)
-+		return 0;
- 
--		if (xe_vma_is_userptr(vma)) {
--			err = -EACCES;
--			return err;
--		}
-+	err = need_vram_move ? xe_bo_migrate(bo, vram->placement) :
-+			       xe_bo_validate(bo, vm, true);
- 
--		/* Migrate to VRAM, move should invalidate the VMA first */
--		err = xe_bo_migrate(bo, vram->placement);
--		if (err)
--			return err;
--	} else if (bo) {
--		/* Create backing store if needed */
--		err = xe_bo_validate(bo, vm, true);
--		if (err)
--			return err;
--	}
--
--	return 0;
-+	return err;
- }
- 
- static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
-@@ -115,10 +102,14 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
- 	struct drm_exec exec;
- 	struct dma_fence *fence;
- 	ktime_t end = 0;
--	int err;
-+	int err, needs_vram;
- 
- 	lockdep_assert_held_write(&vm->lock);
- 
-+	needs_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
-+	if (needs_vram < 0 || (needs_vram && xe_vma_is_userptr(vma)))
-+		return needs_vram < 0 ? needs_vram : -EACCES;
-+
- 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
- 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB, xe_vma_size(vma) / 1024);
- 
-@@ -141,7 +132,7 @@ static int handle_vma_pagefault(struct xe_gt *gt, struct xe_vma *vma,
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		err = xe_pf_begin(&exec, vma, atomic, tile->mem.vram);
-+		err = xe_pf_begin(&exec, vma, needs_vram == 1, tile->mem.vram);
- 		drm_exec_retry_on_contention(&exec);
- 		if (xe_vm_validate_should_retry(&exec, err, &end))
- 			err = -EAGAIN;
-@@ -576,7 +567,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 	/* Lock VM and BOs dma-resv */
- 	drm_exec_init(&exec, 0, 0);
- 	drm_exec_until_all_locked(&exec) {
--		ret = xe_pf_begin(&exec, vma, true, tile->mem.vram);
-+		ret = xe_pf_begin(&exec, vma, IS_DGFX(vm->xe), tile->mem.vram);
- 		drm_exec_retry_on_contention(&exec);
- 		if (ret)
- 			break;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 9974734e8806..aebd02964c1c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4238,15 +4238,18 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
-  */
- int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic)
- {
-+	u32 atomic_access = xe_vma_bo(vma) ? xe_vma_bo(vma)->attr.atomic_access :
-+					     vma->attr.atomic_access;
-+
- 	if (!IS_DGFX(xe) || !is_atomic)
--		return 0;
-+		return false;
- 
- 	/*
- 	 * NOTE: The checks implemented here are platform-specific. For
- 	 * instance, on a device supporting CXL atomics, these would ideally
- 	 * work universally without additional handling.
- 	 */
--	switch (vma->attr.atomic_access) {
-+	switch (atomic_access) {
- 	case DRM_XE_ATOMIC_DEVICE:
- 		return !xe->info.has_device_atomics_on_smem;
- 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8e0c3412a757..d0ea869fcd24 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -128,6 +128,7 @@ xe-y += xe_bb.o \
+ 	xe_uc.o \
+ 	xe_uc_fw.o \
+ 	xe_vm.o \
++	xe_vm_madvise.o \
+ 	xe_vram.o \
+ 	xe_vram_freq.o \
+ 	xe_vsec.o \
 diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 3bd52063f9c2..212a03178d65 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+new file mode 100644
+index 000000000000..b861c3349b0a
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -102,6 +102,7 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 			   struct xe_vma **vmas, int num_vmas,
- 			   struct drm_xe_madvise *op)
- {
-+	struct xe_bo *bo;
- 	int i;
- 
- 	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC);
-@@ -114,7 +115,19 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 			continue;
- 
- 		vmas[i]->attr.atomic_access = op->atomic.val;
--	/*TODO: handle bo backed vmas */
+@@ -0,0 +1,308 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
 +
-+		bo = xe_vma_bo(vmas[i]);
-+		if (!bo)
-+			continue;
++#include "xe_vm_madvise.h"
 +
-+		xe_bo_assert_held(bo);
-+		bo->attr.atomic_access = op->atomic.val;
++#include <linux/nospec.h>
++#include <drm/xe_drm.h>
 +
-+		/* Invalidate cpu page table, so bo can migrate to smem in next access */
-+		if (xe_bo_is_vram(bo) &&
-+		    (bo->attr.atomic_access == DRM_XE_ATOMIC_CPU ||
-+		     bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL))
-+			ttm_bo_unmap_virtual(&bo->ttm);
- 	}
- }
- 
-@@ -262,6 +275,41 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
- 	return true;
- }
- 
-+static bool check_bo_args_are_sane(struct xe_vm *vm, struct xe_vma **vmas,
-+				   int num_vmas, u32 atomic_val)
++#include "xe_bo.h"
++#include "xe_pt.h"
++#include "xe_svm.h"
++
++struct xe_vmas_in_madvise_range {
++	u64 addr;
++	u64 range;
++	struct xe_vma **vmas;
++	int num_vmas;
++	bool has_svm_vmas;
++	bool has_bo_vmas;
++	bool has_userptr_vmas;
++};
++
++static int get_vmas(struct xe_vm *vm, struct xe_vmas_in_madvise_range *madvise_range)
 +{
-+	struct xe_device *xe = vm->xe;
-+	struct xe_bo *bo;
-+	int i;
++	u64 addr = madvise_range->addr;
++	u64 range = madvise_range->range;
 +
-+	for (i = 0; i < num_vmas; i++) {
-+		bo = xe_vma_bo(vmas[i]);
-+		if (!bo)
-+			continue;
-+		/*
-+		 * NOTE: The following atomic checks are platform-specific. For example,
-+		 * if a device supports CXL atomics, these may not be necessary or
-+		 * may behave differently.
-+		 */
-+		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_CPU &&
-+				 !(bo->flags & XE_BO_FLAG_SYSTEM)))
-+			return false;
++	struct xe_vma  **__vmas;
++	struct drm_gpuva *gpuva;
++	int max_vmas = 8;
 +
-+		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_DEVICE &&
-+				 !(bo->flags & XE_BO_FLAG_VRAM0) &&
-+				 !(bo->flags & XE_BO_FLAG_VRAM1) &&
-+				 !(bo->flags & XE_BO_FLAG_SYSTEM &&
-+				   xe->info.has_device_atomics_on_smem)))
-+			return false;
++	lockdep_assert_held(&vm->lock);
 +
-+		if (XE_IOCTL_DBG(xe, atomic_val == DRM_XE_ATOMIC_GLOBAL &&
-+				 (!(bo->flags & XE_BO_FLAG_SYSTEM) ||
-+				  (!(bo->flags & XE_BO_FLAG_VRAM0) &&
-+				   !(bo->flags & XE_BO_FLAG_VRAM1)))))
-+			return false;
++	madvise_range->num_vmas = 0;
++	madvise_range->vmas = kmalloc_array(max_vmas, sizeof(*madvise_range->vmas), GFP_KERNEL);
++	if (!madvise_range->vmas)
++		return -ENOMEM;
++
++	vm_dbg(&vm->xe->drm, "VMA's in range: start=0x%016llx, end=0x%016llx", addr, addr + range);
++
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, addr, addr + range) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (xe_vma_bo(vma))
++			madvise_range->has_bo_vmas = true;
++		else if (xe_vma_is_cpu_addr_mirror(vma))
++			madvise_range->has_svm_vmas = true;
++		else if (xe_vma_is_userptr(vma))
++			madvise_range->has_userptr_vmas = true;
++
++		if (madvise_range->num_vmas == max_vmas) {
++			max_vmas <<= 1;
++			__vmas = krealloc(madvise_range->vmas,
++					  max_vmas * sizeof(*madvise_range->vmas),
++					  GFP_KERNEL);
++			if (!__vmas) {
++				kfree(madvise_range->vmas);
++				return -ENOMEM;
++			}
++			madvise_range->vmas = __vmas;
++		}
++
++		madvise_range->vmas[madvise_range->num_vmas] = vma;
++		(madvise_range->num_vmas)++;
 +	}
-+	return true;
++
++	if (!madvise_range->num_vmas)
++		kfree(madvise_range->vmas);
++
++	vm_dbg(&vm->xe->drm, "madvise_range-num_vmas = %d\n", madvise_range->num_vmas);
++
++	return 0;
 +}
- /**
-  * xe_vm_madvise_ioctl - Handle MADVise ioctl for a VM
-  * @dev: DRM device pointer
-@@ -313,6 +361,15 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 		goto unlock_vm;
- 
- 	if (madvise_range.has_bo_vmas) {
-+		if (args->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC) {
-+			if (!check_bo_args_are_sane(vm, madvise_range.vmas,
-+						    madvise_range.num_vmas,
-+						    args->atomic.val)) {
-+				err = -EINVAL;
-+				goto unlock_vm;
++
++static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
++				      struct xe_vma **vmas, int num_vmas,
++				      struct drm_xe_madvise *op)
++{
++	/* Implementation pending */
++}
++
++static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
++			   struct xe_vma **vmas, int num_vmas,
++			   struct drm_xe_madvise *op)
++{
++	/* Implementation pending */
++}
++
++static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
++			      struct xe_vma **vmas, int num_vmas,
++			      struct drm_xe_madvise *op)
++{
++	/* Implementation pending */
++}
++
++typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm,
++			     struct xe_vma **vmas, int num_vmas,
++			     struct drm_xe_madvise *op);
++
++static const madvise_func madvise_funcs[] = {
++	[DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC] = madvise_preferred_mem_loc,
++	[DRM_XE_MEM_RANGE_ATTR_ATOMIC] = madvise_atomic,
++	[DRM_XE_MEM_RANGE_ATTR_PAT] = madvise_pat_index,
++};
++
++static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	struct drm_gpuva *gpuva;
++	struct xe_tile *tile;
++	u8 id, tile_mask;
++
++	lockdep_assert_held_write(&vm->lock);
++
++	/* Wait for pending binds */
++	if (dma_resv_wait_timeout(xe_vm_resv(vm), DMA_RESV_USAGE_BOOKKEEP,
++				  false, MAX_SCHEDULE_TIMEOUT) <= 0)
++		XE_WARN_ON(1);
++
++	tile_mask = xe_svm_ranges_zap_ptes_in_range(vm, start, end);
++
++	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
++		struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++		if (xe_vma_is_cpu_addr_mirror(vma) || xe_vma_is_null(vma))
++			continue;
++
++		for_each_tile(tile, vm->xe, id) {
++			if (xe_pt_zap_ptes(tile, vma)) {
++				tile_mask |= BIT(id);
++
++				/*
++				 * WRITE_ONCE pairs with READ_ONCE
++				 * in xe_vm_has_valid_gpu_mapping()
++				 */
++				WRITE_ONCE(vma->tile_invalidated,
++					   vma->tile_invalidated | BIT(id));
 +			}
 +		}
++	}
 +
- 		drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES | DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
- 		drm_exec_until_all_locked(&exec) {
- 			for (int i = 0; i < madvise_range.num_vmas; i++) {
++	return tile_mask;
++}
++
++static int xe_vm_invalidate_madvise_range(struct xe_vm *vm, u64 start, u64 end)
++{
++	u8 tile_mask = xe_zap_ptes_in_madvise_range(vm, start, end);
++
++	if (!tile_mask)
++		return 0;
++
++	xe_device_wmb(vm->xe);
++
++	return xe_vm_range_tilemask_tlb_invalidation(vm, start, end, tile_mask);
++}
++
++static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madvise *args)
++{
++	if (XE_IOCTL_DBG(xe, !args))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->start, SZ_4K)))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, !IS_ALIGNED(args->range, SZ_4K)))
++		return false;
++
++	if (XE_IOCTL_DBG(xe, args->range < SZ_4K))
++		return false;
++
++	switch (args->type) {
++	case DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC:
++		if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.migration_policy >
++				     DRM_XE_MIGRATE_ONLY_SYSTEM_PAGES))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->preferred_mem_loc.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.reserved))
++			return false;
++		break;
++	case DRM_XE_MEM_RANGE_ATTR_ATOMIC:
++		if (XE_IOCTL_DBG(xe, args->atomic.val > DRM_XE_ATOMIC_CPU))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.pad))
++			return false;
++
++		if (XE_IOCTL_DBG(xe, args->atomic.reserved))
++			return false;
++
++		break;
++	case DRM_XE_MEM_RANGE_ATTR_PAT:
++		/*TODO: Add valid pat check */
++		break;
++	default:
++		if (XE_IOCTL_DBG(xe, 1))
++			return false;
++	}
++
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
++		return false;
++
++	return true;
++}
++
++/**
++ * xe_vm_madvise_ioctl - Handle MADVise ioctl for a VM
++ * @dev: DRM device pointer
++ * @data: Pointer to ioctl data (drm_xe_madvise*)
++ * @file: DRM file pointer
++ *
++ * Handles the MADVISE ioctl to provide memory advice for vma's within
++ * input range.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(dev);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_madvise *args = data;
++	struct xe_vmas_in_madvise_range madvise_range = {.addr = args->start,
++							 .range =  args->range, };
++	struct xe_vm *vm;
++	struct drm_exec exec;
++	int err, attr_type;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -EINVAL;
++
++	if (!madvise_args_are_sane(vm->xe, args)) {
++		err = -EINVAL;
++		goto put_vm;
++	}
++
++	xe_svm_flush(vm);
++
++	err = down_write_killable(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
++		err = -ENOENT;
++		goto unlock_vm;
++	}
++
++	err = xe_vm_alloc_madvise_vma(vm, args->start, args->range);
++	if (err)
++		goto unlock_vm;
++
++	err = get_vmas(vm, &madvise_range);
++	if (err || !madvise_range.num_vmas)
++		goto unlock_vm;
++
++	if (madvise_range.has_bo_vmas) {
++		drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES | DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
++		drm_exec_until_all_locked(&exec) {
++			for (int i = 0; i < madvise_range.num_vmas; i++) {
++				struct xe_bo *bo = xe_vma_bo(madvise_range.vmas[i]);
++
++				if (!bo)
++					continue;
++				err = drm_exec_lock_obj(&exec, &bo->ttm.base);
++				drm_exec_retry_on_contention(&exec);
++				if (err)
++					goto err_fini;
++			}
++		}
++	}
++
++	if (madvise_range.has_userptr_vmas) {
++		err = down_read_interruptible(&vm->userptr.notifier_lock);
++		if (err)
++			goto err_fini;
++	}
++
++	if (madvise_range.has_svm_vmas) {
++		err = down_read_interruptible(&vm->svm.gpusvm.notifier_lock);
++		if (err)
++			goto unlock_userptr;
++	}
++
++	attr_type = array_index_nospec(args->type, ARRAY_SIZE(madvise_funcs));
++	madvise_funcs[attr_type](xe, vm, madvise_range.vmas, madvise_range.num_vmas, args);
++
++	err = xe_vm_invalidate_madvise_range(vm, args->start, args->start + args->range);
++
++	if (madvise_range.has_svm_vmas)
++		xe_svm_notifier_unlock(vm);
++
++unlock_userptr:
++	if (madvise_range.has_userptr_vmas)
++		up_read(&vm->userptr.notifier_lock);
++err_fini:
++	if (madvise_range.has_bo_vmas)
++		drm_exec_fini(&exec);
++	kfree(madvise_range.vmas);
++	madvise_range.vmas = NULL;
++unlock_vm:
++	up_write(&vm->lock);
++put_vm:
++	xe_vm_put(vm);
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h b/drivers/gpu/drm/xe/xe_vm_madvise.h
+new file mode 100644
+index 000000000000..b0e1fc445f23
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_VM_MADVISE_H_
++#define _XE_VM_MADVISE_H_
++
++struct drm_device;
++struct drm_file;
++
++int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
++			struct drm_file *file);
++
++#endif
 -- 
 2.34.1
 
