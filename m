@@ -4,50 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67E1CCA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFEBCA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:54:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD0C10E99D;
-	Thu, 21 Aug 2025 13:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B21110E99D;
+	Thu, 21 Aug 2025 13:54:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dsWLsSTv";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="gv72UsGW";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C7310E99D;
- Thu, 21 Aug 2025 13:35:21 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 8963C5C67F1;
- Thu, 21 Aug 2025 13:35:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5DF1C113CF;
- Thu, 21 Aug 2025 13:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755783319;
- bh=mFhTgdYbQDcbbNx1t+Zjt1lQox08hK5P/Z9kVlkgdFU=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=dsWLsSTvpEkCrSeEaICbXvTgRuQ9JFOjIL6w4+94DjFdVjfXhIJbnjU8ZKtXrMVee
- Sb9KKyCmwS5wofiEAjacMuS7RdFXF9UvR7lVBnc9LzYH4yotd7MYm1fWNyDXc6c3Vd
- 2noRgj7Iz3n4e2V9X7i1/AXepssbvjm+248Lpt12hO3yctaDO3f1yPPYtGEUTirjKj
- Pb5hBiCS6TwKsR3wtM8lnsoJ9aF4F2Oc8e8eosBvez7WnaCtCHkslACYhFqF6pKYRM
- OdiTwCMJVF/caMqkEJjqlA3r6EZ0Ug4VMOfOxT+FM7alRl+LAwpu6u4JT/OuZ5F1bg
- 0s/fwvVjzxplA==
+Received: from mail-pj1-f74.google.com (mail-pj1-f74.google.com
+ [209.85.216.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E3A010E99D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 13:54:53 +0000 (UTC)
+Received: by mail-pj1-f74.google.com with SMTP id
+ 98e67ed59e1d1-3250e3b161bso38776a91.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 06:54:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1755784492; x=1756389292;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=6ti2fCOXYva8ZvL9CMugr5JTuNvLl5q2xqcam/kYJ5o=;
+ b=gv72UsGWwZNZsK6edlDGxtiwUoQ2xtjXFH/No3Y0ohBgyDrpb3C5h/3akirhFaunfY
+ D/yujkUZy+n9y0pjnsHlPWFwfHxVsfrSeDliKIlmDewAX1cXuGfeKhEyjz6CTr5tNj/v
+ YTgDXCPZC6Fkfgb3U0a/UXD3n1ghkMhC16nzQdNqHAtC9QAkR1EM9KyIm1KI9zDitSIb
+ 4IJfJd22mQDuwxVDxFOe9Avj4vO1WJVj19muh91aPOKK/tqtjlZfq2InVhHQgrOIwVoi
+ kZSZu4U0fAuJCYrOsXYPwi0OfmazbNp2/5aSqO3cOBbEuDwppBTuSqN5KG/di3fnbD3R
+ nmwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755784492; x=1756389292;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=6ti2fCOXYva8ZvL9CMugr5JTuNvLl5q2xqcam/kYJ5o=;
+ b=MZtxki3gPHalYzBkUPB1dXir6x4ZTTXLexeMt0Tc6NbdtaavbiQw+lRFCiexOCqC/C
+ Knp6Q6nJUvbJehd91nOK+iFU1m/bHAyHm9P9XQibZcWBCqN0WAmipPcdpM9nzZyXQYfI
+ 4JpueWmsQI/bEufmN3f52du1KcQoB+srrpuqV06ZuX+GN3W/EZmI2rKyssV8K4ldUKCs
+ AkKuLA8zNXRnnuo2g9BqUprtYLJ/iAnSQk0daQPx+cM0J4Mf4M8FJnEIS3d4TT3v36Qs
+ c3PYcIig/BVO/qCEsjSBI8AXpTLeFHCD56PhVpwMrBdhmCXkbARAHt9RD6uEFLyQZu4P
+ KZEw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVj43wYGbILv3iTqeCSJrYmBj2WvEtTpIHlwh3+ud+4EZw+wF9N7lJUL0tmCteJpwWLE8py6TQ1iw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzi1G8NYkKLXcF5xSMqUS3qNYcJcJZk3DAUhQBckUmWQKGvNiXl
+ eI4/UeIlB51RUUK05OK3ykFzjlo7Em8LtDnIhbFvOTEYr1AIE5nzQbyXmPqnGF+UqcaTmGGiz5I
+ 8j6/U1kmyeAeiqA==
+X-Google-Smtp-Source: AGHT+IHqGRrkU47M6IM1/x2E4P3NTyZSlzj29xTt46GT3PC8wiwMDfzgWqXUh2krGXSfc6vq3VH1gAt4thuMHQ==
+X-Received: from pjk4.prod.google.com ([2002:a17:90b:5584:b0:31c:2fe4:33ba])
+ (user=davidgow job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:90b:3bc5:b0:324:e682:f313 with SMTP id
+ 98e67ed59e1d1-324ed19569dmr3747107a91.18.1755784492548; 
+ Thu, 21 Aug 2025 06:54:52 -0700 (PDT)
+Date: Thu, 21 Aug 2025 21:54:44 +0800
 Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 21 Aug 2025 15:35:16 +0200
-Message-Id: <DC858O8WDXVQ.2KJJTV9020XHJ@kernel.org>
-Subject: Re: [PATCH] drm/gpuvm: Rename 'map' to 'op' in drm_gpuvm_map_req
-Cc: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>,
- <intel-xe@lists.freedesktop.org>, "Boris Brezillon"
- <bbrezillon@kernel.org>, "Matt Coster" <matt.coster@imgtec.com>, "Rob
- Clark" <robin.clark@oss.qualcomm.com>, "Matthew Brost"
- <matthew.brost@intel.com>, <dri-devel@lists.freedesktop.org>
-To: "Boris Brezillon" <boris.brezillon@collabora.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20250820152335.2899501-1-himal.prasad.ghimiray@intel.com>
- <20250820180742.20623521@fedora> <20250821130146.471cd653@fedora>
- <20250821132535.0424d0b4@fedora> <DC84DX5YA27J.2UNA0LDKUMUB9@kernel.org>
- <20250821150124.30c387da@fedora>
-In-Reply-To: <20250821150124.30c387da@fedora>
+X-Mailer: git-send-email 2.51.0.rc2.233.g662b1ed5c5-goog
+Message-ID: <20250821135447.1618942-1-davidgow@google.com>
+Subject: [PATCH v2 1/2] drm/xe/tests: Fix some additional gen_params signatures
+From: David Gow <davidgow@google.com>
+To: Rae Moar <rmoar@google.com>, Marie Zhussupova <marievic@google.com>,
+ marievictoria875@gmail.com, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: David Gow <davidgow@google.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ intel-xe@lists.freedesktop.org, 
+ kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,54 +82,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Aug 21, 2025 at 3:01 PM CEST, Boris Brezillon wrote:
-> On Thu, 21 Aug 2025 14:55:06 +0200
-> "Danilo Krummrich" <dakr@kernel.org> wrote:
->
->> On Thu Aug 21, 2025 at 1:25 PM CEST, Boris Brezillon wrote:
->> > On Thu, 21 Aug 2025 13:01:46 +0200
->> > Boris Brezillon <boris.brezillon@collabora.com> wrote: =20
->> >> On a second thought, I'm now wondering why we need drm_gpuvm_map_req =
-in
->> >> the first place. It would kinda make sense if it was containing an
->> >>=20
->> >> 	bool madvise;
->> >>=20
->> >> field, so you don't have to pass it around, but even then, I'm
->> >> wondering if we wouldn't be better off adding this field to
->> >> drm_gpuva_op_map instead and passing an drm_gpuva_op_map object to
->> >> the various map helpers (like Danilo suggested in his review of the
->> >> REPEATED mode series Caterina sent). =20
->> >
->> > More on that: the very reason I introduced drm_gpuvm_map_req in the
->> > first place is so we have a clear differentiation between an overall
->> > map request and the sub-operations that are created to fulfill it.
->> > Looks like this was not a concern for Danilo and he was happy with us
->> > using _op_map for this.
->> >
->> > The other reason we might want to add drm_gpuvm_map_req is so that
->> > information we only need while splitting a req don't pollute
->> > drm_gpuva_op_map. Given I was going to pass the flags to the driver's
->> > callback anyway (meaning it's needed at the op_map level), and given
->> > you're passing madvise as a separate bool argument to various helpers
->> > (_map_req just contains the op, not the madvise bool), I don't think
->> > this aspect matters. =20
->>=20
->> Good catch! Indeed, when Himal picked up your struct drm_gpuvm_map_req p=
-atch,
->> there were additional flags included in the structure. Now that it is
->> essentially a transparent wrapper, I prefer to use struct drm_gpuva_op_m=
-ap
->> directly.
->>=20
->> However, given that you still have patches in flight that will add a fla=
-gs field
->> to struct drm_gpuvm_map_req I think it's probably fine to introduce it r=
-ight
->> away. Or did you drop this plan of adding those flags?
->
-> I need the flags field in the op_map too (so I can propagate it to the
-> drm_gpuva object), so I'd rather go with an op_map object directly and
-> kill drm_gpuvm_map_req now.
+In 444be9072fca ("kunit: Pass parameterized test context to generate_params()")
+prototype used for gen_params functions was changed to add a struct
+kunit parameter. However, a few of these used in xe were not updated.
 
-In this case I agree, let's use struct drm_gpuva_op_map directly.
+Update these so that the xe_pci tests build and run again.
+
+Fixes: 444be9072fca ("kunit: Pass parameterized test context to generate_params()")
+Signed-off-by: David Gow <davidgow@google.com>
+---
+
+Sorry, the last fix here caused a warning (thanks to the test robot for
+finding it).
+
+I'm still happy to sqash and re-send the whole original series if that's
+preferred.
+
+Changes since v1:
+https://lore.kernel.org/linux-kselftest/20250819073434.1411114-1-davidgow@google.com/
+- Add the missing <kunit/test.h> include for struct kunit
+
+---
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 12 ++++++------
+ drivers/gpu/drm/xe/tests/xe_pci_test.h |  9 +++++----
+ 2 files changed, 11 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index a65705814b9a..f707e0a54295 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -44,9 +44,9 @@ KUNIT_ARRAY_PARAM(pci_id, pciidlist, xe_pci_id_kunit_desc);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc)
++const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	return graphics_ip_gen_params(prev, desc);
++	return graphics_ip_gen_params(test, prev, desc);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_pci_graphics_ip_gen_param);
+ 
+@@ -61,9 +61,9 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_graphics_ip_gen_param);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_media_ip_gen_param(const void *prev, char *desc)
++const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	return media_ip_gen_params(prev, desc);
++	return media_ip_gen_params(test, prev, desc);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_pci_media_ip_gen_param);
+ 
+@@ -78,9 +78,9 @@ EXPORT_SYMBOL_IF_KUNIT(xe_pci_media_ip_gen_param);
+  *
+  * Return: pointer to the next parameter or NULL if no more parameters
+  */
+-const void *xe_pci_id_gen_param(const void *prev, char *desc)
++const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc)
+ {
+-	const struct pci_device_id *pci = pci_id_gen_params(prev, desc);
++	const struct pci_device_id *pci = pci_id_gen_params(test, prev, desc);
+ 
+ 	return pci->driver_data ? pci : NULL;
+ }
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+index ce4d2b86b778..6d8bc56f7bde 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+@@ -7,6 +7,7 @@
+ #define _XE_PCI_TEST_H_
+ 
+ #include <linux/types.h>
++#include <kunit/test.h>
+ 
+ #include "xe_platform_types.h"
+ #include "xe_sriov_types.h"
+@@ -25,9 +26,9 @@ struct xe_pci_fake_data {
+ 
+ int xe_pci_fake_device_init(struct xe_device *xe);
+ 
+-const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
+-const void *xe_pci_media_ip_gen_param(const void *prev, char *desc);
+-const void *xe_pci_id_gen_param(const void *prev, char *desc);
+-const void *xe_pci_live_device_gen_param(const void *prev, char *desc);
++const void *xe_pci_graphics_ip_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_media_ip_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_id_gen_param(struct kunit *test, const void *prev, char *desc);
++const void *xe_pci_live_device_gen_param(struct kunit *test, const void *prev, char *desc);
+ 
+ #endif
+-- 
+2.51.0.rc2.233.g662b1ed5c5-goog
+
