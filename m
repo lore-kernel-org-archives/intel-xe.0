@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76185CA0EF8
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:01:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61A22CA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 13:05:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0C910E379;
-	Thu, 21 Aug 2025 13:01:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B45210E367;
+	Thu, 21 Aug 2025 13:05:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="L3w4QmXB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eZOR3qTq";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE0310E2F2;
- Thu, 21 Aug 2025 13:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1755781290;
- bh=e1SxEuGhkSQNigPgQZn7dwiruASf40kRbepDiH93XlE=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=L3w4QmXBHJlNHmmPKIEeCOzQ0cOjlZZTJzLgfdnexKVHxJgv+gSJwNAxf6fQ6SUyN
- PWZ/B/v8HmgHhSJJ85SJnpo69oYvEfFSW6yPJyn2H1X1IgnWICkcQoNSVHgbsGFXY9
- tiszVL0pGGck11OZl+hUb5yEHyctmm5+vE5D8C3d8ViT4RDPkbe4MDhwvnUEMT0bhs
- +e4dAY6xMSVssvGpig09wui6JZ8760H6F+tqtTXLEMmHh2dlwVC9e/TNNtW8qwD+uB
- EUTE0reboDcND04NYWmXv/uYi3Sr4O/A3ufKOR1GXQtd7exSKVSAYNot8Lqr+NarQq
- 4wIt/QlNDfHCA==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 9FD9417E0071;
- Thu, 21 Aug 2025 15:01:29 +0200 (CEST)
-Date: Thu, 21 Aug 2025 15:01:24 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: "Danilo Krummrich" <dakr@kernel.org>
-Cc: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>,
- <intel-xe@lists.freedesktop.org>, "Boris Brezillon"
- <bbrezillon@kernel.org>, "Matt Coster" <matt.coster@imgtec.com>, "Rob
- Clark" <robin.clark@oss.qualcomm.com>, "Matthew Brost"
- <matthew.brost@intel.com>, <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/gpuvm: Rename 'map' to 'op' in drm_gpuvm_map_req
-Message-ID: <20250821150124.30c387da@fedora>
-In-Reply-To: <DC84DX5YA27J.2UNA0LDKUMUB9@kernel.org>
-References: <20250820152335.2899501-1-himal.prasad.ghimiray@intel.com>
- <20250820180742.20623521@fedora> <20250821130146.471cd653@fedora>
- <20250821132535.0424d0b4@fedora>
- <DC84DX5YA27J.2UNA0LDKUMUB9@kernel.org>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA5910E306;
+ Thu, 21 Aug 2025 13:05:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755781511; x=1787317511;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qd0bbUuUGks1hrJq7wVYxgCYIhVBy4u1m7Cst/selJo=;
+ b=eZOR3qTqH1kdu7QTxpBwDEUaPaXqfuoFp5mnGViWm8gkwR2n00crwoBw
+ Y3YQwhHlroT/wu4c+mEB6I7+789EO0J50IB/SSVK/aBishLnUiQc94K6L
+ pp/xXj3QZF8p1/8rHfdM40QipKQzcPKNo8+xGfGektSj8yHHfnIBISAB5
+ 4sRu3MmRetj0KPAG6Ij0kgpWQe8t31effRldixG5Qusyce9P/yRoOLaYJ
+ BL3miGE65heuQ64v1Kg6ZNB0dPUXpq1Fa6cCoLlXxKk23WnKps3mO21VB
+ 6FngIYhc3iMFG/DcyQqotGmR9wI+8y7EIWwxeDDctrssDUCeRfAiZdRbJ Q==;
+X-CSE-ConnectionGUID: TIKxiU9pTAWn2xtbQIIVgg==
+X-CSE-MsgGUID: X/D+fLIpTGqEnQ7luicOag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61712373"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="61712373"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2025 06:05:11 -0700
+X-CSE-ConnectionGUID: 5Mtb22kKSWKFVKtEhB+t0w==
+X-CSE-MsgGUID: PwX03zqPSluFA4hQiU3M3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="173746077"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.10])
+ by orviesa005.jf.intel.com with SMTP; 21 Aug 2025 06:05:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 21 Aug 2025 16:05:07 +0300
+Date: Thu, 21 Aug 2025 16:05:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Avoid divide by zero
+Message-ID: <aKcZg9tk2YH0r67f@intel.com>
+References: <20250820132913.496505-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250820132913.496505-1-juhapekka.heikkila@gmail.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,46 +70,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 21 Aug 2025 14:55:06 +0200
-"Danilo Krummrich" <dakr@kernel.org> wrote:
-
-> On Thu Aug 21, 2025 at 1:25 PM CEST, Boris Brezillon wrote:
-> > On Thu, 21 Aug 2025 13:01:46 +0200
-> > Boris Brezillon <boris.brezillon@collabora.com> wrote:  
-> >> On a second thought, I'm now wondering why we need drm_gpuvm_map_req in
-> >> the first place. It would kinda make sense if it was containing an
-> >> 
-> >> 	bool madvise;
-> >> 
-> >> field, so you don't have to pass it around, but even then, I'm
-> >> wondering if we wouldn't be better off adding this field to
-> >> drm_gpuva_op_map instead and passing an drm_gpuva_op_map object to
-> >> the various map helpers (like Danilo suggested in his review of the
-> >> REPEATED mode series Caterina sent).  
-> >
-> > More on that: the very reason I introduced drm_gpuvm_map_req in the
-> > first place is so we have a clear differentiation between an overall
-> > map request and the sub-operations that are created to fulfill it.
-> > Looks like this was not a concern for Danilo and he was happy with us
-> > using _op_map for this.
-> >
-> > The other reason we might want to add drm_gpuvm_map_req is so that
-> > information we only need while splitting a req don't pollute
-> > drm_gpuva_op_map. Given I was going to pass the flags to the driver's
-> > callback anyway (meaning it's needed at the op_map level), and given
-> > you're passing madvise as a separate bool argument to various helpers
-> > (_map_req just contains the op, not the madvise bool), I don't think
-> > this aspect matters.  
+On Wed, Aug 20, 2025 at 04:29:13PM +0300, Juha-Pekka Heikkila wrote:
+> skl_crtc_allocate_plane_ddb allow iter.data_rate to be zero
+> which could cause divide by zero in skl_allocate_plane_ddb,
+> check against that.
 > 
-> Good catch! Indeed, when Himal picked up your struct drm_gpuvm_map_req patch,
-> there were additional flags included in the structure. Now that it is
-> essentially a transparent wrapper, I prefer to use struct drm_gpuva_op_map
-> directly.
+> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> However, given that you still have patches in flight that will add a flags field
-> to struct drm_gpuvm_map_req I think it's probably fine to introduce it right
-> away. Or did you drop this plan of adding those flags?
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index def5150231a4..403783504ab3 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -1388,7 +1388,7 @@ skl_allocate_plane_ddb(struct skl_plane_ddb_iter *iter,
+>  {
+>  	u16 size, extra = 0;
+>  
+> -	if (data_rate) {
+> +	if (data_rate && iter->data_rate) {
 
-I need the flags field in the op_map too (so I can propagate it to the
-drm_gpuva object), so I'd rather go with an op_map object directly and
-kill drm_gpuvm_map_req now.
+I don't think it should be possible to have iter_data->data_rate==0 
+and data_rate!=0, with iter->data_rate being the sum of all the
+planes' data_rates.
+
+>  		extra = min_t(u16, iter->size,
+>  			      DIV64_U64_ROUND_UP(iter->size * data_rate,
+>  						 iter->data_rate));
+> -- 
+> 2.43.0
+
+-- 
+Ville Syrjälä
+Intel
