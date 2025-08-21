@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E451FCA0FE1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1F2CA0EFC
 	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:15:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A894510E9B3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83F7010E9B2;
 	Thu, 21 Aug 2025 14:15:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="R0/bUP34";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="atZgs8xS";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FDE510E9AF
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:15:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D951D10E9AF
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:15:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=syXlXQ72iwFI6EXhlczD6WL5OWi5W4+SzqY13T+lKVU=; b=R0/bUP34rLFyiskWPmIbwQWHcd
- AE7LEjd1FiasHdWGiV4fSKgAz5fQPkNUEB+E4XbiPtth1MKyEvs2+8zu9K9ofebWk27lhs4CVa5Sm
- a5wkn/AprBfTwiHXu3zwN8AnbpdkK5Tn1h+CwY16gquNVsWn1HMtiQzqbSiT3gX20+p9N9PR/gxe8
- hntrRPC3t9QJBmMUR4dwFrnwWOAfo5uuOEArTwXtdKPcBeHMmPqiA3+XWzCBiNa++HNnihMhd37qX
- h+JemvEvWmONpqP7ofV9dp1appQhJIf2Lb1gG7ShUGeuRF8DSfLL+7SdeK17FJhQ+zJDQpYUArN2+
- sgFzY1RA==;
+ bh=Kxij2K2IcP/TRsfVJI4yse0E55mXpmB0VXI06AUsyWc=; b=atZgs8xSiC7qCrrniFvHHJ3qIQ
+ RidULow/qX7vMJ2pBTmn46pW+Xukd9GCf65UNuMQmDooXQ0ATl1JxSqs7w+3oSdqNWirOcQAV2QUG
+ jCMZ/VcR+tLCz+Ty0YbJjLL2iGVPzSeGnAFgQryM1i+sRcu7M8mqWb/FVJz2VyJkVrC4hI76bIjD/
+ r37v5UqkolM50AJdw0oyHJECIx31N4yDNNI7bidVFp1ZQlbc0gllNzcWduNhABP9APDeomUY5UBE5
+ 0j5LvQifihgEY912O37oV0MZwamJVFYh2xYcLYF4cicI6olojgfRBpTwZDRh9ia2mNdwFr2ewbzWL
+ 9HHyLNcQ==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1up64K-00HHAG-Ro; Thu, 21 Aug 2025 16:15:08 +0200
+ id 1up64K-00HHAA-56; Thu, 21 Aug 2025 16:15:08 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v11 06/13] drm/xe: Export xe_emit_aux_table_inv
-Date: Thu, 21 Aug 2025 15:14:48 +0100
-Message-ID: <20250821141458.72876-7-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v11 05/13] drm/xe/xelp: Wait for AuxCCS invalidation to
+ complete
+Date: Thu, 21 Aug 2025 15:14:47 +0100
+Message-ID: <20250821141458.72876-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
 References: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
@@ -58,136 +59,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Export the existing AuxCCS invalidation ring buffer programming helper
-which we will need to use to setup the indirect context workaround in the
-next patch.
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 77 +++++++++++++++++++-------------
- drivers/gpu/drm/xe/xe_ring_ops.h |  3 ++
- 2 files changed, 49 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 78d8120c4a0e..8a339d17cf46 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -50,22 +50,51 @@ static u32 preparser_disable(bool state)
- 	return MI_ARB_CHECK | BIT(8) | state;
- }
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..49d8ffd026d5 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -81,4 +81,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
  
--static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
--			      u32 *dw, int i)
-+u32 *xe_emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *cmd)
- {
--	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
--	dw[i++] = reg.addr + gt->mmio.adj_offset;
--	dw[i++] = AUX_INV;
--	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
--		  MI_SEMAPHORE_REGISTER_POLL |
--		  MI_SEMAPHORE_POLL |
--		  MI_SEMAPHORE_SAD_EQ_SDD;
--	dw[i++] = 0;
--	dw[i++] = reg.addr + gt->mmio.adj_offset;
--	dw[i++] = 0;
--	dw[i++] = 0;
-+	struct xe_gt *gt = hwe->gt;
-+	struct xe_reg reg;
- 
--	return i;
-+	switch (hwe->class) {
-+	case XE_ENGINE_CLASS_RENDER:
-+	case XE_ENGINE_CLASS_COMPUTE:
-+		reg = CCS_AUX_INV;
-+		break;
-+	case XE_ENGINE_CLASS_COPY:
-+		reg = BCS_AUX_INV;
-+		break;
-+	case XE_ENGINE_CLASS_VIDEO_DECODE:
-+		reg = VD0_AUX_INV;
-+		break;
-+	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+		reg = VE0_AUX_INV;
-+		break;
-+	default:
-+		return cmd;
-+	};
-+
-+	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) |
-+		 MI_LRI_MMIO_REMAP_EN;
-+	*cmd++ = reg.addr + gt->mmio.adj_offset;
-+	*cmd++ = AUX_INV;
-+	*cmd++ = MI_SEMAPHORE_WAIT_TOKEN | MI_SEMAPHORE_REGISTER_POLL |
-+		 MI_SEMAPHORE_POLL | MI_SEMAPHORE_SAD_EQ_SDD;
-+	*cmd++ = 0;
-+	*cmd++ = reg.addr + gt->mmio.adj_offset;
-+	*cmd++ = 0;
-+	*cmd++ = 0;
-+
-+	return cmd;
-+}
-+
-+static int emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *dw, int i)
-+{
-+	u32 *start, *end;
-+
-+	start = dw + i;
-+	end = xe_emit_aux_table_inv(hwe, start);
-+
-+	return i + (end - start);
- }
- 
- static int emit_user_interrupt(u32 *dw, int i)
-@@ -293,22 +322,8 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
- 					seqno, MI_INVALIDATE_TLB | flags, dw,
- 					i);
- 		/* hsdes: 1809175790 */
--		if (aux_ccs) {
--			struct xe_reg reg;
--
--			switch (job->q->class) {
--			case XE_ENGINE_CLASS_COPY:
--				reg = BCS_AUX_INV;
--				break;
--			case XE_ENGINE_CLASS_VIDEO_DECODE:
--				reg = VD0_AUX_INV;
--				break;
--			default:
--				reg = VE0_AUX_INV;
--			};
--
--			i = emit_aux_table_inv(gt, reg, dw, i);
--		}
-+		if (aux_ccs)
-+			i = emit_aux_table_inv(job->q->hwe, dw, i);
- 		dw[i++] = preparser_disable(false);
- 	} else {
- 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-@@ -362,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 
- 	/* hsdes: 1809175790 */
- 	if (aux_ccs)
--		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
-+		i = emit_aux_table_inv(job->q->hwe, dw, i);
- 
- 	dw[i++] = preparser_disable(false);
- 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.h b/drivers/gpu/drm/xe/xe_ring_ops.h
-index e942735d76a6..5a2d32f9bb25 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.h
-@@ -10,8 +10,11 @@
- #include "xe_ring_ops_types.h"
- 
- struct xe_gt;
-+struct xe_hw_engine;
- 
- const struct xe_ring_ops *
- xe_ring_ops_get(struct xe_gt *gt, enum xe_engine_class class);
- 
-+u32 *xe_emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *cmd);
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
 +
  #endif
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 752dea0a9234..78d8120c4a0e 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
+ 
+ 	return i;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
