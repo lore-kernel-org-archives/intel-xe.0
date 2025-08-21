@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7A3DCA0FE4
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 17:04:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 925DACA0EEB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 17:04:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3AD10E39A;
-	Thu, 21 Aug 2025 17:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 559E810E2A4;
+	Thu, 21 Aug 2025 17:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZWlNmWvN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d3uuA5hv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09ABE10E397
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:04:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6C7210E39D
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 17:04:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755795841; x=1787331841;
+ t=1755795848; x=1787331848;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J9k0v6Yd7+T57wnLEAkpXop1SkBtTX9iawe1+1n4eAY=;
- b=ZWlNmWvNisbi35KZgRtkpLlNl3ZVmPqpt/hba95JB5+9iFmdzuUnmD6u
- ztpg1bKcHAi9UooQvAOlz71Bjw/PNY71TwLUtTPqcCXNeBFWp6XFyPood
- 6b1q/kwxk+gTaNRtV2KrxXkI4d84m1IE/GOVV9N+WHi4JELmLKJoNd5KF
- 4BtA7Ycy0YltkJBojQbGy341QMTcpLTlwIwy3oYNL9XPm+FQ9NCevmrOO
- /ci1WGtLb4ruifsCG0XxE6/cUAUGMqOC0500AaAgRU1lsplT7rrtxwQhV
- 52U9NQsrXIvthcqLHqIGGxUIUU+RYQTiLnwSVizQ4kWagwQC5gQhai3WU Q==;
-X-CSE-ConnectionGUID: 8qbWlje7SMeaDCMRgg5K/w==
-X-CSE-MsgGUID: AkBC5n7URPu72ATjYiPiLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805844"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805844"
+ bh=7r9gEQexUSkNnFM93yYxPeYXvNoHNtIxlWIWe8oDCi8=;
+ b=d3uuA5hvkrKLamXFz9m/6wQPtrbmH8csPimd+0wg3OVZ1ibvEpSmbbBG
+ fTf/OQciT2Se+rypuG8zIUMQY3RPiIyNm5t4+HdGbo6qxmtv08Yomx/SK
+ TlCOiuEms2bpFWv6WqFwAp93PMePp0Q/lInC74a2ZuHKOb3OVGUGoNZ37
+ FgdEvlES9P13nIgJdHjoRZsEl5jANCW3/3Vd7GeV55LQ3aFGl6w/USwTN
+ HPR0OItDBY07dPQDcKCfygpEqcfCG/g65PIXTQvMmdUznW0/XvJ1WrfyQ
+ yoIbrd+AQ0ueCKaAnuloRSglTCLeXI9pnf+yWBPo8duCQHhEcVLKauyv3 A==;
+X-CSE-ConnectionGUID: k5K2DW4FRK2nILPuR2PAXg==
+X-CSE-MsgGUID: anBR4dG7THClGSWO8wMprA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="57805854"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="57805854"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 10:04:01 -0700
-X-CSE-ConnectionGUID: 9hF8X/b1T2yRwu8URFSw9Q==
-X-CSE-MsgGUID: R+oLB+ZQS3u5rtW5XP5b+w==
+ 21 Aug 2025 10:04:07 -0700
+X-CSE-ConnectionGUID: V/QtNPxBSb+Ii43CURxGGw==
+X-CSE-MsgGUID: Se/4myzASuGXwSCF+RuWrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143798"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192143876"
 Received: from himal-super-server.iind.intel.com ([10.190.239.34])
- by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:03:59 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 10:04:06 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v9 09/20] drm/xe/svm: Add svm ranges migration policy on
- atomic access
-Date: Thu, 21 Aug 2025 23:00:53 +0530
-Message-Id: <20250821173104.3030148-10-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v9 14/20] drm/xe/bo: Add attributes field to xe_bo
+Date: Thu, 21 Aug 2025 23:00:58 +0530
+Message-Id: <20250821173104.3030148-15-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
 References: <20250821173104.3030148-1-himal.prasad.ghimiray@intel.com>
@@ -67,258 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the platform does not support atomic access on system memory, and the
-ranges are in system memory, but the user requires atomic accesses on
-the VMA, then migrate the ranges to VRAM. Apply this policy for prefetch
-operations as well.
+A single BO can be linked to multiple VMAs, making VMA attributes
+insufficient for determining the placement and PTE update attributes
+of the BO. To address this, an attributes field has been added to the
+BO.
 
-v2
-- Drop unnecessary vm_dbg
-
-v3 (Matthew Brost)
-- fix atomic policy
-- prefetch shouldn't have any impact of atomic
-- bo can be accessed from vma, avoid duplicate parameter
-
-v4 (Matthew Brost)
-- Remove TODO comment
-- Fix comment
-- Dont allow gpu atomic ops when user is setting atomic attr as CPU
-
-v5 (Matthew Brost)
-- Fix atomic checks
-- Add userptr checks
-
-Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c         | 23 ++++++++------
- drivers/gpu/drm/xe/xe_svm.c        | 50 ++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_vm.c         | 39 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h         |  2 ++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 15 ++++++++-
- 5 files changed, 99 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_bo_types.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index bf50a821853e..c0a70c80dff9 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -640,28 +640,31 @@ static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
-  *    - In all other cases device atomics will be disabled with AE=0 until an application
-  *      request differently using a ioctl like madvise.
-  */
--static bool xe_atomic_for_vram(struct xe_vm *vm)
-+static bool xe_atomic_for_vram(struct xe_vm *vm, struct xe_vma *vma)
- {
-+	if (vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
-+		return false;
-+
- 	return true;
- }
- 
--static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_bo *bo)
-+static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_vma *vma)
- {
- 	struct xe_device *xe = vm->xe;
-+	struct xe_bo *bo = xe_vma_bo(vma);
- 
--	if (!xe->info.has_device_atomics_on_smem)
-+	if (!xe->info.has_device_atomics_on_smem ||
-+	    vma->attr.atomic_access == DRM_XE_ATOMIC_CPU)
- 		return false;
- 
-+	if (vma->attr.atomic_access == DRM_XE_ATOMIC_DEVICE)
-+		return true;
-+
- 	/*
- 	 * If a SMEM+LMEM allocation is backed by SMEM, a device
- 	 * atomics will cause a gpu page fault and which then
- 	 * gets migrated to LMEM, bind such allocations with
- 	 * device atomics enabled.
--	 *
--	 * TODO: Revisit this. Perhaps add something like a
--	 * fault_on_atomics_in_system UAPI flag.
--	 * Note that this also prohibits GPU atomics in LR mode for
--	 * userptr and system memory on DGFX.
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index cf604adc13a3..314652afdca7 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -61,6 +61,14 @@ struct xe_bo {
  	 */
- 	return (!IS_DGFX(xe) || (!xe_vm_in_lr_mode(vm) ||
- 				 (bo && xe_bo_has_single_placement(bo))));
-@@ -744,8 +747,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		goto walk_pt;
- 
- 	if (vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT) {
--		xe_walk.default_vram_pte = xe_atomic_for_vram(vm) ? XE_USM_PPGTT_PTE_AE : 0;
--		xe_walk.default_system_pte = xe_atomic_for_system(vm, bo) ?
-+		xe_walk.default_vram_pte = xe_atomic_for_vram(vm, vma) ? XE_USM_PPGTT_PTE_AE : 0;
-+		xe_walk.default_system_pte = xe_atomic_for_system(vm, vma) ?
- 			XE_USM_PPGTT_PTE_AE : 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index c2306000f15e..c660ccb21945 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -789,22 +789,9 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
- 	return true;
- }
- 
--/**
-- * xe_svm_handle_pagefault() - SVM handle page fault
-- * @vm: The VM.
-- * @vma: The CPU address mirror VMA.
-- * @gt: The gt upon the fault occurred.
-- * @fault_addr: The GPU fault address.
-- * @atomic: The fault atomic access bit.
-- *
-- * Create GPU bindings for a SVM page fault. Optionally migrate to device
-- * memory.
-- *
-- * Return: 0 on success, negative error code on error.
-- */
--int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
--			    struct xe_gt *gt, u64 fault_addr,
--			    bool atomic)
-+static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-+				     struct xe_gt *gt, u64 fault_addr,
-+				     bool need_vram)
- {
- 	struct drm_gpusvm_ctx ctx = {
- 		.read_only = xe_vma_read_only(vma),
-@@ -812,9 +799,8 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
- 		.check_pages_threshold = IS_DGFX(vm->xe) &&
- 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ? SZ_64K : 0,
--		.devmem_only = atomic && IS_DGFX(vm->xe) &&
--			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
--		.timeslice_ms = atomic && IS_DGFX(vm->xe) &&
-+		.devmem_only = need_vram && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP),
-+		.timeslice_ms = need_vram && IS_DGFX(vm->xe) &&
- 			IS_ENABLED(CONFIG_DRM_XE_PAGEMAP) ?
- 			vm->xe->atomic_svm_timeslice_ms : 0,
- 	};
-@@ -917,6 +903,32 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 	return err;
- }
- 
-+/**
-+ * xe_svm_handle_pagefault() - SVM handle page fault
-+ * @vm: The VM.
-+ * @vma: The CPU address mirror VMA.
-+ * @gt: The gt upon the fault occurred.
-+ * @fault_addr: The GPU fault address.
-+ * @atomic: The fault atomic access bit.
-+ *
-+ * Create GPU bindings for a SVM page fault. Optionally migrate to device
-+ * memory.
-+ *
-+ * Return: 0 on success, negative error code on error.
-+ */
-+int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-+			    struct xe_gt *gt, u64 fault_addr,
-+			    bool atomic)
-+{
-+	int need_vram;
-+
-+	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
-+	if (need_vram < 0)
-+		return need_vram;
-+
-+	return __xe_svm_handle_pagefault(vm, vma, gt, fault_addr, need_vram ? true : false);
-+}
-+
- /**
-  * xe_svm_has_mapping() - SVM has mappings
-  * @vm: The VM.
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 100e9e8c9da3..8a93c09e87ca 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4208,6 +4208,45 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
- 	kvfree(snap);
- }
- 
-+/**
-+ * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
-+ * @xe: Pointer to the XE device structure
-+ * @vma: Pointer to the virtual memory area (VMA) structure
-+ * @is_atomic: In pagefault path and atomic operation
-+ *
-+ * This function determines whether the given VMA needs to be migrated to
-+ * VRAM in order to do atomic GPU operation.
-+ *
-+ * Return:
-+ *   1        - Migration to VRAM is required
-+ *   0        - Migration is not required
-+ *   -EACCES  - Invalid access for atomic memory attr
-+ *
-+ */
-+int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic)
-+{
-+	if (!IS_DGFX(xe) || !is_atomic)
-+		return 0;
-+
-+	/*
-+	 * NOTE: The checks implemented here are platform-specific. For
-+	 * instance, on a device supporting CXL atomics, these would ideally
-+	 * work universally without additional handling.
-+	 */
-+	switch (vma->attr.atomic_access) {
-+	case DRM_XE_ATOMIC_DEVICE:
-+		return !xe->info.has_device_atomics_on_smem;
-+
-+	case DRM_XE_ATOMIC_CPU:
-+		return -EACCES;
-+
-+	case DRM_XE_ATOMIC_UNDEFINED:
-+	case DRM_XE_ATOMIC_GLOBAL:
-+	default:
-+		return 1;
-+	}
-+}
-+
- /**
-  * xe_vm_alloc_madvise_vma - Allocate VMA's with madvise ops
-  * @vm: Pointer to the xe_vm structure
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 97073726dcdb..fe8648222ab7 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -171,6 +171,8 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
- 
- struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
- 
-+int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic);
-+
- int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index b861c3349b0a..95258bb6a8ee 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -85,7 +85,20 @@ static void madvise_atomic(struct xe_device *xe, struct xe_vm *vm,
- 			   struct xe_vma **vmas, int num_vmas,
- 			   struct drm_xe_madvise *op)
- {
--	/* Implementation pending */
-+	int i;
-+
-+	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC);
-+	xe_assert(vm->xe, op->atomic.val <= DRM_XE_ATOMIC_CPU);
-+
-+	for (i = 0; i < num_vmas; i++) {
-+		if ((xe_vma_is_userptr(vmas[i]) &&
-+		     !(op->atomic.val == DRM_XE_ATOMIC_DEVICE &&
-+		       xe->info.has_device_atomics_on_smem)))
-+			continue;
-+
-+		vmas[i]->attr.atomic_access = op->atomic.val;
-+	/*TODO: handle bo backed vmas */
-+	}
- }
- 
- static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
+ 	struct list_head client_link;
+ #endif
++	/** @attr: User controlled attributes for bo */
++	struct {
++		/**
++		 * @atomic_access: type of atomic access bo needs
++		 * protected by bo dma-resv lock
++		 */
++		u32 atomic_access;
++	} attr;
+ 	/**
+ 	 * @pxp_key_instance: PXP key instance this BO was created against. A
+ 	 * 0 in this variable indicates that the BO does not use PXP encryption.
 -- 
 2.34.1
 
