@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9CCCA0EEB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:15:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38150CA0EF8
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Aug 2025 14:15:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FF210E9AE;
-	Thu, 21 Aug 2025 14:15:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F24F210E9AF;
+	Thu, 21 Aug 2025 14:15:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kHFy3hyw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="khj1eXfO";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3FB10E9B6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1163110E9B6
  for <intel-xe@lists.freedesktop.org>; Thu, 21 Aug 2025 14:15:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SiMGK08nxJrQQwmiZeMUBZQusO/srnNMcUh9G0UQp2w=; b=kHFy3hywRl59UkNdDjVSd6zW19
- hUmQuZTarG5aCVIzDeWo66MoLxq9Vn1ARnW4kxJ47GnOsrLlbMKi0A95uLf8P2e1h/bbocwG1y3a+
- O0mM2jR1O8gvL6/lVkaHYd1+7Zs/WlE2ga9voUmZgS57k4q1L0ng9RAWcFoF4FfOgLFKOxrrhgvaX
- UekmxVLULuC38LkCnnL/0Ck5PCFuWEckhZUfLpVO7bgG4F9i4A0r2bwf96TULk7O9iIhG4Lgky9vp
- RS9lJAVxfqVZka0o9+N4Qu5s03TnHeOIQ8R7LhEMFVE0kCZjxVHLc/M9YZE/DOicc/ouTofBtKvHa
- j44ZAzbw==;
+ bh=MiSIN4RoJrkoz/MqDuHFaylT5DpKZHQT9k+X51XcvUU=; b=khj1eXfOEylAWBVJBRQszbDnXK
+ b0x40iGGuR6IHBjEVQt9uQ1n6QsvwJeUjxI0o12z6giUR8MGONWW0NHZ0YsVatBbaqBCp8m1JFtXy
+ c2stcSIhS3yEHpVtfG7CVJUvsgqi9ttanadp3ZFdvIBPnawDVgpdyQ4uuQOmAABG13TCyViLlQzrG
+ DkMMIzvBz0f45I0YGUFZJG9nlVCSqPPWyZf5kAwDH2Xnycb+opGQfNzFojZ8Md5K0Gy29U1j8vEnx
+ aB3nX7rjWoyGJHnqI9xq62p9THvpqrcAGhKKJwdhY7MOzgcMD/5ArF4BEFwd63PgDzNBFcpGu/ZQi
+ HL8p5BSQ==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1up64P-00HHB6-2A; Thu, 21 Aug 2025 16:15:13 +0200
+ id 1up64O-00HHAz-Ce; Thu, 21 Aug 2025 16:15:12 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v11 12/13] drm/xe: Do not use stolen memory for DPT on IGFX
- and AuxCCS
-Date: Thu, 21 Aug 2025 15:14:54 +0100
-Message-ID: <20250821141458.72876-13-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v11 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+Date: Thu, 21 Aug 2025 15:14:53 +0100
+Message-ID: <20250821141458.72876-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
 References: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
@@ -59,58 +59,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With DPT in stolen memory there are occasional pipe crc IGT failures in
-tests such as kms_flip_tiling. Allocate a normal system memory object
-instead.
+Even though frame buffer objects are created as write-combined, in
+practice, on top of all the ring buffer flushing, an additional clflush
+seems to be needed before display engine can coherently scan out the
+AuxCCS compressed data without transient artifacts.
+
+If for comparison we look at how i915 handles things (where AuxCCS works
+fine), as it happens it has this same clflush before a frame buffer is
+pinned for display for the first time, courtesy the dynamic tracking of
+the buffer cache mode and setting the latter to uncached before handing
+to display.
+
+Since xe considers the buffer object caching mode as static we can
+implement the same approach by adding a flag telling us if the buffer
+was ever pinned for display and flush on the first pin. Subsequent re-pins
+will not repeat the clflush but so far I have not observed any glitching
+after the first pin.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
+ 2 files changed, 21 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index dc912864407e..f605c06f3e51 100644
+index 658541422f44..dc912864407e 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -183,6 +183,20 @@ static void ggtt_flush_writes(struct xe_ggtt *ggtt)
- 	}
- }
- 
-+static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
-+{
-+	/*
-+	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
-+	 * suffers from occasional pipe crc IGT failures in tests such as
-+	 * kms_flip_tiling.
-+	 */
-+	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
-+	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+		return false;
-+
-+	return true;
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -192,7 +206,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+@@ -380,6 +380,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
  	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
--	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
-+	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
- 	u32 dpt_size, size = bo->ttm.base.size;
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
++	bool first_pin;
+ 	int ret;
  
- 	if (view->type == I915_GTT_VIEW_NORMAL)
-@@ -213,7 +227,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						      XE_BO_FLAG_GGTT |
- 						      XE_BO_FLAG_PAGETABLE,
- 						      alignment);
--	else
-+	else if (try_dpt_stolen(fb, bo))
- 		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
- 						      dpt_size,  ~0ull,
- 						      ttm_bo_type_kernel,
+ 	if (!vma)
+@@ -411,6 +412,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err;
+ 
++	first_pin = !bo->display_pin;
++	bo->display_pin = true;
++
+ 	if (IS_DGFX(xe))
+ 		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+ 	else
+@@ -429,6 +433,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err_unpin;
+ 
++	/*
++	 * Force flush frame buffer data for non-coherent display access when
++	 * AuxCCS formats are used.
++	 */
++	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
++	    intel_fb_is_ccs_modifier(fb->base.modifier))
++		drm_clflush_sg(xe_bo_sg(bo));
++
+ 	return vma;
+ 
+ err_unpin:
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index cf604adc13a3..d5096f7f6f9a 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -71,11 +71,6 @@ struct xe_bo {
+ 	struct llist_node freed;
+ 	/** @update_index: Update index if PT BO */
+ 	int update_index;
+-	/** @created: Whether the bo has passed initial creation */
+-	bool created;
+-
+-	/** @ccs_cleared */
+-	bool ccs_cleared;
+ 
+ 	/** @bb_ccs_rw: BB instructions of CCS read/write. Valid only for VF */
+ 	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
+@@ -90,6 +85,15 @@ struct xe_bo {
+ 	/** @devmem_allocation: SVM device memory allocation */
+ 	struct drm_pagemap_devmem devmem_allocation;
+ 
++	/** @created: Whether the bo has passed initial creation */
++	bool created : 1;
++
++	/** @ccs_cleared */
++	bool ccs_cleared : 1;
++
++	/** @display_pin: Was it ever pinned to display */
++	bool display_pin : 1;
++
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 		struct list_head vram_userfault_link;
+ 
 -- 
 2.48.0
 
