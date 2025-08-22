@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9190DCA0EEB
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:33:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFED7CA0EEB
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5735810E0D1;
-	Fri, 22 Aug 2025 09:33:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B63F10EAA7;
+	Fri, 22 Aug 2025 09:33:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ke9CSfF5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WvWUiyiC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D65710EAA7
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:33:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF2C610E0D1
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:33:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755855216; x=1787391216;
+ t=1755855218; x=1787391218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jM/R6d0dP3iNMNjYXXpZm1VF65T5KlkHWKBg+KMWhFQ=;
- b=Ke9CSfF5mDlfoa91EnbkHcVzkAypAybdukq0jX/otV31FQDxgeZ1Bo/z
- J7EoMft1RrJSUxTDpwV3sbE4I0gwSjdEUAPao7xXkmD4XoQst7EGzxRUf
- pUrzazp/cwbiomEPrfiXU5kYAxqpXN/aLS8rDrkdEmxfCUlkMtVayCnO/
- foIM8JE8AwDCfdJaNySZSn7h6ftQj4utQmT9f9uaGVTuuDzSW6pquib1a
- 6VZXdm2wLl9J+nFk3f0uj9WMpCizEhu5fsrXN+Lpr+4Nc4TcGeQ8IKR+A
- YjX2kF9cqiGczaooOBRYANvhRZHbSVyDgi2Hh/XT/p4tM1X6VYb7QP45L w==;
-X-CSE-ConnectionGUID: yEU4c2WKSpO49SP8G+Rejg==
-X-CSE-MsgGUID: SrV+jp5oRH+DDd5iMeg6cQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80759895"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80759895"
+ bh=yBmrGfrUnq8L/H82e7SjeH8S/Cwdrb8gBsIL+HcM3XY=;
+ b=WvWUiyiCEyASTy5zLzuSW/XN1Obhl7Yl3lvG+6xU7P7KSwl/wZUitzOK
+ +EFRBMP0tDfcEtg2tGAmMBQ7muSVKAh26+gdLS5TOKbloYblA87stC2jb
+ WAHA7qL1Hk5jsP7xD9jQwob2GjsXfBTPGtYHHewW6BwALnKFS6fdRg18J
+ tX6bDfXE3ZjkcM1OKYc1rHmVYv1NMz8y54tq1Hdq+qeeArpKBl6TEZx+E
+ IdAd7oJvMTy0FPV6CbZ2H8SuBTG2AEhPR6skmLKyMnU/+8O91m9zj/zso
+ lCbShxO8iBVG9cQxnPFIjpqkw7HfYxzvZ1Y6SIXbZv4kxxYrXzBA/Oyb2 A==;
+X-CSE-ConnectionGUID: qhZPx6mxRBeUAKPKe0Wjmw==
+X-CSE-MsgGUID: glHesG/xTy2ZGP9tZtpCeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80759898"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80759898"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:33:36 -0700
-X-CSE-ConnectionGUID: MFbVMlfiRgGjCB6CWaFFNQ==
-X-CSE-MsgGUID: rps7cp3eQY28WGMPrzfMcA==
+ 22 Aug 2025 02:33:38 -0700
+X-CSE-ConnectionGUID: cigC6BBDSHSAUi1jXfpDfA==
+X-CSE-MsgGUID: K93+U8fITXWyOsRThYIDTA==
 X-ExtLoop1: 1
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by fmviesa003.fm.intel.com with ESMTP; 22 Aug 2025 02:33:34 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 22 Aug 2025 02:33:36 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, carlos.santa@intel.com,
  rodrigo.vivi@intel.com, matthew.brost@intel.com,
  Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v2 1/8] [ANDROID]: Add a new xe_user structure
-Date: Fri, 22 Aug 2025 08:59:23 +0000
-Message-ID: <20250822085932.2221054-2-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v2 2/8] [ANDROID]: Add xe_gt_clock_interval_to_ns function
+Date: Fri, 22 Aug 2025 08:59:24 +0000
+Message-ID: <20250822085932.2221054-3-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250822085932.2221054-1-aakash.deep.sarkar@intel.com>
 References: <20250822085932.2221054-1-aakash.deep.sarkar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,203 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For Android GPU work period event we need to track the runtime
-on the GPU for each user id. This means we can have multiple
-xe files opened by different processes/threads belonging to
-the same user id. All these xe files need to be grouped together
-so that one can easily identify these while calculating the
-run time for the given user id.
-
-Currently, the xe driver doesn't record the user id of the
-calling process. Also, all the xe files created using open
-call are clubbed together inside the xe device structure
-with no way to distinguish between them based on the user id
-of the calling process.
-
-To remedy these limitations we are adding another layer of
-indirection between xe device and xe file. xe device will
-now have a list of xe users each with a given user id; and each
-xe user will have a list of xe files each of which is created
-by a process that is associated with this user id.
-
-The lifetime of the xe user structure should be between when
-a process with a new user id has opened the xe device; and when
-the last xe file belonging to this user id is closed.
+The runtime of a user id in the GPU work period event are required
+to be given in nanosec unit. Since we want to use the HW Context
+timestamp register to derive the runtime for a context, we need
+a way to convert from GT clock ticks to nano seconds.
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile  |  2 +
- drivers/gpu/drm/xe/xe_user.c | 59 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_user.h | 81 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 142 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_user.c
- create mode 100644 drivers/gpu/drm/xe/xe_user.h
+ drivers/gpu/drm/xe/xe_gt_clock.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_clock.h |  1 +
+ 2 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 8e0c3412a757..89212fc7ef44 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -325,6 +325,8 @@ ifeq ($(CONFIG_DEBUG_FS),y)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 4f011d1573c6..17c1cc6bff5a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -110,3 +110,17 @@ u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count)
+ {
+ 	return div_u64_roundup(count * MSEC_PER_SEC, gt->info.reference_clock);
+ }
++
++/**
++ * xe_gt_clock_interval_to_ns - Convert sampled GT clock ticks to nanosec
++ *
++ * @gt: the &xe_gt
++ * @count: count of GT clock ticks
++ *
++ * Returns: time in nanosec
++ */
++u64 xe_gt_clock_interval_to_ns(struct xe_gt *gt, u64 count)
++{
++	return div_u64_roundup(count * NSEC_PER_SEC, gt->info.reference_clock);
++}
++
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
+index 3adeb7baaca4..bd87971bce97 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.h
++++ b/drivers/gpu/drm/xe/xe_gt_clock.h
+@@ -12,5 +12,6 @@ struct xe_gt;
  
- 	xe-$(CONFIG_PCI_IOV) += xe_gt_sriov_pf_debugfs.o
+ int xe_gt_clock_init(struct xe_gt *gt);
+ u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count);
++u64 xe_gt_clock_interval_to_ns(struct xe_gt *gt, u64 count);
  
-+	xe-y += xe_user.o
-+
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_display_debugfs.o \
- 		i915-display/intel_display_debugfs_params.o \
-diff --git a/drivers/gpu/drm/xe/xe_user.c b/drivers/gpu/drm/xe/xe_user.c
-new file mode 100644
-index 000000000000..8c285a68115a
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_user.c
-@@ -0,0 +1,59 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <linux/slab.h>
-+
-+#include "xe_user.h"
-+
-+/**
-+ * worker thread to emit gpu work period event for this xe user
-+ * @work: work instance for this xe user
-+ *
-+ * Return: void
-+ */
-+static inline void work_period_worker(struct work_struct *work)
-+{
-+	//TODO: Implement this worker
-+}
-+
-+/**
-+ * xe_user_alloc() - Allocate xe user
-+ * @void: No arg
-+ *
-+ * Allocate xe user struct to track activity on the gpu
-+ * by the application. Call this API whenever a new app
-+ * has opened xe device.
-+ *
-+ * Return: pointer to user struct or NULL if can't allocate
-+ */
-+struct xe_user *xe_user_alloc(void)
-+{
-+	struct xe_user *user;
-+
-+	user = kzalloc(sizeof(*user), GFP_KERNEL);
-+	if (!user)
-+		return NULL;
-+
-+	kref_init(&user->refcount);
-+	mutex_init(&user->filelist_lock);
-+	INIT_LIST_HEAD(&user->filelist);
-+	//TODO: Add a hook into xe device
-+	INIT_WORK(&user->work, work_period_worker);
-+	return user;
-+}
-+
-+/**
-+ * __xe_user_free() - Free user struct
-+ * @kref: The reference
-+ *
-+ * Return: void
-+ */
-+void __xe_user_free(struct kref *kref)
-+{
-+	struct xe_user *user =
-+		container_of(kref, struct xe_user, refcount);
-+
-+	kfree(user);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_user.h b/drivers/gpu/drm/xe/xe_user.h
-new file mode 100644
-index 000000000000..e52f66d3f3b0
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_user.h
-@@ -0,0 +1,81 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_USER_H_
-+#define _XE_USER_H_
-+
-+#include <linux/kref.h>
-+#include <linux/list.h>
-+#include <linux/workqueue.h>
-+
-+/**
-+ * This is a per process/user id structure for a xe device
-+ * client. It is allocated when a new process/app opens the
-+ * xe device and destroyed when the last xe file belonging
-+ * to this user id is destroyed.
-+ */
-+struct xe_user {
-+	/**
-+	 * @refcount: reference count
-+	 */
-+	struct kref refcount;
-+
-+	/**
-+	 * @xe: pointer to the xe_device
-+	 */
-+	struct xe_device *xe;
-+
-+	/**
-+	 * @filelist_lock: lock protecting the filelist
-+	 */
-+	struct mutex filelist_lock;
-+
-+	/**
-+	 * @filelist: list of xe files belonging to this xe user
-+	 */
-+	struct list_head filelist;
-+
-+	/**
-+	 * @work: work to emit the gpu work period event for this
-+	 * xe user
-+	 */
-+	struct work_struct work;
-+
-+	/**
-+	 * @uid: user id for this xe_user
-+	 */
-+	u32 uid;
-+
-+	/**
-+	 * @active_duration_ns: sum total of xe_file.active_duration_ns
-+	 * for all xe files belonging to this xe user
-+	 */
-+	u64 active_duration_ns;
-+
-+	/**
-+	 * @last_timestamp_ns: timestamp in ns when we last emitted event
-+	 * for this xe user
-+	 */
-+	u64 last_timestamp_ns;
-+};
-+
-+struct xe_user *xe_user_alloc(void);
-+
-+static inline struct xe_user *
-+xe_user_get(struct xe_user *user)
-+{
-+	kref_get(&user->refcount);
-+	return user;
-+}
-+
-+void __xe_user_free(struct kref *kref);
-+
-+static inline void xe_user_put(struct xe_user *user)
-+{
-+	kref_put(&user->refcount, __xe_user_free);
-+}
-+
-+#endif // _XE_USER_H_
-+
+ #endif
 -- 
 2.49.0
 
