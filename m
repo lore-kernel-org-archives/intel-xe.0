@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE92CCA0EEB
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:41:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83832CA0EED
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:41:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7644C10EAB4;
-	Fri, 22 Aug 2025 09:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B86110EAA7;
+	Fri, 22 Aug 2025 09:41:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXvFJaOs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aln/632d";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B77410EAB4
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:41:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7C810EAB6
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:41:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755855674; x=1787391674;
+ t=1755855678; x=1787391678;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N5xeeD35welDEPtT3dX+2y4LBEQtfgr+D4rvnp06nuM=;
- b=kXvFJaOsjnhnBEl9ygZ1YjOzAWL+loYnD8ywVLrZ7d54wCuSgonTB4BY
- uQhgue85Tb7m1BC1b6vAC97zImLhs3p5KDK6aq/zlMijccyG4oYr0NFNd
- cdMPUw03faRl8BpTqlVXrnU340TMZTr3hPKz6vWS6RNvSrkR9reMNdtMX
- Vtj/hl8VletrxtYYF1NBBPCd4Q8Jalx2AuWJsL79GTwPbZCItDBfdIkrG
- n9STgkSSTnRRTtnEYp+A6Vv5LuGUHhFp3bCfJdPNJDyFUCaOOZCFJd9WA
- azr3/AjXCSEktE0zBU3BemjinB8XBP/ptYEFRTSxpgmyC/ETK9g+etPu5 w==;
-X-CSE-ConnectionGUID: raDRhA/HTA68q+R7nZ3p+Q==
-X-CSE-MsgGUID: 0xUvD08hRpabq3bqiO4otQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760619"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760619"
+ bh=gmlbX5cjccH3hrKcI50Fvx5YZD9/ZFOu3+y6y5U32q0=;
+ b=aln/632dx4yi/bw93cZyfPfmQTNtmUacjxqNlXRoT9o5f+FApYPDN6Go
+ dUld7+8h1ksQz8+pgn2pskNi9ykDjtfCBRnlZFPUoZm/VajT4f2ks2Ac0
+ tXUdwSFKo4Q52jjXwWkuxI+keE4rArzY7RFM+akdlFB3uCVJfp7WxIB3E
+ Nwxc5vxq1HMaEbm4OHNkJRfDYlu4exk9HynbvneAWvIyvrA13ZrmGJk1s
+ P7e2PFwyOiiGBLZHrQY91szLbeCV+esNDlbWe+mXMjPKSgxDXwIso9E/x
+ D4wpg4TMFPxfGpat35lhvXenges81vo22qJquXXjiWP8VmU2PJy5Jpd/u A==;
+X-CSE-ConnectionGUID: F60Cubm7Tsu3kWrGvNGIJQ==
+X-CSE-MsgGUID: hvKKZyyySp6E23ziEQe8mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760631"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760631"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:41:13 -0700
-X-CSE-ConnectionGUID: 014AAz4zS4SDt+TIgc3wow==
-X-CSE-MsgGUID: //L3AUTpToKPIuLzZknrjw==
+ 22 Aug 2025 02:41:17 -0700
+X-CSE-ConnectionGUID: iVhY7enBQ6S5Xw+9uzx+ug==
+X-CSE-MsgGUID: pyF8sGM4QnC4brsMNIoyXA==
 X-ExtLoop1: 1
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:41:11 -0700
+ 22 Aug 2025 02:41:15 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,9 +49,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 10/16] drm/xe/display: Convert __xe_pin_fb_vma()
-Date: Fri, 22 Aug 2025 11:40:24 +0200
-Message-ID: <20250822094030.3499-11-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 12/16] drm/xe: Rename ___xe_bo_create_locked()
+Date: Fri, 22 Aug 2025 11:40:26 +0200
+Message-ID: <20250822094030.3499-13-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
 References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
@@ -72,65 +72,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert __xe_pin_fb_vma() for exhaustive eviction
-using xe_validation_guard().
-
-v2:
-- Avoid gotos from within xe_validation_guard(). (Matt Brost)
-- Adapt to signature change of xe_validation_guard(). (Matt Brost)
+Don't start external function names with underscores.
+Rename to xe_bo_init_locked().
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 29 +++++++++++++++-----------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c      | 39 ++++++++++++++++-----------------
+ drivers/gpu/drm/xe/xe_bo.h      | 10 ++++-----
+ drivers/gpu/drm/xe/xe_dma_buf.c |  6 ++---
+ 3 files changed, 27 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 4b0748e6fdd6..fe0000b211d9 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -281,7 +281,8 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
--	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
-+	struct xe_validation_ctx ctx;
-+	struct drm_exec exec;
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 686ca5d6038a..a3b7288f6b3d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1161,10 +1161,10 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
+ 	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
+ 		goto out_unlock_bo;
  
- 	if (!vma)
-@@ -309,17 +310,21 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
- 	 * assumptions are incorrect for framebuffers
- 	 */
--	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
--	if (ret)
--		goto err;
--
--	if (IS_DGFX(xe))
--		ret = xe_bo_migrate(bo, XE_PL_VRAM0, exec);
--	else
--		ret = xe_bo_validate(bo, NULL, true, exec);
--	if (!ret)
--		ttm_bo_pin(&bo->ttm);
--	ttm_bo_unreserve(&bo->ttm);
-+	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, ret) {
-+		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
-+		drm_exec_retry_on_contention(&exec);
-+		if (ret)
-+			break;
-+
-+		if (IS_DGFX(xe))
-+			ret = xe_bo_migrate(bo, XE_PL_VRAM0, &exec);
-+		else
-+			ret = xe_bo_validate(bo, NULL, true, &exec);
-+		drm_exec_retry_on_contention(&exec);
-+		xe_validation_retry_on_oom(&ctx, &ret);
-+		if (!ret)
-+			ttm_bo_pin(&bo->ttm);
-+	}
- 	if (ret)
- 		goto err;
+-	backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
+-					DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+-					XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-					XE_BO_FLAG_PINNED, exec);
++	backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
++				   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
++				   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
++				   XE_BO_FLAG_PINNED, exec);
+ 	if (IS_ERR(backup)) {
+ 		ret = PTR_ERR(backup);
+ 		goto out_unlock_bo;
+@@ -1240,11 +1240,10 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+ 		goto out_unlock_bo;
  
+ 	if (!backup) {
+-		backup = ___xe_bo_create_locked(xe, NULL, NULL, bo->ttm.base.resv,
+-						NULL, xe_bo_size(bo),
+-						DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+-						XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+-						XE_BO_FLAG_PINNED, exec);
++		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
++					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
++					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
++					   XE_BO_FLAG_PINNED, exec);
+ 		if (IS_ERR(backup)) {
+ 			ret = PTR_ERR(backup);
+ 			goto out_unlock_bo;
+@@ -1987,7 +1986,7 @@ void xe_bo_free(struct xe_bo *bo)
+ }
+ 
+ /**
+- * ___xe_bo_create_locked() - Initialize or create an xe_bo.
++ * xe_bo_init_locked() - Initialize or create an xe_bo.
+  * @xe: The xe device.
+  * @bo: An already allocated buffer object or NULL
+  * if the function should allocate a new one.
+@@ -2007,11 +2006,11 @@ void xe_bo_free(struct xe_bo *bo)
+  *
+  * Return: The buffer object on success. Negative error pointer on failure.
+  */
+-struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+-				     struct xe_tile *tile, struct dma_resv *resv,
+-				     struct ttm_lru_bulk_move *bulk, size_t size,
+-				     u16 cpu_caching, enum ttm_bo_type type,
+-				     u32 flags, struct drm_exec *exec)
++struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
++				struct xe_tile *tile, struct dma_resv *resv,
++				struct ttm_lru_bulk_move *bulk, size_t size,
++				u16 cpu_caching, enum ttm_bo_type type,
++				u32 flags, struct drm_exec *exec)
+ {
+ 	struct ttm_operation_ctx ctx = {
+ 		.interruptible = true,
+@@ -2203,11 +2202,11 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 		}
+ 	}
+ 
+-	bo = ___xe_bo_create_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
+-				    vm && !xe_vm_in_fault_mode(vm) &&
+-				    flags & XE_BO_FLAG_USER ?
+-				    &vm->lru_bulk_move : NULL, size,
+-				    cpu_caching, type, flags, exec);
++	bo = xe_bo_init_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
++			       vm && !xe_vm_in_fault_mode(vm) &&
++			       flags & XE_BO_FLAG_USER ?
++			       &vm->lru_bulk_move : NULL, size,
++			       cpu_caching, type, flags, exec);
+ 	if (IS_ERR(bo))
+ 		return bo;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index c6bb90ca5c2e..a625806deeb6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -89,11 +89,11 @@ struct sg_table;
+ struct xe_bo *xe_bo_alloc(void);
+ void xe_bo_free(struct xe_bo *bo);
+ 
+-struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+-				     struct xe_tile *tile, struct dma_resv *resv,
+-				     struct ttm_lru_bulk_move *bulk, size_t size,
+-				     u16 cpu_caching, enum ttm_bo_type type,
+-				     u32 flags, struct drm_exec *exec);
++struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
++				struct xe_tile *tile, struct dma_resv *resv,
++				struct ttm_lru_bulk_move *bulk, size_t size,
++				u16 cpu_caching, enum ttm_bo_type type,
++				u32 flags, struct drm_exec *exec);
+ struct xe_bo *
+ xe_bo_create_locked_range(struct xe_device *xe,
+ 			  struct xe_tile *tile, struct xe_vm *vm,
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 3f96101a06f3..a01d9fa7e136 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -238,9 +238,9 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+ 		if (ret)
+ 			break;
+ 
+-		bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
+-					    0, /* Will require 1way or 2way for vm_bind */
+-					    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
++		bo = xe_bo_init_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
++				       0, /* Will require 1way or 2way for vm_bind */
++				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
+ 		drm_exec_retry_on_contention(&exec);
+ 		if (IS_ERR(bo)) {
+ 			ret = PTR_ERR(bo);
 -- 
 2.50.1
 
