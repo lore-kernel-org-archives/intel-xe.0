@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F81CA0EED
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90052CA0EED
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:41:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 836B110EAAF;
-	Fri, 22 Aug 2025 09:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD3C10EAB2;
+	Fri, 22 Aug 2025 09:41:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bof+upSW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sc/gR7Mj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420E310EAB0
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:41:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E2A10EAB2
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:41:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755855671; x=1787391671;
+ t=1755855676; x=1787391676;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cjMmDiX0FRmj0xgLc96ppz/ZXcpf9xTyZHkJpsc1ZBo=;
- b=Bof+upSWDsl0MvNYruNjqrLL1XzNskhHK3OgQkvBwpq9mD9LqkJ1oCaa
- bLd93tN+DPcf+Q4PD4xPuwk4WrNi/yBMGlAEpB8MNwj2HSmzyyVuMd6R+
- ntnVby+khlFoiebXi1IhsSYnztMTZ8a5SpvChg88WZZVvMgNuUUfHUDCc
- 8jFcldc8GHwJsUvqnQ2QO4Fq8CMRjTnGn7rE0tjpIeNGiXhE5iySz0Cwh
- Yst3rP5WnjTtt/tstkM1zYa8wP8RaEZGAap/IJj9FnkiLCyeEPrfvb3Hi
- yvCOqtoR79k3wRkZVxMykzijEPgyXO67RZat9duv7YLrK3m8sX3P+EZgf w==;
-X-CSE-ConnectionGUID: 7FqGCtJnTT2pUCMRw6lobg==
-X-CSE-MsgGUID: MxKZk5EKRNq60WYGnyQH0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760616"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760616"
+ bh=Tmse9t/l96NzZ7XCYYix+jZeOt8X/gV1BjQXNIsl99A=;
+ b=Sc/gR7MjmhEK7srVC2GlqxFnVipmFIk8NrWF456hEGt1Qur2Nnh5v+Xj
+ Ebg1RjTYMBspPtcp77/90VeQ4uMZUfcFQq8U/9t9DCK33lo3YBTE4SSLK
+ R9Ctetrlgii8Qef8UHbefp3XRtu2zdklyWazktmaGn3QKj2VYzps4nVp8
+ T1b3FmyXosAxloLHVJZOofH41UShLg+w+C2YZMJtkiigl42mIGhJZmAad
+ xp9VNshkiBqRk9OQKZ0VVtdrbEnXJFXgqaYIm4Db1IEndufz7TRqbWxq1
+ 6lNUCzufW70w8G15fO4tR0rt5arL/UYD4Vj/Zi0RnQaYYsTUkkXnDEbjY A==;
+X-CSE-ConnectionGUID: A9V2Ca44R02R1Rs5iS1GnQ==
+X-CSE-MsgGUID: dGZj/9lHRQqYLzhtrtShIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760625"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760625"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:41:11 -0700
-X-CSE-ConnectionGUID: oHxRYN91SBCRvEBBln5+WA==
-X-CSE-MsgGUID: DwsKkDkWT4iBYD2AIbvpqw==
+ 22 Aug 2025 02:41:15 -0700
+X-CSE-ConnectionGUID: N/wAzwAYScOpK5MeMundDQ==
+X-CSE-MsgGUID: 3XediCLWSd239JFVxnVPCA==
 X-ExtLoop1: 1
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:41:09 -0700
+ 22 Aug 2025 02:41:13 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,10 +49,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 09/16] drm/xe: Convert the CPU fault handler for exhaustive
- eviction
-Date: Fri, 22 Aug 2025 11:40:23 +0200
-Message-ID: <20250822094030.3499-10-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 11/16] drm/xe: Convert xe_dma_buf.c for exhaustive eviction
+Date: Fri, 22 Aug 2025 11:40:25 +0200
+Message-ID: <20250822094030.3499-12-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
 References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
@@ -73,273 +72,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The CPU fault handler may populate bos and migrate, and in doing
-so might interfere with other tasks validating.
+Convert dma-buf migration to XE_PL_TT and dma-buf import to
+support exhaustive eviction, using xe_validation_guard().
+It seems unlikely that the import would result in an -ENOMEM,
+but convert import anyway for completeness.
 
-Rework the CPU fault handler completely into a fastpath
-and a slowpath. The fastpath trylocks only the validation lock
-in read-mode. If that fails, there's a fallback to the
-slowpath, where we do a full validation transaction.
-
-This mandates open-coding of bo locking, bo idling and
-bo populating, but we still call into TTM for fault
-finalizing.
+The dma-buf map_attachment() functionality unfortunately doesn't
+support passing a drm_exec, which means that foreign devices
+validating a dma-buf that we exported will not, unless they are
+xeKMD devices, participate in the exhaustive eviction scheme.
 
 v2:
-- Rework the CPU fault handler to actually take part in
-  the exhaustive eviction scheme (Matthew Brost).
+- Avoid gotos from within xe_validation_guard(). (Matt Brost)
+- Adapt to signature change of xe_validation_guard(). (Matt Brost)
+- Remove an unneded (void)ret. (Matt Brost)
+- Fix up an error path.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c         | 191 ++++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_validation.c |   3 +-
- 2 files changed, 163 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 61 ++++++++++++++++++++++-----------
+ 1 file changed, 41 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 76e9c93826a2..686ca5d6038a 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1713,57 +1713,188 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
- 	}
- }
- 
--static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-+static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf, struct xe_device *xe, struct xe_bo *bo)
-+{
-+	vm_fault_t ret;
-+
-+	trace_xe_bo_cpu_fault(bo);
-+
-+	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
-+				       TTM_BO_VM_NUM_PREFAULT);
-+	if (ret == VM_FAULT_NOPAGE &&
-+	    mem_type_is_vram(bo->ttm.resource->mem_type)) {
-+		mutex_lock(&xe->mem_access.vram_userfault.lock);
-+		if (list_empty(&bo->vram_userfault_link))
-+			list_add(&bo->vram_userfault_link,
-+				 &xe->mem_access.vram_userfault.list);
-+		mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+	}
-+
-+	return ret;
-+}
-+
-+static vm_fault_t xe_err_to_fault_t(int err)
-+{
-+	switch (err) {
-+	case 0:
-+	case -EINTR:
-+	case -ERESTARTSYS:
-+	case -EAGAIN:
-+		return VM_FAULT_NOPAGE;
-+	case -ENOMEM:
-+	case -ENOSPC:
-+		return VM_FAULT_OOM;
-+	default:
-+		break;
-+	}
-+	return VM_FAULT_SIGBUS;
-+}
-+
-+static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_device *xe,
-+					   struct xe_bo *bo, bool needs_rpm)
-+{
-+	struct ttm_buffer_object *tbo = &bo->ttm;
-+	vm_fault_t ret = VM_FAULT_RETRY;
-+	struct xe_validation_ctx ctx;
-+	int err;
-+
-+	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-+		return VM_FAULT_RETRY;
-+
-+	err = xe_validation_ctx_init(&ctx, &xe->val, NULL,
-+				     (struct xe_val_flags) {
-+					     .interruptible = true,
-+					     .no_block = true
-+				     });
-+	if (err)
-+		goto out_pm;
-+
-+	if (!dma_resv_trylock(tbo->base.resv))
-+		goto out_validation;
-+
-+	if (!dma_resv_test_signaled(tbo->base.resv, DMA_RESV_USAGE_KERNEL))
-+		goto out_unlock;
-+
-+	if (!tbo->resource->bus.is_iomem) {
-+		struct ttm_operation_ctx ctx = {
-+			.interruptible = true,
-+			.no_wait_gpu = true,
-+			.gfp_retry_mayfail = true,
-+		};
-+
-+		err = ttm_bo_populate(tbo, &ctx);
-+		if (err) {
-+			if (err != -ENOMEM && err != -ENOSPC)
-+				ret = xe_err_to_fault_t(err);
-+			goto out_unlock;
-+		}
-+	}
-+
-+	ret = __xe_bo_cpu_fault(vmf, xe, bo);
-+
-+out_unlock:
-+	dma_resv_unlock(tbo->base.resv);
-+out_validation:
-+	xe_validation_ctx_fini(&ctx);
-+out_pm:
-+	if (needs_rpm)
-+		xe_pm_runtime_put(xe);
-+
-+	return ret;
-+}
-+
-+static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
- {
- 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
- 	struct drm_device *ddev = tbo->base.dev;
- 	struct xe_device *xe = to_xe_device(ddev);
- 	struct xe_bo *bo = ttm_to_xe_bo(tbo);
- 	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
--	struct drm_exec *exec;
-+	bool retry_after_wait = false;
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 78a827d4e726..3f96101a06f3 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -163,16 +163,26 @@ static int xe_dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	bool reads =  (direction == DMA_BIDIRECTIONAL ||
+ 		       direction == DMA_FROM_DEVICE);
+-	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
 +	struct xe_validation_ctx ctx;
 +	struct drm_exec exec;
- 	vm_fault_t ret;
-+	int err = 0;
- 	int idx;
++	int ret = 0;
  
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-+
-+	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
-+	if (ret != VM_FAULT_RETRY)
-+		goto out;
-+
-+	if (fault_flag_allow_retry_first(vmf->flags)) {
-+		if (vmf->flags & FAULT_FLAG_RETRY_NOWAIT)
-+			goto out;
-+		retry_after_wait = true;
-+		xe_bo_get(bo);
-+		mmap_read_unlock(vmf->vma->vm_mm);
-+	} else {
-+		ret = VM_FAULT_NOPAGE;
-+	}
-+
-+	/*
-+	 * The fastpath failed and we were not required to return and retry immediately.
-+	 * We're now running in one of two modes:
-+	 *
-+	 * 1) retry_after_wait == true: The mmap_read_lock() is dropped, and we're trying
-+	 * to resolve blocking waits. But we can't resolve the fault since the
-+	 * mmap_read_lock() is dropped. After retrying the fault, the aim is that the fastpath
-+	 * should succeed. But it may fail since we drop the bo lock.
-+	 *
-+	 * 2) retry_after_wait == false: The fastpath failed, typically even after
-+	 * a retry. Do whatever's necessary to resolve the fault.
-+	 *
-+	 * This construct is recommended to avoid excessive waits under the mmap_lock.
-+	 */
-+
- 	if (needs_rpm)
- 		xe_pm_runtime_get(xe);
+ 	if (!reads)
+ 		return 0;
  
--	exec = XE_VALIDATION_UNIMPLEMENTED;
--	ret = ttm_bo_vm_reserve(tbo, vmf);
--	if (ret)
--		goto out;
-+	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
-+			    err) {
-+		long lerr;
- 
--	if (drm_dev_enter(ddev, &idx)) {
--		trace_xe_bo_cpu_fault(bo);
-+		err = drm_exec_lock_obj(&exec, &tbo->base);
+ 	/* Can we do interruptible lock here? */
+-	xe_bo_lock(bo, false);
+-	(void)xe_bo_migrate(bo, XE_PL_TT, exec);
+-	xe_bo_unlock(bo);
++	xe_validation_guard(&ctx, &xe_bo_device(bo)->val, &exec, (struct xe_val_flags) {}, ret) {
++		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
 +		drm_exec_retry_on_contention(&exec);
-+		if (err)
++		if (ret)
 +			break;
++
++		ret = xe_bo_migrate(bo, XE_PL_TT, &exec);
++		drm_exec_retry_on_contention(&exec);
++		xe_validation_retry_on_oom(&ctx, &ret);
++	}
  
--		xe_validation_assert_exec(xe, exec, &tbo->base);
--		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
--					       TTM_BO_VM_NUM_PREFAULT);
--		drm_dev_exit(idx);
-+		lerr = dma_resv_wait_timeout(tbo->base.resv,
-+					     DMA_RESV_USAGE_KERNEL, true,
-+					     MAX_SCHEDULE_TIMEOUT);
-+		if (lerr < 0) {
-+			err = lerr;
++	/* If we failed, cpu-access takes place in current placement. */
+ 	return 0;
+ }
+ 
+@@ -211,25 +221,36 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+ {
+ 	struct dma_resv *resv = dma_buf->resv;
+ 	struct xe_device *xe = to_xe_device(dev);
+-	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
++	struct xe_validation_ctx ctx;
++	struct drm_gem_object *dummy_obj;
++	struct drm_exec exec;
+ 	struct xe_bo *bo;
+-	int ret;
+-
+-	dma_resv_lock(resv, NULL);
+-	bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
+-				    0, /* Will require 1way or 2way for vm_bind */
+-				    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, exec);
+-	if (IS_ERR(bo)) {
+-		ret = PTR_ERR(bo);
+-		goto error;
++	int ret = 0;
++
++	dummy_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
++	if (!dummy_obj)
++		return ERR_PTR(-ENOMEM);
++
++	dummy_obj->resv = resv;
++	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, ret) {
++		ret = drm_exec_lock_obj(&exec, dummy_obj);
++		drm_exec_retry_on_contention(&exec);
++		if (ret)
++			break;
++
++		bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
++					    0, /* Will require 1way or 2way for vm_bind */
++					    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
++		drm_exec_retry_on_contention(&exec);
++		if (IS_ERR(bo)) {
++			ret = PTR_ERR(bo);
++			xe_validation_retry_on_oom(&ctx, &ret);
 +			break;
 +		}
- 
--		if (ret == VM_FAULT_RETRY &&
--		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--			goto out;
-+		if (!tbo->resource->bus.is_iomem) {
-+			struct ttm_operation_ctx tctx = {
-+				.interruptible = true,
-+				.no_wait_gpu = false,
-+				.gfp_retry_mayfail = true,
-+			};
- 
--		/*
--		 * ttm_bo_vm_reserve() already has dma_resv_lock.
--		 */
--		if (ret == VM_FAULT_NOPAGE &&
--		    mem_type_is_vram(tbo->resource->mem_type)) {
--			mutex_lock(&xe->mem_access.vram_userfault.lock);
--			if (list_empty(&bo->vram_userfault_link))
--				list_add(&bo->vram_userfault_link,
--					 &xe->mem_access.vram_userfault.list);
--			mutex_unlock(&xe->mem_access.vram_userfault.lock);
-+			err = ttm_bo_populate(tbo, &tctx);
-+			xe_validation_retry_on_oom(&ctx, &err);
-+			if (err && (err == -EINTR || err == -ERESTARTSYS))
-+				break;
- 		}
--	} else {
--		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-+		if (!retry_after_wait)
-+			ret = __xe_bo_cpu_fault(vmf, xe, bo);
  	}
-+	if (err)
-+		ret = xe_err_to_fault_t(err);
+-	dma_resv_unlock(resv);
+-
+-	return &bo->ttm.base;
++	drm_gem_object_put(dummy_obj);
  
--	dma_resv_unlock(tbo->base.resv);
--out:
- 	if (needs_rpm)
- 		xe_pm_runtime_put(xe);
- 
-+	if (retry_after_wait)
-+		xe_bo_put(bo);
-+out:
-+	drm_dev_exit(idx);
-+
- 	return ret;
+-error:
+-	dma_resv_unlock(resv);
+-	return ERR_PTR(ret);
++	return ret ? ERR_PTR(ret) : &bo->ttm.base;
  }
  
-@@ -1807,7 +1938,7 @@ int xe_bo_read(struct xe_bo *bo, u64 offset, void *dst, int size)
- }
- 
- static const struct vm_operations_struct xe_gem_vm_ops = {
--	.fault = xe_gem_fault,
-+	.fault = xe_bo_cpu_fault,
- 	.open = ttm_bo_vm_open,
- 	.close = ttm_bo_vm_close,
- 	.access = xe_bo_vm_access,
-diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
-index b90fda3dd5f4..826cd09966ef 100644
---- a/drivers/gpu/drm/xe/xe_validation.c
-+++ b/drivers/gpu/drm/xe/xe_validation.c
-@@ -241,7 +241,8 @@ int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
-  */
- void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
- {
--	drm_exec_fini(ctx->exec);
-+	if (ctx->exec)
-+		drm_exec_fini(ctx->exec);
- 	xe_validation_unlock(ctx);
- }
- 
+ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
 -- 
 2.50.1
 
