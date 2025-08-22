@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEE45CA0EED
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC89CCA0EEB
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:40:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8DCB10EAA7;
-	Fri, 22 Aug 2025 09:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63BB010EAAD;
+	Fri, 22 Aug 2025 09:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XRNXGzV9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DW9d+nwk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EFE810EAA7
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:40:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BBA010EAAD
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:40:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755855652; x=1787391652;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fhU3nyYosIv171UuafBzfemmiw/XtV9OfoZZQ1zhfJM=;
- b=XRNXGzV9dXUuBp+ZeEnpk/kvXSd9L5fkUcn+3vxYGCvmjxfFnHxO7D4F
- 1uusdnSxg+gDk2b9tuKRtGxn5GlbbL/esl6Ua+n3tYGqQq17SHJafaLhH
- ebIervjz2n8wfi7pbiElDJAiYhl2Tlr3fjXcePs+NTAvZ9c2exGmLh2+J
- rTF99U1DUAEvUORTr9QGlhmri8jwLGdSxodgc+0E3jkVHUcfcszY4eooe
- TN7ez4vO9vJVgeqKtoaGsSFbpWrQnM4BmurTqCENttm1gMWRSZI/4iNXC
- 2AAbG7APAQ3FYL6hjqL1/Nds6ZWNS/QjjQaVlse7H+Qa/DQV1gm4yVcob Q==;
-X-CSE-ConnectionGUID: wksNiAvOTASrZhblNnSYnw==
-X-CSE-MsgGUID: JWCZnL9rRaaIQ9mw2faZIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760594"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760594"
+ t=1755855654; x=1787391654;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GACC5J7R3TslP6tP/THBi5kzzjBlD1g6i7tV5fYPNkg=;
+ b=DW9d+nwkyrRR8rjfIjtJjcQ9KG7pSoHAIlW5VW/qW5vdKv68vF/0spUa
+ M3PQDm5AgatoBdFqqhD67XxkreZMxLBpHisKJX/JM1SKN2a1YcutTahja
+ mJ4oH7ZkhO2pwtlaiTpTwlWsxfP6hFqT9pEepBgfwkDs89cKRcu1KU5Do
+ xmavLJP/Gelaa+hm76zYAyVOgIV3dQYGgvL1Bskxj0G8Z8oYUVGA53RhH
+ 8Wm9rKjvLk347moQm8L+wZNOEmyzGqGW8gwl/ptTF7KZJYgO4f7bTQsZo
+ avokQ4/nvS9t4KtxWRajLhEAkhPI9oqzHJkXviw2xVvNuo5VrskTYHKOp w==;
+X-CSE-ConnectionGUID: pvXSiCZbQ9yLUJZVVGCHUA==
+X-CSE-MsgGUID: 9kL7RjooQKmuA2EP68GjCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760596"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760596"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:40:52 -0700
-X-CSE-ConnectionGUID: /gSrjzqSTX6WDghh66xoew==
-X-CSE-MsgGUID: Z+yxFRw0Tt6E+L61tY2+Ew==
+ 22 Aug 2025 02:40:54 -0700
+X-CSE-ConnectionGUID: SGjUN8aLQ8OJluR0zupb1w==
+X-CSE-MsgGUID: Y0OPPLLlTJW3MfjFSsZKgQ==
 X-ExtLoop1: 1
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:40:50 -0700
+ 22 Aug 2025 02:40:52 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,10 +49,12 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 00/16] Driver-managed exhaustive eviction 
-Date: Fri, 22 Aug 2025 11:40:14 +0200
-Message-ID: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 01/16] drm/xe/vm: Don't pin the vm_resv during validation
+Date: Fri, 22 Aug 2025 11:40:15 +0200
+Message-ID: <20250822094030.3499-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
+References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,119 +72,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Exhaustive eviction means that every client should in theory be able to
-allocate all graphics memory (minus pinned memory). This is done by
-evicting other client's memory.
+The pinning has the odd side-effect that unlocking *any* resv
+during validation triggers an "unlocking pinned lock" warning.
 
-Currently when TTM wants to evict a buffer object it will typically
-trylock that buffer object. It may also optionally try a sleeping lock,
-but if deadlock resolution kicks in while doing so (the locking
-returns -EDEADLK), that is converted to an -ENOMEM and returned to the
-caller. If there are multiple clients simultaneously wanting to evict
-eachother's buffer objects, there is a chance that clients end
-up returning -ENOMEM.
+Cc: Matthew Brost <matthew.brost@intel.com>
+Fixes: 9d5558649f68 ("drm/xe: Rework eviction rejection of bound external bos")
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c |  5 ++---
+ drivers/gpu/drm/xe/xe_vm.h | 15 ++-------------
+ 2 files changed, 4 insertions(+), 16 deletions(-)
 
-The key to resolving this is that on memory contention, lower
-priority clients back off, releasing their buffer object locks and
-thereby allow their memory to be evicted. Eventually their priority
-will elevate and they will succeed. TTM has long been intending to
-implent this using full drm_exec locking during eviction. This means
-that when that is implemented, clients wanting to validate memory must
-pass the drm_exec context used to lock its buffer object to TTM
-validation. Most of this series is making sure that is done, both
-on exec-type validation and buffer object creation. The big benefit of
-this approach is that it can distinguish between memory types and
-avoid lock release rollbacks until it is really necessary. One
-drawback is that it can't handle system memory contention resolved
-by a shrinker.
-
-However, since TTM has still to implement drm_exec validation, this
-series, while preparing for the TTM implementation, takes a different
-approach with an outer rw semaphore on top of the drm_exec retry loop.
-When a client wants to allocate graphics memory, the lock is taken in
-non-exclusive mode. If an OOM is hit, the locks are released and the
-outer lock is retaken in exclusive mode. That ensures that on memory
-contention, the client will, when the exclusive lock is held, be
-the only client trying to allocate memory. It requires, however,
-that all clients adhere to the same scheme.
-
-The idea is that when TTM implements drm_exec eviction, the driver-
-managed scheme could be retired.
-
-Patch 1 to 3 fixes fixes problems hit while testing.
-Patch 4 identifies the code-paths where we need a drm_exec transaction.
-Patch 5 introduces the wrapper with the rw-semaphore
-
-The rest of the patches ensure that we wrap graphics memory
-allocation in the combined rw-semaphore / drm-exec loop.
-
-As a follow up, additional patches around suspend / resume will
-be posted.
-
-v2: (Highlights)
-- Fix a number of issues discovered during review.
-- Rework the signature of xe_validation_guart (Matt Brost)
-- Rework the CPU fault handler (Matt Brost)
-
-Thomas Hellström (16):
-  drm/xe/vm: Don't pin the vm_resv during validation
-  drm/xe/tests/xe_dma_buf: Set the drm_object::dma_buf member
-  drm/xe/vm: Clear the scratch_pt pointer on error
-  drm/xe: Pass down drm_exec context to validation
-  drm/xe: Introduce an xe_validation wrapper around drm_exec
-  drm/xe: Convert xe_bo_create_user() for exhaustive eviction
-  drm/xe: Convert SVM validation for exhaustive eviction
-  drm/xe: Convert existing drm_exec transactions for exhaustive eviction
-  drm/xe: Convert the CPU fault handler for exhaustive eviction
-  drm/xe/display: Convert __xe_pin_fb_vma()
-  drm/xe: Convert xe_dma_buf.c for exhaustive eviction
-  drm/xe: Rename ___xe_bo_create_locked()
-  drm/xe: Convert xe_bo_create_pin_map_at() for exhaustive eviction
-  drm/xe: Convert xe_bo_create_pin_map() for exhaustive eviction
-  drm/xe/sriov: Convert pf_provision_vf_lmem for exhaustive eviction
-  drm/xe: Convert pinned suspend eviction for exhaustive eviction
-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../compat-i915-headers/gem/i915_gem_stolen.h |  24 +-
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  18 +-
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |  10 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  70 +-
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |   8 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              |  36 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |  24 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  66 +-
- drivers/gpu/drm/xe/xe_bo.c                    | 738 +++++++++++++-----
- drivers/gpu/drm/xe/xe_bo.h                    |  56 +-
- drivers/gpu/drm/xe/xe_device.c                |   2 +
- drivers/gpu/drm/xe/xe_device_types.h          |   3 +
- drivers/gpu/drm/xe/xe_dma_buf.c               |  72 +-
- drivers/gpu/drm/xe/xe_eu_stall.c              |   5 +-
- drivers/gpu/drm/xe/xe_exec.c                  |  26 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  15 +-
- drivers/gpu/drm/xe/xe_ggtt.h                  |   5 +-
- drivers/gpu/drm/xe/xe_gsc.c                   |   8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |  26 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  49 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  24 +-
- drivers/gpu/drm/xe/xe_guc_engine_activity.c   |  13 +-
- drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |   7 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  20 +-
- drivers/gpu/drm/xe/xe_oa.c                    |   6 +-
- drivers/gpu/drm/xe/xe_pt.c                    |  10 +-
- drivers/gpu/drm/xe/xe_pt.h                    |   3 +-
- drivers/gpu/drm/xe/xe_pxp_submit.c            |  34 +-
- drivers/gpu/drm/xe/xe_svm.c                   |  97 +--
- drivers/gpu/drm/xe/xe_validation.c            | 278 +++++++
- drivers/gpu/drm/xe/xe_validation.h            | 191 +++++
- drivers/gpu/drm/xe/xe_vm.c                    | 296 +++----
- drivers/gpu/drm/xe/xe_vm.h                    |  53 +-
- drivers/gpu/drm/xe/xe_vm_types.h              |  32 +-
- 37 files changed, 1659 insertions(+), 683 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_validation.c
- create mode 100644 drivers/gpu/drm/xe/xe_validation.h
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 6fea39842e1e..11eaf3b06766 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2468,7 +2468,6 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		.no_wait_gpu = false,
+ 		.gfp_retry_mayfail = true,
+ 	};
+-	struct pin_cookie cookie;
+ 	int ret;
+ 
+ 	if (vm) {
+@@ -2479,10 +2478,10 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		ctx.resv = xe_vm_resv(vm);
+ 	}
+ 
+-	cookie = xe_vm_set_validating(vm, allow_res_evict);
++	xe_vm_set_validating(vm, allow_res_evict);
+ 	trace_xe_bo_validate(bo);
+ 	ret = ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+-	xe_vm_clear_validating(vm, allow_res_evict, cookie);
++	xe_vm_clear_validating(vm, allow_res_evict);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 2f213737c7e5..2ecb417c19a2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -315,22 +315,14 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap);
+  * Register this task as currently making bos resident for the vm. Intended
+  * to avoid eviction by the same task of shared bos bound to the vm.
+  * Call with the vm's resv lock held.
+- *
+- * Return: A pin cookie that should be used for xe_vm_clear_validating().
+  */
+-static inline struct pin_cookie xe_vm_set_validating(struct xe_vm *vm,
+-						     bool allow_res_evict)
++static inline void xe_vm_set_validating(struct xe_vm *vm, bool allow_res_evict)
+ {
+-	struct pin_cookie cookie = {};
+-
+ 	if (vm && !allow_res_evict) {
+ 		xe_vm_assert_held(vm);
+-		cookie = lockdep_pin_lock(&xe_vm_resv(vm)->lock.base);
+ 		/* Pairs with READ_ONCE in xe_vm_is_validating() */
+ 		WRITE_ONCE(vm->validating, current);
+ 	}
+-
+-	return cookie;
+ }
+ 
+ /**
+@@ -338,17 +330,14 @@ static inline struct pin_cookie xe_vm_set_validating(struct xe_vm *vm,
+  * @vm: Pointer to the vm or NULL
+  * @allow_res_evict: Eviction from @vm was allowed. Must be set to the same
+  * value as for xe_vm_set_validation().
+- * @cookie: Cookie obtained from xe_vm_set_validating().
+  *
+  * Register this task as currently making bos resident for the vm. Intended
+  * to avoid eviction by the same task of shared bos bound to the vm.
+  * Call with the vm's resv lock held.
+  */
+-static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict,
+-					  struct pin_cookie cookie)
++static inline void xe_vm_clear_validating(struct xe_vm *vm, bool allow_res_evict)
+ {
+ 	if (vm && !allow_res_evict) {
+-		lockdep_unpin_lock(&xe_vm_resv(vm)->lock.base, cookie);
+ 		/* Pairs with READ_ONCE in xe_vm_is_validating() */
+ 		WRITE_ONCE(vm->validating, NULL);
+ 	}
 -- 
 2.50.1
 
