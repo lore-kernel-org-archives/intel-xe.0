@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB112CA0FE1
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 10:50:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC56CA0EED
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 10:50:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9551D10EABE;
-	Fri, 22 Aug 2025 10:50:20 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF35E10EABB;
- Fri, 22 Aug 2025 10:50:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED96110EAC0;
+	Fri, 22 Aug 2025 10:50:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iFiBDPCz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5751010EABB;
+ Fri, 22 Aug 2025 10:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755859827; x=1787395827;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=a+42Fe+87HocRbu1N9P0T+fMcFa/NUGTH2WIp1alzpY=;
+ b=iFiBDPCz9+CnBLs+hfzHTO4GRTPLlEF47PleHfTIp1RhEt2LJV+Maz58
+ jbTatmQUq/iUO5Q5UQaTh8A+/8OoVkAXuCUMahX8PcP4XWcZgyOvT7bdG
+ 0hj9Ybns+U1GFkuYFJb4Sek51dkdo4tk+Zd2hJvav9hD+BNX/Ye94o3zG
+ n3Dsnz/YUiaJM0Y5gA9sovFQhv7no1i0w7TdID/ceTmBYgJEN7q/xStyR
+ Vt+gDR4F7WKjdMnGCkTkqrWkZvcccCUE01SSlL/fKKCH8vrzmrnk90UvW
+ x8R+Cp9L5vGcd2cnNnGtTi5+LXFFJQmMHc0bacMM17SVCDnVTadyslwod A==;
+X-CSE-ConnectionGUID: S+dpUlJrSou5CYebQ7GLfA==
+X-CSE-MsgGUID: iGYEVHMwSdaV2f4Fncbvaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61977795"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="61977795"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 03:50:27 -0700
+X-CSE-ConnectionGUID: qxoSMHNyRVqoYTZDcBNalA==
+X-CSE-MsgGUID: H9cTNwWWRKKRB1g9pdFNoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="199556647"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.190])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 03:50:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com,
+ xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com, Arun R
+ Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH v3 3/4] drm/atomic: Return user readable error in
+ atomic_ioctl
+In-Reply-To: <20250822-atomic-v3-3-13a0e8f2c581@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
+ <20250822-atomic-v3-3-13a0e8f2c581@intel.com>
+Date: Fri, 22 Aug 2025 13:50:19 +0300
+Message-ID: <dc5d62fc065b1273f04f07422be61e94a0d153f7@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Driver-managed_exhaustive?=
- =?utf-8?q?_eviction_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Aug 2025 10:50:18 -0000
-Message-ID: <175585981897.260857.6647503544786431745@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,127 +73,195 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 22 Aug 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Add user readable error codes for failure cases in drm_atomic_ioctl() so
+> that user can decode the error code and take corrective measurements.
+>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/drm_atomic.c      |  6 ++++
+>  drivers/gpu/drm/drm_atomic_uapi.c | 60 ++++++++++++++++++++++++++++++++-------
+>  2 files changed, 56 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index cd15cf52f0c9144711da5879da57884674aea9e4..5f25e6d3cf6cf246f83a8c39450b410e97fe45bb 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -1513,6 +1513,9 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+>  				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
+>  					       crtc->base.id, crtc->name);
+> +				state->error_code->failure_flags =
+> +					DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
 
-Series: Driver-managed exhaustive eviction (rev2)
-URL   : https://patchwork.freedesktop.org/series/152882/
-State : warning
+It says flags, implying multiple, but you're just adding one there
+anyway. Just like it was a regular enum.
 
-== Summary ==
+> +
+>  				return -EINVAL;
+>  			}
+>  		}
+> @@ -1537,8 +1540,11 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  		drm_dbg_atomic(dev,
+>  			       "driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
+>  			       requested_crtc, affected_crtc);
+> +		state->error_code->failure_flags = DRM_MODE_ATOMIC_NEED_FULL_MODESET;
+>  		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
+>  		     requested_crtc, affected_crtc);
+> +
+> +		return -EINVAL;
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-553439844b6500767ce8aef522cfe9fbb7ece541
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 365a3d09400cf0d55634db3a3ee0490501526dff
-Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Date:   Fri Aug 22 11:40:30 2025 +0200
+This changes behaviour.
 
-    drm/xe: Convert pinned suspend eviction for exhaustive eviction
-    
-    Pinned suspend eviction and preparation for eviction validates
-    system memory for eviction buffers. Do that under a
-    validation exclusive lock to avoid interfering with other
-    processes validating system graphics memory.
-    
-    v2:
-    - Avoid gotos from within xe_validation_guard().
-    - Adapt to signature change of xe_validation_guard().
-    
-    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-+ /mt/dim checkpatch cca87ca63e2f5b8a785dc59c23e526987530b27f drm-intel
-df7c2f2aaf96 drm/xe/vm: Don't pin the vm_resv during validation
-45afdb0d996c drm/xe/tests/xe_dma_buf: Set the drm_object::dma_buf member
-b57290812749 drm/xe/vm: Clear the scratch_pt pointer on error
-2f7d25b93f24 drm/xe: Pass down drm_exec context to validation
--:1131: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#1131: 
-new file mode 100644
+>  	}
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index ecc73d52bfae41a7ef455a7e13649ec56c690b90..94eaf9c98eb4ac2455799f1416010d366e1b5bbc 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -1058,6 +1058,9 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+>  			ret = drm_atomic_crtc_get_property(crtc, crtc_state,
+>  							   prop, &old_val);
+>  			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
+> +			if (ret)
+> +				state->error_code->failure_flags =
+> +					DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED;
+>  			break;
+>  		}
+>  
+> @@ -1089,6 +1092,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+>  
+>  			/* ask the driver if this non-primary plane is supported */
+>  			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+> +				state->error_code->failure_flags =
+> +					DRM_MODE_ATOMIC_ASYNC_NOT_SUP_PLANE;
+>  				ret = -EINVAL;
+>  
+>  				if (plane_funcs && plane_funcs->atomic_async_check)
+> @@ -1380,6 +1385,13 @@ set_async_flip(struct drm_atomic_state *state)
+>  	}
+>  }
+>  
+> +#define FAILURE_REASON(flag, reason) #reason,
+> +const char *drm_mode_atomic_failure_string[] = {
+> +	DRM_MODE_ATOMIC_FAILURE_REASON
+> +};
+> +
+> +#undef FAILURE_REASON
+> +
+>  int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  			  void *data, struct drm_file *file_priv)
+>  {
+> @@ -1389,9 +1401,11 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	uint32_t __user *props_ptr = (uint32_t __user *)(unsigned long)(arg->props_ptr);
+>  	uint64_t __user *prop_values_ptr = (uint64_t __user *)(unsigned long)(arg->prop_values_ptr);
+>  	unsigned int copied_objs, copied_props;
+> -	struct drm_atomic_state *state;
+> +	struct drm_atomic_state *state = NULL;
+>  	struct drm_modeset_acquire_ctx ctx;
+>  	struct drm_out_fence_state *fence_state;
+> +	struct drm_mode_atomic_err_code error_code;
+> +	struct drm_mode_atomic_err_code __user *error_code_ptr;
+>  	int ret = 0;
+>  	unsigned int i, j, num_fences;
+>  	bool async_flip = false;
+> @@ -1400,6 +1414,11 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
+>  		return -EOPNOTSUPP;
+>  
+> +	if (!arg->reserved)
+> +		drm_err(dev, "memory not allocated for drm_atomic error reporting\n");
 
-total: 0 errors, 1 warnings, 0 checks, 1236 lines checked
-38fbfc5e8c13 drm/xe: Introduce an xe_validation wrapper around drm_exec
--:380: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
-#380: FILE: drivers/gpu/drm/xe/xe_validation.h:145:
-+#define xe_validation_retry_on_oom(_ctx, _ret)				\
-+	do {								\
-+		if (xe_validation_should_retry(_ctx, _ret))		\
-+			goto *__drm_exec_retry_ptr;			\
-+	} while (0)
+This right here makes me suspect you never really tried this with your
+regular desktop environment.
 
--:402: WARNING:TABSTOP: Statements should start on a tabstop
-#402: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
-+	     if (_T) xe_validation_ctx_fini(_T);,
+> +
+> +	memset(&error_code, 0, sizeof(struct drm_mode_atomic_err_code));
+> +
+>  	/* disallow for userspace that has not enabled atomic cap (even
+>  	 * though this may be a bit overkill, since legacy userspace
+>  	 * wouldn't know how to call this ioctl)
+> @@ -1407,24 +1426,25 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	if (!file_priv->atomic) {
+>  		drm_dbg_atomic(dev,
+>  			       "commit failed: atomic cap not enabled\n");
+> -		return -EINVAL;
+> +		error_code.failure_flags = DRM_MODE_ATOMIC_CAP_NOT_ENABLED;
+> +		ret = -EINVAL;
+> +		goto out;
+>  	}
+>  
+>  	if (arg->flags & ~DRM_MODE_ATOMIC_FLAGS) {
+>  		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	if (arg->reserved) {
+> -		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
+> -		return -EINVAL;
+> +		error_code.failure_flags = DRM_MODE_ATOMIC_INVALID_FLAG;
+> +		ret = -EINVAL;
+> +		goto out;
+>  	}
+>  
+>  	if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
+>  		if (!dev->mode_config.async_page_flip) {
+>  			drm_dbg_atomic(dev,
+>  				       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
+> -			return -EINVAL;
+> +			error_code.failure_flags = DRM_MODE_ATOMIC_PAGE_FLIP_ASYNC;
+> +			ret = -EINVAL;
+> +			goto out;
+>  		}
+>  
+>  		async_flip = true;
+> @@ -1435,7 +1455,9 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  			(arg->flags & DRM_MODE_PAGE_FLIP_EVENT)) {
+>  		drm_dbg_atomic(dev,
+>  			       "commit failed: page-flip event requested with test-only commit\n");
+> -		return -EINVAL;
+> +		error_code.failure_flags = DRM_MODE_ATOMIC_FLIP_EVENT_WITH_CHECKONLY;
+> +		ret = -EINVAL;
+> +		goto out;
+>  	}
+>  
+>  	state = drm_atomic_state_alloc(dev);
+> @@ -1446,6 +1468,8 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	state->acquire_ctx = &ctx;
+>  	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
+>  
+> +	state->error_code = &error_code;
+> +
+>  retry:
+>  	copied_objs = 0;
+>  	copied_props = 0;
+> @@ -1542,6 +1566,22 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+>  	}
+>  
+>  out:
+> +	/* update the error code if any error to allow user handling it */
+> +	if (ret < 0 && arg->reserved) {
+> +		error_code_ptr = (struct drm_mode_atomic_err_code __user *)
+> +				 (unsigned long)arg->reserved;
+> +
+> +		strscpy_pad(error_code.failure_string,
+> +			    drm_mode_atomic_failure_string[error_code.failure_flags],
+> +			    sizeof(error_code.failure_string));
+> +
+> +		if (copy_to_user(error_code_ptr, &error_code, sizeof(error_code)))
+> +			return -EFAULT;
+> +	}
+> +
+> +	if (!state)
+> +		return ret;
+> +
+>  	complete_signaling(dev, state, fence_state, num_fences, !ret);
+>  
+>  	if (ret == -EDEADLK) {
 
--:402: ERROR:SPACING: space required after that ';' (ctx:VxO)
-#402: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
-+	     if (_T) xe_validation_ctx_fini(_T);,
- 	                                       ^
-
--:402: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#402: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
-+	     if (_T) xe_validation_ctx_fini(_T);,
-
--:422: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#422: FILE: drivers/gpu/drm/xe/xe_validation.h:187:
-+#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
-+	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
-+	drm_exec_until_all_locked(_exec)
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:422: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_exec' - possible side-effects?
-#422: FILE: drivers/gpu/drm/xe/xe_validation.h:187:
-+#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
-+	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
-+	drm_exec_until_all_locked(_exec)
-
-total: 3 errors, 2 warnings, 1 checks, 372 lines checked
-90db21b8e407 drm/xe: Convert xe_bo_create_user() for exhaustive eviction
-48ef01d339f2 drm/xe: Convert SVM validation for exhaustive eviction
-6be77af31ecd drm/xe: Convert existing drm_exec transactions for exhaustive eviction
-ecd08d38f3ef drm/xe: Convert the CPU fault handler for exhaustive eviction
-26e3c40ddb72 drm/xe/display: Convert __xe_pin_fb_vma()
-40c78b67e852 drm/xe: Convert xe_dma_buf.c for exhaustive eviction
--:22: WARNING:TYPO_SPELLING: 'unneded' may be misspelled - perhaps 'unneeded'?
-#22: 
-- Remove an unneded (void)ret. (Matt Brost)
-            ^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 82 lines checked
-45833160fd92 drm/xe: Rename ___xe_bo_create_locked()
-6cf363c2c4ed drm/xe: Convert xe_bo_create_pin_map_at() for exhaustive eviction
-750c480bf99d drm/xe: Convert xe_bo_create_pin_map() for exhaustive eviction
--:57: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#57: FILE: drivers/gpu/drm/xe/display/intel_fbdev_fb.c:59:
-+						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-
-total: 0 errors, 1 warnings, 0 checks, 649 lines checked
-ee1deede2fa7 drm/xe/sriov: Convert pf_provision_vf_lmem for exhaustive eviction
-365a3d09400c drm/xe: Convert pinned suspend eviction for exhaustive eviction
-
-
+-- 
+Jani Nikula, Intel
