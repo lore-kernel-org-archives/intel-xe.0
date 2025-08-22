@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20DB0CA0EEB
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49751CA0EED
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 09:41:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD3FA10EAB0;
-	Fri, 22 Aug 2025 09:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1031A10EAAF;
+	Fri, 22 Aug 2025 09:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DbCn6d6r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jm9IdiLE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 061AC10EAAD
- for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:40:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCE5410EAAF
+ for <intel-xe@lists.freedesktop.org>; Fri, 22 Aug 2025 09:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755855656; x=1787391656;
+ t=1755855659; x=1787391659;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SmcGQkd/xUaA9RWuW8K+O56KYwuS7Dq+cwPIL/8SQtI=;
- b=DbCn6d6rZGmBeITEqZhlz28DecyubZ9yKk/BdLk4FZfzCvHg70OEtksJ
- +MayD1qinst1jjPr09elePyLfRTGJRdh/owR+0hP1LjTD9Ir1TBiUs0ha
- 82f4HK31ehYXHHCVk7OWrAkNZ2KebAw5nMF2Vl85TpBd3lumqOZmg2n9L
- d2DxrjHvTdKlnU+TPNm9So3UMAMEWHpFNGrhPtn/Nyirf8cOHUaBNvlNn
- gfSJIsZwr/GQzhz+mv/TxcoaBjtu0nM4JjvOQX1fE7CXgAH6bNS1jXGa6
- xK4SyWoLjcKnVxj4h3DfT0FhoITXLTrtsSOPofQr6k8hguPzXg7+yMu7D A==;
-X-CSE-ConnectionGUID: TOBLsWi0S9uQAOxd595WpA==
-X-CSE-MsgGUID: xh/bSHr3QlqrUhgjov2I4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760597"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760597"
+ bh=TdXVlHSta29BAiotJU/TYSTb59dwzDCEECq6ekRRk2k=;
+ b=Jm9IdiLEAXaB+6HTZITlUbLozFBmp1ZA7zzf299Ng2SYn+hI9iZ3LLeP
+ MT1NPy8WjQyp1CNwDBPKniA6+G3m7vqYTqVhW+Y3rtuwx4QdWW6MrIM7g
+ UhqKINwaYLzPRggJ1/68KvVUsRYSPzhrwJx0xqFYp1JIryJjPkacWAKvH
+ nXCc1JeG8bapmszXD2hMAYkulxd79tlBofNA7E9Ebgi6mXka97KUctooA
+ hPPPsDwBCfGG5pZwnbtCp34fT2ogzswenkcaGIbm39EKEt0IzjneuwQSS
+ Zd6HJPrhmA4hFPZNX7xa4kCFWSSRQ1qYWwb+i/uIf7xXIt45kqmeW/JMI A==;
+X-CSE-ConnectionGUID: zfXfpC2aQDynw40CwkNp9Q==
+X-CSE-MsgGUID: KsX3IAndQ4eYoXnT0TU09Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="80760599"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="80760599"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:40:56 -0700
-X-CSE-ConnectionGUID: R0I/lPzNSEaM0csl6LUKmw==
-X-CSE-MsgGUID: oZ2gwabGRzq1/EArZ9XfMw==
+ 22 Aug 2025 02:40:59 -0700
+X-CSE-ConnectionGUID: HN1I34FnTDqeA2fF85gSKA==
+X-CSE-MsgGUID: bLtWT/HxSPCJVM+gUcN11A==
 X-ExtLoop1: 1
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 02:40:54 -0700
+ 22 Aug 2025 02:40:56 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Brian Welty <brian.welty@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, stable@vger.kernel.org,
  Matthew Brost <matthew.brost@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v2 02/16] drm/xe/tests/xe_dma_buf: Set the drm_object::dma_buf
- member
-Date: Fri, 22 Aug 2025 11:40:16 +0200
-Message-ID: <20250822094030.3499-3-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 03/16] drm/xe/vm: Clear the scratch_pt pointer on error
+Date: Fri, 22 Aug 2025 11:40:17 +0200
+Message-ID: <20250822094030.3499-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
 References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
@@ -73,56 +74,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This member is set when exporting using prime. However
-the xe_gem_prime_export() alone doesn't set it, since it's done
-later in the prime export flow.
-For the test, set it manually and remove the hack that set it
-temporarily when it was really needed.
+Avoid triggering a dereference of an error pointer on cleanup in
+xe_vm_free_scratch() by clearing any scratch_pt error pointer.
 
+Fixes: 06951c2ee72d ("drm/xe: Use NULL PTEs as scratch PTEs")
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: <stable@vger.kernel.org> # v6.8+
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_dma_buf.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index c53f67ce4b0a..cde9530bef8c 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -57,16 +57,12 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index f35d69c0b4c6..529b6767caac 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1635,8 +1635,12 @@ static int xe_vm_create_scratch(struct xe_device *xe, struct xe_tile *tile,
  
- 	/*
--	 * Evict exporter. Note that the gem object dma_buf member isn't
--	 * set from xe_gem_prime_export(), and it's needed for the move_notify()
--	 * functionality, so hack that up here. Evicting the exported bo will
-+	 * Evict exporter. Evicting the exported bo will
- 	 * evict also the imported bo through the move_notify() functionality if
- 	 * importer is on a different device. If they're on the same device,
- 	 * the exporter and the importer should be the same bo.
- 	 */
--	swap(exported->ttm.base.dma_buf, dmabuf);
- 	ret = xe_bo_evict(exported);
--	swap(exported->ttm.base.dma_buf, dmabuf);
- 	if (ret) {
- 		if (ret != -EINTR && ret != -ERESTARTSYS)
- 			KUNIT_FAIL(test, "Evicting exporter failed with err=%d.\n",
-@@ -139,6 +135,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
- 			   PTR_ERR(dmabuf));
- 		goto out;
- 	}
-+	bo->ttm.base.dma_buf = dmabuf;
+ 	for (i = MAX_HUGEPTE_LEVEL; i < vm->pt_root[id]->level; i++) {
+ 		vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i);
+-		if (IS_ERR(vm->scratch_pt[id][i]))
+-			return PTR_ERR(vm->scratch_pt[id][i]);
++		if (IS_ERR(vm->scratch_pt[id][i])) {
++			int err = PTR_ERR(vm->scratch_pt[id][i]);
++
++			vm->scratch_pt[id][i] = NULL;
++			return err;
++		}
  
- 	import = xe_gem_prime_import(&xe->drm, dmabuf);
- 	if (!IS_ERR(import)) {
-@@ -186,6 +183,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
- 		KUNIT_FAIL(test, "dynamic p2p attachment failed with err=%ld\n",
- 			   PTR_ERR(import));
+ 		xe_pt_populate_empty(tile, vm, vm->scratch_pt[id][i]);
  	}
-+	bo->ttm.base.dma_buf = NULL;
- 	dma_buf_put(dmabuf);
- out:
- 	drm_gem_object_put(&bo->ttm.base);
 -- 
 2.50.1
 
