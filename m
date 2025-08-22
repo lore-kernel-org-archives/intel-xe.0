@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7D5FCA0EFC
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 11:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B236BCA0EFC
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 11:31:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8C010EAC8;
-	Fri, 22 Aug 2025 11:31:04 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B478710EAC8;
- Fri, 22 Aug 2025 11:31:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1820170617878726832=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CEF310EACB;
+	Fri, 22 Aug 2025 11:31:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dc400R1x";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF6D110EAC9;
+ Fri, 22 Aug 2025 11:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755862267; x=1787398267;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=aNsUMxdllxsCnNXUJqbbfxMa47dm9MKdxbDcENRUiec=;
+ b=Dc400R1xUlGzJuF4Faba5YWrS9PoA11v2H43J1Z5wZIKeGdW/LGGhC/i
+ utA2P6rgk21n63b3O2ouQbbZHqzVWg/Iw2IliWSmrbe7/KloClD/bBDX7
+ e21tj+UwwcW0oBZC+6zb5KtrYRE5LvZLEi2A8ahbpjn62rZBWhLHMi6wT
+ zZf9RWnv2CaqlnHyN8v7oTz/cL3jVMqIxjB6JIifxccvxl/DOpstqy7Wx
+ pGHvAQ1C5Mm9xDdCk/2mFjJYhGS/1whRm/3uPY33zGfcjB7e/P15Fi61V
+ ZXh9lbQ6cMGaOdB1guUxZljQWHRSnsmMcHGgjl+ZnTx/1VciWsYUZHup6 w==;
+X-CSE-ConnectionGUID: IJ+uhJ5zQtKjRqlRFblyXQ==
+X-CSE-MsgGUID: dB+V+Z0iQHaO8Yf61oZLsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61813022"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="61813022"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 04:31:06 -0700
+X-CSE-ConnectionGUID: mF0eEZMgTQOP4Se+1QoHlQ==
+X-CSE-MsgGUID: mH5h8zimQQGfM3LflSsuUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="168590019"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.105])
+ ([10.245.244.105])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 04:31:03 -0700
+Message-ID: <1043ceb7-8198-48ed-9040-9e5d08a01723@linux.intel.com>
+Date: Fri, 22 Aug 2025 13:31:00 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Driver-managed_exhaustive_e?=
- =?utf-8?q?viction_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Aug 2025 11:31:03 -0000
-Message-ID: <175586226373.260857.13652540213575715478@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] drm/i915/display: Error codes for async flip
+ failures
+To: Arun R Murthy <arun.r.murthy@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com,
+ xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com
+References: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
+ <20250822-atomic-v3-4-13a0e8f2c581@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20250822-atomic-v3-4-13a0e8f2c581@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,119 +72,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1820170617878726832==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+I'm not entirely sold on the design, it's way more complicated than it should be, it should be trivial to add any amount of error messages.
 
-Series: Driver-managed exhaustive eviction (rev2)
-URL   : https://patchwork.freedesktop.org/series/152882/
-State : success
+Replace return -EINVAL; with return drm_atomic_error_einval(state, class, "string");
+Where class may be an enum, but in a way more generic way than currently specified, for example "invalid use of api", "requires modeset", "invalid arguments", "driver limitations", "async flip not possible".
 
-== Summary ==
+The drm_atomic_error_einval() would set class and str as appropriate, and then return -EINVAL.
 
-CI Bug Log - changes from xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f_BAT -> xe-pw-152882v2_BAT
-====================================================
+That's probably all we should need here.
 
-Summary
--------
+Kind regards,
+~Maarten
 
-  **SUCCESS**
+Den 2025-08-22 kl. 09:00, skrev Arun R Murthy:
+> For failures in async flip atomic check/commit path return user readable
+> error codes in struct drm_atomic_state.
+> 
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index c1a3a95c65f0b66c24ddd64f47dfdc67bbde86c9..5e23f4fc747bd01fa05eba63661bf7279b083317 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5950,6 +5950,7 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
+>  		drm_dbg_kms(display->drm,
+>  			    "[CRTC:%d:%s] modeset required\n",
+>  			    crtc->base.base.id, crtc->base.name);
+> +		state->base.error_code->failure_flags = DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -6019,6 +6020,7 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+>  		drm_dbg_kms(display->drm,
+>  			    "[CRTC:%d:%s] modeset required\n",
+>  			    crtc->base.base.id, crtc->base.name);
+> +		state->base.error_code->failure_flags = DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -6061,6 +6063,8 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+>  				    plane->base.base.id, plane->base.name,
+>  				    &new_plane_state->hw.fb->format->format,
+>  				    new_plane_state->hw.fb->modifier);
+> +			state->base.error_code->failure_flags =
+> +				DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPPORTED;
+>  			return -EINVAL;
+>  		}
+>  
+> 
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152882v2_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8503 -> IGT_8504
-  * Linux: xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f -> xe-pw-152882v2
-
-  IGT_8503: 8503
-  IGT_8504: 8504
-  xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f: cca87ca63e2f5b8a785dc59c23e526987530b27f
-  xe-pw-152882v2: 152882v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v2/index.html
-
---===============1820170617878726832==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Driver-managed exhaustive eviction (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152882/">https://patchwork.freedesktop.org/series/152882/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f_BAT -&gt; xe-pw-152882v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152882v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8503 -&gt; IGT_8504</li>
-<li>Linux: xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f -&gt; xe-pw-152882v2</li>
-</ul>
-<p>IGT_8503: 8503<br />
-  IGT_8504: 8504<br />
-  xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f: cca87ca63e2f5b8a785dc59c23e526987530b27f<br />
-  xe-pw-152882v2: 152882v2</p>
-
-</body>
-</html>
-
---===============1820170617878726832==--
