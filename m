@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1817ECA0EFC
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 12:16:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10C30CA0EED
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Aug 2025 12:28:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D047410E0E1;
-	Fri, 22 Aug 2025 12:16:15 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE7E10E0E1;
- Fri, 22 Aug 2025 12:16:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7591332784784951824=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B80F510EAD9;
+	Fri, 22 Aug 2025 12:28:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bi/vnbYH";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2840C10E116;
+ Fri, 22 Aug 2025 12:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755865739; x=1787401739;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=rYAteljHg/LYcH8raVDOfNCQBTOxx3YVhc8KvBI+fTU=;
+ b=bi/vnbYH5nSHolrHz7YD4az8n4ickzmn8UyCzT/LR95BYfZ6e8zanbZZ
+ Q9O6XuciIibhm5st3V3UQ3/dAlist3i0AvYXhGWDMkI45Qee2NT9U8tql
+ A/+W0gwM9cD3NTsVAvJix3iqY03UvZgeuyHIWXpsUNHosmzyye/JDFEF4
+ e0JcY177b8FUaNfQ/MTRwfKA1MDohAVEcqyTZGF/tYEOj/MxODEPEh8Y/
+ hlrMvyQtF9NdVtj8VMbrXq6zHAYHJull5AwlwxWnj8lAtfFWxJyKk5JsR
+ sLERKKZ7oBDPHgCky2rpPaJ5fDbPMTe89uG18dKmdE1MP8XEJl2z6Ppdd w==;
+X-CSE-ConnectionGUID: acIS2n7TQsSihh7r4L33qQ==
+X-CSE-MsgGUID: ysEHj64HR32r8m5a94BpDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61983860"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="61983860"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 05:28:58 -0700
+X-CSE-ConnectionGUID: A3NFlRrcR4yx3FerU2nyJQ==
+X-CSE-MsgGUID: 0wRAN96wTfOV7dhaRShc7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="172958259"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.134])
+ ([10.245.244.134])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2025 05:28:57 -0700
+Message-ID: <0353c333-2673-4157-bf93-08c6435e5827@intel.com>
+Date: Fri, 22 Aug 2025 13:28:54 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Do_not_unne?=
- =?utf-8?q?cessarily_remove_underrun_on_idle_PSR_WA?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Aug 2025 12:16:14 -0000
-Message-ID: <175586497436.260857.7920449893769864270@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250822105846.1023631-1-jouni.hogander@intel.com>
-In-Reply-To: <20250822105846.1023631-1-jouni.hogander@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] drm/buddy: Optimize free block management with RB
+ tree
+From: Matthew Auld <matthew.auld@intel.com>
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20250821150641.2720-1-Arunpravin.PaneerSelvam@amd.com>
+ <6c813ddf-639e-4816-bd7d-70142a656663@intel.com>
+Content-Language: en-GB
+In-Reply-To: <6c813ddf-639e-4816-bd7d-70142a656663@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,119 +71,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7591332784784951824==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 22/08/2025 09:37, Matthew Auld wrote:
+> On 21/08/2025 16:06, Arunpravin Paneer Selvam wrote:
+>> Replace the freelist (O(n)) used for free block management with a
+>> red-black tree, providing more efficient O(log n) search, insert,
+>> and delete operations. This improves scalability and performance
+>> when managing large numbers of free blocks per order (e.g., hundreds
+>> or thousands).
+>>
+>> In the VK-CTS memory stress subtest, the buddy manager merges
+>> fragmented memory and inserts freed blocks into the freelist. Since
+>> freelist insertion is O(n), this becomes a bottleneck as fragmentation
+>> increases. Benchmarking shows list_insert_sorted() consumes ~52.69% CPU
+>> with the freelist, compared to just 0.03% with the RB tree
+>> (rbtree_insert.isra.0), despite performing the same sorted insert.
+>>
+>> This also improves performance in heavily fragmented workloads,
+>> such as games or graphics tests that stress memory.
+>>
+>> v3(Matthew):
+>>    - Remove RB_EMPTY_NODE check in force_merge function.
+>>    - Rename rb for loop macros to have less generic names and move to
+>>      .c file.
+>>    - Make the rb node rb and link field as union.
+>>
+>> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> 
+> CI is reporting a crash in rb_erase when running the drm_buddy kunit, 
+> somewhere in drm_test_buddy_alloc_clear it seems.
 
-== Series Details ==
+Found one bug in the second patch:
 
-Series: drm/i915/psr: Do not unnecessarily remove underrun on idle PSR WA
-URL   : https://patchwork.freedesktop.org/series/153344/
-State : success
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -507,6 +507,8 @@ static int split_block(struct drm_buddy *mm,
+                 return -ENOMEM;
+         }
 
-== Summary ==
++       mark_split(mm, block);
++
+         if (drm_buddy_block_is_clear(block)) {
+                 mark_cleared(block->left);
+                 mark_cleared(block->right);
+@@ -516,8 +518,6 @@ static int split_block(struct drm_buddy *mm,
+         mark_free(mm, block->left);
+         mark_free(mm, block->right);
 
-CI Bug Log - changes from xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f_BAT -> xe-pw-153344v1_BAT
-====================================================
+-       mark_split(mm, block);
+-
+         return 0;
+  }
 
-Summary
--------
+Otherwise the mark_split might get the wrong rb root if we reset the 
+clear state first. Might help with this crash.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153344v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8503 -> IGT_8504
-  * Linux: xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f -> xe-pw-153344v1
-
-  IGT_8503: 8503
-  IGT_8504: 8504
-  xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f: cca87ca63e2f5b8a785dc59c23e526987530b27f
-  xe-pw-153344v1: 153344v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153344v1/index.html
-
---===============7591332784784951824==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Do not unnecessarily remove underrun on idle PSR WA</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153344/">https://patchwork.freedesktop.org/series/153344/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153344v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153344v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f_BAT -&gt; xe-pw-153344v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153344v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8503 -&gt; IGT_8504</li>
-<li>Linux: xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f -&gt; xe-pw-153344v1</li>
-</ul>
-<p>IGT_8503: 8503<br />
-  IGT_8504: 8504<br />
-  xe-3597-cca87ca63e2f5b8a785dc59c23e526987530b27f: cca87ca63e2f5b8a785dc59c23e526987530b27f<br />
-  xe-pw-153344v1: 153344v1</p>
-
-</body>
-</html>
-
---===============7591332784784951824==--
