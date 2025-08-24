@@ -4,52 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE973CA0EE4
-	for <intel-xe@archiver.kernel.org>; Sat, 23 Aug 2025 19:25:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C67BCA0EFC
+	for <intel-xe@archiver.kernel.org>; Sun, 24 Aug 2025 04:22:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67EDA10E05C;
-	Sat, 23 Aug 2025 19:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF56610E1F6;
+	Sun, 24 Aug 2025 04:22:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g+wBOW61";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GfB4B9Eq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D3D10E05C
- for <intel-xe@lists.freedesktop.org>; Sat, 23 Aug 2025 19:25:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6785810E1F6;
+ Sun, 24 Aug 2025 04:22:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755977127; x=1787513127;
- h=date:from:to:cc:subject:message-id;
- bh=GW71CKONrwawdT79Nt8p5B1j37XmwNyNKYJtDrfVGEo=;
- b=g+wBOW61SE71vsn34Js3WM6cCyJHVY/FhdaFKcYgpZmvD6VsnsTCf1UE
- 9L4P+I0jUVAHHGA+TCdwbcHY8KdOrmReb2UB1UYh/du7MrhpznlA+V5yc
- TR+uM4bJQngGy6f69ToW45AEyHt0sf8Ehaq7hGkuIOHgnlhYq6gBD5eXJ
- rTe5kRRKBHlDvZWkSuKtChB1bqcwavUuBUhMDpbKA0H2o22iYjM/yb6IO
- vQOsdUrJmELS3zx3JhpzYthnA/QotD8Akccf5Py23eiIIPqD71n5Pl+Ne
- rlP9pB9mfTvZ31uiC89QmPJwWYMOiFMNOV+aGPL8wH3O8Axo2YOFVURrf w==;
-X-CSE-ConnectionGUID: QwPhypyeSnyt7Gjo54sezw==
-X-CSE-MsgGUID: NKMNtU3TRLunxFFOlseRNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62063412"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62063412"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2025 12:25:26 -0700
-X-CSE-ConnectionGUID: P1GpfymNTA2vz6E0N5Eqjw==
-X-CSE-MsgGUID: 2xMRHrLbTgqGtqvxOoe9HQ==
+ t=1756009360; x=1787545360;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=3ovZs7ErCzuJrNZuz2JI/5TE0NBZ/KjsFpCmPMpuECQ=;
+ b=GfB4B9EqME3QacdHvQwZcnCe02lhMoUhSzS9YwpcXSPxbKB/JDdahdhc
+ iMwkisKN8Jth5ptEOGfukPZlDcZS3nRnSBtHpKFCuChuYQa3ssP+2Tcqt
+ Ad0YvDzbpeg4g1NowKFzaE/OGiDr+fUj0pdCSYGscxoxcwRozEMdcNML9
+ dbcaqVyfN3eIT8TV7++Y/y17knUn2O6Uzpmd4neLKGJenv00QVKAiSx1/
+ wTpd1JJBEp8mwau33szu2wbI3X83+8aBqdDuf2o2nIiN42enxIGnkFv3V
+ DfLMp9GaXtoRW8X9l6i3w83xZFyvynVlPbcPPz28c9m4sZWLm3RBqmV1K w==;
+X-CSE-ConnectionGUID: VAiZJz7mTUGxQcvb4doIsw==
+X-CSE-MsgGUID: H7BSEXsySji2xGJcPdRX1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58121849"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58121849"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2025 21:22:39 -0700
+X-CSE-ConnectionGUID: URo1gRTySFS34Sgo7cAk0A==
+X-CSE-MsgGUID: Zqlld33rSiK4DhwKstZbYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="168194049"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
- by orviesa010.jf.intel.com with ESMTP; 23 Aug 2025 12:25:26 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uptrP-000MX7-0x;
- Sat, 23 Aug 2025 19:25:13 +0000
-Date: Sun, 24 Aug 2025 03:24:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 13dda74a164b570d93d412e812dc80549506410f
-Message-ID: <202508240359.8VrGmyaV-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="192683142"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Aug 2025 21:22:39 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Sat, 23 Aug 2025 21:22:38 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Sat, 23 Aug 2025 21:22:38 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.72)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Sat, 23 Aug 2025 21:22:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Syn4Blh8/uMJHcGzfKkdrZvWjZMHaMLWyzL9bZKHjMBf8nkmpE9PGaPLGoSJ77/+zButnT1WBvPHol9899lQHdrCx90JhHcHL+C3/vIYLB/LkpRXib/yoBwkdppJE/oi+RmLfLPYeaJSA/r7OSXzPJFA+unNaNYOLB/JkgMfEfRFr+6qA5V3VUtJRYXDiglqh2mi+ZqVRcWI4uA1L1Q65A596aL2ovUHMPVQ/eh+pFvTRsSWfCEpLJm/yDA6OJtv1xRZm9XC7/7+Iy8vbqK1p1cdqgWu00qgti1lzJUlOhfDTImRPIXSw23/t+l4wVDOPkTx9ld/PaFETLh5h4G3+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yuVWzVTupjsHZuqdQATs9pc7SwYlRbSaCGKyrY7qqq8=;
+ b=yB5suRcgqkYBmoKABDCZVvhdmbCOqFKIbB57KjbzkO2/K5QglsH5cl/61M0n+liUvlXDNoUrbeKOwCRr1hyr2n5UxBGR8dmpaaa4wQ1o2t6c/MwTowhf2jCIGaB7grNF+NxrmBcc/lpBboyYwIORLMG6bKy9fmyorkJpnQA37J4UVRuNIZd93MfPx2q4baYASVq3ZPDk5J7VhUuhgZe1nvs991lnH8Ws2ujKo6Do/+gucQcwBQ5+wrH8vG4iMaX9qDc4NEPeZrfHv9V/gEXM8iDQke2sv+AH6FoT6YIr9L7uVOAa7kHh4+jpCORdazL6lzlEydNB9ETLmDEm4B829g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by IA0PR11MB7813.namprd11.prod.outlook.com (2603:10b6:208:402::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Sun, 24 Aug
+ 2025 04:22:31 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.9052.013; Sun, 24 Aug 2025
+ 04:22:31 +0000
+Message-ID: <ba4317fd-800b-4318-8603-741f45d60128@intel.com>
+Date: Sun, 24 Aug 2025 09:52:24 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+ latencies
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <ville.syrjala@linux.intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>
+References: <20250820080451.2634888-1-ankit.k.nautiyal@intel.com>
+ <20250820080451.2634888-9-ankit.k.nautiyal@intel.com>
+ <ca1a863b518a0778733496488597faf9acd38e96@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <ca1a863b518a0778733496488597faf9acd38e96@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0034.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:81::8) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7813:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe0dd729-5a2d-4c56-4660-08dde2c5d75d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Ty9DQW1MSkFTWDV0aERjOXFvYnhZd1lhNFZOTEdGN0gwWlBzUzBNMndXUXBG?=
+ =?utf-8?B?TXYwNnBNdmswakg1aGthSDdoMmZhRDZRMHVrOTAwdnZtQTB1amZDdzNOcFo4?=
+ =?utf-8?B?R2xub1NQaktLZmRqZzNsWFNRQkJuZmJuVUxRMmI3MitKOVFORDZjeHY3Z0Nt?=
+ =?utf-8?B?TVVkWFdPZy9tRmtTWnZncmFpZnI3bFVmeFp5WUFmLytXZCttVm9CRmQrOFk0?=
+ =?utf-8?B?QVAwTW1OcnlvZ3pVU3RsRS9sWHZ2TVYzM0xtTjhJa0gvY1FTcW5ZUm1FK0Vx?=
+ =?utf-8?B?d2gzdll6aWh1VzEvdnlRQm9FTStIRWVqekJndlV6cTJmb0hDdXVHcThQMWs3?=
+ =?utf-8?B?bEZoTG9LUjJHaXUzM290dm55UEtqZElLb01HdHR6WVpaT09WL1JENmVpMnJB?=
+ =?utf-8?B?WTZyL3ZEUlFpMklFTVNKd2taamQ0eGlIRThoRmliMXFzK2szSHM5Z0RnMUdI?=
+ =?utf-8?B?TjJuRXE0R2ZCNGRRQkdSbHVDU1pZUDRuU21nUzJ4R3NsMjhRejNYcHhqV0ZT?=
+ =?utf-8?B?b2xqQWJXOXpQdGV4REVxcjc2aDh6NmpJZjlYRU8zS0ZKQkJ0cm1URzFvN3Iz?=
+ =?utf-8?B?cGVyaXZLckdUN2lEcjRqY2IrVitFWTkycldyTm01aU9IS3d5dG9xRWRMdGZv?=
+ =?utf-8?B?Y0V5UnFwQ3ZEODNnY0ViQitWREpJU0hXVENpZHlhOFpPNmRSUEJGZ0R0N0xK?=
+ =?utf-8?B?VlhYRkxtWXJPWGlXWXVMV3hRNi9BSWMvcWwzRjNJbjRCZXBZaFZGTWc3cVcx?=
+ =?utf-8?B?WG9zeWpRYnpQcjFXNGxZRXROU041YWZVZjBrUWFDeXB6VmVYTmVCTkZNWm94?=
+ =?utf-8?B?MlJkeFpGMEJIVlAyc0dPWHhLblJxT1RiM3QwZExXTzhJbWpQUHFDTW51anZ2?=
+ =?utf-8?B?cXI4WXNoSVdITTR5ZlJLcXRIenFRQkRaZ1pjWDh5Y3Brb3g3VnQzZmtaTVho?=
+ =?utf-8?B?OGZtenB2ZlFUT2FkbzRWWWZRbHVMTitZS0RqeG85Rmg1UW9VODBaaHdxODhJ?=
+ =?utf-8?B?SkV6Q0g4TFl5K3hKQllRQUxiNWRCVGRVQldzaDR0Y0lTc1EwUit2RHZBOVUz?=
+ =?utf-8?B?YXdnVXNRdG5ZeEFiUDVZK25icFQ1TEpaWlU0ZGxqMXNJVkduS1JhajgzRm1M?=
+ =?utf-8?B?SklBN2RNMDNnVnpYZnAvRFdPQzdPM0lLeFhsbkQ5WXJJendLRHNuT21XYlhl?=
+ =?utf-8?B?MzlnWEh5NThxbUl6RG9Za3RLWC9LMmk4ZEt0bWpNUVRFQTdXcUsxY1pkb2Zh?=
+ =?utf-8?B?eXVVQlN2NU5Dd3JlTGZnUGxKUkhqOEtqK3VSZmFOdXI0T3Y4UjRUSUpRenJO?=
+ =?utf-8?B?OGFSMktTVG51cjhkMjh0VlRtRTVuMFdHM1c2emVqcG50UExJdkErN2FtOXNn?=
+ =?utf-8?B?czBZalZHNmczcGVselVHQzRHa3dIeVd0Qk5ldzRjbStjd2ZxakZFRGc1bmZY?=
+ =?utf-8?B?Y0I1Sm5YY3NmWHpQNFRLOGExNGJMb0xzWjBXS0FDZGxMNXhlQ0FLUUMxUG1x?=
+ =?utf-8?B?NmhlcUhKT0I5L0hMZHd6NGxCYzU5THJsZVV0QkQ0aGJxQ1RSbWFBa2FCMjFw?=
+ =?utf-8?B?OTQ5bE04cEpocGFVVkR3cjRYMGZSQVlQbjNCMEhaSjlKcWNVWmF0SEpsTnY2?=
+ =?utf-8?B?bnNLdllzb01KT0g4RFZWRzhxQ0hNT1U5VldYWGc1RS9NNFFJTC9jWmgzdmdz?=
+ =?utf-8?B?Lytac2h6cjRwUmhqbVlyN0tjOFpCc0gwbHQ0RDAxNk0yeUsxeXB5a1JGNDNl?=
+ =?utf-8?B?UnRGVnhhSXZwUmVuSFZwTGR2bVlTdENScjMwWnF4ZWJROG5YSTIvZ25zNlVL?=
+ =?utf-8?B?WVIzOVNuanNCUHdBdXVvSHhPdHpobHdkNWtjdjhFQkdHZlI0MFFBOWsvWHI2?=
+ =?utf-8?B?RG5NbWpYUzFsckhoWkwySEczZHRtcCtjYU9PUmFJVXJ2ejFQRDkrTWVYOXJl?=
+ =?utf-8?Q?GApyck5TljY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0JiRkdBQjBlWlhqNEVDMG1oeG5qRTNUYzhROCtBWGFrSXVBbjkxdXJpREEx?=
+ =?utf-8?B?UzFpU0tkVm00M29icVpROStuZlNCTkVISUJMenREbUJHUDlhdGRMMlpkN0ww?=
+ =?utf-8?B?cXBzTEdPK2g0TU9LN3hwd29iWlhDUldFSlB5MnZzYkZYcjEyY1g4aDF5bkRO?=
+ =?utf-8?B?S1RwM2R2UUZmZjJtTFdqWW1sc0pGRDN6MnN5a3hOeExzaWZMUWhlRjc0VUVE?=
+ =?utf-8?B?dWI0TTlxcDU4MHpnSXBKMjBHYkpZdFF4R20vSmJNc2ZUQ1AvNFVEc0w3ZWUw?=
+ =?utf-8?B?cDJRVS9MNjBDODRjdncxVURJYTJxdjJ2U0Nrc2ZicWpiOVNtT24zdnBPbHFY?=
+ =?utf-8?B?MEhOTVd4eTJRUlNHSzlKSUxvZ1UyVVlZQ3JQdEczdUpQckd0bjV5RHMwdS95?=
+ =?utf-8?B?QWpLa3pOUGtpYTRmMkZScWhuNVNhd0Jpb3hXdUFUT0xRR0J1ZUF5Rk5Kb0Qz?=
+ =?utf-8?B?eUtjbHN3dkpxWDhxNEh1RWRxREdtNTJac1dIdzQ3ZUYyMVIrQ2I3ZE1KL2R3?=
+ =?utf-8?B?T1ArRVBnTForWm95NndtemhKWVZFSU9nZnBiZGRqMnR4SWJhUEdtY2Rha0dZ?=
+ =?utf-8?B?Z0tvZk9hUW1ZVGRqc3N1dGVWN3RUcnRGVUluWXhwVEdhbk1HNkNERXdnZ3Ny?=
+ =?utf-8?B?ZW5xQWNWaXZjNjhvNkRpMWdQdmVwdFhQQVI0K2VBUTk3cXErc05CTmErQkNX?=
+ =?utf-8?B?YkNXL3Z0a0ZRZCs5eGp3TVZRbnlCbnhkNGplRUoyckwzZXJrbmRieHhIcXpW?=
+ =?utf-8?B?OWtCUThYMnQ2YVdJR25iV1RWTTdVMkRDVThMaWZ4UWxyZ216dFlmNjVBektU?=
+ =?utf-8?B?ZVl4RE9RK0Y0WjY2cmx4YUNDQnp4M2hocy9MaEVhSjBRcUF1b1VTOTIzWGJM?=
+ =?utf-8?B?T0RZWDhabXVTZ3FEc2pMZHQwQ1g5cS9Odi9JRlFtQlBpZ3N0TjFndXVnSG1l?=
+ =?utf-8?B?bXkxUkhQTTM5cDY1NXFIY3h2T1ArWnI0L04xMnVqdE94SGV5NmlaQWxXWFV0?=
+ =?utf-8?B?VlJ1UGJnRkJOMUZhM0JsNWdldldzUnRWMUxWSzF3cW9KZ0NlaDZ3QnBhUWg4?=
+ =?utf-8?B?aGxuQXowcUFLTDdVeG1LcGNFZ3ZxSUJPd1J1VGZVYXNFUTIrV3cvYXc1SEd2?=
+ =?utf-8?B?dkl2eWJwVCtJMDBROVBjQUF6RDV1cUFlaEpqem1nWS9icE1RQjhzSkNWYlJ3?=
+ =?utf-8?B?MHNIaVBVMGNNTGpRMU1qaUM3MEtXeUdiUTVVYUdRdzJ6QmZaeUo4NXBubjRp?=
+ =?utf-8?B?bUwyQ01BTzBQUTR4dk9FTVdjRnExSDNjOW9zY2Q0Tm9PendUNzUwZm00UkRu?=
+ =?utf-8?B?WVAvSWs4Tk96VEx6VlhvU3VidXN0N091Wk80UlhxOXo4WXdxY0xhU0RCWHNH?=
+ =?utf-8?B?OEpOZUpsckpONVdBZ21PYXhZZVFzZ0tDdUc1V3dvUFZlYnFOV0Qxdm1FRUlh?=
+ =?utf-8?B?WkJBWGxzd3ZzV1BkREVQVWxjOVVrbmpCdVp4R3JQUitVL3RSb1J4OTRkOUd0?=
+ =?utf-8?B?bGpsN0VKVG1EM1hZV00xbU4wOWttMlVWQTBNVkhlQjU5Y0Nud2lqcjltZTMx?=
+ =?utf-8?B?dmNlaWlmdGUyeUtiaHRvdm9tYXJTaEQyYW9Tdkl6UHUyQ0oxdkQzNFZjd1Zj?=
+ =?utf-8?B?cElHRXU5RHRKLzNHVVpQSkpzUERtRlMyMHBmak5NM2N3V2FRM2d2UEJiRHEy?=
+ =?utf-8?B?ektXczJqZmZFbEtBbitKTWtQUTI0U1doQmhLYWxxT1ZMT2l3OEc4dTcva3Zp?=
+ =?utf-8?B?YjdtRE1mMXd0cTl0VGF4c1dSdVBoeGZEeFllT0pscWE2WEIvOTB5OWVRU2hC?=
+ =?utf-8?B?RitLTXl6b2dTNVRjRlo1aGlZMXM3aUZRTGlrcXVvOHJjY1VvcVNqSG1jeHRw?=
+ =?utf-8?B?VFl0NnBnMTB4aDVQa0hqRzIxbWFwODkreWlESHhGb2Zpd25CcmhBWkttdHJy?=
+ =?utf-8?B?V3RqYnExdlVjWEhRd2FUdWZGU2Nwd2JoenZFYXYxaU9EeWVpTHB1YURwSzVX?=
+ =?utf-8?B?N1VFOUFMYk9RUitXbVhhTlhPYWl6cEphaU5Nb3gzME1uOXRuZzd4UGhpVE1s?=
+ =?utf-8?B?M1AxUWpLM0hmT3FPMWc0M01iMkV0aHdlaVNpdTBGbUNGbXpzVXk3MmRuYmNQ?=
+ =?utf-8?B?MEw2cmlUaWMySXhJQXVPbkp6dTFhRDN5N2xFUU5sNUdzcGRVeWFOWkVDeFEw?=
+ =?utf-8?B?QlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe0dd729-5a2d-4c56-4660-08dde2c5d75d
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2025 04:22:31.0185 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: y4ZTDk9mNJeZKumnPSVDWHeKRJYgBK/QxrxMnWb5MJmav16wK33VPu0de3aIsyK/zVI4wIa4QCJnzlr18WUPCeVHntwbAPrvGfy49syNGng=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7813
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,121 +199,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 13dda74a164b570d93d412e812dc80549506410f  drm/xe/configfs: Dump custom settings when binding
 
-elapsed time: 1443m
+On 8/22/2025 5:01 PM, Jani Nikula wrote:
+> On Wed, 20 Aug 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>> +	if (HAS_VRR(display) && intel_vrr_possible(crtc_state)) {
+> Nitpick, and a tangential to designing stuff:
+>
+> intel_vrr_possible() never returns true for !HAS_VRR(). The HAS_VRR()
+> check is redundant. Adding redundant checks adds uncertainty about what
+> intel_vrr_possible() can return. "Whoa, can it return true even for
+> !HAS_VRR()? Why?" And then it reinforces the mentality that everything
+> needs redundancy and double checking.
 
-configs tested: 102
-configs skipped: 4
+Hi Jani,
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Thanks for the review! You're right : since flipline is only set when 
+HAS_VRR() is true, the extra check was unnecessary.
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                   randconfig-001-20250823    gcc-9.5.0
-arc                   randconfig-002-20250823    gcc-12.5.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-22
-arm                              allyesconfig    gcc-15.1.0
-arm                            dove_defconfig    gcc-15.1.0
-arm                   randconfig-001-20250823    clang-17
-arm                   randconfig-002-20250823    gcc-15.1.0
-arm                   randconfig-003-20250823    clang-20
-arm                   randconfig-004-20250823    clang-22
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250823    gcc-11.5.0
-arm64                 randconfig-002-20250823    clang-22
-arm64                 randconfig-003-20250823    clang-22
-arm64                 randconfig-004-20250823    gcc-15.1.0
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20250823    gcc-15.1.0
-csky                  randconfig-002-20250823    gcc-14.3.0
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20250823    clang-22
-hexagon               randconfig-002-20250823    clang-22
-i386        buildonly-randconfig-001-20250823    clang-20
-i386        buildonly-randconfig-002-20250823    clang-20
-i386        buildonly-randconfig-003-20250823    clang-20
-i386        buildonly-randconfig-004-20250823    clang-20
-i386        buildonly-randconfig-005-20250823    clang-20
-i386        buildonly-randconfig-006-20250823    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20250823    clang-22
-loongarch             randconfig-002-20250823    clang-22
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-m68k                        m5307c3_defconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20250823    gcc-11.5.0
-nios2                 randconfig-002-20250823    gcc-8.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20250823    gcc-8.5.0
-parisc                randconfig-002-20250823    gcc-15.1.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc               randconfig-001-20250823    clang-22
-powerpc               randconfig-002-20250823    clang-22
-powerpc               randconfig-003-20250823    clang-22
-powerpc64             randconfig-001-20250823    gcc-11.5.0
-powerpc64             randconfig-002-20250823    clang-22
-powerpc64             randconfig-003-20250823    gcc-10.5.0
-riscv                             allnoconfig    gcc-15.1.0
-riscv                 randconfig-001-20250823    clang-22
-riscv                 randconfig-002-20250823    gcc-8.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                  randconfig-001-20250823    gcc-9.5.0
-s390                  randconfig-002-20250823    clang-22
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                    randconfig-001-20250823    gcc-15.1.0
-sh                    randconfig-002-20250823    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20250823    gcc-8.5.0
-sparc                 randconfig-002-20250823    gcc-8.5.0
-sparc64               randconfig-001-20250823    gcc-8.5.0
-sparc64               randconfig-002-20250823    clang-22
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-12
-um                    randconfig-001-20250823    clang-22
-um                    randconfig-002-20250823    clang-22
-x86_64      buildonly-randconfig-001-20250823    gcc-12
-x86_64      buildonly-randconfig-002-20250823    gcc-12
-x86_64      buildonly-randconfig-003-20250823    clang-20
-x86_64      buildonly-randconfig-004-20250823    clang-20
-x86_64      buildonly-randconfig-005-20250823    gcc-12
-x86_64      buildonly-randconfig-006-20250823    gcc-12
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250823    gcc-15.1.0
-xtensa                randconfig-002-20250823    gcc-13.4.0
+I'll drop the HAS_VRR() check and update the patch.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> This is not about just that one check and one line. The idea is that for
+> most "has feature" checks that enable something in the crtc state, you
+> do that check in very few places, and the fields in crtc state dictate
+> the rest. You're not supposed to have to second guess what crtc state
+> has.
+
+That makes sense - checking for HAS_* at some places and then trusting 
+the crtc state keeps things cleaner.
+
+I noticed a couple of places, where HAS_VRR() and intel_vrr_possible are 
+used together. I will go through those and send a follow-up patch to 
+simplify them.
+
+I'll also keep this principle in mind while writing and reviewing code 
+going forward.
+
+Thanks for the insight!
+
+Regards,
+
+Ankit
+
+>
+> Food for though.
+>
+>
+> BR,
+> Jani.
+>
+>
