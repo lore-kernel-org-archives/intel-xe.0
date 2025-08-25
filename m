@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67B1CCA0EFA
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04A30CA0FEE
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:50:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C06910E460;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B536F10E46F;
 	Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OoIb/y8W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E0AsZCXY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE3E10E468;
- Mon, 25 Aug 2025 12:49:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D619C10E46B;
+ Mon, 25 Aug 2025 12:49:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756126189; x=1787662189;
+ t=1756126195; x=1787662195;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E47L23BIXtb12tx5EwvN0EylP82qT2G+21E8rKfQ2vU=;
- b=OoIb/y8WQLJiUHQ9+8kZdhh2NqDF9JUZFHbR1IP2yxBL3cbIEYahbbjf
- OevJowfVUWT03Q2I4/kyzYQuBtv2FKX0tncuMXOgJ35bNPuwGwCYqSwmq
- N4GwzHs+556JhKQTx/W0CkqTBNIijeOoO02UacojNtBURslaodixfCLoN
- 7IcWjNls3UIDwrQofQKsCXjI/5R9ZT+oTfibV2Kx3Ht3EdJssjB95/NqJ
- gndn4h6kXHP6H8HhpQrOYjYeRiO6waJ2aNO0GsxgTrz4ftguoqfNTJgv4
- ePVcE+W7XjcSb4Mm0Gt+BRttGHLGeoEGYuLycpRxWjNuVIqE2Pvr+vMEM A==;
-X-CSE-ConnectionGUID: MAIwypqGTHGc5DbUAuOfEQ==
-X-CSE-MsgGUID: 9sYAXGTbQEeYK/fUW/+fOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164124"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164124"
+ bh=DOPVQV8nJv612ifAHFGD5/rYc5n+xo5+x+b+XnaSxvg=;
+ b=E0AsZCXY9db844AguwsqC/BycZ6Bgtz+89dk9CfYGOS/R8DYNJDnPmAN
+ Y+yHp1l/v0LQ5o2/lCCqIsPGPCnBXNAkW6n1NpiHcLAPAmxdQT2LRAaca
+ ZYjNiodr6mL62UO5ePt2FlxlSnE3trOSBpxk89Y9SbKPrFsRTvtwW5RXp
+ 3uz/8pj/uRuJgD2xENkY9QFsKQVVT/3MYKrrlsWOgNdDobNdE0KoDCcDY
+ D+Qd/omo1h1ICuSw3i5KCOaCEVkpdpW0mskkm9ksnxvUQEwcKrXwKryiM
+ of7LrOkHD3eDW4QdJdJISUS7A215q3eE2ReZZRQINgRhBos/mwrlaiC+v A==;
+X-CSE-ConnectionGUID: 6J6cQnn9Q4GZYuTVBLWSeA==
+X-CSE-MsgGUID: Yh8zA8+/S46KrvX8tDdqcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164128"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164128"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:48 -0700
-X-CSE-ConnectionGUID: ne7YeZhFQkyW6aS8oedzQQ==
-X-CSE-MsgGUID: oZs96kZWTMegD4HnqgBFNQ==
+ 25 Aug 2025 05:49:55 -0700
+X-CSE-ConnectionGUID: vRYmP+c5TviolR6oFZx5mw==
+X-CSE-MsgGUID: CnKVD8CSR92YLn1FWmxlag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200229986"
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200230030"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:46 -0700
+ 25 Aug 2025 05:49:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 08/12] drm/i915/display: Add guardband check for feature
- latencies
-Date: Mon, 25 Aug 2025 18:05:44 +0530
-Message-ID: <20250825123548.3022474-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/12] drm/i915/panel: Refactor helper to get highest fixed
+ mode
+Date: Mon, 25 Aug 2025 18:05:47 +0530
+Message-ID: <20250825123548.3022474-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
 References: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
@@ -69,222 +69,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a check during atomic crtc check phase to ensure the programmed VRR
-guardband is sufficient to cover latencies introduced by enabled features
-such as DSC, PSR/PR, scalers, and DP SDPs.
+Refactor intel_panel_highest_mode() to return the fixed mode with the
+highest pixel clock, removing the fallback to the adjusted mode. This makes
+the function semantics clearer and better suited for future use cases where
+fallback is not desirable.
 
-Currently, the guardband is programmed to match the vblank length, so
-existing checks in skl_is_vblank_too_short() are valid. However, upcoming
-changes will optimize the guardband independently of vblank, making those
-checks incorrect.
+Update the caller in intel_dp_mode_clock() to handle the NULL case
+explicitly by falling back to the adjusted mode's crtc_clock. This also
+addresses the existing FIXME comment about ambiguity between clock and
+crtc_clock, by using mode->clock for fixed modes and mode->crtc_clock for
+adjusted modes.
 
-Introduce an explicit guardband check to prepare for future updates
-that will remove checking against the vblank length and later program an
-optimized guardband.
-
-v2: Use new helper for PSR2/Panel Replay latency.
-
-v3:
--Align the name of helper with intel_crtc_atomic_check and rename it to
-intel_crtc_guardband_atomic_check(). (Jani)
--Simplify checks in the helper. (Mitul)
--Make a separate helper to compute wm0 prefill time. (Mitul)
-
-v4: Drop redundant HAS_VRR() check. (Jani).
+v2: Avoid introducing a new function and refactor existing one instead.
+(Jani).
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (#v3)
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 142 +++++++++++++++++++
- drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
- 3 files changed, 144 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c    | 14 +++++++++-----
+ drivers/gpu/drm/i915/display/intel_panel.c | 11 +++++------
+ drivers/gpu/drm/i915/display/intel_panel.h |  3 +--
+ 3 files changed, 15 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1a3a95c65f0..787bb6ebdc75 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4227,6 +4227,142 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4dc1ce383b8e..4c3a4b7c0abe 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1759,11 +1759,15 @@ static int intel_dp_mode_clock(const struct intel_crtc_state *crtc_state,
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 
+-	/* FIXME a bit of a mess wrt clock vs. crtc_clock */
+-	if (has_seamless_m_n(connector))
+-		return intel_panel_highest_mode(connector, adjusted_mode)->clock;
+-	else
+-		return adjusted_mode->crtc_clock;
++	if (has_seamless_m_n(connector)) {
++		const struct drm_display_mode *highest_mode;
++
++		highest_mode = intel_panel_highest_mode(connector);
++		if (highest_mode)
++			return highest_mode->clock;
++	}
++
++	return adjusted_mode->crtc_clock;
  }
  
-+static int
-+cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_atomic_state *state =
-+		to_intel_atomic_state(crtc_state->uapi.state);
-+	const struct intel_cdclk_state *cdclk_state;
-+
-+	cdclk_state = intel_atomic_get_cdclk_state(state);
-+	if (IS_ERR(cdclk_state)) {
-+		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
-+		return 1;
-+	}
-+
-+	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
-+				   2 * intel_cdclk_logical(cdclk_state)));
-+}
-+
-+static int
-+dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
-+	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	int num_scaler_users = hweight32(scaler_state->scaler_users);
-+	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
-+	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
-+	u32 dsc_prefill_latency = 0;
-+
-+	if (!crtc_state->dsc.compression_enable ||
-+	    !num_scaler_users ||
-+	    num_scaler_users > crtc->num_scalers)
-+		return dsc_prefill_latency;
-+
-+	for (int i = 0; i < num_scaler_users; i++) {
-+		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
-+		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
-+	}
-+
-+	dsc_prefill_latency =
-+		intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
-+						chroma_downscaling_factor,
-+						cdclk_prefill_adjustment(crtc_state),
-+						linetime);
-+
-+	return dsc_prefill_latency;
-+}
-+
-+static int
-+scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
-+	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-+	int num_scaler_users = hweight32(scaler_state->scaler_users);
-+	u64 hscale_k = 0, vscale_k = 0;
-+	int scaler_prefill_latency = 0;
-+
-+	if (!num_scaler_users)
-+		return scaler_prefill_latency;
-+
-+	if (num_scaler_users > 1) {
-+		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
-+		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
-+	}
-+
-+	scaler_prefill_latency =
-+		intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
-+						   chroma_downscaling_factor,
-+						   cdclk_prefill_adjustment(crtc_state),
-+						   linetime);
-+
-+	return scaler_prefill_latency;
-+}
-+
-+static int
-+wm0_prefill_latency(int linetime_us, int max_wm0_lines)
-+{
-+	return 20 + linetime_us * max_wm0_lines;
-+}
-+
-+static int intel_crtc_guardband_atomic_check(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int dsc_prefill_time = 0;
-+	int scaler_prefill_time;
-+	int wm0_prefill_time;
-+	int pkgc_max_latency;
-+	int psr2_pr_latency;
-+	int min_guardband;
-+	int guardband_us;
-+	int sagv_latency;
-+	int linetime_us;
-+	int sdp_latency;
-+	int pm_delay;
-+
-+	if (!crtc_state->vrr.enable && !intel_vrr_always_use_vrr_tg(display))
-+		return 0;
-+
-+	if (!adjusted_mode->crtc_clock)
-+		return 0;
-+
-+	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
-+				   adjusted_mode->crtc_clock);
-+
-+	pkgc_max_latency = skl_watermark_max_latency(display, 1);
-+	sagv_latency = display->sagv.block_time_us;
-+
-+	wm0_prefill_time = wm0_prefill_latency(linetime_us, skl_max_wm0_lines(crtc_state));
-+
-+	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
-+
-+	dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
-+
-+	pm_delay = crtc_state->framestart_delay +
-+		   max(sagv_latency, pkgc_max_latency) +
-+		   wm0_prefill_time +
-+		   scaler_prefill_time +
-+		   dsc_prefill_time;
-+
-+	psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, false);
-+	sdp_latency = intel_dp_compute_sdp_latency(crtc_state, false);
-+
-+	guardband_us = max(sdp_latency, psr2_pr_latency);
-+	guardband_us = max(guardband_us, pm_delay);
-+	min_guardband = DIV_ROUND_UP(guardband_us, linetime_us);
-+
-+	if (crtc_state->vrr.guardband < min_guardband) {
-+		drm_dbg_kms(display->drm, "vrr.guardband %d < min guardband %d\n",
-+			    crtc_state->vrr.guardband, min_guardband);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
+ /* Optimize link config in order: max bpp, min clock, min lanes */
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 2a20aaaaac39..ac0f04073ecb 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -144,18 +144,17 @@ intel_panel_downclock_mode(struct intel_connector *connector,
+ }
+ 
+ const struct drm_display_mode *
+-intel_panel_highest_mode(struct intel_connector *connector,
+-			 const struct drm_display_mode *adjusted_mode)
++intel_panel_highest_mode(struct intel_connector *connector)
  {
-@@ -4289,6 +4425,12 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
+-	const struct drm_display_mode *fixed_mode, *best_mode = adjusted_mode;
++	const struct drm_display_mode *fixed_mode, *highest_mode = NULL;
  
-+	if (intel_vrr_possible(crtc_state)) {
-+		ret = intel_crtc_guardband_atomic_check(crtc_state);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return 0;
+ 	/* pick the fixed_mode that has the highest clock */
+ 	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
+-		if (fixed_mode->clock > best_mode->clock)
+-			best_mode = fixed_mode;
++		if (!highest_mode || fixed_mode->clock > highest_mode->clock)
++			highest_mode = fixed_mode;
+ 	}
+ 
+-	return best_mode;
++	return highest_mode;
  }
  
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index bb926e9d2bea..9ce526e6c285 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2250,7 +2250,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
- }
- 
--static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
-+int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum plane_id plane_id;
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-index 62790816f030..8706c2010ebe 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.h
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-@@ -78,6 +78,7 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state);
- void intel_program_dpkgc_latency(struct intel_atomic_state *state);
- 
- bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
-+int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __SKL_WATERMARK_H__ */
- 
+ int intel_panel_get_modes(struct intel_connector *connector)
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
+index 56a6412cf0fb..8a17600e46a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.h
++++ b/drivers/gpu/drm/i915/display/intel_panel.h
+@@ -37,8 +37,7 @@ const struct drm_display_mode *
+ intel_panel_downclock_mode(struct intel_connector *connector,
+ 			   const struct drm_display_mode *adjusted_mode);
+ const struct drm_display_mode *
+-intel_panel_highest_mode(struct intel_connector *connector,
+-			 const struct drm_display_mode *adjusted_mode);
++intel_panel_highest_mode(struct intel_connector *connector);
+ int intel_panel_get_modes(struct intel_connector *connector);
+ enum drrs_type intel_panel_drrs_type(struct intel_connector *connector);
+ enum drm_mode_status
 -- 
 2.45.2
 
