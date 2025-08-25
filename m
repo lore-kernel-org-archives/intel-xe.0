@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C639CA0FE7
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 14:31:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F685CA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 14:48:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9BE910E4BE;
-	Mon, 25 Aug 2025 14:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C989A10E4DD;
+	Mon, 25 Aug 2025 14:48:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="doX/62m5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BuOAR6Fk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D75110E4BE;
- Mon, 25 Aug 2025 14:31:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22C6B10E4DB;
+ Mon, 25 Aug 2025 14:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756132288; x=1787668288;
+ t=1756133318; x=1787669318;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=yKLeqcLmpWifCCUCk/233TIF7HTkixzrus8gFmqf/ew=;
- b=doX/62m5l1YLtm1EOBG1jftTVOkF7LoHsMs61JR9KYCJU9w8aTTV1PZ4
- GhAO+WmI8mRQ+0ebrC0i5TullSOUp9LDXXZDx+SGr9H0C4GxJSthwRL1F
- KGFTvG3iyjgg/arWtxdkJYKVfZGUM8tBBQB3AXd2oY4wkfti7tdGy7SCa
- C8i5wScdpOubj6y6gUwmYHAWj8PcOLX+XU8bFzRFYE2JMV69Nj2ExYpCl
- PEfgWwrA/gy1MhRuqZUJhZNPaUz9vWydgzIbWDXONmHAw1Wom0Tg8D5Gm
- mIuLgD79V/71tIj/5fHA3xZZ1U992h5HAmiQZPt0//2alBiNR+41MrryR w==;
-X-CSE-ConnectionGUID: Pga5zfSCQm2Ox3gsa6koDg==
-X-CSE-MsgGUID: NhSciktpS6ijxgKCxMi+Cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="57547253"
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="57547253"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ bh=igLgfQf8niMslP9gUWwii0eKXSnbu7+LbSOO9i299Vg=;
+ b=BuOAR6FkT79adaOxbc9pjrIMht91N9Vjv+F3z1QqIItgfaPCJwOsbMrM
+ jxcBqYM8P+VYfL+3RYsBz8RDu/MC5M0qKur9XRICx+QGUrxax2BemrM6x
+ bXVcVJL3j8F8TTFzMVztxuE7BiFWlRHFPSRm3SYCVdzCm6WulI9BbZDE9
+ w0kz0hfdqZ7LYALXvjBhAqqo2zYQu4IU8PrgC5T/n658vLUze7TprMF+9
+ VJgwpFnrMeZ8T9930vRVBtirmkHjpukGs/TsuCUf1YxLrODuRXazW1gqn
+ cF29Ncso7i1uwKt1qL/4H+UwrEMoR7iGOiZ+jZfENfQNcoSyDU0qciMUk A==;
+X-CSE-ConnectionGUID: mHe30Yy+SESnb5net7LsBA==
+X-CSE-MsgGUID: Ttc05zbBRIqG/pjfKxi6kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="57549243"
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="57549243"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 07:31:28 -0700
-X-CSE-ConnectionGUID: lzCxz89BSUW7LloHu2bg3Q==
-X-CSE-MsgGUID: Fz8C7YPxTUuuQZ9BugTJBA==
+ 25 Aug 2025 07:48:33 -0700
+X-CSE-ConnectionGUID: fqJSsQ8qRUWETVbsA121PQ==
+X-CSE-MsgGUID: o0FhxdbCQ86eVFHeCbzmAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="169209077"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.119])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 07:31:26 -0700
-Date: Mon, 25 Aug 2025 16:31:23 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Raag Jadav <raag.jadav@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="168915616"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 07:48:31 -0700
+Date: Mon, 25 Aug 2025 16:48:28 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Subject: Re: [PATCH] drm/xe: Skip creation of pcode sysfs files when pcode is
  disabled
-Message-ID: <aKxzu8njh9Xc0wyU@ashyti-mobl2.lan>
+Message-ID: <aKx3vHwxnzf4cExx@black.igk.intel.com>
 References: <20250819175529.3722716-1-andi.shyti@kernel.org>
- <aKibCnAxTuYcKtWx@intel.com>
+ <aKibCnAxTuYcKtWx@intel.com> <aKxzu8njh9Xc0wyU@ashyti-mobl2.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aKibCnAxTuYcKtWx@intel.com>
+In-Reply-To: <aKxzu8njh9Xc0wyU@ashyti-mobl2.lan>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,52 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
-
-On Fri, Aug 22, 2025 at 12:30:02PM -0400, Rodrigo Vivi wrote:
-> On Tue, Aug 19, 2025 at 04:55:29PM -0100, Andi Shyti wrote:
-> > From: Andi Shyti <andi.shyti@linux.intel.com>
-> > 
-> > Coverity warns that 'cap' may be used uninitialised. If pcode
-> > is disabled there is no need to go through the hassle of a
-> > pcode read or taking a PM reference.
+On Mon, Aug 25, 2025 at 04:31:23PM +0200, Andi Shyti wrote:
+> Hi Rodrigo,
 > 
-> Please mark it as false positive!
-
-this patch is not for fixing the Coverity warning, but I saw it
-useless to step any further if there is skip pcode.
-
-The same check is done later in the function, but in the meantime
-we have done a few things that we could have spared.
-
-Andi
-
-> We will only get here for BMG which has pcode for sure.
+> On Fri, Aug 22, 2025 at 12:30:02PM -0400, Rodrigo Vivi wrote:
+> > On Tue, Aug 19, 2025 at 04:55:29PM -0100, Andi Shyti wrote:
+> > > From: Andi Shyti <andi.shyti@linux.intel.com>
+> > > 
+> > > Coverity warns that 'cap' may be used uninitialised. If pcode
+> > > is disabled there is no need to go through the hassle of a
+> > > pcode read or taking a PM reference.
+> > 
+> > Please mark it as false positive!
 > 
+> this patch is not for fixing the Coverity warning, but I saw it
+> useless to step any further if there is skip pcode.
+> 
+> The same check is done later in the function, but in the meantime
+> we have done a few things that we could have spared.
+
+I tried something similar a few days ago, but perhaps not very convincingly
+I presume.
+
+[1] https://lore.kernel.org/intel-xe/20250806152256.748057-1-raag.jadav@intel.com/
+
+Raag
+
+> > We will only get here for BMG which has pcode for sure.
 > > 
-> > Check skip_pcode early in the function and return if it is set.
-> > 
-> > No change for platforms where pcode is enabled.
-> > 
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device_sysfs.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > index bd9015761aa0..3a083c215891 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> > @@ -156,6 +156,9 @@ static int late_bind_create_files(struct device *dev)
-> >  	u32 cap;
-> >  	int ret;
-> >  
-> > +	if (xe->info.skip_pcode)
-> > +		return 0;
-> > +
-> >  	xe_pm_runtime_get(xe);
-> >  
-> >  	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
-> > -- 
-> > 2.50.0
-> > 
+> > > 
+> > > Check skip_pcode early in the function and return if it is set.
+> > > 
+> > > No change for platforms where pcode is enabled.
+> > > 
+> > > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_device_sysfs.c | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > index bd9015761aa0..3a083c215891 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > @@ -156,6 +156,9 @@ static int late_bind_create_files(struct device *dev)
+> > >  	u32 cap;
+> > >  	int ret;
+> > >  
+> > > +	if (xe->info.skip_pcode)
+> > > +		return 0;
+> > > +
+> > >  	xe_pm_runtime_get(xe);
+> > >  
+> > >  	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+> > > -- 
+> > > 2.50.0
+> > > 
