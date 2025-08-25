@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88731CA0FE9
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F848CA0FE7
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:54:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496DD10E46E;
-	Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E83710E477;
+	Mon, 25 Aug 2025 12:54:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVaeNRkQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="caJb/8y/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0C9B10E46C;
- Mon, 25 Aug 2025 12:49:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B2C10E477
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 12:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756126193; x=1787662193;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Y6ABuWtRZiPdaDX44atCkv5KfI7a5MakzT0SWHy9sxU=;
- b=YVaeNRkQDRewIX/6ZpuHLkgO4ftCXNdqhR5rKkAqqxYc3GLDLPb0aHCA
- tzbl521IGsLfq7wVpzTfXyumotbTh/l1E6ql/DDBPfEypD0w8s/IDHonI
- 5jRFHFY4R/9jYyLWVDRiQp+hbiuAIyqxxfEJ3iUxiBMCWmww4JeDF76gy
- P6Ip/NIduUz9uTbQapOZHOhMhbAprYFGzdevHy097r0owqsmnRsvEZVtF
- ZPpRx1RT+gwa14TRWgQJfoeFD7sua33x0Q9h7HQ/+aktIhjxmwNmHCSRo
- rbTimW7TcMVJu3ahnnPdaogUoCj4DJ4DgpFL45e/192J6IBwaXs16r60C w==;
-X-CSE-ConnectionGUID: 5iizN3gCSpOIUUB/+z1ixw==
-X-CSE-MsgGUID: nmIQ+do5Qsq4eiHjQ4lm8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164127"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164127"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:53 -0700
-X-CSE-ConnectionGUID: eRaGFccnRsaIbwYLznMTIw==
-X-CSE-MsgGUID: BZcXr+9cQni1fFQlxQ/Ryw==
+ t=1756126460; x=1787662460;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0iKmqkdCGMviSLBTJgP8vTbJIfUWI4P4Jo+FqMYDM/w=;
+ b=caJb/8y/cm0hpzVbQgf4q+XVad6EOZ6H6S345+8XrWpeTMgGn6mwmD4D
+ vQTHKl+az/xZQmjPwFezWqH3nbiXvhKHObAafvYuYDQEN2h/fiayNzTGn
+ XrUsICB9gq4Ok4EWqMEzdB/HAQYkhiEM1K4gaEdDG1jF2ti5wAfvavv1P
+ VXcelELCkb5Wz9MRzSRca4z6D3ABx+9Bdvc3FRiTcDZqS0wHY7uFI0HdY
+ GeLXjpgNoa4baRLT0gKqzTY7E4d8R89p8zaFhzpPtLgIPrSa0y6DT7Yxv
+ iL+g8sdT3zEDPePLU0oZ6xYameMXD46R+9JlRgB+WTyBNyHGEdMjUc1sh A==;
+X-CSE-ConnectionGUID: z3M17afPQpW73dF/4ITQGQ==
+X-CSE-MsgGUID: SCUfqMSDQfWGEy5XPnsEag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="69769202"
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="69769202"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:54:20 -0700
+X-CSE-ConnectionGUID: WITe7OzaTIyEfzGHhqT5LQ==
+X-CSE-MsgGUID: 8uDl28weRw2zuxXtX2IcDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200230021"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:50 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 10/12] drm/i915/vrr: Use static guardband to support seamless
- LRR switching
-Date: Mon, 25 Aug 2025 18:05:46 +0530
-Message-ID: <20250825123548.3022474-11-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
-References: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="170113978"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:54:18 -0700
+Date: Mon, 25 Aug 2025 14:54:15 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ daniele.ceraolospurio@intel.com, matthew.brost@intel.com
+Subject: Re: [PATCH v2] drm/xe/gt: Introduce runtime suspend/resume
+Message-ID: <aKxc91H1vW4_TIKP@black.igk.intel.com>
+References: <20250825112025.1766637-1-raag.jadav@intel.com>
+ <2cf0bc62-489e-4447-b3ea-a5716b2c3f57@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2cf0bc62-489e-4447-b3ea-a5716b2c3f57@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,236 +69,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the current VRR implementation, vrr.vmin and vrr.guardband are set such
-that they do not need to change when switching from fixed refresh rate to
-variable refresh rate. Specifically, vrr.guardband is always set to match
-the vblank length. This approach works for most cases, but not for LRR,
-where the guardband would need to change while the VRR timing generator is
-still active.
+On Mon, Aug 25, 2025 at 01:52:59PM +0200, Michal Wajdeczko wrote:
+> On 8/25/2025 1:20 PM, Raag Jadav wrote:
+> > If power state is retained between suspend/resume cycle, we don't have
+> > to perform full gt re-initialization. Introduce runtime helpers for gt
+> > which greatly reduce suspend/resume delay.
 
-With the VRR TG always active, live updates to guardband are unsafe and not
-recommended. To ensure hardware safety, guardband was moved out of the
-!fastset block, meaning any change now requires a full modeset.
-This breaks seamless LRR switching, which was previously supported.
+...
 
-Since the problem arises from guardband being matched to the vblank length,
-solution is to use a minimal, sufficient static value, instead. So we use a
-static guardband defined during mode-set that fits within the smallest
-expected vblank and remains unchanged in case of features like LRR where
-vtotal changes. To compute this minimum guardband we take into account
-latencies/delays due to different features as mentioned in the Bspec.
+> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > index a3397f04abcc..9004af061af3 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > @@ -943,6 +943,31 @@ int xe_gt_suspend(struct xe_gt *gt)
+> >  	return err;
+> >  }
+> >  
+> 
+> please add kernel-doc for all new public functions
 
-v2:
--Use helpers for dsc/scaler prefill latencies. (Mitul)
--Account for pkgc latency and take max of pkgc and sagv latencies.
-v3: Use new helper for PSR2/Panel Replay latency.
+I had planned a separate file-wide patch so that the rest of the helpers
+don't feel left out.
 
-Bspec: 70151
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |   2 +-
- drivers/gpu/drm/i915/display/intel_vrr.c     | 132 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_vrr.h     |   3 +-
- 3 files changed, 133 insertions(+), 4 deletions(-)
+> > +int xe_gt_runtime_suspend(struct xe_gt *gt)
+> > +{
+> > +	unsigned int fw_ref;
+> > +	int err = -ETIMEDOUT;
+> 
+> this is only used in err_msg, maybe just hardcode it there
+> or use something else than %pe ?
+> 
+> note that if fw_get fails then there should be already big:
+> 
+> xe_gt_WARN(..."Forcewake domain%s %#x failed to acknowledge awake request
+> 
+> so this log with -ETIMEDOUT seems redundant
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 787bb6ebdc75..98ac51f10691 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4902,7 +4902,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 	struct drm_connector *connector;
- 	int i;
- 
--	intel_vrr_compute_config_late(crtc_state);
- 
- 	for_each_new_connector_in_state(&state->base, connector,
- 					conn_state, i) {
-@@ -4914,6 +4913,7 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 		    !encoder->compute_config_late)
- 			continue;
- 
-+		intel_vrr_compute_config_late(crtc_state, conn_state);
- 		ret = encoder->compute_config_late(encoder, crtc_state,
- 						   conn_state);
- 		if (ret)
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 862adddcfebb..fb4cfa048c57 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -6,12 +6,15 @@
- 
- #include <drm/drm_print.h>
- 
-+#include "intel_alpm.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_vrr.h"
- #include "intel_vrr_regs.h"
-+#include "skl_scaler.h"
-+#include "skl_watermark.h"
- 
- #define FIXED_POINT_PRECISION		100
- #define CMRR_PRECISION_TOLERANCE	10
-@@ -413,15 +416,140 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	}
- }
- 
--void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
-+static
-+int scaler_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
-+{
-+	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-+	u64 hscale_k, vscale_k;
-+	int cdclk_adjustment;
-+	int num_scaler_users;
-+
-+	/*
-+	 * Assuming:
-+	 * Both scaler enabled.
-+	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
-+	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
-+	 * Cdclk Adjustment : 1
-+	 */
-+	num_scaler_users = 2;
-+	hscale_k = 2 * 1000;
-+	vscale_k = 2 * 1000;
-+	cdclk_adjustment = 1;
-+
-+	return intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
-+						  chroma_downscaling_factor,
-+						  cdclk_adjustment,
-+						  linetime_us);
-+}
-+
-+static
-+int dsc_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
-+{
-+#define MAX_SCALERS 2
-+	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-+	u64 hscale_k[MAX_SCALERS], vscale_k[MAX_SCALERS];
-+	int cdclk_adjustment;
-+	int num_scaler_users;
-+
-+	/*
-+	 * Assuming:
-+	 * Both scaler enabled.
-+	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
-+	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
-+	 * Cdclk Adjustment : 1
-+	 */
-+	num_scaler_users = MAX_SCALERS;
-+	hscale_k[0] = 2 * 1000;
-+	vscale_k[0] = 2 * 1000;
-+	hscale_k[1] = 2 * 1000;
-+	vscale_k[1] = 1 * 1000;
-+
-+	cdclk_adjustment = 1;
-+
-+	return intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
-+					       chroma_downscaling_factor,
-+					       cdclk_adjustment,
-+					       linetime_us);
-+}
-+
-+static
-+int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
-+				struct intel_connector *connector)
-+{
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	int dsc_prefill_time = 0;
-+	int psr2_pr_latency = 0;
-+	int scaler_prefill_time;
-+	int wm0_prefill_time;
-+	int pkgc_max_latency;
-+	int sagv_latency;
-+	int sdp_latency = 0;
-+	int guardband_us;
-+	int linetime_us;
-+	int guardband;
-+	int pm_delay;
-+
-+	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
-+				   adjusted_mode->crtc_clock);
-+
-+	pkgc_max_latency = skl_watermark_max_latency(display, 1);
-+	sagv_latency = display->sagv.block_time_us;
-+
-+	/* Assuming max wm0 lines = 4 */
-+	wm0_prefill_time = 4 * linetime_us + 20;
-+
-+	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
-+
-+	if (crtc_state->dsc.compression_enable)
-+		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
-+
-+	pm_delay = crtc_state->framestart_delay +
-+		   max(sagv_latency, pkgc_max_latency) +
-+		   wm0_prefill_time +
-+		   scaler_prefill_time +
-+		   dsc_prefill_time;
-+
-+	switch (connector->base.connector_type) {
-+	case DRM_MODE_CONNECTOR_eDP:
-+	case DRM_MODE_CONNECTOR_DisplayPort:
-+		psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, true);
-+		sdp_latency = intel_dp_compute_sdp_latency(crtc_state, true);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	guardband_us = max(sdp_latency, psr2_pr_latency);
-+	guardband_us = max(guardband_us, pm_delay);
-+
-+	guardband = DIV_ROUND_UP(guardband_us, linetime_us);
-+
-+	/* guardband cannot be more than the Vmax vblank */
-+	guardband = min(guardband, crtc_state->vrr.vmax - adjusted_mode->crtc_vblank_start);
-+
-+	return guardband;
-+}
-+
-+void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
-+				   struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
- 
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
--	if (DISPLAY_VER(display) >= 13) {
-+	if (intel_vrr_always_use_vrr_tg(display)) {
-+		crtc_state->vrr.guardband = intel_vrr_compute_guardband(crtc_state, connector);
-+		if (crtc_state->uapi.vrr_enabled) {
-+			crtc_state->vrr.vmin = crtc_state->vrr.guardband +
-+					       adjusted_mode->crtc_vblank_start;
-+			crtc_state->vrr.flipline = crtc_state->vrr.vmin;
-+		}
-+	} else if (DISPLAY_VER(display) >= 13) {
- 		crtc_state->vrr.guardband =
- 			crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start;
- 	} else {
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 950041647e47..362638fd0d66 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -21,7 +21,8 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
- void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
--void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
-+void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
-+				   struct drm_connector_state *conn_state);
- void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(struct intel_dsb *dsb,
--- 
-2.45.2
+Failed attempt at stealing gt_suspend/resume code :D
+Makes sense.
 
+> > +	xe_gt_dbg(gt, "runtime suspending\n");
+> > +
+> > +	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> > +	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
+> > +		goto err_msg;
+> > +
+> > +	xe_uc_runtime_suspend(&gt->uc);
+> > +
+> > +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> > +	xe_gt_dbg(gt, "runtime suspended\n");
+> > +
+> > +	return 0;
+> > +
+> > +err_msg:
+> > +	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+> > +	xe_gt_err(gt, "runtime suspend failed (%pe)\n", ERR_PTR(err));
+> > +
+> > +	return err;
+> > +}
+
+...
+
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > index 3f4e6a46ff16..f769245f91ae 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > @@ -465,7 +465,15 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
+> >  		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
+> >  }
+> >  
+> > -int xe_guc_ct_enable(struct xe_guc_ct *ct)
+> > +void xe_guc_ct_enable(struct xe_guc_ct *ct)
+> > +{
+> > +	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+> > +
+> > +	if (ct_needs_safe_mode(ct))
+> > +		ct_enter_safe_mode(ct);
+> > +}
+> > +
+> 
+> add kernel-doc
+> 
+> and maybe we should expose
+> 
+> 	xe_guc_ct_runtime_suspend
+> 	xe_guc_ct_runtime_resume
+> 
+> to make it clear when it should called and all logic related to
+> CT will be kept in the ct.c code
+
+With that we'll be down 4 level of abstraction just calling each other
+without much really happening underneath other than ct_enable/disable,
+but sure if it makes more sense.
+
+Raag
