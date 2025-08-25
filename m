@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23273CA0FE9
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD60CA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4421F10E259;
-	Mon, 25 Aug 2025 12:38:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8132010E458;
+	Mon, 25 Aug 2025 12:49:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=achill.org header.i=@achill.org header.b="b9LbBD0g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TaEN9ISR";
 	dkim-atps=neutral
-X-Greylist: delayed 517 seconds by postgrey-1.36 at gabe;
- Mon, 25 Aug 2025 01:18:19 UTC
-Received: from mailout02.platinum-mail.de (mx02.platinum-mail.de
- [89.58.18.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B324010E229
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 01:18:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mailout02.platinum-mail.de (Mail Service) with ESMTPS id C744D9A0B0D
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 01:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; d=achill.org; s=mail; c=relaxed/simple;
- t=1756084179; h=date:message-id:subject:from:to;
- bh=Rh4dkKQC119Akv41mQ4vorQSwJE1Xtdn9NDHvo5rGBo=;
- b=b9LbBD0gtwCWpIl9a4xqUddAEwBbdZ3ZU1IB45RzpC8xoOrDLpFM/OB0MTHchB/4wbCYS5FpwdK
- 8dmMP18/Co7iDnePg520h+rUzAOI0V/baCJugx4ZRSMQl/iR99/lLdcaJcTDj7MNyUsOG2aoiXwu/
- 8Q58xdEmOslNIJusigAbs+WS867w7g966l5oOt922GYHh5CK0g8/l/Zb2NVVZVc2Zxh40/D+Gc14/
- AyXxLtl+zkBrQxDlkUjjBvsozH4VJE9YE74OppzlCBvMZ4puGSMAEefVuGJhLktwLlr/G5+ibuRMN
- /ncWZUMDGISv6qV7mPqzjO2nFLsIr6W8CWvg==
-From: Achill Gilgenast <achill@achill.org>
-To: Matt Atwood <matthew.s.atwood@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, Achill Gilgenast <achill@achill.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH] drm/xe: add missing include <libgen.h>
-Date: Mon, 25 Aug 2025 03:09:09 +0200
-Message-ID: <20250825010914.99742-1-achill@achill.org>
-X-Mailer: git-send-email 2.51.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE06910E458;
+ Mon, 25 Aug 2025 12:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756126172; x=1787662172;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/1icQ0hi4jaVIlKiUYbLI2VG+FVnBDDLr3w7QdXsGS8=;
+ b=TaEN9ISRdOSixth9kkTWjRSUhFAaeNHl2iFyN54R/Luh88aCUt6H6ETA
+ Z98hKYHz9cAAC2teB+La+/Oduvwo8SML5zqI09p0dqnZvEGC4WjfCCfE3
+ Lxzl3gR1f1K24hmsmNNXykVoTMSe9Oa5o3dKXR7J/rTrVBs3oYGvzm4CI
+ VydlLE18PrDsUdBd9JYI50YVwlvub1LcEsir0GLZ1yIRPvSgBVZ8uSF/v
+ U8OXUV4td5EEoQasiBheBBU4eBQiTjh+s4vsEnoeYwRXYVQTMQzmHGpKz
+ 57N3bS/+Zz+digBJ9uXOysoHiqmiLL+S7hj2OwyacpisToOzPl3qzRsKW w==;
+X-CSE-ConnectionGUID: EHqfztj5Rl6aQtLPxDgPFQ==
+X-CSE-MsgGUID: sbxmGuQURQe/mzZw65wWwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164111"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164111"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:49:32 -0700
+X-CSE-ConnectionGUID: cKdHxAxCSNqaVpfaDXu5PQ==
+X-CSE-MsgGUID: AxWDBjg/S42NXEt43Rnjzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200229874"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:49:30 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/12] Optimize vrr.guardband and fix LRR
+Date: Mon, 25 Aug 2025 18:05:36 +0530
+Message-ID: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=utf-8
-X-Mailman-Approved-At: Mon, 25 Aug 2025 12:38:33 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +65,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-basename() got implicitly included on glibc but not on other libc's like
-musl libc and therefore fails to build:
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-/home/achill/git/user-aports/experimental/linux-mainline/src/linux-6.17-rc3=
-/drivers/gpu/drm/xe/xe_gen_wa_oob.c: In function 'fn_to_prefix':
-/home/achill/git/user-aports/experimental/linux-mainline/src/linux-6.17-rc3=
-/drivers/gpu/drm/xe/xe_gen_wa_oob.c:130:14: error: implicit declaration of =
-function 'basename'; did you mean 'rename'? [-Wimplicit-function-declaratio=
-n]
-  130 |         fn =3D basename(fn);
-      |              ^~~~~~~~
-      |              rename
-/home/achill/git/user-aports/experimental/linux-mainline/src/linux-6.17-rc3=
-/drivers/gpu/drm/xe/xe_gen_wa_oob.c:130:12: error: assignment to 'const cha=
-r *' from 'int' makes pointer from integer without a cast [-Wint-conversion=
-]
-  130 |         fn =3D basename(fn);
-      |            ^
+First few patches fix/refactor and extract common functions required for
+dsc/scaler prefill time computation. Later patches use these helpers to
+compute an optimized guardband.
 
-Fixes: b0a2ee5567ab ("drm/xe: prepare xe_gen_wa_oob to be multi-use")
-Signed-off-by: Achill Gilgenast <achill@achill.org>
----
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 1 +
- 1 file changed, 1 insertion(+)
+Also, for seamless_mn where vtotal is same but mode clock is changed to
+seamlessly switch to lower rate, re-compute the vrr timings.
 
-diff --git a/drivers/gpu/drm/xe/xe_gen_wa_oob.c b/drivers/gpu/drm/xe/xe_gen=
-_wa_oob.c
-index 6581cb0f0e59..74af4b9fde65 100644
---- a/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-+++ b/drivers/gpu/drm/xe/xe_gen_wa_oob.c
-@@ -6,6 +6,7 @@
- #define _GNU_SOURCE
- #include <ctype.h>
- #include <errno.h>
-+#include <libgen.h>
- #include <stdbool.h>
- #include <stdio.h>
- #include <string.h>
---=20
-2.51.0
+Few things that still need work:
+-The timestamps corresponding with next start of vactive still need to be
+fixed with the new scheme.
+-Re-enabling CMRR
+
+Rev2:
+-Address comments from Mitul.
+-Extract helpers for dsc/scaler prefill latencies.
+-Fix downscaling factor for chroma subsampling.
+-Use missing pkg C max latency.
+-Fix guardband computation for seamless mn, always use vblank for
+higher resolution.
+
+Rev3:
+-Drop patches for computing and storing PSR/Panel Replay wake times
+latencies and use existing helpers to compute these in intel_alpm.c.
+-Drop patch to change the Vmin as it was not required.
+
+Rev4:
+-Rebase
+-Drop patch for checking bounds for scaler array access.
+-Use a new flag for setting vrr timings for seamless drrs.
+
+Rev5:
+-Address comments from Mitul, Jani:
+-Refactor few helpers for computing latencies.
+-Rename the helper to check the guardband to intel_crtc_guardband_atomic_check()
+-Refactor the helper intel_panel_highest_mode().
+
+Rev6:
+-Rebase
+-Address review comments from Mitul.
+-Improve documentation for and other minor fixes in Patch#12
+
+Rev7:
+-Address comments from Jani.
+-Move the latency helpers from intel_display.c to intel_vrr.c and rename
+the helpers appropriately.
+-Drop redundant check for HAS_VRR with intel_vrr_possible().
+
+Ankit Nautiyal (12):
+  drm/i915/skl_watermark: Fix the scaling factor for chroma subsampling
+  drm/i915/skl_watermark: Pass linetime as argument to latency helpers
+  drm/i915/skl_scaler: Introduce helper for chroma downscale factor
+  drm/i915/display: Extract helpers to set dsc/scaler prefill latencies
+  drm/i915/dp: Add SDP latency computation helper
+  drm/i915/alpm: Add function to compute max link-wake latency
+  drm/i915/vrr: Use vrr.sync_start for getting vtotal
+  drm/i915/display: Add guardband check for feature latencies
+  drm/i915/skl_watermark: Remove redundant latency checks from vblank
+    validation
+  drm/i915/vrr: Use static guardband to support seamless LRR switching
+  drm/i915/panel: Refactor helper to get highest fixed mode
+  drm/i915/vrr: Fix seamless_mn drrs for PTL
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  15 +
+ drivers/gpu/drm/i915/display/intel_alpm.h     |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 144 ++++++++-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  63 +++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |  11 +-
+ drivers/gpu/drm/i915/display/intel_panel.h    |   3 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 276 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  11 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |   5 +
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   3 +
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  89 +-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ 14 files changed, 507 insertions(+), 120 deletions(-)
+
+-- 
+2.45.2
+
