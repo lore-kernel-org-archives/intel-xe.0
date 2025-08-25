@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 578AACA0FE7
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 16:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8DA5CA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 17:23:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F336010E512;
-	Mon, 25 Aug 2025 16:58:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TBI7ieVQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCC5F10E512
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 16:58:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756141128; x=1787677128;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nvIU3HVCuFJPCRYKAO/83hDIObaBSAwm3D5pcVta4QU=;
- b=TBI7ieVQ1tzUIJXSMlHs3u8ziRInQp4ZoH4DyVFOIm33Dp6AkLKc5XtE
- pAnjqkS2FkMMygWQH9QaMVmiJa8j4Uny/EhTa/kI6K6yLZZHh6bk9HgBl
- +DDGw8FAFnYa0j8IVBVTLa38N+unYPptKxC+Xd+txzxckfYiE1kNpPM7+
- YsdOZSfAoczfkC5gcrhiIA51jB3pwLfsyohgubMJKFlEDzKlro+4etxt/
- Jpb9+rExZyqNHjNkHEbUXrqLX33YicfsyA8jl/0n4uOyv8obDDjxGOTLW
- 20xuIleQ3T+KY81Oz7+a8WpMQgsqAk0n4G0liW0G2qAHac3bhD9wqT9E6 w==;
-X-CSE-ConnectionGUID: aKhe3dE1Qc+KH3Erqr0c2w==
-X-CSE-MsgGUID: 5pYAT/TAQKScjWXwOc4Y8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="58223574"
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="58223574"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 09:58:48 -0700
-X-CSE-ConnectionGUID: JXnZfHkjTk27Zegofgfocw==
-X-CSE-MsgGUID: vZXJC55gQ4ySiBnsVFk0+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200296946"
-Received: from osgc-sh-rabbit.sh.intel.com ([10.239.81.90])
- by orviesa002.jf.intel.com with ESMTP; 25 Aug 2025 09:58:47 -0700
-From: Xin Wang <x.wang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, karthik.poosa@intel.com, james.xiong@intel.com,
- stuart.summers@intel.com, shuicheng.lin@intel.com,
- vinay.belgaumkar@intel.com, Xin Wang <x.wang@intel.com>
-Subject: [PATCH 2/2] drm/xe: Ensure GT is in C0 during resumes
-Date: Mon, 25 Aug 2025 09:57:59 -0700
-Message-ID: <20250825165759.1263546-3-x.wang@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250825165759.1263546-1-x.wang@intel.com>
-References: <20250825165759.1263546-1-x.wang@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0E0B10E516;
+	Mon, 25 Aug 2025 17:23:36 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A221410E516;
+ Mon, 25 Aug 2025 17:23:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2851347301312549728=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Test_GuC_v70?=
+ =?utf-8?q?=2E49=2E3_for_BMG=2C_LNL=2C_PTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 25 Aug 2025 17:23:35 -0000
+Message-ID: <175614261563.266160.6538082392312424315@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250825155304.165664-2-julia.filipchuk@intel.com>
+In-Reply-To: <20250825155304.165664-2-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,58 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch ensures the gt will be awake for the entire duration
-of the resume sequences until GuCRC takes over and GT-C6 gets
-re-enabled.
+--===============2851347301312549728==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Before suspending GT-C6 is kept enabled, but upon resume, GuCRC
-is not yet alive to properly control the exits and some cases of
-instability and corruption related to GT-C6 can be observed.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4037
+Series: drm/xe/guc: Test GuC v70.49.3 for BMG, LNL, PTL
+URL   : https://patchwork.freedesktop.org/series/153459/
+State : success
 
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
- drivers/gpu/drm/xe/xe_pm.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 51934d5dc44f..a2e85030b7f4 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -18,7 +18,7 @@
- #include "xe_device.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
--#include "xe_guc.h"
-+#include "xe_gt_idle.h"
- #include "xe_i2c.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
-@@ -177,6 +177,9 @@ int xe_pm_resume(struct xe_device *xe)
- 	drm_dbg(&xe->drm, "Resuming device\n");
- 	trace_xe_pm_resume(xe, __builtin_return_address(0));
- 
-+	for_each_gt(gt, xe, id)
-+		xe_gt_idle_disable_c6(gt);
-+
- 	for_each_tile(tile, xe, id)
- 		xe_wa_apply_tile_workarounds(tile);
- 
-@@ -533,6 +536,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 
- 	xe_rpm_lockmap_acquire(xe);
- 
-+	for_each_gt(gt, xe, id)
-+		xe_gt_idle_disable_c6(gt);
-+
- 	if (xe->d3cold.allowed) {
- 		err = xe_pcode_ready(xe, true);
- 		if (err)
--- 
-2.43.0
+CI Bug Log - changes from xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2_BAT -> xe-pw-153459v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153459v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - {bat-ptl-1}:        [DMESG-WARN][1] ([Intel XE#5772]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - {bat-ptl-2}:        [DMESG-WARN][3] ([Intel XE#5772]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5772]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772
+
+
+Build changes
+-------------
+
+  * Linux: xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2 -> xe-pw-153459v1
+
+  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2: f1bad25fa12671f09a9afaeba55789eb519c1eb2
+  xe-pw-153459v1: 153459v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/index.html
+
+--===============2851347301312549728==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Test GuC v70.49.3 for BMG, LNL, PTL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153459/">https://patchwork.freedesktop.org/series/153459/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2_BAT -&gt; xe-pw-153459v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153459v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153459v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2 -&gt; xe-pw-153459v1</li>
+</ul>
+<p>IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3612-f1bad25fa12671f09a9afaeba55789eb519c1eb2: f1bad25fa12671f09a9afaeba55789eb519c1eb2<br />
+  xe-pw-153459v1: 153459v1</p>
+
+</body>
+</html>
+
+--===============2851347301312549728==--
