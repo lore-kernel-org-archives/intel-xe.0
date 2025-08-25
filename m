@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 740DCCA0EFA
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 15:46:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D0ECCA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 15:49:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE9E10E4EF;
-	Mon, 25 Aug 2025 15:46:50 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C58F10E4F0;
- Mon, 25 Aug 2025 15:46:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8618962787544606036=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA5EC10E4F0;
+	Mon, 25 Aug 2025 15:49:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H1wEHQXD";
+	dkim-atps=neutral
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF9810E4EF;
+ Mon, 25 Aug 2025 15:49:29 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id BC1215C1FDF;
+ Mon, 25 Aug 2025 15:49:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A110C4CEED;
+ Mon, 25 Aug 2025 15:49:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756136968;
+ bh=7ht5/b4xlL+4AU08+TVo8TKbqrbGIsxINkBeZCWLwpI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=H1wEHQXDJnc6u/gz3Ul66uSIGX17+jSQbG2ir6A4AZKd2qCfrUsG+Ff0GlEK6t10x
+ NUEy1f4+IBoONb9yVCTcqGtvcDC7Zwtl74W2U6kJgKFgZzk9Z19s16KqaBhCxMnBv+
+ 24Ido8eE7k7FcVfs4yxfVRurB4KZAL4MUXzgil31lHR276nhqq2lkX/MDNl4ARx6ib
+ A2FoU9nGpEd+oZnmzFQtWLGgsdIDElYDx5PCuBD+HPClPrD2dvNhQUOmGKLPUvkgNn
+ SqKujDusxX3l4hv81oHp+8PCv9sjbcdP7Z9k0v6VQFivAoN5+2GvceTYPMrdwIb1bx
+ eCtbKAVcqMDEQ==
+Date: Mon, 25 Aug 2025 17:49:26 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>, maarten.lankhorst@linux.intel.com, 
+ tzimmermann@suse.de, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ anshuman.gupta@intel.com, lucas.demarchi@intel.com,
+ aravind.iddamsetty@linux.intel.com, 
+ raag.jadav@intel.com, umesh.nerlige.ramappa@intel.com,
+ frank.scarbrough@intel.com, sk.anirban@intel.com, simona.vetter@ffwll.ch, 
+ =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>
+Subject: Re: [PATCH v8 02/10] drm: Add a vendor-specific recovery method to
+ drm device wedged uevent
+Message-ID: <20250825-solid-leech-of-beauty-2fccac@houat>
+References: <20250814121448.3380784-1-riana.tauro@intel.com>
+ <20250814121448.3380784-3-riana.tauro@intel.com>
+ <aKICgFd9IfSRGbYq@intel.com>
+ <20ee25be-90cf-4a00-8ffa-0b22c7a1b493@intel.com>
+ <aKc4eSmYqhSWgwMI@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/vrr=3A_Drop_redund?=
- =?utf-8?q?ant_HAS=5FVRR_checks?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Aug 2025 15:46:49 -0000
-Message-ID: <175613680904.267285.6278503384859395416@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250825135733.3202475-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250825135733.3202475-1-ankit.k.nautiyal@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="qbozinvfxuqrwp5k"
+Content-Disposition: inline
+In-Reply-To: <aKc4eSmYqhSWgwMI@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,135 +67,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8618962787544606036==
-Content-Type: text/plain; charset="utf-8"
+
+--qbozinvfxuqrwp5k
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 02/10] drm: Add a vendor-specific recovery method to
+ drm device wedged uevent
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On Thu, Aug 21, 2025 at 11:17:13AM -0400, Rodrigo Vivi wrote:
+> On Thu, Aug 21, 2025 at 08:01:39PM +0530, Riana Tauro wrote:
+> > Hi Maxime
+> >=20
+> > This patch has the changes suggested wrt to documentation in v7. Have a=
+dded
+> > whatever Rodrigo suggested in the doc. Please let us know if the change=
+s are
+> > okay and if the patch can be merged.
+>=20
+> Maxime already told he is okay with the changes:
+> https://lore.kernel.org/dri-devel/5hkngbuzoryldvjrtjwalxhosdhtweeinpjpygu=
+zltjmee7mpu@vw44iwczytw5/
+>=20
+> >=20
+> > This needs a drm-misc maintainer ack to go ahead.
+>=20
+> But we still need some formal ack here to move ahead with this patch inde=
+ed.
 
-Series: drm/i915/vrr: Drop redundant HAS_VRR checks
-URL   : https://patchwork.freedesktop.org/series/153452/
-State : success
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-== Summary ==
+Maxime
 
-CI Bug Log - changes from xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695_BAT -> xe-pw-153452v1_BAT
-====================================================
+--qbozinvfxuqrwp5k
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Summary
--------
+-----BEGIN PGP SIGNATURE-----
 
-  **SUCCESS**
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaKyGAQAKCRAnX84Zoj2+
+dtQeAYCn/9B6jL94J5B2QBZee63/hADeFnnh73HR3dBtJJCWOEw7zagmcdNrCkpY
+KooiEjcBfil1NnHAnpQ7SD/idMcE1WqIV0Y+ed6+9lbBSkqCf1DtLQm81C1GedN6
+znnM2jSDHQ==
+=+fkd
+-----END PGP SIGNATURE-----
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153452v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8505 -> IGT_8506
-  * Linux: xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695 -> xe-pw-153452v1
-
-  IGT_8505: 8505
-  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695: 5481954bd63bd4d34a5acb2b89fb2caf55bb0695
-  xe-pw-153452v1: 153452v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html
-
---===============8618962787544606036==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vrr: Drop redundant HAS_VRR checks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153452/">https://patchwork.freedesktop.org/series/153452/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695_BAT -&gt; xe-pw-153452v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153452v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8505 -&gt; IGT_8506</li>
-<li>Linux: xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695 -&gt; xe-pw-153452v1</li>
-</ul>
-<p>IGT_8505: 8505<br />
-  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695: 5481954bd63bd4d34a5acb2b89fb2caf55bb0695<br />
-  xe-pw-153452v1: 153452v1</p>
-
-</body>
-</html>
-
---===============8618962787544606036==--
+--qbozinvfxuqrwp5k--
