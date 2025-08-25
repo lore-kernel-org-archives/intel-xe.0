@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0DDAC8303F
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 19:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2E1CA0FE7
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 19:09:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FEF110E0BA;
-	Mon, 25 Aug 2025 19:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5D0D10E535;
+	Mon, 25 Aug 2025 19:09:37 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAEEC10E0BA;
- Mon, 25 Aug 2025 19:04:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1070875555090745209=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2528610E535;
+ Mon, 25 Aug 2025 19:09:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Ensure_GT_is_in_C0_during_r?=
- =?utf-8?q?esumes_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_TLB_invalidation_abst?=
+ =?utf-8?q?raction_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wang, X" <x.wang@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Aug 2025 19:04:17 -0000
-Message-ID: <175614865782.268230.16341140028937224076@1538d3639d33>
+Date: Mon, 25 Aug 2025 19:09:37 -0000
+Message-ID: <175614897714.268187.12795423095694465621@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250825165759.1263546-1-x.wang@intel.com>
-In-Reply-To: <20250825165759.1263546-1-x.wang@intel.com>
+References: <20250825175721.89129-1-stuart.summers@intel.com>
+In-Reply-To: <20250825175721.89129-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,115 +40,108 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1070875555090745209==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Ensure GT is in C0 during resumes (rev2)
-URL   : https://patchwork.freedesktop.org/series/153370/
-State : success
+Series: Add TLB invalidation abstraction (rev9)
+URL   : https://patchwork.freedesktop.org/series/152022/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729_BAT -> xe-pw-153370v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+553439844b6500767ce8aef522cfe9fbb7ece541
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d1b344af6d143951a7a36c2c4876605d0e659d9e
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Aug 25 17:57:21 2025 +0000
 
-Summary
--------
+    drm/xe: Split TLB invalidation code in frontend and backend
+    
+    The frontend exposes an API to the driver to send invalidations, handles
+    sequence number assignment, synchronization (fences), and provides a
+    timeout mechanism. The backend issues the actual invalidation to the
+    hardware (or firmware).
+    
+    The new layering easily allows issuing TLB invalidations to different
+    hardware or firmware interfaces.
+    
+    Normalize some naming while here too.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+    Reviewed-by: Stuart Summers <stuart.summers@intel.com>
++ /mt/dim checkpatch a7c735c1739662dcc431bda50653821bff0d63fb drm-intel
+890a6bbbae5b drm/xe: Move explicit CT lock in TLB invalidation sequence
+72d981660ff5 drm/xe: Cancel pending TLB inval workers on teardown
+d67ccf64f356 drm/xe: s/tlb_invalidation/tlb_inval
+-:137: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#137: 
+rename from drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 1143 lines checked
+4cf7b30db663 drm/xe: Add xe_tlb_inval structure
+87ea3a175314 drm/xe: Add xe_gt_tlb_invalidation_done_handler
+c50850989e68 drm/xe: Decouple TLB invalidations from GT
+-:103: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#103: 
+deleted file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 1234 lines checked
+3ad5b30d0e7c drm/xe: Prep TLB invalidation fence before sending
+208dcf0f629b drm/xe: Add helpers to send TLB invalidations
+d1b344af6d14 drm/xe: Split TLB invalidation code in frontend and backend
+-:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#61: 
+new file mode 100644
 
-  
+-:712: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__tlb_inval' - possible side-effects?
+#712: FILE: drivers/gpu/drm/xe/xe_tlb_inval.c:240:
++#define xe_tlb_inval_issue(__tlb_inval, __fence, op, args...)	\
++({								\
++	int __ret;						\
++								\
++	xe_assert((__tlb_inval)->xe, (__tlb_inval)->ops);	\
++	xe_assert((__tlb_inval)->xe, (__fence));		\
++								\
++	mutex_lock(&(__tlb_inval)->seqno_lock); 		\
++	xe_tlb_inval_fence_prep((__fence));			\
++	__ret = op((__tlb_inval), (__fence)->seqno, ##args);	\
++	if (__ret < 0)						\
++		xe_tlb_inval_fence_signal_unlocked((__fence));	\
++	mutex_unlock(&(__tlb_inval)->seqno_lock);		\
++								\
++	__ret == -ECANCELED ? 0 : __ret;			\
++})
 
-Participating hosts (11 -> 11)
-------------------------------
+-:712: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__fence' - possible side-effects?
+#712: FILE: drivers/gpu/drm/xe/xe_tlb_inval.c:240:
++#define xe_tlb_inval_issue(__tlb_inval, __fence, op, args...)	\
++({								\
++	int __ret;						\
++								\
++	xe_assert((__tlb_inval)->xe, (__tlb_inval)->ops);	\
++	xe_assert((__tlb_inval)->xe, (__fence));		\
++								\
++	mutex_lock(&(__tlb_inval)->seqno_lock); 		\
++	xe_tlb_inval_fence_prep((__fence));			\
++	__ret = op((__tlb_inval), (__fence)->seqno, ##args);	\
++	if (__ret < 0)						\
++		xe_tlb_inval_fence_signal_unlocked((__fence));	\
++	mutex_unlock(&(__tlb_inval)->seqno_lock);		\
++								\
++	__ret == -ECANCELED ? 0 : __ret;			\
++})
 
-  No changes in participating hosts
+-:719: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#719: FILE: drivers/gpu/drm/xe/xe_tlb_inval.c:247:
++^Imutex_lock(&(__tlb_inval)->seqno_lock); ^I^I\$
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153370v2_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8506 -> IGT_8507
-  * Linux: xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729 -> xe-pw-153370v2
-
-  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8507: 8507
-  xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729: 18d3cf2c98bae56e1e393a788980d9d26442f729
-  xe-pw-153370v2: 153370v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153370v2/index.html
-
---===============1070875555090745209==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Ensure GT is in C0 during resumes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153370/">https://patchwork.freedesktop.org/series/153370/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153370v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153370v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 2 checks, 1151 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729_BAT -&gt; xe-pw-153370v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153370v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8506 -&gt; IGT_8507</li>
-<li>Linux: xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729 -&gt; xe-pw-153370v2</li>
-</ul>
-<p>IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8507: 8507<br />
-  xe-3613-18d3cf2c98bae56e1e393a788980d9d26442f729: 18d3cf2c98bae56e1e393a788980d9d26442f729<br />
-  xe-pw-153370v2: 153370v2</p>
-
-</body>
-</html>
-
---===============1070875555090745209==--
