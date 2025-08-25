@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04A30CA0FEE
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:50:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0D9CA0FED
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B536F10E46F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0C810E467;
 	Mon, 25 Aug 2025 12:49:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E0AsZCXY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R0A1jEMl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D619C10E46B;
- Mon, 25 Aug 2025 12:49:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74DED10E45C;
+ Mon, 25 Aug 2025 12:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756126195; x=1787662195;
+ t=1756126191; x=1787662191;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DOPVQV8nJv612ifAHFGD5/rYc5n+xo5+x+b+XnaSxvg=;
- b=E0AsZCXY9db844AguwsqC/BycZ6Bgtz+89dk9CfYGOS/R8DYNJDnPmAN
- Y+yHp1l/v0LQ5o2/lCCqIsPGPCnBXNAkW6n1NpiHcLAPAmxdQT2LRAaca
- ZYjNiodr6mL62UO5ePt2FlxlSnE3trOSBpxk89Y9SbKPrFsRTvtwW5RXp
- 3uz/8pj/uRuJgD2xENkY9QFsKQVVT/3MYKrrlsWOgNdDobNdE0KoDCcDY
- D+Qd/omo1h1ICuSw3i5KCOaCEVkpdpW0mskkm9ksnxvUQEwcKrXwKryiM
- of7LrOkHD3eDW4QdJdJISUS7A215q3eE2ReZZRQINgRhBos/mwrlaiC+v A==;
-X-CSE-ConnectionGUID: 6J6cQnn9Q4GZYuTVBLWSeA==
-X-CSE-MsgGUID: Yh8zA8+/S46KrvX8tDdqcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164128"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164128"
+ bh=MFOb4FHtCPujkm0NuxhSsUZfQs3nbcyLtZooj+BrD/s=;
+ b=R0A1jEMlD/xcmGh0wyCwCVKIFzFJlVeB8p+2SyWp86TI82AM5W6T2fL8
+ 0FmJnkmAGI/XYJX0sU30qX62WLpDHzsnCmckM+q9+CicJAOwphacGA0tW
+ 356HoZygTzPFk/ZUs+hNX/i1AxfOyI+268blXHyOWV7na31BchwnKLFHX
+ ASKskSah1vn+dNIys3Mw7+uHz8E4p+iDs5Sxw4lnKFvGncSUjKKGR1IUF
+ GUbFOr5w1j9r/uxkeD6MsmTW79JLaCOBBTgQAETU0Feb8uQgXXzdo/V/v
+ e60pYg9MmrS3ijVTcaY3D84l/0QNOSRCBJFChC7uMy4vwuXIgd+bqVXWg w==;
+X-CSE-ConnectionGUID: C5VI6boyTludowVCkwe2vw==
+X-CSE-MsgGUID: N1zuoFa6RaqBywQeLY2/xg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164125"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164125"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:55 -0700
-X-CSE-ConnectionGUID: vRYmP+c5TviolR6oFZx5mw==
-X-CSE-MsgGUID: CnKVD8CSR92YLn1FWmxlag==
+ 25 Aug 2025 05:49:51 -0700
+X-CSE-ConnectionGUID: 7fVrL69sQReFDa/7ju5i0Q==
+X-CSE-MsgGUID: fpeZ1k7tSdiAGpHGqLtRpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200230030"
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200230003"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:53 -0700
+ 25 Aug 2025 05:49:48 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 11/12] drm/i915/panel: Refactor helper to get highest fixed
- mode
-Date: Mon, 25 Aug 2025 18:05:47 +0530
-Message-ID: <20250825123548.3022474-12-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/12] drm/i915/skl_watermark: Remove redundant latency checks
+ from vblank validation
+Date: Mon, 25 Aug 2025 18:05:45 +0530
+Message-ID: <20250825123548.3022474-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
 References: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
@@ -69,95 +69,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refactor intel_panel_highest_mode() to return the fixed mode with the
-highest pixel clock, removing the fallback to the adjusted mode. This makes
-the function semantics clearer and better suited for future use cases where
-fallback is not desirable.
+Drop DSC and scaler prefill latency checks from skl_is_vblank_too_short().
+These are now covered by the guardband validation added during the atomic
+CRTC check phase.
 
-Update the caller in intel_dp_mode_clock() to handle the NULL case
-explicitly by falling back to the adjusted mode's crtc_clock. This also
-addresses the existing FIXME comment about ambiguity between clock and
-crtc_clock, by using mode->clock for fixed modes and mode->crtc_clock for
-adjusted modes.
-
-v2: Avoid introducing a new function and refactor existing one instead.
-(Jani).
+This cleanup prepares for future changes where the guardband will be
+optimized independently of vblank length, making vblank-based checks
+obsolete.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c    | 14 +++++++++-----
- drivers/gpu/drm/i915/display/intel_panel.c | 11 +++++------
- drivers/gpu/drm/i915/display/intel_panel.h |  3 +--
- 3 files changed, 15 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 79 --------------------
+ 1 file changed, 79 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4dc1ce383b8e..4c3a4b7c0abe 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1759,11 +1759,15 @@ static int intel_dp_mode_clock(const struct intel_crtc_state *crtc_state,
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 
--	/* FIXME a bit of a mess wrt clock vs. crtc_clock */
--	if (has_seamless_m_n(connector))
--		return intel_panel_highest_mode(connector, adjusted_mode)->clock;
--	else
--		return adjusted_mode->crtc_clock;
-+	if (has_seamless_m_n(connector)) {
-+		const struct drm_display_mode *highest_mode;
-+
-+		highest_mode = intel_panel_highest_mode(connector);
-+		if (highest_mode)
-+			return highest_mode->clock;
-+	}
-+
-+	return adjusted_mode->crtc_clock;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 9ce526e6c285..b2dfab0cd48b 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -28,7 +28,6 @@
+ #include "intel_flipq.h"
+ #include "intel_pcode.h"
+ #include "intel_plane.h"
+-#include "intel_vrr.h"
+ #include "intel_wm.h"
+ #include "skl_universal_plane_regs.h"
+ #include "skl_scaler.h"
+@@ -2159,93 +2158,15 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 	return 0;
  }
  
- /* Optimize link config in order: max bpp, min clock, min lanes */
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 2a20aaaaac39..ac0f04073ecb 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -144,18 +144,17 @@ intel_panel_downclock_mode(struct intel_connector *connector,
- }
- 
- const struct drm_display_mode *
--intel_panel_highest_mode(struct intel_connector *connector,
--			 const struct drm_display_mode *adjusted_mode)
-+intel_panel_highest_mode(struct intel_connector *connector)
+-static int
+-cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_atomic_state *state =
+-		to_intel_atomic_state(crtc_state->uapi.state);
+-	const struct intel_cdclk_state *cdclk_state;
+-
+-	cdclk_state = intel_atomic_get_cdclk_state(state);
+-	if (IS_ERR(cdclk_state)) {
+-		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+-		return 1;
+-	}
+-
+-	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+-				   2 * intel_cdclk_logical(cdclk_state)));
+-}
+-
+-static int
+-dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+-{
+-	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+-	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+-	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+-	u32 dsc_prefill_latency = 0;
+-
+-	if (!crtc_state->dsc.compression_enable ||
+-	    !num_scaler_users ||
+-	    num_scaler_users > crtc->num_scalers)
+-		return dsc_prefill_latency;
+-
+-	for (int i = 0; i < num_scaler_users; i++) {
+-		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+-		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+-	}
+-
+-	dsc_prefill_latency =
+-		intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
+-						chroma_downscaling_factor,
+-						cdclk_prefill_adjustment(crtc_state),
+-						linetime);
+-
+-	return dsc_prefill_latency;
+-}
+-
+-static int
+-scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+-{
+-	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+-	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	u64 hscale_k = 0, vscale_k = 0;
+-	int scaler_prefill_latency = 0;
+-
+-	if (!num_scaler_users)
+-		return scaler_prefill_latency;
+-
+-	if (num_scaler_users > 1) {
+-		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+-		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+-	}
+-
+-	scaler_prefill_latency =
+-		intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
+-						   chroma_downscaling_factor,
+-						   cdclk_prefill_adjustment(crtc_state),
+-						   linetime);
+-
+-	return scaler_prefill_latency;
+-}
+-
+ static bool
+ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 			int wm0_lines, int latency)
  {
--	const struct drm_display_mode *fixed_mode, *best_mode = adjusted_mode;
-+	const struct drm_display_mode *fixed_mode, *highest_mode = NULL;
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+-	int linetime = DIV_ROUND_UP(1000 * adjusted_mode->htotal,
+-				    adjusted_mode->clock);
  
- 	/* pick the fixed_mode that has the highest clock */
- 	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
--		if (fixed_mode->clock > best_mode->clock)
--			best_mode = fixed_mode;
-+		if (!highest_mode || fixed_mode->clock > highest_mode->clock)
-+			highest_mode = fixed_mode;
- 	}
- 
--	return best_mode;
-+	return highest_mode;
+ 	return crtc_state->framestart_delay +
+ 		intel_usecs_to_scanlines(adjusted_mode, latency) +
+-		DIV_ROUND_UP(scaler_prefill_latency(crtc_state, linetime), linetime) +
+-		DIV_ROUND_UP(dsc_prefill_latency(crtc_state, linetime), linetime) +
+ 		wm0_lines >
+ 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
  }
- 
- int intel_panel_get_modes(struct intel_connector *connector)
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-index 56a6412cf0fb..8a17600e46a3 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.h
-+++ b/drivers/gpu/drm/i915/display/intel_panel.h
-@@ -37,8 +37,7 @@ const struct drm_display_mode *
- intel_panel_downclock_mode(struct intel_connector *connector,
- 			   const struct drm_display_mode *adjusted_mode);
- const struct drm_display_mode *
--intel_panel_highest_mode(struct intel_connector *connector,
--			 const struct drm_display_mode *adjusted_mode);
-+intel_panel_highest_mode(struct intel_connector *connector);
- int intel_panel_get_modes(struct intel_connector *connector);
- enum drrs_type intel_panel_drrs_type(struct intel_connector *connector);
- enum drm_mode_status
 -- 
 2.45.2
 
