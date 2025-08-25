@@ -4,143 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF37BC8303F
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 19:20:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 567B7CA0FE7
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 20:09:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA4310E546;
-	Mon, 25 Aug 2025 19:20:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FXwCKXmN";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF32B10E540
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 19:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756149626;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=z5OgTRxAaRTLrRHg2C4YU4ZWEhwhgTv8g6QHnboZ39Y=;
- b=FXwCKXmN7xoc1X6s7JTQVv1UldqKA148RxLETDOAeQUZmx7iydbYAHBU4XUOqOncqIigRu
- mkRifCweGST98veRE719tvdnU2tbH+4gZsDsIJV3ljwUKM/pe7RTzt3VZzPsEgA7JI5Dcd
- YE7uE4+/lUsNUKjhBvp3VHE249PYuXo=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-271-xplFFXifNHOwMWQLhRCCyg-1; Mon, 25 Aug 2025 15:20:24 -0400
-X-MC-Unique: xplFFXifNHOwMWQLhRCCyg-1
-X-Mimecast-MFC-AGG-ID: xplFFXifNHOwMWQLhRCCyg_1756149623
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-45b51baec92so11561585e9.1
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 12:20:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756149623; x=1756754423;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=z5OgTRxAaRTLrRHg2C4YU4ZWEhwhgTv8g6QHnboZ39Y=;
- b=xGG4s9s7nYn/qlJtvS6xIus7s0YaE/VhaKw+K93l+5mgINH3VswAPYEUrFnZwJhWiD
- RK/KdZZJfU6IJDcAOM4clq4H9dhKXiYiI4B3pP11L9LMbwz0pymVgrcQDbFHNS0/GdU7
- XLjgA1Zz4BUhmeg/vRYFzWRSCtVhkyRXr2K+JISw9A4ZezkOXTE3ilUuUGnoPZlZcKYy
- nR7yhC1T1CeD8Lhykmle5Te8ZVNLxXSHJFM7zxcMo6AvXv0He3sugWUhCXN5B1ZFMfKB
- qbz0RpfSkWTqLobMwonsGb+CuiVXGmLZqQYhJ+IQm2ZS2Cb2QVxlm+FiRsJtpNv0Dupe
- q3vA==
-X-Gm-Message-State: AOJu0Yzh8tluZNtgv7J1wZRccYROhwKIy34A0Z7g4zlu9T44PaVm2sbo
- aQS1cWjCB4EYoUH0MxdcHiX4vSjalWFhRv5Ejks/pznZABChQDDuAgjsopJ/BnuVqv9+Og2wF3I
- Nf2ZPPBbEF3zZKB02UmKc7eArfAH3O+l1yFmkdx5uTC6aKU6PKjxbfi3duazkaDp2DJp7
-X-Gm-Gg: ASbGncviVbz8ApKgdiqLFN+cWiRzZFGB3mNrNQ9kUv5QWUqY3JbMByksz/ycyB2fulc
- FLzNmkDIaN5a6jT7U4pEMmGIFHisLSbIuDxKEzMIpAl4jPR60VEAS7ZwiercNQN+E197m38qONm
- 5FUqTfisTccglpREME2rRD/vwBs94MAggstOHWFl86iKx8Es/UJoqmDGoMTMgvkwD/I6AUeMXXD
- wq8e0CgTgMA9zMvtlj4bduUrOZ5gkc/swJ/sXFuYdhQyUQNKzNtUouz0+YktdA3+Cylekd1eQXv
- LDE0IGD/OGCgYXtPul81rotWTZ6S8FYwPcb7etDk4e3KWayuBq83d1WcMGq3kF3YzEKTruPU8oy
- AH49egNKQh73pdRjaPVxFh2GSB+CGeC0p983YvNJag0CNSF9aPCoxFWJgZCIKAZ4SAQ8=
-X-Received: by 2002:a05:6000:40cb:b0:3c7:4062:5ba9 with SMTP id
- ffacd0b85a97d-3c740625e73mr6433954f8f.32.1756149623102; 
- Mon, 25 Aug 2025 12:20:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE5fLvW6GBrzoj0rwn7v+5ING7miK2XnhPDMAtGWy5ft9okjD6BcqLa6oMnevLNewMSeBM26A==
-X-Received: by 2002:a05:6000:40cb:b0:3c7:4062:5ba9 with SMTP id
- ffacd0b85a97d-3c740625e73mr6433929f8f.32.1756149622598; 
- Mon, 25 Aug 2025 12:20:22 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76?
- (p200300d82f4f130042f198e5ddf83a76.dip0.t-ipconnect.de.
- [2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c7116e1397sm12704676f8f.49.2025.08.25.12.20.21
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Aug 2025 12:20:22 -0700 (PDT)
-Message-ID: <a0888295-5f3a-48cc-9ca4-d7ba4d73f307@redhat.com>
-Date: Mon, 25 Aug 2025 21:20:20 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D39010E284;
+	Mon, 25 Aug 2025 20:09:11 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B672110E556;
+ Mon, 25 Aug 2025 20:09:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1026509932197743099=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: your mail
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org, airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Liam Howlett <liam.howlett@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <7db27720-8cfd-457c-8133-5a7a1094004c@lucifer.local>
- <82e5e566-87e9-43a8-a0e9-00656572d65c@redhat.com>
- <f6f85c73-2a1e-438a-82c9-f3392d91020c@lucifer.local>
- <d51c2e8f-70cb-4211-9196-be9021a33070@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <d51c2e8f-70cb-4211-9196-be9021a33070@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: WJIl0TPX5rZ8o9lBooeGtPVYbKJ4JrcHPENjb-QeFwU_1756149623
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_TLB_invalidation_abstra?=
+ =?utf-8?q?ction_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 25 Aug 2025 20:09:09 -0000
+Message-ID: <175615254974.268230.17690403880812047516@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250825175721.89129-1-stuart.summers@intel.com>
+In-Reply-To: <20250825175721.89129-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,63 +36,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 25.08.25 20:35, Christian König wrote:
-> On 21.08.25 12:05, Lorenzo Stoakes wrote:
->> On Thu, Aug 21, 2025 at 11:30:43AM +0200, David Hildenbrand wrote:
->>>> I will add this xen/apply_to_page_range() thing to my TODOs, which atm
->>>> would invovle changing these drivers to use vmf_insert_pfn_prot() instead.
->>>>
->>>
->>> Busy today (want to reply to Christian) but
->>>
->>> a) Re: performance, we would want something like
->>>     vmf_insert_pfns_prot(), similar to vm_insert_pages(), to bulk-insert
->>>     multiple PFNs.
-> 
-> Yes, exactly that. Ideally something like an iterator/callback like interface.
-> 
-> I've seen at least four or five different representations of the PFNs in drivers.
-> 
->>> b) Re: PAT, we'll have to figure out why PAT information is wrong here
->>>     (was there no previous PAT reservation from the driver?), but IF we
->>>     really have to override, we'd want a way to tell
->>>     vmf_insert_pfn_prot() to force the selected caching mode.
->>>
-> 
-> Well the difference between vmf_insert_pfn() and vmf_insert_pfn_prot() is that the driver actually want to specify the caching modes.
+--===============1026509932197743099==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, it's all a mess. x86/PAT doesn't want inconsistencies, so it 
-expects that a previous reservation would make sure that that caching 
-mode is actually valid.
+== Series Details ==
 
-> 
-> That this is overridden by the PAT even for pages which are not part of the linear mapping is really surprising.
+Series: Add TLB invalidation abstraction (rev9)
+URL   : https://patchwork.freedesktop.org/series/152022/
+State : success
 
-Yes, IIUC, it expects an earlier reservation on PAT systems.
+== Summary ==
 
-> 
-> As far as I can see there is no technical necessity for that. Even for pages in the linear mapping only a handful of x86 CPUs actually need that. See Intels i915 GPU driver for reference.
-> 
-> Intel has used that approach for ages and for AMD CPUs the only reference I could find where the kernel needs it are Athlons produced between 1996 and 2004.
-> 
-> Maybe we should disable the PAT on CPUs which actually don't need it?
+CI Bug Log - changes from xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb_BAT -> xe-pw-152022v9_BAT
+====================================================
 
-Not sure if that will solve our problems on systems that need it because 
-of some devices.
+Summary
+-------
 
-I guess the problem of pfnmap_setup_cachemode_pfn() is that there is no 
-interface to undo it: pfnmap_track() is pared with pfnmap_untrack() such 
-that it can simply do/undo the reservation itself.
+  **SUCCESS**
 
-That's why pfnmap_setup_cachemode_pfn() leaves it up to the caller that 
-a reservation was trigger earlier differently -- which can properly be 
-undone.
+  No regressions found.
 
--- 
-Cheers
+  
 
-David / dhildenb
+Participating hosts (11 -> 11)
+------------------------------
 
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152022v9_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-vm}:       [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-2}:        [FAIL][7] ([Intel XE#5783]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb -> xe-pw-152022v9
+
+  IGT_8507: 8507
+  xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb: a7c735c1739662dcc431bda50653821bff0d63fb
+  xe-pw-152022v9: 152022v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/index.html
+
+--===============1026509932197743099==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add TLB invalidation abstraction (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152022/">https://patchwork.freedesktop.org/series/152022/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb_BAT -&gt; xe-pw-152022v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152022v9_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152022v9/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb -&gt; xe-pw-152022v9</li>
+</ul>
+<p>IGT_8507: 8507<br />
+  xe-3614-a7c735c1739662dcc431bda50653821bff0d63fb: a7c735c1739662dcc431bda50653821bff0d63fb<br />
+  xe-pw-152022v9: 152022v9</p>
+
+</body>
+</html>
+
+--===============1026509932197743099==--
