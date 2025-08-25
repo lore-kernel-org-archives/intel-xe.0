@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE87ACA0FE9
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 850F9CA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 12:49:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B714E10E467;
-	Mon, 25 Aug 2025 12:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE3110E465;
+	Mon, 25 Aug 2025 12:49:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuhzH0u2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JthVAH3f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 178D910E462;
- Mon, 25 Aug 2025 12:49:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 435FC10E465;
+ Mon, 25 Aug 2025 12:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756126182; x=1787662182;
+ t=1756126187; x=1787662187;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HF4N5f++/CozagkyqLSFvLNhy0K69apcNY3yiN0kquw=;
- b=kuhzH0u2p+exbqNG21/1zx6EsgcPaoszKYXprgdaPtAj+ZFiwMOFJvsD
- NysaaMM7A/orPx13krZYe7HqtIljEgJ1XLXE0MQwHnJP2im4YgZy+RaJ4
- eixfBOlxrgkMcqVoj5zYPaL76B6G7axdkLpceocTP9Qk6vjf8uwww6G43
- q7Noj9Nh+Qu8KNx4Kv/cPWDY0zE2vtBjUbwM5m2rKkWwliBdkC9hCfuJ3
- Uz3cHBQBhzzac+q6JheN2bnez2O0EXet4Mod+tzOA9+mdZR2Ms5NylBP1
- EgnYBEXcOws75Q4W4Y18M5KDaW+uBFzjykc5q5ByFWDfeDuP6k8rcX941 g==;
-X-CSE-ConnectionGUID: j5Ykz/s4RkihabhN8FU3xA==
-X-CSE-MsgGUID: 5Qa3yNlFTF+yKbAKZQwj1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164121"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164121"
+ bh=bz9FaiO0jXm0/x/zxPcJEeB+MRp817uB2yDxjQuvgm4=;
+ b=JthVAH3f7to1t6R0r186s/z28wTpXHCd+DScKaDCOnZZXnFhUnrY0ofO
+ 1XOcubkXcfZloB5EHj0+05EI4qMoopCU7M2Kj1otLcJ/dPfiNsrFSPvdN
+ dcGw7JOYm+VywikO8itAk/G1xK5rD22xO5jjZmwVTjf9wDArp77tJWW8z
+ O4bZ1pqtxCEFDomtWk9BpSffGqsmkaH3SAhkBGPPauRPSEOlOvAC3GJwv
+ IhjHdW1VkT8TkzRAcfrh4A3YYe/oBTZ1TDNeqSZ0h7xNW9Fpu8fvi4DRp
+ Me/+94pCfgBS32WRdtHaSMRAP8fPpa6ujztpiBIZieliGu40T2RFjKn5V A==;
+X-CSE-ConnectionGUID: 5mDRTAkLQe+Ln+BNJKgQpQ==
+X-CSE-MsgGUID: sCaY6x7ARHmp2PncW7/lsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164123"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164123"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:42 -0700
-X-CSE-ConnectionGUID: egppjfffQDaGQw4izBBreg==
-X-CSE-MsgGUID: 9Cv9dSaCS5Smqm+3W4RhSA==
+ 25 Aug 2025 05:49:46 -0700
+X-CSE-ConnectionGUID: o8+AYs2eT6+rLNWwVD9DPw==
+X-CSE-MsgGUID: iVF32fgDQf+W15GpvAJCQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200229938"
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200229976"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:40 -0700
+ 25 Aug 2025 05:49:44 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 05/12] drm/i915/dp: Add SDP latency computation helper
-Date: Mon, 25 Aug 2025 18:05:41 +0530
-Message-ID: <20250825123548.3022474-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/12] drm/i915/vrr: Use vrr.sync_start for getting vtotal
+Date: Mon, 25 Aug 2025 18:05:43 +0530
+Message-ID: <20250825123548.3022474-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
 References: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
@@ -68,86 +68,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a helper to compute vblank time needed for transmitting specific
-DisplayPort SDPs like PPS, GAMUT_METADATA, and VSC_EXT. Latency is
-based on line count per packet type and current line time.
+Currently, in intel_vrr_get_config() crtc_vtotal is computed from
+vrr.vmin vtotal, since the VTOTAL.Vtotal bits are deprecated.
+Since vmin is currently set to crtc_vtotal, this gives us the vtotal.
+However, as we move to optimized guardband, vmin will be modified to set
+to the minimum Vtotal for highest refresh rate supported.
 
-Used to ensure adequate vblank when features like DSC/HDR are enabled.
+Instead of depending on vmin, compute vtotal from crtc_vsync_start and
+vrr.vsync_start. This works since vrr.vsync_start is measured from the
+end of vblank, and crtc_vsync_start is measured from start of the
+scanline. Together their sum is equal to the crtc_vtotal.
 
-Bspec: 70151
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 47 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h |  1 +
- 2 files changed, 48 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 996edb8deded..4dc1ce383b8e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6842,3 +6842,50 @@ void intel_dp_mst_resume(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 1cd15c9ddd7f..862adddcfebb 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -735,17 +735,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
+ 		crtc_state->vrr.vmin = intel_de_read(display,
+ 						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+-
+-		/*
+-		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+-		 * bits are not filled. Since for these platforms TRAN_VMIN is always
+-		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
+-		 * adjusted_mode.
+-		 */
+-		if (intel_vrr_always_use_vrr_tg(display))
+-			crtc_state->hw.adjusted_mode.crtc_vtotal =
+-				intel_vrr_vmin_vtotal(crtc_state);
+-
+ 		if (HAS_AS_SDP(display)) {
+ 			trans_vrr_vsync =
+ 				intel_de_read(display,
+@@ -755,6 +744,16 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 			crtc_state->vrr.vsync_end =
+ 				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
  		}
++		/*
++		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
++		 * bits are not filled. Since vrr.vsync_start is computed as:
++		 * crtc_vtotal - crtc_vsync_start, we can derive vtotal from
++		 * vrr.vsync_start and crtc_vsync_start.
++		 */
++		if (intel_vrr_always_use_vrr_tg(display))
++			crtc_state->hw.adjusted_mode.crtc_vtotal =
++				crtc_state->hw.adjusted_mode.crtc_vsync_start +
++				crtc_state->vrr.vsync_start;
  	}
- }
-+
-+static
-+int intel_dp_get_sdp_latency(u32 type, int linetime_us)
-+{
-+	int lines;
-+
-+	switch (type) {
-+	case DP_SDP_VSC_EXT_VESA:
-+	case DP_SDP_VSC_EXT_CEA:
-+		lines = 10;
-+		break;
-+	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-+		lines = 8;
-+		break;
-+	case DP_SDP_PPS:
-+		lines = 6;
-+		break;
-+	default:
-+		lines = 0;
-+		break;
-+	}
-+
-+	return lines * linetime_us;
-+}
-+
-+int intel_dp_compute_sdp_latency(struct intel_crtc_state *crtc_state,
-+				 bool assume_all_enabled)
-+{
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int sdp_latency = 0;
-+	int linetime_us;
-+
-+	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
-+				   adjusted_mode->crtc_clock);
-+	if (assume_all_enabled ||
-+	    crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
-+		sdp_latency = max(sdp_latency,
-+				  intel_dp_get_sdp_latency(HDMI_PACKET_TYPE_GAMUT_METADATA,
-+							   linetime_us));
-+
-+	if (assume_all_enabled || crtc_state->dsc.compression_enable)
-+		sdp_latency = max(sdp_latency,
-+				  intel_dp_get_sdp_latency(DP_SDP_PPS, linetime_us));
-+
-+	return sdp_latency;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index f90cfd1dbbd0..bfd1bd448672 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -215,5 +215,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
- bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
-+int intel_dp_compute_sdp_latency(struct intel_crtc_state *crtc_state, bool assume_all_enabled);
  
- #endif /* __INTEL_DP_H__ */
+ 	vrr_enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
 -- 
 2.45.2
 
