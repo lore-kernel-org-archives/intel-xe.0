@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84743CA0EFA
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 15:38:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 740DCCA0EFA
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Aug 2025 15:46:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7F610E038;
-	Mon, 25 Aug 2025 15:38:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mN2RywnB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CFBB10E038
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Aug 2025 15:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756136315; x=1787672315;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=cn4wh1XKOUEzz7zqTShHutXoHBv1UJiLEBstjYdOOI8=;
- b=mN2RywnB92MoglaZLKfr9VuikD3WajI08Guwv1+FMjdbvJLaBYKxDdBO
- HfhJkwZEwUXojZkRxt6d//3J+dLcD0RhP08C+TVE1o9fxgoWzCuOnbaSc
- pXMNXikYjF2hzxWGQINoYBSvzrzkExYgC5MQFXmvW/Sp1az986LHvo2SN
- xNSCLa4g+RBUWLuMdXjN5Yo4qc11Kz4tHMwyqN4wDX88cIS/MDGFThDzE
- H2s/CF02kqH3SvU/K0NTvatL1wqEqjov5/fowxU5/3vEtS9z7EbrwhdiF
- eJffgx1IY0/3vykbHA3ANHg/6vavSozXvvwXI86PyQSIeh7pdZVqfW0F3 g==;
-X-CSE-ConnectionGUID: va5juGPNTp+k87oh2g+wNQ==
-X-CSE-MsgGUID: 3eSjE0YdTfuz5iPUl2Nq1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="75952250"
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="75952250"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 08:38:34 -0700
-X-CSE-ConnectionGUID: q3sbf9lrTBy2XAJmgKLp5Q==
-X-CSE-MsgGUID: 1R16KGCtRB+CrR7VCkv2gA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200216776"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.245.53])
- ([10.245.245.53])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 08:38:33 -0700
-Message-ID: <7ab48a20d83006a1aa4393dd91cd8cf74aed5538.camel@linux.intel.com>
-Subject: Re: [PATCH v2] drm/xe: Don't trigger rebind on initial dma-buf
- validation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com
-Date: Mon, 25 Aug 2025 17:38:31 +0200
-In-Reply-To: <20250825152841.3837378-1-matthew.brost@intel.com>
-References: <20250825152841.3837378-1-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE9E10E4EF;
+	Mon, 25 Aug 2025 15:46:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C58F10E4F0;
+ Mon, 25 Aug 2025 15:46:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8618962787544606036=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/vrr=3A_Drop_redund?=
+ =?utf-8?q?ant_HAS=5FVRR_checks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 25 Aug 2025 15:46:49 -0000
+Message-ID: <175613680904.267285.6278503384859395416@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250825135733.3202475-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250825135733.3202475-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +36,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-08-25 at 08:28 -0700, Matthew Brost wrote:
-> On the first validate of an imported dma-buf (initial bind), the
-> device
-> has no GPU mappings, so a rebind is unnecessary. Rebinding here is
-> harmful in multi-GPU setups and for VMs using preempt-fence mode, as
-> it
-> would evict in-flight GPU work.
->=20
-> v2:
-> =C2=A0- Drop dma_buf_validated, check for XE_PL_SYSTEM (Thomas)
->=20
-> Signed-off-by: Matthee Brost <matthew.brost@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 3 ++-
-> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 6fea39842e1e..a0630e120cd2 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -816,7 +816,8 @@ static int xe_bo_move(struct ttm_buffer_object
-> *ttm_bo, bool evict,
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	if (ttm_bo->type =3D=3D ttm_bo_type_sg) {
-> -		ret =3D xe_bo_move_notify(bo, ctx);
-> +		if (new_mem->mem_type =3D=3D XE_PL_SYSTEM)
-> +			ret =3D xe_bo_move_notify(bo, ctx);
-> =C2=A0		if (!ret)
-> =C2=A0			ret =3D xe_bo_move_dmabuf(ttm_bo, new_mem);
-> =C2=A0		return ret;
+--===============8618962787544606036==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-LGTM. If CI is happy,
+== Series Details ==
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Series: drm/i915/vrr: Drop redundant HAS_VRR checks
+URL   : https://patchwork.freedesktop.org/series/153452/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695_BAT -> xe-pw-153452v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153452v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +2 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8505 -> IGT_8506
+  * Linux: xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695 -> xe-pw-153452v1
+
+  IGT_8505: 8505
+  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695: 5481954bd63bd4d34a5acb2b89fb2caf55bb0695
+  xe-pw-153452v1: 153452v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html
+
+--===============8618962787544606036==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/vrr: Drop redundant HAS_VRR checks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153452/">https://patchwork.freedesktop.org/series/153452/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695_BAT -&gt; xe-pw-153452v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153452v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153452v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8505 -&gt; IGT_8506</li>
+<li>Linux: xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695 -&gt; xe-pw-153452v1</li>
+</ul>
+<p>IGT_8505: 8505<br />
+  IGT_8506: 7d64f83f6d40ca187e9f317007c03db9d8b34ffb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3611-5481954bd63bd4d34a5acb2b89fb2caf55bb0695: 5481954bd63bd4d34a5acb2b89fb2caf55bb0695<br />
+  xe-pw-153452v1: 153452v1</p>
+
+</body>
+</html>
+
+--===============8618962787544606036==--
