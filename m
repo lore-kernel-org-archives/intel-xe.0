@@ -4,71 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 710C7CA0FE9
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 09:21:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 943FDCA0FE9
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 09:23:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3963A10E62A;
-	Tue, 26 Aug 2025 09:21:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB0F10E2E0;
+	Tue, 26 Aug 2025 09:23:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SA2XPHvV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSlIglCF";
 	dkim-atps=neutral
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2B110E627;
- Tue, 26 Aug 2025 09:21:37 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id
- 41be03b00d2f7-b49cf21320aso3210913a12.1; 
- Tue, 26 Aug 2025 02:21:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756200096; x=1756804896; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TN4E6m3MRGjx4iuS/zaKf5r12wGI9usj9vunB+BK/MY=;
- b=SA2XPHvVD/zcG3cYwABL1fUxzFOk1ZeMFd5q4gP7B30/4Q+MzJwSGBeHnIc0CFsaMR
- ezqxkDRBUJABKQe8Ip2BQnwhQ1MO1T7HUFB1oHr9PCQ8Cpc9CrsUDy8g3/ISC/Jdsft+
- L/0FO5Vneqge2rNd4aBV5NtpAq9r6wbkGr+NzVVVgugVX8+xZGSgKL2YZHgpjtIir1Im
- cVZ68Cuq40CU+Ny+G5N/mBb8u0T6ocfnKl80cB94jl5jn6Xqf7kP7UFR8mONvOWEjRZc
- KScVxEIfG1el8JdpscnKRAF3pe+ClanKO1lZx9otOiW9U52QGFNHY0LkfW8HUw+HX7ym
- wyvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756200096; x=1756804896;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TN4E6m3MRGjx4iuS/zaKf5r12wGI9usj9vunB+BK/MY=;
- b=XnOKhPDxcm9f/+DJ3s+AKjAmjrudIeIxwZA4jWBOhRRHqSQw4tkutS6EXiLuH4nF69
- LqeXzbiv6skWaABDd4ErZWffNM0hheunb6bxG/Eg+eRnuFLkyocBlwb/GPQL62Pz1T9d
- m96xtmv/z64GfUsBiNsWy4aHfPZvx6vV5SUxBIoYh2oKTOzfPq16PwQodz5/kTOVahxK
- mHVXg0+WPC6n5UEFbwHCfLdnwZWoVxrbJ+6nvdNaBWFAhIHJ4Tq+SPaNs2VEGwJv5frp
- 1v/uasC9ewad4o1A8BSKM1AWvhIdyaC/D/WEuHnlvckaH6XmtFn9zga+3GFCZlMmtfNt
- GjnA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW2NrtS8p7+22NdDRGDNRmGhXsaFB2g/yXasJ8XkwJEWm8sCthHIog5pdWKNu04iWg+JprihGY5bQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyUhu6ZYsUFr1UsZkHPln5o3hF7/7iScvtTy7aZX8oAKcVeblrI
- 584jh4lsCwQKP3fBvhc7MqLPOBajrruTr2u7YA48pqSOpa1M3IL8y0/26T33JsuZQ3Riq3xjZSG
- 7jJFJouv5Bq+r9Dd+WAjO21ufpvILsqI=
-X-Gm-Gg: ASbGncv6CYywYUVGWpLX8Q+p9C0uyyF1O+faael8927wm94PS1oPHHZWsAgIbcQgx/N
- QRcRCa1jK0HQQKh5qlhLQa/Qjf2IyhRmnH34B21Dj9u4ECyP44MiYLBFwI1iXBPDLVWKDMcLI7R
- m3UFtKY9+fBJv1ey43b/o40+iBPdPAYzGt6SwGSzJli3CF+BY2Ac761nzEcAAea+S08z3w+22ZM
- uftT3k6/p6YuphuqPsJ
-X-Google-Smtp-Source: AGHT+IFqBqZ0Wk8oCrKLh3E7XC0soNnHwIBYTarOnJbOUqZZVQPV8AyYFLJ+jCZ1Jx+36s7nbUuGqPh+/3OnOQYjJlg=
-X-Received: by 2002:a17:903:943:b0:242:fbc6:6a83 with SMTP id
- d9443c01a7336-2462eb56b82mr184673725ad.0.1756200096368; Tue, 26 Aug 2025
- 02:21:36 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0901310E2E0
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Aug 2025 09:23:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756200223; x=1787736223;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c3JoFnHQsQrvYLi091n8QUeC7LTuwZFDb1ozHoTyrUg=;
+ b=mSlIglCF5LIEXpSy41Yc7sBNFhi+AHN7vUad2byMwoXTiJ7GTSbhrRJB
+ KmLy3VHwh6/QURbMJbQxq2aV9+9vxfM675y3G9NDytvd9mDQdyv6yO/yz
+ J2aIjTJf0xuytI4Hxt0uR1ZMTRWLJ05twHhnReH6zagjm825jllTd5NTg
+ 2IN1ilrSb958pn87ZMfzwW0iNFypZY8yrKdMd4Ws6JmUgp6K9Gkc+x44q
+ i2Bhu+wuPOqOfGBaJu7o2tsRogA8rVM10ykXtatKt3eKG4R48Yamd5K0I
+ bspmkAWFPJP86HhSj275F0E1t247CaR7xQy8Nt4wMBzy+FXl84jIN775E Q==;
+X-CSE-ConnectionGUID: qQx9wVtOQtOUtH++jxdgWA==
+X-CSE-MsgGUID: rtuqTufjSGCSaI/YiHHqqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="76028229"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="76028229"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2025 02:23:42 -0700
+X-CSE-ConnectionGUID: tzTKOBcsRNalJ+AiXJ+h4A==
+X-CSE-MsgGUID: qL5HrbHoRLmsKRjPXw34VQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169910930"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa008.fm.intel.com with ESMTP; 26 Aug 2025 02:23:40 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH v4] drm/xe/vf: Enable CCS save/restore only on supported GUC
+ versions
+Date: Tue, 26 Aug 2025 15:10:35 +0530
+Message-ID: <20250826094035.30977-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20250820132913.496505-1-juhapekka.heikkila@gmail.com>
- <aKcZg9tk2YH0r67f@intel.com>
-In-Reply-To: <aKcZg9tk2YH0r67f@intel.com>
-From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Date: Tue, 26 Aug 2025 12:21:25 +0300
-X-Gm-Features: Ac12FXwNKUKNv3OkiCD0dXZ1pRPEf_xWi0ZI6Ra2IA6dVw_0cM3ImEXwyUI3c3M
-Message-ID: <CAJ=qYWSJDRc8hvW0GDqH8AKK1G06gqrfDcL5bymnvt4s+=wppg@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/display: Avoid divide by zero
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,53 +67,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 21, 2025 at 4:05=E2=80=AFPM Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
->
-> On Wed, Aug 20, 2025 at 04:29:13PM +0300, Juha-Pekka Heikkila wrote:
-> > skl_crtc_allocate_plane_ddb allow iter.data_rate to be zero
-> > which could cause divide by zero in skl_allocate_plane_ddb,
-> > check against that.
-> >
-> > Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu=
-/drm/i915/display/skl_watermark.c
-> > index def5150231a4..403783504ab3 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -1388,7 +1388,7 @@ skl_allocate_plane_ddb(struct skl_plane_ddb_iter =
-*iter,
-> >  {
-> >       u16 size, extra =3D 0;
-> >
-> > -     if (data_rate) {
-> > +     if (data_rate && iter->data_rate) {
->
-> I don't think it should be possible to have iter_data->data_rate=3D=3D0
-> and data_rate!=3D0, with iter->data_rate being the sum of all the
-> planes' data_rates.
->
+CCS save/restore is supported starting with GuC 70.48.0 (compatibility
+version 1.23.0). Gate the feature on the GuC firmware version and keep it
+disabled on older or unsupported versions.
 
-But I see there in calling function skl_crtc_allocate_plane_ddb(..)
-just before arriving here, check you've left there few years ago that
-says
+Fixes: f3009272ff2e ("drm/xe/vf: Create contexts for CCS read write")
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>
 
-/* avoid the WARN later when we don't allocate any extra DDB */
-if (iter.data_rate =3D=3D 0)
-iter.size =3D 0;
+---
+V3 -> V4:
+- Fixed review comments (Michal, Andi)
 
-hence I had idea to add this check also
+V2 -> V3:
+- Fixed review comments (Michal)
 
-> >               extra =3D min_t(u16, iter->size,
-> >                             DIV64_U64_ROUND_UP(iter->size * data_rate,
-> >                                                iter->data_rate));
-> > --
-> > 2.43.0
->
-> --
-> Ville Syrj=C3=A4l=C3=A4
-> Intel
+V1 -> V2:
+- Fixed review comments (Michal)
+---
+ drivers/gpu/drm/xe/xe_sriov.c          |  2 +-
+ drivers/gpu/drm/xe/xe_sriov_vf.c       | 56 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_sriov_vf.h       |  3 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h |  5 +++
+ 4 files changed, 59 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 87911fb4eea7..d2d2b2648f8d 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -171,7 +171,7 @@ int xe_sriov_late_init(struct xe_device *xe)
+ {
+ 	int err = 0;
+ 
+-	if (IS_VF_CCS_INIT_NEEDED(xe))
++	if (IS_VF_CCS_INIT_NEEDED(xe) && xe_sriov_vf_migration_supported(xe))
+ 		err = xe_sriov_vf_ccs_init(xe);
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 5de81f213d83..f2c88957347e 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -10,6 +10,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_irq.h"
+@@ -127,13 +128,54 @@
+  *      |                               |                               |
+  */
+ 
+-static bool vf_migration_supported(struct xe_device *xe)
++/**
++ * xe_sriov_vf_migration_supported - Report whether SR-IOV VF migration is
++ * supported or not.
++ * @xe: the &xe_device to initialize
++ *
++ * Returns: true if VF migration is supported, false otherwise.
++ */
++bool xe_sriov_vf_migration_supported(struct xe_device *xe)
++{
++	xe_assert(xe, IS_SRIOV_VF(xe));
++	return !xe->sriov.vf.migration.disabled;
++}
++
++static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
++{
++	struct va_format vaf;
++	va_list va_args;
++
++	xe_assert(xe, IS_SRIOV_VF(xe));
++
++	va_start(va_args, fmt);
++	vaf.fmt = fmt;
++	vaf.va  = &va_args;
++	xe_sriov_notice(xe, "migration disabled: %pV\n", &vaf);
++	va_end(va_args);
++
++	xe->sriov.vf.migration.disabled = true;
++}
++
++static void vf_check_migration_support(struct xe_device *xe)
+ {
++	struct xe_uc_fw_version guc_version;
++
+ 	/*
+ 	 * TODO: Add conditions to allow specific platforms, when they're
+ 	 * supported at production quality.
+ 	 */
+-	return IS_ENABLED(CONFIG_DRM_XE_DEBUG);
++	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
++		return vf_disable_migration(xe,
++					    "experimental feature not available on production builds");
++
++	xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
++	if (!IS_DGFX(xe) &&
++	    MAKE_GUC_VER(guc_version.major, guc_version.minor, guc_version.patch) <
++	    MAKE_GUC_VER(1, 23, 0))
++		return vf_disable_migration(xe,
++					    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
++					    guc_version.major, guc_version.minor);
+ }
+ 
+ static void migration_worker_func(struct work_struct *w);
+@@ -144,10 +186,12 @@ static void migration_worker_func(struct work_struct *w);
+  */
+ void xe_sriov_vf_init_early(struct xe_device *xe)
+ {
+-	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
++	vf_check_migration_support(xe);
+ 
+-	if (!vf_migration_supported(xe))
+-		xe_sriov_info(xe, "migration not supported by this module version\n");
++	if (!xe_sriov_vf_migration_supported(xe))
++		return;
++
++	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+ }
+ 
+ /**
+@@ -302,7 +346,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 	xe_pm_runtime_get(xe);
+ 	vf_post_migration_shutdown(xe);
+ 
+-	if (!vf_migration_supported(xe)) {
++	if (!xe_sriov_vf_migration_supported(xe)) {
+ 		xe_sriov_err(xe, "migration not supported by this module version\n");
+ 		err = -ENOTRECOVERABLE;
+ 		goto fail;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+index 7b8622cff2b7..d6844719ff47 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+@@ -6,9 +6,12 @@
+ #ifndef _XE_SRIOV_VF_H_
+ #define _XE_SRIOV_VF_H_
+ 
++#include <linux/types.h>
++
+ struct xe_device;
+ 
+ void xe_sriov_vf_init_early(struct xe_device *xe);
+ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
++bool xe_sriov_vf_migration_supported(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+index 24a873c50c49..8eb4ca9f62de 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+@@ -35,6 +35,11 @@ struct xe_device_vf {
+ 		struct work_struct worker;
+ 		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
+ 		unsigned long gt_flags;
++		/**
++		 * @migration.disabled: flag indicating if migration support
++		 * was disabled due to missing prerequisites
++		 */
++		bool disabled;
+ 	} migration;
+ 
+ 	/** @ccs: VF CCS state data */
+-- 
+2.43.0
+
