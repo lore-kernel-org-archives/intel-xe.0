@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBD09CA0FEB
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 15:32:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FB6BCA0FE7
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 15:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6789A10E68D;
-	Tue, 26 Aug 2025 15:32:18 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 163D610E683;
- Tue, 26 Aug 2025 15:32:17 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E872169E;
- Tue, 26 Aug 2025 08:32:08 -0700 (PDT)
-Received: from [10.57.4.86] (unknown [10.57.4.86])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 893E73F63F;
- Tue, 26 Aug 2025 08:32:09 -0700 (PDT)
-Message-ID: <6080e45d-032e-48c2-8efc-3d7e5734d705@arm.com>
-Date: Tue, 26 Aug 2025 16:32:07 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1826510E685;
+	Tue, 26 Aug 2025 15:32:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dR20jMUY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2732A10E685
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Aug 2025 15:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756222353; x=1787758353;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kP8ULZchFRclhl5XtHZnTr7W9ZyZc2qb+G4ObYa6BnE=;
+ b=dR20jMUYyR14raBzTxjIwRX06QtQqnmo2cIJhHvU74hHtpnlRSn374vi
+ 25aq3GQbPKVTmnZjjZcK7fRxmQa9oaZF2Wa92K2J+6hgJ0CdhwUnZyXPl
+ 50NZtEvjyAUdUS9gdWPSqEqyb2GF3T5n/iKqiJ8LBDOeTAe08OuKOwQH5
+ GyRYmnoCfX68xm7xREtLpubwLoXC2CvX7Fvjw2nxQt9fenppTxaQII7b4
+ QO8b5nn9sQ/5MZB1fQO7yilET0ZHR8A/omXVbXJzc5y0OtWhWAxJq2dNM
+ jg9MVMdYcEgBxohAvRr+kplnWoLzI1LbHGBVJUF1bEqudE6WStC8H7syI g==;
+X-CSE-ConnectionGUID: c1VI0fBSTTy1NmVEDs/2oQ==
+X-CSE-MsgGUID: ob7geMI+T8WfGx/d0V8IjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="83867342"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="83867342"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2025 08:32:33 -0700
+X-CSE-ConnectionGUID: L2TA/XHyQ7qxhBTP/Nvp1w==
+X-CSE-MsgGUID: CVEkrE2DRGGj07jAXltEZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169535727"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2025 08:32:33 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: [CI] drm/xe/configfs: Block runtime attribute changes
+Date: Tue, 26 Aug 2025 08:32:11 -0700
+Message-ID: <20250826153210.3068808-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/19] perf: Ignore event state for group validation
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: mingo@redhat.com, will@kernel.org, mark.rutland@arm.com, acme@kernel.org, 
- namhyung@kernel.org, alexander.shishkin@linux.intel.com, jolsa@kernel.org, 
- irogers@google.com, adrian.hunter@intel.com, kan.liang@linux.intel.com,
- linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
- <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,45 +65,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2025-08-26 2:03 pm, Peter Zijlstra wrote:
-> On Wed, Aug 13, 2025 at 06:01:04PM +0100, Robin Murphy wrote:
->> It may have been different long ago, but today it seems wrong for these
->> drivers to skip counting disabled sibling events in group validation,
->> given that perf_event_enable() could make them schedulable again, and
->> thus increase the effective size of the group later. Conversely, if a
->> sibling event is truly dead then it stands to reason that the whole
->> group is dead, so it's not worth going to any special effort to try to
->> squeeze in a new event that's never going to run anyway. Thus, we can
->> simply remove all these checks.
-> 
-> So currently you can do sort of a manual event rotation inside an
-> over-sized group and have it work.
-> 
-> I'm not sure if anybody actually does this, but its possible.
-> 
-> Eg. on a PMU that supports only 4 counters, create a group of 5 and
-> periodically cycle which of the 5 events is off.
-> 
-> So I'm not against changing this, but changing stuff like this always
-> makes me a little fearful -- it wouldn't be the first time that when it
-> finally trickles down to some 'enterprise' user in 5 years someone comes
-> and finally says, oh hey, you broke my shit :-(
+Although it's possible to change the attributes in runtime, they have no
+effect after the driver is already bound to the device. Check for that
+and return -EBUSY in that case.
 
-Eww, I see what you mean... and I guess that's probably lower-overhead 
-than actually deleting and recreating the sibling event(s) each time, 
-and potentially less bother then wrangling multiple groups for different 
-combinations of subsets when one simply must still approximate a complex 
-metric that requires more counters than the hardware offers.
+This should help users understand what's going on when the behavior is
+not changing even if the value from the configfs is "right", but it got
+to that state too late.
 
-I'm also not keen to break anything that wasn't already somewhat broken, 
-especially since this patch is only intended as cleanup, so either we 
-could just drop it altogether, or perhaps I can wrap the existing 
-behaviour in a helper that can at least document this assumption and 
-discourage new drivers from copying it. Am I right that only 
-PERF_EVENT_STATE_{OFF,ERROR} would matter for this, though, and my 
-reasoning for state <= PERF_EVENT_STATE_EXIT should still stand? As for 
-the fiddly discrepancy with enable_on_exec between arm_pmu and others 
-I'm not really sure what to think...
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+v2:
+- Add dbg message when it's already bound (Riana)
+---
+ drivers/gpu/drm/xe/xe_configfs.c | 41 ++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-Thanks,
-Robin.
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 29a12d02443d9..1025d3979b066 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -75,6 +75,8 @@
+  *
+  *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+  *
++ * This attribute can only be set before binding to the device.
++ *
+  * Allowed engines:
+  * ----------------
+  *
+@@ -99,6 +101,8 @@
+  * available for migrations, but it's disabled. This is intended for debugging
+  * purposes only.
+  *
++ * This attribute can only be set before binding to the device.
++ *
+  * PSMI
+  * ----
+  *
+@@ -109,6 +113,8 @@
+  *
+  *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/enable_psmi
+  *
++ * This attribute can only be set before binding to the device.
++ *
+  * Remove devices
+  * ==============
+  *
+@@ -169,6 +175,32 @@ static struct xe_config_device *to_xe_config_device(struct config_item *item)
+ 	return &to_xe_config_group_device(item)->config;
+ }
+ 
++static bool is_bound(struct xe_config_group_device *dev)
++{
++	unsigned int domain, bus, slot, function;
++	struct pci_dev *pdev;
++	const char *name;
++	bool ret;
++
++	lockdep_assert_held(&dev->lock);
++
++	name = dev->group.cg_item.ci_name;
++	if (sscanf(name, "%x:%x:%x.%x", &domain, &bus, &slot, &function) != 4)
++		return false;
++
++	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
++	if (!pdev)
++		return false;
++
++	ret = pci_get_drvdata(pdev);
++	pci_dev_put(pdev);
++
++	if (ret)
++		pci_dbg(pdev, "Already bound to driver\n");
++
++	return ret;
++}
++
+ static ssize_t survivability_mode_show(struct config_item *item, char *page)
+ {
+ 	struct xe_config_device *dev = to_xe_config_device(item);
+@@ -187,6 +219,9 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 		return ret;
+ 
+ 	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
+ 	dev->config.survivability_mode = survivability_mode;
+ 
+ 	return len;
+@@ -270,6 +305,9 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 	}
+ 
+ 	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
+ 	dev->config.engines_allowed = val;
+ 
+ 	return len;
+@@ -293,6 +331,9 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
+ 		return ret;
+ 
+ 	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
+ 	dev->config.enable_psmi = val;
+ 
+ 	return len;
+-- 
+2.50.1
+
