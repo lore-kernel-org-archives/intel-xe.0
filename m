@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A47CA0FF6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D8CCA0FF2
 	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 18:29:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D244410E39E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD39510E059;
 	Tue, 26 Aug 2025 18:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THOqu6fi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHxVtfSG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBFA610E059
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EF6810E059
  for <intel-xe@lists.freedesktop.org>; Tue, 26 Aug 2025 18:29:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756232955; x=1787768955;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=165RZJfoSKghnPnGDB708rMRtaL/lUobi1VB2EDtzfk=;
- b=THOqu6fiPASEXhPFG+orbwsrFo6PZyYB9Q2FeRSqc2zstRuVTVaVwuiz
- 819AvKF9rAtKDjYNpxDOLTnUsvAA7AtPDgxkW0YfTKyE4bk2tWSXQeWxP
- 4qwAY632ye4y/J+Q6ydqLEABFz1bHDqLBQrfpu+2E1NaRNJkaokaD5ovI
- 6FaxvMM0Zic6CaKl1564nPl/w0jtTr6uym9rB9yYBY/1TdyWNT3EG/gu+
- l9UhKIfMYunL5mlhZ0Zg/reNQ2xfWIcyQ4NRRWtwSxWDNjpi14O/CuFp8
- 2TdyN+ySFsKRvQs9j0E2Y5/+l1g/KORkf/Rtu6nJXkY4dBwXj1sTCXAMY Q==;
-X-CSE-ConnectionGUID: sF3u1OjGRaKaO2kZlXS5vQ==
-X-CSE-MsgGUID: gGr8BlSYTOiCIvoPZp9CTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="76080643"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="76080643"
+ t=1756232954; x=1787768954;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bvSC4ZUuC/4Ygi0I2+DG8Nxocdd9jjGFzdXO5xfFDKQ=;
+ b=BHxVtfSG6ZbIi7kzR3GdCUQRWe/PhdJHOH8t7HBghzbCqjQRaGZW9Jz/
+ g0D2yEsMmu+udVqAihrTAbUYz4P7zC/HhrfARoqrctuME3E82OmMkI1os
+ YkcnU4Ui2pTgQkBbPQpcTj/OOt13K8dwU/E3gXv4Bqq9zqlZjY6OSC69c
+ uYrK0E1nzyrqeDb/7rTmxBFSxsz/ppMLS20YI9uKfOFKmeQzePyCLakP8
+ damWKmayUuwFOAknzDOvXs8JXgplVTzIQ6SMvX8UDyA73O7nDYR/N0KW8
+ ny4RajBibWI5xo5AnXMsZr/kF/qrXExGw2pFLztLw9yQ56PzGGRo0ob1q A==;
+X-CSE-ConnectionGUID: qvDQS28cRQy5cBO4PYW9oA==
+X-CSE-MsgGUID: cMO3rt4oSWymukWC/hUmeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="76080640"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="76080640"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2025 11:29:14 -0700
-X-CSE-ConnectionGUID: N0evWiUqTumCcuKliEim8A==
-X-CSE-MsgGUID: phtDpUkDSkW7J9ya/7htVw==
+ 26 Aug 2025 11:29:13 -0700
+X-CSE-ConnectionGUID: Y2YBEqoTRlqByYonZgWKhA==
+X-CSE-MsgGUID: lWgRgR1JQA2QS2JgtEpelg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="173800835"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="173800829"
 Received: from dut137arlu.fm.intel.com ([10.105.23.75])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Aug 2025 11:29:13 -0700
@@ -45,12 +45,10 @@ From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  farah.kassabri@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 2/9] drm/xe: Cancel pending TLB inval workers on teardown
-Date: Tue, 26 Aug 2025 18:29:04 +0000
-Message-Id: <20250826182911.392550-3-stuart.summers@intel.com>
+Subject: [PATCH 0/9] Add TLB invalidation abstraction
+Date: Tue, 26 Aug 2025 18:29:02 +0000
+Message-Id: <20250826182911.392550-1-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250826182911.392550-1-stuart.summers@intel.com>
-References: <20250826182911.392550-1-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,69 +65,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new _fini() routine on the GT TLB invalidation
-side to handle this worker cleanup on driver teardown.
+This is a new collection of patches from Matt that has
+been floating around internally and on the mailing list.
+The goal here is to abstract the actual mechanism of
+the invalidation from the higher level invalidation triggers
+(like page table updates).
 
-v2: Move the TLB teardown to the gt fini() routine called during
-    gt_init rather than in gt_alloc. This way the GT structure stays
-    alive for while we reset the TLB state.
+Most of these were brought in unmodified by Matt, but
+I've done some minor rebase work here and there and
+added my signoff where those rebases seemed a little
+more extensive.
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c                  |  2 ++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  1 +
- 3 files changed, 15 insertions(+)
+Tested on BMG locally.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index a3397f04abcc..178c4783bbda 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -603,6 +603,8 @@ static void xe_gt_fini(void *arg)
- 	struct xe_gt *gt = arg;
- 	int i;
- 
-+	xe_gt_tlb_invalidation_fini(gt);
-+
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
- 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 75854b963d66..db00c5adead9 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -188,6 +188,18 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	mutex_unlock(&gt->tlb_invalidation.seqno_lock);
- }
- 
-+/**
-+ *
-+ * xe_gt_tlb_invalidation_fini - Clean up GT TLB invalidation state
-+ *
-+ * Cancel pending fence workers and clean up any additional
-+ * GT TLB invalidation state.
-+ */
-+void xe_gt_tlb_invalidation_fini(struct xe_gt *gt)
-+{
-+	xe_gt_tlb_invalidation_reset(gt);
-+}
-+
- static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
- {
- 	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index f7f0f2eaf4b5..3e4cff3922d6 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -16,6 +16,7 @@ struct xe_vm;
- struct xe_vma;
- 
- int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
-+void xe_gt_tlb_invalidation_fini(struct xe_gt *gt);
- 
- void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
- int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+v10: Rebase
+v9: Use tlb_inval_reset in TLB inval tear down sequence.
+v8: Fix documentation failures in CI and rebase
+v7: Add a little more documentation around the TLB worker
+    cancel on teardown and move that cancellation to a
+    drm teardown helper.
+v6: Fix for UAF in timer.c due to outstanding TLB inval
+    on teardown.
+v5: Make sure seqno_lock covers the prep and send in
+    the later patches (Matt)
+v4: Replace CT lock with seqno_lock
+v3: Minor spelling fixes and added R-B's per updates on
+    on the mailing list
+v2: Start the series with a new patch to drop the
+    explicit CT lock (Matt)
+    Pull in the remaining patches from [1]
+
+[1] https://patchwork.freedesktop.org/series/151670/#rev1
+
+Matthew Brost (7):
+  drm/xe: s/tlb_invalidation/tlb_inval
+  drm/xe: Add xe_tlb_inval structure
+  drm/xe: Add xe_gt_tlb_invalidation_done_handler
+  drm/xe: Decouple TLB invalidations from GT
+  drm/xe: Prep TLB invalidation fence before sending
+  drm/xe: Add helpers to send TLB invalidations
+  drm/xe: Split TLB invalidation code in frontend and backend
+
+Stuart Summers (2):
+  drm/xe: Move explicit CT lock in TLB invalidation sequence
+  drm/xe: Cancel pending TLB inval workers on teardown
+
+ drivers/gpu/drm/xe/Makefile                   |   5 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   4 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c            |   2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                  |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |   8 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c          |   1 -
+ drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h      |  34 -
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   | 604 ------------------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h   |  40 --
+ .../gpu/drm/xe/xe_gt_tlb_invalidation_types.h |  32 -
+ drivers/gpu/drm/xe/xe_gt_types.h              |  33 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |   8 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c         | 242 +++++++
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.h         |  19 +
+ drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
+ drivers/gpu/drm/xe/xe_migrate.h               |  10 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   6 +-
+ drivers/gpu/drm/xe/xe_pci_types.h             |   2 +-
+ drivers/gpu/drm/xe/xe_pt.c                    |  63 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   3 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c             | 434 +++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.h             |  46 ++
+ ..._gt_tlb_inval_job.c => xe_tlb_inval_job.c} | 154 +++--
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h         |  33 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h       | 130 ++++
+ drivers/gpu/drm/xe/xe_trace.h                 |  24 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |  66 +-
+ drivers/gpu/drm/xe/xe_vm.h                    |   4 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c            |   2 +-
+ 29 files changed, 1099 insertions(+), 926 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_inval_job.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_tlb_inval.h
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.c
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval.h
+ rename drivers/gpu/drm/xe/{xe_gt_tlb_inval_job.c => xe_tlb_inval_job.c} (50%)
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_job.h
+ create mode 100644 drivers/gpu/drm/xe/xe_tlb_inval_types.h
+
 -- 
 2.34.1
 
