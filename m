@@ -4,68 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1974CA0EFA
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 10:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E99FCA0EFA
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 11:15:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5046310E633;
-	Tue, 26 Aug 2025 10:56:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="naNR+Ibh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 528AF10E2F0;
- Tue, 26 Aug 2025 10:56:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756205803; x=1787741803;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Cima1+Iqo6LOGJ1YzdhrB4htTTHoYWHnhTCKCHSN8l0=;
- b=naNR+IbhcvzF5AUEoImvrt2MxfiC4V4T/1k3FruRsVk84Hak7fzo9PiI
- QnDvthm/x9JjyjaIdONoWEHcJnTt0oyGrWoKyNv073wzh0NrsF+7xucee
- l2tFb9jyd/NnlpIyKcCqzvSwcNXXey40Cu+Sf7NKS3JS7dNwYzHP0+oC4
- tHWaeq90S7jdqDkZptxEgs/rr3rHLbtbKlPQW1HnEZRaZTaEg3QV6Fiaz
- rQr3VFu/s9wpBiNOKXBSkmPZkTJ5giK5fP5XofJrHmBSRAPotDRR3yDkD
- +To8xaZBLH3ysxhTlXLOtTWBKSobL537WVj8flq9iYmKKP4kaI0javYPS g==;
-X-CSE-ConnectionGUID: L9evsD6nSdCLp5Uzizir7g==
-X-CSE-MsgGUID: RBpV1UIhRnCVDkQz+MPbKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="46011582"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="46011582"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2025 03:56:43 -0700
-X-CSE-ConnectionGUID: OBVlZwNiRm2Dws0pyVQv/A==
-X-CSE-MsgGUID: KKJuS7akRC2UpPCyCabZ7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169721311"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.97])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2025 03:56:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- linux-kernel@vger.kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Dibin Moolakadan
- Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>, Imre Deak
- <imre.deak@intel.com>, David Laight <david.laight.linux@gmail.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Matt Wagantall
- <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Andrew
- Morton <akpm@linux-foundation.org>, Sima Vetter <sima@ffwll.ch>, Dave
- Airlie <airlied@redhat.com>
-Subject: Re: [PATCH v2 1/4] iopoll: Generalize read_poll_timeout() into
- poll_timeout_us()
-In-Reply-To: <6509cf62cc5c28e1626a6ee82c9f9caf62a7ef4b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
- <20250708131634.1524-1-ville.syrjala@linux.intel.com>
- <aHacCnkuMCwNYin8@intel.com>
- <6509cf62cc5c28e1626a6ee82c9f9caf62a7ef4b@intel.com>
-Date: Tue, 26 Aug 2025 13:56:34 +0300
-Message-ID: <cd2c7eb2b6877704534620098374075416514ce0@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2300E10E083;
+	Tue, 26 Aug 2025 11:15:42 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E4E8B10E083;
+ Tue, 26 Aug 2025 11:15:40 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E7AF1A00;
+ Tue, 26 Aug 2025 04:15:32 -0700 (PDT)
+Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 663C13F63F;
+ Tue, 26 Aug 2025 04:15:28 -0700 (PDT)
+Date: Tue, 26 Aug 2025 12:15:23 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
+ acme@kernel.org, namhyung@kernel.org,
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+ irogers@google.com, adrian.hunter@intel.com,
+ kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 02/19] perf/hisilicon: Fix group validation
+Message-ID: <aK2XS_GhLw1EQ2ml@J2N7QTR9R3>
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,91 +62,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 31 Jul 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Tue, 15 Jul 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
->> On Tue, Jul 08, 2025 at 04:16:34PM +0300, Ville Syrjala wrote:
->>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>>=20
->>> While read_poll_timeout() & co. were originally introduced just
->>> for simple I/O usage scenarios they have since been generalized to
->>> be useful in more cases.
->>>=20
->>> However the interface is very cumbersome to use in the general case.
->>> Attempt to make it more flexible by combining the 'op', 'var' and
->>> 'args' parameter into just a single 'op' that the caller can fully
->>> specify.
->>>=20
->>> For example i915 has one case where one might currently
->>> have to write something like:
->>> 	ret =3D read_poll_timeout(drm_dp_dpcd_read_byte, err,
->>> 				err || (status & mask),
->>> 				0 * 1000, 200 * 1000, false,
->>> 				aux, DP_FEC_STATUS, &status);
->>> which is practically illegible, but with the adjusted macro
->>> we do:
->>> 	ret =3D poll_timeout_us(err =3D drm_dp_dpcd_read_byte(aux, DP_FEC_STAT=
-US, &status),
->>> 			      err || (status & mask),
->>> 			      0 * 1000, 200 * 1000, false);
->>> which much easier to understand.
->>>=20
->>> One could even combine the 'op' and 'cond'  parameters into
->>> one, but that might make the caller a bit too unwieldly with
->>> assignments and checks being done on the same statement.
->>>=20
->>> This makes poll_timeout_us() closer to the i915 __wait_for()
->>> macro, with the main difference being that __wait_for() uses
->>> expenential backoff as opposed to the fixed polling interval
->>> used by poll_timeout_us(). Eventually we might be able to switch
->>> (at least most of) i915 to use poll_timeout_us().
->>>=20
->>> v2: Fix typos (Jani)
->>>     Fix delay_us docs for poll_timeout_us_atomic() (Jani)
->>>=20
->>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.=
-com>
->>> Cc: Imre Deak <imre.deak@intel.com>
->>> Cc: David Laight <david.laight.linux@gmail.com>
->>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->>> Cc: Matt Wagantall <mattw@codeaurora.org>
->>> Cc: Dejin Zheng <zhengdejin5@gmail.com>
->>> Cc: intel-gfx@lists.freedesktop.org
->>> Cc: intel-xe@lists.freedesktop.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>> ---
->>>  include/linux/iopoll.h | 110 +++++++++++++++++++++++++++++------------
->>>  1 file changed, 78 insertions(+), 32 deletions(-)
->>
->> Any thoughs how we should get this stuff in? Jani will need it for
->> some i915 stuff once he returns from vacation, so I could just push
->> it into drm-intel-next...
->>
->> Are people OK with that, or is there a better tree that could pick=20
->> this up?
->
-> Cc: Andrew
->
-> The iopoll.h file is not in MAINTAINERS, and previous changes to it
-> appear to have gone through various trees. I'd like to base follow-up
-> work in i915 on this, but who could ack merging the patches via
-> drm-intel-next? Though doesn't look like anyone's acked the earlier
-> changes either...
+On Wed, Aug 13, 2025 at 06:00:54PM +0100, Robin Murphy wrote:
+> The group validation logic shared by the HiSilicon HNS3/PCIe drivers is
+> a bit off, in that given a software group leader, it will consider that
+> event *in place of* the actual new event being opened. At worst this
+> could theoretically allow an unschedulable group if the software event
+> config happens to look like one of the hardware siblings.
+> 
+> The uncore framework avoids that particular issue,
 
-Ville, can you submit this again, please?
+What is "the uncore framework"? I'm not sure exactly what you're
+referring to, nor how that composes with the problem described above.
 
-If we don't get any feedback from anyone, I'm just going to merge this
-via drm-intel-next.
+> but all 3 also share the common issue of not preventing racy access to
+> the sibling list,
 
-Cc: Dave, Sima.
+Can you please elaborate on this racy access to the silbing list? I'm
+not sure exactly what you're referring to.
 
+> and some redundant checks which can be cleaned up.
+> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  drivers/perf/hisilicon/hisi_pcie_pmu.c   | 17 ++++++-----------
+>  drivers/perf/hisilicon/hisi_uncore_pmu.c | 23 +++++++----------------
+>  drivers/perf/hisilicon/hns3_pmu.c        | 17 ++++++-----------
+>  3 files changed, 19 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/perf/hisilicon/hisi_pcie_pmu.c b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> index c5394d007b61..3b0b2f7197d0 100644
+> --- a/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> +++ b/drivers/perf/hisilicon/hisi_pcie_pmu.c
+> @@ -338,21 +338,16 @@ static bool hisi_pcie_pmu_validate_event_group(struct perf_event *event)
+>  	int counters = 1;
+>  	int num;
+>  
+> -	event_group[0] = leader;
+> -	if (!is_software_event(leader)) {
+> -		if (leader->pmu != event->pmu)
+> -			return false;
+> +	if (leader == event)
+> +		return true;
+>  
+> -		if (leader != event && !hisi_pcie_pmu_cmp_event(leader, event))
+> -			event_group[counters++] = event;
+> -	}
+> +	event_group[0] = event;
+> +	if (leader->pmu == event->pmu && !hisi_pcie_pmu_cmp_event(leader, event))
+> +		event_group[counters++] = leader;
 
-BR,
-Jani.
+Looking at this, the existing logic to share counters (which
+hisi_pcie_pmu_cmp_event() is trying to permit) looks to be bogus, given
+that the start/stop callbacks will reprogram the HW counters (and hence
+can fight with one another).
 
+I suspect that can be removed *entirely*, and this can be simplified
+down to allocating N counters, without a quadratic event comparison.  We
+don't try to share counters in other PMU drivers, and there was no
+rationale for trying to do this when this wa introduced in commit:
 
---=20
-Jani Nikula, Intel
+  8404b0fbc7fbd42e ("drivers/perf: hisi: Add driver for HiSilicon PCIe PMU")
+
+The 'link' tag in that comment goes to v13, which doesn't link to prior
+postings, so I'm not going to dig further.
+
+Mark.
+
+>  
+>  	for_each_sibling_event(sibling, event->group_leader) {
+> -		if (is_software_event(sibling))
+> -			continue;
+> -
+>  		if (sibling->pmu != event->pmu)
+> -			return false;
+> +			continue;
+>  
+>  		for (num = 0; num < counters; num++) {
+>  			/*
+> diff --git a/drivers/perf/hisilicon/hisi_uncore_pmu.c b/drivers/perf/hisilicon/hisi_uncore_pmu.c
+> index a449651f79c9..3c531b36cf25 100644
+> --- a/drivers/perf/hisilicon/hisi_uncore_pmu.c
+> +++ b/drivers/perf/hisilicon/hisi_uncore_pmu.c
+> @@ -101,26 +101,17 @@ static bool hisi_validate_event_group(struct perf_event *event)
+>  	/* Include count for the event */
+>  	int counters = 1;
+>  
+> -	if (!is_software_event(leader)) {
+> -		/*
+> -		 * We must NOT create groups containing mixed PMUs, although
+> -		 * software events are acceptable
+> -		 */
+> -		if (leader->pmu != event->pmu)
+> -			return false;
+> +	if (leader == event)
+> +		return true;
+>  
+> -		/* Increment counter for the leader */
+> -		if (leader != event)
+> -			counters++;
+> -	}
+> +	/* Increment counter for the leader */
+> +	if (leader->pmu == event->pmu)
+> +		counters++;
+>  
+>  	for_each_sibling_event(sibling, event->group_leader) {
+> -		if (is_software_event(sibling))
+> -			continue;
+> -		if (sibling->pmu != event->pmu)
+> -			return false;
+>  		/* Increment counter for each sibling */
+> -		counters++;
+> +		if (sibling->pmu == event->pmu)
+> +			counters++;
+>  	}
+>  
+>  	/* The group can not count events more than the counters in the HW */
+> diff --git a/drivers/perf/hisilicon/hns3_pmu.c b/drivers/perf/hisilicon/hns3_pmu.c
+> index c157f3572cae..382e469257f9 100644
+> --- a/drivers/perf/hisilicon/hns3_pmu.c
+> +++ b/drivers/perf/hisilicon/hns3_pmu.c
+> @@ -1058,21 +1058,16 @@ static bool hns3_pmu_validate_event_group(struct perf_event *event)
+>  	int counters = 1;
+>  	int num;
+>  
+> -	event_group[0] = leader;
+> -	if (!is_software_event(leader)) {
+> -		if (leader->pmu != event->pmu)
+> -			return false;
+> +	if (leader == event)
+> +		return true;
+>  
+> -		if (leader != event && !hns3_pmu_cmp_event(leader, event))
+> -			event_group[counters++] = event;
+> -	}
+> +	event_group[0] = event;
+> +	if (leader->pmu == event->pmu && !hns3_pmu_cmp_event(leader, event))
+> +		event_group[counters++] = leader;
+>  
+>  	for_each_sibling_event(sibling, event->group_leader) {
+> -		if (is_software_event(sibling))
+> -			continue;
+> -
+>  		if (sibling->pmu != event->pmu)
+> -			return false;
+> +			continue;
+>  
+>  		for (num = 0; num < counters; num++) {
+>  			/*
+> -- 
+> 2.39.2.101.g768bb238c484.dirty
+> 
