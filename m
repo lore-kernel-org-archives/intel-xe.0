@@ -4,63 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 287C3CA0EFA
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 13:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 302B5CA0FE7
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 13:06:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFFA610E634;
-	Tue, 26 Aug 2025 13:03:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="s5T3h8Qu";
-	dkim-atps=neutral
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82C8610E661;
- Tue, 26 Aug 2025 13:03:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=pe5SE8cLTPPyLKyF6S5l44TjxJSycuwoPwH53Hc4MBc=; b=s5T3h8QunORHMVi1lJq+TueBjc
- cEFljtvjN5QJ03jRIuUbqZT2dzYWLCkq7EIgZ1HjiZepKSvKZUS4jhIftbJpUomzAxLkXpo4MhYIl
- ZCvpLQBdWeqllwk2L5LEakNCj50aVxzY1I5n8BnO+qCbmyfysUZaBrevf4ZwX/NHQuj2PrtwGK3Is
- jhSt6FlQLnGrrRwVWOG3VEhB1mGDJu+1EhbkwSGhAG25rhQM5DyWklhsvsXQh2tW5FYLoYbc8dttl
- tsa9sX+EEmcEbn/jBCdJY0wOlh7GZntWiVjKPlxT8hw9CmspDWHiAZfhSZSTIR8f/mKGoVnI/OKYV
- DfymEZ2w==;
-Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1uqtKk-00000002CWx-1CxP; Tue, 26 Aug 2025 13:03:31 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id E7FAC3002C5; Tue, 26 Aug 2025 15:03:29 +0200 (CEST)
-Date: Tue, 26 Aug 2025 15:03:29 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: mingo@redhat.com, will@kernel.org, mark.rutland@arm.com,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com,
- kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 12/19] perf: Ignore event state for group validation
-Message-ID: <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D907B10E655;
+	Tue, 26 Aug 2025 13:06:30 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55E0D10E655;
+ Tue, 26 Aug 2025 13:06:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1159102214346357541=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/3=5D_iopoll=3A_Generalize_read=5Fpoll=5Ftimeout=28=29_into_p?=
+ =?utf-8?q?oll=5Ftimeout=5Fus=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 26 Aug 2025 13:06:29 -0000
+Message-ID: <175621358934.270220.14433895615196891685@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250826121859.15497-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250826121859.15497-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,29 +37,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 13, 2025 at 06:01:04PM +0100, Robin Murphy wrote:
-> It may have been different long ago, but today it seems wrong for these
-> drivers to skip counting disabled sibling events in group validation,
-> given that perf_event_enable() could make them schedulable again, and
-> thus increase the effective size of the group later. Conversely, if a
-> sibling event is truly dead then it stands to reason that the whole
-> group is dead, so it's not worth going to any special effort to try to
-> squeeze in a new event that's never going to run anyway. Thus, we can
-> simply remove all these checks.
+--===============1159102214346357541==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So currently you can do sort of a manual event rotation inside an
-over-sized group and have it work.
+== Series Details ==
 
-I'm not sure if anybody actually does this, but its possible.
+Series: series starting with [v2,1/3] iopoll: Generalize read_poll_timeout() into poll_timeout_us()
+URL   : https://patchwork.freedesktop.org/series/153514/
+State : success
 
-Eg. on a PMU that supports only 4 counters, create a group of 5 and
-periodically cycle which of the 5 events is off.
+== Summary ==
 
-So I'm not against changing this, but changing stuff like this always
-makes me a little fearful -- it wouldn't be the first time that when it
-finally trickles down to some 'enterprise' user in 5 years someone comes
-and finally says, oh hey, you broke my shit :-(
+CI Bug Log - changes from xe-3619-9a7b262940bab808a7f3470846922306f686bd84_BAT -> xe-pw-153514v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153514v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8509 -> IGT_8510
+  * Linux: xe-3619-9a7b262940bab808a7f3470846922306f686bd84 -> xe-pw-153514v1
+
+  IGT_8509: 9709b23ae933687339ed89c526df2677102e9153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8510: 8510
+  xe-3619-9a7b262940bab808a7f3470846922306f686bd84: 9a7b262940bab808a7f3470846922306f686bd84
+  xe-pw-153514v1: 153514v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153514v1/index.html
+
+--===============1159102214346357541==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] iopoll: Generalize read_poll_timeout() into poll_timeout_us()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153514/">https://patchwork.freedesktop.org/series/153514/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153514v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153514v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3619-9a7b262940bab808a7f3470846922306f686bd84_BAT -&gt; xe-pw-153514v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153514v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8509 -&gt; IGT_8510</li>
+<li>Linux: xe-3619-9a7b262940bab808a7f3470846922306f686bd84 -&gt; xe-pw-153514v1</li>
+</ul>
+<p>IGT_8509: 9709b23ae933687339ed89c526df2677102e9153 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8510: 8510<br />
+  xe-3619-9a7b262940bab808a7f3470846922306f686bd84: 9a7b262940bab808a7f3470846922306f686bd84<br />
+  xe-pw-153514v1: 153514v1</p>
+
+</body>
+</html>
+
+--===============1159102214346357541==--
