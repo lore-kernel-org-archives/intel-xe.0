@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DFC8CA0FF2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C4BCA0FE7
 	for <intel-xe@archiver.kernel.org>; Tue, 26 Aug 2025 17:50:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D97F310E6B1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E027610E6B2;
 	Tue, 26 Aug 2025 17:50:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TBErpBLh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F0uHwOgl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ABAF10E6B1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCFDB10E6B1
  for <intel-xe@lists.freedesktop.org>; Tue, 26 Aug 2025 17:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756230652; x=1787766652;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CvEQ6QFqtpRuIjWlQrPo7dQP+d9Q4DRdX/k5APELPGc=;
- b=TBErpBLhAnNhd5sKULTzOS/8x34ZCNVEWifgY32U0gt67NsBwVBYUYg/
- mW/tuZquLyAFEQjliq0BBP/M4lyLwhZOsG31iUbIXJyhLXDi8v0bj1RZR
- mDPoqQmR/Md+SOsIEG+L80FpWQXJaq6fTDfl8psxLX6iSKgb7XKP+rKPT
- UmHoSLRamS20KALTkoUyoQICK5YTgXkx6qGGCmv6OkmRphfWG8QPhORo9
- WdhJKRF9DDDwtHdzhZQAkHtnv7SZ4B8Iyq5N/+By1sjsMWHq2OKzyNTu2
- OcfzKgBR/MM0Pp4POjEQzAcD7cwqtGZZCvXX7zvsd2rQsafv/iQNKFEMn A==;
-X-CSE-ConnectionGUID: Y8PgAciYSwKABRw2EkriRQ==
-X-CSE-MsgGUID: YZRQMINRQOCp24gVq0wbsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="61110843"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="61110843"
+ t=1756230653; x=1787766653;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NVrngxD4B30w+qaQEolskCL7au5kV4/7vnjtb5zSYhg=;
+ b=F0uHwOglrQwUItEFfSQGcTJi4TruH0z3XEwmpw9BRNUogetspCJVdzjm
+ IQkxEJghQms2w2iwqL2CN/GV4G5X9hNeu2XKNlDwzlij6I00i4Yoxgc0T
+ ICe72BNjmS/8cW/CgX9tWgPNG6tK9fGTzcam9Tc3pnZaBQxm+W8xRVGVQ
+ E99hgFQ2rkgCCOpLZ6c8oMOpQuLKdvv/GeZmDk4AT7nYfUL8UCea28/xu
+ oKfyOyt605EYVw64PkQiXiXLu3un/GrJS7VXzihcB4Lvi4FDmiV9GYXMx
+ I6gVcAV5cb2i6Yll9282lgCJCRbGLdWG7KblLvKjHq2dq+ISceBu8gMhv g==;
+X-CSE-ConnectionGUID: Oolp77lBSFah2sxii7cHgg==
+X-CSE-MsgGUID: W4VB+J+yT8GYyp16fKprTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="61110841"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="61110841"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Aug 2025 10:50:52 -0700
-X-CSE-ConnectionGUID: wjMS3oSnSqaXEGN9CaLvXQ==
-X-CSE-MsgGUID: KiKZ5AVxSFONz1rWoChz3g==
+X-CSE-ConnectionGUID: zuGNw61tST2Ko0Fyrfxyvw==
+X-CSE-MsgGUID: HKtR+6RGQMO3wjkMLvN13w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169150391"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169150385"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.138])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Aug 2025 10:50:52 -0700
@@ -45,12 +45,10 @@ From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  john.c.harrison@intel.com, matthew.brost@intel.com
-Subject: [PATCH 2/2] drm/xe/xe_vm: Add error injection support to lock and prep
-Date: Tue, 26 Aug 2025 17:50:54 +0000
-Message-ID: <20250826175051.92563-6-jonathan.cavitt@intel.com>
+Subject: [PATCH 0/2] drm/xe/xe_vm: Add error injection support to lock and prep
+Date: Tue, 26 Aug 2025 17:50:52 +0000
+Message-ID: <20250826175051.92563-4-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250826175051.92563-4-jonathan.cavitt@intel.com>
-References: <20250826175051.92563-4-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,43 +65,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add error injection support to the function
+Error injection should use the error injection interface, and should be
+decoupled from CONFIG_DRM_XE_DEBUG.  Remove TEST_VM_OPS_ERROR from the
+code, and add error injection support to the function
 vm_bind_ioctl_ops_lock_and_prep.  This necessitates marking the function
 as noinline.
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Jonathan Cavitt (2):
+  Revert "drm/xe: Add VM bind IOCTL error injection"
+  drm/xe/xe_vm: Add error injection support to lock and prep
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1a8841116e40..e527c90b8c33 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3201,9 +3201,10 @@ static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops
- 	return 0;
- }
- 
--static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
--					   struct xe_vm *vm,
--					   struct xe_vma_ops *vops)
-+static noinline int
-+vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
-+				struct xe_vm *vm,
-+				struct xe_vma_ops *vops)
- {
- 	struct xe_vma_op *op;
- 	int err;
-@@ -3220,6 +3221,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 
- 	return 0;
- }
-+ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_lock_and_prep, ERRNO);
- 
- static void op_trace(struct xe_vma_op *op)
- {
+ drivers/gpu/drm/xe/xe_device_types.h | 12 -----------
+ drivers/gpu/drm/xe/xe_pt.c           | 12 -----------
+ drivers/gpu/drm/xe/xe_vm.c           | 31 ++++++----------------------
+ drivers/gpu/drm/xe/xe_vm_types.h     | 14 -------------
+ 4 files changed, 6 insertions(+), 63 deletions(-)
+
 -- 
 2.43.0
 
