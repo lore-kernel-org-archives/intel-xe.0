@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB33CA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 21:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3622CA0EFF
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 22:04:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 151B410E8C6;
-	Wed, 27 Aug 2025 21:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A1E110E8D7;
+	Wed, 27 Aug 2025 22:04:35 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEB2B10E8BF;
- Wed, 27 Aug 2025 21:59:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3914319691590744734=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3145910E8D7;
+ Wed, 27 Aug 2025 22:04:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Extend_Wa=5F22021?=
- =?utf-8?q?007897_to_Xe3_platforms?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Add_err?=
+ =?utf-8?q?or_injection_support_to_lock_and_prep?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Aug 2025 21:59:14 -0000
-Message-ID: <175633195490.275924.16946257828409377229@1538d3639d33>
+Date: Wed, 27 Aug 2025 22:04:34 -0000
+Message-ID: <175633227419.275917.8832442190460051716@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250827-wa-22021007897-v1-1-96922eb52af4@intel.com>
-In-Reply-To: <20250827-wa-22021007897-v1-1-96922eb52af4@intel.com>
+References: <20250827203612.119748-5-jonathan.cavitt@intel.com>
+In-Reply-To: <20250827203612.119748-5-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,131 +40,78 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3914319691590744734==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Extend Wa_22021007897 to Xe3 platforms
-URL   : https://patchwork.freedesktop.org/series/153584/
-State : success
+Series: drm/xe/xe_vm: Add error injection support to lock and prep
+URL   : https://patchwork.freedesktop.org/series/153588/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -> xe-pw-153584v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e1ad9489e3fd2ab28dd5d3228b10a807e4bebf84
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Wed Aug 27 20:36:16 2025 +0000
 
-Summary
--------
+    drm/xe/xe_vm: Add error injection support to lock and prep
+    
+    Add error injection support to the function
+    vm_bind_ioctl_ops_lock_and_prep.  This necessitates marking the function
+    as noinline.
+    
+    v2: Only noinline vm_bind_ioctl_ops_lock_and_prep when function error
+    injection is enabled (Brost)
+    
+    v3: Use error_injectable to apply v2 change (Brost, Harrison)
+    
+    v4: Move error_injectable function attribute (Brost)
+    
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: John Harrison <john.c.harrison@intel.com>
++ /mt/dim checkpatch 0d32d7955f9687a74f9618328e48da2db085cbd6 drm-intel
+a8d8e3afbe6f drm/xe: Add error_injectable define
+-:171: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
+#171: FILE: drivers/gpu/drm/xe/xe_guc_ct.c:2073:
++error_injectable
+ int xe_is_injection_active(void) { return 0; }
 
-  **SUCCESS**
+total: 1 errors, 0 warnings, 0 checks, 314 lines checked
+a8e43c9a1338 Revert "drm/xe: Add VM bind IOCTL error injection"
+-:96: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#96: FILE: drivers/gpu/drm/xe/xe_vm.c:3469:
++#define SUPPORTED_FLAGS	\
+ 	(DRM_XE_VM_BIND_FLAG_READONLY | \
+ 	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
+ 	 DRM_XE_VM_BIND_FLAG_NULL | \
 
-  No regressions found.
+BUT SEE:
 
-  
+   do {} while (0) advice is over-stated in a few situations:
 
-Participating hosts (11 -> 11)
-------------------------------
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  No changes in participating hosts
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-Known issues
-------------
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  Here are the changes found in xe-pw-153584v1_BAT that come from known issues:
+   Enjoy this qualification while we work to improve our heuristics.
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153584v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8511 -> IGT_8512
-  * Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -> xe-pw-153584v1
-
-  IGT_8511: 8511
-  IGT_8512: 8512
-  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578
-  xe-pw-153584v1: 153584v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153584v1/index.html
-
---===============3914319691590744734==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 0 warnings, 0 checks, 121 lines checked
+e1ad9489e3fd drm/xe/xe_vm: Add error injection support to lock and prep
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Extend Wa_22021007897 to Xe3 platforms</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153584/">https://patchwork.freedesktop.org/series/153584/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153584v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153584v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -&gt; xe-pw-153584v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153584v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153584v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8511 -&gt; IGT_8512</li>
-<li>Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -&gt; xe-pw-153584v1</li>
-</ul>
-<p>IGT_8511: 8511<br />
-  IGT_8512: 8512<br />
-  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578<br />
-  xe-pw-153584v1: 153584v1</p>
-
-</body>
-</html>
-
---===============3914319691590744734==--
