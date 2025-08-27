@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E51CA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 19:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E3FCCA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 19:49:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF0A810E155;
-	Wed, 27 Aug 2025 19:44:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E95F010E037;
+	Wed, 27 Aug 2025 19:49:28 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D215D10E155;
- Wed, 27 Aug 2025 19:44:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0076133094072199748=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7DAC10E037;
+ Wed, 27 Aug 2025 19:49:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Fix_kernel-d?=
- =?utf-8?q?oc_formatting_for_madvise_and_vma=5Fquery?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enhance_SVM_stats?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Aug 2025 19:44:18 -0000
-Message-ID: <175632385885.275924.12236916878660645340@1538d3639d33>
+Date: Wed, 27 Aug 2025 19:49:27 -0000
+Message-ID: <175632416794.275924.7389010943992418261@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250827190136.3810508-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20250827190136.3810508-1-himal.prasad.ghimiray@intel.com>
+References: <20250827192644.254002-1-matthew.brost@intel.com>
+In-Reply-To: <20250827192644.254002-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,131 +39,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0076133094072199748==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uapi: Fix kernel-doc formatting for madvise and vma_query
-URL   : https://patchwork.freedesktop.org/series/153579/
-State : success
+Series: Enhance SVM stats
+URL   : https://patchwork.freedesktop.org/series/153582/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -> xe-pw-153579v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 99d4cb7ea69d9358b744fa4ae2fb5fafc86a47e2
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Aug 27 12:26:44 2025 -0700
 
-Summary
--------
+    drm/xe: Add more SVM GT stats
+    
+    Add more SVM GT stats which give visibility to where time is spent in
+    the SVM page fault handler. Stats include number of faults at a given
+    size, total SVM page fault time, migration time in us, copy time in us,
+    copy kb, get pages time in us, and bind time in us. Will help in tuning
+    SVM for performance.
+    
+    v2:
+     - Include local changes
+    v3:
+     - Add tlb invalidation + valid page fault + per size copy size stats
+    v4:
+     - Ensure gt not NULL when incrementing SVM copy stats
+     - Normalize stats names
+     - Use magic macros to generate increment functions for ranges
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch 0d32d7955f9687a74f9618328e48da2db085cbd6 drm-intel
+884bbf54a9c1 drm/xe: Add clearing stats to GT debugfs
+99d4cb7ea69d drm/xe: Add more SVM GT stats
+-:382: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#382: FILE: drivers/gpu/drm/xe/xe_svm.c:1006:
++
++
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153579v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * IGT: IGT_8511 -> IGT_8512
-  * Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -> xe-pw-153579v1
-
-  IGT_8511: 8511
-  IGT_8512: 8512
-  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578
-  xe-pw-153579v1: 153579v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v1/index.html
-
---===============0076133094072199748==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 421 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Fix kernel-doc formatting for madvise and vma_query</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153579/">https://patchwork.freedesktop.org/series/153579/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -&gt; xe-pw-153579v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153579v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8511 -&gt; IGT_8512</li>
-<li>Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -&gt; xe-pw-153579v1</li>
-</ul>
-<p>IGT_8511: 8511<br />
-  IGT_8512: 8512<br />
-  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578<br />
-  xe-pw-153579v1: 153579v1</p>
-
-</body>
-</html>
-
---===============0076133094072199748==--
