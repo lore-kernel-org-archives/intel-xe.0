@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C186CA0EFF
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 18:34:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 173F9CA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 18:43:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F411210E0A0;
-	Wed, 27 Aug 2025 18:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30D710E0A0;
+	Wed, 27 Aug 2025 18:43:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RRuazO8y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XjheuJkF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 037BE10E0A0
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 18:34:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E78710E0B9
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 18:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756319653; x=1787855653;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CcpqX/nJPoK0mVsMbXTIyqvt4qIcDAaAeCvYGai4TdU=;
- b=RRuazO8ylox5cTVYEjjwfv1LkBiXYihg9ibEBBlEGphnfwnvIxedfPA+
- aiAWxa0yEienDvwIv7wXAPDqFXoi5BUnS3vWWBAEzgwir3dMaRxZQgJmA
- aDWirqnWSZ6qPbQSk+niPdJUO7O/h6wuzyIAQyOlxAt+ykhWGpZE3ydcR
- QZJV4Tw02TOf0ATxgjaMKsSjGKRP2QzZ1ObyXoqIu/HzoDhZtyu32vWUp
- VmrP3i2F5bD5KNpQL5Pj4EOCuj9IITlBQlRSGt2mTx/39/lxdU4B1A9cm
- eJKWxxfX5KjzVXGTu3nQab5ZvEvkUIaGDhgVtjs9c1uLmpS7N5X+a9DzT A==;
-X-CSE-ConnectionGUID: rNFcigkVToSgJExL1zv/6Q==
-X-CSE-MsgGUID: orGabg11SK+SBPTcRe35BQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58502371"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58502371"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 11:34:12 -0700
-X-CSE-ConnectionGUID: IRB922UXQYGpUCZTi5R6QQ==
-X-CSE-MsgGUID: n0KOouo6R5qL8vLjMa+FuQ==
+ t=1756320238; x=1787856238;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=cFCWHm1mXFApijknkbbPSO/jkhUQNiJTVXHkycpeGsc=;
+ b=XjheuJkF+RAH3pHGjzLw+pbVMUDORZegVG9Owd5kUOmV+fvHffAwflC2
+ 8tWbuWJfX0r+8lgRgMVqTrMHsqVRNU9CVHAkMBj9yOsDfiXGnlgJbYQ0a
+ 2fYHSPifVrdzFEJrHozN46tvtEnxe+5BKBky91+FcxoVnR77mObDXFC7J
+ tt7lPFCGYRyU5ZiW+bxLum/LcCKSQOHSQUNxqZnLQiq1R0PMdBkitcGU9
+ co6Elv/Tjfgse/7Cid6twREZQH5+2lR2GM/P92KW2GTnakI6rXNueaOh9
+ 6+qAznMRc1unSkmEXPaOt1B1GKy36trCc9lO6fqzbtNhk1dau9S4vut+j g==;
+X-CSE-ConnectionGUID: MiI/kDBdRCaw9tlgd89edQ==
+X-CSE-MsgGUID: EOOeMskVQ3ehM9zwyIqX0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58730612"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58730612"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 11:43:57 -0700
+X-CSE-ConnectionGUID: yW3PyXGYQ628CVEXSl3d5A==
+X-CSE-MsgGUID: RBRq0na3QoCv7jEHG0D31A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="200810066"
-Received: from himal-super-server.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 27 Aug 2025 11:34:10 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="175177203"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 11:43:57 -0700
+From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] drm/xe/uapi: Fix kernel-doc formatting for madvise and
- vma_query
-Date: Thu, 28 Aug 2025 00:31:35 +0530
-Message-Id: <20250827190136.3810508-1-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v5 1/2] drm/xe: Add clearing stats to GT debugfs
+Date: Wed, 27 Aug 2025 11:43:51 -0700
+Message-Id: <20250827184352.175550-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250827184352.175550-1-matthew.brost@intel.com>
+References: <20250827184352.175550-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,73 +65,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Correct kernel-doc formatting issues in the UAPI definitions for
-madvise and VMA query interfaces to resolve docutils warnings during
-documentation build.
+It helpful to clear GT stats, run a test cases which is being profiled,
+and look at the results of the stats from the individual test case. Make
+stats entry writable and upon write clear the stats.
 
-Fixes: 418807860e94 ("drm/xe/uapi: Add UAPI for querying VMA count and memory attributes")
-Fixes: 231bb0ee7aa5 ("drm/xe/uapi: Add madvise interface")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+v5:
+ - Drop clear_stats debugfs entry (Lucas)
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 29 +++++++++++++++++------------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 25 ++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_stats.c   | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_stats.h   |  1 +
+ 3 files changed, 39 insertions(+), 1 deletion(-)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 7dedd45ab995..a164deedae33 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -2006,12 +2006,12 @@ struct drm_xe_query_eu_stall {
-  * .. code-block:: C
-  *
-  * struct drm_xe_madvise madvise = {
-- *          .vm_id = vm_id,
-- *          .start = 0x100000,
-- *          .range = 0x2000,
-- *          .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
-- *          .atomic_val = DRM_XE_ATOMIC_DEVICE,
-- *         };
-+ *     .vm_id = vm_id,
-+ *     .start = 0x100000,
-+ *     .range = 0x2000,
-+ *     .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
-+ *     .atomic_val = DRM_XE_ATOMIC_DEVICE,
-+ *     };
-  *
-  * ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
-  *
-@@ -2073,12 +2073,16 @@ struct drm_xe_madvise {
- 		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_ATOMIC.
- 		 *
- 		 * Supported values for @atomic.val:
--		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour
--		 *   Support both GPU and CPU atomic operations for system allocator
--		 *   Support GPU atomic operations for normal(bo) allocator
--		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations
--		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations
--		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic
-+		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour.
-+		     Support both GPU and CPU atomic operations for system allocator.
-+		     Support GPU atomic operations for normal(bo) allocator.
-+		 *
-+		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations.
-+		 *
-+		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations.
-+		 *
-+		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic only, no GPU atomics supported.
-+		 *
- 		 */
- 		struct {
- #define DRM_XE_ATOMIC_UNDEFINED	0
-@@ -2196,6 +2200,7 @@ struct drm_xe_mem_range_attr {
-  * Example:
-  *
-  * .. code-block:: C
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index bf3a67b5951c..0004f279dee1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -327,7 +327,6 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ 	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
+ 	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
+ 	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
+-	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
+ 	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
+ };
+ 
+@@ -363,6 +362,29 @@ static ssize_t write_to_gt_call(const char __user *userbuf, size_t count, loff_t
+ 	return count;
+ }
+ 
++static void clear_stats(struct xe_gt *gt)
++{
++	xe_gt_stats_clear(gt);
++}
++
++static ssize_t stats_write(struct file *file, const char __user *userbuf,
++			   size_t count, loff_t *ppos)
++{
++	struct seq_file *s = file->private_data;
++	struct xe_gt *gt = s->private;
++
++	return write_to_gt_call(userbuf, count, ppos, clear_stats, gt);
++}
++
++static int stats_show(struct seq_file *s, void *unused)
++{
++	struct drm_printer p = drm_seq_file_printer(s);
++	struct xe_gt *gt = s->private;
++
++	return xe_gt_stats_print_info(gt, &p);
++}
++DEFINE_SHOW_STORE_ATTRIBUTE(stats);
++
+ static void force_reset(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -448,6 +470,7 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	root->d_inode->i_private = gt;
+ 
+ 	/* VF safe */
++	debugfs_create_file("stats", 0600, root, gt, &stats_fops);
+ 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+ 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index 30f942671c2b..7e12fc3759e2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -50,3 +50,17 @@ int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	return 0;
+ }
++
++/**
++ * xe_gt_stats_clear - Clear the GT stats
++ * @gt: GT structure
 + *
-  *    struct drm_xe_vm_query_mem_range_attr query = {
-  *         .vm_id = vm_id,
-  *         .start = 0x100000,
++ * This clear (zeros) all the available GT stats.
++ */
++void xe_gt_stats_clear(struct xe_gt *gt)
++{
++	enum xe_gt_stats_id id;
++
++	for (id = 0; id < __XE_GT_STATS_NUM_IDS; ++id)
++		atomic64_set(&gt->stats.counters[id], 0);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
+index 38325ef53617..e8aea32bc971 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.h
++++ b/drivers/gpu/drm/xe/xe_gt_stats.h
+@@ -13,6 +13,7 @@ struct drm_printer;
+ 
+ #ifdef CONFIG_DEBUG_FS
+ int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
++void xe_gt_stats_clear(struct xe_gt *gt);
+ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr);
+ #else
+ static inline void
 -- 
 2.34.1
 
