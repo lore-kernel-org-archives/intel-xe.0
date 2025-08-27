@@ -4,183 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A2A5CA0FF9
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 15:47:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8306FCA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 15:52:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9495610E863;
-	Wed, 27 Aug 2025 15:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4547E10E863;
+	Wed, 27 Aug 2025 15:52:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="icSTNTtB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jG7yEXsJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECB6510E11B;
- Wed, 27 Aug 2025 15:46:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A8210E863
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 15:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756309619; x=1787845619;
- h=date:from:to:cc:subject:message-id:
- content-transfer-encoding:mime-version;
- bh=ilK7h4iSgCE2hoD2s11nobyszN/2ql0RmOoflia9DhQ=;
- b=icSTNTtBE1wQqB9FNL0lZcvRvVxK+LByC5aVHIQBvRYEluHVc/Z+H4GP
- De2kUCLB2TaQNAj8LTLWJ36a7jOt4samVQebiMqEsE8uoBEfDmFsu2q6o
- k96hfB3pbmNAs0giv3K6xEppCELOIH17dk3UXvCSeishTk2RzoVlj4pIA
- hZY4LtNrASkijf7by6q3UoxmtVaLuiVt3LDYGJ9gcPDSh7ZZ7Tqer47tM
- 72ofQx8wrGt2GLEAVALCwSm9TFIQdCQiMkoZBRzo/YlZPvoRL35vfi6KR
- jVkDWuFgrhpyUIbJrUts8YA2CLBaIk14HtKhhzfz0ebWXZ+pFhjex6pxv A==;
-X-CSE-ConnectionGUID: hrmov3RjTpiQjF4mOTfUkA==
-X-CSE-MsgGUID: tvJzCzDiQ26BTNzAd3X9MQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="69158687"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="69158687"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 08:46:58 -0700
-X-CSE-ConnectionGUID: H2d/z5dLSN6ioRjy5L/G2A==
-X-CSE-MsgGUID: FLhS1ACGS6G0l4k3d504VQ==
+ t=1756309976; x=1787845976;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=NRDY2htOxxzInMhNyVD7KweCl97edEijCa3UBuxrfx0=;
+ b=jG7yEXsJ64uEHgk0cQtZONjBQIM+zrBBnNR984LBbsfd046hwKFXm1A4
+ m/XPA5TyEbqAxATtRbR8F2oZNtyv6t/Qw7s8GyA5LP91U2nvPgSbedsli
+ aMYgIO/dRJTlgoYd++AkJxdDZVIS94zMk069tkxu1UHvzg2TnFy3yV0Iq
+ 6LGmPvUVs6KyI2uamzsnIr7SbgAl3XTjkzCAlT2WjXlmoffYn5MeAAITW
+ qMLXOsCnf7KPYHZG19J/hXYYAbEPIBOHby4HwBn/5IHVJkGt4ZUaw1Yn4
+ QBtqYl5MmKCkeoOswiI861uq5siJLMu23CzaqLyQZ/c2dIL4TrgBSQ5EC g==;
+X-CSE-ConnectionGUID: OnhZYAh+SGyz62oC8KRs+A==
+X-CSE-MsgGUID: wC7LQ6yZRV24B+ArSR87IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58631128"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58631128"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 08:52:55 -0700
+X-CSE-ConnectionGUID: Z8i+I6KyRU+9o7F1ZMdvXw==
+X-CSE-MsgGUID: OXSy+KpFTUmz4wmY/zsm2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170698371"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 08:46:58 -0700
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169388115"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 08:52:55 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 08:46:58 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ 15.2.2562.17; Wed, 27 Aug 2025 08:52:54 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 08:46:58 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.58)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 08:52:54 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (40.107.95.51) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 08:46:57 -0700
+ 15.2.2562.17; Wed, 27 Aug 2025 08:52:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n3i7QFKXUyNbAMMcnVGWHyOQ8K2TG8sT8bFaqIgMrMwfmaDVdRLhIkkYY65R9cN/faeW1/COLKZCCNTcWJMI+yyrZV+3HqWkuDNGGjhuIjJn1ZpjR6QWgAkBUIx1M0KS5E18o+DU2+bZF3bZMwzZ9NLDc3X6cJFJl1/NirZXY/+CCJ0DeKOIxs9vooMq4CpxM1Me8lmbYWHWr8q+0287rOnwi2+zKYPbE9CuLAi6MrQ2gsdVuOv3RTdI9uGOnxl7R/yEU4dxwftO+zaGrCyWeTpjJAgQMpmc1xoSr42BP9GeKML47UpUh4uLG9ju3tXQEcPQXWtP26cdCdzSEDk7Kw==
+ b=JIfvZbRVY3HMLhJ4Bd94pC6oiSSWYBDSZlsDt3VMLVMtJhEMGn26t+9tBbZS0E5QEqpvUzCzgcLYyPVi+LJdfobaYURIugkqXlX9lIa09Y28oQntpwv1Cc/MU+Fkv7mX/htLUEwx/+cCOxwutFy9Fef1UzWuEoB+qd2vSnlYqor40aHRupAQhT7zihLfxyuo12ROIdX22pIz1+zLP7umvrTtrhtbe7ijaCFKO2BdyJBFLsqWd0/qGCFbcy5sr78iobSp0ripej2EATPP7yTRir9TK3m4KRa7swYee0l/coFxVndYAHXvNIYO5TzX4R9QP87FOtwMjxAQhhZ3CEr1yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hsiLhsExqK6kqTJsV5FNTSJJJimfcp8pZ7nz2t9nFdE=;
- b=GSUgV5gJwWPLMomz68yFTSIfEKsoaGST2GWdUEkCbq1RvxQoxAe+6E0Pihcn5C6M82xx+/ojAoBpUqa1qfY3PqfW5lV0IstzWU9fSudGQ/MHPMZngwADK7MbyEvuVO6qc7SjPpr/clYHBaUg450p/aklHEEn8w6smvQVHZY/QARQ66YakYddedrtAGtzQG51jOnt047Wx/8Agou1ZvDvbXAvAfEbQyspdOhl3dWInF/McSQRyVo+uqu7Yx7g1aZMeBAHFUzZOvKEDnUNFVF57bNLrewlx7k3RNP2KQ6KYi6Etvhf6BDCu6zHB0jrJ54aPwdedcwpa5zbiR55B+aGsg==
+ bh=wEzNVBM64XpLGUmBU3Q5Qv2MuUfnWWInYTRNToum3bY=;
+ b=cOTAksKtebEPcBk1t95ztRC7lm70xdsotHfsLOMMUvWbEfpy8SHecBVxxf1orlxUcialkVAhQn3bRRVUllTwprAFJ4gvEpefQ3Bh5QlAnJQHfvcJSNaKOLjTWIphXAtZNgdFwkytMDBBJyHr2GRMFWpvptOtNRN44wsWHKNO1sp1VEWINrdPXDQ7jyDbip0+Dxnj4bwuIJrIA7JplXuN6KDXel5cVYPUo35KwCmihQ9y/NIoGUtNASecfpOmx85poYhp5LPITylJGDnFb0OCGYiTxkSnZUkrw0wqYiGDupDfB4mCQCmOxcvr2TKM4r5S0eSKxWi2I8FMlfNnuo3iJw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by MW4PR11MB5909.namprd11.prod.outlook.com (2603:10b6:303:168::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.13; Wed, 27 Aug
- 2025 15:46:56 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9052.013; Wed, 27 Aug 2025
- 15:46:56 +0000
-Date: Wed, 27 Aug 2025 11:46:50 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-fixes
-Message-ID: <aK8oalcIU-zQOfws@intel.com>
-Content-Type: text/plain; charset="utf-8"
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by DM6PR11MB4756.namprd11.prod.outlook.com (2603:10b6:5:2a7::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.14; Wed, 27 Aug
+ 2025 15:52:51 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.9052.019; Wed, 27 Aug 2025
+ 15:52:51 +0000
+Date: Wed, 27 Aug 2025 08:52:47 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
+ <matthew.auld@intel.com>
+Subject: Re: [PATCH v2 09/16] drm/xe: Convert the CPU fault handler for
+ exhaustive eviction
+Message-ID: <aK8pz/4W62DMiDy6@lstrano-desk.jf.intel.com>
+References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
+ <20250822094030.3499-10-thomas.hellstrom@linux.intel.com>
+ <aK46+muNkR2uAq75@lstrano-desk.jf.intel.com>
+ <cc739f6d910cf772a10b4304c205b971f15bf7dc.camel@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0224.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::19) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+In-Reply-To: <cc739f6d910cf772a10b4304c205b971f15bf7dc.camel@linux.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0182.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::7) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|MW4PR11MB5909:EE_
-X-MS-Office365-Filtering-Correlation-Id: d38a24b0-1714-4043-d8a8-08dde580f353
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4756:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43706685-5337-4cb9-47d4-08dde581c6fe
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VmVTRWlPWVpiVWcyQlJ5dzJBV2Evb2gzTHdveVpWSFZSYmtkeTh4b2dWYXpi?=
- =?utf-8?B?RVBjc1dCS1pYdTh2SHBScXJqU1dpRVFxZFNlUVROck9NK0hybExPNHNwRG5L?=
- =?utf-8?B?WkJtcDlxeCt4Vzd5MmRxRzV6OEVvanlYV0pMLzZsTGRKU2FIWWhIRU1xL3NN?=
- =?utf-8?B?QlcvWXVjYlBMbVBmb2NTWGVxWmZiSjRkVHhOWW80SXRPZTdLcVc5elIxR2Er?=
- =?utf-8?B?TjYwbVZZaWh5RE9iSXJVNzlZTTM3QlJGeVBLd0t0Rld6WVlMeCtOOW9MaXJL?=
- =?utf-8?B?eEprTktkbGU1TGZ1eERWNkhYMHhTRlluOWxRNnorSkV6K0ROZE1hbE5lSENl?=
- =?utf-8?B?Vk9KakFueTBMV1VKeURhakI5SjNSa2xSakRiRlRQSE5BTVBXdnBYYk1BZ0Zx?=
- =?utf-8?B?UW9TeFN5TURqYUx6bDRMMjhkUW9xblpoTTlqTlRCNVJZc0FwWW5xTmZvL3VP?=
- =?utf-8?B?K2N2UnVWU1BFVy9UQ0M3QXFmK3c4UTVIOGhRTy96aCtBcG9UdGNIcHR5Umph?=
- =?utf-8?B?cm03ZTFJYk4zdERLcGRGRDR0VFN1L2ltYlpFcXpCWUZsazRmSFZMVUNCRndR?=
- =?utf-8?B?eFJKaTJUY29tWlZSelpsTFFMY1FFb2ZxNWt1bzlWVFoxTU9pSDk2Q2h2UWdu?=
- =?utf-8?B?b2xlblF1RWs2RDk0OEQ3YkNMbmpTaE1QRmNMTTM2Z01kQmtlc2pNcENCNm9n?=
- =?utf-8?B?TGtMZlFRVGJqdzZUZko2cmpTSWc1QVZYZ3dpVmxCQXc5M09vaml6UklQNFls?=
- =?utf-8?B?QkJFSUh0WVZEN0E1eEs5dzN2dDJXMEo1ZTFiZkdmSENSSE1OQUozN3BzNGR2?=
- =?utf-8?B?ekdJbDZReHRFSWFEWjNtbXVzZUp3djZSdk54RXJXT0Q1dXdkQWNMYXNHVWp5?=
- =?utf-8?B?dFpyNjFvVGFFOTZGQkI4dnM1VlUrYm5TUFdGSWRvRm83M2VFektvSTZ2VytK?=
- =?utf-8?B?bzdoQitpNzNNV3VaZmlyQXBoS3VPQUZNNWVuTlpYckkybGkyZWpzd2Q4NHg3?=
- =?utf-8?B?QldSMUttbmpTeFVIYzEvdVdCM3doOTZXaFZWdmxSb0VWMWdzTExjeC9FNHpH?=
- =?utf-8?B?V3lFSURVdjdQN2QzK2lGTGtaVEZYRk85Z2dRa2ozMkZOV201NFYrZWhucERY?=
- =?utf-8?B?RmVLZnF0U0VGMmM1LzZ3M1ZlMzRJK3ZQTGw2YXFmRlNzaEFNd3haSW1tOEVD?=
- =?utf-8?B?dk9Db1dnS3JwOUU5N1lodU9xTWYrL2JCcEVISSt3N1JoZzVUaVpsVVlFbGpU?=
- =?utf-8?B?eXNWMFJTeER5a3Q2MWR2dkVnQ3gvS2hYenh5TzkxOE5ZMUsySFgyVUdnUWpT?=
- =?utf-8?B?ZGpFMmh4cURjYmIvbzBHSWQ0bnppbW5PYTlVSDJWRVdHRHUwZjJmeTZTdFUw?=
- =?utf-8?B?WVNDRFhzcnlSM3JpeFJpdHRRTzZFVnQ1SUMxVi9YWjFOV0djRk9ZNlkzU0Q0?=
- =?utf-8?B?QjdPOERiYzhVa2RiQi83c1E5cDNDOFdBcnczYTgrMjFOME1TMkUzV3hMbWFE?=
- =?utf-8?B?NkRScWVPMFEyT1d5aWtDdG0wbk5haFRsV21DSmtMWWlVUFZRN3lDUFVUMGlI?=
- =?utf-8?B?N3lrbStWeXkvQlBMaHZTK0N5SmxXUEF5ZVdycXBIakRpTmI3UmZ1YXh6bjNk?=
- =?utf-8?B?clJ6R01MUHlLY1M1TFZmM0N2VGJNS1ZBMzM5UExWeHU2V05VOVVuVTAzR2FY?=
- =?utf-8?B?NGNnMHlncURsbGh3NG1WcTMweHd1Z0dUV1FmSENuSFQrc0hGbXZJWkpKUTZN?=
- =?utf-8?B?SWVPM2NFQXBMa3gvRGVvNGVJOGsvaVZQT1cza1c1ODRxYVVzU3lUdDBqU1p4?=
- =?utf-8?Q?pvrjj6j4sD2g5EnpYT/2F4z+3rlt8HN+8Qzfo=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?+d6YrQvQP+o1Gglqd9u5m7mUkL07LZeY9N6jiQXI4/erD2XhAvICGTHULJ?=
+ =?iso-8859-1?Q?HZyGPqHH0+KStq4E1cdLxo2ieOAb4Tc6E/zpy/iT4SHgk7DWQ0I69I0pik?=
+ =?iso-8859-1?Q?mb9lYM06WyYQjfLt/k7Y2qJgZ6igQ4X3NH3almTm0/Ar53qIGXo8k87Rds?=
+ =?iso-8859-1?Q?nOOww2Tnr1CSE+YewKS6mXfRiKvCtCOQ2YpTP1poAp928eEjccYvlAGiNc?=
+ =?iso-8859-1?Q?qY0MsRwQdOX0MygqXzPP1EYV/MFFuhS96ZcXXOKCySROkNnYrDeFBa9PPx?=
+ =?iso-8859-1?Q?cwP3kSMWZnd46Wozq2ORyj+r28pWF+I9pLu0vi3g5tlnYg8aHIEwhHiYOH?=
+ =?iso-8859-1?Q?gnZEpVxm4esEn0LFHowfggqfKhzWMHGcaQHxO559mEc4vmyDTPu8joEsLE?=
+ =?iso-8859-1?Q?q0zsyCEhFzm5EjNaTL+62qvX/8lyxkSERiC21KRORqVXJiFmpsAfPZUhcj?=
+ =?iso-8859-1?Q?R4e8n7wVIkpKeWoqZsC5rL+QriudyrKDq1y47SfYH5j8xMNX2hXxBSdbGb?=
+ =?iso-8859-1?Q?teFui+rJJmF4/zE7/AtzvxXqqJOV9Q+g5ut4CN/hi+w0I7j92UA2nahRSr?=
+ =?iso-8859-1?Q?w5nZsey3NWGgOkQGZbW6E9h765oTOu6xfBnLMnwmc4IvX6om4bRTbxUwpj?=
+ =?iso-8859-1?Q?APbXcCluMlwGGcxJbzVRCy5+Bj3HfMc1ZDhjFxtK61fTv7Hjag7y9V4Vxp?=
+ =?iso-8859-1?Q?tZxNze7yUgSc73yFrpCFv9fhOo2i2cw11CyRhMhWS6ChJfN+OVj9FoRSjx?=
+ =?iso-8859-1?Q?dLbeYUpsmsJY6zlggd0oWcmlN07iw/oF5JdWxz++ZirAkx3AkA91lqcb12?=
+ =?iso-8859-1?Q?34ycSHy9tIiB5viOo5xOqxmobrMeefyVwSpaV9kWy1sGWaMQp1rQOWxvID?=
+ =?iso-8859-1?Q?wpoFebtNMMDeZHl2h3P36DMoCiiKX2nvDUv5shsaH3EC4sWqkNrR8zyyuf?=
+ =?iso-8859-1?Q?cCOz8heMh0Dxy3NQD1dfWX64NErEmNZTvXIZTovczcWHlxIuuudoctpFmc?=
+ =?iso-8859-1?Q?mZV5NVXR8LZbMh2ABLyxY5r/ANiluYV6E0r6FG8TZDzStYdD8i//lqpdTN?=
+ =?iso-8859-1?Q?cTlE/8rNjIgwKRy7aoGOJiLC7tm4HlbuqSty2xDWA+gR9MXlmloCQ+2HnX?=
+ =?iso-8859-1?Q?o3Ebkzs53RVyuNk1K28Zld3W7MuEPAt1E/865QkdAeg78pnBQrKACJl8Xo?=
+ =?iso-8859-1?Q?6i495C9Tzlxakmapq9jefbkOjPm7s/sl8Jas03f0c3cctSM06zh1dI4xqu?=
+ =?iso-8859-1?Q?e21bQBnhxZTOSHxLQDi4kqgBe4J4vHmBY+Z72EFyHAXY1AYQrEvT0ytI3J?=
+ =?iso-8859-1?Q?jRXjY9GqyodonlhOjogqp9L4uU+0jwV3QP1v1dviSPYYZ+MFSVkqUGPzbr?=
+ =?iso-8859-1?Q?xeWSYGSz+xUOH7bIRRHa83oNEa4tqqg/Ljpn3Mc8Rg1Iacd+Mt1LBrN3+E?=
+ =?iso-8859-1?Q?uWTVF0aI9wWobYx22no4TfeD/ow7dotMaUB5iBo8lIXvTn8fsThtX7yznK?=
+ =?iso-8859-1?Q?w=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkZES1dPRHlIOXlIVG5ESGVUUjB3WXY0MThIWHlpQUxmNmZEaVRua0M1NXRW?=
- =?utf-8?B?NVVUTGlUN2RqVDVzZDl2RDJWaUZHNGpweUV1ZjFRL1dKZGV6VytHZXJyblJz?=
- =?utf-8?B?MFJLUkxDcTFwRFoxTlhZNitncWY2Z0FraytVdGZ2d1VSclRaOHRTRUdHZHpp?=
- =?utf-8?B?K3p2R2F4d2tDaHVRYldTb0VkdzZPM2tGTHJqdmlmOUhaMjZWZWcrSnhRSm9v?=
- =?utf-8?B?RU42L3pMSXlmaXYrYU1MYmlPV0ttTkpPTVdad0NmSE1NMEtxWHJuZC9TYThM?=
- =?utf-8?B?Y09kTnJLa1I3ZXRVeWZzYzhVd3RiOWNWTmUxY2hlYjdPeTlFQnVvMWhFWVdl?=
- =?utf-8?B?b1FsS1ZjbHUxRGdZaW00cjZqV2VpVVVnTlhZNHRUVkNRRVQ5YmtWR1gvRGYw?=
- =?utf-8?B?S3R0ejZ5YnhsQk1ONFlhTnM5L2JpNVQ1Q2Y1WmdCaFc1UnJya2dOOXNmR2wy?=
- =?utf-8?B?YnJEVmpqWVhNZDRTTU9xaU5QNXV0Y1UxbnZDVElIYjM5WmlaOHBGY2Q3d20x?=
- =?utf-8?B?Vmk0NTk2eFg0ZEl5UG1HQStIQmFGazVqYTkvWTNscHVFRUVwVHpPOXFuTE14?=
- =?utf-8?B?MWsrS0hQUUE0Z2lZcVE5K1pST2NYSWNlRWpwQTZBUzJqZ1RSd1RwN00rVFBN?=
- =?utf-8?B?QXo2ZnlVOENIbUIrOVp5RUdxZFpzMFVQYzhmOWd1cWpGQ3p6WFNnSzRtOXFx?=
- =?utf-8?B?UDdNcHhpY2Nwb0dQK1dlMy81U2FjSVlpSVV0L21CZEZFZVBSalBkaHZKNFNE?=
- =?utf-8?B?cXBlM1hNRDZLTmRHNzNqVEVkcjh3SEVqcTBBNUV4a01sZ3JVT2lOT1pDYTls?=
- =?utf-8?B?TThPemFxZFhYemR3L1d2UXd4REFSKzJyTWdwTTFUZC9EckdFTXYxUWduYlJn?=
- =?utf-8?B?MmZDWWg0czBKMjJCbmNmTjJYelZsQisva0RpL3I5NDVZb1hlSGhRVEp1Nzk0?=
- =?utf-8?B?MU9jeUN3bHY2N3o0dVFGYjVROTBUTXU2Q0cyRlQ5bzM3c1JVRkEwckdOL1Ji?=
- =?utf-8?B?QzYwMmY5RUNUYUVqMVBTOFlEUndkdm1IRXpnbnUvL3lKekozb0JPVDM0ZWF2?=
- =?utf-8?B?dkZnZWJ3b3dFdUtnS1FvM1FJVUZKZFBDUnNNbVRyNFE3L0tOQ0xuYmdBclYr?=
- =?utf-8?B?dlluKzgrWGh1Tis3T1VjWjNHWmVuMkFaNHVKNjZDTkJpVUR2UFBRc0poVW1Z?=
- =?utf-8?B?ZnhJT1JUTFZUMzc2QVhRNUZLTjVZc3NNUUNJVEZOWWVjKzM4RkRHdVoyY3lj?=
- =?utf-8?B?N1FnVGhyQkFvdVVueGIwc1hnRHlvaU1YZERvUUtFd0tkUG5XempramRVS3Uy?=
- =?utf-8?B?a2dSWnRwZFpVTlNsMDR0RmFJdGxoRkF2eGNqczMySXhiOFc3TkxqbjUwTW96?=
- =?utf-8?B?ZjV6Q0tkcE55dEY1Wkd6bVBHWCt5SUVTeHNYYVpHNk1rc1g0UHRDcC9HK2tm?=
- =?utf-8?B?OFB0UEMxL1VLcHZaeDhyRi9kS3JrNWs0L3Zlc3ZWeVhxQUFXbGRFOURvejJE?=
- =?utf-8?B?N3AxdXZTcTJ3a0pXd3czWXBqU1hDSWs5VUtEa2I3bzRZcEpwRHZNejNuc3Qy?=
- =?utf-8?B?ZUJIYVEvSE41SjFqNXhqbHJVUUthUWNvaWMrd21vZm5ZQTNrVGhYTWR4TVBI?=
- =?utf-8?B?VkFyZmUrLzFSV1dHaXl5RE9ILzhjL05SZ0RQL2dZYm92bUFZYVVlMHVoRFBB?=
- =?utf-8?B?SkI1TzJEc0hRcnRQY25IbWIxaG1teHo4cWJzYU1UdUVSdGJ1ak5UUEpqaWxJ?=
- =?utf-8?B?dFB2YmpTcFFLU1J5OExaemJBdExBMm5DaTlIWW5pVDJZUU5wMVYzQmJtRVYy?=
- =?utf-8?B?VThGSzFIY1VSNGdEVEtRcTdzSmp3T1JneUlBREZjajB6cW9BWmhXb0VXUUJr?=
- =?utf-8?B?dWZhcngzR1NWam9Scy9Xa25mTmFBUEZFalVnbndZeThpSUd0N09Uc1pDaXZK?=
- =?utf-8?B?UkhOOHd5QTR6eldyRmtaR1RGOE1pNzI5bWFmV2QyalpUSStKdTdJVWJTb250?=
- =?utf-8?B?RmxPWnRQaGFSSU1uZHpZTVNaNWZHeEtzTUVCUGZaTWFUOVdHcGlzOVdWWCt1?=
- =?utf-8?B?cC9IMWpZUUJSL3hESlNNYm5FeGp0MUlqTW42SkRDZ1ZHRFExdU0zMHdnQTFO?=
- =?utf-8?Q?k/uXOPPHCuRd+DRgLb9TIyweB?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d38a24b0-1714-4043-d8a8-08dde580f353
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?kMqf9Ai86yu7wQFJqkPOjzeqK2nfyG90Kadr4HcCs08CxUsmrKIgPxxF29?=
+ =?iso-8859-1?Q?RrX7pV+OqDNRGDC1uRii9yiHlE5PtgvLDlLbWJFwzoSE55aMeyXaLGFMWQ?=
+ =?iso-8859-1?Q?FA0FNTzXMvFOjF/J0facQPebgCw3a+YGH+g8vDGHCUSThJJ8bvpJ0ziIPw?=
+ =?iso-8859-1?Q?cF3G/7YMhQi9eONy/CQ3vpSU5GiAw917tUoBSnlQ41+5gFgqOF/MSIGpha?=
+ =?iso-8859-1?Q?BfTX2h2V2+TLdK2M+eq5qsKHAxXeYEjvcphGjzxoBpzihpBAURBSq7FdKT?=
+ =?iso-8859-1?Q?cI5EqQ0zjfe/O99CO84aY+yj8OHK94I9CCVUmQbGaNm38tLFU2S60fnZn0?=
+ =?iso-8859-1?Q?3xhqkeL2MKGbpd5lwCx+2HxWSHRenD84MA3O0GX54laqwU4l3AIx7Qudk4?=
+ =?iso-8859-1?Q?zYnnuur+UpQc3DOUSKd9u0M3s/kkWzW1s0D7FpVV7ll5/YFv8QZv7McR9o?=
+ =?iso-8859-1?Q?LbEiz5otAOX5OWEU8+Z1MGlfGOXeBj+T2Dj0DbSiKAAMzzq1mP6i+rVaf5?=
+ =?iso-8859-1?Q?sDz4EK2BBW5Y3cIEVgNh+wLwCz/vPrQl3O0NMnDdbQibXUSb7mMDAz1c48?=
+ =?iso-8859-1?Q?+0Vr82CLjt0vXdnKsZSTi9a1m6VOo+QqD0ywepTbAz55T9f8oWfvm+e30u?=
+ =?iso-8859-1?Q?6JV56fm1DxejpmEF8r235Zo6YjXe/ybf1pkm70b+JPcGS11vUs42wRu/KN?=
+ =?iso-8859-1?Q?mlfjtiasEhZBWeToUfFxlRSaUIdKxzQDmMikicsFNCy0B8G2VLCyUngFu6?=
+ =?iso-8859-1?Q?NrLbS4PMhu5aLhrXKrTfKuPtSdxQDiQzoyJB8gcZ03uLifnAA+3BD1Bm1d?=
+ =?iso-8859-1?Q?JSgPSKmDnFavhm4Pr4Biz6K+7X1T1Kzt8q6STCJXTbIoYrbh1D4B04w2Wx?=
+ =?iso-8859-1?Q?tPvxdqLwEQHMK9AWQQHNtjyBTzeix6M1DPpLAHhX2IzAi8d9rXPk7iEJsR?=
+ =?iso-8859-1?Q?PFYR+KD9J52tiXL7wp6dTXSi6zqbyH9Z2CNjp4rUMyVov7rBdpdeAu1XJo?=
+ =?iso-8859-1?Q?MFbeZa7PczwNmVCfbwFG4Y0U77ky0WWjNV46/5FNyU7XsWBt9SCkXScvo+?=
+ =?iso-8859-1?Q?dZpAd25v09kHoYUbE1s+WD/bTDt+G6THnklUefOGhfEAAnFv1SQFWnIVvr?=
+ =?iso-8859-1?Q?MVGCmkKhaMiC8KdAhXTK9zemHvr6miO45xBlXdEsoH49oPO1kvKEqgUbCQ?=
+ =?iso-8859-1?Q?Cs8ZLAksrUYhX/l3PS7dshGMmuZb4XKF4GVAdfU5MpVW0AyW7nbHcek69j?=
+ =?iso-8859-1?Q?feizCC0H76dNlwhDw/PHMJUVhv7VKva4sERU3FZBdjCZaJDZs6m18Bs0+m?=
+ =?iso-8859-1?Q?QJY38vRyESHLOkKqV43/cqjVxKmo6vmGHjluGjrx8vxdC3ByE8CwtRI9tH?=
+ =?iso-8859-1?Q?QbWL2ydq1RncsJAgXPjNx4gmbwOikJQVRb9SMhT3Yizxhx+RH/Kr5XnwHg?=
+ =?iso-8859-1?Q?7Sw25foKvRTkQwSRf2Nd5odiPg85+Mlw4RLbgpx6xnDgxX3V9DKtmZP0Ks?=
+ =?iso-8859-1?Q?nQ13gWBsDqHl768Z1XOmkSfCnc242/QyvrvsYjKq/JYonc0b2lxqNmFrxT?=
+ =?iso-8859-1?Q?VxWSXGMPULUM++3VkGUBWr4tZrLhItDZQMAiq84HCTsGJaBAcLYTMSMbg2?=
+ =?iso-8859-1?Q?+ybNbqKFhDAYLJxP7lKIV3j8QOQGLjJsEjP6Wxnht6IQSac+qi8Luh+w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43706685-5337-4cb9-47d4-08dde581c6fe
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 15:46:55.9965 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 15:52:51.0847 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tmJd4XwGuCyN7JitRNH0acRnME2WhpIsCCJerBKhLg3TzNO3X/oXDFZ1p+mdckc+iHZcAGLCS6ypwAyDlWUAcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5909
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9VpsJuVwC7IBiiI2EZ8giv+9cqY4w5E2J7CjuB6aleiOt0pUgR9Ch9diYgK1ZV72iCHUKTh1l1L5L6CzUJ8OdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4756
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,53 +185,367 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Wed, Aug 27, 2025 at 04:16:25PM +0200, Thomas Hellström wrote:
+> On Tue, 2025-08-26 at 15:53 -0700, Matthew Brost wrote:
+> > On Fri, Aug 22, 2025 at 11:40:23AM +0200, Thomas Hellström wrote:
+> > > The CPU fault handler may populate bos and migrate, and in doing
+> > > so might interfere with other tasks validating.
+> > > 
+> > > Rework the CPU fault handler completely into a fastpath
+> > > and a slowpath. The fastpath trylocks only the validation lock
+> > > in read-mode. If that fails, there's a fallback to the
+> > > slowpath, where we do a full validation transaction.
+> > > 
+> > > This mandates open-coding of bo locking, bo idling and
+> > > bo populating, but we still call into TTM for fault
+> > > finalizing.
+> > > 
+> > > v2:
+> > > - Rework the CPU fault handler to actually take part in
+> > >   the exhaustive eviction scheme (Matthew Brost).
+> > > 
+> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_bo.c         | 191 ++++++++++++++++++++++++-
+> > > ----
+> > >  drivers/gpu/drm/xe/xe_validation.c |   3 +-
+> > >  2 files changed, 163 insertions(+), 31 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > index 76e9c93826a2..686ca5d6038a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -1713,57 +1713,188 @@ static void xe_gem_object_close(struct
+> > > drm_gem_object *obj,
+> > >  	}
+> > >  }
+> > >  
+> > > -static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+> > > +static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf, struct
+> > > xe_device *xe, struct xe_bo *bo)
+> > > +{
+> > > +	vm_fault_t ret;
+> > > +
+> > > +	trace_xe_bo_cpu_fault(bo);
+> > > +
+> > > +	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
+> > > >vm_page_prot,
+> > > +				       TTM_BO_VM_NUM_PREFAULT);
+> > > +	if (ret == VM_FAULT_NOPAGE &&
+> > > +	    mem_type_is_vram(bo->ttm.resource->mem_type)) {
+> > > +		mutex_lock(&xe->mem_access.vram_userfault.lock);
+> > > +		if (list_empty(&bo->vram_userfault_link))
+> > > +			list_add(&bo->vram_userfault_link,
+> > > +				 &xe-
+> > > >mem_access.vram_userfault.list);
+> > > +		mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static vm_fault_t xe_err_to_fault_t(int err)
+> > > +{
+> > > +	switch (err) {
+> > > +	case 0:
+> > > +	case -EINTR:
+> > > +	case -ERESTARTSYS:
+> > > +	case -EAGAIN:
+> > > +		return VM_FAULT_NOPAGE;
+> > > +	case -ENOMEM:
+> > > +	case -ENOSPC:
+> > > +		return VM_FAULT_OOM;
+> > > +	default:
+> > > +		break;
+> > > +	}
+> > > +	return VM_FAULT_SIGBUS;
+> > > +}
+> > > +
+> > > +static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf,
+> > > struct xe_device *xe,
+> > > +					   struct xe_bo *bo, bool
+> > > needs_rpm)
+> > > +{
+> > > +	struct ttm_buffer_object *tbo = &bo->ttm;
+> > > +	vm_fault_t ret = VM_FAULT_RETRY;
+> > > +	struct xe_validation_ctx ctx;
+> > > +	int err;
+> > > +
+> > > +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
+> > > +		return VM_FAULT_RETRY;
+> > > +
+> > > +	err = xe_validation_ctx_init(&ctx, &xe->val, NULL,
+> > > +				     (struct xe_val_flags) {
+> > > +					     .interruptible =
+> > > true,
+> > > +					     .no_block = true
+> > > +				     });
+> > > +	if (err)
+> > > +		goto out_pm;
+> > > +
+> > > +	if (!dma_resv_trylock(tbo->base.resv))
+> > > +		goto out_validation;
+> > > +
+> > > +	if (!dma_resv_test_signaled(tbo->base.resv,
+> > > DMA_RESV_USAGE_KERNEL))
+> > > +		goto out_unlock;
+> > > +
+> > > +	if (!tbo->resource->bus.is_iomem) {
+> > > +		struct ttm_operation_ctx ctx = {
+> > > +			.interruptible = true,
+> > > +			.no_wait_gpu = true,
+> > > +			.gfp_retry_mayfail = true,
+> > > +		};
+> > > +
+> > > +		err = ttm_bo_populate(tbo, &ctx);
+> > 
+> > The version of the fault handler before didn't have a ttm_bo_populate
+> > call. Can you explain why it is added here?
+> 
+> It's called from within ttm_bo_vm_fault_reserved() but with a blocking
+> ttm_operation_ctx. Here we call it non-blocking and if it succeeds the
+> version in ttm_bo_vm_fault_reserved() will be a NOP.
+> 
+> The functionality is to bring in bos from swap if needed. Or to be able
+> to access bos with deferred backing store allocation.
+> 
 
-Here goes our drm-xe-fixes targeting v6.17-rc4.
+Ah, yes. I see that now. This made notice potential another issue. See below.
 
-Thanks,
-Rodrigo.
+> > 
+> > Also in we have this code in ttm_bo_vm_reserve which rejects external
+> > object marked as unmappable. Do we need something like this?
+> > 
+> >         if (bo->ttm && (bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL))
+> > {
+> >                 if (!(bo->ttm->page_flags &
+> > TTM_TT_FLAG_EXTERNAL_MAPPABLE)) {
+> >                         dma_resv_unlock(bo->base.resv);
+> >                         return VM_FAULT_SIGBUS;
+> >                 }
+> >         }
+> 
+> Ah, right. This essentially blocks imported dma-bufs from being mapped
+> here. I'll fix. This reminds me to add a comment to rework the ttm
+> helpers to move this stuff to TTM.
+> 
+> /Thomas
+> 
+> > 
+> > Matt
+> > 
+> > > +		if (err) {
+> > > +			if (err != -ENOMEM && err != -ENOSPC)
+> > > +				ret = xe_err_to_fault_t(err);
+> > > +			goto out_unlock;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	ret = __xe_bo_cpu_fault(vmf, xe, bo);
+> > > +
+> > > +out_unlock:
+> > > +	dma_resv_unlock(tbo->base.resv);
+> > > +out_validation:
+> > > +	xe_validation_ctx_fini(&ctx);
+> > > +out_pm:
+> > > +	if (needs_rpm)
+> > > +		xe_pm_runtime_put(xe);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+> > >  {
+> > >  	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+> > >  	struct drm_device *ddev = tbo->base.dev;
+> > >  	struct xe_device *xe = to_xe_device(ddev);
+> > >  	struct xe_bo *bo = ttm_to_xe_bo(tbo);
+> > >  	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
+> > > -	struct drm_exec *exec;
+> > > +	bool retry_after_wait = false;
+> > > +	struct xe_validation_ctx ctx;
+> > > +	struct drm_exec exec;
+> > >  	vm_fault_t ret;
+> > > +	int err = 0;
+> > >  	int idx;
+> > >  
+> > > +	if (!drm_dev_enter(&xe->drm, &idx))
+> > > +		return ttm_bo_vm_dummy_page(vmf, vmf->vma-
+> > > >vm_page_prot);
+> > > +
+> > > +	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
+> > > +	if (ret != VM_FAULT_RETRY)
+> > > +		goto out;
+> > > +
+> > > +	if (fault_flag_allow_retry_first(vmf->flags)) {
+> > > +		if (vmf->flags & FAULT_FLAG_RETRY_NOWAIT)
+> > > +			goto out;
+> > > +		retry_after_wait = true;
+> > > +		xe_bo_get(bo);
+> > > +		mmap_read_unlock(vmf->vma->vm_mm);
+> > > +	} else {
+> > > +		ret = VM_FAULT_NOPAGE;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * The fastpath failed and we were not required to return
+> > > and retry immediately.
+> > > +	 * We're now running in one of two modes:
+> > > +	 *
+> > > +	 * 1) retry_after_wait == true: The mmap_read_lock() is
+> > > dropped, and we're trying
+> > > +	 * to resolve blocking waits. But we can't resolve the
+> > > fault since the
+> > > +	 * mmap_read_lock() is dropped. After retrying the fault,
+> > > the aim is that the fastpath
+> > > +	 * should succeed. But it may fail since we drop the bo
+> > > lock.
+> > > +	 *
+> > > +	 * 2) retry_after_wait == false: The fastpath failed,
+> > > typically even after
+> > > +	 * a retry. Do whatever's necessary to resolve the fault.
+> > > +	 *
+> > > +	 * This construct is recommended to avoid excessive waits
+> > > under the mmap_lock.
+> > > +	 */
+> > > +
+> > >  	if (needs_rpm)
+> > >  		xe_pm_runtime_get(xe);
+> > >  
+> > > -	exec = XE_VALIDATION_UNIMPLEMENTED;
+> > > -	ret = ttm_bo_vm_reserve(tbo, vmf);
+> > > -	if (ret)
+> > > -		goto out;
+> > > +	xe_validation_guard(&ctx, &xe->val, &exec, (struct
+> > > xe_val_flags) {.interruptible = true},
+> > > +			    err) {
+> > > +		long lerr;
+> > >  
+> > > -	if (drm_dev_enter(ddev, &idx)) {
+> > > -		trace_xe_bo_cpu_fault(bo);
+> > > +		err = drm_exec_lock_obj(&exec, &tbo->base);
+> > > +		drm_exec_retry_on_contention(&exec);
+> > > +		if (err)
+> > > +			break;
+> > >  
+> > > -		xe_validation_assert_exec(xe, exec, &tbo->base);
+> > > -		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
+> > > >vm_page_prot,
+> > > -					      
+> > > TTM_BO_VM_NUM_PREFAULT);
+> > > -		drm_dev_exit(idx);
+> > > +		lerr = dma_resv_wait_timeout(tbo->base.resv,
+> > > +					    
+> > > DMA_RESV_USAGE_KERNEL, true,
+> > > +					    
+> > > MAX_SCHEDULE_TIMEOUT);
+> > > +		if (lerr < 0) {
+> > > +			err = lerr;
+> > > +			break;
+> > > +		}
+> > >  
+> > > -		if (ret == VM_FAULT_RETRY &&
+> > > -		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+> > > -			goto out;
+> > > +		if (!tbo->resource->bus.is_iomem) {
+> > > +			struct ttm_operation_ctx tctx = {
+> > > +				.interruptible = true,
+> > > +				.no_wait_gpu = false,
+> > > +				.gfp_retry_mayfail = true,
+> > > +			};
+> > >  
+> > > -		/*
+> > > -		 * ttm_bo_vm_reserve() already has dma_resv_lock.
+> > > -		 */
+> > > -		if (ret == VM_FAULT_NOPAGE &&
+> > > -		    mem_type_is_vram(tbo->resource->mem_type)) {
+> > > -			mutex_lock(&xe-
+> > > >mem_access.vram_userfault.lock);
+> > > -			if (list_empty(&bo->vram_userfault_link))
+> > > -				list_add(&bo->vram_userfault_link,
+> > > -					 &xe-
+> > > >mem_access.vram_userfault.list);
+> > > -			mutex_unlock(&xe-
+> > > >mem_access.vram_userfault.lock);
+> > > +			err = ttm_bo_populate(tbo, &tctx);
+> > > +			xe_validation_retry_on_oom(&ctx, &err);
+> > > +			if (err && (err == -EINTR || err == -
+> > > ERESTARTSYS))
 
-drm-xe-fixes-2025-08-27:
-- Fix user-fence race issue (Zbigniew)
-- Couple xe_vm fixes (Thomas)
-- Don't trigger rebind on initial dma-buf validation (Brost)
-- Fix a build issue related to basename() posix vs gnu discrepancy (Carlos)
-The following changes since commit 1b237f190eb3d36f52dffe07a40b5eb210280e00:
+This if statement looks odd.
 
-  Linux 6.17-rc3 (2025-08-24 12:04:12 -0400)
+'err && (err == -EINTR || err == -ERESTARTSYS)'
 
-are available in the Git repository at:
+The 'err &&' is not required in the way this logic is written.
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-08-27
+Should this be:
 
-for you to fetch changes up to 75671d90fde8c78e940e15a1366a50ece56c6b69:
+if (err)
+	break;
 
-  drm/xe: switch to local xbasename() helper (2025-08-26 10:12:11 -0400)
+Or is this an attempt to call ttm_bo_vm_fault_reserved which calls
+ttm_bo_populate without gfp_retry_mayfail on OOO situations?
 
-----------------------------------------------------------------
-- Fix user-fence race issue (Zbigniew)
-- Couple xe_vm fixes (Thomas)
-- Don't trigger rebind on initial dma-buf validation (Brost)
-- Fix a build issue related to basename() posix vs gnu discrepancy (Carlos)
+Also you don't check err == -EAGAIN in the existing logic which
+ttm_bo_vm_fault_reserved does on the return of ttm_bo_populate.
 
-----------------------------------------------------------------
-Carlos Llamas (1):
-      drm/xe: switch to local xbasename() helper
+Can you explain the reasoing here? Also a few comments in code
+explaining the reasoning of the error handling would be helpful.
 
-Matthew Brost (1):
-      drm/xe: Don't trigger rebind on initial dma-buf validation
+Matt
 
-Thomas HellstrÃ¶m (2):
-      drm/xe/vm: Don't pin the vm_resv during validation
-      drm/xe/vm: Clear the scratch_pt pointer on error
-
-Zbigniew KempczyÅ„ski (1):
-      drm/xe/xe_sync: avoid race during ufence signaling
-
- drivers/gpu/drm/xe/xe_bo.c         |  8 ++++----
- drivers/gpu/drm/xe/xe_gen_wa_oob.c | 10 +++++++++-
- drivers/gpu/drm/xe/xe_sync.c       |  2 +-
- drivers/gpu/drm/xe/xe_vm.c         |  8 ++++++--
- drivers/gpu/drm/xe/xe_vm.h         | 15 ++-------------
- 5 files changed, 22 insertions(+), 21 deletions(-)
+> > > +				break;
+> > >  		}
+> > > -	} else {
+> > > -		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma-
+> > > >vm_page_prot);
+> > > +		if (!retry_after_wait)
+> > > +			ret = __xe_bo_cpu_fault(vmf, xe, bo);
+> > >  	}
+> > > +	if (err)
+> > > +		ret = xe_err_to_fault_t(err);
+> > >  
+> > > -	dma_resv_unlock(tbo->base.resv);
+> > > -out:
+> > >  	if (needs_rpm)
+> > >  		xe_pm_runtime_put(xe);
+> > >  
+> > > +	if (retry_after_wait)
+> > > +		xe_bo_put(bo);
+> > > +out:
+> > > +	drm_dev_exit(idx);
+> > > +
+> > >  	return ret;
+> > >  }
+> > >  
+> > > @@ -1807,7 +1938,7 @@ int xe_bo_read(struct xe_bo *bo, u64 offset,
+> > > void *dst, int size)
+> > >  }
+> > >  
+> > >  static const struct vm_operations_struct xe_gem_vm_ops = {
+> > > -	.fault = xe_gem_fault,
+> > > +	.fault = xe_bo_cpu_fault,
+> > >  	.open = ttm_bo_vm_open,
+> > >  	.close = ttm_bo_vm_close,
+> > >  	.access = xe_bo_vm_access,
+> > > diff --git a/drivers/gpu/drm/xe/xe_validation.c
+> > > b/drivers/gpu/drm/xe/xe_validation.c
+> > > index b90fda3dd5f4..826cd09966ef 100644
+> > > --- a/drivers/gpu/drm/xe/xe_validation.c
+> > > +++ b/drivers/gpu/drm/xe/xe_validation.c
+> > > @@ -241,7 +241,8 @@ int xe_validation_exec_lock(struct
+> > > xe_validation_ctx *ctx,
+> > >   */
+> > >  void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
+> > >  {
+> > > -	drm_exec_fini(ctx->exec);
+> > > +	if (ctx->exec)
+> > > +		drm_exec_fini(ctx->exec);
+> > >  	xe_validation_unlock(ctx);
+> > >  }
+> > >  
+> > > -- 
+> > > 2.50.1
+> > > 
+> 
