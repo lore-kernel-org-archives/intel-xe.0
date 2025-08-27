@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C92CA0EFF
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 08:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 245ACCA0EFF
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 08:47:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3656410E0C7;
-	Wed, 27 Aug 2025 08:18:51 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44BAA10E0AD;
- Wed, 27 Aug 2025 08:18:50 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 875DD1515;
- Wed, 27 Aug 2025 01:18:41 -0700 (PDT)
-Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8D1A3F694;
- Wed, 27 Aug 2025 01:18:41 -0700 (PDT)
-Date: Wed, 27 Aug 2025 09:18:38 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Ian Rogers <irogers@google.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
- Peter Zijlstra <peterz@infradead.org>, mingo@redhat.com,
- will@kernel.org, acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- adrian.hunter@intel.com, kan.liang@linux.intel.com,
- linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 12/19] perf: Ignore event state for group validation
-Message-ID: <aK6_XrA_OaLnoFkr@J2N7QTR9R3>
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <d6cda4e2999aba5794c8178f043c91068fa8080c.1755096883.git.robin.murphy@arm.com>
- <20250826130329.GX4067720@noisy.programming.kicks-ass.net>
- <6080e45d-032e-48c2-8efc-3d7e5734d705@arm.com>
- <CAP-5=fXF2x3hW4Sk+A362T-50cBbw6HVd7KY+QEUjFwT+JL37Q@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1ACC10E3A4;
+	Wed, 27 Aug 2025 08:47:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JBkDziky";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C604210E3A4
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 08:47:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756284439; x=1787820439;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HAr77ISWxatn2tH2Q7qqlpmPpIicOnYcLzQnMQEnn/c=;
+ b=JBkDzikyfrEKGcB9uC4srYo39+EAK/NB9Elg7bcjCU2qeim3ZAdQn9kK
+ 5RtdK5urmU/fAI6DyuEAcZ0/tWD/47Z3LRSQ49tsW7MLmvRWHodyyp/9g
+ uD/ohbz3YUHAcAjHj/rZVOpM7EUG9dqZ9CXkQQZ5IMs5XLFcB8Q4EIxcA
+ SPTJX4QCIAmNCmdMOC0oP4NQyQtzZsEyTAybC1xRObpNSm5LQiQDUz5QQ
+ oj93g8QAkgbKlBbuIewTI3tSkev1s1OYVmspg9JfP4Er4rycF4iYATO8r
+ 725XXmclfUkgGCjO3cDFBm2+Zkp2Szzqe0ccJzFmCyC+5n8zextxaSRNg g==;
+X-CSE-ConnectionGUID: fjg4j71LQk2YTZVtMS+bbw==
+X-CSE-MsgGUID: xBu9w4Q2SXG9LmI866bk0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="69124524"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="69124524"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 01:47:18 -0700
+X-CSE-ConnectionGUID: rk4LKhGQRASsyDEPPEwJPw==
+X-CSE-MsgGUID: 1rQALBmZRbuRZgx83vknIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169394825"
+Received: from hchegond-ivm1.jf.intel.com ([10.165.21.208])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 01:47:18 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v3 1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering() input gt
+ a const
+Date: Wed, 27 Aug 2025 01:47:10 -0700
+Message-ID: <9c3c61fb24e3eeeafbe726d2b51831a0574e9856.1756284177.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP-5=fXF2x3hW4Sk+A362T-50cBbw6HVd7KY+QEUjFwT+JL37Q@mail.gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,50 +66,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 26, 2025 at 11:48:48AM -0700, Ian Rogers wrote:
-> On Tue, Aug 26, 2025 at 8:32 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> >
-> > On 2025-08-26 2:03 pm, Peter Zijlstra wrote:
-> > > On Wed, Aug 13, 2025 at 06:01:04PM +0100, Robin Murphy wrote:
-> > >> It may have been different long ago, but today it seems wrong for these
-> > >> drivers to skip counting disabled sibling events in group validation,
-> > >> given that perf_event_enable() could make them schedulable again, and
-> > >> thus increase the effective size of the group later. Conversely, if a
-> > >> sibling event is truly dead then it stands to reason that the whole
-> > >> group is dead, so it's not worth going to any special effort to try to
-> > >> squeeze in a new event that's never going to run anyway. Thus, we can
-> > >> simply remove all these checks.
-> > >
-> > > So currently you can do sort of a manual event rotation inside an
-> > > over-sized group and have it work.
-> > >
-> > > I'm not sure if anybody actually does this, but its possible.
-> > >
-> > > Eg. on a PMU that supports only 4 counters, create a group of 5 and
-> > > periodically cycle which of the 5 events is off.
-> 
-> I'm not sure this is true, I thought this would fail in the
-> perf_event_open when adding the 5th event and there being insufficient
-> counters for the group.
+Make gt, input parameter to xe_gt_mcr_get_dss_steering(), a
+constant. This would allow xe_gt_mcr_get_dss_steering() to
+be called from functions that have gt as const to struct xe_gt.
 
-We're talking specifically about cases where the logic in a pmu's
-pmu::event_init() callback doesn't count events in specific states, and
-hence the 5th even doesn't get rejected when it is initialised.
+v2: Rebase
 
-For example, in arch/x86/events/core.c, validate_group() uses
-collect_events(), which has:
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.h | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-	for_each_sibling_event(event, leader) {
-		if (!is_x86_event(event) || event->state <= PERF_EVENT_STATE_OFF)
-			continue;
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 683ac021a06d..8fb1cae91724 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -362,7 +362,7 @@ static unsigned int dss_per_group(struct xe_gt *gt)
+  * @group: pointer to storage for steering group ID
+  * @instance: pointer to storage for steering instance ID
+  */
+-void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance)
++void xe_gt_mcr_get_dss_steering(const struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance)
+ {
+ 	xe_gt_assert(gt, dss < XE_MAX_DSS_FUSE_BITS);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+index bc06520befab..283a1c9770e2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.h
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+@@ -31,7 +31,8 @@ bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+ 					  u8 *group, u8 *instance);
+ 
+ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
+-void xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, u16 *group, u16 *instance);
++void xe_gt_mcr_get_dss_steering(const struct xe_gt *gt,
++				unsigned int dss, u16 *group, u16 *instance);
+ u32 xe_gt_mcr_steering_info_to_dss_id(struct xe_gt *gt, u16 group, u16 instance);
+ 
+ /*
+-- 
+2.48.1
 
-		if (collect_event(cpuc, event, max_count, n))
-			return -EINVAL;
-
-		n++;
-	}
-
-... and so where an event's state is <= PERF_EVENT_STATE_OFF at init
-time, that event is not counted to see if it fits into HW counters.
-
-Mark.
