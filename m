@@ -4,164 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 129EFCA0EFF
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 19:14:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7356ECA0EFF
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 19:15:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD01710E893;
-	Wed, 27 Aug 2025 19:14:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3522310E175;
+	Wed, 27 Aug 2025 19:15:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lipeVRZP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fj1I5P0T";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289F910E893
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 19:14:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE7F810E175
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 19:15:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756322064; x=1787858064;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=T1VvQhbPwT7+xsaCHK1tHxnowgQdkL9c3xWFtTZEzp0=;
- b=lipeVRZPvX2aV5sIXeC0NM+4ecvmOTeCSiSZth8Mp+9LX54Wu3vvUfnv
- Bj0dYjS4TjM4QfI/WmiVwtfe+rQgLQs+7NSty9Z34TScnk4iSy5sBmRUt
- YDVdo0n1NEixyFbRZRS4N1tTInHgMqmeWExyi/0t8xzL7KOX8QcsQ1uN8
- QxqEiBN3SkBlX7lXs5qKqSHy4ZjSNvzLJchI+44id8S+FyabALcz2yKHb
- 2EXs/DJQueVyJ/cQecukb19Q0/xAF4/I3oLbQAjgZZygormE2IccGlVWU
- tCc6807Qr5db71Z4VT/RGsEeotTDugbVQRV4Cpi8rM5jzF68IcAqDSDSM g==;
-X-CSE-ConnectionGUID: dKWQjShDQRO1Q7NUc3AKdQ==
-X-CSE-MsgGUID: rSGHyUvpTqmcwBBpsqtf5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57606743"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57606743"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 12:14:24 -0700
-X-CSE-ConnectionGUID: cUnyccY/Q+Gqj159quHdIg==
-X-CSE-MsgGUID: LIf83f5yTImgcIbZPOtIiQ==
+ t=1756322156; x=1787858156;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=2LtSohfvhUO2uMa0ziKsQg0RgCbGj6TQDgjVBK5iY3Q=;
+ b=Fj1I5P0TSmwOTA1unZ94TVUZvq9qomJDF9qhlMeIv6gmnl483flbl8MU
+ TOkQnSdca5ttwdG+txv39ZrEFi3jcbdA/TWoINW3wCzDLV5QCsUUPw9N/
+ EO+IfIxQpNYLBjNLGg01ziFvF2NVivoW00twDPlZZlgqc79+syraQmAK4
+ h1SXy4xFGCtPEdU1QZjfvdQUUyt8+DEt5Ao/tL6ZerYUVB9mkCCttxabS
+ zgiDiiD+/iquK5Ub2Sjiu3CsRiVFYs6z9aOk7lzd0LVUQFaJIRAmj9Q+c
+ rF+GQludzeh9Zyyn/vgdprYqSD1AITatQeFFK6nAvjia6CTaW+KQOdqJg w==;
+X-CSE-ConnectionGUID: vyEoyU8PQ6eXB/Q/YGB9hA==
+X-CSE-MsgGUID: Mpz0u0QzTPKpiog4lgB8ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58514116"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58514116"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 12:15:55 -0700
+X-CSE-ConnectionGUID: MEeNu8oDT+yCz43Y8waY2Q==
+X-CSE-MsgGUID: fIqtptwiTZOaHK4p+kGuPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="200864533"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 12:14:24 -0700
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170735678"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 12:15:55 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 12:14:22 -0700
+ 15.2.2562.17; Wed, 27 Aug 2025 12:15:54 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 12:14:22 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.87) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 12:15:54 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.40)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 12:14:22 -0700
+ 15.2.2562.17; Wed, 27 Aug 2025 12:15:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N/0873eOlfIOMe/jhwan3Cms/16tLVAvqOFuQdnt1aVXRQ/SDqtyz6nbM3SUV7131cSAuzDieODWDLe9YTy3oizhhKj1wZCfmpsmgGkLd87AxPxMfU5K2kMTthg26ZXIzxylftiflLW6T7EouDSapUCaL8cEXJkN56rp9RIS5Ja+oO6ntk/OgDq0g6iU+iyQzufwG9YrSpkgAb7ctjqk3wb00mn+60WKe03aZWkZ6VROLwPEm7v+Fhy95jzcaTbOMVzeLkqrUeDpajZpHjZD0L8Hi5aXoge8jGixOniVYnzCGYIqxBECP4NWXbMSlCUSoih9Od72GcFGf3LGOOaHcw==
+ b=N79LxTeCV4Jx0zD73F5Z5AFb5wt9xn6gxG7PUEaGN9FvKa2qGJefXmGqYIXL0uZmKNASO4vnGJHTNaV90X4NoGlD0xenPzlhsfPo56gU6CkYSpWsFT/id4kkxh2GE1DwOqHE5tqeC6CrcgQuAYfa/XoXtcfYeSE2sN3UjyUoNuYDtyWFcJon/aPtZ29MHE1YudKAzlPBNGGCvuRAXhqq/sQw3wDiS2XllP9UYpA93jp/pjlBhBR0TB4qb8e8Us41JTqKIZznLDalpizRREpCQfLCKkxgF60SzBjWOgZ9E/RnJLa2eKB8SVklTlfB6LiagfW5MzCyzFmgzX4iYp+QOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IQ17xQc4rlncRJPC9TUmfpSkqhmdpFYS5nK7AdKDp7I=;
- b=FMD/UyyEYURT+Umlc3FxVEsKFN1bJzaj9+T9q6wVmlOXDUePpF7dBdaE5zRefNeOfm+D6Dub7OYcD2S2Gsaio8n1ci1sXbTTB/e5/wo7pr6dTJ6uhbgBpFNY8HvxuyHYGzpGtziYnJ5iiyB2ju5gzgDGS8E53xpqDyUzbiDCAvb9JGSTQPg5Yj6WZlcNfjFcROtefnqtpHmPLU49BN5yNd9UEQlC+ygsMPxxJN4bfee5//KRyDjg55ltixoBhnbimRa0DFpW2MTiwT4NbaynU6B+euofrPHWiZlBIp6p72dg/b4mx4JLT1cFUhUACRbuRhgTyXAzmj5CKh+rG+n99w==
+ bh=RFqR24QLCVdLEBOiAg8M0dfQrxSm1HpxAGccptHgTkM=;
+ b=Rh2zOgBtF0mbqo9tpKvw/NhySpEW74Z8KmI0v3za5CW+0b25vQvFShEZmTbW+oX6U0CmboZQH5GImLirlnirdAY/g0HbQGG/QBCpPdFZCPFB4XzXNQGxCLG1wWA9739YGWzUIkGapxyNSph8Nav3hZZblMfepkhkj9WmUA/sN0P+eoRSGFYoHzW7g4NHy49xkXqGmiNNzma0LXJ8z77/yhZ3bsZNKIXwEGqp0a4gz9eW6QAftZFrD1SuBn8PBs5s/o5TMNoUX4QV5IPUFeVkGZuetJx3bkH1OSTQoWABgT+RuctQRa7k54R/RsIi2yZn8oWCSujZdKhlzD7mDAGSuA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by IA0PR11MB8354.namprd11.prod.outlook.com (2603:10b6:208:48c::6)
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by SJ1PR11MB6203.namprd11.prod.outlook.com (2603:10b6:a03:45a::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.20; Wed, 27 Aug
- 2025 19:14:19 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.9052.019; Wed, 27 Aug 2025
- 19:14:19 +0000
-Date: Wed, 27 Aug 2025 12:14:16 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v5 1/2] drm/xe: Add clearing stats to GT debugfs
-Message-ID: <aK9ZCD5XGea5VavU@lstrano-desk.jf.intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Wed, 27 Aug
+ 2025 19:15:50 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9052.019; Wed, 27 Aug 2025
+ 19:15:49 +0000
+Message-ID: <eb17d7cc-bc60-4eac-86c0-ae6df3976db3@intel.com>
+Date: Wed, 27 Aug 2025 21:15:46 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] drm/xe: Add more SVM GT stats
+To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20250827184352.175550-1-matthew.brost@intel.com>
- <20250827184352.175550-2-matthew.brost@intel.com>
- <50331fc5-e234-41c7-a724-74972c6c87d6@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <50331fc5-e234-41c7-a724-74972c6c87d6@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0343.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::18) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+ <20250827184352.175550-3-matthew.brost@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250827184352.175550-3-matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA2P291CA0046.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::15) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA0PR11MB8354:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28a248db-84c8-4314-a1c6-08dde59dec68
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ1PR11MB6203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4de0465d-29ce-4c0f-fa26-08dde59e21e0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?J7m++KL3xvduJdN1vUI9xSngTKo+csQYY/u33pL+DOi+yj6HuFZqWpOa2vi6?=
- =?us-ascii?Q?j8r5yLrxB3zu0sEf72l+SYXzy4qqM5uCG+Ad4ikxuECGX/oGzc5L+5ZlDCbF?=
- =?us-ascii?Q?c99p4WYahMML80jVLGBu6qKWHfqmoTSNm5xoEQ0onb+ikwcrmuauijZVioyo?=
- =?us-ascii?Q?CdTyt8nczXoNe7YMprq/gGpi6eDm5EE6nYyVXTH76ItVj6V4Vv3P5J5d/bpw?=
- =?us-ascii?Q?u8I8PCkvPwLQ7L5kSqKGVCa7J1NOkAnNQTwgxsW6y+Ka08RbT2b73DUOB3UV?=
- =?us-ascii?Q?kf/T60CaQA6F+B00AcvP8tdQ6DsnSuadedoFaj3s/A2scpDBq1sUFLaQXbbE?=
- =?us-ascii?Q?4dJ6ySTCha4/dApktkdk8i+JFUDAhlGOXkbuK+kIQc9DUhcEwaQYp8O133FU?=
- =?us-ascii?Q?9xLdfEIVLmkdhk/M8np7UJlqR2APu1G/ri7P6rcqOkgzaNglAe1JnR2oL4ND?=
- =?us-ascii?Q?rO9A6LC9Dp+3l1ng7QJWhRQjPdVcOKryFN9PdYaq9znPyNhP210xA1DCmjbg?=
- =?us-ascii?Q?gdMqbEp5qrgod62SB9mIYtkRaTcSkrpZwThBpPGC32c3INLzq8aG6E2lVJrK?=
- =?us-ascii?Q?8xFuSxgbPMdBXm2FN44Eqsdz4RP1EmQoynsBwrULgpkQw824R7l1Rp+xYQrk?=
- =?us-ascii?Q?BJFM+AdOJNvkgcwhSap+uGslxFa1wda63cuc3EDxAbo/gR40J5UnmtihuvAt?=
- =?us-ascii?Q?AuU8o/ZG3fjEHfSO/GqwG2k2nw6Et16McqIV1xBNXKU1kpV3/wAh+NCe/F/Y?=
- =?us-ascii?Q?YhPplhY0J8BYlzg1jVdGV9yh9lrEDDq1BSDnKd1qKJaaBN4OJnTOUZzx9KmS?=
- =?us-ascii?Q?gw0/fwmzUcBumF/YZ9LN0NONmUSIc/Oh9fOOECT6UmI71S0tsAKmbJyySnQ8?=
- =?us-ascii?Q?CAr9vDySqrUweYHqtfeLDA5ptyiAxkmEOtbD/zq17h2JWdBUEHLBBwNBTfM2?=
- =?us-ascii?Q?N3hfJTMxu662v5lGiWtBdTJd2QS5/tOiQP9Pd9Lw4wL6XEY7HFz19cWLhs5M?=
- =?us-ascii?Q?hadD5mo2XtbBFxHs+tsOEiwZl3uLRBt+AixGWTVvcupHJoQExx3IK2ynQZMZ?=
- =?us-ascii?Q?uZlubB4ETPg+d+LzxaYjTW1KmJsg6QAy8W6UwgUz950QwaQCorSCw9Q2koNM?=
- =?us-ascii?Q?HdVx4TYKpkHsAy6XJVd9d52d1GMz6RDG6s8gLSFtaV6OnJRcdh2lc0pLhac9?=
- =?us-ascii?Q?gZebCIQRqFFSD/lvTnIMgcBR3tJJ2BGFhm8GgeoJMx+67xelQH+BsMnr68pG?=
- =?us-ascii?Q?YGluiLeMwkgO6CqHHlQeQvht1nrDs24h/zI3YVlwDixf7KbjJXnzzmQDSRP1?=
- =?us-ascii?Q?iINWb2NVmzgKi0tENYwInpDuCF2Fu7yiHKuWaRPsQUAlFl+UK2l1SiXQrAHr?=
- =?us-ascii?Q?WBVaw3/aXjXZiqdSAbA37Glj5Bb0Ty97xNa8+bTBOqiuZyrMHBmR561MFxjq?=
- =?us-ascii?Q?Wz2vqi75LkI=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VUh6Y1pZSklYUXZ4Mkh6V0ZSaU42V1J4SEc1RFlNRkZBb1k0blVRQVpCbTFJ?=
+ =?utf-8?B?bHpKTVQxWmFydnZ3cklyYzhaY1ZXMGxES2JCM1BVSXh3a2dhUFNMUGphOFJE?=
+ =?utf-8?B?NUsyZ2ZSTzd6V1dtZkY2b2pBMFBGUmhZbkRIaFVueVM3WElKYmV1SE5vR0Jl?=
+ =?utf-8?B?MStyc2YvY1hoNXpNdmlRTjZpWEhFUE5OallMU1F5WFJWUHFqQno1K3ZkcWpz?=
+ =?utf-8?B?NERtZG5OS0FOOXFxNStzVVdWYzdRd3hGYU1VNUpsUW1XemZaNUdkN3MvNi9V?=
+ =?utf-8?B?V3h6N21sUTE4NVRhdi9OTFFqMXljK3BOTVQrTy9aSStPVnk0SkZSenQwZm9K?=
+ =?utf-8?B?NVFsMFg4T1JQd0JnQkdRcVMyWTRHZ1A5WFkyQmcyZDVURmpzVTRHb2pHbFdr?=
+ =?utf-8?B?dHBCSEZGNndJYy9IQ003dkFqcEU0K0QvVElDTWZ4NkFZeWt3Q0hrV1hVc0s0?=
+ =?utf-8?B?ZjNsbUNab256cCs4LzBzbzBKQmFiNUN3SG4zZExmclowVDAvaFpnRVBzYUEz?=
+ =?utf-8?B?bmlndDgrU1oxWkhUTDdqT1JoS0M5Q1JiS3ZxVkZhNURmR3E4VzFjL0hWN1FF?=
+ =?utf-8?B?NDRqWEt2eVhJYjJadE1wTkhSdE5WWVBvZ2F0R3JlNCtyRVB3akZ0RlovRlZD?=
+ =?utf-8?B?ZHdUTVdCMWdnd29IYTR3ci81bnI0b0FkeERaYjgzZW1naUd6YlhvTEcyUThG?=
+ =?utf-8?B?OFp6M1NCMHNnWWxFVThPdVFmTGt2b1p5S2pYa242NGQrRy9sN1E2Qkl6Qkg2?=
+ =?utf-8?B?eTNxT212YktIejFHbkxoV3FJbXFVRDAyRGw5MzYvZ0ZCbmRzejlSa0hjQVY4?=
+ =?utf-8?B?SmI0c21nNjcwWGw1MGx4RjV6RWVudDNMZjNPZkp5dzlYdUZTL295eEZIazlp?=
+ =?utf-8?B?eno5WmN0RzNGVGtlRkZNOUVWRVREWTA0UDBYTlo3bFBkZnVJYVp6azJLVVdv?=
+ =?utf-8?B?ZUFzWERqOVk3TmRBU25GZWM5NEpKSUFuZE9vaGxlMTRDb0xEZE8zZCtvOXFL?=
+ =?utf-8?B?dklQQkRvM1RTNnZLcXNJYUtjUWRHbjVudFAya2plUlgydHlyOEYybTBJb1Ax?=
+ =?utf-8?B?dGEzd0Y5YklLang5VWZ5clFJSGxIRTJNRmVNbmtBRVpWMkNuWDBqbXgrMEZL?=
+ =?utf-8?B?ZnZhUUJlSnFxRWZXOUVUci96MkpZeUZyMnhGenpOYzZ5c0Z6RzU1Rm9PZWJK?=
+ =?utf-8?B?ZFJLK3FFWjRKRFZnajd2Z0NUQk4zdE9vZytITzAxRmF0TndaTXRrNzJKM2NC?=
+ =?utf-8?B?UkpvaTJLVEVQLzJhYnkxZ2NYZVA1bXNrMXNEV0JaRGp2SnRLelAyNnlnaHVu?=
+ =?utf-8?B?dHFNSFhzRXpRZ0c3dDM4K1BuZStIWHEyNnlacjA2T1Z5T3E5RnVkc0l1YTRt?=
+ =?utf-8?B?K2MzR3drY0doVkNBMWc1RVVqSlpwQzR4M0ROdzRJd01LMmhvLzEvL2V2cSt6?=
+ =?utf-8?B?a1JZK2VJRHlMVXhxT3BpczdMa2ZnNTN1RTZIM0RjcEtYVmJPeUlOQUFybDNN?=
+ =?utf-8?B?OWF1dVBQVzk5Mk5wWVhBYUpsaWc1dVhWSFpybVNTdzgvUWkzdjY3a3BrR1V5?=
+ =?utf-8?B?blFGeVRyS3drcTFCZkZzZXZpZkMzUEZQUC9FWTA3MFFVamRoRnJRc3FnbUwx?=
+ =?utf-8?B?NDJmRzlLeGFnRG1YdmFUUk9Tc0J4V3VkMEdWbzVobjAvWUJGNmxEK2pjTm0x?=
+ =?utf-8?B?Z0pMMXE1RUZCMWpydmM2MXhwNFl5SDZFZ1hGeSt3bVQzN0loQ1VnY0hJYmVF?=
+ =?utf-8?B?Z0RLemJhNG5tZ0VmYUI0Q0tLbUNHOUNxTEh2SGowS2prRXhWTG1zT2ZXc25x?=
+ =?utf-8?B?ckwwamxDYThEMnlMeURENFNCQ2FQSUhtRy9NajMrU0JKNExFaUVXNkNxbzA2?=
+ =?utf-8?B?VlJMd0xjSmxYVGpVTUpTejFBcGl0blFzNU14QXBuMHFvSmpkQ1VTRkNjM3lG?=
+ =?utf-8?Q?ULAfl6wPlWg=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HQtQHd12rjQPcYyzdP5iX64uijd1zXUA9gp96UvRT035JAWS8Qm3Fv5wwaVw?=
- =?us-ascii?Q?j2R4RaT0IkXktkvKGvLh8EvpnSIaJ3YY22dIxgS19J4lgP+jSG786Okn16VV?=
- =?us-ascii?Q?3YeiZjdSbT0KMmL9Dq4t+2w7YiHL2wv1HhjUGXlmsc1QZAKUZcAhaJkDXbrJ?=
- =?us-ascii?Q?v+kGO3uudtCyvKf6296xGKl3lB4QlQ8A4xx02xHs67GKYRUX/FVa8bhjhsLL?=
- =?us-ascii?Q?6Mo6On3+ZitUSOHptI2yoluvvQfeJQHOeIXHKsQ3nk/GbwKI1iMX3UffsShp?=
- =?us-ascii?Q?WXzlKjqnorXZzlA1ueZJBul444MmOTpj/MwYxq1beFZSThKx1tqwmGn58o32?=
- =?us-ascii?Q?GyIPzsFpgSm2jQh8nwUr/OerMNiGf5hDj7KvW2DidIMJUEIH1YUkrJiXgxHN?=
- =?us-ascii?Q?Nqt+tnTzZxZ3m1dUKc3uU3so/k9c6/+xqzqaJJst3nIWDr6IH/S/hj8WUX76?=
- =?us-ascii?Q?P2ax6pB45ihlQzroorSnkk+EdWqEEaPFpyRDvRWC+q8nBnEK198SmpBYuu7m?=
- =?us-ascii?Q?kSMRG12Yf3ahZWGC1ggnDexY68kgaGqIr9OaFQYwP7X3NKZ2c4bnXuJua5KW?=
- =?us-ascii?Q?m4Sg+Rf/znORbjLg+sQAdwxO+NPidublANsCSeuSnhzoV1LoeH1QbUCYCRpj?=
- =?us-ascii?Q?HPz22X0CCHoUcpDdE10LTaXn+c8vUSSggAvT340Y0YiRRhGIj7odHi+nltpW?=
- =?us-ascii?Q?3liJqYHYtcLEYdXisVaVvByvxVeBESgdNWODL5t6qdzEuXWE8UoriisJzzYR?=
- =?us-ascii?Q?6BYngQO26+TXFFyEGMFEzort8U9RtecQYXClkc2apO0eM56GaimN+xUziZFt?=
- =?us-ascii?Q?zwI/11rxJ9n++4G0L8V3GMzX4aoOAglSnzcfcAgiGzJenWkzeKnE8YNBxvrm?=
- =?us-ascii?Q?yMaBVEAfNLFT+hPG0cFqpH1QybnNL6M1oS+ZuXzsK7VhDMYSM3Ixxs4ydL9K?=
- =?us-ascii?Q?OO+jRTCZ+VWlMmWfCmNqkNv30uaHB1+iw0S2r6tcjRfpUFRsGCuXJ7tUo5K5?=
- =?us-ascii?Q?yIDo3tdfPy0pQWVr3rol3XL17FSRTw6ilQ2O6998Z7HZihedgJQGBdu8TMpH?=
- =?us-ascii?Q?rqYzOcxc6MCCGGXytH9tAgatKwJhlEDmGkmgM3rZ/VF45b5jDnXDACce6MoO?=
- =?us-ascii?Q?souMDUZQ/lmn5c2qA/XVKPu12rolweW7QXLPJobZxEUej1G854edXun1us9i?=
- =?us-ascii?Q?bQnwM5bOBV/UDnUzujAzf7Q0WGEbPVsujT+UNpCpb2BwdO67kPUIEQzaVXFP?=
- =?us-ascii?Q?88NnPh+G0N94qzz7Jym1GXfCebGVDYCdp98hZcmC0jxO+fihe24owaVF4KgB?=
- =?us-ascii?Q?KJFtFQiM6IByMc/Jj5hyWTEsAHjiM+pNBmmztKEkCNpkqVx1pcXi8sT7LF0m?=
- =?us-ascii?Q?BjVdNC75DHmbdRPNtAJdGQdRoDaHuGXFFXCpQJoxYop6tdpVBjeqo9LWtdDz?=
- =?us-ascii?Q?UZI3WDQh7vjrTTBMIUj0m23seVfukkAdBTyEo6RJn3pFIcuwnZn5zM2ksFhl?=
- =?us-ascii?Q?+CVcaf+OeMkEVhbH6bjes0Pl8ZlnHmyDf4hxkT62MkBABn+G4XH2ftHh7y6L?=
- =?us-ascii?Q?1oedPINLNTXRXMa/DtYxxvvpZD/k95ZlgDhKbhNbBFqoYnvTVv9/D5GYDiE+?=
- =?us-ascii?Q?8Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28a248db-84c8-4314-a1c6-08dde59dec68
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1UrNVFrMHk5bjByMzV2RzNVM2Q5Skd4SHR0d0FBc2htTWg3RXhzYU8rSTJB?=
+ =?utf-8?B?RVA4K3RwVmF3QVRoQkJtNEtueVA1MjBOU2ZuZlpGM3c2RWVSTnNxa2ZjUGlY?=
+ =?utf-8?B?eER2ampVYkhBa0tVRnd1ZmxZQ2Y2Y1VwWXZ3cmE3MWpWcWZxWjJnMUpQT25i?=
+ =?utf-8?B?ejBzZTBmSGI3ckwrOHR5Sis0cDJOalpBaURBL3RWSmpIZWx5N2pBcUpIMlNG?=
+ =?utf-8?B?dGhtNng5TGZqY1VaN29DOWhFUUtRNDUrbkIwU0JNMm5xU1E5WTdRL1BMZ0kz?=
+ =?utf-8?B?aGx6a3FvaEpCblpKN2d3TElVZkZpSW9tK3VGYkpSdFpwbFJsVmVJcFVVbVMz?=
+ =?utf-8?B?WktQSzZqWE5sTXc2czFTYjRCQkh4UWZrR0VRZUJaZFRsdzVscjZDQWpqTVJG?=
+ =?utf-8?B?V1hYUDlaVmxnMFpGMFZrSlorcW8xVjd6aVBOWlMwWStuVGVVajhTQ3dlTWt0?=
+ =?utf-8?B?THg1VTFxeHI1ZVNBaEpKMmxYYWtrT2hZemwreU1wSjF3c0FEeGZNRDZUYmpV?=
+ =?utf-8?B?YnJOdGdRTnhTaDJndVJzcHFRaHVUZ1RmbEdvOVdmSTZ4Qmk2blNvN1BMNVVB?=
+ =?utf-8?B?M2NKb1NVV0N5eDFQekw4bS9hT2NjdzhjWE1MQ1E3Zzc5SlVhU3NSRDhYMGZU?=
+ =?utf-8?B?eDhsVzdhNW9LR01wd2V0OVRBQ09zYUpuTnZ4SCtoakNLM2lHVDQydmt6WVM0?=
+ =?utf-8?B?dmZweFhPSHhjUGcrRDBrd25keTY3LzFITUpCUm5rMzR1ZW5vS0ppY0tSTkJu?=
+ =?utf-8?B?QzlOWFVQM1c4N0JwNWQ0cVl2cElFVUwzcGtZVkNnSWJmM0lERHo0QncvYXYr?=
+ =?utf-8?B?WFBGanpuZlV0akN6V3U4SXhoYkdnUEJyZC92eTRwQmFvUWhhZllrczF3czcz?=
+ =?utf-8?B?Zld5SDBvOE9zMlFoeVNnTzg0enUvVmxoRExGYnU4SERxN1NKZ29OSnZyaW5v?=
+ =?utf-8?B?cG4xWXJXQ3ZPNnJDdE9QZnBEa0hGaWVwTjZDajVkZTJHenViYzExekg1bkN3?=
+ =?utf-8?B?Mk5BOWtZNHNKSTBrV082SXM4Y0VHVG4yOE92cTZ4Rjl2ZnhWSXFFUWM2T003?=
+ =?utf-8?B?ZW01ZzFPUlhzTDJVNnE1OVpNdlBxV0ZxNnVLQVY1OWU1ZTI0aURiV2twZGZV?=
+ =?utf-8?B?N29GQnVTdGFtRWtRa3RMUUcrUHpQcDZCcUZ2dkd3ajlwdVNTN0NaMFZYVW1k?=
+ =?utf-8?B?Y1Q0b2Y5YWVBdHNOUlRleGtCU3E1UW9YU2ZXdjErdkl2dkV3UGM2ZGtQdFRM?=
+ =?utf-8?B?Si9SdnhXRkxKTTNXaWJMWnlEWkNGUWNuYVViRWMreTRsM3FjRE53ZFE0OWY2?=
+ =?utf-8?B?SFRES0doYzIzOUJEUGs1Wm9MbGhCSjNGU0s4SFJaYjBjMjlYU2VENTU4ckxu?=
+ =?utf-8?B?VFh0QldGcXlubG56NkQvU1VBZzUyVGVtTVRmdis1UEJCeDlremV2KzN4TDJv?=
+ =?utf-8?B?aDIxbFM5NkJIMzdNVGV6eFhxN1pJN01IeXZ0alRENTErTzEzaWw4NWtEbTAv?=
+ =?utf-8?B?SXhINnpIcG1FUWZnRE5pcERYUFRuWDFIRTRtYXhPU0RxRmovRG05NDdtMEk3?=
+ =?utf-8?B?SjRYNThlRy9VRGNuaXJGNGVtMHE2ZnVwWDIzZkZSVnNhZUZ1NTY0V2FkUGFJ?=
+ =?utf-8?B?VUZlS3VHcEg2M0lRUXVMNjNoYW04RDFMWU9PWm5qOUZhVmNVUkhMMmtRYUgr?=
+ =?utf-8?B?NWhaMXFWdDdFVnBrTFlFL1dYdHFFY3FKQmxqY09qMC9wZFR3cTZvOUkvSVg3?=
+ =?utf-8?B?WW5GWFZwdjRlamdLdkxhb1JzSGdyREN5R3psZVlaQzlvZDdRR2pUTjg1Rito?=
+ =?utf-8?B?SXJxR2R3VWs1NWR2eXBGaythQU9wVGF1NmM0WGc2Q1hjUm9DMUVyK3c2SHhK?=
+ =?utf-8?B?TWxkaUNlUmZWdkJkcnR6UUYxU1FjYVlQNytkY3oyS0FVczR1RXc5RTl0K3NO?=
+ =?utf-8?B?c1F4UUxjdWZ2VVBrYzhOYzlIT00zdGNiODNla212OUxYamNrTWNYbEllZ1dw?=
+ =?utf-8?B?U2FPUEt0dEw4RER6T3pBYkdPdm00c3JZek9wczc2Z2pPWFJYL2ZPL2pRejZ0?=
+ =?utf-8?B?OFV1K1NQOTFWTHFFK2xJNnpvK3NwTlp0WWJaNWtxL0Y1N3hkRkRBQzVQRUVI?=
+ =?utf-8?B?OHAvOEIwNmYyaDViZVc0aVpwdXNLcnRwMUFCL2hmVHp4dTFrTUhPdU04WnJm?=
+ =?utf-8?B?akE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4de0465d-29ce-4c0f-fa26-08dde59e21e0
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 19:14:19.7208 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 19:15:49.3506 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7bkRsFGp53j+PFtSKlacTi/MkyiCrCbK6UP/ptTDNOjDpwO6chN96iw+sN5pZ6n7aHNlduXZa8/lQ8TjBHP34g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB8354
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3D8QvxsH7xjB8al4PXmoyry7OS2AjYaW68lAk57TO4c1nRpvx/Pnk+sAq2sXtNlAFC4+SorCcrCwdrb83q1/sCjAUtEKnwfNecNHgcJ2DW0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6203
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,126 +194,515 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 27, 2025 at 09:02:26PM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 8/27/2025 8:43 PM, Matthew Brost wrote:
-> > It helpful to clear GT stats, run a test cases which is being profiled,
-> > and look at the results of the stats from the individual test case. Make
-> > stats entry writable and upon write clear the stats.
-> > 
-> > v5:
-> >  - Drop clear_stats debugfs entry (Lucas)
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_debugfs.c | 25 ++++++++++++++++++++++++-
-> >  drivers/gpu/drm/xe/xe_gt_stats.c   | 14 ++++++++++++++
-> >  drivers/gpu/drm/xe/xe_gt_stats.h   |  1 +
-> >  3 files changed, 39 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > index bf3a67b5951c..0004f279dee1 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > @@ -327,7 +327,6 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
-> >  	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
-> >  	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
-> >  	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
-> > -	{"stats", .show = xe_gt_debugfs_simple_show, .data = xe_gt_stats_print_info},
-> >  	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
-> >  };
-> >  
-> > @@ -363,6 +362,29 @@ static ssize_t write_to_gt_call(const char __user *userbuf, size_t count, loff_t
-> >  	return count;
-> >  }
-> >  
-> > +static void clear_stats(struct xe_gt *gt)
-> > +{
-> > +	xe_gt_stats_clear(gt);
-> > +}
-> 
-> not needed - see below
-> 
-> > +
-> > +static ssize_t stats_write(struct file *file, const char __user *userbuf,
-> > +			   size_t count, loff_t *ppos)
-> > +{
-> > +	struct seq_file *s = file->private_data;
-> > +	struct xe_gt *gt = s->private;
-> > +
-> > +	return write_to_gt_call(userbuf, count, ppos, clear_stats, gt);
-> 
-> why not pass the xe_gt_stats_clear() directly here? it's the same signature
 
-Yes, let me drop this.
 
+On 8/27/2025 8:43 PM, Matthew Brost wrote:
+> Add more SVM GT stats which give visibility to where time is spent in
+> the SVM page fault handler. Stats include number of faults at a given
+> size, total SVM page fault time, migration time in us, copy time in us,
+> copy kb, get pages time in us, and bind time in us. Will help in tuning
+> SVM for performance.
 > 
-> > +}
-> > +
-> > +static int stats_show(struct seq_file *s, void *unused)
-> > +{
-> > +	struct drm_printer p = drm_seq_file_printer(s);
-> > +	struct xe_gt *gt = s->private;
-> > +
-> > +	return xe_gt_stats_print_info(gt, &p);
-> > +}
-> > +DEFINE_SHOW_STORE_ATTRIBUTE(stats);
-> > +
-> >  static void force_reset(struct xe_gt *gt)
-> >  {
-> >  	struct xe_device *xe = gt_to_xe(gt);
-> > @@ -448,6 +470,7 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
-> >  	root->d_inode->i_private = gt;
-> >  
-> >  	/* VF safe */
-> > +	debugfs_create_file("stats", 0600, root, gt, &stats_fops);
-> >  	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
-> >  	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
-> > index 30f942671c2b..7e12fc3759e2 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_stats.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
-> > @@ -50,3 +50,17 @@ int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p)
-> >  
-> >  	return 0;
-> >  }
-> > +
-> > +/**
-> > + * xe_gt_stats_clear - Clear the GT stats
-> > + * @gt: GT structure
-> > + *
-> > + * This clear (zeros) all the available GT stats.
-> > + */
-> > +void xe_gt_stats_clear(struct xe_gt *gt)
-> > +{
-> > +	enum xe_gt_stats_id id;
+> v2:
+>  - Include local changes
+> v3:
+>  - Add tlb invalidation + valid page fault + per size copy size stats
+> v4:
+>  - Ensure gt not NULL when incrementing SVM copy stats
+>  - Normalize stats names
+>  - Use magic macros to generate increment functions for ranges
 > 
-> I would just use "int" as we don't really use enum here
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt_stats.c       |  33 +++++
+>  drivers/gpu/drm/xe/xe_gt_stats_types.h |  33 +++++
+>  drivers/gpu/drm/xe/xe_svm.c            | 196 +++++++++++++++++++++++--
+>  3 files changed, 253 insertions(+), 9 deletions(-)
 > 
-> > +
-> > +	for (id = 0; id < __XE_GT_STATS_NUM_IDS; ++id)
-> 
-> or even maybe we can just go from 0 to ARRAY_SIZE(gt->stats.counters) ?
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+> index 7e12fc3759e2..2422577e4dee 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_stats.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+> @@ -29,8 +29,41 @@ void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr)
+>  static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+>  	"svm_pagefault_count",
+>  	"tlb_inval_count",
+> +	"svm_tlb_inval_count",
+> +	"svm_tlb_inval_us",
 
-Can do both of these suggestions.
+maybe use
 
-Matt
+	[XE_GT_STATS_ID_SVM_TLB_INVAL_COUNT] = "svm_tlb_inval_count",
+	[XE_GT_STATS_ID_SVM_TLB_INVAL_US] = "svm_tlb_inval_us",
+	...
 
-> > +		atomic64_set(&gt->stats.counters[id], 0);
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_stats.h b/drivers/gpu/drm/xe/xe_gt_stats.h
-> > index 38325ef53617..e8aea32bc971 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_stats.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_stats.h
-> > @@ -13,6 +13,7 @@ struct drm_printer;
-> >  
-> >  #ifdef CONFIG_DEBUG_FS
-> >  int xe_gt_stats_print_info(struct xe_gt *gt, struct drm_printer *p);
-> > +void xe_gt_stats_clear(struct xe_gt *gt);
-> >  void xe_gt_stats_incr(struct xe_gt *gt, const enum xe_gt_stats_id id, int incr);
-> >  #else
-> >  static inline void
-> 
+to avoid mistakes?
+
+and I guess it would be ok to use helper macro like
+
+#define DEF_STAT_STR(ID,name) [XE_GT_STATS_ID_ ## ID] = name
+
+	DEF_STAT_STR(SVM_TLB_INVAL_COUNT, "svm_tlb_inval_count"),
+
+or if you're brave enough go with a super-macro, like [1] ;)
+
+[1] https://elixir.bootlin.com/linux/v6.17-rc3/C/ident/MAKE_XE_GUC_KLV_THRESHOLDS_SET
+
+
+>  	"vma_pagefault_count",
+>  	"vma_pagefault_kb",
+> +	"svm_4K_pagefault_count",
+> +	"svm_64K_pagefault_count",
+> +	"svm_2M_pagefault_count",
+> +	"svm_4K_valid_pagefault_count",
+> +	"svm_64K_valid_pagefault_count",
+> +	"svm_2M_valid_pagefault_count",
+> +	"svm_4K_pagefault_us",
+> +	"svm_64K_pagefault_us",
+> +	"svm_2M_pagefault_us",
+> +	"svm_4K_migrate_count",
+> +	"svm_64K_migrate_count",
+> +	"svm_2M_migrate_count",
+> +	"svm_4K_migrate_us",
+> +	"svm_64K_migrate_us",
+> +	"svm_2M_migrate_us",
+> +	"svm_device_copy_us",
+> +	"svm_4K_device_copy_us",
+> +	"svm_64K_device_copy_us",
+> +	"svm_2M_device_copy_us",
+> +	"svm_cpu_copy_us",
+> +	"svm_4K_cpu_copy_us",
+> +	"svm_64K_cpu_copy_us",
+> +	"svm_2M_cpu_copy_us",
+> +	"svm_device_copy_kb",
+> +	"svm_cpu_copy_kb",
+> +	"svm_4K_get_pages_us",
+> +	"svm_64K_get_pages_us",
+> +	"svm_2M_get_pages_us",
+> +	"svm_4K_bind_us",
+> +	"svm_64K_bind_us",
+> +	"svm_2M_bind_us",
+>  };
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> index be3244d7133c..d8348a8de2e1 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+> @@ -9,8 +9,41 @@
+>  enum xe_gt_stats_id {
+>  	XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT,
+>  	XE_GT_STATS_ID_TLB_INVAL,
+> +	XE_GT_STATS_ID_SVM_TLB_INVAL_COUNT,
+> +	XE_GT_STATS_ID_SVM_TLB_INVAL_US,
+>  	XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT,
+>  	XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
+> +	XE_GT_STATS_ID_SVM_4K_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_64K_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_2M_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_4K_VALID_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_64K_VALID_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_2M_VALID_PAGEFAULT_COUNT,
+> +	XE_GT_STATS_ID_SVM_4K_PAGEFAULT_US,
+> +	XE_GT_STATS_ID_SVM_64K_PAGEFAULT_US,
+> +	XE_GT_STATS_ID_SVM_2M_PAGEFAULT_US,
+> +	XE_GT_STATS_ID_SVM_4K_MIGRATE_COUNT,
+> +	XE_GT_STATS_ID_SVM_64K_MIGRATE_COUNT,
+> +	XE_GT_STATS_ID_SVM_2M_MIGRATE_COUNT,
+> +	XE_GT_STATS_ID_SVM_4K_MIGRATE_US,
+> +	XE_GT_STATS_ID_SVM_64K_MIGRATE_US,
+> +	XE_GT_STATS_ID_SVM_2M_MIGRATE_US,
+> +	XE_GT_STATS_ID_SVM_DEVICE_COPY_US,
+> +	XE_GT_STATS_ID_SVM_4K_DEVICE_COPY_US,
+> +	XE_GT_STATS_ID_SVM_64K_DEVICE_COPY_US,
+> +	XE_GT_STATS_ID_SVM_2M_DEVICE_COPY_US,
+> +	XE_GT_STATS_ID_SVM_CPU_COPY_US,
+> +	XE_GT_STATS_ID_SVM_4K_CPU_COPY_US,
+> +	XE_GT_STATS_ID_SVM_64K_CPU_COPY_US,
+> +	XE_GT_STATS_ID_SVM_2M_CPU_COPY_US,
+> +	XE_GT_STATS_ID_SVM_DEVICE_COPY_KB,
+> +	XE_GT_STATS_ID_SVM_CPU_COPY_KB,
+> +	XE_GT_STATS_ID_SVM_4K_GET_PAGES_US,
+> +	XE_GT_STATS_ID_SVM_64K_GET_PAGES_US,
+> +	XE_GT_STATS_ID_SVM_2M_GET_PAGES_US,
+> +	XE_GT_STATS_ID_SVM_4K_BIND_US,
+> +	XE_GT_STATS_ID_SVM_64K_BIND_US,
+> +	XE_GT_STATS_ID_SVM_2M_BIND_US,
+>  	/* must be the last entry */
+>  	__XE_GT_STATS_NUM_IDS,
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index 0596039ef0a1..7ab63e6b77b0 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -6,6 +6,7 @@
+>  #include <drm/drm_drv.h>
+>  
+>  #include "xe_bo.h"
+> +#include "xe_exec_queue_types.h"
+>  #include "xe_gt_stats.h"
+>  #include "xe_gt_tlb_invalidation.h"
+>  #include "xe_migrate.h"
+> @@ -113,6 +114,11 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+>  		   &vm->svm.garbage_collector.work);
+>  }
+>  
+> +static void xe_svm_tlb_inval_count_stats_incr(struct xe_gt *gt)
+> +{
+> +	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_TLB_INVAL_COUNT, 1);
+> +}
+> +
+>  static u8
+>  xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
+>  				  const struct mmu_notifier_range *mmu_range,
+> @@ -145,13 +151,19 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
+>  	 */
+>  	for_each_tile(tile, xe, id)
+>  		if (xe_pt_zap_ptes_range(tile, vm, range)) {
+> -			tile_mask |= BIT(id);
+>  			/*
+>  			 * WRITE_ONCE pairs with READ_ONCE in
+>  			 * xe_vm_has_valid_gpu_mapping()
+>  			 */
+>  			WRITE_ONCE(range->tile_invalidated,
+>  				   range->tile_invalidated | BIT(id));
+> +
+> +			if (!(tile_mask & BIT(id))) {
+> +				xe_svm_tlb_inval_count_stats_incr(tile->primary_gt);
+> +				if (tile->media_gt)
+> +					xe_svm_tlb_inval_count_stats_incr(tile->media_gt);
+> +				tile_mask |= BIT(id);
+> +			}
+>  		}
+>  
+>  	return tile_mask;
+> @@ -171,6 +183,24 @@ xe_svm_range_notifier_event_end(struct xe_vm *vm, struct drm_gpusvm_range *r,
+>  						   mmu_range);
+>  }
+>  
+> +static s64 xe_svm_stats_ktime_us_delta(ktime_t start)
+> +{
+> +	return IS_ENABLED(CONFIG_DEBUG_FS) ?
+> +		ktime_us_delta(ktime_get(), start) : 0;
+> +}
+> +
+> +static void xe_svm_tlb_inval_us_stats_incr(struct xe_gt *gt, ktime_t start)
+> +{
+> +	s64 us_delta = xe_svm_stats_ktime_us_delta(start);
+> +
+> +	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_TLB_INVAL_US, us_delta);
+> +}
+> +
+> +static ktime_t xe_svm_stats_ktime_get(void)
+> +{
+> +	return IS_ENABLED(CONFIG_DEBUG_FS) ? ktime_get() : 0;
+> +}
+> +
+>  static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+>  			      struct drm_gpusvm_notifier *notifier,
+>  			      const struct mmu_notifier_range *mmu_range)
+> @@ -178,8 +208,10 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+>  	struct xe_vm *vm = gpusvm_to_vm(gpusvm);
+>  	struct xe_device *xe = vm->xe;
+>  	struct drm_gpusvm_range *r, *first;
+> +	struct xe_tile *tile;
+> +	ktime_t start = xe_svm_stats_ktime_get();
+>  	u64 adj_start = mmu_range->start, adj_end = mmu_range->end;
+> -	u8 tile_mask = 0;
+> +	u8 tile_mask = 0, id;
+>  	long err;
+>  
+>  	xe_svm_assert_in_notifier(vm);
+> @@ -232,6 +264,13 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+>  	r = first;
+>  	drm_gpusvm_for_each_range(r, notifier, adj_start, adj_end)
+>  		xe_svm_range_notifier_event_end(vm, r, mmu_range);
+> +	for_each_tile(tile, xe, id) {
+> +		if (tile_mask & BIT(id)) {
+> +			xe_svm_tlb_inval_us_stats_incr(tile->primary_gt, start);
+> +			if (tile->media_gt)
+> +				xe_svm_tlb_inval_us_stats_incr(tile->media_gt, start);
+> +		}
+> +	}
+>  }
+>  
+>  static int __xe_svm_garbage_collector(struct xe_vm *vm,
+> @@ -385,11 +424,66 @@ enum xe_svm_copy_dir {
+>  	XE_SVM_COPY_TO_SRAM,
+>  };
+>  
+> +static void xe_svm_copy_kb_stats_incr(struct xe_gt *gt,
+> +				      const enum xe_svm_copy_dir dir,
+> +				      int kb)
+> +{
+> +	if (dir == XE_SVM_COPY_TO_VRAM)
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_DEVICE_COPY_KB, kb);
+> +	else
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_CPU_COPY_KB, kb);
+
+shouldn't we code this like:
+
+	if (dir == XE_SVM_COPY_TO_VRAM)
+		id = XE_GT_STATS_ID_SVM_DEVICE_COPY_KB;
+	else
+		id = XE_GT_STATS_ID_SVM_CPU_COPY_KB;
+
+	xe_gt_stats_incr(gt, id, kb);
+
+to have just one function call? or we rely on the compiler to optimize that?
+
+> +}
+> +
+> +static void xe_svm_copy_us_stats_incr(struct xe_gt *gt,
+> +				      const enum xe_svm_copy_dir dir,
+> +				      unsigned long npages,
+> +				      ktime_t start)
+> +{
+> +	s64 us_delta = xe_svm_stats_ktime_us_delta(start);
+> +
+> +	if (dir == XE_SVM_COPY_TO_VRAM) {
+> +		switch (npages) {
+> +		case 1:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_DEVICE_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		case 16:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_DEVICE_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		case 512:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_DEVICE_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		}
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_DEVICE_COPY_US,
+> +				 us_delta);
+> +	} else {
+> +		switch (npages) {
+> +		case 1:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_CPU_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		case 16:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_CPU_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		case 512:
+> +			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_CPU_COPY_US,
+> +					 us_delta);
+> +			break;
+> +		}
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_CPU_COPY_US,
+> +				 us_delta);
+> +	}
+> +}
+> +
+>  static int xe_svm_copy(struct page **pages,
+>  		       struct drm_pagemap_addr *pagemap_addr,
+>  		       unsigned long npages, const enum xe_svm_copy_dir dir)
+>  {
+>  	struct xe_vram_region *vr = NULL;
+> +	struct xe_gt *gt = NULL;
+>  	struct xe_device *xe;
+>  	struct dma_fence *fence = NULL;
+>  	unsigned long i;
+> @@ -397,6 +491,7 @@ static int xe_svm_copy(struct page **pages,
+>  	u64 vram_addr = XE_VRAM_ADDR_INVALID;
+>  	int err = 0, pos = 0;
+>  	bool sram = dir == XE_SVM_COPY_TO_SRAM;
+> +	ktime_t start = xe_svm_stats_ktime_get();
+>  
+>  	/*
+>  	 * This flow is complex: it locates physically contiguous device pages,
+> @@ -423,6 +518,7 @@ static int xe_svm_copy(struct page **pages,
+>  
+>  		if (!vr && spage) {
+>  			vr = page_to_vr(spage);
+> +			gt = xe_migrate_exec_queue(vr->migrate)->gt;
+>  			xe = vr->xe;
+>  		}
+>  		XE_WARN_ON(spage && page_to_vr(spage) != vr);
+> @@ -462,6 +558,9 @@ static int xe_svm_copy(struct page **pages,
+>  			int incr = (match && last) ? 1 : 0;
+>  
+>  			if (vram_addr != XE_VRAM_ADDR_INVALID) {
+> +				xe_svm_copy_kb_stats_incr(gt, dir,
+> +							  (i - pos + incr) *
+> +							  (PAGE_SIZE / SZ_1K));
+>  				if (sram) {
+>  					vm_dbg(&xe->drm,
+>  					       "COPY TO SRAM - 0x%016llx -> 0x%016llx, NPAGES=%ld",
+> @@ -500,6 +599,8 @@ static int xe_svm_copy(struct page **pages,
+>  
+>  			/* Extra mismatched device page, copy it */
+>  			if (!match && last && vram_addr != XE_VRAM_ADDR_INVALID) {
+> +				xe_svm_copy_kb_stats_incr(gt, dir,
+> +							  (PAGE_SIZE / SZ_1K));
+>  				if (sram) {
+>  					vm_dbg(&xe->drm,
+>  					       "COPY TO SRAM - 0x%016llx -> 0x%016llx, NPAGES=%d",
+> @@ -533,6 +634,14 @@ static int xe_svm_copy(struct page **pages,
+>  		dma_fence_put(fence);
+>  	}
+>  
+> +	/*
+> +	 * XXX: We can't derive the GT here (or anywhere in this functions, but
+> +	 * compute always uses the primary GT so accumlate stats on the likely
+> +	 * GT of the fault.
+> +	 */
+> +	if (gt)
+> +		xe_svm_copy_us_stats_incr(gt, dir, npages, start);
+> +
+>  	return err;
+>  #undef XE_MIGRATE_CHUNK_SIZE
+>  #undef XE_VRAM_ADDR_INVALID
+> @@ -846,6 +955,57 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+>  	return true;
+>  }
+>  
+> +#define DECL_SVM_RANGE_COUNT_STATS(elem, stat) \
+> +static void xe_svm_range_##elem##_count_stats_incr(struct xe_gt *gt, \
+> +						   struct xe_svm_range *range) \
+> +{ \
+> +	switch (xe_svm_range_size(range)) { \
+> +	case SZ_4K: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_##stat##_COUNT, 1); \
+> +		break; \
+> +	case SZ_64K: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_##stat##_COUNT, 1); \
+> +		break; \
+> +	case SZ_2M: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_##stat##_COUNT, 1); \
+> +		break; \
+> +	} \
+> +} \
+> +
+> +DECL_SVM_RANGE_COUNT_STATS(fault, PAGEFAULT)
+> +DECL_SVM_RANGE_COUNT_STATS(valid_fault, VALID_PAGEFAULT)
+> +DECL_SVM_RANGE_COUNT_STATS(migrate, MIGRATE)
+> +
+> +#define DECL_SVM_RANGE_US_STATS(elem, stat) \
+> +static void xe_svm_range_##elem##_us_stats_incr(struct xe_gt *gt, \
+> +						struct xe_svm_range *range, \
+> +						ktime_t start) \
+> +{ \
+> +	s64 us_delta = xe_svm_stats_ktime_us_delta(start); \
+> +\
+> +	switch (xe_svm_range_size(range)) { \
+> +	case SZ_4K: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_##stat##_US, \
+> +				 us_delta); \
+> +		break; \
+> +	case SZ_64K: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_##stat##_US, \
+> +				 us_delta); \
+> +		break; \
+> +	case SZ_2M: \
+> +		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_##stat##_US, \
+> +				 us_delta); \
+> +		break; \
+> +	} \
+> +} \
+> +
+> +DECL_SVM_RANGE_US_STATS(migrate, MIGRATE)
+> +DECL_SVM_RANGE_US_STATS(get_pages, GET_PAGES)
+> +DECL_SVM_RANGE_US_STATS(bind, BIND)
+> +DECL_SVM_RANGE_US_STATS(fault, PAGEFAULT)
+> +
+> +
+> +
+>  static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  				     struct xe_gt *gt, u64 fault_addr,
+>  				     bool need_vram)
+> @@ -867,6 +1027,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  	struct xe_tile *tile = gt_to_tile(gt);
+>  	int migrate_try_count = ctx.devmem_only ? 3 : 1;
+>  	ktime_t end = 0;
+> +	ktime_t start = xe_svm_stats_ktime_get(), bind_start, get_pages_start;
+>  	int err;
+>  
+>  	lockdep_assert_held_write(&vm->lock);
+> @@ -885,23 +1046,34 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  	if (IS_ERR(range))
+>  		return PTR_ERR(range);
+>  
+> -	if (ctx.devmem_only && !range->base.flags.migrate_devmem)
+> -		return -EACCES;
+> +	xe_svm_range_fault_count_stats_incr(gt, range);
+>  
+> -	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only))
+> -		return 0;
+> +	if (ctx.devmem_only && !range->base.flags.migrate_devmem) {
+> +		err = -EACCES;
+> +		goto out;
+> +	}
+> +
+> +	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only)) {
+> +		xe_svm_range_valid_fault_count_stats_incr(gt, range);
+> +		range_debug(range, "PAGE FAULT - VALID");
+> +		goto out;
+> +	}
+>  
+>  	range_debug(range, "PAGE FAULT");
+>  
+>  	dpagemap = xe_vma_resolve_pagemap(vma, tile);
+>  	if (--migrate_try_count >= 0 &&
+>  	    xe_svm_range_needs_migrate_to_vram(range, vma, !!dpagemap || ctx.devmem_only)) {
+> +		ktime_t migrate_start = xe_svm_stats_ktime_get();
+> +
+>  		/* TODO : For multi-device dpagemap will be used to find the
+>  		 * remote tile and remote device. Will need to modify
+>  		 * xe_svm_alloc_vram to use dpagemap for future multi-device
+>  		 * support.
+>  		 */
+> +		xe_svm_range_migrate_count_stats_incr(gt, range);
+>  		err = xe_svm_alloc_vram(tile, range, &ctx);
+> +		xe_svm_range_migrate_us_stats_incr(gt, range, migrate_start);
+>  		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
+>  		if (err) {
+>  			if (migrate_try_count || !ctx.devmem_only) {
+> @@ -918,6 +1090,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  		}
+>  	}
+>  
+> +	get_pages_start = xe_svm_stats_ktime_get();
+> +
+>  	range_debug(range, "GET PAGES");
+>  	err = xe_svm_range_get_pages(vm, range, &ctx);
+>  	/* Corner where CPU mappings have changed */
+> @@ -937,11 +1111,13 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  	}
+>  	if (err) {
+>  		range_debug(range, "PAGE FAULT - FAIL PAGE COLLECT");
+> -		goto err_out;
+> +		goto out;
+>  	}
+>  
+> +	xe_svm_range_get_pages_us_stats_incr(gt, range, get_pages_start);
+>  	range_debug(range, "PAGE FAULT - BIND");
+>  
+> +	bind_start = xe_svm_stats_ktime_get();
+>  retry_bind:
+>  	xe_vm_lock(vm, false);
+>  	fence = xe_vm_range_rebind(vm, vma, range, BIT(tile->id));
+> @@ -955,14 +1131,16 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  		}
+>  		if (xe_vm_validate_should_retry(NULL, err, &end))
+>  			goto retry_bind;
+> -		goto err_out;
+> +		goto out;
+>  	}
+>  	xe_vm_unlock(vm);
+>  
+>  	dma_fence_wait(fence, false);
+>  	dma_fence_put(fence);
+> +	xe_svm_range_bind_us_stats_incr(gt, range, bind_start);
+>  
+> -err_out:
+> +out:
+> +	xe_svm_range_fault_us_stats_incr(gt, range, start);
+>  
+>  	return err;
+>  }
+
