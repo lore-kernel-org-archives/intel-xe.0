@@ -4,172 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8306FCA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 15:52:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0193FCA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 16:04:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4547E10E863;
-	Wed, 27 Aug 2025 15:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD43710E868;
+	Wed, 27 Aug 2025 16:04:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jG7yEXsJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BdDYv0Qs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1A8210E863
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 15:52:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56B2810E868
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 16:04:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756309976; x=1787845976;
+ t=1756310648; x=1787846648;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=NRDY2htOxxzInMhNyVD7KweCl97edEijCa3UBuxrfx0=;
- b=jG7yEXsJ64uEHgk0cQtZONjBQIM+zrBBnNR984LBbsfd046hwKFXm1A4
- m/XPA5TyEbqAxATtRbR8F2oZNtyv6t/Qw7s8GyA5LP91U2nvPgSbedsli
- aMYgIO/dRJTlgoYd++AkJxdDZVIS94zMk069tkxu1UHvzg2TnFy3yV0Iq
- 6LGmPvUVs6KyI2uamzsnIr7SbgAl3XTjkzCAlT2WjXlmoffYn5MeAAITW
- qMLXOsCnf7KPYHZG19J/hXYYAbEPIBOHby4HwBn/5IHVJkGt4ZUaw1Yn4
- QBtqYl5MmKCkeoOswiI861uq5siJLMu23CzaqLyQZ/c2dIL4TrgBSQ5EC g==;
-X-CSE-ConnectionGUID: OnhZYAh+SGyz62oC8KRs+A==
-X-CSE-MsgGUID: wC7LQ6yZRV24B+ArSR87IA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58631128"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58631128"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 08:52:55 -0700
-X-CSE-ConnectionGUID: Z8i+I6KyRU+9o7F1ZMdvXw==
-X-CSE-MsgGUID: OXSy+KpFTUmz4wmY/zsm2Q==
+ bh=JamKBoYCvCYEcl8DXIfvGqOy479dxsU8uQ3hA65XaSg=;
+ b=BdDYv0QsCzfBASXbhhMvEuPu2nN+/z2ngL4OTJJFXEGKwURTaomnfiVw
+ 7n2mPOb2qOYbI+pPyxXgnx4dF6tBuYHCfG287ohGpyuReZFU950kEB+ND
+ IZG7HDDENtCC3ZlhNy/kO4SG0hXopX5zJ4EaUBbzJ+cFdZ09BMuxpE+bw
+ lJLk/B2eNQJvC/anbzY1NOmLHMWt9nLH4AeY3TE1jQB4urDGFPROeHJBO
+ Ag2RDpXanC6Vhcp/R03S3qQL/A5HhGpKrI+C8X8fzaf90Z8g+fysxcYtg
+ 09TsmhCChVRm7JfMWJkoTcRLi6ayeXZSQRChFxMcE02SSveSERTTNSDpP g==;
+X-CSE-ConnectionGUID: iQ9BJfFCSz+rZQAbdFpYIA==
+X-CSE-MsgGUID: 7WigLbWoTxiXqA4ZUP+peA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57588318"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57588318"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 09:04:08 -0700
+X-CSE-ConnectionGUID: rcHB5V/UTayrXfY789se9w==
+X-CSE-MsgGUID: V/YStTm2TEKxkmZFC62wiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169388115"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 08:52:55 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174268216"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 09:04:07 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 08:52:54 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.17; Wed, 27 Aug 2025 09:04:06 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 08:52:54 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (40.107.95.51) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 09:04:06 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.77) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 27 Aug 2025 08:52:54 -0700
+ 15.2.2562.17; Wed, 27 Aug 2025 09:04:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JIfvZbRVY3HMLhJ4Bd94pC6oiSSWYBDSZlsDt3VMLVMtJhEMGn26t+9tBbZS0E5QEqpvUzCzgcLYyPVi+LJdfobaYURIugkqXlX9lIa09Y28oQntpwv1Cc/MU+Fkv7mX/htLUEwx/+cCOxwutFy9Fef1UzWuEoB+qd2vSnlYqor40aHRupAQhT7zihLfxyuo12ROIdX22pIz1+zLP7umvrTtrhtbe7ijaCFKO2BdyJBFLsqWd0/qGCFbcy5sr78iobSp0ripej2EATPP7yTRir9TK3m4KRa7swYee0l/coFxVndYAHXvNIYO5TzX4R9QP87FOtwMjxAQhhZ3CEr1yw==
+ b=tBxhBMjVK+V5YbQL0n3ryLwimL3BmjFRxgGu1pUDUpjOt6DQwLiVaOXrftSy0Uj4VFFAcAKXlfgtbYIYoc610XAeCwEpgaB3gnJLlPLksyOTzFHX2c4qEpR/r/UnP28Xs69oacLyoIPakzZhKC5AabNl6ZtSHhn4URLmHLAgs4s+J70Ey0ohRZrMnpksXLFb9qP99Jihd7xJ1xTKvpumO81Zj9GeZD472KvjiU982Xj42reI88HVTsNTrFO7ZEUI0/sKVQnAY5M2pp2WrWePnwFeBsS+oHAaDW6wDKLKJ/jgnddVj2u4syJQ2IUqPyZ3HSn5FVoatDO0EhTgB/q1Ag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wEzNVBM64XpLGUmBU3Q5Qv2MuUfnWWInYTRNToum3bY=;
- b=cOTAksKtebEPcBk1t95ztRC7lm70xdsotHfsLOMMUvWbEfpy8SHecBVxxf1orlxUcialkVAhQn3bRRVUllTwprAFJ4gvEpefQ3Bh5QlAnJQHfvcJSNaKOLjTWIphXAtZNgdFwkytMDBBJyHr2GRMFWpvptOtNRN44wsWHKNO1sp1VEWINrdPXDQ7jyDbip0+Dxnj4bwuIJrIA7JplXuN6KDXel5cVYPUo35KwCmihQ9y/NIoGUtNASecfpOmx85poYhp5LPITylJGDnFb0OCGYiTxkSnZUkrw0wqYiGDupDfB4mCQCmOxcvr2TKM4r5S0eSKxWi2I8FMlfNnuo3iJw==
+ bh=x140AecoBvNnTb3WzeI35SE+rKQrsv9rIBunA32kNKQ=;
+ b=sW0O22ODf58u4WIs0sO3/043Jonzh6cii2kLT8AhjVwuuqGRjekbUp1ZzhnKkXXa77Jbs0BgdL1o+ZlUTI1VkpfYjn/fc+ZCSDqlmk3j9kz5ez0H4rbTO0U63ybFRTVLMQb95px9OP/4Mqow2n7/59C6bofrKvQdexeIv7GZ01U2IfhEKtBwgVZz7hhM/vdZLDVpiiGKAzLbYgfNsO0c+dClAHNsypFPqxlTF37jM1KEfGZ2Ni6ydhI3v1JbViS7+ynxjWFg81ILQthx3n/eBbzPvfzpo5YNaRQfDO0UEwgywpK3eJQKQ3D8aIoJJznxNgnO0IFILs8yyFXgKalt4g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by DM6PR11MB4756.namprd11.prod.outlook.com (2603:10b6:5:2a7::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.14; Wed, 27 Aug
- 2025 15:52:51 +0000
+ by MW4PR11MB7125.namprd11.prod.outlook.com (2603:10b6:303:219::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Wed, 27 Aug
+ 2025 16:04:02 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.9052.019; Wed, 27 Aug 2025
- 15:52:51 +0000
-Date: Wed, 27 Aug 2025 08:52:47 -0700
+ 16:04:02 +0000
+Date: Wed, 27 Aug 2025 09:03:57 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Matthew Auld
- <matthew.auld@intel.com>
-Subject: Re: [PATCH v2 09/16] drm/xe: Convert the CPU fault handler for
- exhaustive eviction
-Message-ID: <aK8pz/4W62DMiDy6@lstrano-desk.jf.intel.com>
-References: <20250822094030.3499-1-thomas.hellstrom@linux.intel.com>
- <20250822094030.3499-10-thomas.hellstrom@linux.intel.com>
- <aK46+muNkR2uAq75@lstrano-desk.jf.intel.com>
- <cc739f6d910cf772a10b4304c205b971f15bf7dc.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Francois Dugast <francois.dugast@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <thomas.hellstrom@linux.intel.com>,
+ <himal.prasad.ghimiray@intel.com>, <michal.mrozek@intel.com>
+Subject: Re: [PATCH 01/11] drm/xe: Stub out new pagefault layer
+Message-ID: <aK8sbZxVd+MlS1ZX@lstrano-desk.jf.intel.com>
+References: <20250806062242.1090416-1-matthew.brost@intel.com>
+ <20250806062242.1090416-2-matthew.brost@intel.com>
+ <aK8kauwpALcoSxwr@fdugast-desk>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cc739f6d910cf772a10b4304c205b971f15bf7dc.camel@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0182.namprd05.prod.outlook.com
- (2603:10b6:a03:330::7) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <aK8kauwpALcoSxwr@fdugast-desk>
+X-ClientProxiedBy: BY3PR04CA0014.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::19) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4756:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43706685-5337-4cb9-47d4-08dde581c6fe
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|MW4PR11MB7125:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8168da68-2a1b-4d53-9fba-08dde583564b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?+d6YrQvQP+o1Gglqd9u5m7mUkL07LZeY9N6jiQXI4/erD2XhAvICGTHULJ?=
- =?iso-8859-1?Q?HZyGPqHH0+KStq4E1cdLxo2ieOAb4Tc6E/zpy/iT4SHgk7DWQ0I69I0pik?=
- =?iso-8859-1?Q?mb9lYM06WyYQjfLt/k7Y2qJgZ6igQ4X3NH3almTm0/Ar53qIGXo8k87Rds?=
- =?iso-8859-1?Q?nOOww2Tnr1CSE+YewKS6mXfRiKvCtCOQ2YpTP1poAp928eEjccYvlAGiNc?=
- =?iso-8859-1?Q?qY0MsRwQdOX0MygqXzPP1EYV/MFFuhS96ZcXXOKCySROkNnYrDeFBa9PPx?=
- =?iso-8859-1?Q?cwP3kSMWZnd46Wozq2ORyj+r28pWF+I9pLu0vi3g5tlnYg8aHIEwhHiYOH?=
- =?iso-8859-1?Q?gnZEpVxm4esEn0LFHowfggqfKhzWMHGcaQHxO559mEc4vmyDTPu8joEsLE?=
- =?iso-8859-1?Q?q0zsyCEhFzm5EjNaTL+62qvX/8lyxkSERiC21KRORqVXJiFmpsAfPZUhcj?=
- =?iso-8859-1?Q?R4e8n7wVIkpKeWoqZsC5rL+QriudyrKDq1y47SfYH5j8xMNX2hXxBSdbGb?=
- =?iso-8859-1?Q?teFui+rJJmF4/zE7/AtzvxXqqJOV9Q+g5ut4CN/hi+w0I7j92UA2nahRSr?=
- =?iso-8859-1?Q?w5nZsey3NWGgOkQGZbW6E9h765oTOu6xfBnLMnwmc4IvX6om4bRTbxUwpj?=
- =?iso-8859-1?Q?APbXcCluMlwGGcxJbzVRCy5+Bj3HfMc1ZDhjFxtK61fTv7Hjag7y9V4Vxp?=
- =?iso-8859-1?Q?tZxNze7yUgSc73yFrpCFv9fhOo2i2cw11CyRhMhWS6ChJfN+OVj9FoRSjx?=
- =?iso-8859-1?Q?dLbeYUpsmsJY6zlggd0oWcmlN07iw/oF5JdWxz++ZirAkx3AkA91lqcb12?=
- =?iso-8859-1?Q?34ycSHy9tIiB5viOo5xOqxmobrMeefyVwSpaV9kWy1sGWaMQp1rQOWxvID?=
- =?iso-8859-1?Q?wpoFebtNMMDeZHl2h3P36DMoCiiKX2nvDUv5shsaH3EC4sWqkNrR8zyyuf?=
- =?iso-8859-1?Q?cCOz8heMh0Dxy3NQD1dfWX64NErEmNZTvXIZTovczcWHlxIuuudoctpFmc?=
- =?iso-8859-1?Q?mZV5NVXR8LZbMh2ABLyxY5r/ANiluYV6E0r6FG8TZDzStYdD8i//lqpdTN?=
- =?iso-8859-1?Q?cTlE/8rNjIgwKRy7aoGOJiLC7tm4HlbuqSty2xDWA+gR9MXlmloCQ+2HnX?=
- =?iso-8859-1?Q?o3Ebkzs53RVyuNk1K28Zld3W7MuEPAt1E/865QkdAeg78pnBQrKACJl8Xo?=
- =?iso-8859-1?Q?6i495C9Tzlxakmapq9jefbkOjPm7s/sl8Jas03f0c3cctSM06zh1dI4xqu?=
- =?iso-8859-1?Q?e21bQBnhxZTOSHxLQDi4kqgBe4J4vHmBY+Z72EFyHAXY1AYQrEvT0ytI3J?=
- =?iso-8859-1?Q?jRXjY9GqyodonlhOjogqp9L4uU+0jwV3QP1v1dviSPYYZ+MFSVkqUGPzbr?=
- =?iso-8859-1?Q?xeWSYGSz+xUOH7bIRRHa83oNEa4tqqg/Ljpn3Mc8Rg1Iacd+Mt1LBrN3+E?=
- =?iso-8859-1?Q?uWTVF0aI9wWobYx22no4TfeD/ow7dotMaUB5iBo8lIXvTn8fsThtX7yznK?=
- =?iso-8859-1?Q?w=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?R05kZnFzZ1YwbDJqOWEvWHhweUM1UDBoenYrZUVVQTEyN1pXZE1nMk5QdVY3?=
+ =?utf-8?B?emQwYVJzcUg3YWNxNGE4SnAwMWJoSXFIYXhYNkZwdkVrVGhmdmJDWFlKSE9i?=
+ =?utf-8?B?akpod3AwMy93bk9VaGRESzdSWWZmaDU4RndMbDd3QzRTanlHRlNvMDJWVko1?=
+ =?utf-8?B?cmpTb3FPVjg5V25GYnc0UDIxaFRPNGJlMXM4UW9UNlJzc3Vqck4vclhocWIr?=
+ =?utf-8?B?SWI5WVBHKzRqeGhSVWhJVW1MSEdjb2IzdDlJbDNBZUhCMUxNSEVaV041OEpB?=
+ =?utf-8?B?RlFyZW9aM3hzYmVtMm5DTSsyTmdzNGdUWGt2aXZ1cUwrZlB5NGw4b25vU2ll?=
+ =?utf-8?B?ZTlrcFJoVS9QbjZpU2MzSlJKS0tNZ05aOS9EbS8rSVZkeXh0ek0rN3RNb0xz?=
+ =?utf-8?B?dnZzUVFKZHkvdGVrOXVzSzg2TzhWdFA4ZjVqZ28zd2tCcExza2kxUGVBSVdl?=
+ =?utf-8?B?cGdZOStZODJEY1p3YUNlb0ZzdzQzM2YvMjdYNjBSdERDYUdLRWxOQTlCc0pD?=
+ =?utf-8?B?aTFOMWVvdGEvVS9vRnQ5bzRkdmZnNHRzY1YzOFFWM1dPczdTaFpoSGswU2hE?=
+ =?utf-8?B?U21OdVE4K2Z0N1lSWkNnTUg2Vkh6alpTMHFSZmNUQ3B3Mkl4YnplRXB2ZHdU?=
+ =?utf-8?B?L0NBODBSbWNhR3FYdVFxelh1ZEkwc1VmRlZTM2Y2bC8rd2J1OTFZczhSTkJG?=
+ =?utf-8?B?VVFCa2VIRm9DS25CU1VXS1ozZ1llOEtxT2dmeW5MVGlveFhMcXc5ZjBkWmZN?=
+ =?utf-8?B?NlhIL0thczhXcm5ISTlwL0ZyV2puclhmUDczcm1tNDRuOFNyMjNNcjNQT3d0?=
+ =?utf-8?B?Tk5vWGJQb25iSzZIRlc4eVVzYmJmVHRwNk92ME00RDFUNlRhMElJS3l5N1FI?=
+ =?utf-8?B?T0ZneWhZY0VEd1ZUaFFDL0RKbVlDbmdPN3BLT2U5b2NQK3V0bW9OdmtrVm1h?=
+ =?utf-8?B?ZUFvZjJJK21FRERRNHJ1bFJFakN5cVZKNHNNdXIwV2dicUdhaTVpT0RPRkU5?=
+ =?utf-8?B?QTVsTE1SVVhmV0lPaXUxMGJhb0Z4VDVvZWdMVUhpaWZQdmMvSFZGM0Z3Yk04?=
+ =?utf-8?B?RllHdnZYZXhZODVGT1pQb1VjTDkrYVN3cWdIbmtZYUVoamRabE15TytzQzRO?=
+ =?utf-8?B?akZZNTJhbXU4czdWK1VYNEhMcGpGU0pySjQrY2podnVQbXd1ZnJsQUZOeW5q?=
+ =?utf-8?B?aWtvSmQ2YkxwakpMSnVtNklIU1JRYzZPV3B1dUs1TFNaTldmelVLaTZMVldp?=
+ =?utf-8?B?QVFjMS9WazNWRCt6emFmRWU5MDFzeWN5clZWSmR1TGdRSVhlYjhjdU93SWdr?=
+ =?utf-8?B?d0t1QTNXbEwwU3o1eTZUbmttd05uWjdHQ1lkeUhpWmlFR09la2pLUDhFeVdS?=
+ =?utf-8?B?dUlsVHkxS2IvdkJxcnBNcEh4a0l3NXNGYnJMZTFJRXgxVFFnc2t6enViZzcz?=
+ =?utf-8?B?MFJNWVlYSEREaS9sa0FTbTlFMCtYUldyZVRkUjNzU2pXWmxvK3MrT3p2K3hM?=
+ =?utf-8?B?ZjJ6MDUxM0o5NS9OeFE1c29XbkhPRUJWU3pZTjdOR1BHSHJJek9uamZ6aVBn?=
+ =?utf-8?B?VWhvY091MXVZNUE0b2xrM3BaeHJMUFdGZ0NzT0Q5QWlrR09kVGJpeWV3akEz?=
+ =?utf-8?B?MzBNL2VTSUZwamt5VE1tZThvOUpMWmxsQS9oemR4d3AzVDIyNml5NjBZanRU?=
+ =?utf-8?B?N3pSM2RuUXcreGZLaWFINFhxQjVDaS9OczNGMkh2bjJaZ1lFOCtWdXFIMzZx?=
+ =?utf-8?B?WjZCajNyZ3VrdzdUbWhYdjIySUxqR3hjZVJuSEQ3dHNGV3FJU2VEZ0VvTlcw?=
+ =?utf-8?B?QTV4N0dFMk5PQXRnUUIwS1R1ekJjdjNPenI2NWhSTlFtbDFvUGVuckZucWJl?=
+ =?utf-8?B?YWNIc1k4bTdzcUlDcElLdEhBQm04cldPY3RRR24xWXVOa1ZCNzA1SDVTZmVz?=
+ =?utf-8?Q?MnOL/NkxTZI=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?kMqf9Ai86yu7wQFJqkPOjzeqK2nfyG90Kadr4HcCs08CxUsmrKIgPxxF29?=
- =?iso-8859-1?Q?RrX7pV+OqDNRGDC1uRii9yiHlE5PtgvLDlLbWJFwzoSE55aMeyXaLGFMWQ?=
- =?iso-8859-1?Q?FA0FNTzXMvFOjF/J0facQPebgCw3a+YGH+g8vDGHCUSThJJ8bvpJ0ziIPw?=
- =?iso-8859-1?Q?cF3G/7YMhQi9eONy/CQ3vpSU5GiAw917tUoBSnlQ41+5gFgqOF/MSIGpha?=
- =?iso-8859-1?Q?BfTX2h2V2+TLdK2M+eq5qsKHAxXeYEjvcphGjzxoBpzihpBAURBSq7FdKT?=
- =?iso-8859-1?Q?cI5EqQ0zjfe/O99CO84aY+yj8OHK94I9CCVUmQbGaNm38tLFU2S60fnZn0?=
- =?iso-8859-1?Q?3xhqkeL2MKGbpd5lwCx+2HxWSHRenD84MA3O0GX54laqwU4l3AIx7Qudk4?=
- =?iso-8859-1?Q?zYnnuur+UpQc3DOUSKd9u0M3s/kkWzW1s0D7FpVV7ll5/YFv8QZv7McR9o?=
- =?iso-8859-1?Q?LbEiz5otAOX5OWEU8+Z1MGlfGOXeBj+T2Dj0DbSiKAAMzzq1mP6i+rVaf5?=
- =?iso-8859-1?Q?sDz4EK2BBW5Y3cIEVgNh+wLwCz/vPrQl3O0NMnDdbQibXUSb7mMDAz1c48?=
- =?iso-8859-1?Q?+0Vr82CLjt0vXdnKsZSTi9a1m6VOo+QqD0ywepTbAz55T9f8oWfvm+e30u?=
- =?iso-8859-1?Q?6JV56fm1DxejpmEF8r235Zo6YjXe/ybf1pkm70b+JPcGS11vUs42wRu/KN?=
- =?iso-8859-1?Q?mlfjtiasEhZBWeToUfFxlRSaUIdKxzQDmMikicsFNCy0B8G2VLCyUngFu6?=
- =?iso-8859-1?Q?NrLbS4PMhu5aLhrXKrTfKuPtSdxQDiQzoyJB8gcZ03uLifnAA+3BD1Bm1d?=
- =?iso-8859-1?Q?JSgPSKmDnFavhm4Pr4Biz6K+7X1T1Kzt8q6STCJXTbIoYrbh1D4B04w2Wx?=
- =?iso-8859-1?Q?tPvxdqLwEQHMK9AWQQHNtjyBTzeix6M1DPpLAHhX2IzAi8d9rXPk7iEJsR?=
- =?iso-8859-1?Q?PFYR+KD9J52tiXL7wp6dTXSi6zqbyH9Z2CNjp4rUMyVov7rBdpdeAu1XJo?=
- =?iso-8859-1?Q?MFbeZa7PczwNmVCfbwFG4Y0U77ky0WWjNV46/5FNyU7XsWBt9SCkXScvo+?=
- =?iso-8859-1?Q?dZpAd25v09kHoYUbE1s+WD/bTDt+G6THnklUefOGhfEAAnFv1SQFWnIVvr?=
- =?iso-8859-1?Q?MVGCmkKhaMiC8KdAhXTK9zemHvr6miO45xBlXdEsoH49oPO1kvKEqgUbCQ?=
- =?iso-8859-1?Q?Cs8ZLAksrUYhX/l3PS7dshGMmuZb4XKF4GVAdfU5MpVW0AyW7nbHcek69j?=
- =?iso-8859-1?Q?feizCC0H76dNlwhDw/PHMJUVhv7VKva4sERU3FZBdjCZaJDZs6m18Bs0+m?=
- =?iso-8859-1?Q?QJY38vRyESHLOkKqV43/cqjVxKmo6vmGHjluGjrx8vxdC3ByE8CwtRI9tH?=
- =?iso-8859-1?Q?QbWL2ydq1RncsJAgXPjNx4gmbwOikJQVRb9SMhT3Yizxhx+RH/Kr5XnwHg?=
- =?iso-8859-1?Q?7Sw25foKvRTkQwSRf2Nd5odiPg85+Mlw4RLbgpx6xnDgxX3V9DKtmZP0Ks?=
- =?iso-8859-1?Q?nQ13gWBsDqHl768Z1XOmkSfCnc242/QyvrvsYjKq/JYonc0b2lxqNmFrxT?=
- =?iso-8859-1?Q?VxWSXGMPULUM++3VkGUBWr4tZrLhItDZQMAiq84HCTsGJaBAcLYTMSMbg2?=
- =?iso-8859-1?Q?+ybNbqKFhDAYLJxP7lKIV3j8QOQGLjJsEjP6Wxnht6IQSac+qi8Luh+w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43706685-5337-4cb9-47d4-08dde581c6fe
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVlGRHNjVHpzeEYwRTZ2bUtzeEc5ei92cVF6T1VYM0t2bUFsL2oxQ2tUSFh6?=
+ =?utf-8?B?a0pDZEZkV1VrYWM5L0x5Z0d1bm4vdkhjaWVrQ0NSZTFqOU1zQkhGV2p3RlJy?=
+ =?utf-8?B?N01WdEZZZkprQnd1QjZMcG9ZbW1WczJJdXp1dzZZVkFIbHBoR2ROUmdpdy90?=
+ =?utf-8?B?ZUtyWnUyVTljTzlFVDhhcnJhaWk2M29kWm03aEY4K0x1U21mSUFVV3lCRTZB?=
+ =?utf-8?B?NmRzMlJoaDR1eXM0cU9TM1Rqd0FzR0gxY2J6cmczSFBTc1N0SlZsaEg5bWpW?=
+ =?utf-8?B?VTd6ZFNzTFNTRkpMWi9yTVQ3RzRRWXUxN2hPUzFXcUdkZmV2Sy9xdzJ3aU5m?=
+ =?utf-8?B?UkpzTlJMZnlTc1NGL1BRWk5qa0Z3Ti9Hck5NZmgwVTZSTnpOK2dMcGlBM3Ft?=
+ =?utf-8?B?MXZtMXVpYmFIYmh0N1YrM1EzQ3ZTN21kdGg0S3FsVlQvbE96Ym4yUXNWNERZ?=
+ =?utf-8?B?R0w5VXFWYjRwWW9Za0g2RW9ZeXJNU1c1bVZVS2o4TXhtTWM2OE1ncDhrVUdT?=
+ =?utf-8?B?MDFyY3N6dnVPOXVWMzdxNm9zSkFiUWlud1RjR1R5cTFjb0ZINXZzSmVGUVkz?=
+ =?utf-8?B?dUJhT2tiaWRBN20zZ0ZEM05yKzI3a2ljeHZheWRhZmdqWlRKcS80SXA5NWpD?=
+ =?utf-8?B?ZjJMbk5WbnhwdWx3eHVXaTU2U0xHTEFlOWhuUm4wOFB3TlA0dDZnT1V1NUdU?=
+ =?utf-8?B?eXBaUEwvRExia2NBZXY3eEFOa2lQdE1wQW9nSWxSam5sMzEvT2wvMVhFUHVt?=
+ =?utf-8?B?b3RQRmJ0VDNuNmJydzNCbHduUlM4Z2lGNHJPZkFXNGt5Mm5NWk5mTVRFV281?=
+ =?utf-8?B?OUlwbUJ3Yms3dWZEMld3YlRLa05LSWxocU8vaktjNThPRnlacHZCbWxrQzF0?=
+ =?utf-8?B?LzE5MnNibzltN0FkYlhLZStXY3ZLMkMxWVBnK2NXWUtiOFUraFpjNk9tYkVx?=
+ =?utf-8?B?TzI5TVlZUjNsaGJxdUVCQjBxUXRqUXRGcWhUYkZXR3RNNzRIdnVTaTRaWXhz?=
+ =?utf-8?B?VTVqeHFqcVhIb1JuT1BpQkQxNEpuZWVhdnplSi9IMDFwZGRIejV4Z2VtTGlF?=
+ =?utf-8?B?ZGlqVVE0Y3pHTTFVSm9mYUhyQWtGL3laQkJ4TmtRS2JncFhBTzhVVFRFdllZ?=
+ =?utf-8?B?OW5hajZRU2VqazkvS3RQNXNmemU3MVlGbHZzYmpscUJqTjRudHk4dTJUVEYw?=
+ =?utf-8?B?RlVxNmRZM3dTa0dJbW1HTUNENFcyNTlTMlNKbUVPOXAwSnk2bG80cmZQY1Vz?=
+ =?utf-8?B?YXJYTVoyR0crYWhwTHlVcXQyaTRuUlM3Z2VuRTlZSzRISVNQVkFzdHhTZGpW?=
+ =?utf-8?B?a0h3YnZ6ZCtBenpkTFFDZHk1L1RNVGJpc3A0TmpmRTZGWjZnci9YSVAvaGVo?=
+ =?utf-8?B?U3NsU0dwTENXMUhsRVVDYS9WRG9QcVo2UjVlVmdjbHNQc1FHUHliandvYlJw?=
+ =?utf-8?B?UmlSb3g3SWpHbjNDSjBSZVU5QTMvOUVYODI5cXJhM01BY0tsVEFnbVdjUHZF?=
+ =?utf-8?B?Z2NTUzFxMjJXZlQ2blhlSHRnUmNKb2cvS0tyQzZpdXJ0amFvRk4xdlB6WTcz?=
+ =?utf-8?B?NEN3UUdmMkV5WlN2VWpFQW1qaGJBMHYzVHB0RFJPT0l1OHgvRC9zc1BkSHBt?=
+ =?utf-8?B?L3NNcXM0czNwR2JPalM5V1lDNXVZMDMydW1SOWp1cmYzMzlnTlpRNlEvbUt5?=
+ =?utf-8?B?OGZkemY2Ni84RHh1c2d4cENseFphZjA2aVBtMVNSczZicTU3UmhGcFBDbXZy?=
+ =?utf-8?B?V1k0dThKL0xZVHYxTjg4QXZYZ0o4TEVmSUZTWk1WUTUxRWlnaUFXcWx3Yk56?=
+ =?utf-8?B?eEZrbmo4QURkQXUrMFhiZ3Z1MHptZ0xQY0xrZSt1R3U1Vjd1RHc3cTN0U1dY?=
+ =?utf-8?B?MXBmMTllRzlpYTlTd0lKYlgyOTdVZFZWeVVEM3Qwa2xJaVllK3FzUmlnNlRW?=
+ =?utf-8?B?Mk9LbnFDdHJWcElYZy9wRU9KOUNIbkVaTy9CQXJWSUVhdkZNdTJEdVVWLzJi?=
+ =?utf-8?B?T2tNQ2tYSGZwRDI0cGRpaFA5UkVENHRDY1o3K09SaGlGcUxYaktFMk1QRldm?=
+ =?utf-8?B?LzJHSFBuRDdRZTBjUUFFbzBDUEd2VE1saEdDZWVsLzYxOXlpbjRrcUlQeFFz?=
+ =?utf-8?B?dHJWdDNMWVdEWU9mVHhXcHhqdmdlWVc2am5ONnFxRkhIL1duZTRqVStqUjBt?=
+ =?utf-8?B?Y1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8168da68-2a1b-4d53-9fba-08dde583564b
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 15:52:51.0847 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 16:04:01.8774 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9VpsJuVwC7IBiiI2EZ8giv+9cqY4w5E2J7CjuB6aleiOt0pUgR9Ch9diYgK1ZV72iCHUKTh1l1L5L6CzUJ8OdA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4756
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z44D37jxGZswh7dS64B2gnAeAun+WvcEk4xuKDlZOihd+iGekgfX+Fc+Jk9ZaC6Tq/PfSHOrs/IjHD0zTlylGA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7125
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -185,367 +196,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 27, 2025 at 04:16:25PM +0200, Thomas Hellström wrote:
-> On Tue, 2025-08-26 at 15:53 -0700, Matthew Brost wrote:
-> > On Fri, Aug 22, 2025 at 11:40:23AM +0200, Thomas Hellström wrote:
-> > > The CPU fault handler may populate bos and migrate, and in doing
-> > > so might interfere with other tasks validating.
-> > > 
-> > > Rework the CPU fault handler completely into a fastpath
-> > > and a slowpath. The fastpath trylocks only the validation lock
-> > > in read-mode. If that fails, there's a fallback to the
-> > > slowpath, where we do a full validation transaction.
-> > > 
-> > > This mandates open-coding of bo locking, bo idling and
-> > > bo populating, but we still call into TTM for fault
-> > > finalizing.
-> > > 
-> > > v2:
-> > > - Rework the CPU fault handler to actually take part in
-> > >   the exhaustive eviction scheme (Matthew Brost).
-> > > 
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_bo.c         | 191 ++++++++++++++++++++++++-
-> > > ----
-> > >  drivers/gpu/drm/xe/xe_validation.c |   3 +-
-> > >  2 files changed, 163 insertions(+), 31 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > index 76e9c93826a2..686ca5d6038a 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -1713,57 +1713,188 @@ static void xe_gem_object_close(struct
-> > > drm_gem_object *obj,
-> > >  	}
-> > >  }
-> > >  
-> > > -static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-> > > +static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf, struct
-> > > xe_device *xe, struct xe_bo *bo)
-> > > +{
-> > > +	vm_fault_t ret;
-> > > +
-> > > +	trace_xe_bo_cpu_fault(bo);
-> > > +
-> > > +	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
-> > > >vm_page_prot,
-> > > +				       TTM_BO_VM_NUM_PREFAULT);
-> > > +	if (ret == VM_FAULT_NOPAGE &&
-> > > +	    mem_type_is_vram(bo->ttm.resource->mem_type)) {
-> > > +		mutex_lock(&xe->mem_access.vram_userfault.lock);
-> > > +		if (list_empty(&bo->vram_userfault_link))
-> > > +			list_add(&bo->vram_userfault_link,
-> > > +				 &xe-
-> > > >mem_access.vram_userfault.list);
-> > > +		mutex_unlock(&xe->mem_access.vram_userfault.lock);
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static vm_fault_t xe_err_to_fault_t(int err)
-> > > +{
-> > > +	switch (err) {
-> > > +	case 0:
-> > > +	case -EINTR:
-> > > +	case -ERESTARTSYS:
-> > > +	case -EAGAIN:
-> > > +		return VM_FAULT_NOPAGE;
-> > > +	case -ENOMEM:
-> > > +	case -ENOSPC:
-> > > +		return VM_FAULT_OOM;
-> > > +	default:
-> > > +		break;
-> > > +	}
-> > > +	return VM_FAULT_SIGBUS;
-> > > +}
-> > > +
-> > > +static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf,
-> > > struct xe_device *xe,
-> > > +					   struct xe_bo *bo, bool
-> > > needs_rpm)
-> > > +{
-> > > +	struct ttm_buffer_object *tbo = &bo->ttm;
-> > > +	vm_fault_t ret = VM_FAULT_RETRY;
-> > > +	struct xe_validation_ctx ctx;
-> > > +	int err;
-> > > +
-> > > +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> > > +		return VM_FAULT_RETRY;
-> > > +
-> > > +	err = xe_validation_ctx_init(&ctx, &xe->val, NULL,
-> > > +				     (struct xe_val_flags) {
-> > > +					     .interruptible =
-> > > true,
-> > > +					     .no_block = true
-> > > +				     });
-> > > +	if (err)
-> > > +		goto out_pm;
-> > > +
-> > > +	if (!dma_resv_trylock(tbo->base.resv))
-> > > +		goto out_validation;
-> > > +
-> > > +	if (!dma_resv_test_signaled(tbo->base.resv,
-> > > DMA_RESV_USAGE_KERNEL))
-> > > +		goto out_unlock;
-> > > +
-> > > +	if (!tbo->resource->bus.is_iomem) {
-> > > +		struct ttm_operation_ctx ctx = {
-> > > +			.interruptible = true,
-> > > +			.no_wait_gpu = true,
-> > > +			.gfp_retry_mayfail = true,
-> > > +		};
-> > > +
-> > > +		err = ttm_bo_populate(tbo, &ctx);
+On Wed, Aug 27, 2025 at 05:29:46PM +0200, Francois Dugast wrote:
+> On Tue, Aug 05, 2025 at 11:22:32PM -0700, Matthew Brost wrote:
+> > Stub out the new page fault layer and add kernel documentation. This is
+> > intended as a replacement for the GT page fault layer, enabling multiple
+> > producers to hook into a shared page fault consumer interface.
 > > 
-> > The version of the fault handler before didn't have a ttm_bo_populate
-> > call. Can you explain why it is added here?
-> 
-> It's called from within ttm_bo_vm_fault_reserved() but with a blocking
-> ttm_operation_ctx. Here we call it non-blocking and if it succeeds the
-> version in ttm_bo_vm_fault_reserved() will be a NOP.
-> 
-> The functionality is to bring in bos from swap if needed. Or to be able
-> to access bos with deferred backing store allocation.
-> 
-
-Ah, yes. I see that now. This made notice potential another issue. See below.
-
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/Makefile             |   1 +
+> >  drivers/gpu/drm/xe/xe_pagefault.c       |  63 ++++++++++++
+> >  drivers/gpu/drm/xe/xe_pagefault.h       |  19 ++++
+> >  drivers/gpu/drm/xe/xe_pagefault_types.h | 125 ++++++++++++++++++++++++
+> >  4 files changed, 208 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.c
+> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.h
+> >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault_types.h
 > > 
-> > Also in we have this code in ttm_bo_vm_reserve which rejects external
-> > object marked as unmappable. Do we need something like this?
-> > 
-> >         if (bo->ttm && (bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL))
-> > {
-> >                 if (!(bo->ttm->page_flags &
-> > TTM_TT_FLAG_EXTERNAL_MAPPABLE)) {
-> >                         dma_resv_unlock(bo->base.resv);
-> >                         return VM_FAULT_SIGBUS;
-> >                 }
-> >         }
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 8e0c3412a757..6fbebafe79c9 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -93,6 +93,7 @@ xe-y += xe_bb.o \
+> >  	xe_nvm.o \
+> >  	xe_oa.o \
+> >  	xe_observation.o \
+> > +	xe_pagefault.o \
+> >  	xe_pat.o \
+> >  	xe_pci.o \
+> >  	xe_pcode.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+> > new file mode 100644
+> > index 000000000000..3ce0e8d74b9d
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> > @@ -0,0 +1,63 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright Â© 2025 Intel Corporation
+> > + */
+> > +
+> > +#include "xe_pagefault.h"
+> > +#include "xe_pagefault_types.h"
+> > +
+> > +/**
+> > + * DOC: Xe page faults
+> > + *
+> > + * Xe page faults are handled in two layers. The producer layer interacts with
+> > + * hardware or firmware to receive and parse faults into struct xe_pagefault,
+> > + * then forwards them to the consumer. The consumer layer services the faults
+> > + * (e.g., memory migration, page table updates) and acknowledges the result back
+> > + * to the producer, which then forwards the results to the hardware or firmware.
+> > + * The consumer uses a page fault queue sized to absorb all potential faults and
+> > + * a multi-threaded worker to process them. Multiple producers are supported,
+> > + * with a single shared consumer.
 > 
-> Ah, right. This essentially blocks imported dma-bufs from being mapped
-> here. I'll fix. This reminds me to add a comment to rework the ttm
-> helpers to move this stuff to TTM.
+> I am not through with the series yet but xe_pagefault seems to be the
+> consumer code only, while the producer code will be located elsewhere
+> such as in xe_guc*. If so, might be good to write it here or in the
+> functions below.
 > 
-> /Thomas
+
+I didn't want to mention the GuC specifically as it is intended to be
+generic. The GuC is a firmware, which is called out as potenial
+producers.
+
+> > + */
+> > +
+> > +/**
+> > + * xe_pagefault_init() - Page fault init
+> > + * @xe: xe device instance
+> > + *
+> > + * Initialize Xe page fault state. Must be done after reading fuses.
+> > + *
+> > + * Return: 0 on Success, errno on failure
+> > + */
+> > +int xe_pagefault_init(struct xe_device *xe)
+> > +{
+> > +	/* TODO - implement */
+> > +	return 0;
+> > +}
+> > +
+> > +/**
+> > + * xe_pagefault_reset() - Page fault reset for a GT
+> > + * @xe: xe device instance
+> > + * @gt: GT being reset
+> > + *
+> > + * Reset the Xe page fault state for a GT; that is, squash any pending faults on
+> > + * the GT.
+> > + */
+> > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
+> > +{
+> > +	/* TODO - implement */
+> > +}
+> > +
+> > +/**
+> > + * xe_pagefault_handler() - Page fault handler
+> > + * @xe: xe device instance
+> > + * @pf: Page fault
+> > + *
+> > + * Sink the page fault to a queue (i.e., a memory buffer) and queue a worker to
+> > + * service it. Safe to be called from IRQ or process context. Reclaim safe.
+> > + *
+> > + * Return: 0 on success, errno on failure
+> > + */
+> > +int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
+> > +{
+> > +	/* TODO - implement */
+> > +	return 0;
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+> > new file mode 100644
+> > index 000000000000..bd0cdf9ed37f
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_pagefault.h
+> > @@ -0,0 +1,19 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright Â© 2025 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_PAGEFAULT_H_
+> > +#define _XE_PAGEFAULT_H_
+> > +
+> > +struct xe_device;
+> > +struct xe_gt;
+> > +struct xe_pagefault;
+> > +
+> > +int xe_pagefault_init(struct xe_device *xe);
+> > +
+> > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
+> > +
+> > +int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
+> > new file mode 100644
+> > index 000000000000..fcff84f93dd8
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
+> > @@ -0,0 +1,125 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright Â© 2025 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_PAGEFAULT_TYPES_H_
+> > +#define _XE_PAGEFAULT_TYPES_H_
+> > +
+> > +#include <linux/workqueue.h>
+> > +
+> > +struct xe_pagefault;
+> > +struct xe_gt;
+> > +
+> > +/** enum xe_pagefault_access_type - Xe page fault access type */
+> > +enum xe_pagefault_access_type {
+> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_READ: Read access type */
+> > +	XE_PAGEFAULT_ACCESS_TYPE_READ	= 0,
+> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_WRITE: Write access type */
+> > +	XE_PAGEFAULT_ACCESS_TYPE_WRITE	= 1,
+> > +	/** @XE_PAGEFAULT_ACCESS_TYPE_ATOMIC: Atomic access type */
+> > +	XE_PAGEFAULT_ACCESS_TYPE_ATOMIC	= 2,
+> > +};
+> > +
+> > +/** enum xe_pagefault_type - Xe page fault type */
+> > +enum xe_pagefault_type {
+> > +	/** @XE_PAGEFAULT_TYPE_NOT_PRESENT: Not present */
+> > +	XE_PAGEFAULT_TYPE_NOT_PRESENT		= 0,
+> > +	/** @XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION: Write access violation */
+> > +	XE_PAGEFAULT_WRITE_ACCESS_VIOLATION	= 1,
+> > +	/** @XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION: Atomic access violation */
+> > +	XE_PAGEFAULT_ATOMIC_ACCESS_VIOLATION	= 2,
+> > +};
+> > +
+> > +/** struct xe_pagefault_ops - Xe pagefault ops (producer) */
+> > +struct xe_pagefault_ops {
+> > +	/**
+> > +	 * @ack_fault: Ack fault
+> > +	 * @pf: Page fault
+> > +	 * @err: Error state of fault
+> > +	 *
+> > +	 * Page fault producer receives acknowledgment from the consumer and
+> > +	 * sends the result to the HW/FW interface.
+> > +	 */
+> > +	void (*ack_fault)(struct xe_pagefault *pf, int err);
+> > +};
+> > +
+> > +/**
+> > + * struct xe_pagefault - Xe page fault
+> > + *
+> > + * Generic page fault structure for communication between producer and consumer.
+> > + * Carefully sized to be 64 bytes.
+> > + */
+> > +struct xe_pagefault {
+> > +	/**
+> > +	 * @gt: GT of fault
+> > +	 *
+> > +	 * XXX: We may want to decouple the GT from individual faults, as it's
+> > +	 * unclear whether future platforms will always have a GT for all page
+> > +	 * fault producers. Internally, the GT is used for stats, identifying
+> > +	 * the appropriate VRAM region, and locating the migration queue.
+> > +	 * Leaving this as-is for now, but we can revisit later to see if we
+> > +	 * can convert it to use the Xe device pointer instead.
+> > +	 */
+> > +	struct xe_gt *gt;
+> > +	/**
+> > +	 * @consumer: State for the software handling the fault. Populated by
+> > +	 * the producer and may be modified by the consumer to communicate
+> > +	 * information back to the producer upon fault acknowledgment.
+> > +	 */
+> > +	struct {
+> > +		/** @consumer.page_addr: address of page fault */
+> > +		u64 page_addr;
+> > +		/** @consumer.asid: address space ID */
+> > +		u32 asid;
+> > +		/** @consumer.access_type: access type */
+> > +		u8 access_type;
 > 
-> > 
-> > Matt
-> > 
-> > > +		if (err) {
-> > > +			if (err != -ENOMEM && err != -ENOSPC)
-> > > +				ret = xe_err_to_fault_t(err);
-> > > +			goto out_unlock;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	ret = __xe_bo_cpu_fault(vmf, xe, bo);
-> > > +
-> > > +out_unlock:
-> > > +	dma_resv_unlock(tbo->base.resv);
-> > > +out_validation:
-> > > +	xe_validation_ctx_fini(&ctx);
-> > > +out_pm:
-> > > +	if (needs_rpm)
-> > > +		xe_pm_runtime_put(xe);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
-> > >  {
-> > >  	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
-> > >  	struct drm_device *ddev = tbo->base.dev;
-> > >  	struct xe_device *xe = to_xe_device(ddev);
-> > >  	struct xe_bo *bo = ttm_to_xe_bo(tbo);
-> > >  	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
-> > > -	struct drm_exec *exec;
-> > > +	bool retry_after_wait = false;
-> > > +	struct xe_validation_ctx ctx;
-> > > +	struct drm_exec exec;
-> > >  	vm_fault_t ret;
-> > > +	int err = 0;
-> > >  	int idx;
-> > >  
-> > > +	if (!drm_dev_enter(&xe->drm, &idx))
-> > > +		return ttm_bo_vm_dummy_page(vmf, vmf->vma-
-> > > >vm_page_prot);
-> > > +
-> > > +	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
-> > > +	if (ret != VM_FAULT_RETRY)
-> > > +		goto out;
-> > > +
-> > > +	if (fault_flag_allow_retry_first(vmf->flags)) {
-> > > +		if (vmf->flags & FAULT_FLAG_RETRY_NOWAIT)
-> > > +			goto out;
-> > > +		retry_after_wait = true;
-> > > +		xe_bo_get(bo);
-> > > +		mmap_read_unlock(vmf->vma->vm_mm);
-> > > +	} else {
-> > > +		ret = VM_FAULT_NOPAGE;
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * The fastpath failed and we were not required to return
-> > > and retry immediately.
-> > > +	 * We're now running in one of two modes:
-> > > +	 *
-> > > +	 * 1) retry_after_wait == true: The mmap_read_lock() is
-> > > dropped, and we're trying
-> > > +	 * to resolve blocking waits. But we can't resolve the
-> > > fault since the
-> > > +	 * mmap_read_lock() is dropped. After retrying the fault,
-> > > the aim is that the fastpath
-> > > +	 * should succeed. But it may fail since we drop the bo
-> > > lock.
-> > > +	 *
-> > > +	 * 2) retry_after_wait == false: The fastpath failed,
-> > > typically even after
-> > > +	 * a retry. Do whatever's necessary to resolve the fault.
-> > > +	 *
-> > > +	 * This construct is recommended to avoid excessive waits
-> > > under the mmap_lock.
-> > > +	 */
-> > > +
-> > >  	if (needs_rpm)
-> > >  		xe_pm_runtime_get(xe);
-> > >  
-> > > -	exec = XE_VALIDATION_UNIMPLEMENTED;
-> > > -	ret = ttm_bo_vm_reserve(tbo, vmf);
-> > > -	if (ret)
-> > > -		goto out;
-> > > +	xe_validation_guard(&ctx, &xe->val, &exec, (struct
-> > > xe_val_flags) {.interruptible = true},
-> > > +			    err) {
-> > > +		long lerr;
-> > >  
-> > > -	if (drm_dev_enter(ddev, &idx)) {
-> > > -		trace_xe_bo_cpu_fault(bo);
-> > > +		err = drm_exec_lock_obj(&exec, &tbo->base);
-> > > +		drm_exec_retry_on_contention(&exec);
-> > > +		if (err)
-> > > +			break;
-> > >  
-> > > -		xe_validation_assert_exec(xe, exec, &tbo->base);
-> > > -		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma-
-> > > >vm_page_prot,
-> > > -					      
-> > > TTM_BO_VM_NUM_PREFAULT);
-> > > -		drm_dev_exit(idx);
-> > > +		lerr = dma_resv_wait_timeout(tbo->base.resv,
-> > > +					    
-> > > DMA_RESV_USAGE_KERNEL, true,
-> > > +					    
-> > > MAX_SCHEDULE_TIMEOUT);
-> > > +		if (lerr < 0) {
-> > > +			err = lerr;
-> > > +			break;
-> > > +		}
-> > >  
-> > > -		if (ret == VM_FAULT_RETRY &&
-> > > -		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-> > > -			goto out;
-> > > +		if (!tbo->resource->bus.is_iomem) {
-> > > +			struct ttm_operation_ctx tctx = {
-> > > +				.interruptible = true,
-> > > +				.no_wait_gpu = false,
-> > > +				.gfp_retry_mayfail = true,
-> > > +			};
-> > >  
-> > > -		/*
-> > > -		 * ttm_bo_vm_reserve() already has dma_resv_lock.
-> > > -		 */
-> > > -		if (ret == VM_FAULT_NOPAGE &&
-> > > -		    mem_type_is_vram(tbo->resource->mem_type)) {
-> > > -			mutex_lock(&xe-
-> > > >mem_access.vram_userfault.lock);
-> > > -			if (list_empty(&bo->vram_userfault_link))
-> > > -				list_add(&bo->vram_userfault_link,
-> > > -					 &xe-
-> > > >mem_access.vram_userfault.list);
-> > > -			mutex_unlock(&xe-
-> > > >mem_access.vram_userfault.lock);
-> > > +			err = ttm_bo_populate(tbo, &tctx);
-> > > +			xe_validation_retry_on_oom(&ctx, &err);
-> > > +			if (err && (err == -EINTR || err == -
-> > > ERESTARTSYS))
+> For type safety we shoud use enum xe_pagefault_access_type instead of u8.
+> 
+> > +		/** @consumer.fault_type: fault type */
+> > +		u8 fault_type;
+> 
+> Same here with enum xe_pagefault_type instead of u8.
+> 
 
-This if statement looks odd.
+This structure is carefully sized to 64 bytes. Unsure if using enums
+here will throw off that sizing. I'll check on this, but I suspect it
+will, if it does I think u8 is the correct choice.
 
-'err && (err == -EINTR || err == -ERESTARTSYS)'
+> > +#define XE_PAGEFAULT_LEVEL_NACK		0xff	/* Producer indicates nack fault */
+> > +		/** @consumer.fault_level: fault level */
+> > +		u8 fault_level;
+> > +		/** @consumer.engine_class: engine class */
+> > +		u8 engine_class;
+> > +		/** consumer.reserved: reserved bits for future expansion */
+> > +		u64 reserved;
+> > +	} consumer;
+> > +	/**
+> > +	 * @producer: State for the producer (i.e., HW/FW interface). Populated
+> > +	 * by the producer and should not be modifiedâ€”or even inspectedâ€”by the
+> > +	 * consumer, except for calling operations.
+> > +	 */
+> > +	struct {
+> > +		/** @producer.private: private pointer */
+> > +		void *private;
+> > +		/** @producer.ops: operations */
+> > +		const struct xe_pagefault_ops *ops;
+> > +#define XE_PAGEFAULT_PRODUCER_MSG_LEN_DW	4
+> > +		/**
+> > +		 * producer.msg: page fault message, used by producer in fault
+> 
+> s/producer.msg/@producer.msg/
+> 
 
-The 'err &&' is not required in the way this logic is written.
++1
 
-Should this be:
+> > +		 * acknowledgement to formulate response to HW/FW interface.
+> 
+> s/acknowledgement/acknowledgment/
+> 
 
-if (err)
-	break;
++1
 
-Or is this an attempt to call ttm_bo_vm_fault_reserved which calls
-ttm_bo_populate without gfp_retry_mayfail on OOO situations?
+> > +		 */
+> > +		u32 msg[XE_PAGEFAULT_PRODUCER_MSG_LEN_DW];
+> 
+> It is clear from patch #6 why it is more convenient to have this in
+> struct xe_pagefault rather than local to the producer but this seems
+> to go a bit against the elegant abstraction provided by this new page
+> fault layers. producer.private could store a struct with {guc,msg}
+> but that is probably overengineering so up to you.
+> 
 
-Also you don't check err == -EAGAIN in the existing logic which
-ttm_bo_vm_fault_reserved does on the return of ttm_bo_populate.
-
-Can you explain the reasoing here? Also a few comments in code
-explaining the reasoning of the error handling would be helpful.
+You can't malloc (with GFP_KERNEL) the producer path, at least for the
+GuC as we are either in softIRQ context or under the CT lock which is
+the path of reclaim. The only option is have these fields populated in
+the stack xe_pagefault structure in the producer which then is copied
+into a preallocated page fault queue, sized to sink all possible faults
+on the device, on the consumer size. I can add kernel doc explaining
+this.
 
 Matt
 
-> > > +				break;
-> > >  		}
-> > > -	} else {
-> > > -		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma-
-> > > >vm_page_prot);
-> > > +		if (!retry_after_wait)
-> > > +			ret = __xe_bo_cpu_fault(vmf, xe, bo);
-> > >  	}
-> > > +	if (err)
-> > > +		ret = xe_err_to_fault_t(err);
-> > >  
-> > > -	dma_resv_unlock(tbo->base.resv);
-> > > -out:
-> > >  	if (needs_rpm)
-> > >  		xe_pm_runtime_put(xe);
-> > >  
-> > > +	if (retry_after_wait)
-> > > +		xe_bo_put(bo);
-> > > +out:
-> > > +	drm_dev_exit(idx);
-> > > +
-> > >  	return ret;
-> > >  }
-> > >  
-> > > @@ -1807,7 +1938,7 @@ int xe_bo_read(struct xe_bo *bo, u64 offset,
-> > > void *dst, int size)
-> > >  }
-> > >  
-> > >  static const struct vm_operations_struct xe_gem_vm_ops = {
-> > > -	.fault = xe_gem_fault,
-> > > +	.fault = xe_bo_cpu_fault,
-> > >  	.open = ttm_bo_vm_open,
-> > >  	.close = ttm_bo_vm_close,
-> > >  	.access = xe_bo_vm_access,
-> > > diff --git a/drivers/gpu/drm/xe/xe_validation.c
-> > > b/drivers/gpu/drm/xe/xe_validation.c
-> > > index b90fda3dd5f4..826cd09966ef 100644
-> > > --- a/drivers/gpu/drm/xe/xe_validation.c
-> > > +++ b/drivers/gpu/drm/xe/xe_validation.c
-> > > @@ -241,7 +241,8 @@ int xe_validation_exec_lock(struct
-> > > xe_validation_ctx *ctx,
-> > >   */
-> > >  void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
-> > >  {
-> > > -	drm_exec_fini(ctx->exec);
-> > > +	if (ctx->exec)
-> > > +		drm_exec_fini(ctx->exec);
-> > >  	xe_validation_unlock(ctx);
-> > >  }
-> > >  
-> > > -- 
-> > > 2.50.1
-> > > 
+> Francois
 > 
+> > +	} producer;
+> > +};
+> > +
+> > +/** struct xe_pagefault_queue: Xe pagefault queue (consumer) */
+> > +struct xe_pagefault_queue {
+> > +	/**
+> > +	 * @data: Data in queue containing struct xe_pagefault, protected by
+> > +	 * @lock
+> > +	 */
+> > +	void *data;
+> > +	/** @size: Size of queue in bytes */
+> > +	u32 size;
+> > +	/** @head: Head pointer in bytes, moved by producer, protected by @lock */
+> > +	u32 head;
+> > +	/** @tail: Tail pointer in bytes, moved by consumer, protected by @lock */
+> > +	u32 tail;
+> > +	/** @lock: protects page fault queue */
+> > +	spinlock_t lock;
+> > +	/** @worker: to process page faults */
+> > +	struct work_struct worker;
+> > +};
+> > +
+> > +#endif
+> > -- 
+> > 2.34.1
+> > 
