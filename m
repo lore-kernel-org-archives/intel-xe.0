@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C628CA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 13:09:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4E35CA0EFF
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 13:14:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1BB10E7FE;
-	Wed, 27 Aug 2025 13:09:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C4C10E817;
+	Wed, 27 Aug 2025 13:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jmNwNt6T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UokRC7bC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A74510E784;
- Wed, 27 Aug 2025 13:09:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81EB510E817
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 13:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756300155; x=1787836155;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=COhyMFiL6Egoo5np/pvws4q+/e9oPPy1Gazd1WDc7FU=;
- b=jmNwNt6TVHDWkHUKHNJD68MHx+KU+/aDZ7d21iwGvreFDG+KbCRQBTpR
- mfMS+s+dfQP00cxeWyrS+WpoZfoJfzpW5P4ZhyPgHLB4Xjseif8R3CFy7
- 5a3DHlMVFrZgcu2BfnybulKCJ3Xd7/+DDxJgXo239loWS0ZnCQROm2PX0
- W+uohq8pMCWaw0x/aVQHznMS20QUXi24/uRS0BCO5YHxs90c4u8QSyOEd
- iVQ8taa+MRrsH9zD6AGySyedm39zI7U9E5Doo0LVNtcl901Nsl9f09/X3
- 66wQJRkF2kaQlC166uX+y2easyqJwaT2+wgdy5XDbMT7iy1/pJlQF0/dS w==;
-X-CSE-ConnectionGUID: SEWaj5l3Tr6DoHvsjW9jcg==
-X-CSE-MsgGUID: +Hjl5XupTPaL3QMuMDdE8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="62366607"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="62366607"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 06:06:51 -0700
-X-CSE-ConnectionGUID: HCLkWGY1T1OnnNt9enzyMg==
-X-CSE-MsgGUID: 2JHoQgUsRHiVRQN1WCtQ8Q==
+ t=1756300488; x=1787836488;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=p4tKPUoBBj9dDiL8haWC0GWjRb0HARWr/uN/TIOHyRY=;
+ b=UokRC7bCCSD9rR+gS6ZlQ4lklcELG3WI2Qb5Mkhdy/PFtFmQzA4ADDCD
+ rgn0SCb/7TIecttUv7BFLyPoMXfGAbMMoE6zJT9FRvpqkjLZXWoOnswvh
+ GJMaWMkjaewaZTckQEuirKKoZWpjQ/egEwH0pC28AVw0v/fB3+AAkiwes
+ It2uc5wizyYnNR9wFCp9Ab73LCCUS9mia4NvupTQS4dpAJUeYyK2suPkc
+ rTfTtf7+KbEsQNDXr46DLhDoEpD6RvTZRbrKadAOjBEtvJ2bWTn1PQREB
+ 6GSLXzPHe2zCVtlQx6K8TH4yX1HiQJEL87GlMafYcBwLN0i/90uQu9Wk5 w==;
+X-CSE-ConnectionGUID: i5Rx6GdkTPaiLJIQoQMdiQ==
+X-CSE-MsgGUID: /hjA0m1GTICHNruz9nahqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58483677"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="58483677"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 06:14:48 -0700
+X-CSE-ConnectionGUID: hRuXICAyQH284atiQ332MA==
+X-CSE-MsgGUID: 9O/GrQxNQviYrUvcZjZD0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="175136452"
-Received: from abityuts-desk.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.199])
- by orviesa005.jf.intel.com with SMTP; 27 Aug 2025 06:06:49 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Aug 2025 16:06:47 +0300
-Date: Wed, 27 Aug 2025 16:06:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 4/4] drm/i915/psr: Add poll for checking PSR is idle
- before starting update
-Message-ID: <aK8C5-fWIwd9eLbt@intel.com>
-References: <20250806052213.1800559-1-jouni.hogander@intel.com>
- <20250806052213.1800559-5-jouni.hogander@intel.com>
- <aK2qPstrBZZCtmfa@intel.com>
- <808fef64029b77661d2e084c1ff7e29fc0706cb6.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="174174612"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.157])
+ ([10.245.244.157])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 06:14:48 -0700
+Message-ID: <36661989-8466-4dc7-ba2d-1f256f68481d@intel.com>
+Date: Wed, 27 Aug 2025 14:14:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/migrate: Remove unneeded emit_pte() when copying
+ CCS only
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>, intel-xe@lists.freedesktop.org
+References: <20250827101033.966580-1-sanjay.kumar.yadav@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250827101033.966580-1-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <808fef64029b77661d2e084c1ff7e29fc0706cb6.camel@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,82 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 26, 2025 at 02:30:50PM +0000, Hogander, Jouni wrote:
-> On Tue, 2025-08-26 at 15:36 +0300, Ville Syrjälä wrote:
-> > On Wed, Aug 06, 2025 at 08:22:13AM +0300, Jouni Högander wrote:
-> > > We are currently observing crc failures after we started using dsb
-> > > for PSR
-> > > updates as well. This seems to happen because PSR HW is still
-> > > sending
-> > > couple of updates using old framebuffers on wake-up.
-> > > 
-> > > Fix this by adding poll ensuring PSR is idle before starting
-> > > update.
-> > > 
-> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index c1a3a95c65f0..411c74c73eae 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -7271,6 +7271,8 @@ static void intel_atomic_dsb_finish(struct
-> > > intel_atomic_state *state,
-> > >  		intel_psr_trigger_frame_change_event(new_crtc_stat
-> > > e->dsb_commit,
-> > >  						     state, crtc);
-> > >  
-> > > +		intel_psr_wait_for_idle_dsb(new_crtc_state);
-> > > +
-> > >  		if (new_crtc_state->use_dsb)
-> > >  			intel_dsb_vblank_evade(state,
-> > > new_crtc_state->dsb_commit);
-> > 
-> > How come the 'evade scanline 0 + normal evasion' in
-> > intel_dsb_vblank_evade()
-> > is not enough here?
+On 27/08/2025 11:10, Sanjay Yadav wrote:
+> In xe_migrate_copy(), when copy_only_ccs is true, we only need two
+> emit_pte() callsâ€”one for the BO and one for the raw CCS storage.
+> However, the current implementation issues three emit_pte() calls,
+> resulting in an unnecessary PTE programming job.
 > 
-> the problem doesn't happen when PSR is in SRD_ENT/DEEP_SLEEP as
-> committing new changes is started. It seems to happen when PSR
-> transitioning into SRD_ENT/DEEP_SLEEP is ongoing when new changes are
-> being committed. In this case evasion passes and PSR is continuing
-> transitioning into SRD_ENT/DEEP_SLEEP. Then wake-up starts immediately
-> due to pending "Frame Change" event and in this case HW is sending a
-> frame using old plane configuration.
-
-That's a bit weird. I think we are configuring things so that there
-should be that extra vblank already for the first frame after PSR
-exit. So I would expect things to latch properly even if we write
-the registers during the PSR entry sequence.
-
-Hmm, though the DSB itself never waits for the delayed vblank
-directly. Maybe the delayed vblank does get suppressed for
-one frame during the sequence somewhere, but the undelayed
-vblank used by the DSB does not.
-
-One could perhaps try to sample a timestamp from the DSB after
-it thinks the vblank has happened, and sample another one from
-the CPU delayed vblank interrupt (which I would expect to match
-when the hardware really latches stuff), and compare how they
-look. Though that does require one to enable the CPU interrupt
-which itself will trigger the PSR exit (at least on some hw),
-so not sure how easy it is to hit the exact conditions required.
-I suppose one might try to wait for the PSR state machine to
-be in the right state just before triggering the exit.
-
+> This fix removes the redundant emit_pte() call to avoid programming
+> the same PTEs twice and reducing overhead during CCS-only migration.
 > 
-> Bspec is saying this transition to SRD_ENT/DEEP_SLEEP can't be
-> interrupted.
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_migrate.c | 17 +++++++++--------
+>   1 file changed, 9 insertions(+), 8 deletions(-)
 > 
-> BR,
-> 
-> Jouni Högander
-> > 
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index ddfad7506a82..9541a8fe4637 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -843,11 +843,6 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   					      &src_L0_ofs, &src_L0_pt, 0, 0,
+>   					      avail_pts);
+>   
+> -		pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
+> -		batch_size += pte_update_size(m, pte_flags, dst, &dst_it, &src_L0,
+> -					      &dst_L0_ofs, &dst_L0_pt, 0,
+> -					      avail_pts, avail_pts);
+> -
 
--- 
-Ville Syrjälä
-Intel
+Oops, I think we missed the dg2 case, where there is both a ccs copy and 
+page copy, which is not the case on xe2+.
+
+I think maybe make the above conditional on copy_only_ccs instead:
+
+if (copy_only_ccs) {
+     dst_L0_ofs = src_L0_ofs;
+} else {
+     pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
+     batch_size += pte_update_size(...)
+     ...
+}
+
+>   		if (copy_system_ccs) {
+>   			xe_assert(xe, type_device);
+>   			ccs_size = xe_device_ccs_bytes(xe, src_L0);
+> @@ -855,7 +850,14 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   						      &ccs_ofs, &ccs_pt, 0,
+>   						      2 * avail_pts,
+>   						      avail_pts);
+> +			dst_L0_ofs = src_L0_ofs;
+>   			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+> +		} else {
+> +			pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
+> +			batch_size += pte_update_size(m, pte_flags, dst,
+> +					&dst_it, &src_L0,
+> +					&dst_L0_ofs, &dst_L0_pt,
+> +					0, avail_pts, avail_pts);
+>   		}
+>   
+>   		/* Add copy commands size here */
+> @@ -876,13 +878,12 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>   
+>   		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
+>   			xe_res_next(&dst_it, src_L0);
+> +		else if (copy_system_ccs)
+> +			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+>   		else
+>   			emit_pte(m, bb, dst_L0_pt, dst_is_vram, copy_system_ccs,
+>   				 &dst_it, src_L0, dst);
+
+And then here drop this change and turn the else into:
+
+else if (!copy_only_ccs)
+
+>   
+> -		if (copy_system_ccs)
+> -			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+
+And then keep this here as-is. I think that should work?
+
+> -
+>   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>   		update_idx = bb->len;
+>   
+
