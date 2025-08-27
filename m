@@ -4,56 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A3ACA0EFF
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 20:36:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EBC6CA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 20:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE9510E8BD;
-	Wed, 27 Aug 2025 20:36:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3E510E8B8;
+	Wed, 27 Aug 2025 20:42:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5AUP2ek";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AJ4ozpGF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2970710E8B9
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 20:36:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C30610E8B8
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 20:42:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756326975; x=1787862975;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=x5g9UJ6y1wvIFJsxiOM5OQ5kpmpb1ItCwnXYzhh0UZE=;
- b=S5AUP2ekcAVz7yQgqv5PKocOQzjM9fIWVnAN7/k8hJ4e6FfQB2EDwhP0
- 8rvQmRle5lj/fHi0uxLKQhZmZZdYuPwwkY503gYmkxAwLHUP6pHLVEku9
- MwVQY6KdfkYKuB2KCJQAjFJWgYMyTyeIG/1SPtM+kjHTm3+2ozd1ZJU+q
- j+1XORu9NR7EgTj5IfUUBx7MboNq/sBjopyUYs4SpDtCN1NSG5hTRRY6l
- bYqCwsgpeoxBGW5Qqb1oom0jpitDpvPYX5p1EZARuCI8Y/yl7tAJUb8Ob
- MEqdM8v0r+lViyaonlTZaKo1wnCxtp3UIGyvgkQnSUz0DxOecSXyVt/Wx Q==;
-X-CSE-ConnectionGUID: TwThf0METXSThdL3DmnNMg==
-X-CSE-MsgGUID: EFE7LPB5R36W4gJEqYrkfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62425794"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62425794"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 13:36:14 -0700
-X-CSE-ConnectionGUID: dUSN/PeKT/2sFsWfUop5HQ==
-X-CSE-MsgGUID: gdVfgb+9Qj2LuwMD6IAo0g==
+ t=1756327360; x=1787863360;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=qzggT5u+RQmZWNm72pE6fzSgL+T8F4tbROUP/7Rw2J4=;
+ b=AJ4ozpGFVZ1um2GA8Hjg5IerTr2eqMLbK1iqnDvnwMU7XfW+V3AnTSys
+ TjF9ObpESJGorrxev2xDiTqHARhWIiprWgLyHC8Jb4ICFQ5vT/soHf42y
+ trF5sgF1rDQ289fWP8b9CYmu7LGsHYQN8mawwInZRvbUZ0iZmxNw6cKch
+ FmBpi57z0SfIhuPdkL3CkawvuqMuTLsu1eYmbU681ih3S+RAA/b9QSIDk
+ VSaYC9DyozRR9NBOMhzek3Kdo1wVfx/Nd90Ud6b2XgkZx6HJcZH+LsAVZ
+ wgrEMQQ4MycMtKsZ9uAk6AzDW5EZMGaIgw2PDaZvaOD/tAaItCRu/ruMF Q==;
+X-CSE-ConnectionGUID: zwglXbbIRxaLeMJ4+y0kPQ==
+X-CSE-MsgGUID: Dm5kJmZoSVmKNe/Y6wjyrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58738757"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58738757"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 13:42:39 -0700
+X-CSE-ConnectionGUID: ECklDAHHQf6ba+O4YTHpGQ==
+X-CSE-MsgGUID: lylrys/9Q5WM+Rek7SQaig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="200827925"
-Received: from dut4086lnl.fm.intel.com ([10.105.10.138])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 13:36:14 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- john.c.harrison@intel.com, matthew.brost@intel.com,
- michal.wajdeczko@intel.com
-Subject: [PATCH v6 1/3] drm/xe: Add error_injectable define
-Date: Wed, 27 Aug 2025 20:36:14 +0000
-Message-ID: <20250827203612.119748-6-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250827203612.119748-5-jonathan.cavitt@intel.com>
-References: <20250827203612.119748-5-jonathan.cavitt@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170325789"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2025 13:42:39 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 27 Aug 2025 13:42:38 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Wed, 27 Aug 2025 13:42:38 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.62) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 27 Aug 2025 13:42:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JqIMJw9LVN2FHVpRwi9Yy2htSpFkvjnRhQakUlxlycPQmKlkqceyIVkoEYEV8v9lNQAgOEjZ6pYPLn97BZ+ppMlnaXr0ymrBoVfy0KnkJkukByy4xp/lADkIQcBGL+1H2mtgJ7kEhK0GUS3ehpceSFz3O2ODHVpqSShHv1TiXyizaA+dmk9a9ytpnizpjVxWWHcj2j8Zfkili8AScoBI8YJw33D+WeYru4YCO5HIdWhJ1i6qNk0/54kaZvJu1ZlBnmACxHGyXkDwnwgs6Sasejo//yVum2hKLE8nE4sP4MnLNC9y+nMDU5XqenvoPXR+Zj5KT4apXyJlyt8y5zlwWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O7LS3GKwOXPrvr7EnuhlAHWg1anIZgHM1I1aTNI2wGA=;
+ b=k0Oh5VmFiL6aFeK0yDKxpXYN2inhJ5tUgSE54iwGFuPiB9qD7qzhO8zgFqiJFHPds1V4ZZxjWtjMfGSWlRCW3juFj0Ax1+v/Wr2RiI6NbmkO2x8fQnrx5+J4x5bMlc43I7Nm0nd06VyugjYNy5xAF20ygxFB4/T3THRhdbsjgWux0+BHsRHicJDwVVf2bUKZYyBSxN+hoDzS/Tl0GQtmO25J/mhHqRiqpzPywMW4mVjMWpuscKhkLC8dJrDoeo14B7mkLb2A8LBj1hQIJeaqNEJU4Ehw029fJxDGnjKmluamMfI0/v8krMhs+YCqJQugYqYbw7IOwgY8luFg2aYswg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by SJ0PR11MB4846.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d8::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.20; Wed, 27 Aug
+ 2025 20:42:36 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::e40a:ca86:8d29:b2ab]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::e40a:ca86:8d29:b2ab%6]) with mapi id 15.20.9073.014; Wed, 27 Aug 2025
+ 20:42:36 +0000
+Message-ID: <c04c5641-f724-4416-bd6a-08d5a0dcd159@intel.com>
+Date: Thu, 28 Aug 2025 02:12:28 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/uapi: Fix kernel-doc formatting for madvise and
+ vma_query
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
+ <lucas.demarchi@intel.com>
+References: <20250827190136.3810508-1-himal.prasad.ghimiray@intel.com>
+ <aK9SPl80UTjp5Cvt@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <aK9SPl80UTjp5Cvt@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0113.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::14) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|SJ0PR11MB4846:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05caf81a-936f-4edb-50be-08dde5aa40fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?M3hOdXhHdStucDlmTlhyc0NSRVlNMXBORDRWMTI4b0R4Qk5qNWRGdnlpcGRR?=
+ =?utf-8?B?QldsYVRqWEpQZko3OHowVFdBZ2JnZjkrTXN1R0NkRG1aS3A5dmJ6eUtnbjBN?=
+ =?utf-8?B?OHZGSjlMWVpzWldaSjI2R0JrdFNldkJkRFdxdXpFU1NFTE5FdnNhZC9neG1R?=
+ =?utf-8?B?OXhRNW50R3MyK0ZvU1RxTlljWTdlRWYyNkRDLzhjSE9FMXdiMFJ3d3BOQ0N3?=
+ =?utf-8?B?VHorWmtNSHpnR0xIU1FCVTIzT1owSWJ0NWpHZFJuVVE3Q1g2YjhlaktXT3ZJ?=
+ =?utf-8?B?RkRtK1crTU9zRVJxNUxGZ1AvZDc1MUdWMkgwT1QybmtXb3BQNndTUloyZFdv?=
+ =?utf-8?B?cUgvR3N3VXZBU0RJdHIrTVpIWUFqd2hwSjRuQ1dyWEJ2V2VxK0IybklEdzli?=
+ =?utf-8?B?SkhQN2haOHZxQ25STWNWUFRzaW1IT0ZuZVoyTExBZkU5enNVL3ovRFZhMllq?=
+ =?utf-8?B?VFFNVVlGN2RYdmxoRzJYMXNmdThMbFVlemZHVk5NQ0hEYkpaMm5QcEU4czJp?=
+ =?utf-8?B?Yi9iUndPVEtEUmMvWVJQbWRxVm5oc2hvOURuUnNDLy9TbUJ6MmlJNGhEV1RS?=
+ =?utf-8?B?dzhXaGJLNWtUbi93TlQ4WGp2UjlCK1EwT1ZCaGl3MDV0ZkZFbng3Q2lJcDFR?=
+ =?utf-8?B?dUpQb2RMSGNvam5lVUcxS28zS09laDVBNElndE9RaHlSRWljNGRuUXBsS2hI?=
+ =?utf-8?B?VUpuTjNOZWF3L0UremlQVlBZQmdkR3QzYVMveGFPRm9aTWdZU1Axdy9yZ2VS?=
+ =?utf-8?B?UUdaK1l5RnpqTHpUNXZXcWUwbkg1ek94ODNKV1JTQk82b2pZUUZwZStUSUxo?=
+ =?utf-8?B?VllnTDlxNWVrdHh2UE9IYzkzYjF3V0NjU052TjZac3JOdU9kRHVETDlZMndv?=
+ =?utf-8?B?N1dGYTNQV1FLU3BaUFRLd1o2eHdOZUxCUmRQTEhsaldrbzdQNjhzajI4VlMy?=
+ =?utf-8?B?SGt1RXNJMWtmT0kyVmFNYVhLVi8zUXRYNTFLSFRQNndPVjdSMDVRdmdxRlhw?=
+ =?utf-8?B?TUJNdTljVVE4ZVpJcmErbjczb1dCRGh6cGNBbWZkRnRvNzJRRVZrTU8xeXVY?=
+ =?utf-8?B?ZU93KzJyNTczQWxIemcvRkkveS9oenkzcHlRTU1ENVpvOHIvR1V5MCtHMWlJ?=
+ =?utf-8?B?SFRnK00rZXU0WWM0ekZlSytzYXBWTjlybTQ0UVQvaGI0MDM2OGhPU0kvTUJP?=
+ =?utf-8?B?UmNPbjNEN0N2RzhnNHRzM1dkZGgvcVk3cStvWkZGRFdRS000S1BBblVLL21X?=
+ =?utf-8?B?aTNZMi94bFFnSmhhdGQ2QmlMVUVNdld6YWpKWEpXdjBreXBLWmY5d2lwbFcw?=
+ =?utf-8?B?aWkvQlhqVTlwaFRDSDhpUytPVXZyS3czQk0zanEvUHo2V1hqRG9UejhoYVVU?=
+ =?utf-8?B?czIyWFVvRmpQUXEwU0Uxazk5L2taU3Ixb21VWk9kTUNNQWpRN0pDZVc0UzVI?=
+ =?utf-8?B?WEM2SXVWbVpUZnk3WDlEejhLc09oZDNYTHIxcE1hQ25zazBQa1dVY3loQ1Jn?=
+ =?utf-8?B?a09TYTNFVEliSkFEeWZETGxzR01XRG9HT3Z1WDZYSXc3ZWM1YUdRSVpGSUhq?=
+ =?utf-8?B?VkhDTnN2ZjE2TE92Q3RCeTU1TERkNFJ3SlNJSjZwY1NoVHM2S2lyVUwrN3da?=
+ =?utf-8?B?Y3VYN1k1OEprVmN4RzFjUkNydExwWnAvelg3Y1NMeVVieHpycmFuVXZpUXJV?=
+ =?utf-8?B?Wk4wK09UQ3JiNnlqaDRpeGJjK0JsT1BxbmxBNWlUTjM3VU4zQW5NaDBTMFB1?=
+ =?utf-8?B?QmdEN2hLSVVuaEQzanJLVEkyODZoUnpIdGFFY2dyenVWTFpWeEEvN2FjWnl6?=
+ =?utf-8?B?aDk4WTloOHcwMGtWN3A0MFh1M1prSHA3ZldCL2l0bmdmZ2xidHVzQVhOM2VM?=
+ =?utf-8?B?VmUxRzg0YTVVWlo1ZFdGN2xjWjNuQXZJZkYzSWJTbnlQa0hpK0l6M3Bud21u?=
+ =?utf-8?Q?9N8K6cp7bEs=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnRXZjBQS085UDBsLy9NSVZuZnhJVUNZeVowdWRxU0VxcnlTK1VNRFlZall0?=
+ =?utf-8?B?a2lVdm1Nek9oNXhwRTVxZnB5WEoxdGlZdGRnV0RVWkFkVUhhRWVKb2d0VWI4?=
+ =?utf-8?B?SHNKUUhwU3ZVMWFmRzU2NUM5WVhXWkNCS1dXaEFmdkhubmlZT0tuQ2VQaUpt?=
+ =?utf-8?B?TEc3cVpGU2NFN3JUVkxNalN0enJTK1VKQUFIVW1TU0VMNHBpVWc2dllpdGV0?=
+ =?utf-8?B?UGtaSDQzV2MvdndwdTdTUmxKY2VzcWlabHhrNnUzaG1MVTN5eEh3RmYrR1Vt?=
+ =?utf-8?B?ek9aN1ZENlFUUEpvQmtQbmVMZS85SHc5VFFPL0Z2b1ZjTUFiQXVXSmN1NlIx?=
+ =?utf-8?B?UXB2Vk9meUNuVCttd2ZVVnROSHRXYnlicXZlNzB3UW5BTXU1UW44M3B3bWs4?=
+ =?utf-8?B?ZkNOd2k4WHUwY0RIMzZkY3ErMHBWdnd6T3EzdFoyay95SFppUTJUT3RrdnVS?=
+ =?utf-8?B?SEEyZmpFQTV4TUNiN21lZENrekViVFVHSCtHSHRPWkhpOHVnSEpCODVLTmdV?=
+ =?utf-8?B?L3BjU01CU0x1ZXhCbmRGNHNPbnFMRlJNZ3VxK2ZaK3JGSWk3Z1ArajlwZHpm?=
+ =?utf-8?B?cGhDTEdXZDJKeTRGSTRPR1lFdE5ScnR5RE56ZGplSk1aMUVRRktaUjdzTnZJ?=
+ =?utf-8?B?MisybHJZQU9CdmpidzRRZkNabFQreU1KSmdTWnEyc0hFZWJIWHR2cU91U1hF?=
+ =?utf-8?B?SU5MMVZ5MTVGWnBmZXkyaG1uUGhxV3owOVNZbmcxR2tOdUtkV3Z0N0sxMzMv?=
+ =?utf-8?B?QkR0eVBsNGhaTHVWaUV2VXk3a3A3dlBIUXpTTkxrUEwyUkJyNURPTzFNUzVq?=
+ =?utf-8?B?R291MFNjbytRajh4cUk1a3IwQW9XOFFIaU1CL25zdUFSdnVuSXlPVEJKSDh1?=
+ =?utf-8?B?RGJla3RjZklKNUltbW5Yb1YyWTREZU9CclI0KzdMcXVWc1FIejdFSGtzVU55?=
+ =?utf-8?B?RzNURVpJN3pVemxpZ3JrOHEzekEvRTYyellPeWNTbGlQb2hNck9UUVRHa3pS?=
+ =?utf-8?B?WXFJbWtWUUdpc2lZWDFDWG5FRnZ1akZFOEYxaTIrYWdpK0ltOUE0NnJLeHMr?=
+ =?utf-8?B?YjFpM1pxQ2d2OUtQSlp3bTZDWFN5YUhqMEpHQ0N3dG9PeWh2WjJ4T3h1Rnc3?=
+ =?utf-8?B?d0JsTU9GZkd4V2tia0hJS0FGNTJPMEFQQzNwZzRXWVgwVElTTEpDSjM5dHpO?=
+ =?utf-8?B?MTJpMmpGRFRzWFoyV2ZCTG5XdlVZRmhGaWZyNTQ2WnRjd1U3d01pTWQvc2hS?=
+ =?utf-8?B?VlEyUCtFSFVxL0liYmlKcVlITzRjYTFUSVBWc1R5cWl0YUkySWlDdXY4bDQx?=
+ =?utf-8?B?MTR4Z01aTEIyNmFjL1cxUDVDMy9aUU9CY1BLV3N6dUQ0UE1LcSsxOCt0MVBG?=
+ =?utf-8?B?VG9JUjVocDdiQSs5MXFXeXNYbExVZTl3cFdSN216WHVsLzcvYkEyd3NmbFhr?=
+ =?utf-8?B?YVppOUdIUFpFZmhWUDBlOTk5Z0h1YkNoRTNiSFA5MlJvT09kSTRFWG43eUNP?=
+ =?utf-8?B?VUFlMnZpS2pFSllQc056WWFueEU2enJlNzRTWlNUZm9aU2dURE8yQUJQM093?=
+ =?utf-8?B?ZElkVnQ4NnhTUnJ4QTlCOGlTekpnRDI4TUhzLzdqSDZBbzZtcDNNb1ZHcU95?=
+ =?utf-8?B?Mkd6bFZiT2oyL0g1TU5oaDhSaDFNS3crbmttTlJKUzNHZ1NxdEhtOG96SEpK?=
+ =?utf-8?B?Z08yNngxU1JnajBGRktxYTRrWUJJRHlFVk9qOHBtQ2dZTS8yL1d4VFljNTEy?=
+ =?utf-8?B?dENXQUM4cWtxQkVjZGlvMlI1YnUreDdIeGpxRGJiMnE0QzArQkFmZGhxMyto?=
+ =?utf-8?B?dTRYMytxM2JNLzlFUXdTM0p5aGJoNXBscWNpSWFlSTFkaTlBUlJNRkRmbVpy?=
+ =?utf-8?B?USs0Y1hvSUhOUzVuZVhVWWZia3Y4MmRUYlo4d2srV2Vtc0RuRWo4bU9HcFRK?=
+ =?utf-8?B?YlJUK0RxNkd4WEN0QnFqNkVMQkNId2xibE5NcUE4ak9UeWF1WjNMZW9GOW9y?=
+ =?utf-8?B?QXBONTdLZFdaM3J5WGRmVUN0bVFIb3B3KzVSNUptc2VYcEQ1c2gvV3VQMGo5?=
+ =?utf-8?B?Vy9IMWRUZlhsNHZibG9QbTkvUFVISWZoVVBHb2Y5bU1qT0NKSFJjK3VQOG1F?=
+ =?utf-8?B?VHRTekVRdkt5QnU3cjNHZ201MDFmNVdHUTc0eG5OK29qUCtaUXUyOExTVi9F?=
+ =?utf-8?B?aUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05caf81a-936f-4edb-50be-08dde5aa40fe
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2025 20:42:35.9033 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wrZ7ri5I97/U9Zgus1qmDsxmIq0mlkGstq0YuUqhii//Y8QooBJqCndP5Z6PPS6HaSfQHrv5O3XARJa1VF5A7ue4hKwtVbHO2uh1UZr3RH8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4846
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,518 +197,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a declaration for the function attribute "error_injectable", which
-appends noinline to functions tagged with ALLOW_ERROR_INJECTION only if
-CONFIG_FUNCTION_ERROR_INJECTION is enabled.
 
-error_injectable is a function attribute that is applied to
-all functions that have ALLOW_ERROR_INJECTION enabled.  This
-is necessary to ensure the compiler doesn't optimize the
-target function into an inline function, as inline functions
-cannot be injected with faults.  Adding the noinline attribute
-prevents this issue, but it's not necessary to prevent inlining
-if error injection is disabled, so error_injectable is only set
-to noinline if error injection is enabled.
 
-It's likely the case that not all functions with error
-injection enabled need this additional security, but to be safe
-(and for the sake of consistency), it's applied to all
-ALLOW_ERROR_INJECTION functions.
+On 28-08-2025 00:15, Matthew Brost wrote:
+> On Thu, Aug 28, 2025 at 12:31:35AM +0530, Himal Prasad Ghimiray wrote:
+>> Correct kernel-doc formatting issues in the UAPI definitions for
+>> madvise and VMA query interfaces to resolve docutils warnings during
+>> documentation build.
+>>
+>> Fixes: 418807860e94 ("drm/xe/uapi: Add UAPI for querying VMA count and memory attributes")
+>> Fixes: 231bb0ee7aa5 ("drm/xe/uapi: Add madvise interface")
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> ---
+>>   include/uapi/drm/xe_drm.h | 29 +++++++++++++++++------------
+>>   1 file changed, 17 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index 7dedd45ab995..a164deedae33 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -2006,12 +2006,12 @@ struct drm_xe_query_eu_stall {
+>>    * .. code-block:: C
+>>    *
+>>    * struct drm_xe_madvise madvise = {
+>> - *          .vm_id = vm_id,
+>> - *          .start = 0x100000,
+>> - *          .range = 0x2000,
+>> - *          .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
+>> - *          .atomic_val = DRM_XE_ATOMIC_DEVICE,
+>> - *         };
+>> + *     .vm_id = vm_id,
+>> + *     .start = 0x100000,
+>> + *     .range = 0x2000,
+>> + *     .type = DRM_XE_MEM_RANGE_ATTR_ATOMIC,
+>> + *     .atomic_val = DRM_XE_ATOMIC_DEVICE,
+>> + *     };
+>>    *
+>>    * ioctl(fd, DRM_IOCTL_XE_MADVISE, &madvise);
+>>    *
+>> @@ -2073,12 +2073,16 @@ struct drm_xe_madvise {
+>>   		 * Used when @type == DRM_XE_MEM_RANGE_ATTR_ATOMIC.
+>>   		 *
+>>   		 * Supported values for @atomic.val:
+>> -		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour
+>> -		 *   Support both GPU and CPU atomic operations for system allocator
+>> -		 *   Support GPU atomic operations for normal(bo) allocator
+>> -		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations
+>> -		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations
+>> -		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic
+>> +		 * - DRM_XE_ATOMIC_UNDEFINED: Undefined or default behaviour.
+>> +		     Support both GPU and CPU atomic operations for system allocator.
+>> +		     Support GPU atomic operations for normal(bo) allocator.
+> 
+> Missing a couple of * here?
 
-v2:
-- Move error_injectable from error-injection.h to xe_macros.h
-  (Michal)
-- Reformat function attribute application to minimize diff size (Brost)
+sphinx was throwing "WARNING: Unexpected indentation" for multiline 
+bullet for * usage in other lines apart from first.
 
-v3: (Michal)
-- Improve explanation for error_injectable
-- Update Michal's name
-
-v4: (Michal)
-- Simplify comment
-
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Suggested-by: John Harrison <john.c.harrison@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c                |  3 +++
- drivers/gpu/drm/xe/xe_exec_queue.c            |  2 ++
- drivers/gpu/drm/xe/xe_ggtt.c                  |  1 +
- drivers/gpu/drm/xe/xe_guc.c                   |  1 +
- drivers/gpu/drm/xe/xe_guc_ads.c               |  1 +
- drivers/gpu/drm/xe/xe_guc_ct.c                | 20 +++++--------------
- drivers/gpu/drm/xe/xe_guc_log.c               |  1 +
- drivers/gpu/drm/xe/xe_guc_relay.c             |  1 +
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c |  2 ++
- drivers/gpu/drm/xe/xe_hw_engine_group.c       |  1 +
- drivers/gpu/drm/xe/xe_macros.h                | 13 ++++++++++++
- drivers/gpu/drm/xe/xe_mmio.c                  |  1 +
- drivers/gpu/drm/xe/xe_oa.c                    |  1 +
- drivers/gpu/drm/xe/xe_pcode.c                 |  2 ++
- drivers/gpu/drm/xe/xe_pm.c                    |  1 +
- drivers/gpu/drm/xe/xe_pt.c                    |  3 +++
- drivers/gpu/drm/xe/xe_sriov.c                 |  2 ++
- drivers/gpu/drm/xe/xe_sync.c                  |  1 +
- drivers/gpu/drm/xe/xe_tile.c                  |  1 +
- drivers/gpu/drm/xe/xe_tuning.c                |  2 ++
- drivers/gpu/drm/xe/xe_uc_fw.c                 |  1 +
- drivers/gpu/drm/xe/xe_vm.c                    |  5 +++++
- drivers/gpu/drm/xe/xe_wa.c                    |  2 ++
- drivers/gpu/drm/xe/xe_wopcm.c                 |  1 +
- 24 files changed, 54 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9e4773a17ef8..8525e07cb676 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -417,6 +417,7 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 	ttm_device_fini(&xe->ttm);
- }
- 
-+error_injectable
- struct xe_device *xe_device_create(struct pci_dev *pdev,
- 				   const struct pci_device_id *ent)
- {
-@@ -634,6 +635,7 @@ static bool verify_lmem_ready(struct xe_device *xe)
- 	return !!val;
- }
- 
-+error_injectable
- static int wait_for_lmem_ready(struct xe_device *xe)
- {
- 	unsigned long timeout, start;
-@@ -719,6 +721,7 @@ static int xe_device_vram_alloc(struct xe_device *xe)
-  *
-  * Return: 0 on success, error code on failure
-  */
-+error_injectable
- int xe_device_probe_early(struct xe_device *xe)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 063c89d981e5..1102ed690eb9 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -199,6 +199,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
- 	return err;
- }
- 
-+error_injectable
- struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *vm,
- 					   u32 logical_mask, u16 width,
- 					   struct xe_hw_engine *hwe, u32 flags,
-@@ -282,6 +283,7 @@ struct xe_exec_queue *xe_exec_queue_create_class(struct xe_device *xe, struct xe
-  *
-  * Returns exec queue on success, ERR_PTR on failure
-  */
-+error_injectable
- struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- 						struct xe_tile *tile,
- 						u32 flags, u64 extensions)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 71c7690a92b3..f278a81792a5 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -256,6 +256,7 @@ static void dev_fini_ggtt(void *arg)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
-+error_injectable
- int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- {
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 37d06c51180c..d2604bc0952d 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1405,6 +1405,7 @@ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr)
- 	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
- }
- 
-+error_injectable
- int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			  u32 len, u32 *response_buf)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 5631722f34f5..5075c7bd2362 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -386,6 +386,7 @@ static int calculate_waklv_size(struct xe_guc_ads *ads)
- 
- #define MAX_GOLDEN_LRC_SIZE	(SZ_4K * 64)
- 
-+error_injectable
- int xe_guc_ads_init(struct xe_guc_ads *ads)
- {
- 	struct xe_device *xe = ads_to_xe(ads);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 848065a25c44..2ec2cf622d21 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -213,6 +213,7 @@ static void primelockdep(struct xe_guc_ct *ct)
- 	fs_reclaim_release(GFP_KERNEL);
- }
- 
-+error_injectable
- int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
-@@ -252,6 +253,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
- }
- ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
- 
-+error_injectable
- int xe_guc_ct_init(struct xe_guc_ct *ct)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
-@@ -1149,6 +1151,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
-  *         DATA0 from `HXG Response`_ if &response_buffer was NULL, or
-  *         a negative error code on failure.
-  */
-+error_injectable
- int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			u32 *response_buffer)
- {
-@@ -2067,22 +2070,9 @@ void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- 
--#ifdef CONFIG_FUNCTION_ERROR_INJECTION
--/*
-- * This is a helper function which assists the driver in identifying if a fault
-- * injection test is currently active, allowing it to reduce unnecessary debug
-- * output. Typically, the function returns zero, but the fault injection
-- * framework can alter this to return an error. Since faults are injected
-- * through this function, it's important to ensure the compiler doesn't optimize
-- * it into an inline function. To avoid such optimization, the 'noinline'
-- * attribute is applied. Compiler optimizes the static function defined in the
-- * header file as an inline function.
-- */
--noinline int xe_is_injection_active(void) { return 0; }
--ALLOW_ERROR_INJECTION(xe_is_injection_active, ERRNO);
--#else
-+error_injectable
- int xe_is_injection_active(void) { return 0; }
--#endif
-+ALLOW_ERROR_INJECTION(xe_is_injection_active, ERRNO);
- 
- static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
- {
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index c01ccb35dc75..47973d914b2d 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -251,6 +251,7 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- 	xe_guc_log_snapshot_free(snapshot);
- }
- 
-+error_injectable
- int xe_guc_log_init(struct xe_guc_log *log)
- {
- 	struct xe_device *xe = log_to_xe(log);
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay.c b/drivers/gpu/drm/xe/xe_guc_relay.c
-index e5dc94f3e618..b2811de5b6a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay.c
-+++ b/drivers/gpu/drm/xe/xe_guc_relay.c
-@@ -330,6 +330,7 @@ static void __fini_relay(struct drm_device *drm, void *arg)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
-+error_injectable
- int xe_guc_relay_init(struct xe_guc_relay *relay)
- {
- 	const int XE_RELAY_MEMPOOL_MIN_NUM = 1;
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-index 640950172088..18a70f95f687 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-@@ -10,6 +10,7 @@
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_hw_engine_class_sysfs.h"
-+#include "xe_macros.h"
- #include "xe_pm.h"
- 
- #define MAX_ENGINE_CLASS_NAME_LEN    16
-@@ -580,6 +581,7 @@ static void hw_engine_class_defaults_fini(void *arg)
- 	kobject_put(kobj);
- }
- 
-+error_injectable
- static int xe_add_hw_engine_class_defaults(struct xe_device *xe,
- 					   struct kobject *parent)
- {
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index 58bee3ffe881..862237f4804d 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -119,6 +119,7 @@ int xe_hw_engine_setup_groups(struct xe_gt *gt)
-  * Return: 0 on success,
-  *	    -EINTR if the lock could not be acquired
-  */
-+error_injectable
- int xe_hw_engine_group_add_exec_queue(struct xe_hw_engine_group *group, struct xe_exec_queue *q)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index 8a77c2423555..9bfb92ef95e4 100644
---- a/drivers/gpu/drm/xe/xe_macros.h
-+++ b/drivers/gpu/drm/xe/xe_macros.h
-@@ -19,4 +19,17 @@
- 	cond__;								\
- })
- 
-+/*
-+ * This function attribute should be used by all functions which are
-+ * tagged as ALLOW_ERROR_INJECTION to ensure they will not be inlined
-+ * by the compiler which would actually prevent an error injection.
-+ *
-+ * XXX: there is no regular "xe" prefix as we hope to promote this.
-+ */
-+#ifdef CONFIG_FUNCTION_ERROR_INJECTION
-+#define error_injectable noinline
-+#else
-+#define error_injectable
-+#endif
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index ef6f3ea573a2..b65111702be1 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -90,6 +90,7 @@ static void mmio_fini(void *arg)
- 	root_tile->mmio.regs = NULL;
- }
- 
-+error_injectable
- int xe_mmio_probe_early(struct xe_device *xe)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index a188bad172ad..7b060a95508c 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2225,6 +2225,7 @@ static bool xe_oa_is_valid_config_reg_addr(struct xe_oa *oa, u32 addr)
- 		xe_oa_is_valid_mux_addr(oa, addr);
- }
- 
-+error_injectable
- static struct xe_oa_reg *
- xe_oa_alloc_regs(struct xe_oa *oa, bool (*is_valid)(struct xe_oa *oa, u32 addr),
- 		 u32 __user *regs, u32 n_regs)
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 6a7ddb9005f9..36275d491b8a 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -13,6 +13,7 @@
- 
- #include "xe_assert.h"
- #include "xe_device.h"
-+#include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_pcode_api.h"
- 
-@@ -331,6 +332,7 @@ void xe_pcode_init(struct xe_tile *tile)
-  *
-  * Returns 0 on success, error code otherwise
-  */
-+error_injectable
- int xe_pcode_probe_early(struct xe_device *xe)
- {
- 	return xe_pcode_ready(xe, false);
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index a2e85030b7f4..663cc9c74570 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -273,6 +273,7 @@ static void xe_pm_runtime_init(struct xe_device *xe)
- 	pm_runtime_put(dev);
- }
- 
-+error_injectable
- int xe_pm_init_early(struct xe_device *xe)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c129048a9a09..e1b2da20b881 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -99,6 +99,7 @@ static void xe_pt_free(struct xe_pt *pt)
-  * Return: A valid struct xe_pt pointer on success, Pointer error code on
-  * error.
-  */
-+error_injectable
- struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- 			   unsigned int level)
- {
-@@ -2133,6 +2134,7 @@ xe_pt_update_ops_init(struct xe_vm_pgtable_update_ops *pt_update_ops)
-  *
-  * Return: 0 on success, negative error code on error.
-  */
-+error_injectable
- int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
- {
- 	struct xe_vm_pgtable_update_ops *pt_update_ops =
-@@ -2374,6 +2376,7 @@ static struct xe_dep_scheduler *to_dep_scheduler(struct xe_exec_queue *q,
-  *
-  * Return: fence on success, negative ERR_PTR on error.
-  */
-+error_injectable
- struct dma_fence *
- xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- {
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 87911fb4eea7..f18fcf3ce0ee 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -11,6 +11,7 @@
- 
- #include "xe_assert.h"
- #include "xe_device.h"
-+#include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf.h"
-@@ -104,6 +105,7 @@ static void fini_sriov(struct drm_device *drm, void *arg)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
-+error_injectable
- int xe_sriov_init(struct xe_device *xe)
- {
- 	if (!IS_SRIOV(xe))
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 82872a51f098..24581804b66d 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -110,6 +110,7 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
- 	kick_ufence(ufence, fence);
- }
- 
-+error_injectable
- int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 			struct xe_sync_entry *sync,
- 			struct drm_xe_sync __user *sync_user,
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index d49ba3401963..5a2efdba0e12 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -138,6 +138,7 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
-  *
-  * Returns: 0 on success, negative error code on error.
-  */
-+error_injectable
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index a524170a04d0..5d3aa782839b 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -11,6 +11,7 @@
- 
- #include "regs/xe_gt_regs.h"
- #include "xe_gt_types.h"
-+#include "xe_macros.h"
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
- 
-@@ -148,6 +149,7 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
-  *
-  * Returns 0 for success, negative error code otherwise.
-  */
-+error_injectable
- int xe_tuning_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index a236f1d37248..c6100d960e0d 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -817,6 +817,7 @@ static int uc_fw_copy(struct xe_uc_fw *uc_fw, const void *data, size_t size, u32
- 	return err;
- }
- 
-+error_injectable
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- {
- 	const struct firmware *fw = NULL;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3ff3c67aa79d..04e98c7e8935 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -220,6 +220,7 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm,
- 	}
- }
- 
-+error_injectable
- int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
- {
- 	struct drm_gpuvm_exec vm_exec = {
-@@ -781,6 +782,7 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
- 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
- }
- 
-+error_injectable
- static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
- {
- 	int i;
-@@ -1629,6 +1631,7 @@ static void vm_destroy_work_func(struct work_struct *w);
-  *
-  * Return: 0 on success, negative error code on error.
-  */
-+error_injectable
- static int xe_vm_create_scratch(struct xe_device *xe, struct xe_tile *tile,
- 				struct xe_vm *vm)
- {
-@@ -2422,6 +2425,7 @@ static void xe_svm_prefetch_gpuva_ops_fini(struct drm_gpuva_ops *ops)
-  * Create operations list from IOCTL arguments, setup operations fields so parse
-  * and commit steps are decoupled from IOCTL arguments. This step can fail.
-  */
-+error_injectable
- static struct drm_gpuva_ops *
- vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 			 struct xe_bo *bo, u64 bo_offset_or_userptr,
-@@ -3432,6 +3436,7 @@ static void vm_bind_ioctl_ops_fini(struct xe_vm *vm, struct xe_vma_ops *vops,
- 	}
- }
- 
-+error_injectable
- static struct dma_fence *vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 						   struct xe_vma_ops *vops)
- {
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 52c7df4c3afd..0e5a52d7b080 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -20,6 +20,7 @@
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_hw_engine_types.h"
-+#include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
-@@ -1011,6 +1012,7 @@ int xe_wa_device_init(struct xe_device *xe)
-  *
-  * Returns 0 for success, negative error code otherwise.
-  */
-+error_injectable
- int xe_wa_gt_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index ada0d0aa6b74..d8d269416b7f 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -196,6 +196,7 @@ u32 xe_wopcm_size(struct xe_device *xe)
-  * size. It will fail the WOPCM init if any of these checks fail, so that the
-  * following WOPCM registers setup and GuC firmware uploading would be aborted.
-  */
-+error_injectable
- int xe_wopcm_init(struct xe_wopcm *wopcm)
- {
- 	struct xe_device *xe = wopcm_to_xe(wopcm);
--- 
-2.43.0
+Removing these * docutil doesn't throw any such warning.
+> 
+> Matt
+> 
+>> +		 *
+>> +		 * - DRM_XE_ATOMIC_DEVICE: Support GPU atomic operations.
+>> +		 *
+>> +		 * - DRM_XE_ATOMIC_GLOBAL: Support both GPU and CPU atomic operations.
+>> +		 *
+>> +		 * - DRM_XE_ATOMIC_CPU: Support CPU atomic only, no GPU atomics supported.
+>> +		 *
+>>   		 */
+>>   		struct {
+>>   #define DRM_XE_ATOMIC_UNDEFINED	0
+>> @@ -2196,6 +2200,7 @@ struct drm_xe_mem_range_attr {
+>>    * Example:
+>>    *
+>>    * .. code-block:: C
+>> + *
+>>    *    struct drm_xe_vm_query_mem_range_attr query = {
+>>    *         .vm_id = vm_id,
+>>    *         .start = 0x100000,
+>> -- 
+>> 2.34.1
+>>
 
