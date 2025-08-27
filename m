@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20FAECA0FFB
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 21:10:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B38BCA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Aug 2025 21:13:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9297610E88F;
-	Wed, 27 Aug 2025 21:10:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RUhReV/1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BED110E13E
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Aug 2025 21:10:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756329014; x=1787865014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CIf5wuaS4BSNavaFHnHQEGVV74I4s3YwKCsesWhx5/I=;
- b=RUhReV/1SNxxyZc5ce0ukwO5zx16kmKOLrBWj16BK8S0VtFiZIq55f5q
- 194/2vwNDH5nW/QDCPMeOXf7EhhA+iAv3YUvLog/dKrhd9EqZQiv5AMmb
- /XOZ6pidu1sYwuzGUDHWVRYxAwrDbBvGMOXRgl0rrQqI6qVrU9xCd2Bb0
- y8RGg4u/QmzQBJ0yHqqq1aLWf4XB07DhhVkPVIVhLxJM6f9gycU4OW/+q
- 7Rq627Twjt66w4oDdo2tHi7c3C1XaOASoVRe/2nRkJAtnkUTjR5Ey5Xyx
- aVphoVwbZQ99FZpt+9U7tjHk0hr+sIPIUTLilq0/IctQK5HMRL2PpraWx g==;
-X-CSE-ConnectionGUID: VDphgfIrT+aUEW6ndSkshQ==
-X-CSE-MsgGUID: 1aM2T3jIQ8Wk6/p0A/+nlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58658332"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58658332"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 14:10:14 -0700
-X-CSE-ConnectionGUID: shivAzcmTIeGoFb8+9IyPQ==
-X-CSE-MsgGUID: Qoti7ZfZQSKLaZ0Cj5TEfg==
-X-ExtLoop1: 1
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2025 14:10:14 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: tomasz.lis@intel.com
-Subject: [PATCH v4 1/3] drm/xe: Save off position in ring in which a job was
- programmed
-Date: Wed, 27 Aug 2025 14:10:08 -0700
-Message-Id: <20250827211010.308372-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250827211010.308372-1-matthew.brost@intel.com>
-References: <20250827211010.308372-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C0510E88F;
+	Wed, 27 Aug 2025 21:13:59 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C254110E13E;
+ Wed, 27 Aug 2025 21:13:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9140987870206793732=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Enable_2M_pages_i?=
+ =?utf-8?q?n_xe=5Fmigrate=5Fvram_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 27 Aug 2025 21:13:58 -0000
+Message-ID: <175632923878.275917.13209590082345869030@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250827195701.268467-1-matthew.brost@intel.com>
+In-Reply-To: <20250827195701.268467-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,151 +36,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF post-migration recovery needs to modify the ring with updated GGTT
-addresses for pending jobs. Save off position in ring in which a job was
-programmed to facilitate.
+--===============9140987870206793732==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v4:
- - s/VF resume/VF post-migration recovery (Tomasz)
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
- drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
- 2 files changed, 24 insertions(+), 4 deletions(-)
+Series: drm/xe: Enable 2M pages in xe_migrate_vram (rev2)
+URL   : https://patchwork.freedesktop.org/series/152707/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 5f15360d14bf..4dad28f0614d 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
- 
- /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
- static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 seqno)
-+				    u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	if (job->ring_ops_flush_tlb) {
-@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
- }
- 
- static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 seqno)
-+				   u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 
- static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 					    struct xe_lrc *lrc,
--					    u64 batch_addr, u32 seqno)
-+					    u64 batch_addr, u32 *head,
-+					    u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- }
- 
- static void emit_migration_job_gen12(struct xe_sched_job *job,
--				     struct xe_lrc *lrc, u32 seqno)
-+				     struct xe_lrc *lrc, u32 *head,
-+				     u32 seqno)
- {
- 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
-@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	__emit_job_gen12_simple(job, job->q->lrc[0],
- 				job->ptrs[0].batch_addr,
-+				&job->ptrs[0].head,
- 				xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 
- 	if (xe_sched_job_is_migration(job->q)) {
- 		emit_migration_job_gen12(job, job->q->lrc[0],
-+					 &job->ptrs[0].head,
- 					 xe_sched_job_lrc_seqno(job));
- 		return;
- 	}
-@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_simple(job, job->q->lrc[i],
- 					job->ptrs[i].batch_addr,
-+					&job->ptrs[i].head,
- 					xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_video(job, job->q->lrc[i],
- 				       job->ptrs[i].batch_addr,
-+				       &job->ptrs[i].head,
- 				       xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
- 						job->ptrs[i].batch_addr,
-+						&job->ptrs[i].head,
- 						xe_sched_job_lrc_seqno(job));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index dbf260dded8d..7ce58765a34a 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -24,6 +24,11 @@ struct xe_job_ptrs {
- 	struct dma_fence_chain *chain_fence;
- 	/** @batch_addr: Batch buffer address. */
- 	u64 batch_addr;
-+	/**
-+	 * @head: The tail pointer of the LRC (so head pointer of job) when the
-+	 * job was submitted
-+	 */
-+	u32 head;
- };
- 
- /**
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -> xe-pw-152707v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152707v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152707v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8511 -> IGT_8512
+  * Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -> xe-pw-152707v2
+
+  IGT_8511: 8511
+  IGT_8512: 8512
+  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578
+  xe-pw-152707v2: 152707v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152707v2/index.html
+
+--===============9140987870206793732==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Enable 2M pages in xe_migrate_vram (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152707/">https://patchwork.freedesktop.org/series/152707/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152707v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152707v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -&gt; xe-pw-152707v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152707v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152707v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8511 -&gt; IGT_8512</li>
+<li>Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -&gt; xe-pw-152707v2</li>
+</ul>
+<p>IGT_8511: 8511<br />
+  IGT_8512: 8512<br />
+  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578<br />
+  xe-pw-152707v2: 152707v2</p>
+
+</body>
+</html>
+
+--===============9140987870206793732==--
