@@ -4,192 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5DD6C8303F
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 20:20:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC88ACA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 20:21:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A3D910EAB9;
-	Thu, 28 Aug 2025 20:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF1A310EAB9;
+	Thu, 28 Aug 2025 20:21:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chejtUr7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JAEmtQZV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C35AC10EAB9
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 20:20:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2362A10EAB9
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 20:20:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756412404; x=1787948404;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=kl6Hn7N6hkQkA9/WMZbo01qmS6rw4dZeikBhFp3Jpno=;
- b=chejtUr7yfiZzMZhgEG4wUjoTY4pdYNg/Ub9Do9hqn4nX1tuanIKBTPx
- l/TFk8M0Fs1KW1WTmHArJrYYqOy1cnpKqj27ig1XgZGOdCY4356Xa+3VJ
- H5c0IJMNEaW8i0nT3UijlpyvTnYuKDK7Y0FqwB9Im9KL2uPVnHLNBboug
- Oa0CgE0yRkpkPqk2uIhRVJfj+sn1x4gWw9rInm50WVGojqdZw3Cs6spau
- emurMQkDGXvpju+yK7wFHae7xUQyORntz4Q3xWVmlC2Ww2Qh9CxikvOhh
- n7v9oFn5sKOsSrDxIHcHxl7nY4uopHm69KpK6HGi31fvUQC8U8V31h7hk w==;
-X-CSE-ConnectionGUID: z3ayp00RSGCsdWj/Yv992w==
-X-CSE-MsgGUID: 9qPM266QTpKk91rYqyN/ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="70068283"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="70068283"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 13:20:04 -0700
-X-CSE-ConnectionGUID: 5hBKh+dsTGCFKcK3qZK+Eg==
-X-CSE-MsgGUID: cauOcajhRHO53kgxp5T0Pg==
+ t=1756412459; x=1787948459;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=er4z8tbOuvTFO9sVcUg66pZQxJIuSkuZDXgdinBdNyI=;
+ b=JAEmtQZVhcSrZcfswPDgACdv/07du1uox/8ApWt4Djai7um6Hxs0DFN5
+ Qod2icHgf47hDt1QPf7DmLFgG96sX6mT5yeX11EfsyxL3oy9vX+2HS2bL
+ TzEh2Hgb9vfPjMsUEyA8jVsyPABG6Qmu1y5zodD3e9JKjirxL4PpdUxmz
+ xLHe4BICemccTdtPK+PZR0C8Xc9oh7I0ElBG6i5ZTRedS6pub9MSZcgiG
+ pJ5v5SQOScOsv0BciB/cGcSntJdcAnvNLyRGnyYAX8Wr9YxBsnx/wZGbs
+ g1QaAx7m8Ce2k50/3NkVgBNWMbsy68Vb9NCmfcdOPM4ts/PD+VanIZusE g==;
+X-CSE-ConnectionGUID: 9wJmhnYIQSSaZHK2Koq44g==
+X-CSE-MsgGUID: oH2xI5YHQqejl+CcUcrihg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="68971177"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="68971177"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 13:20:58 -0700
+X-CSE-ConnectionGUID: Pdfy3ATNRNe4xKx+9GONdw==
+X-CSE-MsgGUID: vkKuWk47Q+C5BTQlLOOglg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170596666"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 13:20:04 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="207353823"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 13:20:58 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 28 Aug 2025 13:20:03 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.17; Thu, 28 Aug 2025 13:20:58 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 13:20:03 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.66) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 13:20:58 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.43)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 28 Aug 2025 13:20:03 -0700
+ 15.2.2562.17; Thu, 28 Aug 2025 13:20:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OIXelU8V0qQLngOROd2akgg9Kr98cuSX6IZehIjI0ONrU4JefENFm1KLyYd+Xs/70ZWrSnGQfXdfI23q5P7t6lutZ6WyPGlJ2NfAhqZ7hDKUnQ5OwOJ+7RhhbDqjocug+KpKU2joUSCc6Gz93n0dIKB8ipci619+s9LE251f07vL8ECQp3D6S+BMubbRNVHARh9VNo0AtExCEhiVFVaVW13PokVxiqFxxwSQw78DZO9A2oBDtoRcYQc4XWfkR5VV0wQgB4E378mx5CvGKtE7sN3hC9opqVXcNUNGAG0pwK4pZKe4qQFoKyw692VFcpY5BYzpVzYuvV1TzJgYN3KM2w==
+ b=xeYPxaljR/HRbkLhGInEJnPAocb+oqTNu3J8IakmMj3Il4r6Cdp4x6vqGYrstmUI/yfjeIAsXBOgaChlmzdFPn9KvUzRZFD4etra7fo5mIClH5fZrOiIUYdl3QdOYf8dgPDbrGoSCi+SwI0xIzfe7+8n+OiaMkU8L41E/NeVD1Pr4G3az03ACcjCpLb1uIWOuet+cd1M5kVW7+4pUUfCPT3ZjdG7WkwMBEd9nGNmIDOrmsxTm+Du9g1NiaDYh+y102Vljkn1CzcQLQ3BAsvi3TmDVDqrEbKST5jH3BaWHO9XR+HyCHVFHrF0GYMTJAak/aPSMar7xO9e2e1IXO6vAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kl6Hn7N6hkQkA9/WMZbo01qmS6rw4dZeikBhFp3Jpno=;
- b=qQ2bDmTPgj33/w4GUDjrSbsIQejpoxmlHz++6WPIanrhsjBFBwc//eJqcZMnMk2M82F4Q467oTrzEZMnK9tzYpE0t/Ug0mv1d1VchyMaAcw+pqvoA1bjJEqOVQlTdnl3k7c/DBAbHyrg+VRvXqVYAErDM7+kyZbdxSAZcIsJUzYvfotx0MDrX+ApZVkP6mOte23uzo7bYmvesz6bxfb4Hdbt0i5rKG02Mhl0EXwkuyhwAgVj2yFx/8NzV0Vg+lA5sOaNJF2uxsVd4MGaMTUctmEsQmA9Dics3ICU2q+Qv8n8sghV/giWoRZlooLH2P48p5P815AtQUvDIgCKV/T46Q==
+ bh=qRg9Uasfra7qGkLXRVv17vNrZzVAHOgLHMjAEyZjRj4=;
+ b=bTDawRTsW+CLgfHV5TpAErFyESAbtdEdZX4TjHvjL6Yrv5vptsPJQQS2CLYCgirR5I/3b9OBL8SuMPi+wxgjRS8ZuCGZKG6gtZhXIxm/WsXMu/fEjZZ2sHV9vIbQU/5XPwVaWdJryI3d5GQACcAftqNHXJdpf1MX0qv2f33wKIrtOj5cnr4UJW0wZO0BUqGv5K3KuneXozMJBvIMEfUFE4vAGHzurFH623TR7/YDXI8sTb/eCAfq2+oRWo+96mBk8Hf1PTgzSWpEX6vNhQ/g/mlhbffbOI0xqaWtAJ6LH2EX0VqEt1Z/lSI95P7kYrlpvYz4FI3Rmb4WF2toOgY95g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
- IA3PR11MB9039.namprd11.prod.outlook.com (2603:10b6:208:570::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.24; Thu, 28 Aug 2025 20:19:57 +0000
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b]) by DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::3f64:5280:3eb4:775b%3]) with mapi id 15.20.9052.021; Thu, 28 Aug 2025
- 20:19:57 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Dugast, Francois" <francois.dugast@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>, "Mrozek, Michal"
- <michal.mrozek@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 02/11] drm/xe: Implement xe_pagefault_init
-Thread-Topic: [PATCH 02/11] drm/xe: Implement xe_pagefault_init
-Thread-Index: AQHcBpqUULnsSN/1VEeqxSPKxk3pY7R4okKAgAABVwCAAAFvAA==
-Date: Thu, 28 Aug 2025 20:19:57 +0000
-Message-ID: <dfd6d9b3057bc323c56da2af732d91b0b21ec919.camel@intel.com>
-References: <20250806062242.1090416-1-matthew.brost@intel.com>
- <20250806062242.1090416-3-matthew.brost@intel.com>
- <2efe98148129c4233337d92f28fba91dc2cf6f89.camel@intel.com>
- <aLC4uGWyD2V6hXgl@lstrano-desk.jf.intel.com>
-In-Reply-To: <aLC4uGWyD2V6hXgl@lstrano-desk.jf.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|IA3PR11MB9039:EE_
-x-ms-office365-filtering-correlation-id: 1cd3979b-187b-446d-741c-08dde6704204
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?cXArWXlBUk5uRGM1ZzNDaHA5VXNxcnZtZmpMa1htTHhBaFFjUERJWmo2Uml4?=
- =?utf-8?B?MXJiSmdnVEJ5NVZmU0swb2VmN05jQ2J1bUh4dmtnT0h4TDRvUFdOZEhIeW9k?=
- =?utf-8?B?anBvSFhIUHE3UTE3T1krbGIxSFNQc1kwK2lvUzh4Tno0QUhLTHhZcUJ2OVdq?=
- =?utf-8?B?eEVWVWJYRnM1Qy9iMHNJMnZvdk54MjFEVGh1MHBSNUZsQmg5OENTaW15amxk?=
- =?utf-8?B?RWU1Q2plcjhvYzBJYlBpbGFLWHZraGZRWWhsQ3hXeGpQcjZPZ21nTlBISE1p?=
- =?utf-8?B?ZTltMnVkb1FIZWZ3dzhVZFMrR0tqNFVsdkJnUE1adnZTWXZHUGJrSzlVUmtr?=
- =?utf-8?B?VVRRcUxoeFdoQ3BRZENEb3FpeEtMVUNSTHNHRkdUZHhVNGI2TU1BWGIyUkFv?=
- =?utf-8?B?OWR2ODA1QWRLRnd2QzIxaXg3aDk4SlhvbVlHcURkK3lyVWt1YWlmTUd5VW4r?=
- =?utf-8?B?TTdjSVY2QWNraGFWNkJJenNYVkZxRXJNTzk0T3dZaTBhdC83Rk96MitESXJS?=
- =?utf-8?B?UEFqUW9TbHZiTTBXSFBkYUJQbjI3MUdkZmVGZnIzUmc0Uks0ckt2RWo0T3Nl?=
- =?utf-8?B?VG1oaTNia2NDc01tZDJMSlMzZjNZdS9Gck8xeFFKdzRpK1ExSjhmbU1MbUVn?=
- =?utf-8?B?dFN0dURDMDZyVTVhaGtXZXExbWZBbnVvMDdpQkN0R3o2ZzNSM0xWRHhKR2lt?=
- =?utf-8?B?SkQwSmkxajZNU29IeFdRaHVDVDBWWnM2NGhaOVJuTVZtNWpXRnhlZXdzNDcv?=
- =?utf-8?B?K3RFNUVPd2krRjRMTm9YenQwQkdKUDNtMXc4YWl1ajNqQWxkamN0RWhjMm1X?=
- =?utf-8?B?VnJCYXdTRzFaUlBZV1ZqVmI4T1FOOCtINEZ1NWVBdU5jR2NlMXBmS1BFQkUw?=
- =?utf-8?B?K0dFQ0VLZkptWnBaVnRxcVMzbkgvNko5UHM2MjNqWlNHTmZqSUpmMkVjUjFk?=
- =?utf-8?B?V0pQTm54WXBxdzlPcTRNZ0RCRXZNcFdkaWNTMElUcU1NYWp5Rm5tdXNQa2g3?=
- =?utf-8?B?TE9LZGc4aHZicVoyNE9JUkZ6TDczRFBwcjM0a2w0VzJ4aDAxM3Zkd05EZEJE?=
- =?utf-8?B?djl6OHBobjhZSXVPcWQ1dEZBdXlraXFWWFJSQk9ESVd4WWQ1MCtRVmFycUNY?=
- =?utf-8?B?MWRraTN5NmRpTk9scTc0U1lLWjZJNFZPelNkWjdweGxycGdVR0l6VVlzdytV?=
- =?utf-8?B?K3pQdmx2emliUUxncjBrUVNyU1VQcXhIUXpJbDhmVzJaVVFaOVZwV3ZuYzhG?=
- =?utf-8?B?UlZNNTZRLzc5b2lwQzU2aDdXRUNrUEY0eHRzdGpKSXQyVjRyL1pNMWhpNTZM?=
- =?utf-8?B?YThPKytFYjJTYUJnRVJjcmsrdXlnVFJKYmlzZ3liRkVJaDZpZkVnanBEWGcy?=
- =?utf-8?B?TmlZMnNBU2M2a29wUUx4cUZVaWRWM2I4TGFvaFNFNFhVUTRqVFFsejZKN0xt?=
- =?utf-8?B?TEQ4azdya3FyMUFraWY2VGt0MVpnZ0xqbUZFZkpuenZwTXpLLzZWUnZjZ0c0?=
- =?utf-8?B?alBiRjBpekZrWmx1YVhuUXhIcTZuaU1BQ0dObitsdlFGblB4ZFpKNkhKbDMv?=
- =?utf-8?B?OC9VbXVuZGNseDB3QldIOVNnb0FXeVV1ekc5Qk9sOStDNVh0UmdyV1AzMkc5?=
- =?utf-8?B?VTZud0UyMWZPMVJhRWRtdHNIUmVaUFBPT2I4VW56WUp3THdFb1FSMThVTnRw?=
- =?utf-8?B?RzNUMms0M2RQOGd5cjBLaUpqTkZ6MUNUckVZYTJHMWJXMnlzV1BRbi9mdncx?=
- =?utf-8?B?NDNzd1FKMXNmWlpXRkJLTzN0cFFlVDdSeVVrUm05MDVGYTlxTEhIaFRpaFp0?=
- =?utf-8?B?L0Z5aTZwcE9tbTh2YkNkOGhWTllTTElYTlBPcDRrNlhGeXUrTTk0WmxaWERI?=
- =?utf-8?B?bUVBaVMyemlsZnNpUm5tazV4V3JMWi8zQ1BLVFhCUUdzRDdSbStEaVNjWXQ5?=
- =?utf-8?B?TFRHSWRRR245MU43QWgrdUtKRGRmQkV2VGhBS1drd0RrblJ5VGNNYmlmVjQ2?=
- =?utf-8?Q?1M9/g6CMV8bsZ5Qj4uZj0nt6qX23Yg=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VWY5U1dyNHlWdzdvUlo4R2JkWkR1SkdLczRtTERzT2tPNlIzOUg2cUFXbk5s?=
- =?utf-8?B?Y2FSY0JBUjdqVkd0NkVLeVRBZTR6djRSdThudkZZT1FLRGVBb0ZKL0VNNjMy?=
- =?utf-8?B?Zkd2a0ZXV3RuS2JucC9pL2VCa3FvYkhRSkloZUcwQWVJYXFIeWNYUEFkczdT?=
- =?utf-8?B?SjV3dHdZOUNadXpBc3NzQUFZbUVhNTVUdUJwc1Y1S3AyNzk3STJ4SWd0T0E3?=
- =?utf-8?B?V3pxbThQVmtSN29MRHJQakMxK0RORGlNaEJJbUxaNjliTlQyYWhXZHFxdWpX?=
- =?utf-8?B?TEVzQkYycWErWG0rSWViVjJoNEh2L1RwUDdURm50MlVuSWZTSGk3S0JVZ3hx?=
- =?utf-8?B?ZmUrazZQRGprK21YdllnUnYvb1pUd2dRbG1PZk1xNk9IZkJOVmFwUEFHY2lW?=
- =?utf-8?B?ZFJEMG1KaDlqZXc5a3hkdFBPUDJ3MGtNcTJKUVd0UmFKbVVmT1hTRzVLVHZq?=
- =?utf-8?B?TjdLeDViSzlsSHFRNitYYWp5Lzl5dzdEQTV6dWpqOUZ3VDgvdkJTZk5YY3lR?=
- =?utf-8?B?SmVMbzdCYzVMOWVhYzVxd2w2em5ReUczVlJZdVFRdEZaUVB5WFJ5NlBPYTdp?=
- =?utf-8?B?cGZpeUg5ZXdBdUNlOW9CRW9BSDlXQlpmNVhxUDBlZHRQdktVclFQWFBhSXhM?=
- =?utf-8?B?MkVjUno1UGJRYzdCYWxMdWIrNWlxbzlwZlcyczNUKy9QYlk3em1vNnFCL0dD?=
- =?utf-8?B?UkVWUjc4QzVMK0F5S0hSc0VGNm1IZW9mTjI1VDROVmtGVWF6ajhwN3ZCaklK?=
- =?utf-8?B?Tm5NY3pIK0I1RGsyYzE4NXFWelR0STdpdGZVWW1pRGxsZjlJUnRuc1cxdWUr?=
- =?utf-8?B?N2pzajRtZU5Sb1BJQ1A0dFF2b01Md0YzTzlKM2VsVFdNUHA4YWd0Z05PY0Rl?=
- =?utf-8?B?V2pmQ2k4V3pTMTU0b2l0dDNoalVPVjc1TktvY3ExcmhHRllnODMyZTErMHFO?=
- =?utf-8?B?MFg5cFhNWFo2UUkwSWZsUTh3RERhQVBvMDViSnlORVprc2diUnJkcXhxdUhK?=
- =?utf-8?B?VnhzQ1FQUGdBWHFQL2xTeWd5SDFHQ1JNcUkvT1lvUk44MjJualAzSGlrVTJ1?=
- =?utf-8?B?VnFsUzdvZlNPayt0Zk5UNUVDaE55aXFOKzFqZFBCRXM1M09HNnBBVzlxamtK?=
- =?utf-8?B?T0hPWW1tVUVWN2E4blNWUCtad3pzeGNHbFJpMktqanZGZGhqRDFGNWg0UzA0?=
- =?utf-8?B?Z0NSMWtCOFQ5Y3pDNGRSTklPNy9EYkZyelhHQWlvNFNScUZVNERueVIrNEJY?=
- =?utf-8?B?ZkkvSWlJVGMzdW5Sa056RTgwb29FelpJUXhnRGNFcGNVRWFkTTVBMnVqR0NH?=
- =?utf-8?B?S3Z4ejlnSjJRM0ZIRWpGb3pVeDNCZ2FmY2tlem9VWmlhUnh3MkFrRk1DdHpq?=
- =?utf-8?B?UVVDTFIzbGh5MHNOejFTRHBrd1FDQkZ6NmlNNEdKSGZIY3h3M0gxSVJpTTBJ?=
- =?utf-8?B?ZUZ5NmJtdWkwN0dPaU5rTDgzbi81NXlkSmYxRTQyRmxnZEh3NHdSTnB6RmpR?=
- =?utf-8?B?N0pPK2xFZTdPb0ZoZ1dFREo3SUlvc3B6NllQQ3p0WnNNT25QdSs0eElCeVE5?=
- =?utf-8?B?Zkp5bzRzb2VOaW1TVFNNR3A1K1MybENtckZzSWR2TFN0SWYwOUdhbFZuTDFa?=
- =?utf-8?B?UGxZTEtwZFBPL0UvaWZMc01FZ3hvYmhaK2dHaXlQNVZzVUNhTGF2am5oY1V4?=
- =?utf-8?B?TDl0WVdzOUxiWmtIUHR5Y3EzcjVQQVlTQURHU0lOWlVTMjNLeitSK3Z2bnpB?=
- =?utf-8?B?U3l5WTkxUGFwb3RxRGk0OHFTUlFhK3djc0V1ZFRabWRvU1paR0FEWlRJd2pi?=
- =?utf-8?B?MElKYUIydWdpMlg5bDduYVBEZ3dQbzlJMVc4TndrdVIvbm1pOUZlQ2hNOGxI?=
- =?utf-8?B?eDlTc3NiOVFPVDVKbGcrcFRUNi9DYkRjVG5mRFRrUExvREV4Rkd2Z2VZVG1P?=
- =?utf-8?B?NG9ZS1JrM2ZuOVYxdndhS1AwNkhEQ2oxK3hWV2tiK3Zyc3piZ0MxUHh2cFQ1?=
- =?utf-8?B?RVBZWnlXVktDc3cySXN0QThnWUxadjgwMUtOTmJHTzhpVS9PUkVwWUsyL2pQ?=
- =?utf-8?B?TnVDUlNCZlowTWFQc3dhV3ZGWnQ0N3N6WllXS0dKNEtJc3VoMlpndURKdU9n?=
- =?utf-8?B?UkNFQTBzNFNqbngxQkVLbzU2L3Yxd2V0WFJlWTh4ZDV6bFBZNGtnU0ZBNUxm?=
- =?utf-8?B?eFE9PQ==?=
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by SJ0PR11MB4862.namprd11.prod.outlook.com (2603:10b6:a03:2de::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.23; Thu, 28 Aug
+ 2025 20:20:51 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::1a0f:84e3:d6cd:e51%4]) with mapi id 15.20.9052.019; Thu, 28 Aug 2025
+ 20:20:51 +0000
+Date: Thu, 28 Aug 2025 13:20:48 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Dugast,
+ Francois" <francois.dugast@intel.com>, "Mrozek, Michal"
+ <michal.mrozek@intel.com>
+Subject: Re: [PATCH 01/11] drm/xe: Stub out new pagefault layer
+Message-ID: <aLC6IKv+W3EC36qx@lstrano-desk.jf.intel.com>
+References: <20250806062242.1090416-1-matthew.brost@intel.com>
+ <20250806062242.1090416-2-matthew.brost@intel.com>
+ <afdc621f35edb08a9c161e4e08bfa5c74eecad1f.camel@intel.com>
+ <aJPq9KNMFVegkdkN@lstrano-desk.jf.intel.com>
+ <34a741ad4bf9765e3ca98eba65b1ebc4ee8730e4.camel@intel.com>
+ <aJTsFpVkoH77b6A0@lstrano-desk.jf.intel.com>
+ <c0a4dda50822a073b6685163f29df1e3e6129e92.camel@intel.com>
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <512230E8488EDE46BA09E84299AAE3B2@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c0a4dda50822a073b6685163f29df1e3e6129e92.camel@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0013.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::18) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SJ0PR11MB4862:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8357aa3e-317d-446e-f29f-08dde6706211
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZTk5T0pBUFhtRHB3Y3Y1cDJVUHMxRzhqYmpSSjNVS1FkdHJ2Y0dmUnhCcml1?=
+ =?utf-8?B?a01DbDRldUV1T0xic3c5T2VCckNOMWg4cjVzK3pITjdnMEZWNStWN1lRSXh5?=
+ =?utf-8?B?MWFQRUNXb0p4Z0dRRjJRZi81dC9qV2dCL2o2OXprN1J1S0pzdVFxdkk1VnRD?=
+ =?utf-8?B?aGZ3NWFNMnh4d2x6ZVZvZHZ5Y05ySmRWNzlLNmExR2VSYjZBdkhRa3d3Vjdu?=
+ =?utf-8?B?bnJrSDZNNTk1UVlSbTZNNmFwS0ZpZTBkenJDT0ltcndVT3ZKZ2dPMFBZalgv?=
+ =?utf-8?B?aGcrbmpGY05aZ2VIMEJ4cFZoZjJkaXU4MzBMZjF3WjVTSy9xOG5iMnEyOVYy?=
+ =?utf-8?B?RGFSUHlHTisyaHpMSGRsSkNJZ1RxenNmS0owcXBSUkVLd29GcjBPQnFSUFBU?=
+ =?utf-8?B?aGtZWnhCeUtRczVlV2VYMW1xM3NtSnlOUElaTStNY0NxUlJIMEY1ZnB3R3M1?=
+ =?utf-8?B?VnNUOHpVNlFheXJORHpCOEg3ZUk4WmZQVUgrQXlENE9XWjlDT05QeWZhejdr?=
+ =?utf-8?B?aEpzTUUxcEpGVFA5dkpMTHJ3WTM2WCtHaEdSMkliUWNNTjRRc1BLdk44YlJn?=
+ =?utf-8?B?emZRZzhGU2RMZTNHMzcxZklQdHR2c1dGaFlPKzZ4UnltbTZzeHlrZ1VTTG5J?=
+ =?utf-8?B?cFRWWkNabUgzVHhyRmwwd1V5SHBCb1dZUFNJVTk0Q3BPQnFRbW0xUXdMOGtM?=
+ =?utf-8?B?dzNRaW1ocWgxeXFzWHM0SDRyYkV5d2NVMllqdkhNL2FtdTg3OW5JblZMdlFV?=
+ =?utf-8?B?K0lYOERVSGJmT3duOEp4V0N6L2JhSUhOSDl4MkVzWHVxNXRXUk1tKzlta0E0?=
+ =?utf-8?B?djhmcXdoOUFMY2FiYmVtRDQrZVlYZzJPS2NzeGRUY0N6VU40TVRkbXFucnFv?=
+ =?utf-8?B?ek81aXRBYk15RTRuaUt2N3lrR1pXeFRjRG9mdHYwSDhXdXBFTGx5OUZFSEdJ?=
+ =?utf-8?B?ZlFONE9TMStqNEs5NnlKdWZsY1JQSjFiWE9zbmtIcHdrbVZvQm1CWVZDd2oz?=
+ =?utf-8?B?cFBkWXpSdFRWY1FEWDBYeVBRV1ZzSWY1N0gwNGNzb1FiNVh2ZXdGUCttSy9D?=
+ =?utf-8?B?RFhPcHhqSzB3OE1zeUpYenUweFluWFYxMlBqYzBZaUlXU0t2Sm5yemc0Tk9y?=
+ =?utf-8?B?RG5ZTllnOThSL3dEOUd1QWxUZEFZU1gvMm5wWHF1ZFZNVUtWOUNyOHBELzFN?=
+ =?utf-8?B?alNaa0MvMTJBcml5ek1BMmwzblBBS1ZibmdEcGREZ21FMlpZN2VWekNvc3Y1?=
+ =?utf-8?B?bktxQWNuZzlFdUFDWlduNTBRNWtyRGQrWW1BcUh4aUhGV1BwSCtBVzRmemly?=
+ =?utf-8?B?d0lCVGFyM2h1VlBKSlhKbitIZ3owWjNFNy95N2tLR2NiNmJDdkMydTVBY0dF?=
+ =?utf-8?B?dklFTStBcjNzMm9pdFM5VzlucHFZK2dCZkVteEdINUkvUUdYSTl5K3dnVE1F?=
+ =?utf-8?B?SVlyZ2FWaGlZeGNkYythazhHd2M4MUh4NnR4Ulk1cGF3anZ5ODc5ZjBldmZx?=
+ =?utf-8?B?dHJ0L0pUZkZKTmQ0dWNTNkdEVVV1eW1NOU5oMFFYVSszMkJDNnUvNlg2L1c3?=
+ =?utf-8?B?N3h4MjhpVHRta2JKTzRMZVlUOFB2L0lDL0Y3NVloSitlcCt6VDQ1Sm12SHJK?=
+ =?utf-8?B?dHlsQ3NWSW9uUHVhak9hQ2VqcDFHTVNxY1R0N3ZUb0d6Z3RLQjM2cHlwSnZp?=
+ =?utf-8?B?WEt2alNWRFBPc1p4N0dIQ09QWE9aUm5GSEc2UW5XYVI1Qy8wcHpIS3MzSmdL?=
+ =?utf-8?B?S2EySjNzYWZLWDJVekhvcVBpNzFzOEpaSElSL3lNWmhpTk1PSkVnOGhBT1hT?=
+ =?utf-8?Q?Aq7M9bziDXYwV0mWQk65NESqNfenBOOkC1hP4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RU1zeHp2MmRhaEkvTzJrWnFUc3ZMZWZDM25CRkVmM2JacHg0YUJCaEJkZkg2?=
+ =?utf-8?B?YUVpMFI4RGF6TjN2VkpQSnVtMlhzWkp0THZ4a3N6U29xblFsQWVvS2RhcE1u?=
+ =?utf-8?B?ZHg2NlZnTjBoSUNZc25BRUJkMWxCTzFYcVQ3Um5mM2JuNU4reEpLdFAxL3ND?=
+ =?utf-8?B?OHpkVmlUSlpaK2ZkTGpXeFMrNEhmYkxxbHdVYkk2ZWFjcWhjTmZYanNPdnlY?=
+ =?utf-8?B?bGM2b2N5bFdma0xyTHNYNW9Yd3lscGg2dlFGZDZybmVTVE9manVleGo0ZE0r?=
+ =?utf-8?B?MGZNbU9BSzFKUjRWSVJTcVBCdHljU1lCVmxYRzdFRHB3emJWRFBIbnltQWsr?=
+ =?utf-8?B?VUVyZUhYR3BHaWtWUkltbW4zZkhPa1lpL3FHdEJhUGJsc1hJUzNLV0lXbnVL?=
+ =?utf-8?B?Q3NUMGw4bEZmdEloc05ucjhhRExnZ2I5UXZzMFdjWW5LL3JqMjhJNkpxcWlB?=
+ =?utf-8?B?S3lxdUpKai9lTlplNWd5dHEvUDErcTFnZzZVSHo5WlJUb0RzRkl3SWpHQUFS?=
+ =?utf-8?B?K2s2ZHp1ajQwUERjWnN4eHlqSFhmRTdKUXdxL1BDSVNyVEpXaE1ZdGRPeU5l?=
+ =?utf-8?B?RFI2cGN1cEMwMkdjbTYwbUxGWVFyV3JmKzluMUc2UStqRE4vTSttOVJYN1Jk?=
+ =?utf-8?B?b1R4elZGdHlsUUxXcDA4Nkh1OTlxL3lMOUlzdEoxRHVFb2lHSEFQZlFvMDRG?=
+ =?utf-8?B?ejNWeFlRV1hqYmNHenhpdDdWcWVKVTV3ZTVOZ1c4WDIvWVcrL05iUUNTRFV1?=
+ =?utf-8?B?RXMyQWNKNzdRVUdmVFYrcThEY1lvMmNBWnRkdmZTeDFOb1U4TXgxYXVEdHND?=
+ =?utf-8?B?UFQ2cHJlYkI3VlRCSmlnTVlUdWNxeko2OC9PSEVqYUFwL1U1WHVVMWdMY0FB?=
+ =?utf-8?B?SFFBNGFRMXFQTkZRZTIvRkNiaEhGODU3WjEwbEIxK3lldy8xeG1LRDlVVlFT?=
+ =?utf-8?B?WW5HSkwzY054L25NMm0xMDVjVE9iaTlqbkxRdmhvU3FXa01RMVluQXJLU0Fp?=
+ =?utf-8?B?aHZVR2ltbmR3ZzZjdVNDb2hKNzBrWlMwenV0V0g4eUk4L0JYNDRCSHNQWklT?=
+ =?utf-8?B?NENiZGpmTDlWMlFBT09QRGpiNExhUGtSMDE3UHBXWGE4QjVyMDJpM0J1amcr?=
+ =?utf-8?B?WmNlUHU1UDU2ZVh5S3dKTklzLys0Z1lFREV2MXNzYzlCNHBNQng2L3NCN0xC?=
+ =?utf-8?B?ZHhhN2JMYVpvTUE2N0U3YW1NK3drbnVGWnc2SkVNbCszeHBUaVRNRXlwOVcv?=
+ =?utf-8?B?ZmVCdDZGYlF2T1FoWVhWTkMrNncxbkQ2OHRuTTRQUWgzSU1FYmlkWkJhVThT?=
+ =?utf-8?B?OXhWL0ZtamtSeHc1NVNsY0Q0Y2hBaGM5NGNmZkxYcEtlVmkyaG9UTjVjK2xD?=
+ =?utf-8?B?T0lGZWExWURZYzNjUlAxTHQ0MWxlSW4rVXV6cWtBVTJML0xvdExYeFJqQU9t?=
+ =?utf-8?B?QkYzbnlpaWRnYURxNXRNK1p3UnlvaGJlaWxGaU04RUwzV1Bxd2RNZDYxejBL?=
+ =?utf-8?B?ZVJ6MzZoUk9XREYxK2hibnVhUGZWb1BmMDlJTFV1OWFTWGNzNEdRdkFHSjlx?=
+ =?utf-8?B?Wk1hVGp0cldkT1JBN1ZoSStNOEc1eTV6OFNKcitvNW1kOE1VK3RQdlNSL1Bx?=
+ =?utf-8?B?WEhDck5DNGwzQnZ5czJjM1pEYm9YRGxpbDg4dUt4VmdhS2s4eWxPaWY1MGZT?=
+ =?utf-8?B?OWU2alY2OFpjREZMMzZkK3dCV0pmUjZWNTV0MXlJaDliZHdZS3VQd2tjOVZS?=
+ =?utf-8?B?U2JNTHh4UFQyVDU1UmV0S0RGMWFLdnFLMkM5aU5yUW9BaXh4R2g5QXJNOU1h?=
+ =?utf-8?B?VEZlUFZPUXFSdVM2TGVybitOMURqSkpEUDN6L2crSXVGazVCWkdBZlU2bTZh?=
+ =?utf-8?B?NmlnbXh3c0FwUUsweHNLVWZqWkw2Sy83VG9rRTdPVFhhWVVTZ2xJdmwzL095?=
+ =?utf-8?B?NHI3Z0Izam1DZldzbDZOcDRRTE9EeHZJNlpic1NtSkRoSXhRS2JZS1FEa040?=
+ =?utf-8?B?OW4rTmNkak14UFoyMFZiMlZWc1E2WkJRMjRJNjZadnUwdnVETjBLWnpZd1Bp?=
+ =?utf-8?B?SDJLcnJqbjJtNmZtZWZMNHh1bHk4L21hSDRpdERkOXJ1UThrc1duT2ZDUHg2?=
+ =?utf-8?B?MFN6MnFyM2lLdWI0ZGl3bmwwYWJpN240UDQ3cFB0azlXanduS3Z1ZG10QnFs?=
+ =?utf-8?B?anc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8357aa3e-317d-446e-f29f-08dde6706211
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cd3979b-187b-446d-741c-08dde6704204
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2025 20:19:57.4520 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nvyMUl/2OP6AnEFr0dh5MLcAgXr890HbmXkUZhstIvKYj7fn9uX2p3KdhkUbUg+O+G4hKDHgAQuuIZCuNvVNfYpXAE20MYCH7X6mFzgOHGY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9039
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2025 20:20:51.4603 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p0+UCn87Ef0LSz3H3gT3vhb94jMui0N5jXPmxze9KT+dU1f1QvGkyef7R3lM7TvcPfMq1R+nGgVVVAlkjJZWfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4862
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -205,147 +201,550 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDI1LTA4LTI4IGF0IDEzOjE0IC0wNzAwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOgo+
-IE9uIFRodSwgQXVnIDI4LCAyMDI1IGF0IDAyOjEwOjAyUE0gLTA2MDAsIFN1bW1lcnMsIFN0dWFy
-dCB3cm90ZToKPiA+IE9uIFR1ZSwgMjAyNS0wOC0wNSBhdCAyMzoyMiAtMDcwMCwgTWF0dGhldyBC
-cm9zdCB3cm90ZToKPiA+ID4gQ3JlYXRlIHBhZ2VmYXVsdCBxdWV1ZXMgYW5kIGluaXRpYWxpemUg
-dGhlbS4KPiA+ID4gCj4gPiA+IFNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcu
-YnJvc3RAaW50ZWwuY29tPgo+ID4gPiAtLS0KPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVf
-ZGV2aWNlLmPCoMKgwqDCoMKgwqAgfMKgIDUgKysKPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0veGUv
-eGVfZGV2aWNlX3R5cGVzLmggfMKgIDYgKysKPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVf
-cGFnZWZhdWx0LmPCoMKgwqAgfCA5Mwo+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKyst
-Cj4gPiA+IMKgMyBmaWxlcyBjaGFuZ2VkLCAxMDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMo
-LSkKPiA+ID4gCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNl
-LmMKPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlLmMKPiA+ID4gaW5kZXggNTdl
-ZGJjNjNkYTZmLi5jN2M4YWVlMDM4NDEgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9kZXZpY2UuYwo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNl
-LmMKPiA+ID4gQEAgLTUwLDYgKzUwLDcgQEAKPiA+ID4gwqAjaW5jbHVkZSAieGVfbnZtLmgiCj4g
-PiA+IMKgI2luY2x1ZGUgInhlX29hLmgiCj4gPiA+IMKgI2luY2x1ZGUgInhlX29ic2VydmF0aW9u
-LmgiCj4gPiA+ICsjaW5jbHVkZSAieGVfcGFnZWZhdWx0LmgiCj4gPiA+IMKgI2luY2x1ZGUgInhl
-X3BhdC5oIgo+ID4gPiDCoCNpbmNsdWRlICJ4ZV9wY29kZS5oIgo+ID4gPiDCoCNpbmNsdWRlICJ4
-ZV9wbS5oIgo+ID4gPiBAQCAtODkwLDYgKzg5MSwxMCBAQCBpbnQgeGVfZGV2aWNlX3Byb2JlKHN0
-cnVjdCB4ZV9kZXZpY2UgKnhlKQo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgaWYgKGVycikKPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gZXJyOwo+ID4gPiDCoAo+ID4g
-PiArwqDCoMKgwqDCoMKgwqBlcnIgPSB4ZV9wYWdlZmF1bHRfaW5pdCh4ZSk7Cj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoGlmIChlcnIpCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
-ZXR1cm4gZXJyOwo+ID4gPiArCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqB4ZV9udm1faW5pdCh4ZSk7
-Cj4gPiA+IMKgCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqBlcnIgPSB4ZV9oZWNpX2dzY19pbml0KHhl
-KTsKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMu
-aAo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaAo+ID4gPiBpbmRl
-eCAwMWU4ZmEwZDJmOWYuLjZhYTExOTAyNmNlOSAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX2RldmljZV90eXBlcy5oCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94
-ZS94ZV9kZXZpY2VfdHlwZXMuaAo+ID4gPiBAQCAtMTcsNiArMTcsNyBAQAo+ID4gPiDCoCNpbmNs
-dWRlICJ4ZV9sbXR0X3R5cGVzLmgiCj4gPiA+IMKgI2luY2x1ZGUgInhlX21lbWlycV90eXBlcy5o
-Igo+ID4gPiDCoCNpbmNsdWRlICJ4ZV9vYV90eXBlcy5oIgo+ID4gPiArI2luY2x1ZGUgInhlX3Bh
-Z2VmYXVsdF90eXBlcy5oIgo+ID4gPiDCoCNpbmNsdWRlICJ4ZV9wbGF0Zm9ybV90eXBlcy5oIgo+
-ID4gPiDCoCNpbmNsdWRlICJ4ZV9wbXVfdHlwZXMuaCIKPiA+ID4gwqAjaW5jbHVkZSAieGVfcHRf
-dHlwZXMuaCIKPiA+ID4gQEAgLTM5NCw2ICszOTUsMTEgQEAgc3RydWN0IHhlX2RldmljZSB7Cj4g
-PiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdTMyIG5leHRfYXNpZDsKPiA+ID4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKiogQHVzbS5sb2NrOiBwcm90ZWN0cyBV
-TSBzdGF0ZSAqLwo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBy
-d19zZW1hcGhvcmUgbG9jazsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8q
-KiBAdXNtLnBmX3dxOiBwYWdlIGZhdWx0IHdvcmsgcXVldWUsIHVuYm91bmQsCj4gPiA+IGhpZ2gK
-PiA+ID4gcHJpb3JpdHkgKi8KPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0
-cnVjdCB3b3JrcXVldWVfc3RydWN0ICpwZl93cTsKPiA+ID4gKyNkZWZpbmUgWEVfUEFHRUZBVUxU
-X1FVRVVFX0NPVU5UwqDCoMKgwqDCoMKgwqA0Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAvKiogQHBmX3F1ZXVlOiBQYWdlIGZhdWx0IHF1ZXVlcyAqLwo+ID4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX3BhZ2VmYXVsdF9xdWV1ZQo+ID4gPiBw
-Zl9xdWV1ZVtYRV9QQUdFRkFVTFRfUVVFVUVfQ09VTlRdOwo+ID4gPiDCoMKgwqDCoMKgwqDCoMKg
-fSB1c207Cj4gPiA+IMKgCj4gPiA+IMKgwqDCoMKgwqDCoMKgwqAvKiogQHBpbm5lZDogcGlubmVk
-IEJPIHN0YXRlICovCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGFn
-ZWZhdWx0LmMKPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGFnZWZhdWx0LmMKPiA+ID4g
-aW5kZXggM2NlMGU4ZDc0YjlkLi4xNDMwNGM0MWViMjMgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS94ZS94ZV9wYWdlZmF1bHQuYwo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-eGUveGVfcGFnZWZhdWx0LmMKPiA+ID4gQEAgLTMsNiArMywxMCBAQAo+ID4gPiDCoCAqIENvcHly
-aWdodCDCqSAyMDI1IEludGVsIENvcnBvcmF0aW9uCj4gPiA+IMKgICovCj4gPiA+IMKgCj4gPiA+
-ICsjaW5jbHVkZSA8ZHJtL2RybV9tYW5hZ2VkLmg+Cj4gPiA+ICsKPiA+ID4gKyNpbmNsdWRlICJ4
-ZV9kZXZpY2UuaCIKPiA+ID4gKyNpbmNsdWRlICJ4ZV9ndF90eXBlcy5oIgo+ID4gPiDCoCNpbmNs
-dWRlICJ4ZV9wYWdlZmF1bHQuaCIKPiA+ID4gwqAjaW5jbHVkZSAieGVfcGFnZWZhdWx0X3R5cGVz
-LmgiCj4gPiA+IMKgCj4gPiA+IEBAIC0xOSw2ICsyMyw3MSBAQAo+ID4gPiDCoCAqIHdpdGggYSBz
-aW5nbGUgc2hhcmVkIGNvbnN1bWVyLgo+ID4gPiDCoCAqLwo+ID4gPiDCoAo+ID4gPiArc3RhdGlj
-IGludCB4ZV9wYWdlZmF1bHRfZW50cnlfc2l6ZSh2b2lkKQo+ID4gPiArewo+ID4gPiArwqDCoMKg
-wqDCoMKgwqByZXR1cm4gcm91bmR1cF9wb3dfb2ZfdHdvKHNpemVvZihzdHJ1Y3QgeGVfcGFnZWZh
-dWx0KSk7Cj4gPiAKPiA+IEFuZCBoZXJlLCBpdCB3b3VsZCBiZSBuaWNlIGlmIHlvdSBjb3VsZCBh
-ZGQgYSBicmllZiBjb21tZW50IHRoYXQKPiA+IHRoaXMKPiA+IGFzc3VtZXMgdGhlIHNpemUgb2Yg
-c3RydWN0IHhlX3BhZ2VmYXVsdCBhbGlnbnMgdG8gdGhlIGhhcmR3YXJlCj4gPiByZXF1aXJlbWVu
-dHMuCj4gPiAKPiAKPiBJdCBpcyBhY3R1YWxseSBub3QgYSBoYXJkd2FyZSB0aGluZywgaXQgdGhl
-IHBhZ2VmYXVsdCBxdWV1ZQo+IG1hbmFnZW1lbnQKPiBjb2RlIChzb2Z0d2FyZSkgd2hlcmUgdGhl
-IGxvZ2ljIGJyZWFrcyBpZiB3ZSBhcmUgbm90IGRvaW5nIGV2ZXJ5dGhpbmcKPiBvbgo+IHBvdzIg
-Ym91bmRhcmllcy4gT2ZjLCB0aGlzIGlzbid0IGEgc3RyaWNrIHJlcXVpcmVtZW50LCByYXRoZXIg
-aXQganVzdAo+IG1ha2VzIHRoZSBjb2RlIHNpbXBsaWVyLgo+IAo+IEkgY2FuIGFkZCBhIGNvbW1l
-bnQgYXJvdW5kIHRoaXMuCgpPayBnb3QgaXQuIFllYWggdGhhdCB3b3VsZCBiZSBoZWxwZnVsIGhl
-cmUgSSBhZ3JlZS4KClRoYW5rcywKU3R1YXJ0Cgo+IAo+IE1hdHQKPiAKPiA+IFRoYW5rcywKPiA+
-IFN0dWFydAo+ID4gCj4gPiA+ICt9Cj4gPiA+ICsKPiA+ID4gK3N0YXRpYyB2b2lkIHhlX3BhZ2Vm
-YXVsdF9xdWV1ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqdykKPiA+ID4gK3sKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgLyogVE9ETzogSW1wbGVtZW50ICovCj4gPiA+ICt9Cj4gPiA+ICsKPiA+ID4g
-K3N0YXRpYyBpbnQgeGVfcGFnZWZhdWx0X3F1ZXVlX2luaXQoc3RydWN0IHhlX2RldmljZSAqeGUs
-Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHhlX3BhZ2VmYXVsdF9xdWV1ZQo+ID4gPiAqcGZfcXVl
-dWUpCj4gPiA+ICt7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCB4ZV9ndCAqZ3Q7Cj4gPiA+
-ICvCoMKgwqDCoMKgwqDCoGludCB0b3RhbF9udW1fZXVzID0gMDsKPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgdTggaWQ7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgZm9yX2VhY2hfZ3QoZ3QsIHhl
-LCBpZCkgewo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfZHNzX21hc2tf
-dCBhbGxfZHNzOwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50IG51bV9k
-c3MsIG51bV9ldXM7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGJpdG1hcF9vcihhbGxfZHNzLCBndC0+ZnVzZV90b3BvLmdfZHNzX21hc2ssCj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ3QtPmZ1c2VfdG9w
-by5jX2Rzc19tYXNrLAo+ID4gPiBYRV9NQVhfRFNTX0ZVU0VfQklUUyk7Cj4gPiA+ICsKPiA+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG51bV9kc3MgPSBiaXRtYXBfd2VpZ2h0KGFs
-bF9kc3MsCj4gPiA+IFhFX01BWF9EU1NfRlVTRV9CSVRTKTsKPiA+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoG51bV9ldXMgPSBiaXRtYXBfd2VpZ2h0KGd0LQo+ID4gPiA+IGZ1c2Vf
-dG9wby5ldV9tYXNrX3Blcl9kc3MsCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBYRV9NQVhf
-RVVfRlVTRV9CSVRTKSAqCj4gPiA+IG51bV9kc3M7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoHRvdGFsX251bV9ldXMgKz0gbnVtX2V1czsKPiA+ID4gK8KgwqDC
-oMKgwqDCoMKgfQo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDCoHhlX2Fzc2VydCh4ZSwgdG90
-YWxfbnVtX2V1cyk7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgLyoKPiA+ID4gK8KgwqDC
-oMKgwqDCoMKgICogdXNlciBjYW4gaXNzdWUgc2VwYXJhdGUgcGFnZSBmYXVsdHMgcGVyIEVVIGFu
-ZCBwZXIgQ1MKPiA+ID4gK8KgwqDCoMKgwqDCoMKgICoKPiA+ID4gK8KgwqDCoMKgwqDCoMKgICog
-WFhYOiBNdWx0aXBsaWVyIHJlcXVpcmVkIGFzIGNvbXB1dGUgVU1EIGFyZSBnZXR0aW5nIFBGCj4g
-PiA+IHF1ZXVlIGVycm9ycwo+ID4gPiArwqDCoMKgwqDCoMKgwqAgKiB3aXRob3V0IGl0LiBGb2xs
-b3cgb24gd2h5IHRoaXMgbXVsdGlwbGllciBpcyByZXF1aXJlZC4KPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgICovCj4gPiA+ICsjZGVmaW5lIFBGX01VTFRJUExJRVLCoMKgOAo+ID4gPiArwqDCoMKgwqDC
-oMKgwqBwZl9xdWV1ZS0+c2l6ZSA9ICh0b3RhbF9udW1fZXVzICsgWEVfTlVNX0hXX0VOR0lORVMp
-ICoKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlX3BhZ2VmYXVsdF9lbnRy
-eV9zaXplKCkgKiBQRl9NVUxUSVBMSUVSOwo+ID4gPiArwqDCoMKgwqDCoMKgwqBwZl9xdWV1ZS0+
-c2l6ZSA9IHJvdW5kdXBfcG93X29mX3R3byhwZl9xdWV1ZS0+c2l6ZSk7Cj4gPiA+ICsjdW5kZWYg
-UEZfTVVMVElQTElFUgo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGRybV9kYmcoJnhlLT5k
-cm0sICJ4ZV9wYWdlZmF1bHRfZW50cnlfc2l6ZT0lZCwKPiA+ID4gdG90YWxfbnVtX2V1cz0lZCwg
-cGZfcXVldWUtPnNpemU9JXUiLAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-eGVfcGFnZWZhdWx0X2VudHJ5X3NpemUoKSwgdG90YWxfbnVtX2V1cywKPiA+ID4gcGZfcXVldWUt
-Cj4gPiA+ID4gc2l6ZSk7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgcGZfcXVldWUtPmRh
-dGEgPSBkZXZtX2t6YWxsb2MoeGUtPmRybS5kZXYsIHBmX3F1ZXVlLQo+ID4gPiA+c2l6ZSwKPiA+
-ID4gR0ZQX0tFUk5FTCk7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGlmICghcGZfcXVldWUtPmRhdGEp
-Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVOT01FTTsKPiA+
-ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqBzcGluX2xvY2tfaW5pdCgmcGZfcXVldWUtPmxvY2sp
-Owo+ID4gPiArwqDCoMKgwqDCoMKgwqBJTklUX1dPUksoJnBmX3F1ZXVlLT53b3JrZXIsIHhlX3Bh
-Z2VmYXVsdF9xdWV1ZV93b3JrKTsKPiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4g
-MDsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiArc3RhdGljIHZvaWQgeGVfcGFnZWZhdWx0X2Zpbmko
-dm9pZCAqYXJnKQo+ID4gPiArewo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgeGVfZGV2aWNl
-ICp4ZSA9IGFyZzsKPiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqBkZXN0cm95X3dvcmtxdWV1
-ZSh4ZS0+dXNtLnBmX3dxKTsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiDCoC8qKgo+ID4gPiDCoCAq
-IHhlX3BhZ2VmYXVsdF9pbml0KCkgLSBQYWdlIGZhdWx0IGluaXQKPiA+ID4gwqAgKiBAeGU6IHhl
-IGRldmljZSBpbnN0YW5jZQo+ID4gPiBAQCAtMjksOCArOTgsMjggQEAKPiA+ID4gwqAgKi8KPiA+
-ID4gwqBpbnQgeGVfcGFnZWZhdWx0X2luaXQoc3RydWN0IHhlX2RldmljZSAqeGUpCj4gPiA+IMKg
-ewo+ID4gPiAtwqDCoMKgwqDCoMKgwqAvKiBUT0RPIC0gaW1wbGVtZW50ICovCj4gPiA+IC3CoMKg
-wqDCoMKgwqDCoHJldHVybiAwOwo+ID4gPiArwqDCoMKgwqDCoMKgwqBpbnQgZXJyLCBpOwo+ID4g
-PiArCj4gPiA+ICvCoMKgwqDCoMKgwqDCoGlmICgheGUtPmluZm8uaGFzX3VzbSkKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+ID4gPiArCj4gPiA+ICvCoMKg
-wqDCoMKgwqDCoHhlLT51c20ucGZfd3EgPQo+ID4gPiBhbGxvY193b3JrcXVldWUoInhlX3BhZ2Vf
-ZmF1bHRfd29ya19xdWV1ZSIsCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBXUV9VTkJPVU5E
-IHwgV1FfSElHSFBSSSwKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoFhFX1BBR0VGQVVMVF9R
-VUVVRV9DT1VOVCkKPiA+ID4gOwo+ID4gPiArwqDCoMKgwqDCoMKgwqBpZiAoIXhlLT51c20ucGZf
-d3EpCj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVOT01FTTsK
-PiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqBmb3IgKGkgPSAwOyBpIDwgWEVfUEFHRUZBVUxU
-X1FVRVVFX0NPVU5UOyArK2kpIHsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGVyciA9IHhlX3BhZ2VmYXVsdF9xdWV1ZV9pbml0KHhlLCB4ZS0KPiA+ID4gPnVzbS5wZl9xdWV1
-ZSArCj4gPiA+IGkpOwo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKGVy
-cikKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBn
-b3RvIGVycl9vdXQ7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoH0KPiA+ID4gKwo+ID4gPiArwqDCoMKg
-wqDCoMKgwqByZXR1cm4gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KHhlLT5kcm0uZGV2LAo+ID4g
-PiB4ZV9wYWdlZmF1bHRfZmluaSwgeGUpOwo+ID4gPiArCj4gPiA+ICtlcnJfb3V0Ogo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqBkZXN0cm95X3dvcmtxdWV1ZSh4ZS0+dXNtLnBmX3dxKTsKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgcmV0dXJuIGVycjsKPiA+ID4gwqB9Cj4gPiA+IMKgCj4gPiA+IMKgLyoqCj4g
-PiAKCg==
+On Thu, Aug 28, 2025 at 02:18:30PM -0600, Summers, Stuart wrote:
+> On Thu, 2025-08-07 at 11:10 -0700, Matthew Brost wrote:
+> > On Thu, Aug 07, 2025 at 11:20:06AM -0600, Summers, Stuart wrote:
+> > > On Wed, 2025-08-06 at 16:53 -0700, Matthew Brost wrote:
+> > > > On Wed, Aug 06, 2025 at 05:01:12PM -0600, Summers, Stuart wrote:
+> > > > > Few basic comments below to start. I personally would rather
+> > > > > this
+> > > > > be
+> > > > > brought over from the existing fault handler rather than
+> > > > > creating
+> > > > > something entirely new and then clobbering the older stuff -
+> > > > > just
+> > > > > so
+> > > > > the review of message format requests/replies is easier to
+> > > > > review
+> > > > > and
+> > > > > where we're deviating from the existing external interfaces
+> > > > > (HW/FW/GuC/etc). You already have this here though so not a
+> > > > > huge
+> > > > > deal.
+> > > > > I think most of this was in the giant blob of patches that got
+> > > > > merged
+> > > > > with the initial driver, so I guess the counter argument is we
+> > > > > can
+> > > > > have
+> > > > > easy to reference historical reviews now.
+> > > > > 
+> > > > 
+> > > > Yes, page fault code is largely just a big blob from the original
+> > > > Xe
+> > > > patch that wasn't the most well thought out code. We still have
+> > > > that
+> > > > history in the tree, just git blame won't work, so you'd need to
+> > > > know
+> > > > where to look if want that.
+> > > > 
+> > > > I don't think there is a great way to pull this over, unless
+> > > > patches
+> > > > 2-7
+> > > > are squashed into a single patch + a couple of 'git mv' are used.
+> > > 
+> > > No definitely don't think that's worth it. Let's just review as-is.
+> > > 
+> > > > 
+> > > > > On Tue, 2025-08-05 at 23:22 -0700, Matthew Brost wrote:
+> > > > > > Stub out the new page fault layer and add kernel
+> > > > > > documentation.
+> > > > > > This
+> > > > > > is
+> > > > > > intended as a replacement for the GT page fault layer,
+> > > > > > enabling
+> > > > > > multiple
+> > > > > > producers to hook into a shared page fault consumer
+> > > > > > interface.
+> > > > > > 
+> > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/xe/Makefile             |   1 +
+> > > > > >  drivers/gpu/drm/xe/xe_pagefault.c       |  63 ++++++++++++
+> > > > > >  drivers/gpu/drm/xe/xe_pagefault.h       |  19 ++++
+> > > > > >  drivers/gpu/drm/xe/xe_pagefault_types.h | 125
+> > > > > > ++++++++++++++++++++++++
+> > > > > >  4 files changed, 208 insertions(+)
+> > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.c
+> > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault.h
+> > > > > >  create mode 100644 drivers/gpu/drm/xe/xe_pagefault_types.h
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/xe/Makefile
+> > > > > > b/drivers/gpu/drm/xe/Makefile
+> > > > > > index 8e0c3412a757..6fbebafe79c9 100644
+> > > > > > --- a/drivers/gpu/drm/xe/Makefile
+> > > > > > +++ b/drivers/gpu/drm/xe/Makefile
+> > > > > > @@ -93,6 +93,7 @@ xe-y += xe_bb.o \
+> > > > > >         xe_nvm.o \
+> > > > > >         xe_oa.o \
+> > > > > >         xe_observation.o \
+> > > > > > +       xe_pagefault.o \
+> > > > > >         xe_pat.o \
+> > > > > >         xe_pci.o \
+> > > > > >         xe_pcode.o \
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c
+> > > > > > b/drivers/gpu/drm/xe/xe_pagefault.c
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..3ce0e8d74b9d
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> > > > > > @@ -0,0 +1,63 @@
+> > > > > > +// SPDX-License-Identifier: MIT
+> > > > > > +/*
+> > > > > > + * Copyright © 2025 Intel Corporation
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include "xe_pagefault.h"
+> > > > > > +#include "xe_pagefault_types.h"
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * DOC: Xe page faults
+> > > > > > + *
+> > > > > > + * Xe page faults are handled in two layers. The producer
+> > > > > > layer
+> > > > > > interacts with
+> > > > > > + * hardware or firmware to receive and parse faults into
+> > > > > > struct
+> > > > > > xe_pagefault,
+> > > > > > + * then forwards them to the consumer. The consumer layer
+> > > > > > services
+> > > > > > the faults
+> > > > > > + * (e.g., memory migration, page table updates) and
+> > > > > > acknowledges
+> > > > > > the
+> > > > > > result back
+> > > > > > + * to the producer, which then forwards the results to the
+> > > > > > hardware
+> > > > > > or firmware.
+> > > > > > + * The consumer uses a page fault queue sized to absorb all
+> > > > > > potential faults and
+> > > > > > + * a multi-threaded worker to process them. Multiple
+> > > > > > producers
+> > > > > > are
+> > > > > > supported,
+> > > > > > + * with a single shared consumer.
+> > > > > > + */
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * xe_pagefault_init() - Page fault init
+> > > > > > + * @xe: xe device instance
+> > > > > > + *
+> > > > > > + * Initialize Xe page fault state. Must be done after
+> > > > > > reading
+> > > > > > fuses.
+> > > > > > + *
+> > > > > > + * Return: 0 on Success, errno on failure
+> > > > > > + */
+> > > > > > +int xe_pagefault_init(struct xe_device *xe)
+> > > > > > +{
+> > > > > > +       /* TODO - implement */
+> > > > > > +       return 0;
+> > > > > > +}
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * xe_pagefault_reset() - Page fault reset for a GT
+> > > > > > + * @xe: xe device instance
+> > > > > > + * @gt: GT being reset
+> > > > > > + *
+> > > > > > + * Reset the Xe page fault state for a GT; that is, squash
+> > > > > > any
+> > > > > > pending faults on
+> > > > > > + * the GT.
+> > > > > > + */
+> > > > > > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt
+> > > > > > *gt)
+> > > > > > +{
+> > > > > > +       /* TODO - implement */
+> > > > > > +}
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * xe_pagefault_handler() - Page fault handler
+> > > > > > + * @xe: xe device instance
+> > > > > > + * @pf: Page fault
+> > > > > > + *
+> > > > > > + * Sink the page fault to a queue (i.e., a memory buffer)
+> > > > > > and
+> > > > > > queue
+> > > > > > a worker to
+> > > > > > + * service it. Safe to be called from IRQ or process
+> > > > > > context.
+> > > > > > Reclaim safe.
+> > > > > > + *
+> > > > > > + * Return: 0 on success, errno on failure
+> > > > > > + */
+> > > > > > +int xe_pagefault_handler(struct xe_device *xe, struct
+> > > > > > xe_pagefault
+> > > > > > *pf)
+> > > > > > +{
+> > > > > > +       /* TODO - implement */
+> > > > > > +       return 0;
+> > > > > > +}
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_pagefault.h
+> > > > > > b/drivers/gpu/drm/xe/xe_pagefault.h
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..bd0cdf9ed37f
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_pagefault.h
+> > > > > > @@ -0,0 +1,19 @@
+> > > > > > +/* SPDX-License-Identifier: MIT */
+> > > > > > +/*
+> > > > > > + * Copyright © 2025 Intel Corporation
+> > > > > > + */
+> > > > > > +
+> > > > > > +#ifndef _XE_PAGEFAULT_H_
+> > > > > > +#define _XE_PAGEFAULT_H_
+> > > > > > +
+> > > > > > +struct xe_device;
+> > > > > > +struct xe_gt;
+> > > > > > +struct xe_pagefault;
+> > > > > > +
+> > > > > > +int xe_pagefault_init(struct xe_device *xe);
+> > > > > > +
+> > > > > > +void xe_pagefault_reset(struct xe_device *xe, struct xe_gt
+> > > > > > *gt);
+> > > > > > +
+> > > > > > +int xe_pagefault_handler(struct xe_device *xe, struct
+> > > > > > xe_pagefault
+> > > > > > *pf);
+> > > > > > +
+> > > > > > +#endif
+> > > > > > diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h
+> > > > > > b/drivers/gpu/drm/xe/xe_pagefault_types.h
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..fcff84f93dd8
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
+> > > > > > @@ -0,0 +1,125 @@
+> > > > > > +/* SPDX-License-Identifier: MIT */
+> > > > > > +/*
+> > > > > > + * Copyright © 2025 Intel Corporation
+> > > > > > + */
+> > > > > > +
+> > > > > > +#ifndef _XE_PAGEFAULT_TYPES_H_
+> > > > > > +#define _XE_PAGEFAULT_TYPES_H_
+> > > > > > +
+> > > > > > +#include <linux/workqueue.h>
+> > > > > > +
+> > > > > > +struct xe_pagefault;
+> > > > > > +struct xe_gt;
+> > > > > 
+> > > > > Nit: Maybe reverse these structs to be in alphabetical order
+> > > > > 
+> > > > 
+> > > > Yes, that is the preferred style. Will fix.
+> > > > 
+> > > > > > +
+> > > > > > +/** enum xe_pagefault_access_type - Xe page fault access
+> > > > > > type */
+> > > > > > +enum xe_pagefault_access_type {
+> > > > > > +       /** @XE_PAGEFAULT_ACCESS_TYPE_READ: Read access type
+> > > > > > */
+> > > > > > +       XE_PAGEFAULT_ACCESS_TYPE_READ   = 0,
+> > > > > > +       /** @XE_PAGEFAULT_ACCESS_TYPE_WRITE: Write access
+> > > > > > type */
+> > > > > > +       XE_PAGEFAULT_ACCESS_TYPE_WRITE  = 1,
+> > > > > > +       /** @XE_PAGEFAULT_ACCESS_TYPE_ATOMIC: Atomic access
+> > > > > > type
+> > > > > > */
+> > > > > > +       XE_PAGEFAULT_ACCESS_TYPE_ATOMIC = 2,
+> > > > > > +};
+> > > > > > +
+> > > > > > +/** enum xe_pagefault_type - Xe page fault type */
+> > > > > > +enum xe_pagefault_type {
+> > > > > > +       /** @XE_PAGEFAULT_TYPE_NOT_PRESENT: Not present */
+> > > > > > +       XE_PAGEFAULT_TYPE_NOT_PRESENT           = 0,
+> > > > > > +       /** @XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION: Write
+> > > > > > access
+> > > > > > violation */
+> > > > > > +       XE_PAGEFAULT_WRITE_ACCESS_VIOLATION     = 1,
+> > > > > > +       /** @XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION: Atomic
+> > > > > > access
+> > > > > > violation */
+> > > > > 
+> > > > > XE_PAGEFAULT_TYPE_WRITE_ACCESS_VIOLATION ->
+> > > > > XE_PAGEFAULT_ACCESS_TYPE_ATOMIC
+> > > > > 
+> > > > 
+> > > > The intended prefix here is 'XE_PAGEFAULT_TYPE_' to normalize the
+> > > > naming
+> > > > with 'enum xe_pagefault_type'.
+> > > 
+> > > Ah sorry you're right. I also should have been more specific that I
+> > > meant this should be ATOMIC access vs WRITE access, so:
+> > > XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION
+> > > 
+> > > > 
+> > > > > > +       XE_PAGEFAULT_ATOMIC_ACCESS_VIOLATION    = 2,
+> > > > > > +};
+> > > > > > +
+> > > > > > +/** struct xe_pagefault_ops - Xe pagefault ops (producer) */
+> > > > > > +struct xe_pagefault_ops {
+> > > > > > +       /**
+> > > > > > +        * @ack_fault: Ack fault
+> > > > > > +        * @pf: Page fault
+> > > > > > +        * @err: Error state of fault
+> > > > > > +        *
+> > > > > > +        * Page fault producer receives acknowledgment from
+> > > > > > the
+> > > > > > consumer and
+> > > > > > +        * sends the result to the HW/FW interface.
+> > > > > > +        */
+> > > > > > +       void (*ack_fault)(struct xe_pagefault *pf, int err);
+> > > > > > +};
+> > > > > > +
+> > > > > > +/**
+> > > > > > + * struct xe_pagefault - Xe page fault
+> > > > > > + *
+> > > > > > + * Generic page fault structure for communication between
+> > > > > > producer
+> > > > > > and consumer.
+> > > > > > + * Carefully sized to be 64 bytes.
+> > > > > > + */
+> > > > > > +struct xe_pagefault {
+> > > > > > +       /**
+> > > > > > +        * @gt: GT of fault
+> > > > > > +        *
+> > > > > > +        * XXX: We may want to decouple the GT from
+> > > > > > individual
+> > > > > > faults, as it's
+> > > > > > +        * unclear whether future platforms will always have
+> > > > > > a GT
+> > > > > > for
+> > > > > > all page
+> > > > > > +        * fault producers. Internally, the GT is used for
+> > > > > > stats,
+> > > > > > identifying
+> > > > > > +        * the appropriate VRAM region, and locating the
+> > > > > > migration
+> > > > > > queue.
+> > > > > > +        * Leaving this as-is for now, but we can revisit
+> > > > > > later
+> > > > > > to
+> > > > > > see if we
+> > > > > > +        * can convert it to use the Xe device pointer
+> > > > > > instead.
+> > > > > > +        */
+> > > > > 
+> > > > > What if instead of assuming the GT stays static and we
+> > > > > eventually
+> > > > > remove if we have some new HW abstraction layer that isn't a GT
+> > > > > but
+> > > > > still uses the page fault, we instead push to have said
+> > > > > theoretical
+> > > > > abstraction layer overload the GT here like we're doing with
+> > > > > primary
+> > > > > and media today. Then we can keep the interface here simple and
+> > > > > just
+> > > > > leave this in there, or change in the future if that doesn't
+> > > > > make
+> > > > > sense
+> > > > > without the suggestive comment?
+> > > > > 
+> > > > 
+> > > > I can remove this comment, as it adds some confusion. Hopefully,
+> > > > we
+> > > > always have a GT. I was just speculating about future cases where
+> > > > we
+> > > > might not have one. From a purely interface perspective, it would
+> > > > be
+> > > > ideal to completely decouple the GT here.
+> > > >  
+> > > > > > +       struct xe_gt *gt;
+> > > > > > +       /**
+> > > > > > +        * @consumer: State for the software handling the
+> > > > > > fault.
+> > > > > > Populated by
+> > > > > > +        * the producer and may be modified by the consumer
+> > > > > > to
+> > > > > > communicate
+> > > > > > +        * information back to the producer upon fault
+> > > > > > acknowledgment.
+> > > > > > +        */
+> > > > > > +       struct {
+> > > > > > +               /** @consumer.page_addr: address of page
+> > > > > > fault */
+> > > > > > +               u64 page_addr;
+> > > > > > +               /** @consumer.asid: address space ID */
+> > > > > > +               u32 asid;
+> > > > > 
+> > > > > Can we just call this an ID instead of a pasid or asid? I.e.
+> > > > > the ID
+> > > > > could be anything, not strictly process-bound.
+> > > > > 
+> > > > 
+> > > > I think the idea here is that this serves as the ID for our
+> > > > reverse
+> > > > VM
+> > > > lookup mechanism in the KMD. We call it ASID throughout the
+> > > > codebase
+> > > > today, so we’re stuck with the name—though it may or may not have
+> > > > any
+> > > > actual meaning in hardware, depending on the producer. For
+> > > > example,
+> > > > if
+> > > > the producer receives a fault based on a queue ID, we’d look up
+> > > > the
+> > > > queue and then pass in q->vm.asid.
+> > > > 
+> > > > We could even have the producer look up the VM directly, if
+> > > > preferred,
+> > > > and just pass that over. However, that would require a few more
+> > > > bits
+> > > > here and might introduce lifetime issues—for example, we’d have
+> > > > to
+> > > > refcount the VM.
+> > > 
+> > > Yeah I mean some of those problems we can solve if they come up
+> > > later.
+> > > Just thinking having something more generic here would be nice. But
+> > > I
+> > > agree on the cross-KMD usage. We can keep this and change it more
+> > > broadly if that makes sense later.
+> > > 
+> > 
+> > I think the point here is we are always going to have a VM which is
+> > required by the consumer to service the fault, the producer side
+> > needs
+> > parse the fault and figure out a known value in the KMD which
+> > corresponds to a VM and pass it over. We call this value asid today
+> > (also the name of hardware interface + what we program into the LRC)
+> > but
+> > could rename this everywhere in KMD if that makes sense. e.g.,
+> > kmd_vm_id (vm_id is a user space name / value which means something
+> > different).
+> 
+> Ok for now no problem. I agree this is consistent in the driver anyway
+> so better to make a more holistic change if we do that. I do like the
+> idea of having this more generic to allow all types of fault
+> originators. We can look later though.
+> 
+> > 
+> > > > 
+> > > > > > +               /** @consumer.access_type: access type */
+> > > > > > +               u8 access_type;
+> > > > > > +               /** @consumer.fault_type: fault type */
+> > > > > > +               u8 fault_type;
+> > > > > > +#define XE_PAGEFAULT_LEVEL_NACK                0xff    /*
+> > > > > > Producer
+> > > > > > indicates nack fault */
+> > > > > > +               /** @consumer.fault_level: fault level */
+> > > > > > +               u8 fault_level;
+> > > > > > +               /** @consumer.engine_class: engine class */
+> > > > > > +               u8 engine_class;
+> > > > > > +               /** consumer.reserved: reserved bits for
+> > > > > > future
+> > > > > > expansion */
+> > > > > > +               u64 reserved;
+> > > > > 
+> > > > > What about engine instance? Or is that going to overload
+> > > > > reserved
+> > > > > here?
+> > > > > 
+> > > > 
+> > > > reserved could be used to include 'engine instance' if required,
+> > > > is
+> > > > there for future expansion and also to have structure sized to 64
+> > > > bytes.
+> > > > 
+> > > > I include fault_level, engine_class as I though both were used by
+> > > > [1]
+> > > > but now that I looked again only fault level is used so I guess
+> > > > engine_class can be pulled out too unless we want to keep for the
+> > > > only
+> > > > place in which it is used (debug messages).
+> > > 
+> > > I think today hardware/GuC provides both engine class and engine
+> > > instance which is why I mentioned. We can ignore those fields if we
+> > > don't feel they are valuable/relevant, but at least today we are
+> > > reading those and printing them out.
+> > > 
+> > 
+> > Yes, the debug message drops engine instance due to not passing this
+> > value over. I think that is ok, engine class typically all we care
+> > about
+> > anyways.
+> 
+> I'd actually disagree here. I think it is valueable to print out all of
+> the fields we receive from hardware for debug puroses - i.e. if we get
+> a fault to a non-existant engine instance or to the wrong one, it could
+> help us narrow down issues in that area. At the very least we should
+> have a way to print and decode these even if we only actually store the
+> class.
+> 
+
+Ok, since we have the extra bits, I'll include bring this back in and
+ensure we retain all information in the current debug message.
+
+Matt 
+
+> Thanks,
+> Stuart
+> 
+> > 
+> > Matt
+> > 
+> > > Thanks,
+> > > Stuart
+> > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > [1] https://patchwork.freedesktop.org/series/148727/
+> > > > 
+> > > > > Thanks,
+> > > > > Stuart
+> > > > > 
+> > > > > > +       } consumer;
+> > > > > > +       /**
+> > > > > > +        * @producer: State for the producer (i.e., HW/FW
+> > > > > > interface).
+> > > > > > Populated
+> > > > > > +        * by the producer and should not be modified—or even
+> > > > > > inspected—by the
+> > > > > > +        * consumer, except for calling operations.
+> > > > > > +        */
+> > > > > > +       struct {
+> > > > > > +               /** @producer.private: private pointer */
+> > > > > > +               void *private;
+> > > > > > +               /** @producer.ops: operations */
+> > > > > > +               const struct xe_pagefault_ops *ops;
+> > > > > > +#define XE_PAGEFAULT_PRODUCER_MSG_LEN_DW       4
+> > > > > > +               /**
+> > > > > > +                * producer.msg: page fault message, used by
+> > > > > > producer
+> > > > > > in fault
+> > > > > > +                * acknowledgement to formulate response to
+> > > > > > HW/FW
+> > > > > > interface.
+> > > > > > +                */
+> > > > > > +               u32 msg[XE_PAGEFAULT_PRODUCER_MSG_LEN_DW];
+> > > > > > +       } producer;
+> > > > > > +};
+> > > > > > +
+> > > > > > +/** struct xe_pagefault_queue: Xe pagefault queue (consumer)
+> > > > > > */
+> > > > > > +struct xe_pagefault_queue {
+> > > > > > +       /**
+> > > > > > +        * @data: Data in queue containing struct
+> > > > > > xe_pagefault,
+> > > > > > protected by
+> > > > > > +        * @lock
+> > > > > > +        */
+> > > > > > +       void *data;
+> > > > > > +       /** @size: Size of queue in bytes */
+> > > > > > +       u32 size;
+> > > > > > +       /** @head: Head pointer in bytes, moved by producer,
+> > > > > > protected by @lock */
+> > > > > > +       u32 head;
+> > > > > > +       /** @tail: Tail pointer in bytes, moved by consumer,
+> > > > > > protected by @lock */
+> > > > > > +       u32 tail;
+> > > > > > +       /** @lock: protects page fault queue */
+> > > > > > +       spinlock_t lock;
+> > > > > > +       /** @worker: to process page faults */
+> > > > > > +       struct work_struct worker;
+> > > > > > +};
+> > > > > > +
+> > > > > > +#endif
+> > > > > 
+> > > 
+> 
