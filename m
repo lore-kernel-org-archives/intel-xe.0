@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D9DCA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 15:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1651CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 15:48:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B32510EA3A;
-	Thu, 28 Aug 2025 15:44:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TNOW74Ti";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4E7310EA3A
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 15:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756395876; x=1787931876;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=O+yydBuKm1Fd0N3P6BjNhLeGzacYgQVX9NdpaShooEU=;
- b=TNOW74TiNnLM584vII92Ygfs47FxVC0D6zRwrxD5BwJdVsiWO6wvZYm0
- +1cf4C1oKgHFrE0p1ewTsL0AlIGq6UVscchF9veYPC9ks5NiSdY/14BgO
- gG7PS+jKcDrxYwo6us5KqtHJMiVRr5St5K5NeZxzmTCvpkuvGOrkolfV/
- YeSv0HX1bOq6zfrF5khAe/nlwONbQW2I7uwme80hz1b5OfmcXrmquToSk
- XRBScdnYxk+DrncUTMRpLZAO2oUQCtZqSqMwyNlqZVxbIY16WQXGxdS5u
- LkkP4qmjmf8B0uAphWoA+b6/kqRssLQb+VfJnu53CUPlx4MZfBIUz+9Ho A==;
-X-CSE-ConnectionGUID: qaGdg0xvQTub5OEAUbCVSQ==
-X-CSE-MsgGUID: aM6aDcd9Tq6/5vGMOXMSzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="57697633"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57697633"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 08:44:29 -0700
-X-CSE-ConnectionGUID: W+gkkQpqRiaadBs/xqX28w==
-X-CSE-MsgGUID: l73EgjrdQCGrEjoZaY0BOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="193803732"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.28])
- ([10.245.245.28])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 08:44:27 -0700
-Message-ID: <5fbba50f6513bb24636b0adc72317104ba92c96b.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Fix incorrect migration of backed-up object to
- VRAM
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Date: Thu, 28 Aug 2025 17:44:25 +0200
-In-Reply-To: <5d0e5447-f264-4574-a368-0891aa93ae15@intel.com>
-References: <20250828134837.5709-1-thomas.hellstrom@linux.intel.com>
- <5d0e5447-f264-4574-a368-0891aa93ae15@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CAED10EA44;
+	Thu, 28 Aug 2025 15:48:42 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19F1110EA42;
+ Thu, 28 Aug 2025 15:48:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_conve?=
+ =?utf-8?q?rt_to_generic_poll=5Ftimeout=5Fus=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 15:48:41 -0000
+Message-ID: <175639612110.279076.9460537576085593872@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1756383233.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,64 +36,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew
+== Series Details ==
 
-On Thu, 2025-08-28 at 15:00 +0100, Matthew Auld wrote:
-> On 28/08/2025 14:48, Thomas Hellstr=C3=B6m wrote:
-> > If an object is backed up to shmem it is incorrectly identified
-> > as not having valid data by the move code. This means moving
-> > to VRAM skips the -EMULTIHOP step and the bo is cleared. This
-> > causes all sorts of weird behaviour on DGFX if an already evicted
-> > object is targeted by the shrinker.
-> >=20
-> > Fix this by using ttm_tt_is_swapped() to identify backed-up
-> > objects.
-> >=20
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5996
-> > Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.15+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
-> I guess we are missing some test coverage here?
+Series: drm/i915/display: convert to generic poll_timeout_us()
+URL   : https://patchwork.freedesktop.org/series/153630/
+State : warning
 
-Indeed. A bit embarrassing this has gone unnoticed for so long.
+== Summary ==
 
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 381a2c3ca549c9d375872521709c464778e50453
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Aug 28 15:21:02 2025 +0300
 
-Thanks for reviewing!
-/Thomas
+    drm/i915/pps: prefer poll_timeout_us() over read_poll_timeout()
+    
+    Unify on using poll_timeout_us() throughout instead of mixing with
+    readx_poll_timeout().
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 drm-intel
+dd67440c56f1 drm/i915/hdmi: use generic poll_timeout_us() instead of __wait_for()
+f58da9c77b91 drm/i915/hdcp: use generic poll_timeout_us() instead of __wait_for()
+3e009722f7ca drm/i915/hdcp: use generic poll_timeout_us() instead of wait_for()
+-:38: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#38: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:909:
++	ret = poll_timeout_us(val = intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)),
 
->=20
-> > ---
-> > =C2=A0 drivers/gpu/drm/xe/xe_bo.c | 3 +--
-> > =C2=A0 1 file changed, 1 insertion(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index 7d1ff642b02a..4faf15d5fa6d 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -823,8 +823,7 @@ static int xe_bo_move(struct ttm_buffer_object
-> > *ttm_bo, bool evict,
-> > =C2=A0=C2=A0		return ret;
-> > =C2=A0=C2=A0	}
-> > =C2=A0=20
-> > -	tt_has_data =3D ttm && (ttm_tt_is_populated(ttm) ||
-> > -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (ttm->page_flags &
-> > TTM_TT_FLAG_SWAPPED));
-> > +	tt_has_data =3D ttm && (ttm_tt_is_populated(ttm) ||
-> > ttm_tt_is_swapped(ttm));
-> > =C2=A0=20
-> > =C2=A0=C2=A0	move_lacks_source =3D !old_mem || (handle_system_ccs ? (!b=
-o-
-> > >ccs_cleared) :
-> > =C2=A0=C2=A0				=09
-> > (!mem_type_is_vram(old_mem_type) && !tt_has_data));
->=20
+-:51: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:944:
++		ret = poll_timeout_us(val = intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)),
+
+total: 0 errors, 2 warnings, 0 checks, 40 lines checked
+e31def7b9154 drm/i915/dsi: use generic poll_timeout_us() instead of wait_for_us()
+4bc0c2ac73d0 drm/i915/dsi-pll: use generic poll_timeout_us() instead of wait_for()
+c53298027476 drm/i915/gmbus: use generic poll_timeout*() instead of wait_for*()
+88bb512dbf66 drm/i915/wm: use generic poll_timeout_us() instead of wait_for()
+c5cb2c8c0610 drm/i915/cdclk: use generic poll_timeout_us() instead of wait_for()
+-:66: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:728:
++				      (val & CCK_FREQUENCY_STATUS) == (divider << CCK_FREQUENCY_STATUS_SHIFT),
+
+total: 0 errors, 1 warnings, 0 checks, 73 lines checked
+137902e056c1 drm/i915/power: use generic poll_timeout_us() instead of wait_for()
+7a0fb50a6661 drm/i915/power-well: use generic poll_timeout_us() instead of wait_for() for DKL PHY
+1dce2686ef61 drm/i915/power-well: use generic poll_timeout_us() instead of wait_for() for VLV/CHV
+b77b7658ee30 drm/i915/dp: use generic poll_timeout_us() instead of wait_for()
+-:55: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_dp.c:3903:
++	ret = poll_timeout_us(is_active = intel_dp_pcon_is_frl_trained(intel_dp, max_frl_bw_mask, &frl_trained_mask),
+
+total: 0 errors, 1 warnings, 0 checks, 39 lines checked
+7b5b3c027070 drm/i915/dp: use generic poll_timeout_us() instead of wait_for() in link training
+7619d32699c0 drm/i915/vblank: use generic poll_timeout_us() instead of wait_for()
+92bd83bd119b drm/i915/tc: use generic poll_timeout_us() instead of wait_for()
+5c97530b9142 drm/i915/dsb: use generic poll_timeout_us() instead of wait_for()
+70bae7b959ff drm/i915/lspcon: use generic poll_timeout_us() instead of wait_for()
+5b310419bcb6 drm/i915/opregion: use generic poll_timeout_us() instead of wait_for()
+ebbf7a60103d drm/i915/ddi: prefer poll_timeout_us() over readx_poll_timeout()
+381a2c3ca549 drm/i915/pps: prefer poll_timeout_us() over read_poll_timeout()
+
 
