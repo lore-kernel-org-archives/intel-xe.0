@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F77ACA0FF7
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 17:14:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC28CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 17:20:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DDA810EA59;
-	Thu, 28 Aug 2025 17:14:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE3B510EA58;
+	Thu, 28 Aug 2025 17:20:01 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E560510EA59;
- Thu, 28 Aug 2025 17:14:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4495234644851260729=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE0EA10EA58;
+ Thu, 28 Aug 2025 17:20:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_incorrect_mig?=
- =?utf-8?q?ration_of_backed-up_object_to_VRAM?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Replace_xe=5Fhmm_with_gpu?=
+ =?utf-8?q?svm_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Aug 2025 17:14:45 -0000
-Message-ID: <175640128593.279562.11123982038474223548@1538d3639d33>
+Date: Thu, 28 Aug 2025 17:20:00 -0000
+Message-ID: <175640160090.279562.18213523596827880405@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250828134837.5709-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250828134837.5709-1-thomas.hellstrom@linux.intel.com>
+References: <20250828142430.615826-10-matthew.auld@intel.com>
+In-Reply-To: <20250828142430.615826-10-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,127 +40,68 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4495234644851260729==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix incorrect migration of backed-up object to VRAM
-URL   : https://patchwork.freedesktop.org/series/153634/
-State : success
+Series: Replace xe_hmm with gpusvm (rev6)
+URL   : https://patchwork.freedesktop.org/series/146553/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945_BAT -> xe-pw-153634v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 07928bf5d71a17535f7fc2c3ebc37b027ecb5f17
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Thu Aug 28 15:24:39 2025 +0100
 
-Summary
--------
+    drm/xe/pt: unify xe_pt_svm_pre_commit with userptr
+    
+    We now use the same notifier lock for SVM and userptr, with that we can
+    combine xe_pt_userptr_pre_commit and xe_pt_svm_pre_commit.
+    
+    v2: (Matt B)
+      - Re-use xe_svm_notifier_lock/unlock for userptr.
+      - Combine svm/userptr handling further down into op_check_svm_userptr.
+    v3:
+      - Only hide the ops if we lack DRM_GPUSVM, since we also need them for
+        userptr.
+    
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 drm-intel
+710045c5589b drm/gpusvm: fix hmm_pfn_to_map_order() usage
+-:19: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#19: 
+Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+4cef4e3af676 drm/gpusvm: use more selective dma dir in get_pages()
+a83c54cfac12 drm/gpusvm: pull out drm_gpusvm_pages substructure
+6a0848ebbc4b drm/gpusvm: refactor core API to use pages struct
+6711d7786cf6 drm/gpusvm: export drm_gpusvm_pages API
+19b1fbeb14b5 drm/xe/vm: split userptr bits into separate file
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 857 lines checked
+e6c359aff37b drm/xe/userptr: replace xe_hmm with gpusvm
+-:106: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#106: 
+deleted file mode 100644
 
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153634v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153634v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945 -> xe-pw-153634v1
-
-  IGT_8512: 8512
-  xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945: 12bdbc7687846f438afff8bfdc89873b3cd95945
-  xe-pw-153634v1: 153634v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153634v1/index.html
-
---===============4495234644851260729==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 739 lines checked
+07928bf5d71a drm/xe/pt: unify xe_pt_svm_pre_commit with userptr
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix incorrect migration of backed-up object to VRAM</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153634/">https://patchwork.freedesktop.org/series/153634/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153634v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153634v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945_BAT -&gt; xe-pw-153634v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153634v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153634v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945 -&gt; xe-pw-153634v1</li>
-</ul>
-<p>IGT_8512: 8512<br />
-  xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945: 12bdbc7687846f438afff8bfdc89873b3cd95945<br />
-  xe-pw-153634v1: 153634v1</p>
-
-</body>
-</html>
-
---===============4495234644851260729==--
