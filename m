@@ -4,43 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8047CA0FF6
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 20:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 060F6CA0FF9
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 21:01:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8618410EACB;
-	Thu, 28 Aug 2025 20:58:47 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BA9B10EACB;
- Thu, 28 Aug 2025 20:58:46 +0000 (UTC)
-Message-ID: <a85dd557-9dd8-472d-806c-3606b053cfdb@lankhorst.se>
-Date: Thu, 28 Aug 2025 22:58:41 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB8D010EAD7;
+	Thu, 28 Aug 2025 21:01:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="OzJ/hIqB";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C721C10EAD8
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 21:01:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1756414878;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
+ b=OzJ/hIqBDrvSDqyq6nuzFXhf9IAt0EyVGiRbsH94kTS4uRRbMFuVxbTGJjbLGpOu/SoBSZ
+ H6H0KtTlM0GM5tO//M3jDeqOoYTqduWX+rb3gFY2JYOpK7g8a+CqLJkJpkDU8tTt2A9CjG
+ seXcpmQEfJRO5eAg5ENmNFcSrLUd3SY=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-496-1Q6ZLcMjPluLHa9JP1BLMg-1; Thu, 28 Aug 2025 17:01:16 -0400
+X-MC-Unique: 1Q6ZLcMjPluLHa9JP1BLMg-1
+X-Mimecast-MFC-AGG-ID: 1Q6ZLcMjPluLHa9JP1BLMg_1756414875
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-45a1b0098c0so10890195e9.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 14:01:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756414875; x=1757019675;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
+ b=U8TpjTO3YSTDru9fzzFvKzxl1mYXDtcD7LDgx4b0K+Fh1ZXx99wS+dpF9wW1/DkNlz
+ xmE+9sU7WMLQgbY0S7kF8oBRbKWEMSoqdle464Bgrfx3AQX9LPRYVWHKoG8jWUU1jjN5
+ ddtKgWbi5doCXPv7hIfPdFKpwaSS+RLB4lVZN4tnRRo2VgYFweBJE0lMVU0q132u3xzs
+ jFogdB22QErxxZBXVPW5CXyBcXYReTBdS7TD3GWH+h3QMRGrutEvU2qsxaAf6C4BJtUz
+ Fz6fNgDM0HdNCzzWlvUwgNhDPf7ZLPtDxu6rYgI7n7JsthMHo5QtLT48G/LxXk36c3Gz
+ afLw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXE3zA5OC/boaOFpG3pq0Pd6q0kslHAX8pRCzr8eE9dyXCC/X1fTXfN2ste1CsNtNAFwivPCwD1MQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxigfb3CDXV3gqyugEvZyDy6qnV3ZZPTaHMcs/ypOKXcy32WRxZ
+ KHxd4c2sW83jlMucLWe4muTqVgZgM9nwEG/sHpLkGYdx2C+lzv7RLnYTrPGRIapHr/ybeezsWSX
+ 3XOVtvzpXJEPMoR0MRv9UFgWtQQsmfkE/0PDJNqSuwx0RHLxICXyYhO1Sq6ifl/df9w30
+X-Gm-Gg: ASbGncuJ2ut7wD0z5C+FuNb+Q6avuSC9lwEDsiNlBDX+xcW4MkC6UHUBuGa6EJJVCf8
+ EuLjLdiZ7zwdDy/Q/lx+faQsbvHLHpH6ntk77JCXslrB0KjtHZw1GHMJSehNei8UlZQ1mn3mTMf
+ O25W7xXnLKP343wtnR7rnmovR0Bf98gPGGbyt3ZCYAsurahxUlM79uEj2RbPyz66OYmmsrFsQVI
+ xg/3UaOEt5Uq/zzk3TR3svBOLmQshOdqHudw4l9bPjUEH2xxfhhHMWwRdL6fd0vA0dYrxWxAI1q
+ GAGo6Xvon93b43/3MoRxOhuRU7eGG/j3Tp1ulcIyUHvsQ1aFm0aHtpcGyTvgO9/Uqbn7VMOfy7o
+ +UAkIgoOLdpwdLZ6VIzpJZJJ83zB+VTY4I1OMs97j2iX6QerN4CDJDwCy3TteVPqauzs=
+X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
+ ffacd0b85a97d-3ca2bc7ef61mr12602372f8f.53.1756414874952; 
+ Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IELkWMXHF95PsTcVdmFjM8EzCAM7gzseZtqGs+N0bJROmmnC1culcus9SRn7U0k/o9W/T4AXg==
+X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
+ ffacd0b85a97d-3ca2bc7ef61mr12602341f8f.53.1756414874375; 
+ Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
+ (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
+ [2003:d8:2f28:c100:2225:10aa:f247:7b85])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3cf270fd2dfsm685916f8f.3.2025.08.28.14.01.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 28 Aug 2025 14:01:13 -0700 (PDT)
+Message-ID: <f0338ec0-b093-4ba7-a26a-a3668587e334@redhat.com>
+Date: Thu, 28 Aug 2025 23:01:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 0/3] cgroups: Add support for pinned device memory
-To: =?UTF-8?Q?Michal_Koutn=C3=BD?= <mkoutny@suse.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?=27Thomas_Hellstr=C3=B6m=27?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
- Natalie Vock <natalie.vock@gmx.de>, Tejun Heo <tj@kernel.org>,
- Johannes Weiner <hannes@cmpxchg.org>, Michal Hocko <mhocko@kernel.org>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Muchun Song <muchun.song@linux.dev>,
- Andrew Morton <akpm@linux-foundation.org>,
- David Hildenbrand <david@redhat.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "'Liam R . Howlett'" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Michal Hocko <mhocko@suse.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, cgroups@vger.kernel.org, linux-mm@kvack.org
-References: <20250819114932.597600-5-dev@lankhorst.se>
- <qd3ioegpvmrrrwdy2qntxznyrnwq3bhe74lmuxio7sy4sjggtt@tm6nqds3pyvj>
+Subject: Re: stupid PAT :)
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ x86@kernel.org
+Cc: airlied@gmail.com, matthew.brost@intel.com, dave.hansen@linux.intel.com,
+ luto@kernel.org, peterz@infradead.org,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+References: <20250820143739.3422-1-christian.koenig@amd.com>
+ <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
+ <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
+ <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
+ <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
+ <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
+ <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
+ <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
+ <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
+ <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
+ ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
+ FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
+ 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
+ opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
+ 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
+ 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
+ Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
+ lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
+ cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
+ Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
+ otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
+ LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
+ 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
+ VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
+ /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
+ iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
+ 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
+ zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
+ azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
+ FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
+ sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
+ 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
+ EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
+ IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
+ 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
+ Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
+ sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
+ yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
+ 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
+ r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
+ 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
+ CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
+ qIws/H2t
+In-Reply-To: <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Y11XejlNeDSAiZDvDu8TDbihHoEbjP3jjGMcsl6ebSI_1756414875
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <qd3ioegpvmrrrwdy2qntxznyrnwq3bhe74lmuxio7sy4sjggtt@tm6nqds3pyvj>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,66 +162,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-Den 2025-08-26 kl. 16:20, skrev Michal Koutný:
-> Hello Maarten.
+On 26.08.25 16:27, Thomas Hellström wrote:
+> Hi, Christian,
 > 
-> On Tue, Aug 19, 2025 at 01:49:33PM +0200, Maarten Lankhorst <dev@lankhorst.se> wrote:
->> Implementation details:
+> On Tue, 2025-08-26 at 11:56 +0200, Christian König wrote:
+>> On 26.08.25 11:17, David Hildenbrand wrote:
+>>> On 26.08.25 11:00, Christian König wrote:
+>>>> On 26.08.25 10:46, David Hildenbrand wrote:
+>>>>>>> So my assumption would be that that is missing for the
+>>>>>>> drivers here?
+>>>>>>
+>>>>>> Well yes and no.
+>>>>>>
+>>>>>> See the PAT is optimized for applying specific caching
+>>>>>> attributes to ranges [A..B] (e.g. it uses an R/B tree). But
+>>>>>> what drivers do here is that they have single pages (usually
+>>>>>> for get_free_page or similar) and want to apply a certain
+>>>>>> caching attribute to it.
+>>>>>>
+>>>>>> So what would happen is that we completely clutter the R/B
+>>>>>> tree used by the PAT with thousands if not millions of
+>>>>>> entries.
+>>>>>>
+>>>>>
+>>>>> Hm, above you're saying that there is no direct map, but now
+>>>>> you are saying that the pages were obtained through
+>>>>> get_free_page()?
+>>>>
+>>>> The problem only happens with highmem pages on 32bit kernels.
+>>>> Those pages are not in the linear mapping.
+>>>
+>>> Right, in the common case there is a direct map.
+>>>
+>>>>
+>>>>> I agree that what you describe here sounds suboptimal. But if
+>>>>> the pages where obtained from the buddy, there surely is a
+>>>>> direct map -- unless we explicitly remove it :(
+>>>>>
+>>>>> If we're talking about individual pages without a directmap, I
+>>>>> would wonder if they are actually part of a bigger memory
+>>>>> region that can just be reserved in one go (similar to how
+>>>>> remap_pfn_range()) would handle it.
+>>>>>
+>>>>> Can you briefly describe how your use case obtains these PFNs,
+>>>>> and how scattered tehy + their caching attributes might be?
+>>>>
+>>>> What drivers do is to call get_free_page() or alloc_pages_node()
+>>>> with the GFP_HIGHUSER flag set.
+>>>>
+>>>> For non highmem pages drivers then calls set_pages_wc/uc() which
+>>>> changes the caching of the linear mapping, but for highmem pages
+>>>> there is no linear mapping so set_pages_wc() or set_pages_uc()
+>>>> doesn't work and drivers avoid calling it.
+>>>>
+>>>> Those are basically just random system memory pages. So they are
+>>>> potentially scattered over the whole memory address space.
+>>>
+>>> Thanks, that's valuable information.
+>>>
+>>> So essentially these drivers maintain their own consistency and PAT
+>>> is not aware of that.
+>>>
+>>> And the real problem is ordinary system RAM.
+>>>
+>>> There are various ways forward.
+>>>
+>>> 1) We use another interface that consumes pages instead of PFNs,
+>>> like a
+>>>     vm_insert_pages_pgprot() we would be adding.
+>>>
+>>>     Is there any strong requirement for inserting non-refcounted
+>>> PFNs?
 >>
->> For each cgroup up until the root cgroup, the 'min' limit is checked
->> against currently effectively pinned value. If the value will go above
->> 'min', the pinning attempt is rejected.
+>> Yes, there is a strong requirement to insert non-refcounted PFNs.
+>>
+>> We had a lot of trouble with KVM people trying to grab a reference to
+>> those pages even if the VMA had the VM_PFNMAP flag set.
+>>
+>>> 2) We add another interface that consumes PFNs, but explicitly
+>>> states
+>>>     that it is only for ordinary system RAM, and that the user is
+>>>     required for updating the direct map.
+>>>
+>>>     We could sanity-check the direct map in debug kernels.
+>>
+>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
+>>
+>> That function was explicitly added to insert the PFN with the given
+>> attributes and as far as I can see all users of that function expect
+>> exactly that.
+>>
+>>>
+>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating
+>>> this
+>>>     system RAM differently.
+>>>
+>>>
+>>> There is also the option for a mixture between 1 and 2, where we
+>>> get pages, but we map them non-refcounted in a VM_PFNMAP.
+>>>
+>>> In general, having pages makes it easier to assert that they are
+>>> likely ordinary system ram pages, and that the interface is not
+>>> getting abused for something else.
+>>
+>> Well, exactly that's the use case here and that is not abusive at all
+>> as far as I can see.
+>>
+>> What drivers want is to insert a PFN with a certain set of caching
+>> attributes regardless if it's system memory or iomem. That's why
+>> vmf_insert_pfn_prot() was created in the first place.
+>>
+>> That drivers need to call set_pages_wc/uc() for the linear mapping on
+>> x86 manually is correct and checking that is clearly a good idea for
+>> debug kernels.
 > 
-> How is pinning different from setting a 'min' limit (from a user
-> perspective)?
-It's related, in fact you have to set the 'min' limit first.
+> So where is this trending? Is the current suggestion to continue
+> disallowing aliased mappings with conflicting caching modes and enforce
+> checks in debug kernels?
 
-The 'pinned' allows you to pick /which/ memory falls under the 'min' limit.
+Not sure, it's a mess. The big question is to find out when it is really 
+ok to bypass PAT and when to better let it have a saying.
 
->>
->> Pinned memory is handled slightly different and affects calculating
->> effective min/low values. Pinned memory is subtracted from both,
->> and needs to be added afterwards when calculating.
->>
->> This is because increasing the amount of pinned memory, the amount of
->> free min/low memory decreases for all cgroups that are part of the
->> hierarchy.
-> 
-> What is supposed to happen with pinned memory after cgroup removal?
-I think for accounting purposes pinned memory stays pinned,
-otherwise the idea of pinning is lost. However when you kill all
-processes in the cgroup, that should solve itself eventually.
+-- 
+Cheers
 
-> I find the page_counter changes little bit complex without understanding
-> of the difference between min and pinned. Should this be conceptually
-> similar to memory.stat:unevictable? Or rather mlock(2)? So far neither
-> of those needed interaction with min/low values (in memcg).
-You could in theory implement mlockall using the 'min' values too.
-
-The page counter changes implement the following:
-
-Lets say you have this tree with 'min' values.
-
-      / '5' A
-X'6' -- '5' B
-      \ '5' C
-
-Effective min without pinned pages:
-      / '2' A
-X'6' -- '2' B
-      \ '2' C
-
-Now 'B' pins 3 pages:
-
-Effective min:
-         / '1' A
-X'3+3p' -- '1' B (1 + 3 pinned pages makes effective min 4)
-         \ '1' C
-
-Same for applies to effective 'low' calculations.
-
-Kind regards,
-~Maarten
+David / dhildenb
 
