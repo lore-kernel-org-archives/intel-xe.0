@@ -4,70 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84916CA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 09:11:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB28C8303F
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 09:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF8910E1C6;
-	Thu, 28 Aug 2025 09:11:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="X+qkBRFL";
-	dkim-atps=neutral
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F1510E1C6
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 09:11:57 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-45b5c12dd87so4413285e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 02:11:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1756372316; x=1756977116; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=vT6SruXpCb1SaZfVD71R/zK+8XIBBlmPFwUm0Lef7is=;
- b=X+qkBRFLqABepZOq+iN+D/yxkNzkXrZ2PbB3309FSl4fhrOHSFwi/iJKRuQqZrrK5p
- UjxLmYfTS5PUWwnCpnkaxzY/FMSFuCqgMeDZtZHlE9c1YOUEsiKYMYXitMf7+qep9+HM
- eHT+RVGQtohGgGHWGAwhW1XquBQA8n8ziFYfZmFmEph4k/q/q5cdwBnTySA7SiwEhedT
- WB2+rdLZV2O/ho0lG6kFcM1YKEEXFkn77E3GZALTTQTDd9Dd8Vqiga6L3GqBgbRvFYaG
- UUrSEFaeV03w2LKjfW01KmqvauS8PikWuE61kluMGQwRFRJ788QRUlF+3dVYg0VWEO51
- tvsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756372316; x=1756977116;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=vT6SruXpCb1SaZfVD71R/zK+8XIBBlmPFwUm0Lef7is=;
- b=l0YhGDFbVJLCteOvKkV8DncuuzJze10h9Fe+J0dPSr+X7lG2jg+o45bsi+woqP7fdU
- shDeGl0+uxnBVIk9qShnd9EyrqpMooZgvnRh5nBWDWNBT4lsrQJQiQ5ouZrsTe0EcoFj
- /PaaqZJoyv+iXfhutFatRVPfsVNzv7UVxckJQffz4aGao6bmEQsoWJSAl+i4/OaDV9LZ
- iOO/rCoXffz2eMnlBoKBGaq+AWVhazBN6kEjpELPglM6jngvF6+ZypUt00RsKj1GiEio
- 06xqxLUD+vT1i4r75bm7voVSQwaFLUiKZZQo04UDm12T6k7Tw7X/s51PoRGjX6Iow6EV
- Zfdw==
-X-Gm-Message-State: AOJu0YwrwXbgQOZt0bL/Ey+4O6JnlVMNay8q0ptuGv56ya3174LDJ/u9
- 1bB5gtoUeO7QoH+yXlVC04uHGpW2FTeZP0FzMazkP6qQcDWNAjdrNV5ZHnNWfzTGXX1pBXJ5NRz
- BlJ8y
-X-Gm-Gg: ASbGncvOoEtpcC4WTRd1FEB/ySmzwVxjvzgfHBejwKGryaSXIrzGF4YXfE4AmJPxT7X
- 8KELU6ExonRvllLaC2tXB/9bZa4VJO2rXqk1LOOClPS2G6q6q/6l/iFSg8lK+vij0Abb4VbI7/X
- etuOQSNoSjGqhlidLT/MjTQqBkrUZM6PskNS1ryVkM9objjav2LNS8nw+6aqbNcWqwbPgrSnpdO
- wEGz9KO/ClBQKUGCXMnq2YcZG0JPB5eaE4LWnfLMsxyCZYHIUuH/iUDsVw+f5ETLdJEzb5nc0eJ
- AzY2V6paY/7G+iica4E1/ueNIZsExTB2ySq3aWh40bkYMaTABhurdjsN8ZcB90KkMve9+Z41vUv
- G4TBUFjUDQidJ3HgTTQEBsoaKQik=
-X-Google-Smtp-Source: AGHT+IFN0m3LyJQzYdVLB2RqwEkdDx8iem4ppz5vOBqKHsBz/09Mf8WXux6d+crUKlPs6WEfIhg0Wg==
-X-Received: by 2002:a05:600c:198b:b0:45b:6705:4fb9 with SMTP id
- 5b1f17b1804b1-45b67a9a201mr78155885e9.29.1756372316189; 
- Thu, 28 Aug 2025 02:11:56 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45b6f0c6dc1sm66653435e9.1.2025.08.28.02.11.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Aug 2025 02:11:55 -0700 (PDT)
-Date: Thu, 28 Aug 2025 12:11:52 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [bug report] drm/xe: Implement madvise ioctl for xe
-Message-ID: <aLAdWPVX-lk04xzQ@stanley.mountain>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D827510E8A3;
+	Thu, 28 Aug 2025 09:14:52 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7157710E89E;
+ Thu, 28 Aug 2025 09:14:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/i915=3A_Disable_tracepoints_for_PREEMPT=5FRT?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 09:14:52 -0000
+Message-ID: <175637249246.278132.17250178890565910548@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250828090944.101069-1-dev@lankhorst.se>
+In-Reply-To: <20250828090944.101069-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,54 +36,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello Himal Prasad Ghimiray,
+== Series Details ==
 
-Commit ada7486c5668 ("drm/xe: Implement madvise ioctl for xe") from
-Aug 21, 2025 (linux-next), leads to the following Smatch static
-checker warning:
+Series: series starting with [1/2] drm/i915: Disable tracepoints for PREEMPT_RT
+URL   : https://patchwork.freedesktop.org/series/153609/
+State : warning
 
-	drivers/gpu/drm/xe/xe_vm_madvise.c:208 xe_zap_ptes_in_madvise_range()
-	warn: inconsistent indenting
+== Summary ==
 
-drivers/gpu/drm/xe/xe_vm_madvise.c
-    189         drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
-    190                 struct xe_vma *vma = gpuva_to_vma(gpuva);
-    191 
-    192                 if (vma->skip_invalidation || xe_vma_is_null(vma))
-    193                         continue;
-    194 
-    195                 if (xe_vma_is_cpu_addr_mirror(vma)) {
-    196                         tile_mask |= xe_svm_ranges_zap_ptes_in_range(vm,
-    197                                                                       xe_vma_start(vma),
-    198                                                                       xe_vma_end(vma));
-    199                 } else {
-    200                         for_each_tile(tile, vm->xe, id) {
-    201                                 if (xe_pt_zap_ptes(tile, vma)) {
-                                                                      ^^
-Adding this curly braces seems like a bug.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 204f9ba71c6e45da44c12eb7145d465c60278928
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Thu Aug 28 11:09:44 2025 +0200
 
-    202                                         tile_mask |= BIT(id);
-    203 
-    204                                 /*
-    205                                  * WRITE_ONCE pairs with READ_ONCE
-    206                                  * in xe_vm_has_valid_gpu_mapping()
-    207                                  */
---> 208                                 WRITE_ONCE(vma->tile_invalidated,
-    209                                            vma->tile_invalidated | BIT(id));
+    drm/i915/display: Make tracepoints work correctly on xe with PREEMPT_RT
+    
+    The display tracepoints will work, but drm_crtc_accurate_vblank_count()
+    takes an irq lock. Use the less accurate drm_crtc_vblank_count() on
+    affected platforms, which is simply an atomic_read64();
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch fbc5d00ef7824ebc9441a6a1efb619f149337308 drm-intel
+9f6a64095572 drm/i915: Disable tracepoints for PREEMPT_RT
+-:35: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#35: 
+Reported-by: Luca Abeni <lucabe72@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
 
-It looks like the WRITE_ONCE() is not supposed to be part of the if
-statement.
+-:37: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#37: 
+Co-developed-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 
-    210                                 }
-    211                         }
-    212                 }
-    213         }
-    214 
-    215         return tile_mask;
-    216 }
+-:55: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
 
-regards,
-dan carpenter
+total: 0 errors, 3 warnings, 0 checks, 11 lines checked
+204f9ba71c6e drm/i915/display: Make tracepoints work correctly on xe with PREEMPT_RT
+-:83: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#83: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:89:
+ 			   for_each_intel_crtc(display->drm, it__) {
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__, UPDATE_VBLANK);
+
+-:85: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#85: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:90:
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__, UPDATE_VBLANK);
+
+-:92: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#92: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:119:
+ 			   for_each_intel_crtc(display->drm, it__) {
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__, UPDATE_VBLANK);
+
+-:94: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:120:
++				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__, UPDATE_VBLANK);
+
+-:137: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (27, 35)
+#137: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:249:
+ 			   for_each_intel_crtc(display->drm, crtc) {
++				   __entry->frame[crtc->pipe] = intel_crtc_get_vblank_counter(crtc, UPDATE_VBLANK);
+
+-:139: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#139: FILE: drivers/gpu/drm/i915/display/intel_display_trace.h:250:
++				   __entry->frame[crtc->pipe] = intel_crtc_get_vblank_counter(crtc, UPDATE_VBLANK);
+
+total: 0 errors, 6 warnings, 0 checks, 233 lines checked
+
+
