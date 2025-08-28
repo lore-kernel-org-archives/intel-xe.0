@@ -4,55 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12E35CA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 10:27:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2190C8303F
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 10:30:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CECE010E1CB;
-	Thu, 28 Aug 2025 10:27:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 537EF10E1D1;
+	Thu, 28 Aug 2025 10:30:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbHmxFFT";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="G2Z39o3c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C17210E1CB
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 10:27:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756376859; x=1787912859;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=r3kc/AMWEHP/hpYIRg8LEeM5t4Z4ph93Mfwb4845sQM=;
- b=KbHmxFFTRGR2Pc/ZEI5weZ8Qix4nFECNpWCHs3jO8H9E30iWIPtrU4IW
- HEjwhwuixAhOgo7eij9GMQL+YlxHrYatDsgL37weHESHG124B6h4FwxPX
- DQqC+qAEfqvIUnMVpM9/0I57rTNwyameftXehhAQtFL3Dkj7x/cYiQJPw
- 5PnyyYKywotXG0oX53n+Ss8rjtLPSUlkyporR7qmr8zXzqoe8xQS5vSsW
- Z0qXAXeqUEJrSoxCNQinG3DtXPN17rC731hgrZ1qdKDhtM7HgJn7eixup
- 8SYSKQpyKyW1bslBNg6eoXjaH0Im5DZJc9PomD/40AfFIWFU95dvjf1BK w==;
-X-CSE-ConnectionGUID: VF58Z5dkTk2YKiZ1hjwm9A==
-X-CSE-MsgGUID: cwDfRpUpQGyRmYsoqxZpBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58351953"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58351953"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 03:27:39 -0700
-X-CSE-ConnectionGUID: 37i8DfPeTNua6gkggpN9Hg==
-X-CSE-MsgGUID: YEH1KG/YQzKvtWWJCX9FkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174249152"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by orviesa003.jf.intel.com with ESMTP; 28 Aug 2025 03:27:36 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Summers Stuart <stuart.summers@intel.com>
-Subject: [PATCH v3] drm/xe/guc: Add devm release action to safely tear down CT
-Date: Thu, 28 Aug 2025 16:14:32 +0530
-Message-ID: <20250828104432.23695-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED25D10E1D1
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 10:30:07 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-45a1b0cbbbaso6617345e9.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 03:30:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1756377006; x=1756981806; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Dvmomq2qE/to7fR+0xj6i+gEBVrIyXs8j/89zJ6lfTQ=;
+ b=G2Z39o3cPLbrVZFqW8mBqPc5DjPR5r0MN/lxrB77R+esGLqdIfuTbF5nnWSgcjjTN3
+ 3N07kG2Qse+4hWcX6SzWNjIcdw9OQ7B/ONqFq6Q0JXbj7TZDpJlT+SoW9DgTYbjbHOPY
+ w0+/riKdfeI9OAD3Y+nV3MQ0fyo2I2Le5fFGXRXCV03S6wR6MGqrhz2egBxOq8Ua3XBj
+ aBQBDi+OWrErSUVdSGqg4DSi7P/q/EyTlIY7wLX0MJytE6EMWFgVIHB3S43RC5NDLO6h
+ CwCxmLmbFFOA8pP3Z6RAFhsFmIYvu9i+Ikb5RaDuPYI+rHnXax0rgiNQTDDF5i3arrNY
+ Sh6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756377006; x=1756981806;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Dvmomq2qE/to7fR+0xj6i+gEBVrIyXs8j/89zJ6lfTQ=;
+ b=eof/+SYogX6YmzTw0dlP0yLUELgBNJkDtARq1y/EKAYMORkzvP/0Avjg+WpJYnksIb
+ OSSNNmWVr2YvQnW/FmzvJUX6AYS9qeY/2z2exlanCB2rrFG1b3isJ9G3ixht/rAUjeL2
+ eu6XsdmbkWD2hRo07Ha8jXmIktz3/ZDfUzYZknSJ/6tOqjNcsQ/lE1oRd7J5d2SHBQQ8
+ k93wmkDT11uw+gzO10ozhbKcIFYl/g12TIxKlrXuAx8ostc5g1jBOsowU1vMhGVFe3R2
+ KB11gR3/JgK73qep4w0joNT7YVYEv5gbKAIBKgkEdyYJdpkCoo01vDOTaqEbvyOsPf9s
+ lzLQ==
+X-Gm-Message-State: AOJu0YxLPUNhT3hzECQIuuBVEdDMvopBsSJttI0n4eAB3kIRDd+PgzHK
+ wYuEB6oU7JUaA9HcdYebIJs2D/K7bQj2yfQcug42h3BbM7TBFzjFVvMwd0p5aZhCMJw=
+X-Gm-Gg: ASbGncscV52LxpELWt5uaXj+Qd7IOba9oFAA8W0US9xJB9lwNWcqbTj7o/PoeLEeB93
+ ywQqEs+cnHqTvE+jOkSjxn9IPzVkOGa3WfmBYRHye2XbHb0XWEm6Wi5AdQhYvt7I7WaFcqOZz6r
+ MRQ0NUZa9dZI4dvbVqdHdaMVAkQZGNF85OoMwAnF8W27g5Z6Fkv408mJvvwLjw4X0tlXCVtJpxu
+ XI8e1E3LVY/LYnaMYblg+QxSFGg4bgb7VcPMKDV33CBPEc+CTUOs24DYAcJ7peeLXekP1uINi1+
+ yrEkaAsW1LHjwxPXHtm8YPpWBXBS/mAtvpmLnhvj56xqGqmaASr7mYrf8Gdyol0lDcT3dkmhnQt
+ omp3sqXyRj6poOVccFRW+8ZyrPQVq3nLFnzAMwQ==
+X-Google-Smtp-Source: AGHT+IG/Fi0zhu3NCaUore8NGcCcY/Svh64UCQAO99HmPbI/DdiihvOo86vLGFOMiL6EIWQq8PExEg==
+X-Received: by 2002:a05:600c:b8d:b0:45b:725e:6ac7 with SMTP id
+ 5b1f17b1804b1-45b72e505aamr43870195e9.19.1756377006257; 
+ Thu, 28 Aug 2025 03:30:06 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-3cde21c4867sm2621680f8f.11.2025.08.28.03.30.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 28 Aug 2025 03:30:05 -0700 (PDT)
+Date: Thu, 28 Aug 2025 13:30:02 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [bug report] drm/xe/svm: Consult madvise preferred location in
+ prefetch
+Message-ID: <aLAvqguScFljSZaW@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,157 +82,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a buffer object (BO) is allocated with the XE_BO_FLAG_GGTT_INVALIDATE
-flag, the driver initiates TLB invalidation requests via the CTB mechanism
-while releasing the BO. However a premature release of the CTB BO can lead
-to system crashes, as observed in:
+Hello Himal Prasad Ghimiray,
 
-Oops: Oops: 0000 [#1] SMP NOPTI
-RIP: 0010:h2g_write+0x2f3/0x7c0 [xe]
-Call Trace:
- guc_ct_send_locked+0x8b/0x670 [xe]
- xe_guc_ct_send_locked+0x19/0x60 [xe]
- send_tlb_invalidation+0xb4/0x460 [xe]
- xe_gt_tlb_invalidation_ggtt+0x15e/0x2e0 [xe]
- ggtt_invalidate_gt_tlb.part.0+0x16/0x90 [xe]
- ggtt_node_remove+0x110/0x140 [xe]
- xe_ggtt_node_remove+0x40/0xa0 [xe]
- xe_ggtt_remove_bo+0x87/0x250 [xe]
+Commit c1bb69a2e8e2 ("drm/xe/svm: Consult madvise preferred location
+in prefetch") from Aug 21, 2025 (linux-next), leads to the following
+Smatch static checker warning:
 
-Introduce a devm-managed release action during xe_guc_ct_init() and
-xe_guc_ct_init_post_hwconfig() to ensure proper CTB disablement before
-resource deallocation, preventing the use-after-free scenario.
+	drivers/gpu/drm/xe/xe_vm.c:3175 op_lock_and_prep()
+	error: uninitialized symbol 'region'.
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Summers Stuart <stuart.summers@intel.com>
+drivers/gpu/drm/xe/xe_vm.c
+    3125 static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+    3126                             struct xe_vma_op *op)
+    3127 {
+    3128         int err = 0;
+    3129 
+    3130         switch (op->base.op) {
+    3131         case DRM_GPUVA_OP_MAP:
+    3132                 if (!op->map.invalidate_on_bind)
+    3133                         err = vma_lock_and_validate(exec, op->map.vma,
+    3134                                                     !xe_vm_in_fault_mode(vm) ||
+    3135                                                     op->map.immediate);
+    3136                 break;
+    3137         case DRM_GPUVA_OP_REMAP:
+    3138                 err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
+    3139                 if (err)
+    3140                         break;
+    3141 
+    3142                 err = vma_lock_and_validate(exec,
+    3143                                             gpuva_to_vma(op->base.remap.unmap->va),
+    3144                                             false);
+    3145                 if (!err && op->remap.prev)
+    3146                         err = vma_lock_and_validate(exec, op->remap.prev, true);
+    3147                 if (!err && op->remap.next)
+    3148                         err = vma_lock_and_validate(exec, op->remap.next, true);
+    3149                 break;
+    3150         case DRM_GPUVA_OP_UNMAP:
+    3151                 err = check_ufence(gpuva_to_vma(op->base.unmap.va));
+    3152                 if (err)
+    3153                         break;
+    3154 
+    3155                 err = vma_lock_and_validate(exec,
+    3156                                             gpuva_to_vma(op->base.unmap.va),
+    3157                                             false);
+    3158                 break;
+    3159         case DRM_GPUVA_OP_PREFETCH:
+    3160         {
+    3161                 struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+    3162                 u32 region;
+    3163 
+    3164                 if (!xe_vma_is_cpu_addr_mirror(vma)) {
+    3165                         region = op->prefetch.region;
+    3166                         xe_assert(vm->xe, region == DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC ||
+    3167                                   region <= ARRAY_SIZE(region_to_mem_type));
+    3168                 }
 
----
-Reviewed-by: Matthew Brost <matthew.brost@intel.com> (with #rev1)
+region used to be initialized on the else path as well, but now it's not.
 
-V2 -> V3:
-- Fixed review comments (Michal).
+    3169 
+    3170                 err = vma_lock_and_validate(exec,
+    3171                                             gpuva_to_vma(op->base.prefetch.va),
+    3172                                             false);
+    3173                 if (!err && !xe_vma_has_no_bo(vma))
+    3174                         err = xe_bo_migrate(xe_vma_bo(vma),
+--> 3175                                             region_to_mem_type[region]);
+    3176                 break;
+    3177         }
+    3178         default:
+    3179                 drm_warn(&vm->xe->drm, "NOT POSSIBLE");
+    3180         }
+    3181 
+    3182         return err;
+    3183 }
 
-V1 -> V2:
-- Fixed review comments (Michal & Matt B).
----
- drivers/gpu/drm/xe/xe_guc.c    | 12 +++++-----
- drivers/gpu/drm/xe/xe_guc_ct.c | 40 +++++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_guc_ct.h |  2 ++
- 3 files changed, 46 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 37d06c51180c..ed0da4ebd928 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -706,14 +706,8 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
- 		return ret;
- 
- 	ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ads.bo);
--	if (ret)
--		return ret;
--
--	ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ct.bo);
--	if (ret)
--		return ret;
- 
--	return 0;
-+	return ret;
- }
- 
- static int vf_guc_init_noalloc(struct xe_guc *guc)
-@@ -847,6 +841,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 	if (ret)
- 		return ret;
- 
-+	ret = xe_guc_ct_init_post_hwconfig(&guc->ct);
-+	if (ret)
-+		return ret;
-+
- 	guc_init_params_post_hwconfig(guc);
- 
- 	ret = xe_guc_submit_init(guc, ~0);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 848065a25c44..0b88cfb05e7b 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -39,6 +39,8 @@ static void receive_g2h(struct xe_guc_ct *ct);
- static void g2h_worker_func(struct work_struct *w);
- static void safe_mode_worker_func(struct work_struct *w);
- static void ct_exit_safe_mode(struct xe_guc_ct *ct);
-+static void guc_ct_change_state(struct xe_guc_ct *ct,
-+				enum xe_guc_ct_state state);
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- enum {
-@@ -252,6 +254,13 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
- }
- ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
- 
-+static void guc_action_disable_ct(void *arg)
-+{
-+	struct xe_guc_ct *ct = arg;
-+
-+	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
-+}
-+
- int xe_guc_ct_init(struct xe_guc_ct *ct)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
-@@ -268,10 +277,39 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
- 		return PTR_ERR(bo);
- 
- 	ct->bo = bo;
--	return 0;
-+
-+	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
- }
- ALLOW_ERROR_INJECTION(xe_guc_ct_init, ERRNO); /* See xe_pci_probe() */
- 
-+/**
-+ * xe_guc_ct_init_post_hwconfig - Reinitialize the GuC CTB in VRAM
-+ * @ct: the &xe_guc_ct.
-+ *
-+ * Allocate a new BO in VRAM and free the previous BO that was allocated
-+ * in system memory (SMEM).
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+
-+int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
-+{
-+	struct xe_device *xe = ct_to_xe(ct);
-+	struct xe_gt *gt = ct_to_gt(ct);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	int ret;
-+
-+	if (!IS_DGFX(xe))
-+		return 0;
-+
-+	ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
-+	if (ret)
-+		return ret;
-+
-+	devm_release_action(xe->drm.dev, guc_action_disable_ct, ct);
-+	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
-+}
-+
- #define desc_read(xe_, guc_ctb__, field_)			\
- 	xe_map_rd_field(xe_, &guc_ctb__->desc, 0,		\
- 			struct guc_ct_buffer_desc, field_)
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 18d4225e6502..16d82c0e6cde 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -73,4 +73,6 @@ xe_guc_ct_send_block_no_fail(struct xe_guc_ct *ct, const u32 *action, u32 len)
- 
- long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct);
- 
-+int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
-+
- #endif
--- 
-2.43.0
-
+regards,
+dan carpenter
