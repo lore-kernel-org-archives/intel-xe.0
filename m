@@ -4,152 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDFB9CA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 21:32:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E924CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 21:33:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 930F410EAE8;
-	Thu, 28 Aug 2025 21:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E655810EAE4;
+	Thu, 28 Aug 2025 21:33:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Zl+7tE7u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuBblKZK";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 100BD10EAE8
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 21:32:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756416770;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=C0j74VLoZzIyA22SXyOfjOP2Dou5xBRBs0saBWJsMOI=;
- b=Zl+7tE7uPKzPCFDcWaPzZniyeI+eSutmYILikluqM1C91om9EfEpDAHLDSHCHMkgYoHXQu
- LpdXpEbzJ/vQEwJhcKDRdn7cH1c7ntFrM2x5Smd25rt7IeX8Cl48vFLPAvci4yX0QhGAbP
- KNng4McAkc2jAK5AISzDniq7RHOquzU=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-656-1pZL_ZQHPOOnRq8mKvFN5w-1; Thu, 28 Aug 2025 17:32:46 -0400
-X-MC-Unique: 1pZL_ZQHPOOnRq8mKvFN5w-1
-X-Mimecast-MFC-AGG-ID: 1pZL_ZQHPOOnRq8mKvFN5w_1756416765
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-3cf48eca078so123150f8f.0
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 14:32:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756416765; x=1757021565;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :references:cc:to:from:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=C0j74VLoZzIyA22SXyOfjOP2Dou5xBRBs0saBWJsMOI=;
- b=HvptHbw0FcJc+/i7RaADyhyxFgLyyCxAuBo3TIQeMAYYzUsHZ9s01an/0LDZurjcZY
- yjDJqdS0N+EwZ26FNalFq9ASCMDhz5EL9ir6AYw2oIzFq/2ng5oOQX1Bsb7C5ARb5U+6
- 5jzXFzKEmzEe61BH8pFVygK6OCNGOqaVq7gP1ren2O5o0JOR1FsF9NK9rZ8gf2tYHagJ
- ZDexutkYPo0JEu2vmD4BUNJFIZOZ9vAABwAZ3u+r6ivskEer1spCy6XdWlnpHyadye+E
- z1KruaRO6vcUGffkLpP0VrshqfQiyer/+cLjusb7avUeWiBPPI7eh/aN9isxbQgVeDe7
- ecew==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX5SbTgQWUU9AI4bWj5HzGH/BnKDqF66EPQPXui5quKUcUol6PotgnVoAwYm3WMufS1DMNkqPUa0A==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyuthA6gMMYeWpWvZNfTVHh5688KXemKoA2ocZeeJWiwhXdbbny
- a2NzcmNQpsfWrrsnAXKoJn6tUn702xuOgZbDMbhnzLzJyDSf2lwXIvlRT/Ow7HccktO9qs9ECW8
- /YkV9C4cw6lvXyPkngTRO2FjGT0p1g1VIUGaAqMno4ww7LFWUmCFj+gwPZmoKsybzdQyo
-X-Gm-Gg: ASbGncsCz/UNw8361tIFzbYFaxzI9s3JuWLBEE5QmRRlbz7oSVdWnlDy6596dXcZMus
- NXeYLAWLdCZQhkbCLB5LOyghydYiXsEj8KIgQ9XpO5rWDUnTKGGbsUxAgBiODT/6IscbAYm9uGf
- wwSqrwK3Ciwe5Z7bbbaArIMV72zHEZEWOH8Icpk7kPwhyqd7PBo9NfYhlkxoA6omj/ss6q/2ze+
- b24dOrgASaRE+veMy/aDu+aHYQXTkRGQvwviSk+ti4HT1KwSD70O+nG0CW1oSyGvUcN9GWhSJtQ
- hfTXGmR9N3IeZH0qxfrQpPMFIbzdwiUnhcJd4T+DwX7ZeqRTGo6CfZ6Yav82AFTLgonvu2krH11
- TN/NgoUiKngaKqU4J39iZmh+TVEhyY0GCMgN1DZR7TuoyYikxpQJaIlfAcXIKXli+rIA=
-X-Received: by 2002:a05:6000:238a:b0:3b6:1a8c:569f with SMTP id
- ffacd0b85a97d-3c5dac171cemr18072932f8f.1.1756416765104; 
- Thu, 28 Aug 2025 14:32:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHspPYzy9VDcs1nRFH5znRALMbdoBByGfKNseGZml3VPVB+lInB01b2p18L3b1N1oh8yoq0TA==
-X-Received: by 2002:a05:6000:238a:b0:3b6:1a8c:569f with SMTP id
- ffacd0b85a97d-3c5dac171cemr18072917f8f.1.1756416764626; 
- Thu, 28 Aug 2025 14:32:44 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
- (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
- [2003:d8:2f28:c100:2225:10aa:f247:7b85])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf33bd7cebsm716764f8f.40.2025.08.28.14.32.43
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 14:32:44 -0700 (PDT)
-Message-ID: <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
-Date: Thu, 28 Aug 2025 23:32:42 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9AA10EAE4
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 21:33:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756416813; x=1787952813;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=+FixG1Plm3vJiJuJqUx+bgPnq/a1hedryeHLciLzR7w=;
+ b=JuBblKZKKL/K66alt3OV+/H4aagRTOmdMLxcDipQ/OFC/pAHmHr80OV6
+ fiEjbqHbMMUir/g26UxKPIx1WgjLIF0UwtEgejrVrDbJdEcsehjyLfS5Q
+ yTVgIqU0IZkoz1NPNSLVbBymghsXmSUwO91C5eZN425Y8hx/ouTaeZ/l0
+ N/pWQzcOMQ0vVsLpxlSEQErjSVmFEj478N4lHoJfGIrS99pLOjyJ5nbwk
+ 7PQAqrn7VDTWBlX2NW9t+0D5PFBngiI5BLDelrsu8Re7aXqzZe1m0CF80
+ XJIinTRO78APjoZ8drTi+dEpt8Pb9WDkq86RTLK/iiF+0SIlMZFM8fbVE A==;
+X-CSE-ConnectionGUID: ugCjU8lmSxeF14GEI+2OLQ==
+X-CSE-MsgGUID: FKj+b8Y2SxKHB0RziKiLiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="58846460"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="58846460"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 14:33:33 -0700
+X-CSE-ConnectionGUID: IcP2LeaGQvCAbhyPNmK0qQ==
+X-CSE-MsgGUID: BfEhhBrSTxegmlf/7rtCQA==
+X-ExtLoop1: 1
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 14:33:32 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 14:33:31 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 14:33:31 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.84) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 14:33:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PYOiHoyjwuW3+8BKszRw0ErBkVE8I1xB/WQTsiHZqzc9vJdhdS1ygp5gKth3ek3K25uDbepvPN9W+tnyvmf0doTA6yt3eJU3AJzDh7hgyk+X8jk2iVsxZQqAPEWIda67t7+S1Smdiz3jH0FIuMDQ3iicL1PX+MVSORBQNUXCjHjhwi2mXGjHhRETa9cIdbpU2As28i0PQMV3r8HqwBfl64CZw+JIXOyhYKDaTK+qDQfY3HSfV0Z3TS4A5hUuguXlkohT7AoChveSDYEvhaA2RRwUW39HDC2PIvHsdTVXGVdhaJfTn4OIurAInflRWALTc7FRp73OdygGorgBRfXJsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r7ev6N+WvkNW+m2rFcO6mZT06LH7odK70KTOvff3RHQ=;
+ b=M5mh+Rjfv142TdG/I1t+lyY8My/12uOUyj/ApSiQzdYTA3kDf8C5ZgYulgjg/T0Tn2yVrOni9SaeW/Q3CCg5kOgl2JWgvgg232QcIMIgV82nwmuyMmAfI/pcf4EJ5EwyVNzziIxv2d4QC63cw6deV671Tyb8ZO9kM7OsJzYhznrg5C+OTPLm2DCkYA32LMBNcczGbfSwYJhU63WqyQLl0ay/97G450FIVRkRRq4pP7be/bhTfjqL90Ue6rT/VL3dfE3a1+NSzQFoCcnNyuKI3PhP+Leab4MzRHvGo03ifhNkLedNN5m+3HDweouzbMuT+CVUgYMN9FY9Jc9qCV8dxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6391.namprd11.prod.outlook.com (2603:10b6:930:38::21)
+ by DS4PPFCCD6F4BBE.namprd11.prod.outlook.com (2603:10b6:f:fc02::4e)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.15; Thu, 28 Aug
+ 2025 21:33:25 +0000
+Received: from CY5PR11MB6391.namprd11.prod.outlook.com
+ ([fe80::d1d5:6fa6:9a2d:92e2]) by CY5PR11MB6391.namprd11.prod.outlook.com
+ ([fe80::d1d5:6fa6:9a2d:92e2%7]) with mapi id 15.20.9073.016; Thu, 28 Aug 2025
+ 21:33:25 +0000
+Message-ID: <7cca975b-c27d-4c6f-a70e-c6316bbe3e1d@intel.com>
+Date: Thu, 28 Aug 2025 14:33:24 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: stupid and complicated PAT :)
-From: David Hildenbrand <david@redhat.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
- <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
- <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
- <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
- <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: nEoQN0fDsSCE81df-xsGaQPlx8gr3jWeoW8j7QxYJAE_1756416765
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH] drm/xe/guc: Increase GuC crash dump buffer size
+To: "Summers, Stuart" <stuart.summers@intel.com>, "Dong, Zhanjun"
+ <zhanjun.dong@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+References: <20250827212110.1024961-1-zhanjun.dong@intel.com>
+ <39b6759c8ada538ba44e375c7cb4e38ef824fa79.camel@intel.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <39b6759c8ada538ba44e375c7cb4e38ef824fa79.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW4PR04CA0032.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::7) To CY5PR11MB6391.namprd11.prod.outlook.com
+ (2603:10b6:930:38::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6391:EE_|DS4PPFCCD6F4BBE:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96bb6fee-b80c-4977-a1b3-08dde67a8512
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?REhwMW0wVHVZZnh6ZUdxOTI2Wll6dmpabU5EdGZMVHRjNzJTVGR0VWNoZDg2?=
+ =?utf-8?B?R1JRRlhOaFJnbXBnM1BOVGZpN1lUSWRiajZnQW1rdnZveTg5b1dLRms2UkZP?=
+ =?utf-8?B?d3U5enEzRFB6Y3BiaHJNZEZBbTJ5ZzNuUGlGUmRYVUJKOSt6SWRVcU5raXRP?=
+ =?utf-8?B?WXBoeXZxVjRrT2RSM042eEFwa21vZzRCYVEyNGpCdGpKdEtIRnZWcThJOXJL?=
+ =?utf-8?B?TDAyd0Y0dC96aTh2QXRZRTlFbmplMEtwTE9OT3BpUmRxcmQ4U2ZXZGMyNXBT?=
+ =?utf-8?B?TDNYejJ5aVRwN2FhaU9FY3B0YmxpQ1N5VHZzTEJGdjBqQ2FmWVgvTDNtanVW?=
+ =?utf-8?B?bmtQemlyQ1RqTm4xVnBxcEZKa0hpczVvZ3FwbEJReVQrM2FCc3FQV3VyczNo?=
+ =?utf-8?B?OGNMUlozV29QOXNpck9KV1Fwb0FRMHJqS0tONDRnd3ArLzFuSng5cjkvK0ZL?=
+ =?utf-8?B?LzZ4TGJkQ2srbWdnQ09iSXgzbE9GRURuM0JFemZpUzFEM3RIVDA3ejIzd1E2?=
+ =?utf-8?B?Um5weXZVZnFlbzd4MFJ5VE1NcGZ0dkJPWUE0YzBCVUVHSmdOaXpXYzVoaFVC?=
+ =?utf-8?B?QTEzS2lJWGdrNGRkeGE2aUNraXFqbWg1VEd3WWphSEJ3Qjk2cjY2b3ZnZkVv?=
+ =?utf-8?B?NmxVa1plTEZRYVZESkx2VlA0VHdYVGlQRnh4S3l6dmtJMDJKSWpIRStMN3lX?=
+ =?utf-8?B?eWZLNzRLVlBJNXl6S2pVMGZsQmtYV3VUc1g0TEpkcGlNWitTcWFzS1A0RERu?=
+ =?utf-8?B?MEJnbnNzOGw5Y05rNnFUNmc4WU9WMWxPU3Joc1orSkFxVGovZTE0R3Z2Snhl?=
+ =?utf-8?B?aXVLZTJzWVg2TzVpOGpyenlTbnpEMlY3Ujd5YTI1Nkt2ZjJ0R0J3eUhhK0hX?=
+ =?utf-8?B?YnZhQS9MYzhWODJLclp5QkdRQk4rV1NwZ09XTUZXZE15UzhGVXFEZGxocFNH?=
+ =?utf-8?B?ZlpCMXhVUWxZU3lBcVpJKzZvbU5OekI1elNYNnpldXorY2x1SzBhM3IrUzRm?=
+ =?utf-8?B?KytGOHBqWjZNak9McFlVTmZtOTZDb1RsSHA5eG5uejM0bHRCME9zV1orbWJX?=
+ =?utf-8?B?Z3BHNldxSEdObWRycWVuZDlUVVhsV3AyS0FwS1ZEbWVIeUJ2ZlNMRFJFa2Jy?=
+ =?utf-8?B?VE14eVFjb2VSc3FKQ1crcG50bnExWWQvd2x1bHNRSGEzQVNSZTlhN2JQODlY?=
+ =?utf-8?B?Y1FsQkdYRDNTRjJOeXR2NVUrSEZVR0x5bmw2WUdMNVp2dWFUdzhia3J4VGoy?=
+ =?utf-8?B?bVpFZ0ZKdlBJNGYvbUx6SVh3ZFhKdDh4a0lsV0dla004ZEEyaXZncjdFOHFP?=
+ =?utf-8?B?UHBwRXl5c2tUbGlGSXRMNjFrMmNCT3FKaEVCQnBCTERibXdmQ0RkYnFBb2V5?=
+ =?utf-8?B?QXdBTCs5RkRtdlAzUWh5M21EUXNhYXRWbHg3NE1rY2tQenlDTmVLTEZQT0F6?=
+ =?utf-8?B?SFh5STdJRVBpNC9RNG5VTzdkczFrQy9pQmRDSnliYkp0YVRkYzRZY1JEcm1s?=
+ =?utf-8?B?TDJjZ0tVRWRPSHIrTDVlVk5qYkIxOUpJZGJTY2YyeFdIVnhISDJ0U2wwbnd3?=
+ =?utf-8?B?elg1Q21JSUQ3T0FxbHQ1TlpZU2FxZEk1MzVPTElIa3krbW84d0VXUGV1anRZ?=
+ =?utf-8?B?RHhTcWpuRFA2NnVxMy9jaXdPcWo3dWJnenJCcDVTLzFIV1d1aSs2Rkg5TWdq?=
+ =?utf-8?B?YUlteU1XMFZueEFkRE1rTDl0V05ZYUFqdGJWOFdBMVJhUUFzdkVIWFcxczhZ?=
+ =?utf-8?B?M1BjWTBrOTVtMUdGWlNhR0RPMCt6VHhTWVpXdlVSTDFEZ3hRYlFxUEg4djZH?=
+ =?utf-8?B?dE91QmIxQ3FYSk1ibHNabHVraDJwOU45YzlTejhHYTRoZUU0NTBxNWM0ZlJl?=
+ =?utf-8?B?cFY3WTFEMGhxV1FxeER0VVgrdmF5QVljU2lJcmVSQWZCOU9KbmI1MDhNWUd3?=
+ =?utf-8?Q?vTnUqNZthCY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6391.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXpaZUpVNGRZSmJnZzRvbE1hbUNiMVRXeGVseFo0U1JNQTU0K0tBSnJxWGpK?=
+ =?utf-8?B?TmN2dysvRjJtZkN6OU5oc2tqakVYaVZVMHEzTS9JVTlSVHkvZ3pWNW5kQmpX?=
+ =?utf-8?B?VWdUajU1KzFqbW1tcytpalliT2JQYzZ6cmk5K1BQa0VqUFNDREFLKzdISnlX?=
+ =?utf-8?B?eVNhU3pZb05jWmV1MnJYZm5BQUoxWlpXME1YMGZiMTZKcjAxWktsZDQ5Vk92?=
+ =?utf-8?B?R1ZpWGVNcm0xdEFHT3EyZUhoV2hVZDJ5NEtGWEphSmVkL0ZJNjEvVi9KOXUy?=
+ =?utf-8?B?Nmp1eUNzeUx0Wk9pNHVHS3Ewam5jYldyYWJkTHZXSlZVaDJuUnN2aGkybXdT?=
+ =?utf-8?B?WGwrU0JzSFNKUE1oL1NMZzZwRXVFOGlBNkJ4MW1PK0laL1phZnV0clk4S0JE?=
+ =?utf-8?B?OXdDMlc3MWJsc3VWck9TNCtpQzJJdTJDOTY4dlYxd0ZSTTVONmZYNFRXMnRp?=
+ =?utf-8?B?TjZWQU5yaUQ2VEx1cjJSZUhjV1poSmpSQ3RKamtmZ0pHQUVSVGlNUmUxZUdO?=
+ =?utf-8?B?UENSaXZRMGNGczJaRlZpNzlyamZwNVRNOEEzZHFUOGZGRHpnUThRRzA3OHNp?=
+ =?utf-8?B?c2J1aHZ3QlZGY1Zoc0FueFEzb2NDRFRCWDZWM3RBY3U4ejJrbjc1M0x6Rmlx?=
+ =?utf-8?B?c0RKSFNhSDN3S2toS0ZJSjZMcXU5dkVZYjRNaFYxODFaWHlWcG9JMFpIRnB3?=
+ =?utf-8?B?cVRSdGU1aW9qVDBJMFh3T2h5T0ptcCs2akpna2dxbmpSVFVyK0daNXhqRjNw?=
+ =?utf-8?B?UDRMY0FsdGVaNm1ZSWo0UnBNTTFGd1JZNFRNb3RlMTN4Z096ckIwN0pvMlcy?=
+ =?utf-8?B?N1VobXdJR0p5SlZkTk5yYVpqaDFlUEpaZUg4ZG0vaW9sSXlmam81aU9yOXkx?=
+ =?utf-8?B?cnVCbWUrbStpdzIzWC8yYWQ1NU1NSlNSMVQ2dUZzK0lZVWNxUVd1ZWIyV2Vh?=
+ =?utf-8?B?TEhQZFMrbytoNmtQTE5sTlBaWkZpaWtvM09VMlNXQVBNRDh2dzV5NmNuaXha?=
+ =?utf-8?B?b1RNWkpTbkw1b2grdGRPaGhwejc5WS9taHRBTjdacEN5RnNoYXZ0RVhEYWdy?=
+ =?utf-8?B?RjgyN1NvUDF1NFpNK1AxVmxzZDBRQm82cjgyeksxZmlhM3FMQXg0bnJueTFi?=
+ =?utf-8?B?SDhQaVlFdVFRSWsySDRLNWVZVlpKV2RBbFNEKzkzWEx2Ym0zYmxucDlIUlI5?=
+ =?utf-8?B?OGtQNG5IMGFkYUNNc2ZBdTN0bG1yeS8rSXgyQkxQMzhUQng5dGxGa2hiQzJU?=
+ =?utf-8?B?MFp1azBTU1NYSk1Tc0RpdG9KS3BiMnFSRTNuRktaMzI0OGE1ZnA1K0NEMTNG?=
+ =?utf-8?B?bEo5cWZpRmRSVkZva0lLQWlWR2E3elN4YW5nRm1LTE1ET2RyODNBZmtNVGU2?=
+ =?utf-8?B?QlBXbGxoenhucW5ZODRGTFVGY1hqNk9ORnhpeHFzVkpUc0srVThoSkROVDE4?=
+ =?utf-8?B?NU9sbEpaYWtaeXlROGJSWGdzd1MzTytFRC96K0x2K2U1WUhzZlBXM01MdkJO?=
+ =?utf-8?B?aXczNEtrd0l0eTA5SDE2OHpab1hrSWtqZllXR2VPZzR1SXh6NXU2dVB3dmFU?=
+ =?utf-8?B?SnprdHdWbVoyMlY5VzE0Rk9GR2ZTaUYvWkhrS1lpYmZaQThxVTVIcmpQYVpQ?=
+ =?utf-8?B?VnVEK1ViaTU3YVgzYnl0VXZPdnBpZTNFQTJCRnZIM0tiRU1vVWhvcXk4ZThQ?=
+ =?utf-8?B?b09sV01ETmJBZ0pKRVNRTTVoUDdzZUdIZWJYbHBsdDB0WjFWeUpyQ3R6MGVn?=
+ =?utf-8?B?SGsvNndSdGxHYk9QSU10MDZVS1B6blllQndnRnkvQmtKL1pGeHcwNi8xSHNU?=
+ =?utf-8?B?WEFTRnlmOHM4ZHZlNUdCeHZrVCtTaHEvRW5rZG10d2VnVWtmTCtSWGdKN3Ns?=
+ =?utf-8?B?a0hoMGpyNFpSK0pyeUdDTXVZT29HNUo3dUZYdHdzQlF6dkhYenM0OWpGRnFB?=
+ =?utf-8?B?NFpvRk5qZE9TSFhlTHhaQ3pLZ01mVGJ0NWh0MGxyN3VZRmZ2dlI0eHhRTWlY?=
+ =?utf-8?B?SnpsbkZ4NXZiM0NPT0JpekR2T0lFVUVraE1DS0RQSG8yQ0poMHRDUFBQenU3?=
+ =?utf-8?B?U2wxOEZvaDBndHpDNUoraXQxS0FHbnJsZXZ1UGp5WUxlYUwrelFlMk1OM1FT?=
+ =?utf-8?B?OUV1bk5nb0VUYktoSDEzQis2cERZYThRNWFIbkVqMzBHbUtJcSsrVlFkUHF6?=
+ =?utf-8?B?SFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96bb6fee-b80c-4977-a1b3-08dde67a8512
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6391.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2025 21:33:25.0890 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CdO2P9kvd/yFwpvmWIfedetOD9lVCd9OCpBX86OVAMvmDGuljQ1/TL2UzZZG5tO2aXQ5qWIWmwXsnleoTub0F1bh7EsKsE3rxLmy/MTex3c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFCCD6F4BBE
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,137 +195,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28.08.25 23:28, David Hildenbrand wrote:
-> On 28.08.25 23:18, David Hildenbrand wrote:
->> On 26.08.25 18:09, Christian König wrote:
->>> On 26.08.25 14:07, David Hildenbrand wrote:
->>>>>
->>>>>> 2) We add another interface that consumes PFNs, but explicitly states
->>>>>>        that it is only for ordinary system RAM, and that the user is
->>>>>>        required for updating the direct map.
->>>>>>
->>>>>>        We could sanity-check the direct map in debug kernels.
->>>>>
->>>>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
->>>>>
->>>>> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
->>>>
->>>> It's all a bit tricky :(
->>>
->>> I would rather say horrible complicated :(
->>>
->>>>>>
->>>>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
->>>>>>        system RAM differently.
->>>>>>
->>>>>>
->>>>>> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
->>>>>>
->>>>>> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
->>>>>
->>>>> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
->>>>>
->>>>> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
->>>>
->>>> I mean, the use case of "allocate pages from the buddy and fixup the linear map" sounds perfectly reasonable to me. Absolutely no reason to get PAT involved. Nobody else should be messing with that memory after all.
->>>>
->>>> As soon as we are talking about other memory ranges (iomem) that are not from the buddy, it gets weird to bypass PAT, and the question I am asking myself is, when is it okay, and when not.
->>>
->>> Ok let me try to explain parts of the history and the big picture for at least the graphics use case on x86.
->>>
->>> In 1996/97 Intel came up with the idea of AGP: https://en.wikipedia.org/wiki/Accelerated_Graphics_Port
->>>
->>> At that time the CPUs, PCI bus and system memory were all connected together through the north bridge: https://en.wikipedia.org/wiki/Northbridge_(computing)
->>>
->>> The problem was that AGP also introduced the concept of putting large amounts of data for the video controller (PCI device) into system memory when you don't have enough local device memory (VRAM).
->>>
->>> But that meant when that memory is cached that the north bridge always had to snoop the CPU cache over the front side bus for every access the video controller made. This meant a huge performance bottleneck, so the idea was born to access that data uncached.
->>
->> Ack.
->>
->>>
->>>
->>> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
->>>
->>> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
->>>
->>> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
->>
->> That makes perfect sense. I assume we might or might not have "struct
->> page" (pfn_valid) for the iomem, depending on where these areas reside,
->> correct?
->>
->>>
->>>
->>> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
->>>
->>>>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
->>>>
->>>> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
->>>
->>> I think the most defensive approach for a quick fix is this change here:
->>>
->>>     static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
->>>     {
->>> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
->>> -                        cachemode2protval(pcm));
->>> +       if (pcm != _PAGE_CACHE_MODE_WB)
->>> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
->>> +                                cachemode2protval(pcm));
->>>     }
->>>
->>> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
->>>
->>> What do you think?
->>
->> This feels like too big of a hammer. In particular, it changes things
->> like phys_mem_access_prot_allowed(), which requires more care.
->>
->> First, I thought we should limit what we do to vmf_insert_pfn_prot()
->> only. But then I realized that we have stuff like
->>
->> 	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
->>
->> I'm still trying to find out the easy way out that is not a complete hack.
->>
->> Will the iomem ever be mapped by the driver again with a different cache
->> mode? (e.g., WB -> UC -> WB)
-> 
-> What I am currently wondering is: assume we get a
-> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
-> there was a previous registration, then we could do
-> 
-> (a) No previous registration: don't modify pgprot. Hopefully the driver
->       knows what it is doing. Maybe we can add sanity checks that the
->       direct map was already updated etc.
-> 
-> (b) A previous registration: modify pgprot like we do today.
-> 
-> System RAM is the problem. I wonder how many of these registrations we
-> really get and if we could just store them in the same tree as !system
-> RAM instead of abusing page flags.
+On 8/28/2025 11:19 AM, Summers, Stuart wrote:
+> On Wed, 2025-08-27 at 17:21 -0400, Zhanjun Dong wrote:
+>> Increase GuC crash dump buffer size to support up to 16K dump size.
+> But why do we need to do this?
+Because some current platforms already have a maximum dump size of 12KB. 
+So if things go truly pear shaped, we are already truncating the crash 
+dump. That should have been mentioned in the commit message.
 
-commit 9542ada803198e6eba29d3289abb39ea82047b92
-Author: Suresh Siddha <suresh.b.siddha@intel.com>
-Date:   Wed Sep 24 08:53:33 2008 -0700
+John.
 
-     x86: track memtype for RAM in page struct
-     
-     Track the memtype for RAM pages in page struct instead of using the
-     memtype list. This avoids the explosion in the number of entries in
-     memtype list (of the order of 20,000 with AGP) and makes the PAT
-     tracking simpler.
-     
-     We are using PG_arch_1 bit in page->flags.
-     
-     We still use the memtype list for non RAM pages.
-
-
-I do wonder if that explosion is still an issue today.
-
-
--- 
-Cheers
-
-David / dhildenb
+>
+> -Stuart
+>
+>> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_log.h | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h
+>> b/drivers/gpu/drm/xe/xe_guc_log.h
+>> index f1e2b0be90a9..98a47ac42b08 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_log.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
+>> @@ -17,7 +17,7 @@ struct xe_device;
+>>   #define DEBUG_BUFFER_SIZE       SZ_8M
+>>   #define CAPTURE_BUFFER_SIZE     SZ_2M
+>>   #else
+>> -#define CRASH_BUFFER_SIZE      SZ_8K
+>> +#define CRASH_BUFFER_SIZE      SZ_16K
+>>   #define DEBUG_BUFFER_SIZE      SZ_64K
+>>   #define CAPTURE_BUFFER_SIZE    SZ_1M
+>>   #endif
 
