@@ -4,185 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A321C8303F
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 16:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B6B9CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 16:56:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2C410EA4E;
-	Thu, 28 Aug 2025 16:47:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKZ/k+sy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5937A10EA4E
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 16:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756399662; x=1787935662;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=194VG+ia5Y931QKfmCVQ9SP3FRsWOoNJ8JIZNXp18YU=;
- b=fKZ/k+syWAxGoodTqe8H2ihasOyiCPIUEbNB88L17lxMg3CkC7YhAQCF
- ANpgQiqEnkkHZC8Ecpg5WDdj3n9dWkHCwl1x5Sh3RqTDMvNBArpeEK9q/
- ppgCMnlMkruLQQF4qOKGiXBuFUKY4r2VzA0xTpE2B8azo5YTmM5O8bNp2
- skkaaIXUB2V2ow2MkkbfQ9txmzoFGpFb71TZpAkxRfWI+EapaDWXTaYTt
- QRZdFEAT14tO5+QkmNEhvH/2/Yk+KGlP/aoxgaAJaMH08jCcZPClnrgEG
- vca7/mCGgMmyanjTmM5qfBGMxYG534NOCypVu3YVecnpblJvYUeHtI2V6 g==;
-X-CSE-ConnectionGUID: VIyb22PyT4OYZCesfL4Kdw==
-X-CSE-MsgGUID: V0MD6CEGS6GhaKlq8GCthA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62510434"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62510434"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 09:47:42 -0700
-X-CSE-ConnectionGUID: H6iY+hp3QACGFrY5Se1uLA==
-X-CSE-MsgGUID: ZKtMpLQpQ8mY62yEnDIGNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; d="scan'208";a="169457464"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 09:47:42 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 28 Aug 2025 09:47:41 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 09:47:41 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.45) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 28 Aug 2025 09:47:41 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HyBXgbAYOrwn2irNTirBxjYwM395sPRXmg+Yxj+cqjhfi97SwCSc5JCvbukuFNibdw6RPidlsEvMtgAiNkUmcRJSFBkJkFp3D8f6YEmJQpHaU704/aI/sN9jxxShDbMRohcoZa3pLZWHGxR8Jg8yWn88XcpkCu5KwzDbwnlma6UgPMuu06ZFne3ikrhSXFPxDIn8UEFOV9J94XG2rwXy9DMvvYsDN3ZR0rmiB2vIKHbkImDUBZkkQbjWJoSedP3DwTjKiZeB4zcXLFfWMVgziBYsxKPD+4SeDBZU/scnC9TY/4GhyHRBj+LcxKk0pUoIfy/yEbBKBLCRQt1Aovr4TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UVfJphCAPbB+Kwpc+cBw2a3XTvawrHwlHbzH/3PY3jI=;
- b=Y5UzaEEN1AZiIeSE+006Z+RnExdw2MoFh5mIagcARy6kw7iK0Fut4Zipr/vTE5KwpsiyEpKiwkb8FzIoMzvsI67pEb4pktNsgnmZsWEFdEz83xC/swAm15XvLUmE5uQgjQd/jUCV9fryUNIVjsjYc7osL3mS0/m45p77PomO+LS0bF1BXDX7axQgCkja3oNmMO93VXt4mZQJlI1bdzpIm2uV4bkJ1dYJFjDfDBupKOz6WmslTQv5jWnIhj+lY5BCJ+zKcU+jhnuUDYmCRMNI6w5r7WCLGmqN4u6jvILAVjVJZrlmuwMhPaO1Oq+bPZMVfnBwcxMGGzI95GlwNlPdUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SA1PR11MB6616.namprd11.prod.outlook.com (2603:10b6:806:257::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.25; Thu, 28 Aug
- 2025 16:47:35 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9052.019; Thu, 28 Aug 2025
- 16:47:35 +0000
-Message-ID: <74130297-bc96-4955-b156-7df8f5dc30c0@intel.com>
-Date: Thu, 28 Aug 2025 18:47:29 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6] drm/xe/vf: Enable CCS save/restore only on supported
- GUC versions
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>, "Lis, Tomasz" <tomasz.lis@intel.com>
-CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Andi Shyti
- <andi.shyti@kernel.org>
-References: <20250828115559.9055-1-satyanarayana.k.v.p@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250828115559.9055-1-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: WA2P291CA0036.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::9) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E341010EA52;
+	Thu, 28 Aug 2025 16:56:40 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E12DA10EA50;
+ Thu, 28 Aug 2025 16:56:38 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 269EB1688;
+ Thu, 28 Aug 2025 09:56:30 -0700 (PDT)
+Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D576C3F738;
+ Thu, 28 Aug 2025 09:56:35 -0700 (PDT)
+Date: Thu, 28 Aug 2025 17:56:30 +0100
+From: Mark Rutland <mark.rutland@arm.com>
+To: David Gow <davidgow@google.com>
+Cc: Marie Zhussupova <marievic@google.com>, marievictoria875@gmail.com,
+ rmoar@google.com, shuah@kernel.org, brendan.higgins@linux.dev,
+ elver@google.com, dvyukov@google.com, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com,
+ kasan-dev@googlegroups.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [PATCH v4 0/7] kunit: Refactor and extend KUnit's parameterized
+ testing framework
+Message-ID: <aLCKPieOlM8dD858@J2N7QTR9R3>
+References: <20250826091341.1427123-1-davidgow@google.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SA1PR11MB6616:EE_
-X-MS-Office365-Filtering-Correlation-Id: fbab3972-b24a-4dca-7c99-08dde65296db
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aGVvWnNGd0ljNWE0UDdsK2dBSS9kQ3IvWWJGdmtQdmMxakVFdHpWTFk5TEpj?=
- =?utf-8?B?bXFRQVJsWTU4cHFGKzRKRkdqK0VkR0xVTTJOZGlCNG9idHIzWTAxcmlrZnla?=
- =?utf-8?B?MEVoRHpaTnBneENldlh5RnFtZnRpNVUxcjJRR1dQanBjc1d0TFYzOW9kM3Zq?=
- =?utf-8?B?MjkvTjJIZUNiNVlMVkdoaTQ3N1pUZk1VNWhZVHZRS1Q4OVdjVC95Mk9qcVVB?=
- =?utf-8?B?T2ZRRmhPeVVlc0p6dEt1V3luaThrZW4xWlpnKzN2SDl3dExSM2tIbTZiL0xU?=
- =?utf-8?B?VEpMZEhNOW5GUTBlSHBXSjg5TGFQL2ovd2ZTc1NoZTRXT2E5R0hQZGNGZUpT?=
- =?utf-8?B?R3N2cDYyMzhERTEyOUJnUTBqUTJxNEVjelBJK3NUWTByS3ZZWXRicjVqZVY1?=
- =?utf-8?B?TU5RMW0rSTFMbFEybTNpYldzb0JMMFNNVEF1TW90WnhLSlNQSHVDNUFLU01h?=
- =?utf-8?B?RXdIOHhCMUVaeDRDdHVrYUZrcVVWeGc5eVNCQVZrVVpSVGk5Vkt4L2tYSVdM?=
- =?utf-8?B?NGs0VUE5Q0ZwMUZhWCt5TXdmaUxQN3E4VnNvdUxmeCs3Zm5jeHNiay90ZDFS?=
- =?utf-8?B?RHJra09uckdDdGhvbWYzYTRyS1d4ME1vQVNYRVlidVBDQXBZbjJscmdFU2xl?=
- =?utf-8?B?dG9Pd1gvblZOcmVROUhrSFBQNWUyYnVuNm5Ka1ZkTTJ0NFZ1aUJZU3Q2OVd0?=
- =?utf-8?B?ZmdBL3NOOEszUjVYRDFBTFpwTHFQTjUzN3llY2duYjNadUpReFJiV3JTUGd3?=
- =?utf-8?B?VFk3LzcyaWR0TmxTYVMwUXQ4K2kxcGdrRmFoQk9OT1VhK2kvVGxzYlVnWVVY?=
- =?utf-8?B?VGhSaFBxQkFVME1xakJRVGpiOVVDTUUyNDB1Ky9VZWlsVXBha1hPdGdTOEVy?=
- =?utf-8?B?SE5SZytRbE9SbU9KdnN2ZzZ4T1NiNytqUmdYWnFlcWxYSXFacXNTTG1PemE2?=
- =?utf-8?B?MVF1Q2tIVGhzQ3RzOG9TTUEyVnNSQ3pnMVRqaUc1R1l4SUZBbUhrSUpRWlZ6?=
- =?utf-8?B?R0ZvekhDYUR1M1lURFQxZFlKWmRheUpqSHQya0R1S0poQUk0SVZ2S2U2Rlgw?=
- =?utf-8?B?NFA0WlZzRmJERVV6T3VRM2s4TnZ6OHlEUkVCKzVYR3hFN1pTTmdMdE1DeTdQ?=
- =?utf-8?B?VzZVbkNydUh6VFNabXgvSDd4NzY0QjN4ZGN2ODVVN0svUnRmNUc4VGpqUU9j?=
- =?utf-8?B?UmVaVHYrOHJ2elVKRVFSY0pseXZOcmZNK1M4dUtzbUdTZjVnNGFSdm9ZTWFz?=
- =?utf-8?B?R1U0Ym1zaGRUQlBjYkdzTWIyNXcveVN3WnhReVlTUmF0U3FKamRST3o5TWtP?=
- =?utf-8?B?dThtY05ESzc5MG9FaFNPS0xxdk5kUHRHWmJKWWhvRmtjQjN6VjlMYStLUDFr?=
- =?utf-8?B?N0syVTNaQlJqQkdka25Uckt4dEs1SHZvamVGSVhsbHJzNzk4dDZ2WXpLSlJx?=
- =?utf-8?B?MEpZYUJqeVRaTE9CNDlJeVY5K2lnUUdLcVZCTXFIS3AydVJ2TkVwazE0T005?=
- =?utf-8?B?QUVCMlkrOEowcExsQU9PQ095WFlDcGx6cDlpLzJNYzlzTXByNjd2RlNNTy9h?=
- =?utf-8?B?Rk1oZExlWityZEMycUttU0Q1SGdtamJLMTZjaGxSY0dFdTYzZ0E1UWo2UW0x?=
- =?utf-8?B?MmdURkFISUdBUjlXSCtJN24xR0k2aVVsUWlEK20xSUlxbnlXNFB2eFJOeklI?=
- =?utf-8?B?M3BLWjdjWjMzSlh5RHgvd3NUc0JQUlhJTFIzOEhXczl4a3hBNjNFaUVWYUVW?=
- =?utf-8?B?WUlkclZCbEh0TkpaVllZaVAyQ3lueEdjVEJoTzNsaVczMm1ueVFFV09sekl4?=
- =?utf-8?B?UkwxcXNsV2Y1YlFWQ3BRT0NPaTArclhkNlRKRUxMelkrTUkwSThNZEJFSGw3?=
- =?utf-8?B?R2krT0I3ZjRjbGFHNnNnQ0xkUy8yNkkrcHpzOXg5bmNNcjR2Vkg4QlFWWHNM?=
- =?utf-8?Q?97l1HkQ5wME=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjdMVG93TFdhdmJiaUFJeXdRU0JSQ1B5blR0anRUUHhrYVhRUDdQNUxLeU9D?=
- =?utf-8?B?YWN1bUZCMS8zc29CbVJYdVdMNFlSZG5FOFduZEFqS2dqcVdkK0J4TkNKTTFO?=
- =?utf-8?B?NWVGdEs1Z1hITDg4OTZFdXlFNjd6VEJTMkdrTEpSVk15ejJOUkRsSzBFcnQ0?=
- =?utf-8?B?S0lFQTJiZDNIdm8xM2Z3ZnMzSjBYVXg4Y2xheFZmVW9hU25YSDFwS2kxMURL?=
- =?utf-8?B?NWZwTkdpN0lLQ25rbDA0c0U5MGFHK2dXeTMyWjQ1QVZ3UnVvQjI1cUNTazBJ?=
- =?utf-8?B?a1dBQks5c3VCR211V0VncUtreVRUNFhEb1VDb01Yd2ZxZFpMZzNGTGxRYXdk?=
- =?utf-8?B?TEdVTHJ5NGo2WmFzdmFkR29FaHhweHZ4MmNjQXdwaWlUR3BicXRwWUVIYUJO?=
- =?utf-8?B?blpIcmpPTGc2dEc4ZVFnNERyQktxdW9GRWRUNjQxbXFXUmtkTnplUHFDUW1m?=
- =?utf-8?B?YTYySjRFSFBzMW9FSXhLUW15RGtpWTlvcVlOenpmS0VnQjRsbXRiNW84d0pa?=
- =?utf-8?B?MkpFenN3eWdvUGFUUTdhNU93dTNMQVNmRk90amQrY2swSnBzV3VyejRkdWJE?=
- =?utf-8?B?aFZiNlJ2cXNEa2RlMStZblpUM3ZuSW9QR1NWeG92RUYvZ09yZ3FOK1RNRlFT?=
- =?utf-8?B?VzFRbFREVEdEOE5VQ2I1dnJqanpVaWpheDFTTzlxNFMxSGpLbGNERXhOekxB?=
- =?utf-8?B?M3FFRG8rTXljUG4rdTE4cEE2a3k0NGVKYWROL0ZkKzRaWHJVNVZJc0dmZE11?=
- =?utf-8?B?eVFYaVgrdTY1NzVBSlRvbDhzZk9mc0J5d1FiR3R6NnZHNE80dTJIdythMFpl?=
- =?utf-8?B?ckhyd0xFZm1jaFNUeGdTOUI2WnZONjBMcjM4OGJ4ZTVyODlnQlBGZEJNQXdu?=
- =?utf-8?B?clgyR1l0ZlJ5WGlRd2txYnhMd3RFVTh0aVNLVk1oRm5JWW1BUUpwR3NaV1I0?=
- =?utf-8?B?bDRZN3VOU3pHa0dUTXlDdmtYRktxMjFialNwM3R0dUFYeVN5SWhQellLaDF2?=
- =?utf-8?B?djJ1Y0dFVHdlOHlhQWhSUEI1UmxvdjR2OFd5YzkybFpHSjFHTlh6WklwR3Vj?=
- =?utf-8?B?bnZqcnVBY2dETkpObnI1cnZ6K1NmYlhyRzJKb0l2ODdsS0dVbzFwYTJVQzZ5?=
- =?utf-8?B?Rk9ONmJGNnpHUG95WTR2d1RmSWtuaFZTTVQ0VldRc0dubmxQUStTelBoaGwr?=
- =?utf-8?B?OXRGMW9XZ3IySHE0ZXB2d2FqWEQxRnhRYVB1WGpUMHJDSlRHSGtmZk5BQUQ5?=
- =?utf-8?B?NmFpRUFnekN4VVhSUGN5ZFhGZmIwb2hGdk5lMFpFZ2lWS241cDRxMFdZZXp6?=
- =?utf-8?B?UXFTOVk0K3dPRTkya3NwK3pTT0hlSzV3YkxPL0c1NGR2UXo0WkhRd0hDb3hq?=
- =?utf-8?B?VFdPY2p3cjRUSGZuWWgxSkxTeHpSNFhBckJVU1I3OVRQVTJhOERya2J5eXRF?=
- =?utf-8?B?REt1S1RvUStEbHRqdXhrTnd4MEw2dG90TjFBYnptRitsekN6cmJZOU8rWnY5?=
- =?utf-8?B?RUw4VklraW0wbnJVWHdYYm8zWXIrSXgzNlZ5SkFNS3k4WjlHaGh3eHcyZFFp?=
- =?utf-8?B?T0pmRTJDdEdKbFdoakZOUHl2TkF0dDJsbjYySUpFNk9BWG1RQlVRWmNmMkpN?=
- =?utf-8?B?RXhlL3Z5RFdaQmVQenBsVW5VZzY2V2RQZ2tEVWRrM2tHalU3Rkd3WE5kU25K?=
- =?utf-8?B?MlNVcE9UOTZzbk9KcUJEc01ETjAyWktoemJuc1ppdTdiYXBYZFAvakZoSEJq?=
- =?utf-8?B?eWV4K0pnTEpGUUxTMTRkUmhrVm1CVFo3c3M2R3UyMXhBejRDYWN6TjZMRzdO?=
- =?utf-8?B?ZnNqUnVQNlJSVFl4b1d1a2ljd1VVQkQ0UEZsbUhaYnVTdjdoeE95RmNGaG5w?=
- =?utf-8?B?VEZyUWJqcTFSejR5eTJETVc1eWNUanNPY3VXMldDeDZmV2szdkdCdUZtM0lD?=
- =?utf-8?B?M3JGdUcvSDlteC8rV0ppYUpGKzZvL0Q2bHk5MEhpOTNjTGVPa3VnQktka0ha?=
- =?utf-8?B?YVZYMmV3bkVUbmhyS2hLSkJDUjI3S0pvWE5rVjM2UXJuVjAwSDh0RTNFSDFN?=
- =?utf-8?B?bERick9Cekd2dDJycGlzaHhVTnpUVy9KUUthYWpYS1NyRkF1Y3ZxVlplaGIz?=
- =?utf-8?B?eTJ3MStob2srTXIrSnArUnBrY1EreEVnZXpUR3BsajZsc2txcTBaSWwyMDQ2?=
- =?utf-8?B?V1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbab3972-b24a-4dca-7c99-08dde65296db
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2025 16:47:35.1423 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fp85JgFcz7yFBCfPJQmcvWJ06rmwHnlIyqG+Ori4JJAOPiA/YigK/3/CF1y1lu2p0fnNxiKOOXzb08HzJ1sXeZeD3Liv0zaIrkE57VEhtTQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6616
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250826091341.1427123-1-davidgow@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,236 +51,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 8/28/2025 1:55 PM, Satyanarayana K V P wrote:
-> CCS save/restore is supported starting with GuC 70.48.0 (compatibility
-> version 1.23.0). Gate the feature on the GuC firmware version and keep it
-> disabled on older or unsupported versions.
+On Tue, Aug 26, 2025 at 05:13:30PM +0800, David Gow wrote:
+> Hi all,
 > 
-> Fixes: f3009272ff2e ("drm/xe/vf: Create contexts for CCS read write")
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Andi Shyti <andi.shyti@kernel.org>
+> This is a new version of Marie's patch series, with a couple of extra
+> fixes squashed in, notably:
+> - drm/xe/tests: Fix some additional gen_params signatures
+> https://lore.kernel.org/linux-kselftest/20250821135447.1618942-1-davidgow@google.com/
+> - kunit: Only output a test plan if we're using kunit_array_gen_params
+> https://lore.kernel.org/linux-kselftest/20250821135447.1618942-2-davidgow@google.com/
+> 
+> These should fix the issues found in linux-next here:
+> https://lore.kernel.org/linux-next/20250818120846.347d64b1@canb.auug.org.au/
+> 
+> These changes only affect patches 3 and 4 of the series, the others are
+> unchanged from v3.
+> 
+> Thanks, everyone, and sorry for the inconvenience!
+
+Thanks for this!
+
+I had a go at converting some of my aarch64 instruction encoding tests
+over to this, and having the ability to dynamically generate the params
+array before iterating over the case makes that much easier to handle.
+
+FWIW, for the series:
+
+Acked-by: Mark Rutland <mark.rutland@arm.com>
+
+I'll see about getting those converted over and posted once this is in.
+
+Mark.
+
+> 
+> Cheers,
+> -- David
 > 
 > ---
-> V5 -> V6:
-> - Fixed issues reported by patchwork.
 > 
-> V4 -> V5:
-> - Fixed issues reported by patchwork.
+> Hello!
 > 
-> V3 -> V4:
-> - Fixed review comments (Michal, Andi)
+> KUnit offers a parameterized testing framework, where tests can be
+> run multiple times with different inputs. However, the current
+> implementation uses the same `struct kunit` for each parameter run.
+> After each run, the test context gets cleaned up, which creates
+> the following limitations:
 > 
-> V2 -> V3:
-> - Fixed review comments (Michal)
+> a. There is no way to store resources that are accessible across
+>    the individual parameter runs.
+> b. It's not possible to pass additional context, besides the previous
+>    parameter (and potentially anything else that is stored in the current
+>    test context), to the parameter generator function.
+> c. Test users are restricted to using pre-defined static arrays
+>    of parameter objects or generate_params() to define their
+>    parameters. There is no flexibility to make a custom dynamic
+>    array without using generate_params(), which can be complex if
+>    generating the next parameter depends on more than just the single
+>    previous parameter.
 > 
-> V1 -> V2:
-> - Fixed review comments (Michal)
+> This patch series resolves these limitations by:
+> 
+> 1. [P 1] Giving each parameterized run its own `struct kunit`. It will
+>    remove the need to manage state, such as resetting the `test->priv`
+>    field or the `test->status_comment` after every parameter run.
+> 
+> 2. [P 1] Introducing parameterized test context available to all
+>    parameter runs through the parent pointer of type `struct kunit`.
+>    This context won't be used to execute any test logic, but will
+>    instead be used for storing shared resources. Each parameter run
+>    context will have a reference to that parent instance and thus,
+>    have access to those resources.
+> 
+> 3. [P 2] Introducing param_init() and param_exit() functions that can
+>    initialize and exit the parameterized test context. They will run once
+>    before and after the parameterized test. param_init() can be used to add
+>    resources to share between parameter runs, pass parameter arrays, and
+>    any other setup logic. While param_exit() can be used to clean up
+>    resources that were not managed by the parameterized test, and
+>    any other teardown logic.
+> 
+> 4. [P 3] Passing the parameterized test context as an additional argument
+>    to generate_params(). This provides generate_params() with more context,
+>    making parameter generation much more flexible. The generate_params()
+>    implementations in the KCSAN and drm/xe tests have been adapted to match
+>    the new function pointer signature.
+> 
+> 5. [P 4] Introducing a `params_array` field in `struct kunit`. This will
+>    allow the parameterized test context to have direct storage of the
+>    parameter array, enabling features like using dynamic parameter arrays
+>    or using context beyond just the previous parameter. This will also
+>    enable outputting the KTAP test plan for a parameterized test when the
+>    parameter count is available.
+> 
+> Patches 5 and 6 add examples tests to lib/kunit/kunit-example-test.c to
+> showcase the new features and patch 7 updates the KUnit documentation
+> to reflect all the framework changes.
+> 
+> Thank you!
+> -Marie
+> 
 > ---
->  drivers/gpu/drm/xe/xe_sriov.c          |  2 +-
->  drivers/gpu/drm/xe/xe_sriov_vf.c       | 58 +++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_sriov_vf.h       |  3 ++
->  drivers/gpu/drm/xe/xe_sriov_vf_types.h |  5 +++
->  4 files changed, 61 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-> index 87911fb4eea7..d2d2b2648f8d 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov.c
-> @@ -171,7 +171,7 @@ int xe_sriov_late_init(struct xe_device *xe)
->  {
->  	int err = 0;
->  
-> -	if (IS_VF_CCS_INIT_NEEDED(xe))
-> +	if (IS_VF_CCS_INIT_NEEDED(xe) && xe_sriov_vf_migration_supported(xe))
->  		err = xe_sriov_vf_ccs_init(xe);
-
-this is now looking ugly
-maybe it is good time to move CCS internals inside ccs_init()
-and here just have:
-
-	if (xe_sriov_vf_migration_supported(xe))
-		err = xe_sriov_vf_ccs_init(xe);
-
-and then:
-
-int xe_sriov_vf_ccs_init(...)
-{
-	if (!IS_VF_CCS_INIT_NEEDED(xe))
-		return 0;
-	...
-}
-
-where INIT_NEEDED likely can be even open coded
-
->  
->  	return err;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> index 5de81f213d83..bffff0f0a488 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> @@ -10,6 +10,7 @@
->  #include "xe_gt.h"
->  #include "xe_gt_sriov_printk.h"
->  #include "xe_gt_sriov_vf.h"
-> +#include "xe_guc.h"
->  #include "xe_guc_ct.h"
->  #include "xe_guc_submit.h"
->  #include "xe_irq.h"
-> @@ -127,13 +128,56 @@
->   *      |                               |                               |
->   */
->  
-> -static bool vf_migration_supported(struct xe_device *xe)
-> +/**
-> + * xe_sriov_vf_migration_supported - Report whether SR-IOV VF migration is
-> + * supported or not.
-> + * @xe: the &xe_device to initialize
-> + *
-> + * Returns: true if VF migration is supported, false otherwise.
-> + */
-> +bool xe_sriov_vf_migration_supported(struct xe_device *xe)
->  {
-> +	xe_assert(xe, IS_SRIOV_VF(xe));
-> +	return !xe->sriov.vf.migration.disabled;
-> +}
-> +
-> +static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
-> +{
-> +	struct va_format vaf;
-> +	va_list va_args;
-> +
-> +	xe_assert(xe, IS_SRIOV_VF(xe));
-> +
-> +	va_start(va_args, fmt);
-> +	vaf.fmt = fmt;
-> +	vaf.va  = &va_args;
-> +	xe_sriov_notice(xe, "migration disabled: %pV\n", &vaf);
-> +	va_end(va_args);
-> +
-> +	xe->sriov.vf.migration.disabled = true;
-> +}
-> +
-> +static void vf_check_migration_support(struct xe_device *xe)
-> +{
-> +	struct xe_uc_fw_version guc_version;
-
-this could be moved below [1]
-
-> +
->  	/*
->  	 * TODO: Add conditions to allow specific platforms, when they're
->  	 * supported at production quality.
->  	 */
-> -	return IS_ENABLED(CONFIG_DRM_XE_DEBUG);
-> +	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
-> +		return vf_disable_migration(xe,
-> +					    "experimental feature not available on production builds");
-> +
-> +	if (xe->info.platform == XE_PANTHERLAKE) {
-
-hmm, this is now inconsistent with the check in CCS_NEEDED
-where you're looking for:
-
-	GRAPHICS_VER(xe) >= 20
-
-[1] here
-
-> +		xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
-> +
-> +		if (MAKE_GUC_VER(guc_version.major, guc_version.minor, guc_version.patch) <
-> +		    MAKE_GUC_VER(1, 23, 0))
-> +			return vf_disable_migration(xe,
-> +						    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
-> +						    guc_version.major, guc_version.minor);
-> +	}
->  }
->  
->  static void migration_worker_func(struct work_struct *w);
-> @@ -144,10 +188,12 @@ static void migration_worker_func(struct work_struct *w);
->   */
->  void xe_sriov_vf_init_early(struct xe_device *xe)
->  {
-> -	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
-> +	vf_check_migration_support(xe);
->  
-> -	if (!vf_migration_supported(xe))
-> -		xe_sriov_info(xe, "migration not supported by this module version\n");
-> +	if (!xe_sriov_vf_migration_supported(xe))
-> +		return;
-
-maybe this code can be rearranged to look like:
-
-void vf_migration_disable(xe, ...) { ... }
-
-void vf_migration_init_early(xe)
-{
-	if (!...)
-		return vf_migration_disable(...);
-
-	INIT_WORK(..migration..);
-}
-
-int xe_sriov_vf_init_early(xe)
-{
-	vf_migration_init_early(xe);
-}
-
-
-> +
-> +	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
-
-hmm, this INIT will now be skipped when migration is disabled
-but is it safe to do this (it is different than before...)
-
-@Tomek - can you confirm it's ok?
-
->  }
->  
->  /**
-> @@ -302,7 +348,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
->  	xe_pm_runtime_get(xe);
->  	vf_post_migration_shutdown(xe);
->  
-> -	if (!vf_migration_supported(xe)) {
-> +	if (!xe_sriov_vf_migration_supported(xe)) {
->  		xe_sriov_err(xe, "migration not supported by this module version\n");
->  		err = -ENOTRECOVERABLE;
->  		goto fail;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-> index 7b8622cff2b7..d6844719ff47 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-> @@ -6,9 +6,12 @@
->  #ifndef _XE_SRIOV_VF_H_
->  #define _XE_SRIOV_VF_H_
->  
-> +#include <linux/types.h>
-> +
->  struct xe_device;
->  
->  void xe_sriov_vf_init_early(struct xe_device *xe);
->  void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
-> +bool xe_sriov_vf_migration_supported(struct xe_device *xe);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-> index 24a873c50c49..8eb4ca9f62de 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-> @@ -35,6 +35,11 @@ struct xe_device_vf {
->  		struct work_struct worker;
->  		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
->  		unsigned long gt_flags;
-> +		/**
-> +		 * @migration.disabled: flag indicating if migration support
-> +		 * was disabled due to missing prerequisites
-> +		 */
-> +		bool disabled;
->  	} migration;
->  
->  	/** @ccs: VF CCS state data */
-
+> Changes in v4:
+> 
+> Link to v3 of this patch series:
+> https://lore.kernel.org/linux-kselftest/20250815103604.3857930-1-marievic@google.com/
+> 
+> - Fixup the signatures of some more gen_params functions in the drm/xe
+>   driver.
+> - Only print a KTAP test plan if a parameterised test is using the
+>   built-in kunit_array_gen_params generating function, fixing the issues
+>   with generator functions which skip array elements.
+> 
+> Changes in v3:
+> 
+> Link to v2 of this patch series:
+> https://lore.kernel.org/all/20250811221739.2694336-1-marievic@google.com/
+> 
+> - Added logic for skipping the parameter runs and updating the test statistics
+>   when parameterized test initialization fails.
+> - Minor changes to the documentation.
+> - Commit message formatting.
+> 
+> Changes in v2:
+> 
+> Link to v1 of this patch series:
+> https://lore.kernel.org/all/20250729193647.3410634-1-marievic@google.com/
+> 
+> - Establish parameterized testing terminology:
+>    - "parameterized test" will refer to the group of all runs of a single test
+>      function with different parameters.
+>    - "parameter run" will refer to the execution of the test case function with
+>      a single parameter.
+>    - "parameterized test context" is the `struct kunit` that holds the context
+>      for the entire parameterized test.
+>    - "parameter run context" is the `struct kunit` that holds the context of the
+>      individual parameter run.
+>    - A test is defined to be a parameterized tests if it was registered with a
+>      generator function.
+> - Make comment edits to reflect the established terminology.
+> - Require users to manually pass kunit_array_gen_params() to
+>   KUNIT_CASE_PARAM_WITH_INIT() as the generator function, unless they want to
+>   provide their own generator function, if the parameter array was registered
+>   in param_init(). This is to be consistent with the definition of a
+>   parameterized test, i.e. generate_params() is never NULL if it's
+>   a parameterized test.
+> - Change name of kunit_get_next_param_and_desc() to
+>   kunit_array_gen_params().
+> - Other minor function name changes such as removing the "__" prefix in front
+>   of internal functions.
+> - Change signature of get_description() in `struct params_array` to accept
+>   the parameterized test context, as well.
+> - Output the KTAP test plan for a parameterized test when the parameter count
+>   is available.
+> - Cover letter was made more concise.
+> - Edits to the example tests.
+> - Fix bug of parameterized test init/exit logic being done outside of the
+>   parameterized test check.
+> - Fix bugs identified by the kernel test robot.
+> 
+> ---
+> 
+> Marie Zhussupova (7):
+>   kunit: Add parent kunit for parameterized test context
+>   kunit: Introduce param_init/exit for parameterized test context
+>     management
+>   kunit: Pass parameterized test context to generate_params()
+>   kunit: Enable direct registration of parameter arrays to a KUnit test
+>   kunit: Add example parameterized test with shared resource management
+>     using the Resource API
+>   kunit: Add example parameterized test with direct dynamic parameter
+>     array setup
+>   Documentation: kunit: Document new parameterized test features
+> 
+>  Documentation/dev-tools/kunit/usage.rst | 342 +++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/tests/xe_pci.c       |  14 +-
+>  drivers/gpu/drm/xe/tests/xe_pci_test.h  |   9 +-
+>  include/kunit/test.h                    |  95 ++++++-
+>  kernel/kcsan/kcsan_test.c               |   2 +-
+>  lib/kunit/kunit-example-test.c          | 217 +++++++++++++++
+>  lib/kunit/test.c                        |  94 +++++--
+>  rust/kernel/kunit.rs                    |   4 +
+>  8 files changed, 740 insertions(+), 37 deletions(-)
+> 
+> -- 
+> 2.51.0.261.g7ce5a0a67e-goog
+> 
