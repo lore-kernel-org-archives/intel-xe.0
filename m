@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE7E7CA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 07:28:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D951FCA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 07:33:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2F210E6C7;
-	Thu, 28 Aug 2025 07:28:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mxi++8oh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D69E810E6BE
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 07:28:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756366097; x=1787902097;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vNev1SR6DxFBmHbY3zejLMeqT73rhEqlOU9n/D1gGag=;
- b=mxi++8ohk9F3KAdhRZ2RoKUJrjcWi4F2fMT4GF13xoVX2K6W0aPcIRGS
- pn5axeE+CkKke2GP4G40wVn2a1JlkjARLu2cGa34ZRlt9CbYEKXXqQkkp
- dOXbjc5pnHyhsU/RBv/rdUbFk51psI0Db3bSO0+0T6+6mDC/ffKCxd6cV
- 5Uh0HDmhyNGW41ub+qML3cktmpmoGI3LUNOrNuhDI6xKjvzrqgbFy1GrW
- nLAwGf0pFskzQSclDCeiLMNcQ3463wDvYv8EzsqYw2qKPBbiCB9Z56bK7
- EKNrrV4mzmuHEmFi4mttkAKpR7xvxhBBX2/SFW6Aoc8K5pRBfmBnbCJ8M w==;
-X-CSE-ConnectionGUID: eiiC4hyfRyWLiClrHElsLQ==
-X-CSE-MsgGUID: gS0TJyKnRHabgjvmE5VNaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="81219879"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="81219879"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 00:28:16 -0700
-X-CSE-ConnectionGUID: 8dluw2u4STec8YOAweZqYQ==
-X-CSE-MsgGUID: suASFgy0QMye1zqU3lWBCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170436224"
-Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa009.fm.intel.com with ESMTP; 28 Aug 2025 00:28:13 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH v5] drm/xe/vf: Enable CCS save/restore only on supported GUC
- versions
-Date: Thu, 28 Aug 2025 13:15:09 +0530
-Message-ID: <20250828074509.5782-1-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998D910E6C5;
+	Thu, 28 Aug 2025 07:33:14 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C57C10E6C5;
+ Thu, 28 Aug 2025 07:33:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4480409715782232815=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Fix_kernel-d?=
+ =?utf-8?q?oc_formatting_for_madvise_and_vma=5Fquery_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 07:33:13 -0000
+Message-ID: <175636639317.277772.2792426701381758284@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250828071516.3838110-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250828071516.3838110-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,178 +36,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CCS save/restore is supported starting with GuC 70.48.0 (compatibility
-version 1.23.0). Gate the feature on the GuC firmware version and keep it
-disabled on older or unsupported versions.
+--===============4480409715782232815==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: f3009272ff2e ("drm/xe/vf: Create contexts for CCS read write")
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>
+== Series Details ==
 
----
-V4 -> V5:
-- Fixed issues reported by patchwork.
+Series: drm/xe/uapi: Fix kernel-doc formatting for madvise and vma_query (rev2)
+URL   : https://patchwork.freedesktop.org/series/153579/
+State : success
 
-V3 -> V4:
-- Fixed review comments (Michal, Andi)
+== Summary ==
 
-V2 -> V3:
-- Fixed review comments (Michal)
+CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -> xe-pw-153579v2_BAT
+====================================================
 
-V1 -> V2:
-- Fixed review comments (Michal)
----
- drivers/gpu/drm/xe/xe_sriov.c          |  2 +-
- drivers/gpu/drm/xe/xe_sriov_vf.c       | 56 +++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_sriov_vf.h       |  3 ++
- drivers/gpu/drm/xe/xe_sriov_vf_types.h |  5 +++
- 4 files changed, 59 insertions(+), 7 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index 87911fb4eea7..d2d2b2648f8d 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -171,7 +171,7 @@ int xe_sriov_late_init(struct xe_device *xe)
- {
- 	int err = 0;
- 
--	if (IS_VF_CCS_INIT_NEEDED(xe))
-+	if (IS_VF_CCS_INIT_NEEDED(xe) && xe_sriov_vf_migration_supported(xe))
- 		err = xe_sriov_vf_ccs_init(xe);
- 
- 	return err;
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 5de81f213d83..e8efa1a6179a 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -10,6 +10,7 @@
- #include "xe_gt.h"
- #include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
-+#include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_submit.h"
- #include "xe_irq.h"
-@@ -127,13 +128,54 @@
-  *      |                               |                               |
-  */
- 
--static bool vf_migration_supported(struct xe_device *xe)
-+/**
-+ * xe_sriov_vf_migration_supported - Report whether SR-IOV VF migration is
-+ * supported or not.
-+ * @xe: the &xe_device to initialize
-+ *
-+ * Returns: true if VF migration is supported, false otherwise.
-+ */
-+bool xe_sriov_vf_migration_supported(struct xe_device *xe)
-+{
-+	xe_assert(xe, IS_SRIOV_VF(xe));
-+	return !xe->sriov.vf.migration.disabled;
-+}
-+
-+static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
-+{
-+	struct va_format vaf;
-+	va_list va_args;
-+
-+	xe_assert(xe, IS_SRIOV_VF(xe));
-+
-+	va_start(va_args, fmt);
-+	vaf.fmt = fmt;
-+	vaf.va  = &va_args;
-+	xe_sriov_notice(xe, "migration disabled: %pV\n", &vaf);
-+	va_end(va_args);
-+
-+	xe->sriov.vf.migration.disabled = true;
-+}
-+
-+static void vf_check_migration_support(struct xe_device *xe)
- {
-+	struct xe_uc_fw_version guc_version;
-+
- 	/*
- 	 * TODO: Add conditions to allow specific platforms, when they're
- 	 * supported at production quality.
- 	 */
--	return IS_ENABLED(CONFIG_DRM_XE_DEBUG);
-+	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
-+		return vf_disable_migration(xe,
-+					    "experimental feature not available on production builds");
-+
-+	xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
-+	if (IS_VF_CCS_INIT_NEEDED(xe) &&
-+	    MAKE_GUC_VER(guc_version.major, guc_version.minor, guc_version.patch) <
-+	    MAKE_GUC_VER(1, 23, 0))
-+		return vf_disable_migration(xe,
-+					    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
-+					    guc_version.major, guc_version.minor);
- }
- 
- static void migration_worker_func(struct work_struct *w);
-@@ -144,10 +186,12 @@ static void migration_worker_func(struct work_struct *w);
-  */
- void xe_sriov_vf_init_early(struct xe_device *xe)
- {
--	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
-+	vf_check_migration_support(xe);
- 
--	if (!vf_migration_supported(xe))
--		xe_sriov_info(xe, "migration not supported by this module version\n");
-+	if (!xe_sriov_vf_migration_supported(xe))
-+		return;
-+
-+	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
- }
- 
- /**
-@@ -302,7 +346,7 @@ static void vf_post_migration_recovery(struct xe_device *xe)
- 	xe_pm_runtime_get(xe);
- 	vf_post_migration_shutdown(xe);
- 
--	if (!vf_migration_supported(xe)) {
-+	if (!xe_sriov_vf_migration_supported(xe)) {
- 		xe_sriov_err(xe, "migration not supported by this module version\n");
- 		err = -ENOTRECOVERABLE;
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-index 7b8622cff2b7..d6844719ff47 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -6,9 +6,12 @@
- #ifndef _XE_SRIOV_VF_H_
- #define _XE_SRIOV_VF_H_
- 
-+#include <linux/types.h>
-+
- struct xe_device;
- 
- void xe_sriov_vf_init_early(struct xe_device *xe);
- void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
-+bool xe_sriov_vf_migration_supported(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-index 24a873c50c49..8eb4ca9f62de 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-@@ -35,6 +35,11 @@ struct xe_device_vf {
- 		struct work_struct worker;
- 		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
- 		unsigned long gt_flags;
-+		/**
-+		 * @migration.disabled: flag indicating if migration support
-+		 * was disabled due to missing prerequisites
-+		 */
-+		bool disabled;
- 	} migration;
- 
- 	/** @ccs: VF CCS state data */
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153579v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-1:          [PASS][1] -> [FAIL][2] ([Intel XE#5507]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8511 -> IGT_8512
+  * Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -> xe-pw-153579v2
+
+  IGT_8511: 8511
+  IGT_8512: 8512
+  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578
+  xe-pw-153579v2: 153579v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/index.html
+
+--===============4480409715782232815==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/uapi: Fix kernel-doc formatting for madvise and vma_query (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153579/">https://patchwork.freedesktop.org/series/153579/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578_BAT -&gt; xe-pw-153579v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153579v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xe2@render:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153579v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8511 -&gt; IGT_8512</li>
+<li>Linux: xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578 -&gt; xe-pw-153579v2</li>
+</ul>
+<p>IGT_8511: 8511<br />
+  IGT_8512: 8512<br />
+  xe-3623-3a2760f3080e5188b19cdb4640cec5eb0926d578: 3a2760f3080e5188b19cdb4640cec5eb0926d578<br />
+  xe-pw-153579v2: 153579v2</p>
+
+</body>
+</html>
+
+--===============4480409715782232815==--
