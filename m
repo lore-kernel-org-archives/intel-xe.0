@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB13FC8303F
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 13:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BED67CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 13:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85C9510E0A5;
-	Thu, 28 Aug 2025 13:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D4310E9B3;
+	Thu, 28 Aug 2025 13:47:19 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E860D10E0A5;
- Thu, 28 Aug 2025 13:42:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0210016697446067308=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC76810E0A5;
+ Thu, 28 Aug 2025 13:47:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
- =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs_=28rev11=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?4=2C1/2=5D_drm/buddy=3A_Optimize_free_block_management_with_RB_tr?=
+ =?utf-8?q?ee?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Aug 2025 13:42:18 -0000
-Message-ID: <175638853889.279562.1669882355111716273@1538d3639d33>
+Date: Thu, 28 Aug 2025 13:47:18 -0000
+Message-ID: <175638883890.279076.2019251975897736514@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250828104951.1279862-1-michal.grzelak@intel.com>
-In-Reply-To: <20250828104951.1279862-1-michal.grzelak@intel.com>
+References: <20250828105646.2280-1-Arunpravin.PaneerSelvam@amd.com>
+In-Reply-To: <20250828105646.2280-1-Arunpravin.PaneerSelvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +41,133 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0210016697446067308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev11)
-URL   : https://patchwork.freedesktop.org/series/148957/
-State : success
+Series: series starting with [v4,1/2] drm/buddy: Optimize free block management with RB tree
+URL   : https://patchwork.freedesktop.org/series/153624/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de_BAT -> xe-pw-148957v11_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 88af2bca93bbcdb11e859fe160b805832d6c70dd
+Author: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Date:   Thu Aug 28 16:26:46 2025 +0530
 
-Summary
--------
+    drm/buddy: Separate clear and dirty free block trees
+    
+    Maintain two separate RB trees per order - one for clear (zeroed) blocks
+    and another for dirty (uncleared) blocks. This separation improves
+    code clarity and makes it more obvious which tree is being searched
+    during allocation. It also improves scalability and efficiency when
+    searching for a specific type of block, avoiding unnecessary checks
+    and making the allocator more predictable under fragmentation.
+    
+    The changes have been validated using the existing drm_buddy_test
+    KUnit test cases, along with selected graphics workloads,
+    to ensure correctness and avoid regressions.
+    
+    v2: Missed adding the suggested-by tag. Added it in v2.
+    
+    v3(Matthew):
+      - Remove the double underscores from the internal functions.
+      - Rename the internal functions to have less generic names.
+      - Fix the error handling code.
+      - Pass tree argument for the tree macro.
+      - Use the existing dirty/free bit instead of new tree field.
+      - Make free_trees[] instead of clear_tree and dirty_tree for
+        more cleaner approach.
+    
+    v4:
+      - A bug was reported by Intel CI and it is fixed by
+        Matthew Auld.
+      - Replace the get_root function with
+        &mm->free_trees[tree][order] (Matthew)
+      - Remove the unnecessary rbtree_is_empty() check (Matthew)
+      - Remove the unnecessary get_tree_for_flags() function.
+      - Rename get_tree_for_block() name with get_block_tree() for more
+        clarity.
+    
+    Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+    Suggested-by: Matthew Auld <matthew.auld@intel.com>
+    Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4260
++ /mt/dim checkpatch 12bdbc7687846f438afff8bfdc89873b3cd95945 drm-intel
+e9fbdd14c6f2 drm/buddy: Optimize free block management with RB tree
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#44: FILE: drivers/gpu/drm/drm_buddy.c:23:
++#define for_each_rb_free_block(pos, root, member) \
++	for (pos = rb_entry_safe(rb_first(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_next(&(pos)->member), typeof(*pos), member))
 
-  **SUCCESS**
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#44: FILE: drivers/gpu/drm/drm_buddy.c:23:
++#define for_each_rb_free_block(pos, root, member) \
++	for (pos = rb_entry_safe(rb_first(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_next(&(pos)->member), typeof(*pos), member))
 
-  No regressions found.
+-:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#55: FILE: drivers/gpu/drm/drm_buddy.c:34:
++#define for_each_rb_free_block_reverse(pos, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member))
 
-  
+-:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#55: FILE: drivers/gpu/drm/drm_buddy.c:34:
++#define for_each_rb_free_block_reverse(pos, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member); \
++	     pos; \
++	     pos = rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member))
 
-Participating hosts (11 -> 11)
-------------------------------
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#67: FILE: drivers/gpu/drm/drm_buddy.c:46:
++#define for_each_rb_free_block_reverse_safe(pos, n, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member), \
++	     n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL; \
++	     pos; \
++	     pos = n, n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL)
 
-  No changes in participating hosts
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#67: FILE: drivers/gpu/drm/drm_buddy.c:46:
++#define for_each_rb_free_block_reverse_safe(pos, n, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member), \
++	     n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL; \
++	     pos; \
++	     pos = n, n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL)
 
-Known issues
-------------
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#67: FILE: drivers/gpu/drm/drm_buddy.c:46:
++#define for_each_rb_free_block_reverse_safe(pos, n, root, member) \
++	for (pos = rb_entry_safe(rb_last(root), typeof(*pos), member), \
++	     n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL; \
++	     pos; \
++	     pos = n, n = pos ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*pos), member) : NULL)
 
-  Here are the changes found in xe-pw-148957v11_BAT that come from known issues:
+total: 0 errors, 0 warnings, 7 checks, 396 lines checked
+88af2bca93bb drm/buddy: Separate clear and dirty free block trees
+-:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tree' - possible side-effects?
+#50: FILE: drivers/gpu/drm/drm_buddy.c:17:
++#define for_each_free_tree(tree) \
++	for ((tree) = CLEAR_TREE; (tree) < MAX_FREE_TREES; (tree)++)
 
-### IGT changes ###
+-:246: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#246: FILE: drivers/gpu/drm/drm_buddy.c:317:
++						prev_block = rbtree_prev_free_block(&prev_block->rb);
 
-#### Possible fixes ####
+-:561: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#561: FILE: drivers/gpu/drm/drm_buddy.c:1326:
++				BUG_ON(!drm_buddy_block_is_free(block));
 
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v11/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de -> xe-pw-148957v11
-
-  IGT_8512: 8512
-  xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de: cd296b3d40e69455e98897bc2883d3f7ffe893de
-  xe-pw-148957v11: 148957v11
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v11/index.html
-
---===============0210016697446067308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev11)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148957/">https://patchwork.freedesktop.org/series/148957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v11/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 1 checks, 521 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de_BAT -&gt; xe-pw-148957v11_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-148957v11_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v11/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de -&gt; xe-pw-148957v11</li>
-</ul>
-<p>IGT_8512: 8512<br />
-  xe-3627-cd296b3d40e69455e98897bc2883d3f7ffe893de: cd296b3d40e69455e98897bc2883d3f7ffe893de<br />
-  xe-pw-148957v11: 148957v11</p>
-
-</body>
-</html>
-
---===============0210016697446067308==--
