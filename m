@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45796CA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 16:27:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED191C8303F
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 16:29:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07FDE10EA48;
-	Thu, 28 Aug 2025 16:27:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHffrYua";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9B7A10EA48
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 16:27:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756398453; x=1787934453;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Gzmlsz0c+uAb7yG+44ZDMHsMhRsRJFrqq/GsdUtnYFc=;
- b=QHffrYuakWApHJ+I60QrRYpExAcozOzj1hqLurEeeqepskhgzwoLRvkK
- KnBvsmnCNBNLAS9iVMfPlVxCalf7nI7i41yn+CCWj/ftPOlttUdor+mgJ
- FR7IGTG68RQGxhHJqghUdIzbL/s2jZPSiiXXg8DhTnTV+RzSZWgnWiWy5
- ZSJLKKfVLNwcJ4/J/iwFjWWLwUUOAvq8ObQHcpQVLbShO9xkwvguQxohB
- M1vgyVhtFD0Vh5I/aQVMSvCi3XuITzpKGhTaB8dVa9s228r9f/NMvnke+
- c7FMWBx+LrsZx12Rf0aTdhnUzwLlEIeFL5T6iayuU4DlpdLVOG1tdcVNg Q==;
-X-CSE-ConnectionGUID: a5m8vminRwKA/wagOBkyFQ==
-X-CSE-MsgGUID: q5/MuavCTyWA/oRfF+Q55g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="76276380"
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; d="scan'208";a="76276380"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 09:27:32 -0700
-X-CSE-ConnectionGUID: ITO9GkawTg6J0OIi22IjKw==
-X-CSE-MsgGUID: S2lf7kAYSAS6sSuKOVvm4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; d="scan'208";a="175432494"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.84])
- ([10.245.245.84])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 09:27:31 -0700
-Message-ID: <45c42d43-658e-452f-8aeb-e7a32f4838b2@intel.com>
-Date: Thu, 28 Aug 2025 17:27:29 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id B45B310EA48;
+	Thu, 28 Aug 2025 16:29:44 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4136010EA48;
+ Thu, 28 Aug 2025 16:29:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0774791030932664461=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Attempt to bring bos back to VRAM after eviction
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-References: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
- <8621165a-68d0-467b-8fe5-c28b500c0d5e@intel.com>
- <ba4a969ad501922974c796e354292b7d5451dac4.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ba4a969ad501922974c796e354292b7d5451dac4.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_convert?=
+ =?utf-8?q?_to_generic_poll=5Ftimeout=5Fus=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 16:29:43 -0000
+Message-ID: <175639858326.280646.9051868599040024826@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1756383233.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,84 +36,146 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/08/2025 17:06, Thomas Hellström wrote:
-> Hi,
-> 
-> On Thu, 2025-08-28 at 16:59 +0100, Matthew Auld wrote:
->> On 28/08/2025 16:42, Thomas Hellström wrote:
->>> VRAM+TT bos that are evicted from VRAM to TT may remain in
->>> TT also after a revalidation following eviction or suspend.
->>>
->>> This manifests itself as applications becoming sluggish
->>> after buffer objects get evicted or after a resume from
->>> suspend or hibernation.
->>>
->>> If the bo supports placement in both VRAM and TT, and
->>> we are on DGFX, mark the TT placement as fallback. This means
->>> that it is tried only after VRAM + eviction.
->>>
->>> This flaw has probably been present since the xe module was
->>> upstreamed but use a Fixes: commit below where backporting is
->>> likely to be simple. For earlier versions we need to open-
->>> code the fallback algorithm in the driver.
->>>
->>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5995
->>> Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags
->>> v6")
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: <stable@vger.kernel.org> # v6.9+
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_bo.c | 2 ++
->>>    1 file changed, 2 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_bo.c
->>> b/drivers/gpu/drm/xe/xe_bo.c
->>> index 4faf15d5fa6d..64dea4e478bd 100644
->>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>> @@ -188,6 +188,8 @@ static void try_add_system(struct xe_device
->>> *xe, struct xe_bo *bo,
->>>    
->>>    		bo->placements[*c] = (struct ttm_place) {
->>>    			.mem_type = XE_PL_TT,
->>> +			.flags = (IS_DGFX(xe) && (bo_flags &
->>> XE_BO_FLAG_VRAM_MASK)) ?
->>
->> I suppose we could drop the dgfx check here?
-> 
-> Thanks for reviewing. From a quick look it looks like the VRAM_MASK
-> bits can be set also on IGFX? And if so, then it's not ideal to mark
-> the primary placement as FALLBACK. But I might have missed a rejection
-> somewhere.
+--===============0774791030932664461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I was sweating bullets for a second there, but it looks like it gets 
-rejected in the ioctl with:
+== Series Details ==
 
-if (XE_IOCTL_DBG(xe, (args->placement & ~xe->info.mem_region_mask)
-      return -EINVAL;
+Series: drm/i915/display: convert to generic poll_timeout_us()
+URL   : https://patchwork.freedesktop.org/series/153630/
+State : success
 
-The flags get converted from the args->placement, and VRAM should never 
-appear in the mem_region_mask on igpu. If we allowed it I think it would 
-crash in add_vram() since the vram manager does not exist so 
-ttm_manager_type() would be NULL, AFAICT.
+== Summary ==
 
-> 
-> /Thomas
-> 
-> 
->>
->> Either way,
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->>
->>> +			TTM_PL_FLAG_FALLBACK : 0,
->>>    		};
->>>    		*c += 1;
->>>    	}
->>
-> 
+CI Bug Log - changes from xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945_BAT -> xe-pw-153630v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153630v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945 -> xe-pw-153630v1
+
+  IGT_8512: 8512
+  xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945: 12bdbc7687846f438afff8bfdc89873b3cd95945
+  xe-pw-153630v1: 153630v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/index.html
+
+--===============0774791030932664461==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: convert to generic poll_timeout_us()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153630/">https://patchwork.freedesktop.org/series/153630/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945_BAT -&gt; xe-pw-153630v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153630v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153630v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945 -&gt; xe-pw-153630v1</li>
+</ul>
+<p>IGT_8512: 8512<br />
+  xe-3630-12bdbc7687846f438afff8bfdc89873b3cd95945: 12bdbc7687846f438afff8bfdc89873b3cd95945<br />
+  xe-pw-153630v1: 153630v1</p>
+
+</body>
+</html>
+
+--===============0774791030932664461==--
