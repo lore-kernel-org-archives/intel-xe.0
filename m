@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6D5CCA0EED
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 15:41:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E79A7CA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 15:42:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7657F10EA34;
-	Thu, 28 Aug 2025 15:41:11 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F62C10EA38;
- Thu, 28 Aug 2025 15:41:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2955674351709174526=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4EA10EA41;
+	Thu, 28 Aug 2025 15:42:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EAbuUANt";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0C5310EA48
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 15:42:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756395767; x=1787931767;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qprB/o4Qkb2sysLdY6jjSZz/BY9rfxYAbw4wHDuVqUE=;
+ b=EAbuUANth/A2LEBkVYUPRrhFySkboUl0q/Zo7QQQ/4PVX0PEVIDaMJMA
+ /srlGuSLe4kVPI0MpNKQ1R2FfUNp9HlLAYEcGCZzfriGP/6pJx40b73r3
+ RUAcQ2J/qnScQs158rHOw25UQMOKVWkSB0JLJGX9J7zsctfJljJDHRKjY
+ 6GhfoVeh8dwiLIw+eTcoIXd0waibvu9uCVd+sL/GtLF1WxAeTk9+3nzjU
+ 98scYBX4qxJpxpTCariXkSSuze4rYEw1lbZTkgezVHa0sqH1gQpBGkqWr
+ pyXrAjLMXhyHkVIX3iFsATmwSlW5glmCu1Tvi38GKd1IKaowGOqosHfSk w==;
+X-CSE-ConnectionGUID: UFm8E044Sp6P1qjdR+vXuA==
+X-CSE-MsgGUID: 9B3iPwfHQ/uw4J/3DlLB2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58736227"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58736227"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 08:42:47 -0700
+X-CSE-ConnectionGUID: /+2DW8wZQkytX9+27IPMzw==
+X-CSE-MsgGUID: szpwvT95Q/qPXASOs5XJAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="207289109"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.28])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 08:42:44 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/xe: Attempt to bring bos back to VRAM after eviction
+Date: Thu, 28 Aug 2025 17:42:19 +0200
+Message-ID: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Enable_CCS_sav?=
- =?utf-8?q?e/restore_only_on_supported_GUC_versions_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Aug 2025 15:41:10 -0000
-Message-ID: <175639567064.279562.8086094136821704773@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250828115559.9055-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250828115559.9055-1-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,155 +65,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2955674351709174526==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+VRAM+TT bos that are evicted from VRAM to TT may remain in
+TT also after a revalidation following eviction or suspend.
 
-== Series Details ==
+This manifests itself as applications becoming sluggish
+after buffer objects get evicted or after a resume from
+suspend or hibernation.
 
-Series: drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev6)
-URL   : https://patchwork.freedesktop.org/series/153061/
-State : success
+If the bo supports placement in both VRAM and TT, and
+we are on DGFX, mark the TT placement as fallback. This means
+that it is tried only after VRAM + eviction.
 
-== Summary ==
+This flaw has probably been present since the xe module was
+upstreamed but use a Fixes: commit below where backporting is
+likely to be simple. For earlier versions we need to open-
+code the fallback algorithm in the driver.
 
-CI Bug Log - changes from xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819_BAT -> xe-pw-153061v6_BAT
-====================================================
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5995
+Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags v6")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: <stable@vger.kernel.org> # v6.9+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4faf15d5fa6d..64dea4e478bd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -188,6 +188,8 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 		bo->placements[*c] = (struct ttm_place) {
+ 			.mem_type = XE_PL_TT,
++			.flags = (IS_DGFX(xe) && (bo_flags & XE_BO_FLAG_VRAM_MASK)) ?
++			TTM_PL_FLAG_FALLBACK : 0,
+ 		};
+ 		*c += 1;
+ 	}
+-- 
+2.50.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153061v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - {bat-ptl-1}:        [DMESG-WARN][1] ([Intel XE#5772]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - {bat-ptl-2}:        [DMESG-WARN][3] ([Intel XE#5772]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5772]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819 -> xe-pw-153061v6
-
-  IGT_8512: 8512
-  xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819: e14eaf2708df74f5cd094ae20c05fd897757f819
-  xe-pw-153061v6: 153061v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/index.html
-
---===============2955674351709174526==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153061/">https://patchwork.freedesktop.org/series/153061/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819_BAT -&gt; xe-pw-153061v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153061v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5772">Intel XE#5772</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v6/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819 -&gt; xe-pw-153061v6</li>
-</ul>
-<p>IGT_8512: 8512<br />
-  xe-3628-e14eaf2708df74f5cd094ae20c05fd897757f819: e14eaf2708df74f5cd094ae20c05fd897757f819<br />
-  xe-pw-153061v6: 153061v6</p>
-
-</body>
-</html>
-
---===============2955674351709174526==--
