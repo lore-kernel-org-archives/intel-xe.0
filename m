@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC30CCA0FFF
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 17:42:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD79DCA0EED
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 18:00:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5FFC10EA6D;
-	Thu, 28 Aug 2025 17:42:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ktpl7vHy";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAE110EA66
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 17:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756402922; x=1787938922;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=h/Qp4S3GMcaFFTY5CXHFmznJl6kOftRbmkLWCFVnhTs=;
- b=Ktpl7vHyvkv4H4NtzdO19RStGrgY7s5o3FPpWaUKvGuq6qZKIA2owDc0
- 019GKa+mxm9cG6qALKRwgq2aCQaoi3JWhwT4gc9WAVp5sgeNqm6mXCo0A
- YTEiFtgjw+1jRXNyAmVRWyJrKZfgJHvl3Wr0gX3J+ASy31lYNqEJuYp4e
- FLYek2FNU/FPc7vpX7WR4hJxC1YlEK6Qb1uh0yg/vCaYmZ65V8q8TrgMo
- BUgFX+v/yZbjVbO6QQZgYKIyUxOLNGha7Rz8zKeYRyj8ohvUVhOvAS0ed
- IETpO67JgCG61QJQwIWPI0EuCMSjJXkKuk4/a1aJf2lGpl52tEK8bX7IY A==;
-X-CSE-ConnectionGUID: TOvZdQT6STyeBCyzT2WLYg==
-X-CSE-MsgGUID: Mptqs4bMQu2g2YM1dCHaTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="84085136"
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; d="scan'208";a="84085136"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 10:42:02 -0700
-X-CSE-ConnectionGUID: xvpKIx69QxKCKeB2UOG55Q==
-X-CSE-MsgGUID: lWZfp8H9R8q3Y8sZ2zhXiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,220,1751266800"; d="scan'208";a="207317139"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa001.jf.intel.com with ESMTP; 28 Aug 2025 10:42:02 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v7 6/6] drm/xe/guc: Add new debugfs entry for lfd format output
-Date: Thu, 28 Aug 2025 13:41:59 -0400
-Message-Id: <20250828174159.1232994-7-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250828174159.1232994-1-zhanjun.dong@intel.com>
-References: <20250828174159.1232994-1-zhanjun.dong@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7723910EA82;
+	Thu, 28 Aug 2025 18:00:14 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74B5010EA82;
+ Thu, 28 Aug 2025 18:00:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7065566180094400962=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Replace_xe=5Fhmm_with_gpusv?=
+ =?utf-8?q?m_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 18:00:13 -0000
+Message-ID: <175640401347.280646.1135249169404210231@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250828142430.615826-10-matthew.auld@intel.com>
+In-Reply-To: <20250828142430.615826-10-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,92 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new debugfs entry "guc_log_lfd", prepared for output guc log
-in LFD(Log Format Descriptors) format.
+--===============7065566180094400962==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_debugfs.c |  7 +++++++
- drivers/gpu/drm/xe/xe_guc_log.c     | 18 +++++++++++++++---
- drivers/gpu/drm/xe/xe_guc_log.h     |  1 +
- 3 files changed, 23 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 0b102ab46c4d..6cbc4240a3bd 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -85,6 +85,12 @@ static int guc_log(struct xe_guc *guc, struct drm_printer *p)
- 	return 0;
- }
- 
-+static int guc_log_lfd(struct xe_guc *guc, struct drm_printer *p)
-+{
-+	xe_guc_log_print_lfd(&guc->log, p);
-+	return 0;
-+}
-+
- static int guc_log_dmesg(struct xe_guc *guc, struct drm_printer *p)
- {
- 	xe_guc_log_print_dmesg(&guc->log);
-@@ -121,6 +127,7 @@ static const struct drm_info_list slpc_debugfs_list[] = {
- /* everything else should be added here */
- static const struct drm_info_list pf_only_debugfs_list[] = {
- 	{ "guc_log", .show = guc_debugfs_show, .data = guc_log },
-+	{ "guc_log_lfd", .show = guc_debugfs_show, .data = guc_log_lfd },
- 	{ "guc_log_dmesg", .show = guc_debugfs_show, .data = guc_log_dmesg },
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 589975904153..21c464f2f14c 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -568,9 +568,7 @@ xe_guc_log_add_crash_dump(struct drm_printer *p, struct xe_guc_log_snapshot *sna
- 	return size;
- }
- 
--void
--xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
--void
-+static void
- xe_guc_log_snapshot_print_lfd(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
- {
- 	struct guc_lfd_file_header header;
-@@ -635,6 +633,20 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- 	xe_guc_log_snapshot_free(snapshot);
- }
- 
-+/**
-+ * xe_guc_log_print_lfd - dump a copy of the GuC log in LFD format
-+ * @log: GuC log structure
-+ * @p: the printer object to output to
-+ */
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p)
-+{
-+	struct xe_guc_log_snapshot *snapshot;
-+
-+	snapshot = xe_guc_log_snapshot_capture(log, false);
-+	xe_guc_log_snapshot_print_lfd(snapshot, p);
-+	xe_guc_log_snapshot_free(snapshot);
-+}
-+
- int xe_guc_log_init(struct xe_guc_log *log)
- {
- 	struct xe_device *xe = log_to_xe(log);
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index f1e2b0be90a9..0f6299886010 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.h
-+++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -40,6 +40,7 @@ struct xe_device;
- 
- int xe_guc_log_init(struct xe_guc_log *log);
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
-+void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
- void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
--- 
-2.34.1
+Series: Replace xe_hmm with gpusvm (rev6)
+URL   : https://patchwork.freedesktop.org/series/146553/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97_BAT -> xe-pw-146553v6_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-146553v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-vm}:       [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 -> xe-pw-146553v6
+
+  IGT_8512: 8512
+  xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97
+  xe-pw-146553v6: 146553v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/index.html
+
+--===============7065566180094400962==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Replace xe_hmm with gpusvm (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146553/">https://patchwork.freedesktop.org/series/146553/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97_BAT -&gt; xe-pw-146553v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-146553v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-146553v6/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 -&gt; xe-pw-146553v6</li>
+</ul>
+<p>IGT_8512: 8512<br />
+  xe-3631-a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97<br />
+  xe-pw-146553v6: 146553v6</p>
+
+</body>
+</html>
+
+--===============7065566180094400962==--
