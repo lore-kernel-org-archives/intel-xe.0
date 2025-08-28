@@ -4,150 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA73FCA0FF6
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 21:18:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7316CA0FF6
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Aug 2025 21:19:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC7510EADD;
-	Thu, 28 Aug 2025 21:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F74410EAE1;
+	Thu, 28 Aug 2025 21:19:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NaBaUvmk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcozALHv";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3488E10E055
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 21:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756415907;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=gskdp2N1fjQ2XPNnusUxDzPfRKenxAJAiphfAnxet1A=;
- b=NaBaUvmk6FrUjFViDPio7EscuZvbkdNBXxdh+MiB1C+H7B4JOdA8CAFK1kxU5YeV+GZyWl
- 0L7+fublBQfLy9HsB1m9jupPWLp6Q2ntkcS+XI9/sghZga2Ov4TGCGep7yWQqvG5/fMmN8
- KgXQLHnnFLa4+qSN98in2v4vbJW+mzc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-662-t8j6SRezPYy8nfCvhYUU3A-1; Thu, 28 Aug 2025 17:18:25 -0400
-X-MC-Unique: t8j6SRezPYy8nfCvhYUU3A-1
-X-Mimecast-MFC-AGG-ID: t8j6SRezPYy8nfCvhYUU3A_1756415905
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-45a1b10418aso8185195e9.3
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 14:18:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756415904; x=1757020704;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=gskdp2N1fjQ2XPNnusUxDzPfRKenxAJAiphfAnxet1A=;
- b=J7DEKiTc7rKAIqCFAodmckuOjCXlq9onK9DzlmKc4QD/VbE4BqrmOkj6x9l0QEDHkZ
- //ijp7YWjPA5R2nd1d8OeWLabElsQUfatcdHqefCJ1HAiXMDS+VKQTYQDZ6ECQz1XuLQ
- AlxsQDYo6AgiI0RZurH1DMISJY3uALtMjFbpN9PN/QhxRoosj/TENz3L3KGtH+G8HtOQ
- RxbZRmG79s2h56zm3fXQ4veEbxD9ECYgF1qOy3u6Cs4rozhlka3UHnm1mVw6soHRBGlZ
- LncgSwyk0mt3aVl1xqPFzEqVpmXmkZ+LrNS9uEME61PubAxW0nvIQ2j4G3h7N9fGcNN+
- 270g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVpwqMqiqwruJeZbkFwts+cVCUbtQMatWbBGIpFZ3E0c0fm2pnelBd293XfrtzKg5CHZyE5/cvgmA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyjLTkyy2uZ9G5HueVI5i1oOd0LetI8gjSzaS5VKS9RGZTnzT6G
- x/HLYkUHF6WubD+qUTZ2I02iICDQTt+HXr0kr3d7AfqCi3u4LneDMmbhlVPKa1aUMjeOIa96KMH
- y5jFWFxB3w+Tsuyjwnlg6Atc3fnCdWlZH/AAThbbgWhDKSvxMdxoT/meioFaoVKb3WLkD
-X-Gm-Gg: ASbGncsUub5js4cMtoDt94uifS+yJPfYwdA6tlzj1ZK7q5Nbo3YPLN0vJDnq2GiPh7+
- XGhUeRnrIufGqOrk4ByvRrzC5PrNr1drjmPA53EjvSowWkEq0vZnujUKcCfQoc95Ww9MR32/RmA
- pFi1DleY7QJkVEcerD0utS32UOaAR27d16EHLm2VOkouOxa7RiwZ0Q41MKciN3Zs7uAYG0jAhn5
- 0+m2rPNqP/yj/ASbBSUBd1XZrOMNZX+JttBZukGaCBwkdvWS8bAWaooZe0rM0vbVEjB3175mXxn
- ag69uZhpz7F+x30Buodl/E0shCyNplWOPlTjHLUJYbfDTNWn0elzLwHWcRoFslNFtQFxQsLGw3/
- NtOEX0reG/x8FFD6iCo1YgeM3HZmjG2TzeLAngRHi1izEFLPK0936o/RDXShb+RdBxw4=
-X-Received: by 2002:a05:600c:1c20:b0:458:c059:7d9c with SMTP id
- 5b1f17b1804b1-45b5d48ea24mr170590245e9.6.1756415904532; 
- Thu, 28 Aug 2025 14:18:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEPgDrrxDZ6vdtoS52zcAGrXMn5CAGoWaDFan/vG8uMfMxrjyia55dqZy7eBAVPbdsrurfc0Q==
-X-Received: by 2002:a05:600c:1c20:b0:458:c059:7d9c with SMTP id
- 5b1f17b1804b1-45b5d48ea24mr170590035e9.6.1756415904010; 
- Thu, 28 Aug 2025 14:18:24 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
- (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
- [2003:d8:2f28:c100:2225:10aa:f247:7b85])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf33fba9c4sm657825f8f.48.2025.08.28.14.18.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 14:18:23 -0700 (PDT)
-Message-ID: <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
-Date: Thu, 28 Aug 2025 23:18:22 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36ED10EADD
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Aug 2025 21:19:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756415964; x=1787951964;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=LzpD/pVVCYCASbBeu2vVglOcjQo1Qxx0GOkSSjBjaGA=;
+ b=hcozALHv23Yr1hQtt78xrB7+Vuqe2nbOtv1cijihhSewa9UgwsZKl0wv
+ m+gX7oM3eLEDAag+IbFej7U+W6MvjH1gGfHE5zKX+GR/cnq4kgYlLHWgI
+ 6YZpnkylr+0e2cJHq5z96TvKVNH7ykvOVHBShpoY91nNEAtyszaAgdUem
+ hYJkNkWAsrZykw3bKi0F2p2PMr0wcH6jvcbrq3OFcOLIqb949IisrfYuJ
+ 1xOTW/usxtQ7R9JRDiZYgEHNFdYVaKRnKQKUqZP41fiLQVc2VKMB1Bdlq
+ JSCXpp1OlfTz57dTV7pQakrYZ8zKMMZxn0ziH8hQ0xqeNwWbkMTd1KHBM A==;
+X-CSE-ConnectionGUID: imuhcFfxS6qhyP68xuTxtA==
+X-CSE-MsgGUID: cWwwFF9pS/OLIRzcjRYHUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="76299048"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="76299048"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 14:19:23 -0700
+X-CSE-ConnectionGUID: vuxmNBBsSim5c5aAAwhL2g==
+X-CSE-MsgGUID: eZiLH+lxSsqPfIoPh4GVaQ==
+X-ExtLoop1: 1
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 14:19:23 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 14:19:22 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 14:19:22 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.44)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 14:19:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=T0JRjq7brLnTW/OMVIsOS3k/XmLpXKveM+zrIhsS+hxe5yP+e/nGwsU3ixfAhfSE+3JmL4nC4kmLxccyBkMcxyf+SmhoSiRrQo8k0fosQfH7ITVLfKwuVvDJwYpkLytK2ltVZMZv2cSMiGvnBwmnuc1PgHYrksuhuFD3OC9SeLFoDkxC1yDqk0hH+/BkDWAp3d5ujzqH44bAJIpNwZrvTK/CipS6pn8vtTrio+PmC8s3xubikWp9EoaDjuOZ/yZdq6NyQkkrCwQpsizT3zjfIyVx+dXp4Z1I6EKL4qjqSK+OgitFCjsprqb6jGu5se11qmH7VLMFg5DhXJA7ZI3meA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KW0s9YAxUxxxxP0x+DLMyoIKIlLIQX6jCPSYukgf+CY=;
+ b=g3OoolXFxhNNreGuU6pHXjEa432I1NAphEIQz/C5OjlnwW6znqcxw7cPykaASs8Sen1+L22FPcgH3PICNIIKt+ap/27DXsqhFEKm9MTmJd3GIf6sHE4v6CXYI5zhszKXSeSaQVK7NxV/CI2XOMDrm7n9j+buPbCeqgGpYVtaTZtoFton1CoiNGngbBOvnCqIZ7n4wC77hx5Q36NzeDWsBB+AemE5ZwUNZvq4CrQW4lpl5SwUztUdRVOX1lL0CzjQuH3VepB2xNYNFWuM2aAaLGDew3YD5gu98k1ng4wpIUnMMcg5+APjnHAE1iMitvnCyWwO1dCTbff9p2bLc1quIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by BL3PR11MB6481.namprd11.prod.outlook.com (2603:10b6:208:3bc::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.21; Thu, 28 Aug
+ 2025 21:19:19 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9052.019; Thu, 28 Aug 2025
+ 21:19:19 +0000
+Message-ID: <a19ec502-266d-48cf-af9e-c89070799a20@intel.com>
+Date: Thu, 28 Aug 2025 23:19:13 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: stupid and complicated PAT :)
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
- <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
- <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: xTW6OA-BdwsGQOM-QLOdoNWQqujQeJE9fqX3Pg-DfNM_1756415905
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH v3] drm/xe/guc: Add devm release action to safely tear
+ down CT
+To: Matthew Brost <matthew.brost@intel.com>
+CC: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Summers Stuart <stuart.summers@intel.com>
+References: <20250828104432.23695-1-satyanarayana.k.v.p@intel.com>
+ <cb231cc7-0173-4b7f-8d1d-b480ac76bb6a@intel.com>
+ <aLC0oPvt1ZqgEVat@lstrano-desk.jf.intel.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <aLC0oPvt1ZqgEVat@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0125.eurprd06.prod.outlook.com
+ (2603:10a6:803:a0::18) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|BL3PR11MB6481:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33a86a99-1c4e-4561-553c-08dde6788ca9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UU9aZTh2UTEwS0xMVVNTYkdXQzVmakYyQ3RVbFVORTk1MTQ4NEhCZnBsalJZ?=
+ =?utf-8?B?dEJHYiszWnRRMjhZTU04UWUyU0NRMzd4VHlha1BQNDJPZElMNW1odm5WMWl6?=
+ =?utf-8?B?NVBRQ2xpRENBaEVMcEhFWXhuQWN4bDg0SWQ4MnVLTjRoWjY5Tmc0emZ5anFV?=
+ =?utf-8?B?dWt3eExXOElmYkNiSTZMR0lxUURwUlVReXovQW9RWkF6aVdsSThldmc5WHNu?=
+ =?utf-8?B?U29RMzlWZEgycWZucG5mRjZPNFBaTzdrVE1uMzJ0RVhoV0hIMCtLZ1RwWWdt?=
+ =?utf-8?B?V1A2MEVsV1pNbzMvcnVDNi8zS3d1eG93STNOUVgwcHJqVDJjSGNBTGVuRnFk?=
+ =?utf-8?B?emtyZTZLQUpZMnpuekU1d1VQUC9PNDBIV1JXZTdoUDFncXU5emo0eVU0VVo4?=
+ =?utf-8?B?elV0MWFxcWVMV3p0NDcwS0kyWFZ4WlhEU3ZVUUVvZURvbTIwaFh2S1luc1FS?=
+ =?utf-8?B?TUx4ZHZWdE5KeXp4OVBlT2pBOCtSSU14Mm5VUGp6aTh0cGoxN0dmbmZja0pk?=
+ =?utf-8?B?ZDBjNGZzbk1xei82M0o3U1VYdTkyTVVsUE1zbitkajdXeW9ML0RqbHdWQjJZ?=
+ =?utf-8?B?K1lqZjMyVURPU2Rsc2Y5VUo4VE1JcjlDOHBBTUFNSGo2NFdnTHoyaE5UNW4w?=
+ =?utf-8?B?VjZnWlYvdzF3TTRxMnBjOHBzMWkrOUQ1K2lRN3I3SU43YWllMkQ0Vkx4SjhJ?=
+ =?utf-8?B?TzVUcVZNM2xoNUJ3ZUNiN3BrU0o0bHZlOC85aVlsd2hQVGZUc2hPc1JLRExQ?=
+ =?utf-8?B?azA5UGZwc0F5NzdIbWJEaVVrMmtwdHZxbTBLOVVHd1FrWC8xYWtKZncwV2hD?=
+ =?utf-8?B?eDhLRlFhcDlQMmFSY1hOQjNVOU1nNXhnUU9JN1lnWnRHQ2hqcmZ0R01rWVpn?=
+ =?utf-8?B?ZEdUMmc3eVU1MVovbDBEWmlrQTVyWmpBd3NEZG1LL3ZqSnhDWFREZG5RT2hU?=
+ =?utf-8?B?M2RzYnEvbFdoc2ZRamxNT21mcFRRYVFPUERBTys2ZGIrUFdkYkRCRWtNanA5?=
+ =?utf-8?B?NWpwT0VjeGZENmtPT0VQVFUrOUQ2TVoyMDNDM2ltQWN1ZG4zYlJ2NHY3VDJo?=
+ =?utf-8?B?c21pb1g4bXVvNXRpamk2OXM5Zm9SNHU0bzZsRWMyclFJdUFaZ3ZUVzEyeFBn?=
+ =?utf-8?B?WkluOUhTMHpGbGpFdmp3bDVnVjM4V2xXN2lvUldFeCtqRDVnTGZTQjQrYnN6?=
+ =?utf-8?B?SzhTZGhjRVlqTU5IVkQ3MWZveFF2bGlvcFhqeXBraE5CaU82VEw2UHlUMlNt?=
+ =?utf-8?B?NUpoK0Q5ejlNUFUrS0lyckFEQzhvbTg1WDh1YURFY0hBYjRQUERzZDV0ZTZm?=
+ =?utf-8?B?dERycEp1NkRUa3FQMGRpVjNGck84OWs1V1RLNGU2MWtHdlYwK0xmUkRNSUht?=
+ =?utf-8?B?ek1Cd2VKcngrQkxkOXdGSFVveFdUb3g0bm9wTEhMcEVmTk1lVklPMEdnaGlP?=
+ =?utf-8?B?YThxd3Q1blpOY1praXhQUlp6eUVrSko0aFM3ODB1d080cXZ3S2ZlYnhZWUJZ?=
+ =?utf-8?B?TU8vZDdScmwvN045U2FhRTk5UHFLdm1oM0VxYzVSRTAyRGh3OGFrMml4M3NO?=
+ =?utf-8?B?OUc4S3RzYlFIcWxrQXZxRWRjK0V2NVJyTFk1TUhCVitjU2xCenp4ZWpHOW54?=
+ =?utf-8?B?bDFsMWJ2VElUYmx2R3NpZEJzYlVEaSsya2lDdXptSmdGRVVMK05aV3k3b1VC?=
+ =?utf-8?B?MkJzN3ZjTDdDNE83dWFkaUNQNDU1a01VN3ZXcUZwazNQWWJSVHg3UDdKN3pl?=
+ =?utf-8?B?S0loTEk1cG1UZGhucENrWGgvRWszK0NTU24xZkF1ZWo0VnZDU3FBa1I3WGU5?=
+ =?utf-8?B?Y2FDVzRoL0JxWEdaeU1CaUVMUmkxc1pXcVRpTmtkVENLV1gwS2NzbFJSbHhI?=
+ =?utf-8?B?WHpBQngvZFl6RHlUYWFlang5aFllSTlOVVNuQ0xrTFl4d2x3S2xuNjhqZjhl?=
+ =?utf-8?Q?deSlGj9mszs=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3Y2U0c1dEVQUkZHUmpZQ1IwWXBDbWcrMXlUakQvMG9uMlQ4ZklCMTBGb3ZC?=
+ =?utf-8?B?MmpXVjVVekZyZllRdlhCWmhmU0RaRk8ycHNnNk1zRGRlc3gyT29KVlJxTjBz?=
+ =?utf-8?B?QzNJbE9EZFk5cE5QdktiRW5ZQUtXVllQeHZuekppRXlZU3lJWUNSRUJ4RVBH?=
+ =?utf-8?B?N1RmSmZJVmprdHROSDVlanNhcXhFTCt3UCt5VDA1THUvdjBKL3ZleGpBSUg1?=
+ =?utf-8?B?QTJ5OGhnLzBiQml3b1dhaFlyemFnYnRDMlN3WEY4RGJsRTZDSWJ1bUtIR1Fs?=
+ =?utf-8?B?d1BNVHJ4c2szREVmV3lSWUlrWktISGlQQVhUNGFodjRkRHlrNWFXY016TWZn?=
+ =?utf-8?B?U3E2SnBXYjNYeFI4OWMyVGhNd0JIOTc2VWJQSW1qeCt6N2p1K0FoSHN4UHBP?=
+ =?utf-8?B?dVc1RnlwVU9hRkJaZDdnQTByajg0SVNtUTVSSkZNeFNGN0k5NW56aVJLb0dU?=
+ =?utf-8?B?Zk5YVU5ETzR3VFJ4eE9nOHVnWHluaHNRV0RsVElESjhyTFVqTDhKV2g1VzBE?=
+ =?utf-8?B?cDArL3ZtT0p1cTNFY3NRS29DRFJWUVRENGxIZllPRzdYdlc3RmwwYnc5TTBy?=
+ =?utf-8?B?Y2hKdjRjajVMc0hvZStlQ01SOTRQSVdEWExyOEpNeWxYOWF0bjZZT0tob0lm?=
+ =?utf-8?B?RnpmR1ZudGZoMnRLbUMwd2lrMWFjajY2WExKVVd1bjc4NHdCa2R1YmZ2SHNN?=
+ =?utf-8?B?SHEwb1hZZWhtS3ZUNnZQODlacjBodXZhVWhGaHRpdGpRSFMySFZEUHF3bWhS?=
+ =?utf-8?B?UEg2RUZwT3l1b2lpUzlIRlR0QXlvZmEvdkVuK1ZOc3RHK1ZvYTRVMTZNeDN4?=
+ =?utf-8?B?NXlHUUdsa1VtVXVPSlBwTGRoSnZxckgxeXFqMU5FV1BzY3hiUDdNSWJWOEli?=
+ =?utf-8?B?dWIra2ZRSzN5aWllQllER2huZHJTdUNTK2dXSUNsYnZ2T3kzbHE1SFdOOVBS?=
+ =?utf-8?B?VE5DK01QdGlWMDNCVWV3YW1sNnpTaHJMek9ZRWRZUXE4ZEpPdnR0RmorWjA4?=
+ =?utf-8?B?U1JqYi9FbzMrWkFCR2NsWVhzWTFod3JUVk9jUE5FVzdQYytLSjNma0lzOUJ4?=
+ =?utf-8?B?YXpSbDdJdTRkNWlWZ2Y5dWVEUUVXdzlJT0dPS0Y1S2Z3NktBWlE3cStlbkJj?=
+ =?utf-8?B?RDBQcWdPR2FHWmVFS2U2NHQrSi9MaE5DZU44VEIya0pVUG1rcmkrR1JHaEZt?=
+ =?utf-8?B?VkNTeEpabnFyTGVTRVUrM0xmRzcxN3UwZEErV2c5d0FRSmg5dVQ0RHpRQnA3?=
+ =?utf-8?B?Z1MrYnpVY1ZOVU1FQ1NVMFJsdkUwZEswS3l5MjUyZnk1R3VCMnZ1NjM3T20y?=
+ =?utf-8?B?UG5vNzFSOElDZDBSRFBwN20yakVDTFVrSm83V290R0JzV3ljcTlraG8rQWUz?=
+ =?utf-8?B?RE9qYTVtTzBVZ3M4cEt4Y0VTY3FNV3p5MFZucytoem0zWldDVUZybElmWWxm?=
+ =?utf-8?B?SWl0QkV0dEQyUkd4TjdhSTU3TVZtSGJoRHFKaWp1eS9kTlNLK0o1Nzl5Njdo?=
+ =?utf-8?B?d2d1NTZWV0UzVVMwQ2NLYWdKY1ozeDFia0xzTVJ3bit1TVZpWndCK2lKL3JL?=
+ =?utf-8?B?VXgxYnZRd3Z4MEpKc0hheTJVSWtPU1BTalZ4c1F5dUM2RnF5aEcrTE1jVWwv?=
+ =?utf-8?B?Uyt6QXU1S2IxUlhQT2ZVVm4vWDUreERjV05BVHhBNWh2K3FOWU5PUHJqZzlm?=
+ =?utf-8?B?TzJHZjQza1Y1TUF0eStabmtXbm1SZVBaNFpqTjU0M1o0SVd4bFc0eGIrYXR1?=
+ =?utf-8?B?d3JQd1ZHVFVHdm44bWw0WnZSdWphcFU5UHQ2OXlVbXFtcENYcUh0NjBxNEFK?=
+ =?utf-8?B?S2xrbGZFb3g4RlNIYklKbVNabXdrSGxYYllRR1VXMEdDaFNMaUNvalBCRTBP?=
+ =?utf-8?B?b0Y1ajM4TmZoNUhWckhYV1h3U0w2cHU0ZmlDdHRQeEVQejhGcFE2c1RNbkJz?=
+ =?utf-8?B?RzhkTjlieGlCMElKT2owNUNoM1FkYko4RmtyQU1PTDg2NnRJUUx1cUJ5OTk2?=
+ =?utf-8?B?MlYvVSthaWZ5ZkVRYXRWcC90YnNTeFFXbG0vbVdSKzM3MTN4aTBPbjB5QU1y?=
+ =?utf-8?B?UFM4aWpoNVV5cDdUaVpHb2FBSWNYWkQ3UTNVWXp5NWZGR1d0RjlCMGpIb1p0?=
+ =?utf-8?B?V0w2TWVEalZ0UmtMNEJUejBtSzdXWGdmUmxTUkk5cGsyNHMwUnNTeENUa3FD?=
+ =?utf-8?B?Z3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33a86a99-1c4e-4561-553c-08dde6788ca9
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2025 21:19:19.0105 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fd0/fWoUuzwI4KGEYIP3Gr5mza8eH0sqvdLDqOOBCkVpOrx20zwAI0qemDRQULxjD6IMZut2c5AAg6dqNPdQ3PQHDhDJ6ciL9kBiM3fJj9A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6481
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,102 +198,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26.08.25 18:09, Christian König wrote:
-> On 26.08.25 14:07, David Hildenbrand wrote:
->>>
->>>> 2) We add another interface that consumes PFNs, but explicitly states
->>>>      that it is only for ordinary system RAM, and that the user is
->>>>      required for updating the direct map.
->>>>
->>>>      We could sanity-check the direct map in debug kernels.
->>>
->>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
->>>
->>> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
+
+
+On 8/28/2025 9:57 PM, Matthew Brost wrote:
+> On Thu, Aug 28, 2025 at 07:21:02PM +0200, Michal Wajdeczko wrote:
 >>
->> It's all a bit tricky :(
-> 
-> I would rather say horrible complicated :(
-> 
->>>>
->>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
->>>>      system RAM differently.
->>>>
->>>>
->>>> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
->>>>
->>>> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
+>>
+>> On 8/28/2025 12:44 PM, Satyanarayana K V P wrote:
+>>> When a buffer object (BO) is allocated with the XE_BO_FLAG_GGTT_INVALIDATE
+>>> flag, the driver initiates TLB invalidation requests via the CTB mechanism
+>>> while releasing the BO. However a premature release of the CTB BO can lead
+>>> to system crashes, as observed in:
 >>>
->>> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
+>>> Oops: Oops: 0000 [#1] SMP NOPTI
+>>> RIP: 0010:h2g_write+0x2f3/0x7c0 [xe]
+>>> Call Trace:
+>>>  guc_ct_send_locked+0x8b/0x670 [xe]
+>>>  xe_guc_ct_send_locked+0x19/0x60 [xe]
+>>>  send_tlb_invalidation+0xb4/0x460 [xe]
+>>>  xe_gt_tlb_invalidation_ggtt+0x15e/0x2e0 [xe]
+>>>  ggtt_invalidate_gt_tlb.part.0+0x16/0x90 [xe]
+>>>  ggtt_node_remove+0x110/0x140 [xe]
+>>>  xe_ggtt_node_remove+0x40/0xa0 [xe]
+>>>  xe_ggtt_remove_bo+0x87/0x250 [xe]
 >>>
->>> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
+>>> Introduce a devm-managed release action during xe_guc_ct_init() and
+>>> xe_guc_ct_init_post_hwconfig() to ensure proper CTB disablement before
+>>> resource deallocation, preventing the use-after-free scenario.
+>>>
+>>> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Summers Stuart <stuart.summers@intel.com>
+>>>
+>>> ---
+>>> Reviewed-by: Matthew Brost <matthew.brost@intel.com> (with #rev1)
+>>>
+>>> V2 -> V3:
+>>> - Fixed review comments (Michal).
+>>>
+>>> V1 -> V2:
+>>> - Fixed review comments (Michal & Matt B).
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_guc.c    | 12 +++++-----
+>>>  drivers/gpu/drm/xe/xe_guc_ct.c | 40 +++++++++++++++++++++++++++++++++-
+>>>  drivers/gpu/drm/xe/xe_guc_ct.h |  2 ++
+>>>  3 files changed, 46 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>> index 37d06c51180c..ed0da4ebd928 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>> @@ -706,14 +706,8 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+>>>  		return ret;
+>>>  
+>>>  	ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ads.bo);
 >>
->> I mean, the use case of "allocate pages from the buddy and fixup the linear map" sounds perfectly reasonable to me. Absolutely no reason to get PAT involved. Nobody else should be messing with that memory after all.
+>> btw, IMO this should be moved (in separate patch) to existing function:
 >>
->> As soon as we are talking about other memory ranges (iomem) that are not from the buddy, it gets weird to bypass PAT, and the question I am asking myself is, when is it okay, and when not.
-> 
-> Ok let me try to explain parts of the history and the big picture for at least the graphics use case on x86.
-> 
-> In 1996/97 Intel came up with the idea of AGP: https://en.wikipedia.org/wiki/Accelerated_Graphics_Port
-> 
-> At that time the CPUs, PCI bus and system memory were all connected together through the north bridge: https://en.wikipedia.org/wiki/Northbridge_(computing)
-> 
-> The problem was that AGP also introduced the concept of putting large amounts of data for the video controller (PCI device) into system memory when you don't have enough local device memory (VRAM).
-> 
-> But that meant when that memory is cached that the north bridge always had to snoop the CPU cache over the front side bus for every access the video controller made. This meant a huge performance bottleneck, so the idea was born to access that data uncached.
-
-Ack.
-
-> 
-> 
-> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
-> 
-> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
-> 
-> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
-
-That makes perfect sense. I assume we might or might not have "struct 
-page" (pfn_valid) for the iomem, depending on where these areas reside, 
-correct?
-
-> 
-> 
-> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
-> 
->>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
+>> 	xe_guc_ads_init_post_hwconfig()
 >>
->> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
+>>> -	if (ret)
+>>> -		return ret;
+>>> -
+>>> -	ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ct.bo);
+>>> -	if (ret)
+>>> -		return ret;
+>>>  
+>>> -	return 0;
+>>> +	return ret;
+>>
+>> maybe just drop the chunk with reinit(ct.bo) without reformatting rest of the code
+>>
+>>
+>>>  }
+>>>  
+>>>  static int vf_guc_init_noalloc(struct xe_guc *guc)
+>>> @@ -847,6 +841,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+>>>  	if (ret)
+>>>  		return ret;
+>>>  
+>>> +	ret = xe_guc_ct_init_post_hwconfig(&guc->ct);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>>  	guc_init_params_post_hwconfig(guc);
+>>>  
+>>>  	ret = xe_guc_submit_init(guc, ~0);
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>>> index 848065a25c44..0b88cfb05e7b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>>> @@ -39,6 +39,8 @@ static void receive_g2h(struct xe_guc_ct *ct);
+>>>  static void g2h_worker_func(struct work_struct *w);
+>>>  static void safe_mode_worker_func(struct work_struct *w);
+>>>  static void ct_exit_safe_mode(struct xe_guc_ct *ct);
+>>> +static void guc_ct_change_state(struct xe_guc_ct *ct,
+>>> +				enum xe_guc_ct_state state);
+>>>  
+>>>  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>>>  enum {
+>>> @@ -252,6 +254,13 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+>>>  }
+>>>  ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
+>>>  
+>>> +static void guc_action_disable_ct(void *arg)
+>>> +{
+>>> +	struct xe_guc_ct *ct = arg;
+>>> +
+>>> +	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
+>>> +}
+>>> +
+>>>  int xe_guc_ct_init(struct xe_guc_ct *ct)
+>>>  {
+>>>  	struct xe_device *xe = ct_to_xe(ct);
+>>> @@ -268,10 +277,39 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+>>>  		return PTR_ERR(bo);
+>>>  
+>>>  	ct->bo = bo;
+>>> -	return 0;
+>>> +
+>>> +	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
+>>>  }
+>>>  ALLOW_ERROR_INJECTION(xe_guc_ct_init, ERRNO); /* See xe_pci_probe() */
+>>>  
+>>> +/**
+>>> + * xe_guc_ct_init_post_hwconfig - Reinitialize the GuC CTB in VRAM
+>>> + * @ct: the &xe_guc_ct.
+>>
+>> remove trailing dot
+>>
+>>> + *
+>>> + * Allocate a new BO in VRAM and free the previous BO that was allocated
+>>> + * in system memory (SMEM).
+>>
+>> make a note that this BO reinit is only for DGFX
+>>
+>>> + *
+>>> + * Return: 0 on success, or a negative errno on failure.
+>>> + */
+>>> +
+>>> +int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
+>>> +{
+>>> +	struct xe_device *xe = ct_to_xe(ct);
+>>> +	struct xe_gt *gt = ct_to_gt(ct);
+>>> +	struct xe_tile *tile = gt_to_tile(gt);
+>>> +	int ret;
+>>> +
+>>> +	if (!IS_DGFX(xe))
+>>> +		return 0;
+>>
+>> hmm, I'm wondering if this is good that we will have two different
+>> unwind points where we will disable CT (one for DGFX other for !DGFX)
+>>
+>> maybe we should just reinit(bo) for DGFX but replace disable_action
+>> unconditionally ?
+>>
 > 
-> I think the most defensive approach for a quick fix is this change here:
+> You will guc_action_disable_ct regardless if this DGFX or not.
+
+yes, there will be action registered
+
+but will be called completely at different time and this may
+(or may not) actually has side effect on other unwind actions
+that we registered between ct_init() and ct_init_posthwc()
+
+as a reviewer I feel responsible to ask questions if something
+looks suspicious - if author (or someone else) is confident that
+there are no issues, we just move on without next rev
+
+so here, if you are ok to accept that dualism - let it be
+
 > 
->   static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
->   {
-> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
-> -                        cachemode2protval(pcm));
-> +       if (pcm != _PAGE_CACHE_MODE_WB)
-> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
-> +                                cachemode2protval(pcm));
->   }
+> Can we really not nit pick this too much, rev1 worked, albiet the
+
+I know as I suggested that change - we just workout the implementation
+
+> layering being slightly incorrect. This is a clear issue and I hit from
+> time, customers can potentially hit, it would be nice to agree
+> upon something soon.
+
+this should be the last round ;)
+
 > 
-> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
+> Matt
 > 
-> What do you think?
-
-This feels like too big of a hammer. In particular, it changes things 
-like phys_mem_access_prot_allowed(), which requires more care.
-
-First, I thought we should limit what we do to vmf_insert_pfn_prot() 
-only. But then I realized that we have stuff like
-
-	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
-
-I'm still trying to find out the easy way out that is not a complete hack.
-
-Will the iomem ever be mapped by the driver again with a different cache 
-mode? (e.g., WB -> UC -> WB)
-
--- 
-Cheers
-
-David / dhildenb
+>>> +
+>>> +	ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
+>>
+>> hmm, maybe we should assert that CT is still/already disabled when
+>> we do this re-initialization? near the start of the function
+>>
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	devm_release_action(xe->drm.dev, guc_action_disable_ct, ct);
+>>> +	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
+>>> +}
+>>> +
+>>>  #define desc_read(xe_, guc_ctb__, field_)			\
+>>>  	xe_map_rd_field(xe_, &guc_ctb__->desc, 0,		\
+>>>  			struct guc_ct_buffer_desc, field_)
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+>>> index 18d4225e6502..16d82c0e6cde 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+>>> @@ -73,4 +73,6 @@ xe_guc_ct_send_block_no_fail(struct xe_guc_ct *ct, const u32 *action, u32 len)
+>>>  
+>>>  long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct);
+>>>  
+>>> +int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+>>
+>> put it closer to the existing ct_init() declaration
+>>
+>>> +
+>>>  #endif
+>>
 
