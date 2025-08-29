@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87BCCCA0FF0
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 19:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E18D5CA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 19:39:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E25810EC34;
-	Fri, 29 Aug 2025 19:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F78310EC34;
+	Fri, 29 Aug 2025 19:39:46 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA4CD10EC34;
- Fri, 29 Aug 2025 19:34:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8956944568817613769=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36FD610EC34;
+ Fri, 29 Aug 2025 19:39:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Misc_xe/kunit_improvements_?=
- =?utf-8?q?=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enhance_SVM_stats?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Aug 2025 19:34:41 -0000
-Message-ID: <175649608162.286105.3795721072771456662@1538d3639d33>
+Date: Fri, 29 Aug 2025 19:39:45 -0000
+Message-ID: <175649638522.286105.5428211541311455697@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250829171922.572-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250829171922.572-1-michal.wajdeczko@intel.com>
+References: <20250829172232.1308004-1-matthew.brost@intel.com>
+In-Reply-To: <20250829172232.1308004-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +39,55 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8956944568817613769==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Misc xe/kunit improvements (rev2)
-URL   : https://patchwork.freedesktop.org/series/152440/
-State : success
+Series: Enhance SVM stats
+URL   : https://patchwork.freedesktop.org/series/153727/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef_BAT -> xe-pw-152440v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ec5c8319ce2a975e7b869659d5b366b7c1bb1d1e
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Aug 29 10:22:32 2025 -0700
 
-Summary
--------
+    drm/xe: Add more SVM GT stats
+    
+    Add more SVM GT stats which give visibility to where time is spent in
+    the SVM page fault handler. Stats include number of faults at a given
+    size, total SVM page fault time, migration time in us, copy time in us,
+    copy kb, get pages time in us, and bind time in us. Will help in tuning
+    SVM for performance.
+    
+    v2:
+     - Include local changes
+    v3:
+     - Add tlb invalidation + valid page fault + per size copy size stats
+    v4:
+     - Ensure gt not NULL when incrementing SVM copy stats
+     - Normalize stats names
+     - Use magic macros to generate increment functions for ranges
+    v7:
+     - Use DEF_STAT_STR (Michal)
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch 94efba53a792987b3649b6370e69f772c2210412 drm-intel
+011e9941acac drm/xe: Add clearing stats to GT debugfs
+ec5c8319ce2a drm/xe: Add more SVM GT stats
+-:34: ERROR:BRACKET_SPACE: space prohibited before open square bracket '['
+#34: FILE: drivers/gpu/drm/xe/xe_gt_stats.c:29:
++#define DEF_STAT_STR(ID, name) [XE_GT_STATS_ID_##ID] = name
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 10)
-------------------------------
-
-  Missing    (1): bat-ptl-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-152440v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152440v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef -> xe-pw-152440v2
-
-  IGT_8517: 8517
-  xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef: f6aa4672016576ffe9de4380dff4788977a7dbef
-  xe-pw-152440v2: 152440v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152440v2/index.html
-
---===============8956944568817613769==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 1 errors, 0 warnings, 0 checks, 428 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Misc xe/kunit improvements (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152440/">https://patchwork.freedesktop.org/series/152440/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152440v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152440v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef_BAT -&gt; xe-pw-152440v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 10)</h2>
-<p>Missing    (1): bat-ptl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152440v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152440v2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef -&gt; xe-pw-152440v2</li>
-</ul>
-<p>IGT_8517: 8517<br />
-  xe-3640-f6aa4672016576ffe9de4380dff4788977a7dbef: f6aa4672016576ffe9de4380dff4788977a7dbef<br />
-  xe-pw-152440v2: 152440v2</p>
-
-</body>
-</html>
-
---===============8956944568817613769==--
