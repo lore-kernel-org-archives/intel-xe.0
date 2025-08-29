@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B763CCA0FF0
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 17:19:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1D15CA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 17:20:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8011810E1F1;
-	Fri, 29 Aug 2025 17:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8178910EC1E;
+	Fri, 29 Aug 2025 17:20:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TspsrJyV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YmPQj7ch";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FCE10E1E0
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 17:19:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2979010E1E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 17:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756487996; x=1788023996;
+ t=1756488000; x=1788024000;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T6ZXNHKpCDSvmX/e4DmtJnyzqcsxfSb7/lYXM6oFca4=;
- b=TspsrJyVHqBb+7jZ+xaU6OfVfHgxJnDkuDrlAX0A/oWTmXXgrvhm+J7L
- bBM1AbuLqMqgUmPMA4ynpUfiETr2YDoXsGmvp2ehYPH7LacpUo+EkRfEP
- IWIvzK31YegNn/hLMqQzgUqQjFe6H/rZ1ILyT1AE6OYE4Y0WlOiXPoami
- mGhgKAqjlmy/fPctH8+lZl6ob/4y+1wRnA3ZJvw1Vulf7rDiFpYXQBWRA
- BIZRjB/KV6UoTf1vKCcdDvpNQkUhOCtvE3UR6AknCPlxWXXoTYdeHzRoR
- dZ0sIzBMhGKX0E3NVJ6jT26NPlD0xycIAxtX6tBMylUZpl9rYxdb2zuE1 g==;
-X-CSE-ConnectionGUID: 6vqk8kc4SbO8dGuweoK/qw==
-X-CSE-MsgGUID: uq7NLjGFRpmHqZCaYBxNNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="70212765"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="70212765"
+ bh=xgonM3z9VZrB8vjRo26YEd7Y6haarbM9KjB0jtGU1Eo=;
+ b=YmPQj7chZRyEAQVFZBUYCroXPu5LnFbFflI0d2usNzFsaqfzXaBKGFvV
+ ta9plDCN3R0YKu1ZJm80l7DWXPnF5tVbpRnkBJVf/k4Gb6kthc5s1Cr1o
+ YRkNEFcbwQxXnVOPnGzmr8TmZODdRXhOTpgNCZp7n3AEzS9NVD1UMs6Hr
+ ZludXWgdPowafyZUKsGHLLktX2m2EHJWIN3rgAUtJly48soLtMAvgmUeK
+ 1qUA0lCaCePb7b88zSqBu4aCCZOgoMM+8U5wnFLNDjmFdo39an7NS05vT
+ SQiW6ZOR6qXQJMMtu1amKmTsg/JnymXmX7Y7Ikj/w811OsmZIVlrfwc2K g==;
+X-CSE-ConnectionGUID: gt49nqXsR1ao/70aj7wChA==
+X-CSE-MsgGUID: AIa/MWIwRWaHE8mBrq423Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="70212769"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="70212769"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 10:19:55 -0700
-X-CSE-ConnectionGUID: GtTftIhXRke2qLOL8+c7bQ==
-X-CSE-MsgGUID: rtV5Df9yQweQZ7JLFCFtgg==
+ 29 Aug 2025 10:20:00 -0700
+X-CSE-ConnectionGUID: rw7VJwJrQE+925cMnJWpDQ==
+X-CSE-MsgGUID: N813jVLCT9WzyzrAwOg0ag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170818338"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170818376"
 Received: from ruymanre-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.252.70])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 10:19:51 -0700
+ 29 Aug 2025 10:19:56 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 5/7] drm/xe/kunit: Promote fake platform parameter list
-Date: Fri, 29 Aug 2025 19:19:20 +0200
-Message-ID: <20250829171922.572-6-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 6/7] drm/xe/kunit: Drop xe_wa_test_exit
+Date: Fri, 29 Aug 2025 19:19:21 +0200
+Message-ID: <20250829171922.572-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250829171922.572-1-michal.wajdeczko@intel.com>
 References: <20250829171922.572-1-michal.wajdeczko@intel.com>
@@ -68,183 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The list of all known representative platforms defined in xe_wa
-could be used in more places by other test suites.
+Remove xe_wa_test_exit() as it could crach the KUnit kernel in
+case of hitting some asserts in xe_wa_test_init() as test->priv
+could not be pointing to expected data.
+
+ |    # xe_wa_gt: ASSERTION FAILED at drivers/gpu/drm/xe/tests/xe_wa_test.c:34
+ |    Expected ret == 0, but
+ |        ret == -19 (0xffffffffffffffed)
+ |Bus error - the host /dev/shm or /tmp mount likely just ran out of space
+ |Kernel panic - not syncing: Kernel mode signal 7
+
+Note that there is no need to call drm_kunit_helper_free_device()
+since our fake device allocated by drm_kunit_helper_alloc_device()
+will be cleaned up automatically.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: rebased
----
- drivers/gpu/drm/xe/tests/xe_pci.c      | 69 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  1 +
- drivers/gpu/drm/xe/tests/xe_wa_test.c  | 55 +-------------------
- 3 files changed, 71 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_wa_test.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index a8b35439131f..f19b1a64128b 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -12,6 +12,75 @@
- #include <kunit/test-bug.h>
- #include <kunit/visibility.h>
- 
-+#define PLATFORM_CASE(platform__, graphics_step__)					\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_NONE,					\
-+		.step = { .graphics = STEP_ ## graphics_step__ }			\
-+	}
-+
-+#define SUBPLATFORM_CASE(platform__, subplatform__, graphics_step__)			\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_ ## platform__ ## _ ## subplatform__,	\
-+		.step = { .graphics = STEP_ ## graphics_step__ }			\
-+	}
-+
-+#define GMDID_CASE(platform__, graphics_verx100__, graphics_step__,			\
-+		   media_verx100__, media_step__)					\
-+	{										\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_NONE,					\
-+		.graphics_verx100 = graphics_verx100__,					\
-+		.media_verx100 = media_verx100__,					\
-+		.step = { .graphics = STEP_ ## graphics_step__,				\
-+			   .media = STEP_ ## media_step__ }				\
-+	}
-+
-+static const struct xe_pci_fake_data cases[] = {
-+	PLATFORM_CASE(TIGERLAKE, B0),
-+	PLATFORM_CASE(DG1, A0),
-+	PLATFORM_CASE(DG1, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, A0),
-+	PLATFORM_CASE(ALDERLAKE_S, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, C0),
-+	PLATFORM_CASE(ALDERLAKE_S, D0),
-+	PLATFORM_CASE(ALDERLAKE_P, A0),
-+	PLATFORM_CASE(ALDERLAKE_P, B0),
-+	PLATFORM_CASE(ALDERLAKE_P, C0),
-+	SUBPLATFORM_CASE(ALDERLAKE_S, RPLS, D0),
-+	SUBPLATFORM_CASE(ALDERLAKE_P, RPLU, E0),
-+	SUBPLATFORM_CASE(DG2, G10, C0),
-+	SUBPLATFORM_CASE(DG2, G11, B1),
-+	SUBPLATFORM_CASE(DG2, G12, A1),
-+	GMDID_CASE(METEORLAKE, 1270, A0, 1300, A0),
-+	GMDID_CASE(METEORLAKE, 1271, A0, 1300, A0),
-+	GMDID_CASE(METEORLAKE, 1274, A0, 1300, A0),
-+	GMDID_CASE(LUNARLAKE, 2004, A0, 2000, A0),
-+	GMDID_CASE(LUNARLAKE, 2004, B0, 2000, A0),
-+	GMDID_CASE(BATTLEMAGE, 2001, A0, 1301, A1),
-+	GMDID_CASE(PANTHERLAKE, 3000, A0, 3000, A0),
-+};
-+
-+KUNIT_ARRAY_PARAM(platform, cases, xe_pci_fake_data_desc);
-+
-+/**
-+ * xe_pci_fake_data_gen_params - Generate struct xe_pci_fake_data parameters
-+ * @prev: the pointer to the previous parameter to iterate from or NULL
-+ * @desc: output buffer with minimum size of KUNIT_PARAM_DESC_SIZE
-+ *
-+ * This function prepares struct xe_pci_fake_data parameter.
-+ *
-+ * To be used only as a parameter generator function in &KUNIT_CASE_PARAM.
-+ *
-+ * Return: pointer to the next parameter or NULL if no more parameters
-+ */
-+const void *xe_pci_fake_data_gen_params(const void *prev, char *desc)
-+{
-+	return platform_gen_params(prev, desc);
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_data_gen_params);
-+
- static const struct xe_device_desc *lookup_desc(enum xe_platform p)
- {
- 	const struct xe_device_desc *desc;
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 1195839999ab..5e9a7ffc747f 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -24,6 +24,7 @@ struct xe_pci_fake_data {
- };
- 
- int xe_pci_fake_device_init(struct xe_device *xe);
-+const void *xe_pci_fake_data_gen_params(const void *prev, char *desc);
- void xe_pci_fake_data_desc(const struct xe_pci_fake_data *param, char *desc);
- 
- const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
 diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-index 7bf34fd0d189..d67bfa3ec494 100644
+index d67bfa3ec494..49d191043dfa 100644
 --- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
 +++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-@@ -15,59 +15,6 @@
- #include "xe_tuning.h"
- #include "xe_wa.h"
- 
--#define PLATFORM_CASE(platform__, graphics_step__)				\
--	{									\
--		.platform = XE_ ## platform__,					\
--		.subplatform = XE_SUBPLATFORM_NONE,				\
--		.step = { .graphics = STEP_ ## graphics_step__ }		\
--	}
--
--
--#define SUBPLATFORM_CASE(platform__, subplatform__, graphics_step__)			\
--	{										\
--		.platform = XE_ ## platform__,						\
--		.subplatform = XE_SUBPLATFORM_ ## platform__ ## _ ## subplatform__,	\
--		.step = { .graphics = STEP_ ## graphics_step__ }			\
--	}
--
--#define GMDID_CASE(platform__, graphics_verx100__, graphics_step__,		\
--		   media_verx100__, media_step__)				\
--	{									\
--		.platform = XE_ ## platform__,					\
--		.subplatform = XE_SUBPLATFORM_NONE,				\
--		.graphics_verx100 = graphics_verx100__,				\
--		.media_verx100 = media_verx100__,				\
--		.step = { .graphics = STEP_ ## graphics_step__,			\
--			   .media = STEP_ ## media_step__ }			\
--	}
--
--static const struct xe_pci_fake_data cases[] = {
--	PLATFORM_CASE(TIGERLAKE, B0),
--	PLATFORM_CASE(DG1, A0),
--	PLATFORM_CASE(DG1, B0),
--	PLATFORM_CASE(ALDERLAKE_S, A0),
--	PLATFORM_CASE(ALDERLAKE_S, B0),
--	PLATFORM_CASE(ALDERLAKE_S, C0),
--	PLATFORM_CASE(ALDERLAKE_S, D0),
--	PLATFORM_CASE(ALDERLAKE_P, A0),
--	PLATFORM_CASE(ALDERLAKE_P, B0),
--	PLATFORM_CASE(ALDERLAKE_P, C0),
--	SUBPLATFORM_CASE(ALDERLAKE_S, RPLS, D0),
--	SUBPLATFORM_CASE(ALDERLAKE_P, RPLU, E0),
--	SUBPLATFORM_CASE(DG2, G10, C0),
--	SUBPLATFORM_CASE(DG2, G11, B1),
--	SUBPLATFORM_CASE(DG2, G12, A1),
--	GMDID_CASE(METEORLAKE, 1270, A0, 1300, A0),
--	GMDID_CASE(METEORLAKE, 1271, A0, 1300, A0),
--	GMDID_CASE(METEORLAKE, 1274, A0, 1300, A0),
--	GMDID_CASE(LUNARLAKE, 2004, A0, 2000, A0),
--	GMDID_CASE(LUNARLAKE, 2004, B0, 2000, A0),
--	GMDID_CASE(BATTLEMAGE, 2001, A0, 1301, A1),
--	GMDID_CASE(PANTHERLAKE, 3000, A0, 3000, A0),
--};
--
--KUNIT_ARRAY_PARAM(platform, cases, xe_pci_fake_data_desc);
--
- static int xe_wa_test_init(struct kunit *test)
- {
- 	const struct xe_pci_fake_data *param = test->param_value;
-@@ -120,7 +67,7 @@ static void xe_wa_gt(struct kunit *test)
+@@ -43,13 +43,6 @@ static int xe_wa_test_init(struct kunit *test)
+ 	return 0;
  }
  
- static struct kunit_case xe_wa_tests[] = {
--	KUNIT_CASE_PARAM(xe_wa_gt, platform_gen_params),
-+	KUNIT_CASE_PARAM(xe_wa_gt, xe_pci_fake_data_gen_params),
- 	{}
+-static void xe_wa_test_exit(struct kunit *test)
+-{
+-	struct xe_device *xe = test->priv;
+-
+-	drm_kunit_helper_free_device(test, xe->drm.dev);
+-}
+-
+ static void xe_wa_gt(struct kunit *test)
+ {
+ 	struct xe_device *xe = test->priv;
+@@ -74,7 +67,6 @@ static struct kunit_case xe_wa_tests[] = {
+ static struct kunit_suite xe_rtp_test_suite = {
+ 	.name = "xe_wa",
+ 	.init = xe_wa_test_init,
+-	.exit = xe_wa_test_exit,
+ 	.test_cases = xe_wa_tests,
  };
  
 -- 
