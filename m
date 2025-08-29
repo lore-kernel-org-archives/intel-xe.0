@@ -4,32 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CF54CA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 10:40:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEE01CA0FF7
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 10:50:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2C4910EB78;
-	Fri, 29 Aug 2025 10:40:07 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB9510EB78
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 10:40:06 +0000 (UTC)
-Message-ID: <5cb4d376-0724-4c02-a0d6-84f262c317a5@lankhorst.se>
-Date: Fri, 29 Aug 2025 12:40:02 +0200
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4697010EB7D;
+	Fri, 29 Aug 2025 10:50:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZkZvPfbi";
+	dkim-atps=neutral
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2061.outbound.protection.outlook.com [40.107.237.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06DBE10E143;
+ Fri, 29 Aug 2025 10:50:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c4KJGWQgf00rdFmAIW5A0QTVq9G8M3zT/vC06s4amAOUjZShbwzdcuGrKj0SfEpjugwHtswWb53MI7Mc9+ptXTAMEebMgGHZbZdv3Vlij6QJ2HNxktRdzaxcyBqx72Nsw+5yAnwWLHadoFQbmjXlBf3U/twOcsjIpCVJMWMFEqRGvF6r1mGkK9EgTsTuAyIPaid/vNnOdo96aE4jC/u6x5M+PQ4itQ5sbOrUNs8VmFxfawsjexbrN8ny7JSZQ0RUm9x9xJp3q+4f2vWYwZXkYfHiqvWU7bohdfdeP4v+g21NjG93iFWMJj1GP66d6M6GL/z9I0DN/8gMcvRBY2PN8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zjpzq5zJxyO8d6P4J7SFgEU5AWPzJOO/CBPEL+pDPRY=;
+ b=NvjW4KsRmuqvn4VgjbFUS2f51pmYsraVN0P4Fq7TSarLjzh3ydfK1Qf9dCa33DqN9/Bwyg9MiIAqQdryATxoLHOx9AnkR0Rwg9VB9XZcPWn2egwTBzXJ8rpL0lmXAgiRBp5Qtilj6iwx0l1KMI5P3aWZDkeJx6W/PFFyqsBdjAShNLsm8Sla0PDm4VoUjk9fana8KfNqiR9iFtAxnbxC3vjeEFupT5nIb/cty6imxn0yi6b7j4/lqv1SX5esQ698iHY5qK+gwA2wqE/1AQ9pUMd9B5nDBiMn8rDOK4qkWmUQ0jxL05wadvLyoeLcQLaiYAkqIyaNqeCbPJzNtcHgSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zjpzq5zJxyO8d6P4J7SFgEU5AWPzJOO/CBPEL+pDPRY=;
+ b=ZkZvPfbiDLMbJkXYfgibbMA4X5vHLsDP1uaSpz4kIpVw67Sh4Nx6PAU56qTaUcYzvzELeCzWvUBEE9otDVGfCzojFfK4JZGO6Q4z1JOWYHUMcoCqFdl+It+LyG8WIGFW13MB4A9/MII1y8ZyV6BxTkPdJFaxgRKifnR+bbtXJjg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS7PR12MB6119.namprd12.prod.outlook.com (2603:10b6:8:99::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9052.14; Fri, 29 Aug 2025 10:50:09 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9073.017; Fri, 29 Aug 2025
+ 10:50:09 +0000
+Message-ID: <094606f3-a138-4561-a0b7-d952f4896939@amd.com>
+Date: Fri, 29 Aug 2025 12:50:04 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] drm/xe/guc: Refactor GuC load to use poll_timeout_us()
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250828-xe-iopoll-v1-0-9832ccd1c8b1@intel.com>
- <20250828-xe-iopoll-v1-3-9832ccd1c8b1@intel.com>
+Subject: Re: stupid and complicated PAT :)
+To: David Hildenbrand <david@redhat.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, x86@kernel.org
+Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
+ matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
+ peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+References: <20250820143739.3422-1-christian.koenig@amd.com>
+ <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
+ <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
+ <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
+ <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
+ <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
+ <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
+ <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
+ <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
+ <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
+ <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
+ <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
+ <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
+ <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20250828-xe-iopoll-v1-3-9832ccd1c8b1@intel.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0385.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f7::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB6119:EE_
+X-MS-Office365-Filtering-Correlation-Id: e955ce8a-6852-4ee5-ea52-08dde6e9d291
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WFF1Wm9ETUN6YVNia3A3RFBCUStBVGpPNExEbE5jYTNtRWgwUnRRNVZBQlRw?=
+ =?utf-8?B?SDVrUk43L0pFWHhUN2RaUTJpd3pDZjczZXlESlNJa2cvMDZOT2grQldYS3lT?=
+ =?utf-8?B?WlRSQXV0ZWs1a1lhbnRnWS85akU3VDg2d0lPR1NyWkdDbUw5ZHc3US96bS9p?=
+ =?utf-8?B?ckpXQXZmeWRkWHFoQzIyOFZhd1Nvam95dFVGL2JIYVplL21KTklKR3R6TzhX?=
+ =?utf-8?B?WVUrb0tqTGpYb2ptSk11NkFlbmFqcGpycUdkNzBnNDRrcUNxOWxSRkx5M2p3?=
+ =?utf-8?B?bzRrN0dvR3lMeUsyYVprQUwxL0RvVFZoRU0vcGl3elRpT0JQQ3AvWlR2VlFE?=
+ =?utf-8?B?bEtKbmYvZlhzTmxkTDIrdUMyT0JqaWN1blR5cEg1ZUFCY2l2NnMxOGxGR3VC?=
+ =?utf-8?B?dThFc1VtbTgvdVhxc25VNzdnckxZdEI4cCswVDc4dytKWk1zRVdjcnpZaVh3?=
+ =?utf-8?B?TU41WnNsR2E4aVU1Ty9RZk11bk1BM3BlVkxRWFBXdlFRMElzVG5zdGh6Z3lx?=
+ =?utf-8?B?aW1VQW1ZaXZHWGgxZGNKanAzQTdkNnRNVXI1OVNObCs2dFNERUVtNCtzOHRi?=
+ =?utf-8?B?bjBqNlB2Yjd4cFYwdTlBNG9EOE1KMmgvdnlsY0xJc2lxRStrNFRXVnJ0bHJG?=
+ =?utf-8?B?OWtGbHJLUVJ5TXl4bjlOQ1BXQWFhaHU3ZGJsNHZ0OC95WC9oSS9PYStnV0NK?=
+ =?utf-8?B?ejdNSXN1aFo3NDZhZEFmeXkrWkgyd2NSTitWeU5GR1AybEE3djRHRC9WazAw?=
+ =?utf-8?B?U1ppN1g2bUhIbFZkb2dRa0p0NTlDa2hWTi9Ea0ZiNXVHUUZKN2dtMEpPajAy?=
+ =?utf-8?B?MjdETk9ac2lqMGRXbk0wQkdrWWZXZDZJQVRRZmFkOG90UEszZEh3QXFOWGVr?=
+ =?utf-8?B?d0lyR1ZQcURKc0V0NDFBdnloYTRuaUFhNm9Dd2prdFJOVDFudlplL0h6ZnVw?=
+ =?utf-8?B?aFpQZm92QWU0bmFYSGZUTjI1NUlld0pxSlM1QXJXeHhmM1pUQmhOZVpSUlFZ?=
+ =?utf-8?B?eXUwdG1BMXkrREpzMmd2MzlLMWU4cThSOHdrODJDcjB1bUVvb3RNR1FtZGN1?=
+ =?utf-8?B?T3oxQnRQS1RtM0lyQWcxeEFjYXE3UjQ0L003TXRXWGFOdUhCL25PNXh5aW1W?=
+ =?utf-8?B?N3BPUVdZaVozUWpycGpPdGZJek9tWEtlcFRRbm5QZnR1RTBnMFNPamxuWHg4?=
+ =?utf-8?B?L2hhRzVhZGJ6d0UrcVI4WXBjWGJxYTJ4UXNPYmt1QUQ3R25vWXhaMDZ4RnM0?=
+ =?utf-8?B?cEloSVJ1R1Bvbk1IZDd0cWQrdklpQTRZL25CeSsvVk1nTXhuajM0NEU4eUhz?=
+ =?utf-8?B?M3ZUSll4cjdTakEyQW43dnF1YjlJZ3RncUVGVDFUL0pLM0xubGt0bHQ2LzB1?=
+ =?utf-8?B?RjJFVFA0TmxFTDdLOGN3V2RJMXBiTWxUZFR1M3hISjZSczQ3QUcrRDRpdm0w?=
+ =?utf-8?B?bkxON2JZeWVxSWFsaEdaeC9Gb2JsNDFDcFdSV2hPUDhOZUdPQStXVnlQMGZm?=
+ =?utf-8?B?TnB6WmIyS3MxSGJTVlp2VDBNU2xPK3kzL1g3WkdFL2dtdUQ3bjdwNDNSQ0x5?=
+ =?utf-8?B?dmxnSktjTHd0em5DN3VkRndmTER5Q2NJRGtCemt2djl4WWRCMU92STQ5SS9E?=
+ =?utf-8?B?NUdZKzBjbzNwRHdGb1lyTUdybkc3RUlUN2VwdHNWT0oxVXYrNlRLbkQzdnVy?=
+ =?utf-8?B?TVRVZG5BL0ZNWjUvWEJsU2crTGQ4Q1lkeWVBdFRMWEx4dkFiWEhYY0VCeDdN?=
+ =?utf-8?B?Nm96UUtHUExodnVZNklUUFo5a1JwK2ZCZjZWY3ZuV0FyN0dZTmc0dGhlN1Z3?=
+ =?utf-8?B?YU9vS2NWaStENTdVYWUycnFDVlZSTzRVaSt2aEdhSEpNM2xvTEt4bmV1THB6?=
+ =?utf-8?B?RTJ2WDF6cGFZRlhhTXkybzBDeU9VQk4yaC9sL0k2TzBLdTAwUkIxQjY0WDlC?=
+ =?utf-8?Q?0Uh2Lt3gbKg=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rk92TnhlRDh5Z0lOQWh4RUVnSmpBdUFNY3VuSUU0RDVPRnhyekJxaHZKZnJ3?=
+ =?utf-8?B?dUttS3l5K1NSYmJ1a3MrT2xEYlJpbGJsNlR0WVlBdExWcXhVL0RmcGxwZFhi?=
+ =?utf-8?B?aFZ4MG5VSmVuL016RWtUekF0YWlQVHc4UFA3dHQxR2g2WjJsTzVNSGxzWm93?=
+ =?utf-8?B?RGRmSklueHVoellORTU0Tk9yMXN4MkdURC9wd1hjZ2EvTmdnVU56WlkrRlMw?=
+ =?utf-8?B?MnZSVkpHRmREbXVXNW80bHFrWkZsbmJVTjViZ1lwVTZ1cE9SN3huY29Xa20w?=
+ =?utf-8?B?K1hPLzFYZVh1aktwZWtlNmJDeW1kUHVmTWJZNzFDVDRjNVYzb3VhV2YwMzM5?=
+ =?utf-8?B?ZFNCeGdad3J6a2dIbjJaK1BiUk5aV3JrNloyWXZaalJta1FwUDVIYnZpaTRL?=
+ =?utf-8?B?Zy9BblZKcWo3SVBERUNySHYzc09ySWtWcEhvZXVZVHZFekNGMGtpWGhmMU50?=
+ =?utf-8?B?SzB2L0hVdlBPRGRhUW44b2g5UUVZLzRrWlpsNHU0SHJlSzgyWG9hK3BlUHVS?=
+ =?utf-8?B?SzFHbExBdFppV1BJR3NYSldWWkprUUE3UmdGazZFZGxIZmV5N015SFJ5eElR?=
+ =?utf-8?B?ckNMcWRta1IrY1NwV3VMOHZKSURWM0REemNVV1NTNkRoVWtLVEVVS3lHY2dm?=
+ =?utf-8?B?TElMOXVXVXI3VkxvaTdoVXZWRE9ZV0lOR2pKeG1BZjVBOFdPMDRxSlI1L2tV?=
+ =?utf-8?B?MWc5dXE1WEVUQi9Ub1ZNK0JkZXpudHZENWV2RVdYOWtYS0V5dDVscVlPTEVI?=
+ =?utf-8?B?TUpROUVKQ3JnOXhJRkZ0a042SGtremRmUHU3MVFjaTF6b093YThmbFVJbTNa?=
+ =?utf-8?B?eEY5Nkl1ajdvZXJFVlRCQVc2SHF4eWx4Z21JaGhtRWxDQVY2eWhGKzdGajJL?=
+ =?utf-8?B?aE1VV2haeWhrMUpZRm11UmRkWTFrQlQrbTU5bno5SzhNcE5GV1Q5TFZEUC80?=
+ =?utf-8?B?aGJxejJRQnZSRDZlMWovTzZENUJtOGFzL0MwNHpIckpmdlpHcnB1bzc3MWtS?=
+ =?utf-8?B?NGJHaWZJaGxTWnc0UWlia09NcEVSK3dPS2xnR1ZoUlhld1lPakx2dzRjRHpZ?=
+ =?utf-8?B?enBhQW1GSThCNExBSE53S0lWY1l2b0E1bEtaUGR1NXhJNWtVRm1YcDBqVFE0?=
+ =?utf-8?B?aVFxa2prbVJ3OFZJY3cvbG5jYk5tZk14aU02THJseGJzR21wLzFxUjVkV3My?=
+ =?utf-8?B?Y0tCNEN4QU1LcTBrNkFpdGM5K3YvbXZTN0xRbWJ3d2hramhYaXJ5SmVzZ0dr?=
+ =?utf-8?B?S2xRSTJOQnJOcVFJeFFxdnZqZ3BGeWRYYkUwckcxTnNqNk1uYkh0clQzc2dB?=
+ =?utf-8?B?Y0pVcUxXeWhuenBsN2xHOGRrdkJRTEJDRG1MTTZzZWc4NzcyUE9RSzZTRTBm?=
+ =?utf-8?B?b1ozUkpwVW5jMFcvd3VSZVl1WTkra1RGRWNLS1c0WDVlb3pZS0g0bHVpUnBw?=
+ =?utf-8?B?UVFlZ0VhUjUvUVU2UFVqRGN2ckdoOWlLUU9WRFFoMVloMTlOOXFMRVJ4OGZU?=
+ =?utf-8?B?bDN3dURSc0E3REpNZGxHUk8zZUdOWXNBbUFSUkNvM2puays5SHFxR2IrMU1B?=
+ =?utf-8?B?NVBoeGR5REVySlU3TUZGdktRaXFHVlpRVk1uNDVCaUFReVUvbnA0eEJiYWRk?=
+ =?utf-8?B?ZlRWWHJ0K29UQkNlKzdraFhLK3pva1U4V2pTSkYwbGQyK1NoVkJkbjFwQUdR?=
+ =?utf-8?B?UlJKOHBwd0xHQUs2c3JSTzNpQlp2VTJMOC9RS3lnMGVlbG9qT0JNSEZYZkph?=
+ =?utf-8?B?c01aT3FNMC9RRUVXbmk5VVZIR3oyVW9FWm1uK2x4TG9DaUV0cS9FMU81LytK?=
+ =?utf-8?B?WHI2SXBDS2JaYkh6QVl0Ykp0eVlSSURpWUI1TGdnNkM4WldoQklqZ05qOTNh?=
+ =?utf-8?B?aGpMU1hTVmo5aWZob0FVekY3Q1QzTTlxWTRaakY1Tnp4ZFVHVm9QbkxZU2hG?=
+ =?utf-8?B?dlA3cFliSnRHU0FMbXhYTHJzb1JRdDBQVW5mTTk3NmdWYzRKN2x2Vzl1MjN3?=
+ =?utf-8?B?ejVkK2p0TGJMUWg3Z2g3dG1JMUFtTnFVUjZBb2xYT1g1NFFVNkxRUUZLeDFy?=
+ =?utf-8?B?RFl6T2NMc0JWUzJ4RkFWc0wyOHVjOG1VL0Z5bEszOW5KYjltay9qdVFMd2di?=
+ =?utf-8?Q?j+Tl6tQ3/R9PWgFFxozwl9gCl?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e955ce8a-6852-4ee5-ea52-08dde6e9d291
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 10:50:09.3515 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 76yRyqt+uIBjI1EgaNo14A7RabKf3UUoAKYREL5+NWs449wWRmmOymfhRIeegI0H
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6119
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,356 +177,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+You write mails faster than I can answer :)
 
-Den 2025-08-29 kl. 00:04, skrev Lucas De Marchi:
-> Currently there are 2 wait loops for loading GuC: one in
-> xe_mmio_wait32_not() and one guc_wait_ucode(). Now that there's a
-> generic poll_timeout_us(), refactor the code to use that and be more
-> readable.
-> 
-> Main change in behavior is that there's no exponential wait anymore:
-> that is now replaced by a 10msec retry.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc.c | 269 ++++++++++++++++++++------------------------
->  1 file changed, 125 insertions(+), 144 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 37d06c51180cb..130492405a982 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -5,6 +5,7 @@
->  
->  #include "xe_guc.h"
->  
-> +#include <linux/iopoll.h>
->  #include <drm/drm_managed.h>
->  
->  #include <generated/xe_wa_oob.h>
-> @@ -981,21 +982,103 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->  	return 0;
->  }
->  
-> +static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
-> +{
-> +	u32 freq;
-> +	int ret = xe_guc_pc_get_cur_freq(guc_pc, &freq);
-> +
-> +	return ret ? ret : freq;
-> +}
-I'm fairly sure all callers are holding the forcewake, so you can simply use guc_pc_get_cur_freq_fw directly and skip this extra function?
-> +
->  /*
-> - * Check a previously read GuC status register (GUC_STATUS) looking for
-> - * known terminal states (either completion or failure) of either the
-> - * microkernel status field or the boot ROM status field. Returns +1 for
-> - * successful completion, -1 for failure and 0 for any intermediate state.
-> + * Wait for the GuC to start up.
-> + *
-> + * Measurements indicate this should take no more than 20ms (assuming the GT
-> + * clock is at maximum frequency). However, thermal throttling and other issues
-> + * can prevent the clock hitting max and thus making the load take significantly
-> + * longer. Allow up to 3s as a safety marging in norma builds. For
-> + * CONFIG_DRM_XE_DEBUG allow up to 10s to account for slower execution, issues
-> + * in PCODE, driver, fan, etc.
-> + *
-> + * Keep checking the GUC_STATUS every 10ms with a debug message every 100
-> + * attempts as a "I'm slow, but alive" message.
-> + *
-> + * but emit a warning if greater than
-> + * 200ms.
-> + *
-> + * However, bugs anywhere from KMD to GuC to PCODE to fan failure in a CI farm
-> + * can lead to even longer times. E.g. if the GT is clamped to minimum frequency
-> + * then the load times can be in the seconds range. So the timeout is increased
-> + * for debug builds to ensure that problems can be correctly analysed. For
-> + * release builds, the timeout is kept short so that users don't wait forever to
-> + * find out that there is a problem. In either case, if the load took longer
-> + * than is reasonable even with some 'sensible' throttling, then flag a warning
-> + * because something is not right.
->   */
-> -static int guc_load_done(u32 status)
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +#define GUC_LOAD_TIMEOUT_SEC	10
-> +#else
-> +#define GUC_LOAD_TIMEOUT_SEC	3
-> +#endif
-> +#define GUC_LOAD_TIME_WARN_MSEC	200
-> +
-> +static void print_bootrom_ukernel_err(struct xe_gt *gt, u32 bootrom, u32 ukernel)
->  {
-> -	u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, status);
-> -	u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, status);
-> +	switch (bootrom) {
-> +	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
-> +		xe_gt_err(gt, "invalid key requested, header = 0x%08X\n",
-> +			  xe_mmio_read32(&gt->mmio, GUC_HEADER_INFO));
-> +		break;
-> +	case XE_BOOTROM_STATUS_RSA_FAILED:
-> +		xe_gt_err(gt, "firmware signature verification failed\n");
-> +		break;
-> +	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-> +		xe_gt_err(gt, "firmware production part check failure\n");
-> +		break;
-> +	}
-> +
-> +	switch (ukernel) {
-> +	case XE_GUC_LOAD_STATUS_HWCONFIG_START:
-> +		xe_gt_err(gt, "still extracting hwconfig table.\n");
-> +		break;
-> +	case XE_GUC_LOAD_STATUS_EXCEPTION:
-> +		xe_gt_err(gt, "firmware exception. EIP: %#x\n",
-> +			  xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(13)));
-> +		break;
-> +	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
-> +		xe_gt_err(gt, "illegal init/ADS data\n");
-> +		break;
-> +	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-> +		xe_gt_err(gt, "illegal register in save/restore workaround list\n");
-> +		break;
-> +	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-> +		xe_gt_err(gt, "illegal workaround KLV data\n");
-> +		break;
-> +	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-> +		xe_gt_err(gt, "illegal feature flag specified\n");
-> +		break;
-> +	}
-> +}
->  
-> -	switch (uk_val) {
-> +/*
-> + * Check GUC_STATUS looking for known terminal states (either completion or
-> + * failure) of either the microkernel status field or the boot ROM status field.
-> + *
-> + * Returns 1 for successful completion, -1 for failure and 0 for any
-> + * intermediate state.
-> + */
-> +static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
-> +{
-> +	u32 ukernel, bootrom;
-> +
-> +	*status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
-> +	ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, *status);
-> +	bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, *status);
-> +
-> +	switch (ukernel) {
->  	case XE_GUC_LOAD_STATUS_READY:
->  		return 1;
-> -
->  	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
->  	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
->  	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
-> @@ -1011,7 +1094,7 @@ static int guc_load_done(u32 status)
->  		return -1;
->  	}
->  
-> -	switch (br_val) {
-> +	switch (bootrom) {
->  	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
->  	case XE_BOOTROM_STATUS_RSA_FAILED:
->  	case XE_BOOTROM_STATUS_PAVPC_FAILED:
-> @@ -1025,165 +1108,63 @@ static int guc_load_done(u32 status)
->  		return -1;
->  	}
->  
-> -	return 0;
-> -}
-> +	if (++*tries >= 100) {
-> +		struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
->  
-> -static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
-> -{
-> -	u32 freq;
-> -	int ret = xe_guc_pc_get_cur_freq(guc_pc, &freq);
-> +		*tries = 0;
-> +		xe_gt_dbg(gt, "GuC load still in progress, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
-> +			  xe_guc_pc_get_act_freq(guc_pc),
-> +			  guc_pc_get_cur_freq(guc_pc),
-> +			  *status, ukernel, bootrom);
-> +	}
->  
-> -	return ret ? ret : freq;
-> +	return 0;
->  }
->  
-> -/*
-> - * Wait for the GuC to start up.
-> - *
-> - * Measurements indicate this should take no more than 20ms (assuming the GT
-> - * clock is at maximum frequency). However, thermal throttling and other issues
-> - * can prevent the clock hitting max and thus making the load take significantly
-> - * longer. Allow up to 200ms as a safety margin for real world worst case situations.
-> - *
-> - * However, bugs anywhere from KMD to GuC to PCODE to fan failure in a CI farm can
-> - * lead to even longer times. E.g. if the GT is clamped to minimum frequency then
-> - * the load times can be in the seconds range. So the timeout is increased for debug
-> - * builds to ensure that problems can be correctly analysed. For release builds, the
-> - * timeout is kept short so that users don't wait forever to find out that there is a
-> - * problem. In either case, if the load took longer than is reasonable even with some
-> - * 'sensible' throttling, then flag a warning because something is not right.
-> - *
-> - * Note that there is a limit on how long an individual usleep_range() can wait for,
-> - * hence longer waits require wrapping a shorter wait in a loop.
-> - *
-> - * Note that the only reason an end user should hit the shorter timeout is in case of
-> - * extreme thermal throttling. And a system that is that hot during boot is probably
-> - * dead anyway!
-> - */
-> -#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> -#define GUC_LOAD_RETRY_LIMIT	20
-> -#else
-> -#define GUC_LOAD_RETRY_LIMIT	3
-> -#endif
-> -#define GUC_LOAD_TIME_WARN_MS      200
-> -
->  static void guc_wait_ucode(struct xe_guc *guc)
->  {
->  	struct xe_gt *gt = guc_to_gt(guc);
-> -	struct xe_mmio *mmio = &gt->mmio;
->  	struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
-> -	ktime_t before, after, delta;
-> -	int load_done;
-> -	u32 status = 0;
-> -	int count = 0;
-> +	u32 before_freq, act_freq, cur_freq;
-> +	u32 status = 0, tries = 0;
-> +	ktime_t before;
->  	u64 delta_ms;
-> -	u32 before_freq;
-> +	int ret;
->  
->  	before_freq = xe_guc_pc_get_act_freq(guc_pc);
->  	before = ktime_get();
-> -	/*
-> -	 * Note, can't use any kind of timing information from the call to xe_mmio_wait.
-> -	 * It could return a thousand intermediate stages at random times. Instead, must
-> -	 * manually track the total time taken and locally implement the timeout.
-> -	 */
-> -	do {
-> -		u32 last_status = status & (GS_UKERNEL_MASK | GS_BOOTROM_MASK);
-> -		int ret;
->  
-> -		/*
-> -		 * Wait for any change (intermediate or terminal) in the status register.
-> -		 * Note, the return value is a don't care. The only failure code is timeout
-> -		 * but the timeouts need to be accumulated over all the intermediate partial
-> -		 * timeouts rather than allowing a huge timeout each time. So basically, need
-> -		 * to treat a timeout no different to a value change.
-> -		 */
-> -		ret = xe_mmio_wait32_not(mmio, GUC_STATUS, GS_UKERNEL_MASK | GS_BOOTROM_MASK,
-> -					 last_status, 1000 * 1000, &status, false);
-> -		if (ret < 0)
-> -			count++;
-> -		after = ktime_get();
-> -		delta = ktime_sub(after, before);
-> -		delta_ms = ktime_to_ms(delta);
-> -
-> -		load_done = guc_load_done(status);
-> -		if (load_done != 0)
-> -			break;
-> +	ret = poll_timeout_us(ret = guc_load_done(gt, &status, &tries), ret,
-> +			      10 * USEC_PER_MSEC,
-> +			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
->  
-> -		if (delta_ms >= (GUC_LOAD_RETRY_LIMIT * 1000))
-> -			break;
-> -
-> -		xe_gt_dbg(gt, "load still in progress, timeouts = %d, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
-> -			  count, xe_guc_pc_get_act_freq(guc_pc),
-> -			  guc_pc_get_cur_freq(guc_pc), status,
-> -			  REG_FIELD_GET(GS_BOOTROM_MASK, status),
-> -			  REG_FIELD_GET(GS_UKERNEL_MASK, status));
-> -	} while (1);
-> +	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
-> +	act_freq = xe_guc_pc_get_act_freq(guc_pc);
-> +	cur_freq = guc_pc_get_cur_freq(guc_pc);
->  
-> -	if (load_done != 1) {
-> +	if (ret) {
->  		u32 ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, status);
->  		u32 bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, status);
->  
-> -		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz), done = %d\n",
-> -			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
-> -			  guc_pc_get_cur_freq(guc_pc), load_done);
-> -		xe_gt_err(gt, "load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
-> +		xe_gt_err(gt, "GuC load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
-> +			  status, delta_ms, act_freq, cur_freq);
-> +		xe_gt_err(gt, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
->  			  REG_FIELD_GET(GS_MIA_IN_RESET, status),
->  			  bootrom, ukernel,
->  			  REG_FIELD_GET(GS_MIA_MASK, status),
->  			  REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
->  
-> -		switch (bootrom) {
-> -		case XE_BOOTROM_STATUS_NO_KEY_FOUND:
-> -			xe_gt_err(gt, "invalid key requested, header = 0x%08X\n",
-> -				  xe_mmio_read32(mmio, GUC_HEADER_INFO));
-> -			break;
-> -
-> -		case XE_BOOTROM_STATUS_RSA_FAILED:
-> -			xe_gt_err(gt, "firmware signature verification failed\n");
-> -			break;
-> -
-> -		case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-> -			xe_gt_err(gt, "firmware production part check failure\n");
-> -			break;
-> -		}
-> -
-> -		switch (ukernel) {
-> -		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
-> -			xe_gt_err(gt, "still extracting hwconfig table.\n");
-> -			break;
-> -
-> -		case XE_GUC_LOAD_STATUS_EXCEPTION:
-> -			xe_gt_err(gt, "firmware exception. EIP: %#x\n",
-> -				  xe_mmio_read32(mmio, SOFT_SCRATCH(13)));
-> -			break;
-> -
-> -		case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
-> -			xe_gt_err(gt, "illegal init/ADS data\n");
-> -			break;
-> -
-> -		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-> -			xe_gt_err(gt, "illegal register in save/restore workaround list\n");
-> -			break;
-> -
-> -		case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-> -			xe_gt_err(gt, "illegal workaround KLV data\n");
-> -			break;
-> -
-> -		case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-> -			xe_gt_err(gt, "illegal feature flag specified\n");
-> -			break;
-> -		}
-> -
-> +		print_bootrom_ukernel_err(gt, bootrom, ukernel);
->  		xe_device_declare_wedged(gt_to_xe(gt));
-> -	} else if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
-> -		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
-> -			   delta_ms, status, count);
-> -		xe_gt_warn(gt, "excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
-> -			   xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
-> -			   before_freq, xe_gt_throttle_get_limit_reasons(gt));
-> +	} else if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
-> +		xe_gt_warn(gt, "GuC load: excessive init time: %lldms! [status = 0x%08X]\n",
-> +			   delta_ms, status);
-> +		xe_gt_warn(gt, "GuC load: excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
-> +			   act_freq, cur_freq, before_freq,
-> +			   xe_gt_throttle_get_limit_reasons(gt));
->  	} else {
-> -		xe_gt_dbg(gt, "init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X, timeouts = %d\n",
-> -			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
-> -			  before_freq, status, count);
-> +		xe_gt_dbg(gt, "GuC load: init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X\n",
-> +			  delta_ms, act_freq, cur_freq, before_freq, status);
->  	}
->  }
->  
-> 
+I will try to answer all questions and comment here, here but please ping me if I miss something.
 
-Kind regards,
-~Maarten Lankhorst
+On 28.08.25 23:32, David Hildenbrand wrote:
+> On 28.08.25 23:28, David Hildenbrand wrote:
+>> On 28.08.25 23:18, David Hildenbrand wrote:
+>>> On 26.08.25 18:09, Christian König wrote:
+>>>> On 26.08.25 14:07, David Hildenbrand wrote:
+[SNIP]
+>>>> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
+>>>>
+>>>> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
+>>>>
+>>>> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
+>>>
+>>> That makes perfect sense. I assume we might or might not have "struct
+>>> page" (pfn_valid) for the iomem, depending on where these areas reside,
+>>> correct?
+
+Exactly that, yes.
+
+>>>> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
+>>>>
+>>>>>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
+>>>>>
+>>>>> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
+>>>>
+>>>> I think the most defensive approach for a quick fix is this change here:
+>>>>
+>>>>     static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
+>>>>     {
+>>>> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
+>>>> -                        cachemode2protval(pcm));
+>>>> +       if (pcm != _PAGE_CACHE_MODE_WB)
+>>>> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
+>>>> +                                cachemode2protval(pcm));
+>>>>     }
+>>>>
+>>>> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
+>>>>
+>>>> What do you think?
+>>>
+>>> This feels like too big of a hammer. In particular, it changes things
+>>> like phys_mem_access_prot_allowed(), which requires more care.
+>>>
+>>> First, I thought we should limit what we do to vmf_insert_pfn_prot()
+>>> only. But then I realized that we have stuff like
+>>>
+>>>     vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+>>>
+>>> I'm still trying to find out the easy way out that is not a complete hack.
+
+Well I think when the change is limited to only to vmf_insert_pfn_prot() for now we can limit the risk quite a bit as well.
+
+Background is that only a handful of callers are using vmf_insert_pfn_prot() and it looks like all of those actually do know what they are doing and using the right flags.
+
+>>> Will the iomem ever be mapped by the driver again with a different cache
+>>> mode? (e.g., WB -> UC -> WB)
+
+Yes, that can absolutely happen. But for iomem we would have an explicit call to ioremap(), ioremap_wc(), ioremap_cache() for that before anybody would map anything into userspace page tables.
+
+But thinking more about it I just had an OMFG moment! Is it possible that the PAT currently already has a problem with that?
+
+We had customer projects where BARs of different PCIe devices ended up on different physical addresses after a hot remove/re-add.
+
+Is it possible that the PAT keeps enforcing certain caching attributes for a physical address? E.g. for example because a driver doesn't clean up properly on hot remove?
+
+If yes than that would explain a massive number of problems we had with hot add/remove.
+
+>> What I am currently wondering is: assume we get a
+>> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
+>> there was a previous registration, then we could do
+>>
+>> (a) No previous registration: don't modify pgprot. Hopefully the driver
+>>       knows what it is doing. Maybe we can add sanity checks that the
+>>       direct map was already updated etc.
+>> (b) A previous registration: modify pgprot like we do today.
+
+That would work for me.
+
+>> System RAM is the problem. I wonder how many of these registrations we
+>> really get and if we could just store them in the same tree as !system
+>> RAM instead of abusing page flags.
+> 
+> commit 9542ada803198e6eba29d3289abb39ea82047b92
+> Author: Suresh Siddha <suresh.b.siddha@intel.com>
+> Date:   Wed Sep 24 08:53:33 2008 -0700
+> 
+>     x86: track memtype for RAM in page struct
+>         Track the memtype for RAM pages in page struct instead of using the
+>     memtype list. This avoids the explosion in the number of entries in
+>     memtype list (of the order of 20,000 with AGP) and makes the PAT
+>     tracking simpler.
+>         We are using PG_arch_1 bit in page->flags.
+>         We still use the memtype list for non RAM pages.
+> 
+> 
+> I do wonder if that explosion is still an issue today.
+
+Yes it is. That is exactly the issue I'm working on here.
+
+It's just that AGP was replaced by internal GPU MMUs over time and so we don't use the old AGP code any more but just call get_free_pages() (or similar) directly.
+
+Thanks a lot for the help,
+Christian.
