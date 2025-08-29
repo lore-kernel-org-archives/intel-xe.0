@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0D5DCA0FF7
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 10:55:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE449CA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:02:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A66E410EB7F;
-	Fri, 29 Aug 2025 10:55:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QH5jDGZZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D77C10EB7F
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 10:55:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756464941; x=1788000941;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=QAVV+qlxYa6FarCkJYt7ZmOK0iY8jxX+eo476NT3NF4=;
- b=QH5jDGZZz6iPV/lyFJn2vA1Jyyl3+Z+AG53K03qQnvwr22LVzgRtovuH
- DdnfFIQ8mY/u7ZMq4uEXLUnDIL+ynHH2fqENlrxkF8idO0ErQ0oNx7Hmo
- dwYrRYEZtFgMQBtUYYbnNa4qPu1/Ok7cCiN4V3l4gUf/l4nu190+LHv1x
- 7+T+DbkRuMk1pIAqHN4kIPlsqzXE/qnCW4UbiVBGD3gFJ1kzexgq9Gvrk
- /0PSCS/PzshsCzMyg6BPCoXhvOniK6UU6e/zAXJo8fWKg7JGTOGd6WFVK
- ZAcH8ki4hr6Wgj0yOiaSMzGQtPiF/2kujBqOk8ls0x/5N8tXlaVlfvKph Q==;
-X-CSE-ConnectionGUID: 17JVQQUqSLG5TnUf6rK3tQ==
-X-CSE-MsgGUID: nHx/ScimReevfEVpHyyKmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="69022815"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="69022815"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 03:55:41 -0700
-X-CSE-ConnectionGUID: 2yufSrpKTrSE4wBtJVmQ5w==
-X-CSE-MsgGUID: cju9cGqWR/WgXB6LXIMdUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="169609427"
-Received: from agladkov-desk.ger.corp.intel.com (HELO [10.245.245.245])
- ([10.245.245.245])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 03:55:40 -0700
-Message-ID: <692711fadc25a6c85c19ae16e9c04e50f1eaa3a9.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Attempt to bring bos back to VRAM after eviction
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Matthew Auld
- <matthew.auld@intel.com>, stable@vger.kernel.org
-Date: Fri, 29 Aug 2025 12:55:36 +0200
-In-Reply-To: <e8a176ab-a24c-4b9d-a046-ae386f08f129@lankhorst.se>
-References: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
- <e8a176ab-a24c-4b9d-a046-ae386f08f129@lankhorst.se>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B48F10EB7F;
+	Fri, 29 Aug 2025 11:02:13 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94C3010EB7F;
+ Fri, 29 Aug 2025 11:02:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2351077477536811800=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_pos?=
+ =?utf-8?q?sible_overflow_on_tc_power_domain_selection?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 29 Aug 2025 11:02:12 -0000
+Message-ID: <175646533260.283942.11824741380628196471@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250829101226.4085757-1-mika.kahola@intel.com>
+In-Reply-To: <20250829101226.4085757-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,70 +36,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-08-29 at 09:42 +0200, Maarten Lankhorst wrote:
-> Hey,
->=20
-> Den 2025-08-28 kl. 17:42, skrev Thomas Hellstr=C3=B6m:
-> > VRAM+TT bos that are evicted from VRAM to TT may remain in
-> > TT also after a revalidation following eviction or suspend.
-> >=20
-> > This manifests itself as applications becoming sluggish
-> > after buffer objects get evicted or after a resume from
-> > suspend or hibernation.
-> >=20
-> > If the bo supports placement in both VRAM and TT, and
-> > we are on DGFX, mark the TT placement as fallback. This means
-> > that it is tried only after VRAM + eviction.
-> >=20
-> > This flaw has probably been present since the xe module was
-> > upstreamed but use a Fixes: commit below where backporting is
-> > likely to be simple. For earlier versions we need to open-
-> > code the fallback algorithm in the driver.
-> >=20
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5995
-> > Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags
-> > v6")
-> I'd say it this closes a bug in the original driver, although
-> effectively v6.8 is no longer supported anyway.
->=20
-> Should DESIRED also be set on the add_vram flags?
+--===============2351077477536811800==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-It looks for me from the TTM code that TTM then *skips* the placement
-when doing a second pass with evictions.
+== Series Details ==
 
-So that's not really what we want IMO.
+Series: drm/i915/display: Fix possible overflow on tc power domain selection
+URL   : https://patchwork.freedesktop.org/series/153705/
+State : success
 
-/Thomas
+== Summary ==
 
->=20
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.9+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.c | 2 ++
-> > =C2=A01 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index 4faf15d5fa6d..64dea4e478bd 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -188,6 +188,8 @@ static void try_add_system(struct xe_device
-> > *xe, struct xe_bo *bo,
-> > =C2=A0
-> > =C2=A0		bo->placements[*c] =3D (struct ttm_place) {
-> > =C2=A0			.mem_type =3D XE_PL_TT,
-> > +			.flags =3D (IS_DGFX(xe) && (bo_flags &
-> > XE_BO_FLAG_VRAM_MASK)) ?
-> > +			TTM_PL_FLAG_FALLBACK : 0,
-> > =C2=A0		};
-> > =C2=A0		*c +=3D 1;
-> > =C2=A0	}
->=20
-> Kind regards,
-> ~Maarten Lankhorst
+CI Bug Log - changes from xe-3636-a6266a4e06191737946de23e04597c13834cce70_BAT -> xe-pw-153705v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153705v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +3 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3636-a6266a4e06191737946de23e04597c13834cce70/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153705v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3636-a6266a4e06191737946de23e04597c13834cce70 -> xe-pw-153705v1
+
+  IGT_8515: 8515
+  xe-3636-a6266a4e06191737946de23e04597c13834cce70: a6266a4e06191737946de23e04597c13834cce70
+  xe-pw-153705v1: 153705v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153705v1/index.html
+
+--===============2351077477536811800==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix possible overflow on tc power domain selection</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153705/">https://patchwork.freedesktop.org/series/153705/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153705v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153705v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3636-a6266a4e06191737946de23e04597c13834cce70_BAT -&gt; xe-pw-153705v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153705v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3636-a6266a4e06191737946de23e04597c13834cce70/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153705v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +3 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3636-a6266a4e06191737946de23e04597c13834cce70 -&gt; xe-pw-153705v1</li>
+</ul>
+<p>IGT_8515: 8515<br />
+  xe-3636-a6266a4e06191737946de23e04597c13834cce70: a6266a4e06191737946de23e04597c13834cce70<br />
+  xe-pw-153705v1: 153705v1</p>
+
+</body>
+</html>
+
+--===============2351077477536811800==--
