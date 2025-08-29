@@ -4,31 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 081A0CA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D947CA0FF0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B76CA10EB88;
-	Fri, 29 Aug 2025 11:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B752F10EB88;
+	Fri, 29 Aug 2025 11:26:03 +0000 (UTC)
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A017D10EB88
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 11:21:17 +0000 (UTC)
-Message-ID: <343ef596-0d4b-4554-874e-a40c2e61ee08@lankhorst.se>
-Date: Fri, 29 Aug 2025 13:21:15 +0200
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8887F10EB88
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 11:26:02 +0000 (UTC)
+Message-ID: <34171db5-b3d5-4a60-88df-a563e3a69411@lankhorst.se>
+Date: Fri, 29 Aug 2025 13:25:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Attempt to bring bos back to VRAM after eviction
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
-References: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
- <e8a176ab-a24c-4b9d-a046-ae386f08f129@lankhorst.se>
- <692711fadc25a6c85c19ae16e9c04e50f1eaa3a9.camel@linux.intel.com>
+Subject: Re: [PATCH 2/4] drm/xe/guc_pc: Use poll_timeout_us() for waiting
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20250828-xe-iopoll-v1-0-9832ccd1c8b1@intel.com>
+ <20250828-xe-iopoll-v1-2-9832ccd1c8b1@intel.com>
 Content-Language: en-US
 From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <692711fadc25a6c85c19ae16e9c04e50f1eaa3a9.camel@linux.intel.com>
+In-Reply-To: <20250828-xe-iopoll-v1-2-9832ccd1c8b1@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,43 +44,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
 
-Den 2025-08-29 kl. 12:55, skrev Thomas Hellström:
-> On Fri, 2025-08-29 at 09:42 +0200, Maarten Lankhorst wrote:
->> Hey,
->>
->> Den 2025-08-28 kl. 17:42, skrev Thomas Hellström:
->>> VRAM+TT bos that are evicted from VRAM to TT may remain in
->>> TT also after a revalidation following eviction or suspend.
->>>
->>> This manifests itself as applications becoming sluggish
->>> after buffer objects get evicted or after a resume from
->>> suspend or hibernation.
->>>
->>> If the bo supports placement in both VRAM and TT, and
->>> we are on DGFX, mark the TT placement as fallback. This means
->>> that it is tried only after VRAM + eviction.
->>>
->>> This flaw has probably been present since the xe module was
->>> upstreamed but use a Fixes: commit below where backporting is
->>> likely to be simple. For earlier versions we need to open-
->>> code the fallback algorithm in the driver.
->>>
->>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5995
->>> Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags
->>> v6")
->> I'd say it this closes a bug in the original driver, although
->> effectively v6.8 is no longer supported anyway.
->>
->> Should DESIRED also be set on the add_vram flags?
+
+Den 2025-08-29 kl. 00:04, skrev Lucas De Marchi:
+> Convert wait_for_pc_state() and wait_for_act_freq_limit() to
+> poll_timeout_us(). This brings 2 changes in behavior: Drop the
+> exponential wait and fix a potential much longer sleep.
 > 
-> It looks for me from the TTM code that TTM then *skips* the placement
-> when doing a second pass with evictions.
+> usleep_range() will wait anywhere between `wait` and `wait << 1`, so
+> it's not correct to assume `slept += wait`.  This code is not really
+> accurate. Pairing this with the exponential wait increase, it could be
+> waiting much longer than intended.
 > 
-> So that's not really what we want IMO.
-> Yeah, seems the flag name is a bit misleading, it's more of an opportunistic placement
-when space is available.
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_pc.c | 40 ++++++++++++++--------------------------
+>  1 file changed, 14 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 88557e86d6371..2299a2b2ec81b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/cleanup.h>
+>  #include <linux/delay.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/jiffies.h>
+>  #include <linux/ktime.h>
+>  #include <linux/wait_bit.h>
+> @@ -128,23 +129,16 @@ static int wait_for_pc_state(struct xe_guc_pc *pc,
+>  			     enum slpc_global_state state,
+>  			     int timeout_ms)
+>  {
+> -	int timeout_us = 1000 * timeout_ms;
+> -	int slept, wait = 10;
+> +	const unsigned long timeout_usec = timeout_ms * USEC_PER_MSEC,
+> +			    wait_usec = 20;
+> +	int ret;
+>  
+>  	xe_device_assert_mem_access(pc_to_xe(pc));
+>  
+> -	for (slept = 0; slept < timeout_us;) {
+> -		if (slpc_shared_data_read(pc, header.global_state) == state)
+> -			return 0;
+> -
+> -		usleep_range(wait, wait << 1);
+> -		slept += wait;
+> -		wait <<= 1;
+> -		if (slept + wait > timeout_us)
+> -			wait = timeout_us - slept;
+> -	}
+> +	ret = poll_timeout_us(ret = slpc_shared_data_read(pc, header.global_state) == state,
+> +			      ret, wait_usec, timeout_usec, false);
+({}, slpc_shared_data_read(pc, ...) == state, ..) is likely more readable?
+>  
+> -	return -ETIMEDOUT;
+> +	return ret;
+>  }
+With those changes 'ret' can be killed, and you can immediately return poll_timeout_us().
+>  
+>  static int wait_for_flush_complete(struct xe_guc_pc *pc)
+> @@ -161,22 +155,16 @@ static int wait_for_flush_complete(struct xe_guc_pc *pc)
+>  
+>  static int wait_for_act_freq_limit(struct xe_guc_pc *pc, u32 freq)
+>  {
+> -	int timeout_us = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC;
+> -	int slept, wait = 10;
+> -
+> -	for (slept = 0; slept < timeout_us;) {
+> -		if (xe_guc_pc_get_act_freq(pc) <= freq)
+> -			return 0;
+> +	const unsigned long timeout_usec = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC,
+> +			    wait_usec = 20;
+> +	int ret;
+>  
+> -		usleep_range(wait, wait << 1);
+> -		slept += wait;
+> -		wait <<= 1;
+> -		if (slept + wait > timeout_us)
+> -			wait = timeout_us - slept;
+> -	}
+> +	ret = poll_timeout_us(ret = xe_guc_pc_get_act_freq(pc) <= freq,
+> +			      ret, wait_usec, timeout_usec, false);
+Same here,
+({}, xe_guc_pc_get_act_freq(pc) <= freq,
+
+The ret re-use is a bit fishy. Looks like that variable is not needed at all.
+
+The extra variables also don't need to be defined, shoudl be ok to inline those.
 
 Kind regards,
 ~Maarten Lankhorst
