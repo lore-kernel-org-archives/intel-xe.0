@@ -4,32 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B17ACA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 12:37:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C53D2CA0FF0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 12:51:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D25B410EBA8;
-	Fri, 29 Aug 2025 12:37:58 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDDF010EBA8;
- Fri, 29 Aug 2025 12:37:57 +0000 (UTC)
-Message-ID: <a5f1568b-6abf-43b0-ae72-5ae0d4024319@lankhorst.se>
-Date: Fri, 29 Aug 2025 14:37:55 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80EC010E221;
+	Fri, 29 Aug 2025 12:51:36 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC4F10E221;
+ Fri, 29 Aug 2025 12:51:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4195688278070955553=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915/display: Make tracepoints work correctly on
- xe with PREEMPT_RT
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20250828090944.101069-1-dev@lankhorst.se>
- <20250828090944.101069-2-dev@lankhorst.se>
- <7ba38466ab2295059820d3d540b6324769ba5485@intel.com>
- <20250829120810.xsF9vGw7@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20250829120810.xsF9vGw7@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_convert_open?=
+ =?utf-8?q?-coded_timeout_to_poll=5Ftimeout=5Fus=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 29 Aug 2025 12:51:35 -0000
+Message-ID: <175647189556.284455.17390366976141678745@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250829113311.1930618-1-jani.nikula@intel.com>
+In-Reply-To: <20250829113311.1930618-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,73 +36,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============4195688278070955553==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2025-08-29 kl. 14:08, skrev Sebastian Andrzej Siewior:
-> On 2025-08-29 14:14:10 [+0300], Jani Nikula wrote:
->>> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
->>> @@ -10,6 +10,8 @@
->>>  #define TRACE_SYSTEM xe
->>>  #endif
->>>  
->>> +#define UPDATE_VBLANK (!IS_ENABLED(CONFIG_PREEMPT_RT))
->>
->> So I'm thinking leave intel_crtc_get_vblank_counter() alone completely,
->> and hide all the ugly parts inside the trace file:
->>
->> #if IS_ENABLED(CONFIG_PREEMPT_RT)
->> /* Avoid irq lock in tracepoints with PREEMPT_RT=y */
->> static inline u32 __trace_intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
->> {
->> 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(&crtc->base);
->>
->> 	if (!crtc->active)
->> 		return 0;
->>
->> 	if (!vblank->max_vblank_count)
->> 		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
->>                 return (u32)drm_crtc_vblank_count(&crtc->base);
->>
->> 	return crtc->base.funcs->get_vblank_counter(&crtc->base);
->> }
->> #else
->> #define __trace_intel_crtc_get_vblank_counter intel_crtc_get_vblank_counter
->> #endif
->>
->> And then
->> s/intel_crtc_get_vblank_counter/__trace_intel_crtc_get_vblank_counter/
->> below.
-> 
-> If I may: There is also the possibility to use the _enabled() function of
-> a trace point. So instead trace_intel_pipe_enable() you would so
-> something like
-> 
-> | void do_trace_intel_pipe_enable(struct intel_crtc *crtc)
-> | {
-> | 	if (!trace_intel_pipe_enable_enabled())
-> | 		return;
-> | 	trace_intel_pipe(crtc, 
-> | 		intel_crtc_get_vblank_counter(crtc));
-> | }
-> 
-> The _enabled() macro uses the static branches as the actual TP. The
-> intel_crtc_get_vblank_counter() would only be evaluated if the TP is
-> enabled and passed early.
+== Series Details ==
 
-That requires adding new macros for 23 tracepoints for something that only affects preempt-rt,
-and even then only on a specific type of uncommon output (DSI).
+Series: drm/i915/dp: convert open-coded timeout to poll_timeout_us()
+URL   : https://patchwork.freedesktop.org/series/153710/
+State : success
 
-Aren't we also completely duplicating the functionality of tracepoints then?
+== Summary ==
 
->> BR,
->> Jani.
-> 
-> Sebastian
+CI Bug Log - changes from xe-3636-a6266a4e06191737946de23e04597c13834cce70_BAT -> xe-pw-153710v1_BAT
+====================================================
 
-Kind regards,
-~maarten Lankhorst
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153710v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3636-a6266a4e06191737946de23e04597c13834cce70/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153710v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8515 -> IGT_8516
+  * Linux: xe-3636-a6266a4e06191737946de23e04597c13834cce70 -> xe-pw-153710v1
+
+  IGT_8515: 8515
+  IGT_8516: 8516
+  xe-3636-a6266a4e06191737946de23e04597c13834cce70: a6266a4e06191737946de23e04597c13834cce70
+  xe-pw-153710v1: 153710v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153710v1/index.html
+
+--===============4195688278070955553==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: convert open-coded timeout to poll_timeout_us()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153710/">https://patchwork.freedesktop.org/series/153710/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153710v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153710v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3636-a6266a4e06191737946de23e04597c13834cce70_BAT -&gt; xe-pw-153710v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153710v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3636-a6266a4e06191737946de23e04597c13834cce70/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153710v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8515 -&gt; IGT_8516</li>
+<li>Linux: xe-3636-a6266a4e06191737946de23e04597c13834cce70 -&gt; xe-pw-153710v1</li>
+</ul>
+<p>IGT_8515: 8515<br />
+  IGT_8516: 8516<br />
+  xe-3636-a6266a4e06191737946de23e04597c13834cce70: a6266a4e06191737946de23e04597c13834cce70<br />
+  xe-pw-153710v1: 153710v1</p>
+
+</body>
+</html>
+
+--===============4195688278070955553==--
