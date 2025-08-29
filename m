@@ -4,32 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D947CA0FF0
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:26:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7780CA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:33:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B752F10EB88;
-	Fri, 29 Aug 2025 11:26:03 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8887F10EB88
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 11:26:02 +0000 (UTC)
-Message-ID: <34171db5-b3d5-4a60-88df-a563e3a69411@lankhorst.se>
-Date: Fri, 29 Aug 2025 13:25:59 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7642C10EB8A;
+	Fri, 29 Aug 2025 11:33:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLPyUSDX";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C262F10EB8A;
+ Fri, 29 Aug 2025 11:33:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756467197; x=1788003197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ls93Wi4Gq75jEY0BQQNJ/sIeXdBTWWR+AoAFVBU4GeI=;
+ b=FLPyUSDXA/X6fyDGg1FgComG7pkw+kR3WpJsB2y6z0dMDurTahWyX/MK
+ u6iWPxpr/T9xPs0YShXKeeCCixDvgcgAr3ig0Z3yMJgsHVmJRmnPUIe1e
+ RiGK4WrcjVFw5RTF8z6B6qFhBYxXrmFUbxgrHHDMYleXxKWygw9HmD4KN
+ 0R8o8/wrIsArDJCRC42b1BG4wu9pOLAuSQdeeTIvSXicgjzA+9EFLm5C8
+ D15qst83QIYs889cPbkXx48xi1sMDUzQQsoOdWJJRZl1Y2ncAPM1xmTCs
+ VKaBiKhNc71g+tH2PaDFEwVk2uuWiBQsOlH7K+NTV9cs5V8RhFE9K1VeO w==;
+X-CSE-ConnectionGUID: wPPJJDaQSwe3oY/aJxZlHw==
+X-CSE-MsgGUID: nPP5Ydd0QTSJJ9YjoHfcxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="61386514"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="61386514"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:33:17 -0700
+X-CSE-ConnectionGUID: 444LXHJ8SjqXryZw8Dbr8Q==
+X-CSE-MsgGUID: 8Qr7D6F3Sc2arUuOz24c5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="207504039"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.58])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:33:15 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/dp: convert open-coded timeout to poll_timeout_us()
+Date: Fri, 29 Aug 2025 14:33:11 +0300
+Message-ID: <20250829113311.1930618-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/xe/guc_pc: Use poll_timeout_us() for waiting
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250828-xe-iopoll-v1-0-9832ccd1c8b1@intel.com>
- <20250828-xe-iopoll-v1-2-9832ccd1c8b1@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20250828-xe-iopoll-v1-2-9832ccd1c8b1@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,95 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Use poll_timeout_us() instead of open-coding the timeout loop.
 
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-Den 2025-08-29 kl. 00:04, skrev Lucas De Marchi:
-> Convert wait_for_pc_state() and wait_for_act_freq_limit() to
-> poll_timeout_us(). This brings 2 changes in behavior: Drop the
-> exponential wait and fix a potential much longer sleep.
-> 
-> usleep_range() will wait anywhere between `wait` and `wait << 1`, so
-> it's not correct to assume `slept += wait`.  This code is not really
-> accurate. Pairing this with the exponential wait increase, it could be
-> waiting much longer than intended.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_pc.c | 40 ++++++++++++++--------------------------
->  1 file changed, 14 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 88557e86d6371..2299a2b2ec81b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -7,6 +7,7 @@
->  
->  #include <linux/cleanup.h>
->  #include <linux/delay.h>
-> +#include <linux/iopoll.h>
->  #include <linux/jiffies.h>
->  #include <linux/ktime.h>
->  #include <linux/wait_bit.h>
-> @@ -128,23 +129,16 @@ static int wait_for_pc_state(struct xe_guc_pc *pc,
->  			     enum slpc_global_state state,
->  			     int timeout_ms)
->  {
-> -	int timeout_us = 1000 * timeout_ms;
-> -	int slept, wait = 10;
-> +	const unsigned long timeout_usec = timeout_ms * USEC_PER_MSEC,
-> +			    wait_usec = 20;
-> +	int ret;
->  
->  	xe_device_assert_mem_access(pc_to_xe(pc));
->  
-> -	for (slept = 0; slept < timeout_us;) {
-> -		if (slpc_shared_data_read(pc, header.global_state) == state)
-> -			return 0;
-> -
-> -		usleep_range(wait, wait << 1);
-> -		slept += wait;
-> -		wait <<= 1;
-> -		if (slept + wait > timeout_us)
-> -			wait = timeout_us - slept;
-> -	}
-> +	ret = poll_timeout_us(ret = slpc_shared_data_read(pc, header.global_state) == state,
-> +			      ret, wait_usec, timeout_usec, false);
-({}, slpc_shared_data_read(pc, ...) == state, ..) is likely more readable?
->  
-> -	return -ETIMEDOUT;
-> +	return ret;
->  }
-With those changes 'ret' can be killed, and you can immediately return poll_timeout_us().
->  
->  static int wait_for_flush_complete(struct xe_guc_pc *pc)
-> @@ -161,22 +155,16 @@ static int wait_for_flush_complete(struct xe_guc_pc *pc)
->  
->  static int wait_for_act_freq_limit(struct xe_guc_pc *pc, u32 freq)
->  {
-> -	int timeout_us = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC;
-> -	int slept, wait = 10;
-> -
-> -	for (slept = 0; slept < timeout_us;) {
-> -		if (xe_guc_pc_get_act_freq(pc) <= freq)
-> -			return 0;
-> +	const unsigned long timeout_usec = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC,
-> +			    wait_usec = 20;
-> +	int ret;
->  
-> -		usleep_range(wait, wait << 1);
-> -		slept += wait;
-> -		wait <<= 1;
-> -		if (slept + wait > timeout_us)
-> -			wait = timeout_us - slept;
-> -	}
-> +	ret = poll_timeout_us(ret = xe_guc_pc_get_act_freq(pc) <= freq,
-> +			      ret, wait_usec, timeout_usec, false);
-Same here,
-({}, xe_guc_pc_get_act_freq(pc) <= freq,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index bed7cba1ca68..958e48859beb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -27,6 +27,7 @@
+ 
+ #include <linux/export.h>
+ #include <linux/i2c.h>
++#include <linux/iopoll.h>
+ #include <linux/log2.h>
+ #include <linux/math.h>
+ #include <linux/notifier.h>
+@@ -5662,14 +5663,9 @@ bool intel_digital_port_connected_locked(struct intel_encoder *encoder)
+ 	intel_wakeref_t wakeref;
+ 
+ 	with_intel_display_power(display, POWER_DOMAIN_DISPLAY_CORE, wakeref) {
+-		unsigned long wait_expires = jiffies + msecs_to_jiffies_timeout(4);
+-
+-		do {
+-			is_connected = dig_port->connected(encoder);
+-			if (is_connected || is_glitch_free)
+-				break;
+-			usleep_range(10, 30);
+-		} while (time_before(jiffies, wait_expires));
++		poll_timeout_us(is_connected = dig_port->connected(encoder),
++				is_connected || is_glitch_free,
++				30, 4000, false);
+ 	}
+ 
+ 	return is_connected;
+-- 
+2.47.2
 
-The ret re-use is a bit fishy. Looks like that variable is not needed at all.
-
-The extra variables also don't need to be defined, shoudl be ok to inline those.
-
-Kind regards,
-~Maarten Lankhorst
