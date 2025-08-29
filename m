@@ -4,27 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53C1FC8303F
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 07:27:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64718C8303F
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 07:43:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF5310EB55;
-	Fri, 29 Aug 2025 07:27:42 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E43E510EB55;
- Fri, 29 Aug 2025 07:27:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4908888757157551907=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F6F110EB55;
+	Fri, 29 Aug 2025 07:43:00 +0000 (UTC)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2612B10EB55
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 07:42:58 +0000 (UTC)
+Message-ID: <e8a176ab-a24c-4b9d-a046-ae386f08f129@lankhorst.se>
+Date: Fri, 29 Aug 2025 09:42:55 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/gt=3A_Introduce_runt?=
- =?utf-8?q?ime_suspend/resume_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Aug 2025 07:27:40 -0000
-Message-ID: <175645246092.283471.17497307177348742646@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250829063111.1893121-1-raag.jadav@intel.com>
-In-Reply-To: <20250829063111.1893121-1-raag.jadav@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Attempt to bring bos back to VRAM after eviction
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
+References: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20250828154219.4889-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,144 +38,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4908888757157551907==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+Den 2025-08-28 kl. 17:42, skrev Thomas Hellström:
+> VRAM+TT bos that are evicted from VRAM to TT may remain in
+> TT also after a revalidation following eviction or suspend.
+> 
+> This manifests itself as applications becoming sluggish
+> after buffer objects get evicted or after a resume from
+> suspend or hibernation.
+> 
+> If the bo supports placement in both VRAM and TT, and
+> we are on DGFX, mark the TT placement as fallback. This means
+> that it is tried only after VRAM + eviction.
+> 
+> This flaw has probably been present since the xe module was
+> upstreamed but use a Fixes: commit below where backporting is
+> likely to be simple. For earlier versions we need to open-
+> code the fallback algorithm in the driver.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5995
+> Fixes: a78a8da51b36 ("drm/ttm: replace busy placement with flags v6")
+I'd say it this closes a bug in the original driver, although effectively v6.8 is no longer supported anyway.
 
-Series: drm/xe/gt: Introduce runtime suspend/resume (rev3)
-URL   : https://patchwork.freedesktop.org/series/153132/
-State : success
+Should DESIRED also be set on the add_vram flags?
 
-== Summary ==
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.9+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 4faf15d5fa6d..64dea4e478bd 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -188,6 +188,8 @@ static void try_add_system(struct xe_device *xe, struct xe_bo *bo,
+>  
+>  		bo->placements[*c] = (struct ttm_place) {
+>  			.mem_type = XE_PL_TT,
+> +			.flags = (IS_DGFX(xe) && (bo_flags & XE_BO_FLAG_VRAM_MASK)) ?
+> +			TTM_PL_FLAG_FALLBACK : 0,
+>  		};
+>  		*c += 1;
+>  	}
 
-CI Bug Log - changes from xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751_BAT -> xe-pw-153132v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153132v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751 -> xe-pw-153132v3
-
-  IGT_8514: 8514
-  xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751: 669eae0e8de0328817f4ce7d3c4a3ef834850751
-  xe-pw-153132v3: 153132v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/index.html
-
---===============4908888757157551907==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/gt: Introduce runtime suspend/resume (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153132/">https://patchwork.freedesktop.org/series/153132/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751_BAT -&gt; xe-pw-153132v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153132v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153132v3/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751 -&gt; xe-pw-153132v3</li>
-</ul>
-<p>IGT_8514: 8514<br />
-  xe-3635-669eae0e8de0328817f4ce7d3c4a3ef834850751: 669eae0e8de0328817f4ce7d3c4a3ef834850751<br />
-  xe-pw-153132v3: 153132v3</p>
-
-</body>
-</html>
-
---===============4908888757157551907==--
+Kind regards,
+~Maarten Lankhorst
