@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63A70CA0FF0
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 20:20:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5078DCA0FF0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 20:26:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2697010E20A;
-	Fri, 29 Aug 2025 20:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF4B10E20B;
+	Fri, 29 Aug 2025 20:26:51 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8556510E20A;
- Fri, 29 Aug 2025 20:20:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7620727826829514370=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8877810E20A;
+ Fri, 29 Aug 2025 20:26:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enhance_SVM_stats?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Different_sized_pages_sup?=
+ =?utf-8?q?port_in_migrate_layer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Aug 2025 20:20:26 -0000
-Message-ID: <175649882654.286105.4910867978724029181@1538d3639d33>
+Date: Fri, 29 Aug 2025 20:26:49 -0000
+Message-ID: <175649920955.286105.12260705749627861739@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250829172232.1308004-1-matthew.brost@intel.com>
-In-Reply-To: <20250829172232.1308004-1-matthew.brost@intel.com>
+References: <20250829180018.1333174-1-matthew.brost@intel.com>
+In-Reply-To: <20250829180018.1333174-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,111 +40,52 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7620727826829514370==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Enhance SVM stats
-URL   : https://patchwork.freedesktop.org/series/153727/
-State : success
+Series: Different sized pages support in migrate layer
+URL   : https://patchwork.freedesktop.org/series/153731/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba_BAT -> xe-pw-153727v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d01197bdd0ebd7dcb3aba4203cb178f1a5d31738
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Aug 29 11:00:18 2025 -0700
 
-Summary
--------
+    drm/xe: Enable 2M pages in xe_migrate_vram
+    
+    Using 2M pages in xe_migrate_vram has two benefits: we issue fewer
+    instructions per 2M copy (1 vs. 512), and the cache hit rate should be
+    higher. This results in increased copy engine bandwidth, as shown by
+    benchmark IGTs.
+    
+    Enable 2M pages by reserving PDEs in the migrate VM and using 2M pages
+    in xe_migrate_vram if the DMA address order matches 2M.
+    
+    v2:
+     - Reuse build_pt_update_batch_sram (Stuart)
+     - Fix build_pt_update_batch_sram for PAGE_SIZE > 4K
+    v3:
+     - More fixes for PAGE_SIZE > 4K, align chunk, decrement chunk as needed
+     - Use stack incr var in xe_migrate_vram_use_pde (Stuart)
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 94efba53a792987b3649b6370e69f772c2210412 drm-intel
+30227fc043b1 drm/xe: Add support larger CPU pages to build_pt_update_batch_sram
+d01197bdd0eb drm/xe: Enable 2M pages in xe_migrate_vram
+-:109: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#109: FILE: drivers/gpu/drm/xe/xe_migrate.c:1813:
++	unsigned long i, incr = large_size / PAGE_SIZE;;
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153727v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba -> xe-pw-153727v1
-
-  IGT_8517: 8517
-  xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba: 73ec1b82fc684756350c4bb8ee675158ef439bba
-  xe-pw-153727v1: 153727v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153727v1/index.html
-
---===============7620727826829514370==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 141 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enhance SVM stats</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153727/">https://patchwork.freedesktop.org/series/153727/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153727v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153727v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba_BAT -&gt; xe-pw-153727v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153727v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba -&gt; xe-pw-153727v1</li>
-</ul>
-<p>IGT_8517: 8517<br />
-  xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba: 73ec1b82fc684756350c4bb8ee675158ef439bba<br />
-  xe-pw-153727v1: 153727v1</p>
-
-</body>
-</html>
-
---===============7620727826829514370==--
