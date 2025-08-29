@@ -4,58 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A783CCA0FF7
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0127CCA0FF7
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 11:17:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6967210EB85;
-	Fri, 29 Aug 2025 11:15:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GYE2lS2e";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27C9A10EB84;
- Fri, 29 Aug 2025 11:15:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756466131; x=1788002131;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mWb+UNhgaS5ZjFbGmeEETBW8vLceBfdx0KfaXuzsioM=;
- b=GYE2lS2eYAEYgBjzgLHXPxNU7hmFI+0eg4PNNzz3aXlN08tBMD2f9/7K
- 0WD4rV/WPlUGJjhkrS/VWTQrmwlDgZ9/VSE6rCThcgrj2FmDMC6Uxzws0
- 4ukVvlNy7JoK1l6pNAiftb4Bv2LnD9Y8LHM1dGkFWMaTqbb17lwhShgwG
- R6K2KSd/5YJoRnuYKkuH31q7ZBNH6FpMKFubTcOj39BV6qKyytavXqKjF
- hCkemN3GrmywyMZA5XLrNNLbAje6r6MwIIj7DGnD9vh9BMV7sw56lNc8U
- jI5PDA7IhZNTLqvLaWYOXVh8csl6U3NCZgAF9sP7gQrK1myuwnWvAEugV w==;
-X-CSE-ConnectionGUID: lpDe2EGVTzuIXg/UuQ3oMA==
-X-CSE-MsgGUID: WJm+J9/+RBO8hiQZAyOEGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="46318561"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="46318561"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:15:31 -0700
-X-CSE-ConnectionGUID: xi6PVUprTgu0QKRX/YGM7w==
-X-CSE-MsgGUID: T2k0syoFTTKgZcMiCTDepg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170527338"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.58])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:15:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Maarten Lankhorst
- <dev@lankhorst.se>, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Luca Abeni
- <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [PATCH 1/2] drm/i915: Disable tracepoints for PREEMPT_RT
-In-Reply-To: <20250828090944.101069-1-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250828090944.101069-1-dev@lankhorst.se>
-Date: Fri, 29 Aug 2025 14:15:24 +0300
-Message-ID: <f1c033468a41cfb891e907981118e1a34b71d6a4@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B501F10EB87;
+	Fri, 29 Aug 2025 11:17:17 +0000 (UTC)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6396610EB87
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 11:17:16 +0000 (UTC)
+Message-ID: <0249c60d-5232-4531-93d9-2a20e5eda7a4@lankhorst.se>
+Date: Fri, 29 Aug 2025 13:17:13 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] drm/xe/device: Use poll_timeout_us() to wait for lmem
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20250828-xe-iopoll-v1-0-9832ccd1c8b1@intel.com>
+ <20250828-xe-iopoll-v1-1-9832ccd1c8b1@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20250828-xe-iopoll-v1-1-9832ccd1c8b1@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,66 +44,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 28 Aug 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Luca Abeni reported this:
-> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-> | Call Trace:
-> |  rt_spin_lock+0x3f/0x50
-> |  gen6_read32+0x45/0x1d0 [i915]
-> |  g4x_get_vblank_counter+0x36/0x40 [i915]
-> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
->
-> The tracing events use trace_intel_pipe_update_start() among other events
-> use functions acquire spinlock_t locks which are transformed into
-> sleeping locks on PREEMPT_RT. A few trace points use
-> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-> might acquire a sleeping locks on PREEMPT_RT.
-> At the time the arguments are evaluated within trace point, preemption
-> is disabled and so the locks must not be acquired on PREEMPT_RT.
->
-> Based on this I don't see any other way than disable trace points on
-> PREMPT_RT.
->
-> [mlankhorst]
-> The original patch was insufficient, and since the tracing
-> infrastructure does not allow for partial disabling of tracepoints.
->
-> Completely disable tracing for the entire i915 driver in PREEMPT_RT,
-> a separate fix for display tracepoints on xe is added to make those
-> work.
->
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reported-by: Luca Abeni <lucabe72@gmail.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> Co-developed-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Hey,
+
+Den 2025-08-29 kl. 00:04, skrev Lucas De Marchi:
+> Now that there's a generic poll_timeout_us(), use it to wait for
+> LMEM_INIT in GU_CNTL.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/Makefile | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 8535434430728..ba825d7f6ddf5 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -13,6 +13,11 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
->  # drivers. Define I915 when building i915.
->  subdir-ccflags-y += -DI915
+>  drivers/gpu/drm/xe/xe_device.c | 50 +++++++++++++++++++-----------------------
+>  1 file changed, 23 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 9e4773a17ef8d..ffcd3d04ebbf7 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/aperture.h>
+>  #include <linux/delay.h>
+>  #include <linux/fault-inject.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/units.h>
 >  
-> +# Disable tracepoints on i915 for PREEMPT_RT, unfortunately
-> +# it's an all or nothing flag. You cannot selectively disable
-> +# only some tracepoints.
-
-Should probably be a FIXME.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
-> +subdir-ccflags-$(CONFIG_PREEMPT_RT) += -DNOTRACE
-> +
->  subdir-ccflags-y += -I$(src)
+>  #include <drm/drm_atomic_helper.h>
+> @@ -636,7 +637,9 @@ static bool verify_lmem_ready(struct xe_device *xe)
 >  
->  # Please keep these build lists sorted!
+>  static int wait_for_lmem_ready(struct xe_device *xe)
+>  {
+> -	unsigned long timeout, start;
+> +	unsigned long prev_jiffies;
+> +	const unsigned long TIMEOUT_SEC = 60;
+> +	int ret;
+>  
+>  	if (!IS_DGFX(xe))
+>  		return 0;
+> @@ -648,35 +651,28 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+>  		return 0;
+>  
+>  	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
+> +	prev_jiffies = jiffies;
+>  
+> -	start = jiffies;
+> -	timeout = start + secs_to_jiffies(60); /* 60 sec! */
+> -
+> -	do {
+> -		if (signal_pending(current))
+> -			return -EINTR;
+> -
+> -		/*
+> -		 * The boot firmware initializes local memory and
+> -		 * assesses its health. If memory training fails,
+> -		 * the punit will have been instructed to keep the GT powered
+> -		 * down.we won't be able to communicate with it
+> -		 *
+> -		 * If the status check is done before punit updates the register,
+> -		 * it can lead to the system being unusable.
+> -		 * use a timeout and defer the probe to prevent this.
+> -		 */
+> -		if (time_after(jiffies, timeout)) {
+> -			drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
+> -			return -EPROBE_DEFER;
+> -		}
+> -
+> -		msleep(20);
+> -
+> -	} while (!verify_lmem_ready(xe));
+> +	/*
+> +	 * The boot firmware initializes local memory and
+> +	 * assesses its health. If memory training fails,
+> +	 * the punit will have been instructed to keep the GT powered
+> +	 * down.we won't be able to communicate with it
+> +	 *
+> +	 * If the status check is done before punit updates the register,
+> +	 * it can lead to the system being unusable.
+> +	 * use a timeout and defer the probe to prevent this.
+> +	 */
+> +	ret = poll_timeout_us(ret = verify_lmem_ready(xe), ret,
+> +			      20 * USEC_PER_MSEC,
+> +			      TIMEOUT_SEC * USEC_PER_SEC, true);
+> +	if (ret) {
+The 'ret' re-use is a bit confusing here, on a quick read it looks like the if (ret) would also be true when verify_lmem_ready is set.
 
--- 
-Jani Nikula, Intel
+Furthermore we're losing the signal pending check, which is useful when aborting module load early, instead of waiting the whole minute. This is saves minutes when debugging memory initialisation timeouts. 
+
+Perhaps
+ret = poll_timeout_us({ if (signal_pending(current)) return -EINTR; }, verify_lmem_ready(xe), constants) ?
+
+And drop the early check, change true to false?
+
+Kind regards,
+~Maarten Lankhorst
