@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE571CA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 21:37:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED392CA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 21:41:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8098810E20E;
-	Fri, 29 Aug 2025 21:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E98A10E28F;
+	Fri, 29 Aug 2025 21:41:44 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1E010E20E;
- Fri, 29 Aug 2025 21:37:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4187222746979304305=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1CDE10E28F;
+ Fri, 29 Aug 2025 21:41:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Different_sized_pages_suppo?=
- =?utf-8?q?rt_in_migrate_layer?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/debugfs=3A_Move_sa?=
+ =?utf-8?q?=5Finfo_from_gt_to_tile_directory?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Aug 2025 21:37:00 -0000
-Message-ID: <175650342015.286324.5196386032917833057@1538d3639d33>
+Date: Fri, 29 Aug 2025 21:41:43 -0000
+Message-ID: <175650370372.286104.187880525193005923@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250829180018.1333174-1-matthew.brost@intel.com>
-In-Reply-To: <20250829180018.1333174-1-matthew.brost@intel.com>
+References: <20250829201106.1263-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250829201106.1263-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,111 +40,45 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4187222746979304305==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Different sized pages support in migrate layer
-URL   : https://patchwork.freedesktop.org/series/153731/
-State : success
+Series: drm/xe/debugfs: Move sa_info from gt to tile directory
+URL   : https://patchwork.freedesktop.org/series/153736/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba_BAT -> xe-pw-153731v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 34e7534a50cc9d34d515f74b7125fd36fc3e3e22
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Fri Aug 29 22:11:03 2025 +0200
 
-Summary
--------
+    drm/xe/debugfs: Move sa_info from gt to tile directory
+    
+    Our drm-based suballocator is implemented per-tile so it is better
+    to show its debug information also per-tile debugfs directory, not
+    under per-gt directory as it is done today.
+    
+    To allow adding more per-tile attributes, prepare necessary helper
+    functions, like we already did for per-gt or per-uc attributes.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 99f4b32d88cb9718c944d44ea96cb04f4f70a773 drm-intel
+34e7534a50cc drm/xe/debugfs: Move sa_info from gt to tile directory
+-:106: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#106: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153731v1_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba -> xe-pw-153731v1
-
-  IGT_8517: 8517
-  xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba: 73ec1b82fc684756350c4bb8ee675158ef439bba
-  xe-pw-153731v1: 153731v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153731v1/index.html
-
---===============4187222746979304305==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 218 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Different sized pages support in migrate layer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153731/">https://patchwork.freedesktop.org/series/153731/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153731v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153731v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba_BAT -&gt; xe-pw-153731v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153731v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba -&gt; xe-pw-153731v1</li>
-</ul>
-<p>IGT_8517: 8517<br />
-  xe-3641-73ec1b82fc684756350c4bb8ee675158ef439bba: 73ec1b82fc684756350c4bb8ee675158ef439bba<br />
-  xe-pw-153731v1: 153731v1</p>
-
-</body>
-</html>
-
---===============4187222746979304305==--
