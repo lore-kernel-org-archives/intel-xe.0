@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19912CA0FF0
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 17:22:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D21FECA0FF9
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 17:22:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D49E410E1F1;
-	Fri, 29 Aug 2025 17:22:20 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDC610E1F1;
- Fri, 29 Aug 2025 17:22:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8437008093533951374=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9151110E1F1;
+	Fri, 29 Aug 2025 17:22:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J2CUrhoI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2B010E1E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 17:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756488156; x=1788024156;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=i62A8D70yE696RVD8SpR25Drr/JOwMhFILUGBL17tyc=;
+ b=J2CUrhoIjSFEqPTjatrPKAxIWpD/GyhRsj79mShc5pOsxTLVyHKIJWkV
+ rpDugWknp/gCosD43eJd592h200ccgJS4UoOWyqDhOgvBekp8d8P/qTxF
+ r/Iuv8gNloNsaqGhTvStTVx1c+0uH2drEc6h3Ievos9WJAlv/c9+SLyI1
+ +A3bNAF6xgF4L/1nihzZRLnmVrWsy1HowfedF9XoOyoYNY9LwL2aXkFBx
+ jKb9G+6le9hJhg1Sos304KmTxC9X19af/dRlHlmAW9iDnVDEFMYdzUAEN
+ vXEUjLqeW5nh9Lhzq4DPnlo2Trxh/PGusJrAdQkVCFYi2nJFdQjr4jzt+ g==;
+X-CSE-ConnectionGUID: bdB7EWMYReak58Xb54OYmg==
+X-CSE-MsgGUID: MIcz5kgcRz26lvLOMdo2MQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="57805135"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="57805135"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 10:22:36 -0700
+X-CSE-ConnectionGUID: 6zP3EfGKSMqbhh5QtPfsEA==
+X-CSE-MsgGUID: 5Odpd/QZRX+a7nEKFy9Iyg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170597596"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 10:22:36 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v7 0/2] Enhance SVM stats
+Date: Fri, 29 Aug 2025 10:22:30 -0700
+Message-Id: <20250829172232.1308004-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Increase_GuC_?=
- =?utf-8?q?crash_dump_buffer_size_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Aug 2025 17:22:19 -0000
-Message-ID: <175648813925.285520.10304529591504372618@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250829160427.1245732-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250829160427.1245732-1-zhanjun.dong@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,146 +60,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8437008093533951374==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add ability to clear GT stats and add more SVM stats for profiling.
+Scripts should be able to be built on top of stats to breakdown time
+spent in parts of the SVM page fault handler, bandwidth of copy engine,
+etc... Will help showing concrete performance improvements when
+implementing SVM optimizations.
 
-== Series Details ==
+Open suggestions of more stats. Prefetch not considered - can be done in
+a follow up.
 
-Series: drm/xe/guc: Increase GuC crash dump buffer size (rev2)
-URL   : https://patchwork.freedesktop.org/series/153590/
-State : success
+Scritpt to parse stats for reference: https://pastebin.com/rZZN5sgh
 
-== Summary ==
+v2:
+ - Include local changes missed in first rev
+v3:
+ - More stats after putting together script to parse
+v4:
+ - Rebase
+v5:
+ - Rebase
+ - Drop clear_stats entry
+v6:
+ - Rebase
+ - Address Michal's comments
+v7:
+ - Add macro to define stats strings (Michal)
 
-CI Bug Log - changes from xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6_BAT -> xe-pw-153590v2_BAT
-====================================================
+Matthew Brost (2):
+  drm/xe: Add clearing stats to GT debugfs
+  drm/xe: Add more SVM GT stats
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_gt_debugfs.c     |  20 ++-
+ drivers/gpu/drm/xe/xe_gt_stats.c       |  57 +++++++-
+ drivers/gpu/drm/xe/xe_gt_stats.h       |   1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h |  33 +++++
+ drivers/gpu/drm/xe/xe_svm.c            | 194 +++++++++++++++++++++++--
+ 5 files changed, 291 insertions(+), 14 deletions(-)
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153590v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +3 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6 -> xe-pw-153590v2
-
-  IGT_8516: 8516
-  xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6: 9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6
-  xe-pw-153590v2: 153590v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/index.html
-
---===============8437008093533951374==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Increase GuC crash dump buffer size (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153590/">https://patchwork.freedesktop.org/series/153590/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6_BAT -&gt; xe-pw-153590v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153590v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +3 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153590v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-modeset.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6 -&gt; xe-pw-153590v2</li>
-</ul>
-<p>IGT_8516: 8516<br />
-  xe-3639-9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6: 9c9bbfa81276408b7702ec6ea6332bd8a86cc0b6<br />
-  xe-pw-153590v2: 153590v2</p>
-
-</body>
-</html>
-
---===============8437008093533951374==--
