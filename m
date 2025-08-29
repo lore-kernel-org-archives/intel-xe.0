@@ -4,52 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09142CA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 14:49:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B46F2CA0FF0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 14:53:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3ED210EBE9;
-	Fri, 29 Aug 2025 14:49:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDF010EBEA;
+	Fri, 29 Aug 2025 14:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qb8rYM3O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VFDdsJRi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E83D10EBE9
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 14:49:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE4E10EBEA
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 14:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756478991; x=1788014991;
- h=date:from:to:cc:subject:message-id;
- bh=EOvu9sNN52FgnBIG/4p28yktIp2MTmkwgaYkKNHNKAc=;
- b=Qb8rYM3OI/e24a0hbLyZ3GYZmPIIp8EH8jVr233Q70MgcDc4S6Xhe3nN
- wPnHWcUVrBVf5V/ivw+cAvOHVpZTktOPbdYiRz5U3wbIP6zSqx6UeFpfg
- XwNxYPGI9JaNX8/5qtpZn4HCIl1Q4vx1OBXA4x/65647AQTiHbxU5reac
- 5qRMG9eFXQLIvzW3BsIjBcHGqAqiQG3AhhlkIyeF1PQ5o1jWwtjRVrIw1
- xEdate6N3BfD+sytR03EJWqNZHTgcGI5tdWEKmrtoH25Pecx564eRtXVr
- cq6wjTbMHJ4+cZBaBpR0bKgR8gl4hEceDtmm2XigvIjoKx3fW/r3vzBsl A==;
-X-CSE-ConnectionGUID: 4jQFbQeFQJyN6Q1vyNoFZQ==
-X-CSE-MsgGUID: oHUz4IEDTi+E6uQTWYNrxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="58694914"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="58694914"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ t=1756479202; x=1788015202;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ESmCYbajYKLg6l4rUtVWKrnjpoHJDi6ktCgcu3KxzcU=;
+ b=VFDdsJRi22v4+iH481Ec9ja/ruVcIcoMe/ni6ogN7lDpwvdX4RKMAvQo
+ 72VIX/h0ac8F0TeoX9qBJ20M51wEp3SczX/Df7PtK5PJzrvLJyFv8udFx
+ 8BSjGmIRXkLSKFj+NQq31n346oBTgVcMcyaYXejlDHoO6aIARD0wThURa
+ 6WBy6C52LkVaBmg4fuPJOz1Kxd4z274MeDyevN+lcPKc/+fQmFUcgsK2I
+ Lev5k0rlMdRpmTtP1uBW8bbmSsr67zAaf2rBa6r69WrCodJYc7q1ymtko
+ rs3cnF2THF27bWhb64osoaxFDwWSOxK7SDbPhNFXg1mSmlim/0s/5xIhZ g==;
+X-CSE-ConnectionGUID: B3l+o4VHRKOroS84+Cbitg==
+X-CSE-MsgGUID: Q3r3flbmSR+PPIDnUg8zOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="58695567"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="58695567"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 07:49:50 -0700
-X-CSE-ConnectionGUID: cfsfXmFLTIuL/R+hX99nYA==
-X-CSE-MsgGUID: zQ09IedhSImpwVQksMNIwA==
+ 29 Aug 2025 07:53:22 -0700
+X-CSE-ConnectionGUID: vBqZgs/1RKGpMN5hnWeYjw==
+X-CSE-MsgGUID: /2RfkpzSQnqhITCxzdE+aQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="169923971"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
- by fmviesa007.fm.intel.com with ESMTP; 29 Aug 2025 07:49:50 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1us0QF-000UhH-1R;
- Fri, 29 Aug 2025 14:49:47 +0000
-Date: Fri, 29 Aug 2025 22:49:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- eeb8117f5f1c2e8e625e5cb39dbccd21d395caad
-Message-ID: <202508292200.QEZKNS1M-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170303256"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 07:53:22 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 29 Aug 2025 07:53:21 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Fri, 29 Aug 2025 07:53:21 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.63)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 29 Aug 2025 07:53:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O296qDCA/D9Hbxt7na/J7ZMhnBr0naU5EKPcc9UYiATiTYyTNTdkAsHYaKLnkl32/pAzT3i0uKCfMhyCX5mPd0kNSAcKLQOraXTSsQa6zR85LhqJ8iXLt0+Ytig9HyEliCiROnnZG3Ng7IU0k5db6fhsPTaoBkT2Zr4Udx0ZfYeBR13zteNZAHO27GAMCSZv1FX2+80OXowp9SSF9eKjv2ZJoB2dpEj+SYAk3x55WerEReyI2wspYy5nvUR1i2QJNMcCISDIxuAf7uaEcRk/JM1easjaaBRRM85gOZjFz1wHYM7hZs6uCAtWwrykh2PT5Uw0YvBCUuuAwoS8i/FujA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cpcR5p//vQytouxdUaIL4u+RcB8k1hi0a0R6qEHbgRQ=;
+ b=WSFVouwopGPVu0hU0zHfD5m9UCB1x6rE7mOKd04LksY2mOo2ONMxOmZ7kjziUCWOvXgcZB5UEFKesCU4k/r+3kMvTD0cfLHIlFuDksPmv2RBFmLGmXDK28WQWwFHdCaZRZ4pSOqcR+KeVitjdloUoYCUl0jrk4QUrXjkNi5HmDDhJEoRddpfc4dBcA7cgkZ5/yvqBdB6YMzeyMgRgwS6Dih7UbblxgDeSx/WBpsM1nhlpKgM4cEDfJT8z18dcmnlrqgPuWjw1+GVAbZMqIZ/eUtrJ6u3zRsZdIRKnVLyn5v0xvGlwJkEpG42CiiaI4RWAF7K4Qyxe/TH7oIeYcnR4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by LV8PR11MB8557.namprd11.prod.outlook.com (2603:10b6:408:1e8::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Fri, 29 Aug
+ 2025 14:53:14 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9052.013; Fri, 29 Aug 2025
+ 14:53:14 +0000
+Date: Fri, 29 Aug 2025 10:53:10 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ <stable@vger.kernel.org>, Matthew Brost <matthew.brost@intel.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 2/3] drm/xe: Allow the pm notifier to continue on failure
+Message-ID: <aLG-1s3M9Z9vELIo@intel.com>
+References: <20250829113350.40959-1-thomas.hellstrom@linux.intel.com>
+ <20250829113350.40959-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250829113350.40959-3-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BY5PR17CA0025.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::38) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV8PR11MB8557:EE_
+X-MS-Office365-Filtering-Correlation-Id: 811f1205-46bc-4905-ab6a-08dde70bc824
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?rfdX6qFtau1YzDvxwGJ6jdsesgczMOmWjeuABuhxHAs2ck4pcsk2u0qkgN?=
+ =?iso-8859-1?Q?hMuuzT26kT6S/TiAK3jA2j9xiuRdGRLC4DQRkbQgbpKDQXRU02YPuTDrT1?=
+ =?iso-8859-1?Q?zoKoyQPYEt+rOwR31+3Px630+Iq14EjsboOjn7/xSCtvBV/rHQ0N4dEjlw?=
+ =?iso-8859-1?Q?H/jZzIo6CMq3OAZkq7bzicuHS3o5x4T1tQC43ka+jaOS07u6WpB14MVLPF?=
+ =?iso-8859-1?Q?+XzAvwujOgh+LcC5WFP2kGKMOXpXSC9wgiy/VIHsw1wGB5jQfXnBxQc8c0?=
+ =?iso-8859-1?Q?KCH+8HsqiNNSZnZljQMtw09aDcntMQjjd8PPFGez91+ZDPIth2BHsZzWoI?=
+ =?iso-8859-1?Q?WX4GBKRnZoaGkfqaM1e0gvm4kP5EXTrB8JpvKDqlS5NT8gZZTVmN3I6N0I?=
+ =?iso-8859-1?Q?NvZbeHPAGjrqPH01hJl8xAJpMv6JJaBPT2rcZZPg6EaMfKv78i8s1FWiiZ?=
+ =?iso-8859-1?Q?dYmHjjsBhYSIxY9J3yjihg9tlasANbUL+ekjbjmYlir2xOf33F1XxZldPj?=
+ =?iso-8859-1?Q?+XpAl3r2XGuxOnAdolY1MWBN+jXRv4GS64P4Awp6+xdJFo7eRcoHpVnvGj?=
+ =?iso-8859-1?Q?reJTNswL7uOLnIs+IYytK/kNkANfXJDxVcjI5TAy1Lb62PvUTt/4QrHClF?=
+ =?iso-8859-1?Q?8pcD0azirrpretA6hehRtTPLdY632cLrchDgOqjyfq9GSxSN1gA5u5h6ri?=
+ =?iso-8859-1?Q?R5CxDd3JGCTly4HqwDr9MIXuGD76gIo88w7LYLFlid6HOfXUEYsWAVyMRG?=
+ =?iso-8859-1?Q?otd6cnWMQcuGDPw5bXgM1cziqXqQfr3xcfIPV5W4PvG5W7tLc8ACr9fSW6?=
+ =?iso-8859-1?Q?+sFV/4IrD3hqdAhQzGi6bv5vATvUMllSl1Ru0ohNpW9XWz2EsUXkw/Jb7q?=
+ =?iso-8859-1?Q?U/k6l4K+fohWOJDSG7Fm7rLPDEXLU/UjkLHQw//U7ve/t4T+qefO2eDMRQ?=
+ =?iso-8859-1?Q?9pwP/ZT5jS96gzIpkIB4uEyhGI8M/pn+dWnb9KvdgTDU2TlJI1D+gvrzEs?=
+ =?iso-8859-1?Q?zRp1ABqgla/GKcpyAMgL9u9v3VE4fCN3d5hvAVdKTcMh7/AMvLwNdrswPc?=
+ =?iso-8859-1?Q?ABVaXs4oJtebuXybWgIlV3VnlIx2vZTcmPtKBE/C6Glw4kJin1LHbxPY36?=
+ =?iso-8859-1?Q?ThK/357zG1wI7//Lbfn7iQvzMPcTj4l8Il/3l6XG9MejC5bBfFXCqA7eYz?=
+ =?iso-8859-1?Q?7LUxEIjNvq+cKSRRT/Xm8Xoey3GDqrcO/8EfSPnd70otwPQczzOLYRcoFf?=
+ =?iso-8859-1?Q?3ROqijioP4jycj82zTrhDSSFC1+5msvCssK8g7yY0BHevJwfXH8U7iG02n?=
+ =?iso-8859-1?Q?AQSivD7XKJYajG7F3KEaq2cHms3Oq6s/VbxFtZzhAA09osdeHOEP/i/jZG?=
+ =?iso-8859-1?Q?ilYH5CE3Ylrl85hPZOSy+ujxuwdbMNY8LTUcsDwe1a/8B12AIhWOb0hxqE?=
+ =?iso-8859-1?Q?kDQD7aCf1PRIGcx3Ra41BgHKG43ed1VDOdiRs+5i/Smu08B0zlFvk2AzdS?=
+ =?iso-8859-1?Q?c=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Q+h36j0JdFa8bD/qE3OEqzfgU9542lau2NcuYSqXCHeTiSoO4TQn8y4kLi?=
+ =?iso-8859-1?Q?fNu+uTY1oagtVgcWkP1F+Fp6ZCRyhacDoMkoSN71q/JMu7EUvxVJUJ8CoI?=
+ =?iso-8859-1?Q?gpNi/pGR56fXxYlnEaGWtyKnL6U2E3I1FtdFH23uk7M/+lsgcw5s73GZLl?=
+ =?iso-8859-1?Q?LII6FmKzBEBRIM0Ux2P73SdFBsM8iN3QZ9SGVAkoMd51nPIt2z/YYYy4NM?=
+ =?iso-8859-1?Q?3M3s77p60ViZvExlFJ0EfL9BnAZlCtfz1ErIcLxzICIhaSGKKkj8r5L47l?=
+ =?iso-8859-1?Q?qoQCpCcSMwcvAJ5OrRBfcZcHYE15SlR2KdaDToxMDpBpU6VMA8lcJDIyfd?=
+ =?iso-8859-1?Q?mk+nv9ZNzMhuG3v2tQDXnN7wK/nRa3JzgcY/V5/5ytE4rsJIltqx7c65JF?=
+ =?iso-8859-1?Q?wV1U84sPT3IThruqxjgYnZ7J/nY1B5z9IpeeMPrffySG8UvsW3f89h3KEQ?=
+ =?iso-8859-1?Q?EjLmSiE8oUv5DBqPB1l2NzX9zqgo9Ntg3gQRfTpAfaoPkYx4CzcsqvyYrx?=
+ =?iso-8859-1?Q?vvmJYk9kBCPfGZgx1M1jydewp6Yks6qSSKSuthg90P+GgasdHpqmwzirYH?=
+ =?iso-8859-1?Q?Cw74Lc/PYDaWKJ2kGZfCJTXynJtcHz/J4crGcwUKv0UxkCYHLCYgNsSdFO?=
+ =?iso-8859-1?Q?M9L7qYYDVdJMmufdIvbfuDpcUYq0IubJwklep8RS/Eyzr1Fzdnv0j9fEaN?=
+ =?iso-8859-1?Q?xtB3BjGGt4NyCtRUxE2OhHOwMzSCojuWeuVB12kMI9gRPUHxONLvfjE+h7?=
+ =?iso-8859-1?Q?JVVs8i5TaLQ8Gi3/iFdpjOenLsrFJzDk52Rp4wLFt00TWKFDWeEfLy7OEU?=
+ =?iso-8859-1?Q?L2tY3blXs/9pFWv1NZwJ1DUyXaEhBuAKPCqZoROBuk6GeXAYukS/f8RKL8?=
+ =?iso-8859-1?Q?AwwMVzcEZtN79mxlyy0xZ4UA1Vn94D5IbQIXL2tUWe2v56k9Ev7fL0i40g?=
+ =?iso-8859-1?Q?IBO32BVnVGAs1ER40CFSnIWlMX5fAQbIdC7zHu3gK2M75d4osmJigeL5la?=
+ =?iso-8859-1?Q?1uiPiWeAzozZUk3p8/3+JA0DnxQ5Hwb0mNvi8csZSOTqtK/mNhVFbc77Eh?=
+ =?iso-8859-1?Q?NeT2cmPwr8cDkyAr0NCU/N9AVJanSOC52Q/CoCNjh7J7ANYK87fdsBXcJb?=
+ =?iso-8859-1?Q?CzcIy39KMkFWl4WPdFsn+JK3He1e0Vf018Dpwjye0kE1N7xIaqOgt3WpyG?=
+ =?iso-8859-1?Q?8gZh0760WFzRJUWYgV7HK9BUYXF+gvJod9yGT18BT6LhD4hdslRratSyZ5?=
+ =?iso-8859-1?Q?b3rn/zfLhMWMj3FG2q3YVuj0W3HEBktDg5Ee6s8kxAWsvTqkAWZ44x45Jv?=
+ =?iso-8859-1?Q?oGkhW9OulkM/OSqUnbgKVi3M0gSOaM5Mm83mUaBS1LCyq8KZY8fEOLBIM9?=
+ =?iso-8859-1?Q?TVuLeXufttMCGRBxaGopweCaCkin3rMAFjO27Jc1gwQX4jrCmpGqLRAIcc?=
+ =?iso-8859-1?Q?Ht66HHvgL9BvittCjhglHAr9/riZTaKGv3q+Nys6i3+utmKG1vyY3hABPg?=
+ =?iso-8859-1?Q?AYP0pQtDeOzuLj1TskGXrmFCxQ+EMzkD0GvV75pHNhOCCiBoIg74F0HMOm?=
+ =?iso-8859-1?Q?oyr61HMyPd4yFxmaQfBbrBoEVJVr+qUv8aoxCv/+ZHaRk11VfPvcePBSgv?=
+ =?iso-8859-1?Q?/0GhQPj0nk43f98Vuw5wIclBFOOMamsDIGLsYxWtru4dBectKqF+aaBw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 811f1205-46bc-4905-ab6a-08dde70bc824
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 14:53:14.7930 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kDf6EGTBQoLN+kLjUh2BWkAaXvuNmxaUSyyn56adZokhQ4R3YX7RzkuaJpCfUblk8DfhkDzShEL2A3ePlVpO7w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8557
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,142 +181,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: eeb8117f5f1c2e8e625e5cb39dbccd21d395caad  drm/xe/uapi: Fix kernel-doc formatting for madvise and vma_query
+On Fri, Aug 29, 2025 at 01:33:49PM +0200, Thomas Hellström wrote:
+> Its actions are opportunistic anyway and will be completed
+> on device suspend.
+> 
+> Also restrict the scope of the pm runtime reference to
+> the notifier callback itself to make it easier to
+> follow.
+> 
+> Marking as a fix to simplify backporting of the fix
+> that follows in the series.
+> 
+> Fixes: c6a4d46ec1d7 ("drm/xe: evict user memory in PM notifier")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.16+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-elapsed time: 1453m
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-configs tested: 123
-configs skipped: 3
-
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                   randconfig-001-20250829    gcc-8.5.0
-arc                   randconfig-002-20250829    gcc-10.5.0
-arm                               allnoconfig    clang-22
-arm                         bcm2835_defconfig    clang-22
-arm                       imx_v4_v5_defconfig    clang-22
-arm                   randconfig-001-20250829    gcc-10.5.0
-arm                   randconfig-002-20250829    clang-22
-arm                   randconfig-003-20250829    clang-22
-arm                   randconfig-004-20250829    clang-22
-arm                        spear6xx_defconfig    clang-22
-arm                         vf610m4_defconfig    gcc-15.1.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250829    clang-22
-arm64                 randconfig-002-20250829    gcc-12.5.0
-arm64                 randconfig-003-20250829    clang-22
-arm64                 randconfig-004-20250829    gcc-9.5.0
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20250829    gcc-9.5.0
-csky                  randconfig-002-20250829    gcc-10.5.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20250829    clang-22
-hexagon               randconfig-002-20250829    clang-22
-i386                             allmodconfig    gcc-12
-i386                              allnoconfig    gcc-12
-i386                             allyesconfig    gcc-12
-i386        buildonly-randconfig-001-20250829    gcc-12
-i386        buildonly-randconfig-002-20250829    clang-20
-i386        buildonly-randconfig-003-20250829    clang-20
-i386        buildonly-randconfig-004-20250829    clang-20
-i386        buildonly-randconfig-005-20250829    gcc-12
-i386        buildonly-randconfig-006-20250829    clang-20
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20250829    clang-22
-loongarch             randconfig-002-20250829    clang-22
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-mips                          rb532_defconfig    clang-18
-nios2                         3c120_defconfig    gcc-11.5.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20250829    gcc-11.5.0
-nios2                 randconfig-002-20250829    gcc-11.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20250829    gcc-14.3.0
-parisc                randconfig-002-20250829    gcc-8.5.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc                          allyesconfig    clang-22
-powerpc               randconfig-001-20250829    gcc-13.4.0
-powerpc               randconfig-002-20250829    clang-22
-powerpc               randconfig-003-20250829    gcc-12.5.0
-powerpc64             randconfig-001-20250829    clang-22
-powerpc64             randconfig-002-20250829    clang-22
-powerpc64             randconfig-003-20250829    gcc-8.5.0
-riscv                            allmodconfig    clang-22
-riscv                             allnoconfig    gcc-15.1.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-22
-riscv                 randconfig-001-20250829    clang-22
-riscv                 randconfig-002-20250829    gcc-9.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                                defconfig    clang-22
-s390                  randconfig-001-20250829    gcc-11.5.0
-s390                  randconfig-002-20250829    gcc-8.5.0
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                                  defconfig    gcc-15.1.0
-sh                    randconfig-001-20250829    gcc-10.5.0
-sh                    randconfig-002-20250829    gcc-15.1.0
-sh                           se7721_defconfig    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20250829    gcc-15.1.0
-sparc                 randconfig-002-20250829    gcc-15.1.0
-sparc64                             defconfig    clang-20
-sparc64               randconfig-001-20250829    clang-20
-sparc64               randconfig-002-20250829    clang-22
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-12
-um                                  defconfig    clang-22
-um                             i386_defconfig    gcc-12
-um                    randconfig-002-20250829    gcc-12
-um                           x86_64_defconfig    clang-22
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250829    gcc-11
-x86_64      buildonly-randconfig-002-20250829    gcc-11
-x86_64      buildonly-randconfig-003-20250829    gcc-12
-x86_64      buildonly-randconfig-004-20250829    clang-20
-x86_64      buildonly-randconfig-005-20250829    clang-20
-x86_64      buildonly-randconfig-006-20250829    clang-20
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250829    gcc-11.5.0
-xtensa                randconfig-002-20250829    gcc-11.5.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> ---
+>  drivers/gpu/drm/xe/xe_pm.c | 14 ++++----------
+>  1 file changed, 4 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index a2e85030b7f4..b57b46ad9f7c 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -308,28 +308,22 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
+>  	case PM_SUSPEND_PREPARE:
+>  		xe_pm_runtime_get(xe);
+>  		err = xe_bo_evict_all_user(xe);
+> -		if (err) {
+> +		if (err)
+>  			drm_dbg(&xe->drm, "Notifier evict user failed (%d)\n", err);
+> -			xe_pm_runtime_put(xe);
+> -			break;
+> -		}
+>  
+>  		err = xe_bo_notifier_prepare_all_pinned(xe);
+> -		if (err) {
+> +		if (err)
+>  			drm_dbg(&xe->drm, "Notifier prepare pin failed (%d)\n", err);
+> -			xe_pm_runtime_put(xe);
+> -		}
+> +		xe_pm_runtime_put(xe);
+>  		break;
+>  	case PM_POST_HIBERNATION:
+>  	case PM_POST_SUSPEND:
+> +		xe_pm_runtime_get(xe);
+>  		xe_bo_notifier_unprepare_all_pinned(xe);
+>  		xe_pm_runtime_put(xe);
+>  		break;
+>  	}
+>  
+> -	if (err)
+> -		return NOTIFY_BAD;
+> -
+>  	return NOTIFY_DONE;
+>  }
+>  
+> -- 
+> 2.50.1
+> 
