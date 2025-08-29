@@ -4,154 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C05DCA0FF9
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 19:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF3ECA0FF0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Aug 2025 20:11:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E62610EC38;
-	Fri, 29 Aug 2025 19:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7622910EC38;
+	Fri, 29 Aug 2025 20:11:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YrNdQS83";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TAx5AiNW";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E5F710EC39
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 19:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756497530;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=xZo5kWZ4wC3wGmKqPk6eI0RfSbah2VPwvlM0503suW8=;
- b=YrNdQS83bJ1mO8ZxPPvgVBl8YBCjWkA5KjTR4CqiGaTB/d0iXH9Ci/we/Tflqg4pwG5q0c
- FErGvERXkz7FitX5GIRIlmHobjsD2ryJ/LR7nk/UhU3Ysqyvrks81BVX6WpYY8vHuaclS6
- pbVfAltWZEg6bhL1V0wh7faZUSDJFD0=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-441-Yyjd6HOOPta_sTbxfYLXCg-1; Fri, 29 Aug 2025 15:58:43 -0400
-X-MC-Unique: Yyjd6HOOPta_sTbxfYLXCg-1
-X-Mimecast-MFC-AGG-ID: Yyjd6HOOPta_sTbxfYLXCg_1756497523
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45a1b0ccb6cso15290935e9.3
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 12:58:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756497522; x=1757102322;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :references:cc:to:from:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xZo5kWZ4wC3wGmKqPk6eI0RfSbah2VPwvlM0503suW8=;
- b=ZnZQJy/JrBaXmWu5p5kSS2eviZSPmcI8QRizK+PtaXSlNglbKZp6DziYQwrNHAZUNs
- BShlvlwUZU6mMxe5homC+pUEGO1lFig02xhjzT/mFTmwH+ueq3+UAxRvtKQ23Qhdl1ms
- xGaWXXKLof6dRxiCDZGVOI+DXuCBwSYYpnpmGHj2eKDAxdSt6Q4K0xogO/FGpWGN0wfk
- YMGd/ZpivfFBWxW1obTvMX/CEJWeEnteEomxB6aE5LfUUxKCSAo1uVf7o4O0MRPjttm9
- TVRS7DG//i3OkSaF5n77ilXhHVsP74qPZ2AlWcR5+x0hdAHRbxr0Njx7+Eq3GwDKpHjP
- q/JQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCp39tWpZDK4r2kjJGJCdXaTx/cvI1EuoNx/eH2qWVryCVsHws+sVM6uxz3rSiOGy3B/cSMLpmig==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzGNgOwD/2oVgqpC7k6J67f7J/02Bhqvj94GjQhrfN0el3NEvzG
- cXBASaSXv8F6y9BLdIwHn7bn2ckAs1E/Twq/90c+D8jKjyJbFMMA/YUfNrAxt+4BqCooLyaAETm
- lZm+Fg0zBW3rcE0xmrzLPBsstk9GqRlS+ecvcrrQH9ete1dEtRV+J21mHyQjO9/cAMS/8
-X-Gm-Gg: ASbGncvUt4TWXD30uywgLM5+EsJAKZuWNs7jAazmRFs1CyzGBwmr935f/eEGBYAKJjc
- 7UqcLGvAMJgkAIu9I4qtj0C3D90SpliL48xIFILsYv5e4s7rShnnvDPjZlbSRU/0DLrOs50jjDX
- kpmwPCUoFEZc/VLXWW3lIeZTWAEjhDO6P86YSxSIID5kCr2rFweAWF+bMXgtYKf1r3POwRKyb95
- mGmtRmuFCzkbUT1yVyFJ0LOvpBtJukQ8LZL645hANd1xxp2Uh5UjAJa/QTmKyTj5wJCt+LEBF50
- o/rBxgwR/B+4xQSG/GY5uCj8HLeVfd29crnfGG9sqFLEc3hV/sB+C5UC+DE4iYrAZiu+MfnJOqI
- hImKXG2lHUKMc08qHy525kWuhPbn2K1+lKih68Lr28lwHK7wQnGpwKTAjq1Iv+515
-X-Received: by 2002:a05:6000:40dd:b0:3a4:d6ed:8df8 with SMTP id
- ffacd0b85a97d-3c5dc734927mr22634454f8f.39.1756497522576; 
- Fri, 29 Aug 2025 12:58:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEvHEkvHJSsvUdMiTLwAfagEik+QO+Eh4rmmPk5gnzbPICxQ2Th8mxXR7QyiTGZMb0BpkDB9Q==
-X-Received: by 2002:a05:6000:40dd:b0:3a4:d6ed:8df8 with SMTP id
- ffacd0b85a97d-3c5dc734927mr22634443f8f.39.1756497522163; 
- Fri, 29 Aug 2025 12:58:42 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f1d:100:4f8e:bb13:c3c7:f854?
- (p200300d82f1d01004f8ebb13c3c7f854.dip0.t-ipconnect.de.
- [2003:d8:2f1d:100:4f8e:bb13:c3c7:f854])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf8a64fce8sm4236812f8f.34.2025.08.29.12.58.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 29 Aug 2025 12:58:41 -0700 (PDT)
-Message-ID: <46b99b0f-688d-4625-8b68-8176185ced43@redhat.com>
-Date: Fri, 29 Aug 2025 21:58:40 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F86210EC38
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Aug 2025 20:11:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756498279; x=1788034279;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RQVQVjslAjIRkGJdKDHYUI+4dyBtrtY4Ge0OY8wv5PU=;
+ b=TAx5AiNWh2tqmU12k7swKS/vWy1Gz4kzTdbfA6KrW0j03+Sq0xDQXOmt
+ f2boOyHid3W3okorUn9+RT0cE3IjJjNTUJYoHvpnN2fRlVygrzaIf3+hU
+ /SS7w3b2gMW0nuTXpeaiqaBV3OZCq0WWsCvGC+mrmrrmmeug4/kiwpRRs
+ 4/tlSeG/U7wnEQnTlQWSeRSCaJpA0CqABf4gZOmWTJ8qnxT75J/h3dgWB
+ uCOe4hsSRW6lhHIext512UKPdbZac6LOzbHjWUWDTwWmJf0FyMAF6oeF/
+ Wx+Iyf1WTUZeXNaoZeKAkto1OUGd2ghO1C286iEoLp9d248Qu1YDC2Snv A==;
+X-CSE-ConnectionGUID: 2kwlLnAnS5KdJU99ec++bA==
+X-CSE-MsgGUID: Oj1hG4OWRYOt5xooe95bwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="84198433"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="84198433"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 13:11:19 -0700
+X-CSE-ConnectionGUID: 7VSTWzISSceauJdyNtOMqQ==
+X-CSE-MsgGUID: 8r9NosEGQOyUEcWeufVU/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170850922"
+Received: from ruymanre-mobl.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.252.70])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 13:11:18 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH] drm/xe/debugfs: Move sa_info from gt to tile directory
+Date: Fri, 29 Aug 2025 22:11:03 +0200
+Message-ID: <20250829201106.1263-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: stupid and complicated PAT :)
-From: David Hildenbrand <david@redhat.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
- <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
- <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
- <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
- <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
- <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
- <094606f3-a138-4561-a0b7-d952f4896939@amd.com>
- <4ef6e251-37c2-47ac-bff7-3b2a7d7e58d6@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <4ef6e251-37c2-47ac-bff7-3b2a7d7e58d6@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 4eXB8oZMRbpi1AIYYG7MmMvmAJJq-NvEIq-FC_Z36L8_1756497523
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,71 +68,274 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 29.08.25 21:52, David Hildenbrand wrote:
-> 
->>
->> Yes, that can absolutely happen. But for iomem we would have an explicit call to ioremap(), ioremap_wc(), ioremap_cache() for that before anybody would map anything into userspace page tables.
->>
->> But thinking more about it I just had an OMFG moment! Is it possible that the PAT currently already has a problem with that?
->>
->> We had customer projects where BARs of different PCIe devices ended up on different physical addresses after a hot remove/re-add.
->>
->> Is it possible that the PAT keeps enforcing certain caching attributes for a physical address? E.g. for example because a driver doesn't clean up properly on hot remove?
->>
->> If yes than that would explain a massive number of problems we had with hot add/remove.
-> 
-> The code is a mess, so if a driver messed up, likely everything is possible.
-> 
-> TBH, the more I look at this all, the more WTF moments I am having.
-> 
->>
->>>> What I am currently wondering is: assume we get a
->>>> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
->>>> there was a previous registration, then we could do
->>>>
->>>> (a) No previous registration: don't modify pgprot. Hopefully the driver
->>>>         knows what it is doing. Maybe we can add sanity checks that the
->>>>         direct map was already updated etc.
->>>> (b) A previous registration: modify pgprot like we do today.
->>
->> That would work for me.
->>
->>>> System RAM is the problem. I wonder how many of these registrations we
->>>> really get and if we could just store them in the same tree as !system
->>>> RAM instead of abusing page flags.
->>>
->>> commit 9542ada803198e6eba29d3289abb39ea82047b92
->>> Author: Suresh Siddha <suresh.b.siddha@intel.com>
->>> Date:   Wed Sep 24 08:53:33 2008 -0700
->>>
->>>       x86: track memtype for RAM in page struct
->>>           Track the memtype for RAM pages in page struct instead of using the
->>>       memtype list. This avoids the explosion in the number of entries in
->>>       memtype list (of the order of 20,000 with AGP) and makes the PAT
->>>       tracking simpler.
->>>           We are using PG_arch_1 bit in page->flags.
->>>           We still use the memtype list for non RAM pages.
->>>
->>>
->>> I do wonder if that explosion is still an issue today.
->>
->> Yes it is. That is exactly the issue I'm working on here.
->>
->> It's just that AGP was replaced by internal GPU MMUs over time and so we don't use the old AGP code any more but just call get_free_pages() (or similar) directly.
-> 
-> Okay, I thought I slowly understood how it works, then I stumbled over
-> the set_memory_uc / set_memory_wc implementation and now I am *all
-> confused*.
-> 
-> I mean, that does perform a PAT reservation.
-> 
-> But when is that reservation ever freed again? :/
+Our drm-based suballocator is implemented per-tile so it is better
+to show its debug information also per-tile debugfs directory, not
+under per-gt directory as it is done today.
 
-Ah, set_memory_wb() does that. It just frees stuff. It should have been 
-called something like "reset", probably.
+To allow adding more per-tile attributes, prepare necessary helper
+functions, like we already did for per-gt or per-uc attributes.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c      |  20 +---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   |  13 ---
+ drivers/gpu/drm/xe/xe_tile_debugfs.c | 135 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tile_debugfs.h |  13 +++
+ 5 files changed, 151 insertions(+), 31 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_tile_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_tile_debugfs.h
+
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 987e4fe10538..95c0f0a9b403 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -325,6 +325,7 @@ ifeq ($(CONFIG_DEBUG_FS),y)
+ 		xe_gt_stats.o \
+ 		xe_guc_debugfs.o \
+ 		xe_huc_debugfs.o \
++		xe_tile_debugfs.o \
+ 		xe_uc_debugfs.o
+ 
+ 	xe-$(CONFIG_PCI_IOV) += xe_gt_sriov_pf_debugfs.o
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 8d6df6bd885e..4b71570529a6 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -25,6 +25,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_step.h"
++#include "xe_tile_debugfs.h"
+ #include "xe_wa.h"
+ #include "xe_vsec.h"
+ 
+@@ -329,23 +330,6 @@ static const struct file_operations atomic_svm_timeslice_ms_fops = {
+ 	.write = atomic_svm_timeslice_ms_set,
+ };
+ 
+-static void create_tile_debugfs(struct xe_tile *tile, struct dentry *root)
+-{
+-	char name[8];
+-
+-	snprintf(name, sizeof(name), "tile%u", tile->id);
+-	tile->debugfs = debugfs_create_dir(name, root);
+-	if (IS_ERR(tile->debugfs))
+-		return;
+-
+-	/*
+-	 * Store the xe_tile pointer as private data of the tile/ directory
+-	 * node so other tile specific attributes under that directory may
+-	 * refer to it by looking at its parent node private data.
+-	 */
+-	tile->debugfs->d_inode->i_private = tile;
+-}
+-
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -398,7 +382,7 @@ void xe_debugfs_register(struct xe_device *xe)
+ 		ttm_resource_manager_create_debugfs(man, root, "stolen_mm");
+ 
+ 	for_each_tile(tile, xe, tile_id)
+-		create_tile_debugfs(tile, root);
++		xe_tile_debugfs_register(tile);
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_debugfs_register(gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index bf3a67b5951c..f7a362ac8030 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -123,18 +123,6 @@ static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
+ 	return ret;
+ }
+ 
+-static int sa_info(struct xe_gt *gt, struct drm_printer *p)
+-{
+-	struct xe_tile *tile = gt_to_tile(gt);
+-
+-	xe_pm_runtime_get(gt_to_xe(gt));
+-	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, p,
+-				     xe_sa_manager_gpu_addr(tile->mem.kernel_bb_pool));
+-	xe_pm_runtime_put(gt_to_xe(gt));
+-
+-	return 0;
+-}
+-
+ static int sa_info_vf_ccs(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -316,7 +304,6 @@ static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
+  * - without access to the PF specific data
+  */
+ static const struct drm_info_list vf_safe_debugfs_list[] = {
+-	{"sa_info", .show = xe_gt_debugfs_simple_show, .data = sa_info},
+ 	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
+ 	{"ggtt", .show = xe_gt_debugfs_simple_show, .data = ggtt},
+ 	{"register-save-restore", .show = xe_gt_debugfs_simple_show, .data = register_save_restore},
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.c b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+new file mode 100644
+index 000000000000..5523874cba7b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+@@ -0,0 +1,135 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <linux/debugfs.h>
++#include <drm/drm_debugfs.h>
++
++#include "xe_pm.h"
++#include "xe_sa.h"
++#include "xe_tile_debugfs.h"
++
++static struct xe_tile *node_to_tile(struct drm_info_node *node)
++{
++	return node->dent->d_parent->d_inode->i_private;
++}
++
++/**
++ * tile_debugfs_simple_show - A show callback for struct drm_info_list
++ * @m: the &seq_file
++ * @data: data used by the drm debugfs helpers
++ *
++ * This callback can be used in struct drm_info_list to describe debugfs
++ * files that are &xe_tile specific.
++ *
++ * It is assumed that those debugfs files will be created on directory entry
++ * which struct dentry d_inode->i_private points to &xe_tile.
++ *
++ *      /sys/kernel/debug/dri/0/
++ *      ├── tile0/		# tile = dentry->d_inode->i_private
++ *      │   │   ├── id		# tile = dentry->d_parent->d_inode->i_private
++ *
++ * This function assumes that &m->private will be set to the &struct
++ * drm_info_node corresponding to the instance of the info on a given &struct
++ * drm_minor (see struct drm_info_list.show for details).
++ *
++ * This function also assumes that struct drm_info_list.data will point to the
++ * function code that will actually print a file content::
++ *
++ *   int (*print)(struct xe_tile *, struct drm_printer *)
++ *
++ * Example::
++ *
++ *    int tile_id(struct xe_tile *tile, struct drm_printer *p)
++ *    {
++ *        drm_printf(p, "%u\n", tile->id);
++ *        return 0;
++ *    }
++ *
++ *    static const struct drm_info_list info[] = {
++ *        { name = "id", .show = tile_debugfs_simple_show, .data = tile_id },
++ *    };
++ *
++ *    dir = debugfs_create_dir("tile0", parent);
++ *    dir->d_inode->i_private = tile;
++ *    drm_debugfs_create_files(info, ARRAY_SIZE(info), dir, minor);
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++static int tile_debugfs_simple_show(struct seq_file *m, void *data)
++{
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct drm_info_node *node = m->private;
++	struct xe_tile *tile = node_to_tile(node);
++	int (*print)(struct xe_tile *, struct drm_printer *) = node->info_ent->data;
++
++	return print(tile, &p);
++}
++
++/**
++ * tile_debugfs_show_with_rpm - A show callback for struct drm_info_list
++ * @m: the &seq_file
++ * @data: data used by the drm debugfs helpers
++ *
++ * Similar to tile_debugfs_simple_show() but implicitly takes a RPM ref.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++static int tile_debugfs_show_with_rpm(struct seq_file *m, void *data)
++{
++	struct drm_info_node *node = m->private;
++	struct xe_tile *tile = node_to_tile(node);
++	struct xe_device *xe = tile_to_xe(tile);
++	int ret;
++
++	xe_pm_runtime_get(xe);
++	ret = tile_debugfs_simple_show(m, data);
++	xe_pm_runtime_put(xe);
++
++	return ret;
++}
++
++static int sa_info(struct xe_tile *tile, struct drm_printer *p)
++{
++	drm_suballoc_dump_debug_info(&tile->mem.kernel_bb_pool->base, p,
++				     xe_sa_manager_gpu_addr(tile->mem.kernel_bb_pool));
++
++	return 0;
++}
++
++/* only for debugfs files which can be safely used on the VF */
++static const struct drm_info_list vf_safe_debugfs_list[] = {
++	{ "sa_info", .show = tile_debugfs_show_with_rpm, .data = sa_info },
++};
++
++/**
++ * xe_tile_debugfs_register - Register tile's debugfs attributes
++ * @tile: the &xe_tile to register
++ *
++ * Create debugfs sub-directory with a name that includes a tile ID and
++ * then creates set of debugfs files (attributes) specific to this tile.
++ */
++void xe_tile_debugfs_register(struct xe_tile *tile)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_minor *minor = xe->drm.primary;
++	struct dentry *root = minor->debugfs_root;
++	char name[8];
++
++	snprintf(name, sizeof(name), "tile%u", tile->id);
++	tile->debugfs = debugfs_create_dir(name, root);
++	if (IS_ERR(tile->debugfs))
++		return;
++
++	/*
++	 * Store the xe_tile pointer as private data of the tile/ directory
++	 * node so other tile specific attributes under that directory may
++	 * refer to it by looking at its parent node private data.
++	 */
++	tile->debugfs->d_inode->i_private = tile;
++
++	drm_debugfs_create_files(vf_safe_debugfs_list,
++				 ARRAY_SIZE(vf_safe_debugfs_list),
++				 tile->debugfs, minor);
++}
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.h b/drivers/gpu/drm/xe/xe_tile_debugfs.h
+new file mode 100644
+index 000000000000..0e5f724de37f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_TILE_DEBUGFS_H_
++#define _XE_TILE_DEBUGFS_H_
++
++struct xe_tile;
++
++void xe_tile_debugfs_register(struct xe_tile *tile);
++
++#endif
 -- 
-Cheers
-
-David / dhildenb
+2.47.1
 
