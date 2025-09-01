@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23243CA0FF0
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 17:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06AE0CA0FF0
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 18:16:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFFC710E03C;
-	Mon,  1 Sep 2025 17:39:45 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFF7D10E03C;
- Mon,  1 Sep 2025 17:39:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1184994378247920494=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF74B10E178;
+	Mon,  1 Sep 2025 18:16:47 +0000 (UTC)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C36A110E178;
+ Mon,  1 Sep 2025 18:16:46 +0000 (UTC)
+Message-ID: <9c296c72-768e-4893-a099-a2882027f2b9@lankhorst.se>
+Date: Mon, 1 Sep 2025 20:16:40 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
- =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs_=28rev12=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Sep 2025 17:39:44 -0000
-Message-ID: <175674838491.289893.13439143229075467398@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250901170003.1582933-1-michal.grzelak@intel.com>
-In-Reply-To: <20250901170003.1582933-1-michal.grzelak@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 0/3] cgroups: Add support for pinned device memory
+To: David Hildenbrand <david@redhat.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?=27Thomas_Hellstr=C3=B6m=27?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ Natalie Vock <natalie.vock@gmx.de>, Tejun Heo <tj@kernel.org>,
+ Johannes Weiner <hannes@cmpxchg.org>, =?UTF-8?Q?=27Michal_Koutn=C3=BD=27?=
+ <mkoutny@suse.com>, Michal Hocko <mhocko@kernel.org>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Muchun Song <muchun.song@linux.dev>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "'Liam R . Howlett'" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Michal Hocko <mhocko@suse.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ cgroups@vger.kernel.org, linux-mm@kvack.org
+References: <20250819114932.597600-5-dev@lankhorst.se>
+ <dc21e54c-d7ae-4d7e-9acb-6a3fa573b20f@redhat.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <dc21e54c-d7ae-4d7e-9acb-6a3fa573b20f@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,134 +54,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1184994378247920494==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello David,
 
-== Series Details ==
+Den 2025-09-01 kl. 14:25, skrev David Hildenbrand:
+> On 19.08.25 13:49, Maarten Lankhorst wrote:
+>> When exporting dma-bufs to other devices, even when it is allowed to use
+>> move_notify in some drivers, performance will degrade severely when
+>> eviction happens.
+>>
+>> A perticular example where this can happen is in a multi-card setup,
+>> where PCI-E peer-to-peer is used to prevent using access to system memory.
+>>
+>> If the buffer is evicted to system memory, not only the evicting GPU wher
+>> the buffer resided is affected, but it will also stall the GPU that is
+>> waiting on the buffer.
+>>
+>> It also makes sense for long running jobs not to be preempted by having
+>> its buffers evicted, so it will make sense to have the ability to pin
+>> from system memory too.
+>>
+>> This is dependant on patches by Dave Airlie, so it's not part of this
+>> series yet. But I'm planning on extending pinning to the memory cgroup
+>> controller in the future to handle this case.
+>>
+>> Implementation details:
+>>
+>> For each cgroup up until the root cgroup, the 'min' limit is checked
+>> against currently effectively pinned value. If the value will go above
+>> 'min', the pinning attempt is rejected.
+>>
+>> Pinned memory is handled slightly different and affects calculating
+>> effective min/low values. Pinned memory is subtracted from both,
+>> and needs to be added afterwards when calculating.
+> 
+> The term "pinning" is overloaded, and frequently we refer to pin_user_pages() and friends.
+> 
+> So I'm wondering if there is an alternative term to describe what you want to achieve.
+> 
+> Is it something like "unevictable" ?
+It could be required to include a call pin_user_pages(), in case a process wants to pin 
+from a user's address space to the gpu.
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev12)
-URL   : https://patchwork.freedesktop.org/series/148957/
-State : success
+It's not done yet, but it wouldn't surprise me if we want to include it in the future.
+Functionally it's similar to mlock() and related functions.
 
-== Summary ==
+Perhaps call it mlocked instead?
 
-CI Bug Log - changes from xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55_BAT -> xe-pw-148957v12_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-148957v12_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55 -> xe-pw-148957v12
-
-  IGT_8519: 8519
-  xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55: f2856d85f7452831ece60ff0d26aa6aa4d6a3a55
-  xe-pw-148957v12: 148957v12
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/index.html
-
---===============1184994378247920494==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev12)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148957/">https://patchwork.freedesktop.org/series/148957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55_BAT -&gt; xe-pw-148957v12_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-148957v12_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v12/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55 -&gt; xe-pw-148957v12</li>
-</ul>
-<p>IGT_8519: 8519<br />
-  xe-3654-f2856d85f7452831ece60ff0d26aa6aa4d6a3a55: f2856d85f7452831ece60ff0d26aa6aa4d6a3a55<br />
-  xe-pw-148957v12: 148957v12</p>
-
-</body>
-</html>
-
---===============1184994378247920494==--
+Kind regards,
+~Maarten Lankhorst
