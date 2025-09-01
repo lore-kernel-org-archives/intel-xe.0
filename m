@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22530CA0FF0
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 07:48:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04C9CA0FF0
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 08:00:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D362D10E39D;
-	Mon,  1 Sep 2025 07:48:28 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 127BE10E06B;
- Mon,  1 Sep 2025 07:48:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1413588928713993445=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6989610E3A0;
+	Mon,  1 Sep 2025 08:00:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f8o7gMwP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93C7810E3A0
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Sep 2025 08:00:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756713633; x=1788249633;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=d/EediesBQqQCDa9hAr2Ni6/LoBxCIBMZWXudYG93NM=;
+ b=f8o7gMwPfqdVRzOjy8/Gw9stS85iu0lyiZJD4RUwcO+cgrJ1fcYO8aI3
+ /1fp7CFHmPWLIKCey96XkZTatBX053wPhMF1cyjWhF3wsYozQb3AJ2djB
+ bBfk/9LP6yrS+aPP6P0JyDHK4yGQehlGlNz6aelwxN86JmMn577OzsF0h
+ MRVSFPzyo6mx7oOncsdjCkwspaoaJeATXcD3HXYWv5oUi9MnIBf9zKOt4
+ kHaAjKHBFdSoSVwVf6ARHrRz8fIz30r1KvesRLUQoCDmmgg60Y2/LL8yY
+ 9poIot0ktRZe4voZjEW5rH30994nIlp41vkRKRr4itI4D2PjeKYwRaE1Q Q==;
+X-CSE-ConnectionGUID: tpYYA1NYTy2pa6I1BpY4lA==
+X-CSE-MsgGUID: 4VDELp4+RKinIG8R1m+3yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11539"; a="57968053"
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="57968053"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2025 00:45:40 -0700
+X-CSE-ConnectionGUID: QJsOen5xQvuJlbXkmIY+Dg==
+X-CSE-MsgGUID: FS6PHQugSkmwg6+d4GoyEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="170192472"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.244.171])
+ ([10.245.244.171])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2025 00:45:38 -0700
+Message-ID: <4b015479864427adf7102f327ca713b987f3a14b.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: improve dma-resv handling for backup object
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+Date: Mon, 01 Sep 2025 09:45:32 +0200
+In-Reply-To: <20250829164715.720735-2-matthew.auld@intel.com>
+References: <20250829164715.720735-2-matthew.auld@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_devm_rele?=
- =?utf-8?q?ase_action_to_safely_tear_down_CT_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 01 Sep 2025 07:48:28 -0000
-Message-ID: <175671290807.288126.11237012621496871869@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250901072541.31461-1-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250901072541.31461-1-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1413588928713993445==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2025-08-29 at 17:47 +0100, Matthew Auld wrote:
+> Since the dma-resv is shared we don't need to reserve and add a fence
+> slot fence twice, plus no need to loop through the dependencies.
+>=20
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-== Series Details ==
-
-Series: drm/xe/guc: Add devm release action to safely tear down CT (rev4)
-URL   : https://patchwork.freedesktop.org/series/152870/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667_BAT -> xe-pw-152870v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
 
-Changes
--------
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 13 +----=
+--------
+> =C2=A0drivers/gpu/drm/xe/xe_migrate.c |=C2=A0 2 +-
+> =C2=A02 files changed, 2 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 4faf15d5fa6d..49911247f6cb 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1260,14 +1260,11 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+> =C2=A0		else
+> =C2=A0			migrate =3D mem_type_to_migrate(xe, bo-
+> >ttm.resource->mem_type);
+> =C2=A0
+> +		xe_assert(xe, bo->ttm.base.resv =3D=3D backup-
+> >ttm.base.resv);
+> =C2=A0		ret =3D dma_resv_reserve_fences(bo->ttm.base.resv, 1);
+> =C2=A0		if (ret)
+> =C2=A0			goto out_backup;
+> =C2=A0
+> -		ret =3D dma_resv_reserve_fences(backup->ttm.base.resv,
+> 1);
+> -		if (ret)
+> -			goto out_backup;
+> -
+> =C2=A0		fence =3D xe_migrate_copy(migrate, bo, backup, bo-
+> >ttm.resource,
+> =C2=A0					backup->ttm.resource,
+> false);
+> =C2=A0		if (IS_ERR(fence)) {
+> @@ -1277,8 +1274,6 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+> =C2=A0
+> =C2=A0		dma_resv_add_fence(bo->ttm.base.resv, fence,
+> =C2=A0				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> -		dma_resv_add_fence(backup->ttm.base.resv, fence,
+> -				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> =C2=A0		dma_fence_put(fence);
+> =C2=A0	} else {
+> =C2=A0		ret =3D xe_bo_vmap(backup);
+> @@ -1356,10 +1351,6 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+> =C2=A0		if (ret)
+> =C2=A0			goto out_unlock_bo;
+> =C2=A0
+> -		ret =3D dma_resv_reserve_fences(backup->ttm.base.resv,
+> 1);
+> -		if (ret)
+> -			goto out_unlock_bo;
+> -
+> =C2=A0		fence =3D xe_migrate_copy(migrate, backup, bo,
+> =C2=A0					backup->ttm.resource, bo-
+> >ttm.resource,
+> =C2=A0					false);
+> @@ -1370,8 +1361,6 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
+> =C2=A0
+> =C2=A0		dma_resv_add_fence(bo->ttm.base.resv, fence,
+> =C2=A0				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> -		dma_resv_add_fence(backup->ttm.base.resv, fence,
+> -				=C2=A0=C2=A0 DMA_RESV_USAGE_KERNEL);
+> =C2=A0		dma_fence_put(fence);
+> =C2=A0	} else {
+> =C2=A0		ret =3D xe_bo_vmap(backup);
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> b/drivers/gpu/drm/xe/xe_migrate.c
+> index 9643442ef101..861d9d0633d1 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -908,7 +908,7 @@ struct dma_fence *xe_migrate_copy(struct
+> xe_migrate *m,
+> =C2=A0		if (!fence) {
+> =C2=A0			err =3D xe_sched_job_add_deps(job, src_bo-
+> >ttm.base.resv,
+> =C2=A0						=C2=A0=C2=A0=C2=A0
+> DMA_RESV_USAGE_BOOKKEEP);
+> -			if (!err && src_bo !=3D dst_bo)
+> +			if (!err && src_bo->ttm.base.resv !=3D dst_bo-
+> >ttm.base.resv)
+> =C2=A0				err =3D xe_sched_job_add_deps(job,
+> dst_bo->ttm.base.resv,
+> =C2=A0							=C2=A0=C2=A0=C2=A0
+> DMA_RESV_USAGE_BOOKKEEP);
+> =C2=A0			if (err)
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667 -> xe-pw-152870v4
-
-  IGT_8519: 8519
-  xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667: 9319ef352fbc3067e632b13572e19d3b6e6b4667
-  xe-pw-152870v4: 152870v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v4/index.html
-
---===============1413588928713993445==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add devm release action to safely tear down CT (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152870/">https://patchwork.freedesktop.org/series/152870/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152870v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667_BAT -&gt; xe-pw-152870v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667 -&gt; xe-pw-152870v4</li>
-</ul>
-<p>IGT_8519: 8519<br />
-  xe-3646-9319ef352fbc3067e632b13572e19d3b6e6b4667: 9319ef352fbc3067e632b13572e19d3b6e6b4667<br />
-  xe-pw-152870v4: 152870v4</p>
-
-</body>
-</html>
-
---===============1413588928713993445==--
