@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B46BCA0FF0
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 16:13:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80379CA0FFF
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 16:19:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3371D10E4E9;
-	Mon,  1 Sep 2025 16:13:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kg3D+fTN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 901E610E4E9
- for <intel-xe@lists.freedesktop.org>; Mon,  1 Sep 2025 16:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756743228; x=1788279228;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AsNRvuty9x398NJ7RSK9N4q6Blx8JRZbb+185HC/eZg=;
- b=kg3D+fTNIAdYOZNDrfJC278g52/aWrBCg4qBqp3W5LsEKLD3e9NqFRu+
- aWb2GRyfb47LwxfY6Ho2IxaW7y9CKknNoyHox7VwaG+TWbqLThWAoc5ii
- /dABHycJJc/PwHfXxl2W2xvpVyBREiwl9KpeCTfrOp7pV0XGDzvR4pLci
- 6vP3pPmKBf/V4sjH8z9KGPzUESodpsFdLaasP2NKn1fnxn30P4yq3oNqk
- ssbj2/NvqqS32ZkdWWkXJlkVUPsWwuPzsVQOZ9C/1d25yCPWpRZ136jdz
- lpu0FWjIf32HboT+qKlNvk1hDwKcJ4kAZC+LV9O8Sos1XUMqTdmyLbu0E g==;
-X-CSE-ConnectionGUID: fFzxk+fJTwqPc21XBUW/aA==
-X-CSE-MsgGUID: e9g7qPTrTvW3C4gwRwEuDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="58204391"
-X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="58204391"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2025 09:13:48 -0700
-X-CSE-ConnectionGUID: kZx8yL4rR16MBk1nfThV5g==
-X-CSE-MsgGUID: bca5TkFkS+25O1buud/Npw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="171215235"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.244.171])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2025 09:13:47 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v3 14/14] drm/xe: Convert pinned suspend eviction for
- exhaustive eviction
-Date: Mon,  1 Sep 2025 18:12:49 +0200
-Message-ID: <20250901161250.5279-15-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250901161250.5279-1-thomas.hellstrom@linux.intel.com>
-References: <20250901161250.5279-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44B0610E4EC;
+	Mon,  1 Sep 2025 16:19:27 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 943DF10E4EC;
+ Mon,  1 Sep 2025 16:19:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Driver-managed_exhaustive?=
+ =?utf-8?q?_eviction_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 01 Sep 2025 16:19:25 -0000
+Message-ID: <175674356560.289891.14057254749863821626@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250901161250.5279-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250901161250.5279-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,257 +36,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pinned suspend eviction and preparation for eviction validates
-system memory for eviction buffers. Do that under a
-validation exclusive lock to avoid interfering with other
-processes validating system graphics memory.
+== Series Details ==
 
-v2:
-- Avoid gotos from within xe_validation_guard().
-- Adapt to signature change of xe_validation_guard().
+Series: Driver-managed exhaustive eviction (rev3)
+URL   : https://patchwork.freedesktop.org/series/152882/
+State : warning
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 184 +++++++++++++++++++++----------------
- 1 file changed, 103 insertions(+), 81 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 583d48d5d240..9199d13d4173 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1139,43 +1139,47 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
- int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
- {
- 	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
--	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
-+	struct xe_validation_ctx ctx;
-+	struct drm_exec exec;
- 	struct xe_bo *backup;
- 	int ret = 0;
- 
--	xe_bo_lock(bo, false);
-+	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.exclusive = true}, ret) {
-+		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
-+		drm_exec_retry_on_contention(&exec);
-+		xe_assert(xe, !ret);
-+		xe_assert(xe, !bo->backup_obj);
- 
--	xe_assert(xe, !bo->backup_obj);
-+		/*
-+		 * Since this is called from the PM notifier we might have raced with
-+		 * someone unpinning this after we dropped the pinned list lock and
-+		 * grabbing the above bo lock.
-+		 */
-+		if (!xe_bo_is_pinned(bo))
-+			break;
- 
--	/*
--	 * Since this is called from the PM notifier we might have raced with
--	 * someone unpinning this after we dropped the pinned list lock and
--	 * grabbing the above bo lock.
--	 */
--	if (!xe_bo_is_pinned(bo))
--		goto out_unlock_bo;
-+		if (!xe_bo_is_vram(bo))
-+			break;
- 
--	if (!xe_bo_is_vram(bo))
--		goto out_unlock_bo;
-+		if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
-+			break;
- 
--	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
--		goto out_unlock_bo;
-+		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
-+					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
-+					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+					   XE_BO_FLAG_PINNED, &exec);
-+		if (IS_ERR(backup)) {
-+			drm_exec_retry_on_contention(&exec);
-+			ret = PTR_ERR(backup);
-+			xe_validation_retry_on_oom(&ctx, &ret);
-+			break;
-+		}
- 
--	backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
--				   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
--				   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
--				   XE_BO_FLAG_PINNED, exec);
--	if (IS_ERR(backup)) {
--		ret = PTR_ERR(backup);
--		goto out_unlock_bo;
-+		backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
-+		ttm_bo_pin(&backup->ttm);
-+		bo->backup_obj = backup;
- 	}
- 
--	backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
--	ttm_bo_pin(&backup->ttm);
--	bo->backup_obj = backup;
--
--out_unlock_bo:
--	xe_bo_unlock(bo);
- 	return ret;
- }
- 
-@@ -1201,57 +1205,12 @@ int xe_bo_notifier_unprepare_pinned(struct xe_bo *bo)
- 	return 0;
- }
- 
--/**
-- * xe_bo_evict_pinned() - Evict a pinned VRAM object to system memory
-- * @bo: The buffer object to move.
-- *
-- * On successful completion, the object memory will be moved to system memory.
-- *
-- * This is needed to for special handling of pinned VRAM object during
-- * suspend-resume.
-- *
-- * Return: 0 on success. Negative error code on failure.
-- */
--int xe_bo_evict_pinned(struct xe_bo *bo)
-+static int xe_bo_evict_pinned_copy(struct xe_bo *bo, struct xe_bo *backup)
- {
--	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
--	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
--	struct xe_bo *backup = bo->backup_obj;
--	bool backup_created = false;
-+	struct xe_device *xe = xe_bo_device(bo);
- 	bool unmap = false;
- 	int ret = 0;
- 
--	xe_bo_lock(bo, false);
--
--	if (WARN_ON(!bo->ttm.resource)) {
--		ret = -EINVAL;
--		goto out_unlock_bo;
--	}
--
--	if (WARN_ON(!xe_bo_is_pinned(bo))) {
--		ret = -EINVAL;
--		goto out_unlock_bo;
--	}
--
--	if (!xe_bo_is_vram(bo))
--		goto out_unlock_bo;
--
--	if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
--		goto out_unlock_bo;
--
--	if (!backup) {
--		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
--					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
--					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
--					   XE_BO_FLAG_PINNED, exec);
--		if (IS_ERR(backup)) {
--			ret = PTR_ERR(backup);
--			goto out_unlock_bo;
--		}
--		backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
--		backup_created = true;
--	}
--
- 	if (xe_bo_is_user(bo) || (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) {
- 		struct xe_migrate *migrate;
- 		struct dma_fence *fence;
-@@ -1289,7 +1248,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
- 		if (iosys_map_is_null(&bo->vmap)) {
- 			ret = xe_bo_vmap(bo);
- 			if (ret)
--				goto out_backup;
-+				goto out_vunmap;
- 			unmap = true;
- 		}
- 
-@@ -1299,15 +1258,78 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
- 
- 	if (!bo->backup_obj)
- 		bo->backup_obj = backup;
--
--out_backup:
-+out_vunmap:
- 	xe_bo_vunmap(backup);
--	if (ret && backup_created)
--		xe_bo_put(backup);
--out_unlock_bo:
-+out_backup:
- 	if (unmap)
- 		xe_bo_vunmap(bo);
--	xe_bo_unlock(bo);
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_bo_evict_pinned() - Evict a pinned VRAM object to system memory
-+ * @bo: The buffer object to move.
-+ *
-+ * On successful completion, the object memory will be moved to system memory.
-+ *
-+ * This is needed to for special handling of pinned VRAM object during
-+ * suspend-resume.
-+ *
-+ * Return: 0 on success. Negative error code on failure.
-+ */
-+int xe_bo_evict_pinned(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
-+	struct xe_validation_ctx ctx;
-+	struct drm_exec exec;
-+	struct xe_bo *backup = bo->backup_obj;
-+	bool backup_created = false;
-+	int ret = 0;
-+
-+	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.exclusive = true}, ret) {
-+		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
-+		drm_exec_retry_on_contention(&exec);
-+		xe_assert(xe, !ret);
-+
-+		if (WARN_ON(!bo->ttm.resource)) {
-+			ret = -EINVAL;
-+			break;
-+		}
-+
-+		if (WARN_ON(!xe_bo_is_pinned(bo))) {
-+			ret = -EINVAL;
-+			break;
-+		}
-+
-+		if (!xe_bo_is_vram(bo))
-+			break;
-+
-+		if (bo->flags & XE_BO_FLAG_PINNED_NORESTORE)
-+			break;
-+
-+		if (!backup) {
-+			backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL,
-+						   xe_bo_size(bo),
-+						   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
-+						   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-+						   XE_BO_FLAG_PINNED, &exec);
-+			if (IS_ERR(backup)) {
-+				drm_exec_retry_on_contention(&exec);
-+				ret = PTR_ERR(backup);
-+				xe_validation_retry_on_oom(&ctx, &ret);
-+				break;
-+			}
-+			backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
-+			backup_created = true;
-+		}
-+
-+		ret = xe_bo_evict_pinned_copy(bo, backup);
-+	}
-+
-+	if (ret && backup_created)
-+		xe_bo_put(backup);
-+
- 	return ret;
- }
- 
--- 
-2.50.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 74a559e87994a9c24e116b5b71ba172a2567ad1f
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Mon Sep 1 18:12:49 2025 +0200
+
+    drm/xe: Convert pinned suspend eviction for exhaustive eviction
+    
+    Pinned suspend eviction and preparation for eviction validates
+    system memory for eviction buffers. Do that under a
+    validation exclusive lock to avoid interfering with other
+    processes validating system graphics memory.
+    
+    v2:
+    - Avoid gotos from within xe_validation_guard().
+    - Adapt to signature change of xe_validation_guard().
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f2856d85f7452831ece60ff0d26aa6aa4d6a3a55 drm-intel
+6509adfc213d drm/xe: Pass down drm_exec context to validation
+-:1164: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1164: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1260 lines checked
+aa4a27da6547 drm/xe: Introduce an xe_validation wrapper around drm_exec
+-:381: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
+#381: FILE: drivers/gpu/drm/xe/xe_validation.h:145:
++#define xe_validation_retry_on_oom(_ctx, _ret)				\
++	do {								\
++		if (xe_validation_should_retry(_ctx, _ret))		\
++			goto *__drm_exec_retry_ptr;			\
++	} while (0)
+
+-:403: WARNING:TABSTOP: Statements should start on a tabstop
+#403: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
++	     if (_T) xe_validation_ctx_fini(_T);,
+
+-:403: ERROR:SPACING: space required after that ';' (ctx:VxO)
+#403: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
++	     if (_T) xe_validation_ctx_fini(_T);,
+ 	                                       ^
+
+-:403: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#403: FILE: drivers/gpu/drm/xe/xe_validation.h:167:
++	     if (_T) xe_validation_ctx_fini(_T);,
+
+-:423: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#423: FILE: drivers/gpu/drm/xe/xe_validation.h:187:
++#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
++	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
++	drm_exec_until_all_locked(_exec)
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:423: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_exec' - possible side-effects?
+#423: FILE: drivers/gpu/drm/xe/xe_validation.h:187:
++#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
++	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
++	drm_exec_until_all_locked(_exec)
+
+total: 3 errors, 2 warnings, 1 checks, 372 lines checked
+357ceb9205d1 drm/xe: Convert xe_bo_create_user() for exhaustive eviction
+4e0d7788f6ae drm/xe: Convert SVM validation for exhaustive eviction
+02d3071a7a86 drm/xe: Convert existing drm_exec transactions for exhaustive eviction
+97d57aa2f187 drm/xe: Convert the CPU fault handler for exhaustive eviction
+ede7d16f06cd drm/xe/display: Convert __xe_pin_fb_vma()
+0a8d4b81daf0 drm/xe: Convert xe_dma_buf.c for exhaustive eviction
+39688f4503f7 drm/xe: Rename ___xe_bo_create_locked()
+75bfa37c2725 drm/xe: Convert xe_bo_create_pin_map_at() for exhaustive eviction
+999ce7f7e320 drm/xe: Convert xe_bo_create_pin_map() for exhaustive eviction
+-:57: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/xe/display/intel_fbdev_fb.c:59:
++						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+
+total: 0 errors, 1 warnings, 0 checks, 649 lines checked
+c129b8b1d18f drm/xe/sriov: Convert pf_provision_vf_lmem for exhaustive eviction
+35adf375865b drm/xe: Convert psmi_alloc_object for exhaustive eviction
+74a559e87994 drm/xe: Convert pinned suspend eviction for exhaustive eviction
+
 
