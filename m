@@ -4,57 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0DCCA0FFD
-	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 10:21:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AAE3CA0FFD
+	for <intel-xe@archiver.kernel.org>; Mon,  1 Sep 2025 10:37:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7427710E40D;
-	Mon,  1 Sep 2025 10:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C09F10E418;
+	Mon,  1 Sep 2025 10:37:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iVAtBJnq";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="I8HrIaZw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DBB410E40D;
- Mon,  1 Sep 2025 10:21:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756722087; x=1788258087;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=wvZ/8kpw7lZjYQYGNXH2RAmF9kM0JdANm9gQujy9Dpw=;
- b=iVAtBJnq6m4Xmz5c58M//4F39hO+loWV1DD0VNN82V6PhuD0eEGTsUW/
- FSF72vM4eJup9GEwAxghefalN1Qv5Pzbr9bFCM/4l0jQQPrez3h7ZUodW
- 0u0yn25XEUY+JMrrTOItgFLuH84/FsByv53Nq3Zq9jwPtmE6QLrcgDT6u
- oKHtHUvDss+baXncNBffIwCkT+YcwdgPatTaDuEl1JB9tUByM2hBD1JsN
- ZpzNcReZp0Q+3MTUL397jPQAd/pHoAvjCLxHD/eEysM7PVKEr4+NnUL+p
- GXQOmhjACgCGMrhPVZvCB7iQachf/dL/t0QnQEyKkBayvTSHDJ/BWzOLf g==;
-X-CSE-ConnectionGUID: iNvm4mTcSayjkqU9aw50Mg==
-X-CSE-MsgGUID: bC4eLr6iRW6M4F2F8dgDQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11539"; a="70081034"
-X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="70081034"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2025 03:21:26 -0700
-X-CSE-ConnectionGUID: haHk2W0GSiymdejs+lDq0g==
-X-CSE-MsgGUID: UGsM8mocTzujRxn3K78guQ==
-X-ExtLoop1: 1
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.148])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2025 03:21:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH] drm/i915/bios: Remove unnecessary checks of PSR idle
- frames in VBT binary
-In-Reply-To: <20250901101033.4176277-1-jouni.hogander@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250901101033.4176277-1-jouni.hogander@intel.com>
-Date: Mon, 01 Sep 2025 13:21:20 +0300
-Message-ID: <ffb7d264934868be9ca40d782cf496cac1d10a58@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6D610E418
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 Sep 2025 10:37:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=OLPsENV76h+w+lliQYuscoPhcFB9c77wc2L12rpUNew=; b=I8HrIaZw5X/PTC0M53yPylXIig
+ HLzh4vZEhomBYPu8nDIlshGdQ2aLAW2IJhPfIWbnhxrj1lU4xMUU26sZUXvGiBE91f3lCvQ5aN8ST
+ lhyNxVJmPoMJPHPCSgN75Z2xG8luXic1fd3bsMc3ecgexEWvviz/iiKdkAyNf4hqMivOuzbH3ltUk
+ kg3RgyEKzDSMxYHN0m6oenI6Zicja6cmq0Quw0TckXeEgpv753i44H/zNdaK1xcglyTLD7jZULoqy
+ kZDeca/bCysvyVmcL6HePnGGqJvqQe5xHhEqDlriCFkUrVXeJ0PKtAv95QFyAC2Rhiox4oi2SRIu1
+ iX6Pr+Cw==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1ut1un-005Eyx-PT; Mon, 01 Sep 2025 12:37:33 +0200
+Message-ID: <52e66d66-c479-40f1-872d-7f6b26912544@igalia.com>
+Date: Mon, 1 Sep 2025 11:37:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 02/13] drm/xe/xelp: Quiesce memory traffic before
+ invalidating auxccs
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20250821141458.72876-1-tvrtko.ursulin@igalia.com>
+ <20250821141458.72876-3-tvrtko.ursulin@igalia.com>
+ <aK8YmLNQ_Uu3uzyn@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aK8YmLNQ_Uu3uzyn@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +62,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 01 Sep 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> PSR idle frames in VBT binary is a 4 bits wide bitfield. Checking if it's
-> below 0 or over 15 doesn't make sense. Remove these checks.
->
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On 27/08/2025 15:39, Rodrigo Vivi wrote:
+> On Thu, Aug 21, 2025 at 03:14:44PM +0100, Tvrtko Ursulin wrote:
+>> According to i915 before invalidating auxccs we must quiesce the memory
+>> traffic by an extra flush.
+> 
+> Perhaps we should be more specific about what commits exactly are mentioning this?
+> 
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_ring_ops.c       | 7 ++++++-
+>>   drivers/gpu/drm/xe/xe_ring_ops_types.h | 2 +-
+>>   2 files changed, 7 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+>> index 761740d7769f..f56506ebbeca 100644
+>> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+>> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+>> @@ -358,10 +358,15 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>>   	struct xe_gt *gt = job->q->gt;
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+>> +	const bool aux_ccs = has_aux_ccs(xe);
+>>   	u32 mask_flags = 0;
+>>   
+>>   	i = emit_copy_timestamp(lrc, dw, i);
+>>   
+>> +	/* hsdes: 1809175790 */
+> 
+> in i915 I just see a mention to this HSD which is the
+> 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for all engines")
+> 
+> but that is not about emitting the flush, but about fixing the aux
+> table invalidation itself. And that is in sync what written on this
+> HSD, but I don't believe this patch is about that.
+> 
+> So, although this patch itself kind of makes sense, I believe it
+> deserves a better message.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 7d7193a05d88..3596dce84c28 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1567,10 +1567,7 @@ parse_psr(struct intel_display *display,
->=20=20
->  	panel->vbt.psr.full_link =3D psr_table->full_link;
->  	panel->vbt.psr.require_aux_wakeup =3D psr_table->require_aux_to_wakeup;
-> -
-> -	/* Allowed VBT values goes from 0 to 15 */
-> -	panel->vbt.psr.idle_frames =3D psr_table->idle_frames < 0 ? 0 :
-> -		psr_table->idle_frames > 15 ? 15 : psr_table->idle_frames;
-> +	panel->vbt.psr.idle_frames =3D psr_table->idle_frames;
->=20=20
->  	/*
->  	 * New psr options 0=3D500us, 1=3D100us, 2=3D2500us, 3=3D0us
+My logic was this:
 
---=20
-Jani Nikula, Intel
+d0d829e56674c (Daniele Ceraolo Spurio 2020-12-09 23:36:18 +0000 244) int 
+gen12_emit_flush_rcs(struct i915_request *rq, u32 mode)
+d0d829e56674c (Daniele Ceraolo Spurio 2020-12-09 23:36:18 +0000 245) {
+803efd297e315 (Daniele Ceraolo Spurio 2022-03-01 15:15:40 -0800 246) 
+struct intel_engine_cs *engine = rq->engine;
+803efd297e315 (Daniele Ceraolo Spurio 2022-03-01 15:15:40 -0800 247)
+ad8ebf12217e4 (Jonathan Cavitt        2023-07-25 02:19:46 +0200 248)    /*
+ad8ebf12217e4 (Jonathan Cavitt        2023-07-25 02:19:46 +0200 249) 
+* On Aux CCS platforms the invalidation of the Aux
+ad8ebf12217e4 (Jonathan Cavitt        2023-07-25 02:19:46 +0200 250) 
+* table requires quiescing memory traffic beforehand
+ad8ebf12217e4 (Jonathan Cavitt        2023-07-25 02:19:46 +0200 251)     */
+ad8ebf12217e4 (Jonathan Cavitt        2023-07-25 02:19:46 +0200 252) 
+if (mode & EMIT_FLUSH || gen12_needs_ccs_aux_inv(engine)) {
+
+So commit ad8ebf12217e4 added the flush before invalidate:
+
+commit ad8ebf12217e451cd19804b1c3e97ad56491c74a
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Tue Jul 25 02:19:46 2023 +0200
+
+     drm/i915/gt: Ensure memory quiesced before invalidation
+
+     All memory traffic must be quiesced before requesting
+     an aux invalidation on platforms that use Aux CCS.
+
+     Fixes: 972282c4cf24 ("drm/i915/gen12: Add aux table invalidate for 
+all engines")
+     Requires: a2a4aa0eef3b ("drm/i915: Add the gen12_needs_ccs_aux_inv 
+helper")
+     Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+     Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+     Cc: <stable@vger.kernel.org> # v5.8+
+     Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+     Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+     Link: 
+https://patchwork.freedesktop.org/patch/msgid/20230725001950.1014671-4-andi.shyti@linux.intel.com
+
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c 
+b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 46744f966077..58b448708e75 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -214,7 +214,11 @@ int gen12_emit_flush_rcs(struct i915_request *rq, 
+u32 mode)
+  {
+         struct intel_engine_cs *engine = rq->engine;
+
+-       if (mode & EMIT_FLUSH) {
++       /*
++        * On Aux CCS platforms the invalidation of the Aux
++        * table requires quiescing memory traffic beforehand
++        */
++       if (mode & EMIT_FLUSH || gen12_needs_ccs_aux_inv(engine)) {
+
+And ad8ebf12217e4 referenced 972282c4cf24 as the commit it was fixing, 
+while 972282c4cf24 is the one which references hsdes#1809175790. So I 
+decided to tag this patch with it as a transitive property.
+
+If I remove the HSD reference, replace it with a comment as the one in 
+i915, and put the above commit chain reasoning to the commit message 
+will that be good enough?
+
+Regards,
+
+Tvrtko
+
+>> +	if (aux_ccs)
+>> +		i = emit_render_cache_flush(job, dw, i);
+>> +
+>>   	dw[i++] = preparser_disable(true);
+>>   	if (lacks_render)
+>>   		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+>> @@ -372,7 +377,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>>   	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
+>>   
+>>   	/* hsdes: 1809175790 */
+>> -	if (has_aux_ccs(xe))
+>> +	if (aux_ccs)
+>>   		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
+>>   
+>>   	dw[i++] = preparser_disable(false);
+>> diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+>> index d7e3e150a9a5..477dc7defd72 100644
+>> --- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+>> @@ -8,7 +8,7 @@
+>>   
+>>   struct xe_sched_job;
+>>   
+>> -#define MAX_JOB_SIZE_DW 58
+>> +#define MAX_JOB_SIZE_DW 70
+>>   #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+>>   
+>>   /**
+>> -- 
+>> 2.48.0
+>>
+
