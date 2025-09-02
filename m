@@ -4,64 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD63DCA0FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 10:06:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59A5ACA1005
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 10:15:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E8610E649;
-	Tue,  2 Sep 2025 10:06:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B29210E64E;
+	Tue,  2 Sep 2025 10:15:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dXTl1tZr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aXYtTNiy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 226F810E647;
- Tue,  2 Sep 2025 10:06:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE90410E64E
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Sep 2025 10:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756807579; x=1788343579;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KFg2SpqDcT2OUfvfjPTfytrhkxekNr/vh3quatMTd8Y=;
- b=dXTl1tZrk1rBJ3oFIdjjL6qtF7nPmDb3H/uv4gAwci9+MJWkuZDYcbiM
- 4im6/4wOqWWLaUGLGmUkUT7or6hOXTyThU6xoFS5gqeYWFUsCCqAdrLTG
- UehYeST6g9rH7VlUY2wsUuTf4/NBfraZCoFdDS3Nix3UPtHILqMHYotgQ
- qu1shDa/8GHmd1lgvbRAD6rSqDphEMRG6lQlcW5TCmQJ6ObRyp7yKzjcR
- Pq6M55ZR/cj65gdSMmZN3hnb/wJ1P6qNPIcti8WiveJ+dHic8nz/3IzFF
- WjRKTiSJocgflTzmnH0M618hhI6eh/jZXQvfI7526GbcOOFEPqhqyZiSy A==;
-X-CSE-ConnectionGUID: ozXGOIauR8KdTXPnql9NXg==
-X-CSE-MsgGUID: HF42twvTRVeWTKlKDzSFlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70502503"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="70502503"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 03:06:18 -0700
-X-CSE-ConnectionGUID: 4mNxlZfATPm/Hl8Y2uA3zg==
-X-CSE-MsgGUID: GqyBaTX7S4egJGuHUTwjog==
+ t=1756808153; x=1788344153;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GGb0if7cY3nl0Q7e3VR0odBpHnup/1LTJCVQrgGyaRA=;
+ b=aXYtTNiycb3zF2Mmg4bc9r6gsc5Vm6tSTjqWfCYXE00mKnH3SUGP1ZSf
+ yISWDzVzZLjPnTqFHrzF20jb4DSPI+gnCzOtxPpEmIbegVkiKppQJTvSk
+ mvTyuf08uMLOHrho21a9YTs8sR2L+TuZfsVZaLUGtnmZkiLPXy88g+z6s
+ P88Id7OheGRkBvj9FHa0xdLowFAlwzdutqMDJld3QEmcfxdSe+33EoG2p
+ 8FYlfFDKz5FoLwBcEcMVqLGr7EdrPVDAeafPZdTnQvtpwWGhEqYJsDuF6
+ LZWsI2yjX1Qso8C3EoBJ03+iw/3JDsBrtCkO0nZjlp9FUrFT6NqByfhQp Q==;
+X-CSE-ConnectionGUID: GW8XCjPsQl+kBf+in3EKFA==
+X-CSE-MsgGUID: 1fQhiMWtSrGUaa7BI/4Sdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70177373"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="70177373"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 03:15:53 -0700
+X-CSE-ConnectionGUID: Sv5XrnaWRKiMKtLwNkBjmA==
+X-CSE-MsgGUID: +3tmhibRSUWgwjqcJAlUew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="170793683"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.193])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 03:06:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, xaver.hugl@kde.org, harry.wentland@amd.com,
- uma.shankar@intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH v4 1/4] drm: Define user readable error codes for atomic
- ioctl
-In-Reply-To: <20250902-atomic-v4-1-a97b4bed969b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250902-atomic-v4-0-a97b4bed969b@intel.com>
- <20250902-atomic-v4-1-a97b4bed969b@intel.com>
-Date: Tue, 02 Sep 2025 13:06:09 +0300
-Message-ID: <151f2f238b7ad4d86e503a1b0061a5bd840a55d0@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="170496257"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa006.jf.intel.com with ESMTP; 02 Sep 2025 03:15:49 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH v9] drm/xe/vf: Enable CCS save/restore only on supported GUC
+ versions
+Date: Tue,  2 Sep 2025 16:02:57 +0530
+Message-ID: <20250902103256.21658-2-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,94 +67,292 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 02 Sep 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> There can be multiple reasons for a failure in atomic_ioctl. Most often
-> in these error conditions -EINVAL is returned. User/Compositor would
-> have to blindly take a call on failure of this ioctl so as to use
-> ALLOW_MODESET or any. It would be good if user/compositor gets a
-> readable error code on failure so they can take proper corrections in
-> the next commit.
-> The struct drm_mode_atomic is being passed by the user/compositor which
-> holds the properties for modeset/flip. Reusing the same struct for
-> returning the error code in case of failure can save by creating a new
-> uapi/interface for returning the error code.
-> The element 'reserved' in the struct drm_mode_atomic is used for
-> returning the user readable error code. This points to the struct
-> drm_mode_atomic_err_code. Failure reasons have been initialized in
-> DRM_MODE_ATOMIC_FAILURE_REASON.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+CCS save/restore is supported starting with GuC 70.48.0 (compatibility
+version 1.23.0). Gate the feature on the GuC firmware version and keep it
+disabled on older or unsupported versions.
 
-Please run 'scripts/kernel-doc -Wall -none path/to/file' on all changes,
-and make sure you're not adding new errors. There are plenty, and I'm
-not going to iterate to you separately what the tool can tell you.
+Fixes: f3009272ff2e ("drm/xe/vf: Create contexts for CCS read write")
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-> ---
->  include/uapi/drm/drm_mode.h | 41 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index a122bea2559387576150236e3a88f99c24ad3138..6c4929e591b30b7a5eac472dadeeb3c9400e36df 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -45,6 +45,7 @@ extern "C" {
->  #define DRM_CONNECTOR_NAME_LEN	32
->  #define DRM_DISPLAY_MODE_LEN	32
->  #define DRM_PROP_NAME_LEN	32
-> +#define DRM_MODE_ATOMIC_FAILURE_STRING_LEN	64
+---
+V8 -> V9:
+- Updated MAKE_GUC_VER to MAKE_GUC_VER_STRUCT (Michal)
 
-64 is enough for everyone?
+V7 -> V8:
+- Fixed review comments (Michal)
 
->  
->  #define DRM_MODE_TYPE_BUILTIN	(1<<0) /* deprecated */
->  #define DRM_MODE_TYPE_CLOCK_C	((1<<1) | DRM_MODE_TYPE_BUILTIN) /* deprecated */
-> @@ -1157,6 +1158,46 @@ struct drm_mode_destroy_dumb {
->  		DRM_MODE_ATOMIC_NONBLOCK |\
->  		DRM_MODE_ATOMIC_ALLOW_MODESET)
->  
-> +/**
-> + * enum drm_mode_atomic_err_code -  error codes for failures in atomic_ioctl
-> + * @DRM_MODE_ATOMIC_INVALID_API_USAGE: invallid API usage(DRM_ATOMIC not
-> + *				       enabled, invalid falg, page_flip event
-> + *				       with test-only, etc)
-> + * @DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET: Need full modeset on this crtc
-> + * @DRM_MODE_ATOMIC_NEED_FULL_MODESET: Need full modeset on all connected crtc's
-> + * @DRM_MODE_ATOMIC_ASYN_NOTSUPP_PLANE: Aync flip not supported on this plane
-> + * DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP: Modifier not supported by async flip
-> + * @DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED: Property changed in async flip
-> + */
-> +enum drm_mode_atomic_failure_codes {
-> +	DRM_MODE_ATOMIC_INVALID_API_USAGE,
-> +	DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
-> +	DRM_MODE_ATOMIC_NEED_FULL_MODESET,
-> +	DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
-> +	DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP,
-> +	DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
-> +};
-> +
-> +/**
-> + * drm_mode_atomic_err_code - struct to store the error code
-> + *
-> + * pointer to this struct will be stored in reserved variable of
-> + * struct drm_mode_atomic to report the failure cause to the user.
-> + *
-> + * @failure_code: error codes defined in enum drm_moide_atomic_failure_code
-> + * @failure_string_ptr: pointer to user readable error message string
-> + * @failure_obj_ptr: pointer to the drm_object that caused error
-> + * @reserved: reserved for future use
-> + * @count_objs: count of drm_objects if multiple drm_objects caused error
-> + */
-> +struct drm_mode_atomic_err_code {
-> +	__u64 failure_code;
-> +	__u64 failure_objs_ptr;
-> +	__u64 reserved;
-> +	__u32 count_objs;
-> +	char failure_string[DRM_MODE_ATOMIC_FAILURE_STRING_LEN];
-> +};
-> +
->  struct drm_mode_atomic {
->  	__u32 flags;
->  	__u32 count_objs;
+V6 -> V7:
+- Fixed review comments (Michal)
 
+V5 -> V6:
+- Fixed issues reported by patchwork.
+
+V4 -> V5:
+- Fixed issues reported by patchwork.
+
+V3 -> V4:
+- Fixed review comments (Michal, Andi)
+
+V2 -> V3:
+- Fixed review comments (Michal)
+
+V1 -> V2:
+- Fixed review comments (Michal)
+---
+ drivers/gpu/drm/xe/xe_device.c         |  2 +-
+ drivers/gpu/drm/xe/xe_sriov.c          | 14 ++---
+ drivers/gpu/drm/xe/xe_sriov.h          |  2 +-
+ drivers/gpu/drm/xe/xe_sriov_vf.c       | 87 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_sriov_vf.h       |  4 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c   |  5 +-
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h |  5 ++
+ 7 files changed, 95 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 9e4773a17ef8..9e2952c9c06a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -950,7 +950,7 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	xe_vsec_init(xe);
+ 
+-	err = xe_sriov_late_init(xe);
++	err = xe_sriov_init_late(xe);
+ 	if (err)
+ 		goto err_unregister_display;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 87911fb4eea7..7d2d6de2aabf 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -160,19 +160,15 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+ }
+ 
+ /**
+- * xe_sriov_late_init() - SR-IOV late initialization functions.
++ * xe_sriov_init_late() - SR-IOV late initialization functions.
+  * @xe: the &xe_device to initialize
+  *
+- * On VF this function will initialize code for CCS migration.
+- *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_sriov_late_init(struct xe_device *xe)
++int xe_sriov_init_late(struct xe_device *xe)
+ {
+-	int err = 0;
+-
+-	if (IS_VF_CCS_INIT_NEEDED(xe))
+-		err = xe_sriov_vf_ccs_init(xe);
++	if (IS_SRIOV_VF(xe))
++		return xe_sriov_vf_init_late(xe);
+ 
+-	return err;
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 0e0c1abf2d14..6db45df55615 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -18,7 +18,7 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+ void xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
+-int xe_sriov_late_init(struct xe_device *xe);
++int xe_sriov_init_late(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(const struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 5de81f213d83..cb062328551a 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -10,6 +10,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_irq.h"
+@@ -18,6 +19,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
+ #include "xe_sriov_vf.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_tile_sriov_vf.h"
+ 
+ /**
+@@ -127,16 +129,66 @@
+  *      |                               |                               |
+  */
+ 
+-static bool vf_migration_supported(struct xe_device *xe)
++/**
++ * xe_sriov_vf_migration_supported - Report whether SR-IOV VF migration is
++ * supported or not.
++ * @xe: the &xe_device to check
++ *
++ * Returns: true if VF migration is supported, false otherwise.
++ */
++bool xe_sriov_vf_migration_supported(struct xe_device *xe)
++{
++	xe_assert(xe, IS_SRIOV_VF(xe));
++	return xe->sriov.vf.migration.enabled;
++}
++
++static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
++{
++	struct va_format vaf;
++	va_list va_args;
++
++	xe_assert(xe, IS_SRIOV_VF(xe));
++
++	va_start(va_args, fmt);
++	vaf.fmt = fmt;
++	vaf.va  = &va_args;
++	xe_sriov_notice(xe, "migration disabled: %pV\n", &vaf);
++	va_end(va_args);
++
++	xe->sriov.vf.migration.enabled = false;
++}
++
++static void migration_worker_func(struct work_struct *w);
++
++static void vf_migration_init_early(struct xe_device *xe)
+ {
+ 	/*
+ 	 * TODO: Add conditions to allow specific platforms, when they're
+ 	 * supported at production quality.
+ 	 */
+-	return IS_ENABLED(CONFIG_DRM_XE_DEBUG);
+-}
++	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
++		return vf_disable_migration(xe,
++					    "experimental feature not available on production builds");
++
++	if (GRAPHICS_VER(xe) < 20)
++		return vf_disable_migration(xe, "requires gfx version >= 20, but only %u found",
++					    GRAPHICS_VER(xe));
++
++	if (!IS_DGFX(xe)) {
++		struct xe_uc_fw_version guc_version;
++
++		xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
++		if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 23, 0))
++			return vf_disable_migration(xe,
++						    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
++						    guc_version.major, guc_version.minor);
++	}
+ 
+-static void migration_worker_func(struct work_struct *w);
++	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
++
++	xe->sriov.vf.migration.enabled = true;
++	xe_sriov_dbg(xe, "migration support enabled\n");
++}
+ 
+ /**
+  * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
+@@ -144,10 +196,7 @@ static void migration_worker_func(struct work_struct *w);
+  */
+ void xe_sriov_vf_init_early(struct xe_device *xe)
+ {
+-	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+-
+-	if (!vf_migration_supported(xe))
+-		xe_sriov_info(xe, "migration not supported by this module version\n");
++	vf_migration_init_early(xe);
+ }
+ 
+ /**
+@@ -302,8 +351,8 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 	xe_pm_runtime_get(xe);
+ 	vf_post_migration_shutdown(xe);
+ 
+-	if (!vf_migration_supported(xe)) {
+-		xe_sriov_err(xe, "migration not supported by this module version\n");
++	if (!xe_sriov_vf_migration_supported(xe)) {
++		xe_sriov_err(xe, "migration is not supported\n");
+ 		err = -ENOTRECOVERABLE;
+ 		goto fail;
+ 	}
+@@ -378,3 +427,21 @@ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+ 	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
+ 		 "scheduled" : "already in progress");
+ }
++
++/**
++ * xe_sriov_vf_init_late() - SR-IOV VF late initialization functions.
++ * @xe: the &xe_device to initialize
++ *
++ * This function initializes code for CCS migration.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_vf_init_late(struct xe_device *xe)
++{
++	int err = 0;
++
++	if (xe_sriov_vf_migration_supported(xe))
++		err = xe_sriov_vf_ccs_init(xe);
++
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+index 7b8622cff2b7..3bf3364799ad 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+@@ -6,9 +6,13 @@
+ #ifndef _XE_SRIOV_VF_H_
+ #define _XE_SRIOV_VF_H_
+ 
++#include <linux/types.h>
++
+ struct xe_device;
+ 
+ void xe_sriov_vf_init_early(struct xe_device *xe);
++int xe_sriov_vf_init_late(struct xe_device *xe);
+ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
++bool xe_sriov_vf_migration_supported(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 4872e43eb440..908590fa79d4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -264,9 +264,8 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 	u32 flags;
+ 	int err;
+ 
+-	xe_assert(xe, IS_SRIOV_VF(xe));
+-	xe_assert(xe, !IS_DGFX(xe));
+-	xe_assert(xe, xe_device_has_flat_ccs(xe));
++	if (!IS_VF_CCS_INIT_NEEDED(xe))
++		return 0;
+ 
+ 	for_each_ccs_rw_ctx(ctx_id) {
+ 		ctx = &tile->sriov.vf.ccs[ctx_id];
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+index 24a873c50c49..2c94d1f92187 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+@@ -35,6 +35,11 @@ struct xe_device_vf {
+ 		struct work_struct worker;
+ 		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
+ 		unsigned long gt_flags;
++		/**
++		 * @migration.enabled: flag indicating if migration support
++		 * was enabled or not due to missing prerequisites
++		 */
++		bool enabled;
+ 	} migration;
+ 
+ 	/** @ccs: VF CCS state data */
 -- 
-Jani Nikula, Intel
+2.51.0
+
