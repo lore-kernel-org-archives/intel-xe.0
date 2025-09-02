@@ -4,186 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA63CA0FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 09:10:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB6CDCA0FFE
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 09:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCE210E60C;
-	Tue,  2 Sep 2025 09:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5943110E60C;
+	Tue,  2 Sep 2025 09:15:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="izIS8sFq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nh95mBZH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA8E10E31D;
- Tue,  2 Sep 2025 09:10:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA25F10E60C
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Sep 2025 09:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756804235; x=1788340235;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=WwQVQHHv3og+d9kXbo9B4+B/dhS1dR8Rk1Nh+9B3yGI=;
- b=izIS8sFqtTtobr7E7tU7pUR/rWNbMy6FaGteOHL9Kc5NXgIeBDUPnFXI
- pa4rDkM4gWDfn4sfTmDd1I+MOfifOa5T8jv5bfQwL90rkxBIYWDvJAwQP
- oea/5iBaiiJ2cAVrp7mHbqxoqo6yn+uy81hS4OQ/QQaPamcu0NpmHlNGj
- y+dmQnaPnc911jiXuBwk3WEc7YlnJ2odeqGGKJQm9oPBaq6I5J6vX8c0H
- 38UB5XqKUiexwX96Teu680AmkyBKTQEv5X88e+6Iwgi7iYCTYBCSeDexB
- XVZQpss/TH22oPPHzbVPh+yaoymqgVNKwsH5AkJvjYA9NZQPq2QlI3sWD g==;
-X-CSE-ConnectionGUID: AIRiUqlrTlWu5dgjukELxQ==
-X-CSE-MsgGUID: QIv1HPVVQxWPDiK4nhvZpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="59005317"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="59005317"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 02:10:35 -0700
-X-CSE-ConnectionGUID: NIhuMTbQQ6WkfNt+jFYGFA==
-X-CSE-MsgGUID: pLOER2isR2umjo6qO8nJ9w==
+ t=1756804550; x=1788340550;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MoiMCER0fP/qMkO+zQYocFtDoXo6oQ9uGVp8QAGVohU=;
+ b=Nh95mBZHQFTHv9DtU0Omcd6NlbrTT4z7TNAMOa7mOsRJMx9mkDVpOwW4
+ 9AFlIlCyaqE6Eq8EjDgMEbhC4H5Uzp1GGzI1V3liauH4aoYj+tlAl+GhX
+ wTDcw64Vb7hGJ5FXn1B3hSny6HgP+EY1rJv1qNfDHUPtYA1AiF4pmRN3m
+ q9/q2cKERTmhq15msogG3FwQ5uqxrpODxgZOUlQxPqwubPxj4QHTGJfvZ
+ UlOGq64mIAHGvVheCtHhpHIRhfwd0/rmXW1Wbbsu7FjbG+MZuW7aDioeS
+ oYexAFbwbLk1gH/HcibUJtk260k5n2ILwOMj1X42I5lwqVbunjOxhX2GU w==;
+X-CSE-ConnectionGUID: Y2o3HPTFToKqbgD7yB6mzQ==
+X-CSE-MsgGUID: zTfZ5M5fSIaSMtaeWjYNwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="76668768"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="76668768"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 02:15:50 -0700
+X-CSE-ConnectionGUID: COB+QJhVQQ2J/OmvZx6DrQ==
+X-CSE-MsgGUID: pOM1wo8IRnOksLAOI5C7wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="171667740"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 02:10:35 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 2 Sep 2025 02:10:33 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 2 Sep 2025 02:10:33 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.75)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 2 Sep 2025 02:10:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hVgREn7ZWa5tPRpXmTLUOSolDGhlOJQPfgcjj2j6cRyHGpm4ZIIVh6K7Wpv8bmphJ8n1050HQ4NfsT0H95gGbeZ/aFDuH6KKTD4oKdClw4NUEomGY7LXA9wo9YI04lC169PsemFU4SY5tj7SLA2dBoMtd2QIJS1hCk9z2KMeTlU/V5477pmuoVqdENeCa4ggHA7WQG0F9x2A7ob4aTQ1/ab7cl+mYV9AmKGGpDYV1nVMMOdIB3bSeXvG2lrWBeu7x2MzHFRyVd9UzZF71XDNJBk1151lBxL7+oO8S78gIneHmBAurlLMfnUed6//fjmiklDhHOODtl+Cfi+GnVs01Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CpatTF62e6PgYlI/81knp2Sbo33iCfXHfKvAFoxlKtw=;
- b=EgEDw5xgNk0WI9G5Uu2OL1/BmzW5MiyWbMkOSOuRTsTdQlO/Y0uO2tv5XR0gTlTLwZpaE300WHBeNM+7pVJ/NwOehRyvkeAofCfIT0Eb1LAxA2oyt2q93BrWYtmyXmysC71YQ+mzzb40QCkxeKmE4MkqiIfcCsajvDLlOQjnsve/WUUh/C8rQxpG4Yma2Jy6CmYUXtC2KB/NWDV6y3vPSnYkFuher9tYsr++8kTj4a+jq1xbupx3PRfddURTlMFa8AuICGVUh0fqc9hB919Jn+FGMBmZxMd7mr4PBaN585QYoTkaH4LQPI6bUlkazdjO5HxrtSURy0c47agQiPL9wQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by DS7PR11MB9475.namprd11.prod.outlook.com (2603:10b6:8:26b::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
- 2025 09:10:26 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::5461:fa8c:58b8:e10d%4]) with mapi id 15.20.9073.026; Tue, 2 Sep 2025
- 09:10:26 +0000
-Date: Tue, 2 Sep 2025 11:10:18 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v5 1/8] drm/gpusvm: fix hmm_pfn_to_map_order() usage
-Message-ID: <aLa0ejSifS16yA31@fdugast-desk>
-References: <20250818152152.67815-10-matthew.auld@intel.com>
- <20250818152152.67815-11-matthew.auld@intel.com>
- <aKNlPkAEXJ9/j1Hy@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aKNlPkAEXJ9/j1Hy@lstrano-desk.jf.intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: WA2P291CA0044.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::20) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="176499395"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa004.fm.intel.com with ESMTP; 02 Sep 2025 02:15:48 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH v8] drm/xe/vf: Enable CCS save/restore only on supported GUC
+ versions
+Date: Tue,  2 Sep 2025 15:02:55 +0530
+Message-ID: <20250902093254.16554-2-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|DS7PR11MB9475:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1685771f-2356-4831-5544-08ddea008e1f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aTlZbWZvQ2RwbW1STHJjMDFqUVFmSDZyRlplaStlOHIwRWFoQzEveXVIV3M3?=
- =?utf-8?B?bmtFenlRZHN1K3QrYVA0b0d2MDZoOUtIWWR0aEcrRThBaWk3MVA2MEVwQkEw?=
- =?utf-8?B?VHZBZHBXWkpUOFlqMzBNSDc0cnAyUTQ4dXFvYzYybGNjYmxYMEtQaWdleWRI?=
- =?utf-8?B?NkFRSC9nVm4xbndOdmxvcjRJakdzWTVSOWFhOTdjU2FiQy9Hd3hTSVN4ZUlW?=
- =?utf-8?B?d1dWMU1kaGNHY0FiSDJoV0dNckY0cHdReG9BRUkweTZNWi80R2FSZTJBMkx3?=
- =?utf-8?B?VjJ3QytNWmhYTGloS3J6RE5yRy9tZU9KZXVXM0N3cWlPMCtjaHhWZzFXdVBP?=
- =?utf-8?B?Q0JlVkdVdXIxM0toa2hOVW1WcGN6LzVOYXNkWStOWHhFUmhNYTZMdGFKdmNZ?=
- =?utf-8?B?STA4WEtId1BqVisvMEJRTmErQkVLQU5UTm1ZVFhqWGU3cGNVSEZ5a2c2aVFD?=
- =?utf-8?B?ZEpoa1V5WXVqNGYzZ0t6VmtDYjlYNWc1QlhteHRlUG41Zlc0cHFIdk8vb3FL?=
- =?utf-8?B?SGdoYkJIdHpxaXo2Z25nNFh1SnM1eHN2ZkcrZWtVRzYvU3hkeDAxYU5lN1o0?=
- =?utf-8?B?OEcwM21CaXFXRW5zcGVKMlVPOStxS3p1aWtVSXVRL3JaNjBZdjlEdDRiVUht?=
- =?utf-8?B?ZytvcFAwYUsrcEVRWEtQeityamZJN2IvK2tqb3NIMkpqRmd6Mk5YaXQycFVi?=
- =?utf-8?B?MHRRYnpvS2t1R3ZRRjhSbHJsVXdjZE5RaGVOMThtMGVkWnRxUE9JRjBJdnJQ?=
- =?utf-8?B?QjhYS0M5ZzFaeUh0dHBYUU95NWZsMWVkWmlrYTI4SjY3bGhmL3BuOUpUcmRr?=
- =?utf-8?B?KzNocHMxM1F4eVdvVHpSVjA1STlVU3RoaTg1YlNqQ0ZkTFNJOVdzWGh0Q1JL?=
- =?utf-8?B?NExza2YvT0JlaE10YSt3c2JySjBBWm5OWDJVNkIrWnc1SUJMNUNCdlZMSlU3?=
- =?utf-8?B?ZlN6L0x4T2dsOXNmdzRXSEhnNHN4NithdEcyQktLdjV5cFVjYmtmNURNR3FE?=
- =?utf-8?B?RzVaSEcyaXFUWGU3aG91RWhtell0WXlSWGN5ejVXVDV5U2RiREh4VkJuV0ox?=
- =?utf-8?B?bVVYa0RuOHlOL0FnRlA0b3BPK1FweGNBNEFCQ1F4R3N0eE1naEh4NDdZTWNH?=
- =?utf-8?B?MlgwUjkreXJrb3UvajlQa2kxZ2ZQQ0pRNVdhdmhGeUpGU09MVUQ5aVQxSk12?=
- =?utf-8?B?U05pVWV0SXNSR2M2UWQyWnk2R2ZoeEpLczlscm5nMlRrY21kYUlsbjNyMzZ2?=
- =?utf-8?B?NWY0bjNveDQxcVRYVzFyUkFTYlV6RFgyWnJ4bkZ2UE5sS3EvWnYrTVh0OU5Y?=
- =?utf-8?B?Sk14cFJwV2dyajRRUzY2OGxmMnBZNDRqdmhmKzRwRzBUemFPeWdIODZMbnBV?=
- =?utf-8?B?WDh5YmRZcG1mNmw3NlFOYThKZEZJVHNHb05ZYk1obFVBMEp6UzJuMFIzSlAx?=
- =?utf-8?B?Sk1RaXNnSHMybVg2bGtpa0pDZWhwdDVOTXlMa1YxVExKK2kyQVRrd1doSHJF?=
- =?utf-8?B?YzhENmt6amtGbmlVamZlM2NSSVhFa3ZZaHIybFkvaW0wR3lQNlVJMVZCa05M?=
- =?utf-8?B?U1BxZFExenVUTFF4OUZlRmErSHZ2WktxZXBPQmpxQWFMWW1qVEhhWnVGRjBt?=
- =?utf-8?B?OFFoVjAxbXVXS3FPc2FQay9qaEVIS0tBTXpZYnRZZXo2cmtYaEJNaDEyMWZn?=
- =?utf-8?B?eUNQekF5ZS9qY1ZMcll6NHJ3TXRwTGdGQ3NyaDVxL2krc05WQWJ3WHdwOXhF?=
- =?utf-8?B?b2pmSmNyaGdNTmc5d2RNWUx6aXJaVmIrM0t6OHpHVUtWWkxUKzVpbnFJUjZH?=
- =?utf-8?B?eTg3blFwUWc1cVM4UnlLek5iWXBHRklybWR4L09WYUl5Nys1M3d1Q08vcURD?=
- =?utf-8?B?bVFLUkpBbFlxd29jVjdUN2pTaHJnTzFUeXI1aTNmME03d0VPUzM0VlFjQ3Br?=
- =?utf-8?Q?hyQOMkWI940=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3ZIbCtBZDVrK0EzNnpWbHVRYUxOZDRNTnpKc0pjaTBFcXVRTHZXTElZNlNK?=
- =?utf-8?B?dkk3ek8zQk03VnZWL2g0UnB0aDd2UTM1NzhRR29JZUk2amxEUzdLakFVUmFU?=
- =?utf-8?B?ZDNFMExkWDRKNWtCVlM2aU13V2dPZTd1ZlVuTFRmckV3aDQwMXViL3I4NDQ2?=
- =?utf-8?B?anI3TkgycGZINVR1L0wzWkU3Vk9aTFVLR3ZXTXJnb2tWeU1MTTZvVDBHNVpK?=
- =?utf-8?B?QS8vbk9GQVRPRml1RGdzT3R0bFNFNTRnQzJPZDhIMVIxYWdVY1N1djRZV1JH?=
- =?utf-8?B?V0g1Qmo1SDlnNzVOc2JXZDgxM1NnZlpFTU1qMkR1TUw5U0k5NUU4Ry9hTzNS?=
- =?utf-8?B?OHhacjRjMVVlVHkvcG84WUl5eGtMSHN6c09SOXMvb3pFY0lKck5jb0FkMnlm?=
- =?utf-8?B?SFpSY1ZqaGcrb3ZUNEFLVm9tTlVHWGVsY2VvUnVqWStjc0tvTm1MODJnSndm?=
- =?utf-8?B?Yk1LdWJjT0NRZSs3U2dQQ0ozbVcvcCtQeTFaU0huWm40RkpXazlHVWNCY0pW?=
- =?utf-8?B?cGhIOTVES2lyM09vb29xZGIzWXg2bURYWjRZUjBKbVZjd2VaWVNQTzhRR0s1?=
- =?utf-8?B?OTBxbjZPMStlNWp5YlQ4Zy9SMnlVVXlVVzBDUlZUQnZaRUxPNXRVWDkvNGdD?=
- =?utf-8?B?cGtOajFSNHVyTnhXL3lmT1VhdklxU3BvUU0zaUs0WXN4NG56N3VDUDRXc0xW?=
- =?utf-8?B?bDc4WWlFWm8wY0dFRUJqRnN4Uko4VWNWS2VnaXBzc2RTR1gweW5Bek5kWHZp?=
- =?utf-8?B?VnlBZTFtRkhZU2lwNHAvNG9WSXBrNGhGQmd4ZXJLU3lsMUhBbk1HYkVmaHpS?=
- =?utf-8?B?aCtRNTNJTlYyN203aUZVTkhvZ3VLTzlTVTNHclRqNUxjVkhhOEdHWFhvRld0?=
- =?utf-8?B?VFBnZ2hmRWFwY3JKUkd2RUh6YWk3ZGZnbFZTTUsrVHd4YXh4TzhiWjJrUFQ0?=
- =?utf-8?B?NVVXWCtJT0M5U01yR2E0djFOSjd3dnpsdmRpQXNZUmRHMEZSVHJicVB4K0xq?=
- =?utf-8?B?TUFTMC9kcDc2V25mUjhmLzZWOEFhZWFwNFJ1OXBWRXlybDVGdkhqWnQyd2lI?=
- =?utf-8?B?ZXJtWHVNQzF3MkR3cDlPQXNjdkJJMTJyckloRUVCVm11VzJkaFliZkhmQjNy?=
- =?utf-8?B?dlc2ZjVZa0hlN2hPTjlibi94VHd4L0hKRkxiNnFvS1doUVdlbW9IUEtnRGhU?=
- =?utf-8?B?Wi9BdHR4U29ZdG8waVAyUmljbkpuRGFCVTErZTlkVEdCZXM2a0k2bVhvSmp5?=
- =?utf-8?B?cldNMFFsUEN3Rk45eERqSFZ4bFVGTm5uMHlTcHV0dlV5Q3J0emFXMjZNUk9m?=
- =?utf-8?B?SGJZdmphcnNqbFF2Q3Z0ZjRIZURxQXFlUjlRSHJJV0lhVWhOY0gxMGhTbzJn?=
- =?utf-8?B?VWl1MkVtVFBIQ1pWK0t3U1A1NmIxRmIzbXBiSTF4Y1lxd3dveEoyWVdSMnZr?=
- =?utf-8?B?YzJmZm56aktlczJVNmZkOEdINDZheUloUyt6bDFHTWE5ZHdsS0UzWGRmNTJy?=
- =?utf-8?B?ZDl0a1BwWDBQWGhwbHJVZithR3N1NU5MMTlOZWVWZkNNMFVRVG9MV0FKWmQw?=
- =?utf-8?B?MmdUUkFGTysxUEFXU25jcjdIS0tSZm1iZHdJbThvdzBUT1BQMkFCSUJjOWVZ?=
- =?utf-8?B?WWp1TDlsbGJUd3VwR3ZBcm96TTFCOW92VmJyQ3NUVGZDdThFZnU4eGF2cnJK?=
- =?utf-8?B?SGlXeW5Ya2U5bzRwY09RbWRQaWVNTVkyVXJpVUEwS1hOb3NNRTB2MGxQZ2l5?=
- =?utf-8?B?a2IyVTZaMk1UVllhZnRvQnBURUJGYUJRblRsU3JVTlhvM1psaGNPbnVwZitr?=
- =?utf-8?B?T01ISGZ5Ym5lM1BoOVM0ejBGdEl5L0lSL0xydndEL3hPeFN6eWFSVWRpL0c0?=
- =?utf-8?B?bTJaVXBLWXExcjZsYkJmSitwT0pLK3ZCcUdRVFIwdTYyb0k1ZHJ6Vnlsc0R3?=
- =?utf-8?B?dXBHYXZxWStaak9TR1NUdWx0dWVBVUJXeHJ2UUZiUkJLS3pFOGg5aGViVzBH?=
- =?utf-8?B?REpPSWZpaDNEb3paSWt3d2RHM0xyQ1JsR1dsbjNYd1Z1dkorNEkreTUwcXU4?=
- =?utf-8?B?NXFrbFVVRm0xQ1VLbXEwTXdXc3ZjdGNpQTdEc1JsWGI5VkVKWVBEMDJ3SHBK?=
- =?utf-8?B?SEZSZzdBR3pleWo3MzFZcGFkVlJQRUdQSTV1eitsZ3dTbXl2dTNDa3gzMHow?=
- =?utf-8?B?anc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1685771f-2356-4831-5544-08ddea008e1f
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 09:10:26.4896 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dNCYvYmiQ6Khsj/bHceJ32FR4z0j8586PDGx2cnRJJGackoe5481ahBOEcxuOY3CGpUCkIIwofd+gnmjKoTyxbZ4v5ssfWBBr+fZh7IJacs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB9475
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,101 +67,289 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 18, 2025 at 10:39:10AM -0700, Matthew Brost wrote:
-> On Mon, Aug 18, 2025 at 04:21:54PM +0100, Matthew Auld wrote:
-> > Handle the case where the hmm range partially covers a huge page (like
-> > 2M), otherwise we can potentially end up doing something nasty like
-> > mapping memory which is outside the range, and maybe not even mapped by
-> > the mm. Fix is based on the xe userptr code, which in a future patch
-> > will directly use gpusvm, so needs alignment here.
-> > 
-> > v2:
-> >   - Add kernel-doc (Matt B)
-> >   - s/fls/ilog2/ (Thomas)
-> > 
-> > Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_gpusvm.c | 33 +++++++++++++++++++++++++++++++--
-> >  1 file changed, 31 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> > index 661306da6b2d..50a36e7b71e2 100644
-> > --- a/drivers/gpu/drm/drm_gpusvm.c
-> > +++ b/drivers/gpu/drm/drm_gpusvm.c
-> > @@ -708,6 +708,35 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
-> >  	return range;
-> >  }
-> >  
-> > +/**
-> > + * drm_gpusvm_hmm_pfn_to_order() - Get the largest CPU mapping order.
-> > + * @hmm_pfn: The current hmm_pfn.
-> > + * @hmm_pfn_index: Index of the @hmm_pfn within the pfn array.
-> > + * @npages: Number of pages within the pfn array i.e the hmm range size.
-> > + *
-> > + * To allow skipping PFNs with the same flags (like when they belong to
-> > + * the same huge PTE) when looping over the pfn array, take a given a hmm_pfn,
-> > + * and return the largest order that will fit inside the CPU PTE, but also
-> > + * crucially accounting for the original hmm range boundaries.
-> > + *
-> > + * Return: The largest order that will safely fit within the size of the hmm_pfn
-> > + * CPU PTE.
-> > + */
-> > +static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
-> > +						unsigned long hmm_pfn_index,
-> > +						unsigned long npages)
-> > +{
-> > +	unsigned long size;
-> > +
-> > +	size = 1UL << hmm_pfn_to_map_order(hmm_pfn);
-> > +	size -= (hmm_pfn & ~HMM_PFN_FLAGS) & (size - 1);
-> > +	hmm_pfn_index += size;
-> > +	if (hmm_pfn_index > npages)
-> > +		size -= (hmm_pfn_index - npages);
-> 
-> Hmm, okay. On the core MM side, we’ve discussed updating HMM to populate
-> PFNs only at order granularity. If that lands, this code could break in
-> some odd cases. That argues for leaving HMM as-is for now. For the
-> moment, this code works, but we should keep an eye on HMM—or
-> future-proof it by populating all potentially absent entries.
->
+CCS save/restore is supported starting with GuC 70.48.0 (compatibility
+version 1.23.0). Gate the feature on the GuC firmware version and keep it
+disabled on older or unsupported versions.
 
-For reference, this is the patch which mentions possibly only sparsely
-populating HMM PFNs in the future:
+Fixes: f3009272ff2e ("drm/xe/vf: Create contexts for CCS read write")
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>
 
-https://git.kernel.org/pub/scm/linux/kernel/git/akpm/25-new.git/tree/patches/mm-hmm-populate-pfns-from-pmd-swap-entry.patch
+---
+V7 -> V8:
+- Fixed review comments (Michal)
 
-Francois
+V6 -> V7:
+- Fixed review comments (Michal)
+
+V5 -> V6:
+- Fixed issues reported by patchwork.
+
+V4 -> V5:
+- Fixed issues reported by patchwork.
+
+V3 -> V4:
+- Fixed review comments (Michal, Andi)
+
+V2 -> V3:
+- Fixed review comments (Michal)
+
+V1 -> V2:
+- Fixed review comments (Michal)
+---
+ drivers/gpu/drm/xe/xe_device.c         |  2 +-
+ drivers/gpu/drm/xe/xe_sriov.c          | 14 ++--
+ drivers/gpu/drm/xe/xe_sriov.h          |  2 +-
+ drivers/gpu/drm/xe/xe_sriov_vf.c       | 88 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_sriov_vf.h       |  4 ++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c   |  5 +-
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h |  5 ++
+ 7 files changed, 96 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 9e4773a17ef8..9e2952c9c06a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -950,7 +950,7 @@ int xe_device_probe(struct xe_device *xe)
  
-> Matt 
-> 
-> > +
-> > +	return ilog2(size);
-> > +}
-> > +
-> >  /**
-> >   * drm_gpusvm_check_pages() - Check pages
-> >   * @gpusvm: Pointer to the GPU SVM structure
-> > @@ -766,7 +795,7 @@ static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
-> >  			err = -EFAULT;
-> >  			goto err_free;
-> >  		}
-> > -		i += 0x1 << hmm_pfn_to_map_order(pfns[i]);
-> > +		i += 0x1 << drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
-> >  	}
-> >  
-> >  err_free:
-> > @@ -1342,7 +1371,7 @@ int drm_gpusvm_range_get_pages(struct drm_gpusvm *gpusvm,
-> >  	for (i = 0, j = 0; i < npages; ++j) {
-> >  		struct page *page = hmm_pfn_to_page(pfns[i]);
-> >  
-> > -		order = hmm_pfn_to_map_order(pfns[i]);
-> > +		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
-> >  		if (is_device_private_page(page) ||
-> >  		    is_device_coherent_page(page)) {
-> >  			if (zdd != page->zone_device_data && i > 0) {
-> > -- 
-> > 2.50.1
-> > 
+ 	xe_vsec_init(xe);
+ 
+-	err = xe_sriov_late_init(xe);
++	err = xe_sriov_init_late(xe);
+ 	if (err)
+ 		goto err_unregister_display;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 87911fb4eea7..7d2d6de2aabf 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -160,19 +160,15 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+ }
+ 
+ /**
+- * xe_sriov_late_init() - SR-IOV late initialization functions.
++ * xe_sriov_init_late() - SR-IOV late initialization functions.
+  * @xe: the &xe_device to initialize
+  *
+- * On VF this function will initialize code for CCS migration.
+- *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_sriov_late_init(struct xe_device *xe)
++int xe_sriov_init_late(struct xe_device *xe)
+ {
+-	int err = 0;
+-
+-	if (IS_VF_CCS_INIT_NEEDED(xe))
+-		err = xe_sriov_vf_ccs_init(xe);
++	if (IS_SRIOV_VF(xe))
++		return xe_sriov_vf_init_late(xe);
+ 
+-	return err;
++	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 0e0c1abf2d14..6db45df55615 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -18,7 +18,7 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+ void xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
+-int xe_sriov_late_init(struct xe_device *xe);
++int xe_sriov_init_late(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(const struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 5de81f213d83..b5764caa607b 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -10,6 +10,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_printk.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
+ #include "xe_irq.h"
+@@ -18,6 +19,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
+ #include "xe_sriov_vf.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_tile_sriov_vf.h"
+ 
+ /**
+@@ -127,16 +129,67 @@
+  *      |                               |                               |
+  */
+ 
+-static bool vf_migration_supported(struct xe_device *xe)
++/**
++ * xe_sriov_vf_migration_supported - Report whether SR-IOV VF migration is
++ * supported or not.
++ * @xe: the &xe_device to check
++ *
++ * Returns: true if VF migration is supported, false otherwise.
++ */
++bool xe_sriov_vf_migration_supported(struct xe_device *xe)
++{
++	xe_assert(xe, IS_SRIOV_VF(xe));
++	return xe->sriov.vf.migration.enabled;
++}
++
++static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
++{
++	struct va_format vaf;
++	va_list va_args;
++
++	xe_assert(xe, IS_SRIOV_VF(xe));
++
++	va_start(va_args, fmt);
++	vaf.fmt = fmt;
++	vaf.va  = &va_args;
++	xe_sriov_notice(xe, "migration disabled: %pV\n", &vaf);
++	va_end(va_args);
++
++	xe->sriov.vf.migration.enabled = false;
++}
++
++static void migration_worker_func(struct work_struct *w);
++
++static void vf_migration_init_early(struct xe_device *xe)
+ {
+ 	/*
+ 	 * TODO: Add conditions to allow specific platforms, when they're
+ 	 * supported at production quality.
+ 	 */
+-	return IS_ENABLED(CONFIG_DRM_XE_DEBUG);
+-}
++	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
++		return vf_disable_migration(xe,
++					    "experimental feature not available on production builds");
++
++	if (GRAPHICS_VER(xe) < 20)
++		return vf_disable_migration(xe, "requires gfx version >= 20, but only %u found",
++					    GRAPHICS_VER(xe));
++
++	if (!IS_DGFX(xe)) {
++		struct xe_uc_fw_version guc_version;
++
++		xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
++		if (MAKE_GUC_VER(guc_version.major, guc_version.minor, guc_version.patch) <
++		    MAKE_GUC_VER(1, 23, 0))
++			return vf_disable_migration(xe,
++						    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
++						    guc_version.major, guc_version.minor);
++	}
+ 
+-static void migration_worker_func(struct work_struct *w);
++	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
++
++	xe->sriov.vf.migration.enabled = true;
++	xe_sriov_dbg(xe, "migration support enabled\n");
++}
+ 
+ /**
+  * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
+@@ -144,10 +197,7 @@ static void migration_worker_func(struct work_struct *w);
+  */
+ void xe_sriov_vf_init_early(struct xe_device *xe)
+ {
+-	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
+-
+-	if (!vf_migration_supported(xe))
+-		xe_sriov_info(xe, "migration not supported by this module version\n");
++	vf_migration_init_early(xe);
+ }
+ 
+ /**
+@@ -302,8 +352,8 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 	xe_pm_runtime_get(xe);
+ 	vf_post_migration_shutdown(xe);
+ 
+-	if (!vf_migration_supported(xe)) {
+-		xe_sriov_err(xe, "migration not supported by this module version\n");
++	if (!xe_sriov_vf_migration_supported(xe)) {
++		xe_sriov_err(xe, "migration is not supported\n");
+ 		err = -ENOTRECOVERABLE;
+ 		goto fail;
+ 	}
+@@ -378,3 +428,21 @@ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
+ 	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
+ 		 "scheduled" : "already in progress");
+ }
++
++/**
++ * xe_sriov_vf_init_late() - SR-IOV VF late initialization functions.
++ * @xe: the &xe_device to initialize
++ *
++ * This function initializes code for CCS migration.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_vf_init_late(struct xe_device *xe)
++{
++	int err = 0;
++
++	if (xe_sriov_vf_migration_supported(xe))
++		err = xe_sriov_vf_ccs_init(xe);
++
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+index 7b8622cff2b7..3bf3364799ad 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+@@ -6,9 +6,13 @@
+ #ifndef _XE_SRIOV_VF_H_
+ #define _XE_SRIOV_VF_H_
+ 
++#include <linux/types.h>
++
+ struct xe_device;
+ 
+ void xe_sriov_vf_init_early(struct xe_device *xe);
++int xe_sriov_vf_init_late(struct xe_device *xe);
+ void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
++bool xe_sriov_vf_migration_supported(struct xe_device *xe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 4872e43eb440..908590fa79d4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -264,9 +264,8 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 	u32 flags;
+ 	int err;
+ 
+-	xe_assert(xe, IS_SRIOV_VF(xe));
+-	xe_assert(xe, !IS_DGFX(xe));
+-	xe_assert(xe, xe_device_has_flat_ccs(xe));
++	if (!IS_VF_CCS_INIT_NEEDED(xe))
++		return 0;
+ 
+ 	for_each_ccs_rw_ctx(ctx_id) {
+ 		ctx = &tile->sriov.vf.ccs[ctx_id];
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+index 24a873c50c49..2c94d1f92187 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
+@@ -35,6 +35,11 @@ struct xe_device_vf {
+ 		struct work_struct worker;
+ 		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
+ 		unsigned long gt_flags;
++		/**
++		 * @migration.enabled: flag indicating if migration support
++		 * was enabled or not due to missing prerequisites
++		 */
++		bool enabled;
+ 	} migration;
+ 
+ 	/** @ccs: VF CCS state data */
+-- 
+2.51.0
+
