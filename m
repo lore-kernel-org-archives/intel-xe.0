@@ -4,154 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55316CA0FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 06:10:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA24CA0FFE
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 06:17:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8DC10E59E;
-	Tue,  2 Sep 2025 06:10:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="X7oJrzl0";
-	dkim-atps=neutral
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2078.outbound.protection.outlook.com [40.107.212.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3EC10E597;
- Tue,  2 Sep 2025 06:10:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KPxrXMwmP78DYegelXSDTp0OVJlUEVRLVWQJUxmJEDvXw+PL4XW32PuQo/5sCJaazNRaWPbBffOQvY0Jvw6Fb+nxCz9mrjSnVIa92mEsPCCQ050bEwLIHwJsXl1oZPcuKuKNaxulwXFUbhwwAajjhR0QW1vjQR7YZgOGzwNJiruEQSqb7a1edTZqWwAm8NTT5fv9N5o3XzRf834ondO98ylqqYwtfWy0CbhBmQemkdRygQARnyy1BzSdIgJo5ffmxB+9x2mrLbn7IDL7RbQHt/2CyxW+Ce4xtotjIrEw/mUEzBq3R2Qb3hN9mLxBT6eMgm2Q/KQaKjpmo/PBLUa7wQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EOAwL6a26zujFKe9IOvfwj9cMuNIVY6DhyBjHZ9gFDI=;
- b=ClaWiN8lTUFJVP5jQ3neoh/IUEmsj+z3pqFrlRoIg5f2iwiGl00RXeRj/B9nZ22BEmVRRCgXHJ40JsCVtMs7alMwMnma6WYGRla1/Q2gqdmLWBjvC0PwK2qItAujmSMGgHINEwyXmru3nRVwTYQJPM6piFMqw8ircAlPlPa8LOVY4mv10XoMK6vB//hz3XS8l0bDcbM8gKSQnzmNkBcKByyZhTv+SAPOl9mc3XrLIJs4DNQMj263aCOVvc1uTSwXLUkLeUTvg2wV8Q8ZQlwXOvkbWoP1Mt0wtlNqUq4cwuJM+CNjMlC3NEsTnGaVK7wvWGPQhHyonGxqkog+uVQQ/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EOAwL6a26zujFKe9IOvfwj9cMuNIVY6DhyBjHZ9gFDI=;
- b=X7oJrzl0dVZUWWF1enNVaSFIkNQqF7msXOc9rxa3yYKPh158VPV1S687ekvBh5Qqloib00eaQWRcu15YngnzMpdky+ZAU9uSpMXZJ2cr/SCUTu8LVMtXliOj6tPr1vmAZGstjRsRkzZWUCNsdrJoVeaRmEZ4cokWkbai81DOvrs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
- by CY8PR12MB7540.namprd12.prod.outlook.com (2603:10b6:930:97::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
- 2025 06:10:05 +0000
-Received: from PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350]) by PH8PR12MB7301.namprd12.prod.outlook.com
- ([fe80::a929:e8eb:ef22:6350%6]) with mapi id 15.20.9073.026; Tue, 2 Sep 2025
- 06:10:05 +0000
-Message-ID: <5f999a32-db26-4964-8152-ac06da8beea4@amd.com>
-Date: Tue, 2 Sep 2025 11:39:57 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] drm/buddy: Optimize free block management with RB
- tree
-Content-Language: en-US
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: christian.koenig@amd.com, matthew.auld@intel.com,
- jani.nikula@linux.intel.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, alexander.deucher@amd.com
-References: <20250901185604.2222-1-Arunpravin.PaneerSelvam@amd.com>
- <20250901194151.GJ4067720@noisy.programming.kicks-ass.net>
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20250901194151.GJ4067720@noisy.programming.kicks-ass.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4PR01CA0103.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:2ac::11) To PH8PR12MB7301.namprd12.prod.outlook.com
- (2603:10b6:510:222::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C78310E595;
+	Tue,  2 Sep 2025 06:17:02 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE8110E595;
+ Tue,  2 Sep 2025 06:17:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4717891729338875133=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|CY8PR12MB7540:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c88d03f-36e6-46ea-ae05-08dde9e75bf6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?azFWdDdwdTlCMldiOE5KcjFkalprc2t5UVZwK0IrSGpWeHBkaUZVa1QzZmhl?=
- =?utf-8?B?bStPenNSNFlSU3pMSFgzMnRrZ0tYWkx2ekNVV0g5N0pVU1I4RkpFaGVvWGc2?=
- =?utf-8?B?SHhweXpLRG1sOVhQYitOcDlqb250dUwxbHRJMDF6RzJUTVRhMmdDNzNEL3B5?=
- =?utf-8?B?UUxnT2lBdCt3ZnZGRDhsNEhVQWRJZXdXMG5FeUQxeHh0cjRiSmg5TDJZZk4v?=
- =?utf-8?B?TWY0WWZUWUludDBDMW5mK0xsZGNiQkpvbHQzQXRsWXVJYUl6NEVjdmVaM2Z2?=
- =?utf-8?B?V2g0T1ZTNTNyNmdsSnZUb3B3N0N0VXRNUm1DdHlnZk5kcDlCMEdLb1pKdUFy?=
- =?utf-8?B?NWM4a1diRWhVSjN5SGVDOWk1VXFDc21ERW9DKzhkRDhwNFJSU0cwZlFUcXhk?=
- =?utf-8?B?Qi80bXM2d3I4SHZuZjY2MjdpMm1odjFuS2lxdWpIeWNJSVhlb3JYcjZhNUhk?=
- =?utf-8?B?MXFQbUNQYmtuTDB2aDJmUjFBRE9kMk5SbHo5OXdWODgrcHE1SHQ1bDhxUml6?=
- =?utf-8?B?TDJSMVhML3VHQjIyUFAxcE5mZHA1RWNEaWJETEZ3NXNuaERFSFdnM0FnYXNW?=
- =?utf-8?B?dGtHZU55WEtlMThTZmd1NlVTSXJyWXU0WDg0RU5CQnlHSm5wVHNSNkNKUEtn?=
- =?utf-8?B?ajRkaU95ZVljQnRPT0pFaWRGaGlxeHBSd0FUYkZvazlTQ0V1Zk4rQXdPM2Za?=
- =?utf-8?B?elNEbjZ4cStHNEtFSzU1TmVWbWpmdTgxK2dUTTlaSS93N3ppRFd2YXJkSkZx?=
- =?utf-8?B?Y2k2TERxdlVkUEEyQWhmdEpBbDR0NllIdEkvdlZUMmJuV3puR2UvSWRVVTNE?=
- =?utf-8?B?ZWMycjJ1TGx2MVduaUZHZGNzb2JzT2kwMzVSaC9mdUtFMzNaT0JBVmxQN1Fp?=
- =?utf-8?B?TnZWU1BpbGZUckphcVFuVHlROHdkWFJ1KzdJeGw0SnVtdDJnSXVHS3crbkRC?=
- =?utf-8?B?cmMzTFgyNllGdkZNTk5yWS9ZRzh2MTF0a0ZvaWFIcEFpY3Yxd1BXY1RSbllH?=
- =?utf-8?B?WnFHa2RWVmVYMjdYMmNsbTBnSFl6V0FtcWd4Z1hEZmVSRzRQc09CMXFEUEpC?=
- =?utf-8?B?b1VwZkx1ZzNWanFqOW42dkFaL3MrQTcvNWE4alNhNnBOZ2M4UnlxUWprQnYr?=
- =?utf-8?B?TlVJUlo5VVRvTXI2V0NCVlVrRWVpNFZuUnNKUHY5MElKU3hIWVdLTSt0TkNu?=
- =?utf-8?B?MlRkbEZYRDd5YlhCZFBBRmwxM3dPbGtWQTZWM0RkUmVMQmVJZ1E1U1JyUThi?=
- =?utf-8?B?VjJqZS9xLzlBM3lrVHVBSy9WQjdpTk5sbysrekFXVXlIS28ra09HZlRLZ2U2?=
- =?utf-8?B?dnBNRWxNcFhGV2J3eWpMOFllZ0l6YTZwQ2dKRDZCTks4ZWFYTEdUbE5kVjJC?=
- =?utf-8?B?YnVveE9FMUZZMnBXY05LL0xJODV1VjBqRTJORWR1eDh2WXJEd0M4dkhxa3J1?=
- =?utf-8?B?SEVkMUtQSVQyajVKZWFmdTQrWkhzSHI0Zkhsd1NkdStwSUxyV3JIeC83Rm43?=
- =?utf-8?B?QzlEbVlyU1pLQnlzdlVpNTZDRG1vMGorTW1sZnh5aHp0VGl5QytPelFEYjlK?=
- =?utf-8?B?QWxYM1JIUkcyQUFjV1lkYitPSU90c1h4L1lBM3Z3b2p0VldCUytWUWFqMGNj?=
- =?utf-8?B?SlFxZFlRZFo3TFordUhMV2F5d2xjNjZHVmFDa2xFUWtWZllrU011WnN0VUpW?=
- =?utf-8?B?K3B3WTMrQzJ5UldnaFNHOFVOeFhGQXdTUlZNUjB6clBuYnpHMWhLWFdWOW02?=
- =?utf-8?B?WldEaU1JQjI0NmhlMjV0aEhxakZXNEtKc3BNUWpLZ24wblFDbXYrNkthcWdE?=
- =?utf-8?B?RWs5RFpFWW1Zb1Q3a0RhVWpHMkdiYzRCVkhwUWY5SENGM3FMKzF1MnhwajVY?=
- =?utf-8?B?dXBUc1g2SC9VekJTeGRKWkxwRC8rbUtQUUpTZEZRQVhwcmJ0NFhmL001SnJh?=
- =?utf-8?Q?AIxfufvGvvQ=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGpOWWZMYUUrTkxQL3Z5RFVrMEluODVsUk1ocCtSYnNOa05reVpkWEtvZ1hs?=
- =?utf-8?B?alJQQlBVcW11aXBPZURpY3BjQlZzbmRsN0VFWHAwRVQyWFBTWDNPZWR2M0JZ?=
- =?utf-8?B?dXpXTE8rUzJ5cVFZdWk0OGsvd0MvYXY3cHFKemYvOW1GUlVFMHhUQkdiTEZI?=
- =?utf-8?B?WjF0cDBvaUtvb3FIeERkV2dpKzV1bEVNdjFPbEdRbkJtQmhYbmN0cGZpQmQy?=
- =?utf-8?B?VVpLNURBVGxlejVpRXRPdGJORXFmSENvQWFuTENZaWdqd0ZpQVhXOGZXVFNG?=
- =?utf-8?B?VnJoekpoZUlhMVpuaFF4c25pNmdtaXl2b2x0a0VVWGlieCtjaHdjRkVoZjJq?=
- =?utf-8?B?TVlxd2h6WjY5TUU4aWx6aExmTFJyendmeGZZdXU2bTc3Y0svaUxTTnNWQmpE?=
- =?utf-8?B?RDMrb0RIYVFiNVhSN0tEZE4vVkxjbXRTMEdaaEQva1ZWa1p6UERTdVowYlF6?=
- =?utf-8?B?Wjd3c0lUOWlyNTlkVHRDKzhBSDJQWTR1a1hwZnhyemdMQ2hNNW1XSWYvZnFx?=
- =?utf-8?B?WHdHSm9oNlBjcUZ2VDJDKzExVzBoRHZpSlpvbTZCU1U0b1lKMDYxOWx1YWdI?=
- =?utf-8?B?aWVaV2JDdEthWGdhc2dRd3ZqMDVxRnBNdE13SDRwTW1hblhVMlYxUzZSYThz?=
- =?utf-8?B?U09STFY2MVZaQWp3N0xraUU0ZlVSTUx1NVUwUGlNdENIUU9PQ3gxODhtRzJh?=
- =?utf-8?B?S1JMeWhzUWw1N1dyZWdIM2EvaHZ0Q2swSlpmNGhhUzNLdG0xY2lMMmhTejI0?=
- =?utf-8?B?MFBVRUpjTXpOSjFjM2J6d3dDaDc2aHFIOVZZZlNUWTJOck44Wktzc1BXOEZD?=
- =?utf-8?B?Z01kQXhLSW00UHhDaHpIeURSbkFLV1N4VGVKQVhPRVIwNFZuaksra3RBSzMw?=
- =?utf-8?B?TFJ0bXVvSFlGWEorVlJmM0lMNGMvdUt1K2tLRExXN1ZFOHpXK2d2NExZV3Y4?=
- =?utf-8?B?ZjVmQnpaWWNyU0I2VVc4UGxyV21BVVhLWk5UZ3o4bkRrYnp6NWVHSWNJbTkw?=
- =?utf-8?B?S25KMGRWdmVnMjBZM21YQVF5RElNNGgzbENWYXZqUU45OVJxb0VteDlMc0pV?=
- =?utf-8?B?TklTZ1RibUZaQm1vS2FhRlQ1VFBZWWU0K3kxQldXOHhzdEdtMEFYY1E4ZWZo?=
- =?utf-8?B?YU5CZHBZUldpTkZYVm16OThZUWU5NzFJZStXbjdPOWRZUkIwYjZIVHYrNzRz?=
- =?utf-8?B?UTJ5aDNKNnZlOG16eWh0SUJnU0s3aUwxVmk1alBab0hXRXNBcUhaZ1pYQXZP?=
- =?utf-8?B?bWJOQldkS2NaeEg1OTFZVU1LZ0VET2ZLWFptdSt0UzA1U2tRdUd4WDhPN1pB?=
- =?utf-8?B?Q0tLdlhmUWVFbEVQcmxTTVNEZitBdU9xOVcza2c4SytlYVdtZGt1d3NOcUkw?=
- =?utf-8?B?RnRYSlZ2TWcvUlRvSFQ3NUgvS0N0a3FBQjgrTkE4cDJHZ2JNVHNLazg4N3Q0?=
- =?utf-8?B?UURlenVRMzdXWFdQWGpBT3N5K0txVVp0SjVlZnptR0dJRHJ3OHhZUXBvYlhm?=
- =?utf-8?B?K2JlR1Ard1VmL3UzZmE4NmgxdTlET2FBaUVNVko4N2Y2V2dVOUwvV1g1L0U5?=
- =?utf-8?B?K1N5Nk1FcmxrSEhrYWdRTnNsdjdSblVnTkd4akttREtqQlZ0cnIwak1aVGls?=
- =?utf-8?B?dHBkQUNaTk42cDR3Q2JJS2Q3dDQyUld1ZlZabmhQQW12cDk1MzhiTFA4Njh2?=
- =?utf-8?B?UUVuS1ZvWEQ4N3RNY0lQcW9ObGlnWE5STXRYSjJJTHppOERvZy9TQ1ZFTlJ4?=
- =?utf-8?B?d0dSYTRJaU1tKzhaTHZjZ0hKWVMvSGtrSUFOT05meHVLMzdRNThqNkplSDBj?=
- =?utf-8?B?bUNUYUZnMERnRHBEWmRkU1hpdWVCM01ZOGw1OTlzYkw4QTV2Wk1iS3d4by9T?=
- =?utf-8?B?dCtROG80akZ2TmcwWEtOaHJENFFiT3VJTjVoL3IrV1lJdVlLQXArYk9HRmZG?=
- =?utf-8?B?c2xJTmpIZ0FQQjhRYVFlRkJ0T3Axc21qU3d0dFV6eTdLL1M0dWxVbXlDUEgw?=
- =?utf-8?B?SlFhNTkvYlhvcGtGOGIwelpTY2hrWHBQRThaS2xhMFczbTJ0Z3NsQ3pVRXlu?=
- =?utf-8?B?N2xIQUJjM0Q0RnFmdHRpRXg5ZU1QWjQ4Z1JTOG0zSmdwYnlhak4rTUdkVkJV?=
- =?utf-8?Q?PFWUzxB+NRnUmA/fhLAFCjONM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c88d03f-36e6-46ea-ae05-08dde9e75bf6
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 06:10:04.9955 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VxPvxNNUxGRkZBSC/Jit53w7MGRWd8d+cns09KZ4q4QJoU0dCutmxgo4PGbVe7FooMl7ML5rX/BK4k/cds0WJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7540
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Optimize_vrr=2Eguardband_an?=
+ =?utf-8?q?d_fix_LRR_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 02 Sep 2025 06:17:01 -0000
+Message-ID: <175679382157.291326.9818491006435376918@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250902044905.3446011-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250902044905.3446011-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,195 +36,264 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4717891729338875133==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 9/2/2025 1:11 AM, Peter Zijlstra wrote:
-> On Tue, Sep 02, 2025 at 12:26:04AM +0530, Arunpravin Paneer Selvam wrote:
->> Replace the freelist (O(n)) used for free block management with a
->> red-black tree, providing more efficient O(log n) search, insert,
->> and delete operations. This improves scalability and performance
->> when managing large numbers of free blocks per order (e.g., hundreds
->> or thousands).
-> Did you consider the interval tree?
+== Series Details ==
 
-In this allocator, free blocks are tracked individually by order and not 
-as arbitrary ranges. The
+Series: Optimize vrr.guardband and fix LRR (rev8)
+URL   : https://patchwork.freedesktop.org/series/151244/
+State : success
 
-operations are keyed insert/delete/lookup, for which an rbtree is 
-sufficient and simper, AFAIK.
+== Summary ==
 
->
->
->> @@ -41,23 +43,53 @@ static void drm_block_free(struct drm_buddy *mm,
->>   	kmem_cache_free(slab_blocks, block);
->>   }
->>   
->> -static void list_insert_sorted(struct drm_buddy *mm,
->> -			       struct drm_buddy_block *block)
->> +static void rbtree_insert(struct drm_buddy *mm,
->> +			  struct drm_buddy_block *block)
->>   {
->> +	struct rb_root *root = &mm->free_tree[drm_buddy_block_order(block)];
->> +	struct rb_node **link = &root->rb_node;
->> +	struct rb_node *parent = NULL;
->>   	struct drm_buddy_block *node;
->> -	struct list_head *head;
->> +	u64 offset;
->> +
->> +	offset = drm_buddy_block_offset(block);
->>   
->> -	head = &mm->free_list[drm_buddy_block_order(block)];
->> -	if (list_empty(head)) {
->> -		list_add(&block->link, head);
->> -		return;
->> +	while (*link) {
->> +		parent = *link;
->> +		node = rb_entry(parent, struct drm_buddy_block, rb);
->> +
->> +		if (offset < drm_buddy_block_offset(node))
->> +			link = &parent->rb_left;
->> +		else
->> +			link = &parent->rb_right;
->>   	}
->>   
->> -	list_for_each_entry(node, head, link)
->> -		if (drm_buddy_block_offset(block) < drm_buddy_block_offset(node))
->> -			break;
->> +	rb_link_node(&block->rb, parent, link);
->> +	rb_insert_color(&block->rb, root);
->> +}
-> static inline bool __drm_bb_less(const struct drm_buddy_block *a,
-> 				 const struct drm_buddy_block *b)
-> {
-> 	return drm_buddy_block_offset(a) < drm_buddy_block_offset(b);
-> }
->
-> #define __node_2_drm_bb(node) rb_entry((node), struct drm_buddy_block, rb)
->
-> static inline bool rb_drm_bb_less(struct rb_node *a, const struct rb_node *b)
-> {
-> 	return __drm_bb_less(__node_2_drm_bb(a), __node_2_drm_bb(b));
-> }
->
-> static void rbtree_insert(struct drm_buddy *mm, struct drm_buddy_block *block)
-> {
-> 	rb_add(block->rb, &mm->free_tree[drm_buddy_block_order(block)], rb_drm_bb_less);
-> }
->
->> +
->> +static void rbtree_remove(struct drm_buddy *mm,
->> +			  struct drm_buddy_block *block)
->> +{
->> +	struct rb_root *root;
->> +
->> +	root = &mm->free_tree[drm_buddy_block_order(block)];
->> +	rb_erase(&block->rb, root);
->>   
->> -	__list_add(&block->link, node->link.prev, &node->link);
->> +	RB_CLEAR_NODE(&block->rb);
->> +}
->> +
->> +static inline struct drm_buddy_block *
->> +rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
->> +{
->> +	struct rb_node *node = rb_last(&mm->free_tree[order]);
->> +
->> +	return node ? rb_entry(node, struct drm_buddy_block, rb) : NULL;
->> +}
-> rb_add_cached() caches the leftmost entry, if you invert the key, the
-> last is first.
+CI Bug Log - changes from xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d_BAT -> xe-pw-151244v8_BAT
+====================================================
 
-With inversion, the in-tree ordering changes from natural ascending 
-offsets to descending,
+Summary
+-------
 
-which can break assumptions in existing buddy allocator code that 
-expects ascending order.
+  **SUCCESS**
 
->
->> diff --git a/include/linux/rbtree.h b/include/linux/rbtree.h
->> index 8d2ba3749866..17190bb4837c 100644
->> --- a/include/linux/rbtree.h
->> +++ b/include/linux/rbtree.h
->> @@ -79,6 +79,62 @@ static inline void rb_link_node_rcu(struct rb_node *node, struct rb_node *parent
->>   	   ____ptr ? rb_entry(____ptr, type, member) : NULL; \
->>   	})
->>   
->> +/**
->> + * rbtree_for_each_entry - iterate in-order over rb_root of given type
->> + *
->> + * @pos:	the 'type *' to use as a loop cursor.
->> + * @root:	'rb_root *' of the rbtree.
->> + * @member:	the name of the rb_node field within 'type'.
->> + */
->> +#define rbtree_for_each_entry(pos, root, member) \
->> +	for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), member); \
->> +	     (pos); \
->> +	     (pos) = rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member))
->> +
->> +/**
->> + * rbtree_reverse_for_each_entry - iterate in reverse in-order over rb_root
->> + * of given type
->> + *
->> + * @pos:	the 'type *' to use as a loop cursor.
->> + * @root:	'rb_root *' of the rbtree.
->> + * @member:	the name of the rb_node field within 'type'.
->> + */
->> +#define rbtree_reverse_for_each_entry(pos, root, member) \
->> +	for ((pos) = rb_entry_safe(rb_last(root), typeof(*(pos)), member); \
->> +	     (pos); \
->> +	     (pos) = rb_entry_safe(rb_prev(&(pos)->member), typeof(*(pos)), member))
->> +
->> +/**
->> + * rbtree_for_each_entry_safe - iterate in-order over rb_root safe against removal
->> + *
->> + * @pos:	the 'type *' to use as a loop cursor
->> + * @n:		another 'type *' to use as temporary storage
->> + * @root:	'rb_root *' of the rbtree
->> + * @member:	the name of the rb_node field within 'type'
->> + */
->> +#define rbtree_for_each_entry_safe(pos, n, root, member) \
->> +	for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), member), \
->> +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL; \
->> +	     (pos); \
->> +	     (pos) = (n), \
->> +	     (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL)
->> +
->> +/**
->> + * rbtree_reverse_for_each_entry_safe - iterate in reverse in-order over rb_root
->> + * safe against removal
->> + *
->> + * @pos:	the struct type * to use as a loop cursor.
->> + * @n:		another struct type * to use as temporary storage.
->> + * @root:	pointer to struct rb_root to iterate.
->> + * @member:	name of the rb_node field within the struct.
->> + */
->> +#define rbtree_reverse_for_each_entry_safe(pos, n, root, member) \
->> +	for ((pos) = rb_entry_safe(rb_last(root), typeof(*(pos)), member), \
->> +	     (n) = (pos) ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*(pos)), member) : NULL; \
->> +	     (pos); \
->> +	     (pos) = (n), \
->> +	     (n) = (pos) ? rb_entry_safe(rb_prev(&(pos)->member), typeof(*(pos)), member) : NULL)
->> +
-> Not really a fan of these. That's typically a sign you're doing it
-> wrong. Full tree iteration is actually slower than linked list.
+  No regressions found.
 
-I understand your concern about full-tree iteration being slower than a 
-list walk. In our current use cases, though,
+  
 
-the cost is not on the hot path and performance is comparable or even 
-better to list traversal. We occasionally need
+Participating hosts (10 -> 11)
+------------------------------
 
-to walk the full set of blocks to perform specific operations, and these 
-macros make that code simpler and
+  Additional (1): bat-dg2-oem2 
 
-less error-prone. They aren't meant to replace targeted lookups or 
-bounded walks, just to cover where a full
+Known issues
+------------
 
-traversal is necessary.
+  Here are the changes found in xe-pw-151244v8_BAT that come from known issues:
 
-Thanks,
+### IGT changes ###
 
-Arun.
+#### Issues hit ####
 
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#623])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#455])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][3] ([Intel XE#1406] / [Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][5] ([Intel XE#288]) +32 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][6] ([Intel XE#255])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][7] ([Intel XE#2229])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][8] ([Intel XE#977])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][9] ([Intel XE#2838] / [Intel XE#979])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][10] ([Intel XE#979])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][11] ([Intel XE#3342])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][12] ([Intel XE#5783]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-vm}:       [FAIL][14] ([Intel XE#5783]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d -> xe-pw-151244v8
+
+  IGT_8519: 8519
+  xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d: e787c75cc8e1279e1b48ddbfdcb4423428984e9d
+  xe-pw-151244v8: 151244v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/index.html
+
+--===============4717891729338875133==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Optimize vrr.guardband and fix LRR (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151244/">https://patchwork.freedesktop.org/series/151244/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d_BAT -&gt; xe-pw-151244v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 11)</h2>
+<p>Additional (1): bat-dg2-oem2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-151244v8_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-bindexecqueue-userptr:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-dg2-oem2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-151244v8/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d -&gt; xe-pw-151244v8</li>
+</ul>
+<p>IGT_8519: 8519<br />
+  xe-3656-e787c75cc8e1279e1b48ddbfdcb4423428984e9d: e787c75cc8e1279e1b48ddbfdcb4423428984e9d<br />
+  xe-pw-151244v8: 151244v8</p>
+
+</body>
+</html>
+
+--===============4717891729338875133==--
