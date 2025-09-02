@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5628CCA0FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 10:55:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A04C3CA0FFE
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 11:23:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA56510E664;
-	Tue,  2 Sep 2025 10:55:20 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C3F810E663;
- Tue,  2 Sep 2025 10:55:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2885002456495704081=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4150810E668;
+	Tue,  2 Sep 2025 11:23:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlbu4PFx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF0CF10E667;
+ Tue,  2 Sep 2025 11:23:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756812216; x=1788348216;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+BAZRzEU2l2EtxAifL5avxRHyCE+bZWzUBuhTzG8hEE=;
+ b=mlbu4PFx1vSr10OALY/I9Vy082vjIU3bXSJRgXOIkUK1rvgJ5Ld8B2nf
+ 6LFCiNFJYlz3dNmUeXntdhwU7Gp8NI2/jeYaipzdNg8f80Zv3E2/qc3po
+ nn274r2LcxSUViV9snevM4vKCDGkqQ9umDOhh7Z3q7VnG01zuR1SM5FnW
+ Egr9ODm4pG4j/G/23fDhDLJSkyIsVfaGsGh4vzNNwOxkxigbSCv3t093w
+ PeuATfMxHkTXxrfHnfD1gLs0XIaDUMQXsd0yB5+TqdYBYptpzZwFyecqI
+ B3cq5+nC8YAhQ9tSxQzFa+xSsRwGzo8X8kFI6vE6ynLUAeTuiw08zbrbt g==;
+X-CSE-ConnectionGUID: pdGD2Zx7SlGKx8gElsYZeg==
+X-CSE-MsgGUID: TqjLTvmRTQqekIQF7o/hFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="46661084"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="46661084"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 04:23:35 -0700
+X-CSE-ConnectionGUID: 8hqFsCwmQ++M7FKZjaCcyg==
+X-CSE-MsgGUID: QzTjjKykTUi78nQ849UURA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="171615683"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by fmviesa008.fm.intel.com with ESMTP; 02 Sep 2025 04:23:34 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, vinod.govindapillai@intel.com,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH 0/1] drm/i915/display: Remove FBC modulo 4 restriction for ADL+
+Date: Tue,  2 Sep 2025 17:05:37 +0530
+Message-ID: <20250902113538.269338-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Enable_CCS_sav?=
- =?utf-8?q?e/restore_only_on_supported_GUC_versions_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 02 Sep 2025 10:55:20 -0000
-Message-ID: <175681052030.292948.3833830577909997328@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250902103256.21658-2-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250902103256.21658-2-satyanarayana.k.v.p@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +62,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2885002456495704081==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+FBC restriction where FBC is disabled for non-modulo 4 plane size
+(including plane size + yoffset) is fixed from ADL onwards in h/w.
+WA:22010751166
 
-== Series Details ==
+Relax the restriction for the same.
 
-Series: drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev9)
-URL   : https://patchwork.freedesktop.org/series/153061/
-State : success
+Test-with: 20250902083342.104956-1-uma.shankar@intel.com
 
-== Summary ==
+Uma Shankar (1):
+  drm/i915/display: Remove FBC modulo 4 restriction for ADL+
 
-CI Bug Log - changes from xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f_BAT -> xe-pw-153061v9_BAT
-====================================================
+ drivers/gpu/drm/i915/display/intel_fbc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Summary
--------
+-- 
+2.42.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153061v9_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v9/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f -> xe-pw-153061v9
-
-  IGT_8519: 8519
-  xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f: 375a75bab74b1a70e8d6920b0614b57a05e88a3f
-  xe-pw-153061v9: 153061v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v9/index.html
-
---===============2885002456495704081==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Enable CCS save/restore only on supported GUC versions (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153061/">https://patchwork.freedesktop.org/series/153061/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f_BAT -&gt; xe-pw-153061v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153061v9_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153061v9/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f -&gt; xe-pw-153061v9</li>
-</ul>
-<p>IGT_8519: 8519<br />
-  xe-3659-375a75bab74b1a70e8d6920b0614b57a05e88a3f: 375a75bab74b1a70e8d6920b0614b57a05e88a3f<br />
-  xe-pw-153061v9: 153061v9</p>
-
-</body>
-</html>
-
---===============2885002456495704081==--
