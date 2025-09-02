@@ -4,186 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31B8CCA1007
-	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 18:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF05ACA1005
+	for <intel-xe@archiver.kernel.org>; Tue,  2 Sep 2025 18:16:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E99CA10E812;
-	Tue,  2 Sep 2025 18:16:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B02BA10E819;
+	Tue,  2 Sep 2025 18:16:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9cUQcU5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLJXErmI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D565A10E812
- for <intel-xe@lists.freedesktop.org>; Tue,  2 Sep 2025 18:16:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D36410E819
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 Sep 2025 18:16:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756836970; x=1788372970;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CtrxVo3mYdU1Z0+Ii55wM7BUZ4TqSmFYAsBU7uq28BQ=;
- b=D9cUQcU5Y5V9NL+Y05uxFZvZzpmqmTCW4q2zZCWQDbXWUDIlfTDeUXD4
- C4axgVDCnaKElgdfzPOsj+l+Ljx7hz4LypBk08/zXe6SO6GLIIHU/N83K
- q1d7D+MSyOBX+kz/lFqAzlYp95AxeoFhoveWEqkyk1kTXtWJUt/U5IftA
- foJ+xCZ1RMPXkcUuB71VhoW1K2LbFxT286NgCD6AmL3OtQ5guSHtRUF40
- FFRsZHS4D6/vNRCizWuIjjCRbYpc2tYWrDee1qk4aiv+cB0q2gInqfEdA
- kk5GeSwLG1vhHzjFIs1YNtj1Efwz/eqMPvAsDvsCHRa7cj4ce26eHeKEi Q==;
-X-CSE-ConnectionGUID: nP6X/YVKRhCmjmPvZVWUwg==
-X-CSE-MsgGUID: fZZ8QlK0Quq/ZeKLeI1Mfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="69388464"
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="69388464"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ t=1756836978; x=1788372978;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=7EK9Mj9BpSWn4BVMqOId0C5md2wgmVHZ+pUYYWgioWc=;
+ b=lLJXErmIOBn1WTS9Ch2wERDPRpbGxyQAjSvjOkU8hXjAkCzgk8jWO6Zk
+ hj6jImfR3E9wZPQahBQRm4HZOXkr9dSDCk8RcoUvGDOVLVG0cJV74aGRM
+ Ao/FVhKPe9/CUcpSK8OElVtCeRlr/YuLEzA+71QbbPYngRef1luDkyHAW
+ ARYHf+e//MI2LE6eM+7LpZ0v/76jzz4vIQH+J1GmcJMiemzarYWdqP2Ms
+ 0iQDdQIzYJr8yu3C0s9NGTnx4s4UQtQ7dl/+kG8610M2bEhgZ4hV8WANw
+ Ef9CzStHNeh/Hy9qe8eXW4D2fI8f7ZAi0bcsZbINM30RR/faJnBGd+0gJ Q==;
+X-CSE-ConnectionGUID: oGjI3pEfQMCMSenOOki4+Q==
+X-CSE-MsgGUID: Im++FlyoSNScBGnRhOANuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="69388501"
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="69388501"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 11:16:10 -0700
-X-CSE-ConnectionGUID: LxqbZV4yQlyorbF4XjhubA==
-X-CSE-MsgGUID: Gjuq3iybSvK2kVCliYI4ww==
+ 02 Sep 2025 11:16:18 -0700
+X-CSE-ConnectionGUID: CEQGHv7AQumA8jRupXN23A==
+X-CSE-MsgGUID: 6pk8qcWtSv60+2P4mHVTxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="171506246"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 11:16:10 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="170630440"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 11:16:17 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 2 Sep 2025 11:16:09 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.17; Tue, 2 Sep 2025 11:16:16 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 2 Sep 2025 11:16:09 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.76) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Tue, 2 Sep 2025 11:16:16 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.75)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 2 Sep 2025 11:16:08 -0700
+ 15.2.2562.17; Tue, 2 Sep 2025 11:16:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=enAmWGwVXKFGvriXGIq/HgPWD1eEsu6xvHRCys+d/MFsY/pN3UlGkEvTxKro8KhKt22RvH1OodC53JKtzyD29uU89iU2w4YIKeJ2ByrwU/nU8/SQJOpiNHm9+up38exrXCT/g7rh0FC9CMBaIxuX/1pQCaCRgy+FJ2axCFGA+l+2hIb4cQpCg5RcR3KsqF0zsVaimlMa7ZLfEpkAhq2H2rYzQ6ljxB6kHuBdRt8LH+pqHYqIz1UVPk5RfFnrAMjA2IGmiOpCIiMGen0LEYGc4j8yRvJ4RKeKtE5/R4OvaeESSEux0QeQFKH1C+0hjPFnSRGf0P5cp0vCxskuqSRh6w==
+ b=nBFaw0SQGDKVLEzsBIRthMFbc6nEB4pABUb5HtbjWK3KEKiZwoWDPBmLX4GZon9mlu3f5a7JXtXtEA8HwjrYKxOHk4rTCMX5hO3rTn4ide8uVCGSgUUSMj8CNEnbHE6imxeR2uRSQLvNTHxZidAaBwLz6bZSzSksNGgwfGSenN9Fg5xVQ5ci5n4SQ/jP4kxKNlr0ELJGoax2wDXrDSfYmHhrxK4CHbEQN5ayWblgltmB2cQmgRlc6k1vrZEqL6DiIieK3UUwJhIQ9DdUi4g6y8YH350vUEUN5F81taK0VhzkK/YB6qk/09+UGCNrjP6Kmqu3M6rtoEGoyPJJjp1EGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yoBct3NDagwBfSrXH19Qa6INRk7MajZjfVqaGzJSQ+0=;
- b=ZbE3xtvxtnYd/sfNv7wkgu+mh/s/9xiJMGkRMcJWwbs+AzHfj5v0V0lvEZbz5gTArSE7g0vflq/1RzmmAVh60rUVGVQqMqvPdIOA15pbi+lyN00CiauSqU3Lp/Fdbv/vyqbojBeA5HCDvSLF2BFyfZ+eywMnzmDLMVEWP1+bsuQ9Cb7+pDtt3OK1duvGCZB1yLJPcum0Wksy6kR1BJkFpGClOK/ngIFdyk+CzFgBfuH4EiMXUb6CgRZ2KeJDu24/omYgH1ASBaCg/+CWclopwEltzp8zoqCokmwmPq5TdamPB/jjaascB3AcwbO5KcCw3Q+0tnIC1kkw2Qv2OrywLw==
+ bh=aGqm5p0VnSU/CSS8Y2UfFpGNhRvMr05AdCY5QTeHxI4=;
+ b=IWHiaClbv75sJuken5YE4FRNRYrjpu/O6pDkEfqKklQSzfdAPYZMVdU8qIl4drfwoasA/e33I0IXenboIkNKwZzrpEm+gnqr72LlVPAzSOXy7OWfBz2y1Xld4sf+r9uTFfmCGK3p6oZDeewaG6m6daTxwMd9ga0UBiQNaGPKopGRLTg1k3BNyOj+NMay6kYE4BJ7gAedlDBp7TzOsOJYJd30ZIYbThPnyDJGDY09Xm2TzWCvCO7ZmCO1Vknci8UPVB6DutAg4aOF8zRNRbjCK1CLNz3FqzTt9srKG9cya5VmVoElMaFTTuoWQDONFyCIcxFCfO0xD2lEFN32nyCxsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SA2PR11MB4825.namprd11.prod.outlook.com (2603:10b6:806:111::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
- 2025 18:16:06 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%5]) with mapi id 15.20.9073.026; Tue, 2 Sep 2025
- 18:16:06 +0000
-Message-ID: <619ae479-8e0b-40ac-a1f4-a6086f19e896@intel.com>
-Date: Tue, 2 Sep 2025 20:16:03 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe/configfs: Don't expose survivability_mode if
- not applicable
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Tauro, Riana" <riana.tauro@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>
-References: <20250902131744.5076-1-michal.wajdeczko@intel.com>
- <20250902131744.5076-4-michal.wajdeczko@intel.com>
- <cb4d9b4ea275b9d8dfad37a7e078cea8477e9bda.camel@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <cb4d9b4ea275b9d8dfad37a7e078cea8477e9bda.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA2P291CA0037.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::17) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM4PR11MB6310.namprd11.prod.outlook.com (2603:10b6:8:a7::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.21; Tue, 2 Sep
+ 2025 18:16:12 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9073.026; Tue, 2 Sep 2025
+ 18:16:12 +0000
+Date: Tue, 2 Sep 2025 13:16:09 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 3/7] drm/xe/kunit: Introduce xe_pci_fake_data_desc()
+Message-ID: <3cfe4r47bc3dgtp6rngxnmirhsci3t5lk2yl3nte6xu6ovns6l@oflc2wshcsny>
+References: <20250829171922.572-1-michal.wajdeczko@intel.com>
+ <20250829171922.572-4-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20250829171922.572-4-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: BY3PR10CA0012.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::17) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SA2PR11MB4825:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0a5febe-d27f-4319-afc3-08ddea4cc86d
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB6310:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce527183-227e-4f61-6a7f-08ddea4ccc04
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aURsOVlqa0FkUTU0ZnlmVGROQTRFektTMHFnd1lGSTNoUFRPZldQN09tMDZN?=
- =?utf-8?B?Uk1nV1BFOVlnRnRibEN0aGZkQVpNb0U1bDNUaXFldXkrbjZ3NUVOSnI0YVRO?=
- =?utf-8?B?cUEraTVYekx0ZFVDMG91SEF3djhzRzkwY2pPeVppQi9mUVEyZUhHSDZMRVps?=
- =?utf-8?B?M1NVeEtzbFdaamh0MjgzdHNXWVdEL2Nua1RVQ3ZEaWhndmkzN0NCNitjN1g1?=
- =?utf-8?B?OGVFREpYSk5KOFc4azhxOWFYeTR5cXlEeEd4VG5ONklWcTFCYTZTVmR1ZjFT?=
- =?utf-8?B?NjB2TUlSMWhRME5LMVRBcElOR1V3VVJtaWxBNFRMdFpZYVA2VmJGeFVXMndH?=
- =?utf-8?B?RVRZbmV1T3lJN2o5UFBEUVBUMEtxbGk3YldBN1VseFVBL2xnSWlmMmJ6ODJE?=
- =?utf-8?B?TWRDdnd3Y3FsR2VrSmVaZm80R2RHSDkwbU8rTFNLZlgvZksyTkV3dWU4S2Nv?=
- =?utf-8?B?TTk4Z2lzakVBSWxCWHZWcGFGREdkcHdJRjFueEpZTjhPZzZSREN0cU1xNDZH?=
- =?utf-8?B?VFhaSC9VbG9zRDVyZWJ3ak5qb1lFWjNTbFdpdDR3RTMwL3hpWWtEamNhL0cx?=
- =?utf-8?B?MjgvSDRJSWMvRmplaEJobmcxbDZqL0FyUEhKVzdtV1BhVlhBVHZyNzFtTW9C?=
- =?utf-8?B?d3hEekw5SjY0L25WYVU4T2xxUzZaRGVYb0x1ellNZk1EWlpEQzBSZTdqMUlF?=
- =?utf-8?B?MDlvak9IRFlkUUwrNnFrU0lNNjhrcTZFVHk0eXlyaUsyTkE4ajRVOFJqRFNV?=
- =?utf-8?B?WWRHU3dPN1ptTXVja29XNVJYa2hFcVpUaWRRODVmbSsyNFJmQ3k5dWExcnNn?=
- =?utf-8?B?VStqc0dmZkptc3NkMURSczRVMGVTM1oyREhOZXk4UVovT1I1d1dObTh3QTRK?=
- =?utf-8?B?NGZhcnlqcEpybXl5OFQwVjc5WDRYM05pN3lVV254Q2FXTFZ5VkNROE1yTUc1?=
- =?utf-8?B?THdTSXRMNVAzWDdlekJxeWc2NE9KekNuTDRsU24yL0Q3OTRCb2JPWGQvN2Zs?=
- =?utf-8?B?VzBxVlBlZVREc1NocTRIVVhSRzQzbXo2dS8rb29MeDlmdE43U1Q4RnVMb1NW?=
- =?utf-8?B?SlZOb0NxK21ncUpyOXRNYnpLZEZlejU4Z2wyQythcVI2bEN5bThPSGpHU0pm?=
- =?utf-8?B?cHVCL25qKzJPK0V4MXNzK3BxNE1BZmFEdytsTm5yZzkra2FJbjhpbjBLZWpl?=
- =?utf-8?B?QlFSQ3pTa1czYWVLeG9xR1p4QjdWd1J0czFIdUNVWjY2UUF2eFZzMngwSlJ2?=
- =?utf-8?B?Q3FpZ2w1U1piM0x6U2syZFFkUUovaFI2RUExdlRKYzdJdGphQ2RRYldFK0d4?=
- =?utf-8?B?TUlCNG50eUw1SXpvNlUxRkY4VjV3c00ySEczNHpiQnlPRlJPWHR5ektWaFd4?=
- =?utf-8?B?QnNzT05nNS9LNDFrVm9XTkE0S093dWtlMkJNYU9vL1gvV3FaMXpXczBIcGFk?=
- =?utf-8?B?M3NGZXcvRWRXanJmWmVhVXJHUGNJSFdtQksrOCs1Mks5aFJTUFhmUFNDTVJp?=
- =?utf-8?B?dDFQaTV5MDFxTW5oK2szUFo1c3h3QWRKR3h1VVo1clk5UUtHdFR4d1pNOEVw?=
- =?utf-8?B?SjlUSWd1MEZGRmQ3dVBhbEQybFVGTjhsM01FVjZQTkJFaGFSUUNJLzd3dUtv?=
- =?utf-8?B?cEk4OEwvY1VwUEFnRTBxMk1PQzM0Q2VNQkRtL093Q3pCZUsyTk1va3BtaVI0?=
- =?utf-8?B?RlJNRnJjYUEvY1dBVjZLN3lWeEhCVlRuMVYwYkhYR3hmSlhidzZvLzZuSUI1?=
- =?utf-8?B?UFhmYlA1dHlITW1QTkQ2VC9zQ3dIbGJMUWJIbFFQOXFlL0hjSlNoSFd5S0tW?=
- =?utf-8?B?TFlEb1NOM1IyQUtLL3krdndsZi9XV1hLMldDeTNVbXNYRTRHek16UmQySzRu?=
- =?utf-8?B?bjhjKzVkNVltQkhtYnNUQ2p0OHpJaUI0RklCSUpLYjE0ZHhlaVJNOEdBRk0x?=
- =?utf-8?Q?IfX0+A76XH8=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wHF13DUIO4X73OjJrkPTUKYPq/+ybsFWfbL+wxmUzU1wJ8ymzBmSltMf7yA8?=
+ =?us-ascii?Q?HYn5tgaXJovOt3JUyIFEV+bWOJy+OUK9yAKYcbOwRnowxOJz4ODmBFmWNXQi?=
+ =?us-ascii?Q?axMOa39wTXNCRHF2ofcsv41Bve3+m9h6wkcgY8u+4A5tJeZaWXdFmOTuc3kp?=
+ =?us-ascii?Q?u3rzJFmciBTbrhiKUb9yICX5hhKTHujhuSs5Wil1kGX7Ge//+08mbyYkurae?=
+ =?us-ascii?Q?dEdwJC16PCW0Q0IGu4i1aKgZCNuyQ8WwboCf5SXd7AmhuaWnpxOsCtLc0QqD?=
+ =?us-ascii?Q?OKlywW7HgIVMwc9HEi91o8OavmTlSCTvtQR+EsuFTtXGWn7defPvTj9xKLQg?=
+ =?us-ascii?Q?3vIj4wNC2tU0kYIaRxg84na/8k5A5xHl7gttdjnHkT7mgvUuLVv3C4Bwf64L?=
+ =?us-ascii?Q?f6crWjfKSU4li3W2qgCS8l1CnihoW6PmA8PNxv6OHOp0sYXIcNffeLYmCcBX?=
+ =?us-ascii?Q?VeF2Z6K7TH0wYTFyGU2d23r7roOcBTp9VBKTQUJi8m/SxAMFPgT9omm1am9T?=
+ =?us-ascii?Q?sPzeLlLtiZK+WuqgTSU9HtgDcfYHCWylLLVMkW/ljWzHCnKhATrxHMdN5Bcr?=
+ =?us-ascii?Q?mrkRWDY6/PC9o6JHuieN65H+5Q2I2zvGeaxFGFzmjY3WcZr/w2ofgFjZ1ODj?=
+ =?us-ascii?Q?/+1TtvjSWtgQtGBmwPosDp+lvCUO0WEHje8EpgjpWj8aDgRpFqyL02fRPxl4?=
+ =?us-ascii?Q?GssrvFVSoa4/E/L0+KFLx63k8gtGUG2M6eCpTcnB3fAri8IRLXWdD8gtr/4r?=
+ =?us-ascii?Q?CeT5epZQDiXFdJEBdQwfevn33xcEcEI0uKWFWIChFrdTt/DycXTvV9VLQ8Nt?=
+ =?us-ascii?Q?XhNtbJy6fRttEL3b/i+BehfGMYsjlbiABBDeoal+bBO94yTk33k4zSV/TDJK?=
+ =?us-ascii?Q?F0bcdsAfufQHKHRFtm8eB7s7ACUx0IOA+f0C9YmdaufkhfD+Z3MK9sPQMxOM?=
+ =?us-ascii?Q?BJ94/5E/XDrSizF5XZJP34kUXreaI2eQg2jN6xL8E5pqZLHFSHqzJA/COu4C?=
+ =?us-ascii?Q?yUOt8F0dPq1uidECIHsqEF2UO9E+xIfXYoq0EmAPV02pSJr2D0nCb2ez1h7X?=
+ =?us-ascii?Q?nI5V8l/rI3J9haDqAGci2/K3dggwfDeJS98O1y6TC1qgfec0gyfoN+PBSqZ0?=
+ =?us-ascii?Q?+DFP23lhLosmZpFzNdGEhWA2U+pIA9ziy3V3g/tLhIrP8VAI9Vc9fVQNawI/?=
+ =?us-ascii?Q?a9+hKRDoPnSB2B+2qn5Ig4Tq3EhiqJBcBY/ksGlR/I0lJKa5OAWhskTiVt2x?=
+ =?us-ascii?Q?oD0AOW0bKFT8UDK1P5FqLGYlXKBBzmx0ndqKOTAvJIGYugpNFQTyv7LOju9w?=
+ =?us-ascii?Q?80REfPzbUdZwgTMy2USgUWeNm79KbEzaCQbQ08XePwfuce2f18tBmwE+bVwb?=
+ =?us-ascii?Q?5w5bAsRhDKqpFR1tkZ0+piWsOs8tUXJC0DPtx1fVmVrxZIXnIOOw8TNguXAx?=
+ =?us-ascii?Q?dufP3DpqqBs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzFZMGhjV3ZIWWN1WWVSL245NWd1dTZtK096TDMvUWJBRXBXOHh1eTY2czZR?=
- =?utf-8?B?MmdBOHo0RWdrbms0VVFIMGZteC93VWlyTDJzeFFmOHJHTjUyeVBzQ05IbnJ1?=
- =?utf-8?B?YWtsdDdlMVU1NWxicmFYaVk0dU5pRi9sZmV2ZGhKVTFSK3BLdks0cVhKT01y?=
- =?utf-8?B?cTYrdXBwbytPamRzWWF3bU5Ba2dHMTljbENPdlJsekdvbzdWRGl1MlhxWGFa?=
- =?utf-8?B?dW5RNWl2ODg5b0FMUmxuV1QwMHhXTi9ydnNNckQ4LzhkRHhHaGlOS01LRmlZ?=
- =?utf-8?B?VFl1YmhUMGthMFF0WHZvemNORENDcEdLS0xVMXdUNTZZYm1sSVZ3MVdaUURy?=
- =?utf-8?B?K29aK1R5elY3ODZvZ2JmNGltS2Y3aCtPUW1YbXp3YWJuVFYyWTg0WTRnMlFC?=
- =?utf-8?B?L1o4aCtTbE9weGNlclZXdjJtT1IxR2N0RGVVOHVpajR1S1d3Q0ZEcis0SG50?=
- =?utf-8?B?alRuQ045L2tObDRJbG5SQlM2VVk3RDY5VVQzR0V4NFhlQWQ4c2VUR2lHY0I3?=
- =?utf-8?B?dFhJUDZhL204eVpiMS82RC9RY25tV1NLMTJuWkdLK2p3R2pmVWpnK053UCtZ?=
- =?utf-8?B?S1J1SlFDbkdWeDUyeUExR1ZKdWRuM2Qwa1VFVUEwdVltMHd1N3o4cEFpNnhz?=
- =?utf-8?B?STlrZlA2R2orTWk1YlFmVld1Z0pKTjFUbUkxQ3pmSDMvd1BZaEhOL2tFRGtB?=
- =?utf-8?B?ZDN4bTg3dDgvQzVBcEZOTjg4NDhrV2F6V3lKODV3bWNieWh6NmlKTWNmUkpw?=
- =?utf-8?B?NDZkMENqYmF0M0JvOEo1b1Fyem1iT1ZRNzM5eHBUY1c3RVdBODZHMmwvZ21J?=
- =?utf-8?B?UWU5ckxUUy9kTmVWMndyQ2U1aG54dWVxeW93ZVZYWk91eitUTGJrOEczMUFU?=
- =?utf-8?B?S29JZU1LcExPQzc0ZWtDZU90anRrVDVFaGFzNk85a2NXaTJUc2V0QlFLK055?=
- =?utf-8?B?REZhSWxIQzd3N01JZ2xHQUlHY24rVlQzRWR6SnVqaEN1WTNJS1BZNDRYaE1H?=
- =?utf-8?B?K0pPNW9KTlRReU5EM2JVdmhxdDd6QU5odEtQOVBId1pjMmg2aXdSR0ZzRlZq?=
- =?utf-8?B?b3dzdk9vd0dJMWlweDJITUxUcmZXeVlTME1rdTduTU1FZ0FkMk0xUXhFWEJj?=
- =?utf-8?B?TWJwRnJnWVZXQlNSNGxqd28xNlM5cTZBd25WSE1iSXZPaWFKY280cVg4L3dt?=
- =?utf-8?B?MlQ0WE9IczZPM3BKc09TQ1pwMmN0Qk51eTlSa0RLblBDTlVWSHZCVmM5cE50?=
- =?utf-8?B?TmlTdW1jVGE4K3JvSzZ5TEthVTNTS2FaVG5WSHNqaE90ZmRwU21jSzA1d3Z1?=
- =?utf-8?B?bk9QYkM3ZHBRalA2SnVObkk0c05ua2hLUkxUTi9JU1dhQ3NiUHFnbG8rbFl4?=
- =?utf-8?B?RnZZWVZCSm0xUFFhMUN4dnBsM3hCNCt1VnNNYlhkUGRsdWRiamtPTW5hY2hX?=
- =?utf-8?B?NGtLTkpxVmlQajkyNTNKa25jMDFzQTJieXg1cVVNUjRsalg3OVh3S3EzSUZq?=
- =?utf-8?B?ZnVOMm1EWXBORXVQdFV1TWcvZys1UXN4VHZlcDNxaVppV1UveUJZOXB6elNT?=
- =?utf-8?B?aDJpbUdTUmlQSGJ4a2RpVFRNRnVaUGhGUUpZQW9wRXhwY2hHdUgwaGQ2WTI3?=
- =?utf-8?B?dTFsNWVtN2RhN0VlMzdSSTJ5SXFacy8rbGN5TTNRdnNLZFBpU2tTN0puOU9N?=
- =?utf-8?B?c0hpLzFzUkxLNVQ1Rlhtd08vR1BUQkQzb0FKcEJyV1dqZkN2SGMySmozaW1M?=
- =?utf-8?B?VjhxbTRIalA2VUxlMm1tekI5Y2pUblBuM0VMdEFxTTB1VnlqTm1rSWlDVFJa?=
- =?utf-8?B?a1lEL0ViZkhMcC8rWmVYZk12elFFeDRrcW9tY3FmZDVBdk8yT3VCWTV6Q2Va?=
- =?utf-8?B?NWFyMFlqVXdWdHd2dm5LcTFSdFdlUmY5Y2Nsam15ekxTdGdjbmtkaGtiaG1i?=
- =?utf-8?B?ODJaaDU4R1dPaFFLeWlGWmNENWU5TURHUnEvQnE2MnVaVlE1TjJiSHg4UGNx?=
- =?utf-8?B?dmg4bzFBMlIzS3JVSHIxeVNWWDFxMjhHTjRNL0h4VEpDY05kY3pUcFNsNU9S?=
- =?utf-8?B?dlE5c3dEdGU2a2dDblpNN29QbW9RR2plZGQ4R3dkZkhwRitEOHdRek5UUmd6?=
- =?utf-8?B?L1Zob3YwOGpLVWViaTNFQnJ2cGlSYVkxQlk0dXZWWHYzWWJtMndpcmlWTm9X?=
- =?utf-8?B?QWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0a5febe-d27f-4319-afc3-08ddea4cc86d
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oahFTFeQNUMtwLKoJ8YViES4EZcOks77yogMYYekjWYBVzp7mUz7BczIejSL?=
+ =?us-ascii?Q?IOwGvkGSQN98xotNmurn6zSDolVQlb+3qmr/LH84ydOeClvDrvEFcc4zlx4w?=
+ =?us-ascii?Q?UUP/D1+gHUqfSTVZsN7UMYR5bIomSlIkzZ63L6tWRE4tv/raYbAQHLa7oQYH?=
+ =?us-ascii?Q?gTLQIlJtwlMS+jo12BP0dEQpYW1ZilxV6wNdHiIoPZhWkse/d7beFOq6Yq5y?=
+ =?us-ascii?Q?9Ud93dHyQ56kCZXR9dRnhT/f591l7TGN3GRizBLp38Xn04M2VpBa2+I9p+LE?=
+ =?us-ascii?Q?zHq1MU3rReJ1voonMuYonlQFOh5v5b4scvm7OJVAgTOQzBMqZjGCe8+91Sna?=
+ =?us-ascii?Q?0UjVi/Svd4fdI+pCHAH/WK8kCsB7se+DWwdwIN1MMcLQ7vm1XwK28nrRmJ60?=
+ =?us-ascii?Q?PWfczk8jJCErqpX48bab2KZkrLWW0VwB3Rkm+NC0/adQRmkwyQy4qIcA/QhJ?=
+ =?us-ascii?Q?eMaPOc0UsUbQTHzZymCGPPMobL2VCYZyVoC1FNXdQNne8tLw53p0dkKryun5?=
+ =?us-ascii?Q?85yrh90t78/aj2LapLrVnQ3FNBo9cl2FrV5KWd1qtsDWUt8UMo93tX+ec6U1?=
+ =?us-ascii?Q?vng41BoNOd0OyNgrMQjrxMdcsk62zQH6yRpqNuDqm/RqHM5bk7QgtLrtsPwv?=
+ =?us-ascii?Q?CMFOzn0YNlw2+byhRy83+HWWWsB2K8oyJVrwk1cUa9NcizgjpDuZ5FjjeIpu?=
+ =?us-ascii?Q?6WPzztyhu+K/XJbmLxj0kLgb7Yj9h7fvVR5gMDub2o6SjoS924JdvEjXQbHp?=
+ =?us-ascii?Q?F1vqYxTjIYiKAcBtMOXvGtadVksTZY3uTVWwWCxtR6yl6DdnvV0447P0Namh?=
+ =?us-ascii?Q?ntwJH1TTI1sQS/gMdXly888/p5Gb/OVw2f1V8oi3QKeyMOR+fl7LY139RhJa?=
+ =?us-ascii?Q?F9AsH3infssxFU4+mzNStFSFxDEXEi7tIWbIwv+TB1wuNnSxtp89xc3GJzyj?=
+ =?us-ascii?Q?aiy0F3qw0R+hxuCpZ/ObVgoAtCRJ8sBTrWG38acx5f6tqTMBDD/VrJi6mfYu?=
+ =?us-ascii?Q?dJjhjZL/srAiMJhPgj5QtRrxUk3tlUqrv9+IQ/pjv2OTxW7hLHrxSgBFHwsz?=
+ =?us-ascii?Q?gKEMZ/EXTTiVUCRgGGyjE7R1PZpLdbcfg7xL6pPu77oxpx1F7H3okjT3w0uB?=
+ =?us-ascii?Q?ylwIfwxge73gaAPMttBWnlrAFCO3wkoasJRT2IDWNVNZ9xE37hXYFTTdVbWE?=
+ =?us-ascii?Q?APfThJ3GJ07ZqUdtCrqotZp6qTjA1QYlXtQINcrr9pS5p0tStqxvye5TAFiU?=
+ =?us-ascii?Q?Ao1sfRXSLlQR0Ax2Wqdu6Ydsj5uUVgyfxrzdbQ0IVAWD7tiiCZhNBj/b7zqH?=
+ =?us-ascii?Q?XLiyI/OzNH3tjaDhI+Y5/4f3fjCt5KCoNOTB0I2jZLknISwVxBjRFtUHLlv8?=
+ =?us-ascii?Q?Xgro5liNMIF3q+gv244inOcNhYR2cRZ4B4kdCApPuAKkPpAFojSzfE8VZXOI?=
+ =?us-ascii?Q?PsZpuVOZYX6EETZSajVM8+eoDwFkK0zaIA11CQP8KB6Sl5TPq/0JZHCID3pO?=
+ =?us-ascii?Q?qGQYB+whFlEcasfyOHEKliDzZf+3yohor4HGRMx0cFuRcZLS70a1bCLgsHxo?=
+ =?us-ascii?Q?UX/ApLjlenUJNzokWd24dMZV3kboOHAcIAGDVCpB+tSdossG0SdML+lTNeZK?=
+ =?us-ascii?Q?WA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce527183-227e-4f61-6a7f-08ddea4ccc04
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 18:16:05.9806 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 18:16:12.0275 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jDitBUXgZXHSwcU0uQ8IIcJSeErlUFpv022F/U+ZS7j+SiKDrJ4BudmT5Hq+f8jpAT/Y97KK6cNm/LroYPLp+IoUgUz3mj/1xR0T16OwRjE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4825
+X-MS-Exchange-CrossTenant-UserPrincipalName: KL2TChVr4xUXlmuNInrN7l+/z7kSw24eXbjrsg8daE3t6p7U1NX1/DHC/bukmbpRtiL9R3EfXnctWTvvgqN3bCqjBGOyz/Jpe10YyuPmtho=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6310
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -199,157 +176,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Aug 29, 2025 at 07:19:18PM +0200, Michal Wajdeczko wrote:
+>We already use struct xe_pci_fake_data to provide custom config of
+>the fake PCI device and soon we will be using this struct also as
+>direct parameter for the parameterized Xe KUnit tests.
+>
+>Add function to generate description based on that config data.
+>
+>For platform or subplatform name lookup pciidlist which already
+>have definitions of all supported platforms.
+>
+>Examples:
+>
+>  TIGERLAKE
+>  TIGERLAKE A0
+>  TIGERLAKE SR-IOV PF
+>  ...
+>  PANTHERLAKE 30.00(Xe3_LPG) 30.00(Xe3_LPM)
+>  PANTHERLAKE 30.00(Xe3_LPG) A0 30.00(Xe3_LPM) A0
+>  PANTHERLAKE 30.00(Xe3_LPG) A0 30.00(Xe3_LPM) A0 SR-IOV VF
+>
+>Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
 
-On 9/2/2025 7:25 PM, Summers, Stuart wrote:
-> On Tue, 2025-09-02 at 15:17 +0200, Michal Wajdeczko wrote:
->> The survivability_mode attribute is applicable only for DGFX and
->> platforms newer than BATTLEMAGE. Use .is_visible() hook to hide
->> this attribute when above conditions are not met. Remove code that
->> was trying to fix such configuration during the runtime.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Riana Tauro <riana.tauro@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_configfs.c           | 24 ++++++--------------
->> --
->>  drivers/gpu/drm/xe/xe_configfs.h           |  2 --
->>  drivers/gpu/drm/xe/xe_survivability_mode.c | 11 +---------
->>  3 files changed, 7 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c
->> b/drivers/gpu/drm/xe/xe_configfs.c
->> index 43f000260752..0337811864cd 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -369,7 +369,12 @@ static bool xe_config_device_is_visible(struct
->> config_item *item,
->>  {
->>         struct xe_config_group_device *dev =
->> to_xe_config_group_device(item);
->>  
->> -       return dev->desc; /* shall be always true */
->> +       if (attr == &attr_survivability_mode) {
->> +               if (!dev->desc->is_dgfx || dev->desc->platform <
->> XE_BATTLEMAGE)
->> +                       return false;
->> +       }
->> +
->> +       return true;
-> 
-> Why change the return here? Can we either leave this as dev->desc or
-> otherwise use return true for the initial implementation (previous
-> patch)?
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-the reason is simple: in patch 2/3 I just wanted to show how to obtain
-the device xe device desc here to make some decisions based on that.
+Lucas De Marchi
 
-with plain "return true" in 2/3 I would have to mark desc var as "maybe_unused"
-
-and OTOH leaving "return desc" here in 3/3 is redundant since we already might have de-referenced the pointer
-
-so this one extra line in diff was IMO minimal cost to have two separate patches
-(as I didn't want to combine survivability_mode change with introduction of is_visible)
-
-> 
-> Everything else in the series looks good to me. This does seem like a
-> better way to approach this.
-
-thanks,
-
-> 
-> Thanks,
-> Stuart
-> 
->>  }
->>  
->>  static struct configfs_group_operations xe_config_device_group_ops =
->> {
->> @@ -558,23 +563,6 @@ bool xe_configfs_get_survivability_mode(struct
->> pci_dev *pdev)
->>         return mode;
->>  }
->>  
->> -/**
->> - * xe_configfs_clear_survivability_mode - clear configfs
->> survivability mode
->> - * @pdev: pci device
->> - */
->> -void xe_configfs_clear_survivability_mode(struct pci_dev *pdev)
->> -{
->> -       struct xe_config_group_device *dev =
->> find_xe_config_group_device(pdev);
->> -
->> -       if (!dev)
->> -               return;
->> -
->> -       guard(mutex)(&dev->lock);
->> -       dev->config.survivability_mode = 0;
->> -
->> -       config_group_put(&dev->group);
->> -}
->> -
->>  /**
->>   * xe_configfs_get_engines_allowed - get engine allowed mask from
->> configfs
->>   * @pdev: pci device
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.h
->> b/drivers/gpu/drm/xe/xe_configfs.h
->> index 58c8c3164000..1402e863b71c 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.h
->> +++ b/drivers/gpu/drm/xe/xe_configfs.h
->> @@ -15,7 +15,6 @@ int xe_configfs_init(void);
->>  void xe_configfs_exit(void);
->>  void xe_configfs_check_device(struct pci_dev *pdev);
->>  bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
->> -void xe_configfs_clear_survivability_mode(struct pci_dev *pdev);
->>  u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
->>  bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
->>  #else
->> @@ -23,7 +22,6 @@ static inline int xe_configfs_init(void) { return
->> 0; }
->>  static inline void xe_configfs_exit(void) { }
->>  static inline void xe_configfs_check_device(struct pci_dev *pdev) {
->> }
->>  static inline bool xe_configfs_get_survivability_mode(struct pci_dev
->> *pdev) { return false; }
->> -static inline void xe_configfs_clear_survivability_mode(struct
->> pci_dev *pdev) { }
->>  static inline u64 xe_configfs_get_engines_allowed(struct pci_dev
->> *pdev) { return U64_MAX; }
->>  static inline bool xe_configfs_get_psmi_enabled(struct pci_dev
->> *pdev) { return false; }
->>  #endif
->> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c
->> b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> index 79426ea46861..19a1732e33d4 100644
->> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
->> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> @@ -287,19 +287,10 @@ bool xe_survivability_mode_is_requested(struct
->> xe_device *xe)
->>         u32 data;
->>         bool survivability_mode;
->>  
->> -       if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
->> +       if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform <
->> XE_BATTLEMAGE)
->>                 return false;
->>  
->>         survivability_mode =
->> xe_configfs_get_survivability_mode(pdev);
->> -
->> -       if (xe->info.platform < XE_BATTLEMAGE) {
->> -               if (survivability_mode) {
->> -                       dev_err(&pdev->dev, "Survivability Mode is
->> not supported on this card\n");
->> -                       xe_configfs_clear_survivability_mode(pdev);
->> -               }
->> -               return false;
->> -       }
->> -
->>         /* Enable survivability mode if set via configfs */
->>         if (survivability_mode)
->>                 return true;
-> 
-
+>---
+>v2: don't look at vendor/class_mask (Lucas)
+>    use %u.%02u notatation and print IP name (Michal)
+>---
+> drivers/gpu/drm/xe/tests/xe_pci.c      | 117 +++++++++++++++++++++++++
+> drivers/gpu/drm/xe/tests/xe_pci_test.h |   1 +
+> 2 files changed, 118 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+>index bb0ce0dc9b31..a8b35439131f 100644
+>--- a/drivers/gpu/drm/xe/tests/xe_pci.c
+>+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+>@@ -12,6 +12,123 @@
+> #include <kunit/test-bug.h>
+> #include <kunit/visibility.h>
+>
+>+static const struct xe_device_desc *lookup_desc(enum xe_platform p)
+>+{
+>+	const struct xe_device_desc *desc;
+>+	const struct pci_device_id *ids;
+>+
+>+	for (ids = pciidlist; ids->driver_data; ids++) {
+>+		desc = (const void *)ids->driver_data;
+>+		if (desc->platform == p)
+>+			return desc;
+>+	}
+>+	return NULL;
+>+}
+>+
+>+static const struct xe_subplatform_desc *lookup_sub_desc(enum xe_platform p, enum xe_subplatform s)
+>+{
+>+	const struct xe_device_desc *desc = lookup_desc(p);
+>+	const struct xe_subplatform_desc *spd;
+>+
+>+	if (desc && desc->subplatforms)
+>+		for (spd = desc->subplatforms; spd->subplatform; spd++)
+>+			if (spd->subplatform == s)
+>+				return spd;
+>+	return NULL;
+>+}
+>+
+>+static const char *lookup_platform_name(enum xe_platform p)
+>+{
+>+	const struct xe_device_desc *desc = lookup_desc(p);
+>+
+>+	return desc ? desc->platform_name : "INVALID";
+>+}
+>+
+>+static const char *__lookup_subplatform_name(enum xe_platform p, enum xe_subplatform s)
+>+{
+>+	const struct xe_subplatform_desc *desc = lookup_sub_desc(p, s);
+>+
+>+	return desc ? desc->name : "INVALID";
+>+}
+>+
+>+static const char *lookup_subplatform_name(enum xe_platform p, enum xe_subplatform s)
+>+{
+>+	return s == XE_SUBPLATFORM_NONE ? "" : __lookup_subplatform_name(p, s);
+>+}
+>+
+>+static const char *subplatform_prefix(enum xe_subplatform s)
+>+{
+>+	return s == XE_SUBPLATFORM_NONE ? "" : " ";
+>+}
+>+
+>+static const char *step_prefix(enum xe_step step)
+>+{
+>+	return step == STEP_NONE ? "" : " ";
+>+}
+>+
+>+static const char *step_name(enum xe_step step)
+>+{
+>+	return step == STEP_NONE ? "" : xe_step_name(step);
+>+}
+>+
+>+static const char *sriov_prefix(enum xe_sriov_mode mode)
+>+{
+>+	return mode <= XE_SRIOV_MODE_NONE ? "" : " ";
+>+}
+>+
+>+static const char *sriov_name(enum xe_sriov_mode mode)
+>+{
+>+	return mode <= XE_SRIOV_MODE_NONE ? "" : xe_sriov_mode_to_string(mode);
+>+}
+>+
+>+static const char *lookup_graphics_name(unsigned int verx100)
+>+{
+>+	const struct xe_ip *ip = find_graphics_ip(verx100);
+>+
+>+	return ip ? ip->name : "";
+>+}
+>+
+>+static const char *lookup_media_name(unsigned int verx100)
+>+{
+>+	const struct xe_ip *ip = find_media_ip(verx100);
+>+
+>+	return ip ? ip->name : "";
+>+}
+>+
+>+/**
+>+ * xe_pci_fake_data_desc - Describe struct xe_pci_fake_data parameter
+>+ * @param: the &struct xe_pci_fake_data parameter to describe
+>+ * @desc: output buffer with minimum size of KUNIT_PARAM_DESC_SIZE
+>+ *
+>+ * This function prepares description of the struct xe_pci_fake_data parameter.
+>+ *
+>+ * It is tailored for use in parameterized KUnit tests where parameter generator
+>+ * is based on the struct xe_pci_fake_data arrays.
+>+ */
+>+void xe_pci_fake_data_desc(const struct xe_pci_fake_data *param, char *desc)
+>+{
+>+	if (param->graphics_verx100 || param->media_verx100)
+>+		snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%s%s%s %u.%02u(%s)%s%s %u.%02u(%s)%s%s%s%s",
+>+			 lookup_platform_name(param->platform),
+>+			 subplatform_prefix(param->subplatform),
+>+			 lookup_subplatform_name(param->platform, param->subplatform),
+>+			 param->graphics_verx100 / 100, param->graphics_verx100 % 100,
+>+			 lookup_graphics_name(param->graphics_verx100),
+>+			 step_prefix(param->step.graphics), step_name(param->step.graphics),
+>+			 param->media_verx100 / 100, param->media_verx100 % 100,
+>+			 lookup_media_name(param->media_verx100),
+>+			 step_prefix(param->step.media), step_name(param->step.media),
+>+			 sriov_prefix(param->sriov_mode), sriov_name(param->sriov_mode));
+>+	else
+>+		snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%s%s%s%s%s%s%s",
+>+			 lookup_platform_name(param->platform),
+>+			 subplatform_prefix(param->subplatform),
+>+			 lookup_subplatform_name(param->platform, param->subplatform),
+>+			 step_prefix(param->step.graphics), step_name(param->step.graphics),
+>+			 sriov_prefix(param->sriov_mode), sriov_name(param->sriov_mode));
+>+}
+>+EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_data_desc);
+>+
+> static void xe_ip_kunit_desc(const struct xe_ip *param, char *desc)
+> {
+> 	snprintf(desc, KUNIT_PARAM_DESC_SIZE, "%u.%02u %s",
+>diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+>index 32452bd65bff..1195839999ab 100644
+>--- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
+>+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
+>@@ -24,6 +24,7 @@ struct xe_pci_fake_data {
+> };
+>
+> int xe_pci_fake_device_init(struct xe_device *xe);
+>+void xe_pci_fake_data_desc(const struct xe_pci_fake_data *param, char *desc);
+>
+> const void *xe_pci_graphics_ip_gen_param(const void *prev, char *desc);
+> const void *xe_pci_media_ip_gen_param(const void *prev, char *desc);
+>-- 
+>2.47.1
+>
