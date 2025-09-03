@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADEF3CA1016
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 21:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7867DCA1012
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 21:37:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72E8810E94C;
-	Wed,  3 Sep 2025 21:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF3610E94D;
+	Wed,  3 Sep 2025 21:37:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ckqFBeoi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c2dy6q/K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CF0A10E94C
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 21:37:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84C7110E94D
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 21:37:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756935452; x=1788471452;
+ t=1756935453; x=1788471453;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=194MZbIx1SFBq9xvswuB3TqXJzAlfpFYd46HwNgSaNk=;
- b=ckqFBeoiuZr2wQDZyfiHJlh4OJqv/iDKrJXFEmEf2/5uYl6BnJgML6OK
- oQCMQPWZFT4fRE/B7t8tjZGE22Y/xs8Pgqez15m2jTvWQojgn/QJ+mNfb
- U+h+sTf4j5+FTrg199ap31rPQgjkGQfO7sQlXcOe6ceMU1WvRpBCQZxvz
- 4BGhSqyZ4IutoPhQA0noFV9TbAHA9X2p0aBWQ+2ColT1BGYOKUzX9Wgdr
- brioa7IjweCXXHogRYBzrEqEQuZCTjjUGz0y5B/MRcGrpRlFHqx6/zdFN
- YlhPVzsmPG2GX92ZDPsA6JqtNtvuEneUxBICIdRX4gEcr3vffLvOjFdQM w==;
-X-CSE-ConnectionGUID: Q4fSln+0RZy56+eDDHZDZw==
-X-CSE-MsgGUID: 3J/4yz3gSAO6rsJ8Uk+6Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59178987"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59178987"
+ bh=TUwXGFEnUg+rJzyPTYPAL7jBtNQgV3UEHHLEvR/Jqi4=;
+ b=c2dy6q/KNXpOFznZWKpXIXksgVidnzUan9+gKLXz/S6dAjaIF5JhyU3L
+ pvwCpsH2/Ky6aHCNV2Ags3ABVIgB3LiTGm6APMX4ybcSeLWBQvyEl8E3Y
+ s4D1YhXXK9EG9OniLGZ00jX1k9Mhx7yO3t6DMjPRftTRviONDFDN0lACY
+ jArUgR1m6vJy7MCKQqtA8fVD0I0usVbYbdeaQiOdBoSBhOXD8HiL8dm1R
+ Hfsj8ETNqn0KheJcvNxHT9rl0Qf5UdJ05S9q+JtBc2FesrXwTfFfmkRgC
+ 7Dg5II2opGupK8xNr7VHVTuFeByZEiLvVKScbYwNPCIKU8lfNVEyQZB1I Q==;
+X-CSE-ConnectionGUID: SWhlPc0TSOa6RzW5x01Z7Q==
+X-CSE-MsgGUID: bU/KN8P1RRaHC/LWYC7Tvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59178989"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59178989"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 14:37:31 -0700
-X-CSE-ConnectionGUID: sPpFD60OT9KDM43d3BmSJg==
-X-CSE-MsgGUID: X2cSPa2mRkmctDz7vT+/kw==
+ 03 Sep 2025 14:37:33 -0700
+X-CSE-ConnectionGUID: nbEOghzRSRKpXHrVW7xpfQ==
+X-CSE-MsgGUID: h4Kikd9cREaJXRBU4XxwnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="170957593"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="170957603"
 Received: from ruymanre-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.252.70])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 14:37:30 -0700
+ 03 Sep 2025 14:37:32 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 6/7] drm/xe: Use tile-oriented messages in GGTT code
-Date: Wed,  3 Sep 2025 23:36:11 +0200
-Message-ID: <20250903213712.6364-7-michal.wajdeczko@intel.com>
+Subject: [PATCH 7/7] drm/xe: Use tile-oriented messages in LMTT code
+Date: Wed,  3 Sep 2025 23:36:12 +0200
+Message-ID: <20250903213712.6364-8-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250903213712.6364-1-michal.wajdeczko@intel.com>
 References: <20250903213712.6364-1-michal.wajdeczko@intel.com>
@@ -71,53 +71,30 @@ Use recently added macros to print tile-oriented messages.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_lmtt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 71c7690a92b3..6a14bfdef41d 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -28,6 +28,7 @@
- #include "xe_pm.h"
+diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
+index f2bfbfa3efa1..d4412ee074a5 100644
+--- a/drivers/gpu/drm/xe/xe_lmtt.c
++++ b/drivers/gpu/drm/xe/xe_lmtt.c
+@@ -18,6 +18,7 @@
  #include "xe_res_cursor.h"
  #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
 +#include "xe_tile_printk.h"
- #include "xe_tile_sriov_vf.h"
- #include "xe_tlb_inval.h"
- #include "xe_wa.h"
-@@ -269,7 +270,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 		gsm_size = probe_gsm_size(pdev);
  
- 	if (gsm_size == 0) {
--		drm_err(&xe->drm, "Hardware reported no preallocated GSM\n");
-+		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
- 		return -ENOMEM;
- 	}
+ /**
+  * DOC: Local Memory Translation Table
+@@ -32,7 +33,7 @@
+  */
  
-@@ -466,8 +467,8 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
+ #define lmtt_assert(lmtt, condition)	xe_tile_assert(lmtt_to_tile(lmtt), condition)
+-#define lmtt_debug(lmtt, msg...)	xe_sriov_dbg_verbose(lmtt_to_xe(lmtt), "LMTT: " msg)
++#define lmtt_debug(lmtt, msg...)	xe_tile_dbg_verbose(lmtt_to_tile(lmtt), "LMTT: " msg)
  
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
- 		string_get_size(node->size, 1, STRING_UNITS_2, buf, sizeof(buf));
--		xe_gt_dbg(ggtt->tile->primary_gt, "GGTT %#llx-%#llx (%s) %s\n",
--			  node->start, node->start + node->size, buf, description);
-+		xe_tile_dbg(ggtt->tile, "GGTT %#llx-%#llx (%s) %s\n",
-+			    node->start, node->start + node->size, buf, description);
- 	}
- }
- 
-@@ -499,9 +500,8 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
- 
- 	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
- 
--	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
--		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
--		       node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
-+	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
-+			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
- 		return err;
- 
- 	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
+ static bool xe_has_multi_level_lmtt(struct xe_device *xe)
+ {
 -- 
 2.47.1
 
