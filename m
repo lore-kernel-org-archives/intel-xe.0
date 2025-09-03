@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A25CA0FF2
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 11:52:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88FC9CA0FF2
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 12:10:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2271310E14B;
-	Wed,  3 Sep 2025 11:52:34 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3024010E14B;
- Wed,  3 Sep 2025 11:52:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5069174962307314168=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7081110E7C6;
+	Wed,  3 Sep 2025 12:10:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ae5ugYcI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE6810E7C3;
+ Wed,  3 Sep 2025 12:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756901402; x=1788437402;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W/BxGXbbFiDwtYepKQxgFB+MetmNMv4C+nk0/GlngsE=;
+ b=ae5ugYcII1R91bj+9u+ANeMMQIqdSrlaJUaqOF+i/F3QuelTmNLbc14w
+ zdvq6mbSdg3yCW4D828m++1M8rhCuuLt//3g+qAuYSh1haHatg9aPeHZg
+ RmEWiByk0sNi4CouSZdEu0IW8HzQyemdnV9Y3I/8wEK9L3Pz/pmEIlB2y
+ J2M8zRvG3ufAMY+oJILGVMBcm6OTUsKlD4+lhhcy9gPl6tfYbrQqmEeLf
+ s3iqX1R/KF5dpVwNqM+6/60Hh+culJFTj0SZd8actTzIqdUu7SO+i7bbQ
+ 8F285LnHE50WAxtA5fhAGjknoc/MhEIXJ4HQyE1qzKbqRw9Hk2LGqxddp Q==;
+X-CSE-ConnectionGUID: JZF9q7nGQrOyLvbu77/6Qw==
+X-CSE-MsgGUID: 98YKAUPlQc2p/oSfh5313w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="62853684"
+X-IronPort-AV: E=Sophos;i="6.18,235,1751266800"; d="scan'208";a="62853684"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2025 05:10:00 -0700
+X-CSE-ConnectionGUID: g1Q+IqP7RkWDCkswLQ2mvQ==
+X-CSE-MsgGUID: aLlotHa8Qdenv9SvwkI4hQ==
+X-ExtLoop1: 1
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa003.fm.intel.com with ESMTP; 03 Sep 2025 05:09:58 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH] drm/i915/display: Initialize phy and ch variables
+Date: Wed,  3 Sep 2025 15:01:47 +0300
+Message-Id: <20250903120147.1799446-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
- =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs_=28rev13=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 03 Sep 2025 11:52:33 -0000
-Message-ID: <175690035319.298664.5886374566485775511@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250903103152.2440348-1-michal.grzelak@intel.com>
-In-Reply-To: <20250903103152.2440348-1-michal.grzelak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +60,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5069174962307314168==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+phy and ch variables are potentially used uninitialized.
+To make absolutely sure that these variables are not used
+uninitialized let's initialize these with known values as
+DPIO_PHY0 and DPIO_CH0, respectively.
 
-== Series Details ==
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev13)
-URL   : https://patchwork.freedesktop.org/series/148957/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 8ea96cc524a1..45b67a3716e9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -2174,8 +2174,8 @@ static bool bxt_ddi_pll_get_hw_state(struct intel_display *display,
+ 	struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
+ 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
+ 	intel_wakeref_t wakeref;
+-	enum dpio_phy phy;
+-	enum dpio_channel ch;
++	enum dpio_phy phy = DPIO_PHY0;
++	enum dpio_channel ch = DPIO_CH0;
+ 	u32 val;
+ 	bool ret;
+ 
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08_BAT -> xe-pw-148957v13_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-148957v13_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-1:          [FAIL][1] ([Intel XE#5507]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v13/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
-
-
-Build changes
--------------
-
-  * Linux: xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08 -> xe-pw-148957v13
-
-  IGT_8520: 8520
-  xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08: fc0851a57d35ddfcdb673270da6ca17626dafc08
-  xe-pw-148957v13: 148957v13
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v13/index.html
-
---===============5069174962307314168==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev13)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148957/">https://patchwork.freedesktop.org/series/148957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v13/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v13/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08_BAT -&gt; xe-pw-148957v13_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-148957v13_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-148957v13/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08 -&gt; xe-pw-148957v13</li>
-</ul>
-<p>IGT_8520: 8520<br />
-  xe-3669-fc0851a57d35ddfcdb673270da6ca17626dafc08: fc0851a57d35ddfcdb673270da6ca17626dafc08<br />
-  xe-pw-148957v13: 148957v13</p>
-
-</body>
-</html>
-
---===============5069174962307314168==--
