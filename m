@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06A89CA1012
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 22:33:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE13CA1010
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 22:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B36E610E953;
-	Wed,  3 Sep 2025 22:33:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE43B10E953;
+	Wed,  3 Sep 2025 22:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E4NfnLRh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j6U2zwv+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D6210E953
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 22:33:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9745810E957;
+ Wed,  3 Sep 2025 22:36:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756938823; x=1788474823;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8FwrgbLqgggCovwgHvABJOKUCB1hzFw4gHrOrRaGjF4=;
- b=E4NfnLRh+iTz+BjZWaocuFNUeLQWh1pnADHcGj+Ny4y3sva+RWee//ar
- gd5TCM4/9Fp73/02Zy1/gSGYXavMQav4k3a/atQyeCfG/oZwDDhEJ0wPe
- QKOhzicB09vwcGMOaLEIhQjFArMfpLZE3hIW50LJXTiqvomg01/U4JqxE
- TLTtkh8OVAd8sRLMg9iZN8hEt6cq2BvT9xhHLfqyvsc5bHYFddZn6bqDh
- XuB0hlAJL9dJRAZHIWXNHhwD2KsP9zx0SKRx5d5XfikDPn9VhaUtC7NqE
- J42PQ3TjCFgoLgCCHeke8wlYWVGLV8tg26Ukh071uOrb+5nMUxBQ4lfEc w==;
-X-CSE-ConnectionGUID: SdWmi8maSy64JBggJtuPqw==
-X-CSE-MsgGUID: wthcsBOCR8O55LZXGNvk9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="69879799"
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="69879799"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 15:33:43 -0700
-X-CSE-ConnectionGUID: gS/nAI3NS9S2/T25zxwIMA==
-X-CSE-MsgGUID: +TYMXpJAQ06gtnIEqnIu7Q==
+ t=1756938969; x=1788474969;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=N23a+PuXgavJCE6H9G8eSCMVzgH7bDoh51omPtgRjgQ=;
+ b=j6U2zwv+O5HRwHeY+4Karj7BRzV1uy7p6SXQj7h3z06UUEDh9XCwRAhS
+ mCqm6bckS70h7oSUvNH/8SZAC4LHszVMJWkHkC1HFZUp1YylpnuoZOOn9
+ PmLkygEocxqG+r7RWF5Tzo/esY/6KALV3QTBfBUhTLLiOObmWA4ZVDdcX
+ bmg1jv/AvuJ9z/mh0BAkyjzeaDRcmff9Yeoa0/5uP/y5VuUCp54kQAjK2
+ Y5+ziMeG5ZlKQkBnhjKJuK+lGuUDHpZQEAZRKUn1/rsfEbsmv6ifD5J0r
+ kimThbA5wZDGESO53H+tXpjexuuD0EP0YQTdzrkz2zd/abgzx0bigbnL3 w==;
+X-CSE-ConnectionGUID: YKNc2SxsTemDhe02AeDvfQ==
+X-CSE-MsgGUID: YKsor8+nToOlWYOGKFDAAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76715637"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="76715637"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2025 15:36:08 -0700
+X-CSE-ConnectionGUID: +O1zDa3lQXGYdZ3P5isxYg==
+X-CSE-MsgGUID: z6VXjRuORa+pp3rYCChKUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="172162414"
-Received: from ruymanre-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.252.70])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 15:33:41 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Stuart Summers <stuart.summers@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v2] drm/xe/guc: Set upper limit of H2G retries over CTB
-Date: Thu,  4 Sep 2025 00:33:30 +0200
-Message-ID: <20250903223330.6408-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="202570676"
+Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2025 15:36:08 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: dri-devel@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Subject: [PATCH v3 3/5] drm/xe/pf: Add a helper function to get a VF's backing
+ object in LMEM
+Date: Wed,  3 Sep 2025 15:30:56 -0700
+Message-ID: <20250903223403.1261824-4-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250903223403.1261824-1-vivek.kasireddy@intel.com>
+References: <20250903223403.1261824-1-vivek.kasireddy@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,70 +68,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC communication protocol allows GuC to send NO_RESPONSE_RETRY
-reply message to indicate that due to some interim condition it can
-not handle incoming H2G request and the host shall resend it.
+To properly import a dmabuf that is associated with a VF (or that
+originates in a Guest VM that includes a VF), we need to know where
+in LMEM the VF's allocated regions exist. Therefore, introduce a
+new helper to return the object that backs the VF's regions in LMEM.
 
-But in some cases, due to errors, this unsatisfied condition might
-be final and this could lead to endless retries as it was recently
-seen on the CI:
+v2:
+- Make the helper return the LMEM object instead of the start address.
 
- [drm] GT0: PF: VF1 FLR didn't finish in 5000 ms (-ETIMEDOUT)
- [drm] GT0: PF: VF1 resource sanitizing failed (-ETIMEDOUT)
- [drm] GT0: PF: VF1 FLR failed!
- [drm:guc_ct_send_recv [xe]] GT0: H2G action 0x5503 retrying: reason 0x0
- [drm:guc_ct_send_recv [xe]] GT0: H2G action 0x5503 retrying: reason 0x0
- [drm:guc_ct_send_recv [xe]] GT0: H2G action 0x5503 retrying: reason 0x0
- [drm:guc_ct_send_recv [xe]] GT0: H2G action 0x5503 retrying: reason 0x0
-
-To avoid such dangerous loops allow only limited number of retries
-(for now 50) and add some delays (n * 5ms) to slow down the rate of
-resending this repeated request.
-
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
-v2: use 50 iterations for smaller delay (Julia, Matt)
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index e431ff73227c..f40543b040d6 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1079,11 +1079,15 @@ static bool retry_failure(struct xe_guc_ct *ct, int ret)
- 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index c8f0320d032f..e01f5b340999 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1542,6 +1542,29 @@ u64 xe_gt_sriov_pf_config_get_lmem(struct xe_gt *gt, unsigned int vfid)
+ 	return size;
  }
  
-+#define GUC_SEND_RETRY_LIMIT	50
-+#define GUC_SEND_RETRY_MSLEEP	5
++/**
++ * xe_gt_sriov_pf_config_get_lmem_obj - Get VF's LMEM BO.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier
++ *
++ * This function can only be called on PF.
++ *
++ * Return: BO that is backing VF's quota in LMEM.
++ */
++struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt,
++						 unsigned int vfid)
++{
++	struct xe_gt_sriov_config *config;
++	struct xe_bo *lmem_obj;
 +
- static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 			    u32 *response_buffer, bool no_fail)
- {
- 	struct xe_gt *gt = ct_to_gt(ct);
- 	struct g2h_fence g2h_fence;
-+	unsigned int retries = 0;
- 	int ret = 0;
++	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	config = pf_pick_vf_config(gt, vfid);
++	lmem_obj = config->lmem_obj;
++	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++
++	return lmem_obj;
++}
++
+ /**
+  * xe_gt_sriov_pf_config_set_lmem - Provision VF with LMEM.
+  * @gt: the &xe_gt (can't be media)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index 513e6512a575..bef459003de1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -31,6 +31,7 @@ int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *gt, unsigned int vfid, unsi
+ int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs,
+ 				       u32 num_dbs);
  
- 	/*
-@@ -1148,6 +1152,12 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		xe_gt_dbg(gt, "H2G action %#x retrying: reason %#x\n",
- 			  action[0], g2h_fence.reason);
- 		mutex_unlock(&ct->lock);
-+		if (++retries > GUC_SEND_RETRY_LIMIT) {
-+			xe_gt_err(gt, "H2G action %#x reached retry limit=%u, aborting\n",
-+				  action[0], GUC_SEND_RETRY_LIMIT);
-+			return -ELOOP;
-+		}
-+		msleep(GUC_SEND_RETRY_MSLEEP * retries);
- 		goto retry;
- 	}
- 	if (g2h_fence.fail) {
++struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt, unsigned int vfid);
+ u64 xe_gt_sriov_pf_config_get_lmem(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size);
+ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
 -- 
-2.47.1
+2.50.1
 
