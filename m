@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CDB5CA1012
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AA10CA1013
 	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 22:36:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D0910E958;
-	Wed,  3 Sep 2025 22:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF1010E95A;
+	Wed,  3 Sep 2025 22:36:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XfB8Lf39";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DS8FEgIs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 787D010E953;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E037C10E957;
  Wed,  3 Sep 2025 22:36:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1756938969; x=1788474969;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QlKuNCAMtPk9JCSXBDnl96Am+2bn0NvDRIGsJ1s4MLo=;
- b=XfB8Lf39j/epDjj7AACYMk1TjeJgewwgi1Tm3r5PtUq1UIH/8NE5H6me
- UozaX37pXFC7IU42QuzCB3JlupkMe3FTDu6g6vCRqjIkmAmSBaH3+JQxM
- olkVD8prhclnI2fD90YIaQvvy4X4gLDfAeZTD6uTMTibTkDGUdMS19U9b
- tborN9qoVmyqQZAs9HovcAzyZJD/13yJN2h1z4Tv5lPw0AvkB9NGu7Aqy
- 2Vi71Woh6JvlFpfd15k9YqeYOIS1B2aU9wBXGsCK73mLXwR6SG/SZJsae
- Z0jV678adrV42Tom5LpolcyVAnR8nAmI0HVYBX2lad2oKxWk7Yf7UHgyZ Q==;
-X-CSE-ConnectionGUID: xiuMweEQQN2pYHYkygnR0g==
-X-CSE-MsgGUID: xlqVPryaQtixStGv798tLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76715636"
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="76715636"
+ bh=vlDihDHsg3XcpupxrZrq9m5FyjzPQyzETifuwwRAsdo=;
+ b=DS8FEgIsSkslFN1kG8RaVqzYqUz3YwhQEghAZxrtPada0eU60uQVxcr2
+ Lzq/nRyVtIuk8eUfLfweVt3STbZrp2xNBBGf916Mj7xtXMmCodlxBnqcW
+ FhGuIQ/4leZgfAxvDhutQW97toiDbKaytf685BTJ4d9bclupHMCOTVnny
+ 0vPYW7PwjnfMeCD+CahMVHPBk7QXfsoAxy3YTuGIAUbx2ET9HUaALhkI7
+ MoVMt3GCWJIm8oJ2xO8aA7mnWj1IbIrvg3azEkO16QYfjfnjgkWGGNOyV
+ rlByH41xsVHygR6dslTXx0ePU59D1LW910D0csSoORMZNdC4GqFsGE/nG A==;
+X-CSE-ConnectionGUID: GY8fj9K1SlSHiJHEvg4IQA==
+X-CSE-MsgGUID: pNqe+YtBR8+iaTYRYD027g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76715640"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="76715640"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 15:36:08 -0700
-X-CSE-ConnectionGUID: A6ZRnzLLQ5+bMBO2gOJNxw==
-X-CSE-MsgGUID: F4FNOXQZS4OfyYxy6xhTZQ==
+ 03 Sep 2025 15:36:09 -0700
+X-CSE-ConnectionGUID: 1b3VxoyaSLqBN8xWMtichA==
+X-CSE-MsgGUID: flB5g9r4S1ebOoPmQhFpAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="202570673"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="202570684"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2025 15:36:08 -0700
@@ -45,10 +45,10 @@ From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Subject: [PATCH v3 2/5] drm/xe/dmabuf: Don't migrate BO to System RAM while
- running in VF mode
-Date: Wed,  3 Sep 2025 15:30:55 -0700
-Message-ID: <20250903223403.1261824-3-vivek.kasireddy@intel.com>
+Subject: [PATCH v3 5/5] drm/xe/pt: Add an additional check for dmabuf BOs
+ while doing bind
+Date: Wed,  3 Sep 2025 15:30:58 -0700
+Message-ID: <20250903223403.1261824-6-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250903223403.1261824-1-vivek.kasireddy@intel.com>
 References: <20250903223403.1261824-1-vivek.kasireddy@intel.com>
@@ -68,59 +68,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the importer has allow_peer2peer set to true, then we can expect that
-it would be able to handle VRAM addresses. Therefore, in this specific
-case and only while running in VF mode, do not migrate the BO to System
-RAM before exporting it.
+If a BO's is_devmem_external flag is set, it means that it is an
+imported dmabuf BO that has a backing store in VRAM. Therefore, in
+this case, need to iterate over its dma_addr array.
+
+v2:
+- Use a cursor to iterate over the entries in the dma_addr array
+  instead of relying on SG iterator (Matt)
+
+v3:
+- Since XE_PPGTT_PTE_DM is added to the PTE flags in all cases,
+  remove the bo->is_devmem_external check added in v2
 
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/gpu/drm/xe/xe_dma_buf.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 346f857f3837..2111faed5f46 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -17,6 +17,7 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_pm.h"
-+#include "xe_sriov.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index c129048a9a09..ffeb88039808 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -755,6 +755,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
  
-@@ -26,8 +27,11 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
- 			     struct dma_buf_attachment *attach)
- {
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
-+	struct xe_bo *bo = gem_to_xe_bo(obj);
-+	struct xe_device *xe = xe_bo_device(bo);
+ 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
+ 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
++
++	if (bo && bo->is_devmem_external)
++		xe_walk.dma_offset = 0;
++
+ 	if (!range)
+ 		xe_bo_assert_held(bo);
  
- 	if (attach->peer2peer &&
-+	    !IS_SRIOV_VF(xe) &&
- 	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
- 		attach->peer2peer = false;
- 
-@@ -51,7 +55,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_device *xe = xe_bo_device(bo);
--	int ret;
-+	int ret = 0;
- 
- 	/*
- 	 * For now only support pinning in TT memory, for two reasons:
-@@ -63,7 +67,8 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
- 		return -EINVAL;
- 	}
- 
--	ret = xe_bo_migrate(bo, XE_PL_TT);
-+	if (!IS_SRIOV_VF(xe) || !attach->peer2peer)
-+		ret = xe_bo_migrate(bo, XE_PL_TT);
- 	if (ret) {
- 		if (ret != -EINTR && ret != -ERESTARTSYS)
- 			drm_dbg(&xe->drm,
+@@ -765,6 +769,9 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+ 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
+ 				     xe_vma_size(vma), &curs);
++		else if (bo && bo->is_devmem_external)
++			xe_res_first_dma(bo->dma_addr, xe_vma_bo_offset(vma),
++					 xe_vma_size(vma), &curs);
+ 		else
+ 			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
+ 					xe_vma_size(vma), &curs);
 -- 
 2.50.1
 
