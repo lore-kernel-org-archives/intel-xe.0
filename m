@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36315CA1012
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 21:37:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADEF3CA1016
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 21:37:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB60910E94B;
-	Wed,  3 Sep 2025 21:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E8810E94C;
+	Wed,  3 Sep 2025 21:37:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IUaE/OgU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ckqFBeoi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1392810E94A
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 21:37:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CF0A10E94C
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 21:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756935450; x=1788471450;
+ t=1756935452; x=1788471452;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dD0OBEu2Wt+66r8EhQXgIkSOGTPlSeCA9OKlK3B8jxA=;
- b=IUaE/OgURO/WL3Txp5iAD6YeA+uk/hHvszQdC06EvjqjMNIe0Z7smqBA
- /oGy4v+Ul8zJ45Ui7LVRHpwAPuGUHCGIcu5kOi9usKtfrYBrNbwCq/3MU
- VWKKU1GlXqJnKtUMH6IGS/2UjSxOur953i3XDjKNaKMqNLgDh1EuX/7MT
- RpWVZlFpX1upTWSMr9LDm9hJyoXm4Lx53HkJ10l0V4Auhm+TTe+v/0RSY
- CdGmAzzoS0hf5ku3hIwWW+zGhXdDpjWAIpibXYHvlstv1BZzJyG5H6+rN
- joUkl5I4tSqbyiSXDWK5a5fWUlN9Rn77wjvCgcbQT4jW9CwbnyWuez9us g==;
-X-CSE-ConnectionGUID: nzN75ZJKQ8SZXqg2XWyLlQ==
-X-CSE-MsgGUID: Zq+GDs8UTFiIuhm9Lr2whQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59178985"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59178985"
+ bh=194MZbIx1SFBq9xvswuB3TqXJzAlfpFYd46HwNgSaNk=;
+ b=ckqFBeoiuZr2wQDZyfiHJlh4OJqv/iDKrJXFEmEf2/5uYl6BnJgML6OK
+ oQCMQPWZFT4fRE/B7t8tjZGE22Y/xs8Pgqez15m2jTvWQojgn/QJ+mNfb
+ U+h+sTf4j5+FTrg199ap31rPQgjkGQfO7sQlXcOe6ceMU1WvRpBCQZxvz
+ 4BGhSqyZ4IutoPhQA0noFV9TbAHA9X2p0aBWQ+2ColT1BGYOKUzX9Wgdr
+ brioa7IjweCXXHogRYBzrEqEQuZCTjjUGz0y5B/MRcGrpRlFHqx6/zdFN
+ YlhPVzsmPG2GX92ZDPsA6JqtNtvuEneUxBICIdRX4gEcr3vffLvOjFdQM w==;
+X-CSE-ConnectionGUID: Q4fSln+0RZy56+eDDHZDZw==
+X-CSE-MsgGUID: 3J/4yz3gSAO6rsJ8Uk+6Ag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59178987"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59178987"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 14:37:30 -0700
-X-CSE-ConnectionGUID: 4cAPEqT9Q3+kg2dcTxclEQ==
-X-CSE-MsgGUID: vY/dfYeQTV+lF3qFfBtqRw==
+ 03 Sep 2025 14:37:31 -0700
+X-CSE-ConnectionGUID: sPpFD60OT9KDM43d3BmSJg==
+X-CSE-MsgGUID: X2cSPa2mRkmctDz7vT+/kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="170957574"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; d="scan'208";a="170957593"
 Received: from ruymanre-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.252.70])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 14:37:29 -0700
+ 03 Sep 2025 14:37:30 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 5/7] drm/xe: Define verbose debug macros
-Date: Wed,  3 Sep 2025 23:36:10 +0200
-Message-ID: <20250903213712.6364-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 6/7] drm/xe: Use tile-oriented messages in GGTT code
+Date: Wed,  3 Sep 2025 23:36:11 +0200
+Message-ID: <20250903213712.6364-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250903213712.6364-1-michal.wajdeczko@intel.com>
 References: <20250903213712.6364-1-michal.wajdeczko@intel.com>
@@ -67,70 +67,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We might want to add (and in some cases already have) some debug
-level messages that are too verbose and need to be guarded by the
-CONFIG_DRM_XE_DEBUG. To simplify that define verbose variant of
-our printk debug macros that will be compiled out on non-debug
-builds, in same way like we already did with xe_asserts() macros.
+Use recently added macros to print tile-oriented messages.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_printk.h   | 6 ++++++
- drivers/gpu/drm/xe/xe_printk.h      | 6 ++++++
- drivers/gpu/drm/xe/xe_tile_printk.h | 6 ++++++
- 3 files changed, 18 insertions(+)
+ drivers/gpu/drm/xe/xe_ggtt.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index 8dc4217ddb4e..69c4553d0f80 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -35,6 +35,12 @@
- #define xe_gt_dbg(_gt, _fmt, ...) \
- 	xe_gt_printk((_gt), dbg, _fmt, ##__VA_ARGS__)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 71c7690a92b3..6a14bfdef41d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -28,6 +28,7 @@
+ #include "xe_pm.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sriov.h"
++#include "xe_tile_printk.h"
+ #include "xe_tile_sriov_vf.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_wa.h"
+@@ -269,7 +270,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		gsm_size = probe_gsm_size(pdev);
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define xe_gt_dbg_verbose		xe_gt_dbg
-+#else
-+#define xe_gt_dbg_verbose(_gt, ...)	typecheck(struct xe_gt *, (_gt))
-+#endif
-+
- #define xe_gt_WARN_type(_gt, _type, _condition, _fmt, ...) \
- 	xe_tile_WARN##_type((_gt)->tile, _condition, _fmt, ## __VA_ARGS__)
+ 	if (gsm_size == 0) {
+-		drm_err(&xe->drm, "Hardware reported no preallocated GSM\n");
++		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
+ 		return -ENOMEM;
+ 	}
  
-diff --git a/drivers/gpu/drm/xe/xe_printk.h b/drivers/gpu/drm/xe/xe_printk.h
-index 691d3611b889..9ffa26c869da 100644
---- a/drivers/gpu/drm/xe/xe_printk.h
-+++ b/drivers/gpu/drm/xe/xe_printk.h
-@@ -36,6 +36,12 @@
- #define xe_dbg(_xe, _fmt, ...) \
- 	xe_printk((_xe), dbg, _fmt, ##__VA_ARGS__)
+@@ -466,8 +467,8 @@ static void xe_ggtt_dump_node(struct xe_ggtt *ggtt,
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define xe_dbg_verbose			xe_dbg
-+#else
-+#define xe_dbg_verbose(_xe, ...)	typecheck(struct xe_device *, (_xe))
-+#endif
-+
- #define xe_WARN_type(_xe, _type, _condition, _fmt, ...) \
- 	drm_WARN##_type(&(_xe)->drm, _condition, _fmt, ## __VA_ARGS__)
+ 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+ 		string_get_size(node->size, 1, STRING_UNITS_2, buf, sizeof(buf));
+-		xe_gt_dbg(ggtt->tile->primary_gt, "GGTT %#llx-%#llx (%s) %s\n",
+-			  node->start, node->start + node->size, buf, description);
++		xe_tile_dbg(ggtt->tile, "GGTT %#llx-%#llx (%s) %s\n",
++			    node->start, node->start + node->size, buf, description);
+ 	}
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_tile_printk.h b/drivers/gpu/drm/xe/xe_tile_printk.h
-index ed951cdb08cb..33ebfd9722d3 100644
---- a/drivers/gpu/drm/xe/xe_tile_printk.h
-+++ b/drivers/gpu/drm/xe/xe_tile_printk.h
-@@ -34,6 +34,12 @@
- #define xe_tile_dbg(_tile, _fmt, ...) \
- 	xe_tile_printk((_tile), dbg, _fmt, ##__VA_ARGS__)
+@@ -499,9 +500,8 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
  
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+#define xe_tile_dbg_verbose		xe_tile_dbg
-+#else
-+#define xe_tile_dbg_verbose(_tile, ...)	typecheck(struct xe_tile *, (_tile))
-+#endif
-+
- #define xe_tile_WARN_type(_tile, _type, _condition, _fmt, ...) \
- 	xe_WARN##_type((_tile)->xe, _condition, _fmt, ## __VA_ARGS__)
+ 	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
  
+-	if (xe_gt_WARN(ggtt->tile->primary_gt, err,
+-		       "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+-		       node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
++	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
++			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
+ 		return err;
+ 
+ 	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
 -- 
 2.47.1
 
