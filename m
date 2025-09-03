@@ -4,89 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71374CA0FF2
-	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 07:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C04F6CA1009
+	for <intel-xe@archiver.kernel.org>; Wed,  3 Sep 2025 07:58:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 343A710E431;
-	Wed,  3 Sep 2025 07:57:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Ec39o659";
-	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F296710E431
- for <intel-xe@lists.freedesktop.org>; Wed,  3 Sep 2025 07:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756886252;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=pxmJ9mW6/AAQDmhE+DOEU0ITZ+7e5wSW3ZLGRWuHu2Y=;
- b=Ec39o659FJ93T4y03oPqkEVaMvsNolMtSiquTwLApmH/3gs/0aQhFkJ928xEwtezcLUFhb
- C735AtbGR1cpeGJdVW17iiiTL/7RuAFBEIwwP03S3C2Tj2PtmY/CzWWSmeKZyXIOjuNRK8
- MxWFQRwfttk6XplLYuNopy752QY6+gM=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-676-oQZrEJP-Ppu2av1RPeoZfA-1; Wed, 03 Sep 2025 03:57:30 -0400
-X-MC-Unique: oQZrEJP-Ppu2av1RPeoZfA-1
-X-Mimecast-MFC-AGG-ID: oQZrEJP-Ppu2av1RPeoZfA_1756886249
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3cef6debe96so3265672f8f.1
- for <intel-xe@lists.freedesktop.org>; Wed, 03 Sep 2025 00:57:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756886249; x=1757491049;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pxmJ9mW6/AAQDmhE+DOEU0ITZ+7e5wSW3ZLGRWuHu2Y=;
- b=fh00xbydHIiTP0Wr1gGY3+a8SJ8FzMMQjaIJ+PwVzsC1BHek6LQagdCkKoMCNzlckI
- l50Ct2RHJ5oFpUO5WsvyB65pJNaN7n77oZvmABc/o0rxHpf332A1mDlKbTxBZ7zUOaz9
- qibOiJ2OSe6cjHyRnudTOhelgvPmILste/SjcR6VWGf9v3rfTp4D1cKpDUdJotyiheLK
- N/UKp/S4StHcGPKc7rOBtPWWFgVUJVu63yfjzHBp++86t/6eaUjkbsTLhmRqnVnz1o0t
- /RVBI3VR3O1MgUCS6bFwzT9aPqdxVqBYPYnpIWc6EyWAbsQB8pEtM5iDVpVZVzl9tDX1
- E16Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWKYSvmz+uaTRWtYyXz1r48yJW4alISIKEsvJobCkwRS9AVj1VMpFt7vlZnIWVecFd5oQ/SllLLYg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy+RhkQghXvU+k4RzpHXyiYaYSCmk/t5+Yi1LgECW0KnbPpDWZD
- WC9ZsBrZb52/nExdUQQEk9aO3VV5bbFeiGho2NI6WIneOfeWjiZ568p8WSQZplcnG3pH7nnzi1j
- WtJOtBAMu3WORelO1PCh5CDWwm5Q2K24b3HWnwBzC3Kul5l7gVpYMZ0C78HVH3qtjA9Ot
-X-Gm-Gg: ASbGncu2b9RFJy1zY0+PlEOPOhc/QFB3qhL5IvHbm5wJQkcccz5rjNSbRzuO3a6r2d0
- crv2cWuOfPn+1riEQLroEbTI2tvh/a43uxNwpiMrJZsFxnSNmnO06dqs4j+6xeyNBwGjsbqnJie
- UxBGu15xxSMzaXCxH2L8a5W+AaK5szssH/YXiEOAnifaKAtt+ZxImger4GyNzzntyfEsmxkAv0y
- eh47/ej49bW8NK39MYBTjscwAebQNLYxz7JSqibviIMBYaHeWXIiaT9Gt8A+RL+BidX0Atgh17R
- 4JIQlq3HczW9SH8/v3Ga0hxN/PBYuaA2sm3Hww==
-X-Received: by 2002:a05:6000:2112:b0:3d2:6129:5505 with SMTP id
- ffacd0b85a97d-3d261295a85mr9870348f8f.36.1756886249097; 
- Wed, 03 Sep 2025 00:57:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFXFVHs+NfQ8zsIlRzT7m9qf+NhBJc7qDWYnsCG8KRh/QLvklDGDONiK8xsddrg2vN1KKxLZg==
-X-Received: by 2002:a05:6000:2112:b0:3d2:6129:5505 with SMTP id
- ffacd0b85a97d-3d261295a85mr9870328f8f.36.1756886248691; 
- Wed, 03 Sep 2025 00:57:28 -0700 (PDT)
-Received: from localhost ([2a01:cb14:397:1200:8b6a:6e9e:8012:87b1])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3d95df59e50sm7278813f8f.23.2025.09.03.00.57.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Sep 2025 00:57:28 -0700 (PDT)
-Date: Wed, 3 Sep 2025 09:57:27 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <qc2rd7bskgufjtyspbjflyjpswcnhyja6s7nm2yb67j7hezyey@yfn2w6n5trff>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A6F10E431;
+	Wed,  3 Sep 2025 07:58:09 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5BF710E431;
+ Wed,  3 Sep 2025 07:58:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="yh7n7iga4ntnvd6p"
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_GPU_frequency_tracepo?=
+ =?utf-8?q?int?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "S Sebinraj" <s.sebinraj@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 03 Sep 2025 07:58:07 -0000
+Message-ID: <175688628780.297199.7004176598413130725@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250903074528.69159-1-s.sebinraj@intel.com>
+In-Reply-To: <20250903074528.69159-1-s.sebinraj@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,86 +36,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---yh7n7iga4ntnvd6p
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+Series: Add GPU frequency tracepoint
+URL   : https://patchwork.freedesktop.org/series/153925/
+State : warning
 
-Hi Dave, Sima,
+== Summary ==
 
-Here's this week drm-misc-fixes PR
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e0fa7d6ad11ac6dc8dfa757164e518968a98b897
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 70381771add3789ef90e85ee85da90cb2ceb5b7c
+Author: S Sebinraj <s.sebinraj@intel.com>
+Date:   Wed Sep 3 13:15:28 2025 +0530
 
-Maxime
+    drm/xe: Add DRM GPU frequency tracepoint to Xe
+    
+    Integrate xe PMU with the DRM-level GPU frequency tracepoint to provide
+    efficient frequency monitoring with change detection.
+    
+    Key changes:
+    - Add frequency change detection
+    - Implement per-GT frequency tracking using last_act_freq array
+    - Only trace when GPU frequency actually changes per GT
+    
+    The integration traces actual GPU frequency changes from xe_pmu during
+    XE_PMU_EVENT_GT_ACTUAL_FREQUENCY reads.
+    
+    Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
++ /mt/dim checkpatch fc0851a57d35ddfcdb673270da6ca17626dafc08 drm-intel
+af932c8a44c5 drm: Add GPU frequency tracepoint at DRM level
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
 
-drm-misc-fixes-2025-09-03:
-Two nouveau interrupt handling fixes, one race fix for ivpu, a race fix
-for drm_sched, and a clock fix for ti-sn65dsi86.
-The following changes since commit 16fdb3cc6af8460f23a706512c6f5e7dfdd4f338:
+-:108: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#108: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:24:
++	    TP_STRUCT__entry(
 
-  Revert "drm/tegra: Use dma_buf from GEM object instance" (2025-08-26 10:41:27 +0200)
+-:112: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#112: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:28:
++	    TP_fast_assign(
 
-are available in the Git repository at:
+-:129: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:45:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm
+                              ^
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-09-03
+-:129: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:45:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm
+                                 ^
 
-for you to fetch changes up to bdd5a14e660062114bdebaef9ad52adf04970a89:
+-:129: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:45:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm
+                                         ^
 
-  drm/bridge: ti-sn65dsi86: fix REFCLK setting (2025-09-02 09:56:05 -0700)
+-:129: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#129: FILE: drivers/gpu/drm/drm_gpu_frequency_trace.h:45:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm
+                                             ^
 
-----------------------------------------------------------------
-Two nouveau interrupt handling fixes, one race fix for ivpu, a race fix
-for drm_sched, and a clock fix for ti-sn65dsi86.
+total: 0 errors, 1 warnings, 6 checks, 87 lines checked
+70381771add3 drm/xe: Add DRM GPU frequency tracepoint to Xe
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
 
-----------------------------------------------------------------
-Dave Airlie (1):
-      nouveau: fix disabling the nonstall irq due to storm code
+total: 0 errors, 1 warnings, 0 checks, 77 lines checked
 
-Faith Ekstrand (1):
-      nouveau: Membar before between semaphore writes and the interrupt
-
-James Jones (1):
-      MAINTAINERS: Update git entry for nouveau
-
-Karol Wachowski (1):
-      accel/ivpu: Prevent recovery work from being queued during device removal
-
-Michael Walle (1):
-      drm/bridge: ti-sn65dsi86: fix REFCLK setting
-
-Pierre-Eric Pelloux-Prayer (1):
-      drm/sched: Fix racy access to drm_sched_entity.dependency
-
- MAINTAINERS                                        |  2 +-
- drivers/accel/ivpu/ivpu_drv.c                      |  2 +-
- drivers/accel/ivpu/ivpu_pm.c                       |  4 +-
- drivers/accel/ivpu/ivpu_pm.h                       |  2 +-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              | 11 +++
- drivers/gpu/drm/nouveau/gv100_fence.c              |  7 +-
- .../gpu/drm/nouveau/include/nvhw/class/clc36f.h    | 85 ++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.c    |  2 +
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c   | 23 ++++--
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c   |  1 +
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/priv.h    |  2 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c |  1 +
- drivers/gpu/drm/scheduler/sched_entity.c           | 11 ++-
- 13 files changed, 135 insertions(+), 18 deletions(-)
-
---yh7n7iga4ntnvd6p
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaLf05wAKCRAnX84Zoj2+
-dgvhAX0VcwqHgG77EScgOQhJkkBr9pM4FhaiInx7fW9cLwy2LKsUhYkB25IJEkWT
-/vgiFegBgOwttfMce5O5G8b0LcffLbi47luRJDFgAyfGDLVIB/dPXLpgwN1wqKSN
-seKNnKVY8Q==
-=k4uL
------END PGP SIGNATURE-----
-
---yh7n7iga4ntnvd6p--
 
