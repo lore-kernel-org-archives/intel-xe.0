@@ -4,89 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF533CA1015
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 11:47:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90554CA1015
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 12:09:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D616610EA15;
-	Thu,  4 Sep 2025 11:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E00F10E9F4;
+	Thu,  4 Sep 2025 12:09:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="aMs7NPU6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Doy2IVcQ";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1749310EA1C
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 11:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756986421;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=RHTlOa6UNeDwG2J7Ek8NZzySxxKAaE1NmJG0gyaITeQ=;
- b=aMs7NPU6xc+Q7WVL1mIxpnKezMVhgnWaRfQ0s6NU/+V3FhAcXJJXOU0Itlx9+Go5MkMxQT
- 8Rs1OcJJ/ahmoj8AkQ28qkTpzNoM7ZahcLlP9gA07OelLB39Zc/e6x3AykFGASNPVQk1uO
- U8BxJIfj1PBVbPNS14pBfbHPqTD73wI=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-216-3KWeh6hTORqJAAWZvut1VQ-1; Thu, 04 Sep 2025 07:46:58 -0400
-X-MC-Unique: 3KWeh6hTORqJAAWZvut1VQ-1
-X-Mimecast-MFC-AGG-ID: 3KWeh6hTORqJAAWZvut1VQ_1756986417
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-45b8af0b986so6086355e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 04 Sep 2025 04:46:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756986417; x=1757591217;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=RHTlOa6UNeDwG2J7Ek8NZzySxxKAaE1NmJG0gyaITeQ=;
- b=RHzKbFpCXq5Qq4sxenZyfJGJiXq8ro3cvpGNqoLOZlJZN0Z1S02FiKiOZBUo99b0Dl
- p4vFxzXEsnq3wx4xLI+4Ck+ElE7xUguBvQsGvSWENwagqBl+D80hMCd3ctzdCbM7nrlw
- SUEQOJ1SW76hwyvDGqy2DsH7v1Md+7wGy0jj5gAvGd8Y+2RWK7/rBVqYF1UJTbCyYQ5H
- AgUo763uYuVPLv7JmdgdDr3ORd0oLbg6G/m8vxhtfC5WahKc+PzoqmExeX0w2F5ylyzd
- Y2uOZdgbEYzBWhHr/jejkmSD/uGQyExuzIIKlqHlx4gKFT8tHYgy1uRtMbfHky1ihJzN
- eZaQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVvAN4Mlo0hRlSJ+wa0cBo2PJzuXAejKxz0D9u5zbWkPI9BfLn1ztScL2EVLGAj7FOT4ns5PKXdhg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxNJ2vdYTl9Fp8Wm/ARRXZmGLy8Zcs0dAhyc+qMbiVXR3V6aDhg
- DhD/zUVgRQh7kUjyX6NB41dUXVr624eGSrRTaPARoPWOWjUC5JQO+R7aLELv/xadYIQZRiNKHaC
- 8snB9zjGwx4/scjcgQPdP4O+GqbWXgdiuuDWFiDxTAIDeoij60jmt++mz1JIfh1hxl5Dy
-X-Gm-Gg: ASbGncvXzr+1wv6YaWGJ06ioa7TjQpC+QfGOGc7ZhisSmKL26UGoxatGcb8IP8Faeoq
- uID/diZjVfV3SJ+lIOX6K408x9LoFI1VFqebYhcMFgjoxLmZQFF7xr++g/1+U+/rrrr5UUEKu0b
- qeWOTQPP/Pncwq1UeAXuJUcEkv77xTUuWMbgBnqpOEcCtQLzyy6NKaubIsIRHu6AInZGc+OTFvU
- piU/I6wUXAwiO8+M+in5Sze/0CwxpfzrevNNcf7NxrMzeHlU4Td4xRx8tpRuz7RXDL19AF1pUaj
- JUOw9HmgBJnlYXQk57K6n8+OESyTGcXwsbQEiooFyWXl9HW5QhZhzDBwdhNsaenl69RLa5g4vrr
- 6SLk=
-X-Received: by 2002:a05:600d:1c:b0:45b:8b95:7119 with SMTP id
- 5b1f17b1804b1-45b8b957228mr126583905e9.8.1756986417264; 
- Thu, 04 Sep 2025 04:46:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFcBESs0bnQlj7e2HoDXLZr6A8Ni5vaw0eir5JaOdkoa5mA4hedJQiZYq7hmJjzO/2MD8VZGg==
-X-Received: by 2002:a05:600d:1c:b0:45b:8b95:7119 with SMTP id
- 5b1f17b1804b1-45b8b957228mr126583715e9.8.1756986416822; 
- Thu, 04 Sep 2025 04:46:56 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
- ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3e177488999sm1842730f8f.36.2025.09.04.04.46.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 04 Sep 2025 04:46:56 -0700 (PDT)
-Message-ID: <d34b0f39-2cea-4153-b019-163520f4e486@redhat.com>
-Date: Thu, 4 Sep 2025 13:46:55 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8F610E9F4;
+ Thu,  4 Sep 2025 12:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=Zq0zttv8W9LftJSDoTWI4vEahxxZ/eDadaO2lGU9frI=; b=Doy2IVcQPHNkqDcO8iZuikICP4
+ jkpIXDdn4+zROswF5n31UFc9JSxN735+O/84PZPd/Z0rUnNx9ySQV4Gh0xJzoCXNYSg80Cz7E245H
+ fruFNdhBk150qROe486hg/IygRQTiNOAymr6xRT9Unr2fr1Ts9FZ3fiNKa34lwlyuJVJdTHyXuBCY
+ fFd3oqajvwbQyPXp71P8dHJ/ANLuhM3Encjvvxbdqk2U3g+rRr5GWaJv1ne/mv9xk1tcXW64JT4Cn
+ bva1scV3a68EdytM8cobyaelkuOXX6NjEPj6JlIDJNpyVUVjJcWIGMhCZq04bVJ7XAai0t/d+d1QD
+ CfxyRKxQ==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uu8lt-006lVT-Iu; Thu, 04 Sep 2025 14:08:57 +0200
+Message-ID: <58866bb5-9fee-4709-9350-70b978feaed4@igalia.com>
+Date: Thu, 4 Sep 2025 13:08:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] drm/{i915, xe}/panic: refactor framebuffer allocation
- etc.
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-References: <cover.1756835342.git.jani.nikula@intel.com>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <cover.1756835342.git.jani.nikula@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: XaqtfKDRR9_rF9AuulXpA11vV2cW20BfRRUTalRnHK8_1756986417
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
+Subject: Re: [RFC 21/21] drm/xe: Register with the DRM scheduling cgroup
+ controller
+To: dri-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ intel-xe@lists.freedesktop.org, cgroups@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
+ <20250903152327.66002-22-tvrtko.ursulin@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250903152327.66002-22-tvrtko.ursulin@igalia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -103,70 +63,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/09/2025 19:51, Jani Nikula wrote:
-> Split out intel_panic functionality separate from intel_bo abstraction,
-> and lift the framebuffer allocation back to where it belongs in
-> intel_fb.c.
-> 
-> There's more that should be improved, ideally making struct
-> intel_framebuffer opaque towards i915 and xe, but this already goes
-> along way in adjusting where the abstractions should happen.
 
-Thanks for this series, this makes sense, and moving the panic part to 
-intel_panic.c is a good idea.
-
-I think this may conflict with 
-https://patchwork.freedesktop.org/series/150887/ but that should be 
-trivial to resolve.
-
-For the whole series:
-Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
-
-Best regards,
-
--- 
-
-Jocelyn
-
+On 03/09/2025 16:23, Tvrtko Ursulin wrote:
+> Wire up the scheduling weight notification into the driver.
 > 
-> BR,
-> Jani.
+> DRM cgroup controller will notify the driver of scheduling weights for
+> each DRM client, which the driver will map into the three GuC scheduling
+> priorities by giving the lowest weight client the low priority, and
+> respectively the highest one high. The other clients will not be changed
+> as will not be the ones which have individually specified a priority other
+> than normal.
 > 
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Maarten Lankhorst <dev@lankhorst.se>
+> The priority changes are done from a delayed worker to coalesce
+> potentially numerous updates and also to allow taking the mutexes from a
+> callback which runs with preemption disabled.
 > 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+>   drivers/gpu/drm/xe/xe_device.c       | 18 +++++++
+>   drivers/gpu/drm/xe/xe_device_types.h | 15 ++++++
+>   drivers/gpu/drm/xe/xe_exec_queue.c   | 80 ++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_exec_queue.h   |  5 ++
+>   drivers/gpu/drm/xe/xe_guc_submit.c   |  8 ++-
+>   drivers/gpu/drm/xe/xe_pm.c           |  4 ++
+>   6 files changed, 129 insertions(+), 1 deletion(-)
 > 
-> Jani Nikula (8):
->    drm/i915/fb: add intel_framebuffer_alloc()
->    drm/{i915,xe}/panic: split out intel_panic.[ch]
->    drm/{i915,xe}/panic: rename intel_bo_panic_*() to intel_panic_*()
->    drm/{i915,xe}/fb: add panic pointer member to struct intel_framebuffer
->    drm/{i915,xe}/panic: rename struct {i915,xe}_panic_data to struct
->      intel_panic
->    drm/{i915,xe}/panic: move framebuffer allocation where it belongs
->    drm/{i915,xe}/panic: convert intel_panic_finish() to struct
->      intel_panic
->    drm/{i915,xe}/panic: pass struct intel_panic to intel_panic_setup()
-> 
->   drivers/gpu/drm/i915/Makefile                 |  1 +
->   drivers/gpu/drm/i915/display/i9xx_plane.c     |  4 +-
->   drivers/gpu/drm/i915/display/intel_bo.c       | 15 ---
->   drivers/gpu/drm/i915/display/intel_bo.h       |  3 -
->   .../drm/i915/display/intel_display_types.h    |  2 +
->   drivers/gpu/drm/i915/display/intel_fb.c       | 23 ++++-
->   drivers/gpu/drm/i915/display/intel_fb.h       |  3 +
->   drivers/gpu/drm/i915/display/intel_panic.c    | 27 ++++++
->   drivers/gpu/drm/i915/display/intel_panic.h    | 14 +++
->   drivers/gpu/drm/i915/display/intel_plane.c    |  6 +-
->   .../drm/i915/display/skl_universal_plane.c    |  3 +-
->   drivers/gpu/drm/i915/gem/i915_gem_object.h    | 11 ++-
->   drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 40 +++-----
->   drivers/gpu/drm/xe/Makefile                   |  1 +
->   drivers/gpu/drm/xe/display/intel_bo.c         | 91 -------------------
->   drivers/gpu/drm/xe/display/xe_panic.c         | 80 ++++++++++++++++
->   16 files changed, 176 insertions(+), 148 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/display/intel_panic.c
->   create mode 100644 drivers/gpu/drm/i915/display/intel_panic.h
->   create mode 100644 drivers/gpu/drm/xe/display/xe_panic.c
-> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 9e2952c9c06a..9fef10c50868 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -112,6 +112,10 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>   		put_task_struct(task);
+>   	}
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	xef->cg.prio = XE_EXEC_QUEUE_PRIORITY_NORMAL; // TODO: inherit current cgroup priority
+> +#endif
+
+For the record from the updated branch this TODO is addressed like this:
+
+#ifdef CONFIG_CGROUP_DRM
+	/*
+	 * Set the initial values to valid ones but note that both will get set
+	 * and updated as the DRM core will soon notify the cgroup controller
+	 * that the new client has entered the group via
+	 * drmcgroup_client_open(). That in turn will trigger the weight
+	 * notifications and then xe_drm_cgroup_notify_weight() will update both
+	 * shortly.
+	 */
+	atomic_set(&xef->cg.weight, CGROUP_WEIGHT_DFL);
+	xef->cg.prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+#endif
+
+Regards,
+
+Tvrtko
+
+> +
+>   	return 0;
+>   }
+>   
+> @@ -368,6 +372,12 @@ static const struct file_operations xe_driver_fops = {
+>   	.fop_flags = FOP_UNSIGNED_OFFSET,
+>   };
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +static const struct drm_cgroup_ops xe_drm_cgroup_ops = {
+> +	.notify_weight = xe_drm_cgroup_notify_weight,
+> +};
+> +#endif
+> +
+>   static struct drm_driver driver = {
+>   	/* Don't use MTRRs here; the Xserver or userspace app should
+>   	 * deal with them for Intel hardware.
+> @@ -386,6 +396,10 @@ static struct drm_driver driver = {
+>   #ifdef CONFIG_PROC_FS
+>   	.show_fdinfo = xe_drm_client_fdinfo,
+>   #endif
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	.cg_ops = &xe_drm_cgroup_ops,
+> +#endif
+>   	.ioctls = xe_ioctls,
+>   	.num_ioctls = ARRAY_SIZE(xe_ioctls),
+>   	.fops = &xe_driver_fops,
+> @@ -500,6 +514,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>   	if (err)
+>   		goto err;
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	INIT_DELAYED_WORK(&xe->cg.work, xe_drm_cgroup_work);
+> +#endif
+> +
+>   	return xe;
+>   
+>   err:
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 092004d14db2..dbc65a4aa08d 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -19,6 +19,7 @@
+>   #include "xe_oa_types.h"
+>   #include "xe_platform_types.h"
+>   #include "xe_pmu_types.h"
+> +#include "xe_exec_queue_types.h"
+>   #include "xe_pt_types.h"
+>   #include "xe_sriov_pf_types.h"
+>   #include "xe_sriov_types.h"
+> @@ -34,6 +35,7 @@
+>   struct dram_info;
+>   struct intel_display;
+>   struct intel_dg_nvm_dev;
+> +struct xe_file;
+>   struct xe_ggtt;
+>   struct xe_i2c;
+>   struct xe_pat_ops;
+> @@ -624,6 +626,12 @@ struct xe_device {
+>   		unsigned int czclk_freq;
+>   	};
+>   #endif
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	struct {
+> +		struct delayed_work	work;
+> +	} cg;
+> +#endif
+>   };
+>   
+>   /**
+> @@ -685,6 +693,13 @@ struct xe_file {
+>   
+>   	/** @refcount: ref count of this xe file */
+>   	struct kref refcount;
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +	struct {
+> +		atomic_t weight;
+> +		enum xe_exec_queue_priority prio;
+> +	} cg;
+> +#endif
+>   };
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 063c89d981e5..2f072d2a0117 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -1139,3 +1139,83 @@ void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
+>   	}
+>   	spin_unlock(&sched->base.job_list_lock);
+>   }
+> +
+> +#ifdef CONFIG_CGROUP_DRM
+> +void xe_drm_cgroup_work(struct work_struct *work)
+> +{
+> +	struct xe_device *xe = container_of(work, typeof(*xe), cg.work.work);
+> +	unsigned int weight, min = UINT_MAX, max = 0;
+> +	struct drm_device *dev = &xe->drm;
+> +	struct drm_file *file;
+> +	struct xe_file *xef;
+> +
+> +	mutex_lock(&dev->filelist_mutex);
+> +
+> +	list_for_each_entry(file, &dev->filelist, lhead) {
+> +		xef = to_xe_file(file);
+> +		weight = atomic_read(&xef->cg.weight);
+> +
+> +		if (!weight)
+> +			continue;
+> +
+> +		if (weight < min)
+> +			min = weight;
+> +
+> +		if (weight > max)
+> +			max = weight;
+> +	}
+> +
+> +	list_for_each_entry(file, &dev->filelist, lhead) {
+> +		enum xe_exec_queue_priority new_prio;
+> +		struct xe_exec_queue *q;
+> +		unsigned long i;
+> +
+> +		xef = to_xe_file(file);
+> +		weight = atomic_read(&xef->cg.weight);
+> +
+> +		if (max == min)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+> +		else if (weight == max)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_HIGH;
+> +		else if (weight == min)
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_LOW;
+> +		else
+> +			new_prio = XE_EXEC_QUEUE_PRIORITY_NORMAL;
+> +
+> +		if (new_prio == xef->cg.prio)
+> +			continue;
+> +
+> +		mutex_lock(&xef->exec_queue.lock);
+> +		xa_for_each(&xef->exec_queue.xa, i, q) {
+> +			if (q->sched_props.priority !=
+> +			    XE_EXEC_QUEUE_PRIORITY_NORMAL)
+> +				continue;
+> +
+> +			xe_exec_queue_get(q);
+> +			mutex_unlock(&xef->exec_queue.lock);
+> +
+> +			q->ops->set_priority(q, new_prio);
+> +
+> +			mutex_lock(&xef->exec_queue.lock);
+> +			xe_exec_queue_put(q);
+> +		}
+> +		mutex_unlock(&xef->exec_queue.lock);
+> +
+> +		xef->cg.prio = new_prio;
+> +	}
+> +
+> +	mutex_unlock(&dev->filelist_mutex);
+> +}
+> +
+> +void xe_drm_cgroup_notify_weight(struct drm_file *file_priv,
+> +				 unsigned int weight)
+> +{
+> +	struct xe_file *xef = to_xe_file(file_priv);
+> +	struct xe_device *xe = xef->xe;
+> +
+> +	atomic_set(&xef->cg.weight, weight);
+> +
+> +	queue_delayed_work(system_unbound_wq, &xe->cg.work,
+> +			   msecs_to_jiffies(100));
+> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index 15ec852e7f7e..5f6b42c74086 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -95,4 +95,9 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+>   void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
+>   
+>   struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
+> +
+> +void xe_drm_cgroup_notify_weight(struct drm_file *file_priv,
+> +				 unsigned int weight);
+> +void xe_drm_cgroup_work(struct work_struct *work);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 86daf6f4728f..df1252f4cd62 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -427,13 +427,19 @@ static const int xe_exec_queue_prio_to_guc[] = {
+>   static void init_policies(struct xe_guc *guc, struct xe_exec_queue *q)
+>   {
+>   	struct exec_queue_policy policy;
+> -	enum xe_exec_queue_priority prio = q->sched_props.priority;
+> +	enum xe_exec_queue_priority prio;
+>   	u32 timeslice_us = q->sched_props.timeslice_us;
+>   	u32 slpc_exec_queue_freq_req = 0;
+>   	u32 preempt_timeout_us = q->sched_props.preempt_timeout_us;
+>   
+>   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+>   
+> +	prio = q->sched_props.priority;
+> +#ifdef CONFIG_CGROUP_DRM
+> +	if (prio == XE_EXEC_QUEUE_PRIORITY_NORMAL && q->xef)
+> +		prio = q->xef->cg.prio;
+> +#endif
+> +
+>   	if (q->flags & EXEC_QUEUE_FLAG_LOW_LATENCY)
+>   		slpc_exec_queue_freq_req |= SLPC_CTX_FREQ_REQ_IS_COMPUTE;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index a2e85030b7f4..67291f19213b 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -124,6 +124,10 @@ int xe_pm_suspend(struct xe_device *xe)
+>   	drm_dbg(&xe->drm, "Suspending device\n");
+>   	trace_xe_pm_suspend(xe, __builtin_return_address(0));
+>   
+> +#ifdef CONFIG_CGROUP_DRM
+> +	cancel_delayed_work_sync(&xe->cg.work);
+> +#endif
+> +
+>   	err = xe_pxp_pm_suspend(xe->pxp);
+>   	if (err)
+>   		goto err;
 
