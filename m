@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE5FCA1002
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 12:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED32CA1002
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 12:22:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6968610EA13;
-	Thu,  4 Sep 2025 12:14:36 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BBC710EA15;
- Thu,  4 Sep 2025 12:14:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6401342006701085926=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9793B10EA1D;
+	Thu,  4 Sep 2025 12:22:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F4iufKMz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2FD610EA1C;
+ Thu,  4 Sep 2025 12:22:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756988549; x=1788524549;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=2PywKTeZPg5jHLSo0NKhg23QOmPfS+QVFhkSYLgY7pQ=;
+ b=F4iufKMzMFq5IkXZhsVH5vk+dIFRWDPPRcUwPVQxZ6yikwSca5EmXW0O
+ BWnrJexyhugi4gyXltM2h9fNJO5NgO0j46Z6Y1U+jnEIOtGi3ugPDS/DK
+ RpRPC8Q6TKWBln36tbxfJIDELTB+36CPpYMO0u4zpmbZCw58HP6jD/Y1t
+ jMPkXK2dzheGDpjdzhfx3OFhXBhTq/3VwjIe29GcdVFe4YQeKFUEOoHLh
+ FO4GoE2FLWMDz16ndKLnZ6dNkjZugFst8N3B15EHbF+WAng+k3h3GvDBo
+ aslYOJ+yd+BNUYrD4qpN0IwR+fUZOedrU5gbS1TtvTdWzvdSPWm/fKt77 g==;
+X-CSE-ConnectionGUID: W4tfjPatQ3eL9k9qY8KsXQ==
+X-CSE-MsgGUID: tpkk/2wMQECw+hYynErAjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70420184"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="70420184"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 05:22:28 -0700
+X-CSE-ConnectionGUID: sCS3usZDQfWTqaF5eWh6sQ==
+X-CSE-MsgGUID: 5DpzW/QkR8KckGa6N2gODA==
+X-ExtLoop1: 1
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.79])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 05:22:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: arun.r.murthy@intel.com, ankit.k.nautiyal@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER
+In-Reply-To: <20250904084510.951150-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250904084510.951150-1-suraj.kandpal@intel.com>
+Date: Thu, 04 Sep 2025 15:22:22 +0300
+Message-ID: <b534e914db169fd3c87a2769335d4a2d80807668@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Resolved_in?=
- =?utf-8?q?compatible_cast?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: mallesh.koujalagi@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Sep 2025 12:14:34 -0000
-Message-ID: <175698807463.303281.12294381609853195744@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250904105857.2293034-1-mallesh.koujalagi@intel.com>
-In-Reply-To: <20250904105857.2293034-1-mallesh.koujalagi@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,148 +65,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6401342006701085926==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 04 Sep 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Currently we check if the encoder is INVALID or -1 and throw a
+> WARN_ON but we still end up writing the temp value which will
+> overflow and corrupt the whole programmed value.
+>
+> Fixes: 6671c367a9bea ("drm/i915/tgl: Select master transcoder for MST stream")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 4e4ea3a0ff83..0a58c07a8240 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -596,9 +596,9 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>  			enum transcoder master;
+>  
+>  			master = crtc_state->mst_master_transcoder;
+> -			drm_WARN_ON(display->drm,
+> -				    master == INVALID_TRANSCODER);
+> -			temp |= TRANS_DDI_MST_TRANSPORT_SELECT(master);
+> +			if (!drm_WARN_ON(display->drm,
+> +					 master == INVALID_TRANSCODER))
+> +				temp |= TRANS_DDI_MST_TRANSPORT_SELECT(master);
 
-== Series Details ==
+I really *really* hate hiding happy day scenario paths within if
+statements with stuff that should never happen.
 
-Series: drm/xe/hwmon: Resolved incompatible cast
-URL   : https://patchwork.freedesktop.org/series/154022/
-State : success
+Frankly I'd rather see
 
-== Summary ==
+        if (drm_WARN_ON(display->drm, master == INVALID_TRANSCODER))
+		master = TRANSCODER_A; /* bogus */
 
-CI Bug Log - changes from xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7_BAT -> xe-pw-154022v1_BAT
-====================================================
+because it doesn't matter, we're hosed anyway, and this shouldn't happen
+in the first place.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154022v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-    - {bat-ptl-2}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+The code should be easy to read for the happy day scenario, and it
+should be quick to mentally ignore checks like this. The !drm_WARN_ON()
+is not it.
 
 
-Build changes
--------------
-
-  * Linux: xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7 -> xe-pw-154022v1
-
-  IGT_8522: 8522
-  xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7: 76dbb37ec196e36c129b63b102b4884c90506bd7
-  xe-pw-154022v1: 154022v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/index.html
-
---===============6401342006701085926==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>  		}
+>  	} else {
+>  		temp |= TRANS_DDI_MODE_SELECT_DP_SST;
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Resolved incompatible cast</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154022/">https://patchwork.freedesktop.org/series/154022/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7_BAT -&gt; xe-pw-154022v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154022v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154022v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7 -&gt; xe-pw-154022v1</li>
-</ul>
-<p>IGT_8522: 8522<br />
-  xe-3676-76dbb37ec196e36c129b63b102b4884c90506bd7: 76dbb37ec196e36c129b63b102b4884c90506bd7<br />
-  xe-pw-154022v1: 154022v1</p>
-
-</body>
-</html>
-
---===============6401342006701085926==--
+-- 
+Jani Nikula, Intel
