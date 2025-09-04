@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 477DFCA1002
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 15:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 826DCCA1013
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 15:24:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB07510EA81;
-	Thu,  4 Sep 2025 15:22:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AISK1lsE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D60910EA81
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 15:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756999355; x=1788535355;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2aLHe6TMI7PEQgRNCGSfyhtqd/7rvSOt5WaPO2NH7l8=;
- b=AISK1lsEjJm4ozQMyYnKPQAQDCv6VAZnuVIC6k5ZXvwwDZ0GhC3fdmr1
- MJnsmaskqHV4zJkUVBojCaomJQxPDKXDWXCjE7a43CTeRwYbKMsaHWu6/
- XRB61QTKNhdmu/x5IAlmivZ4ieVPjwGZKf/Ar53nF7WCbbBbje0q+l8lq
- F2vjhWIA/I5d4iaxfkit0gwVbn9Om5ujrONAi8HL90pvu0r5jJV7qijN0
- hAlXfRARnDHFvTMtD0oXSnld4HiqwY5PQ6xF6eSnPZsrWfCueVCdQQyW8
- +FZK/5x35tY09ZfMlEEo61gXULvTeftx6K/QQYb4pVigHseCHoichthZO A==;
-X-CSE-ConnectionGUID: emhDAWYtRZSrHCsTATyBgA==
-X-CSE-MsgGUID: lJjwkQ9eTEWvJQ2tb+x1RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59411572"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59411572"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 08:22:35 -0700
-X-CSE-ConnectionGUID: ZBpPHgghTYKJ/okxEd47xw==
-X-CSE-MsgGUID: fewZPKJaTDiRiYFpQCJikw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="171858061"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.244.143])
- ([10.245.244.143])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 08:22:30 -0700
-Message-ID: <723f3c49-45e5-494e-b06a-977f37e5dfb9@intel.com>
-Date: Thu, 4 Sep 2025 16:22:27 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A7D510EA81;
+	Thu,  4 Sep 2025 15:24:15 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA6F710EA81;
+ Thu,  4 Sep 2025 15:24:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2320174403748732802=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] drm/xe: Block exec and rebind worker while
- evicting for suspend / hibernate
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20250904130614.3212-1-thomas.hellstrom@linux.intel.com>
- <20250904130614.3212-4-thomas.hellstrom@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250904130614.3212-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_broken_kernel?=
+ =?utf-8?q?-doc_for_the_struct_xe=5Fbo?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Sep 2025 15:24:13 -0000
+Message-ID: <175699945388.304166.13452645432300813318@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250904144026.7222-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250904144026.7222-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,254 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 04/09/2025 14:06, Thomas Hellström wrote:
-> When the xe pm_notifier evicts for suspend / hibernate, there might be
-> racing tasks trying to re-validate again. This can lead to suspend taking
-> excessive time or get stuck in a live-lock. This behaviour becomes
-> much worse with the fix that actually makes re-validation bring back
-> bos to VRAM rather than letting them remain in TT.
-> 
-> Prevent that by having exec and the rebind worker waiting for a completion
-> that is set to block by the pm_notifier before suspend and is signaled
-> by the pm_notifier after resume / wakeup.
-> 
-> It's probably still possible to craft malicious applications that block
-> suspending. More work is pending to fix that.
-> 
-> v3:
-> - Avoid wait_for_completion() in the kernel worker since it could
->    potentially cause work item flushes from freezable processes to
->    wait forever. Instead terminate the rebind workers if needed and
->    re-launch at resume. (Matt Auld)
-> 
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4288
-> Fixes: c6a4d46ec1d7 ("drm/xe: evict user memory in PM notifier")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.16+
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device_types.h |  6 ++++
->   drivers/gpu/drm/xe/xe_exec.c         |  9 ++++++
->   drivers/gpu/drm/xe/xe_pm.c           | 20 ++++++++++++
->   drivers/gpu/drm/xe/xe_vm.c           | 46 +++++++++++++++++++++++++++-
->   drivers/gpu/drm/xe/xe_vm.h           |  2 ++
->   drivers/gpu/drm/xe/xe_vm_types.h     |  5 +++
->   6 files changed, 87 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 092004d14db2..1e780f8a2a8c 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -507,6 +507,12 @@ struct xe_device {
->   
->   	/** @pm_notifier: Our PM notifier to perform actions in response to various PM events. */
->   	struct notifier_block pm_notifier;
-> +	/** @pm_block: Completion to block validating tasks on suspend / hibernate prepare */
-> +	struct completion pm_block;
-> +	/** @rebind_resume_list: List of wq items to kick on resume. */
-> +	struct list_head rebind_resume_list;
-> +	/** @rebind_resume_lock: Lock to protect the rebind_resume_list */
-> +	struct mutex rebind_resume_lock;
->   
->   	/** @pmt: Support the PMT driver callback interface */
->   	struct {
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 44364c042ad7..374c831e691b 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -237,6 +237,15 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		goto err_unlock_list;
->   	}
->   
-> +	/*
-> +	 * It's OK to block interruptible here with the vm lock held, since
-> +	 * on task freezing during suspend / hibernate, the call will
-> +	 * return -ERESTARTSYS and the IOCTL will be rerun.
-> +	 */
-> +	err = wait_for_completion_interruptible(&xe->pm_block);
-> +	if (err)
-> +		goto err_unlock_list;
-> +
->   	vm_exec.vm = &vm->gpuvm;
->   	vm_exec.flags = DRM_EXEC_INTERRUPTIBLE_WAIT;
->   	if (xe_vm_in_lr_mode(vm)) {
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index bee9aacd82e7..6d59990ff6ba 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -297,6 +297,18 @@ static u32 vram_threshold_value(struct xe_device *xe)
->   	return DEFAULT_VRAM_THRESHOLD;
->   }
->   
-> +static void xe_pm_wake_preempt_workers(struct xe_device *xe)
-> +{
-> +	struct list_head *link, *next;
-> +
-> +	mutex_lock(&xe->rebind_resume_lock);
-> +	list_for_each_safe(link, next, &xe->rebind_resume_list) {
-> +		list_del_init(link);
-> +		xe_vm_resume_preempt_worker(link);
-> +	}
-> +	mutex_unlock(&xe->rebind_resume_lock);
-> +}
-> +
->   static int xe_pm_notifier_callback(struct notifier_block *nb,
->   				   unsigned long action, void *data)
->   {
-> @@ -306,6 +318,7 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
->   	switch (action) {
->   	case PM_HIBERNATION_PREPARE:
->   	case PM_SUSPEND_PREPARE:
-> +		reinit_completion(&xe->pm_block);
->   		xe_pm_runtime_get(xe);
->   		err = xe_bo_evict_all_user(xe);
->   		if (err)
-> @@ -322,6 +335,8 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
->   		break;
->   	case PM_POST_HIBERNATION:
->   	case PM_POST_SUSPEND:
-> +		complete_all(&xe->pm_block);
-> +		xe_pm_wake_preempt_workers(xe);
->   		xe_bo_notifier_unprepare_all_pinned(xe);
->   		xe_pm_runtime_put(xe);
->   		break;
-> @@ -348,6 +363,11 @@ int xe_pm_init(struct xe_device *xe)
->   	if (err)
->   		return err;
->   
-> +	init_completion(&xe->pm_block);
-> +	complete_all(&xe->pm_block);
-> +	mutex_init(&xe->rebind_resume_lock);
+--===============2320174403748732802==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-err = drmm_mutex_init(&xe->rebind_resume_lock);
+== Series Details ==
 
-?
+Series: drm/xe: Fix broken kernel-doc for the struct xe_bo
+URL   : https://patchwork.freedesktop.org/series/154037/
+State : success
 
-> +	INIT_LIST_HEAD(&xe->rebind_resume_list);
-> +
->   	/* For now suspend/resume is only allowed with GuC */
->   	if (!xe_device_uc_enabled(xe))
->   		return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index f55f96bb240a..97aad1d53a8c 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -394,6 +394,9 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
->   		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
->   			       &vm->rebind_list);
->   
-> +	if (!try_wait_for_completion(&vm->xe->pm_block))
-> +		return -EAGAIN;
-> +
->   	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
->   	if (ret)
->   		return ret;
-> @@ -480,6 +483,37 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
->   	return xe_vm_validate_rebind(vm, exec, vm->preempt.num_exec_queues);
->   }
->   
-> +static bool vm_suspend_preempt_worker(struct xe_vm *vm)
-> +{
-> +	struct xe_device *xe = vm->xe;
-> +	bool ret = false;
-> +
-> +	mutex_lock(&xe->rebind_resume_lock);
-> +	if (!try_wait_for_completion(&vm->xe->pm_block)) {
-> +		ret = true;
-> +		list_move_tail(&vm->preempt.pm_activate_link, &xe->rebind_resume_list);
-> +	}
-> +	pr_info("Suspending %p\n", vm);
-> +	mutex_unlock(&xe->rebind_resume_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * xe_vm_resume_preempt_worker() - Resume the preempt worker.
-> + * @vm: The vm whose preempt worker to resume.
-> + *
-> + * Resume a preempt worker that was previously suspended by
-> + * vm_suspend_preempt_worker().
-> + */
-> +void xe_vm_resume_preempt_worker(struct list_head *link)
+== Summary ==
 
-I guess should use vm arg here?
+CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -> xe-pw-154037v1_BAT
+====================================================
 
-> +{
-> +	struct xe_vm *vm = container_of(link, typeof(*vm), preempt.pm_activate_link);
-> +
-> +	pr_info("Resuming %p\n", vm);
-> +	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
-> +}
-> +
->   static void preempt_rebind_work_func(struct work_struct *w)
->   {
->   	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
-> @@ -503,6 +537,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   	}
->   
->   retry:
-> +	if (!try_wait_for_completion(&vm->xe->)) && vm_suspend_preempt_worker(vm)) {
-> +		up_write(&vm->lock);
-> +		return;
-> +	}
-> +
->   	if (xe_vm_userptr_check_repin(vm)) {
->   		err = xe_vm_userptr_pin(vm);
->   		if (err)
-> @@ -1741,6 +1780,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
->   	if (flags & XE_VM_FLAG_LR_MODE) {
->   		INIT_WORK(&vm->preempt.rebind_work, preempt_rebind_work_func);
->   		xe_pm_runtime_get_noresume(xe);
-> +		INIT_LIST_HEAD(&vm->preempt.pm_activate_link);
->   	}
->   
->   	if (flags & XE_VM_FLAG_FAULT_MODE) {
-> @@ -1922,8 +1962,12 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->   	xe_assert(xe, !vm->preempt.num_exec_queues);
->   
->   	xe_vm_close(vm);
-> -	if (xe_vm_in_preempt_fence_mode(vm))
-> +	if (xe_vm_in_preempt_fence_mode(vm)) {
-> +		mutex_lock(&xe->rebind_resume_lock);
-> +		list_del_init(&vm->preempt.pm_activate_link);
-> +		mutex_unlock(&xe->rebind_resume_lock);
->   		flush_work(&vm->preempt.rebind_work);
-> +	}
->   	if (xe_vm_in_fault_mode(vm))
->   		xe_svm_close(vm);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index b3e5bec0fa58..f2639794278b 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -281,6 +281,8 @@ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
->   				       struct xe_exec_queue *q, u64 addr,
->   				       enum xe_cache_level cache_lvl);
->   
-> +void xe_vm_resume_preempt_worker(struct list_head *link);
-> +
->   /**
->    * xe_vm_resv() - Return's the vm's reservation object
->    * @vm: The vm
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index b5108d010786..e1a786db5f89 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -338,6 +338,11 @@ struct xe_vm {
->   		 * BOs
->   		 */
->   		struct work_struct rebind_work;
-> +		/**
-> +		 * @preempt.pm_activate_link: Link to list of rebind workers to be
-> +		 * kicked on resume.
-> +		 */
-> +		struct list_head pm_activate_link;
->   	} preempt;
->   
->   	/** @um: unified memory state */
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154037v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8522 -> IGT_8524
+  * Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -> xe-pw-154037v1
+
+  IGT_8522: 8522
+  IGT_8524: 8524
+  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97
+  xe-pw-154037v1: 154037v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154037v1/index.html
+
+--===============2320174403748732802==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix broken kernel-doc for the struct xe_bo</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154037/">https://patchwork.freedesktop.org/series/154037/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154037v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154037v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -&gt; xe-pw-154037v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154037v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8522 -&gt; IGT_8524</li>
+<li>Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -&gt; xe-pw-154037v1</li>
+</ul>
+<p>IGT_8522: 8522<br />
+  IGT_8524: 8524<br />
+  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97<br />
+  xe-pw-154037v1: 154037v1</p>
+
+</body>
+</html>
+
+--===============2320174403748732802==--
