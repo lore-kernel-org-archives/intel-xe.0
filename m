@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAAF1CA1002
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 16:21:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CB67CA1013
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 16:22:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F31610E263;
-	Thu,  4 Sep 2025 16:21:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ExlgEBXk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5285A10EA91
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 16:21:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757002872; x=1788538872;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=ozgiL4qXynERFxlQ2bXi+UBbq1snm5YrI7VUUNxnPHs=;
- b=ExlgEBXkbGk3kXbY/9Q/gIyKk5Cv2qmqkA3KH3nVGynTwUKJvAS6YDvz
- AGdhg5OiawK1U60DzS5K36bQeVbZOkOBLMMGlVOvuvLVeaotuGns2vK6s
- Uxn/Ywqt+viLYFOp7YYaJbVqX4PVEvQNEvF4yAhzPHmyzBe8eYrd38asS
- muOcPy9RyKSQThDKOpapjP2asTX+FYEmSbvDOG+StuNhIbhJOlUOvzDVG
- 3HvjY4HUTsQPiGNm1phv45L7g3GsOcy4la62zKRR5Wtew6t3puQTg+IvF
- qyMEWTH+LhnZx2jeiycxPRii85qCgQTxjkqQfZi2Uu1xlqG81WNVXw718 Q==;
-X-CSE-ConnectionGUID: BglIY8cTRWWAYobj4oATUg==
-X-CSE-MsgGUID: 5EqNi9OMQE+ys2xvFijYPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="63173492"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="63173492"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 09:21:11 -0700
-X-CSE-ConnectionGUID: 9XiyMAW6Q9CRPuTX8WxRiA==
-X-CSE-MsgGUID: 1UUDSAwIQpKmipRoBdvH3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="171878875"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.98])
- ([10.245.244.98])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 09:21:10 -0700
-Message-ID: <a987dced05d29398c774b0e93b3318c340f2fb30.camel@linux.intel.com>
-Subject: Re: [PATCH v4 3/3] drm/xe: Block exec and rebind worker while
- evicting for suspend / hibernate
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Rodrigo vivi	
- <rodrigo.vivi@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>
-Date: Thu, 04 Sep 2025 18:21:04 +0200
-In-Reply-To: <0fe6e8c7-f45f-43d2-982e-41ef003cfcc5@intel.com>
-References: <20250904160715.2613-1-thomas.hellstrom@linux.intel.com>
- <20250904160715.2613-4-thomas.hellstrom@linux.intel.com>
- <0fe6e8c7-f45f-43d2-982e-41ef003cfcc5@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F46610EAA2;
+	Thu,  4 Sep 2025 16:22:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCCD10EA94;
+ Thu,  4 Sep 2025 16:22:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2605555255807002579=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Driver-managed_exhaustive_e?=
+ =?utf-8?q?viction_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Sep 2025 16:22:49 -0000
+Message-ID: <175700296910.304667.12856677942431285385@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250904144908.14303-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250904144908.14303-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,53 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-09-04 at 17:20 +0100, Matthew Auld wrote:
-> On 04/09/2025 17:07, Thomas Hellstr=C3=B6m wrote:
-> > When the xe pm_notifier evicts for suspend / hibernate, there might
-> > be
-> > racing tasks trying to re-validate again. This can lead to suspend
-> > taking
-> > excessive time or get stuck in a live-lock. This behaviour becomes
-> > much worse with the fix that actually makes re-validation bring
-> > back
-> > bos to VRAM rather than letting them remain in TT.
-> >=20
-> > Prevent that by having exec and the rebind worker waiting for a
-> > completion
-> > that is set to block by the pm_notifier before suspend and is
-> > signaled
-> > by the pm_notifier after resume / wakeup.
-> >=20
-> > It's probably still possible to craft malicious applications that
-> > block
-> > suspending. More work is pending to fix that.
-> >=20
-> > v3:
-> > - Avoid wait_for_completion() in the kernel worker since it could
-> > =C2=A0=C2=A0 potentially cause work item flushes from freezable process=
-es to
-> > =C2=A0=C2=A0 wait forever. Instead terminate the rebind workers if need=
-ed and
-> > =C2=A0=C2=A0 re-launch at resume. (Matt Auld)
-> > v4:
-> > - Fix some bad naming and leftover debug printouts.
-> > - Fix kerneldoc.
-> > - Use drmm_mutex_init() for the xe->rebind_resume_lock (Matt Auld).
-> > - Rework the interface of xe_vm_rebind_resume_worker (Matt Auld).
-> >=20
-> > Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4288
-> > Fixes: c6a4d46ec1d7 ("drm/xe: evict user memory in PM notifier")
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.16+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
-Thanks a lot Matthew!
+--===============2605555255807002579==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-/Thomas
+== Series Details ==
 
+Series: Driver-managed exhaustive eviction (rev5)
+URL   : https://patchwork.freedesktop.org/series/152882/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -> xe-pw-152882v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152882v5_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8522 -> IGT_8524
+  * Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -> xe-pw-152882v5
+
+  IGT_8522: 8522
+  IGT_8524: 8524
+  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97
+  xe-pw-152882v5: 152882v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v5/index.html
+
+--===============2605555255807002579==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Driver-managed exhaustive eviction (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152882/">https://patchwork.freedesktop.org/series/152882/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152882v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -&gt; xe-pw-152882v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152882v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8522 -&gt; IGT_8524</li>
+<li>Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -&gt; xe-pw-152882v5</li>
+</ul>
+<p>IGT_8522: 8522<br />
+  IGT_8524: 8524<br />
+  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97<br />
+  xe-pw-152882v5: 152882v5</p>
+
+</body>
+</html>
+
+--===============2605555255807002579==--
