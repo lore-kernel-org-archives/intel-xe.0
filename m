@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89E0ACA1015
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 02:47:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16EBECA1015
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 02:51:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D62E010E3EE;
-	Thu,  4 Sep 2025 02:47:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ExHU0WN8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3AD710E3E5
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 02:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756954075; x=1788490075;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=C+xyMFL2kERj1GIA6wIZIxk55X3wiScvldHSAG+Gop4=;
- b=ExHU0WN8+5Pj8N0WlQrPJWXNgma9OaxoJKIDH8wOfRfZNQPtPZKUl6Zc
- 8eJCMBmmcs6bs0p02nfqxKvdIpgZnEPSlIbjS0FIogExRi7beAz8RnRxH
- 2Zwtt0ER0oTgABABXoHajyV+29tv90hbhAJ/p0QSG9tOF9U95jN7m3EPe
- KIrrj4/hsHWu3ltJAyyC2Ymr7y/oHZL/uzPuaD+/CWAk9R4L3TVq/Xc9Q
- qrenkdpY3rMY6uu4Iz+r6fVHTdxuNbmJP/ybgOQU93Q3SmvwPqOGsIHz5
- t8Q3UUYWlbzbn07bm9/IeLa8tnLra19uEpLCKG128Ou+WQi8jQSE+JVfp g==;
-X-CSE-ConnectionGUID: hwFQRIcMSi+4exqOMPIBLw==
-X-CSE-MsgGUID: oxK8Y9lKTn+dXmsJ6A684w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="69544455"
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; d="scan'208";a="69544455"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 19:47:54 -0700
-X-CSE-ConnectionGUID: 9NeTBsL1TbmHIPuVQ2FhKw==
-X-CSE-MsgGUID: nVjUxGHbSqOT6olIvmB4QQ==
-X-ExtLoop1: 1
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 19:47:54 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 3/4] drm/xe: Track LR jobs in DRM scheduler pending list
-Date: Wed,  3 Sep 2025 19:47:48 -0700
-Message-Id: <20250904024749.1849710-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250904024749.1849710-1-matthew.brost@intel.com>
-References: <20250904024749.1849710-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D0A10E3E6;
+	Thu,  4 Sep 2025 02:51:41 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5F0F10E3E5;
+ Thu,  4 Sep 2025 02:51:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1157959600828723505=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Core_Xe_changes_preparing_f?=
+ =?utf-8?q?or_VF_migration_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 04 Sep 2025 02:51:40 -0000
+Message-ID: <175695430074.301896.7369362171434635456@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250904021008.1827802-1-matthew.brost@intel.com>
+In-Reply-To: <20250904021008.1827802-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,231 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF migration requires jobs to remain pending so they can be replayed
-after the VF comes back. Previously, LR job fences were intentionally
-signaled immediately after submission to avoid the risk of exporting
-them, as these fences do not naturally signal in a timely manner and
-could break dma-fence contracts. A side effect of this approach was that
-LR jobs were never added to the DRM scheduler’s pending list, preventing
-them from being tracked for later resubmission.
+--===============1157959600828723505==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We now avoid signaling LR job fences and ensure they are never exported;
-Xe already guards against exporting these internal fences. With that
-guarantee in place, we can safely track LR jobs in the scheduler’s
-pending list so they are eligible for resubmission during VF
-post-migration recovery (and similar recovery paths).
+== Series Details ==
 
-An added benefit is that LR queues now gain the DRM scheduler’s built-in
-flow control over ring usage rather than rejecting new jobs in the exec
-IOCTL if the ring is full.
+Series: Core Xe changes preparing for VF migration (rev3)
+URL   : https://patchwork.freedesktop.org/series/153589/
+State : success
 
-v2:
- - Ensure DRM scheduler TDR doesn't run for LR jobs
- - Stack variable for killed_or_banned_or_wedged
-v4:
- - Clarify commit message (Tomasz)
+== Summary ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c       | 12 ++-------
- drivers/gpu/drm/xe/xe_exec_queue.c | 19 -------------
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 --
- drivers/gpu/drm/xe/xe_guc_submit.c | 43 ++++++++++++++++++++----------
- 4 files changed, 31 insertions(+), 45 deletions(-)
+CI Bug Log - changes from xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7_BAT -> xe-pw-153589v3_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 44364c042ad7..b29b6edd59e0 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -117,7 +117,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	u32 i, num_syncs, num_ufence = 0;
- 	struct xe_sched_job *job;
- 	struct xe_vm *vm;
--	bool write_locked, skip_retry = false;
-+	bool write_locked;
- 	ktime_t end = 0;
- 	int err = 0;
- 	struct xe_hw_engine_group *group;
-@@ -256,12 +256,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto err_exec;
- 	}
- 
--	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
--		err = -EWOULDBLOCK;	/* Aliased to -EAGAIN */
--		skip_retry = true;
--		goto err_exec;
--	}
--
- 	if (xe_exec_queue_uses_pxp(q)) {
- 		err = xe_vm_validate_protected(q->vm);
- 		if (err)
-@@ -318,8 +312,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		xe_sched_job_init_user_fence(job, &syncs[i]);
- 	}
- 
--	if (xe_exec_queue_is_lr(q))
--		q->ring_ops->emit_job(job);
- 	if (!xe_vm_in_lr_mode(vm))
- 		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-@@ -344,7 +336,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	drm_exec_fini(exec);
- err_unlock_list:
- 	up_read(&vm->lock);
--	if (err == -EAGAIN && !skip_retry)
-+	if (err == -EAGAIN)
- 		goto retry;
- err_hw_exec_mode:
- 	if (mode == EXEC_MODE_DMA_FENCE)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 063c89d981e5..a419f4bd3ab8 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -816,25 +816,6 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
- 		!(q->flags & EXEC_QUEUE_FLAG_VM);
- }
- 
--static s32 xe_exec_queue_num_job_inflight(struct xe_exec_queue *q)
--{
--	return q->lrc[0]->fence_ctx.next_seqno - xe_lrc_seqno(q->lrc[0]) - 1;
--}
--
--/**
-- * xe_exec_queue_ring_full() - Whether an exec_queue's ring is full
-- * @q: The exec_queue
-- *
-- * Return: True if the exec_queue's ring is full, false otherwise.
-- */
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
--{
--	struct xe_lrc *lrc = q->lrc[0];
--	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
--
--	return xe_exec_queue_num_job_inflight(q) >= max_job;
--}
--
- /**
-  * xe_exec_queue_is_idle() - Whether an exec_queue is idle.
-  * @q: The exec_queue
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 15ec852e7f7e..6ae11a1c7404 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -64,8 +64,6 @@ static inline bool xe_exec_queue_uses_pxp(struct xe_exec_queue *q)
- 
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
- 
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q);
--
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
- 
- void xe_exec_queue_kill(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9e4118126ef9..69ed3c159d10 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -837,30 +837,31 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
- 	struct xe_exec_queue *q = job->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct dma_fence *fence = NULL;
--	bool lr = xe_exec_queue_is_lr(q);
-+	bool lr = xe_exec_queue_is_lr(q), killed_or_banned_or_wedged =
-+		exec_queue_killed_or_banned_or_wedged(q);
- 
- 	xe_gt_assert(guc_to_gt(guc), !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
- 		     exec_queue_banned(q) || exec_queue_suspended(q));
- 
- 	trace_xe_sched_job_run(job);
- 
--	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
-+	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
- 		if (!exec_queue_registered(q))
- 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
--		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
--			q->ring_ops->emit_job(job);
-+		q->ring_ops->emit_job(job);
- 		submit_exec_queue(q);
- 	}
- 
--	if (lr) {
--		xe_sched_job_set_error(job, -EOPNOTSUPP);
--		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
--	} else {
--		fence = job->fence;
--	}
-+	/*
-+	 * We don't care about job-fence ordering in LR VMs because these fences
-+	 * are never exported; they are used solely to keep jobs on the pending
-+	 * list. Once a queue enters an error state, there's no need to track
-+	 * them.
-+	 */
-+	if (killed_or_banned_or_wedged && lr)
-+		xe_sched_job_set_error(job, -ECANCELED);
- 
--	return fence;
-+	return job->fence;
- }
- 
- /**
-@@ -926,7 +927,8 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
- 		xe_sched_submission_start(sched);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(sched);
- 		return;
- 	}
- 
-@@ -1018,6 +1020,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	struct xe_exec_queue *q = ge->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_job *job;
- 	bool wedged = false;
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
-@@ -1068,7 +1071,16 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
- 		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
- 
-+	xe_hw_fence_irq_stop(q->fence_irq);
-+
- 	xe_sched_submission_start(sched);
-+
-+	spin_lock(&sched->base.job_list_lock);
-+	list_for_each_entry(job, &sched->base.pending_list, drm.list)
-+		xe_sched_job_set_error(job, -ECANCELED);
-+	spin_unlock(&sched->base.job_list_lock);
-+
-+	xe_hw_fence_irq_start(q->fence_irq);
- }
- 
- #define ADJUST_FIVE_PERCENT(__t)	mul_u64_u32_div(__t, 105, 100)
-@@ -1139,7 +1151,8 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
- 		set_exec_queue_banned(q);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(&q->guc->sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(&q->guc->sched);
- 	}
- }
- 
-@@ -1197,6 +1210,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	int i = 0;
- 	bool wedged = false, skip_timeout_check;
- 
-+	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_lr(q));
-+
- 	/*
- 	 * TDR has fired before free job worker. Common if exec queue
- 	 * immediately closed after last fence signaled. Add back to pending
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-153589v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-vm}:       [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7 -> xe-pw-153589v3
+
+  IGT_8521: 8521
+  xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7: 2b95afd5f659a01a6fc8195358e62077846b97e7
+  xe-pw-153589v3: 153589v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/index.html
+
+--===============1157959600828723505==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Core Xe changes preparing for VF migration (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153589/">https://patchwork.freedesktop.org/series/153589/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7_BAT -&gt; xe-pw-153589v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-153589v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_vm@bind-execqueues-independent:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153589v3/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7 -&gt; xe-pw-153589v3</li>
+</ul>
+<p>IGT_8521: 8521<br />
+  xe-3673-2b95afd5f659a01a6fc8195358e62077846b97e7: 2b95afd5f659a01a6fc8195358e62077846b97e7<br />
+  xe-pw-153589v3: 153589v3</p>
+
+</body>
+</html>
+
+--===============1157959600828723505==--
