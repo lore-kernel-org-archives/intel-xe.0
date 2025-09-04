@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DED32CA1002
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 12:22:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2084CA1015
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 13:06:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9793B10EA1D;
-	Thu,  4 Sep 2025 12:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7855D10E252;
+	Thu,  4 Sep 2025 13:06:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F4iufKMz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UVYHjSIh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2FD610EA1C;
- Thu,  4 Sep 2025 12:22:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F71810E254
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 13:06:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756988549; x=1788524549;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=2PywKTeZPg5jHLSo0NKhg23QOmPfS+QVFhkSYLgY7pQ=;
- b=F4iufKMzMFq5IkXZhsVH5vk+dIFRWDPPRcUwPVQxZ6yikwSca5EmXW0O
- BWnrJexyhugi4gyXltM2h9fNJO5NgO0j46Z6Y1U+jnEIOtGi3ugPDS/DK
- RpRPC8Q6TKWBln36tbxfJIDELTB+36CPpYMO0u4zpmbZCw58HP6jD/Y1t
- jMPkXK2dzheGDpjdzhfx3OFhXBhTq/3VwjIe29GcdVFe4YQeKFUEOoHLh
- FO4GoE2FLWMDz16ndKLnZ6dNkjZugFst8N3B15EHbF+WAng+k3h3GvDBo
- aslYOJ+yd+BNUYrD4qpN0IwR+fUZOedrU5gbS1TtvTdWzvdSPWm/fKt77 g==;
-X-CSE-ConnectionGUID: W4tfjPatQ3eL9k9qY8KsXQ==
-X-CSE-MsgGUID: tpkk/2wMQECw+hYynErAjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70420184"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="70420184"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 05:22:28 -0700
-X-CSE-ConnectionGUID: sCS3usZDQfWTqaF5eWh6sQ==
-X-CSE-MsgGUID: 5DpzW/QkR8KckGa6N2gODA==
+ t=1756991208; x=1788527208;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0tPPoIaqj1XEOtIPCGnf9fpCg1T66emuG70lHfIKKfk=;
+ b=UVYHjSIhJe9rUCAaU25JDfg0O30B64VrSuOLl/aueFov0VwTBgNMsCrC
+ szV8pmikoYqKP2dqh8FlCF/zARqdg6KJiFv7fSZ6Wj5HBKZ/tBKLlD4sj
+ PffQ5C0TtBk7e0GHcbkQCRRaUJlUM5wPifh4fKqUPQ2gX86OGcd770opP
+ noux96jRz2LjCDGiyoe7vUQj+SLxnuit/07ptOd3ibJDo7jjWcFCFNVY2
+ s+RwTrJvFmynbJYbeXbPmDMbhV1w3lcDpqWm1cSeTjr0BPcXAAvT1H7W8
+ VrGYJNPX8z26e7Fp+rZOJBKm2M340PYv6/lRqtu1aruaIuRv6GDHUdyHx Q==;
+X-CSE-ConnectionGUID: byLsb5c9S0KAmqwKT6QaBA==
+X-CSE-MsgGUID: d46XhIYiRJ+SQFwCePf3IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76930825"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="76930825"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 06:06:48 -0700
+X-CSE-ConnectionGUID: JMWhywPHQtG7L6QWUpsNKA==
+X-CSE-MsgGUID: pJC2RCOETvas0hTGNuSQgg==
 X-ExtLoop1: 1
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.79])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 05:22:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: arun.r.murthy@intel.com, ankit.k.nautiyal@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/ddi: Guard reg_val against a INVALID_TRANSCODER
-In-Reply-To: <20250904084510.951150-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250904084510.951150-1-suraj.kandpal@intel.com>
-Date: Thu, 04 Sep 2025 15:22:22 +0300
-Message-ID: <b534e914db169fd3c87a2769335d4a2d80807668@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="171459078"
+Received: from abityuts-desk.ger.corp.intel.com (HELO fedora) ([10.245.244.98])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 06:06:46 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 0/3] drm/xe: Fixes around eviction and suspend
+Date: Thu,  4 Sep 2025 15:06:02 +0200
+Message-ID: <20250904130614.3212-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,55 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 04 Sep 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Currently we check if the encoder is INVALID or -1 and throw a
-> WARN_ON but we still end up writing the temp value which will
-> overflow and corrupt the whole programmed value.
->
-> Fixes: 6671c367a9bea ("drm/i915/tgl: Select master transcoder for MST stream")
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 4e4ea3a0ff83..0a58c07a8240 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -596,9 +596,9 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
->  			enum transcoder master;
->  
->  			master = crtc_state->mst_master_transcoder;
-> -			drm_WARN_ON(display->drm,
-> -				    master == INVALID_TRANSCODER);
-> -			temp |= TRANS_DDI_MST_TRANSPORT_SELECT(master);
-> +			if (!drm_WARN_ON(display->drm,
-> +					 master == INVALID_TRANSCODER))
-> +				temp |= TRANS_DDI_MST_TRANSPORT_SELECT(master);
+Fixes to make evicted bos that are allowed both in VRAM and TT re-validated
+into VRAM after eviction and suspend.
 
-I really *really* hate hiding happy day scenario paths within if
-statements with stuff that should never happen.
+Also a fix to improve on a race where the pm notifier races with active
+tasks when evicting bos for suspend.
 
-Frankly I'd rather see
+v3:
+- Don't wait_for_completion() in the rebind worker.
 
-        if (drm_WARN_ON(display->drm, master == INVALID_TRANSCODER))
-		master = TRANSCODER_A; /* bogus */
+Thomas Hellström (3):
+  drm/xe: Attempt to bring bos back to VRAM after eviction
+  drm/xe: Allow the pm notifier to continue on failure
+  drm/xe: Block exec and rebind worker while evicting for suspend /
+    hibernate
 
-because it doesn't matter, we're hosed anyway, and this shouldn't happen
-in the first place.
-
-The code should be easy to read for the happy day scenario, and it
-should be quick to mentally ignore checks like this. The !drm_WARN_ON()
-is not it.
-
-
-BR,
-Jani.
-
-
->  		}
->  	} else {
->  		temp |= TRANS_DDI_MODE_SELECT_DP_SST;
+ drivers/gpu/drm/xe/tests/xe_bo.c      |  2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c | 10 +-----
+ drivers/gpu/drm/xe/xe_bo.c            | 16 +++++++---
+ drivers/gpu/drm/xe/xe_bo.h            |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h  |  6 ++++
+ drivers/gpu/drm/xe/xe_dma_buf.c       |  2 +-
+ drivers/gpu/drm/xe/xe_exec.c          |  9 ++++++
+ drivers/gpu/drm/xe/xe_pm.c            | 37 +++++++++++++++------
+ drivers/gpu/drm/xe/xe_vm.c            | 46 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.h            |  2 ++
+ drivers/gpu/drm/xe/xe_vm_types.h      |  5 +++
+ 11 files changed, 110 insertions(+), 27 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.50.1
+
