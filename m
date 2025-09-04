@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B9FDCA1017
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 02:47:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEA14CA1016
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 02:47:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C392310E3E9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEA7910E3E6;
 	Thu,  4 Sep 2025 02:47:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NDx0mgkz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HHRzgQo1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA0210E229
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 02:47:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68E910E229
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 02:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1756954075; x=1788490075;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=WLZI3vCWU2VmhjgPC/5pl5/o+aD9G1q3H8lPXO0qzA0=;
- b=NDx0mgkzXmsnYMClUxYgeQBZ0OpGw3Y4OpYLTHPdiePUtT6mGKg7keYC
- dWROTNFI/vQZkODFa65qO7WAYF1csuVI97zMCENL36gBUlBxeEiTACk/b
- t3yakyGAZSLoTkp/GILlxi0unIqEIpkF3M0QED9dO2y2rknlCuMyY73hT
- 0d0BNaDQxD9rfboFBEovxbUzNPRzNG1dsWNV1sLTxS6AYKhKur4BOQs+v
- cpzs5kI3OV4i4tQZgdNNlXoPAem04HLE2X8q/0iyKMr3h2muAT2r3Gj00
- 4ciZQ2EoGYDVfTP7sv8xry/zN1kdkmmDP8IAGLqRRIx6+1pgxeObYEqZd Q==;
-X-CSE-ConnectionGUID: rDlUzicGTE2L73SGo0ZcIw==
-X-CSE-MsgGUID: vDL/3+jnR3+TdGjGULbQgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="69544456"
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; d="scan'208";a="69544456"
+ bh=HwkSFE9//ubF4UeygAmf07FGuXx292ZsWtzlAZYSaKc=;
+ b=HHRzgQo1g/Cxy5STJY5c6S1XWRYw2GE/WL0Q+ohKVGrSdaQ3oRiXKbY7
+ R42EJFgnRmBQvrQpc2xHp2wkEh+MkmuDOINU0K8EsspeD5HJlWaAOz+2Q
+ rc2UbkZ33sHAVlkvGpaoX2mk64G6eWvH6mLHUhc13z5hK6IxU9jgLN7Wa
+ a+J3ip2J+UKzB/UFiz2qPsdOcq3fzlhMlj/9gQiXrfIEVEAr8A/EQQEva
+ ld6mJdReqcpoUpw+5QOzar/bKcFidAhj3g5IwZ4RHjyqZGjPHz4PRWSix
+ Klqkn24f9rbWGxlMgl0HLXT9tLLl9O0eljH+KaJmXe3OX3MawCSRtw5Nc g==;
+X-CSE-ConnectionGUID: sIal+lMuSG6zdqkLM4bceg==
+X-CSE-MsgGUID: oSH9uPyQQ/SgRcBlx9Q1vw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="69544454"
+X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; d="scan'208";a="69544454"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 19:47:55 -0700
-X-CSE-ConnectionGUID: +8Whn2mzSfK39tTSTXCz3Q==
-X-CSE-MsgGUID: q7I6Q93xSN6dA94ufte//A==
+ 03 Sep 2025 19:47:54 -0700
+X-CSE-ConnectionGUID: NpmbbRpWQxS7N2wHEgHMCg==
+X-CSE-MsgGUID: HyMC1+HzTMCOQFYOHKVrpg==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2025 19:47:54 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 4/4] drm/xe: Don't change LRC ring head on job resubmission
-Date: Wed,  3 Sep 2025 19:47:49 -0700
-Message-Id: <20250904024749.1849710-5-matthew.brost@intel.com>
+Subject: [PATCH v6 2/4] drm/xe/guc: Track pending-enable source in submission
+ state
+Date: Wed,  3 Sep 2025 19:47:47 -0700
+Message-Id: <20250904024749.1849710-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250904024749.1849710-1-matthew.brost@intel.com>
 References: <20250904024749.1849710-1-matthew.brost@intel.com>
@@ -64,44 +65,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we save the job's head during submission, it's no longer
-necessary to adjust the LRC ring head during resubmission. Instead, a
-software-based adjustment of the tail will overwrite the old jobs in
-place. For some odd reason, adjusting the LRC ring head didn't work on
-parallel queues, which was causing issues in our CI.
+Add explicit tracking in the GuC submission state to record the source
+of a pending enable (TDR vs. queue resume path vs. submission).
+Disambiguating the origin lets the GuC submission state machine apply
+the correct recovery/replay behavior.
 
-v6:
- - Also set LRC tail to head so queue is idle coming out of reset
+This helps VF restore: when the device comes back, the state machine knows
+whether the pending enable stems from timeout recovery, from a queue resume
+sequence, or submission and can gate sequencing and fixups accordingly.
+
+v4:
+ - Clarify commit message (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 69ed3c159d10..3fb394f65c3e 100644
+index 1185b23b1384..9e4118126ef9 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2008,11 +2008,17 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+@@ -68,6 +68,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+ #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
++#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
++#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
  
- 	if (!exec_queue_killed_or_banned_or_wedged(q)) {
-+		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
- 		int i;
+ static bool exec_queue_registered(struct xe_exec_queue *q)
+ {
+@@ -219,6 +221,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+ }
  
- 		trace_xe_exec_queue_resubmit(q);
--		for (i = 0; i < q->width; ++i)
--			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
-+		if (job) {
-+			for (i = 0; i < q->width; ++i) {
-+				q->lrc[i]->ring.tail = job->ptrs[i].head;
-+				xe_lrc_set_ring_tail(q->lrc[i],
-+						     xe_lrc_ring_head(q->lrc[i]));
-+			}
-+		}
- 		xe_sched_resubmit_jobs(sched);
- 	}
++static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
++}
++
++static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
++}
++
++static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ {
+ 	return (atomic_read(&q->guc->state) &
+@@ -1344,6 +1376,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	return DRM_GPU_SCHED_STAT_RESET;
  
+ sched_enable:
++	set_exec_queue_pending_tdr_exit(q);
+ 	enable_scheduling(q);
+ rearm:
+ 	/*
+@@ -1494,6 +1527,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ 		clear_exec_queue_suspended(q);
+ 		if (!exec_queue_enabled(q)) {
+ 			q->guc->resume_time = RESUME_PENDING;
++			set_exec_queue_pending_resume(q);
+ 			enable_scheduling(q);
+ 		}
+ 	} else {
+@@ -2065,6 +2099,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+ 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
+ 
+ 		q->guc->resume_time = ktime_get();
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
+ 		clear_exec_queue_pending_enable(q);
+ 		smp_wmb();
+ 		wake_up_all(&guc->ct.wq);
 -- 
 2.34.1
 
