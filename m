@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8A03CA1002
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 14:02:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F40CA1015
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 14:37:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C56410EA4B;
-	Thu,  4 Sep 2025 14:02:43 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2CD310EA4B;
- Thu,  4 Sep 2025 14:02:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5064947454666120181=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB0D10EA5F;
+	Thu,  4 Sep 2025 14:37:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXcYDFR4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9914210EA5C;
+ Thu,  4 Sep 2025 14:37:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756996668; x=1788532668;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=CjlOOxyPRaTRMBHVwVrvZeeQxtWIkf0ACWPNImzffVo=;
+ b=kXcYDFR4oH4fK7dDfvnUuU36hmmLgAJ+fE2BRlZ71sqWSVutOFPUtLED
+ lbNW+/G/ivkv8HP1AVKn1Azf34efFt82Qwmgr2v9DzaDKdDDqtgHaqqVS
+ nQGKR+U02n7I/H5qRlJeO/39mH1bAbjkBce9+auEvcuIg2Qe6lPAEA+lP
+ 8gOzdmGBE+hQamAxELIDfs/ttyCIV3CU/lsClwRxIw9p6FIp88Mf4aj/8
+ QMcbAMS8xVclSau52k9gnXCazltd6lQP3SOPHQWs+HR1fL980xyFC+jw8
+ 0xY3wHRMPaDgVpUwlGpxlKMKimdFrDWmEodZxS+I8ssiUJmy/x5KA2WXL w==;
+X-CSE-ConnectionGUID: IfApxnskRxy0jDS9/l2cXg==
+X-CSE-MsgGUID: 3EfP+00wR2G/4dXsQq5lAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58369911"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="58369911"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 07:37:47 -0700
+X-CSE-ConnectionGUID: l4F7EsWyS4ixVyAVcSEwPg==
+X-CSE-MsgGUID: NnxR7f5iRViAmsBxEk3PuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="176026940"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.178])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2025 07:37:45 -0700
+Date: Thu, 4 Sep 2025 17:37:42 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6/9] drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
+Message-ID: <aLmkNu6AJ6LGVt6q@intel.com>
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fixes_around_evic?=
- =?utf-8?q?tion_and_suspend_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 04 Sep 2025 14:02:41 -0000
-Message-ID: <175699456198.303731.5416421990681416109@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250904130614.3212-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250904130614.3212-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +68,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5064947454666120181==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 03, 2025 at 11:32:03PM +0300, Jani Nikula wrote:
+> xe does xe_bo_unpin_map_no_vm() on the failure path. Add a common helper
+> to enable further refactoring.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 1 +
+>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 7 ++++++-
+>  3 files changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> index 3837973b0d25..6b70823ce5ef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> @@ -51,6 +51,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+>  	return &obj->base;
+>  }
+>  
+> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
+> +{
+> +	/* nop? */
 
-== Series Details ==
+gem_object_put() is what destroys the bo on i915, so I think you're
+introducing a leak in the next patch with this nop implementation.
 
-Series: drm/xe: Fixes around eviction and suspend (rev3)
-URL   : https://patchwork.freedesktop.org/series/153712/
-State : success
+xe seems to be riddled with footguns here since it conflates
+creation+pinning+whatever in the same thing (and I guess it
+doesn't know how to clean all that up when the last reference
+to the object disappears?) and you have to use that horribly
+misnamed function instead...
 
-== Summary ==
+> +}
+> +
+>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>  					       struct drm_mode_fb_cmd2 *mode_cmd)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+> index b10c4635bf46..6d6f316834df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+> @@ -17,6 +17,7 @@ struct intel_display;
+>  
+>  u32 intel_fbdev_fb_pitch_align(u32 stride);
+>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size);
+> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
+>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>  					       struct drm_mode_fb_cmd2 *mode_cmd);
+>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
+> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> index 9a5d14d5781a..9a5cf50ea7de 100644
+> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> @@ -54,6 +54,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+>  	return &obj->ttm.base;
+>  }
+>  
+> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
+> +{
+> +	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
+> +}
+> +
+>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>  					       struct drm_mode_fb_cmd2 *mode_cmd)
+>  {
+> @@ -76,7 +81,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>  							  mode_cmd->modifier[0]),
+>  				      mode_cmd);
+>  	if (IS_ERR(fb)) {
+> -		xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
+> +		intel_fbdev_fb_bo_destroy(obj);
+>  		goto err;
+>  	}
+>  
+> -- 
+> 2.47.2
 
-CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -> xe-pw-153712v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 10)
-------------------------------
-
-  Missing    (1): bat-ptl-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8522 -> IGT_8524
-  * Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -> xe-pw-153712v3
-
-  IGT_8522: 8522
-  IGT_8524: 8524
-  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97
-  xe-pw-153712v3: 153712v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153712v3/index.html
-
---===============5064947454666120181==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fixes around eviction and suspend (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153712/">https://patchwork.freedesktop.org/series/153712/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153712v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153712v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97_BAT -&gt; xe-pw-153712v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 10)</h2>
-<p>Missing    (1): bat-ptl-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8522 -&gt; IGT_8524</li>
-<li>Linux: xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97 -&gt; xe-pw-153712v3</li>
-</ul>
-<p>IGT_8522: 8522<br />
-  IGT_8524: 8524<br />
-  xe-3677-3345c879b0492f1283042ae6bdecb0e65ec4ff97: 3345c879b0492f1283042ae6bdecb0e65ec4ff97<br />
-  xe-pw-153712v3: 153712v3</p>
-
-</body>
-</html>
-
---===============5064947454666120181==--
+-- 
+Ville Syrjälä
+Intel
