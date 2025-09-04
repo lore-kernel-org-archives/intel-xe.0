@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C571CA1015
-	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 14:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A44ECA1002
+	for <intel-xe@archiver.kernel.org>; Thu,  4 Sep 2025 14:49:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD47610EA85;
-	Thu,  4 Sep 2025 14:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 440F710EA7E;
+	Thu,  4 Sep 2025 14:49:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5H5kOHh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bEkZIaCG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A8C10EA7F
- for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 14:49:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20E1110EA87
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 Sep 2025 14:49:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756997385; x=1788533385;
+ t=1756997388; x=1788533388;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=weF63JyuE7Y5xEW9D03+TUz0wDc0Jj3k7eziqNPoodc=;
- b=C5H5kOHhibpwaWUBW8N2c/OPsKSRZ7RNttF1FX7IkUwWHC6bnyntiafL
- orm6odty5K8T0XLOeOSG2jdC8ox07iFOibKdrpFjfS+fDDT/yzNWB8Cn4
- +d8GSEVbXtetfmawylG6ka7rLw7Ol3ALeNwfl2cKlM76+VDdVAKL4f/U1
- 4njzHT4yNuGnkY5LEtetm093mMpXMcI971mv7DDb6ojSxe8lhdi9OofjV
- M7JKk5tkooavjc6KQCjBvqBtk1VtSwpIl/8d/pFS3TsQIf2Kl2czkVkAk
- b3QOvbLpaJLe788Yg7r//axDf2A/xoV0ANQ9SXeqB5x0UVHlJl/LESID7 A==;
-X-CSE-ConnectionGUID: S+59fSZWRfaDh2Xuv7qhoA==
-X-CSE-MsgGUID: liBAVo8ZSnK1F3nmNSzMuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="76790132"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="76790132"
+ bh=PgblD4SkZb1mUnahxQjLwP/0VqBX0XyNpAj1xJxyhG0=;
+ b=bEkZIaCGUmduVOv3XuCqmUvWZxytpXy6HXWV3XfojfcFpykExMZylWWE
+ 81Z6jorxmyuak0XI7Iq0MMqpRTBgSw6FUf6/kGhgbVb+z83knZsmA4w5L
+ NI1KZ8viCiVUab8ZfoHoH8cuAKsZo7B1eiBKLECJ/qaS2wtJPOXcw7MBE
+ dlv+L3DFedIWdWhT8XmAVK4j8WBdsI6hyibFacLpmxVNuAJjAaKlYHoMG
+ 9M323AAUmQZ+biAsIgL8weEdeHU6Qlvc7aMxSrWm4lRnCdCsjo3uf963f
+ VXobUZtZ3ssaP7knftCl/5erNZEnTi0GXY5OUZrx1TwlSiZDxv8e8gNGG g==;
+X-CSE-ConnectionGUID: wTal30q3TpGEKzp3feYalA==
+X-CSE-MsgGUID: LLJfV0DVSre2EyFmH3wgzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="76790135"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="76790135"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 07:49:45 -0700
-X-CSE-ConnectionGUID: +8+rvIw8SOi/IYREI5t8QA==
-X-CSE-MsgGUID: 4+mIVytxTneqe2RvB9eU5g==
+ 04 Sep 2025 07:49:47 -0700
+X-CSE-ConnectionGUID: kq5HSPQ7Rluzgz+PONHMlA==
+X-CSE-MsgGUID: nwr2Sp+eTVm2N+7jpYtOdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="171851023"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; d="scan'208";a="171851037"
 Received: from abityuts-desk.ger.corp.intel.com (HELO fedora) ([10.245.244.98])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2025 07:49:42 -0700
+ 04 Sep 2025 07:49:45 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -49,9 +49,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v5 07/13] drm/xe/display: Convert __xe_pin_fb_vma()
-Date: Thu,  4 Sep 2025 16:49:02 +0200
-Message-ID: <20250904144908.14303-8-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v5 08/13] drm/xe: Convert xe_dma_buf.c for exhaustive eviction
+Date: Thu,  4 Sep 2025 16:49:03 +0200
+Message-ID: <20250904144908.14303-9-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250904144908.14303-1-thomas.hellstrom@linux.intel.com>
 References: <20250904144908.14303-1-thomas.hellstrom@linux.intel.com>
@@ -72,68 +72,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert __xe_pin_fb_vma() for exhaustive eviction
-using xe_validation_guard().
+Convert dma-buf migration to XE_PL_TT and dma-buf import to
+support exhaustive eviction, using xe_validation_guard().
+It seems unlikely that the import would result in an -ENOMEM,
+but convert import anyway for completeness.
+
+The dma-buf map_attachment() functionality unfortunately doesn't
+support passing a drm_exec, which means that foreign devices
+validating a dma-buf that we exported will not, unless they are
+xeKMD devices, participate in the exhaustive eviction scheme.
 
 v2:
 - Avoid gotos from within xe_validation_guard(). (Matt Brost)
 - Adapt to signature change of xe_validation_guard(). (Matt Brost)
-- Use interruptible waiting, since xe_bo_migrate() already does that.
+- Remove an unneeded (void)ret. (Matt Brost)
+- Fix up an error path.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 30 +++++++++++++++-----------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 61 ++++++++++++++++++++++-----------
+ 1 file changed, 41 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d7a8448a43dc..3d7045852154 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -281,7 +281,8 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 2fdfeaf59fb1..8d8e5f7345b6 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -163,16 +163,26 @@ static int xe_dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
  	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	bool reads =  (direction == DMA_BIDIRECTIONAL ||
+ 		       direction == DMA_FROM_DEVICE);
 -	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
 +	struct xe_validation_ctx ctx;
 +	struct drm_exec exec;
- 	int ret;
++	int ret = 0;
  
- 	if (!vma)
-@@ -309,17 +310,22 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
- 	 * assumptions are incorrect for framebuffers
- 	 */
--	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
--	if (ret)
--		goto err;
--
--	if (IS_DGFX(xe))
--		ret = xe_bo_migrate(bo, XE_PL_VRAM0, NULL, exec);
--	else
--		ret = xe_bo_validate(bo, NULL, true, exec);
--	if (!ret)
--		ttm_bo_pin(&bo->ttm);
--	ttm_bo_unreserve(&bo->ttm);
-+	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
-+			    ret) {
+ 	if (!reads)
+ 		return 0;
+ 
+ 	/* Can we do interruptible lock here? */
+-	xe_bo_lock(bo, false);
+-	(void)xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
+-	xe_bo_unlock(bo);
++	xe_validation_guard(&ctx, &xe_bo_device(bo)->val, &exec, (struct xe_val_flags) {}, ret) {
 +		ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
 +		drm_exec_retry_on_contention(&exec);
 +		if (ret)
 +			break;
 +
-+		if (IS_DGFX(xe))
-+			ret = xe_bo_migrate(bo, XE_PL_VRAM0, NULL, &exec);
-+		else
-+			ret = xe_bo_validate(bo, NULL, true, &exec);
++		ret = xe_bo_migrate(bo, XE_PL_TT, NULL, &exec);
 +		drm_exec_retry_on_contention(&exec);
 +		xe_validation_retry_on_oom(&ctx, &ret);
-+		if (!ret)
-+			ttm_bo_pin(&bo->ttm);
 +	}
- 	if (ret)
- 		goto err;
  
++	/* If we failed, cpu-access takes place in current placement. */
+ 	return 0;
+ }
+ 
+@@ -211,25 +221,36 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
+ {
+ 	struct dma_resv *resv = dma_buf->resv;
+ 	struct xe_device *xe = to_xe_device(dev);
+-	struct drm_exec *exec = XE_VALIDATION_UNIMPLEMENTED;
++	struct xe_validation_ctx ctx;
++	struct drm_gem_object *dummy_obj;
++	struct drm_exec exec;
+ 	struct xe_bo *bo;
+-	int ret;
+-
+-	dma_resv_lock(resv, NULL);
+-	bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
+-				    0, /* Will require 1way or 2way for vm_bind */
+-				    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, exec);
+-	if (IS_ERR(bo)) {
+-		ret = PTR_ERR(bo);
+-		goto error;
++	int ret = 0;
++
++	dummy_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
++	if (!dummy_obj)
++		return ERR_PTR(-ENOMEM);
++
++	dummy_obj->resv = resv;
++	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, ret) {
++		ret = drm_exec_lock_obj(&exec, dummy_obj);
++		drm_exec_retry_on_contention(&exec);
++		if (ret)
++			break;
++
++		bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
++					    0, /* Will require 1way or 2way for vm_bind */
++					    ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, &exec);
++		drm_exec_retry_on_contention(&exec);
++		if (IS_ERR(bo)) {
++			ret = PTR_ERR(bo);
++			xe_validation_retry_on_oom(&ctx, &ret);
++			break;
++		}
+ 	}
+-	dma_resv_unlock(resv);
+-
+-	return &bo->ttm.base;
++	drm_gem_object_put(dummy_obj);
+ 
+-error:
+-	dma_resv_unlock(resv);
+-	return ERR_PTR(ret);
++	return ret ? ERR_PTR(ret) : &bo->ttm.base;
+ }
+ 
+ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
 -- 
 2.50.1
 
