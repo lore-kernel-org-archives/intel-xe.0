@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CE12CA101F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:27:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D022CA101C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB0510EB39;
-	Fri,  5 Sep 2025 07:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52F7510EB36;
+	Fri,  5 Sep 2025 07:27:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ehjJ260u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dejuQdqk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D18710EB37;
- Fri,  5 Sep 2025 07:27:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0BD10EB33;
+ Fri,  5 Sep 2025 07:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757057249; x=1788593249;
+ t=1757057246; x=1788593246;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SQJs3vtElSjVjDNoYx5eFXI7VAolAQt8QQSPMNapwpc=;
- b=ehjJ260ubtNdIVTflaHw3tvmUeTrO9Bvvjztv7oNW7Aze3KXK17DWkR/
- GKGEQyQS4iTwOlnsl06Lg5gF6NIMcHaQoJRoToM8frfjaSTEDEv/3KDUy
- up6B+wAkxwDC87ljQ0ZfrwFzYP5beCZAvcfAMrgC8qdKaZ4aGr4CZt5I/
- DdTk3GSrHyfpOc2w/YjceiDD0g7OsBhCCEerhI+Gnh5W/Id0yahPWDZfM
- 9A5xtWRNf3lSG4VSq5+VxTuiFHJoGHqGw+fVkehE4dnGQMtfu5SURkQeH
- 9GYnkJNcP3gkFL816AEmD0LVnWKo98+4SGHNr76ktgeIjFKmvzUPYYYqB A==;
-X-CSE-ConnectionGUID: GEj2KfoGSLCzEKhnrCx7+g==
-X-CSE-MsgGUID: ogC2NZv6QIWpsW3OuO75wQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="63047067"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="63047067"
+ bh=WIWkEfM+fkt8ZQ1zMd73cqvKK94AjkiT8qeJfqOteMc=;
+ b=dejuQdqk/D8gYvKRgqKbH5Eye5j4rTuRBzCxyPGKXa7QDwuaUOQe5/U/
+ QTH0TueUnvNbAzZvea2Xjk586lvfxlKpmj+DannHsthXthdTBFLCDXEuJ
+ dIAYC9SCE+rQXKBWxYfCxGjliovSk+NAaKm/hlG1nqov7X1OzpKwxNuWF
+ fK2ubEwK50vbw7buNwm5cZNyRih9TNOjUoYS/52ZfcD7pFmPNtOqzCXna
+ vph9ZScNrR7+tKSFr+jpkHxQB+Wd9ztHSnaPjtGcTqyVODWMJMozqOZ8Z
+ nUaSmJ2MRRlG4RTZZYhXAEOV9BCo03q2L5G80IR3V4esoxRQdnggDuQMe A==;
+X-CSE-ConnectionGUID: fhCGATxwQTKfHhJkknwJCw==
+X-CSE-MsgGUID: WDcizmnHQ6SUFmL1FM2rLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="63047063"
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="63047063"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:27:29 -0700
-X-CSE-ConnectionGUID: 7/pwIgD4TfyyyUxzcBl7ng==
-X-CSE-MsgGUID: 9OAEqym+QE+7SZFy5nRc+A==
+ 05 Sep 2025 00:27:26 -0700
+X-CSE-ConnectionGUID: Wha4IxsNTrypvoinfqCpzA==
+X-CSE-MsgGUID: tvIFbNjtT0WnJiyPeaBM8w==
 X-ExtLoop1: 1
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.5])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:27:27 -0700
+ 05 Sep 2025 00:27:24 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 4/4] drm/i915/psr: Add poll for checking PSR is idle before
- starting update
-Date: Fri,  5 Sep 2025 10:27:08 +0300
-Message-ID: <20250905072708.2659411-5-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v3 2/4] drm/i915/psr: Add new define for PSR idle timeout
+Date: Fri,  5 Sep 2025 10:27:06 +0300
+Message-ID: <20250905072708.2659411-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250905072708.2659411-1-jouni.hogander@intel.com>
 References: <20250905072708.2659411-1-jouni.hogander@intel.com>
@@ -70,33 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are currently observing crc failures after we started using dsb for PSR
-updates as well. This seems to happen because PSR HW is still sending
-couple of updates using old framebuffers on wake-up.
-
-Fix this by adding poll ensuring PSR is idle before starting update.
-
-v2: pass new_crtc_state->dsb_commit to intel_psr_wait_for_idle_dsb
+Currently we are using value 50ms as timeout for waiting PSR to idle. Add
+own define for this purpose.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1a3a95c65f0..5dca7f96b425 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7271,6 +7271,9 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_psr_trigger_frame_change_event(new_crtc_state->dsb_commit,
- 						     state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 6ab5c028845a..eae1eedbbb26 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2997,6 +2997,14 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 	}
+ }
  
-+		intel_psr_wait_for_idle_dsb(new_crtc_state->dsb_commit,
-+					    new_crtc_state);
++/*
++ * From bspec: Panel Self Refresh (BDW+)
++ * Max. time for PSR to idle = Inverse of the refresh rate + 6 ms of
++ * exit training time + 1.5 ms of aux channel handshake. 50 ms is
++ * defensive enough to cover everything.
++ */
++#define PSR_IDLE_TIMEOUT_MS 50
 +
- 		if (new_crtc_state->use_dsb)
- 			intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
+ static int
+ _psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
+ {
+@@ -3010,7 +3018,8 @@ _psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state
+ 	 */
+ 	return intel_de_wait_for_clear(display,
+ 				       EDP_PSR2_STATUS(display, cpu_transcoder),
+-				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP, 50);
++				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP,
++				       PSR_IDLE_TIMEOUT_MS);
+ }
  
+ static int
+@@ -3019,15 +3028,10 @@ _psr1_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state
+ 	struct intel_display *display = to_intel_display(new_crtc_state);
+ 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 
+-	/*
+-	 * From bspec: Panel Self Refresh (BDW+)
+-	 * Max. time for PSR to idle = Inverse of the refresh rate + 6 ms of
+-	 * exit training time + 1.5 ms of aux channel handshake. 50 ms is
+-	 * defensive enough to cover everything.
+-	 */
+ 	return intel_de_wait_for_clear(display,
+ 				       psr_status_reg(display, cpu_transcoder),
+-				       EDP_PSR_STATUS_STATE_MASK, 50);
++				       EDP_PSR_STATUS_STATE_MASK,
++				       PSR_IDLE_TIMEOUT_MS);
+ }
+ 
+ /**
 -- 
 2.43.0
 
