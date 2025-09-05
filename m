@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7130CA0FED
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 16:02:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A9EBCA0FED
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 16:08:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FEA010EC06;
-	Fri,  5 Sep 2025 16:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B8DE10EC08;
+	Fri,  5 Sep 2025 16:08:10 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7724210EC07;
- Fri,  5 Sep 2025 16:02:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0228227829527352978=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B857110EC08;
+ Fri,  5 Sep 2025 16:08:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/1915=3A_skl+_watermark/?=
- =?utf-8?q?latency_stuff_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introducing_firmware_late?=
+ =?utf-8?q?_binding?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Sep 2025 16:02:39 -0000
-Message-ID: <175708815948.307561.2683561720294656407@1538d3639d33>
+Date: Fri, 05 Sep 2025 16:08:09 -0000
+Message-ID: <175708848975.307561.12252849491868944233@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+References: <20250905154953.3974335-1-badal.nilawar@intel.com>
+In-Reply-To: <20250905154953.3974335-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,142 +40,55 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0228227829527352978==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/1915: skl+ watermark/latency stuff (rev2)
-URL   : https://patchwork.freedesktop.org/series/154099/
-State : success
+Series: Introducing firmware late binding
+URL   : https://patchwork.freedesktop.org/series/154104/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -> xe-pw-154099v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+4087ecac9007bf53f0d36756bd06d570e5d7050f
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7b5b06fea4e4f2cdffc61e7a7649a22e74d1eed6
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Fri Sep 5 21:19:53 2025 +0530
 
-Summary
--------
+    drm/xe/xe_late_bind_fw: Extract and print version info
+    
+    Extract and print version info of the late binding binary.
+    
+    v2: Some refinements (Daniele)
+    
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 1f778fbdf929e24ce13112d14835b780959892b0 drm-intel
+c3ad2c0941bf mei: bus: add mei_cldev_mtu interface
+4e11fb875031 mei: late_bind: add late binding component driver
+-:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#67: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 415 lines checked
+8a94cf22377c drm/xe/xe_late_bind_fw: Introduce xe_late_bind_fw
+-:99: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#99: 
+new file mode 100644
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154099v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +2 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+fa22ee3e6aa6 drm/xe/xe_late_bind_fw: Initialize late binding firmware
+a1e0e1c13b21 drm/xe/xe_late_bind_fw: Load late binding firmware
+55e2bdf5faff drm/xe/xe_late_bind_fw: Reload late binding fw in rpm resume
+ed495665ff01 drm/xe/xe_late_bind_fw: Reload late binding fw during system resume
+e14862c3a1fb drm/xe/xe_late_bind_fw: Introduce debug fs node to disable late binding
+7b5b06fea4e4 drm/xe/xe_late_bind_fw: Extract and print version info
 
 
-Build changes
--------------
-
-  * Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -> xe-pw-154099v2
-
-  IGT_8524: 8524
-  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823
-  xe-pw-154099v2: 154099v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/index.html
-
---===============0228227829527352978==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/1915: skl+ watermark/latency stuff (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154099/">https://patchwork.freedesktop.org/series/154099/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -&gt; xe-pw-154099v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154099v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +2 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -&gt; xe-pw-154099v2</li>
-</ul>
-<p>IGT_8524: 8524<br />
-  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823<br />
-  xe-pw-154099v2: 154099v2</p>
-
-</body>
-</html>
-
---===============0228227829527352978==--
