@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EA91CA1010
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2AACCA1010
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:19:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33D5B10EBE8;
-	Fri,  5 Sep 2025 15:01:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxAd8+rp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC2510EBE5;
- Fri,  5 Sep 2025 15:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757084517; x=1788620517;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DOV4eYI5rhHDoEfh+PP4/yMU61JRaLiz3CpYO2qyyUE=;
- b=nxAd8+rpK3WfvCYrpBJIgzkTD1GmVS3r2tpfk03g+4AVZ8ZD2NO/q7H6
- kBDZADzBzsV2Hsceoziw1q7b+dHAP2pQSb6gQRo1QIW9gP/eBli2A1k7b
- HETxfhocSHI8dFu7uMl30QGaQs2OTYrVpEV5NDSxkNap4A1qIOIvoL88/
- ILzinhNnG1wSMpnmVpG3g6hQeQ8Jw5EPYhCMYwrQf/3ZXZ8sHN15pDjZT
- bk7XjBCFTTfA8+iJsExqxkTb0/6Pl9H97FOSDrGbySAHXiGhkkUYe8jQs
- gPwrNPtGXIsTgrxqO7cwbTzxl0xUpgidDMyJRyf5SMt1/1LujRHY6t2LJ w==;
-X-CSE-ConnectionGUID: fpyO3mmaQpyBF7uAlQijjw==
-X-CSE-MsgGUID: /tEBkoEmRp2XriNTEhEiwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63266730"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63266730"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 08:01:57 -0700
-X-CSE-ConnectionGUID: ASdpGzgrQhqxBV7YZuMqNA==
-X-CSE-MsgGUID: U9dIcP35T6SQZYvrlH+i8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172060917"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.33])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 08:01:56 -0700
-Date: Fri, 5 Sep 2025 18:01:53 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/13] drm/1915: skl+ watermark/latency stuff
-Message-ID: <aLr7YVbvr-9AB8J6@intel.com>
-References: <20250905145212.10845-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6261310EBE8;
+	Fri,  5 Sep 2025 15:19:26 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFCB410EBEC;
+ Fri,  5 Sep 2025 15:19:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7994810958829604289=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250905145212.10845-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Move_ADS_BO_r?=
+ =?utf-8?q?ealloc_to_xe=5Fguc=5Fads_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 05 Sep 2025 15:19:24 -0000
+Message-ID: <175708556471.307561.11754215376033419205@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250905143538.7927-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250905143538.7927-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,43 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 05, 2025 at 05:51:59PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> A bunch of claenup to the watermark latency setup on skl+, and
-> a few potential fixes for some edge cases.
+--===============7994810958829604289==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please ignore this incomplete series. Apparently gnome-keyring has some
-decades old bug where it randomly fails, and this time it happened in
-the middle of posting this series :(
+== Series Details ==
 
-> 
-> Ville Syrjälä (13):
->   drm/i915/dram: Also apply the 16Gb DIMM w/a for larger DRAM chips
->   drm/i915: Apply the 16Gb DIMM w/a only for the platforms that need it
->   drm/i915: Tweak the read latency fixup code
->   drm/i915: Don't pass the latency array to {skl,mtl}_read_wm_latency()
->   drm/i915: Move adjust_wm_latency() out from
->     {mtl,skl}_read_wm_latency()
->   drm/i915: Extract multiply_wm_latency() from skl_read_wm_latency()
->   drm/i915: Extract increase_wm_latency()
->   drm/i915: Use increase_wm_latency() for the 16Gb DIMM w/a
->   drm/i915: Extract sanitize_wm_latency()
->   drm/i915: Flatten sanitize_wm_latency() a bit
->   drm/i915: Make wm latencies monotonic
->   drm/i915: Print both the original and adjusted wm latencies
->   drm/i915: Make sure wm block/lines are non-decreasing
-> 
->  drivers/gpu/drm/i915/display/skl_watermark.c | 160 +++++++++++++------
->  drivers/gpu/drm/i915/soc/intel_dram.c        |  10 +-
->  2 files changed, 118 insertions(+), 52 deletions(-)
-> 
-> -- 
-> 2.49.1
+Series: drm/xe/guc: Move ADS BO realloc to xe_guc_ads code
+URL   : https://patchwork.freedesktop.org/series/154098/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -> xe-pw-154098v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154098v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-vm}:       [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -> xe-pw-154098v1
+
+  IGT_8524: 8524
+  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823
+  xe-pw-154098v1: 154098v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html
+
+--===============7994810958829604289==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Move ADS BO realloc to xe_guc_ads code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154098/">https://patchwork.freedesktop.org/series/154098/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -&gt; xe-pw-154098v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154098v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -&gt; xe-pw-154098v1</li>
+</ul>
+<p>IGT_8524: 8524<br />
+  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823<br />
+  xe-pw-154098v1: 154098v1</p>
+
+</body>
+</html>
+
+--===============7994810958829604289==--
