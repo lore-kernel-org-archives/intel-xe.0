@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2AACCA1010
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0729DCA1010
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:25:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6261310EBE8;
-	Fri,  5 Sep 2025 15:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA16A10EBCF;
+	Fri,  5 Sep 2025 15:25:03 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFCB410EBEC;
- Fri,  5 Sep 2025 15:19:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7994810958829604289=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7268F10EBCF;
+ Fri,  5 Sep 2025 15:25:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Move_ADS_BO_r?=
- =?utf-8?q?ealloc_to_xe=5Fguc=5Fads_code?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/1915=3A_skl+_watermar?=
+ =?utf-8?q?k/latency_stuff_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 05 Sep 2025 15:19:24 -0000
-Message-ID: <175708556471.307561.11754215376033419205@1538d3639d33>
+Date: Fri, 05 Sep 2025 15:25:02 -0000
+Message-ID: <175708590246.307560.5884935515789083839@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250905143538.7927-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250905143538.7927-1-michal.wajdeczko@intel.com>
+References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +40,79 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7994810958829604289==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Move ADS BO realloc to xe_guc_ads code
-URL   : https://patchwork.freedesktop.org/series/154098/
-State : success
+Series: drm/1915: skl+ watermark/latency stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/154099/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -> xe-pw-154098v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6563e0a40fcee465b9078301e01a752848b6572c
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 141615148b4642059215e47600dfe27929181c6c
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Fri Sep 5 17:58:32 2025 +0300
 
-Summary
--------
+    drm/i915: Make sure wm block/lines are non-decreasing
+    
+    The watermark algorithm sometimes produces results where higher
+    watermark levels have smaller blocks/lines watermarks than the lower
+    levels. That doesn't really make sense as the corresponding latencies
+    are supposed to be non-decreasing. It's unclear how the hardware
+    responds to such watermark values, so it seems better to avoid that
+    case and just make sure the values are always non-decreasing.
+    
+    Here's an example how things change for such a case on a GLK NUC:
+     [PLANE:70:cursor A]   level  wm0, wm1, wm2, wm3, wm4, wm5, wm6, wm7, twm, swm, stwm -> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm, swm, stwm
+     [PLANE:70:cursor A]   lines    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->    4,   4,   4,   2,   2,   2,   2,   2,   0,   0,    0
+     [PLANE:70:cursor A]  blocks    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->   11,  11,  12,   7,   7,   7,   7,   7,  25,   0,    0
+     [PLANE:70:cursor A] min_ddb    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->   12,  12,  13,   8,   8,   8,   8,   8,  26,   0,    0
+    ->
+     [PLANE:70:cursor A]   level  wm0, wm1, wm2, wm3, wm4, wm5, wm6, wm7, twm, swm, stwm -> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm, swm, stwm
+     [PLANE:70:cursor A]   lines    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->    4,   4,   4,   4,   4,   4,   4,   4,   0,   0,    0
+     [PLANE:70:cursor A]  blocks    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->   11,  11,  12,  12,  12,  12,  12,  12,  25,   0,    0
+     [PLANE:70:cursor A] min_ddb    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,    0 ->   12,  12,  13,  13,  13,  13,  13,  13,  26,   0,    0
+    
+    Whether this actually helps on any display blinking issues is unclear.
+    
+    References: https://gitlab.freedesktop.org/drm/intel/-/issues/8683
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch e59de55d678b63f430e98772a53cc6303313564b drm-intel
+abf3f22795b5 drm/i915/dram: Also apply the 16Gb DIMM w/a for larger DRAM chips
+686d004daf6d drm/i915: Apply the 16Gb DIMM w/a only for the platforms that need it
+5c15b6748f95 drm/i915: Tweak the read latency fixup code
+0601cab51bf0 drm/i915: Don't pass the latency array to {skl, mtl}_read_wm_latency()
+a63fe3de9f26 drm/i915: Move adjust_wm_latency() out from {mtl, skl}_read_wm_latency()
+69c9913a204c drm/i915: Extract multiply_wm_latency() from skl_read_wm_latency()
+0a12b88a2cbe drm/i915: Extract increase_wm_latency()
+e6e16ba1c8b5 drm/i915: Use increase_wm_latency() for the 16Gb DIMM w/a
+4148719d829e drm/i915: Extract sanitize_wm_latency()
+51a5633eb1ea drm/i915: Flatten sanitize_wm_latency() a bit
+8976eb843042 drm/i915: Make wm latencies monotonic
+-:41: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#41: FILE: drivers/gpu/drm/i915/display/skl_watermark.c:3250:
++		wm[level] = max(wm[level], wm[level-1]);
+ 		                                   ^
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 27 lines checked
+16ea3c1ca343 drm/i915: Print both the original and adjusted wm latencies
+141615148b46 drm/i915: Make sure wm block/lines are non-decreasing
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+ [PLANE:70:cursor A]   level  wm0, wm1, wm2, wm3, wm4, wm5, wm6, wm7, twm, swm, stwm -> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm, swm, stwm
 
-  No regressions found.
+-:29: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' or 'Closes:' instead
+#29: 
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/8683
 
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154098v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -> xe-pw-154098v1
-
-  IGT_8524: 8524
-  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823
-  xe-pw-154098v1: 154098v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html
-
---===============7994810958829604289==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Move ADS BO realloc to xe_guc_ads code</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154098/">https://patchwork.freedesktop.org/series/154098/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 2 warnings, 0 checks, 30 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823_BAT -&gt; xe-pw-154098v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154098v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154098v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823 -&gt; xe-pw-154098v1</li>
-</ul>
-<p>IGT_8524: 8524<br />
-  xe-3689-797ed8420a0e60dd3cd56639d458bce00ca42823: 797ed8420a0e60dd3cd56639d458bce00ca42823<br />
-  xe-pw-154098v1: 154098v1</p>
-
-</body>
-</html>
-
---===============7994810958829604289==--
