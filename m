@@ -4,58 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD584CA0FED
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DE57CA1016
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 15:55:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81BB210EC07;
-	Fri,  5 Sep 2025 15:45:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CADAC10E28D;
+	Fri,  5 Sep 2025 15:55:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibpx/eOX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJGjnoB9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B24E710EBF7;
- Fri,  5 Sep 2025 15:45:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F25D10E28D;
+ Fri,  5 Sep 2025 15:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757087148; x=1788623148;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uSmeCO6fUEbmld+mTxJpQ2sHBRKnUyUpzut74qprZBI=;
- b=ibpx/eOXkgEJJfuvoSunz2cHRepKEon6+u2EKBG44nDIrmNHDvuXWm5Y
- 1db4h382roAH1C7ZtpR3nIIxh1BV+S5M0+D0+98kcrevCYZkZ7Xy2ufph
- TVFfJNqQsjGaLQt7nD6OqPAgCZ9dM9KgNSeCJ5hEWSL+pZXOM+KLG20PU
- pmWYdKGqBotnPXKy0uOI/mVPRkYWiWbXI6npblPQsA3Bl1ntbqg1cfxfv
- Ch9ZVCtwlRxo1YOCez2em5G0f2PIUm9z2LJ1Kek0+w8UyTIMLgx43wbtD
- pbzmPFjNjKemFxTy+fYlADSjLvErlczgocAxBp7FOj6qmKb17welChe3Y w==;
-X-CSE-ConnectionGUID: hmk6iw+YSQ2gikl7tqrCgw==
-X-CSE-MsgGUID: T61ojTQYQYGve2IfiYr8Tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70144689"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="70144689"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 08:45:47 -0700
-X-CSE-ConnectionGUID: shEHzgIYRM6sVHs3EOiPiw==
-X-CSE-MsgGUID: vaSNGSLBTTWWlNOdiquLAg==
+ t=1757087734; x=1788623734;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=epCUIihNhjZkAYVIwboCQ7fdxh+oQRriOndoJ/fvaRA=;
+ b=cJGjnoB97k4WGwPEFLU0m6Aj06anulXCLXiQD4d/pSn2oL/p6c0y2fS8
+ XKCODPoogkFPuRScIiqgmQ7mwx9O1ayBybCi3EpfCsUvGzqSkRGyROkv3
+ Slyzpky3eG/51RyHONAxqHKN6/90a4KnVqo3VX55ui9ZSo0T7qYsaW8jC
+ DWtTHJGr4rbPWjRvzh1AXOMyz9/LiUMyhaavxkpkJBsLOInerXoJehbNF
+ xczq+2/I9nnG0mTF57oHS18dD4Cm1O7Whate7SiUkV82hp9LAcVPsncMG
+ 5AyPbgcrq/+DZkt4iwZng9CgrFXChPr6nBgAzV7MdlPsXlZ4qZJo7IvFd g==;
+X-CSE-ConnectionGUID: HNSVSzVdRZy2LLrDANdkAw==
+X-CSE-MsgGUID: /1NZqV3eTY698jJ88H3eFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70818979"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="70818979"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 08:55:34 -0700
+X-CSE-ConnectionGUID: lRWdO8HqTLq7QaVzZ4nHLA==
+X-CSE-MsgGUID: t3SDJR1mSPCr/rD+ML2P7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="172071967"
-Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 08:45:44 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
- daniele.ceraolospurio@intel.com, mika.westerberg@linux.intel.com,
- lucas.demarchi@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v9 9/9] drm/xe/xe_late_bind_fw: Extract and print version info
-Date: Fri,  5 Sep 2025 21:19:53 +0530
-Message-Id: <20250905154953.3974335-10-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250905154953.3974335-1-badal.nilawar@intel.com>
-References: <20250905154953.3974335-1-badal.nilawar@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="195853267"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 08:55:33 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 5 Sep 2025 08:55:32 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Fri, 5 Sep 2025 08:55:32 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.64)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 5 Sep 2025 08:55:32 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Cpv1ze+5jTirQkpmsDV8SJ0KiFOISHONKuizIx7EFhMOIUCfGaq89KnN5O/iM+kcwaoX1dXbXgv4WXFUGuKzLG0tlHykPdCDl8TZ6jagD0paU2SZfnQ+y76yi2LvSbF6wXoQtsouSuxTbFusvVHArlELxdRgVAMrtdSCUA2Th0jAp+o501u49oejmOtVybBuBWiNaj8wEo1atNfIhfkL0BBBNLmIdIk3oxGVstwSZp3D07ozr3iQCG5d/dVDvAe/Qjtc/YTEO0rMTGvX/EavoGp+3ixkQAa8wuzmxbsB+FTW/TOkPfaZG/oexqXgseHfm6q+T7hbBiyN55rJstghnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=69MhUDrrPOgNiOv5W4lGqNSp5if0lK1zMzPganggatQ=;
+ b=dPnxYgQV1Gnps5/CyFvgkY3pElepSUZ++JxMJjcGRVmOkjUfdaszJv8FSr2/cONXZqAHRu+VqGRNUikv2Vgfffy98dQCcWCdQQyYVqNnAkI1rT5JH+WZhn6laA1ydRsqY5Z/bmrb5kvyfOX7aEbF+WGMghGDMo0/LoK3BRAE0fQDY/e2hQZFxrhFKGhL34yWDPNwHxfuKVRtJeSAYvunpi2zhdsQ4dYAmWOAdgIVkrZFg37DjUVSZ8O34ZjX8v4KsP8Gs5zxIh23zJOHdFlz4pXSmeUQ1CzbJ8CPRLTdJJ/ngOd4UVyRnHfMvqvikb/yotF0rp8AW9BGC/NdVp8pQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by IA3PR11MB9111.namprd11.prod.outlook.com (2603:10b6:208:57d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Fri, 5 Sep
+ 2025 15:55:25 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.9073.026; Fri, 5 Sep 2025
+ 15:55:25 +0000
+Date: Fri, 5 Sep 2025 08:55:23 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/i915/power: fix size for for_each_set_bit() in abox
+ iteration
+Message-ID: <20250905155523.GC5752@mdroper-desk1.amr.corp.intel.com>
+References: <20250905104149.1144751-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250905104149.1144751-1-jani.nikula@intel.com>
+X-ClientProxiedBy: BYAPR04CA0022.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::35) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA3PR11MB9111:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a560440-4582-4eeb-4e0e-08ddec94a0fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?LVewYsUzdHZl42rMa6Ql7D4oqAbyJZmCAIOF1+3FOHDyo5Re/hbMfFwknU?=
+ =?iso-8859-1?Q?Wc7/D9EdZz7k2GmKMEkouO71CUVu5p0y3qAX+k624ovd/DMTWOkLPsX7qY?=
+ =?iso-8859-1?Q?+UdHqTcI2vVOMC3Gbdc13VTM3GeOclXE1DzDIvQVBQdbP0tbOkXLJWpHZJ?=
+ =?iso-8859-1?Q?g1mWDltHM19QyAgS0Tp3icaCCgELoLEdKo118bVcaoly1DN/XhM806ZaCI?=
+ =?iso-8859-1?Q?IDN+Yq2P5+AEQDukUAkPkN6GaY3KG57QJ4gCJdF2jgLQbIlP4I1KvT2KeN?=
+ =?iso-8859-1?Q?nQXw9Oi3dMGNoHbiXWjlBna/ZvjcxbpewoR6uroKe2J+98/2Pk2g/azDny?=
+ =?iso-8859-1?Q?Uw97IxG5QwVdV9AJqX1K5OnDcU+t7+QPh0TwMU2YlZv8IxaglE6gAKciWL?=
+ =?iso-8859-1?Q?9fxpvG1CfjF9CsuoTiNoa3teKbgobM61uF44eXac9IsbKl5305KbvzLSvr?=
+ =?iso-8859-1?Q?CF/Ah7c0j/rcRs0awPdG9ZtY+RsrsFrmLOFF3Xv5JORmyheRSQIci9Al8T?=
+ =?iso-8859-1?Q?LXXZ6KQJOJy30YKCmqQ7qmSioIC+xQ1cE9Fr96cnqa0v4ujVJ0fHYh8YE4?=
+ =?iso-8859-1?Q?06M/EDp+oMBj66xAw6Hrk0YUSsU0uHpsBjmDfHpaI0a41sxPn5TbyQKE3R?=
+ =?iso-8859-1?Q?6sfbcCwbC1sSxaKUrXZNsyEBjSQuOFMtN7L2a3mN8EJuRZdjwlR4P13lRL?=
+ =?iso-8859-1?Q?/rKrhCCOpBAC+MSnrA1Ylg0EFaCafUVPD52fr79wCcNPdZdTp+biN34k9M?=
+ =?iso-8859-1?Q?FCtJD15OF6vqwUSGY8K6+HmK7LkBWwiCXk7b6KCgAqIA4Lp8Crbl41hxa7?=
+ =?iso-8859-1?Q?SZ6YwrOGOpquvowV9Wv60ZGC3ewaNkMwwY0qIUUgVMq/bpYRMAsvcAEFKe?=
+ =?iso-8859-1?Q?Hq4NhXYY5Xnh74g02pgMkDd8IS0KAjgwweZmqmOy4NScy0KTYU+vp6AZPQ?=
+ =?iso-8859-1?Q?EdteDqkkP/gFL7YsjYf2vcH3IJxua7qUOv81edBOkybRE2O1mBrR2Y7tnM?=
+ =?iso-8859-1?Q?MCJ9hVKxJAWx6NMA41l3gX+7O0CZI1O32nIvt6Rm+smI2A5kV84nSEyilk?=
+ =?iso-8859-1?Q?4HxzUwJ5AHrLb2RdNlN/QKCVcItjmWdSpDQDNwBAQVU9C6luk8OwuKCe7R?=
+ =?iso-8859-1?Q?qve8GBI4YS5Bdp9uIYYn1UMt0OWwDRDtvQTk65sScK9pIVkvDtBHbTdBMF?=
+ =?iso-8859-1?Q?+eBtBeIXns3bhkB89+lfEZRI/qFR2qYhy16/R3OpTM3yCN5rmXPf4Lvr5w?=
+ =?iso-8859-1?Q?nH7EXzf1vpgjXi6nGumWJj20LswA6wnrs/OkHTGQlkl5QKNj3tuKc/ESa4?=
+ =?iso-8859-1?Q?3iOusmWkkul96fT2XCqvzawK3kCoRCfrdf7Xj6YuG/V5yzMgEDIJyrX95j?=
+ =?iso-8859-1?Q?raZ/K4QYL0dIlX/K7eqt3bA8oDw54e+zMwstKUiIRhy3ScTxvRNGnb8eM0?=
+ =?iso-8859-1?Q?VQ6NUc7PBtcg283G8nWSQHK0BNRP+nxO3SyyUMvifn2nVRFdqukIbizj/p?=
+ =?iso-8859-1?Q?M=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?wDdjAySuhWH7JjrevRLLlD310etz4IkhaTBDwF4jW/Z+YYA3iyYsmC5iIB?=
+ =?iso-8859-1?Q?6p4chK+jx8feUSAVANTwehUzcBQ38wX7P7xv6SmRYV0zPdNSiVFNljVDR2?=
+ =?iso-8859-1?Q?SFpQz1TnPEMLuCDhWRNpVmRs8RLoxxtmwE61fUb8eEQ1Y9o5aXMR7JZdhK?=
+ =?iso-8859-1?Q?1EazCt7DucB4sn75HUSP3HbaoUaOVIS5CORIToFq4KXdCdWUFQQK7R4F9U?=
+ =?iso-8859-1?Q?qVx33anpOGF2+qOnRgShU271jTPqdkrX6/d8B7kl6aPpdF3uwofZ1xj71O?=
+ =?iso-8859-1?Q?XIA5pMTfkiJSGEzp+FiMYPoCuhUFRxFP9Hh5ZZkK6ZcLInA/rv+j3MRuJH?=
+ =?iso-8859-1?Q?D0dluFjltmYUe+ChEPizJfZSCZc+KTqjnQUYPT+gHNvzN6o1nD4EAcnArA?=
+ =?iso-8859-1?Q?rXlDZOXevlBU9uwuUgRKx6TJWtt4G64fBAkQpZCGylXIa5yMGYZXHs+kqv?=
+ =?iso-8859-1?Q?eFbkKmQhY6oeqPWBl5YSldJaEgFV//xJn1T15AxHKtLCWG13j2MVVqJhZJ?=
+ =?iso-8859-1?Q?8MKYNEID2APzj9c6Ni3uY9oug6vgTDW2n/wkOzIIs5W6hYHJK9EQpocI+2?=
+ =?iso-8859-1?Q?/4QWoGWJy/RmLnzBD2Dl0Sg3TmR5tBBntUTpagIUYyC/fx/wWjQrAsdvOz?=
+ =?iso-8859-1?Q?ZW/VwKYWlSPG6fPUpeAGGc35J52BY7mjubVZ3z7i3f2WoMOQ54mOCKODz2?=
+ =?iso-8859-1?Q?S/SCWNOrFmCDjUZKKr16npoi6yJsp6LWKRp9fU5thEcC7qpJ2dqeLp3kzK?=
+ =?iso-8859-1?Q?KL4yLGQfWXO3bV1+EVpcOgmdXXlMRnYxTsE8rl21tUzNznSC6jPZxkoZy6?=
+ =?iso-8859-1?Q?VviYDMymp1kBMqVjXp+VLrSGfg79LmIFIb5dgDgIWYDKGrSMNzWquGyiRb?=
+ =?iso-8859-1?Q?1T3PlbUERLUe8E1nWuDyjCAlAde9750mvRUT8W1gigOXZjYAAT1C2i8cgh?=
+ =?iso-8859-1?Q?UIUCdNj8nXeUzI5LA0fWbUXwwpu+IzevQ0u0KG4CrYg3j74cVLas+SFU+9?=
+ =?iso-8859-1?Q?LlF3RPTfBXVRLrKKE1sziqQq2hb0L4jE8auFnr5+D467+dVH0d0oQpDdpX?=
+ =?iso-8859-1?Q?16JhK0UCGbU6eRvnW39miWcvMVotp6VJ61CLU6nByFVnefAg5sNoTBamF7?=
+ =?iso-8859-1?Q?30hVSlxVNYlvf+rSEkVwsCab8OYWOM2W2iH1C/rdNsBSJSMRkg7ZwPdo5W?=
+ =?iso-8859-1?Q?wpKbKpDYnx9hQnLU1ORQH5DQw//QPPf03JGaCIX9WUcx6RXztwaIRJDZco?=
+ =?iso-8859-1?Q?HCDDaPYpp4aw+iHPBcP+wBXcQm0++VfOZtxRRvF1aCEmGFEissP4PjC8SI?=
+ =?iso-8859-1?Q?gGaiVtMSsXyVrPsydCr+so0VZH7rSz96a4hJ3xnVVtx+/C4dKUkvCNI918?=
+ =?iso-8859-1?Q?yW3+jwFuuUir9r7PzJKSK/hQR1f43LqbygBNX2NmeiJCro2FNUKM6FXXYg?=
+ =?iso-8859-1?Q?Cxv26Kt+a2iHlBh11lRY2/0tOBsNDuMdaWzdzIiJFdT+yTLlHb0hbhi/xl?=
+ =?iso-8859-1?Q?2Y6ihzZpe8gNa2rSorlEMphscfYFKb4x4o14zeq8sg0R+wxg96aLe7kd/f?=
+ =?iso-8859-1?Q?k1+WUwraVfVVCMPvtkOkfgxxOOFxt7j09njNeOGGhJsxEAP8FDmm6UQ3Sn?=
+ =?iso-8859-1?Q?1W77We2o6ZQbNM+YUwSMyymxXkGxNugHAELufksBJYtVv5/QVhQaPR4Q?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a560440-4582-4eeb-4e0e-08ddec94a0fe
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 15:55:25.8234 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GiJjfndqipKGwvbJEVZjQ8ebm8sfoeF/GQTqjmd0mLN2Sp3RYs8mNSV0reM7Z9LndbFWnRXYtWh3e/CiO4/12N+2G6itrXDjIFKBEI+8yA8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9111
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,264 +181,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extract and print version info of the late binding binary.
+On Fri, Sep 05, 2025 at 01:41:49PM +0300, Jani Nikula wrote:
+> for_each_set_bit() expects size to be in bits, not bytes. The abox mask
+> iteration uses bytes, but it works by coincidence, because the local
+> variable holding the mask is unsigned long, and the mask only ever has
+> bit 2 as the highest bit. Using a smaller type could lead to subtle and
+> very hard to track bugs.
+> 
+> Fixes: 62afef2811e4 ("drm/i915/rkl: RKL uses ABOX0 for pixel transfers")
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.9+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-v2: Some refinements (Daniele)
+Good catch.
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_late_bind_fw.c       | 124 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h |   3 +
- drivers/gpu/drm/xe/xe_uc_fw_abi.h          |  66 +++++++++++
- 3 files changed, 193 insertions(+)
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-index 0f062008ca83..38f3feb2aecd 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-@@ -45,6 +45,121 @@ late_bind_to_xe(struct xe_late_bind *late_bind)
- 	return container_of(late_bind, struct xe_device, late_bind);
- }
- 
-+static struct xe_device *
-+late_bind_fw_to_xe(struct xe_late_bind_fw *lb_fw)
-+{
-+	return container_of(lb_fw, struct xe_device, late_bind.late_bind_fw[lb_fw->id]);
-+}
-+
-+/* Refer to the "Late Bind based Firmware Layout" documentation entry for details */
-+static int parse_cpd_header(struct xe_late_bind_fw *lb_fw,
-+			    const void *data, size_t size, const char *manifest_entry)
-+{
-+	struct xe_device *xe = late_bind_fw_to_xe(lb_fw);
-+	const struct gsc_cpd_header_v2 *header = data;
-+	const struct gsc_manifest_header *manifest;
-+	const struct gsc_cpd_entry *entry;
-+	size_t min_size = sizeof(*header);
-+	u32 offset;
-+	int i;
-+
-+	/* manifest_entry is mandatory */
-+	xe_assert(xe, manifest_entry);
-+
-+	if (size < min_size || header->header_marker != GSC_CPD_HEADER_MARKER)
-+		return -ENOENT;
-+
-+	if (header->header_length < sizeof(struct gsc_cpd_header_v2)) {
-+		drm_err(&xe->drm, "%s late binding fw: Invalid CPD header length %u!\n",
-+			fw_id_to_name[lb_fw->id], header->header_length);
-+		return -EINVAL;
-+	}
-+
-+	min_size = header->header_length + sizeof(struct gsc_cpd_entry) * header->num_of_entries;
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	/* Look for the manifest first */
-+	entry = (void *)header + header->header_length;
-+	for (i = 0; i < header->num_of_entries; i++, entry++)
-+		if (strcmp(entry->name, manifest_entry) == 0)
-+			offset = entry->offset & GSC_CPD_ENTRY_OFFSET_MASK;
-+
-+	if (!offset) {
-+		drm_err(&xe->drm, "%s late binding fw: Failed to find manifest_entry\n",
-+			fw_id_to_name[lb_fw->id]);
-+		return -ENODATA;
-+	}
-+
-+	min_size = offset + sizeof(struct gsc_manifest_header);
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	manifest = data + offset;
-+
-+	lb_fw->version = manifest->fw_version;
-+
-+	return 0;
-+}
-+
-+/* Refer to the "Late Bind based Firmware Layout" documentation entry for details */
-+static int parse_lb_layout(struct xe_late_bind_fw *lb_fw,
-+			   const void *data, size_t size, const char *fpt_entry)
-+{
-+	struct xe_device *xe = late_bind_fw_to_xe(lb_fw);
-+	const struct csc_fpt_header *header = data;
-+	const struct csc_fpt_entry *entry;
-+	size_t min_size = sizeof(*header);
-+	u32 offset;
-+	int i;
-+
-+	/* fpt_entry is mandatory */
-+	xe_assert(xe, fpt_entry);
-+
-+	if (size < min_size || header->header_marker != CSC_FPT_HEADER_MARKER)
-+		return -ENOENT;
-+
-+	if (header->header_length < sizeof(struct csc_fpt_header)) {
-+		drm_err(&xe->drm, "%s late binding fw: Invalid FPT header length %u!\n",
-+			fw_id_to_name[lb_fw->id], header->header_length);
-+		return -EINVAL;
-+	}
-+
-+	min_size = header->header_length + sizeof(struct csc_fpt_entry) * header->num_of_entries;
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	/* Look for the cpd header first */
-+	entry = (void *)header + header->header_length;
-+	for (i = 0; i < header->num_of_entries; i++, entry++)
-+		if (strcmp(entry->name, fpt_entry) == 0)
-+			offset = entry->offset;
-+
-+	if (!offset) {
-+		drm_err(&xe->drm, "%s late binding fw: Failed to find fpt_entry\n",
-+			fw_id_to_name[lb_fw->id]);
-+		return -ENODATA;
-+	}
-+
-+	min_size = offset + sizeof(struct gsc_cpd_header_v2);
-+	if (size < min_size) {
-+		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
-+			fw_id_to_name[lb_fw->id], size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	return parse_cpd_header(lb_fw, data + offset, size - offset, "LTES.man");
-+}
-+
- static const char *xe_late_bind_parse_status(uint32_t status)
- {
- 	switch (status) {
-@@ -224,6 +339,10 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 		return -ENODATA;
- 	}
- 
-+	ret = parse_lb_layout(lb_fw, fw->data, fw->size, "LTES");
-+	if (ret)
-+		return ret;
-+
- 	lb_fw->payload_size = fw->size;
- 	lb_fw->payload = drmm_kzalloc(&xe->drm, lb_fw->payload_size, GFP_KERNEL);
- 	if (!lb_fw->payload) {
-@@ -231,6 +350,11 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
- 		return -ENOMEM;
- 	}
- 
-+	drm_info(&xe->drm, "Using %s firmware from %s version %u.%u.%u.%u\n",
-+		 fw_id_to_name[lb_fw->id], lb_fw->blob_path,
-+		 lb_fw->version.major, lb_fw->version.minor,
-+		 lb_fw->version.hotfix, lb_fw->version.build);
-+
- 	memcpy((void *)lb_fw->payload, fw->data, lb_fw->payload_size);
- 	release_firmware(fw);
- 	INIT_WORK(&lb_fw->work, xe_late_bind_work);
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-index 158dc1abe072..0f5da89ce98b 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-@@ -10,6 +10,7 @@
- #include <linux/mutex.h>
- #include <linux/types.h>
- #include <linux/workqueue.h>
-+#include "xe_uc_fw_abi.h"
- 
- #define XE_LB_MAX_PAYLOAD_SIZE SZ_4K
- 
-@@ -39,6 +40,8 @@ struct xe_late_bind_fw {
- 	size_t payload_size;
- 	/** @work: worker to upload latebind blob */
- 	struct work_struct work;
-+	/** @version: late binding blob manifest version */
-+	struct gsc_version version;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index 87ade41209d0..78782d105fa9 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -318,4 +318,70 @@ struct gsc_manifest_header {
- 	u32 exponent_size; /* in dwords */
- } __packed;
- 
-+/**
-+ * DOC: Late binding Firmware Layout
-+ *
-+ * The Late binding binary starts with FPT header, which contains locations
-+ * of various partitions of the binary. Here we're interested in finding out
-+ * manifest version. To the manifest version, we need to locate CPD header
-+ * one of the entry in CPD header points to manifest header. Manifest header
-+ * contains the version.
-+ *
-+ *      +================================================+
-+ *      |  FPT Header                                    |
-+ *      +================================================+
-+ *      |  FPT entries[]                                 |
-+ *      |      entry1                                    |
-+ *      |      ...                                       |
-+ *      |      entryX                                    |
-+ *      |          "LTES"                                |
-+ *      |          ...                                   |
-+ *      |          offset  >-----------------------------|------o
-+ *      +================================================+      |
-+ *                                                              |
-+ *      +================================================+      |
-+ *      |  CPD Header                                    |<-----o
-+ *      +================================================+
-+ *      |  CPD entries[]                                 |
-+ *      |      entry1                                    |
-+ *      |      ...                                       |
-+ *      |      entryX                                    |
-+ *      |          "LTES.man"                            |
-+ *      |           ...                                  |
-+ *      |           offset  >----------------------------|------o
-+ *      +================================================+      |
-+ *                                                              |
-+ *      +================================================+      |
-+ *      |  Manifest Header                               |<-----o
-+ *      |      ...                                       |
-+ *      |      FW version                                |
-+ *      |      ...                                       |
-+ *      +================================================+
-+ */
-+
-+/* FPT Headers */
-+struct csc_fpt_header {
-+	u32 header_marker;
-+#define CSC_FPT_HEADER_MARKER 0x54504624
-+	u32 num_of_entries;
-+	u8 header_version;
-+	u8 entry_version;
-+	u8 header_length; /* in bytes */
-+	u8 flags;
-+	u16 ticks_to_add;
-+	u16 tokens_to_add;
-+	u32 uma_size;
-+	u32 crc32;
-+	struct gsc_version fitc_version;
-+} __packed;
-+
-+struct csc_fpt_entry {
-+	u8 name[4]; /* partition name */
-+	u32 reserved1;
-+	u32 offset; /* offset from beginning of CSE region */
-+	u32 length; /* partition length in bytes */
-+	u32 reserved2[3];
-+	u32 partition_flags;
-+} __packed;
-+
- #endif
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 7340d5a71673..6f56ce939f00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1174,7 +1174,7 @@ static void icl_mbus_init(struct intel_display *display)
+>  	if (DISPLAY_VER(display) == 12)
+>  		abox_regs |= BIT(0);
+>  
+> -	for_each_set_bit(i, &abox_regs, sizeof(abox_regs))
+> +	for_each_set_bit(i, &abox_regs, BITS_PER_TYPE(abox_regs))
+>  		intel_de_rmw(display, MBUS_ABOX_CTL(i), mask, val);
+>  }
+>  
+> @@ -1639,11 +1639,11 @@ static void tgl_bw_buddy_init(struct intel_display *display)
+>  	if (table[config].page_mask == 0) {
+>  		drm_dbg_kms(display->drm,
+>  			    "Unknown memory configuration; disabling address buddy logic.\n");
+> -		for_each_set_bit(i, &abox_mask, sizeof(abox_mask))
+> +		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
+>  			intel_de_write(display, BW_BUDDY_CTL(i),
+>  				       BW_BUDDY_DISABLE);
+>  	} else {
+> -		for_each_set_bit(i, &abox_mask, sizeof(abox_mask)) {
+> +		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
+>  			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
+>  				       table[config].page_mask);
+>  
+> -- 
+> 2.47.2
+> 
+
 -- 
-2.34.1
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
