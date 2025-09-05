@@ -4,168 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D9A8CA1017
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 21:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C17F5CA1013
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 22:21:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF5B10EC62;
-	Fri,  5 Sep 2025 21:58:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B5CD10E02B;
+	Fri,  5 Sep 2025 22:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oBEsC+xM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mCtOElZI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 315B810E364;
- Fri,  5 Sep 2025 21:58:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07DAC10E02B
+ for <Intel-Xe@lists.freedesktop.org>; Fri,  5 Sep 2025 22:21:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757109517; x=1788645517;
- h=date:from:to:cc:subject:message-id:
+ t=1757110863; x=1788646863;
+ h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=VMsmTNCmr7n5YsRR+rq7u5jB0A/Yh8dn+qzcCQ08+Lc=;
- b=oBEsC+xM1kE2A+lCwTAFSoXV5+tlFDqtF0ePDhoeEDdEdfrfDRdqqYUR
- Vmx3v2b+ORidLj4c4vZcofxb0VgnPfw0o6Nid304ygq2BhdC30CW2cuJh
- 3l0Js9m46dgXaInxxo9kF2pfnKbehIQ9g66YfF7udjHQPnmF04U0AQfiq
- aAh+5MMwW+0E3V9m7rUD2zmbuJiqSvWr+JjG2Hd/LPeC3HBCK2mAwb+7n
- KFFaWqidX+9V+MdEV2PMiUJ5+gf7c6KJECbQoL6yXh/tQrV+uQp/lczem
- SWiqDXmcRf3I4rStYjSH5u+egPuH0X/jwtnE/IwUVIzNN/holkGTh7ha/ Q==;
-X-CSE-ConnectionGUID: PPpuL/mBQE67TVv4smuPeA==
-X-CSE-MsgGUID: 1Obm9m/ISwmHz43c+78fRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82056219"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82056219"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 14:58:36 -0700
-X-CSE-ConnectionGUID: oAjkyrntTmKw8e8cJ8qwIw==
-X-CSE-MsgGUID: ZgkFXl2mRhOwRKY2ym/sCw==
+ bh=0rJOwnoV4JGeS6680yHA08cY8wOD9b1sNrWNl02hH6U=;
+ b=mCtOElZIUKYxOXyrfyrsJyZY3Qi7xg4P+G5HQpeOp/ulsD2WSkqxc9Nw
+ nQUh76FJN7jFCBnpeJhnWHVrB8VNAv8krnG+lFZmBL1GiJTGvS9l2yCK7
+ +3g4r8HoB80qIAnYI9elW8SGMjfrKp51FeabimsdqLyjh0LCIfJc5x8EW
+ ysNMEw4isa/aEv3fggB4WDORlvGmIpPPDh4HoyGlB4i6oIOyoNRCut8PH
+ s1curEVpjqMA5leHy2+UCQnlA6NFuVGByKlFxSj+NB0lYTFM51yQQdwcX
+ cUQb58ySbo+cZ/KLMXrh2MngGTzKjPAa6H+sT0yUG81La31Ej/qNego+u w==;
+X-CSE-ConnectionGUID: IEUzgQVbR6+tEjsWNHFzXA==
+X-CSE-MsgGUID: m3BmGJfVSfuTCoxhT9dl8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="59404546"
+X-IronPort-AV: E=Sophos;i="6.18,242,1751266800"; d="scan'208";a="59404546"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 15:21:02 -0700
+X-CSE-ConnectionGUID: QnYrSAxkSKmp+LaAk/UPeg==
+X-CSE-MsgGUID: hE3+zby/RbS+7G6kmbl0qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,242,1751266800"; d="scan'208";a="172619194"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 14:58:35 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,242,1751266800"; d="scan'208";a="176597193"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 15:21:02 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 5 Sep 2025 14:58:34 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.17; Fri, 5 Sep 2025 15:21:01 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Fri, 5 Sep 2025 14:58:34 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.65)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Fri, 5 Sep 2025 15:21:01 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.79)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 5 Sep 2025 14:58:33 -0700
+ 15.2.2562.17; Fri, 5 Sep 2025 15:21:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uVDPz+BykMGB5H+e+KY/gI8BJzG6xIi52NZXnCka2Vbtv2521XPYCWYYItDL7XtiEoti70VyauS8+96S5hd+PR0NuPi5Q1zAL4FQFJlhEUMgb036AgZfaI2UzvcsWeN9ETJkccz1jC+7+nYVQzKAo9Qd+BFRxjADwBGH42KrTUDBOrtSo+uZSY9Tknx2dtWlDuiJMX9tg+KNok+AlZfQQ/+CpP7JJLCQCoczFXBli6FEV2yukP/pMss3B78eBcf5eIDikOywtpO80bfLOzA5Up23cSw4/H8SaBZjx/VPKRirJxRe0tk69GI3CZcxEvmreNtXQkSynE3i1dy+oajkKQ==
+ b=qgEC+sxQ+FmWBWw4LvxMVJAfUkgERLdpPkir6fwD0S+FC+fUGtj9ruGXJHjvJ5ULFm7TIBe//K1XrwDme6chKC7Rf0gyECtwYZMCtiuFjHzYp5v0Ema+0buHbpDmc6So32aXidaIdY+QHXBIeBEE0OAJG7pI5/QgRN1+Q0RStMTB0qeg9wMsx5TNSsMAshcuQcUCtdrNV1JF7BY7I99a1svMlsOB9u6eH2tBOTgHI3L0eKvueUN7OKjD1oeRcHG+IDGsbdSbhgzFMzwZsx7HydHBXznckKAppkI6GykWyniAVEs+WLCdOBZFIJzhC9pkDjoyX2AK5bsA49nY8WlbCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XztvM9mzAv50ZrMYtBT4+k67qbLZssiZtJlup9jOPH0=;
- b=QF0f3MHDLidi8He1ZkHKnxu6IY9Yx5ZDT3hHxvRQWwo4cnuvDe219P0sA3do5jlYo67H3r8HIEwqrn0YzqyeTlW4l7l1KwuF4ULMU1NbPsvIOQV6n0Ohqa8RwG5zC3GndrZR8ALt6fq7uki7T3sUyKV1CLqPJImgVvh/IZLibqgzJF1drutQ50iZ+cJ6zzXx3KBcncqaFg9RzgjFQv37tSDwWwqB+m35LaZpzcdFRpewEEKGR41upplhSiLAsE2xGzG+gNXwi2o4ODzL31B1DqkgbJbdlBicOz66UxQvD3eJxXKgUJx/zyJGbyr9oyv7BvCeprB+MLig3nuITt90Rw==
+ bh=s4l2+8YuY1wVy8OVS2dMy6Hpf3T/e2R6MfzGBTJVAec=;
+ b=Pf5/MJnZECYSzMSmU1G3EUkJkatD4WauqKaYXgSP5XAsEkNfGWBCLSLBy17ibNuD8r7CYboi7k43fRhbeqcqEcPgx9K9iRNDJD9GmJS82QM/H9PpMpzzeAGkaZhfSAKxFuVZKJTy0mvuN3CZ8lSzgS9360niOWwGI9Y+WJDl2MzVPQyVQrXBRcL/CN1JPLVLQs9fp5pBc+Fen+6Dk29J8Rb40BGIaa9bNrddfRVYQkDsoRU56ORVPQ0KczVPcehlFpRdVidLAVpw+PXPLBvh125jrGSZPFBx+WPRhZrpWWzR7xdtXs6QnEoJI9gdt3g9oMDOUwoe+csBt95fm9FlHg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH7PR11MB6426.namprd11.prod.outlook.com (2603:10b6:510:1f6::12)
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by PH8PR11MB7141.namprd11.prod.outlook.com (2603:10b6:510:22f::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.17; Fri, 5 Sep
- 2025 21:58:25 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9094.016; Fri, 5 Sep 2025
- 21:58:25 +0000
-Date: Fri, 5 Sep 2025 17:58:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-next
-Message-ID: <aLtc-gk3jhwcWxZh@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Fri, 5 Sep
+ 2025 22:20:58 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50%5]) with mapi id 15.20.9094.018; Fri, 5 Sep 2025
+ 22:20:57 +0000
+Message-ID: <eb75fb4c-3cc9-4b6d-9429-7d71f74cd9f6@intel.com>
+Date: Fri, 5 Sep 2025 15:20:56 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] drm/xe/guc: Add test for G2G communications
+To: <John.C.Harrison@Intel.com>, <Intel-Xe@Lists.FreeDesktop.Org>
+References: <20250805234256.1021020-1-John.C.Harrison@Intel.com>
+ <20250805234256.1021020-5-John.C.Harrison@Intel.com>
+Content-Language: en-US
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250805234256.1021020-5-John.C.Harrison@Intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR11CA0084.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::25) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-ClientProxiedBy: SJ0PR03CA0095.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::10) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH7PR11MB6426:EE_
-X-MS-Office365-Filtering-Correlation-Id: abdb293b-f192-4edf-7a6b-08ddecc75672
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|PH8PR11MB7141:EE_
+X-MS-Office365-Filtering-Correlation-Id: fb43d591-c4c8-46e5-43d4-08ddecca7caf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?KFxPLRpz6OMLXyMAD1GK63P3YFrxu0b3NLJFMy32BgAYC2em9DSIgueKBI?=
- =?iso-8859-1?Q?dzhxyskU8nBA6Q1KcPrrjsRizvqEsGFVJNESr/cqu0Kr84ts/3nx3Xgiig?=
- =?iso-8859-1?Q?x9PWvq6OFbvYlajhBAoY4xCvFvi25RTzGqvLJQYDoc8BZE1+jhHh4Lj2zb?=
- =?iso-8859-1?Q?hPsqwYxPWpib6iA2peZsu6MfW8rgKEMvr16JRNwsbbzoPx9fdcA8FTaAI5?=
- =?iso-8859-1?Q?kW9BGLN8lrdDvVS7fxOTULD8iUtTPo4jJEeyX0/CbVYfAigK/d03x9Yvn3?=
- =?iso-8859-1?Q?0eqg/GNvk8dxgcEJgpmDHP/JXAX6PLtA/jFvuz/9W2OJGi9h42QquggBR2?=
- =?iso-8859-1?Q?mLc1Xw1Cob8B08eMUXXLtNZBUdhDxBvN/TiH661UswjPaMha4siWqrwP2C?=
- =?iso-8859-1?Q?qkJO8ig1OZWb6uxZqchfHZOV9lg3oD4TS1YvtSzGW676explIYLQ60qSSD?=
- =?iso-8859-1?Q?oD+bjBkAU3J/5WeS0EfodWCJFfbmhcudJnoRTXKTB2tD4xh6crgLx3+9hN?=
- =?iso-8859-1?Q?Blj+HlXAbVVcnXsuNXIYgSGyDiAYCiruahYLEjgXYaR7y0wB3RUGb0Rwmn?=
- =?iso-8859-1?Q?xRFczAcA7Lfku586ZVFQUmH9Zg8oj50wJ67aQW2gfu1rlh0Jjsu+OiGdUo?=
- =?iso-8859-1?Q?9a2DMlGSv26HJuJXQKVALJlAkiRUFsl2BsYnc9tAjxz68/nwdVyXKRq6oo?=
- =?iso-8859-1?Q?AbYxdBaY/mLv03w1E5h3ItNYvL5DWkkdmBRG2+Pp8h8NkxyT1cSgXj+DJr?=
- =?iso-8859-1?Q?lgYBOIp6Osx45/vZrjLP/WgpMxG9Ou9hydgu8jnzjjuHKyrLNAKIk7IWlb?=
- =?iso-8859-1?Q?3//OsQARCi70lbS+gNUeVUamTUz+pkVFpZ+V1e3iZgDemxH/aPTf/DNzNK?=
- =?iso-8859-1?Q?VJpUnOMU+os7AwFe6vNHdY92p7c7Q4RCuTLypdMc/RazXx0Pmvz/DqXxVA?=
- =?iso-8859-1?Q?+V36CKIl0/JBB5WmIhwr3i2ew/6LbquOJjAlZG5g1OzB/nE0Extvop26h/?=
- =?iso-8859-1?Q?rHVNFhfOolAQZ5cSKXASIG/dX7CjCdsXOscYQpOFCtVpexgTDJl0pxTGux?=
- =?iso-8859-1?Q?3DyLkC8M0m3qoBjU+16RNKlRlOyMTqJu1hOR9d5S/eKaLljITiSpC/Yxfx?=
- =?iso-8859-1?Q?Mns+dLs0ZTH8vw0EBegruN+JBBUQyg/O5xNW40B3EsJGCr1PkSQBc+1b16?=
- =?iso-8859-1?Q?GjekFvAj2o8SETUj64lCTveXSSxwEg/ssfjqZ52wlbyO+E43s59jB/nTnZ?=
- =?iso-8859-1?Q?TlkmN/NpNloENXyiutCjLUrAVcLWZG8OdkyjxnecijiLSz1iuBq99qn7EJ?=
- =?iso-8859-1?Q?2Lx+/jD40/mJpAx9OcYyfugfly82vbsM+ZlrFcB56SyIa5/coRicoSId1P?=
- =?iso-8859-1?Q?vvdl/QcPtS9QiJvAybe9l5tfLSiOQuLk/g9nOQbXK7tG/yd7AV69A=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VVF4eTJsai8rSTcwYWgwOEZGV2ZtS0pTU244cUhHOWEraUxjblhud3M4TCtw?=
+ =?utf-8?B?bUVJVXE4bUQxZWw3eGpUaXFJWHJQY2taZ1Q4VFpNTExHbEkraXptNHZTeTdC?=
+ =?utf-8?B?YWNIakpYQnJNNEVrWkw1N3M3alJ6TUZsdEtMSmVWbktjU2JZTU9ncjVBNVRQ?=
+ =?utf-8?B?ZTNsVmROeG9TZTBpZlc4SnRKaXg4eG13Qm10c3NCdGJObnUzVFhCTENNemhM?=
+ =?utf-8?B?NFpGUXVCcEphckliWUdpNUY1ZSsveXBETkUvUWJZTjBWZ0dnT21iK0hUQ1hl?=
+ =?utf-8?B?N3dSdElwRG9QWlRiaGhQdFE2RXhoRkloNFpnNG51T1lDZ2VKQnhTN0laNUF4?=
+ =?utf-8?B?K3Bvem1GWFVNL1VsbjdYTkgvSzNreVprdkptL3c4MXJZR3M5VWxFMWMxenR0?=
+ =?utf-8?B?TjRXWDBnTmJUNjQxc0h5eHZiUTg2K1JPdERicFVOMDR6Yy9kcERDNUFLTkZ5?=
+ =?utf-8?B?aXNmYzYwUSs2MFVzN1JyM2RValBlTm5yaUlQRmZpY1grOEl0QWpldWx1bE0w?=
+ =?utf-8?B?cUdvekg2SDlTN1cyQ2VEQTNkNGJhY3RsYmE3cmYrQXpjTG5jb2tVaWFKTm9I?=
+ =?utf-8?B?M0I1djE5NzQvOWRtRHFnZ3FRWVN0NXVidncrU2xjZjBvM3BRL1F6R2FWYnRl?=
+ =?utf-8?B?UmY2bGl4MGdEK1MwZzZ5RXd2RzQ5QS9pODBFS0FTMHF6WmkybHJnWXNwNXA5?=
+ =?utf-8?B?ekhHYXJhaFI1Zm14R055RTk0eGZRek5PeGFEVlVyV2wwUUtlYjBsMUdUTDgw?=
+ =?utf-8?B?U1BlcUxEVzZuQzFxaEtOZE8xZXYyRnZVcG9kY3VuYmVmRGpZR3hRZ0VnMEdM?=
+ =?utf-8?B?RjNDRHhQQXdhU004dXo5YVBsc2FjKzY1RXpsTVpNT1NUelJlMDR1SUNZWGtB?=
+ =?utf-8?B?VkVEVW96dnFhcTRYNUtGUzMzeFNZK2xlVXNUVUdlWUVlYnkyb2hWUnlzU3Zu?=
+ =?utf-8?B?b0tpU1dhbDdKbVArV0xMUTc3dStta3paRUYyQmM1WERoR1B1KyswaEI1Qk5Q?=
+ =?utf-8?B?L2VINjJFMmhCOU5IWVZuMExHcW1xdEpUN1UvODdZTmtLeTU4RmRDK0tSTW9S?=
+ =?utf-8?B?MDZLWmF1U1VlUDVtOHQ1b3FBOFlQQnBuNlFSeHpEUVFNNWQ2T3ZjbGlCb0JQ?=
+ =?utf-8?B?WGZ5OHlxMkFRTUhKWFprSjMybnlCRDUyUm5GYnhweUlNMTNwaUtaaExmaWo1?=
+ =?utf-8?B?bzZ1d2NSajJJVzNMc21XZzl6VmpWa1I2RUVSN2c0MTFzdVhiUDBlYnc2cGRy?=
+ =?utf-8?B?OURkaW5sa3pmMlozcXc5alhISElpV2VHSGVja0Vjd0lKNjh4OEpQQUo1THVC?=
+ =?utf-8?B?UWZsTlBkUUVocnB1TkwrRWtESlRlWjV2TDJDUHYrdTlFOXZhR3pSZWhDWEZz?=
+ =?utf-8?B?RFI2MExzQ0xodXpjeHdHSHpJTzdqbUhlKzIvMmRPd0EzS2pQNXNzZXUzaHBJ?=
+ =?utf-8?B?ai9ZblBlVlVhQlA3T0Rjd2ZJZmk1Q0ZuY1NEUWxxWVVHaVNtTmZySjJJMUo3?=
+ =?utf-8?B?M0hneUcyWVRFTWE3Y1dvRGduWlhHVjlZWVZaVDUvV0RCN2VnaG8zMmUycjAw?=
+ =?utf-8?B?UGtjOE5GaUNMenFMTUxSY1BtS1ROeHM0YzlYcVptVjlYaUxLZGZEdlhQSFB4?=
+ =?utf-8?B?L1FLK2dsWVRSZmF6Wjkyemg3bitLbG0rZ0UrTk03U0pGckhqVm1XeEl4RmpP?=
+ =?utf-8?B?WjNRTkdrOXdmVDBSVE84UEZsQjdQcGluYXFGbzk0dS96cVE3L0M4RE5qWXBk?=
+ =?utf-8?B?SllSVGV2MjVWRVo5aU9GQ3J5QzJvMzZiam1mWnpOOEU0RkIya0VHNXNhcnlQ?=
+ =?utf-8?B?QVN4THNRaHpYR0tSNzNmV0V5VWY0enkwWkpCNjZpREh6dG94VngzaU9GdG56?=
+ =?utf-8?B?cTl0UEFLUVVQdXBKc2prRzhlNWxodGxlc1ZITWZEN01mQVE9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?cmS5Jv/MU1SK2HqzJ1EnNe/CbD4U/iORfBb5RrqLZg6WXmE5Ntd+KOZMGH?=
- =?iso-8859-1?Q?nyW8gnTrSworUwAhq4x+rwlr0YMQ6Df6I1pId0UyxUzdRox+8o3+Ia/KmC?=
- =?iso-8859-1?Q?ZQk5Azt58iRAl3j4DglkqR/JiXwb/mnFJNGyqoV6K2VhvFhXqNNOCg12Tl?=
- =?iso-8859-1?Q?M3LP3MMkNUWY7ayi/WEUXGCRVND6entsBvAaeGN0E5jHJ4BI/CCzVzrcgg?=
- =?iso-8859-1?Q?kXUsT8B0pQSbSDUs/Hc7xXoKViFAlEQoGHXAXZMndbgbXtsIyKUJiQA231?=
- =?iso-8859-1?Q?yhnXfZTc6J3z/TlPRUsa1/p/sGW5+N5BJS+benJ5ZN+VjJ35TBlp1Igt02?=
- =?iso-8859-1?Q?1yQlLqQk31DA8/S2R9Z02V1dfbmNyuQv5ps6tMqtfa7jNx1BeRZbLXLUXt?=
- =?iso-8859-1?Q?qNJRENrvHJLSa2OtJ8+cwCnJdv6G9MvsugbJzsgf6bgAbMjZQUHpdWx+YJ?=
- =?iso-8859-1?Q?ZqFY5KkBj6QwynQIRRFBkEEuFVclR2erzrij2Knby1DrTlmy95+FsvsgwF?=
- =?iso-8859-1?Q?xMQckFtuXE2kbs8xCAqVBxgkVVhV26V4oN8DnN+3oFiy2nPfQ6vXLi1Uh+?=
- =?iso-8859-1?Q?VaKmQCYgPT6Yih8fZKYLZYXNEHSMR6vS9PR7KX6Ba/MLEe98SsFXv1nd94?=
- =?iso-8859-1?Q?XMYn8McbnQqJHlX1FnnyDq6CR2IraaRQmvSwLKyL6mCco/j8bPStGoK7Ne?=
- =?iso-8859-1?Q?oD5Y1N7YdKsmKC4WDmikVaScKQw7aqyVZ5TkV1HNEv8K4t/kFfqHWycaxI?=
- =?iso-8859-1?Q?Xu6N1MJQiHeSYzt3AuZmfWXUtF93J430KtMQu1mV3eF9UqpEtyxKbpxg6+?=
- =?iso-8859-1?Q?qGrObNoYAPqBsIVP2u1Gkgo6hlERwpdgpJxqx3yZwAEeO4H9qSKb0E8er6?=
- =?iso-8859-1?Q?/uUmTdsavpRjwVEsOZ8Eb8T/IuEkaeDgPdQqCZURPKS2Q2vN6GDBb8ZA7j?=
- =?iso-8859-1?Q?7+pJO0eIyXP+UUCE37YMxT/S0ZEjC5QvpfPWVELlzJDdatTqeimeH+uPUy?=
- =?iso-8859-1?Q?gOTvONL4m4JuMp8x28j+LKloh075XZyOAIGTqSCZb2WteHSsiTFRanp50j?=
- =?iso-8859-1?Q?XPh9jGXwO6QX8xmJq7yQ39bDxIvjp66VHymHTUlg4qeEq3r7BjuCg8oOhw?=
- =?iso-8859-1?Q?hRBES1K268Gp1Vtm1Kqp1x4oQZ6kl/rbFEOL7oMygwydxvOvvcocyebDep?=
- =?iso-8859-1?Q?y/Cs/CVauBtFXk3KzHhSw4Y8S27tZpuN3D5Ff+vjGtveHAUkN+OXJf6UXH?=
- =?iso-8859-1?Q?pZ18ohvz6wy1aO9y6B5tZqlf9Y3DSJsEiH6g8tgMumhHxsgHdLUkl5lA4k?=
- =?iso-8859-1?Q?2yxkT8gRqBiMxxyJckeiBDkCgIW+axjVwk+N5niUxojxjBrGfQPJHn4vKG?=
- =?iso-8859-1?Q?SH8TdkfYcX7URV6EXsqCpEoVB8eLcwwbmYlMFrIzejuLm/Hoo+xSOxBXZd?=
- =?iso-8859-1?Q?OGGH9O5lnkA6N7+E4gcxGzRhv5ZZ0sGSND7+lFjNVPXHtPQdFhXA6DglNa?=
- =?iso-8859-1?Q?14R3PBe8fQmIA/vrp5idDQj9kzkKIxPb8snrSmrAKRnyQbjLyRin1F1B2A?=
- =?iso-8859-1?Q?JHlztO46QLZ770dESwwaZBWs+js+3vNzIKQjfHGTzqy4GLDGeTFftS7pq4?=
- =?iso-8859-1?Q?Xwu31PunbwQy0fKXbgIEW69JP7QibkL1ca?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: abdb293b-f192-4edf-7a6b-08ddecc75672
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlQyeWpaaWl1YVBVWTFtRmpaZHhYTmlUT0ZXbXNzaGF5KzRydDZ1bVQwbWFB?=
+ =?utf-8?B?b3ROZlpQZjZHOG1ldWdVVWJQbkVxZHhUTUlXUmdORGNiVklUVXpnMWpsSXVV?=
+ =?utf-8?B?azk3V1B4OFJ1dVI4Rmp1dUNOM1RQNU1HMThJYUV6THFKRmlobjY0amc1aEVx?=
+ =?utf-8?B?SVhzaUwvdVB4RzJ2SmdGaERtZ0ZubjR6KzdwQVhXdG5CcTllSXc5Zm9qQ21v?=
+ =?utf-8?B?ZXhKRGh1dk8rcFUyOUNOT1JHWG9XcTNBZGZ6ZWY5ZThjVjhNL3k2WkViTUl5?=
+ =?utf-8?B?YTRIQTJ2c3ROM0d6MVgwNXcvbzFhMGUrWU40TUZ5ajBCOXpaa0JlUlhWd2V4?=
+ =?utf-8?B?Rk5CZHRMRUlLbGFZaExtV3g5YVNibEdKZHN1WENHaUhvRTR4WEhYYkUwaGYz?=
+ =?utf-8?B?TVYyOEQ3SURNaHRpZFhodmtmRlFNd01rZW9KNGJVQzNpcWRZQXhrbFk0Y1dJ?=
+ =?utf-8?B?aTRNUXVBWHpYbkMzMmYrU2YrbnVxVXNzc3Y2dGxySE9tdXNIaDRkOEl5N2Zy?=
+ =?utf-8?B?bzdnNWxxVnlBOXN6cUVuZFNHV3dRU21yMzd5NXIvM2FmZHl1OXh2emNZRGE5?=
+ =?utf-8?B?a21Hb2lzbnoyTUlLWEdTY1k5MkJVTEFTL1gyTnErdnhNOTJTMHVNSmZ1MS9I?=
+ =?utf-8?B?ZnpMMjZHL2FxSll0aWx4bXkrRWs4eWFtOVY1eXBCa2pvYzBxWm53YlN0RjA1?=
+ =?utf-8?B?TE0ra0hKMTZYTUhjYktjWFl2Z3FLUTVCczVBQlUvS3hjcjMrUFNQM29HV25E?=
+ =?utf-8?B?WlZKUEtDTytJcFFLUUJlM2tCbzZ6MEFEOGFnbHRPMm1wKy9yWFhVaUpadmVi?=
+ =?utf-8?B?VVBUV2dzciszZUsvb21vMVdEeFhqa2tqR3QxeGNvdjlzNWdCYzlNdGhEeE1m?=
+ =?utf-8?B?N3FEUFdWM3hjemRWaWdkS25qc1N6UTg1Q2hSd3NiNXVpYXI2dUpBclc0ZHZ2?=
+ =?utf-8?B?d1FSbjJyRG9id2tXb3JadzkwTTNVRnVuN2kwZTdrcHRUU2Z1NVdKQ1BhU2hB?=
+ =?utf-8?B?ZUF4U09vMFIyUjdJSTg0ajZBZVBBRDR4NVNJYS9rMnNBNWtnVVExMDAzRWY1?=
+ =?utf-8?B?SXJEbTNVeVozSEFvNWY2aUovYm1oTURKd04xc2s1V2dnWjBUT04wKzdFSFRF?=
+ =?utf-8?B?RjI5b3BPMVBMSllqaFBjSkN6NDJsczZURmpldXNTODFLL2NYY0taa29wUWRp?=
+ =?utf-8?B?cDBCWnhiTVRpVFZabitiR00yRGVPUFFIUlFYaEJ6L1dtVDJxd09tUjlrcUVC?=
+ =?utf-8?B?V0JSQ21TZk91b2JHN0lKWE9Cd2JOc0xsUTBMc09ITWpuTGpIV0J3YkVXRFBw?=
+ =?utf-8?B?aUtHdzBGbGk1YlA0ZFdTSGo2L2VOSEJCVnA3OVlBcmJpK0dRTmxUV0V1VVA4?=
+ =?utf-8?B?NlpQc001TWFxWThYMU9jSnh5QS80QUF5NitZN3dHZ0UvWmdPbmR3L0k5WUwv?=
+ =?utf-8?B?RElHT0RjTmIyN0xmZkF3V3VVSlZBWUswZ25mMVdWWGljbjZYYW1tODNpank1?=
+ =?utf-8?B?d3VvT0ZOajRtRERITkNXdVZaNG1kSnFnb1RSYzVaVU12ZjNnWks4cSt4UW5V?=
+ =?utf-8?B?UEQ2ZmgrVENTTEhsRjlvdUFyWmFBbGt4MU91dlBQT0NlY05iMnNJbFVLYUJH?=
+ =?utf-8?B?U1pFdEJockFwSWxLUDNyN3c2cXpQN2hDeTM3OUliK0dvdWJWTzB5MmhiMEhE?=
+ =?utf-8?B?MTVDOU41amtQa3IvM1E4Y1dONW4xLytzMGpWUE5jTVNmdWhiNVIrWXRCalRP?=
+ =?utf-8?B?N1dJT3FZME9aMFhLamRmQWt3REpFN2hQRTczQWFBTzJZSFdNZ1hWajh0c0xw?=
+ =?utf-8?B?aWV4ay9wV2ZEYzlsYnA5aTdFK3lVRktTb1VuK3RNd2RaeXZEMnJDT2kvb0RT?=
+ =?utf-8?B?NkVzTnkzN25NeElXYnQrTzBsTGFoblFYWVk1RUpLMXVEZjRGdWdPSEtFV2xl?=
+ =?utf-8?B?aFBRUUF6YVhwajRFZ1d0UFB6OWkzZ2Q3ME8xY1g3amlsemR3TnJJQ0NoNUw5?=
+ =?utf-8?B?c3FDVTEwQ0tBMm15QUNRaHNjalhrNWw5TThVYXlDY1F6aDc5NVErQXd3K3dZ?=
+ =?utf-8?B?L1E1OFBoQW5IMlJESW1jN2pmb1hvZGVzWFRiczhLZDRJVjNJaGxyV3VRWnF0?=
+ =?utf-8?B?ck81N3FFbklqdEE1c2FCc0ovVnZDd1lUNEIxS3pBU3FXa3gwcjI4bVZwNVlW?=
+ =?utf-8?Q?Qc4epFFsutkzG8b4diSmpVc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb43d591-c4c8-46e5-43d4-08ddecca7caf
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 21:58:25.2323 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 22:20:57.7735 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: utt/r8cDF91Al+w0sqhbhIwHUjky1oI2WY6Qez8Xnsi+LK+5yKn+xQVDkSUvGLz+Qdx8rygBR/5OrBnrUGXPcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6426
+X-MS-Exchange-CrossTenant-UserPrincipalName: WUtqKRCWpTbtwn7h6zLGIuvTGx5sEaNCMJRtneG6OkJOFHK/y5YkWxrUuNKTVdLRmAGF8NmT0W0PRjfGstvfaoSu6206sFhRC58rVwdFfJ0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7141
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,471 +193,924 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
 
-Here goes our first drm-intel-next pull request towards 6.18.
-I'm planning to send another pull request in the end of next week.
 
-It is important to highlight the iopoll.h work that is pushed here without
-any ack since it lacks MAINTAINERS and previous changes apparently gets
-through various trees. [1]
+On 8/5/2025 4:42 PM, John.C.Harrison@Intel.com wrote:
+> From: John Harrison <John.C.Harrison@Intel.com>
+>
+> Add a test for sending messages from every GuC to every other GuC to
+> test G2G communications.
+>
+> Note that, being a debug only feature, the test interface only exists
+> in pre-production builds of the GuC firmware.
+>
+> v2: Fix 'default' case to actually use the driver's registration code
+> as well as allocation. Add comments explaining the different test
+> types. Fix (C) date and an assert. Review feedback from Daniele.
+>
+> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 
-On the highlights here we have Wildcat Lake enabling patches, and also
-many more refactor towards the full intel_display split, as well as
-many Type-C and Display Port changes.
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Thanks,
-Rodrigo.
+Daniele
 
-[1] - https://lore.kernel.org/intel-gfx/c34ce332183d24ed29ed23852238fd5ca948d4f1@intel.com/
+> ---
+>   drivers/gpu/drm/xe/abi/guc_actions_abi.h    |   2 +
+>   drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c  | 776 ++++++++++++++++++++
+>   drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   2 +
+>   drivers/gpu/drm/xe/xe_device_types.h        |   7 +
+>   drivers/gpu/drm/xe/xe_guc.c                 |   4 +
+>   drivers/gpu/drm/xe/xe_guc.h                 |   4 +
+>   drivers/gpu/drm/xe/xe_guc_ct.c              |   5 +
+>   drivers/gpu/drm/xe/xe_guc_fwif.h            |   1 +
+>   8 files changed, 801 insertions(+)
+>   create mode 100644 drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+>
+> diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> index 81eb046aeebf..0395998ca75c 100644
+> --- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+> @@ -154,6 +154,8 @@ enum xe_guc_action {
+>   	XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+>   	XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+>   	XE_GUC_ACTION_NOTIFY_EXCEPTION = 0x8005,
+> +	XE_GUC_ACTION_TEST_G2G_SEND = 0xF001,
+> +	XE_GUC_ACTION_TEST_G2G_RECV = 0xF002,
+>   	XE_GUC_ACTION_LIMIT
+>   };
+>   
+> diff --git a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+> new file mode 100644
+> index 000000000000..3b213fcae916
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
+> @@ -0,0 +1,776 @@
+> +// SPDX-License-Identifier: GPL-2.0 AND MIT
+> +/*
+> + * Copyright Â© 2025 Intel Corporation
+> + */
+> +
+> +#include <linux/delay.h>
+> +
+> +#include <kunit/test.h>
+> +#include <kunit/visibility.h>
+> +
+> +#include "tests/xe_kunit_helpers.h"
+> +#include "tests/xe_pci_test.h"
+> +#include "tests/xe_test.h"
+> +
+> +#include "xe_bo.h"
+> +#include "xe_device.h"
+> +#include "xe_pm.h"
+> +
+> +/*
+> + * There are different ways to allocate the G2G buffers. The plan for this test
+> + * is to make sure that all the possible options work. The particular option
+> + * chosen by the driver may vary from one platform to another, it may also change
+> + * with time. So to ensure consistency of testing, the relevant driver code is
+> + * replicated here to guarantee it won't change without the test being updated
+> + * to keep testing the other options.
+> + *
+> + * In order to test the actual code being used by the driver, there is also the
+> + * 'default' scheme. That will use the official driver routines to test whatever
+> + * method the driver is using on the current platform at the current time.
+> + */
+> +enum {
+> +	/* Driver defined allocation scheme */
+> +	G2G_CTB_TYPE_DEFAULT,
+> +	/* Single buffer in host memory */
+> +	G2G_CTB_TYPE_HOST,
+> +	/* Single buffer in a specific tile, loops across all tiles */
+> +	G2G_CTB_TYPE_TILE,
+> +};
+> +
+> +/*
+> + * Payload is opaque to GuC. So KMD can define any structure or size it wants.
+> + */
+> +struct g2g_test_payload  {
+> +	u32 tx_dev;
+> +	u32 tx_tile;
+> +	u32 rx_dev;
+> +	u32 rx_tile;
+> +	u32 seqno;
+> +};
+> +
+> +static void g2g_test_send(struct kunit *test, struct xe_guc *guc,
+> +			  u32 far_tile, u32 far_dev,
+> +			  struct g2g_test_payload *payload)
+> +{
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	u32 *action, total;
+> +	size_t payload_len;
+> +	int ret;
+> +
+> +	static_assert(IS_ALIGNED(sizeof(*payload), sizeof(u32)));
+> +	payload_len = sizeof(*payload) / sizeof(u32);
+> +
+> +	total = 4 + payload_len;
+> +	action = kunit_kmalloc_array(test, total, sizeof(*action), GFP_KERNEL);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, action);
+> +
+> +	action[0] = XE_GUC_ACTION_TEST_G2G_SEND;
+> +	action[1] = far_tile;
+> +	action[2] = far_dev;
+> +	action[3] = payload_len;
+> +	memcpy(action + 4, payload, payload_len * sizeof(u32));
+> +
+> +	atomic_inc(&xe->g2g_test_count);
+> +
+> +	/*
+> +	 * Should specify the expected response notification here. Problem is that
+> +	 * the response will be coming from a different GuC. By the end, it should
+> +	 * all add up as long as an equal number of messages are sent from each GuC
+> +	 * and to each GuC. However, in the middle negative reservation space errors
+> +	 * and such like can occur. Rather than add intrusive changes to the CT layer
+> +	 * it is simpler to just not bother counting it at all. The system should be
+> +	 * idle when running the selftest, and the selftest's notification total size
+> +	 * is well within the G2H allocation size. So there should be no issues with
+> +	 * needing to block for space, which is all the tracking code is really for.
+> +	 */
+> +	ret = xe_guc_ct_send(&guc->ct, action, total, 0, 0);
+> +	kunit_kfree(test, action);
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, ret, "G2G send failed: %d [%d:%d -> %d:%d]\n", ret,
+> +			    gt_to_tile(gt)->id, G2G_DEV(gt), far_tile, far_dev);
+> +}
+> +
+> +/*
+> + * NB: Can't use KUNIT_ASSERT and friends in here as this is called asynchronously
+> + * from the G2H notification handler. Need that to actually complete rather than
+> + * thread-abort in order to keep the rest of the driver alive!
+> + */
+> +int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *msg, u32 len)
+> +{
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +	struct xe_gt *rx_gt = guc_to_gt(guc), *test_gt, *tx_gt = NULL;
+> +	u32 tx_tile, tx_dev, rx_tile, rx_dev, idx, got_len;
+> +	struct g2g_test_payload *payload;
+> +	size_t payload_len;
+> +	int ret = 0, i;
+> +
+> +	payload_len = sizeof(*payload) / sizeof(u32);
+> +
+> +	if (unlikely(len != (G2H_LEN_DW_G2G_NOTIFY_MIN + payload_len))) {
+> +		xe_gt_err(rx_gt, "G2G test notification invalid length %u", len);
+> +		ret = -EPROTO;
+> +		goto done;
+> +	}
+> +
+> +	tx_tile = msg[0];
+> +	tx_dev = msg[1];
+> +	got_len = msg[2];
+> +	payload = (struct g2g_test_payload *)(msg + 3);
+> +
+> +	rx_tile = gt_to_tile(rx_gt)->id;
+> +	rx_dev = G2G_DEV(rx_gt);
+> +
+> +	if (got_len != payload_len) {
+> +		xe_gt_err(rx_gt, "G2G: Invalid payload length: %u vs %zu\n", got_len, payload_len);
+> +		ret = -EPROTO;
+> +		goto done;
+> +	}
+> +
+> +	if (payload->tx_dev != tx_dev || payload->tx_tile != tx_tile ||
+> +	    payload->rx_dev != rx_dev || payload->rx_tile != rx_tile) {
+> +		xe_gt_err(rx_gt, "G2G: Invalid payload: %d:%d -> %d:%d vs %d:%d -> %d:%d! [%d]\n",
+> +			  payload->tx_tile, payload->tx_dev, payload->rx_tile, payload->rx_dev,
+> +			  tx_tile, tx_dev, rx_tile, rx_dev, payload->seqno);
+> +		ret = -EPROTO;
+> +		goto done;
+> +	}
+> +
+> +	if (!xe->g2g_test_array) {
+> +		xe_gt_err(rx_gt, "G2G: Missing test array!\n");
+> +		ret = -ENOMEM;
+> +		goto done;
+> +	}
+> +
+> +	for_each_gt(test_gt, xe, i) {
+> +		if (gt_to_tile(test_gt)->id != tx_tile)
+> +			continue;
+> +
+> +		if (G2G_DEV(test_gt) != tx_dev)
+> +			continue;
+> +
+> +		if (tx_gt) {
+> +			xe_gt_err(rx_gt, "G2G: Got duplicate TX GTs: %d vs %d for %d:%d!\n",
+> +				  tx_gt->info.id, test_gt->info.id, tx_tile, tx_dev);
+> +			ret = -EINVAL;
+> +			goto done;
+> +		}
+> +
+> +		tx_gt = test_gt;
+> +	}
+> +	if (!tx_gt) {
+> +		xe_gt_err(rx_gt, "G2G: Failed to find a TX GT for %d:%d!\n", tx_tile, tx_dev);
+> +		ret = -EINVAL;
+> +		goto done;
+> +	}
+> +
+> +	idx = (tx_gt->info.id * xe->info.gt_count) + rx_gt->info.id;
+> +
+> +	if (xe->g2g_test_array[idx] != payload->seqno - 1) {
+> +		xe_gt_err(rx_gt, "G2G: Seqno mismatch %d vs %d for %d:%d -> %d:%d!\n",
+> +			  xe->g2g_test_array[idx], payload->seqno - 1,
+> +			  tx_tile, tx_dev, rx_tile, rx_dev);
+> +		ret = -EINVAL;
+> +		goto done;
+> +	}
+> +
+> +	xe->g2g_test_array[idx] = payload->seqno;
+> +
+> +done:
+> +	atomic_dec(&xe->g2g_test_count);
+> +	return ret;
+> +}
+> +
+> +/*
+> + * Send the given seqno from all GuCs to all other GuCs in tile/GT order
+> + */
+> +static void g2g_test_in_order(struct kunit *test, struct xe_device *xe, u32 seqno)
+> +{
+> +	struct xe_gt *near_gt, *far_gt;
+> +	int i, j;
+> +
+> +	for_each_gt(near_gt, xe, i) {
+> +		u32 near_tile = gt_to_tile(near_gt)->id;
+> +		u32 near_dev = G2G_DEV(near_gt);
+> +
+> +		for_each_gt(far_gt, xe, j) {
+> +			u32 far_tile = gt_to_tile(far_gt)->id;
+> +			u32 far_dev = G2G_DEV(far_gt);
+> +			struct g2g_test_payload payload;
+> +
+> +			if (far_gt->info.id == near_gt->info.id)
+> +				continue;
+> +
+> +			payload.tx_dev = near_dev;
+> +			payload.tx_tile = near_tile;
+> +			payload.rx_dev = far_dev;
+> +			payload.rx_tile = far_tile;
+> +			payload.seqno = seqno;
+> +			g2g_test_send(test, &near_gt->uc.guc, far_tile, far_dev, &payload);
+> +		}
+> +	}
+> +}
+> +
+> +#define WAIT_TIME_MS	100
+> +#define WAIT_COUNT	(1000 / WAIT_TIME_MS)
+> +
+> +static void g2g_wait_for_complete(void *_xe)
+> +{
+> +	struct xe_device *xe = (struct xe_device *)_xe;
+> +	struct kunit *test = kunit_get_current_test();
+> +	int wait = 0;
+> +
+> +	/* Wait for all G2H messages to be received */
+> +	while (atomic_read(&xe->g2g_test_count)) {
+> +		if (++wait > WAIT_COUNT)
+> +			break;
+> +
+> +		msleep(WAIT_TIME_MS);
+> +	}
+> +
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, atomic_read(&xe->g2g_test_count),
+> +			    "Timed out waiting for notifications\n");
+> +	kunit_info(test, "Got all notifications back\n");
+> +}
+> +
+> +#undef WAIT_TIME_MS
+> +#undef WAIT_COUNT
+> +
+> +static void g2g_clean_array(void *_xe)
+> +{
+> +	struct xe_device *xe = (struct xe_device *)_xe;
+> +
+> +	xe->g2g_test_array = NULL;
+> +}
+> +
+> +#define NUM_LOOPS	16
+> +
+> +static void g2g_run_test(struct kunit *test, struct xe_device *xe)
+> +{
+> +	u32 seqno, max_array;
+> +	int ret, i, j;
+> +
+> +	max_array = xe->info.gt_count * xe->info.gt_count;
+> +	xe->g2g_test_array = kunit_kcalloc(test, max_array, sizeof(u32), GFP_KERNEL);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe->g2g_test_array);
+> +
+> +	ret = kunit_add_action_or_reset(test, g2g_clean_array, xe);
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, ret, "Failed to register clean up action\n");
+> +
+> +	/*
+> +	 * Send incrementing seqnos from all GuCs to all other GuCs in tile/GT order.
+> +	 * Tile/GT order doesn't really mean anything to the hardware but it is going
+> +	 * to be a fixed sequence every time.
+> +	 *
+> +	 * Verify that each one comes back having taken the correct route.
+> +	 */
+> +	ret = kunit_add_action(test, g2g_wait_for_complete, xe);
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, ret, "Failed to register clean up action\n");
+> +	for (seqno = 1; seqno < NUM_LOOPS; seqno++)
+> +		g2g_test_in_order(test, xe, seqno);
+> +	seqno--;
+> +
+> +	kunit_release_action(test, &g2g_wait_for_complete, xe);
+> +
+> +	/* Check for the final seqno in each slot */
+> +	for (i = 0; i < xe->info.gt_count; i++) {
+> +		for (j = 0; j < xe->info.gt_count; j++) {
+> +			u32 idx = (j * xe->info.gt_count) + i;
+> +
+> +			if (i == j)
+> +				KUNIT_ASSERT_EQ_MSG(test, 0, xe->g2g_test_array[idx],
+> +						    "identity seqno modified: %d for %dx%d!\n",
+> +						    xe->g2g_test_array[idx], i, j);
+> +			else
+> +				KUNIT_ASSERT_EQ_MSG(test, seqno, xe->g2g_test_array[idx],
+> +						    "invalid seqno: %d vs %d for %dx%d!\n",
+> +						    xe->g2g_test_array[idx], seqno, i, j);
+> +		}
+> +	}
+> +
+> +	kunit_kfree(test, xe->g2g_test_array);
+> +	kunit_release_action(test, &g2g_clean_array, xe);
+> +
+> +	kunit_info(test, "Test passed\n");
+> +}
+> +
+> +#undef NUM_LOOPS
+> +
+> +static void g2g_ct_stop(struct xe_guc *guc)
+> +{
+> +	struct xe_gt *remote_gt, *gt = guc_to_gt(guc);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	int i, t;
+> +
+> +	for_each_gt(remote_gt, xe, i) {
+> +		u32 tile, dev;
+> +
+> +		if (remote_gt->info.id == gt->info.id)
+> +			continue;
+> +
+> +		tile = gt_to_tile(remote_gt)->id;
+> +		dev = G2G_DEV(remote_gt);
+> +
+> +		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++)
+> +			guc_g2g_deregister(guc, tile, dev, t);
+> +	}
+> +}
+> +
+> +/* Size of a single allocation that contains all G2G CTBs across all GTs */
+> +static u32 g2g_ctb_size(struct kunit *test, struct xe_device *xe)
+> +{
+> +	unsigned int count = xe->info.gt_count;
+> +	u32 num_channels = (count * (count - 1)) / 2;
+> +
+> +	kunit_info(test, "Size: (%d * %d / 2) * %d * 0x%08X + 0x%08X => 0x%08X [%d]\n",
+> +		   count, count - 1, XE_G2G_TYPE_LIMIT, G2G_BUFFER_SIZE, G2G_DESC_AREA_SIZE,
+> +		   num_channels * XE_G2G_TYPE_LIMIT * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE,
+> +		   num_channels * XE_G2G_TYPE_LIMIT);
+> +
+> +	return num_channels * XE_G2G_TYPE_LIMIT * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE;
+> +}
+> +
+> +/*
+> + * Use the driver's regular CTB allocation scheme.
+> + */
+> +static void g2g_alloc_default(struct kunit *test, struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	int i;
+> +
+> +	kunit_info(test, "Default [tiles = %d, GTs = %d]\n",
+> +		   xe->info.tile_count, xe->info.gt_count);
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		struct xe_guc *guc = &gt->uc.guc;
+> +		int ret;
+> +
+> +		ret = guc_g2g_alloc(guc);
+> +		KUNIT_ASSERT_EQ_MSG(test, 0, ret, "G2G alloc failed: %pe", ERR_PTR(ret));
+> +		continue;
+> +	}
+> +}
+> +
+> +static void g2g_distribute(struct kunit *test, struct xe_device *xe, struct xe_bo *bo)
+> +{
+> +	struct xe_gt *root_gt, *gt;
+> +	int i;
+> +
+> +	root_gt = xe_device_get_gt(xe, 0);
+> +	root_gt->uc.guc.g2g.bo = bo;
+> +	root_gt->uc.guc.g2g.owned = true;
+> +	kunit_info(test, "[%d.%d] Assigned 0x%p\n", gt_to_tile(root_gt)->id, root_gt->info.id, bo);
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		if (gt->info.id != 0) {
+> +			gt->uc.guc.g2g.owned = false;
+> +			gt->uc.guc.g2g.bo = xe_bo_get(bo);
+> +			kunit_info(test, "[%d.%d] Pinned 0x%p\n",
+> +				   gt_to_tile(gt)->id, gt->info.id, gt->uc.guc.g2g.bo);
+> +		}
+> +
+> +		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, gt->uc.guc.g2g.bo);
+> +	}
+> +}
+> +
+> +/*
+> + * Allocate a single blob on the host and split between all G2G CTBs.
+> + */
+> +static void g2g_alloc_host(struct kunit *test, struct xe_device *xe)
+> +{
+> +	struct xe_bo *bo;
+> +	u32 g2g_size;
+> +
+> +	kunit_info(test, "Host [tiles = %d, GTs = %d]\n", xe->info.tile_count, xe->info.gt_count);
+> +
+> +	g2g_size = g2g_ctb_size(test, xe);
+> +	bo = xe_managed_bo_create_pin_map(xe, xe_device_get_root_tile(xe), g2g_size,
+> +					  XE_BO_FLAG_SYSTEM |
+> +					  XE_BO_FLAG_GGTT |
+> +					  XE_BO_FLAG_GGTT_ALL |
+> +					  XE_BO_FLAG_GGTT_INVALIDATE);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo);
+> +	kunit_info(test, "[HST] G2G buffer create: 0x%p\n", bo);
+> +
+> +	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
+> +
+> +	g2g_distribute(test, xe, bo);
+> +}
+> +
+> +/*
+> + * Allocate a single blob on the given tile and split between all G2G CTBs.
+> + */
+> +static void g2g_alloc_tile(struct kunit *test, struct xe_device *xe, struct xe_tile *tile)
+> +{
+> +	struct xe_bo *bo;
+> +	u32 g2g_size;
+> +
+> +	KUNIT_ASSERT_TRUE(test, IS_DGFX(xe));
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, tile);
+> +
+> +	kunit_info(test, "Tile %d [tiles = %d, GTs = %d]\n",
+> +		   tile->id, xe->info.tile_count, xe->info.gt_count);
+> +
+> +	g2g_size = g2g_ctb_size(test, xe);
+> +	bo = xe_managed_bo_create_pin_map(xe, tile, g2g_size,
+> +					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+> +					  XE_BO_FLAG_GGTT |
+> +					  XE_BO_FLAG_GGTT_ALL |
+> +					  XE_BO_FLAG_GGTT_INVALIDATE);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, bo);
+> +	kunit_info(test, "[%d.*] G2G buffer create: 0x%p\n", tile->id, bo);
+> +
+> +	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
+> +
+> +	g2g_distribute(test, xe, bo);
+> +}
+> +
+> +static void g2g_free(struct kunit *test, struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	struct xe_bo *bo;
+> +	int i;
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		bo = gt->uc.guc.g2g.bo;
+> +		if (!bo)
+> +			continue;
+> +
+> +		if (gt->uc.guc.g2g.owned) {
+> +			xe_managed_bo_unpin_map_no_vm(bo);
+> +			kunit_info(test, "[%d.%d] Unmapped 0x%p\n",
+> +				   gt_to_tile(gt)->id, gt->info.id, bo);
+> +		} else {
+> +			xe_bo_put(bo);
+> +			kunit_info(test, "[%d.%d] Unpinned 0x%p\n",
+> +				   gt_to_tile(gt)->id, gt->info.id, bo);
+> +		}
+> +
+> +		gt->uc.guc.g2g.bo = NULL;
+> +	}
+> +}
+> +
+> +static void g2g_stop(struct kunit *test, struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	int i;
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		struct xe_guc *guc = &gt->uc.guc;
+> +
+> +		if (!guc->g2g.bo)
+> +			continue;
+> +
+> +		g2g_ct_stop(guc);
+> +	}
+> +
+> +	g2g_free(test, xe);
+> +}
+> +
+> +/*
+> + * Generate a unique id for each bi-directional CTB for each pair of
+> + * near and far tiles/devices. The id can then be used as an index into
+> + * a single allocation that is sub-divided into multiple CTBs.
+> + *
+> + * For example, with two devices per tile and two tiles, the table should
+> + * look like:
+> + *           Far <tile>.<dev>
+> + *         0.0   0.1   1.0   1.1
+> + * N 0.0  --/-- 00/01 02/03 04/05
+> + * e 0.1  01/00 --/-- 06/07 08/09
+> + * a 1.0  03/02 07/06 --/-- 10/11
+> + * r 1.1  05/04 09/08 11/10 --/--
+> + *
+> + * Where each entry is Rx/Tx channel id.
+> + *
+> + * So GuC #3 (tile 1, dev 1) talking to GuC #2 (tile 1, dev 0) would
+> + * be reading from channel #11 and writing to channel #10. Whereas,
+> + * GuC #2 talking to GuC #3 would be read on #10 and write to #11.
+> + */
+> +static int g2g_slot_flat(u32 near_tile, u32 near_dev, u32 far_tile, u32 far_dev,
+> +			 u32 type, u32 max_inst, bool have_dev)
+> +{
+> +	u32 near = near_tile, far = far_tile;
+> +	u32 idx = 0, x, y, direction;
+> +	int i;
+> +
+> +	if (have_dev) {
+> +		near = (near << 1) | near_dev;
+> +		far = (far << 1) | far_dev;
+> +	}
+> +
+> +	/* No need to send to one's self */
+> +	if (far == near)
+> +		return -1;
+> +
+> +	if (far > near) {
+> +		/* Top right table half */
+> +		x = far;
+> +		y = near;
+> +
+> +		/* T/R is 'forwards' direction */
+> +		direction = type;
+> +	} else {
+> +		/* Bottom left table half */
+> +		x = near;
+> +		y = far;
+> +
+> +		/* B/L is 'backwards' direction */
+> +		direction = (1 - type);
+> +	}
+> +
+> +	/* Count the rows prior to the target */
+> +	for (i = y; i > 0; i--)
+> +		idx += max_inst - i;
+> +
+> +	/* Count this row up to the target */
+> +	idx += (x - 1 - y);
+> +
+> +	/* Slots are in Rx/Tx pairs */
+> +	idx *= 2;
+> +
+> +	/* Pick Rx/Tx direction */
+> +	idx += direction;
+> +
+> +	return idx;
+> +}
+> +
+> +static int g2g_register_flat(struct xe_guc *guc, u32 far_tile, u32 far_dev, u32 type, bool have_dev)
+> +{
+> +	struct xe_gt *gt = guc_to_gt(guc);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	u32 near_tile = gt_to_tile(gt)->id;
+> +	u32 near_dev = G2G_DEV(gt);
+> +	u32 max = xe->info.gt_count;
+> +	int idx;
+> +	u32 base, desc, buf;
+> +
+> +	if (!guc->g2g.bo)
+> +		return -ENODEV;
+> +
+> +	idx = g2g_slot_flat(near_tile, near_dev, far_tile, far_dev, type, max, have_dev);
+> +	xe_assert(xe, idx >= 0);
+> +
+> +	base = guc_bo_ggtt_addr(guc, guc->g2g.bo);
+> +	desc = base + idx * G2G_DESC_SIZE;
+> +	buf = base + idx * G2G_BUFFER_SIZE + G2G_DESC_AREA_SIZE;
+> +
+> +	xe_assert(xe, (desc - base + G2G_DESC_SIZE) <= G2G_DESC_AREA_SIZE);
+> +	xe_assert(xe, (buf - base + G2G_BUFFER_SIZE) <= xe_bo_size(guc->g2g.bo));
+> +
+> +	return guc_action_register_g2g_buffer(guc, type, far_tile, far_dev,
+> +					      desc, buf, G2G_BUFFER_SIZE);
+> +}
+> +
+> +static void g2g_start(struct kunit *test, struct xe_guc *guc)
+> +{
+> +	struct xe_gt *remote_gt, *gt = guc_to_gt(guc);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	unsigned int i;
+> +	int t, ret;
+> +	bool have_dev;
+> +
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, guc->g2g.bo);
+> +
+> +	/* GuC interface will need extending if more GT device types are ever created. */
+> +	KUNIT_ASSERT_TRUE(test,
+> +			  (gt->info.type == XE_GT_TYPE_MAIN) ||
+> +			  (gt->info.type == XE_GT_TYPE_MEDIA));
+> +
+> +	/* Channel numbering depends on whether there are multiple GTs per tile */
+> +	have_dev = xe->info.gt_count > xe->info.tile_count;
+> +
+> +	for_each_gt(remote_gt, xe, i) {
+> +		u32 tile, dev;
+> +
+> +		if (remote_gt->info.id == gt->info.id)
+> +			continue;
+> +
+> +		tile = gt_to_tile(remote_gt)->id;
+> +		dev = G2G_DEV(remote_gt);
+> +
+> +		for (t = 0; t < XE_G2G_TYPE_LIMIT; t++) {
+> +			ret = g2g_register_flat(guc, tile, dev, t, have_dev);
+> +			KUNIT_ASSERT_EQ_MSG(test, 0, ret, "G2G register failed: %pe", ERR_PTR(ret));
+> +		}
+> +	}
+> +}
+> +
+> +static void g2g_reinit(struct kunit *test, struct xe_device *xe, int ctb_type, struct xe_tile *tile)
+> +{
+> +	struct xe_gt *gt;
+> +	int i, found = 0;
+> +
+> +	g2g_stop(test, xe);
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		struct xe_guc *guc = &gt->uc.guc;
+> +
+> +		KUNIT_ASSERT_NULL(test, guc->g2g.bo);
+> +	}
+> +
+> +	switch (ctb_type) {
+> +	case G2G_CTB_TYPE_DEFAULT:
+> +		g2g_alloc_default(test, xe);
+> +		break;
+> +
+> +	case G2G_CTB_TYPE_HOST:
+> +		g2g_alloc_host(test, xe);
+> +		break;
+> +
+> +	case G2G_CTB_TYPE_TILE:
+> +		g2g_alloc_tile(test, xe, tile);
+> +		break;
+> +
+> +	default:
+> +		KUNIT_ASSERT_TRUE(test, false);
+> +	}
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		struct xe_guc *guc = &gt->uc.guc;
+> +
+> +		if (!guc->g2g.bo)
+> +			continue;
+> +
+> +		if (ctb_type == G2G_CTB_TYPE_DEFAULT)
+> +			guc_g2g_start(guc);
+> +		else
+> +			g2g_start(test, guc);
+> +		found++;
+> +	}
+> +
+> +	KUNIT_ASSERT_GT_MSG(test, found, 1, "insufficient G2G channels running: %d", found);
+> +
+> +	kunit_info(test, "Testing across %d GTs\n", found);
+> +}
+> +
+> +static void g2g_recreate_ctb(void *_xe)
+> +{
+> +	struct xe_device *xe = (struct xe_device *)_xe;
+> +	struct kunit *test = kunit_get_current_test();
+> +
+> +	g2g_stop(test, xe);
+> +
+> +	if (xe_guc_g2g_wanted(xe))
+> +		g2g_reinit(test, xe, G2G_CTB_TYPE_DEFAULT, NULL);
+> +}
+> +
+> +static void g2g_pm_runtime_put(void *_xe)
+> +{
+> +	struct xe_device *xe = (struct xe_device *)_xe;
+> +
+> +	xe_pm_runtime_put(xe);
+> +}
+> +
+> +static void g2g_pm_runtime_get(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +	int ret;
+> +
+> +	xe_pm_runtime_get(xe);
+> +	ret = kunit_add_action_or_reset(test, g2g_pm_runtime_put, xe);
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, ret, "Failed to register runtime PM action\n");
+> +}
+> +
+> +static void g2g_check_skip(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +	struct xe_gt *gt;
+> +	int i;
+> +
+> +	if (IS_SRIOV_VF(xe))
+> +		kunit_skip(test, "not supported from a VF");
+> +
+> +	if (xe->info.gt_count <= 1)
+> +		kunit_skip(test, "not enough GTs");
+> +
+> +	for_each_gt(gt, xe, i) {
+> +		struct xe_guc *guc = &gt->uc.guc;
+> +
+> +		if (guc->fw.build_type == CSS_UKERNEL_INFO_BUILDTYPE_PROD)
+> +			kunit_skip(test,
+> +				   "G2G test interface not available in production firmware builds\n");
+> +	}
+> +}
+> +
+> +/*
+> + * Simple test that does not try to recreate the CTBs.
+> + * Requires that the platform already enables G2G comms
+> + * but has no risk of leaving the system in a broken state
+> + * afterwards.
+> + */
+> +static void xe_live_guc_g2g_kunit_default(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +
+> +	if (!xe_guc_g2g_wanted(xe))
+> +		kunit_skip(test, "G2G not enabled");
+> +
+> +	g2g_check_skip(test);
+> +
+> +	g2g_pm_runtime_get(test);
+> +
+> +	kunit_info(test, "Testing default CTBs\n");
+> +	g2g_run_test(test, xe);
+> +
+> +	kunit_release_action(test, &g2g_pm_runtime_put, xe);
+> +}
+> +
+> +/*
+> + * More complex test that re-creates the CTBs in various location to
+> + * test access to each location from each GuC. Can be run even on
+> + * systems that do not enable G2G by default. On the other hand,
+> + * because it recreates the CTBs, if something goes wrong it could
+> + * leave the system with broken G2G comms.
+> + */
+> +static void xe_live_guc_g2g_kunit_allmem(struct kunit *test)
+> +{
+> +	struct xe_device *xe = test->priv;
+> +	int ret;
+> +
+> +	g2g_check_skip(test);
+> +
+> +	g2g_pm_runtime_get(test);
+> +
+> +	/* Make sure to leave the system as we found it */
+> +	ret = kunit_add_action_or_reset(test, g2g_recreate_ctb, xe);
+> +	KUNIT_ASSERT_EQ_MSG(test, 0, ret, "Failed to register CTB re-creation action\n");
+> +
+> +	kunit_info(test, "Testing CTB type 'default'...\n");
+> +	g2g_reinit(test, xe, G2G_CTB_TYPE_DEFAULT, NULL);
+> +	g2g_run_test(test, xe);
+> +
+> +	kunit_info(test, "Testing CTB type 'host'...\n");
+> +	g2g_reinit(test, xe, G2G_CTB_TYPE_HOST, NULL);
+> +	g2g_run_test(test, xe);
+> +
+> +	if (IS_DGFX(xe)) {
+> +		struct xe_tile *tile;
+> +		int id;
+> +
+> +		for_each_tile(tile, xe, id) {
+> +			kunit_info(test, "Testing CTB type 'tile: #%d'...\n", id);
+> +
+> +			g2g_reinit(test, xe, G2G_CTB_TYPE_TILE, tile);
+> +			g2g_run_test(test, xe);
+> +		}
+> +	} else {
+> +		kunit_info(test, "Skipping local memory on integrated platform\n");
+> +	}
+> +
+> +	kunit_release_action(test, g2g_recreate_ctb, xe);
+> +	kunit_release_action(test, g2g_pm_runtime_put, xe);
+> +}
+> +
+> +static struct kunit_case xe_guc_g2g_tests[] = {
+> +	KUNIT_CASE_PARAM(xe_live_guc_g2g_kunit_default, xe_pci_live_device_gen_param),
+> +	KUNIT_CASE_PARAM(xe_live_guc_g2g_kunit_allmem, xe_pci_live_device_gen_param),
+> +	{}
+> +};
+> +
+> +VISIBLE_IF_KUNIT
+> +struct kunit_suite xe_guc_g2g_test_suite = {
+> +	.name = "xe_guc_g2g",
+> +	.test_cases = xe_guc_g2g_tests,
+> +	.init = xe_kunit_helper_xe_device_live_test_init,
+> +};
+> +EXPORT_SYMBOL_IF_KUNIT(xe_guc_g2g_test_suite);
+> diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> index 81277c77016d..c55e46f1ae92 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
+> @@ -10,12 +10,14 @@ extern struct kunit_suite xe_bo_shrink_test_suite;
+>   extern struct kunit_suite xe_dma_buf_test_suite;
+>   extern struct kunit_suite xe_migrate_test_suite;
+>   extern struct kunit_suite xe_mocs_test_suite;
+> +extern struct kunit_suite xe_guc_g2g_test_suite;
+>   
+>   kunit_test_suite(xe_bo_test_suite);
+>   kunit_test_suite(xe_bo_shrink_test_suite);
+>   kunit_test_suite(xe_dma_buf_test_suite);
+>   kunit_test_suite(xe_migrate_test_suite);
+>   kunit_test_suite(xe_mocs_test_suite);
+> +kunit_test_suite(xe_guc_g2g_test_suite);
+>   
+>   MODULE_AUTHOR("Intel Corporation");
+>   MODULE_LICENSE("GPL");
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 38c8329b4d2c..0416b0eba3bf 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -576,6 +576,13 @@ struct xe_device {
+>   	atomic64_t global_total_pages;
+>   #endif
+>   
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +	/** @g2g_test_array: for testing G2G communications */
+> +	u32 *g2g_test_array;
+> +	/** @g2g_test_count: for testing G2G communications */
+> +	atomic_t g2g_test_count;
+> +#endif
+> +
+>   	/* private: */
+>   
+>   #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index c49feb8ea0c3..aa2e9f761f8f 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1688,3 +1688,7 @@ void xe_guc_declare_wedged(struct xe_guc *guc)
+>   	xe_guc_ct_stop(&guc->ct);
+>   	xe_guc_submit_wedge(guc);
+>   }
+> +
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +#include "tests/xe_guc_g2g_test.c"
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> index 22cf019a11bf..1cca05967e62 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc.h
+> @@ -53,6 +53,10 @@ void xe_guc_stop(struct xe_guc *guc);
+>   int xe_guc_start(struct xe_guc *guc);
+>   void xe_guc_declare_wedged(struct xe_guc *guc);
+>   
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+> +#endif
+> +
+>   static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
+>   {
+>   	switch (class) {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 3f4e6a46ff16..f44967f84d30 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -1439,6 +1439,11 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>   	case XE_GUC_ACTION_NOTIFY_EXCEPTION:
+>   		ret = guc_crash_process_msg(ct, action);
+>   		break;
+> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> +	case XE_GUC_ACTION_TEST_G2G_RECV:
+> +		ret = xe_guc_g2g_test_notification(guc, payload, adj_len);
+> +		break;
+> +#endif
+>   	default:
+>   		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+>   	}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> index ca9f999d38d1..bc94f8d0f037 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> @@ -15,6 +15,7 @@
+>   #define G2H_LEN_DW_SCHED_CONTEXT_MODE_SET	4
+>   #define G2H_LEN_DW_DEREGISTER_CONTEXT		3
+>   #define G2H_LEN_DW_TLB_INVALIDATE		3
+> +#define G2H_LEN_DW_G2G_NOTIFY_MIN		3
+>   
+>   #define GUC_ID_MAX			65535
+>   #define GUC_ID_UNKNOWN			0xffffffff
 
-drm-intel-next-2025-09-05:
-Cross-subsystem Changes:
- - iopoll: Generalize read_poll_timeout() into poll_timeout_us() (Ville)
-
-Non-display related:
- - PREEMPT_RT fix (Sebastian)
- - Replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST (Ruben, Imre)
- - Some changes oeveral like in RPS, SoC, debugfs targeting display separation (Jani)
-
-Display related:
- - General refactor in favor of intel_display (Suraj)
- - Prune modes for YUV420 (Suraj)
- - Reject HBR3 in any eDP Panel (Ankit)
- - Change AUX DPCD probe address (Imre)
- - Display Wa fix, additions, and updates (Ankit, Vinod, Nemesa, Suraj, Jouni))
- - DP: Fix 2.7 Gbps link training on g4x (Ville)
- - DP: Adjust the idle pattern handling (Ville)
- - DP: Shuffle the link training code a bit (Ville)
- - Don't set/read the DSI C clock divider on GLK (Ville)
- - Precompute plane SURF address/etc (Ville)
- - Enable_psr kernel parameter changes (Jouni)
- - PHY LFPS sending configuration fixes (Jouni)
- - Fix dma_fence_wait_timeout() return value handling (Aakash)
- - DP: Fix disabling training pattern (Imre)
- - Small code clean-ups (Gustavo, Colin, Jani, Juha-Pekka)
- - Change vblank log from err to debug (Suraj)
- - More display clean-up towards intel_display split (Jani)
- - Use the recomended min_hblank values (Arun)
- - Block hpd during suspend (Dibin)
- - DSI: Fix overflow issue in pclk parsing (Jouni)
- - PSR: Do not trigger Frame Change events from frontbuffer flush (Jouni)
- - VBT cleanups and new fields (Jani, Suraj)
- - Type-C enabled/disconnected dp-alt sink (Imre)
- - Optimize panel power-on wait time (Dibin)
- - Wildcat Lake enabling (Imre, Chaitanya)
- - DP HDR updates (Chaitanya)
- - Fix divide by 0 error in i9xx_set_backlight (Suraj)
- - Fixes for PSR (Jouni)
- - Remove the encoder check in hdcp enable (Suraj)
- - Control HDMI output bpc (Lee)
- - Fix possible overflow on tc power (Mika)
- - Convert code towards poll_timeout_* (Jani)
- - Use REG_BIT on FW_BLC_SELF_* macros (Luca)
- - ALPM LFPS and silence period calculation (Jouni)
- - Remove power state verification before HW readout (Imre)
- - Fix HPD mtp_tc_hpd_enable_detection (Ville)
- - DRAM detection (Ville)
-The following changes since commit 11895f375939d60efe7ed5dddc1cffe2e79f976c:
-
-  drm/i915/bios: Apply vlv_fixup_mipi_sequences() to v2 mipi-sequences too (2025-07-10 11:30:32 -0400)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2025-09-05
-
-for you to fetch changes up to 70a9b201cfa893fd0b7125c8f9205d9e12e02ba5:
-
-  drm/i915/display: Avoid divide by zero (2025-09-05 15:24:46 +0300)
-
-----------------------------------------------------------------
-Cross-subsystem Changes:
- - iopoll: Generalize read_poll_timeout() into poll_timeout_us() (Ville)
-
-Non-display related:
- - PREEMPT_RT fix (Sebastian)
- - Replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST (Ruben, Imre)
- - Some changes oeveral like in RPS, SoC, debugfs targeting display separation (Jani)
-
-Display related:
- - General refactor in favor of intel_display (Suraj)
- - Prune modes for YUV420 (Suraj)
- - Reject HBR3 in any eDP Panel (Ankit)
- - Change AUX DPCD probe address (Imre)
- - Display Wa fix, additions, and updates (Ankit, Vinod, Nemesa, Suraj, Jouni))
- - DP: Fix 2.7 Gbps link training on g4x (Ville)
- - DP: Adjust the idle pattern handling (Ville)
- - DP: Shuffle the link training code a bit (Ville)
- - Don't set/read the DSI C clock divider on GLK (Ville)
- - Precompute plane SURF address/etc (Ville)
- - Enable_psr kernel parameter changes (Jouni)
- - PHY LFPS sending configuration fixes (Jouni)
- - Fix dma_fence_wait_timeout() return value handling (Aakash)
- - DP: Fix disabling training pattern (Imre)
- - Small code clean-ups (Gustavo, Colin, Jani, Juha-Pekka)
- - Change vblank log from err to debug (Suraj)
- - More display clean-up towards intel_display split (Jani)
- - Use the recomended min_hblank values (Arun)
- - Block hpd during suspend (Dibin)
- - DSI: Fix overflow issue in pclk parsing (Jouni)
- - PSR: Do not trigger Frame Change events from frontbuffer flush (Jouni)
- - VBT cleanups and new fields (Jani, Suraj)
- - Type-C enabled/disconnected dp-alt sink (Imre)
- - Optimize panel power-on wait time (Dibin)
- - Wildcat Lake enabling (Imre, Chaitanya)
- - DP HDR updates (Chaitanya)
- - Fix divide by 0 error in i9xx_set_backlight (Suraj)
- - Fixes for PSR (Jouni)
- - Remove the encoder check in hdcp enable (Suraj)
- - Control HDMI output bpc (Lee)
- - Fix possible overflow on tc power (Mika)
- - Convert code towards poll_timeout_* (Jani)
- - Use REG_BIT on FW_BLC_SELF_* macros (Luca)
- - ALPM LFPS and silence period calculation (Jouni)
- - Remove power state verification before HW readout (Imre)
- - Fix HPD mtp_tc_hpd_enable_detection (Ville)
- - DRAM detection (Ville)
-
-----------------------------------------------------------------
-Aakash Deep Sarkar (1):
-      drm/i915/display: Fix dma_fence_wait_timeout() return value handling
-
-Ankit Nautiyal (4):
-      Revert "drm/i915/dp: Reject HBR3 when sink doesn't support TPS4"
-      drm/i915/dp: Add device specific quirk to limit eDP rate to HBR2
-      drm/i915/display_wa: Add helpers to check wa
-      drm/i915/gmbus: Add Wa_16025573575 for PTL/WCL for bit-bashing
-
-Arun R Murthy (1):
-      drm/i915/display: Use the recomended min_hblank values
-
-Chaitanya Kumar Borah (3):
-      drm/i915/display: Add power well mapping for WCL
-      drm/i915/dp: Refactor intel_dp_in_hdr_mode() for broader reuse
-      drm/i915/dp: Set min_bpp limit to 30 in HDR mode
-
-Colin Ian King (1):
-      drm/i915/bw: Remove space before newline
-
-Dibin Moolakadan Subrahmanian (2):
-      drm/{i915,xe}/display: Block hpd during suspend
-      drm/i915/display: Optimize panel power-on wait time
-
-Gustavo Sousa (1):
-      drm/i915/display: Remove unused declarations of intel_io_*
-
-Imre Deak (24):
-      drm/dp: Change AUX DPCD probe address from LANE0_1_STATUS to TRAINING_PATTERN_SET
-      drm/i915: Fix selecting CONFIG_DRM_KUNIT_TEST in debug builds
-      drm/i915/dp: Fix disabling training pattern at end of UHBR link training
-      drm/i915/lnl+/tc: Fix handling of an enabled/disconnected dp-alt sink
-      drm/i915/icl+/tc: Cache the max lane count value
-      drm/i915/lnl+/tc: Fix max lane count HW readout
-      drm/i915/lnl+/tc: Use the cached max lane count value
-      drm/i915/icl+/tc: Convert AUX powered WARN to a debug message
-      drm/i915/tc: Use the cached max lane count value
-      drm/i915/tc: Move getting the power domain before reading DFLEX registers
-      drm/i915/tc: Move asserting the power state after reading TCSS_DDI_STATUS
-      drm/i915/tc: Add an enum for the TypeC pin assignment
-      drm/i915/tc: Pass pin assignment value around using the pin assignment enum
-      drm/i915/tc: Handle pin assignment NONE on all platforms
-      drm/i915/tc: Validate the pin assignment on all platforms
-      drm/i915/tc: Unify the way to get the pin assignment on all platforms
-      drm/i915/tc: Unify the way to get the max lane count value on MTL+
-      drm/i915/tc: Handle non-TC encoders when getting the pin assignment
-      drm/i915/tc: Pass intel_tc_port to internal lane mask/count helpers
-      dmc/i915/tc: Report pin assignment NONE in TBT-alt mode
-      drm/i915/tc: Cache the pin assignment value
-      drm/i915/tc: Debug print the pin assignment and max lane count
-      drm/i915/wcl: Add display device info
-      drm/i915/display: Remove power state verification before HW readout
-
-Jani Nikula (69):
-      drm/i915/display: remove superfluous <linux/types.h> includes
-      drm/i915/hdmi: use intel_de_wait_for_set() instead of wait_for()
-      drm/i915/ddi: use intel_de_wait_custom() instead of wait_for_us()
-      drm/i915/dpll: use intel_de_wait_custom() instead of wait_for_us()
-      drm/i915/cdclk: use intel_de_wait_custom() instead of wait_for_us()
-      drm/i915/power: use intel_de_wait_custom() instead of wait_for_us()
-      drm/i915/pch: use intel_de_wait_custom() instead of wait_for_us()
-      drm/i915/dsi: use intel_de_wait_custom() instead of wait_for_us()
-      drm/xe/compat: remove unused platform macros
-      drm/xe/compat: stop including i915_utils.h from compat i915_drv.h
-      drm/xe: fix stale comment about unordered_wq usage
-      drm/i915/display: hide global state iterators, remove unused
-      drm/i915/display: make struct __intel_global_objs_state opaque
-      drm/i915/display: keep forward declarations together
-      drm/i915/display: use drm->debugfs_root for creating debugfs files
-      drm/i915/gvt: use drm->debugfs_root for creating debugfs files
-      drm/i915: use drm->debugfs_root for creating debugfs files
-      drm/i915/vbt: split up DSI VBT defs to a separate file
-      drm/i915/vbt: add anonymous structs to group DSI VBT defs
-      drm/i915/vbt: flip bta_enabled to bta_disable
-      drm/i915/vbt: add missing DSI VBT defs
-      drm/i915/display: add intel_dig_port_alloc()
-      drm/i915/connector: make intel_connector_init() static
-      drm/i915: silence rpm wakeref asserts on GEN11_GU_MISC_IIR access
-      drm/i915/display: pass display to HAS_PCH_*() macros
-      drm/i915/fb: pass display to HAS_GMCH() and DISPLAY_VER()
-      drm/i915/clockgating: pass display to for_each_pipe()
-      drm/i915/clockgating: pass display to HAS_PCH_*() macros
-      drm/i915/clockgating: pass display to DSPCNTR and DSPSURF register macros
-      drm/i915/irq: pass display to macros that expect display
-      drm/i915/dram: pass display to macros that expect display
-      drm/i915/gmch: pass display to DISPLAY_VER()
-      drm/i915/gem: pass display to HAS_DISPLAY()
-      drm/i915/switcheroo: pass display to HAS_DISPLAY()
-      drm/i915/drv: pass display to HAS_DISPLAY()
-      drm/i915/uncore: pass display to HAS_FPGA_DBG_UNCLAIMED()
-      drm/i915/gvt: convert mmio table to struct intel_display
-      drm/i915/reg: separate VLV_DSPCLK_GATE_D from DSPCLK_GATE_D
-      drm/i915/display: drop __to_intel_display() usage
-      drm/i915/audio: drop irq enabled check from LPE audio setup
-      drm/i915/bo: remove unnecessary include
-      drm/i915/switcheroo: check for NULL before dereferencing
-      drm/i915/dram: add intel_fsb_freq() and use it
-      drm/i915/dram: add intel_mem_freq()
-      drm/i915/rps: use intel_fsb_freq() and intel_mem_freq()
-      drm/i915/dram: bypass fsb/mem freq detection on dg2 and no display
-      drm/i915/dram: move fsb_freq and mem_freq to dram info
-      drm/i915/dp: convert open-coded timeout to poll_timeout_us()
-      drm/i915/power: drop a couple of &i915->drm usages
-      drm/i915/hdmi: use generic poll_timeout_us() instead of __wait_for()
-      drm/i915/hdcp: use generic poll_timeout_us() instead of __wait_for()
-      drm/i915/hdcp: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/dsi: use generic poll_timeout_us() instead of wait_for_us()
-      drm/i915/dsi-pll: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/gmbus: use generic poll_timeout*() instead of wait_for*()
-      drm/i915/wm: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/cdclk: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/power: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/power-well: use generic poll_timeout_us() instead of wait_for() for DKL PHY
-      drm/i915/power-well: use generic poll_timeout_us() instead of wait_for() for VLV/CHV
-      drm/i915/dp: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/dp: use generic poll_timeout_us() instead of wait_for() in link training
-      drm/i915/vblank: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/tc: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/dsb: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/lspcon: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/opregion: use generic poll_timeout_us() instead of wait_for()
-      drm/i915/ddi: prefer poll_timeout_us() over readx_poll_timeout()
-      drm/i915/pps: prefer poll_timeout_us() over read_poll_timeout()
-
-Jouni Högander (21):
-      drm/i915/psr: Do not disable Early Transport when enable_psr is set
-      drm/i915/psr: Ignore enable_psr parameter on Panel Replay
-      drm/i915/psr: Add enable_panel_replay module parameter
-      drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM
-      drm/i915/display: Avoid unnecessarily calling intel_cx0_get_owned_lane_mask
-      drm/i915/display: Ensure phy is accessible on lfps configuration
-      drm/i915/display: Set C10_VDR_CTRL_MSGBUS_ACCESS before phy reg read
-      drm/i915/dsi: Fix overflow issue in pclk parsing
-      drm/i915/psr: Do not trigger Frame Change events from frontbuffer flush
-      drm/i915/psr: Underrun on idle PSR wa only when pkgc latency > delayed vblank
-      drm/i915/psr: drm_WARN_ON when activating disabled PSR
-      drm/i915/psr: Do not activate disabled PSR on irq_aux_error
-      drm/i915/psr: Check pause counter before continuing to PSR activation
-      drm/i915/psr: Check drm_dp_dpcd_read return value on PSR dpcd init
-      drm/i915/psr: Do not unnecessarily remove underrun on idle PSR WA
-      drm/i915/psr: Check PSR pause counter in __psr_wait_for_idle_locked
-      drm/i915/bios: Remove unnecessary checks of PSR idle frames in VBT binary
-      drm/i915/alpm: Calculate silence period
-      drm/i915/alpm: Add own define for LFPS count
-      drm/i915/alpm: Replace hardcoded LFPS cycle with proper calculation
-      drm/i915/alpm: Use actual lfps cycle and silence periods in wake time
-
-Juha-Pekka Heikkila (3):
-      drm/i915/display: take out dead code
-      drm/i915/display: log fail from intel_sdvo_enable_hotplug
-      drm/i915/display: Avoid divide by zero
-
-Lee Shawn C (2):
-      drm/i915/hdmi: add debugfs to contorl HDMI bpc
-      drm/i915: compute pipe bpp from link bandwidth management
-
-Luca Coelho (1):
-      drm/i915: use REG_BIT on FW_BLC_SELF_* macros
-
-Mika Kahola (1):
-      drm/i915/display: Fix possible overflow on tc power domain selection
-
-Nemesa Garg (2):
-      drm/i915/display: WA_14011503117
-      drm/i915/scaler: Fix condition for WA_14011503117
-
-Ruben Wauters (1):
-      drm/i915: replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST
-
-Sebastian Andrzej Siewior (1):
-      drm/i915: Don't check for atomic context on PREEMPT_RT
-
-Suraj Kandpal (9):
-      drm/i915/scaler: Use intel_display as argument to skl_scaler_max_src_size
-      drm/i915/xe3lpd: Prune modes for YUV420
-      drm/i915/vblank: Change log from err to debug
-      drm/i915/scaler: Fix WA_14011503117
-      drm/i915/backlight: Fix divide by 0 error in i9xx_set_backlight
-      drm/i915/vbt: Add eDP Data rate overrride field in VBT
-      drm/i915/bios: Add function to check if edp data override is needed
-      drm/i915/edp: eDP Data Overrride
-      drm/i915/hdcp: Remove the encoder check in hdcp enable
-
-Ville Syrjälä (26):
-      drm/i915/dp: Fix 2.7 Gbps DP_LINK_BW value on g4x
-      drm/i915/dp: Don't switch to idle pattern before disable on pre-hsw
-      drm/i915/dp: Clear DPCD training pattern before transmitting the idle pattern
-      drm/i915/dp: Have intel_dp_get_adjust_train() tell us if anything changed
-      drm/i915/dp: Move intel_dp_training_pattern()
-      drm/i915/dp: Implement .set_idle_link_train() for everyone
-      drm/i915/dp: Make .set_idle_link_train() mandatory
-      drm/i915/dsi: Don't set/read the DSI C clock divider on GLK
-      drm/i915: Precompute plane SURF address
-      drm/i915: Nuke intel_plane_ggtt_offset()
-      drm/i915: Move the intel_dpt_offset() check into intel_plane_pin_fb()
-      drm/i915: Use i915_vma_offset() in intel_dpt_offset()
-      drm/i915: Remove unused dpt_total_entries()
-      drm/i915: Don't pass crtc_state to foo_plane_ctl() & co.
-      iopoll: Generalize read_poll_timeout() into poll_timeout_us()
-      iopoll: Avoid evaluating 'cond' twice in poll_timeout_us()
-      iopoll: Reorder the timeout handling in poll_timeout_us()
-      drm/i915/hpd: Fix mtp_tc_hpd_enable_detection()
-      drm/i915/dram: Populate PNV memory type accurately
-      drm/i915/dram: Use intel_dram_type_str() for pnv
-      drm/i915/dram: Pack dram_info better
-      drm/i915/dram: s/wm_lv0.../has_16gb_dimms/
-      drm/i915/dram: Move 16Gb DIMM detection fully to the skl/icl codepaths
-      drm/i915/dram: Fix some spelling around the 16Gb DIMM w/a
-      drm/i915/dram: Don't call skl_get_dram_info()/skl_get_dram_type() on icl
-      drm/i915/dram: Print memory details even if something went wrong
-
-Vinod Govindapillai (1):
-      drm/i915/fbc: fix the implementation of wa_18038517565
-
- drivers/gpu/drm/display/drm_dp_helper.c            |   2 +-
- drivers/gpu/drm/i915/Kconfig.debug                 |   2 +-
- drivers/gpu/drm/i915/display/g4x_dp.c              |  51 ++--
- drivers/gpu/drm/i915/display/g4x_hdmi.c            |  15 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c          |  58 ++---
- drivers/gpu/drm/i915/display/i9xx_plane.h          |   1 +
- drivers/gpu/drm/i915/display/i9xx_wm.c             |  32 ++-
- drivers/gpu/drm/i915/display/icl_dsi.c             |  59 +++--
- drivers/gpu/drm/i915/display/intel_alpm.c          | 133 +++++------
- drivers/gpu/drm/i915/display/intel_backlight.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_bios.c          |  46 +++-
- drivers/gpu/drm/i915/display/intel_bios.h          | 176 +-------------
- drivers/gpu/drm/i915/display/intel_bo.c            |   2 +-
- drivers/gpu/drm/i915/display/intel_bw.c            |   2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         |  56 +++--
- drivers/gpu/drm/i915/display/intel_connector.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_connector.h     |   1 -
- drivers/gpu/drm/i915/display/intel_crt.c           |   5 +-
- drivers/gpu/drm/i915/display/intel_cursor.c        |  28 +--
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  21 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  73 +++---
- drivers/gpu/drm/i915/display/intel_display.c       |   9 +-
- .../drm/i915/display/intel_display_conversion.c    |   2 +-
- .../drm/i915/display/intel_display_conversion.h    |  12 -
- .../gpu/drm/i915/display/intel_display_debugfs.c   |   6 +-
- .../i915/display/intel_display_debugfs_params.c    |   7 +-
- .../gpu/drm/i915/display/intel_display_device.c    |  15 +-
- .../gpu/drm/i915/display/intel_display_device.h    |   7 +-
- .../gpu/drm/i915/display/intel_display_driver.c    |   1 +
- drivers/gpu/drm/i915/display/intel_display_irq.c   |  13 +-
- .../gpu/drm/i915/display/intel_display_params.c    |   3 +
- .../gpu/drm/i915/display/intel_display_params.h    |   1 +
- drivers/gpu/drm/i915/display/intel_display_power.c |  24 +-
- .../gpu/drm/i915/display/intel_display_power_map.c |  57 ++++-
- .../drm/i915/display/intel_display_power_well.c    |  52 ++--
- drivers/gpu/drm/i915/display/intel_display_regs.h  |   2 +
- drivers/gpu/drm/i915/display/intel_display_types.h |  16 +-
- drivers/gpu/drm/i915/display/intel_display_wa.c    |  35 +++
- drivers/gpu/drm/i915/display/intel_display_wa.h    |  11 +
- drivers/gpu/drm/i915/display/intel_dmc.c           |   4 +-
- drivers/gpu/drm/i915/display/intel_dp.c            | 143 +++++++----
- drivers/gpu/drm/i915/display/intel_dp.h            |   3 +-
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  13 -
- .../gpu/drm/i915/display/intel_dp_link_training.c  | 156 ++++++------
- .../gpu/drm/i915/display/intel_dp_link_training.h  |   2 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |  11 +-
- drivers/gpu/drm/i915/display/intel_dp_test.c       |   4 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  20 +-
- drivers/gpu/drm/i915/display/intel_dpt.c           |   4 +-
- drivers/gpu/drm/i915/display/intel_dsb.c           |  10 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h  | 197 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_encoder.c       |  41 ++++
- drivers/gpu/drm/i915/display/intel_encoder.h       |   6 +
- drivers/gpu/drm/i915/display/intel_fb.c            |   1 +
- drivers/gpu/drm/i915/display/intel_fb_pin.c        |  39 ++-
- drivers/gpu/drm/i915/display/intel_fbc.c           |  13 +-
- drivers/gpu/drm/i915/display/intel_fdi.c           |  28 ---
- drivers/gpu/drm/i915/display/intel_fdi.h           |   1 -
- drivers/gpu/drm/i915/display/intel_global_state.c  |  32 ++-
- drivers/gpu/drm/i915/display/intel_global_state.h  |  36 +--
- drivers/gpu/drm/i915/display/intel_gmbus.c         |  53 +++-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |  33 ++-
- drivers/gpu/drm/i915/display/intel_hdmi.c          |  24 +-
- drivers/gpu/drm/i915/display/intel_hotplug.c       |  11 +-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c   |   2 +-
- drivers/gpu/drm/i915/display/intel_link_bw.c       |  34 ++-
- drivers/gpu/drm/i915/display/intel_link_bw.h       |   1 +
- drivers/gpu/drm/i915/display/intel_lpe_audio.c     |  11 +-
- drivers/gpu/drm/i915/display/intel_lspcon.c        |  13 +-
- drivers/gpu/drm/i915/display/intel_lvds.c          |   3 +-
- drivers/gpu/drm/i915/display/intel_opregion.c      |  14 +-
- drivers/gpu/drm/i915/display/intel_overlay.c       |   5 +-
- drivers/gpu/drm/i915/display/intel_pch.h           |   4 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.c    |  14 +-
- drivers/gpu/drm/i915/display/intel_pfit.c          |  11 +
- drivers/gpu/drm/i915/display/intel_pfit.h          |  10 +-
- drivers/gpu/drm/i915/display/intel_plane.c         |   6 -
- drivers/gpu/drm/i915/display/intel_plane.h         |   1 -
- drivers/gpu/drm/i915/display/intel_plane_initial.c |   2 +
- drivers/gpu/drm/i915/display/intel_pps.c           |  10 +-
- drivers/gpu/drm/i915/display/intel_psr.c           | 123 +++++-----
- drivers/gpu/drm/i915/display/intel_quirks.c        |   9 +
- drivers/gpu/drm/i915/display/intel_quirks.h        |   1 +
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  10 +-
- drivers/gpu/drm/i915/display/intel_sprite.c        |  51 ++--
- drivers/gpu/drm/i915/display/intel_tc.c            | 258 +++++++++++++-------
- drivers/gpu/drm/i915/display/intel_tc.h            |  72 +++++-
- drivers/gpu/drm/i915/display/intel_vblank.c        |  16 +-
- drivers/gpu/drm/i915/display/intel_vbt_defs.h      |  20 +-
- drivers/gpu/drm/i915/display/intel_wm.c            |   9 +-
- drivers/gpu/drm/i915/display/skl_scaler.c          |  53 +++-
- drivers/gpu/drm/i915/display/skl_scaler.h          |  13 +
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  61 ++---
- drivers/gpu/drm/i915/display/skl_watermark.c       |  20 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |   4 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c         |  32 ++-
- .../drm/i915/gem/selftests/i915_gem_client_blt.c   |   3 +-
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c     |   2 +-
- drivers/gpu/drm/i915/gt/intel_gt_debugfs.c         |   5 +-
- drivers/gpu/drm/i915/gt/intel_rps.c                |  11 +-
- drivers/gpu/drm/i915/gvt/debugfs.c                 |  12 +-
- drivers/gpu/drm/i915/i915_debugfs.c                |  20 +-
- drivers/gpu/drm/i915/i915_debugfs_params.c         |   4 +-
- drivers/gpu/drm/i915/i915_driver.c                 |  14 +-
- drivers/gpu/drm/i915/i915_drv.h                    |   2 -
- drivers/gpu/drm/i915/i915_gpu_error.c              |   6 +-
- drivers/gpu/drm/i915/i915_irq.c                    |  13 +-
- drivers/gpu/drm/i915/i915_reg.h                    |   9 +-
- drivers/gpu/drm/i915/i915_switcheroo.c             |   6 +-
- drivers/gpu/drm/i915/i915_utils.h                  |   9 +-
- drivers/gpu/drm/i915/intel_clock_gating.c          |  35 ++-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c        | 266 +++++++++++----------
- drivers/gpu/drm/i915/intel_uncore.c                |   3 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c       |   8 +-
- drivers/gpu/drm/i915/selftests/intel_uncore.c      |   8 +-
- drivers/gpu/drm/i915/soc/intel_dram.c              |  97 ++++----
- drivers/gpu/drm/i915/soc/intel_dram.h              |  13 +-
- drivers/gpu/drm/i915/soc/intel_gmch.c              |   3 +-
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h  |  22 --
- drivers/gpu/drm/xe/display/ext/i915_utils.c        |   1 +
- drivers/gpu/drm/xe/display/xe_display.c            |   6 +
- drivers/gpu/drm/xe/display/xe_fb_pin.c             |   9 +
- drivers/gpu/drm/xe/display/xe_plane_initial.c      |   4 +
- drivers/gpu/drm/xe/xe_device_types.h               |   3 +-
- include/linux/iopoll.h                             | 170 ++++++++-----
- 126 files changed, 2166 insertions(+), 1419 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h
