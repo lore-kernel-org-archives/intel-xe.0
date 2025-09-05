@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DADCCA1013
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 09:56:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F46FCA0FED
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 10:27:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D58910EB5E;
-	Fri,  5 Sep 2025 09:56:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A267010EB77;
+	Fri,  5 Sep 2025 10:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsYJYkIM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/MnJV9Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D62710EB60;
- Fri,  5 Sep 2025 09:56:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3061510EB77
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Sep 2025 10:27:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757066169; x=1788602169;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=0OhI72o1AQWzREkGWGzhHJpblEFcT11lY1FS0BoFnSU=;
- b=FsYJYkIMT9wXeD0+Wp39fDCKT2yVPX+AkL80CWWShuzj+teHEFIVW7zN
- i2NyzHCBzXEHlztWEa7o9N5iaaKi9vroohIUwWKGqaoVUO9oZYuVycGyx
- +wPSauJgOB234PAFudd+EmKz3MYYPAJSTGvrfbgWncfr/QMqdWpn5kKF2
- GiRbta4gfdvR7BI0b2PwmYVzSJ8rPkD+qBynILMA7PhlkRTh5iisF3Zql
- xUpJTsrMItefzy0Ht8EtqjuKd6M4wMgjP7kTXpNB62k7uBe32C2WBqJM6
- utFRLuMK9ei90wxj2eKQnue2SeRyaHxrd+DDUPkYdgwJBbPimjxgjOmeL A==;
-X-CSE-ConnectionGUID: fN03nXqhTnyyc9moBjKvQQ==
-X-CSE-MsgGUID: m/4bRb34QEi7JZFDfTPw7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="59488073"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="59488073"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ t=1757068057; x=1788604057;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=t7hqC0OhZPjfKal3NAGPSLT+p4RXXk/1GrPZPTD7Xj8=;
+ b=M/MnJV9Q7HSW66jYHemQ0kruUHOaewwt5II9dzqer+txvL49aSnj6ks4
+ 3SmFbBpzA1vKGVxb4IFMRgmlAfXxG1Q734De3p0R5Ye8t0tRXNbcZ0jsv
+ ZI7TX8V007Wh6JD9wHeKOuVMJYH0kvu81tAFdhKkDY/kHie0pI/fM4/67
+ +zSSiql5yoQY3fHy5vE+F0alQhH9MsmrVpU3Lk0It2szMnlY1F52dmBK8
+ y2Cv9VjqE9tdv7EEsUwOnXGhuM5f1lwpmbTF+0ClH2jTJWU+BWwOGOfUj
+ F12Zh8Fu5A5SYPCCvjl3Ckc/iFfE5S1cP+p6fvI3qNiG1SA5piv0dUKJz w==;
+X-CSE-ConnectionGUID: TwRuuSJXRbej4a40U2bIIw==
+X-CSE-MsgGUID: pLyZZU5yRXOUxBbxP0XMYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="59490428"
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="59490428"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 02:56:08 -0700
-X-CSE-ConnectionGUID: UEa5iK2ASzGVvkgy16mBpw==
-X-CSE-MsgGUID: 9JxcikTdRoWbLz5s6IoN+g==
+ 05 Sep 2025 03:27:37 -0700
+X-CSE-ConnectionGUID: 2p/X55dsRNCu/fXDOJWSYQ==
+X-CSE-MsgGUID: Pa4R5jOPRW628vIO8+2pcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="202949675"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.159])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 02:56:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/8] drm/i915/dram: s/wm_lv0.../has_16gb_dimms/
-In-Reply-To: <20250902133113.18778-5-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250902133113.18778-1-ville.syrjala@linux.intel.com>
- <20250902133113.18778-5-ville.syrjala@linux.intel.com>
-Date: Fri, 05 Sep 2025 12:56:04 +0300
-Message-ID: <c55148f6f0174ff994ab67511fbd11b2be7d0332@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="171700945"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 03:27:37 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org, Harish Chegondi <harish.chegondi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: Re: [PATCH v5 1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering()
+ input gt a const
+Date: Fri,  5 Sep 2025 03:27:01 -0700
+Message-ID: <175706800362.503172.4564161396020441087.b4-ty@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <9dc621a90880f62ac8e2951afea7952277f7eb0e.1756855529.git.harish.chegondi@intel.com>
+References: <9dc621a90880f62ac8e2951afea7952277f7eb0e.1756855529.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,103 +69,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 02 Sep 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> The DRAM code shouldn't know anything about watermarks. Rename
-> wm_lv_0_adjust_needed to has_16gb_dimms. How this gets used is
-> up to the watermark code.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Tue, 02 Sep 2025 16:41:59 -0700, Harish Chegondi wrote:
+> Make gt, input parameter to xe_gt_mcr_get_dss_steering(), a
+> constant. This would allow xe_gt_mcr_get_dss_steering() to
+> be called from functions that have gt as const to struct xe_gt.
+> 
+> 
 
-> ---
->  drivers/gpu/drm/i915/display/skl_watermark.c |  2 +-
->  drivers/gpu/drm/i915/soc/intel_dram.c        | 12 ++++++------
->  drivers/gpu/drm/i915/soc/intel_dram.h        |  2 +-
->  3 files changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 33885d619a97..ae3ce0d65cfc 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3214,7 +3214,7 @@ adjust_wm_latency(struct intel_display *display,
->  	 * any underrun. If not able to get Dimm info assume 16GB dimm
->  	 * to avoid any underrun.
->  	 */
-> -	if (!display->platform.dg2 && dram_info->wm_lv_0_adjust_needed)
-> +	if (!display->platform.dg2 && dram_info->has_16gb_dimms)
->  		wm[0] +=3D 1;
->  }
->=20=20
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915=
-/soc/intel_dram.c
-> index b4f0793f778d..efb72e137748 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -428,7 +428,7 @@ skl_dram_get_channels_info(struct drm_i915_private *i=
-915, struct dram_info *dram
->  		return -EINVAL;
->  	}
->=20=20
-> -	dram_info->wm_lv_0_adjust_needed =3D ch0.is_16gb_dimm || ch1.is_16gb_di=
-mm;
-> +	dram_info->has_16gb_dimms =3D ch0.is_16gb_dimm || ch1.is_16gb_dimm;
->=20=20
->  	dram_info->symmetric_memory =3D intel_is_dram_symmetric(&ch0, &ch1);
->=20=20
-> @@ -673,7 +673,7 @@ static int gen11_get_dram_info(struct drm_i915_privat=
-e *i915, struct dram_info *
->=20=20
->  static int gen12_get_dram_info(struct drm_i915_private *i915, struct dra=
-m_info *dram_info)
->  {
-> -	dram_info->wm_lv_0_adjust_needed =3D false;
-> +	dram_info->has_16gb_dimms =3D false;
->=20=20
->  	return icl_pcode_read_mem_global_info(i915, dram_info);
->  }
-> @@ -737,10 +737,10 @@ int intel_dram_detect(struct drm_i915_private *i915)
->  	i915->dram_info =3D dram_info;
->=20=20
->  	/*
-> -	 * Assume level 0 watermark latency adjustment is needed until proven
-> +	 * Assume 16Gb DIMMs are present until proven
->  	 * otherwise, this w/a is not needed by bxt/glk.
->  	 */
-> -	dram_info->wm_lv_0_adjust_needed =3D !IS_BROXTON(i915) && !IS_GEMINILAK=
-E(i915);
-> +	dram_info->has_16gb_dimms =3D !IS_BROXTON(i915) && !IS_GEMINILAKE(i915);
->=20=20
->  	if (DISPLAY_VER(display) >=3D 14)
->  		ret =3D xelpdp_get_dram_info(i915, dram_info);
-> @@ -766,8 +766,8 @@ int intel_dram_detect(struct drm_i915_private *i915)
->=20=20
->  	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_channels);
->=20=20
-> -	drm_dbg_kms(&i915->drm, "Watermark level 0 adjustment needed: %s\n",
-> -		    str_yes_no(dram_info->wm_lv_0_adjust_needed));
-> +	drm_dbg_kms(&i915->drm, "16Gb DIMMs: %s\n",
-> +		    str_yes_no(dram_info->has_16gb_dimms));
->=20=20
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915=
-/soc/intel_dram.h
-> index 6212944d44aa..03a973f1c941 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-> @@ -31,7 +31,7 @@ struct dram_info {
->  	u8 num_qgv_points;
->  	u8 num_psf_gv_points;
->  	bool symmetric_memory;
-> -	bool wm_lv_0_adjust_needed;
-> +	bool has_16gb_dimms;
->  };
->=20=20
->  void intel_dram_edram_detect(struct drm_i915_private *i915);
+Applied to drm-xe-next, thanks!
 
---=20
-Jani Nikula, Intel
+[1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering() input gt a const
+      commit: 6ee8adf124102aa679d13b8c3cbe391f544ba90a
+[2/2] drm/xe/xe2hpg: Add Wa_18041344222 for Xe2_HPG
+      commit: 5952d80514054d12d2ec72aa111c2e09eb70e881
+
+Best regards,
+-- 
+Lucas De Marchi
+
