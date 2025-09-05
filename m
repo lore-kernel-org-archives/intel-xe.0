@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F46FCA0FED
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 10:27:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60D93CA0FED
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 10:41:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A267010EB77;
-	Fri,  5 Sep 2025 10:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2494B10EB7B;
+	Fri,  5 Sep 2025 10:41:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M/MnJV9Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AiWYY7EU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3061510EB77
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Sep 2025 10:27:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06DDB10EB7B;
+ Fri,  5 Sep 2025 10:41:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757068057; x=1788604057;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=t7hqC0OhZPjfKal3NAGPSLT+p4RXXk/1GrPZPTD7Xj8=;
- b=M/MnJV9Q7HSW66jYHemQ0kruUHOaewwt5II9dzqer+txvL49aSnj6ks4
- 3SmFbBpzA1vKGVxb4IFMRgmlAfXxG1Q734De3p0R5Ye8t0tRXNbcZ0jsv
- ZI7TX8V007Wh6JD9wHeKOuVMJYH0kvu81tAFdhKkDY/kHie0pI/fM4/67
- +zSSiql5yoQY3fHy5vE+F0alQhH9MsmrVpU3Lk0It2szMnlY1F52dmBK8
- y2Cv9VjqE9tdv7EEsUwOnXGhuM5f1lwpmbTF+0ClH2jTJWU+BWwOGOfUj
- F12Zh8Fu5A5SYPCCvjl3Ckc/iFfE5S1cP+p6fvI3qNiG1SA5piv0dUKJz w==;
-X-CSE-ConnectionGUID: TwRuuSJXRbej4a40U2bIIw==
-X-CSE-MsgGUID: pLyZZU5yRXOUxBbxP0XMYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="59490428"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="59490428"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 03:27:37 -0700
-X-CSE-ConnectionGUID: 2p/X55dsRNCu/fXDOJWSYQ==
-X-CSE-MsgGUID: Pa4R5jOPRW628vIO8+2pcw==
+ t=1757068917; x=1788604917;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IoiYsvwp+n5saJuhGWWB0NI1sBGBy5zXDS1pu1r878c=;
+ b=AiWYY7EUrinkd3cYzEf754uGHL+Ni1T9x0dgcK5PwhTiW65IehhNY5Fo
+ 2eKZrbQFd4MMF9rXGz1SoMs/Twml7EhFFeYzfxsUMgF4RKOHKhx5jm4Ib
+ AJdzgqFbWmecSnIEWMUFpNm4hP90G6VI058kD5Qa3Kz3gE1ZVX9ToKfbr
+ 1f4qR2vg4srdfM1j7A24QRUMkxsJHDJfgwOkuBIXiO/iZSo5JtstSiltN
+ uoiFGHVyi1aXarw7c7iAM60pljr2bpJOR2WkgciHW101iO42L+4Bs9lTi
+ u+ijUz4LhPpc3XSuwxcrXkgM2faONh1sQ39zoUv08TgSkVzZRRY12SftU w==;
+X-CSE-ConnectionGUID: NgL5+SPzTFq82B4d/mzB9g==
+X-CSE-MsgGUID: 46YHHbZ1Sau1/V8npDPNWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58629837"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="58629837"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 03:41:57 -0700
+X-CSE-ConnectionGUID: Zd/HiO9QSAmynFucjeVVoA==
+X-CSE-MsgGUID: FeOS1KwORcqphGJDkaAltw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="171700945"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 03:27:37 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Harish Chegondi <harish.chegondi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: Re: [PATCH v5 1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering()
- input gt a const
-Date: Fri,  5 Sep 2025 03:27:01 -0700
-Message-ID: <175706800362.503172.4564161396020441087.b4-ty@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <9dc621a90880f62ac8e2951afea7952277f7eb0e.1756855529.git.harish.chegondi@intel.com>
-References: <9dc621a90880f62ac8e2951afea7952277f7eb0e.1756855529.git.harish.chegondi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; d="scan'208";a="171339491"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.159])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 03:41:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/power: fix size for for_each_set_bit() in abox
+ iteration
+Date: Fri,  5 Sep 2025 13:41:49 +0300
+Message-ID: <20250905104149.1144751-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,22 +71,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+for_each_set_bit() expects size to be in bits, not bytes. The abox mask
+iteration uses bytes, but it works by coincidence, because the local
+variable holding the mask is unsigned long, and the mask only ever has
+bit 2 as the highest bit. Using a smaller type could lead to subtle and
+very hard to track bugs.
 
-On Tue, 02 Sep 2025 16:41:59 -0700, Harish Chegondi wrote:
-> Make gt, input parameter to xe_gt_mcr_get_dss_steering(), a
-> constant. This would allow xe_gt_mcr_get_dss_steering() to
-> be called from functions that have gt as const to struct xe_gt.
-> 
-> 
+Fixes: 62afef2811e4 ("drm/i915/rkl: RKL uses ABOX0 for pixel transfers")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: <stable@vger.kernel.org> # v5.9+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Applied to drm-xe-next, thanks!
-
-[1/2] drm/xe/mcr: Make xe_gt_mcr_get_dss_steering() input gt a const
-      commit: 6ee8adf124102aa679d13b8c3cbe391f544ba90a
-[2/2] drm/xe/xe2hpg: Add Wa_18041344222 for Xe2_HPG
-      commit: 5952d80514054d12d2ec72aa111c2e09eb70e881
-
-Best regards,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7340d5a71673..6f56ce939f00 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1174,7 +1174,7 @@ static void icl_mbus_init(struct intel_display *display)
+ 	if (DISPLAY_VER(display) == 12)
+ 		abox_regs |= BIT(0);
+ 
+-	for_each_set_bit(i, &abox_regs, sizeof(abox_regs))
++	for_each_set_bit(i, &abox_regs, BITS_PER_TYPE(abox_regs))
+ 		intel_de_rmw(display, MBUS_ABOX_CTL(i), mask, val);
+ }
+ 
+@@ -1639,11 +1639,11 @@ static void tgl_bw_buddy_init(struct intel_display *display)
+ 	if (table[config].page_mask == 0) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Unknown memory configuration; disabling address buddy logic.\n");
+-		for_each_set_bit(i, &abox_mask, sizeof(abox_mask))
++		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask))
+ 			intel_de_write(display, BW_BUDDY_CTL(i),
+ 				       BW_BUDDY_DISABLE);
+ 	} else {
+-		for_each_set_bit(i, &abox_mask, sizeof(abox_mask)) {
++		for_each_set_bit(i, &abox_mask, BITS_PER_TYPE(abox_mask)) {
+ 			intel_de_write(display, BW_BUDDY_PAGE_MASK(i),
+ 				       table[config].page_mask);
+ 
 -- 
-Lucas De Marchi
+2.47.2
 
