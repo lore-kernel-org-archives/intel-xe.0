@@ -4,57 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ACABCA0FED
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:01:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B77E0CA0FED
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:07:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0876710EB26;
-	Fri,  5 Sep 2025 07:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C50210EB29;
+	Fri,  5 Sep 2025 07:07:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ECeR/wSv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hr3lePui";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3704810EB26;
- Fri,  5 Sep 2025 07:01:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD26D10EB29
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 Sep 2025 07:07:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757055689; x=1788591689;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9LYBsBGFOu+Gjj3Ya9uz+p72Msg3n4s+Gixm/mrZVb0=;
- b=ECeR/wSv7w0+945unSb2lqVb25E7LuIZHF12PxuIGlK8IRD/izDmxNHu
- Ei0STbvY+9vuSuugLezIWA8Tz3g9B4kGSIhMfeVYpWAlwZDGF+X2Omy+D
- lYnrI9bfPXnOjmjWzan6w6NXubHoUITzMb6WVi0zVR7LzH1P7HJ5ZJaaO
- GX6sgdl4nDHLq9gDn9HfXuxEdmqqUqSgaHousHaNKBqDzOiOK2I+EZ7q9
- 0OuBYJYJV2+0IzGD/5rsm0cr7xyMDEWYxPquZk1wGz9jySKawOno9xkUQ
- LiAEBshXt6/V2S79oef+OjDwzPpYOwgqwfVjryXMd1OgmIG3asp92fWX9 w==;
-X-CSE-ConnectionGUID: lRMXUQ7TROKZqV4pTYtvHw==
-X-CSE-MsgGUID: QU7qJ1ZNR9Cdr3ZGsJXr7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="70781483"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="70781483"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:01:29 -0700
-X-CSE-ConnectionGUID: keiyj2xOQjWpZpNcNhN9XA==
-X-CSE-MsgGUID: PnIy9P42R4a8Rm+ZXippYQ==
+ t=1757056021; x=1788592021;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2nvZma/Mv9TOvyhzz1tEh2lCDpmbO1nxnk6gZVGpboE=;
+ b=hr3lePuiH1zr3fTwwUXBFW6WGtZ1YuzfpSYNY+NdL6BHJ7QuzQzX1TJ1
+ S9HHogfjXUFxr8NM6MQL4TKoYm9IxTX7a/11TBs8rJ2yNBIqx/V01CwDd
+ aS9ePP29e44oqk2OYdwoTjlZFZ5nrXJDyqoYMakJrDw+nxv5LEVxbbJmL
+ CAg1RmV2oR8wUeCNUGKDhnSHLKbZ4qEkh+9YiaUfMRhOL85y0AWN2H9n3
+ Hl97fImRrrORStizjSqX0U+rUDxT1+WCjLinqkJML8j/05aY/q/zih/ze
+ w3hmfnNUBwUarHw/LuU2iGVu0ObwlrrcyQH8W2IR1fI2/0jegZxCjA5RA w==;
+X-CSE-ConnectionGUID: r738LbRyTy6gJZ+RHl2ZAQ==
+X-CSE-MsgGUID: ujiulZGeS1iFWbMWmXQl4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58616605"
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="58616605"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 00:07:00 -0700
+X-CSE-ConnectionGUID: UNcIIyIeStG7XyjdkM7RbA==
+X-CSE-MsgGUID: Gt54tsMSRgafq/WaxIn0Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="171666298"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.225])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:01:28 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/alpm: Compute ALPM parameters into
- crtc_state->alpm_parameters
-Date: Fri,  5 Sep 2025 10:01:14 +0300
-Message-ID: <20250905070114.2635531-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="171669625"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2025 00:07:00 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 5 Sep 2025 00:06:54 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Fri, 5 Sep 2025 00:06:54 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.85) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 5 Sep 2025 00:06:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pBXhE8e9i982UYYZQBvb/X16y4Xgzo29zaI6xFZZdfhw+E2znBhAPbHDI4wEBeo7XkU6tL4qKH/S5IsEumrb/HsBXFo97+upeyFW1iVfxpzc7AUsNwC67fxegg39ytIkCXUo4FTUTqGrvkHFZjH2V9miOiK1rSGNpYckM36n6g9/F21e4Td5LabuKUdsblW57un73FfoUWbaDFYNxHF3JOIPxts0CNG4B85RYiWFJ7Z96B4YYrrM66YR2Xcm+TsYpFw0cDvnmjPIjQDKibfyNHzBmDLvvbFK8f7t/GJyf1tK+6ELM9fGzGF4wIrm7zGqf72KOMyKJNYuiqDqMjCAHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gAw3EHmzfcz9oOFPaQrpIgLalXnJleBhwB6MEVagjbQ=;
+ b=oqLtjbMnkqqNHs908iJQwfIF/NCLAbXwIgndM/qLofeTRbZ/QcIIUZT+7bJm90ar5ib6i8OSTzETV5loPCk4QmhRPaOPeSpgNIjQAwvyKm9ErxUPfJC5lWh3i6btc6VvLSnlF/aKgWfNlR8Ai0KW/dFOM2dUdOl4lXH6yWrPX/DfWkuv+rL0XYJHrb73WvYEkobTzGc+1RqdxtO0phJ06UnnsoIXrBKF5rJdZZg9p7x9or5JHnSoaVSqHlSZmfFJD07AarvpOiJZcnxiTvf86Ou4pFSNBm6oeA5L4XfYR5S6/f81+HCo4nkCpXX/7zuTXb4CTTg/ujAObGvhGmpr3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15)
+ by CH3PR11MB8701.namprd11.prod.outlook.com (2603:10b6:610:1c8::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Fri, 5 Sep
+ 2025 07:06:00 +0000
+Received: from LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::4858:d790:3ac6:8541]) by LV3PR11MB8695.namprd11.prod.outlook.com
+ ([fe80::4858:d790:3ac6:8541%2]) with mapi id 15.20.9094.017; Fri, 5 Sep 2025
+ 07:06:00 +0000
+Message-ID: <e6e17151-dcea-42e8-a9ae-2f1fc67d5b53@intel.com>
+Date: Fri, 5 Sep 2025 12:35:53 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/xe/guc: Rename xe_guc_register_exec_queue
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Matthew Brost <matthew.brost@intel.com>
+References: <20250904192918.7346-1-michal.wajdeczko@intel.com>
+ <20250904192918.7346-2-michal.wajdeczko@intel.com>
+Content-Language: en-US
+From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20250904192918.7346-2-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0123.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::6) To LV3PR11MB8695.namprd11.prod.outlook.com
+ (2603:10b6:408:211::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV3PR11MB8695:EE_|CH3PR11MB8701:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd04321f-4084-4d15-ab35-08ddec4aaaf5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cGxGL1pwb3Q2aWQ5Q3ltcDJBL1BZU3FBM1d3MkI3OHlIKzgrSzhheEUwNm1k?=
+ =?utf-8?B?SjVWYi9iRkJacHBVYkZ3K0V6WERCcU9CenM0cVAxUEc4bGRNNUFHRkwzVkFQ?=
+ =?utf-8?B?Um5YOXA5bk1JK3BNWFpKdWgvdXVGa2JQYnVDSkFRZW1vV1BUQk5UWTdIV2xK?=
+ =?utf-8?B?WllFV1ZUeWs4UWFVL3kzNDNHUEhYZFJaQmpRVlFPWkl1RGR3a3lZV1BlaHJ0?=
+ =?utf-8?B?OGptKzF2WXJPc0tIUFBGYmJTWmRLWnUrQm93aDgzSkZJMkVNSEdGLzNnNFFs?=
+ =?utf-8?B?RlZUeGZtT2U5ZHlSU01qU1lKekVmNkxTNGVQeXgxS3hhS0duZ2xKNVVrNWtk?=
+ =?utf-8?B?UXJiekErQkRiN2Q2bEFwellyeEt6MU5MZFFwcTUrbm0wMU9EMy9wN29sdnIr?=
+ =?utf-8?B?a3Y1QjNxdXhhN0J1Y3pWZUFrbko4VHNyeUxKcHRFMXJqdTJ3OCtuazdEbmIw?=
+ =?utf-8?B?elJJTXFHa1FSQzVjOUt2WUxKRC9TSzh6M20xc09rMVRjUnJoQ2YvM0xJVEJK?=
+ =?utf-8?B?LzJJQWlDSDJiazg1NGdzbld6STI5aUNWTXpFbFRjQXdUSzhWNmFwNWx0aDVT?=
+ =?utf-8?B?VVl4a053NS9FMHpsSmhRMXNvdDVMcXVjdzFHYWFlanQ5SGNtOVhMVUd4L3hH?=
+ =?utf-8?B?MTNsRWdURnBpajdtbjcxNE55VE0yNXc5MnFkYnpIZ0p2aFJPTFlQV01YdUMv?=
+ =?utf-8?B?Wmw4dmRueTJpR3ErWXRzREZiUHE5d2Qzb01FQlRCVm1nTWFRa2xRQ0pSbGFM?=
+ =?utf-8?B?dzlBazhRK3pUY3BlUGZDWG02VTkvOFo2YzlZbHNGcmZFdytTWXNoWWx6RC85?=
+ =?utf-8?B?RGUvcGpiQUgyTi9nUGlSTXdMUXJPNDFkU1RaV0d3T202NFVOZ0l3b280MDZ0?=
+ =?utf-8?B?Z3JsY3RTZXlJd21ZQmZjOC9IcU9KbW4wdTFaTmNJOGNpY21iZElDRkFQanZ4?=
+ =?utf-8?B?M3l6eFNsQVgvaVo2TXJXajFVelJNR3gzSFNyc3RmR21CRTJ0d0VVVTlrTlBp?=
+ =?utf-8?B?RklEb2Q5c25oVE0zTVJEVjNMRHJsSU9mMm44NkxLYzJvajV3eEtjQlJpWlhq?=
+ =?utf-8?B?QnJsVDd0QXMwZTFoMHNFUTF1NGFMc1djRnh4d3ZvTUhqUk43cUM4Tld4UElS?=
+ =?utf-8?B?OXFWMDZzZWlPc1RaR1c0L1dKd1pFTXcweWdGT1d6SDJ4MnhrdGJNa0twajdq?=
+ =?utf-8?B?MVJhV05iRnlCdGxsQUpwSGtOSkZBT05MU1pKZjFJZld4REoreUs4UnZoaXhu?=
+ =?utf-8?B?L0V5WGVxNVVSZGpGZFIvRzUyenV3bmxXUjFCVktVNGNsNFljd3BXMUh6STY1?=
+ =?utf-8?B?ZGpZQXhPQks2VkNnS2VVbmdVSzhBdTNNZU0wS3EwcmRNOWZxbjdVa2lFd3FS?=
+ =?utf-8?B?eFFQd2VVNTUzQm9aOFNkWmEvMTU3SFhCSFQ3WXcvZlBhVzRsRGRzRy9rbC9y?=
+ =?utf-8?B?ZTRVTGFTbnJBT0pua0trSzBRZFoxcmlqeWF2dzF6bW1ib2QyYVRlVnF6bXhX?=
+ =?utf-8?B?QmhocCszWUlRU0JENzJDdzYvL2JWQVBoOThiWWpMR2VQL01NZm5KL2ZaOXkv?=
+ =?utf-8?B?MjMyc3hEeitGekpGdy9tek9SYkFHcWtkSk83UGd6SVJYRitYOUVWV0VZRmRQ?=
+ =?utf-8?B?blQva0hLT0tUWU11eGNvMUxuMU9zK2EySjJnbXRBeDlnL2J1bWc0RVVpbXU2?=
+ =?utf-8?B?cUYvNEJXeWlMU3dDYVYwNUxTK25VdlBvNUJKVGMyQmxhWG5PTzJhRWpVYVJ0?=
+ =?utf-8?B?N1RReGhQMzFaSXdhcktJTC9ONDRXQ2xrUHNlaGwyaDFRK2tiUTJiTmFGSnkz?=
+ =?utf-8?B?NEJKREpjdmxpWDlHQnlDcG1lRUg3UEVOYU9OUFEyTnBBZG1JNEk3MTArVXZy?=
+ =?utf-8?B?dkdJMmdkMUl0LzU1bFkyWDZ5SWhsZ0sxZkpzL1d2WlpZU2drZERZUHBtWWRH?=
+ =?utf-8?Q?ryGwG5YuVXQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV3PR11MB8695.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGVkWTA2UzFqZ0FDL1VvUXdQMGpFS2NnOHFnUmtSOHY4STFVTWtSSHFlYlZV?=
+ =?utf-8?B?OVE1WmovYTlPelpOdUlOTzN5Y3JSUWxmcURKcGFZTmxUR0V2ZFpETnUwWWo3?=
+ =?utf-8?B?SnBrKzZFYnpuNlR0MFJPamlrOUZkSFdCcHNWTW5kUjFkRTh2Tk5sdk5wVTZC?=
+ =?utf-8?B?ZmFtL2lYSDU4TlAwSXRhR1IvOUtWK2pJUkxkclh0Uk1lWG1iUmhYM0ZSc2gw?=
+ =?utf-8?B?Q0tITE5BaHFuc3d3aUlOMWlMdVFIRFpGSk9ucWpCMDYvT0tQK01MMzdZaG1B?=
+ =?utf-8?B?aTNSWTI2V3ZVdVk0NWF0c20vZnZPNDkrblcwVkRtMHhYQi93MjgyMVN3a0RU?=
+ =?utf-8?B?MnkwaE1nMXREbk4zSWJteU9KdHhYclZqUXlKb1VlQ2IzSUZldkpuQ1E3TWNt?=
+ =?utf-8?B?WjdlT2I2dWszZEtVWFRHOHlnQ2JNbThvYkFJZmljT200QnpTK29GK3ZuQ1Z0?=
+ =?utf-8?B?ZnpsRnJnVXhlTVFBSjQ1WWhIemNBRVRWTnplUjE5bmcxVHBwTlFhRWRoNkVN?=
+ =?utf-8?B?dEVsRy9oK2pNbXVTNFRsaUpTUmUzQ05oS0o1NHdGNGRGeERBbzRFNDZUSXJG?=
+ =?utf-8?B?SDFmSkdJdTR4aWpoUDlCYkJ6MjZyM1ZQNjE0SXlhdEpvdGYwODJ3TWt2QmVj?=
+ =?utf-8?B?WlU3RnhhQWxQZU5nZjlRUU5DU0kvRU5GeE1wSmhqYlFyT1lPeFpPV2FiaHV2?=
+ =?utf-8?B?YWlibDN5MW9NM3FpOE9YYnNrVVF4NkVtZTNtUDNsL25odWZGbWxFeWpvWitL?=
+ =?utf-8?B?MG1zbHRMTHBNbkpLOFRlbEd1TDBHK29heU9rVzZaQkZNSVd4YlhqV2ZGS2Yx?=
+ =?utf-8?B?MjJ0UjdlZE0rOHV0MnFJNUtVeXNRaythNHBXNVgwT0x6UjZ4MVZEWHR5T1dO?=
+ =?utf-8?B?QTdqUTZ1ZVJ6Y1E5a0c3Q3ptRWU3UWpES3VWeG9wZHJDZkpzTmgvQUlvZ0ZH?=
+ =?utf-8?B?QjhwdUd3alpRTTdJN0xRWlc1eWZHaXVvMlMxWDZiZ0ZwYk14YUQ0c0thekl0?=
+ =?utf-8?B?YkZFVk9RakhOcEh0aFlRV0pnYUpoeUxYbVRWRGZWd2dVRkZmSk9lZUw4ODJF?=
+ =?utf-8?B?ODFMV3RJdVNvZ0QxT1NwZzUvVWhBb1lTMkJpZkFTYWc2Q3M0U29KTC9reUtn?=
+ =?utf-8?B?elNab2JnWG9pK2JDTjdZMGNhTGRlaVNQeXA3eEpzQ1BCSDdPbElQSGt4MHdW?=
+ =?utf-8?B?VFoxVWp1TzlKRngzT2dpNFFCS2MxMDd6RzNVamR3bjdXalJ4YmtzbUVLK3VL?=
+ =?utf-8?B?cVVOR2dGeGRSU3pNaUhVVVdjU20wbDNxNVB3QXdIcnNwMUNYSWdQdkg1UStJ?=
+ =?utf-8?B?cWx6aGFpKy8wOGQwS2RUNHI5bkFXQ2JPU1o1eG1wQndtbHQ3cUZ0RVJaU1hS?=
+ =?utf-8?B?UDRDR202NllraDF3ODlpMXFFMG1Cb1Z0ZDhFRWtFVExCSDQ5elBQSU8yclZ4?=
+ =?utf-8?B?ZW1ZVFdSckRadUV0eWdBd2pXaThxQmJQR3pBZElrZUdLclJHOHJ6SFl0ZlNX?=
+ =?utf-8?B?Vldva0JwWmlQVHJMdjlIenNiRG96enZJQ3BnMWVDTmVneW9ndlA0Z1RQT3ls?=
+ =?utf-8?B?WnBpdHovNGZmRm9wYXVPZUl4VlF3dEhBb1hqcTArT0RzVFRlTWc5Wm5NWlp4?=
+ =?utf-8?B?TnJvcWNUT1JMaGRpWHZ2dHJaZnhTMXgxR2krbHQxc0ExSkNoSkJaUUt3TExR?=
+ =?utf-8?B?b00xbUJRWFljZVRyemhxQkppWEZFL0hUbjRiK0RkSlFEZVdwaHFIajhWZzRC?=
+ =?utf-8?B?ajZNZkV5cUtocVN4eXlFVms2NHdsZnE2ZXMzOUF6aVBEajdMbk1SWUZoV0o0?=
+ =?utf-8?B?bEVES0IvSEF3T1JuYkZKODhqMjZheEplQk02NUlmblprK1JnaHBOT01jZkpx?=
+ =?utf-8?B?ZWpzaldxb0lheW9KemIrQ0VsSXFyTGlGTWN6YTV5VWxla296Q1ZOaGE4OUNC?=
+ =?utf-8?B?V1BoSlhFRlN4SjlkOFdIUTd0eFhKRDY5Z0hGajVrZmNzMndMd0JYeTlRdjBJ?=
+ =?utf-8?B?OHJXQTdTVkRVVnB6QnIrMXd3TTZPZWwxcksxUVp3RVB5emRpSnBuR1NDZ2dN?=
+ =?utf-8?B?MkJnbjBsWStpa3M2VVpVenBtR0xhWGJoY2x0a0V1bU1zTGYxOHpIdmFuSTF5?=
+ =?utf-8?B?WDZDNXREWXcvZDZpL0xTVXQ2UE05T2JST3EzSzc1b21UWDU0UXFTR2ZuejRi?=
+ =?utf-8?B?MHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd04321f-4084-4d15-ab35-08ddec4aaaf5
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8695.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 07:06:00.0836 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hRApUxhjU5nMhK1XI3pvdigYEOJ0S00vH3hI5g/eO351eYIKbioz/O+eUiN00Ky2ERz7bGOT1NMWzlYrejDGm75RwsovshD1WbubL0D+z4I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8701
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,258 +196,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently ALPM parameters are computed directly into
-intel_dp->alpm_parameters. This is a problem when compute config ends up to
-not using the computed state.
 
-Fix this by adding ALPM parameters into intel_crtc_state and compute into
-there. Copy needed parts of crtc_state->alpm_parameters into
-intel_dp->alpm.alpm_parameters (io_wake_lines and fast_wake_lines) when
-they are configured into HW.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 38 ++++++++++---------
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 +-
- .../drm/i915/display/intel_display_types.h    | 16 +++++---
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++++-----
- 4 files changed, 43 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index ed7a7ed486b5..bbc4fa2e084e 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -133,7 +133,7 @@ static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state *crtc_s
- 
- static int
- _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
--				  const struct intel_crtc_state *crtc_state)
-+				  struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int aux_less_wake_time, aux_less_wake_lines, silence_period,
-@@ -157,15 +157,15 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
- 	if (display->params.psr_safest_params)
- 		aux_less_wake_lines = ALPM_CTL_AUX_LESS_WAKE_TIME_MASK;
- 
--	intel_dp->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
--	intel_dp->alpm_parameters.silence_period_sym_clocks = silence_period;
--	intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
-+	crtc_state->alpm_parameters.aux_less_wake_lines = aux_less_wake_lines;
-+	crtc_state->alpm_parameters.silence_period_sym_clocks = silence_period;
-+	crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms = lfps_half_cycle;
- 
- 	return true;
- }
- 
- static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
--				     const struct intel_crtc_state *crtc_state)
-+				     struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int check_entry_lines;
-@@ -186,7 +186,7 @@ static bool _lnl_compute_alpm_params(struct intel_dp *intel_dp,
- 	if (display->params.psr_safest_params)
- 		check_entry_lines = 15;
- 
--	intel_dp->alpm_parameters.check_entry_lines = check_entry_lines;
-+	crtc_state->alpm_parameters.check_entry_lines = check_entry_lines;
- 
- 	return true;
- }
-@@ -217,7 +217,7 @@ static int io_buffer_wake_time(const struct intel_crtc_state *crtc_state)
- }
- 
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--			       const struct intel_crtc_state *crtc_state)
-+			       struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	int io_wake_lines, io_wake_time, fast_wake_lines, fast_wake_time;
-@@ -255,8 +255,8 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 		io_wake_lines = fast_wake_lines = max_wake_lines;
- 
- 	/* According to Bspec lower limit should be set as 7 lines. */
--	intel_dp->alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
--	intel_dp->alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
-+	crtc_state->alpm_parameters.io_wake_lines = max(io_wake_lines, 7);
-+	crtc_state->alpm_parameters.fast_wake_lines = max(fast_wake_lines, 7);
- 
- 	return true;
- }
-@@ -306,9 +306,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 		    adjusted_mode->crtc_vdisplay - context_latency;
- 	first_sdp_position = adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vsync_start;
- 	if (intel_alpm_aux_less_wake_supported(intel_dp))
--		waketime_in_lines = intel_dp->alpm_parameters.io_wake_lines;
-+		waketime_in_lines = crtc_state->alpm_parameters.io_wake_lines;
- 	else
--		waketime_in_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
-+		waketime_in_lines = crtc_state->alpm_parameters.aux_less_wake_lines;
- 
- 	crtc_state->has_lobf = (context_latency + guardband) >
- 		(first_sdp_position + waketime_in_lines);
-@@ -334,7 +334,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
- 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
- 			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
--			ALPM_CTL_AUX_LESS_WAKE_TIME(intel_dp->alpm_parameters.aux_less_wake_lines);
-+			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_parameters.aux_less_wake_lines);
- 
- 		if (intel_dp->as_sdp_supported) {
- 			u32 pr_alpm_ctl = PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1;
-@@ -352,7 +352,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 
- 	} else {
- 		alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
--			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
-+			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(crtc_state->alpm_parameters.fast_wake_lines);
- 	}
- 
- 	if (crtc_state->has_lobf) {
-@@ -360,7 +360,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
- 	}
- 
--	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
-+	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(crtc_state->alpm_parameters.check_entry_lines);
- 
- 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
-@@ -371,6 +371,8 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
- {
- 	lnl_alpm_configure(intel_dp, crtc_state);
- 	intel_dp->alpm_parameters.transcoder = crtc_state->cpu_transcoder;
-+	intel_dp->alpm_parameters.io_wake_lines = crtc_state->alpm_parameters.io_wake_lines;
-+	intel_dp->alpm_parameters.fast_wake_lines = crtc_state->alpm_parameters.fast_wake_lines;
- }
- 
- void intel_alpm_port_configure(struct intel_dp *intel_dp,
-@@ -388,14 +390,14 @@ void intel_alpm_port_configure(struct intel_dp *intel_dp,
- 			PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(15) |
- 			PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(0) |
- 			PORT_ALPM_CTL_SILENCE_PERIOD(
--				intel_dp->alpm_parameters.silence_period_sym_clocks);
-+				crtc_state->alpm_parameters.silence_period_sym_clocks);
- 		lfps_ctl_val = PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(LFPS_CYCLE_COUNT) |
- 			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms) |
- 			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms) |
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms) |
- 			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
--				intel_dp->alpm_parameters.lfps_half_cycle_num_of_syms);
-+				crtc_state->alpm_parameters.lfps_half_cycle_num_of_syms);
- 	}
- 
- 	intel_de_write(display, PORT_ALPM_CTL(port), alpm_ctl_val);
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index a861c20b5d79..53599b464dea 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -17,7 +17,7 @@ struct intel_crtc;
- 
- void intel_alpm_init(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
--			       const struct intel_crtc_state *crtc_state);
-+			       struct intel_crtc_state *crtc_state);
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 				    struct intel_crtc_state *crtc_state,
- 				    struct drm_connector_state *conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index fd9d2527889b..1fc778067397 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1339,6 +1339,17 @@ struct intel_crtc_state {
- 
- 	/* LOBF flag */
- 	bool has_lobf;
-+
-+	struct {
-+		u8 io_wake_lines;
-+		u8 fast_wake_lines;
-+
-+		/* LNL and beyond */
-+		u8 check_entry_lines;
-+		u8 aux_less_wake_lines;
-+		u8 silence_period_sym_clocks;
-+		u8 lfps_half_cycle_num_of_syms;
-+	} alpm_parameters;
- };
- 
- enum intel_pipe_crc_source {
-@@ -1847,11 +1858,6 @@ struct intel_dp {
- 		enum transcoder transcoder;
- 		struct mutex lock;
- 
--		/* LNL and beyond */
--		u8 check_entry_lines;
--		u8 aux_less_wake_lines;
--		u8 silence_period_sym_clocks;
--		u8 lfps_half_cycle_num_of_syms;
- 		bool lobf_disable_debug;
- 		bool sink_alpm_error;
- 	} alpm_parameters;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 22433fe2ee14..dd6df3154508 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -953,15 +953,16 @@ static u32 intel_psr2_get_tp_time(struct intel_dp *intel_dp)
- 	return val;
- }
- 
--static int psr2_block_count_lines(struct intel_dp *intel_dp)
-+static int
-+psr2_block_count_lines(u8 io_wake_lines, u8 fast_wake_lines)
- {
--	return intel_dp->alpm_parameters.io_wake_lines < 9 &&
--		intel_dp->alpm_parameters.fast_wake_lines < 9 ? 8 : 12;
-+	return io_wake_lines < 9 && fast_wake_lines < 9 ? 8 : 12;
- }
- 
- static int psr2_block_count(struct intel_dp *intel_dp)
- {
--	return psr2_block_count_lines(intel_dp) / 4;
-+	return psr2_block_count_lines(intel_dp->alpm_parameters.io_wake_lines,
-+				      intel_dp->alpm_parameters.fast_wake_lines) / 4;
- }
- 
- static u8 frames_before_su_entry(struct intel_dp *intel_dp)
-@@ -1367,11 +1368,12 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- 	int wake_lines;
- 
- 	if (aux_less)
--		wake_lines = intel_dp->alpm_parameters.aux_less_wake_lines;
-+		wake_lines = crtc_state->alpm_parameters.aux_less_wake_lines;
- 	else
- 		wake_lines = DISPLAY_VER(display) < 20 ?
--			psr2_block_count_lines(intel_dp) :
--			intel_dp->alpm_parameters.io_wake_lines;
-+			psr2_block_count_lines(crtc_state->alpm_parameters.io_wake_lines,
-+					       crtc_state->alpm_parameters.fast_wake_lines) :
-+			crtc_state->alpm_parameters.io_wake_lines;
- 
- 	if (crtc_state->req_psr2_sdp_prior_scanline)
- 		vblank -= 1;
-@@ -1384,7 +1386,7 @@ static bool wake_lines_fit_into_vblank(struct intel_dp *intel_dp,
- }
- 
- static bool alpm_config_valid(struct intel_dp *intel_dp,
--			      const struct intel_crtc_state *crtc_state,
-+			      struct intel_crtc_state *crtc_state,
- 			      bool aux_less)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-@@ -1589,7 +1591,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 
- static bool
- _panel_replay_compute_config(struct intel_dp *intel_dp,
--			     const struct intel_crtc_state *crtc_state,
-+			     struct intel_crtc_state *crtc_state,
- 			     const struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--- 
-2.43.0
-
+On 05-09-2025 00:59, Michal Wajdeczko wrote:
+> This function is dedicated for use by the VFs, we shouldn't use
+> name that might suggests it's general purpose. While there, update
+> asserts to better reflect intended usage.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_guc_submit.c   | 14 ++++++++------
+>   drivers/gpu/drm/xe/xe_guc_submit.h   |  2 +-
+>   drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  5 ++---
+>   3 files changed, 11 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 1185b23b1384..f2920b047b2c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -2528,7 +2528,7 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+>   }
+>   
+>   /**
+> - * xe_guc_register_exec_queue - Register exec queue for a given context type.
+> + * xe_guc_register_vf_exec_queue - Register exec queue for a given context type.
+>    * @q: Execution queue
+>    * @ctx_type: Type of the context
+>    *
+> @@ -2539,15 +2539,17 @@ static void guc_exec_queue_print(struct xe_exec_queue *q, struct drm_printer *p)
+>    *
+>    * Returns - None.
+>    */
+> -void xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+> +void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type)
+>   {
+>   	struct xe_guc *guc = exec_queue_to_guc(q);
+>   	struct xe_device *xe = guc_to_xe(guc);
+> +	struct xe_gt *gt = guc_to_gt(guc);
+>   
+> -	xe_assert(xe, IS_SRIOV_VF(xe));
+> -	xe_assert(xe, !IS_DGFX(xe));
+> -	xe_assert(xe, (ctx_type > GUC_CONTEXT_NORMAL &&
+> -		       ctx_type < GUC_CONTEXT_COUNT));
+> +	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+> +	xe_gt_assert(gt, !IS_DGFX(xe));
+> +	xe_gt_assert(gt, ctx_type == GUC_CONTEXT_COMPRESSION_SAVE ||
+> +		     ctx_type == GUC_CONTEXT_COMPRESSION_RESTORE);
+> +	xe_gt_assert(gt, GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 23, 0));
+>   
+>   	register_exec_queue(q, ctx_type);
+>   	enable_scheduling(q);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+> index 6b5df5d0956b..9e6f19b03e65 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+> @@ -46,7 +46,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+>   void
+>   xe_guc_exec_queue_snapshot_free(struct xe_guc_submit_exec_queue_snapshot *snapshot);
+>   void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
+> -void xe_guc_register_exec_queue(struct xe_exec_queue *q, int ctx_type);
+> +void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
+>   
+>   int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> index 908590fa79d4..19786f64a7da 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+> @@ -186,7 +186,6 @@ static void ccs_rw_update_ring(struct xe_tile_vf_ccs *ctx)
+>   
+>   static int register_save_restore_context(struct xe_tile_vf_ccs *ctx)
+>   {
+> -	int err = -EINVAL;
+>   	int ctx_type;
+>   
+>   	switch (ctx->ctx_id) {
+> @@ -197,10 +196,10 @@ static int register_save_restore_context(struct xe_tile_vf_ccs *ctx)
+>   		ctx_type = GUC_CONTEXT_COMPRESSION_RESTORE;
+>   		break;
+>   	default:
+> -		return err;
+> +		return -EINVAL;
+>   	}
+>   
+> -	xe_guc_register_exec_queue(ctx->mig_q, ctx_type);
+> +	xe_guc_register_vf_exec_queue(ctx->mig_q, ctx_type);
+>   	return 0;
+>   }
+>   
+LGTM.
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
