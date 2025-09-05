@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3DDCA101C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00610CA0FED
+	for <intel-xe@archiver.kernel.org>; Fri,  5 Sep 2025 07:27:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2692810EB32;
-	Fri,  5 Sep 2025 07:27:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D2610EB35;
+	Fri,  5 Sep 2025 07:27:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUoHe8NV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RySbU/Lj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A730B10EB30;
- Fri,  5 Sep 2025 07:27:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E432110EB35;
+ Fri,  5 Sep 2025 07:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757057244; x=1788593244;
+ t=1757057247; x=1788593247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mwHMvurhSzWQQnIlCdhgLS8hj2fC0ImFnqqoNa9VioU=;
- b=PUoHe8NVepZTgbldR9ZuA7ykqCR0Hs04EPl078e8gKrp2ivyoih8/FMI
- WkjXqTRLADCjP+CKLLghj69plIcCA1Zs0FXr522a6cK9sHTSzgEB+Rm0g
- YMb1eiVLBhQfxdRBKGJgyi+ZZEZWXmA0wuK0PsgeC7EbOEiPjvChbKFa7
- 9bFVFozQFmBs9PoR94VejVD1tFPEmtKqTYN0milH9y3ty+CxVYnSIx0ZD
- qV2LAKiwTR1HwICe70rvQRFFiJOFTguQdLJd2Slx7bhu3SPWQ7Ag78yno
- xIN5pm2DzWHZMhx9P++/t/ecziU5rezUyPJQSbzwh+UUOHLm7e4XfpRxD Q==;
-X-CSE-ConnectionGUID: u6/zvjioQ1WCPr48GHYEFA==
-X-CSE-MsgGUID: B2jpYVrTRkSNcMglFWGZ1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="63047062"
-X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="63047062"
+ bh=d3pq+zWbRvj5q6dyabqfgl5HQ+KF5Fj0iGNKUsPFHdY=;
+ b=RySbU/LjsFZwnOcYaBLPVbINCBt2Ay9ZR70RXjMO1FOEHb4Nkvk+Kmwb
+ 8hrGCeidAJ+iQe7H300V2NLFZj6M24t1Tqb/6sIaZ0SGEpOGcOd9GpsfW
+ WeDuvWZTZMaUUzkcEFnVKyoEjWiJKkLzEirrTTrLXFRyakSfoz87YAHMj
+ T4+LsUQuB6Srkqgsh42cBAcnGbByIXc0ISkV4nYgO31iI0jCL2BzpBDQY
+ nLi/Yh3KFRYMktBcVKoyETuUJo6fE4lYjQhSQSSIz/1Pm1kgPqMomapxM
+ xHLYgJgh13dQwPA92m24vupVz4ZDIfdvqXYCFXaxvs6ler//WFYXyXAYq A==;
+X-CSE-ConnectionGUID: xx+U6latRzKLOgM1FquBkA==
+X-CSE-MsgGUID: hO38c8zXSviUwGnrA/pZig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="63047065"
+X-IronPort-AV: E=Sophos;i="6.18,240,1751266800"; d="scan'208";a="63047065"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:27:24 -0700
-X-CSE-ConnectionGUID: 0uEG1oaNTZ6MAPV2yfSymA==
-X-CSE-MsgGUID: 1tweEPpSThSuUBFACXwtJw==
+ 05 Sep 2025 00:27:27 -0700
+X-CSE-ConnectionGUID: SX8b321zS9yaoG72oINmcg==
+X-CSE-MsgGUID: nluFAECiQgSVtypBIdWoLA==
 X-ExtLoop1: 1
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.5])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 00:27:22 -0700
+ 05 Sep 2025 00:27:25 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 1/4] drm/i915/psr: Pass intel_crtc_state instead of
- intel_dp in wait_for_idle
-Date: Fri,  5 Sep 2025 10:27:05 +0300
-Message-ID: <20250905072708.2659411-2-jouni.hogander@intel.com>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 3/4] drm/i915/psr: New interface adding PSR idle poll into
+ dsb commit
+Date: Fri,  5 Sep 2025 10:27:07 +0300
+Message-ID: <20250905072708.2659411-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250905072708.2659411-1-jouni.hogander@intel.com>
 References: <20250905072708.2659411-1-jouni.hogander@intel.com>
@@ -71,61 +71,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is preparation to add own function for polling PSR being ready for
-update when doing dsb commit.
+We are currently observing crc failures after we started using dsb for PSR
+updates as well. This seems to happen because PSR HW is still sending
+couple of updates using old framebuffers on wake-up.
+
+This patch is preparing to fix that by adding interface which can be used
+to add poll ensuring PSR HW is idle into dsb commit.
+
+v3: add intel_dsb as a parameter to intel_psr_wait_for_idle_dsb
+v2: add pass crtc_state->dsb_commit as parameter
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 39 +++++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_psr.h |  2 ++
+ 2 files changed, 37 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 22433fe2ee14..6ab5c028845a 100644
+index eae1eedbbb26..1aa4a127afaf 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2997,10 +2997,11 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 	}
+@@ -42,6 +42,7 @@
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dp_aux.h"
++#include "intel_dsb.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_hdmi.h"
+ #include "intel_psr.h"
+@@ -3006,7 +3007,8 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ #define PSR_IDLE_TIMEOUT_MS 50
+ 
+ static int
+-_psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
++_psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state,
++				   struct intel_dsb *dsb)
+ {
+ 	struct intel_display *display = to_intel_display(new_crtc_state);
+ 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+@@ -3016,6 +3018,13 @@ _psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state
+ 	 * As all higher states has bit 4 of PSR2 state set we can just wait for
+ 	 * EDP_PSR2_STATUS_STATE_DEEP_SLEEP to be cleared.
+ 	 */
++	if (dsb) {
++		intel_dsb_poll(dsb, EDP_PSR2_STATUS(display, cpu_transcoder),
++			       EDP_PSR2_STATUS_STATE_DEEP_SLEEP, 0, 200,
++			       PSR_IDLE_TIMEOUT_MS * 1000 / 200);
++		return true;
++	}
++
+ 	return intel_de_wait_for_clear(display,
+ 				       EDP_PSR2_STATUS(display, cpu_transcoder),
+ 				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP,
+@@ -3023,11 +3032,19 @@ _psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state
  }
  
--static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
-+static int
-+_psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
+ static int
+-_psr1_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
++_psr1_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state,
++				   struct intel_dsb *dsb)
  {
--	struct intel_display *display = to_intel_display(intel_dp);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	struct intel_display *display = to_intel_display(new_crtc_state);
-+	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 	struct intel_display *display = to_intel_display(new_crtc_state);
+ 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
  
- 	/*
- 	 * Any state lower than EDP_PSR2_STATUS_STATE_DEEP_SLEEP is enough.
-@@ -3012,10 +3013,11 @@ static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
- 				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP, 50);
- }
- 
--static int _psr1_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
-+static int
-+_psr1_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
- {
--	struct intel_display *display = to_intel_display(intel_dp);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	struct intel_display *display = to_intel_display(new_crtc_state);
-+	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
- 
- 	/*
- 	 * From bspec: Panel Self Refresh (BDW+)
-@@ -3054,9 +3056,9 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
++	if (dsb) {
++		intel_dsb_poll(dsb, psr_status_reg(display, cpu_transcoder),
++			       EDP_PSR_STATUS_STATE_MASK, 0, 200,
++			       PSR_IDLE_TIMEOUT_MS * 1000 / 200);
++		return true;
++	}
++
+ 	return intel_de_wait_for_clear(display,
+ 				       psr_status_reg(display, cpu_transcoder),
+ 				       EDP_PSR_STATUS_STATE_MASK,
+@@ -3060,9 +3077,11 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
  			continue;
  
  		if (intel_dp->psr.sel_update_enabled)
--			ret = _psr2_ready_for_pipe_update_locked(intel_dp);
-+			ret = _psr2_ready_for_pipe_update_locked(new_crtc_state);
+-			ret = _psr2_ready_for_pipe_update_locked(new_crtc_state);
++			ret = _psr2_ready_for_pipe_update_locked(new_crtc_state,
++								 NULL);
  		else
--			ret = _psr1_ready_for_pipe_update_locked(intel_dp);
-+			ret = _psr1_ready_for_pipe_update_locked(new_crtc_state);
+-			ret = _psr1_ready_for_pipe_update_locked(new_crtc_state);
++			ret = _psr1_ready_for_pipe_update_locked(new_crtc_state,
++								 NULL);
  
  		if (ret)
  			drm_err(display->drm,
+@@ -3070,6 +3089,18 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
+ 	}
+ }
+ 
++void intel_psr_wait_for_idle_dsb(struct intel_dsb *dsb,
++				 const struct intel_crtc_state *new_crtc_state)
++{
++	if (!new_crtc_state->has_psr || new_crtc_state->has_panel_replay)
++		return;
++
++	if (new_crtc_state->has_sel_update)
++		_psr2_ready_for_pipe_update_locked(new_crtc_state, dsb);
++	else
++		_psr1_ready_for_pipe_update_locked(new_crtc_state, dsb);
++}
++
+ static bool __psr_wait_for_idle_locked(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 9b061a22361f..077751aa599f 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -52,6 +52,8 @@ void intel_psr_get_config(struct intel_encoder *encoder,
+ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
+ void intel_psr_short_pulse(struct intel_dp *intel_dp);
+ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_state);
++void intel_psr_wait_for_idle_dsb(struct intel_dsb *dsb,
++				 const struct intel_crtc_state *new_crtc_state);
+ bool intel_psr_enabled(struct intel_dp *intel_dp);
+ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 				struct intel_crtc *crtc);
 -- 
 2.43.0
 
