@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF3ACA101C
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Sep 2025 05:50:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B85B2CA1012
+	for <intel-xe@archiver.kernel.org>; Sat,  6 Sep 2025 05:50:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB6310E308;
-	Sat,  6 Sep 2025 05:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5341F10E30B;
+	Sat,  6 Sep 2025 05:50:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ey2ixAwz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFMS8rfO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5362610E2FF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21F7910E2FF
  for <intel-xe@lists.freedesktop.org>; Sat,  6 Sep 2025 05:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1757137853; x=1788673853;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EzD1nb0dL0vsCWMtraTFVuYGh5bKlJ3gLWIwgkYd1Uc=;
- b=Ey2ixAwzf6FjoGhD/qFXxncqf0AhdZGtlOgqkHu7vhvZnv4DRhJsKvd1
- zg/xhFHTEWbeYGfrzWypev5tC7IoCTAhxaY8IFByuteYGA1nbtt6o358G
- +GYPp8sKo3O90H59tFiymSDsSmcSq6gyHIkZWCosacBMsnE2/I2nINR4y
- TRD1kQcj5bxHfmbBWHB/CCMHMcw0834AwzaaXPsTAu8X16LjqjWvUkM+2
- EIyaK5H1WobXOOif9awczJ2Z95uN1x4on22il/m/BQSFozfIeKlN1Un/r
- RAGn3c3ArVDLhL/WjA7e5uqXd8bEsKzvQD6yw4fXtjPBjvuxIeLKrhajl A==;
-X-CSE-ConnectionGUID: ZIsL89jtS/u2EAf5QznPng==
-X-CSE-MsgGUID: sNMa96CcRNSyqVIYY75k6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="59628649"
-X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; d="scan'208";a="59628649"
+ bh=QsfzeB7XMv9RMEdEswgIRDBKN7QnJagjP8TtEAM9AIc=;
+ b=BFMS8rfOCE9hR0jQY7luJBfiInwpeVtL+ktsHO4gMP43bBizeAsL7pSG
+ Gj1xyWoabDuJof5OfizSbnjLFLhKmCrSYiflRwklhUA0eCrqCGnV8fs+S
+ uM2mS62faUoRUFwgTB6bixmF3s1BcAV3AlHPsDxmYNBV9kGQ0DmAX6YnI
+ WfomR6YMQW/R1kgaXthPkoEZWNsd3hpSTyxTf7RR3R8prI7NGYT6JmbPN
+ AlD1UMBsm7Jg5XCPE1fpqWxa3KfMmWigwLV2pTeqhONDyrIzS4C5mhX1p
+ O/hKqMW1PcJuETq/nr/xFxVV1Fn3b2fi8ea+YoRIQO18bkoCDa11SmpeY w==;
+X-CSE-ConnectionGUID: dpnrwfdvSAe5Iw0AlNmsrA==
+X-CSE-MsgGUID: ONOQs5nsT62PlArVzwAZRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="59628643"
+X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; d="scan'208";a="59628643"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 22:50:53 -0700
-X-CSE-ConnectionGUID: egbDSSMrRiK8yeHVUV3fJA==
-X-CSE-MsgGUID: ZjYJubvkS7usJCcjr3sy6Q==
+ 05 Sep 2025 22:50:52 -0700
+X-CSE-ConnectionGUID: FCAWACN+S/6FR3DMkXnGZQ==
+X-CSE-MsgGUID: DIH/4iorTnCrm3GrQFbTKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; d="scan'208";a="203262846"
+X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; d="scan'208";a="203262837"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2025 22:50:53 -0700
+ 05 Sep 2025 22:50:52 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -49,9 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 6/6] drm/xe/configfs: Add post context restore bb
-Date: Fri,  5 Sep 2025 22:50:34 -0700
-Message-ID: <20250905-wa-bb-cmds-v3-6-3da2b7bdc73e@intel.com>
+Subject: [PATCH v3 3/6] drm/xe/configfs: Extract function to parse engine
+Date: Fri,  5 Sep 2025 22:50:31 -0700
+Message-ID: <20250905-wa-bb-cmds-v3-3-3da2b7bdc73e@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com>
 References: <20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com>
@@ -73,386 +73,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow the user to specify commands to execute during a context restore.
-Currently it's possible to parse 2 types of actions:
+Move the part that copies the engine to a local buffer so it can be
+shared in future for other configfs attributes parsing an engine.
 
-	- cmd: the instructions are added as is to the bb
-	- reg: just use the address and value, without worrying about
-	  encoding the right LRI instruction. This is possibly the most
-	  useful use case, so added a dedicated action for that.
-
-This also prepares for future BBs: mid context restore and rc6 context
-restore that can re-use the same parsing functions.
-
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
-- use bin attribute to be allow multiline
-v3:
-- revert attribute back to a simple attribute rather than binary:
-  otherwise configfs only calls the callback on the file release and
-  ignores the result. With that the user can't rely on the return
-  code to know if the setting was accepted.
-
-  To still allow multiline, a method that uses just one syscall should
-  be used. In bash, echo will end up using more syscalls. This can be
-  workarounded by using heredoc, or simply writing it in C
-  (rewrote that listening to
-   https://www.youtube.com/watch?v=1S1fISh-pag, you're welcome to review
-   listening to that beauty too)
----
- drivers/gpu/drm/xe/xe_configfs.c | 278 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 276 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 32 +++++++++++++++++++++-----------
+ 1 file changed, 21 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 21fd153666db8..f5fa0d14af38b 100644
+index acdabb3a6b50d..d487c0e0b7ab9 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/bitops.h>
-+#include <linux/ctype.h>
- #include <linux/configfs.h>
- #include <linux/cleanup.h>
- #include <linux/find.h>
-@@ -12,6 +13,7 @@
- #include <linux/pci.h>
- #include <linux/string.h>
- 
-+#include "instructions/xe_mi_commands.h"
- #include "xe_configfs.h"
- #include "xe_hw_engine_types.h"
- #include "xe_module.h"
-@@ -115,6 +117,35 @@
-  *
-  * This attribute can only be set before binding to the device.
-  *
-+ * Context restore BB
-+ * ------------------
-+ *
-+ * Allow to execute a batch buffer during any context switches. When the
-+ * GPU is restoring the context, it executes additional commands. It's useful
-+ * for testing additional workarounds and validating certain HW behaviors.
-+ *
-+ * Currently this is implemented only for post context restore. Examples:
-+ *
-+ * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10::
-+ *
-+ *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
-+ *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
-+ *
-+ * #. Load certain values in a couple of registers (it can be used as a simpler
-+ *    alternative to the `cmd`) action::
-+ *
-+ *	# cat > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb <<EOF
-+ *	rcs reg 4F100 DEADBEEF
-+ *	rcs reg 4F104 FFFFFFFF
-+ *	EOF
-+ *
-+ *    .. note::
-+ *
-+ *       When using multiple lines, make sure to use a command that is
-+ *       implemented with a single write syscall, like HEREDOC.
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Remove devices
-  * ==============
-  *
-@@ -123,11 +154,18 @@
-  *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
-  */
- 
-+/* Similar to struct xe_bb, but not tied to HW (yet) */
-+struct wa_bb {
-+	u32 *cs;
-+	u32 len; /* in dwords */
-+};
-+
- struct xe_config_group_device {
- 	struct config_group group;
- 
- 	struct xe_config_device {
- 		u64 engines_allowed;
-+		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
- 		bool survivability_mode;
- 		bool enable_psmi;
- 	} config;
-@@ -371,6 +409,227 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
- 	return len;
+@@ -283,24 +283,34 @@ static bool lookup_engine_mask(const char *pattern, u64 *mask)
+ 	return false;
  }
  
-+static bool wa_bb_read_advance(bool dereference, char **p,
-+			       const char *append, size_t len,
-+			       size_t *max_size)
++static int parse_engine(const char *s, const char *end_chars, u64 *mask)
 +{
-+	if (dereference) {
-+		if (len >= *max_size)
-+			return false;
-+		*max_size -= len;
-+		if (append)
-+			memcpy(*p, append, len);
-+	}
++	char buf[MAX_ENGINE_CLASS_CHARS + MAX_ENGINE_INSTANCE_CHARS + 1];
++	size_t len;
 +
-+	*p += len;
-+
-+	return true;
-+}
-+
-+static ssize_t wa_bb_show(struct xe_config_group_device *dev,
-+			  struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
-+			  char *data, size_t sz)
-+{
-+	char *p = data;
-+
-+	guard(mutex)(&dev->lock);
-+
-+	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
-+		enum xe_engine_class ec = engine_info[i].engine_class;
-+		size_t len;
-+
-+		if (!wa_bb[ec].len)
-+			continue;
-+
-+		len = snprintf(p, sz, "%s:", engine_info[i].cls);
-+		if (!wa_bb_read_advance(data, &p, NULL, len, &sz))
-+			return -ENOBUFS;
-+
-+		for (size_t j = 0; j < wa_bb[ec].len; j++) {
-+			len = snprintf(p, sz, " %08x", wa_bb[ec].cs[j]);
-+			if (!wa_bb_read_advance(data, &p, NULL, len, &sz))
-+				return -ENOBUFS;
-+		}
-+
-+		if (!wa_bb_read_advance(data, &p, "\n", 1, &sz))
-+			return -ENOBUFS;
-+	}
-+
-+	if (!wa_bb_read_advance(data, &p, "", 1, &sz))
-+		return -ENOBUFS;
-+
-+	/* Reserve one more to match check for '\0' */
-+	if (!data)
-+		p++;
-+
-+	return p - data;
-+}
-+
-+static ssize_t ctx_restore_post_bb_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+
-+	return wa_bb_show(dev, dev->config.ctx_restore_post_bb, page, SZ_4K);
-+}
-+
-+static void wa_bb_append(struct wa_bb *wa_bb, u32 val)
-+{
-+	if (wa_bb->cs)
-+		wa_bb->cs[wa_bb->len] = val;
-+
-+	wa_bb->len++;
-+}
-+
-+static ssize_t parse_hex(const char *line, u32 *pval)
-+{
-+	char numstr[12];
-+	const char *p;
-+	ssize_t numlen;
-+
-+	p = line + strspn(line, " \t");
-+	if (!*p || *p == '\n')
-+		return 0;
-+
-+	numlen = strcspn(p, " \t\n");
-+	if (!numlen || numlen >= sizeof(numstr) - 1)
++	len = strcspn(s, end_chars);
++	if (len >= sizeof(buf))
 +		return -EINVAL;
 +
-+	memcpy(numstr, p, numlen);
-+	numstr[numlen] = '\0';
-+	p += numlen;
++	memcpy(buf, s, len);
++	buf[len] = '\0';
 +
-+	if (kstrtou32(numstr, 16, pval))
-+		return -EINVAL;
-+
-+	return p - line;
-+}
-+
-+/*
-+ * Parse lines with the format
-+ *
-+ *	<engine-class> cmd <u32> <u32...>
-+ *	<engine-class> reg <u32_addr> <u32_val>
-+ *
-+ * and optionally save them in @wa_bb[i].cs is non-NULL.
-+ *
-+ * Return the number of dwords parsed.
-+ */
-+static ssize_t parse_wa_bb_lines(const char *lines,
-+				 struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX])
-+{
-+	ssize_t dwords = 0, ret;
-+	const char *p;
-+
-+	for (p = lines; *p; p++) {
-+		const struct engine_info *info = NULL;
-+		u32 val, val2;
-+
-+		/* Also allow empty lines */
-+		p += strspn(p, " \t\n");
-+		if (!*p)
-+			break;
-+
-+		ret = parse_engine(p, " \t\n", NULL, &info);
-+		if (ret < 0)
-+			return ret;
-+
-+		p += ret;
-+		p += strspn(p, " \t");
-+
-+		if (str_has_prefix(p, "cmd")) {
-+			for (p += strlen("cmd"); *p;) {
-+				ret = parse_hex(p, &val);
-+				if (ret < 0)
-+					return -EINVAL;
-+				if (!ret)
-+					break;
-+
-+				p += ret;
-+				dwords++;
-+				wa_bb_append(&wa_bb[info->engine_class], val);
-+			}
-+		} else if (str_has_prefix(p, "reg")) {
-+			p += strlen("reg");
-+			ret = parse_hex(p, &val);
-+			if (ret <= 0)
-+				return -EINVAL;
-+
-+			p += ret;
-+			ret = parse_hex(p, &val2);
-+			if (ret <= 0)
-+				return -EINVAL;
-+
-+			p += ret;
-+			dwords += 3;
-+			wa_bb_append(&wa_bb[info->engine_class],
-+				     MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1));
-+			wa_bb_append(&wa_bb[info->engine_class], val);
-+			wa_bb_append(&wa_bb[info->engine_class], val2);
-+		} else {
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return dwords;
-+}
-+
-+static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
-+			   struct xe_config_group_device *dev,
-+			   const char *page, size_t len)
-+{
-+	/* tmp_wa_bb must match wa_bb's size */
-+	struct wa_bb tmp_wa_bb[XE_ENGINE_CLASS_MAX] = { };
-+	ssize_t count, class;
-+	u32 *tmp;
-+
-+	/* 1. Count dwords - wa_bb[i].cs is NULL for all classes */
-+	count = parse_wa_bb_lines(page, tmp_wa_bb);
-+	if (count < 0)
-+		return count;
-+
-+	guard(mutex)(&dev->lock);
-+
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	/*
-+	 * 2. Allocate a u32 array and set the pointers to the right positions
-+	 * according to the length of each class' wa_bb
-+	 */
-+	tmp = krealloc(wa_bb[0].cs, count * sizeof(u32), GFP_KERNEL);
-+	if (!tmp)
-+		return -ENOMEM;
-+
-+	if (!count) {
-+		memset(wa_bb, 0, sizeof(tmp_wa_bb));
-+		return len;
-+	}
-+
-+	for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX; ++class) {
-+		tmp_wa_bb[class].cs = tmp + count;
-+		count += tmp_wa_bb[class].len;
-+		tmp_wa_bb[class].len = 0;
-+	}
-+
-+	/* 3. Parse wa_bb lines again, this time saving the values */
-+	count = parse_wa_bb_lines(page, tmp_wa_bb);
-+	if (count < 0)
-+		return count;
-+
-+	memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
++	if (!lookup_engine_mask(buf, mask))
++		return -ENOENT;
 +
 +	return len;
 +}
 +
-+static ssize_t ctx_restore_post_bb_store(struct config_item *item,
-+					 const char *data, size_t sz)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+
-+	return wa_bb_store(dev->config.ctx_restore_post_bb, dev, data, sz);
-+}
-+
-+CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -379,6 +638,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_enable_psmi,
- 	&attr_engines_allowed,
- 	&attr_survivability_mode,
-+	&attr_ctx_restore_post_bb,
- 	NULL,
- };
- 
-@@ -387,6 +647,8 @@ static void xe_config_device_release(struct config_item *item)
- 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
- 
- 	mutex_destroy(&dev->lock);
-+
-+	kfree(dev->config.ctx_restore_post_bb[0].cs);
- 	kfree(dev);
- }
- 
-@@ -636,14 +898,26 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- /**
-  * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
-  * @pdev: pci device
-+ * @class: hw engine class
-+ * @cs: pointer to the bb to use - only valid during probe
-  *
-- * Return: post_ctx_restore setting in configfs
-+ * Return: Number of dwords used in the post_ctx_restore setting in configfs
-  */
- u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 					enum xe_engine_class class,
- 					const u32 **cs)
+ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 				     size_t len)
  {
--	return 0;
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	u32 len;
-+
-+	if (!dev)
-+		return 0;
-+
-+	*cs = dev->config.ctx_restore_post_bb[class].cs;
-+	len = dev->config.ctx_restore_post_bb[class].len;
-+	config_group_put(&dev->group);
-+
-+	return len;
- }
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+-	size_t patternlen, p;
++	ssize_t patternlen, p;
+ 	u64 mask, val = 0;
  
- int __init xe_configfs_init(void)
+ 	for (p = 0; p < len; p += patternlen + 1) {
+-		char buf[MAX_ENGINE_CLASS_CHARS + MAX_ENGINE_INSTANCE_CHARS + 1];
+-
+-		patternlen = strcspn(page + p, ",\n");
+-		if (patternlen >= sizeof(buf))
+-			return -EINVAL;
+-
+-		memcpy(buf, page + p, patternlen);
+-		buf[patternlen] = '\0';
+-
+-		if (!lookup_engine_mask(buf, &mask))
++		patternlen = parse_engine(page + p, ",\n", &mask);
++		if (patternlen < 0)
+ 			return -EINVAL;
+ 
+ 		val |= mask;
 
 -- 
 2.50.1
