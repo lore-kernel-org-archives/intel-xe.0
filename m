@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3555DCA1002
-	for <intel-xe@archiver.kernel.org>; Sat,  6 Sep 2025 13:38:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0445CA1017
+	for <intel-xe@archiver.kernel.org>; Sun,  7 Sep 2025 07:46:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477C010E0E1;
-	Sat,  6 Sep 2025 13:38:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F19DB10E185;
+	Sun,  7 Sep 2025 07:46:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YyKVQTZ/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AIqjzERi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A04F10E039;
- Sat,  6 Sep 2025 13:38:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E822A10E01F;
+ Sun,  7 Sep 2025 07:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757165915; x=1788701915;
+ t=1757231188; x=1788767188;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=odYl+c22GfakiEgQc8wFGqAiYlM3jucTIDD3tChqV0Q=;
- b=YyKVQTZ/90aKpBgbcYjAsLQU8isn/lqjqhctuSfMMc+l5DYKhTCuqEup
- F4r/tmIJmDvepUsCLFG1x86Kkddfw5G5JRyZVJxLvViAD115+u9J2l/Tr
- P0g+P4gZ9mMqQnS4RxJdKSiWKPhg+leBUTJLDy63CcLBq0fhOaxPlz2BH
- zYQNaBqUEC+5RCF/zuK7D0rg+zWnKi3ef4Zyq6uyNvXPAvPq3j3By0S+V
- UPvhqNSQjb50Bfmhydmern2QnEr14qUG8GugYx49XlT8KF5lbMgmwRImf
- TMGnzC8G9tBW3t6a/AavvAjyN3r+LKfvv83dLNSUtPWM11KW6JkVvA4M8 w==;
-X-CSE-ConnectionGUID: t8RaX6T8S82+hbdAZeyrbg==
-X-CSE-MsgGUID: 6AbTyHdqSBuyXWGzkY9kWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58703003"
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; d="scan'208";a="58703003"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2025 06:38:35 -0700
-X-CSE-ConnectionGUID: +rQHURNATY6ok8++qDrApA==
-X-CSE-MsgGUID: IiiRRhMtTqSVZ26n0WUBaA==
+ bh=WX4V5EDb+17dMPsRlhZvZ+Y0Wu/h+wHqhdTZxyhw/X0=;
+ b=AIqjzERi6uxbw+21lfBiGIiuTha/IX8CXNKBxVClP19KsLoHNbeUF6Zd
+ OXfzXOT2vlR41acH4wKSs8kIkiPQlEq4puSOdfq1eE5NKnSGHlFkOqsmf
+ 7fcbI9sE1e683awy6YwOO3GFj6PtBro4KeTMQy7RQLoz7stJ8++e+4D8v
+ vSJc434euq/IAl/YDbov+pedG9AWZRvBBk/sgWnwC/V6HFWxuSxreKwvN
+ 9dp3+eJ8nhI003+i0+b+N6LfVXz3HK56r/6zvhIhDuTS98zc0KXN91jEH
+ faMRkOBVRZCuPXMygw6rXesBgTu91FwDoQLfj/DPJXkjMjuxohnUzWXyk A==;
+X-CSE-ConnectionGUID: lGnscGuJQhi4srwaMTDtPQ==
+X-CSE-MsgGUID: ISjMNTv6RX+g6bBqgmoW6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11545"; a="70220281"
+X-IronPort-AV: E=Sophos;i="6.18,246,1751266800"; d="scan'208";a="70220281"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2025 00:46:17 -0700
+X-CSE-ConnectionGUID: CzLRNVgCQgqktj+a8KTScw==
+X-CSE-MsgGUID: vkI5irnxTZOLkXYffECrUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; d="scan'208";a="176466628"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa003.jf.intel.com with ESMTP; 06 Sep 2025 06:38:34 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: jouni.hogander@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: Re: [PATCH] drm/i915/psr: Panel Replay SU cap dpcd read return value
-Date: Sat,  6 Sep 2025 15:39:24 +0200
-Message-ID: <20250906133924.4177569-1-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,246,1751266800"; d="scan'208";a="176873930"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2025 00:46:15 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/14] drm/i915/vrr: Use crtc_vsync_start/end for computing
+ vrr.vsync_start/end
+Date: Sun,  7 Sep 2025 13:02:28 +0530
+Message-ID: <20250907073241.19632-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: 20250827060809.2461725-1-jouni.hogander@intel.com
-References: 
+In-Reply-To: <20250907073241.19632-1-ankit.k.nautiyal@intel.com>
+References: <20250907073241.19632-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,40 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 27 Aug 2025 09:08:09 +0300, Jouni Högander wrote:
-> Currently return value of drm_dpcd_readb is not checked when reading sink
-> Panel Replay Selective Update capabilities.
-> 
-> Fix this and switch to drm_dpcd_read_byte.
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 8b4cdf9b30db..f2b9a733637a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -494,12 +494,14 @@ static u8 intel_dp_get_su_capability(struct intel_dp *intel_dp)
->  {
->  	u8 su_capability = 0;
->  
-> -	if (intel_dp->psr.sink_panel_replay_su_support)
-> -		drm_dp_dpcd_readb(&intel_dp->aux,
-> -				  DP_PANEL_REPLAY_CAP_CAPABILITY,
-> -				  &su_capability);
-> -	else
-> +	if (intel_dp->psr.sink_panel_replay_su_support) {
-> +		if (drm_dp_dpcd_read_byte(&intel_dp->aux,
-> +					  DP_PANEL_REPLAY_CAP_CAPABILITY,
-> +					  &su_capability) < 0)
-> +			return 0;
-> +	} else {
->  		su_capability = intel_dp->psr_dpcd[1];
-> +	}
->  
->  	return su_capability;
->  }
+Use adjusted_mode->crtc_vsync_start/end instead of
+adjusted_mode->vsync_start while computing vrr.vsync_start/end.
+For most modes, these are same but for 3D/stereo modes the
+crtc_vsync_start is different than vsync_start.
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 3eed37f271b0..266cf5e1859d 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -406,10 +406,10 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (HAS_AS_SDP(display)) {
+ 		crtc_state->vrr.vsync_start =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+-			 crtc_state->hw.adjusted_mode.vsync_start);
++			 crtc_state->hw.adjusted_mode.crtc_vsync_start);
+ 		crtc_state->vrr.vsync_end =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+-			 crtc_state->hw.adjusted_mode.vsync_end);
++			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
+ 	}
+ }
+ 
+-- 
+2.45.2
+
