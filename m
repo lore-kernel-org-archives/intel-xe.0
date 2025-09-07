@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 023A1CA1013
-	for <intel-xe@archiver.kernel.org>; Sun,  7 Sep 2025 08:15:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF723CA1017
+	for <intel-xe@archiver.kernel.org>; Sun,  7 Sep 2025 13:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A121B10E448;
-	Sun,  7 Sep 2025 08:15:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EFF910E1D0;
+	Sun,  7 Sep 2025 13:51:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGOj2AOm";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="UcfBxMnd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2A3D10E18C
- for <intel-xe@lists.freedesktop.org>; Sun,  7 Sep 2025 08:15:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757232934; x=1788768934;
- h=date:from:to:cc:subject:message-id;
- bh=g0NsxMe2+jQoM9XFXLwQqPiCUbnKwVl9DljL7Ce6r6c=;
- b=AGOj2AOmd05czaKDy3oGRq1yLPrLern1sRZEF1oqgmwtJoRTodzSCi/1
- Yoy+R4gXtgSmP8ziggOoO07+PGBbJ4/rQeH6p3sHasvOb+pJuuiIst6sI
- aPtw6rKPlef8Lew1TYilSBalePrpAFC8m2Y5ttuBL3J9F/2ZNhMWkpiNb
- pbBDOAQy6vPTYb8xWsODPLZkc5M7TcnzTXQHMcblzx8jmhxvn5VLmGLJn
- RshSKMiHWurxATt5MzTzgISA9mTrjFEhsG/JShi5DhV/dTWlYLr9F42cS
- /UmvAbzyMmBrVZYpYcRJvIdhez593NrejzIVLxAFZbN5gOqAjUFEZQK4F g==;
-X-CSE-ConnectionGUID: 3gPm0htXQ9KYphgi0KVpBQ==
-X-CSE-MsgGUID: 4Fx8wf1ZRIKeHqfWoRD1Rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11545"; a="59627057"
-X-IronPort-AV: E=Sophos;i="6.18,246,1751266800"; d="scan'208";a="59627057"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2025 01:15:32 -0700
-X-CSE-ConnectionGUID: 84HYVos3RZS0ZZpOwRqevQ==
-X-CSE-MsgGUID: Vbr8SlcARiy+iY1eKKxIwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,246,1751266800"; d="scan'208";a="177780351"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
- by orviesa005.jf.intel.com with ESMTP; 07 Sep 2025 01:15:30 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uvAYa-00028F-1N;
- Sun, 07 Sep 2025 08:15:28 +0000
-Date: Sun, 07 Sep 2025 16:14:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: John Harrison <John.C.Harrison@Intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- cf423b928f27f5228c7942c1b270988c87b2f25b
-Message-ID: <202509071649.G5ZH3Amt-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+X-Greylist: delayed 534 seconds by postgrey-1.36 at gabe;
+ Sun, 07 Sep 2025 13:51:18 UTC
+Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr
+ [80.12.242.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5508D10E1D0
+ for <intel-xe@lists.freedesktop.org>; Sun,  7 Sep 2025 13:51:18 +0000 (UTC)
+Received: from fedora ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+ by smtp.orange.fr with ESMTPA
+ id vFeuu1DSwECYkvFeuu0Mz1; Sun, 07 Sep 2025 15:42:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1757252542;
+ bh=2ap9eqNKHrjb2ikA96D2NiiXoAmBGSsCtA7NlR3rYcM=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=UcfBxMndMvX+7k9SekCbrbLmxPlAJCfkCfjEloogd0dezlieosh4yEr6+y1JTX9Eb
+ jUVfJkoqCy40YuUQ9SW6g7NVsGnEPrCJBlKPqwcYZJ+rkRr9Q7pN1c2iZSNG0tWSn6
+ PBYgR0iA9ygw3glxgQKndaq5F9i+QjOyM8p2GAl1nNfhZ9MPRvaD/KJ0h8suUqKPsB
+ PgLEicMK1nPj02NKb9DhJdsCLam/w/Cd7JjwK/3SGnbBmL/9yM+vmSsCRVN3bODZtR
+ ipCD8UVBCC1KG7fwlq/zTcGzQCZW0q71UtNeb087egEliH/0mXQUho17hopVHGShPN
+ BCxFAljoxZKLA==
+X-ME-Helo: fedora
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 07 Sep 2025 15:42:22 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/xe/hwmon: Use devm_mutex_init()
+Date: Sun,  7 Sep 2025 15:42:17 +0200
+Message-ID: <989e96369e9e1f8a44b816962917ec76877c912d.1757252520.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.51.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,116 +63,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: cf423b928f27f5228c7942c1b270988c87b2f25b  drm/xe/guc: Fix badly worded error message
+Use devm_mutex_init() instead of hand-writing it.
 
-elapsed time: 2110m
+This saves some LoC, improves readability and saves some space in the
+generated .o file.
 
-configs tested: 97
-configs skipped: 4
+Before:
+======
+   text	   data	    bss	    dec	    hex	filename
+  36884	  10296	     64	  47244	   b88c	drivers/gpu/drm/xe/xe_hwmon.o
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+After:
+=====
+   text	   data	    bss	    dec	    hex	filename
+  36651	  10224	     64	  46939	   b75b	drivers/gpu/drm/xe/xe_hwmon.o
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                          axs101_defconfig    gcc-15.1.0
-arc                     haps_hs_smp_defconfig    gcc-15.1.0
-arc                   randconfig-001-20250906    gcc-14.3.0
-arc                   randconfig-002-20250906    gcc-10.5.0
-arm                               allnoconfig    clang-22
-arm                   randconfig-001-20250906    clang-22
-arm                   randconfig-002-20250906    clang-22
-arm                   randconfig-003-20250906    gcc-13.4.0
-arm                   randconfig-004-20250906    gcc-10.5.0
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20250906    gcc-8.5.0
-arm64                 randconfig-002-20250906    gcc-12.5.0
-arm64                 randconfig-003-20250906    clang-22
-arm64                 randconfig-004-20250906    gcc-9.5.0
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20250906    gcc-15.1.0
-csky                  randconfig-002-20250906    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20250906    clang-20
-hexagon               randconfig-002-20250906    clang-22
-i386                             allmodconfig    gcc-13
-i386                              allnoconfig    gcc-13
-i386                             allyesconfig    gcc-13
-i386        buildonly-randconfig-001-20250906    clang-20
-i386        buildonly-randconfig-002-20250906    gcc-11
-i386        buildonly-randconfig-003-20250906    gcc-13
-i386        buildonly-randconfig-004-20250906    gcc-13
-i386        buildonly-randconfig-005-20250906    clang-20
-i386        buildonly-randconfig-006-20250906    clang-20
-i386                                defconfig    clang-20
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20250906    clang-22
-loongarch             randconfig-002-20250906    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                 randconfig-001-20250906    gcc-11.5.0
-nios2                 randconfig-002-20250906    gcc-11.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                randconfig-001-20250906    gcc-11.5.0
-parisc                randconfig-002-20250906    gcc-8.5.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc                 mpc834x_itx_defconfig    clang-16
-powerpc                 mpc837x_rdb_defconfig    gcc-15.1.0
-powerpc               randconfig-001-20250906    gcc-14.3.0
-powerpc               randconfig-002-20250906    clang-20
-powerpc               randconfig-003-20250906    clang-22
-powerpc                        warp_defconfig    gcc-15.1.0
-powerpc64             randconfig-001-20250906    gcc-13.4.0
-powerpc64             randconfig-002-20250906    gcc-10.5.0
-powerpc64             randconfig-003-20250906    clang-22
-riscv                             allnoconfig    gcc-15.1.0
-riscv                 randconfig-001-20250906    gcc-13.4.0
-riscv                 randconfig-002-20250906    gcc-8.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                  randconfig-001-20250906    gcc-10.5.0
-s390                  randconfig-002-20250906    clang-22
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                          kfr2r09_defconfig    gcc-15.1.0
-sh                    randconfig-001-20250906    gcc-15.1.0
-sh                    randconfig-002-20250906    gcc-12.5.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                 randconfig-001-20250906    gcc-8.5.0
-sparc                 randconfig-002-20250906    gcc-13.4.0
-sparc                       sparc32_defconfig    gcc-15.1.0
-sparc64               randconfig-001-20250906    clang-22
-sparc64               randconfig-002-20250906    gcc-14.3.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-13
-um                    randconfig-001-20250906    gcc-12
-um                    randconfig-002-20250906    clang-22
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20250906    clang-20
-x86_64      buildonly-randconfig-002-20250906    gcc-13
-x86_64      buildonly-randconfig-003-20250906    gcc-13
-x86_64      buildonly-randconfig-004-20250906    clang-20
-x86_64      buildonly-randconfig-005-20250906    gcc-13
-x86_64      buildonly-randconfig-006-20250906    gcc-13
-x86_64                              defconfig    gcc-11
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20250906    gcc-12.5.0
-xtensa                randconfig-002-20250906    gcc-10.5.0
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 32a76ae6e9dc..e65382d4426a 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -1294,13 +1294,6 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
+ }
+ 
+-static void xe_hwmon_mutex_destroy(void *arg)
+-{
+-	struct xe_hwmon *hwmon = arg;
+-
+-	mutex_destroy(&hwmon->hwmon_lock);
+-}
+-
+ int xe_hwmon_register(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+@@ -1319,8 +1312,7 @@ int xe_hwmon_register(struct xe_device *xe)
+ 	if (!hwmon)
+ 		return -ENOMEM;
+ 
+-	mutex_init(&hwmon->hwmon_lock);
+-	ret = devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon);
++	ret = devm_mutex_init(dev, &hwmon->hwmon_lock);
+ 	if (ret)
+ 		return ret;
+ 
+-- 
+2.51.0
+
