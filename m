@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C0DECAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 19:37:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9606CAC581
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 19:46:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11CB210E0FD;
-	Mon,  8 Sep 2025 19:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75F1E10E5BF;
+	Mon,  8 Sep 2025 19:46:33 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10F9A10E0FD;
- Mon,  8 Sep 2025 19:37:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4168902790394924308=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA39710E5BF;
+ Mon,  8 Sep 2025 19:46:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Set_RCS/CCS_y?=
- =?utf-8?q?ield_policy_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_user_comman?=
+ =?utf-8?q?ds_to_WA_BB_via_configfs?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 08 Sep 2025 19:37:55 -0000
-Message-ID: <175736027506.313434.2884931746796086615@1538d3639d33>
+Date: Mon, 08 Sep 2025 19:46:32 -0000
+Message-ID: <175736079269.313434.16878818676236954679@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250905235632.3333247-2-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20250905235632.3333247-2-daniele.ceraolospurio@intel.com>
+References: <20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com>
+In-Reply-To: <20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,140 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4168902790394924308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Set RCS/CCS yield policy (rev2)
-URL   : https://patchwork.freedesktop.org/series/150910/
-State : success
+Series: drm/xe: Add user commands to WA BB via configfs
+URL   : https://patchwork.freedesktop.org/series/154119/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b_BAT -> xe-pw-150910v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f8a73eb9bdc72771773528edf183e617a5dea903
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Fri Sep 5 22:50:34 2025 -0700
 
-Summary
--------
+    drm/xe/configfs: Add post context restore bb
+    
+    Allow the user to specify commands to execute during a context restore.
+    Currently it's possible to parse 2 types of actions:
+    
+            - cmd: the instructions are added as is to the bb
+            - reg: just use the address and value, without worrying about
+              encoding the right LRI instruction. This is possibly the most
+              useful use case, so added a dedicated action for that.
+    
+    This also prepares for future BBs: mid context restore and rc6 context
+    restore that can re-use the same parsing functions.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 6da3b81612a8f96c0b70981f173381ca05f80ce0 drm-intel
+31590e58378a drm/xe: Update workaround documentation
+de07bfb11eb1 drm/xe/configfs: Fix documentation warning
+1189c84b55de drm/xe/configfs: Extract function to parse engine
+3719bb23455d drm/xe/configfs: Allow to select by class only
+-:40: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/xe/xe_configfs.c:165:
++	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_DECODE },
 
-  **SUCCESS**
+-:41: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/xe/xe_configfs.c:166:
++	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_ENHANCE },
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-150910v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +3 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-vm}:       [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b -> xe-pw-150910v2
-
-  IGT_8524: 8524
-  xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b: 78cc74214b6f200319b53d36c4c0ce6974af8d5b
-  xe-pw-150910v2: 150910v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/index.html
-
---===============4168902790394924308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 2 warnings, 0 checks, 105 lines checked
+a0d798c7b6b5 drm/xe/lrc: Allow to add user commands on context switch
+f8a73eb9bdc7 drm/xe/configfs: Add post context restore bb
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Set RCS/CCS yield policy (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150910/">https://patchwork.freedesktop.org/series/150910/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b_BAT -&gt; xe-pw-150910v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-150910v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_vm@bind-execqueues-independent:</p>
-<ul>
-<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-150910v2/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b -&gt; xe-pw-150910v2</li>
-</ul>
-<p>IGT_8524: 8524<br />
-  xe-3700-78cc74214b6f200319b53d36c4c0ce6974af8d5b: 78cc74214b6f200319b53d36c4c0ce6974af8d5b<br />
-  xe-pw-150910v2: 150910v2</p>
-
-</body>
-</html>
-
---===============4168902790394924308==--
