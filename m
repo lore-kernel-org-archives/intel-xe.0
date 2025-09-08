@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1754CAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 12:55:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC047CAC586
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 12:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BAD610E516;
-	Mon,  8 Sep 2025 12:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9176910E51A;
+	Mon,  8 Sep 2025 12:57:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XizVfR6R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sxgo4tc8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBB010E515;
- Mon,  8 Sep 2025 12:55:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B06C010E518;
+ Mon,  8 Sep 2025 12:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757336123; x=1788872123;
+ t=1757336264; x=1788872264;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=LjvrZmL6Y6fmSwZC/fek6DJdXKSocuGB/gVFarDecmk=;
- b=XizVfR6Rt2Wta1k5JuSL2qQnAShZCZs7T/Ena7Rrv9wvfSGlMFjYz/Aq
- UKD4CAlZAFC3EZEpPs5jZbTeCvElGkDIOgZOK73+Hppd4UcjnuSqqHLmC
- ltCYFbLNOv33kVTTLmTBPeiOTWPYgMRtAFfBngl58t3wkzCl7hdttSkXF
- YXvhf14Az+DDRuu2birJdL3BXe86s/mVDT6onaB9doxJtJ3/+ibX0PM1H
- 9cNxQTo0DfVnNxpII3hxmskJrwos9xpHeBSDoNyC2upHkQBHM11LC4My2
- D1ewWTuzVagei9gHFWRp81nen1FAzpsysl3NzE8TSPgX6O9J9TKLFOR6H Q==;
-X-CSE-ConnectionGUID: AfE0xMIaSMOCDorHiD0JjQ==
-X-CSE-MsgGUID: 1gjvGmy3TWuzNWWMnAY43Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="58630332"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="58630332"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 05:55:23 -0700
-X-CSE-ConnectionGUID: NM2+lZwZTNSucih6xoiJyg==
-X-CSE-MsgGUID: 7/595eG0ShaQbDYLcHOwtg==
+ bh=OXuJ3HzZ/cpcoVttFgF+rJ2Nz/AQ4kI9TdW6dWMePlw=;
+ b=Sxgo4tc886Ypr8etfGKW2an6fbNj/10a1t4mPgNBkNb4Vo4K218RKwWP
+ rUGZjGWplX06iPqszWUroYi5twv9zj5ApznxHnpk1DOvfvpC3TRJIdsPj
+ sk1LgVjSeO9QUW/D1ClbZ3XlhaYBAolq0Cq/ECfCpK2Hxhuw3yTEWNZyK
+ etblte7iWQMtdFp8+6SKRwjDjUWzxaKsR8meYWkWn5eKw3JVO10hhsjna
+ fdJBDGQ0Rk8Ep96pxeIuWz48pSZRQwQH+R1J1IoyEA4ayDkJiwQyEIyiy
+ WxMKG8QLOYjtDCXn/YHyoyOKDyOuT0YFSItvPgbG32WmI94AwvhcGX7kO A==;
+X-CSE-ConnectionGUID: axBBWnS1Txiy3oaEtaiyZg==
+X-CSE-MsgGUID: 6gw3WusBQZmKCy6eraaU5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59544521"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59544521"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:57:44 -0700
+X-CSE-ConnectionGUID: ub3NbPQcTAKl5jirWTCcDw==
+X-CSE-MsgGUID: O1DHuVaNSrGB7/FEjXoe7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172707068"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="173576749"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 05:55:21 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:57:42 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Maarten
- Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-In-Reply-To: <aLqsC87Ol_zCXOkN@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 7/9] drm/{i915,xe}/fbdev: deduplicate fbdev creation
+In-Reply-To: <aLmkqiiyMu77TFxx@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1756931441.git.jani.nikula@intel.com>
- <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
- <aLqsC87Ol_zCXOkN@intel.com>
-Date: Mon, 08 Sep 2025 15:55:18 +0300
-Message-ID: <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
+ <a233292c243fc3ad85c637665ffe2b62815cd63c.1756931441.git.jani.nikula@intel.com>
+ <aLmkqiiyMu77TFxx@intel.com>
+Date: Mon, 08 Sep 2025 15:57:39 +0300
+Message-ID: <203d868fb6258d6d8fbb8d3318fdbd2e3371374f@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -71,117 +70,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 05 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+On Thu, 04 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
 > wrote:
-> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
->> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
->> refactoring. The alignment is different for i915 and xe.
+> On Wed, Sep 03, 2025 at 11:32:04PM +0300, Jani Nikula wrote:
+>> With the bo creation helper in place, we can lift
+>> intel_framebuffer_create() part to common code.
 >>=20
 >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >> ---
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
->>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
->>  3 files changed, 15 insertions(+), 4 deletions(-)
+>>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 31 ++++++++++++++--
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 29 ---------------
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  2 --
+>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 35 -------------------
+>>  4 files changed, 28 insertions(+), 69 deletions(-)
 >>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.c
->> index 9c557917d781..d1c03d7b9bdc 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> @@ -13,6 +13,11 @@
->>  #include "intel_fb.h"
->>  #include "intel_fbdev_fb.h"
->>=20=20
->> +u32 intel_fbdev_fb_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, 64);
->> +}
->> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_fb_helper_surface_size *sizes)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/dr=
+m/i915/display/intel_fbdev.c
+>> index 5ac66fb88fcf..d7131de5c7ac 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+>> @@ -227,13 +227,38 @@ __intel_fbdev_fb_alloc(struct intel_display *displ=
+ay,
+>>  		       struct drm_fb_helper_surface_size *sizes)
 >>  {
->> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
-drm_device *drm,
->>  	mode_cmd.width =3D sizes->surface_width;
->>  	mode_cmd.height =3D sizes->surface_height;
+>>  	struct drm_mode_fb_cmd2 mode_cmd =3D {};
+>> -	struct intel_framebuffer *fb;
+>> +	struct drm_framebuffer *fb;
+>> +	struct drm_gem_object *obj;
+>> +	int size;
 >>=20=20
->> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
->> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
->> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
-V_ROUND_UP(sizes->surface_bpp, 8));
->>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
->>  							  sizes->surface_depth);
+>>  	intel_fbdev_fill_mode_cmd(sizes, &mode_cmd);
 >>=20=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.h
->> index 668ae355f5e5..caeb543d5efc 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> @@ -6,6 +6,8 @@
->>  #ifndef __INTEL_FBDEV_FB_H__
->>  #define __INTEL_FBDEV_FB_H__
->>=20=20
->> +#include <linux/types.h>
+>> -	fb =3D intel_fbdev_fb_alloc(display->drm, &mode_cmd);
+>> +	size =3D mode_cmd.pitches[0] * mode_cmd.height;
+>> +	size =3D PAGE_ALIGN(size);
 >> +
->>  struct drm_device;
->>  struct drm_fb_helper_surface_size;
->>  struct drm_gem_object;
->> @@ -13,6 +15,7 @@ struct fb_info;
->>  struct i915_vma;
->>  struct intel_display;
->>=20=20
->> +u32 intel_fbdev_fb_pitch_align(u32 stride);
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_fb_helper_surface_size *sizes);
->>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
-nfo *info,
->> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
-rm/xe/display/intel_fbdev_fb.c
->> index bafca1059a40..fd2c40020eea 100644
->> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> @@ -15,6 +15,11 @@
->>=20=20
->>  #include <generated/xe_wa_oob.h>
->>=20=20
->> +u32 intel_fbdev_fb_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, XE_PAGE_SIZE);
+>> +	obj =3D intel_fbdev_fb_bo_create(display->drm, size);
+>> +	if (IS_ERR(obj)) {
+>> +		fb =3D ERR_CAST(obj);
+>> +		goto err;
 >
-> I think someone needs to explain what the heck this extra alignment
-> is trying to achieve? I suspect it just needs to get nuked.
+> This use of goto doesn't make much sense to me in this function.
 
-That would indeed be great, and allow even further cleanup. I'm just
-trying to find the common parts here, and not so much dig into every
-little detail that differs.
-
-I did git blame this while writing the patch, and it's all in the big xe
-driver enabling commit. I'm not sure where it comes from.
-
-Cc: Maarten, any ideas?
+Fair, probably an artefact of umpteen rebases and refactors of trying to
+make this series make more sense...
 
 BR,
 Jani.
 
 >
->> +}
+>> +	}
 >> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_fb_helper_surface_size *sizes)
+>> +	fb =3D intel_framebuffer_create(obj,
+>> +				      drm_get_format_info(display->drm,
+>> +							  mode_cmd.pixel_format,
+>> +							  mode_cmd.modifier[0]),
+>> +				      &mode_cmd);
+>> +	if (IS_ERR(fb)) {
+>> +		intel_fbdev_fb_bo_destroy(obj);
+>> +		goto err;
+>> +	}
+>> +
+>> +	drm_gem_object_put(obj);
+>> +
+>> +	return to_intel_framebuffer(fb);
+>> +
+>> +err:
+>> +	return ERR_CAST(fb);
+>>=20=20
+>> -	return fb;
+>>  }
+>>=20=20
+>>  int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.c
+>> index 6b70823ce5ef..1ac62a064936 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> @@ -10,7 +10,6 @@
+>>  #include "i915_drv.h"
+>>  #include "intel_display_core.h"
+>>  #include "intel_display_types.h"
+>> -#include "intel_fb.h"
+>>  #include "intel_fbdev_fb.h"
+>>=20=20
+>>  u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> @@ -56,34 +55,6 @@ void intel_fbdev_fb_bo_destroy(struct drm_gem_object =
+*obj)
+>>  	/* nop? */
+>>  }
+>>=20=20
+>> -struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>> -					       struct drm_mode_fb_cmd2 *mode_cmd)
+>> -{
+>> -	struct drm_framebuffer *fb;
+>> -	struct drm_gem_object *obj;
+>> -	int size;
+>> -
+>> -	size =3D mode_cmd->pitches[0] * mode_cmd->height;
+>> -	size =3D PAGE_ALIGN(size);
+>> -
+>> -	obj =3D intel_fbdev_fb_bo_create(drm, size);
+>> -	if (IS_ERR(obj)) {
+>> -		fb =3D ERR_CAST(obj);
+>> -		goto err;
+>> -	}
+>> -
+>> -	fb =3D intel_framebuffer_create(obj,
+>> -				      drm_get_format_info(drm,
+>> -							  mode_cmd->pixel_format,
+>> -							  mode_cmd->modifier[0]),
+>> -				      mode_cmd);
+>> -	drm_gem_object_put(obj);
+>> -
+>> -	return to_intel_framebuffer(fb);
+>> -err:
+>> -	return ERR_CAST(fb);
+>> -}
+>> -
+>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
+nfo *info,
+>>  			     struct drm_gem_object *_obj, struct i915_vma *vma)
 >>  {
->> @@ -31,8 +36,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
-drm_device *drm,
->>  	mode_cmd.width =3D sizes->surface_width;
->>  	mode_cmd.height =3D sizes->surface_height;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.h
+>> index 6d6f316834df..bb0ce3a85ff9 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> @@ -18,8 +18,6 @@ struct intel_display;
+>>  u32 intel_fbdev_fb_pitch_align(u32 stride);
+>>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
+ int size);
+>>  void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
+>> -struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>> -					       struct drm_mode_fb_cmd2 *mode_cmd);
+>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
+nfo *info,
+>>  			     struct drm_gem_object *obj, struct i915_vma *vma);
 >>=20=20
->> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
->> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
->> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
-V_ROUND_UP(sizes->surface_bpp, 8));
->>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
->>  							  sizes->surface_depth);
+>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
+rm/xe/display/intel_fbdev_fb.c
+>> index 9a5cf50ea7de..2e8490a8cdb1 100644
+>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> @@ -7,7 +7,6 @@
 >>=20=20
+>>  #include "intel_display_core.h"
+>>  #include "intel_display_types.h"
+>> -#include "intel_fb.h"
+>>  #include "intel_fbdev_fb.h"
+>>  #include "xe_bo.h"
+>>  #include "xe_ttm_stolen_mgr.h"
+>> @@ -59,40 +58,6 @@ void intel_fbdev_fb_bo_destroy(struct drm_gem_object =
+*obj)
+>>  	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
+>>  }
+>>=20=20
+>> -struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>> -					       struct drm_mode_fb_cmd2 *mode_cmd)
+>> -{
+>> -	struct drm_framebuffer *fb;
+>> -	struct drm_gem_object *obj;
+>> -	int size;
+>> -
+>> -	size =3D mode_cmd->pitches[0] * mode_cmd->height;
+>> -	size =3D PAGE_ALIGN(size);
+>> -
+>> -	obj =3D intel_fbdev_fb_bo_create(drm, size);
+>> -	if (IS_ERR(obj)) {
+>> -		fb =3D ERR_CAST(obj);
+>> -		goto err;
+>> -	}
+>> -
+>> -	fb =3D intel_framebuffer_create(obj,
+>> -				      drm_get_format_info(drm,
+>> -							  mode_cmd->pixel_format,
+>> -							  mode_cmd->modifier[0]),
+>> -				      mode_cmd);
+>> -	if (IS_ERR(fb)) {
+>> -		intel_fbdev_fb_bo_destroy(obj);
+>> -		goto err;
+>> -	}
+>> -
+>> -	drm_gem_object_put(obj);
+>> -
+>> -	return to_intel_framebuffer(fb);
+>> -
+>> -err:
+>> -	return ERR_CAST(fb);
+>> -}
+>> -
+>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
+nfo *info,
+>>  			     struct drm_gem_object *_obj, struct i915_vma *vma)
+>>  {
 >> --=20
 >> 2.47.2
 
