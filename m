@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B80A9CA1013
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 10:13:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C61FACAC583
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 10:13:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7740510E4B8;
-	Mon,  8 Sep 2025 10:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8799010E0D7;
+	Mon,  8 Sep 2025 10:13:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FiBpA/q8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fqVPu3Yz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3516F10E4B8
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Sep 2025 10:13:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C316410E4B9
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Sep 2025 10:13:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757326388; x=1788862388;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ywLAx65LrsmmuEzkM0Qn3+QE2fK6VCNZPmHg/c65qkQ=;
- b=FiBpA/q8LVDMwIhNOihMHgid9D45d/rttVMXniyfjNdWviImHCN5YUgt
- GJ0WuQyMEZAOvmCV8grII0DFXfyuY7bUNzvrTFlT73/AtQfq1nmlvJ89z
- nNwyw4Or0ecKdstKwk2G6bbw0TZK1gZ+t8lcQ8eCAM4yYYK1tlUwEC2ld
- 4guU/RwlS5Jl943pBVEvGdOQA4nvoxo008ApVDGN0dhFWB+kSrtC6uir1
- 5YOmgV0Vpw5BaUlzpRfE0MPZD4W6wbIO8YQ5ze5eTc9cDqUAy7aDxREZw
- F8KYk4AdQsp6scIggPU+nZvM4e5ssdzrbdvkPHH9L6y6KChykjSEX3lsr A==;
-X-CSE-ConnectionGUID: Azw/BUpETTCiDMCHC7o56w==
-X-CSE-MsgGUID: 1Krbo3rQS/yxFmDCLMVPjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="85022806"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="85022806"
+ t=1757326390; x=1788862390;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9GvUZ6hD/f5FNGxga0HLyRYVjNTWcMoXCvScJPXFFU8=;
+ b=fqVPu3YzltwEuu+1/y7yafWKfcw9SqGxTUx7nKmViqSML8PbtKbhbh+K
+ yudH9lmZh2d7vq43TH/7PVfAan6XHxTB03BKgR2WoHygckHtEhCKwePYX
+ yl4LrAaQwLwMrdpbEPi9/61cbefoZh+LdlyDvXq6MErg+bxKxGqbhQ+xB
+ dyM2GyTJCP87CPE7fgdwwothAUIMpco6pB6nrCLlIN9L2pmtAPpsz4BVp
+ 7WqDbF9QzUlkm/t0FqjNPBCFfirspyBBvl8/XTeXnae6wWhZ+BW1I18AL
+ ZUHXCfDnCJHl2Kf2J3yp39DMhKQx/g1gkapzfNFFM2iTYx2laYNg1YFlt A==;
+X-CSE-ConnectionGUID: iNpqzfFCSJS4mfeov6ZxtA==
+X-CSE-MsgGUID: Ggqr2Yy2REmELMCI1jrhCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="85022811"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="85022811"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:13:08 -0700
-X-CSE-ConnectionGUID: K2ur+p9kRrWqbZKePk31ZQ==
-X-CSE-MsgGUID: zoWfoLUOR8eK1sYoELUVSg==
+ 08 Sep 2025 03:13:10 -0700
+X-CSE-ConnectionGUID: ol0/RAZyRbmhxOI4gKqb0g==
+X-CSE-MsgGUID: MFwwhZZwSbqIEa+dCXJ1Rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172673587"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172673628"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora) ([10.245.244.9])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:13:07 -0700
+ 08 Sep 2025 03:13:09 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v6 00/13] Driver-managed exhaustive eviction
-Date: Mon,  8 Sep 2025 12:12:33 +0200
-Message-ID: <20250908101246.65025-1-thomas.hellstrom@linux.intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v6 02/13] drm/xe: Introduce an xe_validation wrapper around
+ drm_exec
+Date: Mon,  8 Sep 2025 12:12:35 +0200
+Message-ID: <20250908101246.65025-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250908101246.65025-1-thomas.hellstrom@linux.intel.com>
+References: <20250908101246.65025-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,141 +69,432 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Exhaustive eviction means that every client should in theory be able to
-allocate all graphics memory (minus pinned memory). This is done by
-evicting other clients' memory.
+Introduce a validation wrapper xe_validation_guard() as a helper
+intended to be used around drm_exec transactions what perform
+validations. Once TTM can handle exhaustive eviction we could
+remove this wrapper or make it mostly a NO-OP unless other
+functionality is added to it.
 
-Currently when TTM wants to evict a buffer object it will typically
-trylock that buffer object. It may also optionally try a sleeping lock,
-but if deadlock resolution kicks in while doing so (the locking
-returns -EDEADLK), that is converted to an -ENOMEM and returned to the
-caller. If there are multiple clients simultaneously wanting to evict
-eachother's buffer objects, there is a chance that clients end
-up returning -ENOMEM.
+Currently the wrapper takes a read lock upon entry and if the
+transaction hits an OOM, all locks are released and the
+transaction is retried with a write-lock. If all other
+validations participate in this scheme, the transaction with
+the write lock will be the only transaction validating and
+should have access to all available non-pinned memory.
 
-The key to resolving this is that on memory contention, lower
-priority clients back off, releasing their buffer object locks and
-thereby allow their memory to be evicted. Eventually their priority
-will elevate and they will succeed. TTM has long been intending to
-implement this using full drm_exec locking during eviction. This means
-that when that is implemented, clients wanting to validate memory must
-pass the drm_exec context used to lock its buffer object to TTM
-validation. Most of this series is making sure that is done, both
-on exec-type validation and buffer object creation. The big benefit of
-this approach is that it can distinguish between memory types and
-avoid lock release rollbacks until it is really necessary. One
-drawback is that it can't handle system memory contention resolved
-by a shrinker.
+There is currently a problem in that TTM converts -EDEADLOCKS to
+-ENOMEM, and with ww_mutex slowpath error injections, we can hit
+-ENOMEMs without having actually ran out of memory. We abuse
+ww_mutex internals to detect such situations until TTM is fixes
+to not convert the error code. In the meantime, injecting
+ww_mutex slowpath -EDEADLOCKs is a good way to test
+the implementation in the absence of real OOMs.
 
-However, since TTM has still to implement drm_exec validation, this
-series, while preparing for the TTM implementation, takes a different
-approach with an outer rw semaphore on top of the drm_exec retry loop.
-When a client wants to allocate graphics memory, the lock is taken in
-non-exclusive mode. If an OOM is hit, the locks are released and the
-outer lock is retaken in exclusive mode. That ensures that on memory
-contention, the client will, when the exclusive lock is held, be
-the only client trying to allocate memory. It requires, however,
-that all clients adhere to the same scheme.
+Just introduce the wrapper in this commit. It will be hooked up
+to the driver in following commits.
 
-The idea is that when TTM implements drm_exec eviction, the driver-
-managed scheme could be retired.
+v2:
+- Mark class_xe_validation conditional so that the loop is
+  skipped on initialization error.
+- Argument sanitation (Matt Brost)
+- Fix conditional execution of xe_validation_ctx_fini()
+  (Matt Brost)
+- Add a no_block mode for upcoming use in the CPU fault handler.
+v4:
+- Update kerneldoc. (Xe CI).
 
-Patch 1 identifies the code-paths where we need a drm_exec transaction.
-Patch 2 introduces the wrapper with the rw-semaphore
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_validation.c | 228 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_validation.h | 123 ++++++++++++++++
+ 2 files changed, 351 insertions(+)
 
-The rest of the patches ensure that we wrap graphics memory
-allocation in the combined rw-semaphore / drm-exec loop.
-
-As a follow up, additional patches around suspend / resume will
-be posted.
-
-The backing store allocation functions now typically requires the caller
-to indicate whether to sleep interruptible. That requires the caller to
-be able to take care of the resulting error codes if interrupted.
-(-EINTR or -ERESTARTSYS). Where it's obvious that the caller can do that
-or where other interruptible waits are called, the series enables
-interruptible waiting. In other functions a follow-up audit has to
-be made to enable interruptible waiting where possible.
-
-v2: (Highlights)
-- Fix a number of issues discovered during review.
-- Rework the signature of xe_validation_guart (Matt Brost)
-- Rework the CPU fault handler (Matt Brost)
-v3: (Highlights)
-- Rebase on the gpu_madvise series. Mainly causing conflicts in
-  the CPU fault handler.
-- Additional rework in the CPU fault handler.
-- Add patch 13
-- Various fixes following review comments (Matt Brost)
-v4: (CI fixes)
-- i915_gem_stolen_insert_node_in_range() failed. The needed
-  functionality is very similar to that of pv_provision_vf_lmem()
-  and psmi_alloc_object(): Create pinned but not mapped. So
-  Collect those changes into a separate patch. (CI).
-- Fix struct xe_validation_ctx kerneldoc. (CI).
-v5:
-- Disallow CPU faulting of imported buffer objects (Matt Brost).
-- Don't select caching mode for kernel bos (CI).
-v6:
-- Rebase.
-
-Thomas Hellström (13):
-  drm/xe: Pass down drm_exec context to validation
-  drm/xe: Introduce an xe_validation wrapper around drm_exec
-  drm/xe: Convert xe_bo_create_user() for exhaustive eviction
-  drm/xe: Convert SVM validation for exhaustive eviction
-  drm/xe: Convert existing drm_exec transactions for exhaustive eviction
-  drm/xe: Convert the CPU fault handler for exhaustive eviction
-  drm/xe/display: Convert __xe_pin_fb_vma()
-  drm/xe: Convert xe_dma_buf.c for exhaustive eviction
-  drm/xe: Rename ___xe_bo_create_locked()
-  drm/xe: Convert xe_bo_create_pin_map_at() for exhaustive eviction
-  drm/xe: Convert xe_bo_create_pin_map() for exhaustive eviction
-  drm/xe: Rework instances of variants of xe_bo_create_locked()
-  drm/xe: Convert pinned suspend eviction for exhaustive eviction
-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../compat-i915-headers/gem/i915_gem_stolen.h |  13 +-
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  18 +-
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |  10 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  71 +-
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |   8 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              |  36 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |  16 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  66 +-
- drivers/gpu/drm/xe/xe_bo.c                    | 827 +++++++++++++-----
- drivers/gpu/drm/xe/xe_bo.h                    |  62 +-
- drivers/gpu/drm/xe/xe_device.c                |   2 +
- drivers/gpu/drm/xe/xe_device_types.h          |   3 +
- drivers/gpu/drm/xe/xe_dma_buf.c               |  72 +-
- drivers/gpu/drm/xe/xe_eu_stall.c              |   5 +-
- drivers/gpu/drm/xe/xe_exec.c                  |  26 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  15 +-
- drivers/gpu/drm/xe/xe_ggtt.h                  |   5 +-
- drivers/gpu/drm/xe/xe_gsc.c                   |   8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |  28 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  21 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  24 +-
- drivers/gpu/drm/xe/xe_guc_engine_activity.c   |  13 +-
- drivers/gpu/drm/xe/xe_lmtt.c                  |  12 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |   7 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  20 +-
- drivers/gpu/drm/xe/xe_oa.c                    |   6 +-
- drivers/gpu/drm/xe/xe_psmi.c                  |  24 +-
- drivers/gpu/drm/xe/xe_pt.c                    |  10 +-
- drivers/gpu/drm/xe/xe_pt.h                    |   3 +-
- drivers/gpu/drm/xe/xe_pxp_submit.c            |  34 +-
- drivers/gpu/drm/xe/xe_svm.c                   | 101 ++-
- drivers/gpu/drm/xe/xe_validation.c            | 278 ++++++
- drivers/gpu/drm/xe/xe_validation.h            | 192 ++++
- drivers/gpu/drm/xe/xe_vm.c                    | 291 +++---
- drivers/gpu/drm/xe/xe_vm.h                    |  38 +-
- drivers/gpu/drm/xe/xe_vm_types.h              |  32 +-
- 38 files changed, 1708 insertions(+), 694 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_validation.c
- create mode 100644 drivers/gpu/drm/xe/xe_validation.h
-
+diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
+index cc0684d24e02..b90fda3dd5f4 100644
+--- a/drivers/gpu/drm/xe/xe_validation.c
++++ b/drivers/gpu/drm/xe/xe_validation.c
+@@ -5,6 +5,7 @@
+ #include "xe_bo.h"
+ #include <drm/drm_exec.h>
+ #include <drm/drm_gem.h>
++#include <drm/drm_gpuvm.h>
+ 
+ #include "xe_assert.h"
+ #include "xe_validation.h"
+@@ -47,3 +48,230 @@ void xe_validation_assert_exec(const struct xe_device *xe,
+ 	}
+ }
+ #endif
++
++static int xe_validation_lock(struct xe_validation_ctx *ctx)
++{
++	struct xe_validation_device *val = ctx->val;
++	int ret = 0;
++
++	if (ctx->val_flags.interruptible) {
++		if (ctx->request_exclusive)
++			ret = down_write_killable(&val->lock);
++		else
++			ret = down_read_interruptible(&val->lock);
++	} else {
++		if (ctx->request_exclusive)
++			down_write(&val->lock);
++		else
++			down_read(&val->lock);
++	}
++
++	if (!ret) {
++		ctx->lock_held = true;
++		ctx->lock_held_exclusive = ctx->request_exclusive;
++	}
++
++	return ret;
++}
++
++static int xe_validation_trylock(struct xe_validation_ctx *ctx)
++{
++	struct xe_validation_device *val = ctx->val;
++	bool locked;
++
++	if (ctx->request_exclusive)
++		locked = down_write_trylock(&val->lock);
++	else
++		locked = down_read_trylock(&val->lock);
++
++	if (locked) {
++		ctx->lock_held = true;
++		ctx->lock_held_exclusive = ctx->request_exclusive;
++	}
++
++	return locked ? 0 : -EWOULDBLOCK;
++}
++
++static void xe_validation_unlock(struct xe_validation_ctx *ctx)
++{
++	if (!ctx->lock_held)
++		return;
++
++	if (ctx->lock_held_exclusive)
++		up_write(&ctx->val->lock);
++	else
++		up_read(&ctx->val->lock);
++
++	ctx->lock_held = false;
++}
++
++/**
++ * xe_validation_ctx_init() - Initialize an xe_validation_ctx
++ * @ctx: The xe_validation_ctx to initialize.
++ * @val: The xe_validation_device representing the validation domain.
++ * @exec: The struct drm_exec to use for the transaction. May be NULL.
++ * @flags: The flags to use for initialization.
++ *
++ * Initialize and lock a an xe_validation transaction using the validation domain
++ * represented by @val. Also initialize the drm_exec object forwarding parts of
++ * @flags to the drm_exec initialization. The @flags.exclusive flag should
++ * typically be set to false to avoid locking out other validators from the
++ * domain until an OOM is hit. For testing- or final attempt purposes it can,
++ * however, be set to true.
++ *
++ * Return: %0 on success, %-EINTR if interruptible initial locking failed with a
++ * signal pending. If @flags.no_block is set to true, a failed trylock
++ * returns %-EWOULDBLOCK.
++ */
++int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_device *val,
++			   struct drm_exec *exec, const struct xe_val_flags flags)
++{
++	int ret;
++
++	ctx->exec = exec;
++	ctx->val = val;
++	ctx->lock_held = false;
++	ctx->lock_held_exclusive = false;
++	ctx->request_exclusive = flags.exclusive;
++	ctx->val_flags = flags;
++	ctx->exec_flags = 0;
++	ctx->nr = 0;
++
++	if (flags.no_block)
++		ret = xe_validation_trylock(ctx);
++	else
++		ret = xe_validation_lock(ctx);
++	if (ret)
++		return ret;
++
++	if (exec) {
++		if (flags.interruptible)
++			ctx->exec_flags |= DRM_EXEC_INTERRUPTIBLE_WAIT;
++		if (flags.exec_ignore_duplicates)
++			ctx->exec_flags |= DRM_EXEC_IGNORE_DUPLICATES;
++		drm_exec_init(exec, ctx->exec_flags, ctx->nr);
++	}
++
++	return 0;
++}
++
++#ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
++/*
++ * This abuses both drm_exec and ww_mutex internals and should be
++ * replaced by checking for -EDEADLK when we can make TTM
++ * stop converting -EDEADLK to -ENOMEM.
++ * An alternative is to not have exhaustive eviction with
++ * CONFIG_DEBUG_WW_MUTEX_SLOWPATH until that happens.
++ */
++static bool xe_validation_contention_injected(struct drm_exec *exec)
++{
++	return !!exec->ticket.contending_lock;
++}
++
++#else
++
++static bool xe_validation_contention_injected(struct drm_exec *exec)
++{
++	return false;
++}
++
++#endif
++
++static bool __xe_validation_should_retry(struct xe_validation_ctx *ctx, int ret)
++{
++	if (ret == -ENOMEM &&
++	    ((ctx->request_exclusive &&
++	      xe_validation_contention_injected(ctx->exec)) ||
++	     !ctx->request_exclusive)) {
++		ctx->request_exclusive = true;
++		return true;
++	}
++
++	return false;
++}
++
++/**
++ * xe_validation_exec_lock() - Perform drm_gpuvm_exec_lock within a validation
++ * transaction.
++ * @ctx: An uninitialized xe_validation_ctx.
++ * @vm_exec: An initialized struct vm_exec.
++ * @val: The validation domain.
++ *
++ * The drm_gpuvm_exec_lock() function internally initializes its drm_exec
++ * transaction and therefore doesn't lend itself very well to be using
++ * xe_validation_ctx_init(). Provide a helper that takes an uninitialized
++ * xe_validation_ctx and calls drm_gpuvm_exec_lock() with OOM retry.
++ *
++ * Return: %0 on success, negative error code on failure.
++ */
++int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
++			    struct drm_gpuvm_exec *vm_exec,
++			    struct xe_validation_device *val)
++{
++	int ret;
++
++	memset(ctx, 0, sizeof(*ctx));
++	ctx->exec = &vm_exec->exec;
++	ctx->exec_flags = vm_exec->flags;
++	ctx->val = val;
++	if (ctx->exec_flags & DRM_EXEC_INTERRUPTIBLE_WAIT)
++		ctx->val_flags.interruptible = 1;
++	if (ctx->exec_flags & DRM_EXEC_IGNORE_DUPLICATES)
++		ctx->val_flags.exec_ignore_duplicates = 1;
++retry:
++	ret = xe_validation_lock(ctx);
++	if (ret)
++		return ret;
++
++	ret = drm_gpuvm_exec_lock(vm_exec);
++	if (ret) {
++		xe_validation_unlock(ctx);
++		if (__xe_validation_should_retry(ctx, ret))
++			goto retry;
++	}
++
++	return ret;
++}
++
++/**
++ * xe_validation_ctx_fini() - Finalize a validation transaction
++ * @ctx: The Validation transaction to finalize.
++ *
++ * Finalize a validation transaction and its related drm_exec transaction.
++ */
++void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
++{
++	drm_exec_fini(ctx->exec);
++	xe_validation_unlock(ctx);
++}
++
++/**
++ * xe_validation_should_retry() - Determine if a validation transaction should retry
++ * @ctx: The validation transaction.
++ * @ret: Pointer to a return value variable.
++ *
++ * Determines whether a validation transaction should retry based on the
++ * internal transaction state and the return value pointed to by @ret.
++ * If a validation should be retried, the transaction is prepared for that,
++ * and the validation locked might be re-locked in exclusive mode, and *@ret
++ * is set to %0. If the re-locking errors, typically due to interruptible
++ * locking with signal pending, *@ret is instead set to -EINTR and the
++ * function returns %false.
++ *
++ * Return: %true if validation should be retried, %false otherwise.
++ */
++bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int *ret)
++{
++	if (__xe_validation_should_retry(ctx, *ret)) {
++		drm_exec_fini(ctx->exec);
++		*ret = 0;
++		if (ctx->request_exclusive != ctx->lock_held_exclusive) {
++			xe_validation_unlock(ctx);
++			*ret = xe_validation_lock(ctx);
++		}
++		drm_exec_init(ctx->exec, ctx->exec_flags, ctx->nr);
++		return !*ret;
++	}
++
++	return false;
++}
+diff --git a/drivers/gpu/drm/xe/xe_validation.h b/drivers/gpu/drm/xe/xe_validation.h
+index db50feacad7a..fec331d791e7 100644
+--- a/drivers/gpu/drm/xe/xe_validation.h
++++ b/drivers/gpu/drm/xe/xe_validation.h
+@@ -7,9 +7,11 @@
+ 
+ #include <linux/dma-resv.h>
+ #include <linux/types.h>
++#include <linux/rwsem.h>
+ 
+ struct drm_exec;
+ struct drm_gem_object;
++struct drm_gpuvm_exec;
+ struct xe_device;
+ 
+ #ifdef CONFIG_PROVE_LOCKING
+@@ -66,4 +68,125 @@ void xe_validation_assert_exec(const struct xe_device *xe, const struct drm_exec
+ 	} while (0)
+ #endif
+ 
++/**
++ * struct xe_validation_device - The domain for exhaustive eviction
++ * @lock: The lock used to exclude other processes from allocating graphics memory
++ *
++ * The struct xe_validation_device represents the domain for which we want to use
++ * exhaustive eviction. The @lock is typically grabbed in read mode for allocations
++ * but when graphics memory allocation fails, it is retried with the write mode held.
++ */
++struct xe_validation_device {
++	struct rw_semaphore lock;
++};
++
++/**
++ * struct xe_val_flags - Flags for xe_validation_ctx_init().
++ * @exclusive: Start the validation transaction by locking out all other validators.
++ * @no_block:  Don't block on initialization.
++ * @interruptible: Block interruptible if blocking. Implies initializing the drm_exec
++ * context with the DRM_EXEC_INTERRUPTIBLE_WAIT flag.
++ * @exec_ignore_duplicates: Initialize the drm_exec context with the
++ * DRM_EXEC_IGNORE_DUPLICATES flag.
++ */
++struct xe_val_flags {
++	u32 exclusive :1;
++	u32 no_block :1;
++	u32 interruptible :1;
++	u32 exec_ignore_duplicates :1;
++};
++
++/**
++ * struct xe_validation_ctx - A struct drm_exec subclass with support for
++ * exhaustive eviction
++ * @exec: The drm_exec object base class. Note that we use a pointer instead of
++ * embedding to avoid diamond inheritance.
++ * @val: The exhaustive eviction domain.
++ * @val_flags: Copy of the struct xe_val_flags passed to xe_validation_ctx_init.
++ * @lock_held: Whether The domain lock is currently held.
++ * @lock_held_exclusive: Whether the domain lock is held in exclusive mode.
++ * @request_exclusive: Whether to lock exclusively (write mode) the next time
++ * the domain lock is locked.
++ * @exec_flags: The drm_exec flags used for drm_exec (re-)initialization.
++ * @nr: The drm_exec nr parameter used for drm_exec (re-)initializaiton.
++ */
++struct xe_validation_ctx {
++	struct drm_exec *exec;
++	struct xe_validation_device *val;
++	struct xe_val_flags val_flags;
++	bool lock_held;
++	bool lock_held_exclusive;
++	bool request_exclusive;
++	u32 exec_flags;
++	unsigned int nr;
++};
++
++int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_device *val,
++			   struct drm_exec *exec, const struct xe_val_flags flags);
++
++int xe_validation_exec_lock(struct xe_validation_ctx *ctx, struct drm_gpuvm_exec *vm_exec,
++			    struct xe_validation_device *val);
++
++void xe_validation_ctx_fini(struct xe_validation_ctx *ctx);
++
++bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int *ret);
++
++/**
++ * xe_validation_retry_on_oom() - Retry on oom in an xe_validaton transaction
++ * @_ctx: Pointer to the xe_validation_ctx
++ * @_ret: The current error value possibly holding -ENOMEM
++ *
++ * Use this in way similar to drm_exec_retry_on_contention().
++ * If @_ret contains -ENOMEM the tranaction is restarted once in a way that
++ * blocks other transactions and allows exhastive eviction. If the transaction
++ * was already restarted once, Just return the -ENOMEM. May also set
++ * _ret to -EINTR if not retrying and waits are interruptible.
++ * May only be used within a drm_exec_until_all_locked() loop.
++ */
++#define xe_validation_retry_on_oom(_ctx, _ret)				\
++	do {								\
++		if (xe_validation_should_retry(_ctx, _ret))		\
++			goto *__drm_exec_retry_ptr;			\
++	} while (0)
++
++/**
++ * xe_validation_device_init - Initialize a struct xe_validation_device
++ * @val: The xe_validation_device to init.
++ */
++static inline void
++xe_validation_device_init(struct xe_validation_device *val)
++{
++	init_rwsem(&val->lock);
++}
++
++/*
++ * Make guard() and scoped_guard() work with xe_validation_ctx
++ * so that we can exit transactions without caring about the
++ * cleanup.
++ */
++DEFINE_CLASS(xe_validation, struct xe_validation_ctx *,
++	     if (_T) xe_validation_ctx_fini(_T);,
++	     ({_ret = xe_validation_ctx_init(_ctx, _val, _exec, _flags);
++	       _ret ? NULL : _ctx; }),
++	     struct xe_validation_ctx *_ctx, struct xe_validation_device *_val,
++	     struct drm_exec *_exec, const struct xe_val_flags _flags, int _ret);
++static inline void *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
++{return *_T; }
++#define class_xe_validation_is_conditional true
++
++/**
++ * xe_validation_guard() - An auto-cleanup xe_validation_ctx transaction
++ * @_ctx: The xe_validation_ctx.
++ * @_val: The xe_validation_device.
++ * @_exec: The struct drm_exec object
++ * @_flags: Flags for the xe_validation_ctx initialization.
++ * @_ret: Return in / out parameter. May be set by this macro. Typicall 0 when called.
++ *
++ * This macro is will initiate a drm_exec transaction with additional support for
++ * exhaustive eviction.
++ */
++#define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
++	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
++	drm_exec_until_all_locked(_exec)
++
+ #endif
 -- 
 2.51.0
 
