@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5155CAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 16:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC10CAC581
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 16:50:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42D0C10E572;
-	Mon,  8 Sep 2025 16:43:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UwJ5Gmzo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB50710E570;
- Mon,  8 Sep 2025 16:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757349792; x=1788885792;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=d31/gEBHYN9EflmI/bax/rIyTfDodeoFdni7fV4Xt7w=;
- b=UwJ5Gmzol3ItbUdSIu/+19lwYcG8V10VNUBAp2aa9c6JxotIT/rFVFAy
- Vs7d1NcG8WOvAwMiPnZYzAuTMUyEpTf3/PfVqJMK4/kwCPAcLazVQ8viY
- D4d5aMTTzUn3dNhfBIS83WmIHY0By3ABiDyn0tQ53vJ29JIDgLxdCqbmk
- O0QwQdGtuzfwzOnQbHQNpRPz5GMj/bgEQI34RFO2BeP9/QC3/zwDH37EL
- RmtUW5H9RvrXpe7aQvAH8OoLQ8G8VwQyabcca85n9L3z9jLELsXZOlxzK
- 0u9gHSVRzrMfr2NvjydbxrmguJqyC8KUDMVpXdXGzoPgEhYC6O2dojSK9 Q==;
-X-CSE-ConnectionGUID: N7PmbmWESPSY7Dca6L2Nmg==
-X-CSE-MsgGUID: iDvy5H8iT1yCMjbqQI3DVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59565519"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59565519"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 09:43:11 -0700
-X-CSE-ConnectionGUID: 77XMHAPpRuqsxLW+EBfmJg==
-X-CSE-MsgGUID: X93UCeCqQECTffaMurN4LQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,249,1751266800"; d="scan'208";a="172417373"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.61])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 09:43:08 -0700
-Date: Mon, 8 Sep 2025 19:43:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: Re: [PATCH 12/14] drm/i915/vrr: Use static guardband to support
- seamless LRR switching
-Message-ID: <aL8HmW0mXKvHNGF5@intel.com>
-References: <20250907073241.19632-1-ankit.k.nautiyal@intel.com>
- <20250907073241.19632-13-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C10C710E1A4;
+	Mon,  8 Sep 2025 16:50:15 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 808D910E1A4;
+ Mon,  8 Sep 2025 16:50:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1232664789358579620=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250907073241.19632-13-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/debugfs=3A_Make_resi?=
+ =?utf-8?q?dencies_definitions_const?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 08 Sep 2025 16:50:14 -0000
+Message-ID: <175735021451.313434.10082724623162212439@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250905180225.8434-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250905180225.8434-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,246 +36,327 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Sep 07, 2025 at 01:02:39PM +0530, Ankit Nautiyal wrote:
-> In the current VRR implementation, vrr.vmin and vrr.guardband are set such
-> that they do not need to change when switching from fixed refresh rate to
-> variable refresh rate. Specifically, vrr.guardband is always set to match
-> the vblank length. This approach works for most cases, but not for LRR,
-> where the guardband would need to change while the VRR timing generator is
-> still active.
-> 
-> With the VRR TG always active, live updates to guardband are unsafe and not
-> recommended. To ensure hardware safety, guardband was moved out of the
-> !fastset block, meaning any change now requires a full modeset.
-> This breaks seamless LRR switching, which was previously supported.
-> 
-> Since the problem arises from guardband being matched to the vblank length,
-> solution is to use a minimal, sufficient static value, instead. So we use a
-> static guardband defined during mode-set that fits within the smallest
-> expected vblank and remains unchanged in case of features like LRR where
-> vtotal changes. To compute this minimum guardband we take into account
-> latencies/delays due to different features as mentioned in the Bspec.
-> 
-> v2:
-> -Use helpers for dsc/scaler prefill latencies. (Mitul)
-> -Account for pkgc latency and take max of pkgc and sagv latencies.
-> v3: Use new helper for PSR2/Panel Replay latency.
-> v4: Avoid re-setting the Vmin/Flipline for optimized guardband.
-> 
-> Bspec: 70151
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (#v3)
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |   2 +-
->  drivers/gpu/drm/i915/display/intel_vrr.c     | 127 ++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_vrr.h     |   3 +-
->  3 files changed, 128 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index fb072275b1c7..3fa94675d5e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4902,7 +4902,6 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
->  	struct drm_connector *connector;
->  	int i;
->  
-> -	intel_vrr_compute_config_late(crtc_state);
->  
->  	for_each_new_connector_in_state(&state->base, connector,
->  					conn_state, i) {
-> @@ -4914,6 +4913,7 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
->  		    !encoder->compute_config_late)
->  			continue;
->  
-> +		intel_vrr_compute_config_late(crtc_state, conn_state);
->  		ret = encoder->compute_config_late(encoder, crtc_state,
->  						   conn_state);
->  		if (ret)
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 855974174afd..fff684eb2514 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -6,12 +6,15 @@
->  
->  #include <drm/drm_print.h>
->  
-> +#include "intel_alpm.h"
->  #include "intel_de.h"
->  #include "intel_display_regs.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
->  #include "intel_vrr.h"
->  #include "intel_vrr_regs.h"
-> +#include "skl_scaler.h"
-> +#include "skl_watermark.h"
->  
->  #define FIXED_POINT_PRECISION		100
->  #define CMRR_PRECISION_TOLERANCE	10
-> @@ -413,15 +416,135 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	}
->  }
->  
-> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
-> +static
-> +int scaler_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
-> +{
-> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-> +	u64 hscale_k, vscale_k;
-> +	int cdclk_adjustment;
-> +	int num_scaler_users;
-> +
-> +	/*
-> +	 * Assuming:
-> +	 * Both scaler enabled.
-> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
-> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
-> +	 * Cdclk Adjustment : 1
-> +	 */
-> +	num_scaler_users = 2;
-> +	hscale_k = 2 * 1000;
-> +	vscale_k = 2 * 1000;
-> +	cdclk_adjustment = 1;
-> +
-> +	return intel_vrr_guardband_scaler_latency(num_scaler_users, hscale_k, vscale_k,
-> +						  chroma_downscaling_factor,
-> +						  cdclk_adjustment,
-> +						  linetime_us);
-> +}
-> +
-> +static
-> +int dsc_prefill_latency(struct intel_crtc_state *crtc_state, int linetime_us)
-> +{
-> +#define MAX_SCALERS 2
-> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
-> +	u64 hscale_k[MAX_SCALERS], vscale_k[MAX_SCALERS];
-> +	int cdclk_adjustment;
-> +	int num_scaler_users;
-> +
-> +	/*
-> +	 * Assuming:
-> +	 * Both scaler enabled.
-> +	 * scaler 1 downscaling factor as 2 x 2 (Horiz x Vert)
-> +	 * scaler 2 downscaling factor as 2 x 1 (Horiz x Vert)
-> +	 * Cdclk Adjustment : 1
-> +	 */
-> +	num_scaler_users = MAX_SCALERS;
-> +	hscale_k[0] = 2 * 1000;
-> +	vscale_k[0] = 2 * 1000;
-> +	hscale_k[1] = 2 * 1000;
-> +	vscale_k[1] = 1 * 1000;
-> +
-> +	cdclk_adjustment = 1;
-> +
-> +	return intel_vrr_guardband_dsc_latency(num_scaler_users, hscale_k, vscale_k,
-> +					       chroma_downscaling_factor,
-> +					       cdclk_adjustment,
-> +					       linetime_us);
-> +}
-> +
-> +static
-> +int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
-> +				struct intel_connector *connector)
-> +{
-> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	int dsc_prefill_time = 0;
-> +	int psr2_pr_latency = 0;
-> +	int scaler_prefill_time;
-> +	int wm0_prefill_time;
-> +	int pkgc_max_latency;
-> +	int sagv_latency;
-> +	int sdp_latency = 0;
-> +	int guardband_us;
-> +	int linetime_us;
-> +	int guardband;
-> +	int pm_delay;
-> +
-> +	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
-> +				   adjusted_mode->crtc_clock);
-> +
-> +	pkgc_max_latency = skl_watermark_max_latency(display, 1);
-> +	sagv_latency = display->sagv.block_time_us;
-> +
-> +	/* Assuming max wm0 lines = 4 */
-> +	wm0_prefill_time = 4 * linetime_us + 20;
-> +
-> +	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
-> +
-> +	if (crtc_state->dsc.compression_enable)
-> +		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
-> +
-> +	pm_delay = crtc_state->framestart_delay +
-> +		   max(sagv_latency, pkgc_max_latency) +
-> +		   wm0_prefill_time +
-> +		   scaler_prefill_time +
-> +		   dsc_prefill_time;
-> +
-> +	switch (connector->base.connector_type) {
-> +	case DRM_MODE_CONNECTOR_eDP:
-> +	case DRM_MODE_CONNECTOR_DisplayPort:
-> +		psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, true);
-> +		sdp_latency = intel_dp_compute_sdp_latency(crtc_state, true);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	guardband_us = max(sdp_latency, psr2_pr_latency);
-> +	guardband_us = max(guardband_us, pm_delay);
-> +
-> +	guardband = DIV_ROUND_UP(guardband_us, linetime_us);
-> +
-> +	/* guardband cannot be more than the Vmax vblank */
-> +	guardband = min(guardband, crtc_state->vrr.vmax - adjusted_mode->crtc_vblank_start);
-> +
-> +	return guardband;
-> +}
-> +
-> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
-> +				   struct drm_connector_state *conn_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	struct intel_connector *connector =
-> +		to_intel_connector(conn_state->connector);
->  
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> -	if (DISPLAY_VER(display) >= 13) {
-> +	if (intel_vrr_always_use_vrr_tg(display)) {
-> +		crtc_state->vrr.guardband = intel_vrr_compute_guardband(crtc_state, connector);
+--===============1232664789358579620==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This all looks to be in the wrong place. It needs to be done as part of
-intel_crtc_compute_vblank_delay() which then updates crtc_vblank_start
-to reflect reality instead of leaving some incorrect junk in there.
-Presumably that is why you also had to do that
-intel_dsb_wait_for_delayed_vblank() hack.
+== Series Details ==
 
-> +	} else if (DISPLAY_VER(display) >= 13) {
->  		crtc_state->vrr.guardband =
->  			crtc_state->vrr.vmin - adjusted_mode->crtc_vblank_start;
->  	} else {
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 950041647e47..362638fd0d66 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -21,7 +21,8 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_check_modeset(struct intel_atomic_state *state);
->  void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  			      struct drm_connector_state *conn_state);
-> -void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
-> +void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state,
-> +				   struct drm_connector_state *conn_state);
->  void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_send_push(struct intel_dsb *dsb,
-> -- 
-> 2.45.2
+Series: drm/xe/debugfs: Make residencies definitions const
+URL   : https://patchwork.freedesktop.org/series/154112/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61_BAT -> xe-pw-154112v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 11)
+------------------------------
+
+  Additional (1): bat-lnl-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154112v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@nullptr:
+    - bat-lnl-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@fbdev@nullptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-lnl-2:          NOTRUN -> [SKIP][2] ([Intel XE#1466] / [Intel XE#2235])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#4543]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+    - bat-lnl-2:          NOTRUN -> [SKIP][5] ([Intel XE#2235] / [Intel XE#2482]) +3 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-lnl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2235] / [Intel XE#352]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-lnl-2:          NOTRUN -> [SKIP][7] ([Intel XE#2235] / [Intel XE#2548])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-lnl-2:          NOTRUN -> [SKIP][8] ([Intel XE#1470] / [Intel XE#2235] / [Intel XE#2853])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+    - bat-lnl-2:          NOTRUN -> [SKIP][9] ([Intel XE#2235]) +13 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - bat-lnl-2:          NOTRUN -> [SKIP][10] ([Intel XE#1406] / [Intel XE#2850] / [Intel XE#929]) +2 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-off:
+    - bat-lnl-2:          NOTRUN -> [SKIP][11] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-lnl-2:          NOTRUN -> [SKIP][12] ([Intel XE#688]) +11 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-lnl-2:          NOTRUN -> [SKIP][13] ([Intel XE#2229]) +2 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-lnl-2:          NOTRUN -> [SKIP][14] ([Intel XE#1416])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-lnl-2:          NOTRUN -> [SKIP][15] ([Intel XE#1420] / [Intel XE#2838])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-lnl-2:          NOTRUN -> [SKIP][16] ([Intel XE#977])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-lnl-2:          NOTRUN -> [SKIP][17] ([Intel XE#2236] / [Intel XE#979])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-lnl-2:          NOTRUN -> [SKIP][18] ([Intel XE#3342])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-1}:        [FAIL][19] ([Intel XE#5783]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+    - {bat-ptl-vm}:       [FAIL][21] ([Intel XE#5783]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
+  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2235]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#929]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/929
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61 -> xe-pw-154112v1
+
+  IGT_8524: 8524
+  xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61: 8ff22e1c035368015610c20c9cc612e7bdec5d61
+  xe-pw-154112v1: 154112v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/index.html
+
+--===============1232664789358579620==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/debugfs: Make residencies definitions const</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154112/">https://patchwork.freedesktop.org/series/154112/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61_BAT -&gt; xe-pw-154112v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 11)</h2>
+<p>Additional (1): bat-lnl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154112v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@nullptr:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@fbdev@nullptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2235">Intel XE#2235</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/929">Intel XE#929</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-lnl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-lnl-2/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154112v1/bat-ptl-vm/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61 -&gt; xe-pw-154112v1</li>
+</ul>
+<p>IGT_8524: 8524<br />
+  xe-3698-8ff22e1c035368015610c20c9cc612e7bdec5d61: 8ff22e1c035368015610c20c9cc612e7bdec5d61<br />
+  xe-pw-154112v1: 154112v1</p>
+
+</body>
+</html>
+
+--===============1232664789358579620==--
