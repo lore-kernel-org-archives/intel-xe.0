@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 192EACAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 10:18:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE8E5CA1013
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 10:21:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C392410E4B8;
-	Mon,  8 Sep 2025 10:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A7110E4B8;
+	Mon,  8 Sep 2025 10:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LzT6/7yL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QLiuyJHc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3082D10E4B8;
- Mon,  8 Sep 2025 10:18:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D4D10E4B8
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Sep 2025 10:21:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757326733; x=1788862733;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=5l0+g7DqWEN9Ys77QDzZqNYEoRZe0vGWjPe1pr+WWrM=;
- b=LzT6/7yLJ9aE6LIPRiKUYsbNGydR05M/WcV8HYg6U+jUYbkQwF1U0lIj
- HBuauVQ0OVz0QvG5MN+kB7OapFLhgAFFlMYPjh9dv4ayLLvlWdOGkJzhn
- nqxU13To0BjFn/pbJfDd8YHGc0T/QM18rn/JFqdxoF/mpTQ3v87aqy0Lf
- z6q4Q3HmlEiCbyH3zO8VpMrmlQmtVpVOktz1D1ZXft/GpY56fFW06Qj+T
- c1x4zauTXe/FOXaWXz4OnIpXGev6RpqmNs0cENDBnuywXVk4JEDXN/9Mo
- m1YrMtJkK6qMlx5sx36YEZ09ZgIdnbNyOUVWzDe3wjGxW3zTczbVDcEmJ Q==;
-X-CSE-ConnectionGUID: V2SCHBzrReGA4DQrMSVXhA==
-X-CSE-MsgGUID: GgXq8UHCR0CreB0+HzZFSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82171717"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82171717"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:18:52 -0700
-X-CSE-ConnectionGUID: /C8B8EgSSDupEz0PUz9NmA==
-X-CSE-MsgGUID: i1uTxAoDTCi2uNwe8FC1Tg==
+ t=1757326863; x=1788862863;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H/lehthTW1w8R6UhUdvxEsvcqIxVB+8a1v2oFgXV+HA=;
+ b=QLiuyJHchtgG/xkLUoZs3imqQA+CgHu0Id6jGO12RLb0FaEdW8thZj4t
+ pQqkRVJOkdFIttVt1PX0JGCQ+HQeJys7UhyX5E541sw5PhDewuHvVUL88
+ btmne0i7bNhOjx0knZViqtcLjLQJY4s74BUafBE2u3wxZGkYsbEiWSMpv
+ IEixJm4afHQ8pMsnEhTPkgS7krlSMbEA2XKY0Rz9FBPDmwm0KzuRuaUH8
+ H6/GcTjNIeE4KQPlHRO1SwJA700sGFPFNiNdazTFAbSTM2OYnwzRUajiG
+ Iz8gXdViWkV/ZV2tzBXfF5ymf8ushaIrPNq6CM5uOb+hU9AkxLnFQPY2p A==;
+X-CSE-ConnectionGUID: rtpjTL0pQxyt+SUUQGNb6Q==
+X-CSE-MsgGUID: Yb54UBTkR3iM5EoTzzmcxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="59276864"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="59276864"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:21:02 -0700
+X-CSE-ConnectionGUID: 8O6k7L5RRY2HUWyzumE5eA==
+X-CSE-MsgGUID: eDwN+Uu+RxKoKwuEB104EA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172340455"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.204])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 03:18:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/ddi: abstract figuring out encoder name
-In-Reply-To: <25b36d6f-6e63-4804-8f1c-c5f857f9a8bd@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250903101050.3671305-1-jani.nikula@intel.com>
- <25b36d6f-6e63-4804-8f1c-c5f857f9a8bd@intel.com>
-Date: Mon, 08 Sep 2025 13:18:48 +0300
-Message-ID: <c5d1b333b80763c23510a4b19e1733f695f37240@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="177981282"
+Received: from abaranow-mobl.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.83.253])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 03:21:01 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 0/2] GuC CT devm actions improvements
+Date: Mon,  8 Sep 2025 12:20:50 +0200
+Message-ID: <20250908102053.539-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,129 +65,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 03 Sep 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 9/3/2025 3:40 PM, Jani Nikula wrote:
->> The encoder name deduction has become a bit cumbersome within
->> intel_ddi_init(). Split it out to a separate function to declutter
->> intel_ddi_init(), even if that means having to use a temp seq buffer for
->> the name.
->>
->> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM.
->
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Michal Wajdeczko (2):
+  drm/xe/guc: Always add CT disable action during second init step
+  drm/xe/guc: Don't invoke disable_ct action during replacement
 
-Thanks, pushed to din.
-
-BR,
-Jani.
-
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_ddi.c | 69 +++++++++++++-----------
->>   1 file changed, 38 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 4e4ea3a0ff83..68e049ad042b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -26,6 +26,7 @@
->>    */
->>   
->>   #include <linux/iopoll.h>
->> +#include <linux/seq_buf.h>
->>   #include <linux/string_helpers.h>
->>   
->>   #include <drm/display/drm_dp_helper.h>
->> @@ -5077,11 +5078,45 @@ static bool port_in_use(struct intel_display *display, enum port port)
->>   	return false;
->>   }
->>   
->> +static const char *intel_ddi_encoder_name(struct intel_display *display,
->> +					  enum port port, enum phy phy,
->> +					  struct seq_buf *s)
->> +{
->> +	if (DISPLAY_VER(display) >= 13 && port >= PORT_D_XELPD) {
->> +		seq_buf_printf(s, "DDI %c/PHY %c",
->> +			       port_name(port - PORT_D_XELPD + PORT_D),
->> +			       phy_name(phy));
->> +	} else if (DISPLAY_VER(display) >= 12) {
->> +		enum tc_port tc_port = intel_port_to_tc(display, port);
->> +
->> +		seq_buf_printf(s, "DDI %s%c/PHY %s%c",
->> +			       port >= PORT_TC1 ? "TC" : "",
->> +			       port >= PORT_TC1 ? port_tc_name(port) : port_name(port),
->> +			       tc_port != TC_PORT_NONE ? "TC" : "",
->> +			       tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> +	} else if (DISPLAY_VER(display) >= 11) {
->> +		enum tc_port tc_port = intel_port_to_tc(display, port);
->> +
->> +		seq_buf_printf(s, "DDI %c%s/PHY %s%c",
->> +			       port_name(port),
->> +			       port >= PORT_C ? " (TC)" : "",
->> +			       tc_port != TC_PORT_NONE ? "TC" : "",
->> +			       tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> +	} else {
->> +		seq_buf_printf(s, "DDI %c/PHY %c", port_name(port),  phy_name(phy));
->> +	}
->> +
->> +	drm_WARN_ON(display->drm, seq_buf_has_overflowed(s));
->> +
->> +	return seq_buf_str(s);
->> +}
->> +
->>   void intel_ddi_init(struct intel_display *display,
->>   		    const struct intel_bios_encoder_data *devdata)
->>   {
->>   	struct intel_digital_port *dig_port;
->>   	struct intel_encoder *encoder;
->> +	DECLARE_SEQ_BUF(encoder_name, 20);
->>   	bool init_hdmi, init_dp;
->>   	enum port port;
->>   	enum phy phy;
->> @@ -5166,37 +5201,9 @@ void intel_ddi_init(struct intel_display *display,
->>   	encoder = &dig_port->base;
->>   	encoder->devdata = devdata;
->>   
->> -	if (DISPLAY_VER(display) >= 13 && port >= PORT_D_XELPD) {
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c/PHY %c",
->> -				 port_name(port - PORT_D_XELPD + PORT_D),
->> -				 phy_name(phy));
->> -	} else if (DISPLAY_VER(display) >= 12) {
->> -		enum tc_port tc_port = intel_port_to_tc(display, port);
->> -
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %s%c/PHY %s%c",
->> -				 port >= PORT_TC1 ? "TC" : "",
->> -				 port >= PORT_TC1 ? port_tc_name(port) : port_name(port),
->> -				 tc_port != TC_PORT_NONE ? "TC" : "",
->> -				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> -	} else if (DISPLAY_VER(display) >= 11) {
->> -		enum tc_port tc_port = intel_port_to_tc(display, port);
->> -
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c%s/PHY %s%c",
->> -				 port_name(port),
->> -				 port >= PORT_C ? " (TC)" : "",
->> -				 tc_port != TC_PORT_NONE ? "TC" : "",
->> -				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
->> -	} else {
->> -		drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> -				 DRM_MODE_ENCODER_TMDS,
->> -				 "DDI %c/PHY %c", port_name(port), phy_name(phy));
->> -	}
->> +	drm_encoder_init(display->drm, &encoder->base, &intel_ddi_funcs,
->> +			 DRM_MODE_ENCODER_TMDS, "%s",
->> +			 intel_ddi_encoder_name(display, port, phy, &encoder_name));
->>   
->>   	intel_encoder_link_check_init(encoder, intel_ddi_link_check);
->>   
+ drivers/gpu/drm/xe/xe_guc_ct.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.47.1
+
