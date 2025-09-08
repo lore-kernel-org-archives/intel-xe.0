@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC40ECAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 12:30:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1754CAC581
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 12:55:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B72410E50D;
-	Mon,  8 Sep 2025 12:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BAD610E516;
+	Mon,  8 Sep 2025 12:55:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T1N5pAkg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XizVfR6R";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9538310E50D
- for <intel-xe@lists.freedesktop.org>; Mon,  8 Sep 2025 12:30:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FBB010E515;
+ Mon,  8 Sep 2025 12:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757334649; x=1788870649;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e6cGjfKUmi05ex2GSjx3obQCY35n+h1ZdVmp/PnGGXs=;
- b=T1N5pAkgagh5+HizgAw23OIFnBd93Vj9GBVJKBUSl6cVshzy+vDPoDlH
- xz3DLhVsT/9N1NYeRZyWxevgkRF+u5iQ/L1QKJitzJu2W2ysJsdPL2gL2
- l/6zxOj8gZrYxU+MI4O/GmkOSZYF/oi52hcpD297qB9Q2GxU77YAPFfdx
- cEQzHuYqTmWhZLIoe8g7VRS9hBVWnQMf4/RzNUirmBZvvWqfBTXirSeo8
- WH9J11a3qPL2z5uxA/GUdpKc7pwNFeYyYfvUj/MS4XKJ5tH62zVwmn3WS
- waUbBae8lnNGIQSNihmdaK4oKgcBRptDIBonR7FHHnqiCR04NkQ8xTzeZ Q==;
-X-CSE-ConnectionGUID: 2TvtTvWvRpqww5wlEFm7TQ==
-X-CSE-MsgGUID: g/zUTAYcRw2sdFGb2cmCMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="59526311"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="59526311"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 05:30:48 -0700
-X-CSE-ConnectionGUID: 6Wd7mtrMTky1929358m3Aw==
-X-CSE-MsgGUID: EbMrioSyQ5uGUQ2aVngTIg==
+ t=1757336123; x=1788872123;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=LjvrZmL6Y6fmSwZC/fek6DJdXKSocuGB/gVFarDecmk=;
+ b=XizVfR6Rt2Wta1k5JuSL2qQnAShZCZs7T/Ena7Rrv9wvfSGlMFjYz/Aq
+ UKD4CAlZAFC3EZEpPs5jZbTeCvElGkDIOgZOK73+Hppd4UcjnuSqqHLmC
+ ltCYFbLNOv33kVTTLmTBPeiOTWPYgMRtAFfBngl58t3wkzCl7hdttSkXF
+ YXvhf14Az+DDRuu2birJdL3BXe86s/mVDT6onaB9doxJtJ3/+ibX0PM1H
+ 9cNxQTo0DfVnNxpII3hxmskJrwos9xpHeBSDoNyC2upHkQBHM11LC4My2
+ D1ewWTuzVagei9gHFWRp81nen1FAzpsysl3NzE8TSPgX6O9J9TKLFOR6H Q==;
+X-CSE-ConnectionGUID: AfE0xMIaSMOCDorHiD0JjQ==
+X-CSE-MsgGUID: 1gjvGmy3TWuzNWWMnAY43Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="58630332"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="58630332"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:55:23 -0700
+X-CSE-ConnectionGUID: NM2+lZwZTNSucih6xoiJyg==
+X-CSE-MsgGUID: 7/595eG0ShaQbDYLcHOwtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172656456"
-Received: from abaranow-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.83.253])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 05:30:47 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v2 7/7] drm/xe/vf: Move VF CCS debugfs attribute
-Date: Mon,  8 Sep 2025 14:30:24 +0200
-Message-ID: <20250908123025.747-8-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250908123025.747-1-michal.wajdeczko@intel.com>
-References: <20250908123025.747-1-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="172707068"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.204])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 05:55:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Maarten
+ Lankhorst <dev@lankhorst.se>
+Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
+In-Reply-To: <aLqsC87Ol_zCXOkN@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
+ <aLqsC87Ol_zCXOkN@intel.com>
+Date: Mon, 08 Sep 2025 15:55:18 +0300
+Message-ID: <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,231 +71,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The VF CCS handling is per-device so its debugfs file should not
-be exposed on per-GT basis. Move it up to the device level.
+On Fri, 05 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Sep 03, 2025 at 11:31:59PM +0300, Jani Nikula wrote:
+>> Add new helper intel_fbdev_fb_pitch_align() in preparation for further
+>> refactoring. The alignment is different for i915 and xe.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 8 ++++++--
+>>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 3 +++
+>>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 8 ++++++--
+>>  3 files changed, 15 insertions(+), 4 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.c
+>> index 9c557917d781..d1c03d7b9bdc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+>> @@ -13,6 +13,11 @@
+>>  #include "intel_fb.h"
+>>  #include "intel_fbdev_fb.h"
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, 64);
+>> +}
+>> +
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes)
+>>  {
+>> @@ -30,8 +35,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
+drm_device *drm,
+>>  	mode_cmd.width =3D sizes->surface_width;
+>>  	mode_cmd.height =3D sizes->surface_height;
+>>=20=20
+>> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
+>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+>> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
+V_ROUND_UP(sizes->surface_bpp, 8));
+>>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
+>>  							  sizes->surface_depth);
+>>=20=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
+/drm/i915/display/intel_fbdev_fb.h
+>> index 668ae355f5e5..caeb543d5efc 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+>> @@ -6,6 +6,8 @@
+>>  #ifndef __INTEL_FBDEV_FB_H__
+>>  #define __INTEL_FBDEV_FB_H__
+>>=20=20
+>> +#include <linux/types.h>
+>> +
+>>  struct drm_device;
+>>  struct drm_fb_helper_surface_size;
+>>  struct drm_gem_object;
+>> @@ -13,6 +15,7 @@ struct fb_info;
+>>  struct i915_vma;
+>>  struct intel_display;
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride);
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes);
+>>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
+nfo *info,
+>> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
+rm/xe/display/intel_fbdev_fb.c
+>> index bafca1059a40..fd2c40020eea 100644
+>> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>> @@ -15,6 +15,11 @@
+>>=20=20
+>>  #include <generated/xe_wa_oob.h>
+>>=20=20
+>> +u32 intel_fbdev_fb_pitch_align(u32 stride)
+>> +{
+>> +	return ALIGN(stride, XE_PAGE_SIZE);
+>
+> I think someone needs to explain what the heck this extra alignment
+> is trying to achieve? I suspect it just needs to get nuked.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c      |  3 +++
- drivers/gpu/drm/xe/xe_gt_debugfs.c   | 39 ----------------------------
- drivers/gpu/drm/xe/xe_sriov_vf.c     | 28 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf.h     |  2 ++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 32 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  2 ++
- 6 files changed, 67 insertions(+), 39 deletions(-)
+That would indeed be great, and allow even further cleanup. I'm just
+trying to find the common parts here, and not so much dig into every
+little detail that differs.
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 4b71570529a6..544d7d8460d9 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -24,6 +24,7 @@
- #include "xe_pxp_debugfs.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf.h"
-+#include "xe_sriov_vf.h"
- #include "xe_step.h"
- #include "xe_tile_debugfs.h"
- #include "xe_wa.h"
-@@ -395,4 +396,6 @@ void xe_debugfs_register(struct xe_device *xe)
- 
- 	if (IS_SRIOV_PF(xe))
- 		xe_sriov_pf_debugfs_register(xe, root);
-+	else if (IS_SRIOV_VF(xe))
-+		xe_sriov_vf_debugfs_register(xe, root);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index a9d960de0e5e..f253e2df4907 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -124,33 +124,6 @@ static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
- 	return ret;
- }
- 
--static int sa_info_vf_ccs(struct xe_gt *gt, struct drm_printer *p)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_sa_manager *bb_pool;
--	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
--
--	if (!IS_VF_CCS_READY(gt_to_xe(gt)))
--		return 0;
--
--	xe_pm_runtime_get(gt_to_xe(gt));
--
--	for_each_ccs_rw_ctx(ctx_id) {
--		bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
--		if (!bb_pool)
--			break;
--
--		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
--		drm_printf(p, "-------------------------\n");
--		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
--		drm_puts(p, "\n");
--	}
--
--	xe_pm_runtime_put(gt_to_xe(gt));
--
--	return 0;
--}
--
- static int topology(struct xe_gt *gt, struct drm_printer *p)
- {
- 	xe_pm_runtime_get(gt_to_xe(gt));
-@@ -318,13 +291,6 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
- 	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
- };
- 
--/*
-- * only for GT debugfs files which are valid on VF. Not valid on PF.
-- */
--static const struct drm_info_list vf_only_debugfs_list[] = {
--	{"sa_info_vf_ccs", .show = xe_gt_debugfs_simple_show, .data = sa_info_vf_ccs},
--};
--
- /* everything else should be added here */
- static const struct drm_info_list pf_only_debugfs_list[] = {
- 	{"hw_engines", .show = xe_gt_debugfs_simple_show, .data = hw_engines},
-@@ -465,11 +431,6 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 		drm_debugfs_create_files(pf_only_debugfs_list,
- 					 ARRAY_SIZE(pf_only_debugfs_list),
- 					 root, minor);
--	else
--		drm_debugfs_create_files(vf_only_debugfs_list,
--					 ARRAY_SIZE(vf_only_debugfs_list),
--					 root, minor);
--
- 
- 	xe_uc_debugfs_register(&gt->uc, root);
- 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index cb062328551a..cdd9f8e78b2a 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2023-2024 Intel Corporation
-  */
- 
-+#include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
- #include "xe_assert.h"
-@@ -445,3 +446,30 @@ int xe_sriov_vf_init_late(struct xe_device *xe)
- 
- 	return err;
- }
-+
-+static int sa_info_vf_ccs(struct seq_file *m, void *data)
-+{
-+	struct drm_info_node *node = m->private;
-+	struct xe_device *xe = to_xe_device(node->minor->dev);
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_sriov_vf_ccs_print(xe, &p);
-+	return 0;
-+}
-+
-+static const struct drm_info_list debugfs_list[] = {
-+	{ .name = "sa_info_vf_ccs", .show = sa_info_vf_ccs },
-+};
-+
-+/**
-+ * xe_sriov_vf_debugfs_register - Register VF debugfs attributes.
-+ * @xe: the &xe_device
-+ * @root: the root &dentry
-+ *
-+ * Prepare debugfs attributes exposed by the VF.
-+ */
-+void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root)
-+{
-+	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list),
-+				 root, xe->drm.primary);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-index 3bf3364799ad..9e752105ec2a 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -8,11 +8,13 @@
- 
- #include <linux/types.h>
- 
-+struct dentry;
- struct xe_device;
- 
- void xe_sriov_vf_init_early(struct xe_device *xe);
- int xe_sriov_vf_init_late(struct xe_device *xe);
- void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
- bool xe_sriov_vf_migration_supported(struct xe_device *xe);
-+void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index c5c60f05073d..8dec616c37c9 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -13,6 +13,7 @@
- #include "xe_guc_submit.h"
- #include "xe_lrc.h"
- #include "xe_migrate.h"
-+#include "xe_pm.h"
- #include "xe_sa.h"
- #include "xe_sriov_printk.h"
- #include "xe_sriov_vf.h"
-@@ -376,3 +377,34 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
- 	}
- 	return 0;
- }
-+
-+/**
-+ * xe_sriov_vf_ccs_print - Print VF CCS details.
-+ * @xe: the &xe_device
-+ * @p: the &drm_printer
-+ *
-+ * This function is for VF use only.
-+ */
-+void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
-+{
-+	struct xe_sa_manager *bb_pool;
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+
-+	if (!IS_VF_CCS_READY(xe))
-+		return;
-+
-+	xe_pm_runtime_get(xe);
-+
-+	for_each_ccs_rw_ctx(ctx_id) {
-+		bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
-+		if (!bb_pool)
-+			break;
-+
-+		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
-+		drm_printf(p, "-------------------------\n");
-+		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
-+		drm_puts(p, "\n");
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index f0e1189b417a..0745c0ff0228 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -10,6 +10,7 @@
- #include "xe_sriov.h"
- #include "xe_sriov_vf_ccs_types.h"
- 
-+struct drm_printer;
- struct xe_device;
- struct xe_bo;
- 
-@@ -17,6 +18,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe);
- int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
- int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
- int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
-+void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
- 
- static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
- {
--- 
-2.47.1
+I did git blame this while writing the patch, and it's all in the big xe
+driver enabling commit. I'm not sure where it comes from.
 
+Cc: Maarten, any ideas?
+
+BR,
+Jani.
+
+>
+>> +}
+>> +
+>>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
+>>  					       struct drm_fb_helper_surface_size *sizes)
+>>  {
+>> @@ -31,8 +36,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
+drm_device *drm,
+>>  	mode_cmd.width =3D sizes->surface_width;
+>>  	mode_cmd.height =3D sizes->surface_height;
+>>=20=20
+>> -	mode_cmd.pitches[0] =3D ALIGN(mode_cmd.width *
+>> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
+>> +	mode_cmd.pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd.width * DI=
+V_ROUND_UP(sizes->surface_bpp, 8));
+>>  	mode_cmd.pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
+>>  							  sizes->surface_depth);
+>>=20=20
+>> --=20
+>> 2.47.2
+
+--=20
+Jani Nikula, Intel
