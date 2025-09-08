@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BED0ECAC581
-	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 13:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2F3DCAC586
+	for <intel-xe@archiver.kernel.org>; Mon,  8 Sep 2025 13:04:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8D610E50F;
-	Mon,  8 Sep 2025 13:02:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B1510E27B;
+	Mon,  8 Sep 2025 13:04:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jkt+XeVw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoSzpAjb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0412110E27B;
- Mon,  8 Sep 2025 13:02:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6668210E27B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 Sep 2025 13:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757336525; x=1788872525;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=0zi+HiRIChbyieYytV+g19YDpjHsw63Zan+Fra7WB78=;
- b=Jkt+XeVwJdvK+YZPVJ2p8oJ5iIi9AfP+x1CrNRF1QSYUIzraXiQZzGUV
- egK98AHKajjVozjxYTx0VtZ+lV4qr4XsmTslHNpFASJkNJIJaCmFbIcPI
- v8bjaKl4NQrdhlLlJcItYcUW3mPkiR0TUDHQUOpO5fd1N9Y/rucT1ORfY
- 7ZNbnyFBEuhUXV9mpmvqhr+5Hq9P9bGBjTcHAQHV1LHwGNnZP2uCUkU3p
- JlLfn9/UHss30oQ53tlExDI+fEtZ1vXmjAj1lzE3uweWZQITmK7HVtoX2
- B17ryFwDdMppgGmXP+dPT/ywhlRty8BTm+FlIu4ahbICNG9cH0kspG/4j w==;
-X-CSE-ConnectionGUID: rw/oOHVoSGCly1JZ44265g==
-X-CSE-MsgGUID: T5cwZDoDSTeJekLAxVC9dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="70689166"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="70689166"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 06:02:05 -0700
-X-CSE-ConnectionGUID: RJLfz/1mR0aAeUn26h4kGQ==
-X-CSE-MsgGUID: s9H2fOxXQ4ip1dXwyiNjEA==
+ t=1757336639; x=1788872639;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rdNdT4h2Oc0EFRwt8g29KfZMzwaT30SW5hT7WinTgZc=;
+ b=XoSzpAjbN7BI/SPX8VOmZqAa7IHdwS4M4cMtwidMjdOxThnZLLcypxe/
+ p8rr2c308QF06pUHnWECv1neVwCMi8P82GHppkgh6qH/tqUg8d1kfrQ7n
+ BJ0W0Twaf0f/9YrbcoJ7X1k7Y1O1R8DuiTlDM0abzaoDlH4ZAebmfC1/d
+ SYuUrKOJDSSWTQl7TVO4wU1WMk4gMYqG6pNo0FrqNN/9zlZ0xqAQT3hQF
+ mWOqD32LO46iWrYmbol/8pCPNX9UbDw0uL/Yzt/rphiw5P//aMyy7N7WG
+ Ji6+vN8d8ql7uqit/pcKhKFHZy0uye4Eif9a6Cu3zQWYrMX5UNtvdXIwD w==;
+X-CSE-ConnectionGUID: SvEJtj38QIauj2uiUehZnQ==
+X-CSE-MsgGUID: YEYcnmH9T+qsPHXYqgRVKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="70293282"
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="70293282"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2025 06:03:59 -0700
+X-CSE-ConnectionGUID: 1AxQ+sMgQK+t5xtW2Q1fZg==
+X-CSE-MsgGUID: nqYig4CzRP2PbSUODDVKRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="177103024"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.204])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2025 06:02:04 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/9] drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
-In-Reply-To: <aLmkNu6AJ6LGVt6q@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
- <aLmkNu6AJ6LGVt6q@intel.com>
-Date: Mon, 08 Sep 2025 16:01:59 +0300
-Message-ID: <b3a4d96d9ceed68a321cd7b04a1bfe60455ee5cf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; d="scan'208";a="173578446"
+Received: from intel-s2600wft.iind.intel.com ([10.223.26.143])
+ by fmviesa010.fm.intel.com with ESMTP; 08 Sep 2025 06:03:58 -0700
+From: S Sebinraj <s.sebinraj@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jeevaka.badrappan@intel.com,
+	S Sebinraj <s.sebinraj@intel.com>
+Subject: [PATCH v2 0/2] drm: Add GPU frequency tracepoint
+Date: Mon,  8 Sep 2025 18:26:31 +0530
+Message-Id: <20250908125633.2680617-1-s.sebinraj@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,109 +64,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 04 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Sep 03, 2025 at 11:32:03PM +0300, Jani Nikula wrote:
->> xe does xe_bo_unpin_map_no_vm() on the failure path. Add a common helper
->> to enable further refactoring.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +++++
->>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 1 +
->>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 7 ++++++-
->>  3 files changed, 12 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.c
->> index 3837973b0d25..6b70823ce5ef 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> @@ -51,6 +51,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struc=
-t drm_device *drm, int size
->>  	return &obj->base;
->>  }
->>=20=20
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> +{
->> +	/* nop? */
->
-> gem_object_put() is what destroys the bo on i915, so I think you're
-> introducing a leak in the next patch with this nop implementation.
->
-> xe seems to be riddled with footguns here since it conflates
-> creation+pinning+whatever in the same thing (and I guess it
-> doesn't know how to clean all that up when the last reference
-> to the object disappears?) and you have to use that horribly
-> misnamed function instead...
+Add a GPU frequency tracepoint at the DRM subsystem level.
+Integrates with the Xe PMU to provide frequency tracing.
 
-*sigh*
+The tracepoint is exposed at:
+ /sys/kernel/debug/tracing/events/power/gpu_frequency
 
-I really wish we had someone actually well versed in i915/gem and xe/ttm
-and all that figuring out the necessary building blocks of the common
-API. I think as it is these are too high level, necessarily putting too
-much display code in i915 and xe cores. We desperately need better
-abstractions between the two drivers.
+ Format: {unsigned int state, unsigned int gpu_id}
+ - state: GPU frequency in KHz
+ - gpu_id: GPU clock domain identifier
 
-Yeah, I'm not that person, but here I am doing it anyway.
+S Sebinraj (2):
+  drm: Add GPU frequency tracepoint at DRM level
+  drm/xe: Add DRM GPU frequency tracepoint to Xe
 
+ drivers/gpu/drm/Kconfig                   | 11 ++++++
+ drivers/gpu/drm/Makefile                  |  1 +
+ drivers/gpu/drm/drm_gpu_frequency_trace.c | 16 ++++++++
+ drivers/gpu/drm/drm_gpu_frequency_trace.h | 47 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gpu_freq_trace.h    | 14 +++++++
+ drivers/gpu/drm/xe/xe_pmu.c               | 26 ++++++++++++-
+ drivers/gpu/drm/xe/xe_pmu_types.h         |  4 ++
+ 7 files changed, 117 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_gpu_frequency_trace.c
+ create mode 100644 drivers/gpu/drm/drm_gpu_frequency_trace.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gpu_freq_trace.h
 
-BR,
-Jani.
+-- 
+2.34.1
 
-
-
->
->> +}
->> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd)
->>  {
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.h
->> index b10c4635bf46..6d6f316834df 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> @@ -17,6 +17,7 @@ struct intel_display;
->>=20=20
->>  u32 intel_fbdev_fb_pitch_align(u32 stride);
->>  struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
- int size);
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd);
->>  int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_i=
-nfo *info,
->> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
-rm/xe/display/intel_fbdev_fb.c
->> index 9a5d14d5781a..9a5cf50ea7de 100644
->> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> @@ -54,6 +54,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struc=
-t drm_device *drm, int size
->>  	return &obj->ttm.base;
->>  }
->>=20=20
->> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> +{
->> +	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +}
->> +
->>  struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_device *drm,
->>  					       struct drm_mode_fb_cmd2 *mode_cmd)
->>  {
->> @@ -76,7 +81,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct =
-drm_device *drm,
->>  							  mode_cmd->modifier[0]),
->>  				      mode_cmd);
->>  	if (IS_ERR(fb)) {
->> -		xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +		intel_fbdev_fb_bo_destroy(obj);
->>  		goto err;
->>  	}
->>=20=20
->> --=20
->> 2.47.2
-
---=20
-Jani Nikula, Intel
