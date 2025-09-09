@@ -4,74 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4AC6CAC583
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 13:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 860D4CAC583
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 13:24:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DFB10E72F;
-	Tue,  9 Sep 2025 13:23:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4872810E736;
+	Tue,  9 Sep 2025 13:24:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="jxZb3aPz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ruf1c8oJ";
 	dkim-atps=neutral
-Received: from mail-wr1-f74.google.com (mail-wr1-f74.google.com
- [209.85.221.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E48910EB4D
- for <intel-xe@lists.freedesktop.org>; Fri,  5 Sep 2025 09:32:42 +0000 (UTC)
-Received: by mail-wr1-f74.google.com with SMTP id
- ffacd0b85a97d-3cca50781ddso849831f8f.2
- for <intel-xe@lists.freedesktop.org>; Fri, 05 Sep 2025 02:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1757064761; x=1757669561;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
- b=jxZb3aPzz7zncvaJhdbXuB+lCt+I6STZcdZjYuNN+/oCMsRdH50Yvjzg0qujMM3Qsz
- d4jIgeb+zaj9t8GtbxGqjvnVkydXdFNe6mBZOm7GwTVzjsWEB3t/RAZeLwcHE68HpsrK
- wfkpHm2O2ed1jFdtDdeGPgZZQD4Q63W3HFBNspChcdglprD2in1UAe4heZisa8/Nhn9/
- TRRbIQMCrjaIsBpK9xm98Y9PE4vKrpv/fRToVHS67FIIJJTu8h0YnTy+oFNyCQhGbmSu
- ZcmKYMhFxny1P/pJk3c+JBss9E3p3c4sBIOyZbB1CTmo9MgAknbjUVT7MFBe6OdRW4Pa
- shaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757064761; x=1757669561;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=WUQQxacMUqRahxycdA3h1y3Z0OF1IgYvOPyUtwNUMm8=;
- b=RtgXWIziyFdraUwHcoTXN8VBodxh/INTLmVpkmCZ/ZMKpo8zW1HFdMAV0L9b+Chfsg
- LQhb41y9wyZDWGL0ZMGUuOhgIXHSYu5ELBW6E9c37Bh4SCzI/p2aIHcwsD3dwvl3u1em
- Zg1L5Nmurzn+oeWmvrUwQiEE8njsdewC0KCnxSXOcM/37rIvA9A4QNvZNXZ78zQUnCMX
- 888DvYu/927xvBALewfA6mvFia47eepEc931HIryfWYFIGQfA7gEJ826k0S+H4vwCg0P
- NKAcEaEQoDTp14lB0dG5nWiqVUNj0vhc9iAukrJjTTDtlhLUljPv3NzTdhIqp80s9VlR
- zE5A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUSy/RIxAgS9LCz3eAZxWA/UlSnDhVECzYot+lKBZCRUgwR/bYNt9Db/7OFgk0XWIrJabfCajFgvw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzX+T1yhYNOt1Ty1QctuGRDj16S0dgDce9UV1faM1PDBXvaxkIs
- 5UKlUkYqFVCOvEybsdRVI0qtTtsvzmPZKnAaOHjoC2bqeJIxiqOnb7odPcX3OxxfzpNPwbNBbTC
- yVYhbNOS+kIuK4IiuZQ==
-X-Google-Smtp-Source: AGHT+IHZDkHcj/6VcYiM7mL8WwChssJZFLeAxiSE8KdBYC7hKhBpbzlSoeURD7a3i2UI42tf17qNH1ABChvUeQQ=
-X-Received: from wrbm16.prod.google.com ([2002:adf:a3d0:0:b0:3db:bfe0:7582])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6000:40d9:b0:3e0:43f0:b7ad with SMTP id
- ffacd0b85a97d-3e043f0bd75mr4771289f8f.18.1757064761059; 
- Fri, 05 Sep 2025 02:32:41 -0700 (PDT)
-Date: Fri, 5 Sep 2025 09:32:39 +0000
-Mime-Version: 1.0
-Message-ID: <aLquN1YvdyI_6PJS@google.com>
-Subject: [PULL] drm-rust-fixes 2025-09-05
-From: Alice Ryhl <aliceryhl@google.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- "Thomas =?utf-8?Q?Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dim-tools@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Tue, 09 Sep 2025 13:23:04 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60AB710E735;
+ Tue,  9 Sep 2025 13:24:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757424282; x=1788960282;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nm7kALkbnMaRvHW6eY/CA6idPUvqQt/VLErkyXtYWXg=;
+ b=Ruf1c8oJc8lskPE8ClaesL878pM7tPG30k5QVOQ5VOHEAsvxNmXCea9n
+ q+pQuwW7zqYGEniWJ9cpLNBk2VRWJ25QKJf/9vOkScZj/gW+BJmXAXpky
+ NXi/u3i1j84Q+PE6ADYpBkmfdhgbjAwom9iqolhvL9reoUgF4MRkfB8jG
+ 32hB1DFoh+9KZj1khVtmRKKgvLgonwc9lumJVuHtIdhdaOTyKlKfX3j63
+ Q96/OdXJya0ticfbOCOaLYdeRrjn+YAy+QZZcr7ZyDF7DeyhSEMelKoHD
+ X6/BJ8ZylZ8iRcVZ67dKX1XzwUZUyvEI6Ui6l6DThPqG+//kNNyn0mf3b w==;
+X-CSE-ConnectionGUID: JvpeJjfiR2KFfZ6CPMhcbg==
+X-CSE-MsgGUID: 1Ap6MhUKQxSdwDYefOU/xg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="58923073"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="58923073"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 06:24:42 -0700
+X-CSE-ConnectionGUID: FvKCFIccSZOnaQOL9Y27Cg==
+X-CSE-MsgGUID: UfQDQlt7THCjiCQ3GyUJYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="173548945"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.181])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 06:24:40 -0700
+Date: Tue, 9 Sep 2025 16:24:37 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [RESEND 05/12] drm/i915: add vlv_clock_get_cdclk()
+Message-ID: <aMAqlVAw2NqlwQ5_@intel.com>
+References: <cover.1755607980.git.jani.nikula@intel.com>
+ <ddb128204f27ee029fe2858973ec9ca2c59a67e3.1755607980.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ddb128204f27ee029fe2858973ec9ca2c59a67e3.1755607980.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,35 +71,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Tue, Aug 19, 2025 at 03:53:35PM +0300, Jani Nikula wrote:
+> Add vlv_clock_get_cdclk() helper to hide the details from the callers.
+> 
+> For now, this means running vlv_get_hpll_vco() twice in vlv_get_cdclk(),
+> but this will be improved later.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c   | 4 +---
+>  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
+>  drivers/gpu/drm/i915/display/intel_display.h | 1 +
+>  3 files changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 65ad7d48dd39..e898c0541168 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -610,9 +610,7 @@ static void vlv_get_cdclk(struct intel_display *display,
+>  	vlv_iosf_sb_get(display->drm, BIT(VLV_IOSF_SB_CCK) | BIT(VLV_IOSF_SB_PUNIT));
+>  
+>  	cdclk_config->vco = vlv_get_hpll_vco(display->drm);
+> -	cdclk_config->cdclk = vlv_get_cck_clock(display->drm, "cdclk",
+> -						CCK_DISPLAY_CLOCK_CONTROL,
+> -						cdclk_config->vco);
+> +	cdclk_config->cdclk = vlv_clock_get_cdclk(display->drm);
+>  
+>  	val = vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 8baa5f898284..644028d0c7ef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -204,6 +204,12 @@ int vlv_clock_get_czclk(struct drm_device *drm)
+>  	return i915->czclk_freq;
+>  }
+>  
+> +int vlv_clock_get_cdclk(struct drm_device *drm)
+> +{
+> +	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
+> +				 vlv_get_hpll_vco(drm));
 
-Here's the first PR for the drm-rust-fixes branch. It includes the
-commit to add the drm-rust repository to MAINTAINERS.
+This is actually just vlv_get_cck_clock_hpll(), except that one has
+the vlv_iosf_sb_get/put(CCK) stuff inside it whereas vlv_get_cck_clock()
+needs the caller to grab that.
 
-The following changes since commit b320789d6883cc00ac78ce83bccbfe7ed58afcf0:
+So that part of the vlv_clocks.c interface is now rather confusing.
+The interface should probably be high level enough that the caller
+doesn't have to deal with that get/put stuff at all...
 
-  Linux 6.17-rc4 (2025-08-31 15:33:07 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/rust/kernel.git tags/drm-rust-fixes-2025-09-05
-
-for you to fetch changes up to 349510052f765b6eb9c2a21d0ffe08ba61fa683c:
-
-  MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure (2025-09-05 07:07:08 +0000)
-
-----------------------------------------------------------------
-- Add drm-rust tree to MAINTAINERS
-- Require CONFIG_64BIT for Nova
-
-----------------------------------------------------------------
-Danilo Krummrich (2):
-      gpu: nova-core: depend on CONFIG_64BIT
-      MAINTAINERS: Add drm-rust tree for Rust DRM drivers and infrastructure
-
- MAINTAINERS                   | 11 ++++++++++-
- drivers/gpu/nova-core/Kconfig |  1 +
- 2 files changed, 11 insertions(+), 1 deletion(-)
+> +}
+> +
+>  int vlv_clock_get_gpll(struct drm_device *drm)
+>  {
+>  	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 5c9b57e94a65..9fdbc4ad5391 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -440,6 +440,7 @@ int vlv_get_cck_clock(struct drm_device *drm,
+>  		      const char *name, u32 reg, int ref_freq);
+>  int vlv_clock_get_hrawclk(struct drm_device *drm);
+>  int vlv_clock_get_czclk(struct drm_device *drm);
+> +int vlv_clock_get_cdclk(struct drm_device *drm);
+>  int vlv_clock_get_gpll(struct drm_device *drm);
+>  bool intel_has_pending_fb_unpin(struct intel_display *display);
+>  void intel_encoder_destroy(struct drm_encoder *encoder);
+> -- 
+> 2.47.2
 
 -- 
-Alice
+Ville Syrjälä
+Intel
