@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F294CA0FED
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 16:59:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A17FCAC583
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 16:59:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0B0F10E045;
-	Tue,  9 Sep 2025 16:59:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E31010E263;
+	Tue,  9 Sep 2025 16:59:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O8eIEQgw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b4m51U7P";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D71810E045
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 16:59:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A7810E263
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 16:59:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757437191; x=1788973191;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=u6+qTHOFAU9pvgLpilqSD53MHMxAm/eu7IF4YJV7pCQ=;
- b=O8eIEQgwwaN+lb3zWgNyTDy88WzfzfNqYR7O/Ka/6zWhDknxMtidCzzr
- cNGDuDJxzXsYYfvfdX9L2nUSMN5r/637NQKrn0Gzz5OB/ACc9sReSuqY4
- EqqeCHRxO4EHi7jPOHfxefbRknv4luO0UOLvQD0K54DyAdlGZtjg+ywzN
- gbKRizhlyKjH8BEbjwyEak/OsN6f+BPKmkqyYX0V5pHk5/QtON7kXuwxr
- KoKQZrwBxEWf08Rxy6PjJZZl286MyoKch0OPl0xzWb0jSry7HWeBWj6J/
- QnE3SJOERiSs+3VVYevwosNTulFEzQqcVjr8SJF74YHcq0eAcKVmbi1Eu Q==;
-X-CSE-ConnectionGUID: sD18AP0YS3ixDjX6I8CvrQ==
-X-CSE-MsgGUID: jW95lWlGTHyc12dzSFMNUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="71148944"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="71148944"
+ t=1757437192; x=1788973192;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=grHO4+bTy6i4HGWyiKOK0LH5JGvDSn1J0eDcyZPlecs=;
+ b=b4m51U7Pks2pSBtOMV2D/WyStDKvS8rbeyU0TRDoOyxxuzgcYd+5GGZR
+ I7IkCNG23hmpS250Ie7ZtPeF4V36sTy2M0rpMCfn4/TAHtBbJZqicd4Xp
+ 1+jSpu5cVLISvi5qYa6+EEqjXoRbb2IEl9j0pEU5wfQyDvPwN3neomx9n
+ 98CiekSV1VLQzyowN1+kceUo3ZBdWGE9AzrtvXJaiSfv9CHwvXs8ERwTy
+ sQyrKp/jrSms9VRypEtU0EF7mrRLGhhno+52kL5QXlCx+riw9jJZVX3ub
+ 5X36gkdM184JEriEy5EJBVP2M5/Wn0zsTryNCyo1aunW4DESbrB7D/uc5 A==;
+X-CSE-ConnectionGUID: kGT6zMztTvO9/IAbIWVJOg==
+X-CSE-MsgGUID: az8hmTzRRjyKq+ZGn4Z8jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="71148946"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="71148946"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 09:59:51 -0700
-X-CSE-ConnectionGUID: BXLC3io/RYyFIf9ah14+zQ==
-X-CSE-MsgGUID: idI42twcTUW6Hez6na8AXA==
+ 09 Sep 2025 09:59:52 -0700
+X-CSE-ConnectionGUID: 2iwUGKZsS6y9M6iIS5W7DA==
+X-CSE-MsgGUID: G0AZDkV5S0yYSL0zAzh3UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="177426183"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="177426190"
 Received: from dopitz-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.31])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 09:59:49 -0700
+ 09 Sep 2025 09:59:51 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 0/5] RFC: Add dedicated printk macros for tile and device
-Date: Tue,  9 Sep 2025 18:59:34 +0200
-Message-ID: <20250909165941.31730-1-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 1/5] drm/xe: Keep xe_gt_err() macro definitions together
+Date: Tue,  9 Sep 2025 18:59:35 +0200
+Message-ID: <20250909165941.31730-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250909165941.31730-1-michal.wajdeczko@intel.com>
+References: <20250909165941.31730-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,28 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v1: https://patchwork.freedesktop.org/series/153985/#rev1
-v2: use uppercase for FMT macro (Rodrigo)
-    drop verbose debug macros (Lucas, Rodrigo)
+There is no need to keep them separated. No functional changes.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_printk.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Michal Wajdeczko (5):
-  drm/xe: Keep xe_gt_err() macro definitions together
-  drm/xe: Drop "gt_" prefix from xe_gt_WARN() macros
-  drm/xe: Prepare format for GT-oriented messages in one place
-  drm/xe: Add dedicated printk macros for tile and device
-  drm/xe: Use tile-oriented messages in GGTT code
-
- drivers/gpu/drm/xe/xe_ggtt.c        |  12 +--
- drivers/gpu/drm/xe/xe_gt_printk.h   |  34 ++++----
- drivers/gpu/drm/xe/xe_printk.h      | 129 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile_printk.h | 127 +++++++++++++++++++++++++++
- 4 files changed, 281 insertions(+), 21 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_printk.h
- create mode 100644 drivers/gpu/drm/xe/xe_tile_printk.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index 11da0228cea7..fd9cba14383a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -13,12 +13,15 @@
+ #define xe_gt_printk(_gt, _level, _fmt, ...) \
+ 	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+-#define xe_gt_err_once(_gt, _fmt, ...) \
+-	xe_gt_printk((_gt), err_once, _fmt, ##__VA_ARGS__)
+-
+ #define xe_gt_err(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
+ 
++#define xe_gt_err_once(_gt, _fmt, ...) \
++	xe_gt_printk((_gt), err_once, _fmt, ##__VA_ARGS__)
++
++#define xe_gt_err_ratelimited(_gt, _fmt, ...) \
++	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
++
+ #define xe_gt_warn(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), warn, _fmt, ##__VA_ARGS__)
+ 
+@@ -31,9 +34,6 @@
+ #define xe_gt_dbg(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), dbg, _fmt, ##__VA_ARGS__)
+ 
+-#define xe_gt_err_ratelimited(_gt, _fmt, ...) \
+-	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
+-
+ #define xe_gt_WARN(_gt, _condition, _fmt, ...) \
+ 	drm_WARN(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
 -- 
 2.47.1
 
