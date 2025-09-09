@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18327CA0FED
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 22:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A62A1CAC582
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 23:04:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE6BA10E81A;
-	Tue,  9 Sep 2025 22:41:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DPpsGbVk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE16E10E815
- for <Intel-Xe@lists.freedesktop.org>; Tue,  9 Sep 2025 22:41:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757457692; x=1788993692;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QHwIBe8YQabqzuZVmSfJpOdOTDLZupqiECy/GXAZ8Ag=;
- b=DPpsGbVk2l8gtesXY8dK27m6IX5Dg2dSwq7ekrBlV/11OhitQWBNZ+/O
- M5LGXteiRaPnyK8HDDxRylvXeeEgleqdoJT7f4xSnFDuXUlF0mUUh/g2O
- 7M/yn8Zgt0zfZq3cFLJs6Q5yIM6r6KW8+Cqjrhq+Aa9bk3i6pHTFeGexY
- ZtcMWKnr8m24WcM/85lYWTjCcRXS0aPgOtG8eEyX3j5VhJTcOu4uMMHi0
- aIu7RJXwdGPp1PaD3JFI7Unut5wxQWltKIf+cNpDFZQcEAVmmM+EZjNrE
- JTRDT7ljd90SgqIaLqAXtLXmFt3HPYgo5lkxCgu8DOJ4WEym5QPxZsUSW w==;
-X-CSE-ConnectionGUID: 6RV2VxPjThOM/1RNsYZprg==
-X-CSE-MsgGUID: 3FFgCmCySxaxjuzVN9+fKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="47330505"
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="47330505"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 15:41:32 -0700
-X-CSE-ConnectionGUID: gOp3C48PR6ufszDeYDAEPg==
-X-CSE-MsgGUID: nP8JVIMKR9yyap1FQ4omxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="178433801"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa005.jf.intel.com with ESMTP; 09 Sep 2025 15:41:32 -0700
-From: John.C.Harrison@Intel.com
-To: Intel-Xe@Lists.FreeDesktop.Org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2] drm/xe/guc: Return an error code if the GuC load fails
-Date: Tue,  9 Sep 2025 15:41:31 -0700
-Message-ID: <20250909224132.536320-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.49.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C9A10E278;
+	Tue,  9 Sep 2025 23:04:20 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD8C10E821;
+ Tue,  9 Sep 2025 23:04:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6945031026739495369=="
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5BCI?=
+ =?utf-8?q?=2C1/2=5D_drm/xe=3A_Fix_error_handling_if_PXP_fails_to_start?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 09 Sep 2025 23:04:19 -0000
+Message-ID: <175745905937.319567.15897924359691707347@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250909221240.3711023-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20250909221240.3711023-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +36,119 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============6945031026739495369==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Due to multiple explosion issues in the early days of the Xe driver,
-the GuC load was hacked to never return a failure. That prevented
-kernel panics and such initially, but now all it achieves is creating
-more confusing errors when the driver tries to submit commands to a
-GuC it already knows is not there. So fix that up.
+== Series Details ==
 
-As a stop-gap and to help with debug of load failures due to invalid
-GuC init params, a wedge call had been added to the inner GuC load
-function. The reason being that it leaves the GuC log accessible via
-debugfs. However, for an end user, simply aborting the module load is
-much cleaner than wedging and trying to continue. The wedge blocks
-user submissions but it seems that various bits of the driver itself
-still try to submit to a dead GuC and lots of subsequent errors occur.
-And with regards to developers debugging why their particular code
-change is being rejected by the GuC, it is trivial to either add the
-wedge back in and hack the return code to zero again or to just do a
-GuC log dump to dmesg.
+Series: series starting with [CI,1/2] drm/xe: Fix error handling if PXP fails to start
+URL   : https://patchwork.freedesktop.org/series/154291/
+State : success
 
-v2: Add support for error injection testing and drop the now redundant
-wedge call.
+== Summary ==
 
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+CI Bug Log - changes from xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671_BAT -> xe-pw-154291v1_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index e56c9c5c8845..5aa7289cc83e 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1057,7 +1057,7 @@ static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
- #endif
- #define GUC_LOAD_TIME_WARN_MS      200
- 
--static void guc_wait_ucode(struct xe_guc *guc)
-+static int guc_wait_ucode(struct xe_guc *guc)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_mmio *mmio = &gt->mmio;
-@@ -1164,7 +1164,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
- 			break;
- 		}
- 
--		xe_device_declare_wedged(gt_to_xe(gt));
-+		return -EPROTO;
- 	} else if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
- 		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
- 			   delta_ms, status, count);
-@@ -1176,7 +1176,10 @@ static void guc_wait_ucode(struct xe_guc *guc)
- 			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
- 			  before_freq, status, count);
- 	}
-+
-+	return 0;
- }
-+ALLOW_ERROR_INJECTION(guc_wait_ucode, ERRNO);
- 
- static int __xe_guc_upload(struct xe_guc *guc)
- {
-@@ -1208,14 +1211,16 @@ static int __xe_guc_upload(struct xe_guc *guc)
- 		goto out;
- 
- 	/* Wait for authentication */
--	guc_wait_ucode(guc);
-+	ret = guc_wait_ucode(guc);
-+	if (ret)
-+		goto out;
- 
- 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_RUNNING);
- 	return 0;
- 
- out:
- 	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
--	return 0	/* FIXME: ret, don't want to stop load currently */;
-+	return ret;
- }
- 
- static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
--- 
-2.49.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154291v1_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8527 -> IGT_8528
+  * Linux: xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671 -> xe-pw-154291v1
+
+  IGT_8527: 941218ae3c7cb414b098190a8bc010954150dd1c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8528: 9252073bde221857c96656b6c96749c444aa1890 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671: b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671
+  xe-pw-154291v1: 154291v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154291v1/index.html
+
+--===============6945031026739495369==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/2] drm/xe: Fix error handling if PXP fails to start</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154291/">https://patchwork.freedesktop.org/series/154291/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154291v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154291v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671_BAT -&gt; xe-pw-154291v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154291v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8527 -&gt; IGT_8528</li>
+<li>Linux: xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671 -&gt; xe-pw-154291v1</li>
+</ul>
+<p>IGT_8527: 941218ae3c7cb414b098190a8bc010954150dd1c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8528: 9252073bde221857c96656b6c96749c444aa1890 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3715-b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671: b3bf929e6bb3fefb6ff8ebdbddbeee61d03bb671<br />
+  xe-pw-154291v1: 154291v1</p>
+
+</body>
+</html>
+
+--===============6945031026739495369==--
