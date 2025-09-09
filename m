@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86DB2CAC583
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 16:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDF4DCA0FED
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 16:02:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C63B10E7AF;
-	Tue,  9 Sep 2025 16:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 816F910E7AB;
+	Tue,  9 Sep 2025 16:02:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kGGqchWn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XU9F/Cc0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48FAC10E247
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA67C10E247
  for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 16:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757433775; x=1788969775;
+ t=1757433776; x=1788969776;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=C/eQIr1B3V74ToWplUh6XYoFLLUffnqizsP9omPzcsM=;
- b=kGGqchWnSj69rtQCfFp0VOzX3/pm/wxTx5kzAfAcEcH0g3mwFA0gSw8D
- FMwEQ0E3Eymkr+P0z+btmDytN8ozy4kTx2L0tg3ok4qoK7swFixFNSf7x
- LOxeV1GprM2jzA/umFeDwB+x+irOZoSJIDtzWtLMEPDCQ0XIh6K+9jLCO
- w86HxCjrKmfZjiXS6OaueKY44j1QGk0zOrDs6PXyf+Sz6Iko/92OyUWE6
- 0T7/W8q2rltMNAJd55i1Bfupg0LbLDNBdF23WYyOJj9gomsDfv69Popvt
- u8Ycn1LyuKQbkJ4Peg9ffSopYD/HWol2PVAM/A44VPM6xQKFrQmK487dm Q==;
-X-CSE-ConnectionGUID: 9s3eVpRMQMCKa+QXci82HQ==
-X-CSE-MsgGUID: wIdpnOHLQF6exiiv9qa0rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="47296499"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="47296499"
+ bh=ieA019sDz5UPrz1C1mfqAv9txA59u5OrnFOppREqMe0=;
+ b=XU9F/Cc0mo5dLtYT9Tnl30ItyXpygYJPvQbZExUrDt3z0A2An22NSRti
+ FDpA5YD1/5Ut8r47q3ufzXApKkGbrVr+gxpxPPa7P1IlmmhfQK0Z8PtFt
+ iM/xlGOIYz3+za1AnBMTsHRlwAnlikp4ehks05BawzE83vNUMxTzF9HcF
+ D2M59mKJVQmyGsnC7YOhEePGefn/VVHcdjbNQS1iDaWVotS3r+Br6JxCO
+ /IHXgVXV9rRFWEcWNnQiWg44ZJXOdavPxzXzx9BMXnj14g0rXL/9BWntn
+ Z8SiSNjIB+ZesReR6QgyDKCpMOj4Kb5JPW261RC6ZX3V7VAtWiCAs+Ivt A==;
+X-CSE-ConnectionGUID: p5YBqwTsRrKvcekQmpA71w==
+X-CSE-MsgGUID: sCfVBwcNSr6JnJFzjsY8Jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="47296495"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="47296495"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Sep 2025 09:02:53 -0700
-X-CSE-ConnectionGUID: A82r7bBuRsKJjjuP3a/ZQw==
-X-CSE-MsgGUID: WnuEAHCdTdK93avZ3OfOhw==
+X-CSE-ConnectionGUID: Ob6pjlFBS8OlR7097S2ylA==
+X-CSE-MsgGUID: yZAcNBsoTrKKrpmXYXx54A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="172993660"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="172993657"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Sep 2025 09:02:53 -0700
@@ -49,9 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 2/4] drm/xe/guc_pc: Use poll_timeout_us() for waiting
-Date: Tue,  9 Sep 2025 09:02:36 -0700
-Message-ID: <20250909-xe-iopoll-v2-2-4c7ae9726e8e@intel.com>
+Subject: [PATCH v2 1/4] drm/xe/device: Use poll_timeout_us() to wait for lmem
+Date: Tue,  9 Sep 2025 09:02:35 -0700
+Message-ID: <20250909-xe-iopoll-v2-1-4c7ae9726e8e@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250909-xe-iopoll-v2-0-4c7ae9726e8e@intel.com>
 References: <20250909-xe-iopoll-v2-0-4c7ae9726e8e@intel.com>
@@ -73,87 +73,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert wait_for_pc_state() and wait_for_act_freq_limit() to
-poll_timeout_us(). This brings 2 changes in behavior: Drop the
-exponential wait and fix a potential much longer sleep.
-
-usleep_range() will wait anywhere between `wait` and `wait << 1`, so
-it's not correct to assume `slept += wait`.  This code is not really
-accurate. Pairing this with the exponential wait increase, it could be
-waiting much longer than intended.
+Now that there's a generic poll_timeout_us(), use it to wait for
+LMEM_INIT in GU_CNTL.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: Simplify functions by removing helper variables and changing break
-    condition on poll_timeout_us() call (Maarten)
+v2:
+- Handle signal_pending() as it was originally
+- Don't mix return from poll_timeout_us() with return from condition
+  (Maarten)
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 36 ++++++------------------------------
- 1 file changed, 6 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 65 ++++++++++++++++++++++--------------------
+ 1 file changed, 34 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 88557e86d6371..31b291bc77543 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/cleanup.h>
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 9e2952c9c06a8..be7844968011a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -8,6 +8,7 @@
+ #include <linux/aperture.h>
  #include <linux/delay.h>
+ #include <linux/fault-inject.h>
 +#include <linux/iopoll.h>
- #include <linux/jiffies.h>
- #include <linux/ktime.h>
- #include <linux/wait_bit.h>
-@@ -128,23 +129,10 @@ static int wait_for_pc_state(struct xe_guc_pc *pc,
- 			     enum slpc_global_state state,
- 			     int timeout_ms)
- {
--	int timeout_us = 1000 * timeout_ms;
--	int slept, wait = 10;
--
- 	xe_device_assert_mem_access(pc_to_xe(pc));
+ #include <linux/units.h>
  
--	for (slept = 0; slept < timeout_us;) {
--		if (slpc_shared_data_read(pc, header.global_state) == state)
--			return 0;
--
--		usleep_range(wait, wait << 1);
--		slept += wait;
--		wait <<= 1;
--		if (slept + wait > timeout_us)
--			wait = timeout_us - slept;
--	}
--
--	return -ETIMEDOUT;
-+	return poll_timeout_us({}, slpc_shared_data_read(pc, header.global_state) == state,
-+			       20, timeout_ms * USEC_PER_MSEC, false);
+ #include <drm/drm_atomic_helper.h>
+@@ -627,16 +628,22 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	return err;
  }
  
- static int wait_for_flush_complete(struct xe_guc_pc *pc)
-@@ -161,22 +149,10 @@ static int wait_for_flush_complete(struct xe_guc_pc *pc)
- 
- static int wait_for_act_freq_limit(struct xe_guc_pc *pc, u32 freq)
+-static bool verify_lmem_ready(struct xe_device *xe)
++static int lmem_initializing(struct xe_device *xe)
  {
--	int timeout_us = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC;
--	int slept, wait = 10;
--
--	for (slept = 0; slept < timeout_us;) {
--		if (xe_guc_pc_get_act_freq(pc) <= freq)
--			return 0;
--
--		usleep_range(wait, wait << 1);
--		slept += wait;
--		wait <<= 1;
--		if (slept + wait > timeout_us)
--			wait = timeout_us - slept;
--	}
--
--	return -ETIMEDOUT;
-+	return poll_timeout_us({}, xe_guc_pc_get_act_freq(pc) <= freq,
-+			       20, SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC, false);
- }
+-	u32 val = xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT;
++	if (xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT)
++		return 0;
 +
- static int pc_action_reset(struct xe_guc_pc *pc)
++	if (signal_pending(current))
++		return -EINTR;
+ 
+-	return !!val;
++	return 1;
+ }
+ 
+ static int wait_for_lmem_ready(struct xe_device *xe)
  {
- 	struct xe_guc_ct *ct = pc_to_ct(pc);
+-	unsigned long timeout, start;
++	const unsigned long TIMEOUT_SEC = 60;
++	unsigned long prev_jiffies;
++	int initializing;
+ 
+ 	if (!IS_DGFX(xe))
+ 		return 0;
+@@ -644,39 +651,35 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+ 	if (IS_SRIOV_VF(xe))
+ 		return 0;
+ 
+-	if (verify_lmem_ready(xe))
++	if (!lmem_initializing(xe))
+ 		return 0;
+ 
+ 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
++	prev_jiffies = jiffies;
+ 
+-	start = jiffies;
+-	timeout = start + secs_to_jiffies(60); /* 60 sec! */
+-
+-	do {
+-		if (signal_pending(current))
+-			return -EINTR;
+-
+-		/*
+-		 * The boot firmware initializes local memory and
+-		 * assesses its health. If memory training fails,
+-		 * the punit will have been instructed to keep the GT powered
+-		 * down.we won't be able to communicate with it
+-		 *
+-		 * If the status check is done before punit updates the register,
+-		 * it can lead to the system being unusable.
+-		 * use a timeout and defer the probe to prevent this.
+-		 */
+-		if (time_after(jiffies, timeout)) {
+-			drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
+-			return -EPROBE_DEFER;
+-		}
+-
+-		msleep(20);
+-
+-	} while (!verify_lmem_ready(xe));
++	/*
++	 * The boot firmware initializes local memory and
++	 * assesses its health. If memory training fails,
++	 * the punit will have been instructed to keep the GT powered
++	 * down.we won't be able to communicate with it
++	 *
++	 * If the status check is done before punit updates the register,
++	 * it can lead to the system being unusable.
++	 * use a timeout and defer the probe to prevent this.
++	 */
++	poll_timeout_us(initializing = lmem_initializing(xe),
++			initializing <= 0,
++			20 * USEC_PER_MSEC, TIMEOUT_SEC * USEC_PER_SEC, true);
++	if (initializing < 0)
++		return initializing;
++
++	if (initializing) {
++		drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
++		return -EPROBE_DEFER;
++	}
+ 
+ 	drm_dbg(&xe->drm, "lmem ready after %ums",
+-		jiffies_to_msecs(jiffies - start));
++		jiffies_to_msecs(jiffies - prev_jiffies));
+ 
+ 	return 0;
+ }
 
 -- 
 2.50.1
