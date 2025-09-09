@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D30B1CA0FED
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 17:46:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAFEFCAC582
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 17:52:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBF110E266;
-	Tue,  9 Sep 2025 17:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8794489CCE;
+	Tue,  9 Sep 2025 17:52:15 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D59310E266;
- Tue,  9 Sep 2025 17:46:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6577481017619910084=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44E5089CCE;
+ Tue,  9 Sep 2025 17:52:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Soft_defeature_?=
- =?utf-8?q?of_cursor_size_reduction_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_RFC=3A_Add_dedicated_prin?=
+ =?utf-8?q?tk_macros_for_tile_and_device_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Sep 2025 17:46:58 -0000
-Message-ID: <175744001863.318924.3319544370937409801@1538d3639d33>
+Date: Tue, 09 Sep 2025 17:52:14 -0000
+Message-ID: <175744033427.318784.5253488676523627045@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250813052017.3591331-1-nemesa.garg@intel.com>
-In-Reply-To: <20250813052017.3591331-1-nemesa.garg@intel.com>
+References: <20250909165941.31730-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250909165941.31730-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +40,119 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6577481017619910084==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Soft defeature of cursor size reduction (rev2)
-URL   : https://patchwork.freedesktop.org/series/152858/
-State : success
+Series: RFC: Add dedicated printk macros for tile and device (rev2)
+URL   : https://patchwork.freedesktop.org/series/153985/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee_BAT -> xe-pw-152858v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 882424f8e9231cf1024a924e08029fc36b35432b
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Tue Sep 9 18:59:39 2025 +0200
 
-Summary
--------
+    drm/xe: Use tile-oriented messages in GGTT code
+    
+    Use recently added macros to print tile-oriented messages.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch edcdc7fbde1a17c5fca9e1668411cce18c7d4bb4 drm-intel
+bdde1890b299 drm/xe: Keep xe_gt_err() macro definitions together
+2b9841da4f92 drm/xe: Drop "gt_" prefix from xe_gt_WARN() macros
+b53b2c8f6b0a drm/xe: Prepare format for GT-oriented messages in one place
+-:38: ERROR:SPACING: space required after that ',' (ctx:VxO)
+#38: FILE: drivers/gpu/drm/xe/xe_gt_printk.h:43:
++	xe_gt_WARN_type((_gt),, _condition, __XE_GT_PRINTK_FMT((_gt), _fmt, ##__VA_ARGS__))
+ 	                     ^
 
-  **SUCCESS**
+total: 1 errors, 0 warnings, 0 checks, 35 lines checked
+df70873119cf drm/xe: Add dedicated printk macros for tile and device
+-:88: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#88: 
+new file mode 100644
 
-  No regressions found.
+-:105: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#105: FILE: drivers/gpu/drm/xe/xe_printk.h:13:
++#define __XE_PRINTK_FMT(_xe, _fmt, _args...)	_fmt, ##_args
 
-  
+BUT SEE:
 
-Participating hosts (11 -> 11)
-------------------------------
+   do {} while (0) advice is over-stated in a few situations:
 
-  No changes in participating hosts
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Known issues
-------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  Here are the changes found in xe-pw-152858v2_BAT that come from known issues:
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-### IGT changes ###
+   Enjoy this qualification while we work to improve our heuristics.
 
-#### Possible fixes ####
+-:105: WARNING:MACRO_ARG_UNUSED: Argument '_xe' is not used in function-like macro
+#105: FILE: drivers/gpu/drm/xe/xe_printk.h:13:
++#define __XE_PRINTK_FMT(_xe, _fmt, _args...)	_fmt, ##_args
 
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152858v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
+-:107: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_xe' - possible side-effects?
+#107: FILE: drivers/gpu/drm/xe/xe_printk.h:15:
++#define xe_printk(_xe, _level, _fmt, ...) \
++	drm_##_level(&(_xe)->drm, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_xe' - possible side-effects?
+#134: FILE: drivers/gpu/drm/xe/xe_printk.h:42:
++#define xe_WARN(_xe, _condition, _fmt, ...) \
++	xe_WARN_type((_xe),, _condition, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
 
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+-:135: ERROR:SPACING: space required after that ',' (ctx:VxO)
+#135: FILE: drivers/gpu/drm/xe/xe_printk.h:43:
++	xe_WARN_type((_xe),, _condition, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
+ 	                  ^
 
+-:137: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_xe' - possible side-effects?
+#137: FILE: drivers/gpu/drm/xe/xe_printk.h:45:
++#define xe_WARN_ONCE(_xe, _condition, _fmt, ...) \
++	xe_WARN_type((_xe), _ONCE, _condition, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
 
-Build changes
--------------
+-:240: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_tile' - possible side-effects?
+#240: FILE: drivers/gpu/drm/xe/xe_tile_printk.h:13:
++#define xe_tile_printk(_tile, _level, _fmt, ...) \
++	xe_printk((_tile)->xe, _level, __XE_TILE_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
 
-  * Linux: xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee -> xe-pw-152858v2
+-:267: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_tile' - possible side-effects?
+#267: FILE: drivers/gpu/drm/xe/xe_tile_printk.h:40:
++#define xe_tile_WARN(_tile, _condition, _fmt, ...) \
++	xe_tile_WARN_type((_tile),, _condition, __XE_TILE_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
 
-  IGT_8526: 13cd231d5da440137bc5d1c26fd3f7c170ace253 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee: 1fb3cbc03a96e88d351cad925b63edb16a5768ee
-  xe-pw-152858v2: 152858v2
+-:268: ERROR:SPACING: space required after that ',' (ctx:VxO)
+#268: FILE: drivers/gpu/drm/xe/xe_tile_printk.h:41:
++	xe_tile_WARN_type((_tile),, _condition, __XE_TILE_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
+ 	                         ^
 
-== Logs ==
+-:270: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_tile' - possible side-effects?
+#270: FILE: drivers/gpu/drm/xe/xe_tile_printk.h:43:
++#define xe_tile_WARN_ONCE(_tile, _condition, _fmt, ...) \
++	xe_tile_WARN_type((_tile), _ONCE, _condition, __XE_TILE_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152858v2/index.html
+-:271: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#271: FILE: drivers/gpu/drm/xe/xe_tile_printk.h:44:
++	xe_tile_WARN_type((_tile), _ONCE, _condition, __XE_TILE_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
 
---===============6577481017619910084==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Soft defeature of cursor size reduction (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152858/">https://patchwork.freedesktop.org/series/152858/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152858v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152858v2/index.html</a></td></tr>
-
-</table>
+total: 3 errors, 3 warnings, 6 checks, 291 lines checked
+882424f8e923 drm/xe: Use tile-oriented messages in GGTT code
 
 
-    <h1>CI Bug Log - changes from xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee_BAT -&gt; xe-pw-152858v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-152858v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152858v2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee -&gt; xe-pw-152858v2</li>
-</ul>
-<p>IGT_8526: 13cd231d5da440137bc5d1c26fd3f7c170ace253 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3712-1fb3cbc03a96e88d351cad925b63edb16a5768ee: 1fb3cbc03a96e88d351cad925b63edb16a5768ee<br />
-  xe-pw-152858v2: 152858v2</p>
-
-</body>
-</html>
-
---===============6577481017619910084==--
