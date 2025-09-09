@@ -4,186 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34053CA0FED
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 18:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D96C3CA0FED
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 18:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEAD610E7C3;
-	Tue,  9 Sep 2025 18:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89AA310E26E;
+	Tue,  9 Sep 2025 18:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JDmatFxY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cI1PhJ6I";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28F4510E7C2;
- Tue,  9 Sep 2025 18:45:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71A6610E26E
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 18:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757443503; x=1788979503;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:cc:date:message-id:mime-version;
- bh=IZYKYTx6bSjQcdEMe5GZHgnpLGNwgZGA1O61m4/kyh4=;
- b=JDmatFxYZxERWGN8jZVc3ZDc+i/T76f7aGoyIrQrNFBzoZwJosOgiJND
- F8+8v92FCEF27EXudGP2G1ptTwyrZ63aBsuKhNRNi3I/RerAcoT8CQHUG
- Uwuq7YbrjisE7/+QbCIShLKMpnXlJcU+Xi0P2xbV0hipX2cSjryVZo0A2
- tWONGEEj65S/scZl1PQz+6ElOhQHj/6dV6cS0khGB77s/PG2KXiiKdncR
- 17A/xRnHGMftnuUHQV3c6NVFtr5POpg4E44jrt3bCbFJFB/Cm7kULbYve
- UAEjCHDmeknD9jKjB7ikRgBGmkR43/1i0WxJErndZ3Vm64Al+HLCdiyGI g==;
-X-CSE-ConnectionGUID: H54VSd2DRxOioSTaGHUwbw==
-X-CSE-MsgGUID: j6u/uumBSEKX2qTOFcBxPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="69993622"
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="69993622"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 11:45:02 -0700
-X-CSE-ConnectionGUID: uGuj4H3/QVeGT+XJYQHmKw==
-X-CSE-MsgGUID: bup+MQZfTGC7YFUVra+YEg==
+ t=1757443602; x=1788979602;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=fPsCYRk479VAlIzCLj8i2MFMcR0sgx5CYY8JwBobG2Q=;
+ b=cI1PhJ6IE/muFsiUw/GmVPVhmhcYUuUVpoBB6CE9Vwwt0p3LnqhbWRqF
+ LsOo4iuc0WjxgLtiOjsVCGdwCttCMwQuMjOzSjZo5yoCtVke2k/203/UE
+ DPWLzX91M4BdULKPlOR7xZgVybHpARRhjzImCk7iDCIACd2w1WflW54my
+ 3TUxjWwwei5vT2SX9+4S93pOR7RiCax/UyUJxoTG+8gapmFaCOzIqRcoq
+ K7dpZbaljghoEJc3LBGyCyfPtTqmA/mMSHaoewpkzTKfW1nbpddmKIb1i
+ vt+P1L7PiD2lFjOIlXpnahp7WAwwLYrsb+GSgey4vuDMbwt8+ISoIvPa5 A==;
+X-CSE-ConnectionGUID: 07UPwqS5QBGaP2QHltl74g==
+X-CSE-MsgGUID: GXqA2pi/RwSrVsQDfePbQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59597039"
+X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="59597039"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 11:46:42 -0700
+X-CSE-ConnectionGUID: LYLOnqRnQMWOH2etYA2s8Q==
+X-CSE-MsgGUID: eXsaXvJQTp+yPKIFDcj4aA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="177220026"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 11:45:02 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="172447634"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 11:46:41 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 9 Sep 2025 11:45:00 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.17; Tue, 9 Sep 2025 11:46:40 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 9 Sep 2025 11:45:00 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.83)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Tue, 9 Sep 2025 11:46:40 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.82)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 9 Sep 2025 11:45:00 -0700
+ 15.2.2562.17; Tue, 9 Sep 2025 11:46:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P+wc9XDHi/xoxn7NAnzM2J7W6iOxldwD0o2bdzv4IvKxORcEiX5gBStwt5wqYuazTtSHyMA4+4ZY0UL+0UuhNnsOMKqV0YbRiUeySZPjlHc7QOei7hABbIAOecQfkzAi37WBL2+WpoGW2DU34FhYb53BUpWXxjw6nIOxkgo7SMKyrkyy3ubdSkKoQ/fEvB1PYcKgA4w35Ue7DJyjQEnGT8AMBMy6TF+YtPpvlrZyMkaw6PyBUlqDLjUFtZm6HBl1uT5QcZiN5Q9yY1gVroDFTA7FLMvBcRZoUkAAF6dt4h2rwgkWMoJnIwwdfHVf1ymNrFNWwRprjyTs7wG3MgwWRA==
+ b=TduzmZaaK3Mc7ILE2inQ4IX3WfOtHto/E7vZokLzRmROqMNrqB9mHftA7j1lRQiNmZW3TIOCpd5eBBlcefJFpjPgS6G4s3IQWn+Lo5qjAhIKlOnqfnY2xVNlMwY4GuSU3r05c9K62pkHW7FEcqYW4BTBB/l+RfSMlCMmlzzqbU99c6CBKleS16VVwI37AL4dUwhgTSLbT9aAOslrEzvrXIUcFC8d8/TM2ynJYNAuKGKIuch6Gf2erl1T7SpJAvz5vkb+pRAD2knREeXwZStt/zgjbGw/0pWhaG2uBScnzFShJ7vpDUGgiAmKszdjvVdYRCc3egkBtiwZAXxnHuXlwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fUtM/uf8hxnq0EhxKDgXPLxGcNizheza5os+szN6pOU=;
- b=AC4mNPjdsD4TsT9yHZ+UQdWwpe8xiO9a2ZLrUl0G71QC+nTHJV6bz75p2M8f35hvERKAJqYdbVT89xaJxIp/j5v4DNNXktSHDBjDEtI3oWWOba65s8BlIwbgcCu3YF6mJRjK+yw7nBt0LLUDW3Jmi6tHu7+YrSW7erbSEL4zDiPLjMmp0yHRG/3nS7GvvTeNbMw6IDX+RgEJZwWwC2RFKqiQ5/dxOMGxd1Y6VHOGA34C2+PvRA69w9ao4A7QLeBAvXA/XSThkHweNKQGq3VAd3rKrOqmdsWAcUWK8nCbvP2hJG7B7IezvDHyd4XC8bCxkPZlHjYqWoG7Pz8wirAxQw==
+ bh=Nza0uWPFglkEV41xcctBbU8DsWfnXOOthTch7hYOqjc=;
+ b=rqnABm/YxinkzrEOd5+6pscX6hFgWTR3CtUWBtZ0P2J4xnEfgZ4SVco/UY8pBLfgRQGSb7tG1hYH2HGInOEbdhLx2ddCmmkYrocOCrD8yhb1xSWmncZQPkh/RGyLWAJTK8w1rtx3UjXf9AqvKuLQUuiwjYo/nJyicxX5rbur9ABxPUVP9iKlGxTAuqRfE19sGKVM6X1fHCXp10OqOA7791qV4+eFhPfBCl8LzNVJ3hbbL5tHSUEIl7mUTacxbJbyDaxA0tYWaurT/NwBdr9+I3nFj6Awi1JpIs4EBH6rrQgXvl07m5QSH1RQQamnViRoradYddfP/MMUqcS9bHGeYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by IA0PR11MB7751.namprd11.prod.outlook.com (2603:10b6:208:43a::8)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by MW3PR11MB4569.namprd11.prod.outlook.com (2603:10b6:303:54::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
- 2025 18:44:55 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
- 18:44:54 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <IA1PR11MB6266A4A408531083F4DE8646E20FA@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20250909094535.4126289-1-dnyaneshwar.bhadane@intel.com>
- <175743023064.1838.6299430690698520828@intel.com>
- <IA1PR11MB6266A4A408531083F4DE8646E20FA@IA1PR11MB6266.namprd11.prod.outlook.com>
-Subject: RE: [RESEND] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to
- only PHY A
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Atwood, Matthew S"
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-Date: Tue, 9 Sep 2025 15:44:49 -0300
-Message-ID: <175744348951.1838.3620029253889327019@intel.com>
-User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: SJ0PR03CA0281.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::16) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ 2025 18:46:37 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
+ 18:46:37 +0000
+Date: Tue, 9 Sep 2025 11:46:34 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v6 06/13] drm/xe: Convert the CPU fault handler for
+ exhaustive eviction
+Message-ID: <aMB2Cm02wMM2LIMD@lstrano-desk.jf.intel.com>
+References: <20250908101246.65025-1-thomas.hellstrom@linux.intel.com>
+ <20250908101246.65025-7-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250908101246.65025-7-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BYAPR01CA0001.prod.exchangelabs.com (2603:10b6:a02:80::14)
+ To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|IA0PR11MB7751:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b6b9033-70c2-4c1f-50b6-08ddefd0f7d2
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW3PR11MB4569:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7f8e160-61ab-42db-7281-08ddefd134c0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SE1CS0l4M0d0bUhJTGpWdU5pTTFpS1pIQ2lrekJ1Rm1udHUrTndPYy9VZ1pr?=
- =?utf-8?B?dGJpbDRSeGNzUmpoc1ZHakp5MHRmZVd3MkFTWTh3UGhGbHlodmRpR2xFUXpF?=
- =?utf-8?B?NldGV1N0K2lxWis3ZG9nTkwydERvcHllU0lMQ3MwZW1zYXVucUw4enBNNm5Q?=
- =?utf-8?B?NXlqZ3JtMFpXV0s5ajFLSXY0aVlMSTBxbk9pWnZYSjB0SmVxa2tra2JYSHNP?=
- =?utf-8?B?VzJTcFV3cXk1cnlFRkZkcnEyZWpUbnJZcWorV1RGSmRZZlNhUnRMUUNodEdl?=
- =?utf-8?B?TXVFZHVGc09YbDkzVFpKYWpPUFV2R2h4TWJqZERtM2VONVVFdVBnemtHM2dn?=
- =?utf-8?B?aG83MDZNeW00ajhvR25XQlRIN0dZdjZ2ZStDQWZ3WXA0endhRExzOVZjQWJP?=
- =?utf-8?B?K1ZvdnNoT1NsR0RPR0R4QzJ2eE0wdEFJUVd2TnkyeXduckprUlluSnU3UHlK?=
- =?utf-8?B?dVdlQWEyV3JaNXdmNWQ4cUZWbEdXU0tocEJrL3pHdXIxQXlzRWM4UWdlNUY2?=
- =?utf-8?B?ajgzb0I5RkxMSFhYTGk1RHJ0Y1dnV0c4cFRVcVMyY3dZNy94ZnhPK1NydnJi?=
- =?utf-8?B?b3pibmtVRFJTOVViQkZVcHNLU04zcjA3WmJQRmkrSDFmRHdXU2tGOGN1L1Mx?=
- =?utf-8?B?LzN0V0ZTU3JnRnlCaDJqM3NRc3RBN0tvZzVUc0F1REY0VzBHNDFNcTJaNXRi?=
- =?utf-8?B?L04rRDdLYTNrVzcxUlpBRUZpMUZwNzdqanF6bi9yNExpKzdSQURUZjNnd2tt?=
- =?utf-8?B?blh6WVl5b1ROWXd0bW5CWHk1ME82Tk5EZWRIZXVpK1NmM1NPbGExenhTUFNX?=
- =?utf-8?B?VHJyeThQbkIrMTErM3RRWGJ2N2xMbmh3ZVNYbmduUU10ZU9JQkd1ZVVOUVpP?=
- =?utf-8?B?M2YwbFM2UEVETEtZWFdCZnU5MzhtZ2F3cE9zc0kyOVB5MklIbVhvWXZYakFD?=
- =?utf-8?B?OVczM1BlRDdWOHJmOFpjbU1YRkI5WXBBamdTWXpxa1pXWkdNYlBRS250czNT?=
- =?utf-8?B?UXJsSnZuS3FvbDZEcWc2UkRVdHRFWGh3aDZoRFRGWW9TWm9VZnAydU0zVVRD?=
- =?utf-8?B?dkRSOW1qb2tuSm9FbFZsYzdUVVlaQ1NvTWFMbmJTYWQwZ0hmUGtxaDg1UFAr?=
- =?utf-8?B?ZVhNUnFjVFFJMHVSeGdKK1V1dmhkcTR2aFI2WEloSFRTZnN3MDVpbEp2U0ZG?=
- =?utf-8?B?Z0s0d3ZOSWw5ZkhPZG5SeWRaa3A3ZkU5QmNEL2FyRFFxTC85SXF5MjlpMU44?=
- =?utf-8?B?Nyt4UlNQOEUxaEdQcSs3cGQ0NjlFdnAwcUhuaGlJKys1cWlZVGd1YkJkTk9V?=
- =?utf-8?B?em14R1ZONmpzWE02UXRES1VkM1FZTXI1YUJjVUxkL24zSGxIaFYyZW5Jendz?=
- =?utf-8?B?bWpwVjRkTXV5aENDeGpUODhFVkhGTEluRVBvWUtXNWc1anhCa1dFYTFMQnB5?=
- =?utf-8?B?K3pKQkQyaXI3dmplT2tFSG1ZMVJzSXIwM05xaTVtZ3QvNlVmaWF0K21HV3Nv?=
- =?utf-8?B?cm9QWWFjaHlUNkpRSFJwWTZLOGFUVVRDYUN5SEdTbEwwS0xhRUxVbnQyR2Jt?=
- =?utf-8?B?OFZ1UlFWVUlSb0xvMWdQSTR4bkJZU1JwWklSa25MT2JoL0JGVDUxL3VvbDR6?=
- =?utf-8?B?aGNQa3NuZXZBQmt2M0ZyczBpYzg1OEJtR3hzaGtiNWpNZUFBU1pSejNGUVdr?=
- =?utf-8?B?UXU2NXdnLzJCYzQ3TG9janJvRjE5UFhBVEE3WjF2NTBmTUxqb2IwRm5hTHNu?=
- =?utf-8?B?UCtuYkRaVXNzRXFOT3RmQUVDVEcycWxaYlNrUGlYbFpzTFpoWWdSeko2SUFN?=
- =?utf-8?B?ZGVpQ1RVZTBCTVI5TXJVSlkzNU14SjYyMzhtTmg1N01tNXlqOUd0dkI2WW12?=
- =?utf-8?B?NW1tdFdrbVFHb2NneWFaZER1N253OWFjOGJFVkROMjZrakhveWV3Q2Y4bkpT?=
- =?utf-8?Q?0brctB0sBI8=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?vL24RIdJKU1NPVEKB5B9G/WR0QZzOujnGFHNjOeFMRYMmzJgUZgXeXk8kz?=
+ =?iso-8859-1?Q?sSWDnM5hzqoLf227d05RTHG+X7Qqk55EWc+u8D4rEQsMaukFtCTXBsK793?=
+ =?iso-8859-1?Q?yYrGYxPbeYLOsq3TgdDzyRYxgMcNkEtaMBGBi6kLS6Gc/qrSlrD+qqygTe?=
+ =?iso-8859-1?Q?+W9Z803pofPyfQsf+WxnLouAGILME6105yEFUizDnIyYPNXAhaz3Du4f8b?=
+ =?iso-8859-1?Q?VKUT5jdoDmBJ2SbEm1fJkidLjueUmYG3D+eSEADqW+hzfJUMmDW5Wnfh3C?=
+ =?iso-8859-1?Q?EJHeW5LIgI5Jtg1+fwmWY+Zt7D1jeKnP+EJ3cSddHDBABhtW/xbc0j4hHt?=
+ =?iso-8859-1?Q?NHeU4RB07pcee55yDObKv7nQ0eLRYz9p0sHVmjy2hnTZOzjMH+G0jfPtFt?=
+ =?iso-8859-1?Q?i29zGYBTl5MCJB9AQCuK6ZyxPT+NzL0w0ZDVhC2+cAaTXv2f+h+Eco2Bov?=
+ =?iso-8859-1?Q?c3vL9cOlwAnKR2MxCRdDEsjYG5kuWyr3OokjMHuwgVXDa6NUnyKq73yvmg?=
+ =?iso-8859-1?Q?/SbaDgdEDd9YQueo/ACL83HAfxT/PfWrdqT6oDlS3N5b4WqOEpHIpbF9Eg?=
+ =?iso-8859-1?Q?r/jXs4kZZiuGJZ9DW/SH4gNlgFOldpnsaHjsaxdCa0HJ4Ya63EKlTGdQLL?=
+ =?iso-8859-1?Q?v+qcgSHrdZW/xEWV8ZecSQMbBiD0bF5N2uPrnGPruk7BtCwoIdnhSkRP6r?=
+ =?iso-8859-1?Q?Odgzu/qtoSlDTpRJ54IKYFn6ebXLpQ73/g4hLBlJe0/G4i8czlM2yCtct+?=
+ =?iso-8859-1?Q?RrlSaWzBiK7A1ctpd6Vadf8sGPgIbOlFjbRRCHJqSN/Vz7KDRXnObMgJYo?=
+ =?iso-8859-1?Q?y63cciskd0yfvzDEIrmq6C05f0npTI9TDU8YckrBtg2ouu22U2Qi8gAeFf?=
+ =?iso-8859-1?Q?/SdUDI7DI+D5FN4O3Wu2GNsqGFGfVgNqWF1yxK7MRjsPNJ4C1bKolYadcs?=
+ =?iso-8859-1?Q?GS0JLwniIidC8FlwfzqsTUtXDvO37A9VZZJ9y5v8HahIPep8JvYmQpehxl?=
+ =?iso-8859-1?Q?nz7jnTezm6NQkRdWAmi75Fc6GII9EicxKssJJ4VTPIX2kw2b/1DqWV3If1?=
+ =?iso-8859-1?Q?NNHk/30WZCHK6C+1sL2h2FL/WO1SlkIXF8V+cANKUn+dmeF7DN4Pnu9K9H?=
+ =?iso-8859-1?Q?gJb0ZK0o/vG+wuJ0iMF57l9zS/S88xNeIi7u6EBrVbCxI8jdYPOB2OrXN9?=
+ =?iso-8859-1?Q?RASo+uasN0dA/OVMoGnPDs7fB1GoR6qPBSQhPvLSeIngS8QVYP7eH+yXo7?=
+ =?iso-8859-1?Q?t56MOf58ozGGRTPB0AKgZtNVs6qURceGrin4dMS7l20ndx9RBm+HGcqWh6?=
+ =?iso-8859-1?Q?d/U8uMPqLlBlXtbsP3NwluVKqMYE/Uz/FU7PVHXMgJ45NBSwlTcu53Vd04?=
+ =?iso-8859-1?Q?DMf0/cXA+ZXcxk1SLphz0/fNmtVneo1Pm0U7CjF0OQcZFOxzlVvjN0jHnZ?=
+ =?iso-8859-1?Q?iMhAJIiyLuPaFf8zzcIYs7/zitzwkMXuMBceDavwsUaIlQ12NJGYPZIAKb?=
+ =?iso-8859-1?Q?8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGtMeERMMnJ5c0h0RExkS0hKc0poeXAydnRXK2c0d1pyd2tiTUlaY2Z6NEhR?=
- =?utf-8?B?SUVCUkQxWTBBSVFDZm05YUxxYVIvdUI2MGpQQ1YwOGpUd3pUL1QxQjNwTDhF?=
- =?utf-8?B?V29uT090aDREQm1yUk1NTWQ1TFhwcVhpSVlOQi9ld3Y3QzV1SDRqN3BDZk9X?=
- =?utf-8?B?QWxtTXBRbVVTbTdsZzZjVmxhQThsTDJpc0d0WW9mQlJuSEE4ZDhNM0RxUzNO?=
- =?utf-8?B?clRCdm1pOU9DeldTUXpxU1doMjZ4K0dJaTZSTWVXaHhzMW56cmpaZERhTlJv?=
- =?utf-8?B?UlVESHE4ZlVmamFyOEY0RTdSWFF0ZDJkb0l3b0I3eTZsSVZ6ZTBxdmgrVDRM?=
- =?utf-8?B?azBrSGMxaXhZcjRITkdvTmhTTFZCMUZtUDl3ajFEZ0JYekl5SytiNlRUNDJa?=
- =?utf-8?B?cytGQTFCSkRtQWJXdDJJdjRwdjRxWWZsZVZDTklNMVdQMWFEbGlqZ1FydURp?=
- =?utf-8?B?ZEVFS0Zqa1V2cHhSYXF6bkk4QXVJbFcrK2dkNE1pTlliUWQ1azdBQ1M1emFj?=
- =?utf-8?B?eGQ4RUowcTJ5ZzMrOUd6KytLN3NLZEE0Smg0aDZmRCtUMmZwaDh2SmFPVEdl?=
- =?utf-8?B?ZjYvNVA1V2EzeU9IY0xONHJQYitGOU9YRnRQU3lTeVNvdHBLZktxUkUzSm9G?=
- =?utf-8?B?U2JVd0s0NGl4eXVvMDNrUW8wcVBoUjk2d2wvdlVucWxrckE5L2V3OFlleTJi?=
- =?utf-8?B?WHBCclpTc1M0clNGa1ZYTjh3dWtKSzhaYmVBSERhaElIMDZ2L2JGWU1CQVFp?=
- =?utf-8?B?dDdSYnU1em15ZXNWQUl6ZWQ5bEovYmFZVkpxMVFQRVBXMEJwZzM2Z2VnR0Vk?=
- =?utf-8?B?WUV1b3JVcU9VVThIT2VZc3p5cFR6ZVY0NXlTbEVRUkt4RHp5N0NKcEltekZQ?=
- =?utf-8?B?Qm5lRVFWTFBGNkR1MDVaZ0ZyeXc5S2RTaEpuYUhQa0l6K1QxeHNlTXRLQUs5?=
- =?utf-8?B?bGpRdW83aWdSSUVvUkVGdGdPbk13RGQzRXRjdlg1aWQ3NkNScjRFNWpvanhP?=
- =?utf-8?B?VW80R0wwdWhncTA4OUdVVmpTZVN3QmFZVXdHUFNTMnlraENPblZldnVKMU9t?=
- =?utf-8?B?RlA5ekJVMlNZcXJNK1FlMlUvQU0xakY2ZXl2SU9UTEllN2xvVlR3R3dVNWRx?=
- =?utf-8?B?VUt6dUx3TGI1L3hkN0p1TWxtUk1WNjhkME9ZRXpPSGlkUDRhNk1PT0NLWjBk?=
- =?utf-8?B?WjdLRG1UYktHUXpJbHFnV3lKZjdFRGpHVDFFQzRVd0Y3SWxKakxvZi9veVBn?=
- =?utf-8?B?aXhrZjZqV3pQMllyV0loeGhaaUs2N0oxSWpULzF0WFR2WEI0QnA3THo5MUxG?=
- =?utf-8?B?eXRsOHRVbUVocHhqUWlBdkYvZGNYWk56U2VaNGxBUjg2U0ZnRXBUSWpJK1M0?=
- =?utf-8?B?RGs5TlpNYkx4M2xPV1dub0lHQ2pnSDA2NmpHTTU4NHhvOHF2a2JkNnBxZ1NG?=
- =?utf-8?B?eWZuT29BeUZkOUdUQUdDdXVOY2h3anVvTGw0Sjhob1k2Wm1zTVlHeU5TR0Jz?=
- =?utf-8?B?dGtUYlJEYjNVQk1VVU1RcVYzSVNtSFpSVTlNdytaUVd6VExIUWZyRnRGcStJ?=
- =?utf-8?B?bmR5M2xKUGhCbzVDUWdlcEFQd2hUcS91UXBuVGpUWEFjbmx6SkxCQnVTWVhr?=
- =?utf-8?B?OTBHQXJZeERCZk9pQ1NqY3hoem9xcEdveFgxSnl1clpadllyS1N0Y2RBRzFH?=
- =?utf-8?B?VWtQdFg5S3V4cnpURGpESEp1OWJITTBmNFkzWDBDQ3pvdGNIN3ZCUHdLR1Ay?=
- =?utf-8?B?ckF4aFY1RzEvbk83MktkQzB1RXlZQWJ5V0RNalRRMU5ja21nWVdaaGgvNlJ6?=
- =?utf-8?B?M2tEZVNOWXJ6N3NTRnBZbmtMaFZOMk5jZ2pNenIrK1lQQWdjNEJhYkZwcGJu?=
- =?utf-8?B?N0FMdXNSM1JqbXVsQStkT1lpVFMvdmkvR0t1WkVuMmRUZmpkNWc1VjJXaVcw?=
- =?utf-8?B?bEpmUS9wV25McGNaQkdxM05xRmR0bGx6NG81ZCtYamFpS0ZkeDBYT0NiME9m?=
- =?utf-8?B?dHZ1ckxzN1VteU1MbXpsSEpTMnhLMnJOVGVHTTZhaTkwSmZUcGZVYkJrT1F3?=
- =?utf-8?B?UzhoNFZYbEdHZTBYdWd4N29ROEZxVGlqSmZTeDZjVSswSWVNbFh3VWsvdmZj?=
- =?utf-8?B?R0pENFlmdUZXb25XUThibGlDZ29IWloyQlJZazFGRzl1ZmpYZ3B0SGNtbVBi?=
- =?utf-8?B?Wnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b6b9033-70c2-4c1f-50b6-08ddefd0f7d2
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?35wO+TIkxHa2yo9yu21zh1Kj7uxqmlIHC0lxoZjJJrYdX9RB/5ZXNgGR1M?=
+ =?iso-8859-1?Q?tgAziP+1pi9QILbyv/OaAYG3UwrKVFJVLq1UVm75juEh7VqXVhIRH8u0Yn?=
+ =?iso-8859-1?Q?alYlIAiRh31NXOAHKN3lz1JauWmZ8kIloo8wqWRz4GRodAdDkYlyl3cSNF?=
+ =?iso-8859-1?Q?oXEjwUGF0srquzmhgPOjTHcnCiJjmKan/LUMHjXQ7Yg9991IvpvqBySfvG?=
+ =?iso-8859-1?Q?PgKAg7+XVCGQWEEwaqb+DlaEyzYrquIK6/yO5B2m9akuXNs7wdFYHAxU1z?=
+ =?iso-8859-1?Q?vBixW2yAgPLF+vQnPMLN9vbj7MEl3cil+kCsuoCEO20oc2Bcr4VJMNwiwM?=
+ =?iso-8859-1?Q?+pkJ+8jmH7hcG+o4JTPmVpX3Oto/JXpZP7Vx2s+c+UPnDb/qPupEcovAsv?=
+ =?iso-8859-1?Q?h869ZNkwVRvEGREKytFYGcePmRmPv7KudNwidPXI/Dbqnyhjeoezumehzo?=
+ =?iso-8859-1?Q?CrDiXnThorYOugk/fE0qiUPDIzcFukSNllGBF+WhgAZ5AKzigIJhAiVj0W?=
+ =?iso-8859-1?Q?impYXqueF1NGpQvNatWiI+GoTLG9JFVsf42bCF59ILqHvo+tYXoWbV7iIS?=
+ =?iso-8859-1?Q?B1Caux7cuSeMtuU17CXoUAjJyIcAG2Ui0QHFxBlANoyLM+rbss8Ul2n7O4?=
+ =?iso-8859-1?Q?8kS6cLr+N+s5lVAYtjMthO60RH2Xkcj0235QsSqhQeLyL0Tie/AR79+lI/?=
+ =?iso-8859-1?Q?vXJj7DmEmsqGJV1ruJUzNkatN6ef3XEiCF8W3n2l9yJai+dISriPoXu4Qc?=
+ =?iso-8859-1?Q?xfo2/5OUhlTP5KLX4J6OkMfY7r0t9iCbZn1UV2tzI6WGfnqqaA8I4otoPy?=
+ =?iso-8859-1?Q?T2SXR68opVD3+WYINUTt8uPvg55nAsqVRInqIVZK+Fbh/bdtwUT0dWZAm4?=
+ =?iso-8859-1?Q?9Et+d3zWHBuXnU6ulyAX7pH3sDRPi4rdNwmYhYdCJZE+cmBdZ0ohSFzq5O?=
+ =?iso-8859-1?Q?5dd80ZTkWbZtXKW5P8jsWezIzYxGD7AjZblQN8y7o9QvPKd9SRfK4MVwJW?=
+ =?iso-8859-1?Q?9YJgLWr1/6iTBU85/RNW9k/qxLoG2Q8ADwQOmKvv/z62t2fs/+px5TQNMK?=
+ =?iso-8859-1?Q?ft7egGdh6X5C/wIpcmxGmNOEYpikhPf6LZA2ISePA5D5kZ0+kOymC38YFG?=
+ =?iso-8859-1?Q?84kPj7BuM/IYEe4ZRGVPZPGlwVuheCGYTG1ipJA+M0MaBbHxlP6Ca6bUN2?=
+ =?iso-8859-1?Q?c1yMeeCa2AHGDBTv4SyOnGPYTcIjbmiqeS6AcgHGr9/Yg+U5a7b648h+6O?=
+ =?iso-8859-1?Q?LoDxcQkrt+xmLtICP5IWV/yInFPmqD7gylunfdwbW5+bXilDa5L2YmUrIB?=
+ =?iso-8859-1?Q?1LsHS67QaiQ7If23zr9i5tnEdc+9ca27lvNLSPPnNDxTH2V9+0Fs0TZmlS?=
+ =?iso-8859-1?Q?ZWQV/xBeSVYPpeefgpouCBS9FsIntrgZ4c8Biu4SGA+xiedHJiiWZzDcZq?=
+ =?iso-8859-1?Q?79mWvVZW7EroZJ/cPcQtWbJBqMAc1EgpU/U8GjXEUkALVPzTdbduF/g3D3?=
+ =?iso-8859-1?Q?jJOl6YgHb1p8GSwWZnBLwO4BpmjgT6iCiQZHribNiDiOrBH7zhX/6speMv?=
+ =?iso-8859-1?Q?OlNzkW5rlDZvfmAdq1t8VmLbrhvr7MZ28rPzOjE5VGs0l2VkcOHeCCafZ/?=
+ =?iso-8859-1?Q?7HTGiQGqV53T7MBTUGj5sKYSJq01mWaeca1swO6k00hdkO2LUhTWQzBQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7f8e160-61ab-42db-7281-08ddefd134c0
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 18:44:54.8771 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 18:46:37.0411 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ukJ8l8lRBa2DIixmVgfQzEHN1SVBRyB2ycP5p47dqXzhCoES3mXtkmn34Vii0dIWSKoCe0oACqFY/hZpQltLtA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7751
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2ppd94xN8JiIZiof+VB74+TO/PmxOfuieH2A7n/b2c4zIVVyhOasEzCOKx3lNrVZqAH18mm0x/ddMyL+oowvbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4569
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -199,102 +180,476 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Bhadane, Dnyaneshwar (2025-09-09 15:38:49-03:00)
->
->
->> -----Original Message-----
->> From: Sousa, Gustavo <gustavo.sousa@intel.com>
->> Sent: Tuesday, September 9, 2025 8:34 PM
->> To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; Nautiyal,
->> Ankit K <ankit.k.nautiyal@intel.com>; Atwood, Matthew S
->> <matthew.s.atwood@intel.com>
->> Subject: Re: [RESEND] drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy=
-()
->> to only PHY A
->>=20
->> Quoting Dnyaneshwar Bhadane (2025-09-09 06:45:35-03:00)
->> >On PTL, no combo PHY is connected to PORT B. However, PORT B can still
->> >be used for Type-C and will utilize the C20 PHY for eDP over Type-C. In
->> >such configurations, VBTs also enumerate PORT B.
->> >
->> >This leads to issues where PORT B is incorrectly identified as using
->> >the
->> >C10 PHY, due to the assumption that returning true for PORT B in
->> >intel_encoder_is_c10phy() would not cause problems.
->> >
->> >From PTL's perspective, only PORT A/PHY A uses the C10 PHY.
->> >
->> >Update the helper intel_encoder_is_c10phy() to return true only for
->> >PORT A/PHY on PTL.
->> >
->>=20
->> I think we need a "Fixes" tag here.
->>=20
->> Fixes: 9d10de78a37f ("drm/i915/wcl: C10 phy connected to port A and B")
->Sure will incorporate in next rev.
->>=20
->> >Bspec: 72571,73944
->> >Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
->> >Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> >---
->> > drivers/gpu/drm/i915/display/intel_cx0_phy.c | 9 ++-------
->> > 1 file changed, 2 insertions(+), 7 deletions(-)
->> >
->> >diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> >b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> >index 801235a5bc0a..33963ad14cfa 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> >+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> >@@ -39,13 +39,8 @@ bool intel_encoder_is_c10phy(struct intel_encoder
->> *encoder)
->> >         struct intel_display *display =3D to_intel_display(encoder);
->> >         enum phy phy =3D intel_encoder_to_phy(encoder);
->> >
->> >-        /* PTL doesn't have a PHY connected to PORT B; as such,
->> >-         * there will never be a case where PTL uses PHY B.
->> >-         * WCL uses PORT A and B with the C10 PHY.
->> >-         * Reusing the condition for WCL and extending it for PORT B
->> >-         * should not cause any issues for PTL.
->> >-         */
->> >-        if (display->platform.pantherlake && phy < PHY_C)
->> >+        if ((display->platform.pantherlake && phy =3D=3D PHY_A) ||
->> >+            ((DISPLAY_VERx100(display) =3D=3D 3002) && phy =3D=3D PHY_=
-B))
->>=20
->> This is usually a property of the SoC and not the display IP. So, we pro=
-bably
->> want to know that we are on WCL rather than display version 3002, which
->> could theoretically be re-used in other platforms with different display=
- PHY(s).
->>=20
->Hi,=20
->would you suggest that we should introduce something like platform.wildcat=
-lake in this case?
+On Mon, Sep 08, 2025 at 12:12:39PM +0200, Thomas Hellström wrote:
+> The CPU fault handler may populate bos and migrate, and in doing
+> so might interfere with other tasks validating.
+> 
+> Rework the CPU fault handler completely into a fastpath
+> and a slowpath. The fastpath trylocks only the validation lock
+> in read-mode. If that fails, there's a fallback to the
+> slowpath, where we do a full validation transaction.
+> 
+> This mandates open-coding of bo locking, bo idling and
+> bo populating, but we still call into TTM for fault
+> finalizing.
+> 
+> v2:
+> - Rework the CPU fault handler to actually take part in
+>   the exhaustive eviction scheme (Matthew Brost).
+> v3:
+> - Don't return anything but VM_FAULT_RETRY if we've dropped the
+>   mmap_lock. Not even if a signal is pending.
+> - Rebase on gpu_madvise() and split out fault migration.
+> - Wait for idle after migration.
+> - Check whether the resource manager uses tts to determine
+>   whether to map the tt or iomem.
+> - Add a number of asserts.
+> - Allow passing a ttm_operation_ctx to xe_bo_migrate() so that
+>   it's possible to try non-blocking migration.
+> - Don't fall through to TTM on migration / population error
+>   Instead remove the gfp_retry_mayfail in mode 2 where we
+>   must succeed. (Matthew Brost)
+> v5:
+> - Don't allow faulting in the imported bo case (Matthew Brost)
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Perhaps as a subplatform (it could be only on display side) of
-pantherlake?
+Reviewed-by: Matthews Brost <matthew.brost@intel.com>
 
-Cc: Matt Roper
-
---
-Gustavo Sousa
-
->
->Dnyaneshwar,=20
->> Also, as side note, there are many superfluous parentheses in the condit=
-ion. I
->> think only the one for the if-condition is necessary.
->
->>=20
->> --
->> Gustavo Sousa
->>=20
->> >                 return true;
->> >
->> >         if ((display->platform.lunarlake ||
->> >display->platform.meteorlake) && phy < PHY_C)
->> >--
->> >2.51.0
->> >
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c |   2 +-
+>  drivers/gpu/drm/xe/xe_bo.c             | 259 ++++++++++++++++++++-----
+>  drivers/gpu/drm/xe/xe_bo.h             |   3 +-
+>  drivers/gpu/drm/xe/xe_dma_buf.c        |   6 +-
+>  drivers/gpu/drm/xe/xe_gt_pagefault.c   |   2 +-
+>  drivers/gpu/drm/xe/xe_validation.c     |   3 +-
+>  drivers/gpu/drm/xe/xe_vm.c             |   1 +
+>  7 files changed, 225 insertions(+), 51 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index 4b0748e6fdd6..d7a8448a43dc 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -314,7 +314,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>  		goto err;
+>  
+>  	if (IS_DGFX(xe))
+> -		ret = xe_bo_migrate(bo, XE_PL_VRAM0, exec);
+> +		ret = xe_bo_migrate(bo, XE_PL_VRAM0, NULL, exec);
+>  	else
+>  		ret = xe_bo_validate(bo, NULL, true, exec);
+>  	if (!ret)
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 296b8ead5713..4b2eba7d4ce1 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1716,68 +1716,234 @@ static bool should_migrate_to_smem(struct xe_bo *bo)
+>  	       bo->attr.atomic_access == DRM_XE_ATOMIC_CPU;
+>  }
+>  
+> -static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+> +/* Populate the bo if swapped out, or migrate if the access mode requires that. */
+> +static int xe_bo_fault_migrate(struct xe_bo *bo, struct ttm_operation_ctx *ctx,
+> +			       struct drm_exec *exec)
+> +{
+> +	struct ttm_buffer_object *tbo = &bo->ttm;
+> +	int err = 0;
+> +
+> +	if (ttm_manager_type(tbo->bdev, tbo->resource->mem_type)->use_tt) {
+> +		xe_assert(xe_bo_device(bo),
+> +			  dma_resv_test_signaled(tbo->base.resv, DMA_RESV_USAGE_KERNEL) ||
+> +			  (tbo->ttm && ttm_tt_is_populated(tbo->ttm)));
+> +		err = ttm_bo_populate(&bo->ttm, ctx);
+> +	} else if (should_migrate_to_smem(bo)) {
+> +		xe_assert(xe_bo_device(bo), bo->flags & XE_BO_FLAG_SYSTEM);
+> +		err = xe_bo_migrate(bo, XE_PL_TT, ctx, exec);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +/* Call into TTM to populate PTEs, and register bo for PTE removal on runtime suspend. */
+> +static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf, struct xe_device *xe, struct xe_bo *bo)
+> +{
+> +	vm_fault_t ret;
+> +
+> +	trace_xe_bo_cpu_fault(bo);
+> +
+> +	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+> +				       TTM_BO_VM_NUM_PREFAULT);
+> +	/*
+> +	 * When TTM is actually called to insert PTEs, ensure no blocking conditions
+> +	 * remain, in which case TTM may drop locks and return VM_FAULT_RETRY.
+> +	 */
+> +	xe_assert(xe, ret != VM_FAULT_RETRY);
+> +
+> +	if (ret == VM_FAULT_NOPAGE &&
+> +	    mem_type_is_vram(bo->ttm.resource->mem_type)) {
+> +		mutex_lock(&xe->mem_access.vram_userfault.lock);
+> +		if (list_empty(&bo->vram_userfault_link))
+> +			list_add(&bo->vram_userfault_link,
+> +				 &xe->mem_access.vram_userfault.list);
+> +		mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static vm_fault_t xe_err_to_fault_t(int err)
+> +{
+> +	switch (err) {
+> +	case 0:
+> +	case -EINTR:
+> +	case -ERESTARTSYS:
+> +	case -EAGAIN:
+> +		return VM_FAULT_NOPAGE;
+> +	case -ENOMEM:
+> +	case -ENOSPC:
+> +		return VM_FAULT_OOM;
+> +	default:
+> +		break;
+> +	}
+> +	return VM_FAULT_SIGBUS;
+> +}
+> +
+> +static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+> +{
+> +	dma_resv_assert_held(tbo->base.resv);
+> +
+> +	return tbo->ttm &&
+> +		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
+> +		TTM_TT_FLAG_EXTERNAL;
+> +}
+> +
+> +static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_device *xe,
+> +					   struct xe_bo *bo, bool needs_rpm)
+> +{
+> +	struct ttm_buffer_object *tbo = &bo->ttm;
+> +	vm_fault_t ret = VM_FAULT_RETRY;
+> +	struct xe_validation_ctx ctx;
+> +	struct ttm_operation_ctx tctx = {
+> +		.interruptible = true,
+> +		.no_wait_gpu = true,
+> +		.gfp_retry_mayfail = true,
+> +
+> +	};
+> +	int err;
+> +
+> +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
+> +		return VM_FAULT_RETRY;
+> +
+> +	err = xe_validation_ctx_init(&ctx, &xe->val, NULL,
+> +				     (struct xe_val_flags) {
+> +					     .interruptible = true,
+> +					     .no_block = true
+> +				     });
+> +	if (err)
+> +		goto out_pm;
+> +
+> +	if (!dma_resv_trylock(tbo->base.resv))
+> +		goto out_validation;
+> +
+> +	if (xe_ttm_bo_is_imported(tbo)) {
+> +		ret = VM_FAULT_SIGBUS;
+> +		drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
+> +		goto out_unlock;
+> +	}
+> +
+> +	err = xe_bo_fault_migrate(bo, &tctx, NULL);
+> +	if (err) {
+> +		/* Return VM_FAULT_RETRY on these errors. */
+> +		if (err != -ENOMEM && err != -ENOSPC && err != -EBUSY)
+> +			ret = xe_err_to_fault_t(err);
+> +		goto out_unlock;
+> +	}
+> +
+> +	if (dma_resv_test_signaled(bo->ttm.base.resv, DMA_RESV_USAGE_KERNEL))
+> +		ret = __xe_bo_cpu_fault(vmf, xe, bo);
+> +
+> +out_unlock:
+> +	dma_resv_unlock(tbo->base.resv);
+> +out_validation:
+> +	xe_validation_ctx_fini(&ctx);
+> +out_pm:
+> +	if (needs_rpm)
+> +		xe_pm_runtime_put(xe);
+> +
+> +	return ret;
+> +}
+> +
+> +static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+>  {
+>  	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+>  	struct drm_device *ddev = tbo->base.dev;
+>  	struct xe_device *xe = to_xe_device(ddev);
+>  	struct xe_bo *bo = ttm_to_xe_bo(tbo);
+>  	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
+> -	struct drm_exec *exec;
+> +	bool retry_after_wait = false;
+> +	struct xe_validation_ctx ctx;
+> +	struct drm_exec exec;
+>  	vm_fault_t ret;
+> -	int idx, r = 0;
+> +	int err = 0;
+> +	int idx;
+>  
+> -	if (needs_rpm)
+> -		xe_pm_runtime_get(xe);
+> +	if (!drm_dev_enter(&xe->drm, &idx))
+> +		return ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+>  
+> -	exec = XE_VALIDATION_UNIMPLEMENTED;
+> -	ret = ttm_bo_vm_reserve(tbo, vmf);
+> -	if (ret)
+> +	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
+> +	if (ret != VM_FAULT_RETRY)
+>  		goto out;
+>  
+> -	if (drm_dev_enter(ddev, &idx)) {
+> -		trace_xe_bo_cpu_fault(bo);
+> +	if (fault_flag_allow_retry_first(vmf->flags)) {
+> +		if (vmf->flags & FAULT_FLAG_RETRY_NOWAIT)
+> +			goto out;
+> +		retry_after_wait = true;
+> +		xe_bo_get(bo);
+> +		mmap_read_unlock(vmf->vma->vm_mm);
+> +	} else {
+> +		ret = VM_FAULT_NOPAGE;
+> +	}
+>  
+> -		xe_validation_assert_exec(xe, exec, &tbo->base);
+> -		if (should_migrate_to_smem(bo)) {
+> -			xe_assert(xe, bo->flags & XE_BO_FLAG_SYSTEM);
+> +	/*
+> +	 * The fastpath failed and we were not required to return and retry immediately.
+> +	 * We're now running in one of two modes:
+> +	 *
+> +	 * 1) retry_after_wait == true: The mmap_read_lock() is dropped, and we're trying
+> +	 * to resolve blocking waits. But we can't resolve the fault since the
+> +	 * mmap_read_lock() is dropped. After retrying the fault, the aim is that the fastpath
+> +	 * should succeed. But it may fail since we drop the bo lock.
+> +	 *
+> +	 * 2) retry_after_wait == false: The fastpath failed, typically even after
+> +	 * a retry. Do whatever's necessary to resolve the fault.
+> +	 *
+> +	 * This construct is recommended to avoid excessive waits under the mmap_lock.
+> +	 */
+> +
+> +	if (needs_rpm)
+> +		xe_pm_runtime_get(xe);
+>  
+> -			r = xe_bo_migrate(bo, XE_PL_TT, exec);
+> -			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
+> -				ret = VM_FAULT_NOPAGE;
+> -			else if (r)
+> -				ret = VM_FAULT_SIGBUS;
+> +	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
+> +			    err) {
+> +		struct ttm_operation_ctx tctx = {
+> +			.interruptible = true,
+> +			.no_wait_gpu = false,
+> +			.gfp_retry_mayfail = retry_after_wait,
+> +		};
+> +		long lerr;
+> +
+> +		err = drm_exec_lock_obj(&exec, &tbo->base);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (err)
+> +			break;
+> +
+> +		if (xe_ttm_bo_is_imported(tbo)) {
+> +			err = -EFAULT;
+> +			drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
+> +			break;
+>  		}
+> -		if (!ret)
+> -			ret = ttm_bo_vm_fault_reserved(vmf,
+> -						       vmf->vma->vm_page_prot,
+> -						       TTM_BO_VM_NUM_PREFAULT);
+> -		drm_dev_exit(idx);
+>  
+> -		if (ret == VM_FAULT_RETRY &&
+> -		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+> -			goto out;
+> +		err = xe_bo_fault_migrate(bo, &tctx, &exec);
+> +		if (err) {
+> +			drm_exec_retry_on_contention(&exec);
+> +			xe_validation_retry_on_oom(&ctx, &err);
+> +			break;
+> +		}
+>  
+> -		/*
+> -		 * ttm_bo_vm_reserve() already has dma_resv_lock.
+> -		 */
+> -		if (ret == VM_FAULT_NOPAGE &&
+> -		    mem_type_is_vram(tbo->resource->mem_type)) {
+> -			mutex_lock(&xe->mem_access.vram_userfault.lock);
+> -			if (list_empty(&bo->vram_userfault_link))
+> -				list_add(&bo->vram_userfault_link,
+> -					 &xe->mem_access.vram_userfault.list);
+> -			mutex_unlock(&xe->mem_access.vram_userfault.lock);
+> +		lerr = dma_resv_wait_timeout(tbo->base.resv,
+> +					     DMA_RESV_USAGE_KERNEL, true,
+> +					     MAX_SCHEDULE_TIMEOUT);
+> +		if (lerr < 0) {
+> +			err = lerr;
+> +			break;
+>  		}
+> -	} else {
+> -		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+> +
+> +		if (!retry_after_wait)
+> +			ret = __xe_bo_cpu_fault(vmf, xe, bo);
+>  	}
+> +	/* if retry_after_wait == true, we *must* return VM_FAULT_RETRY. */
+> +	if (err && !retry_after_wait)
+> +		ret = xe_err_to_fault_t(err);
+>  
+> -	dma_resv_unlock(tbo->base.resv);
+> -out:
+>  	if (needs_rpm)
+>  		xe_pm_runtime_put(xe);
+>  
+> +	if (retry_after_wait)
+> +		xe_bo_put(bo);
+> +out:
+> +	drm_dev_exit(idx);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -1821,7 +1987,7 @@ int xe_bo_read(struct xe_bo *bo, u64 offset, void *dst, int size)
+>  }
+>  
+>  static const struct vm_operations_struct xe_gem_vm_ops = {
+> -	.fault = xe_gem_fault,
+> +	.fault = xe_bo_cpu_fault,
+>  	.open = ttm_bo_vm_open,
+>  	.close = ttm_bo_vm_close,
+>  	.access = xe_bo_vm_access,
+> @@ -3057,6 +3223,8 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
+>   * xe_bo_migrate - Migrate an object to the desired region id
+>   * @bo: The buffer object to migrate.
+>   * @mem_type: The TTM region type to migrate to.
+> + * @tctx: A pointer to a struct ttm_operation_ctx or NULL if
+> + * a default interruptibe ctx is to be used.
+>   * @exec: The drm_exec transaction to use for exhaustive eviction.
+>   *
+>   * Attempt to migrate the buffer object to the desired memory region. The
+> @@ -3069,7 +3237,8 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
+>   * Return: 0 on success. Negative error code on failure. In particular may
+>   * return -EINTR or -ERESTARTSYS if signal pending.
+>   */
+> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
+> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct ttm_operation_ctx *tctx,
+> +		  struct drm_exec *exec)
+>  {
+>  	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
+>  	struct ttm_operation_ctx ctx = {
+> @@ -3081,6 +3250,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
+>  	struct ttm_place requested;
+>  
+>  	xe_bo_assert_held(bo);
+> +	tctx = tctx ? tctx : &ctx;
+>  
+>  	if (bo->ttm.resource->mem_type == mem_type)
+>  		return 0;
+> @@ -3107,8 +3277,9 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
+>  		add_vram(xe, bo, &requested, bo->flags, mem_type, &c);
+>  	}
+>  
+> -	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
+> -	return ttm_bo_validate(&bo->ttm, &placement, &ctx);
+> +	if (!tctx->no_wait_gpu)
+> +		xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
+> +	return ttm_bo_validate(&bo->ttm, &placement, tctx);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 99e8900d2dcc..f0923717660e 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -284,7 +284,8 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
+>  
+>  bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
+>  
+> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec);
+> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct ttm_operation_ctx *ctc,
+> +		  struct drm_exec *exec);
+>  int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec);
+>  
+>  int xe_bo_evict_pinned(struct xe_bo *bo);
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index 199041bdb882..7c2793265561 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -64,7 +64,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = xe_bo_migrate(bo, XE_PL_TT, exec);
+> +	ret = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
+>  	if (ret) {
+>  		if (ret != -EINTR && ret != -ERESTARTSYS)
+>  			drm_dbg(&xe->drm,
+> @@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+>  
+>  	if (!xe_bo_is_pinned(bo)) {
+>  		if (!attach->peer2peer)
+> -			r = xe_bo_migrate(bo, XE_PL_TT, exec);
+> +			r = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
+>  		else
+>  			r = xe_bo_validate(bo, NULL, false, exec);
+>  		if (r)
+> @@ -170,7 +170,7 @@ static int xe_dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
+>  
+>  	/* Can we do interruptible lock here? */
+>  	xe_bo_lock(bo, false);
+> -	(void)xe_bo_migrate(bo, XE_PL_TT, exec);
+> +	(void)xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
+>  	xe_bo_unlock(bo);
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index ec6f6d520a9c..a054d6010ae0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -87,7 +87,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
+>  	if (!bo)
+>  		return 0;
+>  
+> -	return need_vram_move ? xe_bo_migrate(bo, vram->placement, exec) :
+> +	return need_vram_move ? xe_bo_migrate(bo, vram->placement, NULL, exec) :
+>  		xe_bo_validate(bo, vm, true, exec);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
+> index b90fda3dd5f4..826cd09966ef 100644
+> --- a/drivers/gpu/drm/xe/xe_validation.c
+> +++ b/drivers/gpu/drm/xe/xe_validation.c
+> @@ -241,7 +241,8 @@ int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
+>   */
+>  void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
+>  {
+> -	drm_exec_fini(ctx->exec);
+> +	if (ctx->exec)
+> +		drm_exec_fini(ctx->exec);
+>  	xe_validation_unlock(ctx);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index dfe88924fda0..785e81cf023d 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2934,6 +2934,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+>  		if (!err && !xe_vma_has_no_bo(vma))
+>  			err = xe_bo_migrate(xe_vma_bo(vma),
+>  					    region_to_mem_type[region],
+> +					    NULL,
+>  					    exec);
+>  		break;
+>  	}
+> -- 
+> 2.51.0
+> 
