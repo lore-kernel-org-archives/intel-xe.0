@@ -4,167 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D96C3CA0FED
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 18:46:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B97ACAC582
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 19:03:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89AA310E26E;
-	Tue,  9 Sep 2025 18:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E92F10E7C9;
+	Tue,  9 Sep 2025 19:03:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cI1PhJ6I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOR/7lG0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71A6610E26E
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 18:46:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39D0C10E7C9
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 19:03:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757443602; x=1788979602;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=fPsCYRk479VAlIzCLj8i2MFMcR0sgx5CYY8JwBobG2Q=;
- b=cI1PhJ6IE/muFsiUw/GmVPVhmhcYUuUVpoBB6CE9Vwwt0p3LnqhbWRqF
- LsOo4iuc0WjxgLtiOjsVCGdwCttCMwQuMjOzSjZo5yoCtVke2k/203/UE
- DPWLzX91M4BdULKPlOR7xZgVybHpARRhjzImCk7iDCIACd2w1WflW54my
- 3TUxjWwwei5vT2SX9+4S93pOR7RiCax/UyUJxoTG+8gapmFaCOzIqRcoq
- K7dpZbaljghoEJc3LBGyCyfPtTqmA/mMSHaoewpkzTKfW1nbpddmKIb1i
- vt+P1L7PiD2lFjOIlXpnahp7WAwwLYrsb+GSgey4vuDMbwt8+ISoIvPa5 A==;
-X-CSE-ConnectionGUID: 07UPwqS5QBGaP2QHltl74g==
-X-CSE-MsgGUID: GXqA2pi/RwSrVsQDfePbQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59597039"
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="59597039"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 11:46:42 -0700
-X-CSE-ConnectionGUID: LYLOnqRnQMWOH2etYA2s8Q==
-X-CSE-MsgGUID: eXsaXvJQTp+yPKIFDcj4aA==
+ t=1757444635; x=1788980635;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=WPnWTtXOd3ADcV8BK8o0U4E8U6fvor3cD1VrfG4q3Pg=;
+ b=IOR/7lG0FGxeYqGtOETvY6pApTWnhfuv70d6Keu7YoOMy/FIKd9Q4aqZ
+ qgm4Af5NGDpg2uvbx0SjqzLDUz2rwvzohqAEBH06THj1hntCsaqZJqSvi
+ 2+3XU+zufDD9ADniKg/GKdyhPD4keb+becg3JphZYhRxg/VkcntikiW8u
+ P8qS240H3hsFbrDFl4MRBstFa0+Jc9drftfZeXD5k1mQW/9puU0oWpm4L
+ a/vBqZ8eMsvoXf7ouqn1va2Eb+scKfoECN/d6wmkRaBb5ht9CNb9kq+4v
+ UtqtsoOuimo7yOG45kIlvwAPje2STrUIT3D1LyRKG/I739cbdxEWYnHq2 A==;
+X-CSE-ConnectionGUID: PM0ktsq+RACTQqZtT6Oq8Q==
+X-CSE-MsgGUID: FJIrPrbAR7yYZiePxF6gXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59817062"
+X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="59817062"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 12:03:55 -0700
+X-CSE-ConnectionGUID: mfFbyrjFRcmzJAdJ8WH/Zw==
+X-CSE-MsgGUID: 1C+6lZvFQtiylGuEp1BWCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="172447634"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 11:46:41 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,252,1751266800"; d="scan'208";a="177511790"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 12:03:55 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 9 Sep 2025 11:46:40 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.17; Tue, 9 Sep 2025 12:03:54 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 9 Sep 2025 11:46:40 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.82)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Tue, 9 Sep 2025 12:03:54 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.70)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 9 Sep 2025 11:46:40 -0700
+ 15.2.2562.17; Tue, 9 Sep 2025 12:03:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TduzmZaaK3Mc7ILE2inQ4IX3WfOtHto/E7vZokLzRmROqMNrqB9mHftA7j1lRQiNmZW3TIOCpd5eBBlcefJFpjPgS6G4s3IQWn+Lo5qjAhIKlOnqfnY2xVNlMwY4GuSU3r05c9K62pkHW7FEcqYW4BTBB/l+RfSMlCMmlzzqbU99c6CBKleS16VVwI37AL4dUwhgTSLbT9aAOslrEzvrXIUcFC8d8/TM2ynJYNAuKGKIuch6Gf2erl1T7SpJAvz5vkb+pRAD2knREeXwZStt/zgjbGw/0pWhaG2uBScnzFShJ7vpDUGgiAmKszdjvVdYRCc3egkBtiwZAXxnHuXlwQ==
+ b=lqIOcRfc0GQbfWzT3owHXn60RcBWiNj7YRdzc7IXZlSp6OeHdDrmbjYu0jxdsmkln/5+kEPtS108Qxa4IJI3idpp7WWjy/9Pnq/u1xEh6lpjJRzhlsQ8fBp2eeloAZckYTYuISMBnIwUxGRgnejdeZVmE5gJVdI2ou88LPuammfDo3TW9vsxf+UlkSe/Wi7WdE9JiI6cIJ/qwZ+qqb+JuQMnG6svoZZebAkGUer6MKwFfe6Icyi7H0/GPGoDo2Lc9Z/hk1wnOK8AS6EIz78291LvTZO9aKSQY/eBnN3SlUIGzu8+5yHef/u9c0V3FKcysD8seFBSvw2+x2Tka20J8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nza0uWPFglkEV41xcctBbU8DsWfnXOOthTch7hYOqjc=;
- b=rqnABm/YxinkzrEOd5+6pscX6hFgWTR3CtUWBtZ0P2J4xnEfgZ4SVco/UY8pBLfgRQGSb7tG1hYH2HGInOEbdhLx2ddCmmkYrocOCrD8yhb1xSWmncZQPkh/RGyLWAJTK8w1rtx3UjXf9AqvKuLQUuiwjYo/nJyicxX5rbur9ABxPUVP9iKlGxTAuqRfE19sGKVM6X1fHCXp10OqOA7791qV4+eFhPfBCl8LzNVJ3hbbL5tHSUEIl7mUTacxbJbyDaxA0tYWaurT/NwBdr9+I3nFj6Awi1JpIs4EBH6rrQgXvl07m5QSH1RQQamnViRoradYddfP/MMUqcS9bHGeYg==
+ bh=WPnWTtXOd3ADcV8BK8o0U4E8U6fvor3cD1VrfG4q3Pg=;
+ b=VDXyd18N4qtJ/LM5oWM6TtcxgbG66oLLS+YVX9illq+PH5EvFLTb7YZJNrNnLSzZdOgWhhBr79v81+gc/2dYq3F6vPC387NhCcuoQYysW8NJ278HQaGVFr+74hK+8XjQO3dk4+mNsURtTmwa//Bbv1Px038ENuaHxyrtgQ12CTztDzctbmMTs0cpxAuSniVjnGgdI+kTKCHzSsko60vGkqs3P1QtM2iyDV+73QWFikZFvyt3H9fr0fZ1XFwat+AKh+bbA7Gw/qnYhRtz3i1iXWW5LuLLkOh4nEGzvvvh45A0dpyRDuFzYpONQJ26oh/BEa4efz/ye7zLyhErNKmhlg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MW3PR11MB4569.namprd11.prod.outlook.com (2603:10b6:303:54::7) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
+ SJ5PPFED9C9AC99.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::85d)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
- 2025 18:46:37 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
- 18:46:37 +0000
-Date: Tue, 9 Sep 2025 11:46:34 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v6 06/13] drm/xe: Convert the CPU fault handler for
- exhaustive eviction
-Message-ID: <aMB2Cm02wMM2LIMD@lstrano-desk.jf.intel.com>
-References: <20250908101246.65025-1-thomas.hellstrom@linux.intel.com>
- <20250908101246.65025-7-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250908101246.65025-7-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: BYAPR01CA0001.prod.exchangelabs.com (2603:10b6:a02:80::14)
- To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2025 19:03:47 +0000
+Received: from DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::3f64:5280:3eb4:775b]) by DM8PR11MB5573.namprd11.prod.outlook.com
+ ([fe80::3f64:5280:3eb4:775b%3]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
+ 19:03:47 +0000
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Dugast, Francois" <francois.dugast@intel.com>
+CC: "Brost, Matthew" <matthew.brost@intel.com>, "Mrozek, Michal"
+ <michal.mrozek@intel.com>
+Subject: Re: [RFC 1/2] drm/xe/migrate: Add tracepoint during VRAM copy
+Thread-Topic: [RFC 1/2] drm/xe/migrate: Add tracepoint during VRAM copy
+Thread-Index: AQHcIZs2BnW1wSf3ZE2du69UjJMuGLSLNbeA
+Date: Tue, 9 Sep 2025 19:03:47 +0000
+Message-ID: <65ee8dcc2384b5e1652d4ffac97f06bb2f56b0b2.camel@intel.com>
+References: <20250909150437.986365-1-francois.dugast@intel.com>
+ <20250909150437.986365-2-francois.dugast@intel.com>
+In-Reply-To: <20250909150437.986365-2-francois.dugast@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|SJ5PPFED9C9AC99:EE_
+x-ms-office365-filtering-correlation-id: 0db54588-a5c4-4435-2c91-08ddefd39b10
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700021;
+x-microsoft-antispam-message-info: =?utf-8?B?K2pSNWRwS2taTGFuWE53ZEdjTnhqVktETHByYzl3VlpWOUwwcjdLUHJ6TXlI?=
+ =?utf-8?B?QStCY1FEODJpYUEwSXJaRFozYTM2bzdMZ1ZobUlWS0lsUTBhUWtSYnRhYXhy?=
+ =?utf-8?B?U1B1a1phRDVwNkNHYlpLOG51UXVtWHlMVVBtMHRxZHNmeW5WVXpMbW1BL0NN?=
+ =?utf-8?B?Mlk4ZGdFL25hQ1V1T05JVk9hakZjKzNnaFUyS2t6aUZMN1RLb3pXYzJ0Rmtm?=
+ =?utf-8?B?cUFkVmw4MzJPdzFIbzFSNUJkZXJ6UGRZTGFhSDB1bnVSUlJ3OGJrWXFBQUF1?=
+ =?utf-8?B?RFJ1b1k5SDN1dzIxeThBM3pvbTR2MlZiUGp3ZXhwUk1VT0xvWm53OFdSVGIx?=
+ =?utf-8?B?YlpsYlo4SFJhcmJuaWdsNWNuT2xrZm1lMmpCUVFXSW00RVpNVHBXV3lZa20x?=
+ =?utf-8?B?TXd5ZzFTcVA3NUZBWjVkYjlqSU5vdHhQMlJWV0NyZGN3Z0lxcmZCNUlTZzJN?=
+ =?utf-8?B?WWZFcjh5YjVWazh4OWVyY3kyM1VKaks5Tkg2MWcvYmg4Sll2QkJZSWFWOTVE?=
+ =?utf-8?B?S1FTWHhhcDBQN2FnLzdrL3FsUHltd0VxcndIUTdaTzRVTHVXeUlMN0t6K2Y5?=
+ =?utf-8?B?d0VFMGRhaHRobVdRL2hGUk5aelloVlF5cElpNDFnbXA1MnJLdzdDSE1LVTZU?=
+ =?utf-8?B?Ri84OXVTSUdEc0VuNVFNdWZ3aktSdm9jMXVydDJLZFh1OFQwOVNabStUWENu?=
+ =?utf-8?B?ZGZLQmJBVnJkZnhjQ3Y1NVQ3WmtraXhXRkNQQjU5bDFJamVIMWhBWk1abC9u?=
+ =?utf-8?B?UERGSGZ1MjROSkZpb1ZEWWJrMk1LcUxQWnlkamFMRXk4MHBDSzV3OWFNNHJS?=
+ =?utf-8?B?RC80UkxmTUZUeWhvNFN3YW1LSmkxMEduT2hHWDRDbll4QVdZRkNtcWRUZm5R?=
+ =?utf-8?B?Q08wczh3RXcxT1MwYXJhVkJBempva21OWC9sSlAxamtXT05IYVpoVVhkUU5J?=
+ =?utf-8?B?T2Z2OWFDdUYwWS8xTzYzMzRsWlFhY0ZxQzZpMzBYbTNKOUw0clNVbnhzb2R1?=
+ =?utf-8?B?UGFFeDl3QUszSDdJV3FCMlFWMUxUTjFzWTRHUUljOTN0YlZaYWpCRXBqblpC?=
+ =?utf-8?B?c1ExUnZnc0UwV0QvVE1QK1R0WkEwMWM5MC9obXZKb0hoOW1ZSnBMR2hxdlpP?=
+ =?utf-8?B?eGFOaU81RFJNTVY3bmZXQ3pNWVF0Y2tPL1lhRmVEY1RDL2FXTi9kbzRWNGVp?=
+ =?utf-8?B?aGxrMWhUNmhyU0lTZ1BJMlpMRjFoR0Q2ZUY0L3NIcFBRazNNM0hjaGNTbGRj?=
+ =?utf-8?B?TDF6eThkVGFTYzhkTUFBSXdKTlBkbDRjalRFZTd0RWFKdVN4cHlZU0VkY0FY?=
+ =?utf-8?B?cXptRTNDK2hobVp0bWovQjBmN0dKaUUyeFJ6R1dMYjI4MFRKRy9ZYzlpU1la?=
+ =?utf-8?B?Rk5xMTBaRFZmZHNMOTdidWtrSkxZTmVqSzN6K3U5VUxGT2FsdGdjR25tdEQv?=
+ =?utf-8?B?SWRXV3Z1bmVTbm1HZXRYemgyZmZYMjVMLytRTUU3TEdSengydytoRjhUYThE?=
+ =?utf-8?B?SXI1eVNaQVMySHVUYXFZQlI4cFBmcEk5TFI2SWJSbVJseUhpSlh1SUcwanRM?=
+ =?utf-8?B?cHJBenp3UUpCRktOZGl3ZFhSZnpiSzArR3dyWjBLb3RQd3RQUFI5UDhsWHlm?=
+ =?utf-8?B?Ym1mYlp1WjNLYUt6UDRWVjFtVTN1SVdnR2JIODlrWlZBSjhBdjNXY2FZRGtz?=
+ =?utf-8?B?MWxuZlFmU2NwMnFBckFzU3cxTjRwUWVHWVFqNW9CYUlGVVhUdDZkZk44R3FK?=
+ =?utf-8?B?ekpyUG9RQW9MZWNwRHJQQnMvazRyRWpUQk1yUmQrd1p0M2FlOFk3T0Zud1Bm?=
+ =?utf-8?B?SHV1ZWZQR3VFY3JjS0J4Z28wbzZYM1NqTXBmdU9qekJLTFpxdTNYSWdvd0h1?=
+ =?utf-8?B?ZVlnaHlsU244czFjV2xPUkRFL2lONW5aWTZmTEJCL3ZFbHBQbjkzNG4yQmY5?=
+ =?utf-8?B?SWNxNTY2eDdDT3BkRWw3QzdSRVBGNDJxdTBWaWprL1Z5YzBZTDlFYnovK0RF?=
+ =?utf-8?Q?WeV6S4yM9duLWfgVpaNRmA6ceUoTQ4=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZkIrdUprMzZ6RjZaMG9UWjMxc3p2MXg2V3BsakxPcFpjQ3JXaGFxY1lwdFpx?=
+ =?utf-8?B?T0hYMjdsNzdGRythSkcza0t4UlAyQ1lHZXVKaHJjUEptVW8vdm9EWnJLTnE3?=
+ =?utf-8?B?R3NEZG94b0VTMG9jRjBzcDBqZEd6akVzMkIyTUwwYTkxcGpvSFBVTUFBbzdo?=
+ =?utf-8?B?YUFucm9VTjNqMFlzbjdjckNON01xUXZOMzVWQ0ZBdnhlUzArWkhGN3hjMGZN?=
+ =?utf-8?B?VU10cWJDNWdMSmZ3eUFSMXZEK1V6V0VlVm5YOTNzZWpWMFhLeFNBM1lQcysr?=
+ =?utf-8?B?NGNsYno5c01JZ29sV3hHNDNoYlVxMS9FdTAyTEIzSGZYT3ZMVXkzaW96ZHpC?=
+ =?utf-8?B?a01IQThDR1pNVDNaeHRzTWpEbVJSL0VrdXF6YTBMMnFqK2NDL3puY0dFbGhJ?=
+ =?utf-8?B?MDFxS2dlekp6UDFpK080LzVMN3Y3clpBQSt2S1Vudjd6ckEyZ3NGVS84YnNp?=
+ =?utf-8?B?MHVmQnF2ZnJOQVdLTUdKMVBMckptYnBDcGE3MWlkbng3WFprTnNTa2hKT2Mw?=
+ =?utf-8?B?bXdCQ2lGZEVMWmlGbngrcGQ5a1RnQ3hIMmsxVEo1aUF2SE9jWUk0enRiZHNi?=
+ =?utf-8?B?YngwR1pMdjlaRmRBTVRrUkMrN2FzZjhjNlpNa2E1ZUhhTWc5VFJGQ2ZGSHVx?=
+ =?utf-8?B?bi91SXZwdFlIWW9lYyswVzluYjY5NjUxY3dmVndxVkdKUlRLU0oyVHlIVXVu?=
+ =?utf-8?B?K25KUndRZU1VY3FUVkN0VlpYUDZSVUd6bWxFdndOUjEybGhwTU9NZFg2d3Nv?=
+ =?utf-8?B?eDFTaGJLVWs5czRNUktFa2U0dDNjd2JJSnI4bFNLVkJ6ejNjbktuc1RoL3pr?=
+ =?utf-8?B?NFdmc1dtRjJIMHIzN2U1RS9pZEJ3eTFNMVhlOTJwNnpLUldFTnM2VjBSdkg1?=
+ =?utf-8?B?NXhyRmFRcXZqaU1vU1VURVB1d1NzaTlQdVJ4dEppTE40bTJHQ3J0SWhtNFVU?=
+ =?utf-8?B?aXYzRGhqTlNRMU9PSEYwU0F4ZGt0dVcwZlF6dGpKOGRDd0tib0VnY2ZLZlNH?=
+ =?utf-8?B?Q1FORW1wMjExUm1xVmx0WlBjS1RVZUQvcVRjUitNY05NcjgvbzJYaEE5MHNz?=
+ =?utf-8?B?anhDQnp2RU5rcEd1T1h0VzBoWFNnTkp6YVFmL0JMS3RMRVVKSkJXTzNSaG9o?=
+ =?utf-8?B?TGRCbHNPTm40azdjb01PWlNWdC9Vb25ydmNGRExHaHp4OUd2L1FDbXljNmFl?=
+ =?utf-8?B?czNFcHZPdXNqOXpTckpDa0VTcURtUDd2M3RwUEJFamp5TXJFcVcwNFdMdFBq?=
+ =?utf-8?B?ZHZuN2I2eGw1Z2duVlBHRlA2MWxmbGJ6cGZJME9iMCtHVnc4Uk4zbTUzeWtK?=
+ =?utf-8?B?WHllZW5Ea21lM0FCcFBEbVh6OGQzc0hYRzZVS3g5bTVUaC85ZnA2NlN1UkV6?=
+ =?utf-8?B?Mm9XV2ZIRlRBTk8va3htWEhXTVliaE1ZQzEzR3lzV2FHNDA2K1FkeTdyUjBt?=
+ =?utf-8?B?UmV2K1N4eGF3elNCR0pCd0xsNHA2WnZ3RUpjY1VrYXFXQndvRUg3YjBidUwx?=
+ =?utf-8?B?SVgvaVgzL1dDUnlNdU5xaUNPSUl6TDFucVU5bGNTQkx6WFpveU12TjIvekVp?=
+ =?utf-8?B?allzSHlxQmplQkd1TVhSSmt0UWlZcVZmaGdaVlRod1l5MU1PaTJwekhNWndT?=
+ =?utf-8?B?RklWR3lKdGhybFBxbHo3MVU4WGx4ejY1RlVJMFI0MGg0eE9kaGIycTl1V2Y1?=
+ =?utf-8?B?dWNhV2thZ1B5akNUVFZxZDNLWmprN05ZcjQxQVZOQ0VSRFdmakdMMEwybnhn?=
+ =?utf-8?B?cE00emk3T0RCazJQQlk0K3RWRGpBSHY3M3F1OXZCOUFzZzBrUGphMFpuTDVt?=
+ =?utf-8?B?UERDL1A3ZDhQYTRsdG4yb0xtcW9QNUNPVktpWmZUWFM3TXdjY1JrSmJFK2dJ?=
+ =?utf-8?B?VE5HbkNpM1FWTVdOMWQ4QUhya3Qvbkt3dEJGVU8rSzEwVkRTcmNjZnMvOVkv?=
+ =?utf-8?B?SFlHdGxyMDlGa0NmUERyT3B4WGU2bmVCaVlFK3ZXZmNyUDJvUks3OHlzcUtL?=
+ =?utf-8?B?dlpIZ0RhZWtZd2YwWHQwMFl2WC8wZFZKN0N4V3RDK042OXR5UjdnOVp3R01I?=
+ =?utf-8?B?dS8rQ1A2Yml5M3czR0hUQVp3R1dNeG5JOVJxT2gxbGtKdDYxU1lneFU5SExV?=
+ =?utf-8?B?dDRxVU1OWXlGS3JDcGRGRmlLRFNBL2pEUXZiOGtreWVqQ3VUWllkU25XeHRK?=
+ =?utf-8?B?M0E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4BD5E867A174E54CA06A17100FAA9657@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MW3PR11MB4569:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7f8e160-61ab-42db-7281-08ddefd134c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?vL24RIdJKU1NPVEKB5B9G/WR0QZzOujnGFHNjOeFMRYMmzJgUZgXeXk8kz?=
- =?iso-8859-1?Q?sSWDnM5hzqoLf227d05RTHG+X7Qqk55EWc+u8D4rEQsMaukFtCTXBsK793?=
- =?iso-8859-1?Q?yYrGYxPbeYLOsq3TgdDzyRYxgMcNkEtaMBGBi6kLS6Gc/qrSlrD+qqygTe?=
- =?iso-8859-1?Q?+W9Z803pofPyfQsf+WxnLouAGILME6105yEFUizDnIyYPNXAhaz3Du4f8b?=
- =?iso-8859-1?Q?VKUT5jdoDmBJ2SbEm1fJkidLjueUmYG3D+eSEADqW+hzfJUMmDW5Wnfh3C?=
- =?iso-8859-1?Q?EJHeW5LIgI5Jtg1+fwmWY+Zt7D1jeKnP+EJ3cSddHDBABhtW/xbc0j4hHt?=
- =?iso-8859-1?Q?NHeU4RB07pcee55yDObKv7nQ0eLRYz9p0sHVmjy2hnTZOzjMH+G0jfPtFt?=
- =?iso-8859-1?Q?i29zGYBTl5MCJB9AQCuK6ZyxPT+NzL0w0ZDVhC2+cAaTXv2f+h+Eco2Bov?=
- =?iso-8859-1?Q?c3vL9cOlwAnKR2MxCRdDEsjYG5kuWyr3OokjMHuwgVXDa6NUnyKq73yvmg?=
- =?iso-8859-1?Q?/SbaDgdEDd9YQueo/ACL83HAfxT/PfWrdqT6oDlS3N5b4WqOEpHIpbF9Eg?=
- =?iso-8859-1?Q?r/jXs4kZZiuGJZ9DW/SH4gNlgFOldpnsaHjsaxdCa0HJ4Ya63EKlTGdQLL?=
- =?iso-8859-1?Q?v+qcgSHrdZW/xEWV8ZecSQMbBiD0bF5N2uPrnGPruk7BtCwoIdnhSkRP6r?=
- =?iso-8859-1?Q?Odgzu/qtoSlDTpRJ54IKYFn6ebXLpQ73/g4hLBlJe0/G4i8czlM2yCtct+?=
- =?iso-8859-1?Q?RrlSaWzBiK7A1ctpd6Vadf8sGPgIbOlFjbRRCHJqSN/Vz7KDRXnObMgJYo?=
- =?iso-8859-1?Q?y63cciskd0yfvzDEIrmq6C05f0npTI9TDU8YckrBtg2ouu22U2Qi8gAeFf?=
- =?iso-8859-1?Q?/SdUDI7DI+D5FN4O3Wu2GNsqGFGfVgNqWF1yxK7MRjsPNJ4C1bKolYadcs?=
- =?iso-8859-1?Q?GS0JLwniIidC8FlwfzqsTUtXDvO37A9VZZJ9y5v8HahIPep8JvYmQpehxl?=
- =?iso-8859-1?Q?nz7jnTezm6NQkRdWAmi75Fc6GII9EicxKssJJ4VTPIX2kw2b/1DqWV3If1?=
- =?iso-8859-1?Q?NNHk/30WZCHK6C+1sL2h2FL/WO1SlkIXF8V+cANKUn+dmeF7DN4Pnu9K9H?=
- =?iso-8859-1?Q?gJb0ZK0o/vG+wuJ0iMF57l9zS/S88xNeIi7u6EBrVbCxI8jdYPOB2OrXN9?=
- =?iso-8859-1?Q?RASo+uasN0dA/OVMoGnPDs7fB1GoR6qPBSQhPvLSeIngS8QVYP7eH+yXo7?=
- =?iso-8859-1?Q?t56MOf58ozGGRTPB0AKgZtNVs6qURceGrin4dMS7l20ndx9RBm+HGcqWh6?=
- =?iso-8859-1?Q?d/U8uMPqLlBlXtbsP3NwluVKqMYE/Uz/FU7PVHXMgJ45NBSwlTcu53Vd04?=
- =?iso-8859-1?Q?DMf0/cXA+ZXcxk1SLphz0/fNmtVneo1Pm0U7CjF0OQcZFOxzlVvjN0jHnZ?=
- =?iso-8859-1?Q?iMhAJIiyLuPaFf8zzcIYs7/zitzwkMXuMBceDavwsUaIlQ12NJGYPZIAKb?=
- =?iso-8859-1?Q?8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?35wO+TIkxHa2yo9yu21zh1Kj7uxqmlIHC0lxoZjJJrYdX9RB/5ZXNgGR1M?=
- =?iso-8859-1?Q?tgAziP+1pi9QILbyv/OaAYG3UwrKVFJVLq1UVm75juEh7VqXVhIRH8u0Yn?=
- =?iso-8859-1?Q?alYlIAiRh31NXOAHKN3lz1JauWmZ8kIloo8wqWRz4GRodAdDkYlyl3cSNF?=
- =?iso-8859-1?Q?oXEjwUGF0srquzmhgPOjTHcnCiJjmKan/LUMHjXQ7Yg9991IvpvqBySfvG?=
- =?iso-8859-1?Q?PgKAg7+XVCGQWEEwaqb+DlaEyzYrquIK6/yO5B2m9akuXNs7wdFYHAxU1z?=
- =?iso-8859-1?Q?vBixW2yAgPLF+vQnPMLN9vbj7MEl3cil+kCsuoCEO20oc2Bcr4VJMNwiwM?=
- =?iso-8859-1?Q?+pkJ+8jmH7hcG+o4JTPmVpX3Oto/JXpZP7Vx2s+c+UPnDb/qPupEcovAsv?=
- =?iso-8859-1?Q?h869ZNkwVRvEGREKytFYGcePmRmPv7KudNwidPXI/Dbqnyhjeoezumehzo?=
- =?iso-8859-1?Q?CrDiXnThorYOugk/fE0qiUPDIzcFukSNllGBF+WhgAZ5AKzigIJhAiVj0W?=
- =?iso-8859-1?Q?impYXqueF1NGpQvNatWiI+GoTLG9JFVsf42bCF59ILqHvo+tYXoWbV7iIS?=
- =?iso-8859-1?Q?B1Caux7cuSeMtuU17CXoUAjJyIcAG2Ui0QHFxBlANoyLM+rbss8Ul2n7O4?=
- =?iso-8859-1?Q?8kS6cLr+N+s5lVAYtjMthO60RH2Xkcj0235QsSqhQeLyL0Tie/AR79+lI/?=
- =?iso-8859-1?Q?vXJj7DmEmsqGJV1ruJUzNkatN6ef3XEiCF8W3n2l9yJai+dISriPoXu4Qc?=
- =?iso-8859-1?Q?xfo2/5OUhlTP5KLX4J6OkMfY7r0t9iCbZn1UV2tzI6WGfnqqaA8I4otoPy?=
- =?iso-8859-1?Q?T2SXR68opVD3+WYINUTt8uPvg55nAsqVRInqIVZK+Fbh/bdtwUT0dWZAm4?=
- =?iso-8859-1?Q?9Et+d3zWHBuXnU6ulyAX7pH3sDRPi4rdNwmYhYdCJZE+cmBdZ0ohSFzq5O?=
- =?iso-8859-1?Q?5dd80ZTkWbZtXKW5P8jsWezIzYxGD7AjZblQN8y7o9QvPKd9SRfK4MVwJW?=
- =?iso-8859-1?Q?9YJgLWr1/6iTBU85/RNW9k/qxLoG2Q8ADwQOmKvv/z62t2fs/+px5TQNMK?=
- =?iso-8859-1?Q?ft7egGdh6X5C/wIpcmxGmNOEYpikhPf6LZA2ISePA5D5kZ0+kOymC38YFG?=
- =?iso-8859-1?Q?84kPj7BuM/IYEe4ZRGVPZPGlwVuheCGYTG1ipJA+M0MaBbHxlP6Ca6bUN2?=
- =?iso-8859-1?Q?c1yMeeCa2AHGDBTv4SyOnGPYTcIjbmiqeS6AcgHGr9/Yg+U5a7b648h+6O?=
- =?iso-8859-1?Q?LoDxcQkrt+xmLtICP5IWV/yInFPmqD7gylunfdwbW5+bXilDa5L2YmUrIB?=
- =?iso-8859-1?Q?1LsHS67QaiQ7If23zr9i5tnEdc+9ca27lvNLSPPnNDxTH2V9+0Fs0TZmlS?=
- =?iso-8859-1?Q?ZWQV/xBeSVYPpeefgpouCBS9FsIntrgZ4c8Biu4SGA+xiedHJiiWZzDcZq?=
- =?iso-8859-1?Q?79mWvVZW7EroZJ/cPcQtWbJBqMAc1EgpU/U8GjXEUkALVPzTdbduF/g3D3?=
- =?iso-8859-1?Q?jJOl6YgHb1p8GSwWZnBLwO4BpmjgT6iCiQZHribNiDiOrBH7zhX/6speMv?=
- =?iso-8859-1?Q?OlNzkW5rlDZvfmAdq1t8VmLbrhvr7MZ28rPzOjE5VGs0l2VkcOHeCCafZ/?=
- =?iso-8859-1?Q?7HTGiQGqV53T7MBTUGj5sKYSJq01mWaeca1swO6k00hdkO2LUhTWQzBQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7f8e160-61ab-42db-7281-08ddefd134c0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 18:46:37.0411 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2ppd94xN8JiIZiof+VB74+TO/PmxOfuieH2A7n/b2c4zIVVyhOasEzCOKx3lNrVZqAH18mm0x/ddMyL+oowvbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4569
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0db54588-a5c4-4435-2c91-08ddefd39b10
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2025 19:03:47.4745 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bVAQU5xUVli1Ltd19Hq8DXZmYMKx8OgRl+3Q0mYfmUcsQ8gOJJbWZY/9QjHOnFjoiSjnGKhmJ2/0TuN3VaEzokylIdr1Dr8x+WpD2jNOLbQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFED9C9AC99
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,476 +201,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 08, 2025 at 12:12:39PM +0200, Thomas Hellström wrote:
-> The CPU fault handler may populate bos and migrate, and in doing
-> so might interfere with other tasks validating.
-> 
-> Rework the CPU fault handler completely into a fastpath
-> and a slowpath. The fastpath trylocks only the validation lock
-> in read-mode. If that fails, there's a fallback to the
-> slowpath, where we do a full validation transaction.
-> 
-> This mandates open-coding of bo locking, bo idling and
-> bo populating, but we still call into TTM for fault
-> finalizing.
-> 
-> v2:
-> - Rework the CPU fault handler to actually take part in
->   the exhaustive eviction scheme (Matthew Brost).
-> v3:
-> - Don't return anything but VM_FAULT_RETRY if we've dropped the
->   mmap_lock. Not even if a signal is pending.
-> - Rebase on gpu_madvise() and split out fault migration.
-> - Wait for idle after migration.
-> - Check whether the resource manager uses tts to determine
->   whether to map the tt or iomem.
-> - Add a number of asserts.
-> - Allow passing a ttm_operation_ctx to xe_bo_migrate() so that
->   it's possible to try non-blocking migration.
-> - Don't fall through to TTM on migration / population error
->   Instead remove the gfp_retry_mayfail in mode 2 where we
->   must succeed. (Matthew Brost)
-> v5:
-> - Don't allow faulting in the imported bo case (Matthew Brost)
-> 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-Reviewed-by: Matthews Brost <matthew.brost@intel.com>
-
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c |   2 +-
->  drivers/gpu/drm/xe/xe_bo.c             | 259 ++++++++++++++++++++-----
->  drivers/gpu/drm/xe/xe_bo.h             |   3 +-
->  drivers/gpu/drm/xe/xe_dma_buf.c        |   6 +-
->  drivers/gpu/drm/xe/xe_gt_pagefault.c   |   2 +-
->  drivers/gpu/drm/xe/xe_validation.c     |   3 +-
->  drivers/gpu/drm/xe/xe_vm.c             |   1 +
->  7 files changed, 225 insertions(+), 51 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 4b0748e6fdd6..d7a8448a43dc 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -314,7 +314,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
->  		goto err;
->  
->  	if (IS_DGFX(xe))
-> -		ret = xe_bo_migrate(bo, XE_PL_VRAM0, exec);
-> +		ret = xe_bo_migrate(bo, XE_PL_VRAM0, NULL, exec);
->  	else
->  		ret = xe_bo_validate(bo, NULL, true, exec);
->  	if (!ret)
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 296b8ead5713..4b2eba7d4ce1 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1716,68 +1716,234 @@ static bool should_migrate_to_smem(struct xe_bo *bo)
->  	       bo->attr.atomic_access == DRM_XE_ATOMIC_CPU;
->  }
->  
-> -static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
-> +/* Populate the bo if swapped out, or migrate if the access mode requires that. */
-> +static int xe_bo_fault_migrate(struct xe_bo *bo, struct ttm_operation_ctx *ctx,
-> +			       struct drm_exec *exec)
-> +{
-> +	struct ttm_buffer_object *tbo = &bo->ttm;
-> +	int err = 0;
-> +
-> +	if (ttm_manager_type(tbo->bdev, tbo->resource->mem_type)->use_tt) {
-> +		xe_assert(xe_bo_device(bo),
-> +			  dma_resv_test_signaled(tbo->base.resv, DMA_RESV_USAGE_KERNEL) ||
-> +			  (tbo->ttm && ttm_tt_is_populated(tbo->ttm)));
-> +		err = ttm_bo_populate(&bo->ttm, ctx);
-> +	} else if (should_migrate_to_smem(bo)) {
-> +		xe_assert(xe_bo_device(bo), bo->flags & XE_BO_FLAG_SYSTEM);
-> +		err = xe_bo_migrate(bo, XE_PL_TT, ctx, exec);
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +/* Call into TTM to populate PTEs, and register bo for PTE removal on runtime suspend. */
-> +static vm_fault_t __xe_bo_cpu_fault(struct vm_fault *vmf, struct xe_device *xe, struct xe_bo *bo)
-> +{
-> +	vm_fault_t ret;
-> +
-> +	trace_xe_bo_cpu_fault(bo);
-> +
-> +	ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
-> +				       TTM_BO_VM_NUM_PREFAULT);
-> +	/*
-> +	 * When TTM is actually called to insert PTEs, ensure no blocking conditions
-> +	 * remain, in which case TTM may drop locks and return VM_FAULT_RETRY.
-> +	 */
-> +	xe_assert(xe, ret != VM_FAULT_RETRY);
-> +
-> +	if (ret == VM_FAULT_NOPAGE &&
-> +	    mem_type_is_vram(bo->ttm.resource->mem_type)) {
-> +		mutex_lock(&xe->mem_access.vram_userfault.lock);
-> +		if (list_empty(&bo->vram_userfault_link))
-> +			list_add(&bo->vram_userfault_link,
-> +				 &xe->mem_access.vram_userfault.list);
-> +		mutex_unlock(&xe->mem_access.vram_userfault.lock);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static vm_fault_t xe_err_to_fault_t(int err)
-> +{
-> +	switch (err) {
-> +	case 0:
-> +	case -EINTR:
-> +	case -ERESTARTSYS:
-> +	case -EAGAIN:
-> +		return VM_FAULT_NOPAGE;
-> +	case -ENOMEM:
-> +	case -ENOSPC:
-> +		return VM_FAULT_OOM;
-> +	default:
-> +		break;
-> +	}
-> +	return VM_FAULT_SIGBUS;
-> +}
-> +
-> +static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
-> +{
-> +	dma_resv_assert_held(tbo->base.resv);
-> +
-> +	return tbo->ttm &&
-> +		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
-> +		TTM_TT_FLAG_EXTERNAL;
-> +}
-> +
-> +static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_device *xe,
-> +					   struct xe_bo *bo, bool needs_rpm)
-> +{
-> +	struct ttm_buffer_object *tbo = &bo->ttm;
-> +	vm_fault_t ret = VM_FAULT_RETRY;
-> +	struct xe_validation_ctx ctx;
-> +	struct ttm_operation_ctx tctx = {
-> +		.interruptible = true,
-> +		.no_wait_gpu = true,
-> +		.gfp_retry_mayfail = true,
-> +
-> +	};
-> +	int err;
-> +
-> +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> +		return VM_FAULT_RETRY;
-> +
-> +	err = xe_validation_ctx_init(&ctx, &xe->val, NULL,
-> +				     (struct xe_val_flags) {
-> +					     .interruptible = true,
-> +					     .no_block = true
-> +				     });
-> +	if (err)
-> +		goto out_pm;
-> +
-> +	if (!dma_resv_trylock(tbo->base.resv))
-> +		goto out_validation;
-> +
-> +	if (xe_ttm_bo_is_imported(tbo)) {
-> +		ret = VM_FAULT_SIGBUS;
-> +		drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
-> +		goto out_unlock;
-> +	}
-> +
-> +	err = xe_bo_fault_migrate(bo, &tctx, NULL);
-> +	if (err) {
-> +		/* Return VM_FAULT_RETRY on these errors. */
-> +		if (err != -ENOMEM && err != -ENOSPC && err != -EBUSY)
-> +			ret = xe_err_to_fault_t(err);
-> +		goto out_unlock;
-> +	}
-> +
-> +	if (dma_resv_test_signaled(bo->ttm.base.resv, DMA_RESV_USAGE_KERNEL))
-> +		ret = __xe_bo_cpu_fault(vmf, xe, bo);
-> +
-> +out_unlock:
-> +	dma_resv_unlock(tbo->base.resv);
-> +out_validation:
-> +	xe_validation_ctx_fini(&ctx);
-> +out_pm:
-> +	if (needs_rpm)
-> +		xe_pm_runtime_put(xe);
-> +
-> +	return ret;
-> +}
-> +
-> +static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
->  {
->  	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
->  	struct drm_device *ddev = tbo->base.dev;
->  	struct xe_device *xe = to_xe_device(ddev);
->  	struct xe_bo *bo = ttm_to_xe_bo(tbo);
->  	bool needs_rpm = bo->flags & XE_BO_FLAG_VRAM_MASK;
-> -	struct drm_exec *exec;
-> +	bool retry_after_wait = false;
-> +	struct xe_validation_ctx ctx;
-> +	struct drm_exec exec;
->  	vm_fault_t ret;
-> -	int idx, r = 0;
-> +	int err = 0;
-> +	int idx;
->  
-> -	if (needs_rpm)
-> -		xe_pm_runtime_get(xe);
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
->  
-> -	exec = XE_VALIDATION_UNIMPLEMENTED;
-> -	ret = ttm_bo_vm_reserve(tbo, vmf);
-> -	if (ret)
-> +	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
-> +	if (ret != VM_FAULT_RETRY)
->  		goto out;
->  
-> -	if (drm_dev_enter(ddev, &idx)) {
-> -		trace_xe_bo_cpu_fault(bo);
-> +	if (fault_flag_allow_retry_first(vmf->flags)) {
-> +		if (vmf->flags & FAULT_FLAG_RETRY_NOWAIT)
-> +			goto out;
-> +		retry_after_wait = true;
-> +		xe_bo_get(bo);
-> +		mmap_read_unlock(vmf->vma->vm_mm);
-> +	} else {
-> +		ret = VM_FAULT_NOPAGE;
-> +	}
->  
-> -		xe_validation_assert_exec(xe, exec, &tbo->base);
-> -		if (should_migrate_to_smem(bo)) {
-> -			xe_assert(xe, bo->flags & XE_BO_FLAG_SYSTEM);
-> +	/*
-> +	 * The fastpath failed and we were not required to return and retry immediately.
-> +	 * We're now running in one of two modes:
-> +	 *
-> +	 * 1) retry_after_wait == true: The mmap_read_lock() is dropped, and we're trying
-> +	 * to resolve blocking waits. But we can't resolve the fault since the
-> +	 * mmap_read_lock() is dropped. After retrying the fault, the aim is that the fastpath
-> +	 * should succeed. But it may fail since we drop the bo lock.
-> +	 *
-> +	 * 2) retry_after_wait == false: The fastpath failed, typically even after
-> +	 * a retry. Do whatever's necessary to resolve the fault.
-> +	 *
-> +	 * This construct is recommended to avoid excessive waits under the mmap_lock.
-> +	 */
-> +
-> +	if (needs_rpm)
-> +		xe_pm_runtime_get(xe);
->  
-> -			r = xe_bo_migrate(bo, XE_PL_TT, exec);
-> -			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
-> -				ret = VM_FAULT_NOPAGE;
-> -			else if (r)
-> -				ret = VM_FAULT_SIGBUS;
-> +	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
-> +			    err) {
-> +		struct ttm_operation_ctx tctx = {
-> +			.interruptible = true,
-> +			.no_wait_gpu = false,
-> +			.gfp_retry_mayfail = retry_after_wait,
-> +		};
-> +		long lerr;
-> +
-> +		err = drm_exec_lock_obj(&exec, &tbo->base);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (err)
-> +			break;
-> +
-> +		if (xe_ttm_bo_is_imported(tbo)) {
-> +			err = -EFAULT;
-> +			drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
-> +			break;
->  		}
-> -		if (!ret)
-> -			ret = ttm_bo_vm_fault_reserved(vmf,
-> -						       vmf->vma->vm_page_prot,
-> -						       TTM_BO_VM_NUM_PREFAULT);
-> -		drm_dev_exit(idx);
->  
-> -		if (ret == VM_FAULT_RETRY &&
-> -		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-> -			goto out;
-> +		err = xe_bo_fault_migrate(bo, &tctx, &exec);
-> +		if (err) {
-> +			drm_exec_retry_on_contention(&exec);
-> +			xe_validation_retry_on_oom(&ctx, &err);
-> +			break;
-> +		}
->  
-> -		/*
-> -		 * ttm_bo_vm_reserve() already has dma_resv_lock.
-> -		 */
-> -		if (ret == VM_FAULT_NOPAGE &&
-> -		    mem_type_is_vram(tbo->resource->mem_type)) {
-> -			mutex_lock(&xe->mem_access.vram_userfault.lock);
-> -			if (list_empty(&bo->vram_userfault_link))
-> -				list_add(&bo->vram_userfault_link,
-> -					 &xe->mem_access.vram_userfault.list);
-> -			mutex_unlock(&xe->mem_access.vram_userfault.lock);
-> +		lerr = dma_resv_wait_timeout(tbo->base.resv,
-> +					     DMA_RESV_USAGE_KERNEL, true,
-> +					     MAX_SCHEDULE_TIMEOUT);
-> +		if (lerr < 0) {
-> +			err = lerr;
-> +			break;
->  		}
-> -	} else {
-> -		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
-> +
-> +		if (!retry_after_wait)
-> +			ret = __xe_bo_cpu_fault(vmf, xe, bo);
->  	}
-> +	/* if retry_after_wait == true, we *must* return VM_FAULT_RETRY. */
-> +	if (err && !retry_after_wait)
-> +		ret = xe_err_to_fault_t(err);
->  
-> -	dma_resv_unlock(tbo->base.resv);
-> -out:
->  	if (needs_rpm)
->  		xe_pm_runtime_put(xe);
->  
-> +	if (retry_after_wait)
-> +		xe_bo_put(bo);
-> +out:
-> +	drm_dev_exit(idx);
-> +
->  	return ret;
->  }
->  
-> @@ -1821,7 +1987,7 @@ int xe_bo_read(struct xe_bo *bo, u64 offset, void *dst, int size)
->  }
->  
->  static const struct vm_operations_struct xe_gem_vm_ops = {
-> -	.fault = xe_gem_fault,
-> +	.fault = xe_bo_cpu_fault,
->  	.open = ttm_bo_vm_open,
->  	.close = ttm_bo_vm_close,
->  	.access = xe_bo_vm_access,
-> @@ -3057,6 +3223,8 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
->   * xe_bo_migrate - Migrate an object to the desired region id
->   * @bo: The buffer object to migrate.
->   * @mem_type: The TTM region type to migrate to.
-> + * @tctx: A pointer to a struct ttm_operation_ctx or NULL if
-> + * a default interruptibe ctx is to be used.
->   * @exec: The drm_exec transaction to use for exhaustive eviction.
->   *
->   * Attempt to migrate the buffer object to the desired memory region. The
-> @@ -3069,7 +3237,8 @@ static void xe_place_from_ttm_type(u32 mem_type, struct ttm_place *place)
->   * Return: 0 on success. Negative error code on failure. In particular may
->   * return -EINTR or -ERESTARTSYS if signal pending.
->   */
-> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
-> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct ttm_operation_ctx *tctx,
-> +		  struct drm_exec *exec)
->  {
->  	struct xe_device *xe = ttm_to_xe_device(bo->ttm.bdev);
->  	struct ttm_operation_ctx ctx = {
-> @@ -3081,6 +3250,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
->  	struct ttm_place requested;
->  
->  	xe_bo_assert_held(bo);
-> +	tctx = tctx ? tctx : &ctx;
->  
->  	if (bo->ttm.resource->mem_type == mem_type)
->  		return 0;
-> @@ -3107,8 +3277,9 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec)
->  		add_vram(xe, bo, &requested, bo->flags, mem_type, &c);
->  	}
->  
-> -	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
-> -	return ttm_bo_validate(&bo->ttm, &placement, &ctx);
-> +	if (!tctx->no_wait_gpu)
-> +		xe_validation_assert_exec(xe_bo_device(bo), exec, &bo->ttm.base);
-> +	return ttm_bo_validate(&bo->ttm, &placement, tctx);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 99e8900d2dcc..f0923717660e 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -284,7 +284,8 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res);
->  
->  bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
->  
-> -int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct drm_exec *exec);
-> +int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct ttm_operation_ctx *ctc,
-> +		  struct drm_exec *exec);
->  int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec);
->  
->  int xe_bo_evict_pinned(struct xe_bo *bo);
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 199041bdb882..7c2793265561 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -64,7 +64,7 @@ static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
->  		return -EINVAL;
->  	}
->  
-> -	ret = xe_bo_migrate(bo, XE_PL_TT, exec);
-> +	ret = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
->  	if (ret) {
->  		if (ret != -EINTR && ret != -ERESTARTSYS)
->  			drm_dbg(&xe->drm,
-> @@ -102,7 +102,7 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
->  
->  	if (!xe_bo_is_pinned(bo)) {
->  		if (!attach->peer2peer)
-> -			r = xe_bo_migrate(bo, XE_PL_TT, exec);
-> +			r = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
->  		else
->  			r = xe_bo_validate(bo, NULL, false, exec);
->  		if (r)
-> @@ -170,7 +170,7 @@ static int xe_dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
->  
->  	/* Can we do interruptible lock here? */
->  	xe_bo_lock(bo, false);
-> -	(void)xe_bo_migrate(bo, XE_PL_TT, exec);
-> +	(void)xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
->  	xe_bo_unlock(bo);
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index ec6f6d520a9c..a054d6010ae0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -87,7 +87,7 @@ static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
->  	if (!bo)
->  		return 0;
->  
-> -	return need_vram_move ? xe_bo_migrate(bo, vram->placement, exec) :
-> +	return need_vram_move ? xe_bo_migrate(bo, vram->placement, NULL, exec) :
->  		xe_bo_validate(bo, vm, true, exec);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
-> index b90fda3dd5f4..826cd09966ef 100644
-> --- a/drivers/gpu/drm/xe/xe_validation.c
-> +++ b/drivers/gpu/drm/xe/xe_validation.c
-> @@ -241,7 +241,8 @@ int xe_validation_exec_lock(struct xe_validation_ctx *ctx,
->   */
->  void xe_validation_ctx_fini(struct xe_validation_ctx *ctx)
->  {
-> -	drm_exec_fini(ctx->exec);
-> +	if (ctx->exec)
-> +		drm_exec_fini(ctx->exec);
->  	xe_validation_unlock(ctx);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index dfe88924fda0..785e81cf023d 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2934,6 +2934,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
->  		if (!err && !xe_vma_has_no_bo(vma))
->  			err = xe_bo_migrate(xe_vma_bo(vma),
->  					    region_to_mem_type[region],
-> +					    NULL,
->  					    exec);
->  		break;
->  	}
-> -- 
-> 2.51.0
-> 
+T24gVHVlLCAyMDI1LTA5LTA5IGF0IDE3OjAzICswMjAwLCBGcmFuY29pcyBEdWdhc3Qgd3JvdGU6
+Cj4gQWRkIGEgbmV3IHRyYWNlcG9pbnQgd2hlbiBtaWdyYXRpbmcgbWVtb3J5IHRvL2Zyb20gVlJB
+TS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBGcmFuY29pcyBEdWdhc3QgPGZyYW5jb2lzLmR1Z2FzdEBp
+bnRlbC5jb20+Cj4gLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZS5jwqDCoMKg
+wqDCoMKgIHzCoCA5ICsrKystLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZV90
+eXBlcy5oIHwgMTQgKysrKysrKysrKysrCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfdHJhY2Uu
+aMKgwqDCoMKgwqDCoMKgwqAgfCAzMgo+ICsrKysrKysrKysrKysrKysrKysrKysrKysrKwo+IMKg
+MyBmaWxlcyBjaGFuZ2VkLCA1MCBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+IMKgY3Jl
+YXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlX3R5cGVzLmgKPiAK
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuYwo+IGIvZHJpdmVy
+cy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuYwo+IGluZGV4IDNmMGM4ODMyMTIwZi4uZDQ0NjJjYjkx
+Y2JiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZS5jCj4gQEAgLTI4LDEyICsyOCwxNCBAQAo+
+IMKgI2luY2x1ZGUgInhlX2h3X2VuZ2luZS5oIgo+IMKgI2luY2x1ZGUgInhlX2xyYy5oIgo+IMKg
+I2luY2x1ZGUgInhlX21hcC5oIgo+ICsjaW5jbHVkZSAieGVfbWlncmF0ZV90eXBlcy5oIgo+IMKg
+I2luY2x1ZGUgInhlX21vY3MuaCIKPiDCoCNpbmNsdWRlICJ4ZV9wdC5oIgo+IMKgI2luY2x1ZGUg
+InhlX3Jlc19jdXJzb3IuaCIKPiDCoCNpbmNsdWRlICJ4ZV9zYS5oIgo+IMKgI2luY2x1ZGUgInhl
+X3NjaGVkX2pvYi5oIgo+IMKgI2luY2x1ZGUgInhlX3N5bmMuaCIKPiArI2luY2x1ZGUgInhlX3Ry
+YWNlLmgiCj4gwqAjaW5jbHVkZSAieGVfdHJhY2VfYm8uaCIKPiDCoCNpbmNsdWRlICJ4ZV92bS5o
+Igo+IMKgI2luY2x1ZGUgInhlX3ZyYW0uaCIKPiBAQCAtMTc4MywxMSArMTc4NSw2IEBAIHN0YXRp
+YyB2b2lkIGJ1aWxkX3B0X3VwZGF0ZV9iYXRjaF9zcmFtKHN0cnVjdAo+IHhlX21pZ3JhdGUgKm0s
+Cj4gwqDCoMKgwqDCoMKgwqDCoH0KPiDCoH0KPiDCoAo+IC1lbnVtIHhlX21pZ3JhdGVfY29weV9k
+aXIgewo+IC3CoMKgwqDCoMKgwqDCoFhFX01JR1JBVEVfQ09QWV9UT19WUkFNLAo+IC3CoMKgwqDC
+oMKgwqDCoFhFX01JR1JBVEVfQ09QWV9UT19TUkFNLAo+IC19Owo+IC0KPiDCoCNkZWZpbmUgWEVf
+Q0FDSEVMSU5FX0JZVEVTwqDCoMKgwqDCoDY0dWxsCj4gwqAjZGVmaW5lIFhFX0NBQ0hFTElORV9N
+QVNLwqDCoMKgwqDCoMKgKFhFX0NBQ0hFTElORV9CWVRFUyAtIDEpCj4gwqAKPiBAQCAtMTgxMyw2
+ICsxODEwLDggQEAgc3RhdGljIHN0cnVjdCBkbWFfZmVuY2UgKnhlX21pZ3JhdGVfdnJhbShzdHJ1
+Y3QKPiB4ZV9taWdyYXRlICptLAo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgZXJyOwo+IMKgwqDCoMKg
+wqDCoMKgwqB1bnNpZ25lZCBsb25nIGksIGo7Cj4gwqAKPiArwqDCoMKgwqDCoMKgwqB0cmFjZV94
+ZV9taWdyYXRlX3ZyYW0oeGUsIGxlbiwgdnJhbV9hZGRyLCBkaXIpOwoKTG9va3MgZ3JlYXQsIHRo
+YW5rcyEKUmV2aWV3ZWQtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5j
+b20+Cgo+ICsKPiDCoMKgwqDCoMKgwqDCoMKgaWYgKGRybV9XQVJOX09OKCZ4ZS0+ZHJtLCAobGVu
+ICYgWEVfQ0FDSEVMSU5FX01BU0spIHx8Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgKHNyYW1fb2Zmc2V0IHwgdnJhbV9hZGRyKSAmCj4gWEVfQ0FDSEVM
+SU5FX01BU0spKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIEVSUl9Q
+VFIoLUVPUE5PVFNVUFApOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWln
+cmF0ZV90eXBlcy5oCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZV90eXBlcy5oCj4g
+bmV3IGZpbGUgbW9kZSAxMDA2NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLmMzMzJkMDYxMDgxNAo+
+IC0tLSAvZGV2L251bGwKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZV90eXBl
+cy5oCj4gQEAgLTAsMCArMSwxNCBAQAo+ICsvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlU
+ICovCj4gKy8qCj4gKyAqIENvcHlyaWdodCDCqSAyMDI1IEludGVsIENvcnBvcmF0aW9uCj4gKyAq
+Lwo+ICsKPiArI2lmbmRlZiBfWEVfTUlHUkFURV9UWVBFU18KPiArI2RlZmluZSBfWEVfTUlHUkFU
+RV9UWVBFU18KPiArCj4gK2VudW0geGVfbWlncmF0ZV9jb3B5X2RpciB7Cj4gK8KgwqDCoMKgwqDC
+oMKgWEVfTUlHUkFURV9DT1BZX1RPX1ZSQU0sCj4gK8KgwqDCoMKgwqDCoMKgWEVfTUlHUkFURV9D
+T1BZX1RPX1NSQU0sCj4gK307Cj4gKwo+ICsjZW5kaWYKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL3hlL3hlX3RyYWNlLmgKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV90cmFjZS5oCj4g
+aW5kZXggMzE0ZjQyZmNiY2JkLi5iOWY1OTY1MTc3MWUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL3hlL3hlX3RyYWNlLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdHJhY2Uu
+aAo+IEBAIC0xNiw2ICsxNiw3IEBACj4gwqAjaW5jbHVkZSAieGVfZ3B1X3NjaGVkdWxlcl90eXBl
+cy5oIgo+IMKgI2luY2x1ZGUgInhlX2d0X3R5cGVzLmgiCj4gwqAjaW5jbHVkZSAieGVfZ3VjX2V4
+ZWNfcXVldWVfdHlwZXMuaCIKPiArI2luY2x1ZGUgInhlX21pZ3JhdGVfdHlwZXMuaCIKPiDCoCNp
+bmNsdWRlICJ4ZV9zY2hlZF9qb2IuaCIKPiDCoCNpbmNsdWRlICJ4ZV90bGJfaW52YWxfdHlwZXMu
+aCIKPiDCoCNpbmNsdWRlICJ4ZV92bS5oIgo+IEBAIC00NDEsNiArNDQyLDM3IEBAIFRSQUNFX0VW
+RU5UKHhlX2V1X3N0YWxsX2RhdGFfcmVhZCwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgX19lbnRyeS0+cmVhZF9zaXplLCBfX2VudHJ5LT50b3RhbF9zaXplKQo+
+IMKgKTsKPiDCoAo+ICtERUNMQVJFX0VWRU5UX0NMQVNTKHhlX21pZ3JhdGUsCj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUUF9QUk9UTyhzdHJ1Y3QgeGVfZGV2aWNlICp4
+ZSwgdW5zaWduZWQgbG9uZyBsZW4sCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1NjQgdnJhbV9hZGRyLCB1OCBkaXIpLAo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVFBfQVJHUyh4ZSwgbGVuLCB2cmFtX2FkZHIs
+IGRpciksCj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgVFBfU1RS
+VUNUX19lbnRyeSgKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBfX3N0cmluZyhkZXYsIF9fZGV2X25hbWVfeGUoeGUpKQo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIF9fZmllbGQodTMyLCBs
+ZW4pCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgX19maWVsZCh1NjQsIHZyYW1fYWRkcikKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBfX2ZpZWxkKHU4LCBkaXIpCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKSwKPiArCj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUUF9mYXN0X2Fzc2lnbigKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBfX2Fzc2lnbl9z
+dHIoZGV2KTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBfX2VudHJ5LT5sZW4gPSBsZW47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgX19lbnRyeS0+dnJhbV9hZGRyID0gdnJhbV9hZGRy
+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IF9fZW50cnktPmRpciA9IGRpcjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCApLAo+ICsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIFRQX3ByaW50aygiZGV2PSVzIGxlbj0leCB2cmFtX2FkZHI9JWxseCBkaXI9JXMi
+LAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBfX2dldF9zdHIoZGV2KSwgX19lbnRyeS0+bGVuLCBfX2VudHJ5LQo+ID52cmFtX2FkZHIs
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIF9fZW50cnktPmRpciA9PSBYRV9NSUdSQVRFX0NPUFlfVE9fVlJBTQo+ID8KPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlRPX1ZS
+QU0iIDogIlRPX1NSQU0iKQo+ICspOwo+ICsKPiArREVGSU5FX0VWRU5UKHhlX21pZ3JhdGUsIHhl
+X21pZ3JhdGVfdnJhbSwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBUUF9QUk9UTyhzdHJ1Y3Qg
+eGVfZGV2aWNlICp4ZSwgdW5zaWduZWQgbG9uZyBsZW4sIHU2NAo+IHZyYW1fYWRkciwKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1OCBkaXIpLAo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIFRQX0FSR1MoeGUsIGxlbiwgdnJhbV9hZGRyLCBkaXIpCj4gKyk7Cj4g
+Kwo+IMKgI2VuZGlmCj4gwqAKPiDCoC8qIFRoaXMgcGFydCBtdXN0IGJlIG91dHNpZGUgcHJvdGVj
+dGlvbiAqLwoK
