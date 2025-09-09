@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10FB9CAC583
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 15:47:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3BE7CA0FED
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 16:02:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF3C510E7AB;
-	Tue,  9 Sep 2025 15:47:56 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB3B410E7AB;
- Tue,  9 Sep 2025 15:47:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7616791788654056487=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4006910E247;
+	Tue,  9 Sep 2025 16:02:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bb53xL8z";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0217310E247
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 16:02:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757433775; x=1788969775;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5Hl3kIf8VyuuYIcWTMWQgctMc5bDoqlAcl9DEtSKjx8=;
+ b=Bb53xL8zV0Qtdk8MtTIFaXe5K4VZPqt56F8oOlKSrRs1tb6wa2180M6J
+ nb0Eqoz8C/F/DLehMYOxcSgXT0xKNaEn86NCAi6GafjwyP5+KQ36C1pSh
+ P+fsucw377yNt2+UwMfgTLSfHjF3D+lcrG3pLhre4I8ODAVQY1xyKxDqn
+ P+42RKwnIWmSa5ZMBiL9yHvAIppznJwJ18K52/pVR1xYjWJPsmsHEGKJj
+ 6IriBQ6A+eO0LBc9ZcrzqNr7G4IvSabJk7xXQc5BJXJQHQAs2hKAGT/iN
+ L2vRfIGeFPKQg2G0YsElY5bgj7yfs210fO+opIihnCm8CAkRcwZvkkHc2 w==;
+X-CSE-ConnectionGUID: uBepR1nNRG+TzeF0d665Aw==
+X-CSE-MsgGUID: 0u4Q0pVVSRmASnQkn7oypg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="47296491"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="47296491"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 09:02:53 -0700
+X-CSE-ConnectionGUID: bVqOMwiGROW+rmVpgt1DXA==
+X-CSE-MsgGUID: lWoEH6TVS3ih9ElSBCOBcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="172993654"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2025 09:02:53 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v2 0/4] drm/xe: Use poll_timeout_us()
+Date: Tue,  9 Sep 2025 09:02:34 -0700
+Message-ID: <20250909-xe-iopoll-v2-0-4c7ae9726e8e@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_tracepoints_to_profile_?=
- =?utf-8?q?SVM_page_faults_and_migration?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 09 Sep 2025 15:47:55 -0000
-Message-ID: <175743287589.318924.7458488752592088133@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250909150437.986365-1-francois.dugast@intel.com>
-In-Reply-To: <20250909150437.986365-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20250828-xe-iopoll-c0e1c4488ed4
+X-Mailer: b4 0.15-dev-b03c7
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +71,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7616791788654056487==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This starts using poll_timeout_us() throughout xe. Tested only by
+probing xe on BMG and I haven't seen any difference.
 
-== Series Details ==
+Size-wise, it's pretty much the same thing as open coding the loops:
 
-Series: Add tracepoints to profile SVM page faults and migration
-URL   : https://patchwork.freedesktop.org/series/154280/
-State : success
+	add/remove: 2/0 grow/shrink: 6/1 up/down: 254/-128 (126)
+	Function                                     old     new   delta
+	pcode_mailbox_rw                               -     159    +159
+	__xe_guc_upload.isra                        1481    1522     +41
+	__pfx_pcode_mailbox_rw                         -      16     +16
+	wait_for_lmem_ready                          688     701     +13
+	xe_device_probe_early                        549     560     +11
+	wait_for_pc_state.constprop                  213     222      +9
+	xe_guc_pc_apply_flush_freq_limit             390     394      +4
+	wait_for_pc_state.constprop.cold              24      25      +1
+	__xe_guc_upload.isra.cold                    787     659    -128
+	Total: Before=2806317, After=2806443, chg +0.00%
 
-== Summary ==
+I adapted a few timeouts since now we are not increasing it
+exponentially.
 
-CI Bug Log - changes from xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597_BAT -> xe-pw-154280v1_BAT
-====================================================
+Also note that this can't really be applied right now in drm-xe-next:
+we need to wait a backmerge to get poll_timeout_us() to propagate back
+after it's merged from drm-intel-next. But it's already sufficient to
+start some reviews and broader CI test.
 
-Summary
--------
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+Changes in v2:
+- Drop the change to pcode_try_request(). Adding the missing atomic
+  handling would make the code more complex than it currently is
+- Add patch to drop helper function as suggested by Maarten
+- Make the wait functions simpler in xe_guc_pc.c
+- Handle signal pending while waiting for lmem init
+- Other minor changes as noted in the individual patches
+- Link to v1: https://lore.kernel.org/r/20250828-xe-iopoll-v1-0-9832ccd1c8b1@intel.com
+---
+Lucas De Marchi (4):
+      drm/xe/device: Use poll_timeout_us() to wait for lmem
+      drm/xe/guc_pc: Use poll_timeout_us() for waiting
+      drm/xe/guc: Drop helper to read freq
+      drm/xe/guc: Refactor GuC load to use poll_timeout_us()
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/xe_device.c |  65 ++++++-----
+ drivers/gpu/drm/xe/xe_guc.c    | 250 +++++++++++++++++------------------------
+ drivers/gpu/drm/xe/xe_guc_pc.c |  36 +-----
+ 3 files changed, 146 insertions(+), 205 deletions(-)
 
-  No regressions found.
+base-commit: 8fe674bb9096ac6a63d4f4d57f035f045a0f98c1
+change-id: 20250828-xe-iopoll-c0e1c4488ed4
 
-  
+Lucas De Marchi
 
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154280v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154280v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597 -> xe-pw-154280v1
-
-  IGT_8526: 13cd231d5da440137bc5d1c26fd3f7c170ace253 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597: 9c9b4e92f7e735bad0924aa95383b5cae1878597
-  xe-pw-154280v1: 154280v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154280v1/index.html
-
---===============7616791788654056487==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add tracepoints to profile SVM page faults and migration</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154280/">https://patchwork.freedesktop.org/series/154280/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154280v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154280v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597_BAT -&gt; xe-pw-154280v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154280v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154280v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597 -&gt; xe-pw-154280v1</li>
-</ul>
-<p>IGT_8526: 13cd231d5da440137bc5d1c26fd3f7c170ace253 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3710-9c9b4e92f7e735bad0924aa95383b5cae1878597: 9c9b4e92f7e735bad0924aa95383b5cae1878597<br />
-  xe-pw-154280v1: 154280v1</p>
-
-</body>
-</html>
-
---===============7616791788654056487==--
