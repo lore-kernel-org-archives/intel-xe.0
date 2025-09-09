@@ -4,59 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A96D6CAC587
-	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 10:27:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACD5CCA0FED
+	for <intel-xe@archiver.kernel.org>; Tue,  9 Sep 2025 10:28:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67A8310E697;
-	Tue,  9 Sep 2025 10:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61DCE10E697;
+	Tue,  9 Sep 2025 10:28:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hd5koHa6";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="OCBC34dJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91F4010E697
- for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 10:27:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757413626; x=1788949626;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kaSXEHnuE+DyhAyVGPhbY4HjqHaEixRY1jbwk1u3Np4=;
- b=hd5koHa6zfNI/c3KNl+2P2M2uvMb89atJbNUl1ICNVABQvbFiyqmlIIv
- hgscfrFNsxPDll+nH2lRG3/1fibSenfRR/D5ole8UzQgNeFsQ8cQUfzr0
- 2LzihMnKXMLC5lqFkf+mg7aFQ6iEREp0dEWMcv8SPAqTAOwd+muKVvgil
- L8igZAdDbVgqx1VPp3Eg/u6fDkSErjMwwRNiNncO3LajQIFnt7hLrbRK8
- gkiqmQOlcEy2VOj0vVew0NLQHcQNi8ZIA6+I7Pxv6dDasFN530CGnzNPo
- MbfffUXvKEUHquZITNcnCcYfMxEBdsq7fxazj81oTcnC2Xx/eyZQ9+AOz w==;
-X-CSE-ConnectionGUID: cznr10k3TC+08c9PsX48jQ==
-X-CSE-MsgGUID: GSS0dHB9S5q78ic+f8VDag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="58906919"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="58906919"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 03:27:06 -0700
-X-CSE-ConnectionGUID: 5DCXsuesRcqhngC/gtOzyw==
-X-CSE-MsgGUID: 9ggHVvxNSxmd5al5+8eZKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; d="scan'208";a="173511435"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2025 03:27:04 -0700
-Date: Tue, 9 Sep 2025 12:27:01 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH v3 4/6] drm/xe/configfs: Allow to select by class only
-Message-ID: <aMAA9V14iZqHK8fz@black.igk.intel.com>
-References: <20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com>
- <20250905-wa-bb-cmds-v3-4-3da2b7bdc73e@intel.com>
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDE5D10E697
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 Sep 2025 10:28:50 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-b00a9989633so148644866b.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 09 Sep 2025 03:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1757413729; x=1758018529; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=JKGepJQf9M6lLtehJhlq5BApUCT3KilSUJbItoq+UYI=;
+ b=OCBC34dJ5kE9b4D2pVjfQQcEr9NqU0LWf3Fn9HLy96Vl838f5WECyPEceo0dLxLPUh
+ 8uHuccuq1Ei7scKZqQCWn8IgCUxubOoT2QXiS7NI+Kt4py5vR6NjBeMgY6fR+TP2bVj+
+ NKLOfrgYIQaE+TvOlolzz14p1AMAy17j5zu4o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757413729; x=1758018529;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JKGepJQf9M6lLtehJhlq5BApUCT3KilSUJbItoq+UYI=;
+ b=F0ZH8RG7qlIZXowmDxkFaysdUJ6ag0N5uVd2fsIwV7LRQl5KRITCTqx2qh6QUP+Ouy
+ t21aW0NOvkn30EoHAmAXEckgJxJbdSMmKshS/hPCxMNe7BN6YfN18+blGJkEko0Pbt/7
+ 6hUT30W9k9CMcizHn0Uzn0S82H9DV2BkWII8xC2umu+ddlOamgi3XweOSzCzBZcqv6F+
+ EH1qHwsEBml6MvFinbbC52m10poFDMjiialNt7UKRrnV7c9+QiEsEKoI0OppjivVL16p
+ ZoSX8bv+04a6+25LA0b9u0i7HgHFkiaIo1dbk4lUnFTejz62vYNuPrBu5tGW78bfBBDT
+ B+2w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXemH9t17z0BZA3B2giuZLQejBcQp7zWQx1986urzWf7a+cLLuFksNvJoqpxCKlc2uYVDU7zmxkQg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwaF3GWiwOQKOls1ypPzxexfkBiu37COPHyBVN5XOxm5HCfOAyT
+ JuaSMs5OZkZFM4+GeWJDhzTyt9Omv5T48j+5H1Yuf6a0l9M1MmlibMnBcvaNrZvnWUriciFIaH2
+ aoarG
+X-Gm-Gg: ASbGncu4/uB3ru/y+yCc6+hHdmjKUKcYsBeRpR4GRNy0tQ4xggNG0EZw+R0ARljBRNB
+ h3OF00HhvzjgDQE8ipW+AMJ4q8D/FBw/GzBRjK/TiZ/f40P4kjj7hIBZN3hqqXRgSn2VI0hOUK8
+ 8fFo9K8cKCjeAVF0j8C0OgEEbhaM4ukybB45alOWrbK8T3eFPwaTkN/pxde0iZ9xB3e/JxWajea
+ xp8aDuRzT0T8j1htrPphLxw8SD2XK0WR1igjDx8qvSEi3F+2MPY9BUzx1qV644U9OhJdORCT49A
+ nmzaW78L6ANA7OmUKG0OghdHVCeZmAwgrPt4VOGWFe2Tdr1mjQBpkTATK9IVKzJ+1u0vxeSyotG
+ MHCqOnUHR1eMHvXWFfbEhK+/5RBK0i6/OaxMxegsg1SI5
+X-Google-Smtp-Source: AGHT+IEBkJ3EwLJJ+SbqYg1kqZCCIo6t5rvPOtBHOjN/zdmZCuifWtmUOwJ+nIlb5XiDEeLQY82oaQ==
+X-Received: by 2002:a17:907:7292:b0:afa:1d2c:bbd1 with SMTP id
+ a640c23a62f3a-b04b1f7639amr1089829966b.30.1757413729254; 
+ Tue, 09 Sep 2025 03:28:49 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b046b783722sm1472154266b.97.2025.09.09.03.28.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Sep 2025 03:28:48 -0700 (PDT)
+Date: Tue, 9 Sep 2025 12:28:46 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Xaver Hugl <xaver.hugl@kde.org>
+Cc: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [01/10] drm/drm-crtc: Introduce sharpness strength property
+Message-ID: <aMABXu_aijfcdWRY@phenom.ffwll.local>
+References: <20250724134544.284371-2-nemesa.garg@intel.com>
+ <CAFZQkGzBCU+tDUP=KahwCq8=LLW3a8NKiNK5U4JQ0btUFFz+9g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250905-wa-bb-cmds-v3-4-3da2b7bdc73e@intel.com>
+In-Reply-To: <CAFZQkGzBCU+tDUP=KahwCq8=LLW3a8NKiNK5U4JQ0btUFFz+9g@mail.gmail.com>
+X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,66 +87,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 05, 2025 at 10:50:32PM -0700, Lucas De Marchi wrote:
-> For a future configfs attribute, it's desirable to select by engine mask
-> only as the instance doesn't make sense.
+On Fri, Jul 25, 2025 at 01:22:00PM +0200, Xaver Hugl wrote:
+> Hello,
 > 
-> Rename the function lookup_engine_mask() to lookup_engine_info() and
-> make it return the entry. This allows parse_engine() to still return an
-> item if the caller wants to allow parsing a class-only string like
-> "rcs", "bcs", "ccs", etc.
+> This patch is Acked-by: Xaver Hugl <xaver.hugl@kde.org>
 
-...
+Since the kwin MR looks like it's ready too, the kernel side looks like
+it's ready for merging:
 
-> -static bool lookup_engine_mask(const char *pattern, u64 *mask)
-> +/*
-> + * Lookup engine_info. If @mask is not NULL, reduce the mask according to the
-> + * instance in @pattern.
-> + *
-> + * Examples of inputs:
-> + * - lookup_engine_info("rcs0", &mask): return "rcs" entry from @engine_info and
-> + *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
-> + * - lookup_engine_info("rcs*", &mask): return "rcs" entry from @engine_info and
-> + *   mask == XE_HW_ENGINE_RCS_MASK
-> + * - lookup_engine_info("rcs", NULL): return "rcs" entry from @engine_info
-> + */
-> +static const struct engine_info *lookup_engine_info(const char *pattern, u64 *mask)
+https://invent.kde.org/plasma/kwin/-/merge_requests/7689
 
-Now that we're returning engine_info, I'm wondering if we have any use for
-mask parameter?
+Might be good to record the links to userspace and igt in the commit
+message so it's easier to find. Anyway, Jani asked me to stamp an approval
+on this, hence:
 
-Raag
+Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
 
->  {
->  	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
->  		u8 instance;
-> @@ -263,29 +275,33 @@ static bool lookup_engine_mask(const char *pattern, u64 *mask)
->  			continue;
->  
->  		pattern += strlen(engine_info[i].cls);
-> +		if (!mask && !*pattern)
-> +			return &engine_info[i];
->  
->  		if (!strcmp(pattern, "*")) {
->  			*mask = engine_info[i].mask;
-> -			return true;
-> +			return &engine_info[i];
->  		}
->  
->  		if (kstrtou8(pattern, 10, &instance))
-> -			return false;
-> +			return NULL;
->  
->  		bit = __ffs64(engine_info[i].mask) + instance;
->  		if (bit >= fls64(engine_info[i].mask))
-> -			return false;
-> +			return NULL;
->  
->  		*mask = BIT_ULL(bit);
-> -		return true;
-> +		return &engine_info[i];
->  	}
->  
-> -	return false;
-> +	return NULL;
->  }
+Cheers, Sima
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
