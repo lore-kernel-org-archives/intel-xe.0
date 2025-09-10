@@ -4,158 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00D7FCA101F
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 14:23:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99EF4CA101F
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 14:37:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B978210E2ED;
-	Wed, 10 Sep 2025 14:23:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B9510E934;
+	Wed, 10 Sep 2025 14:37:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jnKAQg2z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rm+bIZk+";
 	dkim-atps=neutral
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7BE310E2ED;
- Wed, 10 Sep 2025 14:23:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 428E810E936
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Sep 2025 14:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757515071; x=1789051071;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=JPPIDRbn77c0F6DsOvQSb7P4/xvwy/3+xx5qvfXWpIc=;
+ b=Rm+bIZk+vJXIkTMJYInGpVzTIFzLd78Bga5tiZB0Mszf7SBV030vS6yR
+ otJ1veyAa8mzMjoweqr9snzdDIvzfQOlCkTR+P4Xzxy83GNVjs/7A/Mfh
+ hqkvopOh7ioRuzup3THkn2zK9jQ3ZypQGfchVrKSDvo03mGM7dVgUjjmn
+ 4lUMZY3EU03gtJ2zzDr0P6S+CZ0X/6DvYPFhYr2s06qWIBFEyQq9b6oFF
+ ZTtt3WGpHCxAwcKkAA5Ygs+z43YWSSQjDTwconcTu3ymWTz+VU+/X3jWE
+ cselrPgnXPrToPjivnlemAGjS0VEFlAc8rZV+9iYkZScYMTTBksPVKCvM w==;
+X-CSE-ConnectionGUID: LjTXq2/ZTiyb3MNDe0d0pA==
+X-CSE-MsgGUID: HBYtcFJeS6Wl620rRVuKXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59684465"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="59684465"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 07:37:50 -0700
+X-CSE-ConnectionGUID: Wte9Wm4BS9O9DsJw4MNYWQ==
+X-CSE-MsgGUID: hZc817knSp+fc/jHGDTCJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="178613540"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 07:37:49 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 10 Sep 2025 07:37:48 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Wed, 10 Sep 2025 07:37:48 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.89) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 10 Sep 2025 07:37:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cNxjRZE7o6+0pBX3pvy5u9hFrjuG+HlcPUY7xINQoyrTgg59QZq0LVZ5c4oUa+Zh/XJ5V2MJzj3+z1/hfyJ/Zk4zJd6QaS9u5DwVUKBqhwkUdRwjW0gHKM2FYqmtdjctWhx6Y5sPfbAbG9nW8oEdopwC4lM6qTA8DVSGDW9tykbtrwpb9i/9NOzC6E2pXFCrygAPVreq/n/Mu6b1o297yF12lXSlCI2XmeHjZEKUXqC7jivsWP/moUCpF7C38YBU2mAybtYiR1giIXkvwDmAPHFhKeHr29dzVtbY8r46vSLIu3rLzZUhJ6N2mrb7EF0PjgtSbKOBcjG494vg/tm1+g==
+ b=X6Vego+fP0A771BtiDFIdinOTgabZHHGQuXYIe+u4S8pNPeiUkDeAY5GMDSCgxnMDkthHqz+p+mej0AJYD4d17attRUGOCG9DSTgejPU8sbjv1tacJ7f+6gV+FVHMowwGHW65wpF9ahJMYmXcvak517j/2B43IUE949esCHAvHrUXXy4tZQnGCVM0iV7mePELBoCHvsK/ehrJJDM8cHzKJ4FvrBZRayCnIevRtgjXpdbA00EJSeGO8pS6YYg229y1Q7g5TsUKVpdc4RuSlCRoSPHm5sbo8z+LJdVx90eHcV7CKmNXMjZWKtXIvWTu2sRTzVzWZSgvwAavqsczUOtxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FcLOTz+B0i1ZgMPIWCA802m4pfmTDxJz94NbNa3ofy0=;
- b=AMiRuh+J8VB6auMHujktvj8O4+3mhS+sH6Z33sXzzsrPNMLMTu2IPLlOwPz61cE4LKwbxVa3mOpIsCrGopfLC+1w7l0XwEWxAlN0USP6SlCdfE65FdGcplDbUxA8SHpjlzej3l2sEMhPXuI/kMgELGEgpSQXJiokztO0qMhzcTZ9KJl+DT9HEzDQzdzXB+YC20vZJUnxlzQG/rRIl9LMocOx+5iYPIzBcbRgSwzpbkXOmcnJaHvZY90pro47muKI4Sh2MpDJqIJqdqfxBoA/SyF5g5WxWfh6F9b5pmTwFskiWBveOiV9oVr8dbPqycik2mTErCnlz6v/ORO2wAtobg==
+ bh=FG5f9TTZmCRtFwKb/JonFtWEJ9dJnuCWDLJVOutrKHE=;
+ b=BAbzvzCeIYImiPVNvrmLJmn1lumHI64H9HnkNRjuEgZ/1pxssTiKH28zTJ+QElI4HvTy/bzSmxGfHmQLC8l4xQ2wqnaYrZj/frKi5GskmS8HYKfYLi2e3+VRAQ3sE6cZcQS5v6Qc1Tm8QDAm2REym3u5RI2XG/3L8NiibOvXHVciPfQuc/SP/F/tR//6saXbFb8f0i+509DCuCdZBz7ykrQuaE9xx2X1ZwtojtBK108GsnwKrBXfGcpeiJ1lF5g6MWmB5s7LQhP+sQyo3Xq3xaZ5kQT1mMr3t2EQf7+/7lQ4CjHJzbbqfKVOJFuowfM0M5XtOJxzW11tv1bvOAG0tQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FcLOTz+B0i1ZgMPIWCA802m4pfmTDxJz94NbNa3ofy0=;
- b=jnKAQg2zIQAQzYocmWGbYsDIVU5JXWkqdxtbTOPhy4ZDAdbyvOy0uputEYBC2p3mEfsobRkYNsuEEMbMEKyohymBtDBeeoxz2wOA5aS3pVFbSAyPvgadY+NH9cc/RFYuf/Es+usGSTDKcer0JhqUB0wpBzW79DZJn6xK3GIFY68=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CY8PR12MB8316.namprd12.prod.outlook.com (2603:10b6:930:7a::18)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by SJ0PR11MB6744.namprd11.prod.outlook.com (2603:10b6:a03:47d::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
- 2025 14:23:00 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
- 14:23:00 +0000
-Message-ID: <12f56eda-a6a5-47bf-b89e-0cfa8443a439@amd.com>
-Date: Wed, 10 Sep 2025 16:22:53 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] drm/buddy: Optimize free block management with RB
- tree
-To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
- Peter Zijlstra <peterz@infradead.org>
-Cc: matthew.auld@intel.com, jani.nikula@linux.intel.com,
- samuel.pitoiset@gmail.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, alexander.deucher@amd.com,
- stable@vger.kernel.org
-References: <20250909095621.489833-1-Arunpravin.PaneerSelvam@amd.com>
- <6f6841a7-57bd-49de-9b55-b5b0514a2749@amd.com>
- <20250909140519.GK4067720@noisy.programming.kicks-ass.net>
- <106c1a36-c104-4eb8-b928-d11b8ca9b599@amd.com>
- <fcbf6ae8-f9ab-4723-8df4-16d2f0f62c3f@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <fcbf6ae8-f9ab-4723-8df4-16d2f0f62c3f@amd.com>
-Content-Type: text/plain; charset=UTF-8
+ 2025 14:37:46 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
+ 14:37:46 +0000
+From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v3 0/4] Preliminary support for separate VRAM region for
+ kernel allocations on tiles
+Date: Wed, 10 Sep 2025 16:37:32 +0200
+Message-ID: <20250910143736.792426-1-piotr.piorkowski@intel.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0313.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f6::7) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-ClientProxiedBy: WA2P291CA0046.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:1f::15) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB8316:EE_
-X-MS-Office365-Filtering-Correlation-Id: caa399af-3c16-4d66-b599-08ddf0758b53
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|SJ0PR11MB6744:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b20d311-9247-48ba-a3aa-08ddf0779b9b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NTIwS1M1c2l5ZXlDZFlOTGdERlhhVUdmSmF5bW9URmJUZmQ4Qk5YTjN6K2lR?=
- =?utf-8?B?Z29SNkppSzNXTFdiZ1pOamVwUWZiYjUxUTE5R012YWdiTmxUZDRua1YrOGh3?=
- =?utf-8?B?VUQ3SGhyK01oU2V3NVN0RkJUNzY0c2dTWHpZS3JCT0hmMmkxTGY5MFVQTDJj?=
- =?utf-8?B?S3I5bzc5SHVZMkMya1N6YVg2UEI2NmJOWFBqeUpDTlNWRUZzNjZkay9aRlVi?=
- =?utf-8?B?a25YMFh6YlBOR2tFUUNzMm9BV2hZWVN6OHQxV3VIZTl0K3Z6OFZHeEV3S0E5?=
- =?utf-8?B?WFpGa2V0NXVKVHBYd0EzNGNXaEU0cisvSHlMT0xMY0wwRktRSUZjSFUrZVQ0?=
- =?utf-8?B?clIzSHV5eEpBeTZ6OWIrQVNMQkpzQnFVYnd6Rjd1Ukc3RkRXVEpIUllHazBZ?=
- =?utf-8?B?eU51bHhjMFpRb3Rucm9UUUNyT1BNMU1FWC9DalRIZXV4dFJaYzlrdFU1aWZV?=
- =?utf-8?B?aHovL2szTmY1NTc0b2VGODhVUEJuZlg2VS9GTEZoMFBFUG5aVk4yRWdEVTFT?=
- =?utf-8?B?bXNDLzMrT3NxeXZDMEF4T2pKbG51RkVnc3JKblg2QzJWVVRvT3Q1ejBvWXFj?=
- =?utf-8?B?bUhxS3U4VVMyWmZqcW1vZUpkdkJrR3FaSGZIdE9CK0VvSXpPVTJGVVBKd0JS?=
- =?utf-8?B?WTZsaDRDc0htVVF2YTZJUkRlTytzK0ZNMUFqWWVLQVA3L0RVaUlLMzEwRzdV?=
- =?utf-8?B?SFFnYjJHOGg3TlFWS2lsQk9RUTNmZE44cnp6N05LR2ZnUFYvWUNuKy9zOTAx?=
- =?utf-8?B?MlVmUVJtZGR3d3N3akx3QlZNWFhXZmJqVDhGMFkrbVptVEtSTlMwbDZIcFN6?=
- =?utf-8?B?NXpPcll4dUNDZWxzSisxb1IyQzlZK3hWdFhyNnR1emFkUzZWSFUvTzdlY1F3?=
- =?utf-8?B?eVRIeEliaWxwakV2WStGZ0xJZ1kvUXo2a0NZYzZPVmZwYlpoMi9oTEs3SVhx?=
- =?utf-8?B?L2dFRzU4bSs1SytlVE1PWFNISHVhNjdWQ1hsZTlMNUlQVXJlYkorL1VGNmV6?=
- =?utf-8?B?bXBveHBVM1duQU5KWFlZWXJXOGRmZkU4T3RTc2Y5ZDNQZXF0N3BZQzBMck93?=
- =?utf-8?B?c2ZyMTFTVVpneGovS1V1VXZwR21pa0tNR0N4UlJDTWdrSmtDQzhCZEc3S2JD?=
- =?utf-8?B?QS9MUkc0Zjd0VG1GdzNtRkxZL0FDZ3NndzNJcVJVaUpwdXUwZ0VTQW1TbSt2?=
- =?utf-8?B?a3FPNE1YU3lKVEY3SlNQTVYyK001SW1TYXRnVnphbmdPcHVPMWswL1RZZHcw?=
- =?utf-8?B?STRZdmhWbkJUUU1hQWZTYm03bHM5dHFxRUZicTdqcmE0TnVmNnViRjhUNWVZ?=
- =?utf-8?B?OGcwT01CckhraXcrWElYYWJoSnlXUE9UWUhUclRxWVdmdTNSRUo1dG8xdEpx?=
- =?utf-8?B?YUtLSUdpZi9NZFZvRlVJOEcyK0FqTkxkd2lCOWZoc2lwa1hIUlVTYVloVnZW?=
- =?utf-8?B?M0RUaUNXVm84WXJFbWVtTlc0T3RrOVpDeklTeU1vV2xXNjN6YlpMZkQ4WDN5?=
- =?utf-8?B?OTdEMUsyN3lGZWZPMWgwbFYrVVlnSU5HeDg4bDlmTis2bWZnN2xEUVBjbEZZ?=
- =?utf-8?B?b0RjSmxrd0lBK2dWUFRvR1JEbERIM0llb0RxK25kcmNvQ2pURFR3WEFRSEEv?=
- =?utf-8?B?SmJ0b05lVzQ5MGFhYTFzTUhnNEZIQkdpQzV5RVFhNS9aSVpUNSthdHMwREtz?=
- =?utf-8?B?SmNpeXJ0Q3E1NzRTUWR4ZmlpdjRPZTU3WWJ2Z2ROREZ2b1J6VVFEVUNPb25h?=
- =?utf-8?B?VlM1OEpRSjFWV1VPTCs1NUl0dUN3S1h4bTVGcXdjc1E1M2dXSzV3OHo4MmZO?=
- =?utf-8?B?emQzamZTZkgwdEpwaXBLcWt5T2NhalN3UDZCaTRpbjNnam5sRmNSUlNuMWZs?=
- =?utf-8?B?NVVWNmdDMzVwWE41aVE3RDhDVzRldStkRURDdWdQdFhFcW1hTWVsOUdJbUlq?=
- =?utf-8?Q?Cs4ktkfBBiQ=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?blZzaFprS3l4REErQ3BzR2Zkb01XRzZTckpVSWRxWnNZMjFLZG8rd3Z2a3hI?=
+ =?utf-8?B?SGxTOGdMRUJlRjNkd3JncnF3Zy9vN1lMM3JZSXFBQXRQQk1OL2VVZk95dEtw?=
+ =?utf-8?B?aEhWdEE2NnZVcVhxUHFVcXh0dU1uajhTNHlsWlJxNlg0Ryt5QUVZTEl3a0VN?=
+ =?utf-8?B?cVRMdk13bWM4enl3SmFJM3NRcXFFVmIvRDRjWnNKeUhZeDVRL05VcFBBdWlh?=
+ =?utf-8?B?eWNpcS84VnNzQmdJZXJWZloxUk91clBZSWM1T3ZKZm9BcVBTci9oL2orWms4?=
+ =?utf-8?B?d0FTRXJXaWxUUUt5OVlBVUhYMmhydmZITXZTWXVITzUvVjRXQ0NyMGx3N2c0?=
+ =?utf-8?B?bFRhbmpYcWFvUGRCYzdPbFBrQ0ZxOE5LbEJSZXdxejJId2hSclhWKzkrSFgr?=
+ =?utf-8?B?Rml0eVZ1SjVWRUJEczkvL3U2WjYwUXBKdENQS0NWekx6YmpGcnpJQ1RTVjI0?=
+ =?utf-8?B?VnRUS0VzeVUrL0dHQitIL0xNNVNHMTlyQ2hQaHo0NzZ0MGRaZUFWbnhxSUxF?=
+ =?utf-8?B?RG03MjByZFdubnh5RkJWYlh4NUpYa3BkV0RsU2s0WnVpNEZjR1RyamJVR3hX?=
+ =?utf-8?B?Lzl3dWduNEhmM1MrNXNmb01DTnBwSXJZbERoS2c2Mlo1cnpnSnhxYzA0bGVn?=
+ =?utf-8?B?ZW1JVW1URUZrQ2ZnbE9sWDU4TWxuUWpPdExhcXJPMDF3UkRTV1dhN1dBam00?=
+ =?utf-8?B?b3NmWm5NZksrWEZXbGhLSXVQQjRUT2lycEpQVVAvU1haUG9MSkJWakZhWE9p?=
+ =?utf-8?B?c3V5OVd2ME1BcXZNdVFaZkNoMUNVTGdBZmZROWZXcFN3ZXJkZEgvTW5sTVhh?=
+ =?utf-8?B?cTdzb1F0T1pQM0ROdHBwNFlORTdmbGZ5U1lyZjVEN2Y0ek03S3hkSnBBZmtz?=
+ =?utf-8?B?d0tlMnlTbUxCZnNwa1V1VE1VUXdWQkl1cER2aGFXb0pvVlRRM2ErcTZxMlUx?=
+ =?utf-8?B?YW9iUE0wSlhObnl6dTRSUFBDdFNJM2s0UEs4Yllac3YvL0dWaGU4SmdDem9E?=
+ =?utf-8?B?ekFjUXpiUUM0MzZ0NGdyVXhBQ3hsNk4ydXk5TEZoTmlRV1hZc1g4VHdBRWJz?=
+ =?utf-8?B?ZEMyc1VIMnk4UEFCZDAxdWpRR3RXeDQwUE81KzZUaWRwb3FaVXY2MjBHV3Fw?=
+ =?utf-8?B?V1RiZlV3M254TFU3NWRtbUNkRzc4a2Nib28zcVNJQjkrQ1VnZDZlaTkyOTZE?=
+ =?utf-8?B?b1NKOTNzR0NwUGtpWHF3ZHF3WEpSaW9JdW9PQlVoMkhsb00wb0lvRVhRbjNz?=
+ =?utf-8?B?aU41SVA0dzgzOFkwSW5Gd1ZYTzBJenlKZmY2cnlrNGN5eGFaeFNyS29tQS9q?=
+ =?utf-8?B?N016WVIvUWRWdDg1czdIUTNObVRhbTdaYm55RHBRQnk0NGZmYUt1bUFTSWYy?=
+ =?utf-8?B?RzFJZjF5dEVYRnpZY0xqeGF1U1Z4alYyeWYvTW5zbFFIYW5hYUlsbFVva2JP?=
+ =?utf-8?B?THErK0g2cE1uK3RiRUt0MnNXaGU4WG1XOHhtcTNsSFJPZGF6YTF6SXlKRWgw?=
+ =?utf-8?B?dytQbkFxNWlqRnlBQWZUbHhQWE9HYldNWlBDYS9oMXVYRWlvYmN0cTZ2Q0hC?=
+ =?utf-8?B?bzFzU0F1MFd3VDgxc2VWYzZheVpJYUplOHlYYmd6ZE9TZlM1Qmd1SVVHVXkr?=
+ =?utf-8?B?Q1lWakFZNnRSYW9Id2hJMEZGYTZ6UUU0SGFJNUQ1Z24rc0EraFdXcDhtTThP?=
+ =?utf-8?B?L1FhdXYrL0VLeXVrREV3YTlIS05RZkI0emlTbTZxcjdkYlpoemo5bU8wUTRF?=
+ =?utf-8?B?TzZVZUxaTEhGWVVDMmdDU3JuSjAvd0xMbUJuWGowZW5PRHBaeFc4c0xJdnps?=
+ =?utf-8?B?RU1ZTGxkbjdRRURtcERNVkhzejlTcDRURk1BTUYrNFZld1NuSEJ0aWRNVmtl?=
+ =?utf-8?B?bk9DR1R3cGNla1A3MWFhRVBIc3U3K3FmNUdDMjZXYVVTSmwyY0JMejFROVVH?=
+ =?utf-8?Q?kNUPDogqqj0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkMvakM0UW1UaElFSE5nTlROemtJL2tZQzd6WFRxNHZhWkp6V0MySXVnZlpC?=
- =?utf-8?B?Ty9ML3ptMzQ0RTltdTBiWWVEM1E3cEhUWXlqb2piZ3o3L0VhdkExZXdPZjN3?=
- =?utf-8?B?eU84cDdBV0tRMnFlSmtKUzFUdmQ0REVKVEdzTE4xOFhBb1VKOTl0aytOWFR0?=
- =?utf-8?B?aEx2V0dlcytzVWltamdLS0YvQ2MvSlFlWmo2REhMd25SMGx6Z0wyOGp3TGNF?=
- =?utf-8?B?bmVjbVphaVl2cmdUam5PSWpnZUpNS2V2SExWQmZTcVdBaGdlVTZ1eTErY1dO?=
- =?utf-8?B?ZGRiUDkweitJQWMyNXNRRjFnTWtGMjk5ZkFPOHpTbkRja1ozVGZLOVdBOEtH?=
- =?utf-8?B?UTNjTmtzdXV4L2pFdm1sSWx3bUpYVFBKaEFBSko4djJJSmpaUGdieDlSY2Y2?=
- =?utf-8?B?TlVCQVJoUkxzRFFzaWFsN1ROeTI3Q1lBbHE5RTBadWtjS0RqTVFRdVJtdW5K?=
- =?utf-8?B?RlJQM2tOM0lvUHZKc3JvWDkvU1VhVjFPNjNuWnF1MS9GSVdOMU5WbmM0SnpQ?=
- =?utf-8?B?bFNGaHl3Q2lhVlF3NlQxTDNsakF4T0J2bnh1TnpwWnhiVHRqbjZPMFJlZ0Ix?=
- =?utf-8?B?VHpYeVdEeEtpNERsRUg4eHVwZExrMUM1dyszVUxoOW1QckZHOUg5TmlMb0xu?=
- =?utf-8?B?V2ZSK015UlArWmVUSXhaNjdaLzBjUVNVaGpoeTZHbHE1LzJCL05zQ3RrTzhT?=
- =?utf-8?B?RlZTZW1yVDlSNnIzdDNaNGdKV1lLc0pVWW1pOExYQ1VsV2tlK3J6VFQ5ZWg0?=
- =?utf-8?B?VWxNYkpDUSt1MlowNUhheEhReEFFejhOWCtYNDlOSTNERG9uNHdiNzNJOG9w?=
- =?utf-8?B?dEdkWFc1ZU9ERW1yNDMyY3BaRVVuallrV29CQlZSS2dBM2xnVnptWnRNSzRl?=
- =?utf-8?B?ZlY2ZWlYYjZBT0pndGJnOXdReUtmNUlHbXZvY3RzcGpZeCtEK2p2UEh6eVhB?=
- =?utf-8?B?RERsejVoYWtPc25nQzc4WWlqOXVNbXRYeUJiaHlRd3RqQi8rUGlGakZvbXFZ?=
- =?utf-8?B?NklDRWhhK2ZnNENNVno4d3lQa3Fza0MzS1Y3dGp1QUF5RlZEQnFhY3lRVXFu?=
- =?utf-8?B?Y3VaejNLSXVWbTc2a05EM3lZeGloUmpJMEt2emswSjFyMnovT1ZBTEdFblow?=
- =?utf-8?B?Um9ZQ2kwdWsrR2dhb0kwYmZjSTdLS052bkZFdnBXTVZYTEYwQndkcHlPOU9n?=
- =?utf-8?B?YXJjMXZtNGtPUi9rR1NZK3RFVHdxRzJIOHQ1SitZWko5MWZOV20xbmdKYjZ1?=
- =?utf-8?B?QldtOVE0R1hHSDFNQjlGK2xBTzd2VU0zUStYZ05idXdlY3pFdHN1blprcXlU?=
- =?utf-8?B?OEprdVNIV25DSktaa3dFS204MHF6eVZQV1VMOElNOEZMRjRpbnkyVm51UVpa?=
- =?utf-8?B?cGp2UzZ2NmlGVEdOeTNJOC9rZmMweEtGN0Q5ZTBsYldzVUhvODZyWlF3RjNB?=
- =?utf-8?B?amllRXVtQlBQWGNhbCtrMy9XMXFxbENxVDFVaFpsVkVqMW1GaHdoQzhlcHhZ?=
- =?utf-8?B?TmlmUzFtUUU1TnExanpVRFNkdjNKM0tzVzZldittcUVjRmFXTTlldWF6Q2l4?=
- =?utf-8?B?bFlkMFpkcjVzWHJhQU91SU9IWXVPOGlGY2NtdVZRU0k5cGpGbFUzSGdOZTVT?=
- =?utf-8?B?Q3dNSmpiR3dmOHZQd2RWMTZFQVVZSGhoK0JmT3hMY0hiMFVxamJpWm9SMjZj?=
- =?utf-8?B?VGo4aElsSDRFNXlJZTQ2QVZ3M0JCNnY1ZmdXU2ZBaEhqTkJiaWdVTTNEVHlD?=
- =?utf-8?B?VzZNZjF5VkQ5ZUl5NUxiYm5UdWlKN1IwcXppUFM3aXJtNlJOalJ4c0VrdVVV?=
- =?utf-8?B?aS9iNUtyVmgwTkd3RzBUR2poS2pGUjNBelNEV3R2TysvekhDc0hhMXNjeXR1?=
- =?utf-8?B?S015N3UzNGNBZ1pLOHBhVWEzRmNFQkNMaExKUVdQWEo2M1c1M1pjZkl2dTJt?=
- =?utf-8?B?elN6dnlTZHpsOW1JcUNGM3psQUYwNy9PSUZUdUhNUXZxUXFVbWhIeGdWckhW?=
- =?utf-8?B?Ly8wMEJDeWtmV0ptSzVzZysrSk5OV0tJaEEvUTB2N3ZVVTIwRzA5QUcwTnhv?=
- =?utf-8?B?T2E0aVVYYTVMQmYxYXJUVzJzbXBtN3VHeGE0aGVYUmNLMWYvbWtrYndFT3lm?=
- =?utf-8?Q?E80YOFW8t605WpcYnE0D4yn0B?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: caa399af-3c16-4d66-b599-08ddf0758b53
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWF2TGhUbTlzVWpDbGF1SEY1bUZZSnp4dEQybEc4Z1NnNzh1VU9GRzRjZVFi?=
+ =?utf-8?B?QnpuUkJ0Nnd3TWlTTnUxRlNtdWVOV2tvY2gxcHpJcm1SR01ENUllR3BGZ1Ra?=
+ =?utf-8?B?Uk12eGJzYVNNZ0Zjc3BXZUYxdURSQWt6dS9UZmhsdUFpVmxzU01pMmlvOGZX?=
+ =?utf-8?B?cXpkL3p3a3FqaFlNT2ZVRGRjZEdNcGEyZjlUbjBJM1A0eXJrZHBRTjJ4VXVr?=
+ =?utf-8?B?OFBsdXorZHU3cEFDdCtrNFg2R0pFd2h5UGhsQzkrejR1a1RPR3J4MXA0UmMw?=
+ =?utf-8?B?NVJ3ZERoMDJ6YTRBL1NaR3J4WEVpL215WkxRZGd4UlBVU1BQNDNiMEt0YmtW?=
+ =?utf-8?B?blQxbFp0c0JnZ3hLejloT2dLbGR0dnNiSjh4RFduTTN6Ym5HS3RNTFJsNW84?=
+ =?utf-8?B?NDhUcmdlaDNZNWE2bGxHNkM0dXFMMHFXbDcwV2tLRkVDaTdrTEdNaFA4ZHg2?=
+ =?utf-8?B?UUhQL0ZiOURDSFNPdHpRM1VldHF5YUFGV1pMRmFKTlpHMmUzTjlDOWxqRVJO?=
+ =?utf-8?B?dlpzc0ZXN0FXRUJpTEhsdEN6elR4aTJMLy8rak9VZ1V4UWgrU3dCd2tuZE16?=
+ =?utf-8?B?cVA0dHBES2NOSnI3R1NVSVpjbUs4T0J0U1o2cTZMcDJIbjBsME9yRUpobFZQ?=
+ =?utf-8?B?d0o4eW54ejZSZmNYc1poYmg1blBSdmxiMkUwZkd3NmU1MThhSmtqdnQ0Ukpo?=
+ =?utf-8?B?Q0dUTFMrQWxZUDQ4NHJlL1d4eG9QU3lLa0JHai96dWNNenpRRWl2Y3UvNzVt?=
+ =?utf-8?B?VE1BU0lkV3JMczFaWGZhbzNSelVuQVBJQUhVbXczQmwzaG03SVVhWC9TY05W?=
+ =?utf-8?B?M21MZUFMbk5nai9Ha0VYRUczR0RHeFlEWlBReVE5djY5eGZNbnJIbWdpbzdP?=
+ =?utf-8?B?NUwvcjhwSEdFVmxEaFdLWklOVlpPRGdpUlV1UlovQThKc1oycUtKQTZieFcy?=
+ =?utf-8?B?R21Pb0YyZFpJUm1ERGd1eitPVWxGL2M4WGJHaTl1OGREWTlpU1RWS2hSUWU1?=
+ =?utf-8?B?UGx0WUt6cVhRSDUwK2FpNWhlQUNoaUJmb3RQMFlVbTZ6V0ltbDBwOUdkMlgy?=
+ =?utf-8?B?Z1JqdDl5SjM3cGw5UFY1b0VrNndTczFhVS9XakI4NlBUZlNjTURpYlRWRzIw?=
+ =?utf-8?B?MmdhN0ZuZ3Vnc3FMYmZ1dnYxaS9ZNmRZbmloZy9IZ3hWRWc2dGkrdk9zczdt?=
+ =?utf-8?B?a0d1V0ZGNnBjdVA2b1NlcXpwUmlPM3loVWZtN0UwazhHVjE3NEVlNFNzL0tn?=
+ =?utf-8?B?V0NtU2pzVGZDbEJ5TmdZYVFqaHdVS0Y4UjZQc0owSUI2Q0ljZm92MjNKclFF?=
+ =?utf-8?B?dUQrN24wZlZSVzEwTUprTS95alU4MkRBSXIySTBzeUNjK0xVMzVWZ08zVVg5?=
+ =?utf-8?B?bERCSXVpNnQ3ZlZ0Q0JIQkpwSkpTKzRDNHZ0ajluWGxlK1VIRnFjamlCek1T?=
+ =?utf-8?B?MVhXY3ZuWllubDVsVGhkK05DRmE0Ukg3dW1PZ0dBK1hlSkRvM0VsV0x4RFJu?=
+ =?utf-8?B?ckUwd3dIcjdsUGQ2Tll6RE0wdFp2bkVOZ3lnSkV4TXJrais1OWN4MHo0eFoz?=
+ =?utf-8?B?bHF3Z0JqT2pWZjBnSFoyL0RNY1VDOFJMZHphc29kcXVlakt3TllxZVExK21k?=
+ =?utf-8?B?ekhnRm1abUFSaWtMMm81Tjh2dlcwTm5wTldRN01zNzh0eWVZWm11eW83ZEds?=
+ =?utf-8?B?SndHZ0dSYVUwS09DNSsvZldsVHpQejBXZ2ZvTDUrd3BGLzdIREhOVTN3MTJv?=
+ =?utf-8?B?enRyKzBHS0ZXQWdrTGRFaTVIQlg4Unl2Zy9BVW5CZDZEdTc3dUlpbzZ0Zmh3?=
+ =?utf-8?B?RTlhWGlkNi84cWhzbXR3b3VycmVJQ2hxMENCMGtnN0VKMlo4alR4TlRUUFVl?=
+ =?utf-8?B?aE4rb2g2QmwwS2MxdmVJZXM2WWNmNFB0bGhUR0t2blp6MnFjS29oVDVjcFIz?=
+ =?utf-8?B?d25kUXNscEpvMU5URlZmcmV6bE5IcU5URGJid1NtQjh2OVh2ajNvekNwRGxG?=
+ =?utf-8?B?VldxdW9kN0VjUmo5MmlyWU5LYWhsUnJLSkdhSGNVak5zYlliTUNBRGJMZk1y?=
+ =?utf-8?B?MU1abFNPOEJRaUxRcllGdHlwSHQ1ZVU3eVNKZGFVQVdrVHQ0aGQyVzhBcnpq?=
+ =?utf-8?B?bEhEbnhQckk1bXBVMGxKSEQrWnRtOGpDUUNUVTl5UTNFY2hCR0xLTW5lYnd4?=
+ =?utf-8?B?Unc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b20d311-9247-48ba-a3aa-08ddf0779b9b
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 14:22:59.9269 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 14:37:46.0674 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CHJdRuQvnhLo0tTnQM7jhhzSDzDSJsM3BakVw3q3z3NBZj46Twl6b4Ii2WXC2Q8h
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8316
+X-MS-Exchange-CrossTenant-UserPrincipalName: KhGdjMUp9j4MAjcB3ncMnzjF9DXac8619L5UD4eY1iyMyEFbLXoEvZt2BMWmYqKYoYwG3aGdI21PO0pdC29I0k69xlrJw38jMrh+u4+ZZd8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6744
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,95 +192,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10.09.25 14:37, Arunpravin Paneer Selvam wrote:
-> Hi Christian,
-> 
-> On 9/9/2025 9:55 PM, Christian König wrote:
->> On 09.09.25 16:05, Peter Zijlstra wrote:
->>> On Tue, Sep 09, 2025 at 02:04:30PM +0200, Christian König wrote:
->>>> Hi Arun,
->>>>
->>>> On 09.09.25 11:56, Arunpravin Paneer Selvam wrote:
->>>> [SNIP]
->>>>
->>>>> +/**
->>>>> + * rbtree_for_each_entry_safe - iterate in-order over rb_root safe against removal
->>>>> + *
->>>>> + * @pos:    the 'type *' to use as a loop cursor
->>>>> + * @n:        another 'type *' to use as temporary storage
->>>>> + * @root:    'rb_root *' of the rbtree
->>>>> + * @member:    the name of the rb_node field within 'type'
->>>>> + */
->>>>> +#define rbtree_for_each_entry_safe(pos, n, root, member) \
->>>>> +    for ((pos) = rb_entry_safe(rb_first(root), typeof(*(pos)), member), \
->>>>> +         (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL; \
->>>>> +         (pos); \
->>>>> +         (pos) = (n), \
->>>>> +         (n) = (pos) ? rb_entry_safe(rb_next(&(pos)->member), typeof(*(pos)), member) : NULL)
->>>> As far as I know exactly that operation does not work on an R/B tree.
->>>>
->>>> See the _safe() variants of the for_each_ macros are usually used to iterate over a container while being able to remove entries.
->>>>
->>>> But because of the potential re-balance storing just the next entry is not sufficient for an R/B tree to do that as far as I know.
->>>>
->>>> Please explain how exactly you want to use this macro.
-> Thanks for the pointer, yes, this will not work on RB tree. We need a reverse safe variant for use in the force_merge() function similar to the
-> list_for_each_entry_safe_reverse() macro in list.h. The reason is that in force_merge(), we remove the block from the free tree before invoking
-> drm_buddy_free(), which merges and frees buddy blocks to form a larger block.
->>> So I don't much like these iterators; I've said so before. Either we
->>> should introduce a properly threaded rb-tree (where the NULL child
->>> pointers encode a linked list), or simply keep a list_head next to the
->>> rb_node and use that.
->> I agree, something is clearly fishy here.
->>
->>> The rb_{next,prev}() things are O(ln n), in the worst case they do a
->>> full traversal up the tree and a full traversal down the other branch.
->> Yeah from the logic that is exactly what is supposed to happen in the __force_merge() function.
->>
->> The question is rather why does that function exists in the first place? The operation doesn't look logical to me.
->>
->> For drm_buddy_reset_clear() and drm_buddy_fini() we should use rbtree_postorder_for_each_entry_safe() instead.
->>
->> And during normal allocation __force_merge() should never be used.
-> In normal allocation, the force_merge() function is used when no free blocks of the requested order are available. In such cases,
-> smaller blocks must be merged on demand to satisfy the allocation. Mainly, this does not involve traversing the entire tree to
-> merge all blocks, but only merging as needed. For example, if the requested order is 6, and the minimum order is 5, drm_buddy_alloc_blocks()
-> will first attempt to allocate an order-6 block. If none are available, it will try to allocate two order-5 blocks. If those are also unavailable, it will
-> invoke force_merge() to merge lower order blocks (4, 3, 2, 1, 0) in order to coalesce into a higher-order block of order 5.
+From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Yeah and exactly that is what should never be necessary in the first place.
+Until now, all VRAM BO allocations, whether from userspace or the kernel,
+were placed in the same VRAM region assigned to a tile. However, in some
+scenarios, it may be necessary to separate these allocations and place
+kernel BOs in a dedicated VRAM region.
 
-The idea of a buddy allocator is that blocks are merged when they are freed and not on demand.
+This series introduces initial support for such separation by allowing
+an additional VRAM region for kernel BOs to be assigned to tiles. In this
+implementation, such BOs are identified by the ttm_bo_type_kernel flag.
 
-The only use case for the force_merge() I can see is when cleared blocks are merged with non-cleared ones, but that is orthogonal to the discussion here.
+To maintain flexibility, this series introduces a new BO flag:
+XE_BO_FLAG_FORCE_USER_VRAM. It forces BO allocations into the
+general-purpose VRAM region, overriding the new default behavior.
+This override currently applies to BOs associated with user contexts
+and BOs used for VF memory.
 
-> 
-> In drm_buddy_fini(), force_merge() is called to ensure all blocks are merged before tearing down the allocator. This guarantees that all
-> mm->roots are freed and not held by the driver at shutdown. If any blocks remain allocated, drm_buddy_fini() will issue a warning.
-> 
-> In drm_buddy_reset_clear(), which is invoked at device suspend/resume, it is an ideal place to call force_merge(). This ensures that all
-> possible blocks are merged before resetting the clear state, thereby reducing fragmentation and improving allocation efficiency after resume.
+To preserve backward compatibility on platforms that do not have a
+dedicated kernel VRAM region, the kernel_vram pointer will fall back
+to the general-purpose VRAM region.
 
-That's where rbtree_postorder_for_each_entry_safe() should be used.
+v1 -> v2:
+- update commit message of "drm/xe: Introduce new BO flag XE_BO_FLAG_FORCE_USER_VRAM"
+- replaced for_each_bo_flag_vram with the improved
+  for_each_set_bo_vram_flag helper
+- moved the VRAM flag iteration macro definition into xe_bo.c
+- drop unused bo_flgas from bo_vram_flags_to_vram_placement in
+  "drm/xe: Add initial support for separate kernel VRAM region on the tile"
+- use hweight32 helper in __xe_bo_fixed_placement for readability
 
-> I tried using this rbtree_postorder_for_each_entry_safe() macro in the force_merge() and it works, but we also a need a reverse variant
-> since in normal allocation we dont want to disturb the lower addresses.
+v2 -> v3:
+- rebase
 
-I don't get what you mean here.
+Piotr Piórkowski (4):
+  drm/xe: Add initial support for separate kernel VRAM region on the
+    tile
+  drm/xe: Introduce new BO flag XE_BO_FLAG_FORCE_USER_VRAM
+  drm/xe: Force user context allocations in user VRAM
+  drm/xe/pf: Force use user VRAM for LMEM provisioning
 
-Regards,
-Christian.
+ drivers/gpu/drm/xe/xe_bo.c                 | 90 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_bo.h                 |  3 +-
+ drivers/gpu/drm/xe/xe_device_types.h       | 10 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c         |  7 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  3 +-
+ drivers/gpu/drm/xe/xe_lrc.c                |  3 +
+ drivers/gpu/drm/xe/xe_lrc.h                |  6 +-
+ drivers/gpu/drm/xe/xe_pt.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_tile.c               |  8 ++
+ drivers/gpu/drm/xe/xe_tile.h               |  5 ++
+ drivers/gpu/drm/xe/xe_vram.c               |  6 +-
+ 11 files changed, 109 insertions(+), 34 deletions(-)
 
-> 
-> Thanks,
-> Arun.
->>
->>> That said; given 'next' will remain an existing node, only the 'pos'
->>> node gets removed, rb_next() will still work correctly, even in the face
->>> of rebalance.
->> Good to know!
->>
->> Regards,
->> Christian.
-> 
+-- 
+2.34.1
 
