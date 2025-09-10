@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0761BCA101F
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 21:34:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E611ECA101F
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 21:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E76B10E144;
-	Wed, 10 Sep 2025 21:34:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B225210E910;
+	Wed, 10 Sep 2025 21:41:00 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 200FF10E144;
- Wed, 10 Sep 2025 21:34:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6168658752024735311=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B07310E910;
+ Wed, 10 Sep 2025 21:40:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Remove_type?=
- =?utf-8?q?_casting=2E_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_test_for_G2G_communic?=
+ =?utf-8?q?ations_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: mallesh.koujalagi@intel.com
+To: "John Harrison" <john.c.harrison@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Sep 2025 21:34:36 -0000
-Message-ID: <175754007612.323585.9663764630348620232@1538d3639d33>
+Date: Wed, 10 Sep 2025 21:40:59 -0000
+Message-ID: <175754045956.323586.5072930031661229584@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250910204234.2724272-1-mallesh.koujalagi@intel.com>
-In-Reply-To: <20250910204234.2724272-1-mallesh.koujalagi@intel.com>
+References: <20250910210237.603576-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20250910210237.603576-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6168658752024735311==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/hwmon: Remove type casting. (rev2)
-URL   : https://patchwork.freedesktop.org/series/154298/
-State : success
+Series: Add test for G2G communications (rev3)
+URL   : https://patchwork.freedesktop.org/series/152101/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac_BAT -> xe-pw-154298v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 54aaeaf43899c4965af61c265f3f4893509df1dc
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Wed Sep 10 14:02:35 2025 -0700
 
-Summary
--------
+    drm/xe/guc: Add test for G2G communications
+    
+    Add a test for sending messages from every GuC to every other GuC to
+    test G2G communications.
+    
+    Note that, being a debug only feature, the test interface only exists
+    in pre-production builds of the GuC firmware.
+    
+    v2: Fix 'default' case to actually use the driver's registration code
+    as well as allocation. Add comments explaining the different test
+    types. Fix (C) date and an assert. Review feedback from Daniele.
+    
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch 413003a193543884257e5e6b65f7f3c82e1ab3d2 drm-intel
+5a32c7c4613f drm/xe/guc: Update CSS header structures
+84b8491c4ac5 drm/xe/guc: Add firmware build type to available info
+d97bd6f6b47a drm/xe: Allow freeing of a managed bo
+54aaeaf43899 drm/xe/guc: Add test for G2G communications
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-  **SUCCESS**
+-:822: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#822: FILE: drivers/gpu/drm/xe/tests/xe_live_test_mod.c:13:
++extern struct kunit_suite xe_guc_g2g_test_suite;
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac -> xe-pw-154298v2
-
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac: f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac
-  xe-pw-154298v2: 154298v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154298v2/index.html
-
---===============6168658752024735311==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 2 warnings, 0 checks, 846 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Remove type casting. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154298/">https://patchwork.freedesktop.org/series/154298/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154298v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154298v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac_BAT -&gt; xe-pw-154298v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac -&gt; xe-pw-154298v2</li>
-</ul>
-<p>IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3719-f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac: f8ab4be9461e5155e0b3b8b7c4fd6d68bbb811ac<br />
-  xe-pw-154298v2: 154298v2</p>
-
-</body>
-</html>
-
---===============6168658752024735311==--
