@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F294FCA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 15:12:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45192CA101F
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 15:15:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC32810E946;
-	Wed, 10 Sep 2025 15:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D913510E946;
+	Wed, 10 Sep 2025 15:15:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gYgEqRdv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G4Tr3Iwq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C2610E946
- for <intel-xe@lists.freedesktop.org>; Wed, 10 Sep 2025 15:12:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14E1010E946
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Sep 2025 15:15:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757517124; x=1789053124;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rv3AMRy4VpqEypZEwaUKymS2jm5+n+Lnhcn/34ovmps=;
- b=gYgEqRdvdqVjLV/kjCiXjagKIs6QlfuwnVCdv7JH8AkGOx3bUpHj3BO1
- zA3cL8R1oh9Iy1yeCokiYQE640d7AQe37mWSYhNLp7cgv7n37oxB+cuGZ
- CQn2NauapSC0O1oq4+tk7yjmjMQfqrRpZ34mNhAdrsWV6iwwwTl4GSPcY
- +SAPC0i2hhksgGV47DVfZc7gy0KrkEnEyDoxLG03zNeRxOKwcyjS07cKS
- +WHN/QQI5z9IGGODkXojky+hq6gVukc8vaG3HhPUUvtoawibjSi3u4RfV
- JhGtiMQOHvYuEulJuyo0/LZuZ0BDFaOqIVzTjxEpI0wnX7ZfIECr64nb1 A==;
-X-CSE-ConnectionGUID: QeHlG9gxQyG+9ot1Fzee+Q==
-X-CSE-MsgGUID: GnFdI9HyQHuTt+AdcWbn7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="70521672"
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="70521672"
+ t=1757517330; x=1789053330;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=004ojRjA0Z1v7vY42xy8S+nXCdgtTiqcCSVmkxVZ4dc=;
+ b=G4Tr3Iwq0889vCDpekqgvyVHwLqmY6ZE5qX42E6BUJTP132oODy1j9Lf
+ UCVrFf6EuqRRj1qMDS3xzsi+UmZYtpH+5y0F2qTjawf5ELJvjkqZ3auwc
+ 0MMw+8CHYD3isOazoik4ntZH1m7LmCqsIi7TVzu+j3MHe7Ugj+eDdZEAt
+ 1a1IqypoEvns2SzURqJYDrm8UPbQbjqBv2ZjEt8PL4k+WcrmjYvc9LIlH
+ WlLR5DEN59mblt41K87Z0sSx+yS12UJCnf9eBKy61sU/xmcLU8CiRIbAA
+ PpYaueKmzwoGAgkUQN6ThfbjEjI5d+ps/UOFgjmIdv4JyIec9vHxwaADA g==;
+X-CSE-ConnectionGUID: /URFjdshSY+kno+AYFqTAw==
+X-CSE-MsgGUID: eMWzNnRYROagbCSraTioxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="70522074"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="70522074"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 08:12:03 -0700
-X-CSE-ConnectionGUID: eY7xDDwGSemB9OeV5t+XDg==
-X-CSE-MsgGUID: RFWJV6D3SxK+zLr4Vozl1w==
+ 10 Sep 2025 08:15:29 -0700
+X-CSE-ConnectionGUID: yAMFH3p8QfWZkK7/iwf6WA==
+X-CSE-MsgGUID: mHZVKwI5RXeAYRmizsn1Bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="174224588"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.22])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 08:12:02 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PATCH] drm/xe: Fix uninitialized return values
-Date: Wed, 10 Sep 2025 17:11:28 +0200
-Message-ID: <20250910151128.49693-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.51.0
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="174225326"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+ by fmviesa010.fm.intel.com with ESMTP; 10 Sep 2025 08:15:28 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uwMXe-000635-0i;
+ Wed, 10 Sep 2025 15:15:26 +0000
+Date: Wed, 10 Sep 2025 23:14:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
+Subject: [drm-xe:drm-xe-next 7/13]
+ drivers/gpu/drm/xe/display/xe_fb_pin.c:314:8: warning: variable 'ret' is
+ uninitialized when used here
+Message-ID: <202509102218.kZLrvcuD-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,47 +68,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-clang warned about two uninitialized variables used as return
-values in the exhaustive eviction series.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   844150c255c94230aec41f88db8e2875cb97439e
+commit: 7bcb6e38c14d7d2654555a1b05b2a9a5411c693c [7/13] drm/xe/display: Convert __xe_pin_fb_vma()
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20250910/202509102218.kZLrvcuD-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250910/202509102218.kZLrvcuD-lkp@intel.com/reproduce)
 
-Fix those.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509102218.kZLrvcuD-lkp@intel.com/
 
-Fixes: 1f1541720f65 ("drm/xe: Rework instances of variants of xe_bo_create_locked()")
-Fixes: 7bcb6e38c14d ("drm/xe/display: Convert __xe_pin_fb_vma()")
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h | 2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c                       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+All warnings (new ones prefixed by >>):
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index a2d1f684a3a8..f097fc6d5127 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -22,7 +22,7 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
- 						       u32 start, u32 end)
- {
- 	struct xe_bo *bo;
--	int err;
-+	int err = 0;
- 	u32 flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
- 
- 	if (start < SZ_4K)
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 287b0c4355ef..1fd4a815e784 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -283,7 +283,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_validation_ctx ctx;
- 	struct drm_exec exec;
--	int ret;
-+	int ret = 0;
- 
- 	if (!vma)
- 		return ERR_PTR(-ENODEV);
+>> drivers/gpu/drm/xe/display/xe_fb_pin.c:314:8: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     314 |                             ret) {
+         |                             ^~~
+   drivers/gpu/drm/xe/xe_validation.h:189:57: note: expanded from macro 'xe_validation_guard'
+     189 |         scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
+         |                                                                ^~~~
+   include/linux/cleanup.h:429:44: note: expanded from macro 'scoped_guard'
+     429 |         __scoped_guard(_name, __UNIQUE_ID(label), args)
+         |                                                   ^~~~
+   include/linux/cleanup.h:420:27: note: expanded from macro '__scoped_guard'
+     420 |         for (CLASS(_name, scope)(args);                                 \
+         |                                  ^~~~
+   drivers/gpu/drm/xe/display/xe_fb_pin.c:286:9: note: initialize the variable 'ret' to silence this warning
+     286 |         int ret;
+         |                ^
+         |                 = 0
+   1 warning generated.
+
+
+vim +/ret +314 drivers/gpu/drm/xe/display/xe_fb_pin.c
+
+   274	
+   275	static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+   276						const struct i915_gtt_view *view,
+   277						unsigned int alignment)
+   278	{
+   279		struct drm_device *dev = fb->base.dev;
+   280		struct xe_device *xe = to_xe_device(dev);
+   281		struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+   282		struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+   283		struct xe_bo *bo = gem_to_xe_bo(obj);
+   284		struct xe_validation_ctx ctx;
+   285		struct drm_exec exec;
+   286		int ret;
+   287	
+   288		if (!vma)
+   289			return ERR_PTR(-ENODEV);
+   290	
+   291		refcount_set(&vma->ref, 1);
+   292		if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+   293		    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+   294		    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+   295			struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram;
+   296	
+   297			/*
+   298			 * If we need to able to access the clear-color value stored in
+   299			 * the buffer, then we require that such buffers are also CPU
+   300			 * accessible.  This is important on small-bar systems where
+   301			 * only some subset of VRAM is CPU accessible.
+   302			 */
+   303			if (xe_vram_region_io_size(vram) < xe_vram_region_usable_size(vram)) {
+   304				ret = -EINVAL;
+   305				goto err;
+   306			}
+   307		}
+   308	
+   309		/*
+   310		 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+   311		 * assumptions are incorrect for framebuffers
+   312		 */
+   313		xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = true},
+ > 314				    ret) {
+   315			ret = drm_exec_lock_obj(&exec, &bo->ttm.base);
+   316			drm_exec_retry_on_contention(&exec);
+   317			if (ret)
+   318				break;
+   319	
+   320			if (IS_DGFX(xe))
+   321				ret = xe_bo_migrate(bo, XE_PL_VRAM0, NULL, &exec);
+   322			else
+   323				ret = xe_bo_validate(bo, NULL, true, &exec);
+   324			drm_exec_retry_on_contention(&exec);
+   325			xe_validation_retry_on_oom(&ctx, &ret);
+   326			if (!ret)
+   327				ttm_bo_pin(&bo->ttm);
+   328		}
+   329		if (ret)
+   330			goto err;
+   331	
+   332		vma->bo = bo;
+   333		if (intel_fb_uses_dpt(&fb->base))
+   334			ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
+   335		else
+   336			ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
+   337		if (ret)
+   338			goto err_unpin;
+   339	
+   340		return vma;
+   341	
+   342	err_unpin:
+   343		ttm_bo_reserve(&bo->ttm, false, false, NULL);
+   344		ttm_bo_unpin(&bo->ttm);
+   345		ttm_bo_unreserve(&bo->ttm);
+   346	err:
+   347		kfree(vma);
+   348		return ERR_PTR(ret);
+   349	}
+   350	
+
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
