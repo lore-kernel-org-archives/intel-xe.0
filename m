@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99756CA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 23:06:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F06CCA101F
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 23:16:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59B6810E9EA;
-	Wed, 10 Sep 2025 23:06:38 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48E5410E9EA;
- Wed, 10 Sep 2025 23:06:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1944200284393727551=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18FB010E9EA;
+	Wed, 10 Sep 2025 23:16:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEhs8O5A";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF0910E9EA
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Sep 2025 23:16:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757546178; x=1789082178;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9aOxjr11JbWeRsCcuR3pvqpQ2x8opRYC+Cx28BGCnS8=;
+ b=cEhs8O5Av11BKkCXkKy7Ctv7pJ4fdFo89snS2fsn3yIJlvCYqZaC55Mr
+ S9SEs+GfF5o6WTbFJlXmXDYdcBs4Ep9B7YLAy96d1dpJ1O/9GbIAlJQaV
+ OhJRkPOkKZFNd6a82FIeIfyM1zxBh4tLb6MM1MslReuQ+8SXU6n9fnY+n
+ Gdu2/tTEDdJGKdiOf59v7xT2jdwZqvMCYyMeIP9D1JzsnY+qIWeDIIuIG
+ 7oypbOw+2qqAuvj0j0IF6B4gJnV8Y/yblr4LGXajYU2gMA7/1OwKeO22i
+ YvQtIvQLZqlBk2AKcdjj+xrG2xtO3R69YCBkRMJoMuCbaXW2ki34kz7Ey g==;
+X-CSE-ConnectionGUID: aXEQfq24QLWJYb5fUU4v4w==
+X-CSE-MsgGUID: dCVWNfyhTtqiLrDfrsQ5+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63699083"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63699083"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 16:16:17 -0700
+X-CSE-ConnectionGUID: eDasrrH0RdSrYgdw1txesg==
+X-CSE-MsgGUID: iitMak+ISfKDFegrY6t8NA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,255,1751266800"; d="scan'208";a="173429375"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+ by fmviesa006.fm.intel.com with ESMTP; 10 Sep 2025 16:16:15 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uwU2v-0006Lx-0k;
+ Wed, 10 Sep 2025 23:16:13 +0000
+Date: Thu, 11 Sep 2025 07:15:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
+Subject: [drm-xe:drm-xe-next 12/13]
+ drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h:46:9: warning:
+ variable 'err' is uninitialized when used here
+Message-ID: <202509110707.feCc83AG-lkp@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Drop_rounddown?=
- =?utf-8?q?=5Fpow=5Fof=5Ftwo_fair_LMEM_limitation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Sep 2025 23:06:37 -0000
-Message-ID: <175754559729.323586.15316104505339188362@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250910222439.32869-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20250910222439.32869-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,150 +67,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1944200284393727551==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   844150c255c94230aec41f88db8e2875cb97439e
+commit: 1f1541720f651727591411e68c16299de0447b43 [12/13] drm/xe: Rework instances of variants of xe_bo_create_locked()
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20250911/202509110707.feCc83AG-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250911/202509110707.feCc83AG-lkp@intel.com/reproduce)
 
-== Series Details ==
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509110707.feCc83AG-lkp@intel.com/
 
-Series: drm/xe/pf: Drop rounddown_pow_of_two fair LMEM limitation
-URL   : https://patchwork.freedesktop.org/series/154348/
-State : success
+All warnings (new ones prefixed by >>):
 
-== Summary ==
-
-CI Bug Log - changes from xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2_BAT -> xe-pw-154348v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154348v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-    - {bat-ptl-2}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+   In file included from drivers/gpu/drm/i915/display/intel_fbc.c:47:
+>> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h:46:9: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
+      46 |         return err;
+         |                ^~~
+   drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h:25:9: note: initialize the variable 'err' to silence this warning
+      25 |         int err;
+         |                ^
+         |                 = 0
+   1 warning generated.
 
 
-Build changes
--------------
+vim +/err +46 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
 
-  * Linux: xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2 -> xe-pw-154348v1
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  18  
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  19  static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  20  						       struct i915_stolen_fb *fb,
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  21  						       u32 size, u32 align,
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  22  						       u32 start, u32 end)
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  23  {
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  24  	struct xe_bo *bo;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  25  	int err;
+62742d12663145 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Lucas De Marchi     2024-03-22  26  	u32 flags = XE_BO_FLAG_PINNED | XE_BO_FLAG_STOLEN;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  27  
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  28  	if (start < SZ_4K)
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  29  		start = SZ_4K;
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  30  
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  31  	if (align) {
+8ea8c918e7dbd5 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Vinod Govindapillai 2024-01-12  32  		size = ALIGN(size, align);
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  33  		start = ALIGN(start, align);
+48b1f11c95e8c9 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Matthew Auld        2024-04-12  34  	}
+8ea8c918e7dbd5 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Vinod Govindapillai 2024-01-12  35  
+1f1541720f6517 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h Thomas Hellström    2025-09-08  36  	bo = xe_bo_create_pin_range_novm(xe, xe_device_get_root_tile(xe),
+1f1541720f6517 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h Thomas Hellström    2025-09-08  37  					 size, start, end, ttm_bo_type_kernel, flags);
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  38  	if (IS_ERR(bo)) {
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  39  		err = PTR_ERR(bo);
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  40  		bo = NULL;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  41  		return err;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  42  	}
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  43  
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  44  	fb->bo = bo;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  45  
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13 @46  	return err;
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  47  }
+c5a2eadd729ba3 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h     Jouni Högander      2023-09-13  48  
 
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2: 413003a193543884257e5e6b65f7f3c82e1ab3d2
-  xe-pw-154348v1: 154348v1
+:::::: The code at line 46 was first introduced by commit
+:::::: c5a2eadd729ba3538f77ea2e055ca1f2efe82092 drm/xe/display: Xe stolen memory handling for fbc support
 
-== Logs ==
+:::::: TO: Jouni Högander <jouni.hogander@intel.com>
+:::::: CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/index.html
-
---===============1944200284393727551==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Drop rounddown_pow_of_two fair LMEM limitation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154348/">https://patchwork.freedesktop.org/series/154348/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2_BAT -&gt; xe-pw-154348v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154348v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154348v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2 -&gt; xe-pw-154348v1</li>
-</ul>
-<p>IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3720-413003a193543884257e5e6b65f7f3c82e1ab3d2: 413003a193543884257e5e6b65f7f3c82e1ab3d2<br />
-  xe-pw-154348v1: 154348v1</p>
-
-</body>
-</html>
-
---===============1944200284393727551==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
