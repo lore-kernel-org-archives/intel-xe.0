@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9E8ECA0FED
-	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 17:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D896CA0FED
+	for <intel-xe@archiver.kernel.org>; Wed, 10 Sep 2025 17:02:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804FB10E09D;
-	Wed, 10 Sep 2025 17:01:58 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2A410E09D;
- Wed, 10 Sep 2025 17:01:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4074397198259869951=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F37410E09D;
+	Wed, 10 Sep 2025 17:02:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HpfxwpvP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F28010E98A
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 Sep 2025 17:02:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757523733; x=1789059733;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zj/tbFfK+xsCoyLPe4HATQjqaDCGp/U3Z5F0Cx5lexY=;
+ b=HpfxwpvPTLVOW0JmJl1WuaGRJeStCRVJS7vO6Jp3gkFDFW9Tj13fhSVU
+ mx0KVOWBJuTjBhZtCWK/AUp+3E4DmCY3S1Z6zL/D2PiBB0H+g6Uq+Gerx
+ OIxad6dO5RD0FDYChCib5TDg5BhXmRQ1ndsKBAmie7HL43CqNHJfwELYz
+ bhS8RN74wx9E8DVAcnF5c1BlCiXNzaXWZYAK/Ee728rX8ooUcwryLFVPr
+ mtAqCezNNLOwoQBdusX5Rj227oyD0Ij4nsfFP4ruFjpPFQRXdSaTJ7COe
+ jubGnfZMvdnQkiMoiRIT/Vxu5hDzoBbjisPYcdC1+myWry5QSTtQgrJ0r A==;
+X-CSE-ConnectionGUID: 1BoVfuiGQ2C0Fz1wCOfBrQ==
+X-CSE-MsgGUID: YEwxZ4LhR9OKV/nKJLGjKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="58884786"
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="58884786"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 10:02:12 -0700
+X-CSE-ConnectionGUID: ISSaLWtdQjirqSXvyU7qww==
+X-CSE-MsgGUID: DQ0UXylDQ0OXD76TU9PXDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,254,1751266800"; d="scan'208";a="174253373"
+Received: from hchegond-ivm1.jf.intel.com ([10.88.27.163])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 10:02:12 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH 1/1] drm/xe/xe3: Extend Wa_18041344222 to graphics IP 30.00,
+ 30.01 and 30.03
+Date: Wed, 10 Sep 2025 10:02:07 -0700
+Message-ID: <a14d4cb5cf1bee071cb93ea2067a337401be9297.1757523671.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/migrate=3A_Fix_an_er?=
- =?utf-8?q?ror_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 10 Sep 2025 17:01:57 -0000
-Message-ID: <175752371757.322800.6935848503497598824@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250910160939.103473-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250910160939.103473-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,130 +64,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4074397198259869951==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Apply WA 18041344222 to Xe3 LPG graphics IP versions 30.00, 30.01 and
+30.03 too.
 
-== Series Details ==
+Bspec: 56024
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_wa.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Series: drm/xe/migrate: Fix an error path
-URL   : https://patchwork.freedesktop.org/series/154334/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c1fec526bed0..41ff7c05f12e 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -679,6 +679,13 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(3003), FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
+ 	},
++	{ XE_RTP_NAME("18041344222"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3003),
++		       FUNC(xe_rtp_match_first_render_or_compute),
++		       FUNC(xe_rtp_match_not_sriov_vf),
++		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
++	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
++	},
+ };
+ 
+ static const struct xe_rtp_entry_sr lrc_was[] = {
+-- 
+2.51.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6_BAT -> xe-pw-154334v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154334v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154334v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6 -> xe-pw-154334v1
-
-  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6: 85cfc47b2b83d80db129438ad20d86008bb36ff6
-  xe-pw-154334v1: 154334v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154334v1/index.html
-
---===============4074397198259869951==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/migrate: Fix an error path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154334/">https://patchwork.freedesktop.org/series/154334/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154334v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154334v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6_BAT -&gt; xe-pw-154334v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154334v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154334v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6 -&gt; xe-pw-154334v1</li>
-</ul>
-<p>IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3718-85cfc47b2b83d80db129438ad20d86008bb36ff6: 85cfc47b2b83d80db129438ad20d86008bb36ff6<br />
-  xe-pw-154334v1: 154334v1</p>
-
-</body>
-</html>
-
---===============4074397198259869951==--
