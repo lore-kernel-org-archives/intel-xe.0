@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08B58CAC587
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B0EECAC594
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 17:25:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B87B410E3CD;
-	Thu, 11 Sep 2025 17:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ACE710E3D0;
+	Thu, 11 Sep 2025 17:25:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R7hMjqR7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a4UJ9BEY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26D5E10E282
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 17:25:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B4610E282
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 17:25:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1757611539; x=1789147539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MejGKdAGRV2lUi90BI0rJ8dxDfm6rEXt3bBmltoiSDc=;
- b=R7hMjqR74Rz5xN09IpZ2hl3zxNaJWbCQCC2nFMz5MuTgw3iRDYGHaLLh
- KoJNoHGgm0CrOk5CLEW5+DqUpoQT8Ab9l4D+aWYH5QE9UOQibCsqM9EHC
- 2r8pgFO2XQh60P1kw8BK2g0cN/Xc19MJ0PGff73TWTMMCLpsVS3WKOynM
- L5YInt4IiYnUk1kCCF0/35EwRxAWnQNcXQObfwj40SfMRUq4y46SBPdgE
- yeocDcXcWRWIKyyw9rMR3KwdS5Ypzld8bqhkbjVPDxKAKtA7PA4VL3qwA
- uv3QtXb3PmhP8UX5wTCdrsSYIW8SUfAwP4aMXrd7u8SQvkVMIEhQazvbO w==;
-X-CSE-ConnectionGUID: WIxc3CmoTlOokhT7M1WFgw==
-X-CSE-MsgGUID: /xW65MgqQ+yAAVFHGdvKCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59810773"
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="59810773"
+ bh=jnijVk7xu8T9J8Pmdevy4DWL53ribTfu+uSU/EwizjY=;
+ b=a4UJ9BEYBlq0f7w14bVvSaLzU0s8Clxzx2WgfAiTHvSWPxKlls7AWbbc
+ f9U0bxsXEDt52uram0/abAyanG1hPNFwTfSCNbpUwcZRdcGzV7VD+2g9A
+ rkeJrly9V52GYVR51XCiapJBIH+1hGzdQHWjECf1Ij1CU/0tnqlYnHyxh
+ N2S5a0odUTb40MNmaYtyMrWd2mfjRSsj5PouPqLA4gD7FiTFztQAuqkSD
+ Zk5uSYs1WJA8iFoJcYZwXux7wZ6mf0nwglQRm3oMyQOsleN4wTCk84oD7
+ DVdel7yerBClv1hwm6Ty8Q2znCaA8k1VnHAgWb3DAPPf4C3Y2sLmDWOgn A==;
+X-CSE-ConnectionGUID: mpGqT4FCRs2k/q+zjljkwQ==
+X-CSE-MsgGUID: rl74pym8R6+esmMn1+LvWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59810771"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="59810771"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2025 10:25:39 -0700
-X-CSE-ConnectionGUID: 3ujlOqrzT5iZWlQgWgsxuQ==
-X-CSE-MsgGUID: UToEgmPVSB25O1gmWzopQg==
+X-CSE-ConnectionGUID: e3iqXWenTpOKIjOWCXF5+g==
+X-CSE-MsgGUID: cT4/hiS7T2mevZ74HnClcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="178956847"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="178956844"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2025 10:25:38 -0700
@@ -48,10 +48,12 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v3 4/5] drm/xe/guc: Extract function to print load error
-Date: Thu, 11 Sep 2025 10:25:22 -0700
-Message-ID: <20250911-xe-iopoll-v3-4-6a95f1cc3b0b@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 3/5] drm/xe/guc: Drop helper to read freq
+Date: Thu, 11 Sep 2025 10:25:21 -0700
+Message-ID: <20250911-xe-iopoll-v3-3-6a95f1cc3b0b@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250911-xe-iopoll-v3-0-6a95f1cc3b0b@intel.com>
 References: <20250911-xe-iopoll-v3-0-6a95f1cc3b0b@intel.com>
@@ -73,113 +75,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the error parsing and print out of guc_wait_ucode() into a helper
-to clean up the wait function.
+As the forcewake is already held during GuC load, there's no need to use
+a helper function to call xe_guc_pc_get_cur_freq(). Just call
+xe_guc_pc_get_cur_freq_fw() directly.
 
+Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 81 ++++++++++++++++++++++-----------------------
- 1 file changed, 39 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index d8fc060c9682e..da1bb4939c6b8 100644
+index e56c9c5c8845e..d8fc060c9682e 100644
 --- a/drivers/gpu/drm/xe/xe_guc.c
 +++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1049,6 +1049,44 @@ static int guc_load_done(u32 status)
- #endif
- #define GUC_LOAD_TIME_WARN_MS      200
+@@ -1019,14 +1019,6 @@ static int guc_load_done(u32 status)
+ 	return 0;
+ }
  
-+static void print_bootrom_ukernel_err(struct xe_gt *gt, u32 bootrom, u32 ukernel)
-+{
-+	switch (bootrom) {
-+	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
-+		xe_gt_err(gt, "invalid key requested, header = 0x%08X\n",
-+			  xe_mmio_read32(&gt->mmio, GUC_HEADER_INFO));
-+		break;
-+	case XE_BOOTROM_STATUS_RSA_FAILED:
-+		xe_gt_err(gt, "firmware signature verification failed\n");
-+		break;
-+	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-+		xe_gt_err(gt, "firmware production part check failure\n");
-+		break;
-+	}
-+
-+	switch (ukernel) {
-+	case XE_GUC_LOAD_STATUS_HWCONFIG_START:
-+		xe_gt_err(gt, "still extracting hwconfig table.\n");
-+		break;
-+	case XE_GUC_LOAD_STATUS_EXCEPTION:
-+		xe_gt_err(gt, "firmware exception. EIP: %#x\n",
-+			  xe_mmio_read32(&gt->mmio, SOFT_SCRATCH(13)));
-+		break;
-+	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
-+		xe_gt_err(gt, "illegal init/ADS data\n");
-+		break;
-+	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-+		xe_gt_err(gt, "illegal register in save/restore workaround list\n");
-+		break;
-+	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+		xe_gt_err(gt, "illegal workaround KLV data\n");
-+		break;
-+	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-+		xe_gt_err(gt, "illegal feature flag specified\n");
-+		break;
-+	}
-+}
-+
- static void guc_wait_ucode(struct xe_guc *guc)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
-@@ -1114,48 +1152,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
- 			  REG_FIELD_GET(GS_MIA_MASK, status),
- 			  REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+-static s32 guc_pc_get_cur_freq(struct xe_guc_pc *guc_pc)
+-{
+-	u32 freq;
+-	int ret = xe_guc_pc_get_cur_freq(guc_pc, &freq);
+-
+-	return ret ? ret : freq;
+-}
+-
+ /*
+  * Wait for the GuC to start up.
+  *
+@@ -1104,7 +1096,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
  
--		switch (bootrom) {
--		case XE_BOOTROM_STATUS_NO_KEY_FOUND:
--			xe_gt_err(gt, "invalid key requested, header = 0x%08X\n",
--				  xe_mmio_read32(mmio, GUC_HEADER_INFO));
--			break;
--
--		case XE_BOOTROM_STATUS_RSA_FAILED:
--			xe_gt_err(gt, "firmware signature verification failed\n");
--			break;
--
--		case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
--			xe_gt_err(gt, "firmware production part check failure\n");
--			break;
--		}
--
--		switch (ukernel) {
--		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
--			xe_gt_err(gt, "still extracting hwconfig table.\n");
--			break;
--
--		case XE_GUC_LOAD_STATUS_EXCEPTION:
--			xe_gt_err(gt, "firmware exception. EIP: %#x\n",
--				  xe_mmio_read32(mmio, SOFT_SCRATCH(13)));
--			break;
--
--		case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
--			xe_gt_err(gt, "illegal init/ADS data\n");
--			break;
--
--		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
--			xe_gt_err(gt, "illegal register in save/restore workaround list\n");
--			break;
--
--		case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
--			xe_gt_err(gt, "illegal workaround KLV data\n");
--			break;
--
--		case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
--			xe_gt_err(gt, "illegal feature flag specified\n");
--			break;
--		}
--
-+		print_bootrom_ukernel_err(gt, bootrom, ukernel);
- 		xe_device_declare_wedged(gt_to_xe(gt));
- 	} else if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
+ 		xe_gt_dbg(gt, "load still in progress, timeouts = %d, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
+ 			  count, xe_guc_pc_get_act_freq(guc_pc),
+-			  guc_pc_get_cur_freq(guc_pc), status,
++			  xe_guc_pc_get_cur_freq_fw(guc_pc), status,
+ 			  REG_FIELD_GET(GS_BOOTROM_MASK, status),
+ 			  REG_FIELD_GET(GS_UKERNEL_MASK, status));
+ 	} while (1);
+@@ -1115,7 +1107,7 @@ static void guc_wait_ucode(struct xe_guc *guc)
+ 
+ 		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz), done = %d\n",
+ 			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+-			  guc_pc_get_cur_freq(guc_pc), load_done);
++			  xe_guc_pc_get_cur_freq_fw(guc_pc), load_done);
+ 		xe_gt_err(gt, "load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
+ 			  REG_FIELD_GET(GS_MIA_IN_RESET, status),
+ 			  bootrom, ukernel,
+@@ -1169,11 +1161,11 @@ static void guc_wait_ucode(struct xe_guc *guc)
  		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
+ 			   delta_ms, status, count);
+ 		xe_gt_warn(gt, "excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
+-			   xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
++			   xe_guc_pc_get_act_freq(guc_pc), xe_guc_pc_get_cur_freq_fw(guc_pc),
+ 			   before_freq, xe_gt_throttle_get_limit_reasons(gt));
+ 	} else {
+ 		xe_gt_dbg(gt, "init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X, timeouts = %d\n",
+-			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), guc_pc_get_cur_freq(guc_pc),
++			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), xe_guc_pc_get_cur_freq_fw(guc_pc),
+ 			  before_freq, status, count);
+ 	}
+ }
 
 -- 
 2.50.1
