@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3F7CAC58E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 18:08:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 283D6CAC587
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 18:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69D610EB79;
-	Thu, 11 Sep 2025 18:08:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF7F10EB7D;
+	Thu, 11 Sep 2025 18:13:37 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E2910EB79;
- Thu, 11 Sep 2025 18:08:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1997785646005749027=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6B910EB7D;
+ Thu, 11 Sep 2025 18:13:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJtL3hlOiBVc2UgcG9sbF90aW1l?=
- =?utf-8?b?b3V0X3VzKCkgKHJldjQp?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/madvise=3A_Fix_ioc?=
+ =?utf-8?q?tl_argument_check?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Sep 2025 18:08:27 -0000
-Message-ID: <175761410715.327749.658595335337368231@1538d3639d33>
+Date: Thu, 11 Sep 2025 18:13:36 -0000
+Message-ID: <175761441618.326696.2239462385575637329@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250911-xe-iopoll-v3-0-6a95f1cc3b0b@intel.com>
-In-Reply-To: <20250911-xe-iopoll-v3-0-6a95f1cc3b0b@intel.com>
+References: <20250911173139.1405878-2-shuicheng.lin@intel.com>
+In-Reply-To: <20250911173139.1405878-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,126 +40,45 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1997785646005749027==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Use poll_timeout_us() (rev4)
-URL   : https://patchwork.freedesktop.org/series/153671/
-State : success
+Series: drm/xe/madvise: Fix ioctl argument check
+URL   : https://patchwork.freedesktop.org/series/154412/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8_BAT -> xe-pw-153671v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1891726b99cd68c0edf1b7e15f1d6ae001f83ba6
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Thu Sep 11 17:31:40 2025 +0000
 
-Summary
--------
+    drm/xe/madvise: Fix ioctl argument check
+    
+    It is "preferred_mem_loc" instead of "atomic" for the ATTR_PREFERRED_LOC path.
+    
+    Also include 2 minor changes with no functional impact.
+    1. Remove the redundant "attr.atomic_access" assignment.
+    2. Replace down_read_interruptible() with xe_svm_notifier_lock_interruptible()
+       to pair with xe_svm_notifier_unlock().
+    
+    Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 89a1fbdb7a718191d0c935fcf0a495e4a6480183 drm-intel
+1891726b99cd drm/xe/madvise: Fix ioctl argument check
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+It is "preferred_mem_loc" instead of "atomic" for the ATTR_PREFERRED_LOC path.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-153671v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153671v4/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8 -> xe-pw-153671v4
-
-  IGT_8535: 8535
-  xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8: 6383690b59fb31f52a5932aab3a9963265e86fc8
-  xe-pw-153671v4: 153671v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153671v4/index.html
-
---===============1997785646005749027==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use poll_timeout_us() (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153671/">https://patchwork.freedesktop.org/series/153671/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153671v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153671v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8_BAT -&gt; xe-pw-153671v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-153671v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153671v4/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8 -&gt; xe-pw-153671v4</li>
-</ul>
-<p>IGT_8535: 8535<br />
-  xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8: 6383690b59fb31f52a5932aab3a9963265e86fc8<br />
-  xe-pw-153671v4: 153671v4</p>
-
-</body>
-</html>
-
---===============1997785646005749027==--
