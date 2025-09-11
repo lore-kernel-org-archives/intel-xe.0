@@ -4,68 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05256CAC58D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 09:00:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A35B2CAC58D
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 09:01:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C0610E06B;
-	Thu, 11 Sep 2025 09:00:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CN731Js3";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D445F10E06B;
- Thu, 11 Sep 2025 09:00:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757581209; x=1789117209;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=apxpL+JA5234BjF+vbBSUV5l8bBfl2JCXGsBGUN2Sww=;
- b=CN731Js3kiHGhOxf+CyNtov06/vfZ5YPLbKQGqE/m3J1C15vEJu33W3a
- CNLhez96zaQokVhxVvYWu33EPqdIjLTbCfhxL1zKFBeD86I5295TWbmuJ
- FEN8EHckskKlCcm5ecXwBE3MOaueS8NiCTn8We/vF7AwWeM35K1RphhOS
- PdVnJQDBQKxFq79X0g3Pa+6TwWjKnSBb0u2Na75OEhCB03KrpInp+GUfg
- wH2Ddx/YclPrQ6olhBNf33aDEoOal60qAuM1gqoq5I6VeEgw3TcSwa1l8
- cNdPH0TmW2pii/I9yTFmFIseb+7KLkgOgVWoqi7uCZfUJZuq5rQ4UfAEO g==;
-X-CSE-ConnectionGUID: WHuoLr2HTb28gFwW3DjLBQ==
-X-CSE-MsgGUID: 77PdLy+dQf2jtwxwE9ynEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59980860"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="59980860"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 02:00:08 -0700
-X-CSE-ConnectionGUID: DK3xpkOuRkutGbdOlc8uZg==
-X-CSE-MsgGUID: S0y7rLfnSaGwSUn6CKkovA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="173539949"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.187])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 02:00:01 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 11 Sep 2025 11:59:58 +0300 (EEST)
-To: =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>
-cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
- =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
- =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- LKML <linux-kernel@vger.kernel.org>, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 04/11] PCI: Improve Resizable BAR functions kernel doc
-In-Reply-To: <97f8d4a7-6897-4fe5-878c-c04a887cce62@amd.com>
-Message-ID: <20c3a5f5-fa15-3889-3f56-20726aa3925b@linux.intel.com>
-References: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
- <20250911075605.5277-5-ilpo.jarvinen@linux.intel.com>
- <97f8d4a7-6897-4fe5-878c-c04a887cce62@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6580210EA4D;
+	Thu, 11 Sep 2025 09:01:15 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC2210EA4D;
+ Thu, 11 Sep 2025 09:01:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1760534153087905133=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-183604244-1757581198=:944"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Work_around_clang?=
+ =?utf-8?q?_multiple_goto-label_error?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Sep 2025 09:01:14 -0000
+Message-ID: <175758127431.324731.3440190232326454404@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250911080324.180307-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250911080324.180307-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,117 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============1760534153087905133==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323328-183604244-1757581198=:944
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+== Series Details ==
 
-On Thu, 11 Sep 2025, Christian K=C3=B6nig wrote:
+Series: drm/xe: Work around clang multiple goto-label error
+URL   : https://patchwork.freedesktop.org/series/154364/
+State : success
 
-> On 11.09.25 09:55, Ilpo J=C3=A4rvinen wrote:
-> > Fix the copy-pasted errors in the Resizable BAR handling functions
-> > kernel doc and generally improve wording choices.
-> >=20
-> > Fix the formatting errors of the Return: line.
-> >=20
-> > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-> > ---
-> >  drivers/pci/rebar.c | 29 ++++++++++++++++++-----------
-> >  1 file changed, 18 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-> > index 020ed7a1b3aa..64315dd8b6bb 100644
-> > --- a/drivers/pci/rebar.c
-> > +++ b/drivers/pci/rebar.c
-> > @@ -58,8 +58,9 @@ void pci_rebar_init(struct pci_dev *pdev)
-> >   * @bar: BAR to find
-> >   *
-> >   * Helper to find the position of the ctrl register for a BAR.
-> > - * Returns -ENOTSUPP if resizable BARs are not supported at all.
-> > - * Returns -ENOENT if no ctrl register for the BAR could be found.
-> > + *
-> > + * Return: %-ENOTSUPP if resizable BARs are not supported at all,
-> > + *=09   %-ENOENT if no ctrl register for the BAR could be found.
-> >   */
-> >  static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-> >  {
-> > @@ -92,12 +93,15 @@ static int pci_rebar_find_pos(struct pci_dev *pdev,=
- int bar)
-> >  }
-> > =20
-> >  /**
-> > - * pci_rebar_get_possible_sizes - get possible sizes for BAR
-> > + * pci_rebar_get_possible_sizes - get possible sizes for Resizable BAR
-> >   * @pdev: PCI device
-> >   * @bar: BAR to query
-> >   *
-> >   * Get the possible sizes of a resizable BAR as bitmask defined in the=
- spec
-> > - * (bit 0=3D1MB, bit 31=3D128TB). Returns 0 if BAR isn't resizable.
-> > + * (bit 0=3D1MB, bit 31=3D128TB).
-> > + *
-> > + * Return: A bitmask of possible sizes (0=3D1MB, 31=3D128TB), or %0 if=
- BAR isn't
-> > + *=09   resizable.
-> >   */
-> >  u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-> >  {
-> > @@ -121,12 +125,14 @@ u32 pci_rebar_get_possible_sizes(struct pci_dev *=
-pdev, int bar)
-> >  EXPORT_SYMBOL(pci_rebar_get_possible_sizes);
-> > =20
-> >  /**
-> > - * pci_rebar_get_current_size - get the current size of a BAR
-> > + * pci_rebar_get_current_size - get the current size of a Resizable BA=
-R
-> >   * @pdev: PCI device
-> > - * @bar: BAR to set size to
-> > + * @bar: BAR to get the size from
-> >   *
-> > - * Read the size of a BAR from the resizable BAR config.
-> > - * Returns size if found or negative error code.
-> > + * Reads the current size of a BAR from the Resizable BAR config.
-> > + *
-> > + * Return: BAR Size if @bar is resizable (bit 0=3D1MB, bit 31=3D128TB)=
-, or
->=20
-> This is a bit misleading since there is no mask returned but rather the=
-=20
-> order or in other words which bit of the mask was used.=20
+== Summary ==
 
-Thanks for noticing this. I'll removed "bit" x2 from it, does that fully=20
-address your concern?
+CI Bug Log - changes from xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c_BAT -> xe-pw-154364v1_BAT
+====================================================
 
---=20
- i.
+Summary
+-------
 
-> > + *=09   negative on error.
-> >   */
-> >  int pci_rebar_get_current_size(struct pci_dev *pdev, int bar)
-> >  {
-> > @@ -142,13 +148,14 @@ int pci_rebar_get_current_size(struct pci_dev *pd=
-ev, int bar)
-> >  }
-> > =20
-> >  /**
-> > - * pci_rebar_set_size - set a new size for a BAR
-> > + * pci_rebar_set_size - set a new size for a Resizable BAR
-> >   * @pdev: PCI device
-> >   * @bar: BAR to set size to
-> > - * @size: new size as defined in the spec (0=3D1MB, 31=3D128TB)
-> > + * @size: new size as defined in the PCIe spec (0=3D1MB, 31=3D128TB)
-> >   *
-> >   * Set the new size of a BAR as defined in the spec.
-> > - * Returns zero if resizing was successful, error code otherwise.
-> > + *
-> > + * Return: %0 if resizing was successful, or negative on error.
-> >   */
-> >  int pci_rebar_set_size(struct pci_dev *pdev, int bar, int size)
-> >  {
->=20
---8323328-183604244-1757581198=:944--
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154364v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154364v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c -> xe-pw-154364v1
+
+  IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c: e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c
+  xe-pw-154364v1: 154364v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154364v1/index.html
+
+--===============1760534153087905133==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Work around clang multiple goto-label error</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154364/">https://patchwork.freedesktop.org/series/154364/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154364v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154364v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c_BAT -&gt; xe-pw-154364v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154364v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154364v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c -&gt; xe-pw-154364v1</li>
+</ul>
+<p>IGT_8532: 3b9f234d6efe0529a233b81bb0d5ffee5adddb01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3722-e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c: e74a5e2dc4306c0a79d5f8d5f3ca81a274760f8c<br />
+  xe-pw-154364v1: 154364v1</p>
+
+</body>
+</html>
+
+--===============1760534153087905133==--
