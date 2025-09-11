@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EEBBCAC587
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 21:05:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC05DCAC58E
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 21:06:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14DED10EB8D;
-	Thu, 11 Sep 2025 21:05:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oG1b0RSr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ABA010E0A0
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 21:05:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757624720; x=1789160720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Xrloen6OLKbIvBuYB2Wom07h0FUyDuH0bAGxALZ5LUQ=;
- b=oG1b0RSr9BSiDycOJKG044RF+LUfDPlltf2WRVefyTxhwVU1S3pwuTAm
- uT3J1SvpFjSLCb+JZuuVtE3LMy46UMyAAyWhiAwMwb3nVkbF3uf55R/bW
- ymDtOiImPU0bVrV7oXbJHiQwfcukoYR8bUJkwvtNeGpKADENP7zGK+eDu
- mNYftwk0K7iudn02qMMHFUNqNDu4eXYnowZxbgkaL8ioTcTzHAKmpsjx6
- 0SEAEL2hlfsAsFxMgTVIxJVioSlZ8Zd0sdIQEhLZ69kBvJaQSf4LLHPNU
- +E4IWoheP31cOW8OUNNEbuw6KWO3nWU0DP/kCaCQnstlk/q5A1SeJ1bSr w==;
-X-CSE-ConnectionGUID: nCDNfLR9SzKcG4pRIBmPyQ==
-X-CSE-MsgGUID: UmD5VxlGRUeHCnJn5qKrVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="71070351"
-X-IronPort-AV: E=Sophos;i="6.18,258,1751266800"; d="scan'208";a="71070351"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 14:05:20 -0700
-X-CSE-ConnectionGUID: zIScT0BbRqGTDTKrLvh5uw==
-X-CSE-MsgGUID: VQpEZmM/RWuUawSZgViIGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,258,1751266800"; d="scan'208";a="173361329"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa007.fm.intel.com with ESMTP; 11 Sep 2025 14:05:19 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH 2/3] drm/i915/display: Add definition for wcl as subplatform
-Date: Fri, 12 Sep 2025 02:35:13 +0530
-Message-ID: <20250911210514.389014-3-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250911210514.389014-1-dnyaneshwar.bhadane@intel.com>
-References: <20250911210514.389014-1-dnyaneshwar.bhadane@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B13D110E0A0;
+	Thu, 11 Sep 2025 21:06:39 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4E9C10E0A0;
+ Thu, 11 Sep 2025 21:06:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6080795184625540923=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_user_commands?=
+ =?utf-8?q?_to_WA_BB_via_configfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 11 Sep 2025 21:06:38 -0000
+Message-ID: <175762479866.327980.16674317173122813456@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
+In-Reply-To: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the device definition structs for adding wildcat lake as
-subplatfrom of pantherlake.
+--===============6080795184625540923==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_device.c | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_display_device.h |  4 +++-
- 2 files changed, 16 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 65f0efc35bb7..1b9c921290e1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1379,6 +1379,11 @@ static const u16 mtl_u_ids[] = {
- 	0
- };
- 
-+static const u16 wcl_ids[] = {
-+	INTEL_WCL_IDS(ID),
-+	0
-+};
-+
- /*
-  * Do not initialize the .info member of the platform desc for GMD ID based
-  * platforms. Their display will be probed automatically based on the IP version
-@@ -1406,6 +1411,13 @@ static const struct platform_desc bmg_desc = {
- 
- static const struct platform_desc ptl_desc = {
- 	PLATFORM(pantherlake),
-+	.subplatforms = (const struct subplatform_desc[]) {
-+		{
-+			SUBPLATFORM(pantherlake, wildcatlake),
-+			.pciidlist = wcl_ids,
-+		},
-+		{},
-+	}
- };
- 
- __diag_pop();
-@@ -1482,6 +1494,7 @@ static const struct {
- 	INTEL_LNL_IDS(INTEL_DISPLAY_DEVICE, &lnl_desc),
- 	INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
- 	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
-+	INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
- };
- 
- static const struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 6e87b763fe7c..dcc010caa423 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -101,7 +101,9 @@ struct pci_dev;
- 	/* Display ver 14.1 (based on GMD ID) */ \
- 	func(battlemage) \
- 	/* Display ver 30 (based on GMD ID) */ \
--	func(pantherlake)
-+	func(pantherlake) \
-+	func(pantherlake_wildcatlake)
-+
- 
- #define __MEMBER(name) unsigned long name:1;
- #define __COUNT(x) 1 +
--- 
-2.51.0
+Series: drm/xe: Add user commands to WA BB via configfs
+URL   : https://patchwork.freedesktop.org/series/154420/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb_BAT -> xe-pw-154420v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8535 -> IGT_8536
+  * Linux: xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb -> xe-pw-154420v1
+
+  IGT_8535: 8535
+  IGT_8536: 8536
+  xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb: a433a14cc397ef049ef273a3d4404d46a20a28cb
+  xe-pw-154420v1: 154420v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154420v1/index.html
+
+--===============6080795184625540923==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add user commands to WA BB via configfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154420/">https://patchwork.freedesktop.org/series/154420/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154420v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154420v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb_BAT -&gt; xe-pw-154420v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8535 -&gt; IGT_8536</li>
+<li>Linux: xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb -&gt; xe-pw-154420v1</li>
+</ul>
+<p>IGT_8535: 8535<br />
+  IGT_8536: 8536<br />
+  xe-3729-a433a14cc397ef049ef273a3d4404d46a20a28cb: a433a14cc397ef049ef273a3d4404d46a20a28cb<br />
+  xe-pw-154420v1: 154420v1</p>
+
+</body>
+</html>
+
+--===============6080795184625540923==--
