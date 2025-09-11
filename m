@@ -4,63 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E47FFCAC583
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 06:34:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1C2CAC583
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 06:38:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3DFA10EA30;
-	Thu, 11 Sep 2025 06:34:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AFD910E08A;
+	Thu, 11 Sep 2025 06:38:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a26p26qK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mhb3klK1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7950410E0BE
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 06:34:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9341810E08A
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 06:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757572458; x=1789108458;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=XtL7Kx9yeZESFYmPY07/YUv6CKRmyo8/pZoRO8Oauak=;
- b=a26p26qKmPSl5slfSLZs7/MtMSSXDLGnwNm2Aw3Plj/r5JbHTkvaq5oE
- G0/z/p2linvAT+trb27ABvJ6os20O4NuJfP4UBj4pBC71o8Y1kW1P3nue
- Ed0wNQ7898ZsPQwPEgrFo8/RaFOSYlp2cw6nRwk7WnnYXYBQi4MPLlZb6
- kNXH6vkTMLcex+/EB0CgWhwmD2dElXboPbOGBigIDFfMFvqurVbMT4vTQ
- GFh1KYL0gqU8GYATl/UCJHBDxynRUlXHi048su9D7NSF2iDTQk45RXmbV
- ZR6qi04JTudtcU7HJf2bOW5UUGuNY2E32nngJGmgPxSFpOwII0ix2iwfy g==;
-X-CSE-ConnectionGUID: YfMLv4J+Sg6lE90tItbtiA==
-X-CSE-MsgGUID: 6U7WrEnMQSquHt3gfcWfOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="71318648"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="71318648"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 23:34:17 -0700
-X-CSE-ConnectionGUID: YPWajGZ4QluqWjUvQc6psA==
-X-CSE-MsgGUID: pSP0tFhTS225j7yNRVe5Nw==
+ t=1757572711; x=1789108711;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Y8MTid3zl9dePzJPmf1fGOwNTW9oCD+zziBDmnus+VI=;
+ b=mhb3klK1+H4zUARJbRymJowBFu4KYtqEi5f3UTzAHsk6FaRkJ20tSVwn
+ 0BImkfUO5gmstcG/PaJkkKd+ajQhflZ1eg5I1zPMe8VGe0+OU+TZR11TS
+ VEJv/GiE1hHAKxzcUtX3+NANtHfEgDMIg+2JVpEuEc4lfXA7oyDSgPTln
+ wZIgyBIEcMYPSVcV14y1FKbp/HhRf6vNsc4DKtljbide1H2Np1YkEQLIr
+ U2pj5rZwpp1dia3WtCw09OHN3pSt31PsqasVICfPR888BDE3wKwgvdsD8
+ 0RvYqrJVhxmx03gCmDcWaf4+BLtwiPagtS8IrlktmRIdE7ipLfLoUD3dc A==;
+X-CSE-ConnectionGUID: 0IHfvWqQTCO3zoYZ/QxNDg==
+X-CSE-MsgGUID: bDmiCS6WRCSdGQnWHbCaVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63723883"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63723883"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 23:38:31 -0700
+X-CSE-ConnectionGUID: WOrKqEvjQ12X8aqTY3vuqQ==
+X-CSE-MsgGUID: 4a5qJsWWSbaJagFk4ne0ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="210740802"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO [10.245.245.168])
- ([10.245.245.168])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2025 23:34:15 -0700
-Message-ID: <9f88c6c5e3087b86e63b06a358abbe56a00f70ed.camel@linux.intel.com>
-Subject: Re: [drm-xe:drm-xe-next 11/13]
- drivers/gpu/drm/xe/xe_migrate.c:422:3: error: cannot jump from this
- indirect goto statement to one of its possible targets
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Nathan Chancellor <nathan@kernel.org>
-Cc: kernel test robot <lkp@intel.com>, llvm@lists.linux.dev, 
- oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org, Matthew
- Brost	 <matthew.brost@intel.com>
-Date: Thu, 11 Sep 2025 08:34:12 +0200
-In-Reply-To: <20250910193928.GA2640818@ax162>
-References: <202509101853.nDmyxTEM-lkp@intel.com>
- <4a68cafa4e06e8962d205e30521c9e333e9cbb35.camel@linux.intel.com>
- <20250910193928.GA2640818@ax162>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="178809124"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2025 23:38:30 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 10 Sep 2025 23:38:30 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Wed, 10 Sep 2025 23:38:30 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (40.107.101.71)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 10 Sep 2025 23:38:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SeMz1AJ8bm9x2wRO1m0ljQtzEnjYnRhLLREkkCUKBJFVgywZHgQpeCcu2p3XsuItI18hCBaofv2pv6ryDpJy3vuen74LuI5Qdpt2vwS+IgLSlQDFMbH9/ss0QVILEyaitLxc1NipuMK1CDmhPYuHLD57P3YNw4e0Jz6TreMVuXH5mdAsF5Z1DSxUAF+Q730O1Ua4O3YeE4wn0ZjhOzIzSLk1e5TzTWwXp/8U3a0MgCBkT2ObVtp/QHhQ2gf48DugD7sfgl8Hqh70dRVTRH/Q2Rw9eYQjB/S6/+5a4dx2HimEzxwXYK0/ZWXOd/pF2Q/ES1yshV8fFwuKQ732Uu26NQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y8MTid3zl9dePzJPmf1fGOwNTW9oCD+zziBDmnus+VI=;
+ b=Mxv4eeUkrEnhNoxcitPatwexVikiwCluQj0MqmahRt02cRPagWObKcz291U/sqEPQfRBvqUxOTOTN27CyDtpROUPnJhbzi0XmmI05JhZ9puxLPa1uljfXtOPrWempB36mvqUED0UNYgxv9/duCrYRA3QMTGm8KQLCr4ZHw6OxNsoT/t9xx7wsw23e3HUqq9XVjLV3Ijss1f/rRKnz6NeMs834E8NJVPr+0ECPsEZn+x4I34gczZ5PcZdmVwhfepkKvfUufTUUJELfAZ5U01FVGu7XyA/SNtPK91Ma/nTsIi0AJxLwbaJZYdz8qRX8cdctLiUuOfuqYDpSLCgQMDlLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by DM3PPFB7F00E099.namprd11.prod.outlook.com (2603:10b6:f:fc00::f47)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
+ 2025 06:38:28 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::fd8d:bca9:3486:7762%3]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
+ 06:38:28 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Brost, Matthew" <matthew.brost@intel.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+Subject: RE: [PATCH] drm/xe: Fix uninitialized return values
+Thread-Topic: [PATCH] drm/xe: Fix uninitialized return values
+Thread-Index: AQHcImVWEYL64IqtUkavt0BMVY+M7LSNiHpA
+Date: Thu, 11 Sep 2025 06:38:27 +0000
+Message-ID: <SJ1PR11MB6204BEFBA30136D091D040E68109A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20250910151128.49693-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250910151128.49693-1-thomas.hellstrom@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DM3PPFB7F00E099:EE_
+x-ms-office365-filtering-correlation-id: d7d7a002-b26f-4c60-b91f-08ddf0fdd0f7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|10070799003|1800799024|376014|38070700021; 
+x-microsoft-antispam-message-info: =?utf-8?B?azdvWS9vbU5wcUFZeGdvN2FhNThib3ZON1M2K2dCejcxb3V5YmhwUVJTYTZF?=
+ =?utf-8?B?aDUxRjc3L1h3UHliaUhaZHVjMkpleG90Vko2OGpqdktJT1JyTlBLNSszSFdW?=
+ =?utf-8?B?TDdPeE83czUrOTBEMmxJaGIxakdSbnhvbFhaVVluMW8rQzBCQzFSK0NpdTFn?=
+ =?utf-8?B?ZndMalVPYmZUeTJxempRcmhPamp1bVpOUGtVeGxmczRGWkpha2Fpc1lxZVhS?=
+ =?utf-8?B?SjMweUdsSWMyWDU2c0NOcjkrcjEyR2VBSEFwcGRYc1JpNU1KQzF3TGxmQmJQ?=
+ =?utf-8?B?ZmdNZ1pTWmdQT04yL0V3aEJxcEI2RmcwRE00ck9ScHo2dnh0UkIwbVRhazZK?=
+ =?utf-8?B?dkJZK1JueVVYRHBlOVgrR3Z4Qm94UE5Za01ucnMzQ0tGQVpwMWM3MkFGYTlL?=
+ =?utf-8?B?bWlVempSVURNWG9kWmdrcnM0ZGRnU3M2YStuMThJLzFZdXl1UVh0MEUrekpB?=
+ =?utf-8?B?WjJIam5JaDJzT2poTFFYWkw2WnJWaFdhWXFkTDh2ZGVEaWw4ZHJRdVVBRXpV?=
+ =?utf-8?B?RjdkMFRnYVUwWVQwdFZWZ2VCeE1GNUJsUjZ2cW4yMzNocGVYcUxSV01pL0s5?=
+ =?utf-8?B?NUhJdTZPNkdkYWt3RkV5QkRpaWFlWTgzTE1GNVRRU0hxY0JvVzJ3VjlRK0JJ?=
+ =?utf-8?B?bUt2OWhKS0lmVTJEKzhvQWJSdm5DMythRGUvWjd6ZVdnM0VEcVl1THV1NWJq?=
+ =?utf-8?B?cnEwUDNLS0FSZUJrdFJtT3ZZNXBZWXRRQ0NKNXQ2by9zTS9qL0pOTHo4ODM2?=
+ =?utf-8?B?RkNyeXlONlRtUnVJS3Rpc2dJRUswWlpuRC9hd3daZm1YcVBoNXZiVEYvZ09D?=
+ =?utf-8?B?Uit4N25YWnFIeVpWVTVGLzB6MGVwd2FDcXRHRmx5RThBZ3lWVFVlT3hTbzM1?=
+ =?utf-8?B?RDVuTThnVmg4V05wOENRcS9sT1A1NWhUSGlSMmtmUS9xQlhmS3puUEY3OGsx?=
+ =?utf-8?B?UmkyYURVVnJBSElkRENzSE0vcVFFVXl3bGFDdE9DbE93WjdKcFlzUkkvYXpy?=
+ =?utf-8?B?U01CWS9rTXZ6S1lzQWNrZTRSbHdqRnRneGV2azdYUUVhUm9NbEVhL0lzYUta?=
+ =?utf-8?B?R01jTlRyclREK2t6ZzZ3cVNDMkVDU3lKK1BQYVVmVk1NR0I4bmpGN3I5SElQ?=
+ =?utf-8?B?NzlrRFQ3UGZ0NlBPRmNSMFpkSnVlcTEvLzh3dzYzZi82bC9VYXA1YWhuYk4y?=
+ =?utf-8?B?SlBXVGlKeUJyNlNHbjZVNVMvNS9VZkdMcGhZclJ0V0NGOFBOUUJqU1dudG14?=
+ =?utf-8?B?amw4S29rU2dsQmVQd1Y4MnRmemF3bGlhTEV0V1hVMkZ1c3hDcG1aTlVnT0Yz?=
+ =?utf-8?B?Zy8wbUpTNDVTWWtIaDhPdUVua0JsOTRhSHVKYUtvYnZ6UGdrMSs3QUE5eXNU?=
+ =?utf-8?B?SDNEbXh6cGhYS1RCZW5zOVc5SEY3eWRMUlBObUZoUE1ia1pMY1IzWUZEYW5E?=
+ =?utf-8?B?UDcrZ1d5ZWVBZFVNTXR0dkw4MDFaYjFpMW5EeU1FanY1czhYZFJIMG11WFZ2?=
+ =?utf-8?B?NGoyTW5nazFGaE9MNzhVRWpIYk4zbng0b2FqK3BmbHg3ME9uREFWeU82dTFC?=
+ =?utf-8?B?RTBNK2JwVDBiaDc5V1RydXZPVk9BWWlGNlMzVkc1TWc2eHFFcnFWNGU1cndp?=
+ =?utf-8?B?OE5FOHI1OTdyT1EyYmlvcEh4V2o1ZkxaWXRrcTVRcHdXYnAybW1MZ09KanpF?=
+ =?utf-8?B?bEpPbHh1eWwrS1pxalI4M1UxazlqUGx3WE5ETDFIckFvTitqSHJVbTZIUlo5?=
+ =?utf-8?B?cnhHSzg0TXhkTUd2SVNIWnc0Nk9KeEtjZ0pZdEdRNExIQjJQWUFkeUJUY0Nv?=
+ =?utf-8?B?T1VyLzRhMlNJTTNhSEhGb1I2K3hwM2dWTE9Iek81ZkloOGJMMFpqMzlEaFkw?=
+ =?utf-8?B?aThQL2RwVjBrNmFqVk5ITWpGTVRVZ1k5QTBRWEFiWlQvdVZvNDhBYUk3Zis3?=
+ =?utf-8?B?SDhuQ1ZMWENpVThWVmFhaUUyeGJlWFFSY0liWjJrekM1Sm50czRJVE1vbTB4?=
+ =?utf-8?Q?LfIOSRh9T6JBzS4zWOtJ+JQumKix6k=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(10070799003)(1800799024)(376014)(38070700021); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?K0x2OGkzOEpOa2J0QWkydVZNbEUyRHZhbEZZODFIZHM0a1FSRHh2UDVqRy9K?=
+ =?utf-8?B?dlRXVmFkcjN2YzBreGxONW5IMkRubXZKdEhuS1ZJdnlvTXBONGlzd1Rsa05O?=
+ =?utf-8?B?a1A4NS92a0Nra2NlWWhZbkpjUXF5eERZblRid3pFN2pqS3M2eDlyV0Y3cHMr?=
+ =?utf-8?B?ZURWSjBFN3hKZ2N5WkFucElXaGJkK3dSZzRza0pTZXNHTVpGbkd5RTZnNU5l?=
+ =?utf-8?B?ajRoa2lBRzJ4UzFRaGdmMWUzVVBWdW0rRVZPc09YOXNpeGljSUFIQ3N0SzRz?=
+ =?utf-8?B?aHZhUkoyamZZSjI2YVpCdnN5NGpvZmk2b3F0QzNPRjRqN01lSVhWSENxbHRi?=
+ =?utf-8?B?bGttaFNPOUlnVmhGa09XelFBMXliakRYb2x4OC9vaFF4UmVEbEpDbWU0WWFD?=
+ =?utf-8?B?dUlVOVdIeCtONGkxa1Jrelp2TnhzRkx2SUFJZy9ESi83L1R0YUtjQjNJdmRN?=
+ =?utf-8?B?Qk1ITHBTU1drdWZxcFU5Y3NWNWY3YmZPSXBsdWFpTHVPQ2Q1bUJRUllpVFNI?=
+ =?utf-8?B?eDk0TFNpRjQzbjNhU2RKOWgwdUVPR2ZRdWZUVGlKV25hRURSTDViMVBKZ3R5?=
+ =?utf-8?B?Nm94SnpibG45b1BrcDNCZ2xuellKYVhudUhyTGRhU1MvbWJGTStyUllPa1pN?=
+ =?utf-8?B?Zlk0OXJ0bDZHUGJNTjE1dnl1UUorODRvNE1oUkpveDlBTFZOR0oyT3hqSHRM?=
+ =?utf-8?B?SVpwY2doTHdLOWllUGQ2Vi83QldFUEtleXJVaWlWa0F4N1RpRU5DdzE4VmRs?=
+ =?utf-8?B?Y2lyZ2ppV281SFcxdmdTWU5nSEg0alc2dVJYVHFJUUtyUjIvMWVsaDgvbEZC?=
+ =?utf-8?B?czhIeHpodFIwYjlhQytNcXpUZ0FMQlNIYTNCWGJpamM5eWh6T0h6Tk5iemZ2?=
+ =?utf-8?B?ZWRZaGpWRjJBTzlRWUhSWGxvZDU4TlBFSWQ3M1FFaU1lTkVVanFXV21BNklq?=
+ =?utf-8?B?SDAydzY0ajVjMVFYQms3cEU5ZE9ZRm4zZVNnOTFEZHRTeWdTL3FneXVpYStj?=
+ =?utf-8?B?U0NpM1dxOTloczk1QnlNU0xsZjdDN1pVdnlOZFBPMWFUTXdRSTdWZWNTRGRW?=
+ =?utf-8?B?d3lmd2M2WnJKNENDaVZGMnZaODJPY3NyQ0NUeHFoMG9pU2Uwdk4ybHFpWWhR?=
+ =?utf-8?B?VUZKb0dwL2FFV1dYNDBncjdvMCtvNndrWW92OVB6RVUrVFZiSUNweStOdSs3?=
+ =?utf-8?B?dHk2eDcySGwxbHlBSkljR0VTWFNIdDZNSkpyclU4RlR0dXZnQXAzbE42Q3dL?=
+ =?utf-8?B?blIxYlF6UnpUSmQycWh1SnU0bGlodnZramdhUXdGa091NzlabG1GbnZmNzd0?=
+ =?utf-8?B?cEZxZVFyS3dXbzEwSnFUY2dFb0JTMGsrTEhLbjg2eVhzcDZNWTd3Z0NXRldS?=
+ =?utf-8?B?SUV2SDJOSm0xTVRnaURIR1VRUW1Vc0YxTUltaHFRM2NCK21RMlFITEI3Y3RX?=
+ =?utf-8?B?aWdTUFZFb1UxSnFyMzhGNkd1RzdreWRVaUhvRnFaWWpYRVBkbnBYem1rRTVB?=
+ =?utf-8?B?dWMraFlaem5ZMXhWRTcvVDdtbHBGcHl4Z3dVUHNGS1drM1pHa2E4WStYWVFG?=
+ =?utf-8?B?S1FnbnBzSm1sRDJmZ3FTK1krenRVY1IyQ0IvdXhYTS9VTFhwR1dGTHBMc2lD?=
+ =?utf-8?B?NkVEQTMwV2tUdmJielpZYnI5ZkpndmdENXhvdUtUOHptbFhNTGpyaDVzd2VW?=
+ =?utf-8?B?d2YzVHdacVFMZEdsbXFPdStTbzFRdmxWeXdMZnprR1JmUVNYUmFwdEVPSzJE?=
+ =?utf-8?B?SVVmK3RRNHY5RVZzVVg3OGxsUVRBckVxTlBrN0lFZkorR01tVVU5LzZrSUhi?=
+ =?utf-8?B?NHVpNm1sOHpvZnBjVGNnMmFObGgzSzF4SHY2cnQ0RkRVWVVqZ3ZuUmVmL1A3?=
+ =?utf-8?B?alRwUzM2WDBnMFhkaTEzaDVZZlMwMG8veVZ2TGp4angwZGFWbWdjN2xJU0FZ?=
+ =?utf-8?B?RmI5RWFVS0tGQjFOaUQwaUs2TXUrRm1Sd3pBemNoOVR4ci9Mb0xLZFQvNHdo?=
+ =?utf-8?B?MmVla2dTdGcwN0p3RGt4VmY4ampISUZYSG56RXJDTlRObmZTUUl6WU9LY0Jy?=
+ =?utf-8?B?M0hPTjZPMHZ4Z2NVVGhRK2YyRXB1YUtHNHFwOFpOcklrTDRHcURKblVtdDFa?=
+ =?utf-8?B?ck5IK0tvMUFONGlkOG8vcXEvUlJJektwdlhjYVZBZk5qekV5dXYvOGptR3U2?=
+ =?utf-8?Q?ju70+EIJb7fZMxdEPiPkKXsiEBDtX/GgMLhCrt9KOIa3?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7d7a002-b26f-4c60-b91f-08ddf0fdd0f7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 06:38:27.9516 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6tU6/Fd0MLHyGrU3qwFXCfV6R2Ii6evASy3q+VP4M/Ne+BB7H9UUvfjCxFITt5R1DjlMtLIUavGdLJmffMY1aaN4MHnlWBB7p+Z9FbvnlHc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFB7F00E099
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,238 +200,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Wed, 2025-09-10 at 12:39 -0700, Nathan Chancellor wrote:
-> On Wed, Sep 10, 2025 at 05:16:50PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Wed, 2025-09-10 at 18:33 +0800, kernel test robot wrote:
-> > > tree:=C2=A0=C2=A0 https://gitlab.freedesktop.org/drm/xe/kernel.git=C2=
-=A0drm-xe-
-> > > next
-> > > head:=C2=A0=C2=A0 844150c255c94230aec41f88db8e2875cb97439e
-> > > commit: 59eabff2a3524d7f3bf6c24890cd197c4c116fcb [11/13] drm/xe:
-> > > Convert xe_bo_create_pin_map() for exhaustive eviction
-> > > config: loongarch-randconfig-001-20250910
-> > > (
-> > > https://download.01.org/0day-ci/archive/20250910/202509101853.nDmy
-> > > xT
-> > > EM-lkp@intel.com/config)
-> > > compiler: clang version 18.1.8
-> > > (
-> > > https://github.com/llvm/llvm-project=C2=A03b5b5c1ec4a3095ab096dd780e8=
-4d
-> > > 7a
-> > > b81f3d7ff)
-> > > reproduce (this is a W=3D1 build):
-> > > (
-> > > https://download.01.org/0day-ci/archive/20250910/202509101853.nDmy
-> > > xT
-> > > EM-lkp@intel.com/reproduce)
-> > >=20
-> > > If you fix the issue in a separate patch/commit (i.e. not just a
-> > > new
-> > > version of
-> > > the same patch/commit), kindly add following tags
-> > > > Reported-by: kernel test robot <lkp@intel.com>
-> > > > Closes:
-> > > > https://lore.kernel.org/oe-kbuild-all/202509101853.nDmyxTEM-lkp@int=
-el.com/
-> > >=20
-> > > All errors (new ones prefixed by >>):
-> > >=20
-> > > > > drivers/gpu/drm/xe/xe_migrate.c:422:3: error: cannot jump
-> > > > > from
-> >=20
-> > This one looks like a clang loongarch bug. It doesn't happen on
-> > clang
-> > x86 and looks implausible.
->=20
-> This does not appear for x86_64 because its defintion of _THIS_IP_ in
-> arch/x86/include/asm/linkage.h does not use the address of a label
->=20
-> =C2=A0 #ifdef CONFIG_64BIT
-> =C2=A0 /*
-> =C2=A0=C2=A0 * The generic version tends to create spurious ENDBR instruc=
-tions
-> under
-> =C2=A0=C2=A0 * certain conditions.
-> =C2=A0=C2=A0 */
-> =C2=A0 #define _THIS_IP_ ({ unsigned long __here; asm ("lea 0(%%rip), %0"
-> : "=3Dr" (__here)); __here; })
-> =C2=A0 #endif
->=20
-> compared to
->=20
-> =C2=A0 #ifndef _THIS_IP_
-> =C2=A0 #define _THIS_IP_=C2=A0 ({ __label__ __here; __here: (unsigned
-> long)&&__here; })
-> =C2=A0 #endif
->=20
-> for all other architectures. I can reproduce this with both arm64 and
-> i386:
->=20
-> =C2=A0 $ make -skj"$(nproc)" ARCH=3Di386 LLVM=3D1 clean defconfig
->=20
-> =C2=A0 $ scripts/config -e DRM_XE -e PROVE_LOCKING
->=20
-> =C2=A0 $ make -skj"$(nproc)" ARCH=3Di386 LLVM=3D1 olddefconfig
-> drivers/gpu/drm/xe/xe_migrate.o
-> =C2=A0 drivers/gpu/drm/xe/xe_migrate.c:422:3: error: cannot jump from thi=
-s
-> indirect goto statement to one of its possible targets
-> =C2=A0=C2=A0=C2=A0 422 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_exec_retry_on_contenti=
-on(&exec);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/drm/drm_exec.h:123:4: note: expanded from macro
-> 'drm_exec_retry_on_contention'
-> =C2=A0=C2=A0=C2=A0 123 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 goto
-> *__drm_exec_retry_ptr;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 drivers/gpu/drm/xe/xe_migrate.c:465:2: note: possible target of
-> indirect goto statement
-> =C2=A0=C2=A0=C2=A0 465 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-might_lock(&m->job_mutex);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/lockdep.h:553:33: note: expanded from macro
-> 'might_lock'
-> =C2=A0=C2=A0=C2=A0 553 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-lock_release(&(lock)->dep_map,
-> _THIS_IP_);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/instruction_pointer.h:10:41: note: expanded from
-> macro '_THIS_IP_'
-> =C2=A0=C2=A0=C2=A0=C2=A0 10 | #define _THIS_IP_=C2=A0 ({ __label__ __here=
-; __here: (unsigned
-> long)&&__here; })
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 drivers/gpu/drm/xe/xe_migrate.c:420:2: note: jump exits scope of
-> variable with __attribute__((cleanup))
-> =C2=A0=C2=A0=C2=A0 420 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-xe_validation_guard(&ctx, &xe->val, &exec, (struct
-> xe_val_flags) {}, err) {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 drivers/gpu/drm/xe/xe_validation.h:189:2: note: expanded from macr=
-o
-> 'xe_validation_guard'
-> =C2=A0=C2=A0=C2=A0 189 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-scoped_guard(xe_validation, _ctx, _val, _exec,
-> _flags, _ret) \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/cleanup.h:429:2: note: expanded from macro
-> 'scoped_guard'
-> =C2=A0=C2=A0=C2=A0 429 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-__scoped_guard(_name, __UNIQUE_ID(label), args)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/cleanup.h:420:20: note: expanded from macro
-> '__scoped_guard'
-> =C2=A0=C2=A0=C2=A0 420 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-for (CLASS(_name,
-> scope)(args);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 drivers/gpu/drm/xe/xe_migrate.c:465:2: note: jump enters a
-> statement expression
-> =C2=A0=C2=A0=C2=A0 465 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-might_lock(&m->job_mutex);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/lockdep.h:553:33: note: expanded from macro
-> 'might_lock'
-> =C2=A0=C2=A0=C2=A0 553 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-lock_release(&(lock)->dep_map,
-> _THIS_IP_);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
-> =C2=A0 include/linux/instruction_pointer.h:10:20: note: expanded from
-> macro '_THIS_IP_'
-> =C2=A0=C2=A0=C2=A0=C2=A0 10 | #define _THIS_IP_=C2=A0 ({ __label__ __here=
-; __here: (unsigned
-> long)&&__here; })
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 ^
-> =C2=A0 ...
->=20
-> While I agree that this is clearly a false positive because
-> __drm_exec_retry_ptr is only assigned the label in
-> drm_exec_until_all_locked() so we know __here will never be jumped to
-> via 'goto *__drm_exec_retry_ptr;', I am not sure that this is a clang
-> bug. Both compilers agree that the kernel's use of the address of a
-> label in _THIS_IP_ is problematic because it does not conform to the
-> only supported use case for taking the address of a label, which is
-> for
-> computed gotos:
->=20
-> =C2=A0 https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D44298
-> =C2=A0 https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D120071
-> =C2=A0 https://github.com/llvm/llvm-project/issues/138272
-> =C2=A0 https://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html
->=20
-> Given that is the only supported use case, I don't think it is
-> unreasonable for clang to make sure all address-taken labels in a
-> function are valid jump targets for a computed goto since that is the
-> only reason they should be exist in a function.
->=20
-> This could be worked around fairly simply with something like the
-> following diff.
->=20
-> Cheers,
-> Nathan
-
-Yeah, I already have a patch in our CI that moves the goto and the
-corresponding label to a separate static function so we can keep the
-lockdep check.
-
-Given your explanation, I need to change the commit message, though.
-
-Thanks,
-Thomas
-
-
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
-> b/drivers/gpu/drm/xe/xe_migrate.c
-> index 6fad5d469629..b80eddf1a36e 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -462,7 +462,13 @@ int xe_migrate_init(struct xe_migrate *m)
-> =C2=A0
-> =C2=A0	mutex_init(&m->job_mutex);
-> =C2=A0	fs_reclaim_acquire(GFP_KERNEL);
-> +#ifndef CONFIG_CC_IS_CLANG
-> +	/*
-> +	 * _THIS_IP_ runs afoul of clang's scope checking and the
-> computed goto
-> +	 * in drm_exec_retry_on_contention().
-> +	 */
-> =C2=A0	might_lock(&m->job_mutex);
-> +#endif
-> =C2=A0	fs_reclaim_release(GFP_KERNEL);
-> =C2=A0
-> =C2=A0	err =3D devm_add_action_or_reset(xe->drm.dev, xe_migrate_fini,
-> m);
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwteGUgPGludGVs
+LXhlLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgVGhvbWFzDQo+
+IEhlbGxzdHLDtm0NCj4gU2VudDogMTAgU2VwdGVtYmVyIDIwMjUgMjA6NDENCj4gVG86IGludGVs
+LXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21h
+cy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPjsgQnJvc3QsIE1hdHRoZXcNCj4gPG1hdHRoZXcu
+YnJvc3RAaW50ZWwuY29tPjsgSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNv
+bT4NCj4gU3ViamVjdDogW1BBVENIXSBkcm0veGU6IEZpeCB1bmluaXRpYWxpemVkIHJldHVybiB2
+YWx1ZXMNCj4gDQo+IGNsYW5nIHdhcm5lZCBhYm91dCB0d28gdW5pbml0aWFsaXplZCB2YXJpYWJs
+ZXMgdXNlZCBhcyByZXR1cm4gdmFsdWVzIGluIHRoZQ0KPiBleGhhdXN0aXZlIGV2aWN0aW9uIHNl
+cmllcy4NCj4gDQo+IEZpeCB0aG9zZS4NCj4gDQo+IEZpeGVzOiAxZjE1NDE3MjBmNjUgKCJkcm0v
+eGU6IFJld29yayBpbnN0YW5jZXMgb2YgdmFyaWFudHMgb2YNCj4geGVfYm9fY3JlYXRlX2xvY2tl
+ZCgpIikNCj4gRml4ZXM6IDdiY2I2ZTM4YzE0ZCAoImRybS94ZS9kaXNwbGF5OiBDb252ZXJ0IF9f
+eGVfcGluX2ZiX3ZtYSgpIikNCj4gQ2M6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50
+ZWwuY29tPg0KPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4N
+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGlu
+dXguaW50ZWwuY29tPg0KDQpSZXZpZXdlZC1ieTogVGVqYXMgVXBhZGh5YXkgPHRlamFzLnVwYWRo
+eWF5QGludGVsLmNvbT4NCg0KVGVqYXMNCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0veGUvY29t
+cGF0LWk5MTUtaGVhZGVycy9nZW0vaTkxNV9nZW1fc3RvbGVuLmggfCAyICstDQo+ICBkcml2ZXJz
+L2dwdS9kcm0veGUvZGlzcGxheS94ZV9mYl9waW4uYyAgICAgICAgICAgICAgICAgICAgICAgfCAy
+ICstDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkN
+Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUvY29tcGF0LWk5MTUtDQo+IGhl
+YWRlcnMvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5oIGIvZHJpdmVycy9ncHUvZHJtL3hlL2NvbXBhdC1p
+OTE1LQ0KPiBoZWFkZXJzL2dlbS9pOTE1X2dlbV9zdG9sZW4uaA0KPiBpbmRleCBhMmQxZjY4NGEz
+YTguLmYwOTdmYzZkNTEyNyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL2NvbXBh
+dC1pOTE1LWhlYWRlcnMvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS94ZS9jb21wYXQtaTkxNS1oZWFkZXJzL2dlbS9pOTE1X2dlbV9zdG9sZW4uaA0KPiBAQCAt
+MjIsNyArMjIsNyBAQCBzdGF0aWMgaW5saW5lIGludA0KPiBpOTE1X2dlbV9zdG9sZW5faW5zZXJ0
+X25vZGVfaW5fcmFuZ2Uoc3RydWN0IHhlX2RldmljZSAqeGUsDQo+ICAJCQkJCQkgICAgICAgdTMy
+IHN0YXJ0LCB1MzIgZW5kKQ0KPiAgew0KPiAgCXN0cnVjdCB4ZV9ibyAqYm87DQo+IC0JaW50IGVy
+cjsNCj4gKwlpbnQgZXJyID0gMDsNCj4gIAl1MzIgZmxhZ3MgPSBYRV9CT19GTEFHX1BJTk5FRCB8
+IFhFX0JPX0ZMQUdfU1RPTEVOOw0KPiANCj4gIAlpZiAoc3RhcnQgPCBTWl80SykNCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hlX2ZiX3Bpbi5jDQo+IGIvZHJpdmVy
+cy9ncHUvZHJtL3hlL2Rpc3BsYXkveGVfZmJfcGluLmMNCj4gaW5kZXggMjg3YjBjNDM1NWVmLi4x
+ZmQ0YTgxNWU3ODQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hl
+X2ZiX3Bpbi5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS9kaXNwbGF5L3hlX2ZiX3Bpbi5j
+DQo+IEBAIC0yODMsNyArMjgzLDcgQEAgc3RhdGljIHN0cnVjdCBpOTE1X3ZtYSAqX194ZV9waW5f
+ZmJfdm1hKGNvbnN0DQo+IHN0cnVjdCBpbnRlbF9mcmFtZWJ1ZmZlciAqZmIsDQo+ICAJc3RydWN0
+IHhlX2JvICpibyA9IGdlbV90b194ZV9ibyhvYmopOw0KPiAgCXN0cnVjdCB4ZV92YWxpZGF0aW9u
+X2N0eCBjdHg7DQo+ICAJc3RydWN0IGRybV9leGVjIGV4ZWM7DQo+IC0JaW50IHJldDsNCj4gKwlp
+bnQgcmV0ID0gMDsNCj4gDQo+ICAJaWYgKCF2bWEpDQo+ICAJCXJldHVybiBFUlJfUFRSKC1FTk9E
+RVYpOw0KPiAtLQ0KPiAyLjUxLjANCg0K
