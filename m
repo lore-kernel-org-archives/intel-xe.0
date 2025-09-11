@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D17FCAC58E
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 18:49:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C6F6CAC587
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 18:54:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4080E10E12C;
-	Thu, 11 Sep 2025 18:49:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10C4310EB7B;
+	Thu, 11 Sep 2025 18:54:23 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA7E010E12C;
- Thu, 11 Sep 2025 18:49:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8553768864495290199=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6044C10EB7B;
+ Thu, 11 Sep 2025 18:54:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/madvise=3A_Fix_ioctl?=
- =?utf-8?q?_argument_check?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/ttm=3A_rename_ttm=5Fb?=
+ =?utf-8?q?o=5Fput_to_=5Ffini_v3?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 11 Sep 2025 18:49:10 -0000
-Message-ID: <175761655082.327749.4386050153078504479@1538d3639d33>
+Date: Thu, 11 Sep 2025 18:54:22 -0000
+Message-ID: <175761686239.326696.5767251794603046714@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250911173139.1405878-2-shuicheng.lin@intel.com>
-In-Reply-To: <20250911173139.1405878-2-shuicheng.lin@intel.com>
+References: <20250911173909.66432-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250911173909.66432-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,176 +40,42 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8553768864495290199==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/madvise: Fix ioctl argument check
-URL   : https://patchwork.freedesktop.org/series/154412/
-State : failure
+Series: drm/ttm: rename ttm_bo_put to _fini v3
+URL   : https://patchwork.freedesktop.org/series/154413/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8_BAT -> xe-pw-154412v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 816b40bc52e4214d72d9806ec513c4473017c135
+Author: Christian König <ckoenig.leichtzumerken@gmail.com>
+Date:   Thu Sep 11 19:39:09 2025 +0200
 
-Summary
--------
+    drm/ttm: rename ttm_bo_put to _fini v3
+    
+    Give TTM BOs a separate cleanup function.
+    
+    No funktional change, but the next step in removing the TTM BO reference
+    counting and replacing it with the GEM object reference counting.
+    
+    v2: move the code around a bit to make it clearer what's happening
+    v3: fix nouveau_bo_fini as well
+    
+    Signed-off-by: Christian König <christian.koenig@amd.com>
++ /mt/dim checkpatch a433a14cc397ef049ef273a3d4404d46a20a28cb drm-intel
+816b40bc52e4 drm/ttm: rename ttm_bo_put to _fini v3
+-:495: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: "Christian König" <ckoenig.leichtzumerken@gmail.com>' != 'Signed-off-by: Christian König <christian.koenig@amd.com>'
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-154412v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-154412v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-154412v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-lnl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154412v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-bmg-2:          [PASS][3] -> [ABORT][4] ([Intel XE#5440])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-1}:        [FAIL][5] ([Intel XE#5783]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5440]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5440
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+total: 0 errors, 1 warnings, 0 checks, 376 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8 -> xe-pw-154412v1
-
-  IGT_8535: 8535
-  xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8: 6383690b59fb31f52a5932aab3a9963265e86fc8
-  xe-pw-154412v1: 154412v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/index.html
-
---===============8553768864495290199==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/madvise: Fix ioctl argument check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154412/">https://patchwork.freedesktop.org/series/154412/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8_BAT -&gt; xe-pw-154412v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-154412v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-154412v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-154412v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154412v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_force_connector_basic@force-connector-state:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-bmg-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5440">Intel XE#5440</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154412v1/bat-ptl-1/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8 -&gt; xe-pw-154412v1</li>
-</ul>
-<p>IGT_8535: 8535<br />
-  xe-3727-6383690b59fb31f52a5932aab3a9963265e86fc8: 6383690b59fb31f52a5932aab3a9963265e86fc8<br />
-  xe-pw-154412v1: 154412v1</p>
-
-</body>
-</html>
-
---===============8553768864495290199==--
