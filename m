@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55C13CAC58F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76A28CAC587
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 19:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1536910E166;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2579510EB86;
 	Thu, 11 Sep 2025 19:36:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WPzDSNZs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="noI2F+3K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6874D10E166
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D305A10EB85
  for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 19:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757619405; x=1789155405;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aHdtcdQaYqabziNUY2/wkYBQMAbcnysQ+E9kEnjlKkM=;
- b=WPzDSNZsfQALZSfQq20tbBI/0xVvQMC1EVpaB/qXx4flPQa9TtdHoyHS
- pBtoOLubL8GtllW0NQROmuCWliNWbGY30l7kqsRCOveyYjqmS+tdlws4W
- 88DkaAOneFPjpA8n5OAJhcwhwkt4EU/v0Fc7wqt8oB53g83J9qyn7IQGc
- jyiY1f0wZTET1cWEEZ8BAuYdIZShMD4Yp7hDbXNtzft8MFBeBHtRthTkl
- VHB+aJDJtCypPa4xSA3rhuJuS21l26npia35EPw61hxPFdMrrCh+WHUcy
- GDYp4NsmFOCSgEz+GfRjGSdh3m7hy+fUlCkxA0lITwZPNCDEG5m/iyYfz A==;
-X-CSE-ConnectionGUID: bmAWxR7QRyWicFAABgaq7Q==
-X-CSE-MsgGUID: 3FsnAO6ZTVS0gAqmvpffJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="70582677"
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="70582677"
+ t=1757619406; x=1789155406;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fwvouTKOc6zO5RTBn4vL4UaqqKGN1eVtgn726ZGn+Hw=;
+ b=noI2F+3KC/JFdjwFuzo6bycQg6ArSRnw99CEu/w5ZCOlnrW54QGEE5NJ
+ sfr9BT56x2ahud8NdXjvMkKw+/DQqreaXIGhB09V53Cn4etFROSHDSS9k
+ Ac2R0sG9/tE70SrlWkBH66xoKBBygDDo2VCGyhcybtsZZHKv3250I0Dee
+ CUpzrJPHuHpZUhbhJ26iFnUbf3IkEcm6rZyiyY8ekc3o5EFQlPfJJZcyb
+ xfY76/mcAcPhcenec3en28QSpKp8+A2M9sdtmVEoyBkpXLBZgqOU13ogs
+ U2f149U0AlW4PaD745As5xM90p25ytre9OtOLR/4PQLmyUfO2uKvd0TwY A==;
+X-CSE-ConnectionGUID: /u6Hn/yzTHuLwG5sbAng8A==
+X-CSE-MsgGUID: WMSXLSoiT+GBwrCyAZxBFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="70582686"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="70582686"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 12:36:42 -0700
-X-CSE-ConnectionGUID: qhCyxqdITKScnOZKZgRj2w==
-X-CSE-MsgGUID: sfIU5kn5QPeMW2NkBY9R1Q==
+ 11 Sep 2025 12:36:43 -0700
+X-CSE-ConnectionGUID: mVITEX7uSgaxd9R9WALa9A==
+X-CSE-MsgGUID: 3oeYTDm6Qeq8XQ5EcsgJtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="204544705"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="204544719"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2025 12:36:42 -0700
@@ -49,13 +49,14 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 0/6] drm/xe: Add user commands to WA BB via configfs
-Date: Thu, 11 Sep 2025 12:36:24 -0700
-Message-ID: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
+Subject: [PATCH v4 4/6] drm/xe/configfs: Allow to select by class only
+Date: Thu, 11 Sep 2025 12:36:28 -0700
+Message-ID: <20250911-wa-bb-cmds-v4-4-c8f7e48f7eae@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
+References: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250523-wa-bb-cmds-2a81a7121fc2
 X-Mailer: b4 0.15-dev-b03c7
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,65 +73,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Integrate WA BB (aka post context restore bb) with configfs to allow
-validation to experiment with the GPU, executing commands on every
-context switch.
+For a future configfs attribute, it's desirable to select by engine mask
+only as the instance doesn't make sense.
 
-Setting some registers to experiment:
-
-	# echo 0 > /sys/bus/pci/drivers_autoprobe
-	# modprobe xe
-	# mkdir  /sys/kernel/config/xe/0000:03:00.0
-	# cat > /sys/kernel/config/xe/0000\:03\:00.0/ctx_restore_post_bb  <<EOF
-	bcs cmd 11000001 4F100 cafebabe
-	vcs cmd 11000001 4F104 0FF1CE
-	rcs cmd 11000001 4F108 BAADF00D
-	EOF
-	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
-	# intel_reg read mmio:4F100 mmio:4f104 mmio:4f108
-                                    (0x0004f100): 0xcafebabe
-                                    (0x0004f104): 0x000ff1ce
-                                    (0x0004f108): 0xbaadf00d
-
-This also prepares the codebase to use the same functions for mid
-context restore.
+Rename the function lookup_engine_mask() to lookup_engine_info() and
+make it return the entry. This allows parse_engine() to still return an
+item if the caller wants to allow parsing a class-only string like
+"rcs", "bcs", "ccs", etc.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 ---
-Changes in v4:
-- Taint the kernel
-- Link to v3: https://lore.kernel.org/r/20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com
-
-Changes in v3:
-- Minor updates on first patches
-- Fix kunit build (without CONFIG_CONFIGFS_FS)
-- Fix use of binary attributes failing the expectation of a failed write
-  producing an error code
-- Link to v2: https://lore.kernel.org/r/20250827-wa-bb-cmds-v2-0-3cdf4d63c72a@intel.com
-
-Changes in v2:
-- Drop other refactors and fixes already merged
-- Add documentation and make sure it works with intel_reg
-- Refactor command parsing to be able to easily extend it for other BBs
-  to be added in future.
-- Link to v1: https://lore.kernel.org/r/20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com
+v2:
+- Rename function to lookup_engine_info() and return the entry
+  directly instead of the index (Raag Jadav)
+- Add named initializer for new entry for consistency (Raag Jadav)
 ---
-Lucas De Marchi (6):
-      drm/xe: Update workaround documentation
-      drm/xe/configfs: Fix documentation warning
-      drm/xe/configfs: Extract function to parse engine
-      drm/xe/configfs: Allow to select by class only
-      drm/xe/lrc: Allow to add user commands on context switch
-      drm/xe/configfs: Add post context restore bb
+ drivers/gpu/drm/xe/xe_configfs.c | 50 ++++++++++++++++++++++++++++------------
+ 1 file changed, 35 insertions(+), 15 deletions(-)
 
- drivers/gpu/drm/xe/xe_configfs.c | 369 ++++++++++++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_configfs.h |   6 +
- drivers/gpu/drm/xe/xe_lrc.c      |  32 ++++
- drivers/gpu/drm/xe/xe_wa.c       |  45 +++--
- 4 files changed, 414 insertions(+), 38 deletions(-)
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 8db7a2af11011..45fdb6cf26b5d 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -152,6 +152,7 @@ static void set_device_defaults(struct xe_config_device *config)
+ struct engine_info {
+ 	const char *cls;
+ 	u64 mask;
++	enum xe_engine_class engine_class;
+ };
+ 
+ /* Some helpful macros to aid on the sizing of buffer allocation when parsing */
+@@ -159,12 +160,12 @@ struct engine_info {
+ #define MAX_ENGINE_INSTANCE_CHARS 2
+ 
+ static const struct engine_info engine_info[] = {
+-	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK },
+-	{ .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK },
+-	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK },
+-	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK },
+-	{ .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK },
+-	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK },
++	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK, .engine_class = XE_ENGINE_CLASS_RENDER },
++	{ .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK, .engine_class = XE_ENGINE_CLASS_COPY },
++	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_DECODE },
++	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_ENHANCE },
++	{ .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK, .engine_class = XE_ENGINE_CLASS_COMPUTE },
++	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK, .engine_class = XE_ENGINE_CLASS_OTHER },
+ };
+ 
+ static struct xe_config_group_device *to_xe_config_group_device(struct config_item *item)
+@@ -253,7 +254,18 @@ static ssize_t engines_allowed_show(struct config_item *item, char *page)
+ 	return p - page;
+ }
+ 
+-static bool lookup_engine_mask(const char *pattern, u64 *mask)
++/*
++ * Lookup engine_info. If @mask is not NULL, reduce the mask according to the
++ * instance in @pattern.
++ *
++ * Examples of inputs:
++ * - lookup_engine_info("rcs0", &mask): return "rcs" entry from @engine_info and
++ *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
++ * - lookup_engine_info("rcs*", &mask): return "rcs" entry from @engine_info and
++ *   mask == XE_HW_ENGINE_RCS_MASK
++ * - lookup_engine_info("rcs", NULL): return "rcs" entry from @engine_info
++ */
++static const struct engine_info *lookup_engine_info(const char *pattern, u64 *mask)
+ {
+ 	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+ 		u8 instance;
+@@ -263,29 +275,33 @@ static bool lookup_engine_mask(const char *pattern, u64 *mask)
+ 			continue;
+ 
+ 		pattern += strlen(engine_info[i].cls);
++		if (!mask && !*pattern)
++			return &engine_info[i];
+ 
+ 		if (!strcmp(pattern, "*")) {
+ 			*mask = engine_info[i].mask;
+-			return true;
++			return &engine_info[i];
+ 		}
+ 
+ 		if (kstrtou8(pattern, 10, &instance))
+-			return false;
++			return NULL;
+ 
+ 		bit = __ffs64(engine_info[i].mask) + instance;
+ 		if (bit >= fls64(engine_info[i].mask))
+-			return false;
++			return NULL;
+ 
+ 		*mask = BIT_ULL(bit);
+-		return true;
++		return &engine_info[i];
+ 	}
+ 
+-	return false;
++	return NULL;
+ }
+ 
+-static int parse_engine(const char *s, const char *end_chars, u64 *mask)
++static int parse_engine(const char *s, const char *end_chars, u64 *mask,
++			const struct engine_info **pinfo)
+ {
+ 	char buf[MAX_ENGINE_CLASS_CHARS + MAX_ENGINE_INSTANCE_CHARS + 1];
++	const struct engine_info *info;
+ 	size_t len;
+ 
+ 	len = strcspn(s, end_chars);
+@@ -295,9 +311,13 @@ static int parse_engine(const char *s, const char *end_chars, u64 *mask)
+ 	memcpy(buf, s, len);
+ 	buf[len] = '\0';
+ 
+-	if (!lookup_engine_mask(buf, mask))
++	info = lookup_engine_info(buf, mask);
++	if (!info)
+ 		return -ENOENT;
+ 
++	if (pinfo)
++		*pinfo = info;
++
+ 	return len;
+ }
+ 
+@@ -309,7 +329,7 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 	u64 mask, val = 0;
+ 
+ 	for (p = 0; p < len; p += patternlen + 1) {
+-		patternlen = parse_engine(page + p, ",\n", &mask);
++		patternlen = parse_engine(page + p, ",\n", &mask, NULL);
+ 		if (patternlen < 0)
+ 			return -EINVAL;
+ 
 
-base-commit: a841dfdd6d774671edaad441fb846f7a3230bb07
-change-id: 20250523-wa-bb-cmds-2a81a7121fc2
-
-Lucas De Marchi
+-- 
+2.50.1
 
