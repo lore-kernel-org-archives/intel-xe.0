@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A456CAC58E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6270ACAC587
 	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 19:36:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 489E310EB8C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B1210EB8B;
 	Thu, 11 Sep 2025 19:36:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S3t8gkQt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N/k0o0yl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B4C10EB86
- for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 19:36:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C2A10E166
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 19:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757619406; x=1789155406;
+ t=1757619405; x=1789155405;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c4dk6rbmNh7m7p5SB/2JHYfspNKxWKuh0nsA1hi2Wbc=;
- b=S3t8gkQt4Al7piP3AZix+u0wG7b00S0NFhEdyjyGRoXtkuH81YNPOVHg
- KuNqCEgVS0RiGjEUsflFFgN6N8Zy5/hI2lCiamNhXqIYzFfCFiYZ55OwI
- HV3aCi9o9AIc8V2P3G6GqHcyuCwM7QcwunPQHSkI0d5wibT4nrxp+f2Wa
- dekd2FtsJDVEJzIx89T2fZvwbau+Q/WM3oHFuDDjM+fdRRWt/g16kBbnI
- XOCwtFCHj3AXXbDj/oXCEJv3+71cr2SqLY3137kEaqY5bCyuU3XZkTtbX
- BDyGD1cdJRyayGJjQwWN4rXqmyJOR4lt6K4zQg6B7i4pVcrUkD6/LTV6/ g==;
-X-CSE-ConnectionGUID: QzVY3pCFS3iyTPCrZU7lmw==
-X-CSE-MsgGUID: Vjiujt21Qhmwbq9zgzNfYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="70582688"
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="70582688"
+ bh=lq+VfCMzshXGzdsCPEcKhkL4YXWops9W8DdcHUU3PFs=;
+ b=N/k0o0ylS9LfzGeOYN2/eAMCLOYrWzE68Dev46SL7nBsPUpgppjJVi74
+ 4kXJZRnTbGKl/lZrPNAvWh3PxXb/MQVyUklGFzaDs6xuj7YMalsFKx19I
+ vykYnSBitiPK6cHBmv81mgdmsHPf+NxHXx6uPi9H/gCI96DcAtAOvqAQM
+ TW+HKwl2z8QCd4tU/lwlVh/GgeqQYL1Zcc+znf//ybDSuH4j2tJJZWDOO
+ bPYgaHT7ssBd3l8Te26wqKOwPfztKWfaSJogMmoid4NvBKa0A8jXdkLLf
+ 0HctefC0TV5kTKfsqpuTWmp+3xWDLq91uzALsrw6CAF49Aikx2CICT2ja g==;
+X-CSE-ConnectionGUID: BNuGRw6URCSDcS3kmP02GQ==
+X-CSE-MsgGUID: w0Vds8laTWWkh4ZD9LZDBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="70582680"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="70582680"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2025 12:36:43 -0700
-X-CSE-ConnectionGUID: VSM42CmSRzCpHMo0tPsyuQ==
-X-CSE-MsgGUID: rYgXou9QRU233p48YarIdQ==
+X-CSE-ConnectionGUID: g2tNzNR6Tsimvo6d90wRIA==
+X-CSE-MsgGUID: chS7X6BVS4KLo/FDsGCrtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="204544722"
+X-IronPort-AV: E=Sophos;i="6.18,257,1751266800"; d="scan'208";a="204544708"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2025 12:36:42 -0700
@@ -49,10 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 5/6] drm/xe/lrc: Allow to add user commands on context
- switch
-Date: Thu, 11 Sep 2025 12:36:29 -0700
-Message-ID: <20250911-wa-bb-cmds-v4-5-c8f7e48f7eae@intel.com>
+Subject: [PATCH v4 1/6] drm/xe: Update workaround documentation
+Date: Thu, 11 Sep 2025 12:36:25 -0700
+Message-ID: <20250911-wa-bb-cmds-v4-1-c8f7e48f7eae@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
 References: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
@@ -74,124 +73,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During validation it's useful to allows additional commands to be
-executed on context switch. Fetch the commands from configfs (to be
-added) and add them to the WA BB.
+Bring it up to reality, better documenting the existing batch buffers,
+OOB rules and fixing some typos.
 
+Bspec: 60122
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: Fix warning when building without configfs
+v2: s/XE_WA/XE_GT_WA/ where appropriate
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  6 ++++++
- drivers/gpu/drm/xe/xe_lrc.c      | 25 +++++++++++++++++++++++++
- 3 files changed, 44 insertions(+)
+ drivers/gpu/drm/xe/xe_wa.c | 45 ++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 32 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 45fdb6cf26b5d..d86c75af03278 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -633,6 +633,19 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	return ret;
- }
- 
-+/**
-+ * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
-+ * @pdev: pci device
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c1fec526bed08..ca1de2560f2bb 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -39,7 +39,8 @@
+  *   Register Immediate commands) once when initializing the device and saved in
+  *   the default context. That default context is then used on every context
+  *   creation to have a "primed golden context", i.e. a context image that
+- *   already contains the changes needed to all the registers.
++ *   already contains the changes needed to all the registers. See
++ *   drivers/gpu/drm/xe/xe_lrc.c for default context handling.
+  *
+  * - Engine workarounds: the list of these WAs is applied whenever the specific
+  *   engine is reset. It's also possible that a set of engine classes share a
+@@ -48,10 +49,10 @@
+  *   them need to keeep the workaround programming: the approach taken in the
+  *   driver is to tie those workarounds to the first compute/render engine that
+  *   is registered.  When executing with GuC submission, engine resets are
+- *   outside of kernel driver control, hence the list of registers involved in
++ *   outside of kernel driver control, hence the list of registers involved is
+  *   written once, on engine initialization, and then passed to GuC, that
+  *   saves/restores their values before/after the reset takes place. See
+- *   ``drivers/gpu/drm/xe/xe_guc_ads.c`` for reference.
++ *   drivers/gpu/drm/xe/xe_guc_ads.c for reference.
+  *
+  * - GT workarounds: the list of these WAs is applied whenever these registers
+  *   revert to their default values: on GPU reset, suspend/resume [1]_, etc.
+@@ -66,21 +67,39 @@
+  *   hardware on every HW context restore. These buffers are created and
+  *   programmed in the default context so the hardware always go through those
+  *   programming sequences when switching contexts. The support for workaround
+- *   batchbuffers is enabled these hardware mechanisms:
++ *   batchbuffers is enabled via these hardware mechanisms:
+  *
+- *   #. INDIRECT_CTX: A batchbuffer and an offset are provided in the default
+- *      context, pointing the hardware to jump to that location when that offset
+- *      is reached in the context restore. Workaround batchbuffer in the driver
+- *      currently uses this mechanism for all platforms.
++ *   #. INDIRECT_CTX (also known as **mid context restore bb**): A batchbuffer
++ *      and an offset are provided in the default context, pointing the hardware
++ *      to jump to that location when that offset is reached in the context
++ *      restore.  When a context is being restored, this is executed after the
++ *      ring context, in the middle (or beginning) of the engine context image.
+  *
+- *   #. BB_PER_CTX_PTR: A batchbuffer is provided in the default context,
+- *      pointing the hardware to a buffer to continue executing after the
+- *      engine registers are restored in a context restore sequence. This is
+- *      currently not used in the driver.
++ *   #. BB_PER_CTX_PTR (also known as **post context restore bb**): A
++ *      batchbuffer is provided in the default context, pointing the hardware to
++ *      a buffer to continue executing after the engine registers are restored
++ *      in a context restore sequence.
 + *
-+ * Return: post_ctx_restore setting in configfs
-+ */
-+u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
-+					enum xe_engine_class class,
-+					const u32 **cs)
-+{
-+	return 0;
-+}
-+
- int __init xe_configfs_init(void)
- {
- 	int ret;
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 1402e863b71c0..eff2645b5f593 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -8,6 +8,8 @@
- #include <linux/limits.h>
- #include <linux/types.h>
- 
-+#include <xe_hw_engine_types.h>
-+
- struct pci_dev;
- 
- #if IS_ENABLED(CONFIG_CONFIGFS_FS)
-@@ -17,6 +19,8 @@ void xe_configfs_check_device(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
-+u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
-+					const u32 **cs);
- #else
- static inline int xe_configfs_init(void) { return 0; }
- static inline void xe_configfs_exit(void) { }
-@@ -24,6 +28,8 @@ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
-+static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
-+						      const u32 **cs) { return 0; }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 6d52e0eb97f54..f337954066f55 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -16,6 +16,7 @@
- #include "regs/xe_lrc_layout.h"
- #include "xe_bb.h"
- #include "xe_bo.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_drm_client.h"
- #include "xe_exec_queue_types.h"
-@@ -1102,6 +1103,29 @@ static ssize_t setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
-+						  struct xe_hw_engine *hwe,
-+						  u32 *batch, size_t max_len)
-+{
-+	struct xe_device *xe = gt_to_xe(lrc->gt);
-+	const u32 *user_batch;
-+	u32 *cmd = batch;
-+	u32 count;
-+
-+	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
-+						    hwe->class, &user_batch);
-+	if (!count)
-+		return 0;
-+
-+	if (count > max_len)
-+		return -ENOSPC;
-+
-+	memcpy(cmd, user_batch, count * sizeof(u32));
-+	cmd += count;
-+
-+	return cmd - batch;
-+}
-+
- static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 					       struct xe_hw_engine *hwe,
- 					       u32 *batch, size_t max_len)
-@@ -1203,6 +1227,7 @@ int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe
- 		{ .setup = setup_timestamp_wa },
- 		{ .setup = setup_invalidate_state_cache_wa },
- 		{ .setup = setup_utilization_wa },
-+		{ .setup = setup_configfs_post_ctx_restore_bb },
- 	};
- 	struct bo_setup_state state = {
- 		.lrc = lrc,
++ *   Below is the timeline for a context restore sequence:
++ *
++ *   .. code::
++ *
++ *                        INDIRECT_CTX_OFFSET
++ *                   |----------->|
++ *      .------------.------------.-------------.------------.--------------.-----------.
++ *      |Ring        | Engine     | Mid-context | Engine     | Post-context | Ring      |
++ *      |Restore     | Restore (1)| BB Restore  | Restore (2)| BB Restore   | Execution |
++ *      `------------'------------'-------------'------------'--------------'-----------'
+  *
+  * - Other/OOB:  There are WAs that, due to their nature, cannot be applied from
+  *   a central place. Those are peppered around the rest of the code, as needed.
+- *   Workarounds related to the display IP are the main example.
++ *   There's a central place to control which workarounds are enabled:
++ *   drivers/gpu/drm/xe/xe_wa_oob.rules for GT workarounds and
++ *   drivers/gpu/drm/xe/xe_device_wa_oob.rules for device/SoC workarounds.
++ *   These files only record which workarounds are enabled: during early device
++ *   initialization those rules are evaluated and recorded by the driver. Then
++ *   later the driver checks with ``XE_GT_WA()`` and ``XE_DEVICE_WA()`` to
++ *   implement them.
+  *
+  * .. [1] Technically, some registers are powercontext saved & restored, so they
+  *    survive a suspend/resume. In practice, writing them again is not too
 
 -- 
 2.50.1
