@@ -4,67 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 760A2CAC58D
-	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 07:58:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D85CA1016
+	for <intel-xe@archiver.kernel.org>; Thu, 11 Sep 2025 08:04:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6D210EA46;
-	Thu, 11 Sep 2025 07:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF07710EA3E;
+	Thu, 11 Sep 2025 08:04:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LdKVcOfv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KdtEqoec";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7CA010EA44;
- Thu, 11 Sep 2025 07:58:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C62B10EA3E
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 Sep 2025 08:04:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757577523; x=1789113523;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rAy08QpthvSkpS1ppl0IfhtNiRuBtun4D/nv2lrxkHc=;
- b=LdKVcOfvbc6pn/vaOEYdMbVuJCGvBESbY5QaIjqiSokb4/UliUAKSh32
- XlyYy1DxIbakY3h/JdijwbYQZ+TonHXM1RQwqXUDQ8EPiyFOF0GRNXGbx
- Jx/gZBjdlfMIExbjh15s7aWZOPoOW27J9EvFiGEhgs0zGC8KGNKkQeWzD
- HwZ3tZc3dSoukOgkdKfOTMfLYDy/B4qTDQG46KCQQdoFK59zTrKvRTkRD
- kXOuRdjrg3WS6fquLAyd7u7rY8a9cm1/K+TbLJisyWUy4Z2RWIuqQJGiN
- hgTUVZ2oM927FKlETvbetb7rNcU/d1bXiQAKMtwIcbKc17R8pKp6sRpzy w==;
-X-CSE-ConnectionGUID: 1B6m786ZTv6YcMW7AQ3Y3g==
-X-CSE-MsgGUID: yTirDi1KSW22xKTAkTcHwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="58942343"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="58942343"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 00:58:42 -0700
-X-CSE-ConnectionGUID: wLBYdtbZQC6iNpEiXCMEzg==
-X-CSE-MsgGUID: VSM31pSsR/qw3YTjabELPg==
+ t=1757577869; x=1789113869;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RpFEubS6PWIbVDTGZzno953Mmk7orj09EXjG//KooX4=;
+ b=KdtEqoec4hZ+i7Qaf5cFK6+mTG3Kz5OGU2ExOD5rco+5TZl4FjyXy0A6
+ NCNBrE3RRcprQnr0qBM/B0bVR5oLXIYlBDk6WRm6oVapdaQGQK6qU9bta
+ HOl6zmYw1v72EW2SoVBzwbwk88C6Y5CF6Kzu7yPZyHo5B2u+xEOkedaBn
+ 9gAiMrwiQ2h9h5dYsJyVIrZ+6LKSRuIYOd8awjWf6a5uirA3S1kzuiHVZ
+ AB1Mn2Caz+xsrdn6MlR5ZUgxt4rCvqk6icEzXHc977OT2dt+vCMbohTGx
+ fcFLxuJB3z8a6t5ywOgLGQ7w2WdjqBQWdytodl68yGO4KbtFugEVI6i8I g==;
+X-CSE-ConnectionGUID: iioRYz5RS5yeoDZB08pmXQ==
+X-CSE-MsgGUID: 83GjBVKsTVus6QbSPOOMtA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="82489895"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="82489895"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 01:04:29 -0700
+X-CSE-ConnectionGUID: mLS5CCmeSzCEhZki31K5/w==
+X-CSE-MsgGUID: lGK0ohovTt66fPRysqKG0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="178823677"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.187])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 00:58:35 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- linux-kernel@vger.kernel.org
-Cc: linux-doc@vger.kernel.org,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH 11/11] PCI: Convert BAR sizes bitmasks to u64
-Date: Thu, 11 Sep 2025 10:56:05 +0300
-Message-Id: <20250911075605.5277-12-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
-References: <20250911075605.5277-1-ilpo.jarvinen@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; d="scan'208";a="204392471"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.168])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2025 01:04:27 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, kernel test robot <lkp@intel.com>
+Subject: [PATCH v2] drm/xe: Work around clang multiple goto-label error
+Date: Thu, 11 Sep 2025 10:03:24 +0200
+Message-ID: <20250911080324.180307-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -82,99 +67,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PCIe r6.2 section 7.8.6 defines resizable BAR sizes beyond the
-currently supported maximum of 128TB which will require more than u32
-to store the entire bitmask.
+When using drm_exec_retry_on_contention(), clang may consider
+all labels for which we take addresses in a function as
+potential retry goto targets, although strictly only one
+is possible. It will then in some situations generate false
+positive errors.
 
-Convert Resizable BAR related functions to use u64 bitmask for BAR
-sizes to make the typing more future-proof.
+In this case, the compiler, for some architectures, consider the
 
-The support for the larger BAR sizes themselves is not added at this
-point.
+might_lock(&m->job_mutex);
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+as a potential goto target from drm_exec_retry_on_contention(),
+and errors.
+
+Work around that by moving the xe_validate / drm_exec
+transaction to a separate function.
+
+v2:
+- New commit message based on analysis of Nathan Chancellor
+
+Fixes: 59eabff2a352 ("drm/xe: Convert xe_bo_create_pin_map() for exhaustive eviction")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202509101853.nDmyxTEM-lkp@intel.com/
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- drivers/pci/iov.c            | 2 +-
- drivers/pci/pci-sysfs.c      | 2 +-
- drivers/pci/rebar.c          | 4 ++--
- include/linux/pci.h          | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index b063c072df1e..196b75fa0c57 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -69,7 +69,7 @@ static void resize_vram_bar(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 6fad5d469629..1d667fa36cf3 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -394,6 +394,24 @@ struct xe_migrate *xe_migrate_alloc(struct xe_tile *tile)
+ 	return m;
+ }
  
- 		if (!pci_rebar_size_supported(pdev, LMEM_BAR, rebar_size)) {
- 			drm_info(&xe->drm,
--				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-+				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%llx. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
- 				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
- 				 (u64)current_size >> 20);
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 51844a9176a0..d2741c4f3315 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1370,7 +1370,7 @@ EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
- u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs)
- {
- 	u64 vf_len = pci_resource_len(dev, resno);
--	u32 sizes;
-+	u64 sizes;
++static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m, struct xe_vm *vm)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_validation_ctx ctx;
++	struct drm_exec exec;
++	int err = 0;
++
++	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
++		err = xe_vm_drm_exec_lock(vm, &exec);
++		drm_exec_retry_on_contention(&exec);
++		err = xe_migrate_prepare_vm(tile, m, vm, &exec);
++		drm_exec_retry_on_contention(&exec);
++		xe_validation_retry_on_oom(&ctx, &err);
++	}
++
++	return err;
++}
++
+ /**
+  * xe_migrate_init() - Initialize a migrate context
+  * @m: The migration context
+@@ -405,8 +423,6 @@ int xe_migrate_init(struct xe_migrate *m)
+ 	struct xe_tile *tile = m->tile;
+ 	struct xe_gt *primary_gt = tile->primary_gt;
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_validation_ctx ctx;
+-	struct drm_exec exec;
+ 	struct xe_vm *vm;
+ 	int err;
  
- 	if (!num_vfs)
- 		return 0;
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 5eea14c1f7f5..b6920114d538 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1544,7 +1544,7 @@ static ssize_t __resource_resize_show(struct device *dev, int n, char *buf)
- 	pci_config_pm_runtime_get(pdev);
+@@ -416,14 +432,7 @@ int xe_migrate_init(struct xe_migrate *m)
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
  
- 	ret = sysfs_emit(buf, "%016llx\n",
--			 (u64)pci_rebar_get_possible_sizes(pdev, n));
-+			 pci_rebar_get_possible_sizes(pdev, n));
+-	err = 0;
+-	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+-		err = xe_vm_drm_exec_lock(vm, &exec);
+-		drm_exec_retry_on_contention(&exec);
+-		err = xe_migrate_prepare_vm(tile, m, vm, &exec);
+-		drm_exec_retry_on_contention(&exec);
+-		xe_validation_retry_on_oom(&ctx, &err);
+-	}
++	err = xe_migrate_lock_prepare_vm(tile, m, vm);
+ 	if (err)
+ 		return err;
  
- 	pci_config_pm_runtime_put(pdev);
- 
-diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-index 76572c7a6e6e..b42bda80fabf 100644
---- a/drivers/pci/rebar.c
-+++ b/drivers/pci/rebar.c
-@@ -105,7 +105,7 @@ static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-  * Return: A bitmask of possible sizes (0=1MB, 31=128TB), or %0 if BAR isn't
-  *	   resizable.
-  */
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- {
- 	int pos;
- 	u32 cap;
-@@ -159,7 +159,7 @@ EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-  */
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar)
- {
--	u32 sizes;
-+	u64 sizes;
- 
- 	sizes = pci_rebar_get_possible_sizes(pdev, bar);
- 	if (!sizes)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index a4236aafad24..bb10c7eb49e2 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1422,7 +1422,7 @@ void pci_release_resource(struct pci_dev *dev, int resno);
- /* Resizable BAR related routines */
- int pci_rebar_bytes_to_size(u64 bytes);
- resource_size_t pci_rebar_size_to_bytes(int size);
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
- bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size);
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar);
- int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
 -- 
-2.39.5
+2.51.0
 
