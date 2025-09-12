@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D56F2CA101F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Sep 2025 06:49:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 297DBCA101F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Sep 2025 07:20:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C70110EBB0;
-	Fri, 12 Sep 2025 06:49:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjgFKYTL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C514910E38C;
- Fri, 12 Sep 2025 06:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757659781; x=1789195781;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=Dda8MbkTbzlKiDQ4VUK1mNB7r+aQUo5mlcfZT2QajAU=;
- b=ZjgFKYTLGcWDgL3TmF6Fpv93yUX75A2BbC/cBK+CSlk3gvq6L4a//5Xg
- pbTIGAxaYSpPDyFgDGf/YIc2lzp/5IvUFROBtTMwWepSECKrU5URlWNpP
- si7p1VRTSqtyfGkNFLtQMDW+eKco22ltaVWUOav3RzvkRgr2udsZCfCg3
- jbVGVMgGYQE0qltfHb2SujR/b9S4feNPYyyeyFtegxPrF1IQfTPWimqbt
- ZfBBTu9cNJGIJZZp+2rPp+dL2UywDGK4qAiRSr1Tg/t7m4LCZNAVX454J
- 2+udQSBD4grJcChoo5lfGqrAMtP5q69onj3ngf4lBZBvZI5p507iJo1Xm g==;
-X-CSE-ConnectionGUID: /dQIi34aRSutBUA+I/a+qw==
-X-CSE-MsgGUID: rlPGiDLtTIe9QXjLYxs1ZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="71427719"
-X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="71427719"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 23:49:41 -0700
-X-CSE-ConnectionGUID: UCnpwTlFTp6je/nizjxL5w==
-X-CSE-MsgGUID: 6yDsWVPbTDaahlHB+b0g1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="173968783"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.70])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2025 23:49:36 -0700
-Date: Fri, 12 Sep 2025 09:49:33 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <aMPCfRObHMg6DZAs@jlahtine-mobl>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC04C10E033;
+	Fri, 12 Sep 2025 07:20:13 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B74C610E033;
+ Fri, 12 Sep 2025 07:20:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1612428861193569782=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/alpm=3A_Remove_err?=
+ =?utf-8?q?or_handling_from_get=5Flfps=5Fcycle=5Fmin=5Fmax=5Ftime?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 12 Sep 2025 07:20:12 -0000
+Message-ID: <175766161274.328538.3427360870825565086@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250912064035.335329-1-jouni.hogander@intel.com>
+In-Reply-To: <20250912064035.335329-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============1612428861193569782==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here's the final drm-intel-gt-next PR towards v6.18.
+== Series Details ==
 
-Debug improvement to include GuC registers in error state and
-two smaller improvements.
+Series: drm/i915/alpm: Remove error handling from get_lfps_cycle_min_max_time
+URL   : https://patchwork.freedesktop.org/series/154436/
+State : success
 
-Regards, Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c_BAT -> xe-pw-154436v1_BAT
+====================================================
 
-drm-intel-gt-next-2025-09-12:
+Summary
+-------
 
-Driver Changes:
+  **SUCCESS**
 
-- Include the GuC registers in the error state (Daniele)
-- Use memdup_user() (Thorsten)
-- Selftest improvements (Jonathan)
+  No regressions found.
 
-The following changes since commit b7a855f488c6825e3dc06e78c49326491bef6f98:
+  
 
-  drm/i915/gt: Relocate Gen6 context-specific workaround (2025-08-18 20:32:25 -0100)
+Participating hosts (11 -> 11)
+------------------------------
 
-are available in the Git repository at:
+  No changes in participating hosts
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-09-12
+Known issues
+------------
 
-for you to fetch changes up to ba391a102ec11ab7f5b249e46dcf61ef836a57e7:
+  Here are the changes found in xe-pw-154436v1_BAT that come from known issues:
 
-  drm/i915/guc: Include the GuC registers in the error state (2025-09-11 11:28:02 -0700)
+### IGT changes ###
 
-----------------------------------------------------------------
-Driver Changes:
+#### Possible fixes ####
 
-- Include the GuC registers in the error state (Daniele)
-- Use memdup_user() (Thorsten)
-- Selftest improvements (Jonathan)
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154436v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
 
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      drm/i915/guc: Include the GuC registers in the error state
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-Jonathan Cavitt (1):
-      drm/i915/gt: Fix memory leak in hangcheck selftest
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
 
-Thorsten Blum (1):
-      drm/i915: Replace kmalloc() + copy_from_user() with memdup_user()
 
- drivers/gpu/drm/i915/gem/i915_gem_context.c  |  12 +---
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c |   4 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c    |   8 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h   |   1 +
- drivers/gpu/drm/i915/i915_gpu_error.c        | 102 +++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_gpu_error.h        |   1 +
- 6 files changed, 116 insertions(+), 12 deletions(-)
+Build changes
+-------------
+
+  * Linux: xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c -> xe-pw-154436v1
+
+  IGT_8536: 8536
+  xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c: 6d209e86cb298782b5afa278b7b0fc73cb433b4c
+  xe-pw-154436v1: 154436v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154436v1/index.html
+
+--===============1612428861193569782==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/alpm: Remove error handling from get_lfps_cycle_min_max_time</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154436/">https://patchwork.freedesktop.org/series/154436/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154436v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154436v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c_BAT -&gt; xe-pw-154436v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154436v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154436v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c -&gt; xe-pw-154436v1</li>
+</ul>
+<p>IGT_8536: 8536<br />
+  xe-3732-6d209e86cb298782b5afa278b7b0fc73cb433b4c: 6d209e86cb298782b5afa278b7b0fc73cb433b4c<br />
+  xe-pw-154436v1: 154436v1</p>
+
+</body>
+</html>
+
+--===============1612428861193569782==--
