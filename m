@@ -4,78 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93BB5CA101F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 Sep 2025 07:44:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A43DCA101F
+	for <intel-xe@archiver.kernel.org>; Fri, 12 Sep 2025 08:05:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4421710EBB9;
-	Fri, 12 Sep 2025 07:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1323610E01F;
+	Fri, 12 Sep 2025 08:05:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TBgggMvn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PPe9wn2H";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFAB810EBB9
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Sep 2025 07:44:19 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-45b4d89217aso10886625e9.2
- for <intel-xe@lists.freedesktop.org>; Fri, 12 Sep 2025 00:44:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757663058; x=1758267858; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=+vzS365Y8dpkhAzeZRdnCGhHbPvqCTNi/Gxyj9Ln0+k=;
- b=TBgggMvnQnfKtcVg8xCgzl9TtKMZy9U5c+e0rt+Kwc3dbW7jQHUkfQLSpCXibmHE8b
- rC6zk093z6zqbqmgDspCxLOWJ1lXpzdt8i9cYCFcyiqmUnNXL3Fu2uw/dCLY3Sx4nwkX
- st3f7LebN487qnqMoDWvip0GuBbrrI2zgj3Ot+x+QD7mGtM7sjiUMBz7BsWXN2g///df
- Tt5Kmkr+O5YnlJw9mtEJFOCSJ7m9FxEJd62nxCeuNHF4t+xj0ukgz0cIVYp5Y8t7/U4y
- AqG6x90697FZ2TO3eD8xWfE3d0L9wZiMnvttMYVwOSNM9LhJmg0lbrVRylrS30+gGAch
- mqRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757663058; x=1758267858;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=+vzS365Y8dpkhAzeZRdnCGhHbPvqCTNi/Gxyj9Ln0+k=;
- b=AQAOynQzSywGDzQeD/JfL54MWu7fk5xdh06A1q2orG8iJqQm41u0ppYqsbeLmaVAeF
- NQc4Wnb2RipfNNmsEq/3mZxzTOO+Kkycr8oCLpn6F0gJsHrtRmGZ3VLp3hLYfDXSzww8
- nxCg0NkKTXHOIUzCapnrcTab6L5kv3+O8UzYxUSvMmI5UhnUnVerch7xJD/vgLQocO7Q
- Ez5a8ulMK0yYKkCtTjCYgeA+CQLboTr9JO9cI1HZ9kgpWF90+QRR8o0T1pr+MGTRJcSH
- 7gPaofDzA+KX6jL2Nr4EsRbkfx/uWqpyHJblMt4yLzjRKuTogvSqH5lm3ks3njqO/jtu
- v7OQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVckHLMhrQ2TmC6HWJ9YXaOu5wLu7zKz1eMlevdbrNhYLO2QCBHPh+4w+UtbP5gWQDB6SIXCd51IA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw/UNp3ay46UEX6l+hZHDXc6rKgIqRieDBZl4GL5a78uMsRL+7Z
- EgMb7p8LnSjOr1MappjpbH0Md4y8CKz26JwASzTk76NnX/Ah2Ipu3drO
-X-Gm-Gg: ASbGncuRyAXu798X0CASQtwCw4CzT6lVz/hxtq5AO4QM5gK7X0qhFu92pA2rKW0QXIo
- yJ+v0nEIwqtSfNsjiG0471x072CkddbToGj6WixMn7v8pxcTsdJXYvdgAkltMpq4H8bq6SI8PLW
- r0qqZGc7X6MQ46Xb7JoMGGu9Q8tCbRTE4Kdrzp/4a+XEi7LgTylL8353qhtDpscxIL1QBJSjjjP
- s+tVIk1yM4dCDJctnERF3u5vigwQQ7mAffYWaPrk0XbFc1uxNZpckI+JP8PMZXrdWST26OvuPKL
- Vtlq3npTyYWxTFuh6xLK4TKrJW6pVZoCFbG3IQExY3nAgoJIH7x2LEK3vog9gYs76NRbhYtglax
- /nidcHyvWHzG6bhE6FKO+
-X-Google-Smtp-Source: AGHT+IGcBRTRyBh6Cwu5iI4hTdWjgTJRmHmc3IyNU0i7I6eC8AyH4njMSzoX7KbtbrF08N3PuQ7bhQ==
-X-Received: by 2002:a05:600c:3209:b0:45c:b55f:466a with SMTP id
- 5b1f17b1804b1-45f211efac2mr13603635e9.15.1757663058119; 
- Fri, 12 Sep 2025 00:44:18 -0700 (PDT)
-Received: from localhost ([87.254.0.133]) by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45e03719235sm51823045e9.1.2025.09.12.00.44.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Sep 2025 00:44:17 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] drm/xe/guc: Fix spelling mistake "sheduling" ->
- "scheduling"
-Date: Fri, 12 Sep 2025 08:43:30 +0100
-Message-ID: <20250912074330.1275279-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.51.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0C8D10E01F
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 Sep 2025 08:05:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757664328; x=1789200328;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=P7eKybBUSGTHH0ylWbgaPwDjSipFlEulChqYoECxyu8=;
+ b=PPe9wn2HBnJhMIYp4f/MWR/tsr88tr+0xxghMgb8l1EbSGV8+TnF1nGZ
+ 97fgRVdEnsaJhnAdJ+hDHXbnrmf0EaIsp6UYkNTP9lWZqILG+aOcJ6E2I
+ mHA3zkDWchRe2rcRQPBqFGMTi0Q6nLAXEuJE/pKImWy0rN2rJK+VCs4vp
+ DUid5OCoiLhUE4rXKRj0Kb1d8yXRMi1jivJTU+1DnlPswrs8/aC60KsZb
+ Z7k5FWt6Ew/+XjiMeX6a+GAZDTDNRxRp1+v+5Zl9zWqUe6694qH5JmzXo
+ mDAJqlzNQBGM1gOymF5bzOj83TTWxd0vOTYgxccTqDA3tukeoqJG3oE8e g==;
+X-CSE-ConnectionGUID: Wzb5EDVuSrSF3WqgnxhN1A==
+X-CSE-MsgGUID: 7cvIp7nmS/ufzH4owgDECQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11550"; a="59866292"
+X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="59866292"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2025 01:05:27 -0700
+X-CSE-ConnectionGUID: rKzWM6gBTvmOtgnaVQO/lA==
+X-CSE-MsgGUID: 4tB7BWR4RfmOhPyO+wJS4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,259,1751266800"; d="scan'208";a="173077004"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2025 01:05:25 -0700
+Date: Fri, 12 Sep 2025 10:05:21 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH v4 6/6] drm/xe/configfs: Add post context restore bb
+Message-ID: <aMPUQcgJsZARb8P4@black.igk.intel.com>
+References: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
+ <20250911-wa-bb-cmds-v4-6-c8f7e48f7eae@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250911-wa-bb-cmds-v4-6-c8f7e48f7eae@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,26 +71,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a spelling mistake in a xe_gt_err error message. Fix it.
+On Thu, Sep 11, 2025 at 12:36:30PM -0700, Lucas De Marchi wrote:
+> Allow the user to specify commands to execute during a context restore.
+> Currently it's possible to parse 2 types of actions:
+> 
+> 	- cmd: the instructions are added as is to the bb
+> 	- reg: just use the address and value, without worrying about
+> 	  encoding the right LRI instruction. This is possibly the most
+> 	  useful use case, so added a dedicated action for that.
+> 
+> This also prepares for future BBs: mid context restore and rc6 context
+> restore that can re-use the same parsing functions.
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index a465594b61dc..8cb8b93a37a5 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -355,7 +355,7 @@ static int guc_init_global_schedule_policy(struct xe_guc *guc)
- 		ret = xe_guc_ct_send_block(&guc->ct, data, count);
- 		if (ret < 0) {
- 			xe_gt_err(guc_to_gt(guc),
--				  "failed to enable GuC sheduling policies: %pe\n",
-+				  "failed to enable GuC scheduling policies: %pe\n",
- 				  ERR_PTR(ret));
- 			return ret;
- 		}
--- 
-2.51.0
+> @@ -123,11 +156,18 @@
+>   *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
+>   */
+>  
+> +/* Similar to struct xe_bb, but not tied to HW (yet) */
 
+Should I assume we plan to do it at some point?
+
+> +struct wa_bb {
+> +	u32 *cs;
+> +	u32 len; /* in dwords */
+> +};
+
+...
+
+> +static ssize_t wa_bb_show(struct xe_config_group_device *dev,
+> +			  struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+> +			  char *data, size_t sz)
+> +{
+> +	char *p = data;
+> +
+> +	guard(mutex)(&dev->lock);
+> +
+> +	for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> +		enum xe_engine_class ec = engine_info[i].engine_class;
+> +		size_t len;
+> +
+> +		if (!wa_bb[ec].len)
+> +			continue;
+> +
+> +		len = snprintf(p, sz, "%s:", engine_info[i].cls);
+> +		if (!wa_bb_read_advance(data, &p, NULL, len, &sz))
+> +			return -ENOBUFS;
+> +
+> +		for (size_t j = 0; j < wa_bb[ec].len; j++) {
+> +			len = snprintf(p, sz, " %08x", wa_bb[ec].cs[j]);
+
+Should we use '0x' prefix?
+
+> +			if (!wa_bb_read_advance(data, &p, NULL, len, &sz))
+> +				return -ENOBUFS;
+> +		}
+> +
+> +		if (!wa_bb_read_advance(data, &p, "\n", 1, &sz))
+> +			return -ENOBUFS;
+> +	}
+> +
+> +	if (!wa_bb_read_advance(data, &p, "", 1, &sz))
+> +		return -ENOBUFS;
+> +
+> +	/* Reserve one more to match check for '\0' */
+> +	if (!data)
+> +		p++;
+> +
+> +	return p - data;
+> +}
+
+...
+
+> +static ssize_t parse_wa_bb_lines(const char *lines,
+> +				 struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX])
+> +{
+> +	ssize_t dwords = 0, ret;
+> +	const char *p;
+> +
+> +	for (p = lines; *p; p++) {
+
+I found it to be zeroed page but does it gurantee termination at page
+boundary? (just thinking out loud about overrun cases)
+
+> +		const struct engine_info *info = NULL;
+> +		u32 val, val2;
+> +
+> +		/* Also allow empty lines */
+> +		p += strspn(p, " \t\n");
+> +		if (!*p)
+> +			break;
+> +
+> +		ret = parse_engine(p, " \t\n", NULL, &info);
+
+Nit: Can we work without a double pointer? I've always found it easier to read.
+
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		p += ret;
+> +		p += strspn(p, " \t");
+> +
+> +		if (str_has_prefix(p, "cmd")) {
+> +			for (p += strlen("cmd"); *p;) {
+> +				ret = parse_hex(p, &val);
+> +				if (ret < 0)
+> +					return -EINVAL;
+> +				if (!ret)
+> +					break;
+> +
+> +				p += ret;
+> +				dwords++;
+> +				wa_bb_append(&wa_bb[info->engine_class], val);
+> +			}
+> +		} else if (str_has_prefix(p, "reg")) {
+> +			p += strlen("reg");
+> +			ret = parse_hex(p, &val);
+> +			if (ret <= 0)
+> +				return -EINVAL;
+> +
+> +			p += ret;
+> +			ret = parse_hex(p, &val2);
+> +			if (ret <= 0)
+> +				return -EINVAL;
+> +
+> +			p += ret;
+> +			dwords += 3;
+> +			wa_bb_append(&wa_bb[info->engine_class],
+> +				     MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1));
+> +			wa_bb_append(&wa_bb[info->engine_class], val);
+> +			wa_bb_append(&wa_bb[info->engine_class], val2);
+> +		} else {
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	return dwords;
+> +}
+
+...
+
+> +CONFIGFS_ATTR(, ctx_restore_post_bb);
+
+I know this is alphabetic order but let's be consistent, either at the top ...
+
+>  CONFIGFS_ATTR(, enable_psmi);
+>  CONFIGFS_ATTR(, engines_allowed);
+>  CONFIGFS_ATTR(, survivability_mode);
+> @@ -379,6 +640,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+>  	&attr_enable_psmi,
+>  	&attr_engines_allowed,
+>  	&attr_survivability_mode,
+> +	&attr_ctx_restore_post_bb,
+
+... or bottom.
+
+>  	NULL,
+>  };
+
+...
+
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index f337954066f55..c706585611d55 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -8,6 +8,7 @@
+>  #include <generated/xe_wa_oob.h>
+>  
+>  #include <linux/ascii85.h>
+> +#include <linux/panic.h>
+>  
+>  #include "instructions/xe_mi_commands.h"
+>  #include "instructions/xe_gfxpipe_commands.h"
+> @@ -1120,6 +1121,12 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
+>  	if (count > max_len)
+>  		return -ENOSPC;
+>  
+> +	/*
+> +	 * This should be used only for tests and validation. Taint the kernel
+> +	 * as anything could be submitted directly in context switches
+> +	 */
+> +	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
+
+I know we add wa_bb support in this patch but perhaps this belongs to
+previous patch?
+
+Raag
+
+>  	memcpy(cmd, user_batch, count * sizeof(u32));
+>  	cmd += count;
+>  
+> 
+> -- 
+> 2.50.1
+> 
