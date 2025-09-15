@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27668CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 15:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15AF8CAC597
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 15:18:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E471A10E4EE;
-	Mon, 15 Sep 2025 15:17:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C367C10E4F0;
+	Mon, 15 Sep 2025 15:18:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBRRZfkx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J1Htdo+5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB09910E4EE
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Sep 2025 15:17:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE6910E4F0
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 Sep 2025 15:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757949436; x=1789485436;
+ t=1757949535; x=1789485535;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=SkvIqvB7E6UsbDtkXppELbD04UOhWNvzHTH2Dy7kpWs=;
- b=YBRRZfkxwPSLr+YjEXhcaYcfYRm/kE5iwZMgadXuNJ2FKsBO0ZtHlNa9
- A+L5xStEdfcnVoudLvh61Oo0G7WhY9S2NBOb3Wh3dArj81R2M46wVBGAO
- oEN8hJygtSFlR8fYo5XE8A/QF0Qm+TUy6lJwWBADOkkRMl5hxLeULL5uW
- QGFQwy8pYjGxxje6kuNjPxn4DQX2luDo32qJ09RzD6EFS962eirb6FsQy
- YqUw+1Ps7eYv4JHrug+fmJIlgSkmxdSK9eyGJ8UCIqMd6R1VzcAwittR8
- 8ST0Mbbzo9qKCZJ74sd0t8Wo1vF3fuTEKpiRpXtSHaKE7quSZIUFmiPVl A==;
-X-CSE-ConnectionGUID: CVHbhWmXRLGpCfu6rT/2Pw==
-X-CSE-MsgGUID: I6bU7HC9TMK3Hf6h6EZKxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="60281433"
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="60281433"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 08:17:15 -0700
-X-CSE-ConnectionGUID: PkffKntyTMq0Ut49TVHImQ==
-X-CSE-MsgGUID: memK9+voT7+YwotintFtIw==
+ bh=5S/z8uWeoO78ev2/x3vVKhjXB2xZn+xCbE26c9/QKpQ=;
+ b=J1Htdo+5Z2vdscPEB6UhdHj5JSY9fiVxO71Y7H6yLl9yNc7u4q3Q620S
+ EKCP4eaPL9BkxRigDEraFah7bW3QYx3p/eq+oZIXeUveCyOR/4HNIfrvx
+ TCLWF1Lk4VnahS3dVTe2IKHTQVrpA7NFdaas5QIq2+QCgIJXrA3rfnWZC
+ 9RPSRzebb7rwYG4e0yHqS3neJTfU/K1/nvX+N+IlieDrVJd1++nZDWe1T
+ dGA9dT0flLa+nGR4wZybsHlTEA42HwqP3/3+xuJptQ3xL/hKfHMBGRr4N
+ ZwEAm2SpyUK6eedwT917VtC0fQP/8LU+BIWEgW1/dVxDhzHGGWuMNrKec A==;
+X-CSE-ConnectionGUID: gmiVenXoTW2OiBfM8ESBMw==
+X-CSE-MsgGUID: Z2hUCnkrTaSzYV3Qf64Riw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="59436498"
+X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="59436498"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 08:18:55 -0700
+X-CSE-ConnectionGUID: b1FgcVRwS9ui101gz4ShtA==
+X-CSE-MsgGUID: mHaoJr0sQFiwSQybHOb6rA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="175087419"
+X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="174744452"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 08:17:14 -0700
-Date: Mon, 15 Sep 2025 17:17:11 +0200
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 08:18:54 -0700
+Date: Mon, 15 Sep 2025 17:18:50 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/sysfs: Simplify and fix sysfs registration
-Message-ID: <aMgt994Z4Yr99mHF@black.igk.intel.com>
+ Lukasz Laguna <lukasz.laguna@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/vf: Don't expose sysfs attributes not
+ applicable for VFs
+Message-ID: <aMguWp_VufXdl5tB@black.igk.intel.com>
 References: <20250915140614.2076-1-michal.wajdeczko@intel.com>
- <20250915140614.2076-2-michal.wajdeczko@intel.com>
+ <20250915140614.2076-3-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250915140614.2076-2-michal.wajdeczko@intel.com>
+In-Reply-To: <20250915140614.2076-3-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,126 +69,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 15, 2025 at 04:06:13PM +0200, Michal Wajdeczko wrote:
-> Instead of manually maintaining each sysfs attribute define and use
-> attribute groups and register them using device managed function.
-> Then use is_visible() to filter-out unsupported attributes.
+On Mon, Sep 15, 2025 at 04:06:14PM +0200, Michal Wajdeczko wrote:
+> VFs can't read BMG_PCIE_CAP(0x138340) register nor access PCODE
+> (already guarded by the info.skip_pcode flag) so we shouldn't
+> expose attributes that require any of them to avoid errors like:
 > 
-> This will result not only in less code and smaller footprint:
-> 
->   Function                                     old     new   delta
->   late_bind_attr_is_visible                      -     183    +183
->   ____versions                               80832   80896     +64
->   vram_attr_group                                -      48     +48
->   late_bind_attr_group                           -      48     +48
->   auto_link_downgrade_attr_group                 -      48     +48
->   late_bind_attrs                                -      24     +24
->   vram_attrs                                     -      16     +16
->   __pfx_late_bind_attr_is_visible                -      16     +16
->   xe_device_sysfs_init.cold                     20      21      +1
->   __pfx_xe_device_sysfs_fini                    16       -     -16
->   xe_device_sysfs_fini.cold                     21       -     -21
->   xe_device_sysfs_fini                         271       -    -271
->   xe_device_sysfs_init                         421     135    -286
->   Total: Before=2848898, After=2848752, chg -0.01%
-
-I find the summary to be sufficient but upto you.
-
-> but will also fix some bad error handling that we had here.
+>  [] xe 0000:03:00.1: [drm] Tile0: GT0: VF is trying to read an \
+>                      inaccessible register 0x138340+0x0
+>  [] RIP: 0010:xe_gt_sriov_vf_read32+0x6c2/0x9a0 [xe]
+>  [] Call Trace:
+>  []  xe_mmio_read32+0x110/0x280 [xe]
+>  []  auto_link_downgrade_capable_show+0x2e/0x70 [xe]
+>  []  dev_attr_show+0x1a/0x70
+>  []  sysfs_kf_seq_show+0xaa/0x120
+>  []  kernfs_seq_show+0x41/0x60
 > 
 > Fixes: 0e414bf7ad01 ("drm/xe: Expose PCIe link downgrade attributes")
 > Fixes: cdc36b66cd41 ("drm/xe: Expose fan control and voltage regulator version")
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device_sysfs.c | 96 +++++++++++-----------------
->  1 file changed, 39 insertions(+), 57 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> index 6ee422594b56..5b0b98ac9b17 100644
-> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> @@ -71,6 +71,15 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
->  
->  static DEVICE_ATTR_RW(vram_d3cold_threshold);
->  
-> +static struct attribute *vram_attrs[] = {
-> +	&dev_attr_vram_d3cold_threshold.attr,
-> +	NULL
-> +};
-> +
-> +static const struct attribute_group vram_attr_group = {
-> +	.attrs = vram_attrs,
-> +};
-> +
->  static ssize_t
->  lb_fan_control_version_show(struct device *dev, struct device_attribute *attr, char *buf)
->  {
-> @@ -149,8 +158,16 @@ lb_voltage_regulator_version_show(struct device *dev, struct device_attribute *a
->  }
->  static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_version);
->  
-> -static int late_bind_create_files(struct device *dev)
-> +static struct attribute *late_bind_attrs[] = {
-> +	&dev_attr_lb_fan_control_version.attr,
-> +	&dev_attr_lb_voltage_regulator_version.attr,
-> +	NULL
-> +};
-> +
-> +static umode_t late_bind_attr_is_visible(struct kobject *kobj,
-> +					 struct attribute *attr, int n)
->  {
-> +	struct device *dev = kobj_to_dev(kobj);
->  	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
->  	struct xe_tile *root = xe_device_get_root_tile(xe);
->  	u32 cap = 0;
-> @@ -160,51 +177,25 @@ static int late_bind_create_files(struct device *dev)
->  
->  	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
->  			    &cap, NULL);
-> -	if (ret) {
-> -		if (ret == -ENXIO) {
-> -			drm_dbg(&xe->drm, "Late binding not supported by firmware\n");
-> -			ret = 0;
-> -		}
-> -		goto out;
-> -	}
-> -
-> -	if (REG_FIELD_GET(V1_FAN_SUPPORTED, cap)) {
-> -		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_fan_control_version.attr);
-> -		if (ret)
-> -			goto out;
-> -	}
-> -
-> -	if (REG_FIELD_GET(VR_PARAMS_SUPPORTED, cap))
-> -		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_voltage_regulator_version.attr);
-> -out:
->  	xe_pm_runtime_put(xe);
-> -
-> -	return ret;
-> -}
-> -
-> -static void late_bind_remove_files(struct device *dev)
-> -{
-> -	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-> -	struct xe_tile *root = xe_device_get_root_tile(xe);
-> -	u32 cap = 0;
-> -	int ret;
-> -
-> -	xe_pm_runtime_get(xe);
-> -
-> -	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
-> -			    &cap, NULL);
->  	if (ret)
-> -		goto out;
-> +		return 0;
+> Cc: Lukasz Laguna <lukasz.laguna@intel.com>
 
-Should we keep the original log so we don't have to guesswork our way around
-random pcode errors?
+Finally.
 
-PS: I've found patience algo to generate much readable diffs but ofcourse
-it's a personal preference :)
-
-Raag
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
