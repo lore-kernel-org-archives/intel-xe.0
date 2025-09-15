@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79906CA101F
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 07:25:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A443CAC58E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 07:32:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2C0010E337;
-	Mon, 15 Sep 2025 07:25:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T3VjJxQF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C909110E2DE;
- Mon, 15 Sep 2025 07:25:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757921146; x=1789457146;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wf6AmfdZuUm+bu7vdIAmlnLFqbZGHBquu6XMq5py88o=;
- b=T3VjJxQFoQuL1F7m5QMKfQCPLoSnyNCSR/RN/jHcEdZBm1xVQMephQ4S
- i6Zcza82Q0B7wZe3NFkHTQ/DBclzlo/Goox4P1VoVxoGD6XnCu1A5vyZm
- CbKM6l3Oo7MTNnXqDIXRs/mgY8+cbuQ11V3VxBqAvSCj0yrr9emvmIXOJ
- e8HrsK3Og+3ZRqNcl5bWlEwBUU/xnzS+Pofyfod3vGxNtat8JG3MeP+ql
- gOAGfa0zbTXOEO+yIp5e/ItyS5t6H8k2D2eG8qSI6MX4jFnlrc83UZa5u
- qlENNnaD4Y6r3uZhRaXdmKwUJEZHbUSnf6kZqPhshkayTCI026yFSy5hz A==;
-X-CSE-ConnectionGUID: nip4sbVERKGQGA+oOj4duw==
-X-CSE-MsgGUID: UUIBQ4jjR4+Z0Cv0B10njg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="77619119"
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="77619119"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 00:25:45 -0700
-X-CSE-ConnectionGUID: I7VBVupQTsiDaJk+sMvDTA==
-X-CSE-MsgGUID: IZzsyGQNSjKqBqZ0WGoraw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="211693865"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 00:25:46 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Logan Gunthorpe <logang@deltatee.com>,
- linux-pci@vger.kernel.org
-Subject: [PATCH v4 1/5] PCI/P2PDMA: Don't enforce ACS check for device
- functions of Intel GPUs
-Date: Mon, 15 Sep 2025 00:21:05 -0700
-Message-ID: <20250915072428.1712837-2-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
-References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B752310E2BE;
+	Mon, 15 Sep 2025 07:32:31 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB7710E2BE;
+ Mon, 15 Sep 2025 07:32:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/sriov=3A_Don=27t_m?=
+ =?utf-8?q?igrate_dmabuf_BO_to_System_RAM_if_P2P_check_succeeds?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Sep 2025 07:32:30 -0000
+Message-ID: <175792155043.333077.3503644538364341818@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,83 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Typically, functions of the same PCI device (such as a PF and a VF)
-share the same bus and have a common root port and the PF provisions
-resources for the VF. Given this model, they can be considered
-compatible as far as P2PDMA access is considered.
+== Series Details ==
 
-Currently, although the distance (2) is correctly calculated for
-functions of the same device, an ACS check failure prevents P2P DMA
-access between them. Therefore, introduce a small function named
-pci_devfns_support_p2pdma() to determine if the provider and client
-belong to the same device and facilitate P2PDMA between them by
-not enforcing the ACS check.
+Series: drm/xe/sriov: Don't migrate dmabuf BO to System RAM if P2P check succeeds
+URL   : https://patchwork.freedesktop.org/series/154504/
+State : warning
 
-However, since it is hard to determine if the device functions of
-any given PCI device are P2PDMA compatible, we only relax the ACS
-check enforcement for device functions of Intel GPUs. This is
-because the P2PDMA communication between the PF and VF of Intel
-GPUs is handled internally and does not typically involve the PCIe
-fabric.
+== Summary ==
 
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Logan Gunthorpe <logang@deltatee.com>
-Cc: <linux-pci@vger.kernel.org>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
-v1 -> v2:
-- Relax the enforcment of ACS check only for Intel GPU functions
-  as they are P2PDMA compatible given the way the PF provisions
-  the resources among multiple VFs.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4c414ec01c1b2f14058d337599aca3a1c1cc4f42
+Author: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Date:   Mon Sep 15 00:21:09 2025 -0700
 
-v2 -> v3:
-- s/pci_devs_are_p2pdma_compatible/pci_devfns_support_p2pdma
-- Improve the commit message to explain the reasoning behind
-  relaxing the ACS check enforcement only for Intel GPU functions.
-
-v3 -> v4: (Logan)
-- Drop the dev_is_pf() hunk as no special handling is needed for PFs
-- Besides the provider, also check to see the client is an Intel GPU
----
- drivers/pci/p2pdma.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-index da5657a02007..0a1d884cd0ff 100644
---- a/drivers/pci/p2pdma.c
-+++ b/drivers/pci/p2pdma.c
-@@ -544,6 +544,19 @@ static unsigned long map_types_idx(struct pci_dev *client)
- 	return (pci_domain_nr(client->bus) << 16) | pci_dev_id(client);
- }
- 
-+static bool pci_devfns_support_p2pdma(struct pci_dev *provider,
-+				      struct pci_dev *client)
-+{
-+	if (provider->vendor == PCI_VENDOR_ID_INTEL &&
-+	    client->vendor == PCI_VENDOR_ID_INTEL) {
-+		if ((pci_is_vga(provider) && pci_is_vga(client)) ||
-+		    (pci_is_display(provider) && pci_is_display(client)))
-+			return pci_physfn(provider) == pci_physfn(client);
-+	}
+    drm/xe/pt: Add an additional check for dmabuf BOs while doing bind
+    
+    If a BO's is_devmem_external flag is set, it means that it is an
+    imported dmabuf BO that has a backing store in VRAM. Therefore, in
+    this case, need to iterate over its dma_addr array.
+    
+    v2:
+    - Use a cursor to iterate over the entries in the dma_addr array
+      instead of relying on SG iterator (Matt)
+    
+    v3:
+    - Since XE_PPGTT_PTE_DM is added to the PTE flags in all cases,
+      remove the bo->is_devmem_external check added in v2
+    
+    Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
++ /mt/dim checkpatch 36a8f6b405f4a0def4462366cd17992897e1362b drm-intel
+11860c6601a3 PCI/P2PDMA: Don't enforce ACS check for device functions of Intel GPUs
+d9df4f3dba24 drm/xe/dmabuf: Don't migrate BO to System RAM if P2P check succeeds
+744393c72b10 drm/xe/pf: Add a helper function to get a VF's backing object in LMEM
+e23f55318bba drm/xe/bo: Create new dma_addr array for dmabuf BOs associated with VFs
+-:90: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#90: FILE: drivers/gpu/drm/xe/xe_bo.c:706:
 +
-+	return false;
-+}
 +
- /*
-  * Calculate the P2PDMA mapping type and distance between two PCI devices.
-  *
-@@ -643,7 +656,7 @@ calc_map_type_and_dist(struct pci_dev *provider, struct pci_dev *client,
- 
- 	*dist = dist_a + dist_b;
- 
--	if (!acs_cnt) {
-+	if (!acs_cnt || pci_devfns_support_p2pdma(provider, client)) {
- 		map_type = PCI_P2PDMA_MAP_BUS_ADDR;
- 		goto done;
- 	}
--- 
-2.50.1
+
+-:111: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#111: FILE: drivers/gpu/drm/xe/xe_bo.c:727:
++		bo->dma_data.dma_addr[i] = drm_pagemap_addr_encode(addr,
++						DRM_INTERCONNECT_DRIVER,
+
+total: 0 errors, 0 warnings, 2 checks, 195 lines checked
+4c414ec01c1b drm/xe/pt: Add an additional check for dmabuf BOs while doing bind
+
 
