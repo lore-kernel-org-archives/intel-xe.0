@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2567CCAC58E
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 08:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C68ECAC58E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 09:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCD5410E340;
-	Mon, 15 Sep 2025 08:55:42 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD0FC10E2C6;
- Mon, 15 Sep 2025 08:55:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9060828505198125093=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF29910E340;
+	Mon, 15 Sep 2025 09:14:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZJiLwPX";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D58610E340;
+ Mon, 15 Sep 2025 09:14:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1757927653; x=1789463653;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AxVnpcaVMfU77Gl4c7H9h18KifP1c77MUN1TjexI22g=;
+ b=KZJiLwPXjjrU9YiojYZMehYaH+rYeufVTwNiAm9SIUPN92sZNvOLfOlY
+ J4HDYv2Kc+ndi6uUXl5VM28Yak9FH4CliVZkGXdcKs58etBbUDQyBsvZY
+ sH3Ozrkp45BKcMv3uZuvU60gWWS1yHzexvEy4sE2Ow3OE0m2uz8d/oUBp
+ tcgjsdvqoEcFEbkBs93odL1vm0UvFoz/SKEko2nCaYd/4YsJljr1zEk9v
+ ebHwejjAOZTKkJ6Yo8orDlwiSPFPhADF9AkoI8u0o89PApeRsMqko9pgQ
+ YK6PaW/Pr92NufIsKWNUoepQ6f/REvEOk/dZS3NxfvqzxDRS4qwiFIhlI w==;
+X-CSE-ConnectionGUID: CIWKMpW4S/yYqmxUYu+Zmg==
+X-CSE-MsgGUID: ohCVrwt+QKq11xfV0qrg8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="85610441"
+X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="85610441"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 02:14:13 -0700
+X-CSE-ConnectionGUID: d9gd8qNIQe2edfK9Cn3AtQ==
+X-CSE-MsgGUID: LGbc/gSNTj2vnhflODtAAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="174497118"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.39])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2025 02:14:05 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Michael J . Ruhl" <mjruhl@habana.ai>
+Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH v2 00/11] PCI: Resizable BAR improvements
+Date: Mon, 15 Sep 2025 12:13:47 +0300
+Message-Id: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B-ne?=
- =?utf-8?q?xt=2C1/2=5D_drm/xe=3A_Remove_duplicated_include_in_xe=5Fpt=2Ec?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yang Li" <yang.lee@linux.alibaba.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 15 Sep 2025 08:55:41 -0000
-Message-ID: <175792654176.333107.1773627076463103673@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
-In-Reply-To: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,146 +77,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9060828505198125093==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+pci.c has been used as catch everything that doesn't fits elsewhere
+within PCI core and thus resizable BAR code has been placed there as
+well. Move Resizable BAR related code to a newly introduced rebar.c to
+reduce size of pci.c. After move, there are no pci_rebar_*() calls from
+pci.c indicating this is indeed well-defined subset of PCI core.
 
-== Series Details ==
+Endpoint drivers perform Resizable BAR related operations which could
+well be performed by PCI core to simplify driver-side code. This
+series adds a few new API functions to that effect and converts the
+drivers to use the new APIs (in separate patches).
 
-Series: series starting with [-next,1/2] drm/xe: Remove duplicated include in xe_pt.c
-URL   : https://patchwork.freedesktop.org/series/154509/
-State : success
+While at it, also convert BAR sizes bitmask to u64 as PCIe spec already
+specifies more sizes than what will fit u32 to make the API typing more
+future-proof. The extra sizes beyond 128TB are not added at this point.
 
-== Summary ==
+These are based on pci/main plus a simple "adapter" patch to add the
+include for xe_vram_types.h that was added by a commit in drm-tip.
+Hopefully that is enough to avoid the within context conflict with
+BAR_SIZE_SHIFT removal to let the xe CI tests to be run for this
+series.
 
-CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -> xe-pw-154509v1_BAT
-====================================================
+There are two minor conflicts with the work in pci/resource but I'm
+hesitant to base this on top of it as this is otherwise entirely
+independent (and would likely prevent GPU CI tests as well). If we end
+up having to pull the bridge window select changes, there should be no
+reason why this does have to become collateral damage (so my
+suggestion, if this is good to go in this cycle, to take this into a
+separate branch than pci/resource and deal with those small conflicts
+while merging into pci/next).
 
-Summary
--------
+I've tested sysfs resize, i915, and xe BAR resizing functionality. In
+the case of xe, I did small hack patch as its resize is anyway broken
+as is because BAR0 pins the bridge window so resizing BAR2 fails. My
+hack caused other problems further down the road (likely because BAR0
+is in use by the driver so releasing it messed assumptions xe driver
+has) but the BAR resize itself was working which was all I was
+interested to know. I'm not planning to pursue fixing the pinning
+problem within xe driver because the core changes to consider maximum
+size of the resizable BARs should take care of the main problem by
+different means.
 
-  **SUCCESS**
+Some parts of this are to be used by the resizable BAR changes into the
+resource fitting/assingment logic but these seem to stand on their own
+so sending these out now to reduce the size of the other patch series.
 
-  No regressions found.
+v2:
+- Kerneldoc:
+  - Improve formatting of errno returns
+  - Open "ctrl" -> "control"
+  - Removed mislead "bit" words (when referring to BAR size)
+  - Rewrote pci_rebar_get_possible_sizes() kernel doc to not claim the
+    returned bitmask is defined in PCIe spec as the capability bits now
+    span across two registers in the spec and are not continuous (we
+    don't support the second block of bits yet, but this API is expected
+    to return the bits without the hole so it will not be matching with
+    the spec layout).
+- Dropped superfluous zero check from pci_rebar_size_supported()
+- Small improvement to changelog of patch 7
 
-  
+Ilpo Järvinen (11):
+  PCI: Move Resizable BAR code into rebar.c
+  PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+  PCI: Move pci_rebar_size_to_bytes() and export it
+  PCI: Improve Resizable BAR functions kernel doc
+  PCI: Add pci_rebar_size_supported() helper
+  drm/i915/gt: Use pci_rebar_size_supported()
+  drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+  PCI: Add pci_rebar_get_max_size()
+  drm/xe/vram: Use pci_rebar_get_max_size()
+  drm/amdgpu: Use pci_rebar_get_max_size()
+  PCI: Convert BAR sizes bitmasks to u64
 
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154509v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-2:          [PASS][1] -> [FAIL][2] ([Intel XE#5507]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_vm@bind-execqueues-independent:
-    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
-  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
-
-
-Build changes
--------------
-
-  * Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -> xe-pw-154509v1
-
-  IGT_8539: 8539
-  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b
-  xe-pw-154509v1: 154509v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html
-
---===============9060828505198125093==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ Documentation/driver-api/pci/pci.rst        |   3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   8 +-
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/xe/xe_vram.c                |  32 +-
+ drivers/pci/Makefile                        |   2 +-
+ drivers/pci/iov.c                           |   9 +-
+ drivers/pci/pci-sysfs.c                     |   2 +-
+ drivers/pci/pci.c                           | 145 ---------
+ drivers/pci/pci.h                           |   5 +-
+ drivers/pci/rebar.c                         | 314 ++++++++++++++++++++
+ drivers/pci/setup-res.c                     |  78 -----
+ include/linux/pci.h                         |  15 +-
+ 12 files changed, 350 insertions(+), 273 deletions(-)
+ create mode 100644 drivers/pci/rebar.c
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [-next,1/2] drm/xe: Remove duplicated include in xe_pt.c</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154509/">https://patchwork.freedesktop.org/series/154509/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+prerequisite-patch-id: 35bd3cd7a60ff7d887450a7fdde73b055a76ae24
+-- 
+2.39.5
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -&gt; xe-pw-154509v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154509v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_vm@bind-execqueues-independent:<ul>
-<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -&gt; xe-pw-154509v1</li>
-</ul>
-<p>IGT_8539: 8539<br />
-  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b<br />
-  xe-pw-154509v1: 154509v1</p>
-
-</body>
-</html>
-
---===============9060828505198125093==--
