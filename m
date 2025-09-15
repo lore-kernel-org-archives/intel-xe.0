@@ -4,40 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42D4ECAC58E
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 08:11:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C05CAC58E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 08:16:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D932410E33E;
-	Mon, 15 Sep 2025 08:11:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="ooy7PLjO";
-	dkim-atps=neutral
-Received: from out30-133.freemail.mail.aliyun.com
- (out30-133.freemail.mail.aliyun.com [115.124.30.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABC0A10E33C;
- Mon, 15 Sep 2025 08:11:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1757923914; h=From:To:Subject:Date:Message-ID:MIME-Version;
- bh=yDRofLuwR36Gwj6fKDMsFxxdwxwoKd4LieQPKmSPy18=;
- b=ooy7PLjOhw2zonI9qjSD1DL/60qaoMooMaVN1rDBwphXZqhZ7jktrzL9COupbK3CH2d/hhhLHAdyDxnRMiipxDvw9tEroLy2MEUbUMp98DnULbrYPtgLW3UxRolS1x8SPFGOk/JODTOjTFydeW1XmmImMPQzBNe8upFFOnl1i0k=
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com
- fp:SMTPD_---0WnzwkG1_1757923610 cluster:ay36) by smtp.aliyun-inc.com;
- Mon, 15 Sep 2025 16:06:50 +0800
-From: Yang Li <yang.lee@linux.alibaba.com>
-To: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yang Li <yang.lee@linux.alibaba.com>,
- Abaci Robot <abaci@linux.alibaba.com>
-Subject: [PATCH -next 2/2] drm/xe: Remove duplicated include in xe_tlb_inval.c
-Date: Mon, 15 Sep 2025 16:06:47 +0800
-Message-ID: <20250915080647.669569-2-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.43.7
-In-Reply-To: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
-References: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EFB10E28A;
+	Mon, 15 Sep 2025 08:16:07 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2874310E28A;
+ Mon, 15 Sep 2025 08:16:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1447473184830099043=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sriov=3A_Don=27t_mig?=
+ =?utf-8?q?rate_dmabuf_BO_to_System_RAM_if_P2P_check_succeeds?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Sep 2025 08:16:06 -0000
+Message-ID: <175792416615.333107.557955100209584629@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,31 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The header files xe_tlb_inval.h is included twice in xe_tlb_inval.c,
-so one inclusion of each can be removed.
+--===============1447473184830099043==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=24706
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
----
- drivers/gpu/drm/xe/xe_tlb_inval.c | 1 -
- 1 file changed, 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index e6e97b5a7b5c..41e80d609815 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -17,7 +17,6 @@
- #include "xe_tlb_inval.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
--#include "xe_tlb_inval.h"
- #include "xe_trace.h"
- 
- /**
--- 
-2.43.7
+Series: drm/xe/sriov: Don't migrate dmabuf BO to System RAM if P2P check succeeds
+URL   : https://patchwork.freedesktop.org/series/154504/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -> xe-pw-154504v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154504v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][1] ([Intel XE#5783]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154504v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -> xe-pw-154504v1
+
+  IGT_8539: 8539
+  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b
+  xe-pw-154504v1: 154504v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154504v1/index.html
+
+--===============1447473184830099043==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sriov: Don&#x27;t migrate dmabuf BO to System RAM if P2P check succeeds</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154504/">https://patchwork.freedesktop.org/series/154504/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154504v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154504v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -&gt; xe-pw-154504v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154504v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154504v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -&gt; xe-pw-154504v1</li>
+</ul>
+<p>IGT_8539: 8539<br />
+  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b<br />
+  xe-pw-154504v1: 154504v1</p>
+
+</body>
+</html>
+
+--===============1447473184830099043==--
