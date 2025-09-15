@@ -4,46 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BEE8CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 22:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2D9CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 22:34:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1C3D10E5B6;
-	Mon, 15 Sep 2025 22:18:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TrVIcQYt";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBBD10E5B6
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Sep 2025 22:18:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 60A6E60054;
- Mon, 15 Sep 2025 22:18:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0FB9C4CEF1;
- Mon, 15 Sep 2025 22:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1757974734;
- bh=GBVGutzOm/5GaShiFeo3Q28vRMzuauGYMvz6NFBS724=;
- h=Date:From:To:Cc:Subject:From;
- b=TrVIcQYtXTtv3zB/w6+IBbKkL1zc3GumkfzAR2F+QWGh5mdlPnWEOInSN4jBSJjqy
- 53Fg6NH9Z356ZkXGIZh2VRBz9VA1tJ0SZMJCVSadPkcnwHQZLeN7woYXSX1LCN30GQ
- Zg1+ZSolyC10X1vFDr+4SrC2gtnueIzcnRwrpHpPcO0CaeSVf5U/XgVKpWEBDT72r1
- dy3FrirtA78OUdZLJ6+4Sb2UANMzbeFTyPWRbDdD/LHwOZIEh/sJe/h+Z/nRHU+koN
- QVyO/KQtRB9GmOElcTAOrA/6kdXMQaG41+OqIymC64bFjECoUTrFbTyUQADs2zm8uB
- cZREkligKuYNg==
-Date: Mon, 15 Sep 2025 23:18:50 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the origin tree
-Message-ID: <aMiQym27AQtvHZF4@sirena.org.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F4F10E5BF;
+	Mon, 15 Sep 2025 22:34:44 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC07E10E5BA;
+ Mon, 15 Sep 2025 22:34:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4631397752718473735=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="I1vlnUjixT2C8oOM"
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fdevice=5Fsysfs?=
+ =?utf-8?q?=3A_add_cleanup_action_in_xe=5Fdevice=5Fsysfs=5Finit_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zongyao Bai" <zongyao.bai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Sep 2025 22:34:43 -0000
+Message-ID: <175797568369.335794.15075481845634758586@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250910183233.3971054-1-zongyao.bai@intel.com>
+In-Reply-To: <20250910183233.3971054-1-zongyao.bai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,84 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4631397752718473735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---I1vlnUjixT2C8oOM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/xe/xe_device_sysfs: add cleanup action in xe_device_sysfs_init (rev3)
+URL   : https://patchwork.freedesktop.org/series/154116/
+State : success
 
-Today's linux-next merge of the drm-xe tree got conflicts in:
+== Summary ==
 
-  drivers/gpu/drm/xe/tests/xe_bo.c
-  drivers/gpu/drm/xe/xe_bo.c
-  drivers/gpu/drm/xe/xe_bo.h
-  drivers/gpu/drm/xe/xe_dma_buf.c
-  drivers/gpu/drm/xe/xe_exec.c
-  drivers/gpu/drm/xe/xe_vm.c
+CI Bug Log - changes from xe-3765-4b2a554c1553f8de414acede44c326055ae2833c_BAT -> xe-pw-154116v3_BAT
+====================================================
 
-between commit:
+Summary
+-------
 
-  5c87fee3c96ce ("drm/xe: Attempt to bring bos back to VRAM after eviction")
+  **SUCCESS**
 
-=66rom the origin tree and commits:
+  No regressions found.
 
-  cb3d7b3b46b79 ("drm/xe: Attempt to bring bos back to VRAM after eviction")
-  0131514f97890 ("drm/xe: Pass down drm_exec context to validation")
-  8f25e5abcbfb9 ("drm/xe: Convert existing drm_exec transactions for exhaus=
-tive eviction")
+  
 
-=66rom the drm-xe tree.
+Participating hosts (11 -> 11)
+------------------------------
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+  No changes in participating hosts
 
-diff --cc drivers/gpu/drm/xe/tests/xe_bo.c
-index 7b40cc8be1c9c,2294cf89f3e11..0000000000000
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-diff --cc drivers/gpu/drm/xe/xe_bo.c
-index 870f433472811,8422f3cab1139..0000000000000
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-diff --cc drivers/gpu/drm/xe/xe_bo.h
-index cfb1ec266a6da,a77af42b5f9ea..0000000000000
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-diff --cc drivers/gpu/drm/xe/xe_dma_buf.c
-index 95d06bd65b0f1,607c3f4ef3b92..0000000000000
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-diff --cc drivers/gpu/drm/xe/xe_exec.c
-index 374c831e691b2,7715e74bb9454..0000000000000
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-diff --cc drivers/gpu/drm/xe/xe_vm.c
-index c00a5ff318176,0cacab20ff852..0000000000000
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
 
---I1vlnUjixT2C8oOM
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes
+-------
 
------BEGIN PGP SIGNATURE-----
+  No changes found
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjIkMkACgkQJNaLcl1U
-h9D7xAf+KfdxYydkIcx05/o2bSzdvlfnAKJX2ncpmuTtt0awnSihQAql9M/8g6Ds
-pAANugXfHVmLa6mMDBVruOrceDIVLzCUOd2G7QlsbIdMdiz/8Q1qrSrNVCQflRXB
-Ek4NBv3VoserQ9c/u5jojD55GfC5/iTafUuC7x9tAEA2ezcSN+gMAQsuSZMTlJp8
-b6NpXI4HNLW8ul6u/G5S8FyuM5dBd6oOuVByVNq8NuZmFUazeZUQZNyfdrUUU/6p
-/75Igrq2iqSCs1Iy93vI/MZvP6IgN7fixtIOSyGqXFINm0xBstrBYQkFhmKmykT2
-lMQEZ2t//Zp75FOax/Lq9yAygoLI4g==
-=lTeh
------END PGP SIGNATURE-----
 
---I1vlnUjixT2C8oOM--
+Build changes
+-------------
+
+  * Linux: xe-3765-4b2a554c1553f8de414acede44c326055ae2833c -> xe-pw-154116v3
+
+  IGT_8540: 8540
+  xe-3765-4b2a554c1553f8de414acede44c326055ae2833c: 4b2a554c1553f8de414acede44c326055ae2833c
+  xe-pw-154116v3: 154116v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154116v3/index.html
+
+--===============4631397752718473735==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_device_sysfs: add cleanup action in xe_device_sysfs_init (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154116/">https://patchwork.freedesktop.org/series/154116/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154116v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154116v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3765-4b2a554c1553f8de414acede44c326055ae2833c_BAT -&gt; xe-pw-154116v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3765-4b2a554c1553f8de414acede44c326055ae2833c -&gt; xe-pw-154116v3</li>
+</ul>
+<p>IGT_8540: 8540<br />
+  xe-3765-4b2a554c1553f8de414acede44c326055ae2833c: 4b2a554c1553f8de414acede44c326055ae2833c<br />
+  xe-pw-154116v3: 154116v3</p>
+
+</body>
+</html>
+
+--===============4631397752718473735==--
