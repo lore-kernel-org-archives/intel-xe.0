@@ -4,70 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB5D4CAC59A
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 09:16:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD6AECAC58E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 09:23:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDE310E3C8;
-	Mon, 15 Sep 2025 09:16:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnADh7kL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263AF10E3BD;
- Mon, 15 Sep 2025 09:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757927808; x=1789463808;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CMC8x2eBSJ4UoaxkrrTOqREVcL7ID4H/ORR4uPkIaKs=;
- b=AnADh7kL0Z6Y9dUgxb//Hgk/g5oah9T4FLyVaJ5KCCZ15jRKJ1Xhj3BG
- 9OTEzMfH1zUELSUgQxyaXSq2UBj5b+rH7YB0SMYUbKwkq6SgjNKPUX7TV
- zGIaLlmU4F7YFFlv+t1Cx2jx9cM3Yx68Hli3VEMvJzu+0Q84GcXTm5W9h
- nXKRYB+4iBA938zy03M9hSyz3dyMmAmwBL+Y3rQ7acAwM1VYOXYktN7zl
- 6F9rCEsVQinf/63MuOVNtsijwE6DKJU5Bom4Xg4W0DyDi5C8POQveCK/Q
- NZJGyk1Zas389jgS6uIQQmMRZMdX6jXsPHjNtNS1fD8NE9xqB+8xougt8 Q==;
-X-CSE-ConnectionGUID: soG3mojCRjW5RdwFZiH9LQ==
-X-CSE-MsgGUID: TIZnINDzQIKMKwaE46MjFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="70857641"
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="70857641"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 02:16:47 -0700
-X-CSE-ConnectionGUID: 0w9WvEPQRPa+8YXnCTITGQ==
-X-CSE-MsgGUID: SJZwvFJSQ4O4aV07xwZEpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="174392724"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.39])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 02:16:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <mjruhl@habana.ai>, linux-kernel@vger.kernel.org
-Cc: linux-doc@vger.kernel.org,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH v2 11/11] PCI: Convert BAR sizes bitmasks to u64
-Date: Mon, 15 Sep 2025 12:13:58 +0300
-Message-Id: <20250915091358.9203-12-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
-References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF0510E3CB;
+	Mon, 15 Sep 2025 09:23:03 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 901B510E3C9;
+ Mon, 15 Sep 2025 09:23:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PCI=3A_Resizable_BAR_impr?=
+ =?utf-8?q?ovements_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Sep 2025 09:23:01 -0000
+Message-ID: <175792818158.333576.10055973077826169683@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+In-Reply-To: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,103 +36,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PCIe r6.2 section 7.8.6 defines resizable BAR sizes beyond the
-currently supported maximum of 128TB which will require more than u32
-to store the entire bitmask.
+== Series Details ==
 
-Convert Resizable BAR related functions to use u64 bitmask for BAR
-sizes to make the typing more future-proof.
+Series: PCI: Resizable BAR improvements (rev2)
+URL   : https://patchwork.freedesktop.org/series/154361/
+State : warning
 
-The support for the larger BAR sizes themselves is not added at this
-point.
+== Summary ==
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/xe/xe_vram.c | 2 +-
- drivers/pci/iov.c            | 2 +-
- drivers/pci/pci-sysfs.c      | 2 +-
- drivers/pci/rebar.c          | 4 ++--
- include/linux/pci.h          | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 611e233d78b986dbb28ccb592eaada567a9cb5c8
+Author: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+Date:   Mon Sep 15 12:13:58 2025 +0300
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index ca02744fb369..22b998727eb2 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -70,7 +70,7 @@ static void resize_vram_bar(struct xe_device *xe)
- 
- 		if (!pci_rebar_size_supported(pdev, LMEM_BAR, rebar_size)) {
- 			drm_info(&xe->drm,
--				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-+				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%llx. Leaving default: %lluMiB\n",
- 				 (u64)pci_rebar_size_to_bytes(rebar_size) >> 20,
- 				 pci_rebar_get_possible_sizes(pdev, LMEM_BAR),
- 				 (u64)current_size >> 20);
-diff --git a/drivers/pci/iov.c b/drivers/pci/iov.c
-index 51844a9176a0..d2741c4f3315 100644
---- a/drivers/pci/iov.c
-+++ b/drivers/pci/iov.c
-@@ -1370,7 +1370,7 @@ EXPORT_SYMBOL_GPL(pci_iov_vf_bar_set_size);
- u32 pci_iov_vf_bar_get_sizes(struct pci_dev *dev, int resno, int num_vfs)
- {
- 	u64 vf_len = pci_resource_len(dev, resno);
--	u32 sizes;
-+	u64 sizes;
- 
- 	if (!num_vfs)
- 		return 0;
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 5eea14c1f7f5..b6920114d538 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1544,7 +1544,7 @@ static ssize_t __resource_resize_show(struct device *dev, int n, char *buf)
- 	pci_config_pm_runtime_get(pdev);
- 
- 	ret = sysfs_emit(buf, "%016llx\n",
--			 (u64)pci_rebar_get_possible_sizes(pdev, n));
-+			 pci_rebar_get_possible_sizes(pdev, n));
- 
- 	pci_config_pm_runtime_put(pdev);
- 
-diff --git a/drivers/pci/rebar.c b/drivers/pci/rebar.c
-index 27185892ada4..ea8620e4bc18 100644
---- a/drivers/pci/rebar.c
-+++ b/drivers/pci/rebar.c
-@@ -105,7 +105,7 @@ static int pci_rebar_find_pos(struct pci_dev *pdev, int bar)
-  * Return: A bitmask of possible sizes (bit 0=1MB, bit 31=128TB), or %0 if
-  *	   BAR isn't resizable.
-  */
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- {
- 	int pos;
- 	u32 cap;
-@@ -155,7 +155,7 @@ EXPORT_SYMBOL_GPL(pci_rebar_size_supported);
-  */
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar)
- {
--	u32 sizes;
-+	u64 sizes;
- 
- 	sizes = pci_rebar_get_possible_sizes(pdev, bar);
- 	if (!sizes)
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index a4236aafad24..bb10c7eb49e2 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1422,7 +1422,7 @@ void pci_release_resource(struct pci_dev *dev, int resno);
- /* Resizable BAR related routines */
- int pci_rebar_bytes_to_size(u64 bytes);
- resource_size_t pci_rebar_size_to_bytes(int size);
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
-+u64 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
- bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size);
- int pci_rebar_get_max_size(struct pci_dev *pdev, int bar);
- int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
--- 
-2.39.5
+    PCI: Convert BAR sizes bitmasks to u64
+    
+    PCIe r6.2 section 7.8.6 defines resizable BAR sizes beyond the
+    currently supported maximum of 128TB which will require more than u32
+    to store the entire bitmask.
+    
+    Convert Resizable BAR related functions to use u64 bitmask for BAR
+    sizes to make the typing more future-proof.
+    
+    The support for the larger BAR sizes themselves is not added at this
+    point.
+    
+    Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+    Reviewed-by: Christian König <christian.koenig@amd.com>
++ /mt/dim checkpatch dcbce80de08157a4817564fc3db3179b7c87095c drm-intel
+5e8cd5c232b8 PCI: Move Resizable BAR code into rebar.c
+-:225: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#225: 
+new file mode 100644
+
+-:271: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#271: FILE: drivers/pci/rebar.c:42:
++		return -ENOTSUPP;
+
+-:426: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#426: FILE: drivers/pci/rebar.c:197:
++		return -ENOTSUPP;
+
+-:437: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#437: FILE: drivers/pci/rebar.c:208:
++		return -ENOTSUPP;
+
+total: 0 errors, 4 warnings, 0 checks, 501 lines checked
+a766d7c00db9 PCI: Cleanup pci_rebar_bytes_to_size() and move into rebar.c
+11596c7c58a6 PCI: Move pci_rebar_size_to_bytes() and export it
+f9b9403ea72f PCI: Improve Resizable BAR functions kernel doc
+76ceaf65b750 PCI: Add pci_rebar_size_supported() helper
+f4fd715b7bbb drm/i915/gt: Use pci_rebar_size_supported()
+c731e42ec5c1 drm/xe/vram: Use PCI rebar helpers in resize_vram_bar()
+6630c0a972e6 PCI: Add pci_rebar_get_max_size()
+ff897515634d drm/xe/vram: Use pci_rebar_get_max_size()
+ba7ed79ec7c5 drm/amdgpu: Use pci_rebar_get_max_size()
+611e233d78b9 PCI: Convert BAR sizes bitmasks to u64
+
 
