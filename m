@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AAECAC597
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 14:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4206DCAC597
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 14:51:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D57B10E4D3;
-	Mon, 15 Sep 2025 14:38:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iq/RcsJ/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E058710E4D3
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Sep 2025 14:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757947091; x=1789483091;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v6/+J5WLp5xiV+L62Dp/NdlSpqQFWPh/y1dgzyia30U=;
- b=Iq/RcsJ/7k8eCxnuynMImepAp/QY+FuDR3S2s73PL3kORrUx7m4WmOOr
- 1nNtsFx8kewbwcWbSfgCkpAJJCuj7BOFiWm3o+VNa3ga2ebLsJJvFh/dc
- q0SsGOm9GpZSwR/XN0kZ8rZoRhc1n59k7vqHV5o+6yJGbwWCtsNu+Dic9
- 2SIlQrYPWSQcnHIQ10p+liFHv4U/sAXEZMr3JbDVMTK3kjr4jyWCE0/9F
- JGod6Dtmv0Paf8/BRNvUlynniBIW4Uu+ohslxX8XM1JqM44RiqUxX1Wl1
- UEX5J+UiLB2SPhr16ZUzraFOv8Fgp3/0fSRgOHkvQ3Murplv663d0xL7a w==;
-X-CSE-ConnectionGUID: F9PzTpF0TMG862FfzvujaA==
-X-CSE-MsgGUID: SHAT5Sd3Toyv431koZmJVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="70452612"
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="70452612"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 07:38:07 -0700
-X-CSE-ConnectionGUID: JmbWSXKiTz6XPlDsxlUL1g==
-X-CSE-MsgGUID: YDt8fePPQVifP2zoeQkq2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,266,1751266800"; d="scan'208";a="211820776"
-Received: from naresh-nuc8i7beh.iind.intel.com (HELO
- nkumarg-desk.iind.intel.com) ([10.190.216.171])
- by orviesa001.jf.intel.com with ESMTP; 15 Sep 2025 07:38:05 -0700
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: naresh.kumar.g@intel.com,
-	tejas.upadhyay@intel.com
-Subject: [PATCH] drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF
- Provisioning
-Date: Mon, 15 Sep 2025 20:03:32 +0530
-Message-ID: <20250915143331.3269895-2-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B2210E4D4;
+	Mon, 15 Sep 2025 14:51:24 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D13D10E4D4;
+ Mon, 15 Sep 2025 14:51:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2102065727380321651=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysfs=3A_Fix_attribu?=
+ =?utf-8?q?tes_registration_on_VFs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 15 Sep 2025 14:51:23 -0000
+Message-ID: <175794788317.334864.8794505301903482731@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250915140614.2076-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250915140614.2076-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,112 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Multi CCS mode can only be enabled when SRIOV is in PF mode with
-no VFs provisioned.
-Similarly, provisioning VFs is not allowed when Multi CCS mode is active.
+--===============2102065727380321651==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c |  7 ++++---
- drivers/gpu/drm/xe/xe_gt_ccs_mode.h | 10 ++++++++++
- drivers/gpu/drm/xe/xe_pci_sriov.c   |  7 +++++++
- drivers/gpu/drm/xe/xe_sriov.h       | 12 ++++++++++++
- 4 files changed, 33 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index 50fffc9ebf62..39df801e9cd5 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -117,9 +117,10 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
- 	u32 num_engines, num_slices;
- 	int ret;
- 
--	if (IS_SRIOV(xe)) {
--		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
--			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-+	if (IS_SRIOV_VF_ENABLED(xe)) {
-+		xe_gt_dbg(gt, "Can't change compute mode when running as %s / %s\n",
-+			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)),
-+			  "One or more VFs enabled");
- 		return -EOPNOTSUPP;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-index f8779852cf0d..1a80a293daa2 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-@@ -20,5 +20,15 @@ static inline bool xe_gt_ccs_mode_enabled(const struct xe_gt *gt)
- 	return hweight32(CCS_MASK(gt)) > 1;
- }
- 
-+static inline bool xe_is_primary_gt_multi_ccs_enabled(struct xe_device *xe)
-+{
-+	/* multi CCS mode supported exclusively on GT0 */
-+	struct xe_gt *gt = xe_device_get_gt(xe, 0);
-+
-+	return (gt->ccs_mode > 1);
-+}
-+
-+#define IS_PRIMARY_GT_MULTI_CCS_ENABLED(xe) xe_is_primary_gt_multi_ccs_enabled(xe)
-+
- #endif
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-index af05db07162e..96e3fd51b8f5 100644
---- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-@@ -19,6 +19,7 @@
- #include "xe_sriov_pf.h"
- #include "xe_sriov_pf_helpers.h"
- #include "xe_sriov_printk.h"
-+#include "xe_gt_ccs_mode.h"
- 
- static int pf_needs_provisioning(struct xe_gt *gt, unsigned int num_vfs)
- {
-@@ -153,6 +154,12 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
- 	xe_assert(xe, IS_SRIOV_PF(xe));
- 	xe_assert(xe, num_vfs > 0);
- 	xe_assert(xe, num_vfs <= total_vfs);
-+
-+	if (IS_PRIMARY_GT_MULTI_CCS_ENABLED(xe)) {
-+		xe_sriov_info(xe, "Can't change the number of VFs while multi-CCS mode is enabled.");
-+
-+		return -EOPNOTSUPP;
-+	}
- 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
- 
- 	err = xe_sriov_pf_wait_ready(xe);
-diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-index 6db45df55615..78019cee61fe 100644
---- a/drivers/gpu/drm/xe/xe_sriov.h
-+++ b/drivers/gpu/drm/xe/xe_sriov.h
-@@ -36,6 +36,16 @@ static inline bool xe_device_is_sriov_vf(const struct xe_device *xe)
- 	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_VF;
- }
- 
-+static inline bool xe_device_is_vf_enabled(const struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+
-+	if (xe_device_is_sriov_vf(xe))
-+		return true;
-+
-+	return (pci_num_vf(pdev) > 0);
-+}
-+
- #ifdef CONFIG_PCI_IOV
- #define IS_SRIOV_PF(xe) xe_device_is_sriov_pf(xe)
- #else
-@@ -45,4 +55,6 @@ static inline bool xe_device_is_sriov_vf(const struct xe_device *xe)
- 
- #define IS_SRIOV(xe) (IS_SRIOV_PF(xe) || IS_SRIOV_VF(xe))
- 
-+#define IS_SRIOV_VF_ENABLED(xe) xe_device_is_vf_enabled(xe)
-+
- #endif
--- 
-2.43.0
+Series: drm/xe/sysfs: Fix attributes registration on VFs
+URL   : https://patchwork.freedesktop.org/series/154534/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c_BAT -> xe-pw-154534v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c -> xe-pw-154534v1
+
+  IGT_8540: 8540
+  xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c: 6b4b640e8f446e569cdca0396efa12903de0896c
+  xe-pw-154534v1: 154534v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154534v1/index.html
+
+--===============2102065727380321651==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sysfs: Fix attributes registration on VFs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154534/">https://patchwork.freedesktop.org/series/154534/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154534v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154534v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c_BAT -&gt; xe-pw-154534v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c -&gt; xe-pw-154534v1</li>
+</ul>
+<p>IGT_8540: 8540<br />
+  xe-3759-6b4b640e8f446e569cdca0396efa12903de0896c: 6b4b640e8f446e569cdca0396efa12903de0896c<br />
+  xe-pw-154534v1: 154534v1</p>
+
+</body>
+</html>
+
+--===============2102065727380321651==--
