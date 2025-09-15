@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8CA4CAC598
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 08:42:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2567CCAC58E
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 08:55:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF6A10E2C5;
-	Mon, 15 Sep 2025 08:42:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c/pNuRH5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0015510E2C5
- for <intel-xe@lists.freedesktop.org>; Mon, 15 Sep 2025 08:42:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1757925753; x=1789461753;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=X24RURs7vYcpEcYIvM5b29WRUsYGJjLH4caNgJkkQcw=;
- b=c/pNuRH54pLq96pt8nlSLrQGJQYxTBTRo46HCoyN6UrUL9hqxtf1lyTx
- 4j/XuZ/mvAT6BCeH8L4hGwZH7+DeNNPGNZgpQ77fEQMDnPjskkND4mp9q
- 2tp7S+9eR33L55hOHfqtBJ2K7HJ8VtnDDcGro4qdE58WgVEORhUExYj1X
- oRLW0CIrzbSbNxv/U2fpBkTDoHKcxqzq36GcqEZtWkuSjHPhTLxSQsS8R
- 3oNFVZBjiZQEGeGh1VpTb7gqbofx/4XMXwh1GLb9zNSgGriZKGHJ7Y6tP
- blUiDZKPEaHEGiaXHiKnLROWqCc5YKeZWFnSF3oMTWvIrbBrdKMGeOgs0 A==;
-X-CSE-ConnectionGUID: sxJcf2erQ66QO1IIUbl9/w==
-X-CSE-MsgGUID: +HKPPUMcSLWVMtduBytdbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11553"; a="47741424"
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="47741424"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 01:42:32 -0700
-X-CSE-ConnectionGUID: kPLJ/qAhRoOP2dN/ZAu40Q==
-X-CSE-MsgGUID: Fj043JFdQOmJ/hJHLwJxwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,265,1751266800"; d="scan'208";a="174160767"
-Received: from agladkov-desk.ger.corp.intel.com (HELO [10.245.245.55])
- ([10.245.245.55])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2025 01:42:31 -0700
-Message-ID: <3d654e86-51c6-46fa-af64-af55bbd6368f@intel.com>
-Date: Mon, 15 Sep 2025 09:42:30 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCD5410E340;
+	Mon, 15 Sep 2025 08:55:42 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0FC10E2C6;
+ Mon, 15 Sep 2025 08:55:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9060828505198125093=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] drm/xe: Force user context allocations in user VRAM
-To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B-ne?=
+ =?utf-8?q?xt=2C1/2=5D_drm/xe=3A_Remove_duplicated_include_in_xe=5Fpt=2Ec?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Yang Li" <yang.lee@linux.alibaba.com>
 Cc: intel-xe@lists.freedesktop.org
-References: <20250910143736.792426-1-piotr.piorkowski@intel.com>
- <20250910143736.792426-4-piotr.piorkowski@intel.com>
- <92d7142e-0700-4fa7-aac9-da1058b3f98b@intel.com>
- <20250912171317.7vhkx5iov6m7zyv6@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250912171317.7vhkx5iov6m7zyv6@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Mon, 15 Sep 2025 08:55:41 -0000
+Message-ID: <175792654176.333107.1773627076463103673@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
+In-Reply-To: <20250915080647.669569-1-yang.lee@linux.alibaba.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,113 +36,146 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 12/09/2025 18:13, Piotr Piórkowski wrote:
-> Matthew Auld <matthew.auld@intel.com> wrote on pią [2025-wrz-12 16:37:31 +0100]:
->> On 10/09/2025 15:37, Piórkowski, Piotr wrote:
->>> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
->>>
->>> In general, kernel structures should be allocated in the kernel-dedicated
->>> VRAM region. However, userspace context data - while used by the kernel -
->>> does not need to reside there.
->>> Let's force the allocation of such data in the general-purpose VRAM region
->>> accessible to userspace.
->>>
->>> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_exec_queue.c | 7 +++++--
->>>    drivers/gpu/drm/xe/xe_lrc.c        | 3 +++
->>>    drivers/gpu/drm/xe/xe_lrc.h        | 6 ++++--
->>>    drivers/gpu/drm/xe/xe_pt.c         | 2 +-
->>>    4 files changed, 13 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> index 063c89d981e5..9a8fa3ed5d09 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> @@ -160,7 +160,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
->>>    	return q;
->>>    }
->>> -static int __xe_exec_queue_init(struct xe_exec_queue *q)
->>> +static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
->>>    {
->>>    	int i, err;
->>>    	u32 flags = 0;
->>> @@ -179,6 +179,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->>>    			flags |= XE_LRC_CREATE_RUNALONE;
->>>    	}
->>> +	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
->>> +		flags |= XE_LRC_CREATE_USER_CTX;
->>> +
->>>    	for (i = 0; i < q->width; ++i) {
->>>    		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
->>>    		if (IS_ERR(q->lrc[i])) {
->>> @@ -215,7 +218,7 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
->>>    	if (IS_ERR(q))
->>>    		return q;
->>> -	err = __xe_exec_queue_init(q);
->>> +	err = __xe_exec_queue_init(q, flags);
->>>    	if (err)
->>>    		goto err_post_alloc;
->>> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->>> index 6d52e0eb97f5..423b0a1cde99 100644
->>> --- a/drivers/gpu/drm/xe/xe_lrc.c
->>> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->>> @@ -1340,6 +1340,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->>>    	if (vm && vm->xef) /* userspace */
->>>    		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
->>> +	if (init_flags & XE_LRC_CREATE_USER_CTX)
->>> +		bo_flags |= XE_BO_FLAG_FORCE_USER_VRAM;
->>
->> Should this be folded into the vm && vm->xef check above? Seem like we would
->> also want LATE_RESTORE in such cases? Could be a separate change since it's
->> a behviour change, but looks to be an improvement by itself?
->>
-> 
-> Actually, I hadn't considered that before, as I wasn't sure whether LATE_RESTORE
-> was also useful in the second wider case. If you think it's a good idea, I can prepare
-> a separate patch for it as part of this series.
+--===============9060828505198125093==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, ideally we allow restoring using the blitter for as many objects 
-as possible and for anything user oriented it should be safe. So I think 
-a patch for that would be good. Anyway, need to go through the rest of 
-the series.
+== Series Details ==
 
-> 
-> 
->>> +
->>>    	lrc->bo = xe_bo_create_pin_map_novm(xe, tile,
->>>    					    bo_size,
->>>    					    ttm_bo_type_kernel,
->>> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
->>> index 188565465779..21a3daab0154 100644
->>> --- a/drivers/gpu/drm/xe/xe_lrc.h
->>> +++ b/drivers/gpu/drm/xe/xe_lrc.h
->>> @@ -44,8 +44,10 @@ struct xe_lrc_snapshot {
->>>    #define LRC_WA_BB_SIZE SZ_4K
->>> -#define XE_LRC_CREATE_RUNALONE 0x1
->>> -#define XE_LRC_CREATE_PXP 0x2
->>> +#define XE_LRC_CREATE_RUNALONE		BIT(0)
->>> +#define XE_LRC_CREATE_PXP		BIT(1)
->>> +#define XE_LRC_CREATE_USER_CTX		BIT(2)
->>> +
->>>    struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
->>>    			     u32 ring_size, u16 msix_vec, u32 flags);
->>>    void xe_lrc_destroy(struct kref *ref);
->>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->>> index 01eea8eb1779..1b9c497f30e1 100644
->>> --- a/drivers/gpu/drm/xe/xe_pt.c
->>> +++ b/drivers/gpu/drm/xe/xe_pt.c
->>> @@ -123,7 +123,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
->>>    		   XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE |
->>>    		   XE_BO_FLAG_NO_RESV_EVICT | XE_BO_FLAG_PAGETABLE;
->>>    	if (vm->xef) /* userspace */
->>> -		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
->>> +		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
->>>    	pt->level = level;
->>
-> 
+Series: series starting with [-next,1/2] drm/xe: Remove duplicated include in xe_pt.c
+URL   : https://patchwork.freedesktop.org/series/154509/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -> xe-pw-154509v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154509v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-2:          [PASS][1] -> [FAIL][2] ([Intel XE#5507]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_vm@bind-execqueues-independent:
+    - {bat-ptl-2}:        [FAIL][3] ([Intel XE#5783]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+  [Intel XE#5783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783
+
+
+Build changes
+-------------
+
+  * Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -> xe-pw-154509v1
+
+  IGT_8539: 8539
+  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b
+  xe-pw-154509v1: 154509v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html
+
+--===============9060828505198125093==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [-next,1/2] drm/xe: Remove duplicated include in xe_pt.c</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154509/">https://patchwork.freedesktop.org/series/154509/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b_BAT -&gt; xe-pw-154509v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154509v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xe2@render:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_vm@bind-execqueues-independent:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5783">Intel XE#5783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154509v1/bat-ptl-2/igt@xe_vm@bind-execqueues-independent.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b -&gt; xe-pw-154509v1</li>
+</ul>
+<p>IGT_8539: 8539<br />
+  xe-3755-36a8f6b405f4a0def4462366cd17992897e1362b: 36a8f6b405f4a0def4462366cd17992897e1362b<br />
+  xe-pw-154509v1: 154509v1</p>
+
+</body>
+</html>
+
+--===============9060828505198125093==--
