@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A250CCAC598
-	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 17:22:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65685CAC597
+	for <intel-xe@archiver.kernel.org>; Mon, 15 Sep 2025 17:24:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB8810E51F;
-	Mon, 15 Sep 2025 17:22:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16BF710E521;
+	Mon, 15 Sep 2025 17:24:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VjDqza8j";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nUl0N/rk";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9A0E10E51C;
- Mon, 15 Sep 2025 17:22:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 023C210E51F;
+ Mon, 15 Sep 2025 17:24:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C414F601EF;
- Mon, 15 Sep 2025 17:22:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 117F2C4CEF1;
- Mon, 15 Sep 2025 17:22:40 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 42B8D601F3;
+ Mon, 15 Sep 2025 17:24:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80165C4CEF1;
+ Mon, 15 Sep 2025 17:24:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1757956961;
- bh=MwPTWHMVS1a2WpMTOzVZuU4xM9Y5h1sGMnVe69pXgjg=;
+ s=k20201202; t=1757957053;
+ bh=7STYzWbQMVyC09sCCmmsDxZCpqXzbEGrpzMTDgjvMt4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=VjDqza8jv0gA0NJzp1Vlgkr2sR1NKkLU/5WdofDyBASVSIFQgpoEiIxs5PesEGi1y
- 2o2BytLlFLV/gOAGMcy9dUVP0PSrSEA1AkV2XG3ZauUz5qTmhQZUH0mx4ONdOh3poV
- 9NUAnIizt9aFOCrfNNmKAuK+JHUtFMzB5wm2Hm0B0DfGEU/Os281Q3jthCbhJw6+uH
- snOxqCkLry2LmLMNaO4fZUbKjqKmGxUn6cLMVz+T1mFZaJX9mdjiNP1Rcnafh93S+C
- 8V3sFrkj+O5vvR+384HssSuJHcgUcCg6j+M2aH1DIj3kWPXR8uNWorXrWPIAD6lkdc
- mrrE1BhrJo1hA==
-Date: Mon, 15 Sep 2025 19:22:38 +0200
+ b=nUl0N/rkG1GQQYgyQ5VHxpycUsA8D0xkIG8GEI4aZk9JtnwwBIDZF1LykQJfl5Hf5
+ AvyLiPWW0c+tqIdNVBrw7xeCnYJl2KDsmddVWtSNi/7dw9p9+BMvmekRupn63JvtjP
+ m9Zmk7lfsrFtS5kMcV1ocJCLicp97ZrEgdearK/ZqRmNXyb+FwjB5+0rpu+2IQ034k
+ lPtetQX3+awv5YeY/4LkrPIzxYn4UkG9M8EE/+0xAnCevrovPaUWbTKcXf7qv/5/gx
+ 8HCm22TyEZeGirF4axBMINzViIlvkEb4yxYpkaajm3SpIApk+Ect6v1RHNDB4dPHC3
+ GLZyfksGi8vzA==
+Date: Mon, 15 Sep 2025 19:24:10 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
  Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
  Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
  =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
  Alex Deucher <alexander.deucher@amd.com>, 
  amd-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, 
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ intel-xe@lists.freedesktop.org, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
  ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  "Michael J . Ruhl" <mjruhl@habana.ai>, 
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
 Subject: Re: [PATCH v2 06/11] drm/i915/gt: Use pci_rebar_size_supported()
-Message-ID: <e6t3dzohiyz36jfe4xjcjgm3zi4h2ln5ocxbvgv3gqt6oipb6h@p2j3o6jeqj45>
+Message-ID: <ewypjj64siaswcfvfzgxihwrflb6k6pz2mrfuu4ursdldwnqlm@ignlhd73keck>
 References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
  <20250915091358.9203-7-ilpo.jarvinen@linux.intel.com>
+ <b918053f6ac7b4a27148a1cbf10eb8402572c6c9@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250915091358.9203-7-ilpo.jarvinen@linux.intel.com>
+In-Reply-To: <b918053f6ac7b4a27148a1cbf10eb8402572c6c9@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,17 +73,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ilpo,
+Hi,
 
-On Mon, Sep 15, 2025 at 12:13:53PM +0300, Ilpo Järvinen wrote:
-> PCI core provides pci_rebar_size_supported() that helps in checking if
-> a BAR Size is supported for the BAR or not. Use it in
-> i915_resize_lmem_bar() to simplify code.
+On Mon, Sep 15, 2025 at 03:42:23PM +0300, Jani Nikula wrote:
+> On Mon, 15 Sep 2025, Ilpo Järvinen <ilpo.jarvinen@linux.intel.com> wrote:
+> > PCI core provides pci_rebar_size_supported() that helps in checking if
+> > a BAR Size is supported for the BAR or not. Use it in
+> > i915_resize_lmem_bar() to simplify code.
+> >
+> > Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> > Acked-by: Christian König <christian.koenig@amd.com>
 > 
-> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-> Acked-by: Christian König <christian.koenig@amd.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> and
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Just for some random noise on commit log's bureaucracy: why do we
+need both Ack and R-b? I think R-b covers Ack making it
+redundant. Right?
 
-Thanks,
 Andi
