@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4327FCAC59B
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 20:06:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E2B9CAC59B
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 20:15:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0285F10E781;
-	Tue, 16 Sep 2025 20:06:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A1FB10E785;
+	Tue, 16 Sep 2025 20:15:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPLfrM8x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGqHsA13";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFBEB10E781;
- Tue, 16 Sep 2025 20:06:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FFD210E785;
+ Tue, 16 Sep 2025 20:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758053200; x=1789589200;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=2L2ifVhx2cC2n43dBgoVI8nlDzdlP68qFNqQuB9SeMo=;
- b=mPLfrM8xoo/WqU+nxj3lHmdkJ6iAK3y4iBJBfX0Lh2296JfkQRzr5yJ/
- TGdLWvGJ1N6k8yjw5vkoXpQ4WpSWkcWKAG6fQYJTpGN9PKfej6e3OpRiz
- 2JootbggzFzPNCL6cmllMG+xiItU0KzGhckR5bmI5Re6E2jVHwklPtfCD
- EgTxaMtqPvyLFPPH+mCmHQdbupkvVJ0TjbVkTl3SWy/XKNB10XS6EnYoN
- lxVSalJ4s0078OLzx7bKK5g2fpMRLrxDbtU+Dp24Dvyl8KXo0LtpdRXe2
- rVN26O4r84/gr0LuLJliD+D1r0uQMuc4vkM/ArtCEq2QSU0iW/6IzycJS w==;
-X-CSE-ConnectionGUID: 2TcRkqisSauR767qpzPwnA==
-X-CSE-MsgGUID: tdsvsGLeQs+foq/m5Qf0ZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="60416160"
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="60416160"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 13:06:39 -0700
-X-CSE-ConnectionGUID: Km8MnseATi21fZFNolLQ9A==
-X-CSE-MsgGUID: Syo8K809TWChhGHYySzFLg==
+ t=1758053708; x=1789589708;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3iyON+nEaUeayWRu3kFnsphO+ZdJd4jMaHXSYCzOJkI=;
+ b=WGqHsA13nSC+N2yUt6WvTh2I10jiG+iQAgp8503pwF3/Jtn+yptvReUn
+ hEExe5u9zDyY7a3PSbFWHAo2BZm8idy+cNEo0vwdb0VojzNz6wU1Qt6c5
+ 0p+xB06jyLrdB9gHrdUUsBoKONvXBFW6E2Mse8EPxgKOCSij7C/qPs8yl
+ z7nkSFrzMyeuRng7DTJDGbyRjkXDI0pEp5ejlOdr+7GQu9ozm8n66Ux/1
+ S390965tTCnkPYYztB+SfTKDJ3DfWRZqRWKkfm7+RQX8/umrXlhKrhMsE
+ 8+WI8MLMqp2LH4ohSzLID4ftIIuDrB7EBCi1NIDKRYvRpnD86r/KIZES2 A==;
+X-CSE-ConnectionGUID: nhN+BFSZTmKAryDC0UiFxg==
+X-CSE-MsgGUID: 7rpwszY7Qh2SmvFhnwQHfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82944084"
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="82944084"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 13:15:07 -0700
+X-CSE-ConnectionGUID: 6YZwoslXTCyFHRiasq2UyQ==
+X-CSE-MsgGUID: v43ZYwt0TBakltTpP7G/+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="179339828"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.138])
- ([10.245.245.138])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 13:06:37 -0700
-Message-ID: <a28534edd2c0d496317869a6f85d199d6fbfef54.camel@linux.intel.com>
-Subject: Re: [PATCH v4 3/5] drm/xe/pf: Add a helper function to get a VF's
- backing object in LMEM
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Date: Tue, 16 Sep 2025 22:06:34 +0200
-In-Reply-To: <20250915072428.1712837-4-vivek.kasireddy@intel.com>
-References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
- <20250915072428.1712837-4-vivek.kasireddy@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="174853461"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 13:15:07 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ airlied@gmail.com, simona@ffwll.ch, Yang Li <yang.lee@linux.alibaba.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Abaci Robot <abaci@linux.alibaba.com>
+Subject: Re: [PATCH -next] drm/xe: Remove duplicate header files
+Date: Tue, 16 Sep 2025 13:14:46 -0700
+Message-ID: <175805362854.2339703.13765857337956924451.b4-ty@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250916021039.1632766-1-yang.lee@linux.alibaba.com>
+References: <20250916021039.1632766-1-yang.lee@linux.alibaba.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,86 +70,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-09-15 at 00:21 -0700, Vivek Kasireddy wrote:
-> To properly import a dmabuf that is associated with a VF (or that
-> originates in a Guest VM that includes a VF), we need to know where
-> in LMEM the VF's allocated regions exist. Therefore, introduce a
-> new helper to return the object that backs the VF's regions in LMEM.
->=20
-> v2:
-> - Make the helper return the LMEM object instead of the start address
->=20
-> v3:
-> - Move the declaration of the helper under other lmem helpers
-> (Michal)
 
-In XeKMD we're typically using VRAM instead of LMEM, IMO we should try
-to be consistent with this.
+On Tue, 16 Sep 2025 10:10:39 +0800, Yang Li wrote:
+> ./drivers/gpu/drm/xe/xe_tlb_inval.c: xe_tlb_inval.h is included more than once.
+> ./drivers/gpu/drm/xe/xe_pt.c: xe_tlb_inval_job.h is included more than once.
+> 
+> 
 
->=20
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23
-> ++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |=C2=A0 1 +
-> =C2=A02 files changed, 24 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index 6344b5205c08..1bfcd35cc8ef 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -1535,6 +1535,29 @@ u64 xe_gt_sriov_pf_config_get_lmem(struct
-> xe_gt *gt, unsigned int vfid)
-> =C2=A0	return size;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * xe_gt_sriov_pf_config_get_lmem_obj - Get VF's LMEM BO.
-> + * @gt: the &xe_gt
-> + * @vfid: the VF identifier
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: BO that is backing VF's quota in LMEM.
-> + */
-> +struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt,
-> +						 unsigned int vfid)
-> +{
-> +	struct xe_gt_sriov_config *config;
-> +	struct xe_bo *lmem_obj;
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	config =3D pf_pick_vf_config(gt, vfid);
-> +	lmem_obj =3D config->lmem_obj;
+I did some minor tweaks in the commit message and applied to
+drm-xe-next. Thanks.
 
-Bump the reference count? I think Matt mentioned this as well?
+[1/1] drm/xe: Remove duplicate header files
+      commit: 9e6eb49ec13936461c697348c74e5450ac82707d
 
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return lmem_obj;
-> +}
-> +
-> =C2=A0/**
-> =C2=A0 * xe_gt_sriov_pf_config_set_lmem - Provision VF with LMEM.
-> =C2=A0 * @gt: the &xe_gt (can't be media)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> index 513e6512a575..bbc5c238cbf6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> @@ -36,6 +36,7 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt
-> *gt, unsigned int vfid, u64 size
-> =C2=A0int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned
-> int vfid, unsigned int num_vfs);
-> =C2=A0int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned
-> int vfid, unsigned int num_vfs,
-> =C2=A0					u64 size);
-> +struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt,
-> unsigned int vfid);
-> =C2=A0
-> =C2=A0u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt,
-> unsigned int vfid);
-> =C2=A0int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt,
-> unsigned int vfid, u32 exec_quantum);
+-- 
+Lucas De Marchi
 
