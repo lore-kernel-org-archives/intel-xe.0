@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7AACCAC592
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB69ECAC598
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF4110E80F;
-	Tue, 16 Sep 2025 21:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B224210E555;
+	Tue, 16 Sep 2025 21:16:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gksq/6h7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JO3RbXgr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90A1F10E555
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:16:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD9D10E555
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758057363; x=1789593363;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=j3OFszoeEwZ+PXLWw/6Zk0Jo1EuPyvEzv+InU6UmSdM=;
- b=gksq/6h7vquLZLVcd392hxp/8+rHUxm+JV4THIbdZWqgui54ci2CKK3d
- OmK3CeP3NkKWaHOSRhpC59lIB+Kvz8tkQhJL0jfl/BGi0sxO3DygQkXw1
- BxS0xaHlYQFLxT06225HgwN3DCjRnfWIOy4s0m/q97v6IRIPKxq2W9lDT
- Pl96BSiwsr58XXwS1IXItC3KMUwbkwzEPbMOZi7+4wbeURmULfaTygbak
- 7hoDwOPx76XyEFNmxrYsu5zo51gdd0ItuNFoWuYL9T8cYG0HSv7s8YsY2
- t9lFABKGwpud23pPWjKvlU9dnI/ZjuLYxmY02KOJfIvvsOYC8K7Dl4byi w==;
-X-CSE-ConnectionGUID: l0wGhAUrQX6J5IR2hM0g2Q==
-X-CSE-MsgGUID: 8aoFfISLSZ2HSJIzY+nNuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949097"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949097"
+ t=1758057364; x=1789593364;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oOpVri4DEBE7FtLQzXjuWkSAJRR1AHdPpL5hKQOGK0c=;
+ b=JO3RbXgrr7h9+CuDDmcksp8d2ANBko2iu22psYqZQUzxYU+Emyt1PvNs
+ QCPeXOn4QZftLCI2r3Nd//6xmlRoEYwVKXVCQHkK/lgVXRvEMKOOAiC5k
+ hdEOQUsQVWxgbrv1T2RYebuHgXhxoGwJFJZu2nzO+Rv5xod2groBNNd0s
+ G6ByHl5Qs273VTqWWlgT8hiDZD6oOHlxl7+GHN25/1Ca91o9jgYeDjsa/
+ 0W2arZiqQR52AKSiUEHvMZ9tqs0g1iGmE87I895Qh0hB0DRgayl/yTbTj
+ INFeluOK79/r5bqdfT6EogbQkdA/EwvZNA2/jtluh+df+1q9GUOWQAfCM A==;
+X-CSE-ConnectionGUID: 3VlCtWMDTC6WC4bCv35jCA==
+X-CSE-MsgGUID: orcAzJRPSCuPAe3mW5t2ng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949104"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949104"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
-X-CSE-ConnectionGUID: Pit0Rw23ThmZv1qfM+DWkg==
-X-CSE-MsgGUID: dvHk3SgvTkCsT6MXldUtDw==
+X-CSE-ConnectionGUID: lPFRZxAjQrKLuAhGc2P8FQ==
+X-CSE-MsgGUID: 0UEkhnc4S0ieUebf2rG52g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146053"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146064"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
@@ -49,13 +49,15 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 0/7] drm/xe: Add user commands to WA BB via configfs
-Date: Tue, 16 Sep 2025 14:15:37 -0700
-Message-ID: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
+Subject: [PATCH v5 3/7] drm/xe/lrc: Allow to add user commands on context
+ switch
+Date: Tue, 16 Sep 2025 14:15:40 -0700
+Message-ID: <20250916-wa-bb-cmds-v5-3-306bddbc15da@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
+References: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250523-wa-bb-cmds-2a81a7121fc2
 X-Mailer: b4 0.15-dev-b03c7
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,74 +74,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Integrate WA BB (aka post context restore bb) with configfs to allow
-validation to experiment with the GPU, executing commands on every
-context switch.
-
-Setting some registers to experiment:
-
-	# echo 0 > /sys/bus/pci/drivers_autoprobe
-	# modprobe xe
-	# mkdir  /sys/kernel/config/xe/0000:03:00.0
-	# cat > /sys/kernel/config/xe/0000\:03\:00.0/ctx_restore_post_bb  <<EOF
-	bcs cmd 11000001 4F100 cafebabe
-	vcs cmd 11000001 4F104 0FF1CE
-	rcs cmd 11000001 4F108 BAADF00D
-	EOF
-	# echo 0000:03:00.0 > /sys/bus/pci/drivers/xe/bind
-	# intel_reg read mmio:4F100 mmio:4f104 mmio:4f108
-                                    (0x0004f100): 0xcafebabe
-                                    (0x0004f104): 0x000ff1ce
-                                    (0x0004f108): 0xbaadf00d
-
-Same thing can be done with ctx_restore_mid_bb (as long as the register
-is not overwritten during the engine restore phase). Which one to use
-depends on the purpose of the debug.
+During validation it's useful to allows additional commands to be
+executed on context switch. Fetch the commands from configfs (to be
+added) and add them to the WA BB.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-Changes in v5:
-- First patches that were just tangentially related (and actual fixes)
-  already applied
-- Add new patches to support mid context restore (aka INDIRECT_CTX in
-  the LRC)
-- Link to v4: https://lore.kernel.org/r/20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com
-
-Changes in v4:
-- Taint the kernel
-- Link to v3: https://lore.kernel.org/r/20250905-wa-bb-cmds-v3-0-3da2b7bdc73e@intel.com
-
-Changes in v3:
-- Minor updates on first patches
-- Fix kunit build (without CONFIG_CONFIGFS_FS)
-- Fix use of binary attributes failing the expectation of a failed write
-  producing an error code
-- Link to v2: https://lore.kernel.org/r/20250827-wa-bb-cmds-v2-0-3cdf4d63c72a@intel.com
-
-Changes in v2:
-- Drop other refactors and fixes already merged
-- Add documentation and make sure it works with intel_reg
-- Refactor command parsing to be able to easily extend it for other BBs
-  to be added in future.
-- Link to v1: https://lore.kernel.org/r/20250523-wa-bb-cmds-v1-0-40b337f71bcd@intel.com
+v2: Fix warning when building without configfs
+v3: Move taint to this patch from the configfs implementation
 ---
-Lucas De Marchi (7):
-      drm/xe/configfs: Extract function to parse engine
-      drm/xe/configfs: Allow to select by class only
-      drm/xe/lrc: Allow to add user commands on context switch
-      drm/xe/configfs: Add post context restore bb
-      drm/xe/lrc: Allow INDIRECT_CTX for more engine classes
-      drm/xe/lrc: Allow to add user commands mid context switch
-      drm/xe/configfs: Add mid context restore bb
+ drivers/gpu/drm/xe/xe_configfs.c | 13 +++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_lrc.c      | 32 ++++++++++++++++++++++++++++++++
+ 3 files changed, 51 insertions(+)
 
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |   3 -
- drivers/gpu/drm/xe/xe_configfs.c        | 418 ++++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_configfs.h        |  10 +
- drivers/gpu/drm/xe/xe_lrc.c             |  83 ++++++-
- 4 files changed, 484 insertions(+), 30 deletions(-)
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 45fdb6cf26b5d..d86c75af03278 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -633,6 +633,19 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+ 	return ret;
+ }
+ 
++/**
++ * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
++ * @pdev: pci device
++ *
++ * Return: post_ctx_restore setting in configfs
++ */
++u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
++					enum xe_engine_class class,
++					const u32 **cs)
++{
++	return 0;
++}
++
+ int __init xe_configfs_init(void)
+ {
+ 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 1402e863b71c0..eff2645b5f593 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -8,6 +8,8 @@
+ #include <linux/limits.h>
+ #include <linux/types.h>
+ 
++#include <xe_hw_engine_types.h>
++
+ struct pci_dev;
+ 
+ #if IS_ENABLED(CONFIG_CONFIGFS_FS)
+@@ -17,6 +19,8 @@ void xe_configfs_check_device(struct pci_dev *pdev);
+ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
++u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
++					const u32 **cs);
+ #else
+ static inline int xe_configfs_init(void) { return 0; }
+ static inline void xe_configfs_exit(void) { }
+@@ -24,6 +28,8 @@ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+ static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
++static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
++						      const u32 **cs) { return 0; }
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 6d52e0eb97f54..c706585611d55 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -8,6 +8,7 @@
+ #include <generated/xe_wa_oob.h>
+ 
+ #include <linux/ascii85.h>
++#include <linux/panic.h>
+ 
+ #include "instructions/xe_mi_commands.h"
+ #include "instructions/xe_gfxpipe_commands.h"
+@@ -16,6 +17,7 @@
+ #include "regs/xe_lrc_layout.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
++#include "xe_configfs.h"
+ #include "xe_device.h"
+ #include "xe_drm_client.h"
+ #include "xe_exec_queue_types.h"
+@@ -1102,6 +1104,35 @@ static ssize_t setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	return cmd - batch;
+ }
+ 
++static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
++						  struct xe_hw_engine *hwe,
++						  u32 *batch, size_t max_len)
++{
++	struct xe_device *xe = gt_to_xe(lrc->gt);
++	const u32 *user_batch;
++	u32 *cmd = batch;
++	u32 count;
++
++	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
++						    hwe->class, &user_batch);
++	if (!count)
++		return 0;
++
++	if (count > max_len)
++		return -ENOSPC;
++
++	/*
++	 * This should be used only for tests and validation. Taint the kernel
++	 * as anything could be submitted directly in context switches
++	 */
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++
++	memcpy(cmd, user_batch, count * sizeof(u32));
++	cmd += count;
++
++	return cmd - batch;
++}
++
+ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+ 					       struct xe_hw_engine *hwe,
+ 					       u32 *batch, size_t max_len)
+@@ -1203,6 +1234,7 @@ int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe
+ 		{ .setup = setup_timestamp_wa },
+ 		{ .setup = setup_invalidate_state_cache_wa },
+ 		{ .setup = setup_utilization_wa },
++		{ .setup = setup_configfs_post_ctx_restore_bb },
+ 	};
+ 	struct bo_setup_state state = {
+ 		.lrc = lrc,
 
-base-commit: c3610fc0ab7c1c668031b3804549187d75550e93
-change-id: 20250523-wa-bb-cmds-2a81a7121fc2
-
-Lucas De Marchi
+-- 
+2.50.1
 
