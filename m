@@ -4,33 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 741F0CAC598
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:49:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3247CAC599
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:52:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388FC10E709;
-	Tue, 16 Sep 2025 08:49:14 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85F3110E703;
- Tue, 16 Sep 2025 08:49:12 +0000 (UTC)
-Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1uyRN7-00000000p14-0zuv; Tue, 16 Sep 2025 11:49:09 +0300
-Message-ID: <b541a482c27f4e69ebc84f1b05da362a9d2761e4.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Sep 2025 11:49:08 +0300
-In-Reply-To: <20250905145832.12097-10-ville.syrjala@linux.intel.com>
-References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
- <20250905145832.12097-10-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+b1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22FF10E71F;
+	Tue, 16 Sep 2025 08:52:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B36310E705;
+ Tue, 16 Sep 2025 08:52:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1622843634390474748=="
 MIME-Version: 1.0
-Subject: Re: [PATCH 09/13] drm/i915: Extract sanitize_wm_latency()
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Add_GPU_frequency_tr?=
+ =?utf-8?q?acepoint_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "S Sebinraj" <s.sebinraj@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Sep 2025 08:52:39 -0000
+Message-ID: <175801275955.336969.125325652821209432@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250916072704.2351591-1-s.sebinraj@intel.com>
+In-Reply-To: <20250916072704.2351591-1-s.sebinraj@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,74 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Pull the "zero out invalid WM latencies" stuff into a helper.
-> Mainly to avoid mixing higher level and lower level stuff in
-> the same adjust_wm_latency() function.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
+--===============1622843634390474748==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+== Series Details ==
 
---
-Cheers,
-Luca.
+Series: drm: Add GPU frequency tracepoint (rev2)
+URL   : https://patchwork.freedesktop.org/series/154188/
+State : success
 
->  drivers/gpu/drm/i915/display/skl_watermark.c | 23 ++++++++++++++------
->  1 file changed, 16 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 98a397772678..e3305a399ddf 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3217,14 +3217,10 @@ static int wm_read_latency(struct intel_display *=
-display)
->  		return 2;
->  }
-> =20
-> -static void
-> -adjust_wm_latency(struct intel_display *display)
-> +static void sanitize_wm_latency(struct intel_display *display)
->  {
->  	u16 *wm =3D display->wm.skl_latency;
-> -	int i, level, num_levels =3D display->wm.num_levels;
-> -
-> -	if (display->platform.dg2)
-> -		multiply_wm_latency(display, 2);
-> +	int level, num_levels =3D display->wm.num_levels;
-> =20
->  	/*
->  	 * If a level n (n > 1) has a 0us latency, all levels m (m >=3D n)
-> @@ -3233,11 +3229,24 @@ adjust_wm_latency(struct intel_display *display)
->  	 */
->  	for (level =3D 1; level < num_levels; level++) {
->  		if (wm[level] =3D=3D 0) {
-> +			int i;
-> +
->  			for (i =3D level + 1; i < num_levels; i++)
->  				wm[i] =3D 0;
-> -			break;
-> +			return;
->  		}
->  	}
-> +}
-> +
-> +static void
-> +adjust_wm_latency(struct intel_display *display)
-> +{
-> +	u16 *wm =3D display->wm.skl_latency;
-> +
-> +	if (display->platform.dg2)
-> +		multiply_wm_latency(display, 2);
-> +
-> +	sanitize_wm_latency(display);
-> =20
->  	/*
->  	 * WaWmMemoryReadLatency
+== Summary ==
+
+CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -> xe-pw-154188v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154188v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-1:          [PASS][1] -> [FAIL][2] ([Intel XE#5507]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+
+  
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+
+
+Build changes
+-------------
+
+  * Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -> xe-pw-154188v2
+
+  IGT_8540: 8540
+  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121
+  xe-pw-154188v2: 154188v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v2/index.html
+
+--===============1622843634390474748==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Add GPU frequency tracepoint (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154188/">https://patchwork.freedesktop.org/series/154188/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -&gt; xe-pw-154188v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154188v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xe2@render:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -&gt; xe-pw-154188v2</li>
+</ul>
+<p>IGT_8540: 8540<br />
+  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121<br />
+  xe-pw-154188v2: 154188v2</p>
+
+</body>
+</html>
+
+--===============1622843634390474748==--
