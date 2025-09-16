@@ -4,46 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4A5CAC59B
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 17:34:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 812A5CAC598
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 17:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E57610E12D;
-	Tue, 16 Sep 2025 17:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47C9010E3B1;
+	Tue, 16 Sep 2025 17:45:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ep7qwY+H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CADAOTrT";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAC2010E11B;
- Tue, 16 Sep 2025 17:34:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id C24C0601B3;
- Tue, 16 Sep 2025 17:34:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B202C4CEEB;
- Tue, 16 Sep 2025 17:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758044085;
- bh=g4fOI7lP326A/npVX2fO/Vi1aw7o2KcT7AikMVIOx/U=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=Ep7qwY+HAMiYSQ0JsRo/bXS+8m6BuJqlhIc7zzuGY54bIXXpYVk6a2JQrPbC2DuBY
- jAy2SsOiUrt+IXCTdcyZJrpgi39Wr8DU/PoTp0SlzwEUe6fdjNpQGsYvmrQ9x0yevD
- mES5NjYdhNG2BKouEJR8D87RuzZMr+dK1mxUsiPzDRc9z38AccLlZWeZSlZ9Vb8dHU
- 5LdapKr5LKRkInL3WVJPWHBEHWS7Dd6Afh4FRoNgVKY7gxqrbWOzLF+UZ4lir+t/gq
- gcuQIT2CIuPYIvg2B2zWoKpKffSVki1kivfr+FEK++MimodDQY9EYfOjDO66Hu5MFr
- l7rKe+KmFF24Q==
-Date: Tue, 16 Sep 2025 12:34:42 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Bjorn Helgaas <bhelgaas@google.com>,
- Logan Gunthorpe <logang@deltatee.com>, linux-pci@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v4 1/5] PCI/P2PDMA: Don't enforce ACS check for device
- functions of Intel GPUs
-Message-ID: <20250916173442.GA1765656@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250915072428.1712837-2-vivek.kasireddy@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64F9210E3B1
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 17:45:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758044735; x=1789580735;
+ h=date:from:to:cc:subject:message-id;
+ bh=gK/KE8cGU9KdlUVJyWwua4SScMhTDCAAgSqKbBh7i7w=;
+ b=CADAOTrTnRdf+QvntkS2Vxx8h8xoDPdZmaheyG8Loe0W1Gi5wd30vYuw
+ syoaHfKM5EdvRlE9rUVRjsnGa/reFqo6fhCNwlg2Zz2o7jYCDq5I3pRJQ
+ PUkhi/xwpT0xv91v+HVhz95yOo4SgZIr5Wxi06vh6FY2YkwwIL2YTKCgW
+ AFjSFJqv/nWJdeyxIDNznY8tQLUexcHOgbMG8amVKRlAElKPGhYQ2F2Pz
+ Rr8/WNKr8V0NzVHA2tZg1aGjszPHCCQ/I2SxblULbTpbGwMmT+8/xz69i
+ BHT4JtWUPtRjOMe/2v1Jas60974/XqhXOBhVvICZcf6upp3415dND4h8j Q==;
+X-CSE-ConnectionGUID: dbnjifZ/RG2qWeR+icWObA==
+X-CSE-MsgGUID: XlNUOMpkQmuEKMGFZEzJIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71437094"
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="71437094"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 10:45:35 -0700
+X-CSE-ConnectionGUID: OiNm7N2tQT6H7Q+wcht7BA==
+X-CSE-MsgGUID: nLwxyH6NSq+/2Ua9j1kvoQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,269,1751266800"; d="scan'208";a="174296690"
+Received: from lkp-server01.sh.intel.com (HELO 84a20bd60769) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 16 Sep 2025 10:45:34 -0700
+Received: from kbuild by 84a20bd60769 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1uyZkB-0000bQ-2G;
+ Tue, 16 Sep 2025 17:45:31 +0000
+Date: Wed, 17 Sep 2025 01:44:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 7926ba2143d8fef40bb940232818c7363e33598c
+Message-ID: <202509170153.It9CMG4v-lkp@intel.com>
+User-Agent: s-nail v14.9.24
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,101 +64,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-[+cc Jason, also doing a lot of ACS work]
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 7926ba2143d8fef40bb940232818c7363e33598c  drm/xe: defer free of NVM auxiliary container to device release callback
 
-On Mon, Sep 15, 2025 at 12:21:05AM -0700, Vivek Kasireddy wrote:
-> Typically, functions of the same PCI device (such as a PF and a VF)
-> share the same bus and have a common root port and the PF provisions
-> resources for the VF. Given this model, they can be considered
-> compatible as far as P2PDMA access is considered.
+elapsed time: 1343m
 
-These seem like more than just "typical".  Such devices *always* have
-a common Root Port and a PF *always* provisions VF resources.  I guess
-it's "typical" or at least common that a PF and VF share the same bus.
+configs tested: 240
+configs skipped: 5
 
-> Currently, although the distance (2) is correctly calculated for
-> functions of the same device, an ACS check failure prevents P2P DMA
-> access between them. Therefore, introduce a small function named
-> pci_devfns_support_p2pdma() to determine if the provider and client
-> belong to the same device and facilitate P2PDMA between them by
-> not enforcing the ACS check.
-> 
-> However, since it is hard to determine if the device functions of
-> any given PCI device are P2PDMA compatible, we only relax the ACS
-> check enforcement for device functions of Intel GPUs. This is
-> because the P2PDMA communication between the PF and VF of Intel
-> GPUs is handled internally and does not typically involve the PCIe
-> fabric.
-> 
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Logan Gunthorpe <logang@deltatee.com>
-> Cc: <linux-pci@vger.kernel.org>
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> ---
-> v1 -> v2:
-> - Relax the enforcment of ACS check only for Intel GPU functions
->   as they are P2PDMA compatible given the way the PF provisions
->   the resources among multiple VFs.
-> 
-> v2 -> v3:
-> - s/pci_devs_are_p2pdma_compatible/pci_devfns_support_p2pdma
-> - Improve the commit message to explain the reasoning behind
->   relaxing the ACS check enforcement only for Intel GPU functions.
-> 
-> v3 -> v4: (Logan)
-> - Drop the dev_is_pf() hunk as no special handling is needed for PFs
-> - Besides the provider, also check to see the client is an Intel GPU
-> ---
->  drivers/pci/p2pdma.c | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-> index da5657a02007..0a1d884cd0ff 100644
-> --- a/drivers/pci/p2pdma.c
-> +++ b/drivers/pci/p2pdma.c
-> @@ -544,6 +544,19 @@ static unsigned long map_types_idx(struct pci_dev *client)
->  	return (pci_domain_nr(client->bus) << 16) | pci_dev_id(client);
->  }
->  
-> +static bool pci_devfns_support_p2pdma(struct pci_dev *provider,
-> +				      struct pci_dev *client)
-> +{
-> +	if (provider->vendor == PCI_VENDOR_ID_INTEL &&
-> +	    client->vendor == PCI_VENDOR_ID_INTEL) {
-> +		if ((pci_is_vga(provider) && pci_is_vga(client)) ||
-> +		    (pci_is_display(provider) && pci_is_display(client)))
-> +			return pci_physfn(provider) == pci_physfn(client);
-> +	}
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-I know I've asked this before, but I'm still confused about how this
-is related to PCIe r7.0, sec 7.7.12, which says that if an SR-IOV
-device implements internal peer-to-peer transactions, ACS is required,
-and ACS P2P Egress Control must be supported.
+tested configs:
+alpha                             allnoconfig    clang-22
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    clang-19
+alpha                            allyesconfig    gcc-15.1.0
+alpha                               defconfig    clang-19
+arc                              allmodconfig    clang-19
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    clang-22
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    clang-19
+arc                              allyesconfig    gcc-15.1.0
+arc                                 defconfig    clang-19
+arc                   randconfig-001-20250916    clang-22
+arc                   randconfig-001-20250916    gcc-8.5.0
+arc                   randconfig-002-20250916    clang-22
+arc                   randconfig-002-20250916    gcc-8.5.0
+arc                           tb10x_defconfig    gcc-15.1.0
+arm                              allmodconfig    clang-19
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-22
+arm                              allyesconfig    clang-19
+arm                              allyesconfig    gcc-15.1.0
+arm                                 defconfig    clang-19
+arm                            mmp2_defconfig    gcc-15.1.0
+arm                       netwinder_defconfig    gcc-15.1.0
+arm                          pxa910_defconfig    gcc-15.1.0
+arm                   randconfig-001-20250916    clang-22
+arm                   randconfig-001-20250916    gcc-11.5.0
+arm                   randconfig-002-20250916    clang-22
+arm                   randconfig-003-20250916    clang-22
+arm                   randconfig-003-20250916    gcc-12.5.0
+arm                   randconfig-004-20250916    clang-22
+arm                           sama7_defconfig    gcc-15.1.0
+arm                        spear6xx_defconfig    gcc-15.1.0
+arm                         wpcm450_defconfig    gcc-15.1.0
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    clang-22
+arm64                             allnoconfig    gcc-15.1.0
+arm64                               defconfig    clang-19
+arm64                 randconfig-001-20250916    clang-18
+arm64                 randconfig-001-20250916    clang-22
+arm64                 randconfig-002-20250916    clang-22
+arm64                 randconfig-003-20250916    clang-22
+arm64                 randconfig-004-20250916    clang-22
+csky                              allnoconfig    clang-22
+csky                              allnoconfig    gcc-15.1.0
+csky                                defconfig    clang-19
+csky                  randconfig-001-20250916    clang-22
+csky                  randconfig-001-20250916    gcc-14.3.0
+csky                  randconfig-002-20250916    clang-22
+csky                  randconfig-002-20250916    gcc-11.5.0
+hexagon                          allmodconfig    clang-17
+hexagon                          allmodconfig    clang-19
+hexagon                           allnoconfig    clang-22
+hexagon                          allyesconfig    clang-19
+hexagon                          allyesconfig    clang-22
+hexagon                             defconfig    clang-19
+hexagon               randconfig-001-20250916    clang-22
+hexagon               randconfig-002-20250916    clang-22
+i386                             allmodconfig    clang-20
+i386                             allmodconfig    gcc-14
+i386                              allnoconfig    clang-20
+i386                              allnoconfig    gcc-14
+i386                             allyesconfig    clang-20
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20250916    clang-20
+i386        buildonly-randconfig-001-20250916    gcc-14
+i386        buildonly-randconfig-002-20250916    clang-20
+i386        buildonly-randconfig-002-20250916    gcc-14
+i386        buildonly-randconfig-003-20250916    clang-20
+i386        buildonly-randconfig-004-20250916    clang-20
+i386        buildonly-randconfig-004-20250916    gcc-14
+i386        buildonly-randconfig-005-20250916    clang-20
+i386        buildonly-randconfig-005-20250916    gcc-14
+i386        buildonly-randconfig-006-20250916    clang-20
+i386                                defconfig    clang-20
+i386                  randconfig-001-20250916    clang-20
+i386                  randconfig-002-20250916    clang-20
+i386                  randconfig-003-20250916    clang-20
+i386                  randconfig-004-20250916    clang-20
+i386                  randconfig-005-20250916    clang-20
+i386                  randconfig-006-20250916    clang-20
+i386                  randconfig-007-20250916    clang-20
+i386                  randconfig-011-20250916    gcc-14
+i386                  randconfig-012-20250916    gcc-14
+i386                  randconfig-013-20250916    gcc-14
+i386                  randconfig-014-20250916    gcc-14
+i386                  randconfig-015-20250916    gcc-14
+i386                  randconfig-016-20250916    gcc-14
+i386                  randconfig-017-20250916    gcc-14
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-22
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20250916    clang-18
+loongarch             randconfig-001-20250916    clang-22
+loongarch             randconfig-002-20250916    clang-22
+m68k                             allmodconfig    clang-19
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    clang-19
+m68k                             allyesconfig    gcc-15.1.0
+m68k                                defconfig    clang-19
+m68k                            q40_defconfig    gcc-15.1.0
+microblaze                       allmodconfig    clang-19
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    clang-19
+microblaze                       allyesconfig    gcc-15.1.0
+microblaze                          defconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                          eyeq5_defconfig    gcc-15.1.0
+mips                           ip32_defconfig    gcc-15.1.0
+nios2                             allnoconfig    gcc-11.5.0
+nios2                             allnoconfig    gcc-15.1.0
+nios2                               defconfig    gcc-15.1.0
+nios2                 randconfig-001-20250916    clang-22
+nios2                 randconfig-001-20250916    gcc-11.5.0
+nios2                 randconfig-002-20250916    clang-22
+nios2                 randconfig-002-20250916    gcc-8.5.0
+openrisc                          allnoconfig    clang-22
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                         allyesconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-14
+parisc                           allmodconfig    gcc-15.1.0
+parisc                            allnoconfig    clang-22
+parisc                            allnoconfig    gcc-15.1.0
+parisc                           allyesconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20250916    clang-22
+parisc                randconfig-001-20250916    gcc-9.5.0
+parisc                randconfig-002-20250916    clang-22
+parisc                randconfig-002-20250916    gcc-13.4.0
+parisc64                            defconfig    gcc-15.1.0
+powerpc                          allmodconfig    gcc-15.1.0
+powerpc                           allnoconfig    clang-22
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                          allyesconfig    clang-22
+powerpc                          allyesconfig    gcc-15.1.0
+powerpc               randconfig-001-20250916    clang-16
+powerpc               randconfig-001-20250916    clang-22
+powerpc               randconfig-002-20250916    clang-22
+powerpc               randconfig-003-20250916    clang-22
+powerpc64             randconfig-001-20250916    clang-22
+powerpc64             randconfig-002-20250916    clang-22
+powerpc64             randconfig-002-20250916    gcc-8.5.0
+powerpc64             randconfig-003-20250916    clang-22
+riscv                            allmodconfig    clang-22
+riscv                            allmodconfig    gcc-15.1.0
+riscv                             allnoconfig    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                            allyesconfig    clang-16
+riscv                            allyesconfig    gcc-15.1.0
+riscv                               defconfig    gcc-14
+riscv                 randconfig-001-20250916    clang-22
+riscv                 randconfig-001-20250916    gcc-15.1.0
+riscv                 randconfig-002-20250916    gcc-10.5.0
+riscv                 randconfig-002-20250916    gcc-15.1.0
+s390                             allmodconfig    clang-18
+s390                             allmodconfig    gcc-15.1.0
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.1.0
+s390                          debug_defconfig    gcc-15.1.0
+s390                                defconfig    gcc-14
+s390                  randconfig-001-20250916    gcc-13.4.0
+s390                  randconfig-001-20250916    gcc-15.1.0
+s390                  randconfig-002-20250916    gcc-15.1.0
+s390                  randconfig-002-20250916    gcc-8.5.0
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20250916    gcc-15.1.0
+sh                    randconfig-002-20250916    gcc-15.1.0
+sh                           se7619_defconfig    gcc-15.1.0
+sh                           se7721_defconfig    gcc-15.1.0
+sparc                            alldefconfig    gcc-15.1.0
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc                 randconfig-001-20250916    gcc-15.1.0
+sparc                 randconfig-001-20250916    gcc-8.5.0
+sparc                 randconfig-002-20250916    gcc-15.1.0
+sparc                 randconfig-002-20250916    gcc-8.5.0
+sparc                       sparc32_defconfig    gcc-15.1.0
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20250916    gcc-11.5.0
+sparc64               randconfig-001-20250916    gcc-15.1.0
+sparc64               randconfig-002-20250916    clang-22
+sparc64               randconfig-002-20250916    gcc-15.1.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    clang-19
+um                               allyesconfig    gcc-14
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20250916    gcc-14
+um                    randconfig-001-20250916    gcc-15.1.0
+um                    randconfig-002-20250916    clang-19
+um                    randconfig-002-20250916    gcc-15.1.0
+um                           x86_64_defconfig    gcc-14
+x86_64                            allnoconfig    clang-20
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20250916    clang-20
+x86_64      buildonly-randconfig-001-20250916    gcc-14
+x86_64      buildonly-randconfig-002-20250916    clang-20
+x86_64      buildonly-randconfig-003-20250916    clang-20
+x86_64      buildonly-randconfig-004-20250916    clang-20
+x86_64      buildonly-randconfig-005-20250916    clang-20
+x86_64      buildonly-randconfig-006-20250916    clang-20
+x86_64                              defconfig    clang-20
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20250916    clang-20
+x86_64                randconfig-002-20250916    clang-20
+x86_64                randconfig-003-20250916    clang-20
+x86_64                randconfig-004-20250916    clang-20
+x86_64                randconfig-005-20250916    clang-20
+x86_64                randconfig-006-20250916    clang-20
+x86_64                randconfig-007-20250916    clang-20
+x86_64                randconfig-008-20250916    clang-20
+x86_64                randconfig-071-20250916    gcc-14
+x86_64                randconfig-072-20250916    gcc-14
+x86_64                randconfig-073-20250916    gcc-14
+x86_64                randconfig-074-20250916    gcc-14
+x86_64                randconfig-075-20250916    gcc-14
+x86_64                randconfig-076-20250916    gcc-14
+x86_64                randconfig-077-20250916    gcc-14
+x86_64                randconfig-078-20250916    gcc-14
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    gcc-15.1.0
+xtensa                randconfig-001-20250916    gcc-15.1.0
+xtensa                randconfig-001-20250916    gcc-8.5.0
+xtensa                randconfig-002-20250916    gcc-15.1.0
+xtensa                randconfig-002-20250916    gcc-8.5.0
 
-Are you saying that these Intel GPUs don't conform to this?
-
-Or they do, but it's not enough to solve this issue?
-
-Or something else?
-
-Maybe if we add the right comment here, it will keep me from asking
-again :)
-
-> +	return false;
-> +}
-> +
->  /*
->   * Calculate the P2PDMA mapping type and distance between two PCI devices.
->   *
-> @@ -643,7 +656,7 @@ calc_map_type_and_dist(struct pci_dev *provider, struct pci_dev *client,
->  
->  	*dist = dist_a + dist_b;
->  
-> -	if (!acs_cnt) {
-> +	if (!acs_cnt || pci_devfns_support_p2pdma(provider, client)) {
->  		map_type = PCI_P2PDMA_MAP_BUS_ADDR;
->  		goto done;
->  	}
-> -- 
-> 2.50.1
-> 
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
