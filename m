@@ -4,70 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2485ECAC59A
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92ADBCAC59A
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:09:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA28B10E6EA;
-	Tue, 16 Sep 2025 08:07:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3G7eih/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53C1C10E30B;
- Tue, 16 Sep 2025 08:07:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758010039; x=1789546039;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Y8J/F7oKrl3zjCh+oB+s8eg1WIz+389ZWBoMt2NLWbc=;
- b=Z3G7eih/d2i9H3QRfFhkzFd3y3Hh1iL5yCxtGo9nR96nMQt7ay+FIaTn
- NJ8iM+Vvdk8yRgA3CJNz3s7GIhApOG+0/DymK0cwKxNFu80PR4INtJX5R
- fdeq4DuSKxg1FXq9eSPPrEsfy49B9cY4EB2IjA0JiNY/k2Q4jNux7iaAy
- 248mPwaSvYCN9vMmw9bOvFdZA2TJNb1uE3gPe4zmUxvUTU9WBzZbARhEG
- rcDkXL4pnqb39dgGrRTS8Kse6e98EFFCFC/XZkd4zyQXmG7y2g9o6Hwlq
- h8Nup+LbBKgdcWxN6hgea3DoUun37K0LyXsvFb0y9o+8GFhJo3HkUSlTK A==;
-X-CSE-ConnectionGUID: Il/uEFUgThS2AFGFkd1Yzw==
-X-CSE-MsgGUID: 8kdQHb0jSoaRSug94bOGtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="59326755"
-X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="59326755"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 01:07:17 -0700
-X-CSE-ConnectionGUID: JyflTA6ySzGmtCMp5c36wg==
-X-CSE-MsgGUID: bcQf46JZTxGbHCsvp5kmDQ==
-X-ExtLoop1: 1
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.81])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 01:07:10 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Ilpo =?utf-8?Q?J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>
-Cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Christian
- =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>, =?utf-8?Q?Micha=C5=82?= Winiarski
- <michal.winiarski@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona
- Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Michael J . Ruhl" <mjruhl@habana.ai>, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 05/11] PCI: Add pci_rebar_size_supported() helper
-In-Reply-To: <cduh4ave3lbdgd2kutfhgf3obf3wuskgxf6rrhggsiksw7wrwa@lqly5npj5g3r>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
- <20250915091358.9203-6-ilpo.jarvinen@linux.intel.com>
- <cduh4ave3lbdgd2kutfhgf3obf3wuskgxf6rrhggsiksw7wrwa@lqly5npj5g3r>
-Date: Tue, 16 Sep 2025 11:07:07 +0300
-Message-ID: <eb0bbfbcb963174bbb625268b0e5385deb8a2c62@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59F4E10E0AC;
+	Tue, 16 Sep 2025 08:09:52 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F4D710E0AC;
+ Tue, 16 Sep 2025 08:09:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2507105664221992903=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_User_readable_error_codes_o?=
+ =?utf-8?q?n_atomic=5Fioctl_failure_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 16 Sep 2025 08:09:50 -0000
+Message-ID: <175801019051.336326.8183664767462479818@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250916-atomic-v5-0-821525cfbf25@intel.com>
+In-Reply-To: <20250916-atomic-v5-0-821525cfbf25@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,40 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 15 Sep 2025, Andi Shyti <andi.shyti@kernel.org> wrote:
-> Hi Ilpo,
->
->> +/**
->> + * pci_rebar_size_supported - check if size is supported for BAR
->> + * @pdev: PCI device
->> + * @bar: BAR to check
->> + * @size: size as defined in the PCIe spec (0=1MB, 31=128TB)
->> + *
->> + * Return: %true if @bar is resizable and @size is a supported, otherwise
->> + *	   %false.
->> + */
->> +bool pci_rebar_size_supported(struct pci_dev *pdev, int bar, int size)
->> +{
->> +	u64 sizes = pci_rebar_get_possible_sizes(pdev, bar);
->> +
->> +	return BIT(size) & sizes;
->
-> I would return here "!!(BIT(size) & sizes)", but it doesn't
-> really matter.
+--===============2507105664221992903==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If the patch had that, I'd ask to drop the superfluous negations and
-parens...
+== Series Details ==
 
-BR,
-Jani.
+Series: User readable error codes on atomic_ioctl failure (rev4)
+URL   : https://patchwork.freedesktop.org/series/152277/
+State : success
 
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->
-> Andi
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -> xe-pw-152277v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -> xe-pw-152277v4
+
+  IGT_8540: 8540
+  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121
+  xe-pw-152277v4: 152277v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html
+
+--===============2507105664221992903==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>User readable error codes on atomic_ioctl failure (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152277/">https://patchwork.freedesktop.org/series/152277/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -&gt; xe-pw-152277v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -&gt; xe-pw-152277v4</li>
+</ul>
+<p>IGT_8540: 8540<br />
+  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121<br />
+  xe-pw-152277v4: 152277v4</p>
+
+</body>
+</html>
+
+--===============2507105664221992903==--
