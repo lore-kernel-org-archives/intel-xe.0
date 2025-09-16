@@ -4,65 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74EE1CAC592
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:05:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C34FCAC598
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:07:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD2610E0FA;
-	Tue, 16 Sep 2025 21:05:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5895310E0FA;
+	Tue, 16 Sep 2025 21:07:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n3xTl5tk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/+bTRvk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEB610E0FA
- for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:05:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C62210E0FA
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758056726; x=1789592726;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=eI0aoovylAjSz8V3hPBYc64gm/aTILtDopd6W4VZWbQ=;
- b=n3xTl5tklx/hV5aUqICTLfzn+WQrtvf4GiXrp9fCQ79BmlCJJll9w6sJ
- i3ir011XO9au3r6Wp3qAEOyRrH21lZqKEbaZ2QQQSVWShUpRDSFZfmSql
- WrH1I5LXxmRQC5esOV/WIV+2wygamwml0HxRTvvjEM5G8npoNhRAoaPOK
- o5N7zix5I6vyRZ01NO3kfzV+8O0qYEV1CY7zM9bz7PmLkxCFdzJrNBeb2
- vaaaX7ndgSdHYy/0JZ9ulcoU//M1lCVAhhizloQj/UAKFw2GP6BHgGNxQ
- 28mIYY/P9a3ynl3xd8MqC/wGr2o7CI4G2TfbbNBc5r2SjHlkwHXyTLab4 w==;
-X-CSE-ConnectionGUID: n3iJHN2+S7yneIBj1+iq/w==
-X-CSE-MsgGUID: Q1qVAm5GT9+cMGJAgm5/4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="60420602"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="60420602"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 14:05:26 -0700
-X-CSE-ConnectionGUID: Qdpv+ce9R7ONGlWnkyKhHg==
-X-CSE-MsgGUID: amG3M53PTaOnFn+SeFXeEQ==
+ t=1758056854; x=1789592854;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=a9VTNnT0jP74HhL8IXe5v0iWSD2DMD2K7Haba1lJFg0=;
+ b=U/+bTRvkkPbvWCJ6y5t7jt8MopWbzvTsBf3ti/FJeAp3zf6fNCgLAHzi
+ Z9eV/4qL7tz598W7K1YT41hHH3GFjlTPeKPibWwUl1rc6zUv67EsMRHYW
+ emCtbJetCptakZqc2hRUvSzh+NBscBzK5y8I8FqTCWYc0+PN0AcyvTgos
+ AMwrRekK+tO2YF8NZ7KREvQoxbfqFoMCP7Nm0KDUGCDdhQNlKoeHXm6+L
+ JP5FhrSrN1kRnzB1lhbKEHuqNWiNUGDF2Yin+/2c2o60vAFyLt34uOoth
+ QznYuwwdkSIVggjU2aH5dDQaBj3yUQnGWv5KTcdRFvVLnGaKKZkA/fO5G A==;
+X-CSE-ConnectionGUID: 9c0T3RnkSm62t0JyLvE3cg==
+X-CSE-MsgGUID: alxVuRjkRXyqMnH0Af2J9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="60280473"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="60280473"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 14:07:26 -0700
+X-CSE-ConnectionGUID: KUGpr1q6RwGMXrFunMu5GA==
+X-CSE-MsgGUID: ri4Hao5tR6qz71iKFsZfJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="205835058"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.245.248])
- ([10.245.245.248])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 14:05:23 -0700
-Message-ID: <5a4e9081c66c4d92a4b21321b12a28f071857ffc.camel@linux.intel.com>
-Subject: Re: [RFC PATCH] drm/xe/dma-buf: Allow pinning of p2p dma-buf
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="174349045"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 14:07:25 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 16 Sep 2025 14:07:24 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Tue, 16 Sep 2025 14:07:24 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.35) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 16 Sep 2025 14:07:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pXmPxGGUI//dKcHXi+fd54bMSdGBRLYdNobh2990CfDd3vWp1QzVzaQ3tus6AnLFG0YracgFefbnpGZ+WkbRWE7plrbm7rMdFLeWUDpR1FMC7LX8f2LkUmiqkcz2THo5d5iVEVPJf0h6IumKfKNXSs7OScSIbXlyfo6Xv6/KuuiXTxNj5nSqjy4QHsLYjmE6a3to4/ofJnopa2s9jE9U5q6ugxQbRFLQ/zbmqhuSNFB6mwimzf/XcL4Reg9oP0nv47hz8NuHHyjZlF/R5BJfUa46F0A5Xx+UlNIFb3PyQ+1ytYYfNe0IJJ+LRmfwXqlzgSJrGnZy84cHZ2X7oz1RFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=15sPHn6iGZdS7wERn275SdXOYcwYMDBml3m4SxMNMqY=;
+ b=j68R878aVDbEH0lMg85MyNSymh1u132qHRxqDGbiFQ4d0EpKbP45xrG+gWEzZogW2PZ8JXjGcRxQmtux9aoZwSQjY4S6G+8Xbexm5Od+O9Ucglu22I+zJLacYghoeAsm5kji48jiSPHuL+9dYYL6BkN/mb1gV4ecfP2M7iRHnoKkP5toyFxWtwXJskowyfo/Eewg3cQIi5CWI6Ksrhk/fh1eaH1x7fhtmRf6f7uy8WZe5VrUWoj+aFD3ejGNE+PBs5zLIdU4/E64yvbxWtxz0wjMvNPQHapRsACwVwwzj5psRc1c4T07e+fGo7K4m3AyqNO4AbJziGf/mqt9Z3tZEA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM3PPFB266726CF.namprd11.prod.outlook.com (2603:10b6:f:fc00::f46)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Tue, 16 Sep
+ 2025 21:07:23 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9115.020; Tue, 16 Sep 2025
+ 21:07:22 +0000
+Date: Tue, 16 Sep 2025 16:07:20 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org, 
- Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Joonas Lahtinen	 <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst	
- <maarten.lankhorst@intel.com>, Matthew Brost <matthew.brost@intel.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>
-Date: Tue, 16 Sep 2025 23:05:19 +0200
-In-Reply-To: <f9fea1925b39e6cb195784497ff031ba5e4967d6.camel@linux.intel.com>
-References: <20250916115322.23293-1-thomas.hellstrom@linux.intel.com>
- <53d50dff-89eb-4de0-befc-4bb2552c5e21@intel.com>
- <afdf178471021e26a72bc38f17ad747b08533941.camel@linux.intel.com>
- <aMnAIlKMXsmRuXCW@intel.com>
- <f9fea1925b39e6cb195784497ff031ba5e4967d6.camel@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+CC: <intel-xe@lists.freedesktop.org>, Stuart Summers
+ <stuart.summers@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Riana
+ Tauro" <riana.tauro@intel.com>, Umesh Nerlige Ramappa
+ <umesh.nerlige.ramappa@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: Re: [PATCH v4 5/6] drm/xe/lrc: Allow to add user commands on context
+ switch
+Message-ID: <qyoilnhjle5cn7sd5ciuo2iwogkpntl5pwssxcgn476issw2pu@ososownuo7mr>
+References: <20250911-wa-bb-cmds-v4-0-c8f7e48f7eae@intel.com>
+ <20250911-wa-bb-cmds-v4-5-c8f7e48f7eae@intel.com>
+ <aMnIQQWdJvWEA0pK@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <aMnIQQWdJvWEA0pK@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0122.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::7) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM3PPFB266726CF:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44888212-1474-44cc-7c0b-08ddf56507c3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?K+lMECOpZewpo5bw5zs69mayGOrmxgCK+Ad51jVdlFWFCYC+JG2w3oCJjVyo?=
+ =?us-ascii?Q?/zfa3XQgzT4HmXkAvbhW9XbpM+P1IN3NrAKtf84OqXa36F6kEW/k8CPSHKTY?=
+ =?us-ascii?Q?8IYY5CpjklazpqAbzkZmBfqidgXKxQdklDq8xFpXboWzLg1FXmrEXmEc/Z7J?=
+ =?us-ascii?Q?Ivlvf1sC4rbOlbwWit6Q/64BjdhKetHKA+1D0RdPLvJFOcb2egYpiuXDEC9+?=
+ =?us-ascii?Q?tGafEVfTaiv9UBXLpqi7nOSV+N05QCqggaUvqg+Ni97JgjoVpjvzrUETjaim?=
+ =?us-ascii?Q?Bz2IgYpD7UtmpJfZWddKZtlAP+ZnITwgogm4epE4twH0qw6zx436LIZSQ7dh?=
+ =?us-ascii?Q?GieucG9dhBlUDkh2SHyVhdomRiT/kKKfllD/6UDK5GK/4ZZeijE7GGJQNDCu?=
+ =?us-ascii?Q?yk4W80CJ9SyJZm8V+VDMGueXGyUeDptbHz2jT/BtaGROhIWoFnpEM+NHwhO0?=
+ =?us-ascii?Q?LZXrsobXISVlLgZMQqD//OZhCesXPG006rtLmDFBw6bx8Qa3bSzr9fSrOsi4?=
+ =?us-ascii?Q?ZQEtD4HtgX1SUoLDrBduYWTC+yf52mFr1tZsTYdlLtyefWknRgcmCVdh7KXx?=
+ =?us-ascii?Q?ImtJ7oRlPglzgFNObDncKBQNR6qX5t50S++I6bumydZQ19udeRF2LwDF/HQW?=
+ =?us-ascii?Q?cEyS6W2hOoGNZCDfpv1Ja789bF2x25fks9WMmS2gTNAKhh0899KTbdnrJEet?=
+ =?us-ascii?Q?OPVMwVVdRvMZhHUtLC39gTTg3GMZdIubponWbD1VdAm0IXzoEmj5g9xxZYoY?=
+ =?us-ascii?Q?Z25vCCGoaWvqBtXgTuE04hn6iiXV8pmRqO21uB6fH0wJ/eHOGAe8mfBidjoD?=
+ =?us-ascii?Q?qDMXLyvpuPF8VKDTkwXAazd1aD1zwY/8NUSuN6T3/wFbK5cKMXqectxyG84E?=
+ =?us-ascii?Q?+fReyIf20tkGRS0iePqqWAoWgdboGhPa8GlNx2pcClTOKv0YoChlipCApl/c?=
+ =?us-ascii?Q?sznw1TNFIFKFJcAOMOnKP4BW9xu6+Ldz9TNmLL2U1gXTXYkYLYh3C5M1Xm6S?=
+ =?us-ascii?Q?J2W8xVZ6W3QsBJ2ewJLqCohwUIHBqxSI8V/xpPyiDJ2/7dwD9EbONKF/VTS9?=
+ =?us-ascii?Q?uSV1rarpANZZ+IYjPnF7Qx4yECAbPqMvwf9rP/5M9g+dNdxISmWqH3JgQW6M?=
+ =?us-ascii?Q?Aa3DSrPg6fsFl0W7PCYyByzGik3/6HAMUlGqPrDC8BjOon+ZEVrUJLOsxVy6?=
+ =?us-ascii?Q?ijrB5Ovjx/+zjcfuiRqkdehnw3J+WNdfo3zKvelngDRozJ6Q0E9ZPcmqQxYG?=
+ =?us-ascii?Q?7+V/CsDjDqb9TAdROGliD6luggfa5N4+dpzixpAb/y/7Etax/c18fXYHMLiD?=
+ =?us-ascii?Q?aMFNIEbXTi1nlX/kDxYOsUyypj+arKaAeCDlStBjtx8/tYjrCumoH5eGIulI?=
+ =?us-ascii?Q?rK0bKls0M2/87Aed2Bi5QzS8rSCly1wzAAVsPee2WoRR/4GK0r2VDDUh/epX?=
+ =?us-ascii?Q?+loPZBcr20g=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oL/McUdIc9HqTC6SrqKYBkGTDm7q5v7EJJMYBOHeyJcjnL/x12aln/Q83zhw?=
+ =?us-ascii?Q?72QOgtD/mDO3NBsANk3aNkVeUHoEKmcDJgpAydMTyabkPGOHAYSHqqOOXBQO?=
+ =?us-ascii?Q?0EtQmpYizGCnIIvsG9mInxJsD0qrZx+Yw4PbfC0pl0hEym1WsAnNQWj05p04?=
+ =?us-ascii?Q?xf6fGXLZRgrjXZ/ZbC3jiKwbbjiwIx5vnizt1dL1Ir/NoTvk0hui8xUAgyU2?=
+ =?us-ascii?Q?gpH92u7Tiu8pExbGiKPsIsKhp2jJE745z+QaEOXWn9SUZAyamCTjfJW/YHkT?=
+ =?us-ascii?Q?gPbOwa5xKC9Net3UlJDg4ZYedPm4I2e9jHHbj6TwOrpsy1i1wnlvhkBTynos?=
+ =?us-ascii?Q?7HAvOm0E8yfmkdgDLEpCpm9gHnXEltOdvg2dvKS9XSXSQ2WvBMsOBOBl5eg0?=
+ =?us-ascii?Q?iY6YYIfuc9dUGnK8KSiUn+bx1ulx/cuANs/+9KiJdmnla4boAVOtjxn7EJPt?=
+ =?us-ascii?Q?0/c3WewzJEd/aB8lZj51Fhb81k4oh8VTeyNK3b/fptPVJK5mKda+tTBi413S?=
+ =?us-ascii?Q?A+YGpz23XPj4YqdiG4/Pk01uEgQk+kd4WkTSgP8sdcVRT8/yBX7XAzPwtrY7?=
+ =?us-ascii?Q?RbJiJgk9doubr0wGK/BC34c5WACA+BCrnL6AZSCZUdmG2rlpS/ambDroVVjj?=
+ =?us-ascii?Q?XytlGDZWdbPz2zDUx2WrRnYhZoZZMDxHWwR3AitcH/V3J4QAVfi3UhL3Tg9v?=
+ =?us-ascii?Q?mckp28nT18E1DvG7bW7P5Okl3UoSJCrtqzdSSKuXfxMs521RqcMX2V2dHr4T?=
+ =?us-ascii?Q?afR02sPoAsRyWwiLoW3A8b2MHnGoK7GNa2IJH6sVpoDdhryj+a3KzV8Lz6n7?=
+ =?us-ascii?Q?e+fdM5+nprsc3H599Cy88pQsLBKpnJRjHeKJFHx60Ef0y96epMtZsm5w/OMB?=
+ =?us-ascii?Q?reN9FErO473HhIt9lBqOWb4hLkUgTOe5vyGAAH5G0mNow7YobRaEctC27o89?=
+ =?us-ascii?Q?Ews6R3y4soe96S4xcJYxpXR6Br5tm521rgK4VkyDn7OzgmQeXnuDJjSw1Iht?=
+ =?us-ascii?Q?7fSf3aikke0sDEkMZ1jneAlsHMagq7MWzQU1ud+HBvu5g/UD53WH4w/iWRo0?=
+ =?us-ascii?Q?L28B04pLYt12Okwj7XByFqYZoM86DG7CuSGZtrI0Urlyplmr7/8rHf6JNvED?=
+ =?us-ascii?Q?Ef+9ZHjx7YDT0Pnj/cpb5DrZufQmKtWxp6E6hHwBUrCcRRc0sLJmQvp8pInR?=
+ =?us-ascii?Q?PJ5ureLqkxpElD+ESsiEbs/fXQjl9sxjWbvm5MY855RDN3pmUtzPOInztLrt?=
+ =?us-ascii?Q?ppPucWeaXwHiD4SBunP3+sy7OTpWPArdQ+sHkw31spON+/OLUJ0/rKXcOzcx?=
+ =?us-ascii?Q?ybiJ7OP0/rtXfubPWruZWQ7WOxdj81WgC76f8sEzAlfOdjTmv44Lt4x8M8Dr?=
+ =?us-ascii?Q?naDi3yalrb7Zskq1vfixLChUNbOVrCK55duqh2oGb6jDO/GXkgyfV6VRtsrc?=
+ =?us-ascii?Q?938svTKazyuwj2ChS/XmhxKR6vBwlX2A34+AEw6RnW2E5hsBNN/RuLCS71YV?=
+ =?us-ascii?Q?zojRQpUA96jKs9n1rarI+mlNYqSSHW8Quvsjiw9NQ6lLWyTYpVwtmYLqWijR?=
+ =?us-ascii?Q?965I72vQAQMgL+5UAj8slOIAhS8ZHN4EP95DIAG02jUzHesVRqwWfJIyGpFq?=
+ =?us-ascii?Q?9A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44888212-1474-44cc-7c0b-08ddf56507c3
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2025 21:07:22.8681 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: y03S4NkyKWX3r+xqaphx97RCNnh/dJ9jtSpO7b0hBtR2Rh+VMw3CRwmBW2MESCkbChT44h9fJ3hiJZtyElzHDnpyFpnQ0ysmK27Pe0l1Xs8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFB266726CF
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,249 +182,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2025-09-16 at 22:35 +0200, Thomas Hellstr=C3=B6m wrote:
-> On Tue, 2025-09-16 at 15:53 -0400, Rodrigo Vivi wrote:
-> > On Tue, Sep 16, 2025 at 03:06:48PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > > On Tue, 2025-09-16 at 14:03 +0100, Matthew Auld wrote:
-> > > > On 16/09/2025 12:53, Thomas Hellstr=C3=B6m wrote:
-> > > > > RDMA NICs typically requires the VRAM dma-bufs to be pinned
-> > > > > in
-> > > > > VRAM for pcie-p2p communication, since they don't fully
-> > > > > support
-> > > > > the move_notify() scheme. We would like to support that.
-> > > > >=20
-> > > > > However allowing unaccounted pinning of VRAM creates a DOS
-> > > > > vector
-> > > > > so up until now we haven't allowed it.
-> > > > >=20
-> > > > > However with cgroups support in TTM, the amount of VRAM
-> > > > > allocated
-> > > > > to a cgroup can be limited, and since also the pinned memory
-> > > > > is
-> > > > > accounted as allocated VRAM we should be safe.
-> > > > >=20
-> > > > > An analogy with system memory can be made if we observe the
-> > > > > similarity with kernel system memory that is allocated as the
-> > > > > result of user-space action and that is accounted using
-> > > > > __GFP_ACCOUNT.
-> > > > >=20
-> > > > > Ideally, to be more flexible, we would add a "pinned_memory",
-> > > > > or possibly "kernel_memory" limit to the dmem cgroups
-> > > > > controller,
-> > > > > that would additionally limit the memory that is pinned in
-> > > > > this
-> > > > > way.
-> > > > > If we let that limit default to the dmem::max limit we can
-> > > > > introduce that without needing to care about regressions.
-> > > > >=20
-> > > > > Considering that we already pin VRAM in this way for at least
-> > > > > page-table memory and LRC memory, and the above path to
-> > > > > greater
-> > > > > flexibility, allow this also for dma-bufs.
-> > > > >=20
-> > > > > Cc: Dave Airlie <airlied@gmail.com>
-> > > > > Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> > > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > > > Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > > <thomas.hellstrom@linux.intel.com>
-> > > > > ---
-> > > > > =C2=A0 drivers/gpu/drm/xe/tests/xe_dma_buf.c | 13 +++++++++
-> > > > > =C2=A0 drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 41
-> > > > > +++++++++++++++++-
-> > > > > ----
-> > > > > -----
-> > > > > =C2=A0 2 files changed, 39 insertions(+), 15 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > > > b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > > > index a7e548a2bdfb..1f88ca71820c 100644
-> > > > > --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > > > +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > > > @@ -31,6 +31,7 @@ static void check_residency(struct kunit
-> > > > > *test,
-> > > > > struct xe_bo *exported,
-> > > > > =C2=A0=C2=A0			=C2=A0=C2=A0=C2=A0 struct drm_exec *exec)
-> > > > > =C2=A0 {
-> > > > > =C2=A0=C2=A0	struct dma_buf_test_params *params =3D
-> > > > > to_dma_buf_test_params(test->priv);
-> > > > > +	struct dma_buf_attachment *attach;
-> > > > > =C2=A0=C2=A0	u32 mem_type;
-> > > > > =C2=A0=C2=A0	int ret;
-> > > > > =C2=A0=20
-> > > > > @@ -88,6 +89,18 @@ static void check_residency(struct kunit
-> > > > > *test,
-> > > > > struct xe_bo *exported,
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(exported,
-> > > > > mem_type));
-> > > > > =C2=A0=20
-> > > > > +	/* Check that we can pin without migrating. */
-> > > > > +	attach =3D list_first_entry_or_null(&dmabuf-
-> > > > > > attachments,
-> > > > > typeof(*attach), node);
-> > > > > +	if (attach) {
-> > > > > +		int err =3D dma_buf_pin(attach);
-> > > > > +
-> > > > > +		if (!err) {
-> > > > > +			KUNIT_EXPECT_TRUE(test,
-> > > > > xe_bo_is_mem_type(exported, mem_type));
-> > > > > +			dma_buf_unpin(attach);
-> > > > > +		}
-> > > > > +		KUNIT_EXPECT_EQ(test, err, 0);
-> > > > > +	}
-> > > > > +
-> > > > > =C2=A0=C2=A0	if (params->force_different_devices)
-> > > > > =C2=A0=C2=A0		KUNIT_EXPECT_TRUE(test,
-> > > > > xe_bo_is_mem_type(imported, XE_PL_TT));
-> > > > > =C2=A0=C2=A0	else
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > > > b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > > > index a7d67725c3ee..54e42960daad 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > > > @@ -48,32 +48,43 @@ static void xe_dma_buf_detach(struct
-> > > > > dma_buf
-> > > > > *dmabuf,
-> > > > > =C2=A0=20
-> > > > > =C2=A0 static int xe_dma_buf_pin(struct dma_buf_attachment
-> > > > > *attach)
-> > > > > =C2=A0 {
-> > > > > -	struct drm_gem_object *obj =3D attach->dmabuf->priv;
-> > > > > +	struct dma_buf *dmabuf =3D attach->dmabuf;
-> > > > > +	struct drm_gem_object *obj =3D dmabuf->priv;
-> > > > > =C2=A0=C2=A0	struct xe_bo *bo =3D gem_to_xe_bo(obj);
-> > > > > =C2=A0=C2=A0	struct xe_device *xe =3D xe_bo_device(bo);
-> > > > > =C2=A0=C2=A0	struct drm_exec *exec =3D XE_VALIDATION_UNSUPPORTED;
-> > > > > +	bool allow_vram =3D true;
-> > > > > =C2=A0=C2=A0	int ret;
-> > > > > =C2=A0=20
-> > > > > -	/*
-> > > > > -	 * For now only support pinning in TT memory, for
-> > > > > two
-> > > > > reasons:
-> > > > > -	 * 1) Avoid pinning in a placement not accessible to
-> > > > > some
-> > > > > importers.
-> > > > > -	 * 2) Pinning in VRAM requires PIN accounting which
-> > > > > is
-> > > > > a
-> > > > > to-do.
-> > > > > -	 */
-> > > > > -	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo,
-> > > > > XE_PL_TT)) {
-> > > > > +	if (!IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY)) {
-> >=20
-> > I don't believe this check is the right one here.
-> > Perhaps the config is enabled, but the driver importing
-> > this dma-buf doesn't support it.
->=20
-> So this was actually shamelessly stolen from amdgpu. I'll see if I
-> can
-> sort out whether this works anyway even if the importer doesn't
-> support
-> move_notify().
+On Tue, Sep 16, 2025 at 04:27:45PM -0400, Rodrigo Vivi wrote:
+>On Thu, Sep 11, 2025 at 12:36:29PM -0700, Lucas De Marchi wrote:
+>> During validation it's useful to allows additional commands to be
+>> executed on context switch. Fetch the commands from configfs (to be
+>> added) and add them to the WA BB.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>> v2: Fix warning when building without configfs
+>> ---
+>>  drivers/gpu/drm/xe/xe_configfs.c | 13 +++++++++++++
+>>  drivers/gpu/drm/xe/xe_configfs.h |  6 ++++++
+>>  drivers/gpu/drm/xe/xe_lrc.c      | 25 +++++++++++++++++++++++++
+>>  3 files changed, 44 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+>> index 45fdb6cf26b5d..d86c75af03278 100644
+>> --- a/drivers/gpu/drm/xe/xe_configfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+>> @@ -633,6 +633,19 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+>>  	return ret;
+>>  }
+>>
+>> +/**
+>> + * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
+>> + * @pdev: pci device
+>> + *
+>> + * Return: post_ctx_restore setting in configfs
+>> + */
+>> +u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+>> +					enum xe_engine_class class,
+>> +					const u32 **cs)
+>> +{
+>> +	return 0;
+>> +}
+>> +
+>>  int __init xe_configfs_init(void)
+>>  {
+>>  	int ret;
+>> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+>> index 1402e863b71c0..eff2645b5f593 100644
+>> --- a/drivers/gpu/drm/xe/xe_configfs.h
+>> +++ b/drivers/gpu/drm/xe/xe_configfs.h
+>> @@ -8,6 +8,8 @@
+>>  #include <linux/limits.h>
+>>  #include <linux/types.h>
+>>
+>> +#include <xe_hw_engine_types.h>
+>> +
+>>  struct pci_dev;
+>>
+>>  #if IS_ENABLED(CONFIG_CONFIGFS_FS)
+>> @@ -17,6 +19,8 @@ void xe_configfs_check_device(struct pci_dev *pdev);
+>>  bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+>>  u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+>>  bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+>> +u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+>> +					const u32 **cs);
+>>  #else
+>>  static inline int xe_configfs_init(void) { return 0; }
+>>  static inline void xe_configfs_exit(void) { }
+>> @@ -24,6 +28,8 @@ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+>>  static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+>>  static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+>>  static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+>> +static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+>> +						      const u32 **cs) { return 0; }
+>>  #endif
+>>
+>>  #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>> index 6d52e0eb97f54..f337954066f55 100644
+>> --- a/drivers/gpu/drm/xe/xe_lrc.c
+>> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+>> @@ -16,6 +16,7 @@
+>>  #include "regs/xe_lrc_layout.h"
+>>  #include "xe_bb.h"
+>>  #include "xe_bo.h"
+>> +#include "xe_configfs.h"
+>>  #include "xe_device.h"
+>>  #include "xe_drm_client.h"
+>>  #include "xe_exec_queue_types.h"
+>> @@ -1102,6 +1103,29 @@ static ssize_t setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>>  	return cmd - batch;
+>>  }
+>>
+>> +static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
+>> +						  struct xe_hw_engine *hwe,
+>> +						  u32 *batch, size_t max_len)
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(lrc->gt);
+>> +	const u32 *user_batch;
+>> +	u32 *cmd = batch;
+>> +	u32 count;
+>> +
+>> +	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
+>> +						    hwe->class, &user_batch);
+>> +	if (!count)
+>> +		return 0;
+>> +
+>> +	if (count > max_len)
+>> +		return -ENOSPC;
+>> +
+>> +	memcpy(cmd, user_batch, count * sizeof(u32));
+>
+>shouldn't we use copy_from_user here?
 
-It turns out that the dma-buf core requires a move_notify() callback
-for p2p dma. So checking the attachments should be sufficient. However
-the config check avoids that in the case MOVE_NOTIFY is not enabled.
+no. When the user wrote to the file, configfs did the copy and
+called us in xe_configfs.c:
 
-/Thomas
+	configfs_write_iter()
+		copy_from_iter()
+			...
+				raw_copy_from_user()
+		flush_write_buffer()
+			buffer->attr->store()
+				ctx_restore_post_bb_store()
 
+ctx_restore_post_bb_store() will parse the lines, and save it in the
+correct format to this instance of xe_config_device.
 
+What xe_configfs_get_ctx_restore_post_bb() does is basically return
+that already-parsed-and-saved data.
 
->=20
-> >=20
-> > perhaps we want a new config here? so when we transition to cgroups
-> > we "don't regress" ?!
->=20
-> We currently *do* use cgroups for VRAM. If enabled, all the cgroup's
-> VRAM allocations (including this pinned memory) don't exceed the
-> dmem:max limit.
-> The plan moving forward is to, if needed, try to introduce a
-> dmem:pinned_memory limit <=3D dmem:max and when we pin we account
-> against
-> that as well. If dmem:pinned_memory is set to dmem:max by default, we
-> don't regress.
->=20
-> Thanks,
-> Thomas
->=20
->=20
-> >=20
-> > > > > +		allow_vram =3D false;
-> > > > > +	} else {
-> > > > > +		list_for_each_entry(attach, &dmabuf-
-> > > > > > attachments,
-> > > > > node) {
-> > > > > +			if (!attach->peer2peer) {
-> > > > > +				allow_vram =3D false;
-> > > > > +				break;
-> > > > > +			}
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo,
-> > > > > XE_PL_TT) &&
-> > > > > +	=C2=A0=C2=A0=C2=A0 !(xe_bo_is_vram(bo) && allow_vram)) {
-> > > > > =C2=A0=C2=A0		drm_dbg(&xe->drm, "Can't migrate pinned bo
-> > > > > for
-> > > > > dma-buf pin.\n");
-> > > > > =C2=A0=C2=A0		return -EINVAL;
-> > > > > =C2=A0=C2=A0	}
-> > > > > =C2=A0=20
-> > > > > -	ret =3D xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
-> > > > > -	if (ret) {
-> > > > > -		if (ret !=3D -EINTR && ret !=3D -ERESTARTSYS)
-> > > > > -			drm_dbg(&xe->drm,
-> > > > > -				"Failed migrating dma-buf to
-> > > > > TT
-> > > > > memory: %pe\n",
-> > > > > -				ERR_PTR(ret));
-> > > > > -		return ret;
-> > > > > +	if (!allow_vram) {
-> > > > > +		ret =3D xe_bo_migrate(bo, XE_PL_TT, NULL,
-> > > > > exec);
-> > > > > +		if (ret) {
-> > > > > +			if (ret !=3D -EINTR && ret !=3D -
-> > > > > ERESTARTSYS)
-> > > > > +				drm_dbg(&xe->drm,
-> > > > > +					"Failed migrating
-> > > > > dma-
-> > > > > buf
-> > > > > to TT memory: %pe\n",
-> > > > > +					ERR_PTR(ret));
-> > > > > +			return ret;
-> > > > > +		}
-> > > > > =C2=A0=C2=A0	}
-> > > > > =C2=A0=20
-> > > > > -	ret =3D xe_bo_pin_external(bo, true, exec);
-> > > > > +	ret =3D xe_bo_pin_external(bo, !allow_vram, exec);
-> > > >=20
-> > > > Are we also missing save/restore support for such objects? Or
-> > > > at
-> > > > least I=20
-> > > > can't see where the save flow is happening for externally
-> > > > pinned
-> > > > VRAM?
-> > >=20
-> > > Good point. I forgot about that. IIRC we once made a deliberate
-> > > decision to leave that out since we didn't support it.
-> > >=20
-> > > I'll have a look at that as well depending if we decide to go
-> > > ahead with this.
-> > >=20
-> > > /Thomas
-> > >=20
-> > > >=20
-> > > > > =C2=A0=C2=A0	xe_assert(xe, !ret);
-> > > > > =C2=A0=20
-> > > > > =C2=A0=C2=A0	return 0;
-> > > >=20
-> > >=20
->=20
+So... here we are not copying anything from user. We are copying the
+previously saved buffer that is already in the kernel.
 
+Lucas De Marchi
+
+>
+>> +	cmd += count;
+>> +
+>> +	return cmd - batch;
+>> +}
+>> +
+>>  static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+>>  					       struct xe_hw_engine *hwe,
+>>  					       u32 *batch, size_t max_len)
+>> @@ -1203,6 +1227,7 @@ int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe
+>>  		{ .setup = setup_timestamp_wa },
+>>  		{ .setup = setup_invalidate_state_cache_wa },
+>>  		{ .setup = setup_utilization_wa },
+>> +		{ .setup = setup_configfs_post_ctx_restore_bb },
+>>  	};
+>>  	struct bo_setup_state state = {
+>>  		.lrc = lrc,
+>>
+>> --
+>> 2.50.1
+>>
