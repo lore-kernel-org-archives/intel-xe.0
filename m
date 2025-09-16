@@ -4,27 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92ADBCAC59A
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:09:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DAEACAC599
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:12:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59F4E10E0AC;
-	Tue, 16 Sep 2025 08:09:52 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F4D710E0AC;
- Tue, 16 Sep 2025 08:09:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2507105664221992903=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3628610E0AC;
+	Tue, 16 Sep 2025 08:12:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lx8hGWJS";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8D810E0AC;
+ Tue, 16 Sep 2025 08:12:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758010352; x=1789546352;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/fOTPnIYRzNwyZiVhCec2Qefpdd4a+D5flBWydA6AZE=;
+ b=lx8hGWJSEdQTR9BNvogza54a3y3txZ2UBqpPVzTLCmq1vktDeK8klsDa
+ XnL/Nmnf5CtoPTb6kylv4xLKzxqG3vC7k9oFcKL6h3WOQAJ6L8lEAb8wg
+ d4dhE3zDV+kBdwPGcRcA1sJdTI4G+maEIwKMj1L6QLRwsMj6A/XEUbSyW
+ D9AeFUjQWdCk4ATQtp1Wvzb+HSPlQVaHTzQoFxLOKw3aLq4MHvooTRp6g
+ kPoEdv+IvloOD1ow2bvfY7t7WRIrg6B+D+n8lBYTPrhsF7MUV6mSt2e1G
+ mkawVuYIO7YhP3kBaCwMINkm1LHcoguNxPkjEi011ARWQ3OTh+hExclWH Q==;
+X-CSE-ConnectionGUID: CVg8k4SjSQCRjMN6Kt6nEQ==
+X-CSE-MsgGUID: bR/nNCRnRq62NUOMFk4xQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11554"; a="60211645"
+X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="60211645"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 01:12:31 -0700
+X-CSE-ConnectionGUID: ZT4Lqgl3Qg2yWk79GVLDRA==
+X-CSE-MsgGUID: j/vJU0B9RmavdKiDJ4Kqsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,268,1751266800"; d="scan'208";a="175658518"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.81])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2025 01:12:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Krzysztof
+ =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, =?utf-8?Q?Micha=C5=82?=
+ Winiarski <michal.winiarski@intel.com>, Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, David Airlie
+ <airlied@gmail.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Simona Vetter <simona@ffwll.ch>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, ?UTF-8?q?Thomas=20Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, "Michael J . Ruhl" <mjruhl@habana.ai>,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 06/11] drm/i915/gt: Use pci_rebar_size_supported()
+In-Reply-To: <aMhzougLzpfw2wWw@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+ <20250915091358.9203-7-ilpo.jarvinen@linux.intel.com>
+ <b918053f6ac7b4a27148a1cbf10eb8402572c6c9@intel.com>
+ <ewypjj64siaswcfvfzgxihwrflb6k6pz2mrfuu4ursdldwnqlm@ignlhd73keck>
+ <aMhzougLzpfw2wWw@intel.com>
+Date: Tue, 16 Sep 2025 11:12:21 +0300
+Message-ID: <58fb988207c4d5c5ba25338c1281189e12c009c3@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_User_readable_error_codes_o?=
- =?utf-8?q?n_atomic=5Fioctl_failure_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Sep 2025 08:09:50 -0000
-Message-ID: <175801019051.336326.8183664767462479818@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250916-atomic-v5-0-821525cfbf25@intel.com>
-In-Reply-To: <20250916-atomic-v5-0-821525cfbf25@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +81,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2507105664221992903==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 15 Sep 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Sep 15, 2025 at 07:24:10PM +0200, Andi Shyti wrote:
+>> Hi,
+>>=20
+>> On Mon, Sep 15, 2025 at 03:42:23PM +0300, Jani Nikula wrote:
+>> > On Mon, 15 Sep 2025, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com=
+> wrote:
+>> > > PCI core provides pci_rebar_size_supported() that helps in checking =
+if
+>> > > a BAR Size is supported for the BAR or not. Use it in
+>> > > i915_resize_lmem_bar() to simplify code.
+>> > >
+>> > > Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+>> > > Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>> >=20
+>> > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>> >=20
+>> > and
+>> >=20
+>> > Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>=20
+>> Just for some random noise on commit log's bureaucracy: why do we
+>> need both Ack and R-b? I think R-b covers Ack making it
+>> redundant. Right?
+>
+> reviewed-by is a more formal attestation of the entries in the
+> submitting-patches doc, saying that he carefully reviewed the work.
+>
+> acked by is to state that from the maintainer perspective of that file
+> the file can be merged through any tree.
+>
+> in the drm trees nowdays our tooling is enforcing acked-by tag if
+> the patch is touching domains outside that drm branch itself.
+>
+> if a committer tries to push a patch without ack from the maintainer
+> of that domain it will be blocked.
+>
+> So I believe it is a good idea to keep a separation of the meaning.
+> Carrying a technical review of the patch in question doesn't necessarily
+> mean that you, as maintainer, is okay of getting that patch merged
+> through other trees.
 
-== Series Details ==
+Yes, all of the above. I just wanted to be explicit to avoid the
+follow-up questions "thanks for the review, but is it okay to merge via
+pci" or "thanks for the ack, but does this need review also", and move
+on from this whole thread. (Which is a nice cleanup, btw, thanks.)
 
-Series: User readable error codes on atomic_ioctl failure (rev4)
-URL   : https://patchwork.freedesktop.org/series/152277/
-State : success
+BR,
+Jani.
 
-== Summary ==
-
-CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -> xe-pw-152277v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -> xe-pw-152277v4
-
-  IGT_8540: 8540
-  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121
-  xe-pw-152277v4: 152277v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html
-
---===============2507105664221992903==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>User readable error codes on atomic_ioctl failure (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152277/">https://patchwork.freedesktop.org/series/152277/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152277v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121_BAT -&gt; xe-pw-152277v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121 -&gt; xe-pw-152277v4</li>
-</ul>
-<p>IGT_8540: 8540<br />
-  xe-3766-e9c137c33746d8007daa202af67b6aefd18a0121: e9c137c33746d8007daa202af67b6aefd18a0121<br />
-  xe-pw-152277v4: 152277v4</p>
-
-</body>
-</html>
-
---===============2507105664221992903==--
+--=20
+Jani Nikula, Intel
