@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A24CAC598
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:37:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D2C2CAC599
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:41:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B466F10E6FF;
-	Tue, 16 Sep 2025 08:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C614D10E712;
+	Tue, 16 Sep 2025 08:41:14 +0000 (UTC)
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C394610E6FC;
- Tue, 16 Sep 2025 08:37:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD20F10E712;
+ Tue, 16 Sep 2025 08:41:13 +0000 (UTC)
 Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1uyRBI-00000000ozO-08hz; Tue, 16 Sep 2025 11:36:58 +0300
-Message-ID: <b1e137fc26a0b78fbd7f701188b29e15c7811368.camel@coelho.fi>
+ id 1uyRFO-00000000ozs-25Vk; Tue, 16 Sep 2025 11:41:11 +0300
+Message-ID: <992a0e16853e0ce1a2a502d1a18797c30aeefa8a.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Sep 2025 11:36:55 +0300
-In-Reply-To: <20250905145832.12097-6-ville.syrjala@linux.intel.com>
+Date: Tue, 16 Sep 2025 11:41:09 +0300
+In-Reply-To: <20250905145832.12097-7-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
- <20250905145832.12097-6-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-7-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Subject: Re: [PATCH 05/13] drm/i915: Move adjust_wm_latency() out from {mtl,
- skl}_read_wm_latency()
+Subject: Re: [PATCH 06/13] drm/i915: Extract multiply_wm_latency() from
+ skl_read_wm_latency()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,10 +49,9 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >=20
-> {mtl,skl}_read_wm_latency() are doing way too many things for
-> my liking. Move the adjustment stuff out into the caller.
-> This also gives us one place where we specify the 'read_latency'
-> for all the platforms, instead of two places.
+> I want skl_read_wm_latency() to just do what it says on
+> the tin, ie. read the latency values from the pcode mailbox.
+> Move the DG2 "multiply by two" trick elsewhere.
 >=20
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
@@ -63,74 +62,80 @@ Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Cheers,
 Luca.
 
->  drivers/gpu/drm/i915/display/skl_watermark.c | 23 +++++++++++++-------
->  1 file changed, 15 insertions(+), 8 deletions(-)
+
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 29 ++++++++++++++------
+>  1 file changed, 20 insertions(+), 9 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
 rm/i915/display/skl_watermark.c
-> index 9797c2131334..02b64e97ecfe 100644
+> index 02b64e97ecfe..8a98c3e52dc5 100644
 > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3183,12 +3183,22 @@ static bool need_16gb_dimm_wa(struct intel_displa=
-y *display)
->  		DISPLAY_VER(display) =3D=3D 11) && dram_info->has_16gb_dimms;
+> @@ -3174,6 +3174,15 @@ void skl_watermark_ipc_init(struct intel_display *=
+display)
+>  	skl_watermark_ipc_update(display);
 >  }
 > =20
-> +static int wm_read_latency(struct intel_display *display)
+> +static void multiply_wm_latency(struct intel_display *display, int mult)
 > +{
-> +	if (DISPLAY_VER(display) >=3D 14)
-> +		return 6;
-> +	else if (DISPLAY_VER(display) >=3D 12)
-> +		return 3;
-> +	else
-> +		return 2;
+> +	u16 *wm =3D display->wm.skl_latency;
+> +	int level, num_levels =3D display->wm.num_levels;
+> +
+> +	for (level =3D 0; level < num_levels; level++)
+> +		wm[level] *=3D mult;
 > +}
 > +
->  static void
-> -adjust_wm_latency(struct intel_display *display, int read_latency)
-> +adjust_wm_latency(struct intel_display *display)
+>  static bool need_16gb_dimm_wa(struct intel_display *display)
 >  {
->  	u16 *wm =3D display->wm.skl_latency;
-> -	int num_levels =3D display->wm.num_levels;
-> -	int i, level;
-> +	int i, level, num_levels =3D display->wm.num_levels;
-> +	int read_latency =3D wm_read_latency(display);
+>  	const struct dram_info *dram_info =3D intel_dram_info(display->drm);
+> @@ -3200,6 +3209,9 @@ adjust_wm_latency(struct intel_display *display)
+>  	int i, level, num_levels =3D display->wm.num_levels;
+>  	int read_latency =3D wm_read_latency(display);
 > =20
+> +	if (display->platform.dg2)
+> +		multiply_wm_latency(display, 2);
+> +
 >  	/*
 >  	 * If a level n (n > 1) has a 0us latency, all levels m (m >=3D n)
-> @@ -3247,14 +3257,11 @@ static void mtl_read_wm_latency(struct intel_disp=
-lay *display)
->  	val =3D intel_de_read(display, MTL_LATENCY_LP4_LP5);
->  	wm[4] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
->  	wm[5] =3D REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
-> -
-> -	adjust_wm_latency(display, 6);
->  }
-> =20
+>  	 * need to be disabled. We make sure to sanitize the values out
+> @@ -3262,7 +3274,6 @@ static void mtl_read_wm_latency(struct intel_displa=
+y *display)
 >  static void skl_read_wm_latency(struct intel_display *display)
 >  {
 >  	u16 *wm =3D display->wm.skl_latency;
-> -	int read_latency =3D DISPLAY_VER(display) >=3D 12 ? 3 : 2;
->  	int mult =3D display->platform.dg2 ? 2 : 1;
+> -	int mult =3D display->platform.dg2 ? 2 : 1;
 >  	u32 val;
 >  	int ret;
-> @@ -3284,8 +3291,6 @@ static void skl_read_wm_latency(struct intel_displa=
-y *display)
->  	wm[5] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
->  	wm[6] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
->  	wm[7] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
-> -
-> -	adjust_wm_latency(display, read_latency);
+> =20
+> @@ -3274,10 +3285,10 @@ static void skl_read_wm_latency(struct intel_disp=
+lay *display)
+>  		return;
+>  	}
+> =20
+> -	wm[0] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
+> -	wm[1] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
+> -	wm[2] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
+> -	wm[3] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
+> +	wm[0] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val);
+> +	wm[1] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val);
+> +	wm[2] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val);
+> +	wm[3] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val);
+> =20
+>  	/* read the second set of memory latencies[4:7] */
+>  	val =3D 1; /* data0 to be programmed to 1 for second set */
+> @@ -3287,10 +3298,10 @@ static void skl_read_wm_latency(struct intel_disp=
+lay *display)
+>  		return;
+>  	}
+> =20
+> -	wm[4] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val) * mult;
+> -	wm[5] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val) * mult;
+> -	wm[6] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val) * mult;
+> -	wm[7] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val) * mult;
+> +	wm[4] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_0_4_MASK, val);
+> +	wm[5] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_1_5_MASK, val);
+> +	wm[6] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_2_6_MASK, val);
+> +	wm[7] =3D REG_FIELD_GET(GEN9_MEM_LATENCY_LEVEL_3_7_MASK, val);
 >  }
 > =20
 >  static void skl_setup_wm_latency(struct intel_display *display)
-> @@ -3300,6 +3305,8 @@ static void skl_setup_wm_latency(struct intel_displ=
-ay *display)
->  	else
->  		skl_read_wm_latency(display);
-> =20
-> +	adjust_wm_latency(display);
-> +
->  	intel_print_wm_latency(display, "Gen9 Plane", display->wm.skl_latency);
->  }
-> =20
