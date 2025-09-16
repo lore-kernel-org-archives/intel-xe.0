@@ -4,34 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92580CAC599
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 741F0CAC598
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 08:49:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547A810E6FF;
-	Tue, 16 Sep 2025 08:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 388FC10E709;
+	Tue, 16 Sep 2025 08:49:14 +0000 (UTC)
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED4F10E6FB;
- Tue, 16 Sep 2025 08:46:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85F3110E703;
+ Tue, 16 Sep 2025 08:49:12 +0000 (UTC)
 Received: from 88-113-67-44.elisa-laajakaista.fi ([88.113.67.44]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1uyRKJ-00000000p0h-31bz; Tue, 16 Sep 2025 11:46:16 +0300
-Message-ID: <a38ceb8f80a8b9e1a157cbf3086d9384ce88c6eb.camel@coelho.fi>
+ id 1uyRN7-00000000p14-0zuv; Tue, 16 Sep 2025 11:49:09 +0300
+Message-ID: <b541a482c27f4e69ebc84f1b05da362a9d2761e4.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 16 Sep 2025 11:46:15 +0300
-In-Reply-To: <20250905145832.12097-9-ville.syrjala@linux.intel.com>
+Date: Tue, 16 Sep 2025 11:49:08 +0300
+In-Reply-To: <20250905145832.12097-10-ville.syrjala@linux.intel.com>
 References: <20250905145832.12097-1-ville.syrjala@linux.intel.com>
- <20250905145832.12097-9-ville.syrjala@linux.intel.com>
+ <20250905145832.12097-10-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-2+b1 
 MIME-Version: 1.0
-Subject: Re: [PATCH 08/13] drm/i915: Use increase_wm_latency() for the 16Gb
- DIMM w/a
+Subject: Re: [PATCH 09/13] drm/i915: Extract sanitize_wm_latency()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,15 +48,9 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Fri, 2025-09-05 at 17:58 +0300, Ville Syrjala wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >=20
-> Bump the latency for all watermark levels in the
-> 16Gb+ DIMM w/a. The spec does ask us to do it only for level
-> 0, but it seems more sane to bump all the levels. If the actual
-> memory access is slower then the wakeup (WM1+) should also
-> potentially happen earlier.
->=20
-> This also avoids the theoretical case that WM0 would get bumped
-> higher than WM1+. Not that it is likely to happen because the WM0
-> latency is always significantly lower than the WM1 latency.
+> Pull the "zero out invalid WM latencies" stuff into a helper.
+> Mainly to avoid mixing higher level and lower level stuff in
+> the same adjust_wm_latency() function.
 >=20
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
@@ -68,21 +61,55 @@ Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Cheers,
 Luca.
 
-
->  drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 23 ++++++++++++++------
+>  1 file changed, 16 insertions(+), 7 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
 rm/i915/display/skl_watermark.c
-> index 9eebb908beb8..98a397772678 100644
+> index 98a397772678..e3305a399ddf 100644
 > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3256,7 +3256,7 @@ adjust_wm_latency(struct intel_display *display)
->  	 * to avoid any underrun.
->  	 */
->  	if (need_16gb_dimm_wa(display))
-> -		wm[0] +=3D 1;
-> +		increase_wm_latency(display, 1);
+> @@ -3217,14 +3217,10 @@ static int wm_read_latency(struct intel_display *=
+display)
+>  		return 2;
 >  }
 > =20
->  static void mtl_read_wm_latency(struct intel_display *display)
+> -static void
+> -adjust_wm_latency(struct intel_display *display)
+> +static void sanitize_wm_latency(struct intel_display *display)
+>  {
+>  	u16 *wm =3D display->wm.skl_latency;
+> -	int i, level, num_levels =3D display->wm.num_levels;
+> -
+> -	if (display->platform.dg2)
+> -		multiply_wm_latency(display, 2);
+> +	int level, num_levels =3D display->wm.num_levels;
+> =20
+>  	/*
+>  	 * If a level n (n > 1) has a 0us latency, all levels m (m >=3D n)
+> @@ -3233,11 +3229,24 @@ adjust_wm_latency(struct intel_display *display)
+>  	 */
+>  	for (level =3D 1; level < num_levels; level++) {
+>  		if (wm[level] =3D=3D 0) {
+> +			int i;
+> +
+>  			for (i =3D level + 1; i < num_levels; i++)
+>  				wm[i] =3D 0;
+> -			break;
+> +			return;
+>  		}
+>  	}
+> +}
+> +
+> +static void
+> +adjust_wm_latency(struct intel_display *display)
+> +{
+> +	u16 *wm =3D display->wm.skl_latency;
+> +
+> +	if (display->platform.dg2)
+> +		multiply_wm_latency(display, 2);
+> +
+> +	sanitize_wm_latency(display);
+> =20
+>  	/*
+>  	 * WaWmMemoryReadLatency
