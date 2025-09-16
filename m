@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB69ECAC598
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FDB9CAC59F
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B224210E555;
-	Tue, 16 Sep 2025 21:16:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08FD810E815;
+	Tue, 16 Sep 2025 21:16:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JO3RbXgr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VaAc5k+f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DD9D10E555
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95BA110E555
  for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758057364; x=1789593364;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oOpVri4DEBE7FtLQzXjuWkSAJRR1AHdPpL5hKQOGK0c=;
- b=JO3RbXgrr7h9+CuDDmcksp8d2ANBko2iu22psYqZQUzxYU+Emyt1PvNs
- QCPeXOn4QZftLCI2r3Nd//6xmlRoEYwVKXVCQHkK/lgVXRvEMKOOAiC5k
- hdEOQUsQVWxgbrv1T2RYebuHgXhxoGwJFJZu2nzO+Rv5xod2groBNNd0s
- G6ByHl5Qs273VTqWWlgT8hiDZD6oOHlxl7+GHN25/1Ca91o9jgYeDjsa/
- 0W2arZiqQR52AKSiUEHvMZ9tqs0g1iGmE87I895Qh0hB0DRgayl/yTbTj
- INFeluOK79/r5bqdfT6EogbQkdA/EwvZNA2/jtluh+df+1q9GUOWQAfCM A==;
-X-CSE-ConnectionGUID: 3VlCtWMDTC6WC4bCv35jCA==
-X-CSE-MsgGUID: orcAzJRPSCuPAe3mW5t2ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949104"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949104"
+ bh=yoaCgG1jV2lMn/iJTGvAjGQZC8wta88UnQvjIocSaiw=;
+ b=VaAc5k+fpt/hbi2/Tv7TQh57wXXck/20DJJIz0HHU55Raw+x5OnycWQz
+ 1UCYvKqQV3dSMi3BSUizxIe+e3L4P+JRX83p34sOvxTB71fW3hnE4oSyL
+ nLiF8dhjsrEawz5H4NSBCebbOKTOqFknCLTTOIUNuYDuAYm0qyryG+no+
+ ny8EdZA8nsMxdmtT3g1ITflqrp907ktmweePUBqz3CUlvj1rM/7vFypHb
+ UXf2Dq3g8jftXllAxF+nMdWDXA45VoaUvcs/VHPshl3uuIg7Dy6VycrBG
+ jv4GcUgVzcxuzV304e6piXXrfIhFE4OU8Rwywta72P57vArYvP9/976w1 A==;
+X-CSE-ConnectionGUID: dJjiPCCISAm/r3TGPMZYEw==
+X-CSE-MsgGUID: FPEoVHboRnK1CrNHO2yG2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949113"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949113"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
-X-CSE-ConnectionGUID: lPFRZxAjQrKLuAhGc2P8FQ==
-X-CSE-MsgGUID: 0UEkhnc4S0ieUebf2rG52g==
+X-CSE-ConnectionGUID: mGs31okAR2yBWKrfElWGsg==
+X-CSE-MsgGUID: 54SudHw1Slqx5g4KcGBTsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146064"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146079"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
@@ -49,10 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 3/7] drm/xe/lrc: Allow to add user commands on context
- switch
-Date: Tue, 16 Sep 2025 14:15:40 -0700
-Message-ID: <20250916-wa-bb-cmds-v5-3-306bddbc15da@intel.com>
+Subject: [PATCH v5 7/7] drm/xe/configfs: Add mid context restore bb
+Date: Tue, 16 Sep 2025 14:15:44 -0700
+Message-ID: <20250916-wa-bb-cmds-v5-7-306bddbc15da@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
 References: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
@@ -74,139 +73,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During validation it's useful to allows additional commands to be
-executed on context switch. Fetch the commands from configfs (to be
-added) and add them to the WA BB.
+Like done for post context restore, allow the user to add commands to
+the middle of context restore, at the beginning of engine restore
+commands.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: Fix warning when building without configfs
-v3: Move taint to this patch from the configfs implementation
----
- drivers/gpu/drm/xe/xe_configfs.c | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  6 ++++++
- drivers/gpu/drm/xe/xe_lrc.c      | 32 ++++++++++++++++++++++++++++++++
- 3 files changed, 51 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 46 ++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 42 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 45fdb6cf26b5d..d86c75af03278 100644
+index 90bc5a4b5da71..640df5bee4579 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -633,6 +633,19 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	return ret;
+@@ -126,13 +126,21 @@
+  * not intended for normal execution and will taint the kernel with TAINT_TEST
+  * when used.
+  *
+- * Currently this is implemented only for post context restore. Examples:
++ * Currently this is implemented only for post and mid context restore.
++ * Examples:
+  *
+- * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10::
++ * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after the
++ *    normal context restore::
+  *
+  *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+  *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+  *
++ * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 at the
++ *    beginning of the context restore::
++ *
++ *	# echo 'rcs cmd 11000001 4F100 DEADBEEF' \
++ *		> /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
++
+  * #. Load certain values in a couple of registers (it can be used as a simpler
+  *    alternative to the `cmd`) action::
+  *
+@@ -146,7 +154,7 @@
+  *       When using multiple lines, make sure to use a command that is
+  *       implemented with a single write syscall, like HEREDOC.
+  *
+- * This attribute can only be set before binding to the device.
++ * These attributes can only be set before binding to the device.
+  *
+  * Remove devices
+  * ==============
+@@ -168,6 +176,7 @@ struct xe_config_group_device {
+ 	struct xe_config_device {
+ 		u64 engines_allowed;
+ 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
++		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+ 		bool survivability_mode;
+ 		bool enable_psmi;
+ 	} config;
+@@ -467,6 +476,13 @@ static ssize_t wa_bb_show(struct xe_config_group_device *dev,
+ 	return p - data;
  }
  
-+/**
-+ * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
-+ * @pdev: pci device
-+ *
-+ * Return: post_ctx_restore setting in configfs
-+ */
-+u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
-+					enum xe_engine_class class,
-+					const u32 **cs)
++static ssize_t ctx_restore_mid_bb_show(struct config_item *item, char *page)
 +{
-+	return 0;
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++
++	return wa_bb_show(dev, dev->config.ctx_restore_mid_bb, page, SZ_4K);
 +}
 +
- int __init xe_configfs_init(void)
+ static ssize_t ctx_restore_post_bb_show(struct config_item *item, char *page)
  {
- 	int ret;
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 1402e863b71c0..eff2645b5f593 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -8,6 +8,8 @@
- #include <linux/limits.h>
- #include <linux/types.h>
- 
-+#include <xe_hw_engine_types.h>
-+
- struct pci_dev;
- 
- #if IS_ENABLED(CONFIG_CONFIGFS_FS)
-@@ -17,6 +19,8 @@ void xe_configfs_check_device(struct pci_dev *pdev);
- bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
-+u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
-+					const u32 **cs);
- #else
- static inline int xe_configfs_init(void) { return 0; }
- static inline void xe_configfs_exit(void) { }
-@@ -24,6 +28,8 @@ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
- static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
-+static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
-+						      const u32 **cs) { return 0; }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 6d52e0eb97f54..c706585611d55 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -8,6 +8,7 @@
- #include <generated/xe_wa_oob.h>
- 
- #include <linux/ascii85.h>
-+#include <linux/panic.h>
- 
- #include "instructions/xe_mi_commands.h"
- #include "instructions/xe_gfxpipe_commands.h"
-@@ -16,6 +17,7 @@
- #include "regs/xe_lrc_layout.h"
- #include "xe_bb.h"
- #include "xe_bo.h"
-+#include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_drm_client.h"
- #include "xe_exec_queue_types.h"
-@@ -1102,6 +1104,35 @@ static ssize_t setup_timestamp_wa(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	return cmd - batch;
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+@@ -623,6 +639,14 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+ 	return len;
  }
  
-+static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
-+						  struct xe_hw_engine *hwe,
-+						  u32 *batch, size_t max_len)
++static ssize_t ctx_restore_mid_bb_store(struct config_item *item,
++					const char *data, size_t sz)
 +{
-+	struct xe_device *xe = gt_to_xe(lrc->gt);
-+	const u32 *user_batch;
-+	u32 *cmd = batch;
-+	u32 count;
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
 +
-+	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
-+						    hwe->class, &user_batch);
-+	if (!count)
++	return wa_bb_store(dev->config.ctx_restore_mid_bb, dev, data, sz);
++}
++
+ static ssize_t ctx_restore_post_bb_store(struct config_item *item,
+ 					 const char *data, size_t sz)
+ {
+@@ -631,12 +655,14 @@ static ssize_t ctx_restore_post_bb_store(struct config_item *item,
+ 	return wa_bb_store(dev->config.ctx_restore_post_bb, dev, data, sz);
+ }
+ 
++CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, survivability_mode);
+ 
+ static struct configfs_attribute *xe_config_device_attrs[] = {
++	&attr_ctx_restore_mid_bb,
+ 	&attr_ctx_restore_post_bb,
+ 	&attr_enable_psmi,
+ 	&attr_engines_allowed,
+@@ -909,7 +935,19 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 				       enum xe_engine_class class,
+ 				       const u32 **cs)
+ {
+-	return 0;
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u32 len;
++
++	if (!dev)
 +		return 0;
 +
-+	if (count > max_len)
-+		return -ENOSPC;
++	if (cs)
++		*cs = dev->config.ctx_restore_mid_bb[class].cs;
 +
-+	/*
-+	 * This should be used only for tests and validation. Taint the kernel
-+	 * as anything could be submitted directly in context switches
-+	 */
-+	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++	len = dev->config.ctx_restore_mid_bb[class].len;
++	config_group_put(&dev->group);
 +
-+	memcpy(cmd, user_batch, count * sizeof(u32));
-+	cmd += count;
-+
-+	return cmd - batch;
-+}
-+
- static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 					       struct xe_hw_engine *hwe,
- 					       u32 *batch, size_t max_len)
-@@ -1203,6 +1234,7 @@ int xe_lrc_setup_wa_bb_with_scratch(struct xe_lrc *lrc, struct xe_hw_engine *hwe
- 		{ .setup = setup_timestamp_wa },
- 		{ .setup = setup_invalidate_state_cache_wa },
- 		{ .setup = setup_utilization_wa },
-+		{ .setup = setup_configfs_post_ctx_restore_bb },
- 	};
- 	struct bo_setup_state state = {
- 		.lrc = lrc,
++	return len;
+ }
+ 
+ /**
 
 -- 
 2.50.1
