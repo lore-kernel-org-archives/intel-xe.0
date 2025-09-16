@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52382CAC592
-	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0152CAC59D
+	for <intel-xe@archiver.kernel.org>; Tue, 16 Sep 2025 21:16:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1094D10E818;
-	Tue, 16 Sep 2025 21:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED0B10E81C;
+	Tue, 16 Sep 2025 21:16:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LLnoY0c1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kMZa3/0r";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6972C10E555
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 884CE10E561
  for <intel-xe@lists.freedesktop.org>; Tue, 16 Sep 2025 21:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758057364; x=1789593364;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rJrgCsJzw2ZHiejAPoDkXNwTAj/hAj8NQ3EpdKu2KRc=;
- b=LLnoY0c1DU4rXWYJy/gopyOnJqDovndrTOjv8opFWVmnL7OiaVWAAiwv
- opRW1tkLvmnjEhgsaJZemx7YwAepXApP5KiFGp9rvekGKuGUhJ9shFuoU
- 7Fm9fItjQgZ8Y9o5ECPe9Sgry90zPeBhbuJMfHYNvRhGzjJ4tFheHrIKp
- r2hkG3Pw5c8dBT3lTE38fEckKrPu426wyCU8LQL4agwJcOWN0EA74+BD+
- 3//HOwBYOtTl37n6xQ47GKNoAocXRkwETjFSogZhKZSk+UfZ8k3bhtF/7
- iU0lklXK+EZ8vndpT9bhkjdn/j81Z747wduVuce2tvT62ZvRg+akJX5cL Q==;
-X-CSE-ConnectionGUID: EMhmy72wTgKego4oQfVaEg==
-X-CSE-MsgGUID: M+m6U+9VTVCuDhjQfNuyYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949109"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949109"
+ bh=UQsAcn8zWOknYKccSc2t3uTneUld8DpOEefwryRGgn8=;
+ b=kMZa3/0rwdfF7KunBs+5IZOZYqurptvHEue77zru7hBhFeEN9RVtzdiH
+ mGgGjw2OWCz32LxtS0bVij0ChdCxhwcqRiLZbMuehfYitvdlpb7I+swzH
+ BpUz/AYeohZ6zzUtVoLU9IgMA4rU/sqiWoHjYMaWrxWIZXjmIHj1XGUPk
+ 6HuR9ZK5fGjOtLlTBRpjNii+CzOuw7ZCxGl/cMLoV63CFTFBZ3x3fh6PL
+ CC+ip0FMZ4UKlpszwoh2xEaE7jqv84PamyvNKLmpulZQf9KuINM2/B6NJ
+ +0cGFFyVWc2y/eEJx6uBc+XhgqLrjKi3PgxDHCDOQGQMD3m6QqkfzpPbH g==;
+X-CSE-ConnectionGUID: x7DfEYMmTvGDYUvsB+vfMw==
+X-CSE-MsgGUID: g3ff+OteTW6C/pfh6R4X8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="82949111"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="82949111"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
-X-CSE-ConnectionGUID: neBqwPRYQIOhFGykO17d3g==
-X-CSE-MsgGUID: SxDofqPXSo2nQXEzr39F1g==
+X-CSE-ConnectionGUID: IfzlP8z9TTKe18kZ2xKsYQ==
+X-CSE-MsgGUID: /ycX/OFpSjyHMRb5grMSZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146072"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="175146077"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 14:16:03 -0700
@@ -49,9 +49,10 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 5/7] drm/xe/lrc: Allow INDIRECT_CTX for more engine classes
-Date: Tue, 16 Sep 2025 14:15:42 -0700
-Message-ID: <20250916-wa-bb-cmds-v5-5-306bddbc15da@intel.com>
+Subject: [PATCH v5 6/7] drm/xe/lrc: Allow to add user commands mid context
+ switch
+Date: Tue, 16 Sep 2025 14:15:43 -0700
+Message-ID: <20250916-wa-bb-cmds-v5-6-306bddbc15da@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
 References: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
@@ -73,80 +74,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently it's only allowed for render and compute. Going forward we
-want to enable it for more engine classes. Let the XE_LRC_FLAG_INDIRECT_CTX
-flag (and thus gt_engine_needs_indirect_ctx()) be the deciding factor
-for its availability.
-
-While at it, add the missing const to rcs_funcs array. Since
-CTX_INDIRECT_CTX_OFFSET_DEFAULT already matches the HW default and
-gt_engine_needs_indirect_ctx() only ever enables it for rcs/ccs, there
-is no change in behavior, it's only preparation for future use case.
+Like done for post-context-restore commands, allow to add commands from
+configfs in the middle of context restore. Since currently the indirect
+ctx hardcodes the offset to CTX_INDIRECT_CTX_OFFSET_DEFAULT, this is
+executed in the very beginning of engine context restore.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  3 ---
- drivers/gpu/drm/xe/xe_lrc.c             | 14 ++++++++++----
- 2 files changed, 10 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h |  4 ++++
+ drivers/gpu/drm/xe/xe_lrc.c      | 37 +++++++++++++++++++++++++++++++++++++
+ 3 files changed, 56 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index 1b101edb838bf..b5eff383902c5 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -40,7 +40,4 @@
- #define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
- #define INDIRECT_CTX_RING_CTL		(0x0a + 1)
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 9a30dc958c35c..90bc5a4b5da71 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -897,6 +897,21 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+ 	return ret;
+ }
  
--#define CTX_INDIRECT_CTX_OFFSET_MASK	REG_GENMASK(15, 6)
--#define CTX_INDIRECT_CTX_OFFSET_DEFAULT	REG_FIELD_PREP(CTX_INDIRECT_CTX_OFFSET_MASK, 0xd)
--
++/**
++ * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
++ * @pdev: pci device
++ * @class: hw engine class
++ * @cs: pointer to the bb to use - only valid during probe
++ *
++ * Return: Number of dwords used in the mid_ctx_restore setting in configfs
++ */
++u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
++				       enum xe_engine_class class,
++				       const u32 **cs)
++{
++	return 0;
++}
++
+ /**
+  * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
+  * @pdev: pci device
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index eff2645b5f593..c61e0e47ed94c 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -19,6 +19,8 @@ void xe_configfs_check_device(struct pci_dev *pdev);
+ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
++u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
++				       const u32 **cs);
+ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+ 					const u32 **cs);
+ #else
+@@ -28,6 +30,8 @@ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+ static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
++static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
++						     const u32 **cs) { return 0; }
+ static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+ 						      const u32 **cs) { return 0; }
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index c706585611d55..0ab99c210d882 100644
+index 0ab99c210d882..47e9df7750725 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1281,9 +1281,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- static int
- setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+@@ -77,11 +77,17 @@ lrc_to_xe(struct xe_lrc *lrc)
+ static bool
+ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
  {
--	static struct bo_setup rcs_funcs[] = {
-+	static const struct bo_setup rcs_funcs[] = {
++	struct xe_device *xe = gt_to_xe(gt);
++
+ 	if (XE_GT_WA(gt, 16010904313) &&
+ 	    (class == XE_ENGINE_CLASS_RENDER ||
+ 	     class == XE_ENGINE_CLASS_COMPUTE))
+ 		return true;
+ 
++	if (xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
++					       class, NULL))
++		return true;
++
+ 	return false;
+ }
+ 
+@@ -1133,6 +1139,35 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
+ 	return cmd - batch;
+ }
+ 
++static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
++						 struct xe_hw_engine *hwe,
++						 u32 *batch, size_t max_len)
++{
++	struct xe_device *xe = gt_to_xe(lrc->gt);
++	const u32 *user_batch;
++	u32 *cmd = batch;
++	u32 count;
++
++	count = xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
++						   hwe->class, &user_batch);
++	if (!count)
++		return 0;
++
++	if (count > max_len)
++		return -ENOSPC;
++
++	/*
++	 * This should be used only for tests and validation. Taint the kernel
++	 * as anything could be submitted directly in context switches
++	 */
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++
++	memcpy(cmd, user_batch, count * sizeof(u32));
++	cmd += count;
++
++	return cmd - batch;
++}
++
+ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+ 					       struct xe_hw_engine *hwe,
+ 					       u32 *batch, size_t max_len)
+@@ -1283,8 +1318,10 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ {
+ 	static const struct bo_setup rcs_funcs[] = {
  		{ .setup = setup_timestamp_wa },
++		{ .setup = setup_configfs_mid_ctx_restore_bb },
  	};
-+	static const struct bo_setup xcs_funcs[] = {
-+	};
+ 	static const struct bo_setup xcs_funcs[] = {
++		{ .setup = setup_configfs_mid_ctx_restore_bb },
+ 	};
  	struct bo_setup_state state = {
  		.lrc = lrc,
- 		.hwe = hwe,
-@@ -1300,6 +1302,9 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	    hwe->class == XE_ENGINE_CLASS_COMPUTE) {
- 		state.funcs = rcs_funcs;
- 		state.num_funcs = ARRAY_SIZE(rcs_funcs);
-+	} else {
-+		state.funcs = xcs_funcs;
-+		state.num_funcs = ARRAY_SIZE(xcs_funcs);
- 	}
- 
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
-@@ -1326,14 +1331,15 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	finish_bo(&state);
- 	kfree(state.buffer);
- 
-+	/*
-+	 * Enable INDIRECT_CTX leaving INDIRECT_CTX_OFFSET at its default: it
-+	 * varies per engine class, but the default is good enough
-+	 */
- 	xe_lrc_write_ctx_reg(lrc,
- 			     CTX_CS_INDIRECT_CTX,
- 			     (xe_bo_ggtt_addr(lrc->bo) + state.offset) |
- 			     /* Size in CLs. */
- 			     (state.written * sizeof(u32) / 64));
--	xe_lrc_write_ctx_reg(lrc,
--			     CTX_CS_INDIRECT_CTX_OFFSET,
--			     CTX_INDIRECT_CTX_OFFSET_DEFAULT);
- 
- 	return 0;
- }
 
 -- 
 2.50.1
