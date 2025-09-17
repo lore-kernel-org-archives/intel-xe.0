@@ -4,66 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2213CA0EE8
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 10:51:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 695BACAC598
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 10:52:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A93B610E187;
-	Wed, 17 Sep 2025 10:51:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06FFD10E71F;
+	Wed, 17 Sep 2025 10:52:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tt4Hgn8R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BgxyV/T5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F55E10E187;
- Wed, 17 Sep 2025 10:51:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB7EB10E71F
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 10:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758106280; x=1789642280;
+ t=1758106370; x=1789642370;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Nm74FVJvJ8awiav55FbAr6Yk5ebZBnYmxfCourevZTw=;
- b=Tt4Hgn8RYHk2+DbpsW6VfdPN/fPBpGWFgXMjh2X7WU54RTHwAIBFnRLs
- bzY2DXqaC+ylQlsunBVPkD4ZV4D9u84p3w7iuDCBcQx2r22oA9GdQZHpj
- Lao4ysS4O+TLbNssP/N1EfFKONUAKPuGpl1cKQMiH36V+gejpXArk6aUD
- D1XeVJt/uux1lZbcxUALCzBo/3Hb7PTRBBb1b/CrjTqNx/A9U/HpnaoIo
- CgECcorcIJDJw/LwyR7y+6yyX+TM5MZ1BQqcx2x/lgPRF4gnjUnv6tonG
- kxPfpLQa9yoiWgskxBtDFMOzIpM2pEln6DTyl0ilFHCI1q6BOv76mqmt1 Q==;
-X-CSE-ConnectionGUID: uQPuvbOMSsGPeuU/BjIvmQ==
-X-CSE-MsgGUID: h4qT9D9dSEmaBdHOGpWRqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60356562"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60356562"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 03:51:19 -0700
-X-CSE-ConnectionGUID: Bim50oT1TCucHGWprAaIZg==
-X-CSE-MsgGUID: qo0qhtdfSoSFy6lYwnyJdA==
+ mime-version:in-reply-to;
+ bh=XHcrMe7WqyeThvgNm1QtoTfKQecwqB01VeegYs42Vbc=;
+ b=BgxyV/T5LQM+c2mrewpb0HNn/lSH56v7MFF0AEvVT1Rz0bOUmN/iw4mr
+ N4T4OX2j3VVjgZ67a/10gps5TSLo0BoEVoJkDBt1ciyoMKvNwF8Wx99SN
+ 6mmMFBPATkzHofuyKUDHysZ1dxW8Y+z4+Lki+lOi6P4SFcRruUzSJDw7r
+ few95bL/NWmMBWDIaCpqWkkodBQepY/eiCE1CPeZ4Bv9mjHfrTw4+W8Wz
+ vm9dr3gixiYhCX2U6DNGnOGumzpbBsIZerMSGR8EUQwsG1sjqEIHR0phV
+ Uz9F4JLGughdHxtnPqjfljqJOSUD9AjZNzIn11v8GiqdbVJ3kPKY9AnzR Q==;
+X-CSE-ConnectionGUID: +SSssTzgSGCUPipxV4yd3Q==
+X-CSE-MsgGUID: lA/wDyk+S66H+7J7nEOyVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="64227433"
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; d="scan'208";a="64227433"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 03:52:49 -0700
+X-CSE-ConnectionGUID: WMo9E2pCRAeiEAqrqmf35Q==
+X-CSE-MsgGUID: LS7R4KvVSpWgn6HUE6DN0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; d="scan'208";a="180472588"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.83])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 03:51:18 -0700
-Date: Wed, 17 Sep 2025 13:51:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/15] drm/i915/display: Use vrr.guardband to derive
- vblank_start
-Message-ID: <aMqSoyUVa82xsYew@intel.com>
-References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
- <20250911024554.692469-12-ankit.k.nautiyal@intel.com>
- <aMLb17oJa__bPVoA@intel.com>
- <f4fb8190-668f-4692-a610-9d7015130ba6@intel.com>
- <aMgHS992-0aZ8FIb@intel.com>
- <3328d2c9-e398-4097-a3de-fdee441fa50d@intel.com>
- <3f1d3ce2-fb8a-4576-a74a-cd8b59a016fc@intel.com>
- <aMmy79ka0CgBrLmf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; d="scan'208";a="206155673"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 03:52:48 -0700
+Date: Wed, 17 Sep 2025 12:52:45 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe/sysfs: Simplify sysfs registration
+Message-ID: <aMqS_SRH3f6PAdM2@black.igk.intel.com>
+References: <20250916170029.3313-1-michal.wajdeczko@intel.com>
+ <20250916170029.3313-3-michal.wajdeczko@intel.com>
+ <aMpS02yLhBs5igpM@black.igk.intel.com>
+ <be9d95e9-e02c-452f-a547-f0d3a1ae050e@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aMmy79ka0CgBrLmf@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <be9d95e9-e02c-452f-a547-f0d3a1ae050e@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,212 +70,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 16, 2025 at 09:56:47PM +0300, Ville Syrjälä wrote:
-> On Tue, Sep 16, 2025 at 08:08:01PM +0530, Nautiyal, Ankit K wrote:
+On Wed, Sep 17, 2025 at 12:24:24PM +0200, Michal Wajdeczko wrote:
+> On 9/17/2025 8:18 AM, Raag Jadav wrote:
+> > On Tue, Sep 16, 2025 at 07:00:29PM +0200, Michal Wajdeczko wrote:
+> > > Instead of manually maintaining each sysfs file define and use
+> > > attribute groups and register them using device managed function.
+> > > Then use is_visible() to filter-out unsupported attributes.
+> > >
+> > > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: Raag Jadav <raag.jadav@intel.com>
+> > > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > ---
+> > > v2: rebased, reordered
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_device_sysfs.c | 104 +++++++++++----------------
+> > >  1 file changed, 41 insertions(+), 63 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > index 896484c8fbcc..c5151c86a98a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > @@ -71,6 +71,15 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
+> > >  
+> > >  static DEVICE_ATTR_RW(vram_d3cold_threshold);
+> > >  
+> > > +static struct attribute *vram_attrs[] = {
+> > > +	&dev_attr_vram_d3cold_threshold.attr,
+> > > +	NULL
+> > > +};
+> > > +
+> > > +static const struct attribute_group vram_attr_group = {
+> > > +	.attrs = vram_attrs,
+> > > +};
+> > > +
+> > >  static ssize_t
+> > >  lb_fan_control_version_show(struct device *dev, struct device_attribute *attr, char *buf)
+> > >  {
+> > > @@ -149,8 +158,16 @@ lb_voltage_regulator_version_show(struct device *dev, struct device_attribute *a
+> > >  }
+> > >  static DEVICE_ATTR_ADMIN_RO(lb_voltage_regulator_version);
+> > >  
+> > > -static int late_bind_create_files(struct device *dev)
+> > > +static struct attribute *late_bind_attrs[] = {
+> > > +	&dev_attr_lb_fan_control_version.attr,
+> > > +	&dev_attr_lb_voltage_regulator_version.attr,
+> > > +	NULL
+> > > +};
+> > > +
+> > > +static umode_t late_bind_attr_is_visible(struct kobject *kobj,
+> > > +					 struct attribute *attr, int n)
+> > >  {
+> > > +	struct device *dev = kobj_to_dev(kobj);
+> > >  	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
+> > >  	struct xe_tile *root = xe_device_get_root_tile(xe);
+> > >  	u32 cap = 0;
+> > > @@ -160,51 +177,25 @@ static int late_bind_create_files(struct device *dev)
+> > >  
+> > >  	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+> > >  			    &cap, NULL);
+> > > -	if (ret) {
+> > > -		if (ret == -ENXIO) {
+> > > -			drm_dbg(&xe->drm, "Late binding not supported by firmware\n");
+> > > -			ret = 0;
+> > > -		}
+> > > -		goto out;
+> > > -	}
+> > > -
+> > > -	if (REG_FIELD_GET(V1_FAN_SUPPORTED, cap)) {
+> > > -		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_fan_control_version.attr);
+> > > -		if (ret)
+> > > -			goto out;
+> > > -	}
+> > > -
+> > > -	if (REG_FIELD_GET(VR_PARAMS_SUPPORTED, cap))
+> > > -		ret = sysfs_create_file(&dev->kobj, &dev_attr_lb_voltage_regulator_version.attr);
+> > > -out:
 > > 
-> > On 9/16/2025 8:00 PM, Nautiyal, Ankit K wrote:
-> > >
-> > > On 9/15/2025 6:02 PM, Ville Syrjälä wrote:
-> > >> On Sun, Sep 14, 2025 at 11:29:10AM +0530, Nautiyal, Ankit K wrote:
-> > >>> On 9/11/2025 7:55 PM, Ville Syrjälä wrote:
-> > >>>> On Thu, Sep 11, 2025 at 08:15:50AM +0530, Ankit Nautiyal wrote:
-> > >>>>> When VRR TG is always enabled and an optimized guardband is used, 
-> > >>>>> the pipe
-> > >>>>> vblank start is derived from the guardband.
-> > >>>>> Currently TRANS_SET_CONTEXT_LATENCY is programmed with 
-> > >>>>> crtc_vblank_start -
-> > >>>>> crtc_vdisplay, which is ~1 when guardband matches the vblank length.
-> > >>>>> With shorter guardband this become a large window.
-> > >>>>>
-> > >>>>> To avoid misprogramming TRANS_SET_CONTEXT_LATENCY, clamp the scl 
-> > >>>>> value to 1
-> > >>>>> when using optimized guardband.
-> > >>>>>
-> > >>>>> Also update the VRR get config logic to set crtc_vblank_start 
-> > >>>>> based on
-> > >>>>> vtotal - guardband, during readback.
-> > >>>>>
-> > >>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > >>>>> ---
-> > >>>>>    drivers/gpu/drm/i915/display/intel_display.c | 36 
-> > >>>>> ++++++++++++++++----
-> > >>>>>    drivers/gpu/drm/i915/display/intel_vrr.c     |  9 ++++-
-> > >>>>>    2 files changed, 38 insertions(+), 7 deletions(-)
-> > >>>>>
-> > >>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c 
-> > >>>>> b/drivers/gpu/drm/i915/display/intel_display.c
-> > >>>>> index 55bea1374dc4..73aec6d4686a 100644
-> > >>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > >>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > >>>>> @@ -2638,6 +2638,30 @@ transcoder_has_vrr(const struct 
-> > >>>>> intel_crtc_state *crtc_state)
-> > >>>>>        return HAS_VRR(display) && !transcoder_is_dsi(cpu_transcoder);
-> > >>>>>    }
-> > >>>>>    +static int intel_set_context_latency(const struct 
-> > >>>>> intel_crtc_state *crtc_state,
-> > >>>>> +                     int crtc_vblank_start,
-> > >>>>> +                     int crtc_vdisplay)
-> > >>>>> +{
-> > >>>>> +    struct intel_display *display = to_intel_display(crtc_state);
-> > >>>>> +
-> > >>>>> +    /*
-> > >>>>> +     * When VRR TG is always on and optimized guardband is used,
-> > >>>>> +     * the pipe vblank start is based on the guardband,
-> > >>>>> +     * TRANS_SET_CONTEXT_LATENCY cannot be used to configure it.
-> > >>>>> +     */
-> > >>>>> +    if (intel_vrr_always_use_vrr_tg(display))
-> > >>>>> +        return clamp(crtc_vblank_start - crtc_vdisplay, 0, 1);
-> > >>>> What are you trying to achieve with this? As in what problem are you
-> > >>>> seeing with the current SCL programming?
-> > >>> In VRR TG mode with optimized guardband, the guardband is shortened and
-> > >>> vblank start is moved to match the delayed vblank position.
-> > >>>
-> > >>> The SCL value which we are currently writing as difference between
-> > >>> delayed vblank and undelayed vblank becomes quite large.
-> > >>>
-> > >>> With this large SCL, the flipline decision boundary which is given by
-> > >>> delayed vblank start and SCL lines is same as the undelayed vblank.
-> > >> Everything should match the undelayed vblank.
-> > >>
-> > >>> It seems that intel_dsb_wait_vblank_delay() (in turn
-> > >>> intel_dsb_wait_usec()) does not behave correctly within the W2 window
-> > >>> (between flipdone decision boundary and delayed vblank start).
-> > >>>
-> > >>> It seems to return prematurely. Since the push bit hasn’t cleared yet,
-> > >>> this leads to DSB poll errors.
-> > >> That doesn't make any sense. That command is supposed to simply wait
-> > >> for the specifid number of microseconds. It should not care at all
-> > >> what is happening with the scanout. If that is not the case then we
-> > >> need to write a synthetic test to reproduce it, and report the
-> > >> problem to the hardware folks.
-> > >
-> > > You are right, on debugging further I noticed that 
-> > > intel_dsb_wait_usec() and intel_dsb_wait_vblank_delay() are working 
-> > > correctly.
-> > >
-> > > Due to large SCL, the the intel_dsb_wait_vblanks() is not waiting till 
-> > > the undelayed vblank but the safe window, apparently undelayed vblank 
-> > > - SCL lines.
-> > >
-> > > We are setting DSB_CHICKEN_REG bits 14-15 : which says: Wait for 
-> > > Vblank instruction will use only safe window signal from dptunit in 
-> > > DSB HW to complete the wait for vblank instruction.
-> > >
-> > > I am not exactly sure if its mentioned in Bspec that safe window start 
-> > > = undelayed vblank start - SCL lines.
-> > >
-> > > Observation:
-> > >
-> > > For example with eDP panel VRR range 40-60 and below mode:
-> > >
-> > > Mode: "2880x1800": 60 347710 2880 2928 2960 3040 1800 1803 1809 1906
-> > >
-> > > Before optimization:
-> > >
-> > > guardband = vblank length = 106; Undelayed vblank start =1800; Delayed 
-> > > vblank start = 1906 - 106 = 1800
-> > >
-> > > SCL = 1800 - 1800 = 0
-> > >
-> > > Flipline decision boundary is = 1800
-> > >
-> > > After optimization:
-> > >
-> > > vblank length = 106; guardband = 38; Undelayed Vblank start = 1800; 
-> > > Delayed Vblank start = 1868 (1906 - 38)
-> > >
-> > > SCL = 1868 - 1800 = 68
-> > >
-> > > Flipline decision boundary = 1868 - 68 = 1800
-> > >
-> > > Consider lines in  intel_atomic_dsb_finish() :
-> > >
-> > >  intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);         /* If 
-> > > flip is earlier than 1732 (1800 - 68) this waits till 1732.*/
-> > >
-> > >                 intel_vrr_send_push(new_crtc_state->dsb_commit, 
-> > > new_crtc_state);    /* Push happens immediately*/
-> > >                 intel_dsb_wait_vblank_delay(state, 
-> > > new_crtc_state->dsb_commit);        /* Waits for duration (delayed 
-> > > vblank start - undelayed vblank start) ie. 68 lines ie. till we reach 
-> > > 1732 + 68 = 1800*/
-> > > intel_vrr_check_push_sent(new_crtc_state->dsb_commit,     /* Push is 
-> > > not clear yet as delayed vblank start (1868) is not reach yet, we get 
-> > > DSB POLL error */
-> > >                                           new_crtc_state);
-> > > intel_dsb_interrupt(new_crtc_state->dsb_commit);       /* DSB 
-> > > interrupt is fired earlier */
+> > >  	xe_pm_runtime_put(xe);
 > > 
-> > 
-> > Sorry for the bad formatting, perhaps this will be more readable:
-> > 
-> > 
-> >   intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-> > 
-> > /* If flip is earlier than 1732 (1800 - 68) this waits till 1732.*/
+> > The device is already in D0 while probing so runtime PM is probably
+> > not needed here.
 > 
-> That does not seem right, or at least it's not how it works on LNL.
-> I just hacked some DSB_STATUS stuff into intel_display_poller [1],
-> and when running that on LNL the safe window always starts at the
-> undelayed vblank.
+> true, but this is how it was initially coded and I didn't want to change it now
 > 
-> So if we look at the vmax case then I think the diagram should look
-> like this:
+> we can either drop it completely or replace with
 > 
->     udelayed vblank 
->     ^               vmax decision boudnary
->     |               ^           delayed vblank
->     |               |           ^                 vmax
->     |               |           |                 ^
->     | <- stretch -> | <- scl -> | <- guardband - >|
->      _______________
-> ..._/               \______________________________... safe window
+> 	xe_pm_runtime_get_noresume(xe);
+> 	xe_pm_runtime_put(xe);
 > 
-> ... push affects curent frame ->|<- push affects next frame ...
->                                 |
-> 				v
-> 				push send bit clears if set
-> 
-> And then for the maximum vrefresh case (defined by flipline instead
-> of vnax) the "stretch" part is something between 0 and 
-> delayed_vblank-undelayed_vblank, depending on how we configure SCL.
-> 
-> Additionally if a push is sent during the scl window just
-> after the vmax decisioun bondary, said push will still affect
-> the current frame (ie. such a frame will not have a full
-> scl/w2 window). Only a push sent after the delayed vblank
-> will in fact get deferred to the next frame. That particular
-> scenatio isn't really described in the bspec timing diagrams.
-> Though since we always precede the push with a "wait for safe
-> window" for us the push would get deferred to the next frame
-> anyway.
+> do you want this to be done as part of this series or it can be done later as follow-up?
 
-Hmm, now that I think about this I think we might have to go with your
-"minimize SCL" approach after all. The problem being that our vblank
-evasion code only evades the undelayed vblank (and a bit before it).
-But with a large SCL the safe window prior to the vmax decision boundary
-may have already ended long before we're even close to crashing into the
-undelayed vblank. Thus we will write all the double buffered registers,
-and they will latch at the vmax undelayed vblank, but the push will
-get deferred into the next frame due to the "wait for safe window".
+Since there's no functional impact, I don't see any harm in dropping
+it as part of refactoring here. But whatever the maintainers think is
+best.
 
-I suppose we should really have our vblank evasion code extend the
-evasion scanline window backwards to also cover the SCL.
-
-I think what we probably need to do is start tracking the scl
-explicitly in the crtc state. And then we'll have to set things up
-in slightly different ways depending on which hw is used:
- pre-tgl: scl=0, vblank_delay=0
- tgl: scl=0, vblank_delay configured via VBLANK_START
- adl+ legacy tg: scl=vblank_delay
- adl+ vrr tg: scl=whatever(0-vblank_delay), vblank_delay configured via guardband
-
-Hmm, or maybe we need to also pretend that tgl has scl since after
-a push we need to wait for the scl window to pass, but since tgl
-doesn't have one maybe there we need to actually wait for the vblank
-delay. I think I'll need to poke at a tgl a bit more here to
-figure out exactly how the safe window works there...
-
--- 
-Ville Syrjälä
-Intel
+Raag
