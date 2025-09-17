@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC377CAC598
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED117CAC59A
 	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 03:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C20910E027;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB07210E409;
 	Wed, 17 Sep 2025 03:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HvvTmiBA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EvKBR5fh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26C6F10E40E
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 03:46:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7287810E408
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 03:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758080782; x=1789616782;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=s3UwmKrHGx5sU5+yLR4HR9tbcQFB2JRYZFJhhDHQpP8=;
- b=HvvTmiBArlqRxDpdooEO4SVXB2P/ashHOrcE3/CBZmoYJj8gRvypnqRj
- upRBIDYoHtyKBoIvnAXgWOHjaQE9yqiZbckm720HsVkOv5AczKv1udFn6
- UHEcSq7eXOoJlPrf7zL68dIRt65vsXFPELUfvpNRmAp9LUCLNT6TURlhR
- IWqbTy/mfpY8gPzlXm41nGvunilzV2qz667DSNfOKJiCo1UVhRuiEjSKR
- 1Ogln97Bj968kDslQfIxyA+8RZfDfTgdAjZ4JYqof6gP/8PPMyoC3Y46L
- blmolCEb/63UrXPLwu8zGlqpfS2/OGEoqdp9wGOMP001KCVOshhEkglo1 Q==;
-X-CSE-ConnectionGUID: gP72cgCwRTCW/cb0K8MJrA==
-X-CSE-MsgGUID: L30JOFpbReaMnVyGcwdy2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71060797"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="71060797"
+ bh=M7edSlrtY/ZMnWQNUhjS1HpjrZJ2jKIqT5Xaw2ngJa0=;
+ b=EvKBR5fhhAMhsAQE6qbPZd0yDFlUx3ziKfXzhgYPp4a1396ITSHh+hUM
+ ezh7K88/O4BjrOYy0YpVFOdsrGxCOgJ7OwBnhgtsHCpjq0HbnQHZgE9aA
+ NQJ/vrwam/zha8HXXl0Zr1Ro27TbNyHpwNEWbNxRV719cQdxzdQNWAQ0I
+ BqeKTTXMIwz0dQuyoBJYrz5R9pk/q6xkFAEekvZ8K38fUVChjSv7hY+Ey
+ h/F/BC6vNzw/J08T/ZBJcb3zdGrcGSFkNGurPYmXz4liTmpdBCXlP3/Dt
+ /tfDUSnl/cLYtLnsTDO/OWHYmyxmVlZDrKUUcnxHjC+OLa3cccqFI8SgT A==;
+X-CSE-ConnectionGUID: dom+Kjm8SWqV1NooGLgglQ==
+X-CSE-MsgGUID: j+zSSzaeQbCdMZDOh3dDqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71060788"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="71060788"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 20:46:22 -0700
-X-CSE-ConnectionGUID: WoRQxNIUSju5LvD8Qqe4Qw==
-X-CSE-MsgGUID: nCcHrcOWQLSgNIw34WBuCA==
+ 16 Sep 2025 20:46:21 -0700
+X-CSE-ConnectionGUID: 2QDvK06WTHuMsA42FFU4cg==
+X-CSE-MsgGUID: oYynBd25RPmV6vyPOJIBAg==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2025 20:46:22 -0700
+ 16 Sep 2025 20:46:21 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 15/28] drm/xe/vf: Teardown VF post migration worker on driver
- unload
-Date: Tue, 16 Sep 2025 20:46:02 -0700
-Message-Id: <20250917034615.3977603-16-matthew.brost@intel.com>
+Subject: [PATCH 06/28] drm/xe/guc: Track pending-enable source in submission
+ state
+Date: Tue, 16 Sep 2025 20:45:53 -0700
+Message-Id: <20250917034615.3977603-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250917034615.3977603-1-matthew.brost@intel.com>
 References: <20250917034615.3977603-1-matthew.brost@intel.com>
@@ -65,75 +65,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Be cautious and ensure the VF post-migration worker is not running
-during driver unload.
+Add explicit tracking in the GuC submission state to record the source
+of a pending enable (TDR vs. queue resume path vs. submission).
+Disambiguating the origin lets the GuC submission state machine apply
+the correct recovery/replay behavior.
+
+This helps VF restore: when the device comes back, the state machine knows
+whether the pending enable stems from timeout recovery, from a queue resume
+sequence, or submission and can gate sequencing and fixups accordingly.
+
+v4:
+ - Clarify commit message (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 17 +++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 +++-
- 2 files changed, 18 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 5bebc38bcb83..2d64cdd450d0 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -811,7 +811,8 @@ static void xe_gt_sriov_vf_start_migration_recovery(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 68466e2335e7..6b3c53603a11 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -69,6 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+ #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
++#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
++#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
  
- 	spin_lock(&gt->sriov.vf.migration.lock);
- 
--	if (!gt->sriov.vf.migration.recovery_queued) {
-+	if (!gt->sriov.vf.migration.recovery_queued ||
-+	    !gt->sriov.vf.migration.recovery_teardown) {
- 		gt->sriov.vf.migration.recovery_queued = true;
- 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
- 
-@@ -1289,6 +1290,17 @@ static void migration_worker_func(struct work_struct *w)
- 	vf_post_migration_recovery(gt);
+ static bool exec_queue_registered(struct xe_exec_queue *q)
+ {
+@@ -220,6 +222,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
  }
  
-+static void vf_migration_fini(struct drm_device *drm, void *arg)
++static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
 +{
-+	struct xe_gt *gt = arg;
-+
-+	spin_lock_irq(&gt->sriov.vf.migration.lock);
-+	gt->sriov.vf.migration.recovery_teardown = true;
-+	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-+
-+	cancel_work_sync(&gt->sriov.vf.migration.worker);
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
 +}
 +
- /**
-  * xe_gt_sriov_vf_migration_init_early() - VF post migration init early
-  * @gt: the &xe_gt
-@@ -1317,7 +1329,8 @@ int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
- 	if (!vf_migration_supported())
- 		xe_gt_sriov_info(gt, "migration not supported by this module version\n");
++static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
++}
++
++static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ {
+ 	return (atomic_read(&q->guc->state) &
+@@ -1334,6 +1366,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	return DRM_GPU_SCHED_STAT_RESET;
  
--	return 0;
-+	return drmm_add_action_or_reset(&gt_to_xe(gt)->drm,
-+					vf_migration_fini, gt);
- }
+ sched_enable:
++	set_exec_queue_pending_tdr_exit(q);
+ 	enable_scheduling(q);
+ rearm:
+ 	/*
+@@ -1484,6 +1517,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ 		clear_exec_queue_suspended(q);
+ 		if (!exec_queue_enabled(q)) {
+ 			q->guc->resume_time = RESUME_PENDING;
++			set_exec_queue_pending_resume(q);
+ 			enable_scheduling(q);
+ 		}
+ 	} else {
+@@ -2055,6 +2089,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+ 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 61484c7c9a36..beb9978336bb 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -59,10 +59,12 @@ struct xe_gt_sriov_vf_runtime {
- struct xe_gt_sriov_vf_migration {
- 	/** @migration: VF migration recovery worker */
- 	struct work_struct worker;
--	/** @lock: Protects recovery_queued */
-+	/** @lock: Protects recovery_queued, teardown */
- 	spinlock_t lock;
- 	/** @lrc_wa_bb: Scratch memory for LRC WA BB in recovery */
- 	void *lrc_wa_bb;
-+	/** @recovery_teardown: VF post migration recovery is being torn down */
-+	bool recovery_teardown;
- 	/** @recovery_queued: VF post migration recovery in queued */
- 	bool recovery_queued;
- 	/** @recovery_inprogress: VF post migration recovery in progress */
+ 		q->guc->resume_time = ktime_get();
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
+ 		clear_exec_queue_pending_enable(q);
+ 		smp_wmb();
+ 		wake_up_all(&guc->ct.wq);
 -- 
 2.34.1
 
