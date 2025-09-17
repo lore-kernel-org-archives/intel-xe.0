@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0490BCAC598
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 06:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A246CAC599
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 07:10:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE6410E419;
-	Wed, 17 Sep 2025 06:58:00 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 352F610E419;
- Wed, 17 Sep 2025 06:57:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6599091445295451950=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC04410E41A;
+	Wed, 17 Sep 2025 07:10:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gnLWhdO2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998AF10E419;
+ Wed, 17 Sep 2025 07:10:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758093023; x=1789629023;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=NR3vB7P34lfRH5s6vxgMe+VjfIXtRMdJTzD25Y+R00Q=;
+ b=gnLWhdO2ZaR5+bgA+m4bxs+ZmgyNAJHoBOGtWzlXrfnAcPrIaYU+A5p1
+ NHTIcQYYIrZkRO2+UBHUWwb4/jOQ3YoqpLjtj0t3rq19K/arPKIIWr6Hs
+ Q5lq3Trf+ReZJOvckEmXYc4LbTbdgVYf6Mg2eu4//hdm/OupC1bqpKN6A
+ 7tkj+4VogkCcjKd44CnZjUDYc7695+PFirsI+ma5K5y1ZcE/2OZMDiumv
+ 4fioG7d66oYmcd5qfzB9dMt0kfPRsxvmmE+OHhcffizR22k1Ibjd53Fto
+ qaAJYZbXQICzuzeh/9lkZT5hbFRXoLVpVPt/YHU7VN1PuB8GKfz+qjK0H A==;
+X-CSE-ConnectionGUID: 2ZTySakRRP+UYa/dnwc+5w==
+X-CSE-MsgGUID: YjXrQ6EBTu2FWqR4RSuUZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="77828955"
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; d="scan'208";a="77828955"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 00:10:23 -0700
+X-CSE-ConnectionGUID: BPXqxGDURtqnoul5P+Bfdw==
+X-CSE-MsgGUID: 3nRu7LnDSHSEqF51gvRXsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,271,1751266800"; d="scan'208";a="179449916"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.26])
+ ([10.245.244.26])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 00:10:21 -0700
+Message-ID: <c8f13753981072aeef025b0a23967b07cfc0dc79.camel@linux.intel.com>
+Subject: Re: [PATCH v4 3/5] drm/xe/pf: Add a helper function to get a VF's
+ backing object in LMEM
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Date: Wed, 17 Sep 2025 09:10:18 +0200
+In-Reply-To: <a28534edd2c0d496317869a6f85d199d6fbfef54.camel@linux.intel.com>
+References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
+ <20250915072428.1712837-4-vivek.kasireddy@intel.com>
+ <a28534edd2c0d496317869a6f85d199d6fbfef54.camel@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/migrate=3A_Revamp_PA?=
- =?utf-8?q?T_index_selection_for_migrate_PTEs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 17 Sep 2025 06:57:59 -0000
-Message-ID: <175809227920.340242.8981076855473675100@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250917061620.4145998-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20250917061620.4145998-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +69,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6599091445295451950==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-09-16 at 22:06 +0200, Thomas Hellstr=C3=B6m wrote:
+> On Mon, 2025-09-15 at 00:21 -0700, Vivek Kasireddy wrote:
+> > To properly import a dmabuf that is associated with a VF (or that
+> > originates in a Guest VM that includes a VF), we need to know where
+> > in LMEM the VF's allocated regions exist. Therefore, introduce a
+> > new helper to return the object that backs the VF's regions in
+> > LMEM.
+> >=20
+> > v2:
+> > - Make the helper return the LMEM object instead of the start
+> > address
+> >=20
+> > v3:
+> > - Move the declaration of the helper under other lmem helpers
+> > (Michal)
+>=20
+> In XeKMD we're typically using VRAM instead of LMEM, IMO we should
+> try
+> to be consistent with this.
 
-== Series Details ==
+I actually notice that most of the SRIOV code uses LMEM instead of
+VRAM, so I discussed with the other maintainers what would be the best
+way moving forward here.
 
-Series: drm/xe/migrate: Revamp PAT index selection for migrate PTEs
-URL   : https://patchwork.freedesktop.org/series/154629/
-State : success
+So if you could try as a general rule to avoid using "lmem" in other
+files than the SRIOV files. Also if SRIOV functions or variable names
+or fields mandate it, "lmem" is OK.
 
-== Summary ==
+But in other files, functions and variable names, pleas use VRAM.
 
-CI Bug Log - changes from xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370_BAT -> xe-pw-154629v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154629v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-2:          [PASS][1] -> [FAIL][2] ([Intel XE#5507]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154629v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+Thanks,
+Thomas
 
 
-Build changes
--------------
-
-  * Linux: xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370 -> xe-pw-154629v1
-
-  IGT_8541: 8541
-  xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370: ab86b32a024c2a431a0300c91745fca9aa0b9370
-  xe-pw-154629v1: 154629v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154629v1/index.html
-
---===============6599091445295451950==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/migrate: Revamp PAT index selection for migrate PTEs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154629/">https://patchwork.freedesktop.org/series/154629/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154629v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154629v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370_BAT -&gt; xe-pw-154629v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154629v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154629v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370 -&gt; xe-pw-154629v1</li>
-</ul>
-<p>IGT_8541: 8541<br />
-  xe-3777-ab86b32a024c2a431a0300c91745fca9aa0b9370: ab86b32a024c2a431a0300c91745fca9aa0b9370<br />
-  xe-pw-154629v1: 154629v1</p>
-
-</body>
-</html>
-
---===============6599091445295451950==--
