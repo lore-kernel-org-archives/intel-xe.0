@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DB7ECAC59A
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 13:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC67CAC599
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 14:07:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 315C510E617;
-	Wed, 17 Sep 2025 13:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3519810E847;
+	Wed, 17 Sep 2025 14:07:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9V5na2p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ik3M8MAc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0252910E617;
- Wed, 17 Sep 2025 13:58:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B301410E847;
+ Wed, 17 Sep 2025 14:07:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758117482; x=1789653482;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=5DBh8REK5BP8HInTWYYuG19QRfdIbDzmW457tBJtBMQ=;
- b=C9V5na2ppBUO3Ud4RCSF3dpqPToeCH9+geZb0wgCRzLZIZr7lK6Y46xM
- xSxk7G5JWO4S994VipIiHVtCuzdrCG2nV4EMOc848KWQfacbUpMRTRiiU
- AIUw25TkjOKVgYk7rOmajTCLFoDuMCm9xdMW5hHg7a3zIYTakt86ZTV9y
- /wz1zX/Y2AyDAsPiP7OkTplexqVJiRFt/NMbMeDRQB+ReXNE1+rnUi70u
- DCtFtZzy5XVZlb0l4dA/cXvV2dQ73RjLRlo1f0JeXBnJkfCUirdFujCKa
- ETzQkCsUwZgRjUNvc4cOTy44T3O2naOEhNMSoM+/g+QUqbQ1mwwfp9H5y g==;
-X-CSE-ConnectionGUID: 1WSC+eWBRuuYsujB/jjH8A==
-X-CSE-MsgGUID: rBC+I0+2RuG5s4CRtJCVfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60569735"
-X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="60569735"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 06:58:02 -0700
-X-CSE-ConnectionGUID: 6I7ELYDbROqu8nL5yBtYCw==
-X-CSE-MsgGUID: BBOEphm+R0+G/t+Z7Nt+jw==
+ t=1758118058; x=1789654058;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=baTSy1ufNoDrGJL4DZKjlDh1KzScoApg+xSWTwa+R+E=;
+ b=Ik3M8MAcL9HUMFL+exKOT6CjQ/tcF1pL6cnZHuXFfTl7bwZk0fNfhauD
+ iaQO0HHMiiJh1EFFxkmDnqbF9Kx8rAZ8M0y+UBWzkf4LELg8BId1tMxi4
+ WXw8wkUPcwZz2NDrRpub3QuddD6jRQbt8rS/CUMJTutDehFChYlQZmD5r
+ QK2A37ON+J7AbstYE5/EQTjdycAxA2sttq8UYLdKQkPLmcHBkS/2QHVpf
+ FHLKfKn+AlUpux/mNJY6xBVgflePg5VsncbBeVJ2xnCWUHmgibM3S6z8O
+ GVlZN+DX3DqYYEAdEluoNp6mcpHyQOUIhwrxK+gE32X4Zztdr+bfKQ4h7 w==;
+X-CSE-ConnectionGUID: QRMYYw3eQVy+h2fkyt+zAA==
+X-CSE-MsgGUID: 3uN9KdrNQEOkQAvakCtDLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="59469181"
+X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="59469181"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 07:07:38 -0700
+X-CSE-ConnectionGUID: s41uOYu4RiiGcojs9q1+aA==
+X-CSE-MsgGUID: hW/xUITBRI+JXz/B+2Zziw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="175174501"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 06:57:59 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- michal.grzelak@intel.com
-Subject: Re: [PATCH v2 10/15] drm/i915: cache the results in
- vlv_clock_get_hpll_vco() and use it more
-In-Reply-To: <aMm_r5PJtPNYFq8i@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1757688216.git.jani.nikula@intel.com>
- <14695618682d8d8fad1adc485de7a122c8e1494a.1757688216.git.jani.nikula@intel.com>
- <aMm_r5PJtPNYFq8i@intel.com>
-Date: Wed, 17 Sep 2025 16:57:57 +0300
-Message-ID: <ca691646d027314b074a9bee5fdd40fa7835e62d@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="198940549"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.83])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 07:07:37 -0700
+Date: Wed, 17 Sep 2025 17:07:34 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6/9] drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
+Message-ID: <aMrApoD9mHeiOPoV@intel.com>
+References: <cover.1756931441.git.jani.nikula@intel.com>
+ <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
+ <aLmkNu6AJ6LGVt6q@intel.com>
+ <4e4d1bc04de69092cdb3ecc16bda81764d2b9b16@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4e4d1bc04de69092cdb3ecc16bda81764d2b9b16@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,66 +73,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 16 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Sep 12, 2025 at 05:48:49PM +0300, Jani Nikula wrote:
->> Use vlv_clock_get_hpll_vco() helper more to avoid looking at
->> i915->hpll_freq directly. Cache and return the cached results to avoid
->> repeated lookups.
->>=20
->> v2: Rebase
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c   | 10 +++-----
->>  drivers/gpu/drm/i915/display/intel_display.c | 27 ++++++++------------
->>  2 files changed, 14 insertions(+), 23 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/dr=
-m/i915/display/intel_cdclk.c
->> index ea1e6d964764..e77efa0f33ed 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -563,8 +563,7 @@ static void hsw_get_cdclk(struct intel_display *disp=
-lay,
->>=20=20
->>  static int vlv_calc_cdclk(struct intel_display *display, int min_cdclk)
->>  {
->> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
->> -	int freq_320 =3D (dev_priv->hpll_freq <<  1) % 320000 !=3D 0 ?
->> +	int freq_320 =3D (vlv_clock_get_hpll_vco(display->drm) <<  1) % 320000=
- !=3D 0 ?
->>  		333333 : 320000;
->
-> The somewhat dodgy thing here is that the device might not even be
-> awake when this is called. So this on-demand caching only works
-> correctly if the first call happens to be done at the right time
-> by accident.
->
-> I suppose we do end up calling most of these at some point during
-> the driver initialization when everything is powered on, but the
-> whole thing does feel rather fragile. I suppose we can hope that
-> the limited CI coverage was enough to catch most of that.
->
-> It would probably make sense to introduce an explicit initalization
-> function that can be called under controlled circumstances. But we
-> could do that as a followup, and in the meantime maybe toss in a
-> few remarks somewhere to remind us about this potential trap...
->
-> Series is
-> Acked-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, Sep 17, 2025 at 03:33:31PM +0300, Jani Nikula wrote:
+> On Thu, 04 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Wed, Sep 03, 2025 at 11:32:03PM +0300, Jani Nikula wrote:
+> >> xe does xe_bo_unpin_map_no_vm() on the failure path. Add a common helper
+> >> to enable further refactoring.
+> >> 
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +++++
+> >>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 1 +
+> >>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 7 ++++++-
+> >>  3 files changed, 12 insertions(+), 1 deletion(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> >> index 3837973b0d25..6b70823ce5ef 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+> >> @@ -51,6 +51,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+> >>  	return &obj->base;
+> >>  }
+> >>  
+> >> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
+> >> +{
+> >> +	/* nop? */
+> >
+> > gem_object_put() is what destroys the bo on i915, so I think you're
+> > introducing a leak in the next patch with this nop implementation.
+> >
+> > xe seems to be riddled with footguns here since it conflates
+> > creation+pinning+whatever in the same thing (and I guess it
+> > doesn't know how to clean all that up when the last reference
+> > to the object disappears?) and you have to use that horribly
+> > misnamed function instead...
+> 
+> Hmm, can we just slap i915_gem_object_put(obj) in there?
 
-Thanks, pushed the lot.
+That would at least match how it behaves currently. Though I
+didn't look too deeply whether that is 100% sufficient to clean
+up properly.
 
-There wasn't really a point where I could've neatly snug in a comment
-about caching while applying, so I sent a follow-up [1].
+> 
+> The i915 variant of intel_fbdev_fb_alloc() ignores errors from
+> intel_framebuffer_create() and just unconditionally does
+> i915_gem_object_put() afterwards:
+> 
+> 	fb = intel_framebuffer_create(intel_bo_to_drm_bo(obj),
+> 				      drm_get_format_info(display->drm,
+> 							  mode_cmd.pixel_format,
+> 							  mode_cmd.modifier[0]),
+> 				      &mode_cmd);
+> 	i915_gem_object_put(obj);
+> 
+> 	return to_intel_framebuffer(fb);
+> 
+> Presumably the refcounts are handled correctly either way.
+> 
+> It's just a bit fishy that the potential error pointer from
+> intel_framebuffer_create() goes through to_intel_framebuffer() to the
+> caller.
 
-BR,
-Jani.
+Yeah, would be less confusing to just check for the error
+explicitly.
 
-
-[1] https://lore.kernel.org/r/20250917135200.1932903-1-jani.nikula@intel.com
-
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
