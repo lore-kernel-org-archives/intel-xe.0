@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C343CAC5AF
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 03:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC377CAC598
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 03:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 103CE10E732;
-	Wed, 17 Sep 2025 03:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C20910E027;
+	Wed, 17 Sep 2025 03:46:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b9NDgzsh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HvvTmiBA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49F0910E63D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C6F10E40E
  for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 03:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758080782; x=1789616782;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=R4tjGJ98ZgPjujzJm/JjmcCjxvNh24NwCJviiK5dVKk=;
- b=b9NDgzshvrH9gG/5pRKmgmAjre5yL7Hlj6I/+wNyQqVAbst/qMb+wl7K
- 4nMftRcvnXTrAUARLIycUZCnKNWlJ4/RG/43Bq+8DoXu452SSztQgkemd
- Yas6GNWy9WhMQDrGDHcuedrYAOpt1Sl2RGoYoQDfUyWVGdp/MxOnRofD3
- PmDeW6MQPJdH3oGKXYCZInpVz7PNOv043LSPamOFQ2LJGnW3gqBK08Z9o
- jLNHrvPNf1L4UzHCCiV4RMmYcZWB7deLwg9qmBl/JlUeEzqxoKwe+yJXb
- HPND0DxY5N/z6OHsgdtVrVKAyo5ZnRIefXH+j0Sc+P4uGjFCCSoNT+BOP Q==;
-X-CSE-ConnectionGUID: UuQ18iKRQfSPa2oBrCfpiQ==
-X-CSE-MsgGUID: ZHcujgL1TtOYQOf9vcXz7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71060799"
-X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="71060799"
+ bh=s3UwmKrHGx5sU5+yLR4HR9tbcQFB2JRYZFJhhDHQpP8=;
+ b=HvvTmiBArlqRxDpdooEO4SVXB2P/ashHOrcE3/CBZmoYJj8gRvypnqRj
+ upRBIDYoHtyKBoIvnAXgWOHjaQE9yqiZbckm720HsVkOv5AczKv1udFn6
+ UHEcSq7eXOoJlPrf7zL68dIRt65vsXFPELUfvpNRmAp9LUCLNT6TURlhR
+ IWqbTy/mfpY8gPzlXm41nGvunilzV2qz667DSNfOKJiCo1UVhRuiEjSKR
+ 1Ogln97Bj968kDslQfIxyA+8RZfDfTgdAjZ4JYqof6gP/8PPMyoC3Y46L
+ blmolCEb/63UrXPLwu8zGlqpfS2/OGEoqdp9wGOMP001KCVOshhEkglo1 Q==;
+X-CSE-ConnectionGUID: gP72cgCwRTCW/cb0K8MJrA==
+X-CSE-MsgGUID: L30JOFpbReaMnVyGcwdy2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11555"; a="71060797"
+X-IronPort-AV: E=Sophos;i="6.18,270,1751266800"; d="scan'208";a="71060797"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 20:46:22 -0700
-X-CSE-ConnectionGUID: N0LTmooBRF+7IwpMzDdK0A==
-X-CSE-MsgGUID: 0t21fGRyT/mUuOplokh9hQ==
+X-CSE-ConnectionGUID: WoRQxNIUSju5LvD8Qqe4Qw==
+X-CSE-MsgGUID: nCcHrcOWQLSgNIw34WBuCA==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Sep 2025 20:46:22 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 17/28] drm/xe/vf: Wakeup in GuC backend on VF post migration
- recovery
-Date: Tue, 16 Sep 2025 20:46:04 -0700
-Message-Id: <20250917034615.3977603-18-matthew.brost@intel.com>
+Subject: [PATCH 15/28] drm/xe/vf: Teardown VF post migration worker on driver
+ unload
+Date: Tue, 16 Sep 2025 20:46:02 -0700
+Message-Id: <20250917034615.3977603-16-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250917034615.3977603-1-matthew.brost@intel.com>
 References: <20250917034615.3977603-1-matthew.brost@intel.com>
@@ -65,191 +65,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If VF post-migration recovery is in progress, the recovery flow will
-rebuild all GuC submission state.  In this case, exit all waiters to
-ensure that submission queue scheduling can also be paused. Avoid taking
-any adverse actions after aborting the wait.
+Be cautious and ensure the VF post-migration worker is not running
+during driver unload.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  3 ++
- drivers/gpu/drm/xe/xe_guc_submit.c  | 51 +++++++++++++++++++++--------
- 2 files changed, 41 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 17 +++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 +++-
+ 2 files changed, 18 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 12a56a975358..877f6e1c3a3a 100644
+index 5bebc38bcb83..2d64cdd450d0 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -815,6 +815,9 @@ static void xe_gt_sriov_vf_start_migration_recovery(struct xe_gt *gt)
- 	    !gt->sriov.vf.migration.recovery_teardown) {
+@@ -811,7 +811,8 @@ static void xe_gt_sriov_vf_start_migration_recovery(struct xe_gt *gt)
+ 
+ 	spin_lock(&gt->sriov.vf.migration.lock);
+ 
+-	if (!gt->sriov.vf.migration.recovery_queued) {
++	if (!gt->sriov.vf.migration.recovery_queued ||
++	    !gt->sriov.vf.migration.recovery_teardown) {
  		gt->sriov.vf.migration.recovery_queued = true;
  		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
-+		smp_wmb();
-+
-+		wake_up_all(&gt->uc.guc.ct.wq);
  
- 		started = queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
- 		xe_gt_sriov_info(gt, "VF migration recovery %s\n", started ?
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 0cd5987606f1..5f08b009ace1 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -984,6 +984,9 @@ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
- 	return (WQ_SIZE - q->guc->wqi_tail);
+@@ -1289,6 +1290,17 @@ static void migration_worker_func(struct work_struct *w)
+ 	vf_post_migration_recovery(gt);
  }
  
-+#define vf_recovery(guc)	\
-+	xe_gt_sriov_vf_recovery_inprogress(guc_to_gt(guc))
++static void vf_migration_fini(struct drm_device *drm, void *arg)
++{
++	struct xe_gt *gt = arg;
 +
- static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -993,7 +996,7 @@ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- 
- #define AVAILABLE_SPACE \
- 	CIRC_SPACE(q->guc->wqi_tail, q->guc->wqi_head, WQ_SIZE)
--	if (wqi_size > AVAILABLE_SPACE) {
-+	if (wqi_size > AVAILABLE_SPACE && !vf_recovery(guc)) {
- try_again:
- 		q->guc->wqi_head = parallel_read(xe, map, wq_desc.head);
- 		if (wqi_size > AVAILABLE_SPACE) {
-@@ -1192,9 +1195,10 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 (!exec_queue_pending_enable(q) &&
- 				  !exec_queue_pending_disable(q)) ||
--					 xe_guc_read_stopped(guc),
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc),
- 				 HZ * 5);
--	if (!ret) {
-+	if (!ret && !vf_recovery(guc)) {
- 		struct xe_gpu_scheduler *sched = &q->guc->sched;
- 
- 		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
-@@ -1297,6 +1301,10 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	bool wedged = false;
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	gt->sriov.vf.migration.recovery_teardown = true;
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
 +
-+	if (vf_recovery(guc))
-+		return;
++	cancel_work_sync(&gt->sriov.vf.migration.worker);
++}
 +
- 	trace_xe_exec_queue_lr_cleanup(q);
+ /**
+  * xe_gt_sriov_vf_migration_init_early() - VF post migration init early
+  * @gt: the &xe_gt
+@@ -1317,7 +1329,8 @@ int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
+ 	if (!vf_migration_supported())
+ 		xe_gt_sriov_info(gt, "migration not supported by this module version\n");
  
- 	if (!exec_queue_killed(q))
-@@ -1329,7 +1337,11 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 		 */
- 		ret = wait_event_timeout(guc->ct.wq,
- 					 !exec_queue_pending_disable(q) ||
--					 xe_guc_read_stopped(guc), HZ * 5);
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc), HZ * 5);
-+		if (vf_recovery(guc))
-+			return;
-+
- 		if (!ret) {
- 			xe_gt_warn(q->gt, "Schedule disable failed to respond, guc_id=%d\n",
- 				   q->guc->id);
-@@ -1419,8 +1431,9 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 !exec_queue_pending_enable(q) ||
--				 xe_guc_read_stopped(guc), HZ * 5);
--	if (!ret || xe_guc_read_stopped(guc)) {
-+				 xe_guc_read_stopped(guc) ||
-+				 vf_recovery(guc), HZ * 5);
-+	if ((!ret && !vf_recovery(guc)) || xe_guc_read_stopped(guc)) {
- 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
- 		set_exec_queue_banned(q);
- 		xe_gt_reset_async(q->gt);
-@@ -1491,7 +1504,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * list so job can be freed and kick scheduler ensuring free job is not
- 	 * lost.
- 	 */
--	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags))
-+	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags) ||
-+	    vf_recovery(guc))
- 		return DRM_GPU_SCHED_STAT_NO_HANG;
- 
- 	/* Kill the run_job entry point */
-@@ -1543,7 +1557,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 			ret = wait_event_timeout(guc->ct.wq,
- 						 (!exec_queue_pending_enable(q) &&
- 						  !exec_queue_pending_disable(q)) ||
--						 xe_guc_read_stopped(guc), HZ * 5);
-+						 xe_guc_read_stopped(guc) ||
-+						 vf_recovery(guc), HZ * 5);
-+			if (vf_recovery(guc))
-+				goto handle_vf_resume;
- 			if (!ret || xe_guc_read_stopped(guc))
- 				goto trigger_reset;
- 
-@@ -1568,7 +1585,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		smp_rmb();
- 		ret = wait_event_timeout(guc->ct.wq,
- 					 !exec_queue_pending_disable(q) ||
--					 xe_guc_read_stopped(guc), HZ * 5);
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc), HZ * 5);
-+		if (vf_recovery(guc))
-+			goto handle_vf_resume;
- 		if (!ret || xe_guc_read_stopped(guc)) {
- trigger_reset:
- 			if (!ret)
-@@ -1673,6 +1693,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * some thought, do this in a follow up.
- 	 */
- 	xe_sched_submission_start(sched);
-+handle_vf_resume:
- 	return DRM_GPU_SCHED_STAT_NO_HANG;
+-	return 0;
++	return drmm_add_action_or_reset(&gt_to_xe(gt)->drm,
++					vf_migration_fini, gt);
  }
  
-@@ -1785,8 +1806,9 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 
- 	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
- 	    exec_queue_enabled(q)) {
--		wait_event(guc->ct.wq, (q->guc->resume_time != RESUME_PENDING ||
--			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q));
-+		wait_event(guc->ct.wq, vf_recovery(guc) ||
-+			   ((q->guc->resume_time != RESUME_PENDING ||
-+			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q)));
- 
- 		if (!xe_guc_read_stopped(guc)) {
- 			s64 since_resume_ms =
-@@ -1913,7 +1935,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->entity = &ge->entity;
- 
--	if (xe_guc_read_stopped(guc))
-+	if (xe_guc_read_stopped(guc) || vf_recovery(guc))
- 		xe_sched_stop(sched);
- 
- 	mutex_unlock(&guc->submission_state.lock);
-@@ -2066,12 +2088,15 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- 	 * suspend_pending upon kill but to be paranoid but races in which
- 	 * suspend_pending is set after kill also check kill here.
- 	 */
-+retry:
- 	ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
- 					       !READ_ONCE(q->guc->suspend_pending) ||
- 					       exec_queue_killed(q) ||
- 					       xe_guc_read_stopped(guc),
- 					       HZ * 5);
- 
-+	if (vf_recovery(guc) && !xe_device_wedged((guc_to_xe(guc))))
-+		goto retry;
- 	if (!ret) {
- 		xe_gt_warn(guc_to_gt(guc),
- 			   "Suspend fence, guc_id=%d, failed to respond",
-@@ -2177,7 +2202,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
- {
- 	int ret;
- 
--	if (WARN_ON_ONCE(xe_gt_sriov_vf_recovery_inprogress(guc_to_gt(guc))))
-+	if (WARN_ON_ONCE(vf_recovery(guc)))
- 		return 0;
- 
- 	if (!guc->submission_state.initialized)
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 61484c7c9a36..beb9978336bb 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -59,10 +59,12 @@ struct xe_gt_sriov_vf_runtime {
+ struct xe_gt_sriov_vf_migration {
+ 	/** @migration: VF migration recovery worker */
+ 	struct work_struct worker;
+-	/** @lock: Protects recovery_queued */
++	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
+ 	/** @lrc_wa_bb: Scratch memory for LRC WA BB in recovery */
+ 	void *lrc_wa_bb;
++	/** @recovery_teardown: VF post migration recovery is being torn down */
++	bool recovery_teardown;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
