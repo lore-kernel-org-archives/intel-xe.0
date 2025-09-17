@@ -4,67 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A34E7CA0EE8
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 12:36:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 057ADCAC599
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 13:00:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F5A10E64C;
-	Wed, 17 Sep 2025 12:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCF1B10E1BD;
+	Wed, 17 Sep 2025 13:00:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Goapz1Dj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B73Orcfv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B0D10E1AD;
- Wed, 17 Sep 2025 12:36:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 845DA10E1B9;
+ Wed, 17 Sep 2025 13:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758112600; x=1789648600;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DdWiAkkVa5p+fFuaeYUovNehLLhuzWA/xVo6GS+Cj6o=;
- b=Goapz1Djs5USI6DRY8tBioS6n7+ZuJutK0+ok5/nMkS0A0TnDQbzbQ+t
- LbbQ+SaQfKEsjyqcKeKFp4f+n+1gDmELlwlcw+fbzmDRLaWdEValjSWsH
- gCEAYaa2wKf3pPr6Dg2vRgoCQxQjrhd66+3FG3mMOpn6Ox1rH5FFTIJIj
- sTHdkyoeHNQ135GODdvShioQ6xa5ufFemG8WWGAnNET6Nr94T7KDY984i
- 8+5YPGf9VoREZKvgqNWV2Waj+jpf/mNdbZYlOXo8qCyZECMHgFmBG6raR
- oQ4ws3dHE/fQb++i5q5czNlpqo7N3fAtZWIxZSScgu75bMqWGOnDWaE92 w==;
-X-CSE-ConnectionGUID: zRYvqA8zQM+UHuzRyPlMDQ==
-X-CSE-MsgGUID: cEr4O5n6QPu0BRHxXmeh6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71782207"
-X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="71782207"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 05:36:40 -0700
-X-CSE-ConnectionGUID: NlKifTQ2Qe66WjlJIC/uhQ==
-X-CSE-MsgGUID: BJYADIAiSu+6zGSdy78CQg==
+ t=1758114026; x=1789650026;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=2yKGs0PVzLg3qQGCXuxUQSYho466dRx1tPvvARiZqSc=;
+ b=B73OrcfvVPUHEyRXREu0Xbu5SLioFTOEkK+pLV/awSGLfb6NWNEeZrNr
+ Ng438HxDfpMj+0J7kHy5yBG8EDZGglSi/0yLi4OVzINehwHLhULufI5c6
+ k3Xz2xeOvytpnDPcwviMrwi7NRuefpti8p4OcmrnlcuSIdUBFj+XKDdGw
+ sOLsBFvfGWk5ihoHQqZAYH89YsQowTa1LGbRYE9qzQPXkw71bGCFccf6L
+ 2bOARI5lrh9OJqK/MekRdUeBCrq0/rGG4MtVgt54+W1Edpsa6WhtX2h3c
+ 98hdu1me0lbMNTaWG8GYkDtwGH6LEpnRx4kQwjXJ5mZmb51j2ggEXF0Yl A==;
+X-CSE-ConnectionGUID: nkwhBiFHQEGWGVFPTmGFMg==
+X-CSE-MsgGUID: sB6ROlIAS2GL8V9TBL0o1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71045914"
+X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208,223";a="71045914"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 06:00:25 -0700
+X-CSE-ConnectionGUID: wqBSL0cpQwChrQvG9cG0/Q==
+X-CSE-MsgGUID: RYfeRSafTX+BsmmDmjtmdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; d="scan'208";a="212380266"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.83])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2025 05:36:38 -0700
-Date: Wed, 17 Sep 2025 15:36:36 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/15] drm/i915/display: Use vrr.guardband to derive
- vblank_start
-Message-ID: <aMqrVCeLB-OAUM6H@intel.com>
-References: <20250911024554.692469-1-ankit.k.nautiyal@intel.com>
- <20250911024554.692469-12-ankit.k.nautiyal@intel.com>
- <aMLb17oJa__bPVoA@intel.com>
- <f4fb8190-668f-4692-a610-9d7015130ba6@intel.com>
- <aMgHS992-0aZ8FIb@intel.com>
- <3328d2c9-e398-4097-a3de-fdee441fa50d@intel.com>
- <3f1d3ce2-fb8a-4576-a74a-cd8b59a016fc@intel.com>
- <aMmy79ka0CgBrLmf@intel.com>
- <bc897dc1-b98e-4ba3-b6d3-474cd156b581@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,272,1751266800"; 
+ d="scan'208,223";a="206021646"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.87])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2025 06:00:14 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 17 Sep 2025 16:00:10 +0300 (EEST)
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-2?Q?Micha=B3_Winiarski?= <michal.winiarski@intel.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ David Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ ?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ "Michael J . Ruhl" <mjruhl@habana.ai>, LKML <linux-kernel@vger.kernel.org>, 
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 00/11] PCI: Resizable BAR improvements
+In-Reply-To: <fl6tx5ztvttg7txmz2ps7oyd745wg3lwcp3h7esmvnyg26n44y@owo2ojiu2mov>
+Message-ID: <f1ba313f-74c2-ae63-ac80-4a35e53477b4@linux.intel.com>
+References: <20250915091358.9203-1-ilpo.jarvinen@linux.intel.com>
+ <wqukxnxni2dbpdhri3cbvlrzsefgdanesgskzmxi5sauvsirsl@xor663jw2cdw>
+ <fafda2a3-fc63-ce97-d22b-803f771a4d19@linux.intel.com>
+ <fl6tx5ztvttg7txmz2ps7oyd745wg3lwcp3h7esmvnyg26n44y@owo2ojiu2mov>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <bc897dc1-b98e-4ba3-b6d3-474cd156b581@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: multipart/mixed; BOUNDARY="8323328-161591600-1758110677=:1127"
+Content-ID: <02627e65-0efe-af44-e3e3-bb98aa69c8a6@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,293 +84,507 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 17, 2025 at 04:08:39PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 9/17/2025 12:26 AM, Ville Syrjälä wrote:
-> > On Tue, Sep 16, 2025 at 08:08:01PM +0530, Nautiyal, Ankit K wrote:
-> >> On 9/16/2025 8:00 PM, Nautiyal, Ankit K wrote:
-> >>> On 9/15/2025 6:02 PM, Ville Syrjälä wrote:
-> >>>> On Sun, Sep 14, 2025 at 11:29:10AM +0530, Nautiyal, Ankit K wrote:
-> >>>>> On 9/11/2025 7:55 PM, Ville Syrjälä wrote:
-> >>>>>> On Thu, Sep 11, 2025 at 08:15:50AM +0530, Ankit Nautiyal wrote:
-> >>>>>>> When VRR TG is always enabled and an optimized guardband is used,
-> >>>>>>> the pipe
-> >>>>>>> vblank start is derived from the guardband.
-> >>>>>>> Currently TRANS_SET_CONTEXT_LATENCY is programmed with
-> >>>>>>> crtc_vblank_start -
-> >>>>>>> crtc_vdisplay, which is ~1 when guardband matches the vblank length.
-> >>>>>>> With shorter guardband this become a large window.
-> >>>>>>>
-> >>>>>>> To avoid misprogramming TRANS_SET_CONTEXT_LATENCY, clamp the scl
-> >>>>>>> value to 1
-> >>>>>>> when using optimized guardband.
-> >>>>>>>
-> >>>>>>> Also update the VRR get config logic to set crtc_vblank_start
-> >>>>>>> based on
-> >>>>>>> vtotal - guardband, during readback.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >>>>>>> ---
-> >>>>>>>     drivers/gpu/drm/i915/display/intel_display.c | 36
-> >>>>>>> ++++++++++++++++----
-> >>>>>>>     drivers/gpu/drm/i915/display/intel_vrr.c     |  9 ++++-
-> >>>>>>>     2 files changed, 38 insertions(+), 7 deletions(-)
-> >>>>>>>
-> >>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> >>>>>>> b/drivers/gpu/drm/i915/display/intel_display.c
-> >>>>>>> index 55bea1374dc4..73aec6d4686a 100644
-> >>>>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >>>>>>> @@ -2638,6 +2638,30 @@ transcoder_has_vrr(const struct
-> >>>>>>> intel_crtc_state *crtc_state)
-> >>>>>>>         return HAS_VRR(display) && !transcoder_is_dsi(cpu_transcoder);
-> >>>>>>>     }
-> >>>>>>>     +static int intel_set_context_latency(const struct
-> >>>>>>> intel_crtc_state *crtc_state,
-> >>>>>>> +                     int crtc_vblank_start,
-> >>>>>>> +                     int crtc_vdisplay)
-> >>>>>>> +{
-> >>>>>>> +    struct intel_display *display = to_intel_display(crtc_state);
-> >>>>>>> +
-> >>>>>>> +    /*
-> >>>>>>> +     * When VRR TG is always on and optimized guardband is used,
-> >>>>>>> +     * the pipe vblank start is based on the guardband,
-> >>>>>>> +     * TRANS_SET_CONTEXT_LATENCY cannot be used to configure it.
-> >>>>>>> +     */
-> >>>>>>> +    if (intel_vrr_always_use_vrr_tg(display))
-> >>>>>>> +        return clamp(crtc_vblank_start - crtc_vdisplay, 0, 1);
-> >>>>>> What are you trying to achieve with this? As in what problem are you
-> >>>>>> seeing with the current SCL programming?
-> >>>>> In VRR TG mode with optimized guardband, the guardband is shortened and
-> >>>>> vblank start is moved to match the delayed vblank position.
-> >>>>>
-> >>>>> The SCL value which we are currently writing as difference between
-> >>>>> delayed vblank and undelayed vblank becomes quite large.
-> >>>>>
-> >>>>> With this large SCL, the flipline decision boundary which is given by
-> >>>>> delayed vblank start and SCL lines is same as the undelayed vblank.
-> >>>> Everything should match the undelayed vblank.
-> >>>>
-> >>>>> It seems that intel_dsb_wait_vblank_delay() (in turn
-> >>>>> intel_dsb_wait_usec()) does not behave correctly within the W2 window
-> >>>>> (between flipdone decision boundary and delayed vblank start).
-> >>>>>
-> >>>>> It seems to return prematurely. Since the push bit hasn’t cleared yet,
-> >>>>> this leads to DSB poll errors.
-> >>>> That doesn't make any sense. That command is supposed to simply wait
-> >>>> for the specifid number of microseconds. It should not care at all
-> >>>> what is happening with the scanout. If that is not the case then we
-> >>>> need to write a synthetic test to reproduce it, and report the
-> >>>> problem to the hardware folks.
-> >>> You are right, on debugging further I noticed that
-> >>> intel_dsb_wait_usec() and intel_dsb_wait_vblank_delay() are working
-> >>> correctly.
-> >>>
-> >>> Due to large SCL, the the intel_dsb_wait_vblanks() is not waiting till
-> >>> the undelayed vblank but the safe window, apparently undelayed vblank
-> >>> - SCL lines.
-> >>>
-> >>> We are setting DSB_CHICKEN_REG bits 14-15 : which says: Wait for
-> >>> Vblank instruction will use only safe window signal from dptunit in
-> >>> DSB HW to complete the wait for vblank instruction.
-> >>>
-> >>> I am not exactly sure if its mentioned in Bspec that safe window start
-> >>> = undelayed vblank start - SCL lines.
-> >>>
-> >>> Observation:
-> >>>
-> >>> For example with eDP panel VRR range 40-60 and below mode:
-> >>>
-> >>> Mode: "2880x1800": 60 347710 2880 2928 2960 3040 1800 1803 1809 1906
-> >>>
-> >>> Before optimization:
-> >>>
-> >>> guardband = vblank length = 106; Undelayed vblank start =1800; Delayed
-> >>> vblank start = 1906 - 106 = 1800
-> >>>
-> >>> SCL = 1800 - 1800 = 0
-> >>>
-> >>> Flipline decision boundary is = 1800
-> >>>
-> >>> After optimization:
-> >>>
-> >>> vblank length = 106; guardband = 38; Undelayed Vblank start = 1800;
-> >>> Delayed Vblank start = 1868 (1906 - 38)
-> >>>
-> >>> SCL = 1868 - 1800 = 68
-> >>>
-> >>> Flipline decision boundary = 1868 - 68 = 1800
-> >>>
-> >>> Consider lines in  intel_atomic_dsb_finish() :
-> >>>
-> >>>   intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);         /* If
-> >>> flip is earlier than 1732 (1800 - 68) this waits till 1732.*/
-> >>>
-> >>>                  intel_vrr_send_push(new_crtc_state->dsb_commit,
-> >>> new_crtc_state);    /* Push happens immediately*/
-> >>>                  intel_dsb_wait_vblank_delay(state,
-> >>> new_crtc_state->dsb_commit);        /* Waits for duration (delayed
-> >>> vblank start - undelayed vblank start) ie. 68 lines ie. till we reach
-> >>> 1732 + 68 = 1800*/
-> >>> intel_vrr_check_push_sent(new_crtc_state->dsb_commit,     /* Push is
-> >>> not clear yet as delayed vblank start (1868) is not reach yet, we get
-> >>> DSB POLL error */
-> >>>                                            new_crtc_state);
-> >>> intel_dsb_interrupt(new_crtc_state->dsb_commit);       /* DSB
-> >>> interrupt is fired earlier */
-> >>
-> >> Sorry for the bad formatting, perhaps this will be more readable:
-> >>
-> >>
-> >>    intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-> >>
-> >> /* If flip is earlier than 1732 (1800 - 68) this waits till 1732.*/
-> > That does not seem right, or at least it's not how it works on LNL.
-> > I just hacked some DSB_STATUS stuff into intel_display_poller [1],
-> > and when running that on LNL the safe window always starts at the
-> > undelayed vblank.
-> >
-> > So if we look at the vmax case then I think the diagram should look
-> > like this:
-> >
-> >      udelayed vblank
-> >      ^               vmax decision boudnary
-> >      |               ^           delayed vblank
-> >      |               |           ^                 vmax
-> >      |               |           |                 ^
-> >      | <- stretch -> | <- scl -> | <- guardband - >|
-> >       _______________
-> > ..._/               \______________________________... safe window
-> >
-> > ... push affects curent frame ->|<- push affects next frame ...
-> >                                  |
-> > 				v
-> > 				push send bit clears if set
-> >
-> > And then for the maximum vrefresh case (defined by flipline instead
-> > of vnax) the "stretch" part is something between 0 and
-> > delayed_vblank-undelayed_vblank, depending on how we configure SCL.
-> >
-> > Additionally if a push is sent during the scl window just
-> > after the vmax decisioun bondary, said push will still affect
-> > the current frame (ie. such a frame will not have a full
-> > scl/w2 window). Only a push sent after the delayed vblank
-> > will in fact get deferred to the next frame. That particular
-> > scenatio isn't really described in the bspec timing diagrams.
-> > Though since we always precede the push with a "wait for safe
-> > window" for us the push would get deferred to the next frame
-> > anyway.
-> >
-> > Now, I suppose PTL may have changed how the safe window works to
-> > support that "SCL during vactive" stuff. I think a bit more poking
-> > might be needed to get to the bottom of this...
-> >
-> > [1] https://github.com/vsyrjala/intel-gpu-tools.git dsb_status_poller
-> 
-> I have tried with same eDP panel with PTL and LNL.
-> I tried my changes where SCL was programmed to 68 in above setup.
-> On PTL it does take the safe window as undelayed vblank -SCL.
-> 
-> I also tried without my changes, but just wrote TRANS_SCL_CONTEXT as 
-> 0x44 (68) and got the same result.
-> Which is similar to my observation earlier.
-> 
-> With set context latency as 0 : we get undelayed vblank - SCL 1800 -0 = 
-> 1800
-> [0] 1798 - 1799 (1799)
-> ….
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [0]   1798 -   1799
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [1]      0 - 4294967295
-> 
-> With set context latency set to larger value eg. 68 (0x44) and I am 
-> getting the safe window start as : 1731 (which is around undelayed 
-> vblank  - SCL i.e. 1800 -68 -1 = 1732)
-> [0] 1730 - 1731 (1731)
-> ….
-> [0] 1730 - 1731 (1731)
-> [0] 1730 - 1731 (1731)
-> [0] 1730 - 1731 (1731)
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [0]   1730 -   1731
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [1]      0 - 4294967295
-> 
-> 
-> For LNL:
-> With set context latency as 0: we get:
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> [0] 1798 - 1799 (1799)
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [0]   1798 -   1799
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [1]      0 - 4294967295
-> 
-> But with set context latency as 68 (0x44):we get:
-> [0] 1798 - 1799 (1799)
-> [0] 1866 - 1867 (1867)
-> [0] 1798 - 1799 (1799)
-> 
-> [0] 1798 - 1799 (1799)
-> …
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> [0] 1798 - 1799 (1799)
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> [0] 1866 - 1867 (1867)
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [0]   1866 -   1799
-> dsl / pipe A / DSB0 / DSB_STATUS[26]: [1]      0 - 4294967295
-> 
-> I am not sure why for LNL I am getting 1866 though.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-That does look odd. The difference is exactly that 68 lines,
-but the start of the safe window should not have moved at all.
-One theory might be that there is a brief pulse on the safe
-window signal at end of the SCL window. But so far I've not been
-able to see observe such a thing on the LNL I have here.
+--8323328-161591600-1758110677=:1127
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <0ff851c3-bc92-a369-3277-d7c205779207@linux.intel.com>
 
-> To sum up there is indeed a difference in safe window start based on SCL 
-> lines for LNL and PTL.
+On Tue, 16 Sep 2025, Lucas De Marchi wrote:
 
-Yeah, looks like it. 
+> On Mon, Sep 15, 2025 at 08:24:06PM +0300, Ilpo J=E4rvinen wrote:
+> > On Mon, 15 Sep 2025, Lucas De Marchi wrote:
+> >=20
+> > > On Mon, Sep 15, 2025 at 12:13:47PM +0300, Ilpo J=E4rvinen wrote:
+> > > > pci.c has been used as catch everything that doesn't fits elsewhere
+> > > > within PCI core and thus resizable BAR code has been placed there a=
+s
+> > > > well. Move Resizable BAR related code to a newly introduced rebar.c=
+ to
+> > > > reduce size of pci.c. After move, there are no pci_rebar_*() calls =
+from
+> > > > pci.c indicating this is indeed well-defined subset of PCI core.
+> > > >
+> > > > Endpoint drivers perform Resizable BAR related operations which cou=
+ld
+> > > > well be performed by PCI core to simplify driver-side code. This
+> > > > series adds a few new API functions to that effect and converts the
+> > > > drivers to use the new APIs (in separate patches).
+> > > >
+> > > > While at it, also convert BAR sizes bitmask to u64 as PCIe spec alr=
+eady
+> > > > specifies more sizes than what will fit u32 to make the API typing =
+more
+> > > > future-proof. The extra sizes beyond 128TB are not added at this po=
+int.
+> > > >
+> > > > These are based on pci/main plus a simple "adapter" patch to add th=
+e
+> > > > include for xe_vram_types.h that was added by a commit in drm-tip.
+> > > > Hopefully that is enough to avoid the within context conflict with
+> > > > BAR_SIZE_SHIFT removal to let the xe CI tests to be run for this
+> > > > series.
+> > > >
+> > > > There are two minor conflicts with the work in pci/resource but I'm
+> > > > hesitant to base this on top of it as this is otherwise entirely
+> > > > independent (and would likely prevent GPU CI tests as well). If we =
+end
+> > > > up having to pull the bridge window select changes, there should be=
+ no
+> > > > reason why this does have to become collateral damage (so my
+> > > > suggestion, if this is good to go in this cycle, to take this into =
+a
+> > > > separate branch than pci/resource and deal with those small conflic=
+ts
+> > > > while merging into pci/next).
+> > > >
+> > > > I've tested sysfs resize, i915, and xe BAR resizing functionality. =
+In
+> > > > the case of xe, I did small hack patch as its resize is anyway brok=
+en
+> > > > as is because BAR0 pins the bridge window so resizing BAR2 fails. M=
+y
+> > > > hack caused other problems further down the road (likely because BA=
+R0
+> > > > is in use by the driver so releasing it messed assumptions xe drive=
+r
+> > > > has) but the BAR resize itself was working which was all I was
+> > >=20
+> > > is the hack you mention here to release all BARs before attempting th=
+e
+> > > resize?
+> >=20
+> > Yes, the patch added release of BAR0 prior to resize. The existing xe c=
+ode
+> > in _resize_bar() already releases BAR2.
+> >=20
+> > During resize, if the first loop in pbus_reassign_bridge_resources()
+> > (called from pci_resize_resource()) finds the bridge window closest to =
+the
+> > endpoint still has a child, it results in having empty saved list becau=
+se
+> > all upstream bridge windows will then have a child as well.
+> >=20
+> > Empty saved list is checked after the loop and
+> > pbus_reassign_bridge_resources() returns -ENOENT without even trying to
+> > assign the resources. The error is returned even if the actual bridge
+> > window size is large enough to fit the resized resource.
+> >=20
+> > The logic in pci_resize_resource() and pbus_reassign_bridge_resources()
+> > need some other improvements besides that problem, but I likely won't
+> > have time to look at that until completing the fitting algorithm change=
+s.
+> > I'd actually want to add pci_release_and_resize_resource() which would
+> > take care of releasing all the resources of the device (obviously drive=
+r
+> > must have its hands off all those BARs when it calls that function). Wi=
+th
+> > the current pci_resize_resource() API, handling the restore of BARs in
+> > case of failure is not as robust as I'd like to make it.
+> >=20
+> > > > interested to know. I'm not planning to pursue fixing the pinning
+> > > > problem within xe driver because the core changes to consider maxim=
+um
+> > > > size of the resizable BARs should take care of the main problem by
+> > > > different means.
+> > >=20
+> > > I'd actually like to pursue that myself as that could be propagated t=
+o
+> > > stable since we do have some resize errors in xe with BMG that I wasn=
+'t
+> > > understanding. It's likely due to xe_mmio_probe_early() taking a hold=
+ of
+> > > BAR0 and not expecting it to be moved. We could either remap if we ha=
+ve
+> > > have to resize or just move the resize logic early on.
+> >=20
+> > Great. If you have any questions when it comes to the PCI core side cod=
+e,
+> > please let me know.
+>=20
+> I moved the resize to happen before anything else in xe. However when
+> testing I noticed a scenario failing without involving the driver.
+> With and without this series I still have the same pass/failure
+> scenarios:
+>=20
+> Tests executed with a BMG. Just after boot, BAR2 is 16GB.
+>=20
+> 1) If I resize it via sysfs to 8GB and then load the driver, it resizes
+> it back. Resize from sysfs works too. No change in behavior.
 
-So with the SCL=vblank_delay approach we could just do a scanline
-window wait just after the intel_dsb_wait_vblanks() to make sure
-we're not in that SCL window just before the undelayed vblank.
+It's expected that resizing smaller size -> back to the original works=20
+through sysfs because the upstream window pins won't prevent reacquiring=20
+the same or less space.
 
+But the way resize is called from current xe code, sizing even to a=20
+smaller size fails because BAR0 pins the closest upstream window,=20
+resulting in -ENOENT as explained above. I don't see fixing this on core=20
+side as priority because I plan to rework the resizing code anyway and=20
+resizing to a smaller size doesn't seem overly useful use case.
 
-                   undelayed_vblank
-                   ^           delayed_vblank
-                   |           ^                 vmin
-                   |           |                 ^
-     | <-  scl  -> | <- scl -> | <- guardband -> | 
-     | <-    safe window    -> |
-     | XXXXXXXXXXX |
-... vactive     -> | <- vblank ...
+> 2) If I do "remove the bridge via sysfs and rescan the bus"[1], it fails =
+to
+> resize (either automatically, on rescan, via sysfs, or loading the xe
+> driver). It just stays at 256M.
 
-But if we do want to minimize SCL (which I'm thinking we do) then
-we'll need to do something else since we'll want to wait for the
-SCL rather than the vblank delay after the push. So I suppose we'd
-need a scanline window wait to make sure we're not in the 
-(undelayed_vblank-SCL to delayed_vblank-SCL) range:
+This is because the larger resource sizes are only calculated on the=20
+actual resize call which occurs after the bridge windows were already=20
+sized on rescan to the smaller size. At that point, the critical bridge=20
+windows are already pinned in place and thus cannot be relocated to free=20
+area I assume there would be somewhere within 4000000000-7fffffffff.
 
-                   undelayed_vblank
-                   ^                           delayed_vblank
-                   |                           ^                 vmin
-                   |                           |                 ^
-     | <-  scl  -> | <- stretch -> | <- scl -> | <- guardband -> | 
-     | <-       safe window     -> |
-     | XXXXXXXXXXXXXXXXXXXXXXXXXXX |
-... vactive     -> | <- vblank ...
+> The only thing that brings it back is a reboot. /proc/iomem shows this:
+>=20
+> 4000000000-7fffffffff : PCI Bus 0000:00
+>   4000000000-44007fffff : PCI Bus 0000:01
+>     4000000000-4017ffffff : PCI Bus 0000:02
+>       4000000000-400fffffff : PCI Bus 0000:03    <<<< BMG
+>         4000000000-400fffffff : 0000:03:00.0
 
-Hmm. I guess that (undelayed_vblank-SCL to delayed_vblank-SCL) window
-is actually correct for both cases.
+>       4010000000-40100fffff : PCI Bus 0000:04
 
--- 
-Ville Syrjälä
-Intel
+This pins 0000:01:00.0's window in place. And also prevents enlarging the=
+=20
+siblings.
+
+It would possible, though, to release it and still use sysfs to perform=20
+resize on 0000:03:00.0 as removing 0000:04:00.0 doesn't require removing=20
+0000:03:00.0. But...
+
+>     4018000000-40187fffff : 0000:01:00.0
+
+=2E..This resource pins 0000:00:01.0's window in place. AFAIK, it cannot be=
+=20
+released other than by removing 0000:01:00.0 which results in removing=20
+0000:03:00.0 as well, thus making it impossible to perform the BAR resize=
+=20
+for 0000:03:00.0 through sysfs anymore. Catch-22.
+
+Could you test if the attached quirk patch helps. Maybe it could be=20
+considered as the interim solution until the bridge sizing logic becomes=20
+aware of the resizable BARs. To use a quirk to do this feels hacky to me,=
+=20
+but then it's hard to point out any real downsides with that approach=20
+(other than having to quirk it).
+
+You'll still need to manually release 0000:04:00.0 but the BAR0 on the=20
+switch should be gone thanks to the quirk. When both of the window pins=20
+are gone, I think the resize through sysfs should work.
+
+> And dmesg shows this for the rescan:
+>=20
+> [ 1673.189737] pci 0000:01:00.0: [8086:e2ff] type 01 class 0x060400 PCIe
+> Switch Upstream Port
+> [ 1673.189794] pci 0000:01:00.0: BAR 0 [mem 0x00000000-0x007fffff 64bit p=
+ref]
+> [ 1673.189808] pci 0000:01:00.0: PCI bridge to [bus 00]
+> [ 1673.189824] pci 0000:01:00.0:   bridge window [io  0x0000-0x0fff]
+> [ 1673.189834] pci 0000:01:00.0:   bridge window [mem 0x00000000-0x000fff=
+ff]
+> [ 1673.189856] pci 0000:01:00.0:   bridge window [mem 0x00000000-0x000fff=
+ff
+> 64bit pref]
+> [ 1673.189878] pci 0000:01:00.0: Max Payload Size set to 256 (was 128, ma=
+x
+> 256)
+> [ 1673.190164] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
+> [ 1673.193531] pci 0000:01:00.0: Adding to iommu group 16
+> [ 1673.196997] pcieport 0000:00:01.0: ASPM: current common clock configur=
+ation
+> is inconsistent, reconfiguring
+> [ 1673.197061] pci 0000:01:00.0: bridge configuration invalid ([bus 00-00=
+]),
+> reconfiguring
+> [ 1673.197421] pci 0000:02:01.0: [8086:e2f0] type 01 class 0x060400 PCIe
+> Switch Downstream Port
+> [ 1673.197452] pci 0000:02:01.0: PCI bridge to [bus 00]
+> [ 1673.197463] pci 0000:02:01.0:   bridge window [io  0x0000-0x0fff]
+> [ 1673.197468] pci 0000:02:01.0:   bridge window [mem 0x00000000-0x000fff=
+ff]
+> [ 1673.197482] pci 0000:02:01.0:   bridge window [mem 0x00000000-0x000fff=
+ff
+> 64bit pref]
+> [ 1673.197497] pci 0000:02:01.0: Max Payload Size set to 256 (was 128, ma=
+x
+> 256)
+> [ 1673.197503] pci 0000:02:01.0: enabling Extended Tags
+> [ 1673.197660] pci 0000:02:01.0: PME# supported from D0 D3hot D3cold
+> [ 1673.198411] pci 0000:02:01.0: Adding to iommu group 17
+> [ 1673.200258] pci 0000:02:02.0: [8086:e2f1] type 01 class 0x060400 PCIe
+> Switch Downstream Port
+> [ 1673.200289] pci 0000:02:02.0: PCI bridge to [bus 00]
+> [ 1673.200299] pci 0000:02:02.0:   bridge window [io  0x0000-0x0fff]
+> [ 1673.200304] pci 0000:02:02.0:   bridge window [mem 0x00000000-0x000fff=
+ff]
+> [ 1673.200317] pci 0000:02:02.0:   bridge window [mem 0x00000000-0x000fff=
+ff
+> 64bit pref]
+> [ 1673.200333] pci 0000:02:02.0: Max Payload Size set to 256 (was 128, ma=
+x
+> 256)
+> [ 1673.200337] pci 0000:02:02.0: enabling Extended Tags
+> [ 1673.200470] pci 0000:02:02.0: PME# supported from D0 D3hot D3cold
+> [ 1673.201059] pci 0000:02:02.0: Adding to iommu group 18
+> [ 1673.202761] pci 0000:01:00.0: PCI bridge to [bus 02-04]
+> [ 1673.202774] pci 0000:02:01.0: bridge configuration invalid ([bus 00-00=
+]),
+> reconfiguring
+> [ 1673.202782] pci 0000:02:02.0: bridge configuration invalid ([bus 00-00=
+]),
+> reconfiguring
+> [ 1673.203024] pci 0000:03:00.0: [8086:e221] type 00 class 0x030000 PCIe
+> Endpoint
+> [ 1673.203060] pci 0000:03:00.0: BAR 0 [mem 0x00000000-0x00ffffff 64bit]
+> [ 1673.203064] pci 0000:03:00.0: BAR 2 [mem 0x00000000-0x0fffffff 64bit p=
+ref]
+> [ 1673.203069] pci 0000:03:00.0: ROM [mem 0x00000000-0x001fffff pref]
+> [ 1673.203077] pci 0000:03:00.0: Max Payload Size set to 256 (was 128, ma=
+x
+> 256)
+> [ 1673.203209] pci 0000:03:00.0: PME# supported from D0 D3hot
+> [ 1673.203770] pci 0000:03:00.0: Adding to iommu group 19
+> [ 1673.205451] pci 0000:03:00.0: vgaarb: setting as boot VGA device
+> [ 1673.205454] pci 0000:03:00.0: vgaarb: bridge control possible
+> [ 1673.205455] pci 0000:03:00.0: vgaarb: VGA device added:
+> decodes=3Dio+mem,owns=3Dnone,locks=3Dnone
+> [ 1673.205534] pci 0000:02:01.0: PCI bridge to [bus 03-04]
+> [ 1673.205543] pci_bus 0000:03: busn_res: [bus 03-04] end is updated to 0=
+3
+> [ 1673.205787] pci 0000:04:00.0: [8086:e2f7] type 00 class 0x040300 PCIe
+> Endpoint
+> [ 1673.205848] pci 0000:04:00.0: BAR 0 [mem 0x00000000-0x00003fff 64bit]
+> [ 1673.205867] pci 0000:04:00.0: Max Payload Size set to 256 (was 128, ma=
+x
+> 256)
+> [ 1673.205872] pci 0000:04:00.0: enabling Extended Tags
+> [ 1673.206012] pci 0000:04:00.0: PME# supported from D3hot D3cold
+> [ 1673.206528] pci 0000:04:00.0: Adding to iommu group 20
+> [ 1673.208271] pci 0000:02:02.0: PCI bridge to [bus 04]
+> [ 1673.208284] pci_bus 0000:04: busn_res: [bus 04] end is updated to 04
+> [ 1673.208291] pci_bus 0000:02: busn_res: [bus 02-04] end is updated to 0=
+4
+> [ 1673.232003] pcieport 0000:00:01.0: Assigned bridge window [mem
+> 0x83000000-0x840fffff] to [bus 01-04] cannot fit 0x2000000 required for
+> 0000:02:01.0 bridging to [bus 03]
+> [ 1673.232009] pci 0000:02:01.0: bridge window [mem 0x00000000-0x000fffff=
+] to
+> [bus 03] requires relaxed alignment rules
+> [ 1673.232016] pci 0000:02:01.0: bridge window [mem 0x01000000-0x01ffffff=
+] to
+> [bus 03] add_size 200000 add_align 1000000
+> [ 1673.232020] pcieport 0000:00:01.0: Assigned bridge window [mem
+> 0x83000000-0x840fffff] to [bus 01-04] cannot fit 0x1800000 required for
+> 0000:01:00.0 bridging to [bus 02-04]
+> [ 1673.232025] pci 0000:01:00.0: bridge window [mem 0x00000000-0x000fffff=
+] to
+> [bus 02-04] requires relaxed alignment rules
+> [ 1673.232027] pcieport 0000:00:01.0: Assigned bridge window [mem
+> 0x83000000-0x840fffff] to [bus 01-04] cannot fit 0x2000000 required for
+> 0000:01:00.0 bridging to [bus 02-04]
+> [ 1673.232031] pci 0000:01:00.0: bridge window [mem 0x00000000-0x000fffff=
+] to
+> [bus 02-04] requires relaxed alignment rules
+> [ 1673.232036] pci 0000:01:00.0: bridge window [mem 0x01000000-0x020fffff=
+] to
+> [bus 02-04] add_size 200000 add_align 1000000
+> [ 1673.232077] pci 0000:01:00.0: bridge window [mem 0x4000000000-0x4017ff=
+ffff
+> 64bit pref]: assigned
+> [ 1673.232080] pci 0000:01:00.0: bridge window [mem size 0x01300000]: can=
+'t
+> assign; no space
+> [ 1673.232082] pci 0000:01:00.0: bridge window [mem size 0x01300000]: fai=
+led
+> to assign
+> [ 1673.232090] pci 0000:01:00.0: BAR 0 [mem 0x4018000000-0x40187fffff 64b=
+it
+> pref]: assigned
+> [ 1673.232103] pci 0000:01:00.0: bridge window [io  0x8000-0x9fff]: assig=
+ned
+> [ 1673.232129] pci 0000:01:00.0: bridge window [mem 0x83000000-0x840fffff=
+]:
+> assigned
+> [ 1673.232131] pci 0000:01:00.0: bridge window [mem 0x83000000-0x840fffff=
+]:
+> failed to expand by 0x200000
+> [ 1673.232136] pci 0000:01:00.0: bridge window [mem 0x83000000-0x840fffff=
+]:
+> failed to add optional 200000
+> [ 1673.232192] pci 0000:02:01.0: bridge window [mem 0x4000000000-0x400fff=
+ffff
+> 64bit pref]: assigned
+> [ 1673.232196] pci 0000:02:01.0: bridge window [mem 0x83000000-0x83ffffff=
+]:
+> assigned
+> [ 1673.232200] pci 0000:02:02.0: bridge window [mem 0x84000000-0x840fffff=
+]:
+> assigned
+> [ 1673.232202] pci 0000:02:02.0: bridge window [mem 0x4010000000-0x40100f=
+ffff
+> 64bit pref]: assigned
+> [ 1673.232204] pci 0000:02:01.0: bridge window [io  0x8000-0x8fff]: assig=
+ned
+> [ 1673.232206] pci 0000:02:02.0: bridge window [io  0x9000-0x9fff]: assig=
+ned
+> [ 1673.232241] pci 0000:03:00.0: BAR 2 [mem 0x4000000000-0x400fffffff 64b=
+it
+> pref]: assigned
+> [ 1673.232250] pci 0000:03:00.0: BAR 0 [mem 0x83000000-0x83ffffff 64bit]:
+> assigned
+> [ 1673.232259] pci 0000:03:00.0: ROM [mem size 0x00200000 pref]: can't as=
+sign;
+> no space
+> [ 1673.232261] pci 0000:03:00.0: ROM [mem size 0x00200000 pref]: failed t=
+o
+> assign
+> [ 1673.232272] pci 0000:03:00.0: BAR 2 [mem 0x4000000000-0x400fffffff 64b=
+it
+> pref]: assigned
+> [ 1673.232280] pci 0000:03:00.0: BAR 0 [mem 0x83000000-0x83ffffff 64bit]:
+> assigned
+> [ 1673.232289] pci 0000:03:00.0: ROM [mem size 0x00200000 pref]: can't as=
+sign;
+> no space
+> [ 1673.232291] pci 0000:03:00.0: ROM [mem size 0x00200000 pref]: failed t=
+o
+> assign
+> [ 1673.232302] pci 0000:02:01.0: PCI bridge to [bus 03]
+> [ 1673.232304] pci 0000:02:01.0:   bridge window [io  0x8000-0x8fff]
+> [ 1673.232309] pci 0000:02:01.0:   bridge window [mem 0x83000000-0x83ffff=
+ff]
+> [ 1673.232313] pci 0000:02:01.0:   bridge window [mem
+> 0x4000000000-0x400fffffff 64bit pref]
+> [ 1673.232321] pci 0000:04:00.0: BAR 0 [mem 0x84000000-0x84003fff 64bit]:
+> assigned
+> [ 1673.232336] pci 0000:02:02.0: PCI bridge to [bus 04]
+> [ 1673.232339] pci 0000:02:02.0:   bridge window [io  0x9000-0x9fff]
+> [ 1673.232345] pci 0000:02:02.0:   bridge window [mem 0x84000000-0x840fff=
+ff]
+> [ 1673.232349] pci 0000:02:02.0:   bridge window [mem
+> 0x4010000000-0x40100fffff 64bit pref]
+> [ 1673.232356] pci 0000:01:00.0: PCI bridge to [bus 02-04]
+> [ 1673.232359] pci 0000:01:00.0:   bridge window [io  0x8000-0x9fff]
+> [ 1673.232363] pci 0000:01:00.0:   bridge window [mem 0x83000000-0x840fff=
+ff]
+> [ 1673.232366] pci 0000:01:00.0:   bridge window [mem
+> 0x4000000000-0x4017ffffff 64bit pref]
+> [ 1673.232471] pcieport 0000:01:00.0: enabling device (0000 -> 0003)
+> [ 1673.233508] pcieport 0000:02:01.0: enabling device (0000 -> 0003)
+> [ 1673.233692] pcieport 0000:02:02.0: enabling device (0000 -> 0003)
+>=20
+> # echo 9 > /sys/bus/pci/devices/0000\:03\:00.0/resource2_resize -bash: ec=
+ho:
+> write error: No space left on device
+>=20
+>=20
+> [1] # echo 1 > /sys/bus/pci/devices/0000\:01\:00.0/remove
+>     # echo 0 > /sys/bus/pci/drivers_autoprobe
+>     # echo 1 > /sys/bus/pci/rescan
+>=20
+>=20
+> I can share the xe patch so you check if it at least fixes it in your
+> test scenario.
+
+Ah, one thing I didn't remember mention is that in my case the BAR is=20
+already at its maximum size, so to test the resize is working, I made
+the target size smaller, not larger. (I understand this might not be very=
+=20
+helpful in your case but I was only interested that resize code still=20
+works after this series).
+
+--=20
+ i.
+--8323328-161591600-1758110677=:1127
+Content-Type: text/x-diff; name=0001-PCI-Release-BAR0-of-an-integrated-bridge-to-allow-GP.patch
+Content-Transfer-Encoding: BASE64
+Content-ID: <106de70e-1c2b-f200-e68a-aa5052505f4b@linux.intel.com>
+Content-Description: 
+Content-Disposition: attachment; filename=0001-PCI-Release-BAR0-of-an-integrated-bridge-to-allow-GP.patch
+
+RnJvbSA5NDhhNDlmMDFkZjU0YjM0MzU4NjExMzhhMGVhZTg1YmIyYzNmMWYz
+IE1vbiBTZXAgMTcgMDA6MDA6MDAgMjAwMQ0KRnJvbTogPT9VVEYtOD9xP0ls
+cG89MjBKPUMzPUE0cnZpbmVuPz0gPGlscG8uamFydmluZW5AbGludXguaW50
+ZWwuY29tPg0KRGF0ZTogV2VkLCAxNyBTZXAgMjAyNSAxNToyNDo1MyArMDMw
+MA0KU3ViamVjdDogW1BBVENIIDEvMV0gUENJOiBSZWxlYXNlIEJBUjAgb2Yg
+YW4gaW50ZWdyYXRlZCBicmlkZ2UgdG8gYWxsb3cgR1BVDQogQkFSIHJlc2l6
+ZQ0KTUlNRS1WZXJzaW9uOiAxLjANCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFp
+bjsgY2hhcnNldD1VVEYtOA0KQ29udGVudC1UcmFuc2Zlci1FbmNvZGluZzog
+OGJpdA0KDQpSZXNpemluZyBCQVIgdG8gYSBsYXJnZXIgc2l6ZSBoYXMgdG8g
+cmVsZWFzZSB1cHN0cmVhbSBicmlkZ2Ugd2luZG93cyBpbg0Kb3JkZXIgbWFr
+ZSB0aGUgYnJpZGdlIHdpbmRvd3MgbGFyZ2VyIGFzIHdlbGwgKGFuZCB0byBw
+b3RlbnRpYWwgcmVsb2NhdGUNCnRoZW0gaW50byBhIGxhcmdlciBmcmVlIGJs
+b2NrIHdpdGhpbiBpb21lbSBzcGFjZSkuIFNvbWUgR1BVcyBoYXZlIGFuDQpp
+bnRlZ3JhdGVkIFBDSSBzd2l0Y2ggdGhhdCBoYXMgQkFSMC4gVGhlIHJlc291
+cmNlIGFsbG9jYXRpb24gYXNzaWducw0Kc3BhY2UgZm9yIHRoYXQgQkFSMCBh
+cyBpdCBkb2VzIGZvciBhbnkgcmVzb3VyY2UuDQoNCkFuIGV4dHJhIHJlc291
+cmNlIG9uIGEgYnJpZGdlIHdpbGwgcGluIGl0cyB1cHN0cmVhbSBicmlkZ2Ug
+d2luZG93IGluDQpwbGFjZSB3aGljaCBwcmV2ZW50cyBCQVIgcmVzaXplIGZv
+ciBhbnl0aGluZyBiZW5lYXRoIHRoYXQgYnJpZGdlLg0KDQpOb3RoaW5nIGlu
+IHRoZSBwY2llcG9ydCBkcml2ZXIgcHJvdmlkZWQgYnkgUENJIGNvcmUsIHdo
+aWNoIHR5cGljYWxseSBpcw0KdGhlIGRyaXZlciBib3VuZCB0byB0aGVzZSBi
+cmlkZ2VzLCByZXF1aXJlcyB0aGF0IEJBUjAuIEJlY2F1c2Ugb2YgdGhhdCwN
+CnJlbGVhc2luZyB0aGUgZXh0cmEgQkFSIGRvZXMgbm90IHNlZW0gdG8gaGF2
+ZSBub3RhYmxlIGRvd25zaWRlcyBidXQNCmNvbWVzIHdpdGggYSBjbGVhciB1
+cHNpZGUuDQoNClRoZXJlZm9yZSwgcmVsZWFzZSBCQVIwIG9mIHN1Y2ggc3dp
+dGNoZXMgdXNpbmcgYSBxdWlyayBhbmQgY2xlYXIgaXRzDQpmbGFncyB0byBw
+cmV2ZW50IGFueSBuZXcgaW52b2NhdGlvbiBvZiB0aGUgcmVzb3VyY2UgYXNz
+aWdubWVudA0KYWxnb3JpdGhtIGZyb20gYXNzaWduaW5nIHRoZSByZXNvdXJj
+ZSBhZ2Fpbi4NCg0KRHVlIHRvIG90aGVyIHNpYmxpbmdzIHdpdGhpbiB0aGUg
+UENJIGhpZXJhcmNoeSBvZiBhbGwgdGhlIGRldmljZXMNCmludGVncmF0ZWQg
+aW50byB0aGUgR1BVLCBzb21lIG90aGVyIGRldmljZXMgbWF5IHN0aWxsIGhh
+dmUgdG8gYmUNCm1hbnVhbGx5IHJlbW92ZWQgYmVmb3JlIHRoZSByZXNpemUg
+aXMgZnJlZSBvZiBhbnkgYnJpZGdlIHdpbmRvdyBwaW5zLg0KU3VjaCBzaWJs
+aW5ncyBjYW4gYmUgcmVsZWFzZWQgdGhyb3VnaCBzeXNmcyB0byB1bnBpbiB3
+aW5kb3dzIHdoaWxlDQpsZWF2aW5nIGFjY2VzcyB0byBHUFUncyBzeXNmcyBl
+bnRyaWVzIHJlcXVpcmVkIGZvciBpbml0aWF0aW5nIHRoZQ0KcmVzaXplIG9w
+ZXJhdGlvbiwgd2hlcmVhcyByZW1vdmluZyB0aGUgdG9wbW9zdCBicmlkZ2Ug
+dGhpcyBxdWlyaw0KdGFyZ2V0cyB3b3VsZCByZXN1bHQgaW4gcmVtb3Zpbmcg
+dGhlIEdQVSBkZXZpY2UgYXMgd2VsbCBzbyBubyBtYW51YWwNCndvcmthcm91
+bmQgZm9yIHRoaXMgcHJvYmxlbSBleGlzdHMuDQoNClJlcG9ydGVkLWJ5OiBM
+dWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4NCkxp
+bms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXBjaS9mbDZ0eDV6
+dHZ0dGc3dHhtejJwczdveWQ3NDV3ZzNsd2NwM2g3ZXNtdm55ZzI2bjQ0eUBv
+d28yb2ppdTJtb3YvDQpTaWduZWQtb2ZmLWJ5OiBJbHBvIErDpHJ2aW5lbiA8
+aWxwby5qYXJ2aW5lbkBsaW51eC5pbnRlbC5jb20+DQotLS0NCg0KVGhpcyBm
+ZWVscyBxdWl0ZSBoYWNreSB0byBtZSBhbmQgSSdtIHdvcmtpbmcgdG93YXJk
+cyBhIGJldHRlciBzb2x1dGlvbg0Kd2hpY2ggaXMgdG8gY29uc2lkZXIgUmVz
+aXphYmxlIEJBUiBtYXhpbXVtIHNpemUgdGhlIHJlc291cmNlIGZpdHRpbmcN
+CmFsZ29yaXRobS4gQnV0IHRoZW4sIEkgZG9uJ3QgZXhwZWN0IHRoZSBiZXR0
+ZXIgc29sdXRpb24gdG8gYmUgc29tZXRoaW5nDQp3ZSB3YW50IHRvIHB1c2gg
+aW50byBzdGFibGUgZHVlIHRvIGV4dHJlbWVseSBpbnZhc2l2ZSBkZXBlbmRl
+bmNpZXMuIFNvDQptYXliZSBjb25zaWRlciB0aGlzIGFuIGludGVyaW0vbGVn
+YWN5IHNvbHV0aW9uIHRvIHRoZSByZXNpemluZyBwcm9ibGVtDQphbmQgcmVt
+b3ZlIGl0IG9uY2UgdGhlIGFsZ29yaXRobWljIGFwcHJvYWNoIHdvcmtzIChv
+ciBtb3JlIHByZWNpc2VseQ0KcmV0YWluIGl0IG9ubHkgaW4gdGhlIG9sZCBr
+ZXJuZWwgdmVyc2lvbnMpLg0KLS0tDQogZHJpdmVycy9wY2kvcXVpcmtzLmMg
+fCAyMCArKysrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAy
+MCBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9x
+dWlya3MuYyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jDQppbmRleCBkOTczMzVh
+NDAxOTMuLjk4YTRmMGExMjg1YiAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvcGNp
+L3F1aXJrcy5jDQorKysgYi9kcml2ZXJzL3BjaS9xdWlya3MuYw0KQEAgLTYz
+MzgsMyArNjMzOCwyMyBAQCBzdGF0aWMgdm9pZCBwY2lfbWFza19yZXBsYXlf
+dGltZXJfdGltZW91dChzdHJ1Y3QgcGNpX2RldiAqcGRldikNCiBERUNMQVJF
+X1BDSV9GSVhVUF9GSU5BTChQQ0lfVkVORE9SX0lEX0dMSSwgMHg5NzUwLCBw
+Y2lfbWFza19yZXBsYXlfdGltZXJfdGltZW91dCk7DQogREVDTEFSRV9QQ0lf
+RklYVVBfRklOQUwoUENJX1ZFTkRPUl9JRF9HTEksIDB4OTc1NSwgcGNpX21h
+c2tfcmVwbGF5X3RpbWVyX3RpbWVvdXQpOw0KICNlbmRpZg0KKw0KKy8qDQor
+ICogUENJIHN3aXRjaGVzIGludGVncmF0ZWQgaW50byBzb21lIEdQVXMgaGF2
+ZSBCQVIwIHRoYXQgcHJldmVudHMgcmVzaXppbmcNCisgKiB0aGUgQkFScyBv
+ZiB0aGUgR1BVIGRldmljZSBkdWUgdG8gdGhhdCBicmlkZ2UgQkFSMCBwaW5u
+aW5nIHRoZSBicmlkZ2UNCisgKiB3aW5kb3cgaXQncyB1bmRlciBpbiBwbGFj
+ZS4gTm90aGluZyBpbiBwY2llcG9ydCByZXF1aXJlcyB0aGF0IEJBUjAuDQor
+ICoNCisgKiBSZWxlYXNlIGFuZCBkaXNhYmxlIEJBUjAgcGVybWFuZW50bHkg
+YnkgY2xlYXJpbmcgaXRzIGZsYWdzIHRvIHByZXZlbnQNCisgKiBhbnl0aGlu
+ZyBmcm9tIGFzc2lnbmluZyBpdCBhZ2Fpbi4NCisgKi8NCitzdGF0aWMgdm9p
+ZCBwY2lfcmVsZWFzZV9iYXIwKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQ0KK3sN
+CisJc3RydWN0IHJlc291cmNlICpyZXMgPSBwY2lfcmVzb3VyY2VfbihwZGV2
+LCAwKTsNCisNCisJaWYgKCFyZXMtPnBhcmVudCkNCisJCXJldHVybjsNCisN
+CisJcGNpX3JlbGVhc2VfcmVzb3VyY2UocGRldiwgMCk7DQorCXJlcy0+Zmxh
+Z3MgPSAwOw0KK30NCitERUNMQVJFX1BDSV9GSVhVUF9FTkFCTEUoUENJX1ZF
+TkRPUl9JRF9JTlRFTCwgMHhlMmZmLCBwY2lfcmVsZWFzZV9iYXIwKTsNCg0K
+YmFzZS1jb21taXQ6IDhmNWFlMzBkNjlkNzU0M2VlZTBkNzAwODNkYWY0ZGU4
+ZmUxNWQ1ODUNCi0tIA0KMi4zOS41DQoNCg==
+
+--8323328-161591600-1758110677=:1127--
