@@ -4,80 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB18CA0EE8
-	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 09:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD37ACAC598
+	for <intel-xe@archiver.kernel.org>; Wed, 17 Sep 2025 09:43:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6CB310E16A;
-	Wed, 17 Sep 2025 09:19:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="iy42DDjo";
-	dkim-atps=neutral
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 156AC10E43A
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 09:19:56 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-45dde353b47so38679545e9.3
- for <intel-xe@lists.freedesktop.org>; Wed, 17 Sep 2025 02:19:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1758100794; x=1758705594;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=TQYz5cTj4KxxKyrAqnId9PFX7xG2UVYh9ZMlnhOA7NA=;
- b=iy42DDjoN7kuE1uSfJFHKwo8npTgGm9GCRP7+lu7tRdoWKm5SL2iZIyfLmK2tOuLuo
- +krPdiTp7+r+pf3Ez8YS9YzzOdmafbZK9kkovppxI/gYV7+guUqdgmjx9POCO8uBJY3x
- iRz8WsUn5QdpCVippeTWWQPh2XlQbSXT1V/ub/UN5kZq1j5G/ShGz5KXpxTDi0aXPa0A
- Kkt14ojwmxGi7b8OdS36kXVO9W0t3nix0hxeeUkz47qMU1KG4pN1VTwPixUzsJ52W+C/
- n2RYRbyeL2LC6oBHK0PqDoGmMzM+4adHHDaaxYOH7zAegZbfczXyMVMlZYdhdOrjagMz
- zxZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758100794; x=1758705594;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=TQYz5cTj4KxxKyrAqnId9PFX7xG2UVYh9ZMlnhOA7NA=;
- b=W/UDUC9WwOhsM3FrQCpwl0Bz20Da2o/vInmHcwpPelrdizQQR0ldbOfj6KgA92LW7H
- bJfJbjCuioDVQANjULcRDto2fPK+jVv7Wtq7HI1Qwr7ae0aWh2aZjlYMhb939KD0Tr1O
- nfk0x/N0EC8hi3yJnOZGCUIWT6lFgvhRtXm6G4kNOQCwnh45l9ZvUvpTPbh2jNiw9RyH
- qNSCFpvZWeq1E8g8Xz6PlhfVQlY8eJjuBn8jwryjPWC5XLkczARvsma7femuH5LDeqtk
- bxSKhWCFdR5vupNHypifhe8rVUnZTVWi6NFtW4WQOjeiOc0BB1QulFHFDAeDdVSBt3QA
- wMZQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU4kiW6IUvV7iWl72cTigpq2sNQuKIeMp9J9gY04zS1CNyU/QQOd0zuTcjFbuTYGOgQbX/H3XBF4w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyJLAgts1Z05Aws0HoQLQWMO+JCUC0ELG6Uf8tq5L7JtsFCXaI9
- pthO3YtymhKCvcnNDgEi3Rrv5pMQtXbdYmNs7kk+x/1St+iYH+6ZNJXSYdISp1TGSvg=
-X-Gm-Gg: ASbGncv4/kqsxkc7c2ae6G+tsz8O+tmyxU5FapopyJsqNYF9FWTsBuc8yriPPYQ9xrm
- bQXtQW46EtOvALo4d9aQnuMVD6G3g4vHCJ+99cEP44CHtxqK3pl+8KbNHVhrEGS+yU5vgef6mjB
- w4tNLOtJk3Ft1Sxcnwk3bGaAUWJfF+REJcRdRCOw/RuOEXn+QZmYXwE69k+kONWN5B1X1SxASkh
- XXOmfCiVc9ukEt6AWVdtDemZSYfyQNhivl5/BNrtQTW2FeKhqTE16MM/IhtD0G5+K8dTXrlvQDF
- XaKFggsib+1W2BiPpx3qZpZ14Xy8/guTZz7FgI3rgSNBKp36KhEw0PFsSWxDDJdHmIMI+CP/Dm6
- 3JjJys8R3UL9vXc/tCQRxGzEkrBrtx8Sab7Y=
-X-Google-Smtp-Source: AGHT+IGwgzXVmJZALL9EBQdYTpKRevTIfQjPXvprjlffiWmwlkmlF4x8Oy8svppVDJ3QmHXyV7XX4Q==
-X-Received: by 2002:a05:600c:4354:b0:45c:4470:271c with SMTP id
- 5b1f17b1804b1-462ef763398mr3174405e9.18.1758100794273; 
- Wed, 17 Sep 2025 02:19:54 -0700 (PDT)
-Received: from [192.168.0.101] ([84.66.36.92])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3ecdbc7fe1bsm3941385f8f.52.2025.09.17.02.19.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Sep 2025 02:19:53 -0700 (PDT)
-Message-ID: <4d685669-bc37-4beb-9346-9dc9b976f2e4@ursulin.net>
-Date: Wed, 17 Sep 2025 10:19:53 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8125710E644;
+	Wed, 17 Sep 2025 09:43:16 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC95910E18C;
+ Wed, 17 Sep 2025 09:43:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3848535546974085365=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] drm/xe: Add DRM GPU frequency tracepoint to Xe
-To: S Sebinraj <s.sebinraj@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jeevaka.badrappan@intel.com
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Add_GPU_frequency_tr?=
+ =?utf-8?q?acepoint_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "S Sebinraj" <s.sebinraj@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 17 Sep 2025 09:43:15 -0000
+Message-ID: <175810219569.340734.2203764484398266383@1538d3639d33>
+X-Patchwork-Hint: ignore
 References: <20250917084135.2049550-1-s.sebinraj@intel.com>
- <20250917084135.2049550-3-s.sebinraj@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250917084135.2049550-3-s.sebinraj@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20250917084135.2049550-1-s.sebinraj@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,166 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3848535546974085365==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 17/09/2025 09:41, S Sebinraj wrote:
-> Integrate xe PMU with the DRM-level GPU frequency tracepoint to provide
-> efficient frequency monitoring with change detection.
-> 
-> Key changes:
-> - Add frequency change detection
-> - Implement per-GT frequency tracking using last_act_freq array
-> - Only trace when GPU frequency actually changes per GT
-> 
-> The integration traces actual GPU frequency changes from xe_pmu during
-> XE_PMU_EVENT_GT_ACTUAL_FREQUENCY reads.
-> 
-> Signed-off-by: S Sebinraj <s.sebinraj@intel.com>
-> ---
->   drivers/gpu/drm/drm_gpu_frequency_trace.c     |  2 +-
->   drivers/gpu/drm/xe/xe_gpu_freq_trace.h        | 14 ++++++++++
->   drivers/gpu/drm/xe/xe_pmu.c                   | 26 +++++++++++++++++--
->   drivers/gpu/drm/xe/xe_pmu_types.h             |  4 +++
->   .../drm/drm_gpu_frequency_trace.h             |  2 +-
->   5 files changed, 44 insertions(+), 4 deletions(-)
->   create mode 100644 drivers/gpu/drm/xe/xe_gpu_freq_trace.h
->   rename {drivers/gpu => include}/drm/drm_gpu_frequency_trace.h (96%)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpu_frequency_trace.c b/drivers/gpu/drm/drm_gpu_frequency_trace.c
-> index b5fa5134226d..e33df068752d 100644
-> --- a/drivers/gpu/drm/drm_gpu_frequency_trace.c
-> +++ b/drivers/gpu/drm/drm_gpu_frequency_trace.c
-> @@ -9,7 +9,7 @@
->   #ifdef CONFIG_DRM_GPU_FREQUENCY_TRACE
->   
->   #define CREATE_TRACE_POINTS
-> -#include "drm_gpu_frequency_trace.h"
-> +#include <drm/drm_gpu_frequency_trace.h>
->   
->   EXPORT_TRACEPOINT_SYMBOL_GPL(gpu_frequency);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_freq_trace.h b/drivers/gpu/drm/xe/xe_gpu_freq_trace.h
-> new file mode 100644
-> index 000000000000..c15d41761296
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gpu_freq_trace.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * GPU frequency trace wrapper for xe_pmu.c
-> + * This header provides access to the gpu_frequency tracepoint
-> + */
-> +#ifndef _XE_GPU_FREQ_TRACE_H_
-> +#define _XE_GPU_FREQ_TRACE_H_
-> +
-> +#include <drm/drm_gpu_frequency_trace.h>
-> +
-> +/* Convert MHz to KHz for tracepoint */
-> +#define MHZ_TO_KHZ(freq_mhz)	((freq_mhz) * 1000)
-> +
-> +#endif /* _XE_GPU_FREQ_TRACE_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-> index cab51d826345..7d5a6e149247 100644
-> --- a/drivers/gpu/drm/xe/xe_pmu.c
-> +++ b/drivers/gpu/drm/xe/xe_pmu.c
-> @@ -5,9 +5,11 @@
->   
->   #include <drm/drm_drv.h>
->   #include <linux/device.h>
-> +#include <linux/types.h>
->   
->   #include "xe_device.h"
->   #include "xe_force_wake.h"
-> +#include "xe_gpu_freq_trace.h"
->   #include "xe_gt_idle.h"
->   #include "xe_guc_engine_activity.h"
->   #include "xe_guc_pc.h"
-> @@ -291,6 +293,19 @@ static u64 read_engine_events(struct xe_gt *gt, struct perf_event *event)
->   	return val;
->   }
->   
-> +static void xe_pmu_trace_frequency_change(struct xe_gt *gt, u32 act_freq)
-> +{
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct xe_pmu *pmu = &xe->pmu;
-> +	u32 gt_id = gt->info.id;
-> +
-> +	/* Only trace if frequency changed for this GT */
-> +	if (gt_id < XE_PMU_MAX_GT && pmu->last_act_freq[gt_id] != act_freq) {
-> +		trace_gpu_frequency(MHZ_TO_KHZ(act_freq), gt_id);
-> +		pmu->last_act_freq[gt_id] = act_freq;
-> +	}
-> +}
-> +
->   static u64 __xe_pmu_event_read(struct perf_event *event)
->   {
->   	struct xe_gt *gt = event_to_gt(event);
-> @@ -304,8 +319,12 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->   	case XE_PMU_EVENT_ENGINE_ACTIVE_TICKS:
->   	case XE_PMU_EVENT_ENGINE_TOTAL_TICKS:
->   		return read_engine_events(gt, event);
-> -	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY:
-> -		return xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
-> +	case XE_PMU_EVENT_GT_ACTUAL_FREQUENCY: {
-> +		u32 act_freq = xe_guc_pc_get_act_freq(&gt->uc.guc.pc);
-> +
-> +		xe_pmu_trace_frequency_change(gt, act_freq);
+== Series Details ==
 
-Not my driver but IMO it does not sound very useful to emit a tracepoint 
-*only if* someone has the PMU open and not on actual frequency changes 
-but at a frequency of userspace doing PMU reads. Not least that at this 
-point userspace already has the frequency information via PMU so 
-tracepoint is just adding kernel code for what purpose?
+Series: drm: Add GPU frequency tracepoint (rev3)
+URL   : https://patchwork.freedesktop.org/series/154188/
+State : success
 
-Regards,
+== Summary ==
 
-Tvrtko
+CI Bug Log - changes from xe-3778-979324235ab42d795d35054201c327789ed55ac7_BAT -> xe-pw-154188v3_BAT
+====================================================
 
-> +		return act_freq;
-> +	}
->   	case XE_PMU_EVENT_GT_REQUESTED_FREQUENCY:
->   		return xe_guc_pc_get_cur_freq_fw(&gt->uc.guc.pc);
->   	}
-> @@ -572,6 +591,9 @@ int xe_pmu_register(struct xe_pmu *pmu)
->   	pmu->base.stop		= xe_pmu_event_stop;
->   	pmu->base.read		= xe_pmu_event_read;
->   
-> +	/* Initialize frequency tracking array */
-> +	memset(pmu->last_act_freq, 0, sizeof(pmu->last_act_freq));
-> +
->   	set_supported_events(pmu);
->   
->   	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
-> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
-> index f5ba4d56622c..630da8442387 100644
-> --- a/drivers/gpu/drm/xe/xe_pmu_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
-> @@ -34,6 +34,10 @@ struct xe_pmu {
->   	 * @supported_events: Bitmap of supported events, indexed by event id
->   	 */
->   	u64 supported_events;
-> +	/**
-> +	 * @last_act_freq: Last actual frequency for each GT (for tracing changes only)
-> +	 */
-> +	u32 last_act_freq[XE_PMU_MAX_GT];
->   };
->   
->   #endif
-> diff --git a/drivers/gpu/drm/drm_gpu_frequency_trace.h b/include/drm/drm_gpu_frequency_trace.h
-> similarity index 96%
-> rename from drivers/gpu/drm/drm_gpu_frequency_trace.h
-> rename to include/drm/drm_gpu_frequency_trace.h
-> index cf6337847b3a..47f32fd295a4 100644
-> --- a/drivers/gpu/drm/drm_gpu_frequency_trace.h
-> +++ b/include/drm/drm_gpu_frequency_trace.h
-> @@ -42,6 +42,6 @@ static inline void trace_gpu_frequency(unsigned int state, unsigned int gpu_id)
->   
->   #ifdef CONFIG_DRM_GPU_FREQUENCY_TRACE
->   #undef TRACE_INCLUDE_PATH
-> -#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm
-> +#define TRACE_INCLUDE_PATH ../../include/drm
->   #include <trace/define_trace.h>
->   #endif
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3778-979324235ab42d795d35054201c327789ed55ac7 -> xe-pw-154188v3
+
+  IGT_8541: 8541
+  xe-3778-979324235ab42d795d35054201c327789ed55ac7: 979324235ab42d795d35054201c327789ed55ac7
+  xe-pw-154188v3: 154188v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v3/index.html
+
+--===============3848535546974085365==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Add GPU frequency tracepoint (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154188/">https://patchwork.freedesktop.org/series/154188/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154188v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3778-979324235ab42d795d35054201c327789ed55ac7_BAT -&gt; xe-pw-154188v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3778-979324235ab42d795d35054201c327789ed55ac7 -&gt; xe-pw-154188v3</li>
+</ul>
+<p>IGT_8541: 8541<br />
+  xe-3778-979324235ab42d795d35054201c327789ed55ac7: 979324235ab42d795d35054201c327789ed55ac7<br />
+  xe-pw-154188v3: 154188v3</p>
+
+</body>
+</html>
+
+--===============3848535546974085365==--
