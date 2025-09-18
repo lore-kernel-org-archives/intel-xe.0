@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC93FCAC5A8
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 07:13:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88D4CAC597
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 07:13:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87AE410E664;
-	Thu, 18 Sep 2025 07:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7D010E65D;
+	Thu, 18 Sep 2025 07:13:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcjjUrfz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SPmC37wy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B495410E32E
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 07:13:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5978810E65D
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 07:13:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758179589; x=1789715589;
+ t=1758179591; x=1789715591;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M73Js5En3rgDdFhjAsQXOVKAWSno5IJpXCNL2AtAMuk=;
- b=fcjjUrfzOYB0a5wTmFHu9j/fBhZLt6wUG0j1RCCphGLgeXIilrL+zYAh
- uzr/FGOTqsAzPyH03qPyHJ9LhV48cHO/Z0LRnh/QxUHgKv/dSUT5w48PI
- M2Ycsvmg7muPCzOusJrvbP2YUMJHa9WgMHVNz1M41+AAGcvcOPhEi1x3Y
- w7AOkvjwdfXDHRg2yWPSRhY9/DrZvOSqzlp5/2Tv5ww0Lzebr6UL18at2
- hE2UtKT4+6B+Dwp5dak5oSDW/wcmNFDPjX7+378ewSF1maIGAUDfBelGM
- XGS5sj64eBF9rpCeNRLglcpKU+ZU2Ts/v3V+cBod4jcES3RbadYxp+Erg w==;
-X-CSE-ConnectionGUID: qmjBrp8xQI6jShhP+11ElA==
-X-CSE-MsgGUID: A8KbQvF2RgWFVg7UUAeqQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60648747"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="60648747"
+ bh=qD+VY8TKWexviPg2Rqotn9DwomeqOpWXPCrGKIakTH0=;
+ b=SPmC37wyf7G3JuoiL1P+YIStu+cQSVt5729JdLpxeUkdoo+CqdMKy5EB
+ 64qyUzRdWdVs3bbppcsCPH8B8NQwtaqxmKMsQI4SdNJbjfUoibDx+aDQy
+ S78ZL/L72X+X4VxDjHA6nv9qerykpXsdB+/f0FeFNQEyATUWIZT7Z0o75
+ SpIUnyFYHRVjpoLH1df2hMCOq3s3/SP9kthpAbvgD3Ffd6FpjpKZEYU6G
+ ZykO7kJrodO+tm8oq5E+FgwebjRRigkFyhHzyLPq1IzuiCZG5mDs8JtZ4
+ B2qdwR6hOyKxpPlU0eR3je8UIDosXGnNAygkNcGK1iLvfRatzkoZewUgL g==;
+X-CSE-ConnectionGUID: 25BuqbXoTgaNVS0LLYpmzQ==
+X-CSE-MsgGUID: k4PuXVNARRa5dAITauHV8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60648762"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="60648762"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 00:13:08 -0700
-X-CSE-ConnectionGUID: 9TVeS7V9Q2q91JlHTWNjgA==
-X-CSE-MsgGUID: hFBFLANzQD6N13lC+Yh2PA==
+ 18 Sep 2025 00:13:11 -0700
+X-CSE-ConnectionGUID: fK+5yac5Tp6c8lCXAxv95w==
+X-CSE-MsgGUID: A/d4wz7YQ4Sc/75TH8Ujdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175856927"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175856974"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa008.fm.intel.com with ESMTP; 18 Sep 2025 00:13:05 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 18 Sep 2025 00:13:09 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 1/4] drm/xe: Use PPGTT addresses for TLB invalidation to avoid
- GGTT fixups
-Date: Thu, 18 Sep 2025 13:00:04 +0530
-Message-ID: <20250918073002.15242-7-satyanarayana.k.v.p@intel.com>
+ Tomasz Lis <tomasz.lis@intel.com>
+Subject: [PATCH 3/4] drm/xe/vf: Post migration fixups for CCS save/restore
+Date: Thu, 18 Sep 2025 13:00:06 +0530
+Message-ID: <20250918073002.15242-9-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
 References: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,75 +67,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
-advance and retains it so the GuC can submit it directly when saving a
-VM’s state.
-
-When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
-addresses embedded in the BB would then have to be parsed and patched.
-
-Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
-remains GGTT-agnostic and requires no address fixups during migration.
+During VF migration the GGTT address can change, so GGTT-based references
+must be updated post-migration. Update all GGTT references used by the CCS
+metadata save/restore path so the ring buffer uses the correct addresses.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_sriov_vf.c     |  3 +++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+ 3 files changed, 28 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 6fad5d469629..d375ebc9323d 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -971,15 +971,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
- }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index cdd9f8e78b2a..e218022d42c7 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -368,6 +368,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
+ 		set_bit(id, &fixed_gts);
+ 	}
  
--static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
--				 u32 flags)
-+static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
- {
--	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
-+	/*
-+	 * The migrate VM is self-referential so it can modify its own PTEs (see
-+	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
-+	 * entries for kernel operations (copies, clears, CCS migrate), and
-+	 * suballocate the rest to user operations (binds/unbinds). With
-+	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
-+	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
-+	 */
-+	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
++	if (IS_VF_CCS_READY(xe))
++		xe_sriov_vf_ccs_migration_post_fixups(xe);
++
+ 	vf_post_migration_kickstart(xe);
+ 	err = vf_post_migration_notify_resfix_done(xe, fixed_gts);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 8dec616c37c9..c9f21656a3cf 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -175,6 +175,10 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	u32 dw[10], i = 0;
+ 
++	lrc->ring.tail = xe_lrc_ring_tail_on_init(lrc);
++	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
++	xe_lrc_set_ring_head(lrc, 0);
++
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
+ 	dw[i++] = lower_32_bits(addr);
+@@ -408,3 +412,23 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 
+ 	xe_pm_runtime_put(xe);
+ }
++
++/**
++ * xe_sriov_vf_ccs_migration_post_fixups - Fix GGTT references post migration.
++ * @xe: the &xe_device
++ *
++ * This function is for VF use only.
++ */
++void xe_sriov_vf_ccs_migration_post_fixups(struct xe_device *xe)
++{
++	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
++	struct xe_sriov_vf_ccs_ctx *ctx;
++
++	xe_assert(xe, IS_VF_CCS_READY(xe));
++
++	for_each_ccs_rw_ctx(ctx_id) {
++		ctx = &xe->sriov.vf.ccs.contexts[ctx_id];
++		ccs_rw_update_ring(ctx);
++	}
 +}
 +
-+static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-+{
-+	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
-+
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
- 		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
--		  MI_FLUSH_DW_USE_GTT;
--	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
-+	dw[i++] = lower_32_bits(addr);
-+	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = MI_NOOP;
- 	dw[i++] = MI_NOOP;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 0745c0ff0228..c09e3a48618e 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -19,6 +19,7 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
+ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
++void xe_sriov_vf_ccs_migration_post_fixups(struct xe_device *xe);
  
-@@ -1092,11 +1104,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 
- 		size -= src_L0;
- 	}
+ static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
+ {
 -- 
 2.51.0
 
