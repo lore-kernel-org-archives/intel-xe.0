@@ -4,80 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DAD5CAC59A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 16:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF3C6CA1013
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 16:13:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC9510E078;
-	Thu, 18 Sep 2025 16:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 970C310E078;
+	Thu, 18 Sep 2025 16:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="VpPCW6Bi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZpbya/+";
 	dkim-atps=neutral
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
- [209.85.218.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CB0A10E078
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 16:11:06 +0000 (UTC)
-Received: by mail-ej1-f47.google.com with SMTP id
- a640c23a62f3a-b04b55d5a2cso207724366b.2
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 09:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1758211865; x=1758816665; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=qYYNR2VG8S2sFusvV1337bU8O9dt2Shk498SK3+QM+Q=;
- b=VpPCW6Bieo3PyTj4nfnoK+64lzRJTAST8g/OdNFhmzg4ZBM8jAy4/5WuQvvxN/uTlG
- 7KuqR4odbAcRBmfRqZzzpQUQLHjVgFuDtR7ZZcxrwNxz6aBhLwTBFz2gNOfZm75ISYKL
- /Bkt3RXAlHp8zrDOwfjf2EIok1LiZbtsslijs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758211865; x=1758816665;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qYYNR2VG8S2sFusvV1337bU8O9dt2Shk498SK3+QM+Q=;
- b=f9ZaRI3oNFC4Pb/mfr2Xxk9hKvnWiYPIKlEl4P2tiQOARp5lPaMcPsTeLNlV6ZLkE9
- ywnCEHKbfoBZcPnuY/2YvCa9H93mmcuC+tMHvPWcAtnTbk1rpbSkoXRp7bPHcaTkIBY7
- ERV3rDPnOnSIzw/Q8vEwvNgv9MAmjWBwVSOEKrkmQ0owSKsLv6eWlsJuRfLGnjKn0kVp
- K8XAy1jZesjxKY9FN/LhAu4/nf9WwSc1s2m9kXK13nLRzCw9z/7Fig/mzklW7SL5brH5
- 2fXvBqHBPNHFl1u4FLgz2xV1q17OX/6lnJsooNBNRCxjsFkoCS7WBqjGgSTofZx2cfg9
- 5y+Q==
-X-Gm-Message-State: AOJu0YzluI+qzb0qGmt+lwRJowzzNngc7hIW9ROAdcU7SyCnVREua1cC
- Usp1oS9JgyeZE8iJ1Glonn/y1Z3H9tSWUUd2OVYxGMlQgnBnJ/O1xXTRVhfK5ogtiYE=
-X-Gm-Gg: ASbGncu8He5hCPIDco7yO2DztsSJufKwr3Y6K4vteGF6/tpmYMxgjrEk/B0fzZd/hCK
- N6repyzwqaVvQNmGPr5H0uMVSuziUCzEWSnI6umx0BX8BDCzbLTiEUwshOkzwOwqBp2JmaZI8C4
- njPbYMsR9nUYLvGh1mY8iX4sfnHw/4Wkj6GBhoR1V/9vLbqAxKX1pyzpGwX40TL7kn5JE5vpyB8
- i0GOEoQpCvM2c8Ns/q8+AKveEkei+upgnO/Z7tjZAqKM2JVJr1jSSPUmyd5pAefpA6fSOvXx79B
- Ou5/0bvPG5A1xkUwi/5RxgUNU78xG51TJAFXDIL66AADekHJf1AefN/2VhETZ9nsqs7ODhpFXS9
- lEWbb72iVQvqRBwJpN6FHJN8Rua4I2fMOwc5vt8Y1Lgb9woNW4hpE
-X-Google-Smtp-Source: AGHT+IHX8LDBk/Ad8V/yyp2J+P3JQogBDOWtsWnCNmIsxWirJQ/9aoWyg4PVdoNzpYA9AMZ5IvnK+A==
-X-Received: by 2002:a17:907:1c94:b0:b04:80c5:685c with SMTP id
- a640c23a62f3a-b1bbfa2cc78mr694454866b.35.1758211864364; 
- Thu, 18 Sep 2025 09:11:04 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b1fc5f382c6sm225275066b.4.2025.09.18.09.11.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Sep 2025 09:11:02 -0700 (PDT)
-Date: Thu, 18 Sep 2025 18:10:59 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Dave Airlie <airlied@gmail.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH v2 3/3] drm/xe/dma-buf: Allow pinning of p2p dma-buf
-Message-ID: <aMwvE0SypYShDqsv@phenom.ffwll.local>
-References: <20250918092207.54472-1-thomas.hellstrom@linux.intel.com>
- <20250918092207.54472-4-thomas.hellstrom@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D41B10E078
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 16:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758211998; x=1789747998;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9YaM/6X+gPCIwRydDA1OYoQjqFCIGWmJLMbHHuNMLYg=;
+ b=WZpbya/+lGFnkTj7flkfTCcmdqv7R1CScCYGJHQ1syBUWdGZAh03eiYh
+ ylVnOEIx3rBTj06JXrajwX6f86iBNQG2Tsnwauy34T/UNmoOzW6dd12Cn
+ 3fOrK0fTx7wRXE1ne9bVKM25mdEH+cQ4XcmS5Qf/vzNCKWgQpGkLbeCEE
+ W7byMlSGXW65g6QKqj6cYrn0zbFN34Ck3IqihaAQ8gilvjwVE81N+1RQZ
+ zzpG1I8/hWA6b77Z6VPN5nmqZ5l1kkcoqxjlvFVfo6WflgXJjYgyPG0vi
+ 7dKCZ1c3NG12UeAzRjzIq3UKWvBrqE61sGJr64AyTfLkOXDAiIKmEH5pY A==;
+X-CSE-ConnectionGUID: Qb+juhPrQ1+AVxJt4cSsdA==
+X-CSE-MsgGUID: zVLxgK9eRXuoy2BWE6PZng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="71659697"
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="71659697"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 09:13:18 -0700
+X-CSE-ConnectionGUID: YAzz6WDSSr2RBrb6wwHBtw==
+X-CSE-MsgGUID: 45z26o9CRrWJ/HscqSV5ww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="174861372"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.228])
+ ([10.245.244.228])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 09:13:16 -0700
+Message-ID: <d3c6d16e-1421-4367-8ed7-9a54bdf1ff09@intel.com>
+Date: Thu, 18 Sep 2025 17:13:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250918092207.54472-4-thomas.hellstrom@linux.intel.com>
-X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 4/5] drm/xe: implement VM_BIND decompression in
+ vm_bind_ioctl
+To: Nitin Gote <nitin.r.gote@intel.com>, intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
+ thomas.hellstrom@intel.com
+References: <20250918142529.608432-1-nitin.r.gote@intel.com>
+ <20250918142529.608432-5-nitin.r.gote@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250918142529.608432-5-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,179 +72,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 18, 2025 at 11:22:07AM +0200, Thomas Hellström wrote:
-> RDMA NICs typically requires the VRAM dma-bufs to be pinned in
-> VRAM for pcie-p2p communication, since they don't fully support
-> the move_notify() scheme. We would like to support that.
+On 18/09/2025 15:25, Nitin Gote wrote:
+> Implement handling of VM_BIND(..., DECOMPRESS) in xe_vm_bind_ioctl.
 > 
-> However allowing unaccounted pinning of VRAM creates a DOS vector
-> so up until now we haven't allowed it.
+> - Validate decompression preconditions (VRAM buffer, flat CCS support,
+>    XE2+ hardware, and an uncompressed PAT index).
+> - Mark the BO with DRM_XE_VM_BIND_FLAG_DECOMPRESS.
+> - Invalidate any overlapping VMA when required.
+> - Use helper xe_vm_exec_lock_vm_and_bo(..., wait_bookkeep=true)
+>    to atomically acquire the VM reservation and optional BO reservation and
+>    handle BOOKKEEP wait/retry.
+>    * Drop vm->lock before calling the helper.
+>    * Do VMA invalidation or schedule the migrate resolve while reservations
+>      are held.
+>    * Call drm_exec_fini() to release reservations, then wait on the
+>      migrate/decompression fence without holding reservations and
+>      re-acquire vm->lock to continue.
+> - Defer decompression when the VM is in fault mode.
 > 
-> However with cgroups support in TTM, the amount of VRAM allocated
-> to a cgroup can be limited, and since also the pinned memory is
-> accounted as allocated VRAM we should be safe.
+> This schedules an in-place GPU resolve (xe_migrate_resolve) for
+> decompression and waits for completion before proceeding with the bind.
+> The change centralises drm_exec + BOOKKEEP retry logic and avoids
+> sleeping while holding resv locks.
 > 
-> An analogy with system memory can be made if we observe the
-> similarity with kernel system memory that is allocated as the
-> result of user-space action and that is accounted using __GFP_ACCOUNT.
-> 
-> Ideally, to be more flexible, we would add a "pinned_memory",
-> or possibly "kernel_memory" limit to the dmem cgroups controller,
-> that would additionally limit the memory that is pinned in this way.
-> If we let that limit default to the dmem::max limit we can
-> introduce that without needing to care about regressions.
-> 
-> Considering that we already pin VRAM in this way for at least
-> page-table memory and LRC memory, and the above path to greater
-> flexibility, allow this also for dma-bufs.
-> 
-> v2:
-> - Update comments about pinning in the dma-buf kunit test
->   (Niranjana Vishwanathapura)
-> 
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-For the same reasons I've acked the amd version of this - vram/gpu memory
-accounting is really complex, there's way too many pieces to land them all
-perfectly in one big step. Which means the prudent choice is pragmatically
-merging useful things without painting ourselves too badly into a corner.
-And I think with basic vram cgroup accounting we have that now to land
-cross-driver pinning. Of course, there's still a lot of work left to do.
-
-Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
-
-Cheers, Sima
-
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 > ---
->  drivers/gpu/drm/xe/tests/xe_dma_buf.c | 17 +++++++++--
->  drivers/gpu/drm/xe/xe_dma_buf.c       | 41 +++++++++++++++++----------
->  2 files changed, 41 insertions(+), 17 deletions(-)
+>   drivers/gpu/drm/xe/xe_vm.c | 134 +++++++++++++++++++++++++++++++++++--
+>   1 file changed, 130 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> index a7e548a2bdfb..5df98de5ba3c 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> @@ -31,6 +31,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
->  			    struct drm_exec *exec)
->  {
->  	struct dma_buf_test_params *params = to_dma_buf_test_params(test->priv);
-> +	struct dma_buf_attachment *attach;
->  	u32 mem_type;
->  	int ret;
->  
-> @@ -46,7 +47,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
->  		mem_type = XE_PL_TT;
->  	else if (params->force_different_devices && !is_dynamic(params) &&
->  		 (params->mem_mask & XE_BO_FLAG_SYSTEM))
-> -		/* Pin migrated to TT */
-> +		/* Pin migrated to TT on non-dynamic attachments. */
->  		mem_type = XE_PL_TT;
->  
->  	if (!xe_bo_is_mem_type(exported, mem_type)) {
-> @@ -88,6 +89,18 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
->  
->  	KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(exported, mem_type));
->  
-> +	/* Check that we can pin without migrating. */
-> +	attach = list_first_entry_or_null(&dmabuf->attachments, typeof(*attach), node);
-> +	if (attach) {
-> +		int err = dma_buf_pin(attach);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index fae88c4c981e..cdeb7995eab1 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3266,7 +3266,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
+>   	 DRM_XE_VM_BIND_FLAG_NULL | \
+>   	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
+>   	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
+> -	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR)
+> +	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
+> +	 DRM_XE_VM_BIND_FLAG_DECOMPRESS)
+>   
+>   #ifdef TEST_VM_OPS_ERROR
+>   #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+> @@ -3324,6 +3325,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+>   		bool is_cpu_addr_mirror = flags &
+>   			DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+> +		bool is_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
+>   		u16 pat_index = (*bind_ops)[i].pat_index;
+>   		u16 coh_mode;
+>   
+> @@ -3361,7 +3363,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   				 (is_null || is_cpu_addr_mirror)) ||
+>   		    XE_IOCTL_DBG(xe, !obj &&
+>   				 op == DRM_XE_VM_BIND_OP_MAP &&
+> -				 !is_null && !is_cpu_addr_mirror) ||
+> +				 is_decompress && !is_null && !is_cpu_addr_mirror) ||
+>   		    XE_IOCTL_DBG(xe, !obj &&
+>   				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
+>   		    XE_IOCTL_DBG(xe, addr &&
+> @@ -3378,8 +3380,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+>   				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
+>   		    XE_IOCTL_DBG(xe, prefetch_region &&
+>   				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
+> -				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+> +		    XE_IOCTL_DBG(xe, (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
+> +				      !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+>   		    XE_IOCTL_DBG(xe, obj &&
+>   				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
+>   			err = -EINVAL;
+> @@ -3698,6 +3700,130 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		u64 obj_offset = bind_ops[i].obj_offset;
+>   		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
+>   		u16 pat_index = bind_ops[i].pat_index;
+> +		bool do_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
 > +
-> +		if (!err) {
-> +			KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(exported, mem_type));
-> +			dma_buf_unpin(attach);
-> +		}
-> +		KUNIT_EXPECT_EQ(test, err, 0);
-> +	}
+> +		/* Handle decompression process */
+> +		if (do_decompress && bos[i]) {
+> +			struct xe_vma *existing_vma;
+> +			struct dma_fence *decomp_fence;
+> +			struct xe_tile *tile = xe_device_get_root_tile(xe);
 > +
->  	if (params->force_different_devices)
->  		KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(imported, XE_PL_TT));
->  	else
-> @@ -150,7 +163,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
->  			xe_bo_lock(import_bo, false);
->  			err = xe_bo_validate(import_bo, NULL, false, exec);
->  
-> -			/* Pinning in VRAM is not allowed. */
-> +			/* Pinning in VRAM is not allowed for non-dynamic attachments */
->  			if (!is_dynamic(params) &&
->  			    params->force_different_devices &&
->  			    !(params->mem_mask & XE_BO_FLAG_SYSTEM))
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index a7d67725c3ee..54e42960daad 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -48,32 +48,43 @@ static void xe_dma_buf_detach(struct dma_buf *dmabuf,
->  
->  static int xe_dma_buf_pin(struct dma_buf_attachment *attach)
->  {
-> -	struct drm_gem_object *obj = attach->dmabuf->priv;
-> +	struct dma_buf *dmabuf = attach->dmabuf;
-> +	struct drm_gem_object *obj = dmabuf->priv;
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
->  	struct xe_device *xe = xe_bo_device(bo);
->  	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
-> +	bool allow_vram = true;
->  	int ret;
->  
-> -	/*
-> -	 * For now only support pinning in TT memory, for two reasons:
-> -	 * 1) Avoid pinning in a placement not accessible to some importers.
-> -	 * 2) Pinning in VRAM requires PIN accounting which is a to-do.
-> -	 */
-> -	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo, XE_PL_TT)) {
-> +	if (!IS_ENABLED(CONFIG_DMABUF_MOVE_NOTIFY)) {
-> +		allow_vram = false;
-> +	} else {
-> +		list_for_each_entry(attach, &dmabuf->attachments, node) {
-> +			if (!attach->peer2peer) {
-> +				allow_vram = false;
-> +				break;
-> +			}
-> +		}
-> +	}
+> +			bos[i]->flags |= DRM_XE_VM_BIND_FLAG_DECOMPRESS;
 > +
-> +	if (xe_bo_is_pinned(bo) && !xe_bo_is_mem_type(bo, XE_PL_TT) &&
-> +	    !(xe_bo_is_vram(bo) && allow_vram)) {
->  		drm_dbg(&xe->drm, "Can't migrate pinned bo for dma-buf pin.\n");
->  		return -EINVAL;
->  	}
->  
-> -	ret = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
-> -	if (ret) {
-> -		if (ret != -EINTR && ret != -ERESTARTSYS)
-> -			drm_dbg(&xe->drm,
-> -				"Failed migrating dma-buf to TT memory: %pe\n",
-> -				ERR_PTR(ret));
-> -		return ret;
-> +	if (!allow_vram) {
-> +		ret = xe_bo_migrate(bo, XE_PL_TT, NULL, exec);
-> +		if (ret) {
-> +			if (ret != -EINTR && ret != -ERESTARTSYS)
-> +				drm_dbg(&xe->drm,
-> +					"Failed migrating dma-buf to TT memory: %pe\n",
-> +					ERR_PTR(ret));
-> +			return ret;
-> +		}
->  	}
->  
-> -	ret = xe_bo_pin_external(bo, true, exec);
-> +	ret = xe_bo_pin_external(bo, !allow_vram, exec);
->  	xe_assert(xe, !ret);
->  
->  	return 0;
-> -- 
-> 2.51.0
-> 
+> +			/* Validate VRAM buffer suitable for decompression or not */
+> +			if (!mem_type_is_vram(bos[i]->ttm.resource->mem_type)) {
 
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+I think this can crash with NPD or other nasties since ttm.resource is 
+dynamic state and we need to hold dma-resv lock if touching it (only 
+held below AFAICT). Also memory can get evicted or can be deferred until 
+first use, so this would return an error for those cases?
+
+> +				drm_err(&vm->xe->drm,
+> +					"Decompression requires VRAM buffer\n");
+> +				err = -EINVAL;
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* Check hardware support for decompression */
+> +			if (!xe_device_has_flat_ccs(vm->xe)) {
+> +				drm_err(&vm->xe->drm,
+> +					"Decompression requires flat CCS support\n");
+> +				err = -EOPNOTSUPP;
+> +				goto unwind_ops;
+> +			}
+> +
+> +			if (GRAPHICS_VER(vm->xe) < 20) {
+> +				drm_err(&vm->xe->drm,
+> +					"Decompression requires XE2+ hardware\n");
+> +				err = -EOPNOTSUPP;
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* Validate that user provided an uncompressed PAT index */
+> +			if (pat_index == vm->xe->pat.idx[XE_CACHE_NONE_COMPRESSION]) {
+
+XE_CACHE_NONE_COMPRESSION is one of many possible compression enabled 
+indexes. Why do we only check this one? Also for all of these uAPI 
+sanity checks I think it's best practice to use XE_IOCTL_DBG.
+
+> +				drm_err(&vm->xe->drm,
+> +					"Decompression requires uncompressed PAT index\n");
+> +				err = -EINVAL;
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* Invalidate VMA so GPU mappings are destroyed */
+> +			existing_vma = xe_vm_find_overlapping_vma(vm, addr, range);
+> +			if (existing_vma) {
+> +				struct xe_bo *existing_bo = xe_vma_bo(existing_vma);
+> +
+> +				drm_dbg(&vm->xe->drm,
+> +					"Found overlapping VMA - automatic invalidation will occur\n");
+> +
+> +				/* Drop vm->lock and atomically take VM+BO resvs via drm_exec */
+> +				up_write(&vm->lock);
+> +				struct drm_exec exec;
+> +
+> +				err = xe_vm_exec_lock_vm_and_bo(vm, existing_bo, &exec, true, true);
+> +				if (err) {
+> +					down_write(&vm->lock);
+> +					goto put_obj;
+> +				}
+> +
+> +				/* Invalidate the VMA while reservations are held. */
+> +				err = xe_vm_invalidate_vma(existing_vma);
+> +
+> +				/* release reservations (drm_exec_fini releases VM+BO resvs) */
+> +				drm_exec_fini(&exec);
+> +
+> +				/* Re-acquire vm->lock */
+> +				down_write(&vm->lock);
+> +
+> +				if (err)
+> +					goto put_obj;
+> +			}
+> +
+> +			/* Handle decompression differently for fault mode */
+> +			if (xe_vm_in_fault_mode(vm)) {
+> +				drm_dbg(&vm->xe->drm,
+> +					"Deferring decompression for fault mode\n");
+> +				/* Skip immediate decompression */
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* Drop vm->lock and atomically acquire VM+BO reservations via drm_exec.
+> +			 * Hold the reservations while we wait for BOOKKEEP and schedule the
+> +			 * in-place resolve. Release the reservations (drm_exec_fini) before
+> +			 * waiting on the migrate fence so we don't hold resv locks while
+> +			 * sleeping.
+> +			 */
+> +			up_write(&vm->lock);
+> +			struct drm_exec exec;
+> +
+> +			err = xe_vm_exec_lock_vm_and_bo(vm, bos[i], &exec, true, true);
+> +			if (err) {
+> +				drm_err(&vm->xe->drm,
+> +					"Failed to acquire reservations for decompression: %d\n",
+> +					err);
+> +				down_write(&vm->lock);
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* With exec holding reservations, schedule the in-place decompression */
+> +			decomp_fence = xe_migrate_resolve(tile->migrate,
+> +							  bos[i], bos[i],
+> +							  bos[i]->ttm.resource,
+> +							  bos[i]->ttm.resource,
+> +							  false);
+> +
+> +			/* release the reservations so scheduler can observe BO fences */
+> +			drm_exec_fini(&exec);
+> +
+> +			if (IS_ERR(decomp_fence)) {
+> +				err = PTR_ERR(decomp_fence);
+> +				drm_err(&vm->xe->drm,
+> +					"In-place decompression failed: %d\n", err);
+> +				/* vm->lock must be held for unwind_ops cleanup */
+> +				down_write(&vm->lock);
+> +				goto unwind_ops;
+> +			}
+> +
+> +			/* Wait for in-place decompression to complete without holding vm->lock */
+> +			dma_fence_wait(decomp_fence, false);
+> +			dma_fence_put(decomp_fence);
+> +
+> +			/* Now re-acquire vm->lock and continue */
+> +			down_write(&vm->lock);
+> +		}
+>   
+>   		ops[i] = vm_bind_ioctl_ops_create(vm, &vops, bos[i], obj_offset,
+>   						  addr, range, op, flags,
+
