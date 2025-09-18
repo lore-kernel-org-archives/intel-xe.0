@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95694CAC59A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 13:31:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DBDECAC5A0
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 13:31:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC8310E8B2;
-	Thu, 18 Sep 2025 13:31:00 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D506510E8B4;
- Thu, 18 Sep 2025 13:30:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4306979440474839537=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 671B410E8B2;
+	Thu, 18 Sep 2025 13:31:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9Bb7yjN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEAAE10E8AF;
+ Thu, 18 Sep 2025 13:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758202312; x=1789738312;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3imyW3YzJKu6pViAVYSi2hR6W24P6cPVjtgItxHcooo=;
+ b=e9Bb7yjNVU7IrmP6CJ5j5nHKR5pPibvDbP3K+O9XfdAwoDLaXTcmCONx
+ g438XwJelXh3bZOTTvvkIUOMZerx4H8/XbN+MUSSfuM8v1Z3yUyzXb7Ry
+ ugD8D4cTpmbGakkOE7BUUC/3PDQRq1e/L24z7PkznEvc/nGNYSS0W4L8e
+ 5/wWdyNfivshBwzPvCie06brn5jbyVgGln37eckIAt2LLO6Bz0SCb+dkl
+ Gk5a260Oa4y0W7QeNYFlAGchD75zmVrPbMDJ38vvEW7zyd8aho8CIagBx
+ Ub39WAPDzFKtEGZD1AWZOQwFMejmC+849exW2immnMXil0dBijEylmvek g==;
+X-CSE-ConnectionGUID: 8rSGxlJVTtS3Xr15TP/lyg==
+X-CSE-MsgGUID: WZ5zjOcQRLq3BmvewnM77Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60596523"
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="60596523"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 06:31:32 -0700
+X-CSE-ConnectionGUID: 3aeop8D0Tam/i6vA2EycSw==
+X-CSE-MsgGUID: CSEtjB9BQVaifTMISBkSjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="175344958"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.255])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 06:31:30 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Luca Coelho <luciano.coelho@intel.com>
+Subject: [PATCH v2 10/13] drm/i915: Flatten sanitize_wm_latency() a bit
+Date: Thu, 18 Sep 2025 16:31:27 +0300
+Message-ID: <20250918133127.25323-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20250905145832.12097-11-ville.syrjala@linux.intel.com>
+References: <20250905145832.12097-11-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/irq=3A_clarify_and?=
- =?utf-8?q?_refactor_-=3Eirq=5Fmask?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Sep 2025 13:30:59 -0000
-Message-ID: <175820225986.344369.1294337262255512255@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1758198300.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1758198300.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +67,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4306979440474839537==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Move the inner loop out from the outer loop in
+sanitize_wm_latency() to flatten things a bit.
+Easier to read flat code.
 
-Series: drm/i915/irq: clarify and refactor ->irq_mask
-URL   : https://patchwork.freedesktop.org/series/154698/
-State : failure
+v2: Move the inner loop out completely (Luca)
 
-== Summary ==
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-CI Bug Log - changes from xe-3790-31f149f6d10616688087056856c29390e28d7e44_BAT -> xe-pw-154698v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index e3305a399ddf..caeba4274de3 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3228,14 +3228,12 @@ static void sanitize_wm_latency(struct intel_display *display)
+ 	 * of the punit to satisfy this requirement.
+ 	 */
+ 	for (level = 1; level < num_levels; level++) {
+-		if (wm[level] == 0) {
+-			int i;
+-
+-			for (i = level + 1; i < num_levels; i++)
+-				wm[i] = 0;
+-			return;
+-		}
++		if (wm[level] == 0)
++			break;
+ 	}
++
++	for (level = level + 1; level < num_levels; level++)
++		wm[level] = 0;
+ }
+ 
+ static void
+-- 
+2.49.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-154698v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-154698v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-154698v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-rebind-imm:
-    - bat-bmg-1:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3790-31f149f6d10616688087056856c29390e28d7e44/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-3790-31f149f6d10616688087056856c29390e28d7e44 -> xe-pw-154698v1
-
-  IGT_8543: 8543
-  xe-3790-31f149f6d10616688087056856c29390e28d7e44: 31f149f6d10616688087056856c29390e28d7e44
-  xe-pw-154698v1: 154698v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154698v1/index.html
-
---===============4306979440474839537==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/irq: clarify and refactor -&gt;irq_mask</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154698/">https://patchwork.freedesktop.org/series/154698/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154698v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154698v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3790-31f149f6d10616688087056856c29390e28d7e44_BAT -&gt; xe-pw-154698v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-154698v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-154698v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-154698v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-rebind-imm:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3790-31f149f6d10616688087056856c29390e28d7e44/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-imm.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3790-31f149f6d10616688087056856c29390e28d7e44 -&gt; xe-pw-154698v1</li>
-</ul>
-<p>IGT_8543: 8543<br />
-  xe-3790-31f149f6d10616688087056856c29390e28d7e44: 31f149f6d10616688087056856c29390e28d7e44<br />
-  xe-pw-154698v1: 154698v1</p>
-
-</body>
-</html>
-
---===============4306979440474839537==--
