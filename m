@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E668ACA1013
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 17:33:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A9B4CA1013
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 17:34:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB55910E27B;
-	Thu, 18 Sep 2025 17:33:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dO1oopJ0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 060FC10E04E;
- Thu, 18 Sep 2025 17:33:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758216800; x=1789752800;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=IY7dT0s4iMaSi3HxqqjiHeXgPZzDd0PQV2yqpY+XhK0=;
- b=dO1oopJ0KF66DDGe/kJNLf0qELtG1Dz42W1X2vMcUHpi+fu9DJlQe2X1
- R1iMMVBKtsxwH57QbcnKrv3OjjwzKts2hi7ICx/o0nYq6XO2nxua27Zsr
- Ruf3BVCvJjPNqrMHL1pknbbe8BfxgzzZUwWOnqO/A4mJA//85kzuGDL6U
- yHu/Qh5yV8+AdmK4cnGYf9+krJxgX9Qz6ceB8+HtPAr4bDGa+mZpNsp+6
- ZCIrNogAsLPKPeZZcSpGWrLEqZqLHEwhRA3w8yTgjS/epHhQUNluJpKQQ
- ObcqH5rmk/eNnPtWdSGLWiZaXKGRm5mzVMDVlOB8rgc/7uXh2E2EHe7Hj g==;
-X-CSE-ConnectionGUID: dvOkmJWlR9aFmb0VVHlNPQ==
-X-CSE-MsgGUID: Xdu4CZweSgyqUfQdohpXqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="71669508"
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="71669508"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 10:33:20 -0700
-X-CSE-ConnectionGUID: aUXcrlLBQB6WzjDUiIYXNg==
-X-CSE-MsgGUID: IfZ6js4iTbu/Lxc5WVk9vQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="180718553"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.255])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 10:33:18 -0700
-Date: Thu, 18 Sep 2025 20:33:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915/irq: rename de_irq_mask[] to
- de_pipe_imr_mask[]
-Message-ID: <aMxCWz284u0uhtnQ@intel.com>
-References: <cover.1758198300.git.jani.nikula@intel.com>
- <55bbf17df871331c2c34af748cf9cf812d6a65d7.1758198300.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D616D10E27B;
+	Thu, 18 Sep 2025 17:34:14 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2CE10E27B;
+ Thu, 18 Sep 2025 17:34:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0507682650087147862=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <55bbf17df871331c2c34af748cf9cf812d6a65d7.1758198300.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Keep_VF_LMEM_B?=
+ =?utf-8?q?AR_size_low_if_no_VFs_enabled?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Marcin Bernatowicz" <marcin.bernatowicz@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Sep 2025 17:34:14 -0000
+Message-ID: <175821685436.345924.12150861997072746643@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250918164355.1459200-1-marcin.bernatowicz@linux.intel.com>
+In-Reply-To: <20250918164355.1459200-1-marcin.bernatowicz@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,90 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 18, 2025 at 03:25:47PM +0300, Jani Nikula wrote:
-> Rename the struct intel_display de_irq_mask[] member to
-> de_pipe_imr_mask[] to reflect its usage more accurately.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--===============0507682650087147862==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> ---
->  .../gpu/drm/i915/display/intel_display_core.h    |  6 +++++-
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 16 ++++++++--------
->  2 files changed, 13 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 4a52bbe327b7..df4da52cbdb3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -485,7 +485,11 @@ struct intel_display {
->  		 * bitfield.
->  		 */
->  		u32 ilk_de_imr_mask;
-> -		u32 de_irq_mask[I915_MAX_PIPES];
-> +		/*
-> +		 * Cached value of BDW+ DE pipe IMR to avoid reads in updating
-> +		 * the bitfield.
-> +		 */
-> +		u32 de_pipe_imr_mask[I915_MAX_PIPES];
->  		u32 pipestat_irq_mask[I915_MAX_PIPES];
->  	} irq;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index f4ba9b08e044..93c2e42f98c9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -215,13 +215,13 @@ static void bdw_update_pipe_irq(struct intel_display *display,
->  	if (drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv)))
->  		return;
->  
-> -	new_val = display->irq.de_irq_mask[pipe];
-> +	new_val = display->irq.de_pipe_imr_mask[pipe];
->  	new_val &= ~interrupt_mask;
->  	new_val |= (~enabled_irq_mask & interrupt_mask);
->  
-> -	if (new_val != display->irq.de_irq_mask[pipe]) {
-> -		display->irq.de_irq_mask[pipe] = new_val;
-> -		intel_de_write(display, GEN8_DE_PIPE_IMR(pipe), display->irq.de_irq_mask[pipe]);
-> +	if (new_val != display->irq.de_pipe_imr_mask[pipe]) {
-> +		display->irq.de_pipe_imr_mask[pipe] = new_val;
-> +		intel_de_write(display, GEN8_DE_PIPE_IMR(pipe), display->irq.de_pipe_imr_mask[pipe]);
->  		intel_de_posting_read(display, GEN8_DE_PIPE_IMR(pipe));
->  	}
->  }
-> @@ -2085,8 +2085,8 @@ void gen8_irq_power_well_post_enable(struct intel_display *display,
->  
->  	for_each_pipe_masked(display, pipe, pipe_mask)
->  		intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -					    display->irq.de_irq_mask[pipe],
-> -					    ~display->irq.de_irq_mask[pipe] | extra_ier);
-> +					    display->irq.de_pipe_imr_mask[pipe],
-> +					    ~display->irq.de_pipe_imr_mask[pipe] | extra_ier);
->  
->  	spin_unlock_irq(&display->irq.lock);
->  }
-> @@ -2300,12 +2300,12 @@ void gen8_de_irq_postinstall(struct intel_display *display)
->  	}
->  
->  	for_each_pipe(display, pipe) {
-> -		display->irq.de_irq_mask[pipe] = ~de_pipe_masked;
-> +		display->irq.de_pipe_imr_mask[pipe] = ~de_pipe_masked;
->  
->  		if (intel_display_power_is_enabled(display,
->  						   POWER_DOMAIN_PIPE(pipe)))
->  			intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -						    display->irq.de_irq_mask[pipe],
-> +						    display->irq.de_pipe_imr_mask[pipe],
->  						    de_pipe_enables);
->  	}
->  
-> -- 
-> 2.47.3
+Series: drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled
+URL   : https://patchwork.freedesktop.org/series/154724/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c_BAT -> xe-pw-154724v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c -> xe-pw-154724v1
+
+  IGT_8543: 8543
+  xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c: c1b827f32471e37d88d3016a2a93f88b363f0c8c
+  xe-pw-154724v1: 154724v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html
+
+--===============0507682650087147862==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154724/">https://patchwork.freedesktop.org/series/154724/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c_BAT -&gt; xe-pw-154724v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c -&gt; xe-pw-154724v1</li>
+</ul>
+<p>IGT_8543: 8543<br />
+  xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c: c1b827f32471e37d88d3016a2a93f88b363f0c8c<br />
+  xe-pw-154724v1: 154724v1</p>
+
+</body>
+</html>
+
+--===============0507682650087147862==--
