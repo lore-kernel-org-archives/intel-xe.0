@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D88D4CAC597
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 07:13:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E375CAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 07:13:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7D010E65D;
-	Thu, 18 Sep 2025 07:13:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4333010E665;
+	Thu, 18 Sep 2025 07:13:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SPmC37wy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TLxUNnbg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5978810E65D
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 07:13:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8033210E65D
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 07:13:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758179591; x=1789715591;
+ t=1758179590; x=1789715590;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qD+VY8TKWexviPg2Rqotn9DwomeqOpWXPCrGKIakTH0=;
- b=SPmC37wyf7G3JuoiL1P+YIStu+cQSVt5729JdLpxeUkdoo+CqdMKy5EB
- 64qyUzRdWdVs3bbppcsCPH8B8NQwtaqxmKMsQI4SdNJbjfUoibDx+aDQy
- S78ZL/L72X+X4VxDjHA6nv9qerykpXsdB+/f0FeFNQEyATUWIZT7Z0o75
- SpIUnyFYHRVjpoLH1df2hMCOq3s3/SP9kthpAbvgD3Ffd6FpjpKZEYU6G
- ZykO7kJrodO+tm8oq5E+FgwebjRRigkFyhHzyLPq1IzuiCZG5mDs8JtZ4
- B2qdwR6hOyKxpPlU0eR3je8UIDosXGnNAygkNcGK1iLvfRatzkoZewUgL g==;
-X-CSE-ConnectionGUID: 25BuqbXoTgaNVS0LLYpmzQ==
-X-CSE-MsgGUID: k4PuXVNARRa5dAITauHV8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60648762"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="60648762"
+ bh=t3toUoO0P51lSrPYPWg/ViWFbLIcuEXFW8LvHUcdf3A=;
+ b=TLxUNnbgUcHso29mFMBJ/huMcrBFPtaViFLXntJxfIb6v5zDCTwDZVlU
+ rJCqBhueDmHIrz+H1FNaLY41d4Hh9AMX11d5SkWrr6BWXrWxnAZDm/5+1
+ R3ENVrLuyadtSeasZGlvEIl6zmjWdGKgJaIm46Ftm2Pd3r9F/9LwSjNGR
+ hEKmbsti+88/owCjdx6KQzsp9GmKeMDH7xP+zmvsxZJKfkh2ZGN2Pa5Xm
+ nNTzIq3zluyd5ueBjw82fkkP+1122rUWVgA9j8CJuxHd5+IlOTX7NohWJ
+ aEbKcEWmt4tnye9aBX672WZ3bE8MCp7QxGsCagI2l+WAunSE54CXhBqRm w==;
+X-CSE-ConnectionGUID: 5vvw8JcPSLCjbMecWTNRew==
+X-CSE-MsgGUID: C49YWDGcSQmHlNHL4WB5nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60648752"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="60648752"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 00:13:11 -0700
-X-CSE-ConnectionGUID: fK+5yac5Tp6c8lCXAxv95w==
-X-CSE-MsgGUID: A/d4wz7YQ4Sc/75TH8Ujdg==
+ 18 Sep 2025 00:13:09 -0700
+X-CSE-ConnectionGUID: KY24AVrWTmCRK8eXyrp4ow==
+X-CSE-MsgGUID: hTsfE9/XTamJWdSFdHpIaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175856974"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175856964"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by fmviesa008.fm.intel.com with ESMTP; 18 Sep 2025 00:13:09 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 18 Sep 2025 00:13:08 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH 3/4] drm/xe/vf: Post migration fixups for CCS save/restore
-Date: Thu, 18 Sep 2025 13:00:06 +0530
-Message-ID: <20250918073002.15242-9-satyanarayana.k.v.p@intel.com>
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH 2/4] drm/xe/lrc: Add helper to query post-init ring tail
+Date: Thu, 18 Sep 2025 13:00:05 +0530
+Message-ID: <20250918073002.15242-8-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
 References: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
@@ -67,84 +67,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During VF migration the GGTT address can change, so GGTT-based references
-must be updated post-migration. Update all GGTT references used by the CCS
-metadata save/restore path so the ring buffer uses the correct addresses.
+Some paths need to know the ring tail immediately after ring
+initialization, before any user or kernel commands are emitted.
+
+The tail may not be zero after init because the ring can be pre-populated
+with required workarounds or bootstrap instructions.
+
+Introduce a helper that returns this default post-init tail.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_vf.c     |  3 +++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
- 3 files changed, 28 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c       |  1 +
+ drivers/gpu/drm/xe/xe_lrc.h       | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc_types.h |  2 ++
+ 3 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index cdd9f8e78b2a..e218022d42c7 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -368,6 +368,9 @@ static void vf_post_migration_recovery(struct xe_device *xe)
- 		set_bit(id, &fixed_gts);
- 	}
- 
-+	if (IS_VF_CCS_READY(xe))
-+		xe_sriov_vf_ccs_migration_post_fixups(xe);
-+
- 	vf_post_migration_kickstart(xe);
- 	err = vf_post_migration_notify_resfix_done(xe, fixed_gts);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 6d52e0eb97f5..27be53c94b46 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1458,6 +1458,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
  	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index 8dec616c37c9..c9f21656a3cf 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -175,6 +175,10 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
- 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
- 	u32 dw[10], i = 0;
+ 		goto err_lrc_finish;
  
-+	lrc->ring.tail = xe_lrc_ring_tail_on_init(lrc);
-+	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
-+	xe_lrc_set_ring_head(lrc, 0);
-+
- 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
- 	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
- 	dw[i++] = lower_32_bits(addr);
-@@ -408,3 +412,23 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
++	lrc->ring.tail_on_init = lrc->ring.tail;
+ 	return 0;
  
- 	xe_pm_runtime_put(xe);
- }
+ err_lrc_finish:
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 188565465779..ab198c94e953 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -80,6 +80,21 @@ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
+ 
+ void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail);
+ u32 xe_lrc_ring_tail(struct xe_lrc *lrc);
 +
 +/**
-+ * xe_sriov_vf_ccs_migration_post_fixups - Fix GGTT references post migration.
-+ * @xe: the &xe_device
++ * xe_lrc_ring_tail_on_init - Ring tail after lrc_init()
++ * @lrc: Logical Ring Context
 + *
-+ * This function is for VF use only.
++ * The tail may not be zero after init because the ring can be
++ * pre-populated with required workarounds or bootstrap instructions.
++ *
++ * Returns: Tail of the ring on lrc_init().
 + */
-+void xe_sriov_vf_ccs_migration_post_fixups(struct xe_device *xe)
++static inline u32 xe_lrc_ring_tail_on_init(struct xe_lrc *lrc)
 +{
-+	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_sriov_vf_ccs_ctx *ctx;
-+
-+	xe_assert(xe, IS_VF_CCS_READY(xe));
-+
-+	for_each_ccs_rw_ctx(ctx_id) {
-+		ctx = &xe->sriov.vf.ccs.contexts[ctx_id];
-+		ccs_rw_update_ring(ctx);
-+	}
++	return lrc->ring.tail_on_init;
 +}
 +
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index 0745c0ff0228..c09e3a48618e 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -19,6 +19,7 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
- int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
- int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
- void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
-+void xe_sriov_vf_ccs_migration_post_fixups(struct xe_device *xe);
+ void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
+ u32 xe_lrc_ring_head(struct xe_lrc *lrc);
+ u32 xe_lrc_ring_space(struct xe_lrc *lrc);
+diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
+index e9883706e004..6d04b21c2bfa 100644
+--- a/drivers/gpu/drm/xe/xe_lrc_types.h
++++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+@@ -44,6 +44,8 @@ struct xe_lrc {
+ 		u32 tail;
+ 		/** @ring.old_tail: shadow of tail */
+ 		u32 old_tail;
++		/** @ring.tail_on_init: tail of submission ring after lrc_init() */
++		u32 tail_on_init;
+ 	} ring;
  
- static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
- {
+ 	/** @desc: LRC descriptor */
 -- 
 2.51.0
 
