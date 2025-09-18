@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 874CBCAC59F
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 08:46:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12768CAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 08:49:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 503D110E320;
-	Thu, 18 Sep 2025 08:46:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iU4iyoDx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD44F10E0DD;
- Thu, 18 Sep 2025 08:46:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758185203; x=1789721203;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=FHpgrHBhyj4GRtu/48PM71eYU5pf7tWDwzFlLVv4t18=;
- b=iU4iyoDxs4LlQSP63WNMhWSQK6ScUjZF1QgEfP8y80OcvJ1njxhhdzuJ
- KPJT4E3gy/IgjbMW1rss+wemze6ly7BxzFTNiEqHESgbqkRKhHLg3zQ4R
- SzLTBwzaBNAGTQNtRp3MJyAOOmzjoy/GC1+XWyqvy65vpCdV6HjY6hexo
- 7dZpHCqc5j1Rx6JX3M8UXjFuXa1OG5/zH5IarlMU+4OcM7YSxQeleojMe
- ulDMlMH1ncYgKGog9h/M8H1SuWvRqcWz9+yzLkYhcgpxoOA0i/XBQG/WM
- vuPKbgxtisfmIS9arew1AiCvb3yH+z4veZP1IKam8AIwnMXwtpVmOtZnA Q==;
-X-CSE-ConnectionGUID: ViAmcne8S6e+bDrnalMdgw==
-X-CSE-MsgGUID: IVzEAwYORG2bworzb0pZIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71189239"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="71189239"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 01:46:43 -0700
-X-CSE-ConnectionGUID: hV+6axKMTKuW5MhbTcH8eg==
-X-CSE-MsgGUID: eiv4AwohR7WQ6i8+PmIpCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175079282"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.185])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 01:46:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/9] drm/{i915,xe}/fbdev: add intel_fbdev_fb_bo_destroy()
-In-Reply-To: <aMrApoD9mHeiOPoV@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1756931441.git.jani.nikula@intel.com>
- <52acac7760e8bc440ad9539aaa89b8cb3b5c23dc.1756931441.git.jani.nikula@intel.com>
- <aLmkNu6AJ6LGVt6q@intel.com>
- <4e4d1bc04de69092cdb3ecc16bda81764d2b9b16@intel.com>
- <aMrApoD9mHeiOPoV@intel.com>
-Date: Thu, 18 Sep 2025 11:46:38 +0300
-Message-ID: <fc618f57ade30d1e3560ad68eea07d4333bc97f4@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC5A310E12A;
+	Thu, 18 Sep 2025 08:49:42 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84C7C10E0C2;
+ Thu, 18 Sep 2025 08:49:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5755818055106952994=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_MADVISE_to_support_multiple?=
+ =?utf-8?q?_PAT_indeces?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Sep 2025 08:49:42 -0000
+Message-ID: <175818538252.343924.16961056298287298301@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250918080003.153906-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20250918080003.153906-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 17 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Sep 17, 2025 at 03:33:31PM +0300, Jani Nikula wrote:
->> On Thu, 04 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com> wrote:
->> > On Wed, Sep 03, 2025 at 11:32:03PM +0300, Jani Nikula wrote:
->> >> xe does xe_bo_unpin_map_no_vm() on the failure path. Add a common hel=
-per
->> >> to enable further refactoring.
->> >>=20
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 5 +++++
->> >>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h | 1 +
->> >>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 7 ++++++-
->> >>  3 files changed, 12 insertions(+), 1 deletion(-)
->> >>=20
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/=
-gpu/drm/i915/display/intel_fbdev_fb.c
->> >> index 3837973b0d25..6b70823ce5ef 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> >> @@ -51,6 +51,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(st=
-ruct drm_device *drm, int size
->> >>  	return &obj->base;
->> >>  }
->> >>=20=20
->> >> +void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> >> +{
->> >> +	/* nop? */
->> >
->> > gem_object_put() is what destroys the bo on i915, so I think you're
->> > introducing a leak in the next patch with this nop implementation.
->> >
->> > xe seems to be riddled with footguns here since it conflates
->> > creation+pinning+whatever in the same thing (and I guess it
->> > doesn't know how to clean all that up when the last reference
->> > to the object disappears?) and you have to use that horribly
->> > misnamed function instead...
->>=20
->> Hmm, can we just slap i915_gem_object_put(obj) in there?
->
-> That would at least match how it behaves currently. Though I
-> didn't look too deeply whether that is 100% sufficient to clean
-> up properly.
+--===============5755818055106952994==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I'm doing just that in [1].
+== Series Details ==
 
-[1] https://lore.kernel.org/r/22bc3c3158f5a22ab258ada8684766fdf75fefec.1758=
-184771.git.jani.nikula@intel.com
+Series: MADVISE to support multiple PAT indeces
+URL   : https://patchwork.freedesktop.org/series/154683/
+State : success
 
->>=20
->> The i915 variant of intel_fbdev_fb_alloc() ignores errors from
->> intel_framebuffer_create() and just unconditionally does
->> i915_gem_object_put() afterwards:
->>=20
->> 	fb =3D intel_framebuffer_create(intel_bo_to_drm_bo(obj),
->> 				      drm_get_format_info(display->drm,
->> 							  mode_cmd.pixel_format,
->> 							  mode_cmd.modifier[0]),
->> 				      &mode_cmd);
->> 	i915_gem_object_put(obj);
->>=20
->> 	return to_intel_framebuffer(fb);
->>=20
->> Presumably the refcounts are handled correctly either way.
->>=20
->> It's just a bit fishy that the potential error pointer from
->> intel_framebuffer_create() goes through to_intel_framebuffer() to the
->> caller.
->
-> Yeah, would be less confusing to just check for the error
-> explicitly.
+== Summary ==
 
-Added a new patch for that [2].
+CI Bug Log - changes from xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c_BAT -> xe-pw-154683v1_BAT
+====================================================
 
-[2] https://lore.kernel.org/r/17631db227d527d6c67f5d6b67adec1ff8dc6f8d.1758=
-184771.git.jani.nikula@intel.com
+Summary
+-------
 
-Together, I believe [1] and [2] keep the current behaviour
-intact. Whether that's 100% correct or not, I couldn't say, but at least
-I'm shouldn't be introducing any new issues.
+  **SUCCESS**
 
-BR,
-Jani.
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154683v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154683v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
---=20
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c -> xe-pw-154683v1
+
+  IGT_8543: 8543
+  xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c: acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c
+  xe-pw-154683v1: 154683v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154683v1/index.html
+
+--===============5755818055106952994==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MADVISE to support multiple PAT indeces</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154683/">https://patchwork.freedesktop.org/series/154683/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154683v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154683v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c_BAT -&gt; xe-pw-154683v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154683v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154683v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c -&gt; xe-pw-154683v1</li>
+</ul>
+<p>IGT_8543: 8543<br />
+  xe-3788-acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c: acd89e2bfd2cc09d3bcab83abc7237a907a1ac7c<br />
+  xe-pw-154683v1: 154683v1</p>
+
+</body>
+</html>
+
+--===============5755818055106952994==--
