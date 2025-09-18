@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DBDECAC5A0
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 13:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82356CAC5A0
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 13:36:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 671B410E8B2;
-	Thu, 18 Sep 2025 13:31:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9Bb7yjN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEAAE10E8AF;
- Thu, 18 Sep 2025 13:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758202312; x=1789738312;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3imyW3YzJKu6pViAVYSi2hR6W24P6cPVjtgItxHcooo=;
- b=e9Bb7yjNVU7IrmP6CJ5j5nHKR5pPibvDbP3K+O9XfdAwoDLaXTcmCONx
- g438XwJelXh3bZOTTvvkIUOMZerx4H8/XbN+MUSSfuM8v1Z3yUyzXb7Ry
- ugD8D4cTpmbGakkOE7BUUC/3PDQRq1e/L24z7PkznEvc/nGNYSS0W4L8e
- 5/wWdyNfivshBwzPvCie06brn5jbyVgGln37eckIAt2LLO6Bz0SCb+dkl
- Gk5a260Oa4y0W7QeNYFlAGchD75zmVrPbMDJ38vvEW7zyd8aho8CIagBx
- Ub39WAPDzFKtEGZD1AWZOQwFMejmC+849exW2immnMXil0dBijEylmvek g==;
-X-CSE-ConnectionGUID: 8rSGxlJVTtS3Xr15TP/lyg==
-X-CSE-MsgGUID: WZ5zjOcQRLq3BmvewnM77Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60596523"
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="60596523"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 06:31:32 -0700
-X-CSE-ConnectionGUID: 3aeop8D0Tam/i6vA2EycSw==
-X-CSE-MsgGUID: CSEtjB9BQVaifTMISBkSjA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="175344958"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.255])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 06:31:30 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v2 10/13] drm/i915: Flatten sanitize_wm_latency() a bit
-Date: Thu, 18 Sep 2025 16:31:27 +0300
-Message-ID: <20250918133127.25323-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20250905145832.12097-11-ville.syrjala@linux.intel.com>
-References: <20250905145832.12097-11-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 426BD10E8CB;
+	Thu, 18 Sep 2025 13:36:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CABD10E8C3;
+ Thu, 18 Sep 2025 13:36:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/irq=3A_clarify_a?=
+ =?utf-8?q?nd_refactor_-=3Eirq=5Fmask_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 18 Sep 2025 13:36:07 -0000
+Message-ID: <175820256763.344321.2911072186334420878@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1758198300.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1758198300.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,47 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Move the inner loop out from the outer loop in
-sanitize_wm_latency() to flatten things a bit.
-Easier to read flat code.
+Series: drm/i915/irq: clarify and refactor ->irq_mask (rev2)
+URL   : https://patchwork.freedesktop.org/series/154698/
+State : warning
 
-v2: Move the inner loop out completely (Luca)
+== Summary ==
 
-Cc: Luca Coelho <luciano.coelho@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0d7ee11329adc473e3e68402cc204c74e239e28e
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Sep 18 15:41:24 2025 +0300
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index e3305a399ddf..caeba4274de3 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3228,14 +3228,12 @@ static void sanitize_wm_latency(struct intel_display *display)
- 	 * of the punit to satisfy this requirement.
- 	 */
- 	for (level = 1; level < num_levels; level++) {
--		if (wm[level] == 0) {
--			int i;
--
--			for (i = level + 1; i < num_levels; i++)
--				wm[i] = 0;
--			return;
--		}
-+		if (wm[level] == 0)
-+			break;
- 	}
-+
-+	for (level = level + 1; level < num_levels; level++)
-+		wm[level] = 0;
- }
- 
- static void
--- 
-2.49.1
+    drm/i915/irq: add ilk_display_irq_reset()
+    
+    Abstract ilk_display_irq_reset(), moving display related reset
+    there. This results in a slightly different order for the reset,
+    hopefully with no impact.
+    
+    v2: Also move GEN7_ERR_INT (Ville)
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 31f149f6d10616688087056856c29390e28d7e44 drm-intel
+47c167c60f0c drm/i915/irq: use a dedicated IMR cache for VLV/CHV
+5f5f151194fd drm/i915/irq: use a dedicated IMR cache for gen 5-7
+3ed305b57312 drm/i915/irq: rename irq_mask to gen2_imr_mask
+4aa3b48cd49a drm/i915/irq: rename de_irq_mask[] to de_pipe_imr_mask[]
+-:46: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:224:
++		intel_de_write(display, GEN8_DE_PIPE_IMR(pipe), display->irq.de_pipe_imr_mask[pipe]);
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+0d7ee11329ad drm/i915/irq: add ilk_display_irq_reset()
+
 
