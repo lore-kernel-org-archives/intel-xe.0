@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A9B4CA1013
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 17:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67780CAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 17:38:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D616D10E27B;
-	Thu, 18 Sep 2025 17:34:14 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2CE10E27B;
- Thu, 18 Sep 2025 17:34:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0507682650087147862=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0F210E27B;
+	Thu, 18 Sep 2025 17:38:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FRtc4kNM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F07A10E27B;
+ Thu, 18 Sep 2025 17:38:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758217094; x=1789753094;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5QAhoMmIJ+ZoLHIBMMOxAsXA1oVfsQZPQCG6qF//l+8=;
+ b=FRtc4kNM/dHeQ8pqMi+JoEpNZzkPcB5MiXPRgxUZdpJ9UyeFktjZrfyN
+ 2nveu9LJxoGqdDW8ZOt6nQlLo1jbH4bvycjsAQrNqkpsIwcpfJ9kRugia
+ 2DxYc1exoycXyfppaNjHdYHj1lLTnXJvoATg5QrUXr+l0HO6Jull+8bUQ
+ bOGoAO4FP2kdFxFiIQDu0g8w4CpaMc3k3jIs18zusqBv3epd/AwT68lQD
+ YtQ6zNQmrAF0M6ThEFRYXPn1fmYWlSyKNa47uTobUX5xafozLHQ7yT0GG
+ 1lHQq51Txea8XZRIqJjKq49gKgwtR1bWE1nKRc+dxgB8OVwfg0UGpOn6Y w==;
+X-CSE-ConnectionGUID: FdINg5KdRSSVeCSNHUdc5g==
+X-CSE-MsgGUID: f0gBfDACTPmsmXRtvMpQUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="64196293"
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="64196293"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 10:38:14 -0700
+X-CSE-ConnectionGUID: pkY+25sFRsujGYJNAoo3VA==
+X-CSE-MsgGUID: 9v1IaSRyQ0yJQtcukmYF2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,275,1751266800"; d="scan'208";a="175676371"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.255])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 10:38:12 -0700
+Date: Thu, 18 Sep 2025 20:38:09 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 01/10] drm/xe/fbdev: use the same 64-byte stride
+ alignment as i915
+Message-ID: <aMxDgcCVArd_UFVN@intel.com>
+References: <cover.1758184771.git.jani.nikula@intel.com>
+ <7f4972104de8b179d5724ae83892ee294d3f3fd3.1758184771.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Keep_VF_LMEM_B?=
- =?utf-8?q?AR_size_low_if_no_VFs_enabled?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Marcin Bernatowicz" <marcin.bernatowicz@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Sep 2025 17:34:14 -0000
-Message-ID: <175821685436.345924.12150861997072746643@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250918164355.1459200-1-marcin.bernatowicz@linux.intel.com>
-In-Reply-To: <20250918164355.1459200-1-marcin.bernatowicz@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7f4972104de8b179d5724ae83892ee294d3f3fd3.1758184771.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0507682650087147862==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 18, 2025 at 11:40:51AM +0300, Jani Nikula wrote:
+> For reasons unknown, xe uses XE_PAGE_SIZE alignment for
+> stride. Presumably it's just a confusion between stride alignment and bo
+> allocation size alignment. Switch to 64 byte alignment to, uh, align
+> with i915.
+> 
+> This will also be helpful in deduplicating and unifying the xe and i915
+> framebuffer allocation.
+> 
+> Link: https://lore.kernel.org/r/aLqsC87Ol_zCXOkN@intel.com
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled
-URL   : https://patchwork.freedesktop.org/series/154724/
-State : success
+> ---
+>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> index 8ea9a472113c..bce4cb16f682 100644
+> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+> @@ -33,7 +33,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+>  	mode_cmd.height = sizes->surface_height;
+>  
+>  	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
+> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
+> +				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+>  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
+>  							  sizes->surface_depth);
+>  
+> -- 
+> 2.47.3
 
-== Summary ==
-
-CI Bug Log - changes from xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c_BAT -> xe-pw-154724v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c -> xe-pw-154724v1
-
-  IGT_8543: 8543
-  xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c: c1b827f32471e37d88d3016a2a93f88b363f0c8c
-  xe-pw-154724v1: 154724v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html
-
---===============0507682650087147862==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154724/">https://patchwork.freedesktop.org/series/154724/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c_BAT -&gt; xe-pw-154724v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c -&gt; xe-pw-154724v1</li>
-</ul>
-<p>IGT_8543: 8543<br />
-  xe-3792-c1b827f32471e37d88d3016a2a93f88b363f0c8c: c1b827f32471e37d88d3016a2a93f88b363f0c8c<br />
-  xe-pw-154724v1: 154724v1</p>
-
-</body>
-</html>
-
---===============0507682650087147862==--
+-- 
+Ville Syrjälä
+Intel
