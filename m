@@ -4,137 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99B17CAC59A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 12:04:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7105DCAC5A0
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 12:14:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94910E011;
-	Thu, 18 Sep 2025 12:04:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE0810E11E;
+	Thu, 18 Sep 2025 12:14:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oXCjg9eO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TlKjfDes";
 	dkim-atps=neutral
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011017.outbound.protection.outlook.com [52.101.62.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6909610E011;
- Thu, 18 Sep 2025 12:04:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mmq3OX6fJsIOAWWt5K7mS/EVYbQ6MIWppWJcNs7gr6izZDZwR+/SiHTJpaS5awud650ALlmFYcdisbB5JGwX3UsfcMwj3yQNN+tcbm2JNaB9Cb90zw9yFFsVIAWSJk+ejEDJHuhldP94wGO3QRqCCW4g2nQYV1hSgaNTBHyvfS1OSqQfBIFw30Qmqdehb4VMA39ZUtgFixyffygl74MEI2KMDHZjYvaFApD/N3C+Orn0hEIucIav80gpiY/vczGVFS0n9j1ruV1kMMBdcyHRrxbre5A+OyxCx+znfA2vZzOmq7sXCeboRorOojU3SUZxzWiqppCI8pFNmSGAtudqJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=csZjE9XYS2bgHrBEcW1wSERWL/Ng+4GBzIk5ZrdWh50=;
- b=Msr3PnNuVtmjti38JgZUgIyWdLQHZkViSIatEUY6jF0PvR/oviaxquym2bFm8znn5pL4iAeRAJOLU0KFl/sUj3oBdGYbpwv7igTGHQtduO96bWmzk3Bkxx6oml/YmbHrBbSh+A986BHIA+oQZ/xzKTr92J45xtmKLBwYLe7RGR3bkZeLWL0GuTpnMYmLKTL0mdAgzQ/FkxOGn1iYVFk9Zf4zLEih5poDk4QVIBshVoQadLuGjyzduAbCvH0mpwCKijYqor2ALtv9oXMlErF4KcVT40/7HMyJkzyaTdw7Adj/U5XX+4UW6yxwYeoeiOk7ak3fA/mSDAfSzwPBfBdwxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=csZjE9XYS2bgHrBEcW1wSERWL/Ng+4GBzIk5ZrdWh50=;
- b=oXCjg9eO3RyLLfm4Ijg8G4wUSeywgoxSC+0cMbJ/zK/g02n3+/v6PerSNoGSRTOfBKyOV8QHflo6wvuzDeT4yb2a4Y+VDVaWOCIHXs+jP5G70CibsWfCO77PNPxP6chhJ6g9lyZ2Uc68t8rqdNvnZQHGktzHt0iC2HmhjPxdQjRqfXdsA/dzVINtzJEueJTAPSWlAziIswJkFywqqI/+P4tN5+SHAIMFiYCAUqK2RRloz1ZooruwkYVoM/r8TJM2xTTCBTfkcUNpM6VKnpTfDQNl6YBVdjypBQ9ZQGqEOa9GCy+jdzraW85ulDx++cjLr+i/WqfeUDZGOE/T2nGcKA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB5757.namprd12.prod.outlook.com (2603:10b6:510:1d0::13)
- by CH1PR12MB9624.namprd12.prod.outlook.com (2603:10b6:610:2b3::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.23; Thu, 18 Sep
- 2025 12:04:34 +0000
-Received: from PH7PR12MB5757.namprd12.prod.outlook.com
- ([fe80::f012:300c:6bf4:7632]) by PH7PR12MB5757.namprd12.prod.outlook.com
- ([fe80::f012:300c:6bf4:7632%2]) with mapi id 15.20.9137.012; Thu, 18 Sep 2025
- 12:04:34 +0000
-Date: Thu, 18 Sep 2025 09:04:31 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Logan Gunthorpe <logang@deltatee.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v4 1/5] PCI/P2PDMA: Don't enforce ACS check for device
- functions of Intel GPUs
-Message-ID: <20250918120431.GL1391379@nvidia.com>
-References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
- <20250915072428.1712837-2-vivek.kasireddy@intel.com>
- <20250916175709.GA1324871@nvidia.com>
- <IA0PR11MB7185186F6AB160AA7F8F0FF3F816A@IA0PR11MB7185.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA0PR11MB7185186F6AB160AA7F8F0FF3F816A@IA0PR11MB7185.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MN2PR01CA0066.prod.exchangelabs.com (2603:10b6:208:23f::35)
- To PH7PR12MB5757.namprd12.prod.outlook.com
- (2603:10b6:510:1d0::13)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6606610E11E;
+ Thu, 18 Sep 2025 12:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758197698; x=1789733698;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zZbMLcqtORgk1pry6u44kV8aKiIDIodaNUH6C7wzYaU=;
+ b=TlKjfDesW/+gHChGPxd3elExW73T0Vw11+Ax6He+GxUrAvwtKT9fVQ5P
+ k9MWrLj6vUvpkLe2+jLbg1iRkuiYiCOE6s8RJ/y1pd2Mu1ElZ1giwkTn9
+ Ie4fIzUoDhl54VR+cujX/TcrlBejI++4c3V4h+gIYuOH4Rv1hrUFAP7AL
+ F7EDhKW6I17euJbwryYz2dc+tBny9nv3KEbCUsSZYVfDA0oHzRAraF0x6
+ eNazemt3N9B4n5wj5smOcyX46x50RKG8bXO+U2BUxkiA61lwxXSRU4BMY
+ 2UR9MfJHdznse8s4fwZojDUablrHabGZcCezPZM0GvvYC5nAPERWJIWKp Q==;
+X-CSE-ConnectionGUID: H2NlHJg9TKKCjUzuZNZLeQ==
+X-CSE-MsgGUID: VdfwrZSrRoOSZWlBtS1+jQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60577964"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60577964"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 05:14:55 -0700
+X-CSE-ConnectionGUID: sQa8K1DrSjuCaABz3Q+fpQ==
+X-CSE-MsgGUID: d1Y0QabmQKaog/iR3ErOTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="206475364"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.255])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 05:14:50 -0700
+Date: Thu, 18 Sep 2025 15:14:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 5/5] drm/i915/vrr: Move the TGL SCL manging of
+ vmin/vmax/flipline deeper
+Message-ID: <aMv3uG3NnKPSpJE4@intel.com>
+References: <20250917203446.14374-1-ville.syrjala@linux.intel.com>
+ <20250917203446.14374-6-ville.syrjala@linux.intel.com>
+ <79e9f1d5-0e23-4f2a-8961-925e1adc2788@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5757:EE_|CH1PR12MB9624:EE_
-X-MS-Office365-Filtering-Correlation-Id: 99382704-6800-408f-1475-08ddf6ab87c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?73o6nhKG1SfQjv3SC6KH9ZsDINYXNbKv6EqFr2zcA33ax5+BUMUq5s5XSshr?=
- =?us-ascii?Q?UtWxMhySo+5v6/m6awj/4A6yYTLGIuGoR2XUHKE0F8yBh34ZkGhZuzlRV55U?=
- =?us-ascii?Q?GqVsn/T7Tp8LMmFJmjCN624RRUxSY116sXhgH9EW5EtpoIByw3dtALwMFjsG?=
- =?us-ascii?Q?zzVAv0/vVVN3DPMcxLKI4G2qaN/lLvMVb4j/uk2ivC6R78+tjnh7Eh8gEB3N?=
- =?us-ascii?Q?Gdhr+MBAeQCNR29Zp9p8tKLa9QLJHDLkbyZWZ+XklgGK6kc/GIgle14we6Ez?=
- =?us-ascii?Q?YKE4wCQZdxPrSac5mev7APvgoZo93h66EnpLPu2ENSJO4jLe+8u849faRB1w?=
- =?us-ascii?Q?oGJqtE3UPQe3ZBfjNgrksNXm+PO05DUWPXsd12D39gDF0D9keyqXn614GDrB?=
- =?us-ascii?Q?7ZEVhlRvQ7bc8Q0qIW0y6DGFTHOzFa+w2ZuSkkXe+tNUWSqNw15ozdk8smlc?=
- =?us-ascii?Q?gqmte3DquY/kHYiiKHxyBGbD0dMZ1lhQxrFQ+RaxktYFiji8ar8kFT4zXZOF?=
- =?us-ascii?Q?zlkT1ZS/jJomdBjEvuNeRMmUmpNcfDb7TE6P6TL8ejKhpSBNmZfeZA0Nud/l?=
- =?us-ascii?Q?lFMEYgK5Ve5bBd0jQBaWBgKdWCYABMmUqP77N6OMqnuRWwg1CzatxrB0hf5G?=
- =?us-ascii?Q?AMLKuGHVovJsmJoI6oLuIBawzaI+lkvtS4e1yYeZQ2QZxRBLX+T2RjILLRHq?=
- =?us-ascii?Q?Awilp6tJ4h+1wnLhl4Wd7rw/CFjXvskg15eUtz1ERWxZb8m5yanv9n0ydV56?=
- =?us-ascii?Q?BdMDnC9A88cEsfPuvn0wcHLOM1mR7/xgxqfbV2A3b1HiNOXVgdnJPa5WherS?=
- =?us-ascii?Q?wV0o1V2+UaV2z590fDKr9X5yExOltL5Lwo64lW1ijOZpn6UhPxXbSdY8R9Sa?=
- =?us-ascii?Q?WS2WEJ9WaUmdJtgv3jJjjna+DePV5iOgThQPdE6neB7q7GzNdwPwAHzVh05p?=
- =?us-ascii?Q?cUXqn/X9MDJDqD5Q+CiwiYFl6aKL9RNQZW3GdtE0cohrTtcds07Pg3ek9mGK?=
- =?us-ascii?Q?7p4x7G0qhgscRPgdzHqzYXFDRFnZ5IxvG/185AKL6HCnA+bBZcZuSdpGPR8y?=
- =?us-ascii?Q?ms78L4HHtjkFo85KtT5Ml3BfRTCnqWUlOsnCVr8WKdR+RrBJ7tOF8HqK4O3r?=
- =?us-ascii?Q?eRfvnogxkv9TYxsz7Qf5yzfLqB4x6In+KAqYnABFAF5Xkmczas1dTuMxK7Kr?=
- =?us-ascii?Q?NhzxE0it/oAxayteq83irCnnbcUCe1gz1ncL74BmBQlalHR49OsTRPVpCJHC?=
- =?us-ascii?Q?xWhLhjAeOfrRCZox48LClC/TwXIl8jCbkwVai4GS9g/EMMycecBLNEldnrBY?=
- =?us-ascii?Q?T+/cbTSKvyDi0hQFHBenGoLc5prwAanktbvws6m2/700q/9WoBAJqKIV69Kf?=
- =?us-ascii?Q?Hy9N+a1VMojS8MGom5QaWiigHiTgZdq5yA4bcvlUlitpB87ukVMJXeFdQ3Zm?=
- =?us-ascii?Q?fFDJH6b4xEM=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5757.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6YcfXtq8gV4ASazt2jDqRMrhTyWI58wzC0DYpZWJoeE2QvJxzZVeyP4FDcrO?=
- =?us-ascii?Q?phVIXdEfB0HlZVtn8kJHOZxf/qPI5fCowAm38Wl/NhkBJwFF97Z0RR6zOOZW?=
- =?us-ascii?Q?kJGrWZaBUsdwstaXBwUhY1bUbYPhpJ5OkGtlJvMAjuYoXPJ4f/17pCi/f6Rl?=
- =?us-ascii?Q?F4cvePo91jCPTftth4KexQbhTLqVoGiK3PlObcMsKNNqmujyuX6FtCHfykLC?=
- =?us-ascii?Q?meifrCKPAr97T/TmuJvbaIIXS2nnXglk5zLVFek5YaV1cxZjGsi2Aj+TauBA?=
- =?us-ascii?Q?vJDC0+um/gAe7qG4D6Ir4Ab1JcmaKcqQsREDIGpATJU8UHnrv7No/6EEvtWa?=
- =?us-ascii?Q?bCxR6syWDyalRLN4603vicREpxIWrlOXdbxIafRfbt9oFye41rlhHU3Yn1FU?=
- =?us-ascii?Q?fzPCq0cW4YnjZRxPpdes2kwfSyvWfZq2RHEGsvqLO30Ubf7dYEIDCC6QyLMD?=
- =?us-ascii?Q?ldq0ixtO4HtrW4vtd0VfGk6phth6UJ9e6y+Pu1U8thXPI3znNlRWae9GAQnH?=
- =?us-ascii?Q?egEEzd6pA//AKKVEQNgIueY6tB9sHbTpm15yLJ4AqBALwgSGoLoCMXka8k80?=
- =?us-ascii?Q?OKiTiLfGQ2nh1R9OjyPVK89Rk/kcxhYMXw5TpYzbTeAcvh4gLxX/YL/QXy82?=
- =?us-ascii?Q?UG0Z7WLyvxgE9odBkilnnKT2+fcd+5Y+tixl1gjxbgSdpO+OBvJf6zniTHcs?=
- =?us-ascii?Q?mqMxuEz9efGfxy7AMNQdKBPRBd9Cy9XXNEzU8XzgikjCLhe4m0W43YzSM+Zb?=
- =?us-ascii?Q?7Pw3kZWYrrly76EVteXSg3LYiilhtFvaEomjwzYkupPajm9KwWmmX/6iw5M1?=
- =?us-ascii?Q?eVL1NjhcAbNJXYCztM5kbxHwnkeqBRfet9Sj9T7Nb1P1pZEgfpp8IOop/SWb?=
- =?us-ascii?Q?ovyok7NjWnFwM/FRAUCRbyrMVRu/1ei7RQcVMGI/UJEXf+38gE15IvAYJtef?=
- =?us-ascii?Q?ZAGrMMFPDgIOwGC/JZ5ukxVlVYnuUTY9WgOEm4x/+x8hfzSppSBuyZEw/JDa?=
- =?us-ascii?Q?EZ0IHWhpW+yUw71wVFuNrkJXxCr076nAAYoKtt/6Yy+EYOHoxDTxE5FTYsyx?=
- =?us-ascii?Q?frECA3CHGT1jD3wU/1VpchCTqfWLItIKFcw55jSfWOqmVPX7TYZ885IYxApX?=
- =?us-ascii?Q?9i6Unu0+qPJ+O8UbppQklIC9T/OCDh1KItvVPBrmo6N7kKJWYb66qdyXZYYD?=
- =?us-ascii?Q?YsCZCChNzNNsbWfqUjPqmawrMqSi361pnKNSluTImFSY+owirFFKhwpEHHrK?=
- =?us-ascii?Q?3WspZIyLd77SFpqVi85LZxNRfGynSUwyo1MYTIuDtO9hmbkjoAELYFNIIp6R?=
- =?us-ascii?Q?3Zb+0frSmnT9hKX3R3jFZUMpZBPrIGBFyHiYLvGmVVXPS/lWcsj8sGTUHr/5?=
- =?us-ascii?Q?2eG310NDfFZH6TYdR9WdY4ziVU0C8112y7+xuCd3XD1tNSy3TMwAP7fEfWrx?=
- =?us-ascii?Q?sz9lli42uVexgH3cmQDYYN+cPhzvzQks00fbLnWYXf60ClpjYoZMVjiefNpZ?=
- =?us-ascii?Q?/WvFq4unkZT+iZWNBfzWLQDxefhsWlnIxi/0mBxkWPb6Dw8r3PW2IrKN1+S9?=
- =?us-ascii?Q?HnXTNJdfKuOHb8MqxrjFubnNAL0NGBbAoGzP9Q7j?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99382704-6800-408f-1475-08ddf6ab87c6
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5757.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2025 12:04:33.6297 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: W3ykBfesZseg6SBF+IYbLLJsT6oGA7zn4LSE7boDV14cJRO1h0A2AuYfu7N9Auki
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9624
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <79e9f1d5-0e23-4f2a-8961-925e1adc2788@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,35 +73,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 18, 2025 at 06:16:38AM +0000, Kasireddy, Vivek wrote:
+On Thu, Sep 18, 2025 at 03:03:02PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 9/18/2025 2:04 AM, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Currently our crtc_state->vrr.{vmin.vmax,flipline} are mangled on
+> > TGL to account for the SCL delay (the hardware requires this mangling
+> > or the actual vtotals will become incorrect).
+> 
+> Please correct me if I am wrong:
+> 
+> For display < 13  VRR hardware inserts one extra scanline just after 
+> vactive. So we need to have flipline, vmax, vmin vtotal shifted by 1. 
+> This is computed in intel_vrr_extra_vblank_delay()
 
-> However, assuming that pci_p2pdma_map_type() did not fail, based on my
-> experiments, the GPU PF is still unable to access the buffer located in VF's
-> VRAM portion directly because it is represented using PCI BAR addresses.
+vmin/vmax/flipline stay put, but we need to account for that extra
+scanline when calculating the guadband/pipeline_full.
 
-In this case messing with ACS is completely wrong. If the intention is
-to convay a some kind of "private" address representing the physical
-VRAM then you need to use a DMABUF mechanism to do that, not deliver a
-P2P address that the other side cannot access.
+> 
+> For display < 13 hardware expects flipline >= vmin (so we add flipline + 
+> 1, not related to vblank delay.
+> 
+> For some platforms intel_psr_min_vblank_delay() of 1 is required so that 
+> moves the vblank start with this amount. we can account for this delay 
+> by intel_vrr_real_vblank_delay().
 
-Christian told me dmabuf has such a private address mechanism, so
-please figure out a way to use it..
+That 1 scaline is just the minimum size for SCL. And once we start
+tracking the SCL explicitly then AFAICS pretty much all
+intel_vrr_real_vblank_delay() calls can just be replaced with
+crtc_state->set_context_latency.
 
-> > Do not open code quirks like this in random places, if this device
-> > supports some weird ACS behavior and does not include it in the ACS
-> > Caps the right place is to supply an ACS quirk in quirks.c so all the
-> > code knows about the device behavior, including the iommu grouping.
-> Ok, I'll move it to quirks.c.
+> 
+> So for the SCL delay mentioned here should'nt we 
+> use intel_vrr_extra_vblank_delay() in the computation below?
 
-No, don't, it is completely wrong to mess with ACS flags for the
-problem you are trying to solve.
+I think we should be able to get rid of intel_vrr_extra_vblank_delay()
+for the most part. As state we just need to account for it when
+calculating the guardband/pipeline_full.
 
-> On my test system, it looks like the VFs and the PF are put into different
-> iommu groups. I am checking with our hardware folks to understand how this
-> is expected to work but does it mean that P2P between PF and VF is not
-> supported in my case?
+> 
+> 
+> Regards,
+> 
+> Ankit
+> 
+> 
+> 
+> > Unfortunately this
+> > means that one can't simply use these values directly in many places,
+> > and instead we always have to go through functions that undo the
+> > damage first. This is all rather fragile.
+> >
+> > Simplify our lives a bit by hiding this mangling deeper inside
+> > the low level VRR code, leaving the number stored in the crtc
+> > state actually something that humans can use.
+> >
+> > This does introduce a dependdency as intel_vrr_get_config()
+> > will now need to know the SCL value, which is read out in
+> > intel_get_transcoder_timings(). I suppose we could simply
+> > duplicate the SCL readout in both places should this become
+> > a real hinderance. For now just leave a note around the
+> > intel_get_transcoder_timings() call to remind us.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_display.c |  4 ++
+> >   drivers/gpu/drm/i915/display/intel_vrr.c     | 76 +++++++++++---------
+> >   2 files changed, 47 insertions(+), 33 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index f4124c79bc83..18b9baa96241 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -3901,6 +3901,10 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+> >   		pipe_config->framestart_delay = 1;
+> >   	}
+> >   
+> > +	/*
+> > +	 * intel_vrr_get_config() depends on TRANS_SET_CONTEXT_LATENCY
+> > +	 * readout done by intel_get_transcoder_timings().
+> > +	 */
+> >   	if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+> >   	    DISPLAY_VER(display) >= 11)
+> >   		intel_get_transcoder_timings(crtc, pipe_config);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > index 71fb64c92165..71a985d00604 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > @@ -156,25 +156,13 @@ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_stat
+> >   
+> >   int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
+> >   {
+> > -	struct intel_display *display = to_intel_display(crtc_state);
+> > -
+> >   	/* Min vblank actually determined by flipline */
+> > -	if (DISPLAY_VER(display) >= 13)
+> > -		return intel_vrr_vmin_flipline(crtc_state);
+> > -	else
+> > -		return intel_vrr_vmin_flipline(crtc_state) +
+> > -			intel_vrr_real_vblank_delay(crtc_state);
+> > +	return intel_vrr_vmin_flipline(crtc_state);
+> >   }
+> >   
+> >   int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
+> >   {
+> > -	struct intel_display *display = to_intel_display(crtc_state);
+> > -
+> > -	if (DISPLAY_VER(display) >= 13)
+> > -		return crtc_state->vrr.vmax;
+> > -	else
+> > -		return crtc_state->vrr.vmax +
+> > -			intel_vrr_real_vblank_delay(crtc_state);
+> > +	return crtc_state->vrr.vmax;
+> >   }
+> >   
+> >   int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+> > @@ -258,6 +246,21 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
+> >   	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+> >   }
+> >   
+> > +static int intel_vrr_hw_value(const struct intel_crtc_state *crtc_state,
+> > +			      int value)
+> > +{
+> > +	struct intel_display *display = to_intel_display(crtc_state);
+> > +
+> > +	/*
+> > +	 * On TGL vmin/vmax/flipline also need to be
+> > +	 * adjusted by the SCL to maintain correct vtotals.
+> > +	 */
+> > +	if (DISPLAY_VER(display) >= 13)
+> > +		return value;
+> > +	else
+> > +		return value - intel_vrr_real_vblank_delay(crtc_state);
+> > +}
+> > +
+> >   /*
+> >    * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
+> >    * Vtotal value.
+> > @@ -265,14 +268,7 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
+> >   static
+> >   int intel_vrr_fixed_rr_hw_vtotal(const struct intel_crtc_state *crtc_state)
+> >   {
+> > -	struct intel_display *display = to_intel_display(crtc_state);
+> > -	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
+> > -
+> > -	if (DISPLAY_VER(display) >= 13)
+> > -		return crtc_vtotal;
+> > -	else
+> > -		return crtc_vtotal -
+> > -			intel_vrr_real_vblank_delay(crtc_state);
+> > +	return intel_vrr_hw_value(crtc_state, crtc_state->hw.adjusted_mode.crtc_vtotal);
+> >   }
+> >   
+> >   static
+> > @@ -441,14 +437,6 @@ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+> >   		crtc_state->vrr.pipeline_full =
+> >   			intel_vrr_guardband_to_pipeline_full(crtc_state,
+> >   							     crtc_state->vrr.guardband);
+> > -
+> > -		/*
+> > -		 * vmin/vmax/flipline also need to be adjusted by
+> > -		 * the vblank delay to maintain correct vtotals.
+> > -		 */
+> > -		crtc_state->vrr.vmin -= intel_vrr_real_vblank_delay(crtc_state);
+> > -		crtc_state->vrr.vmax -= intel_vrr_real_vblank_delay(crtc_state);
+> > -		crtc_state->vrr.flipline -= intel_vrr_real_vblank_delay(crtc_state);
+> >   	}
+> >   }
+> >   
+> > @@ -607,6 +595,21 @@ void intel_vrr_set_db_point_and_transmission_line(const struct intel_crtc_state
+> >   			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
+> >   }
+> >   
+> > +static int intel_vrr_hw_vmin(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return intel_vrr_hw_value(crtc_state, crtc_state->vrr.vmin);
+> > +}
+> > +
+> > +static int intel_vrr_hw_vmax(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return intel_vrr_hw_value(crtc_state, crtc_state->vrr.vmax);
+> > +}
+> > +
+> > +static int intel_vrr_hw_flipline(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return intel_vrr_hw_value(crtc_state, crtc_state->vrr.flipline);
+> > +}
+> > +
+> >   void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+> >   {
+> >   	struct intel_display *display = to_intel_display(crtc_state);
+> > @@ -616,11 +619,11 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+> >   		return;
+> >   
+> >   	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+> > -		       crtc_state->vrr.vmin - 1);
+> > +		       intel_vrr_hw_vmin(crtc_state) - 1);
+> >   	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+> > -		       crtc_state->vrr.vmax - 1);
+> > +		       intel_vrr_hw_vmax(crtc_state) - 1);
+> >   	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+> > -		       crtc_state->vrr.flipline - 1);
+> > +		       intel_vrr_hw_flipline(crtc_state) - 1);
+> >   
+> >   	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+> >   		       TRANS_PUSH_EN);
+> > @@ -754,6 +757,13 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+> >   		crtc_state->vrr.vmin = intel_de_read(display,
+> >   						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+> >   
+> > +		if (DISPLAY_VER(display) < 13) {
+> > +			/* undo what intel_vrr_hw_value() does when writing the values */
+> > +			crtc_state->vrr.flipline += intel_vrr_real_vblank_delay(crtc_state);
+> > +			crtc_state->vrr.vmax += intel_vrr_real_vblank_delay(crtc_state);
+> > +			crtc_state->vrr.vmin += intel_vrr_real_vblank_delay(crtc_state);
+> > +		}
+> > +
+> >   		/*
+> >   		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+> >   		 * bits are not filled. Since for these platforms TRAN_VMIN is always
 
-A special internal path through VRAM is outside the scope of iommu
-grouping.
-
-Jason
+-- 
+Ville Syrjälä
+Intel
