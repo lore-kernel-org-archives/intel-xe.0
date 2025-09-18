@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C781CAC5A8
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 11:48:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 455BCCAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 11:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F386410E74D;
-	Thu, 18 Sep 2025 11:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06E4510E751;
+	Thu, 18 Sep 2025 11:48:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VEPSRBbL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QMWdm80/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2BFA10E74D
- for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 11:48:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1455210E751
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 11:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758196128; x=1789732128;
+ t=1758196130; x=1789732130;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UTbCFbHJU/h18/5/MP7E9OaeXldmKQOafmpK+kjQbwc=;
- b=VEPSRBbLTnNHbAEDVGNRmPZSP/c2u3OI7BzgcD3PEdp1H+8ejjARP2ZK
- T1nCkuHps3DBI8BbfgygHuElc9M/VQyW5Eap3EpS1+MGHX01IHorG7tyk
- znKVUglkdXUw9U3VB6G88q/1JJPBbCPsGa2T6Amq+yEXuchbn/6gTWxo7
- FlJLZXB+GMuqN7LUBBZDQ8+OMwysXQr1bZ8XfdpZGtBwHDnEa5pdHNOsb
- AENaHhlVa+FWBSeLdBL97Zyd9dS07MhzimdpcM/tX2onAZROWw7kotROI
- njiQ1x4oNMxDNpO++U/OH365A0C+ZpezUEG/unCHR/YHdQ9VPlqc28RBS A==;
-X-CSE-ConnectionGUID: xJLf5UaxQ5S/sZqURRo2Dw==
-X-CSE-MsgGUID: UD3o1eUJQVuBeC1n+/Z0MQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="59563312"
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="59563312"
+ bh=1ch9Z7GpMnmCFP9OGvZmH6K60cxf9wvTEKdqxWGoZV4=;
+ b=QMWdm80/rRe2C2gNa2VR749zsCyGMnCmdbeojHYUZWVSG+xVrvXLl/YX
+ 6FtmkN/ktUDSFMllEImE+iTwGgdw43Jt1V3zq/NkJsUuU1HNJyaA9NAm5
+ MDmFSz5pIEjBg/fkLegD0ZpkPo92r8GU1xw5Mbhqcg6jVcf5TnRh5PQQj
+ BV4CzbR6HE61g114ujB8nJ1D3RLBcpUddHh7Gu1Q8+DuZEmXq8bSy7cgv
+ 3Kzbvg2RrKdU4smIWx9vSQARd1g2QM/wytOgRd6KU2KXX5fV0ziQWj7mf
+ NFc1qEd9cqeS+3vBBJC2pdDw6lJQo591NYxxu62no6td5E4z63/LkIZVp Q==;
+X-CSE-ConnectionGUID: +nOW7ChETv25WV1y6FUq+w==
+X-CSE-MsgGUID: KohYF5iBR8CK6dridKOyGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="59563314"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="59563314"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2025 04:48:48 -0700
-X-CSE-ConnectionGUID: qsD80kwNSJeCTNsP370tbw==
-X-CSE-MsgGUID: DhJ1ENpzTySZfQhN0+/18g==
+ 18 Sep 2025 04:48:50 -0700
+X-CSE-ConnectionGUID: AZAcjd0EQ/iSUTj34syE7w==
+X-CSE-MsgGUID: MVhIU2WSRHCRUSdx07AoTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175092851"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175092858"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa009.jf.intel.com with ESMTP; 18 Sep 2025 04:48:45 -0700
+ by orviesa009.jf.intel.com with ESMTP; 18 Sep 2025 04:48:48 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
 Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  badal.nilawar@intel.com, michal.wajdeczko@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1 1/2] drm/xe/hwmon: Drop redundant runtime PM usage
-Date: Thu, 18 Sep 2025 17:18:03 +0530
-Message-Id: <20250918114804.2957177-2-raag.jadav@intel.com>
+Subject: [PATCH v1 2/2] drm/xe/sysfs: Drop redundant runtime PM usage
+Date: Thu, 18 Sep 2025 17:18:04 +0530
+Message-Id: <20250918114804.2957177-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250918114804.2957177-1-raag.jadav@intel.com>
 References: <20250918114804.2957177-1-raag.jadav@intel.com>
@@ -69,52 +69,43 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 The device is expected to be in D0 state during driver probe. No need to
-resume it in ->is_visible() callbacks.
+resume it in ->is_visible() callbacks or non I/O operations.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 8 --------
- 1 file changed, 8 deletions(-)
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index b6790589e623..97879daeefc1 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -658,8 +658,6 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
- 	struct xe_reg rapl_limit;
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index c5151c86a98a..ec9c06b06fb5 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -38,13 +38,8 @@ vram_d3cold_threshold_show(struct device *dev,
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+-	int ret;
  
--	xe_pm_runtime_get(hwmon->xe);
+-	xe_pm_runtime_get(xe);
+-	ret = sysfs_emit(buf, "%d\n", xe->d3cold.vram_threshold);
+-	xe_pm_runtime_put(xe);
 -
- 	if (hwmon->xe->info.has_mbx_power_limits) {
- 		xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &uval);
- 	} else if (power_attr != PL2_HWMON_ATTR) {
-@@ -669,8 +667,6 @@ static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
- 	}
- 	ret = (uval & PWR_LIM_EN) ? attr->mode : 0;
- 
--	xe_pm_runtime_put(hwmon->xe);
--
- 	return ret;
+-	return ret;
++	return sysfs_emit(buf, "%d\n", xe->d3cold.vram_threshold);
  }
  
-@@ -1096,8 +1092,6 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 	struct xe_hwmon *hwmon = (struct xe_hwmon *)drvdata;
+ static ssize_t
+@@ -173,11 +168,8 @@ static umode_t late_bind_attr_is_visible(struct kobject *kobj,
+ 	u32 cap = 0;
  	int ret;
  
--	xe_pm_runtime_get(hwmon->xe);
+-	xe_pm_runtime_get(xe);
 -
- 	switch (type) {
- 	case hwmon_temp:
- 		ret = xe_hwmon_temp_is_visible(hwmon, attr, channel);
-@@ -1122,8 +1116,6 @@ xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
- 		break;
- 	}
- 
--	xe_pm_runtime_put(hwmon->xe);
--
- 	return ret;
- }
+ 	ret = xe_pcode_read(root, PCODE_MBOX(PCODE_LATE_BINDING, GET_CAPABILITY_STATUS, 0),
+ 			    &cap, NULL);
+-	xe_pm_runtime_put(xe);
+ 	if (ret)
+ 		return 0;
  
 -- 
 2.34.1
