@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C57C2CAC597
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 08:08:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B97CAC597
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 08:14:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 802C810E666;
-	Thu, 18 Sep 2025 08:08:58 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00C3910E5D9;
- Thu, 18 Sep 2025 08:08:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6069329007029942865=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F9C710E5D9;
+	Thu, 18 Sep 2025 08:14:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T+lcQhQ6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE1F10E5D9
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 08:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758183245; x=1789719245;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=+IYcmc7mUHcfYKBck95eJ/gmjDmTIIUj5Bl+tkD6STw=;
+ b=T+lcQhQ6jJNn1LlhegTA+Njne3/7tEMSLVntkENlQ5wcyHMU3HN3Y8gK
+ e3xkk62CW5TL5ouRwtyh6MJ+BRVpNV9K6Dvu53veQ0rT0B3AlNl9/fsgg
+ bBwBxUcEMbQCFvXiKxmiO3L5DZ2qOgjdTbp4pfR2j4KRIJOVXVtWP9ppl
+ To661PdbhaNBEecnmCZK3k+O2riVCZBPKwgBnwyiOijf9Uo5znMh+UFig
+ k2WUd4oDJ2PEM9yw7GQ3viUGSZAdk4qDD/e2zxq5b4/OA5SOJefoW1AjL
+ BHAroObarzcN1q5PhSqBH43prczCWdaS8gVNFwHQKkuvpJRfgR+f/yFKE A==;
+X-CSE-ConnectionGUID: 9ZUY4eSBSPCpJYwmz/f5xg==
+X-CSE-MsgGUID: hF5lDQG7TrOhxCR0w6SR7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="60571001"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="60571001"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:14:04 -0700
+X-CSE-ConnectionGUID: aY4kTZTQQ+GdW3FFfXhgRw==
+X-CSE-MsgGUID: N2HM+DLITBm5kPBpy3QqvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="175872019"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 01:14:03 -0700
+Date: Thu, 18 Sep 2025 10:14:00 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe/sysfs: Simplify sysfs registration
+Message-ID: <aMu_SAKsM2ytBdm-@black.igk.intel.com>
+References: <20250916170029.3313-1-michal.wajdeczko@intel.com>
+ <20250916170029.3313-3-michal.wajdeczko@intel.com>
+ <aMpS02yLhBs5igpM@black.igk.intel.com>
+ <be9d95e9-e02c-452f-a547-f0d3a1ae050e@intel.com>
+ <aMqS_SRH3f6PAdM2@black.igk.intel.com>
+ <wfzmbfx3mnre7lvzquhpxxbcks37orlqpfdeam4awzpa6d5kx6@wwnysmofevfx>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Improve_CCS_save/restore_se?=
- =?utf-8?q?ries_=28cont=2E=2E=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Sep 2025 08:08:57 -0000
-Message-ID: <175818293796.343811.4638125313753445570@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20250918073002.15242-6-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wfzmbfx3mnre7lvzquhpxxbcks37orlqpfdeam4awzpa6d5kx6@wwnysmofevfx>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +69,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6069329007029942865==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 17, 2025 at 02:38:14PM -0500, Lucas De Marchi wrote:
+> On Wed, Sep 17, 2025 at 12:52:45PM +0200, Raag Jadav wrote:
+> > On Wed, Sep 17, 2025 at 12:24:24PM +0200, Michal Wajdeczko wrote:
+> > > On 9/17/2025 8:18 AM, Raag Jadav wrote:
+> > > > On Tue, Sep 16, 2025 at 07:00:29PM +0200, Michal Wajdeczko wrote:
+> > > > > Instead of manually maintaining each sysfs file define and use
+> > > > > attribute groups and register them using device managed function.
 
-== Series Details ==
+Nit: Although this gets the point across, is there a punctuation missing here
+or am I reading it wrong?
 
-Series: Improve CCS save/restore series (cont..)
-URL   : https://patchwork.freedesktop.org/series/154682/
-State : success
+> > > > > Then use is_visible() to filter-out unsupported attributes.
 
-== Summary ==
+...
 
-CI Bug Log - changes from xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa_BAT -> xe-pw-154682v1_BAT
-====================================================
+> > > > >  	xe_pm_runtime_put(xe);
+> > > >
+> > > > The device is already in D0 while probing so runtime PM is probably
+> > > > not needed here.
+> > > 
+> > > true, but this is how it was initially coded and I didn't want to change it now
+> > > 
+> > > we can either drop it completely or replace with
+> > > 
+> > > 	xe_pm_runtime_get_noresume(xe);
+> > > 	xe_pm_runtime_put(xe);
+> > > 
+> > > do you want this to be done as part of this series or it can be done later as follow-up?
+> > 
+> > Since there's no functional impact, I don't see any harm in dropping
+> > it as part of refactoring here. But whatever the maintainers think is
+> > best.
+> 
+> Let's keep those changes separate so we avoid bundling multiple changes
+> in one patch. One small patch on top to do that doesn't hurt. Please
+> send it when you can.
 
-Summary
--------
+Sure, thanks.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154682v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154682v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa -> xe-pw-154682v1
-
-  IGT_8543: 8543
-  xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa: f7ca3a88eeec7df8739bbc31beb824f64c1b68fa
-  xe-pw-154682v1: 154682v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154682v1/index.html
-
---===============6069329007029942865==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Improve CCS save/restore series (cont..)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154682/">https://patchwork.freedesktop.org/series/154682/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154682v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154682v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa_BAT -&gt; xe-pw-154682v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154682v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154682v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa -&gt; xe-pw-154682v1</li>
-</ul>
-<p>IGT_8543: 8543<br />
-  xe-3787-f7ca3a88eeec7df8739bbc31beb824f64c1b68fa: f7ca3a88eeec7df8739bbc31beb824f64c1b68fa<br />
-  xe-pw-154682v1: 154682v1</p>
-
-</body>
-</html>
-
---===============6069329007029942865==--
+Raag
