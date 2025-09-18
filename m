@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAFC5CAC59A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 10:12:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1D4ECAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 10:32:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1E810E6C2;
-	Thu, 18 Sep 2025 10:12:40 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE28210E6C2;
- Thu, 18 Sep 2025 10:12:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3149717316504537162=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9350810E149;
+	Thu, 18 Sep 2025 10:32:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGVzURJa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8D810E149
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 Sep 2025 10:32:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758191541; x=1789727541;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JxfXUU6H8wOA8X4vFNRSTCoWFs1FjhT8Ny2FlEfSx7A=;
+ b=oGVzURJaiGjuNI+hZBL76XyNxMBO9Lo7Sbn4+laERAYygvwYOzGFUlSZ
+ sEuLusTNncnicWZsjbzMQLnhmF60EWdue6N+x6gZ3PXG+9U8FEkQYdDeg
+ YgLdc9fZZ3SUXXNMQGF5qbUzMmJvpMDuyGP8u8Bp0H4s/37YdOjynHuR0
+ wgznq0cP/Qw+zOSGDMOgP3WE6uVcfII4wai6+UNk9f/BOeW7sf2FiHEon
+ 6RpLbuOCJ68mBnUXufj/FZdgkELcBbz3y5zlidI+azwHWmWns/X8ktTHI
+ 7tMwOcslghppcS/0jjAG+nSn3uNY1gr77LMMoapq8O9QgdI8zh49I4dCH w==;
+X-CSE-ConnectionGUID: vUYmS/9oQPeBsR86CKnIkQ==
+X-CSE-MsgGUID: n0GF7M31QsiqTgVm3gETSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71944508"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="71944508"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 03:32:21 -0700
+X-CSE-ConnectionGUID: Xrd7OiUBSLq5Y0K9rrChAw==
+X-CSE-MsgGUID: qGvJJ7nURFCZRPJuuc0q9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="176305428"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa010.fm.intel.com with ESMTP; 18 Sep 2025 03:32:19 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ badal.nilawar@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2] drm/xe/i2c: Don't rely on d3cold.allowed flag in system PM
+ path
+Date: Thu, 18 Sep 2025 16:02:00 +0530
+Message-Id: <20250918103200.2952576-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Allow_pinning_of_?=
- =?utf-8?q?VRAM_dma-bufs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Sep 2025 10:12:38 -0000
-Message-ID: <175819035882.344321.17881915736599055575@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250918092207.54472-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20250918092207.54472-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3149717316504537162==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In S3 and above sleep states, the device can loose power regardless of
+d3cold.allowed flag. Bring up I2C controller explicitly in system PM
+path to ensure its normal operation after loosing power.
 
-== Series Details ==
+v2: Cover S3 and above states (Rodrigo)
 
-Series: drm/xe: Allow pinning of VRAM dma-bufs
-URL   : https://patchwork.freedesktop.org/series/154690/
-State : success
+Fixes: 0ea07b69517a ("drm/xe/pm: Wire up suspend/resume for I2C controller")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index a303ed5780b4..00ced1f63776 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -198,7 +198,7 @@ int xe_pm_resume(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
+-	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
++	xe_i2c_pm_resume(xe, true);
+ 
+ 	xe_irq_resume(xe);
+ 
+-- 
+2.34.1
 
-CI Bug Log - changes from xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d_BAT -> xe-pw-154690v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d -> xe-pw-154690v1
-
-  IGT_8543: 8543
-  xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d: a2488a37d0e639140f346d8fca14cc719297c47d
-  xe-pw-154690v1: 154690v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154690v1/index.html
-
---===============3149717316504537162==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Allow pinning of VRAM dma-bufs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154690/">https://patchwork.freedesktop.org/series/154690/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154690v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154690v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d_BAT -&gt; xe-pw-154690v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d -&gt; xe-pw-154690v1</li>
-</ul>
-<p>IGT_8543: 8543<br />
-  xe-3789-a2488a37d0e639140f346d8fca14cc719297c47d: a2488a37d0e639140f346d8fca14cc719297c47d<br />
-  xe-pw-154690v1: 154690v1</p>
-
-</body>
-</html>
-
---===============3149717316504537162==--
