@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F446CAC59A
-	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 11:26:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EE99CAC59A
+	for <intel-xe@archiver.kernel.org>; Thu, 18 Sep 2025 11:26:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA6F110E718;
-	Thu, 18 Sep 2025 11:26:22 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B741610E718;
- Thu, 18 Sep 2025 11:26:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5741471425597445257=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3298610E715;
+	Thu, 18 Sep 2025 11:26:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvdiFFdr";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C764810E715;
+ Thu, 18 Sep 2025 11:26:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758194808; x=1789730808;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=o8/3v/OryEO1CFzHyIf7ErfcdHAggy6PnLSqaKpd1II=;
+ b=mvdiFFdrjbzM1tnhCfdZ58yIMDexypLar1PYwdhPe7xykXWizVKNPwZ3
+ oJ6+/oWbPIf6NErAQ5aHNWQ1Xc7Lubfd1qrVRkAca42kqbFbnosal+du/
+ LbrSdF9/TkrwCO4RNR5JLxYpl+YlOunuxOqkXZDBhn4XE7ClAexbgyg8G
+ N+2wxJtw7+go6Mk+rMiWUNR2wC6oUvV6EmOqgOSm+DIocBrEEnWFruUK3
+ GfTDm2zN+yGVyAmYOQ/5MDycbS034pPWgiLWZNoJ2hKLNaI9U4LFBNHfE
+ TNT/esiljlF2KOc2oGD7v8MKsm4aLEN6giqvbrHf9+9Uh/YzJ7FSpZ6Ej w==;
+X-CSE-ConnectionGUID: dGfPUd/nQRmOqmEiWGVPBA==
+X-CSE-MsgGUID: LkGqaH6+Tv+l1R7ipSR/eQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11556"; a="71151401"
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="71151401"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 04:26:48 -0700
+X-CSE-ConnectionGUID: /SyToHr5RheHXKyROusJGw==
+X-CSE-MsgGUID: Mcj4gTFAR2S+5Gv6ur5lVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,274,1751266800"; d="scan'208";a="179791269"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2025 04:26:47 -0700
+Date: Thu, 18 Sep 2025 13:26:44 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ ville.syrjala@linux.intel.com, michal.grzelak@intel.com
+Subject: Re: [PATCH v2 12/15] drm/i915: remove intel_update_czclk() as
+ unnecessary
+In-Reply-To: <3f90b5e67258f485db09b6f48381682cbd96153f.1757688216.git.jani.nikula@intel.com>
+Message-ID: <bb5371ec-c63a-69ec-06ef-80ceb0660673@intel.com>
+References: <cover.1757688216.git.jani.nikula@intel.com>
+ <3f90b5e67258f485db09b6f48381682cbd96153f.1757688216.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/i2c=3A_Don=27t_rely_?=
- =?utf-8?q?on_d3cold=2Eallowed_flag_in_system_PM_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 18 Sep 2025 11:26:21 -0000
-Message-ID: <175819478173.344369.5487484871369435462@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250918103200.2952576-1-raag.jadav@intel.com>
-In-Reply-To: <20250918103200.2952576-1-raag.jadav@intel.com>
+Content-Type: multipart/mixed; boundary="8323329-1391312407-1758194808=:965976"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5741471425597445257==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323329-1391312407-1758194808=:965976
+Content-Type: text/plain; format=flowed; charset=ISO-8859-2
+Content-Transfer-Encoding: 8BIT
 
-Series: drm/xe/i2c: Don't rely on d3cold.allowed flag in system PM path
-URL   : https://patchwork.freedesktop.org/series/154693/
-State : success
+On Fri, 12 Sep 2025, Jani Nikula wrote:
+> With vlv_clock_get_czclk() caching the result on first use, we no longer
+> need a separate initializer. Remove intel_update_czclk() as
+> unnecessary. Log the CZCLK in vlv_clock_get_czclk() instead.
+>
+> v2: Rebase
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
-CI Bug Log - changes from xe-3790-31f149f6d10616688087056856c29390e28d7e44_BAT -> xe-pw-154693v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3790-31f149f6d10616688087056856c29390e28d7e44 -> xe-pw-154693v1
-
-  IGT_8543: 8543
-  xe-3790-31f149f6d10616688087056856c29390e28d7e44: 31f149f6d10616688087056856c29390e28d7e44
-  xe-pw-154693v1: 154693v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154693v1/index.html
-
---===============5741471425597445257==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/i2c: Don&#x27;t rely on d3cold.allowed flag in system PM path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154693/">https://patchwork.freedesktop.org/series/154693/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154693v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154693v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3790-31f149f6d10616688087056856c29390e28d7e44_BAT -&gt; xe-pw-154693v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3790-31f149f6d10616688087056856c29390e28d7e44 -&gt; xe-pw-154693v1</li>
-</ul>
-<p>IGT_8543: 8543<br />
-  xe-3790-31f149f6d10616688087056856c29390e28d7e44: 31f149f6d10616688087056856c29390e28d7e44<br />
-  xe-pw-154693v1: 154693v1</p>
-
-</body>
-</html>
-
---===============5741471425597445257==--
+BR,
+Micha³
+--8323329-1391312407-1758194808=:965976--
