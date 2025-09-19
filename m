@@ -4,27 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD0EACAC592
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 20:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F5C9CAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 20:20:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B53A10EA86;
-	Fri, 19 Sep 2025 20:19:07 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C7E10EA85;
- Fri, 19 Sep 2025 20:19:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4757815934047706275=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22DC610EA85;
+	Fri, 19 Sep 2025 20:20:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mtWoMRbI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16FD910EA86;
+ Fri, 19 Sep 2025 20:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758313210; x=1789849210;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=sutP8yhjGBsVbUUxOEWEoNWL6Q0eOCa+Tb6nxdIOf24=;
+ b=mtWoMRbIJshcCYKqCMs0CwANpdtMIF0hJ+KX0g/KJ7nEIR2E9EKazWgM
+ PcuAqZK+GW3F2+cT80HAMAWNSlvt6aMQ2YbTbfsjI37soeFjBrghfc0am
+ 9urf+g8WRG66mVOrnv0R5vw0W7obkju7bfOTAj1x7gHoBusveQTbApfVP
+ u+dUT4yPyBLULpR6Lenx8VXTL3E+R9eKxJbW+f2yVnKQsQffSxcYZL+eT
+ YEyjotTxNHJD8fQsAL39rxMpFvWq1Cvw7JOuDfafQnqlFBiDYwfb7vsQH
+ tCUPICA8z4F2NSVQQw4fWyZsiV2nUfncGTVKV10Z3kYn8Cb/OXYDaf7fC A==;
+X-CSE-ConnectionGUID: 8nmL9xW3QQ+h9cs7atyzfQ==
+X-CSE-MsgGUID: 8leWyttpT9qAf2HSAs1Vpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="60820288"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="60820288"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 13:20:10 -0700
+X-CSE-ConnectionGUID: 57HgeFllR/6fRLd5cUplJQ==
+X-CSE-MsgGUID: +JngmLzGQV2u31MnvMK34A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="180157520"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 13:20:09 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 19 Sep 2025 13:20:08 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Fri, 19 Sep 2025 13:20:08 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.8) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Fri, 19 Sep 2025 13:20:07 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M+k5XMa0BLWUFCYPwzOWmFHOAAJetp2I1AlqeGm8bYT8uOcUIzR0sczI24zoli3cN1Xv6XkiZw5TKDjDFKybM2MRaxGPyBeE+JqqCIn1lczi0+4M2JzQFeZZFYIb/FeFVtS6RORE/LS9OEve8MCgCsxQyPiHg0PF1KrXFP0eHtDywAKKMeSZM+lIlSO9RcwxfIKO2BlQQj7X+bhZp+eujqPbwU8AuNBuNscTdozQAyAR8P1NV2eWPBazUqbCH5fh1G/Wu+A7FYXFGeWl+s++7hR/1gObIOssYVFl4k39JwoOz/qH0Zyry8JhkPgEtwuDqhgkb6wN8mKc/DNQMoc7HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lT8aD4Ss7i7hMkeDQIZvRhoJ/SXK/a9WlqtZgI8bLLY=;
+ b=Mi6t8OYTwAR9OlWvWFsVd9VxvzxwqddOEW69foAGIsfmrCAr2L1yNXevXfUVpSxViLMTpdj87KSq8qgKlqLPYZ4vF+zBiZ4bd2Fjrg3uYLyTZuCEqiXqP2xlevta3y6/GdyY4CVh6hemuA15PTGjqFd7uS8XH9JRViYZ0TKxoKBzvdlqxe2KfC5BDA1Ehl/BYMqaSCjUMwOmpZa/B5pHA3wBXWin5XtTIHQq8vg7Nd008mEReti4pf3EcZGgx53eAKguGt+HZHN749Spfi7jnfq9WTiPj37NfKuC2EGd7CebdonosiGPxeSAv5XDkE/NgWnDYDwipJc17ZtWLWKUYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SA1PR11MB6807.namprd11.prod.outlook.com (2603:10b6:806:24e::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Fri, 19 Sep
+ 2025 20:20:04 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9137.012; Fri, 19 Sep 2025
+ 20:20:04 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250919162233.1624905-2-dnyaneshwar.bhadane@intel.com>
+References: <20250919162233.1624905-1-dnyaneshwar.bhadane@intel.com>
+ <20250919162233.1624905-2-dnyaneshwar.bhadane@intel.com>
+Subject: Re: [PATCH v2 1/3] drm/pcids: Split PTL pciids group to make wcl
+ subplatform
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Date: Fri, 19 Sep 2025 17:19:55 -0300
+Message-ID: <175831319590.1987.1863648853233528@intel.com>
+User-Agent: alot/0.12.dev22+g972188619
+X-ClientProxiedBy: SJ0PR03CA0120.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::35) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/1915=3A_skl+_watermark/?=
- =?utf-8?q?latency_stuff_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Sep 2025 20:19:06 -0000
-Message-ID: <175831314646.350138.11200792413961178512@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250919193000.17665-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250919193000.17665-1-ville.syrjala@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA1PR11MB6807:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39776930-b5f7-4c1d-191b-08ddf7b9eaef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VmViV2NJd1E5WDRWSWUyN1d2NHcvVVgvTkhHZTI2dFdNbWdNWStVRXVJcjdv?=
+ =?utf-8?B?d3M0VEthSWxrUnJMVFFSU0N0VnNERkVrNGxodGttMnNuM21PSTBhWHdXT0J0?=
+ =?utf-8?B?STNVczMvTDNqTkNoa3ZTaWZJVHBhTlRZMEVLZVJBa0VIRzFhM0t6SFBCY2Za?=
+ =?utf-8?B?dEJUQ0lkdnMwUTRmMzd6TUhnZGJXMng5eVUzV2d2WVpPcHlqenozM01WSnJG?=
+ =?utf-8?B?V21qM2d3NHp1a3dEcEg3WVhZeUVabjllaFE2eHc4OVR1dHlMbFRaL1Q4VW9N?=
+ =?utf-8?B?S1Q3S0ltZXo4RmNMbkE4SW1qWDBjRWZPUWZzcHArczB0RTFzbW5Gays0ZHN2?=
+ =?utf-8?B?cFc2VTJkQ3hITTY2Wi92eDZIY3BZUFVneFpqT1dzZWdlR0VTUmhNeXFpOFNv?=
+ =?utf-8?B?bDZNMFRudnhReUF5NEJLd1k4SzRkSUNaS2FrMVdzS1VUNm14azdaTjU5R0ZQ?=
+ =?utf-8?B?QmM4amloeVpKdnZ1ZEhLbTgrelVQcEVwOThtR1VPczVEZkVzRHN4dFgyWDl1?=
+ =?utf-8?B?MCs1YS9XT3Y2djBMZHFEdThyMmtuakpxeFFoM010STBFSEs3WERGaFdFNC92?=
+ =?utf-8?B?RVI1NE5vSDlTekQxV1pFazBzMnRLK3V2RldsanpHeFYyMTRyYkNYeVY1My9J?=
+ =?utf-8?B?YkZnY3dXWHJ6TWFBMVVEL043bWthNEdNUVZIQ0xKUFBDRlo1bHpoMkVvYjZO?=
+ =?utf-8?B?dzZBQkNKMXhUKy8zRlhDdk84U3FZaytBY2x0ckppckpUcm9QK050ZU9aQzdO?=
+ =?utf-8?B?R21oeVQwYmVOUXZ1Sjl6VHZqU0hCWGZJdXY2NHdWUU8xTDg1L1ROT2gydUxL?=
+ =?utf-8?B?cFdUajYvWTNGMzNZSmJCclBmUFNQay92eVptQkV6WU9aQ1JaMGRUUjNVNU10?=
+ =?utf-8?B?LzFJVzBsdWtKYmEyUHR6b0ZwbXptQmtCQ1dHbU1xSFZMZUQwVEE3azQzMU5l?=
+ =?utf-8?B?Mng4QXY5RVBTZTFlQWlxd2l3VEp4VXVvbXdpa1pFMUt0SnNjbkkrU0JNMHBI?=
+ =?utf-8?B?bnNIOEFsanZNcjV6TGozYSsyWmdZNW5YaVpQdmx6VWRHa2dtSlVvTThyMGpu?=
+ =?utf-8?B?M09JYmNPQWFIcDVmWWZSUjZDeXVNQkFFWms2RFNyK1orclhRNy9UKzVobHcw?=
+ =?utf-8?B?amd1YXo2eTJ0N1NhdTNLU1hVRlc2eXBscFRHZ2lrSGJEZjluRGV3cjJobWp3?=
+ =?utf-8?B?TStrdVR3QWVZcjIvMG5rbkdoS3lEdWJDMVNicGQ3WXZHNmNiS1R2d3NkeEhC?=
+ =?utf-8?B?TnA0OC9qUnJETzRvd0ZPZUNPNEN0M0t1dk1yNy9EZ1RkTjRsMWkrRE83RXYz?=
+ =?utf-8?B?WWVETFkrZnN1M3BpSWNxTmRVV0JtUGdEN3lqcGNQVmxKbjUrdjNVQzltdkJy?=
+ =?utf-8?B?M3dVZkFZdTBFTFZBTWZvL3RFeE9OckpPNzF4a0locDU0ZzhOS0NMNmExZnNi?=
+ =?utf-8?B?Ry96blJUcXlMeU4yNFVEVE5objMzcWtkQlJETHFRQ0MySFFCdEpsUm5pWkZT?=
+ =?utf-8?B?R1NSRlZKYzZPNXh2WWNCUWVpWG1HbFNadUl1cjFxS2xIVVVmTXVhdHVNWDIz?=
+ =?utf-8?B?NlhsbVFTT1ZKeWRmZFBWc3lLdUZxeFBDc1Y5RjZUQWd1WWhNaVJ6bVpwWWx0?=
+ =?utf-8?B?TXhhOEQ3N0dIdlgwL0E3NHFsNXFmVzI4UDJNVVVoOHlqaUU5K1F4Qit1b3hs?=
+ =?utf-8?B?WXJreG4xbUNURzZlNmNEQjFEdWkxb2VBREFaQlVkL0ZpV2pWKzVSL2docm56?=
+ =?utf-8?B?dEM4QzZuMXVKdU1rUnBLMElWVzVwb3hGVTNQZUh1MTNYS0ZseUlEK2RIcW9G?=
+ =?utf-8?B?TXd2VDZRZDFMbzY1R00xalJYbUwwWXczSjZrNmVxV3V6ajhsR0JRNW1WZHQw?=
+ =?utf-8?B?endCT3NseWhjQTJlYjVHdFpVL0gzOUZ2Q2x0bXkyUFVjMnBQcGF4YzE3a3V2?=
+ =?utf-8?Q?AQ7cKJAiExs=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzJ3RGl3MnRkMmh6c3JBcVdaOVdvcmlZaGlmRHRBdDR6L0luNFh3SXM5SFV1?=
+ =?utf-8?B?eWZvVExTS3NMMkh3L1NrNnhjSXhWUGVZWVg1UmpqcGwwZUJWZzNyeTZmdGp4?=
+ =?utf-8?B?eW0rcGhONkJJQmJwWXlicFgrYVVWNm16OTVGdUNSaHFuczdJbUxCOUVGUG9r?=
+ =?utf-8?B?TW1KR2xjb3BxaHJMZnUvM0tNalByMVZjNzlkYm1TMGgzWVpyWElqV1poeEZ0?=
+ =?utf-8?B?SitSd3NJOC9oS0lvaFVWMnUvQ2pIS1QwTFI2TDJ3MXBPOUVwYWdGaSthWEQ4?=
+ =?utf-8?B?YzdwdmRTeDBTQWpndWFUREtoUnRJajU2VC9GTE5CK1ZiOXJXdVJkaXphblla?=
+ =?utf-8?B?ajB4UmdDQXdZdityZlpHMkU5SzNhSDFrdmtLWC9sTlRrd2dxckx0cUhGOUJR?=
+ =?utf-8?B?ZXN3dFgxd2ZCT3N4NEQ5bVVscU04djJxOERzbkh2S0szTmJkT0xkYVBrYUFq?=
+ =?utf-8?B?ZkRDQlpxd0M0cFNlNktaTXh5U0FpVTJiWFNMNUtXeGJRM0p4UFA1MW80QXk1?=
+ =?utf-8?B?ZisxV0tUNklPeWxaUzk5VWU4YVM1RjNSMEZiNkxFdVNiNk5hNEkwSlRqaEdm?=
+ =?utf-8?B?d1ZKRzJQRS9MNTludER5ZW1JTlpDSVgvQ0JSSjBNNHBaWnZFdnlqSFRhZlR0?=
+ =?utf-8?B?TlpDMTVrYXNXRFdiOU54TzFETUIranZxRkhDZHhTQStTZ0R2bktEckk3Yzdk?=
+ =?utf-8?B?TEl5ZTJDWVFWYlNHOTZhN1l6bURLTWhLdUJ2cm1JeFR3Q2VsK0VFSmw2Nlk3?=
+ =?utf-8?B?SnYzUUFFVWg5T1BsM1lMQ0FNYzFYYlRZZE5zZ3JES2VzYzMxQVBKNnlVNnNq?=
+ =?utf-8?B?azVOL3kxaURaVzlSWmlYL2VFcDZNakZwdk5LM3Q5Y1NONUdSN0VLZTNjMjFK?=
+ =?utf-8?B?UWRUVEdHUWdUSSsvcnF2SnBWMHR1dFU5dm1BVVl0NGMrRVZrYWMvZWxpdHZ2?=
+ =?utf-8?B?NzY0WEpLcnMzUHA1YVpXTzFMNFNXV1F1U2NEWFBmK0tVckhvbEtyMmJjN25J?=
+ =?utf-8?B?cDN6QnhGUDBPZEdHa1ZVa0ZaOG5jcHBtcFVUOTJoWnAvMy9jR2xOd3Q2N3Ft?=
+ =?utf-8?B?dEwvQnd4QTZsOWgxS3dtOVFMZmVZbElwTk5Ea2NqWGZVT2tUOEllUDBTbTJ4?=
+ =?utf-8?B?MWFuVVZmVzJGc3dOeFpxTGRuazcyVndwZ0twcGx0amR3cStWTE9UamhzYWt0?=
+ =?utf-8?B?dVhtUHRydDBrblo0MHBQQ3hoNmg1M2x0UVFWenVEbVFTUysxNUJQc2tmM0Yw?=
+ =?utf-8?B?Q2xBS1Y0U01qTlU4VjQ3M1VEU1NHZ2lRQWRjZXgxa094OUhkaTFEOWphZ0VQ?=
+ =?utf-8?B?ek5iSWMyM212aGN0bkRJZ0dPQlhINCtvQW9uZlh0VmVvWVUrVkpaM2lDU3F3?=
+ =?utf-8?B?aE9pTGp3dHdrSXRNZDFMZWx6VWpyRTZFN0pJL0RmaDhYbUMxeGNKekNYUC9a?=
+ =?utf-8?B?bnorOHVFY1p5L2lzTnc0RGc2V0xaZGlhdndnVFRZMGxZQVpxRElPRlpJWkt6?=
+ =?utf-8?B?MmdXYVdSR1hKcFZ2ci8rYSsyOGxURXl1YmNXRnlsM3BvRXY0WnI4SWZ0N2tq?=
+ =?utf-8?B?SEpjZXoxdzZ5VnlmZmlmSHN6M2hmMTBCV0l5RCs4cWp2N0JzbkxEUkhUNUZa?=
+ =?utf-8?B?TWUzTDgva1pCbUd6Qkk0Y3dxMFRlR056V3NrL0tOZXZzZ3dYT2Q0Z25MY043?=
+ =?utf-8?B?Sjd1THNkdUIxaGs0ZmN1cXYwYTN3UldRRzQ1VFZuTGxIdThaajhiVGZ0d1Q2?=
+ =?utf-8?B?TEZWOUw5M09pMzdCUlI4Y0JnWDFWVU9JMjY3NU9LWFdqMFJOQUlsVUFtUDZr?=
+ =?utf-8?B?UmZIY3ZBeWdZL2k2ajhNVTI5R0VxcnZqOGYwbXlpdlozU1dUdUxiRWZRc1JH?=
+ =?utf-8?B?VDBoQTkreFdyTUxqWFBrbm9oZkFuK24vbGgyUTJoaWZaOU9oNktzMFVGY1JW?=
+ =?utf-8?B?SEhaTFFpOUlieHBGdE0vMEZqOFBCSWUrcjNvTzVUR0xaMXh1VnhEM2g1RmNN?=
+ =?utf-8?B?azArSEJnUTNXSmxjeHFxejN6TmV4ZzhUdTRRdHpKZkhzbWMySzQzdVZRWEtZ?=
+ =?utf-8?B?ejRVUmZtcldLRittRHVZZ3lId1crZWpWUTNFZkxmeW1GMlM0R0FlQXRUVVRG?=
+ =?utf-8?B?YWtRU0pDd2lkV0NkRERsSzExbCt2T1J4ZlNCTUxTNk1Eb0xwekVIalI2VlQz?=
+ =?utf-8?B?TkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39776930-b5f7-4c1d-191b-08ddf7b9eaef
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2025 20:20:04.0120 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RMdt/QG2iEU+xn+bifXGCI2aKnXNzdZYDrIrIw4phyDfjSQY17g9+KSbdv4Js/dZFt+ADDLEO7KGVhyuAwcwcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6807
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +193,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4757815934047706275==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Quoting Dnyaneshwar Bhadane (2025-09-19 13:22:31-03:00)
+>To form the WCL platform as a subplatform of PTL in definition,
+>WCL pci ids are splited into saparate group from PTL.
+>So update the pciidlist struct to cover all the pci ids.
+>
+>v2:=20
+>- Squash wcl description in single patch for display and xe.(jani,gustavo)
+>
+>Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-== Series Details ==
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Series: drm/1915: skl+ watermark/latency stuff (rev4)
-URL   : https://patchwork.freedesktop.org/series/154099/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c_BAT -> xe-pw-154099v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154099v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-1:          [FAIL][1] ([Intel XE#5507]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v4/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
-
-
-Build changes
--------------
-
-  * IGT: IGT_8544 -> IGT_8545
-  * Linux: xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c -> xe-pw-154099v4
-
-  IGT_8544: b7d758d47000f2092226f4bf68e9299883cf02de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8545: 8545
-  xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c: 6279a928fb7ed7a69e44171637abf2bf50668a9c
-  xe-pw-154099v4: 154099v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v4/index.html
-
---===============4757815934047706275==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/1915: skl+ watermark/latency stuff (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154099/">https://patchwork.freedesktop.org/series/154099/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c_BAT -&gt; xe-pw-154099v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154099v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154099v4/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8544 -&gt; IGT_8545</li>
-<li>Linux: xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c -&gt; xe-pw-154099v4</li>
-</ul>
-<p>IGT_8544: b7d758d47000f2092226f4bf68e9299883cf02de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8545: 8545<br />
-  xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c: 6279a928fb7ed7a69e44171637abf2bf50668a9c<br />
-  xe-pw-154099v4: 154099v4</p>
-
-</body>
-</html>
-
---===============4757815934047706275==--
+>---
+> drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
+> drivers/gpu/drm/xe/xe_pci.c                         | 1 +
+> include/drm/intel/pciids.h                          | 5 ++++-
+> 3 files changed, 6 insertions(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers=
+/gpu/drm/i915/display/intel_display_device.c
+>index a002bc6ce7b0..a9a36176096f 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>@@ -1482,6 +1482,7 @@ static const struct {
+>         INTEL_LNL_IDS(INTEL_DISPLAY_DEVICE, &lnl_desc),
+>         INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
+>         INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+>+        INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+> };
+>=20
+> static const struct {
+>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>index 77bee811a150..3f42b91efa28 100644
+>--- a/drivers/gpu/drm/xe/xe_pci.c
+>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>@@ -376,6 +376,7 @@ static const struct pci_device_id pciidlist[] =3D {
+>         INTEL_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
+>         INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
+>         INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+>+        INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+>         { }
+> };
+> MODULE_DEVICE_TABLE(pci, pciidlist);
+>diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+>index da6301a6fcea..69d4ae92d822 100644
+>--- a/include/drm/intel/pciids.h
+>+++ b/include/drm/intel/pciids.h
+>@@ -877,7 +877,10 @@
+>         MACRO__(0xB08F, ## __VA_ARGS__), \
+>         MACRO__(0xB090, ## __VA_ARGS__), \
+>         MACRO__(0xB0A0, ## __VA_ARGS__), \
+>-        MACRO__(0xB0B0, ## __VA_ARGS__), \
+>+        MACRO__(0xB0B0, ## __VA_ARGS__)
+>+
+>+/* WCL */
+>+#define INTEL_WCL_IDS(MACRO__, ...) \
+>         MACRO__(0xFD80, ## __VA_ARGS__), \
+>         MACRO__(0xFD81, ## __VA_ARGS__)
+>=20
+>--=20
+>2.51.0
+>
