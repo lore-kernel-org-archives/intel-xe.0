@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F259CAC5A9
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74AC7CAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2927F10E97A;
-	Fri, 19 Sep 2025 09:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39E4B10E97C;
+	Fri, 19 Sep 2025 09:52:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YXi0sio/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CFgJ1eJK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB48F10E975;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA7A10E975;
  Fri, 19 Sep 2025 09:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758275545; x=1789811545;
+ t=1758275544; x=1789811544;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ehsMu9aWoozWjVzPrnus81GSuXQ/dHO3m6APN6FKYm4=;
- b=YXi0sio/4+3x9iOlgMjN5l0me+4fqo/Kxn44VyrKNd69n+lE4AWCEFqt
- Ep1Ki2bkkV7QrIlleHPSb1cMPJW63p+hgE/Zcf84//WO4TWczIjDq2Hy1
- HFVMX21ZNUTxyqM8TKxhNNyoSDAJgmq05IIfUFvxDyQUyXl0L/vND5Gof
- Py85G3R7Wex9iJ4ArHGrsQJg/xemtubP1SqFSNQW3pBy36t0zmTVJupKP
- 2w8trLVFo7ZpTQA0FP09HYbIkXksA9fjtWTHpmmGNqzdum77WbGpybqfN
- uXkZtne0g+5AmxC4kP9vOf/L5rlGaqZU2YBlrI/kZpUD5LpjoOCNG9uo5 Q==;
-X-CSE-ConnectionGUID: 5l41SKkLQAetIDha+wOz0w==
-X-CSE-MsgGUID: fX1XeWIbQna6JaJFlHWBtg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316186"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316186"
+ bh=0uVuUj+ivcyfXfXU5OQd9dthCCeIqbBb4oX1Rk2Z27c=;
+ b=CFgJ1eJKOyA6+c2aVHeSzBlWmCDxty3qr1uXLN0irXn7Y6Dstseb7LGb
+ Xe75HE00ztW6K6d2lVCzFyeXqtwRFwoJiucN3GWMggEy7hO9/UCwdzR28
+ NeouvQq1b8yWNHuQT6n2/kTeqPBVtwSsyyuH1V+51Q5VMQhNNTNKhyjlb
+ B+Z53RldTePnpElB6nBvVFfUPcRonIvQPIrjz7dBLuxUsITqs2h6npG81
+ bgWsOgr0qGClWJe9kYBQSNcqPm/KJcz/UOW58WddYIMdahVH19A5q8nDG
+ rh3COwn723x/APDzYy/89OjeUhWsbXV58SVWMw5CDB2k1l1r8RUORvI7g A==;
+X-CSE-ConnectionGUID: uWq9rXX4QxS2mKm/Gj7agQ==
+X-CSE-MsgGUID: +N3VPUBYRhKnoqCWvKT0mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316176"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316176"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:22 -0700
-X-CSE-ConnectionGUID: wZ2crhtdTw6Rl+7jfREADA==
-X-CSE-MsgGUID: K0RHjsFwTCGM9+re21F/Tw==
+ 19 Sep 2025 02:52:11 -0700
+X-CSE-ConnectionGUID: Ey27WnKeTfW93n9exg/14g==
+X-CSE-MsgGUID: IC7npTZQSsuM0uhAphdNLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554307"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554278"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.222])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:19 -0700
+ 19 Sep 2025 02:52:08 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 5/6] drm/i915/irq: change ILK irq handling order
-Date: Fri, 19 Sep 2025 12:51:48 +0300
-Message-ID: <76190090bb64597359802dfdf0e925fe478cd0d5.1758275448.git.jani.nikula@intel.com>
+Subject: [PATCH 3/6] drm/i915/irq: abstract i9xx_display_irq_enable_mask()
+Date: Fri, 19 Sep 2025 12:51:46 +0300
+Message-ID: <c16a6d73ce63c9effc7dad16e773918e2227b350.1758275448.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758275448.git.jani.nikula@intel.com>
 References: <cover.1758275448.git.jani.nikula@intel.com>
@@ -70,51 +70,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Handle GEN6_PMIIR before DEIIR. This allows us to further refactor
-display irq handling, but separate this change to give us a clean bisect
-landing commit for the unlikely case that this makes a difference.
+Figure out the enable mask for display things in display code. Reuse the
+same function for both i915 and i965 code, the end result remains the
+same.
+
+This removes a pair of DISPLAY_VER() and HAS_HOTPLUG() checks from core
+irq code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display_irq.h |  1 +
+ drivers/gpu/drm/i915/i915_irq.c                  | 16 ++--------------
+ 3 files changed, 19 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index c6f367e6159e..4d51900123ea 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1900,6 +1900,22 @@ void i9xx_display_irq_reset(struct intel_display *display)
+ 	i9xx_pipestat_irq_reset(display);
+ }
+ 
++u32 i9xx_display_irq_enable_mask(struct intel_display *display)
++{
++	u32 enable_mask;
++
++	enable_mask = I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
++		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT;
++
++	if (DISPLAY_VER(display) >= 3)
++		enable_mask |= I915_ASLE_INTERRUPT;
++
++	if (HAS_HOTPLUG(display))
++		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
++
++	return enable_mask;
++}
++
+ void i915_display_irq_postinstall(struct intel_display *display)
+ {
+ 	/*
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+index cee120347064..e44d88e0d7e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+@@ -61,6 +61,7 @@ void vlv_display_irq_reset(struct intel_display *display);
+ void gen8_display_irq_reset(struct intel_display *display);
+ void gen11_display_irq_reset(struct intel_display *display);
+ 
++u32 i9xx_display_irq_enable_mask(struct intel_display *display);
+ void i915_display_irq_postinstall(struct intel_display *display);
+ void i965_display_irq_postinstall(struct intel_display *display);
+ void vlv_display_irq_postinstall(struct intel_display *display);
 diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 90174ce9195c..312f7e42931a 100644
+index 04de02fc08d9..f9fbb88b9e26 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -449,6 +449,15 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 		ret = IRQ_HANDLED;
- 	}
+@@ -895,17 +895,9 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
  
-+	if (GRAPHICS_VER(i915) >= 6) {
-+		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
-+		if (pm_iir) {
-+			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
-+			gen6_rps_irq_handler(&to_gt(i915)->rps, pm_iir);
-+			ret = IRQ_HANDLED;
-+		}
-+	}
-+
- 	de_iir = raw_reg_read(regs, DEIIR);
- 	if (de_iir) {
- 		raw_reg_write(regs, DEIIR, de_iir);
-@@ -459,15 +468,6 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 		ret = IRQ_HANDLED;
- 	}
+ 	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i9xx_error_mask(dev_priv));
  
--	if (GRAPHICS_VER(i915) >= 6) {
--		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
--		if (pm_iir) {
--			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
--			gen6_rps_irq_handler(&to_gt(i915)->rps, pm_iir);
--			ret = IRQ_HANDLED;
--		}
--	}
+-	enable_mask =
+-		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
+-		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
++	enable_mask = i9xx_display_irq_enable_mask(display) |
+ 		I915_MASTER_ERROR_INTERRUPT;
+ 
+-	if (DISPLAY_VER(display) >= 3)
+-		enable_mask |= I915_ASLE_INTERRUPT;
 -
- 	raw_reg_write(regs, DEIER, de_ier);
- 	if (sde_ier)
- 		raw_reg_write(regs, SDEIER, sde_ier);
+-	if (HAS_HOTPLUG(display))
+-		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
+-
+ 	dev_priv->gen2_imr_mask = ~enable_mask;
+ 
+ 	enable_mask |= I915_USER_INTERRUPT;
+@@ -1010,11 +1002,7 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ 	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i965_error_mask(dev_priv));
+ 
+-	enable_mask =
+-		I915_ASLE_INTERRUPT |
+-		I915_DISPLAY_PORT_INTERRUPT |
+-		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
+-		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
++	enable_mask = i9xx_display_irq_enable_mask(display) |
+ 		I915_MASTER_ERROR_INTERRUPT;
+ 
+ 	dev_priv->gen2_imr_mask = ~enable_mask;
 -- 
 2.47.3
 
