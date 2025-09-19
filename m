@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE138CAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 21:54:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B0CCAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 21:59:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66E1710E25D;
-	Fri, 19 Sep 2025 21:54:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H9TNDNr4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAA210E25D;
- Fri, 19 Sep 2025 21:54:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758318897; x=1789854897;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jxO4MRRstVduJJJTonZTMlMfb/UFdV37vI+KsD7piEQ=;
- b=H9TNDNr4J8GmrRf2onDquamKmmwFXDPhCcHzIswsecfUDIYU442F8wUe
- 6IUBj+2WnATUcLg9t5/F013QYkk98qHq2cSHxAWa8GDM0huI8VEm98Sxa
- fTW1jd49AkluUTE0NwksJdAJr1FwSOfzLWVLf3yED5N9K60F9/exqmwPp
- b4C1LaEnaq4NB+2mKbDDQiNeEcK3KheGrZm9zl2WsejEAiYGzFDXdf6jh
- S+vWOCSDrtGRX0WtKc2T1AGVSUCCzILeW0I0i6Isluj8UAgwEW8CWHsEO
- ZUBege5CfWGUhvsugBT3m2Axu1mmMpAnObvXgnJwJo/mybN/cYerQCAQ8 A==;
-X-CSE-ConnectionGUID: 9rWT6GZGSNuz/L7dflHMDg==
-X-CSE-MsgGUID: ICjH1eDMQMmbclPmy2tY7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="60825925"
-X-IronPort-AV: E=Sophos;i="6.18,279,1751266800"; d="scan'208";a="60825925"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 14:54:57 -0700
-X-CSE-ConnectionGUID: 7zX/zDBmTWGdco8mINA+hA==
-X-CSE-MsgGUID: EkMh4iycQT2saBCVEOCvLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,279,1751266800"; d="scan'208";a="179956073"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa003.jf.intel.com with ESMTP; 19 Sep 2025 14:54:56 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH] drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
-Date: Fri, 19 Sep 2025 23:54:13 +0200
-Message-ID: <20250919215413.1006296-1-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2689510EA9E;
+	Fri, 19 Sep 2025 21:59:50 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 340D310EA9E;
+ Fri, 19 Sep 2025 21:59:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?b?4pyXIENJLmNoZWNrcGF0Y2g6IHdhcm5pbmcgZm9yIGRybS9pOTE1OiByZW5hbWUg?=
+ =?utf-8?b?dmx2X2dldF9jY2tfY2xvY2soKSB0byB2bHZfY2xvY2tfZ2V0X2Njaygp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 19 Sep 2025 21:59:48 -0000
+Message-ID: <175831918820.350138.659599111755948397@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250919215413.1006296-1-michal.grzelak@intel.com>
+In-Reply-To: <20250919215413.1006296-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,62 +36,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Keep the convention of naming vlv_clock* instead of vlv_*_clock.
+== Series Details ==
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- drivers/gpu/drm/i915/display/vlv_clock.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Series: drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
+URL   : https://patchwork.freedesktop.org/series/154800/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_clock.c b/drivers/gpu/drm/i915/display/vlv_clock.c
-index 42c2837b32c1..1abdae453514 100644
---- a/drivers/gpu/drm/i915/display/vlv_clock.c
-+++ b/drivers/gpu/drm/i915/display/vlv_clock.c
-@@ -36,7 +36,7 @@ int vlv_clock_get_hpll_vco(struct drm_device *drm)
- 	return display->vlv_clock.hpll_freq;
- }
- 
--static int vlv_get_cck_clock(struct drm_device *drm,
-+static int vlv_clock_get_cck(struct drm_device *drm,
- 			     const char *name, u32 reg, int ref_freq)
- {
- 	u32 val;
-@@ -58,7 +58,7 @@ static int vlv_get_cck_clock(struct drm_device *drm,
- int vlv_clock_get_hrawclk(struct drm_device *drm)
- {
- 	/* RAWCLK_FREQ_VLV register updated from power well code */
--	return vlv_get_cck_clock(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL,
-+	return vlv_clock_get_cck(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL,
- 				 vlv_clock_get_hpll_vco(drm));
- }
- 
-@@ -67,7 +67,7 @@ int vlv_clock_get_czclk(struct drm_device *drm)
- 	struct intel_display *display = to_intel_display(drm);
- 
- 	if (!display->vlv_clock.czclk_freq) {
--		display->vlv_clock.czclk_freq = vlv_get_cck_clock(drm, "czclk", CCK_CZ_CLOCK_CONTROL,
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 28f5b3f2df9c84dec1d9266451ae82527c8fd0a1
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Fri Sep 19 23:54:13 2025 +0200
+
+    drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
+    
+    Keep the convention of naming vlv_clock* instead of vlv_*_clock.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
++ /mt/dim checkpatch 6279a928fb7ed7a69e44171637abf2bf50668a9c drm-intel
+28f5b3f2df9c drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
+-:40: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/vlv_clock.c:70:
 +		display->vlv_clock.czclk_freq = vlv_clock_get_cck(drm, "czclk", CCK_CZ_CLOCK_CONTROL,
- 								  vlv_clock_get_hpll_vco(drm));
- 		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", display->vlv_clock.czclk_freq);
- 	}
-@@ -77,12 +77,12 @@ int vlv_clock_get_czclk(struct drm_device *drm)
- 
- int vlv_clock_get_cdclk(struct drm_device *drm)
- {
--	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
-+	return vlv_clock_get_cck(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
- 				 vlv_clock_get_hpll_vco(drm));
- }
- 
- int vlv_clock_get_gpll(struct drm_device *drm)
- {
--	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
-+	return vlv_clock_get_cck(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
- 				 vlv_clock_get_czclk(drm));
- }
--- 
-2.45.2
+
+total: 0 errors, 1 warnings, 0 checks, 38 lines checked
+
 
