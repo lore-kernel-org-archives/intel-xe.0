@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E597CCAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 19:12:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF645CAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 19:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A816710EA80;
-	Fri, 19 Sep 2025 19:12:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF0710EA76;
+	Fri, 19 Sep 2025 19:12:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7XevJGO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nGQouHRK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5ED10EA80
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Sep 2025 19:12:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F11C910EA76
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Sep 2025 19:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758309129; x=1789845129;
+ t=1758309132; x=1789845132;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GJZB/lccdxSEPgh7X/TzggjaYjwN+vRQFweaGiQANNc=;
- b=A7XevJGO/TPjqlBOz8+FHRGPu2Jf6JtTbXTGQs96acWRYw2StbHvRj8K
- eIMbBRGo3QNEbQ3/r9notKfhcVtFSnRHQd9LdN3a41K83KBWmbNmD+Bz8
- taGYi3k/AlDe68GOAdqz+eb/g7J4dvawhse1kBY8MtJhqHwAbpqujt603
- nxUdtkPBop7XW73CrmnmzD1FOQBGpZTe1rnAi7bI/Yzf7JRDwA5Ij4CQy
- Q6i/WQw46b2A09Fl2Js/y10a4TdbYDY1nKu+d6LOjI5nQe3eMzwDfhonv
- UzJ5vmgrp9pe9b80tY4U3suhLYSKGeBJ5iOCtjxhrM/YJy3J3hkpo2tki g==;
-X-CSE-ConnectionGUID: 3CSix7vsSdWl142Ui7UJig==
-X-CSE-MsgGUID: WkxJDBmrQ7KTNAO1hOPmgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60579538"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60579538"
+ bh=gaxavw2IcKpS67fiVGCczw7lMbfPjrrL3FB4uDB8eDo=;
+ b=nGQouHRKmiogSTz6WCv4Gy5sBWSy0VTDwLMxUE50cZ85bDteOXnpMNFX
+ WdF+ww2YLq5N0rGmI5zEbcvLtdgvpZyt2gS5n7lldEIkCFI0XK99e5G+B
+ Mmtm1z+38/6Kz+sHS9B6yni8fAGZMXUbm6Nbv6qNVnKsv4D2GPIK6QCOr
+ UxriniN5thRAyDm8Al/466JMAHkeJQg4OKw3Ej9kDJ65uRF/hA41avzPN
+ 0w615twf6fIz3g3wPUEXVxrVb18ADBhcB6la30LKbh8JNjc2GMQC/LoQg
+ VdvmtFzcBnmFsanvJttWDxLNVdvGAA0DAogqTKHGVED4mqvoieOailzmN g==;
+X-CSE-ConnectionGUID: cKoZr3ahQjqT4diYUWicCg==
+X-CSE-MsgGUID: cSFs4LLjTG67igGPrJW/Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60579540"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60579540"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 12:12:09 -0700
-X-CSE-ConnectionGUID: 4wggo/rsTWG50DkWebyT4A==
-X-CSE-MsgGUID: FHTH1MVBTiSPLAggfKJApA==
+ 19 Sep 2025 12:12:11 -0700
+X-CSE-ConnectionGUID: 4LNRwH88Tq2o1hp+eNSXXA==
+X-CSE-MsgGUID: tQVUk/LIS82XgOrrC750sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175530210"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175530220"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by fmviesa007.fm.intel.com with ESMTP; 19 Sep 2025 12:12:06 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 19 Sep 2025 12:12:09 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
  jani.nikula@intel.com, Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v3 5/8] Handle xe_user creation and removal
-Date: Fri, 19 Sep 2025 18:38:05 +0000
-Message-ID: <20250919183817.52325-6-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v3 6/8] drm/xe: Implement xe_work_period_worker
+Date: Fri, 19 Sep 2025 18:38:06 +0000
+Message-ID: <20250919183817.52325-7-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250919183817.52325-1-aakash.deep.sarkar@intel.com>
 References: <20250919183817.52325-1-aakash.deep.sarkar@intel.com>
@@ -68,284 +68,322 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We want our xe user structure to be created when a new
-user id opens the xe device node and to be destroyed
-when the final xe file with this uid is closed. In other
-words the xe_user structure for a uid should remain in
-scope as long as any process with this uid has an open
-xe file descriptor.
+The work of collecting the GPU run time for a given
+xe_user and emitting its event, is done by the
+xe_work_period_worker kworker. At the time of creation
+of a new xe_user, we simultaneously start a delayed
+kworker thread. The delay of execution is set to be
+500 ms. After the completion of the work, the kworker
+schedules itself for the next execution. This is done
+as long as the reference to the xe_user pointer is
+valid.
 
-To implement this we maintain an xarray of xe user
-structures inside our xe device instance. Whenever a new
-xe file is created via an open call, we check if the
-calling process' uid is already present in our xarray.
-If so, we increment the refcount for the associated
-xe user and add this xe file to the list of xe files
-belonging to this xe user. Otherwise, we allocate a
-new xe user structure for this uid and initialize its
-file list with this xe file.
+During each execution cycle the xe_work_period_worker
+iterates over all the xe files in the xe_user::filelist
+and accumulate their corresponding GPU runtime into the
+xe_user::active_duration_ns; while also updating each of
+the xe_file::active_duration_ns. The total runtime for
+this uid in the current sampling period is the delta
+between the previous xe_user::active_duration_ns and
+the current xe_user::active_duration_ns.
 
-Whenever an xe file is destroyed, we decrement the
-refcount of the associated xe user. When the last
-xe file in the xe user's file list is destroyed,
-the xe user refcount should drop to zero and the
-xe user should be cleaned up. During the cleanup path
-we remove the xarray entry for this xe user in our
-xe device and free up its memory.
+We also record the current timestamp at the end of each
+invocation to xe_work_period_worker function in the
+xe_user::last_timestamp_ns. The sampling period for this
+uid is the delta between the previous timestamp and the
+current timestamp.
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       | 23 +++++++++
- drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++
- drivers/gpu/drm/xe/xe_user.c         | 76 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_user.h         | 12 ++++-
- 4 files changed, 124 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  13 ++--
+ drivers/gpu/drm/xe/xe_pm.c     |   5 ++
+ drivers/gpu/drm/xe/xe_user.c   | 127 +++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_user.h   |  21 ++++--
+ 4 files changed, 149 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index fdb7b7498920..258b87403596 100644
+index 258b87403596..8e368346b6d4 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -64,6 +64,7 @@
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
-+#include "xe_user.h"
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
- #include "xe_vram.h"
-@@ -79,9 +80,13 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+@@ -80,11 +80,9 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
  {
  	struct xe_device *xe = to_xe_device(dev);
  	struct xe_drm_client *client;
-+	struct xe_user *user;
+-	struct xe_user *user;
  	struct xe_file *xef;
  	int ret = -ENOMEM;
-+	int uid = -EINVAL;
-+	u32 idx;
+ 	int uid = -EINVAL;
+-	u32 idx;
  	struct task_struct *task = NULL;
-+	const struct cred *cred = NULL;
+ 	const struct cred *cred = NULL;
  
- 	xef = kzalloc(sizeof(*xef), GFP_KERNEL);
- 	if (!xef)
-@@ -106,8 +111,16 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 	file->driver_priv = xef;
- 	kref_init(&xef->refcount);
- 
-+	INIT_LIST_HEAD(&xef->user_link);
-+
- 	task = get_pid_task(rcu_access_pointer(file->pid), PIDTYPE_PID);
- 	if (task) {
-+		cred = get_task_cred(task);
-+		if (cred) {
-+			uid = (unsigned int) cred->euid.val;
-+			xe_user_init(xe, xef, uid);
-+			put_cred(cred);
-+		}
- 		xef->process_name = kstrdup(task->comm, GFP_KERNEL);
- 		xef->pid = task->pid;
- 		put_task_struct(task);
-@@ -127,6 +140,12 @@ static void xe_file_destroy(struct kref *ref)
- 
+@@ -141,11 +139,12 @@ static void xe_file_destroy(struct kref *ref)
  	xe_drm_client_put(xef->client);
  	kfree(xef->process_name);
-+
-+	mutex_lock(&xef->user->filelist_lock);
-+	list_del(&xef->user_link);
-+	mutex_unlock(&xef->user->filelist_lock);
-+
-+	xe_user_put(xef->user);
+ 
+-	mutex_lock(&xef->user->filelist_lock);
+-	list_del(&xef->user_link);
+-	mutex_unlock(&xef->user->filelist_lock);
+-
+-	xe_user_put(xef->user);
++	if (xef->user) {
++		mutex_lock(&xef->user->lock);
++		list_del(&xef->user_link);
++		xe_user_put(xef->user);
++		mutex_unlock(&xef->user->lock);
++	}
  	kfree(xef);
  }
  
-@@ -466,6 +485,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 2b61a3b8257c..35d5433a9e0e 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -26,6 +26,7 @@
+ #include "xe_pxp.h"
+ #include "xe_sriov_vf_ccs.h"
+ #include "xe_trace.h"
++#include "xe_user.h"
+ #include "xe_vm.h"
+ #include "xe_wa.h"
  
- 	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
+@@ -532,6 +533,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
  
-+	xa_init_flags(&xe->work_period.users, XA_FLAGS_ALLOC1);
+ 	xe_i2c_pm_suspend(xe);
+ 
++	xe_user_cancel_workers(xe);
 +
-+	mutex_init(&xe->work_period.lock);
-+
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
- 		/* Trigger a large asid and an early asid wrap. */
- 		u32 asid;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index e6ecfb3f7f38..e42b15aa4449 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -608,6 +608,16 @@ struct xe_device {
- 	atomic_t g2g_test_count;
- #endif
+ 	xe_rpm_lockmap_release(xe);
+ 	xe_pm_write_callback_task(xe, NULL);
+ 	return 0;
+@@ -584,6 +587,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
  
-+	/**
-+	 * @xe_work_period: Support for GPU work period tracepoint
-+	 */
-+	struct xe_work_period {
-+		/** @users: list of users that have opened this xe device */
-+		struct xarray users;
-+		/** @lock: lock protecting this structure */
-+		struct mutex lock;
-+	} work_period;
-+
- 	/* private: */
+ 	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
  
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-@@ -681,6 +691,12 @@ struct xe_file {
- 	/** @active_duration_ns: total run time in ns for this xe file */
- 	u64 active_duration_ns;
- 
-+	/** @user: pointer to struct xe_user associated with this xe file */
-+	struct xe_user *user;
++	xe_user_resume_workers(xe);
 +
-+	/** @user_link: link into xe_user::filelist */
-+	struct list_head user_link;
-+
- 	/** @client: drm client */
- 	struct xe_drm_client *client;
+ 	xe_irq_resume(xe);
  
+ 	for_each_gt(gt, xe, id)
 diff --git a/drivers/gpu/drm/xe/xe_user.c b/drivers/gpu/drm/xe/xe_user.c
-index 8c285a68115a..fcdddefc7b4f 100644
+index fcdddefc7b4f..8e23a6c74717 100644
 --- a/drivers/gpu/drm/xe/xe_user.c
 +++ b/drivers/gpu/drm/xe/xe_user.c
-@@ -4,6 +4,7 @@
-  */
- 
+@@ -6,17 +6,95 @@
  #include <linux/slab.h>
-+#include <drm/drm_drv.h>
+ #include <drm/drm_drv.h>
  
++#include "xe_assert.h"
++#include "xe_device_types.h"
++#include "xe_exec_queue.h"
++#include "xe_pm.h"
  #include "xe_user.h"
  
-@@ -28,7 +29,7 @@ static inline void work_period_worker(struct work_struct *work)
++#define CREATE_TRACE_POINTS
++#include <trace/gpu_work_period.h>
++
++static inline void schedule_next_work(struct xe_device *xe, unsigned int id)
++{
++	struct xe_user *user;
++
++	mutex_lock(&xe->work_period.lock);
++	user = xa_load(&xe->work_period.users, id);
++	if (user && xe_user_get_unless_zero(user))
++		schedule_delayed_work(&user->delay_work,
++				msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL));
++	mutex_unlock(&xe->work_period.lock);
++}
+ /**
+  * worker thread to emit gpu work period event for this xe user
+  * @work: work instance for this xe user
   *
-  * Return: pointer to user struct or NULL if can't allocate
+  * Return: void
   */
--struct xe_user *xe_user_alloc(void)
-+static struct xe_user *xe_user_alloc(void)
+-static inline void work_period_worker(struct work_struct *work)
++static void xe_work_period_worker(struct work_struct *work)
  {
- 	struct xe_user *user;
+-	//TODO: Implement this worker
++	struct xe_user *user = container_of(work, struct xe_user, delay_work.work);
++	struct xe_device *xe = user->xe;
++	struct xe_file *xef;
++	struct xe_exec_queue *q;
++
++	/*
++	 * The GPU work period event requires the following parameters
++	 *
++	 * gpuid:           GPU index in case the platform has more than one GPU
++	 * uid:             user id of the app
++	 * start_time:      start time for the sampling period in nanosecs
++	 * end_time:        end time for the sampling period in nanosecs
++	 * active_duration: Total runtime in nanosecs for this uid in
++	 *                  the current sampling period.
++	 */
++	u32 gpuid = 0, uid = user->uid, id = user->id;
++	u64 start_time, end_time, active_duration;
++	u64 last_active_duration, last_timestamp;
++	unsigned long i;
++
++	mutex_lock(&user->lock);
++
++	// Save the last recorded active duration and timestamp
++	last_active_duration = user->active_duration_ns;
++	last_timestamp = user->last_timestamp_ns;
++
++	if (xe_pm_runtime_get_if_active(xe)) {
++
++		list_for_each_entry(xef, &user->filelist, user_link) {
++
++			wait_var_event(&xef->exec_queue.pending_removal,
++			!atomic_read(&xef->exec_queue.pending_removal));
++
++			/* Accumulate all the exec queues from this file */
++			mutex_lock(&xef->exec_queue.lock);
++			xa_for_each(&xef->exec_queue.xa, i, q) {
++				xe_exec_queue_get(q);
++				mutex_unlock(&xef->exec_queue.lock);
++
++				xe_exec_queue_update_run_ticks(q);
++
++				mutex_lock(&xef->exec_queue.lock);
++				xe_exec_queue_put(q);
++			}
++			mutex_unlock(&xef->exec_queue.lock);
++			user->active_duration_ns += xef->active_duration_ns;
++		}
++
++		xe_pm_runtime_put(xe);
++
++		start_time = last_timestamp + 1;
++		end_time = ktime_get_raw_ns();
++		active_duration = user->active_duration_ns - last_active_duration;
++		trace_gpu_work_period(gpuid, uid, start_time, end_time, active_duration);
++		user->last_timestamp_ns = end_time;
++		xe_user_put(user);
++	}
++
++	mutex_unlock(&user->lock);
++
++	schedule_next_work(xe, id);
+ }
  
-@@ -39,7 +40,6 @@ struct xe_user *xe_user_alloc(void)
+ /**
+@@ -38,9 +116,9 @@ static struct xe_user *xe_user_alloc(void)
+ 		return NULL;
+ 
  	kref_init(&user->refcount);
- 	mutex_init(&user->filelist_lock);
+-	mutex_init(&user->filelist_lock);
++	mutex_init(&user->lock);
  	INIT_LIST_HEAD(&user->filelist);
--	//TODO: Add a hook into xe device
- 	INIT_WORK(&user->work, work_period_worker);
+-	INIT_WORK(&user->work, work_period_worker);
++	INIT_DELAYED_WORK(&user->delay_work, xe_work_period_worker);
  	return user;
  }
-@@ -54,6 +54,78 @@ void __xe_user_free(struct kref *kref)
- {
- 	struct xe_user *user =
- 		container_of(kref, struct xe_user, refcount);
-+	struct xe_device *xe = user->xe;
-+	void *lookup;
  
-+	mutex_lock(&xe->work_period.lock);
-+	lookup = xa_erase(&xe->work_period.users, user->id);
-+	xe_assert(xe, lookup == user);
-+	mutex_unlock(&xe->work_period.lock);
+@@ -120,12 +198,49 @@ int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid)
+ 
+ 		user->id = idx;
+ 		drm_dev_get(&xe->drm);
 +
-+	drm_dev_put(&user->xe->drm);
- 	kfree(user);
++		xe_user_get(user);
++		if (!schedule_delayed_work(&user->delay_work,
++					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
++			xe_user_put(user);
+ 	}
+ 
+-	mutex_lock(&user->filelist_lock);
++	mutex_lock(&user->lock);
+ 	list_add(&xef->user_link, &user->filelist);
+-	mutex_unlock(&user->filelist_lock);
++	mutex_unlock(&user->lock);
+ 	xef->user = user;
+ 
+ 	return 0;
  }
 +
-+static struct xe_user *xe_user_lookup(struct xe_device *xe, u32 uid)
++void xe_user_cancel_workers(struct xe_device *xe)
 +{
 +	struct xe_user *user = NULL;
-+	unsigned long i;
++	unsigned long i = 0;
 +
 +	mutex_lock(&xe->work_period.lock);
 +	xa_for_each(&xe->work_period.users, i, user) {
-+		if (user->uid == uid) {
-+			xe_user_get(user);
-+			mutex_unlock(&xe->work_period.lock);
-+			return user;
++		if (user && xe_user_get_unless_zero(user)) {
++			cancel_delayed_work_sync(&user->delay_work);
++			xe_user_put(user);
 +		}
 +	}
 +	mutex_unlock(&xe->work_period.lock);
-+
-+	return NULL;
 +}
 +
-+int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
++void xe_user_resume_workers(struct xe_device *xe)
 +{
 +	struct xe_user *user = NULL;
-+	int ret;
-+	u32 idx;
-+	/*
-+	 * Check if the calling process/uid has already been registered
-+	 * with the xe device during a previous open call. If so then
-+	 * take a reference to this xe user and add this xe file to the
-+	 * filelist belonging to this xe user
-+	 */
-+	user = xe_user_lookup(xe, uid);
-+	if (!user) {
-+		/*
-+		 * We couldn't find an existing xe user for the calling process.
-+		 * Allocate a new struct xe_user and register it with this xe
-+		 * device
-+		 */
-+		user = xe_user_alloc();
-+		if (!user)
-+			return -ENOMEM;
++	unsigned long i = 0;
 +
-+
-+		user->uid = uid;
-+		user->last_timestamp_ns = ktime_get_raw_ns();
-+		user->xe = xe;
-+
-+		mutex_lock(&xe->work_period.lock);
-+		ret = xa_alloc(&xe->work_period.users, &idx, user, xa_limit_32b, GFP_KERNEL);
-+		mutex_unlock(&xe->work_period.lock);
-+
-+		if (ret < 0)
-+			return ret;
-+
-+		user->id = idx;
-+		drm_dev_get(&xe->drm);
++	mutex_lock(&xe->work_period.lock);
++	xa_for_each(&xe->work_period.users, i, user) {
++		if (user && xe_user_get_unless_zero(user)) {
++			if (!schedule_delayed_work(&user->delay_work,
++					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
++				xe_user_put(user);
++		}
 +	}
-+
-+	mutex_lock(&user->filelist_lock);
-+	list_add(&xef->user_link, &user->filelist);
-+	mutex_unlock(&user->filelist_lock);
-+	xef->user = user;
-+
-+	return 0;
++	mutex_unlock(&xe->work_period.lock);
 +}
++
 diff --git a/drivers/gpu/drm/xe/xe_user.h b/drivers/gpu/drm/xe/xe_user.h
-index e52f66d3f3b0..ec4c0f2b862c 100644
+index ec4c0f2b862c..fc976beed2ad 100644
 --- a/drivers/gpu/drm/xe/xe_user.h
 +++ b/drivers/gpu/drm/xe/xe_user.h
-@@ -8,8 +8,12 @@
- 
- #include <linux/kref.h>
- #include <linux/list.h>
-+#include <linux/mutex.h>
+@@ -11,9 +11,11 @@
+ #include <linux/mutex.h>
  #include <linux/workqueue.h>
  
-+#include "xe_device.h"
-+
+-#include "xe_device.h"
++#include "xe_device_types.h"
+ 
+ 
++#define XE_WORK_PERIOD_INTERVAL 500
 +
  /**
   * This is a per process/user id structure for a xe device
   * client. It is allocated when a new process/app opens the
-@@ -43,6 +47,11 @@ struct xe_user {
- 	 */
- 	struct work_struct work;
+@@ -32,9 +34,9 @@ struct xe_user {
+ 	struct xe_device *xe;
  
-+	/**
-+	 * @id: index of this user into the xe device users array
-+	 */
-+	u32 id;
-+
  	/**
- 	 * @uid: user id for this xe_user
+-	 * @filelist_lock: lock protecting the filelist
++	 * @filelist_lock: lock protecting this structure
  	 */
-@@ -61,7 +70,8 @@ struct xe_user {
- 	u64 last_timestamp_ns;
- };
+-	struct mutex filelist_lock;
++	struct mutex lock;
  
--struct xe_user *xe_user_alloc(void);
-+int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid);
+ 	/**
+ 	 * @filelist: list of xe files belonging to this xe user
+@@ -45,7 +47,7 @@ struct xe_user {
+ 	 * @work: work to emit the gpu work period event for this
+ 	 * xe user
+ 	 */
+-	struct work_struct work;
++	struct delayed_work delay_work;
+ 
+ 	/**
+ 	 * @id: index of this user into the xe device users array
+@@ -72,6 +74,17 @@ struct xe_user {
+ 
+ int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid);
+ 
++void xe_user_cancel_workers(struct xe_device *xe);
 +
++void xe_user_resume_workers(struct xe_device *xe);
++
++static inline struct xe_user *
++xe_user_get_unless_zero(struct xe_user *user)
++{
++	if (kref_get_unless_zero(&user->refcount))
++		return user;
++	return NULL;
++}
  
  static inline struct xe_user *
  xe_user_get(struct xe_user *user)
