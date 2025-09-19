@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A356ECAC592
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F259CAC5A9
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66C9810E975;
-	Fri, 19 Sep 2025 09:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2927F10E97A;
+	Fri, 19 Sep 2025 09:52:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c66ojNve";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YXi0sio/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F43910E975;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB48F10E975;
  Fri, 19 Sep 2025 09:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758275544; x=1789811544;
+ t=1758275545; x=1789811545;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oY5Y1xvKP/ZFmBGgZJwBtVxt967uqApJrSfoNMELB+U=;
- b=c66ojNvepKwoq5OBAqKTpJDhNrGubiuGFtEXZq0bFGNrnSwuwFAL0MZ8
- avW8lOxdhsa+A/83RNMbODLfe1pBub8oteigSodIwE7EdcE2HpCBcVsx5
- UoFWOFTDA4XM19bN4muP9UxPnYE6w8ZbHHE4/tPA1abDv8OgbqS2/PYPz
- 8azWBp1P3QevmaTADpUFF9TLJY3XW/OY9HqMo+Xi8KTcoSEbHib0AMmhj
- ATp5/jXWz5yWo1lJPJjzA5b9NVuBu0An9WM6UHB6PfNiApRkwGf6QYtaB
- YyKooqPI0E0pBGwwLpqNFcVeEXYDc6TOG5jUR3sKZIQljtTY73LT4S7Tc A==;
-X-CSE-ConnectionGUID: pAWEm1oQSYuhmpXYkDYrDQ==
-X-CSE-MsgGUID: 4KtoNY2YTUGx9RxGcxS0Vw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316165"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316165"
+ bh=ehsMu9aWoozWjVzPrnus81GSuXQ/dHO3m6APN6FKYm4=;
+ b=YXi0sio/4+3x9iOlgMjN5l0me+4fqo/Kxn44VyrKNd69n+lE4AWCEFqt
+ Ep1Ki2bkkV7QrIlleHPSb1cMPJW63p+hgE/Zcf84//WO4TWczIjDq2Hy1
+ HFVMX21ZNUTxyqM8TKxhNNyoSDAJgmq05IIfUFvxDyQUyXl0L/vND5Gof
+ Py85G3R7Wex9iJ4ArHGrsQJg/xemtubP1SqFSNQW3pBy36t0zmTVJupKP
+ 2w8trLVFo7ZpTQA0FP09HYbIkXksA9fjtWTHpmmGNqzdum77WbGpybqfN
+ uXkZtne0g+5AmxC4kP9vOf/L5rlGaqZU2YBlrI/kZpUD5LpjoOCNG9uo5 Q==;
+X-CSE-ConnectionGUID: 5l41SKkLQAetIDha+wOz0w==
+X-CSE-MsgGUID: fX1XeWIbQna6JaJFlHWBtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316186"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316186"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:06 -0700
-X-CSE-ConnectionGUID: 0GRq3SYbSeSg40fcyH0QzA==
-X-CSE-MsgGUID: Ur1nwOWFTTCirEt1Y6uLgg==
+ 19 Sep 2025 02:52:22 -0700
+X-CSE-ConnectionGUID: wZ2crhtdTw6Rl+7jfREADA==
+X-CSE-MsgGUID: K0RHjsFwTCGM9+re21F/Tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554255"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554307"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.222])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:03 -0700
+ 19 Sep 2025 02:52:19 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 2/6] drm/i915/irq: initialize gen2_imr_mask in terms of
- enable_mask
-Date: Fri, 19 Sep 2025 12:51:45 +0300
-Message-ID: <254c7c337ba86015e928349724324fbc834fee8a.1758275448.git.jani.nikula@intel.com>
+Subject: [PATCH 5/6] drm/i915/irq: change ILK irq handling order
+Date: Fri, 19 Sep 2025 12:51:48 +0300
+Message-ID: <76190090bb64597359802dfdf0e925fe478cd0d5.1758275448.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758275448.git.jani.nikula@intel.com>
 References: <cover.1758275448.git.jani.nikula@intel.com>
@@ -71,80 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of initializing gen2_imr_mask and enable_mask independently, use
-the latter for initializing the former. This also highlights the
-differences in the masks, i.e. what's set to enable_mask after it's been
-used to initialize gen2_imr_mask.
+Handle GEN6_PMIIR before DEIIR. This allows us to further refactor
+display irq handling, but separate this change to give us a clean bisect
+landing commit for the unlikely case that this makes a difference.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 34 ++++++++++++---------------------
- 1 file changed, 12 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 56f231591a3e..04de02fc08d9 100644
+index 90174ce9195c..312f7e42931a 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -895,26 +895,20 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
+@@ -449,6 +449,15 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
+ 		ret = IRQ_HANDLED;
+ 	}
  
- 	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i9xx_error_mask(dev_priv));
++	if (GRAPHICS_VER(i915) >= 6) {
++		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
++		if (pm_iir) {
++			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
++			gen6_rps_irq_handler(&to_gt(i915)->rps, pm_iir);
++			ret = IRQ_HANDLED;
++		}
++	}
++
+ 	de_iir = raw_reg_read(regs, DEIIR);
+ 	if (de_iir) {
+ 		raw_reg_write(regs, DEIIR, de_iir);
+@@ -459,15 +468,6 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
+ 		ret = IRQ_HANDLED;
+ 	}
  
--	dev_priv->gen2_imr_mask =
--		~(I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
--		  I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
--		  I915_MASTER_ERROR_INTERRUPT);
--
- 	enable_mask =
- 		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
- 		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
--		I915_MASTER_ERROR_INTERRUPT |
--		I915_USER_INTERRUPT;
-+		I915_MASTER_ERROR_INTERRUPT;
- 
--	if (DISPLAY_VER(display) >= 3) {
--		dev_priv->gen2_imr_mask &= ~I915_ASLE_INTERRUPT;
-+	if (DISPLAY_VER(display) >= 3)
- 		enable_mask |= I915_ASLE_INTERRUPT;
+-	if (GRAPHICS_VER(i915) >= 6) {
+-		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
+-		if (pm_iir) {
+-			raw_reg_write(regs, GEN6_PMIIR, pm_iir);
+-			gen6_rps_irq_handler(&to_gt(i915)->rps, pm_iir);
+-			ret = IRQ_HANDLED;
+-		}
 -	}
- 
--	if (HAS_HOTPLUG(display)) {
--		dev_priv->gen2_imr_mask &= ~I915_DISPLAY_PORT_INTERRUPT;
-+	if (HAS_HOTPLUG(display))
- 		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
--	}
-+
-+	dev_priv->gen2_imr_mask = ~enable_mask;
-+
-+	enable_mask |= I915_USER_INTERRUPT;
- 
- 	gen2_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->gen2_imr_mask, enable_mask);
- 
-@@ -1016,20 +1010,16 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
- 
- 	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i965_error_mask(dev_priv));
- 
--	dev_priv->gen2_imr_mask =
--		~(I915_ASLE_INTERRUPT |
--		  I915_DISPLAY_PORT_INTERRUPT |
--		  I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
--		  I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
--		  I915_MASTER_ERROR_INTERRUPT);
 -
- 	enable_mask =
- 		I915_ASLE_INTERRUPT |
- 		I915_DISPLAY_PORT_INTERRUPT |
- 		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
- 		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
--		I915_MASTER_ERROR_INTERRUPT |
--		I915_USER_INTERRUPT;
-+		I915_MASTER_ERROR_INTERRUPT;
-+
-+	dev_priv->gen2_imr_mask = ~enable_mask;
-+
-+	enable_mask |= I915_USER_INTERRUPT;
- 
- 	if (IS_G4X(dev_priv))
- 		enable_mask |= I915_BSD_USER_INTERRUPT;
+ 	raw_reg_write(regs, DEIER, de_ier);
+ 	if (sde_ier)
+ 		raw_reg_write(regs, SDEIER, sde_ier);
 -- 
 2.47.3
 
