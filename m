@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8FDDCAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 17:34:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10B7DCAC592
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 18:08:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5055A10E252;
-	Fri, 19 Sep 2025 17:34:02 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8164210E252;
- Fri, 19 Sep 2025 17:34:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4365131714688083538=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/xe3=3A_Restrict_PT?=
- =?utf-8?q?L_intel=5Fencoder=5Fis=5Fc10phy=28=29_to_only_PHY_A_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F5310EA65;
+	Fri, 19 Sep 2025 18:08:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFQCigIc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0FC910E252;
+ Fri, 19 Sep 2025 18:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758305323; x=1789841323;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5n9Hkxn0ykBN/ZaGeLBBww3ghE3/t2cV4g2hFZXhPEU=;
+ b=kFQCigIcwP4QpASwFmoZUF55Hf4wGsoTOOLu8TAfIf4+sRuGztS0c0AA
+ slbhU0mmAd/YO0uIzjnGlTPu7EBvZ5tinsfs5IvebOArJ254zE3uudIUH
+ cTKjJI582952qyEyfWyTvvS9A/yUyXszTaN9JGX+UQmQ795Qm3Vj22dPw
+ z8QD/hzcUDrRvbzAOGn0lMx2loplzWCSpbQlECRxKRNb/VaAvT7AdIT+I
+ A2O9WJvQJPSjJrUDdI1SUgNPNpYPUExQkPc6jtEheXTqRxvKHldtyWgnb
+ MtqCfsAc1MRArDH1nJIOAlZTwQ7eegRrve6RfVazNnb0QrxD2/DrlgDrP A==;
+X-CSE-ConnectionGUID: lVEfDPlSQBqDBMAVMnoQFA==
+X-CSE-MsgGUID: hcesZGJrRRW6NUDT30U75Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="64458710"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="64458710"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:08:42 -0700
+X-CSE-ConnectionGUID: EkKsB8yHR4emJmxbJhXGcA==
+X-CSE-MsgGUID: SBC6g0J3RPWkhpcf/fHXCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="181019094"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.112])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 11:08:42 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Sep 2025 17:34:00 -0000
-Message-ID: <175830324050.348907.13284680051396821798@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250919162233.1624905-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20250919162233.1624905-1-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH 0/3] drm/i915: Fix skl+ watermark linetime stuff
+Date: Fri, 19 Sep 2025 21:08:35 +0300
+Message-ID: <20250919180838.10498-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +64,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4365131714688083538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Fix the linetime calculation in the skl+ watermark code. The current
+code is wrong for plane downscalign use cases.
 
-Series: drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only PHY A (rev2)
-URL   : https://patchwork.freedesktop.org/series/154233/
-State : success
+Ville Syrjälä (3):
+  drm/i915: Use the the correct pixel rate to compute wm line time
+  drm/i915: Deobfuscate wm linetime calculation
+  drm/i915: s/intel_get_linetime_us()/skl_wm_linetime_us()/
 
-== Summary ==
+ drivers/gpu/drm/i915/display/skl_watermark.c | 25 ++++----------------
+ 1 file changed, 5 insertions(+), 20 deletions(-)
 
-CI Bug Log - changes from xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c_BAT -> xe-pw-154233v2_BAT
-====================================================
+-- 
+2.49.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154233v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-1:          [FAIL][3] ([Intel XE#5507]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
-
-
-Build changes
--------------
-
-  * Linux: xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c -> xe-pw-154233v2
-
-  IGT_8544: b7d758d47000f2092226f4bf68e9299883cf02de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c: 6279a928fb7ed7a69e44171637abf2bf50668a9c
-  xe-pw-154233v2: 154233v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/index.html
-
---===============4365131714688083538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only PHY A (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154233/">https://patchwork.freedesktop.org/series/154233/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c_BAT -&gt; xe-pw-154233v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154233v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v2/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c -&gt; xe-pw-154233v2</li>
-</ul>
-<p>IGT_8544: b7d758d47000f2092226f4bf68e9299883cf02de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3802-6279a928fb7ed7a69e44171637abf2bf50668a9c: 6279a928fb7ed7a69e44171637abf2bf50668a9c<br />
-  xe-pw-154233v2: 154233v2</p>
-
-</body>
-</html>
-
---===============4365131714688083538==--
