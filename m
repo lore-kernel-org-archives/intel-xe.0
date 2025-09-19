@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7A34CAC5AC
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 14:39:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD3CBCAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 14:39:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E54310EA2E;
-	Fri, 19 Sep 2025 14:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4A910EA47;
+	Fri, 19 Sep 2025 14:39:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fUSq5ccX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cCEUduDr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A54FC10EA3D;
- Fri, 19 Sep 2025 14:39:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D401210EA32;
+ Fri, 19 Sep 2025 14:39:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758292762; x=1789828762;
+ t=1758292765; x=1789828765;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DLiodSWTn0SXvuc/iziEG3Xeo6ZMQmwtltHsnT5OBE8=;
- b=fUSq5ccXvEWeoD84sUIXvA88eSETvp8M9VVi8dV7pKBRDkUGovRxNStQ
- +ol1a7usCJ+vlifat6W8brSC1FpidexU4Wpd9o0ecs5922HyzPJzwUIn2
- e0gegC1qOAsxwDq6Z6BewV4cogUz9rCQo4yADXWtb2IcHIKa4yrmiIsaq
- yczV215ABPdjHqan2WctWGHwbRpw2v1SNVDOeUHKOxliBvVknRi3LCK+D
- zVDR9OL/mg5npqCciZZC3cijXOzFGlmKh7F7EzZO9wdBMfoleem5hbLUI
- AvP+gltpieppf4wsp7zciETkyF+HHxCXfvdETg5pJ4EN0c+zjBko4mP/8 A==;
-X-CSE-ConnectionGUID: Tksh1RXYTXebhPVTy5BCnA==
-X-CSE-MsgGUID: 8/9X7sxIR66WJpvKzUmbWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="59858312"
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="59858312"
+ bh=11uOjgqCwp8kLjluv7ozUJJlSlNnyn2vnFgDC3Bw3FA=;
+ b=cCEUduDrKncE5kY3QQ7qjPNaJnqZ/eOyNWNdx0828cfIfD4H1hTr1Km2
+ s+LvyaEqGxyCZWq/DVETbF1OsDkrNSMlPsL/OCpqZqgjO7fSGgd/dQnlP
+ HnXZ0NFetLS/sa1WNcPUxPzzV0KYd567bCHlMT4jTw7wSNeHW89EgEVQe
+ c73051JlRfbWvyvDtySJHoJuUPLnrnnWC1QDdsoBsz4YztB6Uae8diRBp
+ AeZqqEYIABFOq6IrcW2mNhsceVMtWrYsN1vtOWAR+Nyvmgt85W5olofFD
+ qPxUZguojz61o8RzuH+Tjx+na7YKC36RxSXYKzh5dr4lyZzulydxZMAVp A==;
+X-CSE-ConnectionGUID: wSvHBKG9QdSpK28R3JsuVQ==
+X-CSE-MsgGUID: iDXJuC5tSNW/kAHuasvqFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="59858321"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="59858321"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 07:39:21 -0700
-X-CSE-ConnectionGUID: rsIUOfblQkqir7yhDU5/ag==
-X-CSE-MsgGUID: IMvArRTMRCm4ghSkXvNzEg==
+ 19 Sep 2025 07:39:25 -0700
+X-CSE-ConnectionGUID: Iiv6ix+uRrmKK93gNMrYpA==
+X-CSE-MsgGUID: YUyWQgRhQr21D3HwRL6VjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="199553195"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="199553211"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa002.fm.intel.com with ESMTP; 19 Sep 2025 07:39:19 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 19 Sep 2025 07:39:23 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [RESEND 08/10] drm/i915/display: Set and get the casf config
-Date: Fri, 19 Sep 2025 20:04:16 +0530
-Message-Id: <20250919143418.3102605-9-nemesa.garg@intel.com>
+Subject: [RESEND 10/10] drm/i915/display: Expose sharpness strength property
+Date: Fri, 19 Sep 2025 20:04:18 +0530
+Message-Id: <20250919143418.3102605-11-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250919143418.3102605-1-nemesa.garg@intel.com>
 References: <20250919143418.3102605-1-nemesa.garg@intel.com>
@@ -67,79 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Set the configuration for CASF and capture it
-in crtc_state and get the configuration by
-reading back. Add the support to compare the
-software and hardware state of CASF.
+Expose the drm crtc sharpness strength property which will enable
+or disable the sharpness/casf based on user input. With this user
+can set/update the strength of the sharpness or casf filter.
 
 v2: Update subject[Ankit]
-v3: Add the state compare[Ankit]
 
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  7 +++++++
- drivers/gpu/drm/i915/display/skl_scaler.c    | 18 ++++++++++++------
- 2 files changed, 19 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6c3f6207143c..6a4d0fe4d6e5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4203,6 +4203,10 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 		return ret;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index a187db6df2d3..4102087aee62 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -390,6 +390,9 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
  
-+	ret = intel_casf_compute_config(crtc_state);
-+	if (ret)
-+		return ret;
+ 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
+ 
++	if (HAS_CASF(display))
++		drm_crtc_create_sharpness_strength_property(&crtc->base);
 +
- 	if (DISPLAY_VER(display) >= 9) {
- 		if (intel_crtc_needs_modeset(crtc_state) ||
- 		    intel_crtc_needs_fastset(crtc_state) ||
-@@ -5265,6 +5269,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	return 0;
  
- 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
- 		PIPE_CONF_CHECK_I(pixel_rate);
-+		PIPE_CONF_CHECK_BOOL(hw.casf_params.casf_enable);
-+		PIPE_CONF_CHECK_I(hw.casf_params.win_size);
-+		PIPE_CONF_CHECK_I(hw.casf_params.strength);
- 
- 		PIPE_CONF_CHECK_X(gamma_mode);
- 		if (display->platform.cherryview)
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 9cab3f9dc147..447576e09792 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -981,16 +981,22 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 			continue;
- 
- 		id = i;
--		crtc_state->pch_pfit.enabled = true;
-+
-+		if (HAS_CASF(display) && id == 1)
-+			intel_casf_sharpness_get_config(crtc_state);
-+
-+		if (!crtc_state->hw.casf_params.casf_enable)
-+			crtc_state->pch_pfit.enabled = true;
- 
- 		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
- 		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
- 
--		drm_rect_init(&crtc_state->pch_pfit.dst,
--			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
--			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
--			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
--			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
-+		if (!crtc_state->hw.casf_params.casf_enable)
-+			drm_rect_init(&crtc_state->pch_pfit.dst,
-+				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-+				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-+				      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-+				      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
- 
- 		scaler_state->scalers[i].in_use = true;
- 		break;
+ fail:
 -- 
 2.25.1
 
