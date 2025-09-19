@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFC06CAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 19:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB4ACCAC592
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 19:12:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71F5210EA7D;
-	Fri, 19 Sep 2025 19:12:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E77C10EA7F;
+	Fri, 19 Sep 2025 19:12:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sh88fwKE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5JVTTso";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3838B10EA78
- for <intel-xe@lists.freedesktop.org>; Fri, 19 Sep 2025 19:12:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96FA610EA7F
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 Sep 2025 19:12:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758309124; x=1789845124;
+ t=1758309126; x=1789845126;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sqodDSXOW1ZfRNXDbhItfARd/WvwDJPeeIWKJwVtW6s=;
- b=Sh88fwKENVX2dw9l2mdGr+K39GLl6QYcAhMfRwPH6Wg2FFhNRGa00Syc
- 9h1xND4f49pTtrJ1Kp6bDxnnVslm0iCSmTR0+r7/3VKZwutgJydkFUN2V
- GFmvLyJmF5gL3z18cgTduVOwqvNw7FfBnCRxE7HGit62AvaRfULlJnO3b
- yJ6W3wOh5K6aE5q7ltzOiQIhXhNGXfZN/wbF/GaVjU8weXyfR951AyA/C
- T9LfEVI2ArZf4ZqocY2OKQxCq1pi7E9M+t42EihwTFCUq7Og42g9oDTjj
- Eq84Ze19v+Duvc9bOtJM2mb5e74abJcTqQocUFSlJc9s9ea0+q6OCRILC g==;
-X-CSE-ConnectionGUID: XtDMbKsAQqqVV9LQHpEgsw==
-X-CSE-MsgGUID: l+UvJadQTTy8XmdI4lsTwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60579535"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60579535"
+ bh=qljS75dl3ofL6DGjSbIelO+EksczFPpYbXB1z85PTTQ=;
+ b=O5JVTTsoZpExvRxqUpijcRmb5wov1aCE/Bso5gjB6pisn1oB5UF4YG5/
+ SIUR5BWYN71diIi+HD5sgZ7NDhSaPgEvN+3LB2y/kWpKUpV0K/h/Op1vE
+ gv/+8EOnJBOyVbSsPos/qqPpSRDzhj7MhZ00t/M7hvI18hsRCRGlOBgDy
+ 6tFaYFVHtYRFWROFQiDgbHc4IyZT1Qb1Ma96yXQKrMqxHPf4XoKSDEHNx
+ f9PFVIm9sT40O5HcstqsARjin+geRXAp62q8ETIiZJzg/orufBunZY0DM
+ hKf6CkWZmfAZ4efAZ/jIh7EqxPICO5nEN4KjiusPs/kJy7+Y0Ad2xmNms w==;
+X-CSE-ConnectionGUID: 5sbOzPt6R/uTkvh0TteLVw==
+X-CSE-MsgGUID: 12oTqK28RnWBSmwaCrNN2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60579536"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60579536"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 12:12:04 -0700
-X-CSE-ConnectionGUID: +leFVE9oTdSqURiUk7NKaQ==
-X-CSE-MsgGUID: hjTyFCDcS9GVrbXNo2y//A==
+ 19 Sep 2025 12:12:06 -0700
+X-CSE-ConnectionGUID: vRWnBiHUQf26QJUhQCzivg==
+X-CSE-MsgGUID: wPYyhhCVRKa0ShL2lMRgug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175530202"
+X-IronPort-AV: E=Sophos;i="6.18,278,1751266800"; d="scan'208";a="175530206"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by fmviesa007.fm.intel.com with ESMTP; 19 Sep 2025 12:12:02 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 19 Sep 2025 12:12:04 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
  jani.nikula@intel.com, Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v3 3/8] drm/xe: Add a trace point for GPU work period
-Date: Fri, 19 Sep 2025 18:38:03 +0000
-Message-ID: <20250919183817.52325-4-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v3 4/8] drm/xe: Modify xe_exec_queue_update_run_ticks
+Date: Fri, 19 Sep 2025 18:38:04 +0000
+Message-ID: <20250919183817.52325-5-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250919183817.52325-1-aakash.deep.sarkar@intel.com>
 References: <20250919183817.52325-1-aakash.deep.sarkar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,104 +68,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GPU work period event is required to have the following format:
+For GPU work period event we need to record the run time of a
+context on the GPU in nanosecs. In the present xe driver code,
+we only record the run time in clock ticks and separately for
+each engine class.
 
-Defines the structure of the kernel tracepoint:
-/sys/kernel/tracing/events/power/gpu_work_period
-
-A value that uniquely identifies the GPU within the system.
-  uint32_t gpu_id;
-
-The UID of the application (i.e. persistent, unique ID of the Android
-app) that submitted work to the GPU.
-  uint32_t uid;
-
-The start time of the period in nanoseconds. The clock must be
-CLOCK_MONOTONIC_RAW, as returned by the ktime_get_raw_ns(void) function.
-  uint64_t start_time_ns;
-
-The end time of the period in nanoseconds. The clock must be
-CLOCK_MONOTONIC_RAW, as returned by the ktime_get_raw_ns(void) function.
-  uint64_t end_time_ns;
-
-The amount of time the GPU was running GPU work for |uid| during the
-period, in nanoseconds, without double-counting parallel GPU work for the
-same |uid|. For example, this might include the amount of time the GPU
-spent performing shader work (vertex work, fragment work, etc.) for
-|uid|.
-  uint64_t total_active_duration_ns;
+So, we are adding a uint64 variable |active_duration_ns| in
+the xe file structure where we can record the cumulative
+run time in ns of all the engines for this context. The
+intent here is to add up the |active_duration_ns| in
+all the xe files belonging to a given user id to derive
+the run time for that user id.
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- include/trace/gpu_work_period.h | 59 +++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 include/trace/gpu_work_period.h
+ drivers/gpu/drm/xe/xe_device_types.h | 3 +++
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 7 +++++++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/include/trace/gpu_work_period.h b/include/trace/gpu_work_period.h
-new file mode 100644
-index 000000000000..e06467625705
---- /dev/null
-+++ b/include/trace/gpu_work_period.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a6c361db11d9..e6ecfb3f7f38 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -678,6 +678,9 @@ struct xe_file {
+ 	/** @run_ticks: hw engine class run time in ticks for this drm client */
+ 	u64 run_ticks[XE_ENGINE_CLASS_MAX];
+ 
++	/** @active_duration_ns: total run time in ns for this xe file */
++	u64 active_duration_ns;
 +
-+#undef TRACE_SYSTEM
-+#define TRACE_SYSTEM power
+ 	/** @client: drm client */
+ 	struct xe_drm_client *client;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 37b2b93b73d6..6eb34c62c779 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_clock.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -887,6 +888,8 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
+ {
+ 	struct xe_device *xe = gt_to_xe(q->gt);
+ 	struct xe_lrc *lrc;
++	struct xe_gt *gt = q->gt;
 +
-+#if !defined(_TRACE_GPU_WORK_PERIOD_H) || defined(TRACE_HEADER_MULTI_READ)
-+#define _TRACE_GPU_WORK_PERIOD_H
+ 	u64 old_ts, new_ts;
+ 	int idx;
+ 
+@@ -912,6 +915,10 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
+ 	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
+ 	q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
+ 
++	// Accumulate the runtime in nanosec for this queue into the xe file.
++	q->xef->active_duration_ns +=
++		xe_gt_clock_interval_to_ns(gt, (new_ts - old_ts));
 +
-+#include <linux/tracepoint.h>
-+
-+TRACE_EVENT(gpu_work_period,
-+
-+	TP_PROTO(
-+		u32 gpu_id,
-+		u32 uid,
-+		u64 start_time_ns,
-+		u64 end_time_ns,
-+		u64 total_active_duration_ns
-+	),
-+
-+	TP_ARGS(gpu_id, uid, start_time_ns, end_time_ns, total_active_duration_ns),
-+
-+	TP_STRUCT__entry(
-+		__field(u32, gpu_id)
-+		__field(u32, uid)
-+		__field(u64, start_time_ns)
-+		__field(u64, end_time_ns)
-+		__field(u64, total_active_duration_ns)
-+	),
-+
-+	TP_fast_assign(
-+		__entry->gpu_id = gpu_id;
-+		__entry->uid = uid;
-+		__entry->start_time_ns = start_time_ns;
-+		__entry->end_time_ns = end_time_ns;
-+		__entry->total_active_duration_ns = total_active_duration_ns;
-+	),
-+
-+	TP_printk("gpu_id=%u uid=%u start_time_ns=%llu end_time_ns=%llu total_active_duration_ns=%llu",
-+		__entry->gpu_id,
-+		__entry->uid,
-+		__entry->start_time_ns,
-+		__entry->end_time_ns,
-+		__entry->total_active_duration_ns)
-+);
-+
-+#endif /* _TRACE_GPU_WORK_PERIOD_H */
-+
-+/* This part must be outside protection */
-+
-+#undef TRACE_INCLUDE_FILE
-+#define TRACE_INCLUDE_FILE gpu_work_period
-+#undef TRACE_INCLUDE_PATH
-+#define TRACE_INCLUDE_PATH .
-+
-+#include <trace/define_trace.h>
+ 	drm_dev_exit(idx);
+ }
+ 
 -- 
 2.49.0
 
