@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B0CCAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 21:59:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E12C0CAC592
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 22:00:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2689510EA9E;
-	Fri, 19 Sep 2025 21:59:50 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 340D310EA9E;
- Fri, 19 Sep 2025 21:59:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F26A10EAA0;
+	Fri, 19 Sep 2025 22:00:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BJvTZluI";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E825810EA9E;
+ Fri, 19 Sep 2025 22:00:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758319240; x=1789855240;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=NoFM49/H64CEVeeYpQCZ3vzDof1Y63IuCl31vk5XvwM=;
+ b=BJvTZluIdnVVHrhZOzbo4WiBuCphfUvVKLZpCoMv1ncEjijHHws0FXoZ
+ xmgeXJ+7vD5OxpWTl1mR8+L8EWBXzYsOmwqKQaQjRl7gYC35UPY88Pu2W
+ 42S2C9WgEUzWAfcLJF6fh/HoT+fd2gT6EMBUIwSRnH0Q9uWxDt7W44NJJ
+ q+gHeGwmzyexWPu2vU1rbRv9gsVwRhX9F6nj32lgPk9k1judp4SD9HWVN
+ ELEorOgVRW8sMgEZF6Xsxfn7j1qw7Wfn1Qyza1AXWjpNnKB7t0UA+jNxJ
+ Y3Cph9bZPrbT703v9bsSyHXrZlzyuqcnU33cj+nO/4Av/hHfCNpVKMnaf g==;
+X-CSE-ConnectionGUID: bCd2Cke4R9qprNVpEuWwpA==
+X-CSE-MsgGUID: VXglCsn1SPefqttw7liZ4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11558"; a="70919487"
+X-IronPort-AV: E=Sophos;i="6.18,279,1751266800"; d="scan'208";a="70919487"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 15:00:39 -0700
+X-CSE-ConnectionGUID: QiGbDkB8TKiaQ66BD9Qw7g==
+X-CSE-MsgGUID: 9kNUb/VdRkKlpXkHFQck1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,279,1751266800"; d="scan'208";a="176378488"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2025 15:00:38 -0700
+Date: Sat, 20 Sep 2025 00:00:36 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v2 00/15] drm/i915: vlv clock cleanups
+In-Reply-To: <e64fbd1d681c404b964c8512f79b300e1c7f5767@intel.com>
+Message-ID: <bf910bfd-5653-0c75-bd8c-7488e66f5755@intel.com>
+References: <cover.1757688216.git.jani.nikula@intel.com>
+ <dc4baf0c-420b-3486-98bd-24c4c53b5b0b@intel.com>
+ <e64fbd1d681c404b964c8512f79b300e1c7f5767@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?b?4pyXIENJLmNoZWNrcGF0Y2g6IHdhcm5pbmcgZm9yIGRybS9pOTE1OiByZW5hbWUg?=
- =?utf-8?b?dmx2X2dldF9jY2tfY2xvY2soKSB0byB2bHZfY2xvY2tfZ2V0X2Njaygp?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 19 Sep 2025 21:59:48 -0000
-Message-ID: <175831918820.350138.659599111755948397@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250919215413.1006296-1-michal.grzelak@intel.com>
-In-Reply-To: <20250919215413.1006296-1-michal.grzelak@intel.com>
+Content-Type: multipart/mixed; boundary="8323329-986482476-1758319239=:1006184"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,42 +67,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Series: drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
-URL   : https://patchwork.freedesktop.org/series/154800/
-State : warning
+--8323329-986482476-1758319239=:1006184
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-== Summary ==
+On Thu, 18 Sep 2025, Jani Nikula wrote:
+> On Thu, 18 Sep 2025, Michał Grzelak <michal.grzelak@intel.com> wrote:
+>> Although I have just issued my r-b on the rest of the series, I would
+>> have one question. Can't we add on top of the series a separate commit
+>> with rename of vlv_get_cck_clock() into vlv_clock_get_cck()?  It would
+>> be more consistent with the rest of the function names in vlv_clock.c.
+>> Patch with what I am meaning is in the attachment.
+>
+> Thanks for the review, I've already merged the series. :)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-fbd08a78c3a3bb17964db2a326514c69c1dca660
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 28f5b3f2df9c84dec1d9266451ae82527c8fd0a1
-Author: Michał Grzelak <michal.grzelak@intel.com>
-Date:   Fri Sep 19 23:54:13 2025 +0200
+Right, overlooked it. Apologies for that.
+>
+> Your proposal makes sense, please send the patch!
+>
+If so, then the patch is accessible here [1].
 
-    drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
-    
-    Keep the convention of naming vlv_clock* instead of vlv_*_clock.
-    
-    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-+ /mt/dim checkpatch 6279a928fb7ed7a69e44171637abf2bf50668a9c drm-intel
-28f5b3f2df9c drm/i915: rename vlv_get_cck_clock() to vlv_clock_get_cck()
--:40: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#40: FILE: drivers/gpu/drm/i915/display/vlv_clock.c:70:
-+		display->vlv_clock.czclk_freq = vlv_clock_get_cck(drm, "czclk", CCK_CZ_CLOCK_CONTROL,
+BR,
+Michał
 
-total: 0 errors, 1 warnings, 0 checks, 38 lines checked
-
-
+[1] https://lore.kernel.org/intel-gfx/20250919215413.1006296-1-michal.grzelak@intel.com
+--8323329-986482476-1758319239=:1006184--
