@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 345E6CAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34E31CAC592
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:58:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF25210E980;
-	Fri, 19 Sep 2025 09:52:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DD3DLhcU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8A510E97E;
- Fri, 19 Sep 2025 09:52:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758275548; x=1789811548;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9sQM5WNyWrIPL8T9z7amjGI5BZlpPj0hB8pKU+hh+OU=;
- b=DD3DLhcURzn9IqCfSXiRcWKj+/vn7yT7Y5EXLiVWXCNJFhBzIEhnvZ9B
- lrxoy4MUznggiKbqfzvgu5teboi6Y2nZOXfS6iC51q1nPALpKur5R2uGD
- LDTFK/ffPrE5fhf8oaRRdiImhUWW0rxYXa67y4m5qK2wPKfogQgBbGhHT
- Z0tAVI3x0GaBy0ossJZaHoSeIWXOLx2uXIvWXX6T05XCG91jSOUhj3SDS
- tEqsbpYbP2ItRb+vDLg+/k2HIZCfGN4IObH+1zp0FFaTif9wslQTJ7fx2
- K71QILAeMBAfvgLXM6UqJOxx9NstY+jtjM61MIIH+AZwhlO3/cLzKX6Kd g==;
-X-CSE-ConnectionGUID: PE+T5Aa/QRSgFkvcV5C2dQ==
-X-CSE-MsgGUID: 3noO4ukvScOJUw3IaVJpHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316202"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316202"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:27 -0700
-X-CSE-ConnectionGUID: bcwh7zcMRzWlK7O2RqI9QA==
-X-CSE-MsgGUID: GIBZCVBzRaeUiWXgRqq70A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554320"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.222])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 6/6] drm/i915/irq: split ILK display irq handling
-Date: Fri, 19 Sep 2025 12:51:49 +0300
-Message-ID: <f549e6d2a50bcaf0a4ca559f867828357f3927aa.1758275448.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1758275448.git.jani.nikula@intel.com>
-References: <cover.1758275448.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECFF610E976;
+	Fri, 19 Sep 2025 09:58:34 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E43FC10E976;
+ Fri, 19 Sep 2025 09:58:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/irq=3A_display_i?=
+ =?utf-8?q?rq_refactoring?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 19 Sep 2025 09:58:32 -0000
+Message-ID: <175827591292.348078.6382962081408696993@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1758275448.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1758275448.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,170 +36,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split out display irq handling on ilk. Since the master IRQ enable is in
-DEIIR, we'll need to do this in two parts. First, add
-ilk_display_irq_master_disable() to disable master and south interrupts,
-and second, add (repurposed) ilk_display_irq_handler() to finish display
-irq handling.
+== Series Details ==
 
-It's not the prettiest thing you ever saw, but improves separation of
-display irq handling. And removes HAS_PCH_NOP() and DISPLAY_VER() checks
-from core irq code.
+Series: drm/i915/irq: display irq refactoring
+URL   : https://patchwork.freedesktop.org/series/154763/
+State : warning
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_irq.c  | 48 ++++++++++++++++++-
- .../gpu/drm/i915/display/intel_display_irq.h  |  4 +-
- drivers/gpu/drm/i915/i915_irq.c               | 30 ++----------
- 3 files changed, 52 insertions(+), 30 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 4d51900123ea..c2320c1718f7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -872,7 +872,7 @@ static void ilk_gtt_fault_irq_handler(struct intel_display *display)
- 	}
- }
- 
--void ilk_display_irq_handler(struct intel_display *display, u32 de_iir)
-+static void _ilk_display_irq_handler(struct intel_display *display, u32 de_iir)
- {
- 	enum pipe pipe;
- 	u32 hotplug_trigger = de_iir & DE_DP_A_HOTPLUG;
-@@ -923,7 +923,7 @@ void ilk_display_irq_handler(struct intel_display *display, u32 de_iir)
- 		ilk_display_rps_irq_handler(display);
- }
- 
--void ivb_display_irq_handler(struct intel_display *display, u32 de_iir)
-+static void _ivb_display_irq_handler(struct intel_display *display, u32 de_iir)
- {
- 	enum pipe pipe;
- 	u32 hotplug_trigger = de_iir & DE_DP_A_HOTPLUG_IVB;
-@@ -972,6 +972,50 @@ void ivb_display_irq_handler(struct intel_display *display, u32 de_iir)
- 	}
- }
- 
-+void ilk_display_irq_master_disable(struct intel_display *display, u32 *de_ier, u32 *sde_ier)
-+{
-+	/* disable master interrupt before clearing iir  */
-+	*de_ier = intel_de_read(display, DEIER);
-+	intel_de_write(display, DEIER, *de_ier & ~DE_MASTER_IRQ_CONTROL);
-+
-+	/*
-+	 * Disable south interrupts. We'll only write to SDEIIR once, so further
-+	 * interrupts will be stored on its back queue, and then we'll be able
-+	 * to process them after we restore SDEIER (as soon as we restore it,
-+	 * we'll get an interrupt if SDEIIR still has something to process due
-+	 * to its back queue).
-+	 */
-+	if (!HAS_PCH_NOP(display)) {
-+		*sde_ier = intel_de_read(display, SDEIER);
-+		intel_de_write(display, SDEIER, 0);
-+	} else {
-+		*sde_ier = 0;
-+	}
-+}
-+
-+bool ilk_display_irq_handler(struct intel_display *display, u32 de_ier, u32 sde_ier)
-+{
-+	u32 de_iir;
-+	bool handled = false;
-+
-+	de_iir = intel_de_read(display, DEIIR);
-+	if (de_iir) {
-+		intel_de_write(display, DEIIR, de_iir);
-+		if (DISPLAY_VER(display) >= 7)
-+			_ivb_display_irq_handler(display, de_iir);
-+		else
-+			_ilk_display_irq_handler(display, de_iir);
-+		handled = true;
-+	}
-+
-+	intel_de_write(display, DEIER, de_ier);
-+
-+	if (sde_ier)
-+		intel_de_write(display, SDEIER, sde_ier);
-+
-+	return handled;
-+}
-+
- static u32 gen8_de_port_aux_mask(struct intel_display *display)
- {
- 	u32 mask;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index e44d88e0d7e7..778195bd6052 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -47,8 +47,8 @@ void i965_disable_vblank(struct drm_crtc *crtc);
- void ilk_disable_vblank(struct drm_crtc *crtc);
- void bdw_disable_vblank(struct drm_crtc *crtc);
- 
--void ivb_display_irq_handler(struct intel_display *display, u32 de_iir);
--void ilk_display_irq_handler(struct intel_display *display, u32 de_iir);
-+void ilk_display_irq_master_disable(struct intel_display *display, u32 *de_ier, u32 *sde_ier);
-+bool ilk_display_irq_handler(struct intel_display *display, u32 de_ier, u32 sde_ier);
- void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl);
- void gen11_display_irq_handler(struct intel_display *display);
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 312f7e42931a..65aa35866a5a 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -414,7 +414,7 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 	struct drm_i915_private *i915 = arg;
- 	struct intel_display *display = i915->display;
- 	void __iomem * const regs = intel_uncore_regs(&i915->uncore);
--	u32 de_iir, gt_iir, de_ier, sde_ier = 0;
-+	u32 gt_iir, de_ier = 0, sde_ier = 0;
- 	irqreturn_t ret = IRQ_NONE;
- 
- 	if (unlikely(!intel_irqs_enabled(i915)))
-@@ -423,19 +423,8 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
- 	disable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
--	/* disable master interrupt before clearing iir  */
--	de_ier = raw_reg_read(regs, DEIER);
--	raw_reg_write(regs, DEIER, de_ier & ~DE_MASTER_IRQ_CONTROL);
--
--	/* Disable south interrupts. We'll only write to SDEIIR once, so further
--	 * interrupts will will be stored on its back queue, and then we'll be
--	 * able to process them after we restore SDEIER (as soon as we restore
--	 * it, we'll get an interrupt if SDEIIR still has something to process
--	 * due to its back queue). */
--	if (!HAS_PCH_NOP(display)) {
--		sde_ier = raw_reg_read(regs, SDEIER);
--		raw_reg_write(regs, SDEIER, 0);
--	}
-+	/* Disable master and south interrupts */
-+	ilk_display_irq_master_disable(display, &de_ier, &sde_ier);
- 
- 	/* Find, clear, then process each source of interrupt */
- 
-@@ -458,19 +447,8 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 		}
- 	}
- 
--	de_iir = raw_reg_read(regs, DEIIR);
--	if (de_iir) {
--		raw_reg_write(regs, DEIIR, de_iir);
--		if (DISPLAY_VER(display) >= 7)
--			ivb_display_irq_handler(display, de_iir);
--		else
--			ilk_display_irq_handler(display, de_iir);
-+	if (ilk_display_irq_handler(display, de_ier, sde_ier))
- 		ret = IRQ_HANDLED;
--	}
--
--	raw_reg_write(regs, DEIER, de_ier);
--	if (sde_ier)
--		raw_reg_write(regs, SDEIER, sde_ier);
- 
- 	pmu_irq_stats(i915, ret);
- 
--- 
-2.47.3
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 791ecc91ac91f04d2f496cd1b4a472825985160e
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Sep 19 12:51:49 2025 +0300
+
+    drm/i915/irq: split ILK display irq handling
+    
+    Split out display irq handling on ilk. Since the master IRQ enable is in
+    DEIIR, we'll need to do this in two parts. First, add
+    ilk_display_irq_master_disable() to disable master and south interrupts,
+    and second, add (repurposed) ilk_display_irq_handler() to finish display
+    irq handling.
+    
+    It's not the prettiest thing you ever saw, but improves separation of
+    display irq handling. And removes HAS_PCH_NOP() and DISPLAY_VER() checks
+    from core irq code.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 6fecb015b85391be65d1048561fa8da2f1096fee drm-intel
+397aade20ba0 drm/i915/irq: drop intel_psr_regs.h include
+3783a1197818 drm/i915/irq: initialize gen2_imr_mask in terms of enable_mask
+6ba5888923b4 drm/i915/irq: abstract i9xx_display_irq_enable_mask()
+8f2adc6fea77 drm/i915/irq: move check for HAS_HOTPLUG() inside i9xx_hpd_irq_ack()
+36c72f582b52 drm/i915/irq: change ILK irq handling order
+-:22: WARNING:LINE_SPACING: Missing a blank line after declarations
+#22: FILE: drivers/gpu/drm/i915/i915_irq.c:454:
++		u32 pm_iir = raw_reg_read(regs, GEN6_PMIIR);
++		if (pm_iir) {
+
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+791ecc91ac91 drm/i915/irq: split ILK display irq handling
+
 
