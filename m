@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0D68CAC59A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA1A7CAC59A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 Sep 2025 09:52:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8379910E976;
-	Fri, 19 Sep 2025 09:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD1910E976;
+	Fri, 19 Sep 2025 09:52:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mrth6XT8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VMtniVtf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52B3A10E976;
- Fri, 19 Sep 2025 09:52:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE47610E976;
+ Fri, 19 Sep 2025 09:52:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758275525; x=1789811525;
+ t=1758275544; x=1789811544;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pVDS2NiM3HguC8LJsEgxD0y7YfvRgGTJdhoP9+oQVnU=;
- b=Mrth6XT8+gjUpsU44apn/Gxs3k7iENZmM1tIH6/o70br07nwcfxItS6L
- xITujW8NHC25k1MAt1REbWdE5kOQJP4APglvEwNIgdwnwO1nEaoVWKaLD
- CMBXPFaKZJAFn8Z+O4uEm3w3MkePSXnEFmkhu83dDSKH8cxj7EdUtoeF4
- 8xQ2OM+WdqHgpTjjvOqlwOsVyJBlqsGyO8Vn0e4rtEsXBCKVGm47m963M
- CscS68mCYGCSIXTOsPsJPpYSCbf+Zi6VIzTaD4Dr/AyOwZ+mkkc7ucy6b
- Q1ArgQrwY1rhV+UMOpJQKOnaqJ0Qh+Q5IGQ5m9i5zTnqjVsY0BJQXuV4l A==;
-X-CSE-ConnectionGUID: bhotLNHpSvSd+voZnkHKJQ==
-X-CSE-MsgGUID: f3sNiM0YQ5iGRc+l6n24UQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316157"
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316157"
+ bh=Fih863ur/m9ht8VH1ScycXqOXDBTd9VOfXj8oHYQYvM=;
+ b=VMtniVtfXD/lnzFprcHL7sWjSx4bz54kkpjaiwla8SrPN0HTUU2TNvWu
+ n8QcD5R9d2XHX4YmuczleMus7zexzwf/yL7Fhe9yaTolIGPt4rh5fjXf0
+ vJ416GbNkxrzntVumXmBBVDWAnUklbWjL+0gLr2kLwyO5cg+BDzn6WBUC
+ Y0Yvqj7LJpqA+M1S6wbaFTEGCIBC1QmxwWtW4mSRV4QL0dpAgEsz7/QLz
+ 3TjZa9Q29iQwmaUFykEIjIWnypvCDG5F31/s+Q/HXf4+XAM9TKgZs9Aq/
+ 0PqAcWMd+uKmxwTTlFLNjok9p3bnEjBO/aGlmufNWi2oFdw8Bq1mH9voK g==;
+X-CSE-ConnectionGUID: 3OyL9RmSTx6O9l0gL916Yg==
+X-CSE-MsgGUID: ikpOe57RRw+3Es4ScUJcEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11557"; a="60316180"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="60316180"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:52:01 -0700
-X-CSE-ConnectionGUID: rfWSmfBnSR2oXiAIJwXV3g==
-X-CSE-MsgGUID: 66KYZzM7Qgi0CNy7KiD1bw==
+ 19 Sep 2025 02:52:16 -0700
+X-CSE-ConnectionGUID: 09FdOzdWTKiZgFjD46+aMA==
+X-CSE-MsgGUID: 8IEOHnzyT1eaBftSNqIvFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554233"
+X-IronPort-AV: E=Sophos;i="6.18,277,1751266800"; d="scan'208";a="206554287"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.222])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2025 02:51:58 -0700
+ 19 Sep 2025 02:52:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 1/6] drm/i915/irq: drop intel_psr_regs.h include
-Date: Fri, 19 Sep 2025 12:51:44 +0300
-Message-ID: <5e887b632bac16b5242ac2a65583feaa59540571.1758275448.git.jani.nikula@intel.com>
+Subject: [PATCH 4/6] drm/i915/irq: move check for HAS_HOTPLUG() inside
+ i9xx_hpd_irq_ack()
+Date: Fri, 19 Sep 2025 12:51:47 +0300
+Message-ID: <babc8ce62bd71fd9cec6dc1893f680153952b3bf.1758275448.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1758275448.git.jani.nikula@intel.com>
 References: <cover.1758275448.git.jani.nikula@intel.com>
@@ -70,25 +71,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915_irq.c no longer needs display/intel_psr_regs.h. Drop it.
+We want to avoid using the display dependent HAS_HOTPLUG() in generic
+irq code. Since the enabling of I915_DISPLAY_PORT_INTERRUPT depends on
+HAS_HOTPLUG() to begin with, we don't really expect to get the irqs for
+!HAS_HOTPLUG(). At least in theory, checking for HAS_HOTPLUG() inside
+i9xx_hpd_irq_ack() should not have any impact.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_irq.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 3 +++
+ drivers/gpu/drm/i915/i915_irq.c                  | 3 +--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+index 4f72f3fb9af5..9a4da818ad61 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+@@ -420,6 +420,9 @@ u32 i9xx_hpd_irq_ack(struct intel_display *display)
+ 	u32 hotplug_status = 0, hotplug_status_mask;
+ 	int i;
+ 
++	if (!HAS_HOTPLUG(display))
++		return 0;
++
+ 	if (display->platform.g4x ||
+ 	    display->platform.valleyview || display->platform.cherryview)
+ 		hotplug_status_mask = HOTPLUG_INT_STATUS_G4X |
 diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 7c7c6dcbce88..56f231591a3e 100644
+index f9fbb88b9e26..90174ce9195c 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -38,7 +38,6 @@
- #include "display/intel_hotplug.h"
- #include "display/intel_hotplug_irq.h"
- #include "display/intel_lpe_audio.h"
--#include "display/intel_psr_regs.h"
+@@ -931,8 +931,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
  
- #include "gt/intel_breadcrumbs.h"
- #include "gt/intel_gt.h"
+ 		ret = IRQ_HANDLED;
+ 
+-		if (HAS_HOTPLUG(display) &&
+-		    iir & I915_DISPLAY_PORT_INTERRUPT)
++		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+ 			hotplug_status = i9xx_hpd_irq_ack(display);
+ 
+ 		/* Call regardless, as some status bits might not be
 -- 
 2.47.3
 
