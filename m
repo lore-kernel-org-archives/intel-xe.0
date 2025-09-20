@@ -4,61 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 778E1CAC5A5
-	for <intel-xe@archiver.kernel.org>; Sat, 20 Sep 2025 17:18:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85158CAC5A7
+	for <intel-xe@archiver.kernel.org>; Sat, 20 Sep 2025 23:17:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0492910E28D;
-	Sat, 20 Sep 2025 17:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1217D10E13F;
+	Sat, 20 Sep 2025 23:17:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ghvFS/Sh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="p477SXld";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25AE210E28D;
- Sat, 20 Sep 2025 17:18:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758388726; x=1789924726;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=zACYCvDKSg9NbKn5+8/3Nzd9e4uV+Cia1xFbwQVW02Q=;
- b=ghvFS/Shc9VLneq9R/AsHtnWes9Skdf8uhEmGNvGW7xuruD1pEpXF/cH
- E0XaEnC2qQirvU3MIEJLRyjWooQGyxAZpXmyI7NchLARaDPTDxrI+JXQ6
- N3SQefI6EeEslKHV8Kv8Yn9sVT160ePkxcgintUKXtoqbst7OhO1glBtL
- m6Ig5e9jx+vGCZHemaMXqV5c9LSasKN5n/kSWD/dsTp3ZuxNCv6PHDpn2
- Eo+G8Sb7YKBHViR6kWEaejL+a7QEIHR6p+Pd7pDT531HgSMhKcNp2JpuL
- lY0XFaNy6y4g+dRJyJHEza0HXPnWau7FCgKqPEwHv8mLni5wI/DMwC/4q Q==;
-X-CSE-ConnectionGUID: QYQmygVpQX+Og3NNb/Yf5w==
-X-CSE-MsgGUID: GxNoKh/NQwC0404sEJB9qQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="64530090"
-X-IronPort-AV: E=Sophos;i="6.18,281,1751266800"; d="scan'208";a="64530090"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2025 10:18:46 -0700
-X-CSE-ConnectionGUID: wvKUIrDsQ8erWjHUjSCNdg==
-X-CSE-MsgGUID: EptLQ0H6SHeft2SE0WZMlA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,281,1751266800"; d="scan'208";a="213261025"
-Received: from igk-lkp-server01.igk.intel.com (HELO 0e586ad5e7f7)
- ([10.91.175.65])
- by orviesa001.jf.intel.com with ESMTP; 20 Sep 2025 10:18:43 -0700
-Received: from kbuild by 0e586ad5e7f7 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1v01EO-000000003Th-26n1;
- Sat, 20 Sep 2025 17:18:40 +0000
-Date: Sat, 20 Sep 2025 19:18:02 +0200
-From: kernel test robot <lkp@intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Vidya Srinivas <vidya.srinivas@intel.com>,
- Swati Sharma <swati2.sharma@intel.com>
-Subject: Re: [PATCH 1/5] drm/dp: Add quirk for Synaptics DSC throughput
- link-bpp limit
-Message-ID: <202509201934.m60n3RyN-lkp@intel.com>
-References: <20250918211223.209674-2-imre.deak@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F8910E13F
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 Sep 2025 23:17:57 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id F2B1344530;
+ Sat, 20 Sep 2025 23:17:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A78C4CEEB;
+ Sat, 20 Sep 2025 23:17:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1758410276;
+ bh=G/KVEA6ViEWnKvN1kHms/3KktEfZIelB3DdtbCJIg34=;
+ h=From:Date:Subject:To:Cc:From;
+ b=p477SXldWwo2M0sODjdZxFK6EMik9VbIfWdFl263uvQtZcyjIVfi9+SxvDmRzHw+E
+ 2+qtD97oCZjP3CVp9vOCwToOJTHdcWzMzdHthiycDDEDjiVTh0Ha214NXh8IAKVtDN
+ WICQXr/XZxIPqLTGYMiQY96I584WwhjclK/zLgoxfY691p2XtHTN2zWZ/abxjNKqKY
+ HnIbwNaXGeXzX3GFJ0bOOGUmOgBcy7ndY3ScDoAjoahWjd8QzbjPXFpPyD8g2Qia8G
+ mrxCWlzHtQzy6wVWC19ksPRJoCAyZ6UgdNMP604+OrMLgKWTG2hR1jdfe+rZVhVsp6
+ fYwsUWfiAxVeg==
+From: Nathan Chancellor <nathan@kernel.org>
+Date: Sat, 20 Sep 2025 16:17:50 -0700
+Subject: [PATCH] mei: late_bind: Fix
+ -Wincompatible-function-pointer-types-strict
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250918211223.209674-2-imre.deak@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250920-drm-xe-fix-wifpts-v1-1-c89b5357c7ba@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAB02z2gC/x2MywqAIBAAf0X23IKvoPqV6FC51h4q0agg/Pek4
+ zDMvJAoMiXoxAuRLk587AVUJWBex30hZFcYtNS1bLVEFzd8CD0/eLMPZ8K68U5NZI1xFkoXIhX
+ 7P/sh5w9pLI6lYwAAAA==
+X-Change-ID: 20250920-drm-xe-fix-wifpts-58fd1be433d4
+To: Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Alexander Usyskin <alexander.usyskin@intel.com>, 
+ Anshuman Gupta <anshuman.gupta@intel.com>, 
+ Mika Westerberg <mika.westerberg@linux.intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ Nathan Chancellor <nathan@kernel.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2235; i=nathan@kernel.org;
+ h=from:subject:message-id; bh=G/KVEA6ViEWnKvN1kHms/3KktEfZIelB3DdtbCJIg34=;
+ b=owGbwMvMwCUmm602sfCA1DTG02pJDBnnzZQm7b9X9GQT44VEbi8DbaWy7E5bhuanT5bycma45
+ ArvUVndUcrCIMbFICumyFL9WPW4oeGcs4w3Tk2CmcPKBDKEgYtTACaS94fhr/xyvfoNTNo366oV
+ Hz/h6PrefvTA/40rxTfvES75aho7w5nhf9Ksk96rEr5ElZ0PU1w/MfDNiTjbU+Llf/89s7u3SFz
+ EhR8A
+X-Developer-Key: i=nathan@kernel.org; a=openpgp;
+ fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +74,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Imre,
+When building with -Wincompatible-function-pointer-types-strict, a
+warning designed to catch kernel control flow integrity (kCFI) issues at
+build time, there is an instance in the new mei late binding code
+originating from the type parameter of mei_lb_push_payload():
 
-kernel test robot noticed the following build warnings:
+  drivers/misc/mei/mei_lb.c:211:18: error: incompatible function pointer types initializing 'int (*)(struct device *, u32, u32, const void *, size_t)' (aka 'int (*)(struct device *, unsigned int, unsigned int, const void *, unsigned long)') with an expression of type 'int (struct device *, enum intel_lb_type, u32, const void *, size_t)' (aka 'int (struct device *, enum intel_lb_type, unsigned int, const void *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types-strict]
+    211 |         .push_payload = mei_lb_push_payload,
+        |                         ^~~~~~~~~~~~~~~~~~~
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on linus/master v6.17-rc6 next-20250919]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+While 'unsigned int' and 'enum intel_lb_type' are ABI compatible, hence
+no regular warning from -Wincompatible-function-pointer-types, the
+mismatch will trigger a kCFI violation when mei_lb_push_payload() is
+called indirectly.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Imre-Deak/drm-dp-Add-quirk-for-Synaptics-DSC-throughput-link-bpp-limit/20250919-052049
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20250918211223.209674-2-imre.deak%40intel.com
-patch subject: [PATCH 1/5] drm/dp: Add quirk for Synaptics DSC throughput link-bpp limit
-reproduce: (https://download.01.org/0day-ci/archive/20250920/202509201934.m60n3RyN-lkp@intel.com/reproduce)
+Update the type parameter of mei_lb_push_payload() to be 'u32' to match
+the prototype in 'struct intel_lb_component_ops', clearing up the
+warning and kCFI violation.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509201934.m60n3RyN-lkp@intel.com/
+Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+---
+ drivers/misc/mei/mei_lb.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-All warnings (new ones prefixed by >>):
+diff --git a/drivers/misc/mei/mei_lb.c b/drivers/misc/mei/mei_lb.c
+index 77686b108d3c..78717ee8ac9a 100644
+--- a/drivers/misc/mei/mei_lb.c
++++ b/drivers/misc/mei/mei_lb.c
+@@ -134,8 +134,7 @@ static bool mei_lb_check_response(const struct device *dev, ssize_t bytes,
+ 	return true;
+ }
+ 
+-static int mei_lb_push_payload(struct device *dev,
+-			       enum intel_lb_type type, u32 flags,
++static int mei_lb_push_payload(struct device *dev, u32 type, u32 flags,
+ 			       const void *payload, size_t payload_size)
+ {
+ 	struct mei_cl_device *cldev;
 
-   Declaration is '.. c:function:: const struct drm_format_info * drm_format_info (u32 format)'. [duplicate_declaration.c]
-   Documentation/gpu/drm-kms:476: ./drivers/gpu/drm/drm_modeset_lock.c:377: WARNING: Duplicate C declaration, also defined at gpu/drm-kms:48.
-   Declaration is '.. c:function:: int drm_modeset_lock (struct drm_modeset_lock *lock, struct drm_modeset_acquire_ctx *ctx)'. [duplicate_declaration.c]
-   WARNING: ./include/drm/display/drm_dp_helper.h:823 Incorrect use of kernel-doc format:          * @DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT
-   WARNING: ./include/drm/display/drm_dp_helper.h:826 Enum value ' */ DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT' not described in enum 'drm_dp_quirk'
->> Documentation/gpu/drm-kms-helpers:266: ./include/drm/display/drm_dp_helper.h:804: WARNING: Inline emphasis start-string without end-string. [docutils]
-   ERROR: Cannot find file ./include/linux/hdmi.h
-   ERROR: Cannot find file ./include/linux/hdmi.h
-   WARNING: No kernel-doc for file ./include/linux/hdmi.h
-   WARNING: ./include/drm/drm_gpuvm.h:1059 struct member 'map' not described in 'drm_gpuvm_map_req'
-   Documentation/gpu/drm-mm:506: ./drivers/gpu/drm/drm_gpuvm.c:2547: ERROR: Unexpected indentation. [docutils]
+---
+base-commit: d9b2623319fa20c2206754284291817488329648
+change-id: 20250920-drm-xe-fix-wifpts-58fd1be433d4
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+--  
+Nathan Chancellor <nathan@kernel.org>
+
