@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 368B5CAC5A8
-	for <intel-xe@archiver.kernel.org>; Sun, 21 Sep 2025 04:49:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04765CAC59A
+	for <intel-xe@archiver.kernel.org>; Sun, 21 Sep 2025 04:49:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8CF10E325;
-	Sun, 21 Sep 2025 04:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE07110E334;
+	Sun, 21 Sep 2025 04:49:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+rC8407";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUZdywZM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262EE10E325;
- Sun, 21 Sep 2025 04:49:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9003410E334;
+ Sun, 21 Sep 2025 04:49:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758430142; x=1789966142;
+ t=1758430145; x=1789966145;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RSva/wj9jRqAi/zKfh7ZUO1TF3pvwL2JfZKuA+qH66I=;
- b=R+rC840737J0IGrTLnThRbEa4BTOHPvKExY2yW8xS1d/FK8EvgNIJcUV
- tmf1pY8nFnVO3inwg15tXXljhqcCBwaimS35xybJFjweLzFzP2zn+ZHhm
- Ng36G5TylvSn/w+UfYTNsKATa1UjnBm+DpWYlpPJ1GIDy+V56WMZu/t8w
- IZsfBBx1Jw9rivwg2fe1QoFQQX3FYUrtDbbgy9OQKt/9nUmfB8Ugx6C1v
- OTUvdB8if0q8mKrS6wuWGpyAji8GZbBbwj62wwntXPqeK/o9ZgOa1LNNS
- uAVD2jKcBsQlVf9x0m3ObYOVBn79pZPdxcjc8d97egzKmLiVrk8kTx/8l A==;
-X-CSE-ConnectionGUID: GIGySJ48TcyY2RKJ4vP7xQ==
-X-CSE-MsgGUID: 1E2fnHDlTwiFeBPvMfWfiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="72154727"
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="72154727"
+ bh=wn0y7TIa1JoQ2Qcb5xoUnzOz6Zc08Zfv14LnREpMZOU=;
+ b=PUZdywZMT82GJhvn6XSs5/rsVM6Y9xkLHrcfinFg02Eh2JNcgSQiVqS2
+ aTKLob9L4l4QkmA0J8GmbmPRbA9/W6Bo/eBdkR+qYvLMWGOY/s/w6sXcv
+ yN/y6ElQCHI1INyghqSYuzdP7YK2MasRBpf5uJ/6W9VNldGrR7ynJ+Ybp
+ e4xrFCWzUFcxvGitmxpKOO7LFoa25JxNG1o53cUyXXsmqQdF73ErumfVZ
+ sE5Y8Jx1PooZDQGaNFZZ/1+JRmIcp2PSlty0fz/mi4B9EIua3r8uG8S6X
+ UvH2lu9r1/kV5IVV/SUR8z/cI7UZneZupxYWoDdQnNX1Gg4nVUthqjTKX Q==;
+X-CSE-ConnectionGUID: rlfDG3uhSPCpHK/y+Go0Ng==
+X-CSE-MsgGUID: Z2I4gXA8QcW0CHjVXCpA7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11559"; a="72154734"
+X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="72154734"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2025 21:49:01 -0700
-X-CSE-ConnectionGUID: Db66M3zrQ2qaIgwoaCN17A==
-X-CSE-MsgGUID: wI/IQSeWQO6lGT4rTxErKQ==
+ 20 Sep 2025 21:49:05 -0700
+X-CSE-ConnectionGUID: XGa6sosLRCqJ1WnPH3H6mg==
+X-CSE-MsgGUID: B2olMTDUSMG7mmcAC+c0fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="176097695"
+X-IronPort-AV: E=Sophos;i="6.18,282,1751266800"; d="scan'208";a="176097702"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2025 21:48:59 -0700
+ 20 Sep 2025 21:49:02 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/9] drm/i915/psr:
- s/intel_psr_min_vblank_delay/intel_psr_min_set_context_latency
-Date: Sun, 21 Sep 2025 10:05:27 +0530
-Message-ID: <20250921043535.2012978-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 3/9] drm/i915/display: Use VBLANK_START to get the vblank
+ delay for TGL
+Date: Sun, 21 Sep 2025 10:05:29 +0530
+Message-ID: <20250921043535.2012978-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
 References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
@@ -68,64 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename intel_psr_min_vblank_delay to intel_psr_min_set_context_latency
-to reflect that it provides the minimum value for 'Set context
-latency'(SCL or Window W2) for PSR/Panel Replay to work correctly across
-different platforms.
+For TGL the TRANS_SET_CONTEXT_LATENCY doesn't exist to account for SCL.
+However, the VBLANK_START-VACTIVE diffence plays an identical role here ie.
+it can be used to create the SCL window ahead of the undelayed vblank.
+
+While readback there is no specific register to read out the SCL, so use
+the same helper intel_crtc_compute_scl() and reduce the vblank_start by
+this amount.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/intel_psr.c     | 6 +++---
- drivers/gpu/drm/i915/display/intel_psr.h     | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 18b9baa96241..679c2a9baaee 100644
+index 5a7794387ea2..455bbebb50a5 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2369,7 +2369,7 @@ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
- 	if (!HAS_DSB(display))
- 		return 0;
+@@ -2822,6 +2822,16 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+ 		adjusted_mode->crtc_vblank_end += 1;
+ 	}
  
--	vblank_delay = max(vblank_delay, intel_psr_min_vblank_delay(crtc_state));
-+	vblank_delay = max(vblank_delay, intel_psr_min_set_context_latency(crtc_state));
- 
- 	return vblank_delay;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 01bf304c705f..49ccd0864c55 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2360,12 +2360,12 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- }
- 
- /**
-- * intel_psr_min_vblank_delay - Minimum vblank delay needed by PSR
-+ * intel_psr_min_set_context_latency - Minimum 'set context latency' lines needed by PSR
-  * @crtc_state: the crtc state
-  *
-- * Return minimum vblank delay needed by PSR.
-+ * Return minimum SCL lines/delay needed by PSR.
-  */
--int intel_psr_min_vblank_delay(const struct intel_crtc_state *crtc_state)
-+int intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 077751aa599f..9147996d6c9e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -77,7 +77,7 @@ void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
- void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- 					  struct intel_atomic_state *state,
- 					  struct intel_crtc *crtc);
--int intel_psr_min_vblank_delay(const struct intel_crtc_state *crtc_state);
-+int intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state);
- void intel_psr_connector_debugfs_add(struct intel_connector *connector);
- void intel_psr_debugfs_register(struct intel_display *display);
- bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state);
++	if (DISPLAY_VER(display) == 12) {
++		/*
++		 * There is no specific register for SCL for TGL.
++		 * Derive the value from the helper intel_crtc_set_context_latency().
++		 * crtc_vblank_start needs to be reduced with this amount.
++		 */
++		pipe_config->set_context_latency = intel_crtc_set_context_latency(pipe_config);
++		adjusted_mode->crtc_vblank_start -= pipe_config->set_context_latency;
++	}
++
+ 	if (DISPLAY_VER(display) >= 13 && !transcoder_is_dsi(cpu_transcoder)) {
+ 		pipe_config->set_context_latency =
+ 			intel_de_read(display,
 -- 
 2.45.2
 
