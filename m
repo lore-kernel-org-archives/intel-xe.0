@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8BD7CA100F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:14:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99B67CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:17:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9DAD10E511;
-	Mon, 22 Sep 2025 20:14:16 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4C410E511;
- Mon, 22 Sep 2025 20:14:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5566506495160836591=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5A2A10E511;
+	Mon, 22 Sep 2025 20:17:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3azu7ha";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E865C10E064;
+ Mon, 22 Sep 2025 20:17:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758572273; x=1790108273;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=sOcOCCbJvZCE3xP/AQc+oRPX5l9d93VG7jEZGyyoB2w=;
+ b=H3azu7ha7LgkdI3qXVS5c0mLpit09OtvEzvlNG5hjzXA/Pw7xWBB/8Xy
+ aj5UuL3HUtdgjLH63tfoFKdwVNF+ErvYWhzAHVkvtrlbZO5gmuENDvcTI
+ acnwZdo/oFOvYaZrgCZU7MSMmJxMT697o7IqcyKVIOmiaxfgQkpujeR1T
+ jiLZnZnqqpXfDjE6ipSJTlYOlDP84t4av29HsFIrsDLfJ/OOdbHZ0Y+eH
+ y1qCfKxC75J3MQ0OKxsRKUufvbN7xszkAO1zUfNtJ2feRwa3KByFiabod
+ L8WEGXwbP5w57oPBvAIhhaF7O9WuREIBgJZq+Q+SFkBrXr3ajZ2AB7mIv Q==;
+X-CSE-ConnectionGUID: /wZlIFOyTgmkhEdX1vvXkg==
+X-CSE-MsgGUID: Qre4Ivt5RSmGzwslf3xotw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60900888"
+X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="60900888"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:17:52 -0700
+X-CSE-ConnectionGUID: lRgbQC6MQEiGiaNretL44A==
+X-CSE-MsgGUID: zcOpoNzxRSiPXOzY0CxE0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="176140862"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.115])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:17:50 -0700
+Date: Mon, 22 Sep 2025 23:17:47 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Vidya Srinivas <vidya.srinivas@intel.com>,
+ Swati Sharma <swati2.sharma@intel.com>
+Subject: Re: [PATCH v2 5/5] drm/i915/dp: Handle Synaptics DSC throughput
+ link-bpp quirk
+Message-ID: <aNGu6_6JkOKkAWpH@intel.com>
+References: <20250918211223.209674-6-imre.deak@intel.com>
+ <20250922134637.271999-2-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_drm/i915/xe3=3A_Restrict_P?=
- =?utf-8?q?TL_intel=5Fencoder=5Fis=5Fc10phy=28=29_to_only_PHY_A_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Sep 2025 20:14:15 -0000
-Message-ID: <175857205557.355661.620738332216109402@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250922150317.2334680-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20250922150317.2334680-1-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250922134637.271999-2-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +71,152 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5566506495160836591==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Sep 22, 2025 at 04:46:37PM +0300, Imre Deak wrote:
+> Handle the DSC pixel throughput quirk, limiting the compressed link-bpp
+> value for Synaptics Panamera branch devices, working around a
+> blank/unstable output issue observed on docking stations containing
+> these branch devices, when using a mode with a high pixel clock and a
+> high compressed link-bpp value.
+> 
+> For now use the same mode clock limit for RGB/YUV444 and YUV422/420
+> output modes. This may result in limiting the link-bpp value for a
+> YUV422/420 output mode already at a lower than required mode clock.
+> 
+> v2: Apply the quirk only when DSC is enabled.
+> 
+> Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Reported-by: Swati Sharma <swati2.sharma@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 58 +++++++++++++++++++
+>  2 files changed, 59 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 73bdafae604f..aff63bf0f229 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -551,6 +551,7 @@ struct intel_connector {
+>  		u8 fec_capability;
+>  
+>  		u8 dsc_hblank_expansion_quirk:1;
+> +		u8 dsc_throughput_quirk:1;
+>  		u8 dsc_decompression_enabled:1;
+>  
+>  		struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index dd082d2fcc96..5e7aea560910 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2509,6 +2509,56 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	return 0;
+>  }
+>  
+> +static void
+> +adjust_limits_for_dsc_throughput_quirk(const struct intel_connector *connector,
+> +				       const struct intel_crtc_state *crtc_state,
+> +				       struct link_config_limits *limits)
+> +{
+> +	struct intel_display *display = to_intel_display(connector);
+> +	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	const struct drm_display_mode *adjusted_mode =
+> +		&crtc_state->hw.adjusted_mode;
+> +	int max_bpp_x16;
+> +
+> +	if (!connector->dp.dsc_throughput_quirk)
+> +		return;
+> +
+> +	/*
+> +	 * Synaptics Panamera branch devices have a problem decompressing a
+> +	 * stream with a compressed link-bpp higher than 12, if the pixel
+> +	 * clock is higher than ~50 % of the maximum overall throughput
+> +	 * reported by the branch device. Work around this by limiting the
+> +	 * maximum link bpp for such pixel clocks.
+> +	 *
+> +	 * TODO: Use the throughput value specific to the actual RGB/YUV
+> +	 * format of the output, after determining the pixel clock limit for
+> +	 * YUV modes. For now use the smaller of the throughput values, which
+> +	 * may result in limiting the link-bpp value already at a lower than
+> +	 * required mode clock in case of native YUV422/420 output formats.
+> +	 * The RGB/YUV444 throughput value should be always either equal or
+> +	 * smaller than the YUV422/420 value, but let's not depend on this
+> +	 * assumption.
+> +	 */
+> +	if (adjusted_mode->crtc_clock <
+> +	    min(connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444,
+> +		connector->dp.dsc_branch_caps.overall_throughput.yuv422_420) / 2)
+> +		return;
+> +
+> +	max_bpp_x16 = clamp(fxp_q4_from_int(12),
+> +			    limits->link.min_bpp_x16, limits->link.max_bpp_x16);
+> +
+> +	if (max_bpp_x16 >= limits->link.max_bpp_x16)
+> +		return;
+> +
+> +	drm_dbg_kms(display->drm,
+> +		    "[CRTC:%d:%s][CONNECTOR:%d:%s] Decreasing link max bpp to " FXP_Q4_FMT " due to DSC throughput quirk\n",
+> +		    crtc->base.base.id, crtc->base.name,
+> +		    connector->base.base.id, connector->base.name,
+> +		    FXP_Q4_ARGS(max_bpp_x16));
+> +
+> +	limits->link.max_bpp_x16 = max_bpp_x16;
+> +}
+> +
+>  /*
+>   * Calculate the output link min, max bpp values in limits based on the pipe bpp
+>   * range, crtc_state and dsc mode. Return true on success.
+> @@ -2558,6 +2608,9 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+>  
+>  	limits->link.max_bpp_x16 = max_link_bpp_x16;
+>  
+> +	if (dsc)
+> +		adjust_limits_for_dsc_throughput_quirk(connector, crtc_state, limits);
 
-== Series Details ==
+Would feel cleaner if we did this in the actual dsc==true branch above.
+Maybe the actual thing that determines that max bpp should be some kind
+of pure function that returns the max acceptable bpp, and then the
+caller can deal with it.
 
-Series: drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only PHY A (rev3)
-URL   : https://patchwork.freedesktop.org/series/154233/
-State : success
+Or at least move the 'limits->link.max_bpp_x16 = max_link_bpp_x16' into both
+!dsc and dsc branches. That way we don't have this strange looking drop out
+from the if statement just to do the single assignment, and then going back in.
 
-== Summary ==
+> +
+>  	drm_dbg_kms(display->drm,
+>  		    "[ENCODER:%d:%s][CRTC:%d:%s] DP link limits: pixel clock %d kHz DSC %s max lanes %d max rate %d max pipe_bpp %d max link_bpp " FXP_Q4_FMT "\n",
+>  		    encoder->base.base.id, encoder->base.name,
+> @@ -4272,6 +4325,7 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+>  	connector->dp.fec_capability = 0;
+>  
+>  	memset(&connector->dp.dsc_branch_caps, 0, sizeof(connector->dp.dsc_branch_caps));
+> +	connector->dp.dsc_throughput_quirk = false;
+>  
+>  	if (dpcd_rev < DP_DPCD_REV_14)
+>  		return;
+> @@ -4292,6 +4346,10 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+>  		return;
+>  
+>  	init_dsc_overall_throughput_limits(connector, is_branch);
+> +
+> +	if (drm_dp_has_quirk(desc, DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) &&
+> +	    desc->ident.hw_rev == 0x10)
 
-CI Bug Log - changes from xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0_FULL -> xe-pw-154233v3_FULL
-====================================================
+Rather annoying to have part of the detection here and part in the
+quirk list. Can we extend the quirk framework to support hw revisions
+as well?
 
-Summary
--------
+Could be a followup.
 
-  **SUCCESS**
+> +		connector->dp.dsc_throughput_quirk = true;
+>  }
+>  
+>  static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
+> -- 
+> 2.49.1
 
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8546 -> IGT_8547
-  * Linux: xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 -> xe-pw-154233v3
-
-  IGT_8546: 8546
-  IGT_8547: 8547
-  xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0
-  xe-pw-154233v3: 154233v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v3/index.html
-
---===============5566506495160836591==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3: Restrict PTL intel_encoder_is_c10phy() to only PHY A (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154233/">https://patchwork.freedesktop.org/series/154233/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154233v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0_FULL -&gt; xe-pw-154233v3_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8546 -&gt; IGT_8547</li>
-<li>Linux: xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0 -&gt; xe-pw-154233v3</li>
-</ul>
-<p>IGT_8546: 8546<br />
-  IGT_8547: 8547<br />
-  xe-3812-c4d19320a0e2f7d8dec97d4a59309349a3a63ec0: c4d19320a0e2f7d8dec97d4a59309349a3a63ec0<br />
-  xe-pw-154233v3: 154233v3</p>
-
-</body>
-</html>
-
---===============5566506495160836591==--
+-- 
+Ville Syrjälä
+Intel
