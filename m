@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E17CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 11:09:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 622B2CAC5A7
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 11:10:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD2110E41B;
-	Mon, 22 Sep 2025 11:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D9FD10E41B;
+	Mon, 22 Sep 2025 11:10:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dbizUZWw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jo6fP/Y+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10F1510E41B
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 11:09:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8120C10E19D;
+ Mon, 22 Sep 2025 11:10:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758539361; x=1790075361;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=h/36iT+32KLsNbfjElsjqPxdlYVhyh0XrJRDufppvVw=;
- b=dbizUZWwYKJ/E3ZmBKMmMkr+i67lTgvWCWYGzGfivSgmNuYBinsco/lH
- w9WGEEF0NqcLYuXrDoP8B6EMKZcqbdRp/JNym6V46AJsbALzhc1kPIfpC
- qtRqrfkzjb+6a7dqSnEunPUVUOx/arnEYrQIrupyHnhZeQBvMrXmze0rM
- tibA/ThNDYcusBDZpKaA3oyz0OGZFG36A9/qQOKUTWjlmzBS2hSFm4oZ9
- jD4AJFRnJYv4+Obw8N5gp6Gh8qxoXzKZ6BbX+nvEndG7ACx5OEhk+WuSf
- GuUOG7dchDwk1PoI0Ih6X2FKyMR6/eWqC+zEZOhlWr3Q4FgEn8ULOhrbf A==;
-X-CSE-ConnectionGUID: zOzuQU8ASTyWbhOaeeAh/A==
-X-CSE-MsgGUID: wLuDLusiQAe8hciSGOKk3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="86233707"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="86233707"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:09:20 -0700
-X-CSE-ConnectionGUID: +q+VGBZgTZ6IzU6qP9kNCQ==
-X-CSE-MsgGUID: lW23Ug1PTBioLifsBpYH9w==
+ t=1758539407; x=1790075407;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=9y1KdO+ANs6t2Z6qgrk5VssC5aj7zKn7tO3Fh7Rs93Y=;
+ b=jo6fP/Y+lZI9gRnpIcjnzJr8OzIxaDw8/71epfsZGylygKa2cuiCMPjU
+ qPFarnhsc6D7RtnSPuFSQrmToNOf+BKGMQmrP/P7cFP9klea1JL8gxSW3
+ tSHxNmtdCqIwq2icJjEQhK4gwuWE2WhrkHS5Is51otN/HybpjXy4wbfCB
+ 7HDmKsa7vtdgBHwvMnzlBD6SmIj44A+RrcW1GsvcHUuz0GVojkHKjCiyG
+ 3VqACPNdO4u+kRc+9IYBV3dGvbXc+FIshC/kibm3VSNcLup7Bf3JGZrmX
+ yp9R++0YFduP3HjH5qkKhf3ijDbWMuR1a7uY87/U2XPLD5ytQZVTkyjga g==;
+X-CSE-ConnectionGUID: ZyugeOnqTduHmXgwfZsJ9A==
+X-CSE-MsgGUID: vEPxWZGDTHmJ6RrTl8khnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="78240316"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="78240316"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 04:10:07 -0700
+X-CSE-ConnectionGUID: 2FGJNWWZRV6DeHzJs+ZI9Q==
+X-CSE-MsgGUID: b6eIefs/STyRX24FSONFsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="175587682"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.93])
- ([10.245.244.93])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:09:18 -0700
-Message-ID: <a390df38c880bdbd163d9c5efd6d418d29df2259.camel@linux.intel.com>
-Subject: Re: [PATCH 2/2] drm/xe/uapi: Enable madvise to pass multiple pat
- indeces
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-Date: Mon, 22 Sep 2025 13:09:15 +0200
-In-Reply-To: <20250918080003.153906-3-himal.prasad.ghimiray@intel.com>
-References: <20250918080003.153906-1-himal.prasad.ghimiray@intel.com>
- <20250918080003.153906-3-himal.prasad.ghimiray@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="181698529"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.61])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 04:10:04 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>
+Subject: Re: [RESEND 02/10] drm/i915/display: Introduce HAS_CASF for
+ sharpness support
+In-Reply-To: <20250919143418.3102605-3-nemesa.garg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250919143418.3102605-1-nemesa.garg@intel.com>
+ <20250919143418.3102605-3-nemesa.garg@intel.com>
+Date: Mon, 22 Sep 2025 14:10:02 +0300
+Message-ID: <fb4e8118c7e7cc0f566ed1e8ee09b4d58d801c73@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,217 +72,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-09-18 at 13:30 +0530, Himal Prasad Ghimiray wrote:
-> Allow users to pass multiple PAT indices via madvise, which can be
-> used
-> to encode PTEs based on the actual memory location system memory,
-> local
-> VRAM, or remote GPU memory.
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray
-> <himal.prasad.ghimiray@intel.com>
-
-Based on the feedback from UMD, it might make sense to add two special
-values,
-XE_PAT_INDEX_INITIAL - that sets  the pat index to the initial value of
-the VM_BIND
-XE_PAT_INDEX_KEEP - Keep the current value.
-
-And then we perhaps we can use __s16 values where needed.
-Let's see where the discussion lands. If we're not able to resolve this
-before your vacation, I can pick up the patches from where you left
-off.
-
-Thanks,
-Thomas
-
-
-
+On Fri, 19 Sep 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
+> Add HAS_CASF macro to check whether platform supports
+> the content adaptive sharpness capability or not.
+>
+> v2: Update commit message[Ankit]
+> v3: Remove \n from middle[Jani]
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 7 +++--
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 33 ++++++++++++++++-------
-> =C2=A0include/uapi/drm/xe_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 42 +++++++++++++++++++++++++---
-> --
-> =C2=A03 files changed, 62 insertions(+), 20 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 6122061786f6..a4906ae94bd4 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2003,10 +2003,9 @@ static int get_mem_attrs(struct xe_vm *vm, u32
-> *num_vmas, u64 start,
-> =C2=A0		attrs[i].start =3D xe_vma_start(vma);
-> =C2=A0		attrs[i].end =3D xe_vma_end(vma);
-> =C2=A0		attrs[i].atomic.val =3D vma->attr.atomic_access;
-> -
-> -		/* TODO: Modify drm_xe_mem_range_attr for all pats
-> */
-> -		attrs[i].pat_index.val =3D vma-
-> >attr.pat_index.initial;
-> -
-> +		attrs[i].pat_index.smem =3D vma->attr.pat_index.smem;
-> +		attrs[i].pat_index.devmem =3D vma-
-> >attr.pat_index.devmem;
-> +		attrs[i].pat_index.remote =3D vma-
-> >attr.pat_index.remote;
-> =C2=A0		attrs[i].preferred_mem_loc.devmem_fd =3D vma-
-> >attr.preferred_loc.devmem_fd;
-> =C2=A0		attrs[i].preferred_mem_loc.migration_policy =3D
-> =C2=A0		vma->attr.preferred_loc.migration_policy;
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index e3f0cf23a3a9..3116036e6d24 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -149,16 +149,15 @@ static void madvise_pat_index(struct xe_device
-> *xe, struct xe_vm *vm,
-> =C2=A0	xe_assert(vm->xe, op->type =3D=3D DRM_XE_MEM_RANGE_ATTR_PAT);
-> =C2=A0
-> =C2=A0	for (i =3D 0; i < num_vmas; i++) {
-> -		/*TODO : Pass different pat_indexes from ioctl */
-> -		if (vmas[i]->attr.pat_index.smem =3D=3D op-
-> >pat_index.val &&
-> -		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.devmem =3D=3D op-
-> >pat_index.val &&
-> -		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.remote =3D=3D op-
-> >pat_index.val) {
-> +		if (vmas[i]->attr.pat_index.smem =3D=3D op-
-> >pat_index.smem &&
-> +		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.devmem =3D=3D op-
-> >pat_index.devmem &&
-> +		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.remote =3D=3D op-
-> >pat_index.remote) {
-> =C2=A0			vmas[i]->skip_invalidation =3D true;
-> =C2=A0		} else {
-> =C2=A0			vmas[i]->skip_invalidation =3D false;
-> -			vmas[i]->attr.pat_index.smem =3D op-
-> >pat_index.val;
-> -			vmas[i]->attr.pat_index.devmem =3D op-
-> >pat_index.val;
-> -			vmas[i]->attr.pat_index.remote =3D=C2=A0 op-
-> >pat_index.val;
-> +			vmas[i]->attr.pat_index.smem =3D op-
-> >pat_index.smem;
-> +			vmas[i]->attr.pat_index.devmem =3D op-
-> >pat_index.devmem;
-> +			vmas[i]->attr.pat_index.remote =3D=C2=A0 op-
-> >pat_index.remote;
-> =C2=A0		}
-> =C2=A0	}
-> =C2=A0}
-> @@ -273,12 +272,26 @@ static bool madvise_args_are_sane(struct
-> xe_device *xe, const struct drm_xe_madv
-> =C2=A0		break;
-> =C2=A0	case DRM_XE_MEM_RANGE_ATTR_PAT:
-> =C2=A0	{
-> -		u16 coh_mode =3D xe_pat_index_get_coh_mode(xe, args-
-> >pat_index.val);
-> +		u16 coh_mode_smem =3D xe_pat_index_get_coh_mode(xe,
-> args->pat_index.smem);
-> +		u16 coh_mode_devmem =3D xe_pat_index_get_coh_mode(xe,
-> args->pat_index.devmem);
-> +		u16 coh_mode_remote =3D xe_pat_index_get_coh_mode(xe,
-> args->pat_index.remote);
-> =C2=A0
-> -		if (XE_IOCTL_DBG(xe, !coh_mode))
-> +		if (XE_IOCTL_DBG(xe, !coh_mode_smem))
-> =C2=A0			return false;
-> =C2=A0
-> -		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY))
-> +		if (XE_IOCTL_DBG(xe, !coh_mode_devmem))
-> +			return false;
-> +
-> +		if (XE_IOCTL_DBG(xe, !coh_mode_remote))
-> +			return false;
-> +
-> +		if (XE_WARN_ON(coh_mode_smem >
-> XE_COH_AT_LEAST_1WAY))
-> +			return false;
-> +
-> +		if (XE_WARN_ON(coh_mode_devmem >
-> XE_COH_AT_LEAST_1WAY))
-> +			return false;
-> +
-> +		if (XE_WARN_ON(coh_mode_remote >
-> XE_COH_AT_LEAST_1WAY))
-> =C2=A0			return false;
-> =C2=A0
-> =C2=A0		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 40ff19f52a8d..09d9a9cf02e8 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -2101,11 +2101,26 @@ struct drm_xe_madvise {
-> =C2=A0		 * Used when @type =3D=3D DRM_XE_MEM_RANGE_ATTR_PAT.
-> =C2=A0		 */
-> =C2=A0		struct {
-> -			/** @pat_index.val: PAT index value */
-> -			__u32 val;
-> +			/**
-> +			 * @pat_index.smem: PAT index value to be
-> used when
-> +			 * location is system memory during GPU
-> access time.
-> +			 */
-> +			__u16 smem;
-> +
-> +			/**
-> +			 * @pat_index.devmem: PAT index value to be
-> used when
-> +			 * location is local vram during GPU access
-> time.
-> +			 */
-> +			__u16 devmem;
-> +
-> +			/**
-> +			 * @pat_index.remote: PAT index value to be
-> used when
-> +			 * location is remote gpu vram during GPU
-> access time.
-> +			 */
-> +			__u16 remote;
-> =C2=A0
-> =C2=A0			/** @pat_index.pad: MBZ */
-> -			__u32 pad;
-> +			__u16 pad;
-> =C2=A0
-> =C2=A0			/** @pat_index.reserved: Reserved */
-> =C2=A0			__u64 reserved;
-> @@ -2163,11 +2178,26 @@ struct drm_xe_mem_range_attr {
-> =C2=A0
-> =C2=A0	 /** @pat_index: Page attribute table index */
-> =C2=A0	struct {
-> -		/** @pat_index.val: PAT index */
-> -		__u32 val;
-> +		/**
-> +		 * @pat_index.smem: PAT index value to be used when
-> +		 * location is system memory during GPU access time.
-> +		 */
-> +		__u16 smem;
-> +
-> +		/**
-> +		 * @pat_index.devmem: PAT index value to be used
-> when
-> +		 * location is local vram during GPU access time.
-> +		 */
-> +		__u16 devmem;
-> +
-> +		/**
-> +		 * @pat_index.remote: PAT index value to be used
-> when
-> +		 * location is remote gpu tiles during GPU access
-> time.
-> +		 */
-> +		__u16 remote;
-> =C2=A0
-> =C2=A0		/** @pat_index.reserved: Reserved */
-> -		__u32 reserved;
-> +		__u16 reserved;
-> =C2=A0	} pat_index;
-> =C2=A0
-> =C2=A0	/** @reserved: Reserved */
+>  drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display_device.h  | 1 +
+>  2 files changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drive=
+rs/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 0c7f91046996..bc6a041cec13 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -373,6 +373,13 @@ void intel_crtc_state_dump(const struct intel_crtc_s=
+tate *pipe_config,
+>=20=20
+>  	intel_vdsc_state_dump(&p, 0, pipe_config);
+>=20=20
+> +	if (HAS_CASF(display)) {
+> +		drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpn=
+ess enable: %d\n",
+> +			   pipe_config->hw.casf_params.strength,
+> +			   pipe_config->hw.casf_params.win_size,
+> +			   pipe_config->hw.casf_params.casf_enable);
+> +	}
 
+This breaks bisect, because it's referring to things that aren't there yet:
+
+../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c: In function =E2=80=
+=98intel_crtc_state_dump=E2=80=99:
+../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:378:43: error: =E2=
+=80=98const struct <anonymous>=E2=80=99 has no member named =E2=80=98casf_p=
+arams=E2=80=99
+  378 |                            pipe_config->hw.casf_params.strength,
+      |                                           ^
+../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:379:43: error: =E2=
+=80=98const struct <anonymous>=E2=80=99 has no member named =E2=80=98casf_p=
+arams=E2=80=99
+  379 |                            pipe_config->hw.casf_params.win_size,
+      |                                           ^
+../drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:380:43: error: =E2=
+=80=98const struct <anonymous>=E2=80=99 has no member named =E2=80=98casf_p=
+arams=E2=80=99
+  380 |                            pipe_config->hw.casf_params.casf_enable);
+      |                                           ^
+
+I thought about simply reordering the patches in the series, but the
+patch that adds casf_params depends on HAS_CASF() introduced here, and
+there are other similar issues all over the place. I can't merge this,
+sorry.
+
+Every commit must compile, no exceptions.
+
+Checking this is as simple as:
+
+$ git rebase -i drm-tip/drm-tip -x make
+
+with whatever remote and build command you use.
+
+And yes, I obviously do this before merging anything, also no
+exceptions.
+
+I'm more than a little annoyed that there have been umpteen versions of
+this series, I've been incessantly pestered about gathering acks and
+getting this merged, and there are still basic things like this that
+nobody looked at or cared about when I'm on the verge of merging.
+
+
+BR,
+Jani.
+
+
+
+> +
+>  dump_planes:
+>  	if (!state)
+>  		return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
+s/gpu/drm/i915/display/intel_display_device.h
+> index 1f091fbcd0ec..157aa0b8f36e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -144,6 +144,7 @@ struct intel_display_platforms {
+>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >=3D 5)
+>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >=3D 13)
+>  #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >=3D 11 && HAS_=
+DSC(__display))
+> +#define HAS_CASF(__display)		(DISPLAY_VER(__display) >=3D 20)
+>  #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_c=
+rawl)
+>  #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_=
+squash)
+>  #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >=3D 20)
+
+--=20
+Jani Nikula, Intel
