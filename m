@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853CFCAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 10:26:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49E39CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 10:27:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C86010E40B;
-	Mon, 22 Sep 2025 10:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0535B10E40F;
+	Mon, 22 Sep 2025 10:27:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fh2dAlb8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EG8TSQUE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCECB10E40B;
- Mon, 22 Sep 2025 10:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF5E10E40F;
+ Mon, 22 Sep 2025 10:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758536796; x=1790072796;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/f0dTH9UWMKP0fFK1dQ6tGPCEItOj243B/Mq6f+O1DU=;
- b=fh2dAlb8DuLdXkD9Vj2/SX2X77+pLEPJ7AjXR2koP4bvD1sqPkgYkGOt
- x1zC9lZ7uAeIZOzhBjTPGPQNVxIS9pi8jWO77mNWCSYqWu2AbmNq2ybFm
- wQNCaz29knO3GNC84VvDaRqxvuTB0aeI7KRlyMGkeJdsTSAJtheMUUHIu
- pX1Jc9QoMybSNfKUPs6KM31cJvfK6XTegkAkdB0TgeadMgSe6+7zPlOjb
- EWO4CY5ZdJynnDWdVg4rA0HrQ1SEQ/r26stS8p4/0hNoQ7IKRrCexKGhU
- M31B6rqCioKdyFgcjOr7ZCWO1ROzXRzfZoBqext/XEfLMLALnCTM64hzZ g==;
-X-CSE-ConnectionGUID: BX+R6xKPSjem9NWYwqI4Vg==
-X-CSE-MsgGUID: hFGr0JyAQbCgI4AXSJpRmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60850800"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60850800"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:26:36 -0700
-X-CSE-ConnectionGUID: 5eYEy40UTuuseEgVrLMJQA==
-X-CSE-MsgGUID: 31h4LfUHR4azLBVMeP1htQ==
+ t=1758536868; x=1790072868;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pnbmxKQp4OfGXLO7hv3QDQPs2hjZCfo5ZY9OHR6zNb8=;
+ b=EG8TSQUE8tFj7EBI/AYJtqZKhqO9AESZYtH/V5Zsx0lq6rVPdMdJzzk3
+ wRqiaLWFyuQ3/i7n3eKkuJxz2psMg/3CSM1qm2CNrT4OIygweSKFx8uip
+ LEvmIyPxQzyt80Lq/I4HqeYTwVQuRTv3YFyP8200GSVChkrBxbubmz284
+ I6H/B/FIrHlsGJ/rHHvnPg9URcRnBcm6rpcy7sPdenErDQMN2/ZXgP1CX
+ mwOJrydAGK1SEYcY7kYw26gfmO0+Ye68Agg9tpuZ2krIpuV1p1SpmyYkf
+ JyXbQdDwbEBbTru5Nrf1XhPhOoQVhQl7ky7vB3yEIbiHC38I6L+iyPgjN w==;
+X-CSE-ConnectionGUID: g+QdNfG7Sn2+ip7vAIHmdQ==
+X-CSE-MsgGUID: 5yEU6mMrRcWsGZKM/8EtwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60683128"
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="60683128"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:27:48 -0700
+X-CSE-ConnectionGUID: pjRWgsdLTYuGqD5iP/p79g==
+X-CSE-MsgGUID: wc27SpKxRXKaKJtI7PREhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="175579911"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:26:34 -0700
-Date: Mon, 22 Sep 2025 13:26:31 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 8/9] drm/i915/display: Wait for scl start instead of
- dsb_wait_vblanks
-Message-ID: <aNEkV70k8Nv1WFzW@intel.com>
-References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
- <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="181692951"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO jhogande-mobl3..)
+ ([10.245.244.53])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:27:45 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Lemen <lemen@lemen.xyz>, Koos Vriezen <koos.vriezen@gmail.com>
+Subject: [PATCH] drm/i915/psr: Deactivate PSR only on LNL and when selective
+ fetch enabled
+Date: Mon, 22 Sep 2025 13:27:25 +0300
+Message-ID: <20250922102725.2752742-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,105 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Sep 21, 2025 at 10:05:34AM +0530, Ankit Nautiyal wrote:
-> Until LNL, intel_dsb_wait_vblanks() waits for the undelayed vblank start.
-> However, from PTL onwards, it waits for the start of the safe window,
-> defined by the number of lines programmed in TRANS_SET_CONTEXT_LATENCY.
-> This change was introduced to move the SCL window out of the vblank region,
-> supporting modes with higher refresh rates and smaller vblanks.
-> 
-> As a result, on PTL+ platforms, the DSB wait for vblank completes exactly
-> SCL lines earlier than the undelayed vblank start. Since we use
-> intel_dsb_wait_vblanks() to time the send push operation, this causes
-> issues when SCL lines are non-zero.
-> 
-> Instead of relying on the helper, instruct the DSB to wait from
-> (undelayed vblank start - SCL) to (delayed vblank start - SCL) before
-> sending the push. This approach works for both pre-PTL and PTL+ platforms.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsb.c     | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dsb.h     |  2 ++
->  3 files changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index bfeec3706f35..8d78037d5a2a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7265,7 +7265,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->  				new_crtc_state->dsb_color);
->  
->  	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
-> -		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-> +		intel_dsb_wait_for_scl_start(state, new_crtc_state->dsb_commit);
->  
->  		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
->  		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> index 400dcc87a992..e94a05cc8c82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -826,6 +826,22 @@ void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
->  	intel_dsb_wait_usec(dsb, usecs);
->  }
->  
-> +void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
-> +				  struct intel_dsb *dsb)
-> +{
-> +	struct intel_crtc *crtc = dsb->crtc;
-> +	const struct intel_crtc_state *crtc_state =
-> +		intel_pre_commit_crtc_state(state, crtc);
-> +	int undelayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vdisplay;
-> +	int delayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vblank_start;
-> +	int start, end;
-> +
-> +	start = undelayed_vblank_start - crtc_state->set_context_latency;
-> +	end = delayed_vblank_start - crtc_state->set_context_latency;
+Using intel_psr_exit in frontbuffer flush on older platforms seems to be
+causing problems.
 
-For these we perhaps want something like:
+Sending single full frame update using intel_psr_force_update is anyways
+more optimal compared to psr deactivate/activate -> move back to this
+approach on PSR1, PSR HW tracking and Panel Replay full frame update and
+use deactivate/activate only on LunarLake and only when selective fetch is
+enabled.
 
-intel_vrr_safe_window_start()
-{
-	if (ptl+)
-		return crtc_vdisplay - set_context_latency;
-	else
-		return crtc_vdisplay;
-}
+Tested-by: Lemen <lemen@lemen.xyz>
+Tested-by: Koos Vriezen <koos.vriezen@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14946
+Signed-off-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-intel_vrr_vmin_safe_window_end()
-{
-	intel_vrr_vmin_vblank_start() - set_context_latency;
-}
-
-> +
-> +	intel_dsb_wait_scanline_out(state, dsb, start, end);
-
-And I suspect we want to do this just before the usec wait in
-intel_dsb_wait_vblank_delay() (for the VRR case only). No need
-to bother higher level code with this, I think.
-
-> +}
-> +
->  /**
->   * intel_dsb_commit() - Trigger workload execution of DSB.
->   * @dsb: DSB context
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-> index 1cb5ba1a0534..5985d0024dae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-> @@ -73,5 +73,7 @@ void intel_dsb_wait(struct intel_dsb *dsb);
->  
->  void intel_dsb_irq_handler(struct intel_display *display,
->  			   enum pipe pipe, enum intel_dsb_id dsb_id);
-> +void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
-> +				  struct intel_dsb *dsb);
->  
->  #endif
-> -- 
-> 2.45.2
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 01bf304c705f..10eb93a34cf2 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -3402,6 +3402,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 
+ 	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
++		/* Selective fetch prior LNL */
+ 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
+ 			/* can we turn CFF off? */
+ 			if (intel_dp->psr.busy_frontbuffer_bits == 0)
+@@ -3420,12 +3421,19 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ 		intel_psr_configure_full_frame_update(intel_dp);
+ 
+ 		intel_psr_force_update(intel_dp);
++	} else if (!intel_dp->psr.psr2_sel_fetch_enabled) {
++		/*
++		 * PSR1 on all platforms
++		 * PSR2 HW tracking
++		 * Panel Replay Full frame update
++		 */
++		intel_psr_force_update(intel_dp);
+ 	} else {
++		/* Selective update LNL onwards */
+ 		intel_psr_exit(intel_dp);
+ 	}
+ 
+-	if ((!intel_dp->psr.psr2_sel_fetch_enabled || DISPLAY_VER(display) >= 20) &&
+-	    !intel_dp->psr.busy_frontbuffer_bits)
++	if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
+ 		queue_work(display->wq.unordered, &intel_dp->psr.work);
+ }
+ 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
