@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1E81CAC592
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B64FBCAC5AA
 	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 19:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA5710E50B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F59610E50C;
 	Mon, 22 Sep 2025 19:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KFEFY+DL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYLbXi0H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0057F10E50C
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 19:58:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 201E910E50B
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 19:58:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758571128; x=1790107128;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t/cwfidQF4DpSGEmjGKF3gonXoKH9883DTm3LLJSHew=;
- b=KFEFY+DLqTmWFS42Yw+oejKiNarPsAJnEGWk1tzDtbWvoDDbQbEceQE7
- OweCcIdZbA2G13GZ1TcC3kxebYOgFu6vZpNEeYbCY8Y5822BiF5SileGf
- 3YN6+vA6kjo0hmzTYAdFmJI6OfGFbfDIspkz38mNnA/dXsinUCJctoGc5
- mu2rKsc/9MGFL7/F/S1AX89fJZNVPG+TVEB+vdymbOhgpdtrYMI88V/Ek
- L6UD702yZh4ZfMsY/RApno4A6Im2okhnWOzzvDBTEhUli+eJil1efljdJ
- Oa4yBSFua0aTTD267+GNHCXSu+Ehn3MiuDmt10L6EO/YoTWaSVqZFVLjP A==;
-X-CSE-ConnectionGUID: QmeIkP5JT+m7WDpoL0Q2BA==
-X-CSE-MsgGUID: PBdFL9MMQTyluxDbbiC9yQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="72267348"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="72267348"
+ bh=hOZHV7OmwPnY8vqzyqp14X/SJNNrZhri3/M4OlTwtZ8=;
+ b=AYLbXi0HMw0Bv24hmMif6hWcZLuvXhb2h27gihhUoqmSZa6SfEk9Q1lo
+ fgJ1imtq9jZ7uwJQ7Zc11cdjm8n8KfGtEMletorO0OzncNJm0tFNrVyLG
+ 5UyNv0RTFzErJPM8z77RHTEk2PiUJFgsB1Q5kEmIaXawCRZ1TKOIKCY9s
+ MpZrK/kN6Hn0KPQaJc/koedbJXsF2HO3BUI4cYq3aBbIX1ry0d5PqKAh7
+ qDJyOnU5J6EDjjpa/Ragh/icwVdf2SuNpMhOotRrVVTkp0bVznWCXi9mJ
+ Yo9EP6SHAUGYU+8ayMVSSLt9+ChK/7Rd8n0LbQIh8sHbt102nbYyHxP2V w==;
+X-CSE-ConnectionGUID: ANCZ2gQFSrmWVXxI2Ml+Xw==
+X-CSE-MsgGUID: mth9Z6mYQweTlZR4HVQxLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="72267350"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="72267350"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Sep 2025 12:58:47 -0700
-X-CSE-ConnectionGUID: 0Su0JNN1SQCxNO+h//hePw==
-X-CSE-MsgGUID: N6MWvcRrRAabUeMxRPs35g==
+X-CSE-ConnectionGUID: JM8jPhJoTLqPeOgpL2gJTw==
+X-CSE-MsgGUID: Y6IlMCNkSuu3J0+q2m315Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="207306245"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="207306248"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Sep 2025 12:58:46 -0700
@@ -49,9 +49,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  John Harrison <John.C.Harrison@Intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v4 1/5] drm/xe/device: Use poll_timeout_us() to wait for lmem
-Date: Mon, 22 Sep 2025 12:58:29 -0700
-Message-ID: <20250922-xe-iopoll-v4-1-06438311a63f@intel.com>
+Subject: [PATCH v4 2/5] drm/xe/guc_pc: Use poll_timeout_us() for waiting
+Date: Mon, 22 Sep 2025 12:58:30 -0700
+Message-ID: <20250922-xe-iopoll-v4-2-06438311a63f@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
 References: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
@@ -73,122 +73,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that there's a generic poll_timeout_us(), use it to wait for
-LMEM_INIT in GU_CNTL.
+Convert wait_for_pc_state() and wait_for_act_freq_limit() to
+poll_timeout_us(). This brings 2 changes in behavior: Drop the
+exponential wait and fix a potential much longer sleep.
 
-Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+usleep_range() will wait anywhere between `wait` and `wait << 1`, so
+it's not correct to assume `slept += wait`.  This code is not really
+accurate. Pairing this with the exponential wait increase, it could be
+waiting much longer than intended.
+
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
-- Handle signal_pending() as it was originally
-- Don't mix return from poll_timeout_us() with return from condition
-  (Maarten)
+v2: Simplify functions by removing helper variables and changing break
+    condition on poll_timeout_us() call (Maarten)
+v3: dial a little bit back from v2: better to have some helper vars
+    and avoid the weird syntax (Jani)
 ---
- drivers/gpu/drm/xe/xe_device.c | 65 ++++++++++++++++++++++--------------------
- 1 file changed, 34 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_pc.c | 44 +++++++++++++-----------------------------
+ 1 file changed, 13 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index fdb7b7498920a..09f8a66c97282 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -8,6 +8,7 @@
- #include <linux/aperture.h>
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 53fdf59524c41..3c0feb50a1e2f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -7,6 +7,7 @@
+ 
+ #include <linux/cleanup.h>
  #include <linux/delay.h>
- #include <linux/fault-inject.h>
 +#include <linux/iopoll.h>
- #include <linux/units.h>
+ #include <linux/jiffies.h>
+ #include <linux/ktime.h>
+ #include <linux/wait_bit.h>
+@@ -130,26 +131,16 @@ static struct iosys_map *pc_to_maps(struct xe_guc_pc *pc)
+ 	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
  
- #include <drm/drm_atomic_helper.h>
-@@ -630,16 +631,22 @@ static int xe_set_dma_info(struct xe_device *xe)
- 	return err;
+ static int wait_for_pc_state(struct xe_guc_pc *pc,
+-			     enum slpc_global_state state,
++			     enum slpc_global_state target_state,
+ 			     int timeout_ms)
+ {
+-	int timeout_us = 1000 * timeout_ms;
+-	int slept, wait = 10;
++	enum slpc_global_state state;
+ 
+ 	xe_device_assert_mem_access(pc_to_xe(pc));
+ 
+-	for (slept = 0; slept < timeout_us;) {
+-		if (slpc_shared_data_read(pc, header.global_state) == state)
+-			return 0;
+-
+-		usleep_range(wait, wait << 1);
+-		slept += wait;
+-		wait <<= 1;
+-		if (slept + wait > timeout_us)
+-			wait = timeout_us - slept;
+-	}
+-
+-	return -ETIMEDOUT;
++	return poll_timeout_us(state = slpc_shared_data_read(pc, header.global_state),
++			       state == target_state,
++			       20, timeout_ms * USEC_PER_MSEC, false);
  }
  
--static bool verify_lmem_ready(struct xe_device *xe)
-+static int lmem_initializing(struct xe_device *xe)
- {
--	u32 val = xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT;
-+	if (xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT)
-+		return 0;
-+
-+	if (signal_pending(current))
-+		return -EINTR;
- 
--	return !!val;
-+	return 1;
- }
- 
- static int wait_for_lmem_ready(struct xe_device *xe)
- {
--	unsigned long timeout, start;
-+	const unsigned long TIMEOUT_SEC = 60;
-+	unsigned long prev_jiffies;
-+	int initializing;
- 
- 	if (!IS_DGFX(xe))
- 		return 0;
-@@ -647,39 +654,35 @@ static int wait_for_lmem_ready(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
- 		return 0;
- 
--	if (verify_lmem_ready(xe))
-+	if (!lmem_initializing(xe))
- 		return 0;
- 
- 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
-+	prev_jiffies = jiffies;
- 
--	start = jiffies;
--	timeout = start + secs_to_jiffies(60); /* 60 sec! */
--
--	do {
--		if (signal_pending(current))
--			return -EINTR;
--
--		/*
--		 * The boot firmware initializes local memory and
--		 * assesses its health. If memory training fails,
--		 * the punit will have been instructed to keep the GT powered
--		 * down.we won't be able to communicate with it
--		 *
--		 * If the status check is done before punit updates the register,
--		 * it can lead to the system being unusable.
--		 * use a timeout and defer the probe to prevent this.
--		 */
--		if (time_after(jiffies, timeout)) {
--			drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
--			return -EPROBE_DEFER;
--		}
--
--		msleep(20);
--
--	} while (!verify_lmem_ready(xe));
-+	/*
-+	 * The boot firmware initializes local memory and
-+	 * assesses its health. If memory training fails,
-+	 * the punit will have been instructed to keep the GT powered
-+	 * down.we won't be able to communicate with it
-+	 *
-+	 * If the status check is done before punit updates the register,
-+	 * it can lead to the system being unusable.
-+	 * use a timeout and defer the probe to prevent this.
-+	 */
-+	poll_timeout_us(initializing = lmem_initializing(xe),
-+			initializing <= 0,
-+			20 * USEC_PER_MSEC, TIMEOUT_SEC * USEC_PER_SEC, true);
-+	if (initializing < 0)
-+		return initializing;
-+
-+	if (initializing) {
-+		drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
-+		return -EPROBE_DEFER;
-+	}
- 
- 	drm_dbg(&xe->drm, "lmem ready after %ums",
--		jiffies_to_msecs(jiffies - start));
-+		jiffies_to_msecs(jiffies - prev_jiffies));
- 
+ static int wait_for_flush_complete(struct xe_guc_pc *pc)
+@@ -164,24 +155,15 @@ static int wait_for_flush_complete(struct xe_guc_pc *pc)
  	return 0;
  }
+ 
+-static int wait_for_act_freq_limit(struct xe_guc_pc *pc, u32 freq)
++static int wait_for_act_freq_max_limit(struct xe_guc_pc *pc, u32 max_limit)
+ {
+-	int timeout_us = SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC;
+-	int slept, wait = 10;
+-
+-	for (slept = 0; slept < timeout_us;) {
+-		if (xe_guc_pc_get_act_freq(pc) <= freq)
+-			return 0;
+-
+-		usleep_range(wait, wait << 1);
+-		slept += wait;
+-		wait <<= 1;
+-		if (slept + wait > timeout_us)
+-			wait = timeout_us - slept;
+-	}
++	u32 freq;
+ 
+-	return -ETIMEDOUT;
++	return poll_timeout_us(freq = xe_guc_pc_get_act_freq(pc),
++			       freq <= max_limit,
++			       20, SLPC_ACT_FREQ_TIMEOUT_MS * USEC_PER_MSEC, false);
+ }
++
+ static int pc_action_reset(struct xe_guc_pc *pc)
+ {
+ 	struct xe_guc_ct *ct = pc_to_ct(pc);
+@@ -983,7 +965,7 @@ void xe_guc_pc_apply_flush_freq_limit(struct xe_guc_pc *pc)
+ 	 * Wait for actual freq to go below the flush cap: even if the previous
+ 	 * max was below cap, the current one might still be above it
+ 	 */
+-	ret = wait_for_act_freq_limit(pc, BMG_MERT_FLUSH_FREQ_CAP);
++	ret = wait_for_act_freq_max_limit(pc, BMG_MERT_FLUSH_FREQ_CAP);
+ 	if (ret)
+ 		xe_gt_err_once(gt, "Actual freq did not reduce to %u, %pe\n",
+ 			       BMG_MERT_FLUSH_FREQ_CAP, ERR_PTR(ret));
 
 -- 
 2.50.1
