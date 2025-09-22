@@ -4,61 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F39FCAC5A7
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 11:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04145CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 12:12:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C1410E42C;
-	Mon, 22 Sep 2025 11:30:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD54610E44F;
+	Mon, 22 Sep 2025 12:12:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFoU9vOJ";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="CsI0w5Vr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8C710E42A;
- Mon, 22 Sep 2025 11:30:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758540606; x=1790076606;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jkAv/qrZXbdmGhVnFK/kMDFxlkb2Rmf7BAOI8WYF0no=;
- b=JFoU9vOJ19Ap16PtqdJJdyOCraYE9/IPcSYDxymWmKaBubDLcqAuU3eX
- bzOueG7NdujrUI3x/rv/0HmCNuoSf1SEzjdirAmkCBBCX1K97IegUqXqF
- mksrfy2sYRERt7jTGpWiFdAicrFNO1rVuDjIDoaFUokvFKfgzKWC01OAj
- SZm32oH4Ib0y0GQDpl2bmfQsocHUd3gfD97R0DIOwpLf0jctemQ3Rtzym
- 1qIr5gksWBf6P08sGwCrAsKTlMkYzM8WMrlgb3SdvucIIcHlh5Gz0v+CP
- WKMOcCjitD9a/KEBzF5pjetPS4Ki3krOQKUUxrQ6/m+vqjZaaPx499/+9 A==;
-X-CSE-ConnectionGUID: lHxYlwfnQJaucTCA1VrL1A==
-X-CSE-MsgGUID: I2PEDdArRneTFQP+qhS1Cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="59840485"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="59840485"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:30:06 -0700
-X-CSE-ConnectionGUID: qcX+ShTPSQCrZPp/T/tZyA==
-X-CSE-MsgGUID: WRVMSVu0QdycI4a4YCGxfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176373391"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:30:04 -0700
-Date: Mon, 22 Sep 2025 14:30:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/9] drm/i915/display: Use set context latency in evasion
- logic
-Message-ID: <aNEzOW6RiIXguKbg@intel.com>
-References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
- <20250921043535.2012978-7-ankit.k.nautiyal@intel.com>
- <aNEiXtXdiEXSxGCn@intel.com> <aNEwywBIvZAhqadB@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011004.outbound.protection.outlook.com
+ [40.93.194.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0CC910E44F;
+ Mon, 22 Sep 2025 12:12:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ylk3FE9a+/NnaBZkx8VnMVpnTiR8e7R+4omqBhDSl47R9HFJjQVyAHdjpXYAho/EHfiYlp9h5gP6HQ5ofEEXFo6R2AiT8KQv7VCIfZXpOpxau0GbIWDwNMoVT5us12e963clT6X8HWP6PtKJcT3p3/cHLNUFTjiz8z/JVfzPa/s3Y7wW+Q+rtmwChJvUGtQlz3nCttgnE7dgEVRkie3VEl3rMIwT3fhp5ttLXIkGNaoXgO+8tyFUz/7L0r2t6eZdTyZ6+mCyBwBSyLv70GaTT3Zg2XVrJmjbjsyhqgg9vIoax5Btd5B6LJL8wED+/A5VG1CYPrZ+Kk2fmezAlRfnbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZNEsY4KOZ75LE/sjiydMsdtf0jX/fF9Zo4KP585mhe8=;
+ b=PG7RXL2CLQh8dijoM5D2+87pzUPOBIf4BmX/KdrqSo3oLr3Fvc9zEtFE5Ia78CA7Et/I6bABYQcqvMTWRV2fwtUzZtzi41K5tW9iPeIsx8st0ejCOk+cZ0MBHtRuNc02DRTTzTqqeZq+kF07Dav8OY4DC1v/h09DMgmI3ZqXCX2/MLKAqmNtuezD/YbVwo4cnw03MBriMrbS2xgGoWw6yXgcCeppHysZCR/RvbezSgs0R56mgv2fGi+bdufr9gUZIOCaWFBdao2h6FLxB69jFDRh2s+JxQJhAvHFB9ye+onGDhJ8ePQQkhh8Gdng7lT4lkSf2ec5eQ2F7ZKm3SHf3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZNEsY4KOZ75LE/sjiydMsdtf0jX/fF9Zo4KP585mhe8=;
+ b=CsI0w5VrQHZiJ7zs5/NhPUbblOPMus+riEcPhpdaP3cy1mwXQ2VenbYzN6Ft9GEyU/kzazxpVje5EAH/cCBMEj3lu8ReJv39I2O8OguXWmTLCTDm0JezStp5cF2T+09mNTG465cZ/rY1V/7sOB3QtPV7Cz6gKKTvdZOCtfdbUbR6Gw4fRqJZXgX6+hcFepHqYsmPP40q5a5kyK2d/PS8oavDbpSgX961+oPRvpMnwWOMTSdZ3KFjA5qUPLWuyIMWRXGgmJ34Njf89V4oaBbWxk58BIXsbE2PgIVatFpgJYSc0vpwZn666wV+ZHEaSDdmH/ZXE2Zm2voPss42uwjn0w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH7PR12MB5757.namprd12.prod.outlook.com (2603:10b6:510:1d0::13)
+ by SN7PR12MB7787.namprd12.prod.outlook.com (2603:10b6:806:347::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Mon, 22 Sep
+ 2025 12:12:55 +0000
+Received: from PH7PR12MB5757.namprd12.prod.outlook.com
+ ([fe80::f012:300c:6bf4:7632]) by PH7PR12MB5757.namprd12.prod.outlook.com
+ ([fe80::f012:300c:6bf4:7632%2]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
+ 12:12:55 +0000
+Date: Mon, 22 Sep 2025 09:12:53 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
+Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Logan Gunthorpe <logang@deltatee.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH v4 1/5] PCI/P2PDMA: Don't enforce ACS check for device
+ functions of Intel GPUs
+Message-ID: <20250922121253.GT1391379@nvidia.com>
+References: <20250915072428.1712837-1-vivek.kasireddy@intel.com>
+ <20250915072428.1712837-2-vivek.kasireddy@intel.com>
+ <20250916175709.GA1324871@nvidia.com>
+ <IA0PR11MB7185186F6AB160AA7F8F0FF3F816A@IA0PR11MB7185.namprd11.prod.outlook.com>
+ <20250918120431.GL1391379@nvidia.com>
+ <IA0PR11MB7185C96268ADB5530B343ABBF811A@IA0PR11MB7185.namprd11.prod.outlook.com>
+ <20250919122931.GR1391379@nvidia.com>
+ <IA0PR11MB718504F59BFA080EC0963E94F812A@IA0PR11MB7185.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aNEwywBIvZAhqadB@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <IA0PR11MB718504F59BFA080EC0963E94F812A@IA0PR11MB7185.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BYAPR07CA0089.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::30) To PH7PR12MB5757.namprd12.prod.outlook.com
+ (2603:10b6:510:1d0::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5757:EE_|SN7PR12MB7787:EE_
+X-MS-Office365-Filtering-Correlation-Id: a248f923-7cc7-4198-1338-08ddf9d15c61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?q6sK7U/mwSjcrfPIcCfYJvPjZFWl6dLjNNPywvh3yNbNM1R+bIEQ2oKazbEA?=
+ =?us-ascii?Q?j9ZZJFmkgENEFhpkIW0c94CyKFPgRflJjTtuLnEIY4i/Zr071xYSdGgJXYhm?=
+ =?us-ascii?Q?Ojxe+b8yNiW39fF9iqhSJ8qK5m4qT6q6MBFXZ4i/tbmF4TZJotsKn5Zv2+YB?=
+ =?us-ascii?Q?FNh0G5gYpS/hHrBqNxT80/uIpUoZDuB+6sYuBBBO3u4qDDrv4uIScaM0pSzZ?=
+ =?us-ascii?Q?Cr2sm8QsRkKlyuJPilpjIdHqdmvPVMFFh/C3x2ZMCGasjrTZnSCfhwkL6kKQ?=
+ =?us-ascii?Q?gDk1VBvR6Hhjbfn/stHdu6DdqcR0lK6I3MwVbwwQEDGsdJKaGc+1O6eCY95f?=
+ =?us-ascii?Q?IqJGo9LcVxNsIyBd94am7Mq0ojmUlAWZ1PxiH5zhe5RclFSmkcY5+wqakakp?=
+ =?us-ascii?Q?li9nRZhMN1ee+jEuyUFWOdVck/jsuXgymKBa3Un+tp2jdOzNRll0eJCaJUep?=
+ =?us-ascii?Q?rb2aZHidhEmF63LNqcygEJTYVdaRK1VIXkeI2JNKWZY4xjg4HgipGMObEe5r?=
+ =?us-ascii?Q?3yLULmYhLbigScKPnvCRPndDd3iL2x3eIGe8QeJecBLU5VmHq2MFkFVoSVSZ?=
+ =?us-ascii?Q?0lL09hcKq001P+Uibl/qp6rpRse62CcQO5GKQbjdQJZTK/UPzuKGYUHrW9ZR?=
+ =?us-ascii?Q?zi66xZjfDIcQaa2AdRWA94jIQOJZnNPHC+qEa2vnycGmAYYwlYMr8GLGRfGb?=
+ =?us-ascii?Q?/0zREr/bHmokmkEbvU2XXQo8RvyEhmJrgYBTOsckzvXBP2tDcOnu3+a6xKM+?=
+ =?us-ascii?Q?YwjCQbD+b2jswURNnveuYbVjTSkMpyPMi+SxM0rPGV4VKIJsbvfm/SnaVM0v?=
+ =?us-ascii?Q?0Abcfi9RA0jbv7fo6ZeCriUJAi2N9xqdjo74N0QSLN5HRjgdLqtxOZmDOzh/?=
+ =?us-ascii?Q?GsFaJOZzzpkTBRqvF5FLhZGuamEE0u9oCsNSBRyA6En5le75LBDnFHmQTUwT?=
+ =?us-ascii?Q?VoAUQtFv6/yms92yA45WXkcowqvZrcuxBgRV5SVed56XKg0o9D8Z1HB6s2jY?=
+ =?us-ascii?Q?qE5zKvmMyoq+ua2qzkQTRCKUuxbikobNF3dIKJo7KbxLzKeFu6R7pvy0KFsC?=
+ =?us-ascii?Q?1sP4oVE1lsYu0ddPoJdpN7IpWdrN1djOrc/CSe3hwMyteLq50ePEVM+Nvdwd?=
+ =?us-ascii?Q?q6I7ghfsMWQBlYpVl+x9l5YS/JY9hjarc7xGqjjKq010lHUiU6seC2FkrE2S?=
+ =?us-ascii?Q?Qdc1en/bdhYqw6kCOwVsztjtaVWdMJqzQCXTixfep90kLDtqPlpVhT6cmuqv?=
+ =?us-ascii?Q?GRFw/4gXGhE7CS7dbfmA0Kku2rj22ZKH5iRtF2M3bQ7PLbsrDAB/aHdoi+AP?=
+ =?us-ascii?Q?vmysz6xXi96+NB/zctTQwVokikX/J+BCwdohCYlhI8SJcyjXbRujrpAwAFq+?=
+ =?us-ascii?Q?Ck/srbAWHa52n88h29ou16WhTM6fhkQ5uNxycjw9eMRb6lN7M5g1YG0I5TSQ?=
+ =?us-ascii?Q?DUN9/6k6koI=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5757.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sx/7Q+O8BK+Q74CSls3VNRNNN8j2EUnHupvrLi80DuvoYz+D6pAAWjBYlEXv?=
+ =?us-ascii?Q?j18+570U6MB/mFfSAt6M6EAD4VbBwX64KLG/Z40I1T5GN3/9E/i0aMZ9/Aq1?=
+ =?us-ascii?Q?FmNp0GSIGC2WNb0HlY/aaVzhVtg3humt546EFW22T6hVucSb5uy7Fv3jNHYa?=
+ =?us-ascii?Q?23OFNFAo/1CzV5GvAKxTT+YKy7aUxVP/0OnMz1IMF1kNLGIFYbvkFzlFfbfG?=
+ =?us-ascii?Q?s3o90lRM0fyQRArbFsCOBsxHp3ihK0fhMYH3o+sJIyvezG9r31tt+fDPphN9?=
+ =?us-ascii?Q?SK/At7Y0gb7fjWNgVbjj67bANYfe+FwXxRBRepMx6raveTUZ6UJxEW4qtb4Y?=
+ =?us-ascii?Q?qzjwbluMXKhH7H3p5ozodPxoRPbtYMDE1Y55cI8nJS5DWZOH1BqA0AcoTfUa?=
+ =?us-ascii?Q?azSORMwJoECEnOaMBnKNvGffajh9rCG8rDk2l0D79f0dWaFdsvZ2cNoULGvi?=
+ =?us-ascii?Q?e+uquUwxm9+bqzo40yKZ1eIlEOhJdNJo6sfg5GCfvKm7SIIPoA2Y309wZzur?=
+ =?us-ascii?Q?XO/VMioUI/CpIiBgWi+UaJj/yiAJDYz75j0Ap6QwgtwS7ZAVa9dlLwczEwdH?=
+ =?us-ascii?Q?1LUW1sClcByDEDLYVKTLB3o3UnH6ZAjdkKjIoMV6qvtVktUfVJZHHESwWrlT?=
+ =?us-ascii?Q?izL7jcAIWHeKF/MQYLmYsY2AA2px2+2+dRBpGB5AReDlQJxbjNH2REiLgYRD?=
+ =?us-ascii?Q?iL0d8JETM7SZUWOvSLCezWeG6WWrj+yUs1s8U7LoyMewa4btu+9AxLnAP4VU?=
+ =?us-ascii?Q?vndMRZKGJfIQGYuE1O063AOssd/6syNSX2K19iXHB/UZ6e+rnp4jkfX2DL35?=
+ =?us-ascii?Q?whj4UgqRuqHTTKsnpwKCP6H5uP4Jyry8zUZR3zCJkgfZu67886xzkIY/6D7O?=
+ =?us-ascii?Q?tr+ul/Qi7hGEH0ON1R+08u1cR2sd12tTnXvvuNZivrTuJ8/EyY2eHHpklxQf?=
+ =?us-ascii?Q?C6Lpw/ugShvHWQ20skI+ZDGY/BnNSU2zRtP3G6Kkk9R3PHpRb7GQr4H7awBP?=
+ =?us-ascii?Q?VVPMpekTE9m8Hxe2282LrV0mOxqqUkNAW3zAofH5ryeh7LR8M8yYyDafVcG3?=
+ =?us-ascii?Q?rhsCucb4K1j91qwBzfAy7Bei8KS5+DLqTkF3mUm8JMlgX5uRC3wbp++GqItS?=
+ =?us-ascii?Q?1zCnflunvdq7gtUTDiPEvFJWf1TVXGJiV7KQW/FWknc7HXuYa/aVQ6wBG/Kv?=
+ =?us-ascii?Q?tsBkzAZBuRUWJ1BtX9I+0ncZ4iTGeA+wWG1j+nGOANXVZLGTUrcUit0eZDsP?=
+ =?us-ascii?Q?wG/xWJtIAy+aSxAh0XGep1q/FG0720ruzELyI+W0OgZw30/3quZvTKR8Uzzc?=
+ =?us-ascii?Q?esevzSbLZ9MQb5mUJgwCbLBW0bOCBYpOoOV15vxHvfuC/LLW4StDAreSDm9T?=
+ =?us-ascii?Q?RiYUrWp7zuA4s52HR3s6hVfm1+byKqJqkXyQX7TctkdDnpXIcDG1hGUXor/N?=
+ =?us-ascii?Q?XFAZSPkjVZ4/MzfDSYTHpYqGl442GT4OkTDUMd3QXLlNvURDFltBH8lEiR8V?=
+ =?us-ascii?Q?BffIdQloIo5cf23aDFQP7kFaHoLtZCuEGK7PTVsncDeEt6sKyeskvKlnIUfl?=
+ =?us-ascii?Q?Efy3ygHSQd2Vxhy7RJY=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a248f923-7cc7-4198-1338-08ddf9d15c61
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5757.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 12:12:55.1488 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZDqCYtRxv+zsXpWh6Es3dZx4NcKAOSKot4zqBOc3ko7sB8xSod1ul6/9ijxXjGY5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7787
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,143 +156,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 22, 2025 at 02:19:39PM +0300, Ville Syrjälä wrote:
-> On Mon, Sep 22, 2025 at 01:18:06PM +0300, Ville Syrjälä wrote:
-> > On Sun, Sep 21, 2025 at 10:05:32AM +0530, Ankit Nautiyal wrote:
-> > > Currently we use difference between vactive and vblank delay to
-> > > implicitly wait for SCL lines.
-> > > 
-> > > Remove the function intel_mode_vblank_delay as we can simply use
-> > > the set context latency instead.
-> > > 
-> > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dsb.c    | 4 ++--
-> > >  drivers/gpu/drm/i915/display/intel_vblank.c | 7 +------
-> > >  drivers/gpu/drm/i915/display/intel_vblank.h | 1 -
-> > >  3 files changed, 3 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > index ca31e928ecb0..dfe928aefdcd 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> > > @@ -130,7 +130,7 @@ static int dsb_vblank_delay(struct intel_atomic_state *state,
-> > >  		 */
-> > >  		return intel_vrr_scl_delay(crtc_state) + 1;
-> > >  	else
-> > > -		return intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
-> > > +		return crtc_state->set_context_latency;
-> > 
-> > I think we want to leave all the non-VRR cases to use
-> > intel_mode_vblank_delay(). Otherwise when running with fixed
-> > refresh rate we won't account for a reduced guardband.
-> > 
-> > And for the cases where the fixed refresh rate is handle by the legacy
-> > timing generator we actually need a slightly different delay for the
-> > legacy and VRR timing generators on TGL (due to
-> > intel_vrr_extra_vblank_delay() only affecting the VRR timing generator).
-> 
-> Just to elaborate on this, I am thinking that adjusted_mode.crtc_vblank_start
-> should *always* match the delayed vblank for the fixed refresh rate timings.
-> 
-> So I am envisioning the following rules:
-> 
-> always_use_vrr_tg():
-> 	crtc_vblank_start should reflect the undelayed vblank
+On Mon, Sep 22, 2025 at 06:59:10AM +0000, Kasireddy, Vivek wrote:
 
-Ugh. *delayed vblank* of course
+> > You can't translate a dma_addr_t to anything in the Xe PF driver
+> > anyhow, once it goes through the IOMMU the necessary information is lost.
+> Well, I already tested this path (via IOMMU, with your earlier vfio-pci +
+> dmabuf patch that used dma_map_resource() and also with Leon's latest
+> version) and found that I could still do the translation in the Xe PF driver
+> after first calling iommu_iova_to_phys().
 
-> 	for the VRR TG fixed refresh rate case (ie. fixed_rr_vtotal - guardband).
-> 	This should in fact be the same for both the VRR timings and fixed
-> 	RR timings because the vmin and guardband should be the same for both.
-> 
-> !always_use_vrr_tg()
-> 	crtc_vblank_start should reflect the undelayed vblank
+I would NAK any driver doing something so hacky. You are approaching
+this completely wrong to abuse things like this.
 
-ditto
+> that there are no memory copies and the CPU is not involved. And, I don't see
+> any other way to do this because I don't believe the exporter can provide a
+> DMA address that the importer can use directly without any translation, which
+> seems unavoidable in this case.
 
-> 	for the legacy TG (ie. vactive + SCL). The VRR timing
-> 	generator's vblank can be different here due to reduced
-> 	guardband.
-> 
-> This is rather important when we're doing a full modeset and userspace
-> has already requested vrr.enable=true. The actual modeset part will be
-> excuted while still running with the fixed refresh rate timings (either
-> using VRR TG or legacy TG depending on always_use_vrr_tg()). So the
-> vblank evasion prior to commit_arm() will need to know the correct
-> position of the delayed vblank for the fixed RR timings. We will then
-> switch over to the VRR timings (and possibly to the other timing
-> generator) during the actul commit.
-> 
-> This also means that intel_mode_vblank_delay() will always give us
-> the total delay betweern the undelayed vblank and delayed vblank for
-> the fixed RR timings. And this is exactly what we want
-> for eg. intel_dsb_wait_vblank_delay() since we will have configured
-> DSB_CHICKEN to use the undelayed vblank (as opposed to safe window)
-> and thus intel_dsb_wait_vblanks()/DSB_WAIT_FOR_VBLANK will wait for
-> the undelayed vblank.
-> 
-> > 
-> > >  }
-> > >  
-> > >  static int dsb_vtotal(struct intel_atomic_state *state,
-> > > @@ -733,7 +733,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
-> > >  		start = end - vblank_delay - latency;
-> > >  		intel_dsb_wait_scanline_out(state, dsb, start, end);
-> > >  	} else {
-> > > -		int vblank_delay = intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
-> > > +		int vblank_delay = crtc_state->set_context_latency;
-> > >  
-> > >  		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
-> > >  		start = end - vblank_delay - latency;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > index 9441b7bacd27..8c4cb6913ef9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > @@ -619,11 +619,6 @@ int intel_mode_vtotal(const struct drm_display_mode *mode)
-> > >  	return vtotal;
-> > >  }
-> > >  
-> > > -int intel_mode_vblank_delay(const struct drm_display_mode *mode)
-> > > -{
-> > > -	return intel_mode_vblank_start(mode) - intel_mode_vdisplay(mode);
-> > > -}
-> > > -
-> > >  static const struct intel_crtc_state *
-> > >  pre_commit_crtc_state(const struct intel_crtc_state *old_crtc_state,
-> > >  		      const struct intel_crtc_state *new_crtc_state)
-> > > @@ -685,7 +680,7 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
-> > >  	} else {
-> > >  		evade->vblank_start = intel_mode_vblank_start(adjusted_mode);
-> > >  
-> > > -		vblank_delay = intel_mode_vblank_delay(adjusted_mode);
-> > > +		vblank_delay = crtc_state->set_context_latency;
-> > >  	}
-> > >  
-> > >  	/* FIXME needs to be calibrated sensibly */
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
-> > > index 21fbb08d61d5..0fd6f7aeffd4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vblank.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vblank.h
-> > > @@ -25,7 +25,6 @@ int intel_mode_vdisplay(const struct drm_display_mode *mode);
-> > >  int intel_mode_vblank_start(const struct drm_display_mode *mode);
-> > >  int intel_mode_vblank_end(const struct drm_display_mode *mode);
-> > >  int intel_mode_vtotal(const struct drm_display_mode *mode);
-> > > -int intel_mode_vblank_delay(const struct drm_display_mode *mode);
-> > >  
-> > >  void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
-> > >  			     const struct intel_crtc_state *new_crtc_state,
-> > > -- 
-> > > 2.45.2
-> > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+This is sadly how dmabuf is designed, please talk to Christain to
+figure out how to exchage the right kind of address.
 
--- 
-Ville Syrjälä
-Intel
+> use-case. And, I sincerely hope that it will work, otherwise I don't see
+> any viable path forward for what I am trying to do other than using this
+> quirk and translation. 
+
+You will not get a quirk.
+
+> PCIe fabric). Isn't that one of the main ideas behind using quirks -- to
+> address hardware limitations?
+
+This is not a hardware limitation. You are using DMABUF wrong, writing
+hacks into the PF driver and then trying to make up a fake ACS quirk
+:(
+
+Jason
