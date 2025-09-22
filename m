@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA4BDCA100F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 19:58:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E624CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:06:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A495510E510;
-	Mon, 22 Sep 2025 19:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E889A10E50B;
+	Mon, 22 Sep 2025 20:06:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L3Y8s+jT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5MZJMDa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7336B10E50C
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 19:58:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 124C810E50B;
+ Mon, 22 Sep 2025 20:06:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758571128; x=1790107128;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NhGjCxI1ezboXqJ1Z78AiZnv+ig4YHkQO1mQYPx6mEA=;
- b=L3Y8s+jTsT97Cgd7t1T4CU8GI6NOJ3Eo9epLHGzuOHqKoOzhoRarcLnW
- rZq8i7rnH14tgMf/1MqOme09bzfxhtklf0v3FSEZQYQ9yINVq4cyEMx0H
- 1viw5jDKUBn3WdRG/gJrMoklavLGqKjNDSt6aTPhfGsCzOXWzdNTIpCy7
- 6QBpjbNMm1amDvSraLe9CyS6Mdx3dIxUtTq4Q+SrlGcIqgucvxxdsbUsX
- Kg2I+8JsZzeQ2OLq4DP4BHMwI5Muc+DJc9UfctGOelMHU0Nir+sTdJ5Hw
- DoAfgQ4DzGPnd+I4UicojFK49b2/fRom1CXVw/VmANVRJnxg9U7I2HIF/ Q==;
-X-CSE-ConnectionGUID: TrNao+b+TRaHvMIwg+ufxQ==
-X-CSE-MsgGUID: q3uwVJnTRk6+RwnpU37arg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="72267356"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="72267356"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 12:58:47 -0700
-X-CSE-ConnectionGUID: j7xbQ3P2RJCVngi/qX/mTA==
-X-CSE-MsgGUID: WeOBPwvESviN709KllXvyg==
+ t=1758571584; x=1790107584;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dhOYu1hIfSvnV+eSX97/TKzTwLvscJdd4YUW2+ne5i4=;
+ b=O5MZJMDaF4zKl+MmiiyAX1rRg4x9GkHuKeQALx3IhhXeEiuh9VmAtI3d
+ fm5OhLhoYw3NtD2qqvoS6XErhAbXJIiwaf0lqmqscOVhJfBZeaep1CNvl
+ ElCAlP/J/Q5s/Ksg6aksEYrhQ9hPtlk/MRhwxfivLNhrI3N8rTWWd+gJx
+ 56LOWfTVrMUwaBcajt7DoaJwFzqVXnPmZNGskphHkDOh7c1rdwhevSAXY
+ 6Fo2rJBF+c20xmLvo/OaBKvVJ/BoXkvrdtIGp2KGUpMAxqwqe4HRveC6p
+ bhAn+J1QrhDc5e9rt93x6/32MrKN3bYWV6Mor14QIDDjL6GxcOABVG5tw A==;
+X-CSE-ConnectionGUID: 9uWr/453SZWauXXEDA/i6Q==
+X-CSE-MsgGUID: kd0DFKUfT9C5yAPbi+fOIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="71950552"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="71950552"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:06:07 -0700
+X-CSE-ConnectionGUID: 0fT7ACV9ReSMnEL1YDB7Aw==
+X-CSE-MsgGUID: x/i2n+oSRi6IROVzlqtXTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="207306257"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 12:58:46 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v4 5/5] drm/xe/guc: Refactor GuC load to use poll_timeout_us()
-Date: Mon, 22 Sep 2025 12:58:33 -0700
-Message-ID: <20250922-xe-iopoll-v4-5-06438311a63f@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
-References: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176943295"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.115])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:06:05 -0700
+Date: Mon, 22 Sep 2025 23:06:02 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/5] drm/i915/dp: Verify branch devices' overall pixel
+ throughput/line width
+Message-ID: <aNGsKkxRqraLY5dw@intel.com>
+References: <20250918211223.209674-1-imre.deak@intel.com>
+ <20250918211223.209674-5-imre.deak@intel.com>
+ <aNGlDi2n_C5pNFXk@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-b03c7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <aNGlDi2n_C5pNFXk@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,289 +73,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently there are 2 wait loops for loading GuC: one in
-xe_mmio_wait32_not() and one guc_wait_ucode(). Now that there's a
-generic poll_timeout_us(), refactor the code to use that to be more
-readable.
+On Mon, Sep 22, 2025 at 10:35:42PM +0300, Ville Syrjälä wrote:
+> On Fri, Sep 19, 2025 at 12:12:22AM +0300, Imre Deak wrote:
+> > Read out the branch devices' maximum overall DSC pixel throughput and
+> > line width and verify the mode's corresponding pixel clock and hactive
+> > period against these.
+> > 
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_types.h    |  8 +++
+> >  drivers/gpu/drm/i915/display/intel_dp.c       | 62 +++++++++++++++++++
+> >  2 files changed, 70 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 358ab922d7a76..73bdafae604f8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -552,6 +552,14 @@ struct intel_connector {
+> >  
+> >  		u8 dsc_hblank_expansion_quirk:1;
+> >  		u8 dsc_decompression_enabled:1;
+> > +
+> > +		struct {
+> > +			struct {
+> > +				int rgb_yuv444;
+> > +				int yuv422_420;
+> > +			} overall_throughput;
+> > +			int max_line_width;
+> > +		} dsc_branch_caps;
+> >  	} dp;
+> >  
+> >  	struct {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 8cc123b0fd752..dd082d2fcc968 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1042,6 +1042,20 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+> >  	int tp_yuv422_420;
+> >  	u8 val;
+> >  
+> > +	/*
+> > +	 * TODO: Use the throughput value specific to the actual RGB/YUV
+> > +	 * format of the output.
+> > +	 * The RGB/YUV444 throughput value should be always either equal
+> > +	 * or smaller than the YUV422/420 value, but let's not depend on
+> > +	 * this assumption.
+> > +	 */
+> > +	if (mode_clock > max(connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444,
+> > +			     connector->dp.dsc_branch_caps.overall_throughput.yuv422_420))
+> > +		return 0;
+> > +
+> > +	if (mode_hdisplay > connector->dp.dsc_branch_caps.max_line_width)
+> > +		return 0;
+> 
+> Looks like you only initialize these when the branch device supports
+> decompression. What about a branch device that can do pass-through but
+> no decompression? Should we even be checking these when doing
+> pass-through?
 
-Main change in behavior is that there's no exponential wait anymore:
-that is now replaced by a 10msec retry.
+Ah, we read them from the decompression_aux, which I presume is always
+the thing that we want to do the decompression.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
----
-v2: Fix typos and leftover comment (John Harrison)
-v3: Leave the addition of print_bootrom_ukernel_err() to another commit
-v4: Keep the max timeout as 20sec for CONFIG_DRM_XE_DEBUG (John Harrison)
----
- drivers/gpu/drm/xe/xe_guc.c | 210 +++++++++++++++++++-------------------------
- 1 file changed, 92 insertions(+), 118 deletions(-)
+So in the passthrough case it will be the sink, and then we take the
+early !is_branch exit from init_dsc_overall_throughput_limits().
+Same for eDP.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 5fffff5927cdf..9343047da000b 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -5,6 +5,7 @@
- 
- #include "xe_guc.h"
- 
-+#include <linux/iopoll.h>
- #include <drm/drm_managed.h>
- 
- #include <generated/xe_wa_oob.h>
-@@ -970,82 +971,27 @@ static int guc_xfer_rsa(struct xe_guc *guc)
- 	return 0;
- }
- 
--/*
-- * Check a previously read GuC status register (GUC_STATUS) looking for
-- * known terminal states (either completion or failure) of either the
-- * microkernel status field or the boot ROM status field. Returns +1 for
-- * successful completion, -1 for failure and 0 for any intermediate state.
-- */
--static int guc_load_done(u32 status)
--{
--	u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, status);
--	u32 br_val = REG_FIELD_GET(GS_BOOTROM_MASK, status);
--
--	switch (uk_val) {
--	case XE_GUC_LOAD_STATUS_READY:
--		return 1;
--
--	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
--	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
--	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
--	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
--	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
--	case XE_GUC_LOAD_STATUS_DPC_ERROR:
--	case XE_GUC_LOAD_STATUS_EXCEPTION:
--	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
--	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
--	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
--	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
--	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
--		return -1;
--	}
--
--	switch (br_val) {
--	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
--	case XE_BOOTROM_STATUS_RSA_FAILED:
--	case XE_BOOTROM_STATUS_PAVPC_FAILED:
--	case XE_BOOTROM_STATUS_WOPCM_FAILED:
--	case XE_BOOTROM_STATUS_LOADLOC_FAILED:
--	case XE_BOOTROM_STATUS_JUMP_FAILED:
--	case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
--	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
--	case XE_BOOTROM_STATUS_EXCEPTION:
--	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
--		return -1;
--	}
--
--	return 0;
--}
--
- /*
-  * Wait for the GuC to start up.
-  *
-  * Measurements indicate this should take no more than 20ms (assuming the GT
-  * clock is at maximum frequency). However, thermal throttling and other issues
-  * can prevent the clock hitting max and thus making the load take significantly
-- * longer. Allow up to 200ms as a safety margin for real world worst case situations.
-- *
-- * However, bugs anywhere from KMD to GuC to PCODE to fan failure in a CI farm can
-- * lead to even longer times. E.g. if the GT is clamped to minimum frequency then
-- * the load times can be in the seconds range. So the timeout is increased for debug
-- * builds to ensure that problems can be correctly analysed. For release builds, the
-- * timeout is kept short so that users don't wait forever to find out that there is a
-- * problem. In either case, if the load took longer than is reasonable even with some
-- * 'sensible' throttling, then flag a warning because something is not right.
-+ * longer. Allow up to 3s as a safety margin in normal builds. For
-+ * CONFIG_DRM_XE_DEBUG allow up to 10s to account for slower execution, issues
-+ * in PCODE, driver, fan, etc.
-  *
-- * Note that there is a limit on how long an individual usleep_range() can wait for,
-- * hence longer waits require wrapping a shorter wait in a loop.
-- *
-- * Note that the only reason an end user should hit the shorter timeout is in case of
-- * extreme thermal throttling. And a system that is that hot during boot is probably
-- * dead anyway!
-+ * Keep checking the GUC_STATUS every 10ms with a debug message every 100
-+ * attempts as a "I'm slow, but alive" message. Regardless, if it takes more
-+ * than 200ms, emit a warning.
-  */
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
--#define GUC_LOAD_RETRY_LIMIT	20
-+#define GUC_LOAD_TIMEOUT_SEC	20
- #else
--#define GUC_LOAD_RETRY_LIMIT	3
-+#define GUC_LOAD_TIMEOUT_SEC	3
- #endif
--#define GUC_LOAD_TIME_WARN_MS      200
-+#define GUC_LOAD_TIME_WARN_MSEC	200
- 
- static void print_load_status_err(struct xe_gt *gt, u32 status)
- {
-@@ -1096,77 +1042,105 @@ static void print_load_status_err(struct xe_gt *gt, u32 status)
- 	}
- }
- 
-+/*
-+ * Check GUC_STATUS looking for known terminal states (either completion or
-+ * failure) of either the microkernel status field or the boot ROM status field.
-+ *
-+ * Returns 1 for successful completion, -1 for failure and 0 for any
-+ * intermediate state.
-+ */
-+static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
-+{
-+	u32 ukernel, bootrom;
-+
-+	*status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
-+	ukernel = REG_FIELD_GET(GS_UKERNEL_MASK, *status);
-+	bootrom = REG_FIELD_GET(GS_BOOTROM_MASK, *status);
-+
-+	switch (ukernel) {
-+	case XE_GUC_LOAD_STATUS_READY:
-+		return 1;
-+	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
-+	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
-+	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
-+	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
-+	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
-+	case XE_GUC_LOAD_STATUS_DPC_ERROR:
-+	case XE_GUC_LOAD_STATUS_EXCEPTION:
-+	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
-+	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
-+	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-+	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-+		return -1;
-+	}
-+
-+	switch (bootrom) {
-+	case XE_BOOTROM_STATUS_NO_KEY_FOUND:
-+	case XE_BOOTROM_STATUS_RSA_FAILED:
-+	case XE_BOOTROM_STATUS_PAVPC_FAILED:
-+	case XE_BOOTROM_STATUS_WOPCM_FAILED:
-+	case XE_BOOTROM_STATUS_LOADLOC_FAILED:
-+	case XE_BOOTROM_STATUS_JUMP_FAILED:
-+	case XE_BOOTROM_STATUS_RC6CTXCONFIG_FAILED:
-+	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
-+	case XE_BOOTROM_STATUS_EXCEPTION:
-+	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-+		return -1;
-+	}
-+
-+	if (++*tries >= 100) {
-+		struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
-+
-+		*tries = 0;
-+		xe_gt_dbg(gt, "GuC load still in progress, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
-+			  xe_guc_pc_get_act_freq(guc_pc),
-+			  xe_guc_pc_get_cur_freq_fw(guc_pc),
-+			  *status, ukernel, bootrom);
-+	}
-+
-+	return 0;
-+}
-+
- static int guc_wait_ucode(struct xe_guc *guc)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
--	struct xe_mmio *mmio = &gt->mmio;
- 	struct xe_guc_pc *guc_pc = &gt->uc.guc.pc;
--	ktime_t before, after, delta;
--	int load_done;
--	u32 status = 0;
--	int count = 0;
-+	u32 before_freq, act_freq, cur_freq;
-+	u32 status = 0, tries = 0;
-+	ktime_t before;
- 	u64 delta_ms;
--	u32 before_freq;
-+	int ret;
- 
- 	before_freq = xe_guc_pc_get_act_freq(guc_pc);
- 	before = ktime_get();
--	/*
--	 * Note, can't use any kind of timing information from the call to xe_mmio_wait.
--	 * It could return a thousand intermediate stages at random times. Instead, must
--	 * manually track the total time taken and locally implement the timeout.
--	 */
--	do {
--		u32 last_status = status & (GS_UKERNEL_MASK | GS_BOOTROM_MASK);
--		int ret;
- 
--		/*
--		 * Wait for any change (intermediate or terminal) in the status register.
--		 * Note, the return value is a don't care. The only failure code is timeout
--		 * but the timeouts need to be accumulated over all the intermediate partial
--		 * timeouts rather than allowing a huge timeout each time. So basically, need
--		 * to treat a timeout no different to a value change.
--		 */
--		ret = xe_mmio_wait32_not(mmio, GUC_STATUS, GS_UKERNEL_MASK | GS_BOOTROM_MASK,
--					 last_status, 1000 * 1000, &status, false);
--		if (ret < 0)
--			count++;
--		after = ktime_get();
--		delta = ktime_sub(after, before);
--		delta_ms = ktime_to_ms(delta);
--
--		load_done = guc_load_done(status);
--		if (load_done != 0)
--			break;
-+	ret = poll_timeout_us(ret = guc_load_done(gt, &status, &tries), ret,
-+			      10 * USEC_PER_MSEC,
-+			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
- 
--		if (delta_ms >= (GUC_LOAD_RETRY_LIMIT * 1000))
--			break;
--
--		xe_gt_dbg(gt, "load still in progress, timeouts = %d, freq = %dMHz (req %dMHz), status = 0x%08X [0x%02X/%02X]\n",
--			  count, xe_guc_pc_get_act_freq(guc_pc),
--			  xe_guc_pc_get_cur_freq_fw(guc_pc), status,
--			  REG_FIELD_GET(GS_BOOTROM_MASK, status),
--			  REG_FIELD_GET(GS_UKERNEL_MASK, status));
--	} while (1);
-+	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
-+	act_freq = xe_guc_pc_get_act_freq(guc_pc);
-+	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
- 
--	if (load_done != 1) {
--		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz), done = %d\n",
-+	if (ret) {
-+		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
- 			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
--			  xe_guc_pc_get_cur_freq_fw(guc_pc), load_done);
-+			  xe_guc_pc_get_cur_freq_fw(guc_pc));
- 		print_load_status_err(gt, status);
- 
- 		return -EPROTO;
- 	}
- 
--	if (delta_ms > GUC_LOAD_TIME_WARN_MS) {
--		xe_gt_warn(gt, "excessive init time: %lldms! [status = 0x%08X, timeouts = %d]\n",
--			   delta_ms, status, count);
--		xe_gt_warn(gt, "excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
--			   xe_guc_pc_get_act_freq(guc_pc), xe_guc_pc_get_cur_freq_fw(guc_pc),
--			   before_freq, xe_gt_throttle_get_limit_reasons(gt));
-+	if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
-+		xe_gt_warn(gt, "GuC load: excessive init time: %lldms! [status = 0x%08X]\n",
-+			   delta_ms, status);
-+		xe_gt_warn(gt, "GuC load: excessive init time: [freq = %dMHz (req = %dMHz), before = %dMHz, perf_limit_reasons = 0x%08X]\n",
-+			   act_freq, cur_freq, before_freq,
-+			   xe_gt_throttle_get_limit_reasons(gt));
- 	} else {
--		xe_gt_dbg(gt, "init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X, timeouts = %d\n",
--			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), xe_guc_pc_get_cur_freq_fw(guc_pc),
--			  before_freq, status, count);
-+		xe_gt_dbg(gt, "GuC load: init took %lldms, freq = %dMHz (req = %dMHz), before = %dMHz, status = 0x%08X\n",
-+			  delta_ms, act_freq, cur_freq, before_freq, status);
- 	}
- 
- 	return 0;
+> 
+> > +
+> >  	val = connector->dp.dsc_dpcd[DP_DSC_PEAK_THROUGHPUT - DP_DSC_SUPPORT];
+> >  	tp_rgb_yuv444 = dsc_per_slice_throughput(display, mode_clock,
+> >  						 REG_FIELD_GET8(DP_DSC_THROUGHPUT_MODE_0_MASK,
+> > @@ -4204,6 +4218,44 @@ static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+> >  		    dsc_dpcd);
+> >  }
+> >  
+> > +static int dsc_branch_overall_throughput(u8 bw_code)
+> > +{
+> > +	switch (bw_code) {
+> > +	case 0:
+> > +		return INT_MAX;
+> > +	case 1:
+> > +		return 680000;
+> > +	default:
+> > +		return 600000 + 50000 * bw_code;
+> > +	}
+> > +}
+> > +
+> > +static void init_dsc_overall_throughput_limits(struct intel_connector *connector, bool is_branch)
+> > +{
+> > +	u8 branch_caps[3];
+> > +
+> > +	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 = INT_MAX;
+> > +	connector->dp.dsc_branch_caps.overall_throughput.yuv422_420 = INT_MAX;
+> > +	connector->dp.dsc_branch_caps.max_line_width = INT_MAX;
+> > +
+> > +	if (!is_branch)
+> > +		return;
+> > +
+> > +	if (drm_dp_dpcd_read_data(connector->dp.dsc_decompression_aux,
+> > +				  DP_DSC_BRANCH_OVERALL_THROUGHPUT_0, branch_caps,
+> > +				  sizeof(branch_caps)) != 0)
+> > +		return;
+> > +
+> > +	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 =
+> > +		dsc_branch_overall_throughput(branch_caps[0]);
+> > +
+> > +	connector->dp.dsc_branch_caps.overall_throughput.yuv422_420 =
+> > +		dsc_branch_overall_throughput(branch_caps[1]);
+> > +
+> > +	if (branch_caps[2] != 0)
+> > +		connector->dp.dsc_branch_caps.max_line_width = branch_caps[2] * 320;
+> 
+> That max line width calculation should probably be a function as well
+> so that it can later be moved into some drm helper file along with the
+> other functions.
+> 
+> > +}
+> > +
+> >  void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+> >  			       const struct drm_dp_desc *desc, bool is_branch,
+> >  			       struct intel_connector *connector)
+> > @@ -4219,6 +4271,8 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+> >  	/* Clear fec_capable to avoid using stale values */
+> >  	connector->dp.fec_capability = 0;
+> >  
+> > +	memset(&connector->dp.dsc_branch_caps, 0, sizeof(connector->dp.dsc_branch_caps));
+> > +
+> >  	if (dpcd_rev < DP_DPCD_REV_14)
+> >  		return;
+> >  
+> > @@ -4233,6 +4287,11 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+> >  
+> >  	drm_dbg_kms(display->drm, "FEC CAPABILITY: %x\n",
+> >  		    connector->dp.fec_capability);
+> > +
+> > +	if (!(connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED))
+> > +		return;
+> > +
+> > +	init_dsc_overall_throughput_limits(connector, is_branch);
+> >  }
+> >  
+> >  static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
+> > @@ -4241,6 +4300,9 @@ static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *
+> >  		return;
+> >  
+> >  	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux, connector->dp.dsc_dpcd);
+> > +
+> > +	if (connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
+> > +		init_dsc_overall_throughput_limits(connector, false);
+> >  }
+> >  
+> >  static void
+> > -- 
+> > 2.49.1
+> 
+> -- 
+> Ville Syrjälä
+> Intel
 
 -- 
-2.50.1
-
+Ville Syrjälä
+Intel
