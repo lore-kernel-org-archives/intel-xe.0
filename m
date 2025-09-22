@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A82CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 19:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1E81CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 19:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F40B10E009;
-	Mon, 22 Sep 2025 19:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA5710E50B;
+	Mon, 22 Sep 2025 19:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PRmxOp8j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KFEFY+DL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 725C110E009;
- Mon, 22 Sep 2025 19:35:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0057F10E50C
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 19:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758569748; x=1790105748;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=byKLIucuW/2aSi2fcCD1kn2X7gGCGvpZ8npz/fT/9kw=;
- b=PRmxOp8jMQ7vd9jy/c4PgQW1IIhqd+hNARt9tVIIuqulmt/r+eaYdTMJ
- GlFKx+pDlN6RH/GT4StC2YCQUHj6Vaw6da+62/MhP8b1ILG+qk9TTFt6g
- lG3BE6Zbkl8jOnHuMOLXBGtakyK2s3bOdgm+E3vqTa3RyxyLvaFghaET0
- Od3iEf9Ls4YJTKUgzsosB2zMEFFrX3Z4f2NWa2jeSqSdOX1yqyrPKpZXw
- YQkkdo8lR/ZXHRVhlqqlIDNbrvH3UcOOE9PoMVtwmE7cjJ7jUwQZf2wKS
- 5QucxvPAgzXEJBuoPMwK0NWEEHWOaahWAIlN8JafWi8K7cbYLa75DSecx Q==;
-X-CSE-ConnectionGUID: SbLIi5zMTyijI3aMJzSPAQ==
-X-CSE-MsgGUID: A5E9pUj4R72vj6JioN0nWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="61006022"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="61006022"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 12:35:48 -0700
-X-CSE-ConnectionGUID: Vju9z/KvRHO+mTkOpxHQig==
-X-CSE-MsgGUID: cFygIyAwR1OVZmH6VM0xkQ==
+ t=1758571128; x=1790107128;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=t/cwfidQF4DpSGEmjGKF3gonXoKH9883DTm3LLJSHew=;
+ b=KFEFY+DLqTmWFS42Yw+oejKiNarPsAJnEGWk1tzDtbWvoDDbQbEceQE7
+ OweCcIdZbA2G13GZ1TcC3kxebYOgFu6vZpNEeYbCY8Y5822BiF5SileGf
+ 3YN6+vA6kjo0hmzTYAdFmJI6OfGFbfDIspkz38mNnA/dXsinUCJctoGc5
+ mu2rKsc/9MGFL7/F/S1AX89fJZNVPG+TVEB+vdymbOhgpdtrYMI88V/Ek
+ L6UD702yZh4ZfMsY/RApno4A6Im2okhnWOzzvDBTEhUli+eJil1efljdJ
+ Oa4yBSFua0aTTD267+GNHCXSu+Ehn3MiuDmt10L6EO/YoTWaSVqZFVLjP A==;
+X-CSE-ConnectionGUID: QmeIkP5JT+m7WDpoL0Q2BA==
+X-CSE-MsgGUID: PBdFL9MMQTyluxDbbiC9yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="72267348"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="72267348"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 12:58:47 -0700
+X-CSE-ConnectionGUID: 0Su0JNN1SQCxNO+h//hePw==
+X-CSE-MsgGUID: N6MWvcRrRAabUeMxRPs35g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176623090"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 12:35:45 -0700
-Date: Mon, 22 Sep 2025 22:35:42 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/5] drm/i915/dp: Verify branch devices' overall pixel
- throughput/line width
-Message-ID: <aNGlDi2n_C5pNFXk@intel.com>
-References: <20250918211223.209674-1-imre.deak@intel.com>
- <20250918211223.209674-5-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="207306245"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 12:58:46 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Ville_Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v4 1/5] drm/xe/device: Use poll_timeout_us() to wait for lmem
+Date: Mon, 22 Sep 2025 12:58:29 -0700
+Message-ID: <20250922-xe-iopoll-v4-1-06438311a63f@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
+References: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.15-dev-b03c7
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250918211223.209674-5-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,151 +73,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 19, 2025 at 12:12:22AM +0300, Imre Deak wrote:
-> Read out the branch devices' maximum overall DSC pixel throughput and
-> line width and verify the mode's corresponding pixel clock and hactive
-> period against these.
-> 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  8 +++
->  drivers/gpu/drm/i915/display/intel_dp.c       | 62 +++++++++++++++++++
->  2 files changed, 70 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 358ab922d7a76..73bdafae604f8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -552,6 +552,14 @@ struct intel_connector {
->  
->  		u8 dsc_hblank_expansion_quirk:1;
->  		u8 dsc_decompression_enabled:1;
-> +
-> +		struct {
-> +			struct {
-> +				int rgb_yuv444;
-> +				int yuv422_420;
-> +			} overall_throughput;
-> +			int max_line_width;
-> +		} dsc_branch_caps;
->  	} dp;
->  
->  	struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 8cc123b0fd752..dd082d2fcc968 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1042,6 +1042,20 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
->  	int tp_yuv422_420;
->  	u8 val;
->  
-> +	/*
-> +	 * TODO: Use the throughput value specific to the actual RGB/YUV
-> +	 * format of the output.
-> +	 * The RGB/YUV444 throughput value should be always either equal
-> +	 * or smaller than the YUV422/420 value, but let's not depend on
-> +	 * this assumption.
-> +	 */
-> +	if (mode_clock > max(connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444,
-> +			     connector->dp.dsc_branch_caps.overall_throughput.yuv422_420))
-> +		return 0;
-> +
-> +	if (mode_hdisplay > connector->dp.dsc_branch_caps.max_line_width)
-> +		return 0;
+Now that there's a generic poll_timeout_us(), use it to wait for
+LMEM_INIT in GU_CNTL.
 
-Looks like you only initialize these when the branch device supports
-decompression. What about a branch device that can do pass-through but
-no decompression? Should we even be checking these when doing
-pass-through?
+Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+v2:
+- Handle signal_pending() as it was originally
+- Don't mix return from poll_timeout_us() with return from condition
+  (Maarten)
+---
+ drivers/gpu/drm/xe/xe_device.c | 65 ++++++++++++++++++++++--------------------
+ 1 file changed, 34 insertions(+), 31 deletions(-)
 
-> +
->  	val = connector->dp.dsc_dpcd[DP_DSC_PEAK_THROUGHPUT - DP_DSC_SUPPORT];
->  	tp_rgb_yuv444 = dsc_per_slice_throughput(display, mode_clock,
->  						 REG_FIELD_GET8(DP_DSC_THROUGHPUT_MODE_0_MASK,
-> @@ -4204,6 +4218,44 @@ static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
->  		    dsc_dpcd);
->  }
->  
-> +static int dsc_branch_overall_throughput(u8 bw_code)
-> +{
-> +	switch (bw_code) {
-> +	case 0:
-> +		return INT_MAX;
-> +	case 1:
-> +		return 680000;
-> +	default:
-> +		return 600000 + 50000 * bw_code;
-> +	}
-> +}
-> +
-> +static void init_dsc_overall_throughput_limits(struct intel_connector *connector, bool is_branch)
-> +{
-> +	u8 branch_caps[3];
-> +
-> +	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 = INT_MAX;
-> +	connector->dp.dsc_branch_caps.overall_throughput.yuv422_420 = INT_MAX;
-> +	connector->dp.dsc_branch_caps.max_line_width = INT_MAX;
-> +
-> +	if (!is_branch)
-> +		return;
-> +
-> +	if (drm_dp_dpcd_read_data(connector->dp.dsc_decompression_aux,
-> +				  DP_DSC_BRANCH_OVERALL_THROUGHPUT_0, branch_caps,
-> +				  sizeof(branch_caps)) != 0)
-> +		return;
-> +
-> +	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 =
-> +		dsc_branch_overall_throughput(branch_caps[0]);
-> +
-> +	connector->dp.dsc_branch_caps.overall_throughput.yuv422_420 =
-> +		dsc_branch_overall_throughput(branch_caps[1]);
-> +
-> +	if (branch_caps[2] != 0)
-> +		connector->dp.dsc_branch_caps.max_line_width = branch_caps[2] * 320;
-
-That max line width calculation should probably be a function as well
-so that it can later be moved into some drm helper file along with the
-other functions.
-
-> +}
-> +
->  void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  			       const struct drm_dp_desc *desc, bool is_branch,
->  			       struct intel_connector *connector)
-> @@ -4219,6 +4271,8 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  	/* Clear fec_capable to avoid using stale values */
->  	connector->dp.fec_capability = 0;
->  
-> +	memset(&connector->dp.dsc_branch_caps, 0, sizeof(connector->dp.dsc_branch_caps));
-> +
->  	if (dpcd_rev < DP_DPCD_REV_14)
->  		return;
->  
-> @@ -4233,6 +4287,11 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  
->  	drm_dbg_kms(display->drm, "FEC CAPABILITY: %x\n",
->  		    connector->dp.fec_capability);
-> +
-> +	if (!(connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED))
-> +		return;
-> +
-> +	init_dsc_overall_throughput_limits(connector, is_branch);
->  }
->  
->  static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
-> @@ -4241,6 +4300,9 @@ static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *
->  		return;
->  
->  	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux, connector->dp.dsc_dpcd);
-> +
-> +	if (connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
-> +		init_dsc_overall_throughput_limits(connector, false);
->  }
->  
->  static void
-> -- 
-> 2.49.1
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index fdb7b7498920a..09f8a66c97282 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -8,6 +8,7 @@
+ #include <linux/aperture.h>
+ #include <linux/delay.h>
+ #include <linux/fault-inject.h>
++#include <linux/iopoll.h>
+ #include <linux/units.h>
+ 
+ #include <drm/drm_atomic_helper.h>
+@@ -630,16 +631,22 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	return err;
+ }
+ 
+-static bool verify_lmem_ready(struct xe_device *xe)
++static int lmem_initializing(struct xe_device *xe)
+ {
+-	u32 val = xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT;
++	if (xe_mmio_read32(xe_root_tile_mmio(xe), GU_CNTL) & LMEM_INIT)
++		return 0;
++
++	if (signal_pending(current))
++		return -EINTR;
+ 
+-	return !!val;
++	return 1;
+ }
+ 
+ static int wait_for_lmem_ready(struct xe_device *xe)
+ {
+-	unsigned long timeout, start;
++	const unsigned long TIMEOUT_SEC = 60;
++	unsigned long prev_jiffies;
++	int initializing;
+ 
+ 	if (!IS_DGFX(xe))
+ 		return 0;
+@@ -647,39 +654,35 @@ static int wait_for_lmem_ready(struct xe_device *xe)
+ 	if (IS_SRIOV_VF(xe))
+ 		return 0;
+ 
+-	if (verify_lmem_ready(xe))
++	if (!lmem_initializing(xe))
+ 		return 0;
+ 
+ 	drm_dbg(&xe->drm, "Waiting for lmem initialization\n");
++	prev_jiffies = jiffies;
+ 
+-	start = jiffies;
+-	timeout = start + secs_to_jiffies(60); /* 60 sec! */
+-
+-	do {
+-		if (signal_pending(current))
+-			return -EINTR;
+-
+-		/*
+-		 * The boot firmware initializes local memory and
+-		 * assesses its health. If memory training fails,
+-		 * the punit will have been instructed to keep the GT powered
+-		 * down.we won't be able to communicate with it
+-		 *
+-		 * If the status check is done before punit updates the register,
+-		 * it can lead to the system being unusable.
+-		 * use a timeout and defer the probe to prevent this.
+-		 */
+-		if (time_after(jiffies, timeout)) {
+-			drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
+-			return -EPROBE_DEFER;
+-		}
+-
+-		msleep(20);
+-
+-	} while (!verify_lmem_ready(xe));
++	/*
++	 * The boot firmware initializes local memory and
++	 * assesses its health. If memory training fails,
++	 * the punit will have been instructed to keep the GT powered
++	 * down.we won't be able to communicate with it
++	 *
++	 * If the status check is done before punit updates the register,
++	 * it can lead to the system being unusable.
++	 * use a timeout and defer the probe to prevent this.
++	 */
++	poll_timeout_us(initializing = lmem_initializing(xe),
++			initializing <= 0,
++			20 * USEC_PER_MSEC, TIMEOUT_SEC * USEC_PER_SEC, true);
++	if (initializing < 0)
++		return initializing;
++
++	if (initializing) {
++		drm_dbg(&xe->drm, "lmem not initialized by firmware\n");
++		return -EPROBE_DEFER;
++	}
+ 
+ 	drm_dbg(&xe->drm, "lmem ready after %ums",
+-		jiffies_to_msecs(jiffies - start));
++		jiffies_to_msecs(jiffies - prev_jiffies));
+ 
+ 	return 0;
+ }
 
 -- 
-Ville Syrjälä
-Intel
+2.50.1
+
