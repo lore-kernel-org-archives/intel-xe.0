@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A08B5CAC5A7
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 09:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DB5FCAC5A7
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 09:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E05610E3DC;
-	Mon, 22 Sep 2025 09:47:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BtgBDal8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1B510E3DC;
- Mon, 22 Sep 2025 09:47:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758534468; x=1790070468;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=tSKNnnQSqL59peTPDk//6r1E9Vw74F5xcBvUuq/SHn0=;
- b=BtgBDal84jCi6P6LSWDrqbaXQT7DPLrroIIguGitqxd0y0zPCpQTTcym
- ODi4g3nfIMsLpKn+i/tF0bBntH8kxk2k83gdyP6oglzmTZDSEWdRUHEGu
- Ec9zSZ37dVYEng5EV+ZcdDz9p4I0a4MvXvj3+HejcYnRMHCutulV1VORB
- AIr6a6L+N+1ygBwxVs1z1pMh9wWys4DeYgnX0l3N7qx4zzuRdvpEDQKvQ
- YhPDPfIA60NMVsMAbKeflYLdM0IqFSBO7BN3Iy9rQH0TTd56Yd2cjt89q
- oEobiOlCB0/v3XdQ4lCHPiRgu9Ze7m/ZNoOYMKa56N50ewVJNW7yWvPo7 Q==;
-X-CSE-ConnectionGUID: JTsSsi7mS7iWQZTnPfBfng==
-X-CSE-MsgGUID: N/U89gUPTmCqBxtwGke2nA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="59831802"
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="59831802"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 02:47:48 -0700
-X-CSE-ConnectionGUID: 5DNseOgTTSeSfW24th1Xgg==
-X-CSE-MsgGUID: 6wnu6owXQm+mKB3ZAYO6iw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="213579277"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.61])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 02:47:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [PATCH] drm/i915: rename vlv_get_cck_clock() to
- vlv_clock_get_cck()
-In-Reply-To: <20250919215413.1006296-1-michal.grzelak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250919215413.1006296-1-michal.grzelak@intel.com>
-Date: Mon, 22 Sep 2025 12:47:42 +0300
-Message-ID: <c30c4bac7fa5b3f9126a90d887c0563149673703@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1C6010E3FE;
+	Mon, 22 Sep 2025 09:48:19 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B4DC10E400;
+ Mon, 22 Sep 2025 09:48:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5318077237470151560=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Keep_VF_LMEM_B?=
+ =?utf-8?q?AR_size_low_if_no_VFs_enabled_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Marcin Bernatowicz" <marcin.bernatowicz@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 22 Sep 2025 09:48:18 -0000
+Message-ID: <175853449843.352466.13835124889050913179@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250922085744.99051-1-marcin.bernatowicz@linux.intel.com>
+In-Reply-To: <20250922085744.99051-1-marcin.bernatowicz@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,73 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 19 Sep 2025, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> Keep the convention of naming vlv_clock* instead of vlv_*_clock.
->
-> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+--===============5318077237470151560==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the patch, pushed to drm-intel-next.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev2)
+URL   : https://patchwork.freedesktop.org/series/154724/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/vlv_clock.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/vlv_clock.c b/drivers/gpu/drm/i=
-915/display/vlv_clock.c
-> index 42c2837b32c1..1abdae453514 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_clock.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_clock.c
-> @@ -36,7 +36,7 @@ int vlv_clock_get_hpll_vco(struct drm_device *drm)
->  	return display->vlv_clock.hpll_freq;
->  }
->=20=20
-> -static int vlv_get_cck_clock(struct drm_device *drm,
-> +static int vlv_clock_get_cck(struct drm_device *drm,
->  			     const char *name, u32 reg, int ref_freq)
->  {
->  	u32 val;
-> @@ -58,7 +58,7 @@ static int vlv_get_cck_clock(struct drm_device *drm,
->  int vlv_clock_get_hrawclk(struct drm_device *drm)
->  {
->  	/* RAWCLK_FREQ_VLV register updated from power well code */
-> -	return vlv_get_cck_clock(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL,
-> +	return vlv_clock_get_cck(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL,
->  				 vlv_clock_get_hpll_vco(drm));
->  }
->=20=20
-> @@ -67,7 +67,7 @@ int vlv_clock_get_czclk(struct drm_device *drm)
->  	struct intel_display *display =3D to_intel_display(drm);
->=20=20
->  	if (!display->vlv_clock.czclk_freq) {
-> -		display->vlv_clock.czclk_freq =3D vlv_get_cck_clock(drm, "czclk", CCK_=
-CZ_CLOCK_CONTROL,
-> +		display->vlv_clock.czclk_freq =3D vlv_clock_get_cck(drm, "czclk", CCK_=
-CZ_CLOCK_CONTROL,
->  								  vlv_clock_get_hpll_vco(drm));
->  		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", display->vlv_clock.czclk_f=
-req);
->  	}
-> @@ -77,12 +77,12 @@ int vlv_clock_get_czclk(struct drm_device *drm)
->=20=20
->  int vlv_clock_get_cdclk(struct drm_device *drm)
->  {
-> -	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
-> +	return vlv_clock_get_cck(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
->  				 vlv_clock_get_hpll_vco(drm));
->  }
->=20=20
->  int vlv_clock_get_gpll(struct drm_device *drm)
->  {
-> -	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
-> +	return vlv_clock_get_cck(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
->  				 vlv_clock_get_czclk(drm));
->  }
+== Summary ==
 
---=20
-Jani Nikula, Intel
+CI Bug Log - changes from xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7_BAT -> xe-pw-154724v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7 -> xe-pw-154724v2
+
+  IGT_8546: 8546
+  xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7: 6ae1058a0168cab2a855857c6c13a0570de958f7
+  xe-pw-154724v2: 154724v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v2/index.html
+
+--===============5318077237470151560==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154724/">https://patchwork.freedesktop.org/series/154724/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7_BAT -&gt; xe-pw-154724v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7 -&gt; xe-pw-154724v2</li>
+</ul>
+<p>IGT_8546: 8546<br />
+  xe-3808-6ae1058a0168cab2a855857c6c13a0570de958f7: 6ae1058a0168cab2a855857c6c13a0570de958f7<br />
+  xe-pw-154724v2: 154724v2</p>
+
+</body>
+</html>
+
+--===============5318077237470151560==--
