@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D3DBCAC5A7
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 10:07:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66D72CAC5A7
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 10:12:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3113310E403;
-	Mon, 22 Sep 2025 10:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B2110E403;
+	Mon, 22 Sep 2025 10:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZCEUiMx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nz676LxK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35B9F10E403;
- Mon, 22 Sep 2025 10:07:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34BCC10E403
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 10:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758535671; x=1790071671;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=M7H5GIzTLPxgpRNsdp4RT3SaUuFAxbSpl8JCTyDwwM0=;
- b=FZCEUiMxkNpFZdD3X3eXG8NRs+suVRadwg8oBf/rktN1BmHuv5EqUj3D
- LRU4R8LnfAc07g25PPYVG61k4OI/itWepoE3qqleoR5otaebMknKV2We2
- IklA21YZvI7xtAvCGIHpSftA/2IUJed1MAyD0wffmA+AIUIxQ7O10lWxv
- h5ahnLLnYi65I073YYiv5RgX9ifRkfEUmcI9HwTjpwDN4ET4ojPZXulMl
- jJnep/LQVaGooeWLDwpyEn5twPbuRBGWvFmf2WYrfwzYj/hyy7aSWu2Tp
- /1S76X7CBNl6kFDQhJBv5m0qBh/3cEKSf2nrIyU6qT29isMznpf0rk1Fk w==;
-X-CSE-ConnectionGUID: /gFKDDECS8eZCJhTNSYTmw==
-X-CSE-MsgGUID: vmnrzhkgTH2isKP2iLD9Lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="72218853"
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="72218853"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:07:50 -0700
-X-CSE-ConnectionGUID: mwSeibikSk+fprnZjfIiZQ==
-X-CSE-MsgGUID: 565bQkh2SoOwVM5FXa0m/w==
+ t=1758535960; x=1790071960;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JBBg1DunHyrZHjDmHNv9hg+f/6PDnhOe5tFJ7tYvH5U=;
+ b=nz676LxKNQnbQfq+ttApCD9K1dbQ0gTIwx88uMfqP2MToJQs5KBBHMSy
+ 6UkRujx/SUnNbeKkQa5fUMAcUiFoGQ6TlMfu9FwOQR+RKFjvVFVSylEEd
+ JcrzIf3MSU6H8D/AUMdZrSeKHcRGFjmFUJIC6DFIn6EK9MPqG8Fsl2T8Z
+ yWaMdhFWAE+LSkst6O0iDgzguCnwTalAq/we1Ll5smogl52BAiVP/CSaq
+ oyq3mfICrRfu02qI+xQm4GHkY35xxDYtB52iDLDTo1Ly203aEdX8+W9gW
+ yEzhbFr//DlA0u0nL+szBy3hal6ZK3l6uCKsVzEt5yAbIdXxE0LpcTo4j w==;
+X-CSE-ConnectionGUID: 6fcjM1/GRCmYetSpg7E1nQ==
+X-CSE-MsgGUID: 3bCTm2GNTF2Vifrcr+Gagg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60956826"
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="60956826"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:12:40 -0700
+X-CSE-ConnectionGUID: zOxHLck8QqmPytqBSncFpQ==
+X-CSE-MsgGUID: HRnc32ygT6i6hR9mBsmPlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="180851305"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 03:07:49 -0700
-Date: Mon, 22 Sep 2025 13:07:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/9] drm/i915/display: Use VBLANK_START to get the vblank
- delay for TGL
-Message-ID: <aNEf8XAdjowLeBUk@intel.com>
-References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
- <20250921043535.2012978-4-ankit.k.nautiyal@intel.com>
+Received: from egore-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.116.1])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 03:12:38 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	llvm@lists.linux.dev
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ kernel test robot <lkp@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Nathan Chancellor <nathan@kernel.org>
+Subject: [PATCH] drm/xe/tests: Fix build break on clang 16.0.6
+Date: Mon, 22 Sep 2025 12:12:07 +0200
+Message-ID: <20250922101207.192028-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250921043535.2012978-4-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,62 +68,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Sep 21, 2025 at 10:05:29AM +0530, Ankit Nautiyal wrote:
-> For TGL the TRANS_SET_CONTEXT_LATENCY doesn't exist to account for SCL.
-> However, the VBLANK_START-VACTIVE diffence plays an identical role here ie.
-> it can be used to create the SCL window ahead of the undelayed vblank.
-> 
-> While readback there is no specific register to read out the SCL, so use
-> the same helper intel_crtc_compute_scl() and reduce the vblank_start by
-> this amount.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 5a7794387ea2..455bbebb50a5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2822,6 +2822,16 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
->  		adjusted_mode->crtc_vblank_end += 1;
->  	}
->  
-> +	if (DISPLAY_VER(display) == 12) {
-> +		/*
-> +		 * There is no specific register for SCL for TGL.
-> +		 * Derive the value from the helper intel_crtc_set_context_latency().
-> +		 * crtc_vblank_start needs to be reduced with this amount.
-> +		 */
-> +		pipe_config->set_context_latency = intel_crtc_set_context_latency(pipe_config);
+The following error was reported when building with clang 16.0.6:
 
-That thing *computes* the SCL, it doesn't teel us what the
-current hw value is.
+   In file included from drivers/gpu/drm/xe/xe_pci.c:1104:
+>> drivers/gpu/drm/xe/tests/xe_pci.c:214:2: error: initializer \
+   element is not a compile-time constant
+           graphics_ip_xelp,
+           ^~~~~~~~~~~~~~~~
+   drivers/gpu/drm/xe/tests/xe_pci.c:221:2: error: initializer \
+   element is not a compile-time constant
+           media_ip_xem,
+           ^~~~~~~~~~~~
+   2 errors generated.
 
-> +		adjusted_mode->crtc_vblank_start -= pipe_config->set_context_latency;
-> +	}
-> +
->  	if (DISPLAY_VER(display) >= 13 && !transcoder_is_dsi(cpu_transcoder)) {
->  		pipe_config->set_context_latency =
->  			intel_de_read(display,
+Fix that by explicit re-definition of pre-GMDID IPs, as there are
+not so many of them.
 
-I think this whole thing needs to look something like this:
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202509192041.tQwdE4DS-lkp@intel.com/
+Fixes: 5bb5258e357e ("drm/xe/tests: Add pre-GMDID IP descriptors to param generators")
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Nathan Chancellor <nathan@kernel.org>
+---
+ drivers/gpu/drm/xe/tests/xe_pci.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-if (DISPLAY_VER >= 13 && !dsi) {
-	set_context_latency = read(TRANS_SET_CONTEXT_LATENCY);
-	crtc_vblank_start = crtc_vdisplay + set_set_context_latency;
-} else if (DISPLAY_VER >= 12) {
-	set_context_latency = crtc_vblank_start - crtc_vdisplay;
-}
-
-That'll also cover DSI (not that the DSI code itself is actually
-ready for SCL...).
-
-And I think you need to squash this into the set_context_latency
-patch. Otherwise we'll get state checker mismatches on TGL in
-between.
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index aa29ac759d5d..0f136bc85b76 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -211,15 +211,15 @@ static void xe_ip_kunit_desc(const struct xe_ip *param, char *desc)
+  * param generator can be used for both
+  */
+ static const struct xe_ip pre_gmdid_graphics_ips[] = {
+-	graphics_ip_xelp,
+-	graphics_ip_xelpp,
+-	graphics_ip_xehpg,
+-	graphics_ip_xehpc,
++	{ 1200, "Xe_LP", &graphics_xelp },
++	{ 1210, "Xe_LP+", &graphics_xelp },
++	{ 1255, "Xe_HPG", &graphics_xehpg },
++	{ 1260, "Xe_HPC", &graphics_xehpc },
+ };
+ 
+ static const struct xe_ip pre_gmdid_media_ips[] = {
+-	media_ip_xem,
+-	media_ip_xehpm,
++	{ 1200, "Xe_M", &media_xem },
++	{ 1255, "Xe_HPM", &media_xem },
+ };
+ 
+ KUNIT_ARRAY_PARAM(pre_gmdid_graphics_ip, pre_gmdid_graphics_ips, xe_ip_kunit_desc);
 -- 
-Ville Syrjälä
-Intel
+2.47.1
+
