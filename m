@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8196CAC5A7
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 11:11:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBBB3CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 11:19:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1D910E41B;
-	Mon, 22 Sep 2025 11:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7B10E424;
+	Mon, 22 Sep 2025 11:19:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OmpYHhAr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kYqaXYNF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9293810E41B
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 11:11:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 322B110E423;
+ Mon, 22 Sep 2025 11:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758539474; x=1790075474;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=6xyijfe7eCLwJwJwixKPSPOcCm/hjBguC5GRhPT9csw=;
- b=OmpYHhArPlEJLB09HHWXkR+stmUHoDQ7oH89UWXFeRyiTmWNRHUZv3gI
- AdnWXnYzKlOdEQLkhFIzyiADJaJwWEOOEXG4MMsL2RukrvFHl/6SEMB4u
- UIF5Eo2Usdb/dL22IcHlX4Ob20dG1bD392p50g3SxzbuRhKuJZ4hTuMN5
- bhIlF0mQ6w1YZOScFYLlMPS9DdclmE8uj3h9FS5w8cATJMHpMPXMDYvjE
- sItkXz7FZUf2SAZibP1nSh00vMiBIwu8NBk/h8PqYlRyQXihNCXpYDkQi
- 4bgBnBi757M9eUPYv7Ljcx/HvJZEe0ujDrsM+sce27iS43NsJOClde7I/ A==;
-X-CSE-ConnectionGUID: QOcfkOMTSByw2YmhAPsKZQ==
-X-CSE-MsgGUID: BUxcFc1TSiywEGZ970BGwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="64620020"
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="64620020"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:11:12 -0700
-X-CSE-ConnectionGUID: wN/Kag0eQmqArW+746wwAQ==
-X-CSE-MsgGUID: oJR69YVPR0imkytJrjx+gA==
+ t=1758539984; x=1790075984;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Jae3MMLYwMA3jfYveQy9/V9SYqnNFPGUa+2hpyJdj+k=;
+ b=kYqaXYNF7mORGDuw4E/mY/6oqz3qMepIfeSUnAD8Ir/Prrn2wOezDZ9d
+ 3HQ3nJze8B01Fh9nhQa8KTGFL/ozX0ksd8fXRbUcQWJouxnKcxUi0Erti
+ Ro3Cdfa5gLdKJrRqmeBJhLqxFIKHd3fqmi2ymwufJ2mZVr0Le7qH3bkrO
+ oot50XjPBHqB17/v+dPjTfp9NW2uVg3GEfWEB0e+bH1XZG5rEFQpulyyy
+ NN8nIwW+d72OpMUq+xHWX6v6y8E9uUIpPt7xQA6LCX4IDLLTyylSmgS1H
+ rfrS9wgxx6eDJ+IZxQv80A6aLk3mOOyQwNaDypx11kS38icmgEcfPplTa A==;
+X-CSE-ConnectionGUID: /dnWIbT1SqiIdB1hgW6VJA==
+X-CSE-MsgGUID: EG5BhXtsS8eWUO+11buUAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="59839438"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="59839438"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 04:19:44 -0700
+X-CSE-ConnectionGUID: lDLdwDFtQyuGknt/fqiflQ==
+X-CSE-MsgGUID: TgFYQtrQQi+/I8B5S1lmdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="207191858"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.93])
- ([10.245.244.93])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 04:11:10 -0700
-Message-ID: <756fcc2acbb8cbb8ee79853d6450ba885a993dab.camel@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/pat: Improve PAT index handling in
- xe_vma_mem_attr
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-Date: Mon, 22 Sep 2025 13:11:07 +0200
-In-Reply-To: <20250918080003.153906-2-himal.prasad.ghimiray@intel.com>
-References: <20250918080003.153906-1-himal.prasad.ghimiray@intel.com>
- <20250918080003.153906-2-himal.prasad.ghimiray@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="177235021"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.115])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 04:19:42 -0700
+Date: Mon, 22 Sep 2025 14:19:39 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6/9] drm/i915/display: Use set context latency in evasion
+ logic
+Message-ID: <aNEwywBIvZAhqadB@intel.com>
+References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
+ <20250921043535.2012978-7-ankit.k.nautiyal@intel.com>
+ <aNEiXtXdiEXSxGCn@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aNEiXtXdiEXSxGCn@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,308 +73,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-09-18 at 13:30 +0530, Himal Prasad Ghimiray wrote:
-> Replaced flat PAT index fields with a structured format to support
-> separate indices for system memory, local VRAM, and remote GPU
-> memory.
->=20
-> This allows KMD to handle multiple PAT indices passed via madvise,
-> which
-> are used to encode PTEs based on memory location. Defaults to
-> 'initial'
-> unless overridden.
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray
-> <himal.prasad.ghimiray@intel.com>
+On Mon, Sep 22, 2025 at 01:18:06PM +0300, Ville Syrjälä wrote:
+> On Sun, Sep 21, 2025 at 10:05:32AM +0530, Ankit Nautiyal wrote:
+> > Currently we use difference between vactive and vblank delay to
+> > implicitly wait for SCL lines.
+> > 
+> > Remove the function intel_mode_vblank_delay as we can simply use
+> > the set context latency instead.
+> > 
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dsb.c    | 4 ++--
+> >  drivers/gpu/drm/i915/display/intel_vblank.c | 7 +------
+> >  drivers/gpu/drm/i915/display/intel_vblank.h | 1 -
+> >  3 files changed, 3 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > index ca31e928ecb0..dfe928aefdcd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > @@ -130,7 +130,7 @@ static int dsb_vblank_delay(struct intel_atomic_state *state,
+> >  		 */
+> >  		return intel_vrr_scl_delay(crtc_state) + 1;
+> >  	else
+> > -		return intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
+> > +		return crtc_state->set_context_latency;
+> 
+> I think we want to leave all the non-VRR cases to use
+> intel_mode_vblank_delay(). Otherwise when running with fixed
+> refresh rate we won't account for a reduced guardband.
+> 
+> And for the cases where the fixed refresh rate is handle by the legacy
+> timing generator we actually need a slightly different delay for the
+> legacy and VRR timing generators on TGL (due to
+> intel_vrr_extra_vblank_delay() only affecting the VRR timing generator).
 
-Patch LGTM, Although please see comment on the 2/2 patch.
-Thanks,
-Thomas
+Just to elaborate on this, I am thinking that adjusted_mode.crtc_vblank_start
+should *always* match the delayed vblank for the fixed refresh rate timings.
 
+So I am envisioning the following rules:
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 3 ++-
-> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 21 +++++++++---------
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 25 ++++++++++++++++------
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c |=C2=A0 9 ++++++--
-> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0 | 34 +++++++++++++++++=
-+++--------
-> --
-> =C2=A05 files changed, 61 insertions(+), 31 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index a1c88f9a6c76..b984854d09a6 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -522,7 +522,6 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent,
-> pgoff_t offset,
-> =C2=A0{
-> =C2=A0	struct xe_pt_stage_bind_walk *xe_walk =3D
-> =C2=A0		container_of(walk, typeof(*xe_walk), base);
-> -	u16 pat_index =3D xe_walk->vma->attr.pat_index;
-> =C2=A0	struct xe_pt *xe_parent =3D container_of(parent,
-> typeof(*xe_parent), base);
-> =C2=A0	struct xe_vm *vm =3D xe_walk->vm;
-> =C2=A0	struct xe_pt *xe_child;
-> @@ -535,6 +534,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent,
-> pgoff_t offset,
-> =C2=A0		struct xe_res_cursor *curs =3D xe_walk->curs;
-> =C2=A0		bool is_null =3D xe_vma_is_null(xe_walk->vma);
-> =C2=A0		bool is_vram =3D is_null ? false :
-> xe_res_is_vram(curs);
-> +		u16 pat_index =3D is_vram ? xe_walk->vma-
-> >attr.pat_index.devmem
-> +					: xe_walk->vma-
-> >attr.pat_index.smem;
-> =C2=A0
-> =C2=A0		XE_WARN_ON(xe_walk->va_curs_start !=3D addr);
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> b/drivers/gpu/drm/xe/xe_svm.c
-> index 7f2f1f041f1d..90027eb27a1e 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -291,16 +291,19 @@ static int __xe_svm_garbage_collector(struct
-> xe_vm *vm,
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static void xe_vma_set_default_attributes(struct xe_vma *vma)
-> +{
-> +	vma->attr.preferred_loc.devmem_fd =3D
-> DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE;
-> +	vma->attr.preferred_loc.migration_policy =3D
-> DRM_XE_MIGRATE_ALL_PAGES;
-> +	vma->attr.pat_index.smem =3D vma->attr.pat_index.initial;
-> +	vma->attr.pat_index.devmem =3D vma->attr.pat_index.initial;
-> +	vma->attr.pat_index.remote =3D vma->attr.pat_index.initial;
-> +	vma->attr.atomic_access =3D DRM_XE_ATOMIC_UNDEFINED;
-> +}
-> +
-> =C2=A0static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64
-> range_start, u64 range_end)
-> =C2=A0{
-> =C2=A0	struct xe_vma *vma;
-> -	struct xe_vma_mem_attr default_attr =3D {
-> -		.preferred_loc =3D {
-> -			.devmem_fd =3D
-> DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
-> -			.migration_policy =3D
-> DRM_XE_MIGRATE_ALL_PAGES,
-> -		},
-> -		.atomic_access =3D DRM_XE_ATOMIC_UNDEFINED,
-> -	};
-> =C2=A0	int err =3D 0;
-> =C2=A0
-> =C2=A0	vma =3D xe_vm_find_vma_by_addr(vm, range_start);
-> @@ -314,9 +317,7 @@ static int xe_svm_range_set_default_attr(struct
-> xe_vm *vm, u64 range_start, u64
-> =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_start(vma), xe_vma_end=
-(vma));
-> =C2=A0
-> =C2=A0	if (xe_vma_start(vma) =3D=3D range_start && xe_vma_end(vma) =3D=3D
-> range_end) {
-> -		default_attr.pat_index =3D vma-
-> >attr.default_pat_index;
-> -		default_attr.default_pat_index=C2=A0 =3D vma-
-> >attr.default_pat_index;
-> -		vma->attr =3D default_attr;
-> +		xe_vma_set_default_attributes(vma);
-> =C2=A0	} else {
-> =C2=A0		vm_dbg(&vm->xe->drm, "Split VMA start=3D0x%016llx,
-> vma_end=3D0x%016llx",
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 range_start, range_end);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 0cacab20ff85..6122061786f6 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2003,7 +2003,10 @@ static int get_mem_attrs(struct xe_vm *vm, u32
-> *num_vmas, u64 start,
-> =C2=A0		attrs[i].start =3D xe_vma_start(vma);
-> =C2=A0		attrs[i].end =3D xe_vma_end(vma);
-> =C2=A0		attrs[i].atomic.val =3D vma->attr.atomic_access;
-> -		attrs[i].pat_index.val =3D vma->attr.pat_index;
-> +
-> +		/* TODO: Modify drm_xe_mem_range_attr for all pats
-> */
-> +		attrs[i].pat_index.val =3D vma-
-> >attr.pat_index.initial;
-> +
-> =C2=A0		attrs[i].preferred_mem_loc.devmem_fd =3D vma-
-> >attr.preferred_loc.devmem_fd;
-> =C2=A0		attrs[i].preferred_mem_loc.migration_policy =3D
-> =C2=A0		vma->attr.preferred_loc.migration_policy;
-> @@ -2540,7 +2543,9 @@ static int xe_vma_op_commit(struct xe_vm *vm,
-> struct xe_vma_op *op)
-> =C2=A0 * it checks the following conditions:
-> =C2=A0 *
-> =C2=A0 * - `atomic_access` is `DRM_XE_VMA_ATOMIC_UNDEFINED`
-> - * - `pat_index` is equal to `default_pat_index`
-> + * - `pat_index.smem` is equal to `pat_index.initial`
-> + * - `pat_index.devmem` is equal to `pat_index.initial`
-> + * - `pat_index.remote` is equal to `pat_index.initial`
-> =C2=A0 * - `preferred_loc.devmem_fd` is
-> `DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE`
-> =C2=A0 * - `preferred_loc.migration_policy` is `DRM_XE_MIGRATE_ALL_PAGES`
-> =C2=A0 *
-> @@ -2549,7 +2554,9 @@ static int xe_vma_op_commit(struct xe_vm *vm,
-> struct xe_vma_op *op)
-> =C2=A0bool xe_vma_has_default_mem_attrs(struct xe_vma *vma)
-> =C2=A0{
-> =C2=A0	return (vma->attr.atomic_access =3D=3D DRM_XE_ATOMIC_UNDEFINED
-> &&
-> -		vma->attr.pat_index =3D=3D=C2=A0 vma->attr.default_pat_index
-> &&
-> +		vma->attr.pat_index.smem =3D=3D=C2=A0 vma-
-> >attr.pat_index.initial &&
-> +		vma->attr.pat_index.devmem =3D=3D=C2=A0 vma-
-> >attr.pat_index.initial &&
-> +		vma->attr.pat_index.remote =3D=3D=C2=A0 vma-
-> >attr.pat_index.initial &&
-> =C2=A0		vma->attr.preferred_loc.devmem_fd =3D=3D
-> DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE &&
-> =C2=A0		vma->attr.preferred_loc.migration_policy =3D=3D
-> DRM_XE_MIGRATE_ALL_PAGES);
-> =C2=A0}
-> @@ -2585,9 +2592,13 @@ static int vm_bind_ioctl_ops_parse(struct
-> xe_vm *vm, struct drm_gpuva_ops *ops,
-> =C2=A0					.devmem_fd =3D
-> DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE,
-> =C2=A0					.migration_policy =3D
-> DRM_XE_MIGRATE_ALL_PAGES,
-> =C2=A0				},
-> +				.pat_index =3D {
-> +					.initial =3D op-
-> >map.pat_index,
-> +					.smem =3D op->map.pat_index,
-> +					.devmem =3D op->map.pat_index,
-> +					.remote =3D op->map.pat_index,
-> +				},
-> =C2=A0				.atomic_access =3D
-> DRM_XE_ATOMIC_UNDEFINED,
-> -				.default_pat_index =3D op-
-> >map.pat_index,
-> -				.pat_index =3D op->map.pat_index,
-> =C2=A0			};
-> =C2=A0
-> =C2=A0			flags |=3D op->map.read_only ?
-> @@ -4226,12 +4237,12 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
-> =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_UNMAP) {
-> =C2=A0				vma =3D gpuva_to_vma(op-
-> >base.unmap.va);
-> =C2=A0				XE_WARN_ON(!xe_vma_has_default_mem_a
-> ttrs(vma));
-> -				default_pat =3D vma-
-> >attr.default_pat_index;
-> +				default_pat =3D vma-
-> >attr.pat_index.initial;
-> =C2=A0			}
-> =C2=A0
-> =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_REMAP) {
-> =C2=A0				vma =3D gpuva_to_vma(op-
-> >base.remap.unmap->va);
-> -				default_pat =3D vma-
-> >attr.default_pat_index;
-> +				default_pat =3D vma-
-> >attr.pat_index.initial;
-> =C2=A0			}
-> =C2=A0
-> =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_MAP) {
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index cad3cf627c3f..e3f0cf23a3a9 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -149,11 +149,16 @@ static void madvise_pat_index(struct xe_device
-> *xe, struct xe_vm *vm,
-> =C2=A0	xe_assert(vm->xe, op->type =3D=3D DRM_XE_MEM_RANGE_ATTR_PAT);
-> =C2=A0
-> =C2=A0	for (i =3D 0; i < num_vmas; i++) {
-> -		if (vmas[i]->attr.pat_index =3D=3D op->pat_index.val) {
-> +		/*TODO : Pass different pat_indexes from ioctl */
-> +		if (vmas[i]->attr.pat_index.smem =3D=3D op-
-> >pat_index.val &&
-> +		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.devmem =3D=3D op-
-> >pat_index.val &&
-> +		=C2=A0=C2=A0=C2=A0 vmas[i]->attr.pat_index.remote =3D=3D op-
-> >pat_index.val) {
-> =C2=A0			vmas[i]->skip_invalidation =3D true;
-> =C2=A0		} else {
-> =C2=A0			vmas[i]->skip_invalidation =3D false;
-> -			vmas[i]->attr.pat_index =3D op->pat_index.val;
-> +			vmas[i]->attr.pat_index.smem =3D op-
-> >pat_index.val;
-> +			vmas[i]->attr.pat_index.devmem =3D op-
-> >pat_index.val;
-> +			vmas[i]->attr.pat_index.remote =3D=C2=A0 op-
-> >pat_index.val;
-> =C2=A0		}
-> =C2=A0	}
-> =C2=A0}
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> b/drivers/gpu/drm/xe/xe_vm_types.h
-> index da39940501d8..94dea8c263ed 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -65,6 +65,29 @@ struct xe_vma_mem_attr {
-> =C2=A0		u32 devmem_fd;
-> =C2=A0	} preferred_loc;
-> =C2=A0
-> +	/** @pat_index: The pat index to encode the PTEs for this
-> vma */
-> +	struct {
-> +		/** @initial: The pat index set during first bind by
-> user. */
-> +		u16 initial;
-> +		/**
-> +		 * @smem: Used for encoding when pages are in system
-> memory.
-> +		 * same as initial unless overwritten by madvise.
-> +		 */
-> +		u16 smem;
-> +
-> +		/**
-> +		 * @devmem: Used for encoding when pages are in
-> local vram.
-> +		 * same as initial unless overwritten by madvise.
-> +		 */
-> +		u16 devmem;
-> +
-> +		/**
-> +		 * @remote: Used for encoding when pages are in
-> remote gpu vram.
-> +		 * same as initial unless overwritten by madvise.
-> +		 */
-> +		u16 remote;
-> +	} pat_index;
-> +
-> =C2=A0	/**
-> =C2=A0	 * @atomic_access: The atomic access type for the vma
-> =C2=A0	 * See %DRM_XE_VMA_ATOMIC_UNDEFINED,
-> %DRM_XE_VMA_ATOMIC_DEVICE,
-> @@ -72,17 +95,6 @@ struct xe_vma_mem_attr {
-> =C2=A0	 * values. These are defined in uapi/drm/xe_drm.h.
-> =C2=A0	 */
-> =C2=A0	u32 atomic_access;
-> -
-> -	/**
-> -	 * @default_pat_index: The pat index for VMA set during
-> first bind by user.
-> -	 */
-> -	u16 default_pat_index;
-> -
-> -	/**
-> -	 * @pat_index: The pat index to use when encoding the PTEs
-> for this vma.
-> -	 * same as default_pat_index unless overwritten by madvise.
-> -	 */
-> -	u16 pat_index;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct xe_vma {
+always_use_vrr_tg():
+	crtc_vblank_start should reflect the undelayed vblank
+	for the VRR TG fixed refresh rate case (ie. fixed_rr_vtotal - guardband).
+	This should in fact be the same for both the VRR timings and fixed
+	RR timings because the vmin and guardband should be the same for both.
 
+!always_use_vrr_tg()
+	crtc_vblank_start should reflect the undelayed vblank
+	for the legacy TG (ie. vactive + SCL). The VRR timing
+	generator's vblank can be different here due to reduced
+	guardband.
+
+This is rather important when we're doing a full modeset and userspace
+has already requested vrr.enable=true. The actual modeset part will be
+excuted while still running with the fixed refresh rate timings (either
+using VRR TG or legacy TG depending on always_use_vrr_tg()). So the
+vblank evasion prior to commit_arm() will need to know the correct
+position of the delayed vblank for the fixed RR timings. We will then
+switch over to the VRR timings (and possibly to the other timing
+generator) during the actul commit.
+
+This also means that intel_mode_vblank_delay() will always give us
+the total delay betweern the undelayed vblank and delayed vblank for
+the fixed RR timings. And this is exactly what we want
+for eg. intel_dsb_wait_vblank_delay() since we will have configured
+DSB_CHICKEN to use the undelayed vblank (as opposed to safe window)
+and thus intel_dsb_wait_vblanks()/DSB_WAIT_FOR_VBLANK will wait for
+the undelayed vblank.
+
+> 
+> >  }
+> >  
+> >  static int dsb_vtotal(struct intel_atomic_state *state,
+> > @@ -733,7 +733,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
+> >  		start = end - vblank_delay - latency;
+> >  		intel_dsb_wait_scanline_out(state, dsb, start, end);
+> >  	} else {
+> > -		int vblank_delay = intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
+> > +		int vblank_delay = crtc_state->set_context_latency;
+> >  
+> >  		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
+> >  		start = end - vblank_delay - latency;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > index 9441b7bacd27..8c4cb6913ef9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > @@ -619,11 +619,6 @@ int intel_mode_vtotal(const struct drm_display_mode *mode)
+> >  	return vtotal;
+> >  }
+> >  
+> > -int intel_mode_vblank_delay(const struct drm_display_mode *mode)
+> > -{
+> > -	return intel_mode_vblank_start(mode) - intel_mode_vdisplay(mode);
+> > -}
+> > -
+> >  static const struct intel_crtc_state *
+> >  pre_commit_crtc_state(const struct intel_crtc_state *old_crtc_state,
+> >  		      const struct intel_crtc_state *new_crtc_state)
+> > @@ -685,7 +680,7 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+> >  	} else {
+> >  		evade->vblank_start = intel_mode_vblank_start(adjusted_mode);
+> >  
+> > -		vblank_delay = intel_mode_vblank_delay(adjusted_mode);
+> > +		vblank_delay = crtc_state->set_context_latency;
+> >  	}
+> >  
+> >  	/* FIXME needs to be calibrated sensibly */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
+> > index 21fbb08d61d5..0fd6f7aeffd4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vblank.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+> > @@ -25,7 +25,6 @@ int intel_mode_vdisplay(const struct drm_display_mode *mode);
+> >  int intel_mode_vblank_start(const struct drm_display_mode *mode);
+> >  int intel_mode_vblank_end(const struct drm_display_mode *mode);
+> >  int intel_mode_vtotal(const struct drm_display_mode *mode);
+> > -int intel_mode_vblank_delay(const struct drm_display_mode *mode);
+> >  
+> >  void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+> >  			     const struct intel_crtc_state *new_crtc_state,
+> > -- 
+> > 2.45.2
+> 
+> -- 
+> Ville Syrjälä
+> Intel
+
+-- 
+Ville Syrjälä
+Intel
