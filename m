@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83176CA100F
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 18:28:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DCD9CA100F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 18:57:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3759C10E13B;
-	Mon, 22 Sep 2025 18:28:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F37FA10E4DE;
+	Mon, 22 Sep 2025 18:57:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mY9mgklH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JZ5sSEZU";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F3610E13B
- for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 18:28:38 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A402C44D18;
- Mon, 22 Sep 2025 18:28:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D86DC4CEF0;
- Mon, 22 Sep 2025 18:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1758565717;
- bh=CtXv+R6iAlZW62kHx4mvRdzMvmB9GMmmeZkvV3T4gNM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=mY9mgklHJ2bbnmR5oqvSjp7yHIOrpCJlEoPeERuxWmHPPAaSfluGnZGWh8qo7mkS2
- G65BSKgOUodgjPJshVxxerGOk5NJj9SGhY+oTqoV52+AvToKb7azjzGveZ4osMDmJb
- WJDV2c/eFEFQFOHsqZFXgvN6UsulJsBgwmq9GPJQmgYKDbUkuPX1PNWiA0JgvA2UES
- Ov4m5oDD81ct94YRLzoIZhztJwBPicV80IY80h4kbQOVTwR2BzSC6Ssa1GQIy2z0hB
- ejjdLU8T87Ty8lyrGe7jWb8Ei0UhwtngCiuaxH0GFqj5GFQw6h7vvyuk4orDvmC+nU
- JDexX6ZbDAung==
-Date: Mon, 22 Sep 2025 11:28:32 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Zongyao Bai <zongyao.bai@intel.com>
-Subject: Re: linux-next: manual merge of the drm-xe tree with the drm-fixes
- tree
-Message-ID: <20250922182832.GA1542561@ax162>
-References: <aM1QX4eEaSRQX6Dl@sirena.org.uk>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7717110E4E5
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 18:57:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758567450; x=1790103450;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=a+fEJigZoXXND+k6gnhrVs3TyEC3hoFKnd3RCxvfNXs=;
+ b=JZ5sSEZUL70PFExDs3ziesFzUVf+b7cBjkYqJOV9X/A0/ZL2Qya8/YfB
+ vlc+gFOxiiHNU4D/7kHwqQhMLnZwoJhsDckx7OChBIPPiMHPdm7tbY0sB
+ zf1P1/X37ESwfGfdY1VarX0kODnhr9n5hNP4EgtUv0GmFs6MZKV8H/6Uw
+ jIjIitkNlZyBL8dZ1phF3kfmJjDUsDWbnTK6iOgtSE7+0KJzjeD6oNUXL
+ d7b4RUQl1cP2OvGtQztcyHancKAs747d9zVJibI+FOZ6lSA1fQUhNlZPZ
+ CwlanLqpWe2fjxffZMRqCV00hHCqvKo1A0b+voluR/fSC4W7KBTznxYDK w==;
+X-CSE-ConnectionGUID: L9pi5LI8Rpakqe3zJZjWpg==
+X-CSE-MsgGUID: 78atzcpNQ1aiVFWg9WKeBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60895227"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="60895227"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 11:57:30 -0700
+X-CSE-ConnectionGUID: lbf465h0S7SXgD9A38M0aA==
+X-CSE-MsgGUID: QGEWMS0uRMWSflfGoM7GJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="176123921"
+Received: from dut4086lnl.fm.intel.com ([10.105.10.69])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 11:57:30 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com, alex.zuo@intel.com,
+ raag.jadav@intel.com, lucas.demarchi@intel.com
+Subject: [PATCH v2] drm/xe/configfs: Correct mask and pattern check in
+ lookup_engine_info
+Date: Mon, 22 Sep 2025 18:57:28 +0000
+Message-ID: <20250922185728.73828-1-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aM1QX4eEaSRQX6Dl@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,73 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Mark,
+lookup_engine_info is described as such:
 
-On Fri, Sep 19, 2025 at 01:45:19PM +0100, Mark Brown wrote:
-> Hi all,
-> 
-> Today's linux-next merge of the drm-xe tree got a conflict in:
-> 
->   drivers/gpu/drm/xe/xe_guc_submit.c
-> 
-> between commit:
-> 
->   ff89a4d285c82 ("drm/xe/sysfs: Add cleanup action in xe_device_sysfs_init")
-> 
-> from the drm-fixes tree and commit:
-> 
->   fb3c27a69c473 ("drm/xe/sysfs: Simplify sysfs registration")
-> 
-> from the drm-xe tree.
-> 
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
-> 
-> diff --cc drivers/gpu/drm/xe/xe_device_sysfs.c
-> index b7f8fcfed8d86,c5151c86a98ae..0000000000000
-> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> @@@ -308,19 -290,15 +290,15 @@@ int xe_device_sysfs_init(struct xe_devi
->   			return ret;
->   	}
->   
-> - 	if (xe->info.platform == XE_BATTLEMAGE) {
-> - 		ret = sysfs_create_files(&dev->kobj, auto_link_downgrade_attrs);
-> + 	if (xe->info.platform == XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
-> + 		ret = devm_device_add_group(dev, &auto_link_downgrade_attr_group);
->   		if (ret)
->  -			return ret;
->  +			goto cleanup;
->   
-> - 		ret = late_bind_create_files(dev);
-> + 		ret = devm_device_add_group(dev, &late_bind_attr_group);
->   		if (ret)
->  -			return ret;
->  +			goto cleanup;
->   	}
->   
-> - 	return devm_add_action_or_reset(dev, xe_device_sysfs_fini, xe);
-> - 
-> - cleanup:
-> - 	xe_device_sysfs_fini(xe);
-> - 	return ret;
-> + 	return 0;
->   }
+"Lookup engine_info. If @mask is not NULL, reduce the mask according to
+the instance in @pattern"
 
-This resolution breaks the build.
+According to the description, we should be exiting the execution early
+if mask is NULL.  However, we appear to only do this if the mask is NULL
+AND we have reached the end of the pattern string, as opposed to when
+the mask is NULL OR we have reached the end of the pattern string.  Fix
+this to prevent a NULL pointer dereference.
 
-  drivers/gpu/drm/xe/xe_device_sysfs.c: In function 'xe_device_sysfs_init':
-  drivers/gpu/drm/xe/xe_device_sysfs.c:300:25: error: label 'cleanup' used but not defined
-    300 |                         goto cleanup;
-        |                         ^~~~
+v2: Update commit message for clarify (Lucas, Raag)
 
-I think those should just be 'return ret', as it appears that
-fb3c27a69c473 already includes ff89a4d285c82, so I think you can just
-take the right side of the conflict wholesale.
+Fixes: e2a9854d806e ("drm/xe/configfs: Allow to select by class only")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_configfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cheers,
-Nathan
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 8a9b950e7a6d..0c048d4a33ab 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -324,7 +324,7 @@ static const struct engine_info *lookup_engine_info(const char *pattern, u64 *ma
+ 			continue;
+ 
+ 		pattern += strlen(engine_info[i].cls);
+-		if (!mask && !*pattern)
++		if (!mask || !*pattern)
+ 			return &engine_info[i];
+ 
+ 		if (!strcmp(pattern, "*")) {
+-- 
+2.43.0
+
