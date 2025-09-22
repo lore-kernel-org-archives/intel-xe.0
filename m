@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 559A2CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 08:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 006D8CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 08:58:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DCF10E36E;
-	Mon, 22 Sep 2025 08:55:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC19B10E3FD;
+	Mon, 22 Sep 2025 08:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lv/UXQuc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kT0e3oNS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B73E10E36E;
- Mon, 22 Sep 2025 08:55:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90D6B10E3FD
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 08:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758531317; x=1790067317;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=NBDo0QmlQVbP44KEwoVFN0nze+EJGOjw4Nf1DxaPEYk=;
- b=lv/UXQucWUFr3jBv1V6kSPZZFAcAaW6dvihT/VnIUsK43qg2Ys+13LnH
- +TU4B+qNQ0O3VaeGSCAbhfOkBXiAA1L+/32dFMRcUwuhFp5UaU+P6fs+z
- x7E1n1L4lmmoBMo6jtOGXXCDeNzzo8Bnww92e+LVVMlHYviu7dkWGDgap
- 0//ztlOBxshbes/m2n+GfbUf6DDnGflXvoQwLUL6v0oXkMtYJSmGKKZSz
- JF44kiwj/Bj9P5b4eBs5Wkt26l67LUCuSD343JClKk+6pNfDPtuDklk7v
- VS4hzH2QwAhADp4dqCWKWu1dSwcti19E1vkLw6riMy3XnDlJypWkbMQSI Q==;
-X-CSE-ConnectionGUID: C+twlC5vSbanw2NUte2sNg==
-X-CSE-MsgGUID: FdT7pRenRuCVSaYx3xbgQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60846638"
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="60846638"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 01:55:17 -0700
-X-CSE-ConnectionGUID: CzAKUutmSMeY4x4tkDABqw==
-X-CSE-MsgGUID: L9xkHdKGSdqSZvYc64zgQw==
+ t=1758531490; x=1790067490;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hvz1g+NJpzi+St5o62shpZ2Zx75nvMMD1qWFk5/O+jo=;
+ b=kT0e3oNSgVwLV0oBV2f5StsYZK1zKndzzWQPAXHgDGxatjQh6dkzEuQy
+ /bZdjz96QY9zfhDszB7007DMDK0UGzHrCz5Z90hCcGnTGfs39cs3VmqHT
+ rXEFgSNhtgBTxX5TTkyzCz1mANnQZyowYR1XmL3pTvHnC5UB6/clQxqrf
+ jhxas0sBcD96OltTkpOHC8vgqZyrWu4Oqu6kPSQ2gItCQIyP750E6LMig
+ IddBNVV0pUgmzNYdoGPOZig8KvwUhsxtJ1UXDHCTztqEPvVC4XdQN00MT
+ f75Z13OvBm6QKXdnNbHWKbLQ8EIc5ip0B3/iChr2o5yAzVs8GvYnZSFya Q==;
+X-CSE-ConnectionGUID: mFNnBZZAQ9Gwn9JMIzDNbA==
+X-CSE-MsgGUID: m0Z+LHiOTE6YmaT6TiUj7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11560"; a="60677311"
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="60677311"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 01:58:10 -0700
+X-CSE-ConnectionGUID: I2KbHvjeTZGa6qvR8pBtjg==
+X-CSE-MsgGUID: i1iua6TAQaWdb3RjJUEGBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="176494141"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.61])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 01:55:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH v2 2/3] drm/i915/display: Add definition for wcl as
- subplatform
-In-Reply-To: <175831397551.1987.9539609696117964896@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250919162233.1624905-1-dnyaneshwar.bhadane@intel.com>
- <20250919162233.1624905-3-dnyaneshwar.bhadane@intel.com>
- <175831397551.1987.9539609696117964896@intel.com>
-Date: Mon, 22 Sep 2025 11:55:12 +0300
-Message-ID: <06444849ae706b5463c7789ac8acd7d288095a35@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,284,1751266800"; d="scan'208";a="180839193"
+Received: from unknown (HELO localhost) ([172.28.180.69])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 01:58:08 -0700
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Subject: [PATCH] drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled
+Date: Mon, 22 Sep 2025 10:57:44 +0200
+Message-Id: <20250922085744.99051-1-marcin.bernatowicz@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,27 +67,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 19 Sep 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Dnyaneshwar Bhadane (2025-09-19 13:22:32-03:00)
->>diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
->>index a9a36176096f..84aa6b6384da 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display_device.c
->>+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
->>@@ -1379,6 +1379,11 @@ static const u16 mtl_u_ids[] = {
->>         0
->> };
->> 
->>+static const u16 wcl_ids[] = {
->>+        INTEL_WCL_IDS(ID),
->>+        0
->>+};
->>+
->
-> To be consistent with the other subplatform device id lists, we probably
-> want to move this to be just before the definition of ptl_desc.
+When VFs are enabled on dGFX the driver resizes the PF VF_LMEM_BAR to
+fit the requested layout. After VFs are disabled the PF VF BAR
+size is left as-is. On platforms with tight MMIO apertures a
+subsequent unplug/rescan followed by another enable may fail with:
 
-Yeah, mtl_u_ids[] is already misplaced.
+  "VF BAR …: can't assign; no space"
 
+because the PCI core reserves address space based on the (now large) VF
+template, often multiplied by totalvfs.
 
+v2:
+ - Rename helper to restore_vf_vram_bar_size() (Michal)
+ - Use xe->sriov.pf.device_total_vfs instead of pci_sriov_get_totalvfs(),
+   which may be capped (Michal)
+ - Switch logging to %pe (Michal)
+ - Call restore unconditionally on enable-fail path (Michal)
+   (drop vf_vram_bar_resized flag)
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5937
+Fixes: 94eae6ee4c2d ("drm/xe/pf: Set VF LMEM BAR size")
+Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index af05db07162e..4caa82aad140 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -144,6 +144,19 @@ static int resize_vf_vram_bar(struct xe_device *xe, int num_vfs)
+ 	return pci_iov_vf_bar_set_size(pdev, VF_LMEM_BAR, __fls(sizes));
+ }
+ 
++static void restore_vf_vram_bar_size(struct xe_device *xe)
++{
++	int err;
++
++	if (!IS_DGFX(xe))
++		return;
++
++	err = resize_vf_vram_bar(xe, xe->sriov.pf.device_total_vfs);
++	if (err)
++		xe_sriov_info(xe, "Failed to restore VF LMEM BAR size: %pe\n",
++			      ERR_PTR(err));
++}
++
+ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -194,6 +207,7 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	return num_vfs;
+ 
+ failed:
++	restore_vf_vram_bar_size(xe);
+ 	pf_unprovision_vfs(xe, num_vfs);
+ 	xe_pm_runtime_put(xe);
+ out:
+@@ -218,6 +232,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+ 
+ 	pci_disable_sriov(pdev);
+ 
++	restore_vf_vram_bar_size(xe);
++
+ 	pf_reset_vfs(xe, num_vfs);
+ 
+ 	pf_unprovision_vfs(xe, num_vfs);
 -- 
-Jani Nikula, Intel
+2.31.1
+
