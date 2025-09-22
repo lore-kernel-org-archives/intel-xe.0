@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F6DCAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:06:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7337CCAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:11:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674BE10E50B;
-	Mon, 22 Sep 2025 20:06:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 339C010E50C;
+	Mon, 22 Sep 2025 20:11:43 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A67DC10E50B;
- Mon, 22 Sep 2025 20:06:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3335412177473499358=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5E410E50C;
+ Mon, 22 Sep 2025 20:11:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/configfs=3A_Correct_?=
- =?utf-8?q?mask_and_pattern_check_in_lookup=5Fengine=5Finfo_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Use_poll=5Ftime?=
+ =?utf-8?q?out=5Fus=28=29_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 22 Sep 2025 20:06:55 -0000
-Message-ID: <175857161567.355661.17724705222181391738@1538d3639d33>
+Date: Mon, 22 Sep 2025 20:11:41 -0000
+Message-ID: <175857190150.355661.374147426597397197@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250922185728.73828-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20250922185728.73828-1-jonathan.cavitt@intel.com>
+References: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
+In-Reply-To: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,115 +40,49 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3335412177473499358==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/configfs: Correct mask and pattern check in lookup_engine_info (rev2)
-URL   : https://patchwork.freedesktop.org/series/154852/
-State : success
+Series: drm/xe: Use poll_timeout_us() (rev5)
+URL   : https://patchwork.freedesktop.org/series/153671/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1_BAT -> xe-pw-154852v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a98234718b00372c9c61296e68d1c46fa8fe2889
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Mon Sep 22 12:58:33 2025 -0700
 
-Summary
--------
+    drm/xe/guc: Refactor GuC load to use poll_timeout_us()
+    
+    Currently there are 2 wait loops for loading GuC: one in
+    xe_mmio_wait32_not() and one guc_wait_ucode(). Now that there's a
+    generic poll_timeout_us(), refactor the code to use that to be more
+    readable.
+    
+    Main change in behavior is that there's no exponential wait anymore:
+    that is now replaced by a 10msec retry.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch 3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1 drm-intel
+4aec3c6c65ae drm/xe/device: Use poll_timeout_us() to wait for lmem
+cecdcc647aea drm/xe/guc_pc: Use poll_timeout_us() for waiting
+69aed9076b78 drm/xe/guc: Drop helper to read freq
+-:61: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/xe/xe_guc.c:1166:
++			  delta_ms, xe_guc_pc_get_act_freq(guc_pc), xe_guc_pc_get_cur_freq_fw(guc_pc),
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 8)
-------------------------------
-
-  Missing    (3): bat-adlp-vm bat-bmg-2 bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154852v2_BAT that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#6201]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6201
-
-
-Build changes
--------------
-
-  * IGT: IGT_8547 -> IGT_8548
-  * Linux: xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1 -> xe-pw-154852v2
-
-  IGT_8547: 8547
-  IGT_8548: 8548
-  xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1: 3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1
-  xe-pw-154852v2: 154852v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154852v2/index.html
-
---===============3335412177473499358==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+6726ea2457d2 drm/xe/guc: Extract function to print load error
+a98234718b00 drm/xe/guc: Refactor GuC load to use poll_timeout_us()
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/configfs: Correct mask and pattern check in lookup_engine_info (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154852/">https://patchwork.freedesktop.org/series/154852/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154852v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154852v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1_BAT -&gt; xe-pw-154852v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 8)</h2>
-<p>Missing    (3): bat-adlp-vm bat-bmg-2 bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154852v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8547 -&gt; IGT_8548</li>
-<li>Linux: xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1 -&gt; xe-pw-154852v2</li>
-</ul>
-<p>IGT_8547: 8547<br />
-  IGT_8548: 8548<br />
-  xe-3813-3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1: 3ff214d6c6a86025aa3feadcb5bba4abfc2dd8f1<br />
-  xe-pw-154852v2: 154852v2</p>
-
-</body>
-</html>
-
---===============3335412177473499358==--
