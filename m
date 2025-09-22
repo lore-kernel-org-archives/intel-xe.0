@@ -4,164 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B70D1CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 14:00:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08BB1CAC592
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 14:04:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA5C89B12;
-	Mon, 22 Sep 2025 14:00:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28E410E4B3;
+	Mon, 22 Sep 2025 14:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ftZWN0yf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VQ3X6cH6";
 	dkim-atps=neutral
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012024.outbound.protection.outlook.com
- [40.93.195.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3CD389B12;
- Mon, 22 Sep 2025 14:00:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Eoeikjf3H0b4/NVrZaeKpMx7hKgX/lHfaYco6mlCnazF0MIYd+KbIVr7KWQ1vFEdLQNKuL5xNqfu0B98FmTQVWTkhgwfAEAeA5ZS8B6jYIS1MAExUR965WAEW1esDWvIWylCgRJtyBin9VLX4zwYDfq0U+YI2qBxgCXP043f59TaOezbNwJ/aWOytHBYjRx3Vyluh+E1z/UJCr0zUKhEARE/viJo7G5zDPlX2C/lGR+6eB227M3S9D3mDhTygA2WhWxSJuHeLpYDebUaiIgdbwDBunZzaOaD9ymSlUj5fLK0Nxf/GVZi4CcNiPTWSOCe9qLEH8GSlpXkUcHookNLIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lzXB+xZiNWCmRtVgbtaoq3+RQxpc9Rkvgoq4yvsA/ws=;
- b=iBvAuy7N7m9qdEC9CW8aCVxXVeW1wNl8ImfhqDjedO/pkrTslH7RFIXyRMOYg4uf5Y6xH4lrw5wXAT3IzPbg3ZQDlhrIL+z0okTxOj4zI6/vEdKsDLCrGHJ0SfFmuxWuwtYSqkfLONSQD/ATkzDXJyXnBdvXdCdS/59GGTa6Tb7UkZ1vi+8GVcHynf6IohXj4IYLYp2EFacwGOblEhOO+YrOAExIJMdEYcLn5WAk3UsP13wzKIZh1FgAw+lxsHDJ6XQufaTk/qC0WC3vw9dOmwTc6pL7EUJis0AWFnu3EAGiEkw5f6NNEuA6mZjtsYJC9y2TIfzn/JAGElxBmbm7aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lzXB+xZiNWCmRtVgbtaoq3+RQxpc9Rkvgoq4yvsA/ws=;
- b=ftZWN0yfgjBla2mJH1PCjRS6eJbgrhPFhd3fTpwGS7EBT2McP8w2UtczJ9+cZfHtcqTDgMlUEAvCIAc9hTVkEyewvZ73ku3U/2WXRaGWa8zi/zzYwz7ONl/SF4UqdaWY7SBMASJcCoqDr3fa4DrFs8DdzEdEogWBtuiZ6WnSEGaWlVKlnJ+2VA45RXbryGqZpILrR1ND18ixgBE4MpSRYRbb8YOCCBe8hLEqkiFDY1gb7Ct4fVGVIzFhtdv4VnIHVGh4CSbLO06A0qj8YegoKs+84NeyEf/WK2Qi2apFdit8FFBr+CxE3syozZB5dotbrPT+p6imkYVhUemQcmtz9Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB5757.namprd12.prod.outlook.com (2603:10b6:510:1d0::13)
- by SN7PR12MB6863.namprd12.prod.outlook.com (2603:10b6:806:264::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Mon, 22 Sep
- 2025 14:00:26 +0000
-Received: from PH7PR12MB5757.namprd12.prod.outlook.com
- ([fe80::f012:300c:6bf4:7632]) by PH7PR12MB5757.namprd12.prod.outlook.com
- ([fe80::f012:300c:6bf4:7632%2]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
- 14:00:26 +0000
-Date: Mon, 22 Sep 2025 11:00:24 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: "Kasireddy, Vivek" <vivek.kasireddy@intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Logan Gunthorpe <logang@deltatee.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH v4 1/5] PCI/P2PDMA: Don't enforce ACS check for device
- functions of Intel GPUs
-Message-ID: <20250922140024.GZ1391379@nvidia.com>
-References: <IA0PR11MB7185C96268ADB5530B343ABBF811A@IA0PR11MB7185.namprd11.prod.outlook.com>
- <20250919122931.GR1391379@nvidia.com>
- <IA0PR11MB718504F59BFA080EC0963E94F812A@IA0PR11MB7185.namprd11.prod.outlook.com>
- <045c6892-9b15-4f31-aa6a-1f45528500f1@amd.com>
- <20250922122018.GU1391379@nvidia.com>
- <4e3919c3-3d1b-4f34-a1e4-5e9e7a5e6e14@amd.com>
- <20250922122900.GV1391379@nvidia.com>
- <fbb6bbe7-8141-4532-812e-2b93cc2fcb1b@amd.com>
- <20250922132720.GY1391379@nvidia.com>
- <42f45fa2-6ea3-44c7-870a-dc1973894a87@amd.com>
-Content-Type: text/plain; charset=utf-8
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8641710E4B3;
+ Mon, 22 Sep 2025 14:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758549861; x=1790085861;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ZnmJC4VBWQm+x3yfv2GPUbuAvT1rHcw6h0OpmE6Cz6w=;
+ b=VQ3X6cH6Xf2xh9RZNTA5DavkI6EEcJmZnZbGEgE7xAcYhOY3KbnXYghe
+ MrzagjR95nyarasNsvp46Z4i/NcpVmqgUj8GO0k2aW09RNAor2h2SK3cw
+ O7K7erUKXvUd3Y78aj1x6Oc8QSyGpHoXVPxwgsM3rdfuUZ6X+1lYO1sHz
+ nFOunE6GgnLhDXAYwyoFJbP17fOvTzSSvb5ZlEtjEV/dzsfFuWvMXmsrM
+ OQlgKsvASTqXOCKLolFiPRPh5SV2JCOMKCpoAXUxA1FT0QmeQldDWqfAL
+ 2lbhCYoTkjL1HCG2XAJMkMsd4A3LnTf8Xm/yQPtTRCmvhOoTZei/4Xu9E Q==;
+X-CSE-ConnectionGUID: Xmj4DSbcTUq3/q7UmDJDjw==
+X-CSE-MsgGUID: S26CVxHrTwOKdombjHORLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60029188"
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="60029188"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 07:04:20 -0700
+X-CSE-ConnectionGUID: KCmbDbUSSXar9/j6h+QypA==
+X-CSE-MsgGUID: Bf2iA1QISnm7LtXlDH07OA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,285,1751266800"; d="scan'208";a="200194678"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.115])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 07:04:18 -0700
+Date: Mon, 22 Sep 2025 17:04:16 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 8/9] drm/i915/display: Wait for scl start instead of
+ dsb_wait_vblanks
+Message-ID: <aNFXYCg3OJLuXMwt@intel.com>
+References: <20250921043535.2012978-1-ankit.k.nautiyal@intel.com>
+ <20250921043535.2012978-9-ankit.k.nautiyal@intel.com>
+ <aNEkV70k8Nv1WFzW@intel.com>
+ <2a4fe894-d4ad-44a9-912f-578394f6d2fa@intel.com>
+ <aNFSs8KBN3Fzyasz@intel.com> <aNFT-vRMO4si-cuf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <42f45fa2-6ea3-44c7-870a-dc1973894a87@amd.com>
-X-ClientProxiedBy: MN2PR03CA0009.namprd03.prod.outlook.com
- (2603:10b6:208:23a::14) To PH7PR12MB5757.namprd12.prod.outlook.com
- (2603:10b6:510:1d0::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5757:EE_|SN7PR12MB6863:EE_
-X-MS-Office365-Filtering-Correlation-Id: 540daa7d-b905-4132-85cd-08ddf9e06190
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WGZ2WjlLR0JsQjlPbHEzdDdOTk1CSDMzS2VNcGpPeTZzQVFmT0R1TCtlMlBi?=
- =?utf-8?B?bStJajR2QytrY3ZtbDZhNDM4UWozMDVuVGtPR2Eya0dndURnaEFhdkRETDBq?=
- =?utf-8?B?dVN6RzZuYTVoRG5lbkp3QW95d1Evd1BXMGVRRE9UTzQ5RVdCM1VwaFUyUFJQ?=
- =?utf-8?B?bUVEeDh4OC9waHhvM1hCSjY5MEdLNHNvdTNMK0JTVGhJRVZBUjc3TmFSRkoz?=
- =?utf-8?B?NkpGWlQxeERadFM0K0hYMFlrcW1CVFE4a05xUGlWVkVpOWVlbXNMMmR2SHpr?=
- =?utf-8?B?Szd2aTlWSzRxVlc5ZkkvVGJFdlljMVZFbW8rZGhGNkg0a3FrZkpDaC90ZlUr?=
- =?utf-8?B?bTZDMHNBSFlUSithSWlmc2llODJjOU5DcmNiUzA4ZlBRT3orNGMzL1M5R2ls?=
- =?utf-8?B?N2tyMi9QTFZtUXFRSzJ6U0dxRzBKdmp1d3FFSmJHQVhSZ1VBVEl0dk5ZbURJ?=
- =?utf-8?B?ejAvczE5TjFROHFGVnBtOUU2YmhmanFFR2ZGOFplemRxQU1GWGJubVFxMHZx?=
- =?utf-8?B?cnNmdXRvZmdiSVRrSEV2eVkwdmpRTFQwVlZpQjVocjZKMHA0WDJSbkE1bHNU?=
- =?utf-8?B?Mnc3WGgwaHozSkZiWVZkSE9IeGZCRkk4UGNneVM0Z25qbHBGdmQ0SHZETGVR?=
- =?utf-8?B?Y1V3NWUzNkw2MHp1VWIwMHNldmNXTXdQMHVsUFBmMEdaQ0dqYUdUVE5RRm1h?=
- =?utf-8?B?NC93djF2ZDZGT0NEdzUwSTRwTUk5NUgzT3hUcmIvOU0wSGNuVHVCT2g3WDdF?=
- =?utf-8?B?ek1YYjNoandmcTQyaGtoWUJPanpybWZkZlFCYkhoZVd5VnM1bWR2MDMwYXMw?=
- =?utf-8?B?Qks1a1lJWXN6QlEzbzRRSnFublNvZENVMG5wekltYVBJQzFuTDRzME1ibXg2?=
- =?utf-8?B?b0xlRDVvbllyZkdpS3hJNU5LRHF4R0RHUDFMaDJXOU9UaFdodHlGN3AvZ1Zj?=
- =?utf-8?B?RXlWcnZvRSt2OEsxRWpWMFR1M2dHbzAyVnl6TFh2a3lVUFdNVHZrVEl5WWVn?=
- =?utf-8?B?YStGcy9KUDY0WmozQkphMUtQellIc0REZ0RuTFM5Q0tJTWxFT1VUeVBpYmJt?=
- =?utf-8?B?RmE2T05PK3ZPbVkrcHIxanVRSzJyREJQMUlCR3g0cHZEN2psYWlLVlJYWm5s?=
- =?utf-8?B?YUM2ZVhwYXVTU21oUnpyblllSmZpWEVLUUQzNHBNa0ZPMktMbFhydjFmYmhj?=
- =?utf-8?B?ZXRlTVo1bmw5VzhPcjRZUGJXZVpKTHJxOEs1OEplNGJRbGRUbUFwNEk2UzRa?=
- =?utf-8?B?TE50ZmdjdEVMRDAvUjN0L2ExakpDQU4wYzBTOTV5YW9EQkxtZnhmQVp0TjNa?=
- =?utf-8?B?UXRPRXErZ0tXeEl4MVc2clVrT2xIMFlpdnJabjVUK00wcS9FeHhycHhJZjdG?=
- =?utf-8?B?RjFramJ5VmZPQUdxTFVhWi9GbXhKZHNJQ1lrZkh4OENwYlA4L3FSSk9hTFV3?=
- =?utf-8?B?eUZFVTRkY1BDMlRpM0VWTmFPYitxVzdwZXRmYVZieU9NNEhqWlVmNkhqdUc5?=
- =?utf-8?B?eTBXVDc0SGZNQ0lqU1BzYWVkR1hmcks2WmpMU3hCNCs4VzZmMnI5S2c2elVG?=
- =?utf-8?B?dlgxdmQxME9EMlRIQm5yQ0hFSEpnd0QwZzFvd3VTekU4L3I3NklxbHlUOEMw?=
- =?utf-8?B?bU1MTUlkeXJIblpIZzlKaThkZkxNejZ3aS94NGZQY2JtSmN2SWtaVmhsbTc0?=
- =?utf-8?B?eDQ4V21EaEx4USt3UGJWdXBMa1ljMkRzb0ZHbEhsQjVuWlNJNzZ4eTJVRzFP?=
- =?utf-8?B?SWxVUUxiVStDMXA5R3NlUzZqWE9PWGFYMTRpL1Examl6aVhub2ZFRlhVKzRO?=
- =?utf-8?B?MlN1K0NWdjZHZ0NiRTFmdUxQSVZWMGQxN0FsMmszMzhXb3E3ci85bGJQejM5?=
- =?utf-8?B?ekpCRWk0T3FKdG9ubisxem5meW9BUVBIVkdweTZPZ1l3ZFVoSDNRM0dNeGxZ?=
- =?utf-8?Q?Fe9+dGIpq18=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5757.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWhjckk1OHYxbWFFR1ZXRmRqV3RibnV6cTZVK2c2aFlCWlRlcmh3dUJIdVM4?=
- =?utf-8?B?eCtPcTlUemFrdzh1dmtYdG4rU0hSbjFZRWtUWVppZmJBb0F5YVIyWnZZK0Fz?=
- =?utf-8?B?cWE5VjhEOWI2V2R0RmdRNWNUeXZPODFZQW16Y1JzU2t4YVVsdmlERGl4cndU?=
- =?utf-8?B?VXV5T2ZJU3hET3VCNjJVR01sa2pxY0N2ZDRROGxIeGJ2d3FLTm9rQjFqRzRY?=
- =?utf-8?B?RmUyOGRLYXZjYkZkUjdPZ0Vxc3VzRVlObDgxRWh4ejE1bzMzV0Z1RHJPZWlh?=
- =?utf-8?B?UTl4R2JRN3RhdFYyOXBnclV0dnl0RVNSYWdCSVExdlg4UnAwU0UvY0hGWEdG?=
- =?utf-8?B?cGF6Snl1aDhXUSsvclg3ZDhjalB6TUFJLzg2d2ZRVEE4ZGdjekxHV3IrZW1l?=
- =?utf-8?B?VXlYUnNTaU9Mc2VGNHF0ZG9yUkl1UGM5Z25uREFxbXZobVEzUlNtcVM0T0ly?=
- =?utf-8?B?YXlSeDBEdVB0ekJ1L3d5dnBXeDRDSGRYT20zR3FhdktqM2FNczVMenNpOWVM?=
- =?utf-8?B?VTMwdEJ1NlJTNWI4TlFTVW9uajhUZVQ0ck5lYzBDQWNZN1FEaWtVaXkvbFBz?=
- =?utf-8?B?b0REN1B5ZHNkQ2tnekp6b1lwK2lGN2dYT1MyWFppVDRkSjRzNzQzdExLWUdJ?=
- =?utf-8?B?VHROc3BrekE5MVlmVlNCbTVjWTdjRWR5cERGZWJiYnBZWFFwRjNlbGNRQ0Zh?=
- =?utf-8?B?cDVZQkthZVI4STFIOXpaaW5YeVREeXFCa3VLTnRiS2l3aUdjSHhFVzhjUHlY?=
- =?utf-8?B?UkxpTXhTU1FjeTNRYXM4b3pqelZVMk1sMjltVFE4RXNnNEVzVUlYNk55Wmtr?=
- =?utf-8?B?ZEtzM01jczJPblJEbFhUa2s1d01OTzNYUUhUR09KdUdDWG1MaytaVHZieks4?=
- =?utf-8?B?cFQ1WlV4cnV4Ykg0cExkbkpZTGdpRUFId0N6VjRRamIrWFptUS9zd2F0UENu?=
- =?utf-8?B?ejdmTTNldWxXSE00V1BFYkVpOEM5bjFxbWVtZ2RBa3lBWWxXYkNtdFN1VDFk?=
- =?utf-8?B?RlREZTh4azZ0S3AyVnVDZkVCdTgzaUE5MHJlalhyTkdla05wemdvYjlTYkhS?=
- =?utf-8?B?OTZ6NUllQjlPUm1QRDBja214aXhLVGNsR2JKeHNQOVN0c1BINUF0SlhjN3VG?=
- =?utf-8?B?UlpTMWtTeGIybndsOHlIcFVTcWJQU0lQc04yT1k3SVYyalRkUlRLMzJhaHVI?=
- =?utf-8?B?QjRoWncwcFRPNXdScWVUMThPNklVQTdxQXQ1SkZJc0owTW1Mc1VKWlFXVE9z?=
- =?utf-8?B?emNuSm83c3RVRlZOMUs4ZEFkeGt1Ky9mdDVKanQzNGpaZW56UnF5Z2ZnTVdw?=
- =?utf-8?B?VXVPOFl2d3l1THI3THNnTlZtQ1RKZis4dHdUb21DdlFLVS9WWDNUWXRMek81?=
- =?utf-8?B?Mzl1emE5NSswUk1SRm9CdEF6ZzhaTnZ4TlplcGRyZWJRak1MRE1VRFdLKytF?=
- =?utf-8?B?MjAzL0UvWlJuVDFXZWordStXSkdNM0RwU1ZSeDBLeEIvUm12elFUYmN0WGtM?=
- =?utf-8?B?TWY2Sk9UNmRVQ1BsaWpUSFg2YUptcnZuSXFrbDBjN3g0RVRlampxYkZlbjdS?=
- =?utf-8?B?MXNmT1JlblIvazAyZmpjTWN0MXNFeTVPUWh6OFMxTTVqb09zWUFvT0NhK3Nr?=
- =?utf-8?B?QjlGOGNqKzZPODc0MEpBWmg1NzBHeGNZajhOUkNDSy95ODhicWl6M0t6aW5J?=
- =?utf-8?B?a2p4MTVWK2VzcHc2eVA0T1JIMTdFdkxqN2VVMklnYXdpaGRCZmVpejltRlB6?=
- =?utf-8?B?ODZkM1pSb2ZRREM0M0ZySUFOQ3FYT0Z6cTgrRDFzY1FyY0M4Z0oycHhIOG41?=
- =?utf-8?B?SzRpVzhVRmxKa2lZd0svRUJBUG81RENNU0lmRXhJZVNQWDhXcnIrbDdydWpZ?=
- =?utf-8?B?OHA3MXZqaHJLS1FZOUpKRy9Qb0YzNU5TWUdmcElJL0R4M1QrV2hZcXpIRlJa?=
- =?utf-8?B?Qjc1Mm9UelYvQ2h5dWFqdkhNcXowR0VFbTI5ZlBjMitoRVpuN3pOZGtYS1BY?=
- =?utf-8?B?SmdWcms1ekllVEg2U1VDVHJhMVl0eC9tYzFFZE5xOU1TTGw1RHZpK3U2R1pn?=
- =?utf-8?B?RldOdzM2MHJTRGN1T0RtRFVMNHNiRll0Z3Z1dktxSWhxdFlrNjJDanpSSlk4?=
- =?utf-8?Q?tTd7t1t11T6VA2Ds2eq5Td7ed?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 540daa7d-b905-4132-85cd-08ddf9e06190
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5757.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 14:00:26.4439 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E7/i7EcZLfqWN9uYTQpqzM88oLSZxEDOMVUQ3KuEc9oXCZK6x5mxPfPHTPauql4q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6863
+In-Reply-To: <aNFT-vRMO4si-cuf@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,17 +75,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 22, 2025 at 03:57:02PM +0200, Christian KÃ¶nig wrote:
+On Mon, Sep 22, 2025 at 04:49:46PM +0300, Ville Syrjälä wrote:
+> On Mon, Sep 22, 2025 at 04:44:19PM +0300, Ville Syrjälä wrote:
+> > On Mon, Sep 22, 2025 at 07:04:49PM +0530, Nautiyal, Ankit K wrote:
+> > > 
+> > > On 9/22/2025 3:56 PM, Ville Syrjälä wrote:
+> > > > On Sun, Sep 21, 2025 at 10:05:34AM +0530, Ankit Nautiyal wrote:
+> > > >> Until LNL, intel_dsb_wait_vblanks() waits for the undelayed vblank start.
+> > > >> However, from PTL onwards, it waits for the start of the safe window,
+> > > >> defined by the number of lines programmed in TRANS_SET_CONTEXT_LATENCY.
+> > > >> This change was introduced to move the SCL window out of the vblank region,
+> > > >> supporting modes with higher refresh rates and smaller vblanks.
+> > > >>
+> > > >> As a result, on PTL+ platforms, the DSB wait for vblank completes exactly
+> > > >> SCL lines earlier than the undelayed vblank start. Since we use
+> > > >> intel_dsb_wait_vblanks() to time the send push operation, this causes
+> > > >> issues when SCL lines are non-zero.
+> > > >>
+> > > >> Instead of relying on the helper, instruct the DSB to wait from
+> > > >> (undelayed vblank start - SCL) to (delayed vblank start - SCL) before
+> > > >> sending the push. This approach works for both pre-PTL and PTL+ platforms.
+> > > >>
+> > > >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > > >> ---
+> > > >>   drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+> > > >>   drivers/gpu/drm/i915/display/intel_dsb.c     | 16 ++++++++++++++++
+> > > >>   drivers/gpu/drm/i915/display/intel_dsb.h     |  2 ++
+> > > >>   3 files changed, 19 insertions(+), 1 deletion(-)
+> > > >>
+> > > >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > >> index bfeec3706f35..8d78037d5a2a 100644
+> > > >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > >> @@ -7265,7 +7265,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+> > > >>   				new_crtc_state->dsb_color);
+> > > >>   
+> > > >>   	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
+> > > >> -		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+> > > >> +		intel_dsb_wait_for_scl_start(state, new_crtc_state->dsb_commit);
+> > > >>   
+> > > >>   		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+> > > >>   		intel_dsb_wait_for_scl_lines(state, new_crtc_state->dsb_commit);
+> > > >> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > >> index 400dcc87a992..e94a05cc8c82 100644
+> > > >> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > >> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > >> @@ -826,6 +826,22 @@ void intel_dsb_wait_for_scl_lines(struct intel_atomic_state *state,
+> > > >>   	intel_dsb_wait_usec(dsb, usecs);
+> > > >>   }
+> > > >>   
+> > > >> +void intel_dsb_wait_for_scl_start(struct intel_atomic_state *state,
+> > > >> +				  struct intel_dsb *dsb)
+> > > >> +{
+> > > >> +	struct intel_crtc *crtc = dsb->crtc;
+> > > >> +	const struct intel_crtc_state *crtc_state =
+> > > >> +		intel_pre_commit_crtc_state(state, crtc);
+> > > >> +	int undelayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+> > > >> +	int delayed_vblank_start = crtc_state->hw.adjusted_mode.crtc_vblank_start;
+> > > >> +	int start, end;
+> > > >> +
+> > > >> +	start = undelayed_vblank_start - crtc_state->set_context_latency;
+> > > >> +	end = delayed_vblank_start - crtc_state->set_context_latency;
+> > > > For these we perhaps want something like:
+> > > >
+> > > > intel_vrr_safe_window_start()
+> > > > {
+> > > > 	if (ptl+)
+> > > > 		return crtc_vdisplay - set_context_latency;
+> > > > 	else
+> > > > 		return crtc_vdisplay;
+> > > > }
+> > > >
+> > > > intel_vrr_vmin_safe_window_end()
+> > > > {
+> > > > 	intel_vrr_vmin_vblank_start() - set_context_latency;
+> > > > }
+> > > >
+> > > >> +
+> > > >> +	intel_dsb_wait_scanline_out(state, dsb, start, end);
+> > > > And I suspect we want to do this just before the usec wait in
+> > > > intel_dsb_wait_vblank_delay() (for the VRR case only). No need
+> > > > to bother higher level code with this, I think.
+> > > 
+> > > Ok sure. I will re-arrange this and use the suggested functions for VRR 
+> > > case.
+> > > 
+> > > On quick checking, it seems we need to use start -1 in :
+> > > 
+> > > intel_dsb_wait_scanline_out(state, dsb, start -1, end);
+> > > 
+> > > I tested with initializing with bigger value (like 5 instead of 1).
+> > > 
+> > >  From the dsb utility which you had shared, also we see that it gives 
+> > > (vactive - scl - 1) as the safe window live status change for PTL.
+> > 
+> > The hardware scanline numbers are always off by one (or two) when
+> > compared to our more sensible software numbers (see
+> > intel_crtc_scanline_offset()). On this level we're always
+> > thinking in terms of the sotfware numbers, and dsb_scanline_to_hw()
+> > will then do the necessary adjustment for us.
+> 
+> I suppose to make our lives easier we could make intel_display_poller
+> adjust the scanline numbers in a similar fashion. Though we might
+> want to make that optional so that we can also have it use the
+> raw hardware numbers as well. I'll see if I can cook up something...
 
-> Is that for postmortem crash analysis? Providing some kind of
-> service to the guest? Something completely different?
+Hmm, this might be a bit harder than I initially though because
+everything would need the %vtotal to be entirely correct. So I'd
+need to do a bunch of readout first to determine the vtotal
+(or vmax) correctly. And if we get that wrong then we'd
+potentially report garbage results.
 
-From the cover letter:
+Hmm, I suppose I could skip the %vtotal, and just not apply the
+adjusment in the 'wrap' test at all. That might be the only test
+that really cares about scanlines around the vtotal->0 point. And
+I guess I could keep the adjustment behind a command line option
+so that you sort of have to know what you're doing when enabling
+it. I'll need to think about this a bit more.
 
- With this patch series applied, it would become possible to display
- (via Qemu GTK UI) Guest VM compositor's framebuffer (created in its
- LMEM) on the Host without having to make any copies of it or a
- costly roundtrip to System RAM. And, weston-simple-egl can now
- achieve ~59 FPS while running with Gnome Wayland in the Guest VM.
- 
-Jason
+-- 
+Ville Syrjälä
+Intel
