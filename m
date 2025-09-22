@@ -4,62 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99B67CAC592
-	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91AB3CA100F
+	for <intel-xe@archiver.kernel.org>; Mon, 22 Sep 2025 20:52:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5A2A10E511;
-	Mon, 22 Sep 2025 20:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14DA010E07F;
+	Mon, 22 Sep 2025 20:52:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3azu7ha";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UpTsr3n2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E865C10E064;
- Mon, 22 Sep 2025 20:17:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCC3C10E07F
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 Sep 2025 20:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758572273; x=1790108273;
+ t=1758574367; x=1790110367;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=sOcOCCbJvZCE3xP/AQc+oRPX5l9d93VG7jEZGyyoB2w=;
- b=H3azu7ha7LgkdI3qXVS5c0mLpit09OtvEzvlNG5hjzXA/Pw7xWBB/8Xy
- aj5UuL3HUtdgjLH63tfoFKdwVNF+ErvYWhzAHVkvtrlbZO5gmuENDvcTI
- acnwZdo/oFOvYaZrgCZU7MSMmJxMT697o7IqcyKVIOmiaxfgQkpujeR1T
- jiLZnZnqqpXfDjE6ipSJTlYOlDP84t4av29HsFIrsDLfJ/OOdbHZ0Y+eH
- y1qCfKxC75J3MQ0OKxsRKUufvbN7xszkAO1zUfNtJ2feRwa3KByFiabod
- L8WEGXwbP5w57oPBvAIhhaF7O9WuREIBgJZq+Q+SFkBrXr3ajZ2AB7mIv Q==;
-X-CSE-ConnectionGUID: /wZlIFOyTgmkhEdX1vvXkg==
-X-CSE-MsgGUID: Qre4Ivt5RSmGzwslf3xotw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60900888"
-X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="60900888"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 13:17:52 -0700
-X-CSE-ConnectionGUID: lRgbQC6MQEiGiaNretL44A==
-X-CSE-MsgGUID: zcOpoNzxRSiPXOzY0CxE0w==
+ in-reply-to:mime-version;
+ bh=xBXdSAtIzH7XX1pYc/zorFXFrqfanke3wISXYOJQT+A=;
+ b=UpTsr3n2OPpISH7EjTdm01hFi2j458A2G25SN4+fvckYlkEZh7POaDa3
+ 030dyjcGFpM4DWWrsSad/5zqYZQL5bCdn6djmzceyEZCgC1nfTF87iELJ
+ EA+qiIqGobp6gBDHJYkyYOqeEVn2nkiRTJObG1LJrpZjlADZ4iVVk+r/Q
+ X6zToxahGQ/F5yt+t5YW9xn7pDE+xBrnUdaZt5npFAMrQTRX1kpsY9Pwg
+ o0ykLfxJ21jkw8ZuRXFyxDM/4SuSnvw28o67+/AB0hp2GYjAU3ME8K1q7
+ Yw4YD3AxWru/128wSWm/PahlX2SsjQHzg5yudz3qmNfmAyU/9OxVVvhGt w==;
+X-CSE-ConnectionGUID: x0y08QdBQJ2EDNVy3qR76w==
+X-CSE-MsgGUID: thUmGOVSRD+GCTlKOJYyQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="61011370"
+X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="61011370"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:52:46 -0700
+X-CSE-ConnectionGUID: MirwanvsRKGCAHP4cntSEQ==
+X-CSE-MsgGUID: ug3xvaJ6QMKMJHs1kp6Plw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="176140862"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.115])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2025 13:17:50 -0700
-Date: Mon, 22 Sep 2025 23:17:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Vidya Srinivas <vidya.srinivas@intel.com>,
- Swati Sharma <swati2.sharma@intel.com>
-Subject: Re: [PATCH v2 5/5] drm/i915/dp: Handle Synaptics DSC throughput
- link-bpp quirk
-Message-ID: <aNGu6_6JkOKkAWpH@intel.com>
-References: <20250918211223.209674-6-imre.deak@intel.com>
- <20250922134637.271999-2-imre.deak@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.18,286,1751266800"; d="scan'208";a="177353477"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2025 13:52:46 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 22 Sep 2025 13:52:45 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 22 Sep 2025 13:52:45 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.41) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 22 Sep 2025 13:52:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Kn9BpVWkN3hRPpmDaKfnGYPAt583Q8G+0dU8LRwVsTNCz0riQoo9YzGc/8mwNPdkbmGVVuLDdrLA/bXOCP39H9p1WoAKNr0KXHQGZIeH2w6MxofoOEkymrYZkYr4VRR/Fy2nZrlC6EqYB1J1+loBQ0pVA2zL2/+FfFgZEuFrRDggEOHyQpAD7faVJ5E+Ca9vTM8yj7QkxMsl4TWEyn8nKxYbJut3vfpZGbR7g07mEJWV6cRwplab7SPUHyeAcQqMcq085ytUpD2bLaqgTuU9+CNagjaBcb5yII3H9h0BdH707d3LEK0cphhkE5vPuItpmHpxBpIMqmCZK/AiLz+r0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DxCzNE2rUNJn8F/rRTSllhCNTT42RJ0L2quIznCX2k4=;
+ b=C27n6IyPkruk0pHCXarJ82T1zWoeE80hMqqoMkv52oLjJiDPQ39mX8QIVH8DlmjAs4lUsfVI3OpEER7d898wJlSVntT4aCQizzJT6AIMfhxkeJSeOqKzvMtvyk3w0YTZZ2rlComdA+EofpnEPVeqZrmpJBIHpeaRC7EZcCtSiBo8fINi2L2SOFWFCDpcKVJwllhTQo/43BfNvk7dc+IbSbz4O/CNBB07ZAmRqU85hmC9ZhoyPARzjrer6qVtdB4vnDeTa/sBfy5zhkNvNmKR3MU+j6mleD97HoJBBeQYdQN9eAZFVpRiVTTuSNbWVLA1T7Wv2fB0Pkd/fD8FIoD10A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SJ0PR11MB8269.namprd11.prod.outlook.com (2603:10b6:a03:478::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Mon, 22 Sep
+ 2025 20:52:42 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9137.018; Mon, 22 Sep 2025
+ 20:52:42 +0000
+Date: Mon, 22 Sep 2025 15:52:40 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [bug report] drm/xe/psmi: Add debugfs interface for PSMI
+Message-ID: <dcfyppphvrn4xq63bqtfi5nd3ipsqkkhfehjdt77pyr2nlfmd4@xfmqlycgi3cm>
+References: <aK1nZjyAF0s7bnHg@stanley.mountain>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250922134637.271999-2-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <aK1nZjyAF0s7bnHg@stanley.mountain>
+X-ClientProxiedBy: SJ0PR03CA0197.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::22) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB8269:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70f4ed4b-76d3-4909-0fc8-08ddfa19f99d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1uVz9lNikelo7gCx3EQqp90eB6TjXltYKFjvuYC+fX4qV80xm+irNnqYoj+q?=
+ =?us-ascii?Q?ErTT9/Ux2lvpKQ8OQp66uOG4dwAwvUOD7pjttT8+Hf3oov9WdraDAw7ltrUU?=
+ =?us-ascii?Q?dMYTeMfnpjHb7K0f7Xyz5wy6/QRWSp3EMHTxvvcPRfPIzPkPoprUF0hCTnO+?=
+ =?us-ascii?Q?03LicDpuqVKQMEXIqkSNshU+qxMRVcqnmaQsjK6wiCAHeeIRaxpke8toqrat?=
+ =?us-ascii?Q?OLsnSQUZhHURo7N07mIlRGNVbOysCEb/E2X/57G+W6XaPqEqz2QGp8HN2yS+?=
+ =?us-ascii?Q?3R5+gVpbfvNFBQvzLLdh6cqxZncJzZq05qTwpud/G7FDx1XIxQcAFAUF2lH8?=
+ =?us-ascii?Q?qj0mCdW+WfEfbLcCHCz4pAyZ4YB9wNrbHiJsE80db+BbHYEjaVPpH3JCVaHp?=
+ =?us-ascii?Q?SVnYpPOmbvmAsmqdhpVdBEZHpDIj/r/qHInhon1fMj58OTUtlDII15trpyuA?=
+ =?us-ascii?Q?moYZVl8NXFl+a7AUPIZYHUJerFfEhlPR75DH5mytc6VP32OT+qs9Hjym+Zzy?=
+ =?us-ascii?Q?ayMZY/P5UM9dVNcv8+i/q3GuVdz/EwhFi5CxB380jqJGlwOTnzcyqHtOUE+x?=
+ =?us-ascii?Q?bVO7PuWCSPxBanBGKSPRecVVQUO3DIlGLjnrfBQYi424Nj9S59ETOUaOmjKq?=
+ =?us-ascii?Q?oJojki57VQRu0kiYJaufwmOyQpXIDjGQeuGyji16hvk+Jjfvn4sEtH/flAVR?=
+ =?us-ascii?Q?F+P42ReJmixsCeJKMtHvGG+I9/RhrhFvsgJleq2maRZt/l4R747FHOv5amOb?=
+ =?us-ascii?Q?C9St2MNIVJR8ZXjwj29TQUn4o9oZVN6/tyr8frddkQEX9QYQ88l22SEJt0+X?=
+ =?us-ascii?Q?sCHyt7AtQlalB65DLuVzXFSqYCg+p+Whko8k2FasJ+kw5xX1t2+M7Jijg7Bb?=
+ =?us-ascii?Q?cut4Gn47A0SpqAkXBc3nR93tHWeCMHbaBfw9vAeiNhqNxkS9odMmIwYpnqoh?=
+ =?us-ascii?Q?obI6HoH+lozIg1o5sQwkcvcNS1Fsm+UHhWe/VeuC1do5vT0ok/kTg7gdujZe?=
+ =?us-ascii?Q?xIeGH8Vvcbzzw0zGMRe/lFQXJOjyQUwTJmX6JsqxQ2RM/Ek60zrt0d6L4AiR?=
+ =?us-ascii?Q?kUc0754W3ptGrPeSfz6DdZroEscYj66+wSbh61G3jeNuXdoJGXcGYGKbP6Cj?=
+ =?us-ascii?Q?SMltbYExVqKqmDzXdsghLjKE0L9zDyrB+3Abx90OwNyJLBrmY+Hix0axzIkL?=
+ =?us-ascii?Q?xtXOAICmbHSj209N5erRnKZoSccU/paLLrGJNGgFYg8N+9KevC9Id/iLrkew?=
+ =?us-ascii?Q?O6qhzrLieL31prEQMgw6gXyWSgnGITPTgB1S5t5huS1L4RQDPWF8tCIVSNyZ?=
+ =?us-ascii?Q?ngkpGwSXD5s2kKCD1T/26yKbnX65D5gPS9v/WhZmnuFiMjf8pXT13Hzh1t0y?=
+ =?us-ascii?Q?OQMwfszkKYAcL6gDY5cn4zLzJXmnaFLk9GVIXGnEIOG1kakhmh1upUMI/0xo?=
+ =?us-ascii?Q?E46WD0OcqqE=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nfeZFEUXG49Lf72qhyBzVqmHR4P4NYvhmqI+HWEZvf41DWRwk0KZMeGSybHV?=
+ =?us-ascii?Q?ysyyAPA9o0Mq6lVUBx0+EoywvNlsdhPB11DfKpxCaI3ZEtmGzJFXNt3d2pfP?=
+ =?us-ascii?Q?dLzuy7ToMCE77Rs/FYV6qI0Deq47uFu8KI9ekwduNFoZrRnB8yC2WnfPmgxe?=
+ =?us-ascii?Q?h92xHV64vma3iY/weohVM9hCAB5aO8+3vJM7Um/9ySei4rhK0D3nqlfyitTW?=
+ =?us-ascii?Q?ReQyi0c2/Pd1OfI2816j3ivL2eCgSHaaBjwZ+2Xf0xpRP82MmFpjA6Vq0QCQ?=
+ =?us-ascii?Q?q6UjCHo0VJkjabwtngOKX2p6UEUb1fDplsEzoN8ryK53FeaJkx+uWGM0y+MR?=
+ =?us-ascii?Q?vCpcXmqZiSJ3ElgARhocrvslYTGTAdAynX1kVlJTfS2LHrlApfWu+e6GxtoX?=
+ =?us-ascii?Q?E0Y2MxRHeMb4fMvFIvKf9vxSrFB3CDz1tClhc1Y9kcIuq6q0OQNg7smIMXY2?=
+ =?us-ascii?Q?HllTt2dtHHNPNyicIiG1lFAyB2pad6znPuz0Zf7vP4IyQ2myDUX5WZNku7bj?=
+ =?us-ascii?Q?I/L4KgPZDojj2cO/M4ujEeXU+g1i5YKaWdX+AKBvmmcjduRw4vNzWGnSVy6J?=
+ =?us-ascii?Q?gn2S3vZTzspIfNb89qW/aXVsb4VBLWzzyYDPM3QZYdSypnJvbyLS32UYGQ6p?=
+ =?us-ascii?Q?Bk1mV3h7XsUYr0V0uo4o0Xwg5dS2ts5r/PK27A3DSAvB9ZR7GETDhlkA+7EK?=
+ =?us-ascii?Q?DoAeNE4qFp5E71wLmh3RdPqjqAD6UhfrgmJbtBRsfJo1fazIwnlY9waSmj4f?=
+ =?us-ascii?Q?Cc8fwYN7Jy+IgA1K5XyXfykQDnIN4n/rGafSBtcrAZQECcRI/y5UpGtgH8mb?=
+ =?us-ascii?Q?4pxOZ2HAmRS0ZkT40W9C21imTGUN+FRYGB5Gcs38Pr5/Mvk0FTi0g3INaWXA?=
+ =?us-ascii?Q?m6pKma0XIgrM11cNMtMmPsSlAey4/Lc7BoOXfd0DdJS/Yd6pPAVmVPGWObdk?=
+ =?us-ascii?Q?gw1xe+5rV3M04ZJJrNJYo8eyPTU7oMz853hye1DXBPpcolfAhVMzg9k2cWpy?=
+ =?us-ascii?Q?mai3O/ENOVT+w0Y2M7hlBEuSRWJBiT0k1vBRWLgMBQBNf5jqxA8kTZzhZj0V?=
+ =?us-ascii?Q?J3hLVZzyAX5lVuNZhmwvGNYRqNizJia0bLa2LvqkeMjsjker+aRYGC86+8V3?=
+ =?us-ascii?Q?lYUj7zjjyDmvHMdlgDFsBx8LMAQ+C8xq/RPoEW4VLzWmIrQVRRLrDuhEL1jc?=
+ =?us-ascii?Q?xUpkpuQCBQ1YNVUM12gX5MXMzq7AxT3AY3Hf4uITczpn8WsseWDPwuiMbV5q?=
+ =?us-ascii?Q?nDSus4XzWnXRd0MuMOfUYYqFY7lcQDK1sKtX796nG/nQDJZdzjIj72iG3+7y?=
+ =?us-ascii?Q?PQyw2xwMfubw680qYIqEgQB43LwhVMWBKGtDdn9cAqUZbBGLM5lVVisrdLFx?=
+ =?us-ascii?Q?GTwNSBjDE9rLmiVKad3aS5zZNXgRzFSlGux/5BjIT2q2Ea328ysFTv2SsUPG?=
+ =?us-ascii?Q?BbOGqLHJ+cOe/DhjJKCsyVq8mTAYj7shwGZKXMe7hvdGofSmZEx9LH6J8/xR?=
+ =?us-ascii?Q?EsFRYUVvbvamni1qhdJRMmP/oX8qXCrqj6tc+6CQsqt2wD3vtqUJo3n9ZGIZ?=
+ =?us-ascii?Q?OUEp5g/jJTfaPZSUetlsb7euFx/obKf9FdT9PZUyjbSHcX2zwajiaeSOkk9W?=
+ =?us-ascii?Q?ng=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70f4ed4b-76d3-4909-0fc8-08ddfa19f99d
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2025 20:52:42.7243 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9PLppDPWWhAsqIq3vKob1Gye7EacR5VnK5UefqnzFADIawDpwClKy4oQB5CMpZm1A8P6RbhTC1qOZgfrs39XoNFe5ksYdw7E9BTrfMU7Mmw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB8269
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,149 +175,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 22, 2025 at 04:46:37PM +0300, Imre Deak wrote:
-> Handle the DSC pixel throughput quirk, limiting the compressed link-bpp
-> value for Synaptics Panamera branch devices, working around a
-> blank/unstable output issue observed on docking stations containing
-> these branch devices, when using a mode with a high pixel clock and a
-> high compressed link-bpp value.
-> 
-> For now use the same mode clock limit for RGB/YUV444 and YUV422/420
-> output modes. This may result in limiting the link-bpp value for a
-> YUV422/420 output mode already at a lower than required mode clock.
-> 
-> v2: Apply the quirk only when DSC is enabled.
-> 
-> Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> Reported-by: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 58 +++++++++++++++++++
->  2 files changed, 59 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 73bdafae604f..aff63bf0f229 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -551,6 +551,7 @@ struct intel_connector {
->  		u8 fec_capability;
->  
->  		u8 dsc_hblank_expansion_quirk:1;
-> +		u8 dsc_throughput_quirk:1;
->  		u8 dsc_decompression_enabled:1;
->  
->  		struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index dd082d2fcc96..5e7aea560910 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2509,6 +2509,56 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	return 0;
->  }
->  
-> +static void
-> +adjust_limits_for_dsc_throughput_quirk(const struct intel_connector *connector,
-> +				       const struct intel_crtc_state *crtc_state,
-> +				       struct link_config_limits *limits)
-> +{
-> +	struct intel_display *display = to_intel_display(connector);
-> +	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	const struct drm_display_mode *adjusted_mode =
-> +		&crtc_state->hw.adjusted_mode;
-> +	int max_bpp_x16;
-> +
-> +	if (!connector->dp.dsc_throughput_quirk)
-> +		return;
-> +
-> +	/*
-> +	 * Synaptics Panamera branch devices have a problem decompressing a
-> +	 * stream with a compressed link-bpp higher than 12, if the pixel
-> +	 * clock is higher than ~50 % of the maximum overall throughput
-> +	 * reported by the branch device. Work around this by limiting the
-> +	 * maximum link bpp for such pixel clocks.
-> +	 *
-> +	 * TODO: Use the throughput value specific to the actual RGB/YUV
-> +	 * format of the output, after determining the pixel clock limit for
-> +	 * YUV modes. For now use the smaller of the throughput values, which
-> +	 * may result in limiting the link-bpp value already at a lower than
-> +	 * required mode clock in case of native YUV422/420 output formats.
-> +	 * The RGB/YUV444 throughput value should be always either equal or
-> +	 * smaller than the YUV422/420 value, but let's not depend on this
-> +	 * assumption.
-> +	 */
-> +	if (adjusted_mode->crtc_clock <
-> +	    min(connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444,
-> +		connector->dp.dsc_branch_caps.overall_throughput.yuv422_420) / 2)
-> +		return;
-> +
-> +	max_bpp_x16 = clamp(fxp_q4_from_int(12),
-> +			    limits->link.min_bpp_x16, limits->link.max_bpp_x16);
-> +
-> +	if (max_bpp_x16 >= limits->link.max_bpp_x16)
-> +		return;
-> +
-> +	drm_dbg_kms(display->drm,
-> +		    "[CRTC:%d:%s][CONNECTOR:%d:%s] Decreasing link max bpp to " FXP_Q4_FMT " due to DSC throughput quirk\n",
-> +		    crtc->base.base.id, crtc->base.name,
-> +		    connector->base.base.id, connector->base.name,
-> +		    FXP_Q4_ARGS(max_bpp_x16));
-> +
-> +	limits->link.max_bpp_x16 = max_bpp_x16;
-> +}
-> +
->  /*
->   * Calculate the output link min, max bpp values in limits based on the pipe bpp
->   * range, crtc_state and dsc mode. Return true on success.
-> @@ -2558,6 +2608,9 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
->  
->  	limits->link.max_bpp_x16 = max_link_bpp_x16;
->  
-> +	if (dsc)
-> +		adjust_limits_for_dsc_throughput_quirk(connector, crtc_state, limits);
+On Tue, Aug 26, 2025 at 10:51:02AM +0300, Dan Carpenter wrote:
+>Hello Lucas De Marchi,
+>
+>Commit aaa0c1f50a3d ("drm/xe/psmi: Add debugfs interface for PSMI")
+>from Aug 21, 2025 (linux-next), leads to the following Smatch static
+>checker warning:
+>
+>	drivers/gpu/drm/xe/xe_psmi.c:93 psmi_alloc_object()
+>	error: 'bo' dereferencing possible ERR_PTR()
+>
+>drivers/gpu/drm/xe/xe_psmi.c
+>    68 static struct xe_bo *psmi_alloc_object(struct xe_device *xe,
+>    69                                        unsigned int id, size_t bo_size)
+>    70 {
+>    71         struct xe_bo *bo = NULL;
+>    72         struct xe_tile *tile;
+>    73         int err;
+>    74
+>    75         if (!id || !bo_size)
+>    76                 return NULL;
+>
+>I really encourage everyone to document why functions return both error
+>pointers and NULL.  Here "bo_size" can never actually be zero so that's
+>an impossible path.  Presumably id can be zero, but what's the point of
+>storing a NULL in xe->psmi.capture_obj[0]?  It feels like it complicates
+>things...
 
-Would feel cleaner if we did this in the actual dsc==true branch above.
-Maybe the actual thing that determines that max bpp should be some kind
-of pure function that returns the max acceptable bpp, and then the
-caller can deal with it.
+neither id nor bo_size can be 0 at this point. We could simply remove
+the check or replace by
 
-Or at least move the 'limits->link.max_bpp_x16 = max_link_bpp_x16' into both
-!dsc and dsc branches. That way we don't have this strange looking drop out
-from the if statement just to do the single assignment, and then going back in.
+	xe_assert(xe, id);
+	xe_assert(xe, bo_size);
 
-> +
->  	drm_dbg_kms(display->drm,
->  		    "[ENCODER:%d:%s][CRTC:%d:%s] DP link limits: pixel clock %d kHz DSC %s max lanes %d max rate %d max pipe_bpp %d max link_bpp " FXP_Q4_FMT "\n",
->  		    encoder->base.base.id, encoder->base.name,
-> @@ -4272,6 +4325,7 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  	connector->dp.fec_capability = 0;
->  
->  	memset(&connector->dp.dsc_branch_caps, 0, sizeof(connector->dp.dsc_branch_caps));
-> +	connector->dp.dsc_throughput_quirk = false;
->  
->  	if (dpcd_rev < DP_DPCD_REV_14)
->  		return;
-> @@ -4292,6 +4346,10 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  		return;
->  
->  	init_dsc_overall_throughput_limits(connector, is_branch);
-> +
-> +	if (drm_dp_has_quirk(desc, DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) &&
-> +	    desc->ident.hw_rev == 0x10)
+id == 0 means system memory and that's blocked by
 
-Rather annoying to have part of the detection here and part in the
-quirk list. Can we extend the quirk framework to support hw revisions
-as well?
+static int psmi_debugfs_capture_region_mask_set(void *data, u64 region_mask)
+{
+	...
+	/* SMEM is not supported (see comments at top of file) */
+	if (region_mask & 0x1)
+         	return -EOPNOTSUPP;
+	...
+}
 
-Could be a followup.
+>
+>    77
+>    78         tile = &xe->tiles[id - 1];
+>    79
+>    80         /* VRAM: Allocate GEM object for the capture buffer */
+>    81         bo = xe_bo_create_locked(xe, tile, NULL, bo_size,
+>    82                                  ttm_bo_type_kernel,
+>    83                                  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+>    84                                  XE_BO_FLAG_PINNED |
+>    85                                  XE_BO_FLAG_PINNED_LATE_RESTORE |
+>    86                                  XE_BO_FLAG_NEEDS_CPU_ACCESS);
+>    87
+>    88         if (!IS_ERR(bo)) {
+>                   ^^^^^^^^^^
+>Better to flip these around.  Always do error handling, never success
+>handling.
+>
+>    89                 /* Buffer written by HW, ensure stays resident */
+>    90                 err = xe_bo_pin(bo);
+>    91                 if (err)
+>    92                         bo = ERR_PTR(err);
+>                               ^^^^^^^^^^^^^^^^^
+>bo set to error pointer.
+>
+>--> 93                 xe_bo_unlock(bo);
+>                                    ^^
+>Dead.
 
-> +		connector->dp.dsc_throughput_quirk = true;
->  }
->  
->  static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *connector)
-> -- 
-> 2.49.1
+I think this is now fixed by commit 1f1541720f65 ("drm/xe: Rework
+instances of variants of xe_bo_create_locked()").
 
--- 
-Ville Syrjälä
-Intel
+sorry for the delay replying to this
+
+Lucas De Marchi
+
+>
+>Don't we need to call xe_bo_put() or something to free the bo before
+>returning?  Something like this?
+>
+>	if (IS_ERR(bo))
+>		return ERR_CAST(bo);
+>
+>	/* Buffer written by HW, ensure stays resident */
+>	err = xe_bo_pin(bo);
+>	xe_bo_unlock(bo);
+>	if (err) {
+>		xe_bo_put(bo);
+>		return ERR_PTR(err);
+>	}
+>
+>	return bo;
+>
+>    94         }
+>    95
+>    96         return bo;
+>    97 }
+>
+>regards,
+>dan carpenter
