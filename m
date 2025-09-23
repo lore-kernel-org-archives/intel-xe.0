@@ -4,164 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A117CAC5B0
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 12:49:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFB95CAC5B0
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 12:58:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4043C10E126;
-	Tue, 23 Sep 2025 12:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C34310E124;
+	Tue, 23 Sep 2025 12:58:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WPUmKN8R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gShxj00Q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE0B310E124
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 12:49:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46DDA10E124
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 12:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758631768; x=1790167768;
+ t=1758632286; x=1790168286;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=lAjwuO59O0dLyOnLrqBNvTgSf0yUmqwGyu/Ve3P83Pw=;
- b=WPUmKN8Rlndiv5cFLeigczTunyCI7yy7ZJlL4cg+slRxIcoggINZhGnt
- pELmbTO6NMO6cfm/y+6gG9fWyfqj4CNVLHlZWKDfM1HKnveuFCiwqUxoA
- de+sjn4q6vzohVenG5nfMhftju8VeBlJudEcId/hEyQ+yJllAAiBPbNOU
- ZuW4vOHASxKj5X/XUQrKi8Nmg+epAp2nHhkTa6qGOzlVyt/2xTb3LR18U
- /cVsJ8xOSRB1FICvAj21r7pK4LzP3pk3/jM69+9Zf2pfAJt1Og15u/JaN
- DAGpru/vR8Zqo84uosGfxZV9YVdhK8vzErUBzs/Wx9NgzAbbJ++IJJvtZ g==;
-X-CSE-ConnectionGUID: ExTZ59q/SCSsPBo7XKxgpQ==
-X-CSE-MsgGUID: Hr5xYIVxSWuilokSpB7Knw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="61024425"
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="61024425"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 05:49:27 -0700
-X-CSE-ConnectionGUID: Svfl0W9rTCin4DalKJr62A==
-X-CSE-MsgGUID: b1X/60tKRRGPyQjSULiT/A==
+ bh=xgvygQUuNwkC7IT9FG1ONjOaM5VNzX2O6sdALcs4Pa8=;
+ b=gShxj00QZitZDIVdT+Y96Sfew65nM/e3/tx4fTcN4i8sjKIZc308o25c
+ nxDZFBe8YEbWfTvGD2YR7CCDblAnfCrEyNzdQ/WYxApPLRtxd3jYW+SkH
+ NKJbueuyUVnw1mUHGXMrsqAuvHhBhduEj9bov900BCnjDlF0SrzkDVX0b
+ BFMZ9R0PZzUZogK4gCPXd46PuhKQdHIkOLDPPDJ8S1Q8uv22QwrO+R75J
+ Y85mzTPWAKvo6Lngxt+ADrAJJBihrwaNwaeN0jdaYi/poQiw56yJcd6Kt
+ jn7YU1UORtYfqw/Y6JyWeOs2iEFIcGbz1MQJ9mlvdu4nCWvA60+iOTaPZ Q==;
+X-CSE-ConnectionGUID: HWuO8MZ0TA2mHHPSQo0Ycg==
+X-CSE-MsgGUID: eWRU/FD7RiGdKrHRs/lrag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="78515704"
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="78515704"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 05:58:05 -0700
+X-CSE-ConnectionGUID: rQ8GuaJ4THysuGTdTnIbJg==
+X-CSE-MsgGUID: HD/abvVjSNiVQW0XQjhpWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="181143718"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 05:49:27 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="177538702"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 05:58:06 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 23 Sep 2025 05:49:27 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.17; Tue, 23 Sep 2025 05:58:05 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Tue, 23 Sep 2025 05:49:27 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.0) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Tue, 23 Sep 2025 05:58:05 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.24) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Tue, 23 Sep 2025 05:49:26 -0700
+ 15.2.2562.17; Tue, 23 Sep 2025 05:58:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m2wE8Og2+iNr5uKyASLY8eArWYvQJMGAQ83p6P1T6XDz3CdeuHPG0EsN2HhX2roe/a9CYZyL85tRtOfZZppgyzue9VqSIpxGmbwkwQ1VjzrJnJciKo3MIRo7xvTVP1VgFrcCFAwOI8yCXbj24GZAf2eLEyLDIjC+VwISVw83J9EF2rtH17HykqFFmLChpb5cDvZvVYv9ppzdKKJa1hAKr/9k92YbIhVcLv5C+iYaOEbA1TFqFsC9b7BxEWAGe4C1TnBwHseME3no4iqKi8JslkvNyEefbN2fAWxjAqhqRTzK1ks21b51HOthBNyWUaZ51I4MuOIGTwrxE314k+YDxw==
+ b=pLR3K2e9qer9B31iKy9hn1HmAcMJsiFOlbZ45Mns/CCTSJQfwM07QdsmJ305fWDK0L5nbHjHn0yftgdh4VqclHmWIiYSV7h4ErebwA+7vOjdLQfLw/nVzRiydtpsixSf5UWvJVXTCihk0wReQZmzY82kVtYc+SvjZJW04C925vOsTQmNBI1zwB5ly9+29FxsQyVvRXA7nNKJsM43DNP5FwxduzVj7+U/odhDbHFd78/cs0jB8WbhREhg0DnuNaesmmLDtRWhzuKSl4ys//zs6d7sh0CznGLAHyanADQZzlm6NfMsUa5cFYS/ti4U42eh4eC1UbRr6pnNGu6h3VvcDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=62Tef5SJAHhNOUcmG7C0/P5uaQUeHE4YndAm4gt2MwA=;
- b=NGUHinF+GM9bnmcBqL+RuRssI21rQjoXF+PUGzt0VAzk5ok1+NPY0L7bIFodW8VUtikCpKq856DjX9bJTaWROEGXMinMTpmBk2GS5lc+PpBcYu4PQcN/i5TGuQEJESmuQNgLXInWEeea50e5vVlmmzdwWZFsWsCrKs+EIXs9gl8nWyRQK6fbg5dgGDqAqtG2slg0OG7U/algc2Rl21MyPdKjOieEGGtbara8UXUzjZJDQloa/7hP2JJl31ewh7vF6unZ5HyS0QuM9WF8c0w5GJKqKnaWl2YCYb+5EgLpRUYcetd0zNfKvS5znvV8om1oZSv2Li940w1Jl+ZPVr0BsQ==
+ bh=tX1/Eu7P5WxE4i7ThOSZeJfUXWQfAEWV2+nP1KMFKy4=;
+ b=FUlK2dg+gcOsDpOsjNI8MmVyUIpRPLJiudJuiP3V5g623JVzRrr2RsBrxgKlMCkyFori12OmDxZ8FOmHFRx4ZOTTqJ+X+k58F22LuktEWe3pa7NgcFc196hhlSQE2aqUttFZHvcXD8M694s/dJxwM2cjpKRU3NV5bCrHeNcoWqWYFuEwvwNgUG6/aeZ8fFaHCGDmUbXeII90O6/KXzDfxxfrUtcFEv26RsFs3YK8yf1D6rpQuu/gj/rAR6SYJCHfwyve4IKCobQ4zcnq6o+mZ+cgeSJeGzSesSRfEBJ2PyPBBNdzFWuIwVWXfD+Q9hZ+y+6Bfipr+ze7chQ0zlv/zg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by CH3PR11MB7177.namprd11.prod.outlook.com (2603:10b6:610:153::8)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DS0PR11MB7927.namprd11.prod.outlook.com (2603:10b6:8:fd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Tue, 23 Sep
- 2025 12:49:22 +0000
+ 2025 12:58:01 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9160.008; Tue, 23 Sep 2025
- 12:49:22 +0000
-Date: Tue, 23 Sep 2025 08:49:19 -0400
+ 12:58:01 +0000
+Date: Tue, 23 Sep 2025 08:57:57 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 2/2] drm/xe/debugfs: Improve .show() helper for GT-based
- attributes
-Message-ID: <aNKXT6KD8tGNDU6O@intel.com>
-References: <20250919160430.573-1-michal.wajdeczko@intel.com>
- <20250919160430.573-3-michal.wajdeczko@intel.com>
- <aM3KqUnWloi38riK@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Dan Carpenter <dan.carpenter@linaro.org>
+Subject: Re: [PATCH] drm/xe/psmi: Do not return NULL
+Message-ID: <aNKZVSf0q0NgNPZF@intel.com>
+References: <20250922221133.109921-2-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <aM3KqUnWloi38riK@intel.com>
-X-ClientProxiedBy: BYAPR01CA0047.prod.exchangelabs.com (2603:10b6:a03:94::24)
- To CYYPR11MB8430.namprd11.prod.outlook.com
+In-Reply-To: <20250922221133.109921-2-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ2PR07CA0010.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::27) To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|CH3PR11MB7177:EE_
-X-MS-Office365-Filtering-Correlation-Id: 69ff9421-b578-44d5-43d7-08ddfa9f9ea8
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DS0PR11MB7927:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac356f1f-2e0b-4cf8-3770-08ddfaa0d391
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Kk9bs9r2aY7OdGRcD7LYdZ3NQCJ4tungVuHp5WHYq+pj9SOzpNNaxySYEqhH?=
- =?us-ascii?Q?lr8xMMRDQhIUhL59Qz/DoEETnM95b5DofReiJcGDiT4digFinbPBxMBcgVRZ?=
- =?us-ascii?Q?Vh0pEl2IUQGBX89VRKzCqOqVuJPSwsrczBYX2uwULtklebSkfQ+hygkfBB2F?=
- =?us-ascii?Q?OmgAXbNatLH6t3VM8e5PNRO3nG6YVe9OzPutPRu963tvOBYZe0LfwIu2tKas?=
- =?us-ascii?Q?KPQwMv8o1zz/8V7J5DBboQ8cYkDoUEpzZN9VPacynIMd9YOj/Asy2rzOhmdq?=
- =?us-ascii?Q?0NdDxnvrwrQwY4Om/erx46lwqveciR+5X+pavkXp9XHNXYuVm/BGMnH42TG/?=
- =?us-ascii?Q?ob8kCQNuHOkIo+sGfWb+6vNA1cS21SqZnhUa9UOUH9I/K6cvoFOx9VibLQ1j?=
- =?us-ascii?Q?aG8MwSKco7LTwKCG/7pTbIgfViYc1kvTvJOhqcw37++EWWvr+CSa7wywPZlU?=
- =?us-ascii?Q?6wlDr8eboBAh2AhvpL8hLUfFQhF7rb9IdFv3fqPCisFOhrlNIrbnbnvfryYZ?=
- =?us-ascii?Q?Cv9EtSaMpNBdph9KrmDUw1NkbvLv4z83tiXOdP8gpMuWqZghGApd9/wCRfUm?=
- =?us-ascii?Q?f1bRmroGEPm0vWxugZwL3pEtjYkNKwnStCLEN5t0VlfREP12bi5NRbD1Inke?=
- =?us-ascii?Q?Xf99nkGdoGJbnsXBQYJH+DlsLq2tc3BSgr0lAgkEn719I+NnvXntvnzzUTXN?=
- =?us-ascii?Q?oLV8u8kOUHEeztp5Qjp6oMJMlpphdAtkMSLCf+VwKunitlrwtUjvvzJzPxAI?=
- =?us-ascii?Q?D7TOK4GRhS6KjZZTffrVUxUKGM9ML4WHqAWF09Fs/AA3PMyfBt7e6AABt3gr?=
- =?us-ascii?Q?uq9JqFlGpjVZUCEkfD0Wt2H8JKryoWiDNHOEemVngK6buMn5v6XO64VsfmcW?=
- =?us-ascii?Q?bdHE+twyiNBOlsUqxAGGR1D4vIejqHJi7y9rvrfjU4Q+rCzpFZqjMCfspvi0?=
- =?us-ascii?Q?7FfrFfQnNTFTRCSB9TZyROEV9JYzXlUiaZgzvAMo+fq3JYND7fhHB//CU3FM?=
- =?us-ascii?Q?w8bJTLOvzoHHxP4vmXMheXnMnRf6cMhXWH9sLAWdpZWhluWS3luiLVL00YVH?=
- =?us-ascii?Q?GgLg/82i4n7RDdIaPYLRfDYbaedQnba+38G1E2zMcWcHLiuDfqzrZ+Pzp3DP?=
- =?us-ascii?Q?EESGo9P5ROHGfaJz8SgLNLJyw9DUjrHBCZ3QnwjoBUJAI5hzcIojWTRP0bPm?=
- =?us-ascii?Q?w7btS/iZVImLFnVosP8jgtk7QhjfegftzKTMz9vrLSAuYAigs/2MOyLMGyu+?=
- =?us-ascii?Q?n+bRqrNLrjuLpepORl6EH5ynXfPXBX+ZJ8URD2Rv/kADFsER9npAerHywuzV?=
- =?us-ascii?Q?/J2IUOAyrSBNMWBIFmHTdBPdgCpUSJwf1rPvIY+Tk1zels5kg2ZVHpi2T8lp?=
- =?us-ascii?Q?CJnhfaxqYpl+KbmPYe/bn4gZdrNpTqa2IhePeKwrQcBr9mBtZKMib5DTcqOH?=
- =?us-ascii?Q?/BOB6oBnI00=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?IcAweit2EHMz4pAOTbp+UCFS7AZlP5Ve7WS8meH4i4cMTAED+D1NREplxbuE?=
+ =?us-ascii?Q?C/zN1Nwk/LVwTaXxmnFAGkhrC/q1b8FR5gMTDlDH+2NRyTsDX+6cxILO8Obo?=
+ =?us-ascii?Q?owU+/81RURXmxck247qLK+maooL3UdsEI4clVLO3wenkcyVxZrocOR+sJgy2?=
+ =?us-ascii?Q?xcEA4mg+USQOEcjVq9qY43pd/rQiKwC+8qMQKl+l0kJv7d0K4AAZM1ClQcqk?=
+ =?us-ascii?Q?hv6+ZnEXZHgDk+rGsdo69fr6QOz7xfkPlui3dapm5gvbpwdGLc9753o9GvVf?=
+ =?us-ascii?Q?2sFHoZzm0HBL8q5gWKzLZdt/tgHOdES4pjv/lA6YLn5rqeGezA7FP0Zd1sCQ?=
+ =?us-ascii?Q?0qoGMxBgZIcHcXe24cB6lWBB8emxJhgD/TM8xGxcJwY8N/lu9okCGaVfMFCO?=
+ =?us-ascii?Q?Rzm7iWuQQdiLpGbAn3XnikzJCB/J1jd8KqYgJ2OrfUxrtpk/A7q85xQowjaG?=
+ =?us-ascii?Q?cArd/nTRIROIWOBjwkeF2EusFeCWQW8R7H8Tg2rl496wXjoa8fXU8HjyxsCd?=
+ =?us-ascii?Q?lHJzMoLNfmzMTokn/nh3QIGPa+qRTLQRp2Kyo1KywJHhTW/lRGj/E2L//7bN?=
+ =?us-ascii?Q?iYzCtsLDeDoLgTmcGe2h5NmHlCpUn8xNENPj0FWec0RC1bHxQPbLgmj1PAFH?=
+ =?us-ascii?Q?ZkB4OYARRjorr5Y/auJJIOv5iMM2S1sndeJCKhLyOzK6ijheDo1wNFDn23AC?=
+ =?us-ascii?Q?+/fctoz6Nsm5u88bI+r/qRS9iWQ8JqqPpu3eZYfC5Wd1vdxP5VohnWU1La/B?=
+ =?us-ascii?Q?PTFw07byE9ntRCYekIxuPSP1EK7SXeu9GQv+NKEBSnLKs0KtIgWLitDsfnfe?=
+ =?us-ascii?Q?7vEcrW3vYNFdBX1drDeBWgppFPib4c4rpNnDXA41aNUv4+IGou30Lkt375Qd?=
+ =?us-ascii?Q?yb6zcoFi+3nRLOKrSO1+WisCiOBMXETyK3G8F7EzgzFe+VvgF5LhQct4/FRw?=
+ =?us-ascii?Q?iZShLzyu5k+AGVAfRKZh+M91JC4YY4348JExSnJ5HnVEn1GdTzpJYcl3u05N?=
+ =?us-ascii?Q?cxW8Vj+/UQ1sG5Y9oRC9CiTMwNelPCbI+urKiobCnZoRLKBZ6vPrInsKOucT?=
+ =?us-ascii?Q?RJihtLNHGh5GmOptUqaqF6UVZFYyzvpx1WKBQlXtsBJ/VFdT23/1GcabsyCZ?=
+ =?us-ascii?Q?V/vcMoMQw8xNTRjb5YQq7Fi98XnBovZNQTG17gPLl0ZDEi4ylevzpONnMWDD?=
+ =?us-ascii?Q?CVtQwrAIgKdL92yMywVq3lvR5j5+28NP+76aJMc+kZIdu3aAkixgZCxedC60?=
+ =?us-ascii?Q?Q2leJZwjKoyVoWtqfBfCAKYCZamt48zehG7CEFZP2PafB3vq0UTXq0HsORjp?=
+ =?us-ascii?Q?d2UXe/gg++NNRWzsTXK+4yCwFpGY/sH+Oqw8HNNaTE9xr6BcaBCx/OZnednS?=
+ =?us-ascii?Q?oE23EeMRJOULs3clEF3ZAj7XiuQk?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2Hp3meakSOqkVox4lvaQv/UBjDUeT3Qk+BmMdAJSfvxf/l/uJQrEws3kJbZ6?=
- =?us-ascii?Q?eQWQ/LPkNFeY8YrjVs6dLrIxC/MDn9pYxLAZxjTvhNEGI3/oufXE8//S3diQ?=
- =?us-ascii?Q?reDgQmbEz6yR5giyYyjvkOwdAwOTIYD54n6KaLu5ZGDSK8nLs3AksRpfhZ2Z?=
- =?us-ascii?Q?8TseJyjvdlVBa5ZvhFrypBl5WbuEhxV3d6B0KOivVOj34li635GesYkdJmOJ?=
- =?us-ascii?Q?oOKv3TxvIlL7CO6Y/Nq9D/kw5hrJ+mRDJfL+Dx2NTCpX+A3f1t88ddacVleq?=
- =?us-ascii?Q?VZ6CQNrL8gO9p7V0M0XNZEg56Rms5GQGx9Dfzny+8au/JCbfCFFKDh6Y+P4J?=
- =?us-ascii?Q?OSCMkrxVc657ieFI/VDRPFJxTDYSg7vvryT1yQQyuN//C+BNhg5Qjh9Ml1j3?=
- =?us-ascii?Q?i+EFECkyYXDtpos9JJlgEe6OhMMjmjCLXslwLz8qYntg3+YwN4RC0vfAdyXz?=
- =?us-ascii?Q?xzaIAXQKULYWua2/A99xFUUT+wkpSPGYNrfwlwl7X5wRmb0SFWfsT7qGXzox?=
- =?us-ascii?Q?HDEQM0FrHrHJHUTSibi9YIBbhuJrL2N/YWEMUL2sDzBQA1J0pL4zs7k5B8i5?=
- =?us-ascii?Q?c58saLRigQH9jsaJ4wnqLGgBODr8gx6jiX6J99QVa0j6RyPgvml8cJ6MNIsi?=
- =?us-ascii?Q?cRUMQDH3Dgl/2wPAVdyz9pHodimW1Z2dE0ezSJd72NdwPWfPXW5Q1mTbMJhy?=
- =?us-ascii?Q?i2VdmUYD0HPzAC/iaWXQABKDHkx0aWjA2BdnBRcZqS/NwkVqbKecp8VPYuwd?=
- =?us-ascii?Q?WZ+s4LL9it0dNxjDXhxtPUJwOuOVl4MjZCY7FWFIr5tfAELRVb2Y0+x7c9UR?=
- =?us-ascii?Q?qQBuErF2VvuXjgX4MzsV0k9hO4ZkHULVOkXZZmLb2QgQ0NMvXzr62eglbYte?=
- =?us-ascii?Q?i/ys4c57XxiSGlU6Ac1JhLgYQKNeCwS9bg5q0puC19/xgGUdHJvaQOfIRGlE?=
- =?us-ascii?Q?74fla/oxyjxfZXtgb/6WXapt5xncsGlhEs0iYEkdUzJb8CWitCWmv/ymLSLP?=
- =?us-ascii?Q?/hb1iMGbVULgFLmEfH7Hax9fd/uqssX1T2ppJiVas4KwSym2yJDBSyWs5TJx?=
- =?us-ascii?Q?UY1SDRw1eM/zTtoYVllV5RX+dt4B2py/8ozMTdlTGXZOs/naMDTz0YKVo093?=
- =?us-ascii?Q?SF/LMQak+dRjvTb99TAh+6fal0cOqvQBgSpcKX01M7FiJYI/E2tDujnNETWD?=
- =?us-ascii?Q?sAyamHzzZj1WxMJaFdZLjbCl06eNvHYoNDfIZ48LP/mFp4cHxzGdfeggHC2K?=
- =?us-ascii?Q?2rpvmpcZwnfz/IvOeRRH9QXzsAmSNmqEvrYOGJa3diOloARq2hozn9rXNkQu?=
- =?us-ascii?Q?gkELl2sbA1OOsaWMY5KAxn2OXOqJmRFPjHEyW9yNkStqDSwr01pJFmN5co+V?=
- =?us-ascii?Q?laVQFxK0ZcPPJlENiema+mbDbUuolTLpG1luLlQadZ5jb+bxvgCjeOxL03Lh?=
- =?us-ascii?Q?P4ijkg2tT2G1kfmNraP4zk+XaI39EvQ9P9VrUYCO0D5ix9WxDj9L5AmFiDb5?=
- =?us-ascii?Q?uK+h6Nk+dA/dyt2hW63p8VZ91uhBikmBum2BOWM2z5LEv3aJXMqJ+dygxCXf?=
- =?us-ascii?Q?RhkJd5CZsh3MGzAC78v06fHXTLar56ZTJqg0EdcY?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69ff9421-b578-44d5-43d7-08ddfa9f9ea8
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QKU979jBViSUkpP3RXGOX4aEs2tkf3++s0+TAIHa6YWeVV9mJtTMzX3NSImS?=
+ =?us-ascii?Q?7Z8fZeLu7SC+h0E1ftaVekpryXGxKlvu5dxS0R6znEsuHU/WFxJReJ34fC8b?=
+ =?us-ascii?Q?9GNpTJ9veglmCTps72O54+yOYGFMjJzmTn5+t9MfJso5wxUFnRYrGloDAfAx?=
+ =?us-ascii?Q?bFsUxBwfMRiJ1w/TFsZcnP+GiI43RsddxDisYbYu8HzWALaNKx5lU0fObxPe?=
+ =?us-ascii?Q?q7tJleL4wkjUSytdPeJ4YnupDArsAaqbZNdrf4BfqKWX92WCBsUfYIRmvWaC?=
+ =?us-ascii?Q?Fs6/I1JVFRrUcvPCxeOJM3AzGsW3o8AUm13ny1tSk1u8ug7sz9qMn+a/c0Eu?=
+ =?us-ascii?Q?xz3vCuN7aFB1O8QF+IwflzV2U6kPW0soeAT85UInStNyfxHJ3r+kD85f+2ZB?=
+ =?us-ascii?Q?FQqTzhNqK+CA0P64bppxT34xqYkeWxrTB8nlxrJ3XjljtdQ5rcXcMw9CU7vh?=
+ =?us-ascii?Q?BLNqqqHPvexBu7n7bojG6III6YrtwvsGnaUbjNWuCwFEZqJX/lBPhnH15v9O?=
+ =?us-ascii?Q?aX5PvfbgkeNrlRXuq5xK0Smtn1YKHa/82l9Od+YWjo89EoFgUAV9me2a4FBb?=
+ =?us-ascii?Q?lpw4bg2GY7RbKJCyRIZS9qWsyfUiCP5mlbacoQvpkm2BIgSQzahfr+EU7er1?=
+ =?us-ascii?Q?6p8CzUOQ4jRLdWWJbgO4/eJ5TVXvHcF01RlPmDl3Xtoh88nJAeJhkjxzQ/hJ?=
+ =?us-ascii?Q?3hLKgamgLmGA0oFNvXrIX00e/dY6PIBKVU7ESkU24Z0P39wQt7sanOd6ctBf?=
+ =?us-ascii?Q?oT1fkeqnsZAzheFyspVQkHsfoMpcJUPWelF5JfaFBfvltFn/ScbVya1DG4Mh?=
+ =?us-ascii?Q?zoL9g61+jOf/xaKM1PXqTp7FWVZXzMaeeFy+yiOGCOiJPmY+aAnMqJ4Pe7iN?=
+ =?us-ascii?Q?xY2RLQ72RrPaX//1YbXwrQ64J84qjuWO3ylts0ZmL/TudTPgqlVBchgmsxp9?=
+ =?us-ascii?Q?EujOhOdNOM/8v7gam4NKqjQcroJYjH+OFREi6Btyj1mgPdKwC6/2hEx/tUZT?=
+ =?us-ascii?Q?b16YdyOchn1K0PnDmriixFIxkwvQpS7TCMYiVSI9rJLMP8csROWNFS3Hx7Vw?=
+ =?us-ascii?Q?whllu01xCRjzM43OE/fj5lUx17bKSw2I/p0BjAj1C52MjAX45XV1j9aZ6MQM?=
+ =?us-ascii?Q?OnnK9PVZyEktxF93xCd8m9A+hkJjwDIUXJHsPxyzvRAyjVXLG1YX4kPRzO0w?=
+ =?us-ascii?Q?MRO6OoaTJm+66U2TqDUR997OIyMQl6u9nco4BwXBpnn2sXATb3sNf+FSlF7Y?=
+ =?us-ascii?Q?I8Fula7o8l2a8hSLdAdyrU5sj+lliMtE5m7z+bMNUdhyIksLzAreBDjatIsK?=
+ =?us-ascii?Q?clJUvz6+8CNyje2hTE0xifjbqWp/Tw1jfNlGTfsHNF9x/l6viC5V+VaBUrEP?=
+ =?us-ascii?Q?qyt4g7AsKfPEPx9lnSabVWQ3PfkTYvTrBQnd6iyS9ocNOMWsoieVsCRYi1uE?=
+ =?us-ascii?Q?9kiUjIZHjaWmgI507bjVDhPl7/WHJtcPkAhlMVYctcG1ug6tZQH55SHl1co/?=
+ =?us-ascii?Q?iCau0hGcw0r6MC5sfM2PZHh9bXqNsdy/Yj0JNkApqGyPVqTQBR1Jyh1dELKN?=
+ =?us-ascii?Q?HtefQfns2VgR6qOzq4uZfUeIlUx/iN4p6W0RcnmlkTZvIeV1+i9xiNX0w0hm?=
+ =?us-ascii?Q?gg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac356f1f-2e0b-4cf8-3770-08ddfaa0d391
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 12:49:22.8084 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 12:58:01.0590 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kqDVImJS75sQ9/Dufcl2KDTEYP41jaSfM0zDcKm8oh3WFyqJBkPDqMpht4sDDuFYKS2ZageCAdf6lG/zWp1HBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7177
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y3ahqGOY20QofVMQbVQWhgSjHxd4+mF/1VoV+GSH0+xiDZwWQ7jghjtaHqUzp0d4XCcvAK5aqKzKponP030JeQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7927
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,322 +174,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 19, 2025 at 05:27:05PM -0400, Rodrigo Vivi wrote:
-> On Fri, Sep 19, 2025 at 06:04:30PM +0200, Michal Wajdeczko wrote:
-> > Like we did for tile-based attributes, introduce separate show()
-> > helper that implicitly takes an RPM reference prior to the call
-> > to the actual print() function. This translates into some savings.
-> > 
-> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> > Here is a report from the scripts/bloat-o-meter:
-> > 
-> >   add/remove: 2/2 grow/shrink: 0/14 up/down: 114/-581 (-467)
-> >   Function                                     old     new   delta
-> >   xe_gt_debugfs_show_with_rpm                    -      98     +98
-> >   __pfx_xe_gt_debugfs_show_with_rpm              -      16     +16
-> >   __pfx_powergate_info                          16       -     -16
-> >   register_save_restore                        317     288     -29
-> >   vecs_default_lrc                              73      42     -31
-> >   vcs_default_lrc                               73      42     -31
-> >   rcs_default_lrc                               70      39     -31
-> >   ccs_default_lrc                               73      42     -31
-> >   bcs_default_lrc                               73      42     -31
-> >   hw_engines                                   179     145     -34
-> >   hwconfig                                      70      33     -37
-> >   workarounds                                   66      26     -40
-> >   tunings                                       66      26     -40
-> >   topology                                      66      26     -40
-> >   steering                                      66      26     -40
-> >   pat                                           66      26     -40
-> >   mocs                                          66      26     -40
-> >   powergate_info                                70       -     -70
-> >   Total: Before=2870434, After=2869967, chg -0.02%
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_debugfs.c | 116 +++++++++++------------------
-> >  drivers/gpu/drm/xe/xe_gt_debugfs.h |   1 +
-> >  2 files changed, 46 insertions(+), 71 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > index e4eba91cb83d..b9176d4398e1 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > @@ -35,6 +35,11 @@
-> >  #include "xe_uc_debugfs.h"
-> >  #include "xe_wa.h"
-> >  
-> > +static struct xe_gt *node_to_gt(struct drm_info_node *node)
-> > +{
-> > +	return node->dent->d_parent->d_inode->i_private;
-> > +}
-> > +
-> >  /**
-> >   * xe_gt_debugfs_simple_show - A show callback for struct drm_info_list
-> >   * @m: the &seq_file
-> > @@ -77,8 +82,7 @@ int xe_gt_debugfs_simple_show(struct seq_file *m, void *data)
-> >  {
-> >  	struct drm_printer p = drm_seq_file_printer(m);
-> >  	struct drm_info_node *node = m->private;
-> > -	struct dentry *parent = node->dent->d_parent;
-> > -	struct xe_gt *gt = parent->d_inode->i_private;
-> > +	struct xe_gt *gt = node_to_gt(node);
-> >  	int (*print)(struct xe_gt *, struct drm_printer *) = node->info_ent->data;
-> >  
-> >  	if (WARN_ON(!print))
-> > @@ -87,15 +91,36 @@ int xe_gt_debugfs_simple_show(struct seq_file *m, void *data)
-> >  	return print(gt, &p);
-> >  }
-> >  
-> > +/**
-> > + * xe_gt_debugfs_show_with_rpm - A show callback for struct drm_info_list
-> > + * @m: the &seq_file
-> > + * @data: data used by the drm debugfs helpers
-> > + *
-> > + * Similar to xe_gt_debugfs_simple_show() but implicitly takes a RPM ref.
-> > + *
-> > + * Return: 0 on success or a negative error code on failure.
-> > + */
-> > +int xe_gt_debugfs_show_with_rpm(struct seq_file *m, void *data)
-> > +{
-> > +	struct drm_info_node *node = m->private;
-> > +	struct xe_gt *gt = node_to_gt(node);
-> > +	struct xe_device *xe = gt_to_xe(gt);
-> > +	int ret;
-> > +
-> > +	xe_pm_runtime_get(xe);
-> > +	ret = xe_gt_debugfs_simple_show(m, data);
-> > +	xe_pm_runtime_put(xe);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	struct xe_device *xe = gt_to_xe(gt);
-> >  	struct xe_hw_engine *hwe;
-> >  	enum xe_hw_engine_id id;
-> >  	unsigned int fw_ref;
-> >  	int ret = 0;
-> >  
-> > -	xe_pm_runtime_get(xe);
-> >  	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> >  	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
-> >  		ret = -ETIMEDOUT;
-> > @@ -107,37 +132,19 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
-> >  
-> >  fw_put:
-> >  	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-> > -	xe_pm_runtime_put(xe);
-> > -
-> > -	return ret;
-> > -}
-> > -
-> > -static int powergate_info(struct xe_gt *gt, struct drm_printer *p)
+On Mon, Sep 22, 2025 at 03:11:34PM -0700, Lucas De Marchi wrote:
+> The checks for id and bo_size are impossible conditions. If they were
+> possible, then the caller should not be using IS_ERR(). Just replace
+> them with asserts which should be compiled out when not debugging and
+> at the same time prevent other refactors to break this assumption.
 > 
-> I believe this should be removed in a separate patch.
-> It confused me when the number of rpm removals and the number of
-> function changed below didn't match. 
-> 
-> > -{
-> > -	int ret;
-> > -
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> > -	ret = xe_gt_idle_pg_print(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> >  
-> >  	return ret;
-> >  }
-> >  
-> >  static int topology(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_gt_topology_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int steering(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_gt_mcr_steering_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> > @@ -146,8 +153,6 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
-> >  	struct xe_hw_engine *hwe;
-> >  	enum xe_hw_engine_id id;
-> >  
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> > -
-> >  	xe_reg_sr_dump(&gt->reg_sr, p);
-> >  	drm_printf(p, "\n");
-> >  
-> > @@ -165,98 +170,66 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
-> >  	for_each_hw_engine(hwe, gt, id)
-> >  		xe_reg_whitelist_dump(&hwe->reg_whitelist, p);
-> >  
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int workarounds(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_wa_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int tunings(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_tuning_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int pat(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_pat_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int mocs(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_mocs_dump(gt, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int rcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_RENDER);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int ccs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_COMPUTE);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int bcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_COPY);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int vcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_VIDEO_DECODE);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int vecs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_VIDEO_ENHANCE);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> >  static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
-> >  {
-> > -	xe_pm_runtime_get(gt_to_xe(gt));
-> >  	xe_guc_hwconfig_dump(&gt->uc.guc, p);
-> > -	xe_pm_runtime_put(gt_to_xe(gt));
-> > -
-> >  	return 0;
-> >  }
-> >  
-> > @@ -266,25 +239,26 @@ static int hwconfig(struct xe_gt *gt, struct drm_printer *p)
-> >   * - without access to the PF specific data
-> >   */
-> >  static const struct drm_info_list vf_safe_debugfs_list[] = {
-> > -	{"topology", .show = xe_gt_debugfs_simple_show, .data = topology},
-> > -	{"register-save-restore", .show = xe_gt_debugfs_simple_show, .data = register_save_restore},
-> > -	{"workarounds", .show = xe_gt_debugfs_simple_show, .data = workarounds},
-> > -	{"tunings", .show = xe_gt_debugfs_simple_show, .data = tunings},
-> > -	{"default_lrc_rcs", .show = xe_gt_debugfs_simple_show, .data = rcs_default_lrc},
-> > -	{"default_lrc_ccs", .show = xe_gt_debugfs_simple_show, .data = ccs_default_lrc},
-> > -	{"default_lrc_bcs", .show = xe_gt_debugfs_simple_show, .data = bcs_default_lrc},
-> > -	{"default_lrc_vcs", .show = xe_gt_debugfs_simple_show, .data = vcs_default_lrc},
-> > -	{"default_lrc_vecs", .show = xe_gt_debugfs_simple_show, .data = vecs_default_lrc},
-> > -	{"hwconfig", .show = xe_gt_debugfs_simple_show, .data = hwconfig},
-> > +	{ "topology", .show = xe_gt_debugfs_show_with_rpm, .data = topology },
-> > +	{ "register-save-restore",
-> > +		.show = xe_gt_debugfs_show_with_rpm, .data = register_save_restore },
-> > +	{ "workarounds", .show = xe_gt_debugfs_show_with_rpm, .data = workarounds },
-> > +	{ "tunings", .show = xe_gt_debugfs_show_with_rpm, .data = tunings },
-> > +	{ "default_lrc_rcs", .show = xe_gt_debugfs_show_with_rpm, .data = rcs_default_lrc },
-> > +	{ "default_lrc_ccs", .show = xe_gt_debugfs_show_with_rpm, .data = ccs_default_lrc },
-> > +	{ "default_lrc_bcs", .show = xe_gt_debugfs_show_with_rpm, .data = bcs_default_lrc },
-> > +	{ "default_lrc_vcs", .show = xe_gt_debugfs_show_with_rpm, .data = vcs_default_lrc },
-> > +	{ "default_lrc_vecs", .show = xe_gt_debugfs_show_with_rpm, .data = vecs_default_lrc },
-> > +	{ "hwconfig", .show = xe_gt_debugfs_show_with_rpm, .data = hwconfig },
-> >  };
-> >  
-> >  /* everything else should be added here */
-> >  static const struct drm_info_list pf_only_debugfs_list[] = {
-> > -	{"hw_engines", .show = xe_gt_debugfs_simple_show, .data = hw_engines},
-> > -	{"mocs", .show = xe_gt_debugfs_simple_show, .data = mocs},
-> > -	{"pat", .show = xe_gt_debugfs_simple_show, .data = pat},
-> > -	{"powergate_info", .show = xe_gt_debugfs_simple_show, .data = powergate_info},
-> > -	{"steering", .show = xe_gt_debugfs_simple_show, .data = steering},
-> > +	{ "hw_engines", .show = xe_gt_debugfs_show_with_rpm, .data = hw_engines },
-> > +	{ "mocs", .show = xe_gt_debugfs_show_with_rpm, .data = mocs },
-> > +	{ "pat", .show = xe_gt_debugfs_show_with_rpm, .data = pat },
-> > +	{ "powergate_info", .show = xe_gt_debugfs_show_with_rpm, .data = xe_gt_idle_pg_print },
-
-please ignore my last email, I had missed this entry here. And thanks for pointing out it offline.
-
-I wonder if we could do something similar to the void return functions as well so we
-keep some kind of symmetry...
-
-anyway this patch is correct:
+> Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Closes: https://lore.kernel.org/r/aK1nZjyAF0s7bnHg@stanley.mountain
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> > +	{ "steering", .show = xe_gt_debugfs_show_with_rpm, .data = steering },
-> >  };
-> >  
-> >  static ssize_t write_to_gt_call(const char __user *userbuf, size_t count, loff_t *ppos,
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.h b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> > index 05a6cc93c78c..32ee3264051b 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.h
-> > @@ -11,5 +11,6 @@ struct xe_gt;
-> >  
-> >  void xe_gt_debugfs_register(struct xe_gt *gt);
-> >  int xe_gt_debugfs_simple_show(struct seq_file *m, void *data);
-> > +int xe_gt_debugfs_show_with_rpm(struct seq_file *m, void *data);
-> >  
-> >  #endif
-> > -- 
-> > 2.47.1
-> > 
+> ---
+>  drivers/gpu/drm/xe/xe_psmi.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_psmi.c b/drivers/gpu/drm/xe/xe_psmi.c
+> index 45d142191d600..6a54e38b81ba9 100644
+> --- a/drivers/gpu/drm/xe/xe_psmi.c
+> +++ b/drivers/gpu/drm/xe/xe_psmi.c
+> @@ -70,8 +70,8 @@ static struct xe_bo *psmi_alloc_object(struct xe_device *xe,
+>  {
+>  	struct xe_tile *tile;
+>  
+> -	if (!id || !bo_size)
+> -		return NULL;
+> +	xe_assert(xe, id);
+> +	xe_assert(xe, bo_size);
+>  
+>  	tile = &xe->tiles[id - 1];
+>  
+> -- 
+> 2.50.1
+> 
