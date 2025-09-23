@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06A7FCAC5A5
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 21:16:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D297BCAC5AC
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 21:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCD1010E3BC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 970AB10E32F;
 	Tue, 23 Sep 2025 21:16:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+0wTJd4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TzoxQz9W";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95AB010E27B
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 21:16:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 993C410E27B
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 21:16:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758662192; x=1790198192;
+ t=1758662195; x=1790198195;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ekshUWp+WjuLymUDYSFVh0BXBC5B717E7wtMWP9khEU=;
- b=U+0wTJd4E985B/0pxb7oO2D3J8wzrYpNBd1NZ8fN2Xd14hozguIVlbrk
- QJXK97K629wFDEBviNr+99f/5dyCdc3LEibIar6iof0YANoOrzs+VhmW2
- sAsEN27sr6pSop4utUHG8HmTKPrDQzBqxisjqYs5h4Qo9hYzccEgsm1X5
- vi+IQWpulSyIsMDorN+D1K2UgHRZftlvFvI3SlTdzHhqvlAT1RDEdGEcA
- NlyA2UzScF/uLighRwHsPfwMiIpC8JjjqxpLfLhSCm3T4B/KpCBJAToMf
- dc580N66RV+s6n0q4K/MizqVgXd7B7YJfFbRoz5YcX2Ke/y3s/yuKkV92 Q==;
-X-CSE-ConnectionGUID: vzwgS6LSTry6SRhzd7U4sw==
-X-CSE-MsgGUID: +p3NYeMYRi+BF89FzxPH8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64592582"
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64592582"
+ bh=0+PPrNn8nmwCT9bcqAKgS51Ft7VjLYIio7zDiJyFCvk=;
+ b=TzoxQz9WN20RLvPI74/xGMm2mOag3HMwgJI0JQvII2GrBy2i0MTQULG8
+ QP405qKL5EMAHAvGUMv9fVorzCd5FVj9x8OAz/F1IeJDwIt12vFgk5aBZ
+ IY7OLnOlIxUP71MIj8Rcs56IAeU4d6n+/dqqtlqzuRfWC2/0PyglYyC6p
+ Xea2M2QBatB5b8ddEs31qLMuhaibeFL/FHmG4chMN5EN3QFIv2U7Zjm5D
+ oy1pcFFOfLGVI+rPRZI1mN3l6btjSlzGABqbBUMu3GHEeUQFHGCNkUSVN
+ dgJcjxlXKe4xuEenyA4mbb1DHamKsrH28+CEJv2/BtayeinmZsqchBaVE w==;
+X-CSE-ConnectionGUID: CQuDaEYTRw6l8+yMSBHtAQ==
+X-CSE-MsgGUID: tUk1J7KpQHWT+VRfVj4h+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64592590"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64592590"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 14:16:32 -0700
-X-CSE-ConnectionGUID: vObF/BkBTB6gpFSuJoLX0A==
-X-CSE-MsgGUID: a/rRRsGvRvag8FqwWuU5lA==
+ 23 Sep 2025 14:16:35 -0700
+X-CSE-ConnectionGUID: 659TbHCAR0C6bRG41G7T4A==
+X-CSE-MsgGUID: tJATC2WLSsa9jJpl1GMldQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="175989815"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="175989829"
 Received: from pczakx-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.84.166])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 14:16:30 -0700
+ 23 Sep 2025 14:16:33 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 3/5] drm/xe/debugfs: Update xe_tuning_dump signature
-Date: Tue, 23 Sep 2025 23:16:11 +0200
-Message-ID: <20250923211613.193347-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 5/5] drm/xe/debugfs: Update xe_pat_dump signature
+Date: Tue, 23 Sep 2025 23:16:13 +0200
+Message-ID: <20250923211613.193347-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250923211613.193347-1-michal.wajdeczko@intel.com>
 References: <20250923211613.193347-1-michal.wajdeczko@intel.com>
@@ -71,93 +71,227 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Our debugfs helper xe_gt_debugfs_show_with_rpm() expects print()
 functions to return int. New signature allows us to drop wrapper.
 
-While around, print additional separation lines using puts() to
-avoid output with leading \n which might confuse some printers.
+While around, move kernel-doc closer to the function definition,
+as suggested in the doc-guide.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c |  8 +-------
- drivers/gpu/drm/xe/xe_tuning.c     | 17 ++++++++++++++---
- drivers/gpu/drm/xe/xe_tuning.h     |  2 +-
- 3 files changed, 16 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c |  8 +-----
+ drivers/gpu/drm/xe/xe_pat.c        | 40 +++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_pat.h        |  7 +-----
+ 3 files changed, 28 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index e6a7684d571a..bcf234e74471 100644
+index b0e6dafeeacc..e4fd632f43cf 100644
 --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
 @@ -167,12 +167,6 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
  	return 0;
  }
  
--static int tunings(struct xe_gt *gt, struct drm_printer *p)
+-static int pat(struct xe_gt *gt, struct drm_printer *p)
 -{
--	xe_tuning_dump(gt, p);
+-	xe_pat_dump(gt, p);
 -	return 0;
 -}
 -
- static int pat(struct xe_gt *gt, struct drm_printer *p)
+ static int rcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
  {
- 	xe_pat_dump(gt, p);
-@@ -231,7 +225,7 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
- 	{ "register-save-restore",
- 		.show = xe_gt_debugfs_show_with_rpm, .data = register_save_restore },
- 	{ "workarounds", .show = xe_gt_debugfs_show_with_rpm, .data = xe_wa_gt_dump },
--	{ "tunings", .show = xe_gt_debugfs_show_with_rpm, .data = tunings },
-+	{ "tunings", .show = xe_gt_debugfs_show_with_rpm, .data = xe_tuning_dump },
- 	{ "default_lrc_rcs", .show = xe_gt_debugfs_show_with_rpm, .data = rcs_default_lrc },
- 	{ "default_lrc_ccs", .show = xe_gt_debugfs_show_with_rpm, .data = ccs_default_lrc },
- 	{ "default_lrc_bcs", .show = xe_gt_debugfs_show_with_rpm, .data = bcs_default_lrc },
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index a524170a04d0..fd58ea5e78bf 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -214,7 +214,14 @@ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
- 	xe_rtp_process_to_sr(&ctx, lrc_tunings, ARRAY_SIZE(lrc_tunings), &hwe->reg_lrc);
+ 	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_RENDER);
+@@ -232,7 +226,7 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ static const struct drm_info_list pf_only_debugfs_list[] = {
+ 	{ "hw_engines", .show = xe_gt_debugfs_show_with_rpm, .data = hw_engines },
+ 	{ "mocs", .show = xe_gt_debugfs_show_with_rpm, .data = xe_mocs_dump },
+-	{ "pat", .show = xe_gt_debugfs_show_with_rpm, .data = pat },
++	{ "pat", .show = xe_gt_debugfs_show_with_rpm, .data = xe_pat_dump },
+ 	{ "powergate_info", .show = xe_gt_debugfs_show_with_rpm, .data = xe_gt_idle_pg_print },
+ 	{ "steering", .show = xe_gt_debugfs_show_with_rpm, .data = steering },
+ };
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 2e7cb99ae87a..6e48ff84ad0a 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -57,7 +57,7 @@ struct xe_pat_ops {
+ 				 int n_entries);
+ 	void (*program_media)(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+ 			      int n_entries);
+-	void (*dump)(struct xe_gt *gt, struct drm_printer *p);
++	int (*dump)(struct xe_gt *gt, struct drm_printer *p);
+ };
+ 
+ static const struct xe_pat_table_entry xelp_pat_table[] = {
+@@ -194,7 +194,7 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
+ 		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_pta->value);
  }
  
--void xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p)
+-static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
++static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int fw_ref;
+@@ -202,7 +202,7 @@ static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+-		return;
++		return -ETIMEDOUT;
+ 
+ 	drm_printf(p, "PAT table:\n");
+ 
+@@ -215,6 +215,7 @@ static void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	}
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
+ }
+ 
+ static const struct xe_pat_ops xelp_pat_ops = {
+@@ -222,7 +223,7 @@ static const struct xe_pat_ops xelp_pat_ops = {
+ 	.dump = xelp_dump,
+ };
+ 
+-static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
++static int xehp_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int fw_ref;
+@@ -230,7 +231,7 @@ static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+-		return;
++		return -ETIMEDOUT;
+ 
+ 	drm_printf(p, "PAT table:\n");
+ 
+@@ -245,6 +246,7 @@ static void xehp_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	}
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
+ }
+ 
+ static const struct xe_pat_ops xehp_pat_ops = {
+@@ -252,7 +254,7 @@ static const struct xe_pat_ops xehp_pat_ops = {
+ 	.dump = xehp_dump,
+ };
+ 
+-static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
++static int xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int fw_ref;
+@@ -260,7 +262,7 @@ static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+-		return;
++		return -ETIMEDOUT;
+ 
+ 	drm_printf(p, "PAT table:\n");
+ 
+@@ -273,6 +275,7 @@ static void xehpc_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	}
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
+ }
+ 
+ static const struct xe_pat_ops xehpc_pat_ops = {
+@@ -280,7 +283,7 @@ static const struct xe_pat_ops xehpc_pat_ops = {
+ 	.dump = xehpc_dump,
+ };
+ 
+-static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
++static int xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int fw_ref;
+@@ -288,7 +291,7 @@ static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+-		return;
++		return -ETIMEDOUT;
+ 
+ 	drm_printf(p, "PAT table:\n");
+ 
+@@ -306,6 +309,7 @@ static void xelpg_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	}
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
+ }
+ 
+ /*
+@@ -318,7 +322,7 @@ static const struct xe_pat_ops xelpg_pat_ops = {
+ 	.dump = xelpg_dump,
+ };
+ 
+-static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
++static int xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	unsigned int fw_ref;
+@@ -327,7 +331,7 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
+-		return;
++		return -ETIMEDOUT;
+ 
+ 	drm_printf(p, "PAT table:\n");
+ 
+@@ -367,6 +371,7 @@ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+ 		   pat);
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return 0;
+ }
+ 
+ static const struct xe_pat_ops xe2_pat_ops = {
+@@ -462,12 +467,19 @@ void xe_pat_init(struct xe_gt *gt)
+ 		xe->pat.ops->program_graphics(gt, xe->pat.table, xe->pat.n_entries);
+ }
+ 
+-void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
 +/**
-+ * xe_tuning_dump() - Dump GT tuning info into a drm printer.
++ * xe_pat_dump() - Dump GT PAT table into a drm printer.
 + * @gt: the &xe_gt
 + * @p: the &drm_printer
 + *
-+ * Return: always 0.
++ * Return: 0 on success or a negative error code on failure.
 + */
-+int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p)
++int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
  {
- 	size_t idx;
+ 	struct xe_device *xe = gt_to_xe(gt);
  
-@@ -222,11 +229,15 @@ void xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p)
- 	for_each_set_bit(idx, gt->tuning_active.gt, ARRAY_SIZE(gt_tunings))
- 		drm_printf_indent(p, 1, "%s\n", gt_tunings[idx].name);
+ 	if (!xe->pat.ops)
+-		return;
++		return -EOPNOTSUPP;
  
--	drm_printf(p, "\nEngine Tunings\n");
-+	drm_puts(p, "\n");
-+	drm_printf(p, "Engine Tunings\n");
- 	for_each_set_bit(idx, gt->tuning_active.engine, ARRAY_SIZE(engine_tunings))
- 		drm_printf_indent(p, 1, "%s\n", engine_tunings[idx].name);
- 
--	drm_printf(p, "\nLRC Tunings\n");
-+	drm_puts(p, "\n");
-+	drm_printf(p, "LRC Tunings\n");
- 	for_each_set_bit(idx, gt->tuning_active.lrc, ARRAY_SIZE(lrc_tunings))
- 		drm_printf_indent(p, 1, "%s\n", lrc_tunings[idx].name);
-+
-+	return 0;
+-	xe->pat.ops->dump(gt, p);
++	return xe->pat.ops->dump(gt, p);
  }
-diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tuning.h
-index dd0d3ccc9c65..c1cc5927fda7 100644
---- a/drivers/gpu/drm/xe/xe_tuning.h
-+++ b/drivers/gpu/drm/xe/xe_tuning.h
-@@ -14,6 +14,6 @@ int xe_tuning_init(struct xe_gt *gt);
- void xe_tuning_process_gt(struct xe_gt *gt);
- void xe_tuning_process_engine(struct xe_hw_engine *hwe);
- void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
--void xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p);
-+int xe_tuning_dump(struct xe_gt *gt, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index fa0dfbe525cd..268c9a899f56 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -43,12 +43,7 @@ void xe_pat_init_early(struct xe_device *xe);
+  */
+ void xe_pat_init(struct xe_gt *gt);
  
- #endif
+-/**
+- * xe_pat_dump - Dump PAT table
+- * @gt: GT structure
+- * @p: Printer to dump info to
+- */
+-void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
++int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
+ /**
+  * xe_pat_index_get_coh_mode - Extract the coherency mode for the given
 -- 
 2.47.1
 
