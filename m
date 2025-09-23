@@ -4,66 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1E9ACAC5A7
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:52:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA36CAC5A7
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:52:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8664A10E1C9;
-	Tue, 23 Sep 2025 14:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D76E210E1C9;
+	Tue, 23 Sep 2025 14:52:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ikyph2AA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZiZqu/N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE6CB10E1C9
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 14:52:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD1D510E1C9
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 14:52:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758639127; x=1790175127;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KZh4NlqUEJRgT/EhsNRSnjaLyru4jcLE38f/+maFHTo=;
- b=ikyph2AALHXrUyDAe+JaJE5oFdfJaN4ZJojTZd643MRlL3r3PLg0F4l1
- QtvBNnGjo/L291xIQHPUvGmvDATkYuHI5D5V7mOuqa0PnDexq0abXf3yx
- vYXrVs1ZsjdMpRWI8u/OhJVY4Va0RCd28pdoSGmBo8xX3lOQojue7uD2I
- +YGiXLcCGEtmuKWvIJ2LfuoqN4fx0RmgDqk+XJrMzCYgasAC87wys2+Hd
- zPewGDxUhLdnhjIVsKx0S1UZK4B661lIdjVOFsPeGmfsqbQfcRREIMe9u
- 1oRd4qHVyfUjIqe9a8yNXLuYj6ZUOnrw7sHVKT84ZTMZpnS5UjtfhFqw0 g==;
-X-CSE-ConnectionGUID: UPlnY4fzTwe+ptPK8TOQPQ==
-X-CSE-MsgGUID: fJmTqr+wTcaPptsEIuBX/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="86360940"
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="86360940"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:52:07 -0700
-X-CSE-ConnectionGUID: 5kSEnH/SQH2vKz6W3+I1sA==
-X-CSE-MsgGUID: crM1ykPSQguyH9irtwwfrQ==
+ t=1758639154; x=1790175154;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=UX221bn9OZ+lVi59AkfkSRUL3pVZrj+W1diUBRNSFPU=;
+ b=nZiZqu/Nix4w2iKA9/lfcGCMZ5QleibWZUiq3cZH90vTOPbKxE3EbMbB
+ 5GPEW7WuypGLZw9+uB5jLRaWAU1R/bl/ne5m5yJrgjrJHRkEmdFNriWFI
+ XxTp6jwF4GckW6peG9f0nZzRN1we6tFfXzIF7kIp5I2QN4jjh34d3i0BV
+ BcCVOV9gyGx4myzZdWOt0MHgUp5kC9FGZYy2Hf6/SKb1tCeMypED9UeJd
+ WpDOhTqAbk+lQNqQgwu+ReSgbUxvTffRVuU4walCBZdn7p2MCqsMBzdYl
+ 2/YDQaLqzePps6yJixFa01+k8/N7bH+m82i2XpQMmzeVMNllyP9B1Bdih Q==;
+X-CSE-ConnectionGUID: iFVUGl/hTm62IPEyAPRVDA==
+X-CSE-MsgGUID: dM44ByBlQLeNyJ4vrJVvMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64747861"
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="64747861"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 07:52:33 -0700
+X-CSE-ConnectionGUID: FVFWhZdSSpSxNeeL9TdL0g==
+X-CSE-MsgGUID: Vp/oq69xSsGtm9lLU2ogSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="181166537"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.13])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:52:05 -0700
-Date: Tue, 23 Sep 2025 17:52:03 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
- framebuffers before scan out
-Message-ID: <aNK0E7KMBW5iOzSo@intel.com>
-References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
- <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
- <aNJ0Pw9tvFA3jWDr@intel.com>
- <8bec1692-1bec-45ff-a552-10ff8c7420b5@igalia.com>
- <aNKMKSIGSPfmPBEc@intel.com>
- <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
- <aNKer6J7Op2gGmtC@intel.com>
- <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
+Received: from opintica-mobl1 (HELO [10.245.245.2]) ([10.245.245.2])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 07:52:32 -0700
+Message-ID: <c407b98661b5742352674f577c76cf50eddcc493.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Allow mixed mappings for userptr
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Date: Tue, 23 Sep 2025 16:52:30 +0200
+In-Reply-To: <20250917182817.3995998-1-matthew.brost@intel.com>
+References: <20250917182817.3995998-1-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,132 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 23, 2025 at 03:40:55PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 23/09/2025 14:20, Ville Syrjälä wrote:
-> > On Tue, Sep 23, 2025 at 01:25:58PM +0100, Tvrtko Ursulin wrote:
-> >>
-> >> On 23/09/2025 13:01, Ville Syrjälä wrote:
-> >>> On Tue, Sep 23, 2025 at 11:48:59AM +0100, Tvrtko Ursulin wrote:
-> >>>>
-> >>>> On 23/09/2025 11:19, Ville Syrjälä wrote:
-> >>>>> On Tue, Sep 23, 2025 at 11:08:04AM +0100, Tvrtko Ursulin wrote:
-> >>>>>> Even though frame buffer objects are created as write-combined, in
-> >>>>>> practice, on top of all the ring buffer flushing, an additional clflush
-> >>>>>> seems to be needed before display engine can coherently scan out the
-> >>>>>> AuxCCS compressed data without transient artifacts.
-> >>>>>>
-> >>>>>> If for comparison we look at how i915 handles things (where AuxCCS works
-> >>>>>> fine), as it happens it has this same clflush before a frame buffer is
-> >>>>>> pinned for display for the first time, courtesy the dynamic tracking of
-> >>>>>> the buffer cache mode and setting the latter to uncached before handing
-> >>>>>> to display.
-> >>>>>>
-> >>>>>> Since xe considers the buffer object caching mode as static we can
-> >>>>>> implement the same approach by adding a flag telling us if the buffer
-> >>>>>> was ever pinned for display and flush on the first pin. Subsequent re-pins
-> >>>>>> will not repeat the clflush but so far I have not observed any glitching
-> >>>>>> after the first pin.
-> >>>>>>
-> >>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> >>>>>> ---
-> >>>>>>     drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
-> >>>>>>     drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
-> >>>>>>     2 files changed, 22 insertions(+), 6 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>>>> index d8aa23b8cf14..f247c0da6b9e 100644
-> >>>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>>>> @@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>>>     	struct xe_bo *bo = gem_to_xe_bo(obj);
-> >>>>>>     	struct xe_validation_ctx ctx;
-> >>>>>>     	struct drm_exec exec;
-> >>>>>> +	bool first_pin;
-> >>>>>>     	int ret = 0;
-> >>>>>>     
-> >>>>>>     	if (!vma)
-> >>>>>> @@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>>>     			ret = xe_bo_validate(bo, NULL, true, &exec);
-> >>>>>>     		drm_exec_retry_on_contention(&exec);
-> >>>>>>     		xe_validation_retry_on_oom(&ctx, &ret);
-> >>>>>> -		if (!ret)
-> >>>>>> +		if (!ret) {
-> >>>>>>     			ttm_bo_pin(&bo->ttm);
-> >>>>>> +			first_pin = !bo->display_pin;
-> >>>>>> +			bo->display_pin = true;
-> >>>>>> +		}
-> >>>>>>     	}
-> >>>>>>     	if (ret)
-> >>>>>>     		goto err;
-> >>>>>> @@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>>>     	if (ret)
-> >>>>>>     		goto err_unpin;
-> >>>>>>     
-> >>>>>> +	/*
-> >>>>>> +	 * Force flush frame buffer data for non-coherent display access when
-> >>>>>> +	 * AuxCCS formats are used.
-> >>>>>> +	 */
-> >>>>>> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
-> >>>>>> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
-> >>>>>> +		drm_clflush_sg(xe_bo_sg(bo));
-> >>>>>
-> >>>>> You still haven't found the actual bug that causes the dirty cache?
-> >>>>
-> >>>> Sadly no. I cross referenced everything numerous times, including
-> >>>> workarounds, tried pretty much 1:1 i915 vs xe ring buffer programming,
-> >>>> but this extra flush always remains required. I also heard that how
-> >>>> flushing of the aux metadata works isn't documented anywhere and i915
-> >>>> does have this flush, by design or accident I don't know.
-> >>>
-> >>> i915 has the flush for the *whole* bo because it started out as
-> >>> cached. As soon as it undergoes a cached->uncached change (either
-> >>> due to set_caching ioctl or becoming a display scanout buffer) we
-> >>> clflush it and switch the GPU page tables from WB to UC. After
-> >>> that the bo stays uncached, and will need no further clflushes,
-> >>> assuming that everyone follows the rules:
-> >>>
-> >>> - CPU accesses via a WB mapping to an uncached bo will explicitly
-> >>>     clflush before (invalidate) and after (write-back) the access
-> >>> - userspace always sets the GPU to use use "consult the PTE" MOCS
-> >>>     setting for any potential scanout buffer. That way the GPU will
-> >>>     use WB as long as the bo is cached, and once it becomes
-> >>>     uncached the GPU also switches to UC accesses
-> >>>
-> >>> With xe I presume the BO should already start out as UC/WC with
-> >>> clean caches, and nothing should be dirtying the caches unless
-> >>> there is a real bug somewhere.
-> >>
-> >> Correct, it is all WC and MOCS are correctly set as WC.
-> >>
-> >> For example for the media compression flavour that was broken and needed
-> >> fixing in b412b144685f ("lib/intel/veboxcopy: Respect buffer MOCS
-> >> index"). (For the render compression flavour MOCS was already correct.)
-> >> But MOCS is not enough on its own for some reason.
-> >>
-> >> I also looked into the rendercopy surface state programming and that too
-> >> looks okay. In fact it is possible to see how using the wrong MOCS makes
-> >> things worse. But it also appears the surface state MOCS only applies to
-> >> the main surface, while the aux state is the one which appears to
-> >> contain cached/unflushed data.
-> > 
-> > Are you saying that if you start scanning out a compressed buffer,
-> > then clean the caches, and then do frontbuffer rendering you get
-> > more cache dirt?
-> 
-> Render with the GPU or CPU? Do you know of any tests or userspaces which 
-> do that?
+Hi,
 
-On the GPU.
+On Wed, 2025-09-17 at 11:28 -0700, Matthew Brost wrote:
+> Compute kernels often issue memory copies immediately after
+> completion.
+> If the memory being copied is an SVM pointer that was faulted into
+> the
+> device and then bound via userptr, it is undesirable to move that
+> memory. Worse, if userptr is mixed between system and device memory,
+> the
+> bind operation may be rejected.
+>=20
+> Xe already has the necessary plumbing to support userptr with mixed
+> mappings. This update modifies GPUSVM's get_pages to correctly locate
+> pages in such mixed mapping scenarios.
+>=20
+> Fixes: ("9e9787414882 drm/xe/userptr: replace xe_hmm with gpusvm")
+> Signed-off-bt: Matthew Brost <matthew.brost@intel.com>
 
-Can't think of anything nice off the top of my head. 
+s/bt/by/
 
-I'd probably just write a quick igt:
-1. create a compressed fb
-2. flip to it
-3. manually clflush the whole thing to be sure it's clean
-4. rendercopy some junk around, and keep an eye out for cache dirt
+Perhaps we need to let the PAT index discussion land before we merge
+this. If we support multiple placements we might need multiple PAT
+indices...
 
--- 
-Ville Syrjälä
-Intel
+Otherwise LGTM.
+
+Thanks,
+Thomas
+
+
+> ---
+> =C2=A0drivers/gpu/drm/drm_gpusvm.c=C2=A0=C2=A0=C2=A0 | 6 ++++--
+> =C2=A0drivers/gpu/drm/xe/xe_userptr.c | 1 +
+> =C2=A0include/drm/drm_gpusvm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+| 4 ++++
+> =C2=A03 files changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gpusvm.c
+> b/drivers/gpu/drm/drm_gpusvm.c
+> index eeeeb99cfdf6..64c0ea70eae3 100644
+> --- a/drivers/gpu/drm/drm_gpusvm.c
+> +++ b/drivers/gpu/drm/drm_gpusvm.c
+> @@ -1361,7 +1361,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm
+> *gpusvm,
+> =C2=A0		order =3D drm_gpusvm_hmm_pfn_to_order(pfns[i], i,
+> npages);
+> =C2=A0		if (is_device_private_page(page) ||
+> =C2=A0		=C2=A0=C2=A0=C2=A0 is_device_coherent_page(page)) {
+> -			if (zdd !=3D page->zone_device_data && i > 0)
+> {
+> +			if (!ctx->allow_mixed &&
+> +			=C2=A0=C2=A0=C2=A0 zdd !=3D page->zone_device_data && i > 0)
+> {
+> =C2=A0				err =3D -EOPNOTSUPP;
+> =C2=A0				goto err_unmap;
+> =C2=A0			}
+> @@ -1397,7 +1398,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm
+> *gpusvm,
+> =C2=A0		} else {
+> =C2=A0			dma_addr_t addr;
+> =C2=A0
+> -			if (is_zone_device_page(page) || pagemap) {
+> +			if (is_zone_device_page(page) ||
+> +			=C2=A0=C2=A0=C2=A0 (pagemap && !ctx->allow_mixed)) {
+> =C2=A0				err =3D -EOPNOTSUPP;
+> =C2=A0				goto err_unmap;
+> =C2=A0			}
+> diff --git a/drivers/gpu/drm/xe/xe_userptr.c
+> b/drivers/gpu/drm/xe/xe_userptr.c
+> index 91d09af71ced..c628f58c085c 100644
+> --- a/drivers/gpu/drm/xe/xe_userptr.c
+> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> @@ -54,6 +54,7 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma
+> *uvma)
+> =C2=A0	struct xe_device *xe =3D vm->xe;
+> =C2=A0	struct drm_gpusvm_ctx ctx =3D {
+> =C2=A0		.read_only =3D xe_vma_read_only(vma),
+> +		.allow_mixed =3D true,
+> =C2=A0	};
+> =C2=A0
+> =C2=A0	lockdep_assert_held(&vm->lock);
+> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+> index 5434048a2ca4..97d2f57914bb 100644
+> --- a/include/drm/drm_gpusvm.h
+> +++ b/include/drm/drm_gpusvm.h
+> @@ -235,6 +235,9 @@ struct drm_gpusvm {
+> =C2=A0 * @read_only: operating on read-only memory
+> =C2=A0 * @devmem_possible: possible to use device memory
+> =C2=A0 * @devmem_only: use only device memory
+> + * @allow_mixed: Allow mixed mappings in get pages. Mixing between
+> system and
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 single dpagemap is supported, mixing between
+> multiple dpagemap
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 is unsupported.
+> =C2=A0 *
+> =C2=A0 * Context that is DRM GPUSVM is operating in (i.e. user arguments)=
+.
+> =C2=A0 */
+> @@ -245,6 +248,7 @@ struct drm_gpusvm_ctx {
+> =C2=A0	unsigned int read_only :1;
+> =C2=A0	unsigned int devmem_possible :1;
+> =C2=A0	unsigned int devmem_only :1;
+> +	unsigned int allow_mixed :1;
+> =C2=A0};
+> =C2=A0
+> =C2=A0int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+
