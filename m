@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD81CAC5A7
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 10:08:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F8DFCAC5A7
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 10:08:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E15AB10E320;
-	Tue, 23 Sep 2025 10:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E438410E5DB;
+	Tue, 23 Sep 2025 10:08:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iJw4sBim";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fHLjClNh";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C97C10E5DB
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 10:08:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35FD910E5DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 10:08:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=0EEsPPLEs2q9SCtfXkDALM2HdY92Kz2ZOqUpb+lmSuw=; b=iJw4sBimU0c06rMX8ZXg8/QEEH
- wPyb72o867xicvSYZGr1pYD2/DaBGBIqLYXLpxf94Mdg5wApy+xdDrJIj0mIOztIjBe3ApFW09imK
- MSJJTbEesHrIAAeTr2dLv0WNZplbtQnSMrInO9xHzXocSPCJZQKMAsupY8KnCO/PXQlMm0G/Q/cBa
- XvuWVjC2aopdc2KqtpgU+hQE/tup1QnMaBRvZ61rAEJSu1WS7CgyVWt+peZ+TpiT6yJZw5PiOxiRd
- quW8D2Oj+B5uCK62qgNjnbLG1Cz/FiCYZMZX8i1JozjyTIVF2+O6qS9tbpREX3ibGeo3aj1u/5skE
- QOpxTaXQ==;
+ bh=A1JupZDskVvNWtM+Go8GigVSEmYLqKgYlZjFdYLWvCU=; b=fHLjClNhCbviFpbJfGz2pXxuD1
+ E1jB5Lxyzcc/a+orjjZDhe8FEmuU+zwEoy55NGqRiISu8gCcX2pFnCM7kU6sEpqeDSlsj/PoG5lmb
+ zH1OkhDPCXdZE0gUAOf0L2zbD2JKxDucKctEVJtLPjAJbJYVdAARB9rvO1XQU9cX9X0Vg01ojZoPN
+ xYpvG47pKO3pNABmeYjqALFYEU7MXbICGBpqbj+B+oof5V1IC1hYKmnHNpPmIV0r3anRcDo96SuG2
+ 5VX3AFECGOmI+QwCiZboej0umEpYlMEPm65J7y3IOE2fY99s3yXDOIcmaqeIIesnaBBVuAojF92k+
+ e8dPclJg==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v0zwY-00GDF1-DK; Tue, 23 Sep 2025 12:08:18 +0200
+ id 1v0zwc-00GDFk-GU; Tue, 23 Sep 2025 12:08:22 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v12 05/13] drm/xe/xelp: Wait for AuxCCS invalidation to
- complete
-Date: Tue, 23 Sep 2025 11:07:58 +0100
-Message-ID: <20250923100812.88257-6-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+Date: Tue, 23 Sep 2025 11:08:04 +0100
+Message-ID: <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
 References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
@@ -59,64 +59,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
+Even though frame buffer objects are created as write-combined, in
+practice, on top of all the ring buffer flushing, an additional clflush
+seems to be needed before display engine can coherently scan out the
+AuxCCS compressed data without transient artifacts.
+
+If for comparison we look at how i915 handles things (where AuxCCS works
+fine), as it happens it has this same clflush before a frame buffer is
+pinned for display for the first time, courtesy the dynamic tracking of
+the buffer cache mode and setting the latter to uncached before handing
+to display.
+
+Since xe considers the buffer object caching mode as static we can
+implement the same approach by adding a flag telling us if the buffer
+was ever pinned for display and flush on the first pin. Subsequent re-pins
+will not repeat the clflush but so far I have not observed any glitching
+after the first pin.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
- drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
- drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
- 3 files changed, 15 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
+ drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
+ 2 files changed, 22 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index c47b290e0e9f..49d8ffd026d5 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -81,4 +81,10 @@
- #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
- #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d8aa23b8cf14..f247c0da6b9e 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	struct xe_validation_ctx ctx;
+ 	struct drm_exec exec;
++	bool first_pin;
+ 	int ret = 0;
  
-+#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
-+#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
-+#define   MI_SEMAPHORE_POLL		REG_BIT(15)
-+#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
-+#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
+ 	if (!vma)
+@@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 			ret = xe_bo_validate(bo, NULL, true, &exec);
+ 		drm_exec_retry_on_contention(&exec);
+ 		xe_validation_retry_on_oom(&ctx, &ret);
+-		if (!ret)
++		if (!ret) {
+ 			ttm_bo_pin(&bo->ttm);
++			first_pin = !bo->display_pin;
++			bo->display_pin = true;
++		}
+ 	}
+ 	if (ret)
+ 		goto err;
+@@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err_unpin;
+ 
++	/*
++	 * Force flush frame buffer data for non-coherent display access when
++	 * AuxCCS formats are used.
++	 */
++	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
++	    intel_fb_is_ccs_modifier(fb->base.modifier))
++		drm_clflush_sg(xe_bo_sg(bo));
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 2436ca40baa1..d45aba5a382a 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
- 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
- 	dw[i++] = reg.addr + gt->mmio.adj_offset;
- 	dw[i++] = AUX_INV;
--	dw[i++] = MI_NOOP;
-+	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
-+		  MI_SEMAPHORE_REGISTER_POLL |
-+		  MI_SEMAPHORE_POLL |
-+		  MI_SEMAPHORE_SAD_EQ_SDD;
-+	dw[i++] = 0;
-+	dw[i++] = reg.addr + gt->mmio.adj_offset;
-+	dw[i++] = 0;
-+	dw[i++] = 0;
+ 	return vma;
  
- 	return i;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index 477dc7defd72..1197fc0bf2af 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
+ err_unpin:
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index d4fe3c8dca5b..8119d8d6d174 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -81,11 +81,6 @@ struct xe_bo {
+ 	struct llist_node freed;
+ 	/** @update_index: Update index if PT BO */
+ 	int update_index;
+-	/** @created: Whether the bo has passed initial creation */
+-	bool created;
+-
+-	/** @ccs_cleared: true means that CCS region of BO is already cleared */
+-	bool ccs_cleared;
  
- struct xe_sched_job;
+ 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
+ 	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
+@@ -100,6 +95,15 @@ struct xe_bo {
+ 	/** @devmem_allocation: SVM device memory allocation */
+ 	struct drm_pagemap_devmem devmem_allocation;
  
--#define MAX_JOB_SIZE_DW 70
-+#define MAX_JOB_SIZE_DW 74
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
++	/** @created: Whether the bo has passed initial creation */
++	bool created : 1;
++
++	/** @ccs_cleared */
++	bool ccs_cleared : 1;
++
++	/** @display_pin: Was it ever pinned to display */
++	bool display_pin : 1;
++
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 	struct list_head vram_userfault_link;
  
- /**
 -- 
 2.48.0
 
