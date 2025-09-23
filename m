@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49DE9CAC5B1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BAAFCAC5B2
 	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 10:08:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B4DD10E320;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B29410E103;
 	Tue, 23 Sep 2025 10:08:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mvYI5ml0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fa8GAQTd";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD0A10E11A
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 10:08:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE3410E320
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 10:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=UUPMqYmV4PCsxPtP3hyzFuVgJYgBJOGmOnefR7MGdxY=; b=mvYI5ml0PgutzVBuTJ9te9NAKm
- adVfiJVX0UogfIhaBxOyjFlUu0YzSxzfBBbK8NuPExOw7HFPOW9GDrVBtvhNUQhMc464uEj3IIc62
- 0eZCO8qMAkys7k2fe7gRlwTSQgetLI7KHi0DrdFTXrgAFRxkt/n/u3i3z60JsuZuogkDJ0zS7D6yE
- cYw7K9UiI6G1mSwW3cZUNWr+3PUj2Qy1ZqihpykI//gZ1hf+4aBv4H78gwnUrAjmpYy2YxJyJovW2
- cm8O+xaOFIkC3R1AIqNvnznL+P+fT/2jSqEVrpblLGctvB1Lz107We+H/vaLN+pyklwf0EVK2JJAu
- 9Av7CCKA==;
+ bh=u0IYh2nMYA0j9zX5a4a048Rr4hSF5Tc78M0n/5rO9xY=; b=fa8GAQTdc9ZcPMAD8mJBD5I+B9
+ 2pDNCo/gobt3Rn3AGrGNle65XRgbXc65P6R5uEMuEZl3MTHKvke2XKJ0T78IAGzpzd4TxcmKhQhPn
+ Iw4ZnSKrWMAFZjvT176xXv/nzsrK10ZsJxQ+9plvDn6SXC0I/HBe4kfqiz+3Z1QgTnWFYoM8lKx1c
+ Gpkv19lhtXJnahgNaJNCc4VYEb4DJwdSgBxPSFDI0MvOba5RF/J5dQlMVjCcFPX7XHNFbDc2xkkOM
+ a4Rf/XbbsyeU/bJ5sYWHcvKaItVySBzpd7DsTxKJWJmWnICByS1nQaIpElowZ3X64EdFORzXMP4+T
+ BwcC7nKA==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v0zwV-00GDEj-Le; Tue, 23 Sep 2025 12:08:15 +0200
+ id 1v0zwW-00GDEl-BN; Tue, 23 Sep 2025 12:08:16 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v12 01/13] drm/xe/xelpg: Flush CCS when flushing caches
-Date: Tue, 23 Sep 2025 11:07:54 +0100
-Message-ID: <20250923100812.88257-2-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v12 02/13] drm/xe/xelp: Quiesce memory traffic before
+ invalidating AuxCCS
+Date: Tue, 23 Sep 2025 11:07:55 +0100
+Message-ID: <20250923100812.88257-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
 References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
@@ -58,60 +59,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
-render caches on gfx ip 12.70+.
+According to i915 commit
+ad8ebf12217e ("drm/i915/gt: Ensure memory quiesced before invalidation")
+quiescing of the memory traffic is required before invalidating the AuxCCS
+tables.
+
+Add an extra pipe control flush to achieve that.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h |  2 +-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 8cfcd3360896..78c0e87dbd37 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -43,6 +43,7 @@
- 
- #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
-+#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index d71837773d6c..25259b2784bc 100644
+index 25259b2784bc..af0141c6f809 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- {
+@@ -358,10 +358,18 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
  	struct xe_gt *gt = job->q->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_device *xe = gt_to_xe(gt);
  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
- 	u32 flags;
++	const bool aux_ccs = has_aux_ccs(xe);
+ 	u32 mask_flags = 0;
  
- 	if (XE_GT_WA(gt, 14016712196))
- 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
- 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
-+	if (GRAPHICS_VERx100(xe) >= 1270)
-+		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
++	/*
++	 * On AuxCCS platforms the invalidation of the Aux table requires
++	 * quiescing the memory traffic beforehand.
++	 */
++	if (aux_ccs)
++		i = emit_render_cache_flush(job, dw, i);
 +
- 	flags = (PIPE_CONTROL_CS_STALL |
- 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
- 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -372,7 +380,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	i = emit_pipe_invalidate(mask_flags, job->ring_ops_flush_tlb, dw, i);
  
--	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-+	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
- }
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (aux_ccs)
+ 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
  
- static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+ 	dw[i++] = preparser_disable(false);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index d7e3e150a9a5..477dc7defd72 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 58
++#define MAX_JOB_SIZE_DW 70
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
