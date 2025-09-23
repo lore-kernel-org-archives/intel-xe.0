@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90249CAC5AC
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 20:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BEDCAC5A5
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 21:16:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 503A610E094;
-	Tue, 23 Sep 2025 20:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837DC10E04A;
+	Tue, 23 Sep 2025 21:16:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PNNncGeU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nh4IV671";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2EC910E32F
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 20:13:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5131410E04A
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 21:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758658381; x=1790194381;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=aW/cnjGvu9LlM+Hk8h+RUQuBu1VWqnILdQWBY+VKxNw=;
- b=PNNncGeUjJSiuOTqWnon063m48BntinILSoLnNAM3W1QW+zCsOqODk3I
- 0rUYlNzMsrV+XmwoHJuz+7XmuVeecKbCjZ/GW77QGsQ3D3c4DCcy3TEra
- uBEwMCYl5uht7OXqYr7W9v7wmSXe7U0tryb8dXf66bRpItun8rAgesjFv
- GVJniBlCSagjzR6NokyOma8VBAHip/hG6+GCnAKu9D9+0wbJKMWjWuF1h
- VSloskH6HoJ6+2nh9SihtDeQelMzhC3dRsvNMaijdTCtW8pU6PxZdEfWf
- gCK8WhhT6McdXOjB+zub8G1b2s7pLkE3OMFsntzaNL/EnlbTF+4CvD7hK w==;
-X-CSE-ConnectionGUID: k5cqXFl3S3Soh05ApWOg/w==
-X-CSE-MsgGUID: Iu1mYFrMTbK7Pg/Dw3nrNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64780614"
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64780614"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 13:13:00 -0700
-X-CSE-ConnectionGUID: IfLMUEPmTgSi/OiMLc9Cfw==
-X-CSE-MsgGUID: 5E2NE2MpS266Ff8SThYymw==
+ t=1758662188; x=1790198188;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NNDi6a3XeU49V2EnLqEIN5oLLDQlPad5kV/srhky8Mo=;
+ b=Nh4IV671p6cHD/yDQgozHD6yovf8wbM8J2pSENqL9sX41TH8Tyuiav2U
+ 8UHzhyswOkoB7rp3C2Ciuy1Yyj78VzpdY4deKT1/6RTcNFmWNZ9EBgaK+
+ Pq1jqBtxRCKJxAcPs3JuRrmhJrz16UNfDsx2Sh+hQFb55KXBZpnOgSjew
+ x7TY0jVbbWO/AsohoLsLn3X1pWBTMXRAmLZiq8XBUpMKAsi27e3/ZazNi
+ XLhuDi6VpXvRRUCePUV8rN/Laa93KRgEsjE6BNGihgFujN4hD6DCZxBfH
+ lg5upgB0HciG17J3Jp5sxxCVXknw6w8w8A55U2Vzr//RYPhrH5eNl3Rv4 g==;
+X-CSE-ConnectionGUID: 5l6GIkeUSNS2e6BGODibdA==
+X-CSE-MsgGUID: 1zf1RCZXSVKonuut4DRplw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64592575"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64592575"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 14:16:27 -0700
+X-CSE-ConnectionGUID: u9hBvZ4VTTqiDdvrNlLSEw==
+X-CSE-MsgGUID: a0w2blNFSCKszq35AqUnng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="181164552"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.13])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 13:12:58 -0700
-Date: Tue, 23 Sep 2025 23:12:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v12 00/13] AuxCCS handling and render compression modifiers
-Message-ID: <aNL_RgLy13fXJbYx@intel.com>
-References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="175989805"
+Received: from pczakx-mobl.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.84.166])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 14:16:26 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 0/5] drm/xe/debugfs: Avoid use of wrapper functions
+Date: Tue, 23 Sep 2025 23:16:08 +0200
+Message-ID: <20250923211613.193347-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +66,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 23, 2025 at 11:07:53AM +0100, Tvrtko Ursulin wrote:
-> A series to fix and add xe support for AuxCSS framebuffers via DPT.
-> 
-> Currently the auxiliary buffer data isn't mapped into the page tables at all so
-> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-> had to disable the support.
-> 
-> On top of that there are missing flushes, invalidations and similar.
-> 
-> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-> 
->   [PLANE:32:plane 1A]: type=PRI
->           uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
->           hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-> 
-> Display working fine - no artefacts, no DMAR/PIPE faults.
-> 
-> All IGTs pass for me locally.
-> 
-> v2:
->  * More patches added to fix kms_flip_tiling.
-> 
-> v3:
->  * Rebased after some cleanup patches from v2 were merged.
->  * Added people to Cc as suggested by Rodrigo.
->  * Adjusted last patch title. (Rodrigo)
->  * Apply GGTT flushing only to iomapped system memory buffers.
-> 
-> v4:
->  * Added patch for potentially misplaced Wa_14016712196.
->  * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
-> 
-> v5:
->  * Split out ring emission changes to smaller patches.
->  * Fixed MAX_JOB_SIZE_DW even more.
->  * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
-> 
->  v6:
->  * Added AuxCCS invalidation to indirect context workarounds.
->  * Also added the indirect context handling and some other workarounds. They are
->    unrelated but the series depends on it.
->  * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
->    some reason.
+With simple signature change of the dump() functions, we may get rid
+of several trivial wrappers. That results in:
 
-I was wondering where that went. Someone should actually debug
-that instead of leaving the bogus alignemnt in place.
+  add/remove: 2/12 grow/shrink: 3/6 up/down: 817/-1140 (-323)
+  Function                                     old     new   delta
+  xe_wa_gt_dump                                  -     773    +773
+  xe_tuning_dump                               536     560     +24
+  __pfx_xe_wa_gt_dump                            -      16     +16
+  xe_mocs_dump                                 249     252      +3
+  xe_pat_dump                                   59      60      +1
+  __pfx_xe_wa_dump                              16       -     -16
+  __pfx_workarounds                             16       -     -16
+  __pfx_tunings                                 16       -     -16
+  __pfx_topology                                16       -     -16
+  __pfx_pat                                     16       -     -16
+  __pfx_mocs                                    16       -     -16
+  xelp_dump                                    279     258     -21
+  xehp_dump                                    276     255     -21
+  xelpg_dump                                   371     347     -24
+  xehpc_dump                                   287     263     -24
+  xe2_dump                                     552     528     -24
+  workarounds                                   26       -     -26
+  tunings                                       26       -     -26
+  topology                                      26       -     -26
+  pat                                           26       -     -26
+  mocs                                          26       -     -26
+  ____versions                               81408   81344     -64
+  xe_wa_dump                                   736       -    -736
+  Total: Before=2871712, After=2871389, chg -0.01%
 
-We do have some unknown alignment issues on i915 as well,
-with async flips specifically. On ADL we've papered over it
-for now. But at least MTL is suffering from somewhat similar
-issues that I failed to immediately understand. We really
-should find someone who has a bit of time to dig into these...
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-BTW intel_fb_pin_to_ggtt() also passes the wrong alignment to
-__xe_pin_fb_vma(). I suppose it won't help with DPT alignment
-woes, but it's yet another xe issue that needs fixing.
+Michal Wajdeczko (5):
+  drm/xe/debugfs: Update xe_gt_topology_dump signature
+  drm/xe/debugfs: Update xe_wa_dump signature
+  drm/xe/debugfs: Update xe_tuning_dump signature
+  drm/xe/debugfs: Update xe_mocs_dump signature
+  drm/xe/debugfs: Update xe_pat_dump signature
+
+ drivers/gpu/drm/xe/xe_gt_debugfs.c  | 40 ++++-------------------------
+ drivers/gpu/drm/xe/xe_gt_topology.c | 11 ++++++--
+ drivers/gpu/drm/xe/xe_gt_topology.h |  2 +-
+ drivers/gpu/drm/xe/xe_mocs.c        | 15 +++++++++--
+ drivers/gpu/drm/xe/xe_mocs.h        |  8 +-----
+ drivers/gpu/drm/xe/xe_pat.c         | 40 +++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_pat.h         |  7 +----
+ drivers/gpu/drm/xe/xe_tuning.c      | 17 +++++++++---
+ drivers/gpu/drm/xe/xe_tuning.h      |  2 +-
+ drivers/gpu/drm/xe/xe_wa.c          | 19 +++++++++++---
+ drivers/gpu/drm/xe/xe_wa.h          |  2 +-
+ 11 files changed, 87 insertions(+), 76 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.47.1
+
