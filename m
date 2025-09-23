@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85E32CAC5AE
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:40:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48732CAC5A7
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:41:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0046010E636;
-	Tue, 23 Sep 2025 14:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125E710E63B;
+	Tue, 23 Sep 2025 14:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mwu4cgVK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fu1RA9Gn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E0BA10E634;
- Tue, 23 Sep 2025 14:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758638434; x=1790174434;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=sWFzYw3U/tmmiF8hk5cAGZEA0oAQ3dndv+1MiaAgQ74=;
- b=Mwu4cgVK6ulrK/qSjkzloypqNEhsLggUduHQhFY5fhw7U8Pf1JZzbs09
- iLjsAWhntrjLpvjNLy+F9842+Q3syUpb2OIwwGwQcXNAVrHCun8JAjsa4
- 4o4Pe9+VnDi1ZPmP+eKOrYANj25pZqPXmRGVnJ0QPVbglAHJM/lbQhipv
- Qforovr3JSC+fakoNKjsI4PGofA7dGwlw1kaZCAJMtAPLOVPfnH6f8Fb1
- BDtdyQz5CcA0TcGt3Ios9mMrwkWHOrvtF29kvnuiCI4bxgvij64MNzFz1
- EbBcgsrbwP9ouC/VX/T1SI1Ui8HFj7G8vhSRXLdAmy78yaqpcXXDE+RZr g==;
-X-CSE-ConnectionGUID: 7YCckhWuTOulrrTuLDIeLw==
-X-CSE-MsgGUID: I062ZhIJReeLpuvCBKJKjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64746077"
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="64746077"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:40:34 -0700
-X-CSE-ConnectionGUID: O0sfTWQFSj+i1KAsOsRY9w==
-X-CSE-MsgGUID: XfqIrt0rT5+WjDoRLc7IDQ==
-X-ExtLoop1: 1
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.13])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:40:33 -0700
-Date: Tue, 23 Sep 2025 17:40:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/5] drm/i915/irq: initialize gen2_imr_mask in terms
- of enable_mask
-Message-ID: <aNKxXqMyyhMF66RL@intel.com>
-References: <cover.1758637773.git.jani.nikula@intel.com>
- <e3b612ce4decea699bde2c52aeaef48bf95f7abc.1758637773.git.jani.nikula@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 992F010E63B
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 14:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=HHxFzXiuWdwXFILAsp+SH7Grb5XEw8ExMJywGq/cvwE=; b=fu1RA9GngEgVZ2MgCsQ1RENf94
+ GEB0cMUiZlJRd+AHnkYcnPgrJtM46mzKwQTsY6/AvJ93ff1oTAJ13A/yCWxxOtn/32S6JjwUWilMN
+ zIsMcAxE5RwHJT0876KqF5ibjaXnNWbSg7rReF/ofIuu8cvrpYQoHG9GtZ3kLGxNeW3kMkPd3Pg0R
+ XujFWjPDv4ePqYOoC7PSyTw272zj6LJS7dhIliPQEGEnM+I9NaAojU87gDWvPm4VH3Vn5xQJ+PFoB
+ 4rHyPj1A09pFutYlA4gjXfk66bh25cMGHWm4h/wogd2NXH1diMgWBr1NNhobX4sf26QXHi8t4GcdM
+ zVrD2HRg==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v14CO-00GJg1-1d; Tue, 23 Sep 2025 16:40:56 +0200
+Message-ID: <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
+Date: Tue, 23 Sep 2025 15:40:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
+ <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
+ <aNJ0Pw9tvFA3jWDr@intel.com>
+ <8bec1692-1bec-45ff-a552-10ff8c7420b5@igalia.com>
+ <aNKMKSIGSPfmPBEc@intel.com>
+ <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
+ <aNKer6J7Op2gGmtC@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aNKer6J7Op2gGmtC@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e3b612ce4decea699bde2c52aeaef48bf95f7abc.1758637773.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,91 +66,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 23, 2025 at 05:31:05PM +0300, Jani Nikula wrote:
-> Instead of initializing gen2_imr_mask and enable_mask independently, use
-> the latter for initializing the former. This also highlights the
-> differences in the masks, i.e. what's set to enable_mask after it's been
-> used to initialize gen2_imr_mask.
+
+On 23/09/2025 14:20, Ville SyrjÃ¤lÃ¤ wrote:
+> On Tue, Sep 23, 2025 at 01:25:58PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 23/09/2025 13:01, Ville SyrjÃ¤lÃ¤ wrote:
+>>> On Tue, Sep 23, 2025 at 11:48:59AM +0100, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 23/09/2025 11:19, Ville SyrjÃ¤lÃ¤ wrote:
+>>>>> On Tue, Sep 23, 2025 at 11:08:04AM +0100, Tvrtko Ursulin wrote:
+>>>>>> Even though frame buffer objects are created as write-combined, in
+>>>>>> practice, on top of all the ring buffer flushing, an additional clflush
+>>>>>> seems to be needed before display engine can coherently scan out the
+>>>>>> AuxCCS compressed data without transient artifacts.
+>>>>>>
+>>>>>> If for comparison we look at how i915 handles things (where AuxCCS works
+>>>>>> fine), as it happens it has this same clflush before a frame buffer is
+>>>>>> pinned for display for the first time, courtesy the dynamic tracking of
+>>>>>> the buffer cache mode and setting the latter to uncached before handing
+>>>>>> to display.
+>>>>>>
+>>>>>> Since xe considers the buffer object caching mode as static we can
+>>>>>> implement the same approach by adding a flag telling us if the buffer
+>>>>>> was ever pinned for display and flush on the first pin. Subsequent re-pins
+>>>>>> will not repeat the clflush but so far I have not observed any glitching
+>>>>>> after the first pin.
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>> ---
+>>>>>>     drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
+>>>>>>     drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
+>>>>>>     2 files changed, 22 insertions(+), 6 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> index d8aa23b8cf14..f247c0da6b9e 100644
+>>>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>> @@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>     	struct xe_bo *bo = gem_to_xe_bo(obj);
+>>>>>>     	struct xe_validation_ctx ctx;
+>>>>>>     	struct drm_exec exec;
+>>>>>> +	bool first_pin;
+>>>>>>     	int ret = 0;
+>>>>>>     
+>>>>>>     	if (!vma)
+>>>>>> @@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>     			ret = xe_bo_validate(bo, NULL, true, &exec);
+>>>>>>     		drm_exec_retry_on_contention(&exec);
+>>>>>>     		xe_validation_retry_on_oom(&ctx, &ret);
+>>>>>> -		if (!ret)
+>>>>>> +		if (!ret) {
+>>>>>>     			ttm_bo_pin(&bo->ttm);
+>>>>>> +			first_pin = !bo->display_pin;
+>>>>>> +			bo->display_pin = true;
+>>>>>> +		}
+>>>>>>     	}
+>>>>>>     	if (ret)
+>>>>>>     		goto err;
+>>>>>> @@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>     	if (ret)
+>>>>>>     		goto err_unpin;
+>>>>>>     
+>>>>>> +	/*
+>>>>>> +	 * Force flush frame buffer data for non-coherent display access when
+>>>>>> +	 * AuxCCS formats are used.
+>>>>>> +	 */
+>>>>>> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
+>>>>>> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
+>>>>>> +		drm_clflush_sg(xe_bo_sg(bo));
+>>>>>
+>>>>> You still haven't found the actual bug that causes the dirty cache?
+>>>>
+>>>> Sadly no. I cross referenced everything numerous times, including
+>>>> workarounds, tried pretty much 1:1 i915 vs xe ring buffer programming,
+>>>> but this extra flush always remains required. I also heard that how
+>>>> flushing of the aux metadata works isn't documented anywhere and i915
+>>>> does have this flush, by design or accident I don't know.
+>>>
+>>> i915 has the flush for the *whole* bo because it started out as
+>>> cached. As soon as it undergoes a cached->uncached change (either
+>>> due to set_caching ioctl or becoming a display scanout buffer) we
+>>> clflush it and switch the GPU page tables from WB to UC. After
+>>> that the bo stays uncached, and will need no further clflushes,
+>>> assuming that everyone follows the rules:
+>>>
+>>> - CPU accesses via a WB mapping to an uncached bo will explicitly
+>>>     clflush before (invalidate) and after (write-back) the access
+>>> - userspace always sets the GPU to use use "consult the PTE" MOCS
+>>>     setting for any potential scanout buffer. That way the GPU will
+>>>     use WB as long as the bo is cached, and once it becomes
+>>>     uncached the GPU also switches to UC accesses
+>>>
+>>> With xe I presume the BO should already start out as UC/WC with
+>>> clean caches, and nothing should be dirtying the caches unless
+>>> there is a real bug somewhere.
+>>
+>> Correct, it is all WC and MOCS are correctly set as WC.
+>>
+>> For example for the media compression flavour that was broken and needed
+>> fixing in b412b144685f ("lib/intel/veboxcopy: Respect buffer MOCS
+>> index"). (For the render compression flavour MOCS was already correct.)
+>> But MOCS is not enough on its own for some reason.
+>>
+>> I also looked into the rendercopy surface state programming and that too
+>> looks okay. In fact it is possible to see how using the wrong MOCS makes
+>> things worse. But it also appears the surface state MOCS only applies to
+>> the main surface, while the aux state is the one which appears to
+>> contain cached/unflushed data.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 34 ++++++++++++---------------------
->  1 file changed, 12 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 56f231591a3e..04de02fc08d9 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -895,26 +895,20 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i9xx_error_mask(dev_priv));
->  
-> -	dev_priv->gen2_imr_mask =
-> -		~(I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
-> -		  I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
-> -		  I915_MASTER_ERROR_INTERRUPT);
-> -
->  	enable_mask =
->  		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
->  		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
-> -		I915_MASTER_ERROR_INTERRUPT |
-> -		I915_USER_INTERRUPT;
-> +		I915_MASTER_ERROR_INTERRUPT;
->  
-> -	if (DISPLAY_VER(display) >= 3) {
-> -		dev_priv->gen2_imr_mask &= ~I915_ASLE_INTERRUPT;
-> +	if (DISPLAY_VER(display) >= 3)
->  		enable_mask |= I915_ASLE_INTERRUPT;
-> -	}
->  
-> -	if (HAS_HOTPLUG(display)) {
-> -		dev_priv->gen2_imr_mask &= ~I915_DISPLAY_PORT_INTERRUPT;
-> +	if (HAS_HOTPLUG(display))
->  		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
-> -	}
-> +
-> +	dev_priv->gen2_imr_mask = ~enable_mask;
-> +
-> +	enable_mask |= I915_USER_INTERRUPT;
+> Are you saying that if you start scanning out a compressed buffer,
+> then clean the caches, and then do frontbuffer rendering you get
+> more cache dirt?
 
-This diff is susprisingly hard to read :/
+Render with the GPU or CPU? Do you know of any tests or userspaces which 
+do that?
 
-But it *looks* ok to me.
+Regards,
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Tvrtko
 
->  
->  	gen2_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->gen2_imr_mask, enable_mask);
->  
-> @@ -1016,20 +1010,16 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  	gen2_error_init(uncore, GEN2_ERROR_REGS, ~i965_error_mask(dev_priv));
->  
-> -	dev_priv->gen2_imr_mask =
-> -		~(I915_ASLE_INTERRUPT |
-> -		  I915_DISPLAY_PORT_INTERRUPT |
-> -		  I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
-> -		  I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
-> -		  I915_MASTER_ERROR_INTERRUPT);
-> -
->  	enable_mask =
->  		I915_ASLE_INTERRUPT |
->  		I915_DISPLAY_PORT_INTERRUPT |
->  		I915_DISPLAY_PIPE_A_EVENT_INTERRUPT |
->  		I915_DISPLAY_PIPE_B_EVENT_INTERRUPT |
-> -		I915_MASTER_ERROR_INTERRUPT |
-> -		I915_USER_INTERRUPT;
-> +		I915_MASTER_ERROR_INTERRUPT;
-> +
-> +	dev_priv->gen2_imr_mask = ~enable_mask;
-> +
-> +	enable_mask |= I915_USER_INTERRUPT;
->  
->  	if (IS_G4X(dev_priv))
->  		enable_mask |= I915_BSD_USER_INTERRUPT;
-> -- 
-> 2.47.3
-
--- 
-Ville Syrjälä
-Intel
