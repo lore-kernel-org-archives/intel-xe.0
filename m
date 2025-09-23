@@ -4,63 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 968FDCAC5AC
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 13:20:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DD0BCAC5A7
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 13:24:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 576DA10E126;
-	Tue, 23 Sep 2025 13:20:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A962D10E13C;
+	Tue, 23 Sep 2025 13:24:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S/3wxcu0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuS/rMph";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C7510E126
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 13:20:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C1510E13C;
+ Tue, 23 Sep 2025 13:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758633652; x=1790169652;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0j3nfMgVnOn+BhcN9vRJQygn2k2H+xs/4LpPwBNEqwY=;
- b=S/3wxcu0hmyZn++KQHwLI+YVj7ePms+OC+cev/N8dfei18wYRKc8InXW
- r0MbFCwMBWdAIvsjVzjFYyN/TDqoSLCWw/QzCQAvQR/1+K1s/nNbTZRkG
- v9al7c3h/tDQR7A6IH83fa/fj7v+4sdEMTrDaq2GrRJozIMtZEANLbZhU
- Z3x98WK0ok6OeNLtuZ4LxJ2P8vbD/up7EDbEnl/34GiHb8H6QGmWVse/D
- APBg7Qxdl1ITO+AD7S+YBkHob5bpwtIlb0HRA/f9iTMP6PuCCXyGgX9ia
- MfzSXSwhEBLucknmNVrThY+ChFJ78LpH62unTlIHC491DwMqa6mahZhJF Q==;
-X-CSE-ConnectionGUID: YR4xE2QFRBug4VturHjETA==
-X-CSE-MsgGUID: /A2uqNhsSkmCKz5SZ67TZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="63540435"
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="63540435"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 06:20:51 -0700
-X-CSE-ConnectionGUID: xjE86kTJQLadkZy+FAK1rw==
-X-CSE-MsgGUID: c6jk4XsdQE223rkrhIQOfw==
+ t=1758633845; x=1790169845;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f233mUdntWINaVC4At77uIsA3YDP7hLiJwVV6IoQRsw=;
+ b=TuS/rMphZeNksCYOkQbbetdNF5r6Nwisv3XPBYXLP5NoHQtutlDiB6Jd
+ Q8B3kmye/b6TYWArmoEhXDiTIufCNkP0bPEKOJP0TULbz5PvOnOMwIZDE
+ Ja8tXizQ+ETOlvGKkQ/t5N6sIusWPVNtQg0bOkgLEugjRf6kF2PeiZZa8
+ FJEMwj+vXVfsmOF8kxrsEUeMJcaBDVeYXoxf4ujJdAJeK99uxGeS7quU+
+ Xxv12VEnYDMvxzSTIhz8SaHU0g3x4v9hAFKl0kHUdu77/skYtw9WjUjQ0
+ JXvT5loF0zOEisUjdirNrifknq5v2/Rv5ZihPtwp87evIqBdV/jPexQ5C Q==;
+X-CSE-ConnectionGUID: s8yJ297YQiSxmnagDQ+e2A==
+X-CSE-MsgGUID: +6u+MiI5TCykfnt2NmL6ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="48480522"
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="48480522"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 06:24:05 -0700
+X-CSE-ConnectionGUID: ZuONi9jeRJqY0xZpA5ZUWg==
+X-CSE-MsgGUID: 6GQb6tNASqymPYUNj7sHiw==
 X-ExtLoop1: 1
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.13])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 06:20:50 -0700
-Date: Tue, 23 Sep 2025 16:20:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
- framebuffers before scan out
-Message-ID: <aNKer6J7Op2gGmtC@intel.com>
-References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
- <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
- <aNJ0Pw9tvFA3jWDr@intel.com>
- <8bec1692-1bec-45ff-a552-10ff8c7420b5@igalia.com>
- <aNKMKSIGSPfmPBEc@intel.com>
- <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
+X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="207689539"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2025 06:24:03 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/9] Introduce set_context_latency and refactor VRR/DSB timing
+ logic
+Date: Tue, 23 Sep 2025 18:40:34 +0530
+Message-ID: <20250923131043.2628282-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,116 +67,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 23, 2025 at 01:25:58PM +0100, Tvrtko Ursulin wrote:
-> 
-> On 23/09/2025 13:01, Ville Syrjälä wrote:
-> > On Tue, Sep 23, 2025 at 11:48:59AM +0100, Tvrtko Ursulin wrote:
-> >>
-> >> On 23/09/2025 11:19, Ville Syrjälä wrote:
-> >>> On Tue, Sep 23, 2025 at 11:08:04AM +0100, Tvrtko Ursulin wrote:
-> >>>> Even though frame buffer objects are created as write-combined, in
-> >>>> practice, on top of all the ring buffer flushing, an additional clflush
-> >>>> seems to be needed before display engine can coherently scan out the
-> >>>> AuxCCS compressed data without transient artifacts.
-> >>>>
-> >>>> If for comparison we look at how i915 handles things (where AuxCCS works
-> >>>> fine), as it happens it has this same clflush before a frame buffer is
-> >>>> pinned for display for the first time, courtesy the dynamic tracking of
-> >>>> the buffer cache mode and setting the latter to uncached before handing
-> >>>> to display.
-> >>>>
-> >>>> Since xe considers the buffer object caching mode as static we can
-> >>>> implement the same approach by adding a flag telling us if the buffer
-> >>>> was ever pinned for display and flush on the first pin. Subsequent re-pins
-> >>>> will not repeat the clflush but so far I have not observed any glitching
-> >>>> after the first pin.
-> >>>>
-> >>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
-> >>>>    drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
-> >>>>    2 files changed, 22 insertions(+), 6 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>> index d8aa23b8cf14..f247c0da6b9e 100644
-> >>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> >>>> @@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>    	struct xe_bo *bo = gem_to_xe_bo(obj);
-> >>>>    	struct xe_validation_ctx ctx;
-> >>>>    	struct drm_exec exec;
-> >>>> +	bool first_pin;
-> >>>>    	int ret = 0;
-> >>>>    
-> >>>>    	if (!vma)
-> >>>> @@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>    			ret = xe_bo_validate(bo, NULL, true, &exec);
-> >>>>    		drm_exec_retry_on_contention(&exec);
-> >>>>    		xe_validation_retry_on_oom(&ctx, &ret);
-> >>>> -		if (!ret)
-> >>>> +		if (!ret) {
-> >>>>    			ttm_bo_pin(&bo->ttm);
-> >>>> +			first_pin = !bo->display_pin;
-> >>>> +			bo->display_pin = true;
-> >>>> +		}
-> >>>>    	}
-> >>>>    	if (ret)
-> >>>>    		goto err;
-> >>>> @@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
-> >>>>    	if (ret)
-> >>>>    		goto err_unpin;
-> >>>>    
-> >>>> +	/*
-> >>>> +	 * Force flush frame buffer data for non-coherent display access when
-> >>>> +	 * AuxCCS formats are used.
-> >>>> +	 */
-> >>>> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
-> >>>> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
-> >>>> +		drm_clflush_sg(xe_bo_sg(bo));
-> >>>
-> >>> You still haven't found the actual bug that causes the dirty cache?
-> >>
-> >> Sadly no. I cross referenced everything numerous times, including
-> >> workarounds, tried pretty much 1:1 i915 vs xe ring buffer programming,
-> >> but this extra flush always remains required. I also heard that how
-> >> flushing of the aux metadata works isn't documented anywhere and i915
-> >> does have this flush, by design or accident I don't know.
-> > 
-> > i915 has the flush for the *whole* bo because it started out as
-> > cached. As soon as it undergoes a cached->uncached change (either
-> > due to set_caching ioctl or becoming a display scanout buffer) we
-> > clflush it and switch the GPU page tables from WB to UC. After
-> > that the bo stays uncached, and will need no further clflushes,
-> > assuming that everyone follows the rules:
-> > 
-> > - CPU accesses via a WB mapping to an uncached bo will explicitly
-> >    clflush before (invalidate) and after (write-back) the access
-> > - userspace always sets the GPU to use use "consult the PTE" MOCS
-> >    setting for any potential scanout buffer. That way the GPU will
-> >    use WB as long as the bo is cached, and once it becomes
-> >    uncached the GPU also switches to UC accesses
-> > 
-> > With xe I presume the BO should already start out as UC/WC with
-> > clean caches, and nothing should be dirtying the caches unless
-> > there is a real bug somewhere.
-> 
-> Correct, it is all WC and MOCS are correctly set as WC.
-> 
-> For example for the media compression flavour that was broken and needed 
-> fixing in b412b144685f ("lib/intel/veboxcopy: Respect buffer MOCS 
-> index"). (For the render compression flavour MOCS was already correct.) 
-> But MOCS is not enough on its own for some reason.
-> 
-> I also looked into the rendercopy surface state programming and that too 
-> looks okay. In fact it is possible to see how using the wrong MOCS makes 
-> things worse. But it also appears the surface state MOCS only applies to 
-> the main surface, while the aux state is the one which appears to 
-> contain cached/unflushed data.
+This patch series refactors VRR and DSB timing logic by introducing
+explicit handling of Set Context Latency (SCL) the number of lines required
+before double buffering to safely program display registers, aka W2 Window.
 
-Are you saying that if you start scanning out a compressed buffer,
-then clean the caches, and then do frontbuffer rendering you get
-more cache dirt?
+Previously, SCL was handled implicitly via vblank delay calculations. This
+was a hinderance for later work to optimize guardband length. This series
+formalizes SCL as `set_context_latency` in `intel_crtc_state`, enabling
+consistent tracking and timing/delay computation across platforms.
+
+- Introduces `set_context_latency` to track SCL explicitly.
+- Refactors VRR evasion and DSB wait logic to use SCL directly.
+- Clamps guardband values based on hardware limits and timing constraints.
+- Renames helpers for clarity and removes legacy delay logic.
+
+Rev2: Address comments from Ville:
+- Handle SCL for TGL better and meld patch with previous patch.
+- Drop patch to use set context latency in evasion logic.
+- Add patch to introduce REG_FIELD_MAX based on FIELD_MAX.
+- Added new helper to wait for SCL start and end lines.
+- Other minor refactoring suggested in comments.
+
+Ankit Nautiyal (9):
+  drm/i915/psr:
+    s/intel_psr_min_vblank_delay/intel_psr_min_set_context_latency
+  drm/i915/display: Add set_context_latency to crtc_state
+  drm/i915/vrr: Use set_context_latency instead of
+    intel_vrr_real_vblank_delay()
+  drm/i915/vrr: Use SCL for computing guardband
+  drm/i915/vrr: s/intel_vrr_vblank_delay/intel_vrr_scl_delay
+  drm/i915/dsb:
+    s/intel_dsb_wait_vblank_delay/intel_dsb_wait_for_delayed_vblank
+  drm/i915/display: Wait for scl start instead of dsb_wait_vblanks
+  drm/i915/reg_defs: Add REG_FIELD_MAX wrapper for FIELD_MAX()
+  drm/i915/vrr: Clamp guardband as per hardware and timing constraints
+
+ drivers/gpu/drm/i915/display/intel_color.c    |  2 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |  5 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 55 ++++++++-----
+ .../drm/i915/display/intel_display_types.h    |  3 +
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 26 ++++++-
+ drivers/gpu/drm/i915/display/intel_dsb.h      |  4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  6 +-
+ drivers/gpu/drm/i915/display/intel_psr.h      |  2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 77 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  4 +-
+ drivers/gpu/drm/i915/i915_reg_defs.h          | 10 +++
+ 12 files changed, 140 insertions(+), 56 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
