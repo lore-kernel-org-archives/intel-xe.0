@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BEDCAC5A5
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 21:16:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59B0ECAC5AC
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 21:16:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 837DC10E04A;
-	Tue, 23 Sep 2025 21:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 167FE10E0FD;
+	Tue, 23 Sep 2025 21:16:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nh4IV671";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8JJocUM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5131410E04A
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 21:16:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2036110E0FD
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 21:16:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758662188; x=1790198188;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NNDi6a3XeU49V2EnLqEIN5oLLDQlPad5kV/srhky8Mo=;
- b=Nh4IV671p6cHD/yDQgozHD6yovf8wbM8J2pSENqL9sX41TH8Tyuiav2U
- 8UHzhyswOkoB7rp3C2Ciuy1Yyj78VzpdY4deKT1/6RTcNFmWNZ9EBgaK+
- Pq1jqBtxRCKJxAcPs3JuRrmhJrz16UNfDsx2Sh+hQFb55KXBZpnOgSjew
- x7TY0jVbbWO/AsohoLsLn3X1pWBTMXRAmLZiq8XBUpMKAsi27e3/ZazNi
- XLhuDi6VpXvRRUCePUV8rN/Laa93KRgEsjE6BNGihgFujN4hD6DCZxBfH
- lg5upgB0HciG17J3Jp5sxxCVXknw6w8w8A55U2Vzr//RYPhrH5eNl3Rv4 g==;
-X-CSE-ConnectionGUID: 5l6GIkeUSNS2e6BGODibdA==
-X-CSE-MsgGUID: 1zf1RCZXSVKonuut4DRplw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64592575"
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64592575"
+ t=1758662190; x=1790198190;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FCRQOtnyqogctLf8dJ1qhTYvqMsTLRzl+luSQoP3yiA=;
+ b=Q8JJocUM7Dv4/m7peY31W+npuxF398CePGkaEVduWqkX81ZYAUDOez3e
+ NDhL9wcTV6Utied5pj8xX9PCBvlYAKv8RdRTPvB+GHcN4fEB3wLkBUIbc
+ puhkJHWHgDvMFweaCpBm0NjBUEPhsZO1EOoi0idte8YaA2Dtw+yS6pUx8
+ FUrbvLjElQ4tLauxFqxVfj1lm1Q4Tn0rEce1qr6QyR3pPBR7QzIC+kqOj
+ O1wuXcRVzb9ZMM++NJJM663V7csQSTIhihVKTFahvYj9kVmfZMVk9XcGo
+ CGpk7u9PmOydeKbqVoTjwOTT7i91IOxYDgmXD9xi64KSGrGBb50b3OlCf Q==;
+X-CSE-ConnectionGUID: bwaHpFbVTa+v/LAvm67OSw==
+X-CSE-MsgGUID: m1fqeg/jR0aAcxjrjCMBOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64592579"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="64592579"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 14:16:27 -0700
-X-CSE-ConnectionGUID: u9hBvZ4VTTqiDdvrNlLSEw==
-X-CSE-MsgGUID: a0w2blNFSCKszq35AqUnng==
+ 23 Sep 2025 14:16:30 -0700
+X-CSE-ConnectionGUID: zrqPwtLgSbejExxWOYh9Jg==
+X-CSE-MsgGUID: PvjzUDMjQrKOJoSNUdVryQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="175989805"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="175989812"
 Received: from pczakx-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.84.166])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 14:16:26 -0700
+ 23 Sep 2025 14:16:29 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 0/5] drm/xe/debugfs: Avoid use of wrapper functions
-Date: Tue, 23 Sep 2025 23:16:08 +0200
-Message-ID: <20250923211613.193347-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/5] drm/xe/debugfs: Update xe_wa_dump signature
+Date: Tue, 23 Sep 2025 23:16:10 +0200
+Message-ID: <20250923211613.193347-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250923211613.193347-1-michal.wajdeczko@intel.com>
+References: <20250923211613.193347-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,58 +68,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With simple signature change of the dump() functions, we may get rid
-of several trivial wrappers. That results in:
+Our debugfs helper xe_gt_debugfs_show_with_rpm() expects print()
+functions to return int. New signature allows us to drop wrapper.
 
-  add/remove: 2/12 grow/shrink: 3/6 up/down: 817/-1140 (-323)
-  Function                                     old     new   delta
-  xe_wa_gt_dump                                  -     773    +773
-  xe_tuning_dump                               536     560     +24
-  __pfx_xe_wa_gt_dump                            -      16     +16
-  xe_mocs_dump                                 249     252      +3
-  xe_pat_dump                                   59      60      +1
-  __pfx_xe_wa_dump                              16       -     -16
-  __pfx_workarounds                             16       -     -16
-  __pfx_tunings                                 16       -     -16
-  __pfx_topology                                16       -     -16
-  __pfx_pat                                     16       -     -16
-  __pfx_mocs                                    16       -     -16
-  xelp_dump                                    279     258     -21
-  xehp_dump                                    276     255     -21
-  xelpg_dump                                   371     347     -24
-  xehpc_dump                                   287     263     -24
-  xe2_dump                                     552     528     -24
-  workarounds                                   26       -     -26
-  tunings                                       26       -     -26
-  topology                                      26       -     -26
-  pat                                           26       -     -26
-  mocs                                          26       -     -26
-  ____versions                               81408   81344     -64
-  xe_wa_dump                                   736       -    -736
-  Total: Before=2871712, After=2871389, chg -0.01%
+While around, print additional separation lines using puts() to
+avoid output with leading \n which might confuse some printers.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c |  8 +-------
+ drivers/gpu/drm/xe/xe_wa.c         | 19 +++++++++++++++----
+ drivers/gpu/drm/xe/xe_wa.h         |  2 +-
+ 3 files changed, 17 insertions(+), 12 deletions(-)
 
-Michal Wajdeczko (5):
-  drm/xe/debugfs: Update xe_gt_topology_dump signature
-  drm/xe/debugfs: Update xe_wa_dump signature
-  drm/xe/debugfs: Update xe_tuning_dump signature
-  drm/xe/debugfs: Update xe_mocs_dump signature
-  drm/xe/debugfs: Update xe_pat_dump signature
-
- drivers/gpu/drm/xe/xe_gt_debugfs.c  | 40 ++++-------------------------
- drivers/gpu/drm/xe/xe_gt_topology.c | 11 ++++++--
- drivers/gpu/drm/xe/xe_gt_topology.h |  2 +-
- drivers/gpu/drm/xe/xe_mocs.c        | 15 +++++++++--
- drivers/gpu/drm/xe/xe_mocs.h        |  8 +-----
- drivers/gpu/drm/xe/xe_pat.c         | 40 +++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_pat.h         |  7 +----
- drivers/gpu/drm/xe/xe_tuning.c      | 17 +++++++++---
- drivers/gpu/drm/xe/xe_tuning.h      |  2 +-
- drivers/gpu/drm/xe/xe_wa.c          | 19 +++++++++++---
- drivers/gpu/drm/xe/xe_wa.h          |  2 +-
- 11 files changed, 87 insertions(+), 76 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 6694a38203d3..e6a7684d571a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -167,12 +167,6 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
+ }
+ 
+-static int workarounds(struct xe_gt *gt, struct drm_printer *p)
+-{
+-	xe_wa_dump(gt, p);
+-	return 0;
+-}
+-
+ static int tunings(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	xe_tuning_dump(gt, p);
+@@ -236,7 +230,7 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ 	{ "topology", .show = xe_gt_debugfs_show_with_rpm, .data = xe_gt_topology_dump },
+ 	{ "register-save-restore",
+ 		.show = xe_gt_debugfs_show_with_rpm, .data = register_save_restore },
+-	{ "workarounds", .show = xe_gt_debugfs_show_with_rpm, .data = workarounds },
++	{ "workarounds", .show = xe_gt_debugfs_show_with_rpm, .data = xe_wa_gt_dump },
+ 	{ "tunings", .show = xe_gt_debugfs_show_with_rpm, .data = tunings },
+ 	{ "default_lrc_rcs", .show = xe_gt_debugfs_show_with_rpm, .data = rcs_default_lrc },
+ 	{ "default_lrc_ccs", .show = xe_gt_debugfs_show_with_rpm, .data = ccs_default_lrc },
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index cd03891654a1..c60159a13001 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -1086,7 +1086,14 @@ void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p)
+ 			drm_printf_indent(p, 1, "%s\n", device_oob_was[idx].name);
+ }
+ 
+-void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
++/**
++ * xe_wa_gt_dump() - Dump GT workarounds into a drm printer.
++ * @gt: the &xe_gt
++ * @p: the &drm_printer
++ *
++ * Return: always 0.
++ */
++int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	size_t idx;
+ 
+@@ -1094,18 +1101,22 @@ void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
+ 	for_each_set_bit(idx, gt->wa_active.gt, ARRAY_SIZE(gt_was))
+ 		drm_printf_indent(p, 1, "%s\n", gt_was[idx].name);
+ 
+-	drm_printf(p, "\nEngine Workarounds\n");
++	drm_puts(p, "\n");
++	drm_printf(p, "Engine Workarounds\n");
+ 	for_each_set_bit(idx, gt->wa_active.engine, ARRAY_SIZE(engine_was))
+ 		drm_printf_indent(p, 1, "%s\n", engine_was[idx].name);
+ 
+-	drm_printf(p, "\nLRC Workarounds\n");
++	drm_puts(p, "\n");
++	drm_printf(p, "LRC Workarounds\n");
+ 	for_each_set_bit(idx, gt->wa_active.lrc, ARRAY_SIZE(lrc_was))
+ 		drm_printf_indent(p, 1, "%s\n", lrc_was[idx].name);
+ 
+-	drm_printf(p, "\nOOB Workarounds\n");
++	drm_puts(p, "\n");
++	drm_printf(p, "OOB Workarounds\n");
+ 	for_each_set_bit(idx, gt->wa_active.oob, ARRAY_SIZE(oob_was))
+ 		if (oob_was[idx].name)
+ 			drm_printf_indent(p, 1, "%s\n", oob_was[idx].name);
++	return 0;
+ }
+ 
+ /*
+diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
+index 6a869b2de643..8fd6a5af0910 100644
+--- a/drivers/gpu/drm/xe/xe_wa.h
++++ b/drivers/gpu/drm/xe/xe_wa.h
+@@ -22,7 +22,7 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe);
+ void xe_wa_process_lrc(struct xe_hw_engine *hwe);
+ void xe_wa_apply_tile_workarounds(struct xe_tile *tile);
+ void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
+-void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p);
++int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
+ /**
+  * XE_GT_WA - Out-of-band GT workarounds, to be queried and called as needed.
 -- 
 2.47.1
 
