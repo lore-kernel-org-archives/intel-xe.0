@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC788CAC5AC
-	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:15:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CD7CAC5A7
+	for <intel-xe@archiver.kernel.org>; Tue, 23 Sep 2025 14:16:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8F5A10E62A;
-	Tue, 23 Sep 2025 14:15:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQwLtBh1";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD42510E62A;
- Tue, 23 Sep 2025 14:15:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758636956; x=1790172956;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=l+XCE9STEC2YSm3wD0/pJMPJy8BAw3Wuw/2qtp9MbJ8=;
- b=kQwLtBh1jszm+4ScZmgk8Dj3dZohnkzpWVoniXMxAudNEo0fh3M8EPHy
- N2gSvQZq8kA2DEg0Zh6v2LahhE1jg+wt1r3g29bOdnnK7wjHWfqeE55Bg
- tm+gNJ+dI1QurIVRzWdbLAAMHhWwCTjR7ZThioAP1aM8eyHipnpySwpJu
- 4mmz83vYaTy6zpMy7QA6gPN8ecm8xA0YCt1o2u7hYvVwTFAg9EmROaIPY
- qFoeSpsUc8KpRR6adNI/kCAX8skxO3XQsT3mHaDCnI+KeJ8iS7mlya0kT
- ZvWCY6dXz9hWI2O2SpBxEQdfsdsWceQxeIm8EYsmPb3GEEFXA+utXs7jn g==;
-X-CSE-ConnectionGUID: XVdrzQLUQjqJ4yWSTwHJbA==
-X-CSE-MsgGUID: X25bEnZ+SFeLWj+VL3BFSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60834144"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60834144"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:15:56 -0700
-X-CSE-ConnectionGUID: YtG18jmaReqtPB+0oWqawA==
-X-CSE-MsgGUID: 7P3IzcKaSX+AtVL/U0A9Fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,288,1751266800"; d="scan'208";a="176717413"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.94])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 07:15:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/6] drm/i915/irq: split ILK display irq handling
-In-Reply-To: <aM1IOabvrlmkzQsk@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1758275448.git.jani.nikula@intel.com>
- <f549e6d2a50bcaf0a4ca559f867828357f3927aa.1758275448.git.jani.nikula@intel.com>
- <aM1IOabvrlmkzQsk@intel.com>
-Date: Tue, 23 Sep 2025 17:15:52 +0300
-Message-ID: <b11c1170e758467a3637fd62545b7b65101417be@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A65C10E0A2;
+	Tue, 23 Sep 2025 14:16:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0771010E0A2;
+ Tue, 23 Sep 2025 14:16:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4630988271566168332=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_set=5Fcontext=5Fl?=
+ =?utf-8?q?atency_and_refactor_VRR/DSB_timing_logic_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 23 Sep 2025 14:16:39 -0000
+Message-ID: <175863699902.358042.9530617314507798006@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250923131043.2628282-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250923131043.2628282-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,41 +36,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 19 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Sep 19, 2025 at 12:51:49PM +0300, Jani Nikula wrote:
->> +bool ilk_display_irq_handler(struct intel_display *display, u32 de_ier,=
- u32 sde_ier)
->> +{
->> +	u32 de_iir;
->> +	bool handled =3D false;
->> +
->> +	de_iir =3D intel_de_read(display, DEIIR);
->> +	if (de_iir) {
->> +		intel_de_write(display, DEIIR, de_iir);
->> +		if (DISPLAY_VER(display) >=3D 7)
->> +			_ivb_display_irq_handler(display, de_iir);
->> +		else
->> +			_ilk_display_irq_handler(display, de_iir);
->> +		handled =3D true;
->> +	}
->> +
->> +	intel_de_write(display, DEIER, de_ier);
->> +
->> +	if (sde_ier)
->> +		intel_de_write(display, SDEIER, sde_ier);
->
-> Maybe the re-enable should be its own function just to make
-> things a bit less confusing?
+--===============4630988271566168332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With that I can actually drop patch 5/6.
+== Series Details ==
 
-BR,
-Jani.
+Series: Introduce set_context_latency and refactor VRR/DSB timing logic (rev2)
+URL   : https://patchwork.freedesktop.org/series/154809/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc_BAT -> xe-pw-154809v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (9 -> 9)
+------------------------------
+
+  Additional (2): bat-ptl-1 bat-ptl-2 
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154809v2_BAT that come from known issues:
+
+### IGT changes ###
+
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5765]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5765
+  [Intel XE#5766]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5766
+  [Intel XE#5769]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5769
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5773
+  [Intel XE#5774]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5774
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5778]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5778
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#5781]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5781
+  [Intel XE#5907]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5907
+  [Intel XE#6203]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6203
 
 
---=20
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * IGT: IGT_8549 -> IGT_8550
+  * Linux: xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc -> xe-pw-154809v2
+
+  IGT_8549: 8549
+  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc: d2f002c868da5926fabd73b1ba2ab7a2b66d81dc
+  xe-pw-154809v2: 154809v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v2/index.html
+
+--===============4630988271566168332==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce set_context_latency and refactor VRR/DSB timing logic (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154809/">https://patchwork.freedesktop.org/series/154809/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc_BAT -&gt; xe-pw-154809v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (9 -&gt; 9)</h2>
+<p>Additional (2): bat-ptl-1 bat-ptl-2 <br />
+  Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154809v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8549 -&gt; IGT_8550</li>
+<li>Linux: xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc -&gt; xe-pw-154809v2</li>
+</ul>
+<p>IGT_8549: 8549<br />
+  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3814-d2f002c868da5926fabd73b1ba2ab7a2b66d81dc: d2f002c868da5926fabd73b1ba2ab7a2b66d81dc<br />
+  xe-pw-154809v2: 154809v2</p>
+
+</body>
+</html>
+
+--===============4630988271566168332==--
