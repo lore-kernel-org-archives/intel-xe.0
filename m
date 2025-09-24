@@ -4,99 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC30CAC5AE
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 22:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7679CAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 22:35:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D53410E80C;
-	Wed, 24 Sep 2025 22:19:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6505710E80C;
+	Wed, 24 Sep 2025 22:35:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mK6rXpXb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bvDwVCLT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9257710E80D;
- Wed, 24 Sep 2025 22:19:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C17610E80C
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 22:35:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758752364; x=1790288364;
- h=message-id:date:mime-version:from:subject:to;
- bh=RJJU0jIt/UKGtJm218exoLMxV9raejaJF7iktshFRhY=;
- b=mK6rXpXb/4vWs+gN/2v5BbFr0RSdM4WCv2CBRxqalxvB/sz3SBkbz8OK
- DJEw2FC/c0tFH3kuck8Nn0HsLLc7J5kdmop3LcrO2yRv5Og9TDj5NIvgb
- yVuaMXzCXVsfyGQeIHX/rWvsOEPPY/oR2X5pacLMJw71Z+LiZz1vYjz/x
- +jHq8aRq5Q918s4jTv0tOzJDrBBG1TZ+Jpi4CRS7Kgqj7y4k62uUWy122
- lcYnwWTQEBe/RCRyq6+wsWda8/+BAFZdAVYbk8etbYtZu8Zg3ALCef3YL
- B+RTLjdP6illXNDJab9eQSFpug3GnZr6Yb4OYMphGGaZ4aCLe2T/nUuaQ g==;
-X-CSE-ConnectionGUID: zS9AvAoWRhy/nq5yJanieA==
-X-CSE-MsgGUID: FsmtOP20SmSjTMYZqkb7hQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="71307447"
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="71307447"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 15:19:23 -0700
-X-CSE-ConnectionGUID: WJl1b5MOSfS211VC7z3PbA==
-X-CSE-MsgGUID: ZbFwZfJNRQexExvY6irmIw==
+ t=1758753335; x=1790289335;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uI5s1Dj8GnIfOuNb4dJapnoYA86UJzFJ/ZU99Gsmhw0=;
+ b=bvDwVCLTdzz48jLqYmO6+qHC5zXuoOb4G/tm1aR5xCF2dD0HbXUTbbYD
+ rkKh+QwvFZ3G0JGFUxhUpepWFYA5D8wRYpWN/FG3rV1DkVSTpCbczflYb
+ 6jORqKeYRLe9Kg0oFwfrc+C+JSEzsn2jJnMyPEaf0ReaxksCT/Zhoxx/i
+ COzfZ4MZMz5l7VueHNzvt+hX0jLa6sHwUoj+whPK+50/pNEgngYpsWng0
+ qvmT/qt6pqO82dGtTyRHNK1agVOcPgoJXVTEfJBjKpflfbSdu2XXLLocL
+ JH91YF/0axCHaM55ntwMg4tQrKK8WOEXlCsky0mG8BvvhrdQ9M/GBYDQH w==;
+X-CSE-ConnectionGUID: eFg0R8tvQb6hVnpgUN9JrA==
+X-CSE-MsgGUID: VjAXrPqoTHast7hpSSnqXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="78499826"
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="78499826"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 15:35:35 -0700
+X-CSE-ConnectionGUID: dRxggCGdT1eWaluE6jrj7w==
+X-CSE-MsgGUID: wsrqzBHiTsa4Q4QIKvt2og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="182301371"
-Received: from vverma7-desk1.amr.corp.intel.com (HELO [10.125.108.235])
- ([10.125.108.235])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 15:19:23 -0700
-Content-Type: multipart/mixed; boundary="------------63fe8LkfFRxPYeRQo4n0p8fE"
-Message-ID: <fa25d9b0-1ec5-48fb-9249-78754eef6bd2@intel.com>
-Date: Wed, 24 Sep 2025 15:19:22 -0700
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="176728892"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.32])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 15:35:34 -0700
+Date: Thu, 25 Sep 2025 01:35:31 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+Message-ID: <aNRx66g6y4c-eoZk@intel.com>
+References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
+ <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
+ <aNJ0Pw9tvFA3jWDr@intel.com>
+ <8bec1692-1bec-45ff-a552-10ff8c7420b5@igalia.com>
+ <aNKMKSIGSPfmPBEc@intel.com>
+ <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
+ <aNKer6J7Op2gGmtC@intel.com>
+ <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
+ <aNK0E7KMBW5iOzSo@intel.com>
+ <e2cb2159-367b-4f43-babc-a5250fc9914d@igalia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Dave Hansen <dave.hansen@intel.com>
-Subject: drm/xe: Linker errors on configfs symbols
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-Autocrypt: addr=dave.hansen@intel.com; keydata=
- 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
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e2cb2159-367b-4f43-babc-a5250fc9914d@igalia.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,44 +80,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------63fe8LkfFRxPYeRQo4n0p8fE
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+On Wed, Sep 24, 2025 at 02:09:42PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 23/09/2025 15:52, Ville Syrjälä wrote:
+> > On Tue, Sep 23, 2025 at 03:40:55PM +0100, Tvrtko Ursulin wrote:
+> >>
+> >> On 23/09/2025 14:20, Ville Syrjälä wrote:
+> >>> On Tue, Sep 23, 2025 at 01:25:58PM +0100, Tvrtko Ursulin wrote:
+> >>>>
+> >>>> On 23/09/2025 13:01, Ville Syrjälä wrote:
+> >>>>> On Tue, Sep 23, 2025 at 11:48:59AM +0100, Tvrtko Ursulin wrote:
+> >>>>>>
+> >>>>>> On 23/09/2025 11:19, Ville Syrjälä wrote:
+> >>>>>>> On Tue, Sep 23, 2025 at 11:08:04AM +0100, Tvrtko Ursulin wrote:
+> >>>>>>>> Even though frame buffer objects are created as write-combined, in
+> >>>>>>>> practice, on top of all the ring buffer flushing, an additional clflush
+> >>>>>>>> seems to be needed before display engine can coherently scan out the
+> >>>>>>>> AuxCCS compressed data without transient artifacts.
+> >>>>>>>>
+> >>>>>>>> If for comparison we look at how i915 handles things (where AuxCCS works
+> >>>>>>>> fine), as it happens it has this same clflush before a frame buffer is
+> >>>>>>>> pinned for display for the first time, courtesy the dynamic tracking of
+> >>>>>>>> the buffer cache mode and setting the latter to uncached before handing
+> >>>>>>>> to display.
+> >>>>>>>>
+> >>>>>>>> Since xe considers the buffer object caching mode as static we can
+> >>>>>>>> implement the same approach by adding a flag telling us if the buffer
+> >>>>>>>> was ever pinned for display and flush on the first pin. Subsequent re-pins
+> >>>>>>>> will not repeat the clflush but so far I have not observed any glitching
+> >>>>>>>> after the first pin.
+> >>>>>>>>
+> >>>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> >>>>>>>> ---
+> >>>>>>>>      drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
+> >>>>>>>>      drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
+> >>>>>>>>      2 files changed, 22 insertions(+), 6 deletions(-)
+> >>>>>>>>
+> >>>>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> >>>>>>>> index d8aa23b8cf14..f247c0da6b9e 100644
+> >>>>>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> >>>>>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> >>>>>>>> @@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+> >>>>>>>>      	struct xe_bo *bo = gem_to_xe_bo(obj);
+> >>>>>>>>      	struct xe_validation_ctx ctx;
+> >>>>>>>>      	struct drm_exec exec;
+> >>>>>>>> +	bool first_pin;
+> >>>>>>>>      	int ret = 0;
+> >>>>>>>>      
+> >>>>>>>>      	if (!vma)
+> >>>>>>>> @@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+> >>>>>>>>      			ret = xe_bo_validate(bo, NULL, true, &exec);
+> >>>>>>>>      		drm_exec_retry_on_contention(&exec);
+> >>>>>>>>      		xe_validation_retry_on_oom(&ctx, &ret);
+> >>>>>>>> -		if (!ret)
+> >>>>>>>> +		if (!ret) {
+> >>>>>>>>      			ttm_bo_pin(&bo->ttm);
+> >>>>>>>> +			first_pin = !bo->display_pin;
+> >>>>>>>> +			bo->display_pin = true;
+> >>>>>>>> +		}
+> >>>>>>>>      	}
+> >>>>>>>>      	if (ret)
+> >>>>>>>>      		goto err;
+> >>>>>>>> @@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+> >>>>>>>>      	if (ret)
+> >>>>>>>>      		goto err_unpin;
+> >>>>>>>>      
+> >>>>>>>> +	/*
+> >>>>>>>> +	 * Force flush frame buffer data for non-coherent display access when
+> >>>>>>>> +	 * AuxCCS formats are used.
+> >>>>>>>> +	 */
+> >>>>>>>> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
+> >>>>>>>> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
+> >>>>>>>> +		drm_clflush_sg(xe_bo_sg(bo));
+> >>>>>>>
+> >>>>>>> You still haven't found the actual bug that causes the dirty cache?
+> >>>>>>
+> >>>>>> Sadly no. I cross referenced everything numerous times, including
+> >>>>>> workarounds, tried pretty much 1:1 i915 vs xe ring buffer programming,
+> >>>>>> but this extra flush always remains required. I also heard that how
+> >>>>>> flushing of the aux metadata works isn't documented anywhere and i915
+> >>>>>> does have this flush, by design or accident I don't know.
+> >>>>>
+> >>>>> i915 has the flush for the *whole* bo because it started out as
+> >>>>> cached. As soon as it undergoes a cached->uncached change (either
+> >>>>> due to set_caching ioctl or becoming a display scanout buffer) we
+> >>>>> clflush it and switch the GPU page tables from WB to UC. After
+> >>>>> that the bo stays uncached, and will need no further clflushes,
+> >>>>> assuming that everyone follows the rules:
+> >>>>>
+> >>>>> - CPU accesses via a WB mapping to an uncached bo will explicitly
+> >>>>>      clflush before (invalidate) and after (write-back) the access
+> >>>>> - userspace always sets the GPU to use use "consult the PTE" MOCS
+> >>>>>      setting for any potential scanout buffer. That way the GPU will
+> >>>>>      use WB as long as the bo is cached, and once it becomes
+> >>>>>      uncached the GPU also switches to UC accesses
+> >>>>>
+> >>>>> With xe I presume the BO should already start out as UC/WC with
+> >>>>> clean caches, and nothing should be dirtying the caches unless
+> >>>>> there is a real bug somewhere.
+> >>>>
+> >>>> Correct, it is all WC and MOCS are correctly set as WC.
+> >>>>
+> >>>> For example for the media compression flavour that was broken and needed
+> >>>> fixing in b412b144685f ("lib/intel/veboxcopy: Respect buffer MOCS
+> >>>> index"). (For the render compression flavour MOCS was already correct.)
+> >>>> But MOCS is not enough on its own for some reason.
+> >>>>
+> >>>> I also looked into the rendercopy surface state programming and that too
+> >>>> looks okay. In fact it is possible to see how using the wrong MOCS makes
+> >>>> things worse. But it also appears the surface state MOCS only applies to
+> >>>> the main surface, while the aux state is the one which appears to
+> >>>> contain cached/unflushed data.
+> >>>
+> >>> Are you saying that if you start scanning out a compressed buffer,
+> >>> then clean the caches, and then do frontbuffer rendering you get
+> >>> more cache dirt?
+> >>
+> >> Render with the GPU or CPU? Do you know of any tests or userspaces which
+> >> do that?
+> > 
+> > On the GPU.
+> > 
+> > Can't think of anything nice off the top of my head.
+> > 
+> > I'd probably just write a quick igt:
+> > 1. create a compressed fb
+> > 2. flip to it
+> > 3. manually clflush the whole thing to be sure it's clean
+> > 4. rendercopy some junk around, and keep an eye out for cache dirt
+> 
+> Looks the same dirt on i915 and xe, which would support the theory that 
+> MOCS settings do not apply to the aux surface.
+> 
+> If you look at these videos frame by frame you can see it:
+> 
+> https://people.igalia.com/tursulin/i915-ccs-cache-dirt.MOV
+> https://people.igalia.com/tursulin/xe-ccs-cache-dirt.MOV
+> 
 
-With a stock 6.17-rc7 and this config:
+That doesn't really look like cache dirt since it doesn't linger.
+So I'd say that is more tearing than anything. Tearing can look
+rather weird with tiled/compressed buffers.
 
-	https://hansen.beer/~dave/intel/config.xe.20250924
+To raelly see cache dirt you should tweak the test to
+select a wb mocs.
 
-I'm seeing:
+Oh, and disable CPU c-states. Turns out deep c-states cause extra
+cache flushes all the time which will hide the dirt in short order.
+Without those extra flushes cache dirt will linger for a long time
+on screen.
 
-ld: vmlinux.o: in function `check_sw_disable':
-.../linux.runme/drivers/gpu/drm/xe/xe_hw_engine.c:812: undefined reference to `xe_configfs_get_engines_allowed'
-ld: vmlinux.o: in function `xe_survivability_mode_is_requested':
-.../linux.runme/drivers/gpu/drm/xe/xe_survivability_mode.c:228: undefined reference to `xe_configfs_get_survivability_mode'
-ld: .../linux.runme/drivers/gpu/drm/xe/xe_survivability_mode.c:233: undefined reference to `xe_configfs_clear_survivability_mode'
-ld: vmlinux.o: in function `BSWAP_SHUFB_CTL':
-sha1-avx2-asm.o:(.rodata+0x57def0): undefined reference to `xe_configfs_init'
-ld: sha1-avx2-asm.o:(.rodata+0x57def8): undefined reference to `xe_configfs_exit'
-vmlinux.o:(.debug_info+0x3176eb6): relocation truncated to fit: R_X86_64_32 against `.debug_loclists'
+And also enable_psr=0 + enable_fbc=0 to make sure the display
+engine is really fetching from the memory we just wrote.
 
-I'm compiling the 'xe' driver in to the kernel and I've got configfs compiled in as a module, which is (I suspect) the reason this slipped through the cracks until now.
-
-In any case, I don't see any Kconfig dependencies for configfs in the xe code. The attached patch at least hacks around the issue for me.
-
-Is there a better way of fixing this?
---------------63fe8LkfFRxPYeRQo4n0p8fE
-Content-Type: text/x-patch; charset=UTF-8; name="xe-kconfig.patch"
-Content-Disposition: attachment; filename="xe-kconfig.patch"
-Content-Transfer-Encoding: base64
-
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS9LY29uZmlnIGIvZHJpdmVycy9ncHUv
-ZHJtL3hlL0tjb25maWcKaW5kZXggNzE0ZDU3MDJkZmQ3Li5kMDQ1NDdmYzUzMTEgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS9LY29uZmlnCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS94ZS9LY29uZmlnCkBAIC00Nyw2ICs0Nyw3IEBAIGNvbmZpZyBEUk1fWEUKIAlzZWxlY3Qg
-QVVYSUxJQVJZX0JVUwogCXNlbGVjdCBITU1fTUlSUk9SCiAJc2VsZWN0IFJFR01BUCBpZiBJ
-MkMKKwlzZWxlY3QgQ09ORklHRlNfRlMKIAloZWxwCiAJICBEcml2ZXIgZm9yIEludGVsIFhl
-MiBzZXJpZXMgR1BVcyBhbmQgbGF0ZXIuIEV4cGVyaW1lbnRhbCBzdXBwb3J0CiAJICBmb3Ig
-WGUgc2VyaWVzIGlzIGFsc28gYXZhaWxhYmxlLgo=
-
---------------63fe8LkfFRxPYeRQo4n0p8fE--
+-- 
+Ville Syrjälä
+Intel
