@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E339CAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 12:13:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5C16CAC5B0
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 12:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6A6110E71E;
-	Wed, 24 Sep 2025 12:13:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ae0p8qpx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 436CB10E71D;
- Wed, 24 Sep 2025 12:13:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758715997; x=1790251997;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FFvxl19W3zDjIoKyApB0H0eeSQs2lOJ4BoywNFfU59M=;
- b=Ae0p8qpxlzAyAPVBMa75BwtFU0XEsjz3CExq0pnJcr1LOb/UfOcISw4o
- BCkG4M+sY9TmueJ6iE65hB91QSvfmJ7ZaRH/DBd3A5GKNDyh0K3NQ5130
- 3+R1PpKYOmmnkcA63HgiIwpNP2d++FQ/vPrRa9HjW0kl5mgf+MlcSHiFC
- xVdLqK8VE3OfMMsxjtGFxmkcqt8GC7Ol3BMFCrwMKMe8oCZ/7J4QnDHY5
- x9CHfWM0MVlS7OpZ+7uUKbAk1RAFoNakofioAeVvFG18y4jMHATKHlD8q
- Q53bfQp5F4cFyyLkZqdTxfkak2UcJirB1Jk1Sqew8mzyrVyE/J0W6limv A==;
-X-CSE-ConnectionGUID: UnxU3t27QH2xBQ4ad0klHw==
-X-CSE-MsgGUID: IQsp0yE9T+2bzIzrakcnGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="78645195"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="78645195"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 05:13:17 -0700
-X-CSE-ConnectionGUID: 9aI6QZFvRny0AQWX5Fsv0Q==
-X-CSE-MsgGUID: Lw2LnN2KROK2A+ltWiEtDw==
-X-ExtLoop1: 1
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.144])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 05:13:15 -0700
-Date: Wed, 24 Sep 2025 15:13:13 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 9/9] drm/i915/display: Drop intel_vrr_vblank_delay and
- use set_context_latency
-Message-ID: <aNPgWeXReSa7ZRQd@intel.com>
-References: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
- <20250924105129.2771196-10-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61A8810E70C;
+	Wed, 24 Sep 2025 12:14:57 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A572010E70C;
+ Wed, 24 Sep 2025 12:14:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250924105129.2771196-10-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Enabl?=
+ =?utf-8?q?e_PICA_power_before_AUX?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 12:14:55 -0000
+Message-ID: <175871609567.361476.17357638384920996463@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924-pica-power-before-aux-v1-1-9fa95b80842c@intel.com>
+In-Reply-To: <20250924-pica-power-before-aux-v1-1-9fa95b80842c@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,107 +36,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 24, 2025 at 04:21:29PM +0530, Ankit Nautiyal wrote:
-> The helper intel_vrr_vblank_delay() was used to keep track of the SCL
-> lines + the extra vblank delay required for ICL/TGL.
-> This was used to wait for sufficient lines for:
-> -push send bit to clear for VRR case
-> -evasion to delay the commit.
-> 
-> For first case we are using safe window scanline wait and with that we
-> just need to wait for SCL lines, we do not need to wait for the extra
-> vblank delay required for ICL/TGL. For the second case, we actually
-> do not need to wait for extra lines before the undelayed vblank, if we
-> are already in the safe window.
-> 
-> To sum up, SCL lines is sufficient for both cases.
-> 
-> So drop the helper intel_vrr_vblank_delay and just use
-> crtc_state->set_context_latency instead.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/i915/display: Enable PICA power before AUX
+URL   : https://patchwork.freedesktop.org/series/154964/
+State : warning
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dsb.c    | 4 ++--
->  drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_vrr.c    | 8 --------
->  drivers/gpu/drm/i915/display/intel_vrr.h    | 1 -
->  4 files changed, 3 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> index 3cb4c9be146f..c183209d7663 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -128,7 +128,7 @@ static int dsb_vblank_delay(struct intel_atomic_state *state,
->  		 * scanline until the delayed vblank occurs after
->  		 * TRANS_PUSH has been written.
->  		 */
-> -		return intel_vrr_vblank_delay(crtc_state) + 1;
-> +		return crtc_state->set_context_latency + 1;
->  	else
->  		return intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
->  }
-> @@ -723,7 +723,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->  		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
->  
->  	if (pre_commit_is_vrr_active(state, crtc)) {
-> -		int vblank_delay = intel_vrr_vblank_delay(crtc_state);
-> +		int vblank_delay = crtc_state->set_context_latency;
->  
->  		end = intel_vrr_vmin_vblank_start(crtc_state);
->  		start = end - vblank_delay - latency;
-> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-> index c15234c1d96e..0b7fcc05e64c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> @@ -681,7 +681,7 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
->  		else
->  			evade->vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
->  
-> -		vblank_delay = intel_vrr_vblank_delay(crtc_state);
-> +		vblank_delay = crtc_state->set_context_latency;
->  	} else {
->  		evade->vblank_start = intel_mode_vblank_start(adjusted_mode);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index e29b4050a9df..6d3f9e3de1f1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -92,14 +92,6 @@ static int intel_vrr_extra_vblank_delay(struct intel_display *display)
->  	return DISPLAY_VER(display) < 13 ? 1 : 0;
->  }
->  
-> -int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct intel_display *display = to_intel_display(crtc_state);
-> -
-> -	return crtc_state->set_context_latency +
-> -		intel_vrr_extra_vblank_delay(display);
-> -}
-> -
->  static int intel_vrr_vmin_flipline_offset(struct intel_display *display)
->  {
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 239e4f94725c..cfd027118b60 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -35,7 +35,6 @@ int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
-> -int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
->  bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
->  void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a0d60923f6fc03da3827ca1a500b4022466fafd0
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Sep 24 08:54:10 2025 -0300
+
+    drm/i915/display: Enable PICA power before AUX
+    
+    According to Bspec, before enabling AUX power, we need to have the
+    "power well containing Aux logic powered up". Starting with Xe2_LPD,
+    such power well is the "PICA" power well, which is managed by the driver
+    on demand.
+    
+    While we did add the mapping of AUX power domains to the PICA power
+    well, we ended up placing its power well descriptor after the
+    descriptor for AUX power. As a result, when enabling power wells for one
+    of the aux power domains, the driver will enable AUX power before PICA
+    power, going against the order specified in Bspec.
+    
+    It appears that issue did not become apparent to us mainly because,
+    luckily, AUX power is brought up after we assert PICA power, even if
+    done in the wrong order; and in enough time for the first AUX
+    transaction to succeed.
+    
+    Furthermore, I have also realized that, in some cases, like driver
+    initialization, PICA power is already up when we need to acquire AUX
+    power.
+    
+    One case where we can observe the incorrect ordering is when the driver
+    is resuming from runtime PM suspend. Here is an excerpt of a dmesg with
+    some extra debug logs extracted from a LNL machine to illustrate the
+    issue:
+    
+        [  +0.000156] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
+        [  +0.001312] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
+        [  +0.000127] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
+        [  +0.001072] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
+        [  +0.000102] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
+        [  +0.000090] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
+        [  +0.000092] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
+    
+    The first "DBG: ..." line shows that AUX power for TC1 is off after we
+    assert and wait. The remaining lines show that AUX power for TC1 was on
+    after we enabled PICA power and waited for AUX power.
+    
+    It is important that we stay compliant with the spec, so let's fix this
+    by listing the power wells in an order that matches the requirements
+    from Bspec. (As a side note, it would be nice if we could define those
+    dependencies explicitly.)
+    
+    After this change, we have:
+    
+        [  +0.000146] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling PICA_TC
+        [  +0.001417] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 0
+        [  +0.000116] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC2 power status: 0
+        [  +0.000096] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC3 power status: 0
+        [  +0.000094] xe 0000:00:02.0: [drm:xe2lpd_pica_power_well_enable [xe]] DBG: AUX_CH_USBC4 power status: 0
+        [  +0.000095] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
+        [  +0.000915] xe 0000:00:02.0: [drm:xelpdp_aux_power_well_enable [xe]] DBG: AUX_CH_USBC1 power status: 1
+    
+    Bspec: 68967, 68886, 72519
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 7ac678a5ca459ce17bca34b51ff45d732e400261 drm-intel
+a0d60923f6fc drm/i915/display: Enable PICA power before AUX
+-:31: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#31: 
+    [  +0.000156] xe 0000:00:02.0: [drm:intel_power_well_enable [xe]] enabling AUX_TC1
+
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+
+
