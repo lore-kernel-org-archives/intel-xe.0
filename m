@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB7FCAC5A5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6677CAC5B2
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D5DB10E692;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8DA10E6A0;
 	Wed, 24 Sep 2025 01:16:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0l/h6CD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BKaXB2HY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5027710E690
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DCD510E692
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758676570; x=1790212570;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=BoiYz5O4rQvY5KeKZ/Wt28W782KfToYphzJGYdeJEEg=;
- b=h0l/h6CDE8ssvNOHwr0cg6BUrsn6atzXvAtmtx5pXbbXg0FZJ02DKaEK
- NMLcUS/15UsGUJWh1nJyKX7Ju1geKl+djtG3zxCmE741T8IKHB33wUabI
- c5FIDfw0ukH6f+Zzf4JZ8kYjPbRJhokwVUsRRPMn0BXQ4OsTzyWN2Kf8N
- 3DkiVxoar8zeAlnDFjU9rXuYx/tGJ9jGw+KqCprqIjXHGfdGoz523NsBu
- tmu0+QpO0ogVaAK0x4/r+qym20lVGSPK5bel8CIdXP9JqFTVDGSznJXpW
- JYQRzOnzRVF7nHItjPtYB6+R6I443RgsGhaC2Rt1ovzw9+PCJcHEWnnj1 A==;
-X-CSE-ConnectionGUID: XPrOXGGxSKmyOVfg4ixFww==
-X-CSE-MsgGUID: +6dV+EkdQR2Y4cTfQn0Ogw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908260"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908260"
+ bh=aOhbwbzaYXqrXi/0dE/MAqPDFf913a1R6MYKv2mRzAg=;
+ b=BKaXB2HYK2wmw0e4VD9QFFW8IAk6pW4zbOJrV7zsbPgoZHeUeMQVXK87
+ sZzghPcPL9lydXfJvVC7vCtEDKn+lWapJFJZL/MZ5LUrXXo3FDKRl6Mo8
+ /LPl5Dldhl6Ne3HZFrbkRRUa1M6A8qCB52YcXSaeUZgf5rRthYwlf8T13
+ WC2HV38GoblD0dNsMMDzG6gwn/9vAl+fzvTDvj2u2ZMj5V4bjozeuZeLG
+ tru9mjCJ4cV5IViD8OigE1XRov/q5OZwgMsYcUfCAc5ccQOH/PXEOW4lN
+ 3R9IyTG4iodNmoe8cu5/xuSllDjpdG/jESXC9Ydo/QhqG7iSHXL7Urma2 Q==;
+X-CSE-ConnectionGUID: z7BaxPNUT5akxAxAl8USCg==
+X-CSE-MsgGUID: 6yxkcpCzRwS5KWN4z7u7oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908262"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908262"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:09 -0700
-X-CSE-ConnectionGUID: vmGsYL+YTHST32ah5e7hnA==
-X-CSE-MsgGUID: oCH2VZK+T9S39/28Ap1/hQ==
+X-CSE-ConnectionGUID: 4LwlvHzJSouzjCvNBRivGA==
+X-CSE-MsgGUID: LYombslKRryUwOLMU7ZFKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841795"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841796"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:08 -0700
+ 23 Sep 2025 18:16:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 15/34] drm/xe/vf: Close multi-GT GGTT shift race
-Date: Tue, 23 Sep 2025 18:15:42 -0700
-Message-Id: <20250924011601.888293-16-matthew.brost@intel.com>
+Subject: [PATCH v2 16/34] drm/xe/vf: Teardown VF post migration worker on
+ driver unload
+Date: Tue, 23 Sep 2025 18:15:43 -0700
+Message-Id: <20250924011601.888293-17-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -65,379 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As multi-GT VF post-migration recovery can run in parallel on different
-workqueues,  but both GTs point to the same GGTT, only one GT needs to
-shift the GGTT. However,  both GTs need to know when this step has
-completed. To coordinate this, share the VF  config lock among all GTs
-that share a GGTT, and perform the GGTT shift under this lock.
+Be cautious and ensure the VF post-migration worker is not running
+during driver unload.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 95 +++++++++--------------
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  3 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 11 ++-
- drivers/gpu/drm/xe/xe_guc.c               |  2 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c     |  6 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h     |  1 -
- 6 files changed, 51 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 17 +++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 +++-
+ 2 files changed, 18 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 8304c26c076e..807fdced0228 100644
+index 807fdced0228..4eaffad6ebcf 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -436,16 +436,19 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
- 	return value;
+@@ -811,7 +811,8 @@ static void xe_gt_sriov_vf_start_migration_recovery(struct xe_gt *gt)
+ 
+ 	spin_lock(&gt->sriov.vf.migration.lock);
+ 
+-	if (!gt->sriov.vf.migration.recovery_queued) {
++	if (!gt->sriov.vf.migration.recovery_queued ||
++	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+ 
+@@ -1280,6 +1281,17 @@ static void migration_worker_func(struct work_struct *w)
+ 	vf_post_migration_recovery(gt);
  }
  
--static int vf_get_ggtt_info(struct xe_gt *gt)
-+static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
- {
- 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	struct xe_gt_sriov_vf_selfconfig *primary_config =
-+		&gt_to_tile(gt)->primary_gt->sriov.vf.self_config;
- 	struct xe_guc *guc = &gt->uc.guc;
- 	u64 start, size;
-+	s64 shift;
- 	int err;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	down_write(&config->lock);
-+	down_write(config->lock);
- 
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
- 	if (unlikely(err))
-@@ -465,13 +468,17 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
- 	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
- 				start, start + size - 1, size / SZ_1K);
- 
--	config->ggtt_shift = start - (s64)config->ggtt_base;
-+	shift = start - (s64)primary_config->ggtt_base;
- 	config->ggtt_base = start;
- 	config->ggtt_size = size;
-+	if (recovery)
-+		primary_config->ggtt_base = start;
- 	err = config->ggtt_size ? 0 : -ENODATA;
- 
-+	if (!err && shift && recovery)
-+		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
- out:
--	up_write(&config->lock);
-+	up_write(config->lock);
- 	return err;
- }
- 
-@@ -485,7 +492,7 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	down_write(&config->lock);
-+	down_write(config->lock);
- 
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_LMEM_SIZE_KEY, &size);
- 	if (unlikely(err))
-@@ -505,7 +512,7 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 	err = config->lmem_size ? 0 : -ENODATA;
- 
- out:
--	up_write(&config->lock);
-+	up_write(config->lock);
- 	return err;
- }
- 
-@@ -518,7 +525,7 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	down_write(&config->lock);
-+	down_write(config->lock);
- 
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY, &num_ctxs);
- 	if (unlikely(err))
-@@ -549,7 +556,7 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 	err = config->num_ctxs ? 0 : -ENODATA;
- 
- out:
--	up_write(&config->lock);
-+	up_write(config->lock);
- 	return err;
- }
- 
-@@ -564,17 +571,18 @@ static void vf_cache_gmdid(struct xe_gt *gt)
++static void vf_migration_fini(struct drm_device *drm, void *arg)
++{
++	struct xe_gt *gt = arg;
++
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	gt->sriov.vf.migration.recovery_teardown = true;
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	cancel_work_sync(&gt->sriov.vf.migration.worker);
++}
++
  /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
+  * xe_gt_sriov_vf_migration_init_early() - VF post migration init early
   * @gt: the &xe_gt
-+ * @recovery: VF post migration recovery path
-  *
-  * This function is for VF use only.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
-+int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
+@@ -1308,7 +1320,8 @@ int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
+ 	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
+ 		xe_gt_sriov_info(gt, "migration not supported by this module version\n");
  
--	err = vf_get_ggtt_info(gt);
-+	err = vf_get_ggtt_info(gt, recovery);
- 	if (unlikely(err))
- 		return err;
- 
-@@ -610,10 +618,10 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
- 
--	down_read(&config->lock);
-+	down_read(config->lock);
- 	xe_gt_assert(gt, config->num_ctxs);
- 	val = config->num_ctxs;
--	up_read(&config->lock);
-+	up_read(config->lock);
- 
- 	return val;
- }
-@@ -634,10 +642,10 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
- 
--	down_read(&config->lock);
-+	down_read(config->lock);
- 	xe_gt_assert(gt, config->lmem_size);
- 	val = config->lmem_size;
--	up_read(&config->lock);
-+	up_read(config->lock);
- 
- 	return val;
- }
-@@ -656,11 +664,9 @@ u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
- 	u64 val;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-+	lockdep_assert_held(config->lock);
- 
--	down_read(&config->lock);
- 	val = config->ggtt_size;
--	up_read(&config->lock);
- 
- 	return val;
- }
-@@ -680,34 +686,10 @@ u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--
--	down_read(&config->lock);
- 	xe_gt_assert(gt, config->ggtt_size);
--	val = config->ggtt_base;
--	up_read(&config->lock);
--
--	return val;
--}
-+	lockdep_assert_held(config->lock);
- 
--/**
-- * xe_gt_sriov_vf_ggtt_shift - Return shift in GGTT range due to VF migration
-- * @gt: the &xe_gt struct instance
-- *
-- * This function is for VF use only.
-- *
-- * Return: The shift value; could be negative
-- */
--s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
--{
--	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
--	s64 val;
--
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--
--	down_read(&config->lock);
--	val = config->ggtt_shift;
--	up_read(&config->lock);
-+	val = config->ggtt_base;
- 
- 	return val;
- }
-@@ -1115,7 +1097,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	down_read(&config->lock);
-+	down_read(config->lock);
- 	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
- 		   config->ggtt_base,
- 		   config->ggtt_base + config->ggtt_size - 1);
-@@ -1123,8 +1105,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 	string_get_size(config->ggtt_size, 1, STRING_UNITS_2, buf, sizeof(buf));
- 	drm_printf(p, "GGTT size:\t%llu (%s)\n", config->ggtt_size, buf);
- 
--	drm_printf(p, "GGTT shift on last restore:\t%lld\n", config->ggtt_shift);
--
- 	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
- 		string_get_size(config->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
- 		drm_printf(p, "LMEM size:\t%llu (%s)\n", config->lmem_size, buf);
-@@ -1132,7 +1112,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 
- 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
- 	drm_printf(p, "GuC doorbells:\t%u\n", config->num_dbs);
--	up_read(&config->lock);
-+	up_read(config->lock);
+-	return 0;
++	return drmm_add_action_or_reset(&gt_to_xe(gt)->drm,
++					vf_migration_fini, gt);
  }
  
  /**
-@@ -1215,21 +1195,16 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
- static int vf_post_migration_fixups(struct xe_gt *gt)
- {
- 	void *buf = gt->sriov.vf.migration.lrc_wa_bb;
--	s64 shift;
- 	int err;
- 
--	err = xe_gt_sriov_vf_query_config(gt);
-+	err = xe_gt_sriov_vf_query_config(gt, true);
- 	if (err)
- 		return err;
- 
--	shift = xe_gt_sriov_vf_ggtt_shift(gt);
--	if (shift) {
--		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
--		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
--		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
--		if (err)
--			return err;
--	}
-+	xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
-+	err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
-+	if (err)
-+		return err;
- 
- 	return 0;
- }
-@@ -1313,6 +1288,7 @@ static void migration_worker_func(struct work_struct *w)
-  */
- int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
- {
-+	struct xe_tile *tile = gt_to_tile(gt);
- 	void *buf;
- 
- 	buf = drmm_kmalloc(&gt_to_xe(gt)->drm,
-@@ -1322,7 +1298,10 @@ int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
- 		return -ENOMEM;
- 
- 	gt->sriov.vf.migration.lrc_wa_bb = buf;
--	init_rwsem(&gt->sriov.vf.self_config.lock);
-+	if (xe_gt_is_main_type(gt))
-+		init_rwsem(&gt->sriov.vf.self_config.__lock);
-+	gt->sriov.vf.self_config.lock =
-+		&tile->primary_gt->sriov.vf.self_config.__lock;
- 	spin_lock_init(&gt->sriov.vf.migration.lock);
- 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 195dbebe941e..535237003915 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -18,7 +18,7 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
- void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
- 				 struct xe_uc_fw_version *wanted,
- 				 struct xe_uc_fw_version *found);
--int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
-+int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery);
- int xe_gt_sriov_vf_connect(struct xe_gt *gt);
- int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
-@@ -31,7 +31,6 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt);
--s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 496b657119de..61484c7c9a36 100644
+index 61484c7c9a36..beb9978336bb 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -19,16 +19,19 @@ struct xe_gt_sriov_vf_selfconfig {
- 	u64 ggtt_base;
- 	/** @ggtt_size: assigned size of the GGTT region. */
- 	u64 ggtt_size;
--	/** @ggtt_shift: difference in ggtt_base on last migration */
--	s64 ggtt_shift;
- 	/** @lmem_size: assigned size of the LMEM. */
- 	u64 lmem_size;
- 	/** @num_ctxs: assigned number of GuC submission context IDs. */
- 	u16 num_ctxs;
- 	/** @num_dbs: assigned number of GuC doorbells IDs. */
- 	u16 num_dbs;
--	/** @lock: lock for protecting access to all selfconfig fields. */
--	struct rw_semaphore lock;
-+	/** @__lock: lock for protecting access to all selfconfig fields. */
-+	struct rw_semaphore __lock;
-+	/**
-+	 * @lock: pointer to lock for protecting access to all selfconfig
-+	 * fields, all GTs point to primary GT.
-+	 */
-+	struct rw_semaphore *lock;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 00789844ea4d..ac60da51da2c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -712,7 +712,7 @@ static int vf_guc_init_noalloc(struct xe_guc *guc)
- 	if (err)
- 		return err;
- 
--	err = xe_gt_sriov_vf_query_config(gt);
-+	err = xe_gt_sriov_vf_query_config(gt, false);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-index f221dbed16f0..dc6221fc0520 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-@@ -40,7 +40,7 @@ static int vf_init_ggtt_balloons(struct xe_tile *tile)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
-+static int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
- {
- 	u64 ggtt_base = xe_gt_sriov_vf_ggtt_base(tile->primary_gt);
- 	u64 ggtt_size = xe_gt_sriov_vf_ggtt(tile->primary_gt);
-@@ -100,12 +100,16 @@ int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
- 
- static int vf_balloon_ggtt(struct xe_tile *tile)
- {
-+	struct xe_gt_sriov_vf_selfconfig *config =
-+		&tile->primary_gt->sriov.vf.self_config;
- 	struct xe_ggtt *ggtt = tile->mem.ggtt;
- 	int err;
- 
-+	down_read(config->lock);
- 	mutex_lock(&ggtt->lock);
- 	err = xe_tile_sriov_vf_balloon_ggtt_locked(tile);
- 	mutex_unlock(&ggtt->lock);
-+	up_read(config->lock);
- 
- 	return err;
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-index 93eb043171e8..4ee68d1fb28e 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-@@ -11,7 +11,6 @@
- struct xe_tile;
- 
- int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile);
--int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift);
- 
+@@ -59,10 +59,12 @@ struct xe_gt_sriov_vf_runtime {
+ struct xe_gt_sriov_vf_migration {
+ 	/** @migration: VF migration recovery worker */
+ 	struct work_struct worker;
+-	/** @lock: Protects recovery_queued */
++	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
+ 	/** @lrc_wa_bb: Scratch memory for LRC WA BB in recovery */
+ 	void *lrc_wa_bb;
++	/** @recovery_teardown: VF post migration recovery is being torn down */
++	bool recovery_teardown;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
