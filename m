@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B17ECAC5A7
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 09:06:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3479FCAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 09:10:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 513A710E6C1;
-	Wed, 24 Sep 2025 09:06:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDChUGgx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD9710E6C0;
- Wed, 24 Sep 2025 09:06:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758704762; x=1790240762;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=sVj/GlsyfjwnoNT0wcP3FDFOJ1MPWwEW0Rg0e+HZkG8=;
- b=KDChUGgxn/wJ0Km5qoR7STfCcy5Bgx9W6ssjyQw5e2jfe1tTVa2RiJ/4
- mdoMDUAm3387tOriv2omV6KASKGozp+yDhbllcHyV/w8N9hMKCc5/ts5G
- 5e3dSuvsBYpBZx3UCKXKlKfp0oCQ1aJLE8hyuuNtiqKaeP7mYXmlHHPY/
- BZgI4XL7oR+StkfUXqSi1BZ/6vSNBI8YUXlYPrPSc5AguE7m8dvdSCoUc
- g9Bw4iL0odrPmj6YRo9Nh0opE7NLfFNb7EOwVoH/AK7CbL/f4NxGLtBJe
- gkSQPxbz9NEr2QlH49NUH7LVKnoRlMXxVxWFlm8R20TygDyOoFhnYH3mh w==;
-X-CSE-ConnectionGUID: PYk2YY8LR4K3hR/taTUYzQ==
-X-CSE-MsgGUID: BwJLzJDvTtC4gURqBao94A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60911196"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60911196"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 02:06:01 -0700
-X-CSE-ConnectionGUID: vGQrGzMNSGG/HjLdqQwk2Q==
-X-CSE-MsgGUID: fhM8V29gR5ml2O88N2grwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="207919886"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.149])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 02:05:59 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 06/20] drm/i915/cdclk: Extract dg2_power_well_count()
-In-Reply-To: <20250924061602.2837-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250923171943.7319-7-ville.syrjala@linux.intel.com>
- <20250924061602.2837-1-ville.syrjala@linux.intel.com>
-Date: Wed, 24 Sep 2025 12:05:56 +0300
-Message-ID: <30933726eb345cbf6ea9b1dcbfc0ad890d31e0d7@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E90F910E6C3;
+	Wed, 24 Sep 2025 09:10:29 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6492410E6C3;
+ Wed, 24 Sep 2025 09:10:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/gem=3A_add_i915?=
+ =?utf-8?q?=5Fgem=5Ffence=5Fwait=5Fpriority=5Fdisplay=28=29_helper?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 09:10:28 -0000
+Message-ID: <175870502840.360964.9811178520877460683@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924085129.146173-1-jani.nikula@intel.com>
+In-Reply-To: <20250924085129.146173-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,137 +36,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 24 Sep 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Extract the code to determine the DG2 pipe power well count
-> into a small helper. I'll have other uses for this later.
->
-> TODO: need to move this power well stuff out from the cdclk code...
->
-> v2: Don't lose the early return from intel_cdclk_pcode_pre_notify()
->     (kernel test robot)
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 33 +++++++++++++---------
->  1 file changed, 19 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index 05d9f488895e..f190cfb85a34 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2591,6 +2591,12 @@ static void intel_set_cdclk(struct intel_display *=
-display,
->  	}
->  }
->=20=20
-> +static bool dg2_power_well_count(struct intel_display *display,
-> +				 const struct intel_cdclk_state *cdclk_state)
-> +{
-> +	return display->platform.dg2 ? hweight8(cdclk_state->active_pipes) : 0;
-> +}
-> +
->  static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *stat=
-e)
->  {
->  	struct intel_display *display =3D to_intel_display(state);
-> @@ -2603,16 +2609,16 @@ static void intel_cdclk_pcode_pre_notify(struct i=
-ntel_atomic_state *state)
->=20=20
->  	if (!intel_cdclk_changed(&old_cdclk_state->actual,
->  				 &new_cdclk_state->actual) &&
-> -				 new_cdclk_state->active_pipes =3D=3D
-> -				 old_cdclk_state->active_pipes)
-> +	    dg2_power_well_count(display, old_cdclk_state) =3D=3D
-> +	    dg2_power_well_count(display, old_cdclk_state))
+== Series Details ==
 
-Both have old_cdclk_state, making this always true.
+Series: drm/i915/gem: add i915_gem_fence_wait_priority_display() helper
+URL   : https://patchwork.freedesktop.org/series/154943/
+State : warning
 
-Side note, perhaps the whole function should be renamed
-dg2_cdclk_pcode_pre_notify(), because the additional dg2 check in
-dg2_power_well_count() felt weird until I realized this is all dg2 only.
+== Summary ==
 
-BR,
-Jani.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit da158411b60bb4081989749ae9b5ea151e6f8fa7
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Sep 24 11:51:29 2025 +0300
+
+    drm/i915/gem: add i915_gem_fence_wait_priority_display() helper
+    
+    Add i915_gem_fence_wait_priority_display() helper to wait with
+    I915_PRIORITY_DISPLAY. This drops the intel_plane.c dependency on
+    i915_scheduler_types.h, and allows us to remove the compat header from
+    xe.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 53ee7e373ce454dc86b39ac27aa84d95c536b670 drm-intel
+da158411b60b drm/i915/gem: add i915_gem_fence_wait_priority_display() helper
+-:91: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#91: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
 
 
->  		return;
->=20=20
->  	/* According to "Sequence Before Frequency Change", voltage level set t=
-o 0x3 */
->  	voltage_level =3D DISPLAY_TO_PCODE_VOLTAGE_MAX;
->=20=20
->  	change_cdclk =3D new_cdclk_state->actual.cdclk !=3D old_cdclk_state->ac=
-tual.cdclk;
-> -	update_pipe_count =3D hweight8(new_cdclk_state->active_pipes) >
-> -			    hweight8(old_cdclk_state->active_pipes);
-> +	update_pipe_count =3D dg2_power_well_count(display, new_cdclk_state) >
-> +		dg2_power_well_count(display, old_cdclk_state);
->=20=20
->  	/*
->  	 * According to "Sequence Before Frequency Change",
-> @@ -2630,7 +2636,7 @@ static void intel_cdclk_pcode_pre_notify(struct int=
-el_atomic_state *state)
->  	 * no action if it is decreasing, before the change
->  	 */
->  	if (update_pipe_count)
-> -		num_active_pipes =3D hweight8(new_cdclk_state->active_pipes);
-> +		num_active_pipes =3D dg2_power_well_count(display, new_cdclk_state);
->=20=20
->  	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
->  			   change_cdclk, update_pipe_count);
-> @@ -2650,8 +2656,8 @@ static void intel_cdclk_pcode_post_notify(struct in=
-tel_atomic_state *state)
->  	voltage_level =3D new_cdclk_state->actual.voltage_level;
->=20=20
->  	update_cdclk =3D new_cdclk_state->actual.cdclk !=3D old_cdclk_state->ac=
-tual.cdclk;
-> -	update_pipe_count =3D hweight8(new_cdclk_state->active_pipes) <
-> -			    hweight8(old_cdclk_state->active_pipes);
-> +	update_pipe_count =3D dg2_power_well_count(display, new_cdclk_state) <
-> +		dg2_power_well_count(display, old_cdclk_state);
->=20=20
->  	/*
->  	 * According to "Sequence After Frequency Change",
-> @@ -2667,7 +2673,7 @@ static void intel_cdclk_pcode_post_notify(struct in=
-tel_atomic_state *state)
->  	 * no action if it is increasing, after the change
->  	 */
->  	if (update_pipe_count)
-> -		num_active_pipes =3D hweight8(new_cdclk_state->active_pipes);
-> +		num_active_pipes =3D dg2_power_well_count(display, new_cdclk_state);
->=20=20
->  	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
->  			   update_cdclk, update_pipe_count);
-> @@ -3248,15 +3254,14 @@ static bool intel_cdclk_need_serialize(struct int=
-el_display *display,
->  				       const struct intel_cdclk_state *old_cdclk_state,
->  				       const struct intel_cdclk_state *new_cdclk_state)
->  {
-> -	bool power_well_cnt_changed =3D hweight8(old_cdclk_state->active_pipes)=
- !=3D
-> -				      hweight8(new_cdclk_state->active_pipes);
-> -	bool cdclk_changed =3D intel_cdclk_changed(&old_cdclk_state->actual,
-> -						 &new_cdclk_state->actual);
->  	/*
-> -	 * We need to poke hw for gen >=3D 12, because we notify PCode if
-> +	 * We need to poke hw for DG2, because we notify PCode if
->  	 * pipe power well count changes.
->  	 */
-> -	return cdclk_changed || (display->platform.dg2 && power_well_cnt_change=
-d);
-> +	return intel_cdclk_changed(&old_cdclk_state->actual,
-> +				   &new_cdclk_state->actual) ||
-> +		dg2_power_well_count(display, old_cdclk_state) !=3D
-> +		dg2_power_well_count(display, new_cdclk_state);
->  }
->=20=20
->  int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
-
---=20
-Jani Nikula, Intel
