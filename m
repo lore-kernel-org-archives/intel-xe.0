@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AC1CAC5BB
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D14CAC5BD
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3727B10E6A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C59110E6A7;
 	Wed, 24 Sep 2025 01:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IoDRphy+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZKvECntR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 152A810E69C
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 264A510E69C
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676572; x=1790212572;
+ t=1758676570; x=1790212570;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=8gTLRZyCuV0oBNZI+K75FxahDOoKOB5xWf07MbWyPnA=;
- b=IoDRphy+vwYiIQN5RSo2cT4ngeZeiaXpyD0aBZvIqlIn+/JyismKvFp3
- 4/6aUXI/ZQOokoFPSj64ijRgTB0/FCC3PEA11x7AOyE7yPn6tOpziccjq
- lSNTK0n3JLU5qZJ8OcjX3EidrOE0MOipsfoKmblsKpvVfYCF0R30jEzR6
- 5qqwU3zjPTaHa/Y6NGimTSrOyxJA3yjaBJRbGrNqrwR5aO/JOiFI9p0OZ
- n3xJXrNzxh0+OLMF8u5893Zr13GUsp5+T+1vbw/GEAUgAVtiXymXiTDAz
- 4SsElAszlqs0XxqtNxdSXB2KcLPMIq1UdSrYd/PVDcemkOT8JgW9FA73s g==;
-X-CSE-ConnectionGUID: lDkhosLRS9eiusXo7MQ+xQ==
-X-CSE-MsgGUID: 4ULbGcp7RjGVGjEjmb7pOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908300"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908300"
+ bh=kQjzQnbPlmbyw804cMmqZ+hikdhX5u5m6DEpT4CLqx0=;
+ b=ZKvECntR3nNOLIRaKLwsqKJjUIJXVb4JHl8gnRuXLKp2aDGyzh1mjZZa
+ M5A3FxESNaBDW6JYTF+Wn0z6TBiJM4Q6nbCBj22riFkkvXUh8tWuiB9IL
+ /iey1cEqHTXAI9l0eV69PFz63RQ0jMcMoeL5PWTWhWy6o2fcyR38aeMk7
+ EzKr4EuQV4BUWMxn9SzXyT15GH5bK1RL/sFxMNiU8Xd/SLDifCiTg8cIf
+ ++jfmTPdbyoajeR/oGL9XX2RlnfQMXAFfCZ7fl63tyHXqirPZobQi8HGf
+ wnXz29zF5y2LGGy1hh1VMA63SCScRJgqe0bu+Y59AHUFM/zrouoKMfugo g==;
+X-CSE-ConnectionGUID: EEXtMv1qRt+CAqytIfwnsA==
+X-CSE-MsgGUID: e9VzGo7yR36i9b3xe09mXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908268"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908268"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:12 -0700
-X-CSE-ConnectionGUID: aLD+T1cvTP+KNK/kR4RgdA==
-X-CSE-MsgGUID: WHNKb102S7mK7u9VZUY9vQ==
+ 23 Sep 2025 18:16:10 -0700
+X-CSE-ConnectionGUID: EmniHv2/ThSCZlXSabcKQQ==
+X-CSE-MsgGUID: YqwOf+N7RL+3eacQhNYWwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841816"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841799"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:11 -0700
+ 23 Sep 2025 18:16:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 34/34] drm/xe/guc: Increase wait timeout to 2sec after BUSY
- reply from GuC
-Date: Tue, 23 Sep 2025 18:16:01 -0700
-Message-Id: <20250924011601.888293-35-matthew.brost@intel.com>
+Subject: [PATCH v2 19/34] drm/xe/vf: Extra debug on GGTT shift
+Date: Tue, 23 Sep 2025 18:15:46 -0700
+Message-Id: <20250924011601.888293-20-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,31 +65,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+A little extra debug on GGTT shift printing the GGT shift value is
+helpful for VF post-migration recovery.
 
-Some VF2GUC actions may take longer to process. Increase default timeout
-after received BUSY indication to 2sec to cover all worst case scenarios.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index ac60da51da2c..d029f349dafa 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1472,7 +1472,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index a96e0dd65bc1..e79ab4a2a273 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -475,8 +475,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
+ 		primary_config->ggtt_base = start;
+ 	err = config->ggtt_size ? 0 : -ENODATA;
  
- 		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
--				     1000000, &header, false);
-+				     2000000, &header, false);
- 
- 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
- 			     GUC_HXG_ORIGIN_GUC))
+-	if (!err && shift && recovery)
++	if (!err && shift && recovery) {
++		xe_gt_sriov_info(gt, "Shifting GGTT %lld -> 0x%016llx\n",
++				 shift, config->ggtt_base);
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
++	}
+ out:
+ 	up_write(config->lock);
+ 	return err;
 -- 
 2.34.1
 
