@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D900CAC5B0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAD80CAC5B3
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 414CA10E69D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C36B10E6AA;
 	Wed, 24 Sep 2025 01:16:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QcqDG/y9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D5PwjXmn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87BB210E69F
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40D4310E698
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676572; x=1790212572;
+ t=1758676570; x=1790212570;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5UP401ZzVVf1vrQG13tQ/x289lbSVKlw/oKu+fWhUCw=;
- b=QcqDG/y92WnGFl3zhhv+WMvwK3501lPuLuwNayV9PQRJYwmUnd/I+vq/
- UKh7jsIg/SsmvjvdL3++N17xY36RJFgSTN1pza2EEMlyGUkbeQHwo3Dhy
- 36/kHSiQJNuogt+c2lHZu3rIFNzUXz6rZRSzlQRw+Wyj7vdKoxwSSpZi3
- 68F3IdermYB1078K14QHVQR3kTg1SPXHtv4EWiC//onMDvYMJ5a4zb99r
- VQMa2Ye58bladyfroZQcNinTLI8S9DUADbieiIwyND8ekneIs+tu76T/e
- IcmXY1iQ6RxjXnTN8LdFYElXd9fgUHhhwC7cpwUxo/15jbFxGg2DPPdXG Q==;
-X-CSE-ConnectionGUID: 6hsxoxFVRDqYS5TX+2BRbw==
-X-CSE-MsgGUID: NmF62IWCR/2OfxDrngmf9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908291"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908291"
+ bh=7hyl5dqwuVdoanr1xrclYIs7W4Sn8+OdlZouPBa90OU=;
+ b=D5PwjXmn1w7IdR1JZnwq26njrOoYnFaYxntGt1k+fge8TwoU8/TJP84l
+ 2tYL9QxoODxTw3WuVMhpcEGCeoFD85Y9+ybsTZu1kLyWYDrp7U9YEW/mZ
+ 0i+nCSPexkH5zsHcVEqyGDk1WXmvfG4SdHX9U24i6xL5ZnBu7zXvAYWwd
+ 3P1VFJPU94E0TLrPNx9Jx3pjLmxcRcDWB+KcovMlnTRLA3+JjCZpye2lx
+ Uit9rwlr72PA6MeYK7mlE+cxchr4l3plszjEmvcxviv1ak8+x/WO0sVTt
+ NcHoWwz+nHKgxggf6oiERm77oP3QoGMfprV2und+Y+aRGLR4If3ux2jTJ g==;
+X-CSE-ConnectionGUID: 52Kw9oeWQ2ity+KZ6Zun1A==
+X-CSE-MsgGUID: Wa0xO8YjT5W+swrTDj69/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908259"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908259"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:11 -0700
-X-CSE-ConnectionGUID: vP7tkD4lTa+9l2EsSJtFhQ==
-X-CSE-MsgGUID: dN7dYd/sQr+B00ebYzlo6A==
+ 23 Sep 2025 18:16:09 -0700
+X-CSE-ConnectionGUID: iaWsozMZTLmtIZJrYZQMbA==
+X-CSE-MsgGUID: I8rG8SWoR86gxw6F6dUvDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841812"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841794"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:11 -0700
+ 23 Sep 2025 18:16:08 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 30/34] drm/xe: Use PPGTT addresses for TLB invalidation to
- avoid GGTT fixups
-Date: Tue, 23 Sep 2025 18:15:57 -0700
-Message-Id: <20250924011601.888293-31-matthew.brost@intel.com>
+Subject: [PATCH v2 14/34] drm/xe/vf: Remove memory allocations from VF post
+ migration recovery
+Date: Tue, 23 Sep 2025 18:15:41 -0700
+Message-Id: <20250924011601.888293-15-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,78 +66,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+VF post migration recovery is the path of dma-fence signaling / reclaim,
+avoid memory allocations in this path.
 
-The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
-advance and retains it so the GuC can submit it directly when saving a
-VM’s state.
-
-When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
-addresses embedded in the BB would then have to be parsed and patched.
-
-Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
-remains GGTT-agnostic and requires no address fixups during migration.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 29 ++++++++++++++---------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_sriov.c             |  8 +++++--
+ drivers/gpu/drm/xe/xe_sriov_vf.c          | 14 ++++++++---
+ drivers/gpu/drm/xe/xe_sriov_vf.h          |  2 +-
+ 6 files changed, 39 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1d667fa36cf3..ad03afb5145f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -980,15 +980,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index cfb71b749e52..8304c26c076e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1214,17 +1214,13 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
+ 
+ static int vf_post_migration_fixups(struct xe_gt *gt)
+ {
++	void *buf = gt->sriov.vf.migration.lrc_wa_bb;
+ 	s64 shift;
+-	void *buf;
+ 	int err;
+ 
+-	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_ATOMIC);
+-	if (!buf)
+-		return -ENOMEM;
+-
+ 	err = xe_gt_sriov_vf_query_config(gt);
+ 	if (err)
+-		goto out;
++		return err;
+ 
+ 	shift = xe_gt_sriov_vf_ggtt_shift(gt);
+ 	if (shift) {
+@@ -1232,12 +1228,10 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 		if (err)
+-			goto out;
++			return err;
+ 	}
+ 
+-out:
+-	kfree(buf);
+-	return err;
++	return 0;
  }
  
--static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
--				 u32 flags)
-+static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+@@ -1314,15 +1308,28 @@ static void migration_worker_func(struct work_struct *w)
+ /**
+  * xe_gt_sriov_vf_migration_init_early() - VF post migration init early
+  * @gt: the &xe_gt
++ *
++ * Return 0 on success, errno on failure
+  */
+-void xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
++int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt)
  {
--	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
-+	/*
-+	 * The migrate VM is self-referential so it can modify its own PTEs (see
-+	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
-+	 * entries for kernel operations (copies, clears, CCS migrate), and
-+	 * suballocate the rest to user operations (binds/unbinds). With
-+	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
-+	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
-+	 */
-+	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
-+}
++	void *buf;
 +
-+static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-+{
-+	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
++	buf = drmm_kmalloc(&gt_to_xe(gt)->drm,
++			   post_migration_scratch_size(gt_to_xe(gt)),
++			   GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
 +
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
- 		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
--		  MI_FLUSH_DW_USE_GTT;
--	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
-+	dw[i++] = lower_32_bits(addr);
-+	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = MI_NOOP;
- 	dw[i++] = MI_NOOP;
++	gt->sriov.vf.migration.lrc_wa_bb = buf;
+ 	init_rwsem(&gt->sriov.vf.self_config.lock);
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
  
-@@ -1101,11 +1113,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
+ 		xe_gt_sriov_info(gt, "migration not supported by this module version\n");
++
++	return 0;
+ }
  
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 2ac6775b52f0..195dbebe941e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -23,7 +23,7 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
  
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+-void xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt);
++int xe_gt_sriov_vf_migration_init_early(struct xe_gt *gt);
+ bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt);
  
- 		size -= src_L0;
+ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 53680a2f188a..496b657119de 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -58,6 +58,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued */
+ 	spinlock_t lock;
++	/** @lrc_wa_bb: Scratch memory for LRC WA BB in recovery */
++	void *lrc_wa_bb;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 7d2d6de2aabf..358a35c80d5a 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -116,8 +116,12 @@ int xe_sriov_init(struct xe_device *xe)
+ 			return err;
  	}
+ 
+-	if (IS_SRIOV_VF(xe))
+-		xe_sriov_vf_init_early(xe);
++	if (IS_SRIOV_VF(xe)) {
++		int err = xe_sriov_vf_init_early(xe);
++
++		if (err)
++			return err;
++	}
+ 
+ 	xe_assert(xe, !xe->sriov.wq);
+ 	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 7d91553c4acc..e622a7c562c4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -180,16 +180,24 @@ static void vf_migration_init_early(struct xe_device *xe)
+ /**
+  * xe_sriov_vf_init_early - Initialize SR-IOV VF specific data.
+  * @xe: the &xe_device to initialize
++ *
++ * Return: 0 on success or a negative error code on failure.
+  */
+-void xe_sriov_vf_init_early(struct xe_device *xe)
++int xe_sriov_vf_init_early(struct xe_device *xe)
+ {
+ 	struct xe_gt *gt;
+ 	unsigned int id;
++	int err;
+ 
+-	for_each_gt(gt, xe, id)
+-		xe_gt_sriov_vf_migration_init_early(gt);
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_vf_migration_init_early(gt);
++		if (err)
++			return err;
++	}
+ 
+ 	vf_migration_init_early(xe);
++
++	return 0;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
+index 4df95266b261..13969c6910ce 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
+@@ -11,7 +11,7 @@
+ struct dentry;
+ struct xe_device;
+ 
+-void xe_sriov_vf_init_early(struct xe_device *xe);
++int xe_sriov_vf_init_early(struct xe_device *xe);
+ int xe_sriov_vf_init_late(struct xe_device *xe);
+ bool xe_sriov_vf_migration_supported(struct xe_device *xe);
+ void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root);
 -- 
 2.34.1
 
