@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7984CAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 17:43:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90A15CAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 17:48:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 690A710E79C;
-	Wed, 24 Sep 2025 17:43:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NoxVz5rY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D8510E79C
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 17:43:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758735832; x=1790271832;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rZzCTTbwzmSvsJCg5/MFe3vWbluUC2q6KVXyJ6RWkQM=;
- b=NoxVz5rYNDeiIGkVXtA6xTVu+cJmS+WyWf+b05qWZKV6kzwtq+r6socA
- cmjtuXggsQC+PnAjhgCl7ZIayTqn7n0gFVTRMLpu3cRAszGP7iimoztsS
- SHFgAVyxtBMhFHqOjVAQUVhKrg96hGpRMsidc6L4ldaby84HX0YK3/y6P
- m6qs9tiAp3VsbeuhG+ErHXVOg86qnsFKUrqwXLgv0JW/lmhY6AePov+5R
- ZAdageKJ9B/k2crIrxziMskvdpFQSbf6k5bK4gu15rdTHjZk9IlWjuhip
- /eLo7YnCKmlIGfrf9atAmnWH7WybGlqvsLc+zOPsIGWGLrBi9EAhM3ZO0 A==;
-X-CSE-ConnectionGUID: HusWrn0BT/CYbJX9vqSQdg==
-X-CSE-MsgGUID: ipveiuQuSaa7wReICnxGKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="64879358"
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="64879358"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 10:43:51 -0700
-X-CSE-ConnectionGUID: G7vMovVFTuq6jK/R7imBVw==
-X-CSE-MsgGUID: dCuEZkTySw+S0eLN8umPoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="181373246"
-Received: from sanjay-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 10:43:50 -0700
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com
-Subject: [PATCH v2] drm/xe/migrate: Revamp PAT index selection for migrate PTEs
-Date: Wed, 24 Sep 2025 23:11:01 +0530
-Message-ID: <20250924174100.1551195-2-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50FA010E79E;
+	Wed, 24 Sep 2025 17:48:46 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229E910E79E;
+ Wed, 24 Sep 2025 17:48:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/migrate=3A_Revamp_?=
+ =?utf-8?q?PAT_index_selection_for_migrate_PTEs_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 17:48:45 -0000
+Message-ID: <175873612513.362993.1208964054037494116@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924174100.1551195-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20250924174100.1551195-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,114 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Improve PAT index selection logic in xe_migrate.c to avoid unnecessary
-coherency overhead when host-side memory is uncached. Previously,
-we defaulted to XE_CACHE_WB, which enforces 2-way coherency and may
-trigger cacheline pulls from CPU even when host-side memory is never
-dirty.
+== Series Details ==
 
-This change introduces xe_migrate_pat_index() to choose the appropriate
-PAT index. For iGPUs with WC host mappings, we now prefer XE_CACHE_NONE
-to skip coherency snoops. For compressed PTEs on newer platforms, we
-select XE_CACHE_NONE_COMPRESSION.
+Series: drm/xe/migrate: Revamp PAT index selection for migrate PTEs (rev2)
+URL   : https://patchwork.freedesktop.org/series/154629/
+State : warning
 
-This avoids unnecessary cache traffic for uncached host mappings.
+== Summary ==
 
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 34 +++++++++++++++++++++++++--------
- 1 file changed, 26 insertions(+), 8 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c02c542e6fcc4c15aab97443707e49df4a6bc658
+Author: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Date:   Wed Sep 24 23:11:01 2025 +0530
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 6fad5d469629..6f503be81c09 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -104,6 +104,25 @@ static void xe_migrate_fini(void *arg)
- 	xe_exec_queue_put(m->q);
- }
- 
-+static inline u16 xe_migrate_pat_index(struct xe_device *xe,
-+				       struct xe_bo *bo,
-+				       bool is_comp_pte)
-+{
-+	enum xe_cache_level cache_level;
-+
+    drm/xe/migrate: Revamp PAT index selection for migrate PTEs
+    
+    Improve PAT index selection logic in xe_migrate.c to avoid unnecessary
+    coherency overhead when host-side memory is uncached. Previously,
+    we defaulted to XE_CACHE_WB, which enforces 2-way coherency and may
+    trigger cacheline pulls from CPU even when host-side memory is never
+    dirty.
+    
+    This change introduces xe_migrate_pat_index() to choose the appropriate
+    PAT index. For iGPUs with WC host mappings, we now prefer XE_CACHE_NONE
+    to skip coherency snoops. For compressed PTEs on newer platforms, we
+    select XE_CACHE_NONE_COMPRESSION.
+    
+    This avoids unnecessary cache traffic for uncached host mappings.
+    
+    Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+    Suggested-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch a4d9163251f4832a7d34d4b59449f9a68b9b7adf drm-intel
+c02c542e6fcc drm/xe/migrate: Revamp PAT index selection for migrate PTEs
+-:36: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#36: FILE: drivers/gpu/drm/xe/xe_migrate.c:113:
 +	if (!bo) {
-+		cache_level = XE_CACHE_WB;
+[...]
 +	} else if (is_comp_pte) {
-+		cache_level = XE_CACHE_NONE_COMPRESSION;
+[...]
 +	} else if (!xe_bo_is_vram(bo) && bo->ttm.ttm->caching == ttm_cached) {
-+		cache_level = XE_CACHE_WB;
+[...]
 +	} else {
-+		cache_level = XE_CACHE_NONE;
-+	}
-+
-+	return xe->pat.idx[cache_level];
-+}
-+
- static u64 xe_migrate_vm_addr(u64 slot, u32 level)
- {
- 	XE_WARN_ON(slot >= NUM_PT_SLOTS);
-@@ -177,7 +196,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 				 struct xe_vm *vm, struct drm_exec *exec)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
--	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
-+	u16 pat_index;
- 	u8 id = tile->id;
- 	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
- #define VRAM_IDENTITY_MAP_COUNT	2
-@@ -205,6 +224,8 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	if (IS_ERR(bo))
- 		return PTR_ERR(bo);
- 
-+	pat_index = xe_migrate_pat_index(xe, bo, false);
-+
- 	/* PT30 & PT31 reserved for 2M identity map */
- 	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
- 	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
-@@ -579,17 +600,14 @@ static void emit_pte(struct xe_migrate *m,
- {
- 	struct xe_device *xe = tile_to_xe(m->tile);
- 	struct xe_vm *vm = m->q->vm;
-+	struct xe_bo *bo = ttm_to_xe_bo(res->bo);
- 	u16 pat_index;
- 	u32 ptes;
- 	u64 ofs = (u64)at_pt * XE_PAGE_SIZE;
- 	u64 cur_ofs;
- 
- 	/* Indirect access needs compression enabled uncached PAT index */
--	if (GRAPHICS_VERx100(xe) >= 2000)
--		pat_index = is_comp_pte ? xe->pat.idx[XE_CACHE_NONE_COMPRESSION] :
--					  xe->pat.idx[XE_CACHE_WB];
--	else
--		pat_index = xe->pat.idx[XE_CACHE_WB];
-+	pat_index = xe_migrate_pat_index(xe, bo, is_comp_pte);
- 
- 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
- 
-@@ -1537,7 +1555,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- 	/* For sysmem PTE's, need to map them in our hole.. */
- 	if (!IS_DGFX(xe)) {
--		u16 pat_index = xe->pat.idx[XE_CACHE_WB];
-+		u16 pat_index = xe_migrate_pat_index(xe, NULL, false);
- 		u32 ptes, ofs;
- 
- 		ppgtt_ofs = NUM_KERNEL_PDE - 1;
-@@ -1759,7 +1777,7 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
- 				       struct drm_pagemap_addr *sram_addr,
- 				       u32 size)
- {
--	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
-+	u16 pat_index = xe_migrate_pat_index(tile_to_xe(m->tile), NULL, false);
- 	u32 ptes;
- 	int i = 0;
- 
--- 
-2.43.0
+[...]
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+
 
