@@ -4,164 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E75FCCAC5AE
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 20:23:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DAA0CAC5AE
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 20:30:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E2AA10E7D3;
-	Wed, 24 Sep 2025 20:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22AF110E7CC;
+	Wed, 24 Sep 2025 20:30:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QT/U/RpA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CbfeT+tD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 665F210E7D3
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 20:23:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B457F10E7CC
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 20:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758745401; x=1790281401;
+ t=1758745816; x=1790281816;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=N5zIvE6nr85Yh9YAxHCLdazBZ/E0nG4tT65m0bijvos=;
- b=QT/U/RpADgzN4iXdSwq1xOV01WzY2bB57yAzImjNc6C3asTTAixiXA0X
- VUCvsY0ygI0LehnwSllrXOMhRtC1DzSF8ibGqbn9ls7AixcuVZxtCXlQ8
- dHhl5O7TzekdL6wShRMdIBtUhdyp5t8stYEHwnYeiUKjoyd5tt/Lu/MH8
- roZYBZjB4ZhqeHY5pG/5lil2RfJmYINBPls+AaMB5WrINXDJykgiiprrm
- fIZZEZbilHNaUeu2lQUfLDvTMUPRrWG8WokZxOuekNV/HIFj1zdETWZ8v
- MOkXGYYRO/7P+SkVhXBwYFFhGeX1mxDH0s6ofpq3RNI7HETkOT2TgcxR0 g==;
-X-CSE-ConnectionGUID: bUSVentwRa64Y7KuoTn/uw==
-X-CSE-MsgGUID: WU8/A0epT/yELTpwFR+7tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="61106114"
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="61106114"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 13:23:21 -0700
-X-CSE-ConnectionGUID: NBXEe6HnSGyBgs99MJwG0g==
-X-CSE-MsgGUID: noBUwcc6SFO9sNIAlJIe8A==
+ bh=6PxIjXTBZ+AmSKiBj2MnuLPn6ev/rc6szlPq64k/dlc=;
+ b=CbfeT+tDTGonlAY3SIQ/FqhB00hapofw0b6pCLJSOUDMbM8oJWTbe7wa
+ Yvz657+Dqa8GQaMbXhH6tmF6WXD3Q+uN85hcDZMGMoNgxSdjhYWuZBZO7
+ V7RzZIjrUh/9DIh0BJD7qJBRH8v0eavTtEK9sP2ep2XUAI4gdL1DDhey4
+ 66cm2FaVNu5OVAkTwTsgIrYPwAG0mjCjPHO/TUqdltyJ1lpOVwG/KM/Pk
+ PzgResNNWrrn+S7HCchLnB9xJj20pZzD9rEaSNVdORfwQEH9BU0lr9uth
+ VQ9tTCA5EfyDPBUhrfOhr6dSDoV1UY5merc6wwiEq7P6CT5haCjxZSrU6 w==;
+X-CSE-ConnectionGUID: QpUNaFj8TWm0qN2OlnPjEw==
+X-CSE-MsgGUID: 0sP1f3/MTauUQaIbZK1UNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="48618902"
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="48618902"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 13:30:15 -0700
+X-CSE-ConnectionGUID: YSIiNgk5T2O1INjNBY/7vg==
+X-CSE-MsgGUID: rfp+GC6tSMWECMW2vbzpWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="181134929"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 13:23:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="176972283"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 13:30:15 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 24 Sep 2025 13:23:20 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Wed, 24 Sep 2025 13:30:14 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 24 Sep 2025 13:23:20 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.47) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Wed, 24 Sep 2025 13:30:14 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.10) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 24 Sep 2025 13:23:20 -0700
+ 15.2.2562.17; Wed, 24 Sep 2025 13:30:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kixTuJq1ZJHubBOtI9iCgmEZ7BG4HbMcDy5L9nAlKqkZF4qIZp0Wwrnqyod1M3Z8AOYI0rPIPI5pYcl405YsVLlhEeS1vOnJOXjM0Se1dCJQlBCftpXowmrtAI1eqbutb24Y1xvK2ZstloYRzeqTjxSqJDzMt42lQjvmDykpOiBlbv+IUI5L/+WTLw6cDGxRCpCFsbgE70+HvM+4ux+lR3zFeAUs0djBgcGaH75vEUR7Ev7pNtNNpnWkC/bcB0V2oP7vhEb+t1pELvrfNeE0fOsTM2hf2GUR3+Z4csXaV0y2PaReNWmiEjLvRt22hIGfPhjbBsy+Cr3EXddtU+SahQ==
+ b=Jq00Vj7f9Fs/Bl5NuxX4AfrN52mgPbl288U3CpMH9/QDmaDjNrjaK7WRyXeoBkYg/OjseDKmgG+UP999FyQGTiaOmXB9xkQnDpwzz0endHWMJDyLj0qvOOksB6PpaOVsKP1mBdMES7Xa5N7wTCjQvZWFzDR3F/gHFL3LmZBSXdCqNrYWUPneOcBzUq8niBnlj6xApUlDLVpq0F2f7ePcWkRlxlMvIQiyFxBc+q/QHKIUv0hNvhf7HVPYvlqsyBmWlF5gc/N7cXg+EO6/Mv1fYoxx9otJrVGa/sngFcmHnj4r0cYpN7cmUwfEI8Tr+yB9QBo1rUf6uUzBlAoHFT+tmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6Q0e3iezkHlo+7/FG2gs/GKHt9geF3Fdq4whbdp2lfI=;
- b=TPyRtTnva1YJNlsE2C0xOqCsRbng/t1MuW91SXuDvEvGxyNnoPsYjgLeZbstONmtCUPiwLifgn9z3gKI8Hkx9bJcjfZ3BqTxsnrsXB2DliHCIvvdXJ+BlS8U6iCW6QdSd7ILWuDiLsTK5TyRykCtryce3/R0sPRUs94Fo+3pCMhYuVkWikpGAkKiyHTPRzkaE8S9rMBaKTs0cmy4o1ZuHyYeDGUew1GUeM09Ii8+HpLLTmuV5jsib9SCGchsSbPn8voVnzXM88ORQa0CjG/6PMgwjrc0roFF0VSC2t9Rq5SHbhiplUskE+B4YSc4Rh5JWW2xnO0F+mCdWq03Sk/dHQ==
+ bh=7496jY3QLeNgQXC++ek9Ue1bfnTFP7hLBG1tFa/XoGM=;
+ b=PEfmYtmAMCjg8WwP4gNfSftznksBhUDG1kSji/VeL7j7MlgzpEhOaAejY3VL8Ue+vzsvAAW3egnAoSm91D3l6fHWLF1Wt7UPerRe4/BvBIbDgfBk6/dVJ2yWVcree7sau8jWJPA1uaQKrMiy5PWo4D4fVyiPFlldvpBXL8RUUOOKDxTuicjHyKiSg2fZVg3Fkmc2QWrcgNJx4BWxQArhDXxjRJ7teMv/CcPz+5V2SZcd0b8jH+OktMg2cuMFd1+tp/WM/YgygKgnAlDE36sqDHdPUVf6OJpn7Zh1e2zLJXqQ55d2ZP2EyrIknbNXkTunT4LTybuv0Gklq08vz1Kxmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA2PR11MB5195.namprd11.prod.outlook.com (2603:10b6:806:11a::16)
+ by IA1PR11MB7366.namprd11.prod.outlook.com (2603:10b6:208:422::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 24 Sep
- 2025 20:23:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.10; Wed, 24 Sep
+ 2025 20:30:11 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9137.018; Wed, 24 Sep 2025
- 20:23:17 +0000
-Date: Wed, 24 Sep 2025 13:23:15 -0700
+ 20:30:11 +0000
+Date: Wed, 24 Sep 2025 13:30:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 01/34] drm/xe/vf: Lock querying GGTT config during
- driver init
-Message-ID: <aNRTM4ahMFul34Xr@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH v2 11/34] drm/xe/vf: Add
+ xe_gt_sriov_vf_recovery_inprogress helper
+Message-ID: <aNRU0XdxBe2ZQZQo@lstrano-desk.jf.intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
- <20250924011601.888293-2-matthew.brost@intel.com>
- <95e75ae6-0d2e-4dc9-bea2-daaaf94150c1@intel.com>
+ <20250924011601.888293-12-matthew.brost@intel.com>
+ <30efe3a4-0598-44e7-90aa-5283ed8247f9@intel.com>
+ <aNRI24axOgeDirc+@lstrano-desk.jf.intel.com>
+ <739191aa-d593-4080-a5ca-6d903da8acb2@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <95e75ae6-0d2e-4dc9-bea2-daaaf94150c1@intel.com>
-X-ClientProxiedBy: BY1P220CA0017.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::6) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <739191aa-d593-4080-a5ca-6d903da8acb2@intel.com>
+X-ClientProxiedBy: BY5PR03CA0002.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::12) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA2PR11MB5195:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a18de29-e4aa-45e4-d7e3-08ddfba8327a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB7366:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c11b449-d743-4d04-8d5d-08ddfba928d5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gdG4qwqwIhyYhP8wKGTC/yql9wXc7NB7+t4i0UvQosmWt12BpXG3e/qNmILu?=
- =?us-ascii?Q?yhg6xb3KXZiR3x8jpkQUgzpP0Bf6hVP7wxDLvvQIRBIpMkvQyiHYyPBhFz16?=
- =?us-ascii?Q?jEDeSHe9qX7dh1Vl0yNrtQEZRwoGBLJwc5Gd0gn/GHOCxQQPkzQ+3GWpeOoF?=
- =?us-ascii?Q?BsaQHDtLFpzHe8poKh39ZC2nKD3tjMfsESIAHzdNThGT/1Aacp74mLmsnC22?=
- =?us-ascii?Q?7QSytKNqN6XFUGuC5EIrdG0O2Muu/qU2OrWX0zwUmfBYbRV1NpAOvVi42a2k?=
- =?us-ascii?Q?5Nu0LjU2c0OszMTpU5Npar6pPpc0Z7aESJUOrkwm+fcwTGEBPcHjPXaSYkC2?=
- =?us-ascii?Q?idTSPs0wnfxENTgh2B4QCvdBOBGS72YOe9O0ODO3BGqj7z29cbOTSXLHjfwV?=
- =?us-ascii?Q?QcvsTAFFYCRkaoDn91g2ZKzYRQB9gwyjMOnbwAXm7Ma+yqn6pNviIdfkQzt7?=
- =?us-ascii?Q?JwWuomA2NtlUfrhAEzOt4mjSY2dQ/J2QqSBNHYx0NzVQ2PsJjmOMiY9p3MYp?=
- =?us-ascii?Q?AS2GghQoBIbrSipXR7LYlUn2lT2fIyfyvbtnOrIAZedKuQO47ZbR0aP5zMnD?=
- =?us-ascii?Q?rbE0oPWcpai20pQ63TIImQTV3um4/sz/hN6815Ey/IAiiCe/fChWQc6kvH2h?=
- =?us-ascii?Q?oLOwdEizmqwt5A+4Pu3ZkxhvuxVuYuDU01XZbG3IS4iOTFZBxR0Qys0tRQ3W?=
- =?us-ascii?Q?V4mG9GRtKwas4Beb6RJzl+E3ZOQ0iVpDvsNthWch/j31s6BagDMnemLmObB6?=
- =?us-ascii?Q?vNF9RRituIwqYkZaEDRaRlelWAcmaJPIedKIYjWXZQQGiuayiRKFDi7aelAr?=
- =?us-ascii?Q?gHMZOAUoyc6c1yWtTPKhDgUePVBm2peG5Omy3aBR4POYwGP1TeQjjn07uY75?=
- =?us-ascii?Q?WTYU2oBU3gx8PZy6F9DPKGQ6MpT/usWbR9d+iRBHCbTkAf2XV2c61gouCFUI?=
- =?us-ascii?Q?4w5/B3xYtUl5e2pRS3o+A0V1oFxwQXA20fQOSyxStfQ+J7koZaMAwHHtiL87?=
- =?us-ascii?Q?FdONjStJ1C0UoHA0ho9A9JnOFWq7u57bRwh431mc7rCpj/K8kGVDGUX61lBs?=
- =?us-ascii?Q?I+CscxpY+i8TaSBd5ZCHDm0JHJyHaibJLQaOTiwyAiG5SSwK0PHKQTSPFqrO?=
- =?us-ascii?Q?37v05q+VR5LD8LHOjcXbkaBDgyqTNgTqnQWIo0DX2CW2IwyYhzS9IiISSiwr?=
- =?us-ascii?Q?ANdOpEDfc4TIpzn1dKwS04vZaFWZWFh0P1bF/lLzGytYUkPy4FtOU3ChEpM0?=
- =?us-ascii?Q?rutOH9taEPEKM3Peqh05VuxhWsJwDgxyvbFOw1T0/wlSVL5XoGFjAMgYktqx?=
- =?us-ascii?Q?Ajj+SVl3CXc5EdUrVnLJAVjyk8C9bzcmFuC7ZCXO4l40C9+imG+y8xqlLUIR?=
- =?us-ascii?Q?RH/XKrHv3jSbrA3i2i+1VPbdmLdM?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?tRQUgPENm2fnengErTu0Q7aUn/7UjpPV0tQi5otWZa99BpSdBTMhP7YsNILP?=
+ =?us-ascii?Q?7JBiGk+UjWDVxqyZzkC6L8LBkpyaFpShcDl0qeQwK26Vk/UVgkDlM8W1HEBW?=
+ =?us-ascii?Q?ZNHu2g8ofsu7EsnJaKWNvTWHfNMMVXdbihzXAgiQWLpCr/YpsWwiS6nDQ0bK?=
+ =?us-ascii?Q?iLdUlLxNFPQ7Z8rVabZhzJ6UkGPtcXMe3i+ASzQ1L6mXkweQ2pwgneR8dFhi?=
+ =?us-ascii?Q?rlNA3j5vnhKGIaCAjqaoZG4yvKUsatRk/9T05isQaZJp+PNtxPGploOs3UqX?=
+ =?us-ascii?Q?+9ShtIt/1fFVNOytMSYiTEQy28ncLfjiA1PG9fhytNKKKMixheoubjodWtYm?=
+ =?us-ascii?Q?QVfFqDUiWYBSrK+cIOWYxJNK7JzE+br4JgfRCebBrF98l47rnsCOCA15yNxg?=
+ =?us-ascii?Q?DAKIct/mzUAF9M0jTJN2ymAbM6oiDzkkPidTVm4zN5xtEeiiwMIVa4DZ3+tl?=
+ =?us-ascii?Q?z4q4VPV7J9jlsv3dzuZh+6/ewTU90WFxlvJAf/Ap5e5Ru04JZXmpZU9zj7dz?=
+ =?us-ascii?Q?0PyFPkND9u1NdlHiAl2nG78Rqe3GT5zRJXB5xyp2VsQSxcxRjEmZxOvkWp8h?=
+ =?us-ascii?Q?wDlixv0+XWQBHs1TqRPod/WigIjV05qSWgLJiUafehtMIpl2mUyyp2zDRuMz?=
+ =?us-ascii?Q?nwz+m4Jcm7wceVv1JVdZexyQKAOyZzDDshbTRMzcziXUDjPyvgcH1FkmGg4L?=
+ =?us-ascii?Q?+zrP+PhJbIRbQZemf0YuafvYKzbIbhjG8Wjf2crkFw1DRoB+H4e7myz96E3S?=
+ =?us-ascii?Q?Mws+pCeV3Ugu+uXCbr2PzaGurVHv0plfRRU9JPUqusUDjgm5gjL6yZZ0jypq?=
+ =?us-ascii?Q?W1w5K8IE4BAjdmkrPcEXlUxwkLXX/q1jjta4fBEMAbFBdMeUKXMrdM7Egjn/?=
+ =?us-ascii?Q?W0oNMsMSykwfzhGpNEvUgzqCfrdob9tYFs7Y5ZYqKkFLI9D1mOxUpd3Tigjj?=
+ =?us-ascii?Q?IOxdK7A3G2VoR0TZT3i6z397BqtyFPXd5Ne2Gd19wA0WMN2Vdh6H0QVIaphW?=
+ =?us-ascii?Q?QNY6oqHk6D/XcJi+rnEnx6cX6Ni4He/JXQtFpFLRThBcj+oTrsTlaHmqKDZX?=
+ =?us-ascii?Q?/MvGWFMv8XFKGBAWGqinfM5jiwn/qql3sHNSq5VmwWqphOja6xsmY81387MO?=
+ =?us-ascii?Q?mB7nwCyxGEvMLgAf4bH/Bqx/EWhfGUg/wpOoJw1ao0S7HJzd/yCpLaJyouk4?=
+ =?us-ascii?Q?vQLXmfzmadQD0v/uFE50Y++XAe6z9qEkFPqaDE4MVllBXWYp9oeJmN8r4ZbX?=
+ =?us-ascii?Q?i/Bv3U+3z7qB28Lbk44jkwjhflhQ6Zpg/YXoGmT2PuDhG8hvtBMdR3d8p50z?=
+ =?us-ascii?Q?IV5clBYiyDOybD0Gpxg33gPMH7Hdtuto8dTT46OroPD10SyMoxE9G63MqTP7?=
+ =?us-ascii?Q?AlmLin8rdBwHVI9FAIu/cmd3dxkP?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?501tW+V14hHf5W10J6Gm6KxRZpAC0n3cHCZuU0HK8mbUBBlbVuvJSbyyPuE5?=
- =?us-ascii?Q?+Ae0pQBZSHvAMS64wp0RxPN9TI06dKnF+kXcBWmRv+LbAw0lVbUY3elte94x?=
- =?us-ascii?Q?0FAmOQUx3mM7JlXmeSraJN97FC31WfmPMATdz451niiFg0gCcom2R/4TAYQi?=
- =?us-ascii?Q?xy/8HSm8oYzWtFTGmmMPfIwDPM62QEzMhg6O84yxNfXzPx+dVVyw431dImnP?=
- =?us-ascii?Q?4vlgOnmVxWTsLqR9+bqrVcTPE4vb1H3Xna9PD3YnbsFe9IXES10pYlMDMeTc?=
- =?us-ascii?Q?q70mDsk5RtUhdBzsAPBcEcb8bChH6nfEbPwqsb65c6+FOY8wMWnTFFNofP3P?=
- =?us-ascii?Q?IRsBPDbiQdSiV/VutTIUIkYExa7GLHinCzPXiUiOPUuzBTQxm6CH0DRAL1z2?=
- =?us-ascii?Q?O7bYfI/BfM3WHJN5Ed80Np7+GoqO6Vs9TWre4NvRqw6Pwl4PYNr9e28wzxeC?=
- =?us-ascii?Q?bk2eCxgG3ZM7MPJDaD/AbTQbJY5coNS0BtvhYeieWANVNK8TNL3z3MulEYDW?=
- =?us-ascii?Q?+KJbYk8YdBrdo1hCZega2VmLJ0g6rp/IC6aWQTQkexbINQLFLBI3vivSkE+U?=
- =?us-ascii?Q?m4xrIiLCFZ791dQ11ymSm1aPdG7a1vQbu1x3SzR/ZrkZPSUW1itKNCC9yK3x?=
- =?us-ascii?Q?5qR0LtdZH9XmspTfV3Uf+J3xN7Ivg3msdxWKxNooG+kgTOVIzF4WDffljAQ7?=
- =?us-ascii?Q?8JpEc+Jp52tn9jVOkXgPhhHn4y1CpH+tGfaauaKfY649ujLyj+zM7k4qgo3P?=
- =?us-ascii?Q?tsA/Slg0H4yD+mXGmgrt1H35nUZD5kPW4173J9yOOuG6F+zapJy+BsAz2RYd?=
- =?us-ascii?Q?3zP3iJSPYGjgtQLbBWbCNBZ3nBH1oDJ6mGPw4AeooIlqfZ35f5j/vfomCzBY?=
- =?us-ascii?Q?gwuAuReC85P6Oia1pwGHhP+kZ5Eojtmp6fSLYBsCXDFqcr6/BkphJExbHu6U?=
- =?us-ascii?Q?pidOr2Z7SmqFZaJ9D6XZ7pZ9zGjvvJjk2pVSBesyAeJfYI5fXlYBcupCufeC?=
- =?us-ascii?Q?eCuOtfYRu5YmTp5vCjZnt9p7+1KdbRYhOTDMhYv3KUAiGegHeEaDnADY0zEb?=
- =?us-ascii?Q?BxXIYBZuc8BKhsEJMyCI4INFqUSzge9QXjVf1aQA0NBMW/fDTPMdpb58CDJv?=
- =?us-ascii?Q?kzdDE3bR7fYLe572+icxfEcv9JhmpR2BegyabqQhy2ZjDVP3zyd0WSFdymYY?=
- =?us-ascii?Q?mBqOH+G+LbjYZmf3U/+4QrSWUOxQ/2DgNnPFL4yQf+OntnPwMepho6nILmbW?=
- =?us-ascii?Q?Uk1BPhfwBCWTc+59Ltc0IRTzHn5cz702MmQVVe1cGFyxvkeAZZzW2Bq3qlYy?=
- =?us-ascii?Q?nUxvv6+g+r3sbq+Yfiau8aRLjPmGodZk2p0LvBFe7mfHQuCTL/PJjp502Jp0?=
- =?us-ascii?Q?A7RHa5XQK3Cpvneci3PC86Lozrz24XoX8p4OEIr5EB27KUe0aBn8r2Kc973U?=
- =?us-ascii?Q?JnZEh0rcswLY7UpDSpMXT0P8xbcltnbNQzN+KCHTfGso+Ah0b/+ciHTF5TOh?=
- =?us-ascii?Q?OZ11Z+UPZnfPt+1N3ePAuLefLMHB1qlKFDFQy82ugad64bi3lbS3NZmUPvjT?=
- =?us-ascii?Q?CpJcXEZoHMCEe8HcNOfKOmjjOiuzXuwyEppoJFsQmIom7bKZGGs9W4vy5VNc?=
- =?us-ascii?Q?/g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a18de29-e4aa-45e4-d7e3-08ddfba8327a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TWzyBHY+oDfbVzuJPfBfIsNhAXPHrhB4Bq1Qd2AF3/PfUf91GdRbZvQv7583?=
+ =?us-ascii?Q?Ug+0IPH0Q6NqeMGcCWltIprbINdLlJ15KEjWAxHIwEIXOWXJNeduUt4RjWUY?=
+ =?us-ascii?Q?ZmEXi+zl4A79CBTbfCIZ+q/5yO4JrOZbTPtqv1kwSnylvlOmhf3dF5dB5tJD?=
+ =?us-ascii?Q?q3wplk2xtj1bSUeXVxftrA1hTISfzQhFXq8iMy8d64mO0hCY6QA6xrxX91FR?=
+ =?us-ascii?Q?q/dNuVj0tPQ0AdjXXFbmuiTcndZHJjFl2xlyEO5MrDhwgnbZf3B/faa3RdPz?=
+ =?us-ascii?Q?K6Z1uKNsKvqvdJK87byVDFBI+ZEvzn2qOU1FWibrSgfCjlg9NU4ENSZjNm7Y?=
+ =?us-ascii?Q?Er/6HIHj59HNAPggJ+C9o0kIdMGJZ9erttLD4vt+/RMoz9lnefQSFqprt7MZ?=
+ =?us-ascii?Q?EFxnciE51KGlDkWXnK7ExpabpHuPraBJB9dtekuZinn1MaqaSaJ6r4sty2xV?=
+ =?us-ascii?Q?m3L7kgC4jU8Pc3Ajfbaa/csaU94SyiM4v+cgppevxmabO9Kld8WwU4ifGcjw?=
+ =?us-ascii?Q?ZriqghliLYL9t/50f+cJrCCqItYV0jTQfDeUdOUL67unYolzNybeZFaT9Kk6?=
+ =?us-ascii?Q?t19cF0ia/x9F60ChE4Ry9DIQC8EOKMgyczdUq8MIvzd4hMpuIj2iGwMiCany?=
+ =?us-ascii?Q?WI2T65miYhqKDkIPggEMoTAcdOgHN9nngzD3KkE1SSWNbwzBMb1tlBEZyNbn?=
+ =?us-ascii?Q?YajAlEdJAi8ObwJ19BdHrwKUTFZpAD+JXsywwKEzsAGfp5eYnhnhXPesN7sh?=
+ =?us-ascii?Q?ZEVpdkbpNhLN7vjMaCdzzSv7gPngG6pi11UDQbUoUu5pLH8H48+3oCPxisGy?=
+ =?us-ascii?Q?WxcMb3mv4HQMIG/qkpah50CM8/FEVZ5TLzJKmJCbMv0cfd4RTsvtgFaOEGh/?=
+ =?us-ascii?Q?OnCbLERYTfTVzYk9A3O1xzWAleDCnbjG0P+vouXca+Bdij3wvWrSFbj3VVLn?=
+ =?us-ascii?Q?KVRykvFyT/QmNPMqiB5mDhyzNn5gAJ+8FeKz5KzK5ug1ncKReKb/HxzjD2qV?=
+ =?us-ascii?Q?Ifoi02ToQrUjcoSKYu1NnFP0IheETtPgYxLBWebjx22piX8fxVfWvGLmsyb9?=
+ =?us-ascii?Q?6HrbKyGxaoZlPLYnLj3hD9AMtZ6SI+W4paghKUGIPV4k36Q6RwDKufmo73ts?=
+ =?us-ascii?Q?ybUzv4g74acYiOh4CsClzgZD5bGymHUntE2FjvvNqOtqGkPKz/LJYzu87TwJ?=
+ =?us-ascii?Q?RDkn+BDIvaTQyQGvMt7qQ7AxdEf8+LwKZdvUFmD+BNrgtn0ZVLecK9B4l3nU?=
+ =?us-ascii?Q?fv81RO0vatQY6uzMHx+J5ko4zDSBAwdbI8XKBqrH1KyFzH+JSH2cYt+Z1e1h?=
+ =?us-ascii?Q?k+FFUc5q26CU24H5z0DRdnK9UR712YYT7fB8XO23vWt36EHLJ2GEQc/pHasL?=
+ =?us-ascii?Q?HMnl3gm1+7acnAE3aplhntQnDUDJeVe2fs6euSu5H6mF+DitzsodWoikyciI?=
+ =?us-ascii?Q?LJfjyA3YpGq6f61e8//J2sQvAsaiHn6ekl3par5kPVgHX7188pkmXHK/jwV/?=
+ =?us-ascii?Q?ahLr79nZp+MxCwfuKZBwg5FX/VopISdHPOZI5eyPRIxCE8bWolh8phPbykRU?=
+ =?us-ascii?Q?Cw39xK9Ao/QhA42RvPXsFE/XZTMfNg1ugZ4HCTzs6TyvZrAgSC926gkiXpJR?=
+ =?us-ascii?Q?Rg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c11b449-d743-4d04-8d5d-08ddfba928d5
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 20:23:17.8936 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 20:30:11.1309 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QxNEmOM3JLFAJXIHz2wELBZdMw7SLYEEZCpuJrlc7R46+9a+9BVgq4LvTKDFZaRO52TFwhLob7oshfSf+KNgdw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5195
+X-MS-Exchange-CrossTenant-UserPrincipalName: beEQ0CG5yF0YUL17Y99gwYBCe2aYUUIbr6uAP/gtC8ta5gifNtIRGqeXln+rlCA+Df6YasE8nWmctgKzsH4lwg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7366
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,329 +179,333 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 24, 2025 at 11:29:22AM +0200, Michal Wajdeczko wrote:
+On Wed, Sep 24, 2025 at 10:12:10PM +0200, Michal Wajdeczko wrote:
 > 
+> 
+> On 9/24/2025 9:39 PM, Matthew Brost wrote:
+> > On Wed, Sep 24, 2025 at 12:14:28PM +0200, Michal Wajdeczko wrote:
+> >>
+> >>
+> >> On 9/24/2025 3:15 AM, Matthew Brost wrote:
+> >>> Add xe_gt_sriov_vf_recovery_inprogress helper.
+> >>>
+> >>> This helper serves as the singular point to determine whether a VF
+> >>
+> >> hmm, this "singular" looks like a GT-level only, not global
+> >>
+> > 
+> > Yes, it is GT scoped. I will adjust the commit message.
+> > 
+> >>> post-migration recovery is currently in progress. Expected callers
+> >>> include the GuC CT layer and the GuC submission layer. Atomically
+> >>> visable as soon as vCPU are unhalted until VF recovery completes.
+> >>>
+> >>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >>> ---
+> >>>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 17 ++++++++
+> >>>  drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
+> >>>  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 10 +++++
+> >>>  drivers/gpu/drm/xe/xe_memirq.c            | 48 ++++++++++++++++++++++-
+> >>>  drivers/gpu/drm/xe/xe_memirq.h            |  3 ++
+> >>>  5 files changed, 79 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >>> index 016c867e5e2b..c9d0e32e7a15 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> >>> @@ -26,6 +26,7 @@
+> >>>  #include "xe_guc_hxg_helpers.h"
+> >>>  #include "xe_guc_relay.h"
+> >>>  #include "xe_lrc.h"
+> >>> +#include "xe_memirq.h"
+> >>>  #include "xe_mmio.h"
+> >>>  #include "xe_sriov.h"
+> >>>  #include "xe_sriov_vf.h"
+> >>> @@ -828,6 +829,7 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+> >>>  	struct xe_device *xe = gt_to_xe(gt);
+> >>>  
+> >>>  	xe_gt_assert(gt, IS_SRIOV_VF(xe));
+> >>> +	xe_gt_assert(gt, xe_gt_sriov_vf_recovery_inprogress(gt));
+> >>>  
+> >>>  	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
+> >>>  	/*
+> >>> @@ -1172,3 +1174,18 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
+> >>>  	drm_printf(p, "\thandshake:\t%u.%u\n",
+> >>>  		   pf_version->major, pf_version->minor);
+> >>>  }
+> >>> +
+> >>> +/**
+> >>> + * xe_gt_sriov_vf_recovery_inprogress() - VF post migration recovery in progress
+> >>> + * @gt: the &xe_gt
+> >>> + *
+> >>> + * Return: True if VF post migration recovery in progress, False otherwise
+> >>> + */
+> >>> +bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt)
+> >>> +{
+> >>> +	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
+> >>> +
+> >>> +	return IS_SRIOV_VF(gt_to_xe(gt)) &&
+> >>
+> >> this is xe_gt_sriov_vf function, so it is expected to be called only by
+> >> the VF code, thus we should rather use xe_gt_assert here and the caller
+> >> is responsible for the IS_SRIOV_VF check
+> >>
+> > 
+> > That is not how I have coded this. I blindly call this in various places
+> > and I don't think it could at call site to determine if it is a VF as we
+> > have if (VF) statements all over the driver. If perf is the concern, we
+> > could move the IS_SRIOV_VF(gt_to_xe(gt)) part of function to static
+> > inline and reset of the function in an exported function.
+> 
+> inline will work, preferable not in xe_gt_sriov_vf.h ;)
+> 
+> static inline xe_gt_recovery_inprogress(gt)
+> {
+> 	return IS_SRIOV_VF(xe) && xe_gt_sriov_vf_recovery_inprogress(gt);
+> }
 > 
 
-I'll let Tomasz respond to most of the commennts as it is his patch but
-replying to last comment.
++1
 
-> On 9/24/2025 3:15 AM, Matthew Brost wrote:
-> > From: Tomasz Lis <tomasz.lis@intel.com>
 > > 
-> > Protect access to GGTT config as this is non-static information.
+> >>> +		(xe_memirq_vf_recovery_irq_pending(memirq, &gt->uc.guc) ||
+> >>> +		 READ_ONCE(gt->sriov.vf.migration.recovery_inprogress));
+> >>> +}
+> >>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> >>> index 0af1dc769fe0..bb5f8eace19b 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> >>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+> >>> @@ -25,6 +25,8 @@ void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
+> >>>  int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+> >>>  void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+> >>>  
+> >>> +bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt);
+> >>> +
+> >>>  u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+> >>>  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+> >>>  u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+> >>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> >>> index d95857bd789b..7b10b8e1e10e 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> >>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+> >>> @@ -49,6 +49,14 @@ struct xe_gt_sriov_vf_runtime {
+> >>>  	} *regs;
+> >>>  };
+> >>>  
+> >>> +/**
+> >>> + * xe_gt_sriov_vf_migration - VF migration data.
+> >>> + */
+> >>> +struct xe_gt_sriov_vf_migration {
+> >>> +	/** @recovery_inprogress: VF post migration recovery in progress */
+> >>> +	bool recovery_inprogress;
+> >>> +};
+> >>> +
+> >>>  /**
+> >>>   * struct xe_gt_sriov_vf - GT level VF virtualization data.
+> >>>   */
+> >>> @@ -61,6 +69,8 @@ struct xe_gt_sriov_vf {
+> >>>  	struct xe_gt_sriov_vf_selfconfig self_config;
+> >>>  	/** @runtime: runtime data retrieved from the PF. */
+> >>>  	struct xe_gt_sriov_vf_runtime runtime;
+> >>> +	/** @migration: migration data for the VF. */
+> >>> +	struct xe_gt_sriov_vf_migration migration;
+> >>>  };
+> >>>  
+> >>>  #endif
+> >>> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+> >>> index 49c45ec3e83c..94d5d6859aab 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_memirq.c
+> >>> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+> >>> @@ -398,6 +398,23 @@ void xe_memirq_postinstall(struct xe_memirq *memirq)
+> >>>  		memirq_set_enable(memirq, true);
+> >>>  }
+> >>>  
+> >>> +static bool memirq_received_noclear(struct xe_memirq *memirq,
+> >>> +				    struct iosys_map *vector,
+> >>> +				    u16 offset, const char *name)
+> >>
+> >> maybe instead of duplicating code of memirq_received() in 90% just add there
+> >> the "bool clear" flag?
+> >>
 > > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 96 ++++++++++++++++++-----
-> >  drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  3 +
-> >  drivers/gpu/drm/xe/xe_sriov_vf.c          |  6 ++
-> >  3 files changed, 84 insertions(+), 21 deletions(-)
+> > Sure.
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> > index 0461d5513487..016c867e5e2b 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> > @@ -440,18 +440,21 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  
-> > +	down_write(&config->lock);
+> >>> +{
+> >>> +	u8 value;
+> >>> +
+> >>> +	value = iosys_map_rd(vector, offset, u8);
+> >>> +	if (value) {
+> >>> +		if (value != 0xff)
+> >>> +			memirq_err_ratelimited(memirq,
+> >>> +					       "Unexpected memirq value %#x from %s at %u\n",
+> >>> +					       value, name, offset);
+> >>> +	}
+> >>> +
+> >>> +	return value;
+> >>> +}
+> >>> +
+> >>>  static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+> >>>  			    u16 offset, const char *name)
+> >>>  {
+> >>> @@ -434,8 +451,16 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+> >>>  	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+> >>>  		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+> >>>  
+> >>> -	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
+> >>> +	/*
+> >>> +	 * We must wait to perform the clear operation until after
+> >>> +	 * xe_gt_sriov_vf_start_migration_recovery() runs, to avoid race
+> >>> +	 * conditions where xe_gt_sriov_vf_recovery_inprogress() returns false.
+> >>
+> >> but the VF recovery "inprogress" shall be already set in the top level
+> >>
+> >> 	xe_sriov_vf_start_migration_recovery()
+> >>
+> >> even before the GT-level recovery starts, where is this race ?
+> >>
+> > 
+> > If we clear the interrupt it here, this is before the IRQ handler is
+> > called which flips the software bit for "inprogress". There would be
+> > window where xe_gt_sriov_vf_recovery_inprogress could return false which
+> > is problematic.
 > 
-> do we need to protect also VF2GUC communication ..
+> but who calls that recovery_inprogress() and why should it be problematic?
 > 
-> > +
-> >  	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
-> >  	if (unlikely(err))
-> > -		return err;
-> > +		goto out;
-> >  
-> >  	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
-> >  	if (unlikely(err))
-> > -		return err;
-> > +		goto out;
-> >  
-> 
-> .. or just RW access to the data itself from here?
-> 
-> >  	if (config->ggtt_size && config->ggtt_size != size) {
-> >  		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
-> >  				size / SZ_1K, config->ggtt_size / SZ_1K);
-> > -		return -EREMCHG;
-> > +		err = -EREMCHG;
-> > +		goto out;
-> >  	}
-> >  
-> >  	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
-> > @@ -460,8 +463,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
-> >  	config->ggtt_shift = start - (s64)config->ggtt_base;
-> >  	config->ggtt_base = start;
-> >  	config->ggtt_size = size;
-> > +	err = config->ggtt_size ? 0 : -ENODATA;
-> >  
-> > -	return config->ggtt_size ? 0 : -ENODATA;
-> > +out:
-> > +	up_write(&config->lock);
-> > +	return err;
-> >  }
-> >  
-> >  static int vf_get_lmem_info(struct xe_gt *gt)
-> > @@ -474,22 +480,28 @@ static int vf_get_lmem_info(struct xe_gt *gt)
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  
-> > +	down_write(&config->lock);
-> > +
-> >  	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_LMEM_SIZE_KEY, &size);
-> >  	if (unlikely(err))
-> > -		return err;
-> > +		goto out;
-> >  
-> >  	if (config->lmem_size && config->lmem_size != size) {
-> >  		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
-> >  				size / SZ_1M, config->lmem_size / SZ_1M);
-> > -		return -EREMCHG;
-> > +		err = -EREMCHG;
-> > +		goto out;
-> >  	}
-> >  
-> >  	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
-> >  	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
-> >  
-> >  	config->lmem_size = size;
-> > +	err = config->lmem_size ? 0 : -ENODATA;
-> >  
-> > -	return config->lmem_size ? 0 : -ENODATA;
-> > +out:
-> > +	up_write(&config->lock);
-> > +	return err;
-> >  }
-> >  
-> >  static int vf_get_submission_cfg(struct xe_gt *gt)
-> > @@ -501,23 +513,27 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  
-> > +	down_write(&config->lock);
-> > +
-> >  	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY, &num_ctxs);
-> >  	if (unlikely(err))
-> > -		return err;
-> > +		goto out;
-> >  
-> >  	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
-> >  	if (unlikely(err))
-> > -		return err;
-> > +		goto out;
-> >  
-> >  	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
-> >  		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
-> >  				num_ctxs, config->num_ctxs);
-> > -		return -EREMCHG;
-> > +		err = -EREMCHG;
-> > +		goto out;
-> >  	}
-> >  	if (config->num_dbs && config->num_dbs != num_dbs) {
-> >  		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
-> >  				num_dbs, config->num_dbs);
-> > -		return -EREMCHG;
-> > +		err = -EREMCHG;
-> > +		goto out;
-> >  	}
-> >  
-> >  	xe_gt_sriov_dbg_verbose(gt, "CTXs %u DBs %u\n", num_ctxs, num_dbs);
-> > @@ -525,7 +541,11 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
-> >  	config->num_ctxs = num_ctxs;
-> >  	config->num_dbs = num_dbs;
-> >  
-> > -	return config->num_ctxs ? 0 : -ENODATA;
-> > +	err = config->num_ctxs ? 0 : -ENODATA;
-> > +
-> > +out:
-> > +	up_write(&config->lock);
-> > +	return err;
-> >  }
-> >  
-> >  static void vf_cache_gmdid(struct xe_gt *gt)
-> > @@ -579,11 +599,18 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
-> >   */
-> >  u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
-> >  {
-> > +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> > +	u16 val;
-> > +
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> > -	xe_gt_assert(gt, gt->sriov.vf.self_config.num_ctxs);
-> 
-> the purpose of this assert was to make sure no part of the VF driver
-> is trying to get num_ctxs before we finish querying it from the GuC ..
-> 
-> >  
-> > -	return gt->sriov.vf.self_config.num_ctxs;
-> > +	down_read(&config->lock);
-> > +	xe_gt_assert(gt, config->num_ctxs);
-> 
-> .. instead of moving this assert in the middle of the lock ..
-> 
-> > +	val = config->num_ctxs;
-> > +	up_read(&config->lock);
-> > +
-> 
-> .. for code clarity you can add assert here as:
-> 
-> 	xe_gt_assert(gt, val);
-> > +	return val;
-> >  }
-> >  
-> >  /**
-> > @@ -596,11 +623,18 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
-> >   */
-> >  u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
-> >  {
-> > +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> > +	u64 val;
-> > +
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> > -	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
-> 
-> ditto
-> 
-> >  
-> > -	return gt->sriov.vf.self_config.lmem_size;
-> > +	down_read(&config->lock);
-> > +	xe_gt_assert(gt, config->lmem_size);
-> > +	val = config->lmem_size;
-> > +	up_read(&config->lock);
-> > +
-> > +	return val;
-> >  }
-> >  
-> >  /**
-> > @@ -613,11 +647,17 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
-> >   */
-> >  u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
-> >  {
-> > +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> > +	u64 val;
-> > +
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> > -	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
-> >  
-> > -	return gt->sriov.vf.self_config.ggtt_size;
-> > +	down_read(&config->lock);
-> > +	val = config->ggtt_size;
-> > +	up_read(&config->lock);
-> > +
-> > +	return val;
-> >  }
-> >  
-> >  /**
-> > @@ -630,11 +670,18 @@ u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
-> >   */
-> >  u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
-> >  {
-> > +	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> > +	u64 val;
-> > +
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
-> > -	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
-> >  
-> > -	return gt->sriov.vf.self_config.ggtt_base;
-> > +	down_read(&config->lock);
-> > +	xe_gt_assert(gt, config->ggtt_size);
-> > +	val = config->ggtt_base;
-> > +	up_read(&config->lock);
-> > +
-> > +	return val;
-> >  }
-> >  
-> >  /**
-> > @@ -648,11 +695,16 @@ u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
-> >  s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
-> >  {
-> >  	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-> > +	s64 val;
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  	xe_gt_assert(gt, xe_gt_is_main_type(gt));
-> >  
-> > -	return config->ggtt_shift;
-> > +	down_read(&config->lock);
-> > +	val = config->ggtt_shift;
-> > +	up_read(&config->lock);
-> > +
-> > +	return val;
-> >  }
-> >  
-> >  static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
-> > @@ -1044,6 +1096,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-> >  
-> > +	down_read(&config->lock);
-> >  	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
-> >  		   config->ggtt_base,
-> >  		   config->ggtt_base + config->ggtt_size - 1);
-> > @@ -1060,6 +1113,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
-> >  
-> >  	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
-> >  	drm_printf(p, "GuC doorbells:\t%u\n", config->num_dbs);
-> > +	up_read(&config->lock);
-> >  }
-> >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> > index 298dedf4b009..d95857bd789b 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-> > @@ -6,6 +6,7 @@
-> >  #ifndef _XE_GT_SRIOV_VF_TYPES_H_
-> >  #define _XE_GT_SRIOV_VF_TYPES_H_
-> >  
-> > +#include <linux/rwsem.h>
-> >  #include <linux/types.h>
-> >  #include "xe_uc_fw_types.h"
-> >  
-> > @@ -25,6 +26,8 @@ struct xe_gt_sriov_vf_selfconfig {
-> >  	u16 num_ctxs;
-> >  	/** @num_dbs: assigned number of GuC doorbells IDs. */
-> >  	u16 num_dbs;
-> > +	/** @lock: lock for protecting access to all selfconfig fields. */
-> > +	struct rw_semaphore lock;
-> >  };
-> >  
-> >  /**
-> > diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> > index cdd9f8e78b2a..d6e2ed9b9bbc 100644
-> > --- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-> > +++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-> > @@ -197,6 +197,12 @@ static void vf_migration_init_early(struct xe_device *xe)
-> >   */
-> >  void xe_sriov_vf_init_early(struct xe_device *xe)
-> >  {
-> > +	struct xe_gt *gt;
-> > +	unsigned int id;
-> > +
-> > +	for_each_gt(gt, xe, id)
-> > +		init_rwsem(&gt->sriov.vf.self_config.lock);
-> 
-> this is a wrong place - VF's per-GT data shall be initialized in
-> the per-GT code somewhere in xe_gt_sriov_vf.c
+> note there might be still other threads that will finish some actions
+> (including sending CTB) that will just be stuck there until we start
+> the recovery, so even if recovery_inprogress() returns false for the
+> small window that shouldn't change the picture
 > 
 
-Yes, it is moved to the proper place in [1].
+No. Read 'Waiters during VF post migration recovery' in [1]. That should
+explain the reason why this is required. Let me know if what is
+documented there is unclear.
+
+[1] https://patchwork.freedesktop.org/patch/676374/?series=154627&rev=2
+
+> > 
+> >>> +	 */
+> >>> +	if (memirq_received_noclear(memirq, status, ilog2(GUC_INTR_SW_INT_0),
+> >>> +				    name)) {
+> >>>  		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
+> >>
+> >> what if new MEMIRQ will arrive just here
+> >>
+> >> is it ok that we will clear it immediately?
+> >>
+> >> the whole memirq flow is that we clear irq byte first and then process
+> >> it, so if anything comes right after we finish processing will be noticed
+> >> on next iteration
+> >>
+> > 
+> > I don't see why that matters in this cabuse. In either case multiple IRQs
+> > could happen and single IRQ handler runs.
+> > 
+> >> I assume any races due to double migration shall be handled on the VF2GUC
+> >> communication level while sending RESFIX_START/DONE, not here
+> > 
+> > I don't think it should be possible to get multiple RESFIX_START IRQs
+> 
+> I assume the SW_INT_0 is set on every migration, even in case we didn't
+> have a chance to read it and clear it, or we didn't start (by sending 
+> RESFIX_START) nor finish (RESFIX_DONE)
+> 
+
+But can migration be triggered and then another one before the initial
+migration completes? I just don't see how that is possible or how it
+wouldn't break the world (i.e., The VF of GuC explodes somewhere).
+
+> > before DONE is complete. This existing code upstream seems to handle
+> > these cases, so my series attempts to handle this too, but it seems like
+> > something that shouldn't be possible.
+> > 
+> >>> +		iosys_map_wr(status, ilog2(GUC_INTR_SW_INT_0), u8, 0x00);
+> >>> +	}
+> >>>  }
+> >>>  
+> >>>  /**
+> >>> @@ -460,6 +485,27 @@ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+> >>>  	}
+> >>>  }
+> >>>  
+> >>> +/**
+> >>> + * xe_memirq_vf_recovery_irq_pending() - VF recovery IRQ is pending
+> >>
+> >> this function isn't really using anything VF specific except that on the
+> >> VF the SW_INT_0 means "migrated"
+> >>
+> >> maybe we can drop the _vf from function name?
+> >>
+> > 
+> > Sure, so 'xe_memirq_recovery_irq_pending'?
+> > 
+> > Or 'xe_memirq_sw_int0_irq_pending'?
+> 
+> 
+> > 
+> >> 	xe_memirq_pending_guc(memirq, guc, bit)
+> 
+> I would make it more generic and provide bit param
+> 
+> note that xe_guc_irq_handler() also takes a bit
+> 
+
+Sure.
 
 Matt
 
-[1] https://patchwork.freedesktop.org/patch/676383/?series=154627&rev=2
-
-> > +
-> >  	vf_migration_init_early(xe);
-> >  }
-> >  
+> 
+> >>> + * @memirq: the &xe_memirq
+> >>> + * @guc: the &xe_guc to check for IRQ
+> >>> + *
+> >>> + * Return: True if VF recovery IRQ is pending on @guc, False otherwise
+> >>> + */
+> >>> +bool xe_memirq_vf_recovery_irq_pending(struct xe_memirq *memirq,
+> >>> +				       struct xe_guc *guc)
+> >>> +{
+> >>> +	struct xe_gt *gt = guc_to_gt(guc);
+> >>> +	struct iosys_map map;
+> >>> +
+> >>> +	if (xe_gt_is_media_type(gt))
+> >>> +		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(INTR_MGUC) * SZ_16);
+> >>> +	else
+> >>> +		map = IOSYS_MAP_INIT_OFFSET(&memirq->status, ilog2(INTR_GUC) * SZ_16);
+> >>
+> >> nit: maybe just calc offset conditionally?
+> >>
+> >> 	u32 offset = is_media ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
+> >>
+> > 
+> > Sure.
+> > 
+> >>> +
+> >>> +	return iosys_map_rd(&map, ilog2(GUC_INTR_SW_INT_0), u8);
+> >>
+> >> as we have helpers we should use them
+> >>
+> >> 	return memirq_received_noclear(...)
+> > 
+> > Sure.
+> > 
+> > Matt
+> > 
+> >>
+> >>> +}
+> >>> +
+> >>>  /**
+> >>>   * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
+> >>>   * @memirq: the &xe_memirq
+> >>> diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+> >>> index 06130650e9d6..476b8cba179d 100644
+> >>> --- a/drivers/gpu/drm/xe/xe_memirq.h
+> >>> +++ b/drivers/gpu/drm/xe/xe_memirq.h
+> >>> @@ -25,4 +25,7 @@ void xe_memirq_handler(struct xe_memirq *memirq);
+> >>>  
+> >>>  int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
+> >>>  
+> >>> +bool xe_memirq_vf_recovery_irq_pending(struct xe_memirq *memirq,
+> >>> +				       struct xe_guc *guc);
+> >>> +
+> >>>  #endif
+> >>
 > 
