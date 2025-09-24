@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86015CAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 06:16:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF099CAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 06:22:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D2410E69E;
-	Wed, 24 Sep 2025 06:16:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yh3GbTGN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C2D110E69E;
- Wed, 24 Sep 2025 06:16:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758694566; x=1790230566;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=e23ndB+65Sf1IYBbv7iCaUVm7P1ldqGa8W2u31mzC08=;
- b=Yh3GbTGN5PgSeDk59OGkwFZtHSF4Do7mdpiCkM1hEhw+8+s6fM0TFhbA
- NKZSXi65JLQzO4Lf1S93e7d3lET4SXFhs1e/cJsNh+tBtXGf/iGrGZdA8
- +0FlBGSIPF4MGuj4UAqSKn7g95swv6SVhRX2XF3D2DevlQImbF9JELOMf
- T7RVpndy4IIugtYBm7HnB7jEjKj1EtcrxOVG5C5NgCtDmTFmsiRPaTp4c
- UQkvizYja3Fn/ONElIoM3ZRXZv3elMaSJ4ciH7//jNzrtnjXlWTl1Gviz
- +2wIrscZceicNyOIRm4XPMMIiaVxZe8EzHQZ/l+MiEQ88UQhT8+q/lUNQ Q==;
-X-CSE-ConnectionGUID: cFBRHsNKQpib9FyUnRQGeQ==
-X-CSE-MsgGUID: mxYg5RdXQpOORiIbNbVsGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="63610271"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="63610271"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 23:16:06 -0700
-X-CSE-ConnectionGUID: mT73pY81SiidFFEEXvtryw==
-X-CSE-MsgGUID: TKiaLrd3S92Uj9PswUX6hQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="176894814"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.144])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 23:16:05 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 06/20] drm/i915/cdclk: Extract dg2_power_well_count()
-Date: Wed, 24 Sep 2025 09:16:02 +0300
-Message-ID: <20250924061602.2837-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20250923171943.7319-7-ville.syrjala@linux.intel.com>
-References: <20250923171943.7319-7-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA02210E1A9;
+	Wed, 24 Sep 2025 06:22:08 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1847910E1A9;
+ Wed, 24 Sep 2025 06:22:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/cdclk=3A_Decoupl?=
+ =?utf-8?q?e_CDCLK_from_state-=3Emodeset_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 06:22:08 -0000
+Message-ID: <175869492809.360686.4573697614432784524@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,112 +36,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Extract the code to determine the DG2 pipe power well count
-into a small helper. I'll have other uses for this later.
+Series: drm/i915/cdclk: Decouple CDCLK from state->modeset (rev2)
+URL   : https://patchwork.freedesktop.org/series/154922/
+State : warning
 
-TODO: need to move this power well stuff out from the cdclk code...
+== Summary ==
 
-v2: Don't lose the early return from intel_cdclk_pcode_pre_notify()
-    (kernel test robot)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cffd78564cfd68c83eb72ddcad14735358c284de
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Tue Sep 23 20:19:42 2025 +0300
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 33 +++++++++++++---------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+    drm/i915/cdclk: Move intel_cdclk_atomic_check()
+    
+    Move intel_cdclk_atomic_check() a bit so that we don't need an
+    extra intel_modeset_calc_cdclk() forward declaration.
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch af3cdefd0a1ad2dad29fcde0854ccbce494cc28a drm-intel
+4b5720fbb113 drm/i915: Introduce intel_crtc_enable_changed() and intel_any_crtc_enable_changed()
+f1b1b73b247e drm/i915: Introduce intel_crtc_active_changed() and intel_any_crtc_active_changed()
+e65d8fae7eb8 drm/i915/bw: Skip the bw_state->active_pipes update if no pipe is changing its active state
+782854afc296 drm/1915/bw: Drop redundant display version checks
+f19e9fb0ffca drm/i915/cdclk: Extract glk_cdclk_audio_wa_needed()
+69dc7b59a23e drm/i915/cdclk: Extract dg2_power_well_count()
+02553ea3d6b8 drm/i915/cdclk: Introduce intel_cdclk_modeset_checks()
+91298ce7a40a drm/i915/cdclk: Handle the force_min_cdclk state locking in intel_cdclk_atomic_check()
+e4fbd1f13dbc drm/i915/cdclk: Extract intel_cdclk_update_bw_min_cdclk()
+4dc97f70b6a8 drm/i915/cdclk: Extract intel_cdclk_update_crtc_min_cdclk()
+577ca5a52712 drm/i915/cdclk: Rework bw_min_cdclk handling
+109e946c6c7d drm/i915/cdclk: Do intel_cdclk_update_crtc_min_cdclk() per-pipe
+-:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3295:
++							intel_crtc_compute_min_cdclk(old_crtc_state),
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 05d9f488895e..f190cfb85a34 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2591,6 +2591,12 @@ static void intel_set_cdclk(struct intel_display *display,
- 	}
- }
- 
-+static bool dg2_power_well_count(struct intel_display *display,
-+				 const struct intel_cdclk_state *cdclk_state)
-+{
-+	return display->platform.dg2 ? hweight8(cdclk_state->active_pipes) : 0;
-+}
-+
- static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
-@@ -2603,16 +2609,16 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
- 
- 	if (!intel_cdclk_changed(&old_cdclk_state->actual,
- 				 &new_cdclk_state->actual) &&
--				 new_cdclk_state->active_pipes ==
--				 old_cdclk_state->active_pipes)
-+	    dg2_power_well_count(display, old_cdclk_state) ==
-+	    dg2_power_well_count(display, old_cdclk_state))
- 		return;
- 
- 	/* According to "Sequence Before Frequency Change", voltage level set to 0x3 */
- 	voltage_level = DISPLAY_TO_PCODE_VOLTAGE_MAX;
- 
- 	change_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
--	update_pipe_count = hweight8(new_cdclk_state->active_pipes) >
--			    hweight8(old_cdclk_state->active_pipes);
-+	update_pipe_count = dg2_power_well_count(display, new_cdclk_state) >
-+		dg2_power_well_count(display, old_cdclk_state);
- 
- 	/*
- 	 * According to "Sequence Before Frequency Change",
-@@ -2630,7 +2636,7 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
- 	 * no action if it is decreasing, before the change
- 	 */
- 	if (update_pipe_count)
--		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-+		num_active_pipes = dg2_power_well_count(display, new_cdclk_state);
- 
- 	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
- 			   change_cdclk, update_pipe_count);
-@@ -2650,8 +2656,8 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
- 	voltage_level = new_cdclk_state->actual.voltage_level;
- 
- 	update_cdclk = new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk;
--	update_pipe_count = hweight8(new_cdclk_state->active_pipes) <
--			    hweight8(old_cdclk_state->active_pipes);
-+	update_pipe_count = dg2_power_well_count(display, new_cdclk_state) <
-+		dg2_power_well_count(display, old_cdclk_state);
- 
- 	/*
- 	 * According to "Sequence After Frequency Change",
-@@ -2667,7 +2673,7 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
- 	 * no action if it is increasing, after the change
- 	 */
- 	if (update_pipe_count)
--		num_active_pipes = hweight8(new_cdclk_state->active_pipes);
-+		num_active_pipes = dg2_power_well_count(display, new_cdclk_state);
- 
- 	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
- 			   update_cdclk, update_pipe_count);
-@@ -3248,15 +3254,14 @@ static bool intel_cdclk_need_serialize(struct intel_display *display,
- 				       const struct intel_cdclk_state *old_cdclk_state,
- 				       const struct intel_cdclk_state *new_cdclk_state)
- {
--	bool power_well_cnt_changed = hweight8(old_cdclk_state->active_pipes) !=
--				      hweight8(new_cdclk_state->active_pipes);
--	bool cdclk_changed = intel_cdclk_changed(&old_cdclk_state->actual,
--						 &new_cdclk_state->actual);
- 	/*
--	 * We need to poke hw for gen >= 12, because we notify PCode if
-+	 * We need to poke hw for DG2, because we notify PCode if
- 	 * pipe power well count changes.
- 	 */
--	return cdclk_changed || (display->platform.dg2 && power_well_cnt_changed);
-+	return intel_cdclk_changed(&old_cdclk_state->actual,
-+				   &new_cdclk_state->actual) ||
-+		dg2_power_well_count(display, old_cdclk_state) !=
-+		dg2_power_well_count(display, new_cdclk_state);
- }
- 
- int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
--- 
-2.49.1
+-:54: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3296:
++							intel_crtc_compute_min_cdclk(new_crtc_state),
+
+total: 0 errors, 2 warnings, 0 checks, 116 lines checked
+f0681f8418af drm/i915/cdclk: Relocate intel_plane_calc_min_cdclk() calls
+d98a8ce79e66 drm/i915/cdclk: Rework crtc min_cdclk handling
+5d4c18296e19 drm/i915/cdclk: Move intel_bw_crtc_min_cdclk() handling into intel_crtc_compute_min_cdclk()
+c3d2dec024dd drm/i915/cdclk: Decuple cdclk from state->modeset
+26027f67dbc9 drm/i915: Introduce intel_calc_enabled_pipes()
+67fe4eec04cf drm/i915/cdclk: Use enabled_pipes instead of active_pipes for the glk audio w/a
+2226a14eb0df drm/i915/cdclk: Hide intel_modeset_calc_cdclk()
+cffd78564cfd drm/i915/cdclk: Move intel_cdclk_atomic_check()
+
 
