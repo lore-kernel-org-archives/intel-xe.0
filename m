@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 269D4CAC5B5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 892C2CAC5B6
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE9FF10E698;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E547B10E69B;
 	Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDnqmiDU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KXM354zD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2360C10E691
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6FFF10E698
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676568; x=1790212568;
+ t=1758676569; x=1790212569;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=GNyMJ3tPDGVat9cNEZ/e8LMaWo77dnHJ8MU5SS51ykg=;
- b=CDnqmiDULXZ9GTAKUY6qzuzB37DOCW2XQiNermxmu+KVivawa+1aDyLV
- V2SYBIV7xAnhaJiqqJ8g1CD0vlcMVoJsaX78SQbrZ3q6SjNyf5Tc7vsll
- Sr7j0FAD4H6fccM7soNVCfy+kJxYMBmsVXQuehAWPbID16JsvTKed+zT+
- eMzZ2gd0jtJNZ152joSCXd4J9PRR/U7/cvadseXLfHbXvETIC0WSO2Rc2
- AX33LllpkF2/OGBEWzeBtbqXIAaahZ7rHFwbEex7p7qdZxSHkfTIwgLQe
- 8/r2xR9TkFCFhycmecbZHMX3PL43AzUd52dNlDkFMaX7c5Jl9AQrhIx5w Q==;
-X-CSE-ConnectionGUID: iu7VHIFFTymD+JpxtgXcbA==
-X-CSE-MsgGUID: 6Vjwk8W8RF+elW2NBZPQWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908246"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908246"
+ bh=TXaID5BIP4vDsaBj8/L/ZI628LuCi7FQse9JpP+Wrzc=;
+ b=KXM354zDiS3UyiCloy0eqwLjFMsdNTbdk/8dfZHQIpVCHCFH+S0XIer4
+ P6C4GL5BnkRum4RT/LSWiNMgzYzex9d+Emvot1xfO7thENgjYoYrMsxZQ
+ ZuRl2qHTig5RHbE236RtKiUm98gAQuAaE2cSviVWBjz/nndhiPZfRYip9
+ yPGvEJmCt5LwlbGS8im2hKeiPZkR0SPz3tyHXp8Fc90JxXziQdytf7J9N
+ j0OwBF08tdu5podOcJFsUjOIcGIjDwXLpOoHH1yxP0Klx3nj+yhkmAu/F
+ xvguL3a2ove6kyExVUmxoEMfE/UI7Z3Owa/3Ra6IhFkaw4eCY84H9qxZ1 w==;
+X-CSE-ConnectionGUID: L58ms8nQR7CDsqbY2/LxGQ==
+X-CSE-MsgGUID: CMYeMxy/QfqdQgMCSDNAeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908253"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908253"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:07 -0700
-X-CSE-ConnectionGUID: /f29wtVPRByff+DgRbbCDw==
-X-CSE-MsgGUID: AmOZHGMOReSMuh192NyrYg==
+ 23 Sep 2025 18:16:08 -0700
+X-CSE-ConnectionGUID: l8NmKkYkRZSMLC0LDhxdsg==
+X-CSE-MsgGUID: 7Uf64Q0nS7WMulw7xEj8EA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841780"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841787"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 01/34] drm/xe/vf: Lock querying GGTT config during driver
- init
-Date: Tue, 23 Sep 2025 18:15:28 -0700
-Message-Id: <20250924011601.888293-2-matthew.brost@intel.com>
+Subject: [PATCH v2 08/34] drm/xe: Don't change LRC ring head on job
+ resubmission
+Date: Tue, 23 Sep 2025 18:15:35 -0700
+Message-Id: <20250924011601.888293-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,291 +66,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tomasz Lis <tomasz.lis@intel.com>
+Now that we save the job's head during submission, it's no longer
+necessary to adjust the LRC ring head during resubmission. Instead, a
+software-based adjustment of the tail will overwrite the old jobs in
+place. For some odd reason, adjusting the LRC ring head didn't work on
+parallel queues, which was causing issues in our CI.
 
-Protect access to GGTT config as this is non-static information.
+v6:
+ - Also set LRC tail to head so queue is idle coming out of reset
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 96 ++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  3 +
- drivers/gpu/drm/xe/xe_sriov_vf.c          |  6 ++
- 3 files changed, 84 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 0461d5513487..016c867e5e2b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -440,18 +440,21 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 3a534d93505f..70306f902ba5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2008,11 +2008,17 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	if (!exec_queue_killed_or_banned_or_wedged(q)) {
++		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
+ 		int i;
  
-+	down_write(&config->lock);
-+
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->ggtt_size && config->ggtt_size != size) {
- 		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
- 				size / SZ_1K, config->ggtt_size / SZ_1K);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
+ 		trace_xe_exec_queue_resubmit(q);
+-		for (i = 0; i < q->width; ++i)
+-			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
++		if (job) {
++			for (i = 0; i < q->width; ++i) {
++				q->lrc[i]->ring.tail = job->ptrs[i].head;
++				xe_lrc_set_ring_tail(q->lrc[i],
++						     xe_lrc_ring_head(q->lrc[i]));
++			}
++		}
+ 		xe_sched_resubmit_jobs(sched);
  	}
- 
- 	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
-@@ -460,8 +463,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
- 	config->ggtt_shift = start - (s64)config->ggtt_base;
- 	config->ggtt_base = start;
- 	config->ggtt_size = size;
-+	err = config->ggtt_size ? 0 : -ENODATA;
- 
--	return config->ggtt_size ? 0 : -ENODATA;
-+out:
-+	up_write(&config->lock);
-+	return err;
- }
- 
- static int vf_get_lmem_info(struct xe_gt *gt)
-@@ -474,22 +480,28 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
-+	down_write(&config->lock);
-+
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_LMEM_SIZE_KEY, &size);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->lmem_size && config->lmem_size != size) {
- 		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
- 				size / SZ_1M, config->lmem_size / SZ_1M);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 
- 	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
- 	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
- 
- 	config->lmem_size = size;
-+	err = config->lmem_size ? 0 : -ENODATA;
- 
--	return config->lmem_size ? 0 : -ENODATA;
-+out:
-+	up_write(&config->lock);
-+	return err;
- }
- 
- static int vf_get_submission_cfg(struct xe_gt *gt)
-@@ -501,23 +513,27 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
-+	down_write(&config->lock);
-+
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY, &num_ctxs);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
- 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
- 				num_ctxs, config->num_ctxs);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 	if (config->num_dbs && config->num_dbs != num_dbs) {
- 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
- 				num_dbs, config->num_dbs);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 
- 	xe_gt_sriov_dbg_verbose(gt, "CTXs %u DBs %u\n", num_ctxs, num_dbs);
-@@ -525,7 +541,11 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 	config->num_ctxs = num_ctxs;
- 	config->num_dbs = num_dbs;
- 
--	return config->num_ctxs ? 0 : -ENODATA;
-+	err = config->num_ctxs ? 0 : -ENODATA;
-+
-+out:
-+	up_write(&config->lock);
-+	return err;
- }
- 
- static void vf_cache_gmdid(struct xe_gt *gt)
-@@ -579,11 +599,18 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
-  */
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
- {
-+	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	u16 val;
-+
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.num_ctxs);
- 
--	return gt->sriov.vf.self_config.num_ctxs;
-+	down_read(&config->lock);
-+	xe_gt_assert(gt, config->num_ctxs);
-+	val = config->num_ctxs;
-+	up_read(&config->lock);
-+
-+	return val;
- }
- 
- /**
-@@ -596,11 +623,18 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
-  */
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
- {
-+	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	u64 val;
-+
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
- 
--	return gt->sriov.vf.self_config.lmem_size;
-+	down_read(&config->lock);
-+	xe_gt_assert(gt, config->lmem_size);
-+	val = config->lmem_size;
-+	up_read(&config->lock);
-+
-+	return val;
- }
- 
- /**
-@@ -613,11 +647,17 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
-  */
- u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
- {
-+	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	u64 val;
-+
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
- 
--	return gt->sriov.vf.self_config.ggtt_size;
-+	down_read(&config->lock);
-+	val = config->ggtt_size;
-+	up_read(&config->lock);
-+
-+	return val;
- }
- 
- /**
-@@ -630,11 +670,18 @@ u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
-  */
- u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
- {
-+	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	u64 val;
-+
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
- 
--	return gt->sriov.vf.self_config.ggtt_base;
-+	down_read(&config->lock);
-+	xe_gt_assert(gt, config->ggtt_size);
-+	val = config->ggtt_base;
-+	up_read(&config->lock);
-+
-+	return val;
- }
- 
- /**
-@@ -648,11 +695,16 @@ u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
- s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
- {
- 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	s64 val;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
- 
--	return config->ggtt_shift;
-+	down_read(&config->lock);
-+	val = config->ggtt_shift;
-+	up_read(&config->lock);
-+
-+	return val;
- }
- 
- static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
-@@ -1044,6 +1096,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
-+	down_read(&config->lock);
- 	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
- 		   config->ggtt_base,
- 		   config->ggtt_base + config->ggtt_size - 1);
-@@ -1060,6 +1113,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 
- 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
- 	drm_printf(p, "GuC doorbells:\t%u\n", config->num_dbs);
-+	up_read(&config->lock);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 298dedf4b009..d95857bd789b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GT_SRIOV_VF_TYPES_H_
- #define _XE_GT_SRIOV_VF_TYPES_H_
- 
-+#include <linux/rwsem.h>
- #include <linux/types.h>
- #include "xe_uc_fw_types.h"
- 
-@@ -25,6 +26,8 @@ struct xe_gt_sriov_vf_selfconfig {
- 	u16 num_ctxs;
- 	/** @num_dbs: assigned number of GuC doorbells IDs. */
- 	u16 num_dbs;
-+	/** @lock: lock for protecting access to all selfconfig fields. */
-+	struct rw_semaphore lock;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index cdd9f8e78b2a..d6e2ed9b9bbc 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -197,6 +197,12 @@ static void vf_migration_init_early(struct xe_device *xe)
-  */
- void xe_sriov_vf_init_early(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	for_each_gt(gt, xe, id)
-+		init_rwsem(&gt->sriov.vf.self_config.lock);
-+
- 	vf_migration_init_early(xe);
- }
  
 -- 
 2.34.1
