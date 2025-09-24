@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4506CAC5B0
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 12:04:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22E67CAC5B0
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 12:10:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A670010E70C;
-	Wed, 24 Sep 2025 12:04:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FO0AS8Gg";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2200C10E70C;
- Wed, 24 Sep 2025 12:04:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758715489; x=1790251489;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=4k6vtQq3P3QaSxmETdTAv2+O6zcUQsJZFVL/+PumiyA=;
- b=FO0AS8GgHlSIsjy2u/MHmog2yqFxsHnWOCWWmQnjT8gL069EOctBYms5
- n4K5unQHZT+/5GWtIPqx26x+m3US4yEXr6XMuZU+uCgOLQ67reJ0Eb4r9
- cBCy3f+D+nNs6+OcDl8a6lC16VCh9zDlgZmIRxRPi5/Yi5IWHIznaGFqk
- 2bDH7G1v5+X4LnGoUazn1GAmqBzGxBA1ZDFWyi96xeHv3bx42Xgj/gjNE
- B8lCfieFApqItxWhVTLN1C0jSkgSIPd4rOdnoZp4q7w4VCm66kFArMmTl
- Ew8BjhCpku7ZUzDph87m96r8btr+kZjf/aXOS0n+XfY3sfqTEgfZM06fo Q==;
-X-CSE-ConnectionGUID: Ny10DVtkRUmEti47F2HP5w==
-X-CSE-MsgGUID: vXmH4KzQRTKYKQXuGLwJbA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="48575561"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="48575561"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 05:04:48 -0700
-X-CSE-ConnectionGUID: cEWRPV06SImWxiTms0y4EQ==
-X-CSE-MsgGUID: NJCZ5IXBRcu0/TbiXfL/Jg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="182299162"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.144])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 05:04:48 -0700
-Date: Wed, 24 Sep 2025 15:04:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 8/9] drm/i915/vrr: Clamp guardband as per hardware and
- timing constraints
-Message-ID: <aNPeXDMHgDLzDWvD@intel.com>
-References: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
- <20250924105129.2771196-9-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B107B10E722;
+	Wed, 24 Sep 2025 12:09:59 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9D310E235;
+ Wed, 24 Sep 2025 12:09:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6786541890204536033=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250924105129.2771196-9-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_set=5Fcontext=5Fl?=
+ =?utf-8?q?atency_and_refactor_VRR/DSB_timing_logic_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 12:09:59 -0000
+Message-ID: <175871579923.361551.9392252377434811510@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,117 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 24, 2025 at 04:21:28PM +0530, Ankit Nautiyal wrote:
-> The maximum guardband value is constrained by two factors:
-> - The actual vblank length minus set context latency (SCL)
-> - The hardware register field width:
->   - 8 bits for ICL/TGL (VRR_CTL_PIPELINE_FULL_MASK -> max 255)
->   - 16 bits for ADL+ (XELPD_VRR_CTL_VRR_GUARDBAND_MASK -> max 65535)
-> 
-> Remove the #FIXME and clamp the guardband to the maximum allowed value.
-> 
-> v2:
-> - Use REG_FIELD_MAX(). (Ville)
-> - Separate out functions for intel_vrr_max_guardband(),
->   intel_vrr_max_vblank_guardband(). (Ville)
-> 
-> v3:
-> - Fix Typo: Add the missing adjusted_mode->crtc_vdisplay in guardband
->   computation. (Ville)
-> - Refactor intel_vrr_max_hw_guardband() and use else for consistency.
->   (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 49 ++++++++++++++++++------
->  1 file changed, 37 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 26c5c32a9a58..e29b4050a9df 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -409,6 +409,40 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	}
->  }
->  
-> +static int
-> +intel_vrr_max_hw_guardband(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	int max_pipeline_full = REG_FIELD_MAX(VRR_CTL_PIPELINE_FULL_MASK);
-> +	int max_guardband;
-> +
-> +	if (DISPLAY_VER(display) >= 13)
-> +		max_guardband = REG_FIELD_MAX(XELPD_VRR_CTL_VRR_GUARDBAND_MASK);
-> +	else
-> +		max_guardband = intel_vrr_pipeline_full_to_guardband(crtc_state,
-> +								     max_pipeline_full);
-> +	return max_guardband;
+--===============6786541890204536033==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The 'max_guardband' variable looks useless here, could just return
-directly from both sides of the if-else.
+== Series Details ==
 
-'max_pipeline_full' is perhaps redundant too, but I suppose the
-line would get pretty long without it. So maybe it makes sense to keep
-it.
+Series: Introduce set_context_latency and refactor VRR/DSB timing logic (rev3)
+URL   : https://patchwork.freedesktop.org/series/154809/
+State : success
 
-> +}
-> +
-> +static int
-> +intel_vrr_max_vblank_guardband(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +
-> +	return crtc_state->vrr.vmin -
-> +	       adjusted_mode->crtc_vdisplay -
-> +	       crtc_state->set_context_latency -
-> +	       intel_vrr_extra_vblank_delay(display);
-> +}
-> +
-> +static int
-> +intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
-> +{
-> +	return min(intel_vrr_max_hw_guardband(crtc_state),
-> +		   intel_vrr_max_vblank_guardband(crtc_state));
-> +}
-> +
->  void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
-> @@ -417,22 +451,13 @@ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
->  	if (!intel_vrr_possible(crtc_state))
->  		return;
->  
-> -	crtc_state->vrr.guardband =
-> -		crtc_state->vrr.vmin -
-> -		adjusted_mode->crtc_vdisplay -
-> -		crtc_state->set_context_latency -
-> -		intel_vrr_extra_vblank_delay(display);
-> -
-> -	if (DISPLAY_VER(display) < 13) {
-> -		/* FIXME handle the limit in a proper way */
-> -		crtc_state->vrr.guardband =
-> -			min(crtc_state->vrr.guardband,
-> -			    intel_vrr_pipeline_full_to_guardband(crtc_state, 255));
-> +	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
-> +					intel_vrr_max_guardband(crtc_state));
->  
-> +	if (DISPLAY_VER(display) < 13)
->  		crtc_state->vrr.pipeline_full =
->  			intel_vrr_guardband_to_pipeline_full(crtc_state,
->  							     crtc_state->vrr.guardband);
-> -	}
->  }
->  
->  static u32 trans_vrr_ctl(const struct intel_crtc_state *crtc_state)
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670_BAT -> xe-pw-154809v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154809v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-1:          [FAIL][3] ([Intel XE#5507]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+
+
+Build changes
+-------------
+
+  * Linux: xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670 -> xe-pw-154809v3
+
+  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670: 53ee7e373ce454dc86b39ac27aa84d95c536b670
+  xe-pw-154809v3: 154809v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/index.html
+
+--===============6786541890204536033==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce set_context_latency and refactor VRR/DSB timing logic (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154809/">https://patchwork.freedesktop.org/series/154809/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670_BAT -&gt; xe-pw-154809v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154809v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2@render:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154809v3/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670 -&gt; xe-pw-154809v3</li>
+</ul>
+<p>IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670: 53ee7e373ce454dc86b39ac27aa84d95c536b670<br />
+  xe-pw-154809v3: 154809v3</p>
+
+</body>
+</html>
+
+--===============6786541890204536033==--
