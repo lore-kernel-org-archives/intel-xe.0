@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14255CAC5B8
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 14:40:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 464B6CAC5B8
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 14:40:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 565F710EA73;
-	Fri, 26 Sep 2025 14:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0880F10EA74;
+	Fri, 26 Sep 2025 14:40:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="lOButaWq";
+	dkim=pass (4096-bit key; unprotected) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="joZ0LwVV";
 	dkim-atps=neutral
-X-Greylist: delayed 407 seconds by postgrey-1.36 at gabe;
- Wed, 24 Sep 2025 20:38:31 UTC
 Received: from bout4.ijzerbout.nl (bout4.ijzerbout.nl [91.99.166.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A49AC10E7E1
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 20:38:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F5E10E7E1
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 20:45:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
- t=1758745902; bh=Wrh6dsspcvC6+6O+0vWQ5ywniXknu8Y8mDFA1nPkS0o=;
+ t=1758746701; bh=+W9ee6NkoaXu3UcDGl9X8Whovz/tJ6aDiwbXXN2aka0=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=lOButaWq+69/LyxDa7gl1zZCJHvYGfMWkxdnmzuSyPe4VY/bOSF/1DyZQR9asMYr2
- Uu4NJah43L31Pb9rxDAKYqOOO7Qa49H944YX3Jhc8vS0V82VHLjG9TtwE42OEZKg1w
- D+pib5rB7FDiALep9W90iuoUoF8QoFCmUA5d/I3OhqiFPGF5PKtM6mKuQ6ohWT5T33
- eQ5geFxJw9h77rZLKdLnjvJuuXAGH98CP3bgAmKPD2Gg26HuRJvbySXrTua3Kc+R6d
- N8bIAl8K+N6HBuqr8WYc683gdalQ/iRTKnUN7FDf+FO8i0hN3nUUwL+UC0IB7aNMhm
- pcQUJDHhVfYwLluczf2tLwc40P5rjBcSo6d3Vlo8VPKvTDfvfRLrcYoRV5OEjc/L6J
- Ti8RLzl/d328W53ckALxdw0SZpv3TyEazy5GT1MFBi8GpN/PrIYF7sdqrSJDEwD6PB
- xEhxelKFmD8ViSG+5FZyKpsLNZlwWNNXqkjlnS2Pzynt6tUEt9gdqGK3dcJr/XGHSE
- jnF1GNlcW1347D2RwY4kVipfz1/eFDmHhFG2jp8mQMgJCntS0sKxWlJPuweCSAGpHn
- JIcvh5XGFR7inMGBDYS0AoD+xv4WAPEsAvWKrPmU9497N1R4XVjwtkCSKIbKuKv7J6
- OKbHhkvQPKFNRKukUOe/i5N8=
+ b=joZ0LwVVLYjhdo19MSoDs/C/K0gdffRoiPl49ISJwu1BeZ2oVNlBtdxDuAUwEVsAn
+ M9l8iaNabpKZ8o+M8rZGFXtuXwBZuULvBBvCrdhM2bX/rJ4WXasaT09OboJiHud2K4
+ S/40QARHuhd1Mw4cmUOaf7ZV3Lg3lmmdDZob6tS+yC3gk3Cz79p4DHcchgk/PCQAGl
+ jxvY3mGkqrl1Dq/oUSxm3lI5NsPRRGhYLEDQtyvYPumGPRC+lrYCXBK9zhDgSQRadz
+ NdCtr31sx8TrRL06/pO8wQxDoZxbUKzVv72jvIXuKs5IgrOULGPpZ0q3jOeXGGQERM
+ qXsYyMzCJ0ikLMBRRowz6KnorOysdO13LzmW03TXoc4ex4GTZCaXSqRAh/TqR+080B
+ 0yZuziIqlHif2YndSsSCRTqripyDJZDMDsKaEAyWqxT7XQp9yteMb0CI0zIHMKyGG+
+ tfbKYU7oWHBcllNKKrvpBhqhFy2LffVYOHWE8j8cRkG11GoPBKqfaCbyf5MMvWzgbi
+ QKx49xUoNIGd9q9IjUSOp+RVWVnMMB0/KC3/XsAvMNj2BM502Y9bMKP+Izf13fSi8I
+ p3yRD1ipUrQOKbGPxuv9LtL9wTjdawLy7idDFW4A0MQprt8tFSYCLNWdcHf1N6Zd6T
+ SUoV/6mwD3hq4N2f8xTq6Jg0=
 Received: from [192.168.178.251] (ijzerbout.connected.by.freedominter.net
  [185.238.128.139])
- by bout4.ijzerbout.nl (Postfix) with ESMTPSA id 6B38941332;
- Wed, 24 Sep 2025 22:31:42 +0200 (CEST)
-Message-ID: <32120086-a674-422a-a434-b8bafbc3b6d9@ijzerbout.nl>
-Date: Wed, 24 Sep 2025 22:31:39 +0200
+ by bout4.ijzerbout.nl (Postfix) with ESMTPSA id 8E81B41332;
+ Wed, 24 Sep 2025 22:45:00 +0200 (CEST)
+Message-ID: <e6da8bc1-12d2-433e-ad20-095c291e03d4@ijzerbout.nl>
+Date: Wed, 24 Sep 2025 22:44:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/7] drm/xe/configfs: Add post context restore bb
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Riana Tauro <riana.tauro@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Raag Jadav <raag.jadav@intel.com>
-References: <20250916-wa-bb-cmds-v5-0-306bddbc15da@intel.com>
- <20250916-wa-bb-cmds-v5-4-306bddbc15da@intel.com>
+Subject: Re: [PATCH v9 9/9] drm/xe/xe_late_bind_fw: Extract and print version
+ info
+To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ alexander.usyskin@intel.com, gregkh@linuxfoundation.org,
+ daniele.ceraolospurio@intel.com, mika.westerberg@linux.intel.com,
+ lucas.demarchi@intel.com, karthik.poosa@intel.com
+References: <20250905154953.3974335-1-badal.nilawar@intel.com>
+ <20250905154953.3974335-10-badal.nilawar@intel.com>
 Content-Language: en-US
 From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20250916-wa-bb-cmds-v5-4-306bddbc15da@intel.com>
+In-Reply-To: <20250905154953.3974335-10-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 26 Sep 2025 14:40:46 +0000
@@ -68,60 +67,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Op 16-09-2025 om 23:15 schreef Lucas De Marchi:
-> Allow the user to specify commands to execute during a context restore.
-> Currently it's possible to parse 2 types of actions:
+Op 05-09-2025 om 17:49 schreef Badal Nilawar:
+> Extract and print version info of the late binding binary.
 >
-> 	- cmd: the instructions are added as is to the bb
-> 	- reg: just use the address and value, without worrying about
-> 	  encoding the right LRI instruction. This is possibly the most
-> 	  useful use case, so added a dedicated action for that.
+> v2: Some refinements (Daniele)
 >
-> This also prepares for future BBs: mid context restore and rc6 context
-> restore that can re-use the same parsing functions.
->
-> Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
-> v2:
-> - use bin attribute to be allow multiline
-> v3:
-> - revert attribute back to a simple attribute rather than binary:
->    otherwise configfs only calls the callback on the file release and
->    ignores the result. With that the user can't rely on the return
->    code to know if the setting was accepted.
+>   drivers/gpu/drm/xe/xe_late_bind_fw.c       | 124 +++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_late_bind_fw_types.h |   3 +
+>   drivers/gpu/drm/xe/xe_uc_fw_abi.h          |  66 +++++++++++
+>   3 files changed, 193 insertions(+)
 >
->    To still allow multiline, a method that uses just one syscall should
->    be used. In bash, echo will end up using more syscalls. This can be
->    workarounded by using heredoc, or simply writing it in C
->    (rewrote that listening to
->     https://www.youtube.com/watch?v=1S1fISh-pag, you're welcome to review
->     listening to that beauty too)
-> v4: taint with TAINT_TEST (Matt Roper)
-> v5: move taint to previous patch (Raag)
-> ---
->   drivers/gpu/drm/xe/xe_configfs.c | 280 ++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 278 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-> ...
-> +static ssize_t parse_wa_bb_lines(const char *lines,
-> +				 struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX])
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> index 0f062008ca83..38f3feb2aecd 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> @@ -45,6 +45,121 @@ late_bind_to_xe(struct xe_late_bind *late_bind)
+>   	return container_of(late_bind, struct xe_device, late_bind);
+>   }
+>   
+> +static struct xe_device *
+> +late_bind_fw_to_xe(struct xe_late_bind_fw *lb_fw)
 > +{
-> +	ssize_t dwords = 0, ret;
-> +	const char *p;
+> +	return container_of(lb_fw, struct xe_device, late_bind.late_bind_fw[lb_fw->id]);
+> +}
 > +
-> +	for (p = lines; *p; p++) {
-> +		const struct engine_info *info = NULL;
-> +		u32 val, val2;
+> +/* Refer to the "Late Bind based Firmware Layout" documentation entry for details */
+> +static int parse_cpd_header(struct xe_late_bind_fw *lb_fw,
+> +			    const void *data, size_t size, const char *manifest_entry)
+> +{
+> +	struct xe_device *xe = late_bind_fw_to_xe(lb_fw);
+> +	const struct gsc_cpd_header_v2 *header = data;
+> +	const struct gsc_manifest_header *manifest;
+> +	const struct gsc_cpd_entry *entry;
+> +	size_t min_size = sizeof(*header);
+> +	u32 offset;
+> +	int i;
 > +
-> +		/* Also allow empty lines */
-> +		p += strspn(p, " \t\n");
-> +		if (!*p)
-> +			break;
+> +	/* manifest_entry is mandatory */
+> +	xe_assert(xe, manifest_entry);
 > +
-> +		ret = parse_engine(p, " \t\n", NULL, &info);
-Notice that parse_engine is calling lookup_engine_info with mask being NULL
-That function is writing to *mask without checking for NULL.
+> +	if (size < min_size || header->header_marker != GSC_CPD_HEADER_MARKER)
+> +		return -ENOENT;
+> +
+> +	if (header->header_length < sizeof(struct gsc_cpd_header_v2)) {
+> +		drm_err(&xe->drm, "%s late binding fw: Invalid CPD header length %u!\n",
+> +			fw_id_to_name[lb_fw->id], header->header_length);
+> +		return -EINVAL;
+> +	}
+> +
+> +	min_size = header->header_length + sizeof(struct gsc_cpd_entry) * header->num_of_entries;
+> +	if (size < min_size) {
+> +		drm_err(&xe->drm, "%s late binding fw: too small! %zu < %zu\n",
+> +			fw_id_to_name[lb_fw->id], size, min_size);
+> +		return -ENODATA;
+> +	}
+> +
+> +	/* Look for the manifest first */
+> +	entry = (void *)header + header->header_length;
+> +	for (i = 0; i < header->num_of_entries; i++, entry++)
+> +		if (strcmp(entry->name, manifest_entry) == 0)
+> +			offset = entry->offset & GSC_CPD_ENTRY_OFFSET_MASK;
+> +
+> +	if (!offset) {
+This for loop looks suspicious. Do you continue the loop on purpose
+after finding the first match? Or should there be a break?
+Also, if there is no match then offset is uninitialized. Isn't it better
+to initialize offset at the start?
 -- 
 Kees
