@@ -4,75 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52774CAC5B0
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 11:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4506CAC5B0
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 12:04:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF7910E6ED;
-	Wed, 24 Sep 2025 11:59:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A670010E70C;
+	Wed, 24 Sep 2025 12:04:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="FyTqFo59";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FO0AS8Gg";
 	dkim-atps=neutral
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9203710E0C2
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 09:51:12 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-2698d47e776so39547755ad.1
- for <intel-xe@lists.freedesktop.org>; Tue, 23 Sep 2025 02:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1758621072; x=1759225872; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=ujUSntEdEB2Zj8RW3cXBNzPb5lb7mNEARj7gYfxpl6o=;
- b=FyTqFo59LR881O8bttoiJQAwYYxYL6jDUsrfJMd+3alFfFPvYIucMYLOtzgxC3ldIA
- +w9a6mfM8C7It7K7A2OnQCgw9MdiTZiUw5Y0Zwwn9JSznoc2FuzBZQ8q1Rx5Lh7VSDpO
- UHmH5X+3cw30kP4riy330UWuisgviH5bWXHra9Dg+tp5a4SpjO6ei5GsnZ9QC+AVGQIG
- QL6lIv3uyfiEPPtaR3uI5+fROleylB6XfrKRAoaFtllnbiLs20jTLJYhDin1Lq3jdJUJ
- xHu1/n2Z4mqaGv4ASqVbJ+enJsaMwHEgR47exmvcY2XVqCUkjaRMWlUrDy7WkDUs6zzn
- qTIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758621072; x=1759225872;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=ujUSntEdEB2Zj8RW3cXBNzPb5lb7mNEARj7gYfxpl6o=;
- b=muIDNAodR2tlTuUL9khY5Ki3CiqCtF3HJtaXGtFCvtyYGSIIistQtdKBX4sa69RCqL
- 5fcYymHHbw1RAjXtP5lsuQuybsb5FHFengJ/ic+J4kUKnjzcb4RVdPW0IfT9wQYGNG/T
- Z6P3mxA1Iluk9B1BhHfv4JObAd9CgPIWviRDyKMgyltB6OWs34vHzN512YmpK4fhSqbY
- WQ/mOnyYGw4mkAXZYoWaIU8YUZomibUub2IW/9aBHIsVkVWkO7VPB9AU+kb3PzFzkbQP
- aO3Rys4HyhBsAt5L/n+4hDrbIev+IXF78SX0ilf2Puqq45a2eJQRaWUSHtmW/ZD69SfP
- NGJA==
-X-Gm-Message-State: AOJu0Yy4SWtQPzAGWJObjlyO3G8O0agzRhsmvjU/eWQk5XZMywKdRhpi
- Np9wstvI29nMZgVJlXTzRynfyUOqiEyN9+QRPE35bggEa9YFsiaKIUclBk99xdN2C2m19ovOtsm
- g+WqXt862VO84jQFbSEbB+4F6rSXlvg9W5NXL4gOwRHhpJFZBXcaguD8A5A==
-X-Gm-Gg: ASbGncuvN64pMOlo2JRRLHIQSlq323Ww3Ggx+LFFu2GOibu9j1HPg75gS157HUZpeSC
- D73oKwx8TZh9KL8yTbY6ORYpYE24K/60CEkfurM5GDCQFOn3QGVLtqbu9oiEO1/P5IuMewySyNQ
- rASn+cJj1Gt5tNAU7iig7boZ/uRlpDPSa176zXENPeIbbz72X7/u4mYJ3ryh/gVv4MtFg8BE7Yn
- qKSvYeQ4nN5/sbcyvsg/2VqMNUeBraWRUowY+G7gVld6Va9tiI=
-X-Google-Smtp-Source: AGHT+IFHus42Ak5ruWRhTAyg3xMfr+guDvkTkhHI6eHQ3GvPvUzkyf4uNtM2sp4MCW+8IQd4OjacMuEUwlCpUIFW7h0=
-X-Received: by 2002:a17:902:ecc5:b0:264:c886:8188 with SMTP id
- d9443c01a7336-27cc2c98b42mr26887555ad.24.1758621071785; Tue, 23 Sep 2025
- 02:51:11 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2200C10E70C;
+ Wed, 24 Sep 2025 12:04:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758715489; x=1790251489;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=4k6vtQq3P3QaSxmETdTAv2+O6zcUQsJZFVL/+PumiyA=;
+ b=FO0AS8GgHlSIsjy2u/MHmog2yqFxsHnWOCWWmQnjT8gL069EOctBYms5
+ n4K5unQHZT+/5GWtIPqx26x+m3US4yEXr6XMuZU+uCgOLQ67reJ0Eb4r9
+ cBCy3f+D+nNs6+OcDl8a6lC16VCh9zDlgZmIRxRPi5/Yi5IWHIznaGFqk
+ 2bDH7G1v5+X4LnGoUazn1GAmqBzGxBA1ZDFWyi96xeHv3bx42Xgj/gjNE
+ B8lCfieFApqItxWhVTLN1C0jSkgSIPd4rOdnoZp4q7w4VCm66kFArMmTl
+ Ew8BjhCpku7ZUzDph87m96r8btr+kZjf/aXOS0n+XfY3sfqTEgfZM06fo Q==;
+X-CSE-ConnectionGUID: Ny10DVtkRUmEti47F2HP5w==
+X-CSE-MsgGUID: vXmH4KzQRTKYKQXuGLwJbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="48575561"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="48575561"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 05:04:48 -0700
+X-CSE-ConnectionGUID: cEWRPV06SImWxiTms0y4EQ==
+X-CSE-MsgGUID: NJCZ5IXBRcu0/TbiXfL/Jg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="182299162"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.144])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 05:04:48 -0700
+Date: Wed, 24 Sep 2025 15:04:44 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 8/9] drm/i915/vrr: Clamp guardband as per hardware and
+ timing constraints
+Message-ID: <aNPeXDMHgDLzDWvD@intel.com>
+References: <20250924105129.2771196-1-ankit.k.nautiyal@intel.com>
+ <20250924105129.2771196-9-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-From: Naresh Kamboju <naresh.kamboju@linaro.org>
-Date: Tue, 23 Sep 2025 15:21:00 +0530
-X-Gm-Features: AS18NWCTfgTcnoVtFJ38FtxMSy0NvoryOqAycB2FQR-fdtYRDlc0bdIbrsPkR5s
-Message-ID: <CA+G9fYuZZUQq=7qPavXnHZtX9oQ=amfYVeYRZu3SHfD0ReD6nQ@mail.gmail.com>
-Subject: next-20250922: xe_device_sysfs.c:300:25: error: label 'cleanup' used
- but not defined
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- open list <linux-kernel@vger.kernel.org>, lkft-triage@lists.linaro.org, 
- Linux Regressions <regressions@lists.linux.dev>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Lukasz Laguna <lukasz.laguna@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Arnd Bergmann <arnd@arndb.de>, Dan Carpenter <dan.carpenter@linaro.org>, 
- Anders Roxell <anders.roxell@linaro.org>,
- Ben Copeland <benjamin.copeland@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 24 Sep 2025 11:59:10 +0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250924105129.2771196-9-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,46 +72,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The arm64 and x86_64 builds failed on the Linux next-20250922 tag build due
-to following build warnings / errors with gcc and clang toolchain.
+On Wed, Sep 24, 2025 at 04:21:28PM +0530, Ankit Nautiyal wrote:
+> The maximum guardband value is constrained by two factors:
+> - The actual vblank length minus set context latency (SCL)
+> - The hardware register field width:
+>   - 8 bits for ICL/TGL (VRR_CTL_PIPELINE_FULL_MASK -> max 255)
+>   - 16 bits for ADL+ (XELPD_VRR_CTL_VRR_GUARDBAND_MASK -> max 65535)
+> 
+> Remove the #FIXME and clamp the guardband to the maximum allowed value.
+> 
+> v2:
+> - Use REG_FIELD_MAX(). (Ville)
+> - Separate out functions for intel_vrr_max_guardband(),
+>   intel_vrr_max_vblank_guardband(). (Ville)
+> 
+> v3:
+> - Fix Typo: Add the missing adjusted_mode->crtc_vdisplay in guardband
+>   computation. (Ville)
+> - Refactor intel_vrr_max_hw_guardband() and use else for consistency.
+>   (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 49 ++++++++++++++++++------
+>  1 file changed, 37 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 26c5c32a9a58..e29b4050a9df 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -409,6 +409,40 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+>  	}
+>  }
+>  
+> +static int
+> +intel_vrr_max_hw_guardband(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	int max_pipeline_full = REG_FIELD_MAX(VRR_CTL_PIPELINE_FULL_MASK);
+> +	int max_guardband;
+> +
+> +	if (DISPLAY_VER(display) >= 13)
+> +		max_guardband = REG_FIELD_MAX(XELPD_VRR_CTL_VRR_GUARDBAND_MASK);
+> +	else
+> +		max_guardband = intel_vrr_pipeline_full_to_guardband(crtc_state,
+> +								     max_pipeline_full);
+> +	return max_guardband;
 
-First seen on next-20250922
-Good: next-20250919
-Bad: next-20250922
+The 'max_guardband' variable looks useless here, could just return
+directly from both sides of the if-else.
 
-Regression Analysis:
-- New regression? yes
-- Reproducibility? yes
+'max_pipeline_full' is perhaps redundant too, but I suppose the
+line would get pretty long without it. So maybe it makes sense to keep
+it.
 
-Test regression: next-20250922: xe_device_sysfs.c:300:25: error: label
-'cleanup' used but not defined
+> +}
+> +
+> +static int
+> +intel_vrr_max_vblank_guardband(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +
+> +	return crtc_state->vrr.vmin -
+> +	       adjusted_mode->crtc_vdisplay -
+> +	       crtc_state->set_context_latency -
+> +	       intel_vrr_extra_vblank_delay(display);
+> +}
+> +
+> +static int
+> +intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
+> +{
+> +	return min(intel_vrr_max_hw_guardband(crtc_state),
+> +		   intel_vrr_max_vblank_guardband(crtc_state));
+> +}
+> +
+>  void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> @@ -417,22 +451,13 @@ void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+>  	if (!intel_vrr_possible(crtc_state))
+>  		return;
+>  
+> -	crtc_state->vrr.guardband =
+> -		crtc_state->vrr.vmin -
+> -		adjusted_mode->crtc_vdisplay -
+> -		crtc_state->set_context_latency -
+> -		intel_vrr_extra_vblank_delay(display);
+> -
+> -	if (DISPLAY_VER(display) < 13) {
+> -		/* FIXME handle the limit in a proper way */
+> -		crtc_state->vrr.guardband =
+> -			min(crtc_state->vrr.guardband,
+> -			    intel_vrr_pipeline_full_to_guardband(crtc_state, 255));
+> +	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
+> +					intel_vrr_max_guardband(crtc_state));
+>  
+> +	if (DISPLAY_VER(display) < 13)
+>  		crtc_state->vrr.pipeline_full =
+>  			intel_vrr_guardband_to_pipeline_full(crtc_state,
+>  							     crtc_state->vrr.guardband);
+> -	}
+>  }
+>  
+>  static u32 trans_vrr_ctl(const struct intel_crtc_state *crtc_state)
+> -- 
+> 2.45.2
 
-Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
-
-## Build error
-drivers/gpu/drm/xe/xe_device_sysfs.c: In function 'xe_device_sysfs_init':
-drivers/gpu/drm/xe/xe_device_sysfs.c:300:25: error: label 'cleanup'
-used but not defined
-  300 |                         goto cleanup;
-      |                         ^~~~
-
-## Source
-* Kernel version: 6.17.0-rc7
-* Git tree: https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next.git
-* Git describe: 6.17.0-rc6-next-20250922
-* Git commit: bf2602a3cb2381fb1a04bf1c39a290518d2538d1
-* Architectures: arm64, x86_64
-* Toolchains: gcc-13 and clang-20
-* Kconfigs: allyesconfig
-
-## Build
-* Build log: https://qa-reports.linaro.org/api/testruns/29968978/log_file/
-* Build details:
-https://regressions.linaro.org/lkft/linux-next-master/next-20250922/log-parser-build-gcc/gcc-compiler-drivers_gpu_drm_xe_xe_device_sysfs_c-error-label-cleanup-used-but-not-defined/
-* Build plan: https://tuxapi.tuxsuite.com/v1/groups/linaro/projects/lkft/builds/333Idt9y0485dJThIiCgCMB7ehs
-* Build link: https://storage.tuxsuite.com/public/linaro/lkft/builds/333Idt9y0485dJThIiCgCMB7ehs/
-* Kernel config:
-https://storage.tuxsuite.com/public/linaro/lkft/builds/333Idt9y0485dJThIiCgCMB7ehs/config
-
---
-Linaro LKFT
+-- 
+Ville Syrjälä
+Intel
