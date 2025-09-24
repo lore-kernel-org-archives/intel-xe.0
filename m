@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D07E2CCA470
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9276DCAC5AC
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08CCA10E6B1;
-	Wed, 24 Sep 2025 01:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5971010E215;
+	Wed, 24 Sep 2025 01:16:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YREwL4m3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="maex33kC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8891410E690
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD9B10E69C
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676569; x=1790212569;
+ t=1758676571; x=1790212571;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=10iv546cQOLNwYOYR0lVpjdQwJG3Cw2UFk4gfTaxxIs=;
- b=YREwL4m3fKFC8ysSKVdKUsVmNuI7AdxJAZ8J4uozECe+oCvDhm3wmWm6
- yAB519q8om7/VDpUPGCT08sz03418rDfPkxs0vwHg5hxd4zVThDt4q5YH
- VIVW7MQnc0dBUhaZM6bZzsdzSA+LPqYWD7Dl7tgpkeMBp8fi2rhQapNkZ
- FiS1lCIKv06gRS6K8JyL/XlorKZLrF5XxxBLQl/f0PYgtHDQlU5KsdwVs
- 1XD+SzBvPbKmoYeaJQriPXaf9G9CGHsxwhjCUihNj+wPFtTwD3s4EA0vp
- gg56627LX2XkjibTCVwr+R2ckXu/X+tWGbbq8GoY4Eve+6xt1hW6GZmam w==;
-X-CSE-ConnectionGUID: ULRGBPe6Q7ugyXpKMdzBBw==
-X-CSE-MsgGUID: 7KFV1HnfRkm+bE3bYmMLRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908249"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908249"
+ bh=szQnMZ/H7d3rPHKwy/E3WQBeN7H7m5T4vjR7TOvzhZ0=;
+ b=maex33kCmLT419B/PRxjL+fX/O7D+cQzmI52+oK6r8jKJ8avV1GC+aiM
+ ButC916CxI5TdvLJaDf8az/oMYN4fxB2yqA3u7l0RapdZf2hHS7H2YGir
+ CPhY4RcQnYl0Ml7qJlkp15F169m8JEoPttSEMeKcvnrY+6LuGkAzs2/UX
+ /YqWuxnBu43ZmeYupoWPHzhG779gt3VX8hRFEcPBgDKSEgYRi0MHGGMrc
+ Lk/aDhwNLx6HDF/T0IxNwg8Zvif4zVnDE8QJr7XQyJ/JLbx88gV3RsqA2
+ IoACfrh6i30vcbRcc56TMqLOnf6hMwdALqbTnVPTt6tNHpCu5BlRpkym5 w==;
+X-CSE-ConnectionGUID: X+Zss59ZSdq8q4HLNF2lIA==
+X-CSE-MsgGUID: Ur7rxVaiSYuTXten6e/Kiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908279"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908279"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:08 -0700
-X-CSE-ConnectionGUID: RcafYXsMTxGgRRGlh4rylA==
-X-CSE-MsgGUID: OhfjpHNTQfKLP4sXJ2KA1A==
+ 23 Sep 2025 18:16:11 -0700
+X-CSE-ConnectionGUID: 4M+tiQGcQJC3ibkwmr6Hcw==
+X-CSE-MsgGUID: +Ic9jgq3Tv6mBdKSRM2uYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841783"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841806"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:07 -0700
+ 23 Sep 2025 18:16:10 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 04/34] Revert "drm/xe/vf: Fixup CTB send buffer messages
- after migration"
-Date: Tue, 23 Sep 2025 18:15:31 -0700
-Message-Id: <20250924011601.888293-5-matthew.brost@intel.com>
+Subject: [PATCH v2 25/34] drm/xe/vf: Abort VF post migration recovery on
+ failure
+Date: Tue, 23 Sep 2025 18:15:52 -0700
+Message-Id: <20250924011601.888293-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,286 +66,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit cef88d1265cac7d415606af73ba58926fd3cd8b7.
+If VF post-migration recovery fails, the device is wedged. However,
+submission queues still need to be enabled for proper cleanup. In such
+cases, call into the GuC submission backend to restart all queues that
+were previously paused.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c   | 183 -------------------------------
- drivers/gpu/drm/xe/xe_guc_ct.h   |   2 -
- drivers/gpu/drm/xe/xe_map.h      |  18 ---
- drivers/gpu/drm/xe/xe_sriov_vf.c |   2 -
- 4 files changed, 205 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
+ 3 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 18f6327bf552..47079ab9922c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -25,7 +25,6 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_pf_control.h"
- #include "xe_gt_sriov_pf_monitor.h"
--#include "xe_gt_sriov_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_log.h"
- #include "xe_guc_relay.h"
-@@ -93,8 +92,6 @@ struct g2h_fence {
- 	bool done;
- };
- 
--#define make_u64(hi, lo) ((u64)((u64)(u32)(hi) << 32 | (u32)(lo)))
--
- static void g2h_fence_init(struct g2h_fence *g2h_fence, u32 *response_buffer)
- {
- 	memset(g2h_fence, 0, sizeof(*g2h_fence));
-@@ -1793,186 +1790,6 @@ static void g2h_worker_func(struct work_struct *w)
- 	receive_g2h(ct);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 34e57f44fbf4..a987560de2c7 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1224,6 +1224,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	xe_guc_submit_unpause(&gt->uc.guc);
  }
  
--static void xe_fixup_u64_in_cmds(struct xe_device *xe, struct iosys_map *cmds,
--				 u32 size, u32 idx, s64 shift)
--{
--	u32 hi, lo;
--	u64 offset;
--
--	lo = xe_map_rd_ring_u32(xe, cmds, idx, size);
--	hi = xe_map_rd_ring_u32(xe, cmds, idx + 1, size);
--	offset = make_u64(hi, lo);
--	offset += shift;
--	lo = lower_32_bits(offset);
--	hi = upper_32_bits(offset);
--	xe_map_wr_ring_u32(xe, cmds, idx, size, lo);
--	xe_map_wr_ring_u32(xe, cmds, idx + 1, size, hi);
--}
--
--/*
-- * Shift any GGTT addresses within a single message left within CTB from
-- * before post-migration recovery.
-- * @ct: pointer to CT struct of the target GuC
-- * @cmds: iomap buffer containing CT messages
-- * @head: start of the target message within the buffer
-- * @len: length of the target message
-- * @size: size of the commands buffer
-- * @shift: the address shift to be added to each GGTT reference
-- * Return: true if the message was fixed or needed no fixups, false on failure
-- */
--static bool ct_fixup_ggtt_in_message(struct xe_guc_ct *ct,
--				     struct iosys_map *cmds, u32 head,
--				     u32 len, u32 size, s64 shift)
--{
--	struct xe_gt *gt = ct_to_gt(ct);
--	struct xe_device *xe = ct_to_xe(ct);
--	u32 msg[GUC_HXG_MSG_MIN_LEN];
--	u32 action, i, n;
--
--	xe_gt_assert(gt, len >= GUC_HXG_MSG_MIN_LEN);
--
--	msg[0] = xe_map_rd_ring_u32(xe, cmds, head, size);
--	action = FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, msg[0]);
--
--	xe_gt_sriov_dbg_verbose(gt, "fixing H2G %#x\n", action);
--
--	switch (action) {
--	case XE_GUC_ACTION_REGISTER_CONTEXT:
--		if (len != XE_GUC_REGISTER_CONTEXT_MSG_LEN)
--			goto err_len;
--		xe_fixup_u64_in_cmds(xe, cmds, size, head +
--				     XE_GUC_REGISTER_CONTEXT_DATA_5_WQ_DESC_ADDR_LOWER,
--				     shift);
--		xe_fixup_u64_in_cmds(xe, cmds, size, head +
--				     XE_GUC_REGISTER_CONTEXT_DATA_7_WQ_BUF_BASE_LOWER,
--				     shift);
--		xe_fixup_u64_in_cmds(xe, cmds, size, head +
--				     XE_GUC_REGISTER_CONTEXT_DATA_10_HW_LRC_ADDR, shift);
--		break;
--	case XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC:
--		if (len < XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_MIN_LEN)
--			goto err_len;
--		n = xe_map_rd_ring_u32(xe, cmds, head +
--				       XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_10_NUM_CTXS, size);
--		if (len != XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_MIN_LEN + 2 * n)
--			goto err_len;
--		xe_fixup_u64_in_cmds(xe, cmds, size, head +
--				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_5_WQ_DESC_ADDR_LOWER,
--				     shift);
--		xe_fixup_u64_in_cmds(xe, cmds, size, head +
--				     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_7_WQ_BUF_BASE_LOWER,
--				     shift);
--		for (i = 0; i < n; i++)
--			xe_fixup_u64_in_cmds(xe, cmds, size, head +
--					     XE_GUC_REGISTER_CONTEXT_MULTI_LRC_DATA_11_HW_LRC_ADDR
--					     + 2 * i, shift);
--		break;
--	default:
--		break;
--	}
--	return true;
--
--err_len:
--	xe_gt_err(gt, "Skipped G2G %#x message fixups, unexpected length (%u)\n", action, len);
--	return false;
--}
--
--/*
-- * Apply fixups to the next outgoing CT message within given CTB
-- * @ct: the &xe_guc_ct struct instance representing the target GuC
-- * @h2g: the &guc_ctb struct instance of the target buffer
-- * @shift: shift to be added to all GGTT addresses within the CTB
-- * @mhead: pointer to an integer storing message start position; the
-- *   position is changed to next message before this function return
-- * @avail: size of the area available for parsing, that is length
-- *   of all remaining messages stored within the CTB
-- * Return: size of the area available for parsing after one message
-- *   has been parsed, that is length remaining from the updated mhead
-- */
--static int ct_fixup_ggtt_in_buffer(struct xe_guc_ct *ct, struct guc_ctb *h2g,
--				   s64 shift, u32 *mhead, s32 avail)
--{
--	struct xe_gt *gt = ct_to_gt(ct);
--	struct xe_device *xe = ct_to_xe(ct);
--	u32 msg[GUC_HXG_MSG_MIN_LEN];
--	u32 size = h2g->info.size;
--	u32 head = *mhead;
--	u32 len;
--
--	xe_gt_assert(gt, avail >= (s32)GUC_CTB_MSG_MIN_LEN);
--
--	/* Read header */
--	msg[0] = xe_map_rd_ring_u32(xe, &h2g->cmds, head, size);
--	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
--
--	if (unlikely(len > (u32)avail)) {
--		xe_gt_err(gt, "H2G channel broken on read, avail=%d, len=%d, fixups skipped\n",
--			  avail, len);
--		return 0;
--	}
--
--	head = (head + GUC_CTB_MSG_MIN_LEN) % size;
--	if (!ct_fixup_ggtt_in_message(ct, &h2g->cmds, head, msg_len_to_hxg_len(len), size, shift))
--		return 0;
--	*mhead = (head + msg_len_to_hxg_len(len)) % size;
--
--	return avail - len;
--}
--
--/**
-- * xe_guc_ct_fixup_messages_with_ggtt - Fixup any pending H2G CTB messages
-- * @ct: pointer to CT struct of the target GuC
-- * @ggtt_shift: shift to be added to all GGTT addresses within the CTB
-- *
-- * Messages in GuC to Host CTB are owned by GuC and any fixups in them
-- * are made by GuC. But content of the Host to GuC CTB is owned by the
-- * KMD, so fixups to GGTT references in any pending messages need to be
-- * applied here.
-- * This function updates GGTT offsets in payloads of pending H2G CTB
-- * messages (messages which were not consumed by GuC before the VF got
-- * paused).
-- */
--void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift)
--{
--	struct guc_ctb *h2g = &ct->ctbs.h2g;
--	struct xe_guc *guc = ct_to_guc(ct);
--	struct xe_gt *gt = guc_to_gt(guc);
--	u32 head, tail, size;
--	s32 avail;
--
--	if (unlikely(h2g->info.broken))
--		return;
--
--	h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
--	head = h2g->info.head;
--	tail = READ_ONCE(h2g->info.tail);
--	size = h2g->info.size;
--
--	if (unlikely(head > size))
--		goto corrupted;
--
--	if (unlikely(tail >= size))
--		goto corrupted;
--
--	avail = tail - head;
--
--	/* beware of buffer wrap case */
--	if (unlikely(avail < 0))
--		avail += size;
--	xe_gt_dbg(gt, "available %d (%u:%u:%u)\n", avail, head, tail, size);
--	xe_gt_assert(gt, avail >= 0);
--
--	while (avail > 0)
--		avail = ct_fixup_ggtt_in_buffer(ct, h2g, ggtt_shift, &head, avail);
--
--	return;
--
--corrupted:
--	xe_gt_err(gt, "Corrupted H2G descriptor head=%u tail=%u size=%u, fixups not applied\n",
--		  head, tail, size);
--	h2g->info.broken = true;
--}
--
- static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bool atomic,
- 							bool want_ctb)
++static void vf_post_migration_abort(struct xe_gt *gt)
++{
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	xe_guc_submit_pause_abort(&gt->uc.guc);
++}
++
+ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
  {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index cf41210ab30a..d6c81325a76c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -24,8 +24,6 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_pr
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
+ 	bool skip_resfix = false;
+@@ -1280,6 +1289,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
+ fail:
++	vf_post_migration_abort(gt);
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+ 	xe_device_declare_wedged(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 52b86cab4ec5..8bee65dd9ca6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2345,6 +2345,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	wake_up_all(&guc->ct.wq);
+ }
  
--void xe_guc_ct_fixup_messages_with_ggtt(struct xe_guc_ct *ct, s64 ggtt_shift);
--
- static inline bool xe_guc_ct_initialized(struct xe_guc_ct *ct)
++/**
++ * xe_guc_submit_abort - Avort all paused submission task on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be aborted
++ */
++void xe_guc_submit_pause_abort(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_submission_start(sched);
++		if (exec_queue_killed_or_banned_or_wedged(q))
++			xe_guc_exec_queue_trigger_cleanup(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static struct xe_exec_queue *
+ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
  {
- 	return ct->state != XE_GUC_CT_STATE_NOT_INITIALIZED;
-diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
-index 8d67f6ba2d95..f62e0c8b67ab 100644
---- a/drivers/gpu/drm/xe/xe_map.h
-+++ b/drivers/gpu/drm/xe/xe_map.h
-@@ -78,24 +78,6 @@ static inline void xe_map_write32(struct xe_device *xe, struct iosys_map *map,
- 	iosys_map_wr(map__, offset__, type__, val__);			\
- })
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index f535fe3895e5..fe82c317048e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
  
--#define xe_map_rd_array(xe__, map__, index__, type__) \
--	xe_map_rd(xe__, map__, (index__) * sizeof(type__), type__)
--
--#define xe_map_wr_array(xe__, map__, index__, type__, val__) \
--	xe_map_wr(xe__, map__, (index__) * sizeof(type__), type__, val__)
--
--#define xe_map_rd_array_u32(xe__, map__, index__) \
--	xe_map_rd_array(xe__, map__, index__, u32)
--
--#define xe_map_wr_array_u32(xe__, map__, index__, val__) \
--	xe_map_wr_array(xe__, map__, index__, u32, val__)
--
--#define xe_map_rd_ring_u32(xe__, map__, index__, size__) \
--	xe_map_rd_array_u32(xe__, map__, (index__) % (size__))
--
--#define xe_map_wr_ring_u32(xe__, map__, index__, size__, val__) \
--	xe_map_wr_array_u32(xe__, map__, (index__) % (size__), val__)
--
- #define xe_map_rd_field(xe__, map__, struct_offset__, struct_type__, field__) ({	\
- 	struct xe_device *__xe = xe__;					\
- 	xe_device_assert_mem_access(__xe);				\
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 0581b881b628..da064a1e7419 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -12,7 +12,6 @@
- #include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
--#include "xe_guc_ct.h"
- #include "xe_guc_submit.h"
- #include "xe_irq.h"
- #include "xe_lrc.h"
-@@ -340,7 +339,6 @@ static int gt_vf_post_migration_fixups(struct xe_gt *gt)
- 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
- 		if (err)
- 			goto out;
--		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
- 	}
- 
- out:
+ int xe_guc_read_stopped(struct xe_guc *guc);
 -- 
 2.34.1
 
