@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4960CAC5B3
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 269D4CAC5B5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFE0410E69A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE9FF10E698;
 	Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZQvKgQj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDnqmiDU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48FD210E690
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2360C10E691
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676569; x=1790212569;
+ t=1758676568; x=1790212568;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=QELvN7zE/KNCC/iJeYQqpngJcduD9SakC7T4haizrpg=;
- b=PZQvKgQjq+zBg0WFdQEGgeO2o5+RD6uh8xdZtc/rOkp8y8q7bf3NDqa5
- GWLnZvJrNw8D6E4juQEs0/xx4ppne+KDO9d7+Znq6Jb5LzjVKJm/cWD0M
- 0q/N3y3xPOpW0nbSuVq11MUKAULCG7aR/OEHJDRvx9FxtcwO5lL0GO3N/
- FDFxeu6h1R55OBYcLEyzt3RwugR82z6wb3lQU03TRV88/xDSuFE4bjLs5
- DR+iIw3c2tHAcjeON7wu0JZ8IuvqkLdHTlRMntj4ZWbTWt7XorZ9A85M8
- lPdZS1vBMbWp/2+zzyL6lMOSPtKsCW5PY/LcaMKFalYmAiEQ3FlAgBxRf Q==;
-X-CSE-ConnectionGUID: g8eRxHoTQEGtsr0JblIYPQ==
-X-CSE-MsgGUID: fzLg8vqrSR24wc4qTCYZ1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908247"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908247"
+ bh=GNyMJ3tPDGVat9cNEZ/e8LMaWo77dnHJ8MU5SS51ykg=;
+ b=CDnqmiDULXZ9GTAKUY6qzuzB37DOCW2XQiNermxmu+KVivawa+1aDyLV
+ V2SYBIV7xAnhaJiqqJ8g1CD0vlcMVoJsaX78SQbrZ3q6SjNyf5Tc7vsll
+ Sr7j0FAD4H6fccM7soNVCfy+kJxYMBmsVXQuehAWPbID16JsvTKed+zT+
+ eMzZ2gd0jtJNZ152joSCXd4J9PRR/U7/cvadseXLfHbXvETIC0WSO2Rc2
+ AX33LllpkF2/OGBEWzeBtbqXIAaahZ7rHFwbEex7p7qdZxSHkfTIwgLQe
+ 8/r2xR9TkFCFhycmecbZHMX3PL43AzUd52dNlDkFMaX7c5Jl9AQrhIx5w Q==;
+X-CSE-ConnectionGUID: iu7VHIFFTymD+JpxtgXcbA==
+X-CSE-MsgGUID: 6Vjwk8W8RF+elW2NBZPQWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908246"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908246"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:08 -0700
-X-CSE-ConnectionGUID: IzkeKeQKR9un3iFqL6UGSg==
-X-CSE-MsgGUID: PWdwd8/aR4qKxjF5QhumDg==
+ 23 Sep 2025 18:16:07 -0700
+X-CSE-ConnectionGUID: /f29wtVPRByff+DgRbbCDw==
+X-CSE-MsgGUID: AmOZHGMOReSMuh192NyrYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841781"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841780"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 02/34] Revert "drm/xe/vf: Rebase exec queue parallel
- commands during migration recovery"
-Date: Tue, 23 Sep 2025 18:15:29 -0700
-Message-Id: <20250924011601.888293-3-matthew.brost@intel.com>
+Subject: [PATCH v2 01/34] drm/xe/vf: Lock querying GGTT config during driver
+ init
+Date: Tue, 23 Sep 2025 18:15:28 -0700
+Message-Id: <20250924011601.888293-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,117 +66,291 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit ba180a362128cb71d16c3f0ce6645448011d2607.
+From: Tomasz Lis <tomasz.lis@intel.com>
+
+Protect access to GGTT config as this is non-static information.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |  8 ----
- drivers/gpu/drm/xe/xe_guc_submit.c       | 54 ------------------------
- 2 files changed, 62 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 96 ++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  3 +
+ drivers/gpu/drm/xe/xe_sriov_vf.c          |  6 ++
+ 3 files changed, 84 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 31090c69dfbe..47756e4674a1 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -196,14 +196,6 @@ enum xe_guc_register_context_multi_lrc_param_offsets {
- 	XE_GUC_REGISTER_CONTEXT_MULTI_LRC_MSG_MIN_LEN = 11,
- };
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 0461d5513487..016c867e5e2b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -440,18 +440,21 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
  
--enum xe_guc_context_wq_item_offsets {
--	XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN = 0,
--	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW,
--	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_2_GUCCTX_RINGTAIL_FREEZEPOCS,
--	XE_GUC_CONTEXT_WQ_EL_INFO_DATA_3_WI_FENCE_ID,
--	XE_GUC_CONTEXT_WQ_EL_CHILD_LIST_DATA_4_RINGTAIL,
--};
--
- enum xe_guc_report_status {
- 	XE_GUC_REPORT_STATUS_UNKNOWN = 0x0,
- 	XE_GUC_REPORT_STATUS_ACKED = 0x1,
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 53024eb5670b..3ac0950f55be 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -735,18 +735,12 @@ static void wq_item_append(struct xe_exec_queue *q)
- 	if (wq_wait_for_space(q, wqi_size))
- 		return;
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
  
--	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN);
- 	wqi[i++] = FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_MULTI_LRC) |
- 		FIELD_PREP(WQ_LEN_MASK, len_dw);
--	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW);
- 	wqi[i++] = xe_lrc_descriptor(q->lrc[0]);
--	xe_gt_assert(guc_to_gt(guc), i ==
--		     XE_GUC_CONTEXT_WQ_EL_INFO_DATA_2_GUCCTX_RINGTAIL_FREEZEPOCS);
- 	wqi[i++] = FIELD_PREP(WQ_GUC_ID_MASK, q->guc->id) |
- 		FIELD_PREP(WQ_RING_TAIL_MASK, q->lrc[0]->ring.tail / sizeof(u64));
--	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_INFO_DATA_3_WI_FENCE_ID);
- 	wqi[i++] = 0;
--	xe_gt_assert(guc_to_gt(guc), i == XE_GUC_CONTEXT_WQ_EL_CHILD_LIST_DATA_4_RINGTAIL);
- 	for (j = 1; j < q->width; ++j) {
- 		struct xe_lrc *lrc = q->lrc[j];
++	down_write(&config->lock);
++
+ 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
  
-@@ -767,50 +761,6 @@ static void wq_item_append(struct xe_exec_queue *q)
- 	parallel_write(xe, map, wq_desc.tail, q->guc->wqi_tail);
+ 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	if (config->ggtt_size && config->ggtt_size != size) {
+ 		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
+ 				size / SZ_1K, config->ggtt_size / SZ_1K);
+-		return -EREMCHG;
++		err = -EREMCHG;
++		goto out;
+ 	}
+ 
+ 	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
+@@ -460,8 +463,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+ 	config->ggtt_shift = start - (s64)config->ggtt_base;
+ 	config->ggtt_base = start;
+ 	config->ggtt_size = size;
++	err = config->ggtt_size ? 0 : -ENODATA;
+ 
+-	return config->ggtt_size ? 0 : -ENODATA;
++out:
++	up_write(&config->lock);
++	return err;
  }
  
--static int wq_items_rebase(struct xe_exec_queue *q)
--{
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_device *xe = guc_to_xe(guc);
--	struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
--	int i = q->guc->wqi_head;
--
--	/* the ring starts after a header struct */
--	iosys_map_incr(&map, offsetof(struct guc_submit_parallel_scratch, wq[0]));
--
--	while ((i % WQ_SIZE) != (q->guc->wqi_tail % WQ_SIZE)) {
--		u32 len_dw, type, val;
--
--		if (drm_WARN_ON_ONCE(&xe->drm, i < 0 || i > 2 * WQ_SIZE))
--			break;
--
--		val = xe_map_rd_ring_u32(xe, &map, i / sizeof(u32) +
--					 XE_GUC_CONTEXT_WQ_HEADER_DATA_0_TYPE_LEN,
--					 WQ_SIZE / sizeof(u32));
--		len_dw = FIELD_GET(WQ_LEN_MASK, val);
--		type = FIELD_GET(WQ_TYPE_MASK, val);
--
--		if (drm_WARN_ON_ONCE(&xe->drm, len_dw >= WQ_SIZE / sizeof(u32)))
--			break;
--
--		if (type == WQ_TYPE_MULTI_LRC) {
--			val = xe_lrc_descriptor(q->lrc[0]);
--			xe_map_wr_ring_u32(xe, &map, i / sizeof(u32) +
--					   XE_GUC_CONTEXT_WQ_EL_INFO_DATA_1_CTX_DESC_LOW,
--					   WQ_SIZE / sizeof(u32), val);
--		} else if (drm_WARN_ON_ONCE(&xe->drm, type != WQ_TYPE_NOOP)) {
--			break;
--		}
--
--		i += (len_dw + 1) * sizeof(u32);
--	}
--
--	if ((i % WQ_SIZE) != (q->guc->wqi_tail % WQ_SIZE)) {
--		xe_gt_err(q->gt, "Exec queue fixups incomplete - wqi parse failed\n");
--		return -EBADMSG;
--	}
--	return 0;
--}
--
- #define RESUME_PENDING	~0x0ull
- static void submit_exec_queue(struct xe_exec_queue *q)
- {
-@@ -2669,10 +2619,6 @@ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch)
- 		err = xe_exec_queue_contexts_hwsp_rebase(q, scratch);
- 		if (err)
- 			break;
--		if (xe_exec_queue_is_parallel(q))
--			err = wq_items_rebase(q);
--		if (err)
--			break;
+ static int vf_get_lmem_info(struct xe_gt *gt)
+@@ -474,22 +480,28 @@ static int vf_get_lmem_info(struct xe_gt *gt)
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
++	down_write(&config->lock);
++
+ 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_LMEM_SIZE_KEY, &size);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	if (config->lmem_size && config->lmem_size != size) {
+ 		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
+ 				size / SZ_1M, config->lmem_size / SZ_1M);
+-		return -EREMCHG;
++		err = -EREMCHG;
++		goto out;
  	}
- 	mutex_unlock(&guc->submission_state.lock);
+ 
+ 	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
+ 	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
+ 
+ 	config->lmem_size = size;
++	err = config->lmem_size ? 0 : -ENODATA;
+ 
+-	return config->lmem_size ? 0 : -ENODATA;
++out:
++	up_write(&config->lock);
++	return err;
+ }
+ 
+ static int vf_get_submission_cfg(struct xe_gt *gt)
+@@ -501,23 +513,27 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
++	down_write(&config->lock);
++
+ 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY, &num_ctxs);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
+ 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
+ 				num_ctxs, config->num_ctxs);
+-		return -EREMCHG;
++		err = -EREMCHG;
++		goto out;
+ 	}
+ 	if (config->num_dbs && config->num_dbs != num_dbs) {
+ 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
+ 				num_dbs, config->num_dbs);
+-		return -EREMCHG;
++		err = -EREMCHG;
++		goto out;
+ 	}
+ 
+ 	xe_gt_sriov_dbg_verbose(gt, "CTXs %u DBs %u\n", num_ctxs, num_dbs);
+@@ -525,7 +541,11 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
+ 	config->num_ctxs = num_ctxs;
+ 	config->num_dbs = num_dbs;
+ 
+-	return config->num_ctxs ? 0 : -ENODATA;
++	err = config->num_ctxs ? 0 : -ENODATA;
++
++out:
++	up_write(&config->lock);
++	return err;
+ }
+ 
+ static void vf_cache_gmdid(struct xe_gt *gt)
+@@ -579,11 +599,18 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+  */
+ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
+ {
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	u16 val;
++
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.num_ctxs);
+ 
+-	return gt->sriov.vf.self_config.num_ctxs;
++	down_read(&config->lock);
++	xe_gt_assert(gt, config->num_ctxs);
++	val = config->num_ctxs;
++	up_read(&config->lock);
++
++	return val;
+ }
+ 
+ /**
+@@ -596,11 +623,18 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
+  */
+ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+ {
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	u64 val;
++
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
+ 
+-	return gt->sriov.vf.self_config.lmem_size;
++	down_read(&config->lock);
++	xe_gt_assert(gt, config->lmem_size);
++	val = config->lmem_size;
++	up_read(&config->lock);
++
++	return val;
+ }
+ 
+ /**
+@@ -613,11 +647,17 @@ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+  */
+ u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
+ {
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	u64 val;
++
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
+ 
+-	return gt->sriov.vf.self_config.ggtt_size;
++	down_read(&config->lock);
++	val = config->ggtt_size;
++	up_read(&config->lock);
++
++	return val;
+ }
+ 
+ /**
+@@ -630,11 +670,18 @@ u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
+  */
+ u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
+ {
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	u64 val;
++
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
+ 
+-	return gt->sriov.vf.self_config.ggtt_base;
++	down_read(&config->lock);
++	xe_gt_assert(gt, config->ggtt_size);
++	val = config->ggtt_base;
++	up_read(&config->lock);
++
++	return val;
+ }
+ 
+ /**
+@@ -648,11 +695,16 @@ u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
+ s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
+ {
+ 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	s64 val;
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
+ 
+-	return config->ggtt_shift;
++	down_read(&config->lock);
++	val = config->ggtt_shift;
++	up_read(&config->lock);
++
++	return val;
+ }
+ 
+ static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
+@@ -1044,6 +1096,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
++	down_read(&config->lock);
+ 	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
+ 		   config->ggtt_base,
+ 		   config->ggtt_base + config->ggtt_size - 1);
+@@ -1060,6 +1113,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
+ 
+ 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
+ 	drm_printf(p, "GuC doorbells:\t%u\n", config->num_dbs);
++	up_read(&config->lock);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 298dedf4b009..d95857bd789b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_GT_SRIOV_VF_TYPES_H_
+ #define _XE_GT_SRIOV_VF_TYPES_H_
+ 
++#include <linux/rwsem.h>
+ #include <linux/types.h>
+ #include "xe_uc_fw_types.h"
+ 
+@@ -25,6 +26,8 @@ struct xe_gt_sriov_vf_selfconfig {
+ 	u16 num_ctxs;
+ 	/** @num_dbs: assigned number of GuC doorbells IDs. */
+ 	u16 num_dbs;
++	/** @lock: lock for protecting access to all selfconfig fields. */
++	struct rw_semaphore lock;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index cdd9f8e78b2a..d6e2ed9b9bbc 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -197,6 +197,12 @@ static void vf_migration_init_early(struct xe_device *xe)
+  */
+ void xe_sriov_vf_init_early(struct xe_device *xe)
+ {
++	struct xe_gt *gt;
++	unsigned int id;
++
++	for_each_gt(gt, xe, id)
++		init_rwsem(&gt->sriov.vf.self_config.lock);
++
+ 	vf_migration_init_early(xe);
+ }
  
 -- 
 2.34.1
