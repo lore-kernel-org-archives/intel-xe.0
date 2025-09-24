@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FB4CAC5A7
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 08:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A50FFCAC5A7
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 08:51:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B1210E6B7;
-	Wed, 24 Sep 2025 08:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5619F10E121;
+	Wed, 24 Sep 2025 08:51:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KaCv6z/7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J4pk8ilv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C891710E6B7
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 08:40:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9747A10E121;
+ Wed, 24 Sep 2025 08:51:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758703244; x=1790239244;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KrrnA+OIuLaLTHNR38AtYVAVfBRpP9z7S9o2K6UL0oY=;
- b=KaCv6z/7MGaHYlTlCmQl8tVjS2CreTNodc7lFr0pQ54D5EFttW6ZKfIF
- 6i8+n3xOsnSVOv6xOJN4Nf7fzsKyGDbFWfOfS15hMc+H3XcykbikZyBp/
- Wl4FCiHPp2QGoFILPcDWExt/iAphob1QTGO+bkBZbJKTrO/skz6Z0O/GP
- W7kfKYppvTLzF8Knn5D6azv9VqaUP5ZnjOV3Db3Fu5JQTMyX0SJswckDK
- e0i5jYvNNjHvyWTqNXWPeIub6dU+fRVL1jswvQksKgCS8hCamq/Uo5Bih
- glE1xsZoYQTJcyMjrOVRRPg0puAGeb5/8tczjCXCVCRRToRf74y2jKgMG A==;
-X-CSE-ConnectionGUID: zg6ZB716T5CBaX8mroux3g==
-X-CSE-MsgGUID: kY5uvCiQSQuUBue1n7nSdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="64632089"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="64632089"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 01:40:43 -0700
-X-CSE-ConnectionGUID: XKDE3W35SwujPbYVjd8zjw==
-X-CSE-MsgGUID: VwrBqyGCSGWPm84Pj0y6EQ==
+ t=1758703895; x=1790239895;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aN6Tmwt0Nj5AnXCRtwTSTwrUC6+1g0ZCCqHphT4NDMk=;
+ b=J4pk8ilvUZEGTNcH5DJFpMD7ld3nC66pqMlwa85mDCP8iGccpNu+7B3M
+ r5lU6tqjzrvpuCkLRUuyrAb3nXHfZMb3jXriRS0nwOLB+tYiIfDFGSJeh
+ 6Lfv7tKYAuETPcykkHdOSJcHZBKXvtTvyV55e+LyBn5ripC+1rrFIQUWI
+ j3raAw6oK8B3xChZ6Ii3HyNE3+5fVO7+59BCCOp+A78UMVJHd7ydhjAfR
+ ZbPebfeFxHZcyYFlrBThKj9W7ZqWsfXUpJfUQPx7iat6g/BheYsHmtzN9
+ u4ZM3kP7eYo//OIk0swMDouNw8rC4Vn5qDfpu/heHWhwBx22fFm1xKQ8/ w==;
+X-CSE-ConnectionGUID: 1fQhqAiNSXS2RfgRcWnjww==
+X-CSE-MsgGUID: zT89UM6TR3OfNF9bx/O40A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11561"; a="60699516"
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="60699516"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 01:51:35 -0700
+X-CSE-ConnectionGUID: bHuxDQNYSpKalyyHjKZsHQ==
+X-CSE-MsgGUID: RS8q1pjCTcK7LTnXFSQ6bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="176815206"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.144])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 01:40:41 -0700
-Date: Wed, 24 Sep 2025 11:40:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH 1/2] drm/xe: Fix ggtt fb alignment
-Message-ID: <aNOufDMgXkR6AU-r@intel.com>
-References: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
+X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="180999376"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.149])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 01:51:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/gem: add i915_gem_fence_wait_priority_display()
+ helper
+Date: Wed, 24 Sep 2025 11:51:29 +0300
+Message-ID: <20250924085129.146173-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
-X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,42 +69,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 24, 2025 at 09:13:03AM +0100, Tvrtko Ursulin wrote:
-> Pass the correct alignment from intel_fb_pin_to_ggtt() down to
-> __xe_pin_fb_vma().
+Add i915_gem_fence_wait_priority_display() helper to wait with
+I915_PRIORITY_DISPLAY. This drops the intel_plane.c dependency on
+i915_scheduler_types.h, and allows us to remove the compat header from
+xe.
 
-Just to elaborate a bit, "phys_alignment" is only a thing on
-some gen2/3 platforms where the display cursor hardware doesn't
-go through GGTT translation and instead takes a direct physical
-address instead.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_plane.c          |  5 +----
+ drivers/gpu/drm/i915/gem/i915_gem_object.h          |  1 +
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c            |  7 +++++++
+ .../xe/compat-i915-headers/gem/i915_gem_object.h    |  4 +---
+ .../xe/compat-i915-headers/i915_scheduler_types.h   | 13 -------------
+ 5 files changed, 10 insertions(+), 20 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_scheduler_types.h
 
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 1fd4a815e784..b18d15cc3c53 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -378,7 +378,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
->  {
->  	*out_flags = 0;
->  
-> -	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, phys_alignment);
-> +	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, alignment);
->  }
->  
->  void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
-> -- 
-> 2.48.0
-
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index 2329f09d413d..19d4640c0e53 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -45,7 +45,6 @@
+ #include <drm/drm_panic.h>
+ 
+ #include "gem/i915_gem_object.h"
+-#include "i915_scheduler_types.h"
+ #include "i9xx_plane_regs.h"
+ #include "intel_cdclk.h"
+ #include "intel_cursor.h"
+@@ -1172,7 +1171,6 @@ static int
+ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		       struct drm_plane_state *_new_plane_state)
+ {
+-	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
+ 	struct intel_plane *plane = to_intel_plane(_plane);
+ 	struct intel_display *display = to_intel_display(plane);
+ 	struct intel_plane_state *new_plane_state =
+@@ -1221,8 +1219,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		goto unpin_fb;
+ 
+ 	if (new_plane_state->uapi.fence) {
+-		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+-					     &attr);
++		i915_gem_fence_wait_priority_display(new_plane_state->uapi.fence);
+ 
+ 		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+ 						     new_plane_state->uapi.fence);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 148034ef504d..8878539c10ed 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -802,6 +802,7 @@ static inline void __start_cpu_write(struct drm_i915_gem_object *obj)
+ 
+ void i915_gem_fence_wait_priority(struct dma_fence *fence,
+ 				  const struct i915_sched_attr *attr);
++void i915_gem_fence_wait_priority_display(struct dma_fence *fence);
+ 
+ int i915_gem_object_wait(struct drm_i915_gem_object *obj,
+ 			 unsigned int flags,
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+index 54829801d3f7..2893df65c359 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+@@ -138,6 +138,13 @@ void i915_gem_fence_wait_priority(struct dma_fence *fence,
+ 	local_bh_enable(); /* kick the tasklets if queues were reprioritised */
+ }
+ 
++void i915_gem_fence_wait_priority_display(struct dma_fence *fence)
++{
++	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
++
++	i915_gem_fence_wait_priority(fence, &attr);
++}
++
+ int
+ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 			      unsigned int flags,
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+index 8a048980ea38..0548b2e0316f 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+@@ -5,10 +5,8 @@
+ #define __I915_GEM_OBJECT_H__
+ 
+ struct dma_fence;
+-struct i915_sched_attr;
+ 
+-static inline void i915_gem_fence_wait_priority(struct dma_fence *fence,
+-						const struct i915_sched_attr *attr)
++static inline void i915_gem_fence_wait_priority_display(struct dma_fence *fence)
+ {
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_scheduler_types.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_scheduler_types.h
+deleted file mode 100644
+index c11130440d31..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_scheduler_types.h
++++ /dev/null
+@@ -1,13 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/* Copyright Â© 2025 Intel Corporation */
+-
+-#ifndef __I915_SCHEDULER_TYPES_H__
+-#define __I915_SCHEDULER_TYPES_H__
+-
+-#define I915_PRIORITY_DISPLAY 0
+-
+-struct i915_sched_attr {
+-	int priority;
+-};
+-
+-#endif
 -- 
-Ville Syrjälä
-Intel
+2.47.3
+
