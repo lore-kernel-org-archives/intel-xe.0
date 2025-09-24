@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BB14CAC5BF
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D54D5CAC5BA
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71E7910E6AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 447C410E6A8;
 	Wed, 24 Sep 2025 01:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mVs6BaFd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jIZAu3FN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F24F610E69D
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3678E10E69D
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758676571; x=1790212571;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=EAHqxdD9xafcbWVjczK42/Dz8kc+Yrla4ZrPNftXHeU=;
- b=mVs6BaFdX01y0BHRssOsKFebS/hTMrgRuRkozPBq3Vaiv1wYGgSWNRLS
- G6LT1lgR8eJ1RDimoVdSAzS8THYSTKr9cCyKGrFk/GPiRdNbASIJRLToF
- 9SULSEx59MGkUweK6jXoTEeIQMk8eNlB8jR0dHuVPDPRc//W1UWu2idxs
- 4mM0f7i//a1kZsJjSKS8YVjxfzY2KfyA8tJK0F3F6TnGAyBzzhhee4/he
- JHIsKji43lL8FWtBGvhbeKfSlQikaMEbeHvBd+21fufMz65hk1nacr9qJ
- 3MFx99v1bikvwyV7ioLaeIy8bZO7/aJZmTHIA3DiK0zMEMB+LVvEewvG1 Q==;
-X-CSE-ConnectionGUID: s+GsYNUvTsi81cdS3YrTmA==
-X-CSE-MsgGUID: NCSt+kkATOGvHPj8k+X+Og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908277"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908277"
+ bh=Pm1LgpVpMsckol/z/OOzkChmIXyPIoCUcv2pYlxRu+Y=;
+ b=jIZAu3FNW0SZadNKh/QiT9A1PExtwJz1hvQDyPPHtSi+VBm7locRWOxV
+ Q8DUrFMvxfPeFsyYLEtT5/X/TSZfSs0kLbQsd3FTRgjrjJfcp7lUkb2Ry
+ L8D/TMcpVkEVK7c/0gQc0WQM9O6RKwG2geP8JkBjr6rp+5dmEW7zxqIEe
+ XOcdu2h5N5FWw70qtkCTnGGROrq75aL/vCIdPyBjCf3BYnrB08pDKzjfP
+ FLgPkhIZAvI+M4esVGrARZovw7gIs9CzRpfDDUenmnvDYzO/PZiwFFzod
+ 8/tEQnEivxfrtUQhTB68eYTkcffpq9nMPiUAFMiMnkeXnJvZFhuahq+2y A==;
+X-CSE-ConnectionGUID: Pj+WcNywRJCOUEqYNKf5vg==
+X-CSE-MsgGUID: FGJ7Zj5mStWSILqTVUr+ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908280"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908280"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:11 -0700
-X-CSE-ConnectionGUID: aVCmJx9PSeeciV3uNxcVGw==
-X-CSE-MsgGUID: L5ltzFHeS1GNpAUop36BzQ==
+X-CSE-ConnectionGUID: p/jh+e+MR7iteF5JOMdFYg==
+X-CSE-MsgGUID: f4R1QnzSQ2CzKISawYHzng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841805"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841807"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:10 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 24/34] drm/xe/vf: Start CTs before resfix VF post migration
- recovery
-Date: Tue, 23 Sep 2025 18:15:51 -0700
-Message-Id: <20250924011601.888293-25-matthew.brost@intel.com>
+Subject: [PATCH v2 26/34] drm/xe/vf: Replay GuC submission state on pause /
+ unpause
+Date: Tue, 23 Sep 2025 18:15:53 -0700
+Message-Id: <20250924011601.888293-27-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,131 +66,444 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before `resfix`, all CTs stuck in the H2G queue need to be squashed, as
-they may contain stale or invalid data.
-
-Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
-resubmitted by the GuC submission state machine.
+Fixup GuC submission pause / unpause functions to properly replay any
+possible state lost during VF post migration recovery.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++++
- drivers/gpu/drm/xe/xe_guc_ct.c      | 48 +++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
- 3 files changed, 46 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  14 ++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h        |   2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c          |   1 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  15 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 225 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h           |   1 +
+ drivers/gpu/drm/xe/xe_sched_job_types.h      |   4 +
+ 7 files changed, 247 insertions(+), 15 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 455ccaf17314..af300adc7e1a 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -135,3 +135,17 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ 	list_add_tail(&msg->link, &sched->msgs);
+ 	xe_sched_process_msg_queue(sched);
+ }
++
++/**
++ * xe_sched_add_msg_head() - Xe GPU scheduler add message to head of list
++ * @sched: Xe GPU scheduler
++ * @msg: Message to add
++ */
++void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
++			   struct xe_sched_msg *msg)
++{
++	lockdep_assert_held(&sched->base.job_list_lock);
++
++	list_add(&msg->link, &sched->msgs);
++	xe_sched_process_msg_queue(sched);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index e548b2aed95a..010003a6103a 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -29,6 +29,8 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
+ 		      struct xe_sched_msg *msg);
+ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ 			     struct xe_sched_msg *msg);
++void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
++			   struct xe_sched_msg *msg);
+ 
+ static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
+ {
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 2a077a98e92e..34e57f44fbf4 100644
+index a987560de2c7..91e7dbe80ab2 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1214,6 +1214,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+@@ -1217,6 +1217,7 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ static void vf_post_migration_rearm(struct xe_gt *gt)
+ {
+ 	xe_guc_ct_restart(&gt->uc.guc.ct);
++	xe_guc_submit_unpause_prepare(&gt->uc.guc);
+ }
+ 
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index c30c0e3ccbbb..a3b034e4b205 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -51,6 +51,21 @@ struct xe_guc_exec_queue {
+ 	wait_queue_head_t suspend_wait;
+ 	/** @suspend_pending: a suspend of the exec_queue is pending */
+ 	bool suspend_pending;
++	/**
++	 * @needs_cleanup: Needs a cleanup message during VF post migration
++	 * recovery.
++	 */
++	bool needs_cleanup;
++	/**
++	 * @needs_suspend: Needs a suspend message during VF post migration
++	 * recovery.
++	 */
++	bool needs_suspend;
++	/**
++	 * @needs_resume: Needs a resume message during VF post migration
++	 * recovery.
++	 */
++	bool needs_resume;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 8bee65dd9ca6..b112a4a91a5b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -425,6 +425,11 @@ static void set_exec_queue_destroyed(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_DESTROYED, &q->guc->state);
+ }
+ 
++static void clear_exec_queue_destroyed(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_DESTROYED, &q->guc->state);
++}
++
+ static bool exec_queue_banned(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_BANNED;
+@@ -505,7 +510,12 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+ }
+ 
+-static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
++static void clear_exec_queue_extra_ref(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
++}
++
++static bool exec_queue_pending_resume(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
+ }
+@@ -520,7 +530,7 @@ static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
+ 	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
+ }
+ 
+-static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++static bool exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
+ }
+@@ -1080,7 +1090,7 @@ static void wq_item_append(struct xe_exec_queue *q)
+ }
+ 
+ #define RESUME_PENDING	~0x0ull
+-static void submit_exec_queue(struct xe_exec_queue *q)
++static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_lrc *lrc = q->lrc[0];
+@@ -1092,10 +1102,13 @@ static void submit_exec_queue(struct xe_exec_queue *q)
+ 
+ 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+ 
+-	if (xe_exec_queue_is_parallel(q))
+-		wq_item_append(q);
+-	else
+-		xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
++	if (!job->skip_emit || job->last_replay) {
++		if (xe_exec_queue_is_parallel(q))
++			wq_item_append(q);
++		else
++			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
++		job->last_replay = false;
++	}
+ 
+ 	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
+ 		return;
+@@ -1148,8 +1161,10 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+ 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+-		q->ring_ops->emit_job(job);
+-		submit_exec_queue(q);
++		if (!job->skip_emit)
++			q->ring_ops->emit_job(job);
++		submit_exec_queue(q, job);
++		job->skip_emit = false;
+ 	}
+ 
+ 	/*
+@@ -1860,6 +1875,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ #define RESUME		4
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
++#define MSG_HEAD	BIT(9)
+ 
+ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ {
+@@ -1984,12 +2000,24 @@ static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg
+ 	msg->private_data = q;
+ 
+ 	trace_xe_sched_msg_add(msg);
+-	if (opcode & MSG_LOCKED)
++	if (opcode & MSG_HEAD)
++		xe_sched_add_msg_head(&q->guc->sched, msg);
++	else if (opcode & MSG_LOCKED)
+ 		xe_sched_add_msg_locked(&q->guc->sched, msg);
+ 	else
+ 		xe_sched_add_msg(&q->guc->sched, msg);
+ }
+ 
++static void guc_exec_queue_try_add_msg_head(struct xe_exec_queue *q,
++					    struct xe_sched_msg *msg,
++					    u32 opcode)
++{
++	if (!list_empty(&msg->link))
++		return;
++
++	guc_exec_queue_add_msg(q, msg, opcode | MSG_LOCKED | MSG_HEAD);
++}
++
+ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+ 				       struct xe_sched_msg *msg,
+ 				       u32 opcode)
+@@ -2264,6 +2292,93 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+ 
+ }
+ 
++/*
++ * This function is quite complex but only real way to ensure no state is lost
++ * during VF resume flows. The function scans the queue state, make adjustments
++ * as needed, and queues jobs / messages which replayed upon unpause.
++ */
++static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	struct xe_sched_job *job;
++	bool pending_enable, pending_disable, pending_resume;
++	int i;
++
++	lockdep_assert_held(&guc->submission_state.lock);
++
++	/* Stop scheduling + flush any DRM scheduler operations */
++	xe_sched_submission_stop(sched);
++	if (xe_exec_queue_is_lr(q))
++		cancel_work_sync(&q->guc->lr_tdr);
++	else
++		cancel_delayed_work_sync(&sched->base.work_tdr);
++
++	pending_enable = exec_queue_pending_enable(q);
++	pending_resume = exec_queue_pending_resume(q);
++
++	if (pending_enable && pending_resume)
++		q->guc->needs_resume = true;
++
++	if (pending_enable && !pending_resume &&
++	    !exec_queue_pending_tdr_exit(q)) {
++		clear_exec_queue_registered(q);
++		if (xe_exec_queue_is_lr(q))
++			xe_exec_queue_put(q);
++	}
++
++	if (pending_enable) {
++		clear_exec_queue_enabled(q);
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
++		clear_exec_queue_pending_enable(q);
++	}
++
++	if (exec_queue_destroyed(q) && exec_queue_registered(q)) {
++		clear_exec_queue_destroyed(q);
++		if (exec_queue_extra_ref(q))
++			xe_exec_queue_put(q);
++		else
++			q->guc->needs_cleanup = true;
++		clear_exec_queue_extra_ref(q);
++	}
++
++	pending_disable = exec_queue_pending_disable(q);
++
++	if (pending_disable && exec_queue_suspended(q)) {
++		clear_exec_queue_suspended(q);
++		q->guc->needs_suspend = true;
++	}
++
++	if (pending_disable) {
++		if (!pending_enable)
++			set_exec_queue_enabled(q);
++		clear_exec_queue_pending_disable(q);
++		clear_exec_queue_check_timeout(q);
++	}
++
++	q->guc->resume_time = 0;
++
++	if (xe_exec_queue_is_parallel(q)) {
++		struct xe_device *xe = guc_to_xe(guc);
++		struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
++
++		for (i = 0; i < WQ_SIZE / sizeof(u32); ++i)
++			parallel_write(xe, map, wq[i],
++				       FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_NOOP) |
++				       FIELD_PREP(WQ_LEN_MASK, 0));
++	}
++
++	job = xe_sched_first_pending_job(sched);
++	if (job) {
++		/*
++		 * Adjust software tail so jobs submitted overwrite previous
++		 * position in ring buffer with new GGTT addresses.
++		 */
++		for (i = 0; i < q->width; ++i)
++			q->lrc[i]->ring.tail = job->ptrs[i].head;
++	}
++}
++
+ /**
+  * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
+  * @guc: the &xe_guc struct instance whose scheduler is to be disabled
+@@ -2273,8 +2388,12 @@ void xe_guc_submit_pause(struct xe_guc *guc)
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+ 
++	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
++
++	mutex_lock(&guc->submission_state.lock);
+ 	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+-		xe_sched_submission_stop_async(&q->guc->sched);
++		guc_exec_queue_pause(guc, q);
++	mutex_unlock(&guc->submission_state.lock);
+ }
+ 
+ static void guc_exec_queue_start(struct xe_exec_queue *q)
+@@ -2323,11 +2442,87 @@ int xe_guc_submit_start(struct xe_guc *guc)
  	return 0;
  }
  
-+static void vf_post_migration_rearm(struct xe_gt *gt)
-+{
-+	xe_guc_ct_restart(&gt->uc.guc.ct);
+-static void guc_exec_queue_unpause(struct xe_exec_queue *q)
++static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
++					   struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	struct drm_sched_job *s_job;
++	struct xe_sched_job *job = NULL;
++
++	list_for_each_entry(s_job, &sched->base.pending_list, list) {
++		job = to_xe_sched_job(s_job);
++
++		q->ring_ops->emit_job(job);
++		job->skip_emit = true;
++	}
++
++	if (job)
++		job->last_replay = true;
 +}
 +
- static void vf_post_migration_kickstart(struct xe_gt *gt)
- {
- 	xe_guc_submit_unpause(&gt->uc.guc);
-@@ -1263,6 +1268,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
- 
-+	vf_post_migration_rearm(gt);
++/**
++ * xe_guc_submit_unpause_prepare - Prepare unpause submission tasks on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be prepared for unpause
++ */
++void xe_guc_submit_unpause_prepare(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
 +
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err && err != -EAGAIN)
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index d4a132b81b86..fa55e9c9de3a 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -501,7 +501,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
- 		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
- }
- 
--int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
-@@ -513,17 +513,19 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
- 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
- 
--	err = guc_ct_ctb_h2g_register(ct);
--	if (err)
--		goto err_out;
-+	if (needs_register) {
-+		err = guc_ct_ctb_h2g_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_ctb_g2h_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_g2h_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_control_toggle(ct, true);
--	if (err)
--		goto err_out;
-+		err = guc_ct_control_toggle(ct, true);
-+		if (err)
-+			goto err_out;
++	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++		guc_exec_queue_unpause_prepare(guc, q);
++	mutex_unlock(&guc->submission_state.lock);
++}
++
++static void guc_exec_queue_unpause(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	struct xe_sched_msg *msg;
++	bool needs_tdr = exec_queue_killed_or_banned_or_wedged(q);
++
++	lockdep_assert_held(&guc->submission_state.lock);
++
++	xe_sched_resubmit_jobs(sched);
++
++	if (q->guc->needs_cleanup) {
++		msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
++
++		guc_exec_queue_add_msg(q, msg, CLEANUP);
++		q->guc->needs_cleanup = false;
++	}
++
++	if (q->guc->needs_suspend) {
++		msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg_head(q, msg, SUSPEND);
++		xe_sched_msg_unlock(sched);
++
++		q->guc->needs_suspend = false;
++	}
++
++	/*
++	 * The resume must be in the message queue before the suspend as it is
++	 * not possible for a resume to be issued if a suspend pending is, but
++	 * the inverse is possible.
++	 */
++	if (q->guc->needs_resume) {
++		msg = q->guc->static_msgs + STATIC_MSG_RESUME;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg_head(q, msg, RESUME);
++		xe_sched_msg_unlock(sched);
++
++		q->guc->needs_resume = false;
 +	}
  
- 	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
- 
-@@ -555,6 +557,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 	return err;
+ 	xe_sched_submission_start(sched);
++	if (needs_tdr)
++		xe_guc_exec_queue_trigger_cleanup(q);
++	xe_sched_submission_resume_tdr(sched);
  }
  
-+/**
-+ * xe_guc_ct_restart() - Restart GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Restart GuC CT to an empty state without issuing a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_restart(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, false);
-+}
-+
-+/**
-+ * xe_guc_ct_enable() - Enable GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Enable GuC CT to an empty state and issue a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, true);
-+}
-+
- static void stop_g2h_handler(struct xe_guc_ct *ct)
- {
- 	cancel_work_sync(&ct->g2h_worker);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 1e32a59817cc..506616ec1db0 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-+int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush(struct xe_guc_ct *ct);
+ /**
+@@ -2339,10 +2534,10 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+ 
++	mutex_lock(&guc->submission_state.lock);
+ 	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+-		guc_exec_queue_unpause(q);
+-
+-	wake_up_all(&guc->ct.wq);
++		guc_exec_queue_unpause(guc, q);
++	mutex_unlock(&guc->submission_state.lock);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index fe82c317048e..b49a2748ec46 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++void xe_guc_submit_unpause_prepare(struct xe_guc *guc);
+ void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 7ce58765a34a..13e7a12b03ad 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -63,6 +63,10 @@ struct xe_sched_job {
+ 	bool ring_ops_flush_tlb;
+ 	/** @ggtt: mapped in ggtt. */
+ 	bool ggtt;
++	/** @skip_emit: skip emitting the job */
++	bool skip_emit;
++	/** @last_replay: last job being replayed */
++	bool last_replay;
+ 	/** @ptrs: per instance pointers. */
+ 	struct xe_job_ptrs ptrs[];
+ };
 -- 
 2.34.1
 
