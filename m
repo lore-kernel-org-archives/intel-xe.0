@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63710CAC5B2
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 07:59:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B6B5CAC5A7
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 08:13:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B2289128;
-	Wed, 24 Sep 2025 07:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5B310E6AE;
+	Wed, 24 Sep 2025 08:13:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="P97v0fQm";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MVDoVMRj";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0E4489128
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 07:59:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9D910E6AE
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 08:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hGvJ+Bzm6FJcABlI+C6l+xyBUUGGbw5Y21WJANdzDtw=; b=P97v0fQmYsXmXFpnRH8cGxmnRo
- Mk+y0AzGKL2ynZN2YU7HIPFk3kiaJCxrgQGkM4VC5T3xHQLJPKyfIxDZ53xwsP8aW8RaS9t5Mg+BN
- zewMVM8nsasjvywIcgqCKpIZ5Vj2g4C4cpgll11JRS9gW6UParsxqXgSdFjI1KlW+DTxetkgllQBd
- cvNq1OXzSORotxKKf9CcqXdFCyuhMFFaBbLW5eZth+/xvvsemQtqBLs6zE60B75lviTe9VSlBwi4J
- mHoJu6vlXx+IKjNEoZK/22v8kwt33nS4ES5YqilcrrQrysYdFlXIkikPCWD35MfsmQAtjJeCF6ntE
- dmllYFYg==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=sW0+FGCcrHLCSjBxC50MFNKivxvLsM2qGJzfxJ1aZZc=; b=MVDoVMRjdJDOpJYmkwIqeSTynO
+ PQVn7pFZg0Kh/5WqyCDA/Pypr6Kw8zWkorIOAq0UlOSk+yI2ooJWQUKwGCs0ZbGWRphPLYsfgeXc8
+ T6MQlOwQQaujS6Ju40PVUjRnVMmXta5Dp1Kgkuge39Xq6VjZq4GV9Q5OFoWzhXBlpgebl9BLcltBJ
+ 8sXx/N2tFlYDkrZQK4zAVRq0gLg2PsEvs5/+hxZIHIQpDkJDlV4MV3s/DKxKWH2J2V+nrMxnn479U
+ pbuuoeUsycnogcRd6dAKFLhNSDiH0G7aEvpJwLzgyTVUS+2Yyqyj1RFvDcVJ/iTl2YTslWgZq1gXB
+ yow1sAgg==;
+Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1v1KPl-00GlR5-En; Wed, 24 Sep 2025 09:59:49 +0200
-Message-ID: <9a2f035d-cd68-41e5-b23a-e887f328335b@igalia.com>
-Date: Wed, 24 Sep 2025 08:59:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 00/13] AuxCCS handling and render compression modifiers
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
- <aNL_RgLy13fXJbYx@intel.com>
-Content-Language: en-GB
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1v1Kcg-00GmPw-4f; Wed, 24 Sep 2025 10:13:10 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <aNL_RgLy13fXJbYx@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Subject: [PATCH 1/2] drm/xe: Fix ggtt fb alignment
+Date: Wed, 24 Sep 2025 09:13:03 +0100
+Message-ID: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,75 +58,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Pass the correct alignment from intel_fb_pin_to_ggtt() down to
+__xe_pin_fb_vma().
 
-On 23/09/2025 21:12, Ville Syrjälä wrote:
-> On Tue, Sep 23, 2025 at 11:07:53AM +0100, Tvrtko Ursulin wrote:
->> A series to fix and add xe support for AuxCSS framebuffers via DPT.
->>
->> Currently the auxiliary buffer data isn't mapped into the page tables at all so
->> cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
->> had to disable the support.
->>
->> On top of that there are missing flushes, invalidations and similar.
->>
->> Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
->>
->>    [PLANE:32:plane 1A]: type=PRI
->>            uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
->>            hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
->>
->> Display working fine - no artefacts, no DMAR/PIPE faults.
->>
->> All IGTs pass for me locally.
->>
->> v2:
->>   * More patches added to fix kms_flip_tiling.
->>
->> v3:
->>   * Rebased after some cleanup patches from v2 were merged.
->>   * Added people to Cc as suggested by Rodrigo.
->>   * Adjusted last patch title. (Rodrigo)
->>   * Apply GGTT flushing only to iomapped system memory buffers.
->>
->> v4:
->>   * Added patch for potentially misplaced Wa_14016712196.
->>   * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
->>
->> v5:
->>   * Split out ring emission changes to smaller patches.
->>   * Fixed MAX_JOB_SIZE_DW even more.
->>   * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
->>
->>   v6:
->>   * Added AuxCCS invalidation to indirect context workarounds.
->>   * Also added the indirect context handling and some other workarounds. They are
->>     unrelated but the series depends on it.
->>   * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
->>     some reason.
-> 
-> I was wondering where that went. Someone should actually debug
-> that instead of leaving the bogus alignemnt in place.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I do not exactly remember what the failures were but I *think* they were 
-sporadic and I definitely fixed some other details since. So I think it 
-is possible I incorrectly blamed that patch at the time.  I'll re-send 
-it to see what CI will say.
-
-> We do have some unknown alignment issues on i915 as well,
-> with async flips specifically. On ADL we've papered over it
-> for now. But at least MTL is suffering from somewhat similar
-> issues that I failed to immediately understand. We really
-> should find someone who has a bit of time to dig into these...
-> 
-> BTW intel_fb_pin_to_ggtt() also passes the wrong alignment to
-> __xe_pin_fb_vma(). I suppose it won't help with DPT alignment
-> woes, but it's yet another xe issue that needs fixing.
-
-The last part looks obviously wrong indeed. I can send a fix for that.
-
-Regards,
-
-Tvrtko
-
-
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 1fd4a815e784..b18d15cc3c53 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -378,7 +378,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ {
+ 	*out_flags = 0;
+ 
+-	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, phys_alignment);
++	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, alignment);
+ }
+ 
+ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+-- 
+2.48.0
 
