@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EA30CAC5B0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 965F7CAC5B2
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B287E10E690;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C037F10E692;
 	Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UEb2fMyf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jJxEClCj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F11A10E691
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D0010E691
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758676569; x=1790212569;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xZgIGqNMwmVbwF6Wl00EPu0Nu22pGDqccJH4f/xb34I=;
- b=UEb2fMyfQRqDFGn56fO/odQVUABHW8VTZ8TREq9tawmOzm0YyNV9WLE0
- aBOTcxAZ0wfof+epOb3eFk+OsZZw6mmTiwDlu/lYtv0aIu18InmYDVdHW
- 3kgHX7aCWPjVLJooIWgLlqiACiVamrw+UIzQkwKWlDTjZMhY0ZkQypVYl
- MG+mPevBAidB2/5dXb/CKKfYEQ9VxP+ccZVSd1MlbdRpBrSy9+pZ84Crh
- 0ay5TxiTd/a5kcjqi81qjqFos12vp1+3vEMSYWJBLyOTRNrH3rhXc3SSh
- qUQ+SH+oRG0OkJC/SHpd8QL0fnwSdQEw2Qzj1+IzMoBhFKWoD9TSzFjas A==;
-X-CSE-ConnectionGUID: IHrqjOaOQ2y2RjK8qpZoKw==
-X-CSE-MsgGUID: dn3Xis3qTgmJIC7GfMMziA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908248"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908248"
+ bh=cX2WjujoIMmoMi/HaDffSROIUMuhS4IIaYzguvx5+Zw=;
+ b=jJxEClCjCwHKzf++BkuBS5TPRGGibFVva/1NeEP6DZhi7IN+nEyhNLxQ
+ UfXx31x9QZfTdwhIkGi1xD4Q3GOQFz2+kuSD2m+up6/Yq3E0OoWijiJMM
+ tbzTCwRCK9qWOuHnurD5zP0e53ry8+pPHMDzvRL1nxC+gJ4Wk2R7gjJ8W
+ J0ZWrc9MpPzFXjcFKr/q1OrYB4qQs9D6D34IgaiUVmYFZuE9QCAknsV8A
+ +rw+D2bdPThnFpJO+kBpl0/RMNqK5pegseF6rPAfp/M8bkG18k4NXW1iZ
+ r6EBiXRWC32ll0Q/tCH4MCWSKz6po+J+rH3/l/Y/vSyviTM27V1CMi9PS A==;
+X-CSE-ConnectionGUID: D5PuEx05Tc+25LH/6NhpaQ==
+X-CSE-MsgGUID: ZCKsKMYxStmzJhbL10ICWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908254"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908254"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:08 -0700
-X-CSE-ConnectionGUID: KDiIk6HSQS2N5mbYXqLTdQ==
-X-CSE-MsgGUID: +uZRIbWuQaWYa2oaLIqg9w==
+X-CSE-ConnectionGUID: GUkUBMOvTlqx/3aWJd4aNw==
+X-CSE-MsgGUID: GvBvfPKMQGqNx/6GMOhtlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841782"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841789"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:07 -0700
+ 23 Sep 2025 18:16:08 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 03/34] Revert "drm/xe/vf: Post migration,
- repopulate ring area for pending request"
-Date: Tue, 23 Sep 2025 18:15:30 -0700
-Message-Id: <20250924011601.888293-4-matthew.brost@intel.com>
+Subject: [PATCH v2 09/34] drm/xe: Make LRC W/A scratch buffer usage consistent
+Date: Tue, 23 Sep 2025 18:15:36 -0700
+Message-Id: <20250924011601.888293-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,122 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit a0dda25d24e636df5c30a9370464b7cebc709faf.
+The LRC W/A currently checks for LRC being iomem in some places, while
+in others it checks if the scratch buffer is non-NULL. This
+inconsistency causes issues with the VF post-migration recovery code,
+which blindly passes in a scratch buffer.
+
+This patch standardizes the check by consistently verifying whether the
+LRC is iomem to determine if the scratch buffer should be used.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 24 ------------------------
- drivers/gpu/drm/xe/xe_exec_queue.h |  3 +--
- drivers/gpu/drm/xe/xe_guc_submit.c | 24 ------------------------
- drivers/gpu/drm/xe/xe_guc_submit.h |  2 --
- drivers/gpu/drm/xe/xe_sriov_vf.c   |  1 -
- 5 files changed, 1 insertion(+), 53 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 37b2b93b73d6..6bfaca424ca3 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1123,27 +1123,3 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 47e9df775072..aed0a3155d1f 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1248,7 +1248,7 @@ static int setup_bo(struct bo_setup_state *state)
  
- 	return err;
- }
--
--/**
-- * xe_exec_queue_jobs_ring_restore - Re-emit ring commands of requests pending on given queue.
-- * @q: the &xe_exec_queue struct instance
-- */
--void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
--{
--	struct xe_gpu_scheduler *sched = &q->guc->sched;
--	struct xe_sched_job *job;
--
--	/*
--	 * This routine is used within VF migration recovery. This means
--	 * using the lock here introduces a restriction: we cannot wait
--	 * for any GFX HW response while the lock is taken.
--	 */
--	spin_lock(&sched->base.job_list_lock);
--	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
--		if (xe_sched_job_is_error(job))
--			continue;
--
--		q->ring_ops->emit_job(job);
--	}
--	spin_unlock(&sched->base.job_list_lock);
--}
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 15ec852e7f7e..8821ceb838d0 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -92,7 +92,6 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
- 
- int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
- 
--void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
--
- struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 3ac0950f55be..16f78376f196 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -845,30 +845,6 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	return fence;
- }
- 
--/**
-- * xe_guc_jobs_ring_rebase - Re-emit ring commands of requests pending
-- * on all queues under a guc.
-- * @guc: the &xe_guc struct instance
-- */
--void xe_guc_jobs_ring_rebase(struct xe_guc *guc)
--{
--	struct xe_exec_queue *q;
--	unsigned long index;
--
--	/*
--	 * This routine is used within VF migration recovery. This means
--	 * using the lock here introduces a restriction: we cannot wait
--	 * for any GFX HW response while the lock is taken.
--	 */
--	mutex_lock(&guc->submission_state.lock);
--	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
--		if (exec_queue_killed_or_banned_or_wedged(q))
--			continue;
--		xe_exec_queue_jobs_ring_restore(q);
--	}
--	mutex_unlock(&guc->submission_state.lock);
--}
--
- static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
+ static void finish_bo(struct bo_setup_state *state)
  {
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 78c3f07e31a0..5b4a0a6fd818 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -36,8 +36,6 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
- int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+-	if (!state->buffer)
++	if (!state->lrc->bo->vmap.is_iomem)
+ 		return;
  
--void xe_guc_jobs_ring_rebase(struct xe_guc *guc);
--
- struct xe_guc_submit_exec_queue_snapshot *
- xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
- void
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index d6e2ed9b9bbc..0581b881b628 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -340,7 +340,6 @@ static int gt_vf_post_migration_fixups(struct xe_gt *gt)
- 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
- 		if (err)
- 			goto out;
--		xe_guc_jobs_ring_rebase(&gt->uc.guc);
- 		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
- 	}
- 
+ 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
 -- 
 2.34.1
 
