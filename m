@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA3BCAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 16:44:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BCA8CAC5AE
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 16:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00BFE10E785;
-	Wed, 24 Sep 2025 16:44:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cSN0JzCB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431B610E784;
- Wed, 24 Sep 2025 16:44:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758732280; x=1790268280;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=T0c4s/DkGxoPVLx/+i1wu8DN4NkmbRICo9exza5qkpQ=;
- b=cSN0JzCBgR4urpszgl4VO3TJo/nV77pB1GZaQhAM+UVphIx6H7Kl/8fG
- H5EkwpNujT84kKJoCS0a5Q13MiQsQ/om+MEXAcFBGtV7g0BWlDd5Ia71g
- bWA2yQCc29+V+EpltsQ2Q5PoZbVZMBMhSPXXhJJY+y31UjZyil8cYz/LV
- c9WlJIF3RcbfpH8uUgS7fDGSGWuy9BM+6GdPgRIHJM3JaBBR+IVr0JP29
- n7rCUSpQ82vztbg3y8pTfDljGY2PP/lDfebnfFOSV7nGpVx+YSXVxEAgM
- 2RlHgg+TwxBkazL0BdC1F7QEstkDS8wKMOjaZ6YsLpJMiCyk9G5Ei4/1W g==;
-X-CSE-ConnectionGUID: hXorgwZ2SN6psnqhLVTUAw==
-X-CSE-MsgGUID: j84bjAl+TOy8Oumx6AsTZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="64676903"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="64676903"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:44:40 -0700
-X-CSE-ConnectionGUID: b4Id9MuvRoekylkQvj7j/g==
-X-CSE-MsgGUID: BBZyAOofSRSgietC5tcS7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="208009347"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.149])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 09:44:38 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 11/11] drm/xe/stolen: use the same types as i915 interface
-Date: Wed, 24 Sep 2025 19:43:40 +0300
-Message-ID: <f15d41bc232dfa957841f16d9a069c777af40194.1758732183.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1758732183.git.jani.nikula@intel.com>
-References: <cover.1758732183.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E68DD10E77F;
+	Wed, 24 Sep 2025 16:57:49 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7A2810E77F;
+ Wed, 24 Sep 2025 16:57:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0785251392899009488=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/2=5D_drm/xe/configfs=3A_Fix_engine_class_parsing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 16:57:48 -0000
+Message-ID: <175873306874.362993.2623388798410774033@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924152709.659483-3-lucas.demarchi@intel.com>
+In-Reply-To: <20250924152709.659483-3-lucas.demarchi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,62 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unify the i915 and xe interfaces by switching to the same types as i915.
+--===============0785251392899009488==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h  | 8 ++++----
- drivers/gpu/drm/xe/display/xe_stolen.c                    | 7 +++----
- 2 files changed, 7 insertions(+), 8 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index 42927326e567..48e3256ba37e 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -11,11 +11,11 @@
- struct drm_device;
- struct intel_stolen_node;
- 
--int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
--					 u32 size, u32 align,
--					 u32 start, u32 end);
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 size,
-+					 unsigned int align, u64 start, u64 end);
- 
--int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u32 size, u32 align);
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u64 size,
-+				unsigned int align);
- 
- void i915_gem_stolen_remove_node(struct intel_stolen_node *node);
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index d7af731d9c90..9f04ba36e930 100644
---- a/drivers/gpu/drm/xe/display/xe_stolen.c
-+++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -11,9 +11,8 @@ struct intel_stolen_node {
- 	struct xe_bo *bo;
- };
- 
--int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
--					 u32 size, u32 align,
--					 u32 start, u32 end)
-+int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node, u64 size,
-+					 unsigned int align, u64 start, u64 end)
- {
- 	struct xe_device *xe = node->xe;
- 
-@@ -42,7 +41,7 @@ int i915_gem_stolen_insert_node_in_range(struct intel_stolen_node *node,
- 	return err;
- }
- 
--int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u32 size, u32 align)
-+int i915_gem_stolen_insert_node(struct intel_stolen_node *node, u64 size, unsigned int align)
- {
- 	/* Not used on xe */
- 	WARN_ON(1);
--- 
-2.47.3
+Series: series starting with [v2,1/2] drm/xe/configfs: Fix engine class parsing
+URL   : https://patchwork.freedesktop.org/series/154981/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf_BAT -> xe-pw-154981v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf -> xe-pw-154981v1
+
+  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf: a4d9163251f4832a7d34d4b59449f9a68b9b7adf
+  xe-pw-154981v1: 154981v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154981v1/index.html
+
+--===============0785251392899009488==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe/configfs: Fix engine class parsing</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154981/">https://patchwork.freedesktop.org/series/154981/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154981v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154981v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf_BAT -&gt; xe-pw-154981v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf -&gt; xe-pw-154981v1</li>
+</ul>
+<p>IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf: a4d9163251f4832a7d34d4b59449f9a68b9b7adf<br />
+  xe-pw-154981v1: 154981v1</p>
+
+</body>
+</html>
+
+--===============0785251392899009488==--
