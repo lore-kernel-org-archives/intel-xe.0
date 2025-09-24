@@ -4,79 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D855FCAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 10:23:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0D25CAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 10:48:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F6310E6DF;
-	Wed, 24 Sep 2025 10:23:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bphgnwtf";
-	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591A710E6E0
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 10:23:00 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-46e2562e8cbso10198095e9.1
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 03:23:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758709379; x=1759314179; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=2SZhlVPPd52n7ONt3JZoUJyYMwjtJvsP+AyT6HZcYJQ=;
- b=bphgnwtfVgPMcrNPkShLLNSdn0ridJZWHY5XvkkG8XsnkjlTO4h47OUWZg3YDQolRx
- HYgCb8Iqyh69RWcm1C4AjFoKrDUYXDQxE9PhaFKvj7E5kdUe/veqVfIdvX6fPBob+MLp
- tHbgR0XYo/aBFnYHHMKBoTwdbpNLYD2Aa22RMZBfRZ0a6l6JvARmm6Oxpf/iJhDTPXLu
- iEiOee5RDxoEs//3+/VuNBAD+QH8qNag/bFYt93+7hPdRP+YTRBbbAQiHhk9h7H7XMHF
- GypwH6aIlasKlBiwF+VkpL3gDEFPs1fUjoFWjHzxo35pQMZfcOwvz8LvLxr2EFKW/lPf
- lJ1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758709379; x=1759314179;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=2SZhlVPPd52n7ONt3JZoUJyYMwjtJvsP+AyT6HZcYJQ=;
- b=O5cKlDUc0VxDFUoSYLHacamXZ/8FsVCMPeka1cjL5Fo/VlQwBX6ACevt3IuJylHZC9
- kbc4PESD5WTVARo1IIC+Dwy7KcOszRZJAzaI4DtmsEp93lFeE8SCDJA66PRPVocOFnHj
- 1KT5uEvQpwF2TEMH+2vxlYaMimn8tV4U7RvC4CYOs59kSSk/KMjis+ruS7OvDWeWilUk
- Wb5rkYuAj91NWlC2oHHPCcpc/gp2z1T5duM+/sTZENSSt82Ds06m+dZKRlwxMoeMqNVj
- jdzf0T1NOrKyuIfZMbWzFgoyR1o3yHQsNHApUqIkKc019RS0sTWsITw0KYjLeFaXPvo7
- qtcg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUBmP5lT1VMH8Cc5Ni4J8s1J2brWAStManMOoJu6gKT4l8GgnbrhqexHhcWA3TcIQi7dqUBn2U3ug==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxd3HoEj36ZrQRlIIR+4oIeVSSqww9MTH8XoOHSOeT9R3YMNO0/
- p8GYVvOAuYobe23u9U8uFQjXf4wa59tdwkWvG4NnVNyDrSRZsu0PKyU0
-X-Gm-Gg: ASbGncs8tVa7ZTugy3A94Pn3PWuZ89+FBmkuyeYgOotbx/5wmzfHMff2wcB5BznDsUN
- wu/rZbQlaqIb77IHC15TPmcQvqyDVXsdqhEWdxZ9ZdrDfLs03Z6tTAZ4+ywDG4QfxRIPmvDDp8j
- 6CeLT+qMDFAY80qf2xhWrNqqrJN0pG6itMvvlYzjWz5sog6u5swAFseorZTvB1iwDDP/7dea1Tu
- D28E21Te61O57u1WEjezbuQHdXkkPNGpY6fe2m4QeUoGYVGtgcxHjbhHCrSxeTk+RoPnq5+IGrV
- fgApawpZM9CF6BB9cxdiVAlyZDD+HIoEZ6LiMiNYsqKDR/xRewIA+LAgiWVF1OYs9fmlvQHsLlr
- or6ErOr8vC3A9wGr9msCSeSAuDSHqBJf8
-X-Google-Smtp-Source: AGHT+IEaxHf/2iRwwqfoIfQ+Znhm/drcILF6bGn2vT3pOma/+G7W3dJJfRF76aIPViePMXlaIdlZhw==
-X-Received: by 2002:a05:600c:1d0d:b0:46d:fd71:f69 with SMTP id
- 5b1f17b1804b1-46e1d988de8mr46724395e9.14.1758709378513; 
- Wed, 24 Sep 2025 03:22:58 -0700 (PDT)
-Received: from localhost ([87.254.0.133]) by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-46e2a9b6e1bsm29341975e9.10.2025.09.24.03.22.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Sep 2025 03:22:56 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Badal Nilawar <badal.nilawar@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next][V2] drm/xe/xe_late_bind_fw: Fix missing initialization
- of variable offset
-Date: Wed, 24 Sep 2025 11:22:08 +0100
-Message-ID: <20250924102208.9216-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F0A010E6ED;
+	Wed, 24 Sep 2025 10:48:31 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3112B10E147;
+ Wed, 24 Sep 2025 10:48:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6919066144595896508=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/fbc=3A_update_the_?=
+ =?utf-8?q?impacted_platforms_in_wa=5F22014263786?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 10:48:31 -0000
+Message-ID: <175871091119.361551.14500954763008029300@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924100308.346808-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20250924100308.346808-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,47 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The variable offset is not being initialized, and it is only set inside
-a for-loop if entry->name is the same as manifest_entry. In the case
-where it is not initialized a non-zero check on offset is potentialy checking
-a bogus uninitalized value. Fix this by initializing offset to zero.
+--===============6919066144595896508==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: efa29317a553 ("drm/xe/xe_late_bind_fw: Extract and print version info")
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
+== Series Details ==
 
-V2: Fix identical issue in parse_lb_layout that I ommitted in the first
-patch
+Series: drm/i915/fbc: update the impacted platforms in wa_22014263786
+URL   : https://patchwork.freedesktop.org/series/154950/
+State : success
 
----
- drivers/gpu/drm/xe/xe_late_bind_fw.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-index 38f3feb2aecd..8f5082e689dc 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-@@ -60,7 +60,7 @@ static int parse_cpd_header(struct xe_late_bind_fw *lb_fw,
- 	const struct gsc_manifest_header *manifest;
- 	const struct gsc_cpd_entry *entry;
- 	size_t min_size = sizeof(*header);
--	u32 offset;
-+	u32 offset = 0;
- 	int i;
- 
- 	/* manifest_entry is mandatory */
-@@ -116,7 +116,7 @@ static int parse_lb_layout(struct xe_late_bind_fw *lb_fw,
- 	const struct csc_fpt_header *header = data;
- 	const struct csc_fpt_entry *entry;
- 	size_t min_size = sizeof(*header);
--	u32 offset;
-+	u32 offset = 0;
- 	int i;
- 
- 	/* fpt_entry is mandatory */
--- 
-2.51.0
+CI Bug Log - changes from xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670_BAT -> xe-pw-154950v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-adlp-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154950v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-bmg-1:          [FAIL][5] ([Intel XE#5507]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
+
+
+Build changes
+-------------
+
+  * Linux: xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670 -> xe-pw-154950v1
+
+  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670: 53ee7e373ce454dc86b39ac27aa84d95c536b670
+  xe-pw-154950v1: 154950v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/index.html
+
+--===============6919066144595896508==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/fbc: update the impacted platforms in wa_22014263786</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154950/">https://patchwork.freedesktop.org/series/154950/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670_BAT -&gt; xe-pw-154950v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154950v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2@render:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154950v1/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670 -&gt; xe-pw-154950v1</li>
+</ul>
+<p>IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3823-53ee7e373ce454dc86b39ac27aa84d95c536b670: 53ee7e373ce454dc86b39ac27aa84d95c536b670<br />
+  xe-pw-154950v1: 154950v1</p>
+
+</body>
+</html>
+
+--===============6919066144595896508==--
