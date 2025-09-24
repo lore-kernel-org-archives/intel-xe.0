@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D907CAC5A7
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 08:13:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D10FACAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 08:19:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C324410E6AF;
-	Wed, 24 Sep 2025 08:13:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RvONAS2W";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBAA10E6AE
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 08:13:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Uj0AE8AE4z3DpULfgiJj0yi/glDDJjHm0YVI77DVLP0=; b=RvONAS2WGOMb+3fVVNN/d9rD2Q
- fXYYRhUFQYU1LxFTjie/fz90aVrxR+JLl3sU06PWowOkn2LmluP88QFLodrmazZoKq5f0845+nN6Y
- uXSjDxT8uueOlf4I2IblJWswOqt33MffnyGsDXxateJeJ5R/hMaMYaAVD7g1z8qPiEc6Lnvno2ums
- H9qOWT6l4ScsfyiLj/yyslN6Hh4LxCN3lKAiAalkWopo1kjugyT9uKPIeiOdjpayV78g8+sgjDhyR
- q6dFvOPybJbRCaAKlAQHtpIUOxlVQqFoDN2hQ1uYtJFi+4rS5Wb960KSiwlRxlsybd94epeXLARUJ
- /eMRSMIg==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v1Kcg-00GmQ0-S8; Wed, 24 Sep 2025 10:13:10 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH 2/2] drm/xe: Fix DPT frame buffer alignment
-Date: Wed, 24 Sep 2025 09:13:04 +0100
-Message-ID: <20250924081304.10098-2-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
-References: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CEFF10E6AE;
+	Wed, 24 Sep 2025 08:19:45 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD90F10E10B;
+ Wed, 24 Sep 2025 08:19:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe=3A_Fix_ggtt_fb_alignment?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 08:19:44 -0000
+Message-ID: <175870198470.360919.15887993406930094469@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250924081304.10098-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,35 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For the DPT case alignment is defined in terms of the DPT address space.
-To translate back into the GGTT space it needs to be divided by 512 (page
-size / PTE size).
+== Series Details ==
 
-v2:
- * Replaced commit message with the explanation provided by Ville.
+Series: series starting with [1/2] drm/xe: Fix ggtt fb alignment
+URL   : https://patchwork.freedesktop.org/series/154941/
+State : warning
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b18d15cc3c53..36e78cf6b28c 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -331,7 +331,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 
- 	vma->bo = bo;
- 	if (intel_fb_uses_dpt(&fb->base))
--		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment);
-+		ret = __xe_pin_fb_vma_dpt(fb, view, vma, alignment / 512);
- 	else
- 		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  alignment);
- 	if (ret)
--- 
-2.48.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2e6f0c3e924951030ccbb277f07dda8903f095d8
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Wed Sep 24 09:13:04 2025 +0100
+
+    drm/xe: Fix DPT frame buffer alignment
+    
+    For the DPT case alignment is defined in terms of the DPT address space.
+    To translate back into the GGTT space it needs to be divided by 512 (page
+    size / PTE size).
+    
+    v2:
+     * Replaced commit message with the explanation provided by Ville.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 53ee7e373ce454dc86b39ac27aa84d95c536b670 drm-intel
+a267e8680d9c drm/xe: Fix ggtt fb alignment
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+2e6f0c3e9249 drm/xe: Fix DPT frame buffer alignment
+
 
