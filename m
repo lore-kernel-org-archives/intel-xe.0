@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D71CCAC5AE
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 15:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3951CAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 15:32:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0BCA10E765;
-	Wed, 24 Sep 2025 15:27:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DTdX6MWp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78DC10E765
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 15:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758727649; x=1790263649;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=g245gQ0+gknQhjQpwOe+IsBo3sk9pqNbiS2A07FyhnE=;
- b=DTdX6MWpIVvwtLHJedfb4wSNJR4g+QoGhgbSbMu1sB2r1Cdgxww9zKwd
- 4V9F4p7KDp6t20zaCUF9AQpvSJriG0RF/INDmOeDYM0Rr5e3rcazVKitR
- 8nSZP/oBVMyHNG8vm79ZBnZ4zvQ2eWE0s1eVxyQoFOAK+hG5XJy7MvzGP
- v9Ozs1nnSvI63aVz7oqx+EVuhK30k8ZmlwJR3AtRUUbbYxBO0+AgukQ95
- yDW4H/NyTERY+ddOyvcCTrdIcFpv2WNN05ufrPhPoQCmBQBBja3z/04FI
- aHHw/mLWmFjKm5sgz4aiPE6k/GjvBpSMJBLIxxEpTqCD70QY13pvNT0LS w==;
-X-CSE-ConnectionGUID: bDR8uE8xQIGuWbwDjJ7kog==
-X-CSE-MsgGUID: Td6zK3CDT723Z9zuvWwr7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60953160"
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="60953160"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 08:27:29 -0700
-X-CSE-ConnectionGUID: WqhiLTM+R02SiH/6zlyfRw==
-X-CSE-MsgGUID: 19BYx9zTQ5OckkbB9ZotRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,290,1751266800"; d="scan'208";a="176988623"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 08:27:28 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Cc: Raag Jadav <raag.jadav@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 2/2] drm/xe/configfs: Improve doc for ctx_restore*
- attributes
-Date: Wed, 24 Sep 2025 08:27:11 -0700
-Message-ID: <20250924152709.659483-4-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250924152709.659483-3-lucas.demarchi@intel.com>
-References: <20250924152709.659483-3-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A569110E765;
+	Wed, 24 Sep 2025 15:32:22 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 494BE10E765;
+ Wed, 24 Sep 2025 15:32:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Work_aroun?=
+ =?utf-8?q?d_a_DSC_pixel_throughput_issue_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 24 Sep 2025 15:32:21 -0000
+Message-ID: <175872794127.362993.13122384905933862908@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250924152332.359768-1-imre.deak@intel.com>
+In-Reply-To: <20250924152332.359768-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +36,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Spell out the syntax instead of only using examples. Particularly
-important the <engine-class> part since that's different than
-engines_allowed and may confuse users. The same batch buffer is used for
-all engines of a certain class.
+== Series Details ==
 
-Cc: Raag Jadav <raag.jadav@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_configfs.c | 19 ++++++++++++++++---
- 1 file changed, 16 insertions(+), 3 deletions(-)
+Series: drm/i915/dp: Work around a DSC pixel throughput issue (rev4)
+URL   : https://patchwork.freedesktop.org/series/154737/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index beade13efbae7..1396634231857 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -126,8 +126,20 @@
-  * not intended for normal execution and will taint the kernel with TAINT_TEST
-  * when used.
-  *
-- * Currently this is implemented only for post and mid context restore.
-- * Examples:
-+ * The syntax allows to pass straight instructions to be executed by the engine
-+ * in a batch buffer or set specific registers.
-+ *
-+ * #. Generic instruction::
-+ *
-+ *	<engine-class> cmd <instr> [[dword0] [dword1] [...]]
-+ *
-+ * #. Simple register setting::
-+ *
-+ *	<engine-class> reg <address> <value>
-+ *
-+ * Commands are saved per engine class: all instances of that class will execute
-+ * those commands during context switch. The instruction, dword arguments,
-+ * addresses and values are in hex format like in the examples below.
-  *
-  * #. Execute a LRI command to write 0xDEADBEEF to register 0x4f10 after the
-  *    normal context restore::
-@@ -154,7 +166,8 @@
-  *       When using multiple lines, make sure to use a command that is
-  *       implemented with a single write syscall, like HEREDOC.
-  *
-- * These attributes can only be set before binding to the device.
-+ * Currently this is implemented only for post and mid context restore and
-+ * these attributes can only be set before binding to the device.
-  *
-  * Remove devices
-  * ==============
--- 
-2.50.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b9bc9d8726a9598e245a93608641b7f917f785e5
+Author: Imre Deak <imre.deak@intel.com>
+Date:   Wed Sep 24 18:23:32 2025 +0300
+
+    drm/i915/dp: Handle Synaptics DSC throughput link-bpp quirk
+    
+    Handle the DSC pixel throughput quirk, limiting the compressed link-bpp
+    value for Synaptics Panamera branch devices, working around a
+    blank/unstable output issue observed on docking stations containing
+    these branch devices, when using a mode with a high pixel clock and a
+    high compressed link-bpp value.
+    
+    For now use the same mode clock limit for RGB/YUV444 and YUV422/420
+    output modes. This may result in limiting the link-bpp value for a
+    YUV422/420 output mode already at a lower than required mode clock.
+    
+    v2: Apply the quirk only when DSC is enabled.
+    v3 (Ville):
+    - Move adjustment of link-bpp within the already existing is_dsc
+      if branch.
+    - Add TODO comment to move the HW revision check as well to the
+      DRM core quirk table.
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
+    Reported-by: Swati Sharma <swati2.sharma@intel.com>
+    Signed-off-by: Imre Deak <imre.deak@intel.com>
++ /mt/dim checkpatch a4d9163251f4832a7d34d4b59449f9a68b9b7adf drm-intel
+84a674941f7e drm/dp: Add quirk for Synaptics DSC throughput link-bpp limit
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#46: 
+Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Reported-by: Swati Sharma <swati2.sharma@intel.com>
+
+-:47: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#47: 
+Reported-by: Swati Sharma <swati2.sharma@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+-:58: WARNING:LONG_LINE_COMMENT: line length of 111 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2554:
++	/* Synaptics Panamera supports only a compressed bpp of 12 above 50% of its max DSC pixel throughput */
+
+-:59: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2555:
++	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID('S', 'Y', 'N', 'A', 0x53, 0x22), true, BIT(DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) },
+
+-:60: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2556:
++	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID('S', 'Y', 'N', 'A', 0x53, 0x31), true, BIT(DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) },
+
+-:61: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/display/drm_dp_helper.c:2557:
++	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID('S', 'Y', 'N', 'A', 0x53, 0x33), true, BIT(DP_DPCD_QUIRK_DSC_THROUGHPUT_BPP_LIMIT) },
+
+total: 0 errors, 6 warnings, 0 checks, 25 lines checked
+e468a9579343 drm/dp: Add helpers to query the branch DSC max throughput/line-width
+b0fffd341356 drm/i915/dp: Calculate DSC slice count based on per-slice peak throughput
+2eae1112f793 drm/i915/dp: Pass DPCD device descriptor to intel_dp_get_dsc_sink_cap()
+741e6bccbb76 drm/i915/dp: Verify branch devices' overall pixel throughput/line width
+b9bc9d8726a9 drm/i915/dp: Handle Synaptics DSC throughput link-bpp quirk
+-:27: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#27: 
+Reported-by: Vidya Srinivas <vidya.srinivas@intel.com>
+Reported-by: Swati Sharma <swati2.sharma@intel.com>
+
+-:28: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#28: 
+Reported-by: Swati Sharma <swati2.sharma@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+-:108: WARNING:LONG_LINE: line length of 140 exceeds 100 columns
+#108: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2571:
++				    "[CRTC:%d:%s][CONNECTOR:%d:%s] Decreasing link max bpp to " FXP_Q4_FMT " due to DSC throughput quirk\n",
+
+total: 0 errors, 3 warnings, 0 checks, 94 lines checked
+
 
