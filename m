@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D8B4CAC5BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84527CCA468
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77AE210E6AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B4D10E6AE;
 	Wed, 24 Sep 2025 01:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jiHiGX1B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VIA40JP1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCEA210E690
- for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C788910E69C
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758676569; x=1790212569;
+ t=1758676572; x=1790212572;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=t5KqQhNx39EoyskSxmbL3k7Kn/xhLJfXcLh3iCkldNU=;
- b=jiHiGX1BPdmH+XHd0UjFcdGWxk2UWFniFqbnMiPwYzjcO7QEdHA90ilV
- WVk/w0oZOIZEd/fYUFQqt0mbNBERnyldLboy7OaWapHqpWzSPbYIbLDQ9
- y+uGRlAnRneKWY054m6zprYVGyrzlfmgDrCozEfCQOWeSBSG/D9sGPI3u
- NBAw2lb9n4UMGnHA0i+wl+FUgpzapUdOBTcP48cl2Ju+O4roASmn/+zHd
- W9/khGs8oxR386ON7jxVr25Jr7aGdQYC5YZmzlBcThadc/wVgzLEd1C1D
- UGUZWbDrpl2VM81fLel/R7NHDyB1Y5+oabDBN4lT6Bx3OyIfcbR8tK+4t w==;
-X-CSE-ConnectionGUID: bidR+c7uT3uOPt8wgyBzcQ==
-X-CSE-MsgGUID: GX1CJIYzQIa2pxje42wUug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908252"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908252"
+ bh=As/zDc5yPNvfXRq7eXls/tkOttmKRU+mK4wRpbg2sO0=;
+ b=VIA40JP15DGE594jcGUuIgOd9D2Ehynz5r5w5e4XvJ3lUBVElqmY/9K8
+ ic4RXmnmX4BM5KpDhEi4sQxG16zx78uJeIBGw+vuztGARP9d/XOb+r/ut
+ ZCraHxyKv3Ykbo0cnCGMkvRaNDQvq5ssccyGPO0g2oxS4HowYmc07j/fV
+ nYRKTB9nPUHige+9HNLmIPYDAnFCVbJMrcNF8vXXfvb0hppTEMWXoY8oP
+ eCRdeKCqrvTW6wY1z1qULup6reoG94S+CWrIvrK6yzf4JimF2fESUDo8C
+ cHvAmOrqHsYYxXjh97+nWfGf3BmWvRk0hTuKm/s7LXb/hPiv8sYGgn01s A==;
+X-CSE-ConnectionGUID: rhHoDBhfStOZulTA2Pzc4w==
+X-CSE-MsgGUID: zxv07aWcQU6EPK+PgPuzuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908294"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908294"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:08 -0700
-X-CSE-ConnectionGUID: QlfJc1ArS32HUOegJq9sRw==
-X-CSE-MsgGUID: kw08DpYGTFSMe1lgMSLDHQ==
+ 23 Sep 2025 18:16:12 -0700
+X-CSE-ConnectionGUID: aWjnEmnZTmqcciv+8VnxYg==
+X-CSE-MsgGUID: M/PhCTtgS1aUcFULI7vwOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841786"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841813"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2025 18:16:07 -0700
+ 23 Sep 2025 18:16:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 07/34] drm/xe: Track LR jobs in DRM scheduler pending list
-Date: Tue, 23 Sep 2025 18:15:34 -0700
-Message-Id: <20250924011601.888293-8-matthew.brost@intel.com>
+Subject: [PATCH v2 31/34] drm/xe/vf: Use primary GT ordered work queue on
+ media GT on PTL VF
+Date: Tue, 23 Sep 2025 18:15:58 -0700
+Message-Id: <20250924011601.888293-32-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,228 +66,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF migration requires jobs to remain pending so they can be replayed
-after the VF comes back. Previously, LR job fences were intentionally
-signaled immediately after submission to avoid the risk of exporting
-them, as these fences do not naturally signal in a timely manner and
-could break dma-fence contracts. A side effect of this approach was that
-LR jobs were never added to the DRM scheduler’s pending list, preventing
-them from being tracked for later resubmission.
-
-We now avoid signaling LR job fences and ensure they are never exported;
-Xe already guards against exporting these internal fences. With that
-guarantee in place, we can safely track LR jobs in the scheduler’s
-pending list so they are eligible for resubmission during VF
-post-migration recovery (and similar recovery paths).
-
-An added benefit is that LR queues now gain the DRM scheduler’s built-in
-flow control over ring usage rather than rejecting new jobs in the exec
-IOCTL if the ring is full.
-
-v2:
- - Ensure DRM scheduler TDR doesn't run for LR jobs
- - Stack variable for killed_or_banned_or_wedged
-v4:
- - Clarify commit message (Tomasz)
+VF CCS restore is a primary GT operation on which the media GT depends.
+Therefore, it doesn't make much sense to run these operations in
+parallel. To address this, point the media GT's ordered work queue to
+the primary GT's ordered work queue on platforms that require (PTL VFs)
+CCS restore as part of VF post-migration recovery.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c       | 12 ++-------
- drivers/gpu/drm/xe/xe_exec_queue.c | 19 -------------
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 --
- drivers/gpu/drm/xe/xe_guc_submit.c | 43 ++++++++++++++++++++----------
- 4 files changed, 31 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_gt.c           | 16 ++++++++++------
+ drivers/gpu/drm/xe/xe_gt.h           |  2 +-
+ drivers/gpu/drm/xe/xe_pci.c          |  6 +++++-
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ drivers/gpu/drm/xe/xe_tile.c         |  2 +-
+ 6 files changed, 20 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 83897950f0da..0dc27476832b 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -124,7 +124,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct xe_validation_ctx ctx;
- 	struct xe_sched_job *job;
- 	struct xe_vm *vm;
--	bool write_locked, skip_retry = false;
-+	bool write_locked;
- 	int err = 0;
- 	struct xe_hw_engine_group *group;
- 	enum xe_hw_engine_group_execution_mode mode, previous_mode;
-@@ -266,12 +266,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto err_exec;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a6c361db11d9..af92c8cd43b6 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -318,6 +318,8 @@ struct xe_device {
+ 		u8 skip_mtcfg:1;
+ 		/** @info.skip_pcode: skip access to PCODE uC */
+ 		u8 skip_pcode:1;
++		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
++		u8 needs_shared_vf_gt_wq:1;
+ 	} info;
  
--	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
--		err = -EWOULDBLOCK;	/* Aliased to -EAGAIN */
--		skip_retry = true;
--		goto err_exec;
--	}
--
- 	if (xe_exec_queue_uses_pxp(q)) {
- 		err = xe_vm_validate_protected(q->vm);
- 		if (err)
-@@ -328,8 +322,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		xe_sched_job_init_user_fence(job, &syncs[i]);
- 	}
- 
--	if (xe_exec_queue_is_lr(q))
--		q->ring_ops->emit_job(job);
- 	if (!xe_vm_in_lr_mode(vm))
- 		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-@@ -355,7 +347,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		xe_validation_ctx_fini(&ctx);
- err_unlock_list:
- 	up_read(&vm->lock);
--	if (err == -EAGAIN && !skip_retry)
-+	if (err == -EAGAIN)
- 		goto retry;
- err_hw_exec_mode:
- 	if (mode == EXEC_MODE_DMA_FENCE)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 6bfaca424ca3..81f707d2c388 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -824,25 +824,6 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
- 		!(q->flags & EXEC_QUEUE_FLAG_VM);
+ 	/** @wa_active: keep track of active workarounds */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 1a4796cd885b..5ab283fb24ea 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -72,7 +72,7 @@ static void gt_fini(struct drm_device *drm, void *arg)
+ 	destroy_workqueue(gt->ordered_wq);
  }
  
--static s32 xe_exec_queue_num_job_inflight(struct xe_exec_queue *q)
--{
--	return q->lrc[0]->fence_ctx.next_seqno - xe_lrc_seqno(q->lrc[0]) - 1;
--}
--
--/**
-- * xe_exec_queue_ring_full() - Whether an exec_queue's ring is full
-- * @q: The exec_queue
-- *
-- * Return: True if the exec_queue's ring is full, false otherwise.
-- */
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
--{
--	struct xe_lrc *lrc = q->lrc[0];
--	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
--
--	return xe_exec_queue_num_job_inflight(q) >= max_job;
--}
--
- /**
-  * xe_exec_queue_is_idle() - Whether an exec_queue is idle.
-  * @q: The exec_queue
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 8821ceb838d0..a4dfbe858bda 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -64,8 +64,6 @@ static inline bool xe_exec_queue_uses_pxp(struct xe_exec_queue *q)
+-struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
++struct xe_gt *xe_gt_alloc(struct xe_tile *tile, bool use_primary_wq)
+ {
+ 	struct xe_gt *gt;
+ 	int err;
+@@ -82,12 +82,16 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
+ 		return ERR_PTR(-ENOMEM);
  
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
+ 	gt->tile = tile;
+-	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq",
+-						 WQ_MEM_RECLAIM);
++	if (use_primary_wq) {
++		gt->ordered_wq = tile->primary_gt->ordered_wq;
++	} else {
++		gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq",
++							 WQ_MEM_RECLAIM);
  
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q);
--
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+-	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
+-	if (err)
+-		return ERR_PTR(err);
++		err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
++		if (err)
++			return ERR_PTR(err);
++	}
  
- void xe_exec_queue_kill(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 13746f32b231..3a534d93505f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -851,30 +851,31 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
- 	struct xe_exec_queue *q = job->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct dma_fence *fence = NULL;
--	bool lr = xe_exec_queue_is_lr(q);
-+	bool lr = xe_exec_queue_is_lr(q), killed_or_banned_or_wedged =
-+		exec_queue_killed_or_banned_or_wedged(q);
- 
- 	xe_gt_assert(guc_to_gt(guc), !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
- 		     exec_queue_banned(q) || exec_queue_suspended(q));
- 
- 	trace_xe_sched_job_run(job);
- 
--	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
-+	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
- 		if (!exec_queue_registered(q))
- 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
--		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
--			q->ring_ops->emit_job(job);
-+		q->ring_ops->emit_job(job);
- 		submit_exec_queue(q);
- 	}
- 
--	if (lr) {
--		xe_sched_job_set_error(job, -EOPNOTSUPP);
--		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
--	} else {
--		fence = job->fence;
--	}
-+	/*
-+	 * We don't care about job-fence ordering in LR VMs because these fences
-+	 * are never exported; they are used solely to keep jobs on the pending
-+	 * list. Once a queue enters an error state, there's no need to track
-+	 * them.
-+	 */
-+	if (killed_or_banned_or_wedged && lr)
-+		xe_sched_job_set_error(job, -ECANCELED);
- 
--	return fence;
-+	return job->fence;
+ 	return gt;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 41880979f4de..31090ee47591 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -27,7 +27,7 @@ static inline bool xe_fault_inject_gt_reset(void)
+ 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
  }
  
- static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
-@@ -916,7 +917,8 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
- 		xe_sched_submission_start(sched);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(sched);
- 		return;
- 	}
+-struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
++struct xe_gt *xe_gt_alloc(struct xe_tile *tile, bool use_primary_wq);
+ int xe_gt_init_early(struct xe_gt *gt);
+ int xe_gt_init(struct xe_gt *gt);
+ void xe_gt_mmio_init(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3f42b91efa28..25a1d96a68e7 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -347,6 +347,7 @@ static const struct xe_device_desc ptl_desc = {
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	.needs_scratch = true,
++	.needs_shared_vf_gt_wq = true,
+ };
  
-@@ -1008,6 +1010,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	struct xe_exec_queue *q = ge->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_job *job;
- 	bool wedged = false;
+ #undef PLATFORM
+@@ -598,6 +599,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
+ 	xe->info.needs_scratch = desc->needs_scratch;
++	xe->info.needs_shared_vf_gt_wq = desc->needs_shared_vf_gt_wq;
  
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
-@@ -1058,7 +1061,16 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
- 		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
+ 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+ 				 xe_modparam.probe_display &&
+@@ -766,7 +768,9 @@ static int xe_info_init(struct xe_device *xe,
+ 		 * Allocate and setup media GT for platforms with standalone
+ 		 * media.
+ 		 */
+-		tile->media_gt = xe_gt_alloc(tile);
++		tile->media_gt = xe_gt_alloc(tile,
++					     xe->info.needs_shared_vf_gt_wq &&
++					     IS_SRIOV_VF(xe));
+ 		if (IS_ERR(tile->media_gt))
+ 			return PTR_ERR(tile->media_gt);
  
-+	xe_hw_fence_irq_stop(q->fence_irq);
-+
- 	xe_sched_submission_start(sched);
-+
-+	spin_lock(&sched->base.job_list_lock);
-+	list_for_each_entry(job, &sched->base.pending_list, drm.list)
-+		xe_sched_job_set_error(job, -ECANCELED);
-+	spin_unlock(&sched->base.job_list_lock);
-+
-+	xe_hw_fence_irq_start(q->fence_irq);
- }
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 9b9766a3baa3..b11bf6abda5b 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -48,6 +48,7 @@ struct xe_device_desc {
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+ 	u8 skip_pcode:1;
++	u8 needs_shared_vf_gt_wq:1;
+ };
  
- #define ADJUST_FIVE_PERCENT(__t)	mul_u64_u32_div(__t, 105, 100)
-@@ -1129,7 +1141,8 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
- 		set_exec_queue_banned(q);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(&q->guc->sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(&q->guc->sched);
- 	}
- }
+ struct xe_graphics_desc {
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index d49ba3401963..a982732a8056 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -149,7 +149,7 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
+ 	if (err)
+ 		return err;
  
-@@ -1187,6 +1200,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	int i = 0;
- 	bool wedged = false, skip_timeout_check;
+-	tile->primary_gt = xe_gt_alloc(tile);
++	tile->primary_gt = xe_gt_alloc(tile, false);
+ 	if (IS_ERR(tile->primary_gt))
+ 		return PTR_ERR(tile->primary_gt);
  
-+	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_lr(q));
-+
- 	/*
- 	 * TDR has fired before free job worker. Common if exec queue
- 	 * immediately closed after last fence signaled. Add back to pending
 -- 
 2.34.1
 
