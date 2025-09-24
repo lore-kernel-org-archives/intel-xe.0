@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22298CAC5AC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EA30CAC5B0
 	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 01:16:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAFE010E691;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B287E10E690;
 	Wed, 24 Sep 2025 01:16:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VyuvZ3q/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UEb2fMyf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACD4410E691
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F11A10E691
  for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 01:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758676569; x=1790212569;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ipoIzRH7gt3sPRHj5QeBROa8vy2uJ9eK2Q2ZBAf9jJg=;
- b=VyuvZ3q/P5hq/XUtszsXy+DbnHV8oOKktzGliuQ2imwsRh8b2/rpQCvF
- nnCSwO9+2pDHGPiWWWQNynU+rq5wHkI+ZXzd8zBinSMwvxoxvD+sUl3hW
- qM2T5/p0F31BdbOxSR2VL8EhPuvXKhCMk5cJ/C3uap2kYGanhuNhtR7Pl
- yDQisLA/T9zB2rLpO+NSIN1NemHTfJ/HfSFTGgTeo03zrKYspNgEx1PdX
- pKJEllHDJ8SxeENZPHiVlen2MnUuyKPGD2lVFxMJN5y84lbPEfArtqZI1
- +OsKBvj47LsBpFjQAv/r1SZWt2qnCPDpb/nhqtyDc4g5z20yUGH9c52Tw w==;
-X-CSE-ConnectionGUID: +8gxf8aNQceM1Vtj9UKyWw==
-X-CSE-MsgGUID: FmF5XvOoSAG8s1tTV0hlIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908251"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908251"
+ bh=xZgIGqNMwmVbwF6Wl00EPu0Nu22pGDqccJH4f/xb34I=;
+ b=UEb2fMyfQRqDFGn56fO/odQVUABHW8VTZ8TREq9tawmOzm0YyNV9WLE0
+ aBOTcxAZ0wfof+epOb3eFk+OsZZw6mmTiwDlu/lYtv0aIu18InmYDVdHW
+ 3kgHX7aCWPjVLJooIWgLlqiACiVamrw+UIzQkwKWlDTjZMhY0ZkQypVYl
+ MG+mPevBAidB2/5dXb/CKKfYEQ9VxP+ccZVSd1MlbdRpBrSy9+pZ84Crh
+ 0ay5TxiTd/a5kcjqi81qjqFos12vp1+3vEMSYWJBLyOTRNrH3rhXc3SSh
+ qUQ+SH+oRG0OkJC/SHpd8QL0fnwSdQEw2Qzj1+IzMoBhFKWoD9TSzFjas A==;
+X-CSE-ConnectionGUID: IHrqjOaOQ2y2RjK8qpZoKw==
+X-CSE-MsgGUID: dn3Xis3qTgmJIC7GfMMziA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="60908248"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="60908248"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:08 -0700
-X-CSE-ConnectionGUID: l5IzvVDGSbifoPCKna9C1A==
-X-CSE-MsgGUID: 9MkVngL0REmvAtcMemAeuw==
+X-CSE-ConnectionGUID: KDiIk6HSQS2N5mbYXqLTdQ==
+X-CSE-MsgGUID: +uZRIbWuQaWYa2oaLIqg9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841785"
+X-IronPort-AV: E=Sophos;i="6.18,289,1751266800"; d="scan'208";a="207841782"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2025 18:16:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 06/34] drm/xe/guc: Track pending-enable source in
- submission state
-Date: Tue, 23 Sep 2025 18:15:33 -0700
-Message-Id: <20250924011601.888293-7-matthew.brost@intel.com>
+Subject: [PATCH v2 03/34] Revert "drm/xe/vf: Post migration,
+ repopulate ring area for pending request"
+Date: Tue, 23 Sep 2025 18:15:30 -0700
+Message-Id: <20250924011601.888293-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250924011601.888293-1-matthew.brost@intel.com>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
@@ -66,99 +66,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add explicit tracking in the GuC submission state to record the source
-of a pending enable (TDR vs. queue resume path vs. submission).
-Disambiguating the origin lets the GuC submission state machine apply
-the correct recovery/replay behavior.
-
-This helps VF restore: when the device comes back, the state machine knows
-whether the pending enable stems from timeout recovery, from a queue resume
-sequence, or submission and can gate sequencing and fixups accordingly.
-
-v4:
- - Clarify commit message (Tomasz)
+This reverts commit a0dda25d24e636df5c30a9370464b7cebc709faf.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 24 ------------------------
+ drivers/gpu/drm/xe/xe_exec_queue.h |  3 +--
+ drivers/gpu/drm/xe/xe_guc_submit.c | 24 ------------------------
+ drivers/gpu/drm/xe/xe_guc_submit.h |  2 --
+ drivers/gpu/drm/xe/xe_sriov_vf.c   |  1 -
+ 5 files changed, 1 insertion(+), 53 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 37b2b93b73d6..6bfaca424ca3 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1123,27 +1123,3 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 
+ 	return err;
+ }
+-
+-/**
+- * xe_exec_queue_jobs_ring_restore - Re-emit ring commands of requests pending on given queue.
+- * @q: the &xe_exec_queue struct instance
+- */
+-void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q)
+-{
+-	struct xe_gpu_scheduler *sched = &q->guc->sched;
+-	struct xe_sched_job *job;
+-
+-	/*
+-	 * This routine is used within VF migration recovery. This means
+-	 * using the lock here introduces a restriction: we cannot wait
+-	 * for any GFX HW response while the lock is taken.
+-	 */
+-	spin_lock(&sched->base.job_list_lock);
+-	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
+-		if (xe_sched_job_is_error(job))
+-			continue;
+-
+-		q->ring_ops->emit_job(job);
+-	}
+-	spin_unlock(&sched->base.job_list_lock);
+-}
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index 15ec852e7f7e..8821ceb838d0 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -92,7 +92,6 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+ 
+ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+ 
+-void xe_exec_queue_jobs_ring_restore(struct xe_exec_queue *q);
+-
+ struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 16f78376f196..13746f32b231 100644
+index 3ac0950f55be..16f78376f196 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -69,6 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
- #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
- #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
-+#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
-+#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
- 
- static bool exec_queue_registered(struct xe_exec_queue *q)
- {
-@@ -220,6 +222,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
- 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+@@ -845,30 +845,6 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 	return fence;
  }
  
-+static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
-+}
-+
-+static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
-+}
-+
-+static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
-+}
-+
-+static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
-+}
-+
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+-/**
+- * xe_guc_jobs_ring_rebase - Re-emit ring commands of requests pending
+- * on all queues under a guc.
+- * @guc: the &xe_guc struct instance
+- */
+-void xe_guc_jobs_ring_rebase(struct xe_guc *guc)
+-{
+-	struct xe_exec_queue *q;
+-	unsigned long index;
+-
+-	/*
+-	 * This routine is used within VF migration recovery. This means
+-	 * using the lock here introduces a restriction: we cannot wait
+-	 * for any GFX HW response while the lock is taken.
+-	 */
+-	mutex_lock(&guc->submission_state.lock);
+-	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+-		if (exec_queue_killed_or_banned_or_wedged(q))
+-			continue;
+-		xe_exec_queue_jobs_ring_restore(q);
+-	}
+-	mutex_unlock(&guc->submission_state.lock);
+-}
+-
+ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
  {
- 	return (atomic_read(&q->guc->state) &
-@@ -1334,6 +1366,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	return DRM_GPU_SCHED_STAT_RESET;
+ 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 78c3f07e31a0..5b4a0a6fd818 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -36,8 +36,6 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- sched_enable:
-+	set_exec_queue_pending_tdr_exit(q);
- 	enable_scheduling(q);
- rearm:
- 	/*
-@@ -1493,6 +1526,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 		clear_exec_queue_suspended(q);
- 		if (!exec_queue_enabled(q)) {
- 			q->guc->resume_time = RESUME_PENDING;
-+			set_exec_queue_pending_resume(q);
- 			enable_scheduling(q);
- 		}
- 	} else {
-@@ -2065,6 +2099,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
+-void xe_guc_jobs_ring_rebase(struct xe_guc *guc);
+-
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
+ void
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index d6e2ed9b9bbc..0581b881b628 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -340,7 +340,6 @@ static int gt_vf_post_migration_fixups(struct xe_gt *gt)
+ 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 		if (err)
+ 			goto out;
+-		xe_guc_jobs_ring_rebase(&gt->uc.guc);
+ 		xe_guc_ct_fixup_messages_with_ggtt(&gt->uc.guc.ct, shift);
+ 	}
  
- 		q->guc->resume_time = ktime_get();
-+		clear_exec_queue_pending_resume(q);
-+		clear_exec_queue_pending_tdr_exit(q);
- 		clear_exec_queue_pending_enable(q);
- 		smp_wmb();
- 		wake_up_all(&guc->ct.wq);
 -- 
 2.34.1
 
