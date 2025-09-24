@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B276BCAC5A5
-	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 21:13:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F2FDCAC5A5
+	for <intel-xe@archiver.kernel.org>; Wed, 24 Sep 2025 21:25:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CE610E7F3;
-	Wed, 24 Sep 2025 21:13:39 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1074F10E7F3;
- Wed, 24 Sep 2025 21:13:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8299212757783895370=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A1910E7F4;
+	Wed, 24 Sep 2025 21:25:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fjp7Ivx7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959BB10E7F4
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 Sep 2025 21:25:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758749118; x=1790285118;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=z1tEWoRo3KabPxwzAvaQ2COqBW84ItajNF6W08XpSQQ=;
+ b=fjp7Ivx72TYzZU5+AdDyLuEfIN0uUAg1+xPj88VqFZP25VWRP6Usbfyu
+ 5xXYGXSZPoWwPuiFAf4FUxC4LyppI6NZ3GHWmIe2N1UABXuBOGIF6Beki
+ jGVj4R0eUe/aaaAS5RY82UsJKcpVisCtRMpCb2DYy7/0O/wGWDAMq9i+o
+ qeTBRum+IoXQmxv2d/BIAUk7rYVQ2zxnfhPgPlPXmtXiPcLzeaq1BYqo4
+ FyX/cLwF0unWwjk1l779AVY0koCC9SXT8vKgHMe9VQZ1biBRvVeVD+Fok
+ rtXWaQ4mJXbAgkqe3LrpKiqmzB61lwfezfasOp0zVgYMSaw5IZCYDUkNe w==;
+X-CSE-ConnectionGUID: g9h6PsBnRJKPha8ZkJ+6Jg==
+X-CSE-MsgGUID: yxOWaBMOR8KBclN7eqK3zQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60761322"
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="60761322"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 14:25:18 -0700
+X-CSE-ConnectionGUID: RizSSYK5TGC/cC2834lA8g==
+X-CSE-MsgGUID: toLmtZn7SpS/hFPD+2UbeQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="182294479"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2025 14:25:17 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe/configfs: Fix engine class parsing
+Date: Wed, 24 Sep 2025 14:24:57 -0700
+Message-ID: <175874884196.996894.10735989190886270500.b4-ty@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250924152709.659483-3-lucas.demarchi@intel.com>
+References: <20250924152709.659483-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Wire_up_reset/postinstall_f?=
- =?utf-8?q?or_I2C_IRQ?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 24 Sep 2025 21:13:38 -0000
-Message-ID: <175874841805.362669.280764464804269882@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250924200835.3143173-1-raag.jadav@intel.com>
-In-Reply-To: <20250924200835.3143173-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,164 +65,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8299212757783895370==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 24 Sep 2025 08:27:10 -0700, Lucas De Marchi wrote:
+> If mask is NULL, only the engine class should be accepted, so the
+> pattern string should be completely parsed. This should fix passing e.g.
+> rcs0 to ctx_restore_post_bb when it's only expecting the engine class.
+> 
+> 
 
-== Series Details ==
+Merged to drm-xe-next, thanks!
 
-Series: Wire up reset/postinstall for I2C IRQ
-URL   : https://patchwork.freedesktop.org/series/154993/
-State : success
+[1/2] drm/xe/configfs: Fix engine class parsing
+      commit: dd797967160b79cc0ca2d2eb05fc55436b66dce0
+[2/2] drm/xe/configfs: Improve doc for ctx_restore* attributes
+      commit: 47ca7acff4011fa322853a3612f464b959e88210
 
-== Summary ==
+--
+Lucas De Marchi
 
-CI Bug Log - changes from xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf_BAT -> xe-pw-154993v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-154993v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_force_connector_basic@force-edid:
-    - {bat-ptl-1}:        [PASS][1] -> [SKIP][2] +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf/bat-ptl-1/igt@kms_force_connector_basic@force-edid.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/bat-ptl-1/igt@kms_force_connector_basic@force-edid.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154993v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#4543]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8550 -> IGT_8552
-  * Linux: xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf -> xe-pw-154993v1
-
-  IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8552: 8552
-  xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf: a4d9163251f4832a7d34d4b59449f9a68b9b7adf
-  xe-pw-154993v1: 154993v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/index.html
-
---===============8299212757783895370==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Wire up reset/postinstall for I2C IRQ</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154993/">https://patchwork.freedesktop.org/series/154993/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf_BAT -&gt; xe-pw-154993v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-154993v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_force_connector_basic@force-edid:<ul>
-<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf/bat-ptl-1/igt@kms_force_connector_basic@force-edid.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/bat-ptl-1/igt@kms_force_connector_basic@force-edid.html">SKIP</a> +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154993v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8550 -&gt; IGT_8552</li>
-<li>Linux: xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf -&gt; xe-pw-154993v1</li>
-</ul>
-<p>IGT_8550: 4f8c7886ad02e116804ec08714f17bce1755c6e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8552: 8552<br />
-  xe-3825-a4d9163251f4832a7d34d4b59449f9a68b9b7adf: a4d9163251f4832a7d34d4b59449f9a68b9b7adf<br />
-  xe-pw-154993v1: 154993v1</p>
-
-</body>
-</html>
-
---===============8299212757783895370==--
