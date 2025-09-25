@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21BF7CCA474
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 716C9CCD180
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9B710E9C8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDB510E9EC;
 	Thu, 25 Sep 2025 23:46:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FKPVphYx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRP/W/fz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F21E610E13F
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65CFB10E330
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758844007; x=1790380007;
+ t=1758844008; x=1790380008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9u3UYx2uxzHk+xECi5pa25DjSnzIZmCYfOj+qYAb3bg=;
- b=FKPVphYxMIkfZrGFEu0tHve1aLfFEliHLlM+Gt2CqkH+0HBoxszRXOM/
- P9payKbKGVB43jZQAxx1yQJObPid200oHixTOyWU5r44cplvmLcia/5B4
- DRTI0Aucq2qa31CSHU/+ZJRnbHEFEDOCFTNT7K5aB1Y0wYUYf/va43Sr5
- nn5xRfIKSG124kiz6QtATdSCvGcdAqm4+hJGja202q95P38O9/eurZNPY
- LdIC9fAGNPiOMHHkvRrIELM8X1rF30kpvxxV2rKSH0tnsmV2keUgJ3umK
- cKDMH12rs76X2iKtnkCEWtvbDZpOkJkwVGAZQS9ss9EVduUKLRq+6lmkP g==;
-X-CSE-ConnectionGUID: 7NoDnSk0SeiTmy2r7FEk8Q==
-X-CSE-MsgGUID: dWQ9ZV/3SkGpuJ7uRtk0tA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817671"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817671"
+ bh=OAEDf25IxOx4ynWEGwz0ocW+fOJjjg/+LgdTsN3asYk=;
+ b=TRP/W/fzihC9TpbyXenPVQYnuF5AJlZ+31OKukOyZZ3ivXzPaC9L8pI6
+ lMpU8q8uIKaQRBhHNEAh5Iu1c4f+F3M02OPMtZtu0haJdlJyAoZkAMu+W
+ jvZkXUYCqvlSKZGCVaYfg+uTo5zrzRLCsOlxUwevirt/JdfcMj5nmhXre
+ qPqmmvJ8GcblLZ5Vn7OMXzFVdItgj2k2Cz73dq0lABqWo4NPO0iS0IdGu
+ EAjmSUCkIKVy9LUcZGnRua2jMcku7a965uNNm2WMWaj51FvI7cPJsbrry
+ 2RVMeT4H5rwlQemDLbhTxQtBV1Rl+GwwKIaz9fvn796aKSGiQC9GT/qyN Q==;
+X-CSE-ConnectionGUID: cK2gfU0DRLGKpFtcHcG2lQ==
+X-CSE-MsgGUID: aB7a8oJRSiq/Rklmpdf3Og==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817678"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817678"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
-X-CSE-ConnectionGUID: wAl1ICUIRDCEVtvEgvAHZA==
-X-CSE-MsgGUID: gAJ6vHgcR2WzChTVQTNyQg==
+X-CSE-ConnectionGUID: A2I4XtYqRTmKKvl170U5Fw==
+X-CSE-MsgGUID: S0G8TEa6QauFSr/lKSMDrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852971"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852993"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 09/22] drm/xe/query: Report hwconfig size as 0 if primary
- GT is disabled
-Date: Thu, 25 Sep 2025 16:46:37 -0700
-Message-ID: <20250925234628.2112163-33-matthew.d.roper@intel.com>
+Subject: [PATCH v2 16/22] drm/xe: Bypass Wa_14018094691 when primary GT is
+ disabled
+Date: Thu, 25 Sep 2025 16:46:44 -0700
+Message-ID: <20250925234628.2112163-40-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
 References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
@@ -67,28 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The hwconfig table is part of the primary GT's GuC firmware.  If the
-primary GT is disabled, the hwconfig is unavailable and should be
-reported to userspace as having size 0.
+Don't try to lookup Wa_14018094691 on a NULL GT when the primary GT is
+disabled.  If the primary GT is disabled, there's no mid-thread
+preemption happening which would make this workaround relevant anyway.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gsc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 2e9ff33ed2fe..1c0915e2cc16 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -436,7 +436,7 @@ static int query_hwconfig(struct xe_device *xe,
- 			  struct drm_xe_device_query *query)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
--	size_t size = xe_guc_hwconfig_size(&gt->uc.guc);
-+	size_t size = gt ? xe_guc_hwconfig_size(&gt->uc.guc) : 0;
- 	void __user *query_ptr = u64_to_user_ptr(query->data);
- 	void *hwconfig;
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index 83d61bf8ec62..dd69cb834f8e 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -266,7 +266,7 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
+ 	unsigned int fw_ref;
+ 	int ret;
  
+-	if (XE_GT_WA(tile->primary_gt, 14018094691)) {
++	if (tile->primary_gt && XE_GT_WA(tile->primary_gt, 14018094691)) {
+ 		fw_ref = xe_force_wake_get(gt_to_fw(tile->primary_gt), XE_FORCEWAKE_ALL);
+ 
+ 		/*
+@@ -281,7 +281,7 @@ static int gsc_upload_and_init(struct xe_gsc *gsc)
+ 
+ 	ret = gsc_upload(gsc);
+ 
+-	if (XE_GT_WA(tile->primary_gt, 14018094691))
++	if (tile->primary_gt && XE_GT_WA(tile->primary_gt, 14018094691))
+ 		xe_force_wake_put(gt_to_fw(tile->primary_gt), fw_ref);
+ 
+ 	if (ret)
 -- 
 2.51.0
 
