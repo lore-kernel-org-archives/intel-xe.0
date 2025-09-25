@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 273C9CAC5B0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 606ECCAC5B5
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D662210E9C6;
-	Thu, 25 Sep 2025 23:46:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCAF10E9C9;
+	Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mq4dGuDA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWHs2G/0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8FDC10E30A
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E90310E30A
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758844007; x=1790380007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9Ljo8E3Z3C+FI2SrW25MIIdAVLsKMjYavHqVwhc9Sxg=;
- b=Mq4dGuDAK/pTkRpx3Lw03ZKl8YdruV8TOeaX9f3FrmIFRdcF35jwMUx0
- ZSUcxKMsf26QJ22jeABE1aHfQbSCno98uxOQlE7boI9UESAo6ENPVhHF7
- KmUUYAEnpgkK8EW6m6c9mRyTT9piL2qqLmDOr1jQHUKygp5WHzlel7weM
- XUYWNfbK6siPC41d875z12NUuwxBs+iH6+c2e/QDJC7ZOYhHmu64QqvPe
- VnS0MlkS0uzGEiPb5ZzRvHKwBkLMESvmUPR3jRq2IVqkN3Vv5bwX4XEPK
- elJ8ahDMH4moQiCGQT1I+rN96cUyIg218URqBK0IJI7g1EnT4Q/Oj5aoE A==;
-X-CSE-ConnectionGUID: fRdiVnAqSmCI9bwDnbF65w==
-X-CSE-MsgGUID: p9Im2F24Qq66UWWFl5m1ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817670"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817670"
+ bh=/ePcV1VuIKsl8SR06yVgKlZxFcihHavmenM1zsAwsR4=;
+ b=lWHs2G/0gcFr9BzB81tlmwVRtx1jAo9uZDB90T8iW1sZlK9hnJ/5quue
+ P0uXOcBwsTlz5m66V+H1vSWIuqbyO6TuW8S6nxpjN/3XLSMPVtRDaHJby
+ E9Qit6r1Myf3sdUSSxNkgWN2WH0ctu3ZtEWityiDCCo/CzjaI9ExkWssU
+ tt/m7Pp+u7P0MfrRnChKkPVZr4wBRdsLyvr5r4c6KHVTpdUSNkHqduZsY
+ NkWmG5cQwRjRJgd36F9KeI3Z80l/o9NQ49A07kBtcvpKgVn84k+dgKVF1
+ BT2Zc0panEdshcMJ73VL3T9qgEcoPYAFYMkFGSNWF6KOdfqXMFs3KzvO5 A==;
+X-CSE-ConnectionGUID: 63m4v8KbRkiqSPLsTnSMbw==
+X-CSE-MsgGUID: PJlGleoqTTSSM8GcvHEGZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817675"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817675"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
-X-CSE-ConnectionGUID: RU/1l+/mSR+s8quFAKHTJw==
-X-CSE-MsgGUID: tBJnZ5itQ7OkT4mqrPI9Mg==
+X-CSE-ConnectionGUID: t2vs+MibQvyC6Rk/TtbGvg==
+X-CSE-MsgGUID: 5E49Pyi+ROeKN3TXCYV34g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852968"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852983"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 08/22] drm/xe: Skip L2 / TDF cache flushes if primary GT is
- disabled
-Date: Thu, 25 Sep 2025 16:46:36 -0700
-Message-ID: <20250925234628.2112163-32-matthew.d.roper@intel.com>
+Subject: [PATCH v2 13/22] drm/xe/irq: Don't try to lookup engine masks for
+ non-existent primary GT
+Date: Thu, 25 Sep 2025 16:46:41 -0700
+Message-ID: <20250925234628.2112163-37-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
 References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
@@ -67,37 +67,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the primary GT is disabled via configfs, GT-side L2 and TD cache
-flushes are unnecessary since nothing is using/filling these caches.
+If the primary GT is disabled via configfs, we shouldn't try to access
+it to lookup BCS/CCS engine masks.  For the purposes of IRQ reset (which
+masks & disables interrupts in an sgunit register), assume all possible
+instances are present.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_irq.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 09f8a66c9728..bf99792e772c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1061,6 +1061,8 @@ void xe_device_l2_flush(struct xe_device *xe)
- 	unsigned int fw_ref;
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 5018a116852f..eaca56df08e4 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -494,11 +494,15 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ static void gt_irq_reset(struct xe_tile *tile)
+ {
+ 	struct xe_mmio *mmio = &tile->mmio;
++	u32 ccs_mask = ~0;
++	u32 bcs_mask = ~0;
  
- 	gt = xe_root_mmio_gt(xe);
-+	if (!gt)
-+		return;
+-	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
+-						   XE_ENGINE_CLASS_COMPUTE);
+-	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
+-						   XE_ENGINE_CLASS_COPY);
++	if (tile->primary_gt) {
++		ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
++						       XE_ENGINE_CLASS_COMPUTE);
++		bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
++						       XE_ENGINE_CLASS_COPY);
++	}
  
- 	if (!XE_GT_WA(gt, 16023588340))
- 		return;
-@@ -1106,6 +1108,9 @@ void xe_device_td_flush(struct xe_device *xe)
- 		return;
- 
- 	root_gt = xe_root_mmio_gt(xe);
-+	if (!root_gt)
-+		return;
-+
- 	if (XE_GT_WA(root_gt, 16023588340)) {
- 		/* A transient flush is not sufficient: flush the L2 */
- 		xe_device_l2_flush(xe);
+ 	/* Disable RCS, BCS, VCS and VECS class engines. */
+ 	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, 0);
 -- 
 2.51.0
 
