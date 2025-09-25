@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9782CAC5B0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EA3CAC5B5
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 22:04:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97DFE10E9C1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9513310E9BF;
 	Thu, 25 Sep 2025 22:04:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejyyS9Ha";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGMNQ3Bu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E19D10E9BF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4E1310E9BF
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 22:04:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758837890; x=1790373890;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CrQ2p771LsrCvPaIGEj3vMGb3q9D8nyP37PrhEBNJcs=;
- b=ejyyS9Hae2XSCVysyIQpY3nXIDcI/UB35bC52VmH4LAoEyHpQ9/w6jQv
- nAMCxqGPbg2pj6CdXlukBEfgu91SddA0Zvxt6xXNWGytpQGIpmPz8Lcnt
- LcaNlxug+vj5wbDskgOZsQVpj25KU/NitckVRABK5YJypXFhZUPvClT2z
- 7R63zyNEcq5n4/7bv7vSwGuUTXja44JacZ9mDAQy/zBMirupkw4+yG4Gn
- Xsnl0nxFVb5mfcwGrJbf08fw/Qbf0y2LWAtykmNC0LglzwzyqyiQ5BrOu
- 9KcKhUapC722Ax3PNs2t5ezVTec8er/0ahsgnobUEhF0jTz5jRscoeu4n g==;
-X-CSE-ConnectionGUID: EluTQszYTZyy/rBE1ed+zA==
-X-CSE-MsgGUID: tvJxyO31Th60191Z0IX2HA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="61222119"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="61222119"
+ t=1758837891; x=1790373891;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=15mFxBa4MAta43Ayh5Df0yhBhDYmgzUYX+Q4OFwuZYM=;
+ b=AGMNQ3BuTt/0pJWGN/ZCMEeKREzwr943XLR9ICu1BBdBndbezWo8a9uU
+ u/bAJmZTCo9IyYUviO1Apbna+bQUrPrWoG5mwT8T6RAjR0lCXMJrnauHG
+ Uk/OOMr2a/8b6i6sQIZKKM2qH9GgekJ6+GF8ZosEjyxZDVrFwYDVo5pew
+ bN4E5jNGb/0lA8toByPfLlZUr99McPSa2JYFapu9PT+aywETcMwPv0HWp
+ jmCdNb1hBLCq8tdDkEuF25uoeZTKz9a/ba1yXAXFaZHVyWDAaaW9aP26b
+ UHE3m7btlD6WFIaHG1AulYXqA6klZhDfrYdR8zZ5hUuU9a8OK0JPHdYBY Q==;
+X-CSE-ConnectionGUID: Tj0kTQz5RUuLizTNy7ogyg==
+X-CSE-MsgGUID: PRfKp6XnQ1ewg5pk+h6d7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="61222122"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="61222122"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 15:04:49 -0700
-X-CSE-ConnectionGUID: tej5aE+yTJ6g0M2bULpHPQ==
-X-CSE-MsgGUID: q3UqjCDCRbq2keftcPa7iw==
+ 25 Sep 2025 15:04:51 -0700
+X-CSE-ConnectionGUID: iHpIqzKCR/yTdjOKgqlr1w==
+X-CSE-MsgGUID: osPJFjfsRIiHI61pPiGh2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="201129378"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="201129427"
 Received: from krychlik-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.117.173])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 15:04:38 -0700
+ 25 Sep 2025 15:04:45 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 0/6] drm/xe/pf: Refactor PF debugfs
-Date: Fri, 26 Sep 2025 00:04:17 +0200
-Message-ID: <20250925220425.196860-1-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/6] drm/xe/pf: Create separate debugfs tree for SR-IOV files
+Date: Fri, 26 Sep 2025 00:04:19 +0200
+Message-ID: <20250925220425.196860-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250925220425.196860-1-michal.wajdeczko@intel.com>
+References: <20250925220425.196860-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,111 +70,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In new debugfs layout, all SR-IOV files are grouped under single
-"sriov" directory, where each SR-IOV function is represented by
-its own separate directory, with individual tile/GT structure.
+Currently we expose debugfs files related to SR-IOV functions
+together with other native files, but that approach will not
+scale well as we plan to add more attributes and also expose
+some of them on the per-tile basis.
 
-This allows to place GGTT/LMEM attributes correctly under a tile,
-without polluting 'native' entry with many function directories.
+Start building separate tree for SR-IOV specific debugfs files
+where we can replicate similar files per every SR-IOV function:
 
-For backward compatibility, some symlinks are still provided.
+   /sys/kernel/debug/dri/BDF/
+   ├── sriov
+   │   ├── pf
+   │   │   ├── tile0
+   │   │   │   ├── gt0
+   │   │   │   ├── gt1
+   │   │   │   :
+   │   │   ├── tile1
+   │   │   :
+   │   ├── vf1
+   │   │   ├── tile0
+   │   │   │   ├── gt0
+   │   │   │   ├── gt1
+   │   │   │   :
+   │   │   :
+   │   ├── vf2
+   │   ├── ...
 
-  /sys/kernel/debug/dri/0000:00:02.0/
-  ├── sriov
-  │   ├── pf
-  │   │   ├── tile0
-  │   │   │   ├── ggtt_available
-  │   │   │   ├── ggtt_provisioned
-  │   │   │   ├── ggtt_spare
-  │   │   │   ├── gt0
-  │   │   │   │   ├── adverse_events
-  │   │   │   │   ├── contexts_provisioned
-  │   │   │   │   ├── contexts_spare
-  │   │   │   │   ├── doorbells_provisioned
-  │   │   │   │   ├── doorbells_spare
-  │   │   │   │   ├── exec_quantum_ms
-  │   │   │   │   ├── ggtt_available -> ../ggtt_available
-  │   │   │   │   ├── ggtt_provisioned -> ../ggtt_provisioned
-  │   │   │   │   ├── ggtt_spare -> ../ggtt_spare
-  │   │   │   │   ├── preempt_timeout_us
-  │   │   │   │   ├── reset_engine
-  │   │   │   │   ├── runtime_registers
-  │   │   │   │   ├── sample_period_ms
-  │   │   │   │   ├── sched_if_idle
-  │   │   │   │   ├── sched_priority
-  │   │   │   │   ├── threshold_cat_error_count
-  │   │   │   │   ├── threshold_doorbell_time_us
-  │   │   │   │   ├── threshold_engine_reset_count
-  │   │   │   │   ├── threshold_guc_time_us
-  │   │   │   │   ├── threshold_irq_time_us
-  │   │   │   │   └── threshold_page_fault_count
-  │   │   │   └── gt1
-  │   │   │       ├── ...
-  │   │   :       :
-  │   ├── vf1
-  │   │   └── tile0
-  │   │       ├── ggtt_quota
-  │   │       ├── gt0
-  │   │       │   ├── config_blob
-  │   │       │   ├── contexts_quota
-  │   │       │   ├── control
-  │   │       │   ├── doorbells_quota
-  │   │       │   ├── exec_quantum_ms
-  │   │       │   ├── ggtt_quota -> ../ggtt_quota
-  │   │       │   ├── guc_state
-  │   │       │   ├── preempt_timeout_us
-  │   │       │   ├── sched_priority
-  │   │       │   ├── threshold_cat_error_count
-  │   │       │   ├── threshold_doorbell_time_us
-  │   │       │   ├── threshold_engine_reset_count
-  │   │       │   ├── threshold_guc_time_us
-  │   │       │   ├── threshold_irq_time_us
-  │   │       │   └── threshold_page_fault_count
-  │   │       └── gt1
-  │   │           ├── ...
-  │   │           :
-  :   :
-  ├── tile0
-  │   ├── ggtt
-  │   ├── gt0
-  │   │   ├── ...
-  │   │   ├── pf -> ../../sriov/pf/tile0/gt0
-  │   │   ├── vf1 -> ../../sriov/vf1/tile0/gt0
-  │   │   ├── vf2 -> ../../sriov/vf2/tile0/gt0
-  │   │   ├── vf3 -> ../../sriov/vf3/tile0/gt0
-  │   │   └── ...
-  :   :
+We will populate this new tree in upcoming patches.
 
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c | 73 +++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_sriov_types.h      |  3 +
+ 2 files changed, 67 insertions(+), 9 deletions(-)
 
-Michal Wajdeczko (6):
-  drm/xe/pf: Promote PF debugfs function to its own file
-  drm/xe/pf: Create separate debugfs tree for SR-IOV files
-  drm/xe/pf: Populate SR-IOV debugfs tree with tiles
-  drm/xe/pf: Move SR-IOV GT debugfs files to new tree
-  drm/xe/debugfs: Promote xe_tile_debugfs_simple_show
-  drm/xe/pf: Make GGTT/LMEM debugfs files per-tile
-
- drivers/gpu/drm/xe/Makefile                   |   4 +-
- drivers/gpu/drm/xe/xe_debugfs.c               |   2 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   | 389 ++++++++++--------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h   |   1 +
- drivers/gpu/drm/xe/xe_sriov_pf.c              |  42 --
- drivers/gpu/drm/xe/xe_sriov_pf.h              |   5 -
- drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      | 123 ++++++
- drivers/gpu/drm/xe/xe_sriov_pf_debugfs.h      |  18 +
- drivers/gpu/drm/xe/xe_sriov_types.h           |   3 +
- drivers/gpu/drm/xe/xe_tile_debugfs.c          |  14 +-
- drivers/gpu/drm/xe/xe_tile_debugfs.h          |   3 +
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 247 +++++++++++
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.h |  15 +
- 13 files changed, 639 insertions(+), 227 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_debugfs.h
- create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.h
-
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+index 2a1316048439..b2088b6dc23f 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+@@ -9,7 +9,9 @@
+ #include "xe_device_types.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_sriov_pf_debugfs.h"
++#include "xe_sriov_pf_helpers.h"
+ #include "xe_sriov_pf_service.h"
++#include "xe_sriov_printk.h"
+ 
+ static int simple_show(struct seq_file *m, void *data)
+ {
+@@ -28,27 +30,80 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{ .name = "versions", .show = simple_show, .data = xe_sriov_pf_service_print_versions },
+ };
+ 
++static void pf_populate_pf(struct xe_device *xe, struct dentry *pfdent)
++{
++	struct drm_minor *minor = xe->drm.primary;
++
++	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), pfdent, minor);
++}
++
++static void pf_debugfs_available(struct xe_device *xe, struct dentry *dent)
++{
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
++		char *path = kzalloc(PATH_MAX, GFP_KERNEL);
++
++		if (path) {
++			xe_sriov_info(xe, "SR-IOV details available at /sys/kernel/debug%s\n",
++				      dentry_path_raw(dent, path, PATH_MAX));
++			kfree(path);
++		}
++	}
++}
++
+ /**
+  * xe_sriov_pf_debugfs_register - Register PF debugfs attributes.
+  * @xe: the &xe_device
+  * @root: the root &dentry
+  *
+- * Prepare debugfs attributes exposed by the PF.
++ * Create separate directory that will contain all SR-IOV related files,
++ * organized per each SR-IOV function (PF, VF1, VF2, ..., VFn).
+  */
+ void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
+ {
+-	struct drm_minor *minor = xe->drm.primary;
+-	struct dentry *parent;
++	int totalvfs = xe_sriov_pf_get_totalvfs(xe);
++	char vfname[VFNAME_MAX];
++	struct dentry *pfdent;
++	struct dentry *vfdent;
++	struct dentry *dent;
++	int n;
+ 
+ 	/*
+-	 *      /sys/kernel/debug/dri/0/
+-	 *      ├── pf
++	 *      /sys/kernel/debug/dri/BDF/
++	 *      ├── sriov		# d_inode->i_private = (xe_device*)
+ 	 *      │   ├── ...
+ 	 */
+-	parent = debugfs_create_dir("pf", root);
+-	if (IS_ERR(parent))
++	dent = debugfs_create_dir("sriov", root);
++	if (IS_ERR(dent))
+ 		return;
+-	parent->d_inode->i_private = xe;
++	dent->d_inode->i_private = xe;
+ 
+-	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), parent, minor);
++	/*
++	 *      /sys/kernel/debug/dri/BDF/
++	 *      ├── sriov		# d_inode->i_private = (xe_device*)
++	 *      │   ├── pf		# d_inode->i_private = (xe_device*)
++	 *      │   │   ├── ...
++	 */
++	pfdent = debugfs_create_dir("pf", dent);
++	if (IS_ERR(pfdent))
++		return;
++	pfdent->d_inode->i_private = xe;
++
++	pf_populate_pf(xe, pfdent);
++
++	/*
++	 *      /sys/kernel/debug/dri/BDF/
++	 *      ├── sriov		# d_inode->i_private = (xe_device*)
++	 *      │   ├── vf1		# d_inode->i_private = VFID(1)
++	 *      │   ├── vf2		# d_inode->i_private = VFID(2)
++	 *      │   ├── ...
++	 */
++	for (n = 1; n <= totalvfs; n++) {
++		snprintf(vfname, sizeof(vfname), "vf%u", VFID(n));
++		vfdent = debugfs_create_dir(vfname, dent);
++		if (IS_ERR(vfdent))
++			return;
++		vfdent->d_inode->i_private = (void *)(uintptr_t)VFID(n);
++	}
++
++	return pf_debugfs_available(xe, dent);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+index 1a138108d139..761ae86cd55d 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+@@ -20,6 +20,9 @@
+ #define VFID(n)		(n)
+ #define PFID		VFID(0)
+ 
++/* should be enough up to "vf%u\0" for 2^32 - 1 */
++#define VFNAME_MAX	14
++
+ /**
+  * enum xe_sriov_mode - SR-IOV mode
+  * @XE_SRIOV_MODE_NONE: bare-metal mode (non-virtualized)
 -- 
 2.47.1
 
