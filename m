@@ -4,98 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57089CAC5A5
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 06:43:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 837A7CAC5A5
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 07:24:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA7D510E849;
-	Thu, 25 Sep 2025 06:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 491E110E851;
+	Thu, 25 Sep 2025 07:24:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cNaa6Q+k";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/3se8pi5";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vapjxTjo";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="L9uH1gnA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="d6zHJR5Q";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7410E849
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 06:43:00 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id E872575B92;
- Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758782579; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=cNaa6Q+kN1Ut+hjnzZXrNfSiMMe5TLCYgxIe+6BKjPaPpSNHHFor4S04InOmFMIB508wPo
- 0Ada2K4AIK+YjtYBG6+KeOu/cFtnhwXEXnfbEtXjNWe46K8KR6WijJhNCkqaKtYZjztCZi
- m76lwBgmElb/pP2gAVuwSvc3/1aaVuA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758782579;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=/3se8pi5uYOnjZdfNG9Iu+sm/wVKmS7utwQl2f+2wtoDj/zoO60ZC6Cp//gi1wU6RoyxEe
- dQYRuX1of9EBN2Aw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1758782578; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=vapjxTjoK+5wkftWN3OgXbfUIJuHmVLDBDptz2RQspLcePD8TlCRYFWDSiAL82tMlYuSd8
- Nfkj4gBey+m/pCAj2iTaLQGemJCx1t4FPIcKyhfB8egbmStHulwI83Qp1VIXGDIg4oWoot
- 3VJ4O/Q1Alh6j7pOTQFAamsQTwSFAF0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1758782578;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
- b=L9uH1gnALN7Q2DsN9Z8M0+f6vvSb+MQi456DR773BiPmKqPmeRd6ovA/NQkRz+ALsNIi+a
- KPXNwpukp8Mx72Cg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 74C27132C9;
- Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 6tKwGnLk1GiwIgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 25 Sep 2025 06:42:58 +0000
-Date: Thu, 25 Sep 2025 08:42:57 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250925064257.GA9107@linux.fritz.box>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E65A10E85A
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 07:24:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=H/oUPWJG+8b+w5T12qFVLU//XtccTy9N8zwg4d1Hp+c=; b=d6zHJR5QZOV85xicPyrQTrE88i
+ QMIHQUfjXz7jjVGPAfVGC1aQCh1D9NXcP02YGsqxLbRQs9cwqOxTLEeSssKC0z65Kh/9g1h/RUJ+e
+ qnLkw5pFcUuFwGKEzG4bIp1xSjGBVC1unM3hW8T55ZcD8K5XL732ReCpEEHGa8wXJEaHKXuSZrgea
+ 8Axb5GuoCtCedTqbetGO4iXlqHlfn7tVwV5DjJYxl+gO26xLB7rYZKllL8XY5YqiidLg8mnqdv+Os
+ X9GjLrgl+zDR1E4JM1ihUUYzoTZxJRpqralYiadxaS13Z9juZPazYb7Ojfyi+5FWyTgzHysSUKCN+
+ zIjTjE4g==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v1gL2-00HEdn-1s; Thu, 25 Sep 2025 09:24:24 +0200
+Message-ID: <7e07606b-d542-4407-a092-476f202cc8e2@igalia.com>
+Date: Thu, 25 Sep 2025 08:24:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- MISSING_XM_UA(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_DN_SOME(0.00)[]
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20250923100812.88257-1-tvrtko.ursulin@igalia.com>
+ <20250923100812.88257-12-tvrtko.ursulin@igalia.com>
+ <aNJ0Pw9tvFA3jWDr@intel.com>
+ <8bec1692-1bec-45ff-a552-10ff8c7420b5@igalia.com>
+ <aNKMKSIGSPfmPBEc@intel.com>
+ <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
+ <aNKer6J7Op2gGmtC@intel.com>
+ <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
+ <aNK0E7KMBW5iOzSo@intel.com>
+ <e2cb2159-367b-4f43-babc-a5250fc9914d@igalia.com>
+ <aNRx66g6y4c-eoZk@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aNRx66g6y4c-eoZk@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,57 +70,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
 
-here's the drm-misc-next-fixes PR.
+On 24/09/2025 23:35, Ville Syrjälä wrote:
+> On Wed, Sep 24, 2025 at 02:09:42PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 23/09/2025 15:52, Ville Syrjälä wrote:
+>>> On Tue, Sep 23, 2025 at 03:40:55PM +0100, Tvrtko Ursulin wrote:
+>>>>
+>>>> On 23/09/2025 14:20, Ville Syrjälä wrote:
+>>>>> On Tue, Sep 23, 2025 at 01:25:58PM +0100, Tvrtko Ursulin wrote:
+>>>>>>
+>>>>>> On 23/09/2025 13:01, Ville Syrjälä wrote:
+>>>>>>> On Tue, Sep 23, 2025 at 11:48:59AM +0100, Tvrtko Ursulin wrote:
+>>>>>>>>
+>>>>>>>> On 23/09/2025 11:19, Ville Syrjälä wrote:
+>>>>>>>>> On Tue, Sep 23, 2025 at 11:08:04AM +0100, Tvrtko Ursulin wrote:
+>>>>>>>>>> Even though frame buffer objects are created as write-combined, in
+>>>>>>>>>> practice, on top of all the ring buffer flushing, an additional clflush
+>>>>>>>>>> seems to be needed before display engine can coherently scan out the
+>>>>>>>>>> AuxCCS compressed data without transient artifacts.
+>>>>>>>>>>
+>>>>>>>>>> If for comparison we look at how i915 handles things (where AuxCCS works
+>>>>>>>>>> fine), as it happens it has this same clflush before a frame buffer is
+>>>>>>>>>> pinned for display for the first time, courtesy the dynamic tracking of
+>>>>>>>>>> the buffer cache mode and setting the latter to uncached before handing
+>>>>>>>>>> to display.
+>>>>>>>>>>
+>>>>>>>>>> Since xe considers the buffer object caching mode as static we can
+>>>>>>>>>> implement the same approach by adding a flag telling us if the buffer
+>>>>>>>>>> was ever pinned for display and flush on the first pin. Subsequent re-pins
+>>>>>>>>>> will not repeat the clflush but so far I have not observed any glitching
+>>>>>>>>>> after the first pin.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>>>>>>>>> ---
+>>>>>>>>>>       drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
+>>>>>>>>>>       drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
+>>>>>>>>>>       2 files changed, 22 insertions(+), 6 deletions(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>>>>>> index d8aa23b8cf14..f247c0da6b9e 100644
+>>>>>>>>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>>>>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+>>>>>>>>>> @@ -382,6 +382,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>>>>>       	struct xe_bo *bo = gem_to_xe_bo(obj);
+>>>>>>>>>>       	struct xe_validation_ctx ctx;
+>>>>>>>>>>       	struct drm_exec exec;
+>>>>>>>>>> +	bool first_pin;
+>>>>>>>>>>       	int ret = 0;
+>>>>>>>>>>       
+>>>>>>>>>>       	if (!vma)
+>>>>>>>>>> @@ -422,8 +423,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>>>>>       			ret = xe_bo_validate(bo, NULL, true, &exec);
+>>>>>>>>>>       		drm_exec_retry_on_contention(&exec);
+>>>>>>>>>>       		xe_validation_retry_on_oom(&ctx, &ret);
+>>>>>>>>>> -		if (!ret)
+>>>>>>>>>> +		if (!ret) {
+>>>>>>>>>>       			ttm_bo_pin(&bo->ttm);
+>>>>>>>>>> +			first_pin = !bo->display_pin;
+>>>>>>>>>> +			bo->display_pin = true;
+>>>>>>>>>> +		}
+>>>>>>>>>>       	}
+>>>>>>>>>>       	if (ret)
+>>>>>>>>>>       		goto err;
+>>>>>>>>>> @@ -436,6 +440,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+>>>>>>>>>>       	if (ret)
+>>>>>>>>>>       		goto err_unpin;
+>>>>>>>>>>       
+>>>>>>>>>> +	/*
+>>>>>>>>>> +	 * Force flush frame buffer data for non-coherent display access when
+>>>>>>>>>> +	 * AuxCCS formats are used.
+>>>>>>>>>> +	 */
+>>>>>>>>>> +	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
+>>>>>>>>>> +	    intel_fb_is_ccs_modifier(fb->base.modifier))
+>>>>>>>>>> +		drm_clflush_sg(xe_bo_sg(bo));
+>>>>>>>>>
+>>>>>>>>> You still haven't found the actual bug that causes the dirty cache?
+>>>>>>>>
+>>>>>>>> Sadly no. I cross referenced everything numerous times, including
+>>>>>>>> workarounds, tried pretty much 1:1 i915 vs xe ring buffer programming,
+>>>>>>>> but this extra flush always remains required. I also heard that how
+>>>>>>>> flushing of the aux metadata works isn't documented anywhere and i915
+>>>>>>>> does have this flush, by design or accident I don't know.
+>>>>>>>
+>>>>>>> i915 has the flush for the *whole* bo because it started out as
+>>>>>>> cached. As soon as it undergoes a cached->uncached change (either
+>>>>>>> due to set_caching ioctl or becoming a display scanout buffer) we
+>>>>>>> clflush it and switch the GPU page tables from WB to UC. After
+>>>>>>> that the bo stays uncached, and will need no further clflushes,
+>>>>>>> assuming that everyone follows the rules:
+>>>>>>>
+>>>>>>> - CPU accesses via a WB mapping to an uncached bo will explicitly
+>>>>>>>       clflush before (invalidate) and after (write-back) the access
+>>>>>>> - userspace always sets the GPU to use use "consult the PTE" MOCS
+>>>>>>>       setting for any potential scanout buffer. That way the GPU will
+>>>>>>>       use WB as long as the bo is cached, and once it becomes
+>>>>>>>       uncached the GPU also switches to UC accesses
+>>>>>>>
+>>>>>>> With xe I presume the BO should already start out as UC/WC with
+>>>>>>> clean caches, and nothing should be dirtying the caches unless
+>>>>>>> there is a real bug somewhere.
+>>>>>>
+>>>>>> Correct, it is all WC and MOCS are correctly set as WC.
+>>>>>>
+>>>>>> For example for the media compression flavour that was broken and needed
+>>>>>> fixing in b412b144685f ("lib/intel/veboxcopy: Respect buffer MOCS
+>>>>>> index"). (For the render compression flavour MOCS was already correct.)
+>>>>>> But MOCS is not enough on its own for some reason.
+>>>>>>
+>>>>>> I also looked into the rendercopy surface state programming and that too
+>>>>>> looks okay. In fact it is possible to see how using the wrong MOCS makes
+>>>>>> things worse. But it also appears the surface state MOCS only applies to
+>>>>>> the main surface, while the aux state is the one which appears to
+>>>>>> contain cached/unflushed data.
+>>>>>
+>>>>> Are you saying that if you start scanning out a compressed buffer,
+>>>>> then clean the caches, and then do frontbuffer rendering you get
+>>>>> more cache dirt?
+>>>>
+>>>> Render with the GPU or CPU? Do you know of any tests or userspaces which
+>>>> do that?
+>>>
+>>> On the GPU.
+>>>
+>>> Can't think of anything nice off the top of my head.
+>>>
+>>> I'd probably just write a quick igt:
+>>> 1. create a compressed fb
+>>> 2. flip to it
+>>> 3. manually clflush the whole thing to be sure it's clean
+>>> 4. rendercopy some junk around, and keep an eye out for cache dirt
+>>
+>> Looks the same dirt on i915 and xe, which would support the theory that
+>> MOCS settings do not apply to the aux surface.
+>>
+>> If you look at these videos frame by frame you can see it:
+>>
+>> https://people.igalia.com/tursulin/i915-ccs-cache-dirt.MOV
+>> https://people.igalia.com/tursulin/xe-ccs-cache-dirt.MOV
+>>
+> 
+> That doesn't really look like cache dirt since it doesn't linger.
+> So I'd say that is more tearing than anything. Tearing can look
+> rather weird with tiled/compressed buffers.
 
-Best regards
-Thomas
+Some occurrences have two frames of artefacts before the grey square 
+settles. With a 90Hz display and camera taking 60fps video can it be 
+tearing?
 
-drm-misc-next-fixes-2025-09-25:
-Short summary of fixes pull:
+> To raelly see cache dirt you should tweak the test to
+> select a wb mocs.
+> 
+> Oh, and disable CPU c-states. Turns out deep c-states cause extra
+> cache flushes all the time which will hide the dirt in short order.
+> Without those extra flushes cache dirt will linger for a long time
+> on screen.
 
-bridge:
-- waveshare-dsi: Fix error handling in probe function
+This I didn't do, will try.
 
-pixpaper:
-- select GEM SHMEM helpers
-The following changes since commit 0265d0ebb409a25d3bb3a19494e0173d06d9d132:
+> And also enable_psr=0 + enable_fbc=0 to make sure the display
+> engine is really fetching from the memory we just wrote.
+> 
 
-  drm/pixpaper: Fix return type of pixpaper_mode_valid() (2025-09-15 12:29:37 +0200)
+This I did since the laptop has PSR.
 
-are available in the Git repository at:
+Regards,
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-09-25
+Tvrtko
 
-for you to fetch changes up to 0c4932f6ddf815618fa34f7403df682aed7862b5:
-
-  drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER (2025-09-23 14:07:04 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-bridge:
-- waveshare-dsi: Fix error handling in probe function
-
-pixpaper:
-- select GEM SHMEM helpers
-
-----------------------------------------------------------------
-LiangCheng Wang (1):
-      drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER
-
-Liu Ying (1):
-      drm/bridge: waveshare-dsi: Fix bailout for devm_drm_bridge_alloc()
-
- drivers/gpu/drm/bridge/waveshare-dsi.c | 4 ++--
- drivers/gpu/drm/tiny/Kconfig           | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
