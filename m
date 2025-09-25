@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22285CAC5A5
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 12:21:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47CBCCAC5A7
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 12:27:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D834A10E2C7;
-	Thu, 25 Sep 2025 12:21:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nHvs3xXN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC4910E2C7
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 12:21:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758802912; x=1790338912;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YajSQH8ThQgMxA3T1khHLg0CRjxRL+sJ/HJa/Q5tDTI=;
- b=nHvs3xXNyzU3N3Izv9tR+lgk0ZBzc9hBP2P/6m2Ln+lrdHmW19prFG0v
- PEE+qTMXfC18Xq4ZtSGABKu0fl0H1aWug9C1NYcbbJHteR8yXGDWZZ/mv
- w00kYLOqYS2AI70SnMdnFUyiQMlTAlan3885/Eaafd0E0cXvkJ0UcTO+r
- KK9l1d5+D3nq4LqnlTH6UTxNcD+zVsdqGQPQXF52onUwJMKxlglEDmFS9
- ZYGUkQaHxlUSgyfxuz2SrtGNjoVe3DIeeCaM7LuPBxBRcEPW16DkCJusR
- 5zBMb7OGaJMVqn+jAAkHoILrWTEDWJUmP8P3NKutXRvzQ8Mezpbglpalp g==;
-X-CSE-ConnectionGUID: VogHfvTKSA+i+J4wi0y/9A==
-X-CSE-MsgGUID: BDPvRFSfRcKgCqyGhKg2rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60818067"
-X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; d="scan'208";a="60818067"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 05:21:52 -0700
-X-CSE-ConnectionGUID: Y23Mc1STSoiloptJcFCWmQ==
-X-CSE-MsgGUID: 5M2pxsMqSo6yyE+YPvHReg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; d="scan'208";a="181328333"
-Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
- ([10.223.26.161])
- by orviesa003.jf.intel.com with ESMTP; 25 Sep 2025 05:21:49 -0700
-From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
- matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
- Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v4 8/8] drm/xe: Handle xe_work_period destruction
-Date: Thu, 25 Sep 2025 11:46:58 +0000
-Message-ID: <20250925114700.68090-9-aakash.deep.sarkar@intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250925114700.68090-1-aakash.deep.sarkar@intel.com>
-References: <20250925114700.68090-1-aakash.deep.sarkar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 062E210E8F8;
+	Thu, 25 Sep 2025 12:27:02 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3FEA10E8F8;
+ Thu, 25 Sep 2025 12:27:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_GPU_work_period_suppo?=
+ =?utf-8?q?rt_for_Xe_driver?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aakash Deep Sarkar" <aakash.deep.sarkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Sep 2025 12:27:00 -0000
+Message-ID: <175880322085.366377.6378716046175317490@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250925114700.68090-1-aakash.deep.sarkar@intel.com>
+In-Reply-To: <20250925114700.68090-1-aakash.deep.sarkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,48 +36,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This adds the xe_work_period destruction procedure.
-We iterate over all entries in the xe::work_period::users
-xarray and cancel any pending delayed work. Then destroy
-the xarray itself.
+== Series Details ==
 
-Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Series: Add GPU work period support for Xe driver
+URL   : https://patchwork.freedesktop.org/series/155039/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 30d9f2747eab..3b546d92fa03 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -418,6 +418,8 @@ static struct drm_driver driver = {
- static void xe_device_destroy(struct drm_device *dev, void *dummy)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_user *user = NULL;
-+	unsigned long i;
- 
- 	xe_bo_dev_fini(&xe->bo_device);
- 
-@@ -433,6 +435,15 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 	if (xe->destroy_wq)
- 		destroy_workqueue(xe->destroy_wq);
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 53d310324da6feee4fe665b7c08797cc4b474749
+Author: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
+Date:   Thu Sep 25 11:46:58 2025 +0000
+
+    drm/xe: Handle xe_work_period destruction
+    
+    This adds the xe_work_period destruction procedure.
+    We iterate over all entries in the xe::work_period::users
+    xarray and cancel any pending delayed work. Then destroy
+    the xarray itself.
+    
+    Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
++ /mt/dim checkpatch 7644974e648c270a56954b0344b1d0330698e1fa drm-intel
+8968b14a78eb drm/xe: Add a new xe_user structure
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+b1738739ca5e drm/xe: Add xe_gt_clock_interval_to_ns function
+d3036ceba97d drm/xe: Add a trace point for GPU work period
+-:36: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#36: 
+new file mode 100644
+
+-:55: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#55: FILE: include/trace/gpu_work_period.h:15:
++TRACE_EVENT(gpu_work_period,
++
+
+-:56: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#56: FILE: include/trace/gpu_work_period.h:16:
++	TP_PROTO(
+
+-:66: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#66: FILE: include/trace/gpu_work_period.h:26:
++	TP_STRUCT__entry(
+
+-:74: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#74: FILE: include/trace/gpu_work_period.h:34:
++	TP_fast_assign(
+
+-:83: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#83: FILE: include/trace/gpu_work_period.h:43:
++	TP_printk("gpu_id=%u uid=%u start_time_ns=%llu end_time_ns=%llu total_active_duration_ns=%llu",
++		__entry->gpu_id,
+
+total: 0 errors, 1 warnings, 5 checks, 59 lines checked
+d16b7945db6f drm/xe: Modify xe_exec_queue_update_run_ticks
+1dd4d26bd60f drm/xe: Handle xe_user creation and removal
+-:69: CHECK:SPACING: No space is necessary after a cast
+#69: FILE: drivers/gpu/drm/xe/xe_device.c:121:
++			uid = (unsigned int) cred->euid.val;
+
+-:197: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#197: FILE: drivers/gpu/drm/xe/xe_user.c:87:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid)
+
+-:197: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#197: FILE: drivers/gpu/drm/xe/xe_user.c:87:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid)
+
+-:199: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#199: FILE: drivers/gpu/drm/xe/xe_user.c:89:
++	struct xe_user* user = NULL;
+
+-:219: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#219: FILE: drivers/gpu/drm/xe/xe_user.c:109:
++
++
+
+-:255: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#255: FILE: drivers/gpu/drm/xe/xe_user.h:16:
++
++
+
+-:276: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#276: FILE: drivers/gpu/drm/xe/xe_user.h:73:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid);
+
+-:276: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#276: FILE: drivers/gpu/drm/xe/xe_user.h:73:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid);
+
+total: 5 errors, 0 warnings, 3 checks, 218 lines checked
+6796cb7f5ea4 drm/xe: Implement xe_work_period_worker
+-:122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#122: FILE: drivers/gpu/drm/xe/xe_user.c:26:
++		schedule_delayed_work(&user->delay_work,
++				msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL));
+
+-:162: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#162: FILE: drivers/gpu/drm/xe/xe_user.c:64:
++	if (xe_pm_runtime_get_if_active(xe)) {
++
+
+-:164: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#164: FILE: drivers/gpu/drm/xe/xe_user.c:66:
++		list_for_each_entry(xef, &user->filelist, user_link) {
++
+
+-:166: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#166: FILE: drivers/gpu/drm/xe/xe_user.c:68:
++			wait_var_event(&xef->exec_queue.pending_removal,
++			!atomic_read(&xef->exec_queue.pending_removal));
+
+-:218: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#218: FILE: drivers/gpu/drm/xe/xe_user.c:204:
++		if (!schedule_delayed_work(&user->delay_work,
++					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
+
+-:232: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#232: FILE: drivers/gpu/drm/xe/xe_user.c:216:
++void xe_user_cancel_workers(struct xe_device* xe)
+
+-:247: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#247: FILE: drivers/gpu/drm/xe/xe_user.c:231:
++void xe_user_resume_workers(struct xe_device* xe)
+
+-:256: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#256: FILE: drivers/gpu/drm/xe/xe_user.c:240:
++			if (!schedule_delayed_work(&user->delay_work,
++					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
+
+-:288: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#288: FILE: drivers/gpu/drm/xe/xe_user.h:39:
++	struct mutex lock;
+
+-:305: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#305: FILE: drivers/gpu/drm/xe/xe_user.h:77:
++void xe_user_cancel_workers(struct xe_device* xe);
+
+-:307: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#307: FILE: drivers/gpu/drm/xe/xe_user.h:79:
++void xe_user_resume_workers(struct xe_device* xe);
+
+total: 4 errors, 0 warnings, 7 checks, 258 lines checked
+aa9ad33380ef drm/xe: Add a Kconfig option for GPU work period
+-:46: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#46: FILE: drivers/gpu/drm/xe/xe_exec_queue.c:918:
  
 +
-+	mutex_lock(&xe->work_period.lock);
-+	xa_for_each(&xe->work_period.users, i, user) {
-+		if (cancel_delayed_work_sync(&user->delay_work))
-+			xe_user_put(user);
-+	}
-+	xa_destroy(&xe->work_period.users);
-+	mutex_unlock(&xe->work_period.lock);
-+
- 	ttm_device_fini(&xe->ttm);
- }
+
+-:75: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#75: FILE: drivers/gpu/drm/xe/xe_user.h:88:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid)
+
+-:75: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#75: FILE: drivers/gpu/drm/xe/xe_user.h:88:
++int xe_user_init(struct xe_device* xe, struct xe_file* xef, unsigned int uid)
+
+-:84: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#84: FILE: drivers/gpu/drm/xe/xe_user.h:97:
++void xe_user_cancel_workers(struct xe_device* xe)
+
+-:88: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#88: FILE: drivers/gpu/drm/xe/xe_user.h:101:
++void xe_user_resume_workers(struct xe_device* xe)
+
+total: 4 errors, 0 warnings, 1 checks, 87 lines checked
+53d310324da6 drm/xe: Handle xe_work_period destruction
+-:30: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#30: FILE: drivers/gpu/drm/xe/xe_device.c:439:
  
--- 
-2.49.0
++
+
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
+
 
