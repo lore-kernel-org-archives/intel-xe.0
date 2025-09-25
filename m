@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 606ECCAC5B5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7F0ACAC5BC
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCAF10E9C9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF4D10E9D2;
 	Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lWHs2G/0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cGmInBnw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E90310E30A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F93310E30A
  for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758844007; x=1790380007;
+ t=1758844008; x=1790380008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/ePcV1VuIKsl8SR06yVgKlZxFcihHavmenM1zsAwsR4=;
- b=lWHs2G/0gcFr9BzB81tlmwVRtx1jAo9uZDB90T8iW1sZlK9hnJ/5quue
- P0uXOcBwsTlz5m66V+H1vSWIuqbyO6TuW8S6nxpjN/3XLSMPVtRDaHJby
- E9Qit6r1Myf3sdUSSxNkgWN2WH0ctu3ZtEWityiDCCo/CzjaI9ExkWssU
- tt/m7Pp+u7P0MfrRnChKkPVZr4wBRdsLyvr5r4c6KHVTpdUSNkHqduZsY
- NkWmG5cQwRjRJgd36F9KeI3Z80l/o9NQ49A07kBtcvpKgVn84k+dgKVF1
- BT2Zc0panEdshcMJ73VL3T9qgEcoPYAFYMkFGSNWF6KOdfqXMFs3KzvO5 A==;
-X-CSE-ConnectionGUID: 63m4v8KbRkiqSPLsTnSMbw==
-X-CSE-MsgGUID: PJlGleoqTTSSM8GcvHEGZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817675"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817675"
+ bh=g1Jjl7xUOJ4bufkeolxLDByyIoE/MleXubQCvZTt3HI=;
+ b=cGmInBnwWhd2OWo9F2eCF7C/ki794Sp8W/zOOdxqGhjNADLK9urTFQbq
+ LhBW3xzfsl7+PPvxnZPSdfgUxI8UIW5p9zVvWf77VNRu5m+JqboRp4Fww
+ 5ag1UMzLMxp4eAlroTY/Xat3gn3b6KkRfYoP8zW55CZhkn7L3dxav92AQ
+ xkRnqdPCrFeqgczUaq852E5kuWTlHlcHeJkeBjdf2AxEyFzWxM329Yj+1
+ sL9ZbeDcF+X9EodVYYwr+hbR6Dk0sbaBfC4VlD3aeHsrpSUWyWn5mTzZv
+ D32DQxLQEvyz/qC5aSaYXiSsHtxGUNBfCJEi+hvmJHLMPKjcf4earLxa4 g==;
+X-CSE-ConnectionGUID: 0ThwTn13TAWxOPHWwnQNjw==
+X-CSE-MsgGUID: iPHcxkMwRVeh8jrsh+aVaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817679"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817679"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
-X-CSE-ConnectionGUID: t2vs+MibQvyC6Rk/TtbGvg==
-X-CSE-MsgGUID: 5E49Pyi+ROeKN3TXCYV34g==
+X-CSE-ConnectionGUID: 91/XVvcqROypqbccaleKpw==
+X-CSE-MsgGUID: jOYIZ4f0TlmTlN/UVVT5TQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852983"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852997"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 13/22] drm/xe/irq: Don't try to lookup engine masks for
- non-existent primary GT
-Date: Thu, 25 Sep 2025 16:46:41 -0700
-Message-ID: <20250925234628.2112163-37-matthew.d.roper@intel.com>
+Subject: [PATCH v2 17/22] drm/xe: Correct lineage for Wa_22014953428 and only
+ check with valid GT
+Date: Thu, 25 Sep 2025 16:46:45 -0700
+Message-ID: <20250925234628.2112163-41-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
 References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
@@ -67,40 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the primary GT is disabled via configfs, we shouldn't try to access
-it to lookup BCS/CCS engine masks.  For the purposes of IRQ reset (which
-masks & disables interrupts in an sgunit register), assume all possible
-instances are present.
+Wa_22014953428 was incorrectly labelled with a release-specific ID
+number rather than the cross-platform lineage number; fix that.
+Also check that the GT is not NULL before trying to lookup the
+workaround in it.  Since this workaround only applies to DG2 discrete
+GPUs (where the primary GT cannot be disabled), no coverage is lost.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c         | 3 ++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 5018a116852f..eaca56df08e4 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -494,11 +494,15 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- static void gt_irq_reset(struct xe_tile *tile)
- {
- 	struct xe_mmio *mmio = &tile->mmio;
-+	u32 ccs_mask = ~0;
-+	u32 bcs_mask = ~0;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 80b7f13ecd80..1677ae729e85 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1886,6 +1886,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_file *xef = to_xe_file(file);
+ 	struct drm_xe_vm_create *args = data;
++	struct xe_gt *wa_gt = xe_root_mmio_gt(xe);
+ 	struct xe_vm *vm;
+ 	u32 id;
+ 	int err;
+@@ -1894,7 +1895,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->extensions))
+ 		return -EINVAL;
  
--	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
--						   XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
--						   XE_ENGINE_CLASS_COPY);
-+	if (tile->primary_gt) {
-+		ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						       XE_ENGINE_CLASS_COMPUTE);
-+		bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						       XE_ENGINE_CLASS_COPY);
-+	}
+-	if (XE_GT_WA(xe_root_mmio_gt(xe), 14016763929))
++	if (wa_gt && XE_GT_WA(wa_gt, 22014953428))
+ 		args->flags |= DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
  
- 	/* Disable RCS, BCS, VCS and VECS class engines. */
- 	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, 0);
+ 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 113a62f1b541..4bb94e5799ed 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -11,7 +11,7 @@
+ 18020744125	PLATFORM(PVC)
+ 1509372804	PLATFORM(PVC), GRAPHICS_STEP(A0, C0)
+ 1409600907	GRAPHICS_VERSION_RANGE(1200, 1250)
+-14016763929	SUBPLATFORM(DG2, G10)
++22014953428	SUBPLATFORM(DG2, G10)
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
 -- 
 2.51.0
 
