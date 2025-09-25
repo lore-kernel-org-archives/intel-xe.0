@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A568CAC5B5
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:51:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46519CAC5B5
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:56:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2C0010E13F;
-	Thu, 25 Sep 2025 23:51:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iLVnTup2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 717D710E13F;
- Thu, 25 Sep 2025 23:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758844316; x=1790380316;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mkV/MZWWSCzrxuuU909WTo4NstJvp4uIJtRhHd6KOM0=;
- b=iLVnTup2QOpEEtVglukfjVFAa9bF0WZpEJaiy/ijW1znxiSPipxhcoWT
- iFoGFfDwN2BTZAtSvRsbX4PBm54u05xduNGOYlBjoPbJrXAelGVZrDpQf
- JG0IOhhsPzXZIoZOXia8FIaHQhowMlnkHqLGuY7AdvWmpamlRb6xxqHoT
- CiLjQYFwDjgTLh/XXzAF/JR0kghdAFuYr4E8modvLh79h0wEPFRkO+NsQ
- rN5MykSGzQwXjWoM7LV1SYXSwIi6bO+W+EKrAvOd1jkkv+M3omJqoHI/6
- jPzxQuTf0gJp4xnO3YqEtyGtwYaeLKr99L+KxlJz1JGRUVuk+AGI5MwVl Q==;
-X-CSE-ConnectionGUID: rMACZx5STq6cCQ29UXw87g==
-X-CSE-MsgGUID: t1JVaadBQfmj/d4A5zSjmQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61127829"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61127829"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 16:51:56 -0700
-X-CSE-ConnectionGUID: 2VXD5eOjQRi9xWSf/xV40A==
-X-CSE-MsgGUID: 2FK1GyxaSLCcT21fPQOegQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="177399978"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by fmviesa006.fm.intel.com with ESMTP; 25 Sep 2025 16:51:55 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH] drm/i915/display: Extend i915_display_info with Type-C port
- details
-Date: Thu, 25 Sep 2025 16:51:53 -0700
-Message-ID: <20250925235153.2091404-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D25310E099;
+	Thu, 25 Sep 2025 23:56:25 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF24310E099;
+ Thu, 25 Sep 2025 23:56:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Allow_configfs_to_disable?=
+ =?utf-8?q?_specific_GT_type=28s=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 25 Sep 2025 23:56:23 -0000
+Message-ID: <175884458390.368986.17334478397299832874@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
+In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,96 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose key Type-C port data in i915_display_info to make it easier to
-understand the port configuration and active mode, especially whether
-the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+== Series Details ==
 
-Tested in DP-Alt, TBT-Alt, SST, and MST.
+Series: Allow configfs to disable specific GT type(s) (rev2)
+URL   : https://patchwork.freedesktop.org/series/154739/
+State : warning
 
-Expected output:
+== Summary ==
 
-[CONNECTOR:290:DP-2]: status: connected
-	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
-	physical dimensions: 600x340mm
-...
-[CONNECTOR:263:DP-5]: status: connected
-	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
-	physical dimensions: 610x350mm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 55f08593156d4892526d72a4b1378e6739d1d9d0
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Thu Sep 25 16:46:50 2025 -0700
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++++
- drivers/gpu/drm/i915/display/intel_tc.c              | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
- 3 files changed, 17 insertions(+)
+    drm/xe/sriov: Disable SR-IOV if primary GT is disabled via configfs
+    
+    SR-IOV operation relies on the primary GT's GuC to operate (in both PF
+    and VF mode).  If the primary GT is disabled in VF mode, fail the probe.
+    If the primary GT is disabled in PF mode, force the device back to
+    native (non-sriov) mode.
+    
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 927b4d44359a2e2b1782f80bb5302950d8a7cb6d drm-intel
+2bbc3e0b3721 drm/xe/huc: Adjust HuC check on primary GT
+31ba4ba6ef1e drm/xe: Drop GT parameter to xe_display_irq_postinstall()
+1de00ca2aaf0 drm/xe: Move 'va_bits' flag back to platform descriptor
+1832b578d8af drm/xe: Move 'vm_max_level' flag back to platform descriptor
+0facdf3bb966 drm/xe: Move 'vram_flags' flag back to platform descriptor
+f8ab9f783ba6 drm/xe: Move 'has_flatccs' flag back to platform descriptor
+19cfcb4ed66e drm/xe: Move primary GT allocation from xe_tile_init_early to xe_tile_init
+af272dedc53d drm/xe: Skip L2 / TDF cache flushes if primary GT is disabled
+8b041f7ef5ad drm/xe/query: Report hwconfig size as 0 if primary GT is disabled
+febaeaea4b6c drm/xe/pmu: Initialize PMU event types based on first available GT
+6ab189c71f8a drm/xe: Check for primary GT before looking up Wa_22019338487
+62372ed22033 drm/xe: Make display part of Wa_22019338487 a device workaround
+4ee423638d82 drm/xe/irq: Don't try to lookup engine masks for non-existent primary GT
+84a83981b676 drm/xe: Handle Wa_22010954014 and Wa_14022085890 as device workarounds
+-:126: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#126: FILE: include/drm/intel/pciids.h:852:
++#define INTEL_BMG_G21_IDS(MACRO__, ...) \
+ 	MACRO__(0xE202, ## __VA_ARGS__), \
+ 	MACRO__(0xE209, ## __VA_ARGS__), \
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 10dddec3796f..6687fc18e1f5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -47,6 +47,7 @@
- #include "intel_psr_regs.h"
- #include "intel_vdsc.h"
- #include "intel_wm.h"
-+#include "intel_tc.h"
- 
- static struct intel_display *node_to_intel_display(struct drm_info_node *node)
- {
-@@ -254,6 +255,9 @@ static void intel_connector_info(struct seq_file *m,
- 	if (connector->status == connector_status_disconnected)
- 		return;
- 
-+	if (intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
-+		intel_tc_info(m, intel_attached_dig_port(intel_connector));
-+
- 	seq_printf(m, "\tphysical dimensions: %dx%dmm\n",
- 		   connector->display_info.width_mm,
- 		   connector->display_info.height_mm);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index c4a5601c5107..4cd7ccac28b7 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1703,6 +1703,16 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
- 	mutex_unlock(&tc->lock);
- }
- 
-+void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_port)
-+{
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+
-+	seq_printf(m, "\tTC Port: %s mode: %s pin assignment: %c max lanes: %d\n", tc->port_name,
-+		   tc_port_mode_name(tc->mode),
-+		   pin_assignment_name(tc->pin_assignment),
-+		   tc->max_lane_count);
-+}
-+
- /*
-  * The type-C ports are different because even when they are connected, they may
-  * not be available/usable by the graphics driver: see the comment on
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index fff8b96e4972..3e983d1cc0b8 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -7,6 +7,7 @@
- #define __INTEL_TC_H__
- 
- #include <linux/types.h>
-+#include <linux/seq_file.h>
- 
- struct intel_crtc_state;
- struct intel_digital_port;
-@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
- 
- bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
- 
-+void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_port);
-+
- #endif /* __INTEL_TC_H__ */
--- 
-2.43.0
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:126: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#126: FILE: include/drm/intel/pciids.h:852:
++#define INTEL_BMG_G21_IDS(MACRO__, ...) \
+ 	MACRO__(0xE202, ## __VA_ARGS__), \
+ 	MACRO__(0xE209, ## __VA_ARGS__), \
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
+
+-:137: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#137: FILE: include/drm/intel/pciids.h:863:
++#define INTEL_BMG_IDS(MACRO__, ...) \
++	INTEL_BMG_G21_IDS(MACRO__, __VA_ARGS__), \
+ 	MACRO__(0xE220, ## __VA_ARGS__), \
+ 	MACRO__(0xE221, ## __VA_ARGS__), \
+ 	MACRO__(0xE222, ## __VA_ARGS__), \
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:137: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#137: FILE: include/drm/intel/pciids.h:863:
++#define INTEL_BMG_IDS(MACRO__, ...) \
++	INTEL_BMG_G21_IDS(MACRO__, __VA_ARGS__), \
+ 	MACRO__(0xE220, ## __VA_ARGS__), \
+ 	MACRO__(0xE221, ## __VA_ARGS__), \
+ 	MACRO__(0xE222, ## __VA_ARGS__), \
+
+total: 2 errors, 0 warnings, 2 checks, 87 lines checked
+0f6d25960ba4 drm/xe/rtp: Pass xe_device parameter to FUNC matches
+f7517e71d152 drm/xe: Bypass Wa_14018094691 when primary GT is disabled
+6ab54fc43dbb drm/xe: Correct lineage for Wa_22014953428 and only check with valid GT
+7916925adfb3 drm/xe: Check that GT is not NULL before testing Wa_16023588340
+b3a76157ee18 drm/xe: Don't check BIOS-disabled FlatCCS if primary GT is disabled
+f3d9964e6826 drm/xe: Break GT setup out of xe_info_init()
+cbcb4942d743 drm/xe/configfs: Add attribute to disable GT types
+55f08593156d drm/xe/sriov: Disable SR-IOV if primary GT is disabled via configfs
+
 
