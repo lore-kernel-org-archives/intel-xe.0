@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC064CAC5B5
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 21:23:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9782CAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 22:04:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82DB010E9C6;
-	Thu, 25 Sep 2025 21:23:52 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B41A10E9C8;
- Thu, 25 Sep 2025 21:23:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2732143553389665171=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97DFE10E9C1;
+	Thu, 25 Sep 2025 22:04:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejyyS9Ha";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E19D10E9BF
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 22:04:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758837890; x=1790373890;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CrQ2p771LsrCvPaIGEj3vMGb3q9D8nyP37PrhEBNJcs=;
+ b=ejyyS9Hae2XSCVysyIQpY3nXIDcI/UB35bC52VmH4LAoEyHpQ9/w6jQv
+ nAMCxqGPbg2pj6CdXlukBEfgu91SddA0Zvxt6xXNWGytpQGIpmPz8Lcnt
+ LcaNlxug+vj5wbDskgOZsQVpj25KU/NitckVRABK5YJypXFhZUPvClT2z
+ 7R63zyNEcq5n4/7bv7vSwGuUTXja44JacZ9mDAQy/zBMirupkw4+yG4Gn
+ Xsnl0nxFVb5mfcwGrJbf08fw/Qbf0y2LWAtykmNC0LglzwzyqyiQ5BrOu
+ 9KcKhUapC722Ax3PNs2t5ezVTec8er/0ahsgnobUEhF0jTz5jRscoeu4n g==;
+X-CSE-ConnectionGUID: EluTQszYTZyy/rBE1ed+zA==
+X-CSE-MsgGUID: tvJxyO31Th60191Z0IX2HA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="61222119"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="61222119"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2025 15:04:49 -0700
+X-CSE-ConnectionGUID: tej5aE+yTJ6g0M2bULpHPQ==
+X-CSE-MsgGUID: q3UqjCDCRbq2keftcPa7iw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="201129378"
+Received: from krychlik-mobl2.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.117.173])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2025 15:04:38 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 0/6] drm/xe/pf: Refactor PF debugfs
+Date: Fri, 26 Sep 2025 00:04:17 +0200
+Message-ID: <20250925220425.196860-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Guard_against_NUL?=
- =?utf-8?q?L_return_for_xe=5Fdevice=5Fget=5Fgt?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 25 Sep 2025 21:23:51 -0000
-Message-ID: <175883543143.367773.17658024615748937214@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250925204106.67332-2-jonathan.cavitt@intel.com>
-In-Reply-To: <20250925204106.67332-2-jonathan.cavitt@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,158 +65,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2732143553389665171==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In new debugfs layout, all SR-IOV files are grouped under single
+"sriov" directory, where each SR-IOV function is represented by
+its own separate directory, with individual tile/GT structure.
 
-== Series Details ==
+This allows to place GGTT/LMEM attributes correctly under a tile,
+without polluting 'native' entry with many function directories.
 
-Series: drm/xe: Guard against NULL return for xe_device_get_gt
-URL   : https://patchwork.freedesktop.org/series/155062/
-State : success
+For backward compatibility, some symlinks are still provided.
 
-== Summary ==
+  /sys/kernel/debug/dri/0000:00:02.0/
+  ├── sriov
+  │   ├── pf
+  │   │   ├── tile0
+  │   │   │   ├── ggtt_available
+  │   │   │   ├── ggtt_provisioned
+  │   │   │   ├── ggtt_spare
+  │   │   │   ├── gt0
+  │   │   │   │   ├── adverse_events
+  │   │   │   │   ├── contexts_provisioned
+  │   │   │   │   ├── contexts_spare
+  │   │   │   │   ├── doorbells_provisioned
+  │   │   │   │   ├── doorbells_spare
+  │   │   │   │   ├── exec_quantum_ms
+  │   │   │   │   ├── ggtt_available -> ../ggtt_available
+  │   │   │   │   ├── ggtt_provisioned -> ../ggtt_provisioned
+  │   │   │   │   ├── ggtt_spare -> ../ggtt_spare
+  │   │   │   │   ├── preempt_timeout_us
+  │   │   │   │   ├── reset_engine
+  │   │   │   │   ├── runtime_registers
+  │   │   │   │   ├── sample_period_ms
+  │   │   │   │   ├── sched_if_idle
+  │   │   │   │   ├── sched_priority
+  │   │   │   │   ├── threshold_cat_error_count
+  │   │   │   │   ├── threshold_doorbell_time_us
+  │   │   │   │   ├── threshold_engine_reset_count
+  │   │   │   │   ├── threshold_guc_time_us
+  │   │   │   │   ├── threshold_irq_time_us
+  │   │   │   │   └── threshold_page_fault_count
+  │   │   │   └── gt1
+  │   │   │       ├── ...
+  │   │   :       :
+  │   ├── vf1
+  │   │   └── tile0
+  │   │       ├── ggtt_quota
+  │   │       ├── gt0
+  │   │       │   ├── config_blob
+  │   │       │   ├── contexts_quota
+  │   │       │   ├── control
+  │   │       │   ├── doorbells_quota
+  │   │       │   ├── exec_quantum_ms
+  │   │       │   ├── ggtt_quota -> ../ggtt_quota
+  │   │       │   ├── guc_state
+  │   │       │   ├── preempt_timeout_us
+  │   │       │   ├── sched_priority
+  │   │       │   ├── threshold_cat_error_count
+  │   │       │   ├── threshold_doorbell_time_us
+  │   │       │   ├── threshold_engine_reset_count
+  │   │       │   ├── threshold_guc_time_us
+  │   │       │   ├── threshold_irq_time_us
+  │   │       │   └── threshold_page_fault_count
+  │   │       └── gt1
+  │   │           ├── ...
+  │   │           :
+  :   :
+  ├── tile0
+  │   ├── ggtt
+  │   ├── gt0
+  │   │   ├── ...
+  │   │   ├── pf -> ../../sriov/pf/tile0/gt0
+  │   │   ├── vf1 -> ../../sriov/vf1/tile0/gt0
+  │   │   ├── vf2 -> ../../sriov/vf2/tile0/gt0
+  │   │   ├── vf3 -> ../../sriov/vf3/tile0/gt0
+  │   │   └── ...
+  :   :
 
-CI Bug Log - changes from xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d_BAT -> xe-pw-155062v1_BAT
-====================================================
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Summary
--------
+Michal Wajdeczko (6):
+  drm/xe/pf: Promote PF debugfs function to its own file
+  drm/xe/pf: Create separate debugfs tree for SR-IOV files
+  drm/xe/pf: Populate SR-IOV debugfs tree with tiles
+  drm/xe/pf: Move SR-IOV GT debugfs files to new tree
+  drm/xe/debugfs: Promote xe_tile_debugfs_simple_show
+  drm/xe/pf: Make GGTT/LMEM debugfs files per-tile
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/Makefile                   |   4 +-
+ drivers/gpu/drm/xe/xe_debugfs.c               |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   | 389 ++++++++++--------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h   |   1 +
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |  42 --
+ drivers/gpu/drm/xe/xe_sriov_pf.h              |   5 -
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      | 123 ++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.h      |  18 +
+ drivers/gpu/drm/xe/xe_sriov_types.h           |   3 +
+ drivers/gpu/drm/xe/xe_tile_debugfs.c          |  14 +-
+ drivers/gpu/drm/xe/xe_tile_debugfs.h          |   3 +
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 247 +++++++++++
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.h |  15 +
+ 13 files changed, 639 insertions(+), 227 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_debugfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.h
 
-  No regressions found.
+-- 
+2.47.1
 
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155062v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2229])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-1:          [PASS][2] -> [FAIL][3] ([Intel XE#5507]) +1 other test fail
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html
-
-  
-#### Warnings ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-bmg-2:          [ABORT][4] ([Intel XE#3970]) -> [FAIL][5] ([Intel XE#5507]) +1 other test fail
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#3970]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970
-  [Intel XE#5507]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507
-
-
-Build changes
--------------
-
-  * IGT: IGT_8552 -> IGT_8553
-  * Linux: xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d -> xe-pw-155062v1
-
-  IGT_8552: 8552
-  IGT_8553: 8553
-  xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d: 927b4d44359a2e2b1782f80bb5302950d8a7cb6d
-  xe-pw-155062v1: 155062v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/index.html
-
---===============2732143553389665171==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Guard against NULL return for xe_device_get_gt</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155062/">https://patchwork.freedesktop.org/series/155062/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d_BAT -&gt; xe-pw-155062v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155062v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2@render:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-1/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3970">Intel XE#3970</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155062v1/bat-bmg-2/igt@xe_pat@pat-index-xe2@render.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5507">Intel XE#5507</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8552 -&gt; IGT_8553</li>
-<li>Linux: xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d -&gt; xe-pw-155062v1</li>
-</ul>
-<p>IGT_8552: 8552<br />
-  IGT_8553: 8553<br />
-  xe-3830-927b4d44359a2e2b1782f80bb5302950d8a7cb6d: 927b4d44359a2e2b1782f80bb5302950d8a7cb6d<br />
-  xe-pw-155062v1: 155062v1</p>
-
-</body>
-</html>
-
---===============2732143553389665171==--
