@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2467DCAC5BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 499BBCCA468
 	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4019610E9D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3816810E9D1;
 	Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PbMVL6PG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5v6W58D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A67D810E30A
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B027210E9C6
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758844007; x=1790380007;
+ t=1758844008; x=1790380008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FnKE7A7bBK1LqWK5OKD28/CH6GTVVo8ZQ2mg5D4C77Y=;
- b=PbMVL6PGfCb7eu1N9CVVrLDIPjPaQHS8s9K5NbPf7/vMFN8MFI2ROdqh
- pco90b7kvGj5m1BFbNXDXlRp9LAQBYI/9jrSM37q2QW6BpFtVFlq0mttC
- +xrC7OKmRy5v95QzCAfKswWqzJKn2dgIgLP7/ULkeacp46pCK9tZ0ocqk
- 4JyGKP8n1adVgiLCrLLCCjPKhzNlCjSjidcLkkDSKUAQ1V06BgwG5NbJi
- RaZ0U4dCM1YTOtHvkBotpl/toqBO00kOnT3c9NmH+6VhStILzI3U+6LMS
- vWia+CT7StT/5kh+vFSLHmTRu+DT7v5kGGplyDUpUOy7Crbgwfi8ap8zF g==;
-X-CSE-ConnectionGUID: rzyQGva3Sr63jy3XbemPEA==
-X-CSE-MsgGUID: 59XdJ86sRA+dqBvPrf2BCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817668"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817668"
+ bh=rlkE3YpXijdEdytHc441YL4NKKGpnmnMLr8X3zENDZc=;
+ b=a5v6W58DrJ1T5L9pmpXxUhopWcz49Qt84fX33u8QPjJuHZUVr4TebM3r
+ 3d1Vug2e5ZVC4NczidcjwRZeAuo6xn9+i5yzIcNgdZ4AQzit9ZY3xOr5p
+ EaGaxg88tlA3xapee6Lsj8KbI1Ympod2u8JWeU9GdmUUlPDw12sSBKrRq
+ N4o+UZDv+rmoQorlp8Nu45eXK3MrgQ461EXWIcJIEX3A+iZDjJ78DNMQ4
+ E5sapRnh5OXcFEN1whzPNApyUzoXh64AXCLP46naU+heWEta0hy4koQAB
+ x7POVkwrNffUvtQ1pk4xLy8/b6JHg71C5OZf9HugwJSg13LZdR0rv51AL g==;
+X-CSE-ConnectionGUID: +FMbvuNYQsGGZZQic1amiA==
+X-CSE-MsgGUID: 2KapdX3XSJKw6f3kts3rbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817684"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817684"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
-X-CSE-ConnectionGUID: QJvJ5suxQYiOJ1ZkK7Xs3w==
-X-CSE-MsgGUID: WOdGTowUTMez1vq2VCwqEg==
+X-CSE-ConnectionGUID: mDgjtwQCQfO3PGzzwfdtrw==
+X-CSE-MsgGUID: 7mdcj2okTnqwvyu+kvxvXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181852962"
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181853011"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2025 16:46:46 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 06/22] drm/xe: Move 'has_flatccs' flag back to platform
- descriptor
-Date: Thu, 25 Sep 2025 16:46:34 -0700
-Message-ID: <20250925234628.2112163-30-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 22/22] drm/xe/sriov: Disable SR-IOV if primary GT is
+ disabled via configfs
+Date: Thu, 25 Sep 2025 16:46:50 -0700
+Message-ID: <20250925234628.2112163-46-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
 References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
@@ -67,111 +68,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-FlatCCS presence/absence is a flag that should be tracked at the
-platform level rather than the IP level.  FlatCCS affects the
-device-wide memory initialization and reservations so its effects are
-not confined to a single IP block or GT.  This is also a trait that
-should be tied to the platform even if the graphics IP itself is not
-present (e.g., if we disable the primary GT via configfs).
+SR-IOV operation relies on the primary GT's GuC to operate (in both PF
+and VF mode).  If the primary GT is disabled in VF mode, fail the probe.
+If the primary GT is disabled in PF mode, force the device back to
+native (non-sriov) mode.
 
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c       | 12 ++++++------
- drivers/gpu/drm/xe/xe_pci_types.h |  2 +-
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  4 +++-
+ drivers/gpu/drm/xe/xe_sriov.c  | 19 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_sriov.h  |  2 +-
+ 3 files changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 21255ee5a830..976002aae301 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -63,8 +63,6 @@ static const struct xe_graphics_desc graphics_xehpg = {
- 		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 0b4fa7769f05..1ae984f1fb90 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -736,7 +736,9 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
- 	XE_HP_FEATURES,
--
--	.has_flat_ccs = 1,
- };
+-	xe_sriov_probe_early(xe);
++	err = xe_sriov_probe_early(xe);
++	if (err)
++		return err;
  
- static const struct xe_graphics_desc graphics_xehpc = {
-@@ -95,7 +93,6 @@ static const struct xe_graphics_desc graphics_xelpg = {
- #define XE2_GFX_FEATURES \
- 	.has_asid = 1, \
- 	.has_atomic_enable_pte_bit = 1, \
--	.has_flat_ccs = 1, \
- 	.has_range_tlb_inval = 1, \
- 	.has_usm = 1, \
- 	.has_64bit_timestamp = 1, \
-@@ -252,6 +249,7 @@ static const u16 dg2_g12_ids[] = { INTEL_DG2_G12_IDS(NOP), 0 };
- #define DG2_FEATURES \
- 	DGFX_FEATURES, \
- 	PLATFORM(DG2), \
-+	.has_flat_ccs = 1, \
- 	.has_gsc_nvm = 1, \
- 	.has_heci_gscfi = 1, \
- 	.subplatforms = (const struct xe_subplatform_desc[]) { \
-@@ -318,6 +316,7 @@ static const struct xe_device_desc lnl_desc = {
- 	PLATFORM(LUNARLAKE),
- 	.dma_mask_size = 46,
- 	.has_display = true,
-+	.has_flat_ccs = 1,
- 	.has_pxp = true,
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
-@@ -329,6 +328,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.dma_mask_size = 46,
- 	.has_display = true,
- 	.has_fan_control = true,
-+	.has_flat_ccs = 1,
- 	.has_mbx_power_limits = true,
- 	.has_gsc_nvm = 1,
- 	.has_heci_cscfi = 1,
-@@ -342,6 +342,7 @@ static const struct xe_device_desc ptl_desc = {
- 	PLATFORM(PANTHERLAKE),
- 	.dma_mask_size = 46,
- 	.has_display = true,
-+	.has_flat_ccs = 1,
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
-@@ -588,6 +589,8 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	sriov_update_device_info(xe);
  
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.has_fan_control = desc->has_fan_control;
-+	/* runtime fusing may force flat_ccs to disabled later */
-+	xe->info.has_flat_ccs = desc->has_flat_ccs;
- 	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
- 	xe->info.has_gsc_nvm = desc->has_gsc_nvm;
- 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
-@@ -719,9 +722,6 @@ static int xe_info_init(struct xe_device *xe,
- 	if (xe->info.platform != XE_PVC)
- 		xe->info.has_device_atomics_on_smem = 1;
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 7d2d6de2aabf..9fa864f8c3fa 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -10,6 +10,7 @@
+ #include "regs/xe_regs.h"
  
--	/* Runtime detection may change this later */
--	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
--
- 	xe->info.has_range_tlb_inval = graphics_desc->has_range_tlb_inval;
- 	xe->info.has_usm = graphics_desc->has_usm;
- 	xe->info.has_64bit_timestamp = graphics_desc->has_64bit_timestamp;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index e7bc74f4b9b3..6e2875ad2a41 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -39,6 +39,7 @@ struct xe_device_desc {
+ #include "xe_assert.h"
++#include "xe_configfs.h"
+ #include "xe_device.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
+@@ -55,11 +56,25 @@ static bool test_is_vf(struct xe_device *xe)
+  * SR-IOV PF mode detection is based on PCI @dev_is_pf() function.
+  * SR-IOV VF mode detection is based on dedicated MMIO register read.
+  */
+-void xe_sriov_probe_early(struct xe_device *xe)
++int xe_sriov_probe_early(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	enum xe_sriov_mode mode = XE_SRIOV_MODE_NONE;
+ 	bool has_sriov = xe->info.has_sriov;
++	bool has_primary_gt = xe_configfs_get_gt_types_allowed(to_pci_dev(xe->drm.dev)) &
++		BIT_ULL(XE_GT_TYPE_MAIN);
++
++	/*
++	 * SR-IOV operation relies on the primary GT's GuC.  Fail VF device
++	 * probe if the primary GT is disabled, and force PF probe back to
++	 * native (non-SRIOV) mode.
++	 */
++	if (test_is_vf(xe) && !has_primary_gt) {
++		drm_err(&xe->drm, "Cannot probe device in SR-IOV VF without primary GT enabled.\n");
++		return -ENODEV;
++	} else if (!has_primary_gt) {
++		has_sriov = false;
++	}
  
- 	u8 has_display:1;
- 	u8 has_fan_control:1;
-+	u8 has_flat_ccs:1;
- 	u8 has_gsc_nvm:1;
- 	u8 has_heci_gscfi:1;
- 	u8 has_heci_cscfi:1;
-@@ -58,7 +59,6 @@ struct xe_graphics_desc {
+ 	if (has_sriov) {
+ 		if (test_is_vf(xe))
+@@ -85,6 +100,8 @@ void xe_sriov_probe_early(struct xe_device *xe)
+ 	if (IS_SRIOV(xe))
+ 		drm_info(&xe->drm, "Running in %s mode\n",
+ 			 xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++
++	return 0;
+ }
  
- 	u8 has_asid:1;
- 	u8 has_atomic_enable_pte_bit:1;
--	u8 has_flat_ccs:1;
- 	u8 has_indirect_ring_state:1;
- 	u8 has_range_tlb_inval:1;
- 	u8 has_usm:1;
+ static void fini_sriov(struct drm_device *drm, void *arg)
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 6db45df55615..9c283c028377 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -15,7 +15,7 @@ struct drm_printer;
+ const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
+ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t len);
+ 
+-void xe_sriov_probe_early(struct xe_device *xe);
++int xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
+ int xe_sriov_init_late(struct xe_device *xe);
 -- 
 2.51.0
 
