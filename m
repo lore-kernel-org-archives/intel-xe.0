@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBEE6CCA472
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:46:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A568CAC5B5
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 23:51:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC6AE10E9DD;
-	Thu, 25 Sep 2025 23:46:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2C0010E13F;
+	Thu, 25 Sep 2025 23:51:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="glfb4gW8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iLVnTup2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F8A10E330
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 23:46:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 717D710E13F;
+ Thu, 25 Sep 2025 23:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758844008; x=1790380008;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OzQcwMm3acQoM8BR5PBw2zrZjPGRLApav7Ic7w577P4=;
- b=glfb4gW8kEXj2J8QjHRZXqmoj0HhSStMU6VNCOIdwgmU0Ju/oSmFQRgY
- rx/oY8lpdzwwLTAURCnLDGT1Vzo1veFeVL6/y6S71Sv4wbo9tMdO/zTZ/
- lczKthdvC52spYzYRrTNS2O/b1lxyPPuuEFP+vK3bciQC+k5DgyNJKF9a
- BDCM3v+xWUWH/27+KMloDfSpIQzNiN2b/po7Pg14nMmW/xu5Q6aLp1jNT
- 3oqlKIt4HIiEOXvFwsszyH13rV5yqdImNWfswoKJKfKDwA/oAsDmX/lAZ
- EmpzwjG2JH9ejo4HRzpEex34r4HUCSvrPxb9Rw6egC1s+sygbXCbgNoXj w==;
-X-CSE-ConnectionGUID: QfBiWXgMQRGMQJ/IRxqR2A==
-X-CSE-MsgGUID: uqVmEyTdRRC2RsUQG0mnuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78817682"
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="78817682"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 16:46:46 -0700
-X-CSE-ConnectionGUID: Xq8PwVEiSNahvGWPoHEl1A==
-X-CSE-MsgGUID: qeq1XfUBQC+ylT2cuqopTQ==
+ t=1758844316; x=1790380316;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mkV/MZWWSCzrxuuU909WTo4NstJvp4uIJtRhHd6KOM0=;
+ b=iLVnTup2QOpEEtVglukfjVFAa9bF0WZpEJaiy/ijW1znxiSPipxhcoWT
+ iFoGFfDwN2BTZAtSvRsbX4PBm54u05xduNGOYlBjoPbJrXAelGVZrDpQf
+ JG0IOhhsPzXZIoZOXia8FIaHQhowMlnkHqLGuY7AdvWmpamlRb6xxqHoT
+ CiLjQYFwDjgTLh/XXzAF/JR0kghdAFuYr4E8modvLh79h0wEPFRkO+NsQ
+ rN5MykSGzQwXjWoM7LV1SYXSwIi6bO+W+EKrAvOd1jkkv+M3omJqoHI/6
+ jPzxQuTf0gJp4xnO3YqEtyGtwYaeLKr99L+KxlJz1JGRUVuk+AGI5MwVl Q==;
+X-CSE-ConnectionGUID: rMACZx5STq6cCQ29UXw87g==
+X-CSE-MsgGUID: t1JVaadBQfmj/d4A5zSjmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61127829"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61127829"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2025 16:51:56 -0700
+X-CSE-ConnectionGUID: 2VXD5eOjQRi9xWSf/xV40A==
+X-CSE-MsgGUID: 2FK1GyxaSLCcT21fPQOegQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="181853005"
-Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 16:46:46 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v2 20/22] drm/xe: Break GT setup out of xe_info_init()
-Date: Thu, 25 Sep 2025 16:46:48 -0700
-Message-ID: <20250925234628.2112163-44-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250925234628.2112163-24-matthew.d.roper@intel.com>
-References: <20250925234628.2112163-24-matthew.d.roper@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,293,1751266800"; d="scan'208";a="177399978"
+Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
+ by fmviesa006.fm.intel.com with ESMTP; 25 Sep 2025 16:51:55 -0700
+From: Khaled Almahallawy <khaled.almahallawy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH] drm/i915/display: Extend i915_display_info with Type-C port
+ details
+Date: Thu, 25 Sep 2025 16:51:53 -0700
+Message-ID: <20250925235153.2091404-1-khaled.almahallawy@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,129 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_info_init() is getting a bit long and hard to follow.  Break the
-allocation and basic initialization of the xe_gt structures out to their
-own functions.
+Expose key Type-C port data in i915_display_info to make it easier to
+understand the port configuration and active mode, especially whether
+the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Tested in DP-Alt, TBT-Alt, SST, and MST.
+
+Expected output:
+
+[CONNECTOR:290:DP-2]: status: connected
+	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+	physical dimensions: 600x340mm
+...
+[CONNECTOR:263:DP-5]: status: connected
+	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+	physical dimensions: 610x350mm
+
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 88 +++++++++++++++++++++++--------------
- 1 file changed, 54 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++++
+ drivers/gpu/drm/i915/display/intel_tc.c              | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
+ 3 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 84b373dccee1..df5b39d70b80 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -664,6 +664,53 @@ static void xe_info_probe_tile_count(struct xe_device *xe)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 10dddec3796f..6687fc18e1f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -47,6 +47,7 @@
+ #include "intel_psr_regs.h"
+ #include "intel_vdsc.h"
+ #include "intel_wm.h"
++#include "intel_tc.h"
+ 
+ static struct intel_display *node_to_intel_display(struct drm_info_node *node)
+ {
+@@ -254,6 +255,9 @@ static void intel_connector_info(struct seq_file *m,
+ 	if (connector->status == connector_status_disconnected)
+ 		return;
+ 
++	if (intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
++		intel_tc_info(m, intel_attached_dig_port(intel_connector));
++
+ 	seq_printf(m, "\tphysical dimensions: %dx%dmm\n",
+ 		   connector->display_info.width_mm,
+ 		   connector->display_info.height_mm);
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index c4a5601c5107..4cd7ccac28b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1703,6 +1703,16 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
+ 	mutex_unlock(&tc->lock);
  }
  
-+static struct xe_gt *init_primary_gt(struct xe_tile *tile,
-+				     const struct xe_graphics_desc *graphics_desc,
-+				     const struct xe_media_desc *media_desc)
++void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_port)
 +{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_gt *gt;
++	struct intel_tc_port *tc = to_tc_port(dig_port);
 +
-+	gt = xe_gt_alloc(tile);
-+	if (IS_ERR(gt))
-+		return gt;
-+
-+	gt->info.type = XE_GT_TYPE_MAIN;
-+	gt->info.id = tile->id * xe->info.max_gt_per_tile;
-+	gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
-+	gt->info.engine_mask = graphics_desc->hw_engine_mask;
-+
-+	/*
-+	 * Before media version 13, the media IP was part of the primary GT
-+	 * so we need to add the media engines to the primary GT's engine list.
-+	 */
-+	if (MEDIA_VER(xe) < 13 && media_desc)
-+		gt->info.engine_mask |= media_desc->hw_engine_mask;
-+
-+	return gt;
-+}
-+
-+static struct xe_gt *init_media_gt(struct xe_tile *tile,
-+				   const struct xe_media_desc *media_desc)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_gt *gt;
-+
-+	gt = xe_gt_alloc(tile);
-+	if (IS_ERR(gt))
-+		return gt;
-+
-+	if (MEDIA_VER(xe) < 13 || !media_desc)
-+		return NULL;
-+
-+	gt->info.type = XE_GT_TYPE_MEDIA;
-+	gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
-+	gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
-+	gt->info.engine_mask = media_desc->hw_engine_mask;
-+
-+	return gt;
++	seq_printf(m, "\tTC Port: %s mode: %s pin assignment: %c max lanes: %d\n", tc->port_name,
++		   tc_port_mode_name(tc->mode),
++		   pin_assignment_name(tc->pin_assignment),
++		   tc->max_lane_count);
 +}
 +
  /*
-  * Initialize device info content that does require knowledge about
-  * graphics / media IP version.
-@@ -742,48 +789,21 @@ static int xe_info_init(struct xe_device *xe,
- 			return err;
- 	}
+  * The type-C ports are different because even when they are connected, they may
+  * not be available/usable by the graphics driver: see the comment on
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
+index fff8b96e4972..3e983d1cc0b8 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.h
++++ b/drivers/gpu/drm/i915/display/intel_tc.h
+@@ -7,6 +7,7 @@
+ #define __INTEL_TC_H__
  
--	/*
--	 * All platforms have at least one primary GT.  Any platform with media
--	 * version 13 or higher has an additional dedicated media GT.  And
--	 * depending on the graphics IP there may be additional "remote tiles."
--	 * All of these together determine the overall GT count.
--	 */
-+	/* Allocate any GT and VRAM structures necessary for the platform. */
- 	for_each_tile(tile, xe, id) {
- 		int err;
+ #include <linux/types.h>
++#include <linux/seq_file.h>
  
--		tile->primary_gt = xe_gt_alloc(tile);
-+		err = xe_tile_alloc_vram(tile);
-+		if (err)
-+			return err;
+ struct intel_crtc_state;
+ struct intel_digital_port;
+@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
+ 
+ bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
+ 
++void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_port);
 +
-+		tile->primary_gt = init_primary_gt(tile, graphics_desc, media_desc);
- 		if (IS_ERR(tile->primary_gt))
- 			return PTR_ERR(tile->primary_gt);
- 
--		gt = tile->primary_gt;
--		gt->info.type = XE_GT_TYPE_MAIN;
--		gt->info.id = tile->id * xe->info.max_gt_per_tile;
--		gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
--		gt->info.engine_mask = graphics_desc->hw_engine_mask;
--
--		err = xe_tile_alloc_vram(tile);
--		if (err)
--			return err;
--
--		if (MEDIA_VER(xe) < 13 && media_desc)
--			gt->info.engine_mask |= media_desc->hw_engine_mask;
--
--		if (MEDIA_VER(xe) < 13 || !media_desc)
--			continue;
--
--		/*
--		 * Allocate and setup media GT for platforms with standalone
--		 * media.
--		 */
--		tile->media_gt = xe_gt_alloc(tile);
-+		tile->media_gt = init_media_gt(tile, media_desc);
- 		if (IS_ERR(tile->media_gt))
- 			return PTR_ERR(tile->media_gt);
--
--		gt = tile->media_gt;
--		gt->info.type = XE_GT_TYPE_MEDIA;
--		gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
--		gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
--		gt->info.engine_mask = media_desc->hw_engine_mask;
- 	}
- 
- 	/*
+ #endif /* __INTEL_TC_H__ */
 -- 
-2.51.0
+2.43.0
 
