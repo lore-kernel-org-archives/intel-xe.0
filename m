@@ -4,61 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BE34CAC5B1
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 15:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65986CAC5B3
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 15:48:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1BFF10E2AB;
-	Thu, 25 Sep 2025 15:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B7210E983;
+	Thu, 25 Sep 2025 15:48:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKG5FPMx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UkmZF2EB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC8B710E2AB;
- Thu, 25 Sep 2025 15:48:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAA3A10E982
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 15:48:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758815322; x=1790351322;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=6uOfs14Aqkmh7ZhIZTYtj1qjeAot/m+urOPf5j3/fJA=;
- b=UKG5FPMxD1FUDpj0o+RDLLXvViVevVPRhJHALDyPN9MCEWgSttoZkHL6
- HwfOaa6XkWSZ5h8B0fE8hCJL7WVWFRLB8lZmv15q6UI01HXdMP50uK6uf
- vmj+ZvlQcus7Hpebr2udVlyCGkHzhNtc3FI/K/PKZWtYVMOc6U5IVZOLd
- ECqy5gj8LlhhKITL2k3HN+h1vCtvLStY+LWKULuMjLqwjsWHdhAf9eIKA
- o3csz/RCRVv7xYIuUOJirNY+vjrjqwLs3N2pJtwDCk0Sds7qL0lanViyf
- 4l82Lnehy5vBpsACkT3nF7OhJ+9A8DDBHaLvEQ8d4IW4mF3RTmG46uV08 w==;
-X-CSE-ConnectionGUID: 961kyEXoSsyEwHDSA342ZQ==
-X-CSE-MsgGUID: qs3Y2AjHSE6+PfCzblRZug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61088465"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61088465"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 08:48:41 -0700
-X-CSE-ConnectionGUID: kaVxsxiqS3qF5W5Lh4zMRQ==
-X-CSE-MsgGUID: efH8+4EbSHG6IaAlrtAbQw==
+ t=1758815332; x=1790351332;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DhHH9xwSTsKlqtgWUBVui7DrVy63Jj10h0v8eLOhx/4=;
+ b=UkmZF2EBNadRCPZFazLgREJ0llbuxtbCCrJKBgcWLLQq2ei2prA4/1YJ
+ /VaCXRP8DEHePb+9hFkWFCr2msYcIkt3zfrMHxf5fBDrQl/tF0L9bXYaQ
+ IaIN+n+9WQZdq0K9qMhMD62s9bUy0Dc3HwdJysl9/S9RpDKrieffEUG9+
+ zObOFAuAquiwPmSgDQm1Av66x05JX5FMTnzbASmy8d091Od3vhmAcWfL6
+ NimXocL3X8S7939GAd/G0OCLEDItJoKQjHZ/2E2IcKS9rLCBWb8niYyZS
+ 3wpfCmG20sSgAAx1pAmbjok/+HCyyBsxltAaVlbQCkD0BEIa2swaoRTey g==;
+X-CSE-ConnectionGUID: dWUId/iBTFyQJG3CFNzldw==
+X-CSE-MsgGUID: yzw50SqJQT+7J6g1vJcvQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="64773608"
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; d="scan'208";a="64773608"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2025 08:48:52 -0700
+X-CSE-ConnectionGUID: gF6rhWJUQY2F5zHJFHmrCQ==
+X-CSE-MsgGUID: ClUOTsGqScGfLpAkLBjYAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; d="scan'208";a="177209888"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.100])
- ([10.245.244.100])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 08:48:39 -0700
-Message-ID: <2e518022d743762fc0c5bde8c0918ee47a18b0aa.camel@linux.intel.com>
-Subject: Re: [RFC PATCH 1/2] dma-buf: Add support for private interconnects
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; d="scan'208";a="182528127"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
+ by orviesa005.jf.intel.com with ESMTP; 25 Sep 2025 08:48:52 -0700
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Kasireddy Vivek <vivek.kasireddy@intel.com>, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Date: Thu, 25 Sep 2025 17:48:36 +0200
-In-Reply-To: <20250925130849.12021-2-thomas.hellstrom@linux.intel.com>
-References: <20250925130849.12021-1-thomas.hellstrom@linux.intel.com>
- <20250925130849.12021-2-thomas.hellstrom@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+Cc: michal.wajdeczko@intel.com,
+	Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v3] drm/xe/guc: Update GuC log buffer type value
+Date: Thu, 25 Sep 2025 11:48:49 -0400
+Message-Id: <20250925154849.681901-1-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,92 +64,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2025-09-25 at 15:08 +0200, Thomas Hellstr=C3=B6m wrote:
-> Add a function to the dma_buf_attach_ops to indicate whether the
-> connection is a private interconnect. If so the function returns
-> the address to an interconnect-defined structure that can be
-> used for further negotiating.
->=20
-> Also add a field to the dma_buf_attachment that indicates whether
-> a private interconnect is used by the attachment.
->=20
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> ---
-> =C2=A0include/linux/dma-buf.h | 15 +++++++++++++++
-> =C2=A01 file changed, 15 insertions(+)
->=20
-> diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-> index d58e329ac0e7..e7191edb2125 100644
-> --- a/include/linux/dma-buf.h
-> +++ b/include/linux/dma-buf.h
-> @@ -475,6 +475,19 @@ struct dma_buf_attach_ops {
-> =C2=A0	 * point to the new location of the DMA-buf.
-> =C2=A0	 */
-> =C2=A0	void (*move_notify)(struct dma_buf_attachment *attach);
-> +
-> +	/**
-> +	 * @supports_interconnect: [optional] - Does the driver
-> support a local interconnect?
-> +	 *
-> +	 * Does the importer support a private interconnect? The
-> interconnect is
-> +	 * identified using a unique address defined by the exporter
-> and declared
-> +	 * in a protocol header.
+Update GuC log buffer type value, to align with the GuC specification.
 
-Actually we'd probably want to use something like a
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+Change list:
+v3: Update comments
+v2: Use SZ_4K, instead of PAGE_SIZE
+    Expand for loop with switch and fallthrough
+---
+ drivers/gpu/drm/xe/abi/guc_log_abi.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c      | 24 ++++++++++++++----------
+ 2 files changed, 15 insertions(+), 11 deletions(-)
 
-struct dma_buf_interconnect {
-	const char *name;
-};
-
-Here, and for globally known interconnects have them
-instantiated somewhere common since there could be multiple exporters.
-
->  (RFC: Should this be a struct instead).
-> +	 *
-> +	 * Return: A pointer to the interconnect-private attach_ops
-> structure if supported,
-> +	 * %NULL otherwise.
-> +	 */
-> +	const void *(*supports_interconnect)(struct
-> dma_buf_attachment *attach,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 const void
-> *interconnect);
-
-And similarly for stricter type-checking the return value could be a
-struct dma_buf_interconnect_attach_ops {
-};
-
-which is subclassed for each interconnect-private attach ops.
-
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
-> @@ -484,6 +497,7 @@ struct dma_buf_attach_ops {
-> =C2=A0 * @node: list of dma_buf_attachment, protected by dma_resv lock of
-> the dmabuf.
-> =C2=A0 * @peer2peer: true if the importer can handle peer resources
-> without pages.
-> =C2=A0 * @priv: exporter specific attachment data.
-> + * @interconnect: Private interconnect to use if any, NULL
-> otherwise.
-> =C2=A0 * @importer_ops: importer operations for this attachment, if
-> provided
-> =C2=A0 * dma_buf_map/unmap_attachment() must be called with the dma_resv
-> lock held.
-> =C2=A0 * @importer_priv: importer specific attachment data.
-> @@ -503,6 +517,7 @@ struct dma_buf_attachment {
-> =C2=A0	struct list_head node;
-> =C2=A0	bool peer2peer;
-> =C2=A0	const struct dma_buf_attach_ops *importer_ops;
-> +	const void *interconnect;
-
-const struct dma_buf_interconnect *interconnect;
-
-> =C2=A0	void *importer_priv;
-> =C2=A0	void *priv;
-> =C2=A0};
-
-/Thomas
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+index 554630b7ccd9..b1819679fa35 100644
+--- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -10,8 +10,8 @@
+ 
+ /* GuC logging buffer types */
+ enum guc_log_buffer_type {
+-	GUC_LOG_BUFFER_CRASH_DUMP,
+ 	GUC_LOG_BUFFER_DEBUG,
++	GUC_LOG_BUFFER_CRASH_DUMP,
+ 	GUC_LOG_BUFFER_CAPTURE,
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index c01ccb35dc75..9017abf112bf 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -50,15 +50,15 @@ static size_t guc_log_size(void)
+ 	 *  |     Capture state header      |
+ 	 *  +-------------------------------+ 96B
+ 	 *  |                               |
+-	 *  +===============================+ PAGE_SIZE (4KB)
+-	 *  |        Crash Dump logs        |
+-	 *  +===============================+ + CRASH_SIZE
++	 *  +===============================+ 4KB
+ 	 *  |          Debug logs           |
+ 	 *  +===============================+ + DEBUG_SIZE
++	 *  |        Crash Dump logs        |
++	 *  +===============================+ + CRASH_SIZE
+ 	 *  |         Capture logs          |
+ 	 *  +===============================+ + CAPTURE_SIZE
+ 	 */
+-	return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
++	return SZ_4K + DEBUG_BUFFER_SIZE + CRASH_BUFFER_SIZE +
+ 		CAPTURE_BUFFER_SIZE;
+ }
+ 
+@@ -327,13 +327,17 @@ u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type
+  */
+ u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
+ {
+-	enum guc_log_buffer_type i;
+-	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
++	u32 offset = SZ_4K; /* 1st section size */
+ 
+-	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
+-		if (i == type)
+-			break;
+-		offset += xe_guc_get_log_buffer_size(log, i);
++	switch (type) {
++	case GUC_LOG_BUFFER_CAPTURE:
++		offset += xe_guc_get_log_buffer_size(log, GUC_LOG_BUFFER_CRASH_DUMP);
++		fallthrough;
++	case GUC_LOG_BUFFER_CRASH_DUMP:
++		offset += xe_guc_get_log_buffer_size(log, GUC_LOG_BUFFER_DEBUG);
++		fallthrough;
++	case GUC_LOG_BUFFER_DEBUG:
++		break;
+ 	}
+ 
+ 	return offset;
+-- 
+2.34.1
 
