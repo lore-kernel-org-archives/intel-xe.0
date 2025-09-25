@@ -4,60 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18EDCAC5A5
-	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 04:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57089CAC5A5
+	for <intel-xe@archiver.kernel.org>; Thu, 25 Sep 2025 06:43:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D5110E83B;
-	Thu, 25 Sep 2025 04:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA7D510E849;
+	Thu, 25 Sep 2025 06:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CO2XavZr";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="cNaa6Q+k";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/3se8pi5";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vapjxTjo";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="L9uH1gnA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D800C10E83B
- for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 04:42:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758775349; x=1790311349;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6brkUgesDQ9HK3twoWZkydnvRex6ZO9p+MIOMWe+MyM=;
- b=CO2XavZrivkBMXGWSkoBbSmqb+iY/cNFjRwzcufxQOW9XnJBE0BoQFF8
- 4HwLmcXqUCzK+Xf8qwe9XnLJtukMtlrdBKX9j1VaKRQ4kd7MJ6AEXehL9
- jrua0kniUcqI9ON0nabEcC5iFVmC/fDQUNeTc1hdR4Cxcl6rLibAQDGys
- rkC9lnBUnF1HnXFdus1v0SR8aJxCzH9eJPUijiHYTz/Laj72q0ksxT9P7
- RAL7e22MBdXNCCS8Hcclu5iw9n2XzyW7ZfS6qkOF4p4lya+eDhpxjBo5j
- KW4lSpfapU/TnOR6AFxEQ4r+ooH8tdxROxXT7m2yPxQYpo51sBu6Ttyup A==;
-X-CSE-ConnectionGUID: 3lJYb8BgSrm8TDaX4NoQQQ==
-X-CSE-MsgGUID: N9+dm/nURWybAi1UFpZd4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="61005405"
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; d="scan'208";a="61005405"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 21:42:29 -0700
-X-CSE-ConnectionGUID: qD4dbC/uTHK3XO8pdrOfZQ==
-X-CSE-MsgGUID: JwHUiFLzSDuk01BQzeKOCg==
-X-ExtLoop1: 1
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2025 21:42:29 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>,
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E7410E849
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 Sep 2025 06:43:00 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id E872575B92;
+ Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1758782579; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
+ b=cNaa6Q+kN1Ut+hjnzZXrNfSiMMe5TLCYgxIe+6BKjPaPpSNHHFor4S04InOmFMIB508wPo
+ 0Ada2K4AIK+YjtYBG6+KeOu/cFtnhwXEXnfbEtXjNWe46K8KR6WijJhNCkqaKtYZjztCZi
+ m76lwBgmElb/pP2gAVuwSvc3/1aaVuA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1758782579;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
+ b=/3se8pi5uYOnjZdfNG9Iu+sm/wVKmS7utwQl2f+2wtoDj/zoO60ZC6Cp//gi1wU6RoyxEe
+ dQYRuX1of9EBN2Aw==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1758782578; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
+ b=vapjxTjoK+5wkftWN3OgXbfUIJuHmVLDBDptz2RQspLcePD8TlCRYFWDSiAL82tMlYuSd8
+ Nfkj4gBey+m/pCAj2iTaLQGemJCx1t4FPIcKyhfB8egbmStHulwI83Qp1VIXGDIg4oWoot
+ 3VJ4O/Q1Alh6j7pOTQFAamsQTwSFAF0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1758782578;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=oFMcrEZdEURrdz2SIR1YNKgU/KyHwzydJ7NKOJngRPc=;
+ b=L9uH1gnALN7Q2DsN9Z8M0+f6vvSb+MQi456DR773BiPmKqPmeRd6ovA/NQkRz+ALsNIi+a
+ KPXNwpukp8Mx72Cg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 74C27132C9;
+ Thu, 25 Sep 2025 06:42:58 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6tKwGnLk1GiwIgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 25 Sep 2025 06:42:58 +0000
+Date: Thu, 25 Sep 2025 08:42:57 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v4 0/5] drm/xe: Use poll_timeout_us()
-Date: Wed, 24 Sep 2025 21:42:10 -0700
-Message-ID: <175877528496.1427768.3926811399148541613.b4-ty@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
-References: <20250922-xe-iopoll-v4-0-06438311a63f@intel.com>
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20250925064257.GA9107@linux.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ MISSING_XM_UA(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ TO_DN_SOME(0.00)[]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,40 +110,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 22 Sep 2025 12:58:28 -0700, Lucas De Marchi wrote:
-> This starts using poll_timeout_us() throughout xe. Tested only by
-> probing xe on BMG and I haven't seen any difference.
-> 
-> Size-wise, it's pretty much the same thing as open coding the loops:
-> 
-> 	add/remove: 2/0 grow/shrink: 6/1 up/down: 254/-128 (126)
-> 	Function                                     old     new   delta
-> 	pcode_mailbox_rw                               -     159    +159
-> 	__xe_guc_upload.isra                        1481    1522     +41
-> 	__pfx_pcode_mailbox_rw                         -      16     +16
-> 	wait_for_lmem_ready                          688     701     +13
-> 	xe_device_probe_early                        549     560     +11
-> 	wait_for_pc_state.constprop                  213     222      +9
-> 	xe_guc_pc_apply_flush_freq_limit             390     394      +4
-> 	wait_for_pc_state.constprop.cold              24      25      +1
-> 	__xe_guc_upload.isra.cold                    787     659    -128
-> 	Total: Before=2806317, After=2806443, chg +0.00%
-> 
-> [...]
+Hi Dave, Sima,
 
-Merged to drm-xe-next, thanks!
+here's the drm-misc-next-fixes PR.
 
-[1/5] drm/xe/device: Use poll_timeout_us() to wait for lmem
-      commit: 09ab20c41ace0cfc00e48338ab2e2c58896fa094
-[2/5] drm/xe/guc_pc: Use poll_timeout_us() for waiting
-      commit: b0ac4ef074ace20714a3bf96d23ae2ba61cc4439
-[3/5] drm/xe/guc: Drop helper to read freq
-      commit: 2a16f47dcc75e7bfd98291f0951c5e864294341e
-[4/5] drm/xe/guc: Extract function to print load error
-      commit: abde96d8442de131fc3af647fdc63a0877dc99b6
-[5/5] drm/xe/guc: Refactor GuC load to use poll_timeout_us()
-      commit: a4916b4da44812384388ac09a2baf9da461dbc30
+Best regards
+Thomas
 
---
-Lucas De Marchi
+drm-misc-next-fixes-2025-09-25:
+Short summary of fixes pull:
 
+bridge:
+- waveshare-dsi: Fix error handling in probe function
+
+pixpaper:
+- select GEM SHMEM helpers
+The following changes since commit 0265d0ebb409a25d3bb3a19494e0173d06d9d132:
+
+  drm/pixpaper: Fix return type of pixpaper_mode_valid() (2025-09-15 12:29:37 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-09-25
+
+for you to fetch changes up to 0c4932f6ddf815618fa34f7403df682aed7862b5:
+
+  drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER (2025-09-23 14:07:04 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+bridge:
+- waveshare-dsi: Fix error handling in probe function
+
+pixpaper:
+- select GEM SHMEM helpers
+
+----------------------------------------------------------------
+LiangCheng Wang (1):
+      drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER
+
+Liu Ying (1):
+      drm/bridge: waveshare-dsi: Fix bailout for devm_drm_bridge_alloc()
+
+ drivers/gpu/drm/bridge/waveshare-dsi.c | 4 ++--
+ drivers/gpu/drm/tiny/Kconfig           | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
