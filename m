@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E001CCA46F
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 06:13:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B46BCCAC5AC
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 06:13:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E4C410E9E6;
-	Fri, 26 Sep 2025 06:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 711D410E342;
+	Fri, 26 Sep 2025 06:13:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G8UcsgPc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LNOcGKYs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B284910E9DC;
- Fri, 26 Sep 2025 06:13:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B3B210E332;
+ Fri, 26 Sep 2025 06:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758867195; x=1790403195;
+ t=1758867204; x=1790403204;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QH7LM+SN+sBNoJ818iCUl0qr7Tz99g90xmVDaskdgaQ=;
- b=G8UcsgPcLQnkniqfouVEkXtMvAkN6G5th/httAeGyhlP3W+PpwPZBp0h
- PwY47Z5PubPgQfBUxUfuWDBaB2yJejCGeZAsHLL5uKL+d1qwVac5iTB6c
- 1W12BvHliQh/NyVK+vgcSDRrXduQRrIaZblPkaOyffbscpOGi0ZL8DZds
- 21mKDSN+ZoYCpnJuUwR72Amj9iDViAL6JEIVmplfXZkfZqSLxbDN7TUwp
- CqAZRsXwpVl+c1eguVDgu4vy7SEUuaR1sqjT24wYGBPdM3DxiaWo52Ai8
- aT8YBlh02rkuz71xZPWvVnKeKtqcp/FdlyLUph8BnGa+ITlevcRsWuml2 Q==;
-X-CSE-ConnectionGUID: PvCpFCC7QD62HJw0ykMpFg==
-X-CSE-MsgGUID: dxW/MaGYRTSSOtVPEOmIpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65007599"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65007599"
+ bh=MKQfX2qG8+vUJdDjWu4hOZfiN4DHTIuTgLT3h6jcD3E=;
+ b=LNOcGKYs/hozHYQWYGcqO9yzPdMf58PnjOKsg/0Vr09r5suGApFeCR4E
+ b4iyIZRErYwb9JSq5YHLQNoza5sO87c4NdiCymv75r3erl81ztc7n/9al
+ ZxtF5sN8Bhq2nEdvM+M/MYuFlGFO7r4oX7wxskd3+TZC/qgve1YojHi5A
+ iNuWCRxTVMa4aU3gfzfXHMTsOjrA67lsbUgccdcCVKmuRD0Zz0XdKfgQ3
+ IFlBXjVMvpH6XnmrgI0EI/j5osAcdabbKonqsfE6INiX0FBMksmhzTNv2
+ XiVWMKXlEpug6iWPoaHZOknqp9E9PJLuFbbZlRH6wXP+zFGYxoO9PWzaF A==;
+X-CSE-ConnectionGUID: yJdA9Hq3SX+M1kdbN+cqOA==
+X-CSE-MsgGUID: gm1K27xIQm2FQY167PQwRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65007619"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65007619"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 23:13:15 -0700
-X-CSE-ConnectionGUID: vrrrKXarQqCtqh0ZgW51GQ==
-X-CSE-MsgGUID: zNXAmrrCSSubgFl9XlKHIQ==
+ 25 Sep 2025 23:13:24 -0700
+X-CSE-ConnectionGUID: /X1F6vAHRWOLfKs04M6pzw==
+X-CSE-MsgGUID: quoduD5jSFmonjMCXKo9Uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="177092910"
+X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="177092951"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2025 23:13:13 -0700
+ 25 Sep 2025 23:13:23 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 09/14] drm/i915/skl_watermark: Remove redundant latency checks
- from vblank validation
-Date: Fri, 26 Sep 2025 11:29:30 +0530
-Message-ID: <20250926055935.3532568-10-ankit.k.nautiyal@intel.com>
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 14/14] drm/i915/display: Use optimized guardband to set vblank
+ start
+Date: Fri, 26 Sep 2025 11:29:35 +0530
+Message-ID: <20250926055935.3532568-15-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250926055935.3532568-1-ankit.k.nautiyal@intel.com>
 References: <20250926055935.3532568-1-ankit.k.nautiyal@intel.com>
@@ -69,124 +68,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Drop DSC and scaler prefill latency checks from skl_is_vblank_too_short().
-These are now covered by the guardband validation added during the atomic
-CRTC check phase.
+As we move towards using a shorter, optimized guardband, we need to adjust
+how the delayed vblank start is computed.
 
-This cleanup prepares for future changes where the guardband will be
-optimized independently of vblank length, making vblank-based checks
-obsolete.
+Use the helper intel_vrr_compute_guardband() to calculate the optimized
+guardband. Since this is measured from the vblank end, we shift the
+vblank-start accordingly.
+
+Calculate the minimum delay required based on the guardband and apply it
+in intel_crtc_vblank_delay() to update crtc_vblank_start.
+
+Additionally, allow vblank delay adjustment during fastset even when
+the CRTC state is not inherited, for platforms where vrr timing generator
+(and the static guardband) is used. This ensures correct behavior for LRR
+scenarios where vtotal changes but the guardband remains static, allowing
+seamless mode transitions.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 80 --------------------
- 1 file changed, 80 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 64 +++++++++++++++++++-
+ 1 file changed, 62 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 9a368bb9e92a..73e5b2d8ae83 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -28,7 +28,6 @@
- #include "intel_flipq.h"
- #include "intel_pcode.h"
- #include "intel_plane.h"
--#include "intel_vdsc.h"
- #include "intel_wm.h"
- #include "skl_universal_plane_regs.h"
- #include "skl_scaler.h"
-@@ -2162,91 +2161,12 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ec415b939770..dec4fc3a1f5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2361,6 +2361,58 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
  	return 0;
  }
  
--static int
--cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_atomic_state *state =
--		to_intel_atomic_state(crtc_state->uapi.state);
--	const struct intel_cdclk_state *cdclk_state;
--
--	cdclk_state = intel_atomic_get_cdclk_state(state);
--	if (IS_ERR(cdclk_state)) {
--		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
--		return 1;
--	}
--
--	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
--				   2 * intel_cdclk_logical(cdclk_state)));
--}
--
--static int
--dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
--{
--	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
--	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	int num_scaler_users = hweight32(scaler_state->scaler_users);
--	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
--	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
--	u32 dsc_prefill_latency = 0;
--
--	if (!crtc_state->dsc.compression_enable ||
--	    !num_scaler_users ||
--	    num_scaler_users > crtc->num_scalers)
--		return dsc_prefill_latency;
--
--	for (int i = 0; i < num_scaler_users; i++) {
--		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
--		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
--	}
--
--	dsc_prefill_latency =
--		intel_dsc_guardband_latency(num_scaler_users, hscale_k, vscale_k,
--					    chroma_downscaling_factor,
--					    cdclk_prefill_adjustment(crtc_state),
--					    linetime);
--
--	return dsc_prefill_latency;
--}
--
--static int
--scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
--{
--	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
--	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
--	int num_scaler_users = hweight32(scaler_state->scaler_users);
--	u64 hscale_k = 0, vscale_k = 0;
--	int scaler_prefill_latency = 0;
--
--	if (!num_scaler_users)
--		return scaler_prefill_latency;
--
--	if (num_scaler_users > 1) {
--		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
--		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
--	}
--
--	scaler_prefill_latency =
--		skl_scaler_guardband_latency(num_scaler_users, hscale_k, vscale_k,
--					     chroma_downscaling_factor,
--					     cdclk_prefill_adjustment(crtc_state),
--					     linetime);
--
--	return scaler_prefill_latency;
--}
--
- static bool
- skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 			int wm0_lines, int latency)
++static
++int intel_crtc_min_guardband_delay(struct intel_atomic_state *state,
++				   struct intel_crtc *crtc)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	const struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
++	struct drm_connector_state *conn_state;
++	struct drm_connector *drm_connector;
++	int guardband_delay = 0;
++	int vblank_length;
++	int i;
++
++	if (!intel_vrr_use_optimized_guardband(crtc_state))
++		return 0;
++
++	vblank_length = crtc_state->vrr.vmin -
++			adjusted_mode->crtc_vdisplay;
++
++	for_each_new_connector_in_state(&state->base,
++					drm_connector,
++					conn_state, i) {
++		int guardband;
++		struct intel_connector *connector;
++
++		if (conn_state->crtc != &crtc->base)
++			continue;
++
++		connector = to_intel_connector(drm_connector);
++		guardband = intel_vrr_compute_guardband(crtc_state,
++							connector);
++		guardband_delay = vblank_length - guardband;
++	}
++
++	return guardband_delay;
++}
++
++static void intel_crtc_vblank_delay(struct intel_atomic_state *state,
++				    struct intel_crtc *crtc)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
++	int vblank_delay = 0;
++
++	vblank_delay = intel_crtc_min_guardband_delay(state, crtc);
++
++	adjusted_mode->crtc_vblank_start += vblank_delay;
++}
++
+ static int intel_crtc_set_context_latency(struct intel_crtc_state *crtc_state)
  {
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
--	int linetime = DIV_ROUND_UP(1000 * adjusted_mode->htotal,
--				    adjusted_mode->clock);
--
--	latency += scaler_prefill_latency(crtc_state, linetime) +
--		   dsc_prefill_latency(crtc_state, linetime);
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -2413,6 +2465,7 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+ 	ret = intel_crtc_compute_set_context_latency(state, crtc);
+ 	if (ret)
+ 		return ret;
++	intel_crtc_vblank_delay(state, crtc);
  
- 	return crtc_state->framestart_delay +
- 		intel_usecs_to_scanlines(adjusted_mode, latency) +
+ 	ret = intel_dpll_crtc_compute_clock(state, crtc);
+ 	if (ret)
+@@ -5105,9 +5158,16 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
+ 	 * Allow fastboot to fix up vblank delay (handled via LRR
+ 	 * codepaths), a bit dodgy as the registers aren't
+ 	 * double buffered but seems to be working more or less...
++	 *
++	 * Also allow this when the VRR timing generator is always on,
++	 * which implies optimized guardband is used. In such cases,
++	 * vblank delay may vary even without inherited state, but it's
++	 * still safe as VRR guardband is still same.
+ 	 */
+-	return HAS_LRR(display) && old_crtc_state->inherited &&
+-		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
++	return HAS_LRR(display) &&
++	       (old_crtc_state->inherited ||
++		intel_vrr_always_use_vrr_tg(display)) &&
++	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+ }
+ 
+ bool
 -- 
 2.45.2
 
