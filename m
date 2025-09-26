@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C685CAC5B9
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 09:49:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61D21CAC5B9
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 09:50:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FCDF10E312;
-	Fri, 26 Sep 2025 09:49:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TILlSB9m";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69C1810E312
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Sep 2025 09:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758880170; x=1790416170;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=EILjQWXJDdPuBTm0f/W/vjXhfUsjySw7q5yRkNSrTAI=;
- b=TILlSB9mOiX/xMBOHQk4THkJDKdZTs/Oo97v7cVEx8RON2fu9jov0lfd
- RR3Xn/zYhLD1emPGf6K5Q8vlkFKsMUCHwBYRKXMKooUSn+5YnYjGJ2uPZ
- kgtHEB25Zc98V9pq4T2AWMsLa5Ouf7ysCmQ9qBkHWXvpXWr7DXgr7J/y/
- KjUS7opjGLg6tNKGQ7DgL7R/pGIq53S8lOZtIPbg7OrhEw8csYQQmereG
- p0/L0G3/BzBg5Vv1DHdR/TiyiOYzCf4WxcxFrqQ6ZhwOs+pUq3H+JywMT
- z/zO4l6E8ozRP69cU0aXbWIfincbXOUVPZYKNYs9Ra+smWQB5LE5C4/LZ Q==;
-X-CSE-ConnectionGUID: eE4KVP9pT+GcXUdItd/nfg==
-X-CSE-MsgGUID: TlkyttxZSGmHtZawHQKYeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="61101493"
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="61101493"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 02:49:30 -0700
-X-CSE-ConnectionGUID: 5LJO7a0hTjG8x3a6uZlWjQ==
-X-CSE-MsgGUID: G8GrYl57TZCJY+hxoI+eSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="181576899"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.9])
- ([10.245.245.9])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 02:49:29 -0700
-Message-ID: <6788ad59-dbb3-4491-8788-e169dd48fda6@intel.com>
-Date: Fri, 26 Sep 2025 10:49:26 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8B510E3C1;
+	Fri, 26 Sep 2025 09:50:14 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F64110E312;
+ Fri, 26 Sep 2025 09:50:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] drm/xe/pf: Force use user VRAM for LMEM
- provisioning
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250922170707.1556781-1-piotr.piorkowski@intel.com>
- <20250922170707.1556781-5-piotr.piorkowski@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250922170707.1556781-5-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_dma-buf_private_intercon?=
+ =?utf-8?q?nect_POC_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 26 Sep 2025 09:50:13 -0000
+Message-ID: <175888021338.369784.14271267428082846213@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250926084624.2288-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250926084624.2288-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/09/2025 18:07, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> The LMEM assigned to VFs should be allocated from the general-purpose
-> VRAM pool, not from the kernel-reserved region.
-> Let's force the use of general-purpose VRAM for BOs intended for VFs.
-> 
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+== Series Details ==
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: dma-buf private interconnect POC (rev2)
+URL   : https://patchwork.freedesktop.org/series/155043/
+State : warning
 
-> ---
->   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index 6344b5205c08..b2e5c52978e6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -1484,7 +1484,8 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
->   					 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
->   					 XE_BO_FLAG_NEEDS_2M |
->   					 XE_BO_FLAG_PINNED |
-> -					 XE_BO_FLAG_PINNED_LATE_RESTORE);
-> +					 XE_BO_FLAG_PINNED_LATE_RESTORE |
-> +					 XE_BO_FLAG_FORCE_USER_VRAM);
->   	if (IS_ERR(bo))
->   		return PTR_ERR(bo);
->   
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast d557b14c00c4ab027e66c1c7bf512cf479ff8c24
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2026:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2026:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2026:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2026:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2026:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
++drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:466:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:474:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:479:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:517:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:525:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:530:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:574:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:577:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:581:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:588:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:146:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
++drivers/gpu/drm/ttm/ttm_bo.c:1198:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:329:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:332:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    expected void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    got void [noderef] __iomem *
++drivers/gpu/drm/ttm/ttm_bo_util.c:335:38: warning: incorrect type in assignment (different address spaces)
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    expected void volatile [noderef] __iomem *addr
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    got void *virtual
++drivers/gpu/drm/ttm/ttm_bo_util.c:467:28: warning: incorrect type in argument 1 (different address spaces)
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
