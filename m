@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F9F0CAC5AC
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 08:46:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7150CAC5AC
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 08:46:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE6110EA01;
-	Fri, 26 Sep 2025 08:46:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ji+o9oy9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93A1389226;
- Fri, 26 Sep 2025 08:45:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758876359; x=1790412359;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=/o9XuHmMoGK5r8Iyjln9ia0VlL66NZem9Yd2h2lTIqU=;
- b=Ji+o9oy9+53XVuMr3uK3tmmuT/9XKeEIB8c+jjFAyfIXPRVVMPl+z3Ti
- q1NuLGCdXSy66yClI6zg2/PFNBn8JnA6rPQjz4I/EZMD7XGrfSdNMzZkZ
- Dq3NOG4rauD4YKRmeilu51YcDH3a2uhjo1Jmb3KlC5hQCgknWTEJyK+XE
- EeP572OIJlQrM7O9ARqU4fVX9xqGOJp67x9sZjqkoulemwDOGZpr2u+k5
- eHVTtUQhmjDKbRYDg0wss3glC/IE5oJv1NCQbf6YhXiCxS+q7n+LfqR50
- 1AusEplNl5wqIGJuiJXfacrVOWFLDbqho7p6lzGTl+1k/X1eaM8GNrxSg w==;
-X-CSE-ConnectionGUID: Pz5cbJSHSB6gk1sgHiyX9w==
-X-CSE-MsgGUID: k2OsggzoROmRGq+wOLWCXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="48768756"
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="48768756"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 01:45:58 -0700
-X-CSE-ConnectionGUID: amMFhJJeQauhDT9Q8KgvkA==
-X-CSE-MsgGUID: gtm9D50oQ++1MM+H6/boQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="176838687"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.10])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 01:45:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Khaled
- Almahallawy <khaled.almahallawy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre
- Deak <imre.deak@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Extend i915_display_info with Type-C
- port details
-In-Reply-To: <aNZNqOni0az7GUqK@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250925235153.2091404-1-khaled.almahallawy@intel.com>
- <aNZNqOni0az7GUqK@intel.com>
-Date: Fri, 26 Sep 2025 11:45:52 +0300
-Message-ID: <ca0a2b05c577d368cdf296685bda2dc9bcba9cfe@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A36510E2FD;
+	Fri, 26 Sep 2025 08:46:40 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E79CE10E2FD;
+ Fri, 26 Sep 2025 08:46:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/cdclk=3A_Decoupl?=
+ =?utf-8?q?e_CDCLK_from_state-=3Emodeset_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 26 Sep 2025 08:46:38 -0000
+Message-ID: <175887639801.370216.2988934341434979876@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,140 +36,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 26 Sep 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Sep 25, 2025 at 04:51:53PM -0700, Khaled Almahallawy wrote:
->> Expose key Type-C port data in i915_display_info to make it easier to
->> understand the port configuration and active mode, especially whether
->> the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
->>=20
->> Tested in DP-Alt, TBT-Alt, SST, and MST.
->>=20
->> Expected output:
->>=20
->> [CONNECTOR:290:DP-2]: status: connected
->> 	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
->> 	physical dimensions: 600x340mm
->> ...
->> [CONNECTOR:263:DP-5]: status: connected
->> 	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
->> 	physical dimensions: 610x350mm
->>=20
->> Cc: Imre Deak <imre.deak@intel.com>
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++++
->>  drivers/gpu/drm/i915/display/intel_tc.c              | 10 ++++++++++
->>  drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
->>  3 files changed, 17 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/driv=
-ers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 10dddec3796f..6687fc18e1f5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -47,6 +47,7 @@
->>  #include "intel_psr_regs.h"
->>  #include "intel_vdsc.h"
->>  #include "intel_wm.h"
->> +#include "intel_tc.h"
->>=20=20
->>  static struct intel_display *node_to_intel_display(struct drm_info_node=
- *node)
->>  {
->> @@ -254,6 +255,9 @@ static void intel_connector_info(struct seq_file *m,
->>  	if (connector->status =3D=3D connector_status_disconnected)
->>  		return;
->>=20=20
->> +	if (intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
->> +		intel_tc_info(m, intel_attached_dig_port(intel_connector));
->> +
->>  	seq_printf(m, "\tphysical dimensions: %dx%dmm\n",
->>  		   connector->display_info.width_mm,
->>  		   connector->display_info.height_mm);
->> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i=
-915/display/intel_tc.c
->> index c4a5601c5107..4cd7ccac28b7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_tc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
->> @@ -1703,6 +1703,16 @@ void intel_tc_port_sanitize_mode(struct intel_dig=
-ital_port *dig_port,
->>  	mutex_unlock(&tc->lock);
->>  }
->>=20=20
->> +void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_=
-port)
->
-> Please use drm_printer instead of seq_file so this can be reused
-> elsewhere.
+== Series Details ==
 
-Yeah.
+Series: drm/i915/cdclk: Decouple CDCLK from state->modeset (rev3)
+URL   : https://patchwork.freedesktop.org/series/154922/
+State : warning
 
-I'm also really not a big fan of throwing everything into
-i915_display_info. The general idea of debugfs is to have individual
-files for individual things, not to have one massive thing that includes
-everything, in a loop across crtcs and connectors.
+== Summary ==
 
-I get that one file is a convenience, but at some point we have to say
-too much is just too much. I think so far we've just added everything
-indiscriminately.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 52d2bcc4d044807c0734d20c5fad8dee8d81c770
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Tue Sep 23 20:19:42 2025 +0300
 
-I think it's a bit wild that we don't even have per crtc debugfs file
-for intel_crtc_info, or per connector file for intel_connector_info, or
-most of the individual parts in them.
+    drm/i915/cdclk: Move intel_cdclk_atomic_check()
+    
+    Move intel_cdclk_atomic_check() a bit so that we don't need an
+    extra intel_modeset_calc_cdclk() forward declaration.
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch d557b14c00c4ab027e66c1c7bf512cf479ff8c24 drm-intel
+32c2bce33116 drm/i915: Introduce intel_crtc_enable_changed() and intel_any_crtc_enable_changed()
+74a4c213d6a2 drm/i915: Introduce intel_crtc_active_changed() and intel_any_crtc_active_changed()
+67efbfc522f1 drm/i915/bw: Skip the bw_state->active_pipes update if no pipe is changing its active state
+757071e31875 drm/1915/bw: Drop redundant display version checks
+179cfc639562 drm/i915/cdclk: Extract glk_cdclk_audio_wa_needed()
+a450c5052d1f drm/i915/cdclk: Extract dg2_power_well_count()
+16ab82fd5b8c drm/i915/cdclk: Introduce intel_cdclk_modeset_checks()
+f5218f695ff9 drm/i915/cdclk: Handle the force_min_cdclk state locking in intel_cdclk_atomic_check()
+bedd2532b948 drm/i915/cdclk: Extract intel_cdclk_update_bw_min_cdclk()
+74eb29286287 drm/i915/cdclk: Extract intel_cdclk_update_crtc_min_cdclk()
+7c1a69900f02 drm/i915/cdclk: Rework bw_min_cdclk handling
+b767170e2bdd drm/i915/cdclk: Do intel_cdclk_update_crtc_min_cdclk() per-pipe
+-:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3295:
++							intel_crtc_compute_min_cdclk(old_crtc_state),
 
-Anyway, it's a bit difficult to claim this is the straw that breaks the
-camel's back, but I think at some point this whole thing needs an
-overhaul.
+-:54: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3296:
++							intel_crtc_compute_min_cdclk(new_crtc_state),
+
+total: 0 errors, 2 warnings, 0 checks, 116 lines checked
+09ff7e57b2e0 drm/i915/cdclk: Relocate intel_plane_calc_min_cdclk() calls
+08ca4b9b5b1b drm/i915/cdclk: Rework crtc min_cdclk handling
+8b703aa21a0c drm/i915/cdclk: Move intel_bw_crtc_min_cdclk() handling into intel_crtc_compute_min_cdclk()
+2fc5a393e579 drm/i915/cdclk: Decuple cdclk from state->modeset
+5813f3c6b5f8 drm/i915: Introduce intel_calc_enabled_pipes()
+d7370f33b594 drm/i915/cdclk: Use enabled_pipes instead of active_pipes for the glk audio w/a
+b20bffd21a99 drm/i915/cdclk: Hide intel_modeset_calc_cdclk()
+52d2bcc4d044 drm/i915/cdclk: Move intel_cdclk_atomic_check()
 
 
-BR,
-Jani.
-
-
->
->> +{
->> +	struct intel_tc_port *tc =3D to_tc_port(dig_port);
->> +
->> +	seq_printf(m, "\tTC Port: %s mode: %s pin assignment: %c max lanes: %d=
-\n", tc->port_name,
->> +		   tc_port_mode_name(tc->mode),
->> +		   pin_assignment_name(tc->pin_assignment),
->> +		   tc->max_lane_count);
->> +}
->> +
->>  /*
->>   * The type-C ports are different because even when they are connected,=
- they may
->>   * not be available/usable by the graphics driver: see the comment on
->> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i=
-915/display/intel_tc.h
->> index fff8b96e4972..3e983d1cc0b8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_tc.h
->> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
->> @@ -7,6 +7,7 @@
->>  #define __INTEL_TC_H__
->>=20=20
->>  #include <linux/types.h>
->> +#include <linux/seq_file.h>
->>=20=20
->>  struct intel_crtc_state;
->>  struct intel_digital_port;
->> @@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port=
- *dig_port);
->>=20=20
->>  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
->>=20=20
->> +void intel_tc_info(struct seq_file *m,  struct intel_digital_port *dig_=
-port);
->> +
->>  #endif /* __INTEL_TC_H__ */
->> --=20
->> 2.43.0
-
---=20
-Jani Nikula, Intel
