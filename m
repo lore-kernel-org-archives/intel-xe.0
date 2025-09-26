@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E091CAC5BF
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 11:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F5D0CAC5AE
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 11:54:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06FD610EA29;
-	Fri, 26 Sep 2025 11:42:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D2QAxbRA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59B510EA45;
- Fri, 26 Sep 2025 11:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758886947; x=1790422947;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=11uOjgqCwp8kLjluv7ozUJJlSlNnyn2vnFgDC3Bw3FA=;
- b=D2QAxbRAhhuyULet0r5eAX1Gnk701QRilnH9pEmM1p0EXSECKKjUFG6E
- zOkQQP93vFjAw3T+Qyu+d740oJTE/4ZugL+5+U/HR9upHzi5mMHMDWl6z
- r0m1A0OHKvbhToTaoFgQkSHSHgK3+i1ipeFRWg2ggPfa2emQAwki/LOsj
- nj3nU/HZZZ9MTyDSJmBhaRD0u9nD5DpYMGwrEU13PWKJcbXvLsQRSxfBn
- bph6YjZf34r2cYWY0kCzHTyPZivAQr5TFESM0DsTzS2DNeJl1fV3nOspn
- ki4n1uLT8I2VUgtw2H72ZumVPKn/qvIt+5z7c/N0tUx4bVDEixge7MTnU Q==;
-X-CSE-ConnectionGUID: sHzzQhKaQr20vJ3amrl9zg==
-X-CSE-MsgGUID: 3aY0TAIsR32hh8B/gNYHcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="78860110"
-X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="78860110"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 04:42:27 -0700
-X-CSE-ConnectionGUID: fXEWd3BBRDuXR47DRWyU+A==
-X-CSE-MsgGUID: rbwUllRnRPy4fW1KynW23g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="176723527"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa006.jf.intel.com with ESMTP; 26 Sep 2025 04:42:25 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 10/10] drm/i915/display: Expose sharpness strength property
-Date: Fri, 26 Sep 2025 17:07:28 +0530
-Message-Id: <20250926113728.606315-11-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250926113728.606315-1-nemesa.garg@intel.com>
-References: <20250926113728.606315-1-nemesa.garg@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A907F10EA2C;
+	Fri, 26 Sep 2025 11:54:27 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9E0110EA2C;
+ Fri, 26 Sep 2025 11:54:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3549764150466343235=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_driv?=
+ =?utf-8?q?er_agnostic_drm_to_display_pointer_chase?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 26 Sep 2025 11:54:25 -0000
+Message-ID: <175888766588.370490.11817769627299840940@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250926111032.1188876-1-jani.nikula@intel.com>
+In-Reply-To: <20250926111032.1188876-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,35 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose the drm crtc sharpness strength property which will enable
-or disable the sharpness/casf based on user input. With this user
-can set/update the strength of the sharpness or casf filter.
+--===============3549764150466343235==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Update subject[Ankit]
+== Series Details ==
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: drm/{i915,xe}: driver agnostic drm to display pointer chase
+URL   : https://patchwork.freedesktop.org/series/155098/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index a187db6df2d3..4102087aee62 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -390,6 +390,9 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
-+	if (HAS_CASF(display))
-+		drm_crtc_create_sharpness_strength_property(&crtc->base);
-+
- 	return 0;
- 
- fail:
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24_BAT -> xe-pw-155098v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24 -> xe-pw-155098v1
+
+  IGT_8554: 8554
+  xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24: d557b14c00c4ab027e66c1c7bf512cf479ff8c24
+  xe-pw-155098v1: 155098v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155098v1/index.html
+
+--===============3549764150466343235==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915,xe}: driver agnostic drm to display pointer chase</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155098/">https://patchwork.freedesktop.org/series/155098/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155098v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155098v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24_BAT -&gt; xe-pw-155098v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24 -&gt; xe-pw-155098v1</li>
+</ul>
+<p>IGT_8554: 8554<br />
+  xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24: d557b14c00c4ab027e66c1c7bf512cf479ff8c24<br />
+  xe-pw-155098v1: 155098v1</p>
+
+</body>
+</html>
+
+--===============3549764150466343235==--
