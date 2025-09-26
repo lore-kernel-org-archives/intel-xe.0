@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA25DCAC5BB
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 20:09:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1991BCAC5BE
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 20:09:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDA610EAE3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 763D610EAE5;
 	Fri, 26 Sep 2025 20:09:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6OzTgtd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YPWvPBuh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4611C10E139
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BE0910E133
  for <intel-xe@lists.freedesktop.org>; Fri, 26 Sep 2025 20:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1758917361; x=1790453361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9TCDBk20AFAx3rt3j41HWMMHSAmbyMzcs3A4BzToigY=;
- b=G6OzTgtdjBcrP6mNWnnhMkcn/MB1TK7E7ohqr3bMxX1CroiV/xT77biD
- gCVb2gWWRF3p2VnN5k8dy9Xg/H00lSgu7eXBYCXFRax4N3MoCXu4kPUrT
- zi0mTQVNMHJoRR7Fu9p1msNuW0X0kWHrgIrha5mcZlhcHD9s1SPN7/yWh
- SNcGJ7om/GHBSzH4wcLzpahR6MkmTnxhdYx1SmbSR4N7CPeyamcplbEon
- tTiL/s8bz+KxhMoz1lrB8tzhZTJp/toRd7PQuwgwaTCOmbwDAxFZLkEJX
- Z3m8hxQLYZ0Lj1bkJwNcKCgcu3FNUfXz0MHTh9qxWXYDAwUviif8zEwkY g==;
-X-CSE-ConnectionGUID: lnRsH3noR+Og3Hww3dJaiQ==
-X-CSE-MsgGUID: /2gSu2VyR9e3dJArZakrmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11565"; a="72352469"
-X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="72352469"
+ bh=UBNvIC6ImFL6I7FksDMqVKpYRE2wdazDPhllG6412WQ=;
+ b=YPWvPBuhnNX9Y4Z+6ajVmsAJMTajcBA+LhtiWF285jqH9J15aBZ5nR+v
+ plqKbE7C2iOWtZSvL4Zkg+OdosGNm1m4iKz+VLeX+XfBt/Uur20f8ndc5
+ +DWtPG7hP+4cXzdsrqq9qHpka/7ywoaJ0imB5edyTfXQSJSBTf/B+LkSY
+ 124jFazc56vvPDeo/4Km474H0uRQccqvk089mX2MLaD8iOdYmMCUgz3Eg
+ QAWilHbRFRRDxrhlKghymQesboVlgRy/OGU4vPVi33YJbpO/+gsp2cG1d
+ YYa3RrK9mQ8+KyW7gdPnkBYu0GFiP9/FMVpsntcRAekHfjKoyUEmCrB+/ g==;
+X-CSE-ConnectionGUID: KGQRX93PSbSQQVi32NN+Hw==
+X-CSE-MsgGUID: MmFiCSZeSfK/aFX0dJugeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11565"; a="72352468"
+X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="72352468"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Sep 2025 13:09:21 -0700
-X-CSE-ConnectionGUID: 5R4zD9MkQ9eeBWVPLlMfYg==
-X-CSE-MsgGUID: vMSXAdoNS6ez+5YyZckhqA==
+X-CSE-ConnectionGUID: 1QMWh06TSWK/zgKosld9Ug==
+X-CSE-MsgGUID: 33fyUkYlQ92VlDrtWjHvdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="177634944"
+X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="177634942"
 Received: from dut4086lnl.fm.intel.com ([10.105.10.69])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 Sep 2025 13:09:19 -0700
@@ -45,10 +45,9 @@ From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com, alex.zuo@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH v2 5/5] drm/xe/tests: Use xe_root_mmio_gt instead of
- xe_device_get_gt
-Date: Fri, 26 Sep 2025 20:09:23 +0000
-Message-ID: <20250926200917.164618-12-jonathan.cavitt@intel.com>
+Subject: [PATCH v2 4/5] drm/xe: Guard against NULL GT in xe_guc.c
+Date: Fri, 26 Sep 2025 20:09:22 +0000
+Message-ID: <20250926200917.164618-11-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250926200917.164618-7-jonathan.cavitt@intel.com>
 References: <20250926200917.164618-7-jonathan.cavitt@intel.com>
@@ -68,89 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe test code expects GT0 to always be available as a part of the
-test setup, so there's no reason to use xe_device_get_gt over
-xe_root_mmio_gt, especially since the former may fail in some cases.
-Replace all instances of xe_device_get_gt(xe, 0) with
-xe_root_mmio_gt(xe) in the xe test code.
+Static analysis reveals the following issue:
+xe_device_get_gt is theoretically able to return NULL in some cases, but
+several use cases don't check the return value before performing a
+dereference, resulting in a NULL pointer dereference.
 
-v2: Reword commit message (Michal)
+Use xe_assert to assert root_gt is not NULL before dereferencing it.
+
+While we're here, replace xe_device_get_gt(xe, 0) with the equivalent
+call xe_root_mmio_gt(xe).  There's no reason to use the flexible
+xe_device_get_gt function when we're only always tring to get GT0 here.
+
+v2: xe_assert root_gt is not NULL (Michal, Matt)
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c   | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c    | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_relay_test.c  | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index d266882adc0e..33dbcb262204 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -63,7 +63,7 @@ static int guc_buf_test_init(struct kunit *test)
- 	xe_kunit_helper_xe_device_test_init(test);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index d5adbbb013ec..38fba439f1e8 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -466,10 +466,13 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+ 		return 0;
  
- 	ggtt = xe_device_get_root_tile(test->priv)->mem.ggtt;
--	guc = &xe_device_get_gt(test->priv, 0)->uc.guc;
-+	guc = &xe_root_mmio_gt(test->priv)->uc.guc;
+ 	if (gt->info.id != 0) {
+-		struct xe_gt *root_gt = xe_device_get_gt(xe, 0);
+-		struct xe_guc *root_guc = &root_gt->uc.guc;
++		struct xe_gt *root_gt = xe_root_mmio_gt(xe);
++		struct xe_guc *root_guc;
+ 		struct xe_bo *bo;
  
- 	KUNIT_ASSERT_EQ(test, 0,
- 			xe_ggtt_init_kunit(ggtt, DUT_GGTT_START,
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-index a87a7b4b040a..59a7c2d57fe2 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-@@ -13,7 +13,7 @@ static int guc_dbm_test_init(struct kunit *test)
- 	struct xe_guc_db_mgr *dbm;
- 
- 	xe_kunit_helper_xe_device_test_init(test);
--	dbm = &xe_device_get_gt(test->priv, 0)->uc.guc.dbm;
-+	dbm = &xe_root_mmio_gt(test->priv)->uc.guc.dbm;
- 
- 	mutex_init(dbm_mutex(dbm));
- 	test->priv = dbm;
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-index 3b213fcae916..d211dfa09538 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-@@ -355,7 +355,7 @@ static void g2g_distribute(struct kunit *test, struct xe_device *xe, struct xe_b
- 	struct xe_gt *root_gt, *gt;
- 	int i;
- 
--	root_gt = xe_device_get_gt(xe, 0);
-+	root_gt = xe_root_mmio_gt(xe);
- 	root_gt->uc.guc.g2g.bo = bo;
- 	root_gt->uc.guc.g2g.owned = true;
- 	kunit_info(test, "[%d.%d] Assigned 0x%p\n", gt_to_tile(root_gt)->id, root_gt->info.id, bo);
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-index ee30a1939eb0..3c84bcacd0ac 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-@@ -13,7 +13,7 @@ static int guc_id_mgr_test_init(struct kunit *test)
- 	struct xe_guc_id_mgr *idm;
- 
- 	xe_kunit_helper_xe_device_test_init(test);
--	idm = &xe_device_get_gt(test->priv, 0)->uc.guc.submission_state.idm;
-+	idm = &xe_root_mmio_gt(test->priv)->uc.guc.submission_state.idm;
- 
- 	mutex_init(idm_mutex(idm));
- 	test->priv = idm;
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-index 13701451b923..645c8b6de3db 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-@@ -38,7 +38,7 @@ static int relay_test_init(struct kunit *test)
- 	xe = test->priv;
- 	KUNIT_ASSERT_EQ(test, xe_sriov_init(xe), 0);
- 
--	relay = &xe_device_get_gt(xe, 0)->uc.guc.relay;
-+	relay = &xe_root_mmio_gt(xe)->uc.guc.relay;
- 	kunit_activate_static_stub(test, relay_get_totalvfs,
- 				   replacement_relay_get_totalvfs);
- 
++		xe_assert(xe, root_gt);
++		root_guc = &root_gt->uc.guc;
++
+ 		bo = xe_bo_get(root_guc->g2g.bo);
+ 		if (!bo)
+ 			return -ENODEV;
 -- 
 2.43.0
 
