@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 230CCCAC5AE
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 09:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5203CAC5AE
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 09:28:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E97D10E310;
-	Fri, 26 Sep 2025 09:21:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZTBuFrR";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8096E10E310
- for <intel-xe@lists.freedesktop.org>; Fri, 26 Sep 2025 09:21:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758878470; x=1790414470;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=cFR2kvzYK+P6dlQbgiR+bNBH+JnYbd+w9q0LErJeiYk=;
- b=CZTBuFrRhCeG+1OmBdaMkO90BWrfZkJ7ujHXXimrKqNuXlKrnGtIwq2N
- hbvv/lhX4faDjYZnUz8WRjxeethLgulEwtcB95o2tdIiH4wWi/HMcftWB
- hjodDlxaEb7tI81s/OU+juZE1CJed150xjkd8GW8nevf6hq/zTmZ/BsSc
- HaCWbHJ5GK/DQf5MX4VyiFf+8HQ0LnF2o28+L5BoGultokFVwNP3cn0u3
- R1vyTXHJqoGN1quz5BcpoE9buDj1REZKEvzt8UyVUwXE8pXU92uCqkJY9
- zoDV9N1xFlmiEVGVHH9G+hqSrvZAFrF5gbaxll9Od0Bk8wYLSO+eLSgdt g==;
-X-CSE-ConnectionGUID: KMWouyduS3aGR8bIvVT83w==
-X-CSE-MsgGUID: FKva/Bn0RNu2uS0WHgMHJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="60417858"
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="60417858"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 02:21:10 -0700
-X-CSE-ConnectionGUID: FSIEEW+hTzy1nbehKGieoA==
-X-CSE-MsgGUID: tlbvsjh/SdWjY9FFjydsug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="181869835"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.9])
- ([10.245.245.9])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2025 02:21:09 -0700
-Message-ID: <f6aba53c-e247-44e0-9258-97a4d1ac7394@intel.com>
-Date: Fri, 26 Sep 2025 10:21:07 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id A61F610E35D;
+	Fri, 26 Sep 2025 09:28:53 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5013510E35D;
+ Fri, 26 Sep 2025 09:28:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7797461283925995960=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] drm/xe: Force user context allocations in user VRAM
-To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20250922170707.1556781-1-piotr.piorkowski@intel.com>
- <20250922170707.1556781-4-piotr.piorkowski@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250922170707.1556781-4-piotr.piorkowski@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/cdclk=3A_Decouple_?=
+ =?utf-8?q?CDCLK_from_state-=3Emodeset_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 26 Sep 2025 09:28:52 -0000
+Message-ID: <175887893229.370490.15628789380497720273@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,104 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/09/2025 18:07, Piórkowski, Piotr wrote:
-> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> 
-> In general, kernel structures should be allocated in the kernel-dedicated
-> VRAM region. However, userspace context data - while used by the kernel -
-> does not need to reside there.
-> Let's force the allocation of such data in the general-purpose VRAM region
-> accessible to userspace.
-> 
-> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
+--===============7797461283925995960==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
 
-> ---
->   drivers/gpu/drm/xe/xe_exec_queue.c | 7 +++++--
->   drivers/gpu/drm/xe/xe_lrc.c        | 3 +++
->   drivers/gpu/drm/xe/xe_lrc.h        | 6 ++++--
->   drivers/gpu/drm/xe/xe_pt.c         | 2 +-
->   4 files changed, 13 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 37b2b93b73d6..9b1e70e20565 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -160,7 +160,7 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
->   	return q;
->   }
->   
-> -static int __xe_exec_queue_init(struct xe_exec_queue *q)
-> +static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
->   {
->   	int i, err;
->   	u32 flags = 0;
-> @@ -179,6 +179,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
->   			flags |= XE_LRC_CREATE_RUNALONE;
->   	}
->   
-> +	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
-> +		flags |= XE_LRC_CREATE_USER_CTX;
-> +
->   	for (i = 0; i < q->width; ++i) {
->   		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
->   		if (IS_ERR(q->lrc[i])) {
-> @@ -225,7 +228,7 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
->   	if (IS_ERR(q))
->   		return q;
->   
-> -	err = __xe_exec_queue_init(q);
-> +	err = __xe_exec_queue_init(q, flags);
->   	if (err)
->   		goto err_post_alloc;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 47e9df775072..c88e90175f59 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -1415,6 +1415,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->   	if (vm && vm->xef) /* userspace */
->   		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
->   
-> +	if (init_flags & XE_LRC_CREATE_USER_CTX)
-> +		bo_flags |= XE_BO_FLAG_FORCE_USER_VRAM;
-> +
->   	lrc->bo = xe_bo_create_pin_map_novm(xe, tile,
->   					    bo_size,
->   					    ttm_bo_type_kernel,
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> index 188565465779..21a3daab0154 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.h
-> +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> @@ -44,8 +44,10 @@ struct xe_lrc_snapshot {
->   
->   #define LRC_WA_BB_SIZE SZ_4K
->   
-> -#define XE_LRC_CREATE_RUNALONE 0x1
-> -#define XE_LRC_CREATE_PXP 0x2
-> +#define XE_LRC_CREATE_RUNALONE		BIT(0)
-> +#define XE_LRC_CREATE_PXP		BIT(1)
-> +#define XE_LRC_CREATE_USER_CTX		BIT(2)
-> +
->   struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
->   			     u32 ring_size, u16 msix_vec, u32 flags);
->   void xe_lrc_destroy(struct kref *ref);
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index a1c88f9a6c76..e39da95f3a05 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -122,7 +122,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
->   		   XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE |
->   		   XE_BO_FLAG_NO_RESV_EVICT | XE_BO_FLAG_PAGETABLE;
->   	if (vm->xef) /* userspace */
-> -		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE;
-> +		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
->   
->   	pt->level = level;
->   
+Series: drm/i915/cdclk: Decouple CDCLK from state->modeset (rev3)
+URL   : https://patchwork.freedesktop.org/series/154922/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24_BAT -> xe-pw-154922v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154922v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154922v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24 -> xe-pw-154922v3
+
+  IGT_8554: 8554
+  xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24: d557b14c00c4ab027e66c1c7bf512cf479ff8c24
+  xe-pw-154922v3: 154922v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154922v3/index.html
+
+--===============7797461283925995960==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Decouple CDCLK from state-&gt;modeset (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154922/">https://patchwork.freedesktop.org/series/154922/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154922v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154922v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24_BAT -&gt; xe-pw-154922v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154922v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-dpms:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154922v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-dpms.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24 -&gt; xe-pw-154922v3</li>
+</ul>
+<p>IGT_8554: 8554<br />
+  xe-3833-d557b14c00c4ab027e66c1c7bf512cf479ff8c24: d557b14c00c4ab027e66c1c7bf512cf479ff8c24<br />
+  xe-pw-154922v3: 154922v3</p>
+
+</body>
+</html>
+
+--===============7797461283925995960==--
