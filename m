@@ -4,158 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38F42CAC5AE
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 14:51:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89E68CAC5B8
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 14:57:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF98210EA76;
-	Fri, 26 Sep 2025 14:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDE610EA7E;
+	Fri, 26 Sep 2025 14:57:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="btnJ4iMu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lQ0LKrss";
 	dkim-atps=neutral
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010066.outbound.protection.outlook.com
- [40.93.198.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13BC810E319;
- Fri, 26 Sep 2025 14:51:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TmzC2FrmSDjnezgAtkzLwHRFrrUrHHWpRcnxu5Wrukrva5elzUuOjOjZ3h4+Miuiczx0DY5pA407nq6wuGCKwDyDAEPXfb7WcfSF9m9upVJ/0t8yDHxpR36povpp+C17cparAN5UL/kHy91GubeN18aJQhMsZZWwZjpHIbzrpP7XdoZPCDGRS11lNQs+hDUWlsYIR97K9/h0dTAKpEBdJ8AB0gfQNNvs8WQOV6sdy65vtVpxfXAprVcfGvXMpIi59/MZKKQJERFFhIcM482pCEdh3bI6Bht86Du0PGwM3/mlzAUyWlJoC/hWGIFpRv2mdUMAXRV2L4G7BcEq+M/+yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NTgfWCvJ5eulNcLgHjwfQ72QSBCUWrukbFzDw57vVhY=;
- b=wZ9H9IuiNqRc6KMx101f+ucP3JMfo1rOmkhM5dK5DA88Bh02AOS/zsRF+RPgvMpQGrcMA1vM/asn8PKJK/yDcfTs+fjUXMiImcBgHY5vrqHfs7ZDTkmku5AqyuAN8DwZRZV69m+g8qWAC7jSD67eugVcNcSAC59W5/J0Y2tip0j2493I6VcmuEO0c6Fthg/D0T7i2Iegbl0f16mjUPLeWgutOjb01m15jDHTPWGVimEfEbNZ5q1LoZfB56t4eZ9JHfPiylhjS+UfBQXAjj9XaCdpTI/Uom4LT2N5DjzqxHEphcUoHmGwq5Z0k0LYlVOdsgQ4VzKbZjHZLcw87v1ISA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NTgfWCvJ5eulNcLgHjwfQ72QSBCUWrukbFzDw57vVhY=;
- b=btnJ4iMudP7K7LubxkV193H6c0axa8FeSeRMDiuoqkqjtYGzNilJVVlJ0v+wdhpEZXWgfrucKJDp/DDet+GU5UNfuev0dWQRfDwYrlZruajFBWrZAo53ZyaoPB6RhzEAU+96vOROcwE0z7FIk0XTVqxpRpO1BpABTkr5ZMfw7Ak=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW6PR12MB8897.namprd12.prod.outlook.com (2603:10b6:303:24a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.10; Fri, 26 Sep
- 2025 14:51:35 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9160.010; Fri, 26 Sep 2025
- 14:51:35 +0000
-Message-ID: <765e3449-2eb1-49f5-954e-3bab5a5fc9d1@amd.com>
-Date: Fri, 26 Sep 2025 16:51:29 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/2] dma-buf: Add support for private interconnects
-To: Jason Gunthorpe <jgg@nvidia.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Kasireddy Vivek <vivek.kasireddy@intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org
-References: <20250926084624.2288-1-thomas.hellstrom@linux.intel.com>
- <20250926084624.2288-2-thomas.hellstrom@linux.intel.com>
- <472f27f0-2f54-45dd-b0a6-3a26b5eec301@amd.com>
- <ef9f4fb1c55bf3e5e6423b2accdccee0607b95ef.camel@linux.intel.com>
- <20250926144128.GD2617119@nvidia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250926144128.GD2617119@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0175.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b7::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1259B10EA7D;
+ Fri, 26 Sep 2025 14:57:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758898655; x=1790434655;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VC5ZWl5w8TleLUFR2ttyOEbGg/zcljBBeg4EYyNc1QQ=;
+ b=lQ0LKrssC8QIC6mAxFyYtYWorm2bphLKck4iBdJcPAIGG9FgEYQPCVIa
+ MyspYSUHDSK7IVaYuYfT0o1JCTSrwDs4tZLsYNDfLJxmkwYagWQi8Gbzv
+ IuLoYhEM4Dh8yMi25x6oI1v7lFuk1+dgU/1hzi5xturtaFs+D4gXvxwsN
+ BCKuS+NgQMWTXPOlfSok+qXyhZfmWohP2pO827IUJaMCt5yHfCOmQqxdQ
+ F28nRVGCc+hSI88jOdxZ0j3jEmKl43h9CsBrfW2Ctkd4WOoA0pWnQj7Ot
+ YRThVK7u9J/sFBdwdKxKVDD0nnCGVXkKA/dWd+AKl31g2WlIe711kyYVN Q==;
+X-CSE-ConnectionGUID: dR5K9jA7QF+iwOotJAKnnQ==
+X-CSE-MsgGUID: 6gMNxgGNTtOwpRIgrizTqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61186106"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61186106"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2025 07:57:35 -0700
+X-CSE-ConnectionGUID: JDpQc0TUSECBN1GyAho2mw==
+X-CSE-MsgGUID: qO0W64TxRlGFMlAsRpAiPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; d="scan'208";a="177191827"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.11])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2025 07:57:34 -0700
+Date: Fri, 26 Sep 2025 17:57:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: duplicate 128-byte Y-tiling feature
+ check
+Message-ID: <aNap2gHsCPhPNcLE@intel.com>
+References: <20250926090538.1117038-1-jani.nikula@intel.com>
+ <aNanBFyMsirM-mgJ@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW6PR12MB8897:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0dc0008f-f226-4f45-8eda-08ddfd0c303c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RUlET2RuWk0way9NcmxIQjVSYUM0R2RYSmMyVlFPc3RRYVgwZ0k1dDBaV1lF?=
- =?utf-8?B?YlExUFgwU2h4RUd1K24xcUFTaDBaUUdOUkFzUStxZThWTGw4TVYxaElCSDJN?=
- =?utf-8?B?bG9mY0FRZ0Y3NHBMZCtEbEhZNmlHM0ZRR1VhZnk3UGFqeDRUNHJub2VBL1JW?=
- =?utf-8?B?L3c1YkJaaFJPNXVQa0dNa0lGMGZaYkJiMjhGTERDeGg3K013djhuZ3JLR2FW?=
- =?utf-8?B?eE90THlsa2hwaTdJdmlvSjQ2Q2NUUnk1NDVjTHhRNGpUNDlxT1BnQ2huTk1C?=
- =?utf-8?B?RWFreGlwTmJpUlRRZk0wTGJCMDFaRDhQWUE1WTZqQkhmbGRXenJwT3IySjB6?=
- =?utf-8?B?SzZwekRXa3Fpd041aEV2ZjBiRXptRjRrZmFTWGovN2lYdjQzbjRkMXloaC9q?=
- =?utf-8?B?SXZybk9XV2pHeHpoS2J6djdCaGNuTXpMUGJpNFhqM3Rwd0t0VUxOSjB4MldB?=
- =?utf-8?B?aU9rSitZSk9RdnpWQ2dUQnBBODQyYXhVZGpWSUFpblo0M0FQaEZ0Nk5kSjB1?=
- =?utf-8?B?RVd2RDBuQU9xY2RMWGk1eEROL3FSNDBrOVM0Z0NmVnRKTHdqVVd3K3VoTnMr?=
- =?utf-8?B?Q09WMmRmQkREWjh0MFpVQU9lcjBRN3FWWGdEM3JGR0hvOTBWcnRWeXgwMUxn?=
- =?utf-8?B?cERhcWtrOHVJOFhzekh2VTFCa2JEaGdKVmJscjgvK0JuTzFPSGgxSktGMVRP?=
- =?utf-8?B?dkl3c1JBa1crbEtMVzRXdXRnR09obE5wRm12cXZYaTFPMFNFTVVnYkFiRWJh?=
- =?utf-8?B?QVZjbnpqSkNiNWtrTkY0NXYrTFZUWUZ5VzhreDRwUytQSVdqMkg3VXNmOUhr?=
- =?utf-8?B?K1VETENIV1Z1SlNPM1h4b0tWdjNXaHFlcCt2UEpHR3RCcS9jWWhkSWt6Vzlh?=
- =?utf-8?B?QWZUYzN4ekhRTkphZ2txMm55ZVJEMTJxTkltSkdpRUs1bXgvK3cremNyQ2l4?=
- =?utf-8?B?VUVTU1U4Y3hqaExJbUZULzBwdHpWcnF5TmNJY3NzOVhJUElpSXRlTXR0aTFK?=
- =?utf-8?B?WWJTREtPakZlWkwwVWxJeWg4QW9HNC9IL1JJamRHZ0NmOXUzZWtHUjlBQ3Jq?=
- =?utf-8?B?UHVqdEFzYlJpb0gyZExMeFZ0aE9XMzhnNU5BVUgwL1VFcE00TGVkZzlwQXlZ?=
- =?utf-8?B?aG9nSzh4allUUzhFN2V4bHVTYmN1eTVJQjROYVhWR1E1bnl3L25aQUg1Y1NM?=
- =?utf-8?B?clp5c0lTeXIvTEh3QVNSN2RCc1RxeXdYbEdRbzRZY3krb1VCd2pWcVlHWEZH?=
- =?utf-8?B?cHBMZFlsaTBNT1I2RWdTWnBRZFV2YW1XWExWRm0ybUpabjFpbmlsVkwxak9B?=
- =?utf-8?B?bFhJRU5HWmxDNVcrTEsySENneThiZ05xVE5wd3hNRXRHT2NxWE13eW1hc0xU?=
- =?utf-8?B?U0hYODcwdkprdUdObm82LytLNDdtUElkUFFwa09iTEJGQ21pYWNGeTVWKzhz?=
- =?utf-8?B?U3hvRUloWGxhbnM5OXhHK0p4UGZPaEJrWDMwNFNXVTJJVUF5WkZSSk9CYktx?=
- =?utf-8?B?NFVrSkFIVmZGNjRHWVJDcmcxci8zNVpjR3M4RTJJSnJmWjgrcCthTGw2QlE0?=
- =?utf-8?B?RENocE5xWjNZWVIybGdTajJQQ0xZaTZXZnE3Nm5kZXJSR2hJMHBFa1VkRG1w?=
- =?utf-8?B?cWtyS0N2RXNUZzNrUFg1U0g0cm03TU1sT0l1UTV1MnF4bmEwMDhUdUV2OEFC?=
- =?utf-8?B?dWpObjRGVnd4aUkzNUpoaEpCWUdJdzZBZThTWTQ4dCtlVXdxZjM2QW9Dakp4?=
- =?utf-8?B?VWpNL3pLenJIVysveFNkdzhmOXo4VExWeHZoVmM4c25KRFJwMmNXaGVxejdZ?=
- =?utf-8?B?cUxQUHN3V0FuM2xsdjNINks5cjNUUDRNY3hzc0ZPYkRjcHVFV1FOeDlDZ2M0?=
- =?utf-8?B?ZHl0QjV6MWlvR1R1WGJtTTJBMFFVOGlaV0NhNzltMjlhbVpwcFE3NTBFQzNt?=
- =?utf-8?Q?OnAdF865Y0bxhBUDVH6KrrcwYaIvTVc9?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlI3MFVlOFUyZERyR3QzdFVNeDhLYVR4V2FlQWE3ZWttZ2ZzRU9SZGFhNWdv?=
- =?utf-8?B?clE3dTRqVWNxbkhUcmxIZWdDTTl4Z29kVkNXT2tEOEJmM20wd1hnQ1pqQm0r?=
- =?utf-8?B?ZTgvdjdEQzBXSUhBaUNmb1AwbHVrci91TmlZZHU2YUhpT2h4aEcwSkJFV1oz?=
- =?utf-8?B?bmlkQ0h2cC91T3hYWGprKzVkdngzQ0pGYkYyd29NcTRocmFwdG96VkhiZldZ?=
- =?utf-8?B?cmc3Y2t3UVRKaUk2a3hPNU9YUUJrUkliM1NSWHp1MUt3bjd4ZVorWjUxSlNV?=
- =?utf-8?B?VERMVi9sQ0pDWDFmTTIzOHFUQ0hkcXdQOThkWk1EQjlscEhOZTk4ZXRuRWNx?=
- =?utf-8?B?L0FUNnFqQ1prSUpjWDJoWSttNzZoNVBWSFN3NkxFQWliQ3NGcTJ1SmpNU3Rs?=
- =?utf-8?B?RnY2RThLM0tGVk9NMWZHUHQyRWhWSzBncENlOGREcnhkeWxvblZGbnZZUWFI?=
- =?utf-8?B?ckNFcng0NnZWL3ZXTVhnNjVmSitpU3IrNWU4bGpHSER1QURLUkxtZE1rcHZN?=
- =?utf-8?B?ZnNZSnhFQmljQTE0VVNhOWxqN3dPa1ZHcWU3YUVWUS9UdG12Yk5ldnVaajJ3?=
- =?utf-8?B?bnBQdk9aMjVhZU9zLzk2dWxzZ0pBRGNFd1FNR1BNcWI3QmVYQVhiMmdiUS9X?=
- =?utf-8?B?dC9ZS2hvbjh6UVhLVjZmSTJESjM3TklRZ3p2dW0yVGM4cjc3UHNnR1IvMFlx?=
- =?utf-8?B?Q3ZKKy9zUDcwa3dUbjZ5RnBuQ3ZzSlhoQ2FKRmhqVmJJRGoxRldSYmlsQjBk?=
- =?utf-8?B?MU5mTEQ2ajlKaHNVZllEUUt1WUZDblZHWGlqTXZzdHdDUXpheFVzK0tBbDB2?=
- =?utf-8?B?dDNLSG5mbUIzQk5taHIyKy9mdkhlWEhVYThkNUNGS1VPZWtJc096UU9va1BH?=
- =?utf-8?B?MjVaMEtsbW8vWDFrbUlMaWFNdVZjb1Y1bWJNZENVbmNOM0dtRHFCZnV3Vkxs?=
- =?utf-8?B?NkNDME05dG04MU94S0RZVjFoYUl3cUQwZGoyc1hnaW5LdG5RcWNiZHJLZ0t0?=
- =?utf-8?B?MzFTV200T2hjdDB6U1c2ZE15eEo3b3RUTHh3U2xpYVc2V0ZNTmFnRG1HK1FJ?=
- =?utf-8?B?dkZ4aEMvUTRjTHVDclRHSk43cmJSSHF1cHZIS3JlWW5TcjV6dWZ4OEMwNVlM?=
- =?utf-8?B?L09kZ1FBN2lQcnYzd2RUVTBTUVNySGYrcEdyekM2WVA0c2N1d0R4Wkl5MmY2?=
- =?utf-8?B?aXBaSGFKaEtjQlBBVFg2VlhTSTRyVVNYMjdSdGlxL0tEWXkwdWxVUENXMENQ?=
- =?utf-8?B?OEdnMytQbmx0YUpETnR4YnB4akYyRGU4ODVHMCtaUVFQOVZMMGl3b2xyamJl?=
- =?utf-8?B?RHZ1ZEJlZEFKeWxPa3N1dnhJNTR6MHlUUlo3bFo3eFZ3cEYrRDc4V2ZmR3lF?=
- =?utf-8?B?SXR3TzJOcDJRWmdDdnM3ek1zalRpK3dycW9XSmprc1dud2YxNG9FRnIrdjFl?=
- =?utf-8?B?U1N5bW9zMXgrWXR3RXRKUFNNY2xsTDAvenBlaXFnb216aW9qc25QTVRXZnJK?=
- =?utf-8?B?bGN3UGRlc1BSNkV3VTgvUXp0RzljN3IxS3NYSG5VZCtRemg2RzdsNUUxR3VL?=
- =?utf-8?B?eXNMZXlYc1o0bXEzeDFaenhiMk5HOXQrRldFSGdocHhVVDR1bnlHVG9SeHlS?=
- =?utf-8?B?cThHSWxCTnA3MzlVSDNmdXFSS1VCTWJNVzhuTlFMQmFjcVlZSUMwSHJacnN2?=
- =?utf-8?B?Z2NoRDlvNytVWGZXRysvKytoZUdnZk9Mc3pDUUVaV3UwTE5FN2xXeWUxcHB5?=
- =?utf-8?B?WVBpSnMrMGFtelBTZlhZa3NoRy9hdHNCSGVMd252a2FmTUtZZVRXQW9HbEw0?=
- =?utf-8?B?a1VGeUJBRytxOFYvckExQXQxZ28wSDlkZVIrdUxMd0t6SjRYMUJoaVJOaHZ2?=
- =?utf-8?B?Vmg0N0R3VjRHMncweHFMdjh3K3RQMmNheG02YmxQR1Z1eURaY2hWRHoyRmVj?=
- =?utf-8?B?V0FFOEl6Z09hWThTcjJuMWVkTUFWYWZVdlJCVHI1SmhyNDA5dThoQVVuZVRs?=
- =?utf-8?B?Nkc5SGU4clJRWnM1N3JsdWdpOFF5TE5ZcTdPc3RCTzlmclJwRjVNdUM0bmNQ?=
- =?utf-8?B?U3IzbmVXQm85OEdHcnVicUtSaHNES2wzL0N3UjUzNTZncmRONlY2K2h2dHRC?=
- =?utf-8?Q?ciak=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0dc0008f-f226-4f45-8eda-08ddfd0c303c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2025 14:51:35.0044 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oBkM96PN6TgM8GcxcTWw7BycAczxiA5OeG/oQCBWMBw2rss/nbsb48q2fYHRgohl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8897
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aNanBFyMsirM-mgJ@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,92 +72,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26.09.25 16:41, Jason Gunthorpe wrote:
-> On Fri, Sep 26, 2025 at 03:51:21PM +0200, Thomas HellstrÃ¶m wrote:
+On Fri, Sep 26, 2025 at 05:45:24PM +0300, Ville Syrjälä wrote:
+> On Fri, Sep 26, 2025 at 12:05:38PM +0300, Jani Nikula wrote:
+> > We should try to get rid of checks that depend on struct
+> > drm_i915_private (or struct xe_device) in display
+> > code. HAS_128_BYTE_Y_TILING() is one of them. In the interest of
+> > simplicity, just duplicate the check as HAS_128B_Y_TILING() in display.
+> > 
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+> >  drivers/gpu/drm/i915/display/intel_fb.c             | 3 +--
+> >  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 1 -
+> >  3 files changed, 2 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> > index 0e062753cf9b..3e8d4fc862ff 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> > @@ -142,6 +142,7 @@ struct intel_display_platforms {
+> >  	func(overlay_needs_physical); \
+> >  	func(supports_tv);
+> >  
+> > +#define HAS_128B_Y_TILING(__display)	(DISPLAY_VER(__display) != 2 && !(__display)->platform.i915g && !(__display)->platform.i915gm)
 > 
->> Well both exporter and exporter has specific information WRT this. The
->> ultimate decision is done in the exporter attach() callback, just like
->> pcie_p2p. And the exporter acknowledges that by setting the
->> dma_buf_attachment::interconnect_attach field. In analogy with the
->> dma_buf_attachment::peer2peer member.
-> 
-> Having a single option seems too limited to me..
+> This whole thing will be lot simpler if we invert this into
+> HAS_512B_Y_TILING(), which I actually already did but no one
+> felt like reviewing it:
+> https://patchwork.freedesktop.org/patch/343580/?series=70396&rev=1
 
-Yeah, agree.
+Or I suppose we could keep it like this and just get rid of the gen2
+check. Gen2 does have 128B Y-tile (it even has 128B X-tile). It's just
+different than the 128B Y-tile on i945+, which I think is why the 
+current macro is so convoluted.
 
-> I think it would be nice if the importer could supply a list of
-> 'interconnects' it can accept, eg:
-> 
->  - VRAM offset within this specific VRAM memory
->  - dma_addr_t for this struct device
->  - "IOVA" for this initiator on a private interconnect
->  - PCI bar slice
->  - phys_addr_t (used between vfio, kvm, iommufd)
-
-I would rather say that the exporter should provide the list of what interconnects the buffer might be accessible through.
-
-Having the p2p flag set by the importer was basically just the easiest approach to implement the flow, that is not necessarily a design pattern how to approach a general solution.
-
-Regards,
-Christian.
+I suppose I should go through the gem code there and swap everything
+around to deal with the 512B Y-tile first, and then deal with the two
+128B Y-tile variants (or just treat them the same if there is no
+actual need to differentiate between them).
 
 > 
-> The exporter has a function to run down the list and return the first
-> compatible. Maybe something like
+> >  #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+> >  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+> >  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index 69237dabdae8..f2ccc9b1175d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -777,7 +777,6 @@ unsigned int
+> >  intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+> >  {
+> >  	struct intel_display *display = to_intel_display(fb->dev);
+> > -	struct drm_i915_private *i915 = to_i915(display->drm);
+> >  	unsigned int cpp = fb->format->cpp[color_plane];
+> >  
+> >  	switch (fb->modifier) {
+> > @@ -814,7 +813,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+> >  			return 64;
+> >  		fallthrough;
+> >  	case I915_FORMAT_MOD_Y_TILED:
+> > -		if (DISPLAY_VER(display) == 2 || HAS_128_BYTE_Y_TILING(i915))
+> > +		if (DISPLAY_VER(display) == 2 || HAS_128B_Y_TILING(display))
+> >  			return 128;
+> >  		else
+> >  			return 512;
+> > diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > index b8269391bc69..be3edf20de22 100644
+> > --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > @@ -36,6 +36,5 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+> >  #define IS_MOBILE(xe) (xe && 0)
+> >  
+> >  #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+> > -#define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
+> >  
+> >  #endif
+> > -- 
+> > 2.47.3
 > 
->     struct dma_buf_interconnect_negotiation {
->     	   struct dma_buf_interconnect *interconnect,
-> 	   void *interconnect_args,
->     };
-> 
->     struct dma_buf_interconnect_negotiation importer_offer[2] = { // On stack
->         [0] = {.interconnect = myself->xe_vram},
->         [1] = {.interconnect = &dmabuf_generic_dma_addr_t, .interconnects_args = dev},
->     };
->     idx = dma_buf_negotiate(dmabuf, importer_offer, ARRAY_SIZE(importer_offer));
->     if (idx < 0)
->         return -EOPNOTSUPP;
-> 
-> Then you'd 'interconnect attach' with that compatible item and get
-> back an attach. Using container_of to get the specific ops which then
-> has a function to get the address list.
-> 
->    attach = dma_buf_attach_interconnect(dmabuf, importer_offer[idx],  &dma_buf_attach_ops);
-> 
->    if (idx == 0) {
->           xe_vram_ops = container_of(attach->ops, ..);
->           struct device_private_address *addrs = xe_vram_ops->map(attach);
-> 	  [..]
-> 	  xe_vram_ops->unmap(attach);
->    }
->    dma_buf_detach_interconnect(attach);
-> 
-> I can imagine some scheme where if the exporter does not support
-> interconnect then the core code will automatically look for
-> dmabuf_generic_dma_addr_t, select it, and supply some ops that call
-> existing dma_buf_dynamic_attach()/dma_buf_map_attachment()
-> transparently.
-> 
->> So the above function mimics the dma_buf_attach_ops::allow_peer2peer
->> bool, except it's not a single interconnect so we'd either use a set of
->> bools, one for each potential interconnect, or a function like this.
->> A function has the benefit that it can also provide any additional
->> attach ops the interconnect might need.
-> 
-> allow_peer2peer seems to indicate if sg_page() can be used on the
-> sgt? It doesn't have any meaning for an importer only using
-> dma_addr_t?
-> 
-> In the above language it would be an interconnect exchanging 'struct
-> page *'.. I'm a little confused by this I thought touching the struct
-> page was forbidden?
-> 
->> Is this to not overload the map_attachment() and unmap_attachment()
->> functions that otherwise could be used? Is it because they return an
->> sg_table?
-> 
-> It would be good to avoid going through APIs that use sg_table in the
-> design..
-> 
-> Jason
+> -- 
+> Ville Syrjälä
+> Intel
 
+-- 
+Ville Syrjälä
+Intel
