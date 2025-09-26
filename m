@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7150CAC5AC
-	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 08:46:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 164CACAC5AC
+	for <intel-xe@archiver.kernel.org>; Fri, 26 Sep 2025 08:46:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A36510E2FD;
-	Fri, 26 Sep 2025 08:46:40 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E79CE10E2FD;
- Fri, 26 Sep 2025 08:46:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D4610EA2E;
+	Fri, 26 Sep 2025 08:46:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ccqq1CAb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD5010EA11;
+ Fri, 26 Sep 2025 08:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1758876407; x=1790412407;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RWW210PDr2oUkOjX/ILOMWhF7nSjRu9ntBzl0do/OF8=;
+ b=ccqq1CAbIPhXGRmrNh/74XkDvJOJTrKHWqH7inITKgmvS5R25l+A0TRt
+ FwKGS6C/CXn1+MFBl57l2piTrfiLThZIEGqKKefeTeNEfMUnr4S/d+HpD
+ 3D/+3rSgtyhxIOdFzMKLoW+qIdG0fH0pJ0MRQ5p07tNK7TjNFIq1E5f0m
+ xZS5ahFoGlVbxuYIiKbqNVedyqwRFGnJtUKJzsfbAXMsZ/cZ5Pga3l0/Y
+ hVmfBCFRhczAsWDQ0V6IGhNheiKpBtMJ+SGCGwGwUTaMymniyLuGJrbeG
+ xpb93pz3ic78xtyKfm/C3SSv5cnQbe0yZ0Xhd358maS8Mfm+MUy1nZreW g==;
+X-CSE-ConnectionGUID: zeac80UUTIWRngCwR42PJw==
+X-CSE-MsgGUID: b2aMbR1WSiOlH+CL6mOYFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="65054052"
+X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="65054052"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2025 01:46:47 -0700
+X-CSE-ConnectionGUID: rylidwQnTzigjQ8gzic4eA==
+X-CSE-MsgGUID: w5377SOpT7masOIv5dh0Qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; d="scan'208";a="182839717"
+Received: from opintica-mobl1 (HELO fedora) ([10.245.244.247])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2025 01:46:44 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Kasireddy Vivek <vivek.kasireddy@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Jason Gunthorpe <jgg@nvidia.com>,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: [RFC PATCH v2 0/2] dma-buf private interconnect POC
+Date: Fri, 26 Sep 2025 10:46:22 +0200
+Message-ID: <20250926084624.2288-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/cdclk=3A_Decoupl?=
- =?utf-8?q?e_CDCLK_from_state-=3Emodeset_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 26 Sep 2025 08:46:38 -0000
-Message-ID: <175887639801.370216.2988934341434979876@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250923171943.7319-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,66 +68,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Two patches to implement a generic framework for dma-buf to support
+local private interconnects, in particular interconnects that are not
+driver-private.
 
-Series: drm/i915/cdclk: Decouple CDCLK from state->modeset (rev3)
-URL   : https://patchwork.freedesktop.org/series/154922/
-State : warning
+The interconnect support is negotiated as part of an attachment and is
+not a property of the dma-buf itself. Just like pcie p2p support.
 
-== Summary ==
+The first patch adds members to the dma_buf_attach_ops and to the
+dma_buf_attachment structure. These are needed for generic check of
+interconnect support, typically when an interconnect is shared between
+drivers. For truly driver-private interconnects they are not
+strictly needed, but still could be convenient.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-fbd08a78c3a3bb17964db2a326514c69c1dca660
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 52d2bcc4d044807c0734d20c5fad8dee8d81c770
-Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Date:   Tue Sep 23 20:19:42 2025 +0300
+The second patch implements an interconnect negotiation for xe,
+without actually changing the protocol itself from pcie_p2p.
+Just as an example. This patch is not intended to be merged.
 
-    drm/i915/cdclk: Move intel_cdclk_atomic_check()
-    
-    Move intel_cdclk_atomic_check() a bit so that we don't need an
-    extra intel_modeset_calc_cdclk() forward declaration.
-    
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-+ /mt/dim checkpatch d557b14c00c4ab027e66c1c7bf512cf479ff8c24 drm-intel
-32c2bce33116 drm/i915: Introduce intel_crtc_enable_changed() and intel_any_crtc_enable_changed()
-74a4c213d6a2 drm/i915: Introduce intel_crtc_active_changed() and intel_any_crtc_active_changed()
-67efbfc522f1 drm/i915/bw: Skip the bw_state->active_pipes update if no pipe is changing its active state
-757071e31875 drm/1915/bw: Drop redundant display version checks
-179cfc639562 drm/i915/cdclk: Extract glk_cdclk_audio_wa_needed()
-a450c5052d1f drm/i915/cdclk: Extract dg2_power_well_count()
-16ab82fd5b8c drm/i915/cdclk: Introduce intel_cdclk_modeset_checks()
-f5218f695ff9 drm/i915/cdclk: Handle the force_min_cdclk state locking in intel_cdclk_atomic_check()
-bedd2532b948 drm/i915/cdclk: Extract intel_cdclk_update_bw_min_cdclk()
-74eb29286287 drm/i915/cdclk: Extract intel_cdclk_update_crtc_min_cdclk()
-7c1a69900f02 drm/i915/cdclk: Rework bw_min_cdclk handling
-b767170e2bdd drm/i915/cdclk: Do intel_cdclk_update_crtc_min_cdclk() per-pipe
--:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#53: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3295:
-+							intel_crtc_compute_min_cdclk(old_crtc_state),
+Note: This RFC only deals with interconnect negotiation. The
+attachment state and what data-structure to use to convey the mapping
+information is not dealt with in this RFC.
 
--:54: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#54: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:3296:
-+							intel_crtc_compute_min_cdclk(new_crtc_state),
+v2:
+- Get rid of void pointers and instead provide generic structures
+  that are intended to be embedded / subclassed for each interconnect
+  implementation.
 
-total: 0 errors, 2 warnings, 0 checks, 116 lines checked
-09ff7e57b2e0 drm/i915/cdclk: Relocate intel_plane_calc_min_cdclk() calls
-08ca4b9b5b1b drm/i915/cdclk: Rework crtc min_cdclk handling
-8b703aa21a0c drm/i915/cdclk: Move intel_bw_crtc_min_cdclk() handling into intel_crtc_compute_min_cdclk()
-2fc5a393e579 drm/i915/cdclk: Decuple cdclk from state->modeset
-5813f3c6b5f8 drm/i915: Introduce intel_calc_enabled_pipes()
-d7370f33b594 drm/i915/cdclk: Use enabled_pipes instead of active_pipes for the glk audio w/a
-b20bffd21a99 drm/i915/cdclk: Hide intel_modeset_calc_cdclk()
-52d2bcc4d044 drm/i915/cdclk: Move intel_cdclk_atomic_check()
+Thomas Hellström (2):
+  dma-buf: Add support for private interconnects
+  drm/xe/dma-buf: Add generic interconnect support framework
 
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c | 12 ++---
+ drivers/gpu/drm/xe/xe_dma_buf.c       | 73 ++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_dma_buf.h       |  1 -
+ drivers/gpu/drm/xe/xe_interconnect.h  | 31 ++++++++++++
+ include/linux/dma-buf.h               | 51 +++++++++++++++++++
+ 5 files changed, 155 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_interconnect.h
+
+-- 
+2.51.0
 
