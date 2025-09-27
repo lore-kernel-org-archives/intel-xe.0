@@ -4,181 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6836FCAC5B8
-	for <intel-xe@archiver.kernel.org>; Sat, 27 Sep 2025 11:54:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EECE0CAC5B0
+	for <intel-xe@archiver.kernel.org>; Sat, 27 Sep 2025 13:33:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E68DE10E192;
-	Sat, 27 Sep 2025 11:54:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B53610E1B3;
+	Sat, 27 Sep 2025 13:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DhWixPNL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NKA3Y6OE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54F1A10E192
- for <intel-xe@lists.freedesktop.org>; Sat, 27 Sep 2025 11:54:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4739410E1B3
+ for <intel-xe@lists.freedesktop.org>; Sat, 27 Sep 2025 13:33:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1758974088; x=1790510088;
+ t=1758980032; x=1790516032;
  h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=pfRaNukVAV05ojanblMGSpWnXSrBygSULq2dqAeBq6c=;
- b=DhWixPNLi0ejhvKJe3cH61gJ8x2jlwXmI+uTBJlPNwfvlR9XyUqLgx5X
- VzDHi0TwjWaKnUEj/pZKZZkyqaOiDQ5pGGRYgl9c3kOB6+5uIH8nnzlBF
- N+ST7bu3K5m4mHULxoRN3PjX7TYBDKSc98VdkVPAmOG+C+2rh4VIxoD5u
- B4xshDL3cFckVqqRyn9bSn3BSFdQOupiFPsoJClovXWYbn4ZpxctG7LHI
- LynPkN2vsjr9BZD3cTX9rEvfPIEi/IfeQXBkPNo3vJuIAEd6y656n2kri
- NN3LpQrH8X99ctYYOcI8v6d3lOifvtJdwJHtUaJugBst2n0QtpzsHabpM g==;
-X-CSE-ConnectionGUID: pyhmqDV0SwejiNjqMNaYVQ==
-X-CSE-MsgGUID: djAq0H7VRC2iFi6sAlMOfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11565"; a="65133662"
-X-IronPort-AV: E=Sophos;i="6.18,297,1751266800"; d="scan'208,217";a="65133662"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2025 04:54:48 -0700
-X-CSE-ConnectionGUID: 5S9scZr3TMiHZffcMh+7qQ==
-X-CSE-MsgGUID: wqAEpfU3QD6KY4WOWM5CHg==
+ mime-version; bh=wysSanD0rP2q8DPnuuGanjBwC7hdR9B5LzWlYdfIarw=;
+ b=NKA3Y6OEUf7cOJMXOzs1WuPSMg7oAqlG5uvkXO3T4RfP6/bUw0yMnI2p
+ uPFR6kb0PFX24zx7PtfIfjMiPkxd+Nsla1We37tmI0jZ8RgBzxWTRBNXA
+ ldcaQ35C0n1xRFBfxjwYpI2NdrYQtmlpnf32n81yNVk9ENn75B5g9YJWq
+ 5sShl4zNLW/NeKC6mpo22wYbt7Mqzemp0uM4G4jT3DKmBtpdYZpACG43d
+ rNPvcqdJONdvOXr3BONhK0AOxTqNYb5/jdNgMzTyfgM9F8e0pumq/eTm7
+ kXZ3KH/cfT/88TZee87l1ZbamjzNuWnqwOL2LL6JJ3ITw/5gIJynFhl1H A==;
+X-CSE-ConnectionGUID: 4NeNmSV+R1uhtDKTSU0s9w==
+X-CSE-MsgGUID: W2lw9WIyTF2i6dB3/H0pNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11565"; a="72654392"
+X-IronPort-AV: E=Sophos;i="6.18,297,1751266800"; d="scan'208,217";a="72654392"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2025 06:33:52 -0700
+X-CSE-ConnectionGUID: tOVJoquBRem/VTFyZ2/Sew==
+X-CSE-MsgGUID: hz0WIqwFQeWH297vEWcGEQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.18,297,1751266800"; 
- d="scan'208,217";a="177379718"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2025 04:54:48 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ d="scan'208,217";a="208574079"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2025 06:33:52 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sat, 27 Sep 2025 04:54:47 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.27; Sat, 27 Sep 2025 06:33:51 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Sat, 27 Sep 2025 04:54:47 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.49) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Sat, 27 Sep 2025 06:33:51 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.68) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Sat, 27 Sep 2025 04:54:46 -0700
+ 15.2.2562.27; Sat, 27 Sep 2025 06:33:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TzuyX7CQH66pen28tgIM43QwHWm9PfRGC3IkDshzRwsNeD9Pn6D9JcA0HJLZ02JG+hQQaefdETJqliIWWQJAzKhpzbbmrHZQ1VFBnojV3aLRHIz1bh63ItS/i5EI7XxaDzbe2vVY+frxdTiWFAfBNM08D6AZlbkiOE9cLEv/dVMA9fwhvqMCzBH5vj9pkWijX5RVHXaNMTsk6B6OXkPqyuDh//0pl5JbB/Swa6gEtWetFS/C3bY1dhMiKSJfHDw/i9MJhHIcyD0+Y7Eq6hyfhBvMIXtHou/xfpD4J6NWseRHpuOTNdyCRt0LthF3aCgR0AcYUulpy2gWwaHzF3f2pw==
+ b=vY9bEFJJnUgKK11NxsJ+/QbK0qZIXUdESbV21uH88QkjZ33ksLOGZ/JeYR20uX1/+w9TcNzx34xfMYjWbV8Ina+0HGEguZgIG62jhjCnvZwbiZzm27kjI2FS5FZS7Z3Bwe4I2Q3t6lAd2fpIv7sW8+X5z17+l7ouqPYCin8vlbx/EHJk6XZYWDJsbiLQBN4lPbKX+0/HHtpx7oCO3Es+fOYb0YjWAlnnvlOaLa/mZe1j1Zxnwl5ZeyN+P/2ZlYBWjUEPGxmTeaoQKas3iFUXCdLpYfm3aU4Q3pAmhzF32OwFYaN5mJKuAacSoTk+wGEHJ401y7rIGgQaauynlHXSig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QkKScAwuPbfYhglQkj+AQ1li3BugzskL/u3CA0BpcZo=;
- b=tFOE1gEzQ6+BRY3Mf13U5nTbWibx8hL9zG4XTH71Uo6iPUVFKIDGUwMAuSkftsyO7bNLyPf+UlOmln3tlokozVV25HvenRG+PrlB2oVC7BgqXUJT+53rHlqevG0EDXtzEhX65iLiXZTgGRbgnJLYIrplvYl8MvI4JjhxFHV7a5u/oE560t6U7n4BNM8e1Ptu1M87asuoOOYMvgcj+lPLZ0GIVZZUGz5nouHzS1vf+Zfr1vr6qNBJ4mmMt1frRgA14952RwllI4As4RFFtdCds5kIgUXZNhi7QGSJcMRj1n2SjVvXWVY5UUzd5HIP7TShwSvNHy1hEskjO1u8c39Mmg==
+ bh=ma92l9vEa7jxpVUQaU1fZxm98Nz7IprRgH0N6y0oPtg=;
+ b=E8L8nb3GnHsI9Ldfci+GQHS7Tsfhws89zo04BYZc8TLlaTIz8vYPJIriQPQIbcNYiLUW9wKFtk8wL52ykIHCA6cgcZcLZxusvLTsq4Kjg7C8QMH49PH8UxDRGbVblYgAy8KLe617jtlQpjG7mppA8/gPnwjG56+hsWhfaI1CMWgE8gcG/v/K/5XUt2Xl8+1CQS4vmaCMrbfg02UncUDJ0UkAG82NesUupBiCOA8QMh4nq2+4LZkG9foCtV8mxkpsZqry5/en4435oyQ5XpFVHUtJgM47OuYJBLZR96JEHs+QzM3G/v5YmVIyGZu11QXuXXb4z33ebm+aBDmKxjZcfw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
- by MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by PH7PR11MB6378.namprd11.prod.outlook.com (2603:10b6:510:1fa::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.14; Sat, 27 Sep
- 2025 11:54:39 +0000
+ 2025 13:33:48 +0000
 Received: from IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09%6]) with mapi id 15.20.9137.018; Sat, 27 Sep 2025
- 11:54:39 +0000
+ 13:33:48 +0000
 Content-Type: multipart/alternative;
- boundary="------------h3isXnHVuinjZTIk064MkLdc"
-Message-ID: <104b4c4b-9bb6-457e-86a3-82abace6e759@intel.com>
-Date: Sat, 27 Sep 2025 13:54:35 +0200
+ boundary="------------mlYy1n80d5KK3VHoG9BRf7oi"
+Message-ID: <7d9b5b08-f9bb-40d1-8dd3-8a01ace4a76e@intel.com>
+Date: Sat, 27 Sep 2025 15:33:43 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 25/34] drm/xe/vf: Abort VF post migration recovery on
- failure
+Subject: Re: [PATCH v2 26/34] drm/xe/vf: Replay GuC submission state on pause
+ / unpause
 To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20250924011601.888293-1-matthew.brost@intel.com>
- <20250924011601.888293-26-matthew.brost@intel.com>
+ <20250924011601.888293-27-matthew.brost@intel.com>
 Content-Language: en-US
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-In-Reply-To: <20250924011601.888293-26-matthew.brost@intel.com>
-X-ClientProxiedBy: WA2P291CA0022.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::24) To IA3PR11MB9226.namprd11.prod.outlook.com
+In-Reply-To: <20250924011601.888293-27-matthew.brost@intel.com>
+X-ClientProxiedBy: VI1PR10CA0085.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:28::14) To IA3PR11MB9226.namprd11.prod.outlook.com
  (2603:10b6:208:574::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|MN0PR11MB6135:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22d806e6-16d4-42b6-498e-08ddfdbca379
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|PH7PR11MB6378:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3d8f3a8-7414-4343-fcb5-08ddfdca7d16
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aEpPenFRaTQzTjVPREcvVXBGcmNYSnhBQk5Lc1k2UlJRWU8vYWNUQ0lzTnQ2?=
- =?utf-8?B?TmtwVkZMMkJFeGwrSGhwNkRsYjJyQ2xzQUV2S2luTzJOL1BzNGk1L1lEQmpt?=
- =?utf-8?B?Y1NtQm0zTEZ1VURXMkhZOFhhbitLeE82TWZVRWVQVGxRREVXaGVxS2xVQ3Iz?=
- =?utf-8?B?emUxNE92QzdiVGg1TXltM2dteHF4a01nMlpjNmYwZFdGM1FMdXZSUjY1WEtN?=
- =?utf-8?B?RzNyelRPb0xVYzJKMFVxRDBYM0hkNmI2eUVKN0ZvY3V1YktWM3lnNDFxUFdu?=
- =?utf-8?B?STYzZjd4L1NWTnpKZlRsbVVDeWt4UXBDZ3BiQnE2SjNSOEpuSllKL0Vha1RY?=
- =?utf-8?B?VC83dXpWc1pRUmYyRy9QOWJzc05LK2tUZkdrbm5jMngrT09PeWVIMmhxYzZt?=
- =?utf-8?B?SEhMajh2NkJaU2hLTURzZXhwYnRiNVZCTmVtMUY1OXNTVjFvTGl2NEh4a0po?=
- =?utf-8?B?UG9lYmY5bUxnVFRtbVQweHBPcUx0RldBOTdZY1dlMmFkNVFtK29wL1RjTGtr?=
- =?utf-8?B?bmIzaTFvazlhajNtekh2aVptVGpMbVU3K1BXTk5aVmdBRDgxZTZpWDlsN1dE?=
- =?utf-8?B?MWIyQkd3T1U4RzVueDJLd0tWTCtiVkNwVnFLOW93a0Nob1BLcjRXYVBzMzZL?=
- =?utf-8?B?QnFQVU00Y0pWclkxWFdRcU9EU01QTnJKd0g4WWd4eC9aWGxjY0U1SkhEVTUy?=
- =?utf-8?B?WllMeWhiMjdJREFEd0QvVHpLQnYvcE5adUZUOElYVzduUDM5ZjE0VlBoV0VN?=
- =?utf-8?B?YitmaFhkeVZLL1Mya0M4Y1pQWVBDSHRvTXcxY1kvdzlWZVNMZ1IwRHRkcXNT?=
- =?utf-8?B?RENONi9yNTNsd1UySWJiN3ZrZUFYRC8yMHFjSjdKa0VHZjRweVNqbzNmb3hK?=
- =?utf-8?B?SG5XSlJpRjh5RmpSM2JWOXUvbDNyNW5KNlh5NEN1ekUzcmZwMkl2WStsQy9L?=
- =?utf-8?B?MHZOQ29UY3czMzRJZHdwMVlvNS9kUkR6ZGt2U3VRcVkrdkw5K2pvU2YzZGxs?=
- =?utf-8?B?ZWdCeTkxQ3NoYkVOeS9Ja1k4YlcvT2J0RUljUlJBOE1JbzJjWFg0cTVTcHNu?=
- =?utf-8?B?WUpaM255WVVPTGtBY1I0d0k0UVpqQ0xhOGZwbnlISkoyOU9ya1dRd3o5NXI5?=
- =?utf-8?B?VGVQVGl4U1RycDVPWjFGZGZjM1hGM1VsbCtMbFcwRXNMSGQxNWJ1TWRTVGE4?=
- =?utf-8?B?UGxxbkNSVi91OWxUNHk0b3ZHMWxoRTl5bWF1L1BsNVQzS3FOOGU0MG5nV3Q2?=
- =?utf-8?B?Ky9mcUp2QW5DbEt3RlA2QXQyQzNRb04wQTN2UWpNNFp2VUlNYStmMEhuZUlG?=
- =?utf-8?B?U0ZxT1loMlhITkRGM1VFLzBDRWcvaWtTS2NoZ0MzRWIvTU45M1pOWlcvcWpH?=
- =?utf-8?B?K2pDeXNJWVpQQkRXdlpGSkIwWmZ6Nms0OUhmc0JsZk1ZNXAyemF5ZHQzYTBE?=
- =?utf-8?B?MTIyMlowcVYyM3ByN0NoVTJFYyszdGt4ZnlTYXJDTjh3OE1pSWM1NldrL0dL?=
- =?utf-8?B?Snh5R1Rxa2VpQjR2QTQ0VWxXcXZKQ1VMOU5wU0lBOENpTG1yOXF4Q1JJN3Ir?=
- =?utf-8?B?U3lRRlRKaGgxNEhRR3lVMzdodzErNXc5YXZzRDhlVEI1WkJ6eGFzcldocGFQ?=
- =?utf-8?B?OXp5Zi82QUpiTTZsL0oxaGduUldlM1BoYnNvOFRIcDlIc0owcDlXUll3YTZp?=
- =?utf-8?B?YUtDeW5tVTAzMjhwZWZpdC9vdWRUTVRVWkZqQzZkeVNETmYydi9XWWVuem8r?=
- =?utf-8?B?OExOZ09PZmJ0RmFTYUF6MytJY0dQWW1EUWp1eDBUQjM5VmtsOXBjblFSbW5Q?=
- =?utf-8?B?MllDNDFKSVQzMjJENVYxdjJBMVprdHM1Vk1UeEZlend6OGlpMHZJbEhPNlgx?=
- =?utf-8?B?dFVTMzk0MlNoUkhzeG9TQ0htNmdGbXVlc0tlQ3A3K0FtN2xWb3JLL3lwRXVV?=
- =?utf-8?Q?AkKshRfGdft+u5142vn9TCegIz2XNOxa?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c0VDaUVRbGQ3ZUw4VDdhVElLZk04ajZiVFBGL0lmTlVPU29VdTFCNUg3cUJ2?=
+ =?utf-8?B?QmJLWi8xd2Vkak1MbnBRNTQwUWlEdmhkWm1MLzIzNExPWExJcUx5eXNHbTk5?=
+ =?utf-8?B?bE9wQ25ZbzZKcTZrY0ZjdmREb2x6YUZPMDRXVjkwRGIvME9SYzNkcXJWaGdK?=
+ =?utf-8?B?bzBMVzI4ajNKUjArYnpuNVJ3eENSMkhhZWNFb3ZTTWxOeDNaaG5ZRnhVdE1v?=
+ =?utf-8?B?Y0NuSWZvNkZ5ZWJXLzlVL2tIdjVRb3FvaGwzR3JwcWxLNU9PaWFTWkNQMEwr?=
+ =?utf-8?B?YzgvM3BnUkEyb1JESEIxN096MHRGd3lUbHN4OW41V1hxOUZLcnFjTVdkZkJF?=
+ =?utf-8?B?NTVuWHhlSUhTYnZBZGZ4UTlGZ0w0MnN4QjlTY0xaNWF1OCtIZHVjUTJQRXFO?=
+ =?utf-8?B?NjY0MVM1czY2M1Rtc29xWFRFSTF0NTRNcjFnL0NYemdITHFhVUxSNjBpODhj?=
+ =?utf-8?B?aXhCRUM0MFFGeWtMUjhuR29HTGMyNFNPOUNRNzJvVkpqYTkya2VodTFDRWtn?=
+ =?utf-8?B?Y2dPRy8yUVpISjFDemU0d1RzNWhTZXJIaGNqZGl3ZVRjYW9obS9tc1ZoelBq?=
+ =?utf-8?B?TG9vM1hVYzV0RFFCWUpCVXFlUUNRV0MvZUNtTzFJa2l2djhQSXg2WElCSCtS?=
+ =?utf-8?B?RnNGOWo3SGxsTFRjeWNFUXdxYTFoSStkTHVNdDJUbjV0SlVTLzNKdWFWSGRL?=
+ =?utf-8?B?V2hHNzZiTitjdUlKR1d2WDZFTzRrb1FiYzZOMG12andwYWExSEFmNUNrWVl2?=
+ =?utf-8?B?TGEzaGhPelJ5T2tCZnpGMElSQ1RwRHNzcnpDd3FUVm1kdzdXb1BhVWU1bVU2?=
+ =?utf-8?B?SHRKZWtzeFNIVkc1MHQ1UkNyRjcyOWhXa3c2YU40SktqTVZKcmdxT2NkVUxY?=
+ =?utf-8?B?WDJXQ2NSSGFvbEJUc1lEZXJVdmk1ZEx3ZlZlLzdiTS9wLzdsL09DVnFXRXJV?=
+ =?utf-8?B?MWtjR1BqZGNmdm5rd0xMbnpKSnVnZm9sNUpiUUNKZ1o1NkRHTjhQY0hKVGhQ?=
+ =?utf-8?B?UTIwRHI2UWN3VHRBTHpEalBoU280UERNU1VSVSsxOWpHNTl2L0NYa2FnUlVw?=
+ =?utf-8?B?YmlLLzFjOUNUVy9PaG5adjdlMlI2Uk94dGg0UEJld2k4UTQvTHNQYUQvVmZ1?=
+ =?utf-8?B?MnpNdVZZVzJZT1pTWW03MGZ6Tk5pajFIMm54UmQxQ0xhRURMaCs2ZUNCWWhC?=
+ =?utf-8?B?U2xvckpXU2JHdUVXTWVYaFlmYjE3VUNRY1RpU3NYSXB2Nk5vYkluWHNydk9R?=
+ =?utf-8?B?S0RTYWtEdGwyeDNqSGFuaGp3ZGZmamtWTyt4SnRYajEvN0dIelhNNlF3aExh?=
+ =?utf-8?B?dTdBUHRhWjlvMlVYUFF1aGorU2ZpeFBBQTNIWUtXaDVJUWZEdnhaNVpybDRt?=
+ =?utf-8?B?a2w1QkhhMGVXUkRSQzJ3dVFYMkRWc2ZWbE51YUxsWWgxR3pabDV2OEtKT0xq?=
+ =?utf-8?B?RUtHVGpyNWpjQTRrRXJwS1YwSFRqWHFYQlRXZ0xCeXhyM0s0N1NUWXp4TnVv?=
+ =?utf-8?B?ZDFEUmtsbWo4VllMSUxaRHNNVkcrN2UxS3ZKRWY0M0xBYkc2bnd0MEEwc24v?=
+ =?utf-8?B?a3l6RVBXMUZxc0F3SE8yWXBTRWlQcE9IUzZSbC9EQk1FNHljaGswRzEyWVBM?=
+ =?utf-8?B?ZTluVkFIUzdwVFR6N0F4ZnZzMjJtekZWbEpSVVRRUlpZeGRGSkFmcENJRU1L?=
+ =?utf-8?B?UGVOQ3J6cUFvYVdWL25mUDVTc2FxRjRSTW5kL0ZKbER3OEVIK09XWHZ2Q09h?=
+ =?utf-8?B?TEtBZEFJRCtkYStqTkJBSzJ2QzkxRWlHRUZieFZyNmlkcUpGTlluamNpR0VU?=
+ =?utf-8?B?NVpBcHRTZVM5eG9OUjlTYUZqL25qdk1Oak5PL3RRN29QaTAvQ1htcFdMYWtV?=
+ =?utf-8?B?bi82MUY1NzJNRkF2a1FDZFlNQ3JUcUYyUkZKNHVubXArNDBOT0lEenRQWVJj?=
+ =?utf-8?Q?5XhRGj/peUep8i4x/F8EIn9u62xd/OZQ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UTV1a0hlNEdIcGRtV3RHNHh6c1RtM0k4VHdQbzFLZ1hObm96eEdHYVFoeVRU?=
- =?utf-8?B?ZjJMdXhONVNMZkJiS1FibUVDWTVzSnB0SURqVHJGUU9DUDBVdndtb1c0Z012?=
- =?utf-8?B?THZTanFrdm9XcVNwMTN1Q2NKV1dhSW96Mkdhd1pVUTNXS2ZDVU5PUnhDbXNm?=
- =?utf-8?B?cjJ6ZU9kTWhIY296TFl3eTF0cTZvQXhuOE5NdlRWV2hLQ01XYWs4bHc3ZkFB?=
- =?utf-8?B?WitnNkZRQ1ZwTjgyLytQbjF4NDBIWjJiZC90Z0ZaTFZ3TFZKZFdCY0w2ZjV6?=
- =?utf-8?B?NDloa0wwVVMzY0JMdkhNT3FGUEVscVh0VkRMa2YrMUdBY1NuUEc0clY0SVVh?=
- =?utf-8?B?T2dOUXZIY21tNk1DWGVJaXpQYTh4MVVQVWFNeFp6OHQreWtKY3p2SDYxaDVS?=
- =?utf-8?B?RnZFUHpVdm5XNEw2TEFSZnNjR0xRM0YwbkhlTCtqZGs5NjhaL2xVcWZIQ1FP?=
- =?utf-8?B?WWgxdEovaGRveVpDTFppbERreHdwYWkzTjR6Wml2NU1yM3UxalJGQzR1ci9L?=
- =?utf-8?B?STdKeXF6Q0RKRlA5YlEwR3VCSEpqc21sa2FmT0EyYmNFdXFGS3dmeHFjbUla?=
- =?utf-8?B?RGE3Y3Rva2t5Q3NZN3FwcUo3MC8wRGVjN1AxS3VXK1E0a0VYWHcybkRDTDMz?=
- =?utf-8?B?ZjVvR09pSFZmZmZQK3dkUmhadHZxcGhqRDZuR0RUR25PNUZZMG1mUm00MnR5?=
- =?utf-8?B?bStuRGtoUXh6N2dHQ2NKdzRrNDlITXlramZrTkd6LzAwbGpjRGRtMW1xK0s3?=
- =?utf-8?B?WWprcmUrTCtQKzZic2RHWVY1OE9FQnJ4YXVlTDByY3ZWM3ZWbm1sb3hXcTFK?=
- =?utf-8?B?QW92UVJHR2NZcWgxbjl2UVI2ZFVNMVN5T25ZMVhhVUx6ZDdRa0RMLzRCU2xQ?=
- =?utf-8?B?M3ZFYmxWaGhqa3JNcXBvaEN2SEFoS0MrK1Vtdng0RUEzQStiZ3RxNG9nL0Zy?=
- =?utf-8?B?aHZTYmQ0UGtPWVAyaDE3Kzk2T1hScU1TK3pBL3hxZWw5ZTNiR3BuZkl3d3o2?=
- =?utf-8?B?dkJ1ejlZWkIyZ1dmS0p4U2tlZFlqYkJhUCtwZzYxbkJzWGIwQkRxSHcyMFlp?=
- =?utf-8?B?MERIUDhkbXpwVThJaElYc0xPcjIySlNoVDFsVlJaWjVtY0ZITUNuZmZaNG4z?=
- =?utf-8?B?SzdQMXE3T0JSb1N3V2N1eXR5Tkp1OEJaZ09jWTVlcnhCS3lYSkE3WklsMDJL?=
- =?utf-8?B?VnNiajFZRXZ4MGdkaS9TZTZVUFlqUUxId0dneGJJQ3Byd3F5VGN4WHpuMDhG?=
- =?utf-8?B?MTIxRkc0b213TGZGelN4bXU2S0laYXU1MkdLWTl2WEpvS0Z1K0RtMmpOMHdw?=
- =?utf-8?B?eFczWTJCQ1JJSE1yWlpXRXlQeTJYbWF6QnNvRUQwUEltR0sxZU1LOTYvbUNP?=
- =?utf-8?B?V21odHNPa1ZkOUhoY1dCbmd2Uk00cVBvVHFQbUdZY3JFM0RpUjRUN25KMG9U?=
- =?utf-8?B?Vm1ZaDhING9vUGJwZC80bk1Tc09yNWd5Q2M3YnFDcC9NcDh4d1IvTUhTSGZX?=
- =?utf-8?B?cnMvZ3RFMmE3RUxyenMxeUdmZXg5a3psd0p4eE43aWhMZFJDZ3hqMVpibXBO?=
- =?utf-8?B?V0srUWJBSm9IWWlYQTRFVDF6eDJOVlV3TitFWGM4QitJSWlmU1krWldzOVBR?=
- =?utf-8?B?dllXaEtkUzZSc3JYMmRhTXJJbldOd0RwTDVlUHRtdDRRdXY5SDNNTWx3YUtQ?=
- =?utf-8?B?VFdmdlh4Z1dNcWZmWTgydUQzbHV0U1c0UmdZNWFtbHpXQ1NpZFZDdnBkZmI5?=
- =?utf-8?B?WWQzRTZTUmdRSk8rbUIyZFlaUFFVcmIvbXNFL1E4b1BVTTV1VnpoanRsaDlO?=
- =?utf-8?B?REtiaiswaFFnUXpUNVNzTW5DVlYwSG5aQXdUaHJwd2NaMk44Q0JPbkZFbDJk?=
- =?utf-8?B?WkN3Q1k5Q3h6UFA4MS9QM3lsczZaTVV0SGdGM1Z0N3lGbU1pY3NHbGNUb3Zn?=
- =?utf-8?B?S2RXaUhXTEorVXZhZU5telRmNmc4L1BUZ2tRMHNxbGo2cE83VXcvK1ZFMnp2?=
- =?utf-8?B?Y0N1OFNueWpjejcxamdYWDZxR0ZtY0Z5SGZoaGxVQS9wbnBzTGN1aWtMTVQ2?=
- =?utf-8?B?a1JPZ2NtNE1MQVJHQUIycjNxbUNGQUpjOUlmaUFMeTBWR3Y2eXhFSHo5bkp2?=
- =?utf-8?Q?di0zoZES6nBQmyVruzefcPtCm?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22d806e6-16d4-42b6-498e-08ddfdbca379
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0Q5bGtxYS9lZ3RObVY5b1NKaEFhMi9vcWpLN3RVUURnS29EanErZ0lVTHl5?=
+ =?utf-8?B?QjdNTlI2VjJ2UkRXLzlRUUFyc1JrTS9xbm9nVmg0RUtRY3cyeEpuTm5YUTRt?=
+ =?utf-8?B?RXd6SnRzY2hYdkJFZWFBd2NtQWVjamNmNjlNUWg0WmZmZlNURzUxWklRbzZr?=
+ =?utf-8?B?RklqbVdyZjQ5YkxhVGNOTkNRRkI0S2pvOUl4YzJmSXNtZFpyVnFWUXRuUTEv?=
+ =?utf-8?B?RUtONGpvMVB5OHd4bEFsRkx2L2F5REF1aXk3cXU4dU9GdXNRN1ZGQW51MGdp?=
+ =?utf-8?B?bWxncmI5QW1FQzRVR2pXekR2MHVnU1BjdW0vcFI3RDlGOUh3MXFoaWM0MERj?=
+ =?utf-8?B?NGhESFB5MEdjR1FRVXFoOC8yQUZRN2txMnoxcjVnY0tjSjRINlpJWEF0UWEx?=
+ =?utf-8?B?RU1KNkFKajE5ZlFQVmdJWVl0SzY3cEFiUjdwMFh4SGdheEw1amwyamd4R29K?=
+ =?utf-8?B?czRQZUdWZEFxODB0QjFGWjVyMlp2OHlQTW5vUUlOajRibjVoV1FIVldDZlhX?=
+ =?utf-8?B?QmNTUW9HMU42RUJXM3VkMnVGcndkV1NHWkNsQm5MeE9aVWtlanFvdVNwLzZX?=
+ =?utf-8?B?L25iSFFZRE0xWjFQL0dsdHR5QjNaODZ0VEQ4eHpuNENCaG5wVWpjR1lEQmdj?=
+ =?utf-8?B?WkcyT0VNdUVwNm1qRjE0LzJYaHI2bmdPYVVVS0tlV05saytjcjd5cjlVSnZs?=
+ =?utf-8?B?RFNRYSsvbDhyRTJVZDZVYVRqY21teGRFSHVJcXZ1cEljdmtRVXN3S1pMb2E4?=
+ =?utf-8?B?c2tXcmxkRzJybjJlaTdDcVhBOEJPcWtBcTVQeXI5aksvcEhDREhweHF2elUx?=
+ =?utf-8?B?YVpHZEoxRkxaTUptTlRyUlRDZnpsY3p3WnRYd0JrLzkrWC9FR2VmY0sraVhH?=
+ =?utf-8?B?NDBlZ2tOdk4zNDNLNit1Mis3ZXVyYm1tcmYrTTdBL2xqQUVYY3FNMHM2Ky9h?=
+ =?utf-8?B?cVVpMktsQ2RKN3dyenY4WEVDYTlXZ3FyNE1URG45WkVlc0J2aUhobzZXRjgy?=
+ =?utf-8?B?M21pbzVWaUU0ZFpnb3Z6citnbTBUeFVTbUhSak9VL2ltMEcrMWZXQUtveURi?=
+ =?utf-8?B?Y1ArbHJwUjdWeGNDUWx6MUJPMkVKMFc5QkFNMC9wVmx2UEhJTEVnOVNkN2ta?=
+ =?utf-8?B?QTdBMmtxc0g2Y0hVNjVMK1p0Uno4cVMwMmw4akVidUNDUFNiSG84Y3Vnem5z?=
+ =?utf-8?B?VTFaU293dGZnU3lFMWhaTlBUTWV1T0NxeDlRSzU1RXdmZVFKNXUxMzFjL0RD?=
+ =?utf-8?B?dmdDZmhHcjBteGlySkkwa3NzNEs4TXZJRFlDUzdpSDR2bXh4VHloVms4SUx3?=
+ =?utf-8?B?MlozdDdvS09TY2ZZNEtaVkpadnYvL09JcU9zVE51SW5SVHlKZURUMlpwSStL?=
+ =?utf-8?B?Z2RiZkxKQVRjT3dSUTlZZG1YUUlXTjJjNGtZSG9sN3ErakxwY0RrUW1BWEkw?=
+ =?utf-8?B?MDRGcVQyUzNPbWcxSXV5UHBHSXhFVDc1TWhzSU5Qc0xNdUc2SzJ0R1JONlc4?=
+ =?utf-8?B?UUIwaTBZVmgrMk1KSHFjb2p0ZVVMbWNoYUF2THVnRDJuandWR1V5a1ZLdjA1?=
+ =?utf-8?B?YXhCZkREdVBvWWxGemVhTWxwbXhXQ3pCaW5GaEUwV1pEeFVVZkZyY3RQV2N5?=
+ =?utf-8?B?YUk3cEhyd0JYWXZJUkxrUHBwUzllMzJkV21PMmRmMlJKZjR2N3hsUERnWVRp?=
+ =?utf-8?B?ZVJFekJpREFvY0sxQWpFenZZRHpGbW5BdzdqQUdQWk42RFBtaXF0cDBSNm9i?=
+ =?utf-8?B?bHJkT293bkhBUVZQcGVseHdOQXlOb241K2dmalIvUXdmbUpaeThZcUk0aFhj?=
+ =?utf-8?B?MDJQMHFMWTl5KzVMQlg4TGwvVVVnTjVnK1dHcWd3VVVoZlBUbkt3eWRZNFdU?=
+ =?utf-8?B?OUpadmJQOHNrOUFDMEJIUzNvVWs3VUZlUGxtU2t3OUlMNE5meGZvMGJiWll3?=
+ =?utf-8?B?cFZvYUp3WEljWXQ1Qjd2MU5DZzZHa1JqeG40bWhFZU1yemlKUkt4eFVnM2JW?=
+ =?utf-8?B?MWM5d3JBNUFUcHVLTGd0RW1NV3ZYd1hLUUg3bFp2REpKSDIvdUc4aDlOYzJM?=
+ =?utf-8?B?SkU0bzkwdUU2dTJ0bUVjVk5nampsWXFLVkZEZHI3elBKUThXaU1lMkNYZGts?=
+ =?utf-8?Q?FYTtSXnpyA4gCdLTg2unVRLVt?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3d8f3a8-7414-4343-fcb5-08ddfdca7d16
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2025 11:54:39.6880 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2025 13:33:48.2341 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EMJy+GyFHIsR/mliZ9vCqGc63OsO1tRZVUPCMTwIHpZsOKguLlmyIN7d69xFLXBMWfKxN80jdSrbdfijwHMSIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6135
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6NLF9slUxUAD1RDWNZmixScFEIzeI92yeU5SBJiNDxanDv+iLsEsHKpUGgoQZ8+OnacVXmcYXLMVUKDs6e50GQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6378
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,108 +194,473 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------h3isXnHVuinjZTIk064MkLdc
+--------------mlYy1n80d5KK3VHoG9BRf7oi
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 On 9/24/2025 3:15 AM, Matthew Brost wrote:
-> If VF post-migration recovery fails, the device is wedged. However,
-> submission queues still need to be enabled for proper cleanup. In such
-> cases, call into the GuC submission backend to restart all queues that
-> were previously paused.
+> Fixup GuC submission pause / unpause functions to properly replay any
+> possible state lost during VF post migration recovery.
 >
 > Signed-off-by: Matthew Brost<matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
->   drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
->   3 files changed, 31 insertions(+)
+>   drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  14 ++
+>   drivers/gpu/drm/xe/xe_gpu_scheduler.h        |   2 +
+>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c          |   1 +
+>   drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  15 ++
+>   drivers/gpu/drm/xe/xe_guc_submit.c           | 225 +++++++++++++++++--
+>   drivers/gpu/drm/xe/xe_guc_submit.h           |   1 +
+>   drivers/gpu/drm/xe/xe_sched_job_types.h      |   4 +
+>   7 files changed, 247 insertions(+), 15 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> index 455ccaf17314..af300adc7e1a 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> @@ -135,3 +135,17 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+>   	list_add_tail(&msg->link, &sched->msgs);
+>   	xe_sched_process_msg_queue(sched);
+>   }
+> +
+> +/**
+> + * xe_sched_add_msg_head() - Xe GPU scheduler add message to head of list
+> + * @sched: Xe GPU scheduler
+> + * @msg: Message to add
+> + */
+> +void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
+> +			   struct xe_sched_msg *msg)
+> +{
+> +	lockdep_assert_held(&sched->base.job_list_lock);
+> +
+> +	list_add(&msg->link, &sched->msgs);
+> +	xe_sched_process_msg_queue(sched);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> index e548b2aed95a..010003a6103a 100644
+> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> @@ -29,6 +29,8 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
+>   		      struct xe_sched_msg *msg);
+>   void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+>   			     struct xe_sched_msg *msg);
+> +void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
+> +			   struct xe_sched_msg *msg);
+>   
+>   static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
+>   {
 > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 34e57f44fbf4..a987560de2c7 100644
+> index a987560de2c7..91e7dbe80ab2 100644
 > --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -1224,6 +1224,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
->   	xe_guc_submit_unpause(&gt->uc.guc);
+> @@ -1217,6 +1217,7 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+>   static void vf_post_migration_rearm(struct xe_gt *gt)
+>   {
+>   	xe_guc_ct_restart(&gt->uc.guc.ct);
+> +	xe_guc_submit_unpause_prepare(&gt->uc.guc);
 >   }
 >   
-> +static void vf_post_migration_abort(struct xe_gt *gt)
-> +{
-> +	spin_lock_irq(&gt->sriov.vf.migration.lock);
-> +	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
-> +	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-> +
-> +	xe_guc_submit_pause_abort(&gt->uc.guc);
-> +}
-> +
->   static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
->   {
->   	bool skip_resfix = false;
-> @@ -1280,6 +1289,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
->   	xe_gt_sriov_notice(gt, "migration recovery ended\n");
->   	return;
->   fail:
-> +	vf_post_migration_abort(gt);
->   	xe_pm_runtime_put(xe);
->   	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
->   	xe_device_declare_wedged(xe);
-
-We could alter the order here to make sure all queues have cleanup 
-triggered. Now only the ones which were previously killed/banned/wedged 
-have that.
-
-Not sure if it would bring any benefits though.
-
+>   static void vf_post_migration_kickstart(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> index c30c0e3ccbbb..a3b034e4b205 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> @@ -51,6 +51,21 @@ struct xe_guc_exec_queue {
+>   	wait_queue_head_t suspend_wait;
+>   	/** @suspend_pending: a suspend of the exec_queue is pending */
+>   	bool suspend_pending;
+> +	/**
+> +	 * @needs_cleanup: Needs a cleanup message during VF post migration
+> +	 * recovery.
+> +	 */
+> +	bool needs_cleanup;
+> +	/**
+> +	 * @needs_suspend: Needs a suspend message during VF post migration
+> +	 * recovery.
+> +	 */
+> +	bool needs_suspend;
+> +	/**
+> +	 * @needs_resume: Needs a resume message during VF post migration
+> +	 * recovery.
+> +	 */
+> +	bool needs_resume;
+>   };
+>   
+>   #endif
 > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 52b86cab4ec5..8bee65dd9ca6 100644
+> index 8bee65dd9ca6..b112a4a91a5b 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2345,6 +2345,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
->   	wake_up_all(&guc->ct.wq);
+> @@ -425,6 +425,11 @@ static void set_exec_queue_destroyed(struct xe_exec_queue *q)
+>   	atomic_or(EXEC_QUEUE_STATE_DESTROYED, &q->guc->state);
 >   }
 >   
-> +/**
-> + * xe_guc_submit_abort - Avort all paused submission task on given GuC.
+> +static void clear_exec_queue_destroyed(struct xe_exec_queue *q)
+> +{
+> +	atomic_and(~EXEC_QUEUE_STATE_DESTROYED, &q->guc->state);
+> +}
+> +
+>   static bool exec_queue_banned(struct xe_exec_queue *q)
+>   {
+>   	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_BANNED;
+> @@ -505,7 +510,12 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+>   	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+>   }
+>   
+> -static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
+> +static void clear_exec_queue_extra_ref(struct xe_exec_queue *q)
+> +{
+> +	atomic_and(~EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+> +}
+> +
+> +static bool exec_queue_pending_resume(struct xe_exec_queue *q)
+>   {
+>   	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
+>   }
+> @@ -520,7 +530,7 @@ static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
+>   	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
+>   }
+>   
+> -static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
+> +static bool exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
+>   {
+>   	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
+>   }
+> @@ -1080,7 +1090,7 @@ static void wq_item_append(struct xe_exec_queue *q)
+>   }
+>   
+>   #define RESUME_PENDING	~0x0ull
+> -static void submit_exec_queue(struct xe_exec_queue *q)
+> +static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+>   {
+>   	struct xe_guc *guc = exec_queue_to_guc(q);
+>   	struct xe_lrc *lrc = q->lrc[0];
+> @@ -1092,10 +1102,13 @@ static void submit_exec_queue(struct xe_exec_queue *q)
+>   
+>   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+>   
+> -	if (xe_exec_queue_is_parallel(q))
+> -		wq_item_append(q);
+> -	else
+> -		xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+> +	if (!job->skip_emit || job->last_replay) {
+> +		if (xe_exec_queue_is_parallel(q))
+> +			wq_item_append(q);
+> +		else
+> +			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+> +		job->last_replay = false;
+> +	}
+>   
+>   	if (exec_queue_suspended(q) && !xe_exec_queue_is_parallel(q))
+>   		return;
+> @@ -1148,8 +1161,10 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+>   	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
+>   		if (!exec_queue_registered(q))
+>   			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+> -		q->ring_ops->emit_job(job);
+> -		submit_exec_queue(q);
+> +		if (!job->skip_emit)
+> +			q->ring_ops->emit_job(job);
+> +		submit_exec_queue(q, job);
+> +		job->skip_emit = false;
+>   	}
+>   
+>   	/*
+> @@ -1860,6 +1875,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+>   #define RESUME		4
+>   #define OPCODE_MASK	0xf
+>   #define MSG_LOCKED	BIT(8)
+> +#define MSG_HEAD	BIT(9)
+>   
+>   static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+>   {
+> @@ -1984,12 +2000,24 @@ static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg
+>   	msg->private_data = q;
+>   
+>   	trace_xe_sched_msg_add(msg);
+> -	if (opcode & MSG_LOCKED)
+> +	if (opcode & MSG_HEAD)
+> +		xe_sched_add_msg_head(&q->guc->sched, msg);
+> +	else if (opcode & MSG_LOCKED)
+>   		xe_sched_add_msg_locked(&q->guc->sched, msg);
+>   	else
+>   		xe_sched_add_msg(&q->guc->sched, msg);
+>   }
+>   
+> +static void guc_exec_queue_try_add_msg_head(struct xe_exec_queue *q,
+> +					    struct xe_sched_msg *msg,
+> +					    u32 opcode)
+> +{
+> +	if (!list_empty(&msg->link))
+> +		return;
+> +
+> +	guc_exec_queue_add_msg(q, msg, opcode | MSG_LOCKED | MSG_HEAD);
+> +}
+> +
+>   static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+>   				       struct xe_sched_msg *msg,
+>   				       u32 opcode)
+> @@ -2264,6 +2292,93 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+>   
+>   }
+>   
+> +/*
+> + * This function is quite complex but only real way to ensure no state is lost
+> + * during VF resume flows. The function scans the queue state, make adjustments
+> + * as needed, and queues jobs / messages which replayed upon unpause.
+> + */
+> +static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
+> +{
+> +	struct xe_gpu_scheduler *sched = &q->guc->sched;
+> +	struct xe_sched_job *job;
+> +	bool pending_enable, pending_disable, pending_resume;
+> +	int i;
+> +
+> +	lockdep_assert_held(&guc->submission_state.lock);
+> +
+> +	/* Stop scheduling + flush any DRM scheduler operations */
+> +	xe_sched_submission_stop(sched);
+> +	if (xe_exec_queue_is_lr(q))
+> +		cancel_work_sync(&q->guc->lr_tdr);
+> +	else
+> +		cancel_delayed_work_sync(&sched->base.work_tdr);
 
-typo - Avort
+We're doing the same cancelling in `__guc_exec_queue_destroy_async()`, 
+maybe close it into a function?
+
+> +
+> +	pending_enable = exec_queue_pending_enable(q);
+> +	pending_resume = exec_queue_pending_resume(q);
+> +
+> +	if (pending_enable && pending_resume)
+> +		q->guc->needs_resume = true;
+> +
+> +	if (pending_enable && !pending_resume &&
+> +	    !exec_queue_pending_tdr_exit(q)) {
+> +		clear_exec_queue_registered(q);
+> +		if (xe_exec_queue_is_lr(q))
+> +			xe_exec_queue_put(q);
+> +	}
+> +
+> +	if (pending_enable) {
+> +		clear_exec_queue_enabled(q);
+> +		clear_exec_queue_pending_resume(q);
+> +		clear_exec_queue_pending_tdr_exit(q);
+> +		clear_exec_queue_pending_enable(q);
+> +	}
+> +
+> +	if (exec_queue_destroyed(q) && exec_queue_registered(q)) {
+> +		clear_exec_queue_destroyed(q);
+> +		if (exec_queue_extra_ref(q))
+> +			xe_exec_queue_put(q);
+> +		else
+> +			q->guc->needs_cleanup = true;
+> +		clear_exec_queue_extra_ref(q);
+> +	}
+> +
+> +	pending_disable = exec_queue_pending_disable(q);
+> +
+> +	if (pending_disable && exec_queue_suspended(q)) {
+> +		clear_exec_queue_suspended(q);
+> +		q->guc->needs_suspend = true;
+> +	}
+> +
+> +	if (pending_disable) {
+> +		if (!pending_enable)
+> +			set_exec_queue_enabled(q);
+> +		clear_exec_queue_pending_disable(q);
+> +		clear_exec_queue_check_timeout(q);
+> +	}
+
+maybe we can close the above into a separate function as well?
+
+ie. guc_exec_queue_undo_unfinished_state_change()?
+
+guc_exec_queue_revert_pending_state_change()?
+
+That would make this function easier to read, but also describe what 
+we're doing.
+
+Then, a counterfunction could be ripped out of guc_exec_queue_unpause().
+
+> +
+> +	q->guc->resume_time = 0;
+> +
+> +	if (xe_exec_queue_is_parallel(q)) {
+> +		struct xe_device *xe = guc_to_xe(guc);
+> +		struct iosys_map map = xe_lrc_parallel_map(q->lrc[0]);
+> +
+> +		for (i = 0; i < WQ_SIZE / sizeof(u32); ++i)
+> +			parallel_write(xe, map, wq[i],
+> +				       FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_NOOP) |
+> +				       FIELD_PREP(WQ_LEN_MASK, 0));
+
+ok so for parallel wq we're NOP'ing everything and adding the items back 
+at new positions? Maybe a comment here would help in understanding that.
 
 -Tomasz
 
-> + * @guc: the &xe_guc struct instance whose scheduler is to be aborted
+> +	}
+> +
+> +	job = xe_sched_first_pending_job(sched);
+> +	if (job) {
+> +		/*
+> +		 * Adjust software tail so jobs submitted overwrite previous
+> +		 * position in ring buffer with new GGTT addresses.
+> +		 */
+> +		for (i = 0; i < q->width; ++i)
+> +			q->lrc[i]->ring.tail = job->ptrs[i].head;
+> +	}
+> +}
+> +
+>   /**
+>    * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
+>    * @guc: the &xe_guc struct instance whose scheduler is to be disabled
+> @@ -2273,8 +2388,12 @@ void xe_guc_submit_pause(struct xe_guc *guc)
+>   	struct xe_exec_queue *q;
+>   	unsigned long index;
+>   
+> +	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
+> +
+> +	mutex_lock(&guc->submission_state.lock);
+>   	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+> -		xe_sched_submission_stop_async(&q->guc->sched);
+> +		guc_exec_queue_pause(guc, q);
+> +	mutex_unlock(&guc->submission_state.lock);
+>   }
+>   
+>   static void guc_exec_queue_start(struct xe_exec_queue *q)
+> @@ -2323,11 +2442,87 @@ int xe_guc_submit_start(struct xe_guc *guc)
+>   	return 0;
+>   }
+>   
+> -static void guc_exec_queue_unpause(struct xe_exec_queue *q)
+> +static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
+> +					   struct xe_exec_queue *q)
+>   {
+>   	struct xe_gpu_scheduler *sched = &q->guc->sched;
+> +	struct drm_sched_job *s_job;
+> +	struct xe_sched_job *job = NULL;
+> +
+> +	list_for_each_entry(s_job, &sched->base.pending_list, list) {
+> +		job = to_xe_sched_job(s_job);
+> +
+> +		q->ring_ops->emit_job(job);
+> +		job->skip_emit = true;
+> +	}
+> +
+> +	if (job)
+> +		job->last_replay = true;
+> +}
+> +
+> +/**
+> + * xe_guc_submit_unpause_prepare - Prepare unpause submission tasks on given GuC.
+> + * @guc: the &xe_guc struct instance whose scheduler is to be prepared for unpause
 > + */
-> +void xe_guc_submit_pause_abort(struct xe_guc *guc)
+> +void xe_guc_submit_unpause_prepare(struct xe_guc *guc)
 > +{
 > +	struct xe_exec_queue *q;
 > +	unsigned long index;
 > +
-> +	mutex_lock(&guc->submission_state.lock);
-> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-> +		struct xe_gpu_scheduler *sched = &q->guc->sched;
+> +	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
 > +
-> +		xe_sched_submission_start(sched);
-> +		if (exec_queue_killed_or_banned_or_wedged(q))
-> +			xe_guc_exec_queue_trigger_cleanup(q);
-> +	}
+> +	mutex_lock(&guc->submission_state.lock);
+> +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+> +		guc_exec_queue_unpause_prepare(guc, q);
 > +	mutex_unlock(&guc->submission_state.lock);
 > +}
 > +
->   static struct xe_exec_queue *
->   g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
->   {
+> +static void guc_exec_queue_unpause(struct xe_guc *guc, struct xe_exec_queue *q)
+> +{
+> +	struct xe_gpu_scheduler *sched = &q->guc->sched;
+> +	struct xe_sched_msg *msg;
+> +	bool needs_tdr = exec_queue_killed_or_banned_or_wedged(q);
+> +
+> +	lockdep_assert_held(&guc->submission_state.lock);
+> +
+> +	xe_sched_resubmit_jobs(sched);
+> +
+> +	if (q->guc->needs_cleanup) {
+> +		msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
+> +
+> +		guc_exec_queue_add_msg(q, msg, CLEANUP);
+> +		q->guc->needs_cleanup = false;
+> +	}
+> +
+> +	if (q->guc->needs_suspend) {
+> +		msg = q->guc->static_msgs + STATIC_MSG_SUSPEND;
+> +
+> +		xe_sched_msg_lock(sched);
+> +		guc_exec_queue_try_add_msg_head(q, msg, SUSPEND);
+> +		xe_sched_msg_unlock(sched);
+> +
+> +		q->guc->needs_suspend = false;
+> +	}
+> +
+> +	/*
+> +	 * The resume must be in the message queue before the suspend as it is
+> +	 * not possible for a resume to be issued if a suspend pending is, but
+> +	 * the inverse is possible.
+> +	 */
+> +	if (q->guc->needs_resume) {
+> +		msg = q->guc->static_msgs + STATIC_MSG_RESUME;
+> +
+> +		xe_sched_msg_lock(sched);
+> +		guc_exec_queue_try_add_msg_head(q, msg, RESUME);
+> +		xe_sched_msg_unlock(sched);
+> +
+> +		q->guc->needs_resume = false;
+> +	}
+>   
+>   	xe_sched_submission_start(sched);
+> +	if (needs_tdr)
+> +		xe_guc_exec_queue_trigger_cleanup(q);
+> +	xe_sched_submission_resume_tdr(sched);
+>   }
+>   
+>   /**
+> @@ -2339,10 +2534,10 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+>   	struct xe_exec_queue *q;
+>   	unsigned long index;
+>   
+> +	mutex_lock(&guc->submission_state.lock);
+>   	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+> -		guc_exec_queue_unpause(q);
+> -
+> -	wake_up_all(&guc->ct.wq);
+> +		guc_exec_queue_unpause(guc, q);
+> +	mutex_unlock(&guc->submission_state.lock);
+>   }
+>   
+>   /**
 > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-> index f535fe3895e5..fe82c317048e 100644
+> index fe82c317048e..b49a2748ec46 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.h
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
 > @@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
 >   int xe_guc_submit_start(struct xe_guc *guc);
 >   void xe_guc_submit_pause(struct xe_guc *guc);
 >   void xe_guc_submit_unpause(struct xe_guc *guc);
-> +void xe_guc_submit_pause_abort(struct xe_guc *guc);
+> +void xe_guc_submit_unpause_prepare(struct xe_guc *guc);
+>   void xe_guc_submit_pause_abort(struct xe_guc *guc);
 >   void xe_guc_submit_wedge(struct xe_guc *guc);
 >   
->   int xe_guc_read_stopped(struct xe_guc *guc);
---------------h3isXnHVuinjZTIk064MkLdc
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> index 7ce58765a34a..13e7a12b03ad 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> @@ -63,6 +63,10 @@ struct xe_sched_job {
+>   	bool ring_ops_flush_tlb;
+>   	/** @ggtt: mapped in ggtt. */
+>   	bool ggtt;
+> +	/** @skip_emit: skip emitting the job */
+> +	bool skip_emit;
+> +	/** @last_replay: last job being replayed */
+> +	bool last_replay;
+>   	/** @ptrs: per instance pointers. */
+>   	struct xe_job_ptrs ptrs[];
+>   };
+--------------mlYy1n80d5KK3VHoG9BRf7oi
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
@@ -308,105 +673,470 @@ Content-Transfer-Encoding: 8bit
     <div class="moz-cite-prefix">On 9/24/2025 3:15 AM, Matthew Brost
       wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:20250924011601.888293-26-matthew.brost@intel.com">
-      <pre wrap="" class="moz-quote-pre">If VF post-migration recovery fails, the device is wedged. However,
-submission queues still need to be enabled for proper cleanup. In such
-cases, call into the GuC submission backend to restart all queues that
-were previously paused.
+    <blockquote type="cite" cite="mid:20250924011601.888293-27-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">Fixup GuC submission pause / unpause functions to properly replay any
+possible state lost during VF post migration recovery.
 
 Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
- 3 files changed, 31 insertions(+)
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  14 ++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h        |   2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c          |   1 +
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  15 ++
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 225 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.h           |   1 +
+ drivers/gpu/drm/xe/xe_sched_job_types.h      |   4 +
+ 7 files changed, 247 insertions(+), 15 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 455ccaf17314..af300adc7e1a 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -135,3 +135,17 @@ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ 	list_add_tail(&amp;msg-&gt;link, &amp;sched-&gt;msgs);
+ 	xe_sched_process_msg_queue(sched);
+ }
++
++/**
++ * xe_sched_add_msg_head() - Xe GPU scheduler add message to head of list
++ * @sched: Xe GPU scheduler
++ * @msg: Message to add
++ */
++void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
++			   struct xe_sched_msg *msg)
++{
++	lockdep_assert_held(&amp;sched-&gt;base.job_list_lock);
++
++	list_add(&amp;msg-&gt;link, &amp;sched-&gt;msgs);
++	xe_sched_process_msg_queue(sched);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index e548b2aed95a..010003a6103a 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -29,6 +29,8 @@ void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
+ 		      struct xe_sched_msg *msg);
+ void xe_sched_add_msg_locked(struct xe_gpu_scheduler *sched,
+ 			     struct xe_sched_msg *msg);
++void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
++			   struct xe_sched_msg *msg);
+ 
+ static inline void xe_sched_msg_lock(struct xe_gpu_scheduler *sched)
+ {
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 34e57f44fbf4..a987560de2c7 100644
+index a987560de2c7..91e7dbe80ab2 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1224,6 +1224,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
- 	xe_guc_submit_unpause(&amp;gt-&gt;uc.guc);
+@@ -1217,6 +1217,7 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ static void vf_post_migration_rearm(struct xe_gt *gt)
+ {
+ 	xe_guc_ct_restart(&amp;gt-&gt;uc.guc.ct);
++	xe_guc_submit_unpause_prepare(&amp;gt-&gt;uc.guc);
  }
  
-+static void vf_post_migration_abort(struct xe_gt *gt)
-+{
-+	spin_lock_irq(&amp;gt-&gt;sriov.vf.migration.lock);
-+	WRITE_ONCE(gt-&gt;sriov.vf.migration.recovery_inprogress, false);
-+	spin_unlock_irq(&amp;gt-&gt;sriov.vf.migration.lock);
-+
-+	xe_guc_submit_pause_abort(&amp;gt-&gt;uc.guc);
-+}
-+
- static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
- {
- 	bool skip_resfix = false;
-@@ -1280,6 +1289,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	xe_gt_sriov_notice(gt, &quot;migration recovery ended\n&quot;);
- 	return;
- fail:
-+	vf_post_migration_abort(gt);
- 	xe_pm_runtime_put(xe);
- 	xe_gt_sriov_err(gt, &quot;migration recovery failed (%pe)\n&quot;, ERR_PTR(err));
- 	xe_device_declare_wedged(xe);</pre>
-    </blockquote>
-    <p>We could alter the order here to make sure all queues have
-      cleanup triggered. Now only the ones which were previously
-      killed/banned/wedged have that.</p>
-    <p>Not sure if it would bring any benefits though.</p>
-    <blockquote type="cite" cite="mid:20250924011601.888293-26-matthew.brost@intel.com">
-      <pre wrap="" class="moz-quote-pre">
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index c30c0e3ccbbb..a3b034e4b205 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -51,6 +51,21 @@ struct xe_guc_exec_queue {
+ 	wait_queue_head_t suspend_wait;
+ 	/** @suspend_pending: a suspend of the exec_queue is pending */
+ 	bool suspend_pending;
++	/**
++	 * @needs_cleanup: Needs a cleanup message during VF post migration
++	 * recovery.
++	 */
++	bool needs_cleanup;
++	/**
++	 * @needs_suspend: Needs a suspend message during VF post migration
++	 * recovery.
++	 */
++	bool needs_suspend;
++	/**
++	 * @needs_resume: Needs a resume message during VF post migration
++	 * recovery.
++	 */
++	bool needs_resume;
+ };
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 52b86cab4ec5..8bee65dd9ca6 100644
+index 8bee65dd9ca6..b112a4a91a5b 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2345,6 +2345,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
- 	wake_up_all(&amp;guc-&gt;ct.wq);
+@@ -425,6 +425,11 @@ static void set_exec_queue_destroyed(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_DESTROYED, &amp;q-&gt;guc-&gt;state);
  }
  
-+/**
-+ * xe_guc_submit_abort - Avort all paused submission task on given GuC.</pre>
-    </blockquote>
-    <p>typo -&nbsp;<span style="white-space: pre-wrap">Avort </span></p>
-    <p>-Tomasz</p>
-    <blockquote type="cite" cite="mid:20250924011601.888293-26-matthew.brost@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+ * @guc: the &amp;xe_guc struct instance whose scheduler is to be aborted
++static void clear_exec_queue_destroyed(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_DESTROYED, &amp;q-&gt;guc-&gt;state);
++}
++
+ static bool exec_queue_banned(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&amp;q-&gt;guc-&gt;state) &amp; EXEC_QUEUE_STATE_BANNED;
+@@ -505,7 +510,12 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &amp;q-&gt;guc-&gt;state);
+ }
+ 
+-static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
++static void clear_exec_queue_extra_ref(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_EXTRA_REF, &amp;q-&gt;guc-&gt;state);
++}
++
++static bool exec_queue_pending_resume(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&amp;q-&gt;guc-&gt;state) &amp; EXEC_QUEUE_STATE_PENDING_RESUME;
+ }
+@@ -520,7 +530,7 @@ static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
+ 	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &amp;q-&gt;guc-&gt;state);
+ }
+ 
+-static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++static bool exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
+ {
+ 	return atomic_read(&amp;q-&gt;guc-&gt;state) &amp; EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
+ }
+@@ -1080,7 +1090,7 @@ static void wq_item_append(struct xe_exec_queue *q)
+ }
+ 
+ #define RESUME_PENDING	~0x0ull
+-static void submit_exec_queue(struct xe_exec_queue *q)
++static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	struct xe_lrc *lrc = q-&gt;lrc[0];
+@@ -1092,10 +1102,13 @@ static void submit_exec_queue(struct xe_exec_queue *q)
+ 
+ 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+ 
+-	if (xe_exec_queue_is_parallel(q))
+-		wq_item_append(q);
+-	else
+-		xe_lrc_set_ring_tail(lrc, lrc-&gt;ring.tail);
++	if (!job-&gt;skip_emit || job-&gt;last_replay) {
++		if (xe_exec_queue_is_parallel(q))
++			wq_item_append(q);
++		else
++			xe_lrc_set_ring_tail(lrc, lrc-&gt;ring.tail);
++		job-&gt;last_replay = false;
++	}
+ 
+ 	if (exec_queue_suspended(q) &amp;&amp; !xe_exec_queue_is_parallel(q))
+ 		return;
+@@ -1148,8 +1161,10 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ 	if (!killed_or_banned_or_wedged &amp;&amp; !xe_sched_job_is_error(job)) {
+ 		if (!exec_queue_registered(q))
+ 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
+-		q-&gt;ring_ops-&gt;emit_job(job);
+-		submit_exec_queue(q);
++		if (!job-&gt;skip_emit)
++			q-&gt;ring_ops-&gt;emit_job(job);
++		submit_exec_queue(q, job);
++		job-&gt;skip_emit = false;
+ 	}
+ 
+ 	/*
+@@ -1860,6 +1875,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ #define RESUME		4
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
++#define MSG_HEAD	BIT(9)
+ 
+ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
+ {
+@@ -1984,12 +2000,24 @@ static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg
+ 	msg-&gt;private_data = q;
+ 
+ 	trace_xe_sched_msg_add(msg);
+-	if (opcode &amp; MSG_LOCKED)
++	if (opcode &amp; MSG_HEAD)
++		xe_sched_add_msg_head(&amp;q-&gt;guc-&gt;sched, msg);
++	else if (opcode &amp; MSG_LOCKED)
+ 		xe_sched_add_msg_locked(&amp;q-&gt;guc-&gt;sched, msg);
+ 	else
+ 		xe_sched_add_msg(&amp;q-&gt;guc-&gt;sched, msg);
+ }
+ 
++static void guc_exec_queue_try_add_msg_head(struct xe_exec_queue *q,
++					    struct xe_sched_msg *msg,
++					    u32 opcode)
++{
++	if (!list_empty(&amp;msg-&gt;link))
++		return;
++
++	guc_exec_queue_add_msg(q, msg, opcode | MSG_LOCKED | MSG_HEAD);
++}
++
+ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+ 				       struct xe_sched_msg *msg,
+ 				       u32 opcode)
+@@ -2264,6 +2292,93 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+ 
+ }
+ 
++/*
++ * This function is quite complex but only real way to ensure no state is lost
++ * during VF resume flows. The function scans the queue state, make adjustments
++ * as needed, and queues jobs / messages which replayed upon unpause.
 + */
-+void xe_guc_submit_pause_abort(struct xe_guc *guc)
++static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &amp;q-&gt;guc-&gt;sched;
++	struct xe_sched_job *job;
++	bool pending_enable, pending_disable, pending_resume;
++	int i;
++
++	lockdep_assert_held(&amp;guc-&gt;submission_state.lock);
++
++	/* Stop scheduling + flush any DRM scheduler operations */
++	xe_sched_submission_stop(sched);
++	if (xe_exec_queue_is_lr(q))
++		cancel_work_sync(&amp;q-&gt;guc-&gt;lr_tdr);
++	else
++		cancel_delayed_work_sync(&amp;sched-&gt;base.work_tdr);</pre>
+    </blockquote>
+    <p>We're doing the same cancelling in
+      `__guc_exec_queue_destroy_async()`, maybe close it into a
+      function?</p>
+    <blockquote type="cite" cite="mid:20250924011601.888293-27-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++
++	pending_enable = exec_queue_pending_enable(q);
++	pending_resume = exec_queue_pending_resume(q);
++
++	if (pending_enable &amp;&amp; pending_resume)
++		q-&gt;guc-&gt;needs_resume = true;
++
++	if (pending_enable &amp;&amp; !pending_resume &amp;&amp;
++	    !exec_queue_pending_tdr_exit(q)) {
++		clear_exec_queue_registered(q);
++		if (xe_exec_queue_is_lr(q))
++			xe_exec_queue_put(q);
++	}
++
++	if (pending_enable) {
++		clear_exec_queue_enabled(q);
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
++		clear_exec_queue_pending_enable(q);
++	}
++
++	if (exec_queue_destroyed(q) &amp;&amp; exec_queue_registered(q)) {
++		clear_exec_queue_destroyed(q);
++		if (exec_queue_extra_ref(q))
++			xe_exec_queue_put(q);
++		else
++			q-&gt;guc-&gt;needs_cleanup = true;
++		clear_exec_queue_extra_ref(q);
++	}
++
++	pending_disable = exec_queue_pending_disable(q);
++
++	if (pending_disable &amp;&amp; exec_queue_suspended(q)) {
++		clear_exec_queue_suspended(q);
++		q-&gt;guc-&gt;needs_suspend = true;
++	}
++
++	if (pending_disable) {
++		if (!pending_enable)
++			set_exec_queue_enabled(q);
++		clear_exec_queue_pending_disable(q);
++		clear_exec_queue_check_timeout(q);
++	}</pre>
+    </blockquote>
+    <p>maybe we can close the above into a separate function as well?</p>
+    <p>ie.&nbsp;<span style="white-space: pre-wrap">guc_exec_queue_undo_unfinished_state_change()?</span></p>
+    <p><span style="white-space: pre-wrap">guc_exec_queue_revert_pending_state_change()?</span></p>
+    <p>That would make this function easier to read, but also describe
+      what we're doing.</p>
+    <p>Then, a counterfunction could be ripped out of&nbsp;<span style="white-space: pre-wrap">guc_exec_queue_unpause<span style="white-space: normal">().</span></span></p>
+    <blockquote type="cite" cite="mid:20250924011601.888293-27-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++
++	q-&gt;guc-&gt;resume_time = 0;
++
++	if (xe_exec_queue_is_parallel(q)) {
++		struct xe_device *xe = guc_to_xe(guc);
++		struct iosys_map map = xe_lrc_parallel_map(q-&gt;lrc[0]);
++
++		for (i = 0; i &lt; WQ_SIZE / sizeof(u32); ++i)
++			parallel_write(xe, map, wq[i],
++				       FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_NOOP) |
++				       FIELD_PREP(WQ_LEN_MASK, 0));</pre>
+    </blockquote>
+    <p>ok so for parallel wq we're NOP'ing everything and adding the
+      items back at new positions? Maybe a comment here would help in
+      understanding that.</p>
+    <p>-Tomasz</p>
+    <blockquote type="cite" cite="mid:20250924011601.888293-27-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	}
++
++	job = xe_sched_first_pending_job(sched);
++	if (job) {
++		/*
++		 * Adjust software tail so jobs submitted overwrite previous
++		 * position in ring buffer with new GGTT addresses.
++		 */
++		for (i = 0; i &lt; q-&gt;width; ++i)
++			q-&gt;lrc[i]-&gt;ring.tail = job-&gt;ptrs[i].head;
++	}
++}
++
+ /**
+  * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
+  * @guc: the &amp;xe_guc struct instance whose scheduler is to be disabled
+@@ -2273,8 +2388,12 @@ void xe_guc_submit_pause(struct xe_guc *guc)
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+ 
++	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
++
++	mutex_lock(&amp;guc-&gt;submission_state.lock);
+ 	xa_for_each(&amp;guc-&gt;submission_state.exec_queue_lookup, index, q)
+-		xe_sched_submission_stop_async(&amp;q-&gt;guc-&gt;sched);
++		guc_exec_queue_pause(guc, q);
++	mutex_unlock(&amp;guc-&gt;submission_state.lock);
+ }
+ 
+ static void guc_exec_queue_start(struct xe_exec_queue *q)
+@@ -2323,11 +2442,87 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
+-static void guc_exec_queue_unpause(struct xe_exec_queue *q)
++static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
++					   struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &amp;q-&gt;guc-&gt;sched;
++	struct drm_sched_job *s_job;
++	struct xe_sched_job *job = NULL;
++
++	list_for_each_entry(s_job, &amp;sched-&gt;base.pending_list, list) {
++		job = to_xe_sched_job(s_job);
++
++		q-&gt;ring_ops-&gt;emit_job(job);
++		job-&gt;skip_emit = true;
++	}
++
++	if (job)
++		job-&gt;last_replay = true;
++}
++
++/**
++ * xe_guc_submit_unpause_prepare - Prepare unpause submission tasks on given GuC.
++ * @guc: the &amp;xe_guc struct instance whose scheduler is to be prepared for unpause
++ */
++void xe_guc_submit_unpause_prepare(struct xe_guc *guc)
 +{
 +	struct xe_exec_queue *q;
 +	unsigned long index;
 +
-+	mutex_lock(&amp;guc-&gt;submission_state.lock);
-+	xa_for_each(&amp;guc-&gt;submission_state.exec_queue_lookup, index, q) {
-+		struct xe_gpu_scheduler *sched = &amp;q-&gt;guc-&gt;sched;
++	xe_gt_assert(guc_to_gt(guc), vf_recovery(guc));
 +
-+		xe_sched_submission_start(sched);
-+		if (exec_queue_killed_or_banned_or_wedged(q))
-+			xe_guc_exec_queue_trigger_cleanup(q);
-+	}
++	mutex_lock(&amp;guc-&gt;submission_state.lock);
++	xa_for_each(&amp;guc-&gt;submission_state.exec_queue_lookup, index, q)
++		guc_exec_queue_unpause_prepare(guc, q);
 +	mutex_unlock(&amp;guc-&gt;submission_state.lock);
 +}
 +
- static struct xe_exec_queue *
- g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
- {
++static void guc_exec_queue_unpause(struct xe_guc *guc, struct xe_exec_queue *q)
++{
++	struct xe_gpu_scheduler *sched = &amp;q-&gt;guc-&gt;sched;
++	struct xe_sched_msg *msg;
++	bool needs_tdr = exec_queue_killed_or_banned_or_wedged(q);
++
++	lockdep_assert_held(&amp;guc-&gt;submission_state.lock);
++
++	xe_sched_resubmit_jobs(sched);
++
++	if (q-&gt;guc-&gt;needs_cleanup) {
++		msg = q-&gt;guc-&gt;static_msgs + STATIC_MSG_CLEANUP;
++
++		guc_exec_queue_add_msg(q, msg, CLEANUP);
++		q-&gt;guc-&gt;needs_cleanup = false;
++	}
++
++	if (q-&gt;guc-&gt;needs_suspend) {
++		msg = q-&gt;guc-&gt;static_msgs + STATIC_MSG_SUSPEND;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg_head(q, msg, SUSPEND);
++		xe_sched_msg_unlock(sched);
++
++		q-&gt;guc-&gt;needs_suspend = false;
++	}
++
++	/*
++	 * The resume must be in the message queue before the suspend as it is
++	 * not possible for a resume to be issued if a suspend pending is, but
++	 * the inverse is possible.
++	 */
++	if (q-&gt;guc-&gt;needs_resume) {
++		msg = q-&gt;guc-&gt;static_msgs + STATIC_MSG_RESUME;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg_head(q, msg, RESUME);
++		xe_sched_msg_unlock(sched);
++
++		q-&gt;guc-&gt;needs_resume = false;
++	}
+ 
+ 	xe_sched_submission_start(sched);
++	if (needs_tdr)
++		xe_guc_exec_queue_trigger_cleanup(q);
++	xe_sched_submission_resume_tdr(sched);
+ }
+ 
+ /**
+@@ -2339,10 +2534,10 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+ 
++	mutex_lock(&amp;guc-&gt;submission_state.lock);
+ 	xa_for_each(&amp;guc-&gt;submission_state.exec_queue_lookup, index, q)
+-		guc_exec_queue_unpause(q);
+-
+-	wake_up_all(&amp;guc-&gt;ct.wq);
++		guc_exec_queue_unpause(guc, q);
++	mutex_unlock(&amp;guc-&gt;submission_state.lock);
+ }
+ 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index f535fe3895e5..fe82c317048e 100644
+index fe82c317048e..b49a2748ec46 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.h
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
 @@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
  int xe_guc_submit_start(struct xe_guc *guc);
  void xe_guc_submit_pause(struct xe_guc *guc);
  void xe_guc_submit_unpause(struct xe_guc *guc);
-+void xe_guc_submit_pause_abort(struct xe_guc *guc);
++void xe_guc_submit_unpause_prepare(struct xe_guc *guc);
+ void xe_guc_submit_pause_abort(struct xe_guc *guc);
  void xe_guc_submit_wedge(struct xe_guc *guc);
  
- int xe_guc_read_stopped(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 7ce58765a34a..13e7a12b03ad 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -63,6 +63,10 @@ struct xe_sched_job {
+ 	bool ring_ops_flush_tlb;
+ 	/** @ggtt: mapped in ggtt. */
+ 	bool ggtt;
++	/** @skip_emit: skip emitting the job */
++	bool skip_emit;
++	/** @last_replay: last job being replayed */
++	bool last_replay;
+ 	/** @ptrs: per instance pointers. */
+ 	struct xe_job_ptrs ptrs[];
+ };
 </pre>
     </blockquote>
   </body>
 </html>
 
---------------h3isXnHVuinjZTIk064MkLdc--
+--------------mlYy1n80d5KK3VHoG9BRf7oi--
