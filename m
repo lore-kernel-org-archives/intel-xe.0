@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE6EACAC5BB
-	for <intel-xe@archiver.kernel.org>; Sun, 28 Sep 2025 14:00:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5900FCAC5BB
+	for <intel-xe@archiver.kernel.org>; Sun, 28 Sep 2025 14:00:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D4DC10E146;
-	Sun, 28 Sep 2025 14:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C46510E124;
+	Sun, 28 Sep 2025 14:00:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCbGitch";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UiIU4k6D";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 125C510E12F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A847610E12E
  for <intel-xe@lists.freedesktop.org>; Sun, 28 Sep 2025 14:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759068052; x=1790604052;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qEhyo6odfoUDFr8lIYUQkKEKCNi0aBOe0MXXRVrpfLU=;
- b=DCbGitchjUmSPjDWleDdveZp8c2UmEkNzeHHdN/VLj7pDktkMasnqOsn
- NtqTr+lsbhruwjkDQxP46YBbF8zwrowEEYO24qyUKOfoTx6s/8/Y88qVT
- yugG9h4QJRqstqB1r65/Kr6UXGNPHrOClgNRH9xvCSFWxfIF2qLhy7NoX
- Sqvc860Q1FgfW05EV1pnzyPOFsz+tsqgLq9n/pYMgsalj5ziwJEwbiVmA
- dboenYPEp4B7A8i89N0GPTV5Zos0i2QJ++YnaYOnQt6jGKtnVz2m4BwBG
- uMPdpau4MTOxX7GJMJ5/qMrgpstsRw5CmQbVCrbqGAwytO7NWD9NOvVit g==;
-X-CSE-ConnectionGUID: myzvRdGkTcSndMIxssBlXw==
-X-CSE-MsgGUID: vTWFgxftRV24mKiwOP19XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="48893888"
-X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="48893888"
+ bh=mwNQHkI9QPpuVHf0dLBpVEjoafCJK05O7Tv1pFavbFg=;
+ b=UiIU4k6DHLatDyyjKF1r+Q4+geemQhiTbSL96SzSQiWdgJKJwuze5HTu
+ FCApd6u2tsYsXbDPnt4d7Pke2FQuHES+HMBurHk4KWh0PMgc4hrUbkEgF
+ jWbVtb0ib5m3gnAnedJJ+GpFpAmWw1JAXqN327T3mpd8rzQFJ+DXVvS1M
+ /AVLl05itDic3bzmwOhiSsEHyWcbkVum9c1z3IZmcGK9qxNaEnHPzI//i
+ 0LA/tSdOJus8bB8DPbaH8yZTRjrRBfY3puIgwq8Qg0e4NKGKyNQImKNfo
+ 6sgFZS2YQb8uJkqG+LSgEfPzcZb0fq4+hgT5kYN1u8Z6l9tVAtOaXG195 w==;
+X-CSE-ConnectionGUID: 1WSarj0/TH20uo0V3Y663w==
+X-CSE-MsgGUID: wstJ1eI+Sdaap3lmcbK82Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="48893890"
+X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="48893890"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 07:00:51 -0700
-X-CSE-ConnectionGUID: FnZeFYGUQ0Key1Ddzs+NZA==
-X-CSE-MsgGUID: doCNHDjHQK26rfFYSelj3Q==
+ 28 Sep 2025 07:00:52 -0700
+X-CSE-ConnectionGUID: crHc578IRMe9tkdXC/QIUQ==
+X-CSE-MsgGUID: 32c9VqD9Tj2uR3RqjCuYHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="178761854"
+X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="178761861"
 Received: from jkhalil-mobl.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.85])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 07:00:49 -0700
+ 28 Sep 2025 07:00:51 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 4/6] drm/xe/pf: Move SR-IOV GT debugfs files to new tree
-Date: Sun, 28 Sep 2025 16:00:26 +0200
-Message-ID: <20250928140029.198847-5-michal.wajdeczko@intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v2 5/6] drm/xe/debugfs: Promote xe_tile_debugfs_simple_show
+Date: Sun, 28 Sep 2025 16:00:27 +0200
+Message-ID: <20250928140029.198847-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250928140029.198847-1-michal.wajdeczko@intel.com>
 References: <20250928140029.198847-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,532 +69,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of expanding GT debugfs directories with large number of
-SR-IOV files, as those are replicated per each SR-IOV function,
-move them to our new debugfs tree, organized by the function.
-
-But to avoid breaking IGT tests that use current layout, provide
-symlinks which could be removed once transition period is over,
-or we can we can leave them for convenience.
+We will want to use this helper function in other files.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: don't use VFNAME_MAX (rebase)
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   | 355 +++++++++++-------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h   |   1 +
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c |  13 +
- 3 files changed, 234 insertions(+), 135 deletions(-)
+ drivers/gpu/drm/xe/xe_tile_debugfs.c | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_tile_debugfs.h |  3 +++
+ 2 files changed, 10 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index 3ed245e04d0c..fbb3cb3200fb 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -25,12 +25,22 @@
- #include "xe_sriov_pf.h"
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0		# d_inode->i_private = gt
-- *      │   ├── pf	# d_inode->i_private = gt
-- *      │   ├── vf1	# d_inode->i_private = VFID(1)
-- *      :   :
-- *      │   ├── vfN	# d_inode->i_private = VFID(N)
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov		# d_inode->i_private = (xe_device*)
-+ *      │   ├── pf		# d_inode->i_private = (xe_device*)
-+ *      │   │   ├── tile0	# d_inode->i_private = (xe_tile*)
-+ *      │   │   │   ├── gt0	# d_inode->i_private = (xe_gt*)
-+ *      │   │   │   ├── gt1	# d_inode->i_private = (xe_gt*)
-+ *      │   │   ├── tile1
-+ *      │   │   │   :
-+ *      │   ├── vf1		# d_inode->i_private = VFID(1)
-+ *      │   │   ├── tile0	# d_inode->i_private = (xe_tile*)
-+ *      │   │   │   ├── gt0	# d_inode->i_private = (xe_gt*)
-+ *      │   │   │   ├── gt1	# d_inode->i_private = (xe_gt*)
-+ *      │   │   ├── tile1
-+ *      │   │   │   :
-+ *      :   :
-+ *      │   ├── vfN		# d_inode->i_private = VFID(N)
-  */
- 
- static void *extract_priv(struct dentry *d)
-@@ -40,26 +50,31 @@ static void *extract_priv(struct dentry *d)
- 
- static struct xe_gt *extract_gt(struct dentry *d)
- {
--	return extract_priv(d->d_parent);
-+	return extract_priv(d);
-+}
-+
-+static struct xe_device *extract_xe(struct dentry *d)
-+{
-+	return extract_priv(d->d_parent->d_parent->d_parent);
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.c b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+index a3f437d38f86..fff242a5ae56 100644
+--- a/drivers/gpu/drm/xe/xe_tile_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+@@ -17,7 +17,7 @@ static struct xe_tile *node_to_tile(struct drm_info_node *node)
  }
  
- static unsigned int extract_vfid(struct dentry *d)
- {
--	return extract_priv(d) == extract_gt(d) ? PFID : (uintptr_t)extract_priv(d);
-+	void *priv = extract_priv(d->d_parent->d_parent);
-+
-+	return priv == extract_xe(d) ? PFID : (uintptr_t)priv;
- }
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── contexts_provisioned
-- *      │   │   ├── doorbells_provisioned
-- *      │   │   ├── runtime_registers
-- *      │   │   ├── negotiated_versions
-- *      │   │   ├── adverse_events
-- *      ├── gt1
-- *      │   ├── pf
-- *      │   │   ├── ...
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── contexts_provisioned
-+ *                      ├── doorbells_provisioned
-+ *                      ├── runtime_registers
-+ *                      ├── adverse_events
-  */
- 
- static const struct drm_info_list pf_info[] = {
-@@ -86,11 +101,13 @@ static const struct drm_info_list pf_info[] = {
- };
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── ggtt_available
-- *      │   │   ├── ggtt_provisioned
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── ggtt_available
-+ *                      ├── ggtt_provisioned
-  */
- 
- static const struct drm_info_list pf_ggtt_info[] = {
-@@ -107,10 +124,12 @@ static const struct drm_info_list pf_ggtt_info[] = {
- };
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── lmem_provisioned
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── lmem_provisioned
-  */
- 
- static const struct drm_info_list pf_lmem_info[] = {
-@@ -122,12 +141,14 @@ static const struct drm_info_list pf_lmem_info[] = {
- };
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── reset_engine
-- *      │   │   ├── sample_period
-- *      │   │   ├── sched_if_idle
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── reset_engine
-+ *                      ├── sample_period
-+ *                      ├── sched_if_idle
-  */
- 
- #define DEFINE_SRIOV_GT_POLICY_DEBUGFS_ATTRIBUTE(POLICY, TYPE, FORMAT)		\
-@@ -173,24 +194,28 @@ static void pf_add_policy_attrs(struct xe_gt *gt, struct dentry *parent)
- }
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── ggtt_spare
-- *      │   │   ├── lmem_spare
-- *      │   │   ├── doorbells_spare
-- *      │   │   ├── contexts_spare
-- *      │   │   ├── exec_quantum_ms
-- *      │   │   ├── preempt_timeout_us
-- *      │   │   ├── sched_priority
-- *      │   ├── vf1
-- *      │   │   ├── ggtt_quota
-- *      │   │   ├── lmem_quota
-- *      │   │   ├── doorbells_quota
-- *      │   │   ├── contexts_quota
-- *      │   │   ├── exec_quantum_ms
-- *      │   │   ├── preempt_timeout_us
-- *      │   │   ├── sched_priority
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          │   ├── tile0
-+ *          │   :   ├── gt0
-+ *          │       :   ├── ggtt_spare
-+ *          │           ├── lmem_spare
-+ *          │           ├── doorbells_spare
-+ *          │           ├── contexts_spare
-+ *          │           ├── exec_quantum_ms
-+ *          │           ├── preempt_timeout_us
-+ *          │           ├── sched_priority
-+ *          ├── vf1
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── ggtt_quota
-+ *                      ├── lmem_quota
-+ *                      ├── doorbells_quota
-+ *                      ├── contexts_quota
-+ *                      ├── exec_quantum_ms
-+ *                      ├── preempt_timeout_us
-+ *                      ├── sched_priority
-  */
- 
- #define DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(CONFIG, TYPE, FORMAT)		\
-@@ -233,22 +258,26 @@ DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(preempt_timeout, u32, "%llu\n");
- DEFINE_SRIOV_GT_CONFIG_DEBUGFS_ATTRIBUTE(sched_priority, u32, "%llu\n");
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── pf
-- *      │   │   ├── threshold_cat_error_count
-- *      │   │   ├── threshold_doorbell_time_us
-- *      │   │   ├── threshold_engine_reset_count
-- *      │   │   ├── threshold_guc_time_us
-- *      │   │   ├── threshold_irq_time_us
-- *      │   │   ├── threshold_page_fault_count
-- *      │   ├── vf1
-- *      │   │   ├── threshold_cat_error_count
-- *      │   │   ├── threshold_doorbell_time_us
-- *      │   │   ├── threshold_engine_reset_count
-- *      │   │   ├── threshold_guc_time_us
-- *      │   │   ├── threshold_irq_time_us
-- *      │   │   ├── threshold_page_fault_count
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── pf
-+ *          │   ├── tile0
-+ *          │   :   ├── gt0
-+ *          │       :   ├── threshold_cat_error_count
-+ *          │           ├── threshold_doorbell_time_us
-+ *          │           ├── threshold_engine_reset_count
-+ *          │           ├── threshold_guc_time_us
-+ *          │           ├── threshold_irq_time_us
-+ *          │           ├── threshold_page_fault_count
-+ *          ├── vf1
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── threshold_cat_error_count
-+ *                      ├── threshold_doorbell_time_us
-+ *                      ├── threshold_engine_reset_count
-+ *                      ├── threshold_guc_time_us
-+ *                      ├── threshold_irq_time_us
-+ *                      ├── threshold_page_fault_count
-  */
- 
- static int set_threshold(void *data, u64 val, enum xe_guc_klv_threshold_index index)
-@@ -329,10 +358,12 @@ static void pf_add_config_attrs(struct xe_gt *gt, struct dentry *parent, unsigne
- }
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── vf1
-- *      │   │   ├── control { stop, pause, resume }
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── vf1
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── control { stop, pause, resume }
-  */
- 
- static const struct {
-@@ -409,11 +440,14 @@ static const struct file_operations control_ops = {
- };
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── vf1
-- *      │   │   ├── guc_state
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── vf1
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── guc_state
-  */
-+
- static ssize_t guc_state_read(struct file *file, char __user *buf,
- 			      size_t count, loff_t *pos)
- {
-@@ -447,11 +481,14 @@ static const struct file_operations guc_state_ops = {
- };
- 
- /*
-- *      /sys/kernel/debug/dri/0/
-- *      ├── gt0
-- *      │   ├── vf1
-- *      │   │   ├── config_blob
-+ *      /sys/kernel/debug/dri/BDF/
-+ *      ├── sriov
-+ *      :   ├── vf1
-+ *          :   ├── tile0
-+ *              :   ├── gt0
-+ *                  :   ├── config_blob
-  */
-+
- static ssize_t config_blob_read(struct file *file, char __user *buf,
- 				size_t count, loff_t *pos)
- {
-@@ -521,73 +558,121 @@ static const struct file_operations config_blob_ops = {
- 	.llseek		= default_llseek,
- };
- 
--/**
-- * xe_gt_sriov_pf_debugfs_register - Register SR-IOV PF specific entries in GT debugfs.
-- * @gt: the &xe_gt to register
-- * @root: the &dentry that represents the GT directory
-- *
-- * Register SR-IOV PF entries that are GT related and must be shown under GT debugfs.
-- */
--void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root)
-+static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int vfid)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct drm_minor *minor = xe->drm.primary;
--	int n, totalvfs = xe_sriov_pf_get_totalvfs(xe);
--	struct dentry *pfdentry;
--	struct dentry *vfdentry;
--	char buf[14]; /* should be enough up to "vf%u\0" for 2^32 - 1 */
- 
--	xe_gt_assert(gt, IS_SRIOV_PF(xe));
--	xe_gt_assert(gt, root->d_inode->i_private == gt);
-+	if (vfid) {
-+		pf_add_config_attrs(gt, dent, vfid);
- 
--	/*
--	 *      /sys/kernel/debug/dri/0/
--	 *      ├── gt0
--	 *      │   ├── pf
--	 */
--	pfdentry = debugfs_create_dir("pf", root);
--	if (IS_ERR(pfdentry))
--		return;
--	pfdentry->d_inode->i_private = gt;
--
--	drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), pfdentry, minor);
--	if (xe_gt_is_main_type(gt)) {
--		drm_debugfs_create_files(pf_ggtt_info,
--					 ARRAY_SIZE(pf_ggtt_info),
--					 pfdentry, minor);
--		if (xe_device_has_lmtt(gt_to_xe(gt)))
--			drm_debugfs_create_files(pf_lmem_info,
--						 ARRAY_SIZE(pf_lmem_info),
--						 pfdentry, minor);
--	}
--
--	pf_add_policy_attrs(gt, pfdentry);
--	pf_add_config_attrs(gt, pfdentry, PFID);
--
--	for (n = 1; n <= totalvfs; n++) {
--		/*
--		 *      /sys/kernel/debug/dri/0/
--		 *      ├── gt0
--		 *      │   ├── vf1
--		 *      │   ├── vf2
--		 */
--		snprintf(buf, sizeof(buf), "vf%u", n);
--		vfdentry = debugfs_create_dir(buf, root);
--		if (IS_ERR(vfdentry))
--			break;
--		vfdentry->d_inode->i_private = (void *)(uintptr_t)n;
--
--		pf_add_config_attrs(gt, vfdentry, VFID(n));
--		debugfs_create_file("control", 0600, vfdentry, NULL, &control_ops);
-+		debugfs_create_file("control", 0600, dent, NULL, &control_ops);
- 
- 		/* for testing/debugging purposes only! */
- 		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
- 			debugfs_create_file("guc_state",
- 					    IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV) ? 0600 : 0400,
--					    vfdentry, NULL, &guc_state_ops);
-+					    dent, NULL, &guc_state_ops);
- 			debugfs_create_file("config_blob",
- 					    IS_ENABLED(CONFIG_DRM_XE_DEBUG_SRIOV) ? 0600 : 0400,
--					    vfdentry, NULL, &config_blob_ops);
-+					    dent, NULL, &config_blob_ops);
-+		}
-+
-+	} else {
-+		pf_add_config_attrs(gt, dent, PFID);
-+		pf_add_policy_attrs(gt, dent);
-+
-+		drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, minor);
-+
-+		if (xe_gt_is_main_type(gt)) {
-+			drm_debugfs_create_files(pf_ggtt_info,
-+						 ARRAY_SIZE(pf_ggtt_info),
-+						 dent, minor);
-+			if (xe_device_has_lmtt(xe))
-+				drm_debugfs_create_files(pf_lmem_info,
-+							 ARRAY_SIZE(pf_lmem_info),
-+							 dent, minor);
- 		}
- 	}
- }
-+
-+/**
-+ * xe_gt_sriov_pf_debugfs_populate() - Create SR-IOV GT-level debugfs directories and files.
-+ * @gt: the &xe_gt to register
-+ * @parent: the parent &dentry that represents a &xe_tile
-+ * @vfid: the VF identifier
-+ *
-+ * Add to the @parent directory new debugfs directory that will represent a @gt and
-+ * populate it with GT files that are related to the SR-IOV @vfid function.
-+ *
-+ * This function can only be called on PF.
-+ */
-+void xe_gt_sriov_pf_debugfs_populate(struct xe_gt *gt, struct dentry *parent, unsigned int vfid)
-+{
-+	struct dentry *dent;
-+	char name[8]; /* should be enough up to "gt%u\0" for 2^8 - 1 */
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, extract_priv(parent) == gt->tile);
-+	xe_gt_assert(gt, extract_priv(parent->d_parent) == gt_to_xe(gt) ||
-+		     (uintptr_t)extract_priv(parent->d_parent) == vfid);
-+
-+	/*
-+	 *      /sys/kernel/debug/dri/BDF/
-+	 *      ├── sriov
-+	 *      │   ├── pf
-+	 *      │   │   ├── tile0		# parent
-+	 *      │   │   │   ├── gt0		# d_inode->i_private = (xe_gt*)
-+	 *      │   │   │   ├── gt1
-+	 *      │   │   :   :
-+	 *      │   ├── vf1
-+	 *      │   │   ├── tile0		# parent
-+	 *      │   │   │   ├── gt0		# d_inode->i_private = (xe_gt*)
-+	 *      │   │   │   ├── gt1
-+	 *      │   :   :   :
-+	 */
-+	snprintf(name, sizeof(name), "gt%u", gt->info.id);
-+	dent = debugfs_create_dir(name, parent);
-+	if (IS_ERR(dent))
-+		return;
-+	dent->d_inode->i_private = gt;
-+
-+	xe_gt_assert(gt, extract_gt(dent) == gt);
-+	xe_gt_assert(gt, extract_vfid(dent) == vfid);
-+
-+	pf_populate_gt(gt, dent, vfid);
-+}
-+
-+static void pf_add_links(struct xe_gt *gt, struct dentry *dent)
-+{
-+	unsigned int totalvfs = xe_gt_sriov_pf_get_totalvfs(gt);
-+	unsigned int vfid;
-+	char name[16];		/* should be more than enough for "vf%u\0" and VFID(UINT_MAX) */
-+	char symlink[64];	/* should be more enough for "../../sriov/vf%u/tile%u/gt%u\0" */
-+
-+	for (vfid = 0; vfid <= totalvfs; vfid++) {
-+		if (vfid)
-+			snprintf(name, sizeof(name), "vf%u", vfid);
-+		else
-+			snprintf(name, sizeof(name), "pf");
-+		snprintf(symlink, sizeof(symlink), "../../sriov/%s/tile%u/gt%u",
-+			 name, gt->tile->id, gt->info.id);
-+		debugfs_create_symlink(name, dent, symlink);
-+	}
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_debugfs_register - Register SR-IOV PF specific entries in GT debugfs.
-+ * @gt: the &xe_gt to register
-+ * @dent: the &dentry that represents the GT directory
-+ *
-+ * Instead of actual files, create symlinks for PF and each VF to their GT specific
-+ * attributes that should be already exposed in the dedicated debugfs SR-IOV tree.
-+ */
-+void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *dent)
-+{
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, dent->d_inode->i_private == gt);
-+
-+	pf_add_links(gt, dent);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h
-index 038cc8ddc244..82ff3b7f0532 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.h
-@@ -11,6 +11,7 @@ struct dentry;
- 
- #ifdef CONFIG_PCI_IOV
- void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root);
-+void xe_gt_sriov_pf_debugfs_populate(struct xe_gt *gt, struct dentry *parent, unsigned int vfid);
- #else
- static inline void xe_gt_sriov_pf_debugfs_register(struct xe_gt *gt, struct dentry *root) { }
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-index 91973ee9bb05..335a79d09639 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-@@ -6,7 +6,9 @@
- #include <linux/debugfs.h>
- #include <drm/drm_debugfs.h>
- 
-+#include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_gt_sriov_pf_debugfs.h"
- #include "xe_tile_sriov_pf_debugfs.h"
- #include "xe_sriov.h"
- 
-@@ -51,6 +53,15 @@ static unsigned int extract_vfid(struct dentry *d)
- 	return pp == extract_xe(d) ? PFID : (uintptr_t)pp;
- }
- 
-+static void pf_populate_tile(struct xe_tile *tile, struct dentry *dent, unsigned int vfid)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+
-+	for_each_gt_on_tile(gt, tile, id)
-+		xe_gt_sriov_pf_debugfs_populate(gt, dent, vfid);
-+}
-+
  /**
-  * xe_tile_sriov_pf_debugfs_populate() - Populate SR-IOV debugfs tree with tile files.
-  * @tile: the &xe_tile to register
-@@ -95,4 +106,6 @@ void xe_tile_sriov_pf_debugfs_populate(struct xe_tile *tile, struct dentry *pare
- 	xe_tile_assert(tile, extract_tile(dent) == tile);
- 	xe_tile_assert(tile, extract_vfid(dent) == vfid);
- 	xe_tile_assert(tile, extract_xe(dent) == xe);
-+
-+	pf_populate_tile(tile, dent, vfid);
+- * tile_debugfs_simple_show - A show callback for struct drm_info_list
++ * xe_tile_debugfs_simple_show() - A show callback for struct drm_info_list
+  * @m: the &seq_file
+  * @data: data used by the drm debugfs helpers
+  *
+@@ -58,7 +58,7 @@ static struct xe_tile *node_to_tile(struct drm_info_node *node)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-static int tile_debugfs_simple_show(struct seq_file *m, void *data)
++int xe_tile_debugfs_simple_show(struct seq_file *m, void *data)
+ {
+ 	struct drm_printer p = drm_seq_file_printer(m);
+ 	struct drm_info_node *node = m->private;
+@@ -69,7 +69,7 @@ static int tile_debugfs_simple_show(struct seq_file *m, void *data)
  }
+ 
+ /**
+- * tile_debugfs_show_with_rpm - A show callback for struct drm_info_list
++ * xe_tile_debugfs_show_with_rpm() - A show callback for struct drm_info_list
+  * @m: the &seq_file
+  * @data: data used by the drm debugfs helpers
+  *
+@@ -77,7 +77,7 @@ static int tile_debugfs_simple_show(struct seq_file *m, void *data)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-static int tile_debugfs_show_with_rpm(struct seq_file *m, void *data)
++int xe_tile_debugfs_show_with_rpm(struct seq_file *m, void *data)
+ {
+ 	struct drm_info_node *node = m->private;
+ 	struct xe_tile *tile = node_to_tile(node);
+@@ -85,7 +85,7 @@ static int tile_debugfs_show_with_rpm(struct seq_file *m, void *data)
+ 	int ret;
+ 
+ 	xe_pm_runtime_get(xe);
+-	ret = tile_debugfs_simple_show(m, data);
++	ret = xe_tile_debugfs_simple_show(m, data);
+ 	xe_pm_runtime_put(xe);
+ 
+ 	return ret;
+@@ -106,8 +106,8 @@ static int sa_info(struct xe_tile *tile, struct drm_printer *p)
+ 
+ /* only for debugfs files which can be safely used on the VF */
+ static const struct drm_info_list vf_safe_debugfs_list[] = {
+-	{ "ggtt", .show = tile_debugfs_show_with_rpm, .data = ggtt },
+-	{ "sa_info", .show = tile_debugfs_show_with_rpm, .data = sa_info },
++	{ "ggtt", .show = xe_tile_debugfs_show_with_rpm, .data = ggtt },
++	{ "sa_info", .show = xe_tile_debugfs_show_with_rpm, .data = sa_info },
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.h b/drivers/gpu/drm/xe/xe_tile_debugfs.h
+index 0e5f724de37f..4429c22542f4 100644
+--- a/drivers/gpu/drm/xe/xe_tile_debugfs.h
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.h
+@@ -6,8 +6,11 @@
+ #ifndef _XE_TILE_DEBUGFS_H_
+ #define _XE_TILE_DEBUGFS_H_
+ 
++struct seq_file;
+ struct xe_tile;
+ 
+ void xe_tile_debugfs_register(struct xe_tile *tile);
++int xe_tile_debugfs_simple_show(struct seq_file *m, void *data);
++int xe_tile_debugfs_show_with_rpm(struct seq_file *m, void *data);
+ 
+ #endif
 -- 
 2.47.1
 
