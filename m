@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89246CAC5BC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB391CCA471
 	for <intel-xe@archiver.kernel.org>; Sun, 28 Sep 2025 07:20:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C18B10E393;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A89510E396;
 	Sun, 28 Sep 2025 07:20:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLnPXin0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mQP2kINd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9574210E384;
- Sun, 28 Sep 2025 07:19:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70EBC10E0E3;
+ Sun, 28 Sep 2025 07:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759043970; x=1790579970;
+ t=1759043961; x=1790579961;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/yYx6kZ4XkBvG58i9i9oXDgDSXSMw9Od3KbUqPD2IuQ=;
- b=FLnPXin0ugmrgICZs3P9QefTAS2W4Jee/9jhDEcAC+DbVsUh+Fb9VV+J
- MS8oXJmUNufFG9yaDxE0vvxkTlAGTGqQR65qh0fatnHjagADwRQ5Xo1vk
- 2WqJuE47tAlTAFEyxCXyn+Rlp8NaL5fqIdHaTyJ4QtziXomajMa7M8lQE
- IVQCMcLK+/rP5kbL2ybcxuI/bhMsEdDDon319kmftzeFFZORnCRcCFus9
- t20M5Se4lCJ1oduXawLpIDkI3Q2i1oz2pimBOKLmDV7sWxfmYPfgiC1JZ
- /dOHLxA6FM9sMpYbK9mbbGIApMv0ihvf+lcNHPZipcCCN/nPtj+ZTJYxe Q==;
-X-CSE-ConnectionGUID: nuDJU1PqTzGmjBzTvpJnYA==
-X-CSE-MsgGUID: GCvZanR9R1KtiBSZ8ph7/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11566"; a="60528596"
-X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="60528596"
+ bh=QH7LM+SN+sBNoJ818iCUl0qr7Tz99g90xmVDaskdgaQ=;
+ b=mQP2kINdvZ7tamwcbDdu2JgKIFv8IDCMKg998MiaRSWeZRQ3n512NxL+
+ 9rvrbQy2nQ/wLBmOZ5wb64e7Yb3zkkXjl9k976MZrGHdYhrhhDjD1nzrx
+ aI+F4faDD2T75Xjuq0vLZDM0fsXj+3+8nID/j5pXG1/UFHvFX67041OTI
+ chk3yBnQQ0pWd9ceX62YHL7e4Iq1bOGsNF/bdpi515Q++J6cOFY4VqtTX
+ b2F4sdKSKD8DeH4jfFMEO9zhfmYL2s5+KS5konr+eCzbpa2foqdozFSG6
+ KWubsvbzxULEfstU2AHCWPPVD32eBO4uIiAhl3XwvnH+fQCWNxZecZzOe A==;
+X-CSE-ConnectionGUID: ou9I2ahhSQW34hvgx605LA==
+X-CSE-MsgGUID: r3PI6Yl9SQ2eN0XyNSuWYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11566"; a="60528526"
+X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="60528526"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 00:19:30 -0700
-X-CSE-ConnectionGUID: GtS38shnRmymwoXvAVcnGA==
-X-CSE-MsgGUID: LGeQYs4fTVidVmPITRnRDQ==
+ 28 Sep 2025 00:19:20 -0700
+X-CSE-ConnectionGUID: /io9oj0iRLuM+Wo9upUsUQ==
+X-CSE-MsgGUID: KET0m8rNQDGy3bVc9Nfg7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="215094071"
+X-IronPort-AV: E=Sophos;i="6.18,299,1751266800"; d="scan'208";a="215094056"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 00:19:29 -0700
+ 28 Sep 2025 00:19:19 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 14/15] drm/i915/display:
- s/allow_vblank_delay_fastset/allow_vblank_delay_fastset_lrr
-Date: Sun, 28 Sep 2025 12:35:39 +0530
-Message-ID: <20250928070541.3892890-15-ankit.k.nautiyal@intel.com>
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 09/15] drm/i915/skl_watermark: Remove redundant latency checks
+ from vblank validation
+Date: Sun, 28 Sep 2025 12:35:34 +0530
+Message-ID: <20250928070541.3892890-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
 References: <20250928070541.3892890-1-ankit.k.nautiyal@intel.com>
@@ -68,47 +69,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function allow_vblank_delay_fastset specifically checks for conditions
-under which vblank delay is allowed via LRR codepaths. To make its purpose
-clearer and prepare for future extensions, rename it to
-allow_vblank_delay_fastset_lrr.
+Drop DSC and scaler prefill latency checks from skl_is_vblank_too_short().
+These are now covered by the guardband validation added during the atomic
+CRTC check phase.
+
+This cleanup prepares for future changes where the guardband will be
+optimized independently of vblank length, making vblank-based checks
+obsolete.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 80 --------------------
+ 1 file changed, 80 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ec415b939770..4135f9be53fd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5097,7 +5097,7 @@ pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
- 	intel_cx0pll_dump_hw_state(display, b);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 9a368bb9e92a..73e5b2d8ae83 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -28,7 +28,6 @@
+ #include "intel_flipq.h"
+ #include "intel_pcode.h"
+ #include "intel_plane.h"
+-#include "intel_vdsc.h"
+ #include "intel_wm.h"
+ #include "skl_universal_plane_regs.h"
+ #include "skl_scaler.h"
+@@ -2162,91 +2161,12 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 	return 0;
  }
  
--static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
-+static bool allow_vblank_delay_fastset_lrr(const struct intel_crtc_state *old_crtc_state)
+-static int
+-cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_atomic_state *state =
+-		to_intel_atomic_state(crtc_state->uapi.state);
+-	const struct intel_cdclk_state *cdclk_state;
+-
+-	cdclk_state = intel_atomic_get_cdclk_state(state);
+-	if (IS_ERR(cdclk_state)) {
+-		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+-		return 1;
+-	}
+-
+-	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+-				   2 * intel_cdclk_logical(cdclk_state)));
+-}
+-
+-static int
+-dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+-{
+-	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+-	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+-	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+-	u32 dsc_prefill_latency = 0;
+-
+-	if (!crtc_state->dsc.compression_enable ||
+-	    !num_scaler_users ||
+-	    num_scaler_users > crtc->num_scalers)
+-		return dsc_prefill_latency;
+-
+-	for (int i = 0; i < num_scaler_users; i++) {
+-		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+-		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+-	}
+-
+-	dsc_prefill_latency =
+-		intel_dsc_guardband_latency(num_scaler_users, hscale_k, vscale_k,
+-					    chroma_downscaling_factor,
+-					    cdclk_prefill_adjustment(crtc_state),
+-					    linetime);
+-
+-	return dsc_prefill_latency;
+-}
+-
+-static int
+-scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+-{
+-	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+-	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+-	int num_scaler_users = hweight32(scaler_state->scaler_users);
+-	u64 hscale_k = 0, vscale_k = 0;
+-	int scaler_prefill_latency = 0;
+-
+-	if (!num_scaler_users)
+-		return scaler_prefill_latency;
+-
+-	if (num_scaler_users > 1) {
+-		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+-		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+-	}
+-
+-	scaler_prefill_latency =
+-		skl_scaler_guardband_latency(num_scaler_users, hscale_k, vscale_k,
+-					     chroma_downscaling_factor,
+-					     cdclk_prefill_adjustment(crtc_state),
+-					     linetime);
+-
+-	return scaler_prefill_latency;
+-}
+-
+ static bool
+ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 			int wm0_lines, int latency)
  {
- 	struct intel_display *display = to_intel_display(old_crtc_state);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+-	int linetime = DIV_ROUND_UP(1000 * adjusted_mode->htotal,
+-				    adjusted_mode->clock);
+-
+-	latency += scaler_prefill_latency(crtc_state, linetime) +
+-		   dsc_prefill_latency(crtc_state, linetime);
  
-@@ -5242,7 +5242,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
- 	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
--	if (!fastset || !allow_vblank_delay_fastset(current_config)) \
-+	if (!fastset || !allow_vblank_delay_fastset_lrr(current_config)) \
- 		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
-@@ -5851,7 +5851,7 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
- 		drm_dbg_kms(display->drm, "[CRTC:%d:%s] fastset requirement not met, forcing full modeset\n",
- 			    crtc->base.base.id, crtc->base.name);
- 	} else {
--		if (allow_vblank_delay_fastset(old_crtc_state))
-+		if (allow_vblank_delay_fastset_lrr(old_crtc_state))
- 			new_crtc_state->update_lrr = true;
- 		new_crtc_state->uapi.mode_changed = false;
- 	}
+ 	return crtc_state->framestart_delay +
+ 		intel_usecs_to_scanlines(adjusted_mode, latency) +
 -- 
 2.45.2
 
