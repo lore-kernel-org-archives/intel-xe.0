@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2322ECCA476
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A796CCD183
 	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 02:56:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4575310E21D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0EE510E31C;
 	Mon, 29 Sep 2025 02:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ei167TxS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FZyRjrrT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 233A310E20A
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01DD810E20A
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759114550; x=1790650550;
+ t=1759114552; x=1790650552;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=oh4HhMwv+PqO4eXX+KGvYQJMFyMhjf/fcWmIu2TKfrM=;
- b=ei167TxS/9WC/XaWBC1DtwHkwqnWNzu4Ezo0R7tgFhH+iDiNquuUITUF
- SQV0OjeSJhCJKjOYg5UM2sYgPkhV51d7puSdQ43H52UDIQYYCmOC7hUrW
- s+z9Xfe90qYCRWXjiLOw1qYwTc8pRyXEM8m6inBWL7HYHBL/QUDd8Eiz6
- NuMhE1Vv7b2QYt9Y7WGd56X14oXn+OZs8YmoZ+jDaM+6F0p5G3IupOKt8
- eisld1rgTqz+LsBCEj5vVD/iTNY+seLi93s/F9u7NHFl5eo6rokZkn7sp
- feGAAY5gp9abEd9Lox0G+D7XDPFP3qi7ZYzXozO5RuZxs/y18nHWB38Zy A==;
-X-CSE-ConnectionGUID: BCS/w3GzRE6opo1kca43ww==
-X-CSE-MsgGUID: oCfUkn/XTZyzdVAFU73alA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398527"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398527"
+ bh=ogpLlbonvR3DNQ0zq7Pi8n0WWoojCaM63eArGwdIZ94=;
+ b=FZyRjrrTb/ZvzVo3zLhAcgukyjG4x+U/jXMOItGHXbYCmpnuADfVTxn8
+ 9E9hEfsiZ/DLrTOy6LKkNoabz4dgN6HWxDPUQkuLfSGB3qXtCxJWP+1zn
+ XT+6suyKxB+aT6YoYftj8RM9UXdwPpMwcnWyKdmsqmaNM9ZwydKy3Mcvy
+ 2hMI22GSANoBvEr3fUrEWwsPIaFMn/V8ihR3bkOxR0+/q5nfpz+WdGfUu
+ z9tPSZktOcMuLjOTXRNyLSRi6kPtCrD8Vtx+GrEZxihuomxgAmMQRQVaT
+ OPJdEFkUhZUTs05WrnukaZMLE73n07TyKfWRPefVrXwxh6H+8EUOvPOC/ A==;
+X-CSE-ConnectionGUID: OJ6ePyeKRtK76RTSV3rihw==
+X-CSE-MsgGUID: mk6sZerhQcGU8QyW2YaGQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398545"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398545"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:50 -0700
-X-CSE-ConnectionGUID: jT0GFqLsS4yBqMLuXNt7cw==
-X-CSE-MsgGUID: P6UfBZp7R3WrD7jzqZkHcg==
+ 28 Sep 2025 19:55:52 -0700
+X-CSE-ConnectionGUID: 9rjz7fefTDmynmCF9cfszA==
+X-CSE-MsgGUID: 7l9tP/p9Qz69Ol6IHKO31A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529261"
+X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529279"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:49 -0700
+ 28 Sep 2025 19:55:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 11/36] drm/xe/guc: Document GuC submission backend
-Date: Sun, 28 Sep 2025 19:55:17 -0700
-Message-Id: <20250929025542.1486303-12-matthew.brost@intel.com>
+Subject: [PATCH v3 29/36] drm/xe: Move queue init before LRC creation
+Date: Sun, 28 Sep 2025 19:55:35 -0700
+Message-Id: <20250929025542.1486303-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250929025542.1486303-1-matthew.brost@intel.com>
 References: <20250929025542.1486303-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,332 +66,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add kernel-doc to xe_guc_submit.c describing the submission path,
-the per-queue single-threaded model with pause/resume, the driver shadow
-state machine and lost-H2G replay, job timeout handling, recovery flows
-(GT reset, PM resume, VF resume), and reclaim constraints.
+A queue must be in the submission backend's tracking state before the
+LRC is created to avoid a race condition where the LRC's GGTT addresses
+are not properly fixed up during VF post-migration recovery.
+
+Move the queue initialization—which adds the queue to the submission
+backend's tracking state—before LRC creation.
 
 v2:
- - Mirror tweaks for clarity
- - Add new doc to Xe rst files
-v3:
- - Clarify global vs per-queue stop / start
- - Clarify VF resume flow
- - Add section for 'Waiters during VF resume'
- - Add section for 'Page-faulting queues during VF migration'
- - Add section for 'GuC-ID assignment'
- - Add section for 'Reference counting and final queue destruction'
-v4:
- - s/VF resume/VF post migration recovery (Tomasz)
+ - Wait on VF GGTT fixes before creating LRC (testing)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- Documentation/gpu/xe/index.rst     |   1 +
- drivers/gpu/drm/xe/xe_guc_submit.c | 282 +++++++++++++++++++++++++++++
- 2 files changed, 283 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c        | 43 +++++++++++++++++------
+ drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 39 +++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 ++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.h               | 10 ++++++
+ 7 files changed, 90 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 88b22fad880e..692c544b164c 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -28,3 +28,4 @@ DG2, etc is provided to prototype the driver.
-    xe_device
-    xe-drm-usage-stats.rst
-    xe_configfs
-+   xe_guc_submit
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 81f707d2c388..3db8e64d9d13 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_sriov_vf.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -179,17 +180,32 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+ 			flags |= XE_LRC_CREATE_RUNALONE;
+ 	}
+ 
++	err = q->ops->init(q);
++	if (err)
++		return err;
++
++	/*
++	 * This must occur after q->ops->init to avoid race conditions during VF
++	 * post-migration recovery, as the fixups for the LRC GGTT addresses
++	 * depend on the queue being present in the backend tracking structure.
++	 *
++	 * In addition to above, we must wait on inflight GGTT changes to
++	 * avoid writing out stale values here.
++	 */
++	xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+-		if (IS_ERR(q->lrc[i])) {
+-			err = PTR_ERR(q->lrc[i]);
++		struct xe_lrc *lrc;
++
++		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
++				    q->msix_vec, flags);
++		if (IS_ERR(lrc)) {
++			err = PTR_ERR(lrc);
+ 			goto err_lrc;
+ 		}
+-	}
+ 
+-	err = q->ops->init(q);
+-	if (err)
+-		goto err_lrc;
++		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
++		WRITE_ONCE(q->lrc[i], lrc);
++	}
+ 
+ 	return 0;
+ 
+@@ -1095,9 +1111,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	int err = 0;
+ 
+ 	for (i = 0; i < q->width; ++i) {
+-		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
+-		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
+-		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
++		struct xe_lrc *lrc;
++
++		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
++		lrc = READ_ONCE(q->lrc[i]);
++		if (!lrc)
++			continue;
++
++		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
++		xe_lrc_update_hwctx_regs_with_address(lrc);
++		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+ 		if (err)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..769d05517f93 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &drm_sched_ops,
+ 		.num_rqs = 1,
+-		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
++		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
+ 		.hang_limit = XE_SCHED_HANG_LIMIT,
+ 		.timeout = XE_SCHED_JOB_TIMEOUT,
+ 		.name = q->hwe->name,
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 0d94867dce8e..42f9fd43b436 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -482,6 +482,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
+ 				 shift, config->ggtt_base);
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
+ 	}
++
++	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
++	smp_wmb();	/* Ensure above write visible before wake */
++	wake_up_all(&gt->sriov.vf.migration.wq);
++
+ out:
+ 	up_write(config->lock);
+ 	return err;
+@@ -820,7 +825,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+ 	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+-		smp_wmb();	/* Ensure above write visable before wake */
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
++		smp_wmb();	/* Ensure above writes visable before wake */
+ 
+ 		wake_up_all(&gt->uc.guc.ct.wq);
+ 
+@@ -1344,6 +1350,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 		&tile->primary_gt->sriov.vf.self_config.__lock;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
++	init_waitqueue_head(&gt->sriov.vf.migration.wq);
+ 
+ 	return 0;
+ }
+@@ -1387,3 +1394,33 @@ bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt)
+ 	return (xe_memirq_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
+ 		READ_ONCE(gt->sriov.vf.migration.recovery_inprogress));
+ }
++
++static bool vf_valid_ggtt(struct xe_gt *gt)
++{
++	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
++
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++
++	if (xe_memirq_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
++	    READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
++		return false;
++
++	return true;
++}
++
++/**
++ * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
++ * @gt: the &xe_gt
++ */
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
++{
++	int ret;
++
++	if (!IS_SRIOV_VF(gt_to_xe(gt)))
++		return;
++
++	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
++					       vf_valid_ggtt(gt),
++					       HZ * 5);
++	XE_WARN_ON(!ret);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 71e1d566da81..20cc0c4c32e3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -40,4 +40,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
+ 
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index e135018cba1e..3c3e415199d1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/rwsem.h>
+ #include <linux/types.h>
++#include <linux/wait.h>
+ #include <linux/workqueue.h>
+ #include "xe_uc_fw_types.h"
+ 
+@@ -61,6 +62,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
++	/** @wq: wait queue for migration fixes */
++	wait_queue_head_t wq;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
+ 	/** @recovery_teardown: VF post migration recovery is being torn down */
+@@ -69,6 +72,8 @@ struct xe_gt_sriov_vf_migration {
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
+ 	bool recovery_inprogress;
++	/** @ggtt_need_fixes: VF GGTT needs fixes */
++	bool ggtt_need_fixes;
+ };
+ 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 70306f902ba5..cd5e506527fe 100644
+index 497a736c23c3..7fe3fb07e35e 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -46,6 +46,288 @@
- #include "xe_trace.h"
- #include "xe_vm.h"
+@@ -1943,7 +1943,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
++			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 188565465779..5fb6c74bdab5 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -74,6 +74,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
+ }
  
-+/*
-+ * DOC: Overview
++/**
++ * xe_lrc_ring_size() - Xe LRC ring size
 + *
-+ * The GuC submission backend is responsible for submitting GPU jobs to the GuC
-+ * firmware, assigning per-queue GuC IDs, tracking submission state via a
-+ * driver-side state machine, handling GuC-to-host (G2H) messages, tracking
-+ * outstanding jobs, managing job timeouts and queue teardown, and providing
-+ * recovery when GuC state is lost. It is built on top of the DRM scheduler
-+ * (drm_sched).
-+ *
-+ * GuC ID assignment:
-+ * ------------------
-+ * Each queue is assigned a unique GuC ID at queue init. The ID is used in all
-+ * H2G/G2H to identify the queue and remains reserved until final destruction,
-+ * when the GuC is known to hold no references to it.
-+ *
-+ * The backend maintains a reverse map GuC-ID -> queue to resolve targets for
-+ * G2H handlers and to iterate all queues when required (e.g., recovery). This
-+ * map is protected by submission_state.lock, a global (per-GT) lock. Lockless
-+ * lookups are acceptable in paths where the queue’s lifetime is otherwise
-+ * pinned and it cannot disappear underneath the operation (e.g., G2H handlers).
-+ *
-+ * Basic submission flow
-+ * ---------------------
-+ * Submission is driven by the DRM scheduler vfunc ->run_job(). The flow is:
-+ *
-+ * 1) Emit the job's ring instructions.
-+ * 2) Advance the LRC ring tail:
-+ *    - width == 1: simple memory write,
-+ *    - width  > 1: append a GuC workqueue (WQ) item.
-+ * 3) If the queue is unregistered, issue a register H2G for the context.
-+ * 4) Trigger execution via a scheduler enable or context submit command.
-+ * 5) Return the job's hardware fence to the DRM scheduler.
-+ *
-+ * Registration, scheduler enable, and submit commands are issued as host-to-GuC
-+ * (H2G) messages over the Command Transport (CT) layer, like all GuC
-+ * interactions.
-+ *
-+ * Completion path
-+ * ---------------
-+ * When the job's hardware fence signals, the DRM scheduler vfunc ->free_job()
-+ * is called; it drops the job's reference, typically freeing it.
-+ *
-+ * Control-plane messages:
-+ * -----------------------
-+ * GuC submission scheduler messages form the control plane for queue cleanup,
-+ * toggling runnability, and modifying queue properties (e.g., scheduler
-+ * priority, timeslice, preemption timeout). Messages are initiated via queue
-+ * vfuncs that append a control message to the queue. They are processed on the
-+ * same single-threaded DRM scheduler workqueue that runs ->run_job() and
-+ * ->free_job().
-+ *
-+ * Lockless model:
-+ * ---------------
-+ * ->run_job(), ->free_job(), and the message handlers execute as work items on
-+ * a single-threaded DRM scheduler workqueue. Per queue, this provides built-in
-+ * mutual exclusion: only one of these items can run at a time. As a result,
-+ * these paths are lockless with respect to per-queue state tracking. (Global
-+ * or cross-queue data structures still use their own synchronization.)
-+ *
-+ * Stopping / starting:
-+ * --------------------
-+ * The submission backend supports two scopes of quiesce control:
-+ *
-+ *  - Per-queue stop/start:
-+ *    The single-threaded DRM scheduler workqueue for a specific queue can be
-+ *    stopped and started dynamically. Stopping synchronously quiesces that
-+ *    queue's worker (lets any in-flight item finish and prevents new items from
-+ *    starting), yielding a stable snapshot while an external operation (e.g.,
-+ *    job timeout handling) inspects/updates state and performs any required
-+ *    fixups. While stopped, no submission, message, or ->free_job() work runs
-+ *    for that queue. When the operation completes, the queue is started; any
-+ *    pending items are then processed in order on the same worker. Other queues
-+ *    continue to run unaffected.
-+ *
-+ *  - Global (per-GT) stop/start:
-+ *    Implemented on top of the per-queue stop/start primitive: the driver
-+ *    stops (or starts) each queue on the GT to obtain a device-wide stable
-+ *    snapshot. This is used by coordinated recovery flows (GT reset, PM resume,
-+ *    VF post migration recovery). Queues created while the global stop is in
-+ *    effect (i.e., future queues) initialize in the stopped state and remain
-+ *    stopped until the global start. After recovery fixups are complete, a
-+ *    global start iterates queues to start all eligible ones and resumes normal
-+ *    submission.
-+ *
-+ * State machine:
-+ * --------------
-+ * The submission state machine is the driver's shadow of the GuC-visible queue
-+ * state (e.g., registered, runnable, scheduler properties). It tracks the
-+ * transitions we intend to make (issued as H2G commands), marking them pending
-+ * until acknowledged via G2H or otherwise observed as applied. It also records
-+ * the origin of each transition (->run_job(), timeout handler, explicit control
-+ * message, etc.).
-+ *
-+ * Because H2G commands and/or GuC submission state can be lost across GT reset,
-+ * PM resume, or VF post migration recovery, this bookkeeping lets recovery
-+ * decide which operations to replay, which to elide, and which need fixups,
-+ * restoring a consistent queue state without additional per-queue locks.
-+ *
-+ * Job timeouts:
-+ * -------------
-+ * To prevent jobs from running indefinitely and violating dma-fence signaling
-+ * rules, the DRM scheduler tracks how long each job has been running. If a
-+ * threshold is exceeded, it calls ->timeout_job().
-+ *
-+ * ->timeout_job() stops the queue, samples the LRC context timestamps to
-+ * confirm the job actually started and has exceeded the allowed runtime, and
-+ * then, if confirmed, signals all pending jobs' fences and initiates queue
-+ * teardown. Finally, the queue is started.
-+ *
-+ * Job timeout handling runs on a per-GT, single-threaded recovery workqueue
-+ * that is shared with other recovery paths (e.g., GT reset handling, VF
-+ * resume). This guarantees only one recovery action executes at a time.
-+ *
-+ * Queue teardown:
-+ * ---------------
-+ * Teardown can be triggered by: (1) userspace closing the queue; (2) a G2H
-+ * queue-reset notification; (3) a G2H memory_cat_error for the queue; or (4)
-+ * in-flight jobs detected on the queue during GT reset.
-+ *
-+ * In all cases teardown is driven via the timeout path by setting the queue's
-+ * DRM scheduler timeout to zero, forcing an immediate ->timeout_job() pass.
-+ *
-+ * Reference counting and final queue destruction:
-+ * -----------------------------------------------
-+ * Jobs reference-count the queue; queues hold a reference to the VM. When a
-+ * queue's reference count reaches zero (e.g., all jobs are freed and the
-+ * userspace handle is closed), the queue is not destroyed immediately because
-+ * the GuC may still reference its state.
-+ *
-+ * Instead, a control-plane cleanup message is appended to remove GuC-side
-+ * references (e.g., disable runnability, deregister). Once the final G2H
-+ * confirming that GuC no longer references the queue is eligible for
-+ * destruction.
-+ *
-+ * To avoid freeing the queue from within its own DRM scheduler workqueue (which
-+ * would risk use-after-free), the actual destruction is deferred to a separate
-+ * work item queued on a dedicated destruction workqueue.
-+ *
-+ * GT resets:
-+ * ----------
-+ * GT resets are triggered by catastrophic errors (e.g., CT channel failure).
-+ * The GuC is reset and all GuC-side submission state is lost. Recovery proceeds
-+ * as follows:
-+ *
-+ * 1) Quiesce:
-+ *    - Stop all queues (global submission stop). Per-queue workers finish any
-+ *      in-flight item and then stop; newly created queues during the window
-+ *      initialize in the stopped state.
-+ *    - Abort any waits on CT/G2H to avoid deadlock.
-+ *
-+ * 2) Sanitize driver shadow state:
-+ *    - For each queue, clear GuC-derived bits in the submission state machine
-+ *      (e.g., registered/enabled) and mark in-flight H2G transitions as lost.
-+ *    - Convert/flush any side effects of lost H2G.
-+ *
-+ * 3) Decide teardown vs. replay:
-+ *    - If a queue's LRC seqno indicates that a job started but did not
-+ *      complete, initiate teardown for that queue via the timeout path.
-+ *    - If no job started, keep the queue for replay.
-+ *
-+ * 4) Resume:
-+ *    - Start remaining queues; resubmit pending jobs.
-+ *    - Queues marked for teardown remain stopped/destroyed.
-+ *
-+ * The entire sequence runs on the per-GT single-threaded recovery worker,
-+ * ensuring only one recovery action executes at a time; a runtime PM reference
-+ * is held for the duration.
-+ *
-+ * PM resume:
-+ * ----------
-+ * PM resume assumes all GuC state is lost (the device may have been powered
-+ * down). It reuses the GT reset recovery path, but executes in the context of
-+ * the caller that wakes the device (runtime PM or system resume).
-+ *
-+ * Suspend entry:
-+ *  - Control-plane message work is quiesced; state toggles that require an
-+ *    active device are not enqueued while suspended.
-+ *  - Per-queue scheduler workers are stopped before the device is allowed to
-+ *    suspend.
-+ *  - Barring driver bugs, no queues should have in-flight jobs at
-+ *    suspend/resume..
-+ *
-+ * On resume, run the GT reset recovery flow and then start eligible queues.
-+ *
-+ * Runtime PM and state-change ordering:
-+ * -------------------------------------
-+ * Runtime/system PM transitions must not race with per-queue submission and
-+ * state updates.
-+ *
-+ * Execution contexts and RPM sources:
-+ *  - Scheduler callbacks (->run_job(), ->free_job(), ->timeout_job()):
-+ *    executed with an active RPM ref held by the in-flight job.
-+ *  - Control-plane message work:
-+ *    enqueued from IOCTL paths that already hold an RPM ref; the message path
-+ *    itself does not get/put RPM. State toggles are only issued while active.
-+ *    During suspend entry, message work is quiesced and no new toggles are
-+ *    enqueued until after resume.
-+ *  - G2H handlers:
-+ *    dispatched with an RPM ref guaranteed by the CT layer.
-+ *  - Recovery phases (GT reset/VF post migration recovery):
-+ *    explicitly get/put an RPM ref for their duration on the per-GT recovery
-+ *    worker.
-+ *
-+ * Consequence:
-+ *  - All submission/state mutations run with an RPM reference. The PM core
-+ *    cannot enter suspend while these updates are in progress, and resume is
-+ *    complete before updates execute. This prevents PM state changes from
-+ *    racing with queue state changes.
-+ *
-+ * VF post migration recovery:
-+ * ---------------------------
-+ * VF post migration recovery resembles a GT reset, but GuC submission state is
-+ * expected to persist across migration; in-flight H2G commands may be lost, and
-+ * GGTT base/offsets may change. Recovery proceeds as follows:
-+ *
-+ * 1) Quiesce:
-+ *    - Stop all queues and abort waits (as with GT reset) to obtain a stable
-+ *      snapshot.
-+ *    - Queues created while VF post migration recovery is in-flight initialize
-+ *      in the stopped state.
-+ *
-+ * 2) Treat H2G as lost and prepare in-place resubmission (GuC/CT down):
-+ *    - Treat in-flight H2G (enable/disable, etc.) as dropped; update shadow
-+ *      bits to a safe baseline and tag the ops as "needs replay".
-+ *    - Quarantine device-visible submission state: set the GuC-visible LRC ring
-+ *      tail equal to the head (and, for WQ-based submission, set the WQ
-+ *      descriptor head == tail) so that when the GuC comes up it will not process
-+ *      any entries that were built with stale GGTT addresses.
-+ *    - Reset the software ring tail to the original value captured at the
-+ *      submission of the oldest pending job, so the write pointer sits exactly
-+ *      where that job was originally emitted.
-+ *
-+ * 3) Replay and resubmit once GuC/CT is live:
-+ *    - VF post migration recovery invokes ->run_job() for pending jobs;
-+ *      ->emit_job() overwrites ring instructions in place, fixes GGTT fields,
-+ *      then advances the LRC tail (and WQ descriptor for width > 1). Required
-+ *      submission H2G(s) are reissued and fresh WQ entries are written.
-+ *    - Queue lost control-plane operations (scheduling-state toggles, cleanup)
-+ *      in order via the message path.
-+ *    - Start the queues to process the queued control-plane operations and run
-+ *      the resubmitted jobs.
-+ *
-+ * The goal is to preserve both job and queue state; no teardown is performed
-+ * in this flow. The sequence runs on the per-GT single-threaded recovery
-+ * worker with a held runtime PM reference.
-+ *
-+ * Waiters during VF post migration recovery
-+ * -----------------------------------------
-+ * The submission backend frequently uses wait_event_timeout() to wait on
-+ * GuC-driven conditions. Across VF migration/recovery two issues arise:
-+ * 1) The timeout does not account for migration downtime and may expire
-+ *    prematurely, triggering undesired actions (e.g., GT reset, prematurely
-+ *    signaling a fence).
-+ * 2) Some waits target GuC work that cannot complete until VF recovery
-+ *    finishes; these typically sit on the queue-stopping path.
-+ *
-+ * To handle this, all waiters must atomically test the "GuC down / VF-recovery
-+ * in progress" condition (e.g., VF_RESFIX_BLOCKED) both before sleeping and
-+ * after wakeup. The flag is coherent with VF migration: vCPUs observe it
-+ * immediately on unhalt, and it is cleared only after the GuC/CT is live again.
-+ * If set, the waiter must either (a) abort the wait without side effects, or
-+ * (b) re-arm the wait with a fresh timeout once the GuC/CT is live. Timeouts
-+ * that occur while GuC/CT are down are non-fatal—the VF-recovery path will
-+ * rebuild state—and must not trigger recovery or teardown.
-+ *
-+ * Relation to reclaim:
-+ * --------------------
-+ * Jobs signal dma-fences, and the MM may wait on those fences during reclaim.
-+ * As a consequence, the entire GuC submission backend (DRM scheduler callbacks,
-+ * message handling, and all recovery paths) lies on the reclaim path and must
-+ * be reclaim-safe.
-+ *
-+ * Practical implications:
-+ * - No memory allocations in these paths (avoid any allocation that could
-+ *   recurse into reclaim or sleep).
-+ * - The global submission-state lock may be taken from reclaim-tainted contexts
-+ *   (timeout/recovery). Any path that acquires it (including queue init/destroy)
-+ *   must not allocate or take locks that can recurse into reclaim while holding
-+ *   it; keep the critical section to state/xarray updates.
++ * Return: Size of LRC size
 + */
++static inline size_t xe_lrc_ring_size(void)
++{
++	return SZ_16K;
++}
 +
- static struct xe_guc *
- exec_queue_to_guc(struct xe_exec_queue *q)
- {
+ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 -- 
 2.34.1
 
