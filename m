@@ -4,171 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94561CAC5B5
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 10:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBEBBCCA46F
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 10:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5979310E3EC;
-	Mon, 29 Sep 2025 10:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5854210E3F9;
+	Mon, 29 Sep 2025 10:47:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I7hidSPk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hWzgoWoM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0427110E22C
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 10:40:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 301D610E22C;
+ Mon, 29 Sep 2025 10:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759142458; x=1790678458;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=qKjLQOnm/fMtmMV8kB07yaxP+/CF2h4c+9/2Z08GSz4=;
- b=I7hidSPkeRF9i+JvSiUZ9ZeX8ahPl+CViQXhKX8NC3pseiY9KTMOPixv
- uuRu/lK+gjSokCzEOgKTKonRvCb5hKvnnp3bUEKflm+3+2CY6cp7NJCys
- ZsmRGqIf6sBReG7PX4R79tGUsDMD/N95qnBjJW0KNBbyElmthm56sfvFT
- brdEcXZsoXKFH4CGbDTYMYDSLHAhaLKQ6f/rqEaC2Mq/oxeynHUnRUx2j
- YWrhstbA/1jutK5xEdjhKsNIRWXK/nbYKgDcmAgzua8M/FG56tYoGv2Ff
- bGeVM/jXD0dUB1RUJRbCxrSyPWbHEyvtYC74oZJ4oIKak8vz+7rGM0pwX g==;
-X-CSE-ConnectionGUID: H2/21hzhQnGadMQQopyAPA==
-X-CSE-MsgGUID: EFEPNbNzTcyaspEQtU15/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61428476"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61428476"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 03:40:58 -0700
-X-CSE-ConnectionGUID: Nta7NSEuTMiM8jESB1esMQ==
-X-CSE-MsgGUID: uawAxa96SYmoxVba3NF7+Q==
+ t=1759142862; x=1790678862;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=GAnoci7+Gs94Sb9RgQ+sS2PEyp0QFWSqyRxFambzHvQ=;
+ b=hWzgoWoMgEaSwYYJTysQYtJHV0WiB/kJefyTmXGrPM44PMG0GXTbBjcg
+ u1f+GxeYdCR11+iLn5qhtEvaawbAGmGn1RXdhvqEzvIz1EhtRZeXp3/7Q
+ Emb5uV8+dl8/NutNUkLPrCdsNYw2oXsU5wOB75mFZbIWAJma2okm6gnQj
+ TXO1+XqWNKs6kOMOp+64cq//C5h5TqKX8dWBwyBJYQHsljyEBxHrt7GxF
+ cMSJ1dRXy7sqa5o5ET42hq+uVbRkHahV4eGUwCja1J3WeUn9EVhruwJ7r
+ daQlzS6NKg5rxKeT+COuLNcovcr+Z5ro2xldN6uL6B8REiQ58uxQoneMl A==;
+X-CSE-ConnectionGUID: svY3c2CUQeunt7rKvxrEOQ==
+X-CSE-MsgGUID: 8faL/4B9SxKlCI2yCxC7EA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="71626683"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="71626683"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 03:47:41 -0700
+X-CSE-ConnectionGUID: bEEM6YkQT/e8GiimXOFKUg==
+X-CSE-MsgGUID: C3vj96OsTeeW3Lygn9CkVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="178023780"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 03:40:57 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="182197035"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 03:47:41 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 29 Sep 2025 03:40:56 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 29 Sep 2025 03:47:39 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 29 Sep 2025 03:40:56 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.40) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 29 Sep 2025 03:47:39 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.60) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 29 Sep 2025 03:40:55 -0700
+ 15.2.2562.27; Mon, 29 Sep 2025 03:47:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tfDtvSeWgZYUyHRipVDBAT8yVj7NYXUROiruGjKoqAEQw+AAzFCE6CXbvuf6UAyrP/2x/5aRQLE1Fysx5B3Ul+EPjT2z6BGZRRgYbv/iaNQ7TgsXwX1N0s9KuXj6edMqAVEKubbwIaK9s2fFqxe4psBgY91c1MdO4orhluMWoNoFo7ofYr+cIkotzTbAxgQQaQ4TJJqckpN/A/sXvxvAC753MET5UKZVZ8I6/rhUIyyquZdmR5FbW3UOhuaIo7V1HFdeu4RiwnLT5Wm0LUMQ4kWd8tvCk5tYumohiPUZylbO+VtL7DQq44vJ4l0LHkENd7gVH5jwSxA7ZEHjAnspbA==
+ b=al1bwbkekrx8FQZh9KNiuqEtYeyFpHlT+34AqvHGaCrTrq1wr8iv4HDi30pLbENBh4z+RD3S6VzFhn2RK8PL7lw0ogXHqZSws/DMEVfuOJEB5960HzzcB1H3IkLVPRzAlPEgz8PjiNL75VChcP8jUTKOCLg//bYooK1Y9YI59k859Q1cHIwxuJHf8vjKN1CGkdZgo5cbQMZDyklaiDer66tTOUFdnRo2UwE6siMH8PQPIpLMr/ZnnS01CQfxgnN/cjl1nvRh9VU1FDtHSAME8DuMJPMOisRZ0brJVkW6g0ln64u+II2c51951xQ+tUaqd5aAYaRMmEu1CDmv9NaDpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N0+bntSjrvJFtdBFhkY217n/ev+xXa7O8ry+rSyvfQk=;
- b=KtBQZAT4goQUEtST2LpzU/i7TWhQ8ECTr1b3uRP0jPELrj2wKP+z/Oeb7hPNykwF5jpYe/zy2iwc/5YkYeW8JxZ6Qc4pPZi0nJMq6upoSa22tLmiXGWaMHTXC/t0VB442wvvVO0TUWWIJx5ZnaY1EB2nIzFK4D+GZlYhbqivFuLnx/oF6K8PAitHHmHU2oZrO22YzkuVPu5LYaSClY4sPeuRYpLN3Fkzthqhyqfeno40MmQB2vb3mR9uLa6g1F98QwOPUelfHd++ZlnsaU2N3W2sIUq5TbHN/hA9M8GJu9h14ps7yXmK/Wz9vX/7oIt6SFmJcI+/G6YU3qpsuspl9Q==
+ bh=zbHDIiOkod1zrWDD/SIgnyI29gpxviG0JW4wBdMEX7o=;
+ b=hS4FN1XnB4ebP+XdH9sCg8VAJxfPsRKBQR+bj+2dinZw+1/XNfdo0exZXbOS4pxgKIswfFtIMvW+zrId0g66Y0HK+D3O63E+RfFPs59WLq2sAW011FWTsazoqK/SeCrISf/qRhMaiq6ax/bmmrB0/qbVV5YhkTOiKldexN1dsQP52fhKPOM3+VWHrhQLaHLedlokBSotp87UnZu16f4UL05G4BsK8UW3+xP6wjrQJVC/Z6FwbvGBYydAvzDJ3To5oMvFu1opjesT+X3hl/3woP4HycGnRNQ22QU0tlHBad3JeH/kc1K+lxZJvdbPozdmfDaCTMgUwhCjmcgPema60g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by CO1PR11MB5108.namprd11.prod.outlook.com (2603:10b6:303:92::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Mon, 29 Sep
- 2025 10:40:50 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::fd8d:bca9:3486:7762%4]) with mapi id 15.20.9160.014; Mon, 29 Sep 2025
- 10:40:50 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, "Gupta, saurabhg"
- <saurabhg.gupta@intel.com>, "Zuo, Alex" <alex.zuo@intel.com>, "Wajdeczko,
- Michal" <Michal.Wajdeczko@intel.com>
-Subject: RE: [PATCH 2/5] drm/xe: Guard against NULL GT in xe_pmu.c
-Thread-Topic: [PATCH 2/5] drm/xe: Guard against NULL GT in xe_pmu.c
-Thread-Index: AQHcLv6kkIO5A6VD0UG/DPYWF3sX1rSp/MhQ
-Date: Mon, 29 Sep 2025 10:40:50 +0000
-Message-ID: <SJ1PR11MB62048BB29D6FD62F75921492811BA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20250926155948.145934-7-jonathan.cavitt@intel.com>
- <20250926155948.145934-9-jonathan.cavitt@intel.com>
-In-Reply-To: <20250926155948.145934-9-jonathan.cavitt@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|CO1PR11MB5108:EE_
-x-ms-office365-filtering-correlation-id: 52afa3d7-71b0-4482-03e0-08ddff44a858
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?FlxEVm0Mems30lWm0QrccwOriDJOSAbsX/kz7u/0us+O4UgjORI7ZJy/+Wih?=
- =?us-ascii?Q?RBUvpTjByRbnxY8Z3a0pVgUVwrQpE6KHqZKtkICakzGQ/maoWUeJXhGq8jks?=
- =?us-ascii?Q?6vi8VspWauMq/QWTTpCuy1QeqR6rZHkRAJzJQr9KEUMthlyM+V/3LGCNS3JM?=
- =?us-ascii?Q?MSKFCqyrYRB2qCojZHXlcCWsXoZ3SedRisQr1YJbCXnekg9q+YM1qapSfz8l?=
- =?us-ascii?Q?PJ28AwmmDtqmmcjmXFKBctkH5rjWqBqw6udphfw45FvQQ0+AElOaJq00Rb/p?=
- =?us-ascii?Q?bRY3OWt/KI+6lhDNSMmnaBNlFxJ8ILyYzY3a5x6Rwsxh3TOgtQu09TxzpaQ1?=
- =?us-ascii?Q?nqWFIT0XCFrAW4qq2nzUTsSvnYzZ3em/o/ArS4iwtMICOt0BIiXgGToqnUEZ?=
- =?us-ascii?Q?f8mbVzEvNpp7hxSoCjaYuvFDMGh2UeE5Vx0+CwmyHPXMMhu8XR8vAQSUDyfD?=
- =?us-ascii?Q?zacL/NemdIRTEkjNsKk1/zbjIaXNH9iWtjOqPJq4bVdAu88gkvgAFpp5Jt+D?=
- =?us-ascii?Q?pRnmWe/f84NhLIqI2mIxUT0mi5n89nAzDmIiKdcykjEz5NoOJiM9YuMtAS3m?=
- =?us-ascii?Q?I1B2glnbNyh5baVDvf42OcrYSu8ouvxJVuXIf+PDIWThSL3t49mmxcOXaP3H?=
- =?us-ascii?Q?l+0KZjnHvUEAcIszTwaADFiIvlFj7k3diMXJctAp9kzEgKTx4cn4+iLzf7Qe?=
- =?us-ascii?Q?2N0Qf8gGIRZgenpsLgYufcQ+a4sRvl4sJCn4C/4ObZrsEeEP9xKNTmNmz1kH?=
- =?us-ascii?Q?l46UiJEZfcn3SgCyo73YGCIv0F8SpHV5+pgW5uzgJD0+eJgD4W8bGXMNL9CU?=
- =?us-ascii?Q?gvWFM3ooQLLMhbwRqGrmrac1OjUaXSGHl5EpBFZYrJl3bJfpadSmb1DMjeoc?=
- =?us-ascii?Q?3ny0Ho9DBhDZ0ifPkY1zahCw0J+dVes8teNTlkX72eq5BkedY0299CGa4Clb?=
- =?us-ascii?Q?2wOfwa2zx8fG7YvAHklQQ1fBa6p6BW30M182YXjkbsTm0hnp96xpNo304MeZ?=
- =?us-ascii?Q?GQ4J5xGDFR9X+xxuGXLAxRHFvKOqyQ4ku58oclJ6PQkGvATBWMCKmaUXpJCY?=
- =?us-ascii?Q?3a7UcPUpnTCcexjL5d/Og7G25F0i/0wTBlkPGIZtzt/r401fomaghSgYUQsj?=
- =?us-ascii?Q?MOFDQp7b/m5I6FIJf7noU3YGj5hSKq7wdd7E6jrL3QgrcQLbfnzwaBwk1bXj?=
- =?us-ascii?Q?bOxcRyy6TaC/put+iTIFeUbr6IukiGq02JSFWpfN88Yh4gcAMOkWbKysojVt?=
- =?us-ascii?Q?w55Y5f0dLRxLhUDHqdr/0PR7wNDAw5kagqJWdSp/8Vr+qqPDkqi89Jlh6jjA?=
- =?us-ascii?Q?/RnCmbad9jErz7+97d0vykCaPtCB0B099V8TgATSUPiNYPhns/9VVNkTgXAm?=
- =?us-ascii?Q?rehnHHPJAfwK1C6oIWlhdn12WGW0VzYvSQhGseqmrUDWgePvBIhS0T++ffc4?=
- =?us-ascii?Q?BL3nl5wurYr/J5MbomAU29R71mH27hGEcOcfQYwkNw+286HpP6DYCWr2dL4Z?=
- =?us-ascii?Q?1vQmqYVdSvkrw0gcHfAHjnqJP5XmDxXmwI3l?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dQPlMomOR4WxCpKTFyo0Q2oARbNmloL40JNn0ORBVALMcJA/1njUKMCB6xl6?=
- =?us-ascii?Q?6TfYyHGahcgMFoNbwVz/RoVkuKBbYgBLsuXO3LUJYF8fSpvl9HP6/2OpE/KM?=
- =?us-ascii?Q?UfoDMD2V0Is6Pyeap3x2tamJCNKxXbVk9HhXtZa5eXDtBuVdY/ppkwIZENlk?=
- =?us-ascii?Q?hEl9Ux22SSss6RSoSZd8quaMWuZOZGS3hKebUeBcb54JLvj8TQcIp/sOBuqK?=
- =?us-ascii?Q?OPXdBkpuSD18CExYpG2NLDgHwSz0gRNo2HdDM+5hGysoR7+nEflZCSMgOs9n?=
- =?us-ascii?Q?fEcamijSPMgYK2Oza+TkF445LK8c0SJ+sRgV8vM2ppyMMII1B9o6A7kWzyqc?=
- =?us-ascii?Q?2FMRvtj+a//X1lXYzilFlH5KnMFnYDn99HJe1BxGJcD/CLO0hBav3VTY0UDi?=
- =?us-ascii?Q?mxjzj7L+UcPC/nesTk6jC4OXJwJo6ed6l6ejZfk6dQ35Egkfy6TZcJTPoXWL?=
- =?us-ascii?Q?J9ni7uJBCZyFo0MeOiWtgwOj95GyiZ0YlFof2uxqdS56ebAykJT8EdRub9c5?=
- =?us-ascii?Q?S1s5zPHNk/vWYfvumtpfiCD+wFGAK92p+eKwgdnPKyql7ea/wAPqqeceVvfX?=
- =?us-ascii?Q?sVlsVlfI29Cwcqi/fxaDOyFO3B3UwiMSSrVpGEkeRuTl2HoCsgj+e6nAgWBR?=
- =?us-ascii?Q?14h9Mry12mr00C2dcRdWX4JW/fkioEJkek8jtivJNSQrLYkNznDZoseMy+Sq?=
- =?us-ascii?Q?dqUZ2RpMVsYRpzvkIi9HqX+eL7W7uvN342UrEy23z4KIMlS8uIRET4CKy7le?=
- =?us-ascii?Q?paw0EgttgXZMJnu9lzw0rq5ogOKzhnoQsra+XragVQ29LNCeMnK/xN2k/5hd?=
- =?us-ascii?Q?PyBecOvxg+bNNBOHqh2xuD3BSt8PH8W5E/I/LyonQ8+83p8aOBNmNfuS5VIu?=
- =?us-ascii?Q?MNMVsCqhd987w9hvgPAup7XRqAolOhdDiU0JNmoK+ZFQyinyJ9bQwRV+txpo?=
- =?us-ascii?Q?u6/Ldf0jwya8pSrVjlCM+qRGz4vWz8bp+1VTFFX+XwyW3A3UE8+Fu+/s9oGi?=
- =?us-ascii?Q?qJzMi+CCaVItgHIk19yVgIOuMKIPjI03ZHQ6oi5uiWxJUsHDdlduW56YO6HW?=
- =?us-ascii?Q?Tcr3lqCpRFtcYOF58cCi3Im+lfua34LIm42KokvEdujW3osYbqqHntxD5eyQ?=
- =?us-ascii?Q?TgBjBwLvu2uuRPTfwQm/tpYLB8IFLBU9CpM3WME4Cg33T4uewjtLS7OcUUUw?=
- =?us-ascii?Q?b+1c3PXazBsYqBm0wRszPfYJsMjpz8kU3Cc50AZslFHuH6XqlSv2KbqbsIrX?=
- =?us-ascii?Q?FStldqjhAPTMCYtctlswZhfMmfTeFJndu1WCNUKClwcTMS7Gm2ilkiov2bvK?=
- =?us-ascii?Q?banfug4RFad7mFqJ1/N7GxARwaTVyz+3v185vnvwZnYpOFmuxZHuD096KMIF?=
- =?us-ascii?Q?9Z0LxIsbALkQUX1TR6JEC1XGq0cCkwzbtAMswvfUu6K73hMnt/CDsuSzGcGj?=
- =?us-ascii?Q?720T5aeNcf7TXuobbq5NMrWV3of1TMi1iu5gGThbU6NuaLCn+TUH5e0cJg9o?=
- =?us-ascii?Q?rKIZQ6jrHEN6lZLIPOwb+pAYIzwSqjHJrkt9gM9z6TvXF32oOzISY8wMCshQ?=
- =?us-ascii?Q?6z5sveyyPT1f1yaJIj+TgBH/sDw6GvaDOLYZZ0du?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by SJ0PR11MB5184.namprd11.prod.outlook.com (2603:10b6:a03:2d5::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Mon, 29 Sep
+ 2025 10:47:38 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9160.015; Mon, 29 Sep 2025
+ 10:47:38 +0000
+Date: Mon, 29 Sep 2025 13:47:29 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v5 2/6] drm/dp: Add helpers to query the branch DSC max
+ throughput/line-width
+Message-ID: <aNpjwQcvbQL0Gu9y@ideak-desk>
+References: <20250926211236.474043-3-imre.deak@intel.com>
+ <20250929063644.533890-1-imre.deak@intel.com>
+ <aNpbf4HJDrtbsuex@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aNpbf4HJDrtbsuex@intel.com>
+X-ClientProxiedBy: LO4P123CA0078.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:190::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SJ0PR11MB5184:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67e69e07-5333-4d79-1316-08ddff459859
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|10070799003|376014|366016|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?rXLubqWAukuHEkP0ner9vsq3fzeo467FsOtX2BYkil7Ca7oWfnFG6xBWVM?=
+ =?iso-8859-1?Q?PqZBCiXFw/IlxhBND1MoA4w44kMqQlMzghNu52das03td2LXTEJf/Wymee?=
+ =?iso-8859-1?Q?85HQLD1JdwW/yuxop5DToX7kQMBsGQi2ojC58ysaeYR6N0I33HLqhuNC1b?=
+ =?iso-8859-1?Q?NjLDGC9agIYXvG6lRZgV8Wl+9zz8l2FFBa23sU4PKKFGO2VRd2KWQy6Sdm?=
+ =?iso-8859-1?Q?jXWouNHZR9NPNHHQvjjLDzdrA01OobuMtswE1qF/3XbJJyYdMMdj991SYi?=
+ =?iso-8859-1?Q?UEpc1cwcdulmrv+FQUgNsaHCe9kAjkg9hsXVYNTfFol0e6n7dm544jPsr5?=
+ =?iso-8859-1?Q?ERhLK2Bx2vZj5JQddUQzryVOH30W5aGfFtoBgDjYhNlarn7gcB0wyAFTQ0?=
+ =?iso-8859-1?Q?BxHrAbfu/8SxlThpFTFO+OVaLLjkuSyiAzGNG1G3Ipedh2Yv3TkywyKBnm?=
+ =?iso-8859-1?Q?ODS/dC84E+dxj7C/rAd1R00up/rTVIfSPzTAh6TrjsHNDVOZQO1d+MFLSN?=
+ =?iso-8859-1?Q?EXjGoEUjRe0UVI2kP8uTtXzv/iY+Z99ndVpBUXCb/mBFy+tyHhG6z9YtFr?=
+ =?iso-8859-1?Q?kNvnHJtVMBPlklqIBdE6w3owGNSm55cpLHNZEe4JnJZhpQBfkwwaViRv6y?=
+ =?iso-8859-1?Q?tm9FCieLDETgK78rtb4mXZLAxf4RKzcHbhl6mU0MiEZrYpRrAWTPZchu2x?=
+ =?iso-8859-1?Q?TNXvVH+aF5t6qktD491J/3CQmr8FRicIMSoWOdM8nc/hZDHmCpRaQHQCRE?=
+ =?iso-8859-1?Q?+mgVdZxy4flrLNTqCWsTxuXUZM2vrYpH3GxboRM5Hp1x3R2uheFSw11vWZ?=
+ =?iso-8859-1?Q?J6L7lVEGXZIUotfhVRNqaF6HvJ2R3PxpCoQCZvjUJX7D5aW9dHQaMF4XeL?=
+ =?iso-8859-1?Q?1rpl7Xh9ptfBnKIhKEFgfD7LUvjKImu1MgU4LcxAH2OC25iawrYZzXx8Sq?=
+ =?iso-8859-1?Q?DXggdnJomvYDdFv6WnPSwAfuiKZD4NHyZ2m0/dbXe0S9fsa/4+etbjjJnV?=
+ =?iso-8859-1?Q?3uM2egwNQMRyO1BeueMVbwz1ndb+d0/NmBP7Zz4KSUL66v87MvNGB3lw5C?=
+ =?iso-8859-1?Q?Zqqk9Tbi+fjPUFMf4udTFhcP/2U85nql1xswR4kHUNARB9OeGEljLOpCWE?=
+ =?iso-8859-1?Q?ecU5RImyispjx87WJGMPIq/h9tZU1T7xDc7C4p6VJXCs0PS5v/oUCggMoc?=
+ =?iso-8859-1?Q?q6U7ZIUfOnus/uwkDjUT7HU2TZFWf3RA3rqPlzf+a+ES/CeNrSgvRFP4nq?=
+ =?iso-8859-1?Q?oCKf9+2fznY1kLpudWytZgk3KhjcWPfYf7zSmu1laBeN7Gs6KygHqK0bsJ?=
+ =?iso-8859-1?Q?c0OmZnlnabgxLaUas2MX6/vvcGJT+ncFV2BTS1yeCvhhakG7w8W7NKARpJ?=
+ =?iso-8859-1?Q?eyH2DKKRZZGkX3CBprIFEgxb++RqJJgM3jmrhStORBVICSpQDn/oITm4FQ?=
+ =?iso-8859-1?Q?ExVZuRJbDoi34fVfQItw/GKtRvswGIhcBsYIH3AxtY8zYSKEbXJU0hPS7f?=
+ =?iso-8859-1?Q?PIE8TrAWN+Oxw+TFYOKBs2?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(376014)(366016)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Be2+/QDSQnyLss7N7e8AlXguQ5j5clbIac+6ifSEefiL882FuE/lM/Imuy?=
+ =?iso-8859-1?Q?riMJ1NloAb5GcP52PnGV0nhxBzyCnNclEZfdNY8n2XBVtG1p1snRWKeBfW?=
+ =?iso-8859-1?Q?PBda+/FXYA7svApZJU+dBEPo+yxDJgYVSQ2ZVqbaQskYA5ZEJWW2Qlw4bB?=
+ =?iso-8859-1?Q?LppkKRzduqJln/DL9ZafzXp/m6DTQb13nI27c0Rl0B5my45CpCcjcLVZFp?=
+ =?iso-8859-1?Q?ooo4sebfj2Jpi3Lzp9Qr9AA9aXAwUR2LymGKxwtBa3J4zX+wOME2P1c40+?=
+ =?iso-8859-1?Q?XHgy+p4GDxbZmRI9gPU+cOrYVyDr5nGw1RfS+6KQx5SjjSz2wiEeVCvw83?=
+ =?iso-8859-1?Q?3lBYOdg3VXkC/cxMkFpchX11RHqY2GFBopoNjxdEL4ozlVgqc1G3n5Cv3S?=
+ =?iso-8859-1?Q?I8SAT35e+A8V/AL3i66pQSVGLeKecsQeHdtN/ppX+r1e8Oj5wdRACvKg6V?=
+ =?iso-8859-1?Q?qeq+izWkqh8crg9j/jAOpv+iHPd+08/oPtUb3EbAp9+Kv6DvXWBWiShze3?=
+ =?iso-8859-1?Q?f/seRc4Xsk2R7sNiID1R32thdu1gdtRQdH/nQKv5SqME5xZBuSwRhhzKUe?=
+ =?iso-8859-1?Q?SQhxmjty9eQ7/jaS8bIRXosppZl/YlTQWSsIRn86rR2kGCaZeKPa/nbF1l?=
+ =?iso-8859-1?Q?T7u2/vq1XPG4pABeR3VAPyZrzi6om1x8VCz1vB3mu8H0wBexmpWxKQ/8o6?=
+ =?iso-8859-1?Q?bQpBl3VwKZ0POwtrX3biJJXZ5OLDQYbqAJzlRe6tTRwgXDUSpnWf7FjJqJ?=
+ =?iso-8859-1?Q?8Rx+H7hkA91j338VRHV18DyHdxLR9LxCL4fB8Q9eJfbXPny+kqWzno9rcF?=
+ =?iso-8859-1?Q?ieOkPHPUX2tD2F0E6bRnLWY9rZ6RPYhA9dln14fJJR4Of9b0SyueCGRah9?=
+ =?iso-8859-1?Q?zPJorIBaVzvuTN525UeV7XYTZJgOWd1RAxPAi1fIV5QsrJMhpOxI/TsIuX?=
+ =?iso-8859-1?Q?6zbRADJWgyRmHaPTVJN4kahQdDDQFPqGqJlhkPLIXikeIr32NX+2n9RsCV?=
+ =?iso-8859-1?Q?W4TaK17tzTSOGhyWtW8gk2mlcr4jnEWvyjQOpwJOWlKcaRK3Tj797dYfMj?=
+ =?iso-8859-1?Q?p5YewW6vU3LptiFjPqYzqD1RIQmO4XcXKhErJ2tAjlWFhfriRc8ifD3hns?=
+ =?iso-8859-1?Q?VBaB+NYfjW2iVkj1rEVD9/5OkP+owMQmvBnC/TYIr2XzmbR9lNt9BOj91g?=
+ =?iso-8859-1?Q?UiEDB7cUtLXZxgFR0wPI2sYWK4ieM/S4NHBySAr6kt4bnfyBiUG9IPw6sB?=
+ =?iso-8859-1?Q?i+qAPPpsdAMq+EUGHC+wrdXZ34aZX+JFokgTxYRuNeeK0TIQFTZBmbrwdk?=
+ =?iso-8859-1?Q?ToZhqTv50GVRuLXS3zXx3iqVBgm/rBmtbIH1rMU8QxO1mQdldwqE9Pf69P?=
+ =?iso-8859-1?Q?jInvYVJ1YvCN6QhbScMwGtYQzkIntF0opXoJRwM1PqDpecCwwAZehdrwut?=
+ =?iso-8859-1?Q?6B204g3Anm3a6TQbbIkp4/JvSOdHwFrgvM2hwZY3z0GzPPo/SEhNKojFc2?=
+ =?iso-8859-1?Q?6cpFwy7EZTQVE/5zgwNYkG0RBx3j5gqkIr3wMxRDScvtnY5lWXVPx9ZC8k?=
+ =?iso-8859-1?Q?WM5lheTwfLQaKGvW1xCu7x8cs027Htmv2j+FxOvmEXS+BuFA641PSA5ghr?=
+ =?iso-8859-1?Q?Kj51eG5NWqrePllS9FxgQmCBATHbNzOykNFVtPHTvG6H21ZzEUzJyHzhMx?=
+ =?iso-8859-1?Q?FviCxWsGo9ky7qd9sMYMC6DJcEKNKkI7Ax+ylUd7?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67e69e07-5333-4d79-1316-08ddff459859
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52afa3d7-71b0-4482-03e0-08ddff44a858
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2025 10:40:50.3643 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IT0Z/s2VujHz095AHC27zP4OYi8SnBjkAUAVyas3kEvhEr196p/TSGfcfokhEAOSYTa1QDySnmm+jId9bzFHBEp3m5deARBLm3snNUxMBSw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5108
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2025 10:47:38.0629 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1OO7t4IgnbpQ2vG2Nd49eO9TSxCvuP/PaC5PQg6sd6SgPCK5IVVStOPWKhngBF8SejYkI1LEM8VirenBwlgb9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5184
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,78 +181,275 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, Sep 29, 2025 at 01:12:15PM +0300, Ville Syrjälä wrote:
+> On Mon, Sep 29, 2025 at 09:36:44AM +0300, Imre Deak wrote:
+> > Add helpers to query the DP DSC sink device's per-slice throughput as
+> > well as a DSC branch device's overall throughput and line-width
+> > capabilities.
+> > 
+> > v2 (Ville):
+> > - Rename pixel_clock to peak_pixel_rate, document what the value means
+> >   in case of MST tiled displays.
+> > - Fix name of drm_dp_dsc_branch_max_slice_throughput() to
+> >   drm_dp_dsc_sink_max_slice_throughput().
+> > v3:
+> > - Fix the DSC branch device minimum valid line width value from 2560
+> >   to 5120 pixels.
+> > - Fix drm_dp_dsc_sink_max_slice_throughput()'s pixel_clock parameter
+> >   name to peak_pixel_rate in header file.
+> > - Add handling for throughput mode 0 granular delta, defined by DP
+> >   Standard v2.1a.
+> > 
+> > Cc: dri-devel@lists.freedesktop.org
+> > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/display/drm_dp_helper.c | 156 ++++++++++++++++++++++++
+> >  include/drm/display/drm_dp.h            |   3 +
+> >  include/drm/display/drm_dp_helper.h     |   5 +
+> >  3 files changed, 164 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> > index 1c74fe9459ad9..6084ca7fbe263 100644
+> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> > @@ -2844,6 +2844,162 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
+> >  }
+> >  EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
+> >  
+> > +/*
+> > + * See DP Standard v2.1a 2.8.4 Minimum Slices/Display, Table 2-159 and
+> > + * Appendix L.1 Derivation of Slice Count Requirements.
+> > + */
+> > +static int dsc_sink_min_slice_throughput(int peak_pixel_rate)
+> > +{
+> > +	if (peak_pixel_rate >= 4800000)
+> > +		return 600000;
+> > +	else if (peak_pixel_rate >= 2700000)
+> > +		return 400000;
+> > +	else
+> > +		return 340000;
+> > +}
+> > +
+> > +/**
+> > + * drm_dp_dsc_sink_max_slice_throughput() - Get a DSC sink's maximum pixel throughput per slice
+> > + * @dsc_dpcd: DSC sink's capabilities from DPCD
+> > + * @peak_pixel_rate: Cumulative peak pixel rate in kHz
+> > + * @is_rgb_yuv444: The mode is either RGB or YUV444
+> > + *
+> > + * Return the DSC sink device's maximum pixel throughput per slice, based on
+> > + * the device's @dsc_dpcd capabilities, the @peak_pixel_rate of the transferred
+> > + * stream(s) and whether the output format @is_rgb_yuv444 or yuv422/yuv420.
+> > + *
+> > + * Note that @peak_pixel_rate is the total pixel rate transferred to the same
+> > + * DSC/display sink. For instance to calculate a tile's slice count of an MST
+> > + * multi-tiled display sink (not considering here the required
+> > + * rounding/alignment of slice count)::
+> > + *
+> > + *   @peak_pixel_rate = tile_pixel_rate * tile_count
+> > + *   total_slice_count = @peak_pixel_rate / drm_dp_dsc_sink_max_slice_throughput(@peak_pixel_rate)
+> > + *   tile_slice_count = total_slice_count / tile_count
+> > + *
+> > + * Returns:
+> > + * The maximum pixel throughput per slice supported by the DSC sink device
+> > + * in kPixels/sec.
+> > + */
+> > +int drm_dp_dsc_sink_max_slice_throughput(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+> > +					 int peak_pixel_rate, bool is_rgb_yuv444)
+> > +{
+> > +	int throughput;
+> > +	int delta = 0;
+> > +	int base;
+> > +
+> > +	throughput = dsc_dpcd[DP_DSC_PEAK_THROUGHPUT - DP_DSC_SUPPORT];
+> > +
+> > +	if (is_rgb_yuv444) {
+> > +		throughput = (throughput & DP_DSC_THROUGHPUT_MODE_0_MASK) >>
+> > +			     DP_DSC_THROUGHPUT_MODE_0_SHIFT;
+> > +
+> > +		delta = ((dsc_dpcd[DP_DSC_RC_BUF_BLK_SIZE - DP_DSC_SUPPORT]) &
+> > +			 DP_DSC_THROUGHPUT_MODE_0_DELTA_MASK) >>
+> > +			DP_DSC_THROUGHPUT_MODE_0_DELTA_SHIFT;	/* in units of 2 MPixels/sec */
+> > +		delta *= 2000;
+> 
+> That thing really is very poorly documented. The DSC spec has a
+> note about possibly needing extra throughput at the right edges
+> of slices due to some alignment reasons. Maybe this is for that?
+> Dunno.
 
+I assumed it's for the sink to be able to specify the throughput in a
+smaller granularity, so the calculated slice count is then also closer
+to the actual requirement. But yes, could be for another reason too,
+I'll reread the DSC spec too.
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> Jonathan Cavitt
-> Sent: 26 September 2025 21:30
-> To: intel-xe@lists.freedesktop.org
-> Cc: Cavitt, Jonathan <jonathan.cavitt@intel.com>; Gupta, saurabhg
-> <saurabhg.gupta@intel.com>; Zuo, Alex <alex.zuo@intel.com>; Wajdeczko,
-> Michal <Michal.Wajdeczko@intel.com>
-> Subject: [PATCH 2/5] drm/xe: Guard against NULL GT in xe_pmu.c
->=20
-> Static analysis reveals the following issue:
-> xe_device_get_gt is theoretically able to return NULL in some cases, but =
-several
-> use cases don't check the return value before performing a dereference,
-> resulting in a NULL pointer dereference.
->=20
-> Add guards against this in xe_pmu.c:
-> - Use xe_root_mmio_gt instead of xe_device_get_gt for the tile 0 case.
-> - Check the return value of xe_device_get_gt when this is not possible.
-> - Return early from xe_pmu_event_destroy if GT is NULL.
->=20
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pmu.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-> index cab51d826345..531022d80731 100644
-> --- a/drivers/gpu/drm/xe/xe_pmu.c
-> +++ b/drivers/gpu/drm/xe/xe_pmu.c
-> @@ -142,6 +142,9 @@ static bool event_gt_forcewake(struct perf_event
-> *event)
->=20
->  	gt =3D xe_device_get_gt(xe, config_to_gt_id(config));
->=20
-> +	if (!gt)
-> +		return false;
-> +
->  	fw_ref =3D kzalloc(sizeof(*fw_ref), GFP_KERNEL);
->  	if (!fw_ref)
->  		return false;
-> @@ -219,6 +222,10 @@ static void xe_pmu_event_destroy(struct
-> perf_event *event)
->=20
->  	if (fw_ref) {
->  		gt =3D xe_device_get_gt(xe, config_to_gt_id(event->attr.config));
-> +
-> +		if (!gt)
-> +			return;
-> +
+> And the fact that there is a delta just for the 4:4:4 throughput
+> is also rather weird.
 
-I think we need to reverse state of device even in case of gt is null!
+Yes it is, but that's what the Standard says, unless I missed something.
 
-Tejas
->  		xe_force_wake_put(gt_to_fw(gt), *fw_ref);
->  		kfree(fw_ref);
->  		event->pmu_private =3D NULL;
-> @@ -497,7 +504,7 @@ static const struct attribute_group
-> *pmu_events_attr_update[] =3D {  static void set_supported_events(struct
-> xe_pmu *pmu)  {
->  	struct xe_device *xe =3D container_of(pmu, typeof(*xe), pmu);
-> -	struct xe_gt *gt =3D xe_device_get_gt(xe, 0);
-> +	struct xe_gt *gt =3D xe_root_mmio_gt(xe);
->=20
->  	if (!xe->info.skip_guc_pc) {
->  		pmu->supported_events |=3D
-> BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
-> --
-> 2.43.0
+> > +	} else {
+> > +		throughput = (throughput & DP_DSC_THROUGHPUT_MODE_1_MASK) >>
+> > +			     DP_DSC_THROUGHPUT_MODE_1_SHIFT;
+> > +	}
+> > +
+> > +	switch (throughput) {
+> > +	case 0:
+> > +		return dsc_sink_min_slice_throughput(peak_pixel_rate);
+> > +	case 1:
+> > +		base = 340000;
+> > +		break;
+> > +	case 2 ... 14:
+> > +		base = 400000 + 50000 * (throughput - 2);
+> > +		break;
+> > +	case 15:
+> > +		base = 170000;
+> > +		break;
+> > +	default:
+> > +		WARN(1, "Missing case %d\n", throughput);
+> > +		base = 340000;
+> > +		break;
+> 
+> nit: that looks like an impossible situation. Could either nuke
+> the default case, or if the compiler/static checks are dumb
+> then get rid of the 2...14 case instead.
 
+Yes, the compiler should catch an unhandled case and atm the default
+case could cause an an unreachable code compiler warn. Will remove the
+default case.
+
+> Anyways, for the series
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+Thanks!
+
+> > +	}
+> > +
+> > +	return base + delta;
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_dsc_sink_max_slice_throughput);
+> > +
+> > +static u8 dsc_branch_dpcd_cap(const u8 dpcd[DP_DSC_BRANCH_CAP_SIZE], int reg)
+> > +{
+> > +	return dpcd[reg - DP_DSC_BRANCH_OVERALL_THROUGHPUT_0];
+> > +}
+> > +
+> > +/**
+> > + * drm_dp_dsc_branch_max_overall_throughput() - Branch device's max overall DSC pixel throughput
+> > + * @dsc_branch_dpcd: DSC branch capabilities from DPCD
+> > + * @is_rgb_yuv444: The mode is either RGB or YUV444
+> > + *
+> > + * Return the branch device's maximum overall DSC pixel throughput, based on
+> > + * the device's DPCD DSC branch capabilities, and whether the output
+> > + * format @is_rgb_yuv444 or yuv422/yuv420.
+> > + *
+> > + * Returns:
+> > + * - 0:   The maximum overall throughput capability is not indicated by
+> > + *        the device separately and it must be determined from the per-slice
+> > + *        max throughput (see @drm_dp_dsc_branch_slice_max_throughput())
+> > + *        and the maximum slice count supported by the device.
+> > + * - > 0: The maximum overall DSC pixel throughput supported by the branch
+> > + *        device in kPixels/sec.
+> > + */
+> > +int drm_dp_dsc_branch_max_overall_throughput(const u8 dsc_branch_dpcd[DP_DSC_BRANCH_CAP_SIZE],
+> > +					     bool is_rgb_yuv444)
+> > +{
+> > +	int throughput;
+> > +
+> > +	if (is_rgb_yuv444)
+> > +		throughput = dsc_branch_dpcd_cap(dsc_branch_dpcd,
+> > +						 DP_DSC_BRANCH_OVERALL_THROUGHPUT_0);
+> > +	else
+> > +		throughput = dsc_branch_dpcd_cap(dsc_branch_dpcd,
+> > +						 DP_DSC_BRANCH_OVERALL_THROUGHPUT_1);
+> > +
+> > +	switch (throughput) {
+> > +	case 0:
+> > +		return 0;
+> > +	case 1:
+> > +		return 680000;
+> > +	default:
+> > +		return 600000 + 50000 * throughput;
+> > +	}
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_dsc_branch_max_overall_throughput);
+> > +
+> > +/**
+> > + * drm_dp_dsc_branch_max_line_width() - Branch device's max DSC line width
+> > + * @dsc_branch_dpcd: DSC branch capabilities from DPCD
+> > + *
+> > + * Return the branch device's maximum overall DSC line width, based on
+> > + * the device's @dsc_branch_dpcd capabilities.
+> > + *
+> > + * Returns:
+> > + * - 0:        The maximum line width is not indicated by the device
+> > + *             separately and it must be determined from the maximum
+> > + *             slice count and slice-width supported by the device.
+> > + * - %-EINVAL: The device indicates an invalid maximum line width
+> > + *             (< 5120 pixels).
+> > + * - >= 5120:  The maximum line width in pixels.
+> > + */
+> > +int drm_dp_dsc_branch_max_line_width(const u8 dsc_branch_dpcd[DP_DSC_BRANCH_CAP_SIZE])
+> > +{
+> > +	int line_width = dsc_branch_dpcd_cap(dsc_branch_dpcd, DP_DSC_BRANCH_MAX_LINE_WIDTH);
+> > +
+> > +	switch (line_width) {
+> > +	case 0:
+> > +		return 0;
+> > +	case 1 ... 15:
+> > +		return -EINVAL;
+> > +	default:
+> > +		return line_width * 320;
+> > +	}
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_dsc_branch_max_line_width);
+> > +
+> >  static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux,
+> >  				  const u8 dpcd[DP_RECEIVER_CAP_SIZE], int address,
+> >  				  u8 *buf, int buf_size)
+> > diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> > index cf318e3ddb5c5..e4eebabab9759 100644
+> > --- a/include/drm/display/drm_dp.h
+> > +++ b/include/drm/display/drm_dp.h
+> > @@ -258,6 +258,8 @@
+> >  # define DP_DSC_RC_BUF_BLK_SIZE_4           0x1
+> >  # define DP_DSC_RC_BUF_BLK_SIZE_16          0x2
+> >  # define DP_DSC_RC_BUF_BLK_SIZE_64          0x3
+> > +# define DP_DSC_THROUGHPUT_MODE_0_DELTA_SHIFT 3 /* DP 2.1a, in units of 2 MPixels/sec */
+> > +# define DP_DSC_THROUGHPUT_MODE_0_DELTA_MASK  (0x1f << DP_DSC_THROUGHPUT_MODE_0_DELTA_SHIFT)
+> >  
+> >  #define DP_DSC_RC_BUF_SIZE                  0x063
+> >  
+> > @@ -1686,6 +1688,7 @@ enum drm_dp_phy {
+> >  #define DP_BRANCH_OUI_HEADER_SIZE	0xc
+> >  #define DP_RECEIVER_CAP_SIZE		0xf
+> >  #define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 through 0x6F */
+> > +#define DP_DSC_BRANCH_CAP_SIZE		3
+> >  #define EDP_PSR_RECEIVER_CAP_SIZE	2
+> >  #define EDP_DISPLAY_CTL_CAP_SIZE	5
+> >  #define DP_LTTPR_COMMON_CAP_SIZE	8
+> > diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> > index e438c44409952..df2f24b950e4c 100644
+> > --- a/include/drm/display/drm_dp_helper.h
+> > +++ b/include/drm/display/drm_dp_helper.h
+> > @@ -211,6 +211,11 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+> >  u8 drm_dp_dsc_sink_line_buf_depth(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE]);
+> >  int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpc[DP_DSC_RECEIVER_CAP_SIZE],
+> >  					 u8 dsc_bpc[3]);
+> > +int drm_dp_dsc_sink_max_slice_throughput(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
+> > +					 int peak_pixel_rate, bool is_rgb_yuv444);
+> > +int drm_dp_dsc_branch_max_overall_throughput(const u8 dsc_branch_dpcd[DP_DSC_BRANCH_CAP_SIZE],
+> > +					     bool is_rgb_yuv444);
+> > +int drm_dp_dsc_branch_max_line_width(const u8 dsc_branch_dpcd[DP_DSC_BRANCH_CAP_SIZE]);
+> >  
+> >  static inline bool
+> >  drm_dp_sink_supports_dsc(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+> > -- 
+> > 2.49.1
+> 
+> -- 
+> Ville Syrjälä
+> Intel
