@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33C88CCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F2DECCD183
 	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 02:56:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9F5210E3AA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C01DB10E3A8;
 	Mon, 29 Sep 2025 02:56:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9yqAv7u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTgPtfij";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3480510E20A
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C28310E20A
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759114554; x=1790650554;
+ t=1759114551; x=1790650551;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Vs2xi9rxBoTRE0ktb6Sjs6NaO16unVsWXorCbvBvjrs=;
- b=f9yqAv7uBJclXoDkxWDOI0d/jAbJludWmwDQH0608fNJ319rSi67VQOA
- CDbB4RLmOQ1kph0sw2ARznsy/XpywZhPlcrOosQVXVUzKTjRW/UaGOQZW
- g8/p8Hp9aDh842CPNYJxKrWUXWOehvXGklO8LtLV1wjYUABQaOAkBgUh3
- LUhwiEO6Zs1Pp7PJ1JPgCEB3TU/3UV4BgFIkrxAJZy4saFJKtUrJR0PPh
- n/939Ly36e3LcToP3HrXfcKixy/2C3mRdD8a0b5Jx8vIjB0OQlNt3L2yp
- 1dGpXcfLdYsmV22GVApe2/ZOqE+zDeMg4g8Nwf5bfqR1EV9IJdUwziQIH Q==;
-X-CSE-ConnectionGUID: kPtnNOY3RiuBOi+nWgsp2A==
-X-CSE-MsgGUID: NBEx/q1NR/C/uz6MjFL1RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398552"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398552"
+ bh=8Fk3/TBXrCmqh6wGDLHW2qEx4MudIWUipQU6CnxqXWY=;
+ b=UTgPtfijpYlW4rud26YuYdxuZUQl3cANNHb8B2/PiAaT4D+sRxhrpGoS
+ p1YDk/lm4IxfIfbrgjxlmmhrnQW2vtF0Sd7ZRCuAySdvdybiWzMVBZy6v
+ k2Cjt8SYjR7zrxhK50ajH4utCOdGCz1Q4M6xo5e40GujOW8t2r7+dq4cW
+ 4ufE1gsZGDg/al47tKR68TdkvSR9L3ZBaT5O9562KAaP5EeCpTZ1g2EOM
+ ikyABgOMbLEKFgBFRP8jeXZYMOH0/+XIPRD4EAuiVZXPNTAYwS3ajZaK5
+ ByMsHrf7cy65RDJ8FYCSdqFf13hOUmRlF5XN6uTqmEieqBEosnPki5MLx A==;
+X-CSE-ConnectionGUID: YWIoKTEuSPKXpp33CdRITA==
+X-CSE-MsgGUID: mohxv6J7QnWLVOO1Xc9FBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398540"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398540"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:53 -0700
-X-CSE-ConnectionGUID: 0xqUTZS6TKu8zb7i9rHCSw==
-X-CSE-MsgGUID: 0SlLf4B/Td+r6P2O80oLzg==
+ 28 Sep 2025 19:55:51 -0700
+X-CSE-ConnectionGUID: upVw7hI5Qs+hwThZItmhJQ==
+X-CSE-MsgGUID: 1NgjwTP6R8aOXhraSAeyHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529287"
+X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529274"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:52 -0700
+ 28 Sep 2025 19:55:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 36/36] drm/xe/guc: Increase wait timeout to 2sec after BUSY
- reply from GuC
-Date: Sun, 28 Sep 2025 19:55:42 -0700
-Message-Id: <20250929025542.1486303-37-matthew.brost@intel.com>
+Subject: [PATCH v3 24/36] drm/xe/vf: Reset TLB invalidations during VF post
+ migration recovery
+Date: Sun, 28 Sep 2025 19:55:30 -0700
+Message-Id: <20250929025542.1486303-25-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250929025542.1486303-1-matthew.brost@intel.com>
 References: <20250929025542.1486303-1-matthew.brost@intel.com>
@@ -66,31 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+TLB invalidations requests can be lost during VF post-migration
+recovery. Since the VF has migrated, these invalidations are no longer
+needed.
 
-Some VF2GUC actions may take longer to process. Increase default timeout
-after received BUSY indication to 2sec to cover all worst case scenarios.
+Reset the TLB invalidation frontend, which will signal all pending
+fences.
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+v3:
+ - Move TLB invalidation reset after pausing submission (Tomasz)
+ - Adjust commit message (Michal)
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c016a11b6ab1..f0de1fa61898 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1439,7 +1439,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 37ef1c42bacb..c9d94620d197 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -35,6 +35,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_vf.h"
+ #include "xe_tile_sriov_vf.h"
++#include "xe_tlb_inval.h"
+ #include "xe_uc_fw.h"
+ #include "xe_wopcm.h"
  
- 		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
--				     1000000, &header, false);
-+				     2000000, &header, false);
+@@ -1188,6 +1189,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
  
- 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
- 			     GUC_HXG_ORIGIN_GUC))
+ 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
+ 	xe_guc_submit_pause(&gt->uc.guc);
++	xe_tlb_inval_reset(&gt->tlb_inval);
+ }
+ 
+ static size_t post_migration_scratch_size(struct xe_device *xe)
 -- 
 2.34.1
 
