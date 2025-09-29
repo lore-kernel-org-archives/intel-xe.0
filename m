@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 566A1CAC5BB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79098CCA46F
 	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 02:56:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C5D10E20F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F70C10E212;
 	Mon, 29 Sep 2025 02:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XILgT9wI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oHocsOFV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD8A210E20A
- for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7862D10E204
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 02:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759114553; x=1790650553;
+ t=1759114550; x=1790650550;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=X31O4NiFpkwBqBz/hM4BhnzNdQvoC51GqPfpr4A5AEk=;
- b=XILgT9wI9WQoe8kKRT6d20dGzKdOwnMt9njwf44vVNWlayPlpJoYMN/X
- hN2kGvrOLi6VyMoJt6uYTZdutp2U9xd7lGl2SL9D6iR0XDuuiYFxoIqCI
- +RHbAKpLdt6qB+AVXJJVBlHj1WjK+/jc1M/mHBMGTqxeD+kvbENQXxkeO
- xig7noDc/ongO/IIrPqwoEDACkwnc6eTTuD5eZ2dKppNtWa469i5dKQiK
- a+Gea54vO3OvwQFyp5eYjmRBwm7dLCgnwqnHTiISlAiumNMyLttNSzFdh
- o2U2oZStiUdj87/iI2D281bSLp/F/4GOGU2lFUlLLVtYalZAndIk9SzbS w==;
-X-CSE-ConnectionGUID: KAgdFw/JSViFh4Zt6A2Mqg==
-X-CSE-MsgGUID: pJmNHuyfTeqG9pqNzO0gtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398550"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398550"
+ bh=ipoIzRH7gt3sPRHj5QeBROa8vy2uJ9eK2Q2ZBAf9jJg=;
+ b=oHocsOFVxtzjbmg7JlikfPSeBOcGuTamWXs9+ROCZgj/2rs6FKFR5mcM
+ 7wC0vvXGl3VbyNXKEzdHRm0CgjYMP8QDgzrt6qpX6NPNLAz5SQpSRJcZY
+ KFezv4kDDCD7a39vOHmCvh9OTWThN1jthhO6MXqIQ0UHS7w28KTCz7aX6
+ EeCGytxrGbD6/IJZ2TC4df4nZ6H0Gq8qU5rWRarOgDRLbsC8Lp67cC94i
+ X3OSc4BwMxXql43299IcZeT+oQ/FltKTmrJNZ3c+XGkCKvCnU7GS6Q7ZU
+ pvIYNlb+zurPeNYLWB7mIKtQO0dCzyETJvcWxiumuh+Z1G5QTZVEw2Ap5 Q==;
+X-CSE-ConnectionGUID: 0cUB0ws8SfGzqjVZvOaMOw==
+X-CSE-MsgGUID: 1rk5/HbIQ7ak5QlxLr0hJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61398523"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61398523"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:53 -0700
-X-CSE-ConnectionGUID: Tv/sMMHCTj6doSo6/mT36g==
-X-CSE-MsgGUID: trNxMTk6SZa007ApdKf1IQ==
+ 28 Sep 2025 19:55:50 -0700
+X-CSE-ConnectionGUID: wboykl2VQEKlzZikf59kvg==
+X-CSE-MsgGUID: g6uPHcAnQUabs0W7JUoXlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529284"
+X-IronPort-AV: E=Sophos;i="6.18,300,1751266800"; d="scan'208";a="182529254"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2025 19:55:52 -0700
+ 28 Sep 2025 19:55:48 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 34/36] drm/xe/vf: Ensure media GT VF recovery runs after
- primary GT on PTL
-Date: Sun, 28 Sep 2025 19:55:40 -0700
-Message-Id: <20250929025542.1486303-35-matthew.brost@intel.com>
+Subject: [PATCH v3 07/36] drm/xe/guc: Track pending-enable source in
+ submission state
+Date: Sun, 28 Sep 2025 19:55:13 -0700
+Message-Id: <20250929025542.1486303-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250929025542.1486303-1-matthew.brost@intel.com>
 References: <20250929025542.1486303-1-matthew.brost@intel.com>
@@ -66,83 +66,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is possible that the media GT's VF post-migration recovery work item
-gets scheduled before the primary GT's work item. Since the media GT
-depends on the primary GT's work item to complete CCS restore, if the
-media GT's work item is scheduled first, detect this condition and
-re-queue the media GT's work item for a later time.
+Add explicit tracking in the GuC submission state to record the source
+of a pending enable (TDR vs. queue resume path vs. submission).
+Disambiguating the origin lets the GuC submission state machine apply
+the correct recovery/replay behavior.
+
+This helps VF restore: when the device comes back, the state machine knows
+whether the pending enable stems from timeout recovery, from a queue resume
+sequence, or submission and can gate sequencing and fixups accordingly.
+
+v4:
+ - Clarify commit message (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 29 +++++++++++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 42f9fd43b436..9c1fea9f65d2 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1187,8 +1187,22 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 		   pf_version->major, pf_version->minor);
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 16f78376f196..13746f32b231 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -69,6 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+ #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
++#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
++#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
  
--static void vf_post_migration_shutdown(struct xe_gt *gt)
-+static bool vf_post_migration_shutdown(struct xe_gt *gt)
+ static bool exec_queue_registered(struct xe_exec_queue *q)
  {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	/*
-+	 * On platforms where CCS must be restored by the primary GT, the media
-+	 * GT's VF post-migration recovery must run afterward. Detect this case
-+	 * and re-queue the media GT's restore work item if necessary.
-+	 */
-+	if (xe->info.needs_shared_vf_gt_wq && xe_gt_is_media_type(gt)) {
-+		struct xe_gt *primary_gt = gt_to_tile(gt)->primary_gt;
-+
-+		if (xe_gt_sriov_vf_recovery_inprogress(primary_gt))
-+			return true;
-+	}
-+
- 	spin_lock_irq(&gt->sriov.vf.migration.lock);
- 	gt->sriov.vf.migration.recovery_queued = false;
- 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-@@ -1196,6 +1210,8 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
- 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
- 	xe_guc_submit_pause(&gt->uc.guc);
- 	xe_tlb_inval_reset(&gt->tlb_inval);
-+
-+	return false;
+@@ -220,6 +222,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
  }
  
- static size_t post_migration_scratch_size(struct xe_device *xe)
-@@ -1270,11 +1286,14 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
++static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
++}
++
++static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
++}
++
++static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
-+	bool retry;
+ 	return (atomic_read(&q->guc->state) &
+@@ -1334,6 +1366,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	return DRM_GPU_SCHED_STAT_RESET;
  
- 	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
+ sched_enable:
++	set_exec_queue_pending_tdr_exit(q);
+ 	enable_scheduling(q);
+ rearm:
+ 	/*
+@@ -1493,6 +1526,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ 		clear_exec_queue_suspended(q);
+ 		if (!exec_queue_enabled(q)) {
+ 			q->guc->resume_time = RESUME_PENDING;
++			set_exec_queue_pending_resume(q);
+ 			enable_scheduling(q);
+ 		}
+ 	} else {
+@@ -2065,6 +2099,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+ 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
  
- 	xe_pm_runtime_get(xe);
--	vf_post_migration_shutdown(gt);
-+	retry = vf_post_migration_shutdown(gt);
-+	if (retry)
-+		goto queue;
- 
- 	if (!xe_sriov_vf_migration_supported(xe)) {
- 		xe_gt_sriov_err(gt, "migration is not supported\n");
-@@ -1302,6 +1321,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	xe_pm_runtime_put(xe);
- 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
- 	xe_device_declare_wedged(xe);
-+	return;
-+
-+queue:
-+	xe_gt_sriov_info(gt, "Re-queuing GT recovery\n");
-+	queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
-+	xe_pm_runtime_put(xe);
- }
- 
- static void migration_worker_func(struct work_struct *w)
+ 		q->guc->resume_time = ktime_get();
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
+ 		clear_exec_queue_pending_enable(q);
+ 		smp_wmb();
+ 		wake_up_all(&guc->ct.wq);
 -- 
 2.34.1
 
