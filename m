@@ -4,69 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3CCCCCA468
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 08:25:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83625CAC5B0
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 08:41:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E8410E3B2;
-	Mon, 29 Sep 2025 08:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4261310E3CA;
+	Mon, 29 Sep 2025 08:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UM54KxuS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNSYPrVm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2B7D10E225;
- Mon, 29 Sep 2025 08:25:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 099CA10E3CB
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 08:41:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759134311; x=1790670311;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=SkljFC53J8twn2X6cXUMB3XSIOvCtrGLWbPUzii5Oss=;
- b=UM54KxuS7tnzkLBcSzLUrJFwensbBTz1Te4pmK3dCUfWQ7z+4/Zewd/D
- ACqyjQep39cAV91h+6e/Rnt1juXBBL9o8W6UybuBV6jbXin883Q7KH1pI
- HnEvbXBbnMf+5I7Js4Ueof2yQJFG6yMZYW/N7pYKBai7Bi+MtLKN5f8ah
- kS0HuDMO5LOmrNnCYwqatH3c11eIRmh9B47JwPbx0MdVDW3rI6bcQm0OY
- 62BhnwCMdZGNQdBTVN+XH5s4IVeWod+5Zp5kuFjBmjr/nNEkmmkQ7pmnd
- baQtLffRnFOLLjDzma88DwLowfuYKgdBKoToTWIPbs8Wtrc8Q8HEphcFU Q==;
-X-CSE-ConnectionGUID: vtwc28SjSd6h90ssiRgtbA==
-X-CSE-MsgGUID: r1LhzpLdQ3yaq8zkUGmulw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="71617571"
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="71617571"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 01:25:11 -0700
-X-CSE-ConnectionGUID: oBV59mbYQf2bxdiXMpjNew==
-X-CSE-MsgGUID: Dm+G7RNJT/6nFeaAElQvZw==
+ t=1759135261; x=1790671261;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/i3rZAVpmkamjr2eT9gvnWw5L1np16k5WPiJTVxvcLk=;
+ b=mNSYPrVmWSVq8HLqOrllMbq13/l+ydQwSrUApFODoI162Cf/y4qzKicj
+ 6ArWeRlY0tTz9wbL8A/bJrcs7Hkeam0yOKaP00fjm8JNSg3gxkOkzkaky
+ xyxa7kl0mZ8saHObEXdRvb1kOUWU6LOna50Ws1Cdh+/mEg5GzZk/F6j0G
+ rI4DS7bld33FdkWnxacH52YxgtJqNZfFcE4OMRNRZPX+V09leeKoWt3Wa
+ IFyTCaV2M9cYO+is+SlLo1neQFW4w7PvfUP9mfX0MeejDwzIS4cG6aqkl
+ xQvpHy6Btm8sw2LQvl5Z2DCSiDYz6vVzOcWEnMnazXvMy7z+iW6J4E/SR Q==;
+X-CSE-ConnectionGUID: 61ougzjnS1qIYEB6YdPvVQ==
+X-CSE-MsgGUID: 1Mw19nOfTHevRMZpdb4U9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11567"; a="65006558"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="65006558"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 01:41:00 -0700
+X-CSE-ConnectionGUID: UwvPy+qjRZOPrx3U54fjzQ==
+X-CSE-MsgGUID: PsJz2x88S2i6OT/pmQIkkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="178234154"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.197])
- ([10.245.245.197])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 01:25:09 -0700
-Message-ID: <42520738dbc23174181db7d31d55de56996fba88.camel@linux.intel.com>
-Subject: Re: [RFC PATCH v2 1/2] dma-buf: Add support for private interconnects
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Jason
- Gunthorpe <jgg@nvidia.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Kasireddy Vivek
- <vivek.kasireddy@intel.com>, Simona Vetter	 <simona.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, 	linaro-mm-sig@lists.linaro.org
-Date: Mon, 29 Sep 2025 10:25:06 +0200
-In-Reply-To: <a5ffd1ee-b0b5-40bd-b68f-3779ca70dcae@amd.com>
-References: <20250926084624.2288-1-thomas.hellstrom@linux.intel.com>
- <20250926084624.2288-2-thomas.hellstrom@linux.intel.com>
- <472f27f0-2f54-45dd-b0a6-3a26b5eec301@amd.com>
- <ef9f4fb1c55bf3e5e6423b2accdccee0607b95ef.camel@linux.intel.com>
- <20250926144128.GD2617119@nvidia.com>
- <765e3449-2eb1-49f5-954e-3bab5a5fc9d1@amd.com>
- <20250926160036.GE2617119@nvidia.com>
- <d3cc5b7fe4189c6f529b532273ece34c9c0e975f.camel@linux.intel.com>
- <a5ffd1ee-b0b5-40bd-b68f-3779ca70dcae@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="209124161"
+Received: from naresh-nuc8i7beh.iind.intel.com (HELO
+ nkumarg-desk.iind.intel.com) ([10.190.216.171])
+ by fmviesa001.fm.intel.com with ESMTP; 29 Sep 2025 01:40:59 -0700
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: naresh.kumar.g@intel.com, Michal.Wajdeczko@intel.com, varun.gupta@intel.com
+Subject: [PATCH] drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF
+ Provisioning
+Date: Mon, 29 Sep 2025 14:06:14 +0530
+Message-ID: <20250929083613.644931-2-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,147 +65,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2025-09-29 at 10:20 +0200, Christian K=C3=B6nig wrote:
-> On 29.09.25 10:16, Thomas Hellstr=C3=B6m wrote:
-> > On Fri, 2025-09-26 at 13:00 -0300, Jason Gunthorpe wrote:
-> > > On Fri, Sep 26, 2025 at 04:51:29PM +0200, Christian K=C3=B6nig wrote:
-> > > > On 26.09.25 16:41, Jason Gunthorpe wrote:
-> > > > > On Fri, Sep 26, 2025 at 03:51:21PM +0200, Thomas Hellstr=C3=B6m
-> > > > > wrote:
-> > > > >=20
-> > > > > > Well both exporter and exporter has specific information
-> > > > > > WRT
-> > > > > > this. The
-> > > > > > ultimate decision is done in the exporter attach()
-> > > > > > callback,
-> > > > > > just like
-> > > > > > pcie_p2p. And the exporter acknowledges that by setting the
-> > > > > > dma_buf_attachment::interconnect_attach field. In analogy
-> > > > > > with
-> > > > > > the
-> > > > > > dma_buf_attachment::peer2peer member.
-> > > > >=20
-> > > > > Having a single option seems too limited to me..
-> > > >=20
-> > > > Yeah, agree.
-> > > >=20
-> > > > > I think it would be nice if the importer could supply a list
-> > > > > of
-> > > > > 'interconnects' it can accept, eg:
-> > > > >=20
-> > > > > =C2=A0- VRAM offset within this specific VRAM memory
-> > > > > =C2=A0- dma_addr_t for this struct device
-> > > > > =C2=A0- "IOVA" for this initiator on a private interconnect
-> > > > > =C2=A0- PCI bar slice
-> > > > > =C2=A0- phys_addr_t (used between vfio, kvm, iommufd)
-> > > >=20
-> > > > I would rather say that the exporter should provide the list of
-> > > > what
-> > > > interconnects the buffer might be accessible through.
-> > >=20
-> > > Either direction works, I sketched it like this because I thought
-> > > there were more importers than exporters, and in the flow it is
-> > > easy
-> > > for the importer to provide a list on the stack
-> > >=20
-> > > I didn't sketch further, but I think the exporter and importer
-> > > should
-> > > both be providing a compatible list and then in almost all cases
-> > > the
-> > > core code should do the matching.
-> > >=20
-> > > If the importer works as I showed, then the exporter version
-> > > would be
-> > > in an op:
-> > >=20
-> > > int exporter_negotiate_op(struct dma_buf *dmabuf,
-> > > =C2=A0=C2=A0 struct dma_buf_interconnect_negotiation *importer_suppor=
-t,
-> > > size_t
-> > > importer_len)
-> > > {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf_interconnect_negotiation expo=
-rter_support[2]
-> > > =3D {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [0] =3D {.interconne=
-ct =3D myself->xe_vram},
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 [1] =3D {.interconne=
-ct =3D &dmabuf_generic_dma_addr_t,
-> > > .interconnect_args =3D exporter_dev},
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 return dma_buf_helper_negotiate(dmabuf, expo=
-rter_support,
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 ARRAY_SIZE(exporter_support), importer_support,
-> > > importer_len);
-> > > }
-> > >=20
-> > > Which the dma_buf_negotiate() calls.
-> > >=20
-> > > The core code does the matching generically, probably there is a
-> > > struct dma_buf_interconnect match() op it uses to help this
-> > > process.
-> > >=20
-> > > I don't think importer or exporter should be open coding any
-> > > matching.
-> > >=20
-> > > For example, we have some systems with multipath PCI. This could
-> > > actually support those properly. The RDMA NIC has two struct
-> > > devices
-> > > it operates with different paths, so it would write out two
-> > > &dmabuf_generic_dma_addr_t's - one for each.
-> > >=20
-> > > The GPU would do the same. The core code can have generic code to
-> > > evaluate if P2P is possible and estimate some QOR between the
-> > > options.
-> >=20
-> > This sounds OK with me. I have some additional questions, though,
-> >=20
-> > 1) Everybody agrees that the interconnect used is a property of the
-> > attachment? It should be negotiated during attach()?
->=20
-> Yes, attach allows the exporter to know who wants to access it's
-> buffer.
->=20
-> Map/unmap then requests the actual location where the exporter has
-> moved the buffer so that it is accessible by everybody.
->=20
-> > 2) dma-buf pcie-p2p allows transparent fallback to system memory
-> > dma-
-> > buf. I think that is a good thing to keep even for other
-> > interconnects
-> > (if possible). Like if someone wants to pull the network cable, we
-> > could trigger a move_notify() and on next map() we'd fall back. Any
-> > ideas around this?
->=20
-> We already do that if new importers come along.
->=20
-> E.g. you have a connection which can do PCIe P2P and then suddenly
-> somebody attaches which can only do DMA to system memory. In that
-> situation we use move_notify to move the buffer into system memory
-> and imports re-map it to grasp the new location.
+Due to SLA agreement between PF and VFs, multi CCS mode can't
+be enabled when VFs are already enabled.
+Similarly, enabling VFs is disabled when multi ccs mode enabled.
 
-Sure, Just wandering whether we should document and require that also
-for fast interconnects. So that if we use a new map_attachment()
-function, like was suggested ealier, if that fails, the importer should
-ideally retry with the old one to get an sg-list to system memory?
+v2:function xe_device_is_vf_enabled has been refactored to
+xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
+The code now distinctly checks for SR-IOV VF mode and
+SR-IOV PF with VFs enabled.
+Log messages have been updated to explicitly state the current mode.
+The function xe_multi_ccs_mode_enabled is moved to xe_device.h
 
-Thanks,
-Thomas
+v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
 
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h           |  8 ++++++++
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c      | 14 +++++++++++---
+ drivers/gpu/drm/xe/xe_pci_sriov.c        |  6 ++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h | 13 +++++++++++++
+ 4 files changed, 38 insertions(+), 3 deletions(-)
 
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > Jason
-> >=20
->=20
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 32cc6323b7f6..986f9cabb897 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -172,6 +172,14 @@ static inline bool xe_device_has_lmtt(struct xe_device *xe)
+ 	return IS_DGFX(xe);
+ }
+ 
++static inline bool xe_multi_ccs_mode_enabled(struct xe_device *xe)
++{
++	/* Multi CCS mode supported exclusively on GT0 */
++	struct xe_gt *gt = xe_device_get_gt(xe, 0);
++
++	return gt->ccs_mode > 1;
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+ 
+ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+index 50fffc9ebf62..584f3245fc7d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -13,6 +13,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf_helpers.h"
+ 
+ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
+ {
+@@ -117,9 +118,16 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	u32 num_engines, num_slices;
+ 	int ret;
+ 
+-	if (IS_SRIOV(xe)) {
+-		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
+-			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++	/*
++	 * Check if the device is:
++	 * 1. Operating as an SR-IOV Virtual Function (VF), or
++	 * 2. An SR-IOV Physical Function (PF) with one or more VFs enabled.
++	 * Enabling multi CCS mode is not permitted in either scenario.
++	 */
++	if (IS_SRIOV_VF(xe) || xe_sriov_pf_has_vfs_enabled(xe)) {
++		const char *mode_str = !strcmp(xe_sriov_mode_to_string(xe_device_sriov_mode(xe)),
++					"SR-IOV VF") ? "SR-IOV VF" : "SR-IOV PF with VFs Enabled";
++		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n", mode_str);
+ 		return -EOPNOTSUPP;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index af05db07162e..71c1d998ba82 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -155,6 +155,12 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	xe_assert(xe, num_vfs <= total_vfs);
+ 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
+ 
++	if (xe_multi_ccs_mode_enabled(xe)) {
++		xe_sriov_info(xe, "Disable multi-ccs mode before enabling VF's\n");
++
++		return -ECANCELED;
++	}
++
+ 	err = xe_sriov_pf_wait_ready(xe);
+ 	if (err)
+ 		goto out;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+index dd1df950b021..e26837091375 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+@@ -43,4 +43,17 @@ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+ 	return &xe->sriov.pf.master_lock;
+ }
+ 
++/**
++ * xe_sriov_pf_has_vfs_enabled() - Determines if the PF has any VFs enabled
++ * @xe: ptr to xe_device
++ *
++ * Return: true if one or more VFs are enabled on the PF, false otherwise.
++ */
++static inline bool xe_sriov_pf_has_vfs_enabled(const struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++
++	return pci_num_vf(pdev) > 0;
++}
++
+ #endif
+-- 
+2.43.0
 
