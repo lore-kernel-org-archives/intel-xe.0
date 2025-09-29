@@ -4,28 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E2BCAC5B0
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 13:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E140CAC5B5
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 14:07:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D9810E425;
-	Mon, 29 Sep 2025 13:57:10 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D5C10E425;
- Mon, 29 Sep 2025 13:57:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7307034876931579115=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
- =?utf-8?q?=2C1/2=5D_drm/i915/alpm=3A_Compute_ALPM_parameters_into_crtc=5Fst?=
- =?utf-8?q?ate-=3Ealpm=5Fstate?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 29 Sep 2025 13:57:09 -0000
-Message-ID: <175915422928.375867.15984467097724438447@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250929130003.28365-1-jouni.hogander@intel.com>
-In-Reply-To: <20250929130003.28365-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFC6110E428;
+	Mon, 29 Sep 2025 14:07:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VIwCs6nE";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD9710E428;
+ Mon, 29 Sep 2025 14:07:27 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 56F1462229;
+ Mon, 29 Sep 2025 14:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39D5C4CEF4;
+ Mon, 29 Sep 2025 14:07:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1759154846;
+ bh=BKY6d1yBc/lroKagYCaSuXxxZ2I6xVz7xuOdW9gGVog=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=VIwCs6nERrhW0nxOSUX19uKaSbWaPiA57FLkrY/4Uprkq5LgrHoiUivCfaZvPlDJb
+ i6KLN/dKDKpt1NR2uxgGrDR52CIUwIHMg23DAcNlGqdewpdtJ70FJNG6vguN5c0uqv
+ nZXAhALVBgh98eaVa0iqjXEivUiyt33u0EBXa0WBUTXuKPWVYVyzjfZ9M0LVem7OQo
+ AEEPO53AterwJzs/a9z5iozTdGXW9hC5C2TJZP7d2vbXGRMDMCg6jLfr24uZafLKzw
+ nS5iP9sVWdC/gpZ6Qm187pNyhz6baXQw04PzSAY31gKs37HoOgNmPLp4Ijx6IsJwhb
+ y4VzpOZRGf51w==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 29 Sep 2025 16:07:18 +0200
+Message-Id: <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
+Subject: Re: [RFC v8 00/21] DRM scheduling cgroup controller
+Cc: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <kernel-dev@igalia.com>, <intel-xe@lists.freedesktop.org>,
+ <cgroups@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Leo Liu"
+ <Leo.Liu@amd.com>, =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ "Matthew Brost" <matthew.brost@intel.com>, =?utf-8?q?Michal_Koutn=C3=BD?=
+ <mkoutny@suse.com>, =?utf-8?q?Michel_D=C3=A4nzer?=
+ <michel.daenzer@mailbox.org>, "Philipp Stanner" <phasta@kernel.org>,
+ "Pierre-Eric Pelloux-Prayer" <pierre-eric.pelloux-prayer@amd.com>, "Rob
+ Clark" <robdclark@gmail.com>, "Tejun Heo" <tj@kernel.org>, "Alexandre
+ Courbot" <acourbot@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
+ "John Hubbard" <jhubbard@nvidia.com>, "Joel Fernandes"
+ <joelagnelf@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Alex Deucher"
+ <alexander.deucher@amd.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>, "Boris Brezillon"
+ <boris.brezillon@collabora.com>, "Rob Herring" <robh@kernel.org>, "Steven
+ Price" <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, "Alice Ryhl"
+ <aliceryhl@google.com>, "Boqun Feng" <boqunf@netflix.com>,
+ =?utf-8?q?Gr=C3=A9goire_P=C3=A9an?= <gpean@netflix.com>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,125 +72,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7307034876931579115==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed Sep 3, 2025 at 5:23 PM CEST, Tvrtko Ursulin wrote:
+> This is another respin of this old work^1 which since v7 is a total rewri=
+te and
+> completely changes how the control is done.
 
-== Series Details ==
+I only got some of the patches of the series, can you please send all of th=
+em
+for subsequent submissions? You may also want to consider resending if you'=
+re
+not getting a lot of feedback due to that. :)
 
-Series: series starting with [v2,1/2] drm/i915/alpm: Compute ALPM parameters into crtc_state->alpm_state
-URL   : https://patchwork.freedesktop.org/series/155168/
-State : success
+> On the userspace interface side of things it is the same as before. We ha=
+ve
+> drm.weight as an interface, taking integers from 1 to 10000, the same as =
+CPU and
+> IO cgroup controllers.
 
-== Summary ==
+In general, I think it would be good to get GPU vendors to speak up to what=
+ kind
+of interfaces they're heading to with firmware schedulers and potential fir=
+mware
+APIs to control scheduling; especially given that this will be a uAPI.
 
-CI Bug Log - changes from xe-3838-0bd69799610244985d95eda223f554d5d22345cb_BAT -> xe-pw-155168v1_BAT
-====================================================
+(Adding a couple of folks to Cc.)
 
-Summary
--------
+Having that said, I think the basic drm.weight interface is fine and should=
+ work
+in any case; i.e. with the existing DRM GPU scheduler in both modes, the
+upcoming DRM Jobqueue efforts and should be generic enough to work with
+potential firmware interfaces we may see in the future.
 
-  **SUCCESS**
+Philipp should be talking about the DRM Jobqueue component at XDC (probably=
+ just
+in this moment).
 
-  No regressions found.
+--
 
-  
+Some more thoughts on the DRM Jobqueue and scheduling:
 
-Participating hosts (11 -> 11)
-------------------------------
+The idea behind the DRM Jobqueue is to be, as the name suggests, a componen=
+t
+that receives jobs from userspace, handles the dependencies (i.e. dma fence=
+s),
+and executes the job, e.g. by writing to a firmware managed software ring.
 
-  No changes in participating hosts
+It basically does what the GPU scheduler does in 1:1 entity-scheduler mode,
+just without all the additional complexity of moving job ownership from one
+component to another (i.e. from entity to scheduler, etc.).
 
-Known issues
-------------
+With just that, there is no scheduling outside the GPU's firmware scheduler=
+ of
+course. However, additional scheduler capabilities, e.g. to support hardwar=
+e
+rings, or manage firmware schedulers that only support a limited number of
+software rings (like some Mali GPUs), can be layered on top of that:
 
-  Here are the changes found in xe-pw-155168v1_BAT that come from known issues:
+In contrast to the existing GPU scheduler, the idea would be to keep lettin=
+g the
+DRM Jobqueue handle jobs submitted by userspace from end to end (i.e. let t=
+he
+push to the hardware (or software) ring buffer), but have an additional
+component, whose only purpose is to orchestrate the DRM Jobqueues, by manag=
+ing
+when they are allowed to push to a ring and which ring they should push to.
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3838-0bd69799610244985d95eda223f554d5d22345cb/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155168v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3838-0bd69799610244985d95eda223f554d5d22345cb -> xe-pw-155168v1
-
-  IGT_8556: e5eda2a187432a54f5e6fada18e4187e5175a10c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3838-0bd69799610244985d95eda223f554d5d22345cb: 0bd69799610244985d95eda223f554d5d22345cb
-  xe-pw-155168v1: 155168v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155168v1/index.html
-
---===============7307034876931579115==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/alpm: Compute ALPM parameters into crtc_state-&gt;alpm_state</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155168/">https://patchwork.freedesktop.org/series/155168/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155168v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155168v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3838-0bd69799610244985d95eda223f554d5d22345cb_BAT -&gt; xe-pw-155168v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155168v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3838-0bd69799610244985d95eda223f554d5d22345cb/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155168v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3838-0bd69799610244985d95eda223f554d5d22345cb -&gt; xe-pw-155168v1</li>
-</ul>
-<p>IGT_8556: e5eda2a187432a54f5e6fada18e4187e5175a10c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3838-0bd69799610244985d95eda223f554d5d22345cb: 0bd69799610244985d95eda223f554d5d22345cb<br />
-  xe-pw-155168v1: 155168v1</p>
-
-</body>
-</html>
-
---===============7307034876931579115==--
+This way we get rid of one of the issue that the existing GPU scheduler mov=
+es
+job ownership between components of different lifetimes (entity and schedul=
+er),
+which is one of the fundamental hassles to deal with.
