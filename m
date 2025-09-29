@@ -4,181 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA352CAC5B9
-	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 15:25:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA212CAC5B9
+	for <intel-xe@archiver.kernel.org>; Mon, 29 Sep 2025 15:32:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D09510E450;
-	Mon, 29 Sep 2025 15:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A604C10E454;
+	Mon, 29 Sep 2025 15:32:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+blMMqr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAL77i2T";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA73110E22F;
- Mon, 29 Sep 2025 15:25:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4219810E454
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 Sep 2025 15:32:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759159538; x=1790695538;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=0yMBbTdrbZsoKnHaFswecQWWVrw035NB0ey/rqgunGY=;
- b=G+blMMqrA7ttYcvfLNEqjCwLhSBL1WXc1PMNA7de9PJ3nilChJ3rBgQU
- ZxrYfdmS8OBsWKQBe+yZQGlTNDmB6l1KPSvHctjsfhJNV2CkMLgVH+sMe
- QrWU796y6FZKCe2XN77TcgybCsjzsavo1gSetDNEw6D0qf5R/s0DlIwNJ
- vyMyR2sNALcpid8oYiHHnXKXz2FYL02hW4BNJCwG6/xdajAOqmibdlcn/
- I4/Mb3EOFM8rCdsBS9uTeOu0gBT2P67ygVSDgjIcy9OcP8jqp1Ey33VgL
- Kb64PAdSXy48vchVJ2MOJW420+jnqq3jReMX9z35UeQNZlmJLXAnugbED A==;
-X-CSE-ConnectionGUID: viyxNbBUThulK4OvpCfC9A==
-X-CSE-MsgGUID: sp02vNzRSIaxq09BADZfZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="60615338"
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="60615338"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 08:25:37 -0700
-X-CSE-ConnectionGUID: vS2lVLIiSOaesnaX4OriqQ==
-X-CSE-MsgGUID: uoeqhmQtRhiBoZ3bnTr8Kg==
+ t=1759159970; x=1790695970;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cr4kBv+dROccqOy1C2nqbbPzpUe2Ewkn622Cn6uW6rI=;
+ b=LAL77i2TwoVJmuGxeysF3dHx6tHSZ17RqdfTutoVWL56uMrFPGqjoR3D
+ b1oS/19BEM/5mKytwPJ8jN2xblIpesdZQtjlCUxsYwsuxbQSJSRYIsVwj
+ Ur++2aUlabapDN7ovsOV565+auFTUTwtiVL2uk1nPiPAmrFN4Qy+rrIVo
+ 486fSgnCT9p/tO+1Z9FwSnybok8lYqyBrtov+mei2fiYYQy2shIm+pqxY
+ zHXnykvlacx1+VDbnf+xARnYcSRw4ch9Zr5yk3JUbAU4Nhlp5W5uVb4Zc
+ GrRQj08CqCH0VNOLR+chXUy9o2FnPE5V9VE0Ta2SK4lAKvBktYvNgt1mD w==;
+X-CSE-ConnectionGUID: EDHzJMWGRH2mPicYQaDp6A==
+X-CSE-MsgGUID: Mf8mK945RxqHSP69YOCf0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="78827990"
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="78827990"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 08:32:50 -0700
+X-CSE-ConnectionGUID: qOaUvG7jQdSrHHRjL+/bjg==
+X-CSE-MsgGUID: bvfaRnvAT92bAXe3MF1q5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177387425"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2025 08:25:37 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 29 Sep 2025 08:25:36 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 29 Sep 2025 08:25:36 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.55)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 29 Sep 2025 08:25:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IAwpEE3TeyxfuQRigo3ZFdiwxt3TKU8egDzAdn/7KexEXXMPlkI0iHLcoIHdjPYDxlTTltodtWlkePpAD5nHhITvBtRWdJ9fl7gTa8ver572g9K+Z60GTVfDV3Lcz/dDfrIfE/eASzwb31JYNDIIU5aq7bbxsbspRIZ4GoWfc086A9pOA3IEYCSA20lIsCmuLjngURZFMP3MQo9aRTJxkr4ntyDNqOquYeKWlSp2t2DM/+VZvi2xur1XgM50PjxMNKiK65iwvJM4dwrrPckjSOFyG06v4eaNzq2Ou8SOZe6g0fTBUZp0N6OWX6gAQKxwUBFxfDQBm/TIfTdrQYNU6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p0lyNX3BUmvGp66jtnY0mXVEFk176o4Cm6HjnAa0dFc=;
- b=Z5LhSpWQae9MRZPSfIY2nZ4Xr4C58nQ+SWYgMWJMlswkLSFVK6RcuQP2X7++EEnGyHSMgpvi6Bnb9aW+3f7s4Tw4NK+gIHLdtiysg9nG6Y79zdKA/RzXu2Nj5najeblC5z/AmbHs1/oyM7hAO7vz1LAyQdI2YYGYPKRo8ac4DVrAlijbS0hTAtygyBy/8oCRPkbD5Oh5kUsdSmSgUp4AQEkKrYT5yTBUHtEFbxIp1IauYZsSs88NjBV7sm9x42uPvDl6gNBbhkE1xwJwflJFVhjQ55HicAm/MtDi32gW+lF2mbBsbp6jfL1oFOKojflhWHhmNoz3+CrelPEXhcH+hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB7868.namprd11.prod.outlook.com (2603:10b6:610:12e::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.16; Mon, 29 Sep
- 2025 15:25:30 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9160.015; Mon, 29 Sep 2025
- 15:25:30 +0000
-Date: Mon, 29 Sep 2025 10:25:26 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-CC: <simona@ffwll.ch>, <airlied@gmail.com>, <mripard@kernel.org>,
- <maarten.lankhorst@linux.intel.com>, <geert@linux-m68k.org>,
- <tomi.valkeinen@ideasonboard.com>, <dri-devel@lists.freedesktop.org>,
- <linux-mediatek@lists.infradead.org>, <freedreno@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-samsung-soc@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <virtualization@lists.linux.dev>, <spice-devel@lists.freedesktop.org>,
- <linux-renesas-soc@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
- <linux-tegra@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
- <xen-devel@lists.xenproject.org>, Matthew Auld <matthew.auld@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v6 23/25] drm/xe: Compute dumb-buffer sizes with
- drm_mode_size_dumb()
-Message-ID: <urjqzmhgj2otboptnkgwa3bampqxi362xxtlmbrwf5td3qm3rf@pplm7q755sgg>
-References: <20250821081918.79786-1-tzimmermann@suse.de>
- <20250821081918.79786-24-tzimmermann@suse.de>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250821081918.79786-24-tzimmermann@suse.de>
-X-ClientProxiedBy: SJ0PR03CA0356.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::31) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.18,301,1751266800"; d="scan'208";a="177514256"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.197])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2025 08:32:48 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/gpusvm,
+ drm/xe: Fix userptr to not allow device private pages
+Date: Mon, 29 Sep 2025 17:32:23 +0200
+Message-ID: <20250929153223.58549-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB7868:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a7ce1ba-c1b5-42d1-e603-08ddff6c6cdd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7416014|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?JgDW+n75dUbON4IcrAM9gXBZeut+NEYdDAKyzZMSOy/a+UAuYmOb+aKsvU?=
- =?iso-8859-1?Q?tCxTC3tEevtR3QvGENanInjPLdTlWNlZcnks8+8Qp5gWnFCg1aY/14KpP1?=
- =?iso-8859-1?Q?4qi4d3SdqCXhs2SuIQ5kUf8ocjlXBi3gGUL3N6VtHgZ3QYyHHHmErPXO9f?=
- =?iso-8859-1?Q?gnwyFOh1aZZHuIVZ+jdZvWrAbQoa4X/M9Gx0268kC2MU+4SGTh6fNmstTq?=
- =?iso-8859-1?Q?yuIZugOJky1ADC4PCtssiCS6JwPmw55y6iVWduEskvnd9iqrTsu1yP0t1t?=
- =?iso-8859-1?Q?Ta4WQOWP6vcEv9zsP1a4fQe3Pu6eXuqkSyAo2Sc5nrUn/+TLN8ZCep9kL6?=
- =?iso-8859-1?Q?Q+9Br37abcU7w1/FWFihWz9YZH+HV6y/3XiCh4RGIiYa/XnhQZ/YhScxv2?=
- =?iso-8859-1?Q?5OvuNee3VvQajgQIrlDgY/yQLkGQNrK3uuXLghItw9ByUbiDwyXJuy/ykW?=
- =?iso-8859-1?Q?8TgF9r/OM17ur2r3p+knOkgFxpnV+/XndLk+9xdpOsNz9s+N0gsdCcNoSK?=
- =?iso-8859-1?Q?saksMVF0xvZYRUnGkkPMOSMo3tRhH6+SI2vhqcxS6hcfu0NEB4vMGuZmYf?=
- =?iso-8859-1?Q?z/TbXTR6VOMLmEmK3mllz5S2EHuY7mOZ7ex4f6VYQfBUWLD5h5LbjkVGZT?=
- =?iso-8859-1?Q?oA/a8HFZaVBgyhhsXAdyEMBm39S70+Cqaepit0axuvwgFeIdE1XkBrcz5a?=
- =?iso-8859-1?Q?RflIi0Ebji0+KsOSssR2H24pqCzwhW5eHXNEZwbPLGll2hpmzOGXoHF3Bz?=
- =?iso-8859-1?Q?Lc79hnyc9etauCvWTuwUoozkWAO44Iwe4+shAQgUNpCCGi7CV+coxseyUo?=
- =?iso-8859-1?Q?ywymFa0LuOTuFCn4goljNp4eMb/zKZnPmrrcu0OvktrQ5qosuafP+K2vmv?=
- =?iso-8859-1?Q?8iPf2rIricA/DwxlAShRF3F/2Fy6jMTWNnh6APdQUe1CJTMsgOhiRcd05e?=
- =?iso-8859-1?Q?YW8bF010UdNqsFwUUKnls+91hJ1i6llKjYn1VH3289GExOOE0gLUW+Xn2L?=
- =?iso-8859-1?Q?ZvT1FDXgQFj5EHUdxItCwyxt5yQA3fMcsaE5KRCnTM4N2j08tfaQo/oLXj?=
- =?iso-8859-1?Q?iKjGRZOOTwL9ZDDHVx8AtciEN5dNNotEUKZgMgB6UKtV7qql8ekeDpV18P?=
- =?iso-8859-1?Q?YXSXhQ5S0XP6e79FHqi+Pmw5pozxkkiomhzHrWcDz/qzEoLKtjyTgYSef8?=
- =?iso-8859-1?Q?S3a1oln1tvHgGho0n0pt1hPT0Lgi+/MCITrpuxS8e9Tozz429RqX6HdTGu?=
- =?iso-8859-1?Q?3zHqfcltAvbghVkwYdlHahSiy8WLYK8OTFwek9I9L+azzGQCSLClQqA5z2?=
- =?iso-8859-1?Q?apDFYN5gHs1R8/gZ4tBt2PrLkECT9zChKzIUcbH2adPfX+8usn45OXLA0e?=
- =?iso-8859-1?Q?WAPi8Ou/7jcUgs6Z3PwR+G/RNscLdUey7h8yOCZJTxdjlVml4iiGxZNxSm?=
- =?iso-8859-1?Q?4vuXK9k/zSmZVsXCJz7YXxG+tP4jZjELxTtG8yyHqeBJD0rs+JcQXGh+I0?=
- =?iso-8859-1?Q?rNuG3CeJO2uNuFBAoulLs8?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?tf+wSmX7h/PnweaMVgGBvU1wGT0ZB0STuf3BwXg60UfCA3drqBKZRzfS2o?=
- =?iso-8859-1?Q?/ZqyAt8WbVigpR4VfkcYUTV5JH4wmQjVB92GX9SXWnOdvX0yHShHvseWqJ?=
- =?iso-8859-1?Q?eZDiBjN3EnQvVHFuN1lmQZik9qaurcI4cnAmHN7UwET+zC1dYN+2HXw+kN?=
- =?iso-8859-1?Q?jXEQvFnrMgmwyy6xi3lPZ73k1wjUlfMbbCvgoIgfVr/W564ntjQwwWRe9v?=
- =?iso-8859-1?Q?9SfZrG/d253ATx7IpyWYhGRg3uTb+TwBEOFSzEl22OMYITk22ctzjVh+Bm?=
- =?iso-8859-1?Q?ZmtihVqNuZh03gk/k1fqMKCKLbfRrwmbQssAGaXI/ZHufVCNwn+7lmwk0T?=
- =?iso-8859-1?Q?CP9lUSbsgHw1tCLza/3qCGF8b2092Bzlgq+sD3uVfRD9hKAEMSaSW6Fbab?=
- =?iso-8859-1?Q?YZIg6TKncLqE1bwahGeLIKcPJsCoiE5Yg50PikcKh9YkTyPx7mpKz/vJ8H?=
- =?iso-8859-1?Q?oNyK3OObWUrdYNC071IO56fr62hyDlSIaiTjtLTmi5uKhRU8ljuyJ7PL+p?=
- =?iso-8859-1?Q?2RkLhJkCEOtWDU2RdJX6UgjUAsGzAsr2bYznvl/M0gDuGEItNvlZISCO9m?=
- =?iso-8859-1?Q?g5C2rMxSORI3gzgrwgFS9EzItU3VCJcqlr9hDrmJuxoAbk1nSAOvF6fluf?=
- =?iso-8859-1?Q?LAqrEqRdh2HXRC5fTtwfdCmfydp/hO0Yre55Vbww4HojqLu+EHq2WYmUd7?=
- =?iso-8859-1?Q?Qp9c3CoItHfMRMNTfx4O7qO0yi9wimzMAg+R+BmUzmcMQH3Q6MkTr1ayY8?=
- =?iso-8859-1?Q?F8baLI3Zgsj09YIuLO7JCFoxBR9ERxUYi81gE86u2y/jICQeUZbzTwQMGt?=
- =?iso-8859-1?Q?IakF75T0fSagXPQhtVPJwKb+xUlTGNcGGWvGqRgzUTkG/9wIRT5v4QVc98?=
- =?iso-8859-1?Q?SqGxkfewdurHzRIATCiyDv8BlEBusHKEdpX+gY24BZslMJ1YVDWeMkzPDS?=
- =?iso-8859-1?Q?rxBLSQIQ8j3eGiTGDVbqjOzFg8Q1x5cdpIIGYkoo5uUmx5onN623haWiGU?=
- =?iso-8859-1?Q?fSaSkyGTNbRaTHpSj+N+RhvNy4EV1KPhvvwpLVInZekMy4qTpf5ubCmtoj?=
- =?iso-8859-1?Q?5pwOeO5g7k1MAPL/a2rgceK8LoBbN8h7f3NExpmKEjbKu1FiG8uEQ+BMrq?=
- =?iso-8859-1?Q?QiqC8BZNY/+sowidrZ6lROpaxzecQ/h2vkSTDbFWqxZFfmn/zBNgevm6r9?=
- =?iso-8859-1?Q?gDnSYU8NChMM3/5O8rCs4XjqNgoZ9KIXeEs9SyPnjHPVP7yxOsySAO+dU8?=
- =?iso-8859-1?Q?S5qZsL+o3i71xBVpWiILJ0WVOLHghYmdKrvx6MsFWa7yBHyTPrTHh341cw?=
- =?iso-8859-1?Q?M7qCAORFBYr7Af5aAE0uKr9GGokIm9AYeZzpPKwX43CvrDLJEGIns1TzRU?=
- =?iso-8859-1?Q?+Qz5LXGuRr5O9V09fGEAIZZtS7YH0Qi6eWccHvSIeCEtCIqcov7bkMzq8H?=
- =?iso-8859-1?Q?KddXqiHCb+6Rf7yZqvmWQ11P44fhmrrtnnlZiW40JoFSLA2Qh9pFy9cyUq?=
- =?iso-8859-1?Q?z9B1ojp3dThQaNxhHdzpG7gbcdQT1tPzpH+C7Gkc3UHxQBo0zuTEyIWFpi?=
- =?iso-8859-1?Q?39Xm8PFGxEcvySM/nnU4Y3W2CrbOeb0yURH1IAPAZKBi41k9iv+GSveqDc?=
- =?iso-8859-1?Q?jEs7O4tDnTQqR/7eh3t+Ml3LB7BiINHuWC4QScIjbJNUeNzjTVfwJ1cg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a7ce1ba-c1b5-42d1-e603-08ddff6c6cdd
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2025 15:25:30.8021 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eZARfbdpVMrNRufPMp0vxzwZrI+oykbORRY+0kxlNZv8Erp/UhQ4BBo4LgIufw57mOjduLFIUfwUc6K6PQD0eQggml19NKcmIrHLZQXWOZg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7868
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,66 +70,278 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 21, 2025 at 10:17:30AM +0200, Thomas Zimmermann wrote:
->Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch
->and buffer size. Align the pitch to a multiple of 8. Align the
->buffer size according to hardware requirements.
->
->Xe's internal calculation allowed for 64-bit wide buffer sizes, but
->the ioctl's internal checks always verified against 32-bit wide limits.
->Hance, it is safe to limit the driver code to 32-bit calculations as
->well.
->
->v3:
->- mention 32-bit calculation in commit description (Matthew)
->
->Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+When userptr is used on SVM-enabled VMs, a non-NULL
+hmm_range::dev_private_owner value might mean that
+hmm_range_fault() attempts to return device private pages.
+Either that will fail, or the userptr code will not know
+how to handle those.
 
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Use NULL for hmm_range::dev_private_owner to migrate
+such pages to system. In order to do that, move the
+struct drm_gpusvm::device_private_page_owner field to
+struct drm_gpusvm_ctx::device_private_page_owner so that
+it doesn't remain immutable over the drm_gpusvm lifetime.
 
-to merge this via drm-misc.
+Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c    | 24 +++++++++++++-----------
+ drivers/gpu/drm/xe/xe_svm.c     | 11 +++--------
+ drivers/gpu/drm/xe/xe_svm.h     |  6 ++++++
+ drivers/gpu/drm/xe/xe_userptr.c |  1 +
+ drivers/gpu/drm/xe/xe_vm.c      |  1 +
+ include/drm/drm_gpusvm.h        |  7 ++++---
+ 6 files changed, 28 insertions(+), 22 deletions(-)
 
-thanks
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index eeeeb99cfdf6..cb906765897e 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -361,7 +361,6 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
+  * @name: Name of the GPU SVM.
+  * @drm: Pointer to the DRM device structure.
+  * @mm: Pointer to the mm_struct for the address space.
+- * @device_private_page_owner: Device private pages owner.
+  * @mm_start: Start address of GPU SVM.
+  * @mm_range: Range of the GPU SVM.
+  * @notifier_size: Size of individual notifiers.
+@@ -383,7 +382,7 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
+  */
+ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ 		    const char *name, struct drm_device *drm,
+-		    struct mm_struct *mm, void *device_private_page_owner,
++		    struct mm_struct *mm,
+ 		    unsigned long mm_start, unsigned long mm_range,
+ 		    unsigned long notifier_size,
+ 		    const struct drm_gpusvm_ops *ops,
+@@ -395,15 +394,13 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ 		mmgrab(mm);
+ 	} else {
+ 		/* No full SVM mode, only core drm_gpusvm_pages API. */
+-		if (ops || num_chunks || mm_range || notifier_size ||
+-		    device_private_page_owner)
++		if (ops || num_chunks || mm_range || notifier_size)
+ 			return -EINVAL;
+ 	}
+ 
+ 	gpusvm->name = name;
+ 	gpusvm->drm = drm;
+ 	gpusvm->mm = mm;
+-	gpusvm->device_private_page_owner = device_private_page_owner;
+ 	gpusvm->mm_start = mm_start;
+ 	gpusvm->mm_range = mm_range;
+ 	gpusvm->notifier_size = notifier_size;
+@@ -684,6 +681,7 @@ static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
+  * @notifier: Pointer to the GPU SVM notifier structure
+  * @start: Start address
+  * @end: End address
++ * @dev_private_owner: The device private page owner
+  *
+  * Check if pages between start and end have been faulted in on the CPU. Use to
+  * prevent migration of pages without CPU backing store.
+@@ -692,14 +690,15 @@ static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
+  */
+ static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
+ 				   struct drm_gpusvm_notifier *notifier,
+-				   unsigned long start, unsigned long end)
++				   unsigned long start, unsigned long end,
++				   void *dev_private_owner)
+ {
+ 	struct hmm_range hmm_range = {
+ 		.default_flags = 0,
+ 		.notifier = &notifier->notifier,
+ 		.start = start,
+ 		.end = end,
+-		.dev_private_owner = gpusvm->device_private_page_owner,
++		.dev_private_owner = dev_private_owner,
+ 	};
+ 	unsigned long timeout =
+ 		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+@@ -753,6 +752,7 @@ static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
+  * @gpuva_start: Start address of GPUVA which mirrors CPU
+  * @gpuva_end: End address of GPUVA which mirrors CPU
+  * @check_pages_threshold: Check CPU pages for present threshold
++ * @dev_private_owner: The device private page owner
+  *
+  * This function determines the chunk size for the GPU SVM range based on the
+  * fault address, GPU SVM chunk sizes, existing GPU SVM ranges, and the virtual
+@@ -767,7 +767,8 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm *gpusvm,
+ 			    unsigned long fault_addr,
+ 			    unsigned long gpuva_start,
+ 			    unsigned long gpuva_end,
+-			    unsigned long check_pages_threshold)
++			    unsigned long check_pages_threshold,
++			    void *dev_private_owner)
+ {
+ 	unsigned long start, end;
+ 	int i = 0;
+@@ -814,7 +815,7 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm *gpusvm,
+ 		 * process-many-malloc' mallocs at least 64k at a time.
+ 		 */
+ 		if (end - start <= check_pages_threshold &&
+-		    !drm_gpusvm_check_pages(gpusvm, notifier, start, end)) {
++		    !drm_gpusvm_check_pages(gpusvm, notifier, start, end, dev_private_owner)) {
+ 			++i;
+ 			goto retry;
+ 		}
+@@ -957,7 +958,8 @@ drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
+ 	chunk_size = drm_gpusvm_range_chunk_size(gpusvm, notifier, vas,
+ 						 fault_addr, gpuva_start,
+ 						 gpuva_end,
+-						 ctx->check_pages_threshold);
++						 ctx->check_pages_threshold,
++						 ctx->device_private_page_owner);
+ 	if (chunk_size == LONG_MAX) {
+ 		err = -EINVAL;
+ 		goto err_notifier_remove;
+@@ -1268,7 +1270,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 		.notifier = notifier,
+ 		.start = pages_start,
+ 		.end = pages_end,
+-		.dev_private_owner = gpusvm->device_private_page_owner,
++		.dev_private_owner = ctx->device_private_page_owner,
+ 	};
+ 	void *zdd;
+ 	unsigned long timeout =
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 7f2f1f041f1d..7e2db71ff34e 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -67,11 +67,6 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
+ 	range_debug(range, operation);
+ }
+ 
+-static void *xe_svm_devm_owner(struct xe_device *xe)
+-{
+-	return xe;
+-}
+-
+ static struct drm_gpusvm_range *
+ xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+ {
+@@ -744,15 +739,14 @@ int xe_svm_init(struct xe_vm *vm)
+ 			  xe_svm_garbage_collector_work_func);
+ 
+ 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
+-				      current->mm, xe_svm_devm_owner(vm->xe), 0,
+-				      vm->size,
++				      current->mm, 0, vm->size,
+ 				      xe_modparam.svm_notifier_size * SZ_1M,
+ 				      &gpusvm_ops, fault_chunk_sizes,
+ 				      ARRAY_SIZE(fault_chunk_sizes));
+ 		drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
+ 	} else {
+ 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
+-				      &vm->xe->drm, NULL, NULL, 0, 0, 0, NULL,
++				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
+ 				      NULL, 0);
+ 	}
+ 
+@@ -1017,6 +1011,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		.devmem_only = need_vram && devmem_possible,
+ 		.timeslice_ms = need_vram && devmem_possible ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
++		.device_private_page_owner = xe_svm_devm_owner(vm->xe),
+ 	};
+ 	struct xe_validation_ctx vctx;
+ 	struct drm_exec exec;
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index cef6ee7d6fe3..14df823b8524 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -14,6 +14,7 @@
+ #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
+ 
+ struct xe_bo;
++struct xe_device;
+ struct xe_gt;
+ struct xe_tile;
+ struct xe_vm;
+@@ -157,6 +158,11 @@ static inline unsigned long xe_svm_range_size(struct xe_svm_range *range)
+ 
+ void xe_svm_flush(struct xe_vm *vm);
+ 
++static inline void *xe_svm_devm_owner(struct xe_device *xe)
++{
++	return xe;
++}
++
+ #else
+ #include <linux/interval_tree.h>
+ #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
+index 91d09af71ced..f16e92cd8090 100644
+--- a/drivers/gpu/drm/xe/xe_userptr.c
++++ b/drivers/gpu/drm/xe/xe_userptr.c
+@@ -54,6 +54,7 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
+ 	struct xe_device *xe = vm->xe;
+ 	struct drm_gpusvm_ctx ctx = {
+ 		.read_only = xe_vma_read_only(vma),
++		.device_private_page_owner = NULL,
+ 	};
+ 
+ 	lockdep_assert_held(&vm->lock);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 80b7f13ecd80..4e914928e0a9 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2883,6 +2883,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 	ctx.read_only = xe_vma_read_only(vma);
+ 	ctx.devmem_possible = devmem_possible;
+ 	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
++	ctx.device_private_page_owner = xe_svm_devm_owner(vm->xe);
+ 
+ 	/* TODO: Threading the migration */
+ 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 5434048a2ca4..b92faa9a26b2 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -179,7 +179,6 @@ struct drm_gpusvm_range {
+  * @name: Name of the GPU SVM
+  * @drm: Pointer to the DRM device structure
+  * @mm: Pointer to the mm_struct for the address space
+- * @device_private_page_owner: Device private pages owner
+  * @mm_start: Start address of GPU SVM
+  * @mm_range: Range of the GPU SVM
+  * @notifier_size: Size of individual notifiers
+@@ -204,7 +203,6 @@ struct drm_gpusvm {
+ 	const char *name;
+ 	struct drm_device *drm;
+ 	struct mm_struct *mm;
+-	void *device_private_page_owner;
+ 	unsigned long mm_start;
+ 	unsigned long mm_range;
+ 	unsigned long notifier_size;
+@@ -226,6 +224,8 @@ struct drm_gpusvm {
+ /**
+  * struct drm_gpusvm_ctx - DRM GPU SVM context
+  *
++ * @device_private_page_owner: The device-private page owner to use for
++ * this operation
+  * @check_pages_threshold: Check CPU pages for present if chunk is less than or
+  *                         equal to threshold. If not present, reduce chunk
+  *                         size.
+@@ -239,6 +239,7 @@ struct drm_gpusvm {
+  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+  */
+ struct drm_gpusvm_ctx {
++	void *device_private_page_owner;
+ 	unsigned long check_pages_threshold;
+ 	unsigned long timeslice_ms;
+ 	unsigned int in_notifier :1;
+@@ -249,7 +250,7 @@ struct drm_gpusvm_ctx {
+ 
+ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+ 		    const char *name, struct drm_device *drm,
+-		    struct mm_struct *mm, void *device_private_page_owner,
++		    struct mm_struct *mm,
+ 		    unsigned long mm_start, unsigned long mm_range,
+ 		    unsigned long notifier_size,
+ 		    const struct drm_gpusvm_ops *ops,
+-- 
+2.51.0
 
->---
-> drivers/gpu/drm/xe/xe_bo.c | 8 ++++----
-> 1 file changed, 4 insertions(+), 4 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->index 6fea39842e1e..2be7a618165a 100644
->--- a/drivers/gpu/drm/xe/xe_bo.c
->+++ b/drivers/gpu/drm/xe/xe_bo.c
->@@ -9,6 +9,7 @@
-> #include <linux/nospec.h>
->
-> #include <drm/drm_drv.h>
->+#include <drm/drm_dumb_buffers.h>
-> #include <drm/drm_gem_ttm_helper.h>
-> #include <drm/drm_managed.h>
-> #include <drm/ttm/ttm_backup.h>
->@@ -3130,14 +3131,13 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
-> 	struct xe_device *xe = to_xe_device(dev);
-> 	struct xe_bo *bo;
-> 	uint32_t handle;
->-	int cpp = DIV_ROUND_UP(args->bpp, 8);
-> 	int err;
-> 	u32 page_size = max_t(u32, PAGE_SIZE,
-> 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K);
->
->-	args->pitch = ALIGN(args->width * cpp, 64);
->-	args->size = ALIGN(mul_u32_u32(args->pitch, args->height),
->-			   page_size);
->+	err = drm_mode_size_dumb(dev, args, SZ_64, page_size);
->+	if (err)
->+		return err;
->
-> 	bo = xe_bo_create_user(xe, NULL, NULL, args->size,
-> 			       DRM_XE_GEM_CPU_CACHING_WC,
->-- 
->2.50.1
->
