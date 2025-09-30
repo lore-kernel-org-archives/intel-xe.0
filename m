@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C62B9CCA470
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9083CCA471
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:57:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 887E410E2EC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C0B10E2F6;
 	Tue, 30 Sep 2025 22:57:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JS9EX6/y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GTz76KkC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5E710E2EC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBDE10E080
  for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759272993; x=1790808993;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j+ueTJA+bQXVo/bGUNJKsVm7gvXYXvpo6o7EkHEJFuk=;
- b=JS9EX6/ysDoNFbADfHkjCVrPyOaht4Fb5VeGA7pF/oolU1lmiXkNCvN8
- xvwhkTltNOBUB5OcrXEOtecKmuJlAlbSJwUvnjlIFQlybbjOw720pIpmt
- MN82Nx9Jvyr8Xs08l/3nZaAhTBRJOjjWP5RI7yoSUDJcOxuY7cwOlq+K9
- ICc7IRV3ZarFTMYsacv8N6SzxhJ4CQf87oxUW4m5fyIIOvOr8CNyU1/Jp
- t7N5jQUg7PHd4Vt7GfqaE2FbjJRpCDFhQ/kc96xclp5zl5t9E3sCOtJO8
- bqI/LjuYIyjNKsh//blb7YPDEPy6IiIH23mnB+e5l4v2gUwUoHWLOnH37 A==;
-X-CSE-ConnectionGUID: 4Ih4XhN/RJe53VuJk1/lIg==
-X-CSE-MsgGUID: bxbVxPNjQpCROSRuP4dhAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397754"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397754"
+ bh=zlkl8b4pTnDO/Ma0oOS50tY9S4PoB7QnRl8h7oJIEKw=;
+ b=GTz76KkCNaB5lIHDjVQuPLslL2BctHGfaAg1Ib1xfg12y0ZDzsM4BtvZ
+ GpwT3XcC4ICzHztC9bdqi67bBgwa4NsMF+DIjfVUdPjbhEq/tw23PHE1U
+ ffl/OlqMfsLEtjtFV6HzkQ4TjGpC/irkyrjKgeQW9m4hFx69OwJvmio0+
+ /y2aWnbwwbbDkPc6mBS2f3taXszOS+C63AF/YgfMqB+dM8O+dkr+FBy4J
+ 9BWezIBPpxZx5nLrwMCkxngS7zm2TLgMKnzUgt5m3dje6yHrvat7+G5I9
+ w7ySBrUA7Dac0/cMqa4g/dafJCs+TYgO7VgVSdlbQJbLodELrpRDhRtA0 w==;
+X-CSE-ConnectionGUID: dKDuzyWyTNy1Qm5KM1kNSw==
+X-CSE-MsgGUID: fMN9kg4XTGeQtXACiIbvUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397756"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397756"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:33 -0700
-X-CSE-ConnectionGUID: Sgq3GB/ZRsOWTN6V6nB3zA==
-X-CSE-MsgGUID: McEFLSiTSxmgV06/2FnPkg==
+X-CSE-ConnectionGUID: P6rXmsbRSaKZOOkEIwxFlQ==
+X-CSE-MsgGUID: BJyY18K0QNyM+XPWPD5h2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229474"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229476"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v3 14/23] drm/xe/irq: Don't try to lookup engine masks for
- non-existent primary GT
-Date: Tue, 30 Sep 2025 15:56:31 -0700
-Message-ID: <20250930225618.140071-39-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v3 15/23] drm/xe: Handle Wa_22010954014 and Wa_14022085890 as
+ device workarounds
+Date: Tue, 30 Sep 2025 15:56:32 -0700
+Message-ID: <20250930225618.140071-40-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
 References: <20250930225618.140071-25-matthew.d.roper@intel.com>
@@ -68,41 +67,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the primary GT is disabled via configfs, we shouldn't try to access
-it to lookup BCS/CCS engine masks.  For the purposes of IRQ reset (which
-masks & disables interrupts in an sgunit register), assume all possible
-instances are present.
+When Wa_22010954014 and Wa_14022085890 were first implemented, we didn't
+have a device workaround infrastructure so we hacked them into the GT
+workaround list.  Now that we have proper device workaround support,
+move them to the proper place.  Note that Wa_14022085890 specifically
+applies to BMG-G21 platforms, so this requires defining a BMG
+subplatform to capture the correct subset of device IDs.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules | 2 ++
+ drivers/gpu/drm/xe/xe_guc_pc.c            | 3 ++-
+ drivers/gpu/drm/xe/xe_pci.c               | 6 ++++++
+ drivers/gpu/drm/xe/xe_platform_types.h    | 1 +
+ drivers/gpu/drm/xe/xe_wa.c                | 2 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules        | 5 -----
+ include/drm/intel/pciids.h                | 7 +++++--
+ 7 files changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 5018a116852f..eaca56df08e4 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -494,11 +494,15 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- static void gt_irq_reset(struct xe_tile *tile)
- {
- 	struct xe_mmio *mmio = &tile->mmio;
-+	u32 ccs_mask = ~0;
-+	u32 bcs_mask = ~0;
+diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+index 3cc93f0e77f8..55ba01bc8f38 100644
+--- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+@@ -1,3 +1,5 @@
++22010954014	PLATFORM(DG2)
+ 15015404425     PLATFORM(LUNARLAKE)
+ 		PLATFORM(PANTHERLAKE)
+ 22019338487_display	PLATFORM(LUNARLAKE)
++14022085890	SUBPLATFORM(BATTLEMAGE, G21)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 3c0feb50a1e2..ff22235857f8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -14,6 +14,7 @@
  
--	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
--						   XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
--						   XE_ENGINE_CLASS_COPY);
-+	if (tile->primary_gt) {
-+		ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						       XE_ENGINE_CLASS_COMPUTE);
-+		bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						       XE_ENGINE_CLASS_COPY);
-+	}
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
++#include <generated/xe_device_wa_oob.h>
+ #include <generated/xe_wa_oob.h>
  
- 	/* Disable RCS, BCS, VCS and VECS class engines. */
- 	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, 0);
+ #include "abi/guc_actions_slpc_abi.h"
+@@ -886,7 +887,7 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
+ 
+-	if (XE_GT_WA(tile->primary_gt, 14022085890))
++	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
+ 		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
+ 
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 13e8d379a1cd..86e6dd751b1c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -334,6 +334,8 @@ static const struct xe_device_desc lnl_desc = {
+ 	.vm_max_level = 4,
+ };
+ 
++static const u16 bmg_g21_ids[] = { INTEL_BMG_G21_IDS(NOP), 0 };
++
+ static const struct xe_device_desc bmg_desc = {
+ 	DGFX_FEATURES,
+ 	PLATFORM(BATTLEMAGE),
+@@ -348,6 +350,10 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	.needs_scratch = true,
++	.subplatforms = (const struct xe_subplatform_desc[]) {
++		{ XE_SUBPLATFORM_BATTLEMAGE_G21, "G21", bmg_g21_ids },
++		{ }
++	},
+ 	.va_bits = 48,
+ 	.vm_max_level = 4,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+index d08574c4cdb8..3e332214c7bb 100644
+--- a/drivers/gpu/drm/xe/xe_platform_types.h
++++ b/drivers/gpu/drm/xe/xe_platform_types.h
+@@ -34,6 +34,7 @@ enum xe_subplatform {
+ 	XE_SUBPLATFORM_DG2_G10,
+ 	XE_SUBPLATFORM_DG2_G11,
+ 	XE_SUBPLATFORM_DG2_G12,
++	XE_SUBPLATFORM_BATTLEMAGE_G21,
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c60159a13001..aa1b69f48f6f 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -1138,6 +1138,6 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
+ 	if (IS_SRIOV_VF(tile->xe))
+ 		return;
+ 
+-	if (XE_GT_WA(tile->primary_gt, 22010954014))
++	if (XE_DEVICE_WA(tile->xe, 22010954014))
+ 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index eb761d30e066..113a62f1b541 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -14,7 +14,6 @@
+ 14016763929	SUBPLATFORM(DG2, G10)
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+-22010954014	PLATFORM(DG2)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
+ 14015076503	MEDIA_VERSION(1300)
+ 16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
+@@ -74,9 +73,5 @@
+ 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
+ 
+-# SoC workaround - currently applies to all platforms with the following
+-# primary GT GMDID
+-14022085890	GRAPHICS_VERSION(2001)
+-
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+ 16026007364    MEDIA_VERSION(3000)
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 69d4ae92d822..452c1de606ff 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -849,7 +849,7 @@
+ 	MACRO__(0x64B0, ## __VA_ARGS__)
+ 
+ /* BMG */
+-#define INTEL_BMG_IDS(MACRO__, ...) \
++#define INTEL_BMG_G21_IDS(MACRO__, ...) \
+ 	MACRO__(0xE202, ## __VA_ARGS__), \
+ 	MACRO__(0xE209, ## __VA_ARGS__), \
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
+@@ -858,7 +858,10 @@
+ 	MACRO__(0xE210, ## __VA_ARGS__), \
+ 	MACRO__(0xE211, ## __VA_ARGS__), \
+ 	MACRO__(0xE212, ## __VA_ARGS__), \
+-	MACRO__(0xE216, ## __VA_ARGS__), \
++	MACRO__(0xE216, ## __VA_ARGS__)
++
++#define INTEL_BMG_IDS(MACRO__, ...) \
++	INTEL_BMG_G21_IDS(MACRO__, __VA_ARGS__), \
+ 	MACRO__(0xE220, ## __VA_ARGS__), \
+ 	MACRO__(0xE221, ## __VA_ARGS__), \
+ 	MACRO__(0xE222, ## __VA_ARGS__), \
 -- 
 2.51.0
 
