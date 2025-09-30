@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F8FBCCA470
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 19:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5818CAC5B8
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 19:12:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FBA210E079;
-	Tue, 30 Sep 2025 19:06:21 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E1010E079;
- Tue, 30 Sep 2025 19:06:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7145279051136217887=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6694089048;
+	Tue, 30 Sep 2025 19:12:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Okad/4bn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6394E89048
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 19:12:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759259555; x=1790795555;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HqcvJVfKw3EBXNl7kihS8D6qJ3oSF9wc7q4OjA+N06s=;
+ b=Okad/4bnpuFx63EoyKlOeQGFhfE9DAQCNDWExn02FH0WzP3rHXpasdiL
+ y+Nak4I3TbqMqkgL7i/OsTA0KQ1XUFqMl8HoXK8h93r1rng8ZpQJDBPUz
+ +LEUUZCqKeBgWJ0vmpPjF4SDWEfM8pmlL91LaFNxXAP+JU9ImUB46U5ft
+ Ciiz3fvV9qrSfXH79YvQtfFSgWjQbPm4Ck/UJiGClvHwb+agPyEHZtMTy
+ qEwQSHsPsMCVDkX3oPqaYt/1ddh14Tg16q4JjYQSmMx1a52cQGSlOatRa
+ gaV96igFR423hO1WIkd4Gkl5bVjNA0UYLevwsASjbKGcpyoG+MSCVkroh Q==;
+X-CSE-ConnectionGUID: 1lFg65eQQ9OvKE3kGboVZA==
+X-CSE-MsgGUID: yltyL73dQZGLQHx03KtKcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="60561702"
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="60561702"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 12:12:35 -0700
+X-CSE-ConnectionGUID: LuS/mbjoRd+WQhxyDa3YIg==
+X-CSE-MsgGUID: fne0CtYsSNKDccxhmMVoVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="177719704"
+Received: from vnayana.iind.intel.com ([10.190.239.33])
+ by orviesa006.jf.intel.com with ESMTP; 30 Sep 2025 12:12:34 -0700
+From: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com
+Subject: [PATCH] drm/xe/irq: Clear guc2host msix vector0
+Date: Wed,  1 Oct 2025 00:47:02 +0530
+Message-Id: <20250930191702.1725959-1-venkata.ramana.nayana@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Work_around_?=
- =?utf-8?q?a_DSC_pixel_throughput_issue_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 30 Sep 2025 19:06:20 -0000
-Message-ID: <175925918015.380476.14661998957701751312@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250930182450.563016-1-imre.deak@intel.com>
-In-Reply-To: <20250930182450.563016-1-imre.deak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,144 +60,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7145279051136217887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+MSI-X vector 0 interrupt routed through legacy port 190000 and driver
+must check legacy registers and clear otherwise it's block the next
+interrupts.
 
-== Series Details ==
+Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+---
+ drivers/gpu/drm/xe/xe_irq.c | 18 +-----------------
+ 1 file changed, 1 insertion(+), 17 deletions(-)
 
-Series: drm/i915/dp: Work around a DSC pixel throughput issue (rev7)
-URL   : https://patchwork.freedesktop.org/series/154737/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 870edaf69388..06976cc77918 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -847,22 +847,6 @@ static int xe_irq_msix_init(struct xe_device *xe)
+ 	return 0;
+ }
+ 
+-static irqreturn_t guc2host_irq_handler(int irq, void *arg)
+-{
+-	struct xe_device *xe = arg;
+-	struct xe_tile *tile;
+-	u8 id;
+-
+-	if (!atomic_read(&xe->irq.enabled))
+-		return IRQ_NONE;
+-
+-	for_each_tile(tile, xe, id)
+-		xe_guc_irq_handler(&tile->primary_gt->uc.guc,
+-				   GUC_INTR_GUC2HOST);
+-
+-	return IRQ_HANDLED;
+-}
+-
+ static irqreturn_t xe_irq_msix_default_hwe_handler(int irq, void *arg)
+ {
+ 	unsigned int tile_id, gt_id;
+@@ -979,7 +963,7 @@ int xe_irq_msix_request_irqs(struct xe_device *xe)
+ 	u16 msix;
+ 
+ 	msix = GUC2HOST_MSIX;
+-	err = xe_irq_msix_request_irq(xe, guc2host_irq_handler, xe,
++	err = xe_irq_msix_request_irq(xe, xe_irq_handler(xe), xe,
+ 				      DRIVER_NAME "-guc2host", false, &msix);
+ 	if (err)
+ 		return err;
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71_BAT -> xe-pw-154737v7_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154737v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8562 -> IGT_8563
-  * Linux: xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71 -> xe-pw-154737v7
-
-  IGT_8562: 8562
-  IGT_8563: 8563
-  xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71: 3f8b061ccb9c28db804126df320f5941e68ade71
-  xe-pw-154737v7: 154737v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/index.html
-
---===============7145279051136217887==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Work around a DSC pixel throughput issue (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154737/">https://patchwork.freedesktop.org/series/154737/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71_BAT -&gt; xe-pw-154737v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154737v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154737v7/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8562 -&gt; IGT_8563</li>
-<li>Linux: xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71 -&gt; xe-pw-154737v7</li>
-</ul>
-<p>IGT_8562: 8562<br />
-  IGT_8563: 8563<br />
-  xe-3849-3f8b061ccb9c28db804126df320f5941e68ade71: 3f8b061ccb9c28db804126df320f5941e68ade71<br />
-  xe-pw-154737v7: 154737v7</p>
-
-</body>
-</html>
-
---===============7145279051136217887==--
