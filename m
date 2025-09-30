@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9083CCA471
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECE54CCA476
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:57:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94C0B10E2F6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A858710E2FE;
 	Tue, 30 Sep 2025 22:57:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GTz76KkC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ENDuMhvT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBDE10E080
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBE5510E2E1
  for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759272993; x=1790808993;
+ t=1759272994; x=1790808994;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zlkl8b4pTnDO/Ma0oOS50tY9S4PoB7QnRl8h7oJIEKw=;
- b=GTz76KkCNaB5lIHDjVQuPLslL2BctHGfaAg1Ib1xfg12y0ZDzsM4BtvZ
- GpwT3XcC4ICzHztC9bdqi67bBgwa4NsMF+DIjfVUdPjbhEq/tw23PHE1U
- ffl/OlqMfsLEtjtFV6HzkQ4TjGpC/irkyrjKgeQW9m4hFx69OwJvmio0+
- /y2aWnbwwbbDkPc6mBS2f3taXszOS+C63AF/YgfMqB+dM8O+dkr+FBy4J
- 9BWezIBPpxZx5nLrwMCkxngS7zm2TLgMKnzUgt5m3dje6yHrvat7+G5I9
- w7ySBrUA7Dac0/cMqa4g/dafJCs+TYgO7VgVSdlbQJbLodELrpRDhRtA0 w==;
-X-CSE-ConnectionGUID: dKDuzyWyTNy1Qm5KM1kNSw==
-X-CSE-MsgGUID: fMN9kg4XTGeQtXACiIbvUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397756"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397756"
+ bh=XD0xPgLl+SywKOUiFsAi61yH1dNAfHHcCj8RD+KTqkI=;
+ b=ENDuMhvTKvesT6F6Oe43N5jhJnsJVspIo+Ao7Cyn3HDaRtzY/FqTwtPu
+ jS4/p4IFehVR6/egEvMcWEVFUlrhtHPDNlEs/QBDZG7wTJfOaIVMXl/jw
+ Xql960r/NxvbT1bgEr44utvpzNd5A/ga96W9j0PmjfSrZyk9oOrMssfa+
+ wjvEwygtPi3v0D2VICyblYEfcVrlM11odzcutrM7nEk/QE7fswPEaC/3G
+ gEZvqO3wmR94M1tfawn9RlcEbR6ptUDuHvohwBE9lDoM6sdRXUmK9IcNO
+ Q5RJtKT4pBAKVV9Mvpq9i8SzM7IscR1ftGQr07mGuIvnO2NKFzr+jtb7I Q==;
+X-CSE-ConnectionGUID: rxRWibWvQsGvShsQ9mPBJg==
+X-CSE-MsgGUID: UL3Ep7oHR6ispPOb72D8cw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397761"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397761"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:33 -0700
-X-CSE-ConnectionGUID: P6rXmsbRSaKZOOkEIwxFlQ==
-X-CSE-MsgGUID: BJyY18K0QNyM+XPWPD5h2g==
+X-CSE-ConnectionGUID: k9ykwh9NQ1OPKUgzWtvtYw==
+X-CSE-MsgGUID: IGWhBqtWTU2DaVKlULBrlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229476"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229492"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 15/23] drm/xe: Handle Wa_22010954014 and Wa_14022085890 as
- device workarounds
-Date: Tue, 30 Sep 2025 15:56:32 -0700
-Message-ID: <20250930225618.140071-40-matthew.d.roper@intel.com>
+Subject: [PATCH v3 20/23] drm/xe: Don't check BIOS-disabled FlatCCS if primary
+ GT is disabled
+Date: Tue, 30 Sep 2025 15:56:37 -0700
+Message-ID: <20250930225618.140071-45-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
 References: <20250930225618.140071-25-matthew.d.roper@intel.com>
@@ -67,150 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When Wa_22010954014 and Wa_14022085890 were first implemented, we didn't
-have a device workaround infrastructure so we hacked them into the GT
-workaround list.  Now that we have proper device workaround support,
-move them to the proper place.  Note that Wa_14022085890 specifically
-applies to BMG-G21 platforms, so this requires defining a BMG
-subplatform to capture the correct subset of device IDs.
+If the primary is GT is disabled via configfs, we can't read the GT
+registers that would tell us whether the BIOS has disabled FlatCCS on a
+platform that would otherwise have it; we'll just proceed as if the
+FlatCCS is still enabled.  This is similar to the situation seen by
+SRIOV VFs and doesn't cause any functional problems since the hardware
+will simply drop writes to the CCS region and reads will always come
+back as 0 (indicating uncompressed data).  We'll simply miss out on the
+chance to avoid some unnecessary overhead during BO creation and
+migration.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_wa_oob.rules | 2 ++
- drivers/gpu/drm/xe/xe_guc_pc.c            | 3 ++-
- drivers/gpu/drm/xe/xe_pci.c               | 6 ++++++
- drivers/gpu/drm/xe/xe_platform_types.h    | 1 +
- drivers/gpu/drm/xe/xe_wa.c                | 2 +-
- drivers/gpu/drm/xe/xe_wa_oob.rules        | 5 -----
- include/drm/intel/pciids.h                | 7 +++++--
- 7 files changed, 17 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 3cc93f0e77f8..55ba01bc8f38 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -1,3 +1,5 @@
-+22010954014	PLATFORM(DG2)
- 15015404425     PLATFORM(LUNARLAKE)
- 		PLATFORM(PANTHERLAKE)
- 22019338487_display	PLATFORM(LUNARLAKE)
-+14022085890	SUBPLATFORM(BATTLEMAGE, G21)
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 3c0feb50a1e2..ff22235857f8 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -14,6 +14,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d42d03b8ab3a..82921d72ebfa 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -782,6 +782,8 @@ static int probe_has_flat_ccs(struct xe_device *xe)
+ 		return 0;
  
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-+#include <generated/xe_device_wa_oob.h>
- #include <generated/xe_wa_oob.h>
+ 	gt = xe_root_mmio_gt(xe);
++	if (!gt)
++		return 0;
  
- #include "abi/guc_actions_slpc_abi.h"
-@@ -886,7 +887,7 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
- 	if (pc_get_min_freq(pc) > pc->rp0_freq)
- 		ret = pc_set_min_freq(pc, pc->rp0_freq);
- 
--	if (XE_GT_WA(tile->primary_gt, 14022085890))
-+	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
- 		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
- 
- out:
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 13e8d379a1cd..86e6dd751b1c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -334,6 +334,8 @@ static const struct xe_device_desc lnl_desc = {
- 	.vm_max_level = 4,
- };
- 
-+static const u16 bmg_g21_ids[] = { INTEL_BMG_G21_IDS(NOP), 0 };
-+
- static const struct xe_device_desc bmg_desc = {
- 	DGFX_FEATURES,
- 	PLATFORM(BATTLEMAGE),
-@@ -348,6 +350,10 @@ static const struct xe_device_desc bmg_desc = {
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
-+	.subplatforms = (const struct xe_subplatform_desc[]) {
-+		{ XE_SUBPLATFORM_BATTLEMAGE_G21, "G21", bmg_g21_ids },
-+		{ }
-+	},
- 	.va_bits = 48,
- 	.vm_max_level = 4,
- };
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index d08574c4cdb8..3e332214c7bb 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -34,6 +34,7 @@ enum xe_subplatform {
- 	XE_SUBPLATFORM_DG2_G10,
- 	XE_SUBPLATFORM_DG2_G11,
- 	XE_SUBPLATFORM_DG2_G12,
-+	XE_SUBPLATFORM_BATTLEMAGE_G21,
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index c60159a13001..aa1b69f48f6f 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -1138,6 +1138,6 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
- 	if (IS_SRIOV_VF(tile->xe))
- 		return;
- 
--	if (XE_GT_WA(tile->primary_gt, 22010954014))
-+	if (XE_DEVICE_WA(tile->xe, 22010954014))
- 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
- }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index eb761d30e066..113a62f1b541 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -14,7 +14,6 @@
- 14016763929	SUBPLATFORM(DG2, G10)
- 		SUBPLATFORM(DG2, G12)
- 16017236439	PLATFORM(PVC)
--22010954014	PLATFORM(DG2)
- 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
- 14015076503	MEDIA_VERSION(1300)
- 16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
-@@ -74,9 +73,5 @@
- 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
- 
--# SoC workaround - currently applies to all platforms with the following
--# primary GT GMDID
--14022085890	GRAPHICS_VERSION(2001)
--
- 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
- 16026007364    MEDIA_VERSION(3000)
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 69d4ae92d822..452c1de606ff 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -849,7 +849,7 @@
- 	MACRO__(0x64B0, ## __VA_ARGS__)
- 
- /* BMG */
--#define INTEL_BMG_IDS(MACRO__, ...) \
-+#define INTEL_BMG_G21_IDS(MACRO__, ...) \
- 	MACRO__(0xE202, ## __VA_ARGS__), \
- 	MACRO__(0xE209, ## __VA_ARGS__), \
- 	MACRO__(0xE20B, ## __VA_ARGS__), \
-@@ -858,7 +858,10 @@
- 	MACRO__(0xE210, ## __VA_ARGS__), \
- 	MACRO__(0xE211, ## __VA_ARGS__), \
- 	MACRO__(0xE212, ## __VA_ARGS__), \
--	MACRO__(0xE216, ## __VA_ARGS__), \
-+	MACRO__(0xE216, ## __VA_ARGS__)
-+
-+#define INTEL_BMG_IDS(MACRO__, ...) \
-+	INTEL_BMG_G21_IDS(MACRO__, __VA_ARGS__), \
- 	MACRO__(0xE220, ## __VA_ARGS__), \
- 	MACRO__(0xE221, ## __VA_ARGS__), \
- 	MACRO__(0xE222, ## __VA_ARGS__), \
+ 	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+ 	if (!fw_ref)
 -- 
 2.51.0
 
