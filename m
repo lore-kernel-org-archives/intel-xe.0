@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71BDCCAC5B8
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:56:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E080CCA471
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F20BF10E2E5;
-	Tue, 30 Sep 2025 22:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095B410E2E1;
+	Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aZE5A5Fz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cpucRh30";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3475910E080
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B8C10E2E1
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759272990; x=1790808990;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ThkAqkpAUieFdGKuMfIkq/NnJa/z6pyudlm0It34sc8=;
- b=aZE5A5Fzxu5EJsGteER5Kn5ETum2GZ/6rbXnhSu9RQVRor6DCQBVMdIN
- XYW78ICj5kxFeoCpbz12LhuQmfS1XNb6i4xxTB/ZIFnBvCaoi6lCqNLWJ
- nfGK+tQ6TloAU5GgRXTM7PHfyvU12JJTQWHhgpfmsS3EvU++/j1apoTVd
- kNd+yxhoG5rLRfshAwegil0biixnKhVyKXMEz6LXdTvt5sY5ZWpd8GKA4
- rLdE9dXmn9LZMRZ7KDPSDeIIgDrQjw8JmmTb4JOC0tk44z0ivc1QIPzly
- gZAT2rGWZv9teuWuXrYhljY//6mBbL5ptxg9kIwK0qkOIFJVrpmKn7LOi g==;
-X-CSE-ConnectionGUID: Jwn9ESDBSpKjIYs00CpuNQ==
-X-CSE-MsgGUID: xyVl7ChDTJKHsN2t7WGhlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397737"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397737"
+ t=1759272993; x=1790808993;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tyxLl+ijl0BKlq/pr2uYEsVHvC8UsbQB4ucvCrZLkso=;
+ b=cpucRh308ldGfluk1t3i/kpoD/X0CiwZP3TR/tnDsFpaxZDEfE0L+vCg
+ RcWDtamdTHGUdxHb5x56+3109pKfxrAkRnoRa5FSWlaxiQryxFg9PerV0
+ XK1NXx8i380FRPhtrtROybmbOyYElrl7NaMyxkPa0DbJdtDVTIHAHRu2V
+ pHrljc0H+MFjACYOE6YREFCzeCcE2n92MNxdRmZUQ8W8DfUbm7kpdUwhV
+ +BVtfO0/2f4k3mXST3T/BffVIWP5liQBA8NlrJFQt8IiV3wh1MbHJd/eH
+ b7pDlNpWbYRxIqhRMlMdvsPDCvlb2xwIxLSLTWd+oaicvHiZVFQCiB+Bo Q==;
+X-CSE-ConnectionGUID: um4ceHFDRNu41N8ydzM3qg==
+X-CSE-MsgGUID: EulaizlwRJGrBvHJUxdGlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397757"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397757"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 15:56:30 -0700
-X-CSE-ConnectionGUID: G08EGYbjSlGoykpBaG38rg==
-X-CSE-MsgGUID: iZ9P9UIhSMKjtvEuGV2AcQ==
+ 30 Sep 2025 15:56:33 -0700
+X-CSE-ConnectionGUID: ixSHgGZgSpOWKoV4+2sFHg==
+X-CSE-MsgGUID: ownCNP1bT9iuYK9NscCYhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229424"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229488"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 15:56:29 -0700
+ 30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 00/23] Allow configfs to disable specific GT type(s)
-Date: Tue, 30 Sep 2025 15:56:17 -0700
-Message-ID: <20250930225618.140071-25-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 19/23] drm/xe: Check that GT is not NULL before testing
+ Wa_16023588340
+Date: Tue, 30 Sep 2025 15:56:36 -0700
+Message-ID: <20250930225618.140071-44-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
+References: <20250930225618.140071-25-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,120 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During various debug or hardware bring-up activities, it is often useful
-to completely disable one of the GTs to reduce the scope of the debug.
-Add a configfs attribute to make this easy to do in a standard manner,
-similar to the existing attribute we have to limit engines.
+If the primary GT is disabled, skip the check for this workaround (which
+only applies to dgpu platforms where the primary GT cannot be NULL).
 
-One of the changes in this series is that we reverse direction on the
-placement of a few feature flags.  Previously we had moved things like
-number of page table levels, size of the virtual address space, or
-presence/absence of FlatCCS into the graphics descriptor to tie it to
-the general architecture (Xe2, Xe3, etc.).  But upon further reflection,
-these kind of flags and values are truly platform-specific
-characteristics rather than being tied just to the graphics IP.  The
-value of these winds up being platform-wide (as already evidenced by the
-fact that we copied their values into xe->info rather than gt->info) and
-all IP blocks in a hardware platform (graphics, media, and display) are
-going to have a consistent understanding of these characteristics;
-they're not just "graphics" values, and we need to be able to detect and
-handle them properly even when "graphics" (in the form of the primary
-GT) is absent.  So this series moves some of those flags back into the
-platform-level descriptors and tries to keep the graphics descriptor's
-fields focused on values that are truly tied to the primary GT.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_display_wa.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Note that at the moment it's only possible to disable the media GT.
-Although this series includes a number of patches aimed at reducing the
-driver's reliance on the primary GT and assumptions that the primary GT
-will always be present and non-NULL, we're not quite at the point where
-the driver can actually run with primary GT disabled.  The main
-remaining blocker for that is the reliance on the BCS engines (which
-reside in the primary GT) for various VRAM and migration operations.
-Additional work after this series will be required to eliminate those
-dependencies.
-
-v3:
- - Drop default values and set va_bits / vm_max_level on all descriptors
-   (Michal, Lucas)
- - Use a specifically allocated GT to do SRIOV pre-init GT operations
-   rather than filling tile0's primary GT with data for each tile & GT.
-   This allows the primary GT's allocation to be moved to a more
-   appropriate place (and skipped completely if the primary GT is
-   disabled).
- - If primary GT is disabled, do PF->native demotion and VF probe failure
-   in xe_info_init rather than SRIOV pre-init.  (Michal)
-
-v2:
- - About 20 extra patches added to reduce dependencies on an
-   always-present primary GT.
- - Kerneldoc and string parsing fixes to the configfs attribute handling
-   (Gustavo)
-
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Matt Roper (23):
-  drm/xe/huc: Adjust HuC check on primary GT
-  drm/xe: Drop GT parameter to xe_display_irq_postinstall()
-  drm/xe: Move 'va_bits' flag back to platform descriptor
-  drm/xe: Move 'vm_max_level' flag back to platform descriptor
-  drm/xe: Move 'vram_flags' flag back to platform descriptor
-  drm/xe: Move 'has_flatccs' flag back to platform descriptor
-  drm/xe: Read VF GMD_ID with a specifically-allocated dummy GT
-  drm/xe: Move primary GT allocation from xe_tile_init_early to
-    xe_tile_init
-  drm/xe: Skip L2 / TDF cache flushes if primary GT is disabled
-  drm/xe/query: Report hwconfig size as 0 if primary GT is disabled
-  drm/xe/pmu: Initialize PMU event types based on first available GT
-  drm/xe: Check for primary GT before looking up Wa_22019338487
-  drm/xe: Make display part of Wa_22019338487 a device workaround
-  drm/xe/irq: Don't try to lookup engine masks for non-existent primary
-    GT
-  drm/xe: Handle Wa_22010954014 and Wa_14022085890 as device workarounds
-  drm/xe/rtp: Pass xe_device parameter to FUNC matches
-  drm/xe: Bypass Wa_14018094691 when primary GT is disabled
-  drm/xe: Correct lineage for Wa_22014953428 and only check with valid
-    GT
-  drm/xe: Check that GT is not NULL before testing Wa_16023588340
-  drm/xe: Don't check BIOS-disabled FlatCCS if primary GT is disabled
-  drm/xe: Break GT setup out of xe_info_init()
-  drm/xe/configfs: Add attribute to disable GT types
-  drm/xe/sriov: Disable SR-IOV if primary GT is disabled via configfs
-
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |   4 +-
- drivers/gpu/drm/xe/display/xe_display.c       |   5 +-
- drivers/gpu/drm/xe/display/xe_display.h       |   4 +-
- drivers/gpu/drm/xe/display/xe_display_wa.c    |   3 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
- drivers/gpu/drm/xe/tests/xe_pci.c             |   6 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c        |   6 +-
- drivers/gpu/drm/xe/xe_configfs.c              | 130 ++++++++++
- drivers/gpu/drm/xe/xe_configfs.h              |   2 +
- drivers/gpu/drm/xe/xe_device.c                |   7 +
- drivers/gpu/drm/xe/xe_device_wa_oob.rules     |   3 +
- drivers/gpu/drm/xe/xe_ggtt.c                  |  26 +-
- drivers/gpu/drm/xe/xe_gsc.c                   |   4 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |   3 +-
- drivers/gpu/drm/xe/xe_huc.c                   |  10 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |  10 +-
- drivers/gpu/drm/xe/xe_irq.c                   |  14 +-
- drivers/gpu/drm/xe/xe_pci.c                   | 242 ++++++++++++------
- drivers/gpu/drm/xe/xe_pci_types.h             |   9 +-
- drivers/gpu/drm/xe/xe_platform_types.h        |   1 +
- drivers/gpu/drm/xe/xe_pmu.c                   |  11 +-
- drivers/gpu/drm/xe/xe_query.c                 |   2 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |   3 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |  24 +-
- drivers/gpu/drm/xe/xe_rtp.h                   |  18 +-
- drivers/gpu/drm/xe/xe_rtp_types.h             |   4 +-
- drivers/gpu/drm/xe/xe_tile.c                  |   4 -
- drivers/gpu/drm/xe/xe_vm.c                    |   3 +-
- drivers/gpu/drm/xe/xe_wa.c                    |   2 +-
- drivers/gpu/drm/xe/xe_wa_oob.rules            |   8 +-
- include/drm/intel/pciids.h                    |   7 +-
- 31 files changed, 429 insertions(+), 150 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
+index 8ada1cbcb16c..2aa1b8c03411 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_wa.c
++++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
+@@ -13,6 +13,7 @@
+ bool intel_display_needs_wa_16023588340(struct intel_display *display)
+ {
+ 	struct xe_device *xe = to_xe_device(display->drm);
++	struct xe_gt *wa_gt = xe_root_mmio_gt(xe);
+ 
+-	return XE_GT_WA(xe_root_mmio_gt(xe), 16023588340);
++	return wa_gt && XE_GT_WA(wa_gt, 16023588340);
+ }
 -- 
 2.51.0
 
