@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C49CAC5B8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B03BCCD183
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:57:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2AB310E64A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA47410E64B;
 	Tue, 30 Sep 2025 22:57:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb8nUDmN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CarGu57q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4419710E2E1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C01DA10E2EC
  for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759272993; x=1790808993;
+ t=1759272994; x=1790808994;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yGnXnotyjvzXsoQ8XvfJqUXmDxIWOqJTL7U5EUaz5E0=;
- b=lb8nUDmN3O3A/Hhlf362gPZ+4ScBnZn84i27dHIO4TPkaeG0PJA3irkq
- 6z3m90NFc/E4ol56xlftUOtJaGxd30fxspQxJvxUZ+3EfHYQqfgK5EVvr
- YJIhSzgEZynq/VBWBW+IbtwgZOyayfKaZGwHX0Quq1JiPmbGcpebMuCoM
- WIYKB9PSL+UbzRo+EJujhvsc5V7qdX481+GdAv1f4rMh0oy3ra9ZCm5sm
- PU6FUFrsKWYhi0oxlxypmvgy+d9LyNjzUB3j6/MhlKzsVqUWtdQQ3olCJ
- YJ6MUd53yAquvJXRTkYSFYW+NOMmnfscdGYHfkAoGvCMp1SbcsARsZqXE Q==;
-X-CSE-ConnectionGUID: Qz6/Ybb/SImtK9B8XlKNKw==
-X-CSE-MsgGUID: 2kn2e9pGTSKZp27QUFn+kQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397753"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397753"
+ bh=fIn0iA0o2/B7YWqKfsg8poor0vHqkgl2FxL6Of4xKOY=;
+ b=CarGu57qKBycJZCqmipJiwE8ZZBhSthFC5KQANTAm33NvCKONO0+Qw3F
+ 2MhKcqPEUszO+USk3zyFcROgF2lPW7ml0e+sj7LuRAbY30RBrwhYcRI4b
+ NYvxzsntuMEZDso1nTAhTT3UtB8wi/GMfX4iQzP6trUnqjOh4BhGzCSkW
+ +u6IgbLcg26PxWaUJlYteECoTL6q5hXjUI5jjKjuLj1bzIXGofbhFcqog
+ gs1lYX+0UwapWsgA3D8P9ahELrjmUqc/M0q8eXofXGzsnok3m6QbHTUu7
+ Qyke7xyOwegnB8QADX6m2VnSOW3eU3OpMCFdiXjbOXZVz65WKisyL0iqo g==;
+X-CSE-ConnectionGUID: ZxkH3+VsTiCN9PkvT9qndQ==
+X-CSE-MsgGUID: IXEGAqBkSf+Ib0F9M3i4aA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397763"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397763"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:33 -0700
-X-CSE-ConnectionGUID: V0LQ/pu5SViNter3UhssoA==
-X-CSE-MsgGUID: mrtUliyASOSEww8WnAPsCw==
+X-CSE-ConnectionGUID: iRX6H/BcTtaBhj/riVA8iw==
+X-CSE-MsgGUID: SBii7ywpTiyBF+fM3GB4cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229471"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229498"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 13/23] drm/xe: Make display part of Wa_22019338487 a device
- workaround
-Date: Tue, 30 Sep 2025 15:56:30 -0700
-Message-ID: <20250930225618.140071-38-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v3 22/23] drm/xe/configfs: Add attribute to disable GT types
+Date: Tue, 30 Sep 2025 15:56:39 -0700
+Message-ID: <20250930225618.140071-47-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
 References: <20250930225618.140071-25-matthew.d.roper@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,84 +68,351 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The display part of Wa_22019338487 (i.e., avoiding use of stolen memory)
-is using a platform test rather than an graphics/media IP test.  Since
-this workaround is focused on non-GT uses of stolen memory, it makes
-sense that we'd want to still apply the workaround on affected platforms
-even if the GTs themselves are disabled via configfs.
+Preventing the driver from initializing GTs of specific type(s) can be
+useful for debugging and early hardware bringup.  Add a configfs
+attribute to allow this kind of control for debugging.
 
+With today's platforms and software design, this configuration setting
+is only effective for disabling the media GT since the driver currently
+requires that there always be a primary GT to probe the device.  However
+this might change in the future ---  in theory it should be possible
+(with some additional driver work) to allow an igpu device to come up
+with only the media GT and no primary GT.  Or to allow an igpu device to
+come up with no GTs at all (for display-only usage).  A primary GT will
+likely always be required on dgpu platforms because we rely on the BCS
+engines inside the primary GT for various vram operations.
+
+v2:
+ - Expand/clarify kerneldoc for configfs attribute.  (Gustavo)
+ - Tighten type usage in gt_types[] structure.  (Gustavo)
+ - Adjust string parsing/name matching to match exact GT names and not
+   accept partial names.  (Gustavo)
+
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 4 ++--
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 4 ++--
- drivers/gpu/drm/xe/xe_device_wa_oob.rules     | 1 +
- drivers/gpu/drm/xe/xe_wa_oob.rules            | 1 -
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 130 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h |   2 +
+ drivers/gpu/drm/xe/xe_pci.c      |  36 ++++++++-
+ 3 files changed, 164 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-index 35a5b07eeba4..af72f7305e5a 100644
---- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-@@ -10,7 +10,7 @@
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 139663423185..aaa98166f527 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -15,6 +15,7 @@
  
--#include <generated/xe_wa_oob.h>
-+#include <generated/xe_device_wa_oob.h>
+ #include "instructions/xe_mi_commands.h"
+ #include "xe_configfs.h"
++#include "xe_gt_types.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_module.h"
+ #include "xe_pci_types.h"
+@@ -56,6 +57,7 @@
+  *	:
+  *	└── 0000:03:00.0
+  *	    ├── survivability_mode
++ *	    ├── gt_types_allowed
+  *	    ├── engines_allowed
+  *	    └── enable_psmi
+  *
+@@ -79,6 +81,44 @@
+  *
+  * This attribute can only be set before binding to the device.
+  *
++ * Allowed GT types:
++ * -----------------
++ *
++ * Allow only specific types of GTs to be detected and initialized by the
++ * driver.  Any combination of GT types can be enabled/disabled, although
++ * some settings will cause the device to fail to probe.
++ *
++ * Writes support both comma- and newline-separated input format. Reads
++ * will always return one GT type per line. "primary" and "media" are the
++ * GT type names supported by this interface.
++ *
++ * This attribute can only be set before binding to the device.
++ *
++ * Examples:
++ *
++ * Allow both primary and media GTs to be initialized and used.  This matches
++ * the driver's default behavior::
++ *
++ *	# echo 'primary,media' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
++ *
++ * Allow only the primary GT of each tile to be initialized and used,
++ * effectively disabling the media GT if it exists on the platform::
++ *
++ *	# echo 'primary' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
++ *
++ * Allow only the media GT of each tile to be initialized and used,
++ * effectively disabling the primary GT.  **This configuration will cause
++ * device probe failure on all current platforms, but may be allowed on
++ * igpu platforms in the future**::
++ *
++ *	# echo 'media' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
++ *
++ * Disable all GTs.  Only other GPU IP (such as display) is potentially usable.
++ * **This configuration will cause device probe failure on all current
++ * platforms, but may be allowed on igpu platforms in the future**::
++ *
++ *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
++ *
+  * Allowed engines:
+  * ----------------
+  *
+@@ -187,6 +227,7 @@ struct xe_config_group_device {
+ 	struct config_group group;
  
- struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size)
+ 	struct xe_config_device {
++		u64 gt_types_allowed;
+ 		u64 engines_allowed;
+ 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+ 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+@@ -201,6 +242,7 @@ struct xe_config_group_device {
+ };
+ 
+ static const struct xe_config_device device_defaults = {
++	.gt_types_allowed = U64_MAX,
+ 	.engines_allowed = U64_MAX,
+ 	.survivability_mode = false,
+ 	.enable_psmi = false,
+@@ -220,6 +262,7 @@ struct engine_info {
+ /* Some helpful macros to aid on the sizing of buffer allocation when parsing */
+ #define MAX_ENGINE_CLASS_CHARS 5
+ #define MAX_ENGINE_INSTANCE_CHARS 2
++#define MAX_GT_TYPE_CHARS 7
+ 
+ static const struct engine_info engine_info[] = {
+ 	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK, .engine_class = XE_ENGINE_CLASS_RENDER },
+@@ -230,6 +273,14 @@ static const struct engine_info engine_info[] = {
+ 	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK, .engine_class = XE_ENGINE_CLASS_OTHER },
+ };
+ 
++static const struct {
++	const char name[MAX_GT_TYPE_CHARS + 1];
++	enum xe_gt_type type;
++} gt_types[] = {
++	{ .name = "primary", .type = XE_GT_TYPE_MAIN },
++	{ .name = "media", .type = XE_GT_TYPE_MEDIA },
++};
++
+ static struct xe_config_group_device *to_xe_config_group_device(struct config_item *item)
  {
-@@ -19,7 +19,7 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+ 	return container_of(to_config_group(item), struct xe_config_group_device, group);
+@@ -292,6 +343,62 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
+ 	return len;
+ }
  
- 	obj = ERR_PTR(-ENODEV);
- 
--	if (!IS_DGFX(xe) && !XE_GT_WA(xe_root_mmio_gt(xe), 22019338487_display)) {
-+	if (!IS_DGFX(xe) && !XE_DEVICE_WA(xe, 22019338487_display)) {
- 		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
- 						size,
- 						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 94f00def811b..12d25c5290fd 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -25,7 +25,7 @@
- #include "xe_vram_types.h"
- #include "xe_wa.h"
- 
--#include <generated/xe_wa_oob.h>
-+#include <generated/xe_device_wa_oob.h>
- 
- void intel_plane_initial_vblank_wait(struct intel_crtc *crtc)
++static ssize_t gt_types_allowed_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = to_xe_config_device(item);
++	char *p = page;
++
++	for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
++		if (dev->gt_types_allowed & BIT_ULL(gt_types[i].type))
++			p += sprintf(p, "%s\n", gt_types[i].name);
++
++	return p - page;
++}
++
++static ssize_t gt_types_allowed_store(struct config_item *item, const char *page,
++				      size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	char *buf = kstrdup(page, GFP_KERNEL);
++	char *p = buf;
++	u64 typemask = 0;
++
++	if (!buf)
++		return -ENOMEM;
++
++	while (p) {
++		char *typename = strsep(&p, ",\n");
++		bool matched = false;
++
++		if (typename[0] == '\0')
++			continue;
++
++		for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++) {
++			if (strcmp(typename, gt_types[i].name) == 0) {
++				typemask |= BIT(gt_types[i].type);
++				matched = true;
++				break;
++			}
++		}
++
++		if (!matched) {
++			len = -EINVAL;
++			goto out;
++		}
++	}
++
++	scoped_guard(mutex, &dev->lock) {
++		if (is_bound(dev))
++			return -EBUSY;
++
++		dev->config.gt_types_allowed = typemask;
++	}
++
++out:
++	kfree(buf);
++	return len;
++}
++
+ static ssize_t engines_allowed_show(struct config_item *item, char *page)
  {
-@@ -123,7 +123,7 @@ initial_plane_bo(struct xe_device *xe,
- 		phys_base = base;
- 		flags |= XE_BO_FLAG_STOLEN;
+ 	struct xe_config_device *dev = to_xe_config_device(item);
+@@ -672,6 +779,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, engines_allowed);
++CONFIGFS_ATTR(, gt_types_allowed);
+ CONFIGFS_ATTR(, survivability_mode);
  
--		if (XE_GT_WA(xe_root_mmio_gt(xe), 22019338487_display))
-+		if (XE_DEVICE_WA(xe, 22019338487_display))
- 			return NULL;
+ static struct configfs_attribute *xe_config_device_attrs[] = {
+@@ -679,6 +787,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_post_bb,
+ 	&attr_enable_psmi,
+ 	&attr_engines_allowed,
++	&attr_gt_types_allowed,
+ 	&attr_survivability_mode,
+ 	NULL,
+ };
+@@ -846,6 +955,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 				 dev->config.attr_); \
+ 	} while (0)
  
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 3a0c4ccc4224..3cc93f0e77f8 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -1,2 +1,3 @@
- 15015404425     PLATFORM(LUNARLAKE)
- 		PLATFORM(PANTHERLAKE)
-+22019338487_display	PLATFORM(LUNARLAKE)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index f3a6d5d239ce..eb761d30e066 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -45,7 +45,6 @@
- 22019338487	MEDIA_VERSION(2000)
- 		GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_not_sriov_vf)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
--22019338487_display	PLATFORM(LUNARLAKE)
- 16023588340	GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_not_sriov_vf)
- 14019789679	GRAPHICS_VERSION(1255)
- 		GRAPHICS_VERSION_RANGE(1270, 2004)
++	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", survivability_mode);
+@@ -896,6 +1006,26 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ 	return mode;
+ }
+ 
++/**
++ * xe_configfs_get_gt_types_allowed - get GT type allowed mask from configfs
++ * @pdev: pci device
++ *
++ * Return: GT type mask set in configfs
++ */
++u64 xe_configfs_get_gt_types_allowed(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u64 mask;
++
++	if (!dev)
++		return device_defaults.gt_types_allowed;
++
++	mask = dev->config.gt_types_allowed;
++	config_group_put(&dev->group);
++
++	return mask;
++}
++
+ /**
+  * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
+  * @pdev: pci device
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index c61e0e47ed94..c6ad8df9e913 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -17,6 +17,7 @@ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
+ void xe_configfs_check_device(struct pci_dev *pdev);
+ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
++u64 xe_configfs_get_gt_types_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
+@@ -28,6 +29,7 @@ static inline int xe_configfs_init(void) { return 0; }
+ static inline void xe_configfs_exit(void) { }
+ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+ static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
++static inline u64 xe_configfs_get_gt_types_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 65312fe9b97b..4a792e1037d5 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -685,11 +685,17 @@ static void xe_info_probe_tile_count(struct xe_device *xe)
+ 
+ static struct xe_gt *init_primary_gt(struct xe_tile *tile,
+ 				     const struct xe_graphics_desc *graphics_desc,
+-				     const struct xe_media_desc *media_desc)
++				     const struct xe_media_desc *media_desc,
++				     u64 gt_types_allowed)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *gt;
+ 
++	if ((gt_types_allowed & BIT_ULL(XE_GT_TYPE_MAIN)) == 0) {
++		drm_info(&xe->drm, "Primary GT disabled via configfs\n");
++		return NULL;
++	}
++
+ 	gt = xe_gt_alloc(tile);
+ 	if (IS_ERR(gt))
+ 		return gt;
+@@ -710,11 +716,17 @@ static struct xe_gt *init_primary_gt(struct xe_tile *tile,
+ }
+ 
+ static struct xe_gt *init_media_gt(struct xe_tile *tile,
+-				   const struct xe_media_desc *media_desc)
++				   const struct xe_media_desc *media_desc,
++				   u64 gt_types_allowed)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *gt;
+ 
++	if ((gt_types_allowed & BIT_ULL(XE_GT_TYPE_MEDIA)) == 0) {
++		drm_info(&xe->drm, "Media GT disabled via configfs\n");
++		return NULL;
++	}
++
+ 	gt = xe_gt_alloc(tile);
+ 	if (IS_ERR(gt))
+ 		return gt;
+@@ -739,6 +751,8 @@ static struct xe_gt *init_media_gt(struct xe_tile *tile,
+ static int xe_info_init(struct xe_device *xe,
+ 			const struct xe_device_desc *desc)
+ {
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	u64 gt_types_allowed = xe_configfs_get_gt_types_allowed(pdev);
+ 	u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
+ 	const struct xe_ip *graphics_ip;
+ 	const struct xe_ip *media_ip;
+@@ -820,11 +834,25 @@ static int xe_info_init(struct xe_device *xe,
+ 		if (err)
+ 			return err;
+ 
+-		tile->primary_gt = init_primary_gt(tile, graphics_desc, media_desc);
++		tile->primary_gt = init_primary_gt(tile, graphics_desc, media_desc,
++						   gt_types_allowed);
+ 		if (IS_ERR(tile->primary_gt))
+ 			return PTR_ERR(tile->primary_gt);
+ 
+-		tile->media_gt = init_media_gt(tile, media_desc);
++		/*
++		 * It's not currently possible to probe a device with the
++		 * primary GT disabled.  With some work, this may be future in
++		 * the possible for igpu platforms (although probably not for
++		 * dgpu's since access to the primary GT's BCS engines is
++		 * required for VRAM management).
++		 */
++		if (!tile->primary_gt) {
++			drm_err(&xe->drm, "Cannot probe device with without a primary GT\n");
++			return -ENODEV;
++		}
++
++		tile->media_gt = init_media_gt(tile, media_desc,
++					       gt_types_allowed);
+ 		if (IS_ERR(tile->media_gt))
+ 			return PTR_ERR(tile->media_gt);
+ 	}
 -- 
 2.51.0
 
