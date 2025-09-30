@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36F15CCD180
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:56:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8A1ECAC5B8
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1468E10E2EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E2E310E2E4;
 	Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WdQyLDVU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQzAPkE4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA5B10E63F
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A520210E2EA
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759272993; x=1790808993;
+ t=1759272994; x=1790808994;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2nROAwXNcfX0oGNtmor5CJ48m6ESmDqUkY4+STdtGak=;
- b=WdQyLDVUEpxN9HliGRgaW4n6T2j/Yqj+aW8uFohPGhuv1T5ql5aMBjpd
- u+TKSA4srUyGOSCWLyxXh4t+F7tdMPjT3EM6BGkMxZwwvn71SDldngVd2
- xZvRGRSBzEIu+vBBWD209K1XkinCHTOfFRLqhDfkWivRgtT+24Xn/180y
- vJ1GV9v6JtHBnoGVhFDjKNWEQzwm33/GQ/qFMWzTYVxYMSYzr8ApoXiPX
- L7RizagW2KTNcG9rA68NdAqvZdysCfc6qSCla3xql1T6s7wMCVfUK6UD/
- 6OU/b6omU9zV52A4E2nzFnU5Rpam5h2A6I6M8Y8ElLojUpZ/AVv0hOT2d g==;
-X-CSE-ConnectionGUID: tbd19sdeRpKV1tQMhohlvg==
-X-CSE-MsgGUID: 7ih0aGIhRQK02gadxF4F7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397744"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397744"
+ bh=3wbPpAgp0eBOt9Qo/MUxQDiyyHuwQF6Hfzf4RozJnFY=;
+ b=ZQzAPkE4VFT+zhxfdCpohcByA9t5g4/wZHi+ERjDvV5hy6ExC9WlMxL7
+ gROUQpwGb2u52SXqpdwGT5CT5ZnGZNQQwL81dOrr673UkNwHCu4Ezimqd
+ bDtb37t2LZG0NO25YzzcbkC3OGNjS4jNQRRK2U682BjelZdpKpfvTEwUg
+ dmERxIWdkcm0OBcbkizW1HJiQXyn/5AJLM4JwWE5g1nwGVmVfvWZQ2onM
+ mByY63Pcdcw+914xNHqQCoJQ0tgtWGA+emyMt/N1yeGGmMNr4pVNJpgpm
+ 79otkFaiVTLv0wMrqGVEJp5QcWlRAIcdXiJnyI4bpAH3K5hPmcuzwv4zf Q==;
+X-CSE-ConnectionGUID: RlnSMVT0SOacI7JVfG4E4Q==
+X-CSE-MsgGUID: qWm8b9SgQ1emUGlQfv3+GQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397760"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397760"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 15:56:32 -0700
-X-CSE-ConnectionGUID: SrfCXJidS5mEV0nhYCwNug==
-X-CSE-MsgGUID: 6gaXqOwjTG+fZYRF00dPIQ==
+ 30 Sep 2025 15:56:33 -0700
+X-CSE-ConnectionGUID: 8GK+O9eXQcS5N+0iwACZ8w==
+X-CSE-MsgGUID: oxwwv9PgQ7uzGxV8LN1o5w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229442"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229480"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v3 04/23] drm/xe: Move 'vm_max_level' flag back to platform
- descriptor
-Date: Tue, 30 Sep 2025 15:56:21 -0700
-Message-ID: <20250930225618.140071-29-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH v3 16/23] drm/xe/rtp: Pass xe_device parameter to FUNC matches
+Date: Tue, 30 Sep 2025 15:56:33 -0700
+Message-ID: <20250930225618.140071-41-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
 References: <20250930225618.140071-25-matthew.d.roper@intel.com>
@@ -68,193 +66,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The number of page table levels for PPGTT virtual addresses is something
-that should be tracked at the platform level rather than the IP level.
-Even when mixing and matching various graphics, media, and display IP
-blocks, the platform as a whole has to have consistent page table
-handling.  This is also a trait that should be tied to the platform even
-if the graphics IP itself is not present (e.g., if we disable the
-primary GT via configfs).
+FUNC matches in RTP only pass the GT and hwe, preventing them from being
+used effectively in device workarounds.  Add an additional xe_device
+parameter so that we can use them in device workarounds where a GT may
+not be available.
 
-Since all platforms officially supported by the Xe driver use the same
-value (4 levels) and only some old Xe1 platforms have a different value,
-let's make this the default if a platform descriptor doesn't specify the
-value.  If more platforms show up in the future with different numbers
-of page table levels, we can go back to requiring this to be explicitly
-specified for every platform at that time.
-
-v2:
- - Drop default value of 4 and explicitly set the value in each platform
-   desciptor.  (Lucas)
-
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c       | 22 ++++++++++++++--------
- drivers/gpu/drm/xe/xe_pci_types.h |  2 +-
- 2 files changed, 15 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c |  6 ++++--
+ drivers/gpu/drm/xe/xe_hw_engine.c      | 10 ++++++----
+ drivers/gpu/drm/xe/xe_reg_whitelist.c  |  3 ++-
+ drivers/gpu/drm/xe/xe_rtp.c            | 24 +++++++++++++-----------
+ drivers/gpu/drm/xe/xe_rtp.h            | 18 +++++++++++++-----
+ drivers/gpu/drm/xe/xe_rtp_types.h      |  4 +++-
+ 6 files changed, 41 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 69ed987fef67..8688f40f55d8 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -51,13 +51,10 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+index b0254b014fe4..d2255a59e58f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+@@ -48,12 +48,14 @@ struct rtp_test_case {
+ 	const struct xe_rtp_entry *entries;
+ };
  
- static const struct xe_graphics_desc graphics_xelp = {
- 	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
+-static bool match_yes(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
++static bool match_yes(const struct xe_device *xe, const struct xe_gt *gt,
++		      const struct xe_hw_engine *hwe)
+ {
+ 	return true;
+ }
+ 
+-static bool match_no(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
++static bool match_no(const struct xe_device *xe, const struct xe_gt *gt,
++		     const struct xe_hw_engine *hwe)
+ {
+ 	return false;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 1cf623b4a5bc..cba4375525c7 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -346,17 +346,19 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ 	xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
+ }
+ 
+-static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_gt *gt,
++static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_device *xe,
++						 const struct xe_gt *gt,
+ 						 const struct xe_hw_engine *hwe)
+ {
+ 	return xe_gt_ccs_mode_enabled(gt) &&
+-	       xe_rtp_match_first_render_or_compute(gt, hwe);
++	       xe_rtp_match_first_render_or_compute(xe, gt, hwe);
+ }
+ 
+-static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_gt *gt,
++static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_device *xe,
++				      const struct xe_gt *gt,
+ 				      const struct xe_hw_engine *hwe)
+ {
+-	if (GRAPHICS_VER(gt_to_xe(gt)) < 20)
++	if (GRAPHICS_VER(xe) < 20)
+ 		return false;
+ 
+ 	if (hwe->class != XE_ENGINE_CLASS_COMPUTE &&
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 23f6c81d9994..690bc327a363 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -19,7 +19,8 @@
+ #undef XE_REG_MCR
+ #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+ 
+-static bool match_not_render(const struct xe_gt *gt,
++static bool match_not_render(const struct xe_device *xe,
++			     const struct xe_gt *gt,
+ 			     const struct xe_hw_engine *hwe)
+ {
+ 	return hwe->class != XE_ENGINE_CLASS_RENDER;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index b5f430d59f80..66707cc89ec9 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -133,10 +133,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 			match = hwe->class != r->engine_class;
+ 			break;
+ 		case XE_RTP_MATCH_FUNC:
+-			if (drm_WARN_ON(&xe->drm, !gt))
+-				return false;
 -
--	.vm_max_level = 3,
+-			match = r->match_func(gt, hwe);
++			match = r->match_func(xe, gt, hwe);
+ 			break;
+ 		default:
+ 			drm_warn(&xe->drm, "Invalid RTP match %u\n",
+@@ -343,13 +340,15 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
+ 
+-bool xe_rtp_match_even_instance(const struct xe_gt *gt,
++bool xe_rtp_match_even_instance(const struct xe_device *xe,
++				const struct xe_gt *gt,
+ 				const struct xe_hw_engine *hwe)
+ {
+ 	return hwe->instance % 2 == 0;
+ }
+ 
+-bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
++bool xe_rtp_match_first_render_or_compute(const struct xe_device *xe,
++					  const struct xe_gt *gt,
+ 					  const struct xe_hw_engine *hwe)
+ {
+ 	u64 render_compute_mask = gt->info.engine_mask &
+@@ -359,19 +358,22 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
+ 		hwe->engine_id == __ffs(render_compute_mask);
+ }
+ 
+-bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
++bool xe_rtp_match_not_sriov_vf(const struct xe_device *xe,
++			       const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe)
+ {
+-	return !IS_SRIOV_VF(gt_to_xe(gt));
++	return !IS_SRIOV_VF(xe);
+ }
+ 
+-bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
++bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
++			       const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe)
+ {
+-	return xe_configfs_get_psmi_enabled(to_pci_dev(gt_to_xe(gt)->drm.dev));
++	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
+ }
+ 
+-bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_gt *gt,
++bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
++						  const struct xe_gt *gt,
+ 						  const struct xe_hw_engine *hwe)
+ {
+ 	return xe_gt_has_discontiguous_dss_groups(gt);
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index ac12ddf6cde6..e5b8a9452e29 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -440,18 +440,21 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ 
+ /**
+  * xe_rtp_match_even_instance - Match if engine instance is even
++ * @xe: Device structure
+  * @gt: GT structure
+  * @hwe: Engine instance
+  *
+  * Returns: true if engine instance is even, false otherwise
+  */
+-bool xe_rtp_match_even_instance(const struct xe_gt *gt,
++bool xe_rtp_match_even_instance(const struct xe_device *xe,
++				const struct xe_gt *gt,
+ 				const struct xe_hw_engine *hwe);
+ 
+ /*
+  * xe_rtp_match_first_render_or_compute - Match if it's first render or compute
+  * engine in the GT
+  *
++ * @xe: Device structure
+  * @gt: GT structure
+  * @hwe: Engine instance
+  *
+@@ -463,24 +466,29 @@ bool xe_rtp_match_even_instance(const struct xe_gt *gt,
+  * Returns: true if engine id is the first to match the render reset domain,
+  * false otherwise.
+  */
+-bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
++bool xe_rtp_match_first_render_or_compute(const struct xe_device *xe,
++					  const struct xe_gt *gt,
+ 					  const struct xe_hw_engine *hwe);
+ 
+ /*
+  * xe_rtp_match_not_sriov_vf - Match when not on SR-IOV VF device
+  *
++ * @xe: Device structure
+  * @gt: GT structure
+  * @hwe: Engine instance
+  *
+  * Returns: true if device is not VF, false otherwise.
+  */
+-bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
++bool xe_rtp_match_not_sriov_vf(const struct xe_device *xe,
++			       const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe);
+ 
+-bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
++bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
++			       const struct xe_gt *gt,
+ 			       const struct xe_hw_engine *hwe);
+ 
+-bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_gt *gt,
++bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
++						  const struct xe_gt *gt,
+ 						  const struct xe_hw_engine *hwe);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index f4cf30e298cf..6ba7f226c227 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -10,6 +10,7 @@
+ 
+ #include "regs/xe_reg_defs.h"
+ 
++struct xe_device;
+ struct xe_hw_engine;
+ struct xe_gt;
+ 
+@@ -86,7 +87,8 @@ struct xe_rtp_rule {
+ 			u8 engine_class;
+ 		};
+ 		/* MATCH_FUNC */
+-		bool (*match_func)(const struct xe_gt *gt,
++		bool (*match_func)(const struct xe_device *xe,
++				   const struct xe_gt *gt,
+ 				   const struct xe_hw_engine *hwe);
+ 	};
  };
- 
- #define XE_HP_FEATURES \
--	.has_range_tlb_inval = true, \
--	.vm_max_level = 3
-+	.has_range_tlb_inval = true
- 
- static const struct xe_graphics_desc graphics_xehpg = {
- 	.hw_engine_mask =
-@@ -82,7 +79,6 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
- 
- 	XE_HP_FEATURES,
--	.vm_max_level = 4,
- 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
- 
- 	.has_asid = 1,
-@@ -105,7 +101,6 @@ static const struct xe_graphics_desc graphics_xelpg = {
- 	.has_range_tlb_inval = 1, \
- 	.has_usm = 1, \
- 	.has_64bit_timestamp = 1, \
--	.vm_max_level = 4, \
- 	.hw_engine_mask = \
- 		BIT(XE_HW_ENGINE_RCS0) | \
- 		BIT(XE_HW_ENGINE_BCS8) | BIT(XE_HW_ENGINE_BCS0) | \
-@@ -183,6 +178,7 @@ static const struct xe_device_desc rkl_desc = {
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.va_bits = 48,
-+	.vm_max_level = 3,
- };
- 
- static const u16 adls_rpls_ids[] = { INTEL_RPLS_IDS(NOP), 0 };
-@@ -202,6 +198,7 @@ static const struct xe_device_desc adl_s_desc = {
- 		{},
- 	},
- 	.va_bits = 48,
-+	.vm_max_level = 3,
- };
- 
- static const u16 adlp_rplu_ids[] = { INTEL_RPLU_IDS(NOP), 0 };
-@@ -221,6 +218,7 @@ static const struct xe_device_desc adl_p_desc = {
- 		{},
- 	},
- 	.va_bits = 48,
-+	.vm_max_level = 3,
- };
- 
- static const struct xe_device_desc adl_n_desc = {
-@@ -234,6 +232,7 @@ static const struct xe_device_desc adl_n_desc = {
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.va_bits = 48,
-+	.vm_max_level = 3,
- };
- 
- #define DGFX_FEATURES \
-@@ -251,6 +250,7 @@ static const struct xe_device_desc dg1_desc = {
- 	.max_gt_per_tile = 1,
- 	.require_force_probe = true,
- 	.va_bits = 48,
-+	.vm_max_level = 3,
- };
- 
- static const u16 dg2_g10_ids[] = { INTEL_DG2_G10_IDS(NOP), INTEL_ATS_M150_IDS(NOP), 0 };
-@@ -268,7 +268,8 @@ static const u16 dg2_g12_ids[] = { INTEL_DG2_G12_IDS(NOP), 0 };
- 		{ XE_SUBPLATFORM_DG2_G12, "G12", dg2_g12_ids }, \
- 		{ } \
- 	}, \
--	.va_bits = 48
-+	.va_bits = 48, \
-+	.vm_max_level = 3
- 
- static const struct xe_device_desc ats_m_desc = {
- 	.pre_gmdid_graphics_ip = &graphics_ip_xehpg,
-@@ -307,6 +308,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
- 	.max_remote_tiles = 1,
- 	.require_force_probe = true,
- 	.va_bits = 57,
-+	.vm_max_level = 4,
- 	.has_mbx_power_limits = false,
- };
- 
-@@ -319,6 +321,7 @@ static const struct xe_device_desc mtl_desc = {
- 	.has_pxp = true,
- 	.max_gt_per_tile = 2,
- 	.va_bits = 48,
-+	.vm_max_level = 4,
- };
- 
- static const struct xe_device_desc lnl_desc = {
-@@ -329,6 +332,7 @@ static const struct xe_device_desc lnl_desc = {
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
- 	.va_bits = 48,
-+	.vm_max_level = 4,
- };
- 
- static const struct xe_device_desc bmg_desc = {
-@@ -345,6 +349,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
- 	.va_bits = 48,
-+	.vm_max_level = 4,
- };
- 
- static const struct xe_device_desc ptl_desc = {
-@@ -355,6 +360,7 @@ static const struct xe_device_desc ptl_desc = {
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
- 	.va_bits = 48,
-+	.vm_max_level = 4,
- };
- 
- #undef PLATFORM
-@@ -593,6 +599,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 
- 	xe->info.dma_mask_size = desc->dma_mask_size;
- 	xe->info.va_bits = desc->va_bits;
-+	xe->info.vm_max_level = desc->vm_max_level;
- 
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.has_fan_control = desc->has_fan_control;
-@@ -723,7 +730,6 @@ static int xe_info_init(struct xe_device *xe,
- 	}
- 
- 	xe->info.vram_flags = graphics_desc->vram_flags;
--	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.has_asid = graphics_desc->has_asid;
- 	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
- 	if (xe->info.platform != XE_PVC)
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 095133a1aa44..f45b45a7f76a 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -31,6 +31,7 @@ struct xe_device_desc {
- 	u8 max_remote_tiles:2;
- 	u8 max_gt_per_tile:2;
- 	u8 va_bits;		/* default is 48 bits if not specified */
-+	u8 vm_max_level;	/* default is 4 if not specified */
- 
- 	u8 require_force_probe:1;
- 	u8 is_dgfx:1;
-@@ -52,7 +53,6 @@ struct xe_device_desc {
- };
- 
- struct xe_graphics_desc {
--	u8 vm_max_level;
- 	u8 vram_flags;
- 
- 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
 -- 
 2.51.0
 
