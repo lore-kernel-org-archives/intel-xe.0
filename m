@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE204CCA470
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 11:16:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72597CCA470
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 11:22:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77D3110E2AD;
-	Tue, 30 Sep 2025 11:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36B8C10E2A8;
+	Tue, 30 Sep 2025 11:22:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnR9MPUp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nd/tQQOk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2B910E2AD
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 11:16:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C22510E2A8
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 11:22:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759230982; x=1790766982;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=WAdZAQi5LRt9iqxZzB8DE0TXSVcWgW36t3vjPSGrRzI=;
- b=AnR9MPUp5D8Wb0WHDvQ1aiEDdet1jDoJJJF09quPjEB19DEXKphT0Hxx
- 8ceHD30zJ1k+7LUx0gBLxqTLPX7EWNF+Wn1epNyssIqIzkW6b0cWC2NN7
- ZYkkSsr+WZHc8EQwvV2cVN38Q27181gOZ2wS2VGoNQcZ/0yfAr1i6MHqZ
- zKJH4THtzyyQgRyQ4mMTgkSDMnrlsf6j5OXNfB8x5y6to4QiLq0N3916H
- t+6qVY8JcvXirkdYw700d7S8I7LHoeFupQVJbxt/qXZrO2qIbf0mcNtBd
- Qhspk6b4OWUhZYyBcFV2pV4W23udgV7echka7V8dNHXdhAJo84LNknHJ5 A==;
-X-CSE-ConnectionGUID: EC6cTI4kQYmwfqM4cjruRw==
-X-CSE-MsgGUID: +Gf4Aab+QwWcThxE970eNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="65122796"
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="65122796"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 04:16:22 -0700
-X-CSE-ConnectionGUID: m+JNhb6pT3+lxH34X914kQ==
-X-CSE-MsgGUID: SAZRiQm2SvioNHWq58rc8Q==
+ t=1759231359; x=1790767359;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=zYkt69aYloWuR5pAmA1HTQzV+S5svI012zusCMHx9pA=;
+ b=Nd/tQQOkv0PYZIsmI7k1XKtCDuQpCw1y7psL0TBQ7dI3JeOjfC7r3S4f
+ gyAXTre6SY20S6ggKigMwzjJ/fpRxWszLBQ3C7T7piFkZI1JBE6rV7wV0
+ uVqhVnZ+SAY09IC/+rqt81kgfCZZsPznzH0uD1TiGF0KVRxb4i4tHYb2g
+ jDDSjEkLZKfGB1vIhfMJhdkQfKt3O1uqqGcOI2pcqRWA34ArpFvgP/shk
+ 5v2RMkUCJc5VM5nWpMAX2HAAp05PSdBQbjCEB+Giq62vKxCB5zBJcd/QQ
+ HV2qE3S492HC3oHhYT5n2kfKTOFav6Xx0gdcPXe4rT4rQIUyuo1JZbl8K g==;
+X-CSE-ConnectionGUID: s/+wZpzDQQWk0QG06x9wFw==
+X-CSE-MsgGUID: Xt/+RrQ6R+mOVeM/y1UVKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="61649129"
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="61649129"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 04:22:38 -0700
+X-CSE-ConnectionGUID: tN3PwUzdRty+n3WNWfsK2w==
+X-CSE-MsgGUID: DId4wU6wSgqxnoizv4v2ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="179264247"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.161])
- ([10.245.244.161])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 04:16:20 -0700
-Message-ID: <801fda09-2865-44fe-9a11-bb53b145f649@intel.com>
-Date: Tue, 30 Sep 2025 12:16:18 +0100
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="178527968"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 04:22:37 -0700
+Date: Tue, 30 Sep 2025 13:22:33 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Andi Shyti <andi.shyti@kernel.org>, heikki.krogerus@linux.intel.com
+Cc: lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, riana.tauro@intel.com
+Subject: Re: [PATCH v1 2/2] drm/xe/i2c: Wire up reset/postinstall for I2C IRQ
+Message-ID: <aNu9eRb7dqnEjgaf@black.igk.intel.com>
+References: <20250924200835.3143173-1-raag.jadav@intel.com>
+ <20250924200835.3143173-3-raag.jadav@intel.com>
+ <v4k2wbqubd3axseacmj645rxf6oorhfksjew7wx2roy67cyx5i@msal4niodlrx>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/gpusvm, drm/xe: Fix userptr to not allow device
- private pages
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20250930072144.12170-1-thomas.hellstrom@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20250930072144.12170-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <v4k2wbqubd3axseacmj645rxf6oorhfksjew7wx2roy67cyx5i@msal4niodlrx>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,290 +69,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 30/09/2025 08:21, Thomas Hellström wrote:
-> When userptr is used on SVM-enabled VMs, a non-NULL
-> hmm_range::dev_private_owner value might mean that
-> hmm_range_fault() attempts to return device private pages.
-> Either that will fail, or the userptr code will not know
-> how to handle those.
+On Tue, Sep 30, 2025 at 01:13:57PM +0200, Andi Shyti wrote:
+> Hi Raag,
 > 
-> Use NULL for hmm_range::dev_private_owner to migrate
-> such pages to system. In order to do that, move the
-> struct drm_gpusvm::device_private_page_owner field to
-> struct drm_gpusvm_ctx::device_private_page_owner so that
-> it doesn't remain immutable over the drm_gpusvm lifetime.
+> On Thu, Sep 25, 2025 at 01:38:35AM +0530, Raag Jadav wrote:
+> > I2C IRQ needs to be routed to SGUnit or PUnit for the devices that support
+> > it. Wire up reset/postinstall handles for I2C IRQ to take care of this.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > 
-> v2:
-> - Don't conditionally compile xe_svm_devm_owner().
-> - Kerneldoc xe_svm_devm_owner().
-> 
-> Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-So in theory this should give the same behavior pre gpusvm conversion 
-for userptr?
+Awesome, thanks Andi.
 
-I guess missing Cc: dri-devel ?
+Heikki, I can integrate your DISABLE_MSI changes which I'm assuming
+will be in the same path here?
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+I know we're in the merge window but let me know how you'd want to
+proceed.
 
-> ---
->   drivers/gpu/drm/drm_gpusvm.c    | 24 +++++++++++++-----------
->   drivers/gpu/drm/xe/xe_svm.c     | 11 +++--------
->   drivers/gpu/drm/xe/xe_svm.h     | 14 ++++++++++++++
->   drivers/gpu/drm/xe/xe_userptr.c |  1 +
->   drivers/gpu/drm/xe/xe_vm.c      |  1 +
->   include/drm/drm_gpusvm.h        |  7 ++++---
->   6 files changed, 36 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> index eeeeb99cfdf6..cb906765897e 100644
-> --- a/drivers/gpu/drm/drm_gpusvm.c
-> +++ b/drivers/gpu/drm/drm_gpusvm.c
-> @@ -361,7 +361,6 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
->    * @name: Name of the GPU SVM.
->    * @drm: Pointer to the DRM device structure.
->    * @mm: Pointer to the mm_struct for the address space.
-> - * @device_private_page_owner: Device private pages owner.
->    * @mm_start: Start address of GPU SVM.
->    * @mm_range: Range of the GPU SVM.
->    * @notifier_size: Size of individual notifiers.
-> @@ -383,7 +382,7 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
->    */
->   int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
->   		    const char *name, struct drm_device *drm,
-> -		    struct mm_struct *mm, void *device_private_page_owner,
-> +		    struct mm_struct *mm,
->   		    unsigned long mm_start, unsigned long mm_range,
->   		    unsigned long notifier_size,
->   		    const struct drm_gpusvm_ops *ops,
-> @@ -395,15 +394,13 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
->   		mmgrab(mm);
->   	} else {
->   		/* No full SVM mode, only core drm_gpusvm_pages API. */
-> -		if (ops || num_chunks || mm_range || notifier_size ||
-> -		    device_private_page_owner)
-> +		if (ops || num_chunks || mm_range || notifier_size)
->   			return -EINVAL;
->   	}
->   
->   	gpusvm->name = name;
->   	gpusvm->drm = drm;
->   	gpusvm->mm = mm;
-> -	gpusvm->device_private_page_owner = device_private_page_owner;
->   	gpusvm->mm_start = mm_start;
->   	gpusvm->mm_range = mm_range;
->   	gpusvm->notifier_size = notifier_size;
-> @@ -684,6 +681,7 @@ static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
->    * @notifier: Pointer to the GPU SVM notifier structure
->    * @start: Start address
->    * @end: End address
-> + * @dev_private_owner: The device private page owner
->    *
->    * Check if pages between start and end have been faulted in on the CPU. Use to
->    * prevent migration of pages without CPU backing store.
-> @@ -692,14 +690,15 @@ static unsigned int drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
->    */
->   static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
->   				   struct drm_gpusvm_notifier *notifier,
-> -				   unsigned long start, unsigned long end)
-> +				   unsigned long start, unsigned long end,
-> +				   void *dev_private_owner)
->   {
->   	struct hmm_range hmm_range = {
->   		.default_flags = 0,
->   		.notifier = &notifier->notifier,
->   		.start = start,
->   		.end = end,
-> -		.dev_private_owner = gpusvm->device_private_page_owner,
-> +		.dev_private_owner = dev_private_owner,
->   	};
->   	unsigned long timeout =
->   		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-> @@ -753,6 +752,7 @@ static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
->    * @gpuva_start: Start address of GPUVA which mirrors CPU
->    * @gpuva_end: End address of GPUVA which mirrors CPU
->    * @check_pages_threshold: Check CPU pages for present threshold
-> + * @dev_private_owner: The device private page owner
->    *
->    * This function determines the chunk size for the GPU SVM range based on the
->    * fault address, GPU SVM chunk sizes, existing GPU SVM ranges, and the virtual
-> @@ -767,7 +767,8 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm *gpusvm,
->   			    unsigned long fault_addr,
->   			    unsigned long gpuva_start,
->   			    unsigned long gpuva_end,
-> -			    unsigned long check_pages_threshold)
-> +			    unsigned long check_pages_threshold,
-> +			    void *dev_private_owner)
->   {
->   	unsigned long start, end;
->   	int i = 0;
-> @@ -814,7 +815,7 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm *gpusvm,
->   		 * process-many-malloc' mallocs at least 64k at a time.
->   		 */
->   		if (end - start <= check_pages_threshold &&
-> -		    !drm_gpusvm_check_pages(gpusvm, notifier, start, end)) {
-> +		    !drm_gpusvm_check_pages(gpusvm, notifier, start, end, dev_private_owner)) {
->   			++i;
->   			goto retry;
->   		}
-> @@ -957,7 +958,8 @@ drm_gpusvm_range_find_or_insert(struct drm_gpusvm *gpusvm,
->   	chunk_size = drm_gpusvm_range_chunk_size(gpusvm, notifier, vas,
->   						 fault_addr, gpuva_start,
->   						 gpuva_end,
-> -						 ctx->check_pages_threshold);
-> +						 ctx->check_pages_threshold,
-> +						 ctx->device_private_page_owner);
->   	if (chunk_size == LONG_MAX) {
->   		err = -EINVAL;
->   		goto err_notifier_remove;
-> @@ -1268,7 +1270,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->   		.notifier = notifier,
->   		.start = pages_start,
->   		.end = pages_end,
-> -		.dev_private_owner = gpusvm->device_private_page_owner,
-> +		.dev_private_owner = ctx->device_private_page_owner,
->   	};
->   	void *zdd;
->   	unsigned long timeout =
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index 7f2f1f041f1d..7e2db71ff34e 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -67,11 +67,6 @@ void xe_svm_range_debug(struct xe_svm_range *range, const char *operation)
->   	range_debug(range, operation);
->   }
->   
-> -static void *xe_svm_devm_owner(struct xe_device *xe)
-> -{
-> -	return xe;
-> -}
-> -
->   static struct drm_gpusvm_range *
->   xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
->   {
-> @@ -744,15 +739,14 @@ int xe_svm_init(struct xe_vm *vm)
->   			  xe_svm_garbage_collector_work_func);
->   
->   		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-> -				      current->mm, xe_svm_devm_owner(vm->xe), 0,
-> -				      vm->size,
-> +				      current->mm, 0, vm->size,
->   				      xe_modparam.svm_notifier_size * SZ_1M,
->   				      &gpusvm_ops, fault_chunk_sizes,
->   				      ARRAY_SIZE(fault_chunk_sizes));
->   		drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
->   	} else {
->   		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
-> -				      &vm->xe->drm, NULL, NULL, 0, 0, 0, NULL,
-> +				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
->   				      NULL, 0);
->   	}
->   
-> @@ -1017,6 +1011,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
->   		.devmem_only = need_vram && devmem_possible,
->   		.timeslice_ms = need_vram && devmem_possible ?
->   			vm->xe->atomic_svm_timeslice_ms : 0,
-> +		.device_private_page_owner = xe_svm_devm_owner(vm->xe),
->   	};
->   	struct xe_validation_ctx vctx;
->   	struct drm_exec exec;
-> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-> index cef6ee7d6fe3..0955d2ac8d74 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.h
-> +++ b/drivers/gpu/drm/xe/xe_svm.h
-> @@ -6,6 +6,20 @@
->   #ifndef _XE_SVM_H_
->   #define _XE_SVM_H_
->   
-> +struct xe_device;
-> +
-> +/**
-> + * xe_svm_devm_owner() - Return the owner of device private memory
-> + * @xe: The xe device.
-> + *
-> + * Return: The owner of this device's device private memory to use in
-> + * hmm_range_fault()-
-> + */
-> +static inline void *xe_svm_devm_owner(struct xe_device *xe)
-> +{
-> +	return xe;
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
->   
->   #include <drm/drm_pagemap.h>
-> diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-> index 91d09af71ced..f16e92cd8090 100644
-> --- a/drivers/gpu/drm/xe/xe_userptr.c
-> +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> @@ -54,6 +54,7 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
->   	struct xe_device *xe = vm->xe;
->   	struct drm_gpusvm_ctx ctx = {
->   		.read_only = xe_vma_read_only(vma),
-> +		.device_private_page_owner = NULL,
->   	};
->   
->   	lockdep_assert_held(&vm->lock);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 80b7f13ecd80..4e914928e0a9 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2883,6 +2883,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
->   	ctx.read_only = xe_vma_read_only(vma);
->   	ctx.devmem_possible = devmem_possible;
->   	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
-> +	ctx.device_private_page_owner = xe_svm_devm_owner(vm->xe);
->   
->   	/* TODO: Threading the migration */
->   	xa_for_each(&op->prefetch_range.range, i, svm_range) {
-> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-> index 5434048a2ca4..b92faa9a26b2 100644
-> --- a/include/drm/drm_gpusvm.h
-> +++ b/include/drm/drm_gpusvm.h
-> @@ -179,7 +179,6 @@ struct drm_gpusvm_range {
->    * @name: Name of the GPU SVM
->    * @drm: Pointer to the DRM device structure
->    * @mm: Pointer to the mm_struct for the address space
-> - * @device_private_page_owner: Device private pages owner
->    * @mm_start: Start address of GPU SVM
->    * @mm_range: Range of the GPU SVM
->    * @notifier_size: Size of individual notifiers
-> @@ -204,7 +203,6 @@ struct drm_gpusvm {
->   	const char *name;
->   	struct drm_device *drm;
->   	struct mm_struct *mm;
-> -	void *device_private_page_owner;
->   	unsigned long mm_start;
->   	unsigned long mm_range;
->   	unsigned long notifier_size;
-> @@ -226,6 +224,8 @@ struct drm_gpusvm {
->   /**
->    * struct drm_gpusvm_ctx - DRM GPU SVM context
->    *
-> + * @device_private_page_owner: The device-private page owner to use for
-> + * this operation
->    * @check_pages_threshold: Check CPU pages for present if chunk is less than or
->    *                         equal to threshold. If not present, reduce chunk
->    *                         size.
-> @@ -239,6 +239,7 @@ struct drm_gpusvm {
->    * Context that is DRM GPUSVM is operating in (i.e. user arguments).
->    */
->   struct drm_gpusvm_ctx {
-> +	void *device_private_page_owner;
->   	unsigned long check_pages_threshold;
->   	unsigned long timeslice_ms;
->   	unsigned int in_notifier :1;
-> @@ -249,7 +250,7 @@ struct drm_gpusvm_ctx {
->   
->   int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
->   		    const char *name, struct drm_device *drm,
-> -		    struct mm_struct *mm, void *device_private_page_owner,
-> +		    struct mm_struct *mm,
->   		    unsigned long mm_start, unsigned long mm_range,
->   		    unsigned long notifier_size,
->   		    const struct drm_gpusvm_ops *ops,
-
+Raag
