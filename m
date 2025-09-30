@@ -4,73 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8572CCA471
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 11:57:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0482CCA470
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 12:26:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D15510E2AF;
-	Tue, 30 Sep 2025 11:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 730E010E2B7;
+	Tue, 30 Sep 2025 12:26:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="mJeoLlpS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d2CcjGRd";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41E7310E2AE;
- Tue, 30 Sep 2025 11:57:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1759233462;
- bh=qBZX0z5CnOtN7+UQ2lvEHHirZ93sseSix/A1K8cdiFc=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=mJeoLlpS6xMi4xx9XPVrj1slSC3EBhW5J/50vIMfQpudGEZWvZIr/sfcQCNuoQXKL
- ZN76YNOMXYENCdJmsXhZjHuVXocD4Yv+VCe6kU7zNGGHaahVq0up4j9wj958kGv/fm
- cqz/o/FCiw7xYQmEmlCGVN/li8NGMFCKIHFza9waOwa2QuNI0oCQP9pGcDHbEObhU9
- 1J2TtCj7pAnntE45uJAR5JBkNEtnNgQEH7KjcvWcEMflfg/xSMmAu7c3mDucT4qiNM
- OZbgWZOYimySVkz8BQR3sd93NttuCTuMJJWWoALkfMez3bUrLmJdw9SWG8hTBRRSM0
- 1qdZ4npgF3cbg==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 18DA717E00A8;
- Tue, 30 Sep 2025 13:57:41 +0200 (CEST)
-Date: Tue, 30 Sep 2025 13:57:36 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: "Danilo Krummrich" <dakr@kernel.org>
-Cc: "Philipp Stanner" <phasta@mailbox.org>, <phasta@kernel.org>, "Tvrtko
- Ursulin" <tvrtko.ursulin@igalia.com>, <dri-devel@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>, <kernel-dev@igalia.com>,
- <intel-xe@lists.freedesktop.org>, <cgroups@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, "Leo Liu" <Leo.Liu@amd.com>, =?UTF-8?B?TWE=?=
- =?UTF-8?B?w61yYQ==?= Canal <mcanal@igalia.com>, "Matthew Brost"
- <matthew.brost@intel.com>, Michal =?UTF-8?B?S291dG7DvQ==?=
- <mkoutny@suse.com>, Michel =?UTF-8?B?RMOkbnplcg==?=
- <michel.daenzer@mailbox.org>, "Pierre-Eric Pelloux-Prayer"
- <pierre-eric.pelloux-prayer@amd.com>, "Rob Clark" <robdclark@gmail.com>,
- "Tejun Heo" <tj@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "Alistair Popple" <apopple@nvidia.com>, "John Hubbard"
- <jhubbard@nvidia.com>, "Joel Fernandes" <joelagnelf@nvidia.com>, "Timur
- Tabi" <ttabi@nvidia.com>, "Alex Deucher" <alexander.deucher@amd.com>,
- "Lucas De Marchi" <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
- =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Rob Herring" <robh@kernel.org>, "Steven Price"
- <steven.price@arm.com>, "Liviu Dudau" <liviu.dudau@arm.com>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Alice Ryhl"
- <aliceryhl@google.com>, "Boqun Feng" <boqunf@netflix.com>, =?UTF-8?B?R3I=?=
- =?UTF-8?B?w6lnb2lyZSBQw6lhbg==?= <gpean@netflix.com>, "Simona Vetter"
- <simona@ffwll.ch>, <airlied@gmail.com>
-Subject: Re: [RFC v8 00/21] DRM scheduling cgroup controller
-Message-ID: <20250930135736.02b69c65@fedora>
-In-Reply-To: <DD62YFG2CJ36.1NFKRTR2ZKD6V@kernel.org>
-References: <20250903152327.66002-1-tvrtko.ursulin@igalia.com>
- <DD5CCG4MIODH.1718JI1Z7GH8T@kernel.org>
- <4453e5989b38e99588efd53af674b69016b2c420.camel@mailbox.org>
- <20250930121229.4f265e0c@fedora>
- <DD62YFG2CJ36.1NFKRTR2ZKD6V@kernel.org>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB4610E2B7
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 12:26:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759235172; x=1790771172;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LCvttJJX1bIh1sf76PbBQHxuEnJQSDCpTaKzec6Xugk=;
+ b=d2CcjGRdiT5XPnnxuH7yBPXOL0OfuW0B2D3Bf/9zBMhmZyhIOmV5gYDV
+ Pev34s6yNZQ5OvhpBLNCcw5u04Tadm7FSwZtR8+rLYgwVOcr5/EUBDmhC
+ 0Ep0dfusJNjM8+KWOjSBz0Uw3jRVACnACF+aEGRTarwofagXqP0EjUs+T
+ 92wPjpmTayJGb7B/K0tN4Ce1g/RcamgQkV6JpuLPzvEva3EIZnLM6cVbl
+ 9iQGjFF0Q5syaf8oclgx4FUvm7LEfj5BRLYPfmsav6g4zliL5W9ci3sue
+ q7RljAJixBysUBS0ihbC1hSfhpTVHEZ4aSJaUvrPbvqkDWc4URleG2RfS g==;
+X-CSE-ConnectionGUID: fjFmmCcCR+OdG40x4bHBHg==
+X-CSE-MsgGUID: 557JxSZISVaULjhlSGUwyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="72914632"
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="72914632"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 05:26:12 -0700
+X-CSE-ConnectionGUID: I4mtHN9rTZeDgXfKzgYNig==
+X-CSE-MsgGUID: w/sm/6OeRKqHKT6qiR9BFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; d="scan'208";a="209221210"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.136])
+ ([10.245.244.136])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 05:26:10 -0700
+Message-ID: <840c1e3a-bac4-4827-bcc9-c5096d07b6af@linux.intel.com>
+Date: Tue, 30 Sep 2025 14:26:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/gpusvm, drm/xe: Fix userptr to not allow device
+ private pages
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20250930072144.12170-1-thomas.hellstrom@linux.intel.com>
+ <801fda09-2865-44fe-9a11-bb53b145f649@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <801fda09-2865-44fe-9a11-bb53b145f649@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,100 +72,322 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Sep 2025 12:58:29 +0200
-"Danilo Krummrich" <dakr@kernel.org> wrote:
 
-> On Tue Sep 30, 2025 at 12:12 PM CEST, Boris Brezillon wrote:
-> > So, my take on that is that what we want ultimately is to have the
-> > functionality provided by drm_sched split into different
-> > components that can be used in isolation, or combined to provide
-> > advanced scheduling.
-> >
-> > JobQueue:
-> >  - allows you to queue jobs with their deps
-> >  - dequeues jobs once their deps are met
-> > Not too sure if we want a push or a pull model for the job dequeuing,
-> > but the idea is that once the job is dequeued, ownership is passed to
-> > the SW entity that dequeued it. Note that I intentionally didn't add
-> > the timeout handling here, because dequeueing a job doesn't necessarily
-> > mean it's started immediately. If you're dealing with HW queues, you
-> > might have to wait for a slot to become available. If you're dealing
-> > with something like Mali-CSF, where the amount of FW slots is limited,
-> > you want to wait for your execution context to be passed to the FW for
-> > scheduling, and the final situation is the full-fledged FW scheduling,
-> > where you want things to start as soon as you have space in your FW
-> > queue (AKA ring-buffer?).
-> >
-> > JobHWDispatcher: (not sure about the name, I'm bad at naming things)
-> > This object basically pulls ready-jobs from one or multiple JobQueues
-> > into its own queue, and wait for a HW slot to become available. If you
-> > go for the push model, the job gets pushed to the HW dispatcher queue
-> > and waits here until a HW slot becomes available.
-> > That's where timeouts should be handled, because the job only becomes
-> > active when it gets pushed to a HW slot. I guess if we want a
-> > resubmit mechanism, it would have to take place here, but give how
-> > tricky this has been, I'd be tempted to leave that to drivers, that is,
-> > let them requeue the non-faulty jobs directly to their
-> > JobHWDispatcher implementation after a reset.
-> >
-> > FWExecutionContextScheduler: (again, pick a different name if you want)
-> > This scheduler doesn't know about jobs, meaning there's a
-> > driver-specific entity that needs to dequeue jobs from the JobQueue
-> > and push those to the relevant ringbuffer. Once a FWExecutionContext
-> > has something to execute, it becomes a candidate for
-> > FWExecutionContextScheduler, which gets to decide which set of
-> > FWExecutionContext get a chance to be scheduled by the FW.
-> > That one is for Mali-CSF case I described above, and I'm not too sure
-> > we want it to be generic, at least not until we have another GPU driver
-> > needing the same kind of scheduling. Again, you want to defer the
-> > timeout handling to this component, because the timer should only
-> > start/resume when the FWExecutionContext gets scheduled, and it should
-> > be paused as soon as the context gets evicted.  
-> 
-> This sounds pretty much like the existing design with the Panthor group
-> scheduler layered on top of it, no?
+On 9/30/25 13:16, Matthew Auld wrote:
+> On 30/09/2025 08:21, Thomas Hellström wrote:
+>> When userptr is used on SVM-enabled VMs, a non-NULL
+>> hmm_range::dev_private_owner value might mean that
+>> hmm_range_fault() attempts to return device private pages.
+>> Either that will fail, or the userptr code will not know
+>> how to handle those.
+>>
+>> Use NULL for hmm_range::dev_private_owner to migrate
+>> such pages to system. In order to do that, move the
+>> struct drm_gpusvm::device_private_page_owner field to
+>> struct drm_gpusvm_ctx::device_private_page_owner so that
+>> it doesn't remain immutable over the drm_gpusvm lifetime.
+>>
+>> v2:
+>> - Don't conditionally compile xe_svm_devm_owner().
+>> - Kerneldoc xe_svm_devm_owner().
+>>
+>> Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>
+> So in theory this should give the same behavior pre gpusvm conversion 
+> for userptr?
 
-Kinda, but with a way to use each component independently.
+Actually not, the same problem is there, but we need to have a patch 
+that fixes this in Linus' tree before sending a backported patch that 
+fixes the behaviour before the conversion.
 
-> 
-> Though, one of the fundamental problems I'd like to get rid of is that job
-> ownership is transferred between two components with fundamentally different
-> lifetimes (entity and scheduler).
+On top of this, we will then as a follow-up actually allow VRAM pages in 
+userptr with the SVM code modified to handle this, since l0 has a some 
+use-cases that are not fully ported to SVM yet that would otherwise see 
+multiple migration blits for the same memory.
 
-Can you remind me what the problem is? I thought the lifetime issue was
-coming from the fact the drm_sched ownership model was lax enough that
-the job could be owned by both drm_gpu_scheduler and drm_sched_entity
-at the same time.
+>
+> I guess missing Cc: dri-devel ?
 
-> 
-> Instead, I think the new Jobqueue should always own and always dispatch jobs
-> directly and provide some "control API" to be instructed by an external
-> component (orchestrator) on top of it when and to which ring to dispatch jobs.
+Right. I'll resend with that CC.
 
-Feels to me that we're getting back to a model where the JobQueue needs
-to know about the upper-layer in charge of the scheduling. I mean, it
-can work, but you're adding some complexity back to JobQueue, which I
-was expecting to be a simple FIFO with a dep-tracking logic.
+>
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-For instance, I'd be curious to know which component is in charge of the
-timeout in your ochestrator-based solution? In Philipp's slides it
-seemed that the timeout was dealt with at the JobQueue level, but that
-wouldn't work for us, because when we push a job to the ringbuf in
-panthor, the group this job is queued to might not be active yet. At
-the moment we have hacks to pause/resume the drm_sched timers [1] but
-this is racy, so I'm really hoping that the new design will let us
-control the timeout at the proper level.
+Thanks,
 
-> 
-> The group scheduling logic you need for some Mali GPUs can either be implemented
-> by hooks into this orchestrator or by a separate component that attaches to the
-> same control API of the Jobqueue.
+Thomas
 
-I have a hard time seeing how it can fully integrate in this
-orchestrator model. We can hook ourselves in the JobQueue::run_job()
-and schedule the group for execution when we queue a job to the
-ringbuf, but the group scheduler would still be something on the side.
-This is not a big deal, as long as the group scheduler is in charge of
-the timeout handling.
-
-[1]https://lore-kernel.gnuweeb.org/dri-devel/CAPj87rP=HEfPDX8dDM_-BptLmt054x+WHZdCBZOtdMX=X4VkjA@mail.gmail.com/T/
+>
+>> ---
+>>   drivers/gpu/drm/drm_gpusvm.c    | 24 +++++++++++++-----------
+>>   drivers/gpu/drm/xe/xe_svm.c     | 11 +++--------
+>>   drivers/gpu/drm/xe/xe_svm.h     | 14 ++++++++++++++
+>>   drivers/gpu/drm/xe/xe_userptr.c |  1 +
+>>   drivers/gpu/drm/xe/xe_vm.c      |  1 +
+>>   include/drm/drm_gpusvm.h        |  7 ++++---
+>>   6 files changed, 36 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+>> index eeeeb99cfdf6..cb906765897e 100644
+>> --- a/drivers/gpu/drm/drm_gpusvm.c
+>> +++ b/drivers/gpu/drm/drm_gpusvm.c
+>> @@ -361,7 +361,6 @@ static const struct mmu_interval_notifier_ops 
+>> drm_gpusvm_notifier_ops = {
+>>    * @name: Name of the GPU SVM.
+>>    * @drm: Pointer to the DRM device structure.
+>>    * @mm: Pointer to the mm_struct for the address space.
+>> - * @device_private_page_owner: Device private pages owner.
+>>    * @mm_start: Start address of GPU SVM.
+>>    * @mm_range: Range of the GPU SVM.
+>>    * @notifier_size: Size of individual notifiers.
+>> @@ -383,7 +382,7 @@ static const struct mmu_interval_notifier_ops 
+>> drm_gpusvm_notifier_ops = {
+>>    */
+>>   int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+>>               const char *name, struct drm_device *drm,
+>> -            struct mm_struct *mm, void *device_private_page_owner,
+>> +            struct mm_struct *mm,
+>>               unsigned long mm_start, unsigned long mm_range,
+>>               unsigned long notifier_size,
+>>               const struct drm_gpusvm_ops *ops,
+>> @@ -395,15 +394,13 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+>>           mmgrab(mm);
+>>       } else {
+>>           /* No full SVM mode, only core drm_gpusvm_pages API. */
+>> -        if (ops || num_chunks || mm_range || notifier_size ||
+>> -            device_private_page_owner)
+>> +        if (ops || num_chunks || mm_range || notifier_size)
+>>               return -EINVAL;
+>>       }
+>>         gpusvm->name = name;
+>>       gpusvm->drm = drm;
+>>       gpusvm->mm = mm;
+>> -    gpusvm->device_private_page_owner = device_private_page_owner;
+>>       gpusvm->mm_start = mm_start;
+>>       gpusvm->mm_range = mm_range;
+>>       gpusvm->notifier_size = notifier_size;
+>> @@ -684,6 +681,7 @@ static unsigned int 
+>> drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
+>>    * @notifier: Pointer to the GPU SVM notifier structure
+>>    * @start: Start address
+>>    * @end: End address
+>> + * @dev_private_owner: The device private page owner
+>>    *
+>>    * Check if pages between start and end have been faulted in on the 
+>> CPU. Use to
+>>    * prevent migration of pages without CPU backing store.
+>> @@ -692,14 +690,15 @@ static unsigned int 
+>> drm_gpusvm_hmm_pfn_to_order(unsigned long hmm_pfn,
+>>    */
+>>   static bool drm_gpusvm_check_pages(struct drm_gpusvm *gpusvm,
+>>                      struct drm_gpusvm_notifier *notifier,
+>> -                   unsigned long start, unsigned long end)
+>> +                   unsigned long start, unsigned long end,
+>> +                   void *dev_private_owner)
+>>   {
+>>       struct hmm_range hmm_range = {
+>>           .default_flags = 0,
+>>           .notifier = &notifier->notifier,
+>>           .start = start,
+>>           .end = end,
+>> -        .dev_private_owner = gpusvm->device_private_page_owner,
+>> +        .dev_private_owner = dev_private_owner,
+>>       };
+>>       unsigned long timeout =
+>>           jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+>> @@ -753,6 +752,7 @@ static bool drm_gpusvm_check_pages(struct 
+>> drm_gpusvm *gpusvm,
+>>    * @gpuva_start: Start address of GPUVA which mirrors CPU
+>>    * @gpuva_end: End address of GPUVA which mirrors CPU
+>>    * @check_pages_threshold: Check CPU pages for present threshold
+>> + * @dev_private_owner: The device private page owner
+>>    *
+>>    * This function determines the chunk size for the GPU SVM range 
+>> based on the
+>>    * fault address, GPU SVM chunk sizes, existing GPU SVM ranges, and 
+>> the virtual
+>> @@ -767,7 +767,8 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm 
+>> *gpusvm,
+>>                   unsigned long fault_addr,
+>>                   unsigned long gpuva_start,
+>>                   unsigned long gpuva_end,
+>> -                unsigned long check_pages_threshold)
+>> +                unsigned long check_pages_threshold,
+>> +                void *dev_private_owner)
+>>   {
+>>       unsigned long start, end;
+>>       int i = 0;
+>> @@ -814,7 +815,7 @@ drm_gpusvm_range_chunk_size(struct drm_gpusvm 
+>> *gpusvm,
+>>            * process-many-malloc' mallocs at least 64k at a time.
+>>            */
+>>           if (end - start <= check_pages_threshold &&
+>> -            !drm_gpusvm_check_pages(gpusvm, notifier, start, end)) {
+>> +            !drm_gpusvm_check_pages(gpusvm, notifier, start, end, 
+>> dev_private_owner)) {
+>>               ++i;
+>>               goto retry;
+>>           }
+>> @@ -957,7 +958,8 @@ drm_gpusvm_range_find_or_insert(struct drm_gpusvm 
+>> *gpusvm,
+>>       chunk_size = drm_gpusvm_range_chunk_size(gpusvm, notifier, vas,
+>>                            fault_addr, gpuva_start,
+>>                            gpuva_end,
+>> -                         ctx->check_pages_threshold);
+>> +                         ctx->check_pages_threshold,
+>> +                         ctx->device_private_page_owner);
+>>       if (chunk_size == LONG_MAX) {
+>>           err = -EINVAL;
+>>           goto err_notifier_remove;
+>> @@ -1268,7 +1270,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm 
+>> *gpusvm,
+>>           .notifier = notifier,
+>>           .start = pages_start,
+>>           .end = pages_end,
+>> -        .dev_private_owner = gpusvm->device_private_page_owner,
+>> +        .dev_private_owner = ctx->device_private_page_owner,
+>>       };
+>>       void *zdd;
+>>       unsigned long timeout =
+>> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+>> index 7f2f1f041f1d..7e2db71ff34e 100644
+>> --- a/drivers/gpu/drm/xe/xe_svm.c
+>> +++ b/drivers/gpu/drm/xe/xe_svm.c
+>> @@ -67,11 +67,6 @@ void xe_svm_range_debug(struct xe_svm_range 
+>> *range, const char *operation)
+>>       range_debug(range, operation);
+>>   }
+>>   -static void *xe_svm_devm_owner(struct xe_device *xe)
+>> -{
+>> -    return xe;
+>> -}
+>> -
+>>   static struct drm_gpusvm_range *
+>>   xe_svm_range_alloc(struct drm_gpusvm *gpusvm)
+>>   {
+>> @@ -744,15 +739,14 @@ int xe_svm_init(struct xe_vm *vm)
+>>                 xe_svm_garbage_collector_work_func);
+>>             err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", 
+>> &vm->xe->drm,
+>> -                      current->mm, xe_svm_devm_owner(vm->xe), 0,
+>> -                      vm->size,
+>> +                      current->mm, 0, vm->size,
+>>                         xe_modparam.svm_notifier_size * SZ_1M,
+>>                         &gpusvm_ops, fault_chunk_sizes,
+>>                         ARRAY_SIZE(fault_chunk_sizes));
+>>           drm_gpusvm_driver_set_lock(&vm->svm.gpusvm, &vm->lock);
+>>       } else {
+>>           err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
+>> -                      &vm->xe->drm, NULL, NULL, 0, 0, 0, NULL,
+>> +                      &vm->xe->drm, NULL, 0, 0, 0, NULL,
+>>                         NULL, 0);
+>>       }
+>>   @@ -1017,6 +1011,7 @@ static int __xe_svm_handle_pagefault(struct 
+>> xe_vm *vm, struct xe_vma *vma,
+>>           .devmem_only = need_vram && devmem_possible,
+>>           .timeslice_ms = need_vram && devmem_possible ?
+>>               vm->xe->atomic_svm_timeslice_ms : 0,
+>> +        .device_private_page_owner = xe_svm_devm_owner(vm->xe),
+>>       };
+>>       struct xe_validation_ctx vctx;
+>>       struct drm_exec exec;
+>> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+>> index cef6ee7d6fe3..0955d2ac8d74 100644
+>> --- a/drivers/gpu/drm/xe/xe_svm.h
+>> +++ b/drivers/gpu/drm/xe/xe_svm.h
+>> @@ -6,6 +6,20 @@
+>>   #ifndef _XE_SVM_H_
+>>   #define _XE_SVM_H_
+>>   +struct xe_device;
+>> +
+>> +/**
+>> + * xe_svm_devm_owner() - Return the owner of device private memory
+>> + * @xe: The xe device.
+>> + *
+>> + * Return: The owner of this device's device private memory to use in
+>> + * hmm_range_fault()-
+>> + */
+>> +static inline void *xe_svm_devm_owner(struct xe_device *xe)
+>> +{
+>> +    return xe;
+>> +}
+>> +
+>>   #if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
+>>     #include <drm/drm_pagemap.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_userptr.c 
+>> b/drivers/gpu/drm/xe/xe_userptr.c
+>> index 91d09af71ced..f16e92cd8090 100644
+>> --- a/drivers/gpu/drm/xe/xe_userptr.c
+>> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+>> @@ -54,6 +54,7 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma 
+>> *uvma)
+>>       struct xe_device *xe = vm->xe;
+>>       struct drm_gpusvm_ctx ctx = {
+>>           .read_only = xe_vma_read_only(vma),
+>> +        .device_private_page_owner = NULL,
+>>       };
+>>         lockdep_assert_held(&vm->lock);
+>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>> index 80b7f13ecd80..4e914928e0a9 100644
+>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>> @@ -2883,6 +2883,7 @@ static int prefetch_ranges(struct xe_vm *vm, 
+>> struct xe_vma_op *op)
+>>       ctx.read_only = xe_vma_read_only(vma);
+>>       ctx.devmem_possible = devmem_possible;
+>>       ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
+>> +    ctx.device_private_page_owner = xe_svm_devm_owner(vm->xe);
+>>         /* TODO: Threading the migration */
+>>       xa_for_each(&op->prefetch_range.range, i, svm_range) {
+>> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+>> index 5434048a2ca4..b92faa9a26b2 100644
+>> --- a/include/drm/drm_gpusvm.h
+>> +++ b/include/drm/drm_gpusvm.h
+>> @@ -179,7 +179,6 @@ struct drm_gpusvm_range {
+>>    * @name: Name of the GPU SVM
+>>    * @drm: Pointer to the DRM device structure
+>>    * @mm: Pointer to the mm_struct for the address space
+>> - * @device_private_page_owner: Device private pages owner
+>>    * @mm_start: Start address of GPU SVM
+>>    * @mm_range: Range of the GPU SVM
+>>    * @notifier_size: Size of individual notifiers
+>> @@ -204,7 +203,6 @@ struct drm_gpusvm {
+>>       const char *name;
+>>       struct drm_device *drm;
+>>       struct mm_struct *mm;
+>> -    void *device_private_page_owner;
+>>       unsigned long mm_start;
+>>       unsigned long mm_range;
+>>       unsigned long notifier_size;
+>> @@ -226,6 +224,8 @@ struct drm_gpusvm {
+>>   /**
+>>    * struct drm_gpusvm_ctx - DRM GPU SVM context
+>>    *
+>> + * @device_private_page_owner: The device-private page owner to use for
+>> + * this operation
+>>    * @check_pages_threshold: Check CPU pages for present if chunk is 
+>> less than or
+>>    *                         equal to threshold. If not present, 
+>> reduce chunk
+>>    *                         size.
+>> @@ -239,6 +239,7 @@ struct drm_gpusvm {
+>>    * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+>>    */
+>>   struct drm_gpusvm_ctx {
+>> +    void *device_private_page_owner;
+>>       unsigned long check_pages_threshold;
+>>       unsigned long timeslice_ms;
+>>       unsigned int in_notifier :1;
+>> @@ -249,7 +250,7 @@ struct drm_gpusvm_ctx {
+>>     int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
+>>               const char *name, struct drm_device *drm,
+>> -            struct mm_struct *mm, void *device_private_page_owner,
+>> +            struct mm_struct *mm,
+>>               unsigned long mm_start, unsigned long mm_range,
+>>               unsigned long notifier_size,
+>>               const struct drm_gpusvm_ops *ops,
+>
