@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A42DDCAC5B9
-	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 08:03:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A48CAC5B8
+	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 08:04:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3374110E145;
-	Tue, 30 Sep 2025 08:03:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTeP0hJ2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2D7089C83;
- Tue, 30 Sep 2025 08:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759219432; x=1790755432;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=blP+1aXofxiRorje2aYnseFkYVpT/JKUFVCD4egWEjQ=;
- b=nTeP0hJ2krYH7p62iXjngQbDNZuWiEo7cf+Bk4SgK4qf/0ON0xBl6D76
- 2eFuPr9OCKvG+6EGAn4o1olUj7cdUI+L7p+IeHPQNf6DvQZYRzfZ6ugPm
- thC1XxY1gumSljRzM7gAY9/Hgf281VJBoZI4fuT/NxGWD2cQ5Vgktlje6
- HZfBja28jVhI0dWDbH1Nwa0wFcJ966hg1eTgPGOn7f+tVTsWuJHLBsSfx
- PIe+EvfwOG5AQ2vuwg9a0CcC9l1aF5o96Te97ngebCZUbzcXoTShYji8R
- eBNWn3HGqn9MBPgBdQu1DE9xARDY976hcWUap1z9shpGd4Guhd9REllCf g==;
-X-CSE-ConnectionGUID: uPCdJpXASyuQuWPc1MX3Vg==
-X-CSE-MsgGUID: 98UFM6UMSrKMEqNJ8r0SrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="61513025"
-X-IronPort-AV: E=Sophos;i="6.18,303,1751266800"; d="scan'208";a="61513025"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 01:03:51 -0700
-X-CSE-ConnectionGUID: Kj2Zd/VZQyyjrU7daZGOAA==
-X-CSE-MsgGUID: NGO99cVCSIqbreozRJzEQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,303,1751266800"; d="scan'208";a="182877217"
-Received: from dapengmi-mobl1.ccr.corp.intel.com (HELO [10.124.232.209])
- ([10.124.232.209])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 01:03:48 -0700
-Message-ID: <25af94f5-79e3-4005-964e-e77b1320a16e@linux.intel.com>
-Date: Tue, 30 Sep 2025 16:03:45 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2268F10E145;
+	Tue, 30 Sep 2025 08:04:05 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08DB10E292;
+ Tue, 30 Sep 2025 08:04:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7328419233860563872=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: REGRESSION on linux-next (next-20250919)
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- seanjc@google.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>, lucas.demarchi@intel.com,
- linux-perf-users@vger.kernel.org, kvm@vger.kernel.org
-References: <70b64347-2aca-4511-af78-a767d5fa8226@intel.com>
-Content-Language: en-US
-From: "Mi, Dapeng" <dapeng1.mi@linux.intel.com>
-In-Reply-To: <70b64347-2aca-4511-af78-a767d5fa8226@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/gpusvm=2C_drm/xe=3A_Fix?=
+ =?utf-8?q?_userptr_to_not_allow_device_private_pages_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 30 Sep 2025 08:04:04 -0000
+Message-ID: <175921944464.377882.10144658151955957827@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250930072144.12170-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20250930072144.12170-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,122 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7328419233860563872==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 9/30/2025 1:30 PM, Borah, Chaitanya Kumar wrote:
-> Hello Sean,
->
-> Hope you are doing well. I am Chaitanya from the linux graphics team in 
-> Intel.
->
-> This mail is regarding a regression we are seeing in our CI runs[1] on
-> linux-next repository.
->
-> Since the version next-20250919 [2], we are seeing the following regression
->
-> `````````````````````````````````````````````````````````````````````````````````
-> <4>[   10.973827] ------------[ cut here ]------------
-> <4>[   10.973841] WARNING: arch/x86/events/core.c:3089 at 
-> perf_get_x86_pmu_capability+0xd/0xc0, CPU#15: (udev-worker)/386
-> ...
-> <4>[   10.974028] Call Trace:
-> <4>[   10.974030]  <TASK>
-> <4>[   10.974033]  ? kvm_init_pmu_capability+0x2b/0x190 [kvm]
-> <4>[   10.974154]  kvm_x86_vendor_init+0x1b0/0x1a40 [kvm]
-> <4>[   10.974248]  vmx_init+0xdb/0x260 [kvm_intel]
-> <4>[   10.974278]  ? __pfx_vt_init+0x10/0x10 [kvm_intel]
-> <4>[   10.974296]  vt_init+0x12/0x9d0 [kvm_intel]
-> <4>[   10.974309]  ? __pfx_vt_init+0x10/0x10 [kvm_intel]
-> <4>[   10.974322]  do_one_initcall+0x60/0x3f0
-> <4>[   10.974335]  do_init_module+0x97/0x2b0
-> <4>[   10.974345]  load_module+0x2d08/0x2e30
-> <4>[   10.974349]  ? __kernel_read+0x158/0x2f0
-> <4>[   10.974370]  ? kernel_read_file+0x2b1/0x320
-> <4>[   10.974381]  init_module_from_file+0x96/0xe0
-> <4>[   10.974384]  ? init_module_from_file+0x96/0xe0
-> <4>[   10.974399]  idempotent_init_module+0x117/0x330
-> <4>[   10.974415]  __x64_sys_finit_module+0x73/0xe0
-> ...
-> `````````````````````````````````````````````````````````````````````````````````
-> Details log can be found in [3].
->
-> After bisecting the tree, the following patch [4] seems to be the first 
-> "bad" commit
->
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
->  From 51f34b1e650fc5843530266cea4341750bd1ae37 Mon Sep 17 00:00:00 2001
->
-> From: Sean Christopherson <seanjc@google.com>
->
-> Date: Wed, 6 Aug 2025 12:56:39 -0700
->
-> Subject: KVM: x86/pmu: Snapshot host (i.e. perf's) reported PMU capabilities
->
-> Take a snapshot of the unadulterated PMU capabilities provided by perf so
-> that KVM can compare guest vPMU capabilities against hardware capabilities
-> when determining whether or not to intercept PMU MSRs (and RDPMC).
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
->
-> We also verified that if we revert the patch the issue is not seen.
->
-> Could you please check why the patch causes this regression and provide 
-> a fix if necessary?
+== Series Details ==
 
-Hi Chaitanya,
+Series: drm/gpusvm, drm/xe: Fix userptr to not allow device private pages (rev2)
+URL   : https://patchwork.freedesktop.org/series/155175/
+State : success
 
-I suppose you found this warning on a hybrid client platform, right? It
-looks the warning is triggered by the below WARN_ON_ONCE() in
-perf_get_x86_pmu_capability() function.
+== Summary ==
 
-  if (WARN_ON_ONCE(cpu_feature_enabled(X86_FEATURE_HYBRID_CPU)) ||
-        !x86_pmu_initialized()) {
-        memset(cap, 0, sizeof(*cap));
-        return;
-    }
+CI Bug Log - changes from xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085_BAT -> xe-pw-155175v2_BAT
+====================================================
 
-The below change should fix it (just building, not test it). I would run a
-full scope vPMU test after I come back from China national day's holiday.
-Thanks.
+Summary
+-------
 
-diff --git a/arch/x86/kvm/pmu.c b/arch/x86/kvm/pmu.c
-index cebce7094de8..6d87c25226d8 100644
---- a/arch/x86/kvm/pmu.c
-+++ b/arch/x86/kvm/pmu.c
-@@ -108,8 +108,6 @@ void kvm_init_pmu_capability(struct kvm_pmu_ops *pmu_ops)
-        bool is_intel = boot_cpu_data.x86_vendor == X86_VENDOR_INTEL;
-        int min_nr_gp_ctrs = pmu_ops->MIN_NR_GP_COUNTERS;
+  **SUCCESS**
 
--       perf_get_x86_pmu_capability(&kvm_host_pmu);
--
-        /*
-         * Hybrid PMUs don't play nice with virtualization without careful
-         * configuration by userspace, and KVM's APIs for reporting supported
-@@ -120,6 +118,8 @@ void kvm_init_pmu_capability(struct kvm_pmu_ops *pmu_ops)
-                enable_pmu = false;
+  No regressions found.
 
-        if (enable_pmu) {
-+               perf_get_x86_pmu_capability(&kvm_host_pmu);
-+
-                /*
-                 * WARN if perf did NOT disable hardware PMU if the number of
-                 * architecturally required GP counters aren't present, i.e. if
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155175v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@a-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155175v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
->
-> Thank you.
->
-> Regards
->
-> Chaitanya
->
-> [1]
-> https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> [2] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250919
-> [3]
-> https://intel-gfx-ci.01.org/tree/linux-next/next-20250919/bat-arlh-2/boot0.txt
-> [4] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250919&id=51f34b1e650fc5843530266cea4341750bd1ae37
->
+Build changes
+-------------
+
+  * IGT: IGT_8557 -> IGT_8558
+  * Linux: xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085 -> xe-pw-155175v2
+
+  IGT_8557: 8557
+  IGT_8558: 8d523a5eb4860834ed1ba97dd08d591d9272f837 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085: 85a5199d1e7b009e10b7c2cad0c43d28f0540085
+  xe-pw-155175v2: 155175v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155175v2/index.html
+
+--===============7328419233860563872==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/gpusvm, drm/xe: Fix userptr to not allow device private pages (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155175/">https://patchwork.freedesktop.org/series/155175/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155175v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155175v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085_BAT -&gt; xe-pw-155175v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155175v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155175v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8557 -&gt; IGT_8558</li>
+<li>Linux: xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085 -&gt; xe-pw-155175v2</li>
+</ul>
+<p>IGT_8557: 8557<br />
+  IGT_8558: 8d523a5eb4860834ed1ba97dd08d591d9272f837 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3843-85a5199d1e7b009e10b7c2cad0c43d28f0540085: 85a5199d1e7b009e10b7c2cad0c43d28f0540085<br />
+  xe-pw-155175v2: 155175v2</p>
+
+</body>
+</html>
+
+--===============7328419233860563872==--
