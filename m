@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8A1ECAC5B8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ED33CCA470
 	for <intel-xe@archiver.kernel.org>; Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E2E310E2E4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00BEA10E080;
 	Tue, 30 Sep 2025 22:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQzAPkE4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mh9kXBVx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A520210E2EA
- for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDCE010E2E1
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 Sep 2025 22:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759272994; x=1790808994;
+ t=1759272993; x=1790808993;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3wbPpAgp0eBOt9Qo/MUxQDiyyHuwQF6Hfzf4RozJnFY=;
- b=ZQzAPkE4VFT+zhxfdCpohcByA9t5g4/wZHi+ERjDvV5hy6ExC9WlMxL7
- gROUQpwGb2u52SXqpdwGT5CT5ZnGZNQQwL81dOrr673UkNwHCu4Ezimqd
- bDtb37t2LZG0NO25YzzcbkC3OGNjS4jNQRRK2U682BjelZdpKpfvTEwUg
- dmERxIWdkcm0OBcbkizW1HJiQXyn/5AJLM4JwWE5g1nwGVmVfvWZQ2onM
- mByY63Pcdcw+914xNHqQCoJQ0tgtWGA+emyMt/N1yeGGmMNr4pVNJpgpm
- 79otkFaiVTLv0wMrqGVEJp5QcWlRAIcdXiJnyI4bpAH3K5hPmcuzwv4zf Q==;
-X-CSE-ConnectionGUID: RlnSMVT0SOacI7JVfG4E4Q==
-X-CSE-MsgGUID: qWm8b9SgQ1emUGlQfv3+GQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397760"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397760"
+ bh=HzMbraSmW8/7YgC19yUA031kMJPV5oOh6HqpXvA1ftI=;
+ b=Mh9kXBVxYx1Bta1KoZhmhofXvkf7skoNZ2vfhAUtEFuUGy8VBUgisMQx
+ bFOT3NGF4jDQLeCqLJY35tzUNZP1LG2kwQveQLuH+no7oXerD6Jl9ufpO
+ aWaxqfEfvv49V+MsunxTQgVwmV8wPrFob9gYp6Ke7foE6RjscUObqkUQF
+ DRCrrNwfS51aC7BRgkTSsDVM2e6Rlu9kg1iCUvbwyLLkdQ6rVymRx1O7h
+ HGYqJiiMP+rQmqwYS1YPZYG9gbmjKC6huRTvVoIScVkXrjwA+iiknKUS1
+ QlzITAytCr5QWBZyUl8tYW6XPwmZyo3nZcLfAeTXG8TlT0ui+e4hJdnbC w==;
+X-CSE-ConnectionGUID: hJKB83eDTbWM4P+cLgaLvg==
+X-CSE-MsgGUID: zX1KqAypQu2NkGXTZkduLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65397747"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="65397747"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 15:56:33 -0700
-X-CSE-ConnectionGUID: 8GK+O9eXQcS5N+0iwACZ8w==
-X-CSE-MsgGUID: oxwwv9PgQ7uzGxV8LN1o5w==
+ 30 Sep 2025 15:56:32 -0700
+X-CSE-ConnectionGUID: RxSqsGb8RU2ag3RAzyCU0Q==
+X-CSE-MsgGUID: u2Dostb5Q+eV0MeWiWd1Wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229480"
+X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="178229452"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  30 Sep 2025 15:56:32 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com
-Subject: [PATCH v3 16/23] drm/xe/rtp: Pass xe_device parameter to FUNC matches
-Date: Tue, 30 Sep 2025 15:56:33 -0700
-Message-ID: <20250930225618.140071-41-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v3 07/23] drm/xe: Read VF GMD_ID with a specifically-allocated
+ dummy GT
+Date: Tue, 30 Sep 2025 15:56:24 -0700
+Message-ID: <20250930225618.140071-32-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250930225618.140071-25-matthew.d.roper@intel.com>
 References: <20250930225618.140071-25-matthew.d.roper@intel.com>
@@ -66,229 +68,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-FUNC matches in RTP only pass the GT and hwe, preventing them from being
-used effectively in device workarounds.  Add an additional xe_device
-parameter so that we can use them in device workarounds where a GT may
-not be available.
+SRIOV VF initialization has a bit of a chicken and egg design problem.
+Determining the IP version of the graphics and media IPs can't be done
+via direct register reads as it is on PF or native and instead requires
+querying the GuC.  However initialization of the GT, including its GuC,
+needs to wait until after we know the IP versions so that the proper
+initialization steps for the platform/IP are followed.
 
+Currently the (somewhat hacky) solution is to manually fill out just
+enough fields in tile 0's primary GT structure to make it look as if the
+GT has been initialized so that the GuC can be partially initialized and
+queried to obtain the GMD_ID values.  When the GT gets properly
+initialized during the regular flows, the hacked-up values will get
+overwritten as part of the general initialization flows.
+
+Rather than using tile 0's primary GT structure to hold the hacked up
+values for querying every GT on every tile, instead allocate a dedicated
+dummy structure.  This will allow us to move the tile->primary_gt's
+allocation to a more consistent place later in the initialization flow
+in future patches (i.e., we shouldn't even allocate this GT structure if
+the GT is disabled/unavailable).  It also helps ensure there can't be
+any accidental leakage of initialization or state between the dummy
+initialization for GMD_ID and the real driver initialization of the GT.
+
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c |  6 ++++--
- drivers/gpu/drm/xe/xe_hw_engine.c      | 10 ++++++----
- drivers/gpu/drm/xe/xe_reg_whitelist.c  |  3 ++-
- drivers/gpu/drm/xe/xe_rtp.c            | 24 +++++++++++++-----------
- drivers/gpu/drm/xe/xe_rtp.h            | 18 +++++++++++++-----
- drivers/gpu/drm/xe/xe_rtp_types.h      |  4 +++-
- 6 files changed, 41 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c |  6 ++-
+ drivers/gpu/drm/xe/xe_pci.c       | 61 +++++++++++++++++--------------
+ 2 files changed, 38 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index b0254b014fe4..d2255a59e58f 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -48,12 +48,14 @@ struct rtp_test_case {
- 	const struct xe_rtp_entry *entries;
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index 0f136bc85b76..969f1dacade8 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -307,8 +307,8 @@ const void *xe_pci_id_gen_param(const void *prev, char *desc)
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_pci_id_gen_param);
+ 
+-static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
+-			    u32 *ver, u32 *revid)
++static int fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
++			   u32 *ver, u32 *revid)
+ {
+ 	struct kunit *test = kunit_get_current_test();
+ 	struct xe_pci_fake_data *data = test->priv;
+@@ -320,6 +320,8 @@ static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
+ 		*ver = data->graphics_verx100;
+ 		*revid = xe_step_to_gmdid(data->step.graphics);
+ 	}
++
++	return 0;
+ }
+ 
+ static void fake_xe_info_probe_tile_count(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 37ae49f4b648..9fb5df10844d 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -464,7 +464,7 @@ enum xe_gmdid_type {
+ 	GMDID_MEDIA
  };
  
--static bool match_yes(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
-+static bool match_yes(const struct xe_device *xe, const struct xe_gt *gt,
-+		      const struct xe_hw_engine *hwe)
+-static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
++static int read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
  {
- 	return true;
- }
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	struct xe_reg gmdid_reg = GMD_ID;
+@@ -473,21 +473,19 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
+ 	KUNIT_STATIC_STUB_REDIRECT(read_gmdid, xe, type, ver, revid);
  
--static bool match_no(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
-+static bool match_no(const struct xe_device *xe, const struct xe_gt *gt,
-+		     const struct xe_hw_engine *hwe)
- {
- 	return false;
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 1cf623b4a5bc..cba4375525c7 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -346,17 +346,19 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
- 	xe_hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
- }
- 
--static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_gt *gt,
-+static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_device *xe,
-+						 const struct xe_gt *gt,
- 						 const struct xe_hw_engine *hwe)
- {
- 	return xe_gt_ccs_mode_enabled(gt) &&
--	       xe_rtp_match_first_render_or_compute(gt, hwe);
-+	       xe_rtp_match_first_render_or_compute(xe, gt, hwe);
- }
- 
--static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_gt *gt,
-+static bool xe_rtp_cfeg_wmtp_disabled(const struct xe_device *xe,
-+				      const struct xe_gt *gt,
- 				      const struct xe_hw_engine *hwe)
- {
--	if (GRAPHICS_VER(gt_to_xe(gt)) < 20)
-+	if (GRAPHICS_VER(xe) < 20)
- 		return false;
- 
- 	if (hwe->class != XE_ENGINE_CLASS_COMPUTE &&
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 23f6c81d9994..690bc327a363 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -19,7 +19,8 @@
- #undef XE_REG_MCR
- #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
- 
--static bool match_not_render(const struct xe_gt *gt,
-+static bool match_not_render(const struct xe_device *xe,
-+			     const struct xe_gt *gt,
- 			     const struct xe_hw_engine *hwe)
- {
- 	return hwe->class != XE_ENGINE_CLASS_RENDER;
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index b5f430d59f80..66707cc89ec9 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -133,10 +133,7 @@ static bool rule_matches(const struct xe_device *xe,
- 			match = hwe->class != r->engine_class;
- 			break;
- 		case XE_RTP_MATCH_FUNC:
--			if (drm_WARN_ON(&xe->drm, !gt))
--				return false;
+ 	if (IS_SRIOV_VF(xe)) {
+-		struct xe_gt *gt = xe_root_mmio_gt(xe);
 -
--			match = r->match_func(gt, hwe);
-+			match = r->match_func(xe, gt, hwe);
- 			break;
- 		default:
- 			drm_warn(&xe->drm, "Invalid RTP match %u\n",
-@@ -343,13 +340,15 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ 		/*
+ 		 * To get the value of the GMDID register, VFs must obtain it
+ 		 * from the GuC using MMIO communication.
+ 		 *
+-		 * Note that at this point the xe_gt is not fully uninitialized
+-		 * and only basic access to MMIO registers is possible. To use
+-		 * our existing GuC communication functions we must perform at
+-		 * least basic xe_gt and xe_guc initialization.
+-		 *
+-		 * Since to obtain the value of GMDID_MEDIA we need to use the
+-		 * media GuC, temporarily tweak the gt type.
++		 * Note that at this point the GTs are not initialized and only
++		 * tile-level access to MMIO registers is possible. To use our
++		 * existing GuC communication functions we must create a dummy
++		 * GT structure and perform at least basic xe_gt and xe_guc
++		 * initialization.
+ 		 */
+-		xe_gt_assert(gt, gt->info.type == XE_GT_TYPE_UNINITIALIZED);
++		struct xe_gt *gt = kzalloc(sizeof(*gt), GFP_KERNEL);
++		if (!gt)
++			return -ENOMEM;
+ 
+ 		if (type == GMDID_MEDIA) {
+ 			gt->info.id = 1;
+@@ -503,12 +501,7 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
+ 		/* Don't bother with GMDID if failed to negotiate the GuC ABI */
+ 		val = xe_gt_sriov_vf_bootstrap(gt) ? 0 : xe_gt_sriov_vf_gmdid(gt);
+ 
+-		/*
+-		 * Only undo xe_gt.info here, the remaining changes made above
+-		 * will be overwritten as part of the regular initialization.
+-		 */
+-		gt->info.id = 0;
+-		gt->info.type = XE_GT_TYPE_UNINITIALIZED;
++		kfree(gt);
+ 	} else {
+ 		/*
+ 		 * GMD_ID is a GT register, but at this point in the driver
+@@ -526,6 +519,8 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
+ 
+ 	*ver = REG_FIELD_GET(GMD_ID_ARCH_MASK, val) * 100 + REG_FIELD_GET(GMD_ID_RELEASE_MASK, val);
+ 	*revid = REG_FIELD_GET(GMD_ID_REVID, val);
++
++	return 0;
  }
- EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
  
--bool xe_rtp_match_even_instance(const struct xe_gt *gt,
-+bool xe_rtp_match_even_instance(const struct xe_device *xe,
-+				const struct xe_gt *gt,
- 				const struct xe_hw_engine *hwe)
- {
- 	return hwe->instance % 2 == 0;
- }
- 
--bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+bool xe_rtp_match_first_render_or_compute(const struct xe_device *xe,
-+					  const struct xe_gt *gt,
- 					  const struct xe_hw_engine *hwe)
- {
- 	u64 render_compute_mask = gt->info.engine_mask &
-@@ -359,19 +358,22 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
- 		hwe->engine_id == __ffs(render_compute_mask);
- }
- 
--bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
-+bool xe_rtp_match_not_sriov_vf(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe)
- {
--	return !IS_SRIOV_VF(gt_to_xe(gt));
-+	return !IS_SRIOV_VF(xe);
- }
- 
--bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
-+bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe)
- {
--	return xe_configfs_get_psmi_enabled(to_pci_dev(gt_to_xe(gt)->drm.dev));
-+	return xe_configfs_get_psmi_enabled(to_pci_dev(xe->drm.dev));
- }
- 
--bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_gt *gt,
-+bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
-+						  const struct xe_gt *gt,
- 						  const struct xe_hw_engine *hwe)
- {
- 	return xe_gt_has_discontiguous_dss_groups(gt);
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index ac12ddf6cde6..e5b8a9452e29 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -440,18 +440,21 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
- 
- /**
-  * xe_rtp_match_even_instance - Match if engine instance is even
-+ * @xe: Device structure
-  * @gt: GT structure
-  * @hwe: Engine instance
-  *
-  * Returns: true if engine instance is even, false otherwise
+ static const struct xe_ip *find_graphics_ip(unsigned int verx100)
+@@ -552,18 +547,21 @@ static const struct xe_ip *find_media_ip(unsigned int verx100)
+  * Read IP version from hardware and select graphics/media IP descriptors
+  * based on the result.
   */
--bool xe_rtp_match_even_instance(const struct xe_gt *gt,
-+bool xe_rtp_match_even_instance(const struct xe_device *xe,
-+				const struct xe_gt *gt,
- 				const struct xe_hw_engine *hwe);
+-static void handle_gmdid(struct xe_device *xe,
+-			 const struct xe_ip **graphics_ip,
+-			 const struct xe_ip **media_ip,
+-			 u32 *graphics_revid,
+-			 u32 *media_revid)
++static int handle_gmdid(struct xe_device *xe,
++			const struct xe_ip **graphics_ip,
++			const struct xe_ip **media_ip,
++			u32 *graphics_revid,
++			u32 *media_revid)
+ {
+ 	u32 ver;
++	int ret;
+ 
+ 	*graphics_ip = NULL;
+ 	*media_ip = NULL;
+ 
+-	read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
++	ret = read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
++	if (ret)
++		return ret;
+ 
+ 	*graphics_ip = find_graphics_ip(ver);
+ 	if (!*graphics_ip) {
+@@ -571,16 +569,21 @@ static void handle_gmdid(struct xe_device *xe,
+ 			ver / 100, ver % 100);
+ 	}
+ 
+-	read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
++	ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
++	if (ret)
++		return ret;
++
+ 	/* Media may legitimately be fused off / not present */
+ 	if (ver == 0)
+-		return;
++		return 0;
+ 
+ 	*media_ip = find_media_ip(ver);
+ 	if (!*media_ip) {
+ 		drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
+ 			ver / 100, ver % 100);
+ 	}
++
++	return 0;
+ }
  
  /*
-  * xe_rtp_match_first_render_or_compute - Match if it's first render or compute
-  * engine in the GT
-  *
-+ * @xe: Device structure
-  * @gt: GT structure
-  * @hwe: Engine instance
-  *
-@@ -463,24 +466,29 @@ bool xe_rtp_match_even_instance(const struct xe_gt *gt,
-  * Returns: true if engine id is the first to match the render reset domain,
-  * false otherwise.
-  */
--bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+bool xe_rtp_match_first_render_or_compute(const struct xe_device *xe,
-+					  const struct xe_gt *gt,
- 					  const struct xe_hw_engine *hwe);
+@@ -690,6 +693,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	const struct xe_media_desc *media_desc;
+ 	struct xe_tile *tile;
+ 	struct xe_gt *gt;
++	int ret;
+ 	u8 id;
  
- /*
-  * xe_rtp_match_not_sriov_vf - Match when not on SR-IOV VF device
-  *
-+ * @xe: Device structure
-  * @gt: GT structure
-  * @hwe: Engine instance
-  *
-  * Returns: true if device is not VF, false otherwise.
-  */
--bool xe_rtp_match_not_sriov_vf(const struct xe_gt *gt,
-+bool xe_rtp_match_not_sriov_vf(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe);
- 
--bool xe_rtp_match_psmi_enabled(const struct xe_gt *gt,
-+bool xe_rtp_match_psmi_enabled(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
- 			       const struct xe_hw_engine *hwe);
- 
--bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_gt *gt,
-+bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
-+						  const struct xe_gt *gt,
- 						  const struct xe_hw_engine *hwe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index f4cf30e298cf..6ba7f226c227 100644
---- a/drivers/gpu/drm/xe/xe_rtp_types.h
-+++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -10,6 +10,7 @@
- 
- #include "regs/xe_reg_defs.h"
- 
-+struct xe_device;
- struct xe_hw_engine;
- struct xe_gt;
- 
-@@ -86,7 +87,8 @@ struct xe_rtp_rule {
- 			u8 engine_class;
- 		};
- 		/* MATCH_FUNC */
--		bool (*match_func)(const struct xe_gt *gt,
-+		bool (*match_func)(const struct xe_device *xe,
-+				   const struct xe_gt *gt,
- 				   const struct xe_hw_engine *hwe);
- 	};
- };
+ 	/*
+@@ -705,8 +709,11 @@ static int xe_info_init(struct xe_device *xe,
+ 		xe->info.step = xe_step_pre_gmdid_get(xe);
+ 	} else {
+ 		xe_assert(xe, !desc->pre_gmdid_media_ip);
+-		handle_gmdid(xe, &graphics_ip, &media_ip,
+-			     &graphics_gmdid_revid, &media_gmdid_revid);
++		ret = handle_gmdid(xe, &graphics_ip, &media_ip,
++				   &graphics_gmdid_revid, &media_gmdid_revid);
++		if (ret)
++			return ret;
++
+ 		xe->info.step = xe_step_gmdid_get(xe,
+ 						  graphics_gmdid_revid,
+ 						  media_gmdid_revid);
 -- 
 2.51.0
 
