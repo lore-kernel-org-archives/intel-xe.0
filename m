@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AED81CAC5B8
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 00:53:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B7CACCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 00:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7797810E044;
-	Wed,  1 Oct 2025 00:53:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L32fr4Kn";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5CD10E044
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Oct 2025 00:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759280002; x=1790816002;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oXkzkh1L8gcJxscqIQx3mIalE+PCmU7Nf3okBHRyTEc=;
- b=L32fr4KnOvMXn0a4IfyZIPvYe2PbR27A74umceDUGgZs0lliiN5uGC83
- nRVdoYdslgYXON0YOk24DwZo4yo+y2R5EJUIbfnso32OG7+fic8W5qo3E
- Bl0Nv9gumebCIIFD+dtyhd7Y936mVP61l2tWTa2s6M6o6Q1bqnkSmlOqw
- 89wDikXWjwcoNs6W59ktHQJI/mmirVNreJYzlUbne83Br6B0bh16aaWnb
- UPFkI4VhlpXj1ErVzz+RNcKT65ZL3YuteYb7MC0z98iJcEl9HQ1o88H3Y
- unt8moAHfGtEtBqYpJcw5XvCtAS8EJD9+Rks1PmdJev30XovJbKFRG2s1 Q==;
-X-CSE-ConnectionGUID: R4HiSc7nRciqELcD/rmLSg==
-X-CSE-MsgGUID: WwL8J5fQTYORnY5QgY2LMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="72224258"
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="72224258"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 17:53:21 -0700
-X-CSE-ConnectionGUID: R9nwjiTsSsODXhkRHLNPvA==
-X-CSE-MsgGUID: 12z76t5MTjiv7X7DZRWuuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,305,1751266800"; d="scan'208";a="202342957"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa002.fm.intel.com with ESMTP; 30 Sep 2025 17:53:18 -0700
-From: mallesh.koujalagi@intel.com
-To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH] drm/xe/xe_late_bind_fw: Initialize uval variable in
- xe_late_bind_fw_num_fans()
-Date: Wed,  1 Oct 2025 06:23:15 +0530
-Message-Id: <20251001005315.3179379-1-mallesh.koujalagi@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7F410E044;
+	Wed,  1 Oct 2025 00:54:12 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05C3410E044;
+ Wed,  1 Oct 2025 00:54:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0210491909016454436=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_TileAddrRange_reg?=
+ =?utf-8?q?isters_are_being_deprecated=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 01 Oct 2025 00:54:11 -0000
+Message-ID: <175928005101.381168.7274357926978788710@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250930232645.600251-1-fei.yang@intel.com>
+In-Reply-To: <20250930232645.600251-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+--===============0210491909016454436==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Initialize the uval variable to 0 in xe_late_bind_fw_num_fans() to fix
-a potential use of uninitialized variable warning and ensure predictable
-behavior.
+== Series Details ==
 
-The variable is passed by reference to xe_pcode_read() which should
-populate it on success, but initializing it to 0 provides a safe
-default value and follows kernel coding best practices.
+Series: drm/xe: TileAddrRange registers are being deprecated.
+URL   : https://patchwork.freedesktop.org/series/155264/
+State : success
 
-Fixes: 45832bf9c10f3 ("drm/xe/xe_late_bind_fw: Initialize late binding firmware")
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
- drivers/gpu/drm/xe/xe_late_bind_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-index 38f3feb2aecd..a86d7fa611e2 100644
---- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
-+++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-@@ -188,7 +188,7 @@ static int xe_late_bind_fw_num_fans(struct xe_late_bind *late_bind)
- {
- 	struct xe_device *xe = late_bind_to_xe(late_bind);
- 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
--	u32 uval;
-+	u32 uval = 0;
- 
- 	if (!xe_pcode_read(root_tile,
- 			   PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_NUM_FANS, 0), &uval, NULL))
--- 
-2.34.1
+CI Bug Log - changes from xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947_BAT -> xe-pw-155264v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155264v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947 -> xe-pw-155264v1
+
+  IGT_8564: fd0f7b3639b26971567b7a9d64ba5174d5d3db5a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947: 23f8be57505c80e5b57dec249df8a3cc053eb947
+  xe-pw-155264v1: 155264v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html
+
+--===============0210491909016454436==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: TileAddrRange registers are being deprecated.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155264/">https://patchwork.freedesktop.org/series/155264/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947_BAT -&gt; xe-pw-155264v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155264v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947 -&gt; xe-pw-155264v1</li>
+</ul>
+<p>IGT_8564: fd0f7b3639b26971567b7a9d64ba5174d5d3db5a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947: 23f8be57505c80e5b57dec249df8a3cc053eb947<br />
+  xe-pw-155264v1: 155264v1</p>
+
+</body>
+</html>
+
+--===============0210491909016454436==--
