@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 358F6CCA474
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 06:38:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D6ACCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 06:39:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2BB310E336;
-	Wed,  1 Oct 2025 06:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B70DB10E340;
+	Wed,  1 Oct 2025 06:39:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kg9TBOE8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J8NieKlq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A837110E332
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Oct 2025 06:38:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5FF10E340;
+ Wed,  1 Oct 2025 06:39:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759300731; x=1790836731;
+ t=1759300766; x=1790836766;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=EWuJzyiHpSEXDNrQVC329gUS9DuIOXEENTQ+/MN0oDY=;
- b=Kg9TBOE8TBs+t6wrY4zGE+BvUi51NenFMUtCsEIIl9w4D1YUmudNkWw/
- ox7YtqYczUhiR1ZTk4est++8d5KeFt42YPhYw1V1/3lyOvFJk6DuncgtJ
- 54205AAym/6jsUvcR8yskVqA4P4a5ScYg1zaR07Vhh2zjTfE80nCKKfvp
- bpFgNv1yWXfdZ44jEXCCQZnStQ/KgFlNtPirTlTuqZ5fjDfycOzbPGxJ6
- aSMOL+DTfPUYdJHHcrA7Ryd1myaUhcqmDA5sQhZJYBlmszGiHnph/WOpk
- bGFoR1gTvwXsK1o9vFq1SXUlVc5yEAtdTvjRNQfpHUOxOmfm3ZFaWR+vq A==;
-X-CSE-ConnectionGUID: hhtYrj2sTL+FLacnBUXgGQ==
-X-CSE-MsgGUID: s/KJ6YwqSJOI5L+Nu7SdeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61615320"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61615320"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 23:38:50 -0700
-X-CSE-ConnectionGUID: WkB2QwnjRfOUPgkd34klyQ==
-X-CSE-MsgGUID: cTZ1sz/9R3mOeMDWwbkmoQ==
+ bh=/895hZounMtXKh5/Ub9aXmvghXz7fAsEIcMCznrPbJM=;
+ b=J8NieKlq9NHQAPL4SfioHfyZXPmxETFbeUZSsGDL5WOtjPzTOFZZQ9dP
+ CaVPx4CA33hwp+1dL5JdEg/7Iph6KLVs+2JpAxGUtpdBBPnjdSD8NaaGm
+ JwofWrbl3ttjxhfa+EkdsFQMh8kWS6prUbQuWTRgNGcVvSf+URQ+sU+HZ
+ Yo9U2n1xwjtmAJsNvJB+zNhnYNyGtPdntjXEDzjfcD3n3fmLvP+p288zs
+ oA+cspxV8H3/IC3YJLZjtSWcmTD2Q4vc4z5fmav/C0LMb8PLb09UtKZ5E
+ 8TtFXyk+Sj6LrugAFRLnbyek053xBGeUp/7mjc/iMjh+9V0RFI6mW/2VH g==;
+X-CSE-ConnectionGUID: qZOtDNRKSx69AH6A+AyL6g==
+X-CSE-MsgGUID: JYHiF+MNQJeDu/F0Ovg/cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65422477"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="65422477"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2025 23:39:25 -0700
+X-CSE-ConnectionGUID: EW+1GuvZTz2Ai4OYoUoskQ==
+X-CSE-MsgGUID: /BQkHyyMRdeWT4YQbIyoSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="182997629"
-Received: from hchegond-ivm1.jf.intel.com ([10.88.27.163])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2025 23:38:50 -0700
-From: Harish Chegondi <harish.chegondi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Harish Chegondi <harish.chegondi@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH 1/1] drm/xe/eustall: Return EBADFD from read if EU stall
- registers get reset
-Date: Tue, 30 Sep 2025 23:38:43 -0700
-Message-ID: <1ce99022596f054b0b248f5a9c5ece7c1084febb.1759300369.git.harish.chegondi@intel.com>
-X-Mailer: git-send-email 2.51.0
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="177841892"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa006.jf.intel.com with ESMTP; 30 Sep 2025 23:39:24 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 00/10]  Introduce drm sharpness property
+Date: Wed,  1 Oct 2025 12:04:50 +0530
+Message-Id: <20251001063500.1259687-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,51 +64,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a reset (GT or engine) happens during EU stall data sampling, all the
-EU stall registers can get reset to 0. This will result in EU stall data
-buffers' read and write pointer register values to be out of sync with
-the cached values. This can result in read() returning invalid data. To
-prevent this, check the value of a EU stall base register. If it is zero,
-it indicates a reset may have happened that wiped the register to zero.
-If this happens, return EBADFD from read() upon which the user space
-should close the fd and open a new fd for a new EU stall data
-collection session.
+ Many a times images are blurred or upscaled content is also not as
+crisp as original rendered image. Traditional sharpening techniques often
+apply a uniform level of enhancement across entire image, which sometimes
+result in over-sharpening of some areas and potential loss of natural details.
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
----
- drivers/gpu/drm/xe/xe_eu_stall.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Intel has come up with Display Engine based adaptive sharpening filter
+with minimal power and performance impact. From LNL onwards, the Display
+hardware can use one of the pipe scaler for adaptive sharpness filter.
+This can be used for both gaming and non-gaming use cases like photos,
+image viewing. It works on a region of pixels depending on the tap size.
 
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index f5cfdf29fde3..39d5f2abe73b 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -516,9 +516,24 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
- 	size_t total_size = 0;
- 	u16 group, instance;
- 	unsigned int xecore;
-+	u32 base_reg_value;
- 	int ret = 0;
- 
- 	mutex_lock(&stream->xecore_buf_lock);
-+	/* If a GT or engine reset happens during EU stall data sampling,
-+	 * all EU stall registers get reset to 0 and the cached values of
-+	 * EU stall data buffers' read and write pointers are out of sync
-+	 * with the register values. This can cause invalid data to be
-+	 * returned from read(). To prevent this, check the value of a
-+	 * EU stall base register. If it is zero, return -EBADFD. The
-+	 * user is expected to close the fd and open a new fd.
-+	 */
-+	base_reg_value = xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE);
-+	if (unlikely(!base_reg_value)) {
-+		xe_gt_dbg(gt, "EU stall base register has been reset to 0\n");
-+		mutex_unlock(&stream->xecore_buf_lock);
-+		return -EBADFD;
-+	}
- 	if (bitmap_weight(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS)) {
- 		if (!stream->data_drop.reported_to_user) {
- 			stream->data_drop.reported_to_user = true;
+This is an attempt to introduce an adaptive sharpness solution which
+helps in improving the image quality. For this new CRTC property is added.
+The user can set this property with desired sharpness strength value with
+0-255. A value of 1 representing minimum sharpening strength and 255
+representing maximum sharpness strength. A strength value of 0 means no
+sharpening or sharpening feature disabled.
+It works on a region of pixels depending on the tap size. The coefficients
+are used to generate an alpha value which is used to blend the sharpened
+image to original image.
+
+Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
+IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
+
+Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
+
+https://invent.kde.org/plasma/kwin/-/merge_requests/7689
+Got ack from kwin maintainer on the UAPI patch.
+
+Minor changes in patch 3, 4 and 5 hence require rb.
+
+Nemesa Garg (10):
+  drm/drm_crtc: Introduce sharpness strength property
+  drm/i915/display: Introduce HAS_CASF for sharpness support
+  drm/i915/display: Add CASF strength and winsize
+  drm/i915/display: Add filter lut values
+  drm/i915/display: Compute the scaler coefficients
+  drm/i915/display: Add and compute scaler parameter
+  drm/i915/display: Configure the second scaler
+  drm/i915/display: Set and get the casf config
+  drm/i915/display: Enable/disable casf
+  drm/i915/display: Expose sharpness strength property
+
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_crtc.c                    |  35 +++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_casf.c     | 293 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_casf.h     |  22 ++
+ .../gpu/drm/i915/display/intel_casf_regs.h    |  33 ++
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  37 ++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |  15 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  91 +++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   2 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  18 ++
+ 15 files changed, 548 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+
 -- 
-2.51.0
+2.25.1
 
