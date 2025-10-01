@@ -4,57 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 340AFCAC5BB
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 09:33:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2107CCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 09:44:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5D4210E33C;
-	Wed,  1 Oct 2025 09:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 806D210E33F;
+	Wed,  1 Oct 2025 09:44:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Abap7vDW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cxm1Mpti";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E5110E33C;
- Wed,  1 Oct 2025 09:33:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9116E10E33F
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Oct 2025 09:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759311203; x=1790847203;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=hvjjVWqEgj5dUgPW86XrckN759h5L/LeoDtNrai2344=;
- b=Abap7vDWi3e6GcU83uKOiweu3lV/lO7IdiMx8UL60n3GU6ztaoI4+XLP
- tHlIyiC6b94mk4zFKk3StY8OFUxmoFn/i+FR65MY7/kq5vKSU0XmWtJMu
- Bg78Ugj3XSyZpfbqnzfEW5W68zLNfdJi2xb9BXPzs3PLNPmtgUEdAVq4i
- r0x/zTMgMScjub8QwWMarc6wT2i9smKPtLap9TzwMCOYm009Zyt3+u+Te
- YgwVL7EL7VTQA/Z66EpKz/ivzFpWzd9/Kej+drAkz1epgECplBV7JaK4l
- jEb5r+toBWxwnk+q2HDDyv47xqMkCAYgT6c4V3eSVszLMI3WtGp30fUtY g==;
-X-CSE-ConnectionGUID: zQoVNqmuRJW8kzxlxGqQfw==
-X-CSE-MsgGUID: zv3rMgvJQFSyyf6nWvG4mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="72196636"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="72196636"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 02:33:23 -0700
-X-CSE-ConnectionGUID: L++RyB7OTdS3N4noMSZyLg==
-X-CSE-MsgGUID: tRV7EoB3Sgqf7dYeUft4Rw==
+ t=1759311891; x=1790847891;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=vfweT7UTnFrUBNa9ObjzMleavDpygbrpV/w/VFMx4+0=;
+ b=Cxm1MptieehnWXOFowTH9RtnRgu604dB5JzQ0orhHrJD6iCAPoTuxfv8
+ hEOniirNMUi88/1fefhqDwPG3C00NzC40h1moX+RbzcmlSWPr9Pre98ha
+ FZcKLw/lTD9qmed5HyehPiPZoD5gFf48VrYeJgmbJ/K9yoZhjQGqBx8ar
+ IsBqfhiU4PhC0KSghR5B/9sjoBcF4m026FmOg2e83Qt9ju1Tvt8Mz7nRn
+ yW76IkDxmS96qTrUPQvMwUIdgePShvAx4dSD4XwXWfjOpDS6R/mhcv75y
+ ZfqNEK6An1XXu/KUemznnRz/up1fGByklIVZKfH+jphV29witN6o9Njzt Q==;
+X-CSE-ConnectionGUID: Sx3CG4KRS6e7S1RY5L4e5w==
+X-CSE-MsgGUID: Y+baP7MhSbu1XBaXWprSBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="79232278"
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="79232278"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 02:44:50 -0700
+X-CSE-ConnectionGUID: itPkVSxoTWWWOWkLWXk9vw==
+X-CSE-MsgGUID: u20A+QKMTKWW8ekIJpmiCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="215873345"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 02:33:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: Re: [RFC PATCH 30/39] drm/i915/display: Add .dump_hw_state
-In-Reply-To: <20251001082839.2585559-31-mika.kahola@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251001082839.2585559-1-mika.kahola@intel.com>
- <20251001082839.2585559-31-mika.kahola@intel.com>
-Date: Wed, 01 Oct 2025 12:33:17 +0300
-Message-ID: <013ab1ae0abcc2b91633965acdeea438b34a6a0b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="182771775"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2025 02:44:50 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 1 Oct 2025 02:44:48 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Wed, 1 Oct 2025 02:44:48 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.5) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Wed, 1 Oct 2025 02:44:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zzy7uabvYD6f2QCOWx10K0PwXr81VVLoBZ2w3jVTMz9i2rqwdg5BL7A/oI4UXrnEXaUCUGaukj2JLuXR+DPfEDtNT/8Tu5K4DxgmqbRVrC/dTNo2DyYy2WvKRU30i2P1iUuaI6NVHiwIFGGQdRhbISqQD0Nw7x1yGW1FuNrgdU77vYyAubacU/uRxAE9reoLCLSuQMI5Y3ZYKu7I7TogZhEoCvMAa7TwNLzJSt/AFxUj/TXr72aGZd4KJZCxf/eYlZQES/rNas/zlp32iksdHev7Xe1ZO2XKG2wZCxukEJA3w4k2gHOpfMSVtYAyit7BXII8Qb+NfaUQ03FbWb160g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iOmqZ2WfW9TOLLjAb2NWR2djaPszA+PPhT3ozpaIubc=;
+ b=FTCXLD3pweL/MFoSGys5b8Zv/4uN6EhokJrDgJhloXNqRgcsaazWN1+yuTIaTSLfZxwI1XY1MzkltwTUfOUbimATmT7RNOggNXfX9gKZVwyr1EceQa6/cBppV5avk8TB/4jGXRjaBF2PrhVFgtTvgoBupS58M4aYoWGdn+f3ZSzJpJiRbBFy7k++oWPjs/VvUmAW5ludHQSfj55lrSd/6x7VKGAu4+bTizb2yfr1zH+nE+uoZGKmYFdcmKivQ+kaXWppBddvJXGUywyogVTOWy2ZbAqD32QxEkyZZvrAM3XyZCvVZ9w9HnAFCGfwas3hp0YqD7DBPgJFiLpR5zjI+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV2PR11MB6024.namprd11.prod.outlook.com (2603:10b6:408:17a::16)
+ by PH8PR11MB6854.namprd11.prod.outlook.com (2603:10b6:510:22d::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Wed, 1 Oct
+ 2025 09:44:45 +0000
+Received: from LV2PR11MB6024.namprd11.prod.outlook.com
+ ([fe80::dc22:ef1e:53e2:f00f]) by LV2PR11MB6024.namprd11.prod.outlook.com
+ ([fe80::dc22:ef1e:53e2:f00f%4]) with mapi id 15.20.9160.017; Wed, 1 Oct 2025
+ 09:44:45 +0000
+Message-ID: <43c824c1-dbfc-48b1-9c90-389e3bf24c9a@intel.com>
+Date: Wed, 1 Oct 2025 11:44:41 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 03/23] drm/xe: Move 'va_bits' flag back to platform
+ descriptor
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20250930225618.140071-25-matthew.d.roper@intel.com>
+ <20250930225618.140071-28-matthew.d.roper@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20250930225618.140071-28-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P191CA0012.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:800:1ba::15) To LV2PR11MB6024.namprd11.prod.outlook.com
+ (2603:10b6:408:17a::16)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR11MB6024:EE_|PH8PR11MB6854:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d3b2b99-3e34-4c80-570c-08de00cf275f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZEU1Q055SU5QbTAzS1pnWlVwS3c5YUcvRDlJTWJvdDZGbFFXL2lqREU0bXhq?=
+ =?utf-8?B?UU5WanJTdVVIWFdCakxvbWNJd2F4UVdTZ2ZSRURUOEwzeGJMZUs3UEJwUDRJ?=
+ =?utf-8?B?T3RNbkpqQit5VlRSeTZwYlRTaEIrbCtWb2NDT3MwNUlWRDlsMXFBQllvczRL?=
+ =?utf-8?B?b0lqQWJKQTdPSVZkajZVZ2lIVzBPSE44dzd3cWFiU1M1ZVZKZUorMENXOG9C?=
+ =?utf-8?B?SUk5ODJyQUdOV0tJYjVBcG04NHgrNlNaN3NQaVpuVHFpL2tMa1h4WHE2Ulpw?=
+ =?utf-8?B?UXQxN2hlcXZDVW51TUlYcGdpVkFpTHJJMnJVS0pJQ2RCK1V6aWNxalU0K0VH?=
+ =?utf-8?B?N1VNUkZ1MHpPQWhyRmVQaCtMNTRZZnVLU1NJVllGY3FZUHN4bEdObUFOMG5T?=
+ =?utf-8?B?QUVVVVloYXZ0WXplMElJM0V5azl6L2l3MHpmVTdiRWpRR2w4YzJXWEVKaXB0?=
+ =?utf-8?B?RlRmOE8rRDg1SnNrTFRzT25ZVFJncUYraCtMcjBCMmJUTDJJaUo3RUZHL1Fw?=
+ =?utf-8?B?dEVnVmI1V0RINEFwMDF4TmVVbCtRekZpUm1QSzFOQ0oydUNCUzAwREhYRnl1?=
+ =?utf-8?B?S0VTS2l0ZEZUNFFUaWg2a3J1ZlcrcnFUQ05TNlZRRDVyRlRWeWt6S3A1QThh?=
+ =?utf-8?B?VUErUXNTeVF3aVA1cXBSbkw3TEE1UFZRaDJMREE2VGU2QkErbm5mTFIweVh6?=
+ =?utf-8?B?aXorSmZkTG1PeDB0ck5uRXhna2daQ3VoNjN5SHZpZHV5OXdEMytJeEdaR1I5?=
+ =?utf-8?B?NW42M3NSNTZDVFdSdWFmNFhheXg0TlFOM293THhTQis1SGIvMmVac2REOU1m?=
+ =?utf-8?B?UTJXYWg3SURTTUowdXh0TldPckdWcUJ3ejRKMzNTV0prZzlvQzU1eTREa3Jv?=
+ =?utf-8?B?WFhqUkF4RGNuengxUGhSaEVkRXFab0FjTVBvY2N2UExURlh3dnFLVzZoaThp?=
+ =?utf-8?B?cmxrQW1UWWQxMTNnZ1MybEFpRFBtL2xwOGdjOVZENGNRVGNpeVdDRzJ1czdw?=
+ =?utf-8?B?RkNHcGl5dlpCckNONFlCbFp2aXNzNk8rNXZGTE5GNExzUWtTai9YaDJyak43?=
+ =?utf-8?B?aGV0Skpxajd2RzJWdmtwU3oxTzVFdjB1UmFsSzZMMEF5OEFEaUlpMitRckhF?=
+ =?utf-8?B?RlFFUzUwVzczbFhadzZCc2NRSDdYNnc2NU80OEpTUnVBWkNXcUFRWkU1UGV3?=
+ =?utf-8?B?TzdvMEJCTmkzZTBMREFHY1VTb1NpbHh5VFVFcmZCVW9hdWF3Q1JYc1NDVStk?=
+ =?utf-8?B?U1hNQi9DM1FzNWYxVEY5TlJKQWtWWUVucGJlVGVqb0FLdUNVTGcxTXZtVjJo?=
+ =?utf-8?B?MGpBNkxmdFVyVmhLdVprVGNmY01EQy81dVp3ckVxcUthL3hsZi9oL0U1WG1s?=
+ =?utf-8?B?NkdxejFjMGNkN1hldzJwaSs4cG5kbDQ0UWlESlRuUDlFS3pwUmVud2pTK0Vv?=
+ =?utf-8?B?THdmL1FLOE9xajByUXJuejVkMjRYYXhobWxzWFd6YXNraFpuelVvclh2akZ3?=
+ =?utf-8?B?Z2Z4YlhzeXVaT2VqZnFHOGp0MjBueVduNHJkM3hUY0ZncjdrNG1yMW45MzNW?=
+ =?utf-8?B?VjFOSVdXSTYrbDk4bkZOWWhlSzRQQ0FWL3lpcENPcHN5bXZCbmFmM3gyQWxH?=
+ =?utf-8?B?YzNhQnFEMkd0NXpmRTYxUkZET211M294Y0F2ek5XNnVyaXQ1c1lkTUdtV0s2?=
+ =?utf-8?B?TzRNNmVBV25Bem94c0sralJmS0dFL1FpZ1dMZDdjZXpOakJ2R3dXQldGbXYx?=
+ =?utf-8?B?bXVMc1FHZ0hjcDZkVU41UlorRjdKdXRVRkVpRDA4amZKbzAvNkplRDAyeGRN?=
+ =?utf-8?B?NFR2bk8yUVZreVhWL2Qwa3JzM3Y2NU5VcC9hU1dheFJyS1d3WnZnemtBZDh6?=
+ =?utf-8?B?cjhHRGJmOUZJRjk3bFY1amU2T2Fpa0lUcmdYN3lCVXBZQm12RmZQWHM5RmFx?=
+ =?utf-8?Q?Ms6y4P8MqQJAp4Xmh0+hbGAh5Kk5ZD0a?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR11MB6024.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHIrWVlhMmR6cVZKcUUweWNXbFRpYll1QTdTeGJWQW53OG5zeFhDVm9mMStT?=
+ =?utf-8?B?VVlaTURoWGxvcnZrWmlkeFEvcC91M3MxVEdqNWk4NkM0QlQyYjBzcHB2bzFI?=
+ =?utf-8?B?UjJqMHg5VEZRc3ZZVUw0YnlEaHlqWE5nVlJpSy9WWGkwZzczUC9CY3lRcFpi?=
+ =?utf-8?B?b2xuUkk3ZkpkMjBQSFBSZ1kxZWppa29QcDVBZDVUcVJEZ216NmZKMDlxaWxL?=
+ =?utf-8?B?NkxKR2J2cVRyRmpSYmRld1pBaXFiNFE0Q3FxZ3NDYlpPczRvMGo5OWcwS3Zh?=
+ =?utf-8?B?S0hndlZOQXpmVjVTbHc1TXQxc0tUeUZyak9kSmtET09vOURENFBNcE5nZktK?=
+ =?utf-8?B?OU9HRm1RWjRHQVhZaFJDS2k2YmQ0OW8rSDNUcXNYTnV2SWFucWduM1FrcThj?=
+ =?utf-8?B?VTJUSmFKS21MYWhCeTVHdVU2a3pqOGgzS0p3UXJWUmNoVWpCSFdrdlEyK2cw?=
+ =?utf-8?B?Q2lxeWlWTUg1ckpBZDN1MkM5VldyRCtKT1JGMUl5dVJQcy82VHo0empCM1VN?=
+ =?utf-8?B?NUtjNitEMC9CUkRmejBxbXI3SXhmVjY1a2RLaHpJc3hrZjI5Nm00MC9kL3dU?=
+ =?utf-8?B?ZlB1VzVZNXRzTDVONnljSUpkTE02aE9KeFFvR1cxWDA5ekRNS1l3cm91UGI0?=
+ =?utf-8?B?UVZseFhIc1hCVjlsUkhQYVpkS2xNY3pVSGtlZWFpamJONkc0NzJlKzNZK09q?=
+ =?utf-8?B?aHdJOW9YakdHWHFHblR2cmRBUllkbVMrZlFWdzF1VnlsOGI3VkJHUEhFcjVP?=
+ =?utf-8?B?R2lkek9KOUpiOTRpWWoxMnhMRFFYWVN6UmZmazZXR1JxTVpWcE1pcmg1bzNl?=
+ =?utf-8?B?ZzM0SW5yUmwrZWFnVlVNc2NwN09pZEVJVWhQUzFFWXdFT2sxekplTjhFaXVT?=
+ =?utf-8?B?clBxNmRqWTRKNG4yUTlEZUN1RWMwQjB5WVVWMm8yN3RYS1dUZXJoeHJyQXpO?=
+ =?utf-8?B?TVJMYzE4T1BzdE8vYlFiWHpFRWw4RS9Wak9NRXJUMlJSMFVBTTJtbXhkL0RK?=
+ =?utf-8?B?bEQxZ1RaU0xLVFFlR3o2Rm1VSVY1VHFMMG5QejA0SVV5UEE4NFE4TTRkV3M2?=
+ =?utf-8?B?aWY4byt2cU5LNXBHeDRVWXpqTHlIeVR1dk5CbUlCL01tWEJaRmZJNzNqV1hF?=
+ =?utf-8?B?aXB0by9qeGVYdWxWRlRMdnFEek5YaVNFRFhvMEdZMWw1N0Y1VFNlZjdETnEx?=
+ =?utf-8?B?ckNNR2JSd2puTW8zaGI3ZEUwZWFnWnNGTU9uTUVZYlMvSkhMVDZhS1dYRUhP?=
+ =?utf-8?B?UVZaWWFBR3Y0TjFyVXhaSDFJN21ZRkJhVVlPNFY4SkJJQm9DdWRHVCtESExD?=
+ =?utf-8?B?MDNub0JmS3NKcU5odHUxYnVnSnY0d0hZL0ExMDhaeFFaK2dudFJxaThUUFlP?=
+ =?utf-8?B?WGthRHhTVm84UjJiWGVmT0gzYVBGZVZsNmJVbHRWMVMwaVdxTURSdXoyTjRW?=
+ =?utf-8?B?a09haXRIc25TK0RiNGMwL3RtL2hmMElIZDhORlFtVmlDTjVnM3k3MHBLemt0?=
+ =?utf-8?B?VmNWV3Y0VXNVY3hvSmVpcEx6T3pUOVlVUFJ0SExCT1RmODc0S0xrblpXWDN6?=
+ =?utf-8?B?VHlkQzluR3Nla1ZFTUJsaVdlSDdTS1FQN21pZmVMRlZ3TkRHNDBBNk1HOHFx?=
+ =?utf-8?B?cWZtdTZ5a25TMlBWeHpNMlYwRHNvU3JaN3l6Y3JDSVVlajgxSkR4Nys2MXEw?=
+ =?utf-8?B?V3J6Rk51VjQ3RHVkU1RLcDFNcUFyeWdPZ3FOUlUrUHIvL2d2TTFqaUdoNHJw?=
+ =?utf-8?B?TVRsUjNiTnRXSXVrTUVxRHpNSTMrUVN1RGtFUGV1Zm8wWm81bmd5SDAzblV3?=
+ =?utf-8?B?U3VCblNYZFY5MDg3ZGxFcGd2MzQzNjQyV3NWRUtRK0JFdVRRN25GNjZaM01Z?=
+ =?utf-8?B?VkJ6aEZZeEZXcWw0aWtjcjZJdTNsSEVtV2dFVHNucmx6dEM4YVdhdElpaDNv?=
+ =?utf-8?B?T3pOTUJWL2dVczJBSW9EOVhHWVR6YXhSYnlsaEpsZkw0eHc2SWF2bVFsSWli?=
+ =?utf-8?B?OVZUVXFiRFlla1RnQmpZYU85UTh5K3lHMzlHZnhVV1pIN1dZTzE1ZWFkUmxT?=
+ =?utf-8?B?Q3NxcUFYT213bzZVcndOS1piaDNpM3E4Um45RGhxRWVYa1pjOEl6NEk2K0cr?=
+ =?utf-8?B?Z3Y3d1pjM1NSOGRqaC96Z00wL01ya0ZkKzhWeTZFOFI2ZFFqR2JsSTFZandt?=
+ =?utf-8?B?MEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d3b2b99-3e34-4c80-570c-08de00cf275f
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB6024.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 09:44:45.4647 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MrsyC0fkRuuTvwO98x/hq8QW8/BQGpCJUsqoGI9NptTjUar+gnmHbd1gBakOsiRwuqNKSWrDMvlay833U/PbQwERlyTrgMUbmi8D/Wp+ZTI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6854
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,221 +196,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 01 Oct 2025, Mika Kahola <mika.kahola@intel.com> wrote:
-> Add .dump_hw_state function pointer for MTL+ platforms
-> to support dpll framework. While at it, switch to use
-> drm_printer structure to print hw state information.
->
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+
+
+On 10/1/2025 12:56 AM, Matt Roper wrote:
+> The number of virtual address bits is something that should be tracked
+> at the platform level rather than the IP level.  Even when mixing and
+> matching various graphics, media, and display IP blocks, the platform as
+> a whole has to have consistent page table handling.  This is also a
+> trait that should be tied to the platform even if the graphics IP itself
+> is not present (e.g., if we disable the primary GT via configfs).
+> 
+> v2:
+>  - Drop the default value of 48 and explicitly set it in each relevant
+>    descriptor.  (Lucas, Michal)
+> 
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 68 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  3 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |  5 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  7 ++
->  4 files changed, 45 insertions(+), 38 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index f0cba843fed1..ec91186848d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2302,7 +2302,7 @@ static void intel_c10_pll_program(struct intel_display *display,
->  	intel_c10_msgbus_update_config(encoder, INTEL_CX0_LANE0, true);
->  }
+>  drivers/gpu/drm/xe/xe_pci.c       | 21 +++++++++++++++------
+>  drivers/gpu/drm/xe/xe_pci_types.h |  2 +-
+>  2 files changed, 16 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 3f42b91efa28..69ed987fef67 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -52,13 +52,11 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+>  static const struct xe_graphics_desc graphics_xelp = {
+>  	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
 >  
-> -static void intel_c10pll_dump_hw_state(struct intel_display *display,
-> +static void intel_c10pll_dump_hw_state(struct drm_printer *p,
->  				       const struct intel_c10pll_state *hw_state)
->  {
->  	bool fracen;
-> @@ -2311,33 +2311,33 @@ static void intel_c10pll_dump_hw_state(struct intel_display *display,
->  	unsigned int multiplier, tx_clk_div;
->  
->  	fracen = hw_state->pll[0] & C10_PLL0_FRACEN;
-> -	drm_dbg_kms(display->drm, "c10pll_hw_state: clock: %d, fracen: %s, ",
-> -		    hw_state->clock, str_yes_no(fracen));
-> +	drm_printf(p, "c10pll_hw_state: clock: %d, fracen: %s, ",
-> +		   hw_state->clock, str_yes_no(fracen));
->  
->  	if (fracen) {
->  		frac_quot = hw_state->pll[12] << 8 | hw_state->pll[11];
->  		frac_rem =  hw_state->pll[14] << 8 | hw_state->pll[13];
->  		frac_den =  hw_state->pll[10] << 8 | hw_state->pll[9];
-> -		drm_dbg_kms(display->drm, "quot: %u, rem: %u, den: %u,\n",
-> -			    frac_quot, frac_rem, frac_den);
-> +		drm_printf(p, "quot: %u, rem: %u, den: %u,\n",
-> +			   frac_quot, frac_rem, frac_den);
->  	}
->  
->  	multiplier = (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, hw_state->pll[3]) << 8 |
->  		      hw_state->pll[2]) / 2 + 16;
->  	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, hw_state->pll[15]);
-> -	drm_dbg_kms(display->drm,
-> -		    "multiplier: %u, tx_clk_div: %u.\n", multiplier, tx_clk_div);
-> +	drm_printf(p,
-> +		   "multiplier: %u, tx_clk_div: %u.\n", multiplier, tx_clk_div);
->  
-> -	drm_dbg_kms(display->drm, "c10pll_rawhw_state:");
-> -	drm_dbg_kms(display->drm, "tx: 0x%x, cmn: 0x%x\n", hw_state->tx,
-> -		    hw_state->cmn);
-> +	drm_printf(p, "c10pll_rawhw_state:");
-> +	drm_printf(p, "tx: 0x%x, cmn: 0x%x\n", hw_state->tx,
-> +		   hw_state->cmn);
->  
->  	BUILD_BUG_ON(ARRAY_SIZE(hw_state->pll) % 4);
->  	for (i = 0; i < ARRAY_SIZE(hw_state->pll); i = i + 4)
-> -		drm_dbg_kms(display->drm,
-> -			    "pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x\n",
-> -			    i, hw_state->pll[i], i + 1, hw_state->pll[i + 1],
-> -			    i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
-> +		drm_printf(p,
-> +			   "pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x\n",
-> +			   i, hw_state->pll[i], i + 1, hw_state->pll[i + 1],
-> +			   i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
->  }
->  
->  /*
-> @@ -2832,46 +2832,46 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
->  	cx0pll_state->ssc_enabled = readout_ssc_state(encoder, intel_c20phy_use_mpllb(pll_state));
->  }
->  
-> -static void intel_c20pll_dump_hw_state(struct intel_display *display,
-> +static void intel_c20pll_dump_hw_state(struct drm_printer *p,
->  				       const struct intel_c20pll_state *hw_state)
->  {
->  	int i;
->  
-> -	drm_dbg_kms(display->drm, "c20pll_hw_state clock: %d:\n", hw_state->clock);
-> -	drm_dbg_kms(display->drm,
-> -		    "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
-> -		    hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
-> -	drm_dbg_kms(display->drm,
-> -		    "cmn[0] = 0x%.4x, cmn[1] = 0x%.4x, cmn[2] = 0x%.4x, cmn[3] = 0x%.4x\n",
-> -		    hw_state->cmn[0], hw_state->cmn[1], hw_state->cmn[2], hw_state->cmn[3]);
-> +	drm_printf(p, "c20pll_hw_state: clock: %d\n", hw_state->clock);
-> +	drm_printf(p,
-> +		   "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
-> +		   hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
-> +	drm_printf(p,
-> +		   "cmn[0] = 0x%.4x, cmn[1] = 0x%.4x, cmn[2] = 0x%.4x, cmn[3] = 0x%.4x\n",
-> +		   hw_state->cmn[0], hw_state->cmn[1], hw_state->cmn[2], hw_state->cmn[3]);
->  
->  	if (intel_c20phy_use_mpllb(hw_state)) {
->  		for (i = 0; i < ARRAY_SIZE(hw_state->mpllb); i++)
-> -			drm_dbg_kms(display->drm, "mpllb[%d] = 0x%.4x\n", i,
-> -				    hw_state->mpllb[i]);
-> +			drm_printf(p, "mpllb[%d] = 0x%.4x\n", i,
-> +				   hw_state->mpllb[i]);
->  	} else {
->  		for (i = 0; i < ARRAY_SIZE(hw_state->mplla); i++)
-> -			drm_dbg_kms(display->drm, "mplla[%d] = 0x%.4x\n", i,
-> -				    hw_state->mplla[i]);
-> +			drm_printf(p, "mplla[%d] = 0x%.4x\n", i,
-> +				   hw_state->mplla[i]);
->  
->  		/* For full coverage, also print the additional PLL B entry. */
->  		WARN_ON(i + 1 != ARRAY_SIZE(hw_state->mpllb));
-> -		drm_dbg_kms(display->drm, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
-> +		drm_printf(p, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
->  	}
->  }
->  
-> -void intel_cx0pll_dump_hw_state(struct intel_display *display,
-> +void intel_cx0pll_dump_hw_state(struct drm_printer *p,
->  				const struct intel_cx0pll_state *hw_state)
->  {
-> -	drm_dbg_kms(display->drm,
-> -		    "cx0pll_hw_state: lane_count: %d, ssc_enabled: %s, use_c10: %s, tbt_mode: %s\n",
-> -		    hw_state->lane_count, str_yes_no(hw_state->ssc_enabled),
-> -		    str_yes_no(hw_state->use_c10), str_yes_no(hw_state->tbt_mode));
-> +	drm_printf(p,
-> +		   "cx0pll_hw_state: lane_count: %d, ssc_enabled: %s, use_c10: %s, tbt_mode: %s\n",
-> +		   hw_state->lane_count, str_yes_no(hw_state->ssc_enabled),
-> +		   str_yes_no(hw_state->use_c10), str_yes_no(hw_state->tbt_mode));
->  
->  	if (hw_state->use_c10)
-> -		intel_c10pll_dump_hw_state(display, &hw_state->c10);
-> +		intel_c10pll_dump_hw_state(p, &hw_state->c10);
->  	else
-> -		intel_c20pll_dump_hw_state(display, &hw_state->c20);
-> +		intel_c20pll_dump_hw_state(p, &hw_state->c20);
->  }
->  
->  static bool intel_c20_protocol_switch_valid(struct intel_encoder *encoder)
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> index 7b88c3fe9de1..3d0073153463 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-> @@ -6,6 +6,7 @@
->  #ifndef __INTEL_CX0_PHY_H__
->  #define __INTEL_CX0_PHY_H__
->  
-> +#include <drm/drm_print.h>
-
-Please dont include headers from headers when a simple forward
-declaration will do.
-
-BR,
-Jani.
-
->  #include <linux/types.h>
->  
->  enum icl_port_dpll_id;
-> @@ -36,7 +37,7 @@ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
->  int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
->  				 const struct intel_cx0pll_state *pll_state);
->  
-> -void intel_cx0pll_dump_hw_state(struct intel_display *display,
-> +void intel_cx0pll_dump_hw_state(struct drm_printer *p,
->  				const struct intel_cx0pll_state *hw_state);
->  bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
->  				   const struct intel_cx0pll_state *b);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b57efd870774..1b3e6ccd8e37 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4939,15 +4939,14 @@ pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
->  			    const struct intel_cx0pll_state *a,
->  			    const struct intel_cx0pll_state *b)
->  {
-> -	struct intel_display *display = to_intel_display(crtc);
->  	char *chipname = a->use_c10 ? "C10" : "C20";
->  
->  	pipe_config_mismatch(p, fastset, crtc, name, chipname);
->  
->  	drm_printf(p, "expected:\n");
-> -	intel_cx0pll_dump_hw_state(display, a);
-> +	intel_cx0pll_dump_hw_state(p, a);
->  	drm_printf(p, "found:\n");
-> -	intel_cx0pll_dump_hw_state(display, b);
-> +	intel_cx0pll_dump_hw_state(p, b);
->  }
->  
->  static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 617139c6e3eb..3e27cc0004d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -4426,6 +4426,12 @@ static int mtl_compute_dplls(struct intel_atomic_state *state,
->  		return mtl_compute_c20phy_dplls(state, crtc, encoder);
->  }
->  
-> +static void mtl_dump_hw_state(struct drm_printer *p,
-> +			      const struct intel_dpll_hw_state *dpll_hw_state)
-> +{
-> +	intel_cx0pll_dump_hw_state(p, &dpll_hw_state->cx0pll);
-> +}
-> +
->  __maybe_unused
->  static const struct intel_dpll_mgr mtl_pll_mgr = {
->  	.dpll_info = mtl_plls,
-> @@ -4434,6 +4440,7 @@ static const struct intel_dpll_mgr mtl_pll_mgr = {
->  	.put_dplls = icl_put_dplls,
->  	.update_active_dpll = icl_update_active_dpll,
->  	.update_ref_clks = icl_update_dpll_ref_clks,
-> +	.dump_hw_state = mtl_dump_hw_state,
+> -	.va_bits = 48,
+>  	.vm_max_level = 3,
 >  };
 >  
->  /**
+>  #define XE_HP_FEATURES \
+>  	.has_range_tlb_inval = true, \
+> -	.va_bits = 48, \
+>  	.vm_max_level = 3
+>  
+>  static const struct xe_graphics_desc graphics_xehpg = {
+> @@ -84,7 +82,6 @@ static const struct xe_graphics_desc graphics_xehpc = {
+>  		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
+>  
+>  	XE_HP_FEATURES,
+> -	.va_bits = 57,
+>  	.vm_max_level = 4,
+>  	.vram_flags = XE_VRAM_FLAGS_NEED64K,
+>  
+> @@ -108,7 +105,6 @@ static const struct xe_graphics_desc graphics_xelpg = {
+>  	.has_range_tlb_inval = 1, \
+>  	.has_usm = 1, \
+>  	.has_64bit_timestamp = 1, \
+> -	.va_bits = 48, \
+>  	.vm_max_level = 4, \
+>  	.hw_engine_mask = \
+>  		BIT(XE_HW_ENGINE_RCS0) | \
+> @@ -174,6 +170,7 @@ static const struct xe_device_desc tgl_desc = {
+>  	.has_sriov = true,
+>  	.max_gt_per_tile = 1,
+>  	.require_force_probe = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const struct xe_device_desc rkl_desc = {
+> @@ -185,6 +182,7 @@ static const struct xe_device_desc rkl_desc = {
+>  	.has_llc = true,
+>  	.max_gt_per_tile = 1,
+>  	.require_force_probe = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const u16 adls_rpls_ids[] = { INTEL_RPLS_IDS(NOP), 0 };
+> @@ -203,6 +201,7 @@ static const struct xe_device_desc adl_s_desc = {
+>  		{ XE_SUBPLATFORM_ALDERLAKE_S_RPLS, "RPLS", adls_rpls_ids },
+>  		{},
+>  	},
+> +	.va_bits = 48,
+>  };
+>  
+>  static const u16 adlp_rplu_ids[] = { INTEL_RPLU_IDS(NOP), 0 };
+> @@ -221,6 +220,7 @@ static const struct xe_device_desc adl_p_desc = {
+>  		{ XE_SUBPLATFORM_ALDERLAKE_P_RPLU, "RPLU", adlp_rplu_ids },
+>  		{},
+>  	},
+> +	.va_bits = 48,
+>  };
+>  
+>  static const struct xe_device_desc adl_n_desc = {
+> @@ -233,6 +233,7 @@ static const struct xe_device_desc adl_n_desc = {
+>  	.has_sriov = true,
+>  	.max_gt_per_tile = 1,
+>  	.require_force_probe = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  #define DGFX_FEATURES \
+> @@ -249,6 +250,7 @@ static const struct xe_device_desc dg1_desc = {
+>  	.has_heci_gscfi = 1,
+>  	.max_gt_per_tile = 1,
+>  	.require_force_probe = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const u16 dg2_g10_ids[] = { INTEL_DG2_G10_IDS(NOP), INTEL_ATS_M150_IDS(NOP), 0 };
+> @@ -265,7 +267,8 @@ static const u16 dg2_g12_ids[] = { INTEL_DG2_G12_IDS(NOP), 0 };
+>  		{ XE_SUBPLATFORM_DG2_G11, "G11", dg2_g11_ids }, \
+>  		{ XE_SUBPLATFORM_DG2_G12, "G12", dg2_g12_ids }, \
+>  		{ } \
+> -	}
+> +	}, \
+> +	.va_bits = 48
+>  
+>  static const struct xe_device_desc ats_m_desc = {
+>  	.pre_gmdid_graphics_ip = &graphics_ip_xehpg,
+> @@ -303,6 +306,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+>  	.max_gt_per_tile = 1,
+>  	.max_remote_tiles = 1,
+>  	.require_force_probe = true,
+> +	.va_bits = 57,
+>  	.has_mbx_power_limits = false,
+>  };
+>  
+> @@ -314,6 +318,7 @@ static const struct xe_device_desc mtl_desc = {
+>  	.has_display = true,
+>  	.has_pxp = true,
+>  	.max_gt_per_tile = 2,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const struct xe_device_desc lnl_desc = {
+> @@ -323,6 +328,7 @@ static const struct xe_device_desc lnl_desc = {
+>  	.has_pxp = true,
+>  	.max_gt_per_tile = 2,
+>  	.needs_scratch = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const struct xe_device_desc bmg_desc = {
+> @@ -338,6 +344,7 @@ static const struct xe_device_desc bmg_desc = {
+>  	.has_sriov = true,
+>  	.max_gt_per_tile = 2,
+>  	.needs_scratch = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  static const struct xe_device_desc ptl_desc = {
+> @@ -347,6 +354,7 @@ static const struct xe_device_desc ptl_desc = {
+>  	.has_sriov = true,
+>  	.max_gt_per_tile = 2,
+>  	.needs_scratch = true,
+> +	.va_bits = 48,
+>  };
+>  
+>  #undef PLATFORM
+> @@ -584,6 +592,8 @@ static int xe_info_init_early(struct xe_device *xe,
+>  		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
+>  
+>  	xe->info.dma_mask_size = desc->dma_mask_size;
+> +	xe->info.va_bits = desc->va_bits;
+> +
+>  	xe->info.is_dgfx = desc->is_dgfx;
+>  	xe->info.has_fan_control = desc->has_fan_control;
+>  	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
+> @@ -713,7 +723,6 @@ static int xe_info_init(struct xe_device *xe,
+>  	}
+>  
+>  	xe->info.vram_flags = graphics_desc->vram_flags;
+> -	xe->info.va_bits = graphics_desc->va_bits;
+>  	xe->info.vm_max_level = graphics_desc->vm_max_level;
+>  	xe->info.has_asid = graphics_desc->has_asid;
+>  	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+> index 9b9766a3baa3..095133a1aa44 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> @@ -30,6 +30,7 @@ struct xe_device_desc {
+>  	u8 dma_mask_size;
+>  	u8 max_remote_tiles:2;
+>  	u8 max_gt_per_tile:2;
+> +	u8 va_bits;		/* default is 48 bits if not specified */
 
--- 
-Jani Nikula, Intel
+this comment is n/a anymore in this ver3
+
+btw, maybe we want to add kunit test to make sure all descriptors
+have va_bits defined ? or other mandatory fields ?
+
+otherwise LGTM
+
+>  
+>  	u8 require_force_probe:1;
+>  	u8 is_dgfx:1;
+> @@ -51,7 +52,6 @@ struct xe_device_desc {
+>  };
+>  
+>  struct xe_graphics_desc {
+> -	u8 va_bits;
+>  	u8 vm_max_level;
+>  	u8 vram_flags;
+>  
+
