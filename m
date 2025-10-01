@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B7CACCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 00:54:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C0D9CAC5B8
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 00:59:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7F410E044;
-	Wed,  1 Oct 2025 00:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA03F10E044;
+	Wed,  1 Oct 2025 00:59:15 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C3410E044;
- Wed,  1 Oct 2025 00:54:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0210491909016454436=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 637F710E044;
+ Wed,  1 Oct 2025 00:59:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_TileAddrRange_reg?=
- =?utf-8?q?isters_are_being_deprecated=2E?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_More_PF_improvements?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: fei.yang@intel.com
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 01 Oct 2025 00:54:11 -0000
-Message-ID: <175928005101.381168.7274357926978788710@1538d3639d33>
+Date: Wed, 01 Oct 2025 00:59:15 -0000
+Message-ID: <175928035540.381168.12007495132210599179@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250930232645.600251-1-fei.yang@intel.com>
-In-Reply-To: <20250930232645.600251-1-fei.yang@intel.com>
+References: <20250930233525.201263-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20250930233525.201263-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +39,45 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0210491909016454436==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: TileAddrRange registers are being deprecated.
-URL   : https://patchwork.freedesktop.org/series/155264/
-State : success
+Series: More PF improvements
+URL   : https://patchwork.freedesktop.org/series/155265/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947_BAT -> xe-pw-155264v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 76ada15dc94a7ba3d320c53c15dd593c62ba21bb
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Oct 1 01:35:24 2025 +0200
 
-Summary
--------
+    drm/xe/pf: Synchronize VF FLR between all GTs
+    
+    The PF part of the VF FLR processing shall be done after all GuCs
+    confirm that they finished their part VF FLR processing, otherwise
+    PF may start clearing VF's GGTT that other GuC may still accessing.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 23f8be57505c80e5b57dec249df8a3cc053eb947 drm-intel
+fefecfc0cb58 drm/xe/pf: Add top level functions to control VFs
+-:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#57: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155264v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947 -> xe-pw-155264v1
-
-  IGT_8564: fd0f7b3639b26971567b7a9d64ba5174d5d3db5a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947: 23f8be57505c80e5b57dec249df8a3cc053eb947
-  xe-pw-155264v1: 155264v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html
-
---===============0210491909016454436==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 149 lines checked
+d3cbe6cb1bc5 drm/xe/pf: Log only top level VF state changes
+7f953fbe1753 drm/xe/pf: Expose VF control operations over debugfs
+382bf04a2e97 drm/xe/pf: Unify VF state tracking log
+5d37582f2e39 drm/xe/pf: Split VF FLR processing function
+76ada15dc94a drm/xe/pf: Synchronize VF FLR between all GTs
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: TileAddrRange registers are being deprecated.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155264/">https://patchwork.freedesktop.org/series/155264/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947_BAT -&gt; xe-pw-155264v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155264v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155264v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947 -&gt; xe-pw-155264v1</li>
-</ul>
-<p>IGT_8564: fd0f7b3639b26971567b7a9d64ba5174d5d3db5a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3850-23f8be57505c80e5b57dec249df8a3cc053eb947: 23f8be57505c80e5b57dec249df8a3cc053eb947<br />
-  xe-pw-155264v1: 155264v1</p>
-
-</body>
-</html>
-
---===============0210491909016454436==--
