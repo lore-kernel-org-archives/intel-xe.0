@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD343CCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 07:40:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB639CAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 07:47:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3AE10E69E;
-	Wed,  1 Oct 2025 07:40:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9dEne/a";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79EAD10E693;
- Wed,  1 Oct 2025 07:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759304453; x=1790840453;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=lXcjVXl8ERMTvL1DHw++dgART03pTpzOcxWZJx2XoSg=;
- b=W9dEne/a9YCVoLYDoCCrD0ybJHBiDlEug92n1fxo0rHX+d87n+SzEhbd
- /oxLLli+WUXUtcdyIgo+3Ura5GnbxZsoz+V6dZSKOufqJaqJ7IUalpcBQ
- 9phzMpd9JdGJplygTj0I/OmuXippJh4JCNP1sq0sInUZYv86JmFJZ+6sr
- VD4C28Fq4wPujwzrnFx6ngJofkNM7UqwjmlNAi0MxQVE0AJktRmRBUFcT
- N0q5d7uGO81KBBDHKBREg36g5CO426KhUPglij3pdySiZLKZKZNa7TbBG
- iWXNP9O+p5j5CqKGgOABzRrCvb+kffc2F2HcXVqyvcvViFCysPm/3ueJb g==;
-X-CSE-ConnectionGUID: r9hSHSvdQGu9QDE3bGICJA==
-X-CSE-MsgGUID: t2n1HLnPSYiHOPS4UdtHhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61280223"
-X-IronPort-AV: E=Sophos;i="6.18,306,1751266800"; d="scan'208";a="61280223"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 00:40:53 -0700
-X-CSE-ConnectionGUID: 5oOKmsmyRsOgNoRHWI21eQ==
-X-CSE-MsgGUID: 5WIYD1X5QJ+QTJMWFpen8g==
-X-ExtLoop1: 1
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 00:40:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Imre
- Deak <imre.deak@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: Extend i915_display_info with
- Type-C port details
-In-Reply-To: <20250930221918.2224702-1-khaled.almahallawy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250930221918.2224702-1-khaled.almahallawy@intel.com>
-Date: Wed, 01 Oct 2025 10:40:47 +0300
-Message-ID: <05a4153c7159555bccd403cdbae919a822a8ac54@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 983DA10E33C;
+	Wed,  1 Oct 2025 07:47:04 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2749010E342;
+ Wed,  1 Oct 2025 07:47:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Introduce_drm_sharpness_?=
+ =?utf-8?q?property?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 01 Oct 2025 07:47:03 -0000
+Message-ID: <175930482315.381728.14494220493455133721@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251001063500.1259687-1-nemesa.garg@intel.com>
+In-Reply-To: <20251001063500.1259687-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,136 +36,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 30 Sep 2025, Khaled Almahallawy <khaled.almahallawy@intel.com> wrot=
-e:
-> Expose key Type-C port data in i915_display_info to make it easier to
-> understand the port configuration and active mode, especially whether
-> the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
->
-> Tested in DP-Alt, TBT-Alt, SST, and MST.
->
-> Expected output:
->
-> [CONNECTOR:290:DP-2]: status: connected
-> 	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
-> 	physical dimensions: 600x340mm
-> ...
-> [CONNECTOR:263:DP-5]: status: connected
-> 	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
-> 	physical dimensions: 610x350mm
->
-> v2: Use drm_printer (Ville)
->     Lock/Unlock around the printf (Imre)
->
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_debugfs.c   |  5 +++++
->  drivers/gpu/drm/i915/display/intel_tc.c            | 14 ++++++++++++--
->  drivers/gpu/drm/i915/display/intel_tc.h            |  3 +++
->  3 files changed, 20 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index 10dddec3796f..5f5f1c50adfa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -47,6 +47,7 @@
->  #include "intel_psr_regs.h"
->  #include "intel_vdsc.h"
->  #include "intel_wm.h"
-> +#include "intel_tc.h"
->=20=20
->  static struct intel_display *node_to_intel_display(struct drm_info_node =
-*node)
->  {
-> @@ -246,6 +247,7 @@ static void intel_connector_info(struct seq_file *m,
->  {
->  	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
->  	const struct drm_display_mode *mode;
-> +	struct drm_printer p =3D drm_seq_file_printer(m);
->=20=20
->  	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
->  		   connector->base.id, connector->name,
-> @@ -254,6 +256,9 @@ static void intel_connector_info(struct seq_file *m,
->  	if (connector->status =3D=3D connector_status_disconnected)
->  		return;
->=20=20
-> +	if (intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
-> +		intel_tc_info(&p, intel_attached_dig_port(intel_connector));
-> +
->  	seq_printf(m, "\tphysical dimensions: %dx%dmm\n",
->  		   connector->display_info.width_mm,
->  		   connector->display_info.height_mm);
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index c4a5601c5107..04946b7b8662 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -5,8 +5,6 @@
->=20=20
->  #include <linux/iopoll.h>
->=20=20
-> -#include <drm/drm_print.h>
-> -
->  #include "i915_reg.h"
->  #include "i915_utils.h"
->  #include "intel_atomic.h"
-> @@ -1703,6 +1701,18 @@ void intel_tc_port_sanitize_mode(struct intel_digi=
-tal_port *dig_port,
->  	mutex_unlock(&tc->lock);
->  }
->=20=20
-> +void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *di=
-g_port)
-> +{
-> +	struct intel_tc_port *tc =3D to_tc_port(dig_port);
-> +
-> +	mutex_lock(&tc->lock);
-> +	drm_printf(p, "\tTC Port: %s mode: %s pin assignment: %c max lanes: %d\=
-n", tc->port_name,
-> +		   tc_port_mode_name(tc->mode),
-> +		   pin_assignment_name(tc->pin_assignment),
-> +		   tc->max_lane_count);
-> +	mutex_unlock(&tc->lock);
-> +}
-> +
->  /*
->   * The type-C ports are different because even when they are connected, =
-they may
->   * not be available/usable by the graphics driver: see the comment on
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i9=
-15/display/intel_tc.h
-> index fff8b96e4972..81043829a270 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
-> @@ -7,6 +7,7 @@
->  #define __INTEL_TC_H__
->=20=20
->  #include <linux/types.h>
-> +#include <drm/drm_print.h>
+== Series Details ==
 
-Please don't include headers from headers when a simple forward
-declaration will do.
+Series: Introduce drm sharpness property
+URL   : https://patchwork.freedesktop.org/series/155272/
+State : warning
 
->=20=20
->  struct intel_crtc_state;
->  struct intel_digital_port;
-> @@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port =
-*dig_port);
->=20=20
->  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
->=20=20
-> +void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *di=
-g_port);
-> +
->  #endif /* __INTEL_TC_H__ */
+== Summary ==
 
---=20
-Jani Nikula, Intel
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast bb42887c28cd6ede2c83547a9afc852a6aed3569
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/drm_drv.c:449:6: warning: context imbalance in 'drm_dev_enter' - different lock contexts for basic block
++drivers/gpu/drm/drm_drv.c: note: in included file (through include/linux/notifier.h, arch/x86/include/asm/uprobes.h, include/linux/uprobes.h, include/linux/mm_types.h, include/linux/mmzone.h, include/linux/gfp.h, ...):
++drivers/gpu/drm/drm_plane.c:213:24: warning: Using plain integer as NULL pointer
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_casf.c:150:21: error: too long token expansion
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2041:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2054:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2054:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2054:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++./include/linux/srcu.h:373:9: warning: context imbalance in 'drm_dev_exit' - unexpected unlock
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
