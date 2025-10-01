@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41458CCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 16:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C285DCCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Oct 2025 16:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD3F410E0A4;
-	Wed,  1 Oct 2025 16:16:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZVkkFaTV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9291510E0FF
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Oct 2025 16:16:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759335381; x=1790871381;
- h=date:from:to:cc:subject:message-id;
- bh=sEu6tX41pPMopvZUUcAS1wQO2eJwNr1SZW4DtbAGeBo=;
- b=ZVkkFaTVs8llra4myO/g0Aiu/YJLjMqLiaPPCIfvQlog0sK82c0Akj8J
- MGdDc33aqn6afiEsNDEG3liSXT63+//lXUcXaKtbpNiUAS+v8/Q4E9bNS
- m3/waPk8k7kfHEEnjgv49nkI/41FVBt4GSma6F92VFLmyJ5gZ0dMNnPMX
- Or52EkaQ0AqM8VQrVNf6YX+HtbmaVHv9le1qs/GXryZGgARO7G+9bNhUy
- qBGnW/c3FlvvfRu8Agy032CAUGy4MrwVOf53WWjoxxXM1IHkMqeyLdWGQ
- 1M22vDVITbkUQEEHhMAFSCql/9I7PK9y8EtpJ0f693UVfkdvfqEMTVoM/ Q==;
-X-CSE-ConnectionGUID: 5xglXVnTSqGmH5agSURhJw==
-X-CSE-MsgGUID: ayGEruoRTA+jv+kItLX4gg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61571594"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61571594"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 09:16:21 -0700
-X-CSE-ConnectionGUID: af6EkNXLTYmXcacibpQx6A==
-X-CSE-MsgGUID: 6LdgAEmyTUCVdYwKGGe91w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,307,1751266800"; d="scan'208";a="178442208"
-Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
- by orviesa009.jf.intel.com with ESMTP; 01 Oct 2025 09:16:20 -0700
-Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1v3zV3-0003AF-33;
- Wed, 01 Oct 2025 16:16:17 +0000
-Date: Thu, 02 Oct 2025 00:15:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81DCC10E0FF;
+	Wed,  1 Oct 2025 16:17:38 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A7CE10E0FF;
+ Wed,  1 Oct 2025 16:17:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8070743430763296563=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Detect_GT_workque?=
+ =?utf-8?q?ue_allocation_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- d9c401d8f37cd5510cc64647b0421f95e62fe3a2
-Message-ID: <202510020033.O5ZWtGji-lkp@intel.com>
-User-Agent: s-nail v14.9.24
+Date: Wed, 01 Oct 2025 16:17:37 -0000
+Message-ID: <175933545736.384040.16692696847647289351@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251001144051.202040-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251001144051.202040-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,142 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: d9c401d8f37cd5510cc64647b0421f95e62fe3a2  drm/xe/sysfs: Drop redundant runtime PM usage
+--===============8070743430763296563==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-elapsed time: 1455m
+== Series Details ==
 
-configs tested: 120
-configs skipped: 3
+Series: drm/xe: Detect GT workqueue allocation failure
+URL   : https://patchwork.freedesktop.org/series/155297/
+State : success
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+== Summary ==
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                   randconfig-001-20251001    gcc-8.5.0
-arc                   randconfig-002-20251001    gcc-8.5.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-22
-arm                              allyesconfig    gcc-15.1.0
-arm                         assabet_defconfig    clang-18
-arm                        keystone_defconfig    gcc-15.1.0
-arm                   randconfig-001-20251001    gcc-14.3.0
-arm                   randconfig-002-20251001    clang-22
-arm                   randconfig-003-20251001    gcc-12.5.0
-arm                   randconfig-004-20251001    gcc-8.5.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20251001    clang-22
-arm64                 randconfig-002-20251001    gcc-9.5.0
-arm64                 randconfig-003-20251001    gcc-8.5.0
-arm64                 randconfig-004-20251001    gcc-8.5.0
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20251001    gcc-13.4.0
-csky                  randconfig-002-20251001    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20251001    clang-22
-hexagon               randconfig-002-20251001    clang-22
-i386        buildonly-randconfig-001-20251001    clang-20
-i386        buildonly-randconfig-002-20251001    clang-20
-i386        buildonly-randconfig-003-20251001    gcc-14
-i386        buildonly-randconfig-004-20251001    clang-20
-i386        buildonly-randconfig-005-20251001    clang-20
-i386        buildonly-randconfig-006-20251001    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20251001    gcc-13.4.0
-loongarch             randconfig-002-20251001    gcc-15.1.0
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-mips                          eyeq6_defconfig    clang-22
-mips                        vocore2_defconfig    clang-22
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20251001    gcc-11.5.0
-nios2                 randconfig-002-20251001    gcc-11.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20251001    gcc-8.5.0
-parisc                randconfig-002-20251001    gcc-8.5.0
-parisc64                         alldefconfig    gcc-15.1.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc                          allyesconfig    clang-22
-powerpc                      mgcoge_defconfig    clang-22
-powerpc               randconfig-001-20251001    gcc-8.5.0
-powerpc               randconfig-002-20251001    clang-22
-powerpc               randconfig-003-20251001    clang-22
-powerpc                      tqm8xx_defconfig    clang-19
-powerpc64             randconfig-001-20251001    gcc-8.5.0
-powerpc64             randconfig-002-20251001    clang-22
-powerpc64             randconfig-003-20251001    gcc-13.4.0
-riscv                            allmodconfig    clang-22
-riscv                             allnoconfig    gcc-15.1.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-22
-riscv                 randconfig-001-20251001    clang-22
-riscv                 randconfig-002-20251001    gcc-8.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                                defconfig    clang-22
-s390                  randconfig-001-20251001    clang-22
-s390                  randconfig-002-20251001    gcc-12.5.0
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                                  defconfig    gcc-15.1.0
-sh                          r7780mp_defconfig    gcc-15.1.0
-sh                    randconfig-001-20251001    gcc-13.4.0
-sh                    randconfig-002-20251001    gcc-11.5.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20251001    gcc-15.1.0
-sparc                 randconfig-002-20251001    gcc-8.5.0
-sparc64                             defconfig    clang-20
-sparc64               randconfig-001-20251001    gcc-8.5.0
-sparc64               randconfig-002-20251001    clang-20
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-14
-um                                  defconfig    clang-22
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20251001    gcc-14
-um                    randconfig-002-20251001    gcc-14
-um                           x86_64_defconfig    clang-22
-x86_64      buildonly-randconfig-001-20251001    clang-20
-x86_64      buildonly-randconfig-002-20251001    clang-20
-x86_64      buildonly-randconfig-003-20251001    clang-20
-x86_64      buildonly-randconfig-004-20251001    clang-20
-x86_64      buildonly-randconfig-005-20251001    clang-20
-x86_64      buildonly-randconfig-006-20251001    clang-20
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                randconfig-001-20251001    gcc-15.1.0
-xtensa                randconfig-002-20251001    gcc-10.5.0
+CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155297v1_BAT
+====================================================
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155297v1
+
+  IGT_8568: 8568
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
+  xe-pw-155297v1: 155297v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155297v1/index.html
+
+--===============8070743430763296563==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Detect GT workqueue allocation failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155297/">https://patchwork.freedesktop.org/series/155297/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155297v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155297v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155297v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155297v1</li>
+</ul>
+<p>IGT_8568: 8568<br />
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
+  xe-pw-155297v1: 155297v1</p>
+
+</body>
+</html>
+
+--===============8070743430763296563==--
