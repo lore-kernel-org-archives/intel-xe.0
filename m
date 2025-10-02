@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE3ECAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 15:18:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B34A8CAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 15:19:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21FAF10E7F9;
-	Thu,  2 Oct 2025 15:18:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SlAc0D+Q";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 292CA10E1BE;
- Thu,  2 Oct 2025 15:18:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759418291; x=1790954291;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=DbaozsxIjql0CxxO4wMRFstdiXwRmod8SKY1ak1A5GA=;
- b=SlAc0D+QdmFPoOuHCMTUz5CiY4Kbkl306QYeZ6SO80gvGjwKkls3bwMC
- ynLi/1rAZ3hxRjKdiANgSdLpUPyqF3Nja8US70g+Jo4+PG/JD0EbneXPu
- iCmCl9vwye4neHUCUtVL9mB1dou/VOG1aeQAMaVM7uvniMIJwRl0F8Zva
- 9pIRYBXhO2Uc3iyiQheAwtJ2FK7+eGMaqJTaURfUFm4cMhL4+ZkkMMSj7
- /A4LKJDOSGKcWrKvEopYd/BCERcUtYy078GlMRV4q4iQmM4I8tRlDy/jl
- pwu4YJYT9ahfMSmWG3seDcIhMQBgA9464Nydh3eEGnurMmrufsft3Y/1f w==;
-X-CSE-ConnectionGUID: JgDBZjoRRoqSD05ZhSE4fQ==
-X-CSE-MsgGUID: YbtWK9hTRqO0MOQgZaTjRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="61415159"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="61415159"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 08:18:10 -0700
-X-CSE-ConnectionGUID: krmpxM/fSjS3NyybhgWwCA==
-X-CSE-MsgGUID: 21amvKyPQnSEfv7PAHTCOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="210028302"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 08:18:06 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Jocelyn
- Falempe <jfalempe@redhat.com>, Maarten Lankhorst <dev@lankhorst.se>,
- =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/panic: fix panic structure allocation memory leak
-In-Reply-To: <3198b351-b780-e068-e8b3-39608ebc597b@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251002101756.2700320-1-jani.nikula@intel.com>
- <3198b351-b780-e068-e8b3-39608ebc597b@intel.com>
-Date: Thu, 02 Oct 2025 18:18:03 +0300
-Message-ID: <371d6debcc6b1977711481d32dd2527cc8c03b16@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75FB810E7F9;
+	Thu,  2 Oct 2025 15:19:55 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DADEA10E1CE;
+ Thu,  2 Oct 2025 15:19:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7781016723574003124=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CCS_uncached_mocs_0_test_ru?=
+ =?utf-8?q?n?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Oct 2025 15:19:53 -0000
+Message-ID: <175941839388.49.10672836422759274654@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,47 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 02 Oct 2025, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> On Thu, 2 Oct 2025, Jani Nikula wrote:
->> Separating the panic allocation from framebuffer allocation in commit
->> 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
->> belongs") failed to deallocate the panic structure anywhere.
->>
->> The fix is two-fold. First, free the panic structure in
->> intel_user_framebuffer_destroy() in the general case. Second, move the
->> panic allocation later to intel_framebuffer_init() to not leak the panic
->> structure in error paths (if any, now or later) between
->> intel_framebuffer_alloc() and intel_framebuffer_init().
->>
->> Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation w=
-here it belongs")
->> Cc: Jocelyn Falempe <jfalempe@redhat.com>
->> Cc: Maarten Lankhorst <dev@lankhorst.se>
->> Reported-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
->> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Have run a bunch of tests on affected platform, which previously caused
-> the issue to surface. With the patch applied no memleaks are reported.
->
-> Tested-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+--===============7781016723574003124==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for confirming!
+== Series Details ==
 
-Looks like we'll need to merge [1] first, or the stable backport of that
-is going to be a nightmare.
+Series: CCS uncached mocs 0 test run
+URL   : https://patchwork.freedesktop.org/series/155337/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656_BAT -> xe-pw-155337v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155337v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155337v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
-[1] https://lore.kernel.org/r/20251002115434.6486-2-ville.syrjala@linux.int=
-el.com
+Build changes
+-------------
+
+  * IGT: IGT_8568 -> IGT_8569
+  * Linux: xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656 -> xe-pw-155337v1
+
+  IGT_8568: 8568
+  IGT_8569: 8569
+  xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656: 880468a295fb4db7bf44eec3541bfc24d42d9656
+  xe-pw-155337v1: 155337v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155337v1/index.html
+
+--===============7781016723574003124==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
---=20
-Jani Nikula, Intel
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>CCS uncached mocs 0 test run</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155337/">https://patchwork.freedesktop.org/series/155337/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155337v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155337v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656_BAT -&gt; xe-pw-155337v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155337v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155337v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8568 -&gt; IGT_8569</li>
+<li>Linux: xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656 -&gt; xe-pw-155337v1</li>
+</ul>
+<p>IGT_8568: 8568<br />
+  IGT_8569: 8569<br />
+  xe-3854-880468a295fb4db7bf44eec3541bfc24d42d9656: 880468a295fb4db7bf44eec3541bfc24d42d9656<br />
+  xe-pw-155337v1: 155337v1</p>
+
+</body>
+</html>
+
+--===============7781016723574003124==--
