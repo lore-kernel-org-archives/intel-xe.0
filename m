@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 095C9CCD18A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B881CCD18C
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F27E10E79E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A983110E79F;
 	Thu,  2 Oct 2025 05:54:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sok9X49g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U/erMXsj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29EBA10E798
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C36810E787
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759384449; x=1790920449;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Y70TsVG42ynkVjIJ1IY2cbCes1mswnOytAz+vfbH6dQ=;
- b=Sok9X49gTTnsEhlYJdKH93tSqSGbyinIeW/RAK8vCrNhjGJlsqaNRJ7C
- EyEKsljAdi0Vl6b6FwydAzMxCGfy6DMqtU5eBFwthmtQQ+Pef/qTHMUhX
- j/39Xa3w7Sp5WdH4BTFOK2if5l7HmNJv2xr3QXZLDF5RbfQR6Xn11qp4x
- cCiGkHhtCwTsPhPW8zO/wHFqcaVi2ZX11N37wO51aDVcd3polIOOVxuLx
- +0XqKWa30SWX1JwnSzBHhgn6zAcdO36/g9GYVUHWzzq9BJzoJ7YA4M+wt
- +OE6WHjPYLWl/E8biquki6g/wqdCkylcNWo/KcPWvsXbgwnazNG7IEK+b Q==;
-X-CSE-ConnectionGUID: 4pzobe4OSqm0Cp2mMDPaYA==
-X-CSE-MsgGUID: jALMCNfpR+eEgq+mgwK1DA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304514"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304514"
+ bh=L3dA3pCLklqNm7OC0jMeIPlLUumrwTlp0sU+9bflDn8=;
+ b=U/erMXsjbfZh9MML+3kKdMbCjUoN4qcS2MEURjlPiZ7TeJ6XLferp1a2
+ rfs1OSI2IzAUMLypXkbPuAYRnjbRKMKtgIBbDUMDyku/kchV6jSVceNRM
+ RHQ4Ht1JFXLEnpgpY1CU/maAnkSMknxDmuaPsLGGAiC/3Ufja3FQvyJmb
+ 8Xk60dXtcrBUF9kD1itjQcAxLdXuAZp6JV7++q3Dd60nknDT7GR1HAWRG
+ McsrSU78W4LKyHcInxAHwgih3nZz6IkutVUYTKPR+bqSIvojwwEoGb+zx
+ p1AlPb5zBBXoc6KgjbMABeEVPvDZMbdrW+xU+qOsvrnb7RdnP1IVG+NhA w==;
+X-CSE-ConnectionGUID: 0FafLPIQSjC9KuPre9bYow==
+X-CSE-MsgGUID: 0nAMhP1bR7yQsPsPZ/dvZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304526"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304526"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: SebkLeCRRj+5Qg5NhyGAMA==
-X-CSE-MsgGUID: efHuuCNJRe++w2dXmmjAzg==
+X-CSE-ConnectionGUID: 5rekW03dTYuenONONmoiyw==
+X-CSE-MsgGUID: wMSfsiATRT2esk0RfBn5bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083546"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083558"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 21/34] drm/xe/vf: Flush and stop CTs in VF post migration
- recovery
-Date: Wed,  1 Oct 2025 22:53:49 -0700
-Message-Id: <20251002055402.1865880-22-matthew.brost@intel.com>
+Subject: [PATCH v4 32/34] drm/xe/vf: Ensure media GT VF recovery runs after
+ primary GT on PTL
+Date: Wed,  1 Oct 2025 22:54:00 -0700
+Message-Id: <20251002055402.1865880-33-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -66,79 +66,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Flushing CTs (i.e., progressing all pending G2H messages) gives VF
-post-migration recovery an accurate view of which H2G messages the GuC
-has processed, enabling the GuC submission state machine to correctly
-rebuild all state.
-
-Also, stop all CT traffic, as the CT is not live during VF
-post-migration recovery.
-
-v3:
- - xe_guc_ct_flush_and_stop rename (Michal)
- - Drop extra GuC CT WQ wake up (Michal)
+It is possible that the media GT's VF post-migration recovery work item
+gets scheduled before the primary GT's work item. Since the media GT
+depends on the primary GT's work item to complete CCS restore, if the
+media GT's work item is scheduled first, detect this condition and
+re-queue the media GT's work item for a later time.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  2 ++
- drivers/gpu/drm/xe/xe_guc_ct.c      | 10 ++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
- 3 files changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index e8fd2fe98076..3c3b9a88eda9 100644
+index 49b68a4a1f2b..cc77a763c0c2 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -23,6 +23,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_sriov_vf_types.h"
- #include "xe_guc.h"
-+#include "xe_guc_ct.h"
- #include "xe_guc_hxg_helpers.h"
- #include "xe_guc_relay.h"
- #include "xe_guc_submit.h"
-@@ -1108,6 +1109,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
+@@ -1110,8 +1110,22 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
+ 		   pf_version->major, pf_version->minor);
+ }
+ 
+-static void vf_post_migration_shutdown(struct xe_gt *gt)
++static bool vf_post_migration_shutdown(struct xe_gt *gt)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
++
++	/*
++	 * On platforms where CCS must be restored by the primary GT, the media
++	 * GT's VF post-migration recovery must run afterward. Detect this case
++	 * and re-queue the media GT's restore work item if necessary.
++	 */
++	if (xe->info.needs_shared_vf_gt_wq && xe_gt_is_media_type(gt)) {
++		struct xe_gt *primary_gt = gt_to_tile(gt)->primary_gt;
++
++		if (xe_gt_sriov_vf_recovery_inprogress(primary_gt))
++			return true;
++	}
++
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
  	gt->sriov.vf.migration.recovery_queued = false;
  	spin_unlock_irq(&gt->sriov.vf.migration.lock);
- 
-+	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
+@@ -1119,6 +1133,8 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
+ 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
  	xe_guc_submit_pause(&gt->uc.guc);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index d84de8544532..fd6e731c0395 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -573,6 +573,16 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct)
- 	stop_g2h_handler(ct);
- }
- 
-+/**
-+ * xe_guc_ct_flush_and_stop - Flush and stop all processing of G2H / H2G
-+ * @ct: the &xe_guc_ct
-+ */
-+void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct)
-+{
-+	receive_g2h(ct);
-+	xe_guc_ct_stop(ct);
-+}
+ 	xe_tlb_inval_reset(&gt->tlb_inval);
 +
- /**
-  * xe_guc_ct_stop - Set GuC to stopped state
-  * @ct: the &xe_guc_ct
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index d6c81325a76c..0a88f4e447fa 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -17,6 +17,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
-+void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
++	return false;
+ }
  
- struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
+ static size_t post_migration_scratch_size(struct xe_device *xe)
+@@ -1193,11 +1209,14 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
++	bool retry;
+ 
+ 	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
+ 
+ 	xe_pm_runtime_get(xe);
+-	vf_post_migration_shutdown(gt);
++	retry = vf_post_migration_shutdown(gt);
++	if (retry)
++		goto queue;
+ 
+ 	if (!xe_sriov_vf_migration_supported(xe)) {
+ 		xe_gt_sriov_err(gt, "migration is not supported\n");
+@@ -1225,6 +1244,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+ 	xe_device_declare_wedged(xe);
++	return;
++
++queue:
++	xe_gt_sriov_info(gt, "Re-queuing GT recovery\n");
++	queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
++	xe_pm_runtime_put(xe);
+ }
+ 
+ static void migration_worker_func(struct work_struct *w)
 -- 
 2.34.1
 
