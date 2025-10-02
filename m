@@ -4,64 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E453CAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:51:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88E37CCA471
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:54:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AFE10E7F2;
-	Thu,  2 Oct 2025 14:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 322A710E7F2;
+	Thu,  2 Oct 2025 14:54:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/Vc9d0a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZhjXhsKT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC5B10E1BB;
- Thu,  2 Oct 2025 14:51:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB44B10E7F2
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 14:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759416670; x=1790952670;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=T9E/CHOdmanpI2MgQ69QF1ShrXyvkhMvVaFOyvfXfaE=;
- b=a/Vc9d0akGmBYtUrGVvGhqKKenyIQP5wWZmJJ/5ajBXH8FEh1SXKWvo/
- 1pVLMhBiIpLb2Ysbl6wKgXTCe5x0SXkv/F2UFzwQvdfkv4P25q/rxwKv7
- 2zpNsbEM7KTTIPc3WYBmM/aXrczsm7/sTLPecHIID7zfyYNQJ61YnWSqP
- cpKG07Bm/zdnKUof87+GBY1i6mnywZYYDYJuBMFNIfpgPOdqXrpf5Onfp
- YDrt+2tZNYjx72wB3TzijwmqNYfVt0ohLSjxZIBLG750BDxkiK91xUJnC
- FTLpXxISuXq5EwCNwGwT1zsBLXO35TtZB1VSLNuGP5OLogoD/HtYeN3Lo g==;
-X-CSE-ConnectionGUID: p7kDqdzaT9iTKBMQJdVTtQ==
-X-CSE-MsgGUID: VsWDqxA/QUC5uClz31XxGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="61607530"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="61607530"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 07:51:09 -0700
-X-CSE-ConnectionGUID: v/QShZ7uRR+rFqaBcv5Krw==
-X-CSE-MsgGUID: rE8Q1mIcSOy30oBkWYMrTA==
+ t=1759416857; x=1790952857;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=esHaL/nbQVjjnP/fN3bttUkP0l/GfY8zwYDgQ5nb4kk=;
+ b=ZhjXhsKTw3PaWM4B9+2t5ktiiWU8EwASNXzSPGLxeEsVXexcnsSD8mrK
+ D4w7awRsOHO7ps8sYgD70qcXoaO7VDv7HH4LyYJ3K4A0a8szZ08+BOBRx
+ GnmYDBZ4gJwYzI1utkRCVSxHuil8achniCzxNx4htTWh7SDQtCLethCjM
+ KQCkBbXmf7QnY9iwYknD1gzrVYckemaC9f0mlSCRkvF9cU/EJ90KN/M7F
+ 02uYPfGJB77mUpkrkCsQY5Fp8QbeLYnw/Iydb7cnCXk//KMYq/Te51EFS
+ leOmDd5n/ghup2uOYjjqqSCW02wC9Gw2oGP+BA55uocH4YSGs4BYxp+ku w==;
+X-CSE-ConnectionGUID: +kSVhfjnTXKmYwYvexKoVA==
+X-CSE-MsgGUID: hzqSC4SZShedOxrrVxHwdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61660881"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61660881"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 07:54:13 -0700
+X-CSE-ConnectionGUID: Ectam2NaQVKqo+Ly/fRk3w==
+X-CSE-MsgGUID: POcTuOlIRPG8F1LcMuENbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="184352374"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.192])
- ([10.245.245.192])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 07:51:06 -0700
-Message-ID: <b412fb91-8545-466a-8102-d89c0f2758a7@linux.intel.com>
-Date: Thu, 2 Oct 2025 16:51:03 +0200
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="178865798"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 07:54:12 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 2 Oct 2025 07:54:11 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Thu, 2 Oct 2025 07:54:11 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.42) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Thu, 2 Oct 2025 07:54:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l3uxx4ETQ5Ecifv0FzXO0ZExWpXTJlJAdgT6e/5oSodUHHSSK+zBmWgEZgL7oam0r5L8yUo1iI5FJp31XU0M7TxDJoH0AS+r9fMDysLVbmN+lwfuZqYY8zGXdnzZiR2mmLK2Iq9+OoAojGNaj8pR438U/KclX7mb1np2NbzhAUFNFPtryzKA2OmfBXq8kOgF2q4Ll54BlkKh9XntVdvgnL4NmOtYqZ9c4F9nUc5stS8LcmK005V7PI3lNnS1mknLVYWNmA92an/MHlfzHYySi4Zx4nyq3ov+9dEkGbcDmU3cyrl7wpS9lg2lHBdhQLZt7st5RrPqBZkvxepNGDFcpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SIqs2rZw7tR2E/vAgFT+wg+ANS5wYo6U6WKnr3xoKNc=;
+ b=VhwjeFY7AMuhzOL5cYUj7MA9yNjUXFvI/1JdSa6bALNpBB+Dc0GzuGvoFdLdjtGmAnHD+BqmUofp2uheHO99xjoIgFATTX+FEWSDM/Xhw0bhss3ESeFNCFT44l4P0t/nnAYnVbe6Nbt/HPnS+spoRcAWSuX53j5sUUWnkYfxTRy0N2kgxjVLbQ3CsNdup1tQVBSmVq1Ei1bWIZ9FekC8JuOWHCyWd1S6VIG3B+63FZTlABeYX+vZaet8UrLhoAcV4JyOFTYsAqSn63JglAVnDvDiurEbCSd4cGP3QWWiVRx5PyYns/NIhnRMixK7174zGQkfu7SePRbfqwjPhfixJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
+ by DS0PR11MB7629.namprd11.prod.outlook.com (2603:10b6:8:146::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.16; Thu, 2 Oct
+ 2025 14:54:06 +0000
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::8602:e97d:97d7:af09%6]) with mapi id 15.20.9137.018; Thu, 2 Oct 2025
+ 14:54:05 +0000
+Message-ID: <7c80681f-ae86-43f8-a128-f7a63e03a79b@intel.com>
+Date: Thu, 2 Oct 2025 16:54:01 +0200
 User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
+Subject: Re: [PATCH v3 29/36] drm/xe: Move queue init before LRC creation
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20250929025542.1486303-1-matthew.brost@intel.com>
+ <20250929025542.1486303-30-matthew.brost@intel.com>
+ <1d5a68ac-290a-487e-a02a-a9e61167d538@intel.com>
+ <aN4rl7zRKf5ex/fF@lstrano-desk.jf.intel.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
+From: "Lis, Tomasz" <tomasz.lis@intel.com>
+In-Reply-To: <aN4rl7zRKf5ex/fF@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VE1PR08CA0019.eurprd08.prod.outlook.com
+ (2603:10a6:803:104::32) To IA3PR11MB9226.namprd11.prod.outlook.com
+ (2603:10b6:208:574::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|DS0PR11MB7629:EE_
+X-MS-Office365-Filtering-Correlation-Id: 949d7d27-2901-4129-38a3-08de01c388af
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bSs3NThSMDBPVUs5eDlwakFuL0NWN3ptNnhwVDltVmhUbnJDZU5CNy9KaERI?=
+ =?utf-8?B?V2Y5RW5JQ1lGakpQeFRGV2VudnJMekY1YWFSU3gvVE5Ed0FwUmptUFlSNytv?=
+ =?utf-8?B?cXBpN3hXNnRpWDRUZTRyYXg4WHIxM1FMY0xGc0s5ZWRpWjF2TUdZeU5PR2ti?=
+ =?utf-8?B?V2dzYnVtOEc1S2J6ZzlheWREMUVmQ3VSQlBZWGtraUkyNmNEZFlYYUExWjBo?=
+ =?utf-8?B?amVOVWs4d0E2Mlk1YlozYmpMRVUzT0RldGJzNnk1YkgrT1htRld2NUdKZnZp?=
+ =?utf-8?B?N1Z3ZzY0Y1Uwc0FSdFVUdHdsKzdtOEVCdzVkN3hrNHNvVmVTcGwxSTk5SkRP?=
+ =?utf-8?B?UzdidXFLOElrY3ExT056ZUkzUzZROEg1Mk1Yb2NqYmFYYmtTakNDdTVseDlw?=
+ =?utf-8?B?ck80SGFVNE5qNUZsaHRibTJjeFJJTGJCTTFMRUR3M053aGtFMkhrMzYxZzVl?=
+ =?utf-8?B?dENBOUxaSG5oZGFPMmdIUlFjbWlIcVlMUisyTTRoalZDYzJKVksvaUw3ckNY?=
+ =?utf-8?B?eVNtMHltQnVkNUhTZWtUTHRpRHl0Y3lraDhmSFJJOWxaUTRVOTBEYWJGcGVM?=
+ =?utf-8?B?TzZUU1JzMHhDZWtqVnlac3FHcURvZTdNQithOVRpdWFZMDhOUUlrYStSTmJq?=
+ =?utf-8?B?cWFrcG9BdzRJTWoxSExEVXg0TkJuNk9FS1VhTkhDeG9CVmNETEFCSmV4SEVG?=
+ =?utf-8?B?Q0hlTjRsUkRzb3pBcS9YeWI5SGpndERoMEsxb3hFekp2V3cwM1ZvMjU0T0ta?=
+ =?utf-8?B?dExvQmZxK0dCQTVGOVo1aG5kbHd3OXhKZndGdnBrSWVXalQxYVlBanREUnV4?=
+ =?utf-8?B?OUE1akN1NGhBVThKRHZrUTJrMFc3OXMyTWgyWW1ySFJlWEpZalNlUzE2eDhr?=
+ =?utf-8?B?cTBPVzJpN0lPY1NBV0dma2hLWHMyTnFSUTJLMk5TZ1RqbE1OQjA3RlNqenhl?=
+ =?utf-8?B?TWFlYXZYVzR6ZFJYaUh5UGxVcTdMNG5YRSt5MVRjdDhJZ1NWWTZNM21ON0Zz?=
+ =?utf-8?B?bG9Xcm5vUGV1SXhqbHd4aHZUemtYRUpERWpkRjRWTW9FazVxeHQxcVIxV1VR?=
+ =?utf-8?B?eFAyMmRYakRxK3BLNFp0TEZMRzhOY0c3dnRHRWpnd0NKaE1vUzVBYnYrc003?=
+ =?utf-8?B?ZnJkWXowMVpwWHU2VEpsMWJ1RFBUcDY5MUhlblMxMlBBandhRlBuNGV0Nzlu?=
+ =?utf-8?B?aHllbGNwTnkxRyt6RTlHNVdyU2pKaThEWjh4K3E5VEJzREdha29FeHBtLzc2?=
+ =?utf-8?B?aEdrOG9ybTZxUlNxTE1tdWNnTmlGdjR5c1J0QVNFSWpKOUNrVkRoZGdkY2ZM?=
+ =?utf-8?B?YWE0RnVNbmM0N21FNm9od2RGWS9SeFZoeHRPOWU1QU5qcUJGZWhpWnVVTDRQ?=
+ =?utf-8?B?R0FzWVViRXhWVEwwVUNNUE9Yc3gvTkVESHVZN3hjajJtT2lqUEtMNXlmemkx?=
+ =?utf-8?B?djdRSEYyYnRHK25EV3ErdmJsYXNqTFIweXo4TlY4SFBoOU1sUGV4MTBkR1Rt?=
+ =?utf-8?B?WGZqMmJkVS8rcmF0TE1Hcnh5TG9SS0liYUQ4dlJkeDc4SjVhYitHZ1E0Ly8v?=
+ =?utf-8?B?TmxjckorSzNYbmZPYTNFTWJXbk5tYnVPTmpYVXZqbWRTY2xYVzJ1ZUpWWWlz?=
+ =?utf-8?B?VkM0U1hGSDQxbk1YTlpSZkZpMmNORzJrM0NsQW5ON0xpb3V0RHNoeDFNUGxk?=
+ =?utf-8?B?bDhIWnY5d3ZTckVXOWR0TkV5SG0yVUQ3T1AyMFhaRUFsRitMUTRlaUltNEZP?=
+ =?utf-8?B?VHdsVEF6Zkh0Vkx6OXQvVnovSHdvaUtaVlN0anZOYWkwNTFCaGwxckhqREdl?=
+ =?utf-8?B?T1gvRko4aEo5dTNHSng4d1kvR3V5YWpIRExSajkxMGk5Sk1ndmdRa0IxMTVs?=
+ =?utf-8?B?dVVVRXA4eVFrSW5INTBvcHhJWHFXUzNZK3N2ZDBXUm0vNTExNER4L3dPaWor?=
+ =?utf-8?Q?ffXQ3NSmc4dWdJe5TffbXkWQJ4lByS90?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGpPSFVGVmEybktzVXBqZ1pjQW5ENlgwRE5QakJwTXJ5ZmxacFUrNEZJcWZu?=
+ =?utf-8?B?TU5NZE9jc2xUVWJJaWJuRGRGY3YzOWVFV1VCbTFKUk5kWGtBeGQvcnBrU0JH?=
+ =?utf-8?B?ZGFtVnpyTnNqZUwySFl1RDVlb3ZlYWhISXo1TlQ0bFNRanhhMTJxSlA5aWJJ?=
+ =?utf-8?B?K3ZVVUozSUNWVmVCRkVxeXlYcDZTVFFyWmRVZ3QzeVhjcDVPRzZnbFpxUnNP?=
+ =?utf-8?B?TEtsajY4Y1Y0aVlwM3lJU2dhQ3N6WWlXbjNmdE1EUXYxcVFuK1lvR01GMTJP?=
+ =?utf-8?B?cm1IUjg0Yzl2ZlNEaVZ1N1dzUkJyM3l5Ky9ZcEl6c0I5NjlWVXY4MERnbDNa?=
+ =?utf-8?B?WW9TTVZ4RVRybnRtRHErckQrWWNBbDNBUko0MWFkY0EvU3RPMUFwRDZ0QWdi?=
+ =?utf-8?B?K1h4VnlKaFh5NUwyMnpLUXJCd1FRSUVVMUhLSVBSQXB5ZDFZRDFhbGltY1NS?=
+ =?utf-8?B?cG1uVUNJYk95anhpT3ZNUFl0WS8yNXhtRFZqVTdoS0s4LzZKdm5HVXhCak10?=
+ =?utf-8?B?cTNFd1dEcXdzZFRMMmxZTzFYZnJyYmpJODN5RkcrdHpxdUVpa29Ic0VUYnM1?=
+ =?utf-8?B?cTJaZDQ1MUtRUEN6L2l5SExCM0hOZC9VckdIdTBSRkdxRzI2TGtTbVAwZmd4?=
+ =?utf-8?B?Slp3WVpRZEY5OXpaZnRhaEpVYVRTbGpaVi94ZXBydGx2eDZIL21mbFFnMGMz?=
+ =?utf-8?B?NEE0TmQ3ZU5lMHJJWVpmNE5BZlFPQXlvY2h3ZWMvL1lBaUNJdXd1dXcyYTJK?=
+ =?utf-8?B?Y2wxbzU2cnhPZ0VDbkhWVUlIbFVjaVFZbXJiQU9qeWdvbWxYZS8rTjFlY0xE?=
+ =?utf-8?B?T1dTM2FWakcvdWc5ZnFxamVPb2xreEhZS2NmYkNPSngrYitxcEdEbW80QWxT?=
+ =?utf-8?B?THFIM3pHRGNDQXkrOWI1NTdiL0hrMWZPVnlzWmRpSWFnVXRibzZ6ZXJWNHM4?=
+ =?utf-8?B?QjdnK000RW1YaXZaRmgzTTY1Z2szM3M4bUNlcmVTb2ZUREpIbzFMTGROQ2c4?=
+ =?utf-8?B?eGs2N0laVU5rNlVUQVFxaTVmSlllSWRlY2tzMEtKRm92bWFvYmtFZXJuRmNq?=
+ =?utf-8?B?Ykl6aUhNYUZtdnpncWVPMm5RQnpOcTdVa2wvS3dzVVQ2Tkx1dkdPZ1QzUXk0?=
+ =?utf-8?B?YjRnZjcwQVh5RHNSLzBWR2FDVUtmNnJCVWdlNzBxRXZMUktSZkplOTgzaDhF?=
+ =?utf-8?B?dWNKTDVpT0RyZ0NIZnFBcmtzOXhaU1ZKTDFnTmJQcVF0Z3Iydk9FSWNteHp3?=
+ =?utf-8?B?SDFhRld0cXNhTFhrZnFjeVRkc2w1N3B2ZXlDd3NGaURlZFptQTYvY1V4dElG?=
+ =?utf-8?B?QUJpSFVScE1IYkllZFhjYURBajBtMWQ4Q21zNE9XaVFZK2ZUNUlDRDhvTElQ?=
+ =?utf-8?B?dmRHTG1rUHF1dUp0QlhWUW1BNzFSa0JycnpJOFRXRXJ1Rnk2dUgyV3BtclpS?=
+ =?utf-8?B?QUhWejBsdTZPM0NqTnk1SlpSRnVrdWFISTJXVThUM2tCSmJKYWswRlNNWGJF?=
+ =?utf-8?B?eDQ3eUtqTStNMnhPbGZNakhnRS9Vamg4bW5WNWkwc2pHNmlrQVhiZGd4ZExp?=
+ =?utf-8?B?WmxzZUJORG9xUTZuSE1sM0JYdDloakJhckxuK2xtQnJhelFSelBLbGVIMnZw?=
+ =?utf-8?B?NFFXL3I3K0dJeUpOTDRoNHFJNVAwMVRTSG8yV1V6ellZWjNobytWYUh2TU9S?=
+ =?utf-8?B?MTZtRmVOR3FSRzZRR25EN0h6U05TMVRyRlFweEhmTlF6Zk8wYjNpS2prSnV4?=
+ =?utf-8?B?TlI4UktGbnNTL0hUenBIMWhrNzVXc1JCdzEyTElSUkZCL2Z4aXVLSy8xL2dz?=
+ =?utf-8?B?NHY4ZURvdS9mNDdzb09aeTFkNDdYOFdZaGVUMWNaam04VkpLeWRpem5aZG0r?=
+ =?utf-8?B?NTJJWjNuenhaRXY2RFY1VGVnY3Jibzc4UEtsRE1FREd3RDJ2RHNDWnNWREdL?=
+ =?utf-8?B?cmhSOVRnS0NwU1dUUHR6RlU3QzFhU1JzSytMN2I3ZGtEWjZmMnpCRGY2Nmdu?=
+ =?utf-8?B?UDJlSS9XdWh0eXJXbEhSRXk3UkYxZk80Qk9YYTRUQXZNa1BDM0RWeWdIYWFO?=
+ =?utf-8?B?NnAxQm9SOW1IMkhXaEw4Q2NmdVcveWdOb3hwOEhtSkU4QTY4SUZVd1o4U3Fr?=
+ =?utf-8?Q?TjYYRsZ6WEQHurVMYsg9uvmAD?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 949d7d27-2901-4129-38a3-08de01c388af
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2025 14:54:05.8822 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fx6E9VeCcOjDrRV4xjG+g1Ior/EehyrjF2IS8cGNk46pPJrAI+6LGBLxOHcWRpeuN2rHEcPGhOuPeAy5GIQlHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7629
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,524 +196,295 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
 
-First pull request for v6.19!
+On 10/2/2025 9:36 AM, Matthew Brost wrote:
+> On Thu, Oct 02, 2025 at 02:44:47AM +0200, Lis, Tomasz wrote:
+>> On 9/29/2025 4:55 AM, Matthew Brost wrote:
+>>> A queue must be in the submission backend's tracking state before the
+>>> LRC is created to avoid a race condition where the LRC's GGTT addresses
+>>> are not properly fixed up during VF post-migration recovery.
+>>>
+>>> Move the queue initialization—which adds the queue to the submission
+>>> backend's tracking state—before LRC creation.
+>>>
+>>> v2:
+>>>    - Wait on VF GGTT fixes before creating LRC (testing)
+>>>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_exec_queue.c        | 43 +++++++++++++++++------
+>>>    drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 39 +++++++++++++++++++-
+>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 ++
+>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
+>>>    drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
+>>>    drivers/gpu/drm/xe/xe_lrc.h               | 10 ++++++
+>>>    7 files changed, 90 insertions(+), 13 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>> index 81f707d2c388..3db8e64d9d13 100644
+>>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>>> @@ -15,6 +15,7 @@
+>>>    #include "xe_dep_scheduler.h"
+>>>    #include "xe_device.h"
+>>>    #include "xe_gt.h"
+>>> +#include "xe_gt_sriov_vf.h"
+>>>    #include "xe_hw_engine_class_sysfs.h"
+>>>    #include "xe_hw_engine_group.h"
+>>>    #include "xe_hw_fence.h"
+>>> @@ -179,17 +180,32 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q)
+>>>    			flags |= XE_LRC_CREATE_RUNALONE;
+>>>    	}
+>>> +	err = q->ops->init(q);
+>>> +	if (err)
+>>> +		return err;
+>>> +
+>>> +	/*
+>>> +	 * This must occur after q->ops->init to avoid race conditions during VF
+>>> +	 * post-migration recovery, as the fixups for the LRC GGTT addresses
+>>> +	 * depend on the queue being present in the backend tracking structure.
+>>> +	 *
+>>> +	 * In addition to above, we must wait on inflight GGTT changes to
+>>> +	 * avoid writing out stale values here.
+>>> +	 */
+>>> +	xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
+>> So to avoid locks, we rely on the VF knowing it got migrated from the first
+>> moment after vCPU starts.
+>>
+>> On `qemu`, we do have it this way - when vCPU starts the 'MIGRATED' memirq
+>> is already filled.
+>>
+>> But what about other VM managers? What about future support of platforms
+>> without memirq?
+>>
+>> I don't think the availability of information that we've got migrated from
+>> the first vCPU cycle is guaranteed by any specification.
+>>
+> It is guarnetted byt the design of Xe.
 
-Best regards,
-~Maarten
+You mean by the PF part? Because generally, Xe cannot make guarantees 
+for how VMM works.
+
+When state is restored, one of the chunks is GuC state. After the GuC 
+state is restored, GuC is expected to send MIGRATED irq to the VM. It 
+sends the interrupt around the same time it answers to PF that state 
+restore completed. The vCPU is not started at that point. When it 
+finally starts, on qemu we see the interrupt set from the start. And 
+this should always be the case for memory-based IRQs - because the 
+interrupt data is stored in a VRAM buffer. However, in general, this 
+depends on how qemu implements the interrupt model. I wonder if there 
+are situations where that would become a problem.
 
 
-drm-misc-next-2025-10-02:
-drm-misc-next for v6.19:
+>
+>>>    	for (i = 0; i < q->width; ++i) {
+>>> -		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+>>> -		if (IS_ERR(q->lrc[i])) {
+>>> -			err = PTR_ERR(q->lrc[i]);
+>>> +		struct xe_lrc *lrc;
+>>> +
+>>> +		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
+>>> +				    q->msix_vec, flags);
+>> If migration happened at this place, it is still possible to create a
+>> context with wrong GGTT references in the one LRC which was already filled
+>> but not integrated into the queue yet.
+>>
+>> I don't think we can avoid races without a lock.
+>>
+> There might be a small race here, let me think about this. I will say
+> this change xe_exec_threads --r threads-many-queues though. Locking is
+> definitely not the way solve this though - reclaim rules are in play
+> here which make locking difficult and convoluted cross layer locks will
+> always get nacked by myself and others.
 
-UAPI Changes:
+Ok, if you can find a lockless solution again, that would be beneficial.
 
-Cross-subsystem Changes:
--  fbcon cleanups.
-- Make drivers depend on FB_TILEBLITTING instead of selecting it,
-  and hide FB_MODE_HELPERS.
+-Tomasz
 
-Core Changes:
-- More preparations for rust.
-- Throttle dirty worker with vblank
-- Use drm_for_each_bridge_in_chain_scoped in drm's bridge code and
-  assorted fixes.
-- Ensure drm_client_modeset tests are enabled in UML.
-- Rename ttm_bo_put to ttm_bo_fini, as a further step in removing the
-  TTM bo refcount.
-- Add POST_LT_ADJ_REQ training sequence.
-- Show list of removed but still allocated bridges.
-- Add a simulated vblank interrupt for hardware without it,
-  and add some helpers to use them in vkms and hypervdrm.
-
-Driver Changes:
-- Assorted small fixes, cleanups and updates to host1x, tegra,
-  panthor,   amdxdna, gud, vc4, ssd130x, ivpu, panfrost, panthor,
-  sysfb, bridge/sn65dsi86, solomon, ast, tidss.
-- Convert drivers from using .round_rate() to .determine_rate()
-- Add support for KD116N3730A07/A12, chromebook mt8189, JT101TM023,
-  LQ079L1SX01, raspberrypi 5" panels.
-- Improve reclocking on tegra186+ with nouveau.
-- Improve runtime pm in amdxdna.
-- Add support for HTX_PAI in imx.
-- Use a helper to calculate dumb buffer sizes in most drivers.
-The following changes since commit 0d9f0083f7a5a31d91d501467b499bb8c4b25bdf:
-
-  Merge tag 'v6.17-rc6' into drm-next (2025-09-15 17:51:07 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-10-02
-
-for you to fetch changes up to aa1c2b073ad23847dd2e7bdc7d30009f34ed7f59:
-
-  accel/ivpu: Fix DCT active percent format (2025-10-02 07:44:53 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for v6.19:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
--  fbcon cleanups.
-- Make drivers depend on FB_TILEBLITTING instead of selecting it,
-  and hide FB_MODE_HELPERS.
-
-Core Changes:
-- More preparations for rust.
-- Throttle dirty worker with vblank
-- Use drm_for_each_bridge_in_chain_scoped in drm's bridge code and
-  assorted fixes.
-- Ensure drm_client_modeset tests are enabled in UML.
-- Rename ttm_bo_put to ttm_bo_fini, as a further step in removing the
-  TTM bo refcount.
-- Add POST_LT_ADJ_REQ training sequence.
-- Show list of removed but still allocated bridges.
-- Add a simulated vblank interrupt for hardware without it,
-  and add some helpers to use them in vkms and hypervdrm.
-
-Driver Changes:
-- Assorted small fixes, cleanups and updates to host1x, tegra,
-  panthor,   amdxdna, gud, vc4, ssd130x, ivpu, panfrost, panthor,
-  sysfb, bridge/sn65dsi86, solomon, ast, tidss.
-- Convert drivers from using .round_rate() to .determine_rate()
-- Add support for KD116N3730A07/A12, chromebook mt8189, JT101TM023,
-  LQ079L1SX01, raspberrypi 5" panels.
-- Improve reclocking on tegra186+ with nouveau.
-- Improve runtime pm in amdxdna.
-- Add support for HTX_PAI in imx.
-- Use a helper to calculate dumb buffer sizes in most drivers.
-
-----------------------------------------------------------------
-Aaron Kling (2):
-      drm/nouveau: Support reclocking on gp10b
-      drm/nouveau: Support devfreq for Tegra
-
-Akhilesh Patil (1):
-      gpu: host1x: Use dev_err_probe() in probe path
-
-Andrzej Kacprowski (3):
-      accel/ivpu: Remove unused firmware boot parameters
-      accel/ivpu: Add support for user-managed preemption buffer
-      accel/ivpu: Fix doc description of job structure
-
-Athul Raj Kollareth (1):
-      drm: Replace the deprecated DRM_* logging macros in gem helper files
-
-Boris Brezillon (4):
-      drm/panfrost: Introduce uAPI for JM context creation
-      drm/panfrost: Introduce JM contexts for manging job resources
-      drm/panfrost: Expose JM context IOCTLs to UM
-      drm/panfrost: Display list of device JM contexts over debugfs
-
-Brahmajit Das (1):
-      drm/tegra: hdmi: sor: Fix error: variable ‘j’ set but not used
-
-Brian Masney (7):
-      drm/imx/ipuv3/imx-tve: convert from round_rate() to determine_rate()
-      drm/mcde/mcde_clk_div: convert from round_rate() to determine_rate()
-      drm/pl111: convert from round_rate() to determine_rate()
-      drm/stm/dw_mipi_dsi-stm: convert from round_rate() to determine_rate()
-      drm/stm/lvds: convert from round_rate() to determine_rate()
-      drm/sun4i/sun4i_hdmi_ddc_clk: convert from round_rate() to determine_rate()
-      drm/sun4i/sun4i_tcon_dclk: convert from round_rate() to determine_rate()
-
-Chia-I Wu (2):
-      drm/panthor: assign unique names to queues
-      drm/panthor: always set fence errors on CS_FAULT
-
-Christian König (1):
-      drm/ttm: rename ttm_bo_put to _fini v3
-
-Christopher Obbard (1):
-      drm/dp: clamp PWM bit count to advertised MIN and MAX capabilities
-
-Dmitry Baryshkov (2):
-      drm/vc4: hdmi: switch to generic CEC helpers
-      drm/tests: make sure drm_client_modeset tests are enabled
-
-Geert Uytterhoeven (1):
-      drm/bridge: imx8qxp-ldb: Remove dummy Runtime PM callback
-
-Guido Günther (3):
-      drm/panel: visionox-rm69299: Fix clock frequency for SHIFT6mq
-      drm/panel: visionox-rm69299: Don't clear all mode flags
-      drm/panel: visionox-rm69299: Add backlight support
-
-Iker Pedrosa (5):
-      drm/solomon: Move calls to drm_gem_fb_end_cpu*()
-      drm/solomon: Use drm_WARN_ON_ONCE instead of WARN_ON
-      drm/solomon: Simplify mode_valid() using DRM helper
-      drm/solomon: Simplify get_modes() using DRM helper
-      drm/solomon: Enforce one assignment per line
-
-Jacek Lawrynowicz (4):
-      accel/ivpu: Refactor priority_bands_show for readability
-      accel/ivpu: Rework bind/unbind of imported buffers
-      accel/ivpu: Fix page fault in ivpu_bo_unbind_all_bos_from_context()
-      accel/ivpu: Improve BO alloc/free warnings
-
-James Flowers (1):
-      drm/ssd130x: Use kmalloc_array() instead of kmalloc()
-
-John Ripple (1):
-      drm/bridge: ti-sn65dsi86: Add support for DisplayPort mode with HPD
-
-Karol Wachowski (5):
-      accel/ivpu: Reset cmdq->db_id on register failure
-      accel/ivpu: Ensure rpm_runtime_put in case of engine reset/resume fail
-      accel/ivpu: Update JSM firmware API to latest 3.32.5 version
-      accel/ivpu: Split FW runtime and global memory buffers
-      accel/ivpu: Fix DCT active percent format
-
-Lizhi Hou (3):
-      accel/amdxdna: Fix an integer overflow in aie2_query_ctx_status_array()
-      accel/amdxdna: Call dma_buf_vmap_unlocked() for imported object
-      accel/amdxdna: Enhance runtime power management
-
-Luc Ma (1):
-      drm/sched: backend_ops doc fix
-
-Luca Ceresoli (14):
-      drm/display: bridge-connector: use scope-specific variable for the bridge pointer
-      drm/bridge: add drm_for_each_bridge_in_chain_scoped()
-      drm/display: bridge-connector: use drm_for_each_bridge_in_chain_scoped()
-      drm/atomic: use drm_for_each_bridge_in_chain_scoped()
-      drm/bridge: use drm_for_each_bridge_in_chain_scoped()
-      drm/bridge: remove drm_for_each_bridge_in_chain()
-      drm/bridge: add drm_for_each_bridge_in_chain_from()
-      drm/omap: use drm_for_each_bridge_in_chain_from()
-      drm/bridge: get the bridge returned by drm_bridge_get_next_bridge()
-      drm/bridge: put the bridge returned by drm_bridge_get_next_bridge()
-      drm/imx: parallel-display: put the bridge returned by drm_bridge_get_next_bridge()
-      drm/bridge: add list of removed refcounted bridges
-      drm/debugfs: show lingering bridges
-      drm/bridge: adapt drm_bridge_add/remove() docs, mention the lingering list
-
-Luca Weiss (2):
-      drm/sysfb: simpledrm: Sort headers correctly
-      fbdev/simplefb: Sort headers correctly
-
-Lyude Paul (2):
-      drm/gem/shmem: Extract drm_gem_shmem_init() from drm_gem_shmem_create()
-      drm/gem/shmem: Extract drm_gem_shmem_release() from drm_gem_shmem_free()
-
-Mainak Sen (1):
-      gpu: host1x: Fix race in syncpt alloc/free
-
-Marek Vasut (4):
-      drm/panel: ilitek-ili9881c: Turn ILI9881C_COMMAND_INSTR() parameters lowercase
-      dt-bindings: ili9881c: Document 5" Raspberry Pi 720x1280
-      drm/panel: ilitek-ili9881c: Add configuration for 5" Raspberry Pi 720x1280
-      dt-bindings: ili9881c: Allow port subnode
-
-Maxime Ripard (6):
-      drm/crtc: Drop no_vblank bit field
-      drm/tidss: Convert to drm logging
-      drm/tidss: Remove ftrace-like logs
-      drm/tidss: crtc: Change variable name
-      drm/tidss: crtc: Implement destroy_state
-      drm/tidss: crtc: Cleanup reset implementation
-
-Mikko Perttunen (1):
-      gpu: host1x: Wait prefences outside MLOCK
-
-Philipp Stanner (1):
-      drm/sched/tests: Remove relict of done_list
-
-Ruben Wauters (2):
-      drm: gud: replace WARN_ON/WARN_ON_ONCE with drm versions
-      drm/gud: fix accidentally deleted IS_ERR() check
-
-Shengjiu Wang (5):
-      dt-bindings: display: imx: add HDMI PAI for i.MX8MP
-      ALSA: Add definitions for the bits in IEC958 subframe
-      drm/bridge: dw-hdmi: Add API dw_hdmi_to_plat_data() to get plat_data
-      drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958() for iec958 format
-      drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
-
-Steffen Trumtrar (3):
-      dt-bindings: vendor-prefixes: Add JuTouch Technology Co, Ltd
-      dt-bindings: display: simple: Add JuTouch JT101TM023 panel
-      drm/panel: simple: add JuTouch JT101TM023
-
-Steven Price (1):
-      drm/panfrost: Bump the minor version number
-
-Svyatoslav Ryhel (2):
-      dt-bindings: display: panel: document Sharp LQ079L1SX01 panel
-      gpu/drm: panel: Add Sharp LQ079L1SX01 panel support
-
-Thomas Zimmermann (45):
-      Merge drm/drm-next into drm-misc-next
-      drm/fb-helper: Synchronize dirty worker with vblank
-      fbcon: Fix empty lines in fbcon.h
-      fbcon: Rename struct fbcon_ops to struct fbcon_par
-      fbcon: Set rotate_font callback with related callbacks
-      fbcon: Move fbcon callbacks into struct fbcon_bitops
-      fbcon: Streamline setting rotated/unrotated bitops
-      drm/sysfb: Add custom plane state
-      drm/sysfb: Lookup blit function during atomic check
-      drm/format-helper: Remove drm_fb_blit()
-      fbdev: Make drivers depend on FB_TILEBLITTING
-      fbdev: Turn FB_MODE_HELPERS into an internal config option
-      drm/ast: Move display-clock tables to per-Gen source files
-      drm/ast: Move mode-detection helpers to Gen2 source files
-      drm/ast: Split ast_detect_tx_chip() per chip generation
-      drm/ast: Prepare per-Gen device initialization
-      drm/ast: Move Gen1 device initialization into separate helper
-      drm/ast: Move Gen2 device initialization into separate helper
-      drm/ast: Move Gen3 device initialization into separate helper
-      drm/ast: Move Gen4 device initialization into separate helper
-      drm/ast: Move Gen5 device initialization into separate helper
-      drm/ast: Move Gen6 device initialization into separate helper
-      drm/ast: Move Gen7 device initialization into separate helper
-      drm/ast: Remove generic device initialization
-      drm/dumb-buffers: Sanitize output on errors
-      drm/dumb-buffers: Provide helper to set pitch and size
-      drm/gem-dma: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/gem-shmem: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/exynos: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/imx/ipuv3: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/loongson: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/msm: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/nouveau: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/omapdrm: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/renesas/rcar-du: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/rockchip: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/tegra: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/vmwgfx: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/xe: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/xlnx: Compute dumb-buffer sizes with drm_mode_size_dumb()
-      drm/gma500: Remove unused helper psb_fbdev_fb_setcolreg()
-      drm/vblank: Add vblank timer
-      drm/vblank: Add CRTC helpers for simple use cases
-      drm/vkms: Convert to DRM's vblank timer
-      drm/hypervdrm: Use vblank timer
-
-Tomasz Rusinowicz (1):
-      accel/ivpu: Enable MCA ECC signalling based on MSR
-
-Vamsee Vardhan Thummala (1):
-      gpu: host1x: Allow loading tegra-drm without enabled engines
-
-Ville Syrjälä (2):
-      drm/dp: Add definitions for POST_LT_ADJ training sequence
-      drm/dp: Add POST_LT_ADJ_REQ helpers
-
-Zhijian Yan (2):
-      drm/panel: Add support for KD116N3730A07
-      drm/panel: Add support for KD116N3730A12
-
-Zhongtian Wu (1):
-      drm/panel-edp: Add several panel configurations for mt8189 Chromebook
-
- .clang-format                                      |    2 +-
- .../display/bridge/fsl,imx8mp-hdmi-tx.yaml         |   12 +
- .../bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml  |   69 ++
- .../bindings/display/panel/ilitek,ili9881c.yaml    |    2 +
- .../bindings/display/panel/panel-simple.yaml       |    2 +
- .../bindings/display/panel/sharp,lq079l1sx01.yaml  |   99 ++
- .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
- Documentation/gpu/drm-kms-helpers.rst              |   12 +
- Documentation/gpu/todo.rst                         |   37 +
- drivers/accel/amdxdna/Makefile                     |    1 +
- drivers/accel/amdxdna/aie2_ctx.c                   |   42 +-
- drivers/accel/amdxdna/aie2_message.c               |   28 +-
- drivers/accel/amdxdna/aie2_pci.c                   |   85 +-
- drivers/accel/amdxdna/aie2_pci.h                   |    3 +-
- drivers/accel/amdxdna/aie2_smu.c                   |   28 +-
- drivers/accel/amdxdna/amdxdna_ctx.c                |   62 +-
- drivers/accel/amdxdna/amdxdna_gem.c                |   47 +-
- drivers/accel/amdxdna/amdxdna_mailbox.c            |   13 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |   56 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.h            |    2 +
- drivers/accel/amdxdna/amdxdna_pm.c                 |   94 ++
- drivers/accel/amdxdna/amdxdna_pm.h                 |   18 +
- drivers/accel/ivpu/ivpu_debugfs.c                  |   38 +-
- drivers/accel/ivpu/ivpu_drv.c                      |    6 +-
- drivers/accel/ivpu/ivpu_fw.c                       |  221 ++--
- drivers/accel/ivpu/ivpu_fw.h                       |   14 +-
- drivers/accel/ivpu/ivpu_gem.c                      |  115 +-
- drivers/accel/ivpu/ivpu_gem.h                      |   10 +-
- drivers/accel/ivpu/ivpu_hw.c                       |   59 +-
- drivers/accel/ivpu/ivpu_hw.h                       |   10 +-
- drivers/accel/ivpu/ivpu_hw_btrs.c                  |    2 +-
- drivers/accel/ivpu/ivpu_hw_btrs.h                  |    2 +-
- drivers/accel/ivpu/ivpu_job.c                      |  108 +-
- drivers/accel/ivpu/ivpu_job.h                      |   46 +-
- drivers/accel/ivpu/ivpu_mmu_context.c              |    2 +-
- drivers/accel/ivpu/ivpu_pm.c                       |   11 +-
- drivers/accel/ivpu/vpu_jsm_api.h                   |  513 +++++----
- drivers/gpu/drm/Makefile                           |    3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |    2 +-
- drivers/gpu/drm/ast/Makefile                       |    3 +-
- drivers/gpu/drm/ast/ast_2000.c                     |  101 ++
- drivers/gpu/drm/ast/ast_2100.c                     |   85 ++
- drivers/gpu/drm/ast/ast_2200.c                     |   85 ++
- drivers/gpu/drm/ast/ast_2300.c                     |  128 +++
- drivers/gpu/drm/ast/ast_2400.c                     |   93 ++
- drivers/gpu/drm/ast/ast_2500.c                     |   98 ++
- drivers/gpu/drm/ast/ast_2600.c                     |   63 ++
- drivers/gpu/drm/ast/ast_drv.c                      |   67 +-
- drivers/gpu/drm/ast/ast_drv.h                      |   75 +-
- drivers/gpu/drm/ast/ast_main.c                     |  268 -----
- drivers/gpu/drm/ast/ast_mode.c                     |    4 +-
- drivers/gpu/drm/ast/ast_tables.h                   |   60 --
- drivers/gpu/drm/bridge/imx/Kconfig                 |   11 +
- drivers/gpu/drm/bridge/imx/Makefile                |    1 +
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c       |  158 +++
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c        |   65 +-
- drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c           |    7 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-gp-audio.c |    5 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   18 +-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |  112 ++
- drivers/gpu/drm/display/drm_bridge_connector.c     |   11 +-
- drivers/gpu/drm/display/drm_dp_helper.c            |   76 +-
- drivers/gpu/drm/drm_atomic.c                       |    3 +-
- drivers/gpu/drm/drm_bridge.c                       |   52 +-
- drivers/gpu/drm/drm_client_modeset.c               |   44 +
- drivers/gpu/drm/drm_dumb_buffers.c                 |  170 ++-
- drivers/gpu/drm/drm_fb_helper.c                    |   30 +-
- drivers/gpu/drm/drm_format_helper.c                |   91 --
- drivers/gpu/drm/drm_gem.c                          |   16 +-
- drivers/gpu/drm/drm_gem_dma_helper.c               |    9 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c             |  136 ++-
- drivers/gpu/drm/drm_gem_vram_helper.c              |    6 +-
- drivers/gpu/drm/drm_vblank.c                       |  172 ++-
- drivers/gpu/drm/drm_vblank_helper.c                |  176 ++++
- drivers/gpu/drm/exynos/exynos_drm_gem.c            |    8 +-
- drivers/gpu/drm/gma500/fbdev.c                     |   43 -
- drivers/gpu/drm/gud/gud_connector.c                |    8 +-
- drivers/gpu/drm/gud/gud_pipe.c                     |   10 +-
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c        |   11 +
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |    4 +-
- drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |   29 +-
- drivers/gpu/drm/imx/ipuv3/imx-tve.c                |   17 +-
- drivers/gpu/drm/imx/ipuv3/parallel-display.c       |    4 +-
- drivers/gpu/drm/loongson/lsdc_gem.c                |   31 +-
- drivers/gpu/drm/mcde/mcde_clk_div.c                |   13 +-
- drivers/gpu/drm/msm/msm_gem.c                      |   27 +-
- drivers/gpu/drm/nouveau/Kconfig                    |    1 +
- drivers/gpu/drm/nouveau/include/nvkm/core/tegra.h  |    2 +
- drivers/gpu/drm/nouveau/include/nvkm/subdev/clk.h  |    1 +
- drivers/gpu/drm/nouveau/nouveau_bo.h               |    2 +-
- drivers/gpu/drm/nouveau/nouveau_display.c          |    7 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c              |    2 +-
- drivers/gpu/drm/nouveau/nouveau_platform.c         |   20 +
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |    1 +
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c |    4 +
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/Kbuild     |    2 +
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a.c    |    5 +
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a.h    |    1 +
- .../drm/nouveau/nvkm/subdev/clk/gk20a_devfreq.c    |  320 ++++++
- .../drm/nouveau/nvkm/subdev/clk/gk20a_devfreq.h    |   24 +
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/gm20b.c    |    5 +
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/gp10b.c    |  185 ++++
- drivers/gpu/drm/nouveau/nvkm/subdev/clk/gp10b.h    |   18 +
- drivers/gpu/drm/omapdrm/omap_encoder.c             |    4 +-
- drivers/gpu/drm/omapdrm/omap_gem.c                 |   15 +-
- drivers/gpu/drm/panel/Kconfig                      |   15 +
- drivers/gpu/drm/panel/Makefile                     |    1 +
- drivers/gpu/drm/panel/panel-edp.c                  |    8 +
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      | 1098 ++++++++++++--------
- drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c    |  225 ++++
- drivers/gpu/drm/panel/panel-simple.c               |   35 +
- drivers/gpu/drm/panel/panel-visionox-rm69299.c     |   71 +-
- drivers/gpu/drm/panfrost/panfrost_device.h         |   11 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c            |  152 ++-
- drivers/gpu/drm/panfrost/panfrost_job.c            |  201 +++-
- drivers/gpu/drm/panfrost/panfrost_job.h            |   25 +-
- drivers/gpu/drm/panthor/panthor_drv.c              |    2 +-
- drivers/gpu/drm/panthor/panthor_sched.c            |   40 +-
- drivers/gpu/drm/panthor/panthor_sched.h            |    3 +-
- drivers/gpu/drm/pl111/pl111_display.c              |   13 +-
- drivers/gpu/drm/qxl/qxl_gem.c                      |    2 +-
- drivers/gpu/drm/radeon/radeon_gem.c                |    2 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c      |    7 +-
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c        |   12 +-
- drivers/gpu/drm/scheduler/tests/sched_tests.h      |    3 +-
- drivers/gpu/drm/solomon/ssd130x.c                  |   86 +-
- drivers/gpu/drm/stm/dw_mipi_dsi-stm.c              |   14 +-
- drivers/gpu/drm/stm/lvds.c                         |   12 +-
- drivers/gpu/drm/sun4i/sun4i_hdmi_ddc_clk.c         |   12 +-
- drivers/gpu/drm/sun4i/sun4i_tcon_dclk.c            |   18 +-
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h           |   34 +-
- drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          |  153 ++-
- drivers/gpu/drm/sysfb/simpledrm.c                  |    3 +-
- drivers/gpu/drm/sysfb/vesadrm.c                    |    3 +-
- drivers/gpu/drm/tegra/gem.c                        |    8 +-
- drivers/gpu/drm/tegra/hdmi.c                       |    4 +-
- drivers/gpu/drm/tegra/sor.c                        |    4 +-
- drivers/gpu/drm/tests/.kunitconfig                 |    2 +
- drivers/gpu/drm/tidss/tidss_crtc.c                 |   33 +-
- drivers/gpu/drm/tidss/tidss_dispc.c                |   10 +-
- drivers/gpu/drm/tidss/tidss_drv.c                  |   16 -
- drivers/gpu/drm/tidss/tidss_kms.c                  |    4 -
- drivers/gpu/drm/tidss/tidss_plane.c                |    8 -
- drivers/gpu/drm/ttm/tests/ttm_bo_test.c            |   12 +-
- drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |   60 +-
- drivers/gpu/drm/ttm/ttm_bo.c                       |   15 +-
- drivers/gpu/drm/ttm/ttm_bo_internal.h              |    2 +
- drivers/gpu/drm/vc4/Kconfig                        |    1 +
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |  137 +--
- drivers/gpu/drm/vc4/vc4_hdmi.h                     |    1 -
- drivers/gpu/drm/vkms/vkms_crtc.c                   |   83 +-
- drivers/gpu/drm/vkms/vkms_drv.h                    |    2 -
- drivers/gpu/drm/vmwgfx/vmwgfx_gem.c                |    2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_surface.c            |   21 +-
- drivers/gpu/drm/xe/xe_bo.c                         |   10 +-
- drivers/gpu/drm/xlnx/zynqmp_kms.c                  |    7 +-
- drivers/gpu/host1x/bus.c                           |   12 +
- drivers/gpu/host1x/dev.c                           |   11 +-
- drivers/gpu/host1x/hw/channel_hw.c                 |  112 +-
- drivers/gpu/host1x/syncpt.c                        |    4 +-
- drivers/video/fbdev/Kconfig                        |    8 +-
- drivers/video/fbdev/core/Kconfig                   |    2 +-
- drivers/video/fbdev/core/bitblit.c                 |  122 +--
- drivers/video/fbdev/core/fbcon.c                   |  459 ++++----
- drivers/video/fbdev/core/fbcon.h                   |   17 +-
- drivers/video/fbdev/core/fbcon_ccw.c               |  151 +--
- drivers/video/fbdev/core/fbcon_cw.c                |  151 +--
- drivers/video/fbdev/core/fbcon_rotate.c            |   47 +-
- drivers/video/fbdev/core/fbcon_rotate.h            |   18 +-
- drivers/video/fbdev/core/fbcon_ud.c                |  167 +--
- drivers/video/fbdev/core/softcursor.c              |   18 +-
- drivers/video/fbdev/core/tileblit.c                |   32 +-
- drivers/video/fbdev/simplefb.c                     |    6 +-
- include/drm/bridge/dw_hdmi.h                       |   11 +-
- include/drm/display/drm_dp.h                       |    3 +
- include/drm/display/drm_dp_helper.h                |    8 +
- include/drm/drm_bridge.h                           |   61 +-
- include/drm/drm_client.h                           |    1 +
- include/drm/drm_crtc.h                             |    2 +-
- include/drm/drm_dumb_buffers.h                     |   14 +
- include/drm/drm_format_helper.h                    |    4 -
- include/drm/drm_gem_shmem_helper.h                 |    2 +
- include/drm/drm_modeset_helper_vtables.h           |   12 +
- include/drm/drm_vblank.h                           |   32 +
- include/drm/drm_vblank_helper.h                    |   56 +
- include/drm/gpu_scheduler.h                        |    2 +-
- include/drm/ttm/ttm_bo.h                           |    2 +-
- include/sound/asoundef.h                           |    9 +
- include/uapi/drm/drm_mode.h                        |   50 +-
- include/uapi/drm/ivpu_accel.h                      |   11 +
- include/uapi/drm/panfrost_drm.h                    |   50 +
- 191 files changed, 6739 insertions(+), 2832 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,lq079l1sx01.yaml
- create mode 100644 drivers/accel/amdxdna/amdxdna_pm.c
- create mode 100644 drivers/accel/amdxdna/amdxdna_pm.h
- create mode 100644 drivers/gpu/drm/ast/ast_2200.c
- create mode 100644 drivers/gpu/drm/ast/ast_2400.c
- delete mode 100644 drivers/gpu/drm/ast/ast_main.c
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
- create mode 100644 drivers/gpu/drm/drm_vblank_helper.c
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a_devfreq.c
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a_devfreq.h
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/clk/gp10b.c
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/clk/gp10b.h
- create mode 100644 drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c
- create mode 100644 include/drm/drm_dumb_buffers.h
- create mode 100644 include/drm/drm_vblank_helper.h
+>
+> Matt
+>
+>>> +		if (IS_ERR(lrc)) {
+>>> +			err = PTR_ERR(lrc);
+>>>    			goto err_lrc;
+>>>    		}
+>>> -	}
+>>> -	err = q->ops->init(q);
+>>> -	if (err)
+>>> -		goto err_lrc;
+>>> +		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
+>>> +		WRITE_ONCE(q->lrc[i], lrc);
+>>> +	}
+>>>    	return 0;
+>>> @@ -1095,9 +1111,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+>>>    	int err = 0;
+>>>    	for (i = 0; i < q->width; ++i) {
+>>> -		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
+>>> -		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
+>>> -		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
+>>> +		struct xe_lrc *lrc;
+>>> +
+>>> +		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
+>>> +		lrc = READ_ONCE(q->lrc[i]);
+>>> +		if (!lrc)
+>>> +			continue;
+>>> +
+>>> +		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
+>>> +		xe_lrc_update_hwctx_regs_with_address(lrc);
+>>> +		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+>>>    		if (err)
+>>>    			break;
+>>>    	}
+>>> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+>>> index f83d421ac9d3..769d05517f93 100644
+>>> --- a/drivers/gpu/drm/xe/xe_execlist.c
+>>> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+>>> @@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+>>>    	const struct drm_sched_init_args args = {
+>>>    		.ops = &drm_sched_ops,
+>>>    		.num_rqs = 1,
+>>> -		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
+>>> +		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
+>>>    		.hang_limit = XE_SCHED_HANG_LIMIT,
+>>>    		.timeout = XE_SCHED_JOB_TIMEOUT,
+>>>    		.name = q->hwe->name,
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>> index 0d94867dce8e..42f9fd43b436 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>> @@ -482,6 +482,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
+>>>    				 shift, config->ggtt_base);
+>>>    		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
+>>>    	}
+>>> +
+>>> +	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+>>> +	smp_wmb();	/* Ensure above write visible before wake */
+>>> +	wake_up_all(&gt->sriov.vf.migration.wq);
+>>> +
+>>>    out:
+>>>    	up_write(config->lock);
+>>>    	return err;
+>>> @@ -820,7 +825,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+>>>    	    !gt->sriov.vf.migration.recovery_teardown) {
+>>>    		gt->sriov.vf.migration.recovery_queued = true;
+>>>    		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+>>> -		smp_wmb();	/* Ensure above write visable before wake */
+>>> +		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
+>>> +		smp_wmb();	/* Ensure above writes visable before wake */
+>> typo in patch "Wakeup in GuC backend on VF post migration recovery"
+>>>    		wake_up_all(&gt->uc.guc.ct.wq);
+>>> @@ -1344,6 +1350,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+>>>    		&tile->primary_gt->sriov.vf.self_config.__lock;
+>>>    	spin_lock_init(&gt->sriov.vf.migration.lock);
+>>>    	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
+>>> +	init_waitqueue_head(&gt->sriov.vf.migration.wq);
+>>>    	return 0;
+>>>    }
+>>> @@ -1387,3 +1394,33 @@ bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt)
+>>>    	return (xe_memirq_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
+>>>    		READ_ONCE(gt->sriov.vf.migration.recovery_inprogress));
+>>>    }
+>>> +
+>>> +static bool vf_valid_ggtt(struct xe_gt *gt)
+>>> +{
+>>> +	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
+>>> +
+>>> +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>> +
+>>> +	if (xe_memirq_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
+>>> +	    READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
+>>> +		return false;
+>>> +
+>>> +	return true;
+>>> +}
+>>> +
+>>> +/**
+>>> + * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
+>>> + * @gt: the &xe_gt
+>>> + */
+>>> +void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	if (!IS_SRIOV_VF(gt_to_xe(gt)))
+>>> +		return;
+>>> +
+>>> +	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
+>>> +					       vf_valid_ggtt(gt),
+>>> +					       HZ * 5);
+>>> +	XE_WARN_ON(!ret);
+>>> +}
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>> index 71e1d566da81..20cc0c4c32e3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>>> @@ -40,4 +40,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+>>>    void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+>>>    void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
+>>> +void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
+>>> +
+>>>    #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>> index e135018cba1e..3c3e415199d1 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>>> @@ -8,6 +8,7 @@
+>>>    #include <linux/rwsem.h>
+>>>    #include <linux/types.h>
+>>> +#include <linux/wait.h>
+>>>    #include <linux/workqueue.h>
+>>>    #include "xe_uc_fw_types.h"
+>>> @@ -61,6 +62,8 @@ struct xe_gt_sriov_vf_migration {
+>>>    	struct work_struct worker;
+>>>    	/** @lock: Protects recovery_queued, teardown */
+>>>    	spinlock_t lock;
+>>> +	/** @wq: wait queue for migration fixes */
+>>> +	wait_queue_head_t wq;
+>>>    	/** @scratch: Scratch memory for VF recovery */
+>>>    	void *scratch;
+>>>    	/** @recovery_teardown: VF post migration recovery is being torn down */
+>>> @@ -69,6 +72,8 @@ struct xe_gt_sriov_vf_migration {
+>>>    	bool recovery_queued;
+>>>    	/** @recovery_inprogress: VF post migration recovery in progress */
+>>>    	bool recovery_inprogress;
+>>> +	/** @ggtt_need_fixes: VF GGTT needs fixes */
+>>> +	bool ggtt_need_fixes;
+>>>    };
+>>>    /**
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> index 497a736c23c3..7fe3fb07e35e 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>>> @@ -1943,7 +1943,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>>>    	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+>>>    		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+>>>    	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+>>> -			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
+>>> +			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+>>>    			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+>>>    			    q->name, gt_to_xe(q->gt)->drm.dev);
+>>>    	if (err)
+>>> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>>> index 188565465779..5fb6c74bdab5 100644
+>>> --- a/drivers/gpu/drm/xe/xe_lrc.h
+>>> +++ b/drivers/gpu/drm/xe/xe_lrc.h
+>>> @@ -74,6 +74,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+>>>    	kref_put(&lrc->refcount, xe_lrc_destroy);
+>>>    }
+>>> +/**
+>>> + * xe_lrc_ring_size() - Xe LRC ring size
+>>> + *
+>>> + * Return: Size of LRC size
+>> Size of LRC ring buffer
+>> -Tomasz
+>>
+>>> + */
+>>> +static inline size_t xe_lrc_ring_size(void)
+>>> +{
+>>> +	return SZ_16K;
+>>> +}
+>>> +
+>>>    size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+>>>    u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+>>>    u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
