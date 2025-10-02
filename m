@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAB5FCAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 597EACCD199
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8D310E7A6;
-	Thu,  2 Oct 2025 05:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30F1110E7B0;
+	Thu,  2 Oct 2025 05:54:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ieXFKWvT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i4fNaYFq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B215F10E788
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F22710E78F
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759384448; x=1790920448;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=UvxQYdreCP4QQf6qpRcxn95VgFUOjea9JX5rpVNFUMg=;
- b=ieXFKWvTx3I89AImiu46lVX/epQ3DCVXTjg5Dez2d5ndawG9tczt5MMX
- oKV9u4Ucn6nTVntBdSt/M578p4g27ZL/AJWhKrh7TvGQEvpA8BECFq+7g
- +uH6xTLaeOeRoqrAfzt8QEfN4nHMa1/N5f8q+dDXFK31O63raJz37sqJ7
- aHScixPTejp/1gO5d0awKKv5FYPj/4Bb7COgYLUjIt4atYXoTvPL8jUbB
- ubr5PZZDj79DuD4EmUVTFIwFAkjYyFtTdd7YylAacznY5CxI3Vy9SV9Vf
- QJjaV/h5wjqoPL8Is0XnC/xbvcaqBbtfVpRydMsluUrUDH1A1AVtAiOKN A==;
-X-CSE-ConnectionGUID: HHmYbXsCQNShf6RWTGC6Pw==
-X-CSE-MsgGUID: trPTq2xKSZmrHGsIH6xRIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304508"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304508"
+ bh=oh4HhMwv+PqO4eXX+KGvYQJMFyMhjf/fcWmIu2TKfrM=;
+ b=i4fNaYFqFh4bJVXqKlPQLiSwnKTgPvgSNyKgmTTdw+ba6f6bCFBi0QSN
+ 5VQJN+OVIbRyDkKkVSTdnqzRdAI7jdzrOd2XmdnZE7lnPamkkG7zqs9Kn
+ MH3Gc2N7czmx8GjRN2pyQxkC50NkO/2cntdtKsmkbe1u6vrbBqwvNCbrX
+ NVMzIliKFp0Mg8yBJZP7DLYSSmMtqogAgzXoHBJmGIHpA9h/f+j6PhU6J
+ stXSYObQXAASfFipEbmS39UR2xH6tRog4i241w/0iFnFCl1x96hclSBlo
+ iTgzgMCxVQVtDaomfdJqN+rNorcg4G6orENlFQrHv9y6rTp6nk57woudw Q==;
+X-CSE-ConnectionGUID: LsbX9+BdTmO2nTeaYd6kjQ==
+X-CSE-MsgGUID: kWDq+c7XTSquW1Loulbz8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304503"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304503"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: 1u8mcQB+RHO93KjcPolVEQ==
-X-CSE-MsgGUID: RmADEhQ+RSe/4IZ0gB5lmA==
+X-CSE-ConnectionGUID: do442cx7T4y3TuEgEYKS/Q==
+X-CSE-MsgGUID: 6tPCjsUZQSuwGaEbKB/jVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083539"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083533"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 15/34] drm/xe/vf: Close multi-GT GGTT shift race
-Date: Wed,  1 Oct 2025 22:53:43 -0700
-Message-Id: <20251002055402.1865880-16-matthew.brost@intel.com>
+Subject: [PATCH v4 10/34] drm/xe/guc: Document GuC submission backend
+Date: Wed,  1 Oct 2025 22:53:38 -0700
+Message-Id: <20251002055402.1865880-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -66,557 +66,332 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As multi-GT VF post-migration recovery can run in parallel on different
-workqueues, but both GTs point to the same GGTT, only one GT needs to
-shift the GGTT. However, both GTs need to know when this step has
-completed. To coordinate this, perform the GGTT shift under the GGTT
-lock. With shift being done under the lock, storing the shift value
-becomes unnecessary.
+Add kernel-doc to xe_guc_submit.c describing the submission path,
+the per-queue single-threaded model with pause/resume, the driver shadow
+state machine and lost-H2G replay, job timeout handling, recovery flows
+(GT reset, PM resume, VF resume), and reclaim constraints.
 
+v2:
+ - Mirror tweaks for clarity
+ - Add new doc to Xe rst files
 v3:
- - Update commmit message (Tomasz)
+ - Clarify global vs per-queue stop / start
+ - Clarify VF resume flow
+ - Add section for 'Waiters during VF resume'
+ - Add section for 'Page-faulting queues during VF migration'
+ - Add section for 'GuC-ID assignment'
+ - Add section for 'Reference counting and final queue destruction'
 v4:
- - Move GGTT values to tile state (Michal)
- - Use GGTT lock (Michal)
+ - s/VF resume/VF post migration recovery (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h        |   3 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 166 +++++++-------------
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h         |   5 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |   7 +-
- drivers/gpu/drm/xe/xe_guc.c                 |   2 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c       |  30 +++-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h       |   2 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h |  23 +++
- drivers/gpu/drm/xe/xe_vram.c                |   6 +-
- 9 files changed, 117 insertions(+), 127 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
+ Documentation/gpu/xe/index.rst     |   1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c | 282 +++++++++++++++++++++++++++++
+ 2 files changed, 283 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index a6c361db11d9..c27414d4e856 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -27,6 +27,7 @@
- #include "xe_sriov_vf_ccs_types.h"
- #include "xe_step_types.h"
- #include "xe_survivability_mode_types.h"
-+#include "xe_tile_sriov_vf_types.h"
- #include "xe_validation.h"
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index 88b22fad880e..692c544b164c 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -28,3 +28,4 @@ DG2, etc is provided to prototype the driver.
+    xe_device
+    xe-drm-usage-stats.rst
+    xe_configfs
++   xe_guc_submit
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 70306f902ba5..cd5e506527fe 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -46,6 +46,288 @@
+ #include "xe_trace.h"
+ #include "xe_vm.h"
  
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-@@ -185,6 +186,8 @@ struct xe_tile {
- 		struct {
- 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
- 			struct xe_ggtt_node *ggtt_balloon[2];
-+			/** @sriov.vf.self_config: VF configuration data */
-+			struct xe_tile_sriov_vf_selfconfig self_config;
- 		} vf;
- 	} sriov;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index dc2516be590b..768c192eb662 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -436,42 +436,57 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
- 	return value;
- }
- 
--static int vf_get_ggtt_info(struct xe_gt *gt)
-+static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
- {
--	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	struct xe_tile_sriov_vf_selfconfig *config =
-+		&gt_to_tile(gt)->sriov.vf.self_config;
-+	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
- 	struct xe_guc *guc = &gt->uc.guc;
- 	u64 start, size;
-+	s64 shift;
- 	int err;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
-+	mutex_lock(&ggtt->lock);
-+
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->ggtt_size && config->ggtt_size != size) {
- 		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
- 				size / SZ_1K, config->ggtt_size / SZ_1K);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 
- 	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
- 				start, start + size - 1, size / SZ_1K);
- 
--	config->ggtt_shift = start - (s64)config->ggtt_base;
-+	shift = start - (s64)config->ggtt_base;
- 	config->ggtt_base = start;
- 	config->ggtt_size = size;
-+	err = config->ggtt_size ? 0 : -ENODATA;
- 
--	return config->ggtt_size ? 0 : -ENODATA;
-+	if (!err && shift && recovery) {
-+		xe_gt_sriov_info(gt, "Shifting GGTT base by %lld to 0x%016llx\\n",
-+				 shift, config->ggtt_base);
-+		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
-+	}
-+out:
-+	mutex_unlock(&ggtt->lock);
-+	return err;
- }
- 
- static int vf_get_lmem_info(struct xe_gt *gt)
- {
--	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	struct xe_tile_sriov_vf_selfconfig *config =
-+		&gt_to_tile(gt)->sriov.vf.self_config;
- 	struct xe_guc *guc = &gt->uc.guc;
- 	char size_str[10];
- 	u64 size;
-@@ -481,20 +496,23 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 
- 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_LMEM_SIZE_KEY, &size);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->lmem_size && config->lmem_size != size) {
- 		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
- 				size / SZ_1M, config->lmem_size / SZ_1M);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 
- 	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
- 	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
- 
- 	config->lmem_size = size;
-+	err = config->lmem_size ? 0 : -ENODATA;
- 
--	return config->lmem_size ? 0 : -ENODATA;
-+out:
-+	return err;
- }
- 
- static int vf_get_submission_cfg(struct xe_gt *gt)
-@@ -508,21 +526,23 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY, &num_ctxs);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
- 	if (unlikely(err))
--		return err;
-+		goto out;
- 
- 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
- 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
- 				num_ctxs, config->num_ctxs);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 	if (config->num_dbs && config->num_dbs != num_dbs) {
- 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
- 				num_dbs, config->num_dbs);
--		return -EREMCHG;
-+		err = -EREMCHG;
-+		goto out;
- 	}
- 
- 	xe_gt_sriov_dbg_verbose(gt, "CTXs %u DBs %u\n", num_ctxs, num_dbs);
-@@ -530,7 +550,10 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
- 	config->num_ctxs = num_ctxs;
- 	config->num_dbs = num_dbs;
- 
--	return config->num_ctxs ? 0 : -ENODATA;
-+	err = config->num_ctxs ? 0 : -ENODATA;
-+
-+out:
-+	return err;
- }
- 
- static void vf_cache_gmdid(struct xe_gt *gt)
-@@ -544,17 +567,18 @@ static void vf_cache_gmdid(struct xe_gt *gt)
- /**
-  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
-  * @gt: the &xe_gt
-+ * @recovery: VF post migration recovery path
-  *
-  * This function is for VF use only.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
-+int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
--	err = vf_get_ggtt_info(gt);
-+	err = vf_get_ggtt_info(gt, recovery);
- 	if (unlikely(err))
- 		return err;
- 
-@@ -584,80 +608,16 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
-  */
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
- {
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.num_ctxs);
--
--	return gt->sriov.vf.self_config.num_ctxs;
--}
--
--/**
-- * xe_gt_sriov_vf_lmem - VF LMEM configuration.
-- * @gt: the &xe_gt
-- *
-- * This function is for VF use only.
-- *
-- * Return: size of the LMEM assigned to VF.
-- */
--u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
--{
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
--
--	return gt->sriov.vf.self_config.lmem_size;
--}
--
--/**
-- * xe_gt_sriov_vf_ggtt - VF GGTT configuration.
-- * @gt: the &xe_gt
-- *
-- * This function is for VF use only.
-- *
-- * Return: size of the GGTT assigned to VF.
-- */
--u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
--{
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
--
--	return gt->sriov.vf.self_config.ggtt_size;
--}
-+	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	u16 val;
- 
--/**
-- * xe_gt_sriov_vf_ggtt_base - VF GGTT base offset.
-- * @gt: the &xe_gt
-- *
-- * This function is for VF use only.
-- *
-- * Return: base offset of the GGTT assigned to VF.
-- */
--u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
--{
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
- 
--	return gt->sriov.vf.self_config.ggtt_base;
--}
-+	xe_gt_assert(gt, config->num_ctxs);
-+	val = config->num_ctxs;
- 
--/**
-- * xe_gt_sriov_vf_ggtt_shift - Return shift in GGTT range due to VF migration
-- * @gt: the &xe_gt struct instance
-- *
-- * This function is for VF use only.
-- *
-- * Return: The shift value; could be negative
-- */
--s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
--{
--	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
--
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--
--	return config->ggtt_shift;
-+	return val;
- }
- 
- static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
-@@ -1057,6 +1017,8 @@ void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
-  */
- void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- {
-+	struct xe_tile_sriov_vf_selfconfig *tconfig =
-+		&gt_to_tile(gt)->sriov.vf.self_config;
- 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	char buf[10];
-@@ -1064,17 +1026,15 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
- 	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
--		   config->ggtt_base,
--		   config->ggtt_base + config->ggtt_size - 1);
--
--	string_get_size(config->ggtt_size, 1, STRING_UNITS_2, buf, sizeof(buf));
--	drm_printf(p, "GGTT size:\t%llu (%s)\n", config->ggtt_size, buf);
-+		   tconfig->ggtt_base,
-+		   tconfig->ggtt_base + tconfig->ggtt_size - 1);
- 
--	drm_printf(p, "GGTT shift on last restore:\t%lld\n", config->ggtt_shift);
-+	string_get_size(tconfig->ggtt_size, 1, STRING_UNITS_2, buf, sizeof(buf));
-+	drm_printf(p, "GGTT size:\t%llu (%s)\n", tconfig->ggtt_size, buf);
- 
- 	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
--		string_get_size(config->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
--		drm_printf(p, "LMEM size:\t%llu (%s)\n", config->lmem_size, buf);
-+		string_get_size(tconfig->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
-+		drm_printf(p, "LMEM size:\t%llu (%s)\n", tconfig->lmem_size, buf);
- 	}
- 
- 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
-@@ -1161,21 +1121,16 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
- static int vf_post_migration_fixups(struct xe_gt *gt)
- {
- 	void *buf = gt->sriov.vf.migration.scratch;
--	s64 shift;
- 	int err;
- 
--	err = xe_gt_sriov_vf_query_config(gt);
-+	err = xe_gt_sriov_vf_query_config(gt, true);
- 	if (err)
- 		return err;
- 
--	shift = xe_gt_sriov_vf_ggtt_shift(gt);
--	if (shift) {
--		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
--		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
--		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
--		if (err)
--			return err;
--	}
-+	xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
-+	err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
-+	if (err)
-+		return err;
- 
- 	return 0;
- }
-@@ -1274,7 +1229,6 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
- 		return -ENOMEM;
- 
- 	gt->sriov.vf.migration.scratch = buf;
--	init_rwsem(&gt->sriov.vf.self_config.lock);
- 	spin_lock_init(&gt->sriov.vf.migration.lock);
- 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 0b0f2a30e67c..08568e68447d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -18,7 +18,7 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
- void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
- 				 struct xe_uc_fw_version *wanted,
- 				 struct xe_uc_fw_version *found);
--int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
-+int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery);
- int xe_gt_sriov_vf_connect(struct xe_gt *gt);
- int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
-@@ -29,9 +29,6 @@ bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt);
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
--u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt);
--u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt);
--s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
- void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index e753646debc4..1796d4caf62f 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GT_SRIOV_VF_TYPES_H_
- #define _XE_GT_SRIOV_VF_TYPES_H_
- 
-+#include <linux/rwsem.h>
- #include <linux/types.h>
- #include <linux/workqueue.h>
- #include "xe_uc_fw_types.h"
-@@ -14,12 +15,6 @@
-  * struct xe_gt_sriov_vf_selfconfig - VF configuration data.
-  */
- struct xe_gt_sriov_vf_selfconfig {
--	/** @ggtt_base: assigned base offset of the GGTT region. */
--	u64 ggtt_base;
--	/** @ggtt_size: assigned size of the GGTT region. */
--	u64 ggtt_size;
--	/** @ggtt_shift: difference in ggtt_base on last migration */
--	s64 ggtt_shift;
- 	/** @lmem_size: assigned size of the LMEM. */
- 	u64 lmem_size;
- 	/** @num_ctxs: assigned number of GuC submission context IDs. */
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index d5adbbb013ec..c016a11b6ab1 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -713,7 +713,7 @@ static int vf_guc_init_noalloc(struct xe_guc *guc)
- 	if (err)
- 		return err;
- 
--	err = xe_gt_sriov_vf_query_config(gt);
-+	err = xe_gt_sriov_vf_query_config(gt, false);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-index f221dbed16f0..074981e2ef07 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-@@ -9,7 +9,6 @@
- 
- #include "xe_assert.h"
- #include "xe_ggtt.h"
--#include "xe_gt_sriov_vf.h"
- #include "xe_sriov.h"
- #include "xe_sriov_printk.h"
- #include "xe_tile_sriov_vf.h"
-@@ -40,10 +39,10 @@ static int vf_init_ggtt_balloons(struct xe_tile *tile)
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
-+static int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
- {
--	u64 ggtt_base = xe_gt_sriov_vf_ggtt_base(tile->primary_gt);
--	u64 ggtt_size = xe_gt_sriov_vf_ggtt(tile->primary_gt);
-+	u64 ggtt_base = tile->sriov.vf.self_config.ggtt_base;
-+	u64 ggtt_size = tile->sriov.vf.self_config.ggtt_size;
- 	struct xe_device *xe = tile_to_xe(tile);
- 	u64 wopcm = xe_wopcm_size(xe);
- 	u64 start, end;
-@@ -244,11 +243,30 @@ void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift)
- {
- 	struct xe_ggtt *ggtt = tile->mem.ggtt;
- 
--	mutex_lock(&ggtt->lock);
-+	lockdep_assert_held(&ggtt->lock);
- 
- 	xe_tile_sriov_vf_deballoon_ggtt_locked(tile);
- 	xe_ggtt_shift_nodes_locked(ggtt, shift);
- 	xe_tile_sriov_vf_balloon_ggtt_locked(tile);
-+}
- 
--	mutex_unlock(&ggtt->lock);
-+/**
-+ * xe_tile_sriov_vf_lmem - VF LMEM configuration.
-+ * @tile: the &xe_tile
-+ *
-+ * This function is for VF use only.
-+ *
-+ * Return: size of the LMEM assigned to VF.
-+ */
-+u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile)
-+{
-+	struct xe_tile_sriov_vf_selfconfig *config = &tile->sriov.vf.self_config;
-+	u64 val;
-+
-+	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
-+
-+	xe_tile_assert(tile, config->lmem_size);
-+	val = config->lmem_size;
-+
-+	return val;
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-index 93eb043171e8..54e7f2a5c4e4 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-@@ -11,8 +11,8 @@
- struct xe_tile;
- 
- int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile);
--int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift);
-+u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
-new file mode 100644
-index 000000000000..140717f81d8f
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: MIT */
 +/*
-+ * Copyright © 2025 Intel Corporation
++ * DOC: Overview
++ *
++ * The GuC submission backend is responsible for submitting GPU jobs to the GuC
++ * firmware, assigning per-queue GuC IDs, tracking submission state via a
++ * driver-side state machine, handling GuC-to-host (G2H) messages, tracking
++ * outstanding jobs, managing job timeouts and queue teardown, and providing
++ * recovery when GuC state is lost. It is built on top of the DRM scheduler
++ * (drm_sched).
++ *
++ * GuC ID assignment:
++ * ------------------
++ * Each queue is assigned a unique GuC ID at queue init. The ID is used in all
++ * H2G/G2H to identify the queue and remains reserved until final destruction,
++ * when the GuC is known to hold no references to it.
++ *
++ * The backend maintains a reverse map GuC-ID -> queue to resolve targets for
++ * G2H handlers and to iterate all queues when required (e.g., recovery). This
++ * map is protected by submission_state.lock, a global (per-GT) lock. Lockless
++ * lookups are acceptable in paths where the queue’s lifetime is otherwise
++ * pinned and it cannot disappear underneath the operation (e.g., G2H handlers).
++ *
++ * Basic submission flow
++ * ---------------------
++ * Submission is driven by the DRM scheduler vfunc ->run_job(). The flow is:
++ *
++ * 1) Emit the job's ring instructions.
++ * 2) Advance the LRC ring tail:
++ *    - width == 1: simple memory write,
++ *    - width  > 1: append a GuC workqueue (WQ) item.
++ * 3) If the queue is unregistered, issue a register H2G for the context.
++ * 4) Trigger execution via a scheduler enable or context submit command.
++ * 5) Return the job's hardware fence to the DRM scheduler.
++ *
++ * Registration, scheduler enable, and submit commands are issued as host-to-GuC
++ * (H2G) messages over the Command Transport (CT) layer, like all GuC
++ * interactions.
++ *
++ * Completion path
++ * ---------------
++ * When the job's hardware fence signals, the DRM scheduler vfunc ->free_job()
++ * is called; it drops the job's reference, typically freeing it.
++ *
++ * Control-plane messages:
++ * -----------------------
++ * GuC submission scheduler messages form the control plane for queue cleanup,
++ * toggling runnability, and modifying queue properties (e.g., scheduler
++ * priority, timeslice, preemption timeout). Messages are initiated via queue
++ * vfuncs that append a control message to the queue. They are processed on the
++ * same single-threaded DRM scheduler workqueue that runs ->run_job() and
++ * ->free_job().
++ *
++ * Lockless model:
++ * ---------------
++ * ->run_job(), ->free_job(), and the message handlers execute as work items on
++ * a single-threaded DRM scheduler workqueue. Per queue, this provides built-in
++ * mutual exclusion: only one of these items can run at a time. As a result,
++ * these paths are lockless with respect to per-queue state tracking. (Global
++ * or cross-queue data structures still use their own synchronization.)
++ *
++ * Stopping / starting:
++ * --------------------
++ * The submission backend supports two scopes of quiesce control:
++ *
++ *  - Per-queue stop/start:
++ *    The single-threaded DRM scheduler workqueue for a specific queue can be
++ *    stopped and started dynamically. Stopping synchronously quiesces that
++ *    queue's worker (lets any in-flight item finish and prevents new items from
++ *    starting), yielding a stable snapshot while an external operation (e.g.,
++ *    job timeout handling) inspects/updates state and performs any required
++ *    fixups. While stopped, no submission, message, or ->free_job() work runs
++ *    for that queue. When the operation completes, the queue is started; any
++ *    pending items are then processed in order on the same worker. Other queues
++ *    continue to run unaffected.
++ *
++ *  - Global (per-GT) stop/start:
++ *    Implemented on top of the per-queue stop/start primitive: the driver
++ *    stops (or starts) each queue on the GT to obtain a device-wide stable
++ *    snapshot. This is used by coordinated recovery flows (GT reset, PM resume,
++ *    VF post migration recovery). Queues created while the global stop is in
++ *    effect (i.e., future queues) initialize in the stopped state and remain
++ *    stopped until the global start. After recovery fixups are complete, a
++ *    global start iterates queues to start all eligible ones and resumes normal
++ *    submission.
++ *
++ * State machine:
++ * --------------
++ * The submission state machine is the driver's shadow of the GuC-visible queue
++ * state (e.g., registered, runnable, scheduler properties). It tracks the
++ * transitions we intend to make (issued as H2G commands), marking them pending
++ * until acknowledged via G2H or otherwise observed as applied. It also records
++ * the origin of each transition (->run_job(), timeout handler, explicit control
++ * message, etc.).
++ *
++ * Because H2G commands and/or GuC submission state can be lost across GT reset,
++ * PM resume, or VF post migration recovery, this bookkeeping lets recovery
++ * decide which operations to replay, which to elide, and which need fixups,
++ * restoring a consistent queue state without additional per-queue locks.
++ *
++ * Job timeouts:
++ * -------------
++ * To prevent jobs from running indefinitely and violating dma-fence signaling
++ * rules, the DRM scheduler tracks how long each job has been running. If a
++ * threshold is exceeded, it calls ->timeout_job().
++ *
++ * ->timeout_job() stops the queue, samples the LRC context timestamps to
++ * confirm the job actually started and has exceeded the allowed runtime, and
++ * then, if confirmed, signals all pending jobs' fences and initiates queue
++ * teardown. Finally, the queue is started.
++ *
++ * Job timeout handling runs on a per-GT, single-threaded recovery workqueue
++ * that is shared with other recovery paths (e.g., GT reset handling, VF
++ * resume). This guarantees only one recovery action executes at a time.
++ *
++ * Queue teardown:
++ * ---------------
++ * Teardown can be triggered by: (1) userspace closing the queue; (2) a G2H
++ * queue-reset notification; (3) a G2H memory_cat_error for the queue; or (4)
++ * in-flight jobs detected on the queue during GT reset.
++ *
++ * In all cases teardown is driven via the timeout path by setting the queue's
++ * DRM scheduler timeout to zero, forcing an immediate ->timeout_job() pass.
++ *
++ * Reference counting and final queue destruction:
++ * -----------------------------------------------
++ * Jobs reference-count the queue; queues hold a reference to the VM. When a
++ * queue's reference count reaches zero (e.g., all jobs are freed and the
++ * userspace handle is closed), the queue is not destroyed immediately because
++ * the GuC may still reference its state.
++ *
++ * Instead, a control-plane cleanup message is appended to remove GuC-side
++ * references (e.g., disable runnability, deregister). Once the final G2H
++ * confirming that GuC no longer references the queue is eligible for
++ * destruction.
++ *
++ * To avoid freeing the queue from within its own DRM scheduler workqueue (which
++ * would risk use-after-free), the actual destruction is deferred to a separate
++ * work item queued on a dedicated destruction workqueue.
++ *
++ * GT resets:
++ * ----------
++ * GT resets are triggered by catastrophic errors (e.g., CT channel failure).
++ * The GuC is reset and all GuC-side submission state is lost. Recovery proceeds
++ * as follows:
++ *
++ * 1) Quiesce:
++ *    - Stop all queues (global submission stop). Per-queue workers finish any
++ *      in-flight item and then stop; newly created queues during the window
++ *      initialize in the stopped state.
++ *    - Abort any waits on CT/G2H to avoid deadlock.
++ *
++ * 2) Sanitize driver shadow state:
++ *    - For each queue, clear GuC-derived bits in the submission state machine
++ *      (e.g., registered/enabled) and mark in-flight H2G transitions as lost.
++ *    - Convert/flush any side effects of lost H2G.
++ *
++ * 3) Decide teardown vs. replay:
++ *    - If a queue's LRC seqno indicates that a job started but did not
++ *      complete, initiate teardown for that queue via the timeout path.
++ *    - If no job started, keep the queue for replay.
++ *
++ * 4) Resume:
++ *    - Start remaining queues; resubmit pending jobs.
++ *    - Queues marked for teardown remain stopped/destroyed.
++ *
++ * The entire sequence runs on the per-GT single-threaded recovery worker,
++ * ensuring only one recovery action executes at a time; a runtime PM reference
++ * is held for the duration.
++ *
++ * PM resume:
++ * ----------
++ * PM resume assumes all GuC state is lost (the device may have been powered
++ * down). It reuses the GT reset recovery path, but executes in the context of
++ * the caller that wakes the device (runtime PM or system resume).
++ *
++ * Suspend entry:
++ *  - Control-plane message work is quiesced; state toggles that require an
++ *    active device are not enqueued while suspended.
++ *  - Per-queue scheduler workers are stopped before the device is allowed to
++ *    suspend.
++ *  - Barring driver bugs, no queues should have in-flight jobs at
++ *    suspend/resume..
++ *
++ * On resume, run the GT reset recovery flow and then start eligible queues.
++ *
++ * Runtime PM and state-change ordering:
++ * -------------------------------------
++ * Runtime/system PM transitions must not race with per-queue submission and
++ * state updates.
++ *
++ * Execution contexts and RPM sources:
++ *  - Scheduler callbacks (->run_job(), ->free_job(), ->timeout_job()):
++ *    executed with an active RPM ref held by the in-flight job.
++ *  - Control-plane message work:
++ *    enqueued from IOCTL paths that already hold an RPM ref; the message path
++ *    itself does not get/put RPM. State toggles are only issued while active.
++ *    During suspend entry, message work is quiesced and no new toggles are
++ *    enqueued until after resume.
++ *  - G2H handlers:
++ *    dispatched with an RPM ref guaranteed by the CT layer.
++ *  - Recovery phases (GT reset/VF post migration recovery):
++ *    explicitly get/put an RPM ref for their duration on the per-GT recovery
++ *    worker.
++ *
++ * Consequence:
++ *  - All submission/state mutations run with an RPM reference. The PM core
++ *    cannot enter suspend while these updates are in progress, and resume is
++ *    complete before updates execute. This prevents PM state changes from
++ *    racing with queue state changes.
++ *
++ * VF post migration recovery:
++ * ---------------------------
++ * VF post migration recovery resembles a GT reset, but GuC submission state is
++ * expected to persist across migration; in-flight H2G commands may be lost, and
++ * GGTT base/offsets may change. Recovery proceeds as follows:
++ *
++ * 1) Quiesce:
++ *    - Stop all queues and abort waits (as with GT reset) to obtain a stable
++ *      snapshot.
++ *    - Queues created while VF post migration recovery is in-flight initialize
++ *      in the stopped state.
++ *
++ * 2) Treat H2G as lost and prepare in-place resubmission (GuC/CT down):
++ *    - Treat in-flight H2G (enable/disable, etc.) as dropped; update shadow
++ *      bits to a safe baseline and tag the ops as "needs replay".
++ *    - Quarantine device-visible submission state: set the GuC-visible LRC ring
++ *      tail equal to the head (and, for WQ-based submission, set the WQ
++ *      descriptor head == tail) so that when the GuC comes up it will not process
++ *      any entries that were built with stale GGTT addresses.
++ *    - Reset the software ring tail to the original value captured at the
++ *      submission of the oldest pending job, so the write pointer sits exactly
++ *      where that job was originally emitted.
++ *
++ * 3) Replay and resubmit once GuC/CT is live:
++ *    - VF post migration recovery invokes ->run_job() for pending jobs;
++ *      ->emit_job() overwrites ring instructions in place, fixes GGTT fields,
++ *      then advances the LRC tail (and WQ descriptor for width > 1). Required
++ *      submission H2G(s) are reissued and fresh WQ entries are written.
++ *    - Queue lost control-plane operations (scheduling-state toggles, cleanup)
++ *      in order via the message path.
++ *    - Start the queues to process the queued control-plane operations and run
++ *      the resubmitted jobs.
++ *
++ * The goal is to preserve both job and queue state; no teardown is performed
++ * in this flow. The sequence runs on the per-GT single-threaded recovery
++ * worker with a held runtime PM reference.
++ *
++ * Waiters during VF post migration recovery
++ * -----------------------------------------
++ * The submission backend frequently uses wait_event_timeout() to wait on
++ * GuC-driven conditions. Across VF migration/recovery two issues arise:
++ * 1) The timeout does not account for migration downtime and may expire
++ *    prematurely, triggering undesired actions (e.g., GT reset, prematurely
++ *    signaling a fence).
++ * 2) Some waits target GuC work that cannot complete until VF recovery
++ *    finishes; these typically sit on the queue-stopping path.
++ *
++ * To handle this, all waiters must atomically test the "GuC down / VF-recovery
++ * in progress" condition (e.g., VF_RESFIX_BLOCKED) both before sleeping and
++ * after wakeup. The flag is coherent with VF migration: vCPUs observe it
++ * immediately on unhalt, and it is cleared only after the GuC/CT is live again.
++ * If set, the waiter must either (a) abort the wait without side effects, or
++ * (b) re-arm the wait with a fresh timeout once the GuC/CT is live. Timeouts
++ * that occur while GuC/CT are down are non-fatal—the VF-recovery path will
++ * rebuild state—and must not trigger recovery or teardown.
++ *
++ * Relation to reclaim:
++ * --------------------
++ * Jobs signal dma-fences, and the MM may wait on those fences during reclaim.
++ * As a consequence, the entire GuC submission backend (DRM scheduler callbacks,
++ * message handling, and all recovery paths) lies on the reclaim path and must
++ * be reclaim-safe.
++ *
++ * Practical implications:
++ * - No memory allocations in these paths (avoid any allocation that could
++ *   recurse into reclaim or sleep).
++ * - The global submission-state lock may be taken from reclaim-tainted contexts
++ *   (timeout/recovery). Any path that acquires it (including queue init/destroy)
++ *   must not allocate or take locks that can recurse into reclaim while holding
++ *   it; keep the critical section to state/xarray updates.
 + */
 +
-+#ifndef _XE_TILE_SRIOV_VF_TYPES_H_
-+#define _XE_TILE_SRIOV_VF_TYPES_H_
-+
-+#include <linux/mutex.h>
-+
-+/**
-+ * struct xe_tile_sriov_vf_selfconfig - VF configuration data.
-+ */
-+struct xe_tile_sriov_vf_selfconfig {
-+	/** @ggtt_base: assigned base offset of the GGTT region. */
-+	u64 ggtt_base;
-+	/** @ggtt_size: assigned size of the GGTT region. */
-+	u64 ggtt_size;
-+	/** @lmem_size: assigned size of the LMEM. */
-+	u64 lmem_size;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index b44ebf50fedb..bc471e3dd494 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -16,10 +16,10 @@
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_mcr.h"
--#include "xe_gt_sriov_vf.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_sriov.h"
-+#include "xe_tile_sriov_vf.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
-@@ -237,9 +237,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 		offset = 0;
- 		for_each_tile(t, xe, id)
- 			for_each_if(t->id < tile->id)
--				offset += xe_gt_sriov_vf_lmem(t->primary_gt);
-+				offset += xe_tile_sriov_vf_lmem(t);
- 
--		*tile_size = xe_gt_sriov_vf_lmem(gt);
-+		*tile_size = xe_tile_sriov_vf_lmem(tile);
- 		*vram_size = *tile_size;
- 		*tile_offset = offset;
- 
+ static struct xe_guc *
+ exec_queue_to_guc(struct xe_exec_queue *q)
+ {
 -- 
 2.34.1
 
