@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B856ACCA471
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 10:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC129CAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 10:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CC810E36F;
-	Thu,  2 Oct 2025 10:18:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oCt8GJ1L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4912C10E369;
- Thu,  2 Oct 2025 10:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759400284; x=1790936284;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CvxiXoxFsI3SRgKcEPjZergOTv1XNQGilLjwZy0hkDU=;
- b=oCt8GJ1LQrYyRE/HnuQuz1r0NdnvIYq07/1iR6o2AfirMLQPf2e9e54d
- IyjxNIi0/fD8PaO8pfmnFc4q7H99cJ2upBzlpRvYaCrzNcjGkoxXF1h/o
- 8Yy83HcdE8+BPIj2GjjY4PopmrfJkpiD4HNSL3LHSLiBzLjJvgzRfYwjU
- YqGYwvsvj7neZ9O7rWuyScz0knZQ5xUWxVFqXrUSxdRh+oIBG0bZ4Rkia
- QARNbAo9jbmedaRRWXlmycHGIojntTZxHdRXAKhEkECmsPunNGmZOLJcm
- jgPYHaVatQXv6Gh7G7FVxSfU2swQ6TllJzXSoF8+NXdpmU8GZg3vzYgWG Q==;
-X-CSE-ConnectionGUID: UVRu5GEKSTChQJjZGUi+rw==
-X-CSE-MsgGUID: DJ9NY8GUSOKdq8tHjDgP6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="49237314"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="49237314"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 03:18:04 -0700
-X-CSE-ConnectionGUID: 9KjnyoNSRBmOpRtLhMRnQw==
-X-CSE-MsgGUID: SQCamvMIQja1KEZrs0uztg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="178291104"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 03:18:01 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Jocelyn Falempe <jfalempe@redhat.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH] drm/i915/panic: fix panic structure allocation memory leak
-Date: Thu,  2 Oct 2025 13:17:56 +0300
-Message-ID: <20251002101756.2700320-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2F2410E11C;
+	Thu,  2 Oct 2025 10:41:00 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 148D210E11C;
+ Thu,  2 Oct 2025 10:40:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3235078682939848981=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
+ =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Oct 2025 10:40:59 -0000
+Message-ID: <175940165907.386187.10168199762470074491@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251002095640.1347990-1-michal.grzelak@intel.com>
+In-Reply-To: <20251002095640.1347990-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,91 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Separating the panic allocation from framebuffer allocation in commit
-729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
-belongs") failed to deallocate the panic structure anywhere.
+--===============3235078682939848981==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The fix is two-fold. First, free the panic structure in
-intel_user_framebuffer_destroy() in the general case. Second, move the
-panic allocation later to intel_framebuffer_init() to not leak the panic
-structure in error paths (if any, now or later) between
-intel_framebuffer_alloc() and intel_framebuffer_init().
+== Series Details ==
 
-Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Reported-by: Michał Grzelak <michal.grzelak@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 22 +++++++++++-----------
- 1 file changed, 11 insertions(+), 11 deletions(-)
+Series: drm/i915/display: Add no_psr_reason to PSR debugfs
+URL   : https://patchwork.freedesktop.org/series/155327/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 69237dabdae8..3356ec022d06 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2117,6 +2117,7 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
- 
- 	intel_fb_bo_framebuffer_fini(intel_fb_bo(fb));
- 
-+	kfree(intel_fb->panic);
- 	kfree(intel_fb);
- }
- 
-@@ -2222,10 +2223,16 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (ret)
- 		return ret;
- 
-+	intel_fb->panic = intel_panic_alloc();
-+	if (!intel_fb->panic) {
-+		ret = -ENOMEM;
-+		goto err_framebuffer_fini;
-+	}
-+
- 	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
- 	if (!intel_fb->frontbuffer) {
- 		ret = -ENOMEM;
--		goto err;
-+		goto err_panic_free;
- 	}
- 
- 	ret = -EINVAL;
-@@ -2319,7 +2326,9 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		intel_dpt_destroy(intel_fb->dpt_vm);
- err_frontbuffer_put:
- 	intel_frontbuffer_put(intel_fb->frontbuffer);
--err:
-+err_panic_free:
-+	kfree(intel_fb->panic);
-+err_framebuffer_fini:
- 	intel_fb_bo_framebuffer_fini(obj);
- 	return ret;
- }
-@@ -2347,20 +2356,11 @@ intel_user_framebuffer_create(struct drm_device *dev,
- struct intel_framebuffer *intel_framebuffer_alloc(void)
- {
- 	struct intel_framebuffer *intel_fb;
--	struct intel_panic *panic;
- 
- 	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
- 	if (!intel_fb)
- 		return NULL;
- 
--	panic = intel_panic_alloc();
--	if (!panic) {
--		kfree(intel_fb);
--		return NULL;
--	}
--
--	intel_fb->panic = panic;
--
- 	return intel_fb;
- }
- 
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155327v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155327v1
+
+  IGT_8568: 8568
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
+  xe-pw-155327v1: 155327v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html
+
+--===============3235078682939848981==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155327/">https://patchwork.freedesktop.org/series/155327/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155327v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155327v1</li>
+</ul>
+<p>IGT_8568: 8568<br />
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
+  xe-pw-155327v1: 155327v1</p>
+
+</body>
+</html>
+
+--===============3235078682939848981==--
