@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C264CCD18E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 095C9CCD18A
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA6C610E7A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F27E10E79E;
 	Thu,  2 Oct 2025 05:54:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BjQpG14S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sok9X49g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3648A10E79A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29EBA10E798
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759384449; x=1790920449;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=OyEwR5jJ3kD10QeaMjFHvo6GCPIKYgmHBSIA3xO+DE0=;
- b=BjQpG14Sb93zEMzAh8pHZ7PWdPQGuD/3IyzdyQpSyvjb+dUltEa/ZjF4
- zgXRepeuLTuHGvRlRUDHQMsPzPCcP8GCwgzfNP6Om/vawGHtGWBvey2hF
- AShu21jNm+rQ7QH4mWBBhtSRsMIaF5NRTH1h2NwRczSyjO9DbOJ4pHYHe
- +IPxJ1GdsaffXcB/8aiufjdT9il8F0FDXWOrqksG1sUKIBYGPB11wt/5T
- 1NpNWyK0Czyoc1mk+6WH8fHtTU6dj6gL9PARFRW40NeVY2YRKSb4Ch7kO
- raCepVSkzI/WNB/MAyjpHx1rUcxFBQEtMqwin5lffWzUMr4sERyPyIMZ5 g==;
-X-CSE-ConnectionGUID: R3BSiEH+QjucHbkEZo+fRQ==
-X-CSE-MsgGUID: rre+MSVnRJiQVxmhwALT0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304515"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304515"
+ bh=Y70TsVG42ynkVjIJ1IY2cbCes1mswnOytAz+vfbH6dQ=;
+ b=Sok9X49gTTnsEhlYJdKH93tSqSGbyinIeW/RAK8vCrNhjGJlsqaNRJ7C
+ EyEKsljAdi0Vl6b6FwydAzMxCGfy6DMqtU5eBFwthmtQQ+Pef/qTHMUhX
+ j/39Xa3w7Sp5WdH4BTFOK2if5l7HmNJv2xr3QXZLDF5RbfQR6Xn11qp4x
+ cCiGkHhtCwTsPhPW8zO/wHFqcaVi2ZX11N37wO51aDVcd3polIOOVxuLx
+ +0XqKWa30SWX1JwnSzBHhgn6zAcdO36/g9GYVUHWzzq9BJzoJ7YA4M+wt
+ +OE6WHjPYLWl/E8biquki6g/wqdCkylcNWo/KcPWvsXbgwnazNG7IEK+b Q==;
+X-CSE-ConnectionGUID: 4pzobe4OSqm0Cp2mMDPaYA==
+X-CSE-MsgGUID: jALMCNfpR+eEgq+mgwK1DA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304514"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304514"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: g+0WKAZcRtu79i+Ya8iJAg==
-X-CSE-MsgGUID: z1UPisccSf2ZknWoJh5vqQ==
+X-CSE-ConnectionGUID: SebkLeCRRj+5Qg5NhyGAMA==
+X-CSE-MsgGUID: efHuuCNJRe++w2dXmmjAzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083547"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083546"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 22/34] drm/xe/vf: Reset TLB invalidations during VF post
- migration recovery
-Date: Wed,  1 Oct 2025 22:53:50 -0700
-Message-Id: <20251002055402.1865880-23-matthew.brost@intel.com>
+Subject: [PATCH v4 21/34] drm/xe/vf: Flush and stop CTs in VF post migration
+ recovery
+Date: Wed,  1 Oct 2025 22:53:49 -0700
+Message-Id: <20251002055402.1865880-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -66,43 +66,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TLB invalidations requests can be lost during VF post-migration
-recovery. Since the VF has migrated, these invalidations are no longer
-needed.
+Flushing CTs (i.e., progressing all pending G2H messages) gives VF
+post-migration recovery an accurate view of which H2G messages the GuC
+has processed, enabling the GuC submission state machine to correctly
+rebuild all state.
 
-Reset the TLB invalidation frontend, which will signal all pending
-fences.
+Also, stop all CT traffic, as the CT is not live during VF
+post-migration recovery.
 
 v3:
- - Move TLB invalidation reset after pausing submission (Tomasz)
- - Adjust commit message (Michal)
+ - xe_guc_ct_flush_and_stop rename (Michal)
+ - Drop extra GuC CT WQ wake up (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  2 ++
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
+ 3 files changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 3c3b9a88eda9..48adb31cba51 100644
+index e8fd2fe98076..3c3b9a88eda9 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -35,6 +35,7 @@
- #include "xe_sriov.h"
- #include "xe_sriov_vf.h"
- #include "xe_tile_sriov_vf.h"
-+#include "xe_tlb_inval.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
+@@ -23,6 +23,7 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_gt_sriov_vf_types.h"
+ #include "xe_guc.h"
++#include "xe_guc_ct.h"
+ #include "xe_guc_hxg_helpers.h"
+ #include "xe_guc_relay.h"
+ #include "xe_guc_submit.h"
+@@ -1108,6 +1109,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
+ 	gt->sriov.vf.migration.recovery_queued = false;
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
  
-@@ -1111,6 +1112,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
- 
- 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
++	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
  	xe_guc_submit_pause(&gt->uc.guc);
-+	xe_tlb_inval_reset(&gt->tlb_inval);
  }
  
- static size_t post_migration_scratch_size(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index d84de8544532..fd6e731c0395 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -573,6 +573,16 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct)
+ 	stop_g2h_handler(ct);
+ }
+ 
++/**
++ * xe_guc_ct_flush_and_stop - Flush and stop all processing of G2H / H2G
++ * @ct: the &xe_guc_ct
++ */
++void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct)
++{
++	receive_g2h(ct);
++	xe_guc_ct_stop(ct);
++}
++
+ /**
+  * xe_guc_ct_stop - Set GuC to stopped state
+  * @ct: the &xe_guc_ct
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index d6c81325a76c..0a88f4e447fa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -17,6 +17,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
++void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+ 
+ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
 -- 
 2.34.1
 
