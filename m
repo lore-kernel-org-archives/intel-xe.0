@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57BECCCD194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A572BCCD196
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3696E10E7A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB6610E7AA;
 	Thu,  2 Oct 2025 05:54:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FjZR9q2v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SIIEcutE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1EC310E798
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744E310E788
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759384449; x=1790920449;
+ t=1759384448; x=1790920448;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Tq9AvbFaM3+cxfxZSgDeB7YTPPM8iaD/iQI31cAy13s=;
- b=FjZR9q2visLKcmXeC1eWnl62+py4H06l+eltJapMd1rwKT1jsJNtcAS5
- hwM+na+uF5u1CkzaaTA5zouiPE6DQ+B24NlLq4FH3ckkTZVwKLKPz626D
- KxbJrvXJqu6COMAxqdN7c64mlL1A5R0jZYFYOviyvZTkzCtQQSpPSO1pS
- oR/KnKrt4AX3uxCw4sANDTuNZd7Lnf8M5lLBstOsmXDUiIA6wGm2TqlwN
- AgBJTIktJr2qHszLoAoz7I14ZZ96TuiVBRRFXUkCBGNzifW+Npvkcmbne
- cNdo3BIbUGBioPDQOu7Bsua3F5Eo4Qr4GW5slsxLoUU9H/+ZPIdhB6OFw g==;
-X-CSE-ConnectionGUID: hJeZIqnaTc6kZz9MNWBnNA==
-X-CSE-MsgGUID: dI38TX4vSg6BFjCn/PicIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304511"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304511"
+ bh=JhPs4BUUyX6jTdVElPB4+QTJKtBerFJ8cZUYHdvTF5I=;
+ b=SIIEcutEaVSc3rnKAOrbZuwcBHsqX95h+fqguw2eECh2dlL3BIPCLW/S
+ pmPLZQ+1yYSeT913XintAsRymVqU/K9rXWbDFuF4z/lfWCdI9sxSYw1RC
+ /K7QuiPU8Dcb2v60lX+DMBa8o8mQvuX75NDavFQXY0IY8/X+qiNLiuObu
+ YqJvJucxOe16A9CGdi4eKgavJY450Dz0xXRgTyAMocVcNfgwg48xFKt1s
+ UY8RBL94pDCglBAnr0fvArQKt++r0J/v0ar+zh9rSYRgqA3c9N5ZfyskO
+ nwXNmxUFR3kNdJql6L5OZu1nWHnSyordpeMgI/LSlZcnKChDIvgQzG8vj A==;
+X-CSE-ConnectionGUID: 5TZvNa7vTrSNdfxIcTIjbw==
+X-CSE-MsgGUID: V8gCPAwKRlCQU6vTUauE9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304504"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304504"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: 9deTGq2aT7ygEsPh71e7+A==
-X-CSE-MsgGUID: 9nB7Mnq8THa+rO7Srh9OIw==
+X-CSE-ConnectionGUID: kv2OQb0+SvKNj6hY/L387Q==
+X-CSE-MsgGUID: qiw/33lNQg6HDbd+Nfu5uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083543"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083535"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 18/34] drm/xe/vf: Wakeup in GuC backend on VF post
- migration recovery
-Date: Wed,  1 Oct 2025 22:53:46 -0700
-Message-Id: <20251002055402.1865880-19-matthew.brost@intel.com>
+Subject: [PATCH v4 11/34] drm/xe/vf: Add xe_gt_recovery_inprogress helper
+Date: Wed,  1 Oct 2025 22:53:39 -0700
+Message-Id: <20251002055402.1865880-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -66,273 +65,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If VF post-migration recovery is in progress, the recovery flow will
-rebuild all GuC submission state.  In this case, exit all waiters to
-ensure that submission queue scheduling can also be paused. Avoid taking
-any adverse actions after aborting the wait.
+Add xe_gt_recovery_inprogress helper.
+
+This helper serves as the singular point to determine whether a GT
+recovery is currently in progress. Expected callers include the GuC CT
+layer and the GuC submission layer. Atomically visable as soon as vCPU
+are unhalted until VF recovery completes.
 
 v3:
- - Don't block in preempt fence work queue as this can interfere with VF
-   post-migration work queue scheduling leading to deadlock (Testing)
- - Use xe_gt_recovery_inprogress (Michal)
+ - Add GT layer xe_gt_recovery_inprogress (Michal)
+ - Don't blow up in memirq not enabled (CI)
+ - Add __memirq_received with clear argument (Michal)
+ - xe_memirq_sw_int_0_irq_pending rename (Michal)
+ - Use offset in xe_memirq_sw_int_0_irq_pending (Michal)
+v4:
+ - Refactor xe_gt_recovery_inprogress logic around memirq (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c   |  3 +
- drivers/gpu/drm/xe/xe_guc_submit.c    | 79 ++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_preempt_fence.c | 11 ++++
- 3 files changed, 73 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.h                | 13 ++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 22 +++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 10 +++++
+ drivers/gpu/drm/xe/xe_memirq.c            | 48 +++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_memirq.h            |  2 +
+ 6 files changed, 93 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 41880979f4de..ee0239b2f48c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -12,6 +12,7 @@
+ 
+ #include "xe_device.h"
+ #include "xe_device_types.h"
++#include "xe_gt_sriov_vf.h"
+ #include "xe_hw_engine.h"
+ 
+ #define for_each_hw_engine(hwe__, gt__, id__) \
+@@ -124,4 +125,16 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
+ 		hwe->instance == gt->usm.reserved_bcs_instance;
+ }
+ 
++/**
++ * xe_gt_recovery_inprogress() - GT recovery in progress
++ * @gt: the &xe_gt
++ *
++ * Return: True if GT recovery in progress, False otherwise
++ */
++static inline bool xe_gt_recovery_inprogress(struct xe_gt *gt)
++{
++	return IS_SRIOV_VF(gt_to_xe(gt)) &&
++		xe_gt_sriov_vf_recovery_inprogress(gt);
++}
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 6ba8b5703ff2..e8fd2fe98076 100644
+index 0461d5513487..c2be8fc14c88 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -741,6 +741,9 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
- 	    !gt->sriov.vf.migration.recovery_teardown) {
- 		gt->sriov.vf.migration.recovery_queued = true;
- 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
-+		smp_wmb();	/* Ensure above write visable before wake */
-+
-+		wake_up_all(&gt->uc.guc.ct.wq);
+@@ -26,6 +26,7 @@
+ #include "xe_guc_hxg_helpers.h"
+ #include "xe_guc_relay.h"
+ #include "xe_lrc.h"
++#include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_vf.h"
+@@ -776,6 +777,7 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
  
- 		started = queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
- 		xe_gt_sriov_info(gt, "VF migration recovery %s\n", started ?
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index b82976f031e5..9320fe9fbb29 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -27,7 +27,6 @@
- #include "xe_gt.h"
- #include "xe_gt_clock.h"
- #include "xe_gt_printk.h"
--#include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
-@@ -984,6 +983,9 @@ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
- 	return (WQ_SIZE - q->guc->wqi_tail);
- }
+ 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
++	xe_gt_assert(gt, xe_gt_sriov_vf_recovery_inprogress(gt));
  
-+#define vf_recovery(guc)	\
-+	xe_gt_recovery_inprogress(guc_to_gt(guc))
-+
- static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -993,7 +995,7 @@ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
- 
- #define AVAILABLE_SPACE \
- 	CIRC_SPACE(q->guc->wqi_tail, q->guc->wqi_head, WQ_SIZE)
--	if (wqi_size > AVAILABLE_SPACE) {
-+	if (wqi_size > AVAILABLE_SPACE && !vf_recovery(guc)) {
- try_again:
- 		q->guc->wqi_head = parallel_read(xe, map, wq_desc.head);
- 		if (wqi_size > AVAILABLE_SPACE) {
-@@ -1192,9 +1194,10 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 (!exec_queue_pending_enable(q) &&
- 				  !exec_queue_pending_disable(q)) ||
--					 xe_guc_read_stopped(guc),
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc),
- 				 HZ * 5);
--	if (!ret) {
-+	if (!ret && !vf_recovery(guc)) {
- 		struct xe_gpu_scheduler *sched = &q->guc->sched;
- 
- 		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
-@@ -1297,6 +1300,10 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	bool wedged = false;
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
-+
-+	if (vf_recovery(guc))
-+		return;
-+
- 	trace_xe_exec_queue_lr_cleanup(q);
- 
- 	if (!exec_queue_killed(q))
-@@ -1329,7 +1336,11 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 		 */
- 		ret = wait_event_timeout(guc->ct.wq,
- 					 !exec_queue_pending_disable(q) ||
--					 xe_guc_read_stopped(guc), HZ * 5);
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc), HZ * 5);
-+		if (vf_recovery(guc))
-+			return;
-+
- 		if (!ret) {
- 			xe_gt_warn(q->gt, "Schedule disable failed to respond, guc_id=%d\n",
- 				   q->guc->id);
-@@ -1419,8 +1430,9 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 
- 	ret = wait_event_timeout(guc->ct.wq,
- 				 !exec_queue_pending_enable(q) ||
--				 xe_guc_read_stopped(guc), HZ * 5);
--	if (!ret || xe_guc_read_stopped(guc)) {
-+				 xe_guc_read_stopped(guc) ||
-+				 vf_recovery(guc), HZ * 5);
-+	if ((!ret && !vf_recovery(guc)) || xe_guc_read_stopped(guc)) {
- 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
- 		set_exec_queue_banned(q);
- 		xe_gt_reset_async(q->gt);
-@@ -1491,7 +1503,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * list so job can be freed and kick scheduler ensuring free job is not
- 	 * lost.
- 	 */
--	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags))
-+	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags) ||
-+	    vf_recovery(guc))
- 		return DRM_GPU_SCHED_STAT_NO_HANG;
- 
- 	/* Kill the run_job entry point */
-@@ -1543,7 +1556,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 			ret = wait_event_timeout(guc->ct.wq,
- 						 (!exec_queue_pending_enable(q) &&
- 						  !exec_queue_pending_disable(q)) ||
--						 xe_guc_read_stopped(guc), HZ * 5);
-+						 xe_guc_read_stopped(guc) ||
-+						 vf_recovery(guc), HZ * 5);
-+			if (vf_recovery(guc))
-+				goto handle_vf_resume;
- 			if (!ret || xe_guc_read_stopped(guc))
- 				goto trigger_reset;
- 
-@@ -1568,7 +1584,10 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		smp_rmb();
- 		ret = wait_event_timeout(guc->ct.wq,
- 					 !exec_queue_pending_disable(q) ||
--					 xe_guc_read_stopped(guc), HZ * 5);
-+					 xe_guc_read_stopped(guc) ||
-+					 vf_recovery(guc), HZ * 5);
-+		if (vf_recovery(guc))
-+			goto handle_vf_resume;
- 		if (!ret || xe_guc_read_stopped(guc)) {
- trigger_reset:
- 			if (!ret)
-@@ -1673,6 +1692,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * some thought, do this in a follow up.
- 	 */
- 	xe_sched_submission_start(sched);
-+handle_vf_resume:
- 	return DRM_GPU_SCHED_STAT_NO_HANG;
- }
- 
-@@ -1769,11 +1789,17 @@ static void __guc_exec_queue_process_msg_set_sched_props(struct xe_sched_msg *ms
- 
- static void __suspend_fence_signal(struct xe_exec_queue *q)
- {
-+	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
-+
- 	if (!q->guc->suspend_pending)
- 		return;
- 
- 	WRITE_ONCE(q->guc->suspend_pending, false);
--	wake_up(&q->guc->suspend_wait);
-+	if (IS_SRIOV_VF(xe))
-+		wake_up_all(&guc->ct.wq);
-+	else
-+		wake_up(&q->guc->suspend_wait);
- }
- 
- static void suspend_fence_signal(struct xe_exec_queue *q)
-@@ -1794,8 +1820,9 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
- 
- 	if (guc_exec_queue_allowed_to_change_state(q) && !exec_queue_suspended(q) &&
- 	    exec_queue_enabled(q)) {
--		wait_event(guc->ct.wq, (q->guc->resume_time != RESUME_PENDING ||
--			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q));
-+		wait_event(guc->ct.wq, vf_recovery(guc) ||
-+			   ((q->guc->resume_time != RESUME_PENDING ||
-+			   xe_guc_read_stopped(guc)) && !exec_queue_pending_disable(q)));
- 
- 		if (!xe_guc_read_stopped(guc)) {
- 			s64 since_resume_ms =
-@@ -1922,7 +1949,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->entity = &ge->entity;
- 
--	if (xe_guc_read_stopped(guc))
-+	if (xe_guc_read_stopped(guc) || vf_recovery(guc))
- 		xe_sched_stop(sched);
- 
- 	mutex_unlock(&guc->submission_state.lock);
-@@ -2068,6 +2095,7 @@ static int guc_exec_queue_suspend(struct xe_exec_queue *q)
- static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-+	struct xe_device *xe = guc_to_xe(guc);
- 	int ret;
- 
+ 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
  	/*
-@@ -2075,11 +2103,22 @@ static int guc_exec_queue_suspend_wait(struct xe_exec_queue *q)
- 	 * suspend_pending upon kill but to be paranoid but races in which
- 	 * suspend_pending is set after kill also check kill here.
- 	 */
--	ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
--					       !READ_ONCE(q->guc->suspend_pending) ||
--					       exec_queue_killed(q) ||
--					       xe_guc_read_stopped(guc),
--					       HZ * 5);
-+	if (IS_SRIOV_VF(xe))
-+		ret = wait_event_interruptible_timeout(guc->ct.wq,
-+						       !READ_ONCE(q->guc->suspend_pending) ||
-+						       exec_queue_killed(q) ||
-+						       xe_guc_read_stopped(guc) ||
-+						       vf_recovery(guc),
-+						       HZ * 5);
-+	else
-+		ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
-+						       !READ_ONCE(q->guc->suspend_pending) ||
-+						       exec_queue_killed(q) ||
-+						       xe_guc_read_stopped(guc),
-+						       HZ * 5);
+@@ -1118,3 +1120,23 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
+ 	drm_printf(p, "\thandshake:\t%u.%u\n",
+ 		   pf_version->major, pf_version->minor);
+ }
 +
-+	if (vf_recovery(guc) && !xe_device_wedged((guc_to_xe(guc))))
-+		return -EAGAIN;
++/**
++ * xe_gt_sriov_vf_recovery_inprogress() - VF post migration recovery in progress
++ * @gt: the &xe_gt
++ *
++ * Return: True if VF post migration recovery in progress, False otherwise
++ */
++bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt)
++{
++	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
++
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++
++	/* early detection until recovery starts */
++	if (xe_device_uses_memirq(gt_to_xe(gt)) &&
++	    xe_memirq_sw_int_0_irq_pending(memirq, &gt->uc.guc))
++		return true;
++
++	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 0af1dc769fe0..bb5f8eace19b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -25,6 +25,8 @@ void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
+ int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
  
- 	if (!ret) {
- 		xe_gt_warn(guc_to_gt(guc),
-@@ -2187,7 +2226,7 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
++bool xe_gt_sriov_vf_recovery_inprogress(struct xe_gt *gt);
++
+ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 298dedf4b009..1dfef60ec044 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -46,6 +46,14 @@ struct xe_gt_sriov_vf_runtime {
+ 	} *regs;
+ };
+ 
++/**
++ * xe_gt_sriov_vf_migration - VF migration data.
++ */
++struct xe_gt_sriov_vf_migration {
++	/** @recovery_inprogress: VF post migration recovery in progress */
++	bool recovery_inprogress;
++};
++
+ /**
+  * struct xe_gt_sriov_vf - GT level VF virtualization data.
+  */
+@@ -58,6 +66,8 @@ struct xe_gt_sriov_vf {
+ 	struct xe_gt_sriov_vf_selfconfig self_config;
+ 	/** @runtime: runtime data retrieved from the PF. */
+ 	struct xe_gt_sriov_vf_runtime runtime;
++	/** @migration: migration data for the VF. */
++	struct xe_gt_sriov_vf_migration migration;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index 49c45ec3e83c..2391993634b5 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -398,8 +398,9 @@ void xe_memirq_postinstall(struct xe_memirq *memirq)
+ 		memirq_set_enable(memirq, true);
+ }
+ 
+-static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+-			    u16 offset, const char *name)
++static bool __memirq_received(struct xe_memirq *memirq,
++			      struct iosys_map *vector, u16 offset,
++			      const char *name, bool clear)
  {
- 	int ret;
+ 	u8 value;
  
--	if (WARN_ON_ONCE(xe_gt_sriov_vf_recovery_inprogress(guc_to_gt(guc))))
-+	if (WARN_ON_ONCE(vf_recovery(guc)))
- 		return 0;
+@@ -409,12 +410,26 @@ static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
+ 			memirq_err_ratelimited(memirq,
+ 					       "Unexpected memirq value %#x from %s at %u\n",
+ 					       value, name, offset);
+-		iosys_map_wr(vector, offset, u8, 0x00);
++		if (clear)
++			iosys_map_wr(vector, offset, u8, 0x00);
+ 	}
  
- 	if (!guc->submission_state.initialized)
-diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
-index 83fbeea5aa20..7f587ca3947d 100644
---- a/drivers/gpu/drm/xe/xe_preempt_fence.c
-+++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
-@@ -8,6 +8,8 @@
- #include <linux/slab.h>
+ 	return value;
+ }
  
- #include "xe_exec_queue.h"
-+#include "xe_gt_printk.h"
-+#include "xe_guc_exec_queue_types.h"
- #include "xe_vm.h"
- 
- static void preempt_fence_work_func(struct work_struct *w)
-@@ -22,6 +24,15 @@ static void preempt_fence_work_func(struct work_struct *w)
- 	} else if (!q->ops->reset_status(q)) {
- 		int err = q->ops->suspend_wait(q);
- 
-+		if (err == -EAGAIN) {
-+			xe_gt_dbg(q->gt, "PREEMPT FENCE RETRY guc_id=%d",
-+				  q->guc->id);
-+			queue_work(q->vm->xe->preempt_fence_wq,
-+				   &pfence->preempt_work);
-+			dma_fence_end_signalling(cookie);
-+			return;
-+		}
++static bool memirq_received_noclear(struct xe_memirq *memirq,
++				    struct iosys_map *vector,
++				    u16 offset, const char *name)
++{
++	return __memirq_received(memirq, vector, offset, name, false);
++}
 +
- 		if (err)
- 			dma_fence_set_error(&pfence->base, err);
- 	} else {
++static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
++			    u16 offset, const char *name)
++{
++	return __memirq_received(memirq, vector, offset, name, true);
++}
++
+ static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
+ 				   struct xe_hw_engine *hwe)
+ {
+@@ -434,8 +449,16 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
+ 	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
+ 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+ 
+-	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
++	/*
++	 * We must wait to perform the clear operation until after
++	 * xe_gt_sriov_vf_start_migration_recovery() runs, to avoid race
++	 * conditions where xe_gt_sriov_vf_recovery_inprogress() returns false.
++	 */
++	if (memirq_received_noclear(memirq, status, ilog2(GUC_INTR_SW_INT_0),
++				    name)) {
+ 		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
++		iosys_map_wr(status, ilog2(GUC_INTR_SW_INT_0), u8, 0x00);
++	}
+ }
+ 
+ /**
+@@ -460,6 +483,23 @@ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
+ 	}
+ }
+ 
++/**
++ * xe_memirq_sw_int_0_irq_pending() - SW_INT_0 IRQ is pending
++ * @memirq: the &xe_memirq
++ * @guc: the &xe_guc to check for IRQ
++ *
++ * Return: True if SW_INT_0 IRQ is pending on @guc, False otherwise
++ */
++bool xe_memirq_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	u32 offset = xe_gt_is_media_type(gt) ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
++	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&memirq->status, offset * SZ_16);
++
++	return memirq_received_noclear(memirq, &map, ilog2(GUC_INTR_SW_INT_0),
++				       guc_name(guc));
++}
++
+ /**
+  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
+  * @memirq: the &xe_memirq
+diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
+index 06130650e9d6..a6fffdadef88 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.h
++++ b/drivers/gpu/drm/xe/xe_memirq.h
+@@ -25,4 +25,6 @@ void xe_memirq_handler(struct xe_memirq *memirq);
+ 
+ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
+ 
++bool xe_memirq_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc);
++
+ #endif
 -- 
 2.34.1
 
