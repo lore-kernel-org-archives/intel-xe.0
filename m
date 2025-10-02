@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E45CCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 380CBCCD198
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BA3910E7B1;
-	Thu,  2 Oct 2025 05:54:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42EB10E7AD;
+	Thu,  2 Oct 2025 05:54:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N25bhSbx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MLME1bPX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D00410E7A1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0840210E787
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759384449; x=1790920449;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5UP401ZzVVf1vrQG13tQ/x289lbSVKlw/oKu+fWhUCw=;
- b=N25bhSbx/sTNXcvtqscNsir2rF9KSQH/NRNjVZfosx6hRplLNuCQfCLo
- AAOvIQllcQhuB6gADZty/S8KPIPrJsE5mPnLFXgYB1zi4S7Hyo47I6jjl
- Vi62LAD0bij1BiH3EcqIdMWhkhMdno92uav34Ah7zjH+Pq/ZuwXrR3k4u
- NPUKP009eViMXci4YXdg1C4Te/FlttAzOv1xcuKqeconNevJqvnnfamTZ
- lpBbRKTEKSsW3UhsA6aKwToB7wIEiTvUz0Suz29mrd1mDx7VRC0G5GAGc
- tCzKIcIufVutsu+pq6CN2PEiwRyGChZ/fOvp/kG8vmPUJzxCDMyZNjLhc g==;
-X-CSE-ConnectionGUID: 7aa8872nTN27Zw1BRURcqw==
-X-CSE-MsgGUID: F55UPRhTS2qnU5tYfkbBqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304525"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304525"
+ bh=h4iPrjXFf9X472aPJKxj3YN16cOoNHoH06NE5MQYj9Y=;
+ b=MLME1bPXZI1KNZ/xGbaQqb2NU+MVHxqoTSmwY4DQcxpCSxn1pYXtpsK+
+ 1UdIZ+A0JVJZGO6M2wl/sQSNTLZDH0WKzrsSPKOBuUzZIFECyWDw7Mpdo
+ lxeh9WIEjM8Q7pgRQgk3WabE+d3lgQcGjia6YEgz8qioX0b7JjU5Z8ENg
+ LyLpCXzIrECAUOi8hAAoVmxNJCqyPkFSRxyHpBSSsKjpgoiTE6TRbE/MF
+ EimoJfP2+MLPYL2lhM4TNzx1XZkOZVZ+hV06EIzGY5DziGYFLyG7onUbo
+ 6+vDd0z2nEkCZOzgueBQRJqo0N6l+W2IByNSaHX/ofEEzWYsDwBKHZ2TR Q==;
+X-CSE-ConnectionGUID: bAhXS5OtShGP4YzZTF5WVw==
+X-CSE-MsgGUID: lL+aIZNJSsql2q4c9eK0ww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304512"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304512"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: /xISazRORaagcLWqQE21hg==
-X-CSE-MsgGUID: mp7EMwsZQ+eK0JXOy9FXZg==
+X-CSE-ConnectionGUID: IEnQMYyaTY6tltQfVx5oJA==
+X-CSE-MsgGUID: wN1VxpwrSB6+rlUgAk+WFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083556"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083544"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 30/34] drm/xe: Use PPGTT addresses for TLB invalidation to
- avoid GGTT fixups
-Date: Wed,  1 Oct 2025 22:53:58 -0700
-Message-Id: <20251002055402.1865880-31-matthew.brost@intel.com>
+Subject: [PATCH v4 19/34] drm/xe/vf: Avoid indefinite blocking in preempt
+ rebind worker for VFs supporting migration
+Date: Wed,  1 Oct 2025 22:53:47 -0700
+Message-Id: <20251002055402.1865880-20-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -67,78 +67,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Blocking in work queues on a hardware action that may never occur —
+especially when it depends on a software fixup also scheduled on the
+a work queue — is a recipe for deadlock. This situation arises with
+the preempt rebind worker and VF post-migration recovery. To prevent
+potential deadlocks, avoid indefinite blocking in the preempt rebind
+worker for VFs that support migration.
 
-The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
-advance and retains it so the GuC can submit it directly when saving a
-VM’s state.
+v4:
+ - Use dma_fence_wait_timeout (CI)
 
-When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
-addresses embedded in the BB would then have to be parsed and patched.
-
-Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
-remains GGTT-agnostic and requires no address fixups during migration.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 26 +++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1d667fa36cf3..ad03afb5145f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -980,15 +980,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
- }
- 
--static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
--				 u32 flags)
-+static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 80b7f13ecd80..a392c456e067 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -35,6 +35,7 @@
+ #include "xe_pt.h"
+ #include "xe_pxp.h"
+ #include "xe_res_cursor.h"
++#include "xe_sriov_vf.h"
+ #include "xe_svm.h"
+ #include "xe_sync.h"
+ #include "xe_tile.h"
+@@ -111,12 +112,22 @@ static int alloc_preempt_fences(struct xe_vm *vm, struct list_head *list,
+ static int wait_for_existing_preempt_fences(struct xe_vm *vm)
  {
--	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
-+	/*
-+	 * The migrate VM is self-referential so it can modify its own PTEs (see
-+	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
-+	 * entries for kernel operations (copies, clears, CCS migrate), and
-+	 * suballocate the rest to user operations (binds/unbinds). With
-+	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
-+	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
-+	 */
-+	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
-+}
+ 	struct xe_exec_queue *q;
++	bool vf_migration = IS_SRIOV_VF(vm->xe) &&
++		xe_sriov_vf_migration_supported(vm->xe);
++	signed long wait_time = vf_migration ? HZ / 5 : MAX_SCHEDULE_TIMEOUT;
+ 
+ 	xe_vm_assert_held(vm);
+ 
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
+ 		if (q->lr.pfence) {
+-			long timeout = dma_fence_wait(q->lr.pfence, false);
++			long timeout;
 +
-+static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-+{
-+	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
++			timeout = dma_fence_wait_timeout(q->lr.pfence, false,
++							 wait_time);
++			if (!timeout) {
++				xe_assert(vm->xe, vf_migration);
++				return -EAGAIN;
++			}
+ 
+ 			/* Only -ETIME on fence indicates VM needs to be killed */
+ 			if (timeout < 0 || q->lr.pfence->error == -ETIME)
+@@ -541,6 +552,19 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ out_unlock_outer:
+ 	if (err == -EAGAIN) {
+ 		trace_xe_vm_rebind_worker_retry(vm);
 +
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
- 		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
--		  MI_FLUSH_DW_USE_GTT;
--	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
-+	dw[i++] = lower_32_bits(addr);
-+	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = MI_NOOP;
- 	dw[i++] = MI_NOOP;
- 
-@@ -1101,11 +1113,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 
- 		size -= src_L0;
++		/*
++		 * We can't block in workers on a VF which supports migration
++		 * given this can block the VF post-migration workers from
++		 * getting scheduled.
++		 */
++		if (IS_SRIOV_VF(vm->xe) &&
++		    xe_sriov_vf_migration_supported(vm->xe)) {
++			up_write(&vm->lock);
++			xe_vm_queue_rebind_worker(vm);
++			return;
++		}
++
+ 		goto retry;
  	}
+ 
 -- 
 2.34.1
 
