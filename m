@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BABB5CAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 11:24:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB6BBCAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 11:51:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD8F10E189;
-	Thu,  2 Oct 2025 11:24:37 +0000 (UTC)
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64DF610E189;
- Thu,  2 Oct 2025 11:24:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1524376912847476498=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/panic=3A_fix_panic?=
- =?utf-8?q?_structure_allocation_memory_leak?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Oct 2025 11:24:36 -0000
-Message-ID: <175940427640.386280.16129067084153343447@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20251002101756.2700320-1-jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A32010E7C5;
+	Thu,  2 Oct 2025 11:51:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aKKbNZks";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1839110E7C4;
+ Thu,  2 Oct 2025 11:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759405867; x=1790941867;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=ddAUD2a45HoA1NUO5Nt8Me4ZGB37XbYtAGN4VasaP2s=;
+ b=aKKbNZksD9b68wpyq/VQ44mMYC8Ckll7TQ7vgWQovRSKBCkKJcJQ/imQ
+ q+Q0mqQgIOrAjBF/aKz+m++meEfK9zIrQClf2loxx7T9b+/lGSyIDQDSq
+ JRE8UGu8PCFEGZXU9gsNie/qViE/B6n80xhYg6iigOAUUNiBnPBIY/ExC
+ zqt/svqALXGQeG7GK6dZoKJ6jFwJvClKn3vme9WacoTsfHfLtg4x40uEL
+ +EOWDRHIo0PwQuk9eCIkKgm338iPAef/WFfA1DBNmmPYJv66Ds7S4Brs+
+ /zAzRMBn+yyFWAsc7GcKKl/D3jNF3yLd2Ul3S9pAOB1NajxQ3oQMvFYCO g==;
+X-CSE-ConnectionGUID: l8092ztnQc2mHMXx6lbijA==
+X-CSE-MsgGUID: M2p5r3mwQcKzZuUz5imPHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="72793749"
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="72793749"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 04:51:07 -0700
+X-CSE-ConnectionGUID: 3gEQizDYS6upiR0UewUMmQ==
+X-CSE-MsgGUID: Edfb3urpQOiWx6pM6YC68w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="216142183"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 04:51:04 -0700
+Date: Thu, 2 Oct 2025 13:51:02 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Jocelyn Falempe <jfalempe@redhat.com>, 
+ Maarten Lankhorst <dev@lankhorst.se>, 
+ =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
+ =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/panic: fix panic structure allocation memory leak
 In-Reply-To: <20251002101756.2700320-1-jani.nikula@intel.com>
+Message-ID: <3198b351-b780-e068-e8b3-39608ebc597b@intel.com>
+References: <20251002101756.2700320-1-jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ BOUNDARY="8323329-1820180189-1759403194=:1357965"
+Content-ID: <c74f720c-5848-319d-7f25-0860a6073823@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +69,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1524376912847476498==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323329-1820180189-1759403194=:1357965
+Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
+Content-ID: <bfa043ed-1b14-4996-afd6-9a108907a851@intel.com>
 
-Series: drm/i915/panic: fix panic structure allocation memory leak
-URL   : https://patchwork.freedesktop.org/series/155330/
-State : success
+On Thu, 2 Oct 2025, Jani Nikula wrote:
+> Separating the panic allocation from framebuffer allocation in commit
+> 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
+> belongs") failed to deallocate the panic structure anywhere.
+>
+> The fix is two-fold. First, free the panic structure in
+> intel_user_framebuffer_destroy() in the general case. Second, move the
+> panic allocation later to intel_framebuffer_init() to not leak the panic
+> structure in error paths (if any, now or later) between
+> intel_framebuffer_alloc() and intel_framebuffer_init().
+>
+> Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")
+> Cc: Jocelyn Falempe <jfalempe@redhat.com>
+> Cc: Maarten Lankhorst <dev@lankhorst.se>
+> Reported-by: Micha³ Grzelak <michal.grzelak@intel.com>
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+Have run a bunch of tests on affected platform, which previously caused
+the issue to surface. With the patch applied no memleaks are reported.
 
-CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155330v1_BAT
-====================================================
+Tested-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155330v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3853-5f87abb254011980c8332008cfff72d2cfab4952/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155330v1
-
-  IGT_8568: 8568
-  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
-  xe-pw-155330v1: 155330v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html
-
---===============1524376912847476498==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/panic: fix panic structure allocation memory leak</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155330/">https://patchwork.freedesktop.org/series/155330/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155330v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155330v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3853-5f87abb254011980c8332008cfff72d2cfab4952/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155330v1</li>
-</ul>
-<p>IGT_8568: 8568<br />
-  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
-  xe-pw-155330v1: 155330v1</p>
-
-</body>
-</html>
-
---===============1524376912847476498==--
+BR,
+Micha³
+--8323329-1820180189-1759403194=:1357965--
