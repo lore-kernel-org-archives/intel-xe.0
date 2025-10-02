@@ -4,48 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20512CAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 17:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E3ECAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 17:13:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB9910E09C;
-	Thu,  2 Oct 2025 17:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E1D10E09C;
+	Thu,  2 Oct 2025 17:13:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Pf1Is9OY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QPQwU4Ep";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91E8510E09C
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 17:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=n/gvBF77JNmyVfSBxZhu+NNIGn/EZL9KyDopMJhTXQg=; b=Pf1Is9OYkSOBZrQUT+ebt6jQqs
- 5goiTr47Dgxh0A3GVZ6AQ+fOM1WZFlskA/JXmh0ftAKLLQFqHEcdTRaIoivaEVncwDl3+/MGl27qs
- UmRs7g4LdX4MWr4x7L4/4+AnevTyZ6ur3EMPIzAu7RaxO+XklRx/sshPMbnjFP3EgrRyi4Jj3ycR6
- cskuDC5mCnscOoiHjgu66KXo+BOMqysf/1hnA47w/5jmABRhWleWYOdD+o7N6E9NLnrl59u3Q+UzF
- Sgkg0aO4MnPxY1HYD0urDxcAtDp3pEGzo0V+WZ1SN9xPPrcyRyZy3J0AofTbs3kVk9eEXghrXql22
- L6KqF5Gg==;
-Received: from [84.66.36.92] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1v4Mpf-003TQE-6S; Thu, 02 Oct 2025 19:11:07 +0200
-Message-ID: <1554a41c-1a7c-4656-a07a-1f789dbab369@igalia.com>
-Date: Thu, 2 Oct 2025 18:11:06 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E289C10E09C
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 17:13:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759425200; x=1790961200;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XoNAbL4SCvki1WomuVnX6/lKfOWBxL1riH2FYNkukYg=;
+ b=QPQwU4EpzyJHqga4X8SiQu9JnuGuAbzOyNoFV8BXViYaocIFMXl4ApiX
+ m9zzJU9mrjSDaNlFV+3P3uuV8LbwrHJTU0zeX5sPqTy3kIgbNX5FInkzN
+ 1ifCsRpx2Vn0I80MLX+tMrogT5rQrJONi1ShObszBJQZKIc9Md7kjKyqX
+ rIzZnje5Ofpuu9ByPtldOmSBSa4E2T4deFtB4uAEAJGTwIyucgHlu7n0V
+ 50ECHPd3qt13hTHjedkGNKCltmusG80mUPSa7ol7G6iFzX2V07/4IX6dZ
+ gybyn4HhvrJ7ViRnSwT4kCHbCBhKkfHfUz9t7Zhml0F9+904yLLRgH4mw w==;
+X-CSE-ConnectionGUID: fg300dPsSUa8D6BxXIekTA==
+X-CSE-MsgGUID: P4CnHyg7Sv2Et3y8CpPt1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61675663"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61675663"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 10:13:19 -0700
+X-CSE-ConnectionGUID: kn879ZP6T5ufbjBiy7vnlQ==
+X-CSE-MsgGUID: R1zZLnM5S46py1ariXMNYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="209778315"
+Received: from sachowdh-mobl1.amr.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.252.70])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 10:13:19 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH] drm/xe: Don't force DRM_XE_DEBUG_MEMIRQ for SR-IOV debug
+Date: Thu,  2 Oct 2025 19:13:08 +0200
+Message-ID: <20251002171308.203127-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [CI 00/13] CCS uncached mocs 0 test run
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
- <aN6QAvE0zQHy_1Rj@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <aN6QAvE0zQHy_1Rj@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,68 +65,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+For pure SR-IOV debugging there is no need to select already
+separated config for the debugging of the memory based interrupts,
+as the latter is also very noisy on its own. Change config order
+and use a weak reverse dependency instead.
 
-On 02/10/2025 15:45, Rodrigo Vivi wrote:
-> On Thu, Oct 02, 2025 at 03:24:38PM +0100, Tvrtko Ursulin wrote:
->> HW hardcodes mocs 0 for CCS?!
->>
->> Tvrtko Ursulin (13):
->>    drm/xe: Fix ggtt fb alignment
->>    drm/xe/xelpg: Flush CCS when flushing caches
->>    drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
->>    drm/xe/xelp: Support auxccs invalidation on blitter
->>    drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
->>    drm/xe/xelp: Wait for AuxCCS invalidation to complete
->>    drm/xe: Export xe_emit_aux_table_inv
->>    drm/xe/xelp: Add AuxCCS invalidation to the indirect context
->>      workarounds
->>    drm/xe: Flush GGTT writes after populating DPT
->>    drm/xe: Handle DPT in system memory
->>    drm/xe/display: Add support for AuxCCS
->>    mocs 0 uncached
-> 
-> what is this?
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/Kconfig.debug | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-It was an experiment.
-
-In another thread Ville figured out the hardware has some weird 
-behaviour with CCS and how it uses MOCS indices.
-
-First of all, it appears using 3 (UC) is somehow ignored and things 
-still behave like WB. But making MOCS 0 UC (by default it is WB on ADL) 
-makes using 3 (UC) much more "uncached" (for CCS).
-
-Also, using 3 appears wrong for CCS to start with. 61 should be used and 
-that then appears to potentially work even better than making 0 UC.
-
-I say potentially because I would somehow need to do a full CI run with 
-a kernel patch series and IGT patched to use MOCS 61 instead of 3 when 
-rendering to frame buffer objects. So far I only have data from local 
-testing which show MOCS 61 works well. Making 0 UC for me locally is 
-just as good. But on the full shards run it is not 100% reliable.
-
-Clear like the mud? :)
-
-Regards,
-
-Tvrtko
-
-> 
->>    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
->>
->>   .../drm/i915/display/skl_universal_plane.c    |   6 -
->>   drivers/gpu/drm/xe/display/xe_fb_pin.c        | 159 ++++++++---
->>   .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
->>   .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
->>   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
->>   drivers/gpu/drm/xe/xe_lrc.c                   |  38 +++
->>   drivers/gpu/drm/xe/xe_mocs.c                  | 247 ++++++++++--------
->>   drivers/gpu/drm/xe/xe_ring_ops.c              | 164 ++++++------
->>   drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
->>   drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
->>   10 files changed, 400 insertions(+), 227 deletions(-)
->>
->> -- 
->> 2.48.0
->>
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 87902b4bd6d3..01227c77f6d7 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -40,6 +40,17 @@ config DRM_XE_DEBUG_VM
+ 
+ 	  If in doubt, say "N".
+ 
++config DRM_XE_DEBUG_SRIOV
++	bool "Enable extra SR-IOV debugging"
++	default n
++	imply DRM_XE_DEBUG_MEMIRQ
++	help
++	  Enable extra SR-IOV debugging info.
++
++	  Recommended for driver developers only.
++
++	  If in doubt, say "N".
++
+ config DRM_XE_DEBUG_MEMIRQ
+ 	bool "Enable extra memirq debugging"
+ 	default n
+@@ -51,17 +62,6 @@ config DRM_XE_DEBUG_MEMIRQ
+ 
+ 	  If in doubt, say "N".
+ 
+-config DRM_XE_DEBUG_SRIOV
+-	bool "Enable extra SR-IOV debugging"
+-	default n
+-	select DRM_XE_DEBUG_MEMIRQ
+-	help
+-	  Enable extra SR-IOV debugging info.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_XE_DEBUG_MEM
+ 	bool "Enable passing SYS/VRAM addresses to user space"
+ 	default n
+-- 
+2.47.1
 
