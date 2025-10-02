@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC129CAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 10:41:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D03BFCAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 10:46:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2F2410E11C;
-	Thu,  2 Oct 2025 10:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9652310E18D;
+	Thu,  2 Oct 2025 10:46:54 +0000 (UTC)
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 148D210E11C;
- Thu,  2 Oct 2025 10:40:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3235078682939848981=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5462D10E18D;
+ Thu,  2 Oct 2025 10:46:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_no?=
- =?utf-8?q?=5Fpsr=5Freason_to_PSR_debugfs?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/panic=3A_fix_pan?=
+ =?utf-8?q?ic_structure_allocation_memory_leak?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 02 Oct 2025 10:40:59 -0000
-Message-ID: <175940165907.386187.10168199762470074491@1538d3639d33>
+Date: Thu, 02 Oct 2025 10:46:53 -0000
+Message-ID: <175940201334.386273.15027024126633570868@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20251002095640.1347990-1-michal.grzelak@intel.com>
-In-Reply-To: <20251002095640.1347990-1-michal.grzelak@intel.com>
+References: <20251002101756.2700320-1-jani.nikula@intel.com>
+In-Reply-To: <20251002101756.2700320-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3235078682939848981==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs
-URL   : https://patchwork.freedesktop.org/series/155327/
-State : success
+Series: drm/i915/panic: fix panic structure allocation memory leak
+URL   : https://patchwork.freedesktop.org/series/155330/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155327v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d03d14190bc605f4b52cfa48c9b1b2bc6a23b171
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Thu Oct 2 13:17:56 2025 +0300
 
-Summary
--------
+    drm/i915/panic: fix panic structure allocation memory leak
+    
+    Separating the panic allocation from framebuffer allocation in commit
+    729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
+    belongs") failed to deallocate the panic structure anywhere.
+    
+    The fix is two-fold. First, free the panic structure in
+    intel_user_framebuffer_destroy() in the general case. Second, move the
+    panic allocation later to intel_framebuffer_init() to not leak the panic
+    structure in error paths (if any, now or later) between
+    intel_framebuffer_alloc() and intel_framebuffer_init().
+    
+    Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")
+    Cc: Jocelyn Falempe <jfalempe@redhat.com>
+    Cc: Maarten Lankhorst <dev@lankhorst.se>
+    Reported-by: Michał Grzelak <michal.grzelak@intel.com>
+    Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 880468a295fb4db7bf44eec3541bfc24d42d9656 drm-intel
+d03d14190bc6 drm/i915/panic: fix panic structure allocation memory leak
+-:9: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")'
+#9: 
+Separating the panic allocation from framebuffer allocation in commit
 
-  **SUCCESS**
+-:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#22: 
+Reported-by: Michał Grzelak <michal.grzelak@intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155327v1
-
-  IGT_8568: 8568
-  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
-  xe-pw-155327v1: 155327v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html
-
---===============3235078682939848981==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 1 warnings, 0 checks, 54 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155327/">https://patchwork.freedesktop.org/series/155327/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155327v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155327v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155327v1</li>
-</ul>
-<p>IGT_8568: 8568<br />
-  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
-  xe-pw-155327v1: 155327v1</p>
-
-</body>
-</html>
-
---===============3235078682939848981==--
