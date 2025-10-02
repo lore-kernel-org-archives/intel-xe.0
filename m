@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E882CCD185
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 23:04:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13579CAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 23:11:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D86E710E862;
-	Thu,  2 Oct 2025 23:04:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l2Exss6b";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A44A510E0CF
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 23:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759446288; x=1790982288;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aQvlP5D4HcQdrhd05YU4CJIs/pVcEBqCyhROUOguZOk=;
- b=l2Exss6bwfkv6La8IlRP+qM+XirSjNNhJ7BjHpTbrb9UEr0IsVkaQN4B
- wHPWqW0V7cq3FWvXisnHaohJIACO4OtvguG/VTyoww4MnSLyaf3NFaxCx
- tAI/A6vZt4Xds8hAjr+Bwfd19uUNqJc2VvD8qzfxhMe/fRMpqz5Poa5Ue
- CTqPYRN0XavJrxw2t4muOYNsx5N+tQmpbjNB+YdCo+UCz42dSnR5JKGb1
- Xa269H6GJEP03Hu6A+KZdL/GfxFsHN0lreWi3LcNtUu1M55A2GoDkja+c
- 8xwJknAqKOheCjSh8FY+du2EBoqkkkwKsAyBqy/TjdL1pfyisoYaLQl8/ A==;
-X-CSE-ConnectionGUID: 2uyA4O8kRcaTzUlv73ndfA==
-X-CSE-MsgGUID: m1PHrGVuQ6+L1aUHhaLTfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="79165581"
-X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="79165581"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 16:04:47 -0700
-X-CSE-ConnectionGUID: No+fN2C7RICbpd2ZJ4+dog==
-X-CSE-MsgGUID: LkdEBmJZSy+VpDgfqx/Z4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="179566725"
-Received: from dut4351arlh.fm.intel.com ([10.105.10.106])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 16:04:46 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 4/7] drm/xe: Add new exec queue trace points
-Date: Thu,  2 Oct 2025 23:04:41 +0000
-Message-Id: <20251002230444.313505-5-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251002230444.313505-1-stuart.summers@intel.com>
-References: <20251002230444.313505-1-stuart.summers@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABADA10E06A;
+	Thu,  2 Oct 2025 23:11:04 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EC0510E06A;
+ Thu,  2 Oct 2025 23:11:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_a_couple_of_wedge_cor?=
+ =?utf-8?q?ner-case_memory_leaks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stuart Summers" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Oct 2025 23:11:03 -0000
+Message-ID: <175944666323.1380.18358694171460474522@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251002230444.313505-1-stuart.summers@intel.com>
+In-Reply-To: <20251002230444.313505-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,155 +36,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an exec queue and guc exec queue trace point
-to separate out which part of the stack is executing.
+== Series Details ==
 
-This is helpful because several of the guc specific
-paths rely on responses from guc which is interesting
-to view separately in the event the guc stops responding
-in the middle of an operation that would expect a
-response from guc otherwise.
+Series: Fix a couple of wedge corner-case memory leaks
+URL   : https://patchwork.freedesktop.org/series/155352/
+State : warning
 
-Also add in the exec queue pointer information to
-the trace events for easier tracking. Contexts (guc_ids)
-can get re-used, so this just makes grepping a little
-easier in this type of debug.
+== Summary ==
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c |  4 ++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 11 +++++++----
- drivers/gpu/drm/xe/xe_trace.h      | 22 ++++++++++++++++++++--
- 3 files changed, 31 insertions(+), 6 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit de31da9099313aab3b3cc0baba9ea05a43dfafcc
+Author: Stuart Summers <stuart.summers@intel.com>
+Date:   Thu Oct 2 23:04:44 2025 +0000
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index db3f869b53f3..c31bc8411a71 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -356,6 +356,8 @@ void xe_exec_queue_destroy(struct kref *ref)
- 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
- 	struct xe_exec_queue *eq, *next;
- 
-+	trace_xe_exec_queue_destroy(q);
-+
- 	if (xe_exec_queue_uses_pxp(q))
- 		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
- 
-@@ -951,6 +953,8 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
- {
- 	struct xe_exec_queue *eq = q, *next;
- 
-+	trace_xe_exec_queue_kill(q);
-+
- 	list_for_each_entry_safe(eq, next, &eq->multi_gt_list,
- 				 multi_gt_link) {
- 		q->ops->kill(eq);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 53024eb5670b..55a50c46ea2b 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1022,9 +1022,12 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	}
- 
- 	mutex_lock(&guc->submission_state.lock);
--	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
--		if (xe_exec_queue_get_unless_zero(q))
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-+		if (xe_exec_queue_get_unless_zero(q)) {
- 			set_exec_queue_wedged(q);
-+			trace_xe_exec_queue_wedge(q);
-+		}
-+	}
- 	mutex_unlock(&guc->submission_state.lock);
- }
- 
-@@ -1443,7 +1446,7 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 
- 	xe_pm_runtime_get(guc_to_xe(guc));
--	trace_xe_exec_queue_destroy(q);
-+	trace_xe_guc_exec_queue_destroy(q);
- 
- 	if (xe_exec_queue_is_lr(q))
- 		cancel_work_sync(&ge->lr_tdr);
-@@ -1688,7 +1691,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- static void guc_exec_queue_kill(struct xe_exec_queue *q)
- {
--	trace_xe_exec_queue_kill(q);
-+	trace_xe_guc_exec_queue_kill(q);
- 	set_exec_queue_killed(q);
- 	__suspend_fence_signal(q);
- 	xe_guc_exec_queue_trigger_cleanup(q);
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 314f42fcbcbd..a5dd0c48d894 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -71,6 +71,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 
- 		    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_eq(q))
-+			     __field(struct xe_exec_queue *, q)
- 			     __field(enum xe_engine_class, class)
- 			     __field(u32, logical_mask)
- 			     __field(u8, gt_id)
-@@ -82,6 +83,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 
- 		    TP_fast_assign(
- 			   __assign_str(dev);
-+			   __entry->q = q;
- 			   __entry->class = q->class;
- 			   __entry->logical_mask = q->logical_mask;
- 			   __entry->gt_id = q->gt->info.id;
-@@ -91,8 +93,9 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 			   __entry->flags = q->flags;
- 			   ),
- 
--		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
--			      __get_str(dev), __entry->class, __entry->logical_mask,
-+		    TP_printk("dev=%s, %p, %d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
-+			      __get_str(dev), __entry->q,
-+			      __entry->class, __entry->logical_mask,
- 			      __entry->gt_id, __entry->width, __entry->guc_id,
- 			      __entry->guc_state, __entry->flags)
- );
-@@ -147,11 +150,21 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_close,
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_wedge,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_kill,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_guc_exec_queue_kill,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cleanup_entity,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
-@@ -162,6 +175,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_destroy,
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_guc_exec_queue_destroy,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_reset,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
--- 
-2.34.1
+    drm/xe: Check for GuC responses on disabling scheduling
+    
+    In the event the GuC becomes unresponsive during a scheduling
+    disable event, we still want the driver to be able to recover.
+    This patch follows the same methodology we already have in place
+    for TLB invalidation requests, where we send a request to GuC
+    and wait for that invalidation done response. If the response
+    doesn't come back in time we then at least print a message
+    indicating the invalidation failed for some reason.
+    
+    In this case, we send the schedule disable and the expectation
+    is that GuC will respond with a schedule done response. The KMD
+    then catches that response and in turn sends a context deregistration
+    response. So in the event GuC becomes unresponsive after we send
+    the schedule disable, we actually have two g2h responses that
+    have been reserved but never received.
+    
+    To handle this, make sure the pending disable event in the
+    exec queue gets cleared (i.e. we received that response from
+    GuC). If it doesn't in a reasonable amount of time, assume
+    GuC is dead: ban the exec queue, queue up a GT reset, and
+    manually call the schedule done handler. Then in the schedule
+    done handler, in turn, check whether the context had been
+    banned. If so, manually call the deregistration done handler
+    to ensure all resources related to that exec queue get
+    cleaned up properly. Without this, if the device becomes
+    wedged after an exec queue has been created, the attached
+    resources like the LRC will not get feed properly resulting
+    in a memory leak.
+    
+    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
++ /mt/dim checkpatch 0aa5ad66ed77cd8c3bb9fb01997f68f31200f434 drm-intel
+4b91a6dcfe12 drm/xe: Add additional trace points for LRCs
+-:78: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#78: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:45:
++DECLARE_EVENT_CLASS(xe_lrc,
++	    TP_PROTO(struct xe_lrc *lrc),
+
+-:81: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#81: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:48:
++	    TP_STRUCT__entry(
+
+-:87: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#87: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:54:
++	    TP_fast_assign(
+
+total: 0 errors, 0 warnings, 3 checks, 91 lines checked
+d50ab269d91b drm/xe: Add a trace point for VM close
+c3be85cb82de drm/xe: Add the BO pointer info to the BO trace
+24397ed525d4 drm/xe: Add new exec queue trace points
+20f5efc635fe drm/xe: Handle missing migration VM on VM creation
+0e538d3bb166 drm/xe: Don't send a CLEANUP message on sched pause
+de31da909931 drm/xe: Check for GuC responses on disabling scheduling
+
 
