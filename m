@@ -4,52 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9896FCAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 15:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C72BCAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 15:06:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A8E410E7F9;
-	Thu,  2 Oct 2025 15:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F407F10E7F6;
+	Thu,  2 Oct 2025 15:06:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J8Uo4Sb6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4jZz9Wf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25EDB10E1B8
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 15:03:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF7210E1BD;
+ Thu,  2 Oct 2025 15:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759417385; x=1790953385;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cDdhocOZegx3HkJKVSqjjpuogoMbn6idkko9pKEWrhM=;
- b=J8Uo4Sb6oCul8Od9mGkWf2er6aSz4Y2VD3zZxhYaqUbAo9IqCGI19PTt
- A5LS5Tpc1XDJ4/X3CxUI9bf4edGEsXt8opzt/Kw00n+wx6eg3aQ4KnG7m
- l6/G0iqoAgIUgbcsVCL9Wrve28R3GkHW75H36xwICw2A1xAN4oCTD9iqb
- lJdVRXQbbOdVt51VbkSid25Dy1yJ6/OAFgYv6uvDRSdhahl33gofIlFms
- lgIJmpGh6Ix11JCTEoMJ9sseTnsi7eHZonaTqZLZhGe6l7ft7kCrYpV6P
- +VqNbkGjTM/GzF6sU9H6rhF/3rBgHiQNLz18CDZweMtqexJLZPV8UXgKU g==;
-X-CSE-ConnectionGUID: zPZvqnFCSD6rW4Ru7wD5aA==
-X-CSE-MsgGUID: PWHDqZmSQnCDUSHvrksIHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="60741283"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="60741283"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 08:03:04 -0700
-X-CSE-ConnectionGUID: 3ZdVWuAiSbeEztjRc7G3Fg==
-X-CSE-MsgGUID: UzyD+G2CTtSWyC6iKV++4w==
+ t=1759417559; x=1790953559;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=ZTtSw4XOQSDHwiSog7MqdPeQPu0sEA0prLMOZgfm8tU=;
+ b=Y4jZz9WfD9ZgwJ5ggc1Z7BaNILjvam9kH2upwyzJTDxEptxiAZOqJzSy
+ 74mZfoOueK27KXYdgT4HClGE6WTLht5aRrekEstO8A3tH7266Z6dcO8vf
+ fTDd1Ub6SwDp/MRhvSsQNcAN8kVMHoxJ8x3f7ecji592xGPfTH17An95X
+ TAKRnmcE5tbevB/ZezZLnJSHD/7wiStDCvpb+pqVAbd/bWMsGoREHrDIc
+ 9jeJJF8x8dyEc88wb9TsNjnP1LBqnx4Oiw1XYLfujkq/Jpe24zp1rzAR7
+ JcD7/GmM1DjEyyWpmgDJ8uifuDwxLuk4xyJ5tuKRWnyz6z0OwvcgXThEN Q==;
+X-CSE-ConnectionGUID: PX5kkNgxTZa2ZELv0Q+w5w==
+X-CSE-MsgGUID: zoxgEyw8QOOcQvjg2sN8zQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="73131341"
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="73131341"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 08:05:59 -0700
+X-CSE-ConnectionGUID: g9O4IyLCR3KxbY3gJ15LRQ==
+X-CSE-MsgGUID: /MsS5OEtSXKavI5EHLI8iA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="178334913"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa010.jf.intel.com with ESMTP; 02 Oct 2025 08:03:04 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com,
-	Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v4 0/2] drm/xe/guc: Cleanup GuC log buffer macros and helpers
-Date: Thu,  2 Oct 2025 11:03:00 -0400
-Message-Id: <20251002150302.99524-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="178669700"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.12])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 08:05:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/4] drm/i915/wm: Use fb->modfier to check for tiled vs.
+ untiled
+In-Reply-To: <20251002115434.6486-5-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
+ <20251002115434.6486-5-ville.syrjala@linux.intel.com>
+Date: Thu, 02 Oct 2025 18:05:54 +0300
+Message-ID: <ec4d7f704a17e9e7cef4068203902566852b1dd1@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,29 +71,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cleanup GuC log buffer macros and helpers, add Xe style macro prefix.
-Update buffer type values to align with the GuC specification
----
-Cc: michal.wajdeczko@intel.com
----
-Change list:
-v4: Replace helper functions with macros
-    Rename log type xxx_DEBUG to xxx_EVENT_LOG
-v3: Update comments
-v2: Use SZ_4K, instead of PAGE_SIZE
-    Expand for loop with switch and fallthrough
+On Thu, 02 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> There is no point in checking the bo fence tiling mode when
+> we can just check the fb modifier instead.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Zhanjun Dong (2):
-  drm/xe/guc: Add prefix to guc log buffer macros
-  drm/xe/guc: Update GuC log buffer type value
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
- drivers/gpu/drm/xe/abi/guc_log_abi.h |  2 +-
- drivers/gpu/drm/xe/xe_guc.c          | 22 ++++-----
- drivers/gpu/drm/xe/xe_guc_capture.c  |  6 +--
- drivers/gpu/drm/xe/xe_guc_log.c      | 71 +++++++---------------------
- drivers/gpu/drm/xe/xe_guc_log.h      | 14 +++---
- 5 files changed, 37 insertions(+), 78 deletions(-)
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_wm.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i91=
+5/display/i9xx_wm.c
+> index fd3b7b35f351..b262319bc83d 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+> @@ -2295,12 +2295,11 @@ static void i9xx_update_wm(struct intel_display *=
+display)
+>=20=20
+>  	crtc =3D single_enabled_crtc(display);
+>  	if (display->platform.i915gm && crtc) {
+> -		struct drm_gem_object *obj;
+> -
+> -		obj =3D intel_fb_bo(crtc->base.primary->state->fb);
+> +		const struct drm_framebuffer *fb =3D
+> +			crtc->base.primary->state->fb;
+>=20=20
+>  		/* self-refresh seems busted with untiled */
+> -		if (!intel_bo_is_tiled(obj))
+> +		if (fb->modifier =3D=3D DRM_FORMAT_MOD_LINEAR)
+>  			crtc =3D NULL;
+>  	}
 
--- 
-2.34.1
-
+--=20
+Jani Nikula, Intel
