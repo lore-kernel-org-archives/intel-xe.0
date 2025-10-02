@@ -4,58 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0778FCAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 11:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F2B2CAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 12:23:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4BCA10E7CC;
-	Thu,  2 Oct 2025 11:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A071810E7CE;
+	Thu,  2 Oct 2025 12:23:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iE03mUMu";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Zoe0aB2l";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9maRoxsC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Zoe0aB2l";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9maRoxsC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5086A10E7CB;
- Thu,  2 Oct 2025 11:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759406095; x=1790942095;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rjd2DWt4Q6Ga0CyJF4btS3Gy5an48Ofq9uTYO50O7KA=;
- b=iE03mUMufqH0vAqmTCUB8JJ8FkY0/V93PaBwQl6/VZE+VY+TEQLMZQ0a
- kQNFpaZEaObF/H4+OrFrljVYGNzsLFkf/kZWEdXs+PJdwne06lEu2XuEm
- SghAlOLrNrLbaHjqiZTgYHT3oywT/ntfp0NIBq1c/hvmmaiuh1H/CIUl6
- JjGiJCU3t2dKUwNQq3arWjB9MrS0JNX59e9xAiqQJV228+YoXTrGnEvXV
- 3cYconwvbeu0ePb6RY9nBkV0s2YzrUo+qoxCSrxrZb9clOlT1r5+5T98C
- dqKHzOkznujxyZYb1B9NTrbvDhZbWdzE6Jkp0E52PR8i/IOsr02e6hAka Q==;
-X-CSE-ConnectionGUID: j3aWN1dqTlqyi09cieEYLg==
-X-CSE-MsgGUID: WrUtcGfBS4mY+zDv/w2xmQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65325242"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="65325242"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 04:54:55 -0700
-X-CSE-ConnectionGUID: 8XiPvctlRdSQbN241RhCvQ==
-X-CSE-MsgGUID: C7lcdf7YSpCugi/tE4/BIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="209727049"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.228])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 04:54:54 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/i915/wm: Use fb->modfier to check for tiled vs.
- untiled
-Date: Thu,  2 Oct 2025 14:54:34 +0300
-Message-ID: <20251002115434.6486-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
-References: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35DB810E7CE
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 12:23:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 69FE31F853;
+ Thu,  2 Oct 2025 12:23:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1759407785; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=Zoe0aB2lYgjaMm7KRLoXiqo8w5PwYJAUJBqaU77forlJxWHSTRAm3UUQhhtSOjGRsl9iF3
+ KUx0NFMmlSS8vwjSqMv+UfXX7dQh9AhbvzBE8DD0BH6Kd07AtPZT1rMgUWn3Fc2EjHX7K8
+ nemJEs57XPhbylYEj/woRx+SmpH59A8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1759407785;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=9maRoxsC2NkgPZ+aw6geJ3q/Z0uQ9rkTUugjMaXhMkp4Bi6/o4Gv6rUKFEOtQ5x0bCvyRN
+ 25HMWmPt18T/WkBw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Zoe0aB2l;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9maRoxsC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1759407785; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=Zoe0aB2lYgjaMm7KRLoXiqo8w5PwYJAUJBqaU77forlJxWHSTRAm3UUQhhtSOjGRsl9iF3
+ KUx0NFMmlSS8vwjSqMv+UfXX7dQh9AhbvzBE8DD0BH6Kd07AtPZT1rMgUWn3Fc2EjHX7K8
+ nemJEs57XPhbylYEj/woRx+SmpH59A8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1759407785;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=BWeyfp4bTdeFej180yLRqcwV3Jmdyhj5CVAwU6y3GRE=;
+ b=9maRoxsC2NkgPZ+aw6geJ3q/Z0uQ9rkTUugjMaXhMkp4Bi6/o4Gv6rUKFEOtQ5x0bCvyRN
+ 25HMWmPt18T/WkBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 012DC13990;
+ Thu,  2 Oct 2025 12:23:04 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id UJxLOqhu3mg6JgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 02 Oct 2025 12:23:04 +0000
+Date: Thu, 2 Oct 2025 14:23:03 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20251002122303.GA21323@linux.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Queue-Id: 69FE31F853
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +117,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Hi Dave, Sima,
 
-There is no point in checking the bo fence tiling mode when
-we can just check the fb modifier instead.
+here's the PR for drm-misc-next-fixes. All further fixes for upstream
+will now go through drm-misc-fixes again.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_wm.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index fd3b7b35f351..b262319bc83d 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -2295,12 +2295,11 @@ static void i9xx_update_wm(struct intel_display *display)
- 
- 	crtc = single_enabled_crtc(display);
- 	if (display->platform.i915gm && crtc) {
--		struct drm_gem_object *obj;
--
--		obj = intel_fb_bo(crtc->base.primary->state->fb);
-+		const struct drm_framebuffer *fb =
-+			crtc->base.primary->state->fb;
- 
- 		/* self-refresh seems busted with untiled */
--		if (!intel_bo_is_tiled(obj))
-+		if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
- 			crtc = NULL;
- 	}
- 
+drm-misc-next-fixes-2025-10-02:
+Short summary of fixes pull:
+
+v3d:
+- Fix fence locking
+The following changes since commit 0c4932f6ddf815618fa34f7403df682aed7862b5:
+
+  drm/tiny: pixpaper: Fix missing dependency on DRM_GEM_SHMEM_HELPER (2025-09-23 14:07:04 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-10-02
+
+for you to fetch changes up to adefb2ccea1e96b452cbbc39150bc0ccf1688b99:
+
+  drm/v3d: create a dedicated lock for dma fence (2025-09-30 14:28:14 -0100)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+v3d:
+- Fix fence locking
+
+----------------------------------------------------------------
+Melissa Wen (1):
+      drm/v3d: create a dedicated lock for dma fence
+
+ drivers/gpu/drm/v3d/v3d_drv.h   | 2 ++
+ drivers/gpu/drm/v3d/v3d_fence.c | 2 +-
+ drivers/gpu/drm/v3d/v3d_gem.c   | 1 +
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+
 -- 
-2.49.1
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
