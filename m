@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B6FBCAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 13:59:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EADFCAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:01:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD9E10E14F;
-	Thu,  2 Oct 2025 13:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B904710E14F;
+	Thu,  2 Oct 2025 14:01:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KdYMcS6I";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pyO9V29j";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A76110E14F;
- Thu,  2 Oct 2025 13:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759413597; x=1790949597;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=URFBIhsVoA7x+YrwOIk2th/Mr+B9K4JY0bqjxrJjli4=;
- b=KdYMcS6IiNiqbowxiJ7rnlh2Fr2ThIjg3L2VC4h596yPvoiKunbGFZC/
- D/xZLvKuinsy65DBa6KLdn7H0iOyC4Z4Dcr5zswZstuekYtk7KR19shOv
- X9B9pcIKFWFgDPXtBtDbBbLOZswOCSTorF2moTLOnfWR5HXbJiloydfVs
- 3jW+UPGT6b0AqD3n1IshogfjEcYCb9nF0xya5wVc7L5PE3MNB+EVLBiAv
- p7bWwo+CujH03NWCRgy7rIBYjlmZzJyEYgy3IVIb4go6oADO8JCKDnqiS
- 6OnwAVfYMl+xYOK3+aylA3lyjhzryjrUYsSG7dBhER1FZZVl5wKx7ydGI w==;
-X-CSE-ConnectionGUID: 0QCYNQcRTQaCsslKW6ummQ==
-X-CSE-MsgGUID: M3TknFpVS7abhnQPLR/FRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="49251361"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="49251361"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 06:59:56 -0700
-X-CSE-ConnectionGUID: DptLcADMTf+TWKgzL/5mIQ==
-X-CSE-MsgGUID: g6l34Au7QzKPCp3RUjlXHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="179827797"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 06:59:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Jouni =?utf-8?Q?H=C3=B6gander?=
- <jouni.hogander@intel.com>
-Subject: Re: [PATCH 1/4] drm/i915/fb: Fix the set_tiling vs. addfb race, again
-In-Reply-To: <20251002115434.6486-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
- <20251002115434.6486-2-ville.syrjala@linux.intel.com>
-Date: Thu, 02 Oct 2025 16:59:51 +0300
-Message-ID: <053828a8f31f70e964d3f620a56e75d395f98172@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56BFD10E14F
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 14:01:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=i9VUUf8lYgCNNGpxXQiRQzGR6V/DhI7bkr9NqaFpxes=; b=pyO9V29jgBKa/Ojun+bUg/UHnL
+ KSLeW8MlVEcxa4p6RqxVM37ANSKt5s5zAAKtMHnNIvOVHt910NfkEoCvCAZjWU8S33YEGGvK+igcJ
+ /yCrOMDgBTEgwPRNwl6bj+DwCUJ3f902+FU3mcR20EGWNgW8niPQ2FDfUuL19BRw2USXHwipJW7lc
+ qK9t/OU2qPSPH0pC3fr55ROYsGGNl4EBuDHvpT+0KNgg0RHADTz8kCb5nmjrVrGCcqPgHQ0dp3x98
+ oesvj+i3DRaYP9K5mKDZvkHB0z6bKHqWGl6jPUuWKgfND6/neIJEy5vCLLScI9RvQa95/BeOmDky/
+ +14mYWew==;
+Received: from [84.66.36.92] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v4Jrp-003PV6-KW; Thu, 02 Oct 2025 16:01:09 +0200
+Message-ID: <7fde2c90-5d3e-406e-9d5b-6620123e2d2e@igalia.com>
+Date: Thu, 2 Oct 2025 15:01:08 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
+ framebuffers before scan out
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+References: <aNKMKSIGSPfmPBEc@intel.com>
+ <afd72823-2b19-4d15-b87e-bd879568ad02@igalia.com>
+ <aNKer6J7Op2gGmtC@intel.com>
+ <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
+ <aNK0E7KMBW5iOzSo@intel.com>
+ <e2cb2159-367b-4f43-babc-a5250fc9914d@igalia.com>
+ <aNRx66g6y4c-eoZk@intel.com>
+ <7e07606b-d542-4407-a092-476f202cc8e2@igalia.com>
+ <cfc54165-b391-4905-a00a-27d2889225e3@igalia.com>
+ <aNZDxGoYxVFfRNOu@intel.com> <aNbq_j39EipWw_pV@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aNbq_j39EipWw_pV@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,153 +69,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 02 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> intel_frontbuffer_get() is what locks out subsequent set_tiling
-> changes to the bo. Thus the fence vs. modifier check must be done
-> after intel_frontbuffer_get(), or else a concurrent set_tiling ioctl
-> might sneak in and change the fence after the check has been done.
->
-> Close the race again. See commit dd689287b977 ("drm/i915: Prevent
-> concurrent tiling/framebuffer modifications") for the previous
-> instance.
->
-> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> Fixes: 10690b8a49bc ("drm/i915/display: Add intel_fb_bo_framebuffer_fini")
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 38 +++++++++++++------------
->  1 file changed, 20 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index 69237dabdae8..c5bbca7f2e8b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2218,15 +2218,17 @@ int intel_framebuffer_init(struct intel_framebuff=
-er *intel_fb,
->  	int ret =3D -EINVAL;
->  	int i;
->=20=20
-> -	ret =3D intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
-> -	if (ret)
-> -		return ret;
-> -
-> +	/*
-> +	 * intel_frontbuffer_get() must be done before
-> +	 * intel_fb_bo_framebuffer_init() to avoid set_tiling vs. addfb race.
-> +	 */
->  	intel_fb->frontbuffer =3D intel_frontbuffer_get(obj);
-> -	if (!intel_fb->frontbuffer) {
-> -		ret =3D -ENOMEM;
-> -		goto err;
-> -	}
-> +	if (!intel_fb->frontbuffer)
-> +		return -ENOMEM;
-> +
-> +	ret =3D intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
-> +	if (ret)
-> +		goto err_frontbuffer_put;
 
-Do you think we should modify intel_user_framebuffer_destroy() to also
-have the same put & fini order here, just for consistency?
+Hi,
 
-I think this should be merged before my leak fix, and that should be
-rebased [1], to make the backports easier.
+On 26/09/2025 20:35, Ville Syrjälä wrote:
+> On Fri, Sep 26, 2025 at 10:41:56AM +0300, Ville Syrjälä wrote:
+>> I reverse engineered this a bit and there's definitely a
+>> MOCS issue at play.
+>>
+>> First I noticed that if filled the entire MOCS table with
+>> UC the problem went away. I then filled the entire table
+>> with WB and essentially bisected what I need to make UC
+>> to fix it. And I had to repeat that same process starting
+>> from the other end of table.
+>>
+>> Looks like there is some undocumented magic in the hardware.
+>>
+>> MOCS 61 really is special:
+>> - MOCS 61 UC, others WB, select MOCS 61 -> no corruption
+>>
+>> MOCS 0 and 63 are special in other ways:
+>> - MOCS X UC, others WB, select MOCS X -> corruption
+>> - MOCS X+0 UC, others WB, select MOCS X -> corruption
+>> - MOCS X+63 UC, others WB, select MOCS X -> corruption
+>> - MOCS X+0+63 UC, others WB, select MOCS X -> no corruption
+>>    where X != 61
+> 
+> OK, the MOCS 63 issue was caused by me having L3=WB still in
+> MOCS X. If I change MOCS X to L3=UC, MOCS 63 no longer makes
+> a difference. I suppose that means MOCS 63 is still used for
+> L3 evictions, even though bspec no longer mentions that fact
+> explicitly.
+> 
+> So MOCS 0 is the thing that really matters for CCS. And for
+> MOCS 0 only the LLC WB vs. UC selection matters. L3 WB vs. UC
+> doesn't seem to make any difference.
+> 
+> It's interesting that MOCS 60 is documented as a "CCS special case",
+> but in reality it's MOCS 0 that matters for CCS. I wonder if some
+> wires got crossed in the hw design and the wrong MOCS entry ended
+> up being used for CCS and no one noticed...
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Oh wow, that is an amazing discovery!
 
+I verified it on my end too. Setting MOCS 0 to uncached and cache dirt 
+is gone. No need to the explicit cache flush patch on first pin.
 
-[1] https://lore.kernel.org/r/20251002101756.2700320-1-jani.nikula@intel.com
+Luckily ADL is unsupported so we could change it to UC. I will send a 
+series for CI to see what it will say.
 
->=20=20
->  	ret =3D -EINVAL;
->  	if (!drm_any_plane_has_format(display->drm,
-> @@ -2235,7 +2237,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  		drm_dbg_kms(display->drm,
->  			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
->  			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
-> -		goto err_frontbuffer_put;
-> +		goto err_bo_framebuffer_fini;
->  	}
->=20=20
->  	max_stride =3D intel_fb_max_stride(display, mode_cmd->pixel_format,
-> @@ -2246,7 +2248,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  			    mode_cmd->modifier[0] !=3D DRM_FORMAT_MOD_LINEAR ?
->  			    "tiled" : "linear",
->  			    mode_cmd->pitches[0], max_stride);
-> -		goto err_frontbuffer_put;
-> +		goto err_bo_framebuffer_fini;
->  	}
->=20=20
->  	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
-> @@ -2254,7 +2256,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  		drm_dbg_kms(display->drm,
->  			    "plane 0 offset (0x%08x) must be 0\n",
->  			    mode_cmd->offsets[0]);
-> -		goto err_frontbuffer_put;
-> +		goto err_bo_framebuffer_fini;
->  	}
->=20=20
->  	drm_helper_mode_fill_fb_struct(display->drm, fb, info, mode_cmd);
-> @@ -2264,7 +2266,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->=20=20
->  		if (mode_cmd->handles[i] !=3D mode_cmd->handles[0]) {
->  			drm_dbg_kms(display->drm, "bad plane %d handle\n", i);
-> -			goto err_frontbuffer_put;
-> +			goto err_bo_framebuffer_fini;
->  		}
->=20=20
->  		stride_alignment =3D intel_fb_stride_alignment(fb, i);
-> @@ -2272,7 +2274,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  			drm_dbg_kms(display->drm,
->  				    "plane %d pitch (%d) must be at least %u byte aligned\n",
->  				    i, fb->pitches[i], stride_alignment);
-> -			goto err_frontbuffer_put;
-> +			goto err_bo_framebuffer_fini;
->  		}
->=20=20
->  		if (intel_fb_is_gen12_ccs_aux_plane(fb, i)) {
-> @@ -2282,7 +2284,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->  				drm_dbg_kms(display->drm,
->  					    "ccs aux plane %d pitch (%d) must be %d\n",
->  					    i, fb->pitches[i], ccs_aux_stride);
-> -				goto err_frontbuffer_put;
-> +				goto err_bo_framebuffer_fini;
->  			}
->  		}
->=20=20
-> @@ -2291,7 +2293,7 @@ int intel_framebuffer_init(struct intel_framebuffer=
- *intel_fb,
->=20=20
->  	ret =3D intel_fill_fb_info(display, intel_fb);
->  	if (ret)
-> -		goto err_frontbuffer_put;
-> +		goto err_bo_framebuffer_fini;
->=20=20
->  	if (intel_fb_uses_dpt(fb)) {
->  		struct i915_address_space *vm;
-> @@ -2317,10 +2319,10 @@ int intel_framebuffer_init(struct intel_framebuff=
-er *intel_fb,
->  err_free_dpt:
->  	if (intel_fb_uses_dpt(fb))
->  		intel_dpt_destroy(intel_fb->dpt_vm);
-> -err_frontbuffer_put:
-> -	intel_frontbuffer_put(intel_fb->frontbuffer);
-> -err:
-> +err_bo_framebuffer_fini:
->  	intel_fb_bo_framebuffer_fini(obj);
-> +err_frontbuffer_put:
-> +	intel_frontbuffer_put(intel_fb->frontbuffer);
->  	return ret;
->  }
+>> I didn't actually test all values of X there, but I did spot
+>> check a handful of them.
+>>
+>> Also, ADL is affected, but TGL doesn't seem to be. Though I
+>> still need to check the situation on TGL a bit more thoroughly.
+> 
+> TGL actually works exactly the same as ADL. The only reason why
+> TGL worked correctly out of the box was that we use a different
+> MOCS table for TGL/RKL (IIRC because we started out with the
+> wrong table and early Mesa versions depended on that), and in
+> that table MOCS 0 is just 0x0, whereas on ADL MOCS 0 is WB.
 
---=20
-Jani Nikula, Intel
+Kind of sounds familiar but the only commit I found was 3f027d61663f 
+("drm/i915/gt: Add separate MOCS table for Gen12 devices other than 
+TGL/RKL") but it is about MOCS 1. What am I missing? Are the hw defaults 
+maybe different and not the code?
+
+Regards,
+
+Tvrtko
+> And now I'm wondering how much performance we're leaving on
+> the floor with CCS by having a suboptimal MOCS 0 on TGL/RKL...
+> 
+> And I'm also curious about older platforms. I think those also
+> have MOCS 0 as UC. I'll need to test if those also have this
+> MOCS 0 special case for CCS...
+> 
+
