@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42929CCD183
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3B7DCAC5B0
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:25:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0110E10E7F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C51910E7FB;
 	Thu,  2 Oct 2025 14:25:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jTjZTiB+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="s5LiIKDz";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CDDA10E7F5
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 14:25:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6F4910E7F9
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 14:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fMyJ28GRYTKbhUohTZ3HXWmS5z5/iy6Sj8vXxmt1a5k=; b=jTjZTiB+F2xT92jRdq6xjw+0Ed
- LSeuqeOeTvJvapEnNrh3NhI+4vzqO66Ms49iXC1iYjlgRuXvhwkLVE/fI2KnwRH/gHufsCAatmJ6v
- 18c32vvmmvcE91yAI2JDiPscfiKAgZ7sSTTOaR52yK798yStyohNcR1S2LJTrFHiWb7Zubnvo1bxA
- DlvlzUsDPMSv9oOFRQUO6W1T2YdsdDJr5Egk+L2rjPxvRupXHXc1TMAoirAHce00kjiReseVzjBb/
- aWIOKm+Ej54ejrCQ+Uu1OUMeM/K4oQ4Cci0rLxMdk2RBchTfWyJjXl9xHvWmbfsKjR2t4HAlJmoFD
- aaBHZ5Nw==;
+ bh=x/i39UqgLRNLJWHO49rswInOsCPNxeySS8nPJh7fgwk=; b=s5LiIKDzEKIXJEnSQGVPzghENV
+ c3bCdyq2Sm9zmKHqDLI8lJzfLwK3CbW3SxQgMTSXxGBofxZzaKqufYwu+TIYvAeJvGtDydvGk2Q58
+ Qt/wUfbOXEsBKZJke28620u2ICTHXhrQsooFFGHF9M572IrGxpeAbuaAQoFxrXNXppZobRpWfxPFa
+ ZNApX5/Bm8fNewV2JUf7hZgeSwXnX8Mzt2/gn8G5MstIapvwOdfkar2PiC6MFuj0JFngLqBQZUb5c
+ 6goOKioZDcfawR/53i2Hr4036MtpcRjI0VtniGI4iNtKJyR2I9Hj2pstjOROUWWlnoQZX/1nlCJ7x
+ X3YQ+r4A==;
 Received: from [84.66.36.92] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v4KF7-003Q1e-LT
- for <intel-xe@lists.freedesktop.org>; Thu, 02 Oct 2025 16:25:13 +0200
+ id 1v4KF9-003Q1q-V1
+ for <intel-xe@lists.freedesktop.org>; Thu, 02 Oct 2025 16:25:16 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 09/13] drm/xe: Flush GGTT writes after populating DPT
-Date: Thu,  2 Oct 2025 15:24:47 +0100
-Message-ID: <20251002142453.25574-10-tvrtko.ursulin@igalia.com>
+Subject: [CI 12/13] mocs 0 uncached
+Date: Thu,  2 Oct 2025 15:24:50 +0100
+Message-ID: <20251002142453.25574-13-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
 References: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,94 +57,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
-
-I915 has established that on modern platforms a small flush and delay is
-required for those writes to reliably land so lets add the same logic
-(simplified by removing impossible platforms) to xe as well.
-
-v2:
- * Do it only for system memory buffers.
-
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/gpu/drm/xe/xe_mocs.c | 247 +++++++++++++++++++----------------
+ 1 file changed, 133 insertions(+), 114 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b18d15cc3c53..eb21eeae9d17 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -12,9 +12,11 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_vram_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 7b68c22ff7bb..2b497f2bc51c 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -142,119 +142,131 @@ struct xe_mocs_info {
+  * variants with better coherency in the future if more entries are needed.
+  */
  
-@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
+-static const struct xe_mocs_entry gen12_mocs_desc[] = {
+-	/* Base - L3 + LLC */
+-	MOCS_ENTRY(2,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_3_WB),
+-	/* Base - Uncached */
+-	MOCS_ENTRY(3,
+-		   LE_1_UC | LE_TC_1_LLC,
+-		   L3_1_UC),
+-	/* Base - L3 */
+-	MOCS_ENTRY(4,
+-		   LE_1_UC | LE_TC_1_LLC,
+-		   L3_3_WB),
+-	/* Base - LLC */
+-	MOCS_ENTRY(5,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_1_UC),
+-	/* Age 0 - LLC */
+-	MOCS_ENTRY(6,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1),
+-		   L3_1_UC),
+-	/* Age 0 - L3 + LLC */
+-	MOCS_ENTRY(7,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1),
+-		   L3_3_WB),
+-	/* Age: Don't Chg. - LLC */
+-	MOCS_ENTRY(8,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2),
+-		   L3_1_UC),
+-	/* Age: Don't Chg. - L3 + LLC */
+-	MOCS_ENTRY(9,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2),
+-		   L3_3_WB),
+-	/* No AOM - LLC */
+-	MOCS_ENTRY(10,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_AOM(1),
+-		   L3_1_UC),
+-	/* No AOM - L3 + LLC */
+-	MOCS_ENTRY(11,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_AOM(1),
+-		   L3_3_WB),
+-	/* No AOM; Age 0 - LLC */
+-	MOCS_ENTRY(12,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1) | LE_AOM(1),
+-		   L3_1_UC),
+-	/* No AOM; Age 0 - L3 + LLC */
+-	MOCS_ENTRY(13,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1) | LE_AOM(1),
+-		   L3_3_WB),
+-	/* No AOM; Age:DC - LLC */
+-	MOCS_ENTRY(14,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1),
+-		   L3_1_UC),
+-	/* No AOM; Age:DC - L3 + LLC */
+-	MOCS_ENTRY(15,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1),
+-		   L3_3_WB),
+-	/* Self-Snoop - L3 + LLC */
+-	MOCS_ENTRY(18,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SSE(3),
+-		   L3_3_WB),
+-	/* Skip Caching - L3 + LLC(12.5%) */
+-	MOCS_ENTRY(19,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(7),
+-		   L3_3_WB),
+-	/* Skip Caching - L3 + LLC(25%) */
+-	MOCS_ENTRY(20,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(3),
+-		   L3_3_WB),
+-	/* Skip Caching - L3 + LLC(50%) */
+-	MOCS_ENTRY(21,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(1),
+-		   L3_3_WB),
+-	/* Skip Caching - L3 + LLC(75%) */
+-	MOCS_ENTRY(22,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_RSC(1) | LE_SCC(3),
+-		   L3_3_WB),
+-	/* Skip Caching - L3 + LLC(87.5%) */
+-	MOCS_ENTRY(23,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_RSC(1) | LE_SCC(7),
+-		   L3_3_WB),
+-	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
+-	MOCS_ENTRY(48,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_3_WB),
+-	/* Implicitly enable L1 - HDC:L1 + L3 */
+-	MOCS_ENTRY(49,
+-		   LE_1_UC | LE_TC_1_LLC,
+-		   L3_3_WB),
+-	/* Implicitly enable L1 - HDC:L1 + LLC */
+-	MOCS_ENTRY(50,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_1_UC),
+-	/* Implicitly enable L1 - HDC:L1 */
+-	MOCS_ENTRY(51,
+-		   LE_1_UC | LE_TC_1_LLC,
+-		   L3_1_UC),
+-	/* HW Special Case (CCS) */
+-	MOCS_ENTRY(60,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_1_UC),
+-	/* HW Special Case (Displayable) */
+-	MOCS_ENTRY(61,
+-		   LE_1_UC | LE_TC_1_LLC,
+-		   L3_3_WB),
+-	/* HW Reserved - SW program but never use */
+-	MOCS_ENTRY(62,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+-		   L3_1_UC),
+-	/* HW Reserved - SW program but never use */
+-	MOCS_ENTRY(63,
+-		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
++#define GEN12_MOCS_ENTRIES \
++	/* Base - L3 + LLC */ \
++	MOCS_ENTRY(2, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_3_WB), \
++	/* Base - Uncached */ \
++	MOCS_ENTRY(3, \
++		   LE_1_UC | LE_TC_1_LLC, \
++		   L3_1_UC), \
++	/* Base - L3 */ \
++	MOCS_ENTRY(4, \
++		   LE_1_UC | LE_TC_1_LLC, \
++		   L3_3_WB), \
++	/* Base - LLC */ \
++	MOCS_ENTRY(5, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_1_UC), \
++	/* Age 0 - LLC */ \
++	MOCS_ENTRY(6, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1), \
++		   L3_1_UC), \
++	/* Age 0 - L3 + LLC */ \
++	MOCS_ENTRY(7, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1), \
++		   L3_3_WB), \
++	/* Age: Don't Chg. - LLC */ \
++	MOCS_ENTRY(8, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2), \
++		   L3_1_UC), \
++	/* Age: Don't Chg. - L3 + LLC */ \
++	MOCS_ENTRY(9, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2), \
++		   L3_3_WB), \
++	/* No AOM - LLC */ \
++	MOCS_ENTRY(10, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_AOM(1), \
++		   L3_1_UC), \
++	/* No AOM - L3 + LLC */ \
++	MOCS_ENTRY(11, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_AOM(1), \
++		   L3_3_WB), \
++	/* No AOM; Age 0 - LLC */ \
++	MOCS_ENTRY(12, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1) | LE_AOM(1), \
++		   L3_1_UC), \
++	/* No AOM; Age 0 - L3 + LLC */ \
++	MOCS_ENTRY(13, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(1) | LE_AOM(1), \
++		   L3_3_WB), \
++	/* No AOM; Age:DC - LLC */ \
++	MOCS_ENTRY(14, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1), \
++		   L3_1_UC), \
++	/* No AOM; Age:DC - L3 + LLC */ \
++	MOCS_ENTRY(15, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1), \
++		   L3_3_WB), \
++	/* Self-Snoop - L3 + LLC */ \
++	MOCS_ENTRY(18, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SSE(3), \
++		   L3_3_WB), \
++	/* Skip Caching - L3 + LLC(12.5%) */ \
++	MOCS_ENTRY(19, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(7), \
++		   L3_3_WB), \
++	/* Skip Caching - L3 + LLC(25%) */ \
++	MOCS_ENTRY(20, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(3), \
++		   L3_3_WB), \
++	/* Skip Caching - L3 + LLC(50%) */ \
++	MOCS_ENTRY(21, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SCC(1), \
++		   L3_3_WB), \
++	/* Skip Caching - L3 + LLC(75%) */ \
++	MOCS_ENTRY(22, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_RSC(1) | LE_SCC(3), \
++		   L3_3_WB), \
++	/* Skip Caching - L3 + LLC(87.5%) */ \
++	MOCS_ENTRY(23, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_RSC(1) | LE_SCC(7), \
++		   L3_3_WB), \
++	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */ \
++	MOCS_ENTRY(48, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_3_WB), \
++	/* Implicitly enable L1 - HDC:L1 + L3 */ \
++	MOCS_ENTRY(49, \
++		   LE_1_UC | LE_TC_1_LLC, \
++		   L3_3_WB), \
++	/* Implicitly enable L1 - HDC:L1 + LLC */ \
++	MOCS_ENTRY(50, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_1_UC), \
++	/* Implicitly enable L1 - HDC:L1 */ \
++	MOCS_ENTRY(51, \
++		   LE_1_UC | LE_TC_1_LLC, \
++		   L3_1_UC), \
++	/* HW Special Case (CCS) */ \
++	MOCS_ENTRY(60, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_1_UC), \
++	/* HW Special Case (Displayable) */ \
++	MOCS_ENTRY(61, \
++		   LE_1_UC | LE_TC_1_LLC, \
++		   L3_3_WB), \
++	/* HW Reserved - SW program but never use */ \
++	MOCS_ENTRY(62, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
++		   L3_1_UC), \
++	/* HW Reserved - SW program but never use */ \
++	MOCS_ENTRY(63, \
++		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
+ 		   L3_1_UC)
++
++static const struct xe_mocs_entry gen12_mocs_desc[] = {
++	GEN12_MOCS_ENTRIES,
++};
++
++static const struct xe_mocs_entry adl_mocs_desc[] = {
++	GEN12_MOCS_ENTRIES,
++
++	/* Undocumented CCS HW behaviour - Uncached */
++	MOCS_ENTRY(0,
++		   LE_1_UC | LE_TC_1_LLC,
++		   L3_1_UC),
+ };
  
-+static void gt_flush_ggtt_writes(struct xe_gt *gt)
-+{
-+	if (!gt)
-+		return;
-+
-+	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
-+}
-+
-+static void ggtt_flush_writes(struct xe_ggtt *ggtt)
-+{
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+
-+	/*
-+	 * No actual flushing is required for the GTT write domain for reads
-+	 * from the GTT domain. Writes to it "immediately" go to main memory
-+	 * as far as we know, so there's no chipset flush. It also doesn't
-+	 * land in the GPU render cache.
-+	 *
-+	 * However, we do have to enforce the order so that all writes through
-+	 * the GTT land before any writes to the device, such as updates to
-+	 * the GATT itself.
-+	 *
-+	 * We also have to wait a bit for the writes to land from the GTT.
-+	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
-+	 * timing. This issue has only been observed when switching quickly
-+	 * between GTT writes and CPU reads from inside the kernel on recent hw,
-+	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
-+	 * system agents we cannot reproduce this behaviour, until Cannonlake
-+	 * that was!).
-+	 */
-+
-+	wmb();
-+
-+	if (xe_pm_runtime_get_if_active(xe)) {
-+		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
-+		gt_flush_ggtt_writes(ggtt->tile->media_gt);
-+		xe_pm_runtime_put(xe);
-+	}
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 					  rot_info->plane[i].dst_stride);
- 	}
- 
-+	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
-+		ggtt_flush_writes(tile0->mem.ggtt);
-+
- 	vma->dpt = dpt;
- 	vma->node = dpt->ggtt_node[tile0->id];
- 
+ static bool regs_are_mcr(struct xe_gt *gt)
+@@ -626,12 +638,19 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 		break;
+ 	case XE_TIGERLAKE:
+ 	case XE_ROCKETLAKE:
++		info->ops = &xelp_mocs_ops;
++		info->table_size  = ARRAY_SIZE(gen12_mocs_desc);
++		info->table = gen12_mocs_desc;
++		info->num_mocs_regs = XELP_NUM_MOCS_ENTRIES;
++		info->uc_index = 3;
++		info->unused_entries_index = 2;
++		break;
+ 	case XE_ALDERLAKE_S:
+ 	case XE_ALDERLAKE_P:
+ 	case XE_ALDERLAKE_N:
+ 		info->ops = &xelp_mocs_ops;
+-		info->table_size  = ARRAY_SIZE(gen12_mocs_desc);
+-		info->table = gen12_mocs_desc;
++		info->table_size  = ARRAY_SIZE(adl_mocs_desc);
++		info->table = adl_mocs_desc;
+ 		info->num_mocs_regs = XELP_NUM_MOCS_ENTRIES;
+ 		info->uc_index = 3;
+ 		info->unused_entries_index = 2;
 -- 
 2.48.0
 
