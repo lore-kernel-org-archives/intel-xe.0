@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5C08CAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 11:18:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BABB5CAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 11:24:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DAE710E194;
-	Thu,  2 Oct 2025 11:18:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGSk0Wr7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF7810E194
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 11:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759403885; x=1790939885;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LLgf56JuePG7W5rOfrwxuvdOYemU+I6v3P1e2f9X744=;
- b=EGSk0Wr7SQB5EdqEYsuMnLbjBD+5/08eG70Cpt8RAEh6FkVgcxiyQGD0
- 0XADqYSzHNW5tDKu201DqRwnLpAhE5jh1rhyg3F8fb5il/BfU5MZxlLIm
- 1C8ZzTlENcgs29ZZXhlbBttyCrNPiujL+iTmlUc7uUOVEkhfyqbZQW7uo
- L1YmthVcA3V2PY51z+WIBsRbeZmtj45MPI2NOT7LLpddB2gXKdZ+39vme
- NRqz+VAs9Dq9ozQX1/Z15rYz0P0f/4oWLOuz4Y5dIeJUzqBJEbXy2t4iy
- DYx+e9FzRVs76thah6Y7hu3FYp9wljuXk3zNu55GUxY783/gttrfWXBWp w==;
-X-CSE-ConnectionGUID: kzh24cgKSxexyDCL7GII5w==
-X-CSE-MsgGUID: 9znaNm35QgSZ9Z4kxHSYpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="61850262"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="61850262"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 04:18:04 -0700
-X-CSE-ConnectionGUID: 4aL5n84uTlqZTqf55lqAPw==
-X-CSE-MsgGUID: IAIcZetNQjO1baIUskv90A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="183318109"
-Received: from naresh-nuc8i7beh.iind.intel.com (HELO
- nkumarg-desk.iind.intel.com) ([10.190.216.171])
- by orviesa004.jf.intel.com with ESMTP; 02 Oct 2025 04:18:02 -0700
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: naresh.kumar.g@intel.com,
-	intel-xe@lists.freedesktop.org
-Cc: Michal.Wajdeczko@intel.com,
-	varun.gupta@intel.com
-Subject: Re: [PATCH] drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF
- Provisioning
-Date: Thu,  2 Oct 2025 16:43:12 +0530
-Message-ID: <20251002111311.1188631-2-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250929083613.644931-2-naresh.kumar.g@intel.com>
-References: <20250929083613.644931-2-naresh.kumar.g@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD8F10E189;
+	Thu,  2 Oct 2025 11:24:37 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DF610E189;
+ Thu,  2 Oct 2025 11:24:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1524376912847476498=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/panic=3A_fix_panic?=
+ =?utf-8?q?_structure_allocation_memory_leak?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Oct 2025 11:24:36 -0000
+Message-ID: <175940427640.386280.16129067084153343447@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251002101756.2700320-1-jani.nikula@intel.com>
+In-Reply-To: <20251002101756.2700320-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,40 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In My Test check:
-Although I attempted to acquire a lock within ccs_mode_store to ensure protection, 
-a deadlock occurs because the lock has already been acquired earlier in the code flow before entering the function.
-As a result, trying to acquire the same lock again inside ccsmode_store leads to a deadlock situation.
+--===============1524376912847476498==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->>  	err = xe_sriov_pf_wait_ready(xe);
->>  	if (err)
->>  		goto out;
->> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h 
->> b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
->> index dd1df950b021..e26837091375 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
->> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
->> @@ -43,4 +43,17 @@ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
->>  	return &xe->sriov.pf.master_lock;
->>  }
->>  
->> +/**
->> + * xe_sriov_pf_has_vfs_enabled() - Determines if the PF has any VFs 
->> +enabled
->> + * @xe: ptr to xe_device
->> + *
->> + * Return: true if one or more VFs are enabled on the PF, false otherwise.
->> + */
->> +static inline bool xe_sriov_pf_has_vfs_enabled(const struct xe_device 
->> +*xe) {
->> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->> +
->> +	return pci_num_vf(pdev) > 0;
->> +}
->> +
->>  #endif
+== Series Details ==
+
+Series: drm/i915/panic: fix panic structure allocation memory leak
+URL   : https://patchwork.freedesktop.org/series/155330/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155330v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155330v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3853-5f87abb254011980c8332008cfff72d2cfab4952/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
 
 
+Build changes
+-------------
+
+  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155330v1
+
+  IGT_8568: 8568
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
+  xe-pw-155330v1: 155330v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html
+
+--===============1524376912847476498==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/panic: fix panic structure allocation memory leak</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155330/">https://patchwork.freedesktop.org/series/155330/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155330v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155330v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3853-5f87abb254011980c8332008cfff72d2cfab4952/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155330v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155330v1</li>
+</ul>
+<p>IGT_8568: 8568<br />
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
+  xe-pw-155330v1: 155330v1</p>
+
+</body>
+</html>
+
+--===============1524376912847476498==--
