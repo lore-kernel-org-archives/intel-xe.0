@@ -4,163 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F64CAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 16:01:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E73CAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 16:10:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D67F010E242;
-	Thu,  2 Oct 2025 16:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9702410E37C;
+	Thu,  2 Oct 2025 16:10:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c2OZAUyY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DslH0iSf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51AA510E242
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 16:01:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED9C10E37C;
+ Thu,  2 Oct 2025 16:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759420874; x=1790956874;
+ t=1759421405; x=1790957405;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=gmoMXXijzJZB8lETRWVCTYYmJA1l+GfP+aN//McRHfc=;
- b=c2OZAUyY3GgNKond7vZwIWy9C6KphclOAypzTmir/5JvfPlv7sSvAFFx
- 7aRmkpSxJdSQ8Yv/daTNkNisWxRlaFKo9iUDupwIQJdRznEdMexP+NkML
- WKgGz8yp+lpxHpHfktvDvQEG+2Xot4QIPN35/4PfLmKE9eP+7kq+7rDTJ
- rWTD4ZbmuTSvm6yCLJW6qWuYYrAFx42bCRqMzRWnisbVfF4hQoCpVlqYV
- mXq2geHisbDXddBqEKYy1pkE6DqKxhPzuNMFwv5A2Cst7bvWQX9FFcAun
- 4CUqztpWl0W3NSov7obzHHL3OHkw6y8GuH1EUu37QZTQnDaXnOnbiQZuF Q==;
-X-CSE-ConnectionGUID: LOjUOlQhSYygUOxlCfe8Cg==
-X-CSE-MsgGUID: l4tIQvuBRI6N9qzaDVijoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="61594836"
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="61594836"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 09:01:06 -0700
-X-CSE-ConnectionGUID: vCbhpluqRyGfC+1gciIZKA==
-X-CSE-MsgGUID: pZQuQk4cSzmckfx5RRZqRA==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=dZCFFYXHxYWalq3a8bC0OoPjRlO148TJ5x+b2vSL9EI=;
+ b=DslH0iSfU/7uLjwwJAXsuLH7Catiguawe6CDzajGGA77XUo74Ht00AO4
+ Mtj30sPtNxn8FYt4M8dbfZueFLlI6m2zlS/PxcYjnyxUGiPTyzryOawce
+ XmS0/Ga9DTi4G0jwUpcpfaKivmH7qjJijmMN1aweFGkFAQWpejzzPcLaj
+ QEHw7uG8mfHkmiXHmEeae5ONTG3qZJutqvH3u7dzdL0r31YKW9jOAeC1B
+ I2sLFAOy+SAlMx4eFaeKjq33wkVnjEL2wEEw7993eOxzCfT4B9pvbWahm
+ MbDb9H9S0KcPhrMOf17Utoh84KoVOMat10tX/GCOosuQONVwhYJ5HK49B w==;
+X-CSE-ConnectionGUID: zipjd4ndQ3KW36XF3/+fDg==
+X-CSE-MsgGUID: Wn7h1ZBFQS2C1EdCn/XTEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="73060382"
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="73060382"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 09:10:05 -0700
+X-CSE-ConnectionGUID: mfqq0hucRCa+AXb+R2eIFA==
+X-CSE-MsgGUID: dJR5K8isR6u0Oi8/Dk37sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="183369894"
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="202819626"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 09:01:07 -0700
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 09:10:04 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 2 Oct 2025 09:01:05 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.2562.27; Thu, 2 Oct 2025 09:09:41 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 2 Oct 2025 09:01:05 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.25) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 2 Oct 2025 09:09:41 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.1) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 2 Oct 2025 09:01:03 -0700
+ 15.2.2562.27; Thu, 2 Oct 2025 09:09:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W5YiO9+OEvCeB7IuYRwgYjykl86lcHE9XG2Nq01QaGR5y87HyBzGVo6MO8PyU+FeWIUzpFxDVu1bH7ayrJgljH9KOMnD5A4lJDSBBoJQFfC+pX9hoK7Wl4thJ9cFPeTr5+dVnjnkU/vI9Y12OzVC0C6moTQ0tDeWAscplbhWBdRNjdt5aiTBnIk0HJJakyGHzU8V80fmzM4Vkmmy/w5GAwR2k1aTSKKHWrbh6iDsvpRG13A7Wu0pAOXF4Yen7jdn2VH3RlYg7AVZJwePSwkIXVR7AR2bssIgh/3SkBiKYgP1Uwh5vs0v+J9WIcto/FzcKzOfKicptbXNRg0XzJH2oQ==
+ b=EGp2W4goKtFWUEwqt80/LFa3C6pPD/lqRuRLeu9liGfaZ+PSHYwJmHfW28wWR7Afh/dfoKVS/UYTqrGi6bSbExa2Q7E5NBVCMGyCG7p1O90+qsOI2VkgrE98PvK3X7wovyYxVMTlU/ydcau2gEEVxiHexdiHSqNTzYL2lCRSzFGSChoZDBr92wqFXi5P6zpDYcPGm4xe/5Lrvscc1nUW8b1ly2Tx6E85n3Nxdj/ec5NFg6J7O2JV/FbAYVLw/iwmOipIMno1eSh798UOodJRqpl7z77i+7VS9S9nSFirHORIq3+02kdJyALi/kLR7U31CaToZRlMksKV4baZpyFNVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TlIenHmyLvJzC2jERYgOtmw59sikA2UrX6haTUtzOCc=;
- b=GTt5FcjQt4/tlgZ7B5xXbhefWmjJSE27UgMR8XalUXJswWCzy/6IrogH8MckM9rIUzPaf2iD13gBYsHwAzoq0YfAsK+Y8tzOJMWV/1cw8w5XdFy7KmwRFsVEoEzNjjeQMUx169a9MzXBsIliuRmthLLSvRGf8DmmwrAGL6rDZtsgCI6pXZeLANS1WSvMRrWK2g1HI4J2/Kc9vHDKmIY9nq16FX8lH3WeRqqGB9rdUKzKx0YpVTloM8NeDoiVmGOPPtkg6vKS61jb7ISNYzNao3KOuDPuUcqRUuFz+1rO0HFEbXTcYxNtj4jdpVxBL7WJuDlyJd8kmdriHuZZAVENEQ==
+ bh=KQAFS3f+G1ZgKxNg0P0pcDA5/B817S2xKYT0oeuT250=;
+ b=lIS7rR0e652Z5a+u2r4NQekJ0QxqOsbAyM6Y0bJCCiosMPEwlWan3eb91eDXu7H5zpXJpPlsMFdGSB9f+xnimLdH4PhuZ4QvNnza6YJb22R4j1tYhvp/C9R9cCgZreEgbkHsL2XUk7NnwsNvaxKbwsVs4Xt/O5v9++zqk/vqNp4V8ybmnjN5RG/ocuj/87BAsBbGHOSPSXSdpZXzZWhnjEnKz+CB0aOzJgGFumCQYdeKD/m3ctU2BksCQ/+nLF0dcG0GcgqlrN7M3eoCSSxNc+E+Ozcba0ZS374deHyPwSsWfkQuCHpz/ZBhQ83jTNcgQaQvmMOuUIjo+cpKWxVoiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BN9PR11MB5289.namprd11.prod.outlook.com (2603:10b6:408:136::10)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM4PR11MB5294.namprd11.prod.outlook.com (2603:10b6:5:391::20) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Thu, 2 Oct
- 2025 16:00:58 +0000
+ 2025 16:09:39 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9160.017; Thu, 2 Oct 2025
- 16:00:58 +0000
-Date: Thu, 2 Oct 2025 11:00:55 -0500
+ 16:09:39 +0000
+Date: Thu, 2 Oct 2025 11:09:35 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Zhanjun Dong <zhanjun.dong@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v4 1/2] drm/xe/guc: Add prefix to guc log buffer macros
-Message-ID: <pfqh62crf6qveer36aofmwom2zh7ihvqezaedmnsvb3lof7rjk@rnkpsetbrsb6>
-References: <20251002150302.99524-1-zhanjun.dong@intel.com>
- <20251002150302.99524-2-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+To: <intel-xe@lists.freedesktop.org>, <linux-pci@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <bhelgaas@google.com>
+CC: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, "Icenowy
+ Zheng" <uwu@icenowy.me>, Vivian Wang <wangruikang@iscas.ac.cn>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Simon Richter <Simon.Richter@hogyros.de>,
+ <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+Subject: Re: [PATCH 1/2] PCI: Release BAR0 of an integrated bridge to allow
+ GPU BAR resize
+Message-ID: <n7syfqiqbtoqmb4zpxuec44vpnwfgbzfhuviknjibbf7dezmpk@joeksfvzd3hw>
+References: <20250918-xe-pci-rebar-2-v1-0-6c094702a074@intel.com>
+ <20250918-xe-pci-rebar-2-v1-1-6c094702a074@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20251002150302.99524-2-zhanjun.dong@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0189.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::14) To CY5PR11MB6139.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250918-xe-pci-rebar-2-v1-1-6c094702a074@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0110.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::25) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BN9PR11MB5289:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4129c472-5447-4a2f-2cf1-08de01cce024
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB5294:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42bf72f1-71eb-464c-799e-08de01ce16a6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?sXrrsOSpzq5Lo/nPi63Sn81mKTBqWV4DRIEbvwVRuTzyi1jhql6dptPk2XtS?=
- =?us-ascii?Q?tter9SsnGj7FizAbQ8NgdNjd3BzOLwK3VuQru5CNrypzJfk9levGiZD7ok4N?=
- =?us-ascii?Q?+NNA9V/iJtw6NbDwO9oaOkuNzlsUzl3AfORdo6DZSfMWbUcESxdA0c6BeH2u?=
- =?us-ascii?Q?NVfu75Tp5Nef7Wyhm5kKMY69Bg0Ng0QpXYPfu+dACqeSB/zI55HaYf908BJl?=
- =?us-ascii?Q?XmNprIPqQPUXt29WVS0U6TiRgNxuIPRTTlEiwldP8XJttsMpo70ErjWhSywm?=
- =?us-ascii?Q?fb7XhXbi4rvUPpk0gl6R6i4/YkB8jDMslu6UykhLuaydV3X6TGURnq650zbm?=
- =?us-ascii?Q?BlSfK0ul3kWLbqh4GCBAzWY+eJgRg1H7lm5PMkwQ9+Q/MsfjMsqs01zg3a9P?=
- =?us-ascii?Q?CW5pegT2vpj3LJMa/oN3Z3gsZAKEFyssHr01ZThV7xVSZesLPunk01OkiOPf?=
- =?us-ascii?Q?cHkhoTHecLs7pt4QjnYXS3RfNVFAFw1gq2gCFeickxkpAGmCVMIa6AAvocsS?=
- =?us-ascii?Q?0D+U/Hex/1/0HvE7WYxPwbzCAS3zTpsp1JmtTpaRu/KNospWujGbB+Cmv1ns?=
- =?us-ascii?Q?zIyNEBZSucWhBDQLEf99pPSVLYzMJKsmljTLkOwVevTo8Mg+3N3snrbXGMI+?=
- =?us-ascii?Q?O2LCBKnLHVKgfc7+BloCC+khWHEP6/Llt6oh+Bmh2vzEIRX3UYRudHoGa3Tl?=
- =?us-ascii?Q?nGs9hBHMzemLWdGyH7IYAu1e7LlHu/eOwlqdu/n1CAHsjJd4sE/avjVX+Ewn?=
- =?us-ascii?Q?RHhonnIBFGCNHE6PwXUjjfXbGUuCVIeMBD2BuAlCNrMOVNa7eXH/GE7Ch9VV?=
- =?us-ascii?Q?hP+BKuw9rR1YJGnPpoNOkv2+8qNrDCJcseW6XZytui266PupRCJLDGWXPocE?=
- =?us-ascii?Q?VzZHEx0OiYVkDDW+h38AeDtJkj92qN59pawwRiQux/Dkr0obJoEOnV6XWhrW?=
- =?us-ascii?Q?rhgMG+VNjy1WMCAsmHE17lOK0xlYm456maZlZghWCj8t0NH4XtvedfacVGAw?=
- =?us-ascii?Q?uQZR1FF5YePWkaNsYELbCHKjw6ypCHCerTSOm7Y0rYB5QbMKsx1RAc9spV8G?=
- =?us-ascii?Q?Te9G8u3e2rYj16UgXaAy2MiifTblq0NfZ1NXEUywOrIVGHY9AawqOPUm2BUl?=
- =?us-ascii?Q?IWs5bekMLT/xXEydeG3h8aEOpXvGPzOLdMvOnjgwaj6Oc9ad4Wvzn4yYWH1I?=
- =?us-ascii?Q?ko0yjgpvesxwH9WmvoFhlQwN8dsR5bFwZB7iYRRk3/0JhnSbzunfeVAnNAT4?=
- =?us-ascii?Q?G0NJ8SWMjFW2Q7MHP7Cy4+rwkTiM4f9z2avn0meiONSY/5ODwU+6Z/T6z6Q4?=
- =?us-ascii?Q?Y3Pj9pG/hOr+VA76Iix4SLpENczN2/+ydq+iMOao0xnckDTenjbSmunN84c5?=
- =?us-ascii?Q?T20l7leWMfNq1g/ijoaV/81kd0DGmgCFCH8Oxjj6m6kt31bQmDbabVVdV52T?=
- =?us-ascii?Q?sDVMGkdznUPLgjvNScgRW+i1XPhMA1xF?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?ZgWR1ur7GaK/cl9DKhnI/jwzaGlqWCI8mOl85XwTvj7A5KzIzTYbcu0tC2?=
+ =?iso-8859-1?Q?x8zcSbJLG4AMr/q1/OyJdxjcu9mhtZFVpc6dZzQNqOK2u36VrQxEDL1qmE?=
+ =?iso-8859-1?Q?h4NHE6b8fqm+ecX3vQwbg14oRcJMqtUECfPBLEK9xvss+aejh8xFw+uexA?=
+ =?iso-8859-1?Q?dgCrcG8CO78WZyFf/300j+mm6SpMHbhGTDGbmgFgM4tEuGcbYuL9Y1GFAH?=
+ =?iso-8859-1?Q?G0VVWUe8Vr4d39z5LrOeUftBXRlPrkclzaNklFxuT2wNzM8cyA0s/1Nk5E?=
+ =?iso-8859-1?Q?OJXlzwvQLAFdSM5zBIrGw+FFKr1P0g+29SyymG1sgWMzu1RIwhULUA0s3C?=
+ =?iso-8859-1?Q?4B4crGyPDJSmpV/VnbZO9Yo7ZLX4vg8qOBWyjUK0Y5Y20o+Crz2N+cUzsT?=
+ =?iso-8859-1?Q?+hPynXupZfexH3oRTnlhlC0alcKY7nD9mf6N5aP3pXTlN3sWjWtLoM97GU?=
+ =?iso-8859-1?Q?D6qRILmL9AEhH9xGIslE+aa2UlnSDEUEcDML24hSlXPAhuZF2N2i3eC2a7?=
+ =?iso-8859-1?Q?YteVh+d+EttmVifVzliJ9+m+4t4awjAiqmPw9HZTxEgBbTnNMUJSVylT1R?=
+ =?iso-8859-1?Q?Q+zU9GJ02KBC5AlWh8axOsWoM8fBT1wOiVyoQPP2yhc8P22qNxpp3pcLKg?=
+ =?iso-8859-1?Q?2ooB1p5ocO8eRAHAO+oIFqZ1mbxPHHyiWkgRL9uxtVJiqpHShve+DEUSgL?=
+ =?iso-8859-1?Q?pXVMFHoxaOQKMTCW/41WVz9pQIGmKC/0Fha9IT3xaROPotnvkuu1lvMbTD?=
+ =?iso-8859-1?Q?rjhMgmg/40YUFhKRQcZYGT/ti3/6/8XQ14sjTUf1QmPupgxkjE5RaQcZCy?=
+ =?iso-8859-1?Q?jL3AD5dIkwl0bfMYcfNzWav6XV1rp6JNOXoTpv4wl208/BGr1wbzVWFBAy?=
+ =?iso-8859-1?Q?mC6nEHwyW7XQ6Lf1/2+tKaij3FuCl9yauYwaYqjvnQOONGsfuIlLz1rk8s?=
+ =?iso-8859-1?Q?8EbzoIJd955id/3qQqTXD1K/SLsThEdHP3MbQxhvuWjxYme53XfaomrMgf?=
+ =?iso-8859-1?Q?HPXZy3nU5g76J7llyYHuhzvxP3alEQSHgqY0/T9JbPoSA4v0zVgzpCNrXp?=
+ =?iso-8859-1?Q?pE8j690gK59o0Qj0ZyUfzmiv3g9VsX97cOYhydHoi6NO17Tes+6h7F1PoS?=
+ =?iso-8859-1?Q?RKDU8vr2EoqHbNtNcjbkxPglb0j8ufS0cExDyc1SiEm/pjbwwSANY40vvR?=
+ =?iso-8859-1?Q?ZxBo+Sa1kzd/tLth5t5NODtiFgAzmM62KNgIv8GCoZx6thp/T9AOkt6hZs?=
+ =?iso-8859-1?Q?KWIi8RIqk6667qgJ9MzkzBzZlI4VAiTuNdJgRpmSq+I0XB/xQ0ZZqkJnsi?=
+ =?iso-8859-1?Q?XZQliEYI/jShUsEkhPjnh4XfCcUVtqBuOjh2YlYMqDmfch5aWyTs7LEcXD?=
+ =?iso-8859-1?Q?mVTuvwsTupaGjNeri7S0uYchFzHoGqjgWs7J8/+qWyIF/ymKOVqFKssBt7?=
+ =?iso-8859-1?Q?V9WKPrjDdbMLFO+cY+DFGvyNxiKkr55HIKXmzuhpl1XeKMIQpXLMDdLfI3?=
+ =?iso-8859-1?Q?c=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GMy3z5mee2zXbpF3KseCRi0SC1mGDsOoNmS6yEqTWDwXoVhujeK2AGB3Lclp?=
- =?us-ascii?Q?1YcYQ4S7zVR2CGv7jwz+kDcWuH1EDy5PuaXZLlC++cAWoW1z4dYlHvROUNgT?=
- =?us-ascii?Q?61ZthMmNNreMA04VyhXAty8GwbY63IFBmQEBZgldOXjNbLlz9U79HMK/TlcH?=
- =?us-ascii?Q?H/4MkPywKeiHyx2hjH6Aw4dNl7IOw5d5EA1lAkaqYrXZVeHzNqfVs/PAAPsi?=
- =?us-ascii?Q?0/Cz7twZarlHJosIjHH65iCNAkiYhzSw/kDkGIJnaHI8jttcXEMwCoCR+5pI?=
- =?us-ascii?Q?arRm6SzJaxihkly2bpDTojSLiAdBV1d9SEQjl7UI5dlVziJgL3DsBIk1Z8hF?=
- =?us-ascii?Q?KlVhl2eViK/M30NXzTSYL+bw8IO5P1GDhRmc1jrYHo4Vaw+ZFIsCRG7hQNH2?=
- =?us-ascii?Q?DBrokUL7QUKVOQ9B2UsK9n39MBTR5QNnkiAnuBBgUXIwjV1ABSRVXVAMhxzj?=
- =?us-ascii?Q?vX0sU9qbVvVBFr2C8jTs5zXNaPFPHdUO8qMMzVnqRXqtAiCxZxMDSm7l/gDU?=
- =?us-ascii?Q?uoeZa9edCjnMk0i45MG3VGmEUvNeiV6qfoQK+RHgjI1LIJ+1ZudXY5m3n03U?=
- =?us-ascii?Q?zegNlFHCT5PVEF56rt2e3r9ubkJVSy2rDQ6KYx5tQYH7ZZZlA4nZlZ+5UkxS?=
- =?us-ascii?Q?JqQaiQqFoI1UYp5cJ9ehGg7LMYvw3B3feVYfNfs/MwmSgrssjgpPTLuGCAg1?=
- =?us-ascii?Q?+xbejU2LeQGz9gCeGhn5XNdjD/J+tr3yTV7SeQN4BRI7aRR+++prcFEIvZmx?=
- =?us-ascii?Q?+fI3DZyJlD8FboIFPErf7cfILCmE/zgkGFhMAiEdQscQ9Ox4rTWtzU7semxT?=
- =?us-ascii?Q?ZTzjgkKLLTuwwZyD3TXX8JL/kdi0lp2YEgEHk3SQZDHFGA8iZgtlg2DcDbZc?=
- =?us-ascii?Q?KXmZAi9L+N0BjyHppesSeiXNcRWOWT4/x5KmsVI8tuWBfais88JQ0e4Zuy/U?=
- =?us-ascii?Q?6k3ODTR17Vx0PLhdE6yK01LzF4yFyspUKHb48fLOOaldQgrh8d34u2pcIO1R?=
- =?us-ascii?Q?83jHfeZP7E35papL0b56w0wlSZh/TqJrf+xad5WDL7ONKdWhsIbUiJQPZsOo?=
- =?us-ascii?Q?rcX527VQGzA5fq0uSHNKNIzKqxhz7etIen55mjYQT5p1VMIKKls0HeGGV980?=
- =?us-ascii?Q?xXVkv+oPB4nVmJiPTjHD/oA5bt8L2Rc3HoNkjHYu21O2mxLRZU/DLlmAM6KQ?=
- =?us-ascii?Q?4P4GItjzMrUKYUgSji8bOLOach7K30c+p8KppeDcnO7QbtW33OD3eKmXnvkv?=
- =?us-ascii?Q?VFt+WGZIbWMGXTZ+3jhn+yW1MSqY1F2rweYTC/XPBs+9Hp4RWD6G3zleHOeC?=
- =?us-ascii?Q?b+760VA2M3ey09bUn25xL3oKzN42ExxUH8G6r2xvHe4bT4R8Ze5MS6izcSyH?=
- =?us-ascii?Q?/DzvT0+EzjNjya25jFoedh1sTA88/PLfDAQ5E6KehcqYvwtQJlWuqbH+tzNb?=
- =?us-ascii?Q?AkwJKBt5hchmUa3WmIaLQX9zVOVbjs/ZnynNK6MMDEqNIwmhbebuHq74b29w?=
- =?us-ascii?Q?wCtqYJNdX76TBy6royk9eGw1Lfw3pWThee3MV1CThebB+JR3B0duzsbrFEIE?=
- =?us-ascii?Q?3p1PwdAD2zTcXFEg1iFaeFyHO/XnyL41LAVEHaloKmsY/ztx7yGGnKl15dn5?=
- =?us-ascii?Q?vA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4129c472-5447-4a2f-2cf1-08de01cce024
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?GQ7rg+kSuRbzAvNCI2uIOSS5jzC5hp16yJv84bFsecK4vV/pXTaVUdwEWu?=
+ =?iso-8859-1?Q?41d5mv4A74WBZUWL7oRQmX5Fj5t9udBA5CKgj8X7jJW7hXW0jhnbQyPJp5?=
+ =?iso-8859-1?Q?Rfz+xSSTMnNQjVqT8+U8lpaGINJDi0dVAQiMmQGu2JJN2BdQT4wVJX7VI6?=
+ =?iso-8859-1?Q?5c0pJGe2484Nzqrj2bdkrndhMB6F6qYaC0s3dvqArC//0n7Av4lG/vzKoe?=
+ =?iso-8859-1?Q?NfJkl96ObeysSTCdnBn4ZUUYsBC1fNaDwGfZZcl0/t6DRnhQ1JqPFWVtUp?=
+ =?iso-8859-1?Q?Rvn8pZe+jB75J2Nt3tZ+rVI3kIr+BcrZGC6crrKSxbygxmZFqpHESnPdSt?=
+ =?iso-8859-1?Q?/tpNeU3g/SYeG2Sq16aoC27STZITDI319yQ3qeepOEUbEOijLsGopfbo4Z?=
+ =?iso-8859-1?Q?352GlcDEvNQcLyWzar6DcGbMKumMPiYqpHxOTnMge01Z01d+ZLswbT++go?=
+ =?iso-8859-1?Q?tJCv58ZynXdP94V9vhtW7klNwkF1kWs21ywG1aaevg8wl0PZKPBIVAUT5B?=
+ =?iso-8859-1?Q?o5KqDAlcwXbT3ZMpeksemxZjjusDoRgzwRu8OGLCI+y9MBq1QwjSz7nHVJ?=
+ =?iso-8859-1?Q?5CfStj+UakXLVCsqVmKR6br3HJnw/fI//Ltrff0FOJ5A/NpKkJjdSH/sZF?=
+ =?iso-8859-1?Q?NxCKw5LYjyFGHptgsNXk9zZu7nDsUzfP2TkPAryFQz2gcvAteedcKbWd9S?=
+ =?iso-8859-1?Q?ACwYEfAGEXa5rBw6ea+QyB5pQz5eLt8s8dX8HXF6RNIFngAsXZnjMCQ/Ux?=
+ =?iso-8859-1?Q?WGrmmdFWsjTsV6a48/4NCeCTybkyqHOjQE7yu016yMwEE7pFgqOiS89aat?=
+ =?iso-8859-1?Q?r3c1vzR/B4Wdgnx67V5TcSUhkn8hXdnacw9EGHh7Dx0nPqEcVbL9u+8o2c?=
+ =?iso-8859-1?Q?alVEAqw96T7jfJ6wVU3fk2d1kyFc3Exn3DUDbxoAlIBLhF1cVZ5vBOu0Xy?=
+ =?iso-8859-1?Q?xPuYw48A0dyhZ4IOmTEjsaigItYgi4dUwIZ9GGxCS+OFttL/3op7Vlpc6l?=
+ =?iso-8859-1?Q?oGJRfV2TBtchskl3yi7qurZPSVT2mEX4q13mZfIQm3KHkcGVessQqQT6IJ?=
+ =?iso-8859-1?Q?bYemiSW8MSsiMn3WRQSWAAn2cf7z33FnPQuMeIhehHiUdtpuZ+lC7WgeIp?=
+ =?iso-8859-1?Q?p+D6G9UCEL71UbfFpxnOkDYjcC0kVed1poKxigR5aeReUlJPqqa5PSMR4N?=
+ =?iso-8859-1?Q?14/Dx4gPRYM9N8UQ+K7fC6KPV65cQzg6q2uERf8DKmVhYVJ1Fd1/C638SZ?=
+ =?iso-8859-1?Q?pg0DE55e6A7raVvY9wUsogZYWu+msWE3KeCXfwuTxX+jkP+fI4RIpmZ7qy?=
+ =?iso-8859-1?Q?IztQJegNALcpwR2L9hZgYR/1KMQa0yp7hzT3hPt/hpFz/lIOtxgR4otv5X?=
+ =?iso-8859-1?Q?zLfWWXBALviD1HCTWxj4rWIwpxBMRLoD99mhuiPE7xKYDe2HZZx2pnG9G9?=
+ =?iso-8859-1?Q?oN6QT/5/L5hc9zzBu1jLY/ZA6FaCkriRWhfsTvX/PIzLylmMpzJRF1+T0I?=
+ =?iso-8859-1?Q?QMgBcRrHDl183hRpy9BHA4tmld84hZEQDZr/Wx2Tx1tbJQyo1naFCQL7ca?=
+ =?iso-8859-1?Q?0bJ/MecwFN1MdRkePfI0mbmI49FZ/vdO7DdYWUAC+0ekjCmNVm9Oqxaf8E?=
+ =?iso-8859-1?Q?4cvhqKzEX3WgrFA5FL3NO5Y8b0MgiidnNe0s3i5TN9hdbtfCFBKoYhxw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42bf72f1-71eb-464c-799e-08de01ce16a6
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2025 16:00:58.0930 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2025 16:09:38.9690 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EcRMfQyIDbcM0HjJIjbJxYVKplQyD2IQVOlm6x8NRdly9bRATZp7y9mldv90i2uQP3L/gcSCaEJUwN3nYAz3k/DRBoLB3fKQ2iNqijyC7kg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5289
+X-MS-Exchange-CrossTenant-UserPrincipalName: BD64SRuRUPKkgo5nkE31vB67jSpGcsld2q9H8EdWT0utyDDDfLlr33i2Wv6S3ckqCb2c/60l4ocf5ITh7yEpYFNV3cTBvFdniQNMY3ddKkI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5294
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,252 +185,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 02, 2025 at 11:03:01AM -0400, Zhanjun Dong wrote:
->Add prefix to GuC log buffer macros to follow Xe naming styles.
->Remove helper functions, replaced with macros.
+On Thu, Sep 18, 2025 at 01:58:56PM -0700, Lucas De Marchi wrote:
+>From: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 >
->Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>Resizing BAR to a larger size has to release upstream bridge windows in
+>order make the bridge windows larger as well (and to potential relocate
+>them into a larger free block within iomem space). Some GPUs have an
+>integrated PCI switch that has BAR0. The resource allocation assigns
+>space for that BAR0 as it does for any resource.
+>
+>An extra resource on a bridge will pin its upstream bridge window in
+>place which prevents BAR resize for anything beneath that bridge.
+>
+>Nothing in the pcieport driver provided by PCI core, which typically is
+>the driver bound to these bridges, requires that BAR0. Because of that,
+>releasing the extra BAR does not seem to have notable downsides but
+>comes with a clear upside.
+>
+>Therefore, release BAR0 of such switches using a quirk and clear its
+>flags to prevent any new invocation of the resource assignment
+>algorithm from assigning the resource again.
+>
+>Due to other siblings within the PCI hierarchy of all the devices
+>integrated into the GPU, some other devices may still have to be
+>manually removed before the resize is free of any bridge window pins.
+>Such siblings can be released through sysfs to unpin windows while
+>leaving access to GPU's sysfs entries required for initiating the
+>resize operation, whereas removing the topmost bridge this quirk
+>targets would result in removing the GPU device as well so no manual
+>workaround for this problem exists.
+>
+>Reported-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>Link: https://lore.kernel.org/linux-pci/fl6tx5ztvttg7txmz2ps7oyd745wg3lwcp3h7esmvnyg26n44y@owo2ojiu2mov/
+>Link: https://lore.kernel.org/intel-xe/20250721173057.867829-1-uwu@icenowy.me/
+>Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+>Cc: <stable@vger.kernel.org> # v6.12+
+>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 >---
-> drivers/gpu/drm/xe/xe_guc.c         | 22 ++++-----
-> drivers/gpu/drm/xe/xe_guc_capture.c |  6 +--
-> drivers/gpu/drm/xe/xe_guc_log.c     | 71 +++++++----------------------
-> drivers/gpu/drm/xe/xe_guc_log.h     | 14 +++---
-> 4 files changed, 36 insertions(+), 77 deletions(-)
 >
->diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->index d5adbbb013ec..b0ea9a13847a 100644
->--- a/drivers/gpu/drm/xe/xe_guc.c
->+++ b/drivers/gpu/drm/xe/xe_guc.c
->@@ -99,7 +99,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
-> 	u32 offset = guc_bo_ggtt_addr(guc, guc->log.bo) >> PAGE_SHIFT;
-> 	u32 flags;
->
->-	#if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
->+	#if (((XE_GUC_LOG_CRASH_BUFFER_SIZE) % SZ_1M) == 0)
+>Remarks from Ilpo: this feels quite hacky to me and I'm working towards a
+>better solution which is to consider Resizable BAR maximum size the
+>resource fitting algorithm. But then, I don't expect the better solution
+>to be something we want to push into stable due to extremely invasive
+>dependencies. So maybe consider this an interim/legacy solution to the
+>resizing problem and remove it once the algorithmic approach works (or
+>more precisely retain it only in the old kernel versions).
 
-can you also add a patch to remove the excess use of parenthesis and
-indentation? Should ahave been:
+Bjorn, would that be acceptable? If so, please let me know if I can take
+it through the drm tree together with the second patch to have this BAR
+resize fixed for BMG.
 
-#if XE_GUC_LOG_CRASH_BUFFER_SIZE % SZ_1M == 0
-
-
-
-> 	#define LOG_UNIT SZ_1M
-> 	#define LOG_FLAG GUC_LOG_LOG_ALLOC_UNITS
-> 	#else
->@@ -107,7 +107,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
-> 	#define LOG_FLAG 0
-> 	#endif
->
->-	#if (((CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
->+	#if (((XE_GUC_LOG_CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
-
-ditto
-
-> 	#define CAPTURE_UNIT SZ_1M
-> 	#define CAPTURE_FLAG GUC_LOG_CAPTURE_ALLOC_UNITS
-> 	#else
->@@ -115,20 +115,20 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
-> 	#define CAPTURE_FLAG 0
-> 	#endif
->
->-	BUILD_BUG_ON(!CRASH_BUFFER_SIZE);
->-	BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, LOG_UNIT));
->-	BUILD_BUG_ON(!DEBUG_BUFFER_SIZE);
->-	BUILD_BUG_ON(!IS_ALIGNED(DEBUG_BUFFER_SIZE, LOG_UNIT));
->-	BUILD_BUG_ON(!CAPTURE_BUFFER_SIZE);
->-	BUILD_BUG_ON(!IS_ALIGNED(CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
->+	BUILD_BUG_ON(!XE_GUC_LOG_CRASH_BUFFER_SIZE);
->+	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_CRASH_BUFFER_SIZE, LOG_UNIT));
->+	BUILD_BUG_ON(!XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE);
->+	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE, LOG_UNIT));
->+	BUILD_BUG_ON(!XE_GUC_LOG_CAPTURE_BUFFER_SIZE);
->+	BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
->
-> 	flags = GUC_LOG_VALID |
-> 		GUC_LOG_NOTIFY_ON_HALF_FULL |
-> 		CAPTURE_FLAG |
-> 		LOG_FLAG |
->-		FIELD_PREP(GUC_LOG_CRASH, CRASH_BUFFER_SIZE / LOG_UNIT - 1) |
->-		FIELD_PREP(GUC_LOG_DEBUG, DEBUG_BUFFER_SIZE / LOG_UNIT - 1) |
->-		FIELD_PREP(GUC_LOG_CAPTURE, CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) |
->+		FIELD_PREP(GUC_LOG_CRASH, XE_GUC_LOG_CRASH_BUFFER_SIZE / LOG_UNIT - 1) |
->+		FIELD_PREP(GUC_LOG_DEBUG, XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE / LOG_UNIT - 1) |
->+		FIELD_PREP(GUC_LOG_CAPTURE, XE_GUC_LOG_CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) |
-> 		FIELD_PREP(GUC_LOG_BUF_ADDR, offset);
->
-> 	#undef LOG_UNIT
->diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
->index 243dad3e2418..acb95a93b530 100644
->--- a/drivers/gpu/drm/xe/xe_guc_capture.c
->+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
->@@ -816,7 +816,7 @@ static void check_guc_capture_size(struct xe_guc *guc)
-> {
-> 	int capture_size = guc_capture_output_size_est(guc);
-> 	int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
->-	u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
->+	u32 buffer_size = XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
->
-> 	/*
-> 	 * NOTE: capture_size is much smaller than the capture region
->@@ -922,7 +922,7 @@ guc_capture_init_node(struct xe_guc *guc, struct __guc_capture_parsed_output *no
->  *                  ADS module also calls separately for PF vs VF.
->  *
->  *     --> alloc B: GuC output capture buf (registered via guc_init_params(log_param))
->- *                  Size = #define CAPTURE_BUFFER_SIZE (warns if on too-small)
->+ *                  Size = #define XE_GUC_LOG_CAPTURE_BUFFER_SIZE (warns if on too-small)
->  *                  Note2: 'x 3' to hold multiple capture groups
->  *
->  * GUC Runtime notify capture:
->@@ -1368,7 +1368,7 @@ static void __guc_capture_process_output(struct xe_guc *guc)
-> 	xe_map_memcpy_from(guc_to_xe(guc), &log_buf_state_local, &guc->log.bo->vmap,
-> 			   log_buf_state_offset, sizeof(struct guc_log_buffer_state));
->
->-	buffer_size = xe_guc_get_log_buffer_size(&guc->log, GUC_LOG_BUFFER_CAPTURE);
->+	buffer_size = XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
-> 	read_offset = log_buf_state_local.read_ptr;
-> 	write_offset = log_buf_state_local.sampled_write_ptr;
-> 	full_count = FIELD_GET(GUC_LOG_BUFFER_STATE_BUFFER_FULL_CNT, log_buf_state_local.flags);
->diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
->index c01ccb35dc75..fa1d490dca0d 100644
->--- a/drivers/gpu/drm/xe/xe_guc_log.c
->+++ b/drivers/gpu/drm/xe/xe_guc_log.c
->@@ -50,16 +50,16 @@ static size_t guc_log_size(void)
-> 	 *  |     Capture state header      |
-> 	 *  +-------------------------------+ 96B
-> 	 *  |                               |
->-	 *  +===============================+ PAGE_SIZE (4KB)
->+	 *  +===============================+ 4KB
->+	 *  |          Event logs           |
->+	 *  +===============================+ + XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE
-> 	 *  |        Crash Dump logs        |
->-	 *  +===============================+ + CRASH_SIZE
->-	 *  |          Debug logs           |
->-	 *  +===============================+ + DEBUG_SIZE
-
-what happened with DEBUG_SIZE? in drivers/gpu/drm/xe/xe_guc.c it's
-referred as DEBUG_BUFFER_SIZE
-
+thanks
 Lucas De Marchi
 
->+	 *  +===============================+ + XE_GUC_LOG_CRASH_BUFFER_SIZE
-> 	 *  |         Capture logs          |
->-	 *  +===============================+ + CAPTURE_SIZE
->+	 *  +===============================+ + XE_GUC_LOG_CAPTURE_BUFFER_SIZE
-> 	 */
->-	return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
->-		CAPTURE_BUFFER_SIZE;
->+	return SZ_4K + XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE + XE_GUC_LOG_CRASH_BUFFER_SIZE +
->+		XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
-> }
+
+>---
+> drivers/pci/quirks.c | 23 +++++++++++++++++++++++
+> 1 file changed, 23 insertions(+)
 >
-> #define GUC_LOG_CHUNK_SIZE	SZ_2M
->@@ -274,49 +274,6 @@ int xe_guc_log_init(struct xe_guc_log *log)
->
-> ALLOW_ERROR_INJECTION(xe_guc_log_init, ERRNO); /* See xe_pci_probe() */
->
->-static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
->-{
->-	return CRASH_BUFFER_SIZE;
->-}
->-
->-static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
->-{
->-	return DEBUG_BUFFER_SIZE;
->-}
->-
->-/**
->- * xe_guc_log_section_size_capture - Get capture buffer size within log sections.
->- * @log: The log object.
->- *
->- * This function will return the capture buffer size within log sections.
->- *
->- * Return: capture buffer size.
->- */
->-u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
->-{
->-	return CAPTURE_BUFFER_SIZE;
->-}
->-
->-/**
->- * xe_guc_get_log_buffer_size - Get log buffer size for a type.
->- * @log: The log object.
->- * @type: The log buffer type
->- *
->- * Return: buffer size.
->- */
->-u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type)
->-{
->-	switch (type) {
->-	case GUC_LOG_BUFFER_CRASH_DUMP:
->-		return xe_guc_log_section_size_crash(log);
->-	case GUC_LOG_BUFFER_DEBUG:
->-		return xe_guc_log_section_size_debug(log);
->-	case GUC_LOG_BUFFER_CAPTURE:
->-		return xe_guc_log_section_size_capture(log);
->-	}
->-	return 0;
->-}
->-
-> /**
->  * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
->  * @log: The log object.
->@@ -327,13 +284,17 @@ u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type
->  */
-> u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type)
-> {
->-	enum guc_log_buffer_type i;
-> 	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
->
->-	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
->-		if (i == type)
->-			break;
->-		offset += xe_guc_get_log_buffer_size(log, i);
->+	switch (type) {
->+	case GUC_LOG_BUFFER_CAPTURE:
->+		offset += XE_GUC_LOG_CRASH_BUFFER_SIZE;
->+		fallthrough;
->+	case GUC_LOG_BUFFER_CRASH_DUMP:
->+		offset += XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE;
->+		fallthrough;
->+	case GUC_LOG_BUFFER_DEBUG:
->+		break;
-> 	}
->
-> 	return offset;
->diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
->index 98a47ac42b08..0cc059cedb9c 100644
->--- a/drivers/gpu/drm/xe/xe_guc_log.h
->+++ b/drivers/gpu/drm/xe/xe_guc_log.h
->@@ -13,13 +13,13 @@ struct drm_printer;
-> struct xe_device;
->
-> #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
->-#define CRASH_BUFFER_SIZE       SZ_1M
->-#define DEBUG_BUFFER_SIZE       SZ_8M
->-#define CAPTURE_BUFFER_SIZE     SZ_2M
->+#define XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE	SZ_8M
->+#define XE_GUC_LOG_CRASH_BUFFER_SIZE		SZ_1M
->+#define XE_GUC_LOG_CAPTURE_BUFFER_SIZE		SZ_2M
-> #else
->-#define CRASH_BUFFER_SIZE	SZ_16K
->-#define DEBUG_BUFFER_SIZE	SZ_64K
->-#define CAPTURE_BUFFER_SIZE	SZ_1M
->+#define XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE	SZ_64K
->+#define XE_GUC_LOG_CRASH_BUFFER_SIZE		SZ_16K
->+#define XE_GUC_LOG_CAPTURE_BUFFER_SIZE		SZ_1M
+>diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+>index d97335a401930..9b1c08de3aa89 100644
+>--- a/drivers/pci/quirks.c
+>+++ b/drivers/pci/quirks.c
+>@@ -6338,3 +6338,26 @@ static void pci_mask_replay_timer_timeout(struct pci_dev *pdev)
+> DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_GLI, 0x9750, pci_mask_replay_timer_timeout);
+> DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_GLI, 0x9755, pci_mask_replay_timer_timeout);
 > #endif
-> /*
->  * While we're using plain log level in i915, GuC controls are much more...
->@@ -51,8 +51,6 @@ xe_guc_log_get_level(struct xe_guc_log *log)
-> 	return log->level;
-> }
+>+
+>+/*
+>+ * PCI switches integrated into Intel Arc GPUs have BAR0 that prevents
+>+ * resizing the BARs of the GPU device due to that bridge BAR0 pinning the
+>+ * bridge window it's under in place. Nothing in pcieport requires that
+>+ * BAR0.
+>+ *
+>+ * Release and disable BAR0 permanently by clearing its flags to prevent
+>+ * anything from assigning it again.
+>+ */
+>+static void pci_release_bar0(struct pci_dev *pdev)
+>+{
+>+	struct resource *res = pci_resource_n(pdev, 0);
+>+
+>+	if (!res->parent)
+>+		return;
+>+
+>+	pci_release_resource(pdev, 0);
+>+	res->flags = 0;
+>+}
+>+DECLARE_PCI_FIXUP_ENABLE(PCI_VENDOR_ID_INTEL, 0x4fa0, pci_release_bar0);
+>+DECLARE_PCI_FIXUP_ENABLE(PCI_VENDOR_ID_INTEL, 0x4fa1, pci_release_bar0);
+>+DECLARE_PCI_FIXUP_ENABLE(PCI_VENDOR_ID_INTEL, 0xe2ff, pci_release_bar0);
 >
->-u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
->-u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum guc_log_buffer_type type);
-> u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_type type);
-> bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
-> 				   enum guc_log_buffer_type type,
 >-- 
->2.34.1
+>2.50.1
 >
