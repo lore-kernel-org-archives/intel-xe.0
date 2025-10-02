@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B3D2CAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BF6ECCD19B
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0AA710E7AB;
-	Thu,  2 Oct 2025 05:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2EDC10E7B3;
+	Thu,  2 Oct 2025 05:54:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ckmin16Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6oVByn1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9330E10E78C
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB1F210E798
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759384448; x=1790920448;
+ t=1759384449; x=1790920449;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=XqODx3wD6jfuRx9dPgIRjhzbrzzLKwQ2QmXdJ3Y0Mkc=;
- b=ckmin16Y7jOrBL4abUtji0+thPGJ/3G/7kqU1LzVYOtm0LgQ4MQVoZFk
- KjuoDqPUoe0N0LDKtFwXUo174ePIT77ue170xZUi0KAtOYT1lXEZsLtAr
- 6ys73pHtLMpjuSMbtxkPeTextLsRnf83ZJY1o84tomaxMkpRzfxRccKhw
- QfD7LcCB+vpAcuaK1gQWauwPpIrkTOqglePowiGj9/P/AXnpXPg79ps51
- HlH00YoQJtbjV3Fxe4pdAoIPjtOikAFTDBvMqXBKAeKeptYy4ks2OUjcs
- 6e2JYbRT9imPmmpjsRGs5w2Izf8FfeX1LH4yaBengMdgCzWwoBFWAatXm A==;
-X-CSE-ConnectionGUID: yLEvHpNRTJuFZZJMlTPIcg==
-X-CSE-MsgGUID: cfhqmauOTw6kuxmwH1exVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304506"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304506"
+ bh=L8+A6Uau+/2K5YadtuewVSudAlCxYXWhd3gl0ho9e4A=;
+ b=D6oVByn1Gv+VqvwBzG574Kb1tWomG+6vP2nf1tj8ONdIJbmUy8pzV7yi
+ c/MC6MYhswNbQmDEuHeL/WphkpwNHscljZIhveOPEU2RhDywlLMIrIBsW
+ sU2Hbu0GAGXjTPdDQWHENojZ28W0FcsmlHjVm6zdCnwkIeUG8Yw0DrynP
+ 5HI1T3K3fCUfk08J7mWgrAbdS0/3JaFUKFd0pv/2GhGE/+AN3aaCL5n6j
+ x6sAJhhoh/NLSI5f7QFfwRboLLIa/YF7CJ0dSuljPSEX6UGbSx9p52Np/
+ /MFm5jqUrIkWHlWLTFncVKSxMLHgXYGUEM568/1AffPubR4vrChitIh7Q w==;
+X-CSE-ConnectionGUID: is7QD7G/T/u1XLDr+O1CAA==
+X-CSE-MsgGUID: kCmdX/7QTF+ggmqapv3w+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304528"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304528"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: fz2TpSMLSVixm+knwud8zw==
-X-CSE-MsgGUID: ERQcucgkRlu2jQkKoUCvMg==
+X-CSE-ConnectionGUID: 2sP0OQRPRPSSSmd7rCDmPQ==
+X-CSE-MsgGUID: l1if12uGTrGG0oVqv4qIwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083537"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083560"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 13/34] drm/xe/vf: Abort H2G sends during VF post-migration
- recovery
-Date: Wed,  1 Oct 2025 22:53:41 -0700
-Message-Id: <20251002055402.1865880-14-matthew.brost@intel.com>
+Subject: [PATCH v4 34/34] drm/xe/guc: Increase wait timeout to 2sec after BUSY
+ reply from GuC
+Date: Wed,  1 Oct 2025 22:54:02 -0700
+Message-Id: <20251002055402.1865880-35-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
@@ -66,43 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While VF post-migration recovery is in progress, abort H2G sends with
--ECANCEL. These messages are treated as lost, and TLB invalidation
-errors are suppressed. During this phase, the H2G channel is down, and
-VF recovery requires the CT lock to proceed.
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-v3:
- - Use xe_gt_recovery_inprogress (Michal)
+Some VF2GUC actions may take longer to process. Increase default timeout
+after received BUSY indication to 2sec to cover all worst case scenarios.
 
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 47079ab9922c..d0fde371fae3 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -851,7 +851,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 				u32 len, u32 g2h_len, u32 num_g2h,
- 				struct g2h_fence *g2h_fence)
- {
--	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
-+	struct xe_gt *gt = ct_to_gt(ct);
- 	u16 seqno;
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c016a11b6ab1..f0de1fa61898 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1439,7 +1439,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
  
-@@ -872,7 +872,8 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		goto out;
- 	}
+ 		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
+-				     1000000, &header, false);
++				     2000000, &header, false);
  
--	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
-+	if (ct->state == XE_GUC_CT_STATE_STOPPED ||
-+	    xe_gt_recovery_inprogress(gt)) {
- 		ret = -ECANCELED;
- 		goto out;
- 	}
+ 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
+ 			     GUC_HXG_ORIGIN_GUC))
 -- 
 2.34.1
 
