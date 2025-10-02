@@ -4,47 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98CEFCCA471
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C1CFCAC5B0
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 14:25:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5551310E7FC;
-	Thu,  2 Oct 2025 14:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81D7110E801;
+	Thu,  2 Oct 2025 14:25:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DhP8GLOI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N83nORNH";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7829A10E7FA
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 14:25:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=YVfaZJNYcebO0hEP5HxMgQIj/HBQWIUEXaaJW4KUWeQ=; b=DhP8GLOIRVbzlznCRzAya9l5PB
- H4P9d1XPMkCBebCFexZsRnWi9Ybv+wU1GDvTGkTSZzEclLNhH2/YlE7/k7qKMrGn5ds5I0Avou1rJ
- rZWRimMtF6NpYbX4N84uZ7yUqBoYLmagjp1fwj/Er4FUZz+/w5ihy61kZhxDjkZ2Di7aE1zKmcWuF
- v9aBPscaOz9YIzJ3T8zmfTYjzlOLZRRo/z92MOQ4R5Je0CSQI19kWG3x0o37pu5I4BTjt3ol8OF3Z
- cB3xaWDKK/l/IDIK7TsVLKFYiqC5x6lDVjAg6B4F8p73kIlRvW9jV6YBHbaUwMBPTepd/Ud0yQdZb
- WIjPGvLQ==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v4KFA-003Q1v-Oe
- for <intel-xe@lists.freedesktop.org>; Thu, 02 Oct 2025 16:25:16 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 13/13] drm/i915/display: Expose AuxCCS frame buffer modifiers for
- Xe
-Date: Thu,  2 Oct 2025 15:24:51 +0100
-Message-ID: <20251002142453.25574-14-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
-References: <20251002142453.25574-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4715B10E802;
+ Thu,  2 Oct 2025 14:25:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759415146; x=1790951146;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=edcZ0cj2H+JM9RLFqOpQL3beZncNOMp/aKveUOCYP2k=;
+ b=N83nORNHGC42rwOjWJX60MbeN1nCDJfqV8hYcXMI6Z8EbwdEzR80Z+S8
+ hXJyGrO/dijyupe/AJ3MRuTTdlopFZBQ+pHpwcWIrxTN07PE9Al3KXVlv
+ /fgIy2sLBrvLhgpZTlAAav8G8w2S0lWuOdIe/ue4l0kx8tAEKeAMtb35a
+ ftnytSDCcev7VG/0Y8YNc1BWGngRCh9/7qTe+rH7ScNwDk3Kc2BRUYEpC
+ mRWgnykD9tDZHIJfQ74L8m5jse/mBFGKkFmPJkLAZ9MRVAzHjlzb90U6i
+ GMT70lmdVvufwWemjvOAVBHVcWHFwnVxoBzqcrnPU5r7YJSWJPyELywSY Q==;
+X-CSE-ConnectionGUID: LStnKLruTL62LKNafLr1gQ==
+X-CSE-MsgGUID: W7xi2AjtSN+agMYclVNw4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="73050240"
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="73050240"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 07:25:46 -0700
+X-CSE-ConnectionGUID: Y0c3wp0DQCKIJeVJQWmFcA==
+X-CSE-MsgGUID: 9U9cAKQsRZCz6GO/KLXdKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,309,1751266800"; d="scan'208";a="179499619"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.12])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 07:25:44 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] drm/i915/fbdev: Select linear modifier explicitly
+In-Reply-To: <20251002115434.6486-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
+ <20251002115434.6486-3-ville.syrjala@linux.intel.com>
+Date: Thu, 02 Oct 2025 17:25:41 +0300
+Message-ID: <6d2ce6ca88742503f51ccec72a42f74ec6b722b3@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +70,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have fixed the DPT handling we can undo the nerf which was
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-built for Xe").
+On Thu, 02 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently we use the implicit modifier fb creation path for fbdev,
+> but as we never call set_tiling on the bo it will always end up as
+> linear anyway. The rest of the code (eg. stride alignment) also
+> assumes that we'll use linear. Just select the linear modifier
+> explicitly.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-	[PLANE:32:plane 1A]: type=PRI
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
+/i915/display/intel_fbdev.c
+> index 3fbdf75415cc..51d3d87caf43 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -214,12 +214,14 @@ static void intel_fbdev_fill_mode_cmd(struct drm_fb=
+_helper_surface_size *sizes,
+>  	if (sizes->surface_bpp =3D=3D 24)
+>  		sizes->surface_bpp =3D 32;
+>=20=20
+> +	mode_cmd->flags =3D DRM_MODE_FB_MODIFIERS;
+>  	mode_cmd->width =3D sizes->surface_width;
+>  	mode_cmd->height =3D sizes->surface_height;
+>=20=20
+>  	mode_cmd->pitches[0] =3D ALIGN(mode_cmd->width * DIV_ROUND_UP(sizes->su=
+rface_bpp, 8), 64);
+>  	mode_cmd->pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
+>  							   sizes->surface_depth);
+> +	mode_cmd->modifier[0] =3D DRM_FORMAT_MOD_LINEAR;
+>  }
+>=20=20
+>  static struct intel_framebuffer *
 
-Display working fine - no artefacts, no DMAR/PIPE faults.
-
-v2:
- * Adjust patch title. (Rodrigo)
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index e13fb781e7b2..068c44de2965 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2929,12 +2929,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
- 
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
--
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
- 
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
--- 
-2.48.0
-
+--=20
+Jani Nikula, Intel
