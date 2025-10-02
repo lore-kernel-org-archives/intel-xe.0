@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76C76CAC5B0
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 04:43:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01B4BCAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23DEF10E76C;
-	Thu,  2 Oct 2025 04:43:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aVIAZ8Fi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E509E10E76C
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 04:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759380205; x=1790916205;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=v6xVAGawRqJtkkcVIxEfPe2Hr4Jue7w9t4aB8ZSzLe8=;
- b=aVIAZ8FiXtLCa6RA/C0wjM68smkQhQJgmqCpUUHCmVRHe8so1zOXc1mI
- oWo7vDiIKeWbxjw4bGtoXpDNIwzwzWrEa3NxYSFH0JzflWmXC4mW8Ial6
- M0blqVJWCYZk0quvsKGOu37z2avaCeC8yvE3srfzFGseEdL0p6getRzMm
- MhdetrROZMWhNArkJiyAa5N0RS46FP8SYrcDHD8m6/KO+pLq9ok7JLOHv
- 0n9jdal6qRO3kB1HfZE3csQu1tkIbc+knKBIVquodze0D+mZHEaF4WVOI
- 4th7YV17RyCI2rpAvVnrvFB8Pq7+LZtW2abXQapX6dwXoqAa/c+MEXFW7 g==;
-X-CSE-ConnectionGUID: sQR3NHjyR2m8a7M35e5F/Q==
-X-CSE-MsgGUID: O+D7xVMFQRSt8hLDsZ3tLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="60874751"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="60874751"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 21:43:25 -0700
-X-CSE-ConnectionGUID: BnmhZM23R5adNQfMkBlThw==
-X-CSE-MsgGUID: 3mh7DXn6QiyO0bsnrSE8Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="178913721"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.131])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 21:43:25 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-Subject: [PATCH v2] drm/xe/doc: Add documentation for Execution Queues
-Date: Wed,  1 Oct 2025 21:43:20 -0700
-Message-ID: <20251002044319.450181-2-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E56310E76C;
+	Thu,  2 Oct 2025 05:14:27 +0000 (UTC)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB7B10E16B;
+ Thu,  2 Oct 2025 05:14:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8993786058920311143=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/doc=3A_Add_documenta?=
+ =?utf-8?q?tion_for_Execution_Queues_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 02 Oct 2025 05:14:27 -0000
+Message-ID: <175938206707.385154.14871010591804422095@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20251002043108.449716-2-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20251002043108.449716-2-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,97 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add documentation for Xe Execution Queues and add xe_exec_queue.rst
-file.
+--===============8993786058920311143==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Add info about how Execution queue interfaces
-    with other components in the driver (Matt Brost)
+== Series Details ==
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- Documentation/gpu/xe/index.rst         |  1 +
- Documentation/gpu/xe/xe_exec_queue.rst | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.c     | 24 ++++++++++++++++++++++++
- 3 files changed, 45 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_exec_queue.rst
+Series: drm/xe/doc: Add documentation for Execution Queues (rev2)
+URL   : https://patchwork.freedesktop.org/series/155190/
+State : success
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 88b22fad880e..bc432c95d1a3 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -14,6 +14,7 @@ DG2, etc is provided to prototype the driver.
-    xe_mm
-    xe_map
-    xe_migrate
-+   xe_exec_queue
-    xe_cs
-    xe_pm
-    xe_gt_freq
-diff --git a/Documentation/gpu/xe/xe_exec_queue.rst b/Documentation/gpu/xe/xe_exec_queue.rst
-new file mode 100644
-index 000000000000..6877a154d771
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_exec_queue.rst
-@@ -0,0 +1,20 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+================
-+Execution Queue
-+================
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
-+   :doc: Execution Queue
-+
-+Internal API
-+============
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue_types.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.h
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_exec_queue.c
-+   :internal:
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 37b2b93b73d6..c2fc88f2176a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -28,6 +28,30 @@
- #include "xe_vm.h"
- #include "xe_pxp.h"
- 
-+/**
-+ * DOC: Execution Queue
-+ *
-+ * An Execution queue is an interface for the HW context of execution.
-+ * The user creates an execution queue, submits the GPU jobs through those
-+ * queues and in the end destroys them.
-+ *
-+ * Execution queues can also be created by XeKMD itself for driver internal
-+ * operations like object migration etc.
-+ *
-+ * An execution queue is associated with a specified HW engine or a group of
-+ * engines (belonging to the same tile and engine class) and any GPU job
-+ * submitted on the queue will be run on one of these engines.
-+ *
-+ * An execution queue is tied to an address space (VM). It holds a reference
-+ * of the associated VM and the underlying Logical Ring Context/s (LRC/s)
-+ * until the queue is destroyed.
-+ *
-+ * The execution queue sits on top of the submission backend. It opaquely
-+ * handles the GuC and Execlist backends whichever the platform uses, and
-+ * the ring operations the different engine classes support.
-+ *
-+ */
-+
- enum xe_exec_queue_sched_prop {
- 	XE_EXEC_QUEUE_JOB_TIMEOUT = 0,
- 	XE_EXEC_QUEUE_TIMESLICE = 1,
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -> xe-pw-155190v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -> xe-pw-155190v2
+
+  IGT_8568: 8568
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952
+  xe-pw-155190v2: 155190v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155190v2/index.html
+
+--===============8993786058920311143==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/doc: Add documentation for Execution Queues (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155190/">https://patchwork.freedesktop.org/series/155190/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155190v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155190v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3853-5f87abb254011980c8332008cfff72d2cfab4952_BAT -&gt; xe-pw-155190v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3853-5f87abb254011980c8332008cfff72d2cfab4952 -&gt; xe-pw-155190v2</li>
+</ul>
+<p>IGT_8568: 8568<br />
+  xe-3853-5f87abb254011980c8332008cfff72d2cfab4952: 5f87abb254011980c8332008cfff72d2cfab4952<br />
+  xe-pw-155190v2: 155190v2</p>
+
+</body>
+</html>
+
+--===============8993786058920311143==--
