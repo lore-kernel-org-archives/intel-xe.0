@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 245DBCAC5B8
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 16:24:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5BD4CAC5B8
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 16:41:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8BF810E820;
-	Thu,  2 Oct 2025 16:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE7610E80F;
+	Thu,  2 Oct 2025 16:41:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFdqKiGt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gykxXyVP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB7910E819
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 16:23:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFCD510E1AD;
+ Thu,  2 Oct 2025 16:41:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759422238; x=1790958238;
+ t=1759423298; x=1790959298;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=0UC5oNxT0Fkyex+j/L6rQoRIqGclFLJWfKxzxkVLAsE=;
- b=ZFdqKiGtDsIjZe92IzCw90huSeLo9TancgPCiwocjcNeAF7sIj62sT92
- eBHxOsw64EzB6B/smidaxTBLbHSIsZIQEluHttYL0FYITIgxxIev85dIi
- BM5gR+SJxwGTO9HhrDndVzYcV94Y9YbzNcsPE9KBsIIeA0aQRmvZqUXXE
- hNa12oDW1lrqeJu70hznc02WQHvJQujmQ5HFre3T+7rmRgV9x5+3xX1it
- +4uTgTqH2FN0KOk4AQ+mk/Bp31BN3Slq6ZQWkeCqNu9Xf9N6kYm1zJfKB
- 0VNB/zZOENuGToDpgdYgeg7ZKEMpurP1QQFv0eVrCOQynXROSqcotgr7r Q==;
-X-CSE-ConnectionGUID: ItvmmKufRNmsvR+G5/g24g==
-X-CSE-MsgGUID: L4eD2qA0Tnyt0Fzc6bX3aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="65558352"
-X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="65558352"
+ bh=WwaSB6JiIE48a2FHERD03ZMTm5KXpXS7uq454bT9WNg=;
+ b=gykxXyVPokIxxXlGiWQQRjlAby7VItYihBHftR2Of3qj7Km4cQLKkjQA
+ 1tljWBcueqe6sgVGY65oZNOFbE34m7EXn2IdU76fpUynD5VEwZVME12br
+ sOigV7eNHqbqT5P/itGa6f0mY5ifsCFHdZ1rhVqTsweVVBK0JWHQiYog4
+ I821stvQ2YvVsEDpAIf4DBxgsH+t45NS8y8swkb2krZyP3nHsAfJFyn0D
+ KHJkB6aAmJFwuqQhqp7/G6M4vIf4Olviknb1ofkGZ3RT1FxtxUjgy/VbR
+ R0dNsAcda2GMUB8pGRVZfMvrRq0kSYTshsE3/oNXhqxm7EEz3tt/3cuHY w==;
+X-CSE-ConnectionGUID: vuOYANByTmmoENn/YV/FFg==
+X-CSE-MsgGUID: Ud+xhgaOQaCiWn9TDi45eA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61625102"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="61625102"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 09:23:58 -0700
-X-CSE-ConnectionGUID: /w/1iU7fTD2sDaV5W6xmAw==
-X-CSE-MsgGUID: SISLdzlgQGywiGMPfwVj7w==
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2025 09:41:37 -0700
+X-CSE-ConnectionGUID: uxAMNuAwRhq5e1zmKNdYbw==
+X-CSE-MsgGUID: /Cdb6yXiRm6NfRbDKPrK5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="179491212"
+X-IronPort-AV: E=Sophos;i="6.18,310,1751266800"; d="scan'208";a="179495302"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.228])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2025 09:23:57 -0700
-Date: Thu, 2 Oct 2025 19:23:54 +0300
+ 02 Oct 2025 09:41:35 -0700
+Date: Thu, 2 Oct 2025 19:41:32 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v12 11/13] drm/xe: Force flush system memory AuxCCS
- framebuffers before scan out
-Message-ID: <aN6nGuZw_IUpIeJl@intel.com>
-References: <aNKer6J7Op2gGmtC@intel.com>
- <f0fbf72f-4791-4aff-a4cb-299bf9ef265f@igalia.com>
- <aNK0E7KMBW5iOzSo@intel.com>
- <e2cb2159-367b-4f43-babc-a5250fc9914d@igalia.com>
- <aNRx66g6y4c-eoZk@intel.com>
- <7e07606b-d542-4407-a092-476f202cc8e2@igalia.com>
- <cfc54165-b391-4905-a00a-27d2889225e3@igalia.com>
- <aNZDxGoYxVFfRNOu@intel.com> <aNbq_j39EipWw_pV@intel.com>
- <7fde2c90-5d3e-406e-9d5b-6620123e2d2e@igalia.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH 1/4] drm/i915/fb: Fix the set_tiling vs. addfb race, again
+Message-ID: <aN6rPMvuI0NkXYwG@intel.com>
+References: <20251002115434.6486-1-ville.syrjala@linux.intel.com>
+ <20251002115434.6486-2-ville.syrjala@linux.intel.com>
+ <053828a8f31f70e964d3f620a56e75d395f98172@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7fde2c90-5d3e-406e-9d5b-6620123e2d2e@igalia.com>
+In-Reply-To: <053828a8f31f70e964d3f620a56e75d395f98172@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -79,98 +73,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 02, 2025 at 03:01:08PM +0100, Tvrtko Ursulin wrote:
+On Thu, Oct 02, 2025 at 04:59:51PM +0300, Jani Nikula wrote:
+> On Thu, 02 Oct 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > intel_frontbuffer_get() is what locks out subsequent set_tiling
+> > changes to the bo. Thus the fence vs. modifier check must be done
+> > after intel_frontbuffer_get(), or else a concurrent set_tiling ioctl
+> > might sneak in and change the fence after the check has been done.
+> >
+> > Close the race again. See commit dd689287b977 ("drm/i915: Prevent
+> > concurrent tiling/framebuffer modifications") for the previous
+> > instance.
+> >
+> > Cc: Jouni Högander <jouni.hogander@intel.com>
+> > Fixes: 10690b8a49bc ("drm/i915/display: Add intel_fb_bo_framebuffer_fini")
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fb.c | 38 +++++++++++++------------
+> >  1 file changed, 20 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index 69237dabdae8..c5bbca7f2e8b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -2218,15 +2218,17 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  	int ret = -EINVAL;
+> >  	int i;
+> >  
+> > -	ret = intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > +	/*
+> > +	 * intel_frontbuffer_get() must be done before
+> > +	 * intel_fb_bo_framebuffer_init() to avoid set_tiling vs. addfb race.
+> > +	 */
+> >  	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
+> > -	if (!intel_fb->frontbuffer) {
+> > -		ret = -ENOMEM;
+> > -		goto err;
+> > -	}
+> > +	if (!intel_fb->frontbuffer)
+> > +		return -ENOMEM;
+> > +
+> > +	ret = intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
+> > +	if (ret)
+> > +		goto err_frontbuffer_put;
 > 
-> Hi,
-> 
-> On 26/09/2025 20:35, Ville Syrjälä wrote:
-> > On Fri, Sep 26, 2025 at 10:41:56AM +0300, Ville Syrjälä wrote:
-> >> I reverse engineered this a bit and there's definitely a
-> >> MOCS issue at play.
-> >>
-> >> First I noticed that if filled the entire MOCS table with
-> >> UC the problem went away. I then filled the entire table
-> >> with WB and essentially bisected what I need to make UC
-> >> to fix it. And I had to repeat that same process starting
-> >> from the other end of table.
-> >>
-> >> Looks like there is some undocumented magic in the hardware.
-> >>
-> >> MOCS 61 really is special:
-> >> - MOCS 61 UC, others WB, select MOCS 61 -> no corruption
-> >>
-> >> MOCS 0 and 63 are special in other ways:
-> >> - MOCS X UC, others WB, select MOCS X -> corruption
-> >> - MOCS X+0 UC, others WB, select MOCS X -> corruption
-> >> - MOCS X+63 UC, others WB, select MOCS X -> corruption
-> >> - MOCS X+0+63 UC, others WB, select MOCS X -> no corruption
-> >>    where X != 61
-> > 
-> > OK, the MOCS 63 issue was caused by me having L3=WB still in
-> > MOCS X. If I change MOCS X to L3=UC, MOCS 63 no longer makes
-> > a difference. I suppose that means MOCS 63 is still used for
-> > L3 evictions, even though bspec no longer mentions that fact
-> > explicitly.
-> > 
-> > So MOCS 0 is the thing that really matters for CCS. And for
-> > MOCS 0 only the LLC WB vs. UC selection matters. L3 WB vs. UC
-> > doesn't seem to make any difference.
-> > 
-> > It's interesting that MOCS 60 is documented as a "CCS special case",
-> > but in reality it's MOCS 0 that matters for CCS. I wonder if some
-> > wires got crossed in the hw design and the wrong MOCS entry ended
-> > up being used for CCS and no one noticed...
-> 
-> Oh wow, that is an amazing discovery!
-> 
-> I verified it on my end too. Setting MOCS 0 to uncached and cache dirt 
-> is gone. No need to the explicit cache flush patch on first pin.
-> 
-> Luckily ADL is unsupported so we could change it to UC. I will send a 
-> series for CI to see what it will say.
+> Do you think we should modify intel_user_framebuffer_destroy() to also
+> have the same put & fini order here, just for consistency?
 
-I think the real fix is to change igt to use MOCS 61 for tgl/adl.
-That is what Mesa uses as well.
-
-Looks like Mesa uses a different MOCS for DG1 and DG2. Those
-do seem to like up with what's in bspec, so probably someone
-needs to just copy the whole MOCS thing from Mesa into igt.
-
-Looks like Mesa doesn't even use a UC MOCS for anything except
-on MTL, so possibly we can just change the TGL MOCS 0 to be the
-same WB as on ADL, and maybe that gives some performance benefit
-in some cases.
+Sounds reasonable. I'll send a v2.
 
 > 
-> >> I didn't actually test all values of X there, but I did spot
-> >> check a handful of them.
-> >>
-> >> Also, ADL is affected, but TGL doesn't seem to be. Though I
-> >> still need to check the situation on TGL a bit more thoroughly.
-> > 
-> > TGL actually works exactly the same as ADL. The only reason why
-> > TGL worked correctly out of the box was that we use a different
-> > MOCS table for TGL/RKL (IIRC because we started out with the
-> > wrong table and early Mesa versions depended on that), and in
-> > that table MOCS 0 is just 0x0, whereas on ADL MOCS 0 is WB.
+> I think this should be merged before my leak fix, and that should be
+> rebased [1], to make the backports easier.
 > 
-> Kind of sounds familiar but the only commit I found was 3f027d61663f 
-> ("drm/i915/gt: Add separate MOCS table for Gen12 devices other than 
-> TGL/RKL") but it is about MOCS 1. What am I missing? Are the hw defaults 
-> maybe different and not the code?
-
-The defaults are somehow populated differently dependign on 
-unused_entries_index which is also being set in a very confusing
-way (first set it to 1(PTE) on everything and the overwritten 
-with some other value for some of the platforms). The code could
-certainly use a good cleanup pass.
-
-Anyways, the default index ends up being different on TGL and ADL
-and thus MOCS 0 ends up different as well. 
-
-Since MOCS 0 seems to be special, we should probablya populate
-it explicitly. And I suppose we should first figure out if
-other platforms are also affected.
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> [1] https://lore.kernel.org/r/20251002101756.2700320-1-jani.nikula@intel.com
+> 
+> >  
+> >  	ret = -EINVAL;
+> >  	if (!drm_any_plane_has_format(display->drm,
+> > @@ -2235,7 +2237,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  		drm_dbg_kms(display->drm,
+> >  			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+> >  			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
+> > -		goto err_frontbuffer_put;
+> > +		goto err_bo_framebuffer_fini;
+> >  	}
+> >  
+> >  	max_stride = intel_fb_max_stride(display, mode_cmd->pixel_format,
+> > @@ -2246,7 +2248,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  			    mode_cmd->modifier[0] != DRM_FORMAT_MOD_LINEAR ?
+> >  			    "tiled" : "linear",
+> >  			    mode_cmd->pitches[0], max_stride);
+> > -		goto err_frontbuffer_put;
+> > +		goto err_bo_framebuffer_fini;
+> >  	}
+> >  
+> >  	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
+> > @@ -2254,7 +2256,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  		drm_dbg_kms(display->drm,
+> >  			    "plane 0 offset (0x%08x) must be 0\n",
+> >  			    mode_cmd->offsets[0]);
+> > -		goto err_frontbuffer_put;
+> > +		goto err_bo_framebuffer_fini;
+> >  	}
+> >  
+> >  	drm_helper_mode_fill_fb_struct(display->drm, fb, info, mode_cmd);
+> > @@ -2264,7 +2266,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  
+> >  		if (mode_cmd->handles[i] != mode_cmd->handles[0]) {
+> >  			drm_dbg_kms(display->drm, "bad plane %d handle\n", i);
+> > -			goto err_frontbuffer_put;
+> > +			goto err_bo_framebuffer_fini;
+> >  		}
+> >  
+> >  		stride_alignment = intel_fb_stride_alignment(fb, i);
+> > @@ -2272,7 +2274,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  			drm_dbg_kms(display->drm,
+> >  				    "plane %d pitch (%d) must be at least %u byte aligned\n",
+> >  				    i, fb->pitches[i], stride_alignment);
+> > -			goto err_frontbuffer_put;
+> > +			goto err_bo_framebuffer_fini;
+> >  		}
+> >  
+> >  		if (intel_fb_is_gen12_ccs_aux_plane(fb, i)) {
+> > @@ -2282,7 +2284,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  				drm_dbg_kms(display->drm,
+> >  					    "ccs aux plane %d pitch (%d) must be %d\n",
+> >  					    i, fb->pitches[i], ccs_aux_stride);
+> > -				goto err_frontbuffer_put;
+> > +				goto err_bo_framebuffer_fini;
+> >  			}
+> >  		}
+> >  
+> > @@ -2291,7 +2293,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  
+> >  	ret = intel_fill_fb_info(display, intel_fb);
+> >  	if (ret)
+> > -		goto err_frontbuffer_put;
+> > +		goto err_bo_framebuffer_fini;
+> >  
+> >  	if (intel_fb_uses_dpt(fb)) {
+> >  		struct i915_address_space *vm;
+> > @@ -2317,10 +2319,10 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  err_free_dpt:
+> >  	if (intel_fb_uses_dpt(fb))
+> >  		intel_dpt_destroy(intel_fb->dpt_vm);
+> > -err_frontbuffer_put:
+> > -	intel_frontbuffer_put(intel_fb->frontbuffer);
+> > -err:
+> > +err_bo_framebuffer_fini:
+> >  	intel_fb_bo_framebuffer_fini(obj);
+> > +err_frontbuffer_put:
+> > +	intel_frontbuffer_put(intel_fb->frontbuffer);
+> >  	return ret;
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
 Ville Syrjälä
