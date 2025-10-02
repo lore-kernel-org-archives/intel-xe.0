@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26219CCA472
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 764F1CCD184
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D035D10E78C;
-	Thu,  2 Oct 2025 05:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2067210E799;
+	Thu,  2 Oct 2025 05:54:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WG1q/gSt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jlAKpjwS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE1810E78C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2185310E787
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Oct 2025 05:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759384448; x=1790920448;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=t5KqQhNx39EoyskSxmbL3k7Kn/xhLJfXcLh3iCkldNU=;
- b=WG1q/gStwfjtY8CjbC9moOBXovJ9QIkY5HnwAGZ+nEYFCy1eHFhhhFDn
- 3b4BtaGNTV00p0JtDCSqUw88Rcm7jOLRiNT3U7z6bU1DFl2B6ITjasXv5
- YE0yvL6FYaqMcect26PhjEAAKTaNDH4tyG2rEmsLc+g5S7q6T6eoy9lTf
- H7SyUYxWRrIlzo6ONjK9PenwQuhZZ1eFXPw50TxnvfVbwUKEWtWQQCSYH
- e4i3XCgY5IgQYZapzzwyOUZ8JyXeBBB1jGkvKVQErj9ZTHNgsvs+fHlQI
- glCdy2lQyHqDEcaNqr22pX9/pYWplmYBOOTmhZWrADRJ910tSTdV/SPai A==;
-X-CSE-ConnectionGUID: QD6z95dBT4GS/wif9/gUaw==
-X-CSE-MsgGUID: gIvt9z+RRue14Ix7df8/Uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304500"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304500"
+ bh=hOs0CGhwgdS1m3z50ATAd+se2zL74a1F4cH1ItjZc/8=;
+ b=jlAKpjwSAY/ehSUxzFf9H75uVlArQa0cNWy9bfuWJNR0bzwOgNXOH2r4
+ rLYC0TRDwXUjTCcyLWlgF7Lk/BAnrnIPt14vWjeUa2nWgEBSgSKJWerPp
+ T3oCTjYxINjod39uJeVGqhdpVpKEyAg+595AkWrtNHOuFSCJUPlvC6m/7
+ i15GXGCIOox0kuk4s/LOigbETy7YeHvGhH/r5jjYHvzYds1uA4/Qe2ekN
+ uQOX2otxeFtdfkXDn1MOg1PVewju1ysETV8r63JRCmCu0OHCSs+JSDLJM
+ 8q3AfdqgsviB4p76nVJli0F3bU59zMZ7VbZ7gG3i4IyMGfW7t72XYY5S6 g==;
+X-CSE-ConnectionGUID: 7UIBjVX0SAO8iowvZBC4Cg==
+X-CSE-MsgGUID: UbYrZHnGRFCLjFHGqBvBRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="65304498"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="65304498"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2025 22:54:07 -0700
-X-CSE-ConnectionGUID: OolL66OhSiCauWJxOoBwbQ==
-X-CSE-MsgGUID: Rbr6XPMSQZewaALSLWUyng==
+ 01 Oct 2025 22:54:06 -0700
+X-CSE-ConnectionGUID: qXAaLlsIRFeo1N3dvaUMwg==
+X-CSE-MsgGUID: o01/vdnwRN+5yn3ctS7j0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083530"
+X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; d="scan'208";a="216083528"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Oct 2025 22:54:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 07/34] drm/xe: Track LR jobs in DRM scheduler pending list
-Date: Wed,  1 Oct 2025 22:53:35 -0700
-Message-Id: <20251002055402.1865880-8-matthew.brost@intel.com>
+Subject: [PATCH v4 05/34] drm/xe: Save off position in ring in which a job was
+ programmed
+Date: Wed,  1 Oct 2025 22:53:33 -0700
+Message-Id: <20251002055402.1865880-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002055402.1865880-1-matthew.brost@intel.com>
 References: <20251002055402.1865880-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,228 +66,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF migration requires jobs to remain pending so they can be replayed
-after the VF comes back. Previously, LR job fences were intentionally
-signaled immediately after submission to avoid the risk of exporting
-them, as these fences do not naturally signal in a timely manner and
-could break dma-fence contracts. A side effect of this approach was that
-LR jobs were never added to the DRM scheduler’s pending list, preventing
-them from being tracked for later resubmission.
+VF post-migration recovery needs to modify the ring with updated GGTT
+addresses for pending jobs. Save off position in ring in which a job was
+programmed to facilitate.
 
-We now avoid signaling LR job fences and ensure they are never exported;
-Xe already guards against exporting these internal fences. With that
-guarantee in place, we can safely track LR jobs in the scheduler’s
-pending list so they are eligible for resubmission during VF
-post-migration recovery (and similar recovery paths).
-
-An added benefit is that LR queues now gain the DRM scheduler’s built-in
-flow control over ring usage rather than rejecting new jobs in the exec
-IOCTL if the ring is full.
-
-v2:
- - Ensure DRM scheduler TDR doesn't run for LR jobs
- - Stack variable for killed_or_banned_or_wedged
 v4:
- - Clarify commit message (Tomasz)
+ - s/VF resume/VF post-migration recovery (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c       | 12 ++-------
- drivers/gpu/drm/xe/xe_exec_queue.c | 19 -------------
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 --
- drivers/gpu/drm/xe/xe_guc_submit.c | 43 ++++++++++++++++++++----------
- 4 files changed, 31 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
+ 2 files changed, 24 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 83897950f0da..0dc27476832b 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -124,7 +124,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct xe_validation_ctx ctx;
- 	struct xe_sched_job *job;
- 	struct xe_vm *vm;
--	bool write_locked, skip_retry = false;
-+	bool write_locked;
- 	int err = 0;
- 	struct xe_hw_engine_group *group;
- 	enum xe_hw_engine_group_execution_mode mode, previous_mode;
-@@ -266,12 +266,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto err_exec;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index d71837773d6c..ac0c6dcffe15 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
  
--	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
--		err = -EWOULDBLOCK;	/* Aliased to -EAGAIN */
--		skip_retry = true;
--		goto err_exec;
--	}
--
- 	if (xe_exec_queue_uses_pxp(q)) {
- 		err = xe_vm_validate_protected(q->vm);
- 		if (err)
-@@ -328,8 +322,6 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		xe_sched_job_init_user_fence(job, &syncs[i]);
- 	}
+ /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
++				    u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
  
--	if (xe_exec_queue_is_lr(q))
--		q->ring_ops->emit_job(job);
- 	if (!xe_vm_in_lr_mode(vm))
- 		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-@@ -355,7 +347,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		xe_validation_ctx_fini(&ctx);
- err_unlock_list:
- 	up_read(&vm->lock);
--	if (err == -EAGAIN && !skip_retry)
-+	if (err == -EAGAIN)
- 		goto retry;
- err_hw_exec_mode:
- 	if (mode == EXEC_MODE_DMA_FENCE)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 6bfaca424ca3..81f707d2c388 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -824,25 +824,6 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
- 		!(q->flags & EXEC_QUEUE_FLAG_VM);
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	if (job->ring_ops_flush_tlb) {
+@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
  }
  
--static s32 xe_exec_queue_num_job_inflight(struct xe_exec_queue *q)
--{
--	return q->lrc[0]->fence_ctx.next_seqno - xe_lrc_seqno(q->lrc[0]) - 1;
--}
--
--/**
-- * xe_exec_queue_ring_full() - Whether an exec_queue's ring is full
-- * @q: The exec_queue
-- *
-- * Return: True if the exec_queue's ring is full, false otherwise.
-- */
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
--{
--	struct xe_lrc *lrc = q->lrc[0];
--	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
--
--	return xe_exec_queue_num_job_inflight(q) >= max_job;
--}
--
- /**
-  * xe_exec_queue_is_idle() - Whether an exec_queue is idle.
-  * @q: The exec_queue
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 8821ceb838d0..a4dfbe858bda 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -64,8 +64,6 @@ static inline bool xe_exec_queue_uses_pxp(struct xe_exec_queue *q)
+ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++				   u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
  
- bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
--bool xe_exec_queue_ring_full(struct xe_exec_queue *q);
--
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+ 	dw[i++] = preparser_disable(true);
+@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
  
- void xe_exec_queue_kill(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 13746f32b231..3a534d93505f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -851,30 +851,31 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
- 	struct xe_exec_queue *q = job->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct dma_fence *fence = NULL;
--	bool lr = xe_exec_queue_is_lr(q);
-+	bool lr = xe_exec_queue_is_lr(q), killed_or_banned_or_wedged =
-+		exec_queue_killed_or_banned_or_wedged(q);
+ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 					    struct xe_lrc *lrc,
+-					    u64 batch_addr, u32 seqno)
++					    u64 batch_addr, u32 *head,
++					    u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
  
- 	xe_gt_assert(guc_to_gt(guc), !(exec_queue_destroyed(q) || exec_queue_pending_disable(q)) ||
- 		     exec_queue_banned(q) || exec_queue_suspended(q));
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
- 	trace_xe_sched_job_run(job);
- 
--	if (!exec_queue_killed_or_banned_or_wedged(q) && !xe_sched_job_is_error(job)) {
-+	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
- 		if (!exec_queue_registered(q))
- 			register_exec_queue(q, GUC_CONTEXT_NORMAL);
--		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
--			q->ring_ops->emit_job(job);
-+		q->ring_ops->emit_job(job);
- 		submit_exec_queue(q);
- 	}
- 
--	if (lr) {
--		xe_sched_job_set_error(job, -EOPNOTSUPP);
--		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
--	} else {
--		fence = job->fence;
--	}
-+	/*
-+	 * We don't care about job-fence ordering in LR VMs because these fences
-+	 * are never exported; they are used solely to keep jobs on the pending
-+	 * list. Once a queue enters an error state, there's no need to track
-+	 * them.
-+	 */
-+	if (killed_or_banned_or_wedged && lr)
-+		xe_sched_job_set_error(job, -ECANCELED);
- 
--	return fence;
-+	return job->fence;
+ 	dw[i++] = preparser_disable(true);
+@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
  }
  
- static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
-@@ -916,7 +917,8 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 		xe_gt_warn(q->gt, "Pending enable/disable failed to respond\n");
- 		xe_sched_submission_start(sched);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(sched);
+ static void emit_migration_job_gen12(struct xe_sched_job *job,
+-				     struct xe_lrc *lrc, u32 seqno)
++				     struct xe_lrc *lrc, u32 *head,
++				     u32 seqno)
+ {
+ 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	__emit_job_gen12_simple(job, job->q->lrc[0],
+ 				job->ptrs[0].batch_addr,
++				&job->ptrs[0].head,
+ 				xe_sched_job_lrc_seqno(job));
+ }
+ 
+@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 
+ 	if (xe_sched_job_is_migration(job->q)) {
+ 		emit_migration_job_gen12(job, job->q->lrc[0],
++					 &job->ptrs[0].head,
+ 					 xe_sched_job_lrc_seqno(job));
  		return;
  	}
- 
-@@ -1008,6 +1010,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	struct xe_exec_queue *q = ge->q;
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 	struct xe_gpu_scheduler *sched = &ge->sched;
-+	struct xe_sched_job *job;
- 	bool wedged = false;
- 
- 	xe_gt_assert(guc_to_gt(guc), xe_exec_queue_is_lr(q));
-@@ -1058,7 +1061,16 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
- 		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
- 
-+	xe_hw_fence_irq_stop(q->fence_irq);
-+
- 	xe_sched_submission_start(sched);
-+
-+	spin_lock(&sched->base.job_list_lock);
-+	list_for_each_entry(job, &sched->base.pending_list, drm.list)
-+		xe_sched_job_set_error(job, -ECANCELED);
-+	spin_unlock(&sched->base.job_list_lock);
-+
-+	xe_hw_fence_irq_start(q->fence_irq);
+@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_simple(job, job->q->lrc[i],
+ 					job->ptrs[i].batch_addr,
++					&job->ptrs[i].head,
+ 					xe_sched_job_lrc_seqno(job));
  }
  
- #define ADJUST_FIVE_PERCENT(__t)	mul_u64_u32_div(__t, 105, 100)
-@@ -1129,7 +1141,8 @@ static void enable_scheduling(struct xe_exec_queue *q)
- 		xe_gt_warn(guc_to_gt(guc), "Schedule enable failed to respond");
- 		set_exec_queue_banned(q);
- 		xe_gt_reset_async(q->gt);
--		xe_sched_tdr_queue_imm(&q->guc->sched);
-+		if (!xe_exec_queue_is_lr(q))
-+			xe_sched_tdr_queue_imm(&q->guc->sched);
- 	}
+@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_video(job, job->q->lrc[i],
+ 				       job->ptrs[i].batch_addr,
++				       &job->ptrs[i].head,
+ 				       xe_sched_job_lrc_seqno(job));
  }
  
-@@ -1187,6 +1200,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	int i = 0;
- 	bool wedged = false, skip_timeout_check;
+@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
+ 						job->ptrs[i].batch_addr,
++						&job->ptrs[i].head,
+ 						xe_sched_job_lrc_seqno(job));
+ }
  
-+	xe_gt_assert(guc_to_gt(guc), !xe_exec_queue_is_lr(q));
-+
- 	/*
- 	 * TDR has fired before free job worker. Common if exec queue
- 	 * immediately closed after last fence signaled. Add back to pending
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index dbf260dded8d..7ce58765a34a 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -24,6 +24,11 @@ struct xe_job_ptrs {
+ 	struct dma_fence_chain *chain_fence;
+ 	/** @batch_addr: Batch buffer address. */
+ 	u64 batch_addr;
++	/**
++	 * @head: The tail pointer of the LRC (so head pointer of job) when the
++	 * job was submitted
++	 */
++	u32 head;
+ };
+ 
+ /**
 -- 
 2.34.1
 
