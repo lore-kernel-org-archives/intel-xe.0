@@ -4,32 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63687CAC5B0
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 13:29:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E09CCA471
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 13:47:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 145DE10E10C;
-	Fri,  3 Oct 2025 13:29:27 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4428010E10C
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Oct 2025 13:29:25 +0000 (UTC)
-Message-ID: <799a4e7e-076d-4a9d-888d-69f4e2e89520@lankhorst.se>
-Date: Fri, 3 Oct 2025 15:29:22 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9362C10E90A;
+	Fri,  3 Oct 2025 13:47:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNwA+CIN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CD610E90C
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Oct 2025 13:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759499273; x=1791035273;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=Z4xzzB6Yx0GraE/8i8gyb7LXnkdMAhmAZTYGgHxvN/8=;
+ b=FNwA+CINnj4MSgvsvyxRh1FaOYWeNQ7K9CrYlVWNPrrWV3fAnXIHb24v
+ JMiYtydkw8UIR9RRGlgFZT3zQIcKfwh1+DeNXRgc28NtCcLlRlJUoL2E/
+ A+OjCz0KslkJip6n7gK7OSBSLvYJNw0iSN85fTCP7LWJF06KGRBesbpzd
+ QJcGZjlet8rjz2lWA62pwigxhjnBfCEUdPm5ZuCNCrDaaspiPWnlE9llG
+ m7x2hJJAkE8GPdt7rHUeXP55p/Ew8nFNqh8bpLUSb31hNcY7ZKx6ffS1C
+ HuPBSTYYjEdiP4B1HjUiamCxOOUxjEz6eBySXrQ47pK4dpluO7gXvm2bn A==;
+X-CSE-ConnectionGUID: uksYnvacTmKN/bR8zl/VZg==
+X-CSE-MsgGUID: s+4sNUSlTGSw+QPX2focag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="79209055"
+X-IronPort-AV: E=Sophos;i="6.18,312,1751266800"; d="scan'208";a="79209055"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2025 06:47:53 -0700
+X-CSE-ConnectionGUID: RiO6hnAJRLSfUKFPAdJdpw==
+X-CSE-MsgGUID: LH81xz2aQLaQZwN75Opd2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,312,1751266800"; d="scan'208";a="184489910"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2025 06:47:53 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Fri, 3 Oct 2025 06:47:52 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Fri, 3 Oct 2025 06:47:52 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.31) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Fri, 3 Oct 2025 06:47:51 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tjKQ34g74TTEA9uPihDNOCy17xvewuiI/56oVeLZbCz3Z3yA46QQuBCRDoVgmNZbopGoXisyqmesMXHm0f4X30XR+sQzhOOlPATM8zsa9jiAHT3tEPYaT9gte3pFPaGqkXyhx+f3r7whPAGXKDx1ywAIMTEVe3N+bAU5i00nvCT865j59pMd9JeLcmQY/3J6cPXl8+h5exxz+rVxoIiJ1BdR+pozmHXm8Wr4Lrrxh2dqV9FQ1mldNysttzvVoHY+8tF4A4l0Ak4p6lbe6MTly3Tn+pIPx8UXjpzIRNb63g5YjbfdVOfxNrOyOT0LKV97jjHApsRxVZSLERVG6Wbw2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SKi0cgaX0V0uUYOT5zvZxG+TA55NjPwpOE1BpzRYXuk=;
+ b=lXr1TsA1BjkBMRxkf6i76Nb27Xqf7rfT9BaB6GiZck6rr+1dsToLwXPWKAGHCraOvs3MWNOdI8SPpO6SgXTbcZ39mvT5avf1nYkgEWQE3NdFPAY5PByCFhItPRdjGfEazG6xDeXZ9+ehsnQ35vhpgfUc8OEkf4RgMp9Rg7G0UxHrx10x5/FyefHss7RmG20xsVMI23HoniTz+wuXce2oXtWsyfd64VVCC+blyQEHqy0odpHv3KODSl/44uccHdf7Do8zHzOHyz6rYTM03G1YeQde53MzVfWRUhXTN+qgR7aVx3P99+UTU8imYbOyvGT7Fm4fxDe1Q0Qw9Bz1k5HjvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by DS7PR11MB6294.namprd11.prod.outlook.com (2603:10b6:8:96::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.18; Fri, 3 Oct
+ 2025 13:47:38 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9160.015; Fri, 3 Oct 2025
+ 13:47:38 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250930225618.140071-46-matthew.d.roper@intel.com>
+References: <20250930225618.140071-25-matthew.d.roper@intel.com>
+ <20250930225618.140071-46-matthew.d.roper@intel.com>
+Subject: Re: [PATCH v3 21/23] drm/xe: Break GT setup out of xe_info_init()
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <matthew.d.roper@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
+Date: Fri, 3 Oct 2025 10:47:33 -0300
+Message-ID: <175949925364.812591.15261630203060870371@intel.com>
+User-Agent: alot/0.12.dev22+g972188619
+X-ClientProxiedBy: SJ0PR05CA0204.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::29) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] devcoredump: Fix circular locking dependency with
- devcd->mutex.
-To: linux-kernel@vger.kernel.org
-Cc: intel-xe@lists.freedesktop.org, Mukesh Ojha <quic_mojha@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Johannes Berg <johannes@sipsolutions.net>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- stable@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>
-References: <20250723142416.1020423-1-dev@lankhorst.se>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20250723142416.1020423-1-dev@lankhorst.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DS7PR11MB6294:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d7db19f-9860-4e93-9362-08de02836a99
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WTdNNnk2TlVoeVcrZm81VSt5ME1RZVNwMDVSVUhGazdwWTBib3ZZcVVRbWVF?=
+ =?utf-8?B?NzJBZ2luMy9nTXZwdFlybS9mYmhFWGp6WUJzbHNLdC9QTXZMQk0yNk9MeGR1?=
+ =?utf-8?B?ajQzc2JsamhqRVR4NkNLaG9NUUIzbnRTZGNQZThlQXl1NzZZcUEzMmJnWFBt?=
+ =?utf-8?B?MzRNeGxxQy9nSXhwdDZKd1I0a2pCTjJOYXFXN1RMZTBLRXN4ZWU3QldhSWFH?=
+ =?utf-8?B?NTZibjZ2WUQwcHY0S2xkQ1MybkRiTWRSZWF5eVhlL3VzVENZL2NETHFucTMr?=
+ =?utf-8?B?TTZDM1NhRG41aE1YelNHSGJzZVZ4Vm4ySUNPWjBLb2NiSnFXaHNhQnM0RWVh?=
+ =?utf-8?B?aVpYLy9iUkF0dmxlVzR1K3hSSFBjK3U2SlZJQzhxZ09tUmhRSU1kYWdPZVd0?=
+ =?utf-8?B?R1pxZVJKT0ZVZUhUQmx0elNHVE9hdFZwK3AxaXE0cFFhVFdrOGFVZkZUd2hn?=
+ =?utf-8?B?d3VxMUNWb0JZVXBJWm9ub0hoeVh6WHpBTWtSQmxreGFuWllrSEJGaEtlSUZq?=
+ =?utf-8?B?RlMvdXBtM05xZXRiaWtrVk95UUxxQ2NhTkwwY2FReUpCNm9uNlRGN0NzempQ?=
+ =?utf-8?B?QUlmcytRY2dkTk4wQnJKSzRGQ1d4SHFNbjFFZUpQYXJjQk95Mk9xaWFDSjlk?=
+ =?utf-8?B?cFN3Q2c1U3g1NGtTeDMwUXBNekc1VSs4ZXVDR1FvQUIwK0xqU1RkdEViVVJX?=
+ =?utf-8?B?ZmhhQ1hRYVdET29tZEtTMzh6ME1hYXVzUHpxdzE4R3JFN0o5dmRrWDlKOEZ0?=
+ =?utf-8?B?V2g3VEk1aVd0Z0k3Q3RnM2VMSmJyekk1dmRwQzJGS2FZMDBBTnZFTHJDV1M3?=
+ =?utf-8?B?TXFFdHZreHIyRVZST3FYWnBlODFxVHR6dTlPWHdIZ0lveFBzSERDT3VjUUta?=
+ =?utf-8?B?OGxwZnhoRmg0MDVZTzE2NnVYZFRZcUxEK2loWlJOYkRrTHd0YzhDSlFWL0tz?=
+ =?utf-8?B?VlpaMjJEakN6bWsxN1I2eml6ZXNnT0hUMTliOW9Vbk5POHY0Yi9SczRjbFIy?=
+ =?utf-8?B?cnpLQUxkWGQ0RDJtTUVwM1FyQUNqb09iMFN5TWVBa0w0ZSthUHhoQisyNC9E?=
+ =?utf-8?B?NEFmNE94TFVFNmtkakRRSWJKdkRUdWY2bUJ6VjlmRjRWQmwzSWJkKzJjeitZ?=
+ =?utf-8?B?T1dGODY1S2dCbjV5VUFPTDRkOWlHMVgzVy9oQTdLKzIzRDJCbWxzMGo3VnZ4?=
+ =?utf-8?B?Y3pSTjNCOSs3NldJYUdqRTNNTGl5YmpqUWI1UzUzWUZ0anJFYlJoL0VsemYr?=
+ =?utf-8?B?YnlDa3FOOWFhbS93Y3p5cFVKQmRqQ053REhFdC9GbVp3VjdEcVR1WHVmVFhq?=
+ =?utf-8?B?WU4yUFZ4bmo0anFFUXl0TUpMc3BIbDJqM2JQaFN2RVIwUjh0WFkzSGxCTmU3?=
+ =?utf-8?B?d1hNV09qUDJ0cHh1UGdZZWxFZjVFanlGTTlMNDBpYkNxYVpjMWducXlBZC80?=
+ =?utf-8?B?NmJCVUJyaHpWTzJ4UGZiVUpvSzQ3M1NkbUJQMlFOZUZCZjUwdnFkZDhKME0w?=
+ =?utf-8?B?TUt3OVZZakpYU3F4NklFWnl3UTRYdG1uaFcxWFIvd2NyUkJVRVBNclVnRTRD?=
+ =?utf-8?B?WlV3RVZjc0szcU1abDB5S1lVeDBEalZSK3p0ODAvMnZyZnpTSTBxWmp4QVEr?=
+ =?utf-8?B?Uk1hZ0Y0RktZK2FkVzIreUR5ZWQrT2lpcG0ydE53b0FyUEIvVE9aMUdnRGhp?=
+ =?utf-8?B?S1Mxd2hSZjZJY0NxVkE5ZXMwMkhubDZwckpXMVR2Z3RVNkk4dlM0Z09rb2RP?=
+ =?utf-8?B?YTc0VjJjSlFIOWgvRFkzUCttM0dRSXV6cy9pQUJQOU5rbEZ4QkNDUHFLSWti?=
+ =?utf-8?B?R3lpTzQ3ZEZmcHZ1OW5aZ1lVUEk5aDViY3BURWYxT2RLMWdYeEpUMkVGc3VR?=
+ =?utf-8?B?b2hObTVZYXBuTWdVWGNjSTliRDFpSkhXNVVmTXA0MHVDTG4yNG9scFYzb0Fr?=
+ =?utf-8?Q?1ORfqMc760stl0Bzjal+kNstHZWsTbCj?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmtpdFBMcEZDMERNU2RXOUx3a0thWjl0R1NtZWkxbkNyNUhibVF5czQ3MHNF?=
+ =?utf-8?B?TVRSUERsMVZWSXV1RFRvUkxMTytBdEdZZnRva1hHRE4zaGxqUGhHOU94d0ll?=
+ =?utf-8?B?azY1M0Y0WGkzNTNxWXVuTko2bEZIWnhvS0tyMG5nYUI2Y3pDWEJxdVRKODlU?=
+ =?utf-8?B?T042WjJNRFBzMUM2NkZENTNuRHR3QVRMODl1bkFjYzM2NklSci96S2RQb2c4?=
+ =?utf-8?B?eFlDT3JDNHhSM1JubEdGNk9yMFBzTFRoUVVXeFBHV0NJMGJlekFXOFNnbEJU?=
+ =?utf-8?B?U3JONHdIQXhwbWxRY0RpcDY5SlAzWm01T25ieUNRSWVKTXE4SlRFUGo2WHBK?=
+ =?utf-8?B?bTJjNXcyTUFlLzRwZys3cTMxWG94YlcvaXZneDA3SVA0SDQxZlZMREhaV1ZV?=
+ =?utf-8?B?czNBZ2VwV1pxMnFQdHU4MlM2ODRSMGphTGtaQ05rMDdiaC9oK0FMNVE3dS9m?=
+ =?utf-8?B?eVZOTkJoVlRJZUhKMTRsMEcxei8rQWdPcXdjU1ZHS1hhR1ZQOHd2SzNlRFZw?=
+ =?utf-8?B?N2hsNXRWUW5OU0JYSmtFWW1QMmxtNkRCcng1NFdVaUJPUW1ydFMza0NVZDhI?=
+ =?utf-8?B?KzZOYk1KVHBJVTFROUExT3M4WHBjQ09uSTEvQ3dsRHVaNEM4QUxQbU9CWnpr?=
+ =?utf-8?B?OFNEcHRxZDE4ZStzSExPQzVZaHlvajhPcFBtcmNFdjBidHpUcEs2anZnVGtH?=
+ =?utf-8?B?WktYT1FOVmJqU2VIaHFHODRJS2F4Qk01Zk1ubFl1NVloY3RsemVYN2g2WmpX?=
+ =?utf-8?B?K3A5OW1raE9tRERTRUlPUmFDYnpGNzFmQmVpaXJzS0FkMExVSTNSSHB2b3ht?=
+ =?utf-8?B?cXc1Qk9icmdPRCsxNHdFeEhBaVo2MFlxWkdQNGdTcmdyWEQvTVJ3a25IZ2NR?=
+ =?utf-8?B?Q2lPRENaVTFVUDhZN0sxSVplOE9Fd1ZxbSsvUCtOaG9yZENOZVZweGxMM2pC?=
+ =?utf-8?B?b1NtNHh5Mk95QzBpQkZTZHRJZ1NuVm5OVTNZNCt2NmtHc3M0ZzRVTDNUQkx6?=
+ =?utf-8?B?bXZCYjQ4aWR0dDhrck1IUHA5RThWVG1HUW1sRFRRS2V2VFd5WFVKVkw0WUQ5?=
+ =?utf-8?B?UFI2b1pveVVFUWxCMkUxK1hLa0RlcEU3ekdpaFhXb2tvUndsd3RkQWpqbEln?=
+ =?utf-8?B?L0dETlR6MDhqcjlHdkxzMnkvcFZhVEJPVnBKUVgyT1hYWjlHSjFWRi9kanlx?=
+ =?utf-8?B?NEhzT3RhbDR0dm10NGNoeER6Ym1wZ0p0ajNsTGc2TzdXU3BCbk82RWhZaWdZ?=
+ =?utf-8?B?ZnQxVkM5WmdheEhGdDRQZXVZV0VPOFNWNTN6TXllYmF5QTc3NmNBNnpDdjBp?=
+ =?utf-8?B?VVB6OW5zU2NTSEN4SmdRazVERURwVndLK0JEbWJHTFJLT053NG9UN2pqWmJh?=
+ =?utf-8?B?S2h1WVRRV2VPNk8rUWFCYmRqcXNhdlNOMWFmMld0L0N5QUx4V0RMSnFNT3NQ?=
+ =?utf-8?B?L0tTZlp1SU1OaVRZdEdTRjluS0pKNzlQRkw3N0htcTNnTVdqMFBDWkI1Unlx?=
+ =?utf-8?B?M1pMK212VUdhc3hQd08vZFBLbkNHVmY2NVZ6clJHOFFHQldoSldIMWJyRisv?=
+ =?utf-8?B?aUJSNGNUUUVIb29DalZmNWpzZi9HSFFiVFNRdXNBWXcyazVxT1VqazhOQVpv?=
+ =?utf-8?B?T3VTZmh6YjAvbnUzblNLNzNsSENqeFR1b2NyTFpHWk5TMzRKbTVaQk1MTGJL?=
+ =?utf-8?B?a3VNTzhDVzdtbGVacmxzdVlVZDV1N1JjMnlDMVNNYXJYOTQ4clQzU2Z1Mnlv?=
+ =?utf-8?B?djQ0OFltOTdzQ0haaXRyRVZlK2UrQ2FZZDBDckFZS1BZZHNUSWl6Rm5sR29Q?=
+ =?utf-8?B?VlIzUlRSU1FTT2YyTUU5SXJhK1hPRk5VbVRmbmNSd1p6YkhyVjYzZ05YOXZv?=
+ =?utf-8?B?QllmcFNJbUFTTU1TUi9oZ2o0Y2R0Z3dKeHBTRTY2SU9xY3V4T1VvcUNGSVh6?=
+ =?utf-8?B?ejdBbHlYcitQRVJseWNEaDhwb3AxbHdMeU9DcU41aHZNcExGZ3BFOEpsTFFu?=
+ =?utf-8?B?ZkxKNk0wc2NRa0lmcG13ZmNwVFNCK0c0Uzg1aUM1SjV3WUlRNXNwMTQ5c1FM?=
+ =?utf-8?B?R2FJbEV0SjVvN3BBbHpGcXFpL2RTem1mY1pyelZHcCszd0hOV2Z1MEtLMWRl?=
+ =?utf-8?B?VVYyYkxzR0lYbTRIa1NIeVNGbkc2UDJ3cWQwVElxdXV3YU1Ic3BNczlGL1NO?=
+ =?utf-8?B?NUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d7db19f-9860-4e93-9362-08de02836a99
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 13:47:38.7165 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dWcnkJWCh0TdC8H/vqkRqZl/8TRaPJxpmGIF8BfyVnHj6KNudi463J0pn+RHF9Yl2gb1CfQUzQRE4DkUVGK8uA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6294
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,379 +194,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ping?
+Quoting Matt Roper (2025-09-30 19:56:38-03:00)
+>xe_info_init() is getting a bit long and hard to follow.  Break the
+>allocation and basic initialization of the xe_gt structures out to their
+>own functions.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_pci.c | 88 +++++++++++++++++++++++--------------
+> 1 file changed, 54 insertions(+), 34 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>index 86e6dd751b1c..65312fe9b97b 100644
+>--- a/drivers/gpu/drm/xe/xe_pci.c
+>+++ b/drivers/gpu/drm/xe/xe_pci.c
+>@@ -683,6 +683,53 @@ static void xe_info_probe_tile_count(struct xe_device=
+ *xe)
+>         }
+> }
+>=20
+>+static struct xe_gt *init_primary_gt(struct xe_tile *tile,
 
-Den 2025-07-23 kl. 16:24, skrev Maarten Lankhorst:
-> The original code causes a circular locking dependency found by lockdep.
-> 
-> ======================================================
-> WARNING: possible circular locking dependency detected
-> 6.16.0-rc6-lgci-xe-xe-pw-151626v3+ #1 Tainted: G S   U
-> ------------------------------------------------------
-> xe_fault_inject/5091 is trying to acquire lock:
-> ffff888156815688 ((work_completion)(&(&devcd->del_wk)->work)){+.+.}-{0:0}, at: __flush_work+0x25d/0x660
-> 
-> but task is already holding lock:
-> 
-> ffff888156815620 (&devcd->mutex){+.+.}-{3:3}, at: dev_coredump_put+0x3f/0xa0
-> which lock already depends on the new lock.
-> the existing dependency chain (in reverse order) is:
-> -> #2 (&devcd->mutex){+.+.}-{3:3}:
->        mutex_lock_nested+0x4e/0xc0
->        devcd_data_write+0x27/0x90
->        sysfs_kf_bin_write+0x80/0xf0
->        kernfs_fop_write_iter+0x169/0x220
->        vfs_write+0x293/0x560
->        ksys_write+0x72/0xf0
->        __x64_sys_write+0x19/0x30
->        x64_sys_call+0x2bf/0x2660
->        do_syscall_64+0x93/0xb60
->        entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> -> #1 (kn->active#236){++++}-{0:0}:
->        kernfs_drain+0x1e2/0x200
->        __kernfs_remove+0xae/0x400
->        kernfs_remove_by_name_ns+0x5d/0xc0
->        remove_files+0x54/0x70
->        sysfs_remove_group+0x3d/0xa0
->        sysfs_remove_groups+0x2e/0x60
->        device_remove_attrs+0xc7/0x100
->        device_del+0x15d/0x3b0
->        devcd_del+0x19/0x30
->        process_one_work+0x22b/0x6f0
->        worker_thread+0x1e8/0x3d0
->        kthread+0x11c/0x250
->        ret_from_fork+0x26c/0x2e0
->        ret_from_fork_asm+0x1a/0x30
-> -> #0 ((work_completion)(&(&devcd->del_wk)->work)){+.+.}-{0:0}:
->        __lock_acquire+0x1661/0x2860
->        lock_acquire+0xc4/0x2f0
->        __flush_work+0x27a/0x660
->        flush_delayed_work+0x5d/0xa0
->        dev_coredump_put+0x63/0xa0
->        xe_driver_devcoredump_fini+0x12/0x20 [xe]
->        devm_action_release+0x12/0x30
->        release_nodes+0x3a/0x120
->        devres_release_all+0x8a/0xd0
->        device_unbind_cleanup+0x12/0x80
->        device_release_driver_internal+0x23a/0x280
->        device_driver_detach+0x14/0x20
->        unbind_store+0xaf/0xc0
->        drv_attr_store+0x21/0x50
->        sysfs_kf_write+0x4a/0x80
->        kernfs_fop_write_iter+0x169/0x220
->        vfs_write+0x293/0x560
->        ksys_write+0x72/0xf0
->        __x64_sys_write+0x19/0x30
->        x64_sys_call+0x2bf/0x2660
->        do_syscall_64+0x93/0xb60
->        entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> other info that might help us debug this:
-> Chain exists of: (work_completion)(&(&devcd->del_wk)->work) --> kn->active#236 --> &devcd->mutex
->  Possible unsafe locking scenario:
->        CPU0                    CPU1
->        ----                    ----
->   lock(&devcd->mutex);
->                                lock(kn->active#236);
->                                lock(&devcd->mutex);
->   lock((work_completion)(&(&devcd->del_wk)->work));
->  *** DEADLOCK ***
-> 5 locks held by xe_fault_inject/5091:
->  #0: ffff8881129f9488 (sb_writers#5){.+.+}-{0:0}, at: ksys_write+0x72/0xf0
->  #1: ffff88810c755078 (&of->mutex#2){+.+.}-{3:3}, at: kernfs_fop_write_iter+0x123/0x220
->  #2: ffff8881054811a0 (&dev->mutex){....}-{3:3}, at: device_release_driver_internal+0x55/0x280
->  #3: ffff888156815620 (&devcd->mutex){+.+.}-{3:3}, at: dev_coredump_put+0x3f/0xa0
->  #4: ffffffff8359e020 (rcu_read_lock){....}-{1:2}, at: __flush_work+0x72/0x660
-> stack backtrace:
-> CPU: 14 UID: 0 PID: 5091 Comm: xe_fault_inject Tainted: G S   U              6.16.0-rc6-lgci-xe-xe-pw-151626v3+ #1 PREEMPT_{RT,(lazy)}
-> Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER
-> Hardware name: Micro-Star International Co., Ltd. MS-7D25/PRO Z690-A DDR4(MS-7D25), BIOS 1.10 12/13/2021
-> Call Trace:
->  <TASK>
->  dump_stack_lvl+0x91/0xf0
->  dump_stack+0x10/0x20
->  print_circular_bug+0x285/0x360
->  check_noncircular+0x135/0x150
->  ? register_lock_class+0x48/0x4a0
->  __lock_acquire+0x1661/0x2860
->  lock_acquire+0xc4/0x2f0
->  ? __flush_work+0x25d/0x660
->  ? mark_held_locks+0x46/0x90
->  ? __flush_work+0x25d/0x660
->  __flush_work+0x27a/0x660
->  ? __flush_work+0x25d/0x660
->  ? trace_hardirqs_on+0x1e/0xd0
->  ? __pfx_wq_barrier_func+0x10/0x10
->  flush_delayed_work+0x5d/0xa0
->  dev_coredump_put+0x63/0xa0
->  xe_driver_devcoredump_fini+0x12/0x20 [xe]
->  devm_action_release+0x12/0x30
->  release_nodes+0x3a/0x120
->  devres_release_all+0x8a/0xd0
->  device_unbind_cleanup+0x12/0x80
->  device_release_driver_internal+0x23a/0x280
->  ? bus_find_device+0xa8/0xe0
->  device_driver_detach+0x14/0x20
->  unbind_store+0xaf/0xc0
->  drv_attr_store+0x21/0x50
->  sysfs_kf_write+0x4a/0x80
->  kernfs_fop_write_iter+0x169/0x220
->  vfs_write+0x293/0x560
->  ksys_write+0x72/0xf0
->  __x64_sys_write+0x19/0x30
->  x64_sys_call+0x2bf/0x2660
->  do_syscall_64+0x93/0xb60
->  ? __f_unlock_pos+0x15/0x20
->  ? __x64_sys_getdents64+0x9b/0x130
->  ? __pfx_filldir64+0x10/0x10
->  ? do_syscall_64+0x1a2/0xb60
->  ? clear_bhb_loop+0x30/0x80
->  ? clear_bhb_loop+0x30/0x80
->  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> RIP: 0033:0x76e292edd574
-> Code: c7 00 16 00 00 00 b8 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 80 3d d5 ea 0e 00 00 74 13 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 54 c3 0f 1f 00 55 48 89 e5 48 83 ec 20 48 89
-> RSP: 002b:00007fffe247a828 EFLAGS: 00000202 ORIG_RAX: 0000000000000001
-> RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 000076e292edd574
-> RDX: 000000000000000c RSI: 00006267f6306063 RDI: 000000000000000b
-> RBP: 000000000000000c R08: 000076e292fc4b20 R09: 0000000000000000
-> R10: 0000000000000000 R11: 0000000000000202 R12: 00006267f6306063
-> R13: 000000000000000b R14: 00006267e6859c00 R15: 000076e29322a000
->  </TASK>
-> xe 0000:03:00.0: [drm] Xe device coredump has been deleted.
-> 
-> Fixes: 01daccf74832 ("devcoredump : Serialize devcd_del work")
-> Cc: Mukesh Ojha <quic_mojha@quicinc.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Johannes Berg <johannes@sipsolutions.net>
-> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: linux-kernel@vger.kernel.org
-> Cc: <stable@vger.kernel.org> # v6.1+
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/base/devcoredump.c | 136 ++++++++++++++++++++++---------------
->  1 file changed, 83 insertions(+), 53 deletions(-)
-> 
-> diff --git a/drivers/base/devcoredump.c b/drivers/base/devcoredump.c
-> index 03a39c417dc41..ad4bddde12ccb 100644
-> --- a/drivers/base/devcoredump.c
-> +++ b/drivers/base/devcoredump.c
-> @@ -23,50 +23,46 @@ struct devcd_entry {
->  	void *data;
->  	size_t datalen;
->  	/*
-> -	 * Here, mutex is required to serialize the calls to del_wk work between
-> -	 * user/kernel space which happens when devcd is added with device_add()
-> -	 * and that sends uevent to user space. User space reads the uevents,
-> -	 * and calls to devcd_data_write() which try to modify the work which is
-> -	 * not even initialized/queued from devcoredump.
-> +	 * There are 2 races for which mutex is required.
->  	 *
-> +	 * The first race is between device creation and userspace writing to
-> +	 * schedule immediately destruction.
->  	 *
-> +	 * This race is handled by arming the timer before device creation, but
-> +	 * when device creation fails the timer still exists.
->  	 *
-> -	 *        cpu0(X)                                 cpu1(Y)
-> +	 * To solve this, hold the mutex during device_add(), and set
-> +	 * init_completed on success before releasing the mutex.
->  	 *
-> -	 *        dev_coredump() uevent sent to user space
-> -	 *        device_add()  ======================> user space process Y reads the
-> -	 *                                              uevents writes to devcd fd
-> -	 *                                              which results into writes to
-> +	 * That way the timer will never fire until device_add() is called,
-> +	 * it will do nothing if init_completed is not set. The timer is also
-> +	 * cancelled in that case.
->  	 *
-> -	 *                                             devcd_data_write()
-> -	 *                                               mod_delayed_work()
-> -	 *                                                 try_to_grab_pending()
-> -	 *                                                   timer_delete()
-> -	 *                                                     debug_assert_init()
-> -	 *       INIT_DELAYED_WORK()
-> -	 *       schedule_delayed_work()
-> -	 *
-> -	 *
-> -	 * Also, mutex alone would not be enough to avoid scheduling of
-> -	 * del_wk work after it get flush from a call to devcd_free()
-> -	 * mentioned as below.
-> -	 *
-> -	 *	disabled_store()
-> -	 *        devcd_free()
-> -	 *          mutex_lock()             devcd_data_write()
-> -	 *          flush_delayed_work()
-> -	 *          mutex_unlock()
-> -	 *                                   mutex_lock()
-> -	 *                                   mod_delayed_work()
-> -	 *                                   mutex_unlock()
-> -	 * So, delete_work flag is required.
-> +	 * The second race involves multiple parallel invocations of devcd_free(),
-> +	 * add a deleted flag so only 1 can call the destructor.
->  	 */
->  	struct mutex mutex;
-> -	bool delete_work;
-> +	bool init_completed, deleted;
->  	struct module *owner;
->  	ssize_t (*read)(char *buffer, loff_t offset, size_t count,
->  			void *data, size_t datalen);
->  	void (*free)(void *data);
-> +	/*
-> +	 * If nothing interferes and device_add() was returns success,
-> +	 * del_wk will destroy the device after the timer fires.
-> +	 *
-> +	 * Multiple userspace processes can interfere in the working of the timer:
-> +	 * - Writing to the coredump will reschedule the timer to run immediately,
-> +	 *   if still armed.
-> +	 *
-> +	 *   This is handled by using "if (cancel_delayed_work()) {
-> +	 *   schedule_delayed_work() }", to prevent re-arming after having
-> +	 *   been previously fired.
-> +	 * - Writing to /sys/class/devcoredump/disabled will destroy the
-> +	 *   coredump synchronously.
-> +	 *   This is handled by using disable_delayed_work_sync(), and then
-> +	 *   checking if deleted flag is set with &devcd->mutex held.
-> +	 */
->  	struct delayed_work del_wk;
->  	struct device *failing_dev;
->  };
-> @@ -95,14 +91,27 @@ static void devcd_dev_release(struct device *dev)
->  	kfree(devcd);
->  }
->  
-> +static void __devcd_del(struct devcd_entry *devcd)
-> +{
-> +	devcd->deleted = true;
-> +	device_del(&devcd->devcd_dev);
-> +	put_device(&devcd->devcd_dev);
-> +}
-> +
->  static void devcd_del(struct work_struct *wk)
->  {
->  	struct devcd_entry *devcd;
-> +	bool init_completed;
->  
->  	devcd = container_of(wk, struct devcd_entry, del_wk.work);
->  
-> -	device_del(&devcd->devcd_dev);
-> -	put_device(&devcd->devcd_dev);
-> +	/* devcd->mutex serializes against dev_coredumpm_timeout */
-> +	mutex_lock(&devcd->mutex);
-> +	init_completed = devcd->init_completed;
-> +	mutex_unlock(&devcd->mutex);
-> +
-> +	if (init_completed)
-> +		__devcd_del(devcd);
->  }
->  
->  static ssize_t devcd_data_read(struct file *filp, struct kobject *kobj,
-> @@ -122,12 +131,12 @@ static ssize_t devcd_data_write(struct file *filp, struct kobject *kobj,
->  	struct device *dev = kobj_to_dev(kobj);
->  	struct devcd_entry *devcd = dev_to_devcd(dev);
->  
-> -	mutex_lock(&devcd->mutex);
-> -	if (!devcd->delete_work) {
-> -		devcd->delete_work = true;
-> -		mod_delayed_work(system_wq, &devcd->del_wk, 0);
-> -	}
-> -	mutex_unlock(&devcd->mutex);
-> +	/*
-> +	 * Although it's tempting to use mod_delayed work here,
-> +	 * that will cause a reschedule if the timer already fired.
-> +	 */
-> +	if (cancel_delayed_work(&devcd->del_wk))
-> +		schedule_delayed_work(&devcd->del_wk, 0);
->  
->  	return count;
->  }
-> @@ -151,11 +160,21 @@ static int devcd_free(struct device *dev, void *data)
->  {
->  	struct devcd_entry *devcd = dev_to_devcd(dev);
->  
-> +	/*
-> +	 * To prevent a race with devcd_data_write(), disable work and
-> +	 * complete manually instead.
-> +	 *
-> +	 * We cannot rely on the return value of
-> +	 * disable_delayed_work_sync() here, because it might be in the
-> +	 * middle of a cancel_delayed_work + schedule_delayed_work pair.
-> +	 *
-> +	 * devcd->mutex here guards against multiple parallel invocations
-> +	 * of devcd_free().
-> +	 */
-> +	disable_delayed_work_sync(&devcd->del_wk);
->  	mutex_lock(&devcd->mutex);
-> -	if (!devcd->delete_work)
-> -		devcd->delete_work = true;
-> -
-> -	flush_delayed_work(&devcd->del_wk);
-> +	if (!devcd->deleted)
-> +		__devcd_del(devcd);
->  	mutex_unlock(&devcd->mutex);
->  	return 0;
->  }
-> @@ -179,12 +198,10 @@ static ssize_t disabled_show(const struct class *class, const struct class_attri
->   *                                                                 put_device() <- last reference
->   *             error = fn(dev, data)                           devcd_dev_release()
->   *             devcd_free(dev, data)                           kfree(devcd)
-> - *             mutex_lock(&devcd->mutex);
->   *
->   *
->   * In the above diagram, it looks like disabled_store() would be racing with parallelly
-> - * running devcd_del() and result in memory abort while acquiring devcd->mutex which
-> - * is called after kfree of devcd memory after dropping its last reference with
-> + * running devcd_del() and result in memory abort after dropping its last reference with
->   * put_device(). However, this will not happens as fn(dev, data) runs
->   * with its own reference to device via klist_node so it is not its last reference.
->   * so, above situation would not occur.
-> @@ -374,7 +391,7 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
->  	devcd->read = read;
->  	devcd->free = free;
->  	devcd->failing_dev = get_device(dev);
-> -	devcd->delete_work = false;
-> +	devcd->deleted = false;
->  
->  	mutex_init(&devcd->mutex);
->  	device_initialize(&devcd->devcd_dev);
-> @@ -383,8 +400,14 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
->  		     atomic_inc_return(&devcd_count));
->  	devcd->devcd_dev.class = &devcd_class;
->  
-> -	mutex_lock(&devcd->mutex);
->  	dev_set_uevent_suppress(&devcd->devcd_dev, true);
-> +
-> +	/* devcd->mutex prevents devcd_del() completing until init finishes */
-> +	mutex_lock(&devcd->mutex);
-> +	devcd->init_completed = false;
-> +	INIT_DELAYED_WORK(&devcd->del_wk, devcd_del);
-> +	schedule_delayed_work(&devcd->del_wk, timeout);
-> +
->  	if (device_add(&devcd->devcd_dev))
->  		goto put_device;
->  
-> @@ -401,13 +424,20 @@ void dev_coredumpm_timeout(struct device *dev, struct module *owner,
->  
->  	dev_set_uevent_suppress(&devcd->devcd_dev, false);
->  	kobject_uevent(&devcd->devcd_dev.kobj, KOBJ_ADD);
-> -	INIT_DELAYED_WORK(&devcd->del_wk, devcd_del);
-> -	schedule_delayed_work(&devcd->del_wk, timeout);
-> +
-> +	/*
-> +	 * Safe to run devcd_del() now that we are done with devcd_dev.
-> +	 * Alternatively we could have taken a ref on devcd_dev before
-> +	 * dropping the lock.
-> +	 */
-> +	devcd->init_completed = true;
->  	mutex_unlock(&devcd->mutex);
->  	return;
->   put_device:
-> -	put_device(&devcd->devcd_dev);
->  	mutex_unlock(&devcd->mutex);
-> +	cancel_delayed_work_sync(&devcd->del_wk);
-> +	put_device(&devcd->devcd_dev);
-> +
->   put_module:
->  	module_put(owner);
->   free:
+I ususally read "init_something()" as a function that initializes an
+object that already has its storage defined. Since here we are
+allocating and initializing, I would prefer that we call this
+alloc_primary_gt().  Just a personal preference, feel free to ignore.
+:-)
 
+>+                                     const struct xe_graphics_desc *graph=
+ics_desc,
+>+                                     const struct xe_media_desc *media_de=
+sc)
+>+{
+>+        struct xe_device *xe =3D tile_to_xe(tile);
+>+        struct xe_gt *gt;
+>+
+>+        gt =3D xe_gt_alloc(tile);
+>+        if (IS_ERR(gt))
+>+                return gt;
+>+
+>+        gt->info.type =3D XE_GT_TYPE_MAIN;
+>+        gt->info.id =3D tile->id * xe->info.max_gt_per_tile;
+>+        gt->info.has_indirect_ring_state =3D graphics_desc->has_indirect_=
+ring_state;
+>+        gt->info.engine_mask =3D graphics_desc->hw_engine_mask;
+>+
+>+        /*
+>+         * Before media version 13, the media IP was part of the primary =
+GT
+>+         * so we need to add the media engines to the primary GT's engine=
+ list.
+>+         */
+>+        if (MEDIA_VER(xe) < 13 && media_desc)
+>+                gt->info.engine_mask |=3D media_desc->hw_engine_mask;
+>+
+>+        return gt;
+>+}
+>+
+>+static struct xe_gt *init_media_gt(struct xe_tile *tile,
+>+                                   const struct xe_media_desc *media_desc=
+)
+>+{
+>+        struct xe_device *xe =3D tile_to_xe(tile);
+>+        struct xe_gt *gt;
+>+
+>+        gt =3D xe_gt_alloc(tile);
+>+        if (IS_ERR(gt))
+>+                return gt;
+>+
+>+        if (MEDIA_VER(xe) < 13 || !media_desc)
+>+                return NULL;
+
+I think we need to return NULL before we do xe_gt_alloc().
+
+--
+Gustavo Sousa
+
+>+
+>+        gt->info.type =3D XE_GT_TYPE_MEDIA;
+>+        gt->info.id =3D tile->id * xe->info.max_gt_per_tile + 1;
+>+        gt->info.has_indirect_ring_state =3D media_desc->has_indirect_rin=
+g_state;
+>+        gt->info.engine_mask =3D media_desc->hw_engine_mask;
+>+
+>+        return gt;
+>+}
+>+
+> /*
+>  * Initialize device info content that does require knowledge about
+>  * graphics / media IP version.
+>@@ -765,48 +812,21 @@ static int xe_info_init(struct xe_device *xe,
+>                         return err;
+>         }
+>=20
+>-        /*
+>-         * All platforms have at least one primary GT.  Any platform with=
+ media
+>-         * version 13 or higher has an additional dedicated media GT.  An=
+d
+>-         * depending on the graphics IP there may be additional "remote t=
+iles."
+>-         * All of these together determine the overall GT count.
+>-         */
+>+        /* Allocate any GT and VRAM structures necessary for the platform=
+. */
+>         for_each_tile(tile, xe, id) {
+>                 int err;
+>=20
+>-                tile->primary_gt =3D xe_gt_alloc(tile);
+>+                err =3D xe_tile_alloc_vram(tile);
+>+                if (err)
+>+                        return err;
+>+
+>+                tile->primary_gt =3D init_primary_gt(tile, graphics_desc,=
+ media_desc);
+>                 if (IS_ERR(tile->primary_gt))
+>                         return PTR_ERR(tile->primary_gt);
+>=20
+>-                gt =3D tile->primary_gt;
+>-                gt->info.type =3D XE_GT_TYPE_MAIN;
+>-                gt->info.id =3D tile->id * xe->info.max_gt_per_tile;
+>-                gt->info.has_indirect_ring_state =3D graphics_desc->has_i=
+ndirect_ring_state;
+>-                gt->info.engine_mask =3D graphics_desc->hw_engine_mask;
+>-
+>-                err =3D xe_tile_alloc_vram(tile);
+>-                if (err)
+>-                        return err;
+>-
+>-                if (MEDIA_VER(xe) < 13 && media_desc)
+>-                        gt->info.engine_mask |=3D media_desc->hw_engine_m=
+ask;
+>-
+>-                if (MEDIA_VER(xe) < 13 || !media_desc)
+>-                        continue;
+>-
+>-                /*
+>-                 * Allocate and setup media GT for platforms with standal=
+one
+>-                 * media.
+>-                 */
+>-                tile->media_gt =3D xe_gt_alloc(tile);
+>+                tile->media_gt =3D init_media_gt(tile, media_desc);
+>                 if (IS_ERR(tile->media_gt))
+>                         return PTR_ERR(tile->media_gt);
+>-
+>-                gt =3D tile->media_gt;
+>-                gt->info.type =3D XE_GT_TYPE_MEDIA;
+>-                gt->info.id =3D tile->id * xe->info.max_gt_per_tile + 1;
+>-                gt->info.has_indirect_ring_state =3D media_desc->has_indi=
+rect_ring_state;
+>-                gt->info.engine_mask =3D media_desc->hw_engine_mask;
+>         }
+>=20
+>         /*
+>--=20
+>2.51.0
+>
