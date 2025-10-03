@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54719CCA471
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 20:12:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E98BCCA471
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 20:18:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B8410E968;
-	Fri,  3 Oct 2025 20:12:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA1C210E976;
+	Fri,  3 Oct 2025 20:18:00 +0000 (UTC)
 Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5324F10E968;
- Fri,  3 Oct 2025 20:12:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8476839677196524733=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD0610E976;
+ Fri,  3 Oct 2025 20:17:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Make_the_late-?=
- =?utf-8?q?initialization_really_late?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_DRM_scheduler_layerin?=
+ =?utf-8?q?g_violations_in_Xe_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 03 Oct 2025 20:12:20 -0000
-Message-ID: <175952234005.4737.1857847937090440803@6aec98b87f92>
+Date: Fri, 03 Oct 2025 20:17:59 -0000
+Message-ID: <175952267964.5080.8331247453555820759@6aec98b87f92>
 X-Patchwork-Hint: ignore
-References: <20251003192940.545-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20251003192940.545-1-michal.wajdeczko@intel.com>
+References: <20251003201156.1995113-1-matthew.brost@intel.com>
+In-Reply-To: <20251003201156.1995113-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,84 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8476839677196524733==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pf: Make the late-initialization really late
-URL   : https://patchwork.freedesktop.org/series/155402/
-State : success
+Series: Fix DRM scheduler layering violations in Xe (rev2)
+URL   : https://patchwork.freedesktop.org/series/155314/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3864-778dac0b2365849d78271dce89792af4a37777cd_BAT -> xe-pw-155402v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5c2521850927ce6db73c7003532a78c20bbb3d64
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Oct 3 13:11:56 2025 -0700
 
-Summary
--------
+    drm/xe: Stop abusing DRM scheduler internals
+    
+    Use new pending job list iterator and new helper functions in Xe to
+    avoid reaching into DRM scheduler internals.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch c71b8423713198c13e615755d58697cbffdef436 drm-intel
+bf5deba09f94 drm/sched: Add pending job list iterator
+-:82: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#82: FILE: include/drm/gpu_scheduler.h:760:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity, __stopped)	\
++	scoped_guard(drm_sched_pending_job_iter, (__sched), (__stopped))	\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (11 -> 11)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
+   Enjoy this qualification while we work to improve our heuristics.
 
-Changes
--------
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__job' - possible side-effects?
+#82: FILE: include/drm/gpu_scheduler.h:760:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity, __stopped)	\
++	scoped_guard(drm_sched_pending_job_iter, (__sched), (__stopped))	\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-  No changes found
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__sched' - possible side-effects?
+#82: FILE: include/drm/gpu_scheduler.h:760:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity, __stopped)	\
++	scoped_guard(drm_sched_pending_job_iter, (__sched), (__stopped))	\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__entity' - possible side-effects?
+#82: FILE: include/drm/gpu_scheduler.h:760:
++#define drm_sched_for_each_pending_job(__job, __sched, __entity, __stopped)	\
++	scoped_guard(drm_sched_pending_job_iter, (__sched), (__stopped))	\
++		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
++			for_each_if(!(__entity) || (__job)->entity == (__entity))
 
-Build changes
--------------
-
-  * IGT: IGT_8573 -> IGT_8574
-  * Linux: xe-3864-778dac0b2365849d78271dce89792af4a37777cd -> xe-pw-155402v1
-
-  IGT_8573: 8573
-  IGT_8574: 44a15713124663a622c6eddf7c6ee5ba732e0d41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3864-778dac0b2365849d78271dce89792af4a37777cd: 778dac0b2365849d78271dce89792af4a37777cd
-  xe-pw-155402v1: 155402v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155402v1/index.html
-
---===============8476839677196524733==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Make the late-initialization really late</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155402/">https://patchwork.freedesktop.org/series/155402/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155402v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155402v1/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 0 warnings, 3 checks, 68 lines checked
+674df245e992 drm/sched: Add several job helpers to avoid drivers touching scheduler state
+08356061cef9 drm/xe: Add dedicated message lock
+5c2521850927 drm/xe: Stop abusing DRM scheduler internals
 
 
-    <h1>CI Bug Log - changes from xe-3864-778dac0b2365849d78271dce89792af4a37777cd_BAT -&gt; xe-pw-155402v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8573 -&gt; IGT_8574</li>
-<li>Linux: xe-3864-778dac0b2365849d78271dce89792af4a37777cd -&gt; xe-pw-155402v1</li>
-</ul>
-<p>IGT_8573: 8573<br />
-  IGT_8574: 44a15713124663a622c6eddf7c6ee5ba732e0d41 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3864-778dac0b2365849d78271dce89792af4a37777cd: 778dac0b2365849d78271dce89792af4a37777cd<br />
-  xe-pw-155402v1: 155402v1</p>
-
-</body>
-</html>
-
---===============8476839677196524733==--
