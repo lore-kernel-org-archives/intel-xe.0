@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B58ECAC5B0
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 16:26:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B59D1CAC5B0
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Oct 2025 16:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3092E10E051;
-	Fri,  3 Oct 2025 16:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7547410E202;
+	Fri,  3 Oct 2025 16:26:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="erFeI/3/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQ4p4YdF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD1010E051
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Oct 2025 16:26:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B7710E202
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Oct 2025 16:26:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759508798; x=1791044798;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=AoiBcUIUG6MHFtutrmY0Ei12yg6OmdC7GmzrR+9nTn4=;
- b=erFeI/3/+0vtYV8tVUstG9pOEUYYeJn5GQ8KxgThy98m+ElM1JpDwz28
- fPEeQv7hGhogLS3XO6bAR9E7KiYWpDQxDaDdXN3FHlhLeIKSFiUG4ueDH
- LSWLxwEPCcRvWlRlLfrglvGRAW3NajEoVxpCoCFVe0jnhQvtI9EL8qIhl
- O74DNM2M58H64zuJ+K2xdjjYkUAv0+eOKe2gSugH3EkEkGwoO7toFRyup
- wZeJ0R4FdKOgy8KhmWHd0+XG/F1lNpip4fWCfCkA7ECWBYJT17xSMyRv+
- tVRAjRqyjum4U/3z/kp8o/+c1pevd1pbwlKx+3Sz5cyj7jZSSCbPyo+fU g==;
-X-CSE-ConnectionGUID: zYSOpuIbTIm5Jnfck3vf4w==
-X-CSE-MsgGUID: 6v47sQgDQ+6aEuPAwEr33w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="73147097"
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="73147097"
+ t=1759508801; x=1791044801;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=YV6d+oVb6I6c9eeOijBQRVZHfhJV3r5kRNlvuo5Jms8=;
+ b=OQ4p4YdFbku2rSgZeNwM1eIjxYuuKvaJIAVEe/y+2FdBm8NgUzhWrSXx
+ WxNwuPEaGMWo7vKt5omLQzBznq/SN8XKq42TYaYfP/PQLZprkNYvIbG7m
+ hjh0HHAJ3eJBOxhrVy1ej/xLfzqSG11ysa/lexZ7fte5L942UfvkglJfJ
+ B7blNlkRMIrijZdvdFVeldAUJd+Oz6yfEmE/3UslFESxPfkJL39Vfx/tm
+ rOvCXb28MoMPInuHQ90s28ODCeniF/pXHpr6q4oqfygLMQXagp6XASKE6
+ 1qHTjUd/z+ZdW1a/234PFNyYCYg9MFpDOKCNgd33+zuZ6awmirt+7zy8a A==;
+X-CSE-ConnectionGUID: djwyqof1TGKJ3p8ApXQpEw==
+X-CSE-MsgGUID: BhzyY24CTmKIfA7u6CN++Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="73147105"
+X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="73147105"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 09:26:38 -0700
-X-CSE-ConnectionGUID: zYGT4sXESN21DE9IbdUTDw==
-X-CSE-MsgGUID: hGdzJsGKQpej04PqB92K1A==
+ 03 Oct 2025 09:26:40 -0700
+X-CSE-ConnectionGUID: pIB206EjQkqny9uP0U6Ipg==
+X-CSE-MsgGUID: fmLz5SvMQbiSrWk9JRuNQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="183345693"
+X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; d="scan'208";a="183345710"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2025 09:26:38 -0700
+ 03 Oct 2025 09:26:41 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 3 Oct 2025 09:26:37 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ 15.2.2562.27; Fri, 3 Oct 2025 09:26:39 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 3 Oct 2025 09:26:37 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.51) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 3 Oct 2025 09:26:39 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.53) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 3 Oct 2025 09:26:36 -0700
+ 15.2.2562.27; Fri, 3 Oct 2025 09:26:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k5Ou/bEB65hFutAuclGUTtA0wTYTliRAKDcFtTwn9GSpHdklzzEhv6EscgRJynpmOzzILzcyVOMU9EZ6Tysxm+3MVe6b+0sq1Ik3rCOVoBPr7+SyJu4fgmDDUAvv3inXqH6fN6h7+F/vrQ/DpglsQvIwjra77mrHWrvm4yTvdQjxC2+NGUyMQtfCBuetn4HMzYusFyOjC0Pw/rQQ7OrjJhSCRvcgo+c869sxx5KERwRFVuF8A27qzx0nk01cIr5ZvJSgFn1/UqBDR4QaA/fE7vqc1zmfOG9Zg58dfAshROLBFzslF0eLTZwurmRQXVKYPwvzKakdCgVoTbvUoN1zTQ==
+ b=Vhqj+/5LS8r6cjiNYv/+mCOYV0wqU4cr11x6V/L2r51VFtWrPhF504RhT8E0uz9KEDuPBmxCshaJmPoB1Vt952KhbDSWSC0LrRjYA9Beq5vspNVk7hy8ZZECTRQ/4Db43gCsEHfwDD+rFtozXwSi687uHKsf0pspB7GMa/9hCshPjNGfm37Ks1rwKO2aUE8hMbVUucgLtrjcZ/IWx5ST1Mp/UjZJFtunSjjBNMdtX4vRckCDRcP/pHCjiqc9D4hQMKGLpGoWHNBuzfLIraVkzmWfbVHFYCS3sKNOBbqFHwSKIbSCquRqpdzyp+IvfBMVn6bSO6VJcMQmR3Li/Z5gdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y2Yn+xuCMmeXblQ3CYoKuSbNNlAhFWGH/ufF6H7KRQQ=;
- b=JQfzeQnfL4bIovrwF+nXCtAtWPdEZY+USTZsf2zeY8QWzgQo7wh8UJGOluTaCges7U+vdjUAELlJu0aNNBgHkTRFBadQKEDySncOR4Cwft5wK+LZRpbjHK0Zxu66ET6M8w+LR7wuuue+vYzO5a4mB6dhL/CLExfw1PMspdx6/uUfj632hJ2f4YBTB5cCxzKtGmutgyflFWDpkjPyu9Hqo8KpNmb7QHBjLfB2UqxHFJoURpyjJgHkUsV3M4LgkBA77trED+tWZwgQr9bxgDdmQ1td3kL8XFKPu1R796Fh7QDvYn3oTHIi5i7g8JxzFeNHyiVRTjZQ8i2kmujF5ULw9g==
+ bh=TGv839uV85NuQPu4U71y1M4nJwrWG10gbANXoZuO62I=;
+ b=LLqwjnyWiVy6mHtdSgKKL8P/9BpX8yQim5Qg3dM6KVjPHh59+YyjsI8Ye+X33ZaRdk08EAVfaJXARquXqoXakI21jaKAQaGNJyywCGVaDphyqx/ohDbKbX7c4Dhprw5jtlouZ7oDEEX3m6A8TBp9a5od6ILzhCNJ6aTuSmAIP9Fv2eCGdaUJpYBSSJvf8koseyMA6yWYgoo3oP7MrxqPnDuL3fHf8BsJuwjfy4Z2upBSuR2bycuTGaKR0FF6K1uJE6O4q8gESGR6NgY5oDb1Do7vyJZLd04oREicjl/a15XBOx9tJ/UAtTW5KTVm/lbziiI4MgeqpkOAu9eqM5s0rQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,113 +69,116 @@ Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
  by CO1PR11MB4898.namprd11.prod.outlook.com (2603:10b6:303:92::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Fri, 3 Oct
- 2025 16:26:34 +0000
+ 2025 16:26:37 +0000
 Received: from MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
  ([fe80::3225:d4ad:74a:6d7a%6]) with mapi id 15.20.9182.015; Fri, 3 Oct 2025
- 16:26:34 +0000
+ 16:26:37 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v5 0/5] Preliminary support for separate VRAM region for
- kernel allocations on tiles
-Date: Fri, 3 Oct 2025 18:26:14 +0200
-Message-ID: <20251003162619.1984236-1-piotr.piorkowski@intel.com>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Matthew
+ Auld" <matthew.auld@intel.com>
+Subject: [PATCH v5 1/5] drm/xe: Add initial support for separate kernel VRAM
+ region on the tile
+Date: Fri, 3 Oct 2025 18:26:15 +0200
+Message-ID: <20251003162619.1984236-2-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251003162619.1984236-1-piotr.piorkowski@intel.com>
+References: <20251003162619.1984236-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P123CA0655.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:316::9) To MN0PR11MB6135.namprd11.prod.outlook.com
+X-ClientProxiedBy: LO4P265CA0235.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:315::12) To MN0PR11MB6135.namprd11.prod.outlook.com
  (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CO1PR11MB4898:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcd249dc-9221-4b04-faf2-08de02999e26
+X-MS-Office365-Filtering-Correlation-Id: 1353662f-a93b-421e-7581-08de02999ffc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?aXh2bURYV1FaT0QzcnIvZXAxN0tIemt4dVlWRkJFejg3MlB5MEdlSDhJRFV6?=
- =?utf-8?B?dzNPRlkvL2d3eGQvZzFmYk9sL1ZkdUxSdllOV1BobWxEUjR5QzVIRXlqbWhh?=
- =?utf-8?B?WWhza0JTOXZ4WSsva1J1aHVjaTZ5SnhIdnoxUndVcGNvM0JJODRnQmdDekE4?=
- =?utf-8?B?Q1pZWmVrMEVkZ25EQWwvRTkyMXFZd3UzWlNia0UrZkZXSFlSTGFHRll0S0tN?=
- =?utf-8?B?cGNDZ2g0SnR3c2xYbnczdGVqV0tGenhqVXVnSk9OTzVLdDQ1Vk9NSFozQU41?=
- =?utf-8?B?STNJSlhVL2l0Y3hteVRod0s5WnJPQ2laL1ZFWWg4aDVHN1VEVjh4c1VqS2Vm?=
- =?utf-8?B?T2wzUGRHQVhyd3J4SHNIa0lhTThMU0ZqYVF4ZngwZGNhUUdMSWJwL09wdDJr?=
- =?utf-8?B?Zm10b0o0R2xXZFlKYWxTM1dCVmV6U2x4Q3FTa2EwQ2Rncnp1bVdoUno5UmVs?=
- =?utf-8?B?VmZKSVlDVi9ROWd3QTJ6L2hhcWtKOTdITTBnUWZmMlNXaDV5dExEM0ZSV0Zv?=
- =?utf-8?B?K2pFcXpNZ20zK0Z1QVFkb0FRSWdHeWtKTzBzRzVCTU5QTzVHemNudE92K05J?=
- =?utf-8?B?dmRYN3JzQk8weEw1bUdZTzJKOGZ0Q3o4eUtsZjBJL21GbjFHdFp6dXhhK3ds?=
- =?utf-8?B?dkxvWDRadnhLSjJpUU5RQXV0TnlOWGxQS0VSdFFXM0kxNjVZaGZRSXVXdkpt?=
- =?utf-8?B?eTZDblNpblJ4UVQxUjNMVzR4RzZhL3VvSWR0dkNJR24weWZZRGE4S24yTUQ4?=
- =?utf-8?B?M0M1aXJsVCtSUDdHS0VqZURlTEtRSjJhU1dQeThwbHhFMmNQL1NUbjAvd1VD?=
- =?utf-8?B?WUd1bnhpTnJya0dLaEdJSmZZY09HaFoxL250TG8ycVJoL3Q2WVo0VmNHaEZT?=
- =?utf-8?B?MTRhUWVrWTZFR2w3N1NDNGRhR2Jja20zSDR2STl2bzhaZ214a0JQbGRIL0N2?=
- =?utf-8?B?ZGxJbUdzOWx4eHNkSEI5SXMxVTV3UmhKVDgyRUNTM0tBSjdCVHdMb2x0Njdy?=
- =?utf-8?B?ZkFKSWZuSktoV1B5Q2RZMFhKZzdCeWdTcG9tbEhlU2ZPNnkzTXB5Yy9xZ3d6?=
- =?utf-8?B?b3JZS2hSRnhvOThBcE1Dbnp2UExOZ0ZrZVozcGJ2RmNPblo0WjFja202ZFB4?=
- =?utf-8?B?M0gvMWNjZnlGWmJRRHk4SzlzVDlzTG9reVM0NWpsanZkdk1Na0hLdDFFZU9W?=
- =?utf-8?B?Sy9oK2prbjRuVkxoQitpYzZJdlRZL0k0L3R2MmVFSUNlTXR5ZnFHZ3lic3Rs?=
- =?utf-8?B?Tmx6d1ZNWlY3cFFWVmNId25CbmxwcmZmdGpoR0J3TnljcGQvNFZxZTRUNHVY?=
- =?utf-8?B?VlRSVTRCT3QzNTk3QW51OHljdjA4Q0R0QVVsWmZRWmZLTVBGRlJxemtwS2Rr?=
- =?utf-8?B?WGs1V2NTV2ZqT1ZoWHJFRkNzamdLZHlrMXQ1ZXJlMlhYRWEvZGhqWXYvMHBD?=
- =?utf-8?B?REdWZmhNR1RGb0ZoZW91KzNKWU10WTBhWDhjbDhmUnpJRVhUd1Z6U21NaXRL?=
- =?utf-8?B?UlA4RDc1c1BnSWFmUlBDWjhzYmRsVEVDMVZIY3RDSjlncTZGRU54K1hoeUJV?=
- =?utf-8?B?cVlwVURyQWhoN1hmbHo3NjVOQXRlNkVOaXUzZStPS3E2aHRiUmt5RkpndHh2?=
- =?utf-8?B?NUlrT1ZiYUEyd3JrUmhONXBObWV2d3FSUHRHbXZ3UUVDL21TV0Y1R2paK3Rs?=
- =?utf-8?B?d212T2x4WlU4OUVLZmNqTXRPaDVhd3dJWWVZeENkYkppY0ROa0Mxc2k3ZWhq?=
- =?utf-8?B?c0pxbEN5U1o3eGhPTDc2RG14RkNURGpOZTJxVzcvWlBkTDcwSFBnV3lJdktD?=
- =?utf-8?B?Qnd4cEZHVU1JeWlpUGlCa0pzUzNQWWlYcG5qMzAwV2pBZ3Yyd1ZuSmNQemN5?=
- =?utf-8?B?VWoyaDBrVUVyUFpVSFo4RmZ2MEhQOCtVcWJSUFhEQ3BzVlpnakRNZm0wVTZx?=
- =?utf-8?Q?Ar4BC04tu/2fflo5GzQHZdkqAWtbsUSG?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OGR5OGpESFBIazIrNWsycitzbjV0aTVEUGtST3ZPdnhwSmZIRVd2UXlYWGR3?=
+ =?utf-8?B?N2JLc1ZoaERWb0FxbnJoTHU3bURxcllWaTJwR1k5ektaVmhGUmxZN28waXNK?=
+ =?utf-8?B?SWNUMVZBQkZDbWIwRldXbmtmTFhtMEtyRU5GeFh0bjAvQUZpUThIclBTaEVG?=
+ =?utf-8?B?WWdYZFVudG9wbEd2dGV1b3h2Q3RXR3ZFTDhwczV2K1h3eEZyZkxEdjFuc1Jr?=
+ =?utf-8?B?cVpTR0liNTg4U1lGbWdRMlliOEx3aGRzdW1WM2NXdHhGTmtxZS9oREI1TEx4?=
+ =?utf-8?B?UTBlVVdpc0pCUlJmRE5VNGdlTE53eXNSMUNzUUVyVnh6Mkd5N3lLR2I5M3N6?=
+ =?utf-8?B?MkUyeU40RHc2T3VzMjRJL0g3cHN6dDVLa3hrekEzb3AwUXhYSVJpS0JEaWFZ?=
+ =?utf-8?B?WUh5QkFaTmdZdk9qdFNxd3NNYjhoTUU0U3Rna0pNZ2dOejRnNXBpZ3VFdjJK?=
+ =?utf-8?B?ZzdGY2ZXYW5CcjNhMlRaVkEvbDlJNUtqTEl6cWpHamhNWTRUanoxY2tManZ0?=
+ =?utf-8?B?bko5bHFYeDQ2L016dnpsRDlTUkdPMW9sbWtYV2djWlROSlpDc21uRUpGRzJJ?=
+ =?utf-8?B?dnF5WjdjZDJSaGpzQkJHb0JjVVF1UDE5SmhxTWVOQ0J6cnBUNWxLYmk4NkR2?=
+ =?utf-8?B?eXpuNHRPMWpXUXJhSENnTEdTaFZrbFBKN1R3R3ZrMVdodGYvYzFpSDY0L3B5?=
+ =?utf-8?B?N3hCRDNIeEM5MXNIWFppZ2NoOTRtUDlFVlhucWN5SEVTaWpNM3oyZ01KaFRv?=
+ =?utf-8?B?MW00R3FnM2xIS05VbU1QSkQxbWQ0elFMdk1QQTkxcnBYdGxaUkJFMWp1MGZC?=
+ =?utf-8?B?eXgxR2NnSVJGNGdHSkdPSitaRDlVbGV2ditkN1VQVnZVUGV0UEhmVkdTdjdm?=
+ =?utf-8?B?NXR4SkNCRlplc0pvNjFBd2ZwbGF1VDRuYldxa2pWWWFIV3FVSUpleDd2WDdh?=
+ =?utf-8?B?Y29Hb0h6eG5NZ1FtM05nQWQrYmJPemFCMGpDbXhCNGVuRE83VG9uaEpRTHVP?=
+ =?utf-8?B?U3RwS2pobXd0aWdlMmhpcHhndHlsM3kwNlRFUm8weUg1MmdyNEcxMlpPSXh1?=
+ =?utf-8?B?QWROZlpPS21kcHltUXFmbkpwQTdBYzBRSzRBeHp4VDEzRlo5NHgwSk9NWDZv?=
+ =?utf-8?B?ZE9UeHF6MXBVLzZxRHl0WXBJN2pJZERhNHdQSEYvM292SVNNOER1RWJjNGdG?=
+ =?utf-8?B?VHdXUGp3VThpSi9Od1J6TkJnYTFkZk03Sm5aN0VsTVAvQmRNNm4zc0pPdlhO?=
+ =?utf-8?B?dzI4M0VzNHVUT0JmYSs0NFV6d3Z3SmkxMVJWSUhROWJOUjdGMEVOYkpUaytU?=
+ =?utf-8?B?YjFLSHJscnBkWFJFbytvTzF6SG4wVnBtc080WFRDV0p6Qy9qejMvOW5OT25n?=
+ =?utf-8?B?eUg3SFhNUXlZaU5mOXFTQis3YjBTc04vRytudGpIRHFVNVJpdUt1amw3VDZi?=
+ =?utf-8?B?UlZUa3FKd0tvaWxpdEVGK0U5bjg3SFZXZkxVTlJPQXZSOVJOTkhZSkg1NndG?=
+ =?utf-8?B?MXZCWVFKSDdPNlZnR2h4V1k4UGdnMHNFT09ZNTFuejBoTHptblNEUlRFWUta?=
+ =?utf-8?B?YkJQeTBFc1BMTTBBeC9GWUhxNExTUWcyNTJZYkVnMUlEdE4yaVVpQXFFMVNU?=
+ =?utf-8?B?MWNpZmQxRGdaYWp6TnRPMXpYVithMmZ1Y091VXJFMGNaR3lPUHA4akRUeGFj?=
+ =?utf-8?B?Y000UVNDMkJudUx4Z0dLbEg3MnpCYWR4R2tZYlJYZ3g5Z0NmcERQRmVPYStP?=
+ =?utf-8?B?SGpXU3hyZDdUNi9ja2R4UmV4VWI0em5kbVJVZDVTLys4b29vNWZRNWlVLzUx?=
+ =?utf-8?B?cWtvY1NjRWRtakpkdTIraFJra3FPVG5mT212U2RRcWR2ZXpBRXRPbW5jNStL?=
+ =?utf-8?B?ZlQ2KzNjVVBYQ0RMNm5ySVZTK3l0ajMwUXozYkw1NTRxYU41dmg3VXBacjFX?=
+ =?utf-8?Q?6+mQu8Py51+teoj02Iu7obYAE2FeHxyD?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXdKclVQT0UvT1pLZ2JHUElVSjZSRHFDS0lUL1ZnQnNKeTJiT2xzYXRCVTVV?=
- =?utf-8?B?VVFSVU8zUkhxakIwSk1RR0dHdE8xeVBzMUNtVTRyMi82b0p2VjdjRU95bTBj?=
- =?utf-8?B?YnpaZmdyWWxVTlczRkFBaWRXQnZWOEtJZThKc2k3d0o3VXFLbDNBcGpKcVl0?=
- =?utf-8?B?bWNHSU9RK0piWEVWYm1VZk5QVUdlakQ0SHNHS3diYXdtU3pkTGN0eUFKUjcx?=
- =?utf-8?B?TTRvdGtlTVhqNDZwOWZJbk03dk5haVZoMVB3Qmo2amY3b2MvVi8rQnh2amY1?=
- =?utf-8?B?R2tCQnVBalcrc0M3ZUVTT1A0NlRVWTFwL0xRYlFaRDlUdGIwSm1KU0RtMzMr?=
- =?utf-8?B?dzdzMzYxSlFRUnhGM3d5ZUdyNWZMTlpOWWFXRXdMdzhFQzNpajN3T0l1TjFs?=
- =?utf-8?B?Rm10RFNodzVYVmxRd08ybGdudHBlcmZrUnEwYTNRRFVLZkJiY1RPS1AwYll1?=
- =?utf-8?B?ZmZFN3E4dWVYajNXNE1jZE5pdHZ3UkVLditxZUNNdGladnJQTzFHQlZCdlNI?=
- =?utf-8?B?bEdpcjNpdGJXdWJRZ28zeE8wU25Gc2Q3V2U4Y3YwWmd1ckUvMXFDVWM5L014?=
- =?utf-8?B?N3ZYenQyanE4SmI2SnNRNCtnc1pPMDkyWnhKSXdxeCtFZzVUQWVjN2JMVTlv?=
- =?utf-8?B?RTI4bndNRFNqTFJCTElOVUtxNnp0WXUxdUtDOGVudkRMa0ZoVHA5S3ZPNHpu?=
- =?utf-8?B?V3hOeVdGK0ZMeTN1NFhMaVZNR2FpVmpSOUVrMXN2bzNJMmM3QkQ2eU1kM1Ns?=
- =?utf-8?B?amZTbjR2aWp3eGN2NklIbTZuUTNsNktucDNBUU5wWE9zYXh4RXZmdzFhT3k3?=
- =?utf-8?B?OW5hOXJZb0Qwd3lORllBV005TTZaT0h5cElOOWErVVRQRzR6TDhVNjhUdHht?=
- =?utf-8?B?UmtJbDluZlNvMVRHbG9UYUJRei9hdWNXL2xHS052anFEUU1CdVAyUnAxZm9B?=
- =?utf-8?B?RTZ2aFROU1hrWmpBT09OTUJDWEhnZjJiR1RrUEIzaURkT21TS2JxUDZVS1V4?=
- =?utf-8?B?aWpDWFRNMDFkNmdvczZ0d2Z3MFlqbVpvNG5tSlNNbUw2SVlLcFRTZFErdVph?=
- =?utf-8?B?TW40MHFnRWhzek1mWUVkWGJ3VUZtOEdSWjFCeSs1ck5oUGJNLzIzSnlESlor?=
- =?utf-8?B?bExFcVVXN2ViZ2dYNzhOVzlsYkRINm5qS1NYYWUvem1nSFdYZTc3djkwRlU2?=
- =?utf-8?B?SmRBcVNUL0oxWnZXQUtUUEt4cllyNzBXTWlSMnpRTmU5SE42bGY0dXN3eTFS?=
- =?utf-8?B?VTM2d0JsK2FpZ2ttSjMrbXMyRGNIZXVtNWNkVU5aZDI3aDJrejlmTURPTkMw?=
- =?utf-8?B?dXJwRmJ2K1ZMazNYQzl0WkZ1b0Y0UUdwdzlJeExXTXN4OElhMjl0YitMN0Nm?=
- =?utf-8?B?ajdNZWpSQzFSTG1RaDdwSUw0L2hPdCt4bHNNVk1ra1hrcTMvRzlGMFczREU3?=
- =?utf-8?B?REZuVHVmdmdHbFNvVWxPVXJqS0h2TjYya25kdE84MEVzUHNUbEtCUW1mL3J4?=
- =?utf-8?B?ZmtiSWk5WTNuck9Bd2tpNzBqczBINytSTkdwSWdxRUlQeXBEREVCRHk0cURH?=
- =?utf-8?B?YWJNb3Y1aTYrNmhyRnFuU2pvYnY2cG9HcEdZb0dBM01iWnYxaGxBTkprQVRH?=
- =?utf-8?B?M250Y3JtcXVadDdQR3ZaQUhVNlNOcDB4TStwNTNORVRXSjgxbm9OVkRXczhX?=
- =?utf-8?B?Mk1JRWplNW5ISCt1ME1FUUxJUko5ejM2WjBLc2toQXowYlMySFcwVTRHTisz?=
- =?utf-8?B?amkrOUhjRU96dkZhTUsyQjlnTmxydDlqUWxCRHo2MG43Z2pYN2tiU1BiZi81?=
- =?utf-8?B?bzhHUUVVbUlEYjlINnFiTXdNU3ZFZmtmNEtRL0t1QjUxMmxmdHJyYjRBVUNS?=
- =?utf-8?B?aVQvaTRZcmlLL2Y5dDJUeWVzRDN1QXUvUzM0dTZjaXVqSkt3MVVBY2hnWHlC?=
- =?utf-8?B?SEwxelhXeDljUzN6ZEQ2MmxBc1lhMlI2MCtlN3JCTDZYL1YvK3MrWEpDZURS?=
- =?utf-8?B?c3VrWXVRZ2tOdVlsbTZKeUcxODl3VDVTekFvQ3poaG9TaVIvalFqNnE4eXNy?=
- =?utf-8?B?ZXJTajZFcDBUTW5hUU5vL1h1K3hQeHFlK2RGQjZJRG5xTGpjdEdJM3FyRE1l?=
- =?utf-8?B?dkdFOCtsek5IKzhRVEFkbzVuTEhrOVI5cWFBeHRITnVNL3VKSkttZzNVdkUy?=
- =?utf-8?B?UFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcd249dc-9221-4b04-faf2-08de02999e26
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bUZqdlR6emRZS1RCVVlqUmFJMFlaYkVxUGxXaS9vNlZLcGJBMWFEcVdDcm1S?=
+ =?utf-8?B?cWhVVXdiSVZSOHVGcXord29UWmF2Q0xtL0w4TnR4N09iVkJ1Ky8vUzBhcnRW?=
+ =?utf-8?B?T0krTmdxeTh2TzZ3WGNIdWNsenlQWWhEaHIyT2EwM2RjOWQ5eXpEbmdQZ2dB?=
+ =?utf-8?B?NnkvWU51WW9zcEhRU0JUSUJEVkZ0L2NGZ3lLOExDTWlMRnR1cjhFNStLU1ZQ?=
+ =?utf-8?B?VmVkZEV6WVY2Y0gvSy9pRWphU3BxbU9nbkVKdCtsakgzVk9HeFphdjVvc1ZF?=
+ =?utf-8?B?aG83RC85WW5TdG1UVFBmUEtnWEhBRm9wYktJVVQ4MzV1ZnE1emhaeUhweUIz?=
+ =?utf-8?B?K3lsNXpkakdWUFZiL2J0dkcxY3J6QlR2b0QzYWZSN0NMS295N1BiVlpTQ3l6?=
+ =?utf-8?B?ZjBxWUgxRDBqSDc5ZzBuK2dWdytjZDlqUVQyMWlSWEgxM1RpOU5nTWdtY2pC?=
+ =?utf-8?B?bmg3L0RtY3VFb2RvTXovcXh0L21kb3BxS0F2dDBHYzdBNEVpMzV3YnJydlp5?=
+ =?utf-8?B?SEEwY0ZzZnlndFJSNmdVdE9PUlJzUCtwSXp2dUJvcDR3OHVTZnYvTU90Wjc0?=
+ =?utf-8?B?c2cvTE0wN2ZXNjR4UUpWdm5yOHpjOXZ6YnFqbWF1SXBERm5HVS81VmZtZjRm?=
+ =?utf-8?B?YmhJSUtaRUtFaEcwWnNmbWNIZmRCNFprcUN3cUR2UWVZaHJEOVBGdU5VUmJv?=
+ =?utf-8?B?WDcvZlhWWGxFTGRLeUM0YUhJVGxWQVR2VnBXQ1U1K3B3YS9CRXRzallveXNa?=
+ =?utf-8?B?WW04V0hkUmJwczZyL1F1N3JJaHY4MUxFb3I5YngzNW9rSHJJaWZnOU5wdTQv?=
+ =?utf-8?B?WXRaMVcvWVFvNWx3aXNXT1BUbnI2bTdudit1SS9kNzRKZjliZTZjdDY1aDlZ?=
+ =?utf-8?B?WEMwRkp0VG5rWWYvVXErelN6MmhJcHdOR3h1eEdWSmErUXVKakZtMmhNdTNQ?=
+ =?utf-8?B?dXI5N29TemkzVVdOMk9KNWM1ekljNnhLNUlsOVdDSzhib0RCN0VkUnM5WWMy?=
+ =?utf-8?B?cGx3VkIvY3lYSGtMMWU4WVh2QzcxZGQ0NWlYMW8rWWFDVjV5ZE1mTzlSdjFL?=
+ =?utf-8?B?eWt1bW1QNlhxZjMrSWxuZXJKS1dFNHk4SGhnVWd5NVRNdjA1OURlMkdWM3FG?=
+ =?utf-8?B?Q013QXBsclkzQ2h5MHBQakNCWGxFMzVLcjdoeXYwa2sveC9hTmU0R2JmVklo?=
+ =?utf-8?B?OUFwYXcxTC9jOTA1K3FWUG8xb2U0K2xyTVQ5Tm50RHhXTWJlaVQwRTlSd3NI?=
+ =?utf-8?B?aS93TVVmcUE3UGRUOEdObnZrVDQ0SmV2dzhqV3FhS2szWCtrM2FNbXowUDNt?=
+ =?utf-8?B?MkpOYnhTcVZ6dElET1lnNDN6NTFNKzkzTzVhVlUva3hBcCtFUmJoRHc5OVBG?=
+ =?utf-8?B?cmN2MGVwMDNBZ0xWaVhsR2cyN2lrTVFDQy92cTBjSWsycVB5NllEazQ5eWpz?=
+ =?utf-8?B?N21pekVuQ3Q3Q09yN1JDbTA1eDdSNG9rWUtrWEk5NXZINnk5OWhKNnRqeXp5?=
+ =?utf-8?B?Q05sc0FWUHlHMkpnOXBJVStIeHZiSnR2ZDJKcEhKNStqakJEU1RaMzNQZnpp?=
+ =?utf-8?B?c2ptK3VoTVRCRTY0aE1NaEFNeDl6V0tJdDZ4WDJadDI1ZUZKRUpQVU0xdXRh?=
+ =?utf-8?B?MDR2VGpTOFpHQS82RXo1a1gwbjNLcUNZWVN5dWtsK2RPTTk2dS9vd2lQYlYx?=
+ =?utf-8?B?amN2MmtPTmtFZUpuTWRURjBFS3NDVTA3YkI3SGlRNitQNWRrQmg0QUVlNEll?=
+ =?utf-8?B?aGk4Mm9VYjJSaXR0STJva3lYYXk4NTBKMDc5UWVyNUgwM21CTU9WN1V2NUwv?=
+ =?utf-8?B?S0F0dFRXd29mS0FVV2UxamYrQjFUUFcvTmkwM1FwZ3IwVEhEK0dJbXlFMm9v?=
+ =?utf-8?B?UGlJWWFGU1JNZXBCbkIrMkloU25EeFcyOWo3ZzJzUk9Zckk3cUtRcWFYU1c1?=
+ =?utf-8?B?WFp6NytpcStBenFsSnpaQ1ZDeG1ic0pWUWFIcFFhdVVjOGtGay8wWTZuT2RW?=
+ =?utf-8?B?RkZlNEN4SVU3YWNKTTBVeUc3eWxPZkRBVXcxZHp0S0RCNE9ENmU4N3lHbW8r?=
+ =?utf-8?B?dXZadmxRb0dXZy9hT0Q4dHEyZ2VkSEVlY2Z0dDBvQUx6MjNRRS9TVHZQWmU5?=
+ =?utf-8?B?QlBkMmFNTVYxZzRTeHNqZ3Z3RXdobmZ6N3JRVmpNZHJwTnFwTmNOdUxYQ3Fj?=
+ =?utf-8?B?TUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1353662f-a93b-421e-7581-08de02999ffc
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 16:26:34.1358 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 16:26:37.4143 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: w1cdITIQGcnWz9Vx/IM6RbsvDKo3JLLeb1j4o036B8tbjeAs1jbu992uFYzkFKyngIFscgXJwsL+RbGawSrwWbi0mf9kYYdRrmSz1dIlhyM=
+X-MS-Exchange-CrossTenant-UserPrincipalName: emHRJvN62wk/4K2ftaNPVxmmOkP7vS8RP6U8NfHj+n6rgf7v/27Tx5OPkAxadhvApP8O/6421Pr1HOwlNA/Cz2n1SiAqDJVaAWi0GJtzmJY=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4898
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -194,66 +197,273 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Until now, all VRAM BO allocations, whether from userspace or the kernel,
-were placed in the same VRAM region assigned to a tile. However, in some
-scenarios, it may be necessary to separate these allocations and place
-kernel BOs in a dedicated VRAM region.
+So far, kernel and userspace allocations have shared the same VRAM region.
+However, in some scenarios, it may be necessary to reserve a separate
+VRAM area exclusively for kernel allocations.
+Let's add preliminary support for such a configuration.
 
-This series introduces initial support for such separation by allowing
-an additional VRAM region for kernel BOs to be assigned to tiles. In this
-implementation, such BOs are identified by the ttm_bo_type_kernel flag.
-
-To maintain flexibility, this series introduces a new BO flag:
-XE_BO_FLAG_FORCE_USER_VRAM. It forces BO allocations into the
-general-purpose VRAM region, overriding the new default behavior.
-This override currently applies to BOs associated with user contexts
-and BOs used for VF memory.
-
-To preserve backward compatibility on platforms that do not have a
-dedicated kernel VRAM region, the kernel_vram pointer will fall back
-to the general-purpose VRAM region.
-
-v1 -> v2:
-- update commit message of "drm/xe: Introduce new BO flag XE_BO_FLAG_FORCE_USER_VRAM"
+v2:
 - replaced for_each_bo_flag_vram with the improved
-  for_each_set_bo_vram_flag helper
-- moved the VRAM flag iteration macro definition into xe_bo.c
-- drop unused bo_flgas from bo_vram_flags_to_vram_placement in
-  "drm/xe: Add initial support for separate kernel VRAM region on the tile"
+  for_each_set_bo_vram_flag helper (Matthew)
+- moved the VRAM flag iteration macro definition into xe_bo.c (Matthew)
+- drop unused bo_flgas from bo_vram_flags_to_vram_placement (Matthew)
 - use hweight32 helper in __xe_bo_fixed_placement for readability
+  (Matthew)
+v3: remove unnecessary VRAM fixup id
 
-v2 -> v3:
-- rebase
+Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c           | 78 ++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_bo.h           |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h | 10 +++-
+ drivers/gpu/drm/xe/xe_tile.c         |  8 +++
+ drivers/gpu/drm/xe/xe_vram.c         |  6 ++-
+ 5 files changed, 75 insertions(+), 29 deletions(-)
 
-v3 -> v4:
-- add 'drm/xe: Combine vm->xef and XE_LRC_CREATE_USER_CTX checks to detect userspace context'
-- remove unnecessary VRAM fixup id
-v4 -> v5:
-- rename "Combine vm->xef and XE_LRC_CREATE_USER_CTX checks to detect userspace context"
-  to "Combine userspace context check"
-- remove unused function xe_tile_has_separate_kernel_vram
-- Simplify the conditions in __xe_bo_fixed_placement
-
-Piotr Piórkowski (5):
-  drm/xe: Add initial support for separate kernel VRAM region on the
-    tile
-  drm/xe: Introduce new BO flag XE_BO_FLAG_FORCE_USER_VRAM
-  drm/xe: Force user context allocations in user VRAM
-  drm/xe/pf: Force use user VRAM for LMEM provisioning
-  drm/xe: Combine userspace context check
-
- drivers/gpu/drm/xe/xe_bo.c                 | 78 ++++++++++++++--------
- drivers/gpu/drm/xe/xe_bo.h                 |  3 +-
- drivers/gpu/drm/xe/xe_device_types.h       | 10 ++-
- drivers/gpu/drm/xe/xe_exec_queue.c         |  7 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  3 +-
- drivers/gpu/drm/xe/xe_lrc.c                |  5 +-
- drivers/gpu/drm/xe/xe_lrc.h                |  6 +-
- drivers/gpu/drm/xe/xe_pt.c                 |  2 +-
- drivers/gpu/drm/xe/xe_tile.c               |  8 +++
- drivers/gpu/drm/xe/xe_vram.c               |  6 +-
- 10 files changed, 91 insertions(+), 37 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index fbe81cda15c2..41ccb3242648 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -35,6 +35,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_shrinker.h"
+ #include "xe_sriov_vf_ccs.h"
++#include "xe_tile.h"
+ #include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -82,6 +83,10 @@ static struct ttm_placement tt_placement = {
+ 	.placement = tt_placement_flags,
+ };
+ 
++#define for_each_set_bo_vram_flag(bit__, bo_flags__) \
++	for (unsigned int __bit_tmp = BIT(0); __bit_tmp <= XE_BO_FLAG_VRAM_MASK; __bit_tmp <<= 1) \
++		for_each_if(((bit__) = __bit_tmp) & (bo_flags__) & XE_BO_FLAG_VRAM_MASK)
++
+ bool mem_type_is_vram(u32 mem_type)
+ {
+ 	return mem_type >= XE_PL_VRAM0 && mem_type != XE_PL_STOLEN;
+@@ -214,6 +219,27 @@ static bool force_contiguous(u32 bo_flags)
+ 	       bo_flags & XE_BO_FLAG_PINNED;
+ }
+ 
++static u8 vram_bo_flag_to_tile_id(struct xe_device *xe, u32 vram_bo_flag)
++{
++	xe_assert(xe, vram_bo_flag & XE_BO_FLAG_VRAM_MASK);
++	xe_assert(xe, (vram_bo_flag & (vram_bo_flag - 1)) == 0);
++
++	return __ffs(vram_bo_flag >> (__ffs(XE_BO_FLAG_VRAM0) - 1)) - 1;
++}
++
++static u32 bo_vram_flags_to_vram_placement(struct xe_device *xe, u32 vram_flag,
++					   enum ttm_bo_type type)
++{
++	u8 tile_id = vram_bo_flag_to_tile_id(xe, vram_flag);
++
++	xe_assert(xe, tile_id < xe->info.tile_count);
++
++	if (type == ttm_bo_type_kernel)
++		return xe->tiles[tile_id].mem.kernel_vram->placement;
++	else
++		return xe->tiles[tile_id].mem.vram->placement;
++}
++
+ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
+ {
+@@ -246,12 +272,15 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ }
+ 
+ static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
+-			 u32 bo_flags, u32 *c)
++			 u32 bo_flags, enum ttm_bo_type type, u32 *c)
+ {
+-	if (bo_flags & XE_BO_FLAG_VRAM0)
+-		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
+-	if (bo_flags & XE_BO_FLAG_VRAM1)
+-		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
++	u32 vram_flag;
++
++	for_each_set_bo_vram_flag(vram_flag, bo_flags) {
++		u32 pl = bo_vram_flags_to_vram_placement(xe, vram_flag, type);
++
++		add_vram(xe, bo, bo->placements, bo_flags, pl, c);
++	}
+ }
+ 
+ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+@@ -270,11 +299,11 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+ }
+ 
+ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+-				       u32 bo_flags)
++				       u32 bo_flags, enum ttm_bo_type type)
+ {
+ 	u32 c = 0;
+ 
+-	try_add_vram(xe, bo, bo_flags, &c);
++	try_add_vram(xe, bo, bo_flags, type, &c);
+ 	try_add_system(xe, bo, bo_flags, &c);
+ 	try_add_stolen(xe, bo, bo_flags, &c);
+ 
+@@ -290,10 +319,10 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+ }
+ 
+ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+-			      u32 bo_flags)
++			      u32 bo_flags, enum ttm_bo_type type)
+ {
+ 	xe_bo_assert_held(bo);
+-	return __xe_bo_placement_for_flags(xe, bo, bo_flags);
++	return __xe_bo_placement_for_flags(xe, bo, bo_flags, type);
+ }
+ 
+ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+@@ -2165,7 +2194,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 	xe_validation_assert_exec(xe, exec, &bo->ttm.base);
+ 	if (!(flags & XE_BO_FLAG_FIXED_PLACEMENT)) {
+-		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
++		err = __xe_bo_placement_for_flags(xe, bo, bo->flags, type);
+ 		if (WARN_ON(err)) {
+ 			xe_ttm_bo_destroy(&bo->ttm);
+ 			return ERR_PTR(err);
+@@ -2223,34 +2252,31 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ }
+ 
+ static int __xe_bo_fixed_placement(struct xe_device *xe,
+-				   struct xe_bo *bo,
++				   struct xe_bo *bo, enum ttm_bo_type type,
+ 				   u32 flags,
+ 				   u64 start, u64 end, u64 size)
+ {
+ 	struct ttm_place *place = bo->placements;
++	u32 vram_flag, vram_stolen_flags;
+ 
+ 	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
+ 		return -EINVAL;
+ 
++	vram_flag = flags & XE_BO_FLAG_VRAM_MASK;
++	vram_stolen_flags = (flags & (XE_BO_FLAG_STOLEN)) | vram_flag;
++
++	/* check if more than one VRAM/STOLEN flag is set */
++	if (hweight32(vram_stolen_flags) > 1)
++		return -EINVAL;
++
+ 	place->flags = TTM_PL_FLAG_CONTIGUOUS;
+ 	place->fpfn = start >> PAGE_SHIFT;
+ 	place->lpfn = end >> PAGE_SHIFT;
+ 
+-	switch (flags & (XE_BO_FLAG_STOLEN | XE_BO_FLAG_VRAM_MASK)) {
+-	case XE_BO_FLAG_VRAM0:
+-		place->mem_type = XE_PL_VRAM0;
+-		break;
+-	case XE_BO_FLAG_VRAM1:
+-		place->mem_type = XE_PL_VRAM1;
+-		break;
+-	case XE_BO_FLAG_STOLEN:
++	if (flags & XE_BO_FLAG_STOLEN)
+ 		place->mem_type = XE_PL_STOLEN;
+-		break;
+-
+-	default:
+-		/* 0 or multiple of the above set */
+-		return -EINVAL;
+-	}
++	else
++		place->mem_type = bo_vram_flags_to_vram_placement(xe, vram_flag, type);
+ 
+ 	bo->placement = (struct ttm_placement) {
+ 		.num_placement = 1,
+@@ -2279,7 +2305,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 			return bo;
+ 
+ 		flags |= XE_BO_FLAG_FIXED_PLACEMENT;
+-		err = __xe_bo_fixed_placement(xe, bo, flags, start, end, size);
++		err = __xe_bo_fixed_placement(xe, bo, type, flags, start, end, size);
+ 		if (err) {
+ 			xe_bo_free(bo);
+ 			return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index a77af42b5f9e..9a8401300b15 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -122,7 +122,7 @@ struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_til
+ int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, struct xe_bo **src);
+ 
+ int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+-			      u32 bo_flags);
++			      u32 bo_flags, enum ttm_bo_type type);
+ 
+ static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 53264b2bb832..1d2718b70a5c 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -158,7 +158,15 @@ struct xe_tile {
+ 	/** @mem: memory management info for tile */
+ 	struct {
+ 		/**
+-		 * @mem.vram: VRAM info for tile.
++		 * @mem.kernel_vram: kernel-dedicated VRAM info for tile.
++		 *
++		 * Although VRAM is associated with a specific tile, it can
++		 * still be accessed by all tiles' GTs.
++		 */
++		struct xe_vram_region *kernel_vram;
++
++		/**
++		 * @mem.vram: general purpose VRAM info for tile.
+ 		 *
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index d49ba3401963..6edb5062c1da 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -124,6 +124,14 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
+ 		return -ENOMEM;
+ 	tile->mem.vram = vram;
+ 
++	/*
++	 * If the kernel_vram is not already allocated,
++	 * it means that tile has common VRAM region for
++	 * kernel and user space.
++	 */
++	if (!tile->mem.kernel_vram)
++		tile->mem.kernel_vram = tile->mem.vram;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index b44ebf50fedb..7adfccf68e4c 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -13,6 +13,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_assert.h"
++#include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_mcr.h"
+@@ -283,8 +284,11 @@ static void vram_fini(void *arg)
+ 
+ 	xe->mem.vram->mapping = NULL;
+ 
+-	for_each_tile(tile, xe, id)
++	for_each_tile(tile, xe, id) {
+ 		tile->mem.vram->mapping = NULL;
++		if (tile->mem.kernel_vram)
++			tile->mem.kernel_vram->mapping = NULL;
++	}
+ }
+ 
+ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
 -- 
 2.34.1
 
