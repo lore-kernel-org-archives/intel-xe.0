@@ -4,113 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77ECACAC5B0
-	for <intel-xe@archiver.kernel.org>; Sat,  4 Oct 2025 10:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA530CAC5B0
+	for <intel-xe@archiver.kernel.org>; Sat,  4 Oct 2025 16:20:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2222910E220;
-	Sat,  4 Oct 2025 10:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E79610E234;
+	Sat,  4 Oct 2025 16:20:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="E599u2q3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6keDa5n";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F21710E053
- for <intel-xe@lists.freedesktop.org>; Sat,  4 Oct 2025 10:08:31 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59429oNX005808
- for <intel-xe@lists.freedesktop.org>; Sat, 4 Oct 2025 10:08:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=oF4ylOnxHy3iXVmpLJewAkMc
- OvTMeYc76t5jsgQhmCs=; b=E599u2q3z3ewTUqBqKrdq1Rd0bkhpv2DeC+P67hH
- DLHHEe7yf7vk/Bhxatf71vX0TbLlB8Eryb5pAkB1ZbJxIGwr1jAU/aLuLoj86IXj
- K+cUe+Ss4htF4sL9MqHL3AqKxoLiWihXQcdpZ+3s/j/C4sw4FerU6IIlW+6GrNLP
- zMP9QyXfjuHgAqPfia4By0WrAS3Pb0FkOX4U1hr+DpqCsI3S2VOVyx4WQwIDczWV
- hgxiWDWHGSHOYTp7hNKGPPvSgJtTQZdAipLYx/fSNczZeAZbOxDk/lvVThXOpmHI
- 0+gUMBI/gydLWiMjNkQ3tlC6Xt3CipVJR5ZH9bvAEjo90A==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jthprk62-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Sat, 04 Oct 2025 10:08:30 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-4d77ae03937so85436621cf.3
- for <intel-xe@lists.freedesktop.org>; Sat, 04 Oct 2025 03:08:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759572508; x=1760177308;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oF4ylOnxHy3iXVmpLJewAkMcOvTMeYc76t5jsgQhmCs=;
- b=wryCOyf5mwMrEuteIWWA8M+w56NAHR2E4DycTPIpR5NW/8fpLV5q6xPiaV/eTTA9yP
- wyTU5jU7aLaEF2xJFQtV7CRjLP4Wq3Tywf0Muzl/ZcmwFTX+oJ5XRxH1MD6Y6a4ik07a
- DUqcq1Vtjadtk4vcPEH/mBvH03G3OE9EmTw8nJSpL3ngDkFpHB4Olh/+QhbizkdaR69G
- hVgEGgOzFlg4bnZ74hEkwdM8DEUE/N3NTvwR4thB5unVL3gCCBw3RC14PtriUk9gm+nX
- k6ahmTET4iLM2sPKXOSF2s8CZMAswfJta/HE2vQlr+OyW2izxe9VYNR346pvvhrXFKQ9
- aCUg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU6QvBIaWaA9nJSFqdWKKEsy3x7VuiRmFVTRVITCifg/DQJLv1+wYsUWUf2IwkrFFZUCg5Z1ttP2g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwdYg4YfmDO17r0LFFQyNT4K4gw9TvHlLu1QBjUCuy0Jfh0HUB0
- TURH0FC5aaO0tlFpmYum7ABNHnffiugZs+v+qi/hCNUUuFuRBifMfwPp+PVCVpd8LO4dcLBHE/z
- DoYHBwvS1JPpyEmbMVZYgao/7VIetviRhS8STlz9GcLYXGmNSoRQ9UIpJsJE//+qck40gqLdNMS
- Qj2Q==
-X-Gm-Gg: ASbGncvdRPTy11xitbga/xRHK15PmzVQCUVJ73NPA4G7hSJhIzW8hopMuGZMUrTITCB
- UAlt9PMcFYn0xZxZwWedLTXlm4WFXk1UNlUDR2M7ViTyRTFnTjT8lang7FXAaVTutsMk6nOu3KW
- 634Zi+CFcQX1CmkEBI8o7VZWwEjfajoJa3u7FLEtuNZOAuKKPPTRLKJ9KqBKB1S0U5vMpRna+FQ
- ZQLxqQaGKJfqQrNjadFWiIyXniibV0dO9+jv29fjCYSMefNE2zVyeQ5xL2bSNbQycIaFV3015kC
- e3pnuugfrcLpG8XjWW+kS89je6drtNZEPmuP144oYart8MXZay0YzF2cEks40RCtkMW1TZuBCEU
- TDvUc9tQnBJ9GWeXAoBrvNU3k65+9FoTWC/9EsBpa3Zv82wZCbCcKYpjz5w==
-X-Received: by 2002:ac8:7d82:0:b0:4b3:50b0:d7b with SMTP id
- d75a77b69052e-4e576ae4d3amr71937171cf.61.1759572508526; 
- Sat, 04 Oct 2025 03:08:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEDB8YON6+IOdqT/W12uoEsRDZ0RPKvejXjWXeyKQTp7j3QpYmN3/JnOt7VY11YVTXkprzbPw==
-X-Received: by 2002:ac8:7d82:0:b0:4b3:50b0:d7b with SMTP id
- d75a77b69052e-4e576ae4d3amr71936921cf.61.1759572508072; 
- Sat, 04 Oct 2025 03:08:28 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-373ba4a6015sm23709331fa.45.2025.10.04.03.08.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 04 Oct 2025 03:08:26 -0700 (PDT)
-Date: Sat, 4 Oct 2025 13:08:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nemesa Garg <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Adarsh G M <Adarsh.g.m@intel.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [PATCH 01/10] drm/drm_crtc: Introduce sharpness strength property
-Message-ID: <epzspujsf2o4wq5ykswe7a3hvrb3vy5wgenglfopmkuepyfstm@5kkpxstpyc3r>
-References: <20251001063500.1259687-1-nemesa.garg@intel.com>
- <20251001063500.1259687-2-nemesa.garg@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCAB110E234
+ for <intel-xe@lists.freedesktop.org>; Sat,  4 Oct 2025 16:20:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759594822; x=1791130822;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZAScubyeg89ZJkv6t0lCmlMU8esolYboT7o7cS4t0R4=;
+ b=D6keDa5nhKJmBfzk0adpdJfB2WTagrPTX2BnNQCjdr4q/KOGKkq41n4v
+ oquPO1tOR+WYZvCcyuo90HetqLlqynhIPq/vyKHY3EszRtjkM+XqwFPyc
+ Z4TNV0QCRX3e6ens03ZLgbhrAec4+Enw3CqnU46cpYdZwVvv454rCoGqz
+ yc/H9+/cm3YJbloQn7F5W0ppgNZTMWOQt09ikyRAUj9br11eKnoeOmszN
+ 3mjJQMTf/atk+/+V69IfiGSkumJYUd5o+t5rSgtKFsHaRqLnIKK0rJWTT
+ 38he/zwjEQPBa08lbEExE8rjlxxUMBAVD9Yax0SJKCG0MW3fbsdClsm+8 g==;
+X-CSE-ConnectionGUID: rfelpz2kQ02MWSISRqSZtA==
+X-CSE-MsgGUID: ZYZpHifDTDC+IivCqWDRag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11572"; a="84465952"
+X-IronPort-AV: E=Sophos;i="6.18,315,1751266800"; d="scan'208";a="84465952"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2025 09:20:22 -0700
+X-CSE-ConnectionGUID: RcqHnk1ATXe4qWjnTdgqJg==
+X-CSE-MsgGUID: Fj1lPMYVRaaM7/LLrKeO4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,315,1751266800"; d="scan'208";a="178809120"
+Received: from smanmadh-mobl.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.117.173])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2025 09:20:20 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH v2] drm/xe/pf: Make the late-initialization really late
+Date: Sat,  4 Oct 2025 18:20:08 +0200
+Message-ID: <20251004162008.1782-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251001063500.1259687-2-nemesa.garg@intel.com>
-X-Proofpoint-GUID: hT646FZSVQq4172vk1ubANdLIYzeEVmk
-X-Authority-Analysis: v=2.4 cv=N5gk1m9B c=1 sm=1 tr=0 ts=68e0f21e cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=QyXUC8HyAAAA:8 a=SGaxUKKO3T6AHWD8hvkA:9
- a=+jEqtf1s3R9VXZ0wqowq2kgwd+I=:19 a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxNiBTYWx0ZWRfX/FIg8bFY141g
- EgtRiv57/8gYBF38r0pnqjK7HqwCyFCanx+V8yKb3bsPBA8uNFIOeledu/DR+DK0PXeoT7Ngfhk
- xB0XjjHvB1Vlcmod6HQLVPM4zqxa3NZP6wxjpnTb0V5oqB7HTsu++xXeNe6XVqzUyoDFpm7mTze
- 9qSmYiOt6smLZpXNxzWA9lMZEn8p2q0j8d6dIXnz73SBcDFU9gmIrkYdRmIJqgG9TSGzGApsmuB
- qrP3ubqwyJmx77rkI53k9yF4AY51gjVqrCxiSDykhmo14yWpJ7tftPQIVuniHoxXn7vzDh1HB4Q
- DuHM6AlH090TUcIJqTo7n1J57sBxlEv1nEq2Yn69ARyXkFW3u2KLKDHcIhowb2dEsNg4D1vPjEM
- BEA8o1eET4DUvxaNaw3j9sbpb4xgyw==
-X-Proofpoint-ORIG-GUID: hT646FZSVQq4172vk1ubANdLIYzeEVmk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-03_07,2025-10-02_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 clxscore=1015 suspectscore=0 adultscore=0
- impostorscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2510040016
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,86 +66,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 01, 2025 at 12:04:51PM +0530, Nemesa Garg wrote:
-> Introduce a new crtc property "SHARPNESS_STRENGTH" that allows
-> the user to set the intensity so as to get the sharpness effect.
-> The value of this property can be set from 0-255.
-> It is useful in scenario when the output is blurry and user
-> want to sharpen the pixels. User can increase/decrease the
-> sharpness level depending on the content displayed.
-> 
-> v2: Rename crtc property variable [Arun]
->     Add modeset detail in uapi doc[Uma]
-> v3: Fix build issue
-> v4: Modify the subject line[Ankit]
-> 
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Tested-by: Adarsh G M <Adarsh.g.m@intel.com>
-> Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
->  drivers/gpu/drm/drm_crtc.c        | 35 +++++++++++++++++++++++++++++++
->  include/drm/drm_crtc.h            | 18 ++++++++++++++++
->  3 files changed, 57 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index 85dbdaa4a2e2..b2cb5ae5a139 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -419,6 +419,8 @@ static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
->  		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
->  	} else if (property == crtc->scaling_filter_property) {
->  		state->scaling_filter = val;
-> +	} else if (property == crtc->sharpness_strength_property) {
-> +		state->sharpness_strength = val;
->  	} else if (crtc->funcs->atomic_set_property) {
->  		return crtc->funcs->atomic_set_property(crtc, state, property, val);
->  	} else {
-> @@ -456,6 +458,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
->  		*val = 0;
->  	else if (property == crtc->scaling_filter_property)
->  		*val = state->scaling_filter;
-> +	else if (property == crtc->sharpness_strength_property)
-> +		*val = state->sharpness_strength;
->  	else if (crtc->funcs->atomic_get_property)
->  		return crtc->funcs->atomic_get_property(crtc, state, property, val);
->  	else {
-> diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-> index 46655339003d..a7797d260f1e 100644
-> --- a/drivers/gpu/drm/drm_crtc.c
-> +++ b/drivers/gpu/drm/drm_crtc.c
-> @@ -229,6 +229,25 @@ struct dma_fence *drm_crtc_create_fence(struct drm_crtc *crtc)
->   * 		Driver's default scaling filter
->   * 	Nearest Neighbor:
->   * 		Nearest Neighbor scaling filter
-> + * SHARPNESS_STRENGTH:
-> + *	Atomic property for setting the sharpness strength/intensity by userspace.
-> + *
-> + *	The value of this property is set as an integer value ranging
-> + *	from 0 - 255 where:
-> + *
-> + *	0: Sharpness feature is disabled(default value).
-> + *
-> + *	1: Minimum sharpness.
-> + *
-> + *	255: Maximum sharpness.
-> + *
-> + *	User can gradually increase or decrease the sharpness level and can
-> + *	set the optimum value depending on content.
-> + *	This value will be passed to kernel through the UAPI.
-> + *	The setting of this property does not require modeset.
-> + *	The sharpness effect takes place post blending on the final composed output.
-> + *	If the feature is disabled, the content remains same without any sharpening effect
-> + *	and when this feature is applied, it enhances the clarity of the content.
+While the late PF per-GT initialization is done quite late in the
+single GT initialization flow, in case of multi-GT platforms, it
+may still be done before other GT early initialization. That leads
+to some issues during unwind, when there are cross-GT dependencies,
+like resource cleanup that is shared by both GTs, but the other GT
+may already be sanitized or disabled.
 
-I can repeat my question from XDC: should we extend this to negative
-values, allowing softening (unsharpening) the image?
+The following errors could be observed when trying to unload the PF
+driver with some LMEM/VRAM already provisioned for few VFs:
 
->   */
->  
->  __printf(6, 0)
+ [ ] xe 0000:03:00.0: DEVRES REL ffff88814708f240 fini_config (16 bytes)
+ [ ] xe 0000:03:00.0: [drm:lmtt_write_pte [xe]] PF: LMTT: WRITE level=2 index=1 pte=0x0
+ [ ] xe 0000:03:00.0: [drm:lmtt_invalidate_hw [xe]] PF: LMTT: num_fences=2 err=-19
+ [ ] xe 0000:03:00.0: [drm:lmtt_pt_free [xe]] PF: LMTT: level=0 addr=53a470000
+ [ ] xe 0000:03:00.0: [drm:lmtt_pt_free [xe]] PF: LMTT: level=1 addr=53a4b0000
+ [ ] xe 0000:03:00.0: [drm:lmtt_invalidate_hw [xe]] PF: LMTT: num_fences=2 err=-19
+ [ ] xe 0000:03:00.0: [drm] PF: LMTT0 invalidation failed (-ENODEV)
+ [ ] xe 0000:03:00.0: [drm:lmtt_write_pte [xe]] PF: LMTT: WRITE level=2 index=2 pte=0x0
+ [ ] xe 0000:03:00.0: [drm:lmtt_invalidate_hw [xe]] PF: LMTT: num_fences=2 err=-19
+ [ ] xe 0000:03:00.0: [drm:lmtt_pt_free [xe]] PF: LMTT: level=0 addr=539b70000
+ [ ] xe 0000:03:00.0: [drm:lmtt_pt_free [xe]] PF: LMTT: level=1 addr=539bf0000
+ [ ] xe 0000:03:00.0: [drm:lmtt_invalidate_hw [xe]] PF: LMTT: num_fences=2 err=-19
+ [ ] xe 0000:03:00.0: [drm] PF: LMTT0 invalidation failed (-ENODEV)
 
+Move all PF per-GT late initialization to the already defined late
+SR-IOV initialization function to allow proper order of the cleanup
+actions.
+
+While around, format all PF function stubs as one-liners, like many
+other stubs are defined in the Xe driver.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+v2: add stub for builds without CONFIG_PCI_IOV (CI)
+---
+ drivers/gpu/drm/xe/xe_gt.c       |  4 +---
+ drivers/gpu/drm/xe/xe_sriov.c    |  2 ++
+ drivers/gpu/drm/xe/xe_sriov_pf.c | 25 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf.h | 13 ++++---------
+ 4 files changed, 32 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index b77572a19548..8fc3a6929d6c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -573,10 +573,8 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
+ 	if (IS_SRIOV_PF(gt_to_xe(gt)) && xe_gt_is_main_type(gt))
+ 		xe_lmtt_init_hw(&gt_to_tile(gt)->sriov.pf.lmtt);
+ 
+-	if (IS_SRIOV_PF(gt_to_xe(gt))) {
+-		xe_gt_sriov_pf_init(gt);
++	if (IS_SRIOV_PF(gt_to_xe(gt)))
+ 		xe_gt_sriov_pf_init_hw(gt);
+-	}
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index 7d2d6de2aabf..ea411944609b 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -167,6 +167,8 @@ const char *xe_sriov_function_name(unsigned int n, char *buf, size_t size)
+  */
+ int xe_sriov_init_late(struct xe_device *xe)
+ {
++	if (IS_SRIOV_PF(xe))
++		return xe_sriov_pf_init_late(xe);
+ 	if (IS_SRIOV_VF(xe))
+ 		return xe_sriov_vf_init_late(xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 4698348c010a..2814f29f1093 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -103,6 +103,31 @@ int xe_sriov_pf_init_early(struct xe_device *xe)
+ 	return 0;
+ }
+ 
++/**
++ * xe_sriov_pf_init_late() - Late initialization of the SR-IOV PF.
++ * @xe: the &xe_device to initialize
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_init_late(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int err;
++
++	xe_assert(xe, IS_SRIOV_PF(xe));
++
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_init(gt);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ /**
+  * xe_sriov_pf_wait_ready() - Wait until PF is ready to operate.
+  * @xe: the &xe_device to test
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.h b/drivers/gpu/drm/xe/xe_sriov_pf.h
+index e6cf930ecde4..cba3fde9581f 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.h
+@@ -15,18 +15,13 @@ struct xe_device;
+ #ifdef CONFIG_PCI_IOV
+ bool xe_sriov_pf_readiness(struct xe_device *xe);
+ int xe_sriov_pf_init_early(struct xe_device *xe);
++int xe_sriov_pf_init_late(struct xe_device *xe);
+ int xe_sriov_pf_wait_ready(struct xe_device *xe);
+ void xe_sriov_pf_print_vfs_summary(struct xe_device *xe, struct drm_printer *p);
+ #else
+-static inline bool xe_sriov_pf_readiness(struct xe_device *xe)
+-{
+-	return false;
+-}
+-
+-static inline int xe_sriov_pf_init_early(struct xe_device *xe)
+-{
+-	return 0;
+-}
++static inline bool xe_sriov_pf_readiness(struct xe_device *xe) { return false; }
++static inline int xe_sriov_pf_init_early(struct xe_device *xe) { return 0; }
++static inline int xe_sriov_pf_init_late(struct xe_device *xe) { return 0; }
+ #endif
+ 
+ #endif
 -- 
-With best wishes
-Dmitry
+2.47.1
+
