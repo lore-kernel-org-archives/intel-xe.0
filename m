@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69F2BCAC5BB
-	for <intel-xe@archiver.kernel.org>; Sun,  5 Oct 2025 13:36:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9BE1CAC5B8
+	for <intel-xe@archiver.kernel.org>; Sun,  5 Oct 2025 13:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19C7A10E2B0;
-	Sun,  5 Oct 2025 13:36:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcUI/OMU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765DC10E2AE
- for <intel-xe@lists.freedesktop.org>; Sun,  5 Oct 2025 13:36:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759671415; x=1791207415;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=awyrO8J+AYxrJRWzH5qgCohrrKXqv0edIUvRtDFLr10=;
- b=EcUI/OMUyKMuvCPiryMB0dUADN7OCITvU0H/0bxKnKFPl6lN3bXM6OBv
- S09MN4WZwUsBHTLMNFsyXOeT1h5gWnjf6EZEpcyzbduq+kBFWLqMO2cOK
- UW1HbMZgDDzqP5Ob/lL7go3APgquOroIjPjWNHkZVF/RWox7IRSOoaWQ5
- w369QiO6aoYP3kJhkIH7+xAMdunKN0ncXJJUnLGAnlsyyjvfVBSqIkQEX
- cCIZF3Cx2e/9RPwLujA6kSrB18A3Fz+KQ6WBmX4465SoN75lOouJU4Tr3
- V4tnwNDgPybA6b78KBFeZuc3YsoKmnXL7YwET2UElt8vw88myvJeAVepV A==;
-X-CSE-ConnectionGUID: jlxJiGeZQWSJ7TGdEha8MA==
-X-CSE-MsgGUID: YqOkdFyLRx+dJvu5Dkqxxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61779324"
-X-IronPort-AV: E=Sophos;i="6.18,318,1751266800"; d="scan'208";a="61779324"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 06:36:55 -0700
-X-CSE-ConnectionGUID: 9moTRz52QaOjFeLbsyOcrA==
-X-CSE-MsgGUID: n4Wc/3hyT9qmaRpWNCq+IQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,318,1751266800"; d="scan'208";a="179348611"
-Received: from smanmadh-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.117.173])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2025 06:36:54 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 4/4] drm/xe: Update MEMIRQ to use tile-based printk macros
-Date: Sun,  5 Oct 2025 15:36:40 +0200
-Message-ID: <20251005133641.2651-5-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251005133641.2651-1-michal.wajdeczko@intel.com>
-References: <20251005133641.2651-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881C710E2A6;
+	Sun,  5 Oct 2025 13:42:43 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C802210E2A6;
+ Sun,  5 Oct 2025 13:42:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Update_tile-based_message?=
+ =?utf-8?q?s?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sun, 05 Oct 2025 13:42:41 -0000
+Message-ID: <175967176181.6312.17379315551679157117@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251005133641.2651-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251005133641.2651-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,40 +36,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have tile-based printk macros, there is no need to
-manually prepare MEMIRQ specific messages to include tile id.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_memirq.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Series: Update tile-based messages
+URL   : https://patchwork.freedesktop.org/series/155424/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 49c45ec3e83c..0affede05820 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -14,16 +14,15 @@
- #include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_gt.h"
--#include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_hw_engine.h"
- #include "xe_map.h"
- #include "xe_memirq.h"
-+#include "xe_tile_printk.h"
- 
- #define memirq_assert(m, condition)	xe_tile_assert(memirq_to_tile(m), condition)
- #define memirq_printk(m, _level, _fmt, ...)			\
--	drm_##_level(&memirq_to_xe(m)->drm, "MEMIRQ%u: " _fmt,	\
--		     memirq_to_tile(m)->id, ##__VA_ARGS__)
-+	xe_tile_##_level(memirq_to_tile(m), "MEMIRQ: " _fmt, ##__VA_ARGS__)
- 
- #ifdef CONFIG_DRM_XE_DEBUG_MEMIRQ
- #define memirq_debug(m, _fmt, ...)	memirq_printk(m, dbg, _fmt, ##__VA_ARGS__)
--- 
-2.47.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 52c8c793e65348dfa03124030e762f9c182cbc45
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Sun Oct 5 15:36:40 2025 +0200
+
+    drm/xe: Update MEMIRQ to use tile-based printk macros
+    
+    We already have tile-based printk macros, there is no need to
+    manually prepare MEMIRQ specific messages to include tile id.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch af95880a54d743a43dd2d575764e0807a89da01f drm-intel
+4a232f000ad5 drm/xe: Update SRIOV printk macros
+10ece9000a95 drm/xe: Add tile-based SRIOV printk macros
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_gt' - possible side-effects?
+#34: FILE: drivers/gpu/drm/xe/xe_gt_sriov_printk.h:12:
++#define __XE_GT_SRIOV_PRINTK_FMT(_gt, _fmt, ...) \
++	__XE_TILE_SRIOV_PRINTK_FMT((_gt)->tile, __XE_GT_PRINTK_FMT((_gt), _fmt, ##__VA_ARGS__))
+
+-:44: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#44: 
+new file mode 100644
+
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_tile' - possible side-effects?
+#63: FILE: drivers/gpu/drm/xe/xe_tile_sriov_printk.h:15:
++#define xe_tile_sriov_printk(_tile, _level, _fmt, ...) \
++	xe_sriov_##_level((_tile)->xe, __XE_TILE_SRIOV_PRINTK_FMT((_tile), _fmt, ##__VA_ARGS__))
+
+total: 0 errors, 1 warnings, 2 checks, 48 lines checked
+5e8b70562981 drm/xe/pf: Update LMTT to use tile-based messages
+52c8c793e653 drm/xe: Update MEMIRQ to use tile-based printk macros
+
 
