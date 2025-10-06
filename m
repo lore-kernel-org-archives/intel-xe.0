@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76114CCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4895ACCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:17:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DC4010E428;
-	Mon,  6 Oct 2025 11:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05DF910E33F;
+	Mon,  6 Oct 2025 11:17:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y9PFoBSv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J8Bkq/lP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC8F10E40F
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B69AC10E33F
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749046; x=1791285046;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=VTYe0e+DubS5K6VRF5QtChbZM8AEvrrn6HGR5YoHVno=;
- b=Y9PFoBSv/BzQHMT63hUZxMDRUB+QP6UKYpCTwJm7flnZZWtyxIU7AyGt
- k9BSKk6wph5LZvlOvV/rp0d4GbxOFKm9Lmo87oh90Ds9aq/mpzlCjvU9h
- u6LjAKYfNeWypCNIMcFA5IUtqu1RBOwYzYMdSvsyDZEPCyWd87mW+XVWF
- OQ1mzqQQtO+FbdoaMS+ToL+RhGB4kIdW1doAlwmrKWYYG2LxTNaq9kP2W
- +BYVCSHDxoXW3zUG8kBGgQ3Jzv3bcIMMjqLnwXTJQ+PecfcOWkBWlLdL9
- +KOplRtooiD+I4v5nUEmHuiYkl2tC1QdNNmPlWeCBB+2mb5C8YD17ZZbu g==;
-X-CSE-ConnectionGUID: JwshQsF0RQGMRqBDfn6tMw==
-X-CSE-MsgGUID: IqlRfrcuTredlL0B1/YzMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020400"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020400"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:45 -0700
-X-CSE-ConnectionGUID: oofsvTjuR4igk1wQYqRUPg==
-X-CSE-MsgGUID: o0VASWyiRJehXAI7Laxj/Q==
+ t=1759749445; x=1791285445;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nGD/YzKLqDt0OqvfvU/MWTyJLS4Of9xdihIAS2rtjUM=;
+ b=J8Bkq/lPHrn9WpyCHFh5iKVq2yTyar8TEt/Blkzwk9Ii/elh1/X2pSEt
+ ATk2kqwU2CmnUW5C6ktmWB7v+MRP/SwQoAd3YIYnF8303jaKJOGvZMZGP
+ zDJWc4x/4SS12mAIn54ovYL5L2Icpjckep8dwCcYOoRAVFZMgRmF0KhdG
+ 33v3/uRe+rl2gptrxDMjV9bMjZN8o6epBjhACyWwk5g2S0Blh0slt27vc
+ 5Az52Fbv9mWG8oIEZDkOoByx3qFpLr8NBz3x0Y7OFWGvbPaNiAi4lIBdV
+ cBqtkolS4FCE+27fzQeTqCOQ+cc8Gk0xIlsNJPv9hI52cZt+hwq6reKD9 Q==;
+X-CSE-ConnectionGUID: F/NnLMnwRheAEAGegRnqog==
+X-CSE-MsgGUID: goCvSEX1SmGkPsRC5gd7wQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61825384"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61825384"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 04:17:24 -0700
+X-CSE-ConnectionGUID: 98adShYfT+m6gsnKbDYVjA==
+X-CSE-MsgGUID: Ca3De+BJS/2dI7xtCRWjUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655242"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:45 -0700
-From: Matthew Brost <matthew.brost@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="216946857"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO
+ mkuoppal-desk.intel.com) ([10.245.245.44])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 04:17:21 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 23/30] drm/xe: Move queue init before LRC creation
-Date: Mon,  6 Oct 2025 04:10:31 -0700
-Message-Id: <20251006111038.2234860-24-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
-References: <20251006111038.2234860-1-matthew.brost@intel.com>
+Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
+ lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
+ maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Subject: [PATCH 00/20] Intel Xe GPU Debug Support (eudebug) v5
+Date: Mon,  6 Oct 2025 14:16:50 +0300
+Message-ID: <20251006111711.201906-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,260 +71,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A queue must be in the submission backend's tracking state before the
-LRC is created to avoid a race condition where the LRC's GGTT addresses
-are not properly fixed up during VF post-migration recovery.
+Hi,
 
-Move the queue initialization—which adds the queue to the submission
-backend's tracking state—before LRC creation.
+This is the v5 patch series for Intel Xe GPU debug support (eudebug).
 
-v2:
- - Wait on VF GGTT fixes before creating LRC (testing)
-v5:
- - Adjust comment in code (Tomasz)
- - Reduce race window
+As the initial feedback on v4 was positive, we brought the
+rest of the features from v3, namely the page fault support
+into this series.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c        | 45 ++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 39 +++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
- drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
- drivers/gpu/drm/xe/xe_lrc.h               | 10 +++++
- 7 files changed, 92 insertions(+), 13 deletions(-)
+This series continues from the following previous submissions:
+- v1: https://lists.freedesktop.org/archives/intel-xe/2024-July/043605.html
+- v2: https://lists.freedesktop.org/archives/intel-xe/2024-October/052260.html
+- v3: https://lists.freedesktop.org/archives/intel-xe/2024-December/061476.html
+- v4: https://lists.freedesktop.org/archives/intel-xe/2025-August/091645.html
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 7621089a47fe..90cbc95f8e2e 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -15,6 +15,7 @@
- #include "xe_dep_scheduler.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_sriov_vf.h"
- #include "xe_hw_engine_class_sysfs.h"
- #include "xe_hw_engine_group.h"
- #include "xe_hw_fence.h"
-@@ -205,17 +206,34 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
- 		flags |= XE_LRC_CREATE_USER_CTX;
- 
-+	err = q->ops->init(q);
-+	if (err)
-+		return err;
-+
-+	/*
-+	 * This must occur after q->ops->init to avoid race conditions during VF
-+	 * post-migration recovery, as the fixups for the LRC GGTT addresses
-+	 * depend on the queue being present in the backend tracking structure.
-+	 *
-+	 * In addition to above, we must wait on inflight GGTT changes to avoid
-+	 * writing out stale values here. Such wait provides a solid solution
-+	 * (without a race) only if the function can detect migration instantly
-+	 * from the moment vCPU resumes execution.
-+	 */
- 	for (i = 0; i < q->width; ++i) {
--		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
--		if (IS_ERR(q->lrc[i])) {
--			err = PTR_ERR(q->lrc[i]);
-+		struct xe_lrc *lrc;
-+
-+		xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
-+		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
-+				    q->msix_vec, flags);
-+		if (IS_ERR(lrc)) {
-+			err = PTR_ERR(lrc);
- 			goto err_lrc;
- 		}
--	}
- 
--	err = q->ops->init(q);
--	if (err)
--		goto err_lrc;
-+		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
-+		WRITE_ONCE(q->lrc[i], lrc);
-+	}
- 
- 	return 0;
- 
-@@ -1121,9 +1139,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
- 	int err = 0;
- 
- 	for (i = 0; i < q->width; ++i) {
--		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
--		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
--		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
-+		struct xe_lrc *lrc;
-+
-+		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
-+		lrc = READ_ONCE(q->lrc[i]);
-+		if (!lrc)
-+			continue;
-+
-+		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
-+		xe_lrc_update_hwctx_regs_with_address(lrc);
-+		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
- 		if (err)
- 			break;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index f83d421ac9d3..769d05517f93 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	const struct drm_sched_init_args args = {
- 		.ops = &drm_sched_ops,
- 		.num_rqs = 1,
--		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
-+		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
- 		.hang_limit = XE_SCHED_HANG_LIMIT,
- 		.timeout = XE_SCHED_JOB_TIMEOUT,
- 		.name = q->hwe->name,
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 8074ffb924ce..bf1806e90370 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -487,6 +487,11 @@ static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
- 				 shift, config->ggtt_base);
- 		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
- 	}
-+
-+	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
-+	smp_wmb();	/* Ensure above write visible before wake */
-+	wake_up_all(&gt->sriov.vf.migration.wq);
-+
- out:
- 	if (recovery)
- 		mutex_unlock(&ggtt->lock);
-@@ -745,7 +750,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
- 	    !gt->sriov.vf.migration.recovery_teardown) {
- 		gt->sriov.vf.migration.recovery_queued = true;
- 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
--		smp_wmb();	/* Ensure above write visable before wake */
-+		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
-+		smp_wmb();	/* Ensure above writes visable before wake */
- 
- 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
- 
-@@ -1264,6 +1270,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
- 	gt->sriov.vf.migration.scratch = buf;
- 	spin_lock_init(&gt->sriov.vf.migration.lock);
- 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
-+	init_waitqueue_head(&gt->sriov.vf.migration.wq);
- 
- 	return 0;
- }
-@@ -1312,3 +1319,33 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
- 
- 	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
- }
-+
-+static bool vf_valid_ggtt(struct xe_gt *gt)
-+{
-+	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	if (xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
-+	    READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
-+		return false;
-+
-+	return true;
-+}
-+
-+/**
-+ * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
-+ * @gt: the &xe_gt
-+ */
-+void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
-+{
-+	int ret;
-+
-+	if (!IS_SRIOV_VF(gt_to_xe(gt)))
-+		return;
-+
-+	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
-+					       vf_valid_ggtt(gt),
-+					       HZ * 5);
-+	XE_WARN_ON(!ret);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 8c9679414565..63102029d624 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -38,4 +38,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
- void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
- void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
- 
-+void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index c1bd6fdd9ab1..f0bc45a782a4 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/rwsem.h>
- #include <linux/types.h>
-+#include <linux/wait.h>
- #include <linux/workqueue.h>
- #include "xe_uc_fw_types.h"
- 
-@@ -50,6 +51,8 @@ struct xe_gt_sriov_vf_migration {
- 	struct work_struct worker;
- 	/** @lock: Protects recovery_queued, teardown */
- 	spinlock_t lock;
-+	/** @wq: wait queue for migration fixes */
-+	wait_queue_head_t wq;
- 	/** @scratch: Scratch memory for VF recovery */
- 	void *scratch;
- 	/** @recovery_teardown: VF post migration recovery is being torn down */
-@@ -58,6 +61,8 @@ struct xe_gt_sriov_vf_migration {
- 	bool recovery_queued;
- 	/** @recovery_inprogress: VF post migration recovery in progress */
- 	bool recovery_inprogress;
-+	/** @ggtt_need_fixes: VF GGTT needs fixes */
-+	bool ggtt_need_fixes;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9dbdb0b54c8b..48d5133e76a6 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1663,7 +1663,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
- 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
--			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
-+			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    q->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 21a3daab0154..c4a33b135101 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -76,6 +76,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
- 	kref_put(&lrc->refcount, xe_lrc_destroy);
- }
- 
-+/**
-+ * xe_lrc_ring_size() - Xe LRC ring size
-+ *
-+ * Return: Size of LRC size
-+ */
-+static inline size_t xe_lrc_ring_size(void)
-+{
-+	return SZ_16K;
-+}
-+
- size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
- u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
- u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
+Known shortcomings: With multiple debug clients page faults can
+race into how attention polling is stopped/started and lead to
+missing attentions.
+
+# Major Changes from v4
+
+v4 omitted page fault support, it is reworked from v3 and included
+in this series.
+
+### Major Changes from v3
+
+#### 1. Elimination of ptrace_may_access() and pid
+
+In previous series, the connection attempt was made using the process ID
+(PID) as the target. Access was checked using the `ptrace_may_access()`
+helper to achieve security parity with CPU-side debugging.
+
+In v4, this has been changed to connect to a DRM client, using a file
+descriptor as the target. This approach eliminates the need for the
+`ptrace_may_access()` symbol export, as access control is now managed
+through the debugger process's access to the file descriptor. For example,
+accessing a remote DRM client requires the debugger process to
+successfully call `pidfd_getfd()` to obtain a duplicate of the target
+file descriptor.The 1:1 mapping between DRM clients and their debuggers
+eliminates the need for `EVENT_OPEN` and simplifies overall connection
+tracking.
+
+#### 2. ELF binaries not held in kernel memory
+
+In v4, debug data is delivered as a VM bind 'OP_ADD_DEBUG_DATA' extension.
+The ELF binaries are no longer stored within the Xe KMD but are instead
+kept in a file. The file path is passed as part of an extension in
+the newly introduced 'OP_ADD_DEBUG_DATA' VM bind operation. Alternatively
+pseudo-paths can be used to annotate special address ranges similar to
+/proc/<pid>/maps.
+
+#### 3. Debug metadata not carried in VMA struct
+
+Instead of attaching debug data to vma created by 'OP_MAP',
+we introduce separate ops for managing the metadata.
+Debug data is no longer held in the VMA struct. xe_vm contains a
+list of all associated debug data.
+
+#### 4. Reading debug data via debugfs
+
+This revision introduces the possibility to access debug data using per
+client debugfs entries. The intent was to achieve similar interface to
+'/proc/<pid>/maps'
+
+### Supported Hardware with v5
+- Lunarlake (LNL)
+- Battlemage (BMG)
+- Pantherlake (PTL)
+
+The code for this submission can be found at:
+https://gitlab.freedesktop.org/miku/kernel/-/tree/eudebug-v5
+
+Christoph Manszewski (5):
+  drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+  drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+  drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+  drm/xe: Implement SR-IOV and eudebug exclusivity
+  drm/xe: Add xe_client_debugfs and introduce debug_data file
+
+Dominik Grzegorzek (5):
+  drm/xe/eudebug: Introduce exec_queue events
+  drm/xe: Add EUDEBUG_ENABLE exec queue property
+  drm/xe/eudebug: hw enablement for eudebug
+  drm/xe/eudebug: Introduce EU control interface
+  drm/xe/eudebug: Introduce per device attention scan worker
+
+Gwan-gyeong Mun (4):
+  drm/xe/eudebug: Add read/count/compare helper for eu attention
+  drm/xe/eudebug: Introduce EU pagefault handling interface
+  drm/xe/vm: Support for adding null page VMA to VM on request
+  drm/xe/eudebug: Enable EU pagefault handling
+
+Mika Kuoppala (6):
+  drm/xe/eudebug: Introduce eudebug interface
+  drm/xe/eudebug: Introduce discovery for resources
+  drm/xe/eudebug: Add UFENCE events with acks
+  drm/xe/eudebug: vm open/pread/pwrite
+  drm/xe/eudebug: userptr vm pread/pwrite
+  drm/xe/eudebug: Mark guc contexts as debuggable
+
+ drivers/gpu/drm/xe/Kconfig                  |   10 +
+ drivers/gpu/drm/xe/Makefile                 |    7 +-
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h    |    5 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h    |    7 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h        |   43 +
+ drivers/gpu/drm/xe/tests/xe_eudebug.c       |  189 ++
+ drivers/gpu/drm/xe/tests/xe_live_test_mod.c |    5 +
+ drivers/gpu/drm/xe/xe_client_debugfs.c      |  118 +
+ drivers/gpu/drm/xe/xe_client_debugfs.h      |   19 +
+ drivers/gpu/drm/xe/xe_debug_data.c          |  279 +++
+ drivers/gpu/drm/xe/xe_debug_data.h          |   22 +
+ drivers/gpu/drm/xe/xe_debug_data_types.h    |   25 +
+ drivers/gpu/drm/xe/xe_device.c              |   30 +-
+ drivers/gpu/drm/xe/xe_device.h              |   42 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   41 +-
+ drivers/gpu/drm/xe/xe_eudebug.c             | 2360 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h             |  157 ++
+ drivers/gpu/drm/xe/xe_eudebug_hw.c          |  798 +++++++
+ drivers/gpu/drm/xe/xe_eudebug_hw.h          |   36 +
+ drivers/gpu/drm/xe/xe_eudebug_pagefault.c   |  391 +++
+ drivers/gpu/drm/xe/xe_eudebug_pagefault.h   |   15 +
+ drivers/gpu/drm/xe/xe_eudebug_types.h       |  232 ++
+ drivers/gpu/drm/xe/xe_eudebug_vm.c          |  434 ++++
+ drivers/gpu/drm/xe/xe_eudebug_vm.h          |    8 +
+ drivers/gpu/drm/xe/xe_exec.c                |    2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c          |   51 +-
+ drivers/gpu/drm/xe/xe_exec_queue.h          |    2 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |    7 +
+ drivers/gpu/drm/xe/xe_gt.c                  |    1 +
+ drivers/gpu/drm/xe/xe_gt_debug.c            |  243 ++
+ drivers/gpu/drm/xe/xe_gt_debug.h            |   47 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   80 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |    4 +
+ drivers/gpu/drm/xe/xe_hw_engine.h           |   14 +
+ drivers/gpu/drm/xe/xe_lrc.c                 |   10 +
+ drivers/gpu/drm/xe/xe_oa.c                  |    3 +-
+ drivers/gpu/drm/xe/xe_pci_sriov.c           |   10 +
+ drivers/gpu/drm/xe/xe_reg_sr.c              |   21 +-
+ drivers/gpu/drm/xe/xe_reg_sr.h              |    4 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c       |    2 +-
+ drivers/gpu/drm/xe/xe_rtp.c                 |    2 +-
+ drivers/gpu/drm/xe/xe_sync.c                |   47 +-
+ drivers/gpu/drm/xe/xe_sync.h                |    8 +-
+ drivers/gpu/drm/xe/xe_sync_types.h          |   28 +-
+ drivers/gpu/drm/xe/xe_userptr.c             |    4 +
+ drivers/gpu/drm/xe/xe_userptr.h             |   32 +
+ drivers/gpu/drm/xe/xe_vm.c                  |  215 +-
+ drivers/gpu/drm/xe/xe_vm.h                  |    2 +
+ drivers/gpu/drm/xe/xe_vm_types.h            |   32 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules          |    4 +
+ include/uapi/drm/xe_drm.h                   |   59 +
+ include/uapi/drm/xe_drm_eudebug.h           |  229 ++
+ 52 files changed, 6382 insertions(+), 54 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data.h
+ create mode 100644 drivers/gpu/drm/xe/xe_debug_data_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_hw.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_pagefault.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_pagefault.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_vm.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug.h
+ create mode 100644 include/uapi/drm/xe_drm_eudebug.h
+
 -- 
-2.34.1
+2.43.0
 
