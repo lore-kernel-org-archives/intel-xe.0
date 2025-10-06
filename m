@@ -4,189 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7994FCAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 09:20:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F94ACCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 09:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE9510E2F8;
-	Mon,  6 Oct 2025 09:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C40C110E0B1;
+	Mon,  6 Oct 2025 09:21:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MAF/gMcX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nx+w7GEW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B46E10E2F8
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 09:20:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 017ED10E0B1
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 09:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759742413; x=1791278413;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=FowQJFcvXtZxyQAoH38AZfj1n9TSjOIYgUh9LDqdCss=;
- b=MAF/gMcXIV6y6ycLuYTwAWevVfiUBZ4JJjW7MbICLvbcnE6cadze9z9S
- rJKaej7lP/vyclxVadXyaBpYpg4B2YmOIfny2aYbLWSo3P6p86heDFlBl
- aPpz50gtTANL/9zRwGTnNH+HPkZTMhyXGAu/a0X//V+efX9/nJcm28kgo
- fVuaeZnZj0hkA6wYdJmfQsS4ByjHpSxwYx6BS3nDHTivLPY87lKs2iFid
- U0gq6hWpC3FYJ3pLIiyki4lhLyVBdyEDJy//V1EzoQAgpOo1u2WeRgJST
- lcKf+cEZH3LszCM+ZW2hSw/+xQ6UG237UWDFyUE5F8JTCPDIzaqifZpny w==;
-X-CSE-ConnectionGUID: KEvDTcr8QQ+LUkbqStdNDw==
-X-CSE-MsgGUID: 9qxwflVcQKeBcLVuhqTiFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="65560122"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="65560122"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 02:20:12 -0700
-X-CSE-ConnectionGUID: Eg6ZSrbnTli0voJCC96J5w==
-X-CSE-MsgGUID: 2D798NRiTUi13pyQK4JVSg==
+ t=1759742475; x=1791278475;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=7/sbe+wn68odYYZUTAFiHrUWam1DgbpOJpJkxrOMyyM=;
+ b=nx+w7GEW3S7B+Jprz+T+HQNM+CX/97dNAvL9lPTyhqYtYUDlMq7XUAKY
+ VWZgabl2h5TzrM+eGRcYjpfVGehHlu8W8ojICC8OkKue8aK2u4yUW2bgv
+ 7z695itgHqjoPITyFGD4JF4kWjix1u2pSp01uplrKlmua47lqdlkOKEcd
+ ddYFx9NNxqo++xPvYSntWj9dmYDSJeLZwzNq6YVkeWUOzrgCDcldalQrc
+ GJp6llPUOdXaFO/+ldtftnpnjsRm+Ioi0kgP96dL/zfxmdJAVaG19AStW
+ ISqjXKU13S1V/H/bC3Xtz5UU9FpdgssbLF6QswZdRr8S4j0S+iWLlV6MK g==;
+X-CSE-ConnectionGUID: A6khVwsxTmax6wy5/+Vvtg==
+X-CSE-MsgGUID: 2JLLL9pdTfiZi/8tlCy/3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73013605"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73013605"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 02:21:15 -0700
+X-CSE-ConnectionGUID: e6rodQqnTeqXA/9FZQklMQ==
+X-CSE-MsgGUID: qlXKpHa9T/e+Esft1LxhWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180259008"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 02:20:12 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 02:20:11 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 6 Oct 2025 02:20:11 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.7) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 02:20:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NDocxAgAhk+RD48DWc25g2AXzNBxaSB4jwAK6nBbdpU3R8XYSFb23d50rgipP0aUy6ce6URGmO6IYQtOs+WpvBdi96LBK5Dj3xVpiqVmUNVlyG/CG6tcDioeGrn7OQW8clCRS+30ie+OlhWqPSKDSuekUSAMkAwteo2NYlU0yi1xYKnsS8yEW8RrSqWbqp1vkABjp+IqxcaBG6r07AFiKolXJSKWELivjMZ9DzZTVp31v6L7HRehsivWHfX0ZzbPTTDwzxFIW4LWGsNumXUKOLgIvTmTI0jUoVMTceb/2oGHPyhbLWVyBozvCR9xWN7XlbC32Ium1bG67GJza4kgOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FowQJFcvXtZxyQAoH38AZfj1n9TSjOIYgUh9LDqdCss=;
- b=CUgaiXs/STTvSn3m2IdUyKke4ynh9HkYK9cxYeZajjcZRtfg+44FRM3I66sYrbbu7TkHQLTZOgvhR1FOJ1AvXSuTpJvobMsQDHAUulRjeXvTbuDJQ6mw3UkC3hGjcBOgGrBY5WSH5FVi+pWnqDk/Ng2jZd5LTTAgJzb6d9fcAgPhyc95w0y7nbJhUGMvm7XFONfFuzhSgWUM0LerBlfYnC70qfc0covotD4CxYRdnYARB52Y+omWN4NZUIytVQMbXNNTLTrXUrROfl3lfNRhhr8KPOne5RlHavD+OSIlDYTa82MhdI6wp9rqyQnn2hnfReLIJftItvmuBvUz2/l+9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA3PR11MB8987.namprd11.prod.outlook.com (2603:10b6:208:574::18)
- by MW4PR11MB6571.namprd11.prod.outlook.com (2603:10b6:303:1e2::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
- 2025 09:19:59 +0000
-Received: from IA3PR11MB8987.namprd11.prod.outlook.com
- ([fe80::c011:ff94:944e:f96e]) by IA3PR11MB8987.namprd11.prod.outlook.com
- ([fe80::c011:ff94:944e:f96e%6]) with mapi id 15.20.9137.018; Mon, 6 Oct 2025
- 09:19:59 +0000
-From: "Gote, Nitin R" <nitin.r.gote@intel.com>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-Subject: RE: [PATCH] drm/xe: Fix copyright and function naming in
- xe_ttm_vram_mgr
-Thread-Topic: [PATCH] drm/xe: Fix copyright and function naming in
- xe_ttm_vram_mgr
-Thread-Index: AQHcNMLMj79bKaTx10WuSIWvDqwUELS02dOg
-Date: Mon, 6 Oct 2025 09:19:59 +0000
-Message-ID: <IA3PR11MB89874C1D695708E22C0C525CD0E3A@IA3PR11MB8987.namprd11.prod.outlook.com>
-References: <20251004000425.2489291-2-shuicheng.lin@intel.com>
-In-Reply-To: <20251004000425.2489291-2-shuicheng.lin@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA3PR11MB8987:EE_|MW4PR11MB6571:EE_
-x-ms-office365-filtering-correlation-id: 9f1f6b4b-5008-4239-fcfb-08de04b985fc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700021|7053199007; 
-x-microsoft-antispam-message-info: =?utf-8?B?ekVrYzZPOXdmQk5MOFJJdkxMcS9oUG1OMDM0ZXl6OU1JWmNSM2pJbGpIWFFz?=
- =?utf-8?B?cm4yZ3VqM1dzRmMxaVEwVnJhNlpyV3ArTmJNKzYxRXNUOFB6bk9mdytzYTBB?=
- =?utf-8?B?VTFqWlptZVJ0Z3JtUndTamlRNE4rQ2RHcTJaSVV3YWY4WHp1SDVoV0dqSmpO?=
- =?utf-8?B?MnlKQTA3WVNkRWFHWlJlc0RrQ1lVYVRoeGl1YnZvbk11am1pWmR5S0Rwd2ZZ?=
- =?utf-8?B?dFhSdFNaOFE4K09zNEVGbzQ3blZqTXNnS0hMcEhJQjFWZUR2WEp6ZjVPTHNa?=
- =?utf-8?B?NlhNKzhUTlluM2ZoY2RGdXBtek9HTm9Pd3ozWGRnNU50cy82NEVvc2duZHFv?=
- =?utf-8?B?M0VwZk9lbHF6M3JBZXVnS29HRlIxcG9pbzlHQmh1eEVBV3dJd0RRRUl0aUlN?=
- =?utf-8?B?RUIrcHQ2dCtjaVVDVEozZk9OUDhQcjlXQldJQU5yNnlmOW8weldwOWFPdTE1?=
- =?utf-8?B?RGJScFRybU11RTZjTFBYMFJKeGoweitQZWJLN1F2NjR5WDFKREdnUkMzZkxn?=
- =?utf-8?B?N0tmQlVtL09CdnluR2JFb1ZwTnlBa2F3RFlhYmE5SWt5T0VHNUNtUnlqOGJx?=
- =?utf-8?B?Z3hpN0NlTVJvL1NtaW16Wm5ES3hRMzhsa0lRUnRqV0xsSTFjV1RseVZKUDJq?=
- =?utf-8?B?VGs1eXN5NmQ4UXIvYS91MGx5b1dVc1drYTZRUnc2U3VPR1F3OGpiaEtxeXpZ?=
- =?utf-8?B?eWs3R0UwajFxVzhiRWNlSmVVR1BLSnk1L1NuZlYxMVYycXBsdUhNY1k5Rkox?=
- =?utf-8?B?MFVZQnhxejFyNjUwVjl6dGVLdkhlL3k2NFlsZ0ZRLy9qTzFlOGZGYis0TEZq?=
- =?utf-8?B?NmNPelA4bzY4Wm5sM0hwVHJ3Zjk2Z2w2Nmp0T053UEluZ2Z1UmUwL0ZCMi94?=
- =?utf-8?B?V0VjaExTUG50NFBIb21QeFVwWjdkT3A1VjlrV0lQNFk1RXEzckZUd0c3cWhp?=
- =?utf-8?B?WGQ4dW1QcTZoT3Q4Mkk2Q3lMZjI1Rkk5dU5vQVFMTks0Z1BycFMrNlIvdGxp?=
- =?utf-8?B?WXo0VWdhSnd5eHJObWFLdnM3WU0rSTBmR1c5WTRzeUxVbDZQYUlwdjU2aEpY?=
- =?utf-8?B?eTJzSDBpUlZYOHFFSlJmVEVEZjRvQk54eHI5U085VFFrcTFjcEtSaDhoZ3NB?=
- =?utf-8?B?TXZFU1ZhSDY2Mm41VmNWQ3ZicGlGTlhxMjF3eVpUaHYzdExNRHlQR0dKaEc3?=
- =?utf-8?B?QW01U0Nyd040WXFUMmxHRzExdUErWGpVQXozTUVzZWVXK0ZFYzFvUVY4aVk3?=
- =?utf-8?B?NVR1RW9ldlN5eC9xTjBib3NZMW4wR2Z5K2dLdXBaY2RVOFR1RlRSVnFuMHZw?=
- =?utf-8?B?SGY5NmVBYUpZQmlycFNJMEFKU0xYVXhTSnZ1Qlh1RisrSzB0Y25WMUo2d0FB?=
- =?utf-8?B?MnExUk9mSnFsWlYzbGN2ZU40SVpmbXorQWRFMjlGWWZOZm9RMjcwdUZ4Yy9w?=
- =?utf-8?B?Q1kvQkVNSXZuVWdvOFdaVnhwTFlvWjBoUmNJUFE2L0hEY3o3K1EwRVRlK2dw?=
- =?utf-8?B?c0hYbzY0WlE3bndQb1pJM2tIWFlwb1NZeW9qYXM2elFObjduM2s4ZHAwNXp5?=
- =?utf-8?B?Z0V0cU1sMThtMGZBc2RLWEFCcHZZUENKUDBQTHhwdkZDV2pzUHJtZHZwNEFh?=
- =?utf-8?B?WlZHYkNDZjJieVhPVlNpRXFxZk5pNnJFY01OS1R4R0c3OTJBcUxHWFduZjRL?=
- =?utf-8?B?dkNMeHB0UDFhT1RHcVBKVllPSHJyMVZyb0JUUW5tV1Q4NTJkdlh2eEliUS9P?=
- =?utf-8?B?SGNRM29sV0U0TDkyR0E2ek00eXpWRXJCSEoyS05NNC9UeXpFRlBpWFkzTk1X?=
- =?utf-8?B?SXFncGF2Sm1GL3RUbHpsbzIzMTc1SlBieUdhb2lkQkdjUHdZS1NZeTI2WUQ4?=
- =?utf-8?B?dksxNm41L1JTOWpMTXNmaUVFaVl0b2hXdnRqNWJqdWsxU0FTZzVjYXdXN2o1?=
- =?utf-8?B?WTEzUUZCcE1nOWsrQ1NCKy9nYWNPL3R3aUwyeGM5emZHY1lyaitYeVkxRmcr?=
- =?utf-8?B?OXhlOXE4MVdJZDhIcVV5Q2EwM3RvVlhpSkN6Y0d2bnF0c3F1Znp5WUFPYXl0?=
- =?utf-8?Q?ZdnGsU?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB8987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cWhxSDBINXkzZ0c3c1BrWVkxSVo5MVVta1JpSGVoTGNIL0t4SGQ0ajVWTnpH?=
- =?utf-8?B?dG5FSk80WDVJV3Q3QS82OHgvNzd0V2hOaURJSGZONmlBQVBMN0VpRHkzSlpr?=
- =?utf-8?B?TnMzcGczOHVxTzVoekFnSDAwdlZFa1QrUlJlL2xoTGdQbkpvdXA1cmtiM0JI?=
- =?utf-8?B?T0tjR1k0RFFEYmxRSkR6YW9YUzhybGR4WUVSUVBhTkVpeE1ySmhsQWdvZkpk?=
- =?utf-8?B?YUZJOUI0N2lTSklaZzQwZ3RGUVNRYUZlOVcrQ3lVS0h3clJBUjROMTF2OXZn?=
- =?utf-8?B?U1NldWJGdXYzRjVKR2xlb2pTYjZmWmUwM2ZHN2owSWY5am5uNWpRZmI1TXFq?=
- =?utf-8?B?NS8vWFM2d29oMDRZWnNGZlVQUlFlaEUxRk1JYXZqNHNFN2tKUnF4VWJqd3B2?=
- =?utf-8?B?MExlVURUMXJnTnhIOFlCN2FOUWtRRk9jVUZtd1JUUFZ4K21uVWJBMkdXOEZV?=
- =?utf-8?B?QjZSSmZIZkJxMzdqTzQva2RtV2xuK3JPbkZRMjVZMXUzTjF0WE5SUXkxdjhH?=
- =?utf-8?B?WUJ2TCsvcC81aDNSV2FwMWo0NGNUb3VEOXdMeEY0QjZaMHZYdm5HRGdBZy9O?=
- =?utf-8?B?V0syaGdoWjByOGdMR0hJL1NLM3JodGN3N25EUzV4bkZmQjNKeTRaVkFSajN3?=
- =?utf-8?B?ZkRxOVZiUFlkY3JiWjg1aTRYeFFtNkxZWVdLc3ZGSGxyQ2lrUVRaZ2hhZXBI?=
- =?utf-8?B?MmovakZoejQ5aHZ0U0pwblFiN1BRbG83VW0xWE9jNm96VllHbElZaDd4MGNU?=
- =?utf-8?B?ZDBRN1RwYjZUeFhhYWI5ZFZLY1N5cy8zOWhWdWZvTXZmWjk0a2o2YmV3OUpt?=
- =?utf-8?B?amJNci8xWVprSVBnd1hUWnRBRHU5dVhIek9PZGJsaDREQ3NINERFZEx2WVJj?=
- =?utf-8?B?VTNkSUVXVGM1TW5GMVFiSmFyUDlwb2lVUGEyQkpNSGNkWVdidTE2c2FBSGd1?=
- =?utf-8?B?WG9jMUUzbm9pUFh2WGJLbE1KZWVTY2RFbFcvd2RWK1ovWStmbmxvMmxaQmEz?=
- =?utf-8?B?SXUyWjVSSVRLRERyOXlOOGFySU9IeDdzM25vRTVsK0RqSi9CSkkwazhIdnFN?=
- =?utf-8?B?OEpMM2tpZWpWbEZrcXRxdzZlckprOFRqdS9ERWZseG5VYU9nMDYxM20rRXR2?=
- =?utf-8?B?RVpuM2UxNGVxTUgvMHpWRXN5VmpIeFZhTDNtOEtrWUJaM2tpMGNvME1rMFlp?=
- =?utf-8?B?UHEwZzUxRk9VWU9KczZRcjBrZ25jdkpSbUpLd1ZNQW9uQlN3K2oxL1d2SCsr?=
- =?utf-8?B?eDF0aWM1YlN3ci9qTlk5a2gxUk9OUXZRYytBbFY1azhlMDZ3QURhRVBpdzNa?=
- =?utf-8?B?RndNV2pteWNlcG5DZCtIVEIzeVREN3RMMitGQXdZUEloZXFaN2FxOVlpVmxl?=
- =?utf-8?B?Unptblh6N05aV2lVS3NzUDJvenhYV2g1NTlUVG42WjJhd3hpOHN0NXpyZzNB?=
- =?utf-8?B?eUtnWXI3RzdWZ09yRUVISm1RTjJxdStnNFFaUHpEQU9JZEUySUxnOTl5U2p6?=
- =?utf-8?B?TldITXFZM2dpN2NBeG8wMit4ZCtqaU5OYW9GeHl1bHlHMUtLTnVQRDFObzVK?=
- =?utf-8?B?emN0NVQwUG1GcnpJdE43ejUxK3pOODBmR3NHaFJUN2hiOG5Zc1F3YnVhRm5D?=
- =?utf-8?B?UFhFbzNENm9FZ2ZudHBSajBDWm9xd3pBeXgyQ3QrTXExMDhEZEhJaTVaMldz?=
- =?utf-8?B?SFFSUElVV0FyNXFMeEVzQlZMaTBmK3BMZVkzVExuNnNIMjczdHFJL09XR1pF?=
- =?utf-8?B?eVRwZEFCcFBGNjdKSy84Ymh4MXk4TkhVOTUyR0M4V1R2a3NSUlV4RW1xM0l3?=
- =?utf-8?B?ZUxBR1I2cHY0MGh6R3dTaUc3dXA0TjcrUHV6Z0xZayszREZQMWdPeCtJREEw?=
- =?utf-8?B?Y1N5WFZtbklrVXd6M2JMUEpPWmE0N3BsS28rZ3lzYnpmYzlwK1R1ZVJZc2FP?=
- =?utf-8?B?V09qQWl3cXVxRExXS1p0WHBTRkRXcTIyZzF5elUzdEVjbEExVGdUYWdIZHFI?=
- =?utf-8?B?M0VLbU9naTVPeVJ0NFBoZ1Y0Vnk4QUIxN2V6Tk0wOSswWTJRUFpyeGtTdnFO?=
- =?utf-8?B?anpSaVhjRnA1UGUyeXRpc2R1am5pTXZ3V3J6dGxwNi9XaDBDQkNXb1dBLzJ3?=
- =?utf-8?Q?Mx6sKElqbgmDAjwS4noCBA7sl?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203573846"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.52])
+ ([10.245.245.52])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 02:21:13 -0700
+Message-ID: <1d98010c-2348-4009-95d0-a305029d3f65@intel.com>
+Date: Mon, 6 Oct 2025 10:21:11 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8987.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f1f6b4b-5008-4239-fcfb-08de04b985fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2025 09:19:59.6201 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Rko+qcu6jCfJikQgWT0Zw9Z04APgoCjpu2nONoUTmTqTgLCgXbbJuCvNYVOYeCwTqeB+VKI5WXhDOPAgqRQkEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6571
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/5] drm/xe: Add initial support for separate kernel
+ VRAM region on the tile
+To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+References: <20250922170707.1556781-1-piotr.piorkowski@intel.com>
+ <20250922170707.1556781-2-piotr.piorkowski@intel.com>
+ <38196129-26e3-46c1-aa5d-1a5cee11ccd9@intel.com>
+ <20251003152159.lb5huif3f4vcwrrg@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251003152159.lb5huif3f4vcwrrg@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,39 +73,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC14ZSA8aW50ZWwteGUt
-Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBTaHVpY2hlbmcNCj4g
-TGluDQo+IFNlbnQ6IFNhdHVyZGF5LCBPY3RvYmVyIDQsIDIwMjUgNTozNCBBTQ0KPiBUbzogaW50
-ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBMaW4sIFNodWljaGVuZyA8c2h1aWNo
-ZW5nLmxpbkBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSF0gZHJtL3hlOiBGaXggY29weXJp
-Z2h0IGFuZCBmdW5jdGlvbiBuYW1pbmcgaW4geGVfdHRtX3ZyYW1fbWdyDQo+IA0KPiAtIENvcnJl
-Y3QgY29weXJpZ2h0IHllYXIgZnJvbSAiMjAwMiIgdG8gIjIwMjIiLg0KPiAtIFJlbmFtZSB0dG1f
-dnJhbV9tZ3JfZmluaSgpIHRvIHhlX3R0bV92cmFtX21ncl9maW5pKCkgdG8gYXZvaWQNCj4gICBj
-b25mdXNpb24gd2l0aCBnZW5lcmljIFRUTSBoZWxwZXJzLg0KPiANCj4gTm8gZnVuY3Rpb25hbCBj
-aGFuZ2VzIGludGVuZGVkLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU2h1aWNoZW5nIExpbiA8c2h1
-aWNoZW5nLmxpbkBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0
-bV92cmFtX21nci5jIHwgNiArKystLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMo
-KyksIDMgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hl
-L3hlX3R0bV92cmFtX21nci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21n
-ci5jDQo+IGluZGV4IDkxNzViNGEyMjE0Yi4uOWY3MDgwMmZjZTkyIDEwMDY0NA0KPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0veGUveGVfdHRtX3ZyYW1fbWdyLmMNCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL3hlL3hlX3R0bV92cmFtX21nci5jDQo+IEBAIC0xLDcgKzEsNyBAQA0KPiAgLy8gU1BEWC1M
-aWNlbnNlLUlkZW50aWZpZXI6IE1JVA0KPiAgLyoNCj4gICAqIENvcHlyaWdodCDCqSAyMDIxLTIw
-MjIgSW50ZWwgQ29ycG9yYXRpb24NCj4gLSAqIENvcHlyaWdodCAoQykgMjAyMS0yMDAyIFJlZCBI
-YXQNCj4gKyAqIENvcHlyaWdodCAoQykgMjAyMS0yMDIyIFJlZCBIYXQNCj4gICAqLw0KPiANCj4g
-ICNpbmNsdWRlIDxkcm0vZHJtX21hbmFnZWQuaD4NCj4gQEAgLTI4NCw3ICsyODQsNyBAQCBzdGF0
-aWMgY29uc3Qgc3RydWN0IHR0bV9yZXNvdXJjZV9tYW5hZ2VyX2Z1bmMNCj4geGVfdHRtX3ZyYW1f
-bWdyX2Z1bmMgPSB7DQo+ICAJLmRlYnVnCT0geGVfdHRtX3ZyYW1fbWdyX2RlYnVnDQo+ICB9Ow0K
-PiANCj4gLXN0YXRpYyB2b2lkIHR0bV92cmFtX21ncl9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsIHZvaWQgKmFyZykNCj4gK3N0YXRpYyB2b2lkIHhlX3R0bV92cmFtX21ncl9maW5pKHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmFyZykNCj4gIHsNCj4gIAlzdHJ1Y3QgeGVfZGV2aWNl
-ICp4ZSA9IHRvX3hlX2RldmljZShkZXYpOw0KPiAgCXN0cnVjdCB4ZV90dG1fdnJhbV9tZ3IgKm1n
-ciA9IGFyZzsNCj4gQEAgLTMzNSw3ICszMzUsNyBAQCBpbnQgX194ZV90dG1fdnJhbV9tZ3JfaW5p
-dChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwgc3RydWN0DQo+IHhlX3R0bV92cmFtX21nciAqbWdyLA0K
-PiAgCXR0bV9zZXRfZHJpdmVyX21hbmFnZXIoJnhlLT50dG0sIG1lbV90eXBlLCAmbWdyLT5tYW5h
-Z2VyKTsNCj4gIAl0dG1fcmVzb3VyY2VfbWFuYWdlcl9zZXRfdXNlZCgmbWdyLT5tYW5hZ2VyLCB0
-cnVlKTsNCj4gDQo+IC0JcmV0dXJuIGRybW1fYWRkX2FjdGlvbl9vcl9yZXNldCgmeGUtPmRybSwg
-dHRtX3ZyYW1fbWdyX2ZpbmksIG1ncik7DQo+ICsJcmV0dXJuIGRybW1fYWRkX2FjdGlvbl9vcl9y
-ZXNldCgmeGUtPmRybSwgeGVfdHRtX3ZyYW1fbWdyX2ZpbmksDQo+IG1ncik7DQoNCkxHVE0sDQpS
-ZXZpZXdlZC1ieTogTml0aW4gR290ZSA8bml0aW4uci5nb3RlQGludGVsLmNvbT4NCg0KTml0aW4N
-Cj4gIH0NCj4gDQo+ICAvKioNCj4gLS0NCj4gMi40OS4wDQoNCg==
+On 03/10/2025 16:21, Piotr Piórkowski wrote:
+> Matthew Auld <matthew.auld@intel.com> wrote on pią [2025-paź-03 12:15:39 +0100]:
+>> On 22/09/2025 18:07, Piórkowski, Piotr wrote:
+>>> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>>>
+>>> So far, kernel and userspace allocations have shared the same VRAM region.
+>>> However, in some scenarios, it may be necessary to reserve a separate
+>>> VRAM area exclusively for kernel allocations.
+>>> Let's add preliminary support for such a configuration.
+>>>
+>>> v2:
+>>> - replaced for_each_bo_flag_vram with the improved
+>>>     for_each_set_bo_vram_flag helper (Matthew)
+>>> - moved the VRAM flag iteration macro definition into xe_bo.c (Matthew)
+>>> - drop unused bo_flgas from bo_vram_flags_to_vram_placement (Matthew)
+>>> - use hweight32 helper in __xe_bo_fixed_placement for readability
+>>>     (Matthew)
+>>> v3: remove unnecessary VRAM fixup id
+>>>
+>>> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_bo.c           | 78 +++++++++++++++++++---------
+>>>    drivers/gpu/drm/xe/xe_bo.h           |  2 +-
+>>>    drivers/gpu/drm/xe/xe_device_types.h | 10 +++-
+>>>    drivers/gpu/drm/xe/xe_tile.c         |  8 +++
+>>>    drivers/gpu/drm/xe/xe_tile.h         |  5 ++
+>>>    drivers/gpu/drm/xe/xe_vram.c         |  6 ++-
+>>>    6 files changed, 81 insertions(+), 28 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>> index edc6e29f0cc1..0fe7ce1f15f3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>> @@ -34,6 +34,7 @@
+>>>    #include "xe_res_cursor.h"
+>>>    #include "xe_shrinker.h"
+>>>    #include "xe_sriov_vf_ccs.h"
+>>> +#include "xe_tile.h"
+>>>    #include "xe_trace_bo.h"
+>>>    #include "xe_ttm_stolen_mgr.h"
+>>>    #include "xe_vm.h"
+>>> @@ -81,6 +82,10 @@ static struct ttm_placement tt_placement = {
+>>>    	.placement = tt_placement_flags,
+>>>    };
+>>> +#define for_each_set_bo_vram_flag(bit__, bo_flags__) \
+>>> +	for (unsigned int __bit_tmp = BIT(0); __bit_tmp <= XE_BO_FLAG_VRAM_MASK; __bit_tmp <<= 1) \
+>>> +		for_each_if(((bit__) = __bit_tmp) & (bo_flags__) & XE_BO_FLAG_VRAM_MASK)
+>>> +
+>>>    bool mem_type_is_vram(u32 mem_type)
+>>>    {
+>>>    	return mem_type >= XE_PL_VRAM0 && mem_type != XE_PL_STOLEN;
+>>> @@ -213,6 +218,27 @@ static bool force_contiguous(u32 bo_flags)
+>>>    	       bo_flags & XE_BO_FLAG_PINNED;
+>>>    }
+>>> +static u8 vram_bo_flag_to_tile_id(struct xe_device *xe, u32 vram_bo_flag)
+>>> +{
+>>> +	xe_assert(xe, vram_bo_flag & XE_BO_FLAG_VRAM_MASK);
+>>> +	xe_assert(xe, (vram_bo_flag & (vram_bo_flag - 1)) == 0);
+>>> +
+>>> +	return __ffs(vram_bo_flag >> (__ffs(XE_BO_FLAG_VRAM0) - 1)) - 1;
+>>> +}
+>>> +
+>>> +static u32 bo_vram_flags_to_vram_placement(struct xe_device *xe, u32 vram_flag,
+>>> +					   enum ttm_bo_type type)
+>>> +{
+>>> +	u8 tile_id = vram_bo_flag_to_tile_id(xe, vram_flag);
+>>> +
+>>> +	xe_assert(xe, tile_id < xe->info.tile_count);
+>>> +
+>>> +	if (type == ttm_bo_type_kernel)
+>>> +		return xe->tiles[tile_id].mem.kernel_vram->placement;
+>>> +	else
+>>> +		return xe->tiles[tile_id].mem.vram->placement;
+>>> +}
+>>> +
+>>>    static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+>>>    		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
+>>>    {
+>>> @@ -245,12 +271,15 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+>>>    }
+>>>    static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
+>>> -			 u32 bo_flags, u32 *c)
+>>> +			 u32 bo_flags, enum ttm_bo_type type, u32 *c)
+>>>    {
+>>> -	if (bo_flags & XE_BO_FLAG_VRAM0)
+>>> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM0, c);
+>>> -	if (bo_flags & XE_BO_FLAG_VRAM1)
+>>> -		add_vram(xe, bo, bo->placements, bo_flags, XE_PL_VRAM1, c);
+>>> +	u32 vram_flag;
+>>> +
+>>> +	for_each_set_bo_vram_flag(vram_flag, bo_flags) {
+>>> +		u32 pl = bo_vram_flags_to_vram_placement(xe, vram_flag, type);
+>>> +
+>>> +		add_vram(xe, bo, bo->placements, bo_flags, pl, c);
+>>> +	}
+>>>    }
+>>>    static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+>>> @@ -269,11 +298,11 @@ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+>>>    }
+>>>    static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+>>> -				       u32 bo_flags)
+>>> +				       u32 bo_flags, enum ttm_bo_type type)
+>>>    {
+>>>    	u32 c = 0;
+>>> -	try_add_vram(xe, bo, bo_flags, &c);
+>>> +	try_add_vram(xe, bo, bo_flags, type, &c);
+>>>    	try_add_system(xe, bo, bo_flags, &c);
+>>>    	try_add_stolen(xe, bo, bo_flags, &c);
+>>> @@ -289,10 +318,10 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+>>>    }
+>>>    int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+>>> -			      u32 bo_flags)
+>>> +			      u32 bo_flags, enum ttm_bo_type type)
+>>>    {
+>>>    	xe_bo_assert_held(bo);
+>>> -	return __xe_bo_placement_for_flags(xe, bo, bo_flags);
+>>> +	return __xe_bo_placement_for_flags(xe, bo, bo_flags, type);
+>>>    }
+>>>    static void xe_evict_flags(struct ttm_buffer_object *tbo,
+>>> @@ -2152,7 +2181,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+>>>    	xe_validation_assert_exec(xe, exec, &bo->ttm.base);
+>>>    	if (!(flags & XE_BO_FLAG_FIXED_PLACEMENT)) {
+>>> -		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
+>>> +		err = __xe_bo_placement_for_flags(xe, bo, bo->flags, type);
+>>>    		if (WARN_ON(err)) {
+>>>    			xe_ttm_bo_destroy(&bo->ttm);
+>>>    			return ERR_PTR(err);
+>>> @@ -2210,34 +2239,33 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+>>>    }
+>>>    static int __xe_bo_fixed_placement(struct xe_device *xe,
+>>> -				   struct xe_bo *bo,
+>>> +				   struct xe_bo *bo, enum ttm_bo_type type,
+>>>    				   u32 flags,
+>>>    				   u64 start, u64 end, u64 size)
+>>>    {
+>>>    	struct ttm_place *place = bo->placements;
+>>> +	u32 vram_flag, vram_stolen_flags;
+>>>    	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
+>>>    		return -EINVAL;
+>>> +	vram_flag = flags & XE_BO_FLAG_VRAM_MASK;
+>>> +	vram_stolen_flags = (flags & (XE_BO_FLAG_STOLEN)) | vram_flag;
+>>
+>> Nit: Can drop the extra parens around XE_BO_FLAG_STOLEN?
+> 
+> drivers/gpu/drm/xe/xe_bo.c:2266:35: error: suggest parentheses around arithmetic in operand of ‘|’ [-Werror=parentheses]
+>   2266 |         vram_stolen_flags = flags & (XE_BO_FLAG_STOLEN) | vram_flag;
+> 
+> The compiler doesn't like it.
+
+I was thinking like this:
+
+(flags & XE_BO_FLAG_STOLEN) | vram_flag;
+
+So no need for (XE_BO_FLAG_STOLEN), which makes it slightly harder to 
+read. Anyway, doesn't really matter.
+
+>>
+>>> +
+>>> +	/* check if more than one VRAM/STOLEN flag is set */
+>>> +	if (hweight32(vram_stolen_flags) > 1)
+>>> +		return -EINVAL;
+>>> +
+>>>    	place->flags = TTM_PL_FLAG_CONTIGUOUS;
+>>>    	place->fpfn = start >> PAGE_SHIFT;
+>>>    	place->lpfn = end >> PAGE_SHIFT;
+>>> -	switch (flags & (XE_BO_FLAG_STOLEN | XE_BO_FLAG_VRAM_MASK)) {
+>>> -	case XE_BO_FLAG_VRAM0:
+>>> -		place->mem_type = XE_PL_VRAM0;
+>>> -		break;
+>>> -	case XE_BO_FLAG_VRAM1:
+>>> -		place->mem_type = XE_PL_VRAM1;
+>>> -		break;
+>>> -	case XE_BO_FLAG_STOLEN:
+>>> +	if (flags & XE_BO_FLAG_STOLEN)
+>>>    		place->mem_type = XE_PL_STOLEN;
+>>> -		break;
+>>> -
+>>> -	default:
+>>> -		/* 0 or multiple of the above set */
+>>> +	else if (vram_flag)
+>>> +		place->mem_type = bo_vram_flags_to_vram_placement(xe, vram_flag, type);
+>>> +	else
+>>>    		return -EINVAL;
+>>
+>> Nit: I think we can drop the else here, since we already checked this
+>> condition above? Or drop the check above and rely on this?
+> 
+> Okay, I'll remove that return from else.
+> 
+>>
+>>> -	}
+>>>    	bo->placement = (struct ttm_placement) {
+>>>    		.num_placement = 1,
+>>> @@ -2266,7 +2294,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+>>>    			return bo;
+>>>    		flags |= XE_BO_FLAG_FIXED_PLACEMENT;
+>>> -		err = __xe_bo_fixed_placement(xe, bo, flags, start, end, size);
+>>> +		err = __xe_bo_fixed_placement(xe, bo, type, flags, start, end, size);
+>>>    		if (err) {
+>>>    			xe_bo_free(bo);
+>>>    			return ERR_PTR(err);
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+>>> index a77af42b5f9e..9a8401300b15 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.h
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.h
+>>> @@ -122,7 +122,7 @@ struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_til
+>>>    int xe_managed_bo_reinit_in_vram(struct xe_device *xe, struct xe_tile *tile, struct xe_bo **src);
+>>>    int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+>>> -			      u32 bo_flags);
+>>> +			      u32 bo_flags, enum ttm_bo_type type);
+>>>    static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
+>>>    {
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>>> index a6c361db11d9..621aa0ab3de3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>> @@ -158,7 +158,15 @@ struct xe_tile {
+>>>    	/** @mem: memory management info for tile */
+>>>    	struct {
+>>>    		/**
+>>> -		 * @mem.vram: VRAM info for tile.
+>>> +		 * @mem.kernel_vram: kernel-dedicated VRAM info for tile.
+>>> +		 *
+>>> +		 * Although VRAM is associated with a specific tile, it can
+>>> +		 * still be accessed by all tiles' GTs.
+>>> +		 */
+>>> +		struct xe_vram_region *kernel_vram;
+>>> +
+>>> +		/**
+>>> +		 * @mem.vram: general purpose VRAM info for tile.
+>>>    		 *
+>>>    		 * Although VRAM is associated with a specific tile, it can
+>>>    		 * still be accessed by all tiles' GTs.
+>>> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+>>> index d49ba3401963..6edb5062c1da 100644
+>>> --- a/drivers/gpu/drm/xe/xe_tile.c
+>>> +++ b/drivers/gpu/drm/xe/xe_tile.c
+>>> @@ -124,6 +124,14 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
+>>>    		return -ENOMEM;
+>>>    	tile->mem.vram = vram;
+>>> +	/*
+>>> +	 * If the kernel_vram is not already allocated,
+>>> +	 * it means that tile has common VRAM region for
+>>> +	 * kernel and user space.
+>>> +	 */
+>>> +	if (!tile->mem.kernel_vram)
+>>> +		tile->mem.kernel_vram = tile->mem.vram;
+>>> +
+>>>    	return 0;
+>>>    }
+>>> diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+>>> index dceb6297aa01..5d834378b354 100644
+>>> --- a/drivers/gpu/drm/xe/xe_tile.h
+>>> +++ b/drivers/gpu/drm/xe/xe_tile.h
+>>> @@ -23,4 +23,9 @@ static inline bool xe_tile_is_root(struct xe_tile *tile)
+>>>    	return tile->id == 0;
+>>>    }
+>>> +static inline bool xe_tile_has_separate_kernel_vram(const struct xe_tile *tile)
+>>> +{
+>>> +	return tile->mem.vram != tile->mem.kernel_vram;
+>>> +}
+>>
+>> Nothing seems use this helper AFAICT?
+> 
+> I think I'll use this later, but I can move it to the patch with usage.
+>>
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>
+> 
+> Thanks, for review!
+> Piotr
+>>> +
+>>>    #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+>>> index b44ebf50fedb..7adfccf68e4c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vram.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vram.c
+>>> @@ -13,6 +13,7 @@
+>>>    #include "regs/xe_gt_regs.h"
+>>>    #include "regs/xe_regs.h"
+>>>    #include "xe_assert.h"
+>>> +#include "xe_bo.h"
+>>>    #include "xe_device.h"
+>>>    #include "xe_force_wake.h"
+>>>    #include "xe_gt_mcr.h"
+>>> @@ -283,8 +284,11 @@ static void vram_fini(void *arg)
+>>>    	xe->mem.vram->mapping = NULL;
+>>> -	for_each_tile(tile, xe, id)
+>>> +	for_each_tile(tile, xe, id) {
+>>>    		tile->mem.vram->mapping = NULL;
+>>> +		if (tile->mem.kernel_vram)
+>>> +			tile->mem.kernel_vram->mapping = NULL;
+>>> +	}
+>>>    }
+>>>    struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
+>>
+> 
+
