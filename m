@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91006CCA476
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:45:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50381CCD186
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:45:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CCE10E410;
-	Mon,  6 Oct 2025 10:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 156C310E313;
+	Mon,  6 Oct 2025 10:45:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BDElfLLO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4pBDT+v";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EB3610E307
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59C410E314
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759747493; x=1791283493;
+ t=1759747494; x=1791283494;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=TsVB6urw20I/S8RxhF9Hv6rSU9FBo6A5zmB7tGCeBIY=;
- b=BDElfLLO7KSnGO1cMF7iWoWDydnhN6IBl9uNpd+80qHBESzPcnwA+S5P
- I736Hfk4T435xPVcCqUuM7LDwI7YvqpMIC7OR+OlF74nEySVJLbLiDAPM
- ZZb8RDYkq//JltnhD3IARWUSbDHEmE4ma8ZgZ9FIr9mJqJyQYljEwT6uz
- xStt3702S/5ZV2spqnGl17adBigoXufLcK9FnNUuTNXuQNMsMmovRr0N4
- 6Pla8V5IM/ip1Q+yqHtITgAQVZg9t7m6vhRaTX9yHtT27SxLDkJL8oRgO
- 5cZBsKUvByX1h34FAn2TYCDJL9RD7m2qqmsRCJo44JhnMNw6Z06lvhCR4 A==;
-X-CSE-ConnectionGUID: AZKyrA2aSy6fsMSMzbiCPw==
-X-CSE-MsgGUID: t948gstMSk22aoePVY+OwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546332"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546332"
+ bh=j4cFxaT8Z7F8dWI03fSvSsTu82cz30XkuZyXovkH4gU=;
+ b=d4pBDT+vnaKpyMQiFcjbBmtew0hyIYAXLvy8t+evnLzdB8U3gMxFuxXj
+ d49ddP91XXjSTVnsvr5ISx6nFBOqswmMuH2qc/edqBdphmQs3Ht5OvsIh
+ N0ZzjAq8K/uuxDjFYq87LaPF5IAPRYBcpPbdx+Lu8JB7T9un55ZPaxpuq
+ 3JOihwU7MiBBEsaz6SLdOnPh/oFHvwZMVYLch16Ag+Hb3TJVlwYgivRGJ
+ F8JWO7jQ+ijBQooA6ZhMWnroxs2Xe3sk/AHJ8N9Ets09iTXNo9ZF2S9J2
+ YAFi4s3oq5+I+Gq5JBJFzK+HLJFHdkfoeD5dYPib1ysnUUlr5mePjoB5t A==;
+X-CSE-ConnectionGUID: zPy1P0hJSSW5+MHwEPfG1g==
+X-CSE-MsgGUID: eq/i313wTBaAZy5XNJbbuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546343"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546343"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 03:44:53 -0700
-X-CSE-ConnectionGUID: vApqqcLPRXqiBxL9lcjQxg==
-X-CSE-MsgGUID: 2f5qofoCT3SFg0cxA2XAjw==
+ 06 Oct 2025 03:44:54 -0700
+X-CSE-ConnectionGUID: g7fbId0rTwmS9K7MbWZkfA==
+X-CSE-MsgGUID: MrT0nhcNQOyVBDyQWtctmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589330"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589345"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 03:44:51 -0700
+ 06 Oct 2025 03:44:53 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 19/30] drm/xe/vf: Kickstart after resfix in VF post
- migration recovery
-Date: Mon,  6 Oct 2025 03:44:34 -0700
-Message-Id: <20251006104445.2210624-20-matthew.brost@intel.com>
+Subject: [PATCH v5 29/30] drm/xe/vf: Rebase CCS save/restore BB GGTT addresses
+Date: Mon,  6 Oct 2025 03:44:44 -0700
+Message-Id: <20251006104445.2210624-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006104445.2210624-1-matthew.brost@intel.com>
 References: <20251006104445.2210624-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,62 +66,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC needs to be live for the GuC submission state machine to resubmit
-anything lost during VF post-migration recovery.  Therefore, move the
-kickstart step after `resfix` to ensure proper resubmission.
+Rebase the CCS save/restore BB's GGTT addresses during VF post-migration
+recovery by setting the software ring tail to zero, the LRC ring head to
+zero, and rewriting the jump-to-BB instructions.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c  |  4 ++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 28 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+ 3 files changed, 33 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 36eedfc3c5eb..2a988eb3e904 100644
+index d43e18bb8f01..fb4f848c2936 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1141,13 +1141,6 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+@@ -34,6 +34,7 @@
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_vf.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_tile_sriov_vf.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_uc_fw.h"
+@@ -1153,6 +1154,9 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
  
- static void vf_post_migration_kickstart(struct xe_gt *gt)
- {
--	/*
--	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
--	 * must be working at this point, since the recovery did started,
--	 * but the rest was not enabled using the procedure from spec.
--	 */
--	xe_irq_resume(gt_to_xe(gt));
--
- 	xe_guc_submit_unpause(&gt->uc.guc);
- }
- 
-@@ -1167,6 +1160,13 @@ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
- 	if (skip_resfix)
- 		return -EAGAIN;
++	if (xe_gt_is_main_type(gt))
++		xe_sriov_vf_ccs_rebase(gt_to_xe(gt));
++
+ 	xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 	err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 8dec616c37c9..790249801364 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -175,6 +175,15 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	u32 dw[10], i = 0;
  
 +	/*
-+	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
-+	 * must be working at this point, since the recovery did started,
-+	 * but the rest was not enabled using the procedure from spec.
++	 * XXX: Save/restore fixes — for some reason, the GuC only accepts the
++	 * save/restore context if the LRC head pointer is zero. This is evident
++	 * from repeated VF migrations failing when the LRC head pointer is
++	 * non-zero.
 +	 */
-+	xe_irq_resume(gt_to_xe(gt));
++	lrc->ring.tail = 0;
++	xe_lrc_set_ring_head(lrc, 0);
 +
- 	return vf_notify_resfix_done(gt);
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
+ 	dw[i++] = lower_32_bits(addr);
+@@ -186,6 +195,25 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ 	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
  }
  
-@@ -1190,11 +1190,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
- 
--	vf_post_migration_kickstart(gt);
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err && err != -EAGAIN)
- 		goto fail;
- 
-+	vf_post_migration_kickstart(gt);
++/**
++ * xe_sriov_vf_ccs_rebase - Rebase GGTT addresses for CCS save / restore
++ * @xe: the &xe_device.
++ */
++void xe_sriov_vf_ccs_rebase(struct xe_device *xe)
++{
++	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
 +
- 	xe_pm_runtime_put(xe);
- 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
- 	return;
++	if (!IS_VF_CCS_READY(xe))
++		return;
++
++	for_each_ccs_rw_ctx(ctx_id) {
++		struct xe_sriov_vf_ccs_ctx *ctx =
++			&xe->sriov.vf.ccs.contexts[ctx_id];
++
++		ccs_rw_update_ring(ctx);
++	}
++}
++
+ static int register_save_restore_context(struct xe_sriov_vf_ccs_ctx *ctx)
+ {
+ 	int ctx_type;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 0745c0ff0228..f8ca6efce9ee 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -18,6 +18,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe);
+ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
++void xe_sriov_vf_ccs_rebase(struct xe_device *xe);
+ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
+ 
+ static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
 -- 
 2.34.1
 
