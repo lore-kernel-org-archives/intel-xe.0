@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4233CAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C03CAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:56:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9AEC10E0D1;
-	Mon,  6 Oct 2025 14:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B69AC10E341;
+	Mon,  6 Oct 2025 14:56:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hgb4AQEQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JBpM9w8s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AEED10E341
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:56:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48D8410E341
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:56:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759762604; x=1791298604;
+ t=1759762607; x=1791298607;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yBmrGfrUnq8L/H82e7SjeH8S/Cwdrb8gBsIL+HcM3XY=;
- b=hgb4AQEQIgJ6rsfDaAybag0k+ptzZO1TYwi8t9YWyWRDuWN7HA3JFEg3
- tXBMD6AdnTg18A029XBhp4v+s8W2MNVRVZIiZCM1hOSi+6mwn9uGOY/FW
- A0wLd7kFYrWSBTmbu0MYVLZkHi5JXy2yIIo2muBYggDqDMJZkInahvzdY
- 6zCrq4EatDRVobARFb4MwOO7HMzqp84ENb+IzQw/9XtvFBP8lJAqG8BXh
- jxxRiBP8Sw/XsLZo8L610xOToBT99nl5JgxcPW6kN3uTsOYbS/4cCB1Fu
- fn9vSR1JjH+97cxoDmXk1xkGFr7wbzElawN9LiDkcdMzbubBWhnixJrpl w==;
-X-CSE-ConnectionGUID: rMihygJyTzyjwNBUacac7w==
-X-CSE-MsgGUID: MEJmxX5TSqWn2IfWbXtW5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143157"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143157"
+ bh=R3vm7TD5DWfNkVqaEmyAjWxWtMemaRQf/ay1wlblpBU=;
+ b=JBpM9w8sFFnOGw7dz6mogZGSofEVWffpHcEXmysENW+BjMU3dhokEsOa
+ 3WB4Z6eEs2FSjdJpKIsI34WMZ4V3EYKvPUS9+yG9s2qovPwGLiMZ7IWPR
+ pyYTKBwN4jutHoZg6SbvfzhUSfA74HF+9xxcnV/6rm09Ixy9I3IceS5Bk
+ 3QQpbaqiUdo4ddMeqjRXqWh/8E+whGiOjsChkGDYyfj3c/iGYAiR8D0mX
+ 4S2h9KeFhy4ovVGKmRzQw80czZdhuOrCrLwgzoNnaUJMQxBxtYsd7wMQD
+ hhGipTQOzSYLUwdeFkoz6lDwbW+CoPQMocemJHl34vsTMy4F0JuYJ7/Gn Q==;
+X-CSE-ConnectionGUID: Hc0hzYk4R4WP4jm4a3murQ==
+X-CSE-MsgGUID: dYSQmJLLSPiURXuH/5N0DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143162"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143162"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 07:56:44 -0700
-X-CSE-ConnectionGUID: d0/wWdopSuu+e8OGuuJdzw==
-X-CSE-MsgGUID: ZRsMFdXFQH+NOisq7rjkFw==
+ 06 Oct 2025 07:56:47 -0700
+X-CSE-ConnectionGUID: kqJvEzfhRqyIcX1G1sSGJw==
+X-CSE-MsgGUID: VgpXr6JRTp2ufKavmQpWKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507633"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507643"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:56:41 -0700
+ by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:56:44 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
  jani.nikula@intel.com, ashutosh.dixit@intel.com,
  Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v5 2/8] drm/xe: Add xe_gt_clock_interval_to_ns function
-Date: Mon,  6 Oct 2025 14:20:23 +0000
-Message-ID: <20251006142034.674435-3-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v5 3/8] drm/xe: Modify xe_exec_queue_update_run_ticks
+Date: Mon,  6 Oct 2025 14:20:24 +0000
+Message-ID: <20251006142034.674435-4-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
 References: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
@@ -69,50 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The runtime of a user id in the GPU work period event are required
-to be given in nanosec unit. Since we want to use the HW Context
-timestamp register to derive the runtime for a context, we need
-a way to convert from GT clock ticks to nano seconds.
+For GPU work period event we need to record the run time of a
+context on the GPU in nanosecs. In the present xe driver code,
+we only record the run time in clock ticks and separately for
+each engine class.
+
+So, we are adding a uint64 variable |active_duration_ns| in
+the xe file structure where we can record the cumulative
+run time in ns of all the engines for this context. The
+intent here is to add up the |active_duration_ns| in
+all the xe files belonging to a given user id to derive
+the run time for that user id.
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_clock.c | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_gt_clock.h |  1 +
- 2 files changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h | 3 +++
+ drivers/gpu/drm/xe/xe_exec_queue.c   | 7 +++++++
+ 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 4f011d1573c6..17c1cc6bff5a 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -110,3 +110,17 @@ u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 53264b2bb832..54a612787289 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -681,6 +681,9 @@ struct xe_file {
+ 	/** @run_ticks: hw engine class run time in ticks for this drm client */
+ 	u64 run_ticks[XE_ENGINE_CLASS_MAX];
+ 
++	/** @active_duration_ns: total run time in ns for this xe file */
++	u64 active_duration_ns;
++
+ 	/** @client: drm client */
+ 	struct xe_drm_client *client;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 37b2b93b73d6..6eb34c62c779 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_clock.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -887,6 +888,8 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
  {
- 	return div_u64_roundup(count * MSEC_PER_SEC, gt->info.reference_clock);
+ 	struct xe_device *xe = gt_to_xe(q->gt);
+ 	struct xe_lrc *lrc;
++	struct xe_gt *gt = q->gt;
++
+ 	u64 old_ts, new_ts;
+ 	int idx;
+ 
+@@ -912,6 +915,10 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
+ 	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
+ 	q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
+ 
++	// Accumulate the runtime in nanosec for this queue into the xe file.
++	q->xef->active_duration_ns +=
++		xe_gt_clock_interval_to_ns(gt, (new_ts - old_ts));
++
+ 	drm_dev_exit(idx);
  }
-+
-+/**
-+ * xe_gt_clock_interval_to_ns - Convert sampled GT clock ticks to nanosec
-+ *
-+ * @gt: the &xe_gt
-+ * @count: count of GT clock ticks
-+ *
-+ * Returns: time in nanosec
-+ */
-+u64 xe_gt_clock_interval_to_ns(struct xe_gt *gt, u64 count)
-+{
-+	return div_u64_roundup(count * NSEC_PER_SEC, gt->info.reference_clock);
-+}
-+
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
-index 3adeb7baaca4..bd87971bce97 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.h
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.h
-@@ -12,5 +12,6 @@ struct xe_gt;
  
- int xe_gt_clock_init(struct xe_gt *gt);
- u64 xe_gt_clock_interval_to_ms(struct xe_gt *gt, u64 count);
-+u64 xe_gt_clock_interval_to_ns(struct xe_gt *gt, u64 count);
- 
- #endif
 -- 
 2.49.0
 
