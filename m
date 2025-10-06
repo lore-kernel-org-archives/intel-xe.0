@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAD91CCD186
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6E27CCA476
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B1E10E3FD;
-	Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9084A10E3C1;
+	Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwuxDSZX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WAM+ZzRH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD98D10E35E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAFEA10E346
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759749044; x=1791285044;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=43DjX4XeIiEK7BpiQ6DzR5g7+04qzLTzYTq/hTp2q88=;
- b=XwuxDSZXmmQskWufHh4+uiIuJdMQnaUPPhxxSVdAYlcECyfKIXCogObu
- 4DpRmcHJFmdy2Xr+XZMIDSRnHtLn2VE0jNHIBa3S8PLNAH52ZGPOPLukQ
- Tf5XpQlKTSC85hN18Pf4W8go00+84mwFK3AWN6ISOzV21uQS9lq9mFbiA
- Ur51l++vG1yYcNAlOK3BvWhtomX7hBIN9ekJa2deaKVeaHTrqn6oYeMtl
- mC6KpVkt1BcQRzZrGD2GQP1HwGLtso/mot1o2QoJfjQiVixjjL4iYepDA
- Tu9CsnwK96+BlcTru7bAD644bK/tzzl7JDgRfvupzidxSxWo25sWfGHrj Q==;
-X-CSE-ConnectionGUID: 0/t+eBNYR9eaGwoL6uQFjw==
-X-CSE-MsgGUID: eYiLirj6TrauIdY4xC6hOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020382"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020382"
+ bh=ipoIzRH7gt3sPRHj5QeBROa8vy2uJ9eK2Q2ZBAf9jJg=;
+ b=WAM+ZzRHeSNapLznMbLLwzOm1RBgeDwFqBVH5+2xSqrSNjmfdObt5LgW
+ YjV0V4qjNw7pU2q0Akkozua507L/gyKRWueo2JI/W34wZgtfGfXo04fLH
+ sTrFZ4/1LCVjDX1ZC6STZO2vT+MyfCZmdD1Nyrv7v4fQZA0R34bYAZjUz
+ oLHfFD5tn9gISndmtoGU5zYF6BSA/lcIZn15uS01Tv6zxaBvZcMIeZG96
+ 1O8/aWf9Do4V7GuAFeHx/m70qAeNixK2yNSS7WiLRGKin1eiEqhV+uxjV
+ o5rc3w2O4o3Qi6aaRKilYiY5LCkaJLKREKN317alR7UDScUhCUmKWbNEu w==;
+X-CSE-ConnectionGUID: jakeiSBpQEG9Ee/3G2N0Xg==
+X-CSE-MsgGUID: qC5txyaZTxiAic0m1hK5cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020378"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020378"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:43 -0700
-X-CSE-ConnectionGUID: VgbSRCcZSgWEryxJ7gcnUQ==
-X-CSE-MsgGUID: h2ST5nySToWw+i50ryrzSg==
+X-CSE-ConnectionGUID: 0XoHWpQ8SFeiNSJihkQGfA==
+X-CSE-MsgGUID: qKsjoccSTMe/A0kvjPGdNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655221"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655216"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:42 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 06/30] drm/xe: Make LRC W/A scratch buffer usage consistent
-Date: Mon,  6 Oct 2025 04:10:14 -0700
-Message-Id: <20251006111038.2234860-7-matthew.brost@intel.com>
+Subject: [PATCH v6 03/30] drm/xe/guc: Track pending-enable source in
+ submission state
+Date: Mon,  6 Oct 2025 04:10:11 -0700
+Message-Id: <20251006111038.2234860-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
@@ -65,34 +66,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LRC W/A currently checks for LRC being iomem in some places, while
-in others it checks if the scratch buffer is non-NULL. This
-inconsistency causes issues with the VF post-migration recovery code,
-which blindly passes in a scratch buffer.
+Add explicit tracking in the GuC submission state to record the source
+of a pending enable (TDR vs. queue resume path vs. submission).
+Disambiguating the origin lets the GuC submission state machine apply
+the correct recovery/replay behavior.
 
-This patch standardizes the check by consistently verifying whether the
-LRC is iomem to determine if the scratch buffer should be used.
+This helps VF restore: when the device comes back, the state machine knows
+whether the pending enable stems from timeout recovery, from a queue resume
+sequence, or submission and can gate sequencing and fixups accordingly.
+
+v4:
+ - Clarify commit message (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 2c6eae2de1f2..b5083c99dd50 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1247,7 +1247,7 @@ static int setup_bo(struct bo_setup_state *state)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 16f78376f196..13746f32b231 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -69,6 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+ #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
++#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
++#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
  
- static void finish_bo(struct bo_setup_state *state)
+ static bool exec_queue_registered(struct xe_exec_queue *q)
  {
--	if (!state->buffer)
-+	if (!state->lrc->bo->vmap.is_iomem)
- 		return;
+@@ -220,6 +222,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+ 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+ }
  
- 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
++static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
++}
++
++static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
++}
++
++static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
++}
++
++static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
++static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
++{
++	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
++}
++
+ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ {
+ 	return (atomic_read(&q->guc->state) &
+@@ -1334,6 +1366,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	return DRM_GPU_SCHED_STAT_RESET;
+ 
+ sched_enable:
++	set_exec_queue_pending_tdr_exit(q);
+ 	enable_scheduling(q);
+ rearm:
+ 	/*
+@@ -1493,6 +1526,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
+ 		clear_exec_queue_suspended(q);
+ 		if (!exec_queue_enabled(q)) {
+ 			q->guc->resume_time = RESUME_PENDING;
++			set_exec_queue_pending_resume(q);
+ 			enable_scheduling(q);
+ 		}
+ 	} else {
+@@ -2065,6 +2099,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+ 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
+ 
+ 		q->guc->resume_time = ktime_get();
++		clear_exec_queue_pending_resume(q);
++		clear_exec_queue_pending_tdr_exit(q);
+ 		clear_exec_queue_pending_enable(q);
+ 		smp_wmb();
+ 		wake_up_all(&guc->ct.wq);
 -- 
 2.34.1
 
