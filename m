@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F868CCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:18:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3AFACCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 293C010E42C;
-	Mon,  6 Oct 2025 11:18:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98FA010E425;
+	Mon,  6 Oct 2025 11:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QbtkAmWW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXjAVesc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5E310E42C
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:18:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2910710E42D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749503; x=1791285503;
+ t=1759749507; x=1791285507;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7wkcfHRobWWlnWhz4RICc6nl6pVQ0vjRbnDpKTiexwc=;
- b=QbtkAmWWQOsDOsvynYmbCGO997coom2+xhT7BnvdbE3eY+BY+rC8W4l6
- Tjxy+pxpUIJnOEWQD6HI/JC9CVM8kgV6pQL/2t1fVesgiOXTT5en7CT5s
- X/VpnDP3qOew033oZzy+soIGgEoNxlXAgLPbXidkbs4Ek6LRvjRbZfTgx
- CXQ37vFHCtNjUjT9YsCGTROX47ejvY9ThafyK3LaZUNzOnnPQ1b3FUo9+
- 1XORJZ3whiiG+2+cpXBnMMXQP12ETV3eITpXJlqXtd2ypqwVmS9Z9NTbe
- VyFBQ9CmdrTlLFzmtM2xQJa0PozbS0MDEzr5q5oQrV9fx0qyK/0u7BmVV A==;
-X-CSE-ConnectionGUID: OI/nJ37hStOGrO34FBNF2g==
-X-CSE-MsgGUID: QRju6UFaSFOGHezseoXn8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61825456"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61825456"
+ bh=ml5/nA+j5TYmLPZgL9y+m17mtMlIeJHUk1Cy6L0R9Qs=;
+ b=MXjAVescAu8cDu8TSd854NvKN7pfEDOmjrXgvHaEV83xsi+ZfH/bkG5F
+ EUae/XsKZz5/AywO9w2duKBdWWNY8eenvjUy2PoxezDRW8H4YXlGfDFMN
+ r+Yz0jox1P5GOtj8pLwgLlGvjRaBc9yxh5cHHYQlATkCjjrDSOUW01C+p
+ UpahY/3DUH/x6pYsRq5SpFuhb34dSUjO+L6Hwpxi2bpkLgZTY+60uf+XK
+ JY1MkoqjsNYGdQ/aUeRlwGIPme5t6mIM7gb2Iou6XwcLRindCQbztXO4q
+ 02pbElqMg3LxGHNWKAPEe+Xiz5hRDKqb+wQDjo9l5XW8pJYWOPhOkSNiT w==;
+X-CSE-ConnectionGUID: N8xrc1X6TbOO6jbEuYRHWA==
+X-CSE-MsgGUID: BcZ8DLLIQ76JFCjT6eZdLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61825459"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61825459"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:18:23 -0700
-X-CSE-ConnectionGUID: e4YJMgW2QAeMT9LCydSuiA==
-X-CSE-MsgGUID: L9rb45T3SzGACUs0hD/OoA==
+ 06 Oct 2025 04:18:27 -0700
+X-CSE-ConnectionGUID: hzdITn+uQxaHk/bP+ZM+jg==
+X-CSE-MsgGUID: 7q1uNBY8Q8GocAtaZsAl+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="216947129"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="216947155"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO
  mkuoppal-desk.intel.com) ([10.245.245.44])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:18:19 -0700
+ 06 Oct 2025 04:18:23 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
  christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
- maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 13/20] drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
-Date: Mon,  6 Oct 2025 14:17:03 +0300
-Message-ID: <20251006111711.201906-14-mika.kuoppala@linux.intel.com>
+ maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com
+Subject: [PATCH 14/20] drm/xe: Implement SR-IOV and eudebug exclusivity
+Date: Mon,  6 Oct 2025 14:17:04 +0300
+Message-ID: <20251006111711.201906-15-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251006111711.201906-1-mika.kuoppala@linux.intel.com>
 References: <20251006111711.201906-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,238 +73,184 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-Introduce kunit test for eudebug. For now it checks the dynamic
-application of WAs.
-
-v2: adapt to removal of call_for_each_device (Mika)
-v3: s/FW_RENDER/FORCEWAKE_ALL (Mika)
+EU debug functionality relies on access to specific mmio registers.
+Since VFs don't have access to those registers and in order to avoid
+interference with VFs, make SR-IOV and eudebug functionality exclusive.
+I.e. don't allow to enable eudebug in VF mode and don't allow to enable
+eudebug when any VFs are provisioned. Likewise, don't allow to provision
+VFs when eudebug is enabled.
 
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_eudebug.c       | 183 ++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_live_test_mod.c |   5 +
- drivers/gpu/drm/xe/xe_eudebug.c             |   4 +
- 3 files changed, 192 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_eudebug.c
+ drivers/gpu/drm/xe/tests/xe_eudebug.c |  6 +++++
+ drivers/gpu/drm/xe/xe_eudebug.c       | 33 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h       |  6 +++++
+ drivers/gpu/drm/xe/xe_exec_queue.c    |  3 +++
+ drivers/gpu/drm/xe/xe_gt.c            |  1 +
+ drivers/gpu/drm/xe/xe_pci_sriov.c     | 10 ++++++++
+ 6 files changed, 59 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-new file mode 100644
-index 000000000000..f839fb292b9b
---- /dev/null
+index f839fb292b9b..c1e5eb091fc4 100644
+--- a/drivers/gpu/drm/xe/tests/xe_eudebug.c
 +++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
+@@ -147,6 +147,12 @@ static int toggle_reg_value(struct xe_device *xe)
+ 	struct kunit *test = kunit_get_current_test();
+ 	bool enable_eudebug = xe_eudebug_is_enabled(xe);
+ 
++	if (IS_SRIOV_VF(xe))
++		kunit_skip(test, "eudebug not available in SR-IOV VF mode\n");
 +
-+#include <kunit/visibility.h>
++	if (xe->eudebug.state == XE_EUDEBUG_NOT_SUPPORTED)
++		kunit_skip(test, "eudebug not supported\n");
 +
-+#include "regs/xe_gt_regs.h"
-+#include "regs/xe_engine_regs.h"
-+
-+#include "xe_force_wake.h"
-+#include "xe_gt_mcr.h"
-+#include "xe_mmio.h"
-+
-+#include "tests/xe_kunit_helpers.h"
-+#include "tests/xe_pci_test.h"
-+#include "tests/xe_test.h"
-+
-+#undef XE_REG_MCR
-+#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
-+				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
-+				 })
-+
-+static const char *reg_to_str(struct xe_reg reg)
+ 	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
+ 		     GRAPHICS_VERx100(xe));
+ 
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index a20397229e65..5dc8e4cd7f6b 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -2119,6 +2119,34 @@ bool xe_eudebug_is_enabled(struct xe_device *xe)
+ 	return READ_ONCE(xe->eudebug.state) == XE_EUDEBUG_ENABLED;
+ }
+ 
++static int __xe_eudebug_toggle_support(struct xe_device *xe,
++				       bool support_enable)
 +{
-+	if (reg.raw == TD_CTL.__reg.raw)
-+		return "TD_CTL";
-+	else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw)
-+		return "CS_DEBUG_MODE2";
-+	else if (reg.raw == ROW_CHICKEN.__reg.raw)
-+		return "ROW_CHICKEN";
-+	else if (reg.raw == ROW_CHICKEN2.__reg.raw)
-+		return "ROW_CHICKEN2";
-+	else if (reg.raw == ROW_CHICKEN3.__reg.raw)
-+		return "ROW_CHICKEN3";
-+	else
-+		return "UNKNOWN REG";
-+}
++	mutex_lock(&xe->eudebug.lock);
 +
-+static u32 get_reg_mask(struct xe_device *xe, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	u32 val = 0;
-+
-+	if (reg.raw == TD_CTL.__reg.raw) {
-+		val = TD_CTL_BREAKPOINT_ENABLE |
-+		      TD_CTL_FORCE_THREAD_BREAKPOINT_ENABLE |
-+		      TD_CTL_FEH_AND_FEE_ENABLE;
-+
-+		if (GRAPHICS_VERx100(xe) >= 1250)
-+			val |= TD_CTL_GLOBAL_DEBUG_ENABLE;
-+
-+	} else if (reg.raw == CS_DEBUG_MODE2(RENDER_RING_BASE).raw) {
-+		val = GLOBAL_DEBUG_ENABLE;
-+	} else if (reg.raw == ROW_CHICKEN.__reg.raw) {
-+		val = STALL_DOP_GATING_DISABLE;
-+	} else if (reg.raw == ROW_CHICKEN2.__reg.raw) {
-+		val = XEHPC_DISABLE_BTB;
-+	} else if (reg.raw == ROW_CHICKEN3.__reg.raw) {
-+		val = XE2_EUPEND_CHK_FLUSH_DIS;
-+	} else {
-+		kunit_warn(test, "Invalid register selection: %u\n", reg.raw);
++	if (xe_eudebug_is_enabled(xe)) {
++		mutex_unlock(&xe->eudebug.lock);
++		return -EPERM;
 +	}
 +
-+	return val;
-+}
++	xe->eudebug.state = support_enable ?
++		XE_EUDEBUG_DISABLED : XE_EUDEBUG_NOT_SUPPORTED;
 +
-+static u32 get_reg_expected(struct xe_device *xe, struct xe_reg reg, bool enable_eudebug)
-+{
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
-+
-+	if (enable_eudebug || reg.raw == ROW_CHICKEN3.__reg.raw)
-+		reg_bits = reg_mask;
-+	else
-+		reg_bits = 0;
-+
-+	return reg_bits;
-+}
-+
-+static void check_reg(struct xe_gt *gt, bool enable_eudebug, struct xe_reg reg)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 reg_bits_expected = get_reg_expected(xe, reg, enable_eudebug);
-+	u32 reg_mask = get_reg_mask(xe, reg);
-+	u32 reg_bits = 0;
-+
-+	if (reg.mcr)
-+		reg_bits = xe_gt_mcr_unicast_read_any(gt, (struct xe_reg_mcr){.__reg = reg});
-+	else
-+		reg_bits = xe_mmio_read32(&gt->mmio, reg);
-+
-+	reg_bits &= reg_mask;
-+
-+	kunit_printk(KERN_DEBUG, test, "%s bits: expected == 0x%x; actual == 0x%x\n",
-+		     reg_to_str(reg), reg_bits_expected, reg_bits);
-+	KUNIT_EXPECT_EQ_MSG(test, reg_bits_expected, reg_bits,
-+			    "Invalid bits set for %s\n", reg_to_str(reg));
-+}
-+
-+static void __check_regs(struct xe_gt *gt, bool enable_eudebug)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1200)
-+		check_reg(gt, enable_eudebug, TD_CTL.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 1250 && GRAPHICS_VERx100(xe) <= 1274)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN.__reg);
-+
-+	if (xe->info.platform == XE_PVC)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN2.__reg);
-+
-+	if (GRAPHICS_VERx100(xe) >= 2000 && GRAPHICS_VERx100(xe) <= 2004)
-+		check_reg(gt, enable_eudebug, ROW_CHICKEN3.__reg);
-+}
-+
-+static void check_regs(struct xe_device *xe, bool enable_eudebug)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	struct xe_gt *gt;
-+	unsigned int fw_ref;
-+	u8 id;
-+
-+	kunit_printk(KERN_DEBUG, test, "Check regs for eudebug %s\n",
-+		     enable_eudebug ? "enabled" : "disabled");
-+
-+	xe_pm_runtime_get(xe);
-+	for_each_gt(gt, xe, id) {
-+		if (xe_gt_is_media_type(gt))
-+			continue;
-+
-+		/* XXX: Figure out per platform proper domain */
-+		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+		KUNIT_ASSERT_TRUE_MSG(test, fw_ref, "Forcewake failed.\n");
-+
-+		__check_regs(gt, enable_eudebug);
-+
-+		xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	}
-+	xe_pm_runtime_put(xe);
-+}
-+
-+static int toggle_reg_value(struct xe_device *xe)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	bool enable_eudebug = xe_eudebug_is_enabled(xe);
-+
-+	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
-+		     GRAPHICS_VERx100(xe));
-+
-+	check_regs(xe, enable_eudebug);
-+
-+	xe_eudebug_enable(xe, !enable_eudebug);
-+	check_regs(xe, !enable_eudebug);
-+
-+	xe_eudebug_enable(xe, enable_eudebug);
-+	check_regs(xe, enable_eudebug);
++	mutex_unlock(&xe->eudebug.lock);
 +
 +	return 0;
 +}
 +
-+static void xe_eudebug_toggle_reg_kunit(struct kunit *test)
++void xe_eudebug_support_enable(struct xe_device *xe)
 +{
-+	struct xe_device *xe = test->priv;
-+
-+	toggle_reg_value(xe);
++	__xe_eudebug_toggle_support(xe, true);
 +}
 +
-+static struct kunit_case xe_eudebug_tests[] = {
-+	KUNIT_CASE_PARAM(xe_eudebug_toggle_reg_kunit,
-+			 xe_pci_live_device_gen_param),
-+	{}
-+};
++int xe_eudebug_support_disable(struct xe_device *xe)
++{
++	return __xe_eudebug_toggle_support(xe, false);
++}
 +
-+VISIBLE_IF_KUNIT
-+struct kunit_suite xe_eudebug_test_suite = {
-+	.name = "xe_eudebug",
-+	.test_cases = xe_eudebug_tests,
-+	.init = xe_kunit_helper_xe_device_live_test_init,
-+};
-+EXPORT_SYMBOL_IF_KUNIT(xe_eudebug_test_suite);
-diff --git a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-index c55e46f1ae92..dc83bb6a892d 100644
---- a/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-+++ b/drivers/gpu/drm/xe/tests/xe_live_test_mod.c
-@@ -19,6 +19,11 @@ kunit_test_suite(xe_migrate_test_suite);
- kunit_test_suite(xe_mocs_test_suite);
- kunit_test_suite(xe_guc_g2g_test_suite);
+ static int xe_eudebug_enable(struct xe_device *xe, bool enable)
+ {
+ 	struct xe_gt *gt;
+@@ -2224,6 +2252,11 @@ void xe_eudebug_init(struct xe_device *xe)
  
-+#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-+extern struct kunit_suite xe_eudebug_test_suite;
-+kunit_test_suite(xe_eudebug_test_suite);
-+#endif
+ 	xe->eudebug.state = XE_EUDEBUG_NOT_SUPPORTED;
+ 
++	if (IS_SRIOV_VF(xe)) {
++		drm_info(&xe->drm, "eudebug not available in SR-IOV VF mode\n");
++		return;
++	}
 +
- MODULE_AUTHOR("Intel Corporation");
- MODULE_LICENSE("GPL");
- MODULE_DESCRIPTION("xe live kunit tests");
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index 0dae4694b8a0..a20397229e65 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -2265,3 +2265,7 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 	err = drmm_mutex_init(dev, &xe->eudebug.lock);
+ 	if (err)
+ 		goto out_err;
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
+index 208b18127603..ed3c2078e960 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.h
++++ b/drivers/gpu/drm/xe/xe_eudebug.h
+@@ -46,6 +46,9 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 			     void *data,
+ 			     struct drm_file *file);
  
- 	return xe_eudebug_connect(xe, file, param);
++void xe_eudebug_support_enable(struct xe_device *xe);
++int xe_eudebug_support_disable(struct xe_device *xe);
++
+ void xe_eudebug_init(struct xe_device *xe);
+ bool xe_eudebug_is_enabled(struct xe_device *xe);
+ 
+@@ -82,6 +85,9 @@ static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
+ 					   void *data,
+ 					   struct drm_file *file) { return 0; }
+ 
++static inline void xe_eudebug_support_enable(struct xe_device *xe) { }
++static inline int xe_eudebug_support_disable(struct xe_device *xe) { return 0; }
++
+ static inline void xe_eudebug_init(struct xe_device *xe) { }
+ static inline bool xe_eudebug_is_enabled(struct xe_device *xe) { return false; }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 02f4e412fcdf..c44a73038fd0 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -558,6 +558,9 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
+ 		return -EINVAL;
+ 
++	if (XE_IOCTL_DBG(xe, !xe_eudebug_is_enabled(xe)))
++		return -EPERM;
++
+ 	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
+ 	q->sched_props.preempt_timeout_us = 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index b77572a19548..4c89f9bb4767 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -21,6 +21,7 @@
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_eudebug.h"
+ #include "xe_eu_stall.h"
+ #include "xe_exec_queue.h"
+ #include "xe_execlist.h"
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index 9c1c9e669b04..49661c36ccf4 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -9,6 +9,7 @@
+ #include "regs/xe_bars.h"
+ #include "xe_assert.h"
+ #include "xe_device.h"
++#include "xe_eudebug.h"
+ #include "xe_gt_sriov_pf_config.h"
+ #include "xe_gt_sriov_pf_control.h"
+ #include "xe_gt_sriov_printk.h"
+@@ -153,6 +154,10 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	xe_assert(xe, num_vfs <= total_vfs);
+ 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
+ 
++	err = xe_eudebug_support_disable(xe);
++	if (err < 0)
++		goto failed_eudebug;
++
+ 	err = xe_sriov_pf_wait_ready(xe);
+ 	if (err)
+ 		goto out;
+@@ -195,6 +200,9 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	pf_unprovision_vfs(xe, num_vfs);
+ 	xe_pm_runtime_put(xe);
+ out:
++	xe_eudebug_support_enable(xe);
++failed_eudebug:
++
+ 	xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
+ 			num_vfs, str_plural(num_vfs), ERR_PTR(err));
+ 	return err;
+@@ -223,6 +231,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+ 	/* not needed anymore - see pf_enable_vfs() */
+ 	xe_pm_runtime_put(xe);
+ 
++	xe_eudebug_support_enable(xe);
++
+ 	xe_sriov_info(xe, "Disabled %u VF%s\n", num_vfs, str_plural(num_vfs));
+ 	return 0;
  }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_eudebug.c"
-+#endif
 -- 
 2.43.0
 
