@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EE4ACCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A3E7CCA471
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EEC910E416;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10E9610E415;
 	Mon,  6 Oct 2025 11:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ye9Jg+ky";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qet/tTMs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09BE310E35D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3374010E346
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759749044; x=1791285044;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=kiz+jerG8Hx1DiGBkWQWSS6oHpKcTCE/T9d9vU2nJ8M=;
- b=Ye9Jg+ky/4Vta2ntewR71J8D1VN79yUoLY2CH9/gxxOe7jNYeU1hqGpL
- ue7vSE2JdhHjtky04TVyd3f2gkeYBWShLXkXPZxR5otAFUJH0cafBEYA5
- iOIKTx7cprfmaIZmr0cD4UBrMrtkFy2xW2SiMGaFEgKwNURpaO7gYqUHi
- adad84/5FedcBHQbfs8d0HnheohQW1RM6AWf+OR8CtabNREN/G3f+yrv5
- AsbEiQvD6/cxK5+SZNp8TCQsEradA8yHPDd6q1Poyv7jnzHYn7gC1e6ah
- V2G/LwcCJw3JWavbMQKV/gc7GGn8R7otd6wFCcoj3HDLH3lwJpF7otYI8 w==;
-X-CSE-ConnectionGUID: 3utWPT8zQ+2E2Xr0LKbqIA==
-X-CSE-MsgGUID: fq+OII06Q/GSWjT1UoK4nw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020385"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020385"
+ bh=iM3Sga3iiCy45f0J0hnMzGg2lAa7hsvRHtDrKerUcQE=;
+ b=Qet/tTMstK5soJW+b9JNCgGABEjbX2I4cxiDQ1CAWtiQK+wyZZzkMm8G
+ +7NyMi5yDto93O8HkNQ0x1+IZrpobh3BTFnuykV7dk3miXYpKF4AQvN1d
+ JV54elaJvOvvtckx9Yb0GOeDMkQuAkHQQ4H6OBkv1RxD0Ao0WwVpRB093
+ LJjCjoKS3DPtciHu/bH/d1PipFxDGU9+i4gIY+vEkOdIhYifJi7WGjzjV
+ xuAdQYCblH5pB55aaXHzDDFYNg/IowW1JqD+d8MheryGeuyXk1zgpqBuV
+ mAwN1yXaEiB9PQHJCNXalM9foq1qM7hE0hQ3kgHnjPiYhjrcVAtgbtJh4 A==;
+X-CSE-ConnectionGUID: 5LWj/uMaQvOn5izRRdIHjg==
+X-CSE-MsgGUID: 6TJPSxpxRtS3juv01hMdGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020386"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020386"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:44 -0700
-X-CSE-ConnectionGUID: 7wR1A4fKTo6kgOlRZzGfbA==
-X-CSE-MsgGUID: OM2XZRchSI+0zwo1jS4hhQ==
+X-CSE-ConnectionGUID: 89BB58TKQry/5mrxgQGDmw==
+X-CSE-MsgGUID: D/GtNjejRt2wk1U9u2sFAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655224"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655225"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 09/30] drm/xe/vf: Abort H2G sends during VF post-migration
- recovery
-Date: Mon,  6 Oct 2025 04:10:17 -0700
-Message-Id: <20251006111038.2234860-10-matthew.brost@intel.com>
+Subject: [PATCH v6 10/30] drm/xe/vf: Remove memory allocations from VF post
+ migration recovery
+Date: Mon,  6 Oct 2025 04:10:18 -0700
+Message-Id: <20251006111038.2234860-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
@@ -66,42 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While VF post-migration recovery is in progress, abort H2G sends with
--ECANCEL. These messages are treated as lost, and TLB invalidation
-errors are suppressed. During this phase, the H2G channel is down, and
-VF recovery requires the CT lock to proceed.
+VF post migration recovery is the path of dma-fence signaling / reclaim,
+avoid memory allocations in this path.
 
 v3:
- - Use xe_gt_recovery_inprogress (Michal)
+ - s/lrc_wa_bb/scratch (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 23 +++++++++++++----------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 47079ab9922c..9f0090ae64a6 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -851,7 +851,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 				u32 len, u32 g2h_len, u32 num_g2h,
- 				struct g2h_fence *g2h_fence)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index b3cee182087c..55a1ebbbf47f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1160,17 +1160,13 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
+ 
+ static int vf_post_migration_fixups(struct xe_gt *gt)
  {
--	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
-+	struct xe_gt *gt = ct_to_gt(ct);
- 	u16 seqno;
- 	int ret;
++	void *buf = gt->sriov.vf.migration.scratch;
+ 	s64 shift;
+-	void *buf;
+ 	int err;
  
-@@ -872,7 +872,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		goto out;
+-	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_ATOMIC);
+-	if (!buf)
+-		return -ENOMEM;
+-
+ 	err = xe_gt_sriov_vf_query_config(gt);
+ 	if (err)
+-		goto out;
++		return err;
+ 
+ 	shift = xe_gt_sriov_vf_ggtt_shift(gt);
+ 	if (shift) {
+@@ -1178,12 +1174,10 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 		if (err)
+-			goto out;
++			return err;
  	}
  
--	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
-+	if (ct->state == XE_GUC_CT_STATE_STOPPED || xe_gt_recovery_pending(gt)) {
- 		ret = -ECANCELED;
- 		goto out;
- 	}
+-out:
+-	kfree(buf);
+-	return err;
++	return 0;
+ }
+ 
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+@@ -1268,9 +1262,18 @@ static void migration_worker_func(struct work_struct *w)
+  */
+ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ {
++	void *buf;
++
+ 	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
+ 		return 0;
+ 
++	buf = drmm_kmalloc(&gt_to_xe(gt)->drm,
++			   post_migration_scratch_size(gt_to_xe(gt)),
++			   GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index b2c8e8c89c30..e753646debc4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -55,6 +55,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued */
+ 	spinlock_t lock;
++	/** @scratch: Scratch memory for VF recovery */
++	void *scratch;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
