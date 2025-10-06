@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C94A2CCD186
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:44:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D790CCD187
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 197B310E3FD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40F6110E401;
 	Mon,  6 Oct 2025 10:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AEXC0y3g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anwlzOQH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48DF810E307
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7088F10E313
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759747492; x=1791283492;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zrFjQ3NzFMHUytb1ocBefuP6ns8dvZagiOUlx4fqc4w=;
- b=AEXC0y3gsCCt62lWb75417jc3NHfEX+bseg/YaX0uexaDlmqe0qDiaIo
- YaiNomyJLHLKpmgV/tpLBkm/BCAkaP6rxAqs6FlCFnknqrF8C6RqWSKCh
- 4W1dF0WZvprJO7qfYCv7EvKKGo8FE1fzvA3fih0/QgbBCNsbJRZkHDPov
- vKSiUHjzKXwCQ6hnjq+gHi8qa3yYl3ueVYPoIVujRCU6Zl/KQMuWO7TqF
- jbUmWfYQ+y8A93akzsDgYm+PhV4h/f8XXaQwodBOykWbFpuBKGYxp3tBa
- WGksgJvz+lIAygPHym6VJI4FuHrUInibc2kiu91TPsv/wdmzSHi7PJP5r A==;
-X-CSE-ConnectionGUID: BRIfGrq7QGesAk++DwwD6Q==
-X-CSE-MsgGUID: ziA6KmG6QUqhITipm6X4Xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546317"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546317"
+ bh=Zbt9iY45fKGU3PBNMewF1LTjWNTGlnOrW2JVmHgmJJ8=;
+ b=anwlzOQHoAgXaAjatwN7ho2+wW1fdrk3FmAUiLUuc2YbuKCH3jUfyUwT
+ ULFqpes/55WMepEcAdvg5vxOJvCCOvQkCxzyw0kCmp6hujcOO5WwDVTLe
+ NnxM/eQHo340kQqBR4zmbZvhlQFaz6PoT1GaUew1EoQTY6LO/SqTRO8Wq
+ L+A+chLU4F4DJOtliwIa39hQJS+/UVwntOajjv5Ak+8AcZTfVN0TyXD4c
+ 3VpJXKOH5Uo0aVdH3UqsI8WnzV7KIvzjvjiOWnWfCQJuYonBF07llfX9k
+ 8Z96L3jMb5/CTzvVA6cjjeW1fqZ92BnINoqhblWPPMrnajxoauJ24XgTe w==;
+X-CSE-ConnectionGUID: llqOVa4cR4acvcuf7/djoA==
+X-CSE-MsgGUID: 4BG02VWnQOqWvTzT+1a0+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546318"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546318"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 03:44:51 -0700
-X-CSE-ConnectionGUID: qk+BCLqfTqSIvMkVoq7jfA==
-X-CSE-MsgGUID: VIdSPwD1TE+hJuixLXtlgQ==
+X-CSE-ConnectionGUID: xWcOKudEQPyNE36TYKZQBQ==
+X-CSE-MsgGUID: 0gFoysYkT1yCZjNrNoi4yw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589311"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589312"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 03:44:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 05/30] drm/xe: Don't change LRC ring head on job
- resubmission
-Date: Mon,  6 Oct 2025 03:44:20 -0700
-Message-Id: <20251006104445.2210624-6-matthew.brost@intel.com>
+Subject: [PATCH v5 06/30] drm/xe: Make LRC W/A scratch buffer usage consistent
+Date: Mon,  6 Oct 2025 03:44:21 -0700
+Message-Id: <20251006104445.2210624-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006104445.2210624-1-matthew.brost@intel.com>
 References: <20251006104445.2210624-1-matthew.brost@intel.com>
@@ -66,54 +65,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we save the job's head during submission, it's no longer
-necessary to adjust the LRC ring head during resubmission. Instead, a
-software-based adjustment of the tail will overwrite the old jobs in
-place. For some odd reason, adjusting the LRC ring head didn't work on
-parallel queues, which was causing issues in our CI.
+The LRC W/A currently checks for LRC being iomem in some places, while
+in others it checks if the scratch buffer is non-NULL. This
+inconsistency causes issues with the VF post-migration recovery code,
+which blindly passes in a scratch buffer.
 
-v5:
- - Add comment in guc_exec_queue_start explaning why the function works
-   (Auld)
+This patch standardizes the check by consistently verifying whether the
+LRC is iomem to determine if the scratch buffer should be used.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 3a534d93505f..d123bdb63369 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2008,11 +2008,25 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 9feca10837b0..0c0102eb2bad 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1247,7 +1247,7 @@ static int setup_bo(struct bo_setup_state *state)
  
- 	if (!exec_queue_killed_or_banned_or_wedged(q)) {
-+		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
- 		int i;
+ static void finish_bo(struct bo_setup_state *state)
+ {
+-	if (!state->buffer)
++	if (!state->lrc->bo->vmap.is_iomem)
+ 		return;
  
- 		trace_xe_exec_queue_resubmit(q);
--		for (i = 0; i < q->width; ++i)
--			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
-+		if (job) {
-+			for (i = 0; i < q->width; ++i) {
-+				/*
-+				 * The GuC context is unregistered at this point
-+				 * time, adjusting software ring tail ensures
-+				 * jobs are rewritten in original placement,
-+				 * adjusting LRC tail ensures the newly loaded
-+				 * GuC / contexts only view the LRC tail
-+				 * increasing as jobs are written out.
-+				 */
-+				q->lrc[i]->ring.tail = job->ptrs[i].head;
-+				xe_lrc_set_ring_tail(q->lrc[i],
-+						     xe_lrc_ring_head(q->lrc[i]));
-+			}
-+		}
- 		xe_sched_resubmit_jobs(sched);
- 	}
- 
+ 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
 -- 
 2.34.1
 
