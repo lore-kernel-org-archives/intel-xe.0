@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A98F1CCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF33CCD182
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF9A10E346;
-	Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 007A410E35E;
+	Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UKjVweox";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gjWPMGnJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE2B310E341
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91C0610E341
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749043; x=1791285043;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NjZOnrH8L5EsCTMQQ3C96RtVXe6tlrWMHAiz6WpABOY=;
- b=UKjVweoxUH3TO2OZGMNJR1JRuqXA6IPJiWQYIBgU1wCCX4jpa0GgQzC/
- jHgnfHgaz7byAv19z0oSeyBN5/9r91gvJzy3hJ/bPlReaVbD9Xiy/wC6t
- mVW6A+gmpS82brVKFl60FIwnl7HXxPKm2VL1px4aJJTUxvMgrz/rPMdT7
- sW769I/+nn1dFkxNyoZyH0879QAHRxScBG2vrJxzD2qeKMzf+KAWT9QBe
- vq0HJBdGeNVdv60yI/PyUDAYo+gYj0a9ORd+NrML7214sb6c7xFOSi9Ma
- sG3Cx71G2wLUEC1R1/qxXNBgwP9PTI67WUBOPWAKaJGHdgYjiYSZWfvl9 w==;
-X-CSE-ConnectionGUID: JMfMo6MPRBqEaUaHa+M8ow==
-X-CSE-MsgGUID: /ePMAoz6SIm654CLm+BVgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020373"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020373"
+ t=1759749044; x=1791285044;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=hOs0CGhwgdS1m3z50ATAd+se2zL74a1F4cH1ItjZc/8=;
+ b=gjWPMGnJNSPQ5eMo2WpzEFnSV4vtYhfROEEUR9cFKVBd3D+Pf2l9Akau
+ FbuVzp0ggdjB1gGPYZg7Zi8MiIgjZGlzhR2yCBamGkax8baZkEsBZKDdU
+ +lENr4RrtGgBUD4C1MhsZEPa4zCn2UCha+dlCcPB6BqDmCyHgVQQY4nL2
+ 0QPk+b2Go1dR0oLbAuL/0elLPqvxsJ/W4HmKE7hZKiaU4AO/hDI45SNLV
+ 9TISr8k4kib9Ng1Tx59ym0/RWhXP2KPZUlts8XzaScLhlvnlR2ezxW3rC
+ DGzSEx03Ztqt7LsK8v3DZ8dBekFxNInBBja65u/rYZBsxCUOS4L4KiFTF g==;
+X-CSE-ConnectionGUID: DJVdcn2yQ+2rEdtJz8bRlQ==
+X-CSE-MsgGUID: TSKOpcZHT86qVJPIYvB3aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020377"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020377"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:43 -0700
-X-CSE-ConnectionGUID: tPV2vcScQUyUF4gK1+Sk5g==
-X-CSE-MsgGUID: gYITGvRGQqOoXxKVMtJaOg==
+X-CSE-ConnectionGUID: GjP6kU7YTsqW24uMs7Ygvg==
+X-CSE-MsgGUID: ZxAuMp2hTIKlZv+XoGh31Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655213"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655215"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:42 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 00/30] VF migration redesign
-Date: Mon,  6 Oct 2025 04:10:08 -0700
-Message-Id: <20251006111038.2234860-1-matthew.brost@intel.com>
+Subject: [PATCH v6 02/30] drm/xe: Save off position in ring in which a job was
+ programmed
+Date: Mon,  6 Oct 2025 04:10:10 -0700
+Message-Id: <20251006111038.2234860-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
+References: <20251006111038.2234860-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,138 +66,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than modifying buffers in place using GGTT addresses during VF
-migration, this approach relies on the submission backend's stop/start
-mechanism to issue fixups. The patch titled "Document GuC Submission
-Backend" provides a detailed explanation of the design.
+VF post-migration recovery needs to modify the ring with updated GGTT
+addresses for pending jobs. Save off position in ring in which a job was
+programmed to facilitate.
 
-Testing was performed using an out-of-tree PF/VFIO driver with manual
-triggering of VF migration while IGT test cases are running.
-
-IGT test cases:
-
-- A new series [1] that exercises active contexts, job resubmission, and
-  compressd memory.
-
-- A new test [2] that actively creates / destroys queue on each
-  submission
-
-- xe_exec_threads basic sections, which test context registration loss,
-  schedule enable loss, and job resubmission.
-
-- xe_exec_threads balancer sections, which follow the same flows as the 
-  basic sections but include a work queue (GGTT address shift).
-
-- xe_exec_threads compute mode user pointer invalidation sections, which
-  exercise the same flow as the basic sections, plus replaying
-  suspend/resume flows.
-
-All code paths in "Replay GuC submission state on pause/unpause" that
-replay state have been manually verified via debug messages "Add debug
-prints for GuC replaying state during VF recovery".
-
-v2:
- - Fix lockdep splat
- - Fix checkpatch
- - Fix PTL issue with LRC W/A buffer
- - Fix race creating / destroying queues across migration exposed by [2]
- - Include a version of Satya's patches in [3] which enable CCS save /
-   restore across VF migration /w GGTT shift
-v3:
- - Address feedback
- - Fix preempt fence mode deadlock /w work queues + VF recovery (Testing)
- - Add NULL checks to scratch LRC allocation
 v4:
- - Fix CI failure
- - Remove config lock
-v5:
- - Fix CI failures related to lockdep
- - Address various comments
-v6:
- - Rebase for CI
+ - s/VF resume/VF post-migration recovery (Tomasz)
 
-Matt
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
+ 2 files changed, 24 insertions(+), 4 deletions(-)
 
-Matthew Brost (28):
-  drm/xe: Add NULL checks to scratch LRC allocation
-  drm/xe: Save off position in ring in which a job was programmed
-  drm/xe/guc: Track pending-enable source in submission state
-  drm/xe: Track LR jobs in DRM scheduler pending list
-  drm/xe: Don't change LRC ring head on job resubmission
-  drm/xe: Make LRC W/A scratch buffer usage consistent
-  drm/xe/vf: Add xe_gt_recovery_pending helper
-  drm/xe/vf: Make VF recovery run on per-GT worker
-  drm/xe/vf: Abort H2G sends during VF post-migration recovery
-  drm/xe/vf: Remove memory allocations from VF post migration recovery
-  drm/xe/vf: Close multi-GT GGTT shift race
-  drm/xe/vf: Teardown VF post migration worker on driver unload
-  drm/xe/vf: Don't allow GT reset to be queued during VF post migration
-    recovery
-  drm/xe/vf: Wakeup in GuC backend on VF post migration recovery
-  drm/xe/vf: Avoid indefinite blocking in preempt rebind worker for VFs
-    supporting migration
-  drm/xe/vf: Use GUC_HXG_TYPE_EVENT for GuC context register
-  drm/xe/vf: Flush and stop CTs in VF post migration recovery
-  drm/xe/vf: Reset TLB invalidations during VF post migration recovery
-  drm/xe/vf: Kickstart after resfix in VF post migration recovery
-  drm/xe/vf: Start CTs before resfix VF post migration recovery
-  drm/xe/vf: Abort VF post migration recovery on failure
-  drm/xe/vf: Replay GuC submission state on pause / unpause
-  drm/xe: Move queue init before LRC creation
-  drm/xe/vf: Add debug prints for GuC replaying state during VF recovery
-  drm/xe/vf: Workaround for race condition in GuC firmware during VF
-    pause
-  drm/xe/vf: Use primary GT ordered work queue on media GT on PTL VF
-  drm/xe/vf: Ensure media GT VF recovery runs after primary GT on PTL
-  drm/xe/vf: Rebase CCS save/restore BB GGTT addresses
-
-Satyanarayana K V P (2):
-  drm/xe: Use PPGTT addresses for TLB invalidation to avoid GGTT fixups
-  drm/xe/guc: Increase wait timeout to 2sec after BUSY reply from GuC
-
- drivers/gpu/drm/xe/xe_device_types.h         |   5 +
- drivers/gpu/drm/xe/xe_exec.c                 |  12 +-
- drivers/gpu/drm/xe/xe_exec_queue.c           |  64 +--
- drivers/gpu/drm/xe/xe_exec_queue.h           |   2 -
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |   3 +
- drivers/gpu/drm/xe/xe_execlist.c             |   2 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  14 +
- drivers/gpu/drm/xe/xe_gpu_scheduler.h        |   2 +
- drivers/gpu/drm/xe/xe_gt.c                   |  28 +-
- drivers/gpu/drm/xe/xe_gt.h                   |  15 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c          | 458 +++++++++++++----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h          |  13 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h    |  33 +-
- drivers/gpu/drm/xe/xe_guc.c                  |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c               | 121 +++--
- drivers/gpu/drm/xe/xe_guc_ct.h               |  11 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  15 +
- drivers/gpu/drm/xe/xe_guc_submit.c           | 486 +++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_submit.h           |   5 +-
- drivers/gpu/drm/xe/xe_lrc.c                  |  15 +-
- drivers/gpu/drm/xe/xe_lrc.h                  |  10 +
- drivers/gpu/drm/xe/xe_memirq.c               |  48 +-
- drivers/gpu/drm/xe/xe_memirq.h               |   2 +
- drivers/gpu/drm/xe/xe_migrate.c              |  28 +-
- drivers/gpu/drm/xe/xe_pci.c                  |   6 +-
- drivers/gpu/drm/xe/xe_pci_types.h            |   1 +
- drivers/gpu/drm/xe/xe_preempt_fence.c        |  11 +
- drivers/gpu/drm/xe/xe_ring_ops.c             |  23 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h      |   9 +
- drivers/gpu/drm/xe/xe_sriov_vf.c             | 240 ---------
- drivers/gpu/drm/xe/xe_sriov_vf.h             |   1 -
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c         |  28 ++
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h         |   1 +
- drivers/gpu/drm/xe/xe_sriov_vf_types.h       |   4 -
- drivers/gpu/drm/xe/xe_tile.c                 |   2 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c        |  30 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h        |   2 +-
- drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h  |  23 +
- drivers/gpu/drm/xe/xe_vm.c                   |  26 +-
- drivers/gpu/drm/xe/xe_vram.c                 |   6 +-
- 40 files changed, 1250 insertions(+), 559 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index d71837773d6c..ac0c6dcffe15 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+ 
+ /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
++				    u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	if (job->ring_ops_flush_tlb) {
+@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
+ }
+ 
+ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++				   u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	dw[i++] = preparser_disable(true);
+@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 
+ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 					    struct xe_lrc *lrc,
+-					    u64 batch_addr, u32 seqno)
++					    u64 batch_addr, u32 *head,
++					    u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	dw[i++] = preparser_disable(true);
+@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ }
+ 
+ static void emit_migration_job_gen12(struct xe_sched_job *job,
+-				     struct xe_lrc *lrc, u32 seqno)
++				     struct xe_lrc *lrc, u32 *head,
++				     u32 seqno)
+ {
+ 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	__emit_job_gen12_simple(job, job->q->lrc[0],
+ 				job->ptrs[0].batch_addr,
++				&job->ptrs[0].head,
+ 				xe_sched_job_lrc_seqno(job));
+ }
+ 
+@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 
+ 	if (xe_sched_job_is_migration(job->q)) {
+ 		emit_migration_job_gen12(job, job->q->lrc[0],
++					 &job->ptrs[0].head,
+ 					 xe_sched_job_lrc_seqno(job));
+ 		return;
+ 	}
+@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_simple(job, job->q->lrc[i],
+ 					job->ptrs[i].batch_addr,
++					&job->ptrs[i].head,
+ 					xe_sched_job_lrc_seqno(job));
+ }
+ 
+@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_video(job, job->q->lrc[i],
+ 				       job->ptrs[i].batch_addr,
++				       &job->ptrs[i].head,
+ 				       xe_sched_job_lrc_seqno(job));
+ }
+ 
+@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
+ 						job->ptrs[i].batch_addr,
++						&job->ptrs[i].head,
+ 						xe_sched_job_lrc_seqno(job));
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index dbf260dded8d..7ce58765a34a 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -24,6 +24,11 @@ struct xe_job_ptrs {
+ 	struct dma_fence_chain *chain_fence;
+ 	/** @batch_addr: Batch buffer address. */
+ 	u64 batch_addr;
++	/**
++	 * @head: The tail pointer of the LRC (so head pointer of job) when the
++	 * job was submitted
++	 */
++	u32 head;
+ };
+ 
+ /**
 -- 
 2.34.1
 
