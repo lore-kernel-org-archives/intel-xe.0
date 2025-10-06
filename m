@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E20F1CCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 15:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33AFBCAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 15:15:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A324010E0AC;
-	Mon,  6 Oct 2025 15:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB0110E0A8;
+	Mon,  6 Oct 2025 15:15:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KS9rj4sA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J+f7d7cA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06C4210E0AC;
- Mon,  6 Oct 2025 15:11:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9680310E0A8
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 15:15:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759763507; x=1791299507;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=QR/LpZUbD16qWjIr/UTzkfEY5pTxEs2wtGy/3wpcQ24=;
- b=KS9rj4sARsv1cD0Kk7g6tls3dwjDYwfS4YNM+fXKj7a1JQ9X5iksPd0X
- RmzJUH/VlUVpHOU7vszdJDgh6wEoInCxBFc+EaliTktsoCKOsz8BaDCEZ
- ot9c30aAgEeE9EIjdwVlcS6GRXfueBD6zM0TjQCKcxP/oyUOu00JzrOU/
- ZTaKqhqqMCQMWHayVHaOAB3VToIz33e41yPuOgQGuuXU2lDLNqB3pl72u
- Rh8ThurK/iaPpDa3EFbLaT3tLTAr1DDzt5pozWFwyFEdIzYTMq1Fteqgb
- FyzyIs7iCw6iO30+IGdjBch/G951gs6Q/6JloPrNR2PhB5qDkEdv7NBr6 g==;
-X-CSE-ConnectionGUID: 5lVxdMPATmu+v0M8KZFe1w==
-X-CSE-MsgGUID: Xfe2AZNWSsqVU1ulGv9ubw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="72191362"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="72191362"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 08:11:46 -0700
-X-CSE-ConnectionGUID: 1/Yvz7YnRAOonMSAtMgMGw==
-X-CSE-MsgGUID: exII/pc8Tm+scfanX/sCwA==
+ t=1759763739; x=1791299739;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mVLfQNTWw4qULi2rFZvJLLIuO0EkCgBFZQ2gs8+bDmE=;
+ b=J+f7d7cA3/1w12KP7R/HztW9+UJ0+spKoKQBNMmPYZKH//nduQAt7IA1
+ F9qmNr4XYsIenebgvwe6UaA7iUqkKLk1ro58unCHZE2YcXFhszkKcsLzi
+ TnIvFDhiP7w4v5Prx3k3yrKQrftZOeOvwPbn/z/TTdBOrb1u3h5yaRmsf
+ dIdd4eitQ0c+r5WG82CvhDDz60Uvi0P/xl2LlW1CnbQ/Qq8skolWllY86
+ Q6hMu0i7SwgN6rJqtWJbAYbjySpvyEY+0ycC58ycLZFnjC++N6CH8skPj
+ stH70c/PQo0rieOh6HMvUoI2eDHtuzbLZM9gWtDOOq2ttskq82LLMrCuB A==;
+X-CSE-ConnectionGUID: p3UWy7V3QUqJKtv4Wu3Kow==
+X-CSE-MsgGUID: WKMrnOuzTpqfJmO2Kx7//g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61647796"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61647796"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 08:15:39 -0700
+X-CSE-ConnectionGUID: hSFgLXSES5STEo2X/ocaEg==
+X-CSE-MsgGUID: ZZW+3oBuTeigF+0rmcqVSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="180331295"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.162])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 08:11:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com
-Subject: Re: [RFC] drm/{i915,xe}/display: pass hooks to display probe
-In-Reply-To: <aOO7gF9zvg_SCaJf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251003092107.2892508-1-jani.nikula@intel.com>
- <aOO7gF9zvg_SCaJf@intel.com>
-Date: Mon, 06 Oct 2025 18:11:41 +0300
-Message-ID: <4010feb576de4f20b7f2323acf12693411344468@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="203643011"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by fmviesa002.fm.intel.com with ESMTP; 06 Oct 2025 08:15:37 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH] drm/xe: Fix comments in xe_gt struct
+Date: Mon,  6 Oct 2025 15:13:18 +0000
+Message-ID: <20251006151317.2553182-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251003234850.2481736-2-shuicheng.lin@intel.com>
+References: <20251003234850.2481736-2-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,62 +66,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 06 Oct 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Oct 03, 2025 at 12:21:07PM +0300, Jani Nikula wrote:
->> Let's gradually start calling i915 and xe core drivers from display via
->> function pointers passed at display probe. For starters, just add a
->> small feature test hook ->has_flat_ccs.
->>=20
->> FIXME: "hooks" is a terrible name, both as a parameter and a struct
->> intel_display member name. It should reflect that we're calling the core
->> or parent driver. This is a placeholder name for now.
->>=20
->> FIXME: Initially, one struct is fine... but once it accumulates a lot of
->> functions, should it have more indirection? Maybe everything should be
->> in sub-structs, or the top struct should just be a collection of
->> pointers to hook structs?
->>=20
->> 	struct intel_core_hooks {
->> 		const struct intel_rpm_hooks *rpm;
->> 	};
->>=20
->> The above would allow having the struct initialization inside the
->> implementation file, and the functions themselves static. In any case,
->> it seems best to have just one initialization of the hooks, instead of
->> one init/register call for each functional area.
->>=20
->> The downside is of course having to call the functions like:
->>=20
->> 	display->hooks->rpm->get(display->drm);
->>=20
->> FIXME: It would really be convenient if we could stop using a display
->> device with mock_gem_device() in mock_gem_device.c. The purpose of the
->> mock gem device is to run mock *gem* tests. Could we make it happen
->> without display?
->
-> Haven't really thought too much about the display->xe/i915 direction
-> yet, but I was pondering the opposite direction. Should we even use
-> vfuncs there or perhaps just export the symbols from the display side?
->
-> But symbol name collisions do worry me. There does seem to be a
-> EXPORT_SYMBOL_FOR_MODULES() now, but I have a nagging feeling that it
-> doesn't actually implement symbol namespaces (as in the same symbol
-> name could be defined in multiple namespaces) but rather just prevents
-> modules from loading when they don't have the permission to use a
-> "namespaced" symbol.
->
-> So with exports we'd probably have to carefully prefix each exported
-> symbol with "intel_display_" (or whatever). We could of course still
-> use EXPORT_SYMBOL_FOR_MODULES() to make sure other stuff can't access
-> those symbols.
+Correct several spelling and grammar issues in xe_gt struct
+documentation to improve readability:
 
-There's EXPORT_SYMBOL_NS() and MODULE_IMPORT_NS() nowadays that should
-help. We should probably still have the prefixes, but it the namespace
-should tackle the collisions.
+- Fix "to not" -> "do not".
+- Fix "mmigrations" -> "migrations".
+- Fix "Multiple queues exists" -> "Multiple queues exist".
+- Fix "are be processed" -> "to be processed".
+- Fix "have being processed" -> "have been processed".
 
-BR,
-Jani.
+These changes are purely cosmetic and do not affect functionality.
 
---=20
-Jani Nikula, Intel
+v2: drop kernel-doc formatting change. (Jani)
+
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_types.h | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 66158105aca5..8b5f604d7883 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -202,14 +202,14 @@ struct xe_gt {
+ 		/**
+ 		 * @usm.bb_pool: Pool from which batchbuffers, for USM operations
+ 		 * (e.g. migrations, fixing page tables), are allocated.
+-		 * Dedicated pool needed so USM operations to not get blocked
++		 * Dedicated pool needed so USM operations do not get blocked
+ 		 * behind any user operations which may have resulted in a
+ 		 * fault.
+ 		 */
+ 		struct xe_sa_manager *bb_pool;
+ 		/**
+ 		 * @usm.reserved_bcs_instance: reserved BCS instance used for USM
+-		 * operations (e.g. mmigrations, fixing page tables)
++		 * operations (e.g. migrations, fixing page tables)
+ 		 */
+ 		u16 reserved_bcs_instance;
+ 		/** @usm.pf_wq: page fault work queue, unbound, high priority */
+@@ -220,8 +220,8 @@ struct xe_gt {
+ 		 * @usm.pf_queue: Page fault queue used to sync faults so faults can
+ 		 * be processed not under the GuC CT lock. The queue is sized so
+ 		 * it can sync all possible faults (1 per physical engine).
+-		 * Multiple queues exists for page faults from different VMs are
+-		 * be processed in parallel.
++		 * Multiple queues exist for page faults from different VMs to be
++		 * processed in parallel.
+ 		 */
+ 		struct pf_queue {
+ 			/** @usm.pf_queue.gt: back pointer to GT */
+@@ -387,7 +387,7 @@ struct xe_gt {
+ 		/**
+ 		 * @wa_active.oob_initialized: mark oob as initialized to help
+ 		 * detecting misuse of XE_GT_WA() - it can only be called on
+-		 * initialization after OOB WAs have being processed
++		 * initialization after OOB WAs have been processed
+ 		 */
+ 		bool oob_initialized;
+ 	} wa_active;
+-- 
+2.49.0
+
