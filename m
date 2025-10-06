@@ -4,184 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F712CAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 21:39:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DB49CAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 21:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB0710E0F6;
-	Mon,  6 Oct 2025 21:39:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E2B10E139;
+	Mon,  6 Oct 2025 21:50:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nj3oRDLI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkLeLP7u";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4675C10E0F6
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 21:39:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F008810E139
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 21:50:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759786750; x=1791322750;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=OURJmsJN4VPv4w2whdqTKAQCdo6qUiQmJ0YFnVW+BP0=;
- b=nj3oRDLItt0jCHVZYhiavrqR7QKnV1EZ2REg5EcaQdAtM59wEGwnLFEX
- Klq6DLBZLJoNf89EiAf2Vr1ZysBM4CfWWElfjusbySM4XIqpRt7wsRyPB
- gZiSdGBOxeTCjII+O2O0XTZEMHMh36kL66SzDyQ2i13UslvSv7792ITMY
- bGAOAw+kNIJezICKURlgsNHy+QGUjWs6YSrN24u38eOIkEcbauYTzHero
- oxBcOmxsqDmM3TzYAuVbfRTpfOjWbVSHiQtFPlA8tNwI7Q4N8MU21UGA+
- g7zSzZcDTGDt6HkkxQ/loT7ksy/HYaSIHFhatYufGomIBCoovhFE9lWb0 Q==;
-X-CSE-ConnectionGUID: QBs9IXyHTzyKYW1qScKyDg==
-X-CSE-MsgGUID: jWaZAAkyT6ixFRVIIz2L+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="49521758"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="49521758"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 14:39:10 -0700
-X-CSE-ConnectionGUID: tkFqlQIhTNOAIECu6+5iTQ==
-X-CSE-MsgGUID: +Yu37XnUTAmAAlEQSLLc3w==
+ t=1759787453; x=1791323453;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ mime-version; bh=bUphrdqQPoVNIAFDRO6LColW+J5BneE8PDQ7tkmmyzo=;
+ b=VkLeLP7u8AHMZ1HA0s/t5hevSzN+Ejw7U12wcVB/uG20+9i3gi+q5FgW
+ jtXIvAHayzLYSIqLECQKb0axDGeWA1YaT6lkfNvryq5NxEuGg1JHyg2C4
+ aoNjMOzI1qd5qMpliNe8vhqPnm/U1HWh2pr/g8MJLS+K3CfdQcHiqc59+
+ G0ur4uw65Cm3b/TTGleu0AAlhTdzE4gG30ixJQENOQOYMZyIFlubKKQx+
+ Du+tnKv3oTyRI8plo5MXDDJCDkFx7zIe/KQ2Hx/8TaSyPDwifQAMbgkur
+ 10U6PYCsn6mr4q/6j3vgAPiOE5JI4ATuCkUM54+SSN6J34jUeaSCMbGx8 Q==;
+X-CSE-ConnectionGUID: PDGpEJdFSMOf+LIsxH+fTQ==
+X-CSE-MsgGUID: mgx3Ove5TmSPDUc5xiothA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="72223358"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208,217";a="72223358"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 14:50:50 -0700
+X-CSE-ConnectionGUID: E81opDpURpKxPe75L7C9VQ==
+X-CSE-MsgGUID: jiq1uHIfTf2/ZlC1YyQiCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="203720702"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 14:39:10 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; 
+ d="scan'208,217";a="179571731"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 14:50:50 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 14:39:09 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 6 Oct 2025 14:50:49 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 6 Oct 2025 14:39:09 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.12) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 6 Oct 2025 14:50:49 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.70)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 14:39:09 -0700
+ 15.2.2562.27; Mon, 6 Oct 2025 14:50:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LkjFTZ5XpvdcdNi/pNe/pwqf7MnGhs2JtJPh/ljc/QGYpgTAavgRaiesXAHXecjlb2HMU7ahfhyIbLPpmSVKmuT3lNeQWl7/7isE1+Y+FfcZFtBlD8kgRkGXnS4PGUUlvdLMD8yGtor7sj1KvrXjnBD1kyKeev3a6rqUfNAiWrMWhDthuxRQpuPJA9xU2qWrH6JYW4LN9pIoNgDHYt+E4/0EGfszBqiXQ0JlMvSQiTjN9vt49w+LThVvRyfm3tjJMJxQWXXKVsv883ea2arv3WubmdGzdN6/mAq5efdgeqUXiH2U2V1w+mAJfoTMWhZ7ywONk+TrTOiYD9bQ97FQzw==
+ b=IS8nN0we13nUv76F26RPR4+kyuM74TKJuR8eF4ASFZ2flyhXgq1EyUE78IlUyZUKK60JqQpftiSqmoYv3p6bnmFIbdop64JpCagVCC+kxvOPFou/ry0QTJ/jN+PYVn+qMOG7xb7oHj5FtVr3Qc59o0FZlUt+sB2m7YRx3oYpEzPe3o5qncoAwoImJkXGzgFWDTd5KVkE1MyBABLJIyDGp1SabZrWPFU9SPYT+z0zhIr0iFRn/xGMvmjWvzrIeNFMsQMRtM3waRX1O9DdAdE5tS9UZxsf0/m55gpZKmDPUqQBW2DoRBMVo2rtJYZq5Exqk9byGzBFYd0wyxc8HDheOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MbSe/ymkSq1sbQqdgtB2fspGlLaP9szDvoxmvfEi9Pc=;
- b=Bo/TJx0AJJukcB+4M7ce6aHUaDY2sQeXxbf7a8Hc2J7e0vX7ImaVbC4/mT+9WCJfitDnmdap5FEZM8mxXIlkyBzdr5wJOvsuxYZ/Q/qDjvDvlMG6Ux4aki8COqJPOzdOEgUMo90kVc5KU1rh8qmBSbq3FL6Xui+0CtDwkARAvg4Mo7ubAt0XE4Ug6FQyUVT+eFc3wYkJnBsv7DbMu8icWx05xQsg/R0eDRtWn2aQp/43mLeFKscEcxXb+wcuUsAED2w+Hf0icbNbHmFPCEgdCuZMDbqmRj0fhMMDaW+k+eJ31mIYPLwWiE9I8jtId6ixvLPYDyZLo/csHHfXCJbgMQ==
+ bh=MrqedOREW1pf5V+ZgIxghYJh92z/7MreR6MDcYPc8H0=;
+ b=ECX45iITCUB4KdNSR7bbvTv88JSLunqjHpjZozYpzPGyP3rof5hBpIYfbxtk5BendViiyopG0864qsYQPpueXA2RzMWihDWwF/BM1HPltSvTD6xiVCiK+g7Jr3Sslq/h+gQLhFBMhCBvXJeVN9iybylLUK8HzPUFrfHIowe5nJsliMlkbqC4a6/yOC9Yv36/KgbEkAl7Vcz9scSsay728di802Xr2CYgf2epLRhSZMMAIISHV6h2jgBqrYlLxIfWTIXfSpBPahqJxOvDFL6aRNfSBkuuV7Fl1kCVb6tZp0wMhvoZb9+AH8hFNshgSAiriHJ3DCQyXhdyPocboqIBmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS4PPF7A0031045.namprd11.prod.outlook.com (2603:10b6:f:fc02::33)
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
+ by MW4PR11MB6809.namprd11.prod.outlook.com (2603:10b6:303:1e9::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
- 2025 21:39:02 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9182.017; Mon, 6 Oct 2025
- 21:39:02 +0000
-Date: Mon, 6 Oct 2025 14:38:59 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <jeevaka.badrappan@intel.com>,
- <rodrigo.vivi@intel.com>, <carlos.santa@intel.com>, <matthew.auld@intel.com>, 
- <jani.nikula@intel.com>, <ashutosh.dixit@intel.com>
-Subject: Re: [PATCH v5 5/8] drm/xe: Implement xe_work_period_worker
-Message-ID: <aOQ281Zks3cyCpkx@lstrano-desk.jf.intel.com>
-References: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
- <20251006142034.674435-6-aakash.deep.sarkar@intel.com>
- <aOQwzYTSwpMR6VW+@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aOQwzYTSwpMR6VW+@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: BY3PR05CA0012.namprd05.prod.outlook.com
- (2603:10b6:a03:254::17) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2025 21:50:45 +0000
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::8602:e97d:97d7:af09%6]) with mapi id 15.20.9137.018; Mon, 6 Oct 2025
+ 21:50:45 +0000
+Content-Type: multipart/alternative;
+ boundary="------------zWl4cMmoZa54vFul35clyq4w"
+Message-ID: <ee7a0bf0-59d0-4ab6-a5b0-cf93c3d39fe6@intel.com>
+Date: Mon, 6 Oct 2025 23:50:41 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 20/30] drm/xe/vf: Start CTs before resfix VF post
+ migration recovery
+To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20251006111038.2234860-1-matthew.brost@intel.com>
+ <20251006111038.2234860-21-matthew.brost@intel.com>
+Content-Language: en-US
+From: "Lis, Tomasz" <tomasz.lis@intel.com>
+In-Reply-To: <20251006111038.2234860-21-matthew.brost@intel.com>
+X-ClientProxiedBy: VE1PR03CA0004.eurprd03.prod.outlook.com
+ (2603:10a6:802:a0::16) To IA3PR11MB9226.namprd11.prod.outlook.com
+ (2603:10b6:208:574::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS4PPF7A0031045:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59279ea0-df2a-4312-8607-08de0520c433
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|MW4PR11MB6809:EE_
+X-MS-Office365-Filtering-Correlation-Id: 817df33a-16db-4feb-d1aa-08de05226717
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?b2tQam5xNzZ5K3A3enFNY1dEUEhpdnk2SUNmendmZlhGTHdFelpheXR4WVdq?=
- =?utf-8?B?a3ovTzNucVVkN1FFbElvVWd3NEo4cUJkbVNwSjV5bFVtSUpmL1U0YVFXTVdu?=
- =?utf-8?B?WlIvOTc2RVNvUlFjeFM3Q2NMVVZnd2pueXRyVkt1RVBwYlFYV0JESUFILytW?=
- =?utf-8?B?UjJaN1N3UEo3OTNNSUYxOGJ6VTgvakRhYTFsUzN6UGZ1cTNDNTJ4QkVvZ0Q3?=
- =?utf-8?B?a0tiQjhSUnJmdWVXcEI2UFJTSzRMOWN3cW9rRnRvcExjVkVnQVFWemdYK1lW?=
- =?utf-8?B?K0ZUUk13dG5LUno1S1BNZTBYMlQzZkV1Njg5WTJGK0IzSkprcXBZOVMzWGNK?=
- =?utf-8?B?NUt5Tk1GRytYejFLeVJ0STdORHdMWlMyam9vTHp1WFZodDhqSEdJMzBOOEhj?=
- =?utf-8?B?YkVqTUdrS0VPcm9WNmFKY0pGYVhHaTIrb2tYUDRXbHNnV200c0dqdG1aTVNY?=
- =?utf-8?B?clFvTW56ci81ZVRyNG5mdTc2eTZCNHhiVFZxWEc4QzlsU3lrcktIYVRwS25l?=
- =?utf-8?B?QUdHbjZPREhwRWpWRVE4NERVbTRySVUrN2pFanROc1JVMmJWaWZKTlBzUlpM?=
- =?utf-8?B?K2pTaTVWWEJJVnkxTTI3a04wd3hwRjk1NGdXY2JSRDNTT2hHM3crTjdNdFRI?=
- =?utf-8?B?M1kzcVp0ZGwzV0JrWm5iMExzYkluNjRBdThMaXlnUVVMdERtRlZnYTMvSmVY?=
- =?utf-8?B?QXNwaThhRldENDZkdXJ4YnBoaHl0dkxpZWx3aXNSMXZuVVpBSm9JZWtqaEky?=
- =?utf-8?B?eWJrcTNZQmpOeEQ3WkZZcS80SEY0dzl3SmFlNzhUNStKNVlGZFBKVGs0VXho?=
- =?utf-8?B?bTRJTkxBTWt0WkNkY1NsUm5FZ2hzN2dEcmUrRGxVaVN6UmlaWTZFVVJzUWxX?=
- =?utf-8?B?VG5YVWhzK3NBeDQ2VysxZUVIUnBTVEl3UVpYSW9jeVQ4VnpiQlNEZkh2a2ZP?=
- =?utf-8?B?NXBWQ0IyUlRDYjczRENHMjdJeloyZkRvS0hyYjVNQ0s3aUxWMVZhQ045aTQ3?=
- =?utf-8?B?ZTZVZXVzOUJqU0NreUFTVFo0bUlQQjB0SFQvdktQWno3a2dQK2ljbTFvdmY2?=
- =?utf-8?B?dGtPampMVzY2V1JpcnhQREc5NWNZZEY5enl0ck9KSDlvVFk2c2dWMm8wRFZR?=
- =?utf-8?B?dUhjWk5QbzhpTUp4dE1FZzJvS1Rwdld3RngyWmo3VmZUR3laYjFmR0R2cVRV?=
- =?utf-8?B?RnVNTUVBMW9Zc29GdUVNdWxsaFRkTElOM01DbnNrMFJuTTRIZ1IrYnlrYWk3?=
- =?utf-8?B?OHpSVS9jRTcrb291VGdXUzlDMWN6dHU3RldHMzh4ZXdXOGwyMWRQWTB3Rzd3?=
- =?utf-8?B?ZGgraTZVTkhRSzRGZG1tZlA3UW5LRlI4aDZ6VElYS2tpdURQK2w4ZjBkRnJJ?=
- =?utf-8?B?MmFwcU5iY3BwZklmL2M4akExQSt1eVFNbXk2MnhZcGdsTm9KODZJT3dwbUMr?=
- =?utf-8?B?dkhtWmJENjZSZVFocklJMnBTbnFWSVp2bGszWjVvSGdyUUtzbVl6S0FBNTha?=
- =?utf-8?B?eng0UUo4VldwOWZ3a2YvcVpTak5wKzJ0ZlFXb0MzL2FWQ0N2emVmSUdjdDdk?=
- =?utf-8?B?Sk5ucFNuYWRyV2tYM1JRSkdoZ21sNEJJc3hPdmNYWDExUldxVm8rZUhReHl2?=
- =?utf-8?B?SmRnMUR2S2V1OEErRG1jSWFDQUFBZG5mNFRpd2VJWWY4QitBSEdWSUZGN2xT?=
- =?utf-8?B?Vjg0bnYxVzR1TXRKRS9KRm1qV0VBa2I5bFdXd1QxTTFYMFBHWm1NTW9XK05V?=
- =?utf-8?B?am8yalJxbVduMEduMTdJbDdSWkNkWEs4QUR3WlB3cXNpSzZLZE5tdlhYRVpn?=
- =?utf-8?B?bHN2NVJCell4OVJIaVMrZE15RFlFVy9SOEZlWWhJWFBrSFdXLzZPSkUzNjJN?=
- =?utf-8?B?eS92NXdrOWFtWFdNaWc0RzZ0dlNRQXE4VENzUy9FMUNLUHdNMlNPU1ZIeFE3?=
- =?utf-8?Q?QagkPoRqscPre6ZDVd9J0Imeb+JViMfM?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SVlIdEVkQ1F2QzMzTEVtRnVHcFVJdU1pbWRQdzhadWhYQ0ZNOVdKVVZSRDlM?=
+ =?utf-8?B?TFZ0SWhhd3h5TVhQQkxzNmtLdHdjanFKWnNZRDgvb3E2NkpvK1htdm1CUWlY?=
+ =?utf-8?B?bnU0MnF1VHd6MU81bm9INU1DTkZkdjd5Y2VLTWJNZ3hOMGJOVDhXK092ZGFw?=
+ =?utf-8?B?NHpqQkQ4elFXb2x4YUM0OEJsTWY2MmJjdXUzOUVoTVlkQU00V2hKL1RTUUlE?=
+ =?utf-8?B?TzhBRWZTbmlSejVTanVOemNpa3VCT2JkSzNXQVE3V1plNjZJZkR0N2s3WGVN?=
+ =?utf-8?B?VlBlYXVRSmFZdkRlV08vRjVmejdvY1VtbDU2R2JDN2NSN2VzbU1lcGNGY2dz?=
+ =?utf-8?B?YjF4eDRONFNLREkwM2hZbDVkMkhRTkI0dE5NenlTZHprTWVSWnZPekx3UU9I?=
+ =?utf-8?B?ekNxWXJWQlpIWXI5WVVLZzV2Q0FMeEwvKy9hYXdvTGhHTUhXdEFaSUtJRURD?=
+ =?utf-8?B?RTE3YzRrMmhIZEZGaEJkZ0pxZStxQ2huL1Nhb2pUMWJWK1lzejlkZVlGZGtP?=
+ =?utf-8?B?bDFvLyt1WGVETWdyaVM2WFI0UXozSmNzMzliaUdzUnEvTThLOVUzYXpvUFdB?=
+ =?utf-8?B?NEVZTEVaK1pXUzNlTkFXVm5hMm1ZcERDSTB0RXdmcWs5VndOVG9zaGxZZ0tx?=
+ =?utf-8?B?cXZCa0NEcHdQeVh5SFg2RllqWlZVYnh1bnh6MEVzRmtWZTErNmdEaTd6ZHRC?=
+ =?utf-8?B?a0dLL2RzR3RuYWxTMVdaQXowenBHTTZjc1F6TzRSSGpvQXRGWEVxOTBzMVFK?=
+ =?utf-8?B?S0N5OHRJY01JbGsvT0x2TWNuWkpLS1hQOFVOdVBUSGlHZmZMVnJqUEdhWk5O?=
+ =?utf-8?B?VzRDNytDMTdra1VFcVVlRnc3T0U4WC8vT0d1M2R1ZG5UZHJhVmdBMHQ3UFpq?=
+ =?utf-8?B?NjV1S0JtTjk1N2tGdS9RajNzYW5pOTYxTkxaWmNKVkxhYmRzUzFsRi9oamZO?=
+ =?utf-8?B?MDc1eGpzWk43SjE0Zy9KNE5ZKzYvWGowTG5MWkU1SXBoQ3BuOXlDTjFxZW03?=
+ =?utf-8?B?aGtTNUJQZTh3TWUyT01xcFowWGRmei91WGpJM2IvUnBxQVdQbW1nZkNiWTRm?=
+ =?utf-8?B?Rm1jYUpHS0VGU3FiNThXNUdXQnViTDQ3VGhrdjNJVmhOMGRwZmZQU1VQQUlL?=
+ =?utf-8?B?SHdpZ0NaZTVsSmEwUmFHVElBYUxXaHZNSUxEbnVYcERud3VsV0JKQmplbmF2?=
+ =?utf-8?B?dnV6U1dFN1gzTW1JQWI5MmZ1d2NKUGZXUEZuTVJHZUs4MDE1VzVwSUJweVAy?=
+ =?utf-8?B?b0Nva3N4aGZOSzkxaHBEMHQ3UnFlT0pUbUdTelp6bnZTVlVTZGI4d1NOeWZq?=
+ =?utf-8?B?MTFNRnFRSEt1WXY4eGI0L28zOGUzNEVkaTczWnZ2MDBSSjZNY0tySENWZm1p?=
+ =?utf-8?B?eXk1aEwyN29NVnM2K0p3c2NsMDFRN1RTKzg0Q0daUGhxNUhGVk9vMW1SWEJn?=
+ =?utf-8?B?bkhMREhnUTdPSkRnWjh0eEdLRTRvQjg4S1NqME9kcFFBMTlMRlRxdTVvMGZh?=
+ =?utf-8?B?WjFOdW9lM3dHODAycmx2UnUxUzJYM2tGK1dvZmZlK3ExWkM1WHgyaDdpUUJL?=
+ =?utf-8?B?M0hkTmV0SHd3L3dBV3lvSXl2RVNMWWVCcXFFSTNzZHZ6RFFrZUZlWW41aTcw?=
+ =?utf-8?B?MTdxdEZUTkpVZjViRVpXa1FTV3YwYzY4YUN5NU1aVVUzNG4rSFpONFVvRDhR?=
+ =?utf-8?B?dnEwRmhZYkpBMHZuU29KSVlCMFBhb0F2dEtBcDl0bFJOUk1yclVqck9Oc3FZ?=
+ =?utf-8?B?VjRndENVTVdabjE0UFJRaFZ1ay94SmdROWJwV2JBT2tZUGZ2RHUyVEtVZTZS?=
+ =?utf-8?B?TUlYUUtnMVVyNVU4U0k2Qm1TdldzeEFNd0UyanB4ZGhrSFM1aEpDbnpkMjNU?=
+ =?utf-8?B?bHkxZDJHR2V6enY2ZFFYMEovSmhUYjdMMkxlMWRxT29vNGhPM3poc1ljUDFJ?=
+ =?utf-8?Q?6c3gNfMaBXcFB4pvMcmjGztoz8fcswuo?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2FaK2RRd3pNblpmakNGWHBmYzkvRGJJSXBoWWNvR01MU3JLMk51S2NRNWVE?=
- =?utf-8?B?SnY0VjBtbEZQU1Y5RmVSS1JwSXVhZVd1NVY3VVJ6Rk1iRE5xRWVIQ2tmeklK?=
- =?utf-8?B?Q1EycXVrYmhIRW1PS29wSVZIbzlZa2Nxd0JHMm1PekV3RVpRVFdGWWVxQ0dE?=
- =?utf-8?B?dVFmSktTUFFTQnFtbWtUV3YyRlk2Vk9wZHZYZ29acnl0NVc4dnk4OGtZMXNr?=
- =?utf-8?B?a2tFOXhKWmlMaE9ja1c0QkpGaVNqSHdISU9JSmw2RVdNd25WbUtlLytLa3A0?=
- =?utf-8?B?OC9yNk4rNS9pdE1MVTN5MXF0cjBkZDd6T0c2SU9acjJKYmZOT3BUUzZGWjF1?=
- =?utf-8?B?L3dKckpUWlFmMVJ3U2toRFFUNHFkbVRVQTk1dHIvdzI3T2EvTzNqVHRCVVN3?=
- =?utf-8?B?OW1NemQ5WXVyWFRzOWV0bmxBaFZhVXVHRFNKV0M1aGFIU093VjlFM1J1UXhV?=
- =?utf-8?B?cDhDYmxOZTl1b1h5QUpGM1BrUVFIUTg0OVJQVzlmUS9GakVyemxJc3g0d0k2?=
- =?utf-8?B?V1p0V20xc2xjYVh5bnZOd01GaDQ5Z1FMRkNCRVZGVUt2OC9PNnpQcDNxSWlK?=
- =?utf-8?B?ZVJ1Sk52Z1FNb0dMcEJFMS9yL1RsWEVudGsvby9MRHNpM0hSWkZBNDBlemtU?=
- =?utf-8?B?R0UyUlN5VkNTTzA3bFl5SzdZZ2RaZUg1K3UzTUM5bXFkNjU5OWdtU0RRTHdr?=
- =?utf-8?B?Z0lmS2gycjZmOW0vV05BcGVvclJSeCs5WUorMGJSZG85UzVQM0RBMDI5anJx?=
- =?utf-8?B?cGVCUjlHcjF6UlJLUmlzZDdCa2hMUEVyVUJPR0FueGFORGJiMk1kNDJBWUlZ?=
- =?utf-8?B?bFBIcDVaNHR5eVU5QTZkcnc5VkJ0Y0w3WTAxVXVIQUpzenNxZWN3UGZvZmZx?=
- =?utf-8?B?RjlGZ3paaStkcFNGbTRnZUdHanlvbzAyQUhpL05kNXRiOVV4Sm5PTU03Q0c4?=
- =?utf-8?B?d3J3V2E5MXRhdzdQOElwY1Vna3ZJVHQxVG5ZdW5GcHNkVTBWeFZ4Q2s5VlZQ?=
- =?utf-8?B?STZOWVZjeG52UndnV1lTaUVEdDFhaWM5ZmpFZTN4OTluelRuY283T1Mxa28w?=
- =?utf-8?B?YmRaek1TNlM1VTlGbDcyQTdNVndZTkVoUVBiLzRkZ0E5MmMwSFZINklYcG1L?=
- =?utf-8?B?RU90bUc1UHJxeFU4U3JaVXVtaHRwaGs4YkphT0NmMyt3S1JwYWVWekhTUGlW?=
- =?utf-8?B?MS83bFV1OTBFZ1BLeHBCLzBaVCtudlB5L3hicmlVYmtpNVg0Slk2UHk3L25a?=
- =?utf-8?B?L0VPUkZGMXhCdHdoU1N3eGxTVVRVMld6bld4MmlVU0V6ckUzcC9pOHFPMTd2?=
- =?utf-8?B?WkdBNW5rNkNUS0lGUU96c0UvVWpxaHRPeG45UTVtckVUY3RjdFNLeGpzYTZs?=
- =?utf-8?B?N2FVZ3dTUG1mL3dTelJJVVRhVmEwN2d6M01UaWhFbTEwQ1NKcGFUSUZJQjhi?=
- =?utf-8?B?ZGthbm42RzZ5ZXo3NWJSaXUyOCtBejVZeld0SXJYMmRqOFdZcWt4Zks0OEla?=
- =?utf-8?B?VHlwK2J4N3B1Y21JYTk2VldFaUxaZWpoYnJ4NzFmTm5CSjRRYm9pOWN1K2I2?=
- =?utf-8?B?VWM3Y2FQa0Z0UWRwMEsyZ3pLZHg3SW5DZHdTM2tyVnp2ZU5SQ1ZrOXpmdkZF?=
- =?utf-8?B?a3VCSTJKbE5Kazk3YUVnVVJnQVhZdnVqTm94cVEyMUZ1L0pMZnhBa1lrNE1E?=
- =?utf-8?B?N3NsWkxjQnQ1cFRiMHZ3MXdhMk1FYXZlL0M0azhMVzlNU3JzRHhjQTBxVitw?=
- =?utf-8?B?WTQ4VEVYbUVsSkZHM21lUW1LdXk2QjR6REcybTZmSkRBVlorTTVEQkUwT1lw?=
- =?utf-8?B?Mk9KWVVrbzlzWTh0UkVsK08zYkJPSjRRSTgwZzZDTU52YVNiV3V4Wm1pUWd0?=
- =?utf-8?B?V0htWFBGVGZFSzYxMFh6Z0w1cVN1SXdGM0FESFQ3ajdvc2RReVZZaXl4SUIy?=
- =?utf-8?B?Vjk5c041ZDB2dGRsRWVGSVFhdXFOQnMwaHYyTGZYK0MzVGZxVmdOYjVZZWpU?=
- =?utf-8?B?a0hpNzhNcXlnbHdmMFdpL1dwZHhYSTMzZnBjN3l5bHNlekx1WmxiZVkwT2d1?=
- =?utf-8?B?TjhXb1RraW5ubWdoZUE2L2oybTU3S25PMnVxTlhjZk9RTm5yNHVCeXJqUGF1?=
- =?utf-8?B?eUtNMGk2eHpmUzNGMEZYVVZJSjRmWmFsSXVpR1pGQnFmQ1o0SHRzL1QxUHZs?=
- =?utf-8?B?VFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59279ea0-df2a-4312-8607-08de0520c433
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXNnNGx4aVBGZitad0N6WFU3dzIxcUs2SEU1T1p1SHZubDVwUjdtYldOalMv?=
+ =?utf-8?B?Sy9DR1AwL0F4SXFaYXd0dncvZHJNL2E1MWJ3allZQm1xUDZTYWMzancwSEYz?=
+ =?utf-8?B?YXJEZXRTWlRqeU9oOFQ2TXpmVkFIcERvQXJtRVpTZHhZYkR5dndnMTNVM1Ur?=
+ =?utf-8?B?cCtnWGpoSFNSck91TzN6N1lTbVlEcWNuUTZha0dNSjdQUm82VXJJdmFkU054?=
+ =?utf-8?B?Y0VITXRJQlhWOXdZVXZkYlo0ZVhXY3FhVnh5bno5VjNUM2ZWeXBBWjNEZldJ?=
+ =?utf-8?B?OWQxRm15amVQL1lOb3pSSzMyUC9ueENucWRBTE9kYVZmdi96d1RhUWJlY1do?=
+ =?utf-8?B?ZVgzY01Wby95RGJBNjZ5VGwrRkgxNzdXeHhZcVJHeTUxbU92bm1LUE1iRVpy?=
+ =?utf-8?B?ZjNxczk1Y1ZRTmtxSDNGT3VZWDJLdHZSb2R6ZDJFVVNEUllUS2Z4bDFnNkor?=
+ =?utf-8?B?T0wzSFNvMjV6RHdnUzcybDBpTEJ4VzlPZE12dGhTSEhCYml4WlY5emU5NzdW?=
+ =?utf-8?B?MWFTL0hTTEVqbnZ2VEN5Z0tQNmJKRjBYZjRNVTVmMkZFOVdSaGR3Z3BCUFNy?=
+ =?utf-8?B?R0x1amppQTNvWTlJVll3TlV4MWdJUEhIUDNFYXdwZmNzREpNN1FEYU1pclpC?=
+ =?utf-8?B?bWRrd2ZlaEZCRlNvYkFEd0VGeS9nTWFDYWFZVjdpbnhRcTdFM0ZCL3RxUDM1?=
+ =?utf-8?B?akhxOUNpdGZpUGpHck5jWm1aSndOSlpNYldEOW1HTm9Ibkp3VHhsTzh3bFEz?=
+ =?utf-8?B?N2J1TytreFVYSVBUKzJ2L2pucUJwQVBHT00rcGJaRGJxK1d4eDdoZ2p6aGxi?=
+ =?utf-8?B?RjB3bkR4a3V1N21sYUNodG9hZFlycldlaVc0NXFIRmFieXhsZVV0b3V6OGdp?=
+ =?utf-8?B?TUNvQlcxQjlmS3A0RHA0L3BhRHpTTUxZdklXVzU2aS8vMUdvUmV3NlZ0RU54?=
+ =?utf-8?B?RFZmR2F0a051ZFJIcldvTmZUeXdWMVR3cW9udWkvRnFXbXlpRW1PbUU3S0l4?=
+ =?utf-8?B?QXIwaVhncFpONTd6Wm9jNUlxK0pxOUhMMjJxdGhsWjljNlFLcnlHNnBROWpI?=
+ =?utf-8?B?TGF6NmEyRUVOUkVEWWk4U0hTVWpsN093VDFCZFVBWlNmWFdtWlFKeU84ZzlH?=
+ =?utf-8?B?aUZpOXhtSmFQQ0JESzB3bkRQdEl4dDhIbG52SUZMeFEzb012dmY0Qkk0Y2lT?=
+ =?utf-8?B?TUJHWVZXNDd0U0hINzVMdHh5ZEI3NlJqNXVlUFB1bnR3ZmFNZVl6c2xzL2pq?=
+ =?utf-8?B?c0tETnh1OEtDV2dyNDVnc0thV1ZaYVhGMkFSeHlseC80d0R1T2xVbzZsYTZQ?=
+ =?utf-8?B?ZVM3Qi9UZTdEN01WY3pta1FhemthMXh2K2ZnbFZiemJNcENQM004S2dzSzF0?=
+ =?utf-8?B?Q0ozV3FhNzQyWmVwbEg0cks2Nm9rcll3MGlQblNlWVdGU0V3bForZnowTlll?=
+ =?utf-8?B?SmtGYmFwd2xUUDRpckRZMlg0SFZGUWQvanJjTGxnYStZTU9RVmJHL3pLRHIy?=
+ =?utf-8?B?cWlsN0gyRFFqV2FoeFlZRXR2SXpCZk5SUHNISlE2L2ZzL3ROVFFVRlN4dzZu?=
+ =?utf-8?B?SG0yektJeGZ3azhjd05qRVZvMjd2RHU1K0JvMEVwZDA3UzNtcGFwMUE0eGRr?=
+ =?utf-8?B?KzFWOERaREJUWlhOYlN5d045UFhtNVJhSFpRVXVYWW01eVBiRFAwVVI5bk5k?=
+ =?utf-8?B?Z2dieGdXY0pFaHFJUFpNbGprS3prTzQvdHJFSHlSMXhoZ3JqWDFUU05aTS9w?=
+ =?utf-8?B?ZS9ucWhzVUY4ZlVKVnF0RG1tZjA5eXE3dUxJdDFFOFZzdFFTbUJLb2ovOThX?=
+ =?utf-8?B?N0s0RDltdnpTQVM1cUw1ZkNwRDdvbjlFMEFzcmZoOWE3T041NnpPSjFaVkwz?=
+ =?utf-8?B?c25WRTVCZ3kxemlrZE92ZlNnWDBpdjJKUSsyWVdvU0V2TXVXUElCQ2hLUzZT?=
+ =?utf-8?B?djJsemUyTEdmUktic3cvM2ZPK3NPZ0RHQzFHSmFEZm1hYlVzUFk3b3ZGYUps?=
+ =?utf-8?B?bkw2R2ovNFJ5TG9DMUhUSkM0eFM1S0FicEZlYWtrWVdWV0MxSXh0eXFhM1cz?=
+ =?utf-8?B?Tk1wc2NCeWZZRDFWWEMrbE5vVWUrQldlTGVCQVBENzFGdDFxdTlQbWlBQlBv?=
+ =?utf-8?Q?BKNTs8Az6NqNDz3VbJsLxrs5C?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 817df33a-16db-4feb-d1aa-08de05226717
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 21:39:02.4435 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 21:50:45.2264 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yNDA/RCNFXZI9LghivAA0FZFKNZffIn5HDNmRK/INQ5gw8EtYZSIsLlVwC5dj47Gu8v7XFQl+r2peg0NnwT+Jg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF7A0031045
+X-MS-Exchange-CrossTenant-UserPrincipalName: nmUdFtIrZ44yVjc1OyNykg80yonn7/xRsNrqrlhRDmBcUKmEQ2A2WwS3P4H6BXRgBsz9zNDmUq69Qz/6l1wPhg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6809
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,352 +194,442 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 06, 2025 at 02:12:45PM -0700, Matthew Brost wrote:
-> On Mon, Oct 06, 2025 at 02:20:26PM +0000, Aakash Deep Sarkar wrote:
-> > The work of collecting the GPU run time for a given
-> > xe_user and emitting its event, is done by the
-> > xe_work_period_worker kworker. At the time of creation
-> > of a new xe_user, we simultaneously start a delayed
-> > kworker thread. The delay of execution is set to be
-> > 500 ms. After the completion of the work, the kworker
-> > schedules itself for the next execution. This is done
-> > as long as the reference to the xe_user pointer is
-> > valid.
-> > 
-> > During each execution cycle the xe_work_period_worker
-> > iterates over all the xe files in the xe_user::filelist
-> > and accumulate their corresponding GPU runtime into the
-> > xe_user::active_duration_ns; while also updating each of
-> > the xe_file::active_duration_ns. The total runtime for
-> > this uid in the current sampling period is the delta
-> > between the previous xe_user::active_duration_ns and
-> > the current xe_user::active_duration_ns.
-> > 
-> > We also record the current timestamp at the end of each
-> > invocation to xe_work_period_worker function in the
-> > xe_user::last_timestamp_ns. The sampling period for this
-> > uid is the delta between the previous timestamp and the
-> > current timestamp.
-> > 
-> > Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_device.c |  11 +--
-> >  drivers/gpu/drm/xe/xe_pm.c     |   5 ++
-> >  drivers/gpu/drm/xe/xe_user.c   | 127 +++++++++++++++++++++++++++++++--
-> >  drivers/gpu/drm/xe/xe_user.h   |  19 ++++-
-> >  4 files changed, 150 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index 5a084fd39876..54ac71d1265d 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -140,11 +140,12 @@ static void xe_file_destroy(struct kref *ref)
-> >  	xe_drm_client_put(xef->client);
-> >  	kfree(xef->process_name);
-> >  
-> > -	mutex_lock(&xef->user->filelist_lock);
-> > -	list_del(&xef->user_link);
-> > -	mutex_unlock(&xef->user->filelist_lock);
-> > -
-> > -	xe_user_put(xef->user);
-> > +	if (xef->user) {
-> > +		mutex_lock(&xef->user->lock);
-> > +		list_del(&xef->user_link);
-> > +		xe_user_put(xef->user);
+--------------zWl4cMmoZa54vFul35clyq4w
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-You also have a potential lock inversion in the current code.
 
-There appears to be a possible chain of:
+On 10/6/2025 1:10 PM, Matthew Brost wrote:
+> Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
+> as they may contain actions which contain invalid GGTT references or are
+> unnecessary after HW change.
+>
+> Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
+> resubmitted by the GuC submission state machine.
+>
+> v3:
+>   - Don't mess with head / tail values (Michal)
+> v4:
+>   - Don't mess with broke (Michal)
+>   - Add CTB_H2G_BUFFER_OFFSET (Michal)
+> v5:
+>   - Adjust commit message (Tomasz)
+>
+> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++
+>   drivers/gpu/drm/xe/xe_guc_ct.c      | 70 +++++++++++++++++++++--------
+>   drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
+>   3 files changed, 60 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index 2a988eb3e904..6052c7302cc6 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -1139,6 +1139,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+>   	return 0;
+>   }
+>   
+> +static void vf_post_migration_rearm(struct xe_gt *gt)
+> +{
+> +	xe_guc_ct_restart(&gt->uc.guc.ct);
+> +}
+> +
+>   static void vf_post_migration_kickstart(struct xe_gt *gt)
+>   {
+>   	xe_guc_submit_unpause(&gt->uc.guc);
+> @@ -1190,6 +1195,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+>   	if (err)
+>   		goto fail;
+>   
+> +	vf_post_migration_rearm(gt);
+> +
+>   	err = vf_post_migration_notify_resfix_done(gt);
+>   	if (err && err != -EAGAIN)
+>   		goto fail;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index f67575b1ed79..c0d261abf735 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
+>    */
+>   
+>   #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
+> +#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
 
-- user->lock -> xe->work_period.users if xe_user_put() is the final put.
+We've agreed today to separate the CTB_H2G_BUFFER_OFFSET introduction to 
+its own patch within this series.
 
-However, cancel_delayed_work_sync() is called under
-xe->work_period.users below, and xe_work_period_worker() takes
-user->lock, which is the inverse order.
+(as in comments for rev4)
 
-I don’t think it’s actually possible to trigger the inversion due to the
-reference counting, but it’s still quite concerning.
+-Tomasz
 
-It would be best to avoid calling xe_user_put() while holding
-xef->user->lock.
+>   #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+>   #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
+>   #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
+> @@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+>   
+>   static size_t guc_ct_size(void)
+>   {
+> -	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
+> +	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
+>   		CTB_G2H_BUFFER_SIZE;
+>   }
+>   
+> @@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
+>   	h2g->desc = *map;
+>   	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+>   
+> -	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
+> +	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
+>   }
+>   
+>   static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
+> @@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
+>   	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
+>   	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+>   
+> -	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
+> +	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
+>   					    CTB_H2G_BUFFER_SIZE);
+>   }
+>   
+> @@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+>   	int err;
+>   
+>   	desc_addr = xe_bo_ggtt_addr(ct->bo);
+> -	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
+> +	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
+>   	size = ct->ctbs.h2g.info.size * sizeof(u32);
+>   
+>   	err = xe_guc_self_cfg64(guc,
+> @@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
+>   	int err;
+>   
+>   	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
+> -	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
+> +	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
+>   		CTB_H2G_BUFFER_SIZE;
+>   	size = ct->ctbs.g2h.info.size * sizeof(u32);
+>   
+> @@ -501,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
+>   		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
+>   }
+>   
+> -int xe_guc_ct_enable(struct xe_guc_ct *ct)
+> +static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
+>   {
+>   	struct xe_device *xe = ct_to_xe(ct);
+>   	struct xe_gt *gt = ct_to_gt(ct);
+> @@ -509,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+>   
+>   	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+>   
+> -	xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
+> -	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+> -	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+> +	if (needs_register) {
+> +		xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
+> +		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+> +		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+>   
+> -	err = guc_ct_ctb_h2g_register(ct);
+> -	if (err)
+> -		goto err_out;
+> +		err = guc_ct_ctb_h2g_register(ct);
+> +		if (err)
+> +			goto err_out;
+>   
+> -	err = guc_ct_ctb_g2h_register(ct);
+> -	if (err)
+> -		goto err_out;
+> +		err = guc_ct_ctb_g2h_register(ct);
+> +		if (err)
+> +			goto err_out;
+>   
+> -	err = guc_ct_control_toggle(ct, true);
+> -	if (err)
+> -		goto err_out;
+> +		err = guc_ct_control_toggle(ct, true);
+> +		if (err)
+> +			goto err_out;
+> +	} else {
+> +		ct->ctbs.h2g.info.broken = false;
+> +		ct->ctbs.g2h.info.broken = false;
+> +		xe_map_memset(xe, &ct->bo->vmap, CTB_H2G_BUFFER_OFFSET, 0,
+> +			      CTB_H2G_BUFFER_SIZE);
+> +	}
+>   
+>   	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+>   
+> @@ -555,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+>   	return err;
+>   }
+>   
+> +/**
+> + * xe_guc_ct_restart() - Restart GuC CT
+> + * @ct: the &xe_guc_ct
+> + *
+> + * Restart GuC CT to an empty state without issuing a CT register MMIO command.
+> + *
+> + * Return: 0 on success, or a negative errno on failure.
+> + */
+> +int xe_guc_ct_restart(struct xe_guc_ct *ct)
+> +{
+> +	return __xe_guc_ct_start(ct, false);
+> +}
+> +
+> +/**
+> + * xe_guc_ct_enable() - Enable GuC CT
+> + * @ct: the &xe_guc_ct
+> + *
+> + * Enable GuC CT to an empty state and issue a CT register MMIO command.
+> + *
+> + * Return: 0 on success, or a negative errno on failure.
+> + */
+> +int xe_guc_ct_enable(struct xe_guc_ct *ct)
+> +{
+> +	return __xe_guc_ct_start(ct, true);
+> +}
+> +
+>   static void stop_g2h_handler(struct xe_guc_ct *ct)
+>   {
+>   	cancel_work_sync(&ct->g2h_worker);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index 02eaa452b400..10d05193e51c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
+>   int xe_guc_ct_init(struct xe_guc_ct *ct);
+>   int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+>   int xe_guc_ct_enable(struct xe_guc_ct *ct);
+> +int xe_guc_ct_restart(struct xe_guc_ct *ct);
+>   void xe_guc_ct_disable(struct xe_guc_ct *ct);
+>   void xe_guc_ct_stop(struct xe_guc_ct *ct);
+>   void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+--------------zWl4cMmoZa54vFul35clyq4w
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Also, if you can’t come up with a better reference counting or xarray
-scheme for xef->user, I’d suggest adding a
-might_lock(&xe->work_period.users) to xe_user_put() so lockdep
-immediately knows what xe_user_put() can do on the final put.
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 10/6/2025 1:10 PM, Matthew Brost
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20251006111038.2234860-21-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
+as they may contain actions which contain invalid GGTT references or are
+unnecessary after HW change.
 
-Matt
+Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
+resubmitted by the GuC submission state machine.
 
-> > +		mutex_unlock(&xef->user->lock);
-> > +	}
-> >  	kfree(xef);
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> > index b7e3094f8acf..c7add2616189 100644
-> > --- a/drivers/gpu/drm/xe/xe_pm.c
-> > +++ b/drivers/gpu/drm/xe/xe_pm.c
-> > @@ -26,6 +26,7 @@
-> >  #include "xe_pxp.h"
-> >  #include "xe_sriov_vf_ccs.h"
-> >  #include "xe_trace.h"
-> > +#include "xe_user.h"
-> >  #include "xe_vm.h"
-> >  #include "xe_wa.h"
-> >  
-> > @@ -598,6 +599,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
-> >  
-> >  	xe_i2c_pm_suspend(xe);
-> >  
-> > +	xe_user_cancel_workers(xe);
-> > +
-> >  	xe_rpm_lockmap_release(xe);
-> >  	xe_pm_write_callback_task(xe, NULL);
-> >  	return 0;
-> > @@ -650,6 +653,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
-> >  
-> >  	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
-> >  
-> > +	xe_user_resume_workers(xe);
-> > +
-> >  	xe_irq_resume(xe);
-> >  
-> >  	for_each_gt(gt, xe, id)
-> > diff --git a/drivers/gpu/drm/xe/xe_user.c b/drivers/gpu/drm/xe/xe_user.c
-> > index cb3de75aa497..fb54d2659642 100644
-> > --- a/drivers/gpu/drm/xe/xe_user.c
-> > +++ b/drivers/gpu/drm/xe/xe_user.c
-> > @@ -5,8 +5,15 @@
-> >  
-> >  #include <drm/drm_drv.h>
-> >  
-> > +#include "xe_assert.h"
-> > +#include "xe_device_types.h"
-> > +#include "xe_exec_queue.h"
-> > +#include "xe_pm.h"
-> >  #include "xe_user.h"
-> >  
-> > +#define CREATE_TRACE_POINTS
-> > +#include <trace/gpu_work_period.h>
-> > +
-> >  
-> >  /**
-> >   * DOC: Xe User
-> > @@ -50,7 +57,82 @@
-> >   */
-> >  
-> >  
-> > +static inline void schedule_next_work(struct xe_device *xe, unsigned int id)
-> > +{
-> > +	struct xe_user *user;
-> > +
-> > +	mutex_lock(&xe->work_period.lock);
-> > +	user = xa_load(&xe->work_period.users, id);
-> > +	if (user && xe_user_get_unless_zero(user))
-> > +		schedule_delayed_work(&user->delay_work,
-> > +				msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL));
-> > +	mutex_unlock(&xe->work_period.lock);
-> > +}
-> > +
-> > +static void xe_work_period_worker(struct work_struct *work)
-> > +{
-> > +	struct xe_user *user = container_of(work, struct xe_user, delay_work.work);
-> > +	struct xe_device *xe = user->xe;
-> > +	struct xe_file *xef;
-> > +	struct xe_exec_queue *q;
-> > +
-> > +	/*
-> > +	 * The GPU work period event requires the following parameters
-> > +	 *
-> > +	 * gpuid:           GPU index in case the platform has more than one GPU
-> > +	 * uid:             user id of the app
-> > +	 * start_time:      start time for the sampling period in nanosecs
-> > +	 * end_time:        end time for the sampling period in nanosecs
-> > +	 * active_duration: Total runtime in nanosecs for this uid in
-> > +	 *                  the current sampling period.
-> > +	 */
-> > +	u32 gpuid = 0, uid = user->uid, id = user->id;
-> > +	u64 start_time, end_time, active_duration;
-> > +	u64 last_active_duration, last_timestamp;
-> > +	unsigned long i;
-> > +
-> > +	mutex_lock(&user->lock);
-> > +
-> > +	// Save the last recorded active duration and timestamp
-> > +	last_active_duration = user->active_duration_ns;
-> > +	last_timestamp = user->last_timestamp_ns;
-> > +
-> > +	if (xe_pm_runtime_get_if_active(xe)) {
-> > +
-> > +		list_for_each_entry(xef, &user->filelist, user_link) {
-> > +
-> > +			wait_var_event(&xef->exec_queue.pending_removal,
-> > +			!atomic_read(&xef->exec_queue.pending_removal));
-> > +
-> > +			/* Accumulate all the exec queues from this file */
-> > +			mutex_lock(&xef->exec_queue.lock);
-> > +			xa_for_each(&xef->exec_queue.xa, i, q) {
-> > +				xe_exec_queue_get(q);
-> > +				mutex_unlock(&xef->exec_queue.lock);
-> > +
-> > +				xe_exec_queue_update_run_ticks(q);
-> > +
-> > +				mutex_lock(&xef->exec_queue.lock);
-> > +				xe_exec_queue_put(q);
-> > +			}
-> > +			mutex_unlock(&xef->exec_queue.lock);
-> > +			user->active_duration_ns += xef->active_duration_ns;
-> > +		}
-> > +
-> > +		xe_pm_runtime_put(xe);
-> > +
-> > +		start_time = last_timestamp + 1;
-> > +		end_time = ktime_get_raw_ns();
-> > +		active_duration = user->active_duration_ns - last_active_duration;
-> > +		trace_gpu_work_period(gpuid, uid, start_time, end_time, active_duration);
-> > +		user->last_timestamp_ns = end_time;
-> > +		xe_user_put(user);
-> > +	}
-> > +
-> > +	mutex_unlock(&user->lock);
-> >  
-> > +	schedule_next_work(xe, id);
-> > +}
-> >  
-> >  /**
-> >   * xe_user_alloc() - Allocate xe user
-> > @@ -71,9 +153,9 @@ static struct xe_user *xe_user_alloc(void)
-> >  		return NULL;
-> >  
-> >  	kref_init(&user->refcount);
-> > -	mutex_init(&user->filelist_lock);
-> > +	mutex_init(&user->lock);
-> >  	INIT_LIST_HEAD(&user->filelist);
-> > -	INIT_WORK(&user->work, work_period_worker);
-> > +	INIT_DELAYED_WORK(&user->delay_work, xe_work_period_worker);
-> >  	return user;
-> >  }
-> >  
-> > @@ -153,12 +235,49 @@ int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
-> >  
-> >  		user->id = idx;
-> >  		drm_dev_get(&xe->drm);
-> > +
-> > +		xe_user_get(user);
-> > +		if (!schedule_delayed_work(&user->delay_work,
-> > +					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
-> > +			xe_user_put(user);
-> >  	}
-> >  
-> > -	mutex_lock(&user->filelist_lock);
-> > +	mutex_lock(&user->lock);
-> >  	list_add(&xef->user_link, &user->filelist);
-> > -	mutex_unlock(&user->filelist_lock);
-> > +	mutex_unlock(&user->lock);
-> >  	xef->user = user;
-> >  
-> >  	return 0;
-> >  }
-> > +
-> > +void xe_user_cancel_workers(struct xe_device *xe)
-> > +{
-> > +	struct xe_user *user = NULL;
-> > +	unsigned long i = 0;
-> > +
-> > +	mutex_lock(&xe->work_period.lock);
-> > +	xa_for_each(&xe->work_period.users, i, user) {
-> > +		if (user && xe_user_get_unless_zero(user)) {
-> > +			cancel_delayed_work_sync(&user->delay_work);
-> > +			xe_user_put(user);
-> 
-> 
-> Here’s where this looks problematic:
-> 
-> - Calling cancel_delayed_work_sync while holding a lock creates a locking
->   chain between work_period.lock and every lock acquired in
->   &user->delay_work, which is a pretty risky thing to do.
-> 
-> - __xe_user_free acquires xe->work_period.lock, so if xe_user_put is the 
->   final reference drop, it could lead to a deadlock.
-> 
-> At a minimum, you need to release xe->work_period.lock inside the if
-> statement. Ideally, you should reconsider the entire locking strategy.
-> 
-> Matt
-> 
-> > +		}
-> > +	}
-> > +	mutex_unlock(&xe->work_period.lock);
-> > +}
-> > +
-> > +void xe_user_resume_workers(struct xe_device *xe)
-> > +{
-> > +	struct xe_user *user = NULL;
-> > +	unsigned long i = 0;
-> > +
-> > +	mutex_lock(&xe->work_period.lock);
-> > +	xa_for_each(&xe->work_period.users, i, user) {
-> > +		if (user && xe_user_get_unless_zero(user)) {
-> > +			if (!schedule_delayed_work(&user->delay_work,
-> > +					msecs_to_jiffies(XE_WORK_PERIOD_INTERVAL)))
-> > +				xe_user_put(user);
-> > +		}
-> > +	}
-> > +	mutex_unlock(&xe->work_period.lock);
-> > +}
-> > +
-> > diff --git a/drivers/gpu/drm/xe/xe_user.h b/drivers/gpu/drm/xe/xe_user.h
-> > index 341200c55509..55016ba189f1 100644
-> > --- a/drivers/gpu/drm/xe/xe_user.h
-> > +++ b/drivers/gpu/drm/xe/xe_user.h
-> > @@ -9,6 +9,8 @@
-> >  #include "xe_device.h"
-> >  
-> >  
-> > +#define XE_WORK_PERIOD_INTERVAL 500
-> > +
-> >  /**
-> >   * struct xe_user - xe user structure
-> >   *
-> > @@ -28,9 +30,9 @@ struct xe_user {
-> >  	struct xe_device *xe;
-> >  
-> >  	/**
-> > -	 * @filelist_lock: lock protecting the filelist
-> > +	 * @filelist_lock: lock protecting this structure
-> >  	 */
-> > -	struct mutex filelist_lock;
-> > +	struct mutex lock;
-> >  
-> >  	/**
-> >  	 * @filelist: list of xe files belonging to this xe user
-> > @@ -41,7 +43,7 @@ struct xe_user {
-> >  	 * @work: work to emit the gpu work period event for this
-> >  	 * xe user
-> >  	 */
-> > -	struct work_struct work;
-> > +	struct delayed_work delay_work;
-> >  
-> >  	/**
-> >  	 * @id: index of this user into the xe device::users xarray
-> > @@ -68,6 +70,17 @@ struct xe_user {
-> >  
-> >  int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid);
-> >  
-> > +void xe_user_cancel_workers(struct xe_device *xe);
-> > +
-> > +void xe_user_resume_workers(struct xe_device *xe);
-> > +
-> > +static inline struct xe_user *
-> > +xe_user_get_unless_zero(struct xe_user *user)
-> > +{
-> > +	if (kref_get_unless_zero(&user->refcount))
-> > +		return user;
-> > +	return NULL;
-> > +}
-> >  
-> >  static inline struct xe_user *
-> >  xe_user_get(struct xe_user *user)
-> > -- 
-> > 2.49.0
-> > 
+v3:
+ - Don't mess with head / tail values (Michal)
+v4:
+ - Don't mess with broke (Michal)
+ - Add CTB_H2G_BUFFER_OFFSET (Michal)
+v5:
+ - Adjust commit message (Tomasz)
+
+Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 70 +++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
+ 3 files changed, 60 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 2a988eb3e904..6052c7302cc6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1139,6 +1139,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++static void vf_post_migration_rearm(struct xe_gt *gt)
++{
++	xe_guc_ct_restart(&amp;gt-&gt;uc.guc.ct);
++}
++
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ {
+ 	xe_guc_submit_unpause(&amp;gt-&gt;uc.guc);
+@@ -1190,6 +1195,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	if (err)
+ 		goto fail;
+ 
++	vf_post_migration_rearm(gt);
++
+ 	err = vf_post_migration_notify_resfix_done(gt);
+ 	if (err &amp;&amp; err != -EAGAIN)
+ 		goto fail;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index f67575b1ed79..c0d261abf735 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
+  */
+ 
+ #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
++#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)</pre>
+    </blockquote>
+    <p>We've agreed today to separate the&nbsp;<span style="white-space: pre-wrap">CTB_H2G_BUFFER_OFFSET </span>introduction
+      to its own patch within this series.</p>
+    <p>(as in comments for rev4)</p>
+    <p>-Tomasz</p>
+    <blockquote type="cite" cite="mid:20251006111038.2234860-21-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+ #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+ #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
+ #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
+@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+ 
+ static size_t guc_ct_size(void)
+ {
+-	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
++	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
+ 		CTB_G2H_BUFFER_SIZE;
+ }
+ 
+@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
+ 	h2g-&gt;desc = *map;
+ 	xe_map_memset(xe, &amp;h2g-&gt;desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+ 
+-	h2g-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
++	h2g-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
+ }
+ 
+ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
+@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
+ 	g2h-&gt;desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
+ 	xe_map_memset(xe, &amp;g2h-&gt;desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+ 
+-	g2h-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
++	g2h-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
+ 					    CTB_H2G_BUFFER_SIZE);
+ }
+ 
+@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+ 	int err;
+ 
+ 	desc_addr = xe_bo_ggtt_addr(ct-&gt;bo);
+-	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE * 2;
++	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_H2G_BUFFER_OFFSET;
+ 	size = ct-&gt;ctbs.h2g.info.size * sizeof(u32);
+ 
+ 	err = xe_guc_self_cfg64(guc,
+@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
+ 	int err;
+ 
+ 	desc_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE;
+-	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE * 2 +
++	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_H2G_BUFFER_OFFSET +
+ 		CTB_H2G_BUFFER_SIZE;
+ 	size = ct-&gt;ctbs.g2h.info.size * sizeof(u32);
+ 
+@@ -501,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
+ 		xe_gt_dbg(ct_to_gt(ct), &quot;GuC CT safe-mode disabled\n&quot;);
+ }
+ 
+-int xe_guc_ct_enable(struct xe_guc_ct *ct)
++static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct xe_gt *gt = ct_to_gt(ct);
+@@ -509,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 
+ 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+ 
+-	xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, 0, 0, xe_bo_size(ct-&gt;bo));
+-	guc_ct_ctb_h2g_init(xe, &amp;ct-&gt;ctbs.h2g, &amp;ct-&gt;bo-&gt;vmap);
+-	guc_ct_ctb_g2h_init(xe, &amp;ct-&gt;ctbs.g2h, &amp;ct-&gt;bo-&gt;vmap);
++	if (needs_register) {
++		xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, 0, 0, xe_bo_size(ct-&gt;bo));
++		guc_ct_ctb_h2g_init(xe, &amp;ct-&gt;ctbs.h2g, &amp;ct-&gt;bo-&gt;vmap);
++		guc_ct_ctb_g2h_init(xe, &amp;ct-&gt;ctbs.g2h, &amp;ct-&gt;bo-&gt;vmap);
+ 
+-	err = guc_ct_ctb_h2g_register(ct);
+-	if (err)
+-		goto err_out;
++		err = guc_ct_ctb_h2g_register(ct);
++		if (err)
++			goto err_out;
+ 
+-	err = guc_ct_ctb_g2h_register(ct);
+-	if (err)
+-		goto err_out;
++		err = guc_ct_ctb_g2h_register(ct);
++		if (err)
++			goto err_out;
+ 
+-	err = guc_ct_control_toggle(ct, true);
+-	if (err)
+-		goto err_out;
++		err = guc_ct_control_toggle(ct, true);
++		if (err)
++			goto err_out;
++	} else {
++		ct-&gt;ctbs.h2g.info.broken = false;
++		ct-&gt;ctbs.g2h.info.broken = false;
++		xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, CTB_H2G_BUFFER_OFFSET, 0,
++			      CTB_H2G_BUFFER_SIZE);
++	}
+ 
+ 	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+ 
+@@ -555,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	return err;
+ }
+ 
++/**
++ * xe_guc_ct_restart() - Restart GuC CT
++ * @ct: the &amp;xe_guc_ct
++ *
++ * Restart GuC CT to an empty state without issuing a CT register MMIO command.
++ *
++ * Return: 0 on success, or a negative errno on failure.
++ */
++int xe_guc_ct_restart(struct xe_guc_ct *ct)
++{
++	return __xe_guc_ct_start(ct, false);
++}
++
++/**
++ * xe_guc_ct_enable() - Enable GuC CT
++ * @ct: the &amp;xe_guc_ct
++ *
++ * Enable GuC CT to an empty state and issue a CT register MMIO command.
++ *
++ * Return: 0 on success, or a negative errno on failure.
++ */
++int xe_guc_ct_enable(struct xe_guc_ct *ct)
++{
++	return __xe_guc_ct_start(ct, true);
++}
++
+ static void stop_g2h_handler(struct xe_guc_ct *ct)
+ {
+ 	cancel_work_sync(&amp;ct-&gt;g2h_worker);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 02eaa452b400..10d05193e51c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
+ int xe_guc_ct_init(struct xe_guc_ct *ct);
+ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
++int xe_guc_ct_restart(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------zWl4cMmoZa54vFul35clyq4w--
