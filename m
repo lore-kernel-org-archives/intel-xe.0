@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B36E0CCD189
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2F7DCCD18B
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 331FA10E419;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D00110E41B;
 	Mon,  6 Oct 2025 11:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Idgvk34y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ii8uKlsX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A179010E35D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0567B10E366
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759749045; x=1791285045;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=b+qg6+F4vvbkzV9KycvKVr133+1M3x5pzecl4gDYTaE=;
- b=Idgvk34yWfULBdclhC8Jt5wjjZRW7ZG1dk6eSP351eHuo8oyAmvwtcJe
- WdhAQnD5GHLsTcFEJinN+mSWAfXW0piJCoJHBfRnnlbQNUF4qy3pCxx3m
- +7T73u1Ir9IsJs/0PpQPoFOxqAuAuvARJbqo/B5XpP208W8Xtv23sS7QQ
- 2kBhpzV2hc8Sr+iU0mmfVM4kDCYJ8BFb1rrzB52d8pWcM4bM/6FNmAYVf
- //UusBX+WtAX40M5rng8nMQ6itv6AYY1RFvRsNklCXF5eBcEmypLAUkpc
- zpYa+6d4H/l3ElgJNEePSTifRKGEczuiUlRtbSTdpZL0wnDa5LWTZf7DP Q==;
-X-CSE-ConnectionGUID: vXhJHvjKRlmqB1tWnA15LA==
-X-CSE-MsgGUID: teUBxg9YS1iTLE+ognbA1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020392"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020392"
+ bh=QchemB+dbthPl69R0Vee2yCUGUZbeMP/T4R9XXYuOnY=;
+ b=Ii8uKlsX/IL7cErGWMibFb6W+4Y/jUkR4KRrUzFE/xi4p17fb9Cyolth
+ Fjab1ECqdUt/vO/GYMnRXqOUJrdxvcfIlSARUdL4uVLW1dIU+FIXx07rA
+ UROx2mfXUY+xcHJi0I0VikaMHq0kfETgsBS4/um8pl1vcN1LavD5uoq9M
+ 5gQZ4rCJWVUFsBTAsn1xGJ4CW82w1FEsUVqAlcZVuqn32HlCKA80LcHIg
+ proHbZBTnOpMt+njCyDnKAwJ/p6QKv6+JLjQukPB5nQQWVKMtbYwaAKW8
+ yTPqyEEFT7O5+BMDt6IQfX2KYuDLdCb2hejMJKy3MDhjxA4/rnzDLge8b w==;
+X-CSE-ConnectionGUID: KZMLcLFDTRa8yWZj3aE6SQ==
+X-CSE-MsgGUID: QaAj01cvRQumQDipkyVxqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020393"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020393"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:45 -0700
-X-CSE-ConnectionGUID: kaw/17i/Ro2b4QC6fY43Ug==
-X-CSE-MsgGUID: +oTnvQr+SLy7S5w8GCIvHQ==
+X-CSE-ConnectionGUID: nCQ0nLscRfuFd+IbeP9dYA==
+X-CSE-MsgGUID: rPvOEBPcSG6EyZRTU8I7tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655233"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655234"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 04:10:44 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 16/30] drm/xe/vf: Use GUC_HXG_TYPE_EVENT for GuC context
- register
-Date: Mon,  6 Oct 2025 04:10:24 -0700
-Message-Id: <20251006111038.2234860-17-matthew.brost@intel.com>
+Subject: [PATCH v6 17/30] drm/xe/vf: Flush and stop CTs in VF post migration
+ recovery
+Date: Mon,  6 Oct 2025 04:10:25 -0700
+Message-Id: <20251006111038.2234860-18-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
@@ -66,86 +66,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The only case where the GuC submission backend cannot reason 100%
-correctly is when a GuC context is registered during VF post-migration
-recovery. In this scenario, it's possible that the GuC context register
-H2G is processed, but the immediately following schedule-enable H2G gets
-lost.
+Flushing CTs (i.e., progressing all pending G2H messages) gives VF
+post-migration recovery an accurate view of which H2G messages the GuC
+has processed, enabling the GuC submission state machine to correctly
+rebuild all state.
 
-A double register is harmless when using `GUC_HXG_TYPE_EVENT`, as GuC
-simply drops the duplicate H2G. To keep things simple, use
-`GUC_HXG_TYPE_EVENT` for all context registrations on VFs.
+Also, stop all CT traffic, as the CT is not live during VF
+post-migration recovery.
 
-v5:
- - Check for xe_sriov_vf_migration_supported (Tomasz)
+v3:
+ - xe_guc_ct_flush_and_stop rename (Michal)
+ - Drop extra GuC CT WQ wake up (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 33 +++++++++++++++++++++++++--------
- 1 file changed, 25 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c      | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 9f0090ae64a6..3ac654cebc79 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -32,6 +32,7 @@
- #include "xe_guc_tlb_inval.h"
- #include "xe_map.h"
- #include "xe_pm.h"
-+#include "xe_sriov_vf.h"
- #include "xe_trace_guc.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 7f703336d692..768ab33d2486 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1111,6 +1111,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
+ 	gt->sriov.vf.migration.recovery_queued = false;
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
  
- static void receive_g2h(struct xe_guc_ct *ct);
-@@ -736,6 +737,26 @@ static u16 next_ct_seqno(struct xe_guc_ct *ct, bool is_g2h_fence)
- 	return seqno;
++	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
+ 	xe_guc_submit_pause(&gt->uc.guc);
  }
  
-+#define MAKE_ACTION(type, __action)				\
-+({								\
-+	FIELD_PREP(GUC_HXG_MSG_0_TYPE, type) |			\
-+	FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |			\
-+		   GUC_HXG_EVENT_MSG_0_DATA0, __action);	\
-+})
-+
-+static bool vf_action_can_safely_fail(struct xe_device *xe, u32 action)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 3ac654cebc79..f67575b1ed79 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -574,6 +574,16 @@ void xe_guc_ct_disable(struct xe_guc_ct *ct)
+ 	stop_g2h_handler(ct);
+ }
+ 
++/**
++ * xe_guc_ct_flush_and_stop - Flush and stop all processing of G2H / H2G
++ * @ct: the &xe_guc_ct
++ */
++void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct)
 +{
-+	/*
-+	 * If we are VF resuming, we can't exactly track if a context
-+	 * registration has been completed in the GuC state machine, it is
-+	 * harmless to resend as it will just fail silently if
-+	 * GUC_HXG_TYPE_EVENT is used.
-+	 */
-+	return IS_SRIOV_VF(xe) && xe_sriov_vf_migration_supported(xe) &&
-+		(action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC ||
-+		 action == XE_GUC_ACTION_REGISTER_CONTEXT);
++	receive_g2h(ct);
++	xe_guc_ct_stop(ct);
 +}
 +
- #define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
+ /**
+  * xe_guc_ct_stop - Set GuC to stopped state
+  * @ct: the &xe_guc_ct
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index ca0ec938edac..02eaa452b400 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -17,6 +17,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
++void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
  
- static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
-@@ -807,18 +828,14 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
- 		FIELD_PREP(GUC_CTB_MSG_0_FENCE, ct_fence_value);
- 	if (want_response) {
--		cmd[1] =
--			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
--			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
--				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
-+		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_REQUEST, action[0]);
-+	} else if (vf_action_can_safely_fail(xe, action[0])) {
-+		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_EVENT, action[0]);
- 	} else {
- 		fast_req_track(ct, ct_fence_value,
- 			       FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, action[0]));
- 
--		cmd[1] =
--			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_FAST_REQUEST) |
--			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
--				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
-+		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_FAST_REQUEST, action[0]);
- 	}
- 
- 	/* H2G header in cmd[1] replaces action[0] so: */
+ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
 -- 
 2.34.1
 
