@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 177B3CCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:57:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 455F8CAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:57:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D518A10E0D1;
-	Mon,  6 Oct 2025 14:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0958210E0D6;
+	Mon,  6 Oct 2025 14:57:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TS8ayaCh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YfH9ujjM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0511B10E418
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:57:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D49710E341
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:57:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759762620; x=1791298620;
+ t=1759762623; x=1791298623;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vSSAjd0plBET8AiHubApJZYGmmWvV5yUC1Z5iqwYhz8=;
- b=TS8ayaCh+gMwpLlZ17EeKIAELS35B4HRryFbsM5gMOooclRLypenTspF
- 4S1KMDhZozVP0eOo+PKFDjvnfHioUAF1ZlvcMPX9zswsZ17gFokxZnTTB
- 6njlFKAgMYH2DOUVnZVDWXNlgsLvNQY0GdptWlmBw11g7pjT7bvUmAT+g
- db4HyHcLcV4G5Q8GYxnamB1exjb6tngzbG8iIWSvfgMpKKEBcd4q06Lmu
- F0xKw3yGcDWKNhbsYJigbrwtI6rwrezy7ESitmtJ37+JGP7JaczwtIzBw
- fx/46Ida48PTKGRqCnfDGnsEA7YKZLB+y7D0rN5vwIa1DkG1Yoj+KEaS3 g==;
-X-CSE-ConnectionGUID: s2bXjGP1STKHYABZpNxc2Q==
-X-CSE-MsgGUID: sPB4z87PQqa9aNNNWVvKkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143182"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143182"
+ bh=ePSDMMR7wsYU5dWs9vYyUgJV3+TfoEmH48pYJcAcpus=;
+ b=YfH9ujjMaIFmH4+NbjX+BPbgdjT7z6wM9Nz2UMFEwZPLG2T1NWDblRP8
+ MqxurrET15hypThnXOegvyfFIMUd5CXv04OGL6fSq0Xvbb1eOlOC20GM+
+ VQzGM4OZcqB83Yh6E6davtot33Hn8Vxkd1SpRHr7Y3JB+HGCwvwsCM5JK
+ h0sGOIorItM2LsNauNfnrgeSk8fQmjFUFMFBA//POEj8fWPVXCUhJrA/x
+ f6r6z/Pr0kfnyGdOHA/qKIFTZm436WvynDs7f2f2L82J0pDjCPgUXLbPs
+ kqgyY3dwyK6FLnULbnDYvi9N7WDrPMNAzt3hWHbrM65LHMcy9BYB+MavV g==;
+X-CSE-ConnectionGUID: r8bHn/6NT0Sd4ROMxnS57w==
+X-CSE-MsgGUID: YLe4/i0aSEiByH7M9NWTdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143184"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143184"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 07:57:00 -0700
-X-CSE-ConnectionGUID: B63/4vVJRge2EkDQMPl4CQ==
-X-CSE-MsgGUID: wNnPon09R3Oj2Y0peWzZfA==
+ 06 Oct 2025 07:57:03 -0700
+X-CSE-ConnectionGUID: Tac+msvqTmmcYjkaeE2KPw==
+X-CSE-MsgGUID: 3Rpy9hXsR0GOC+PSpqOXRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507669"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507684"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:56:57 -0700
+ by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:57:00 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
  jani.nikula@intel.com, ashutosh.dixit@intel.com,
  Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v5 7/8] drm/xe: Handle xe_work_period destruction
-Date: Mon,  6 Oct 2025 14:20:28 +0000
-Message-ID: <20251006142034.674435-8-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v5 8/8] Hack patch: Do not merge
+Date: Mon,  6 Oct 2025 14:20:29 +0000
+Message-ID: <20251006142034.674435-9-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
 References: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,84 +70,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch adds the xe_work_period destruction procedure.
-We iterate over all entries in the xe::work_period::users
-xarray and cancel any pending delayed work. Then destroy
-the xarray itself.
+This patch is only added so that our files are built and tested
+on the CI
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  2 ++
- drivers/gpu/drm/xe/xe_user.c   | 10 +++++++---
- drivers/gpu/drm/xe/xe_user.h   |  6 ++++++
- 3 files changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/Makefile     |  2 +-
+ drivers/gpu/drm/xe/xe_user.h    |  2 +-
+ drivers/gpu/trace/Kconfig       | 12 +++++++
+ include/trace/gpu_work_period.h | 59 +++++++++++++++++++++++++++++++++
+ 4 files changed, 73 insertions(+), 2 deletions(-)
+ create mode 100644 include/trace/gpu_work_period.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 61ba76144721..1436a10244c5 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -434,6 +434,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 	if (xe->destroy_wq)
- 		destroy_workqueue(xe->destroy_wq);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 738e47afbe89..b078834ec762 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -336,7 +336,7 @@ ifeq ($(CONFIG_DEBUG_FS),y)
  
-+	xe_user_fini(xe);
-+
- 	ttm_device_fini(&xe->ttm);
- }
+ 	xe-$(CONFIG_PCI_IOV) += xe_gt_sriov_pf_debugfs.o
  
-diff --git a/drivers/gpu/drm/xe/xe_user.c b/drivers/gpu/drm/xe/xe_user.c
-index fb54d2659642..90664c36e221 100644
---- a/drivers/gpu/drm/xe/xe_user.c
-+++ b/drivers/gpu/drm/xe/xe_user.c
-@@ -250,6 +250,12 @@ int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
- 	return 0;
- }
+-	xe-$(CONFIG_TRACE_GPU_WORK_PERIOD) += xe_user.o
++	xe-y += xe_user.o
  
-+void xe_user_fini(struct xe_device *xe)
-+{
-+	xe_user_cancel_workers(xe);
-+	xa_destroy(&xe->work_period.users);
-+}
-+
- void xe_user_cancel_workers(struct xe_device *xe)
- {
- 	struct xe_user *user = NULL;
-@@ -257,10 +263,8 @@ void xe_user_cancel_workers(struct xe_device *xe)
- 
- 	mutex_lock(&xe->work_period.lock);
- 	xa_for_each(&xe->work_period.users, i, user) {
--		if (user && xe_user_get_unless_zero(user)) {
--			cancel_delayed_work_sync(&user->delay_work);
-+		if (cancel_delayed_work_sync(&user->delay_work))
- 			xe_user_put(user);
--		}
- 	}
- 	mutex_unlock(&xe->work_period.lock);
- }
+ 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 		i915-display/intel_display_debugfs.o \
 diff --git a/drivers/gpu/drm/xe/xe_user.h b/drivers/gpu/drm/xe/xe_user.h
-index 0d184464687c..d7ac58cb3db8 100644
+index d7ac58cb3db8..f8c5e261a563 100644
 --- a/drivers/gpu/drm/xe/xe_user.h
 +++ b/drivers/gpu/drm/xe/xe_user.h
-@@ -72,6 +72,8 @@ struct xe_user {
+@@ -68,7 +68,7 @@ struct xe_user {
+ 	u64 last_timestamp_ns;
+ };
+ 
+-#if IS_ENABLED(CONFIG_TRACE_GPU_WORK_PERIOD)
++#if 1
  
  int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid);
  
-+void xe_user_fini(struct xe_device *xe);
-+
- void xe_user_cancel_workers(struct xe_device *xe);
+diff --git a/drivers/gpu/trace/Kconfig b/drivers/gpu/trace/Kconfig
+index cd3d19c4a201..33ffe865739b 100644
+--- a/drivers/gpu/trace/Kconfig
++++ b/drivers/gpu/trace/Kconfig
+@@ -11,3 +11,15 @@ config TRACE_GPU_MEM
+ 	  Tracepoint availability varies by GPU driver.
  
- void xe_user_resume_workers(struct xe_device *xe);
-@@ -86,6 +88,10 @@ int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
- 	return 0;
- }
- 
-+static inline void xe_user_fini(struct xe_device *xe)
-+{
-+}
+ 	  If in doubt, say "N".
 +
- static inline void __xe_user_free(struct kref *kref)
- {
- }
++config TRACE_GPU_WORK_PERIOD
++        bool "Enable GPU work period tracepoint"
++        default n
++        help
++          Choose this option to enable tracepoint for tracking
++          GPU usage based on the UID. Intended for performance
++          profiling and required for Android.
++
++          Tracepoint availability varies by GPU driver.
++
++          If in doubt, say "N".
+diff --git a/include/trace/gpu_work_period.h b/include/trace/gpu_work_period.h
+new file mode 100644
+index 000000000000..e06467625705
+--- /dev/null
++++ b/include/trace/gpu_work_period.h
+@@ -0,0 +1,59 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM power
++
++#if !defined(_TRACE_GPU_WORK_PERIOD_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_GPU_WORK_PERIOD_H
++
++#include <linux/tracepoint.h>
++
++TRACE_EVENT(gpu_work_period,
++
++	TP_PROTO(
++		u32 gpu_id,
++		u32 uid,
++		u64 start_time_ns,
++		u64 end_time_ns,
++		u64 total_active_duration_ns
++	),
++
++	TP_ARGS(gpu_id, uid, start_time_ns, end_time_ns, total_active_duration_ns),
++
++	TP_STRUCT__entry(
++		__field(u32, gpu_id)
++		__field(u32, uid)
++		__field(u64, start_time_ns)
++		__field(u64, end_time_ns)
++		__field(u64, total_active_duration_ns)
++	),
++
++	TP_fast_assign(
++		__entry->gpu_id = gpu_id;
++		__entry->uid = uid;
++		__entry->start_time_ns = start_time_ns;
++		__entry->end_time_ns = end_time_ns;
++		__entry->total_active_duration_ns = total_active_duration_ns;
++	),
++
++	TP_printk("gpu_id=%u uid=%u start_time_ns=%llu end_time_ns=%llu total_active_duration_ns=%llu",
++		__entry->gpu_id,
++		__entry->uid,
++		__entry->start_time_ns,
++		__entry->end_time_ns,
++		__entry->total_active_duration_ns)
++);
++
++#endif /* _TRACE_GPU_WORK_PERIOD_H */
++
++/* This part must be outside protection */
++
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_FILE gpu_work_period
++#undef TRACE_INCLUDE_PATH
++#define TRACE_INCLUDE_PATH .
++
++#include <trace/define_trace.h>
 -- 
 2.49.0
 
