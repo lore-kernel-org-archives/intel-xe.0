@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1F0ACCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 08:50:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15EAACAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 08:57:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4B210E06F;
-	Mon,  6 Oct 2025 08:50:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VgGmsxh7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940EE10E06F
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 08:50:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759740640; x=1791276640;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ofpn700jqdLO9FjQYck3sibU5fs84Oms+1WwguXwL8Q=;
- b=VgGmsxh7DEYsGPLUJwD1Huic+MHZ6aCI5VcdXzcIq6zGP4qvNRE9vYU9
- HMTpv1ZtwJ+tecOTZ6o/dBCSN3jxqAh97aIsXOMc5ONpuU50YShpAwJJ4
- 99HktDI3Xbt50n5+ujwvFoI7VLijmEQhaTGZPHsoD1oCSKvO5d+YLtsd/
- ramnlu4620AZcEsiASknBN4NecNq73ZQ5aZrtCyvOuCmBICxgB3faxyud
- tcaKnDN0TyJaVK1CNBQg+Ui6kQqB3/0d4uISDnleN8QRfOzFHFi2H0Xmc
- aAqovOdNYMXNJrovcc0lJK42BGQE60eLdg1X2y7UJewazhOz0Te0nJ38b Q==;
-X-CSE-ConnectionGUID: IvkQtPquRr2OH0skMSFoqg==
-X-CSE-MsgGUID: yqFqNIUzQxqG/kKuYDgVVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61816168"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61816168"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 01:50:39 -0700
-X-CSE-ConnectionGUID: vzd4oW0kR4SVSf5xTP1OqA==
-X-CSE-MsgGUID: SvFh6p1LTq6mfj3/H6fUpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="184207314"
-Received: from naresh-nuc8i7beh.iind.intel.com (HELO
- nkumarg-desk.iind.intel.com) ([10.190.216.171])
- by fmviesa005.fm.intel.com with ESMTP; 06 Oct 2025 01:50:38 -0700
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: naresh.kumar.g@intel.com, Michal.Wajdeczko@intel.com,
- stuart.summers@intel.com
-Subject: [PATCH V4] drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF
- Provisioning
-Date: Mon,  6 Oct 2025 14:15:43 +0530
-Message-ID: <20251006084542.1302116-2-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B673110E06F;
+	Mon,  6 Oct 2025 08:57:22 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D25B10E06F;
+ Mon,  6 Oct 2025 08:57:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/=3A_Mutual_Exclusi?=
+ =?utf-8?q?vity_b/w_Multi_CCS_Mode_=26_SRIOV_VF_Provisioning_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 06 Oct 2025 08:57:21 -0000
+Message-ID: <175974104137.7007.669792404921297284@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251006084542.1302116-2-naresh.kumar.g@intel.com>
+In-Reply-To: <20251006084542.1302116-2-naresh.kumar.g@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,138 +36,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Due to SLA agreement between PF and VFs, multi CCS mode can't
-be enabled when VFs are already enabled.
-Similarly, enabling VFs is disabled when multi CCS mode enabled.
+== Series Details ==
 
----
-v2:
-- function xe_device_is_vf_enabled has been refactored to
-xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
-- The code now distinctly checks for SR-IOV VF mode and
-SR-IOV PF with VFs enabled.
-- Log messages have been updated to explicitly state the current mode.
-- The function xe_multi_ccs_mode_enabled is moved to xe_device.h
+Series: drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF Provisioning (rev4)
+URL   : https://patchwork.freedesktop.org/series/154538/
+State : warning
 
-v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
+== Summary ==
 
-v4:
-- sysfs interface for CCS mode is not initialized
- when operating in SRIOV VF Mode.
-- xe_sriov_pf_has_vfs_enabled() check is sufficient while CCS mode
- enablement.
-- remove unnecessary comments as flow is self explanatory.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9f1e15b7984ecd9c1c9a4410349a7c1e07b5aa3d
+Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Date:   Mon Oct 6 14:15:43 2025 +0530
 
-Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
----
- drivers/gpu/drm/xe/xe_device.h           |  8 ++++++++
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c      | 10 ++++++----
- drivers/gpu/drm/xe/xe_pci_sriov.c        |  5 +++++
- drivers/gpu/drm/xe/xe_sriov_pf_helpers.h | 13 +++++++++++++
- 4 files changed, 32 insertions(+), 4 deletions(-)
+    drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF Provisioning
+    
+    Due to SLA agreement between PF and VFs, multi CCS mode can't
+    be enabled when VFs are already enabled.
+    Similarly, enabling VFs is disabled when multi CCS mode enabled.
++ /mt/dim checkpatch 8ad3832e11cc44823fc35aa6d36f7e76d69e4791 drm-intel
+9f1e15b7984e drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF Provisioning
+-:109: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 32cc6323b7f6..986f9cabb897 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -172,6 +172,14 @@ static inline bool xe_device_has_lmtt(struct xe_device *xe)
- 	return IS_DGFX(xe);
- }
- 
-+static inline bool xe_multi_ccs_mode_enabled(struct xe_device *xe)
-+{
-+	/* Multi CCS mode supported exclusively on GT0 */
-+	struct xe_gt *gt = xe_device_get_gt(xe, 0);
-+
-+	return gt->ccs_mode > 1;
-+}
-+
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index 50fffc9ebf62..91908faf3768 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -13,6 +13,7 @@
- #include "xe_gt_sysfs.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf_helpers.h"
- 
- static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
- {
-@@ -117,9 +118,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
- 	u32 num_engines, num_slices;
- 	int ret;
- 
--	if (IS_SRIOV(xe)) {
--		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
--			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-+	if (xe_sriov_pf_has_vfs_enabled(xe)) {
-+		xe_gt_dbg(gt, "Can't change CCS mode in SR-IOV PF Mode with VFs Enabled\n");
- 		return -EOPNOTSUPP;
- 	}
- 
-@@ -184,6 +184,8 @@ static void xe_gt_ccs_mode_sysfs_fini(void *arg)
-  * The number of available compute slices is exposed to user through a per-gt
-  * 'num_cslices' sysfs interface.
-  *
-+ * The sysfs interface for CCS mode is not set up in SRIOV VF Mode.
-+ *
-  * Returns: Returns error value for failure and 0 for success.
-  */
- int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
-@@ -191,7 +193,7 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
--	if (!xe_gt_ccs_mode_enabled(gt))
-+	if (!xe_gt_ccs_mode_enabled(gt) || IS_SRIOV_VF(xe))
- 		return 0;
- 
- 	err = sysfs_create_files(gt->sysfs, gt_ccs_mode_attrs);
-diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-index af05db07162e..404337692978 100644
---- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-@@ -155,6 +155,11 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
- 	xe_assert(xe, num_vfs <= total_vfs);
- 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
- 
-+	if (xe_multi_ccs_mode_enabled(xe)) {
-+		xe_sriov_info(xe, "Disable multi-CCS mode before enabling VF's\n");
-+		return -ECANCELED;
-+	}
-+
- 	err = xe_sriov_pf_wait_ready(xe);
- 	if (err)
- 		goto out;
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-index dd1df950b021..e26837091375 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
-@@ -43,4 +43,17 @@ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
- 	return &xe->sriov.pf.master_lock;
- }
- 
-+/**
-+ * xe_sriov_pf_has_vfs_enabled() - Determines if the PF has any VFs enabled
-+ * @xe: ptr to xe_device
-+ *
-+ * Return: true if one or more VFs are enabled on the PF, false otherwise.
-+ */
-+static inline bool xe_sriov_pf_has_vfs_enabled(const struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+
-+	return pci_num_vf(pdev) > 0;
-+}
-+
- #endif
--- 
-2.43.0
+total: 1 errors, 0 warnings, 0 checks, 76 lines checked
+
 
