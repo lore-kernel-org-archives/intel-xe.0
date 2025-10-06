@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F36CCA476
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9607CAC5B8
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F108610E40A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8634C10E35D;
 	Mon,  6 Oct 2025 11:10:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TAnf0s81";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJQmo1to";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB21810E35D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D9510E35D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749046; x=1791285046;
+ t=1759749045; x=1791285045;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=O/TUoDvsKdngD8PFHdVUvAJw3sJVh/t8X4wRrRaL7XE=;
- b=TAnf0s81B71x0zuVTcuGlHMNFK0vBBnTUW2xOUd6B+IMBc8aBRI5AQOX
- k/B9zRhfAnN4Niy/a2puwT4v3c0Wq3H6/+ll6IV1JYZXtbrNRLYOtCNyc
- zXf4dxFaWSmhKs1QQxJIZiXLaZU4K6xv0wdOm4G0mAEBwFJwqpiZOSHff
- Pk5CJD055CCa+VkzetDjIdh9OcDnde1tMfYaX6LVxxtRC4c7eEhuL1aCi
- TeWORBPVt/SX0H2HW0HWmxeMBr3JUPOjqkFz1DNJWQyDjMPti4vQ0yL6U
- 4Na0vYb1ly9K7fqKWQMXcCyj2cF4UPEXJdZ2ONq01EXuoo7I/HRuY6Nw7 w==;
-X-CSE-ConnectionGUID: Aju2Ebj6S6+1rptQnmzJfw==
-X-CSE-MsgGUID: Q4CGF0VzShqZixaRJ8O8Yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020401"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020401"
+ bh=PwVAkDfvo+JI4SKAGkNEoCSLO9IhtgQhdqPKgfT5uAk=;
+ b=cJQmo1to9bkFH69/MjUbJ/RGEF0b4CApsWgU0iNaA7OJvEUozKfcu/EY
+ hQc3sQKHEipkELb17VhND2nH+ijwG/6O0aCndrwA6Tn/axIuYsV5KeFET
+ L+770q900hAkLngvhf2TGAFZTdoP8hRZxstUteGhc9VySpdrbHmLX/92V
+ fjdilCLGHYM1WnF5in2tZZaHJsdASqsW5CixaZqe2uRZpgfQPhk1x1+FU
+ asiOyxrRDoah1yQjGhHCrf01rHcYUo1ukMYIaDrxby0BUZV1+gaF7l3P4
+ 4jASAcfRp94jQzRKv31nlm/RvUjoU1ToHLPZS6yRukDwv9Y1nEIzu8gY1 w==;
+X-CSE-ConnectionGUID: 8XwdbYdzRfugRwfo3B+YEA==
+X-CSE-MsgGUID: tzkFY5wMSDWUFnA9++zcMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020387"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020387"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:46 -0700
-X-CSE-ConnectionGUID: DRZZ21K8TfCJOYxlCxqJVA==
-X-CSE-MsgGUID: bmp9VpM3RsOwquuCz4I9zg==
+ 06 Oct 2025 04:10:44 -0700
+X-CSE-ConnectionGUID: zA4dxn8mS8KIcspSATrcFQ==
+X-CSE-MsgGUID: jcA6M8GiRLK/YVR7andmmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655244"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655226"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:45 -0700
+ 06 Oct 2025 04:10:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 24/30] drm/xe/vf: Add debug prints for GuC replaying state
- during VF recovery
-Date: Mon,  6 Oct 2025 04:10:32 -0700
-Message-Id: <20251006111038.2234860-25-matthew.brost@intel.com>
+Subject: [PATCH v6 11/30] drm/xe/vf: Close multi-GT GGTT shift race
+Date: Mon,  6 Oct 2025 04:10:19 -0700
+Message-Id: <20251006111038.2234860-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,105 +66,497 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Helpful to manually verify the GuC state machine can correctly replay
-the state during a VF post-migration recovery. All replay paths have
-been manually verified as triggered and working during testing.
+As multi-GT VF post-migration recovery can run in parallel on different
+workqueues, but both GTs point to the same GGTT, only one GT needs to
+shift the GGTT. However, both GTs need to know when this step has
+completed. To coordinate this, perform the GGTT shift under the GGTT
+lock. With shift being done under the lock, storing the shift value
+becomes unnecessary.
+
+v3:
+ - Update commmit message (Tomasz)
+v4:
+ - Move GGTT values to tile state (Michal)
+ - Use GGTT lock (Michal)
+v5:
+ - Only take GGTT lock during recovery (CI)
+ - Drop goto in vf_get_submission_cfg (Michal)
+ - Add kernel doc around recovery in xe_gt_sriov_vf_query_config (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 23 ++++++++++++++++++++---
- 1 file changed, 20 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h        |   3 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 153 +++++++-------------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h         |   5 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |   7 +-
+ drivers/gpu/drm/xe/xe_guc.c                 |   2 +-
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.c       |  30 +++-
+ drivers/gpu/drm/xe/xe_tile_sriov_vf.h       |   2 +-
+ drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h |  23 +++
+ drivers/gpu/drm/xe/xe_vram.c                |   6 +-
+ 9 files changed, 112 insertions(+), 119 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 48d5133e76a6..b33a3dd883d7 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2026,21 +2026,27 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 1d2718b70a5c..c66523bf4bf0 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -27,6 +27,7 @@
+ #include "xe_sriov_vf_ccs_types.h"
+ #include "xe_step_types.h"
+ #include "xe_survivability_mode_types.h"
++#include "xe_tile_sriov_vf_types.h"
+ #include "xe_validation.h"
  
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+@@ -193,6 +194,8 @@ struct xe_tile {
+ 		struct {
+ 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
+ 			struct xe_ggtt_node *ggtt_balloon[2];
++			/** @sriov.vf.self_config: VF configuration data */
++			struct xe_tile_sriov_vf_selfconfig self_config;
+ 		} vf;
+ 	} sriov;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 55a1ebbbf47f..d227c8a3ec81 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -436,42 +436,65 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
+ 	return value;
  }
  
--static void guc_exec_queue_revert_pending_state_change(struct xe_exec_queue *q)
-+static void guc_exec_queue_revert_pending_state_change(struct xe_guc *guc,
-+						       struct xe_exec_queue *q)
+-static int vf_get_ggtt_info(struct xe_gt *gt)
++static int vf_get_ggtt_info(struct xe_gt *gt, bool recovery)
  {
- 	bool pending_enable, pending_disable, pending_resume;
+-	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	struct xe_tile_sriov_vf_selfconfig *config =
++		&gt_to_tile(gt)->sriov.vf.self_config;
++	struct xe_ggtt *ggtt = gt_to_tile(gt)->mem.ggtt;
+ 	struct xe_guc *guc = &gt->uc.guc;
+ 	u64 start, size;
++	s64 shift;
+ 	int err;
  
- 	pending_enable = exec_queue_pending_enable(q);
- 	pending_resume = exec_queue_pending_resume(q);
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
  
--	if (pending_enable && pending_resume)
-+	if (pending_enable && pending_resume) {
- 		q->guc->needs_resume = true;
-+		xe_gt_dbg(guc_to_gt(guc), "Replay RESUME - guc_id=%d",
-+			  q->guc->id);
-+	}
- 
- 	if (pending_enable && !pending_resume &&
- 	    !exec_queue_pending_tdr_exit(q)) {
- 		clear_exec_queue_registered(q);
- 		if (xe_exec_queue_is_lr(q))
- 			xe_exec_queue_put(q);
-+		xe_gt_dbg(guc_to_gt(guc), "Replay REGISTER - guc_id=%d",
-+			  q->guc->id);
- 	}
- 
- 	if (pending_enable) {
-@@ -2048,6 +2054,8 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_exec_queue *q)
- 		clear_exec_queue_pending_resume(q);
- 		clear_exec_queue_pending_tdr_exit(q);
- 		clear_exec_queue_pending_enable(q);
-+		xe_gt_dbg(guc_to_gt(guc), "Replay ENABLE - guc_id=%d",
-+			  q->guc->id);
- 	}
- 
- 	if (exec_queue_destroyed(q) && exec_queue_registered(q)) {
-@@ -2057,6 +2065,8 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_exec_queue *q)
- 		else
- 			q->guc->needs_cleanup = true;
- 		clear_exec_queue_extra_ref(q);
-+		xe_gt_dbg(guc_to_gt(guc), "Replay CLEANUP - guc_id=%d",
-+			  q->guc->id);
- 	}
- 
- 	pending_disable = exec_queue_pending_disable(q);
-@@ -2064,6 +2074,8 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_exec_queue *q)
- 	if (pending_disable && exec_queue_suspended(q)) {
- 		clear_exec_queue_suspended(q);
- 		q->guc->needs_suspend = true;
-+		xe_gt_dbg(guc_to_gt(guc), "Replay SUSPEND - guc_id=%d",
-+			  q->guc->id);
- 	}
- 
- 	if (pending_disable) {
-@@ -2071,6 +2083,8 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_exec_queue *q)
- 			set_exec_queue_enabled(q);
- 		clear_exec_queue_pending_disable(q);
- 		clear_exec_queue_check_timeout(q);
-+		xe_gt_dbg(guc_to_gt(guc), "Replay DISABLE - guc_id=%d",
-+			  q->guc->id);
- 	}
- 
- 	q->guc->resume_time = 0;
-@@ -2096,7 +2110,7 @@ static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
- 	else
- 		cancel_delayed_work_sync(&sched->base.work_tdr);
- 
--	guc_exec_queue_revert_pending_state_change(q);
-+	guc_exec_queue_revert_pending_state_change(guc, q);
- 
- 	if (xe_exec_queue_is_parallel(q)) {
- 		struct xe_device *xe = guc_to_xe(guc);
-@@ -2206,6 +2220,9 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
- 	list_for_each_entry(s_job, &sched->base.pending_list, list) {
- 		job = to_xe_sched_job(s_job);
- 
-+		xe_gt_dbg(guc_to_gt(guc), "Replay JOB - guc_id=%d, seqno=%d",
-+			  q->guc->id, xe_sched_job_seqno(job));
++	/*
++	 * We only only take the GGTT lock when potentially shifting GGTTs to
++	 * make this step visable to all GTs which share a GGTT. Also the GGTT
++	 * lock is not initialized during xe_gt_init_early when this function
++	 * can also be called.
++	 */
++	if (recovery)
++		mutex_lock(&ggtt->lock);
 +
- 		q->ring_ops->emit_job(job);
- 		job->skip_emit = true;
+ 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
+ 	if (unlikely(err))
+-		return err;
++		goto out;
+ 
+ 	if (config->ggtt_size && config->ggtt_size != size) {
+ 		xe_gt_sriov_err(gt, "Unexpected GGTT reassignment: %lluK != %lluK\n",
+ 				size / SZ_1K, config->ggtt_size / SZ_1K);
+-		return -EREMCHG;
++		err = -EREMCHG;
++		goto out;
  	}
+ 
+ 	xe_gt_sriov_dbg_verbose(gt, "GGTT %#llx-%#llx = %lluK\n",
+ 				start, start + size - 1, size / SZ_1K);
+ 
+-	config->ggtt_shift = start - (s64)config->ggtt_base;
++	shift = start - (s64)config->ggtt_base;
+ 	config->ggtt_base = start;
+ 	config->ggtt_size = size;
++	err = config->ggtt_size ? 0 : -ENODATA;
+ 
+-	return config->ggtt_size ? 0 : -ENODATA;
++	if (!err && shift && recovery) {
++		xe_gt_sriov_info(gt, "Shifting GGTT base by %lld to 0x%016llx\n",
++				 shift, config->ggtt_base);
++		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
++	}
++out:
++	if (recovery)
++		mutex_unlock(&ggtt->lock);
++	return err;
+ }
+ 
+ static int vf_get_lmem_info(struct xe_gt *gt)
+ {
+-	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	struct xe_tile_sriov_vf_selfconfig *config =
++		&gt_to_tile(gt)->sriov.vf.self_config;
+ 	struct xe_guc *guc = &gt->uc.guc;
+ 	char size_str[10];
+ 	u64 size;
+@@ -544,17 +567,20 @@ static void vf_cache_gmdid(struct xe_gt *gt)
+ /**
+  * xe_gt_sriov_vf_query_config - Query SR-IOV config data over MMIO.
+  * @gt: the &xe_gt
++ * @recovery: VF post migration recovery path
+  *
+- * This function is for VF use only.
++ * This function is for VF use only. If recovery is set, the GGTT shift will be
++ * performed under GGTT lock making this step visable to all GTs which share a
++ * GGTT.
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
++int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
+-	err = vf_get_ggtt_info(gt);
++	err = vf_get_ggtt_info(gt, recovery);
+ 	if (unlikely(err))
+ 		return err;
+ 
+@@ -584,80 +610,16 @@ int xe_gt_sriov_vf_query_config(struct xe_gt *gt)
+  */
+ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
+ {
+-	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.num_ctxs);
+-
+-	return gt->sriov.vf.self_config.num_ctxs;
+-}
+-
+-/**
+- * xe_gt_sriov_vf_lmem - VF LMEM configuration.
+- * @gt: the &xe_gt
+- *
+- * This function is for VF use only.
+- *
+- * Return: size of the LMEM assigned to VF.
+- */
+-u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
+-{
+-	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
+-
+-	return gt->sriov.vf.self_config.lmem_size;
+-}
+-
+-/**
+- * xe_gt_sriov_vf_ggtt - VF GGTT configuration.
+- * @gt: the &xe_gt
+- *
+- * This function is for VF use only.
+- *
+- * Return: size of the GGTT assigned to VF.
+- */
+-u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt)
+-{
+-	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
+-
+-	return gt->sriov.vf.self_config.ggtt_size;
+-}
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	u16 val;
+ 
+-/**
+- * xe_gt_sriov_vf_ggtt_base - VF GGTT base offset.
+- * @gt: the &xe_gt
+- *
+- * This function is for VF use only.
+- *
+- * Return: base offset of the GGTT assigned to VF.
+- */
+-u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt)
+-{
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
+-	xe_gt_assert(gt, gt->sriov.vf.self_config.ggtt_size);
+-
+-	return gt->sriov.vf.self_config.ggtt_base;
+-}
+ 
+-/**
+- * xe_gt_sriov_vf_ggtt_shift - Return shift in GGTT range due to VF migration
+- * @gt: the &xe_gt struct instance
+- *
+- * This function is for VF use only.
+- *
+- * Return: The shift value; could be negative
+- */
+-s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt)
+-{
+-	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	xe_gt_assert(gt, config->num_ctxs);
++	val = config->num_ctxs;
+ 
+-	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+-	xe_gt_assert(gt, xe_gt_is_main_type(gt));
+-
+-	return config->ggtt_shift;
++	return val;
+ }
+ 
+ static int relay_action_handshake(struct xe_gt *gt, u32 *major, u32 *minor)
+@@ -1057,6 +1019,8 @@ void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
+  */
+ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
+ {
++	struct xe_tile_sriov_vf_selfconfig *tconfig =
++		&gt_to_tile(gt)->sriov.vf.self_config;
+ 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	char buf[10];
+@@ -1064,17 +1028,15 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+ 
+ 	drm_printf(p, "GGTT range:\t%#llx-%#llx\n",
+-		   config->ggtt_base,
+-		   config->ggtt_base + config->ggtt_size - 1);
+-
+-	string_get_size(config->ggtt_size, 1, STRING_UNITS_2, buf, sizeof(buf));
+-	drm_printf(p, "GGTT size:\t%llu (%s)\n", config->ggtt_size, buf);
++		   tconfig->ggtt_base,
++		   tconfig->ggtt_base + tconfig->ggtt_size - 1);
+ 
+-	drm_printf(p, "GGTT shift on last restore:\t%lld\n", config->ggtt_shift);
++	string_get_size(tconfig->ggtt_size, 1, STRING_UNITS_2, buf, sizeof(buf));
++	drm_printf(p, "GGTT size:\t%llu (%s)\n", tconfig->ggtt_size, buf);
+ 
+ 	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
+-		string_get_size(config->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
+-		drm_printf(p, "LMEM size:\t%llu (%s)\n", config->lmem_size, buf);
++		string_get_size(tconfig->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
++		drm_printf(p, "LMEM size:\t%llu (%s)\n", tconfig->lmem_size, buf);
+ 	}
+ 
+ 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
+@@ -1161,21 +1123,16 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
+ static int vf_post_migration_fixups(struct xe_gt *gt)
+ {
+ 	void *buf = gt->sriov.vf.migration.scratch;
+-	s64 shift;
+ 	int err;
+ 
+-	err = xe_gt_sriov_vf_query_config(gt);
++	err = xe_gt_sriov_vf_query_config(gt, true);
+ 	if (err)
+ 		return err;
+ 
+-	shift = xe_gt_sriov_vf_ggtt_shift(gt);
+-	if (shift) {
+-		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
+-		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+-		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+-		if (err)
+-			return err;
+-	}
++	xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
++	err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
++	if (err)
++		return err;
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 0adebf8aa419..47ed8d513571 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -18,7 +18,7 @@ int xe_gt_sriov_vf_bootstrap(struct xe_gt *gt);
+ void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
+ 				 struct xe_uc_fw_version *wanted,
+ 				 struct xe_uc_fw_version *found);
+-int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
++int xe_gt_sriov_vf_query_config(struct xe_gt *gt, bool recovery);
+ int xe_gt_sriov_vf_connect(struct xe_gt *gt);
+ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+@@ -29,9 +29,6 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
+ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
+ u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+-u64 xe_gt_sriov_vf_ggtt(struct xe_gt *gt);
+-u64 xe_gt_sriov_vf_ggtt_base(struct xe_gt *gt);
+-s64 xe_gt_sriov_vf_ggtt_shift(struct xe_gt *gt);
+ 
+ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg);
+ void xe_gt_sriov_vf_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index e753646debc4..1796d4caf62f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_GT_SRIOV_VF_TYPES_H_
+ #define _XE_GT_SRIOV_VF_TYPES_H_
+ 
++#include <linux/rwsem.h>
+ #include <linux/types.h>
+ #include <linux/workqueue.h>
+ #include "xe_uc_fw_types.h"
+@@ -14,12 +15,6 @@
+  * struct xe_gt_sriov_vf_selfconfig - VF configuration data.
+  */
+ struct xe_gt_sriov_vf_selfconfig {
+-	/** @ggtt_base: assigned base offset of the GGTT region. */
+-	u64 ggtt_base;
+-	/** @ggtt_size: assigned size of the GGTT region. */
+-	u64 ggtt_size;
+-	/** @ggtt_shift: difference in ggtt_base on last migration */
+-	s64 ggtt_shift;
+ 	/** @lmem_size: assigned size of the LMEM. */
+ 	u64 lmem_size;
+ 	/** @num_ctxs: assigned number of GuC submission context IDs. */
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index d5adbbb013ec..c016a11b6ab1 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -713,7 +713,7 @@ static int vf_guc_init_noalloc(struct xe_guc *guc)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_gt_sriov_vf_query_config(gt);
++	err = xe_gt_sriov_vf_query_config(gt, false);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+index f221dbed16f0..074981e2ef07 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
+@@ -9,7 +9,6 @@
+ 
+ #include "xe_assert.h"
+ #include "xe_ggtt.h"
+-#include "xe_gt_sriov_vf.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_printk.h"
+ #include "xe_tile_sriov_vf.h"
+@@ -40,10 +39,10 @@ static int vf_init_ggtt_balloons(struct xe_tile *tile)
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
++static int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile)
+ {
+-	u64 ggtt_base = xe_gt_sriov_vf_ggtt_base(tile->primary_gt);
+-	u64 ggtt_size = xe_gt_sriov_vf_ggtt(tile->primary_gt);
++	u64 ggtt_base = tile->sriov.vf.self_config.ggtt_base;
++	u64 ggtt_size = tile->sriov.vf.self_config.ggtt_size;
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	u64 wopcm = xe_wopcm_size(xe);
+ 	u64 start, end;
+@@ -244,11 +243,30 @@ void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift)
+ {
+ 	struct xe_ggtt *ggtt = tile->mem.ggtt;
+ 
+-	mutex_lock(&ggtt->lock);
++	lockdep_assert_held(&ggtt->lock);
+ 
+ 	xe_tile_sriov_vf_deballoon_ggtt_locked(tile);
+ 	xe_ggtt_shift_nodes_locked(ggtt, shift);
+ 	xe_tile_sriov_vf_balloon_ggtt_locked(tile);
++}
+ 
+-	mutex_unlock(&ggtt->lock);
++/**
++ * xe_tile_sriov_vf_lmem - VF LMEM configuration.
++ * @tile: the &xe_tile
++ *
++ * This function is for VF use only.
++ *
++ * Return: size of the LMEM assigned to VF.
++ */
++u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile)
++{
++	struct xe_tile_sriov_vf_selfconfig *config = &tile->sriov.vf.self_config;
++	u64 val;
++
++	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
++
++	xe_tile_assert(tile, config->lmem_size);
++	val = config->lmem_size;
++
++	return val;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
+index 93eb043171e8..54e7f2a5c4e4 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
+@@ -11,8 +11,8 @@
+ struct xe_tile;
+ 
+ int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile);
+-int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile);
+ void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile);
+ void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift);
++u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
+new file mode 100644
+index 000000000000..140717f81d8f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_TILE_SRIOV_VF_TYPES_H_
++#define _XE_TILE_SRIOV_VF_TYPES_H_
++
++#include <linux/mutex.h>
++
++/**
++ * struct xe_tile_sriov_vf_selfconfig - VF configuration data.
++ */
++struct xe_tile_sriov_vf_selfconfig {
++	/** @ggtt_base: assigned base offset of the GGTT region. */
++	u64 ggtt_base;
++	/** @ggtt_size: assigned size of the GGTT region. */
++	u64 ggtt_size;
++	/** @lmem_size: assigned size of the LMEM. */
++	u64 lmem_size;
++};
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 7adfccf68e4c..70bcbb188867 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -17,10 +17,10 @@
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_mcr.h"
+-#include "xe_gt_sriov_vf.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ #include "xe_sriov.h"
++#include "xe_tile_sriov_vf.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_vram_types.h"
+@@ -238,9 +238,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
+ 		offset = 0;
+ 		for_each_tile(t, xe, id)
+ 			for_each_if(t->id < tile->id)
+-				offset += xe_gt_sriov_vf_lmem(t->primary_gt);
++				offset += xe_tile_sriov_vf_lmem(t);
+ 
+-		*tile_size = xe_gt_sriov_vf_lmem(gt);
++		*tile_size = xe_tile_sriov_vf_lmem(tile);
+ 		*vram_size = *tile_size;
+ 		*tile_offset = offset;
+ 
 -- 
 2.34.1
 
