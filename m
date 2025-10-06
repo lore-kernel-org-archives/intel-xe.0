@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C10FCCD184
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBC00CCD187
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F166410E421;
-	Mon,  6 Oct 2025 11:10:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BB8810E429;
+	Mon,  6 Oct 2025 11:10:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j52U+IGT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gAZG3/yb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B64610E407
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCDBD10E40A
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749045; x=1791285045;
+ t=1759749047; x=1791285047;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3eEufq5C8tfymWlMpmnKPYOMENSJx+5DQctEDdXnYUQ=;
- b=j52U+IGTA7FuBbi67r0T81iqLskjoGeEUPrSvxYUHfbpnTVm6m5rCw+X
- WNbFPK+aSteIm+RzaCwt/kf9OdVtr9EZaUByps5xlTnMgzHuvn2JumcVe
- eYlexspwHSfWsXYoN4Pw8ETjq5wOWBtpAtouuAYZoMHEzN9yNWz3J+XP0
- b/1ftdiBbIUttc6GN5yTS+6ceZcA6HTr/3fUBo84xIJ4FNA0/t+w0B87i
- LrqgUMVCF5rH8LOP4g/J9IpGzcMzG0b8gY6ImNw1t6NZ+uXQwkX4vWKYH
- XJN5ZdmmPFIL/Em12KlHh5Ypq5yzl1xNwqloZYB9/hCUnUrIaWJ0P0w+i w==;
-X-CSE-ConnectionGUID: NPnn25LHQAmnUMjZQKSyHw==
-X-CSE-MsgGUID: pmOD9ZyKS9CzCvDbOeEZBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020397"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020397"
+ bh=L8+A6Uau+/2K5YadtuewVSudAlCxYXWhd3gl0ho9e4A=;
+ b=gAZG3/ybY8oAIwPDWjrbGHfJQhrgKjkhBAyIEHqQ6vVZ7qHXm7koRXoc
+ qBFh6Yd7uMnHBPk7udY6Tt23P1Pj8+qPrU6ShX5zh6tXJXFlRw0SbfPj9
+ yGTisYyioL4RJHhn1jB8GtyUm2oOw++LanWmGjSaIYF5mwoAWDSkmhCGg
+ yQDn1YdaWVIzYjTP51A3MEXuMRuqcq8y/40kW8fPFIo3LYtpAnaiiY3sQ
+ yPXFpICdhN7l0baikVNC1VzhFJzFpmZyXTNlcVDXi9HxQ6tEbDPey7Je5
+ vwvXu5wCWPdHcUPZsH13ZwavUscTKke5qCelL0ZMeUpo+f4QBLyibFW1t w==;
+X-CSE-ConnectionGUID: 3zjpf6a9Rb2H55Xq4loYgw==
+X-CSE-MsgGUID: dD5A5yr4Qw2dTV6gb9tuyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020407"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020407"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:45 -0700
-X-CSE-ConnectionGUID: kOrlbTpBT+SrZVIlUJi2cQ==
-X-CSE-MsgGUID: 2Jg2bkegRlGRHgPIxYcYMQ==
+ 06 Oct 2025 04:10:47 -0700
+X-CSE-ConnectionGUID: LAPucQcKTNCq13b+GZ8PMg==
+X-CSE-MsgGUID: Bgk7t8bYSzOrVCcVa4hZIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655238"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655252"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:44 -0700
+ 06 Oct 2025 04:10:46 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 20/30] drm/xe/vf: Start CTs before resfix VF post migration
- recovery
-Date: Mon,  6 Oct 2025 04:10:28 -0700
-Message-Id: <20251006111038.2234860-21-matthew.brost@intel.com>
+Subject: [PATCH v6 30/30] drm/xe/guc: Increase wait timeout to 2sec after BUSY
+ reply from GuC
+Date: Mon,  6 Oct 2025 04:10:38 -0700
+Message-Id: <20251006111038.2234860-31-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
@@ -66,205 +66,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
-as they may contain actions which contain invalid GGTT references or are
-unnecessary after HW change.
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
-resubmitted by the GuC submission state machine.
+Some VF2GUC actions may take longer to process. Increase default timeout
+after received BUSY indication to 2sec to cover all worst case scenarios.
 
-v3:
- - Don't mess with head / tail values (Michal)
-v4:
- - Don't mess with broke (Michal)
- - Add CTB_H2G_BUFFER_OFFSET (Michal)
-v5:
- - Adjust commit message (Tomasz)
-
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++
- drivers/gpu/drm/xe/xe_guc_ct.c      | 70 +++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
- 3 files changed, 60 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 2a988eb3e904..6052c7302cc6 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1139,6 +1139,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c016a11b6ab1..f0de1fa61898 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1439,7 +1439,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
  
-+static void vf_post_migration_rearm(struct xe_gt *gt)
-+{
-+	xe_guc_ct_restart(&gt->uc.guc.ct);
-+}
-+
- static void vf_post_migration_kickstart(struct xe_gt *gt)
- {
- 	xe_guc_submit_unpause(&gt->uc.guc);
-@@ -1190,6 +1195,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
+ 		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
+-				     1000000, &header, false);
++				     2000000, &header, false);
  
-+	vf_post_migration_rearm(gt);
-+
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err && err != -EAGAIN)
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index f67575b1ed79..c0d261abf735 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
-  */
- 
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-+#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
- 
- static size_t guc_ct_size(void)
- {
--	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-+	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
- 		CTB_G2H_BUFFER_SIZE;
- }
- 
-@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 	h2g->desc = *map;
- 	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-+	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
- }
- 
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-+	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
- 					    CTB_H2G_BUFFER_SIZE);
- }
- 
-@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo);
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
- 	size = ct->ctbs.h2g.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
-@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
- 		CTB_H2G_BUFFER_SIZE;
- 	size = ct->ctbs.g2h.info.size * sizeof(u32);
- 
-@@ -501,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
- 		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
- }
- 
--int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
-@@ -509,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 
- 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
- 
--	xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
--	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
--	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
-+	if (needs_register) {
-+		xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
-+		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
-+		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
- 
--	err = guc_ct_ctb_h2g_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_h2g_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_ctb_g2h_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_g2h_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_control_toggle(ct, true);
--	if (err)
--		goto err_out;
-+		err = guc_ct_control_toggle(ct, true);
-+		if (err)
-+			goto err_out;
-+	} else {
-+		ct->ctbs.h2g.info.broken = false;
-+		ct->ctbs.g2h.info.broken = false;
-+		xe_map_memset(xe, &ct->bo->vmap, CTB_H2G_BUFFER_OFFSET, 0,
-+			      CTB_H2G_BUFFER_SIZE);
-+	}
- 
- 	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
- 
-@@ -555,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 	return err;
- }
- 
-+/**
-+ * xe_guc_ct_restart() - Restart GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Restart GuC CT to an empty state without issuing a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_restart(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, false);
-+}
-+
-+/**
-+ * xe_guc_ct_enable() - Enable GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Enable GuC CT to an empty state and issue a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, true);
-+}
-+
- static void stop_g2h_handler(struct xe_guc_ct *ct)
- {
- 	cancel_work_sync(&ct->g2h_worker);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 02eaa452b400..10d05193e51c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-+int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+ 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
+ 			     GUC_HXG_ORIGIN_GUC))
 -- 
 2.34.1
 
