@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E03CCA472
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:44:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93F86CCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:44:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E85D10E344;
-	Mon,  6 Oct 2025 10:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B4C10E35E;
+	Mon,  6 Oct 2025 10:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FpOH9Sg7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWD/MABZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B4210E313
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F05110E307
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759747491; x=1791283491;
+ t=1759747493; x=1791283493;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zv6oftyTFvVpgHG1ZFb7gOYW44kAAOO+zXJNa9cDaqU=;
- b=FpOH9Sg7/4qoulB/Lfu2KSR+1sjDzD9kRbMCfjMCzZrSU7Wdp4s09xSl
- /A26wgDHH560GxxFm1OEbFftSnLoipr1O/tHbCFTDYAznUk4CMQ3Gatfu
- Jnc+yx/2jroKFrv3L4O/3kWbJI2J4UE27RZCRdOQtgK01Dyj4qE5bXPyx
- EIX0zzkvC6tdsXIZU744xyPwlXbRsURptzTM73GkecdKWoYg0MX21W5YF
- I2q9Gw5MOTrgbSzKAX+Gwp5E/BV+HawJ0fHMGq3chGTTtT9Us5Y7HBBj3
- CetDNF8+yK2m64BMV7v03YO+xP3ijz5KXxEh5+HSHs92DvhNU2R6/X4eA w==;
-X-CSE-ConnectionGUID: qYiby4NbRaS7MC7aXexcRg==
-X-CSE-MsgGUID: g3QpZegdRqyQB2+gicnlmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546313"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546313"
+ bh=b+qg6+F4vvbkzV9KycvKVr133+1M3x5pzecl4gDYTaE=;
+ b=LWD/MABZ6rDbiE3NDddu0Pf/XmuSyP2a6DA2/2P3ZbuWiW5o4X60oaAr
+ KIKyRUb2jbyK2tqOUWNy4JRMqRar+kiSheChU/hOkii45ooF1bCcwP6kz
+ Sd5vEqb0Y55r3TRQIm9KS1nb8o8OOovhLcFk344AVDXXd2UprAE+t/t+n
+ PnYTl3ByCs4ZLSmXCYy01CAnMOFT5ha5i2CGj3wQgyGYuQCsOa7gK3Mlk
+ 2A+/2JpT+4JPP6cnPY9yx2kZQACQGOfyaBRqAfUxamxEJUWzoClkSBYN5
+ FwJ4bP89i7QchZv1yb28zCbLTAFhqjumUttkTi+Z/3LXCRbInvbSzWzfn Q==;
+X-CSE-ConnectionGUID: 4V/6UehUQC+Doodet78TZg==
+X-CSE-MsgGUID: Ia9UXNKERC+uwqDDgM468Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546329"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546329"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 03:44:50 -0700
-X-CSE-ConnectionGUID: V2hXmWssSP2m9S762U5LTQ==
-X-CSE-MsgGUID: QGEnIzzXRV2MjwwbR5TihQ==
+ 06 Oct 2025 03:44:52 -0700
+X-CSE-ConnectionGUID: LmAIMyECRmeQJPDGAGFcTQ==
+X-CSE-MsgGUID: aHB6uoBsQfCjBbGgK6cYMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589305"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589326"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 03:44:49 -0700
+ 06 Oct 2025 03:44:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 01/30] drm/xe: Add NULL checks to scratch LRC allocation
-Date: Mon,  6 Oct 2025 03:44:16 -0700
-Message-Id: <20251006104445.2210624-2-matthew.brost@intel.com>
+Subject: [PATCH v5 16/30] drm/xe/vf: Use GUC_HXG_TYPE_EVENT for GuC context
+ register
+Date: Mon,  6 Oct 2025 03:44:31 -0700
+Message-Id: <20251006104445.2210624-17-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006104445.2210624-1-matthew.brost@intel.com>
 References: <20251006104445.2210624-1-matthew.brost@intel.com>
@@ -65,57 +66,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-kmalloc can fail, the returned value must have a NULL check. This should
-be immediately after kmalloc for clarity.
+The only case where the GuC submission backend cannot reason 100%
+correctly is when a GuC context is registered during VF post-migration
+recovery. In this scenario, it's possible that the GuC context register
+H2G is processed, but the immediately following schedule-enable H2G gets
+lost.
+
+A double register is harmless when using `GUC_HXG_TYPE_EVENT`, as GuC
+simply drops the duplicate H2G. To keep things simple, use
+`GUC_HXG_TYPE_EVENT` for all context registrations on VFs.
 
 v5:
- - Assert state->buffer in setup_bo if buffer is iomem (Tomasz)
+ - Check for xe_sriov_vf_migration_supported (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 33 +++++++++++++++++++++++++--------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 47e9df775072..9feca10837b0 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
- 	ssize_t remain;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 9f0090ae64a6..3ac654cebc79 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -32,6 +32,7 @@
+ #include "xe_guc_tlb_inval.h"
+ #include "xe_map.h"
+ #include "xe_pm.h"
++#include "xe_sriov_vf.h"
+ #include "xe_trace_guc.h"
  
- 	if (state->lrc->bo->vmap.is_iomem) {
--		if (!state->buffer)
--			return -ENOMEM;
-+		xe_gt_assert(state->hwe->gt, state->buffer);
- 		state->ptr = state->buffer;
+ static void receive_g2h(struct xe_guc_ct *ct);
+@@ -736,6 +737,26 @@ static u16 next_ct_seqno(struct xe_guc_ct *ct, bool is_g2h_fence)
+ 	return seqno;
+ }
+ 
++#define MAKE_ACTION(type, __action)				\
++({								\
++	FIELD_PREP(GUC_HXG_MSG_0_TYPE, type) |			\
++	FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |			\
++		   GUC_HXG_EVENT_MSG_0_DATA0, __action);	\
++})
++
++static bool vf_action_can_safely_fail(struct xe_device *xe, u32 action)
++{
++	/*
++	 * If we are VF resuming, we can't exactly track if a context
++	 * registration has been completed in the GuC state machine, it is
++	 * harmless to resend as it will just fail silently if
++	 * GUC_HXG_TYPE_EVENT is used.
++	 */
++	return IS_SRIOV_VF(xe) && xe_sriov_vf_migration_supported(xe) &&
++		(action == XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC ||
++		 action == XE_GUC_ACTION_REGISTER_CONTEXT);
++}
++
+ #define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
+ 
+ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+@@ -807,18 +828,14 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
+ 		FIELD_PREP(GUC_CTB_MSG_0_FENCE, ct_fence_value);
+ 	if (want_response) {
+-		cmd[1] =
+-			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
+-			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+-				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
++		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_REQUEST, action[0]);
++	} else if (vf_action_can_safely_fail(xe, action[0])) {
++		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_EVENT, action[0]);
  	} else {
- 		state->ptr = state->lrc->bo->vmap.vaddr + state->offset;
-@@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	u32 *buf = NULL;
- 	int ret;
+ 		fast_req_track(ct, ct_fence_value,
+ 			       FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, action[0]));
  
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
-+		if (!buf)
-+			return -ENOMEM;
-+	}
+-		cmd[1] =
+-			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_FAST_REQUEST) |
+-			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+-				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
++		cmd[1] = MAKE_ACTION(GUC_HXG_TYPE_FAST_REQUEST, action[0]);
+ 	}
  
- 	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
- 
-@@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
- 		return 0;
- 
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
-+		if (!state.buffer)
-+			return -ENOMEM;
-+	}
- 
- 	ret = setup_bo(&state);
- 	if (ret) {
+ 	/* H2G header in cmd[1] replaces action[0] so: */
 -- 
 2.34.1
 
