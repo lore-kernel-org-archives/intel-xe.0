@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F9ACCD185
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D8FCCD187
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC9710E405;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC03D10E407;
 	Mon,  6 Oct 2025 11:10:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WnkjCewQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OfEh25um";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D84810E346
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567A810E366
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749044; x=1791285044;
+ t=1759749045; x=1791285045;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Bk8Za+p/ILaye0+I3ltR9hQ5Q2iX0c2pu++jgmVs4rE=;
- b=WnkjCewQ/B0JQXlBtc2IecnbDPJin4d2TY2v/08IaBimIEtKYYh3eYV5
- WoGIsbVO+tDoQ7s+vHk0H9frzyetYTIyGjs+tdJsi3+YvRVpwCTkG5YHG
- YvRFtgDJKKm9E2t/jtVyeePAfBEBcACrjuCU9hfwm2iA4tGEV9KCQDyvw
- XkfzpduRsH/C7iyapW1ddc7JIou2sVZzBK8wEV0k6R45ieQKoksVOpGH+
- hj7wdYR1Zq3wDD41tVnJBau72PnC4xXgSmXkOWhbQh8kmFHjEF/oMb5rh
- au5cl8ub1lq7z4sOCDti+akvJ1UAakWcHHah9SgHYi/A5uHPVbPeL/FOz w==;
-X-CSE-ConnectionGUID: 3peNFIBnQq6xBBqL7lcWVA==
-X-CSE-MsgGUID: 2WWzl3/rSPyX+butJ7ss4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020374"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020374"
+ bh=ekkXL6Wbs55iGOcxP1h/JFuLwz+bnx1NCiClS+qsb8o=;
+ b=OfEh25umNG7Hb2zpvTN/eh4AVVoyF6AJSjUO+7DoSHqYupQS0ovpeQP3
+ Pnt2fyeGuu+8sxJjYogI1uq8A0c/syOUIG3UxjTpkKwWEkzwqfbnjMCRN
+ HLC3BBKetTlNtLWjCdG6YBukoxqNXJ6gFpCmnbkfg80JqFtML3GfHcFCU
+ 8PPDDTzDfu36rWre7XuRmtgEexgwTI2vxn9wlLT8pwbOddh8tsFiILXAk
+ LvS83SYwVlqLdYR9I1mABP4XUaZO2oNjLNLbOLrZIAZ0mO/DaGq1DoKLE
+ 9vq3fNZXl5bXP5Vedd8oZdwQT94rGURjYs8AUIVyvrUtrD6wpXHBLFHUb Q==;
+X-CSE-ConnectionGUID: 3jxeLWMRTrKkMKB033QCzA==
+X-CSE-MsgGUID: 8B7iPuP6RKaRYgSJYTSdNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020388"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020388"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:43 -0700
-X-CSE-ConnectionGUID: J7bE2ZUmTHyyKJeBDtz8dw==
-X-CSE-MsgGUID: C7oMRJ0XTomp6ckczZwEvw==
+ 06 Oct 2025 04:10:44 -0700
+X-CSE-ConnectionGUID: KnNuDvpcQBmsBo1tVvuxOg==
+X-CSE-MsgGUID: NXWNFbfyRkaKvGXrqboOuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655214"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655227"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:42 -0700
+ 06 Oct 2025 04:10:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 01/30] drm/xe: Add NULL checks to scratch LRC allocation
-Date: Mon,  6 Oct 2025 04:10:09 -0700
-Message-Id: <20251006111038.2234860-2-matthew.brost@intel.com>
+Subject: [PATCH v6 12/30] drm/xe/vf: Teardown VF post migration worker on
+ driver unload
+Date: Mon,  6 Oct 2025 04:10:20 -0700
+Message-Id: <20251006111038.2234860-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
@@ -65,57 +66,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-kmalloc can fail, the returned value must have a NULL check. This should
-be immediately after kmalloc for clarity.
+Be cautious and ensure the VF post-migration worker is not running
+during driver unload.
 
-v5:
- - Assert state->buffer in setup_bo if buffer is iomem (Tomasz)
+v3:
+ - More teardown later in driver init, use devm (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c                |  6 ++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 34 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 ++-
+ 4 files changed, 43 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index af09f70f6e78..2c6eae2de1f2 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
- 	ssize_t remain;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index b11f57273b8b..2d032eb3bd6d 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -653,6 +653,12 @@ int xe_gt_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
  
- 	if (state->lrc->bo->vmap.is_iomem) {
--		if (!state->buffer)
--			return -ENOMEM;
-+		xe_gt_assert(state->hwe->gt, state->buffer);
- 		state->ptr = state->buffer;
- 	} else {
- 		state->ptr = state->lrc->bo->vmap.vaddr + state->offset;
-@@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	u32 *buf = NULL;
- 	int ret;
- 
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
-+		if (!buf)
-+			return -ENOMEM;
++	if (IS_SRIOV_VF(gt_to_xe(gt))) {
++		err = xe_gt_sriov_vf_init(gt);
++		if (err)
++			return err;
 +	}
++
+ 	return 0;
+ }
  
- 	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index d227c8a3ec81..8a36f479df1b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -739,7 +739,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
  
-@@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
- 		return 0;
+ 	spin_lock(&gt->sriov.vf.migration.lock);
  
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
-+		if (!state.buffer)
-+			return -ENOMEM;
-+	}
+-	if (!gt->sriov.vf.migration.recovery_queued) {
++	if (!gt->sriov.vf.migration.recovery_queued ||
++	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
  
- 	ret = setup_bo(&state);
- 	if (ret) {
+@@ -1211,6 +1212,17 @@ static void migration_worker_func(struct work_struct *w)
+ 	vf_post_migration_recovery(gt);
+ }
+ 
++static void vf_migration_fini(void *arg)
++{
++	struct xe_gt *gt = arg;
++
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	gt->sriov.vf.migration.recovery_teardown = true;
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	cancel_work_sync(&gt->sriov.vf.migration.worker);
++}
++
+ /**
+  * xe_gt_sriov_vf_init_early() - GT VF init early
+  * @gt: the &xe_gt
+@@ -1237,6 +1249,26 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++/**
++ * xe_gt_sriov_vf_init() - GT VF init
++ * @gt: the &xe_gt
++ *
++ * Return 0 on success, errno on failure
++ */
++int xe_gt_sriov_vf_init(struct xe_gt *gt)
++{
++	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
++		return 0;
++
++	/*
++	 * We want to tear down the VF post-migration early during driver
++	 * unload; therefore, we add this finalization action later during
++	 * driver load.
++	 */
++	return devm_add_action_or_reset(gt_to_xe(gt)->drm.dev,
++					vf_migration_fini, gt);
++}
++
+ /**
+  * xe_gt_sriov_vf_recovery_pending() - VF post migration recovery pending
+  * @gt: the &xe_gt
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 47ed8d513571..8c9679414565 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -24,6 +24,7 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+ 
+ int xe_gt_sriov_vf_init_early(struct xe_gt *gt);
++int xe_gt_sriov_vf_init(struct xe_gt *gt);
+ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
+ 
+ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 1796d4caf62f..c1bd6fdd9ab1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -48,10 +48,12 @@ struct xe_gt_sriov_vf_runtime {
+ struct xe_gt_sriov_vf_migration {
+ 	/** @migration: VF migration recovery worker */
+ 	struct work_struct worker;
+-	/** @lock: Protects recovery_queued */
++	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
++	/** @recovery_teardown: VF post migration recovery is being torn down */
++	bool recovery_teardown;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
