@@ -4,63 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 118E4CAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 08:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1F0ACCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 08:50:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACCA810E334;
-	Mon,  6 Oct 2025 08:27:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4B210E06F;
+	Mon,  6 Oct 2025 08:50:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hh5/CX/n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VgGmsxh7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A9F810E2FA;
- Mon,  6 Oct 2025 08:27:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 940EE10E06F
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 08:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759739268; x=1791275268;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=C7LeUaZn1B8sZIgBqMJlqx4SJPo4kEgFLME5WQuTY4k=;
- b=hh5/CX/nMRc6K527neZ38ZyofN3RHSwd4BQWk9OEPgUIANUV4my3MCYt
- V+MuZGhy7j1M/wzxCBrWB8iqjrTeaWv2ALu8yB7QVhPzFinlB9kEcM0g/
- uPoDZGNAq4KG6mXRRBeqtcSCCfYaDa9krFDXjVOPavoZvx71aAkxTEqOK
- xb+MoKBHDv7B26AoRr11kx9kqcReAlSCGw6rUHGl0GY7foqVaAs+PnuRe
- zlVnBqzw3i7HCYyol6aChTkKnoSpXyv2vFuuodJm22TisioSkLMmVyrnR
- zqNYZu6k9HAUZlRO88PIGZ9o5fluXUbR+miHf6tvkkhs8IsoPOF4aSgjt A==;
-X-CSE-ConnectionGUID: 7c4hDaPcTCOdONVoQALFwQ==
-X-CSE-MsgGUID: rxczby0fTxy2s2kU7DCVqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61618640"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61618640"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 01:27:47 -0700
-X-CSE-ConnectionGUID: qtInCxNbQfqOafcplalvjw==
-X-CSE-MsgGUID: PcS/8rmeR6OHiaxBfh3wmg==
+ t=1759740640; x=1791276640;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ofpn700jqdLO9FjQYck3sibU5fs84Oms+1WwguXwL8Q=;
+ b=VgGmsxh7DEYsGPLUJwD1Huic+MHZ6aCI5VcdXzcIq6zGP4qvNRE9vYU9
+ HMTpv1ZtwJ+tecOTZ6o/dBCSN3jxqAh97aIsXOMc5ONpuU50YShpAwJJ4
+ 99HktDI3Xbt50n5+ujwvFoI7VLijmEQhaTGZPHsoD1oCSKvO5d+YLtsd/
+ ramnlu4620AZcEsiASknBN4NecNq73ZQ5aZrtCyvOuCmBICxgB3faxyud
+ tcaKnDN0TyJaVK1CNBQg+Ui6kQqB3/0d4uISDnleN8QRfOzFHFi2H0Xmc
+ aAqovOdNYMXNJrovcc0lJK42BGQE60eLdg1X2y7UJewazhOz0Te0nJ38b Q==;
+X-CSE-ConnectionGUID: IvkQtPquRr2OH0skMSFoqg==
+X-CSE-MsgGUID: yqFqNIUzQxqG/kKuYDgVVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61816168"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61816168"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 01:50:39 -0700
+X-CSE-ConnectionGUID: vzd4oW0kR4SVSf5xTP1OqA==
+X-CSE-MsgGUID: SvFh6p1LTq6mfj3/H6fUpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180623032"
-Received: from dapengmi-mobl1.ccr.corp.intel.com (HELO [10.124.232.209])
- ([10.124.232.209])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 01:27:43 -0700
-Message-ID: <6a0c0406-670a-4cb6-90ad-338f05e6630e@linux.intel.com>
-Date: Mon, 6 Oct 2025 16:27:39 +0800
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="184207314"
+Received: from naresh-nuc8i7beh.iind.intel.com (HELO
+ nkumarg-desk.iind.intel.com) ([10.190.216.171])
+ by fmviesa005.fm.intel.com with ESMTP; 06 Oct 2025 01:50:38 -0700
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: naresh.kumar.g@intel.com, Michal.Wajdeczko@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH V4] drm/xe/: Mutual Exclusivity b/w Multi CCS Mode & SRIOV VF
+ Provisioning
+Date: Mon,  6 Oct 2025 14:15:43 +0530
+Message-ID: <20251006084542.1302116-2-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: REGRESSION on linux-next (next-20250919)
-To: Sean Christopherson <seanjc@google.com>
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Suresh Kumar Kurmi <suresh.kumar.kurmi@intel.com>,
- Jani Saarinen <jani.saarinen@intel.com>, lucas.demarchi@intel.com,
- linux-perf-users@vger.kernel.org, kvm@vger.kernel.org
-References: <70b64347-2aca-4511-af78-a767d5fa8226@intel.com>
- <25af94f5-79e3-4005-964e-e77b1320a16e@linux.intel.com>
- <aNvyjkuDLOfxAANd@google.com>
-Content-Language: en-US
-From: "Mi, Dapeng" <dapeng1.mi@linux.intel.com>
-In-Reply-To: <aNvyjkuDLOfxAANd@google.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,132 +66,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Due to SLA agreement between PF and VFs, multi CCS mode can't
+be enabled when VFs are already enabled.
+Similarly, enabling VFs is disabled when multi CCS mode enabled.
 
-On 9/30/2025 11:09 PM, Sean Christopherson wrote:
-> On Tue, Sep 30, 2025, Dapeng Mi wrote:
->> On 9/30/2025 1:30 PM, Borah, Chaitanya Kumar wrote:
->>> Hello Sean,
->>>
->>> Hope you are doing well. I am Chaitanya from the linux graphics team in 
->>> Intel.
->>>
->>> This mail is regarding a regression we are seeing in our CI runs[1] on
->>> linux-next repository.
->>>
->>> Since the version next-20250919 [2], we are seeing the following regression
->>>
->>> `````````````````````````````````````````````````````````````````````````````````
->>> <4>[   10.973827] ------------[ cut here ]------------
->>> <4>[   10.973841] WARNING: arch/x86/events/core.c:3089 at 
->>> perf_get_x86_pmu_capability+0xd/0xc0, CPU#15: (udev-worker)/386
->>> ...
->>> <4>[   10.974028] Call Trace:
->>> <4>[   10.974030]  <TASK>
->>> <4>[   10.974033]  ? kvm_init_pmu_capability+0x2b/0x190 [kvm]
->>> <4>[   10.974154]  kvm_x86_vendor_init+0x1b0/0x1a40 [kvm]
->>> <4>[   10.974248]  vmx_init+0xdb/0x260 [kvm_intel]
->>> <4>[   10.974278]  ? __pfx_vt_init+0x10/0x10 [kvm_intel]
->>> <4>[   10.974296]  vt_init+0x12/0x9d0 [kvm_intel]
->>> <4>[   10.974309]  ? __pfx_vt_init+0x10/0x10 [kvm_intel]
->>> <4>[   10.974322]  do_one_initcall+0x60/0x3f0
->>> <4>[   10.974335]  do_init_module+0x97/0x2b0
->>> <4>[   10.974345]  load_module+0x2d08/0x2e30
->>> <4>[   10.974349]  ? __kernel_read+0x158/0x2f0
->>> <4>[   10.974370]  ? kernel_read_file+0x2b1/0x320
->>> <4>[   10.974381]  init_module_from_file+0x96/0xe0
->>> <4>[   10.974384]  ? init_module_from_file+0x96/0xe0
->>> <4>[   10.974399]  idempotent_init_module+0x117/0x330
->>> <4>[   10.974415]  __x64_sys_finit_module+0x73/0xe0
->>> ...
->>> `````````````````````````````````````````````````````````````````````````````````
->>> Details log can be found in [3].
->>>
->>> After bisecting the tree, the following patch [4] seems to be the first 
->>> "bad" commit
->>>
->>> `````````````````````````````````````````````````````````````````````````````````````````````````````````
->>>  From 51f34b1e650fc5843530266cea4341750bd1ae37 Mon Sep 17 00:00:00 2001
->>>
->>> From: Sean Christopherson <seanjc@google.com>
->>>
->>> Date: Wed, 6 Aug 2025 12:56:39 -0700
->>>
->>> Subject: KVM: x86/pmu: Snapshot host (i.e. perf's) reported PMU capabilities
->>>
->>> Take a snapshot of the unadulterated PMU capabilities provided by perf so
->>> that KVM can compare guest vPMU capabilities against hardware capabilities
->>> when determining whether or not to intercept PMU MSRs (and RDPMC).
->>> `````````````````````````````````````````````````````````````````````````````````````````````````````````
->>>
->>> We also verified that if we revert the patch the issue is not seen.
->>>
->>> Could you please check why the patch causes this regression and provide 
->>> a fix if necessary?
->> Hi Chaitanya,
->>
->> I suppose you found this warning on a hybrid client platform, right? It
->> looks the warning is triggered by the below WARN_ON_ONCE() in
->> perf_get_x86_pmu_capability() function.
->>
->>   if (WARN_ON_ONCE(cpu_feature_enabled(X86_FEATURE_HYBRID_CPU)) ||
->>         !x86_pmu_initialized()) {
->>         memset(cap, 0, sizeof(*cap));
->>         return;
->>     }
->>
->> The below change should fix it (just building, not test it). I would run a
->> full scope vPMU test after I come back from China national day's holiday.
-> I have access to a hybrid system, I'll also double check there (though I'm 99.9%
-> certain you've got it right).
->
->> Thanks.
->>
->> diff --git a/arch/x86/kvm/pmu.c b/arch/x86/kvm/pmu.c
->> index cebce7094de8..6d87c25226d8 100644
->> --- a/arch/x86/kvm/pmu.c
->> +++ b/arch/x86/kvm/pmu.c
->> @@ -108,8 +108,6 @@ void kvm_init_pmu_capability(struct kvm_pmu_ops *pmu_ops)
->>         bool is_intel = boot_cpu_data.x86_vendor == X86_VENDOR_INTEL;
->>         int min_nr_gp_ctrs = pmu_ops->MIN_NR_GP_COUNTERS;
->>
->> -       perf_get_x86_pmu_capability(&kvm_host_pmu);
->> -
->>         /*
->>          * Hybrid PMUs don't play nice with virtualization without careful
->>          * configuration by userspace, and KVM's APIs for reporting supported
->> @@ -120,6 +118,8 @@ void kvm_init_pmu_capability(struct kvm_pmu_ops *pmu_ops)
->>                 enable_pmu = false;
->>
->>         if (enable_pmu) {
->> +               perf_get_x86_pmu_capability(&kvm_host_pmu);
->> +
->>                 /*
->>                  * WARN if perf did NOT disable hardware PMU if the number of
->>                  * architecturally required GP counters aren't present, i.e. if
-> If we go this route, then the !enable_pmu path should explicitly zero kvm_host_pmu
-> so that the behavior is consistent userspace loads kvm.ko with enable_pmu=0,
-> versus enable_pmu being cleared because of lack of support.
->
-> 	if (!enable_pmu) {
-> 		memset(&kvm_host_pmu, 0, sizeof(kvm_host_pmu));
-> 		memset(&kvm_pmu_cap, 0, sizeof(kvm_pmu_cap));
-> 		return;
-> 	}
->
-> The alternative would be keep kvm_host_pmu valid at all times for !HYBRID, which
-> is what I intended with the bad patch, but that too would lead to inconsistent
-> behavior.  So I think it makes sense to go with Dapeng's approach; we can always
-> revisit this if some future thing in KVM _needs_ kvm_host_pmu even with enable_pmu=0. 
->
-> 	if (cpu_feature_enabled(X86_FEATURE_HYBRID_CPU)) {
-> 		enable_pmu = false;
-> 		memset(&kvm_host_pmu, 0, sizeof(kvm_host_pmu));
-> 	} else {
-> 		perf_get_x86_pmu_capability(&kvm_host_pmu);
-> 	}
+---
+v2:
+- function xe_device_is_vf_enabled has been refactored to
+xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
+- The code now distinctly checks for SR-IOV VF mode and
+SR-IOV PF with VFs enabled.
+- Log messages have been updated to explicitly state the current mode.
+- The function xe_multi_ccs_mode_enabled is moved to xe_device.h
 
-Yeah, it looks better. We should decouple "enable_pmu" and "kvm_host_pmu"
-as the initial design. Thanks.
+v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
 
+v4:
+- sysfs interface for CCS mode is not initialized
+ when operating in SRIOV VF Mode.
+- xe_sriov_pf_has_vfs_enabled() check is sufficient while CCS mode
+ enablement.
+- remove unnecessary comments as flow is self explanatory.
 
->
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h           |  8 ++++++++
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c      | 10 ++++++----
+ drivers/gpu/drm/xe/xe_pci_sriov.c        |  5 +++++
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h | 13 +++++++++++++
+ 4 files changed, 32 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 32cc6323b7f6..986f9cabb897 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -172,6 +172,14 @@ static inline bool xe_device_has_lmtt(struct xe_device *xe)
+ 	return IS_DGFX(xe);
+ }
+ 
++static inline bool xe_multi_ccs_mode_enabled(struct xe_device *xe)
++{
++	/* Multi CCS mode supported exclusively on GT0 */
++	struct xe_gt *gt = xe_device_get_gt(xe, 0);
++
++	return gt->ccs_mode > 1;
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+ 
+ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+index 50fffc9ebf62..91908faf3768 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -13,6 +13,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf_helpers.h"
+ 
+ static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
+ {
+@@ -117,9 +118,8 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	u32 num_engines, num_slices;
+ 	int ret;
+ 
+-	if (IS_SRIOV(xe)) {
+-		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
+-			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++	if (xe_sriov_pf_has_vfs_enabled(xe)) {
++		xe_gt_dbg(gt, "Can't change CCS mode in SR-IOV PF Mode with VFs Enabled\n");
+ 		return -EOPNOTSUPP;
+ 	}
+ 
+@@ -184,6 +184,8 @@ static void xe_gt_ccs_mode_sysfs_fini(void *arg)
+  * The number of available compute slices is exposed to user through a per-gt
+  * 'num_cslices' sysfs interface.
+  *
++ * The sysfs interface for CCS mode is not set up in SRIOV VF Mode.
++ *
+  * Returns: Returns error value for failure and 0 for success.
+  */
+ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
+@@ -191,7 +193,7 @@ int xe_gt_ccs_mode_sysfs_init(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
+-	if (!xe_gt_ccs_mode_enabled(gt))
++	if (!xe_gt_ccs_mode_enabled(gt) || IS_SRIOV_VF(xe))
+ 		return 0;
+ 
+ 	err = sysfs_create_files(gt->sysfs, gt_ccs_mode_attrs);
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index af05db07162e..404337692978 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -155,6 +155,11 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	xe_assert(xe, num_vfs <= total_vfs);
+ 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
+ 
++	if (xe_multi_ccs_mode_enabled(xe)) {
++		xe_sriov_info(xe, "Disable multi-CCS mode before enabling VF's\n");
++		return -ECANCELED;
++	}
++
+ 	err = xe_sriov_pf_wait_ready(xe);
+ 	if (err)
+ 		goto out;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+index dd1df950b021..e26837091375 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+@@ -43,4 +43,17 @@ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+ 	return &xe->sriov.pf.master_lock;
+ }
+ 
++/**
++ * xe_sriov_pf_has_vfs_enabled() - Determines if the PF has any VFs enabled
++ * @xe: ptr to xe_device
++ *
++ * Return: true if one or more VFs are enabled on the PF, false otherwise.
++ */
++static inline bool xe_sriov_pf_has_vfs_enabled(const struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++
++	return pci_num_vf(pdev) > 0;
++}
++
+ #endif
+-- 
+2.43.0
+
