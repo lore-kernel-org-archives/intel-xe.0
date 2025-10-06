@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 239A4CCD188
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8E51CCD18B
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 10:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3163010E3FF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A604F10E34A;
 	Mon,  6 Oct 2025 10:44:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oevugtrk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MA0vOWI+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8002810E314
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A171110E307
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 10:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759747494; x=1791283494;
+ t=1759747493; x=1791283493;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5UP401ZzVVf1vrQG13tQ/x289lbSVKlw/oKu+fWhUCw=;
- b=OevugtrksB7ihJPHOJgrX2kcZSYTYHXQ8ovzyR7Jg+XIQkqEBOy+ZAGZ
- ubamdRNEn7wbuF582EzdJbNcLhcQU34tSIlC8UHcwlW1EjnDsMUTJ/fMW
- JGrs9SGiRKYXusYV5eyOVZ77VSjlG8Vd2Sd/R+9HNYWrT3WxtcNlgfn7T
- kVFT/G3zVIpobgoHqsG7l5j1efSNNaQ5AX7tkSV4ZUXJYyi1ADxlbWVnq
- FuOAyzk8oHjbT5A4vIIq0HP7PLpRNOMVkm0TzBHql338H8IDLUZf4gH4J
- aa6Mcq9O9fo2qhax5bsL19cDgdCoHtBDUv2r0QTvhVRHKs4up+KoQZObq g==;
-X-CSE-ConnectionGUID: EbxpCj+YSNGHWeyOUzWz9A==
-X-CSE-MsgGUID: /rjXQ/UyTu6nwDv9R8tXeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546340"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546340"
+ bh=eYCjIWXKXQvIcqioUMc+FFcS6wi1nF9BYtIAH/nqjwU=;
+ b=MA0vOWI+UNC+LLOtOJkrhJ5lkRHLlXutMsIzsYXUpX00Ug7ChAimaJS+
+ koMCw6ueHTrL8nwX+aGFeEsaDDTQdxs7e17CfR/v2c4/D3SfWq3zHTlWy
+ Yy7fblveqyHdLPrJlzKSS7DIjuOaBkLY6j7tB5mP7cf+22h2JhA+DWEbh
+ O2dpiUNkpslCBJ9lA0D9i1ZkBz3Rh+RwUn4iAOlofbieVZv0zvoQobvF6
+ ncpu8oZEi9320vh2QSlw2DAPIEiM8Em3Mkl0Vxqmf7tsEKo6XZrtNXLA5
+ 3rSlyU78ZKr1iOhqe2CVzlvNp35rLN7O+nOrJLQ5xXKDRZuwxzNyHDMxG Q==;
+X-CSE-ConnectionGUID: fyEhasoSSp6qbZDjuCuASw==
+X-CSE-MsgGUID: dem3VI/ZR0ijVLE9oY0ONg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="84546335"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="84546335"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 03:44:54 -0700
-X-CSE-ConnectionGUID: i6bUJnpATxm2VbHQDKeppQ==
-X-CSE-MsgGUID: lwkrY8kyTMqCjk3V1Op1sQ==
+ 06 Oct 2025 03:44:53 -0700
+X-CSE-ConnectionGUID: qMAmSydBRSO6zD1uCMJEKA==
+X-CSE-MsgGUID: b5gqSobvTxmYN8rkuEm/bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589340"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="203589333"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Oct 2025 03:44:52 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 26/30] drm/xe: Use PPGTT addresses for TLB invalidation to
- avoid GGTT fixups
-Date: Mon,  6 Oct 2025 03:44:41 -0700
-Message-Id: <20251006104445.2210624-27-matthew.brost@intel.com>
+Subject: [PATCH v5 21/30] drm/xe/vf: Abort VF post migration recovery on
+ failure
+Date: Mon,  6 Oct 2025 03:44:36 -0700
+Message-Id: <20251006104445.2210624-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006104445.2210624-1-matthew.brost@intel.com>
 References: <20251006104445.2210624-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,78 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+If VF post-migration recovery fails, the device is wedged. However,
+submission queues still need to be enabled for proper cleanup. In such
+cases, call into the GuC submission backend to restart all queues that
+were previously paused.
 
-The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
-advance and retains it so the GuC can submit it directly when saving a
-VM’s state.
+v3:
+ - s/Avort/Abort (Tomasz)
 
-When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
-addresses embedded in the BB would then have to be parsed and patched.
-
-Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
-remains GGTT-agnostic and requires no address fixups during migration.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
+ 3 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1d667fa36cf3..ad03afb5145f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -980,15 +980,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 6052c7302cc6..c7c929bd4212 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1149,6 +1149,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	xe_guc_submit_unpause(&gt->uc.guc);
  }
  
--static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
--				 u32 flags)
-+static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
- {
--	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
-+	/*
-+	 * The migrate VM is self-referential so it can modify its own PTEs (see
-+	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
-+	 * entries for kernel operations (copies, clears, CCS migrate), and
-+	 * suballocate the rest to user operations (binds/unbinds). With
-+	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
-+	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
-+	 */
-+	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
++static void vf_post_migration_abort(struct xe_gt *gt)
++{
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	xe_guc_submit_pause_abort(&gt->uc.guc);
 +}
 +
-+static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
+ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
+ {
+ 	bool skip_resfix = false;
+@@ -1207,6 +1216,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
+ fail:
++	vf_post_migration_abort(gt);
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+ 	xe_device_declare_wedged(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b2ca4911efe9..e1e197ec45eb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2087,6 +2087,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	wake_up_all(&guc->ct.wq);
+ }
+ 
++/**
++ * xe_guc_submit_abort - Abort all paused submission task on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be aborted
++ */
++void xe_guc_submit_pause_abort(struct xe_guc *guc)
 +{
-+	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
++	struct xe_exec_queue *q;
++	unsigned long index;
 +
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
- 		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
--		  MI_FLUSH_DW_USE_GTT;
--	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
-+	dw[i++] = lower_32_bits(addr);
-+	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = MI_NOOP;
- 	dw[i++] = MI_NOOP;
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_submission_start(sched);
++		if (exec_queue_killed_or_banned_or_wedged(q))
++			xe_guc_exec_queue_trigger_cleanup(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static struct xe_exec_queue *
+ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index f535fe3895e5..fe82c317048e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
  
-@@ -1101,11 +1113,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 
- 		size -= src_L0;
- 	}
+ int xe_guc_read_stopped(struct xe_guc *guc);
 -- 
 2.34.1
 
