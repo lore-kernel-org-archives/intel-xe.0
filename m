@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A25ECAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:56:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 177B3CCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 14:57:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C410B10E41E;
-	Mon,  6 Oct 2025 14:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D518A10E0D1;
+	Mon,  6 Oct 2025 14:57:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPwpBmh+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TS8ayaCh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0483A10E436
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:56:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0511B10E418
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 14:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759762617; x=1791298617;
+ t=1759762620; x=1791298620;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1jvifPg2e3XLQh6Kq5sEsE6ecBv9VSIwlUsckY0D7xk=;
- b=iPwpBmh+VBPcRxz/vI/rnqYO3ukzKs/i/QQ1vGG9/h+9ogKTl34zI82p
- XO+ieHW7rzXMYkgsxNBU32W0u6mQFBcljWTslUdUvDeJ4WQPMx5IxYY2h
- iWIeMzBA3Fn0h8I9v/RDpIZ+TihEBI3m1UmRZ5Y2CEUbkZmwBVpeDqzYT
- Hq9uMMudi1KCQy+LkTFrGQELa2lm2XRe3vAVecIYkAvABx9XymWjcnU+f
- MzzMFGFP98j+D0PmS66f5ttCBOsHOw7WPMHTVu1b5WlkM0qCDT9frcW/8
- lZuXzklTuhPj3SYIY85SGFxTifg6yn8pOJQ3tyC75Q1MSTP4motNhTcEE Q==;
-X-CSE-ConnectionGUID: V7WsjALbR1W7yIeeXN+NnA==
-X-CSE-MsgGUID: EAvPz4mhR0mRS2frCtAlUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143178"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143178"
+ bh=vSSAjd0plBET8AiHubApJZYGmmWvV5yUC1Z5iqwYhz8=;
+ b=TS8ayaCh+gMwpLlZ17EeKIAELS35B4HRryFbsM5gMOooclRLypenTspF
+ 4S1KMDhZozVP0eOo+PKFDjvnfHioUAF1ZlvcMPX9zswsZ17gFokxZnTTB
+ 6njlFKAgMYH2DOUVnZVDWXNlgsLvNQY0GdptWlmBw11g7pjT7bvUmAT+g
+ db4HyHcLcV4G5Q8GYxnamB1exjb6tngzbG8iIWSvfgMpKKEBcd4q06Lmu
+ F0xKw3yGcDWKNhbsYJigbrwtI6rwrezy7ESitmtJ37+JGP7JaczwtIzBw
+ fx/46Ida48PTKGRqCnfDGnsEA7YKZLB+y7D0rN5vwIa1DkG1Yoj+KEaS3 g==;
+X-CSE-ConnectionGUID: s2bXjGP1STKHYABZpNxc2Q==
+X-CSE-MsgGUID: sPB4z87PQqa9aNNNWVvKkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61143182"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="61143182"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 07:56:57 -0700
-X-CSE-ConnectionGUID: CITIvadQQMe5S9a9RuSmnw==
-X-CSE-MsgGUID: jL6uh57bRDam7fDFV3hdeA==
+ 06 Oct 2025 07:57:00 -0700
+X-CSE-ConnectionGUID: B63/4vVJRge2EkDQMPl4CQ==
+X-CSE-MsgGUID: wNnPon09R3Oj2Y0peWzZfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507662"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208";a="179507669"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:56:54 -0700
+ by orviesa009.jf.intel.com with ESMTP; 06 Oct 2025 07:56:57 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jeevaka.badrappan@intel.com, rodrigo.vivi@intel.com,
  matthew.brost@intel.com, carlos.santa@intel.com, matthew.auld@intel.com,
  jani.nikula@intel.com, ashutosh.dixit@intel.com,
  Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v5 6/8] drm/xe: Add a Kconfig option for GPU work period
-Date: Mon,  6 Oct 2025 14:20:27 +0000
-Message-ID: <20251006142034.674435-7-aakash.deep.sarkar@intel.com>
+Subject: [PATCH v5 7/8] drm/xe: Handle xe_work_period destruction
+Date: Mon,  6 Oct 2025 14:20:28 +0000
+Message-ID: <20251006142034.674435-8-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
 References: <20251006142034.674435-1-aakash.deep.sarkar@intel.com>
@@ -69,111 +69,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since this requirement is intended only for Android, there's
-no reason to have it enabled by default in other distributions.
-So, better to have it guarded by a Kconfig option.
+This patch adds the xe_work_period destruction procedure.
+We iterate over all entries in the xe::work_period::users
+xarray and cancel any pending delayed work. Then destroy
+the xarray itself.
 
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile        |  2 +-
- drivers/gpu/drm/xe/xe_device.c     |  1 -
- drivers/gpu/drm/xe/xe_exec_queue.c |  5 +++--
- drivers/gpu/drm/xe/xe_user.h       | 27 ++++++++++++++++++++++++++-
- 4 files changed, 30 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  2 ++
+ drivers/gpu/drm/xe/xe_user.c   | 10 +++++++---
+ drivers/gpu/drm/xe/xe_user.h   |  6 ++++++
+ 3 files changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index b078834ec762..738e47afbe89 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -336,7 +336,7 @@ ifeq ($(CONFIG_DEBUG_FS),y)
- 
- 	xe-$(CONFIG_PCI_IOV) += xe_gt_sriov_pf_debugfs.o
- 
--	xe-y += xe_user.o
-+	xe-$(CONFIG_TRACE_GPU_WORK_PERIOD) += xe_user.o
- 
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 		i915-display/intel_display_debugfs.o \
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 54ac71d1265d..61ba76144721 100644
+index 61ba76144721..1436a10244c5 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -486,7 +486,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
+@@ -434,6 +434,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->destroy_wq)
+ 		destroy_workqueue(xe->destroy_wq);
  
- 	xa_init_flags(&xe->work_period.users, XA_FLAGS_ALLOC1);
--
- 	mutex_init(&xe->work_period.lock);
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 6eb34c62c779..d5013d546348 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -915,9 +915,10 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
- 	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
- 	q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
- 
--	// Accumulate the runtime in nanosec for this queue into the xe file.
++	xe_user_fini(xe);
 +
-+	// Accumulate the runtime in ns for this queue
- 	q->xef->active_duration_ns +=
--		xe_gt_clock_interval_to_ns(gt, (new_ts - old_ts));
-+			xe_gt_clock_interval_to_ns(gt, (new_ts - old_ts));
+ 	ttm_device_fini(&xe->ttm);
+ }
  
- 	drm_dev_exit(idx);
+diff --git a/drivers/gpu/drm/xe/xe_user.c b/drivers/gpu/drm/xe/xe_user.c
+index fb54d2659642..90664c36e221 100644
+--- a/drivers/gpu/drm/xe/xe_user.c
++++ b/drivers/gpu/drm/xe/xe_user.c
+@@ -250,6 +250,12 @@ int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
+ 	return 0;
+ }
+ 
++void xe_user_fini(struct xe_device *xe)
++{
++	xe_user_cancel_workers(xe);
++	xa_destroy(&xe->work_period.users);
++}
++
+ void xe_user_cancel_workers(struct xe_device *xe)
+ {
+ 	struct xe_user *user = NULL;
+@@ -257,10 +263,8 @@ void xe_user_cancel_workers(struct xe_device *xe)
+ 
+ 	mutex_lock(&xe->work_period.lock);
+ 	xa_for_each(&xe->work_period.users, i, user) {
+-		if (user && xe_user_get_unless_zero(user)) {
+-			cancel_delayed_work_sync(&user->delay_work);
++		if (cancel_delayed_work_sync(&user->delay_work))
+ 			xe_user_put(user);
+-		}
+ 	}
+ 	mutex_unlock(&xe->work_period.lock);
  }
 diff --git a/drivers/gpu/drm/xe/xe_user.h b/drivers/gpu/drm/xe/xe_user.h
-index 55016ba189f1..0d184464687c 100644
+index 0d184464687c..d7ac58cb3db8 100644
 --- a/drivers/gpu/drm/xe/xe_user.h
 +++ b/drivers/gpu/drm/xe/xe_user.h
-@@ -68,12 +68,38 @@ struct xe_user {
- 	u64 last_timestamp_ns;
- };
+@@ -72,6 +72,8 @@ struct xe_user {
  
-+#if IS_ENABLED(CONFIG_TRACE_GPU_WORK_PERIOD)
-+
  int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid);
  
++void xe_user_fini(struct xe_device *xe);
++
  void xe_user_cancel_workers(struct xe_device *xe);
  
  void xe_user_resume_workers(struct xe_device *xe);
- 
-+void __xe_user_free(struct kref *kref);
-+
-+#else
-+
-+static inline
-+int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
-+{
-+	return 0;
-+}
-+
-+static inline void __xe_user_free(struct kref *kref)
-+{
-+}
-+
-+static inline void xe_user_cancel_workers(struct xe_device *xe)
-+{
-+}
-+
-+static inline void xe_user_resume_workers(struct xe_device *xe)
-+{
-+}
-+
-+#endif // CONFIG_TRACE_GPU_WORK_PERIOD
-+
- static inline struct xe_user *
- xe_user_get_unless_zero(struct xe_user *user)
- {
-@@ -89,7 +115,6 @@ xe_user_get(struct xe_user *user)
- 	return user;
+@@ -86,6 +88,10 @@ int xe_user_init(struct xe_device *xe, struct xe_file *xef, unsigned int uid)
+ 	return 0;
  }
  
--void __xe_user_free(struct kref *kref);
- 
- static inline void xe_user_put(struct xe_user *user)
++static inline void xe_user_fini(struct xe_device *xe)
++{
++}
++
+ static inline void __xe_user_free(struct kref *kref)
  {
+ }
 -- 
 2.49.0
 
