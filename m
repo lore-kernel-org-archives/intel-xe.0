@@ -4,181 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DB49CAC5B8
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 21:50:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A45C7CCA470
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 21:52:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E2B10E139;
-	Mon,  6 Oct 2025 21:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9AB10E160;
+	Mon,  6 Oct 2025 21:52:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkLeLP7u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="INfEEptW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F008810E139
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 21:50:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1385510E160
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 21:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759787453; x=1791323453;
+ t=1759787534; x=1791323534;
  h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=bUphrdqQPoVNIAFDRO6LColW+J5BneE8PDQ7tkmmyzo=;
- b=VkLeLP7u8AHMZ1HA0s/t5hevSzN+Ejw7U12wcVB/uG20+9i3gi+q5FgW
- jtXIvAHayzLYSIqLECQKb0axDGeWA1YaT6lkfNvryq5NxEuGg1JHyg2C4
- aoNjMOzI1qd5qMpliNe8vhqPnm/U1HWh2pr/g8MJLS+K3CfdQcHiqc59+
- G0ur4uw65Cm3b/TTGleu0AAlhTdzE4gG30ixJQENOQOYMZyIFlubKKQx+
- Du+tnKv3oTyRI8plo5MXDDJCDkFx7zIe/KQ2Hx/8TaSyPDwifQAMbgkur
- 10U6PYCsn6mr4q/6j3vgAPiOE5JI4ATuCkUM54+SSN6J34jUeaSCMbGx8 Q==;
-X-CSE-ConnectionGUID: PDGpEJdFSMOf+LIsxH+fTQ==
-X-CSE-MsgGUID: mgx3Ove5TmSPDUc5xiothA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="72223358"
-X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208,217";a="72223358"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 14:50:50 -0700
-X-CSE-ConnectionGUID: E81opDpURpKxPe75L7C9VQ==
-X-CSE-MsgGUID: jiq1uHIfTf2/ZlC1YyQiCA==
+ mime-version; bh=3Wd35nKmX1doueR0hmDBzqFpHtsOcLjldPHmx2LczUQ=;
+ b=INfEEptWzes9ZTBInq5/z7IoqWCbhgBd6NDLLSH56ERUfbo16nQwuJjB
+ YyxxbbKDND3OxlDIrjISaH3TvJte7Dd2Ps4pG2Gyjg+Rs8XHSrf9Ol7oU
+ Tp7tOCzj/EmI6941nhLqBjQP+gP41ol+xeJE6MMZKZFDm7aLTZnn+dFag
+ JXeuZjodrmy58BZDfhXDJnqfDXF0XixmSLGs3x4LVkStFixtIeXCiwGnv
+ PL7ZWmmzBlqG2MSaVmSyo1Ea0o0gbLoyybvgYLpVHx8Q+DddcglMLk7Mh
+ 7KfFeH2NBeP+x0ksLvJLV6C6DE+nu4XwO+5XfT37CNW3xfbgFE2RP5uzG A==;
+X-CSE-ConnectionGUID: H4+8WSlMRV+57zkGKJuMLA==
+X-CSE-MsgGUID: 0OAMHJHXTN2e87S3LuCGZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="49523183"
+X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; d="scan'208,217";a="49523183"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 14:52:14 -0700
+X-CSE-ConnectionGUID: LppobU/DTtGDEtn03cHZxQ==
+X-CSE-MsgGUID: GkouhmdjQAmrQu90KSpQVw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.18,320,1751266800"; 
- d="scan'208,217";a="179571731"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 14:50:50 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ d="scan'208,217";a="184355396"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 14:52:14 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 14:50:49 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 6 Oct 2025 14:52:13 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 6 Oct 2025 14:50:49 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.70)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 6 Oct 2025 14:52:13 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.40)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 6 Oct 2025 14:50:48 -0700
+ 15.2.2562.27; Mon, 6 Oct 2025 14:52:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IS8nN0we13nUv76F26RPR4+kyuM74TKJuR8eF4ASFZ2flyhXgq1EyUE78IlUyZUKK60JqQpftiSqmoYv3p6bnmFIbdop64JpCagVCC+kxvOPFou/ry0QTJ/jN+PYVn+qMOG7xb7oHj5FtVr3Qc59o0FZlUt+sB2m7YRx3oYpEzPe3o5qncoAwoImJkXGzgFWDTd5KVkE1MyBABLJIyDGp1SabZrWPFU9SPYT+z0zhIr0iFRn/xGMvmjWvzrIeNFMsQMRtM3waRX1O9DdAdE5tS9UZxsf0/m55gpZKmDPUqQBW2DoRBMVo2rtJYZq5Exqk9byGzBFYd0wyxc8HDheOA==
+ b=FPVi4gg6XL/O6Flo4iGp6JUk18+CKnLzsdwEH+tu1STneyjUOYTT7M5AdZ7wzGGeA8tchbT49n28aM9pe5ZOsVYR+Za7aFpjol4z/yMfgDb2iIBEMXkn32+OXCUE95NEIq4kZEWnkfWzZdk0NblvcvVxAdJATQR3W5GFvJDAyq9u1jtro2V0rEJfzCkt1sllsHXTY5S8uNCVyrlyUIz/o/aaVO0RVOAoan/uqFndF/OaKNh/AEZVhDRDsGOKb5noSSIUFuwp2admsZ8YhIeoaCeg7shSc2EaWFtm9xYlnGQpEJ4BKNhJC5fAgjbkF74mHuxMJi8oYWVklOWW8+19yQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MrqedOREW1pf5V+ZgIxghYJh92z/7MreR6MDcYPc8H0=;
- b=ECX45iITCUB4KdNSR7bbvTv88JSLunqjHpjZozYpzPGyP3rof5hBpIYfbxtk5BendViiyopG0864qsYQPpueXA2RzMWihDWwF/BM1HPltSvTD6xiVCiK+g7Jr3Sslq/h+gQLhFBMhCBvXJeVN9iybylLUK8HzPUFrfHIowe5nJsliMlkbqC4a6/yOC9Yv36/KgbEkAl7Vcz9scSsay728di802Xr2CYgf2epLRhSZMMAIISHV6h2jgBqrYlLxIfWTIXfSpBPahqJxOvDFL6aRNfSBkuuV7Fl1kCVb6tZp0wMhvoZb9+AH8hFNshgSAiriHJ3DCQyXhdyPocboqIBmQ==
+ bh=+ZUoD2sMLSyjED63/I0KEE6kIpnBaxmMN9fTCURgpao=;
+ b=JjZpGq5F07dZ81420Ehs8LX6NcT66nJ/+2r3KcS8oHnBXf9yqUjkno26HMpXhYo4A6FMdn0SkoTYDkgRpzXT/blVN7aXP47eNUqJxnC6PCb+AQ8/kpw5XdoS3Fxo3mTZERcEEVFZlNp3Y+Rn0Txv6+nCZu6oWb2exzMtUVkanDTK1SPD5K+FGE5CmcYjOhRAbfBVqCrc+62oNGLPsxcTn6c/glsOI4hrTkb5Muhleufmq1j7HomBuM/0ELwMkVu8BP+NrLDlmkA7pmiRJP7x+RXoSiMOpxaewaoygc9h7LWg0kffi2m3VbFeILosd6m9HjJtEqrDb4YekuZ9lNXsTQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
- by MW4PR11MB6809.namprd11.prod.outlook.com (2603:10b6:303:1e9::14)
+ by LV2PR11MB6048.namprd11.prod.outlook.com (2603:10b6:408:178::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
- 2025 21:50:45 +0000
+ 2025 21:52:01 +0000
 Received: from IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09]) by IA3PR11MB9226.namprd11.prod.outlook.com
  ([fe80::8602:e97d:97d7:af09%6]) with mapi id 15.20.9137.018; Mon, 6 Oct 2025
- 21:50:45 +0000
+ 21:52:01 +0000
 Content-Type: multipart/alternative;
- boundary="------------zWl4cMmoZa54vFul35clyq4w"
-Message-ID: <ee7a0bf0-59d0-4ab6-a5b0-cf93c3d39fe6@intel.com>
-Date: Mon, 6 Oct 2025 23:50:41 +0200
+ boundary="------------6CHAhgQmFzBhq9j9r17j0Yfw"
+Message-ID: <8f29423a-dde6-4a7a-867e-a8ea4e258cc7@intel.com>
+Date: Mon, 6 Oct 2025 23:51:57 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 20/30] drm/xe/vf: Start CTs before resfix VF post
- migration recovery
+Subject: Re: [PATCH v6 01/30] drm/xe: Add NULL checks to scratch LRC allocation
 To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
- <20251006111038.2234860-21-matthew.brost@intel.com>
+ <20251006111038.2234860-2-matthew.brost@intel.com>
 Content-Language: en-US
 From: "Lis, Tomasz" <tomasz.lis@intel.com>
-In-Reply-To: <20251006111038.2234860-21-matthew.brost@intel.com>
-X-ClientProxiedBy: VE1PR03CA0004.eurprd03.prod.outlook.com
- (2603:10a6:802:a0::16) To IA3PR11MB9226.namprd11.prod.outlook.com
+In-Reply-To: <20251006111038.2234860-2-matthew.brost@intel.com>
+X-ClientProxiedBy: BE1P281CA0195.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:8d::12) To IA3PR11MB9226.namprd11.prod.outlook.com
  (2603:10b6:208:574::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|MW4PR11MB6809:EE_
-X-MS-Office365-Filtering-Correlation-Id: 817df33a-16db-4feb-d1aa-08de05226717
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|LV2PR11MB6048:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ab29c53-a754-4876-b481-08de05229475
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SVlIdEVkQ1F2QzMzTEVtRnVHcFVJdU1pbWRQdzhadWhYQ0ZNOVdKVVZSRDlM?=
- =?utf-8?B?TFZ0SWhhd3h5TVhQQkxzNmtLdHdjanFKWnNZRDgvb3E2NkpvK1htdm1CUWlY?=
- =?utf-8?B?bnU0MnF1VHd6MU81bm9INU1DTkZkdjd5Y2VLTWJNZ3hOMGJOVDhXK092ZGFw?=
- =?utf-8?B?NHpqQkQ4elFXb2x4YUM0OEJsTWY2MmJjdXUzOUVoTVlkQU00V2hKL1RTUUlE?=
- =?utf-8?B?TzhBRWZTbmlSejVTanVOemNpa3VCT2JkSzNXQVE3V1plNjZJZkR0N2s3WGVN?=
- =?utf-8?B?VlBlYXVRSmFZdkRlV08vRjVmejdvY1VtbDU2R2JDN2NSN2VzbU1lcGNGY2dz?=
- =?utf-8?B?YjF4eDRONFNLREkwM2hZbDVkMkhRTkI0dE5NenlTZHprTWVSWnZPekx3UU9I?=
- =?utf-8?B?ekNxWXJWQlpIWXI5WVVLZzV2Q0FMeEwvKy9hYXdvTGhHTUhXdEFaSUtJRURD?=
- =?utf-8?B?RTE3YzRrMmhIZEZGaEJkZ0pxZStxQ2huL1Nhb2pUMWJWK1lzejlkZVlGZGtP?=
- =?utf-8?B?bDFvLyt1WGVETWdyaVM2WFI0UXozSmNzMzliaUdzUnEvTThLOVUzYXpvUFdB?=
- =?utf-8?B?NEVZTEVaK1pXUzNlTkFXVm5hMm1ZcERDSTB0RXdmcWs5VndOVG9zaGxZZ0tx?=
- =?utf-8?B?cXZCa0NEcHdQeVh5SFg2RllqWlZVYnh1bnh6MEVzRmtWZTErNmdEaTd6ZHRC?=
- =?utf-8?B?a0dLL2RzR3RuYWxTMVdaQXowenBHTTZjc1F6TzRSSGpvQXRGWEVxOTBzMVFK?=
- =?utf-8?B?S0N5OHRJY01JbGsvT0x2TWNuWkpLS1hQOFVOdVBUSGlHZmZMVnJqUEdhWk5O?=
- =?utf-8?B?VzRDNytDMTdra1VFcVVlRnc3T0U4WC8vT0d1M2R1ZG5UZHJhVmdBMHQ3UFpq?=
- =?utf-8?B?NjV1S0JtTjk1N2tGdS9RajNzYW5pOTYxTkxaWmNKVkxhYmRzUzFsRi9oamZO?=
- =?utf-8?B?MDc1eGpzWk43SjE0Zy9KNE5ZKzYvWGowTG5MWkU1SXBoQ3BuOXlDTjFxZW03?=
- =?utf-8?B?aGtTNUJQZTh3TWUyT01xcFowWGRmei91WGpJM2IvUnBxQVdQbW1nZkNiWTRm?=
- =?utf-8?B?Rm1jYUpHS0VGU3FiNThXNUdXQnViTDQ3VGhrdjNJVmhOMGRwZmZQU1VQQUlL?=
- =?utf-8?B?SHdpZ0NaZTVsSmEwUmFHVElBYUxXaHZNSUxEbnVYcERud3VsV0JKQmplbmF2?=
- =?utf-8?B?dnV6U1dFN1gzTW1JQWI5MmZ1d2NKUGZXUEZuTVJHZUs4MDE1VzVwSUJweVAy?=
- =?utf-8?B?b0Nva3N4aGZOSzkxaHBEMHQ3UnFlT0pUbUdTelp6bnZTVlVTZGI4d1NOeWZq?=
- =?utf-8?B?MTFNRnFRSEt1WXY4eGI0L28zOGUzNEVkaTczWnZ2MDBSSjZNY0tySENWZm1p?=
- =?utf-8?B?eXk1aEwyN29NVnM2K0p3c2NsMDFRN1RTKzg0Q0daUGhxNUhGVk9vMW1SWEJn?=
- =?utf-8?B?bkhMREhnUTdPSkRnWjh0eEdLRTRvQjg4S1NqME9kcFFBMTlMRlRxdTVvMGZh?=
- =?utf-8?B?WjFOdW9lM3dHODAycmx2UnUxUzJYM2tGK1dvZmZlK3ExWkM1WHgyaDdpUUJL?=
- =?utf-8?B?M0hkTmV0SHd3L3dBV3lvSXl2RVNMWWVCcXFFSTNzZHZ6RFFrZUZlWW41aTcw?=
- =?utf-8?B?MTdxdEZUTkpVZjViRVpXa1FTV3YwYzY4YUN5NU1aVVUzNG4rSFpONFVvRDhR?=
- =?utf-8?B?dnEwRmhZYkpBMHZuU29KSVlCMFBhb0F2dEtBcDl0bFJOUk1yclVqck9Oc3FZ?=
- =?utf-8?B?VjRndENVTVdabjE0UFJRaFZ1ay94SmdROWJwV2JBT2tZUGZ2RHUyVEtVZTZS?=
- =?utf-8?B?TUlYUUtnMVVyNVU4U0k2Qm1TdldzeEFNd0UyanB4ZGhrSFM1aEpDbnpkMjNU?=
- =?utf-8?B?bHkxZDJHR2V6enY2ZFFYMEovSmhUYjdMMkxlMWRxT29vNGhPM3poc1ljUDFJ?=
- =?utf-8?Q?6c3gNfMaBXcFB4pvMcmjGztoz8fcswuo?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dUVPRUx6aGNvRjI4Zno4VlNmS2pYR3FUS3g3dEc2NHFCRmY2YmUwQzZJTW9C?=
+ =?utf-8?B?VkN2Qm9Nd3dYYU1sVURNbzFBTDB0Q01UQUNtaVhzWXBoSEZyZ0FmSWVpRjVm?=
+ =?utf-8?B?ektXUmx5NENBU0tCS21kZmJBaks5ZjZFZkxLQnZ2MEEra0J3d2ZsNlV3cGNS?=
+ =?utf-8?B?R3J1TXJrVi9iUXd2VVdrRkp4U0RKbFFRY3dYVkJvekN4MjgxRm4rUjJEZlVw?=
+ =?utf-8?B?SmZ3QmM1dk5raGRPUmhNSVlIZXBPRFZRdmpkWmdVVkw2cFNSVTVJd0RiN0hQ?=
+ =?utf-8?B?cmQzczBBVks3MTl3QVQxTTBzbEgxRFREZWpmQ21jdmduU1JMTWpnYm54blAy?=
+ =?utf-8?B?c0ZLOG1DZ1M3bjJlS0xMd3lYT2g5YzBrSk9yUUtZK2U1UEJnM3B5WllkWmwx?=
+ =?utf-8?B?Y2Y1VWFNQ3pmN0NzUm5VRTlybVFnbEVnVFdBcjFLeHFvWk1HbTY4VXJScHlJ?=
+ =?utf-8?B?NzlkT3daeHNQRHhRcXZZcFZoc1ZzRFNzQ0g2K1g4TE1oSDJuOTJzZzV0V2l3?=
+ =?utf-8?B?RUtWdmVGaFZEM0ZrM2JjOG10c3R2SmxHS29uUVZaZWtpaDZ3SkllSzF4bnVm?=
+ =?utf-8?B?QkUxVlJvbWlScC9YQkpEbXlwS0ZzcWFuQ05uMTdWcVFVaHgyL0EwbHA0OUJO?=
+ =?utf-8?B?bGV5SUpyNC9JVVBQYlppUHNUSGtZVG0rLzgvc0gyeU9jMlBYb1loYllMWHlV?=
+ =?utf-8?B?akM2dFg3OGtMbXphc1Q5aWI3b05EMEw3SW9LTHo5NENOc2RHcWpmYlQ3dE9O?=
+ =?utf-8?B?QSt6U2ZEMlRtZnZRRUdBZUVuM2hGU0VUcVNSVkhRdXVCU0tIOXlwb0t1aVNv?=
+ =?utf-8?B?clpscGlnaWdGZWZlY05FdVcvMTJqU2pPMHhEYkk0L3ZqbElPY2dBWlVrM0Ru?=
+ =?utf-8?B?RHVSMzFkRUtKL3ZvRGFNNDYvN2x3QjIxL2hGdTRnVnJIMHBDRkMwSGJUdnhm?=
+ =?utf-8?B?R2ZMU2tkNnB0cjVqeWN4dyt6YW9adXBmMFVNUTY3TlVLRGdTUUM3dEw4ZUxL?=
+ =?utf-8?B?SXRpdWpEWGdRTDRjclM0VzRDbTkvVC9UQWdLRll4OTNDajJ1QXB2N0V4dnBE?=
+ =?utf-8?B?NStoYTU4U093Y3E1L1JXeTRISXNrUnlVOFB0akFNTGN4K3ZRaHdUUUlJMnh3?=
+ =?utf-8?B?Snk2cnZzekFtVFU3NWpNOUtzRlkzUXJVWXl4Zmg3QTUrNGlMeGEwT3YvOW1K?=
+ =?utf-8?B?eFpRWE1PZ2ZQOHljR1RJZDA2dEpGQkJHdTI2TXVlby9LMGdsWmtUREljZDMz?=
+ =?utf-8?B?RVR1TytjWDM4YUFjeFFmSlphck9NRzVCVUlkUzAvZU5xT2xCMk9oSU9LMWd1?=
+ =?utf-8?B?TEtlZkRVT2pRdlpGcy9KZjB3aGE2M1NvRDdFUHIzRU1PQUg2SHdjSGZzMVVj?=
+ =?utf-8?B?T3pRY3YrME4rc0JKNzFtclNVcUQrNHRpeHhFQjR1TFVNcHFvYWVOVmhoSnNO?=
+ =?utf-8?B?eERJbXpoZjJJdVU5QkxjVWFkSU1VRXIzMzR4TFlLWWtIZFI2Q1R3OW1WR3p0?=
+ =?utf-8?B?M0FCYllXTG12MWd2Vk5aY1RRUXJxZnphQlgwZXJKK05IQmhqRjBURFR3L3Fi?=
+ =?utf-8?B?QTdkNVNOaFFXYndsWUQ5WjFVV2YvZU1EQnBIbWxxdnpHUkFycHRjU3VVTnhX?=
+ =?utf-8?B?dWZGV0M5Rlc4Y1k2eHd6blNIMStQU3dBMjlIVThjeXg4UXBqMFZad3l5dU9l?=
+ =?utf-8?B?TTRxMkFGQi8yL2dDcFovend2SE4vWUxybjRLa1hDNWhWSTUwWGU1STkwaS9l?=
+ =?utf-8?B?Tzh3K1dLWk9UWEFqeUVML2VJTHZranErVmxqRHA2S283YlQ4dTJ4VG9Fem5S?=
+ =?utf-8?B?SDREckpUdzZjbjZJaGs2eVdHWkNwL2dPZEF1VDBIM3BpVCtmTE1GazFDWmk0?=
+ =?utf-8?B?NVpHOWJTSUJNZXlvaU9LMmlWY05JRVNYd08zTnUwRGlzOTFaSUlqNzY2NS8y?=
+ =?utf-8?Q?UqiFj014Nd0JH3+Pvg0XgjxZfdOjE6dY?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(366016)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXNnNGx4aVBGZitad0N6WFU3dzIxcUs2SEU1T1p1SHZubDVwUjdtYldOalMv?=
- =?utf-8?B?Sy9DR1AwL0F4SXFaYXd0dncvZHJNL2E1MWJ3allZQm1xUDZTYWMzancwSEYz?=
- =?utf-8?B?YXJEZXRTWlRqeU9oOFQ2TXpmVkFIcERvQXJtRVpTZHhZYkR5dndnMTNVM1Ur?=
- =?utf-8?B?cCtnWGpoSFNSck91TzN6N1lTbVlEcWNuUTZha0dNSjdQUm82VXJJdmFkU054?=
- =?utf-8?B?Y0VITXRJQlhWOXdZVXZkYlo0ZVhXY3FhVnh5bno5VjNUM2ZWeXBBWjNEZldJ?=
- =?utf-8?B?OWQxRm15amVQL1lOb3pSSzMyUC9ueENucWRBTE9kYVZmdi96d1RhUWJlY1do?=
- =?utf-8?B?ZVgzY01Wby95RGJBNjZ5VGwrRkgxNzdXeHhZcVJHeTUxbU92bm1LUE1iRVpy?=
- =?utf-8?B?ZjNxczk1Y1ZRTmtxSDNGT3VZWDJLdHZSb2R6ZDJFVVNEUllUS2Z4bDFnNkor?=
- =?utf-8?B?T0wzSFNvMjV6RHdnUzcybDBpTEJ4VzlPZE12dGhTSEhCYml4WlY5emU5NzdW?=
- =?utf-8?B?MWFTL0hTTEVqbnZ2VEN5Z0tQNmJKRjBYZjRNVTVmMkZFOVdSaGR3Z3BCUFNy?=
- =?utf-8?B?R0x1amppQTNvWTlJVll3TlV4MWdJUEhIUDNFYXdwZmNzREpNN1FEYU1pclpC?=
- =?utf-8?B?bWRrd2ZlaEZCRlNvYkFEd0VGeS9nTWFDYWFZVjdpbnhRcTdFM0ZCL3RxUDM1?=
- =?utf-8?B?akhxOUNpdGZpUGpHck5jWm1aSndOSlpNYldEOW1HTm9Ibkp3VHhsTzh3bFEz?=
- =?utf-8?B?N2J1TytreFVYSVBUKzJ2L2pucUJwQVBHT00rcGJaRGJxK1d4eDdoZ2p6aGxi?=
- =?utf-8?B?RjB3bkR4a3V1N21sYUNodG9hZFlycldlaVc0NXFIRmFieXhsZVV0b3V6OGdp?=
- =?utf-8?B?TUNvQlcxQjlmS3A0RHA0L3BhRHpTTUxZdklXVzU2aS8vMUdvUmV3NlZ0RU54?=
- =?utf-8?B?RFZmR2F0a051ZFJIcldvTmZUeXdWMVR3cW9udWkvRnFXbXlpRW1PbUU3S0l4?=
- =?utf-8?B?QXIwaVhncFpONTd6Wm9jNUlxK0pxOUhMMjJxdGhsWjljNlFLcnlHNnBROWpI?=
- =?utf-8?B?TGF6NmEyRUVOUkVEWWk4U0hTVWpsN093VDFCZFVBWlNmWFdtWlFKeU84ZzlH?=
- =?utf-8?B?aUZpOXhtSmFQQ0JESzB3bkRQdEl4dDhIbG52SUZMeFEzb012dmY0Qkk0Y2lT?=
- =?utf-8?B?TUJHWVZXNDd0U0hINzVMdHh5ZEI3NlJqNXVlUFB1bnR3ZmFNZVl6c2xzL2pq?=
- =?utf-8?B?c0tETnh1OEtDV2dyNDVnc0thV1ZaYVhGMkFSeHlseC80d0R1T2xVbzZsYTZQ?=
- =?utf-8?B?ZVM3Qi9UZTdEN01WY3pta1FhemthMXh2K2ZnbFZiemJNcENQM004S2dzSzF0?=
- =?utf-8?B?Q0ozV3FhNzQyWmVwbEg0cks2Nm9rcll3MGlQblNlWVdGU0V3bForZnowTlll?=
- =?utf-8?B?SmtGYmFwd2xUUDRpckRZMlg0SFZGUWQvanJjTGxnYStZTU9RVmJHL3pLRHIy?=
- =?utf-8?B?cWlsN0gyRFFqV2FoeFlZRXR2SXpCZk5SUHNISlE2L2ZzL3ROVFFVRlN4dzZu?=
- =?utf-8?B?SG0yektJeGZ3azhjd05qRVZvMjd2RHU1K0JvMEVwZDA3UzNtcGFwMUE0eGRr?=
- =?utf-8?B?KzFWOERaREJUWlhOYlN5d045UFhtNVJhSFpRVXVYWW01eVBiRFAwVVI5bk5k?=
- =?utf-8?B?Z2dieGdXY0pFaHFJUFpNbGprS3prTzQvdHJFSHlSMXhoZ3JqWDFUU05aTS9w?=
- =?utf-8?B?ZS9ucWhzVUY4ZlVKVnF0RG1tZjA5eXE3dUxJdDFFOFZzdFFTbUJLb2ovOThX?=
- =?utf-8?B?N0s0RDltdnpTQVM1cUw1ZkNwRDdvbjlFMEFzcmZoOWE3T041NnpPSjFaVkwz?=
- =?utf-8?B?c25WRTVCZ3kxemlrZE92ZlNnWDBpdjJKUSsyWVdvU0V2TXVXUElCQ2hLUzZT?=
- =?utf-8?B?djJsemUyTEdmUktic3cvM2ZPK3NPZ0RHQzFHSmFEZm1hYlVzUFk3b3ZGYUps?=
- =?utf-8?B?bkw2R2ovNFJ5TG9DMUhUSkM0eFM1S0FicEZlYWtrWVdWV0MxSXh0eXFhM1cz?=
- =?utf-8?B?Tk1wc2NCeWZZRDFWWEMrbE5vVWUrQldlTGVCQVBENzFGdDFxdTlQbWlBQlBv?=
- =?utf-8?Q?BKNTs8Az6NqNDz3VbJsLxrs5C?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 817df33a-16db-4feb-d1aa-08de05226717
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2tkempCbTNpVTJsVUdod0dCcmF3N0h1Q2sxaGdSOVhUUWpoSmR6RXVnS2JF?=
+ =?utf-8?B?NndleDUrdUdWcGJRZ2lHTjlXM2ZwVlc1bVk5eTlISWlhajhOeTlhQVJoQUJZ?=
+ =?utf-8?B?Z0trQmNuek1WdVU3M1AxSExKc2krUE1TbzRWTEQ2Y1I5WnhzSWdpYnRkbjh0?=
+ =?utf-8?B?ZnNpUFYvYjZhUTYvaUpmRXhGSzR5cGR6ZTRnLzZ6TjVhR1A5VFFrYXNWN0dR?=
+ =?utf-8?B?VUVQbDJZMTI1dU9BU3RhakI5dmpLM1Fxd0NNM1pjb1JwOU5kMXFodzZ6QkNM?=
+ =?utf-8?B?ekxKamlqbnZDUVRoa29VQmlVMm1xb2FFZ1FCUGF2SXVFcU1XY0RSS2hROUZI?=
+ =?utf-8?B?OU8rR2FiWFRFalBXMk9OWHY3UEJORmdndXRRRFRMRS9XWEQ5M09zSUw3Rlhl?=
+ =?utf-8?B?eG5vU2pWRUdCYVQ0cFFoYVM4UlFkQ1ZIK1NNQnBLZlczSi9xcE5yL0dyeHd2?=
+ =?utf-8?B?UHgxRm1GNk0reEVycDNCdUtRTit3Z29MeE02NWhDSzYxV0hmaXlsdEdWeFVl?=
+ =?utf-8?B?YVpCSGJxQ3Q4SWNRajkxQ1diUmR5aUZHS0svNDVndVVQRGppREN2L1dhNk1G?=
+ =?utf-8?B?RGhuVHkyZ21qZEVRcklVNmN6enRwK3BDZjk4aFNtekZSOGV2Z284bGJIUDFs?=
+ =?utf-8?B?MEZQV0xrOEJCMjFtWS9ZUnhRUGJabEdLaXRiRS83N0c1dW0xODl3dTM4aE9s?=
+ =?utf-8?B?aEFCQ0FIRmdoM205UDR1RXRxeG5vN0l2NWlkejNwOVMzR0ZjS2dCd1V2aC8x?=
+ =?utf-8?B?UE9XYWtWUGwvNUw0S0JzRUx5M1M0QUNoWTloc1dybFk5ckljbUdDcnpPbUdV?=
+ =?utf-8?B?dHBqQzVENWIydjRVWXBUa2toWUVkakgzbXJUSngxemQ5bm5zamRjUHpjc3Va?=
+ =?utf-8?B?UXF0UERhUXFoUFlNWmtWaWlpTWlBRFlVbjJlZnc1bUQvY1JlR1Y4bkhzMDV0?=
+ =?utf-8?B?Z29ZUFQ5YnE5TWlLUGt0ZFdRQit3U3ROV2dZLzdsT3Zzb25tdDFwc1pQekpM?=
+ =?utf-8?B?cGJ0WkNrbXlMQkU0OWdkYy9mQlp1cnEwMCtyQWZXVFFNSC9hbUxlYllBRWhV?=
+ =?utf-8?B?K1NtM01ERUg4ZU5pZWJ2UVZSYXZjdUcyamxlbHB3M1E1MFFFYjRaK3JzZzYy?=
+ =?utf-8?B?YitDa3ZCdHdUWkdTZkZjSy9OUTlOM25hV2dLSzIzMnhzallsUzI1SytvRHM4?=
+ =?utf-8?B?WnNndEErc1ZtbHU4bDNKbjh4anZGN3V6bmkwOWg3S3ZKampLSy9XVmUxZXdH?=
+ =?utf-8?B?b2lJU0dYM2pNSEozTHg4Q0RRTGM0OHZMQTNzZWZYcXNCL3hqS0p2cnlzNXdu?=
+ =?utf-8?B?VzFjcGprQjlpck04b2dITDUrUzRhWDRoRXVKYWpRc1JQZUZ5VFd6a0xsQWN0?=
+ =?utf-8?B?eG9NV1hyT2pibXlnTGhZQ3FlczUrMTBFVi81L0tSamVnM1crSUFaelZSMm5C?=
+ =?utf-8?B?WlpJNkUvcTlBcVhLeDhINmJXR3Q1eXJQd2lDbWQ4UGhqcG1LNkdsM0hUQXVY?=
+ =?utf-8?B?bnJJOWtZcXpKb0VtRlVHQVFjamJaWFJlaWR4VE1na2pUYko2WUVFbHpxOUtV?=
+ =?utf-8?B?RUIxVTV0RTZFaFNYdEJzaDNEN2ozekdmUnlhcGlDbW5sT3hzYnJIdzlBSHQv?=
+ =?utf-8?B?S2t2aEFZZlZuVmtybkdWUVZNL2ZFeC9rRG14aDZTSnB1ZUFUdDRXZWliSnlh?=
+ =?utf-8?B?c3ZRem1VMWV3K1Jtbks3R2QyL0JmT0k4Q3BtS25VYTJLMHp0ZTVrU1dZYzNx?=
+ =?utf-8?B?VkpiR2VUWHg4eE92NHYvZWovZDFBWFlhWXZ5QnEydm5sM1liK1l4aGtTRTJI?=
+ =?utf-8?B?OWJ0RWw3aDA0YmRzSks1TEdKRkRZdXRHTWtmbVd5OXBmQndKRm1id3A2c3R6?=
+ =?utf-8?B?dUwySDA4cWtPSCt3S3JKMXlXU2FQcDV1N2ZydVV2U3BkVTQxRjZaR0JBZzZJ?=
+ =?utf-8?B?M1hwU1JuWDJQbU85aDlYc0JZRHlnbWltMm9JMWVqWStXa1FzOWtyK2p1K0sz?=
+ =?utf-8?B?czNjcTRMd04xNFdxWEhzSVd6UkdOK3REb0o3aGFOcUlDVmVObkJUNUViU05J?=
+ =?utf-8?B?c0hEeEFJS3lTdk1TTW1QY2s3b0liV2JwZ2pBL2N6cWI3aWFlZTZ2Z2hKQnBQ?=
+ =?utf-8?Q?N0eQO6EX0dqN82PTMAbeCcnIW?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ab29c53-a754-4876-b481-08de05229475
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 21:50:45.2264 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 21:52:01.3187 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nmUdFtIrZ44yVjc1OyNykg80yonn7/xRsNrqrlhRDmBcUKmEQ2A2WwS3P4H6BXRgBsz9zNDmUq69Qz/6l1wPhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6809
+X-MS-Exchange-CrossTenant-UserPrincipalName: vsUXoN3lNoLm4VLRSmiH6XmZlp5E4kB3wtYJDQ9mHImMUFPZat7/fhY4SqPJ5aryA1Lv6fZXZEBo7Ocsi/AZUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6048
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,222 +193,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------zWl4cMmoZa54vFul35clyq4w
+--------------6CHAhgQmFzBhq9j9r17j0Yfw
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 On 10/6/2025 1:10 PM, Matthew Brost wrote:
-> Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
-> as they may contain actions which contain invalid GGTT references or are
-> unnecessary after HW change.
+> kmalloc can fail, the returned value must have a NULL check. This should
+> be immediately after kmalloc for clarity.
 >
-> Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
-> resubmitted by the GuC submission state machine.
->
-> v3:
->   - Don't mess with head / tail values (Michal)
-> v4:
->   - Don't mess with broke (Michal)
->   - Add CTB_H2G_BUFFER_OFFSET (Michal)
 > v5:
->   - Adjust commit message (Tomasz)
->
-> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++
->   drivers/gpu/drm/xe/xe_guc_ct.c      | 70 +++++++++++++++++++++--------
->   drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
->   3 files changed, 60 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> index 2a988eb3e904..6052c7302cc6 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> @@ -1139,6 +1139,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
->   	return 0;
->   }
->   
-> +static void vf_post_migration_rearm(struct xe_gt *gt)
-> +{
-> +	xe_guc_ct_restart(&gt->uc.guc.ct);
-> +}
-> +
->   static void vf_post_migration_kickstart(struct xe_gt *gt)
->   {
->   	xe_guc_submit_unpause(&gt->uc.guc);
-> @@ -1190,6 +1195,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
->   	if (err)
->   		goto fail;
->   
-> +	vf_post_migration_rearm(gt);
-> +
->   	err = vf_post_migration_notify_resfix_done(gt);
->   	if (err && err != -EAGAIN)
->   		goto fail;
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index f67575b1ed79..c0d261abf735 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
->    */
->   
->   #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-> +#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+>   - Assert state->buffer in setup_bo if buffer is iomem (Tomasz)
+Repeating as I sent it to rev5 late:
 
-We've agreed today to separate the CTB_H2G_BUFFER_OFFSET introduction to 
-its own patch within this series.
-
-(as in comments for rev4)
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 
 -Tomasz
 
->   #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
->   #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
->   #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-> @@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
+>   1 file changed, 9 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index af09f70f6e78..2c6eae2de1f2 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
+>   	ssize_t remain;
 >   
->   static size_t guc_ct_size(void)
->   {
-> -	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-> +	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
->   		CTB_G2H_BUFFER_SIZE;
->   }
+>   	if (state->lrc->bo->vmap.is_iomem) {
+> -		if (!state->buffer)
+> -			return -ENOMEM;
+> +		xe_gt_assert(state->hwe->gt, state->buffer);
+>   		state->ptr = state->buffer;
+>   	} else {
+>   		state->ptr = state->lrc->bo->vmap.vaddr + state->offset;
+> @@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+>   	u32 *buf = NULL;
+>   	int ret;
 >   
-> @@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
->   	h2g->desc = *map;
->   	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
->   
-> -	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-> +	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
->   }
->   
->   static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-> @@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
->   	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
->   	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
->   
-> -	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-> +	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
->   					    CTB_H2G_BUFFER_SIZE);
->   }
->   
-> @@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
->   	int err;
->   
->   	desc_addr = xe_bo_ggtt_addr(ct->bo);
-> -	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
-> +	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
->   	size = ct->ctbs.h2g.info.size * sizeof(u32);
->   
->   	err = xe_guc_self_cfg64(guc,
-> @@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
->   	int err;
->   
->   	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
-> -	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
-> +	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
->   		CTB_H2G_BUFFER_SIZE;
->   	size = ct->ctbs.g2h.info.size * sizeof(u32);
->   
-> @@ -501,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
->   		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
->   }
->   
-> -int xe_guc_ct_enable(struct xe_guc_ct *ct)
-> +static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
->   {
->   	struct xe_device *xe = ct_to_xe(ct);
->   	struct xe_gt *gt = ct_to_gt(ct);
-> @@ -509,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
->   
->   	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
->   
-> -	xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
-> -	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
-> -	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
-> +	if (needs_register) {
-> +		xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
-> +		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
-> +		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
->   
-> -	err = guc_ct_ctb_h2g_register(ct);
-> -	if (err)
-> -		goto err_out;
-> +		err = guc_ct_ctb_h2g_register(ct);
-> +		if (err)
-> +			goto err_out;
->   
-> -	err = guc_ct_ctb_g2h_register(ct);
-> -	if (err)
-> -		goto err_out;
-> +		err = guc_ct_ctb_g2h_register(ct);
-> +		if (err)
-> +			goto err_out;
->   
-> -	err = guc_ct_control_toggle(ct, true);
-> -	if (err)
-> -		goto err_out;
-> +		err = guc_ct_control_toggle(ct, true);
-> +		if (err)
-> +			goto err_out;
-> +	} else {
-> +		ct->ctbs.h2g.info.broken = false;
-> +		ct->ctbs.g2h.info.broken = false;
-> +		xe_map_memset(xe, &ct->bo->vmap, CTB_H2G_BUFFER_OFFSET, 0,
-> +			      CTB_H2G_BUFFER_SIZE);
+> -	if (lrc->bo->vmap.is_iomem)
+> +	if (lrc->bo->vmap.is_iomem) {
+>   		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
+> +		if (!buf)
+> +			return -ENOMEM;
 > +	}
 >   
->   	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+>   	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
 >   
-> @@ -555,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
->   	return err;
->   }
+> @@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+>   	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
+>   		return 0;
 >   
-> +/**
-> + * xe_guc_ct_restart() - Restart GuC CT
-> + * @ct: the &xe_guc_ct
-> + *
-> + * Restart GuC CT to an empty state without issuing a CT register MMIO command.
-> + *
-> + * Return: 0 on success, or a negative errno on failure.
-> + */
-> +int xe_guc_ct_restart(struct xe_guc_ct *ct)
-> +{
-> +	return __xe_guc_ct_start(ct, false);
-> +}
-> +
-> +/**
-> + * xe_guc_ct_enable() - Enable GuC CT
-> + * @ct: the &xe_guc_ct
-> + *
-> + * Enable GuC CT to an empty state and issue a CT register MMIO command.
-> + *
-> + * Return: 0 on success, or a negative errno on failure.
-> + */
-> +int xe_guc_ct_enable(struct xe_guc_ct *ct)
-> +{
-> +	return __xe_guc_ct_start(ct, true);
-> +}
-> +
->   static void stop_g2h_handler(struct xe_guc_ct *ct)
->   {
->   	cancel_work_sync(&ct->g2h_worker);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 02eaa452b400..10d05193e51c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
->   int xe_guc_ct_init(struct xe_guc_ct *ct);
->   int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
->   int xe_guc_ct_enable(struct xe_guc_ct *ct);
-> +int xe_guc_ct_restart(struct xe_guc_ct *ct);
->   void xe_guc_ct_disable(struct xe_guc_ct *ct);
->   void xe_guc_ct_stop(struct xe_guc_ct *ct);
->   void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
---------------zWl4cMmoZa54vFul35clyq4w
+> -	if (lrc->bo->vmap.is_iomem)
+> +	if (lrc->bo->vmap.is_iomem) {
+>   		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
+> +		if (!state.buffer)
+> +			return -ENOMEM;
+> +	}
+>   
+>   	ret = setup_bo(&state);
+>   	if (ret) {
+--------------6CHAhgQmFzBhq9j9r17j0Yfw
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 <!DOCTYPE html><html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -420,216 +268,68 @@ Content-Transfer-Encoding: 8bit
     <div class="moz-cite-prefix">On 10/6/2025 1:10 PM, Matthew Brost
       wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:20251006111038.2234860-21-matthew.brost@intel.com">
-      <pre wrap="" class="moz-quote-pre">Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
-as they may contain actions which contain invalid GGTT references or are
-unnecessary after HW change.
+    <blockquote type="cite" cite="mid:20251006111038.2234860-2-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">kmalloc can fail, the returned value must have a NULL check. This should
+be immediately after kmalloc for clarity.
 
-Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
-resubmitted by the GuC submission state machine.
-
-v3:
- - Don't mess with head / tail values (Michal)
-v4:
- - Don't mess with broke (Michal)
- - Add CTB_H2G_BUFFER_OFFSET (Michal)
 v5:
- - Adjust commit message (Tomasz)
+ - Assert state-&gt;buffer in setup_bo if buffer is iomem (Tomasz)
+</pre>
+    </blockquote>
+    Repeating as I sent it to rev5 late:
+    <pre class="content"><span class="reviewed-by">Reviewed-by: Tomasz Lis <a class="moz-txt-link-rfc2396E" href="mailto:tomasz.lis@intel.com">&lt;tomasz.lis@intel.com&gt;</a></span>
 
+-Tomasz</pre>
+    <blockquote type="cite" cite="mid:20251006111038.2234860-2-matthew.brost@intel.com">
+      <pre wrap="" class="moz-quote-pre">
 Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 +++
- drivers/gpu/drm/xe/xe_guc_ct.c      | 70 +++++++++++++++++++++--------
- drivers/gpu/drm/xe/xe_guc_ct.h      |  1 +
- 3 files changed, 60 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 2a988eb3e904..6052c7302cc6 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1139,6 +1139,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index af09f70f6e78..2c6eae2de1f2 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
+ 	ssize_t remain;
  
-+static void vf_post_migration_rearm(struct xe_gt *gt)
-+{
-+	xe_guc_ct_restart(&amp;gt-&gt;uc.guc.ct);
-+}
-+
- static void vf_post_migration_kickstart(struct xe_gt *gt)
- {
- 	xe_guc_submit_unpause(&amp;gt-&gt;uc.guc);
-@@ -1190,6 +1195,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
+ 	if (state-&gt;lrc-&gt;bo-&gt;vmap.is_iomem) {
+-		if (!state-&gt;buffer)
+-			return -ENOMEM;
++		xe_gt_assert(state-&gt;hwe-&gt;gt, state-&gt;buffer);
+ 		state-&gt;ptr = state-&gt;buffer;
+ 	} else {
+ 		state-&gt;ptr = state-&gt;lrc-&gt;bo-&gt;vmap.vaddr + state-&gt;offset;
+@@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	u32 *buf = NULL;
+ 	int ret;
  
-+	vf_post_migration_rearm(gt);
-+
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err &amp;&amp; err != -EAGAIN)
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index f67575b1ed79..c0d261abf735 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
-  */
- 
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-+#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)</pre>
-    </blockquote>
-    <p>We've agreed today to separate the&nbsp;<span style="white-space: pre-wrap">CTB_H2G_BUFFER_OFFSET </span>introduction
-      to its own patch within this series.</p>
-    <p>(as in comments for rev4)</p>
-    <p>-Tomasz</p>
-    <blockquote type="cite" cite="mid:20251006111038.2234860-21-matthew.brost@intel.com">
-      <pre wrap="" class="moz-quote-pre">
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
- 
- static size_t guc_ct_size(void)
- {
--	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-+	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
- 		CTB_G2H_BUFFER_SIZE;
- }
- 
-@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 	h2g-&gt;desc = *map;
- 	xe_map_memset(xe, &amp;h2g-&gt;desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	h2g-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-+	h2g-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
- }
- 
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 	g2h-&gt;desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &amp;g2h-&gt;desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	g2h-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-+	g2h-&gt;cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
- 					    CTB_H2G_BUFFER_SIZE);
- }
- 
-@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct-&gt;bo);
--	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE * 2;
-+	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_H2G_BUFFER_OFFSET;
- 	size = ct-&gt;ctbs.h2g.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
-@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE;
--	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_DESC_SIZE * 2 +
-+	ctb_addr = xe_bo_ggtt_addr(ct-&gt;bo) + CTB_H2G_BUFFER_OFFSET +
- 		CTB_H2G_BUFFER_SIZE;
- 	size = ct-&gt;ctbs.g2h.info.size * sizeof(u32);
- 
-@@ -501,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
- 		xe_gt_dbg(ct_to_gt(ct), &quot;GuC CT safe-mode disabled\n&quot;);
- }
- 
--int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
-@@ -509,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 
- 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
- 
--	xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, 0, 0, xe_bo_size(ct-&gt;bo));
--	guc_ct_ctb_h2g_init(xe, &amp;ct-&gt;ctbs.h2g, &amp;ct-&gt;bo-&gt;vmap);
--	guc_ct_ctb_g2h_init(xe, &amp;ct-&gt;ctbs.g2h, &amp;ct-&gt;bo-&gt;vmap);
-+	if (needs_register) {
-+		xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, 0, 0, xe_bo_size(ct-&gt;bo));
-+		guc_ct_ctb_h2g_init(xe, &amp;ct-&gt;ctbs.h2g, &amp;ct-&gt;bo-&gt;vmap);
-+		guc_ct_ctb_g2h_init(xe, &amp;ct-&gt;ctbs.g2h, &amp;ct-&gt;bo-&gt;vmap);
- 
--	err = guc_ct_ctb_h2g_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_h2g_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_ctb_g2h_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_g2h_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_control_toggle(ct, true);
--	if (err)
--		goto err_out;
-+		err = guc_ct_control_toggle(ct, true);
-+		if (err)
-+			goto err_out;
-+	} else {
-+		ct-&gt;ctbs.h2g.info.broken = false;
-+		ct-&gt;ctbs.g2h.info.broken = false;
-+		xe_map_memset(xe, &amp;ct-&gt;bo-&gt;vmap, CTB_H2G_BUFFER_OFFSET, 0,
-+			      CTB_H2G_BUFFER_SIZE);
+-	if (lrc-&gt;bo-&gt;vmap.is_iomem)
++	if (lrc-&gt;bo-&gt;vmap.is_iomem) {
+ 		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
++		if (!buf)
++			return -ENOMEM;
 +	}
  
- 	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+ 	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
  
-@@ -555,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 	return err;
- }
+@@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	if (xe_gt_WARN_ON(lrc-&gt;gt, !state.funcs))
+ 		return 0;
  
-+/**
-+ * xe_guc_ct_restart() - Restart GuC CT
-+ * @ct: the &amp;xe_guc_ct
-+ *
-+ * Restart GuC CT to an empty state without issuing a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_restart(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, false);
-+}
-+
-+/**
-+ * xe_guc_ct_enable() - Enable GuC CT
-+ * @ct: the &amp;xe_guc_ct
-+ *
-+ * Enable GuC CT to an empty state and issue a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, true);
-+}
-+
- static void stop_g2h_handler(struct xe_guc_ct *ct)
- {
- 	cancel_work_sync(&amp;ct-&gt;g2h_worker);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 02eaa452b400..10d05193e51c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-+int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+-	if (lrc-&gt;bo-&gt;vmap.is_iomem)
++	if (lrc-&gt;bo-&gt;vmap.is_iomem) {
+ 		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
++		if (!state.buffer)
++			return -ENOMEM;
++	}
+ 
+ 	ret = setup_bo(&amp;state);
+ 	if (ret) {
 </pre>
     </blockquote>
   </body>
 </html>
 
---------------zWl4cMmoZa54vFul35clyq4w--
+--------------6CHAhgQmFzBhq9j9r17j0Yfw--
