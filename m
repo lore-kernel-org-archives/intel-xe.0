@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E6EBCCA471
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6F71CAC5B8
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:10:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32CCD10E41D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6DA810E341;
 	Mon,  6 Oct 2025 11:10:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQIt2+na";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apHOhoUw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73D5710E35D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F08010E35D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749045; x=1791285045;
+ t=1759749047; x=1791285047;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zn0/73xsTI12kNGWuFF1VZ6nz8vydO3OH4QkS+NWVMo=;
- b=JQIt2+naiEWncgx7+e/JeCTyHcZ8z1/FfGuON4ngZQikgmU/+RjTEud9
- u4SdBzCv/k2q3XJCZ6zQp0liATdSQEmlufSH7LhMcxwndfR9x0VO/fKs1
- zOE+PxMlrCmPiguj19petDXazqcR32ocTuiULb8wDFZ6wOw3vOiib6zZw
- IiaPDhkylK78P41FCU4mYNovDG6TrFRlnW1bSTZynDFRNrJ8ThZMACQlL
- I+h38ahwTutSST1CulmenytygnbIK2fsgM2o0TO1clWDOW0XBYF1FGEFi
- NQGtnWaaOb9vUzwBcAXV6Lnt3wWBwTeTb/NcsVPeWHP+5mx6ZmiWMCwL0 Q==;
-X-CSE-ConnectionGUID: PsOlsMFDR52BJ1PQbBkRbA==
-X-CSE-MsgGUID: 1HBA+L8SRy2QNDr7+N25Tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020391"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020391"
+ bh=j4cFxaT8Z7F8dWI03fSvSsTu82cz30XkuZyXovkH4gU=;
+ b=apHOhoUwo88K5DR8Dt6chCkicriS4NpzvkbZupNkTtwprZuWxlwUhJOE
+ vUsIPXwDnPr3cPggXCKFdMZ7wud+ClQKjgllKWR/d4MegWqNc+Hvpp91m
+ wRSJwI+WVCer2/FCGibtBwsEuegUdbpD8y4i2+/zBZ5K6Qnq1c1xJYl/s
+ G4k4EgVuFUFwoHy4KouaUIb2o74+eM0pbyEUutLxsc0Xh6VOTp+cF58Um
+ /TIg/VJakNSucQeM32IK+7RYJv/6kqdNuVr+aNlEHRbOfyswtraQhD/6d
+ myd0CLexhWQaW7NAJJib7P4AenVdAKtciKyDI7xxqHQbqZYBJEtfrAB5A w==;
+X-CSE-ConnectionGUID: aY0gnjYPQJGa+5g7rf6zCg==
+X-CSE-MsgGUID: isolk2iBS5m8xfyzqQvE/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="73020406"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="73020406"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:44 -0700
-X-CSE-ConnectionGUID: vFljYzZmTCKFyTEw6zsGqA==
-X-CSE-MsgGUID: RIqnidHBRs2lwEpZmpLomQ==
+ 06 Oct 2025 04:10:47 -0700
+X-CSE-ConnectionGUID: TzYgPxLBQm+p4n97CDVCgA==
+X-CSE-MsgGUID: 20aaYBabQ/Wq2MNGj+5OFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655232"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="180655250"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:10:44 -0700
+ 06 Oct 2025 04:10:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 15/30] drm/xe/vf: Avoid indefinite blocking in preempt
- rebind worker for VFs supporting migration
-Date: Mon,  6 Oct 2025 04:10:23 -0700
-Message-Id: <20251006111038.2234860-16-matthew.brost@intel.com>
+Subject: [PATCH v6 29/30] drm/xe/vf: Rebase CCS save/restore BB GGTT addresses
+Date: Mon,  6 Oct 2025 04:10:37 -0700
+Message-Id: <20251006111038.2234860-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251006111038.2234860-1-matthew.brost@intel.com>
 References: <20251006111038.2234860-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,78 +66,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Blocking in work queues on a hardware action that may never occur —
-especially when it depends on a software fixup also scheduled on the
-a work queue — is a recipe for deadlock. This situation arises with
-the preempt rebind worker and VF post-migration recovery. To prevent
-potential deadlocks, avoid indefinite blocking in the preempt rebind
-worker for VFs that support migration.
-
-v4:
- - Use dma_fence_wait_timeout (CI)
+Rebase the CCS save/restore BB's GGTT addresses during VF post-migration
+recovery by setting the software ring tail to zero, the LRC ring head to
+zero, and rewriting the jump-to-BB instructions.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 26 +++++++++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c  |  4 ++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 28 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  1 +
+ 3 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 4e914928e0a9..faca626702b8 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -35,6 +35,7 @@
- #include "xe_pt.h"
- #include "xe_pxp.h"
- #include "xe_res_cursor.h"
-+#include "xe_sriov_vf.h"
- #include "xe_svm.h"
- #include "xe_sync.h"
- #include "xe_tile.h"
-@@ -111,12 +112,22 @@ static int alloc_preempt_fences(struct xe_vm *vm, struct list_head *list,
- static int wait_for_existing_preempt_fences(struct xe_vm *vm)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index d43e18bb8f01..fb4f848c2936 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -34,6 +34,7 @@
+ #include "xe_pm.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_vf.h"
++#include "xe_sriov_vf_ccs.h"
+ #include "xe_tile_sriov_vf.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_uc_fw.h"
+@@ -1153,6 +1154,9 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
+ 
++	if (xe_gt_is_main_type(gt))
++		xe_sriov_vf_ccs_rebase(gt_to_xe(gt));
++
+ 	xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 	err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 8dec616c37c9..790249801364 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -175,6 +175,15 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	u32 dw[10], i = 0;
+ 
++	/*
++	 * XXX: Save/restore fixes — for some reason, the GuC only accepts the
++	 * save/restore context if the LRC head pointer is zero. This is evident
++	 * from repeated VF migrations failing when the LRC head pointer is
++	 * non-zero.
++	 */
++	lrc->ring.tail = 0;
++	xe_lrc_set_ring_head(lrc, 0);
++
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	dw[i++] = MI_BATCH_BUFFER_START | XE_INSTR_NUM_DW(3);
+ 	dw[i++] = lower_32_bits(addr);
+@@ -186,6 +195,25 @@ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ 	xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+ }
+ 
++/**
++ * xe_sriov_vf_ccs_rebase - Rebase GGTT addresses for CCS save / restore
++ * @xe: the &xe_device.
++ */
++void xe_sriov_vf_ccs_rebase(struct xe_device *xe)
++{
++	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
++
++	if (!IS_VF_CCS_READY(xe))
++		return;
++
++	for_each_ccs_rw_ctx(ctx_id) {
++		struct xe_sriov_vf_ccs_ctx *ctx =
++			&xe->sriov.vf.ccs.contexts[ctx_id];
++
++		ccs_rw_update_ring(ctx);
++	}
++}
++
+ static int register_save_restore_context(struct xe_sriov_vf_ccs_ctx *ctx)
  {
- 	struct xe_exec_queue *q;
-+	bool vf_migration = IS_SRIOV_VF(vm->xe) &&
-+		xe_sriov_vf_migration_supported(vm->xe);
-+	signed long wait_time = vf_migration ? HZ / 5 : MAX_SCHEDULE_TIMEOUT;
+ 	int ctx_type;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index 0745c0ff0228..f8ca6efce9ee 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -18,6 +18,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe);
+ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_register_context(struct xe_device *xe);
++void xe_sriov_vf_ccs_rebase(struct xe_device *xe);
+ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p);
  
- 	xe_vm_assert_held(vm);
- 
- 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
- 		if (q->lr.pfence) {
--			long timeout = dma_fence_wait(q->lr.pfence, false);
-+			long timeout;
-+
-+			timeout = dma_fence_wait_timeout(q->lr.pfence, false,
-+							 wait_time);
-+			if (!timeout) {
-+				xe_assert(vm->xe, vf_migration);
-+				return -EAGAIN;
-+			}
- 
- 			/* Only -ETIME on fence indicates VM needs to be killed */
- 			if (timeout < 0 || q->lr.pfence->error == -ETIME)
-@@ -541,6 +552,19 @@ static void preempt_rebind_work_func(struct work_struct *w)
- out_unlock_outer:
- 	if (err == -EAGAIN) {
- 		trace_xe_vm_rebind_worker_retry(vm);
-+
-+		/*
-+		 * We can't block in workers on a VF which supports migration
-+		 * given this can block the VF post-migration workers from
-+		 * getting scheduled.
-+		 */
-+		if (IS_SRIOV_VF(vm->xe) &&
-+		    xe_sriov_vf_migration_supported(vm->xe)) {
-+			up_write(&vm->lock);
-+			xe_vm_queue_rebind_worker(vm);
-+			return;
-+		}
-+
- 		goto retry;
- 	}
- 
+ static inline bool xe_sriov_vf_ccs_ready(struct xe_device *xe)
 -- 
 2.34.1
 
