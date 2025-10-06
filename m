@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3AFACCA471
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:18:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4BC2CCA471
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Oct 2025 11:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98FA010E425;
-	Mon,  6 Oct 2025 11:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984A510E424;
+	Mon,  6 Oct 2025 11:18:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXjAVesc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpYRrgVM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2910710E42D
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:18:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8143F10E42D
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Oct 2025 11:18:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759749507; x=1791285507;
+ t=1759749512; x=1791285512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ml5/nA+j5TYmLPZgL9y+m17mtMlIeJHUk1Cy6L0R9Qs=;
- b=MXjAVescAu8cDu8TSd854NvKN7pfEDOmjrXgvHaEV83xsi+ZfH/bkG5F
- EUae/XsKZz5/AywO9w2duKBdWWNY8eenvjUy2PoxezDRW8H4YXlGfDFMN
- r+Yz0jox1P5GOtj8pLwgLlGvjRaBc9yxh5cHHYQlATkCjjrDSOUW01C+p
- UpahY/3DUH/x6pYsRq5SpFuhb34dSUjO+L6Hwpxi2bpkLgZTY+60uf+XK
- JY1MkoqjsNYGdQ/aUeRlwGIPme5t6mIM7gb2Iou6XwcLRindCQbztXO4q
- 02pbElqMg3LxGHNWKAPEe+Xiz5hRDKqb+wQDjo9l5XW8pJYWOPhOkSNiT w==;
-X-CSE-ConnectionGUID: N8xrc1X6TbOO6jbEuYRHWA==
-X-CSE-MsgGUID: BcZ8DLLIQ76JFCjT6eZdLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61825459"
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61825459"
+ bh=Ub88q058bdBMByBMBqlcywLgfu04wRLKp2TVwlmi4SQ=;
+ b=GpYRrgVMj4xbT/LRkeKz1iXs4WqxPcO1wGILZjL9vKyd74+vPGHwETTg
+ noLJqg1pf+thuJujRZUX3cYoPprJ0emiGQyod5TXnTZ9W9v8RbGfqrmr1
+ 50htxYJJtyIFBTvEzHtVAoZ8Ixxzq5Uk74AwvbnG3+IelCmlm/EmD2576
+ WeYS8byjJQINp5n/2Y039wLTcQ9WfZjmLSof1lMFx/em/v5lnvN+i/f3r
+ hU3UfLb/hFDgAvqJFsZ2YEsc8Hg1WFkF3IgbAH7eJmnU9lc4zQETm190I
+ lBMXbgRA8teew2wh6vdjOjufn0c5rhiDx0vru+NnZ8PJtON9u7E5zQhNr Q==;
+X-CSE-ConnectionGUID: UbhxfDHfScCdmYQ+sxCizQ==
+X-CSE-MsgGUID: oIGLdXvUSGeUz61pVcZCOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11573"; a="61825462"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="61825462"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:18:27 -0700
-X-CSE-ConnectionGUID: hzdITn+uQxaHk/bP+ZM+jg==
-X-CSE-MsgGUID: 7q1uNBY8Q8GocAtaZsAl+A==
+ 06 Oct 2025 04:18:31 -0700
+X-CSE-ConnectionGUID: tTA4AcC5R0Wtkhz+V+bPag==
+X-CSE-MsgGUID: q8ZnYX+UQyOsiJLnHhTQDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="216947155"
+X-IronPort-AV: E=Sophos;i="6.18,319,1751266800"; d="scan'208";a="216947189"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO
  mkuoppal-desk.intel.com) ([10.245.245.44])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2025 04:18:23 -0700
+ 06 Oct 2025 04:18:27 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -49,13 +49,15 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
  lucas.demarchi@intel.com, andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com
-Subject: [PATCH 14/20] drm/xe: Implement SR-IOV and eudebug exclusivity
-Date: Mon,  6 Oct 2025 14:17:04 +0300
-Message-ID: <20251006111711.201906-15-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 15/20] drm/xe: Add xe_client_debugfs and introduce debug_data
+ file
+Date: Mon,  6 Oct 2025 14:17:05 +0300
+Message-ID: <20251006111711.201906-16-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251006111711.201906-1-mika.kuoppala@linux.intel.com>
 References: <20251006111711.201906-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,184 +75,206 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-EU debug functionality relies on access to specific mmio registers.
-Since VFs don't have access to those registers and in order to avoid
-interference with VFs, make SR-IOV and eudebug functionality exclusive.
-I.e. don't allow to enable eudebug in VF mode and don't allow to enable
-eudebug when any VFs are provisioned. Likewise, don't allow to provision
-VFs when eudebug is enabled.
+Create a debug_data file for each xe file/client which is supposed to
+list all mapped debug data and attempts to mimic '/proc/pid/maps'.
+Each line represents a single mapping and has the following format:
+
+  <vm id> <begin>-<end> <flags> <offset> <pathname>
 
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
-Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_eudebug.c |  6 +++++
- drivers/gpu/drm/xe/xe_eudebug.c       | 33 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eudebug.h       |  6 +++++
- drivers/gpu/drm/xe/xe_exec_queue.c    |  3 +++
- drivers/gpu/drm/xe/xe_gt.c            |  1 +
- drivers/gpu/drm/xe/xe_pci_sriov.c     | 10 ++++++++
- 6 files changed, 59 insertions(+)
+ drivers/gpu/drm/xe/Makefile            |   3 +-
+ drivers/gpu/drm/xe/xe_client_debugfs.c | 118 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_client_debugfs.h |  19 ++++
+ drivers/gpu/drm/xe/xe_device.c         |   3 +
+ 4 files changed, 142 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_eudebug.c b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-index f839fb292b9b..c1e5eb091fc4 100644
---- a/drivers/gpu/drm/xe/tests/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/tests/xe_eudebug.c
-@@ -147,6 +147,12 @@ static int toggle_reg_value(struct xe_device *xe)
- 	struct kunit *test = kunit_get_current_test();
- 	bool enable_eudebug = xe_eudebug_is_enabled(xe);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index ecbca68d3c2a..16666f0a4c01 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -330,7 +330,8 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
+ endif
  
-+	if (IS_SRIOV_VF(xe))
-+		kunit_skip(test, "eudebug not available in SR-IOV VF mode\n");
+ ifeq ($(CONFIG_DEBUG_FS),y)
+-	xe-y += xe_debugfs.o \
++	xe-y += xe_client_debugfs.o \
++		xe_debugfs.o \
+ 		xe_gt_debugfs.o \
+ 		xe_gt_sriov_vf_debugfs.o \
+ 		xe_gt_stats.o \
+diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.c b/drivers/gpu/drm/xe/xe_client_debugfs.c
+new file mode 100644
+index 000000000000..0b952038e698
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_client_debugfs.c
+@@ -0,0 +1,118 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
 +
-+	if (xe->eudebug.state == XE_EUDEBUG_NOT_SUPPORTED)
-+		kunit_skip(test, "eudebug not supported\n");
++#include "xe_client_debugfs.h"
 +
- 	kunit_printk(KERN_DEBUG, test, "Test eudebug WAs for graphics version: %u\n",
- 		     GRAPHICS_VERx100(xe));
- 
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
-index a20397229e65..5dc8e4cd7f6b 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.c
-+++ b/drivers/gpu/drm/xe/xe_eudebug.c
-@@ -2119,6 +2119,34 @@ bool xe_eudebug_is_enabled(struct xe_device *xe)
- 	return READ_ONCE(xe->eudebug.state) == XE_EUDEBUG_ENABLED;
- }
- 
-+static int __xe_eudebug_toggle_support(struct xe_device *xe,
-+				       bool support_enable)
++#include <linux/debugfs.h>
++
++#include "xe_debug_data.h"
++#include "xe_debug_data_types.h"
++#include "xe_device_types.h"
++#include "xe_vm_types.h"
++
++#define MAX_LINE_LEN (64 + PATH_MAX)
++
++static ssize_t debug_data_read(struct file *file, char __user *buf, size_t count,
++			       loff_t *ppos)
 +{
-+	mutex_lock(&xe->eudebug.lock);
++	struct xe_debug_data *dd;
++	unsigned long vm_index;
++	const char *path;
++	char *kbuf;
++	struct xe_vm *vm;
 +
-+	if (xe_eudebug_is_enabled(xe)) {
-+		mutex_unlock(&xe->eudebug.lock);
-+		return -EPERM;
++	struct xe_file *xef = file->private_data;
++	ssize_t total = 0;
++	loff_t pos = 0;
++
++	if (!xef || !buf)
++		return -EINVAL;
++
++	kbuf = kmalloc(MAX_LINE_LEN, GFP_KERNEL);
++	if (!kbuf)
++		return -ENOMEM;
++
++	mutex_lock(&xef->vm.lock);
++
++	xa_for_each(&xef->vm.xa, vm_index, vm) {
++		mutex_lock(&vm->debug_data.lock);
++		list_for_each_entry(dd, &vm->debug_data.list, link) {
++			int len;
++
++			path = dd->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO ?
++				xe_debug_data_pseudo_path_to_string(dd->pseudopath) :
++				dd->pathname;
++
++			/* Format: <vm id> <begin>-<end> <flags> <offset> <pathname> */
++			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
++				vm_index,
++				dd->addr,
++				dd->addr + dd->range,
++				dd->flags,
++				dd->offset,
++				path);
++
++			if (pos + len <= *ppos) {
++				pos += len;
++				continue;
++			}
++
++			if (pos < *ppos) {
++				const int skip = *ppos - pos;
++
++				len -= skip;
++				memmove(kbuf, kbuf + skip, len);
++				pos = *ppos;
++			}
++
++			if (total + len > count)
++				len = count - total;
++
++			if (copy_to_user(buf + total, kbuf, len)) {
++				mutex_unlock(&vm->debug_data.lock);
++				mutex_unlock(&xef->vm.lock);
++				kfree(kbuf);
++				return -EFAULT;
++			}
++
++			total += len;
++			pos += len;
++
++			if (total >= count) {
++				mutex_unlock(&vm->debug_data.lock);
++				mutex_unlock(&xef->vm.lock);
++				kfree(kbuf);
++				*ppos = pos;
++				return total;
++			}
++		}
++		mutex_unlock(&vm->debug_data.lock);
 +	}
 +
-+	xe->eudebug.state = support_enable ?
-+		XE_EUDEBUG_DISABLED : XE_EUDEBUG_NOT_SUPPORTED;
++	mutex_unlock(&xef->vm.lock);
++	kfree(kbuf);
++	*ppos = pos;
++	return total;
++}
 +
-+	mutex_unlock(&xe->eudebug.lock);
++static int debug_data_open(struct inode *inode, struct file *file)
++{
++	struct xe_file *xef = inode->i_private;
 +
++	file->private_data = xef;
 +	return 0;
 +}
 +
-+void xe_eudebug_support_enable(struct xe_device *xe)
++static const struct file_operations maps_fops = {
++	.owner = THIS_MODULE,
++	.open = debug_data_open,
++	.read = debug_data_read,
++	.llseek = default_llseek,
++};
++
++void xe_client_debugfs_register(struct xe_file *xef)
 +{
-+	__xe_eudebug_toggle_support(xe, true);
++	debugfs_create_file("debug_data", 0444, xef->drm->debugfs_client, xef, &maps_fops);
 +}
+diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.h b/drivers/gpu/drm/xe/xe_client_debugfs.h
+new file mode 100644
+index 000000000000..9eace15c0a49
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_client_debugfs.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
 +
-+int xe_eudebug_support_disable(struct xe_device *xe)
-+{
-+	return __xe_eudebug_toggle_support(xe, false);
-+}
++#ifndef _XE_CLIENT_DEBUGFS_H_
++#define _XE_CLIENT_DEBUGFS_H_
 +
- static int xe_eudebug_enable(struct xe_device *xe, bool enable)
- {
- 	struct xe_gt *gt;
-@@ -2224,6 +2252,11 @@ void xe_eudebug_init(struct xe_device *xe)
- 
- 	xe->eudebug.state = XE_EUDEBUG_NOT_SUPPORTED;
- 
-+	if (IS_SRIOV_VF(xe)) {
-+		drm_info(&xe->drm, "eudebug not available in SR-IOV VF mode\n");
-+		return;
-+	}
++#include <linux/debugfs.h>
 +
- 	err = drmm_mutex_init(dev, &xe->eudebug.lock);
- 	if (err)
- 		goto out_err;
-diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
-index 208b18127603..ed3c2078e960 100644
---- a/drivers/gpu/drm/xe/xe_eudebug.h
-+++ b/drivers/gpu/drm/xe/xe_eudebug.h
-@@ -46,6 +46,9 @@ int xe_eudebug_connect_ioctl(struct drm_device *dev,
- 			     void *data,
- 			     struct drm_file *file);
- 
-+void xe_eudebug_support_enable(struct xe_device *xe);
-+int xe_eudebug_support_disable(struct xe_device *xe);
++struct xe_file;
 +
- void xe_eudebug_init(struct xe_device *xe);
- bool xe_eudebug_is_enabled(struct xe_device *xe);
- 
-@@ -82,6 +85,9 @@ static inline int xe_eudebug_connect_ioctl(struct drm_device *dev,
- 					   void *data,
- 					   struct drm_file *file) { return 0; }
- 
-+static inline void xe_eudebug_support_enable(struct xe_device *xe) { }
-+static inline int xe_eudebug_support_disable(struct xe_device *xe) { return 0; }
++#ifdef CONFIG_DEBUG_FS
++void xe_client_debugfs_register(struct xe_file *xef);
++#else
++static inline void xe_client_debugfs_register(struct xe_file *xef) { }
++#endif
 +
- static inline void xe_eudebug_init(struct xe_device *xe) { }
- static inline bool xe_eudebug_is_enabled(struct xe_device *xe) { return false; }
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 02f4e412fcdf..c44a73038fd0 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -558,6 +558,9 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
- 			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
- 		return -EINVAL;
- 
-+	if (XE_IOCTL_DBG(xe, !xe_eudebug_is_enabled(xe)))
-+		return -EPERM;
-+
- 	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
- 	q->sched_props.preempt_timeout_us = 0;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index b77572a19548..4c89f9bb4767 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -21,6 +21,7 @@
- #include "xe_bb.h"
++#endif // _XE_CLIENT_DEBUGFS_H_
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ff9268ed6124..660fe5cdd3fb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -25,6 +25,7 @@
+ #include "regs/xe_regs.h"
  #include "xe_bo.h"
- #include "xe_device.h"
-+#include "xe_eudebug.h"
- #include "xe_eu_stall.h"
- #include "xe_exec_queue.h"
- #include "xe_execlist.h"
-diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-index 9c1c9e669b04..49661c36ccf4 100644
---- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-@@ -9,6 +9,7 @@
- #include "regs/xe_bars.h"
- #include "xe_assert.h"
- #include "xe_device.h"
-+#include "xe_eudebug.h"
- #include "xe_gt_sriov_pf_config.h"
- #include "xe_gt_sriov_pf_control.h"
- #include "xe_gt_sriov_printk.h"
-@@ -153,6 +154,10 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
- 	xe_assert(xe, num_vfs <= total_vfs);
- 	xe_sriov_dbg(xe, "enabling %u VF%s\n", num_vfs, str_plural(num_vfs));
+ #include "xe_bo_evict.h"
++#include "xe_client_debugfs.h"
+ #include "xe_debugfs.h"
+ #include "xe_devcoredump.h"
+ #include "xe_device_sysfs.h"
+@@ -121,6 +122,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 		put_task_struct(task);
+ 	}
  
-+	err = xe_eudebug_support_disable(xe);
-+	if (err < 0)
-+		goto failed_eudebug;
++	xe_client_debugfs_register(xef);
 +
- 	err = xe_sriov_pf_wait_ready(xe);
- 	if (err)
- 		goto out;
-@@ -195,6 +200,9 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
- 	pf_unprovision_vfs(xe, num_vfs);
- 	xe_pm_runtime_put(xe);
- out:
-+	xe_eudebug_support_enable(xe);
-+failed_eudebug:
-+
- 	xe_sriov_notice(xe, "Failed to enable %u VF%s (%pe)\n",
- 			num_vfs, str_plural(num_vfs), ERR_PTR(err));
- 	return err;
-@@ -223,6 +231,8 @@ static int pf_disable_vfs(struct xe_device *xe)
- 	/* not needed anymore - see pf_enable_vfs() */
- 	xe_pm_runtime_put(xe);
- 
-+	xe_eudebug_support_enable(xe);
-+
- 	xe_sriov_info(xe, "Disabled %u VF%s\n", num_vfs, str_plural(num_vfs));
  	return 0;
  }
+ 
 -- 
 2.43.0
 
