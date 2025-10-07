@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5516CCA470
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 20:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 381E7CCD183
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 20:49:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8588710E709;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA4A510E70F;
 	Tue,  7 Oct 2025 20:49:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="chgc1TBF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZIDi3ohQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E00C010E38D
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 20:48:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13AF310E38D
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 20:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759870129; x=1791406129;
+ t=1759870130; x=1791406130;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QcB0jLre5jMMscfs/U7zgg78Nu1bZVoBsyyLyvqbXro=;
- b=chgc1TBFtyaRWgoDD3gg5jLQ86GZ6IizAn1glAwMU3W/l9cj0djXO8ku
- KAKkhkdJaPIZQe5iael7K3Q1mD++UxGN8cSUUUAMZaW6g5AP65uyHuovk
- pqN9/NUN+fqwxyRM+qGdwMNMr2WNkqJmeT4Bcsy4BOUnndkb9jMJ9/CjF
- 8aRzRun8UcfGLwRkcQzGBcAH5DAGCtiBGckBAJ9P7eDf6OjMMjCCUA47G
- 9dSUIcg1qNDfDsGs26DSpMna5SArq46IMrYhGl0gfvKlLezNOUJbW7f7H
- kMFg8sw35UyqmV6sYAjNsBzXmQ2Screw3ButkICl8P1FXdY1njN5MLIDH A==;
-X-CSE-ConnectionGUID: 3zLKeQBjRhS0JRUGnH+a+w==
-X-CSE-MsgGUID: uZ6zcdCjSn2/8m2WflMe7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="49616734"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="49616734"
+ bh=L9NrH6oeeVcjXIM5CwYAT377o7pwIfktfn6SbGJJ58w=;
+ b=ZIDi3ohQTgR0/YnOrikprCIU9P5Uoo9MqKn/pf4C9fJ0flQfNVFvbpng
+ 0lbQVzttM7dQJz8KlDAjyUUGo5bzQBakoSz9HABOKX9H0PhDYLbf9AD3x
+ GMJOOjWBU5BztvIIwAtRQWfKz8wgkAzDLTJscf9kOCO6wT4FKB5u8JF1W
+ 8r8V023N0hBioyUxjp5MhfGINlIvtslh8yHfcGEM7zxF7pMp4ZYrBbcm+
+ cbe/lI/UqYpzZ1hiVU9DAQQyDaRkYMNuzd96BdMFxmQZxp8z0M5a8QLQf
+ T6dpyUA2Rr8dy6CkZKquDNLQJSxeNJS9Dtf6f4fj4UZbl9deK+vYv31YY g==;
+X-CSE-ConnectionGUID: kvU4CvH9SnqUm8TMo1rvBA==
+X-CSE-MsgGUID: yk1wQBg3RmqR+P+iSG8KhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="49616754"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="49616754"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 13:48:48 -0700
-X-CSE-ConnectionGUID: MZxMjvmOTO64mmSqUaLLpw==
-X-CSE-MsgGUID: dfTB6wI5QSaoXdMs3IARwA==
+ 07 Oct 2025 13:48:49 -0700
+X-CSE-ConnectionGUID: 98gFu7JlQfWgB8EijqavWQ==
+X-CSE-MsgGUID: FbYq8VxPSKOkKCdZ/jFOvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="184631057"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="184631102"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 13:48:48 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v4 01/23] drm/xe/huc: Adjust HuC check on primary GT
-Date: Tue,  7 Oct 2025 13:48:31 -0700
-Message-ID: <20251007204829.1468209-26-matthew.d.roper@intel.com>
+	Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v4 15/23] drm/xe: Handle Wa_22010954014 and Wa_14022085890 as
+ device workarounds
+Date: Tue,  7 Oct 2025 13:48:45 -0700
+Message-ID: <20251007204829.1468209-40-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251007204829.1468209-25-matthew.d.roper@intel.com>
 References: <20251007204829.1468209-25-matthew.d.roper@intel.com>
@@ -68,53 +68,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The HuC initialization code determines whether a platform can have a HuC
-on the primary GT by checking whether tile->media_gt is NULL; old Xe1
-platforms that combined render+media into a single GT will always have a
-NULL media_gt pointer.  However once we allow media to be disabled via
-configfs, there will also be cases where tile->media_gt is NULL on more
-modern platforms, causing this condition to behave incorrectly.
+When Wa_22010954014 and Wa_14022085890 were first implemented, we didn't
+have a device workaround infrastructure so we hacked them into the GT
+workaround list.  Now that we have proper device workaround support,
+move them to the proper place.  Note that Wa_14022085890 specifically
+applies to BMG-G21 platforms, so this requires defining a BMG
+subplatform to capture the correct subset of device IDs.
 
-To handle cases where media gets disabled via configfs (or theoretical
-cases where media is truly fused off in hardware), change the condition
-to consider the graphics version of the primary GT; only the old Xe1
-platforms with graphics versions 12.55 or earlier should try to
-initialize a HuC on the primary GT.
-
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_huc.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules | 2 ++
+ drivers/gpu/drm/xe/xe_guc_pc.c            | 3 ++-
+ drivers/gpu/drm/xe/xe_pci.c               | 6 ++++++
+ drivers/gpu/drm/xe/xe_platform_types.h    | 1 +
+ drivers/gpu/drm/xe/xe_wa.c                | 2 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules        | 5 -----
+ include/drm/intel/pciids.h                | 7 +++++--
+ 7 files changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 7e43b2dd6a32..0a70c8924582 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -66,14 +66,18 @@ static int huc_alloc_gsc_pkt(struct xe_huc *huc)
- int xe_huc_init(struct xe_huc *huc)
- {
- 	struct xe_gt *gt = huc_to_gt(huc);
--	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+index 3cc93f0e77f8..55ba01bc8f38 100644
+--- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+@@ -1,3 +1,5 @@
++22010954014	PLATFORM(DG2)
+ 15015404425     PLATFORM(LUNARLAKE)
+ 		PLATFORM(PANTHERLAKE)
+ 22019338487_display	PLATFORM(LUNARLAKE)
++14022085890	SUBPLATFORM(BATTLEMAGE, G21)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 3c0feb50a1e2..ff22235857f8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -14,6 +14,7 @@
  
- 	huc->fw.type = XE_UC_FW_TYPE_HUC;
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
++#include <generated/xe_device_wa_oob.h>
+ #include <generated/xe_wa_oob.h>
  
--	/* On platforms with a media GT the HuC is only available there */
--	if (tile->media_gt && (gt != tile->media_gt)) {
-+	/*
-+	 * The HuC is only available on the media GT on most platforms.  The
-+	 * exception to that rule are the old Xe1 platforms where there was
-+	 * no separate GT for media IP, so the HuC was part of the primary
-+	 * GT.  Such platforms have graphics versions 12.55 and earlier.
-+	 */
-+	if (!xe_gt_is_media_type(gt) && GRAPHICS_VERx100(xe) > 1255) {
- 		xe_uc_fw_change_status(&huc->fw, XE_UC_FIRMWARE_NOT_SUPPORTED);
- 		return 0;
- 	}
+ #include "abi/guc_actions_slpc_abi.h"
+@@ -886,7 +887,7 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
+ 
+-	if (XE_GT_WA(tile->primary_gt, 14022085890))
++	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
+ 		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
+ 
+ out:
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a49e7cf8c73e..f7aec1c5959b 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -334,6 +334,8 @@ static const struct xe_device_desc lnl_desc = {
+ 	.vm_max_level = 4,
+ };
+ 
++static const u16 bmg_g21_ids[] = { INTEL_BMG_G21_IDS(NOP), 0 };
++
+ static const struct xe_device_desc bmg_desc = {
+ 	DGFX_FEATURES,
+ 	PLATFORM(BATTLEMAGE),
+@@ -348,6 +350,10 @@ static const struct xe_device_desc bmg_desc = {
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	.needs_scratch = true,
++	.subplatforms = (const struct xe_subplatform_desc[]) {
++		{ XE_SUBPLATFORM_BATTLEMAGE_G21, "G21", bmg_g21_ids },
++		{ }
++	},
+ 	.va_bits = 48,
+ 	.vm_max_level = 4,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+index d08574c4cdb8..3e332214c7bb 100644
+--- a/drivers/gpu/drm/xe/xe_platform_types.h
++++ b/drivers/gpu/drm/xe/xe_platform_types.h
+@@ -34,6 +34,7 @@ enum xe_subplatform {
+ 	XE_SUBPLATFORM_DG2_G10,
+ 	XE_SUBPLATFORM_DG2_G11,
+ 	XE_SUBPLATFORM_DG2_G12,
++	XE_SUBPLATFORM_BATTLEMAGE_G21,
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c60159a13001..aa1b69f48f6f 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -1138,6 +1138,6 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
+ 	if (IS_SRIOV_VF(tile->xe))
+ 		return;
+ 
+-	if (XE_GT_WA(tile->primary_gt, 22010954014))
++	if (XE_DEVICE_WA(tile->xe, 22010954014))
+ 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index eb761d30e066..113a62f1b541 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -14,7 +14,6 @@
+ 14016763929	SUBPLATFORM(DG2, G10)
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+-22010954014	PLATFORM(DG2)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
+ 14015076503	MEDIA_VERSION(1300)
+ 16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
+@@ -74,9 +73,5 @@
+ 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
+ 
+-# SoC workaround - currently applies to all platforms with the following
+-# primary GT GMDID
+-14022085890	GRAPHICS_VERSION(2001)
+-
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+ 16026007364    MEDIA_VERSION(3000)
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 69d4ae92d822..452c1de606ff 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -849,7 +849,7 @@
+ 	MACRO__(0x64B0, ## __VA_ARGS__)
+ 
+ /* BMG */
+-#define INTEL_BMG_IDS(MACRO__, ...) \
++#define INTEL_BMG_G21_IDS(MACRO__, ...) \
+ 	MACRO__(0xE202, ## __VA_ARGS__), \
+ 	MACRO__(0xE209, ## __VA_ARGS__), \
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
+@@ -858,7 +858,10 @@
+ 	MACRO__(0xE210, ## __VA_ARGS__), \
+ 	MACRO__(0xE211, ## __VA_ARGS__), \
+ 	MACRO__(0xE212, ## __VA_ARGS__), \
+-	MACRO__(0xE216, ## __VA_ARGS__), \
++	MACRO__(0xE216, ## __VA_ARGS__)
++
++#define INTEL_BMG_IDS(MACRO__, ...) \
++	INTEL_BMG_G21_IDS(MACRO__, __VA_ARGS__), \
+ 	MACRO__(0xE220, ## __VA_ARGS__), \
+ 	MACRO__(0xE221, ## __VA_ARGS__), \
+ 	MACRO__(0xE222, ## __VA_ARGS__), \
 -- 
 2.51.0
 
