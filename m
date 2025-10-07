@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A3ACCD189
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C778CCD18C
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C87A10E680;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAAC310E68D;
 	Tue,  7 Oct 2025 11:26:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWJKZPzG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcDDUc9S";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 085FA10E671
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1377F10E5D0
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759836409; x=1791372409;
+ t=1759836412; x=1791372412;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=SQOtr5d8/KXROG6ggvPl3JgGs2EvUgrwS9Fr5+KTcuo=;
- b=NWJKZPzGHJwf5QaPP1EXq7DCwe98hhsspeiON/kytJZpvL+up3KV4Opz
- a+DI/7VkFG2o1lfUwIZyHhGBGY7+kfZ+LDP9zL2ni14usLLdTI50plJ5I
- TGCy8Gfyp7Ud3txIBTXjMsTSAJUf0QzBfVM4z+ZFoGXz72n7NkZwAS+5s
- xhL5Zmqe8Sone7+MD9af0Y2zbcRSjwNY35SjQAigwGhj0L0DBrnPoIYZX
- HXjpWh8/IefhqYQ/odTM0PFqQY5Vby8nqUT1BnPLlz+h/TljpedXlnuqG
- HF7rwp7ScnaHRoNaxJ97aZQptIo3xztwZLBz+7LLf5qWDDk0eZQ6naunF A==;
-X-CSE-ConnectionGUID: 8iFJ8rxhTna966y3abU/lg==
-X-CSE-MsgGUID: 7rowsY/SSzeRNhRqu7o2aA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660683"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660683"
+ bh=5UP401ZzVVf1vrQG13tQ/x289lbSVKlw/oKu+fWhUCw=;
+ b=IcDDUc9SeltIMrjsWsHJ/P+2p3GEtdlRzIqrzCAy3+fkdp29/AO0TpwU
+ /SWlbUG5mlwi5kMM8RGw/czLtabr6gqT1lt3ZO6jKr5H0Q6tLZAnyqr4o
+ BS2pF3/OiqxBi4YfV/EHvhH+5MNruOWggTGm9InyKKQILoeUlJSMZYJDc
+ 1KMmLkPEDE9Kmi2zsaqfuOpUsii7FvhNjR1qcecPEXX7Y7rSA3++JbQef
+ aYr7CnwUL6gQtutBCYiL1E24iE6OIx2FB+0B4qfWvcQgOuUBZL5NrJcmt
+ lMiReXz4eu91Ro6MAXldTTXQybwRIDZp9sFHfRa1hLkfDQXwU86aO7Ba1 A==;
+X-CSE-ConnectionGUID: kv8GlMIXRi6G4NTLI6jrug==
+X-CSE-MsgGUID: 0hfIOUxdQwyG8c+U5+PLXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660701"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660701"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:49 -0700
-X-CSE-ConnectionGUID: czb+nrrHSNycIDggo9Nwwg==
-X-CSE-MsgGUID: C+kni842SMi5ChRlQ3eQFw==
+ 07 Oct 2025 04:26:52 -0700
+X-CSE-ConnectionGUID: /bpnuxKlSVenXLKhicIt/g==
+X-CSE-MsgGUID: FzVk32kNS7yncsoPHhOjgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924001"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924021"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:48 -0700
+ 07 Oct 2025 04:26:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 14/32] drm/xe/vf: Don't allow GT reset to be queued during
- VF post migration recovery
-Date: Tue,  7 Oct 2025 04:26:23 -0700
-Message-Id: <20251007112641.2669655-15-matthew.brost@intel.com>
+Subject: [PATCH v7 28/32] drm/xe: Use PPGTT addresses for TLB invalidation to
+ avoid GGTT fixups
+Date: Tue,  7 Oct 2025 04:26:37 -0700
+Message-Id: <20251007112641.2669655-29-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,160 +67,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With well-behaved software, a GT reset should never occur, nor should it
-happen during VF post-migration recovery. If it does, trigger a warning
-but suppress the GT reset, as VF post-migration recovery is expected to
-bring the VF back to a working state.
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-v3:
- - Better commit message (Tomasz)
-v5:
- - Use xe_gt_WARN_ON (Michal)
+The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
+advance and retains it so the GuC can submit it directly when saving a
+VM’s state.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
+addresses embedded in the BB would then have to be parsed and patched.
+
+Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
+remains GGTT-agnostic and requires no address fixups during migration.
+
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c          |  9 -------
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 -----
- drivers/gpu/drm/xe/xe_guc_submit.c  | 42 ++++-------------------------
- drivers/gpu/drm/xe/xe_guc_submit.h  |  3 ---
- 4 files changed, 5 insertions(+), 56 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 2d032eb3bd6d..cf484a2da35e 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -805,11 +805,6 @@ static int do_gt_restart(struct xe_gt *gt)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 1d667fa36cf3..ad03afb5145f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -980,15 +980,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
+ 	return migrate->q->lrc[0];
  }
  
--static int gt_wait_reset_unblock(struct xe_gt *gt)
--{
--	return xe_guc_wait_reset_unblock(&gt->uc.guc);
--}
--
- static int gt_reset(struct xe_gt *gt)
+-static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
+-				 u32 flags)
++static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
  {
- 	unsigned int fw_ref;
-@@ -824,10 +819,6 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_gt_info(gt, "reset started\n");
- 
--	err = gt_wait_reset_unblock(gt);
--	if (!err)
--		xe_gt_warn(gt, "reset block failed to get lifted");
--
- 	xe_pm_runtime_get(gt_to_xe(gt));
- 
- 	if (xe_fault_inject_gt_reset()) {
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index db8c6d8e9076..9057fc6bb9d7 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1092,17 +1092,11 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 
- static void vf_post_migration_shutdown(struct xe_gt *gt)
- {
--	int ret = 0;
--
- 	spin_lock_irq(&gt->sriov.vf.migration.lock);
- 	gt->sriov.vf.migration.recovery_queued = false;
- 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
- 
- 	xe_guc_submit_pause(&gt->uc.guc);
--	ret |= xe_guc_submit_reset_block(&gt->uc.guc);
--
--	if (ret)
--		xe_gt_sriov_info(gt, "migration recovery encountered ongoing reset\n");
- }
- 
- static size_t post_migration_scratch_size(struct xe_device *xe)
-@@ -1136,7 +1130,6 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
- 	 */
- 	xe_irq_resume(gt_to_xe(gt));
- 
--	xe_guc_submit_reset_unblock(&gt->uc.guc);
- 	xe_guc_submit_unpause(&gt->uc.guc);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index d123bdb63369..59371b7cc8a4 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -27,6 +27,7 @@
- #include "xe_gt.h"
- #include "xe_gt_clock.h"
- #include "xe_gt_printk.h"
-+#include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
- #include "xe_guc_capture.h"
- #include "xe_guc_ct.h"
-@@ -1900,47 +1901,14 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	}
- }
- 
--/**
-- * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
-- * @guc: the &xe_guc struct instance
-- */
--int xe_guc_submit_reset_block(struct xe_guc *guc)
--{
--	return atomic_fetch_or(1, &guc->submission_state.reset_blocked);
--}
--
--/**
-- * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
-- * @guc: the &xe_guc struct instance
-- */
--void xe_guc_submit_reset_unblock(struct xe_guc *guc)
--{
--	atomic_set_release(&guc->submission_state.reset_blocked, 0);
--	wake_up_all(&guc->ct.wq);
--}
--
--static int guc_submit_reset_is_blocked(struct xe_guc *guc)
--{
--	return atomic_read_acquire(&guc->submission_state.reset_blocked);
--}
--
--/* Maximum time of blocking reset */
--#define RESET_BLOCK_PERIOD_MAX (HZ * 5)
--
--/**
-- * xe_guc_wait_reset_unblock - Wait until reset blocking flag is lifted, or timeout.
-- * @guc: the &xe_guc struct instance
-- */
--int xe_guc_wait_reset_unblock(struct xe_guc *guc)
--{
--	return wait_event_timeout(guc->ct.wq,
--				  !guc_submit_reset_is_blocked(guc), RESET_BLOCK_PERIOD_MAX);
--}
--
- int xe_guc_submit_reset_prepare(struct xe_guc *guc)
- {
- 	int ret;
- 
-+	if (xe_gt_WARN_ON(guc_to_gt(guc),
-+			  xe_gt_sriov_vf_recovery_pending(guc_to_gt(guc))))
-+		return 0;
+-	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
++	/*
++	 * The migrate VM is self-referential so it can modify its own PTEs (see
++	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
++	 * entries for kernel operations (copies, clears, CCS migrate), and
++	 * suballocate the rest to user operations (binds/unbinds). With
++	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
++	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
++	 */
++	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
++}
 +
- 	if (!guc->submission_state.initialized)
- 		return 0;
++static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
++{
++	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
++
+ 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
+ 		  MI_FLUSH_IMM_DW | flags;
+-	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
+-		  MI_FLUSH_DW_USE_GTT;
+-	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
++	dw[i++] = lower_32_bits(addr);
++	dw[i++] = upper_32_bits(addr);
+ 	dw[i++] = MI_NOOP;
+ 	dw[i++] = MI_NOOP;
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 5b4a0a6fd818..f535fe3895e5 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -22,9 +22,6 @@ void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
- void xe_guc_submit_pause(struct xe_guc *guc);
- void xe_guc_submit_unpause(struct xe_guc *guc);
--int xe_guc_submit_reset_block(struct xe_guc *guc);
--void xe_guc_submit_reset_unblock(struct xe_guc *guc);
--int xe_guc_wait_reset_unblock(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
+@@ -1101,11 +1113,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
  
- int xe_guc_read_stopped(struct xe_guc *guc);
+ 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 
+-		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
++		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+ 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
+ 						  src_L0_ofs, dst_is_pltt,
+ 						  src_L0, ccs_ofs, true);
+-		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
++		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+ 
+ 		size -= src_L0;
+ 	}
 -- 
 2.34.1
 
