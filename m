@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92742CCA476
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FEAACCA470
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40FEE10E677;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3447610E674;
 	Tue,  7 Oct 2025 11:26:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MtCMSybE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eBwKZ8Zm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C659A10E5D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DC810E622
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759836407; x=1791372407;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hOs0CGhwgdS1m3z50ATAd+se2zL74a1F4cH1ItjZc/8=;
- b=MtCMSybECOu4Wxz5DfFzW3Wj1l5UXBCfvTaDOnJYUXFMRnoiza8Y6IGf
- QSDaeQKnL589pHDfpOGKXTmpqOVg2s9u4BxRYVDe6sCGphQxwPdwcw103
- TJZdczyYGgVVmqU7wn1TrgCXzY5Bwn+TuxYlDde/ec7o1CwHkdJaezSYm
- H5d+P03Rl+wOFkHVtxLqwbapwaz+39MWZhK5NnZQWtGxf/vxWmfv4kiP6
- e4hMtHuV4S7ZDvlsfltFbfis4Xh3gZMOU7RrTF5wyEhiNL5NXXYZpZ/uI
- xEkI9++nOP3XC5pkROUIH41iqRxo90PdY8wMbkvG6GPUpltc5JGfldjkL w==;
-X-CSE-ConnectionGUID: CmvBOFvkR2a9Dktg3iJpkg==
-X-CSE-MsgGUID: 4qDJ6QI9R5+QSgFhQdZ31A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660671"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660671"
+ bh=zRMWVz1uBzOO+c+7u+c3BPzlOO9bU1forizJQJDqwQA=;
+ b=eBwKZ8ZmLoFrAoLmK1FOmv+2aJSBCwzTNFriR/wY+vb4mRsvfwGkD1la
+ JnHJOTn0aWSA7n2tJJM+NAq6kgx2an2RAYdgY2uvBQl+60WBZvGA/SVdd
+ 1iBHMLiUvlJ0kafw6/ma8xzMUke4Gi62DJc9l81NTzjtq5g2grYJRKjSb
+ wsDT7RICtwAQKP1aybP54hHFWxUYQLYBJoVq4mFpiNCXqYpwSsZlYYrhp
+ osBy7diFXGRl8pYB8uQPYvUZUw8r8dIOYfbP5OT9Ce385Ib6B+4C1KIfU
+ 9cU83goTcx219bUofY2ExSDh2MfJdbDcJsyWGk+2nE9k4JOBFC6bOTkIZ Q==;
+X-CSE-ConnectionGUID: EymDF2KFStuC4YM6vf3tOw==
+X-CSE-MsgGUID: NLLuZs6iT0emIWDCCCHtqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660670"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660670"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 04:26:46 -0700
-X-CSE-ConnectionGUID: ARMa5lueQkerA+ySfWPyuQ==
-X-CSE-MsgGUID: fGX1GxoISVOIZkUofnG/fA==
+X-CSE-ConnectionGUID: B3D7gYakTOWQIp5/XIjHRQ==
+X-CSE-MsgGUID: EqrNygu9TH2lR65K9QPzBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923986"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923985"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 04:26:46 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 02/32] drm/xe: Save off position in ring in which a job was
- programmed
-Date: Tue,  7 Oct 2025 04:26:11 -0700
-Message-Id: <20251007112641.2669655-3-matthew.brost@intel.com>
+Subject: [PATCH v7 01/32] drm/xe: Add NULL checks to scratch LRC allocation
+Date: Tue,  7 Oct 2025 04:26:10 -0700
+Message-Id: <20251007112641.2669655-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
@@ -66,149 +65,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF post-migration recovery needs to modify the ring with updated GGTT
-addresses for pending jobs. Save off position in ring in which a job was
-programmed to facilitate.
+kmalloc can fail, the returned value must have a NULL check. This should
+be immediately after kmalloc for clarity.
 
-v4:
- - s/VF resume/VF post-migration recovery (Tomasz)
+v5:
+ - Assert state->buffer in setup_bo if buffer is iomem (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
- drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
- 2 files changed, 24 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index d71837773d6c..ac0c6dcffe15 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index af09f70f6e78..2c6eae2de1f2 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
+ 	ssize_t remain;
  
- /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
- static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 seqno)
-+				    u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
+ 	if (state->lrc->bo->vmap.is_iomem) {
+-		if (!state->buffer)
+-			return -ENOMEM;
++		xe_gt_assert(state->hwe->gt, state->buffer);
+ 		state->ptr = state->buffer;
+ 	} else {
+ 		state->ptr = state->lrc->bo->vmap.vaddr + state->offset;
+@@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	u32 *buf = NULL;
+ 	int ret;
  
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
+-	if (lrc->bo->vmap.is_iomem)
++	if (lrc->bo->vmap.is_iomem) {
+ 		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
++		if (!buf)
++			return -ENOMEM;
++	}
  
- 	if (job->ring_ops_flush_tlb) {
-@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
- }
+ 	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
  
- static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 seqno)
-+				   u64 batch_addr, u32 *head, u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
+@@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
+ 		return 0;
  
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
+-	if (lrc->bo->vmap.is_iomem)
++	if (lrc->bo->vmap.is_iomem) {
+ 		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
++		if (!state.buffer)
++			return -ENOMEM;
++	}
  
- 	dw[i++] = preparser_disable(true);
-@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 
- static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 					    struct xe_lrc *lrc,
--					    u64 batch_addr, u32 seqno)
-+					    u64 batch_addr, u32 *head,
-+					    u32 seqno)
- {
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
-@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- }
- 
- static void emit_migration_job_gen12(struct xe_sched_job *job,
--				     struct xe_lrc *lrc, u32 seqno)
-+				     struct xe_lrc *lrc, u32 *head,
-+				     u32 seqno)
- {
- 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
-+	*head = lrc->ring.tail;
-+
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
- 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
-@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	__emit_job_gen12_simple(job, job->q->lrc[0],
- 				job->ptrs[0].batch_addr,
-+				&job->ptrs[0].head,
- 				xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 
- 	if (xe_sched_job_is_migration(job->q)) {
- 		emit_migration_job_gen12(job, job->q->lrc[0],
-+					 &job->ptrs[0].head,
- 					 xe_sched_job_lrc_seqno(job));
- 		return;
- 	}
-@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_simple(job, job->q->lrc[i],
- 					job->ptrs[i].batch_addr,
-+					&job->ptrs[i].head,
- 					xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_video(job, job->q->lrc[i],
- 				       job->ptrs[i].batch_addr,
-+				       &job->ptrs[i].head,
- 				       xe_sched_job_lrc_seqno(job));
- }
- 
-@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
- 	for (i = 0; i < job->q->width; ++i)
- 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
- 						job->ptrs[i].batch_addr,
-+						&job->ptrs[i].head,
- 						xe_sched_job_lrc_seqno(job));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index dbf260dded8d..7ce58765a34a 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -24,6 +24,11 @@ struct xe_job_ptrs {
- 	struct dma_fence_chain *chain_fence;
- 	/** @batch_addr: Batch buffer address. */
- 	u64 batch_addr;
-+	/**
-+	 * @head: The tail pointer of the LRC (so head pointer of job) when the
-+	 * job was submitted
-+	 */
-+	u32 head;
- };
- 
- /**
+ 	ret = setup_bo(&state);
+ 	if (ret) {
 -- 
 2.34.1
 
