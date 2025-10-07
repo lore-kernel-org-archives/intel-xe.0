@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DE18CCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EE15CCD188
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0EDB10E67B;
-	Tue,  7 Oct 2025 11:26:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1933810E5D0;
+	Tue,  7 Oct 2025 11:26:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hufENWt5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WiL81d1s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C8D10E67A
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A4810E5D0
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759836411; x=1791372411;
+ t=1759836412; x=1791372412;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C/8pSc9hUU6K8tpYAuRtvr75w+RgxdVSIQxglEPyRUs=;
- b=hufENWt59BT3Xt1WVu1r99wF8yMBSSuhQFVc4YjdL8fssW3W8Uba9WyW
- 4TlEV4wM3qGQedlMj4FMBpE7JfdWtUYbXbwZlL52LMtuwGkgsbalDf+eq
- r4h125RUrgMdMt5bRXYM4iZqWHHiRekBnLHxhZczXyCOcPhQtStg3OWC8
- 0bxazrSIi01PmP+FQyzH9mrwI+7BcRobSGOddPT+ml5biozNeOsMsHEZQ
- LcAwnxcFH9OH8tntJ31qCL7jj8j3uFDc1S8joqx+bOb2vMqLvaTFKipQc
- vvHfCLc+VvyiGtqmAWhqGU+83tQg/zn3eUopx1eH24zmbWK4fxQDyqkJB g==;
-X-CSE-ConnectionGUID: kWJvZLonTh6Ih2hLt/+CKg==
-X-CSE-MsgGUID: IwdD5DJFQfmCgX98H5nAww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660694"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660694"
+ bh=Ye8azT5hjaBdLqrvMc0/5e11ZlwB9LHkKlkMMx6Safc=;
+ b=WiL81d1sOqV6qtfMbrRS2pTNdf4UOJnxd5d+lhCWK/mxBgpZe5OkxheZ
+ B4p2SqVSx6STRDLPnj18B2m1yUPjSNllHPltD5mspFzDYB44lnX4T4KrY
+ NUoFPZOXL8Ja79GzSsYVZ3neGhsgCBXefLIduRTX+FSTlQJkYUFzbXLCA
+ X3saLDO2CJ7SN4Jufp6heu4Akcg19l3qSoH+xCGNx+fVB9Qjo3LWpHK2B
+ P5Xo67qP4GnAMg0PJnOFirHX8rRb32i6W9RqPDyhP6K0eeRKOn2eYDVM9
+ +syFolrwL3/1opo8Cn5ka/HEPxjxryw4wqr+S3OJhUMmdbWlA58d6RQCT w==;
+X-CSE-ConnectionGUID: MVHgcWttQc6ozwYUAW+sqA==
+X-CSE-MsgGUID: iMPUlItvRJm9xQLTjA53QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660698"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660698"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 04:26:51 -0700
-X-CSE-ConnectionGUID: sF5ZDeyYQIiDdsgk+1Blbw==
-X-CSE-MsgGUID: YeE1nvizSmuMRnE/Tw73KQ==
+X-CSE-ConnectionGUID: y8ICNaXVQMePSs5db2oD2g==
+X-CSE-MsgGUID: jMSCrXngS+iUYVw+Wt4lQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924015"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924018"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:50 -0700
+ 07 Oct 2025 04:26:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 22/32] drm/xe/vf: Start CTs before resfix VF post migration
- recovery
-Date: Tue,  7 Oct 2025 04:26:31 -0700
-Message-Id: <20251007112641.2669655-23-matthew.brost@intel.com>
+Subject: [PATCH v7 25/32] drm/xe: Move queue init before LRC creation
+Date: Tue,  7 Oct 2025 04:26:34 -0700
+Message-Id: <20251007112641.2669655-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,161 +66,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before RESFIX_DONE, all CTs stuck in the H2G queue need to be squashed,
-as they may contain actions which contain invalid GGTT references or are
-unnecessary after HW change.
+A queue must be in the submission backend's tracking state before the
+LRC is created to avoid a race condition where the LRC's GGTT addresses
+are not properly fixed up during VF post-migration recovery.
 
-Starting the CTs clears all H2Gs in the queue. Any lost H2Gs are
-resubmitted by the GuC submission state machine.
+Move the queue initialization—which adds the queue to the submission
+backend's tracking state—before LRC creation.
 
-v3:
- - Don't mess with head / tail values (Michal)
-v4:
- - Don't mess with broke (Michal)
- - Add CTB_H2G_BUFFER_OFFSET (Michal)
+Also wait on pending GGTT fixups before allocating LRCs to avoid racing
+with fixups.
+
+v2:
+ - Wait on VF GGTT fixes before creating LRC (testing)
 v5:
- - Adjust commit message (Tomasz)
+ - Adjust comment in code (Tomasz)
+ - Reduce race window
+v7:
+ - Only wakeup waiters in recovery path (CI)
+ - Wakeup waiters on abort
+ - Use GT warn on (Michal)
+ - Fix kernel doc for LRC ring size function (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 ++++
- drivers/gpu/drm/xe/xe_guc_ct.c      | 59 ++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_guc_ct.h      |  3 +-
- 3 files changed, 55 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c        | 45 ++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 43 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.h               | 10 +++++
+ 7 files changed, 96 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 1575ffaaaf52..675bb0d43343 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1128,6 +1128,11 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 7621089a47fe..90cbc95f8e2e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_sriov_vf.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -205,17 +206,34 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+ 		flags |= XE_LRC_CREATE_USER_CTX;
  
-+static void vf_post_migration_rearm(struct xe_gt *gt)
-+{
-+	xe_guc_ct_restart(&gt->uc.guc.ct);
-+}
++	err = q->ops->init(q);
++	if (err)
++		return err;
 +
- static void vf_post_migration_kickstart(struct xe_gt *gt)
- {
- 	xe_guc_submit_unpause(&gt->uc.guc);
-@@ -1179,6 +1184,8 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
- 
-+	vf_post_migration_rearm(gt);
++	/*
++	 * This must occur after q->ops->init to avoid race conditions during VF
++	 * post-migration recovery, as the fixups for the LRC GGTT addresses
++	 * depend on the queue being present in the backend tracking structure.
++	 *
++	 * In addition to above, we must wait on inflight GGTT changes to avoid
++	 * writing out stale values here. Such wait provides a solid solution
++	 * (without a race) only if the function can detect migration instantly
++	 * from the moment vCPU resumes execution.
++	 */
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+-		if (IS_ERR(q->lrc[i])) {
+-			err = PTR_ERR(q->lrc[i]);
++		struct xe_lrc *lrc;
 +
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err && err != -EAGAIN)
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 503cf5cb5d33..d0666d6d12f8 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -502,7 +502,7 @@ static void ct_exit_safe_mode(struct xe_guc_ct *ct)
- 		xe_gt_dbg(ct_to_gt(ct), "GuC CT safe-mode disabled\n");
- }
++		xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
++		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
++				    q->msix_vec, flags);
++		if (IS_ERR(lrc)) {
++			err = PTR_ERR(lrc);
+ 			goto err_lrc;
+ 		}
+-	}
  
--int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct xe_gt *gt = ct_to_gt(ct);
-@@ -510,21 +510,28 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
- 
- 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
- 
--	xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
--	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
--	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
-+	if (needs_register) {
-+		xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
-+		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
-+		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
- 
--	err = guc_ct_ctb_h2g_register(ct);
+-	err = q->ops->init(q);
 -	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_h2g_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_ctb_g2h_register(ct);
--	if (err)
--		goto err_out;
-+		err = guc_ct_ctb_g2h_register(ct);
-+		if (err)
-+			goto err_out;
- 
--	err = guc_ct_control_toggle(ct, true);
--	if (err)
--		goto err_out;
-+		err = guc_ct_control_toggle(ct, true);
-+		if (err)
-+			goto err_out;
-+	} else {
-+		ct->ctbs.h2g.info.broken = false;
-+		ct->ctbs.g2h.info.broken = false;
-+		xe_map_memset(xe, &ct->bo->vmap, CTB_H2G_BUFFER_OFFSET, 0,
-+			      CTB_H2G_BUFFER_SIZE);
+-		goto err_lrc;
++		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
++		WRITE_ONCE(q->lrc[i], lrc);
 +	}
  
- 	guc_ct_change_state(ct, XE_GUC_CT_STATE_ENABLED);
+ 	return 0;
  
-@@ -556,6 +563,32 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+@@ -1121,9 +1139,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	int err = 0;
+ 
+ 	for (i = 0; i < q->width; ++i) {
+-		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
+-		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
+-		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
++		struct xe_lrc *lrc;
++
++		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
++		lrc = READ_ONCE(q->lrc[i]);
++		if (!lrc)
++			continue;
++
++		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
++		xe_lrc_update_hwctx_regs_with_address(lrc);
++		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+ 		if (err)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..769d05517f93 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &drm_sched_ops,
+ 		.num_rqs = 1,
+-		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
++		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
+ 		.hang_limit = XE_SCHED_HANG_LIMIT,
+ 		.timeout = XE_SCHED_JOB_TIMEOUT,
+ 		.name = q->hwe->name,
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 4a3394566c24..6825a94029fc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -480,6 +480,12 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes_locked(gt_to_tile(gt), shift);
+ 	}
+ 
++	if (xe_sriov_vf_migration_supported(gt_to_xe(gt))) {
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
++		smp_wmb();	/* Ensure above write visible before wake */
++		wake_up_all(&gt->sriov.vf.migration.wq);
++	}
++
  	return err;
  }
  
-+/**
-+ * xe_guc_ct_restart() - Restart GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Restart GuC CT to an empty state without issuing a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_restart(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, false);
-+}
-+
-+/**
-+ * xe_guc_ct_enable() - Enable GuC CT
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Enable GuC CT to an empty state and issue a CT register MMIO command.
-+ *
-+ * Return: 0 on success, or a negative errno on failure.
-+ */
-+int xe_guc_ct_enable(struct xe_guc_ct *ct)
-+{
-+	return __xe_guc_ct_start(ct, true);
-+}
-+
- static void stop_g2h_handler(struct xe_guc_ct *ct)
+@@ -734,7 +740,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+ 	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+-		smp_wmb();	/* Ensure above write visable before wake */
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
++		smp_wmb();	/* Ensure above writes visable before wake */
+ 
+ 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
+ 
+@@ -1143,8 +1150,11 @@ static void vf_post_migration_abort(struct xe_gt *gt)
  {
- 	cancel_work_sync(&ct->g2h_worker);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index 02eaa452b400..ca1ce2b3c354 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -15,6 +15,7 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
- int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
-+int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
-@@ -75,7 +76,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct);
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+ 
++	wake_up_all(&gt->sriov.vf.migration.wq);
++
+ 	xe_guc_submit_pause_abort(&gt->uc.guc);
+ }
+ 
+@@ -1253,6 +1263,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
++	init_waitqueue_head(&gt->sriov.vf.migration.wq);
+ 
+ 	return 0;
+ }
+@@ -1302,3 +1313,33 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
+ 
+ 	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
+ }
++
++static bool vf_valid_ggtt(struct xe_gt *gt)
++{
++	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
++
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++
++	if (xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc) ||
++	    READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
++		return false;
++
++	return true;
++}
++
++/**
++ * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
++ * @gt: the &xe_gt
++ */
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
++{
++	int ret;
++
++	if (!IS_SRIOV_VF(gt_to_xe(gt)))
++		return;
++
++	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
++					       vf_valid_ggtt(gt),
++					       HZ * 5);
++	xe_gt_WARN_ON(gt, !ret);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 1d2eaa52f804..af40276790fa 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -38,4 +38,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
+ 
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index c1bd6fdd9ab1..f0bc45a782a4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/rwsem.h>
+ #include <linux/types.h>
++#include <linux/wait.h>
+ #include <linux/workqueue.h>
+ #include "xe_uc_fw_types.h"
+ 
+@@ -50,6 +51,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
++	/** @wq: wait queue for migration fixes */
++	wait_queue_head_t wq;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
+ 	/** @recovery_teardown: VF post migration recovery is being torn down */
+@@ -58,6 +61,8 @@ struct xe_gt_sriov_vf_migration {
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
+ 	bool recovery_inprogress;
++	/** @ggtt_need_fixes: VF GGTT needs fixes */
++	bool ggtt_need_fixes;
+ };
  
  /**
-  * xe_guc_ct_wake_waiters() - GuC CT wake up waiters
-- * @guc: GuC CT object
-+ * @ct: GuC CT object
-  */
- static inline void xe_guc_ct_wake_waiters(struct xe_guc_ct *ct)
- {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d07ff014492e..be7aa1e89d13 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1670,7 +1670,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
++			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 21a3daab0154..2fb628da5c43 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -76,6 +76,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
+ }
+ 
++/**
++ * xe_lrc_ring_size() - Xe LRC ring size
++ *
++ * Return: Size of LRC ring buffer
++ */
++static inline size_t xe_lrc_ring_size(void)
++{
++	return SZ_16K;
++}
++
+ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 -- 
 2.34.1
 
