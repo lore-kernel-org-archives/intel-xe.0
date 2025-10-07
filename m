@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E4ECCCD187
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84CF3CCD18F
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 13:05:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F6710E686;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F00C10E68D;
 	Tue,  7 Oct 2025 13:05:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fywgy+YW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4omfyVG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C3910E649
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F93710E674
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759842316; x=1791378316;
+ t=1759842314; x=1791378314;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=QKPLQk1wds1f31w0u0wVGqDsgyKDbKai5M+Kj+PsHas=;
- b=Fywgy+YWXJx3Qqn6/cmh9mjIlug1SYSc/p3rHmUgYa1FdeqV5M8OaKLB
- pAjcWJrMd50qckb/s0TSl6MAA04vjZ5PiI8CWglwO5sJ2oyuoYWCGNGpw
- UkZVIBbPx/4e+Oc0KoaRDrXv/R525JMWotD967QVaIlyGLv/M4MwiIfEx
- g8QPKXKgRide21urZhaBYMjS0xUqWAZ+Iwjzm8zpgMzcXB/BhyOldmDSC
- 1vJ//uFKLI9P4Myj23/51BIedphpLtf6GL3O3Dx904zxHUoXDPethLjet
- BMWwflAjciw5A8QRig1u0XpFbOV013A5oH3HTu8MEdHEQVvHcFBEnubq6 Q==;
-X-CSE-ConnectionGUID: uace7xX0QuekgvAIibo7ww==
-X-CSE-MsgGUID: 053WU95tTW+ZKa6XMvEKKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639849"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639849"
+ bh=9T8sKhTlg3s7TMaQCM3VLoLd1+u+HrVBKlGnuAnxFMg=;
+ b=Q4omfyVGDJnTHecJc3uU/FxnYrlGiotbLxLYvq2syjWhmGuPRbboGNU6
+ qcoZHnWZXTwFx++IaLnaVFAk2ExQJVQ9mkzsB0FCl1alqbRftg/J80vw5
+ 2jTknFue4BrPO0/TTgWn7hNfa6h0KZCnSGQgwP4B7qm8Vi2vk+pw52w3s
+ Vs+Y0TMBtmanACHzTiiWVRli2fZ6lW+4IStS6TlC8q858Tx2KPKuRLLel
+ OKgxLHp8FgxP+T+tvCIlUMFYwIVO22wDM7KWMPFmDa/sgoHc0bUlKTtqG
+ mUArTz8hmN3x4TRJrWktP4sHnn0vVAJ7u2oshlbSNu46HUMExk3Mi0VWn g==;
+X-CSE-ConnectionGUID: TjGKHxhNTsOwRee3cXVOtQ==
+X-CSE-MsgGUID: eY6nx2jSQ5qjJH1mnZdlOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639841"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639841"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:16 -0700
-X-CSE-ConnectionGUID: LI1fHWd2RdqrojQyGQjlKA==
-X-CSE-MsgGUID: wS7akX1ORciG5J36pr47hg==
+ 07 Oct 2025 06:05:14 -0700
+X-CSE-ConnectionGUID: FKkVZevZS32TXBVo2MUiaQ==
+X-CSE-MsgGUID: 0QUuZ8PHQ76NK3K4Kj/+8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576963"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576952"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:15 -0700
+ 07 Oct 2025 06:05:13 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 28/33] drm/xe/vf: Workaround for race condition in GuC
- firmware during VF pause
-Date: Tue,  7 Oct 2025 06:05:00 -0700
-Message-Id: <20251007130505.2694829-29-matthew.brost@intel.com>
+Subject: [PATCH v8 21/33] drm/xe/vf: Kickstart after resfix in VF post
+ migration recovery
+Date: Tue,  7 Oct 2025 06:04:53 -0700
+Message-Id: <20251007130505.2694829-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007130505.2694829-1-matthew.brost@intel.com>
 References: <20251007130505.2694829-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,38 +66,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A race condition exists where a paused VF's H2G request can be processed
-and subsequently rejected. This rejection results in a FAST_REQ failure
-being delivered to the KMD, which then terminates the CT via a dead
-worker and triggers a GT reset—an undesirable outcome.
-
-This workaround mitigates the issue by checking if a VF post-migration
-recovery is in progress and aborting these adverse actions accordingly.
-The GuC firmware will address this bug in an upcoming release. Once that
-version is available and VF migration depends on it, this workaround can
-be safely removed.
+GuC needs to be live for the GuC submission state machine to resubmit
+anything lost during VF post-migration recovery.  Therefore, move the
+kickstart step after `resfix` to ensure proper resubmission.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index d0666d6d12f8..9da3339fba69 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1397,6 +1397,10 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index d5819cac1bc9..1575ffaaaf52 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1130,13 +1130,6 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
  
- 		fast_req_report(ct, fence);
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ {
+-	/*
+-	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
+-	 * must be working at this point, since the recovery did started,
+-	 * but the rest was not enabled using the procedure from spec.
+-	 */
+-	xe_irq_resume(gt_to_xe(gt));
+-
+ 	xe_guc_submit_unpause(&gt->uc.guc);
+ }
  
-+		/* FIXME: W/A race in the GuC, will get in firmware soon */
-+		if (xe_gt_recovery_pending(gt))
-+			return 0;
+@@ -1156,6 +1149,13 @@ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
+ 	if (skip_resfix)
+ 		return -EAGAIN;
+ 
++	/*
++	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
++	 * must be working at this point, since the recovery did started,
++	 * but the rest was not enabled using the procedure from spec.
++	 */
++	xe_irq_resume(gt_to_xe(gt));
 +
- 		CT_DEAD(ct, NULL, PARSE_G2H_RESPONSE);
+ 	return vf_notify_resfix_done(gt);
+ }
  
- 		return -EPROTO;
+@@ -1179,11 +1179,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	if (err)
+ 		goto fail;
+ 
+-	vf_post_migration_kickstart(gt);
+ 	err = vf_post_migration_notify_resfix_done(gt);
+ 	if (err && err != -EAGAIN)
+ 		goto fail;
+ 
++	vf_post_migration_kickstart(gt);
++
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
 -- 
 2.34.1
 
