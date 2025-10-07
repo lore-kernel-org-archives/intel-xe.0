@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FEAACCA470
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AF0ACCD186
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3447610E674;
-	Tue,  7 Oct 2025 11:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A465A10E682;
+	Tue,  7 Oct 2025 11:26:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eBwKZ8Zm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6iG6Div";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5DC810E622
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6730C10E5D0
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759836407; x=1791372407;
+ t=1759836408; x=1791372408;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zRMWVz1uBzOO+c+7u+c3BPzlOO9bU1forizJQJDqwQA=;
- b=eBwKZ8ZmLoFrAoLmK1FOmv+2aJSBCwzTNFriR/wY+vb4mRsvfwGkD1la
- JnHJOTn0aWSA7n2tJJM+NAq6kgx2an2RAYdgY2uvBQl+60WBZvGA/SVdd
- 1iBHMLiUvlJ0kafw6/ma8xzMUke4Gi62DJc9l81NTzjtq5g2grYJRKjSb
- wsDT7RICtwAQKP1aybP54hHFWxUYQLYBJoVq4mFpiNCXqYpwSsZlYYrhp
- osBy7diFXGRl8pYB8uQPYvUZUw8r8dIOYfbP5OT9Ce385Ib6B+4C1KIfU
- 9cU83goTcx219bUofY2ExSDh2MfJdbDcJsyWGk+2nE9k4JOBFC6bOTkIZ Q==;
-X-CSE-ConnectionGUID: EymDF2KFStuC4YM6vf3tOw==
-X-CSE-MsgGUID: NLLuZs6iT0emIWDCCCHtqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660670"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660670"
+ bh=43DjX4XeIiEK7BpiQ6DzR5g7+04qzLTzYTq/hTp2q88=;
+ b=d6iG6Divu4jxePQM1hd+cooHT8YggFc44XW7n4WTzwMymQpJAhebqg1N
+ lZ8zPypOJztO+y2B0VrP/M8wR/tD71Gz0mMgrta6+0v4+DJGS7JI0Ehb0
+ Qx0Jr+25r4WdiQv4z/JlZSJLxnSYW/juQJNomL3hWiDHW87/yE+u2UT3O
+ 8Zxr6GR2+G464B3otFidk1F5JvWDHJd+AKHZ5yCcQtx/cRYLqQizccUiM
+ eBWsAmxcMqS8A9jG33j2h3teyh9UFFX+rUtVgl81u7qd/XvpB+EYuFzce
+ Xmq0CCA8lOSjD8P9GkVYdV6IU8F1YAaGsE8pRTJ7s4puJ7RjstmvX6J2P w==;
+X-CSE-ConnectionGUID: xfzLWhGOTqWngR8oLChhwA==
+X-CSE-MsgGUID: OgyIMCT3TxCsobkM1RNVyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660675"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660675"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:46 -0700
-X-CSE-ConnectionGUID: B3D7gYakTOWQIp5/XIjHRQ==
-X-CSE-MsgGUID: EqrNygu9TH2lR65K9QPzBQ==
+ 07 Oct 2025 04:26:47 -0700
+X-CSE-ConnectionGUID: 9VNgKKICRoay0yuN9HZkOg==
+X-CSE-MsgGUID: YQ8c1j+4Q36xsDFB3UY4AA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923985"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923990"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:46 -0700
+ 07 Oct 2025 04:26:47 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 01/32] drm/xe: Add NULL checks to scratch LRC allocation
-Date: Tue,  7 Oct 2025 04:26:10 -0700
-Message-Id: <20251007112641.2669655-2-matthew.brost@intel.com>
+Subject: [PATCH v7 06/32] drm/xe: Make LRC W/A scratch buffer usage consistent
+Date: Tue,  7 Oct 2025 04:26:15 -0700
+Message-Id: <20251007112641.2669655-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
@@ -65,58 +65,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-kmalloc can fail, the returned value must have a NULL check. This should
-be immediately after kmalloc for clarity.
+The LRC W/A currently checks for LRC being iomem in some places, while
+in others it checks if the scratch buffer is non-NULL. This
+inconsistency causes issues with the VF post-migration recovery code,
+which blindly passes in a scratch buffer.
 
-v5:
- - Assert state->buffer in setup_bo if buffer is iomem (Tomasz)
+This patch standardizes the check by consistently verifying whether the
+LRC is iomem to determine if the scratch buffer should be used.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index af09f70f6e78..2c6eae2de1f2 100644
+index 2c6eae2de1f2..b5083c99dd50 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1214,8 +1214,7 @@ static int setup_bo(struct bo_setup_state *state)
- 	ssize_t remain;
+@@ -1247,7 +1247,7 @@ static int setup_bo(struct bo_setup_state *state)
  
- 	if (state->lrc->bo->vmap.is_iomem) {
--		if (!state->buffer)
--			return -ENOMEM;
-+		xe_gt_assert(state->hwe->gt, state->buffer);
- 		state->ptr = state->buffer;
- 	} else {
- 		state->ptr = state->lrc->bo->vmap.vaddr + state->offset;
-@@ -1303,8 +1302,11 @@ static int setup_wa_bb(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	u32 *buf = NULL;
- 	int ret;
+ static void finish_bo(struct bo_setup_state *state)
+ {
+-	if (!state->buffer)
++	if (!state->lrc->bo->vmap.is_iomem)
+ 		return;
  
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		buf = kmalloc(LRC_WA_BB_SIZE, GFP_KERNEL);
-+		if (!buf)
-+			return -ENOMEM;
-+	}
- 
- 	ret = xe_lrc_setup_wa_bb_with_scratch(lrc, hwe, buf);
- 
-@@ -1347,8 +1349,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- 	if (xe_gt_WARN_ON(lrc->gt, !state.funcs))
- 		return 0;
- 
--	if (lrc->bo->vmap.is_iomem)
-+	if (lrc->bo->vmap.is_iomem) {
- 		state.buffer = kmalloc(state.max_size, GFP_KERNEL);
-+		if (!state.buffer)
-+			return -ENOMEM;
-+	}
- 
- 	ret = setup_bo(&state);
- 	if (ret) {
+ 	xe_map_memcpy_to(gt_to_xe(state->lrc->gt), &state->lrc->bo->vmap,
 -- 
 2.34.1
 
