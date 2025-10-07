@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0023FCCD195
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC9FACCD193
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 13:05:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6C5A10E6A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD5210E69F;
 	Tue,  7 Oct 2025 13:05:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8eu1FbS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFNbUwDG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447CA10E649
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E477F10E197
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759842314; x=1791378314;
+ t=1759842312; x=1791378312;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jcxzGh7kv1Uf/QJSgRIlUOf92xo15lzFCAgBuenkdpU=;
- b=B8eu1FbSbykTsNSQ9NFujYeX/GS/85Qxz56tqoJZgID3QLYR09ORKjRu
- m3bYSWQ7ORl0yGQ/kdK61oVfDLtL3Yjhmq5Ts8/9Ru0HmEg3oTk3TgqUz
- PSFI5vOSDFKLE0Wia1b/aA6IPY6UidhMS/oJFhoDnCDZEItyoJI3wlKih
- 3tcvUpEko76rviBJ8vY7oOf/lj6ZloBptVfQfbQh9KFoNn57T66Oqq1ie
- Y0cLcpstKaHCocKltwNVY6Q7oxFFVp5kU4H6zGHcggvifENBSQPq2MlHh
- aBVXZDwCqYikME4mSI6dIqGkV2Udjhr4toCEFW6DiH00I9vdsD1mXWJcq Q==;
-X-CSE-ConnectionGUID: VU2hRmgMS/G+zMBznNS7uA==
-X-CSE-MsgGUID: lxlJ5cs7RUqBKyoaRrG5yQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639842"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639842"
+ bh=dIk8TMicjtz7qPObrJCoUDLroKf3o/Pi+PRMX5hSss0=;
+ b=JFNbUwDGj6ufZcm3siGtxFY2AGPBD/QhJuvqj4GVGLR5y0cs4c5XH7mV
+ Pe6LFghoK6IjUPgeOCBPvQUjujxo6HLzRKcKb5lBA2oJeXiQvt1dX9OKJ
+ QAFmBw9NE3pENWnXGT4/bqDa2VutztkODBlxu4+UEn64FfD6XkFaNG/JE
+ VkR1Q6i1LVumIYEOTYVQLFnptmCYpwAje2l2Fo10vreIEi8MBbEm8kJoX
+ ALoJQ9hTSHOUfEG44vWo1lrHTAB1KxC/Ho2EvQcHRCTqjr7dIbS8oBt4d
+ LDQFbl0uujd+9SmpaurTU7zxVZdYwIWi+uTpa4tUGx1VHCCrXJ9PxXIUQ Q==;
+X-CSE-ConnectionGUID: 17L6J3NPRDa4I2xfDFmrFg==
+X-CSE-MsgGUID: J51rJHU1Q0Ci1AFyVeB/rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639831"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639831"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:14 -0700
-X-CSE-ConnectionGUID: FJIdNtT1TFOGafXzW0fjkg==
-X-CSE-MsgGUID: GRFtXJbsRDO0b76MCCkiCA==
+ 07 Oct 2025 06:05:12 -0700
+X-CSE-ConnectionGUID: siHoxPkOQ9CS/adeT7tiQQ==
+X-CSE-MsgGUID: cuLAwOsnRRC3bwXJjoE6bA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576953"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576938"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:14 -0700
+ 07 Oct 2025 06:05:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 22/33] drm/xe: Add CTB_H2G_BUFFER_OFFSET define
-Date: Tue,  7 Oct 2025 06:04:54 -0700
-Message-Id: <20251007130505.2694829-23-matthew.brost@intel.com>
+Subject: [PATCH v8 11/33] drm/xe/vf: Remove memory allocations from VF post
+ migration recovery
+Date: Tue,  7 Oct 2025 06:04:43 -0700
+Message-Id: <20251007130505.2694829-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007130505.2694829-1-matthew.brost@intel.com>
 References: <20251007130505.2694829-1-matthew.brost@intel.com>
@@ -65,71 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than open coding the H2G buffer offset as 'CTB_DESC_SIZE * 2' add
-CTB_H2G_BUFFER_OFFSET define.
+VF post migration recovery is the path of dma-fence signaling / reclaim,
+avoid memory allocations in this path.
+
+v3:
+ - s/lrc_wa_bb/scratch (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 23 +++++++++++++----------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fd2385635962..503cf5cb5d33 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
-  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 1a2cf58f5dfd..31a80d77da36 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1160,17 +1160,13 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
  
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-+#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
- 
- static size_t guc_ct_size(void)
+ static int vf_post_migration_fixups(struct xe_gt *gt)
  {
--	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-+	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
- 		CTB_G2H_BUFFER_SIZE;
- }
- 
-@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 	h2g->desc = *map;
- 	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-+	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
- }
- 
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-+	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
- 					    CTB_H2G_BUFFER_SIZE);
- }
- 
-@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
++	void *buf = gt->sriov.vf.migration.scratch;
+ 	s64 shift;
+-	void *buf;
  	int err;
  
- 	desc_addr = xe_bo_ggtt_addr(ct->bo);
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
- 	size = ct->ctbs.h2g.info.size * sizeof(u32);
+-	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_ATOMIC);
+-	if (!buf)
+-		return -ENOMEM;
+-
+ 	err = xe_gt_sriov_vf_query_config(gt);
+ 	if (err)
+-		goto out;
++		return err;
  
- 	err = xe_guc_self_cfg64(guc,
-@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	int err;
+ 	shift = xe_gt_sriov_vf_ggtt_shift(gt);
+ 	if (shift) {
+@@ -1178,12 +1174,10 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 		if (err)
+-			goto out;
++			return err;
+ 	}
  
- 	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
- 		CTB_H2G_BUFFER_SIZE;
- 	size = ct->ctbs.g2h.info.size * sizeof(u32);
+-out:
+-	kfree(buf);
+-	return err;
++	return 0;
+ }
  
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+@@ -1268,9 +1262,18 @@ static void migration_worker_func(struct work_struct *w)
+  */
+ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ {
++	void *buf;
++
+ 	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
+ 		return 0;
+ 
++	buf = drmm_kmalloc(&gt_to_xe(gt)->drm,
++			   post_migration_scratch_size(gt_to_xe(gt)),
++			   GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index b2c8e8c89c30..e753646debc4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -55,6 +55,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued */
+ 	spinlock_t lock;
++	/** @scratch: Scratch memory for VF recovery */
++	void *scratch;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
