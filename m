@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BB6CCD188
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EF72CCA476
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:27:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F0110E68F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26F2310E681;
 	Tue,  7 Oct 2025 11:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTINMzzy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n7HOMh01";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80A7A10E68D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C54F10E670
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759836411; x=1791372411;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=jcxzGh7kv1Uf/QJSgRIlUOf92xo15lzFCAgBuenkdpU=;
- b=CTINMzzySKZL0D3QU518MMLMLkLvXVUy06XBOz9Vpbdk4dBwegHJiHsV
- w7Zehl5ybIj2J8Wlr5GQuAzg6G3r+diHuDXM/+j8hz9k3wsYOT/28lNRt
- G0INBMEJMEpQVv5vW1WgPm7aDFX3XFVSc8nI/MIWd0c3d4RwhRXtO93RY
- T9OzR5P7CCvxCG3FW2s4b+GFWW9Hlppn0JwDk8/QgiopwF21b7Y/9kc9j
- 6o8bt/DDUD+QFBdFAMChxFMSQhd8qu67nbt7DW5O710Awb0FAW2+X74zS
- TajOiea/kcoR+Y/lOxBEXMeTeAkQhlIeO3DZ+mGG/hCcPVSREbitGbotU Q==;
-X-CSE-ConnectionGUID: gOl5T1bhQomCLVyMXlSBbQ==
-X-CSE-MsgGUID: pWxYLS/qRCy9PqFuKcmGTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660692"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660692"
+ bh=9T8sKhTlg3s7TMaQCM3VLoLd1+u+HrVBKlGnuAnxFMg=;
+ b=n7HOMh01uVrCYkAqRZgr+g5m7YRc2O9QYHxo6pgvrAheznuw0lG9j41e
+ oxkcf/JJ60OGEci+x1BYUZQBOo0jBH/Mk0drQ2PwBVdinsHy5t9jueH3v
+ YCwPZrsYBKK4oRcLUKvp1vJvtnMikNXAlpUirwa3ePC1lyb+QPehm9aZi
+ dv/UWQeBIwdVEFL6ZFWeMWLBNEQGpvoUvH5dJMn1csjWgw4+hTdT1ocVg
+ Zzo8W/gnQkybTX/F3OOZSC/qxGK2W5ZnsCSFhgt2+e7qM7jtNvRqaG1si
+ mimkR2R9hq69/J0qSw6/D6hO+ehd82YmPRXcIY5El+THtRV6OY91Ob/jW w==;
+X-CSE-ConnectionGUID: MIYQuHE0RLaaBhBbUI91aQ==
+X-CSE-MsgGUID: YBkaa6DcR+G8wD4cDGCdqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660690"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660690"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:51 -0700
-X-CSE-ConnectionGUID: jDT4Na9rTdKNFL9vSMKfiQ==
-X-CSE-MsgGUID: Ld5tgJL4QB+IEfAK2A6T1Q==
+ 07 Oct 2025 04:26:50 -0700
+X-CSE-ConnectionGUID: JNqKZ7dGQCu9yeEslnKbkQ==
+X-CSE-MsgGUID: n7Q01RlFQX2zQ6VY26uc7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924014"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924013"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 04:26:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 21/32] drm/xe: Add CTB_H2G_BUFFER_OFFSET define
-Date: Tue,  7 Oct 2025 04:26:30 -0700
-Message-Id: <20251007112641.2669655-22-matthew.brost@intel.com>
+Subject: [PATCH v7 20/32] drm/xe/vf: Kickstart after resfix in VF post
+ migration recovery
+Date: Tue,  7 Oct 2025 04:26:29 -0700
+Message-Id: <20251007112641.2669655-21-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
@@ -65,71 +66,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than open coding the H2G buffer offset as 'CTB_DESC_SIZE * 2' add
-CTB_H2G_BUFFER_OFFSET define.
+GuC needs to be live for the GuC submission state machine to resubmit
+anything lost during VF post-migration recovery.  Therefore, move the
+kickstart step after `resfix` to ensure proper resubmission.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fd2385635962..503cf5cb5d33 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
-  */
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index d5819cac1bc9..1575ffaaaf52 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1130,13 +1130,6 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
  
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-+#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
- 
- static size_t guc_ct_size(void)
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
  {
--	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-+	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
- 		CTB_G2H_BUFFER_SIZE;
+-	/*
+-	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
+-	 * must be working at this point, since the recovery did started,
+-	 * but the rest was not enabled using the procedure from spec.
+-	 */
+-	xe_irq_resume(gt_to_xe(gt));
+-
+ 	xe_guc_submit_unpause(&gt->uc.guc);
  }
  
-@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 	h2g->desc = *map;
- 	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+@@ -1156,6 +1149,13 @@ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
+ 	if (skip_resfix)
+ 		return -EAGAIN;
  
--	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-+	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
++	/*
++	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
++	 * must be working at this point, since the recovery did started,
++	 * but the rest was not enabled using the procedure from spec.
++	 */
++	xe_irq_resume(gt_to_xe(gt));
++
+ 	return vf_notify_resfix_done(gt);
  }
  
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+@@ -1179,11 +1179,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	if (err)
+ 		goto fail;
  
--	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-+	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
- 					    CTB_H2G_BUFFER_SIZE);
- }
+-	vf_post_migration_kickstart(gt);
+ 	err = vf_post_migration_notify_resfix_done(gt);
+ 	if (err && err != -EAGAIN)
+ 		goto fail;
  
-@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo);
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
- 	size = ct->ctbs.h2g.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
-@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
- 		CTB_H2G_BUFFER_SIZE;
- 	size = ct->ctbs.g2h.info.size * sizeof(u32);
- 
++	vf_post_migration_kickstart(gt);
++
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
 -- 
 2.34.1
 
