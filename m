@@ -4,167 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D1BCCCA476
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 17:07:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FF0CCA476
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 17:08:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED3C10E6F4;
-	Tue,  7 Oct 2025 17:07:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A09E10E6F4;
+	Tue,  7 Oct 2025 17:08:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G2yB2DK5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iH926qaF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B984D10E6F4
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 17:07:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 126A110E6F4
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 17:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759856856; x=1791392856;
+ t=1759856934; x=1791392934;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Fkc1H/6u4jUWH2WS76QdrpNp4yvEy0eg6mJ5Hwam3V4=;
- b=G2yB2DK5OG2z9FbiDb48Hw8MdLb5/0SkPIr77RaqjsXn7mXbfqQh9uXQ
- NCsV/vwsqJEtHqgGQKeJDgMT8cnnJwcmGlDpQuH0pCBiG0DYIjiscUrb/
- Gx5V23HorQHFEbm2w+hb6wXAFB3YX0TWQa5ymjoSmfdwpLJ9W6KCWoy3G
- azPYnf7n++bTnNkWAbjKZAyDZQYQx9AL1aEbbGcf6AgaLLTpUKobQXnI6
- uziOnsV/O/YSAosCc0IGp5JL3aVMq+emjNuMKY+H8t27HzFc9ueisXB0y
- DZU1JZhHeIxs+A5D2CTMGDmm1oZ9ucnh64aiTmhwnrHHlrrWacGKCUD60 w==;
-X-CSE-ConnectionGUID: QXVB1MxmSXOPaW/4ujH6kw==
-X-CSE-MsgGUID: TiWHlhDdS6yte/5EvmDMwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62081308"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="62081308"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 10:07:36 -0700
-X-CSE-ConnectionGUID: C16C6l5pQdmpfgX9uXtiRA==
-X-CSE-MsgGUID: uDNJpvY7SjeXILk7LbY25A==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=uW7rP36SUECvpKcqE/fYgwowGARV31NXyay7AzeE498=;
+ b=iH926qaFCDQ3DxP5IMRX2G3MunNtpFBIiMnmtR+JV7I5ozqrkGew42B9
+ jHHFcCup9om4ttEYz7RPhPxBR3JoONSQeL41P6mc8yFCrZZ1IdbhQLs5W
+ RwVwOO3molXKejMVt2cLrxXclC8lis00krzUkg6l+fxzs+8WR5r/LzqJK
+ mnBboBu8ftrD55qtYSfC7tGr3ouDT+z2+8dyvOpKTUkqbdKTlA16FTMpn
+ OlLE2idMA5WvX2Mo03aYSn+1Tv4j8lrJ1K8YfsGRx3y2SO7ecmO8yi+v+
+ Wq1FtIVmk+m61RflhWWpT5Su03zz97liKiTHZTrbPk1ci2kh9CeVh8Y6o Q==;
+X-CSE-ConnectionGUID: IFbu15byR3myl/hGzUubqQ==
+X-CSE-MsgGUID: ILxu1jEuQVe820HAHF1hVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="73470350"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="73470350"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 10:08:54 -0700
+X-CSE-ConnectionGUID: fviX1ruSSNqneqegH73bug==
+X-CSE-MsgGUID: xz4TmQxFTiKYrcbtebg3cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="184478865"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 10:07:35 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180618179"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 10:08:53 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 10:07:35 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 7 Oct 2025 10:08:52 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 10:07:35 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.16) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 10:08:52 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.27) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 10:07:34 -0700
+ 15.2.2562.27; Tue, 7 Oct 2025 10:08:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W29M2qEHTT2k6RzTvPOEDwzxsAb5NnRT0xUcPcf6WuARsbve/+JxuFvHKM2BoXcSLKxQVs8q0V8FiFyI1RYCD2i9CqbLI0UfZ9cssA/zHBDHN+ckjTL9Xd+ttht2bdElh/7IQFBeNlqF9Hc85LYJpLc27YqdKN/8Z+xtpk5zzihi0tVAgGvBndC/r2O9QAMffG9fNJI5D+4dZ9/dGipzOhxMm5EihFxnBIknwi71dK/8i5rkBtrx4pML2iOY81XqbzNrMpSgfvwoZX6wYmBwH7mgWmM8G4sVMmlo+yEA7F/0bD2nwOQGmIzxKKHtfc2/SiLefTCz5CNmsEDVDvIX9g==
+ b=I/qgG3KOPY+CRb35yy0x65KuAdNePqhQEuoc4L7VBUbpN5EdzI9pV88/scG0xpw2IgBLoLDz30lAspkbzVtwdd3MiENLHu4kemkCs05TPpPCA8IbKmOwjTktOoyI3aKJnKMN6U2X5X29za/5z5SzWe5wHkeaTJ7Vw/f/0HAxOVyMebrMckwwZd34qk2aTmWRN2Gi//aBxyC9Vu2F7gwUt7+hTVr8toip2I2ctjzcZyVxAwlAFUgwrELW27UWvuAAmgiidhEOb2n3T2wBXpW8+OMolNj36xgxDR+129g23Wy2Or83asGvdXumD4pH9c7WRzenGSWm6so8PTg6KIBwyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W1Qb+wRqTHHtinysRD5qqiBva8u/cSI0Ypajd8ZFS3w=;
- b=NjDHNvP+P8heBT8iD5ifdFtBoSjjDF347zwBQ7algaPUGNKUOr5g8ogfEVss02GaOQTyhBI/0sI51GmBGkz729n/Ga2dHn9IVSSJFLZaKvWOsa9B1OPujam9Pn8JqoBoxVeph+4U8kAmFlSmReECF8yv39AGEj4biUyaAtGTlI1oSiQZCTm69Nnvu/2TR9l7zuKiOovWanrQGos1dRNMknFmsjSbSz33+/6eQt440oUYF9Q9nuivmJLCVb9h3OdmJ5VmgSZ5vpPqfleBSXbdXBwD/5eIzdkbgQnqzHj206+EDndIr5aqvWJ15ehp58S1fY5hfjJZqXflMkW+Y3ufcQ==
+ bh=1cIM9C2TdaIlgK0As59sN6bJ31nFAE2JmoUQFyf+eXw=;
+ b=dkuvrEouGystT05sZ+2ScKk3Kd0Z5lsthBGFqtESk0NocRKtSrNFzUOqHN+f2s3+LM/+NB6y/A2Kjx7fhQzhNSUPiBR5kWn9p5SqtMnv/jUK7M5bSaxUhFxG72T1zLDV8vrTi+t0vwY2M6wrAkNSauUy8lfAcoFyDDN71e5goBEyHMaY+yYAWcTYc3oLt6ZlLvNSsN3QnHtW36Rs1VtqHVkya2eOiTgSSkLjLImJDrjuMoi0TC7LBV5aePJUigZeCTwC7Vg/eXuZkjdKNbeltOad2iMKyS57ALsLtKZMwOefA4AeEUxIHEk+0nBnv0XWkfTrd8EKd8tMv99dBOHG3A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH7PR11MB6425.namprd11.prod.outlook.com (2603:10b6:510:1f7::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
- 2025 17:07:23 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.20.9182.017; Tue, 7 Oct 2025
- 17:07:22 +0000
-Date: Tue, 7 Oct 2025 10:07:20 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 07/23] drm/xe: Read VF GMD_ID with a
- specifically-allocated dummy GT
-Message-ID: <20251007170720.GD5409@mdroper-desk1.amr.corp.intel.com>
-References: <20250930225618.140071-25-matthew.d.roper@intel.com>
- <20250930225618.140071-32-matthew.d.roper@intel.com>
- <0ce62511-3c46-4d1a-aef9-8c5f5a4f4d0a@intel.com>
- <175940901218.1952.3042709661416045697@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DS4PPFACFC9C99E.namprd11.prod.outlook.com (2603:10b6:f:fc02::47)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.16; Tue, 7 Oct
+ 2025 17:08:41 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9182.017; Tue, 7 Oct 2025
+ 17:08:41 +0000
+Date: Tue, 7 Oct 2025 12:08:38 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Dong, Zhanjun" <zhanjun.dong@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <michal.wajdeczko@intel.com>
+Subject: Re: [PATCH v4 1/2] drm/xe/guc: Add prefix to guc log buffer macros
+Message-ID: <ybfj4vmezjeg4wyyacyluri4gznmahrpzgk5nn4db3ma32qmai@wvkya2ufpvfu>
+References: <20251002150302.99524-1-zhanjun.dong@intel.com>
+ <20251002150302.99524-2-zhanjun.dong@intel.com>
+ <pfqh62crf6qveer36aofmwom2zh7ihvqezaedmnsvb3lof7rjk@rnkpsetbrsb6>
+ <b8f3e9b3-5665-418b-ad21-eac33886ebce@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <175940901218.1952.3042709661416045697@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0197.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::22) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b8f3e9b3-5665-418b-ad21-eac33886ebce@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0250.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::15) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB6425:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f5da3a9-e45a-499c-7470-08de05c3fb56
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS4PPFACFC9C99E:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51ca7f96-1b49-4406-4f0d-08de05c42a03
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?T943SonlgGMYD3MmgfdGkzr7lr/2GEd2exYtoz0x9j0TV9Bln6mhEJrQ698F?=
- =?us-ascii?Q?8dbj/lQaePH64eM4WFnJ4bgzCnMRLzMVY7qMYHdS2pbahi8VVoRWNcG7aqid?=
- =?us-ascii?Q?emeKuSeaIFWZKF9UL/va9wezg4ouuWXdZXkZXKTo1f21xckQfZgUi58IkAzI?=
- =?us-ascii?Q?HjEC/wKZ6qRuYa1vcbDxiQDw1/SdA/pWoLd4XfTHfTyJa2OEiy3prgNEOFXR?=
- =?us-ascii?Q?MiSYkfBkRCG9fR39AYLmBBvUWCZYiIMiVegT7Ew3ryUrU0+NRht04w/8Y7yX?=
- =?us-ascii?Q?cCZD2Z1QJ5wxQ4xJXbc7m5TZLZ7TYXrwwHdF6x8+qyG9jQctXqIsK0KEySWj?=
- =?us-ascii?Q?9WtZ7pPJ27Uw0yTylM5+yD5MjDAELA3RCvgrfwdRikvytJlMGkYtC+QTnbWT?=
- =?us-ascii?Q?A8qFSORc7uI2yqjsu5VDRxumhvqfb6p6dxUHo+A+8lk6a/7TYkGt48Lv+7N5?=
- =?us-ascii?Q?0OOLcdmyNb0PHWNCM5WAclDyxahTUxx1Qoq/r/LHG72W9C8WBYPfDR6UGmsv?=
- =?us-ascii?Q?2JfGD4vkxHfH6dv8b8jvv6fJnk+szqjmglt8di/COqsx5qz82c6aiYov5XY2?=
- =?us-ascii?Q?yBRty29V84TNVPon9x+7dVJmZ2D+q5LJktM7XdRTbdS77u81H2J4FU61sIGJ?=
- =?us-ascii?Q?lBNq2DqbUMN+13Lau0GQRF+hZkSdYebXAhjKb5tMbVQu0/MBRukV3f7eguY9?=
- =?us-ascii?Q?DKpDI+DhV5le+j0cQdnGuYrSaMhaOKdkB3ZXcHF++jNV8Xx1mHgcDVpfrHEP?=
- =?us-ascii?Q?uBpkJ5oKMBfgUEXn2gZo5HuQz3XhmLrkwC994hv6CAIqhCBYo2Dw4LjRlzs4?=
- =?us-ascii?Q?Qr37ZIyTxbSWr70feXkUbfp66MkmYrn27QUgXSLBiY8k+iYKYzrqetnR2xOw?=
- =?us-ascii?Q?CdPvhg/fRc1cwKR37bfgidJDPj6MoqevotZXCDk3/Qnd8ey2w6D6Ajht6Sbg?=
- =?us-ascii?Q?3L9vjvta88pyhgh5xKN7/k9qUfbkh28F4lVsUHGhlSCco469LlQQ9/eLEIbo?=
- =?us-ascii?Q?MIjHavr20KShx8wHcUC4jyeir5LJQH3JYXQNGeZwWDhoEB0FTjaVC48U3c7q?=
- =?us-ascii?Q?/Z4OrFAVAWPS997B1By+6uQDeceXHMLxI+jGZuJCfSvxcXlcjFQXgDcxd9Rb?=
- =?us-ascii?Q?BgSbOmlVf5K8GjNrbciOSKcJha1yVWfXwucyhAo+R8n+SJScW3YK5hdmASm6?=
- =?us-ascii?Q?icWt6sk0DXdxGTqGcIHNOwNl7jtvKXmvdeXpLixveema4D13cSK+JH7w2A51?=
- =?us-ascii?Q?hueJprbGm4YKhOSf+3WPGMUFKIIgvog0W696GQRr/WQrGIenNus/iCI11Fs7?=
- =?us-ascii?Q?vX0/S5JpAMgEhpg312/QocjRghcJ01ooJ0ZsrYjP0sR2edkX6tuVr1/W0ouZ?=
- =?us-ascii?Q?ki+L4xgBfeY2VhSs1Hulcj/I7CQOcUqpwE6/VdbFcL2ki7jxBfjJbJF2/xdy?=
- =?us-ascii?Q?Yg4VIlSImWOOrRNzz3fGohkOLaDE7yac?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?MyyCSlXwisF3HmIb3OWA2/MhK9tS3QVQPY3fFTNqxElaLEDxzf6qMEY6ei?=
+ =?iso-8859-1?Q?OtziDlcUKHnljfQ7ljivzmWb9aMcUnVqwG9YVdW4lXO12bFdhNIzRuZxhD?=
+ =?iso-8859-1?Q?rqf5IPc/8ofDphXeL0y2QvgF2fuR7EgbW60WFyLxq5SvPe/JpNB+DcPakJ?=
+ =?iso-8859-1?Q?bWQJNBotfcd3eWMC/xlAIwwb7n/8qg+BzjfYgrYPVSB/CCuzUzpUHVr3++?=
+ =?iso-8859-1?Q?iIUup3XPE89Ozo/2jdAwqBA7k7Pc2u0fp8Yywsyf1ZQvuuDRbeZan62kls?=
+ =?iso-8859-1?Q?UQdptM7fhrp/XDqbnBTv8Fzwp0LnqDw61747ETDkTMO4wuMemeayiW8Eaj?=
+ =?iso-8859-1?Q?bzCYJd59T1ZSPVnuVAzN8LWav4/gcfdenR1kSi5toBmKH3lDpzjJ/YT8mv?=
+ =?iso-8859-1?Q?bl6HtncVovXhs93/81HwowfVyxiOreQqmiSc4yDO41qkS4r4UJBL9Wx/k0?=
+ =?iso-8859-1?Q?9v7iCjFhjXm/O12FD3/ZY409NH9/Hvl2pbJa9Spr1/IZdLBzft27t+ATex?=
+ =?iso-8859-1?Q?AUWm/W0jw+cSmZ5pI3dzjHmjNgndqQ+d27iAqEAaKHSnS5Htjkm4V+fVSc?=
+ =?iso-8859-1?Q?fQZ7G+TCCQ3KRoX50YL0owVsX0mVAt3BUd6164QWKNXCQpOYoyIQVvQntA?=
+ =?iso-8859-1?Q?I6VNVwc3dPwF4bwRjjgY+Jzg+guCKj3KVBTQ7z15mVF+ZHdEJjtd50athG?=
+ =?iso-8859-1?Q?1LoNqpFBbbZ4uTpU33BjOcofFx/Rc6ZqlthAddSrjQfhfhurCupymFJnC8?=
+ =?iso-8859-1?Q?PAx5fAWwf3lSO58xkehH5lx897H1xPz+pnh2jxmaFxu4yNX3Bok+vuEkIL?=
+ =?iso-8859-1?Q?MLedCMPhVCmDHRrIewnCitbTpH6hjitEWCmN1RGJdYAtHhHxdlpdXgGJk7?=
+ =?iso-8859-1?Q?Vh2ulZvyFKa173/edpGFwLrrRz8Y6ZuCr5ziqNI5foBg6f0nexI/gCvJEc?=
+ =?iso-8859-1?Q?W9aXhXy3upUHCPCKi+y5j3fRtF2FAZ8Q4MJpH16rhrcvd1qNK3/37DKnjj?=
+ =?iso-8859-1?Q?5Rjfmnzbb6r2RMNzsPi6z2hWmN/SmRFrfI/KmJO7HCi7JOWfqKe2H+Hwyb?=
+ =?iso-8859-1?Q?+F2WVh5eJpDmOjSpsq7nfgZnV40IarNKm0KNCOxSBptRWAgwZxnU5BaLxH?=
+ =?iso-8859-1?Q?leSnu4bEa/Qpc18vlXf1BYsxavU3OMlVf2LkZQ5sSrPXVRVOMyTJTdojkU?=
+ =?iso-8859-1?Q?rtvy6J+VEwThBNS7SeixxmhG2sNB6PwOrDr1mz+Be12yjCh/ryuOo7yILg?=
+ =?iso-8859-1?Q?YWG7m73GbO54KImNs5Pm77OUfDm7hnal2C2au39TgbYF481i4/wEgLbdr1?=
+ =?iso-8859-1?Q?14KCQPG7DMX1Smf+Qo757DvzDya5MbrYwFleDm/lGKOGTg2RTzBiJu6zWa?=
+ =?iso-8859-1?Q?J19H/rmIUOtAaKJtRt+3VO1m0l/JwIjspS93GEr6+hVjraGm1ZcVIbaGbv?=
+ =?iso-8859-1?Q?MqNt/h/0aZReZsk8xiC65Kw3XWEp7oRZ4foBdjmS1HL4AAWIrz0uRrnONC?=
+ =?iso-8859-1?Q?u51iMBNIDUNplLIVSjOiTq?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qQpQia58hKui6hvTVqz2RMeST4YR7QuUk8WVXJtGCkplW39ajoFVodLTOwVl?=
- =?us-ascii?Q?Fvn7ccd2ESCj+4OCbbmE/0vS7T5FDyyJvdvSCISIh5zWkhQyxmxqQnstXC7s?=
- =?us-ascii?Q?MlNAe1dLrcCY/eUtdLWRLzl+tkz2kGhNjsSvQ+07l09nNuIjnUBdj3tMI/t/?=
- =?us-ascii?Q?Q84CS9FFjve/5zBsn3abEr9TBMhwNqpBQ/2cWTrOgxLN41L2MiGNum2K6Nr4?=
- =?us-ascii?Q?QBuZBXmhunZ6KAGfuQYeBCDhaBKuDbq211+Xo4HFwzLpEsliFCo2QjvATkzz?=
- =?us-ascii?Q?2K+7j/9Jxo2nH+1bk4W8f8eEzMudyI0M7XSIr6LIwgQ3UDTAjKQlZmzzLFSR?=
- =?us-ascii?Q?d2CLfFmpfMUXPSPJRAk+Pp1/UyA/fKGFyCH5xmiQN2sEPYLJ2Eo5zTMeGv5s?=
- =?us-ascii?Q?zJB6/A2Cm5+NeE5G7qlJgV+oOzmXRzJGZ8RIf6l18Ig13RAT2hKwiVWR2Amj?=
- =?us-ascii?Q?JOY7ov4Cph2MuBEYb7zJiSRBkVO3TOKGrL1cZjmi7FPVLS6qPvW4KhYieRlS?=
- =?us-ascii?Q?+uW0o5qnCIcVYqUssGjDxsl2jQyH09n0aGDCQ/bi0VI5MZnVJM08oIG4f5lB?=
- =?us-ascii?Q?cMCjC8z904DSkKXml4dPNpDLso7cXGRYa3wBPu1CpIATtunjpJEAknMbMQ3Y?=
- =?us-ascii?Q?eTeLRtYcpdKefn1sgY/rtJSNDryUm/jq0d0ui3mXfToo1L77ekLSE0LrTd+4?=
- =?us-ascii?Q?zQmyXFU0prpmTzErfT2J4XiDUJ7k/LY5/SD6QmAZjHvNDh2P1DmQtTC6Y8q4?=
- =?us-ascii?Q?HsD+eQOUXe5cpeKwJHyd8LIOhEUh9b6ye0JtL02xidmwqZZFUweeQaCVg6Gd?=
- =?us-ascii?Q?FnOTLYwcFux7OM8bmya0kGWdjXgUfGBF+HUVyY9/gC9IMVXreh6fXma3tu+W?=
- =?us-ascii?Q?JcxKlyyrMFZ+KVbRe0GeUkHnyY/lO0xb5kN6UrqHdP1elVo+M/tgx8G7CGkk?=
- =?us-ascii?Q?O6S+M92t4rkJ9Qq0x9SKDDlZbgVQAZJixBNvSGTLWkLHSUeNKTvR5zjQRKJJ?=
- =?us-ascii?Q?DPDyVIFH4AR56CAMAAfQmVLwvze1rCs24osuPTNWT7ECc/ZQ9pD8dm6/Q1OC?=
- =?us-ascii?Q?LYTcQSY8ZhUqwx3iApHgFsW28hKz1DxNetcIcBlbo9Z3/F/j9mAwWfDrIA9/?=
- =?us-ascii?Q?l30djnyzdwNkdUekY5OiwjQVtXKN07HyaLfOZDHoRq8SxlCRnQFE/oa5nSLu?=
- =?us-ascii?Q?ID+6o3kQn8fVgNXemEfcr4kB2yj6bC/oPTLpngNxyVEoYrzJMStchECu3RSg?=
- =?us-ascii?Q?IQATmxt/fyVLsXqAn58aNGZCDYyfQOc6ZQLuLgoZHmpa7/L5SHqqR1thg4RG?=
- =?us-ascii?Q?l+IRJthaKA9HllIWiGIQNfEqN1xImBVWrB4UvQGTuLbKHPLHR4QEb0y8OJBJ?=
- =?us-ascii?Q?YBqyGonfYEEEgUVPx9iRfls7PliLEZLXPxO8x80Vipv/o/kOuXEvFcbWpRaU?=
- =?us-ascii?Q?lSwdcy6byR14abkDUYoN3xuHzLDFbxLT7xbQKVJF+Gdw93iSnowqiAcKXtDc?=
- =?us-ascii?Q?Thr+mVEljFs4S1S61zUss5JAM0mT4zqABcyAOPgU3ZwppPATC2D/iKF0enYW?=
- =?us-ascii?Q?GhULCUUT0QHX+yPWYsSZqXBn8aOyepv5P+4f/eM8Z+b9osOXQVu1ZwMwIgQM?=
- =?us-ascii?Q?Hw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f5da3a9-e45a-499c-7470-08de05c3fb56
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Fbr2B08LC542V/ajtBKoOC7nAwBfgOkSZfOCug5bQDX7oVDu8r8j2KiSV5?=
+ =?iso-8859-1?Q?/4XLLbpDp8qo0myolVsyISqzZDUgYvEFEIWNxu716DipJxwqVJyH5O+ANx?=
+ =?iso-8859-1?Q?DVFFRkzsv2QzV0I1jr/LtPiF16FgCABY6GStQpAgIdT9c5sk1/zbseUdA3?=
+ =?iso-8859-1?Q?HtrzUw9RKvyLqxYGlQLYg3KzMiDpW+Zw1MRFdkyKMBqc1k5FxFb9Ga7Rwe?=
+ =?iso-8859-1?Q?ETtQnXKzBxtlerVoummPtDfpbo0EBwZzWe5V95IYSGyGAKJ5Q+dkzbRxKz?=
+ =?iso-8859-1?Q?Jk5makC626vMd0IcfBzjFIFWmA3YsAETg9vgaDfR2aZmpzTYiLE2sOJiIo?=
+ =?iso-8859-1?Q?z5dfiJCSCOpcr6mo7M84DtMCguJNEAGF3XnsP39pg9JoxtjyWb0fXByhwN?=
+ =?iso-8859-1?Q?54K+KhWi/yTcMx2zroBJYoN8+GLOp2OJ8BaA6ZWXMMyIJCeTMc429jGtym?=
+ =?iso-8859-1?Q?hwVeOztzBeaxVGv3Myjz9LRfdHdi5NSRTjv028jw7wCxme7NXtpVgGnuqN?=
+ =?iso-8859-1?Q?/sWBNG9hSPid8xN6pREbHLcRUowCPTy8kzJxdxxFpGLrlxOUHE+FRjU5ig?=
+ =?iso-8859-1?Q?0iK59SYDCBVXyoqpRNorIU46xd8kGO3JIlUPReIO5rMhBH1ALzJGpSKGcA?=
+ =?iso-8859-1?Q?wh2Ocefl1FNkuRdxInSxp3/JFWIjKDMbGynTTTwUofUT5CPKK+k/PHTbfI?=
+ =?iso-8859-1?Q?4eamkMXfDRP8JprOn5c/d5Y6hcR1jl2A7jMWVBlUB9MHdSwnwTgoVRSxw9?=
+ =?iso-8859-1?Q?U/IwuYSY02dF3KEgtDGESOIT13T8hSFqzv5v8yL6KgHsIjTW2RRuH4R1Ix?=
+ =?iso-8859-1?Q?kKR0Lncxj8TCWiRkz4urxrPb2c//OJSbJ+jnNBC1BFgmuYIiuzFeB+6spl?=
+ =?iso-8859-1?Q?QAXD5W7q1FMgc01j/TFEAN8aTpN269EP81miH88eL2iskBVYQQU2IiYhtN?=
+ =?iso-8859-1?Q?A+2L0u4z/r5BTpIt3sNiwvTUTMhqahkLyhz+ZYR9q+K0AXbfRRuEWfTWxs?=
+ =?iso-8859-1?Q?0q2wnw31pF0zxV2yiBB6b3UDyawcUHxfykq7RMRQ284hOuvxiIMmf5EmP4?=
+ =?iso-8859-1?Q?wLgTUTa0zp9xIc9eTdN2nTznaJJGqyErQIA0YxcEXuz2s+wgcgQu6sdNIR?=
+ =?iso-8859-1?Q?U0khYvZXYb8ck0cVVCD3TSwGMNWD85G49kwJefb3r6vH9MT4YIEpB/XbHj?=
+ =?iso-8859-1?Q?RwNPMVOtowMCe0Km2ZczVkEcTJz7ZPmxvehDDQwwHQlUb6R1PSt4DaamLn?=
+ =?iso-8859-1?Q?lWn3IlFId68R7fA5H8l1OwW2PIwnab8lEVZm+QTNRybI4AuoLE+yNQfe7x?=
+ =?iso-8859-1?Q?8zhr88Muk3Dv1Ch+VcoIe15OChhk4VpFMlDiDf30ETBYcVlUOPdHI7xlEM?=
+ =?iso-8859-1?Q?9teFG3l2EuHA5mfD168q4U1kQjF6DAXaAVM06RhyrRxTl4kiXNafrv6ufE?=
+ =?iso-8859-1?Q?ZzSigMdkE3LecAb2+JbXFHflXXbOUiDXFGNAnNZ/jZgzQR7aY55DoOc9gn?=
+ =?iso-8859-1?Q?tyCIX+6CQw3UShp45ESeeIvBBUDfqqKZU6SVtbVk+yAqgAqrNtAQlOXRlX?=
+ =?iso-8859-1?Q?6eOdzc0mM4D7Ol4nlvyS1nuIqKBhF8WyPaigVjdZBiCgWHpAvhCY1rvwbE?=
+ =?iso-8859-1?Q?zZvor9+wUHeIWdVBLKGVDGPsRu45Tdul36eJLELo+QjWxTt2r2hxbqfA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51ca7f96-1b49-4406-4f0d-08de05c42a03
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 17:07:22.8828 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 17:08:41.1624 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vUmN2udDhnwJNqAgrxnbI/nt8uwirreAffKg+IEDdMIHRU6Musjvehs8/48j2DQ4t/gSFm6eh1QUgl9TEJIGj5rEHdijw3BLJpuxpp9Epb0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6425
+X-MS-Exchange-CrossTenant-UserPrincipalName: MRSwPxBfa50gLTbd915HQvODVtRLa6YFRtIm0embHS98ZyVsYFgGYnKR3yi3vJ9NtEaGoeDK2HWMdK8LCJoacTILiBOyL6V/UyJpoZ0lgpI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFACFC9C99E
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,250 +181,328 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 02, 2025 at 09:43:32AM -0300, Gustavo Sousa wrote:
-> Quoting Michal Wajdeczko (2025-10-01 07:07:04-03:00)
-> >
-> >
-> >On 10/1/2025 12:56 AM, Matt Roper wrote:
-> >> SRIOV VF initialization has a bit of a chicken and egg design problem.
-> >> Determining the IP version of the graphics and media IPs can't be done
-> >> via direct register reads as it is on PF or native and instead requires
-> >> querying the GuC.  However initialization of the GT, including its GuC,
-> >> needs to wait until after we know the IP versions so that the proper
-> >> initialization steps for the platform/IP are followed.
-> >> 
-> >> Currently the (somewhat hacky) solution is to manually fill out just
-> >> enough fields in tile 0's primary GT structure to make it look as if the
-> >> GT has been initialized so that the GuC can be partially initialized and
-> >> queried to obtain the GMD_ID values.  When the GT gets properly
-> >> initialized during the regular flows, the hacked-up values will get
-> >> overwritten as part of the general initialization flows.
-> >> 
-> >> Rather than using tile 0's primary GT structure to hold the hacked up
-> >> values for querying every GT on every tile, instead allocate a dedicated
-> >> dummy structure.  This will allow us to move the tile->primary_gt's
-> >> allocation to a more consistent place later in the initialization flow
-> >> in future patches (i.e., we shouldn't even allocate this GT structure if
-> >> the GT is disabled/unavailable).  It also helps ensure there can't be
-> >> any accidental leakage of initialization or state between the dummy
-> >> initialization for GMD_ID and the real driver initialization of the GT.
-> >> 
-> >> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> >> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/tests/xe_pci.c |  6 ++-
-> >>  drivers/gpu/drm/xe/xe_pci.c       | 61 +++++++++++++++++--------------
-> >>  2 files changed, 38 insertions(+), 29 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-> >> index 0f136bc85b76..969f1dacade8 100644
-> >> --- a/drivers/gpu/drm/xe/tests/xe_pci.c
-> >> +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-> >> @@ -307,8 +307,8 @@ const void *xe_pci_id_gen_param(const void *prev, char *desc)
-> >>  }
-> >>  EXPORT_SYMBOL_IF_KUNIT(xe_pci_id_gen_param);
-> >>  
-> >> -static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
-> >> -                            u32 *ver, u32 *revid)
-> >> +static int fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
-> >> +                           u32 *ver, u32 *revid)
-> >>  {
-> >>          struct kunit *test = kunit_get_current_test();
-> >>          struct xe_pci_fake_data *data = test->priv;
-> >> @@ -320,6 +320,8 @@ static void fake_read_gmdid(struct xe_device *xe, enum xe_gmdid_type type,
-> >>                  *ver = data->graphics_verx100;
-> >>                  *revid = xe_step_to_gmdid(data->step.graphics);
-> >>          }
-> >> +
-> >> +        return 0;
-> >>  }
-> >>  
-> >>  static void fake_xe_info_probe_tile_count(struct xe_device *xe)
-> >> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> >> index 37ae49f4b648..9fb5df10844d 100644
-> >> --- a/drivers/gpu/drm/xe/xe_pci.c
-> >> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> >> @@ -464,7 +464,7 @@ enum xe_gmdid_type {
-> >>          GMDID_MEDIA
-> >>  };
-> >>  
-> >> -static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
-> >> +static int read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
-> >>  {
-> >>          struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-> >>          struct xe_reg gmdid_reg = GMD_ID;
-> >> @@ -473,21 +473,19 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
-> >>          KUNIT_STATIC_STUB_REDIRECT(read_gmdid, xe, type, ver, revid);
-> >>  
-> >>          if (IS_SRIOV_VF(xe)) {
-> >> -                struct xe_gt *gt = xe_root_mmio_gt(xe);
-> >> -
-> >>                  /*
-> >>                   * To get the value of the GMDID register, VFs must obtain it
-> >>                   * from the GuC using MMIO communication.
-> >>                   *
-> >> -                 * Note that at this point the xe_gt is not fully uninitialized
-> >> -                 * and only basic access to MMIO registers is possible. To use
-> >> -                 * our existing GuC communication functions we must perform at
-> >> -                 * least basic xe_gt and xe_guc initialization.
-> >> -                 *
-> >> -                 * Since to obtain the value of GMDID_MEDIA we need to use the
-> >> -                 * media GuC, temporarily tweak the gt type.
-> >> +                 * Note that at this point the GTs are not initialized and only
-> >> +                 * tile-level access to MMIO registers is possible. To use our
-> >> +                 * existing GuC communication functions we must create a dummy
-> >> +                 * GT structure and perform at least basic xe_gt and xe_guc
-> >> +                 * initialization.
-> >>                   */
-> >> -                xe_gt_assert(gt, gt->info.type == XE_GT_TYPE_UNINITIALIZED);
-> >> +                struct xe_gt *gt = kzalloc(sizeof(*gt), GFP_KERNEL);
-> >
-> >nit: we can use __free(kfree) here ...
-> 
-> Taking a step back, do we really need to allocate this? I get the
-> impression that keeping the dummy gt on the stack should be fine since
-> we are keeping its lifetime constrained within this function.
+On Tue, Oct 07, 2025 at 12:44:59PM -0400, Dong, Zhanjun wrote:
+>
+>
+>On 2025-10-02 12:00 p.m., Lucas De Marchi wrote:
+>>On Thu, Oct 02, 2025 at 11:03:01AM -0400, Zhanjun Dong wrote:
+>>>Add prefix to GuC log buffer macros to follow Xe naming styles.
+>>>Remove helper functions, replaced with macros.
+>>>
+>>>Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+>>>---
+>>>drivers/gpu/drm/xe/xe_guc.c         | 22 ++++-----
+>>>drivers/gpu/drm/xe/xe_guc_capture.c |  6 +--
+>>>drivers/gpu/drm/xe/xe_guc_log.c     | 71 +++++++----------------------
+>>>drivers/gpu/drm/xe/xe_guc_log.h     | 14 +++---
+>>>4 files changed, 36 insertions(+), 77 deletions(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>>index d5adbbb013ec..b0ea9a13847a 100644
+>>>--- a/drivers/gpu/drm/xe/xe_guc.c
+>>>+++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>@@ -99,7 +99,7 @@ static u32 guc_ctl_log_params_flags(struct xe_guc *guc)
+>>>    u32 offset = guc_bo_ggtt_addr(guc, guc->log.bo) >> PAGE_SHIFT;
+>>>    u32 flags;
+>>>
+>>>-    #if (((CRASH_BUFFER_SIZE) % SZ_1M) == 0)
+>>>+    #if (((XE_GUC_LOG_CRASH_BUFFER_SIZE) % SZ_1M) == 0)
+>>
+>>can you also add a patch to remove the excess use of parenthesis and
+>>indentation? Should ahave been:
+>>
+>>#if XE_GUC_LOG_CRASH_BUFFER_SIZE % SZ_1M == 0
+>>
+>
+>In case of CRASH_BUFFER_SIZE defined with expression like:
+>
+>SZ_2M - SZ_1M
 
-xe_gt is a really massive structure; I don't think it can fit on the
-stack.  I'm having trouble getting pahole to give me an exact size, but
-it looks like it's somewhere around 23K.
+but it's not defined like that. If you need to define it like that then
+the right define would be:
 
+#define XE_GUC_LOG_CRASH_BUFFER_SIZE (SZ_2M - SZ_1M)
 
-Matt
+so the callers may use normal precedence rules without worrying how it's
+implemented.
 
-> 
-> --
-> Gustavo Sousa
-> 
-> >
-> >> +                if (!gt)
-> >> +                        return -ENOMEM;
-> >>  
-> >>                  if (type == GMDID_MEDIA) {
-> >>                          gt->info.id = 1;
-> >
-> >it looks that it is still crashing in xe_gt_mmio_init() called from below
-> >
-> ><1> [146.543510] BUG: kernel NULL pointer dereference, address: 0000000000000028
-> ><1> [146.543528] #PF: supervisor read access in kernel mode
-> ><1> [146.543538] #PF: error_code(0x0000) - not-present page
-> ><4> [146.543611] RIP: 0010:xe_gt_mmio_init+0x27/0x1b0 [xe]
-> ><4> [146.544175] Call Trace:
-> ><4> [146.544182]  <TASK>
-> ><4> [146.544196]  read_gmdid+0x12b/0x2a0 [xe]
-> ><4> [146.544601]  xe_info_init+0x50e/0xc90 [xe]
-> ><4> [146.544948]  ? drmm_kmalloc+0x87/0x100
-> ><4> [146.544968]  ? xe_device_probe_early+0xdf/0x230 [xe]
-> ><4> [146.545253]  ? pci_write_config_word+0x27/0x50
-> ><4> [146.545274]  xe_pci_probe+0x163/0x600 [xe]
-> >
-> >likely due to NULL gt->tile
-> >
-> >> @@ -503,12 +501,7 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
-> >>                  /* Don't bother with GMDID if failed to negotiate the GuC ABI */
-> >>                  val = xe_gt_sriov_vf_bootstrap(gt) ? 0 : xe_gt_sriov_vf_gmdid(gt);
-> >
-> >... so in case of bootstrap error we can easily return actual error,
-> >instead of returning plain 0.00 version
-> >
-> >>  
-> >> -                /*
-> >> -                 * Only undo xe_gt.info here, the remaining changes made above
-> >> -                 * will be overwritten as part of the regular initialization.
-> >> -                 */
-> >> -                gt->info.id = 0;
-> >> -                gt->info.type = XE_GT_TYPE_UNINITIALIZED;
-> >> +                kfree(gt);
-> >>          } else {
-> >>                  /*
-> >>                   * GMD_ID is a GT register, but at this point in the driver
-> >> @@ -526,6 +519,8 @@ static void read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver,
-> >>  
-> >>          *ver = REG_FIELD_GET(GMD_ID_ARCH_MASK, val) * 100 + REG_FIELD_GET(GMD_ID_RELEASE_MASK, val);
-> >>          *revid = REG_FIELD_GET(GMD_ID_REVID, val);
-> >> +
-> >> +        return 0;
-> >>  }
-> >>  
-> >>  static const struct xe_ip *find_graphics_ip(unsigned int verx100)
-> >> @@ -552,18 +547,21 @@ static const struct xe_ip *find_media_ip(unsigned int verx100)
-> >>   * Read IP version from hardware and select graphics/media IP descriptors
-> >>   * based on the result.
-> >>   */
-> >> -static void handle_gmdid(struct xe_device *xe,
-> >> -                         const struct xe_ip **graphics_ip,
-> >> -                         const struct xe_ip **media_ip,
-> >> -                         u32 *graphics_revid,
-> >> -                         u32 *media_revid)
-> >> +static int handle_gmdid(struct xe_device *xe,
-> >> +                        const struct xe_ip **graphics_ip,
-> >> +                        const struct xe_ip **media_ip,
-> >> +                        u32 *graphics_revid,
-> >> +                        u32 *media_revid)
-> >>  {
-> >>          u32 ver;
-> >> +        int ret;
-> >>  
-> >>          *graphics_ip = NULL;
-> >>          *media_ip = NULL;
-> >>  
-> >> -        read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
-> >> +        ret = read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
-> >> +        if (ret)
-> >> +                return ret;
-> >>  
-> >>          *graphics_ip = find_graphics_ip(ver);
-> >>          if (!*graphics_ip) {
-> >> @@ -571,16 +569,21 @@ static void handle_gmdid(struct xe_device *xe,
-> >>                          ver / 100, ver % 100);
-> >>          }
-> >>  
-> >> -        read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
-> >> +        ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
-> >> +        if (ret)
-> >> +                return ret;
-> >> +
-> >>          /* Media may legitimately be fused off / not present */
-> >>          if (ver == 0)
-> >> -                return;
-> >> +                return 0;
-> >>  
-> >>          *media_ip = find_media_ip(ver);
-> >>          if (!*media_ip) {
-> >>                  drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
-> >>                          ver / 100, ver % 100);
-> >>          }
-> >> +
-> >> +        return 0;
-> >>  }
-> >>  
-> >>  /*
-> >> @@ -690,6 +693,7 @@ static int xe_info_init(struct xe_device *xe,
-> >>          const struct xe_media_desc *media_desc;
-> >>          struct xe_tile *tile;
-> >>          struct xe_gt *gt;
-> >> +        int ret;
-> >>          u8 id;
-> >>  
-> >>          /*
-> >> @@ -705,8 +709,11 @@ static int xe_info_init(struct xe_device *xe,
-> >>                  xe->info.step = xe_step_pre_gmdid_get(xe);
-> >>          } else {
-> >>                  xe_assert(xe, !desc->pre_gmdid_media_ip);
-> >> -                handle_gmdid(xe, &graphics_ip, &media_ip,
-> >> -                             &graphics_gmdid_revid, &media_gmdid_revid);
-> >> +                ret = handle_gmdid(xe, &graphics_ip, &media_ip,
-> >> +                                   &graphics_gmdid_revid, &media_gmdid_revid);
-> >> +                if (ret)
-> >> +                        return ret;
-> >> +
-> >>                  xe->info.step = xe_step_gmdid_get(xe,
-> >>                                                    graphics_gmdid_revid,
-> >>                                                    media_gmdid_revid);
-> >
+Lucas De Marchi
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+>expanded macro would be
+>  #if  SZ_2M - SZ_1M % SZ_1M == 0
+>
+>due to '%' op is higher than '-'
+>SZ_1M % SZ_1M is 0
+>SZ_2M - 0 is SZ_2M
+>SZ_2M != 0
+>Result: false
+>
+>That gives us unwantted result, expected should be:
+>(SZ_2M - SZ_1M)  % SZ_1M == 0
+>Result: true
+>
+>We might still need parenthesis to prevent operator precedence issues
+>
+>>
+>>
+>>>    #define LOG_UNIT SZ_1M
+>>>    #define LOG_FLAG GUC_LOG_LOG_ALLOC_UNITS
+>>>    #else
+>>>@@ -107,7 +107,7 @@ static u32 guc_ctl_log_params_flags(struct 
+>>>xe_guc *guc)
+>>>    #define LOG_FLAG 0
+>>>    #endif
+>>>
+>>>-    #if (((CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
+>>>+    #if (((XE_GUC_LOG_CAPTURE_BUFFER_SIZE) % SZ_1M) == 0)
+>>
+>>ditto
+>>
+>>>    #define CAPTURE_UNIT SZ_1M
+>>>    #define CAPTURE_FLAG GUC_LOG_CAPTURE_ALLOC_UNITS
+>>>    #else
+>>>@@ -115,20 +115,20 @@ static u32 guc_ctl_log_params_flags(struct 
+>>>xe_guc *guc)
+>>>    #define CAPTURE_FLAG 0
+>>>    #endif
+>>>
+>>>-    BUILD_BUG_ON(!CRASH_BUFFER_SIZE);
+>>>-    BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, LOG_UNIT));
+>>>-    BUILD_BUG_ON(!DEBUG_BUFFER_SIZE);
+>>>-    BUILD_BUG_ON(!IS_ALIGNED(DEBUG_BUFFER_SIZE, LOG_UNIT));
+>>>-    BUILD_BUG_ON(!CAPTURE_BUFFER_SIZE);
+>>>-    BUILD_BUG_ON(!IS_ALIGNED(CAPTURE_BUFFER_SIZE, CAPTURE_UNIT));
+>>>+    BUILD_BUG_ON(!XE_GUC_LOG_CRASH_BUFFER_SIZE);
+>>>+    BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_CRASH_BUFFER_SIZE, LOG_UNIT));
+>>>+    BUILD_BUG_ON(!XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE);
+>>>+    BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE, 
+>>>LOG_UNIT));
+>>>+    BUILD_BUG_ON(!XE_GUC_LOG_CAPTURE_BUFFER_SIZE);
+>>>+    BUILD_BUG_ON(!IS_ALIGNED(XE_GUC_LOG_CAPTURE_BUFFER_SIZE, 
+>>>CAPTURE_UNIT));
+>>>
+>>>    flags = GUC_LOG_VALID |
+>>>        GUC_LOG_NOTIFY_ON_HALF_FULL |
+>>>        CAPTURE_FLAG |
+>>>        LOG_FLAG |
+>>>-        FIELD_PREP(GUC_LOG_CRASH, CRASH_BUFFER_SIZE / LOG_UNIT - 1) |
+>>>-        FIELD_PREP(GUC_LOG_DEBUG, DEBUG_BUFFER_SIZE / LOG_UNIT - 1) |
+>>>-        FIELD_PREP(GUC_LOG_CAPTURE, CAPTURE_BUFFER_SIZE / 
+>>>CAPTURE_UNIT - 1) |
+>>>+        FIELD_PREP(GUC_LOG_CRASH, XE_GUC_LOG_CRASH_BUFFER_SIZE / 
+>>>LOG_UNIT - 1) |
+>>>+        FIELD_PREP(GUC_LOG_DEBUG, 
+>>>XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE / LOG_UNIT - 1) |
+>>>+        FIELD_PREP(GUC_LOG_CAPTURE, 
+>>>XE_GUC_LOG_CAPTURE_BUFFER_SIZE / CAPTURE_UNIT - 1) |
+>>>        FIELD_PREP(GUC_LOG_BUF_ADDR, offset);
+>>>
+>>>    #undef LOG_UNIT
+>>>diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c 
+>>>b/drivers/gpu/drm/xe/ xe_guc_capture.c
+>>>index 243dad3e2418..acb95a93b530 100644
+>>>--- a/drivers/gpu/drm/xe/xe_guc_capture.c
+>>>+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+>>>@@ -816,7 +816,7 @@ static void check_guc_capture_size(struct 
+>>>xe_guc *guc)
+>>>{
+>>>    int capture_size = guc_capture_output_size_est(guc);
+>>>    int spare_size = capture_size * GUC_CAPTURE_OVERBUFFER_MULTIPLIER;
+>>>-    u32 buffer_size = xe_guc_log_section_size_capture(&guc->log);
+>>>+    u32 buffer_size = XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
+>>>
+>>>    /*
+>>>     * NOTE: capture_size is much smaller than the capture region
+>>>@@ -922,7 +922,7 @@ guc_capture_init_node(struct xe_guc *guc, 
+>>>struct __guc_capture_parsed_output *no
+>>> *                  ADS module also calls separately for PF vs VF.
+>>> *
+>>> *     --> alloc B: GuC output capture buf (registered via 
+>>>guc_init_params(log_param))
+>>>- *                  Size = #define CAPTURE_BUFFER_SIZE (warns if 
+>>>on too-small)
+>>>+ *                  Size = #define XE_GUC_LOG_CAPTURE_BUFFER_SIZE 
+>>>(warns if on too-small)
+>>> *                  Note2: 'x 3' to hold multiple capture groups
+>>> *
+>>> * GUC Runtime notify capture:
+>>>@@ -1368,7 +1368,7 @@ static void 
+>>>__guc_capture_process_output(struct xe_guc *guc)
+>>>    xe_map_memcpy_from(guc_to_xe(guc), &log_buf_state_local, &guc- 
+>>>>log.bo->vmap,
+>>>               log_buf_state_offset, sizeof(struct 
+>>>guc_log_buffer_state));
+>>>
+>>>-    buffer_size = xe_guc_get_log_buffer_size(&guc->log, 
+>>>GUC_LOG_BUFFER_CAPTURE);
+>>>+    buffer_size = XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
+>>>    read_offset = log_buf_state_local.read_ptr;
+>>>    write_offset = log_buf_state_local.sampled_write_ptr;
+>>>    full_count = FIELD_GET(GUC_LOG_BUFFER_STATE_BUFFER_FULL_CNT, 
+>>>log_buf_state_local.flags);
+>>>diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/ 
+>>>xe_guc_log.c
+>>>index c01ccb35dc75..fa1d490dca0d 100644
+>>>--- a/drivers/gpu/drm/xe/xe_guc_log.c
+>>>+++ b/drivers/gpu/drm/xe/xe_guc_log.c
+>>>@@ -50,16 +50,16 @@ static size_t guc_log_size(void)
+>>>     *  |     Capture state header      |
+>>>     *  +-------------------------------+ 96B
+>>>     *  |                               |
+>>>-     *  +===============================+ PAGE_SIZE (4KB)
+>>>+     *  +===============================+ 4KB
+>>>+     *  |          Event logs           |
+>>>+     *  +===============================+ + 
+>>>XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE
+>>>     *  |        Crash Dump logs        |
+>>>-     *  +===============================+ + CRASH_SIZE
+>>>-     *  |          Debug logs           |
+>>>-     *  +===============================+ + DEBUG_SIZE
+>>
+>>what happened with DEBUG_SIZE? in drivers/gpu/drm/xe/xe_guc.c it's
+>>referred as DEBUG_BUFFER_SIZE
+>>
+>>Lucas De Marchi
+>>
+>>>+     *  +===============================+ + XE_GUC_LOG_CRASH_BUFFER_SIZE
+>>>     *  |         Capture logs          |
+>>>-     *  +===============================+ + CAPTURE_SIZE
+>>>+     *  +===============================+ + 
+>>>XE_GUC_LOG_CAPTURE_BUFFER_SIZE
+>>>     */
+>>>-    return PAGE_SIZE + CRASH_BUFFER_SIZE + DEBUG_BUFFER_SIZE +
+>>>-        CAPTURE_BUFFER_SIZE;
+>>>+    return SZ_4K + XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE + 
+>>>XE_GUC_LOG_CRASH_BUFFER_SIZE +
+>>>+        XE_GUC_LOG_CAPTURE_BUFFER_SIZE;
+>
+>The comment in layout is DEBUG_SIZE, while code is DEBUG_BUFFER_SIZE,
+>will cleanup in next rev
+>
+>Regards,
+>Zhanjun Dong
+>
+>>>}
+>>>
+>>>#define GUC_LOG_CHUNK_SIZE    SZ_2M
+>>>@@ -274,49 +274,6 @@ int xe_guc_log_init(struct xe_guc_log *log)
+>>>
+>>>ALLOW_ERROR_INJECTION(xe_guc_log_init, ERRNO); /* See xe_pci_probe() */
+>>>
+>>>-static u32 xe_guc_log_section_size_crash(struct xe_guc_log *log)
+>>>-{
+>>>-    return CRASH_BUFFER_SIZE;
+>>>-}
+>>>-
+>>>-static u32 xe_guc_log_section_size_debug(struct xe_guc_log *log)
+>>>-{
+>>>-    return DEBUG_BUFFER_SIZE;
+>>>-}
+>>>-
+>>>-/**
+>>>- * xe_guc_log_section_size_capture - Get capture buffer size 
+>>>within log sections.
+>>>- * @log: The log object.
+>>>- *
+>>>- * This function will return the capture buffer size within log 
+>>>sections.
+>>>- *
+>>>- * Return: capture buffer size.
+>>>- */
+>>>-u32 xe_guc_log_section_size_capture(struct xe_guc_log *log)
+>>>-{
+>>>-    return CAPTURE_BUFFER_SIZE;
+>>>-}
+>>>-
+>>>-/**
+>>>- * xe_guc_get_log_buffer_size - Get log buffer size for a type.
+>>>- * @log: The log object.
+>>>- * @type: The log buffer type
+>>>- *
+>>>- * Return: buffer size.
+>>>- */
+>>>-u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum 
+>>>guc_log_buffer_type type)
+>>>-{
+>>>-    switch (type) {
+>>>-    case GUC_LOG_BUFFER_CRASH_DUMP:
+>>>-        return xe_guc_log_section_size_crash(log);
+>>>-    case GUC_LOG_BUFFER_DEBUG:
+>>>-        return xe_guc_log_section_size_debug(log);
+>>>-    case GUC_LOG_BUFFER_CAPTURE:
+>>>-        return xe_guc_log_section_size_capture(log);
+>>>-    }
+>>>-    return 0;
+>>>-}
+>>>-
+>>>/**
+>>> * xe_guc_get_log_buffer_offset - Get offset in log buffer for a type.
+>>> * @log: The log object.
+>>>@@ -327,13 +284,17 @@ u32 xe_guc_get_log_buffer_size(struct 
+>>>xe_guc_log *log, enum guc_log_buffer_type
+>>> */
+>>>u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum 
+>>>guc_log_buffer_type type)
+>>>{
+>>>-    enum guc_log_buffer_type i;
+>>>    u32 offset = PAGE_SIZE;/* for the log_buffer_states */
+>>>
+>>>-    for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < 
+>>>GUC_LOG_BUFFER_TYPE_MAX; ++i) {
+>>>-        if (i == type)
+>>>-            break;
+>>>-        offset += xe_guc_get_log_buffer_size(log, i);
+>>>+    switch (type) {
+>>>+    case GUC_LOG_BUFFER_CAPTURE:
+>>>+        offset += XE_GUC_LOG_CRASH_BUFFER_SIZE;
+>>>+        fallthrough;
+>>>+    case GUC_LOG_BUFFER_CRASH_DUMP:
+>>>+        offset += XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE;
+>>>+        fallthrough;
+>>>+    case GUC_LOG_BUFFER_DEBUG:
+>>>+        break;
+>>>    }
+>>>
+>>>    return offset;
+>>>diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/ 
+>>>xe_guc_log.h
+>>>index 98a47ac42b08..0cc059cedb9c 100644
+>>>--- a/drivers/gpu/drm/xe/xe_guc_log.h
+>>>+++ b/drivers/gpu/drm/xe/xe_guc_log.h
+>>>@@ -13,13 +13,13 @@ struct drm_printer;
+>>>struct xe_device;
+>>>
+>>>#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
+>>>-#define CRASH_BUFFER_SIZE       SZ_1M
+>>>-#define DEBUG_BUFFER_SIZE       SZ_8M
+>>>-#define CAPTURE_BUFFER_SIZE     SZ_2M
+>>>+#define XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE    SZ_8M
+>>>+#define XE_GUC_LOG_CRASH_BUFFER_SIZE        SZ_1M
+>>>+#define XE_GUC_LOG_CAPTURE_BUFFER_SIZE        SZ_2M
+>>>#else
+>>>-#define CRASH_BUFFER_SIZE    SZ_16K
+>>>-#define DEBUG_BUFFER_SIZE    SZ_64K
+>>>-#define CAPTURE_BUFFER_SIZE    SZ_1M
+>>>+#define XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE    SZ_64K
+>>>+#define XE_GUC_LOG_CRASH_BUFFER_SIZE        SZ_16K
+>>>+#define XE_GUC_LOG_CAPTURE_BUFFER_SIZE        SZ_1M
+>>>#endif
+>>>/*
+>>> * While we're using plain log level in i915, GuC controls are 
+>>>much more...
+>>>@@ -51,8 +51,6 @@ xe_guc_log_get_level(struct xe_guc_log *log)
+>>>    return log->level;
+>>>}
+>>>
+>>>-u32 xe_guc_log_section_size_capture(struct xe_guc_log *log);
+>>>-u32 xe_guc_get_log_buffer_size(struct xe_guc_log *log, enum 
+>>>guc_log_buffer_type type);
+>>>u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum 
+>>>guc_log_buffer_type type);
+>>>bool xe_guc_check_log_buf_overflow(struct xe_guc_log *log,
+>>>                   enum guc_log_buffer_type type,
+>>>-- 
+>>>2.34.1
+>>>
+>
