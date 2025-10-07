@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A5EFCCD18B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DED5CCD18D
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 20:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE0910E703;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9599710E701;
 	Tue,  7 Oct 2025 20:48:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="drwjRVdl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ToZ+IPNV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F285510E38C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9236E10E39A
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 20:48:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759870130; x=1791406130;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b9HTru9NtsNzf2Z+dFiMKo5AOhUf/Y8IBslbvhxFeOc=;
- b=drwjRVdlUPouErtQpzgUpw03/gzMmPOwyKLOaHBpGgFj03woJsqKi+Gu
- FJnFiNVV0gPY5VoAtjBWMBFvCAD2tY87psd2LhB27TvEZL7mZj7lJsGgp
- 7J9oS1JzOeUV8dkGcR3dfPh8ookwAFajCIcXo8rWxehaMqPnSszgZsJ4G
- biQkPHPAU5IhhfcEmRr2lgDyq+IOCIZD4e5GDoUkH7PjZAIwkA5vm8fjk
- FstOYEHa7zI1bAezd+FFT1+ec7FRrREeN/Jjch/z3xFlNkOT+s1J79xLs
- 4Hvymw58R4zNZkP2E/Bex7xMyMsmrMZGhIalvkc/cjHtaordNKHnagmV6 w==;
-X-CSE-ConnectionGUID: oLdTKzJYStCv/l19fxxyIw==
-X-CSE-MsgGUID: 5YaAyKw+TzGaBA8YziJlVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="49616751"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="49616751"
+ bh=FTyPbQL/8B5MBpAWrY3a29agP1Rfy6NlkwX8qtBHACc=;
+ b=ToZ+IPNV95LgD3P2btYF6p388sJGENUzgvS03yjkbJvtVeEvt68u6js7
+ HcFcY09Z2PX0NO3tzz7GlsvTs2sPK259FWmg/vrSQSmevqaBpHELnBuq3
+ SAfAzlC9r1529Op0ZQoNlU25c3eWnjiJ3JQVNGB4/BArMXULZonmCzsTP
+ oBQjw/ZNKX7JW7xV44Q+CRO4yB+3cxm106iU1cPEZZlWIENlNAWRB2pBQ
+ zQP+tJu1BHZk4kDsw0mO/dFrUm+ZaOxZuQNyE4dmA+DOR+fIZyPyDcBQ+
+ 3exekZjUyKYan9iE6wrfEPlFzN6C7FUZsxAnfjeW3w/JPJa/OT0z03lpw w==;
+X-CSE-ConnectionGUID: dkZSZKxZTTOA8HdejPcuiQ==
+X-CSE-MsgGUID: TYdKF+lDQtmyOSzuF1wY7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="49616747"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="49616747"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 13:48:49 -0700
-X-CSE-ConnectionGUID: Cl5n0AzuTL6IwlK9URBZUg==
-X-CSE-MsgGUID: Yv3AXjI6QfSeW82wtxxoUQ==
+X-CSE-ConnectionGUID: IIoKh9A/TR6e+0ujJGFwUg==
+X-CSE-MsgGUID: qVVnGWLOQlOxYAStRYdBCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="184631093"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="184631086"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 13:48:48 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v4 12/23] drm/xe: Check for primary GT before looking up
- Wa_22019338487
-Date: Tue,  7 Oct 2025 13:48:42 -0700
-Message-ID: <20251007204829.1468209-37-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v4 10/23] drm/xe/query: Report hwconfig size as 0 if primary
+ GT is disabled
+Date: Tue,  7 Oct 2025 13:48:40 -0700
+Message-ID: <20251007204829.1468209-35-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251007204829.1468209-25-matthew.d.roper@intel.com>
 References: <20251007204829.1468209-25-matthew.d.roper@intel.com>
@@ -68,83 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the primary GT is disabled via configfs, we need to make sure that we
-don't search for this workaround on a NULL xe_gt pointer.  Since we can
-disable the primary GT only on igpu platforms, the media GT is the one
-we'd want to check anyway for this workaround.
+The hwconfig table is part of the primary GT's GuC firmware.  If the
+primary GT is disabled, the hwconfig is unavailable and should be
+reported to userspace as having size 0.
 
-The ternary operators in ggtt_update_access_counter() were getting a bit
-long/complicated, so rewrite them with regular if/else statements.
-While we're at it, throw in a couple extra assertions to make sure that
-we're truly picking the expected GT according to igpu/dgpu type.
-
-v2:
- - Adjust indentation/wrapping; it's easier to read this with longer,
-   unwrapped lines.  (Lucas)
- - Tweak wording of commit message to remove ambiguity.  (Gustavo)
-
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 31 ++++++++++++++++++++++---------
- 1 file changed, 22 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7fdd0a97a628..9707c41539c8 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -107,10 +107,23 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
- static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 2e9ff33ed2fe..1c0915e2cc16 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -436,7 +436,7 @@ static int query_hwconfig(struct xe_device *xe,
+ 			  struct drm_xe_device_query *query)
  {
- 	struct xe_tile *tile = ggtt->tile;
--	struct xe_gt *affected_gt = XE_GT_WA(tile->primary_gt, 22019338487) ?
--		tile->primary_gt : tile->media_gt;
--	struct xe_mmio *mmio = &affected_gt->mmio;
--	u32 max_gtt_writes = XE_GT_WA(ggtt->tile->primary_gt, 22019338487) ? 1100 : 63;
-+	struct xe_gt *affected_gt;
-+	u32 max_gtt_writes;
-+
-+	if (tile->primary_gt && XE_GT_WA(tile->primary_gt, 22019338487)) {
-+		affected_gt = tile->primary_gt;
-+		max_gtt_writes = 1100;
-+
-+		/* Only expected to apply to primary GT on dgpu platforms */
-+		xe_tile_assert(tile, IS_DGFX(tile_to_xe(tile)));
-+	} else {
-+		affected_gt = tile->media_gt;
-+		max_gtt_writes = 63;
-+
-+		/* Only expected to apply to media GT on igpu platforms */
-+		xe_tile_assert(tile, !IS_DGFX(tile_to_xe(tile)));
-+	}
-+
- 	/*
- 	 * Wa_22019338487: GMD_ID is a RO register, a dummy write forces gunit
- 	 * to wait for completion of prior GTT writes before letting this through.
-@@ -119,7 +132,7 @@ static void ggtt_update_access_counter(struct xe_ggtt *ggtt)
- 	lockdep_assert_held(&ggtt->lock);
- 
- 	if ((++ggtt->access_count % max_gtt_writes) == 0) {
--		xe_mmio_write32(mmio, GMD_ID, 0x0);
-+		xe_mmio_write32(&affected_gt->mmio, GMD_ID, 0x0);
- 		ggtt->access_count = 0;
- 	}
- }
-@@ -284,10 +297,10 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 		ggtt->size = GUC_GGTT_TOP;
- 
- 	if (GRAPHICS_VERx100(xe) >= 1270)
--		ggtt->pt_ops = (ggtt->tile->media_gt &&
--			       XE_GT_WA(ggtt->tile->media_gt, 22019338487)) ||
--			       XE_GT_WA(ggtt->tile->primary_gt, 22019338487) ?
--			       &xelpg_pt_wa_ops : &xelpg_pt_ops;
-+		ggtt->pt_ops =
-+			(ggtt->tile->media_gt && XE_GT_WA(ggtt->tile->media_gt, 22019338487)) ||
-+			(ggtt->tile->primary_gt && XE_GT_WA(ggtt->tile->primary_gt, 22019338487)) ?
-+			&xelpg_pt_wa_ops : &xelpg_pt_ops;
- 	else
- 		ggtt->pt_ops = &xelp_pt_ops;
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-	size_t size = xe_guc_hwconfig_size(&gt->uc.guc);
++	size_t size = gt ? xe_guc_hwconfig_size(&gt->uc.guc) : 0;
+ 	void __user *query_ptr = u64_to_user_ptr(query->data);
+ 	void *hwconfig;
  
 -- 
 2.51.0
