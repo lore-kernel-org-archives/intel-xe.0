@@ -4,185 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECE83CCA476
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 20:37:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DFD3CCA470
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 20:48:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98A3E10E386;
-	Tue,  7 Oct 2025 20:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A79D10E1AF;
+	Tue,  7 Oct 2025 20:48:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Noz+bIdE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTwIrd6N";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF7510E386
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 20:37:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D4710E1AF
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 20:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759869432; x=1791405432;
+ t=1759870110; x=1791406110;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=jSX3WX5D7tmHcBOTL7oaumOM3c7elbvDULQEqM7mSpA=;
- b=Noz+bIdEe/e+CYldsA1Fna6ZNyLFP7LVIjVN2XzSP6tPxR6+dtti2GYe
- OhslUIvLZNgR5zj5Bsxb2sdJwK/WzRLp0U2MLoa87Jnl0fn2BSfxazNPK
- gCPDiS+EYGzDwa3l/M80Zlohnu4TgBS0DdFawy7ipJBT1lDZ/GwahmSi9
- UB/VRP75SWxX8AQTjEo2j/SQLsVIUz6G6wKL7uuft5zz+LSSvZ3+jMvAw
- RwuezvpUSE0MYI+kVrfALntmLxUYlLbrjjTD9ZQLQRKw4sf7ZSK0R/09P
- BTgBu7+oDnIf2ORC7Yjb2p+NSG181M5KMRjDqopadeTjZMtGOJUBpBKe2 A==;
-X-CSE-ConnectionGUID: bLfk+MXwR7OikD15yTCB8Q==
-X-CSE-MsgGUID: +dandL3uSN+KwJ3dhoKAZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="73484517"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="73484517"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 13:37:11 -0700
-X-CSE-ConnectionGUID: +Rdr3BVHRoK/S1BDdyCq2Q==
-X-CSE-MsgGUID: GgZ+gfrQSoq+0O2VP0kMzA==
+ in-reply-to:mime-version;
+ bh=BcOvvlk+jJhBucRBuWJdQ8kCNjYoZcdev4WG6P2mBao=;
+ b=CTwIrd6NiJoUZz3/wsjUfKX/zwonFncDRUhz/xXs2l0+9EImtKWwevpF
+ 64gUpmGFLCPhQJeRaN/r86UJaXZN/hN/1wMAb1GQpEpDBeNpLkISpXbmu
+ LPD9sc6LQgPMDhLHVe65F7H5I66ewohZCGHmXQ1MzIfwrBHGFpM6ftLuu
+ c+aEpef9M7AOF4pCezOp2vxbEs1jhpY9WGurNL6pnT7WGW01ADbkIn8jJ
+ pZzioGTT0YT6wLIZWPCQf3yBQfvpFyhd92rONgjhynXqnNkswZrQvn20x
+ 9OACAiPG8pTVUelYt9ru68oHvRL0cr67GipYTHHwZtqvWAJtq9IKtGHyT w==;
+X-CSE-ConnectionGUID: u8HjK41qR26Olzjx1QqOEg==
+X-CSE-MsgGUID: TbaNoNpNT4Cd2eO7FRJGAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="73406846"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="73406846"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 13:48:30 -0700
+X-CSE-ConnectionGUID: NR1LBd6gTCyjmdLWFzL5ZQ==
+X-CSE-MsgGUID: ZCaIB15VTf2ZmzH7nb9OOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="179923173"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 13:37:11 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="179382098"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 13:48:30 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 13:37:10 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 7 Oct 2025 13:48:29 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 13:37:10 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.45) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 13:48:29 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.31) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 13:37:10 -0700
+ 15.2.2562.27; Tue, 7 Oct 2025 13:48:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LSF64QUOl2zpNXPQMYwfsSg/5PqKOCS69qeWCkcS6TcXCaEfD3Iqc3BC0qx+TImDfvRFyMOR9whQ19DQoIT/bLf+TA442r/yWZcGoITWtX4m1GfWRCAMxxNmbspNO9OvFGgr99hQou0oAbktJ9L0jkVtruO4oMjVsUR777TjZ2sfrPeXZk4EXP5ARG4/Aev/DnsjvlNR6yhhO+9u8tHzUtOF24H7CPjVqG9tLsuSeN1Lvb+dv/jF6kEnUoiC/lrFWfjkgPCWm1t3nTesfJ7nUp3WSd4Whhdbt2ndk2cgvqvBJRE6Vnh2LkLzf2ylPB1DCyLCzyNxW6SqvAa+DjDrUA==
+ b=KI4LNLJw95W8F6UDdYgcIIzj0lNs7S7wigIh3WFODIRZJRUBAQMusGnrV7QxnX4m9l7bOmzmV/vwwat7EuosP+nd2ksATtQKUaFEUii9T2ecDF53zR3EImQj5Rm7DeKyc8S3kzJdH4EDfcjH1vDSpE0gKNop16V04CbU4qa1gd9NZxKwvckktVNMUlHHdVRJkS1zsF8Jc220HCE5U/xflZXGd1WAK1zTP5ifxh6+vWYgXH+Rk10VNGR/ytfp6CqdDr8FXsqGuCpRnEySMROOW3k1htaLVJmAuQhwdV7V6+rQOQljmb3d+0PG3HA9M/cs0gIa64sIfQCHLBQQ8lVlrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xGWB6ApfCyXNXoZqxH3HOowj2TNeK64P8Ve9DqRpAzk=;
- b=ZMe2kox/LmrckNTKVTUUD1sdC4Zicg1yL8ycloOnhF17t6zqPJlzTaz0BXWXdQe3jWhCSjdBn/jm0u83qsfRxSJITmLKjrPDTqkmQ+YyO5VaJQzQdMhlcCPgJ3ctjVm6SGe7JgkvdovJJVvhzyskHr6agOdA1HTdsgwPKmqmWP4LPJIM/n0xzcxKnVCoSyDPbwJ2XOmsI76Qh60QIhdJePwAoCs+HF0PvYcZ+EmuK9O/E734F1lXwVltu7lj5n2uJJtKgMviihx4eiHpNQe293Sd63Fjs/61MEUqqeZitYShbBAJQf7LB7iAFEanUEM27AGZiMNstcJWbslOetF7+g==
+ bh=/zJh3PTHkeFoGNU1fxv7Xe4bkmiT9TgvlMAv7wPy9Mo=;
+ b=lzw5FWj/po4u2iyBckuTC6Y7fRbWHOd9zsiKjN6xAI8KG+rB9bLsG/HAoZYRrgx5UhqGogPmun5p2ioxVLxf84Eg3O+YfFOM74dB0+3lUJ6CmS248KEDBKosccEOMqbSUMi3USKhmzNHvdvM5ZnUvzMQBB83/c0KF4enzwWfAhB7He9gFZqV9VzRdAh7pj9DuwCxOw2JIZUO9Pk4wiOA3SqIZIf6ELz28Pv/DLKSDHI8FM6hGyLv47QMOcqupsfKZyHZoI8tywmzE7tygedE92hN7u6t56IE5w9JOjRpJQZaxbBFbLc9Oo6MVqVsa1qgD+uoitNAoltwSy3Tv5XhMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA1PR11MB6735.namprd11.prod.outlook.com (2603:10b6:806:25e::7)
+ by SN7PR11MB8042.namprd11.prod.outlook.com (2603:10b6:806:2ed::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
- 2025 20:37:01 +0000
+ 2025 20:48:23 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9182.017; Tue, 7 Oct 2025
- 20:37:01 +0000
-Date: Tue, 7 Oct 2025 15:36:55 -0500
+ 20:48:22 +0000
+Date: Tue, 7 Oct 2025 15:48:11 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v6 27/30] drm/xe/vf: Use primary GT ordered work queue on
- media GT on PTL VF
-Message-ID: <ux3zete2u3t22wqzjugztc7ijkbgsgznrthfos7pyxczzklhos@256zc7fujlnf>
-References: <20251006111038.2234860-1-matthew.brost@intel.com>
- <20251006111038.2234860-28-matthew.brost@intel.com>
- <t6aytzfw5frhua2ojrz3xyrobi25p424exjagpmovtvif5jwhw@ocmceysqldql>
- <aORH4NrjGSNcCxi/@lstrano-desk.jf.intel.com>
- <h4mwspqv5chueicgkrvd4grucstgev3vfkuavaeqbweqecvznc@wjpe5lk7tkr3>
- <aOVMXzdQCB1e7LoV@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe/pf: Add max_vfs configfs attribute to control PF
+ mode
+Message-ID: <gvmdbjt7oxbuzrwtn4sdon4rswsycphc55kjsdpdats6nnoxad@h76gd7nkwhsw>
+References: <20251002232648.203370-1-michal.wajdeczko@intel.com>
+ <aOA2n4npjuprZ1hD@intel.com>
+ <a148cc9f-b20e-4c93-9977-83d6ba12d379@intel.com>
+ <aOQfcQ8YhgvkB3Yc@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aOVMXzdQCB1e7LoV@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0086.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::31) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <aOQfcQ8YhgvkB3Yc@intel.com>
+X-ClientProxiedBy: BYAPR03CA0031.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::44) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA1PR11MB6735:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8be272c-8113-431d-2db4-08de05e14494
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB8042:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca9f49e4-02ea-4dd2-7cda-08de05e2da48
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VjVmcnIxR0U4M3RvQnpHNnpsZEcrdU9GQjNFN08zN29KeE8yS0VyZUdsUGF6?=
- =?utf-8?B?MER6SDh4SWFWbzRKVHlncERUemsxVFlkeStjN21iMlozcFdwV2I4QjFRakVn?=
- =?utf-8?B?VGhqVmRLRWV1MTIvUEd1OGRxdmxla1NNT0RHeTZKVnF1S0tuc0VBeGJ3a2hD?=
- =?utf-8?B?ZnhETTIzVTl1WDluS2ZCR0U3THU3KzV3YlgyY0JvanZvMkxxenFBKzVublNB?=
- =?utf-8?B?bm1mMHJ0M2lzNzh0LzI3L0x5TXlhcjdHRFo2TUUxUFZQUlM2azUxVHNucGkv?=
- =?utf-8?B?Lzd5ZktlRzdMUWFQaE5hV3hNSFdDU3Y1SlAzM2tNODVJdHJzVVRKNWRoVXNy?=
- =?utf-8?B?TGcwMlhwOTByZHhOTTlra0JvbWowRVJVM2JBQmdSOE5nVVVQTjc1MUlIRXpl?=
- =?utf-8?B?VGFSWC9ZelcycGM0VklETGJmRHh5NmoraFZKb0NxaEg4SmliNTNjek5nMThY?=
- =?utf-8?B?L2pmSllNaEZRYTc4TTJIZUVjR2NQSUw1WmxUWElLckkvdVRCN0Faam9udndr?=
- =?utf-8?B?Q1lpTUtYNUZPSXJBTmtPTE94SDNDVm9ST1c3b3lRZFA4Rm56c2NnYXpETGJQ?=
- =?utf-8?B?L1habEpxVTl0QXRKQUZSeVA5aE9ibktpN3FnOFlsVDAyYWtjOEJ6K1E3cWdQ?=
- =?utf-8?B?eXFDdURQejBRL1JjQlFndkJEejFEZlRPS0JscHY4eEhiTHZpalcyb2YzM2NU?=
- =?utf-8?B?Nmp3QS9BbGJTMGhXYzFJZ1ZDajVodUdvcjdXMUQ1TDk1OXNaK0dhdVBvUW1i?=
- =?utf-8?B?NGNHdmo3TFZhZyttdUY4U3lKT3NIVFJVT0NYaDdVcXZ3cEdhTzE3U21EbVho?=
- =?utf-8?B?VXQ3bWRVSmJsVG1EeTNseFV5eHVKTnAzaGVqMkxUQ0xwaTN3dmsxY0F2clZj?=
- =?utf-8?B?NWRmVlYvdUhqb0lXOWEvVWpISlpEMWJyTU9KSlg1cHpDTWdPcFUvZm1jZFVY?=
- =?utf-8?B?bFNRb0YwbDdsTGJUS3Q0VmN5dG1wMk80ZHN3MjZuTGFHMlJLZjJ2ZFFXeUlX?=
- =?utf-8?B?SXVPdVNnQWxLeExIM3ZiUmlGaFdYY0RXS1BtR21HMzZVV3dDT25iendPS3Q1?=
- =?utf-8?B?eThVUzhvSENndWRQOHZwYWJWOGdoVXFjdHZ2RWFVdVl5M0tBbkp5SFNiN0hs?=
- =?utf-8?B?WCtxZ25MS0F2ZktITlFSQWQrYnM4cVhtQUEzNm1oS0MzYUJLNkRHRXZSRjlC?=
- =?utf-8?B?NC9RVU9vdTBiVzVLL3ZGSHhnMk1QT1p2M0hkRWlPMEtVQVI2eXQ1bFUxL0NJ?=
- =?utf-8?B?b3liL1llY1pNTHVLNXV1d2RxeUNsSzc4eEZyWmRnbWhYZ2NveDBnWGlqSXZV?=
- =?utf-8?B?V3kvdm43ajIyVXdPcUNGbXJqNytZK29zV3lPWUJLOTVsVGtIa0F0cnFONlJL?=
- =?utf-8?B?TWVjU056dnNhNFpwTVhqNWFHTmJTanR4RUVsYnkvNXZocUdrNGNnWHFRelVx?=
- =?utf-8?B?SjZQVmgrcldnVVdQRjBvdjVjdWxLaFFFdGpYY3B0U3hReTRrZnNGSFcyZ0VF?=
- =?utf-8?B?MWJmUnFwQ1h5WWtxQ0UvQjVkQ1BvYW5tZmhrRWhLV0tRSjkxTjduY2JLbUVY?=
- =?utf-8?B?RHJGUDZLUVFVUUQ0WWkybzFSRjFocE9DUFROMG12aVMxS0RpZ3FTVnI0bVlY?=
- =?utf-8?B?djJ3UnBjWnhvVGM1aHVOdGNSVHE0NVo4SUJXUmowbDZSeUhvMXFtNTVXV1dy?=
- =?utf-8?B?TEtLNDdBTDc4R2tmVFNtNmhFRUdFOHV5ODB1QnhoU09vNGQwUVkvZGRQQ2J5?=
- =?utf-8?B?a3BPanhCZ2VjRGh5Zml2emphS3YrazZyVjN5SjQzY3AwMTdJUTk5Mk1rb0lK?=
- =?utf-8?B?RjZ5MFV3ckMySlI1NVF3RlVMNTJNV1J5cDlycFovZGFqWE5qSDF6WHd6aFJJ?=
- =?utf-8?B?cmw3WUd1azlRbDNma0psWHdPSTViejUvaFRnN3UwbzI5UVE9PQ==?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?kILSMkO6E7jj8X82pyOobLYc4t5kje9bMUNcCyQORTpahL9vs5AzytF3TTbv?=
+ =?us-ascii?Q?t0nDBDP+zUiP7ieGATLoRYnOQqW3BbmHtyXjd4oNBCtFvqZp1PhNlB4PJ+wS?=
+ =?us-ascii?Q?80R/wXglV86ZeRGKo7i5oJ8tKhHKMt4Foz01gVOVNiVHovfgubOIBshTcVcX?=
+ =?us-ascii?Q?H+wGosWD+4e81gcLXVXHrFDkOLRRNBhp33YSprPk/B2tRuaqpA1XdZf9QbK1?=
+ =?us-ascii?Q?7SROmNxsrPJsz6FZFzzbnFrV1tTTU3DpmLHbJNNI36r7sgiC3RXxEUPZ1TZA?=
+ =?us-ascii?Q?bRUxY07SIqFXHFp+F/VFvpJqpHheXM2CacjQO/vnlu5nSjn08zRrLCLlSsgq?=
+ =?us-ascii?Q?T0+ZDxCUaUwaJaldAZVAdpRwrxBPGkulMtPmboFwkrKlmemjF5kCLsPawxsH?=
+ =?us-ascii?Q?IkjUfcICgdCJXd9Dpi9o3tDYe3Qi52rbOTCGS23DruqdTjt6Zp/jZTxFc0yI?=
+ =?us-ascii?Q?MzdUy11Y4xAhymqnUcFMCR7w+mCgtpYuBuYXZfZeFkP6vdknHVkcxm9JJwJP?=
+ =?us-ascii?Q?IJ+OVHQ/6RqwjAjXJfaXxuxIqGr6dEQFwcCdm0PZffCG8E/QISR5RN2+F2Es?=
+ =?us-ascii?Q?dWJg7nrNZx75z7KU1tZw3+9XcK378dZUyadJm4XL3LK4V9oOFahWa3hAoavd?=
+ =?us-ascii?Q?ikQU0NdUPjWdJKSerGSLlJqgxjioTDdpij2QmXVEHfdi4SZJpLjTpzk0Oftk?=
+ =?us-ascii?Q?n6oDGsefYm8wa0j7rdbEv/O8Jm7FWF2NqxdhUPA0mD1VFxUmRfSz7rUaMxFg?=
+ =?us-ascii?Q?GLLmsA8np0JPFj+2LHUl69c6WEbWBOe2Sl39eavt3vbinbyPc768Jn5CTq/m?=
+ =?us-ascii?Q?6uTfQaBlVURvb3yxo+xNOzjPJXG55P7l3K8ts1m2glcbfKqWWErSTtImvZtj?=
+ =?us-ascii?Q?dAlz6CPRdstJmg7iQKlEJ0nmfMYn5DFqM2ypz+LXlD62pxYp1NzC4FIG5Ld1?=
+ =?us-ascii?Q?2TQ5pE/TSXMkpYTfFNMCG1U6PPuzwLYl6NV9KR5j8nwYoXJSRVFIHpaProJM?=
+ =?us-ascii?Q?q4RCii/ndmcLQ2aal59m1Two1LR3YNN2JF+3ao8RYfBwtZKnFfb1i/S7zbWV?=
+ =?us-ascii?Q?Z4hA4Zi8ipK834AGQcUEznbHH6bI5oWEAFlds5JXsjQmYm528iKmiqfrMKHF?=
+ =?us-ascii?Q?jVZL4zkqPdC5CM1BbQ452YO46TrctyoyFCAtHOqwMzI0/WF0lyyG1++jj1/f?=
+ =?us-ascii?Q?sSQAERrZHYBCriCZfNd/SgCx0NblrIc/RdaxGFDelh1jxxXFSe8lu4f9Fmpm?=
+ =?us-ascii?Q?ZuPEcS06G4k+p04GvTZuZ2CaotekfAcFi/OqSsTSUezfx5LkKgjAEKBIJ7qS?=
+ =?us-ascii?Q?FFRz8hK8mG1Stj/FWlh+8kaEciIJe+6cogMmlNNFczANg3F+f6B83Har8pFr?=
+ =?us-ascii?Q?Txzx0FaOaGQFJwOw5UIKwUF+YvKm0bMJpKuMG1a6Gb4hhH5A562c4HpDjLk0?=
+ =?us-ascii?Q?//o++UFjLMBVgrwPJ2bWUVAO65JcF0SZ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NUdpWWNjMUtXU0FTQis2czd2enBJNmxiN3ljdmNoV3VPdnVhQmEwam1CNHEv?=
- =?utf-8?B?WlZ2MEs3Sk54R2FIUitadWJzRCt4WElGWnZna0FwWGhKRGRYalBuTjErejJz?=
- =?utf-8?B?c1BiWkg4eDYxUzBLOUVHY2QyQnFOWWxvNnVKbHJSK2g4aDkwVGllUVFsRnFW?=
- =?utf-8?B?T3ZSMFc2SVVZSS9LSmpMTXVJdk1SZmpUejArSDJjczJMT2tGYWU5OWFDSFF5?=
- =?utf-8?B?NlJ5aGRLcE9jRWFCWG9LYzArblNqbGFoRWNTelloNFBrRGc4Q29WSklvTHUy?=
- =?utf-8?B?QmU3eDlla09JTy84ZWI4bFp3b0o4ZitCRGpqYjFnblR6RGNjeHRwN1hWeWFW?=
- =?utf-8?B?cUNrZE14b0pGaTdXai9pRGRVbnVSMXFXKzJyN1E1RWNXNndlMTkyTXZ4NUpj?=
- =?utf-8?B?cmdIWndCd2NnOFVMaE1ieTZKbks0cWI5QU8zN21BZW9nZUJKMXhranhjaStm?=
- =?utf-8?B?dWx4VU1JVGxtRUlKQkdOZVp2aVJOemNnOEF5Yk84MmNTSFhGK3dPMm5xREtN?=
- =?utf-8?B?TjRHb2JhcUI5SkVudVpqcFNSc3lIT3A5NVdUcnFtRGplcjN6ei8yWVROTmJ3?=
- =?utf-8?B?WldveGxYQTYvSGtvQW5teDM3b3lRLzdxUUMrcnNFTUtPTXh0N3ZjZU1TQ3BS?=
- =?utf-8?B?WjFvalFrRUVoU1R4ZGN0SXYvenB3akR1OS9jRkliU3hHNGo0aktQMW85blJL?=
- =?utf-8?B?eDVDR1VWODVZZ3o0a2FYYkYxcWdicFZidzcrd0Z1ZW9OYkRuOSswSVlvdlBa?=
- =?utf-8?B?aWpWUzExdTVSZSs0anYvS2ZQdHg0eVJjanJzMUVBRXZLMTlqVXA1djIvSDRG?=
- =?utf-8?B?OEpNbTFPOWtVTTFoNFI2TEgyVnlpZTNXdE00ZytldnE2S0R2OWpReXd0WGhI?=
- =?utf-8?B?NVV3bEVvakxBY3h5UmJLUUJVZlFRM2xVTWlGUnZ3aHRvSXdNNHhkc1Q0Y1lE?=
- =?utf-8?B?U2xGblhaMFBQVm9YVW9oS3FiRWI1am1MNk02c3FCVklHa1hjR21nN3dySVZ4?=
- =?utf-8?B?UVRjSDBtdDErbXVWU1Y3TEtHNllrOXF0UHBvUnl0NjRkellTSFFSQzRINlcy?=
- =?utf-8?B?UDJCT0tOVnVtUmhkZExxTy9IcU1KTHVrRE5jdy95TzZwdUR5a1JQZ08renZ5?=
- =?utf-8?B?SnB0SElrVnZzNW56MkNFcVJNTWxsTmtwaEtFdDN2NUdnVm12WkJHMkdrZEFZ?=
- =?utf-8?B?dXFkbENzMDg1WWtrM3lkTGlXRklMUll2SHRyT1NrR05HOXY2b3FmazJmRUN4?=
- =?utf-8?B?K2N5cE5GTUUzaVNSeUNya3dySW55VVZHQ1hXVkx4YXVENUwyeGlSYzkySjdV?=
- =?utf-8?B?aW9rdC9DRHYzTnZUVUp3a0xaWVhpY1BkYitLWm5tYVpwZC9iVXozUnFEdmJ4?=
- =?utf-8?B?U20rTm1OSEJTNHVTUy85dGxGZ2w2ZVNFc2h5a2xZb2RiSi8zVjBVYVhLcVJK?=
- =?utf-8?B?ajcxOWFwMmR1d1QzdnprdW1hMVo0SGJ5bE0yeGRqejhTNmVxRlJyMVN3dVBr?=
- =?utf-8?B?dXRZMzdKQnNFUzg0K2ZiTC9sVU9qdXVxR2NYOUI3VTdVdm5qdThJVlZCZGV5?=
- =?utf-8?B?andBU21RM0p3U0hrNkFwZVV5Rm9OakFncXA5dVFwMENtSlBxbk5Qc3M2dThF?=
- =?utf-8?B?NWhySlFMaTYrZWR3NzYxSkVKSGxkdFVBcHNpZ1JXazNEbGVFNFRRWUdJaXk3?=
- =?utf-8?B?WmJZQy9EU2FmVmlpR2RFWlA5RGJaVWpJZGhkWGpaWkMzK1lvdzRRTHRHck9F?=
- =?utf-8?B?blNzYTM4a3ZoQUNGYStUZG1MdW5IRWoxemxpMHRvelNlRDQ0MDRSM0JSYUpo?=
- =?utf-8?B?VitMbVQ5L1U3bXVpUlpZdDllSEFDU1VvbVpqM0tZaTUxbUphVUowdkxvdzJH?=
- =?utf-8?B?MGFqNk15M1hIak9KaFFqcklQWCtlbktIdXJWYlFFSDdzdk9qTHZ3Uy9BVjc1?=
- =?utf-8?B?T1hTcXpsbFhrRXVHWGJldlhxcys3Ujc3d3J1R01SNDVRRXgrZW5Gakl2d0d5?=
- =?utf-8?B?T0VYQmJXWEJmZUgvM0xaV1NnSUZjN3o1TE84WDFQRzlPdkJjQ2U0UlBFdlBC?=
- =?utf-8?B?OE53UXB3dmdzYk52VWZabEhNOUloSldTQmJIeTI0Y1lhRTlNdkx2eTVRRlNj?=
- =?utf-8?B?eUdvWWRsUmJueU1rVVp5cU90NEhUOFhENUllSnlQUGpXajhNSEMraFZuM04r?=
- =?utf-8?B?Q2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8be272c-8113-431d-2db4-08de05e14494
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EXaJWAmYPLAnP0FW77yLfwyxAzEAWlPavda9Uktk5mdvMZaI1pfEXDp3wFE+?=
+ =?us-ascii?Q?6WhtY6egfVmEa8BiOczaVvQkumamet6ls/yyvrwrw7Xz7qOPaqB4jG8wiOCd?=
+ =?us-ascii?Q?NDDJOZB75OyMbAR6RM6cKnFgQtx0wbFM23sP+rPshP7pr/LhbRn/O7Yue7HI?=
+ =?us-ascii?Q?Ky56pDB7ILLrACB+GjzfKUX4u6emrQZxzQ/8/H2rE2+J5tUJhO1Cyc2X+pLY?=
+ =?us-ascii?Q?U4+5wzQo/i+lMjfS3bYS9qyFfvb165h4uzBFCgVuhFbXblbtam5s1zAKtV/a?=
+ =?us-ascii?Q?mxyZxKvzr/Whi6T4H9HBiW6gWiGWlbchOjy6TX0888xv14EPBVflG+64h8wI?=
+ =?us-ascii?Q?HRLbbkVu0a7HMnyag4cfQ5l0G2326K6zHzEHubfwrvyewTzZQpByGj4pZ4jD?=
+ =?us-ascii?Q?dvLkBebpDVs7+akHl/xlRNaPMdn4ueBuvAm6+xF0fM+6L/cNCjkTIHzQSfxe?=
+ =?us-ascii?Q?cFCEpmGjLS1JVLE/H/jHtuUw0qD4D1qkpRVC8+nZ6tzLNEGmjgCndz4ow12Z?=
+ =?us-ascii?Q?s4OFFR4nMhqKMXtqRsm0y7IKRO6oF/LoG2hr/p55EBJoyS73C7CIcXM7OKWC?=
+ =?us-ascii?Q?kj7VFipvIuoScs9KOWGbB7sDHDrRlFr20D1QHgV7BW3QQCGOSl/M2iFdn3mQ?=
+ =?us-ascii?Q?kWBL+qTutTF6+ym2hXOd6mrt/0ha0ZdUch/hkpITPyjsKqbYdeVtCumUsS5W?=
+ =?us-ascii?Q?hM99PLDDNoRAaDkp7YPCRcpaRN04FXqHz2DCv7Tl0m2b4hbdzGBw0INgD33M?=
+ =?us-ascii?Q?j02BMOp1FGCnGElBqKY5GiMnaiW2TkqmZJtEqJKbiiOGVKaUp8z2Vh4tvHbo?=
+ =?us-ascii?Q?q8DVYEq3CULYC75IaIQzi7+nL+AGrUF/eBVpI4cSh6FPmt/Jp7R6C5iQ6STP?=
+ =?us-ascii?Q?CSg2aKXGtuMFakJnmWnR+eKVIURBpi7OPpNubjI0FGBbfKSOXAL2p/4d9KlK?=
+ =?us-ascii?Q?E/Pm8fH6QDVTJZ4F8KnuPWPXhfQmk+Fc8/pQnbd3VCpA9j1rLq7r2UCGveN9?=
+ =?us-ascii?Q?1s8pxG8H5Q75owLD9dUpmB3f7bbE2HEmkpNiEGkw8NQnE7UO5DkFg4amHfV5?=
+ =?us-ascii?Q?qHhfDCtLs/uyIW3lB4qy7ilej8qD/dQjhs00Ve1dl6gM22KSHstHVPBfAw5g?=
+ =?us-ascii?Q?YKpRBCRQhFMHj39Z7rxsTVxEHC47iBJWsNuAXY5xqQBNVsToXYQUfTFYipQQ?=
+ =?us-ascii?Q?fY6TFkoWpDhuB6+5Z47CMBlQzLVxCRonqeatonMALaMzPpGK1ZllRWA7pKkP?=
+ =?us-ascii?Q?jFGTM2kCxYtESf+PuwBkUFnxnslTJLSzIhEQ/khXFEgx20XIcaj7NLxKfoZS?=
+ =?us-ascii?Q?8vfb4DfhxH9BW4sDVkZkopmg2yjtrPkUQs7Zn7wTP3jKqfDx67FbieBfvWHR?=
+ =?us-ascii?Q?G00SzotYG4QHlGxAQSo5DRGTGWhx+ccOqZskPMxzYkvYYPNhffWN1UYmg9TR?=
+ =?us-ascii?Q?otYCMtwLScrSsRNEUMb63O/kFbn0tXrinfP6/AscHAbB1JViYkJs8S76mjzA?=
+ =?us-ascii?Q?jVj6uVntuZ3AODFyKWsa2jlnPiD2netdiwysVALdc7SFhHkxliGTGFhnxpdV?=
+ =?us-ascii?Q?JlGAKy/BMByEDiD7fyYo7G8FDWjEqhdIweF9AQtJjCnZWJEjYf37X3gURP91?=
+ =?us-ascii?Q?yQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca9f49e4-02ea-4dd2-7cda-08de05e2da48
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 20:37:01.3301 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 20:48:21.8690 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UwWuRE1Nfl7G2XDcPh/ga88wGDgRypvpjX4SWK0B01nNzHKlM4f2LgkaGoXUd+CdAmkodI219AUCWSDTPD1vt+KOHamlLYQrPVRk/+ofXVA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6735
+X-MS-Exchange-CrossTenant-UserPrincipalName: dU76Gd0Shrc3st1BGlTTr0Ei4/Z8tqOpa39xPnz6eV1se9QAf3OvFwE5yp78lYaWmBcQMuETxFJaHgLG+Pohazop8Lo56SjBQruVoWLv648=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8042
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,275 +180,354 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 07, 2025 at 10:22:39AM -0700, Matthew Brost wrote:
->On Tue, Oct 07, 2025 at 12:00:32PM -0500, Lucas De Marchi wrote:
->> On Mon, Oct 06, 2025 at 03:51:12PM -0700, Matthew Brost wrote:
->> > On Mon, Oct 06, 2025 at 05:24:55PM -0500, Lucas De Marchi wrote:
->> > > On Mon, Oct 06, 2025 at 04:10:35AM -0700, Matthew Brost wrote:
->> > > > VF CCS restore is a primary GT operation on which the media GT depends.
->> > > > Therefore, it doesn't make much sense to run these operations in
->> > >
->> > > I'd need to double check the previous patches to see the entire
->> > > picture, but this seems weird at a first glance. The VF CCS restore is
->> > > not the single work we queue in gt->ordered_wq.  To me it seems more
->> > > like "in what ordered queue we are going to queue the VF CCS restore. If
->> > > it's global per device, why are we not using the device wq rather than
->> > > making all the GT wq point to the same thing?
->> > >
->> >
->> > This is where things get convoluted. Four mechanisms manipulate the
->> > scheduling state by starting or stopping the DRM scheduler:
->> >
->> > - Job timeouts
->> > - GT resets
->> > - VF restore
->> > - PM resume
->> >
->> > All of these paths require mutual exclusion, or the scheduler design
->> > breaks.
->> >
->> > The first three ensure ordering by scheduling on the same ordered work
->> > queue (GT-ordered WQ). The last one is guaranteed by holding PM
->> > references in all the right places.
->> >
->> > Another issue is that the first three items are all in the reclaim path
->> > — the GT-ordered work queue is designed to handle this.
->> >
->> > This patch [1] explains the entire scheduler design in detail.
->> >
->> > Only PTL has the cross-VF/GT restore ordering requirement, so I figured
->> > the path of least resistance is to just point all GTs to the primary
->> > work queue.
->> >
->> > [1] https://patchwork.freedesktop.org/patch/677980/?series=154627&rev=4
->> >
->> > > > parallel. To address this, point the media GT's ordered work queue to
->> > > > the primary GT's ordered work queue on platforms that require (PTL VFs)
->> > > > CCS restore as part of VF post-migration recovery.
->> > > >
->> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> > > > ---
->> > > > drivers/gpu/drm/xe/xe_device_types.h | 2 ++
->> > > > drivers/gpu/drm/xe/xe_gt.c           | 7 +++++--
->> > > > drivers/gpu/drm/xe/xe_gt.h           | 2 +-
->> > > > drivers/gpu/drm/xe/xe_pci.c          | 6 +++++-
->> > > > drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
->> > > > drivers/gpu/drm/xe/xe_tile.c         | 2 +-
->> > > > 6 files changed, 15 insertions(+), 5 deletions(-)
->> > > >
->> > > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> > > > index c66523bf4bf0..02c04ad7296e 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_device_types.h
->> > > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> > > > @@ -334,6 +334,8 @@ struct xe_device {
->> > > > 		u8 skip_mtcfg:1;
->> > > > 		/** @info.skip_pcode: skip access to PCODE uC */
->> > > > 		u8 skip_pcode:1;
->> > > > +		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
->> > > > +		u8 needs_shared_vf_gt_wq:1;
->> > > > 	} info;
->> > > >
->> > > > 	/** @wa_active: keep track of active workarounds */
->> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> > > > index cf484a2da35e..05465f358c96 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_gt.c
->> > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
->> > > > @@ -65,7 +65,7 @@
->> > > > #include "xe_wa.h"
->> > > > #include "xe_wopcm.h"
->> > > >
->> > > > -struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->> > > > +struct xe_gt *xe_gt_alloc(struct xe_tile *tile, bool use_primary_wq)
->> > >
->> > > If using the device wq is not an option (possibly because it would queue
->> > > with other undesired work going on there), then I'd rather drop this
->> > > bool passing here and make the decision inside this function:
->> > >
->> > > > {
->> > > > 	struct drm_device *drm = &tile_to_xe(tile)->drm;
->> > > > 	struct xe_gt *gt;
->> > > > @@ -75,7 +75,10 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->> > > > 		return ERR_PTR(-ENOMEM);
->> > > >
->> > > > 	gt->tile = tile;
->> > >
->> > > 	if (!xe->info.needs_shared_gt_wq || !tile->primary_gt->ordered_wq)
->> > > 		ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq", WQ_MEM_RECLAIM);
->> > > 	else
->> > > 		ordered_wq = tile->primary_gt->ordered_wq;
->> > > 	if (IS_ERR_OR_NUL(ordered_wq))
->> > >  		return ordered_wq ? ERR_CAST(gt->ordered_wq) : ERR_PTR(-EINVAL);
->> > >
->> > > 	gt->ordered_wq = ordered_wq;
->> > > 	
->> > > ... or something like that so you use the xe info to decide it here
->> > > rather than passing it down as a function arg.
->> > >
->> >
->> > Sure can refactor this as you suggest.
+On Mon, Oct 06, 2025 at 03:58:41PM -0400, Rodrigo Vivi wrote:
+>On Fri, Oct 03, 2025 at 11:06:21PM +0200, Michal Wajdeczko wrote:
 >>
 >>
->> another option that would avoid a bool arg would be to actually pass the
->> wq from the caller.
+>> On 10/3/2025 10:48 PM, Rodrigo Vivi wrote:
+>> > On Fri, Oct 03, 2025 at 01:26:48AM +0200, Michal Wajdeczko wrote:
+>> >> In addition to existing max_vfs modparam, add max_vfs configfs
+>> >> attribute to allow PF configuration on the per-device level.
+>> >> Default config value is still based on the modparam value.
+>> >>
+>> >> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> >> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/xe/xe_configfs.c | 139 +++++++++++++++++++++++++++++++
+>> >>  drivers/gpu/drm/xe/xe_configfs.h |   4 +
+>> >>  drivers/gpu/drm/xe/xe_sriov_pf.c |   3 +
+>> >>  3 files changed, 146 insertions(+)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+>> >> index 139663423185..464a79c2a903 100644
+>> >> --- a/drivers/gpu/drm/xe/xe_configfs.c
+>> >> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+>> >> @@ -18,6 +18,7 @@
+>> >>  #include "xe_hw_engine_types.h"
+>> >>  #include "xe_module.h"
+>> >>  #include "xe_pci_types.h"
+>> >> +#include "xe_sriov_types.h"
+>> >>
+>> >>  /**
+>> >>   * DOC: Xe Configfs
+>> >> @@ -169,6 +170,32 @@
+>> >>   * Currently this is implemented only for post and mid context restore and
+>> >>   * these attributes can only be set before binding to the device.
+>> >>   *
+>> >> + * Max SR-IOV Virtual Functions
+>> >> + * ----------------------------
+>> >> + *
+>> >> + * This config allows to limit number of the Virtual Functions (VFs) that can
+>> >> + * be managed by the Physical Function (PF) driver, where value 0 disables the
+>> >> + * PF mode (no VFs).
+>> >> + *
+>> >> + * The default max_vfs config value is taken from the max_vfs modparam.
+>> >> + *
+>> >> + * How to enable PF with support with unlimited (up to HW limit) number of VFs::
+>> >> + *
+>> >> + *	# echo unlimited > /sys/kernel/config/xe/0000:00:02.0/sriov/max_vfs
+>> >> + *	# echo 0000:00:02.0 > /sys/bus/pci/drivers/xe/bind
+>> >> + *
+>> >> + * How to enable PF with support up to 3 VFs::
+>> >> + *
+>> >> + *	# echo 3 > /sys/kernel/config/xe/0000:00:02.0/sriov/max_vfs
+>> >> + *	# echo 0000:00:02.0 > /sys/bus/pci/drivers/xe/bind
+>> >> + *
+>> >> + * How to disable PF mode and always run as native::
+>> >> + *
+>> >> + *	# echo 0 > /sys/kernel/config/xe/0000:00:02.0/sriov/max_vfs
+>> >> + *	# echo 0000:00:02.0 > /sys/bus/pci/drivers/xe/bind
+>> >> + *
+>> >> + * This setting only takes effect when probing the device.
+>> >> + *
+>> >>   * Remove devices
+>> >>   * ==============
+>> >>   *
+>> >> @@ -185,6 +212,7 @@ struct wa_bb {
+>> >>
+>> >>  struct xe_config_group_device {
+>> >>  	struct config_group group;
+>> >> +	struct config_group sriov;
+>> >>
+>> >>  	struct xe_config_device {
+>> >>  		u64 engines_allowed;
+>> >> @@ -192,23 +220,34 @@ struct xe_config_group_device {
+>> >>  		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+>> >>  		bool survivability_mode;
+>> >>  		bool enable_psmi;
+>> >> +		struct {
+>> >> +			unsigned int max_vfs;
+>> >> +		} sriov;
+>> >>  	} config;
+>> >>
+>> >>  	/* protects attributes */
+>> >>  	struct mutex lock;
+>> >>  	/* matching descriptor */
+>> >>  	const struct xe_device_desc *desc;
+>> >> +	/* tentative SR-IOV mode */
+>> >> +	enum xe_sriov_mode mode;
+>> >>  };
+>> >>
+>> >>  static const struct xe_config_device device_defaults = {
+>> >>  	.engines_allowed = U64_MAX,
+>> >>  	.survivability_mode = false,
+>> >>  	.enable_psmi = false,
+>> >> +	.sriov = {
+>> >> +		.max_vfs = UINT_MAX,
+>> >> +	},
+>> >>  };
+>> >>
+>> >>  static void set_device_defaults(struct xe_config_device *config)
+>> >>  {
+>> >>  	*config = device_defaults;
+>> >> +#ifdef CONFIG_PCI_IOV
+>> >> +	config->sriov.max_vfs = xe_modparam.max_vfs;
+>> >> +#endif
+>> >>  }
+>> >>
+>> >>  struct engine_info {
+>> >> @@ -721,6 +760,68 @@ static const struct config_item_type xe_config_device_type = {
+>> >>  	.ct_owner	= THIS_MODULE,
+>> >>  };
+>> >>
+>> >> +static ssize_t sriov_max_vfs_show(struct config_item *item, char *page)
+>> >> +{
+>> >> +	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
+>> >> +
+>> >> +	guard(mutex)(&dev->lock);
+>> >> +
+>> >> +	if (dev->config.sriov.max_vfs == UINT_MAX)
+>> >> +		return sprintf(page, "%s\n", "unlimited");
+>> >> +	else
+>> >> +		return sprintf(page, "%u\n", dev->config.sriov.max_vfs);
+>> >> +}
+>> >> +
+>> >> +static ssize_t sriov_max_vfs_store(struct config_item *item, const char *page, size_t len)
+>> >> +{
+>> >> +	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
+>> >> +	unsigned int max_vfs;
+>> >> +	int ret;
+>> >> +
+>> >> +	guard(mutex)(&dev->lock);
+>> >> +
+>> >> +	if (is_bound(dev))
+>> >> +		return -EBUSY;
+>> >> +
+>> >> +	ret = kstrtouint(page, 0, &max_vfs);
+>> >> +	if (ret) {
+>> >> +		if (!sysfs_streq(page, "unlimited"))
+>> >> +			return ret;
+>> >> +		max_vfs = UINT_MAX;
+>> >> +	}
+>> >> +
+>> >> +	dev->config.sriov.max_vfs = max_vfs;
+>> >> +	return len;
+>> >> +}
+>> >> +
+>> >> +CONFIGFS_ATTR(sriov_, max_vfs);
+>> >> +
+>> >> +static struct configfs_attribute *xe_config_sriov_attrs[] = {
+>> >> +	&sriov_attr_max_vfs,
+>> >> +	NULL,
+>> >> +};
+>> >> +
+>> >> +static bool xe_config_sriov_is_visible(struct config_item *item,
+>> >> +				       struct configfs_attribute *attr, int n)
+>> >> +{
+>> >> +	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
+>> >> +
+>> >> +	if (attr == &sriov_attr_max_vfs && dev->mode != XE_SRIOV_MODE_PF)
+>> >> +		return false;
+>> >> +
+>> >> +	return true;
+>> >> +}
+>> >> +
+>> >> +static struct configfs_group_operations xe_config_sriov_group_ops = {
+>> >> +	.is_visible	= xe_config_sriov_is_visible,
+>> >> +};
+>> >> +
+>> >> +static const struct config_item_type xe_config_sriov_type = {
+>> >> +	.ct_owner	= THIS_MODULE,
+>> >> +	.ct_group_ops	= &xe_config_sriov_group_ops,
+>> >> +	.ct_attrs	= xe_config_sriov_attrs,
+>> >> +};
+>> >> +
+>> >>  static const struct xe_device_desc *xe_match_desc(struct pci_dev *pdev)
+>> >>  {
+>> >>  	struct device_driver *driver = driver_find("xe", &pci_bus_type);
+>> >> @@ -746,6 +847,7 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+>> >>  	unsigned int domain, bus, slot, function;
+>> >>  	struct xe_config_group_device *dev;
+>> >>  	const struct xe_device_desc *match;
+>> >> +	enum xe_sriov_mode mode;
+>> >>  	struct pci_dev *pdev;
+>> >>  	char canonical[16];
+>> >>  	int vfnumber = 0;
+>> >> @@ -762,6 +864,9 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+>> >>  		return ERR_PTR(-EINVAL);
+>> >>
+>> >>  	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
+>> >> +	mode = pdev ? dev_is_pf(&pdev->dev) ?
+>> >> +		XE_SRIOV_MODE_PF : XE_SRIOV_MODE_NONE : XE_SRIOV_MODE_VF;
+>> >> +
+>> >>  	if (!pdev && function)
+>> >>  		pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, 0));
+>> >>  	if (!pdev && slot)
+>> >> @@ -796,9 +901,15 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+>> >>  		return ERR_PTR(-ENOMEM);
+>> >>
+>> >>  	dev->desc = match;
+>> >> +	dev->mode = match->has_sriov ? mode : XE_SRIOV_MODE_NONE;
+>> >> +
+>> >>  	set_device_defaults(&dev->config);
+>> >>
+>> >>  	config_group_init_type_name(&dev->group, name, &xe_config_device_type);
+>> >> +	if (dev->mode != XE_SRIOV_MODE_NONE) {
+>> >> +		config_group_init_type_name(&dev->sriov, "sriov", &xe_config_sriov_type);
+>> >> +		configfs_add_default_group(&dev->sriov, &dev->group);
+>> >> +	}
+>> >>
+>> >>  	mutex_init(&dev->lock);
+>> >>
+>> >> @@ -988,6 +1099,34 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+>> >>  	return len;
+>> >>  }
+>> >>
+>> >> +#ifdef CONFIG_PCI_IOV
+>> >> +/**
+>> >> + * xe_configfs_get_max_vfs() - Get number of VFs that could be managed
+>> >> + * @pdev: the &pci_dev device
+>> >> + *
+>> >> + * Find the configfs group that belongs to the PCI device and return maximum
+>> >> + * number of Virtual Functions (VFs) that could be managed by this device.
+>> >> + * If configfs group is not present, use value of max_vfs module parameter.
+>> >> + *
+>> >> + * Return: maximum number of VFs that could be managed.
+>> >> + */
+>> >> +unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
+>> >> +{
+>> >> +	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+>> >> +	unsigned int max_vfs;
+>> >> +
+>> >> +	if (!dev)
+>> >> +		return xe_modparam.max_vfs;
+>> >> +
+>> >> +	scoped_guard(mutex, &dev->lock)
+>> >> +		max_vfs = dev->config.sriov.max_vfs;
+>> >> +
+>> >> +	config_group_put(&dev->group);
+>> >> +
+>> >> +	return max_vfs;
+>> >> +}
+>> >> +#endif
+>> >> +
+>> >>  int __init xe_configfs_init(void)
+>> >>  {
+>> >>  	int ret;
+>> >> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+>> >> index c61e0e47ed94..16a1f578e4fe 100644
+>> >> --- a/drivers/gpu/drm/xe/xe_configfs.h
+>> >> +++ b/drivers/gpu/drm/xe/xe_configfs.h
+>> >> @@ -23,6 +23,9 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_clas
+>> >>  				       const u32 **cs);
+>> >>  u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+>> >>  					const u32 **cs);
+>> >> +#ifdef CONFIG_PCI_IOV
+>> >> +unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+>> >> +#endif
+>> >>  #else
+>> >>  static inline int xe_configfs_init(void) { return 0; }
+>> >>  static inline void xe_configfs_exit(void) { }
+>> >> @@ -34,6 +37,7 @@ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum
+>> >>  						     const u32 **cs) { return 0; }
+>> >>  static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_class,
+>> >>  						      const u32 **cs) { return 0; }
+>> >> +static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev) { return UINT_MAX; }
+>> >>  #endif
+>> >>
+>> >>  #endif
+>> >> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+>> >> index 4698348c010a..428b1b62cf48 100644
+>> >> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
+>> >> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+>> >> @@ -8,6 +8,7 @@
+>> >>  #include <drm/drm_managed.h>
+>> >>
+>> >>  #include "xe_assert.h"
+>> >> +#include "xe_configfs.h"
+>> >>  #include "xe_device.h"
+>> >>  #include "xe_gt_sriov_pf.h"
+>> >>  #include "xe_module.h"
+>> >> @@ -19,6 +20,8 @@
+>> >>
+>> >>  static unsigned int wanted_max_vfs(struct xe_device *xe)
+>> >>  {
+>> >> +	if (IS_ENABLED(CONFIG_CONFIGFS_FS))
+>> >> +		return xe_configfs_get_max_vfs(to_pci_dev(xe->drm.dev));
+>> >>  	return xe_modparam.max_vfs;
+>> >
+>> > I like the idea of the configfs, but this here is strange.
+>> > shouldn't be better to simply remove the modparam?
 >>
->> 	wq = NULL;
->>
->> 	if (xe->info.needs_shared_gt_wq)
->> 		wq = tile->primary_gt->ordered_wq;
->>
->> 	xe_gt_alloc(tile, wq);
->>
+>> well, I just wasn't sure what will be our approach here, since all our
+>> current configfs entries were just new options, never existed before as
+>> modparams, while this max_vfs is the only new one config that previously
+>> was defined as modparam, that some users may still rely on.
 
->I posted a v7/v8 which did it like you suggest.
+I think going forward the modparam may be useful to signify things the
+module implements, that shouldn't be different from one device to
+another. In future we maybe could replace max_vfs with sriov and default
+it to 1.
 
-good, will take a look
+We can do that later though. Let's keep the max_vfs for now as it's an
+easy way to enable/disable the feature if passing =0 or =-1.
 
->
->> >
->> > >
->> > > > -	gt->ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq", WQ_MEM_RECLAIM);
->> > > > +	if (use_primary_wq)
->> > > > +		gt->ordered_wq = tile->primary_gt->ordered_wq;
->> > > > +	else
->> > > > +		gt->ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq", WQ_MEM_RECLAIM);
->> > > > 	if (IS_ERR(gt->ordered_wq))
->> > > > 		return ERR_CAST(gt->ordered_wq);
->> > > >
->> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
->> > > > index 5df2ffe3ff83..9545c0c93ab6 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_gt.h
->> > > > +++ b/drivers/gpu/drm/xe/xe_gt.h
->> > > > @@ -28,7 +28,7 @@ static inline bool xe_fault_inject_gt_reset(void)
->> > > > 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&gt_reset_failure, 1);
->> > > > }
->> > > >
->> > > > -struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
->> > > > +struct xe_gt *xe_gt_alloc(struct xe_tile *tile, bool use_primary_wq);
->> > > > int xe_gt_init_early(struct xe_gt *gt);
->> > > > int xe_gt_init(struct xe_gt *gt);
->> > > > void xe_gt_mmio_init(struct xe_gt *gt);
->> > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> > > > index 3f42b91efa28..25a1d96a68e7 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_pci.c
->> > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
->> > > > @@ -347,6 +347,7 @@ static const struct xe_device_desc ptl_desc = {
->> > > > 	.has_sriov = true,
->> > > > 	.max_gt_per_tile = 2,
->> > > > 	.needs_scratch = true,
->> > > > +	.needs_shared_vf_gt_wq = true,
->> > >
->> > > as per above... I think this needs to be detached from vf. There may be
->> > > other reasons the wq needs to be shared.
->> > >
->> >
->> > I’d prefer to share the work queue only when absolutely necessary — such
->> > as when PTL is on a VF and migration is supported.
 >>
->>
->> I missed that you left the VF condition out as an && for the allocation:
->>
+>> so my approach was to use modparam value as initial default configfs value
+>> for all devices, or immediate fallback if configfs is not available
 >
->Yes.
+>I had missunderstood the flow here. Thanks for the patience and all the
+>offline explanations.
 >
->> > > > +                                       xe->info.needs_shared_vf_gt_wq &&
->> > > > +                                       IS_SRIOV_VF(xe));
 >>
->> IMO a better way would be to call it `needs_shared_gt_wq` and then
->> override the condition in the vf-specific function:
->>
->> sriov_update_device_info()
->>
+>> just need a clear statement
 >
->I'm trying to follow this one.
+>Well, I'm afraid we don't have a clear one-rule fits all.
 >
->This a platform (static) and VF (dynamic) condition combination.
->
->Are you suggesting removing platform information from xe_pci.c and just
->have info bit in the device which the sriov code sets? I think we'd need
->a platform check then in the sriov code which I thought in general we
->want to avoid inline platform checks.
+>In this case here, as you pointed offline, if we have desktop case like
+>igfx, admin might prefer to set on boot and not depend on unbind for
+>setting the configfs.
 
-yeah, true... for that to be done without hardcoding the vf it would be
-more verbose and there isn't much need if the VF is the only expected
-one.
-
+I don't think we should document the unbind as the expected way to
+handle things. It should rather be by separating the module load from
+module bind phases.
 
 >
->Maybe I'm misunderstanding here.
->
->Matt
->
->> Lucas De Marchi
 >>
->> >
->> > > If we just make them point to a device wq as suggested above, then
->> > > there's no extra issue with the ongoing work to disable GTs that Matt
->> > > Roper is doing (https://patchwork.freedesktop.org/series/154739/).
->> > > Otherwise we will need to think on how to reconciliate them.
->> > >
->> >
->> > I don’t see how it would ever be possible to disable the primary GT and
->> > still do anything meaningful. You can’t allocate memory (e.g., for
->> > clears), perform VM binds, or handle page faults without a copy engine.
+>> note that there are few other modparams that should be promoted to
+>> configfs (like guc/huc firmwares) and I assume the same rule will apply
+>
+>while on this case perhaps it is something that we want as a police for
+>the module and all devices, not a per device in the system.
+>
+>So, let's move with this patch as is and we handle and evolve case by
+>case as needed and as it makes sense individually.
+>
+>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-it's actually useful for platform bringup as we can enable the
-individual pieces in parallel. We know what should and shouldn't
-work and workloads we can execute in this case.
+Agreed,
+
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
+>
+>>
 >> >
->> > Matt
->> >
->> > > Lucas De Marchi
->> > >
->> > > > };
->> > > >
->> > > > #undef PLATFORM
->> > > > @@ -598,6 +599,7 @@ static int xe_info_init_early(struct xe_device *xe,
->> > > > 	xe->info.skip_mtcfg = desc->skip_mtcfg;
->> > > > 	xe->info.skip_pcode = desc->skip_pcode;
->> > > > 	xe->info.needs_scratch = desc->needs_scratch;
->> > > > +	xe->info.needs_shared_vf_gt_wq = desc->needs_shared_vf_gt_wq;
->> > > >
->> > > > 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
->> > > > 				 xe_modparam.probe_display &&
->> > > > @@ -766,7 +768,9 @@ static int xe_info_init(struct xe_device *xe,
->> > > > 		 * Allocate and setup media GT for platforms with standalone
->> > > > 		 * media.
->> > > > 		 */
->> > > > -		tile->media_gt = xe_gt_alloc(tile);
->> > > > +		tile->media_gt = xe_gt_alloc(tile,
->> > > > +					     xe->info.needs_shared_vf_gt_wq &&
->> > > > +					     IS_SRIOV_VF(xe));
->> > > > 		if (IS_ERR(tile->media_gt))
->> > > > 			return PTR_ERR(tile->media_gt);
->> > > >
->> > > > diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
->> > > > index 9b9766a3baa3..b11bf6abda5b 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_pci_types.h
->> > > > +++ b/drivers/gpu/drm/xe/xe_pci_types.h
->> > > > @@ -48,6 +48,7 @@ struct xe_device_desc {
->> > > > 	u8 skip_guc_pc:1;
->> > > > 	u8 skip_mtcfg:1;
->> > > > 	u8 skip_pcode:1;
->> > > > +	u8 needs_shared_vf_gt_wq:1;
->> > > > };
->> > > >
->> > > > struct xe_graphics_desc {
->> > > > diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
->> > > > index 6edb5062c1da..e9bcff2de563 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_tile.c
->> > > > +++ b/drivers/gpu/drm/xe/xe_tile.c
->> > > > @@ -157,7 +157,7 @@ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id)
->> > > > 	if (err)
->> > > > 		return err;
->> > > >
->> > > > -	tile->primary_gt = xe_gt_alloc(tile);
->> > > > +	tile->primary_gt = xe_gt_alloc(tile, false);
->> > > > 	if (IS_ERR(tile->primary_gt))
->> > > > 		return PTR_ERR(tile->primary_gt);
->> > > >
->> > > > --
->> > > > 2.34.1
->> > > >
+>> >>  }
+>> >>
+>> >> --
+>> >> 2.47.1
+>> >>
+>>
