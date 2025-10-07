@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F083CCD188
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90990CCD189
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:26:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA03010E686;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C963B10E63B;
 	Tue,  7 Oct 2025 11:26:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0fiiCMg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UU/cUJQ6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6088210E671
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 012ED10E674
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759836409; x=1791372409;
+ t=1759836408; x=1791372408;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zq35zAhxL/Sf8B8F42DYXO5tAyXag+D4ePYsewbqfN0=;
- b=C0fiiCMgHS21oBi28m2st6X9rvXn3YnYIC8wODOmOzMJAznZqz1Bw+Gi
- xxIRW4YfKuu4Gk2Pgrg6IFlkctWIgFZDhkXuqgYPhmHwo4oQjitoLSvWu
- yxwYki8DD1LrPIcBOBse1kCeH22Vwz01qxg7L+b8ijLejyf4PTPRe1tpf
- zCbs++xeIp4MDy6SfV/ovK87PfueRKwazqotEtI6/Wrei+zWBQf2qGrrk
- PpW42vJ/sOjD+41RNeT10Pq7WgrobnsGZldZyH2BOl4X7I1cABCIk/5n7
- ki3K7S9SnbqgMwZldGSZRVhSlpkLIbWsrU3LlbmL5JoEQmx6NX7SXvNAP Q==;
-X-CSE-ConnectionGUID: h+aggtZwTLuikQClyeLRGA==
-X-CSE-MsgGUID: xdM6vEiRRJSWtPddmpxPEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660680"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660680"
+ bh=kiz+jerG8Hx1DiGBkWQWSS6oHpKcTCE/T9d9vU2nJ8M=;
+ b=UU/cUJQ6mf0xwX2dvjcVuyvBkByE1xxM/pGVTf/JGfdW3c+scFzblhlQ
+ FWyISyk6HHmbSPIWfX0vc6yTFuhRVEDgea6EWb82/ycKMgqCXV3q5OBpx
+ pTHcnPieBUx68e7karuUmMw2AerDa6VtPARwyc4UxPmjiggX2IixPwBNK
+ DAcSOhoG5AgK+YZP7m6F9nFHqA6dDrGAqbNJrZS034A9dFLjRjpV+TOQu
+ UHu6w7tIq/XfdybAvE730UrM8ID6Gxxyq2gBJ2GmyyoIv859VBYC8vgPa
+ T+JsXyXkJ3/59rszxJTgyY6Mm9HmrfYpssl/tSgnCD5YKjRuBaWNcUKAJ Q==;
+X-CSE-ConnectionGUID: qDkMsbPNSqGPFwgIADOwWg==
+X-CSE-MsgGUID: 0qd2wVB3STWJGbh42FM2eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660678"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660678"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Oct 2025 04:26:48 -0700
-X-CSE-ConnectionGUID: ON+rXJsoT8utqWYn2KAfGA==
-X-CSE-MsgGUID: G241K2rGReKX0vpVY03E9Q==
+X-CSE-ConnectionGUID: P7OqwYiMQJiqCyHDSTmV3Q==
+X-CSE-MsgGUID: D1X7pPH9RfmrhY7Og544zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923998"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180923995"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:48 -0700
+ 07 Oct 2025 04:26:47 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 11/32] drm/xe: Move GGTT lock init to alloc
-Date: Tue,  7 Oct 2025 04:26:20 -0700
-Message-Id: <20251007112641.2669655-12-matthew.brost@intel.com>
+Subject: [PATCH v7 09/32] drm/xe/vf: Abort H2G sends during VF post-migration
+ recovery
+Date: Tue,  7 Oct 2025 04:26:18 -0700
+Message-Id: <20251007112641.2669655-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
@@ -65,90 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GGTT lock is needed very early during GT initialization for a VF;
-move the GGTT lock initialization to the allocation phase.
+While VF post-migration recovery is in progress, abort H2G sends with
+-ECANCEL. These messages are treated as lost, and TLB invalidation
+errors are suppressed. During this phase, the H2G channel is down, and
+VF recovery requires the CT lock to proceed.
+
+v3:
+ - Use xe_gt_recovery_inprogress (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 36 ++++++++++++++++++++++--------------
- 1 file changed, 22 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7fdd0a97a628..f7717057cd14 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -159,6 +159,16 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 47079ab9922c..9f0090ae64a6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -851,7 +851,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 				u32 len, u32 g2h_len, u32 num_g2h,
+ 				struct g2h_fence *g2h_fence)
+ {
+-	struct xe_gt *gt __maybe_unused = ct_to_gt(ct);
++	struct xe_gt *gt = ct_to_gt(ct);
+ 	u16 seqno;
+ 	int ret;
+ 
+@@ -872,7 +872,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 		goto out;
  	}
- }
  
-+static void primelockdep(struct xe_ggtt *ggtt)
-+{
-+	if (!IS_ENABLED(CONFIG_LOCKDEP))
-+		return;
-+
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&ggtt->lock);
-+	fs_reclaim_release(GFP_KERNEL);
-+}
-+
- /**
-  * xe_ggtt_alloc - Allocate a GGTT for a given &xe_tile
-  * @tile: &xe_tile
-@@ -170,8 +180,19 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile)
- {
- 	struct xe_ggtt *ggtt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*ggtt), GFP_KERNEL);
--	if (ggtt)
-+
-+	if (ggtt) {
-+		int err;
-+
- 		ggtt->tile = tile;
-+
-+		err = drmm_mutex_init(&tile_to_xe(tile)->drm, &ggtt->lock);
-+		if (err)
-+			ggtt = NULL;
-+		else
-+			primelockdep(ggtt);
-+	}
-+
- 	return ggtt;
- }
- 
-@@ -180,7 +201,6 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
- 	struct xe_ggtt *ggtt = arg;
- 
- 	destroy_workqueue(ggtt->wq);
--	mutex_destroy(&ggtt->lock);
- 	drm_mm_takedown(&ggtt->mm);
- }
- 
-@@ -198,16 +218,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
- }
- #endif
- 
--static void primelockdep(struct xe_ggtt *ggtt)
--{
--	if (!IS_ENABLED(CONFIG_LOCKDEP))
--		return;
--
--	fs_reclaim_acquire(GFP_KERNEL);
--	might_lock(&ggtt->lock);
--	fs_reclaim_release(GFP_KERNEL);
--}
--
- static const struct xe_ggtt_pt_ops xelp_pt_ops = {
- 	.pte_encode_flags = xelp_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
-@@ -227,8 +237,6 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
- {
- 	drm_mm_init(&ggtt->mm, reserved,
- 		    ggtt->size - reserved);
--	mutex_init(&ggtt->lock);
--	primelockdep(ggtt);
- }
- 
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
+-	if (ct->state == XE_GUC_CT_STATE_STOPPED) {
++	if (ct->state == XE_GUC_CT_STATE_STOPPED || xe_gt_recovery_pending(gt)) {
+ 		ret = -ECANCELED;
+ 		goto out;
+ 	}
 -- 
 2.34.1
 
