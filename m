@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C395BCCA470
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 21:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0B41CCA470
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 21:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B3210E709;
-	Tue,  7 Oct 2025 21:43:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CQ64gv9v";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F3710E0D9;
- Tue,  7 Oct 2025 21:43:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759873436; x=1791409436;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/hA9jRKroVvNTtEWrGGZJy9T+3IZCMTHk9r1tFl8/7k=;
- b=CQ64gv9vUxMSpb1ihBWPQ2gNzRfGjvQmttDciVFxY6OUpnBzRLaKXZv2
- n7uc0rO8X7Q7pasFggh3GdkSO1LuK0Od3cL6ufn9CHZE3GijC9U+BiK9D
- yNgVn+5Hg5/yWXPAwx4ioGpJj2fp0wI4DNn7BVo00LBjX1U2f00OBpjAy
- KuVNVm4bATRgV6n5UJvIC7Dcfv3055HPXBwfKoPYJ2JnKdfQCmhPNWABc
- FNZEi4HvZp0fgUAIOnAbHIeX7wMhAT65QW/LUiLfoT9qsWnZqSdwnfcX1
- 57Tu4mr5XSftuliASdMqZQRg0Wu8YOtOHZoCyGssLCCiWVnUGsZYhqsm6 Q==;
-X-CSE-ConnectionGUID: x2r9VRJ7RpyHAOo2ZzDPrA==
-X-CSE-MsgGUID: 3mS1HD75Qqe8UqP05M3jpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="72325792"
-X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="72325792"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 14:43:55 -0700
-X-CSE-ConnectionGUID: nM5xL7tWSJSEm7Zhkwd+yg==
-X-CSE-MsgGUID: VyLQLN8EShGRCxqhY3PApA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,322,1751266800"; d="scan'208";a="184312506"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.13])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 14:43:53 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, lucas.demarchi@intel.com,
- kunal1.joshi@intel.com, jani.saarinen@intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH v3] drm/i915/fbc: update the impacted platforms in
- wa_22014263786
-Date: Wed,  8 Oct 2025 00:43:17 +0300
-Message-ID: <20251007214317.875781-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC8B10E70C;
+	Tue,  7 Oct 2025 21:49:04 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204CD10E70B;
+ Tue,  7 Oct 2025 21:49:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0095702302727198533=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Allow_configfs_to_disable_s?=
+ =?utf-8?q?pecific_GT_type=28s=29_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 07 Oct 2025 21:49:03 -0000
+Message-ID: <175987374309.15058.12656789578721319126@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251007204829.1468209-25-matthew.d.roper@intel.com>
+In-Reply-To: <20251007204829.1468209-25-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,71 +36,158 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-wa_22014263786 is not applicable to the BMG and hence exclude it
-from the wa.
+--===============0095702302727198533==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Limit this wa to display verion 11 to 14, drop DG2 from the
-    exclusion list, use intel_display_wa (Lucas)
+== Series Details ==
 
-v3: simplify the wa handling loop (Jani)
-    Description of wa moved to place where wa is applied (Ville)
+Series: Allow configfs to disable specific GT type(s) (rev4)
+URL   : https://patchwork.freedesktop.org/series/154739/
+State : success
 
-Bspec: 74212, 66624
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_wa.c | 2 ++
- drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
- drivers/gpu/drm/i915/display/intel_fbc.c        | 9 ++++++---
- 3 files changed, 9 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 31cd2c9cd488..c528aaa679ca 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -67,6 +67,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return intel_display_needs_wa_16025573575(display);
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
-+	case INTEL_DISPLAY_WA_22014263786:
-+		return IS_DISPLAY_VERx100(display, 1100, 1400);
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index abc1df83f066..3644e8e2b724 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -25,6 +25,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16023588340,
- 	INTEL_DISPLAY_WA_16025573575,
- 	INTEL_DISPLAY_WA_14011503117,
-+	INTEL_DISPLAY_WA_22014263786,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 4edb4342833e..24473e6b10de 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -928,9 +928,12 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 	if (IS_DISPLAY_VER(display, 11, 12))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
--
--	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
--	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
-+	/*
-+	 * Wa_22014263786: icl,jsl,tgl,dg1,rkl,adls,adlp,mtl
-+	 * Fixes: Screen flicker with FBC and Package C state enabled
-+	 * Workaround: Forced SLB invalidation before start of new frame.
-+	 */
-+	if (intel_display_wa(display, 22014263786))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
- 
--- 
-2.43.0
+CI Bug Log - changes from xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4_BAT -> xe-pw-154739v4_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-154739v4_BAT:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - {bat-ptl-1}:        [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - {bat-ptl-2}:        [PASS][3] -> [ABORT][4] +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  * igt@xe_module_load@load:
+    - {bat-ptl-vm}:       [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-vm/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-vm/igt@xe_module_load@load.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4 -> xe-pw-154739v4
+
+  IGT_8575: 7efc313da1339df43a1b11bba57fef6c1257e65f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4: 90c02675d5fedea7f1d28c4e5c45f958de9bfee4
+  xe-pw-154739v4: 154739v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/index.html
+
+--===============0095702302727198533==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Allow configfs to disable specific GT type(s) (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154739/">https://patchwork.freedesktop.org/series/154739/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4_BAT -&gt; xe-pw-154739v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-154739v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154739v4/bat-ptl-vm/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4 -&gt; xe-pw-154739v4</li>
+</ul>
+<p>IGT_8575: 7efc313da1339df43a1b11bba57fef6c1257e65f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-3882-90c02675d5fedea7f1d28c4e5c45f958de9bfee4: 90c02675d5fedea7f1d28c4e5c45f958de9bfee4<br />
+  xe-pw-154739v4: 154739v4</p>
+
+</body>
+</html>
+
+--===============0095702302727198533==--
