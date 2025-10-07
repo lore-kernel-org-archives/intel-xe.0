@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F32E4CCD185
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 13:05:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A62ECCD187
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 13:05:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B9910E197;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 355D310E670;
 	Tue,  7 Oct 2025 13:05:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mf6omy9Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OsbPVOkT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A81810E197
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F32FE10E18C
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 13:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759842311; x=1791378311;
+ t=1759842310; x=1791378310;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5jJjvVxwSzqsTZ0W/MBOVtaue7SRxU/Iu+wkc2D1694=;
- b=Mf6omy9ZPlA10kD4iE0OyMJuQzWkeVFpL1SCvSVGOsyLlI+98TC7E9yJ
- rSVPNv5tJ+A38Rw+TV7vowNNhq3XhgcaUGXIFUuyY3Z/vdaSNB7GGIOC4
- wPeLiYL1uLXeEjAsbwVJsw0km6NfeFvu7nqmosdZBkjFzhm8rkt50MQ8O
- ouT6xj9yonsh795EB/BxRo8Zmhe/OLjWJKtr/xjZDCNL5/rlGcXvBtnu4
- PGZ8HVHcgr9ZoOgBo/0Pl0rHuDEghHK1Oy7zFLXpd9s+AiOOtJR7tGa+/
- jQ8wwiNFWRNCeQupM6qM2v2EncOHYb59tub7hfURSvOzOPN2bcap65ITs w==;
-X-CSE-ConnectionGUID: HEUZiqktT4m44oBbihRfhw==
-X-CSE-MsgGUID: RHWBYN30R9GNueCELViTVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639827"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639827"
+ bh=hOs0CGhwgdS1m3z50ATAd+se2zL74a1F4cH1ItjZc/8=;
+ b=OsbPVOkTpXXLcSGElMZ1oOIPn6HUGS6zELIUxR/QP1PQ8/zNhlUc4U+a
+ kRoKeLzyQR1LJBRS+ehpBaK5znUIekLKttK5+icKKP4HxRbWmeT3G/zWN
+ 8dvupzFdIal0837wdKvo0TpvutlFXpCxtlUOnkf2qSbJl7Hc7Z2OeEd+A
+ 7hBku5tgaAfOKNnAmwewzGZ1x+hMOIjjbfxEWutgpv9gtTW/fc06rYZ6z
+ 6RmOQvJ3VQuIKtbzZhIPdPwMly8Zr/iKOI7Cb8Q+3+rVHghpZNrI7zIwM
+ j4UWoj+t6zvvGkyBrWDH4DZrQkJ8PQiaRlDOd1Y477KPBtmSEVwFkdOqP A==;
+X-CSE-ConnectionGUID: zOr0J9zASLSrs1clMGkWqQ==
+X-CSE-MsgGUID: Yq1CVPmqSMiYn/zEMwmZQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="64639821"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="64639821"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:11 -0700
-X-CSE-ConnectionGUID: uNqyO5bJRw69+miyxBzISA==
-X-CSE-MsgGUID: +IwBaMsmT/e2Xr1CNz66xw==
+ 07 Oct 2025 06:05:10 -0700
+X-CSE-ConnectionGUID: 2ZjItgQ1TGik0F/XBNeJKw==
+X-CSE-MsgGUID: E8OOzflvSz2KKDfWFELN8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576928"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180576918"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 06:05:11 -0700
+ 07 Oct 2025 06:05:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v8 08/33] drm/xe/vf: Add xe_gt_recovery_pending helper
-Date: Tue,  7 Oct 2025 06:04:40 -0700
-Message-Id: <20251007130505.2694829-9-matthew.brost@intel.com>
+Subject: [PATCH v8 02/33] drm/xe: Save off position in ring in which a job was
+ programmed
+Date: Tue,  7 Oct 2025 06:04:34 -0700
+Message-Id: <20251007130505.2694829-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007130505.2694829-1-matthew.brost@intel.com>
 References: <20251007130505.2694829-1-matthew.brost@intel.com>
@@ -65,255 +66,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_gt_recovery_pending helper.
+VF post-migration recovery needs to modify the ring with updated GGTT
+addresses for pending jobs. Save off position in ring in which a job was
+programmed to facilitate.
 
-This helper serves as the singular point to determine whether a GT
-recovery is currently in progress. Expected callers include the GuC CT
-layer and the GuC submission layer. Atomically visable as soon as vCPU
-are unhalted until VF recovery completes.
-
-v3:
- - Add GT layer xe_gt_recovery_inprogress (Michal)
- - Don't blow up in memirq not enabled (CI)
- - Add __memirq_received with clear argument (Michal)
- - xe_memirq_sw_int_0_irq_pending rename (Michal)
- - Use offset in xe_memirq_sw_int_0_irq_pending (Michal)
 v4:
- - Refactor xe_gt_recovery_inprogress logic around memirq (Michal)
-v5:
- - s/inprogress/pending (Michal)
-v7:
- - Fix typos, adjust comment (Michal)
+ - s/VF resume/VF post-migration recovery (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.h                | 13 ++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 28 +++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 10 +++++
- drivers/gpu/drm/xe/xe_memirq.c            | 48 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_memirq.h            |  2 +
- 6 files changed, 99 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c        | 23 +++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_sched_job_types.h |  5 +++++
+ 2 files changed, 24 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 41880979f4de..5df2ffe3ff83 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -12,6 +12,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index d71837773d6c..ac0c6dcffe15 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -245,12 +245,14 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
  
- #include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_gt_sriov_vf.h"
- #include "xe_hw_engine.h"
+ /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 seqno)
++				    u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
  
- #define for_each_hw_engine(hwe__, gt__, id__) \
-@@ -124,4 +125,16 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
- 		hwe->instance == gt->usm.reserved_bcs_instance;
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	if (job->ring_ops_flush_tlb) {
+@@ -296,7 +298,7 @@ static bool has_aux_ccs(struct xe_device *xe)
  }
  
-+/**
-+ * xe_gt_recovery_pending() - GT recovery pending
-+ * @gt: the &xe_gt
-+ *
-+ * Return: True if GT recovery in pending, False otherwise
-+ */
-+static inline bool xe_gt_recovery_pending(struct xe_gt *gt)
-+{
-+	return IS_SRIOV_VF(gt_to_xe(gt)) &&
-+		xe_gt_sriov_vf_recovery_pending(gt);
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 0461d5513487..43cb5fd7b222 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -26,6 +26,7 @@
- #include "xe_guc_hxg_helpers.h"
- #include "xe_guc_relay.h"
- #include "xe_lrc.h"
-+#include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_sriov_vf.h"
-@@ -776,6 +777,7 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
+ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 seqno)
++				   u64 batch_addr, u32 *head, u32 seqno)
+ {
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -304,6 +306,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
  	struct xe_device *xe = gt_to_xe(gt);
+ 	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
-+	xe_gt_assert(gt, xe_gt_sriov_vf_recovery_pending(gt));
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
  
- 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
- 	/*
-@@ -1118,3 +1120,29 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 	drm_printf(p, "\thandshake:\t%u.%u\n",
- 		   pf_version->major, pf_version->minor);
- }
-+
-+/**
-+ * xe_gt_sriov_vf_recovery_pending() - VF post migration recovery pending
-+ * @gt: the &xe_gt
-+ *
-+ * The return value of this function must be immediately visible upon vCPU
-+ * unhalt and must persist until RESFIX_DONE is issued. This guarantee is
-+ * currently implemented only for platforms that support memirq. If non-memirq
-+ * platforms begin to support VF migration, this function will need to be
-+ * updated accordingly.
-+ *
-+ * Return: True if VF post migration recovery is pending, False otherwise
-+ */
-+bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
-+{
-+	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	/* early detection until recovery starts */
-+	if (xe_device_uses_memirq(gt_to_xe(gt)) &&
-+	    xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc))
-+		return true;
-+
-+	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 0af1dc769fe0..b91ae857e983 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -25,6 +25,8 @@ void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
- int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+ 	dw[i++] = preparser_disable(true);
+@@ -346,7 +350,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
  
-+bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
-+
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 298dedf4b009..1dfef60ec044 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -46,6 +46,14 @@ struct xe_gt_sriov_vf_runtime {
- 	} *regs;
- };
- 
-+/**
-+ * xe_gt_sriov_vf_migration - VF migration data.
-+ */
-+struct xe_gt_sriov_vf_migration {
-+	/** @recovery_inprogress: VF post migration recovery in progress */
-+	bool recovery_inprogress;
-+};
-+
- /**
-  * struct xe_gt_sriov_vf - GT level VF virtualization data.
-  */
-@@ -58,6 +66,8 @@ struct xe_gt_sriov_vf {
- 	struct xe_gt_sriov_vf_selfconfig self_config;
- 	/** @runtime: runtime data retrieved from the PF. */
- 	struct xe_gt_sriov_vf_runtime runtime;
-+	/** @migration: migration data for the VF. */
-+	struct xe_gt_sriov_vf_migration migration;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 49c45ec3e83c..fc533165c231 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -398,8 +398,9 @@ void xe_memirq_postinstall(struct xe_memirq *memirq)
- 		memirq_set_enable(memirq, true);
- }
- 
--static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
--			    u16 offset, const char *name)
-+static bool __memirq_received(struct xe_memirq *memirq,
-+			      struct iosys_map *vector, u16 offset,
-+			      const char *name, bool clear)
+ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 					    struct xe_lrc *lrc,
+-					    u64 batch_addr, u32 seqno)
++					    u64 batch_addr, u32 *head,
++					    u32 seqno)
  {
- 	u8 value;
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+@@ -355,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
  
-@@ -409,12 +410,26 @@ static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
- 			memirq_err_ratelimited(memirq,
- 					       "Unexpected memirq value %#x from %s at %u\n",
- 					       value, name, offset);
--		iosys_map_wr(vector, offset, u8, 0x00);
-+		if (clear)
-+			iosys_map_wr(vector, offset, u8, 0x00);
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	dw[i++] = preparser_disable(true);
+@@ -396,11 +403,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ }
+ 
+ static void emit_migration_job_gen12(struct xe_sched_job *job,
+-				     struct xe_lrc *lrc, u32 seqno)
++				     struct xe_lrc *lrc, u32 *head,
++				     u32 seqno)
+ {
+ 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
+ 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 
++	*head = lrc->ring.tail;
++
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+ 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+@@ -434,6 +444,7 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	__emit_job_gen12_simple(job, job->q->lrc[0],
+ 				job->ptrs[0].batch_addr,
++				&job->ptrs[0].head,
+ 				xe_sched_job_lrc_seqno(job));
+ }
+ 
+@@ -443,6 +454,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 
+ 	if (xe_sched_job_is_migration(job->q)) {
+ 		emit_migration_job_gen12(job, job->q->lrc[0],
++					 &job->ptrs[0].head,
+ 					 xe_sched_job_lrc_seqno(job));
+ 		return;
  	}
- 
- 	return value;
+@@ -450,6 +462,7 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_simple(job, job->q->lrc[i],
+ 					job->ptrs[i].batch_addr,
++					&job->ptrs[i].head,
+ 					xe_sched_job_lrc_seqno(job));
  }
  
-+static bool memirq_received_noclear(struct xe_memirq *memirq,
-+				    struct iosys_map *vector,
-+				    u16 offset, const char *name)
-+{
-+	return __memirq_received(memirq, vector, offset, name, false);
-+}
-+
-+static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
-+			    u16 offset, const char *name)
-+{
-+	return __memirq_received(memirq, vector, offset, name, true);
-+}
-+
- static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
- 				   struct xe_hw_engine *hwe)
- {
-@@ -434,8 +449,16 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
- 	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
- 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
+@@ -461,6 +474,7 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_video(job, job->q->lrc[i],
+ 				       job->ptrs[i].batch_addr,
++				       &job->ptrs[i].head,
+ 				       xe_sched_job_lrc_seqno(job));
+ }
  
--	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
-+	/*
-+	 * This is a software interrupt that must be cleared after it's consumed
-+	 * to avoid race conditions where xe_gt_sriov_vf_recovery_pending()
-+	 * returns false.
+@@ -471,6 +485,7 @@ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+ 	for (i = 0; i < job->q->width; ++i)
+ 		__emit_job_gen12_render_compute(job, job->q->lrc[i],
+ 						job->ptrs[i].batch_addr,
++						&job->ptrs[i].head,
+ 						xe_sched_job_lrc_seqno(job));
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index dbf260dded8d..7ce58765a34a 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -24,6 +24,11 @@ struct xe_job_ptrs {
+ 	struct dma_fence_chain *chain_fence;
+ 	/** @batch_addr: Batch buffer address. */
+ 	u64 batch_addr;
++	/**
++	 * @head: The tail pointer of the LRC (so head pointer of job) when the
++	 * job was submitted
 +	 */
-+	if (memirq_received_noclear(memirq, status, ilog2(GUC_INTR_SW_INT_0),
-+				    name)) {
- 		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
-+		iosys_map_wr(status, ilog2(GUC_INTR_SW_INT_0), u8, 0x00);
-+	}
- }
++	u32 head;
+ };
  
  /**
-@@ -460,6 +483,23 @@ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
- 	}
- }
- 
-+/**
-+ * xe_memirq_guc_sw_int_0_irq_pending() - SW_INT_0 IRQ is pending
-+ * @memirq: the &xe_memirq
-+ * @guc: the &xe_guc to check for IRQ
-+ *
-+ * Return: True if SW_INT_0 IRQ is pending on @guc, False otherwise
-+ */
-+bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 offset = xe_gt_is_media_type(gt) ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
-+	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&memirq->status, offset * SZ_16);
-+
-+	return memirq_received_noclear(memirq, &map, ilog2(GUC_INTR_SW_INT_0),
-+				       guc_name(guc));
-+}
-+
- /**
-  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-  * @memirq: the &xe_memirq
-diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
-index 06130650e9d6..e25d2234ab87 100644
---- a/drivers/gpu/drm/xe/xe_memirq.h
-+++ b/drivers/gpu/drm/xe/xe_memirq.h
-@@ -25,4 +25,6 @@ void xe_memirq_handler(struct xe_memirq *memirq);
- 
- int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
- 
-+bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc);
-+
- #endif
 -- 
 2.34.1
 
