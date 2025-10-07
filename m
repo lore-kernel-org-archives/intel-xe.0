@@ -4,32 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5C6CAC5B8
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 02:26:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 308E9CCD184
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 05:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6182B10E0A0;
-	Tue,  7 Oct 2025 02:26:45 +0000 (UTC)
-X-Greylist: delayed 330 seconds by postgrey-1.36 at gabe;
- Tue, 07 Oct 2025 02:26:44 UTC
-Received: from smtp96.ord1d.emailsrvr.com (smtp96.ord1d.emailsrvr.com
- [184.106.54.96])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8273110E0A0
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 02:26:44 +0000 (UTC)
-X-Auth-ID: kenneth@whitecape.org
-Received: by smtp5.relay.ord1d.emailsrvr.com (Authenticated sender:
- kenneth-AT-whitecape.org) with ESMTPSA id 89359A02F5; 
- Mon,  6 Oct 2025 22:21:13 -0400 (EDT)
-From: Kenneth Graunke <kenneth@whitecape.org>
-To: intel-xe@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH] drm/xe: Increase global invalidation timeout to 1000us
-Date: Mon, 06 Oct 2025 19:21:22 -0700
-Message-ID: <12755240.O9o76ZdvQC@imeretto>
-In-Reply-To: <20250912223254.147940-1-kenneth@whitecape.org>
-References: <20250912223254.147940-1-kenneth@whitecape.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE40310E51C;
+	Tue,  7 Oct 2025 05:45:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGMf02Dz";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7721E10E08C;
+ Tue,  7 Oct 2025 05:45:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759815951; x=1791351951;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aRM3qd+6F6N7GpoYtfIBeQSbvfWgtoGFVl5Adw4VJro=;
+ b=JGMf02DzGMSOeno+Ub/QUkKAXwM9RTbpncd+q1dsAieXtXqsvYvL68/Q
+ RWodZ9NdH3HdagXEiMRGIBkVmQBp5Fr0q9Mus3CLxiuq1iySWl/Nhvkjo
+ +lTemLxX9SmlrLjU/YS0BEGd/hRQBlijCqMddzITGSEKzV3r1/he/w3vU
+ lnokvGQXkdJDUBcrbEbKWonLL7XDhqKhlJ+WykF+kybttKo5lyI3xg2cQ
+ atWr4xEPoj9Sq8v882wyGms0mFD/+RqnDAfxOZdNjB6AqdrtsRgMUG3FD
+ 4+nXKv2CXr/No6w66RlwZCQ9EX4vS8AJoMksAC0gTHbuzmzd5pvJk1EIW A==;
+X-CSE-ConnectionGUID: X6ajwoohQOWvJbQOXmEaXg==
+X-CSE-MsgGUID: 77amCyd1R+qDXZhLjXbtTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="61027899"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="61027899"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2025 22:45:50 -0700
+X-CSE-ConnectionGUID: yVoRrmGNR8Sx0wUO6LVKnw==
+X-CSE-MsgGUID: /dgv+ZRHR/COnS6B1I5Jsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180479325"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa008.fm.intel.com with ESMTP; 06 Oct 2025 22:45:41 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+Cc: dmitry.baryshkov@oss.qualcomm.com, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, uma.shankar@intel.com, jani.nikula@intel.com,
+ harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev, tzimmermann@suse.de,
+ jessica.zhang@oss.qualcomm.com, sean@poorly.run,
+ marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
+ mcanal@igalia.com, dave.stevenson@raspberrypi.com,
+ tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 0/7] Refactor drm_writeback_connector structure
+Date: Tue,  7 Oct 2025 11:15:22 +0530
+Message-Id: <20251007054528.2900905-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Classification-ID: 53bf9b2b-4432-4d88-be45-d2d8de27d6e0-1-1
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +78,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Humble ping - would love to see this land.  Even if there's additional work=
- to=20
-do here or someone finds a better solution, it's no harder to use this as a=
-=20
-starting point than where we're at now.  And, it would help me, and others.
+Some drivers cannot work with the current design where the connector
+is embedded within the drm_writeback_connector such as intel and
+some drivers that can get it working end up adding a lot of checks
+all around the code to check if it's a writeback conenctor or not.
+This is due to the inheritance limitation in C.
+This series intends to solve it by moving the drm_writeback_connector
+within the drm_connector and remove the drm_connector base which was in
+drm_writeback_connector. This is done in union with hdmi connector
+within drm_connector to save memory and since drm_connector cannot be
+both hdmi and writeback it serves is well.
+A RFC version was floated and discussion had taken place at [1] which
+kicked of this more cleaner series. 
+We do all other required modifications that come with these changes
+along with addition of new function which returns the drm_connector when
+drm_writeback_connector is present.
+This series also contains some writeback API cleanups as a consequence
+of writeback connector moving into drm_connector
+All drivers will be expected to allocate the drm_connector.
+This discussion was tiggered from [2] and sits on top of Dmitry's series
+see [3].
 
-6.17 is out now and my display has been locking up since 6.15.  Would love =
-to=20
-stop having to remember to boot up custom kernels to work around this.
+[1] https://patchwork.freedesktop.org/series/152758/
+[2] https://patchwork.freedesktop.org/series/152106/
+[3] https://patchwork.freedesktop.org/series/152420/
 
-(Also... I am not a kernel committer.  Would need someone to review/push.)
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-=2D-Ken
+Suraj Kandpal (7):
+  drm: writeback: Refactor drm_writeback_connector structure
+  drm: writeback: Modify writeback init helpers
+  drm: writeback: Modify drm_writeback_queue_job params
+  drm: writeback: Modify drm_writeback_signal_completion param
+  drm: writeback: Modify params for drm_writeback_get_out_fence
+  drm/connector: Modify prepare_writeback_job helper
+  drm/connector: Modify cleanup_writeback_job helper
 
-On Friday, September 12, 2025 3:31:45=E2=80=AFPM Pacific Daylight Time Kenn=
-eth Graunke=20
-wrote:
-> The previous timeout of 500us seems to be too small; panning the map in
-> the Roll20 VTT in Firefox on a KDE/Wayland desktop reliably triggered
-> timeouts within a few seconds of usage, causing the monitor to freeze
-> and the following to be printed to dmesg:
->=20
-> [Jul30 13:44] xe 0000:03:00.0: [drm] *ERROR* GT0: Global invalidation
-> timeout [Jul30 13:48] xe 0000:03:00.0: [drm] *ERROR* [CRTC:82:pipe A]
-> flip_done timed out
->=20
-> I haven't hit a single timeout since increasing it to 1000us even after
-> several multi-hour testing sessions.
->=20
-> Fixes: c0114fdf6d4a ("drm/xe: Move DSB l2 flush to a more sensible place")
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5710
-> Signed-off-by: Kenneth Graunke <kenneth@whitecape.org>
-> Cc: stable@vger.kernel.org
-> Cc: Maarten Lankhorst <dev@lankhorst.se>
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> This fixes my desktop which has been broken since 6.15.  Given that
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6097 was recently
-> filed and they seem to need a timeout of 2000 (and are having somewhat
-> different issues), maybe more work's needed here...but I figured I'd
-> send out the fix for my system and let xe folks figure out what they'd
-> like to do.  Thanks :)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> index a4d12ee7d575..6339b8800914 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -1064,7 +1064,7 @@ void xe_device_l2_flush(struct xe_device *xe)
->  	spin_lock(&gt->global_invl_lock);
->=20
->  	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
-> -	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 500,=20
-NULL,
-> true)) +	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 1000,
-> NULL, true)) xe_gt_err_once(gt, "Global invalidation timeout\n");
->=20
->  	spin_unlock(&gt->global_invl_lock);
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +--
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  | 12 +--
+ .../gpu/drm/arm/display/komeda/komeda_crtc.c  |  2 +-
+ .../gpu/drm/arm/display/komeda/komeda_kms.h   |  6 +-
+ .../arm/display/komeda/komeda_wb_connector.c  | 11 +--
+ drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
+ drivers/gpu/drm/arm/malidp_drv.h              |  2 +-
+ drivers/gpu/drm/arm/malidp_mw.c               |  7 +-
+ drivers/gpu/drm/drm_atomic_uapi.c             |  4 +-
+ drivers/gpu/drm/drm_writeback.c               | 51 ++++++++-----
+ .../drm/msm/disp/dpu1/dpu_encoder_phys_wb.c   |  9 ++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 10 +--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h |  4 +-
+ .../gpu/drm/renesas/rcar-du/rcar_du_crtc.h    |  4 +-
+ .../drm/renesas/rcar-du/rcar_du_writeback.c   | 12 ++-
+ drivers/gpu/drm/vc4/vc4_txp.c                 |  8 +-
+ drivers/gpu/drm/vkms/vkms_drv.h               |  2 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c         | 15 ++--
+ include/drm/drm_connector.h                   | 69 ++++++++++++++++-
+ include/drm/drm_modeset_helper_vtables.h      |  4 +-
+ include/drm/drm_writeback.h                   | 76 ++-----------------
+ 22 files changed, 162 insertions(+), 160 deletions(-)
 
-
-
+-- 
+2.34.1
 
