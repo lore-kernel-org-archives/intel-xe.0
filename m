@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EF72CCA476
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D935CCD186
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Oct 2025 11:27:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F2310E681;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0357D10E67A;
 	Tue,  7 Oct 2025 11:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n7HOMh01";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bt/JrYgG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C54F10E670
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA7210E657
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Oct 2025 11:26:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759836411; x=1791372411;
+ t=1759836412; x=1791372412;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9T8sKhTlg3s7TMaQCM3VLoLd1+u+HrVBKlGnuAnxFMg=;
- b=n7HOMh01uVrCYkAqRZgr+g5m7YRc2O9QYHxo6pgvrAheznuw0lG9j41e
- oxkcf/JJ60OGEci+x1BYUZQBOo0jBH/Mk0drQ2PwBVdinsHy5t9jueH3v
- YCwPZrsYBKK4oRcLUKvp1vJvtnMikNXAlpUirwa3ePC1lyb+QPehm9aZi
- dv/UWQeBIwdVEFL6ZFWeMWLBNEQGpvoUvH5dJMn1csjWgw4+hTdT1ocVg
- Zzo8W/gnQkybTX/F3OOZSC/qxGK2W5ZnsCSFhgt2+e7qM7jtNvRqaG1si
- mimkR2R9hq69/J0qSw6/D6hO+ehd82YmPRXcIY5El+THtRV6OY91Ob/jW w==;
-X-CSE-ConnectionGUID: MIYQuHE0RLaaBhBbUI91aQ==
-X-CSE-MsgGUID: YBkaa6DcR+G8wD4cDGCdqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660690"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660690"
+ bh=7cIHJDpXUPsjxIQpeWsbSDDpWx3xtduAeFTixbtDVYY=;
+ b=bt/JrYgGSI5WNg6lEabkW3bV8a4NFMPFNTpeRUDpLf6hx/1AlxsyEV3L
+ bs1qG3Dk8cphBa8zg+ejjREZAYbk8nvs3b0wGf8NRuEggwl+gOhSd9DtX
+ hv0Jc2oMTvYNuoELJ49QhZ8FpaGU/SdZYaa2348C1trwlGB1jApe4cYok
+ 1hG6hkpQkmnYb6pbty1bvt8Rxx7weGjCVYKCjIcIW0fpJAzXXx5z2S9Mw
+ Bgi0HTYGCCaZIxIRQkzd5qsTH81XE/l03t18QLJniWCQtzg59XKu1eYaA
+ dgwMt3/CDkZ1KS9yO9xJ9UM1ALfIV98LbpaiLOl1uWgK/l+tbHgsuXtx6 A==;
+X-CSE-ConnectionGUID: pLmJoiH0RoiTySfLRlVaPg==
+X-CSE-MsgGUID: VfxDjuoXRcyCGtsG1dW+dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11574"; a="65660702"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="65660702"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:50 -0700
-X-CSE-ConnectionGUID: JNqKZ7dGQCu9yeEslnKbkQ==
-X-CSE-MsgGUID: n7Q01RlFQX2zQ6VY26uc7A==
+ 07 Oct 2025 04:26:52 -0700
+X-CSE-ConnectionGUID: gHUGQmA7SuiusmjTO8AaIQ==
+X-CSE-MsgGUID: 86ftN1FRSgGENHOYvl9v3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924013"
+X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; d="scan'208";a="180924022"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 04:26:50 -0700
+ 07 Oct 2025 04:26:52 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 20/32] drm/xe/vf: Kickstart after resfix in VF post
- migration recovery
-Date: Tue,  7 Oct 2025 04:26:29 -0700
-Message-Id: <20251007112641.2669655-21-matthew.brost@intel.com>
+Subject: [PATCH v7 29/32] drm/xe/vf: Use primary GT ordered work queue on
+ media GT on PTL VF
+Date: Tue,  7 Oct 2025 04:26:38 -0700
+Message-Id: <20251007112641.2669655-30-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251007112641.2669655-1-matthew.brost@intel.com>
 References: <20251007112641.2669655-1-matthew.brost@intel.com>
@@ -66,62 +66,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC needs to be live for the GuC submission state machine to resubmit
-anything lost during VF post-migration recovery.  Therefore, move the
-kickstart step after `resfix` to ensure proper resubmission.
+VF CCS restore is a primary GT operation on which the media GT depends.
+Therefore, it doesn't make much sense to run these operations in
+parallel. To address this, point the media GT's ordered work queue to
+the primary GT's ordered work queue on platforms that require (PTL VFs)
+CCS restore as part of VF post-migration recovery.
+
+v7:
+ - Remove bool from xe_gt_alloc (Lucas)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_gt.c           | 18 ++++++++++++++----
+ drivers/gpu/drm/xe/xe_pci.c          |  2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ 4 files changed, 19 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index d5819cac1bc9..1575ffaaaf52 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1130,13 +1130,6 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index c66523bf4bf0..02c04ad7296e 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -334,6 +334,8 @@ struct xe_device {
+ 		u8 skip_mtcfg:1;
+ 		/** @info.skip_pcode: skip access to PCODE uC */
+ 		u8 skip_pcode:1;
++		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
++		u8 needs_shared_vf_gt_wq:1;
+ 	} info;
  
- static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	/** @wa_active: keep track of active workarounds */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index cf484a2da35e..f2a4dc58e26c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -67,7 +67,11 @@
+ 
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
  {
--	/*
--	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
--	 * must be working at this point, since the recovery did started,
--	 * but the rest was not enabled using the procedure from spec.
--	 */
--	xe_irq_resume(gt_to_xe(gt));
--
- 	xe_guc_submit_unpause(&gt->uc.guc);
- }
+-	struct drm_device *drm = &tile_to_xe(tile)->drm;
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_device *drm = &xe->drm;
++	bool sharded_wq = xe->info.needs_shared_vf_gt_wq && tile->primary_gt &&
++		IS_SRIOV_VF(xe);
++	struct workqueue_struct *ordered_wq;
+ 	struct xe_gt *gt;
  
-@@ -1156,6 +1149,13 @@ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
- 	if (skip_resfix)
- 		return -EAGAIN;
+ 	gt = drmm_kzalloc(drm, sizeof(*gt), GFP_KERNEL);
+@@ -75,9 +79,15 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
+ 		return ERR_PTR(-ENOMEM);
  
-+	/*
-+	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
-+	 * must be working at this point, since the recovery did started,
-+	 * but the rest was not enabled using the procedure from spec.
-+	 */
-+	xe_irq_resume(gt_to_xe(gt));
+ 	gt->tile = tile;
+-	gt->ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq", WQ_MEM_RECLAIM);
+-	if (IS_ERR(gt->ordered_wq))
+-		return ERR_CAST(gt->ordered_wq);
++	if (sharded_wq && tile->primary_gt->ordered_wq)
++		ordered_wq = tile->primary_gt->ordered_wq;
++	else
++		ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq",
++							  WQ_MEM_RECLAIM);
++	if (IS_ERR(ordered_wq))
++		return ERR_CAST(ordered_wq);
 +
- 	return vf_notify_resfix_done(gt);
++	gt->ordered_wq = ordered_wq;
+ 
+ 	return gt;
  }
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3f42b91efa28..f8243622429d 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -347,6 +347,7 @@ static const struct xe_device_desc ptl_desc = {
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	.needs_scratch = true,
++	.needs_shared_vf_gt_wq = true,
+ };
  
-@@ -1179,11 +1179,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
+ #undef PLATFORM
+@@ -598,6 +599,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
+ 	xe->info.needs_scratch = desc->needs_scratch;
++	xe->info.needs_shared_vf_gt_wq = desc->needs_shared_vf_gt_wq;
  
--	vf_post_migration_kickstart(gt);
- 	err = vf_post_migration_notify_resfix_done(gt);
- 	if (err && err != -EAGAIN)
- 		goto fail;
+ 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+ 				 xe_modparam.probe_display &&
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 9b9766a3baa3..b11bf6abda5b 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -48,6 +48,7 @@ struct xe_device_desc {
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+ 	u8 skip_pcode:1;
++	u8 needs_shared_vf_gt_wq:1;
+ };
  
-+	vf_post_migration_kickstart(gt);
-+
- 	xe_pm_runtime_put(xe);
- 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
- 	return;
+ struct xe_graphics_desc {
 -- 
 2.34.1
 
