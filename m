@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2249CCD18B
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30E97CCD190
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C86010E8F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D9F10E8F8;
 	Wed,  8 Oct 2025 21:45:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GNxKtpcL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q7MGh9wu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D066810E8EF
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7159610E89B
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759959943; x=1791495943;
+ t=1759959941; x=1791495941;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=HXECuqTaTG7FxCLWSCP0lfR8vOYoHE3y3exFsVlWHE8=;
- b=GNxKtpcL6Pt7+VtBBlrBKklVi35Z15fGL+9aHg+6O40MwurxxBlUl6++
- ifQZyz0q7E9LJ6hxHjpsZnvcTSYQ+TiDdYrFJP6hG0OPswfzj2ceMA4Vn
- Rr7wmWhJlBHv0Fvq7rSsk4QCnjqZGrR0e4hS63feb3m8Uw3LrY2NSs3mS
- nmA30Iz7c4n9jKHTD/c3N7C/AKO8VY9BEgRsFx3OY7hk4Vo7DW5vb71WO
- xmucv1g3B4Z/fLWIVxdSLZsuJeW1VbmriUmzoX2qSj2PBnUt1eHvgm/qn
- hyzQC94+yJzGPTQqPCUqKHJF028NYjt8OU5WpVa/qJEqQQlIi6WEdWYmr g==;
-X-CSE-ConnectionGUID: Kl+Si1LjSKKo5cm07E2ssg==
-X-CSE-MsgGUID: KV+Cd0nKQ+2Npw0MpGqHGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726869"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726869"
+ bh=xf/V92XwtRk1SA2w74BRoAP1Cioc4CR0QnEpxaomIuY=;
+ b=Q7MGh9wuZ5XYgc9AYKrfNO3I+vixJpSocgMNci4uKt9Ju29P9INLvt+M
+ joDra9/mWCWMWYNLVXkopJNDz1xQM/dqhzlbdbGWXKVyr6AltglhU+83K
+ gDLrRzzomuQu5qL12CQgcbCDwrSexK7wWwdREFS7cTnIExIkrZ5dAdJuk
+ MoGO93w0MfYg6pcJZgyuyzIQlexvm8edMHuCKCBaj2MIvI2+ssQj2dEtP
+ pPyZdkpSxGOZPyR1GiviEsjM1lS8CCP8kn7Qsyc3e48uHR88eaAnm4nz8
+ YUE3pCd2lED0iGK9wZlpJ6lWzS9vp6mDCDXjCpP5wkOqqs+RvunolKQ4f A==;
+X-CSE-ConnectionGUID: VBQi+mYeRYacDGvHvA8Bpw==
+X-CSE-MsgGUID: QwixMih1SZmCIJ4BIbBSzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726848"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726848"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:42 -0700
-X-CSE-ConnectionGUID: 3pe8c/DOShWw3hpVhh2tVg==
-X-CSE-MsgGUID: K5ybCrBbQ5+Tbe0O0Reb4w==
+ 08 Oct 2025 14:45:40 -0700
+X-CSE-ConnectionGUID: eEhHiO6ITgqgSfx6mXaymQ==
+X-CSE-MsgGUID: i+JWt5N5T4+HURRPt/VY3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635204"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635185"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:37 -0700
+ 08 Oct 2025 14:45:36 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 23/34] drm/xe: Add CTB_H2G_BUFFER_OFFSET define
-Date: Wed,  8 Oct 2025 14:45:21 -0700
-Message-Id: <20251008214532.3442967-24-matthew.brost@intel.com>
+Subject: [PATCH v10 06/34] drm/xe: Don't change LRC ring head on job
+ resubmission
+Date: Wed,  8 Oct 2025 14:45:04 -0700
+Message-Id: <20251008214532.3442967-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
@@ -65,71 +66,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than open coding the H2G buffer offset as 'CTB_DESC_SIZE * 2' add
-CTB_H2G_BUFFER_OFFSET define.
+Now that we save the job's head during submission, it's no longer
+necessary to adjust the LRC ring head during resubmission. Instead, a
+software-based adjustment of the tail will overwrite the old jobs in
+place. For some odd reason, adjusting the LRC ring head didn't work on
+parallel queues, which was causing issues in our CI.
+
+v5:
+ - Add comment in guc_exec_queue_start explaning why the function works
+   (Auld)
+v7:
+ - Only adjust first state on first unsignaled job (Auld)
+v8:
+ - Break unsignaled job handling to separate patch (Auld)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index fd2385635962..503cf5cb5d33 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -167,6 +167,7 @@ ct_to_xe(struct xe_guc_ct *ct)
-  */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 3a534d93505f..d123bdb63369 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2008,11 +2008,25 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
  
- #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
-+#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
- #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
- #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
- #define G2H_ROOM_BUFFER_SIZE	(CTB_G2H_BUFFER_SIZE / 2)
-@@ -190,7 +191,7 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+ 	if (!exec_queue_killed_or_banned_or_wedged(q)) {
++		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
+ 		int i;
  
- static size_t guc_ct_size(void)
- {
--	return 2 * CTB_DESC_SIZE + CTB_H2G_BUFFER_SIZE +
-+	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
- 		CTB_G2H_BUFFER_SIZE;
- }
- 
-@@ -331,7 +332,7 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 	h2g->desc = *map;
- 	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2);
-+	h2g->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET);
- }
- 
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
-@@ -349,7 +350,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
- 
--	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE * 2 +
-+	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
- 					    CTB_H2G_BUFFER_SIZE);
- }
- 
-@@ -360,7 +361,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo);
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
- 	size = ct->ctbs.h2g.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
-@@ -387,7 +388,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	int err;
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
--	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
-+	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
- 		CTB_H2G_BUFFER_SIZE;
- 	size = ct->ctbs.g2h.info.size * sizeof(u32);
+ 		trace_xe_exec_queue_resubmit(q);
+-		for (i = 0; i < q->width; ++i)
+-			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
++		if (job) {
++			for (i = 0; i < q->width; ++i) {
++				/*
++				 * The GuC context is unregistered at this point
++				 * time, adjusting software ring tail ensures
++				 * jobs are rewritten in original placement,
++				 * adjusting LRC tail ensures the newly loaded
++				 * GuC / contexts only view the LRC tail
++				 * increasing as jobs are written out.
++				 */
++				q->lrc[i]->ring.tail = job->ptrs[i].head;
++				xe_lrc_set_ring_tail(q->lrc[i],
++						     xe_lrc_ring_head(q->lrc[i]));
++			}
++		}
+ 		xe_sched_resubmit_jobs(sched);
+ 	}
  
 -- 
 2.34.1
