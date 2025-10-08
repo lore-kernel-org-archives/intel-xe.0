@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B13DCCD194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85332CAC5BB
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC98610E89B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD4210E89C;
 	Wed,  8 Oct 2025 18:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mDHOepis";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hnoe6WpX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E865710E88D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CBA10E88C
  for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759946710; x=1791482710;
+ t=1759946709; x=1791482709;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=m8TjV0f6t5LuV0zzIa4416b4HM3pMFUwfMJhsoVlD+8=;
- b=mDHOepispd+YHZfXopelqaofpAsrbO1eRWoIz+uNGhGbiwhKWV/bPgRd
- GrqFSLpU+fWesV5b1/AFGejW2gQO55RErd2GitMudrDaAqvKY9smclc65
- 0zzFJtK4aRBnyh7GPml6x9OOUyM7gh6oQTE2fn7h/tqxjsjDt0/RjAZOP
- uqwnYZaXw/HDk1/2/B735UuvNbHfiQFHb4BBdAhc6z7MIN5DeB3KoT+fQ
- RMaJJ3Fr6FjFilJV/p6zO8YtW6UcE9+xGLmX+u98H22y/LCIssGSfOFmQ
- 9lmbW6NiNlmB9PlL2xVpB7Q2wvHqGq58EeuhJ14ylnkZY8SRWxvMNMPx/ A==;
-X-CSE-ConnectionGUID: ktaPM8G+RXuQH3SV3aG4mQ==
-X-CSE-MsgGUID: 7B3NhNCVS6eHySp0v7Ix4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067541"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067541"
+ bh=zn0/73xsTI12kNGWuFF1VZ6nz8vydO3OH4QkS+NWVMo=;
+ b=Hnoe6WpXEEOdKQiygCthk6XmfxYX9kR4XpxVRoqVONN2lvAJKN+a8jPz
+ diQ0m1KkNvbZQ5MCUlvNEtA6q711lqdT07qH623cEHLO02S7eB9VQ94Db
+ JllhO2uhI6fCR5O4H7ph7BMtT0eqsMumUlGZmXQruT/KX0rP5EXg5qLwN
+ LjX5LhsUdE0XdPGbpt35RyJjFxgvReEPOznSSNBQEtuD/r4VVC8VmSa/7
+ 7r5S5J7EwjpbDtpBgvxcL8OEvEkcDXRMASqgvGw6n9lS6+vRhRxOqqmjp
+ /YqBDO4iVjByQ7TphuDG+fY5fM79A8c1PLm51cWQW0lo3REgvwx3mNCe1 A==;
+X-CSE-ConnectionGUID: zv3oHKTDT6q766Bt9fQ3GQ==
+X-CSE-MsgGUID: iDP8wh5iT9SoBDRNoRKQyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067528"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067528"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
-X-CSE-ConnectionGUID: isnCdeKsQhmSw8zkuKzGew==
-X-CSE-MsgGUID: 8RSxTiJBTnCwfGxEOBla5A==
+X-CSE-ConnectionGUID: Mr6LyI+zRPajp6Fam+d9pw==
+X-CSE-MsgGUID: Dh48vtRaSgqMysZIcWCWbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593749"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593735"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:05:07 -0700
+ 08 Oct 2025 11:05:06 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 31/34] drm/xe/vf: Use primary GT ordered work queue on
- media GT on PTL VF
-Date: Wed,  8 Oct 2025 11:04:57 -0700
-Message-Id: <20251008180500.3261209-32-matthew.brost@intel.com>
+Subject: [PATCH v9 18/34] drm/xe/vf: Avoid indefinite blocking in preempt
+ rebind worker for VFs supporting migration
+Date: Wed,  8 Oct 2025 11:04:44 -0700
+Message-Id: <20251008180500.3261209-19-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008180500.3261209-1-matthew.brost@intel.com>
 References: <20251008180500.3261209-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,107 +67,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF CCS restore is a primary GT operation on which the media GT depends.
-Therefore, it doesn't make much sense to run these operations in
-parallel. To address this, point the media GT's ordered work queue to
-the primary GT's ordered work queue on platforms that require (PTL VFs)
-CCS restore as part of VF post-migration recovery.
+Blocking in work queues on a hardware action that may never occur —
+especially when it depends on a software fixup also scheduled on the
+a work queue — is a recipe for deadlock. This situation arises with
+the preempt rebind worker and VF post-migration recovery. To prevent
+potential deadlocks, avoid indefinite blocking in the preempt rebind
+worker for VFs that support migration.
 
-v7:
- - Remove bool from xe_gt_alloc (Lucas)
-v9:
- - Fix typo (Lucas)
+v4:
+ - Use dma_fence_wait_timeout (CI)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_gt.c           | 18 ++++++++++++++----
- drivers/gpu/drm/xe/xe_pci.c          |  2 ++
- drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
- 4 files changed, 19 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 26 +++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c66523bf4bf0..02c04ad7296e 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -334,6 +334,8 @@ struct xe_device {
- 		u8 skip_mtcfg:1;
- 		/** @info.skip_pcode: skip access to PCODE uC */
- 		u8 skip_pcode:1;
-+		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
-+		u8 needs_shared_vf_gt_wq:1;
- 	} info;
- 
- 	/** @wa_active: keep track of active workarounds */
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6951fedd4350..d8e94fb8b9bd 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -67,7 +67,11 @@
- 
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 4e914928e0a9..faca626702b8 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -35,6 +35,7 @@
+ #include "xe_pt.h"
+ #include "xe_pxp.h"
+ #include "xe_res_cursor.h"
++#include "xe_sriov_vf.h"
+ #include "xe_svm.h"
+ #include "xe_sync.h"
+ #include "xe_tile.h"
+@@ -111,12 +112,22 @@ static int alloc_preempt_fences(struct xe_vm *vm, struct list_head *list,
+ static int wait_for_existing_preempt_fences(struct xe_vm *vm)
  {
--	struct drm_device *drm = &tile_to_xe(tile)->drm;
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct drm_device *drm = &xe->drm;
-+	bool shared_wq = xe->info.needs_shared_vf_gt_wq && tile->primary_gt &&
-+		IS_SRIOV_VF(xe);
-+	struct workqueue_struct *ordered_wq;
- 	struct xe_gt *gt;
+ 	struct xe_exec_queue *q;
++	bool vf_migration = IS_SRIOV_VF(vm->xe) &&
++		xe_sriov_vf_migration_supported(vm->xe);
++	signed long wait_time = vf_migration ? HZ / 5 : MAX_SCHEDULE_TIMEOUT;
  
- 	gt = drmm_kzalloc(drm, sizeof(*gt), GFP_KERNEL);
-@@ -75,9 +79,15 @@ struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
- 		return ERR_PTR(-ENOMEM);
+ 	xe_vm_assert_held(vm);
  
- 	gt->tile = tile;
--	gt->ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq", WQ_MEM_RECLAIM);
--	if (IS_ERR(gt->ordered_wq))
--		return ERR_CAST(gt->ordered_wq);
-+	if (shared_wq && tile->primary_gt->ordered_wq)
-+		ordered_wq = tile->primary_gt->ordered_wq;
-+	else
-+		ordered_wq = drmm_alloc_ordered_workqueue(drm, "gt-ordered-wq",
-+							  WQ_MEM_RECLAIM);
-+	if (IS_ERR(ordered_wq))
-+		return ERR_CAST(ordered_wq);
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
+ 		if (q->lr.pfence) {
+-			long timeout = dma_fence_wait(q->lr.pfence, false);
++			long timeout;
 +
-+	gt->ordered_wq = ordered_wq;
++			timeout = dma_fence_wait_timeout(q->lr.pfence, false,
++							 wait_time);
++			if (!timeout) {
++				xe_assert(vm->xe, vf_migration);
++				return -EAGAIN;
++			}
  
- 	return gt;
- }
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3f42b91efa28..f8243622429d 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -347,6 +347,7 @@ static const struct xe_device_desc ptl_desc = {
- 	.has_sriov = true,
- 	.max_gt_per_tile = 2,
- 	.needs_scratch = true,
-+	.needs_shared_vf_gt_wq = true,
- };
+ 			/* Only -ETIME on fence indicates VM needs to be killed */
+ 			if (timeout < 0 || q->lr.pfence->error == -ETIME)
+@@ -541,6 +552,19 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ out_unlock_outer:
+ 	if (err == -EAGAIN) {
+ 		trace_xe_vm_rebind_worker_retry(vm);
++
++		/*
++		 * We can't block in workers on a VF which supports migration
++		 * given this can block the VF post-migration workers from
++		 * getting scheduled.
++		 */
++		if (IS_SRIOV_VF(vm->xe) &&
++		    xe_sriov_vf_migration_supported(vm->xe)) {
++			up_write(&vm->lock);
++			xe_vm_queue_rebind_worker(vm);
++			return;
++		}
++
+ 		goto retry;
+ 	}
  
- #undef PLATFORM
-@@ -598,6 +599,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.skip_mtcfg = desc->skip_mtcfg;
- 	xe->info.skip_pcode = desc->skip_pcode;
- 	xe->info.needs_scratch = desc->needs_scratch;
-+	xe->info.needs_shared_vf_gt_wq = desc->needs_shared_vf_gt_wq;
- 
- 	xe->info.probe_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
- 				 xe_modparam.probe_display &&
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 9b9766a3baa3..b11bf6abda5b 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -48,6 +48,7 @@ struct xe_device_desc {
- 	u8 skip_guc_pc:1;
- 	u8 skip_mtcfg:1;
- 	u8 skip_pcode:1;
-+	u8 needs_shared_vf_gt_wq:1;
- };
- 
- struct xe_graphics_desc {
 -- 
 2.34.1
 
