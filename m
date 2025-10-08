@@ -4,58 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80AF7CAC5BB
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 08:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48324CCD187
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 08:54:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4581610E17A;
-	Wed,  8 Oct 2025 08:27:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8BCD10E7BC;
+	Wed,  8 Oct 2025 08:54:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mHo3fAPx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FxRzA92D";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 227DA10E17A
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 08:27:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759912034; x=1791448034;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=TiV234+pi/n1oOAh+R49xeMwuwfOyxd93+epDNE06Tw=;
- b=mHo3fAPxoeQR58QXPafruF2uZMkgv1v7TzP12OzXjafXy9PXqViEgP4b
- rOVgmzfHI0sybHpjL4QpxjtAp1lY/Hh02QyR41Kct88MdBxttX7RZzgHg
- AIPjF5EimvULOlXaSPhUYm426HenavJRKRrjToZpQoijCyZEU+Tv2OWSB
- 1zFzXP0Da98oOU4+XW9KzE3DSBfzfbX0+XPqPxLPrQnowrP58tAMjqN5Y
- 0aDsgluZDfmdwvC8Z/3vwUhw7UTWSRJVgRQrUFFGtGYHVfrwQZ95oMfLM
- FvGV4tInl29sorUbk4YzDzyLNWvcyUP4uSwcymfx81SgEJ5bYBd0G6jHl g==;
-X-CSE-ConnectionGUID: oMkrmScSRN2qQbRG+Ia2nA==
-X-CSE-MsgGUID: t3WEwnNHRA+ANdp4+wuPkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="79746273"
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="79746273"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 01:27:14 -0700
-X-CSE-ConnectionGUID: 4a+lkPlIQpKEC9X+MAFQkA==
-X-CSE-MsgGUID: I8oKOSZ9RdOnAGQLPSsFFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="180333825"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.123])
- ([10.245.244.123])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 01:27:13 -0700
-Message-ID: <4cc6fb22-749c-410e-80b7-da286e3398f9@intel.com>
-Date: Wed, 8 Oct 2025 09:27:11 +0100
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5572910E7BC;
+ Wed,  8 Oct 2025 08:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=tf9gcx4sP1C1CcYZwkNjFaoqUupM6tXnZivvfAK7opA=; b=FxRzA92DfV/u1MUUasZRMIVNn1
+ hIwx67YCdE7Sm/wAzNDyQ4FUV/yRZiHx6hwnTdJullYYgntxQtDsjYj3ZlP/N/6dblSHFW3fvppzb
+ MoJ0jGORwZn15omy+yd2PCFcb0U56rNq4+VKSak64P1+kPmc1ksmid575vz/ADGo/0OqwrW1Rbslm
+ xgj6fzzFs8uqANk3sxq963NBFEhjSB+CJaHkWViNlCeKvBG+SmrQ7LFdkAA+Brf2Tq/PeCRxJNc7S
+ qzLFr9+CEmCeH3A/RTRbQ9VSz//IjkxLOiWxKWFJKnFpW2Y7QK2NO0+dF0tZQs2pjhI4+4Jxkp4yh
+ wi6875Tg==;
+Received: from [84.66.36.92] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1v6PwL-006Z2g-Hs; Wed, 08 Oct 2025 10:54:29 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Subject: [PATCH 27/28] drm/xe: Remove drm_sched_init_args->num_rqs usage
+Date: Wed,  8 Oct 2025 09:53:58 +0100
+Message-ID: <20251008085359.52404-28-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20251008085359.52404-1-tvrtko.ursulin@igalia.com>
+References: <20251008085359.52404-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 05/33] drm/xe: Return first unsignaled job first
- pending job helper
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20251007130505.2694829-1-matthew.brost@intel.com>
- <20251007130505.2694829-6-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20251007130505.2694829-6-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +62,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 07/10/2025 14:04, Matthew Brost wrote:
-> In all cases where the first pending job helper is called, we only want
-> to retrieve the first unsignaled pending job, as this helper is used
-> exclusively in recovery flows. It is possible for signaled jobs to
-> remain in the pending list as the scheduler is stopped, so those should
-> be skipped.
-> 
-> Also, add kernel documentation to clarify this behavior.
-> 
-> v8:
->   - Split out into own patch (Auld)
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Remove member no longer used by the scheduler core.
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+---
+ drivers/gpu/drm/xe/xe_dep_scheduler.c | 1 -
+ drivers/gpu/drm/xe/xe_execlist.c      | 1 -
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c | 1 -
+ 3 files changed, 3 deletions(-)
 
-> ---
->   drivers/gpu/drm/xe/xe_gpu_scheduler.h | 21 +++++++++++++++++----
->   1 file changed, 17 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> index e548b2aed95a..3a9ff78d9346 100644
-> --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-> @@ -77,17 +77,30 @@ static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
->   	spin_unlock(&sched->base.job_list_lock);
->   }
->   
-> +/**
-> + * xe_sched_first_pending_job() - Find first pending job which is unsignaled
-> + * @sched: Xe GPU scheduler
-> + *
-> + * Return first unsignaled job in pending list or NULL
-> + */
->   static inline
->   struct xe_sched_job *xe_sched_first_pending_job(struct xe_gpu_scheduler *sched)
->   {
-> -	struct xe_sched_job *job;
-> +	struct xe_sched_job *job, *r_job = NULL;
->   
->   	spin_lock(&sched->base.job_list_lock);
-> -	job = list_first_entry_or_null(&sched->base.pending_list,
-> -				       struct xe_sched_job, drm.list);
-> +	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
-> +		struct drm_sched_fence *s_fence = job->drm.s_fence;
-> +		struct dma_fence *hw_fence = s_fence->parent;
-> +
-> +		if (hw_fence && !dma_fence_is_signaled(hw_fence)) {
-> +			r_job = job;
-> +			break;
-> +		}
-> +	}
->   	spin_unlock(&sched->base.job_list_lock);
->   
-> -	return job;
-> +	return r_job;
->   }
->   
->   static inline int
+diff --git a/drivers/gpu/drm/xe/xe_dep_scheduler.c b/drivers/gpu/drm/xe/xe_dep_scheduler.c
+index 9bd3bfd2e526..2c7f43e61069 100644
+--- a/drivers/gpu/drm/xe/xe_dep_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_dep_scheduler.c
+@@ -78,7 +78,6 @@ xe_dep_scheduler_create(struct xe_device *xe,
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &sched_ops,
+ 		.submit_wq = submit_wq,
+-		.num_rqs = 1,
+ 		.credit_limit = job_limit,
+ 		.timeout = MAX_SCHEDULE_TIMEOUT,
+ 		.name = name,
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..481ff90d0f05 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -338,7 +338,6 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 	struct drm_gpu_scheduler *sched;
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &drm_sched_ops,
+-		.num_rqs = 1,
+ 		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
+ 		.hang_limit = XE_SCHED_HANG_LIMIT,
+ 		.timeout = XE_SCHED_JOB_TIMEOUT,
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 455ccaf17314..8d3ffb444195 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -66,7 +66,6 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 	const struct drm_sched_init_args args = {
+ 		.ops = ops,
+ 		.submit_wq = submit_wq,
+-		.num_rqs = 1,
+ 		.credit_limit = hw_submission,
+ 		.hang_limit = hang_limit,
+ 		.timeout = timeout,
+-- 
+2.48.0
 
