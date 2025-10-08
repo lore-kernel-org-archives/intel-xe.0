@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 347B0CCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:22:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97933CAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEB5C10E88A;
-	Wed,  8 Oct 2025 18:22:40 +0000 (UTC)
-Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98D7210E885;
- Wed,  8 Oct 2025 18:22:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0784810678377126566=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Enable_media_samp?=
- =?utf-8?q?ler_power_gating_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B0610E88B;
+	Wed,  8 Oct 2025 18:26:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K0q4KS3u";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAC7610E885;
+ Wed,  8 Oct 2025 18:26:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759947963; x=1791483963;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HWN2FHBB0fMA9Nv35A0seKH5IeDivEvXY+NSyLEWr1g=;
+ b=K0q4KS3uIjvhAQg3ngr0v9H2Nqn2otDZzer+cNsp1nJTiLkUCtiSdZJM
+ oe9M0Q1h5jg+KhGfOpgsWvbj653NUz7mQVQ0iU0cZXEOjWsnDXNHFfEZV
+ kS81hFep5CZoJzCZv7ctSgxQmFUFTKb+LXKzm009u5JsVDDqa9oWL6IrE
+ 2avSQ4N8748+dCSMheHlHVVMS3/gKBFTYmdqAC10N/JJuu6DwbW/9Vu4Y
+ zjUjz/EKOg4l44IytEkEJgs6NvuFb2YoGyVJo0QzOHES8QEGYX4qAW0Xl
+ v0nqys7n0BhVDvCFeVd+wYdumjNm+cLNlf7agjswWxO0sPYzviNyRSqPy Q==;
+X-CSE-ConnectionGUID: jCTiyWe3QLacTCz5sw5KHw==
+X-CSE-MsgGUID: VTjGLzjoRVaVUgDY76bwFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="62245557"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="62245557"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 11:26:02 -0700
+X-CSE-ConnectionGUID: d2AABAIwQiy7aGJTr81YMg==
+X-CSE-MsgGUID: w9qNh5owTx+WNaIE3PpKiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="185799744"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.175])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 11:26:01 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Oct 2025 18:22:40 -0000
-Message-ID: <175994776061.19641.11532953061251600462@6aec98b87f92>
-X-Patchwork-Hint: ignore
-References: <20251008172119.1630380-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20251008172119.1630380-1-vinay.belgaumkar@intel.com>
+Subject: [RFC][PATCH 00/11] drm/i915/prefill: Introduce helpers for prefill
+ latency calculations
+Date: Wed,  8 Oct 2025 21:25:47 +0300
+Message-ID: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +65,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0784810678377126566==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Introduce intel_prefill and various accompanying helpers to do 
+pipe prefill latency related stuff (vblank/guardband length
+checks, and in the future reduced guardband length).
 
-Series: drm/xe: Enable media sampler power gating (rev2)
-URL   : https://patchwork.freedesktop.org/series/155564/
-State : success
+Still a bit rough in plaeces so tossing it out as more of
+and RFC at this stage.
 
-== Summary ==
+Ville Syrjälä (11):
+  drm/i915: Reject modes with linetime > 64 usec
+  drm/i915/cdclk: Add prefill helpers for CDCLK
+  drm/i915/cdclk: Add intel_cdclk_min_cdclk_for_prefill()
+  drm/i915/dsc: Add prefill helper for DSC
+  drm/i915/scaler: Add scaler prefill helpers
+  drm/i195/wm: Add WM0 prefill helpers
+  drm/i915: Introduce intel_compute_global_watermarks_late()
+  drm/i915/prefill: Introduce intel_prefill.c
+  drm/i915/wm: Use intel_prefill
+  drm/i915/prefill: Print the prefill details
+  drm/i915/prefill: Also print out the worst case estimates
 
-CI Bug Log - changes from xe-3886-f929eafc95342ea5377f79705864d50dd325c79f_BAT -> xe-pw-155564v2_BAT
-====================================================
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  99 +++++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  12 +
+ .../gpu/drm/i915/display/intel_display_core.h |   1 +
+ drivers/gpu/drm/i915/display/intel_prefill.c  | 200 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_prefill.h  |  48 ++++
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_wm.c       |  10 +
+ drivers/gpu/drm/i915/display/intel_wm.h       |   1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 204 +++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h     |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 239 ++++++++++--------
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   3 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 16 files changed, 737 insertions(+), 113 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_prefill.h
 
-Summary
--------
+-- 
+2.49.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3886-f929eafc95342ea5377f79705864d50dd325c79f -> xe-pw-155564v2
-
-  IGT_8578: fd1f7d868fb6df61db6891ce0bbc8fcd26a0e7ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3886-f929eafc95342ea5377f79705864d50dd325c79f: f929eafc95342ea5377f79705864d50dd325c79f
-  xe-pw-155564v2: 155564v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v2/index.html
-
---===============0784810678377126566==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Enable media sampler power gating (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155564/">https://patchwork.freedesktop.org/series/155564/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3886-f929eafc95342ea5377f79705864d50dd325c79f_BAT -&gt; xe-pw-155564v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3886-f929eafc95342ea5377f79705864d50dd325c79f -&gt; xe-pw-155564v2</li>
-</ul>
-<p>IGT_8578: fd1f7d868fb6df61db6891ce0bbc8fcd26a0e7ba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3886-f929eafc95342ea5377f79705864d50dd325c79f: f929eafc95342ea5377f79705864d50dd325c79f<br />
-  xe-pw-155564v2: 155564v2</p>
-
-</body>
-</html>
-
---===============0784810678377126566==--
