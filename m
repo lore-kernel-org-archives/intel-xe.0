@@ -4,182 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E9ACAC5BB
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 03:37:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0354CAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 03:47:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC0210E743;
-	Wed,  8 Oct 2025 03:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9940C10E08F;
+	Wed,  8 Oct 2025 03:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RPwodlDS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ioxkyRXs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E5810E743
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 03:37:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 155C210E08F;
+ Wed,  8 Oct 2025 03:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759894662; x=1791430662;
+ t=1759895259; x=1791431259;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=3GtuIycUBi7wD56dOeT0mk39vdrqV0nRT4zAkcrmVxw=;
- b=RPwodlDSGP7KlipukRM+1GRpXp0PigBePMjmln9FSg0zWmx7cq+HqofZ
- kRURYR+ZzFHlJ2sgLZXhIzkffGS3wKKrGKC6muYiefKIFyeXkzi52E1H4
- Dl63UgljmJ0gXnfaMbkMSbJcna/2p3/wokdu2PL1xBSmOT1mv5AtjrV1b
- dqH65wPj/cJ2uJCCUSi58rdnVwW8cJFjvfDceLaFP3ZSsF+VdKG1vFj4Z
- DxTIn9MjCthidr7n++Tl5T+Bwwl5OaDAMVapGcdzuK99pCxyCge+5EW+H
- G6V27CteCqJH5Z/WlURLZZbsKxQM4PjbQh05ULItbUy8w2d0zjJc8hkCg g==;
-X-CSE-ConnectionGUID: eSpEnHe/SUu5+PoteV187g==
-X-CSE-MsgGUID: LJUdTXGQRlC8uBBcbnYtsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="65909114"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="65909114"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 20:37:41 -0700
-X-CSE-ConnectionGUID: fr/zFrqiS+mJxtMW9dCzPw==
-X-CSE-MsgGUID: aFxzyXzgQUuzyPjF/VD2XQ==
+ in-reply-to:mime-version;
+ bh=cjypZVg3lJTQevXLUY3eVlK5UwUoKV7chSKbnAnvdDI=;
+ b=ioxkyRXs1Iu/4BKeuF596wTS4rsrphXTjaIytvDYrduPi+F4mZYCUEeF
+ /CKyHUbA51INrkvWlLHYCNFbLI/UcoKiX1FH2JltCmVp/ocOOHVSVKHTu
+ G/dyW91tzqLRcWH7OjbIAJNkEVrxoYsfsg6N0KSywc1LBVuinJvG+7f3A
+ cZR5qljRuDANJePbUWl2jGbuqgsILJJ+oQ9UttjcCP5r/rYD0RfTnGKOx
+ RqmH+TBLdV5lqhCOqB4Na331Mhn1jmpkPLH6Zzne/OVwT3fvNHYRt8Qj8
+ VdkGVVQ/rDJ867j8ZSnwpgeC6deeNSxVAEVynBeDDVwCFuSyKdvUTEUBB Q==;
+X-CSE-ConnectionGUID: YCvnBqppTsG8hGBxVR+YMA==
+X-CSE-MsgGUID: qfjCQ+D7Rp2v1U7dCXKzVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62245828"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="62245828"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 20:47:38 -0700
+X-CSE-ConnectionGUID: 9G8b7JRmQqOUzhfNEPlyOQ==
+X-CSE-MsgGUID: 2AufA/GGT/OzvWURFI8zUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="179579606"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="184606313"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2025 20:37:41 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2025 20:47:39 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 20:37:40 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Tue, 7 Oct 2025 20:47:37 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 20:37:40 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.70) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Tue, 7 Oct 2025 20:47:37 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.22) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 7 Oct 2025 20:37:40 -0700
+ 15.2.2562.27; Tue, 7 Oct 2025 20:47:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MpLS4JLfb+hv3P6E9YMRr+nzCXeKfQ8cSBYwRvHp4Q+HTLG4AfunTh3xD292RJrqnOOs82SzwcTspKqxN8ai8apaEuWB6OI4YmAh6cy7Izc1ZTsoWVcPCU/PfrbGqIhcwClTUhYTTborbaz0avupzX0tXz1JSCaz0p1cQUuNSM6y/4Kqy4jfhEzFxf0275lDobI66FYE2ycyd2pLCfy2moLvSxLpgooEbRpk41KGa6uqA+tTlbpMUxYY+gy0DFiOTPiicUkfJ9pV91UivWXRvy9CHHj4CLg71SUUMIJ8atDnQL0TfAZwaoSa1ifkQQnvs6tDPE5mgaAGLCcubSMEVQ==
+ b=vTBdt7I5lE78YcbOODzlWZyd7cKbNE7H+AEfY28MUQ1nylsUAzQ+8JiY2CeaWgHvKdmSBsqaH19N8ZudJFEjXYDVLnXDD8CoYd3TeZPG3aPN0+lOqtQJq8gLnvw+VwMQHjcRZcbNlXD3+rz5d6SBVySPLkgkpfa6KuOEFVnf4UDPViGCUzqFYpk0fdwL9RX/jG3RGMSW2xMt78aui/YhdBbZN3fyBxFcgtQqqcsvgwG5f/iS4H8ubGTtYGIaa99h+nwhuTR2ODwRCcAdm/3ze1EFB7tcxMM7Z/BfMItk/THwFNPSxqAuy+pYKMJNMDgxm+GLoWvBoJOOGwF20/rjbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bg8bYwMhTcuT0xoXvXecH4iCGwpwK7eCtV6K2eO2A68=;
- b=nlkp7X9yKeOZUpzfRYUsvt2oNFWEwbMGMz/LcUY3auDrCgPhVLN3WQ/upPDL/5PPgk/3xEiTiYkGd8sOMUgX8/HHgFMCXTB4uZPkZx2Hp9egGCfuJ7y81jIB2syiw2wpTbIl0qem7Ry7mxssNV588Sg5Hy5gh9tk+vblBDGRWdqSNdriCDl+LHepHpifMGmOFFalgcLJujop80COD+zfAe8r17TSoXnb9aO9miHV1pdvgfg/PgjMN8qux08gjl21HIp9tGVCgheJO1EcZqG8xkP55pgTIUET1ufBXr1/zU63H7FJ0P34tpF4PQRD8LbSjw7qhSVoBMNy/8H0C90Ytg==
+ bh=qdJGD3ezfTyFABynNku7SscOgLOl4y4b5ol6Tvhub6c=;
+ b=GI+L+F3XHDzrtN0wdzZ6Y3jGMNJujWSjLjchXfHPJYGp7YgmJU80m3pq7He75U8pWXp3I3uA36pLA2wju7LrVXpdKelrPbeOXIF8N2Q7MfxlC4DGjBnk5JwzJPlQvNosnO/QIpO/CkRvQakVq6+QRgZ5a6idkjd5zpLuGouliu9JGBFv+QWTLWCV95Fd+jXbo5Cb1cS7gnczdeNabZEJyJbdsBACPFgQlAw+1xyX7Y51BlUZwTMqrthDlizmTJq00HI0OQYMDnL7KqcjGHnjO8oENJ70uWs4VZCDTK2elhPg274wffPsmcFc9lrZkb3RzweG2aMZhWs+2XFda4oZlw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB6768.namprd11.prod.outlook.com (2603:10b6:a03:47f::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Wed, 8 Oct
- 2025 03:37:34 +0000
+ by DS0PR11MB7190.namprd11.prod.outlook.com (2603:10b6:8:132::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Wed, 8 Oct
+ 2025 03:47:26 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.9182.017; Wed, 8 Oct 2025
- 03:37:34 +0000
-Date: Tue, 7 Oct 2025 22:37:32 -0500
+ 03:47:26 +0000
+Date: Tue, 7 Oct 2025 22:47:23 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH v4 22/23] drm/xe/configfs: Add attribute to disable GT
- types
-Message-ID: <ibppcxcdcx3wxqxxccxun6kru6fr7mtnaddvxfbjzfaoxss65s@n7btsnxddgub>
-References: <20251007204829.1468209-25-matthew.d.roper@intel.com>
- <20251007204829.1468209-47-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <kunal1.joshi@intel.com>, <jani.saarinen@intel.com>, <jani.nikula@intel.com>, 
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v3] drm/i915/fbc: update the impacted platforms in
+ wa_22014263786
+Message-ID: <ghn5ilu25sfqdqkvialbk5czflejx365nb2kqp4lohrjxm77az@ob6jocamv4ji>
+References: <20251007214317.875781-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251007204829.1468209-47-matthew.d.roper@intel.com>
+In-Reply-To: <20251007214317.875781-1-vinod.govindapillai@intel.com>
 X-ClientProxiedBy: SJ0PR13CA0226.namprd13.prod.outlook.com
  (2603:10b6:a03:2c1::21) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB6768:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3337ac9e-bebf-429b-dcfb-08de061c04b9
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7190:EE_
+X-MS-Office365-Filtering-Correlation-Id: 475d3b6f-f473-4224-31c1-08de061d6567
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dlZ2cUFiNWpBZUk2L1NWQ2YxazhQSzRBMGdsMmwyeXM2MFpEMHp3Z216bCta?=
- =?utf-8?B?TDJFQmczWXg5OHpZa0tGK2xWVTlQMFRKUERQc3o1NDFaQW9IVTNNRytRRlAz?=
- =?utf-8?B?aUh5UlJDMmxCUnFCSmVCbHBjdzYzUmd4cFdraFgwSlRTT2Q3TnJBcWtHd1ND?=
- =?utf-8?B?TkNnbUhkTUVYc3dsS240VnYyTHFDTm9xOTJMZ1hQNks5ZnJOTWQyMko4NjFD?=
- =?utf-8?B?ZkovbkM1OFJnRFN2K2wzblJTd1dKdEJhTW9yL2VSL3M1a3AxRXU2MzdFcmdF?=
- =?utf-8?B?TkhRb2lQdzVPaDV6QkFVT1BMejkrdjhhU2Q0cGtJS1dLTUFJZEdUNURqR2pt?=
- =?utf-8?B?cFo3V3UzSDJYSUVNT1p1T1gxcGhlbllteEJ2ZFJtaE5BcG0rbWRTb25PZE1k?=
- =?utf-8?B?OVRIc1FINjM4MVA3Mnh3U0JQMFFCSjhwL0RUMjdaSEU1TlJ6UHFNeTlzMmhh?=
- =?utf-8?B?SE9xM1NoMkpIS1A0dG93OGV1SVJaZEtmQlN0MnJPZkl2Yml0TVduaEFxbVkw?=
- =?utf-8?B?a0RLUlU3NW5mUkZoM3AwSmtUUm03QUltU3hSOUd6bG0rRTB0QStvZjllWHNS?=
- =?utf-8?B?YUNmNHZDK2lmRE5hU0M1cWttcHJYaEl4NjlGdndZa0JqbzJMOGdHZ2ZNNlFK?=
- =?utf-8?B?NTF6UmcxaytOakxjMmVvMS9PdWIxa3k1bnpPdzZlbzdibmdEZmhJMHdudzBQ?=
- =?utf-8?B?SWMxT092K3lwZEZsa093eUd1UnhXVCtSMjFXNnpsRzFSc0tVZ3ZZclUxQUNx?=
- =?utf-8?B?RkE5K2Qzek51WlNXcVhPN1FrbkEvL1BCQVZCUG9DUk1FU2Z3RWwrNVoyNHZl?=
- =?utf-8?B?YzlnVUlqaXFnMVlvd3JMZzl3WFpJTzlXT29vcVBnSlF6aG5pVDV1enREMG83?=
- =?utf-8?B?VkFURWxONllISHdZbWc0OWhMdUVtTFZGUzBkTHVsTUtjb2o1SllHTnJicHk4?=
- =?utf-8?B?aGdBOTFRaDY0emRKQmZleExKbkpOUjBRbWlNdE9IaDBoTlJpaUVRbi80WnE0?=
- =?utf-8?B?ajlYWUlxTFIvaHZRNmNtWmFNR2taL0lMcnpNNGZtMTQvSHVvZkdQNHgvMkJJ?=
- =?utf-8?B?U1c3UVNDNEJYNDMwTEQrS09aM1IzZWd5RzV0ZFFTTkhzOWhGREFBWklpeEJU?=
- =?utf-8?B?cHVET0VVckw0NDh4c2ZPOFFFMmhVcmJ6MW12MEw1WWpuN3NsQXFvb2ZWRmpx?=
- =?utf-8?B?bXVDRXFuWk5uZVJRK3ZnUnllbkpud1BaMUtBak1oWlhQL1RtRTJPcytpbDFY?=
- =?utf-8?B?bjlqSUJRTmU1aUR6T0tNWWQvaTFLbkJ6NGx1VU1CTzIrWW50eHRBQUVkN0p3?=
- =?utf-8?B?YU94MnluS0luV3YvY0JveXRzUkVNQlZtaFZiTEFpMHU4UElyTGxJaHBKTmc1?=
- =?utf-8?B?UE5rQTNFcXIxNVczNXRTcnBFZ1NHV1BYd0dWR29ScHozWHU0VitYUGtTcWth?=
- =?utf-8?B?ZW1rM0pwQTR0d2w3SkJQWFpKTW53OVVsWjlWL1pHRUsvUXBRb0M0VjZKdTFF?=
- =?utf-8?B?dUpvOHNHNlkwWDZ0UFVoZ3YyRU10aE5sMmJJMUlPSGk1a2EyaGNMaHBTRHNV?=
- =?utf-8?B?UmZXTXY0QXJEMnphcmJ2Q1p1VTBPc253UjFKTVNFV2xFWGpLQndmRlpZZCtQ?=
- =?utf-8?B?R2xwSzRGbWRocnV2TW1NTFdVL0t5djZ1NG14aU13TTdFeGRyZllwL2xGMG5V?=
- =?utf-8?B?bmg3VTJUYmtXTVF0YVpmZG1WTkRpVGRPNFk5b1owcFB0Q1F2SzZNaVpwTWo4?=
- =?utf-8?B?dUxQd2ZDck8wVjBFUGVJK0RBZGxSTktiSS90R3h6QW0xcGNqdGhwam8zc2lE?=
- =?utf-8?B?S2pOZ1VuZFdUeWFNY3kzNlFPVzUvNXAzSTE4N2g3aVVpVThkd2lGVzBNR0xo?=
- =?utf-8?B?YzZQRmdXUHBUeE0vUlJpeGdqWjBOakNnSkUzamdjRDhHOHhTaVJVU2c2M3Zy?=
- =?utf-8?Q?RXwOHTFbT+nvNKVdO6xeVt7ivSEhCktw?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YGxBey6Zlr3eOi+yMdcQV4pVg9OYuucXzbXDFMXNqSaB8Dekb5wJL7J+64c8?=
+ =?us-ascii?Q?mpcoYIdXcOCRJkfG7IXwvPh3L7h0c6lvlPO1T+vjJUc9xFiOAGCcUGCq+atN?=
+ =?us-ascii?Q?4oWyEWA6ysf0GDxEe4u914e66srfXmf5+lBkuVGxXC5ZkJhhcQF7xbePj774?=
+ =?us-ascii?Q?jQveMWCzUvcsc+EHH9U2wgli+IFFEqOn0JrfbKB0iHsf2qx5IeOrMz0bf83M?=
+ =?us-ascii?Q?kJHJJZjT630QawkNLQYbsh7hv0bctkb7PcStihaXPpWcTyjfxPjmDIHrsfsO?=
+ =?us-ascii?Q?Qzj9Obn6Wurgzi4gIiWMqZyYHQU7JDkKvNzZFiLysRNkcs1ZGvQKVlnG8R02?=
+ =?us-ascii?Q?0X9kdKwoCve0Wvk7a+Jnbz0miFjEsjCs+I+hHPTOGpdcjyehz6fdW9Mram0+?=
+ =?us-ascii?Q?493Jv7dmTZ5nPyJ4cRQD+E+t+QRkUB7If0M+o+0LKrbtEBQ5bmIR94upof+q?=
+ =?us-ascii?Q?K443sxVTUWvNg3KEyg3xX2AU6CoznSYLxJ8RlZug9n1gk6qOcbzVs9FauS7Z?=
+ =?us-ascii?Q?5TjnbOMrYCgv1SXCkM/YIQMgh9Zt3VfUyDWSJQSCkH5HR8eR/E6FlBO19QmO?=
+ =?us-ascii?Q?sFFsKylDVbEUnyMGTwC5XD5Cc3ejPKtpR9dwRwq8UmTYoFL+U0yMGdjocYRA?=
+ =?us-ascii?Q?k1yPTuCDnDbzPCEx2Px2h4mHNG5vz6G8LRYjEpk5J08pCMBjpdZfB/Zb+mz/?=
+ =?us-ascii?Q?jLtqV84XOTFx9SBmfgU0ZWs8+DbCJbY6P6A2WqHLtCSdRMfwNLxtwZ1Q6nbb?=
+ =?us-ascii?Q?2Pu64oDLuqfZPkHjeKiE+BAerMzKgjpyBbHPIUeKuBPR8zTyB85BStHNmlq9?=
+ =?us-ascii?Q?aJjtG35kqnEiLxpx1mAHKo8zFXzUpAIJfvRTxL6tGwkKPXhWcsI1u6wNZ2dN?=
+ =?us-ascii?Q?BWrq+BQKyWJab8xiw7NRjtaN4uAcxi1RlcqindhMkczTVE/4Kj3tarHQAdim?=
+ =?us-ascii?Q?mX+2M1wZNSSYuoIbNNrnGu2vnYLdv2A2b0vmwpM0u7arXKXUsUgpBb3MzDTE?=
+ =?us-ascii?Q?hbWr8aEwLEYDf4kdmux+eBPicXSDlHB8mdijVbf7UqehguifKPN2yPTy1UoS?=
+ =?us-ascii?Q?F1m5tR2by335L3Y0Okii88pvayN8YGV8tPaT3MyQDwXrUVyIKixIDS6G60Hz?=
+ =?us-ascii?Q?BNSROCnYMLEgFSrB14d0kTq1U12UuUKOxnogTvf/kkJFwirCiLh7H3HIcXTJ?=
+ =?us-ascii?Q?pYyiyyYkrc6Cg+6Apu+tuY8XC72BjY10kU2Nq2jtY2xAuy+96ePAi6LA0xgr?=
+ =?us-ascii?Q?vLlVyB1DD1hyEyScku9ifPX2HC9XlgsGXXa0mu2f9shIYxEpYuWnj6kz7dls?=
+ =?us-ascii?Q?l9tG7LqkPMBmNKGP/IrGhHnPMeaw+fS7BXg1wWh6KzsVADzq+gxLH4BWU5cs?=
+ =?us-ascii?Q?xaS6i6aLh4IUN20JK3jNwL4YFjTCv20VKGqCjAwCojGCH526yk3WKWRWN0Yq?=
+ =?us-ascii?Q?X8khCKrxEWKj/ZhnVpDP35N2TXnkPzcQ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M25qbzMzS08zU2ZnN1ltNTkwSzQ0MjlxYXdFcTBCQmxFanpvNEQzSys2Z205?=
- =?utf-8?B?Rjh2OFJRWDJsdWJYaUx6YndWaGROMDRENnZZNnB1aVViNHV5TWIwbDMxbHky?=
- =?utf-8?B?NEZJYmZOS1VoM1h2WGhrOVd4VUlPaU5ZWm1JNnA3WHV6R3g3N2xHeDZvNkcx?=
- =?utf-8?B?cnUwb3FkNy96MDdhYVZMYWt0eGo3WW9WV0VuQ0g4RVNkYlZBTDRzRnl5aEZ1?=
- =?utf-8?B?QVc4Y2dEeHcyME9ZVFJEdEY0cHNuQUhCaEVOVHdwNDRRS3RZTnFmM29LOEgv?=
- =?utf-8?B?S09mTWVZV20wc2hRcVdZcTlKVnQvK3drWkxCRldhaE5pZ0Z6dXU0R1B3VG5p?=
- =?utf-8?B?VGt5N3I4VkpHUHRPbTVJc3IvRit1MVpxQ1lsU25VamRyUzFkbEZ6R1prUTZC?=
- =?utf-8?B?ZXpaaGNQUmdraTVtbkp3eVBmVXFVdlZWL1ZVcGNoaWRDUWdtdklGY2ZmVytD?=
- =?utf-8?B?aTlCcTcvb0kvdkNWYnR1d2RoZ2didC9KblhIOEpBeVRza05CT2hDSTZBYXZs?=
- =?utf-8?B?QmRnbnhyYVB0T0FCMUptd1dGNjRiZGlCWHVWZE8veUl0cHhHWnRqNXpRWWho?=
- =?utf-8?B?VEd3SU02Z1BsKzI3cTdhMzd2WVJlZHhrYU1rS3ZUN3NIWGpTMnU0WEd5eHFr?=
- =?utf-8?B?c0xaQ2h3dUpCbUlnSi9tekt1TUNjY2ZWQ0JhZXJCaTFMZ2VWMGE1dndlQ2ov?=
- =?utf-8?B?eHJmWmQwZDg5STU0SFRXRjVDb3hYZzBzK0tMbFM1ME04VG9IZHJkNkdMcUdk?=
- =?utf-8?B?K0xQRyswa1B3RGxOMVNFemh4Tmt4SnIveVVVdENXMjVnV3VhQjY1VWNSUXIx?=
- =?utf-8?B?ZWw1M3kvYXpIMTkxTnZ4a1pQZXlERktpcndja0J2TDZueWFLUkg3NVFjTlB5?=
- =?utf-8?B?bXNBTStGVHcwRHovS1l3RjlYRDBJdG5nNnY2RUNtNktlMERwb1B1T1VUYWdp?=
- =?utf-8?B?ZGUyeks2SSt2Y3ZLcjEwckM1cHFBQ1VBYTBZQkRvWHZ1bjdtbEYxQllIbDZ6?=
- =?utf-8?B?L2xYK1dqa3FNUkVXc21XZG84bndraTVFSEhYek50b0JSQjA2UFlrQ0c1Nk93?=
- =?utf-8?B?clNtVHFwUW5DV3dSNEZIMCtDZUpvRlZaM29CdEZrMVRXbEpQR2Y4TUtWTFEw?=
- =?utf-8?B?Wld5TDF6TTcrQ0hPTVRkb21rRUszelVpc29QZWEyTXB0aGRBa21uVmkvbzdW?=
- =?utf-8?B?L3VuUlpnRkJMSDB1T1RVaGw3T3JMdm8rUFNVSlZMZDMwNnpGeW56YjA1S3hM?=
- =?utf-8?B?YzJuc1B4N2JTOVNWdEtSQ1V1N1d4UXordWVmcWQreTJhdGR1bE5VdFoxR3Vv?=
- =?utf-8?B?WWVRbzRETmdxb3Vkb2NNZFNGM1RTd0t4TUdoZTFLNzViN090blJoUndGTTlm?=
- =?utf-8?B?WHI2RGpMU0hlUlJJck5NWlJnZ3JtWHBlc3A0TGVnekxVNjlXM05WTm9HOU9a?=
- =?utf-8?B?Um5YQ21jVUVOQVFzNFY1UVZMTVhlU0M3cGphMW5ZMGZ2M3FrMWNlUExIOUJE?=
- =?utf-8?B?RWN3N0oxQzF1aTIxTjdYSXFjeTBpd1ViWjdqWHVOeUc4VkN0cWNuZy83QjBl?=
- =?utf-8?B?aWVFWVorZTlvSGgrelhTc0RhTjJxWUNEZ2o0K3dHaS85MERSQUdFTUVvWDZS?=
- =?utf-8?B?VStITTh0QTZ4YzErMjc3NVVKSGhYckpXSTlYV1dYT2dydG4vZWdnV1pUajRj?=
- =?utf-8?B?UkE3Y2xleE9RYWtWTGk0K3VEcDliM2tnbFVLR2NNK1lubkFJdmM3TFlJOGtH?=
- =?utf-8?B?UG0vdWpyY0xBdW9qSW82MTdQYkFjUEpxb082TVhndFNtQlcvNHV6ZWkvbkc5?=
- =?utf-8?B?bFc3U253WHk1Q1lmejBiVHorN1JQWEk1amF3alhPVjNraHVDRmxoRkVTVzdl?=
- =?utf-8?B?U2ZwVitTZElQMkZXQnlDQ3ZodStscjlWaC9CQ0lSY1pmNmFMUVpGc1VOdlBD?=
- =?utf-8?B?Z0c2UG1BOFJJcTdZUGRic09LdTRqeXlub3VmNE10MUZvQkVZQTFlazhKNWdX?=
- =?utf-8?B?RlBRZjFpQTFiTE9jTVk3cnFVTzZKZWptK2tPazZScEgrOXBTWWpYMTJXR3Bo?=
- =?utf-8?B?bkdhTG9GTUllZnRzWXM5STlkZ2Z6dnphUWd1a2JPeXBxazlnODlXdG5zbjVm?=
- =?utf-8?B?VGFFc0Y1dmxlSmN6V09ZOGpaaURsVEY1d0huQ2UwU0NTQktWWmM5OCtQWkxI?=
- =?utf-8?B?VXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3337ac9e-bebf-429b-dcfb-08de061c04b9
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Upq/x4SsoXOmHLxG+lmrwliYsPDoMSaQX3UE3MPG9yAvDQB3Mz1t6ppZosGT?=
+ =?us-ascii?Q?pcc+dEaIW+RQ3BrkMN6lK0BplslWsqpNtx6bMiE280j6sLtKiTIRaW3tMj/8?=
+ =?us-ascii?Q?dkX2wQInVLdF927k0csQYfJUfcT9eqwvAe17q/I5GQE1ej94byVcnaXReTLF?=
+ =?us-ascii?Q?ODTpiaZrtyBRnM6PA013IAoR1mfZTnBmZFA9ENqN15CTZQeZuHYj5XG1CwRc?=
+ =?us-ascii?Q?J2i4YsP/wWZVZix+7cM6/7DDC0kiHDwbDdhEESSeoL40Wt5Cm6xzoVikETGn?=
+ =?us-ascii?Q?nVNmW0Qig80gIWyYbvmGWx2reRh1bJsQnCQR3bgeoipjhcMfA3vd+cOdy0R2?=
+ =?us-ascii?Q?IxeY4By8uN8u7QYN7SLpvR+G9c3e8RoZQTMupq1sUKQOt5htNihAazqMs51y?=
+ =?us-ascii?Q?auNbvpJdnIZaQCptCbVh8Me9rE6wRhokrdpCYTgyGSfXAFcbJGgHsfFxFHUo?=
+ =?us-ascii?Q?GSCCy/R0RzyDWBCyVIY/yZiEaybBA8y9OtNpBRrqw9v22/Cm1a7BBiWakCNx?=
+ =?us-ascii?Q?Y0yg79SONYovMUY4qTNFLZq4eGwDumqMAlzEYYnNnN4mTbBGWYPmn50ZGXZL?=
+ =?us-ascii?Q?Fb7xU1l4fPCrLSlLxQyHHydj41wWt83YoyCP+4gtuA3xzeEOJrilSEDaUJHl?=
+ =?us-ascii?Q?KQJ3QFOdWD1f7UmdUpfKAHOVdbZLrVe3k5Y3HjCv7ywrXCoIqEWG+OHkMXhR?=
+ =?us-ascii?Q?BVwuOpBhoH+L0qkrwM4bwSZCfTD9+18iKjhP+eQnpOsyR61AC5ddTyfk2iN4?=
+ =?us-ascii?Q?sIniSnvXPM4mODUJgHglfQy7QbjSIJ68s2RNJ91FUaBvmIehNQ7hVYcCWYKn?=
+ =?us-ascii?Q?WTEgfY/MjTol38nNlfOMltA5fzQQkcfbOTVu4UTg4z3klGFuq20hmdqadfM+?=
+ =?us-ascii?Q?2HNTP7DNiMGkDMjCZtr5is5wntTfc4vMuq5FZQnuT1m2pBDhabkLJSism8aX?=
+ =?us-ascii?Q?bWpNlLd6jcqJcfn+HnoK5vpiXSyCc+pXmebdmZtAT8hByn4veYhnYFdlxq75?=
+ =?us-ascii?Q?+C0l80GehC2UyaQxXThEgE3sGiJk+0AIajBW8autlv5ehDJRj2I/GS6FjLhy?=
+ =?us-ascii?Q?EiC+mKj3ssrYIew0TSPV+LBiEMSP4NCHjPcAqzv/Ot+oEwO8qFJQ0g5qt8KJ?=
+ =?us-ascii?Q?mxOYnZlEaAGaMs9FcB0LmNtWGATGwjDBtSk5cJl3BsCWo1uvDilIrZs939aJ?=
+ =?us-ascii?Q?tvgUEJm1H+TFiRUt8bpM9lzoJlpGtFeW9ZrVqkA3bs53WELBHODfaZK7QPc1?=
+ =?us-ascii?Q?NSPqcCcCW7Vcl8CqdCFQrHpxBm8+YrQmVCsdX0a0HfVIIT8zT73I9iPyO4Pa?=
+ =?us-ascii?Q?C/zdAIg9aX/XpD0tFVKI1SQcH7DCG6ExYiDhpt1gL97+36ff83Co2h3lGfw8?=
+ =?us-ascii?Q?NNlbkzIoynGTclEfIuf0dtOIpnvajGweAeGqcOHQlnNpmjCtjx6PcRPLZRMM?=
+ =?us-ascii?Q?0stB/tapnf9Cpruq7Gpr8WjQfDtquipPfpFStPej+jZkF/IHOhT3mb1AmD1Z?=
+ =?us-ascii?Q?s/736CAjsfm81b3lP61Di8I/rl/odm7ahc6azyBFq65Rcae9l2tqy5Bwh0XR?=
+ =?us-ascii?Q?Td2qqv4PiPTubffSABUOjUhLAJqICd2MGNrW6da3beWG6u9gdsfDkgbuLaXH?=
+ =?us-ascii?Q?CQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 475d3b6f-f473-4224-31c1-08de061d6567
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 03:37:34.2782 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 03:47:25.9770 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EH9U0g5fOfqexqCK5lW6qp1BSg9PNG/BOy6/RWTekkBljLkWasE0m+8iWmk0OyVC3N+YaEn5nv42+xlz5lNXIVY+SAwvPJ1AhP9EWLcorjM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6768
+X-MS-Exchange-CrossTenant-UserPrincipalName: q6NeTVzQ8F8k9v6uK4uibyH5AXU9S3mdGWbxnW3fN8HWFHRmD6LhugYukAq0T/KrBB1gDklmaDRRAaSE7gtYnBKCGoCHMDLsN3xbyS+3hsQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7190
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,353 +178,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 07, 2025 at 01:48:52PM -0700, Matt Roper wrote:
->Preventing the driver from initializing GTs of specific type(s) can be
->useful for debugging and early hardware bringup.  Add a configfs
->attribute to allow this kind of control for debugging.
+On Wed, Oct 08, 2025 at 12:43:17AM +0300, Vinod Govindapillai wrote:
+>wa_22014263786 is not applicable to the BMG and hence exclude it
+>from the wa.
 >
->With today's platforms and software design, this configuration setting
->is only effective for disabling the media GT since the driver currently
->requires that there always be a primary GT to probe the device.  However
->this might change in the future ---  in theory it should be possible
->(with some additional driver work) to allow an igpu device to come up
->with only the media GT and no primary GT.  Or to allow an igpu device to
->come up with no GTs at all (for display-only usage).  A primary GT will
->likely always be required on dgpu platforms because we rely on the BCS
->engines inside the primary GT for various vram operations.
+>v2: Limit this wa to display verion 11 to 14, drop DG2 from the
+>    exclusion list, use intel_display_wa (Lucas)
 >
->v2:
-> - Expand/clarify kerneldoc for configfs attribute.  (Gustavo)
-> - Tighten type usage in gt_types[] structure.  (Gustavo)
-> - Adjust string parsing/name matching to match exact GT names and not
->   accept partial names.  (Gustavo)
+>v3: simplify the wa handling loop (Jani)
+>    Description of wa moved to place where wa is applied (Ville)
 >
->v3:
-> - Switch to scope-based cleanup in gt_types_allowed_store() to fix a
->   leak if the device is already bound.  (Gustavo)
-> - Switch configfs lookup interface to two boolean functions that
->   specify whether primary/media are supported rather than one function
->   that returns a mask.  This is simpler to use and understand.
->
->Cc: Gustavo Sousa <gustavo.sousa@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>Bspec: 74212, 66624
+>Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 >---
-> drivers/gpu/drm/xe/xe_configfs.c | 145 +++++++++++++++++++++++++++++++
-> drivers/gpu/drm/xe/xe_configfs.h |   4 +
-> drivers/gpu/drm/xe/xe_pci.c      |  22 +++++
-> 3 files changed, 171 insertions(+)
+> drivers/gpu/drm/i915/display/intel_display_wa.c | 2 ++
+> drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
+> drivers/gpu/drm/i915/display/intel_fbc.c        | 9 ++++++---
+> 3 files changed, 9 insertions(+), 3 deletions(-)
 >
->diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->index 139663423185..e36cc5e1bc8f 100644
->--- a/drivers/gpu/drm/xe/xe_configfs.c
->+++ b/drivers/gpu/drm/xe/xe_configfs.c
->@@ -15,6 +15,7 @@
->
-> #include "instructions/xe_mi_commands.h"
-> #include "xe_configfs.h"
->+#include "xe_gt_types.h"
-> #include "xe_hw_engine_types.h"
-> #include "xe_module.h"
-> #include "xe_pci_types.h"
->@@ -56,6 +57,7 @@
->  *	:
->  *	└── 0000:03:00.0
->  *	    ├── survivability_mode
->+ *	    ├── gt_types_allowed
->  *	    ├── engines_allowed
->  *	    └── enable_psmi
->  *
->@@ -79,6 +81,44 @@
->  *
->  * This attribute can only be set before binding to the device.
->  *
->+ * Allowed GT types:
->+ * -----------------
->+ *
->+ * Allow only specific types of GTs to be detected and initialized by the
->+ * driver.  Any combination of GT types can be enabled/disabled, although
->+ * some settings will cause the device to fail to probe.
->+ *
->+ * Writes support both comma- and newline-separated input format. Reads
->+ * will always return one GT type per line. "primary" and "media" are the
->+ * GT type names supported by this interface.
->+ *
->+ * This attribute can only be set before binding to the device.
->+ *
->+ * Examples:
->+ *
->+ * Allow both primary and media GTs to be initialized and used.  This matches
->+ * the driver's default behavior::
->+ *
->+ *	# echo 'primary,media' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
->+ *
->+ * Allow only the primary GT of each tile to be initialized and used,
->+ * effectively disabling the media GT if it exists on the platform::
->+ *
->+ *	# echo 'primary' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
->+ *
->+ * Allow only the media GT of each tile to be initialized and used,
->+ * effectively disabling the primary GT.  **This configuration will cause
->+ * device probe failure on all current platforms, but may be allowed on
->+ * igpu platforms in the future**::
->+ *
->+ *	# echo 'media' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
->+ *
->+ * Disable all GTs.  Only other GPU IP (such as display) is potentially usable.
->+ * **This configuration will cause device probe failure on all current
->+ * platforms, but may be allowed on igpu platforms in the future**::
->+ *
->+ *	# echo '' > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
->+ *
->  * Allowed engines:
->  * ----------------
->  *
->@@ -187,6 +227,7 @@ struct xe_config_group_device {
-> 	struct config_group group;
->
-> 	struct xe_config_device {
->+		u64 gt_types_allowed;
-> 		u64 engines_allowed;
-> 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
-> 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
->@@ -201,6 +242,7 @@ struct xe_config_group_device {
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+>index 31cd2c9cd488..c528aaa679ca 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+>@@ -67,6 +67,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+> 		return intel_display_needs_wa_16025573575(display);
+> 	case INTEL_DISPLAY_WA_14011503117:
+> 		return DISPLAY_VER(display) == 13;
+>+	case INTEL_DISPLAY_WA_22014263786:
+>+		return IS_DISPLAY_VERx100(display, 1100, 1400);
+> 	default:
+> 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+> 		break;
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+>index abc1df83f066..3644e8e2b724 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+>@@ -25,6 +25,7 @@ enum intel_display_wa {
+> 	INTEL_DISPLAY_WA_16023588340,
+> 	INTEL_DISPLAY_WA_16025573575,
+> 	INTEL_DISPLAY_WA_14011503117,
+>+	INTEL_DISPLAY_WA_22014263786,
 > };
 >
-> static const struct xe_config_device device_defaults = {
->+	.gt_types_allowed = U64_MAX,
-> 	.engines_allowed = U64_MAX,
-> 	.survivability_mode = false,
-> 	.enable_psmi = false,
->@@ -220,6 +262,7 @@ struct engine_info {
-> /* Some helpful macros to aid on the sizing of buffer allocation when parsing */
-> #define MAX_ENGINE_CLASS_CHARS 5
-> #define MAX_ENGINE_INSTANCE_CHARS 2
->+#define MAX_GT_TYPE_CHARS 7
->
-> static const struct engine_info engine_info[] = {
-> 	{ .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK, .engine_class = XE_ENGINE_CLASS_RENDER },
->@@ -230,6 +273,14 @@ static const struct engine_info engine_info[] = {
-> 	{ .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK, .engine_class = XE_ENGINE_CLASS_OTHER },
-> };
->
->+static const struct {
->+	const char name[MAX_GT_TYPE_CHARS + 1];
->+	enum xe_gt_type type;
->+} gt_types[] = {
->+	{ .name = "primary", .type = XE_GT_TYPE_MAIN },
->+	{ .name = "media", .type = XE_GT_TYPE_MEDIA },
->+};
->+
-> static struct xe_config_group_device *to_xe_config_group_device(struct config_item *item)
-> {
-> 	return container_of(to_config_group(item), struct xe_config_group_device, group);
->@@ -292,6 +343,58 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
-> 	return len;
-> }
->
->+static ssize_t gt_types_allowed_show(struct config_item *item, char *page)
->+{
->+	struct xe_config_device *dev = to_xe_config_device(item);
->+	char *p = page;
->+
->+	for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
->+		if (dev->gt_types_allowed & BIT_ULL(gt_types[i].type))
->+			p += sprintf(p, "%s\n", gt_types[i].name);
->+
->+	return p - page;
->+}
->+
->+static ssize_t gt_types_allowed_store(struct config_item *item, const char *page,
->+				      size_t len)
->+{
->+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
->+	char *buf __free(kfree) = kstrdup(page, GFP_KERNEL);
->+	char *p = buf;
->+	u64 typemask = 0;
->+
->+	if (!buf)
->+		return -ENOMEM;
->+
->+	while (p) {
->+		char *typename = strsep(&p, ",\n");
->+		bool matched = false;
->+
->+		if (typename[0] == '\0')
->+			continue;
->+
->+		for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++) {
->+			if (strcmp(typename, gt_types[i].name) == 0) {
->+				typemask |= BIT(gt_types[i].type);
->+				matched = true;
->+				break;
->+			}
->+		}
->+
->+		if (!matched)
->+			return -EINVAL;
->+	}
->+
->+	scoped_guard(mutex, &dev->lock) {
->+		if (is_bound(dev))
->+			return -EBUSY;
->+
->+		dev->config.gt_types_allowed = typemask;
->+	}
->+
->+	return len;
->+}
->+
-> static ssize_t engines_allowed_show(struct config_item *item, char *page)
-> {
-> 	struct xe_config_device *dev = to_xe_config_device(item);
->@@ -672,6 +775,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
-> CONFIGFS_ATTR(, ctx_restore_post_bb);
-> CONFIGFS_ATTR(, enable_psmi);
-> CONFIGFS_ATTR(, engines_allowed);
->+CONFIGFS_ATTR(, gt_types_allowed);
-> CONFIGFS_ATTR(, survivability_mode);
->
-> static struct configfs_attribute *xe_config_device_attrs[] = {
->@@ -679,6 +783,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
-> 	&attr_ctx_restore_post_bb,
-> 	&attr_enable_psmi,
-> 	&attr_engines_allowed,
->+	&attr_gt_types_allowed,
-> 	&attr_survivability_mode,
-> 	NULL,
-> };
->@@ -846,6 +951,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
-> 				 dev->config.attr_); \
-> 	} while (0)
->
->+	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
-> 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
-> 	PRI_CUSTOM_ATTR("%d", enable_psmi);
-> 	PRI_CUSTOM_ATTR("%d", survivability_mode);
->@@ -896,6 +1002,45 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
-> 	return mode;
-> }
->
->+static u64 get_gt_types_allowed(struct xe_device *xe)
->+{
->+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
->+	u64 mask;
->+
->+	if (!dev)
->+		return device_defaults.gt_types_allowed;
->+
->+	mask = dev->config.gt_types_allowed;
->+	config_group_put(&dev->group);
->+
->+	return mask;
->+}
->+
->+/**
->+ * xe_configfs_primary_gt_supported - determine whether primary GTs are supported
->+ * @xe: xe device
->+ *
->+ * Return: True if primary GTs are enabled, false if they have been disabled via
->+ *     configfs.
->+ */
->+bool xe_configfs_primary_gt_supported(struct xe_device *xe)
->+{
->+	return (get_gt_types_allowed(xe) & BIT_ULL(XE_GT_TYPE_MAIN)) != 0;
->+}
->+
->+/**
->+ * xe_configfs_media_gt_supported - determine whether media GTs are supported
->+ * @xe: xe device
->+ *
->+ * Return: True if the media GTs are enabled, false if they have been disabled
->+ *     via configfs.
->+ */
->+bool xe_configfs_media_gt_supported(struct xe_device *xe)
->+{
->+	return (get_gt_types_allowed(xe) & BIT_ULL(XE_GT_TYPE_MEDIA)) != 0;
->+}
->+
-> /**
->  * xe_configfs_get_engines_allowed - get engine allowed mask from configfs
->  * @pdev: pci device
->diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
->index c61e0e47ed94..5624e965b911 100644
->--- a/drivers/gpu/drm/xe/xe_configfs.h
->+++ b/drivers/gpu/drm/xe/xe_configfs.h
->@@ -17,6 +17,8 @@ int xe_configfs_init(void);
-> void xe_configfs_exit(void);
-> void xe_configfs_check_device(struct pci_dev *pdev);
-> bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
->+bool xe_configfs_primary_gt_supported(struct xe_device *xe);
->+bool xe_configfs_media_gt_supported(struct xe_device *xe);
-> u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
-> bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
-> u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
->@@ -28,6 +30,8 @@ static inline int xe_configfs_init(void) { return 0; }
-> static inline void xe_configfs_exit(void) { }
-> static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
-> static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
->+static inline bool xe_configfs_primary_gt_supported(struct xe_device *xe) { return true; }
->+static inline bool xe_configfs_media_gt_supported(struct xe_device *xe) { return true; }
-> static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
-> static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
-> static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev, enum xe_engine_class,
->diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->index a5932e4f4a23..9c8ab2b41737 100644
->--- a/drivers/gpu/drm/xe/xe_pci.c
->+++ b/drivers/gpu/drm/xe/xe_pci.c
->@@ -695,6 +695,11 @@ static struct xe_gt *alloc_primary_gt(struct xe_tile *tile,
-> 	struct xe_device *xe = tile_to_xe(tile);
-> 	struct xe_gt *gt;
->
->+	if (!xe_configfs_primary_gt_supported(xe)) {
->+		drm_info(&xe->drm, "Primary GT disabled via configfs\n");
->+		return NULL;
->+	}
->+
-> 	gt = xe_gt_alloc(tile);
-> 	if (IS_ERR(gt))
-> 		return gt;
->@@ -720,6 +725,11 @@ static struct xe_gt *alloc_media_gt(struct xe_tile *tile,
-> 	struct xe_device *xe = tile_to_xe(tile);
-> 	struct xe_gt *gt;
->
->+	if (!xe_configfs_media_gt_supported(xe)) {
->+		drm_info(&xe->drm, "Media GT disabled via configfs\n");
->+		return NULL;
->+	}
->+
-> 	if (MEDIA_VER(xe) < 13 || !media_desc)
-> 		return NULL;
->
->@@ -829,6 +839,18 @@ static int xe_info_init(struct xe_device *xe,
-> 		if (IS_ERR(tile->primary_gt))
-> 			return PTR_ERR(tile->primary_gt);
->
->+		/*
->+		 * It's not currently possible to probe a device with the
->+		 * primary GT disabled.  With some work, this may be future in
->+		 * the possible for igpu platforms (although probably not for
->+		 * dgpu's since access to the primary GT's BCS engines is
->+		 * required for VRAM management).
->+		 */
->+		if (!tile->primary_gt) {
->+			drm_err(&xe->drm, "Cannot probe device with without a primary GT\n");
->+			return -ENODEV;
+> bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+>diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+>index 4edb4342833e..24473e6b10de 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>@@ -928,9 +928,12 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+> 	if (IS_DISPLAY_VER(display, 11, 12))
+> 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+> 			     0, DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+>-
+>-	/* Wa_22014263786:icl,jsl,tgl,dg1,rkl,adls,adlp,mtl */
+>-	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
+>+	/*
+>+	 * Wa_22014263786: icl,jsl,tgl,dg1,rkl,adls,adlp,mtl
 
-
-I think "fail to probe" should be ok. Advanced user using this interface should know what
-to do. I was thinking about blocking this at the configfs level, so the
-user is not allowed to do it until that path is cleared. Any particular
-reason to do it here?
+please drop this platform line. It's not going to be updated and will
+just be wrong info. With that,  Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
->+		}
->+
-> 		tile->media_gt = alloc_media_gt(tile, media_desc);
-> 		if (IS_ERR(tile->media_gt))
-> 			return PTR_ERR(tile->media_gt);
+>+	 * Fixes: Screen flicker with FBC and Package C state enabled
+>+	 * Workaround: Forced SLB invalidation before start of new frame.
+>+	 */
+>+	if (intel_display_wa(display, 22014263786))
+> 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+> 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+>
 >-- 
->2.51.0
+>2.43.0
 >
