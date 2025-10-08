@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8C19CCD18E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA5A9CCA470
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8DA10E88D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59CC210E88C;
 	Wed,  8 Oct 2025 18:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G22My5gX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D/eRZ40j";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBE1210E882
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED2410E885
  for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759946709; x=1791482709;
+ t=1759946708; x=1791482708;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=G/j2zqv9oYoJr/d9VkB/HFqqxnuK/8oCAHDZaeD9o74=;
- b=G22My5gXkAEmpUqbHrzqlDL/MLQz7n07bXSX59XNe/DvouuSa/jplP2G
- JED6aqBVX36aVvKr2i4CPrm4JuCIqJyyBHZc9obLjy07/b3d1eqnyUyO1
- jH0p8vbXSWcEw2M94AZdPolaVhzvODZmdfIbrdc13AG5Sxt/wRzpjFVAV
- eaK/XFONpedP3T9QEu2i6XofW2AT7myakuYJv4fqzm7jWmudYgfHC/8lC
- MdeyGCdDQIr6dUIGNrMINVtFAQxwQuA1tGHDqriPt+W/zYxxHcF9D0VAY
- +XoG/7TfCh/D89iDWgQvY3u5pJdTi9HvjYDVev3OvGg5kO+j3WPZR4dst Q==;
-X-CSE-ConnectionGUID: 3acWpJ2yQZ+eMX25T3p6bg==
-X-CSE-MsgGUID: qV6v/e14Tlu9iKuFWJjI8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067522"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067522"
+ bh=b9hnqzCCxFYvr/4uEWxzWKW4nZu5GeGTT3Pl41rLoH0=;
+ b=D/eRZ40jf+FMMLaSx5cTtYga4bdtLyXJYl9LjaNLdsG2ilwEhVXclxAn
+ UzK5YKE1yGhEUE0eY509+DCZ1qIFTZkI7ZG3VQujD6VqRF85BGohcO5GC
+ TfsgDJVKMQLy8DhvXJmhni+VhxuSiWW0ixBcEQmTW4RCzAAOXF2n7/xNH
+ m6qgGYGwvMwOm5OK+OvuUDA/TTj//5//Q8E4+/9tPzdWWWXr67om0WHLF
+ zAjGfGj3ohUkGF0ZJZ99UIH0+ezKWu0t2X9ExmiBpP3F5AcFtEb+p0fBn
+ cHmGJM0G/FVC9UOSM2fnN+dvRP8oudYALcLWxAWUhPoT8aHW4jJbYMbSy g==;
+X-CSE-ConnectionGUID: nwVnojlIS2uoXSzsFqZO5w==
+X-CSE-MsgGUID: g6B5t1taQDqjp4567JQeHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067515"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067515"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
-X-CSE-ConnectionGUID: pZxvT0NaToiM54/BRJKgiQ==
-X-CSE-MsgGUID: APEffdhvRSybmffX7PeRcg==
+X-CSE-ConnectionGUID: 8vVHjQADSnemQmUgt3wH9Q==
+X-CSE-MsgGUID: aspysgTXQOegrvHTRNlFIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593729"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593721"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:06 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 12/34] drm/xe: Move GGTT lock init to alloc
-Date: Wed,  8 Oct 2025 11:04:38 -0700
-Message-Id: <20251008180500.3261209-13-matthew.brost@intel.com>
+Subject: [PATCH v9 05/34] drm/xe: Return first unsignaled job first pending
+ job helper
+Date: Wed,  8 Oct 2025 11:04:31 -0700
+Message-Id: <20251008180500.3261209-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008180500.3261209-1-matthew.brost@intel.com>
 References: <20251008180500.3261209-1-matthew.brost@intel.com>
@@ -65,96 +66,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GGTT lock is needed very early during GT initialization for a VF;
-move the GGTT lock initialization to the allocation phase.
+In all cases where the first pending job helper is called, we only want
+to retrieve the first unsignaled pending job, as this helper is used
+exclusively in recovery flows. It is possible for signaled jobs to
+remain in the pending list as the scheduler is stopped, so those should
+be skipped.
+
+Also, add kernel documentation to clarify this behavior.
 
 v8:
- - Rework function structure (Michal)
+ - Split out into own patch (Auld)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 39 +++++++++++++++++++++---------------
- 1 file changed, 23 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h | 21 +++++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7fdd0a97a628..aca7ae5489b9 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -159,6 +159,16 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index e548b2aed95a..3a9ff78d9346 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -77,17 +77,30 @@ static inline void xe_sched_add_pending_job(struct xe_gpu_scheduler *sched,
+ 	spin_unlock(&sched->base.job_list_lock);
  }
  
-+static void primelockdep(struct xe_ggtt *ggtt)
-+{
-+	if (!IS_ENABLED(CONFIG_LOCKDEP))
-+		return;
-+
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&ggtt->lock);
-+	fs_reclaim_release(GFP_KERNEL);
-+}
-+
- /**
-  * xe_ggtt_alloc - Allocate a GGTT for a given &xe_tile
-  * @tile: &xe_tile
-@@ -169,9 +179,19 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
-  */
- struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile)
++/**
++ * xe_sched_first_pending_job() - Find first pending job which is unsignaled
++ * @sched: Xe GPU scheduler
++ *
++ * Return first unsignaled job in pending list or NULL
++ */
+ static inline
+ struct xe_sched_job *xe_sched_first_pending_job(struct xe_gpu_scheduler *sched)
  {
--	struct xe_ggtt *ggtt = drmm_kzalloc(&tile_to_xe(tile)->drm, sizeof(*ggtt), GFP_KERNEL);
--	if (ggtt)
--		ggtt->tile = tile;
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_ggtt *ggtt;
+-	struct xe_sched_job *job;
++	struct xe_sched_job *job, *r_job = NULL;
+ 
+ 	spin_lock(&sched->base.job_list_lock);
+-	job = list_first_entry_or_null(&sched->base.pending_list,
+-				       struct xe_sched_job, drm.list);
++	list_for_each_entry(job, &sched->base.pending_list, drm.list) {
++		struct drm_sched_fence *s_fence = job->drm.s_fence;
++		struct dma_fence *hw_fence = s_fence->parent;
 +
-+	ggtt = drmm_kzalloc(&xe->drm, sizeof(*ggtt), GFP_KERNEL);
-+	if (!ggtt)
-+		return NULL;
-+
-+	if (drmm_mutex_init(&xe->drm, &ggtt->lock))
-+		return NULL;
-+
-+	primelockdep(ggtt);
-+	ggtt->tile = tile;
-+
- 	return ggtt;
++		if (hw_fence && !dma_fence_is_signaled(hw_fence)) {
++			r_job = job;
++			break;
++		}
++	}
+ 	spin_unlock(&sched->base.job_list_lock);
+ 
+-	return job;
++	return r_job;
  }
  
-@@ -180,7 +200,6 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
- 	struct xe_ggtt *ggtt = arg;
- 
- 	destroy_workqueue(ggtt->wq);
--	mutex_destroy(&ggtt->lock);
- 	drm_mm_takedown(&ggtt->mm);
- }
- 
-@@ -198,16 +217,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
- }
- #endif
- 
--static void primelockdep(struct xe_ggtt *ggtt)
--{
--	if (!IS_ENABLED(CONFIG_LOCKDEP))
--		return;
--
--	fs_reclaim_acquire(GFP_KERNEL);
--	might_lock(&ggtt->lock);
--	fs_reclaim_release(GFP_KERNEL);
--}
--
- static const struct xe_ggtt_pt_ops xelp_pt_ops = {
- 	.pte_encode_flags = xelp_ggtt_pte_flags,
- 	.ggtt_set_pte = xe_ggtt_set_pte,
-@@ -227,8 +236,6 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
- {
- 	drm_mm_init(&ggtt->mm, reserved,
- 		    ggtt->size - reserved);
--	mutex_init(&ggtt->lock);
--	primelockdep(ggtt);
- }
- 
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size)
+ static inline int
 -- 
 2.34.1
 
