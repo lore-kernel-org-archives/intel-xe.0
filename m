@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E916CCD18F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8FE6CCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:46:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B800010E8F7;
-	Wed,  8 Oct 2025 21:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F45610E883;
+	Wed,  8 Oct 2025 21:46:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+HHB69V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SHWRKPw2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9875C10E89B
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2145E10E89D
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759959942; x=1791495942;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hcGDyM2vjxkydp23wYZwn8Oo7cfAcaaJy2dS9XbB9rU=;
- b=j+HHB69VehFUWAR5YRHHUd7lzluS8UGTnwHOHJSogmlhdTPoA8/UHKr/
- AW/jmHn+9fdc14WEjWqYFjdAjJL4GagjKGRiiPtrMSiYiK44u/kc14WUY
- Edkc7oN5zTefCzyDbJOjjgeTP+Uf1S3hM1KIlz4uCRsfgE7TR/wzu1qac
- QBnPQXOC42CLkIiROSN1AO8TZnuyxJAP0ymTWHmQjUB57I53VVwQUXEVH
- DPdhf1edTr3HF4YiTHEpR1i2FIUvBPGcs4BtA0kSBWwzQm3nlGVYr5Q4y
- HqQhE1FiNRsq5UGunWPxlDUy3TIqwR0dL0tnvBvkYl1WjT/K4hfJgIhMk g==;
-X-CSE-ConnectionGUID: rxLR2jbNTEisZzXV1Md9nA==
-X-CSE-MsgGUID: ZX7H1Ho+T9e/cbGoZI08MQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726851"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726851"
+ bh=ebmLwbRodXTW/Rd4QembnWY9pOERrhbhsxyTEgyoNoQ=;
+ b=SHWRKPw2PK55V8na7tolXqkf5jRWp7wh2LypJWrkfYM/d2Kc+Dq21WC/
+ RZbEMk3Gt2V2KgOxJ9O+3crcwC/XU/6ENd5czzlgtkEbHHhNk4Scc2YGO
+ TUWzhc2kmVRyXTd4Tf9Czrlex9pcBxB+Y1lzE7zalkJUt1e6CFAQRFtbU
+ 0bf682htcGeYeD261wVCZduiYmSW/3A3TMzVgxJvzJmwRY61vpigSFDWu
+ bxa0owuRw4HT4oRl+xebHtWesjB9pY8tv7cYmjQ9omLcS1jVnm+FIGwOu
+ SOLTxjvjuQ7YxQqjpAd2Vx0So6LMtoNVF+/WnoChgm79sLxCZjxgKrM8C Q==;
+X-CSE-ConnectionGUID: ATJgTqGDSvCRqxKQdB8eQA==
+X-CSE-MsgGUID: 9Muqez/8SXW4FFhsBs6xEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726861"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726861"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:40 -0700
-X-CSE-ConnectionGUID: wG8MkI6PS9qvvK7uRlyXTg==
-X-CSE-MsgGUID: siX/5iGtS0e+4GPZxdxVfQ==
+ 08 Oct 2025 14:45:41 -0700
+X-CSE-ConnectionGUID: +PE8ZzLARW+XifFtlp2RLw==
+X-CSE-MsgGUID: Ogjwvz2jRF28p2sCtQWWng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635188"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635196"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:36 -0700
+ 08 Oct 2025 14:45:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 09/34] drm/xe/vf: Make VF recovery run on per-GT worker
-Date: Wed,  8 Oct 2025 14:45:07 -0700
-Message-Id: <20251008214532.3442967-10-matthew.brost@intel.com>
+Subject: [PATCH v10 16/34] drm/xe/vf: Don't allow GT reset to be queued during
+ VF post migration recovery
+Date: Wed,  8 Oct 2025 14:45:14 -0700
+Message-Id: <20251008214532.3442967-17-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
@@ -65,634 +66,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF recovery is a per-GT operation, so it makes sense to isolate it to a
-per-GT queue. Scheduling this operation on the same worker as the GT
-reset and TDR not only aligns with this design but also helps avoid race
-conditions, as those operations can also modify the queue state.
+With well-behaved software, a GT reset should never occur, nor should it
+happen during VF post-migration recovery. If it does, trigger a warning
+but suppress the GT reset, as VF post-migration recovery is expected to
+bring the VF back to a working state.
 
-v2:
- - Fix lockdep splat (Adam)
- - Use xe_sriov_vf_migration_supported helper
 v3:
- - Drop xe_gt_sriov_ prefix for private functions (Michal)
- - Drop message in xe_gt_sriov_vf_migration_init_early (Michal)
- - Logic rework in vf_post_migration_notify_resfix_done (Michal)
- - Rework init sequence layering (Michal)
+ - Better commit message (Tomasz)
+v5:
+ - Use xe_gt_WARN_ON (Michal)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c                |   6 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 181 +++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |   3 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |   7 +
- drivers/gpu/drm/xe/xe_sriov_vf.c          | 240 ----------------------
- drivers/gpu/drm/xe/xe_sriov_vf.h          |   1 -
- drivers/gpu/drm/xe/xe_sriov_vf_types.h    |   4 -
- 7 files changed, 185 insertions(+), 257 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c          |  9 -------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  7 -----
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 42 ++++-------------------------
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  3 ---
+ 4 files changed, 5 insertions(+), 56 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 8fc3a6929d6c..2bdc1cdf24a5 100644
+index d713b649447b..6951fedd4350 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -388,6 +388,12 @@ int xe_gt_init_early(struct xe_gt *gt)
- 			return err;
- 	}
+@@ -803,11 +803,6 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	return 0;
+ }
  
-+	if (IS_SRIOV_VF(gt_to_xe(gt))) {
-+		err = xe_gt_sriov_vf_init_early(gt);
-+		if (err)
-+			return err;
-+	}
-+
- 	xe_reg_sr_init(&gt->reg_sr, "GT", gt_to_xe(gt));
+-static int gt_wait_reset_unblock(struct xe_gt *gt)
+-{
+-	return xe_guc_wait_reset_unblock(&gt->uc.guc);
+-}
+-
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	unsigned int fw_ref;
+@@ -822,10 +817,6 @@ static int gt_reset(struct xe_gt *gt)
  
- 	err = xe_wa_gt_init(gt);
+ 	xe_gt_info(gt, "reset started\n");
+ 
+-	err = gt_wait_reset_unblock(gt);
+-	if (!err)
+-		xe_gt_warn(gt, "reset block failed to get lifted");
+-
+ 	xe_pm_runtime_get(gt_to_xe(gt));
+ 
+ 	if (xe_fault_inject_gt_reset()) {
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 43cb5fd7b222..93612ea5029f 100644
+index 1aae4e40a366..96c93a64d754 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -25,11 +25,15 @@
- #include "xe_guc.h"
- #include "xe_guc_hxg_helpers.h"
- #include "xe_guc_relay.h"
-+#include "xe_guc_submit.h"
-+#include "xe_irq.h"
- #include "xe_lrc.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_pm.h"
- #include "xe_sriov.h"
- #include "xe_sriov_vf.h"
-+#include "xe_tile_sriov_vf.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
+@@ -1097,17 +1097,11 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
  
-@@ -308,13 +312,13 @@ static int guc_action_vf_notify_resfix_done(struct xe_guc *guc)
- }
- 
- /**
-- * xe_gt_sriov_vf_notify_resfix_done - Notify GuC about resource fixups apply completed.
-+ * vf_notify_resfix_done - Notify GuC about resource fixups apply completed.
-  * @gt: the &xe_gt struct instance linked to target GuC
-  *
-  * Returns: 0 if the operation completed successfully, or a negative error
-  * code otherwise.
-  */
--int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt)
-+static int vf_notify_resfix_done(struct xe_gt *gt)
+ static void vf_post_migration_shutdown(struct xe_gt *gt)
  {
- 	struct xe_guc *guc = &gt->uc.guc;
- 	int err;
-@@ -756,7 +760,7 @@ int xe_gt_sriov_vf_connect(struct xe_gt *gt)
-  * xe_gt_sriov_vf_default_lrcs_hwsp_rebase - Update GGTT references in HWSP of default LRCs.
-  * @gt: the &xe_gt struct instance
-  */
--void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
-+static void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
- {
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
-@@ -765,6 +769,26 @@ void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
- 		xe_default_lrc_update_memirq_regs_with_address(hwe);
- }
- 
-+static void vf_start_migration_recovery(struct xe_gt *gt)
-+{
-+	bool started;
-+
-+	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-+
-+	spin_lock(&gt->sriov.vf.migration.lock);
-+
-+	if (!gt->sriov.vf.migration.recovery_queued) {
-+		gt->sriov.vf.migration.recovery_queued = true;
-+		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
-+
-+		started = queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
-+		xe_gt_sriov_info(gt, "VF migration recovery %s\n", started ?
-+				 "scheduled" : "already in progress");
-+	}
-+
-+	spin_unlock(&gt->sriov.vf.migration.lock);
-+}
-+
- /**
-  * xe_gt_sriov_vf_migrated_event_handler - Start a VF migration recovery,
-  *   or just mark that a GuC is ready for it.
-@@ -779,15 +803,13 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
- 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
- 	xe_gt_assert(gt, xe_gt_sriov_vf_recovery_pending(gt));
- 
--	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
--	/*
--	 * We need to be certain that if all flags were set, at least one
--	 * thread will notice that and schedule the recovery.
--	 */
--	smp_mb__after_atomic();
-+	if (!xe_sriov_vf_migration_supported(xe)) {
-+		xe_gt_sriov_err(gt, "migration not supported\n");
-+		return;
-+	}
- 
- 	xe_gt_sriov_info(gt, "ready for recovery after migration\n");
--	xe_sriov_vf_start_migration_recovery(xe);
-+	vf_start_migration_recovery(gt);
- }
- 
- static bool vf_is_negotiated(struct xe_gt *gt, u16 major, u16 minor)
-@@ -1121,6 +1143,145 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 		   pf_version->major, pf_version->minor);
- }
- 
-+static void vf_post_migration_shutdown(struct xe_gt *gt)
-+{
-+	int ret = 0;
-+
-+	spin_lock_irq(&gt->sriov.vf.migration.lock);
-+	gt->sriov.vf.migration.recovery_queued = false;
-+	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-+
-+	xe_guc_submit_pause(&gt->uc.guc);
-+	ret |= xe_guc_submit_reset_block(&gt->uc.guc);
-+
-+	if (ret)
-+		xe_gt_sriov_info(gt, "migration recovery encountered ongoing reset\n");
-+}
-+
-+static size_t post_migration_scratch_size(struct xe_device *xe)
-+{
-+	return max(xe_lrc_reg_size(xe), LRC_WA_BB_SIZE);
-+}
-+
-+static int vf_post_migration_fixups(struct xe_gt *gt)
-+{
-+	s64 shift;
-+	void *buf;
-+	int err;
-+
-+	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_ATOMIC);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	err = xe_gt_sriov_vf_query_config(gt);
-+	if (err)
-+		goto out;
-+
-+	shift = xe_gt_sriov_vf_ggtt_shift(gt);
-+	if (shift) {
-+		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
-+		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
-+		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
-+		if (err)
-+			goto out;
-+	}
-+
-+out:
-+	kfree(buf);
-+	return err;
-+}
-+
-+static void vf_post_migration_kickstart(struct xe_gt *gt)
-+{
-+	/*
-+	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
-+	 * must be working at this point, since the recovery did started,
-+	 * but the rest was not enabled using the procedure from spec.
-+	 */
-+	xe_irq_resume(gt_to_xe(gt));
-+
-+	xe_guc_submit_reset_unblock(&gt->uc.guc);
-+	xe_guc_submit_unpause(&gt->uc.guc);
-+}
-+
-+static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
-+{
-+	bool skip_resfix = false;
-+
-+	spin_lock_irq(&gt->sriov.vf.migration.lock);
-+	if (gt->sriov.vf.migration.recovery_queued) {
-+		skip_resfix = true;
-+		xe_gt_sriov_dbg(gt, "another recovery imminent, resfix skipped\n");
-+	} else {
-+		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
-+	}
-+	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-+
-+	if (skip_resfix)
-+		return -EAGAIN;
-+
-+	return vf_notify_resfix_done(gt);
-+}
-+
-+static void vf_post_migration_recovery(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int err;
-+
-+	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
-+
-+	xe_pm_runtime_get(xe);
-+	vf_post_migration_shutdown(gt);
-+
-+	if (!xe_sriov_vf_migration_supported(xe)) {
-+		xe_gt_sriov_err(gt, "migration is not supported\n");
-+		err = -ENOTRECOVERABLE;
-+		goto fail;
-+	}
-+
-+	err = vf_post_migration_fixups(gt);
-+	if (err)
-+		goto fail;
-+
-+	vf_post_migration_kickstart(gt);
-+	err = vf_post_migration_notify_resfix_done(gt);
-+	if (err && err != -EAGAIN)
-+		goto fail;
-+
-+	xe_pm_runtime_put(xe);
-+	xe_gt_sriov_notice(gt, "migration recovery ended\n");
-+	return;
-+fail:
-+	xe_pm_runtime_put(xe);
-+	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
-+	xe_device_declare_wedged(xe);
-+}
-+
-+static void migration_worker_func(struct work_struct *w)
-+{
-+	struct xe_gt *gt = container_of(w, struct xe_gt,
-+					sriov.vf.migration.worker);
-+
-+	vf_post_migration_recovery(gt);
-+}
-+
-+/**
-+ * xe_gt_sriov_vf_init_early() - GT VF init early
-+ * @gt: the &xe_gt
-+ *
-+ * Return 0 on success, errno on failure
-+ */
-+int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
-+{
-+	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
-+		return 0;
-+
-+	spin_lock_init(&gt->sriov.vf.migration.lock);
-+	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
-+
-+	return 0;
-+}
-+
- /**
-  * xe_gt_sriov_vf_recovery_pending() - VF post migration recovery pending
-  * @gt: the &xe_gt
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index b91ae857e983..0adebf8aa419 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -21,10 +21,9 @@ void xe_gt_sriov_vf_guc_versions(struct xe_gt *gt,
- int xe_gt_sriov_vf_query_config(struct xe_gt *gt);
- int xe_gt_sriov_vf_connect(struct xe_gt *gt);
- int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
--void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
--int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
- 
-+int xe_gt_sriov_vf_init_early(struct xe_gt *gt);
- bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
- 
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 1dfef60ec044..b2c8e8c89c30 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -7,6 +7,7 @@
- #define _XE_GT_SRIOV_VF_TYPES_H_
- 
- #include <linux/types.h>
-+#include <linux/workqueue.h>
- #include "xe_uc_fw_types.h"
- 
- /**
-@@ -50,6 +51,12 @@ struct xe_gt_sriov_vf_runtime {
-  * xe_gt_sriov_vf_migration - VF migration data.
-  */
- struct xe_gt_sriov_vf_migration {
-+	/** @migration: VF migration recovery worker */
-+	struct work_struct worker;
-+	/** @lock: Protects recovery_queued */
-+	spinlock_t lock;
-+	/** @recovery_queued: VF post migration recovery in queued */
-+	bool recovery_queued;
- 	/** @recovery_inprogress: VF post migration recovery in progress */
- 	bool recovery_inprogress;
- };
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index c1830ec8f0fd..911d5720917b 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -6,21 +6,12 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
--#include "xe_assert.h"
--#include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_gt_sriov_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
--#include "xe_guc_submit.h"
--#include "xe_irq.h"
--#include "xe_lrc.h"
--#include "xe_pm.h"
--#include "xe_sriov.h"
- #include "xe_sriov_printk.h"
- #include "xe_sriov_vf.h"
- #include "xe_sriov_vf_ccs.h"
--#include "xe_tile_sriov_vf.h"
- 
- /**
-  * DOC: VF restore procedure in PF KMD and VF KMD
-@@ -158,8 +149,6 @@ static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
- 	xe->sriov.vf.migration.enabled = false;
- }
- 
--static void migration_worker_func(struct work_struct *w);
--
- static void vf_migration_init_early(struct xe_device *xe)
- {
- 	/*
-@@ -184,8 +173,6 @@ static void vf_migration_init_early(struct xe_device *xe)
- 						    guc_version.major, guc_version.minor);
- 	}
- 
--	INIT_WORK(&xe->sriov.vf.migration.worker, migration_worker_func);
--
- 	xe->sriov.vf.migration.enabled = true;
- 	xe_sriov_dbg(xe, "migration support enabled\n");
- }
-@@ -199,233 +186,6 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
- 	vf_migration_init_early(xe);
- }
- 
--/**
-- * vf_post_migration_shutdown - Stop the driver activities after VF migration.
-- * @xe: the &xe_device struct instance
-- *
-- * After this VM is migrated and assigned to a new VF, it is running on a new
-- * hardware, and therefore many hardware-dependent states and related structures
-- * require fixups. Without fixups, the hardware cannot do any work, and therefore
-- * all GPU pipelines are stalled.
-- * Stop some of kernel activities to make the fixup process faster.
-- */
--static void vf_post_migration_shutdown(struct xe_device *xe)
--{
--	struct xe_gt *gt;
--	unsigned int id;
 -	int ret = 0;
 -
--	for_each_gt(gt, xe, id) {
--		xe_guc_submit_pause(&gt->uc.guc);
--		ret |= xe_guc_submit_reset_block(&gt->uc.guc);
--	}
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	gt->sriov.vf.migration.recovery_queued = false;
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+ 
+ 	xe_guc_submit_pause(&gt->uc.guc);
+-	ret |= xe_guc_submit_reset_block(&gt->uc.guc);
 -
 -	if (ret)
--		drm_info(&xe->drm, "migration recovery encountered ongoing reset\n");
+-		xe_gt_sriov_info(gt, "migration recovery encountered ongoing reset\n");
+ }
+ 
+ static size_t post_migration_scratch_size(struct xe_device *xe)
+@@ -1142,7 +1136,6 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	 */
+ 	xe_irq_resume(gt_to_xe(gt));
+ 
+-	xe_guc_submit_reset_unblock(&gt->uc.guc);
+ 	xe_guc_submit_unpause(&gt->uc.guc);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d123bdb63369..59371b7cc8a4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -27,6 +27,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_clock.h"
+ #include "xe_gt_printk.h"
++#include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
+ #include "xe_guc_capture.h"
+ #include "xe_guc_ct.h"
+@@ -1900,47 +1901,14 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	}
+ }
+ 
+-/**
+- * xe_guc_submit_reset_block - Disallow reset calls on given GuC.
+- * @guc: the &xe_guc struct instance
+- */
+-int xe_guc_submit_reset_block(struct xe_guc *guc)
+-{
+-	return atomic_fetch_or(1, &guc->submission_state.reset_blocked);
 -}
 -
 -/**
-- * vf_post_migration_kickstart - Re-start the driver activities under new hardware.
-- * @xe: the &xe_device struct instance
-- *
-- * After we have finished with all post-migration fixups, restart the driver
-- * activities to continue feeding the GPU with workloads.
+- * xe_guc_submit_reset_unblock - Allow back reset calls on given GuC.
+- * @guc: the &xe_guc struct instance
 - */
--static void vf_post_migration_kickstart(struct xe_device *xe)
+-void xe_guc_submit_reset_unblock(struct xe_guc *guc)
 -{
--	struct xe_gt *gt;
--	unsigned int id;
--
--	/*
--	 * Make sure interrupts on the new HW are properly set. The GuC IRQ
--	 * must be working at this point, since the recovery did started,
--	 * but the rest was not enabled using the procedure from spec.
--	 */
--	xe_irq_resume(xe);
--
--	for_each_gt(gt, xe, id) {
--		xe_guc_submit_reset_unblock(&gt->uc.guc);
--		xe_guc_submit_unpause(&gt->uc.guc);
--	}
+-	atomic_set_release(&guc->submission_state.reset_blocked, 0);
+-	wake_up_all(&guc->ct.wq);
 -}
 -
--static bool gt_vf_post_migration_needed(struct xe_gt *gt)
+-static int guc_submit_reset_is_blocked(struct xe_guc *guc)
 -{
--	return test_bit(gt->info.id, &gt_to_xe(gt)->sriov.vf.migration.gt_flags);
+-	return atomic_read_acquire(&guc->submission_state.reset_blocked);
 -}
 -
--/*
-- * Notify GuCs marked in flags about resource fixups apply finished.
-- * @xe: the &xe_device struct instance
-- * @gt_flags: flags marking to which GTs the notification shall be sent
-- */
--static int vf_post_migration_notify_resfix_done(struct xe_device *xe, unsigned long gt_flags)
--{
--	struct xe_gt *gt;
--	unsigned int id;
--	int err = 0;
--
--	for_each_gt(gt, xe, id) {
--		if (!test_bit(id, &gt_flags))
--			continue;
--		/* skip asking GuC for RESFIX exit if new recovery request arrived */
--		if (gt_vf_post_migration_needed(gt))
--			continue;
--		err = xe_gt_sriov_vf_notify_resfix_done(gt);
--		if (err)
--			break;
--		clear_bit(id, &gt_flags);
--	}
--
--	if (gt_flags && !err)
--		drm_dbg(&xe->drm, "another recovery imminent, skipped some notifications\n");
--	return err;
--}
--
--static int vf_get_next_migrated_gt_id(struct xe_device *xe)
--{
--	struct xe_gt *gt;
--	unsigned int id;
--
--	for_each_gt(gt, xe, id) {
--		if (test_and_clear_bit(id, &xe->sriov.vf.migration.gt_flags))
--			return id;
--	}
--	return -1;
--}
--
--static size_t post_migration_scratch_size(struct xe_device *xe)
--{
--	return max(xe_lrc_reg_size(xe), LRC_WA_BB_SIZE);
--}
+-/* Maximum time of blocking reset */
+-#define RESET_BLOCK_PERIOD_MAX (HZ * 5)
 -
 -/**
-- * Perform post-migration fixups on a single GT.
-- *
-- * After migration, GuC needs to be re-queried for VF configuration to check
-- * if it matches previous provisioning. Most of VF provisioning shall be the
-- * same, except GGTT range, since GGTT is not virtualized per-VF. If GGTT
-- * range has changed, we have to perform fixups - shift all GGTT references
-- * used anywhere within the driver. After the fixups in this function succeed,
-- * it is allowed to ask the GuC bound to this GT to continue normal operation.
-- *
-- * Returns: 0 if the operation completed successfully, or a negative error
-- * code otherwise.
+- * xe_guc_wait_reset_unblock - Wait until reset blocking flag is lifted, or timeout.
+- * @guc: the &xe_guc struct instance
 - */
--static int gt_vf_post_migration_fixups(struct xe_gt *gt)
+-int xe_guc_wait_reset_unblock(struct xe_guc *guc)
 -{
--	s64 shift;
--	void *buf;
--	int err;
--
--	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_KERNEL);
--	if (!buf)
--		return -ENOMEM;
--
--	err = xe_gt_sriov_vf_query_config(gt);
--	if (err)
--		goto out;
--
--	shift = xe_gt_sriov_vf_ggtt_shift(gt);
--	if (shift) {
--		xe_tile_sriov_vf_fixup_ggtt_nodes(gt_to_tile(gt), shift);
--		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
--		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
--		if (err)
--			goto out;
--	}
--
--out:
--	kfree(buf);
--	return err;
+-	return wait_event_timeout(guc->ct.wq,
+-				  !guc_submit_reset_is_blocked(guc), RESET_BLOCK_PERIOD_MAX);
 -}
 -
--static void vf_post_migration_recovery(struct xe_device *xe)
--{
--	unsigned long fixed_gts = 0;
--	int id, err;
--
--	drm_dbg(&xe->drm, "migration recovery in progress\n");
--	xe_pm_runtime_get(xe);
--	vf_post_migration_shutdown(xe);
--
--	if (!xe_sriov_vf_migration_supported(xe)) {
--		xe_sriov_err(xe, "migration is not supported\n");
--		err = -ENOTRECOVERABLE;
--		goto fail;
--	}
--
--	while (id = vf_get_next_migrated_gt_id(xe), id >= 0) {
--		struct xe_gt *gt = xe_device_get_gt(xe, id);
--
--		err = gt_vf_post_migration_fixups(gt);
--		if (err)
--			goto fail;
--
--		set_bit(id, &fixed_gts);
--	}
--
--	vf_post_migration_kickstart(xe);
--	err = vf_post_migration_notify_resfix_done(xe, fixed_gts);
--	if (err)
--		goto fail;
--
--	xe_pm_runtime_put(xe);
--	drm_notice(&xe->drm, "migration recovery ended\n");
--	return;
--fail:
--	xe_pm_runtime_put(xe);
--	drm_err(&xe->drm, "migration recovery failed (%pe)\n", ERR_PTR(err));
--	xe_device_declare_wedged(xe);
--}
--
--static void migration_worker_func(struct work_struct *w)
--{
--	struct xe_device *xe = container_of(w, struct xe_device,
--					    sriov.vf.migration.worker);
--
--	vf_post_migration_recovery(xe);
--}
--
--/*
-- * Check if post-restore recovery is coming on any of GTs.
-- * @xe: the &xe_device struct instance
-- *
-- * Return: True if migration recovery worker will soon be running. Any worker currently
-- * executing does not affect the result.
-- */
--static bool vf_ready_to_recovery_on_any_gts(struct xe_device *xe)
--{
--	struct xe_gt *gt;
--	unsigned int id;
--
--	for_each_gt(gt, xe, id) {
--		if (test_bit(id, &xe->sriov.vf.migration.gt_flags))
--			return true;
--	}
--	return false;
--}
--
--/**
-- * xe_sriov_vf_start_migration_recovery - Start VF migration recovery.
-- * @xe: the &xe_device to start recovery on
-- *
-- * This function shall be called only by VF.
-- */
--void xe_sriov_vf_start_migration_recovery(struct xe_device *xe)
--{
--	bool started;
--
--	xe_assert(xe, IS_SRIOV_VF(xe));
--
--	if (!vf_ready_to_recovery_on_any_gts(xe))
--		return;
--
--	started = queue_work(xe->sriov.wq, &xe->sriov.vf.migration.worker);
--	drm_info(&xe->drm, "VF migration recovery %s\n", started ?
--		 "scheduled" : "already in progress");
--}
--
- /**
-  * xe_sriov_vf_init_late() - SR-IOV VF late initialization functions.
-  * @xe: the &xe_device to initialize
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-index 9e752105ec2a..4df95266b261 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -13,7 +13,6 @@ struct xe_device;
+ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ {
+ 	int ret;
  
- void xe_sriov_vf_init_early(struct xe_device *xe);
- int xe_sriov_vf_init_late(struct xe_device *xe);
--void xe_sriov_vf_start_migration_recovery(struct xe_device *xe);
- bool xe_sriov_vf_migration_supported(struct xe_device *xe);
- void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root);
++	if (xe_gt_WARN_ON(guc_to_gt(guc),
++			  xe_gt_sriov_vf_recovery_pending(guc_to_gt(guc))))
++		return 0;
++
+ 	if (!guc->submission_state.initialized)
+ 		return 0;
  
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-index 426cc5841958..6a0fd0f5463e 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_types.h
-@@ -33,10 +33,6 @@ struct xe_device_vf {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 5b4a0a6fd818..f535fe3895e5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,9 +22,6 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
+-int xe_guc_submit_reset_block(struct xe_guc *guc);
+-void xe_guc_submit_reset_unblock(struct xe_guc *guc);
+-int xe_guc_wait_reset_unblock(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
  
- 	/** @migration: VF Migration state data */
- 	struct {
--		/** @migration.worker: VF migration recovery worker */
--		struct work_struct worker;
--		/** @migration.gt_flags: Per-GT request flags for VF migration recovery */
--		unsigned long gt_flags;
- 		/**
- 		 * @migration.enabled: flag indicating if migration support
- 		 * was enabled or not due to missing prerequisites
+ int xe_guc_read_stopped(struct xe_guc *guc);
 -- 
 2.34.1
 
