@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69632CCD1A4
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEB5ACCD19B
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A1110E8A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B0910E89F;
 	Wed,  8 Oct 2025 18:05:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VTkMT/kW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Izqt4oqq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8A5110E891
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C5610E88E
  for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759946710; x=1791482710;
+ t=1759946709; x=1791482709;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DTpppC1hWYBaezmQlDF1p0yHvH19fttXN6mfbbO3b9A=;
- b=VTkMT/kWdue1j1v3Hj8uzalFku9uzgMSDJ8MqQSi3Jf9FukXjwJSXliA
- MfljoC4OgyqKmTkPh3dAibGTvKL7Pq+suyUPpQA+xTgzgfBsnsHtFg917
- UCBfXrQtplpF++mo9z/R4yqnnu1BnRh9OBWjdt+4G24aG1ewtAcVFn17X
- s29oQYSj1gz7d4wyo1H93hGOoEY5UbgvMgpXRfn2MZLlAw408CGVh6qZB
- P5x7My36atFeV4wKTaMIFrENo+clOj/q3FljKzYPTTHsaWPMyLmASwS4g
- Wpt3i3+JUow6zI5wP7WdnB1uIXK4wIR2h1hfnJ4ucL/cp1yCoukyR5bKn g==;
-X-CSE-ConnectionGUID: 9PNoGgcAQjiIGj1A5d+btg==
-X-CSE-MsgGUID: SsHkxmHQQh6koD5zvhIIVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067542"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067542"
+ bh=24NtN6YhX0gT9wfha7vubjJG/Xwe3PAn4UDwqVxO0Ok=;
+ b=Izqt4oqqy8UcbHRTBP16b/cUjf2NcCqc991ZVsVv6RhWK0k2KzVLSmn2
+ YJ8P0b40YGhYHF0BRo/zlnkzRDktP1nVAG882reYZauEkoq0MWNsBAxzS
+ 4PvXdESYqWmVsWmLQvjmceI/Vs+YNUGZ3x12MgfSe27VREBK3mZ/gPLRv
+ XnWXmdwEUsOd0QsxcrXZG/Yw7QazHvv7IIwPDjbIYEiKqlo2dqN8+STUz
+ I0pf3ggrjXx/ah9wEVQMxgPXws+FyAS3cGr2qBJTo00XJScsH8T7U+9Ti
+ 9homUyB+xTxTXDXNjUui/o2CPz514cUp5sUGBerCCNcXWsHUosm6IeMdW g==;
+X-CSE-ConnectionGUID: cDr6stwFS5CHsGDFX/ldig==
+X-CSE-MsgGUID: zv12aISKTxeC+rCoiTwOjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067535"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067535"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
-X-CSE-ConnectionGUID: q+Mn0AJ4QuCsfv+VWgwjKA==
-X-CSE-MsgGUID: bK4MGBbhQzmx1Pjvl7BHWg==
+X-CSE-ConnectionGUID: 6Ru715X1SUG5uuRdpj4z7w==
+X-CSE-MsgGUID: qMgPzzzOS6iHqTSh+3PUXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593750"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593742"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:05:07 -0700
+ 08 Oct 2025 11:05:06 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 32/34] drm/xe/vf: Ensure media GT VF recovery runs after
- primary GT on PTL
-Date: Wed,  8 Oct 2025 11:04:58 -0700
-Message-Id: <20251008180500.3261209-33-matthew.brost@intel.com>
+Subject: [PATCH v9 25/34] drm/xe/vf: Abort VF post migration recovery on
+ failure
+Date: Wed,  8 Oct 2025 11:04:51 -0700
+Message-Id: <20251008180500.3261209-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008180500.3261209-1-matthew.brost@intel.com>
 References: <20251008180500.3261209-1-matthew.brost@intel.com>
@@ -66,87 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is possible that the media GT's VF post-migration recovery work item
-gets scheduled before the primary GT's work item. Since the media GT
-depends on the primary GT's work item to complete CCS restore, if the
-media GT's work item is scheduled first, detect this condition and
-re-queue the media GT's work item for a later time.
+If VF post-migration recovery fails, the device is wedged. However,
+submission queues still need to be enabled for proper cleanup. In such
+cases, call into the GuC submission backend to restart all queues that
+were previously paused.
 
-v5:
- - Adjust debug message (Tomasz)
+v3:
+ - s/Avort/Abort (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 29 +++++++++++++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
+ 3 files changed, 31 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index b9988e227a25..47a87a7126cc 100644
+index 68906ffe931f..fe66c2236ef4 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1100,8 +1100,22 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 		   pf_version->major, pf_version->minor);
+@@ -1136,6 +1136,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	xe_guc_submit_unpause(&gt->uc.guc);
  }
  
--static void vf_post_migration_shutdown(struct xe_gt *gt)
-+static bool vf_post_migration_shutdown(struct xe_gt *gt)
++static void vf_post_migration_abort(struct xe_gt *gt)
++{
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	xe_guc_submit_pause_abort(&gt->uc.guc);
++}
++
+ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
  {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	/*
-+	 * On platforms where CCS must be restored by the primary GT, the media
-+	 * GT's VF post-migration recovery must run afterward. Detect this case
-+	 * and re-queue the media GT's restore work item if necessary.
-+	 */
-+	if (xe->info.needs_shared_vf_gt_wq && xe_gt_is_media_type(gt)) {
-+		struct xe_gt *primary_gt = gt_to_tile(gt)->primary_gt;
-+
-+		if (xe_gt_sriov_vf_recovery_pending(primary_gt))
-+			return true;
-+	}
-+
- 	spin_lock_irq(&gt->sriov.vf.migration.lock);
- 	gt->sriov.vf.migration.recovery_queued = false;
- 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
-@@ -1109,6 +1123,8 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
- 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
- 	xe_guc_submit_pause(&gt->uc.guc);
- 	xe_tlb_inval_reset(&gt->tlb_inval);
-+
-+	return false;
- }
- 
- static size_t post_migration_scratch_size(struct xe_device *xe)
-@@ -1186,11 +1202,14 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
-+	bool retry;
- 
- 	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
- 
- 	xe_pm_runtime_get(xe);
--	vf_post_migration_shutdown(gt);
-+	retry = vf_post_migration_shutdown(gt);
-+	if (retry)
-+		goto queue;
- 
- 	if (!xe_sriov_vf_migration_supported(xe)) {
- 		xe_gt_sriov_err(gt, "migration is not supported\n");
-@@ -1218,6 +1237,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	bool skip_resfix = false;
+@@ -1194,6 +1203,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
+ fail:
++	vf_post_migration_abort(gt);
  	xe_pm_runtime_put(xe);
  	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
  	xe_device_declare_wedged(xe);
-+	return;
-+
-+queue:
-+	xe_gt_sriov_info(gt, "Re-queuing migration recovery\n");
-+	queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
-+	xe_pm_runtime_put(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7f0ea35f4f0a..4a45c4934dce 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2098,6 +2098,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	wake_up_all(&guc->ct.wq);
  }
  
- static void migration_worker_func(struct work_struct *w)
++/**
++ * xe_guc_submit_abort - Abort all paused submission task on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be aborted
++ */
++void xe_guc_submit_pause_abort(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_submission_start(sched);
++		if (exec_queue_killed_or_banned_or_wedged(q))
++			xe_guc_exec_queue_trigger_cleanup(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static struct xe_exec_queue *
+ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index f535fe3895e5..fe82c317048e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
+ 
+ int xe_guc_read_stopped(struct xe_guc *guc);
 -- 
 2.34.1
 
