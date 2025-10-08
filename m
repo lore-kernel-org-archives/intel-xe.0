@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E207CCD19F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69632CCD1A4
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B7010E8A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A1110E8A9;
 	Wed,  8 Oct 2025 18:05:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jaQP4a9S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VTkMT/kW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E476A10E88C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8A5110E891
  for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759946709; x=1791482709;
+ t=1759946710; x=1791482710;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=5UP401ZzVVf1vrQG13tQ/x289lbSVKlw/oKu+fWhUCw=;
- b=jaQP4a9SkFSo6OXAn5rnqGem9n7PqlUxLyGBAfKa8bk1dCsHycQ03fRu
- BnHIdwMg3iUbNs5cNIMUKHXxoduI8Y22WIpnoK3JdWtA45mgkfcqopg7f
- 3ysXlfX1VwbR6Yg4xjL22dsly6CGbcYD4bUW2EbiFOX9oeD+16NrwtI8F
- 4OQs0ciAgNjtnF1HMoNAD83N909q7cCQwORrUkAnSVow2uswiTMYTlscG
- SA9u3+/awu0M2iDbn2xwmN/sO5v0CG3ohTBs+LPKwDR/tk1Yc/VD9LPEE
- FJc+n4L1AI32GZRVRW5C3vUAeYbvACU3Or8UYSQtQpDhQ3GfC/xjp9wpG w==;
-X-CSE-ConnectionGUID: B5jCEIJmRQqy7sdFRKmgZw==
-X-CSE-MsgGUID: Q2ETqCwBQzaVc/vhFzA0Gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067540"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067540"
+ bh=DTpppC1hWYBaezmQlDF1p0yHvH19fttXN6mfbbO3b9A=;
+ b=VTkMT/kWdue1j1v3Hj8uzalFku9uzgMSDJ8MqQSi3Jf9FukXjwJSXliA
+ MfljoC4OgyqKmTkPh3dAibGTvKL7Pq+suyUPpQA+xTgzgfBsnsHtFg917
+ UCBfXrQtplpF++mo9z/R4yqnnu1BnRh9OBWjdt+4G24aG1ewtAcVFn17X
+ s29oQYSj1gz7d4wyo1H93hGOoEY5UbgvMgpXRfn2MZLlAw408CGVh6qZB
+ P5x7My36atFeV4wKTaMIFrENo+clOj/q3FljKzYPTTHsaWPMyLmASwS4g
+ Wpt3i3+JUow6zI5wP7WdnB1uIXK4wIR2h1hfnJ4ucL/cp1yCoukyR5bKn g==;
+X-CSE-ConnectionGUID: 9PNoGgcAQjiIGj1A5d+btg==
+X-CSE-MsgGUID: SsHkxmHQQh6koD5zvhIIVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067542"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067542"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
-X-CSE-ConnectionGUID: uv92uv4ZQrmpMSFff2UUXw==
-X-CSE-MsgGUID: V0S5viRJTFuTTA3TM4va3g==
+X-CSE-ConnectionGUID: q+Mn0AJ4QuCsfv+VWgwjKA==
+X-CSE-MsgGUID: bK4MGBbhQzmx1Pjvl7BHWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593748"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593750"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 30/34] drm/xe: Use PPGTT addresses for TLB invalidation to
- avoid GGTT fixups
-Date: Wed,  8 Oct 2025 11:04:56 -0700
-Message-Id: <20251008180500.3261209-31-matthew.brost@intel.com>
+Subject: [PATCH v9 32/34] drm/xe/vf: Ensure media GT VF recovery runs after
+ primary GT on PTL
+Date: Wed,  8 Oct 2025 11:04:58 -0700
+Message-Id: <20251008180500.3261209-33-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008180500.3261209-1-matthew.brost@intel.com>
 References: <20251008180500.3261209-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,78 +66,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+It is possible that the media GT's VF post-migration recovery work item
+gets scheduled before the primary GT's work item. Since the media GT
+depends on the primary GT's work item to complete CCS restore, if the
+media GT's work item is scheduled first, detect this condition and
+re-queue the media GT's work item for a later time.
 
-The migrate VM builds the CCS metadata save/restore batch buffer (BB) in
-advance and retains it so the GuC can submit it directly when saving a
-VM’s state.
+v5:
+ - Adjust debug message (Tomasz)
 
-When a VM migrates between VFs, the GGTT base can change. Any GGTT-based
-addresses embedded in the BB would then have to be parsed and patched.
-
-Use PPGTT addresses in the BB (including for TLB invalidation) so the BB
-remains GGTT-agnostic and requires no address fixups during migration.
-
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 28 ++++++++++++++++++++--------
- 1 file changed, 20 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1d667fa36cf3..ad03afb5145f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -980,15 +980,27 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index b9988e227a25..47a87a7126cc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1100,8 +1100,22 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
+ 		   pf_version->major, pf_version->minor);
  }
  
--static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *dw, int i,
--				 u32 flags)
-+static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
+-static void vf_post_migration_shutdown(struct xe_gt *gt)
++static bool vf_post_migration_shutdown(struct xe_gt *gt)
  {
--	struct xe_lrc *lrc = xe_exec_queue_lrc(q);
++	struct xe_device *xe = gt_to_xe(gt);
++
 +	/*
-+	 * The migrate VM is self-referential so it can modify its own PTEs (see
-+	 * pte_update_size() or emit_pte() functions). We reserve NUM_KERNEL_PDE
-+	 * entries for kernel operations (copies, clears, CCS migrate), and
-+	 * suballocate the rest to user operations (binds/unbinds). With
-+	 * NUM_KERNEL_PDE = 15, NUM_KERNEL_PDE - 1 is already used for PTE updates,
-+	 * so assign NUM_KERNEL_PDE - 2 for TLB invalidation.
++	 * On platforms where CCS must be restored by the primary GT, the media
++	 * GT's VF post-migration recovery must run afterward. Detect this case
++	 * and re-queue the media GT's restore work item if necessary.
 +	 */
-+	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
-+}
++	if (xe->info.needs_shared_vf_gt_wq && xe_gt_is_media_type(gt)) {
++		struct xe_gt *primary_gt = gt_to_tile(gt)->primary_gt;
 +
-+static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-+{
-+	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
++		if (xe_gt_sriov_vf_recovery_pending(primary_gt))
++			return true;
++	}
 +
- 	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
- 		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc)) |
--		  MI_FLUSH_DW_USE_GTT;
--	dw[i++] = upper_32_bits(xe_lrc_start_seqno_ggtt_addr(lrc));
-+	dw[i++] = lower_32_bits(addr);
-+	dw[i++] = upper_32_bits(addr);
- 	dw[i++] = MI_NOOP;
- 	dw[i++] = MI_NOOP;
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	gt->sriov.vf.migration.recovery_queued = false;
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+@@ -1109,6 +1123,8 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
+ 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
+ 	xe_guc_submit_pause(&gt->uc.guc);
+ 	xe_tlb_inval_reset(&gt->tlb_inval);
++
++	return false;
+ }
  
-@@ -1101,11 +1113,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ static size_t post_migration_scratch_size(struct xe_device *xe)
+@@ -1186,11 +1202,14 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
++	bool retry;
  
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
  
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+ 	xe_pm_runtime_get(xe);
+-	vf_post_migration_shutdown(gt);
++	retry = vf_post_migration_shutdown(gt);
++	if (retry)
++		goto queue;
  
- 		size -= src_L0;
- 	}
+ 	if (!xe_sriov_vf_migration_supported(xe)) {
+ 		xe_gt_sriov_err(gt, "migration is not supported\n");
+@@ -1218,6 +1237,12 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+ 	xe_device_declare_wedged(xe);
++	return;
++
++queue:
++	xe_gt_sriov_info(gt, "Re-queuing migration recovery\n");
++	queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
++	xe_pm_runtime_put(xe);
+ }
+ 
+ static void migration_worker_func(struct work_struct *w)
 -- 
 2.34.1
 
