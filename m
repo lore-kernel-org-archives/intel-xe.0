@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97C6CCCD197
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66958CCD192
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 18:05:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD3010E89D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97E7110E89A;
 	Wed,  8 Oct 2025 18:05:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7s3/R6t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHq8SepB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 027B410E886
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C839210E882
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 18:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759946709; x=1791482709;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=03R6LRzCNHm1gkMOeiFHz6zck15DVjwmeeXkpG2a0/Q=;
- b=A7s3/R6tQMxPsQfzLATqpxZCVb4+gC+CIi9qBG2H2qSO5cTypULkNs7J
- MtwEm+TnH9FEw9j/WanKY6UqPXr2Bc0/UICKdrtl6SFlfe1RVj7412zeE
- AAvdR5UG621w0+HNVC5KE6lAN9idI/6O338WxLHwKhcU2H/Y0OSM53M26
- ni+uw4Zzbc12HfAkcVZWV++oyxq/Lv2OscluD0ydcOZV7AbmpG5K4V7Gb
- xXkamemTl48SOedTb+YrDjjTqeAYikAK1BfVi2W0ito65AX1a6H16r9Td
- YeUODJMei0ylL2AUxZOxbeWNV1lnjAMvPOcOUYXa4i/9Zs6j6ujbvEwJ3 A==;
-X-CSE-ConnectionGUID: pR0go3wjRJuCDOcaFBYrDA==
-X-CSE-MsgGUID: bw/1SFvFT9WDOdZICc5XVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067523"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067523"
+ bh=Bsw+3s3g+q2tDOxCiE4mBgFEpBMTarYVF0Xcio0v+uM=;
+ b=UHq8SepBvPAL5jnQuu4vkYhUbE1lG2DMzylInoLnzx5JcTkQiiCgowyb
+ rZQEEpJLDLBCdxUu8dzxRqmlc8BzXESgYior266sEN+yRvGZZWK8qNSmK
+ b9d6c0S2C5j8azkThu4obcpbwg+LatCicysNNLzPal5mOQ780i2WmKrpw
+ MXcgEmsdwvXIYT4ZIP3BpVeGgbmnG5/TGRWDozAyV1mwAzwbU6j8k9AhF
+ oXMSS+T9QAYXK8xeOH1ZSgyMpmrkFmacQ6mIFNw/COjL1zCn4wLjUlEeL
+ xVl/Y8Chs6OWIszvwtx53QZqiY2h9cRhAGN966gYHrgd0qbxqN+OF6q2Q g==;
+X-CSE-ConnectionGUID: lh+mpM+nSeSK6Qim8N8GRg==
+X-CSE-MsgGUID: XZQbPbtoQSCRjHFklC0Dbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62067537"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62067537"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 11:05:07 -0700
-X-CSE-ConnectionGUID: O2p708/XQOaiF9oqADfQvg==
-X-CSE-MsgGUID: eo3afgrTQyS1+6mn2Q3GMA==
+X-CSE-ConnectionGUID: vhzM0OeVSE2zSyZPDFGp+w==
+X-CSE-MsgGUID: xyvn/dPSTq2rOTZeSz5zFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593730"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217593744"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 11:05:06 -0700
+ 08 Oct 2025 11:05:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v9 13/34] drm/xe/vf: Move LMEM config to tile layer
-Date: Wed,  8 Oct 2025 11:04:39 -0700
-Message-Id: <20251008180500.3261209-14-matthew.brost@intel.com>
+Subject: [PATCH v9 27/34] drm/xe: Move queue init before LRC creation
+Date: Wed,  8 Oct 2025 11:04:53 -0700
+Message-Id: <20251008180500.3261209-28-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008180500.3261209-1-matthew.brost@intel.com>
 References: <20251008180500.3261209-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,247 +66,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LMEM VF provision is tile-layer-specific information. Move the LMEM
-configuration to the tile layer accordingly.
+A queue must be in the submission backend's tracking state before the
+LRC is created to avoid a race condition where the LRC's GGTT addresses
+are not properly fixed up during VF post-migration recovery.
+
+Move the queue initialization—which adds the queue to the submission
+backend's tracking state—before LRC creation.
+
+Also wait on pending GGTT fixups before allocating LRCs to avoid racing
+with fixups.
+
+v2:
+ - Wait on VF GGTT fixes before creating LRC (testing)
+v5:
+ - Adjust comment in code (Tomasz)
+ - Reduce race window
+v7:
+ - Only wakeup waiters in recovery path (CI)
+ - Wakeup waiters on abort
+ - Use GT warn on (Michal)
+ - Fix kernel doc for LRC ring size function (Tomasz)
+v8:
+ - Guard against migration not supported or no memirq (CI)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h        |  3 ++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c         | 36 +++++++--------------
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h   |  2 --
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c       | 33 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile_sriov_vf.h       |  2 ++
- drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h | 19 +++++++++++
- drivers/gpu/drm/xe/xe_vram.c                |  6 ++--
- 7 files changed, 71 insertions(+), 30 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
+ drivers/gpu/drm/xe/xe_exec_queue.c        | 45 ++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 45 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.h               | 10 +++++
+ 7 files changed, 98 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 1d2718b70a5c..c66523bf4bf0 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -27,6 +27,7 @@
- #include "xe_sriov_vf_ccs_types.h"
- #include "xe_step_types.h"
- #include "xe_survivability_mode_types.h"
-+#include "xe_tile_sriov_vf_types.h"
- #include "xe_validation.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 7621089a47fe..90cbc95f8e2e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_sriov_vf.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -205,17 +206,34 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+ 		flags |= XE_LRC_CREATE_USER_CTX;
  
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-@@ -193,6 +194,8 @@ struct xe_tile {
- 		struct {
- 			/** @sriov.vf.ggtt_balloon: GGTT regions excluded from use. */
- 			struct xe_ggtt_node *ggtt_balloon[2];
-+			/** @sriov.vf.self_config: VF configuration data */
-+			struct xe_tile_sriov_vf_selfconfig self_config;
- 		} vf;
- 	} sriov;
++	err = q->ops->init(q);
++	if (err)
++		return err;
++
++	/*
++	 * This must occur after q->ops->init to avoid race conditions during VF
++	 * post-migration recovery, as the fixups for the LRC GGTT addresses
++	 * depend on the queue being present in the backend tracking structure.
++	 *
++	 * In addition to above, we must wait on inflight GGTT changes to avoid
++	 * writing out stale values here. Such wait provides a solid solution
++	 * (without a race) only if the function can detect migration instantly
++	 * from the moment vCPU resumes execution.
++	 */
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+-		if (IS_ERR(q->lrc[i])) {
+-			err = PTR_ERR(q->lrc[i]);
++		struct xe_lrc *lrc;
++
++		xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
++		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
++				    q->msix_vec, flags);
++		if (IS_ERR(lrc)) {
++			err = PTR_ERR(lrc);
+ 			goto err_lrc;
+ 		}
+-	}
  
+-	err = q->ops->init(q);
+-	if (err)
+-		goto err_lrc;
++		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
++		WRITE_ONCE(q->lrc[i], lrc);
++	}
+ 
+ 	return 0;
+ 
+@@ -1121,9 +1139,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	int err = 0;
+ 
+ 	for (i = 0; i < q->width; ++i) {
+-		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
+-		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
+-		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
++		struct xe_lrc *lrc;
++
++		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
++		lrc = READ_ONCE(q->lrc[i]);
++		if (!lrc)
++			continue;
++
++		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
++		xe_lrc_update_hwctx_regs_with_address(lrc);
++		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+ 		if (err)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..769d05517f93 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &drm_sched_ops,
+ 		.num_rqs = 1,
+-		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
++		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
+ 		.hang_limit = XE_SCHED_HANG_LIMIT,
+ 		.timeout = XE_SCHED_JOB_TIMEOUT,
+ 		.name = q->hwe->name,
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 31a80d77da36..6f3d9bc5ed22 100644
+index 44bda1d4cb38..b9988e227a25 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -471,10 +471,10 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
- 
- static int vf_get_lmem_info(struct xe_gt *gt)
- {
--	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
-+	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_guc *guc = &gt->uc.guc;
- 	char size_str[10];
--	u64 size;
-+	u64 size, lmem_size;
- 	int err;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-@@ -483,18 +483,19 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 	if (unlikely(err))
- 		return err;
- 
--	if (config->lmem_size && config->lmem_size != size) {
-+	lmem_size = xe_tile_sriov_vf_lmem(tile);
-+	if (lmem_size && lmem_size != size) {
- 		xe_gt_sriov_err(gt, "Unexpected LMEM reassignment: %lluM != %lluM\n",
--				size / SZ_1M, config->lmem_size / SZ_1M);
-+				size / SZ_1M, lmem_size / SZ_1M);
- 		return -EREMCHG;
+@@ -480,6 +480,12 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes_locked(gt_to_tile(gt), shift);
  	}
  
- 	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
- 	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
- 
--	config->lmem_size = size;
-+	xe_tile_sriov_vf_lmem_store(tile, size);
- 
--	return config->lmem_size ? 0 : -ENODATA;
-+	return size ? 0 : -ENODATA;
++	if (xe_sriov_vf_migration_supported(gt_to_xe(gt))) {
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
++		smp_wmb();	/* Ensure above write visible before wake */
++		wake_up_all(&gt->sriov.vf.migration.wq);
++	}
++
+ 	return err;
  }
  
- static int vf_get_submission_cfg(struct xe_gt *gt)
-@@ -591,23 +592,6 @@ u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt)
- 	return gt->sriov.vf.self_config.num_ctxs;
- }
+@@ -729,7 +735,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+ 	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+-		smp_wmb();	/* Ensure above write visable before wake */
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
++		smp_wmb();	/* Ensure above writes visable before wake */
  
--/**
-- * xe_gt_sriov_vf_lmem - VF LMEM configuration.
-- * @gt: the &xe_gt
-- *
-- * This function is for VF use only.
-- *
-- * Return: size of the LMEM assigned to VF.
-- */
--u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt)
--{
--	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
--	xe_gt_assert(gt, gt->sriov.vf.guc_version.major);
--	xe_gt_assert(gt, gt->sriov.vf.self_config.lmem_size);
--
--	return gt->sriov.vf.self_config.lmem_size;
--}
--
- /**
-  * xe_gt_sriov_vf_ggtt - VF GGTT configuration.
-  * @gt: the &xe_gt
-@@ -1059,6 +1043,7 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
+ 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
+ 
+@@ -1141,8 +1148,11 @@ static void vf_post_migration_abort(struct xe_gt *gt)
  {
- 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
- 	struct xe_device *xe = gt_to_xe(gt);
-+	u64 lmem_size;
- 	char buf[10];
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
-@@ -1072,9 +1057,10 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p)
++	wake_up_all(&gt->sriov.vf.migration.wq);
++
+ 	xe_guc_submit_pause_abort(&gt->uc.guc);
+ }
  
- 	drm_printf(p, "GGTT shift on last restore:\t%lld\n", config->ggtt_shift);
+@@ -1251,6 +1261,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
++	init_waitqueue_head(&gt->sriov.vf.migration.wq);
  
-+	lmem_size = xe_tile_sriov_vf_lmem(gt_to_tile(gt));
- 	if (IS_DGFX(xe) && xe_gt_is_main_type(gt)) {
--		string_get_size(config->lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
--		drm_printf(p, "LMEM size:\t%llu (%s)\n", config->lmem_size, buf);
-+		string_get_size(lmem_size, 1, STRING_UNITS_2, buf, sizeof(buf));
-+		drm_printf(p, "LMEM size:\t%llu (%s)\n", lmem_size, buf);
- 	}
+ 	return 0;
+ }
+@@ -1300,3 +1311,35 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
  
- 	drm_printf(p, "GuC contexts:\t%u\n", config->num_ctxs);
+ 	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
+ }
++
++static bool vf_valid_ggtt(struct xe_gt *gt)
++{
++	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
++	bool irq_pending = xe_device_uses_memirq(gt_to_xe(gt)) &&
++		xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc);
++
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++
++	if (irq_pending || READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
++		return false;
++
++	return true;
++}
++
++/**
++ * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
++ * @gt: the &xe_gt
++ */
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
++{
++	int ret;
++
++	if (!IS_SRIOV_VF(gt_to_xe(gt)) ||
++	    !xe_sriov_vf_migration_supported(gt_to_xe(gt)))
++		return;
++
++	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
++					       vf_valid_ggtt(gt),
++					       HZ * 5);
++	xe_gt_WARN_ON(gt, !ret);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 1d2eaa52f804..af40276790fa 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -38,4 +38,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
+ 
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index e753646debc4..aff76051c9bb 100644
+index bdd9b968f204..420b0e6089de 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -20,8 +20,6 @@ struct xe_gt_sriov_vf_selfconfig {
- 	u64 ggtt_size;
- 	/** @ggtt_shift: difference in ggtt_base on last migration */
- 	s64 ggtt_shift;
--	/** @lmem_size: assigned size of the LMEM. */
--	u64 lmem_size;
- 	/** @num_ctxs: assigned number of GuC submission context IDs. */
- 	u16 num_ctxs;
- 	/** @num_dbs: assigned number of GuC doorbells IDs. */
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-index f221dbed16f0..02430a53da9f 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.c
-@@ -252,3 +252,36 @@ void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift)
+@@ -7,6 +7,7 @@
+ #define _XE_GT_SRIOV_VF_TYPES_H_
  
- 	mutex_unlock(&ggtt->lock);
+ #include <linux/types.h>
++#include <linux/wait.h>
+ #include <linux/workqueue.h>
+ #include "xe_uc_fw_types.h"
+ 
+@@ -47,6 +48,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
++	/** @wq: wait queue for migration fixes */
++	wait_queue_head_t wq;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
+ 	/** @recovery_teardown: VF post migration recovery is being torn down */
+@@ -55,6 +58,8 @@ struct xe_gt_sriov_vf_migration {
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
+ 	bool recovery_inprogress;
++	/** @ggtt_need_fixes: VF GGTT needs fixes */
++	bool ggtt_need_fixes;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d07ff014492e..be7aa1e89d13 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1670,7 +1670,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
++			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 21a3daab0154..2fb628da5c43 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -76,6 +76,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
  }
-+
+ 
 +/**
-+ * xe_tile_sriov_vf_lmem - VF LMEM configuration.
-+ * @tile: the &xe_tile
++ * xe_lrc_ring_size() - Xe LRC ring size
 + *
-+ * This function is for VF use only.
-+ *
-+ * Return: size of the LMEM assigned to VF.
++ * Return: Size of LRC ring buffer
 + */
-+u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile)
++static inline size_t xe_lrc_ring_size(void)
 +{
-+	struct xe_tile_sriov_vf_selfconfig *config = &tile->sriov.vf.self_config;
-+
-+	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
-+
-+	return config->lmem_size;
++	return SZ_16K;
 +}
 +
-+/**
-+ * xe_tile_sriov_vf_lmem_store - Store VF LMEM configuration
-+ * @tile: the &xe_tile
-+ * @lmem_size: VF LMEM size to store
-+ *
-+ * This function is for VF use only.
-+ */
-+void xe_tile_sriov_vf_lmem_store(struct xe_tile *tile, u64 lmem_size)
-+{
-+	struct xe_tile_sriov_vf_selfconfig *config = &tile->sriov.vf.self_config;
-+
-+	xe_tile_assert(tile, IS_SRIOV_VF(tile_to_xe(tile)));
-+
-+	config->lmem_size = lmem_size;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-index 93eb043171e8..86d750a57530 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf.h
-@@ -14,5 +14,7 @@ int xe_tile_sriov_vf_prepare_ggtt(struct xe_tile *tile);
- int xe_tile_sriov_vf_balloon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_deballoon_ggtt_locked(struct xe_tile *tile);
- void xe_tile_sriov_vf_fixup_ggtt_nodes(struct xe_tile *tile, s64 shift);
-+u64 xe_tile_sriov_vf_lmem(struct xe_tile *tile);
-+void xe_tile_sriov_vf_lmem_store(struct xe_tile *tile, u64 lmem_size);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
-new file mode 100644
-index 000000000000..f49afa8338f1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_vf_types.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef _XE_TILE_SRIOV_VF_TYPES_H_
-+#define _XE_TILE_SRIOV_VF_TYPES_H_
-+
-+#include <linux/mutex.h>
-+
-+/**
-+ * struct xe_tile_sriov_vf_selfconfig - VF configuration data.
-+ */
-+struct xe_tile_sriov_vf_selfconfig {
-+	/** @lmem_size: assigned size of the LMEM. */
-+	u64 lmem_size;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 7adfccf68e4c..70bcbb188867 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -17,10 +17,10 @@
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_mcr.h"
--#include "xe_gt_sriov_vf.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_sriov.h"
-+#include "xe_tile_sriov_vf.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
-@@ -238,9 +238,9 @@ static int tile_vram_size(struct xe_tile *tile, u64 *vram_size,
- 		offset = 0;
- 		for_each_tile(t, xe, id)
- 			for_each_if(t->id < tile->id)
--				offset += xe_gt_sriov_vf_lmem(t->primary_gt);
-+				offset += xe_tile_sriov_vf_lmem(t);
- 
--		*tile_size = xe_gt_sriov_vf_lmem(gt);
-+		*tile_size = xe_tile_sriov_vf_lmem(tile);
- 		*vram_size = *tile_size;
- 		*tile_offset = offset;
- 
+ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 -- 
 2.34.1
 
