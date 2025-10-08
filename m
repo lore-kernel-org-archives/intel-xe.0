@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 666A2CAC5BB
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 583BCCCD188
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A93C10E8E5;
-	Wed,  8 Oct 2025 21:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 095DB10E89B;
+	Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oG9SBelc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JuOjRzVY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E76A310E89B
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23B2710E89B
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759959940; x=1791495940;
+ t=1759959941; x=1791495941;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ipoIzRH7gt3sPRHj5QeBROa8vy2uJ9eK2Q2ZBAf9jJg=;
- b=oG9SBelc4QfixFg3Hr6th4YWDhOUbbIFMF3+IOQpC4cNa1enYd4l+gZq
- MH7+h50uIQWosGfMrCwISowIcowGyRdhR739h0IRV6OmPol1+LK2pKbzM
- /TcJFCKKVDqRaHBxa3FNG90QvXdNoiD7tdy7vwEM8mKlxF5zYKRWlaUNf
- 0ejSTtGCSr9zXc1NUASN053jkIUT1umM+MSDmfhHMOm9VS7g/4Rjv1cO4
- vUuJfszgFFpdAdIk/rx0isbYCjMQqTyfErX+11LkXY807BAM1wTxk4Muz
- G78bE9h/4tJW1Cwi1FyPDIrWirK51NRq29Cwkycoe0ZYXJ56Fag9T2XFM Q==;
-X-CSE-ConnectionGUID: QG2rv3KnSN2kN6Y5e6aqMA==
-X-CSE-MsgGUID: UBWt5ceSQRqi7bMGoLCaHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726843"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726843"
+ bh=Jzoo9uLUtbziH1Ujh4gejoWvEXVAdHL5/ccynqvnr7c=;
+ b=JuOjRzVY7H+fUDEBVtfOgofaNwzKSgOIPZp2ON5CToKBwYFQ4aXNSCHI
+ h+CgIEptRloE8T4GtPBRcuhw3zRWia8hE7hKe29x2v04rOxDajRJZmxRk
+ FVwlXPbMinutqJQYXYrgXD/zlkYaaU5hCZz5ID8NPT1YS9bDqwRFCR0lu
+ z4rbl/9MfB/8BsDFi4CvDHigmy5X8BBwrw0fcWJgqkB+6eEnn9mtuDrQv
+ L9h3liMULKxAvUXjnmFUVq0kuVwQ9FP0B7J/X5iyviHumhPH4vVHFHBoi
+ wnfRpKSh85LLLyOVxmn8k5mr/nKxwxJI1i6aewXKULV2wDNHddfxV4/q2 g==;
+X-CSE-ConnectionGUID: j6tFvXFaRje7UKhOIuXWtA==
+X-CSE-MsgGUID: knj+kyA/QlehTdsRK9CLRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726853"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726853"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:39 -0700
-X-CSE-ConnectionGUID: vZqFb/faTVaMsMUU2jDqSg==
-X-CSE-MsgGUID: 2TL4LtPoQbKNlTmQX8h2yA==
+ 08 Oct 2025 14:45:41 -0700
+X-CSE-ConnectionGUID: +jHKAwwqTIGlMdLJHvVLUw==
+X-CSE-MsgGUID: Qp4DgDlfSp+Nx1MjZ5BWsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635182"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635191"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:36 -0700
+ 08 Oct 2025 14:45:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 03/34] drm/xe/guc: Track pending-enable source in
- submission state
-Date: Wed,  8 Oct 2025 14:45:01 -0700
-Message-Id: <20251008214532.3442967-4-matthew.brost@intel.com>
+Subject: [PATCH v10 11/34] drm/xe/vf: Remove memory allocations from VF post
+ migration recovery
+Date: Wed,  8 Oct 2025 14:45:09 -0700
+Message-Id: <20251008214532.3442967-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
@@ -66,99 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add explicit tracking in the GuC submission state to record the source
-of a pending enable (TDR vs. queue resume path vs. submission).
-Disambiguating the origin lets the GuC submission state machine apply
-the correct recovery/replay behavior.
+VF post migration recovery is the path of dma-fence signaling / reclaim,
+avoid memory allocations in this path.
 
-This helps VF restore: when the device comes back, the state machine knows
-whether the pending enable stems from timeout recovery, from a queue resume
-sequence, or submission and can gate sequencing and fixups accordingly.
-
-v4:
- - Clarify commit message (Tomasz)
+v3:
+ - s/lrc_wa_bb/scratch (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 36 ++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 23 +++++++++++++----------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 ++
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 16f78376f196..13746f32b231 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -69,6 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
- #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
- #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
- #define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
-+#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
-+#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 93612ea5029f..737243fd3d40 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -1165,17 +1165,13 @@ static size_t post_migration_scratch_size(struct xe_device *xe)
  
- static bool exec_queue_registered(struct xe_exec_queue *q)
+ static int vf_post_migration_fixups(struct xe_gt *gt)
  {
-@@ -220,6 +222,36 @@ static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
- 	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
++	void *buf = gt->sriov.vf.migration.scratch;
+ 	s64 shift;
+-	void *buf;
+ 	int err;
+ 
+-	buf = kmalloc(post_migration_scratch_size(gt_to_xe(gt)), GFP_ATOMIC);
+-	if (!buf)
+-		return -ENOMEM;
+-
+ 	err = xe_gt_sriov_vf_query_config(gt);
+ 	if (err)
+-		goto out;
++		return err;
+ 
+ 	shift = xe_gt_sriov_vf_ggtt_shift(gt);
+ 	if (shift) {
+@@ -1183,12 +1179,10 @@ static int vf_post_migration_fixups(struct xe_gt *gt)
+ 		xe_gt_sriov_vf_default_lrcs_hwsp_rebase(gt);
+ 		err = xe_guc_contexts_hwsp_rebase(&gt->uc.guc, buf);
+ 		if (err)
+-			goto out;
++			return err;
+ 	}
+ 
+-out:
+-	kfree(buf);
+-	return err;
++	return 0;
  }
  
-+static bool __maybe_unused exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
-+}
-+
-+static void set_exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_pending_resume(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_PENDING_RESUME, &q->guc->state);
-+}
-+
-+static bool __maybe_unused exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_TDR_EXIT;
-+}
-+
-+static void set_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	atomic_or(EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
-+}
-+
-+static void clear_exec_queue_pending_tdr_exit(struct xe_exec_queue *q)
-+{
-+	atomic_and(~EXEC_QUEUE_STATE_PENDING_TDR_EXIT, &q->guc->state);
-+}
-+
- static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ static void vf_post_migration_kickstart(struct xe_gt *gt)
+@@ -1273,9 +1267,18 @@ static void migration_worker_func(struct work_struct *w)
+  */
+ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
  {
- 	return (atomic_read(&q->guc->state) &
-@@ -1334,6 +1366,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	return DRM_GPU_SCHED_STAT_RESET;
++	void *buf;
++
+ 	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
+ 		return 0;
  
- sched_enable:
-+	set_exec_queue_pending_tdr_exit(q);
- 	enable_scheduling(q);
- rearm:
- 	/*
-@@ -1493,6 +1526,7 @@ static void __guc_exec_queue_process_msg_resume(struct xe_sched_msg *msg)
- 		clear_exec_queue_suspended(q);
- 		if (!exec_queue_enabled(q)) {
- 			q->guc->resume_time = RESUME_PENDING;
-+			set_exec_queue_pending_resume(q);
- 			enable_scheduling(q);
- 		}
- 	} else {
-@@ -2065,6 +2099,8 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 		xe_gt_assert(guc_to_gt(guc), exec_queue_pending_enable(q));
++	buf = drmm_kmalloc(&gt_to_xe(gt)->drm,
++			   post_migration_scratch_size(gt_to_xe(gt)),
++			   GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
  
- 		q->guc->resume_time = ktime_get();
-+		clear_exec_queue_pending_resume(q);
-+		clear_exec_queue_pending_tdr_exit(q);
- 		clear_exec_queue_pending_enable(q);
- 		smp_wmb();
- 		wake_up_all(&guc->ct.wq);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index b2c8e8c89c30..e753646debc4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -55,6 +55,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued */
+ 	spinlock_t lock;
++	/** @scratch: Scratch memory for VF recovery */
++	void *scratch;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
