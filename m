@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5101CCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 10:25:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844B2CCA470
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 11:11:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79DD610E7B7;
-	Wed,  8 Oct 2025 10:25:12 +0000 (UTC)
-Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26AFC10E1E6;
- Wed,  8 Oct 2025 10:25:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9202997622853706804=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEBD10E0EE;
+	Wed,  8 Oct 2025 11:11:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+BnSxBn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 860BE10E0EE
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 11:11:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1759921872; x=1791457872;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5yqtfouQ+OrWEKf1g4xXHPeJOZjzy0EflOYcc9cOBUc=;
+ b=M+BnSxBnXARHHsrS/mNA8pmPES4ED3V0NUqFPw++/QUp1qjxDZHaPA1B
+ cOGludwFb8rYnU0DYikJTfVTM0W/zUUv9EpgSYo+BfBfOofxkrSwKjBj7
+ rv8laLNS0Q2SNKITznB+1czL11vo2WlGMQHg3UU1Llt16CHi3rHJcFiGz
+ esMqZ+td4j2KVQ1UEsLj0GHXzWi8lZ0jCp42BfHFn8H3+15nW63PVSwXR
+ tc0gUlLEtdHxy8rVwekzfpgK6eBfG9IltMuxaQMNxvwkBlux677G/VY9A
+ +4CxZHOOZY+qcdA8c9iXopf2SUwFROavRTpg9upGhHfu0Mz2Nrv4mjLeO Q==;
+X-CSE-ConnectionGUID: FFIrIZBiQSmjKf2ROXUx2g==
+X-CSE-MsgGUID: 4PV99ADmTlKVLMeWpJmNRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62154434"
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="62154434"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 04:11:12 -0700
+X-CSE-ConnectionGUID: c4V6lGP8Q6CW3sNPdOqDcQ==
+X-CSE-MsgGUID: Fu07C0xlT4SxjhUr/aGcPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="211358684"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.126])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 04:11:10 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 0/2] SVM migration fixes
+Date: Wed,  8 Oct 2025 13:10:48 +0200
+Message-ID: <20251008111050.293151-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_panel_re?=
- =?utf-8?q?play_in_DSC_mode?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 08 Oct 2025 10:25:11 -0000
-Message-ID: <175991911114.17294.12064636096908154813@6aec98b87f92>
-X-Patchwork-Hint: ignore
-References: <20251008094108.88242-1-imre.deak@intel.com>
-In-Reply-To: <20251008094108.88242-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +66,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9202997622853706804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Two small migration fixes. The first patch ensures
+data is migrated to system on faults when there is
+an madvise for the system location.
 
-== Series Details ==
+The second allows userptr data that was put in VRAM
+by SVM migration to remain in VRAM also for
+userptr maps.
 
-Series: drm/i915/dp: Fix panel replay in DSC mode
-URL   : https://patchwork.freedesktop.org/series/155586/
-State : success
+Matthew Brost (1):
+  drm/xe: Allow mixed mappings for userptr
 
-== Summary ==
+Thomas Hellström (1):
+  drm/xe/svm: Ensure data will be migrated to system if indicated by
+    madvise.
 
-CI Bug Log - changes from xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44_BAT -> xe-pw-155586v1_BAT
-====================================================
+ drivers/gpu/drm/drm_gpusvm.c    | 6 ++++--
+ drivers/gpu/drm/xe/xe_svm.c     | 3 +++
+ drivers/gpu/drm/xe/xe_userptr.c | 4 +++-
+ include/drm/drm_gpusvm.h        | 4 ++++
+ 4 files changed, 14 insertions(+), 3 deletions(-)
 
-Summary
--------
+-- 
+2.51.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8575 -> IGT_8577
-  * Linux: xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44 -> xe-pw-155586v1
-
-  IGT_8575: 7efc313da1339df43a1b11bba57fef6c1257e65f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8577: 8577
-  xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44: ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44
-  xe-pw-155586v1: 155586v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155586v1/index.html
-
---===============9202997622853706804==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix panel replay in DSC mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155586/">https://patchwork.freedesktop.org/series/155586/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155586v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155586v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44_BAT -&gt; xe-pw-155586v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8575 -&gt; IGT_8577</li>
-<li>Linux: xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44 -&gt; xe-pw-155586v1</li>
-</ul>
-<p>IGT_8575: 7efc313da1339df43a1b11bba57fef6c1257e65f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8577: 8577<br />
-  xe-3884-ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44: ceff45305e07bda5e3b4d6e9f7b750eb2c20cf44<br />
-  xe-pw-155586v1: 155586v1</p>
-
-</body>
-</html>
-
---===============9202997622853706804==--
