@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03B3ECCD185
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 08:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8D67CAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 08:05:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B1310E19C;
-	Wed,  8 Oct 2025 08:01:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5319110E77F;
+	Wed,  8 Oct 2025 08:05:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6/T5lqC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZpC4W0+w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B7310E19C
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 08:01:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92F7510E109
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 08:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759910482; x=1791446482;
+ t=1759910724; x=1791446724;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=KWFhPNUybRQ4w59lq0OUVs+PBcV5/BMV3WW8r2I4EUk=;
- b=b6/T5lqCgIwNrg+0acCqvatebBSIcVYv8fRGQ4CJ0qKLUeOUVY5mjqAY
- uShfmsyt6YsOADd3XdEoj9tACxEOr48/IBbMLsbvx1xXTjV+uB01HQ0Un
- ugg2t5EHULd42obul2P2AUkS/MHFJockOfHCm6D33lMOAysOOJtcbX/rT
- dxUV8R4ZipjsLLN9f+szUYPWYU37rL1de2tGqXdTjTqy6MbBwaoa32jti
- SqPt1SmngV+KzBEBSStjKLS630TNIb0Ed1sR5C50h3dD9nX0gIb/YyOa9
- eHEdvyb23PkkrYq+Ou3jN+yP8Z09wUrRXVzWWHTN4B0SZyUsZZJzF48Ls w==;
-X-CSE-ConnectionGUID: y79jIAj+Rr2YiLpfMUlHdQ==
-X-CSE-MsgGUID: /McF9qCQTVOlEGEC6UjBiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62195418"
-X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="62195418"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 01:01:21 -0700
-X-CSE-ConnectionGUID: a3dayUy+R+mItPdKfz25lw==
-X-CSE-MsgGUID: Fxa4DnamRlGudjY1quKn8w==
+ bh=z6zHU9Zvb9YdAvaKk/aMO4Gc42LTo7EtBdltxGFDx2c=;
+ b=ZpC4W0+wG44PIVzDsZYt5av8DZG+RVB0uvtKmAk1Z5ITHSKzy1Pr2vbN
+ CGnNcreJ8E4ZLQUzknnenho458Wt7LSFxXcmMrFCS24NbJczl3ssvfIwy
+ +IbFKbl0kSJHyfTt/WXf0ivo17vU7TTSvI+ZXH/wqbA/pH+gHPuHa3GeI
+ S6NCpfFEwo1oyO3qr26s43uxMOKATgUxcClGj4Hu5+0P+XHIi0tvUbA2s
+ Nz+2UGFLj14x5FHhvQxqvyxLA5DJcBdNCvK1e/kS7NsSPNMt/mR6SPr6o
+ m5gmKCS5if1pbJU5rHqk2HQZRtyCczGn6pv5PWC/pf96MZZVAdhvWfzOJ Q==;
+X-CSE-ConnectionGUID: mXYFQIz0R2auPenaDNH0uw==
+X-CSE-MsgGUID: VTTO7Z95QCCA0bLjZpWwxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="65950792"
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="65950792"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2025 01:05:23 -0700
+X-CSE-ConnectionGUID: 8Ye8MSt3TDa6N1fwN2gmJQ==
+X-CSE-MsgGUID: T10xYBskSQalLeuEGv/nbg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,323,1751266800"; d="scan'208";a="180404659"
 Received: from iherna2-mobl4.amr.corp.intel.com (HELO kuha.fi.intel.com)
  ([10.124.220.169])
- by fmviesa003.fm.intel.com with SMTP; 08 Oct 2025 01:01:16 -0700
+ by orviesa008.jf.intel.com with SMTP; 08 Oct 2025 01:05:21 -0700
 Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Wed, 08 Oct 2025 11:01:14 +0300
-Date: Wed, 8 Oct 2025 11:01:14 +0300
+ Wed, 08 Oct 2025 11:05:19 +0300
+Date: Wed, 8 Oct 2025 11:05:19 +0300
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 To: Raag Jadav <raag.jadav@intel.com>
 Cc: Andi Shyti <andi.shyti@kernel.org>, lucas.demarchi@intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
  riana.tauro@intel.com
 Subject: Re: [PATCH v1 2/2] drm/xe/i2c: Wire up reset/postinstall for I2C IRQ
-Message-ID: <aOYaSh5rlCElWurt@kuha.fi.intel.com>
+Message-ID: <aOYbP6NCdKGtpcCj@kuha.fi.intel.com>
 References: <20250924200835.3143173-1-raag.jadav@intel.com>
  <20250924200835.3143173-3-raag.jadav@intel.com>
  <v4k2wbqubd3axseacmj645rxf6oorhfksjew7wx2roy67cyx5i@msal4niodlrx>
  <aNu9eRb7dqnEjgaf@black.igk.intel.com>
+ <aOYaSh5rlCElWurt@kuha.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aNu9eRb7dqnEjgaf@black.igk.intel.com>
+In-Reply-To: <aOYaSh5rlCElWurt@kuha.fi.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +74,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Tue, Sep 30, 2025 at 01:22:33PM +0200, Raag Jadav wrote:
-> On Tue, Sep 30, 2025 at 01:13:57PM +0200, Andi Shyti wrote:
-> > Hi Raag,
-> > 
-> > On Thu, Sep 25, 2025 at 01:38:35AM +0530, Raag Jadav wrote:
-> > > I2C IRQ needs to be routed to SGUnit or PUnit for the devices that support
-> > > it. Wire up reset/postinstall handles for I2C IRQ to take care of this.
+On Wed, Oct 08, 2025 at 11:01:21AM +0300, Heikki Krogerus wrote:
+> Hi,
+> 
+> On Tue, Sep 30, 2025 at 01:22:33PM +0200, Raag Jadav wrote:
+> > On Tue, Sep 30, 2025 at 01:13:57PM +0200, Andi Shyti wrote:
+> > > Hi Raag,
 > > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > On Thu, Sep 25, 2025 at 01:38:35AM +0530, Raag Jadav wrote:
+> > > > I2C IRQ needs to be routed to SGUnit or PUnit for the devices that support
+> > > > it. Wire up reset/postinstall handles for I2C IRQ to take care of this.
+> > > > 
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > 
+> > > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 > > 
-> > Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > Awesome, thanks Andi.
+> > 
+> > Heikki, I can integrate your DISABLE_MSI changes which I'm assuming
+> > will be in the same path here?
 > 
-> Awesome, thanks Andi.
-> 
-> Heikki, I can integrate your DISABLE_MSI changes which I'm assuming
-> will be in the same path here?
+> Yes, that would be awesome!
 
-Yes, that would be awesome!
+So something like this squashed into this patch?
 
-> I know we're in the merge window but let me know how you'd want to
-> proceed.
-
-I think it would make sense to just take care of that DISABLE_MSI (bit
-29) in this patch. There's not point in adding a separate patch for
-it. So if you can take care of it, that would be great!
-
-P.S.
-
-Espoo site closure is still keeping me busy, so I will be extra slow
-with responses for while longer. I will be completely unreachable next
-week (WW42).
+diff --git a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+index f2e455e2bfe4..396d78c3b6a3 100644
+--- a/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_i2c_regs.h
+@@ -16,6 +16,7 @@
+ 
+ #define I2C_BRIDGE_PCICFGCTL           XE_REG(I2C_BRIDGE_OFFSET + 0x200)
+ #define   ACPI_INTR_EN                 REG_BIT(1)
++#define   DISABLE_MSI_CAP              REG_BIT(29)
+ 
+ #define I2C_CONFIG_CMD                 XE_REG(I2C_CONFIG_SPACE_OFFSET + PCI_COMMAND)
+ #define I2C_CONFIG_PMCSR               XE_REG(I2C_CONFIG_SPACE_OFFSET + 0x84)
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index 69f39df5a692..8a4ba6a411e4 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -189,7 +189,7 @@ void xe_i2c_irq_reset(struct xe_device *xe)
+        if (!xe_i2c_irq_present(xe))
+                return;
+ 
+-       xe_mmio_rmw32(mmio, I2C_BRIDGE_PCICFGCTL, ACPI_INTR_EN, 0);
++       xe_mmio_rmw32(mmio, I2C_BRIDGE_PCICFGCTL, ACPI_INTR_EN, DISABLE_MSI_CAP);
+ }
+ 
+ void xe_i2c_irq_postinstall(struct xe_device *xe)
+@@ -199,7 +199,7 @@ void xe_i2c_irq_postinstall(struct xe_device *xe)
+        if (!xe_i2c_irq_present(xe))
+                return;
+ 
+-       xe_mmio_rmw32(mmio, I2C_BRIDGE_PCICFGCTL, 0, ACPI_INTR_EN);
++       xe_mmio_rmw32(mmio, I2C_BRIDGE_PCICFGCTL, DISABLE_MSI_CAP, ACPI_INTR_EN);
+ }
+ 
+ static int xe_i2c_irq_map(struct irq_domain *h, unsigned int virq,
 
 -- 
 heikki
