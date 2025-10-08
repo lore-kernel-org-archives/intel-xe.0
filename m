@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4A3CCD18A
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3216CAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7663810E89D;
-	Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78C5210E8E8;
+	Wed,  8 Oct 2025 21:45:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="frGSx4Dq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kRZHnpOR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0071D10E8E5
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 198A910E8E8
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759959941; x=1791495941;
+ t=1759959943; x=1791495943;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=wJXRWjTpmhcJWqRYUyMyOhwzyfuzQVEQ221Z9ULHkCU=;
- b=frGSx4DqCXYyFpDpczLGzq+lzbRmUwXZHTfVpqFauYa8p2++VDvcLflZ
- awF+Ne63VSkT+8AKDWti6B4UduPa0CQPpG06lgvJ2sP+GrUtSVQw37W1R
- RC2MRPrtaIDdZhDNz7uK5c59quiCvM9dTDwS6x/mKXeQAwPhZOhWKz1A0
- 0c1xuvpD8kKkR9d/hOdaOXflBp4hAbOjK7s/VdHqeflT6+CqCUgAeOOpn
- /hd6HFaf+Yzi7RMToaBeG1k2HFQSijHPriR0vM1xiTXT0x2HwfGeTVl9M
- 3/RXc7kih+WqjcVlOQWconGQi1Ayu+V3S4DX96D7jHBtQl/h8yovL3v7X g==;
-X-CSE-ConnectionGUID: iyVnrwG0TrOwahPRkL9QDQ==
-X-CSE-MsgGUID: 7zW2uhzHS9OHZiUeU9Xh9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726849"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726849"
+ bh=sUHxqeL6wC+YiP6IQUUQn9AVdpCC41CBK/3OAe9AJWE=;
+ b=kRZHnpORbxdXjPjivIZV1GVgLZ/ffcVUsxPz0VRgcWjULIuQzwy+nqQe
+ ypd9S8vEcXDkz5hDR0m8he272mi4pf7hZcwwCtIIoRMyL4iGSmU+kdHdm
+ Cr5GrmiYANaWx0aKTF+KGGpVrdCjCtqp++QlkNw+leUI4PRCGpgQUMwn0
+ qmhiMmzWk4aCwxCgJfixd0AnYHN4lBS3ePr8A4CUrpterDyFlgoW3MpHa
+ EKCzmoQcZquoVb3/WZMYEZVTuLxhzaMh+PqV8G0IFweftydHHn9c9EfA/
+ 2dXUwyf+7OsmA54T91RsLXIJBYTbInnrXLlrQiJsf4L8FvcR3ZgivIog5 w==;
+X-CSE-ConnectionGUID: 1AtuZpVJQA6fL+APy3ClQg==
+X-CSE-MsgGUID: yV6yelKmQHSWvGuxezFlWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726873"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726873"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:40 -0700
-X-CSE-ConnectionGUID: 4LF+PbNpQTi/avBXYtsHnQ==
-X-CSE-MsgGUID: 8xX6pufwTsmwaR3Bjf59sQ==
+ 08 Oct 2025 14:45:42 -0700
+X-CSE-ConnectionGUID: t6gEXq4MRGmCrbkBH7PeGQ==
+X-CSE-MsgGUID: Gjz3JcKbSG+v3AqHv5VsRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635187"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635210"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:36 -0700
+ 08 Oct 2025 14:45:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 08/34] drm/xe/vf: Add xe_gt_recovery_pending helper
-Date: Wed,  8 Oct 2025 14:45:06 -0700
-Message-Id: <20251008214532.3442967-9-matthew.brost@intel.com>
+Subject: [PATCH v10 27/34] drm/xe: Move queue init before LRC creation
+Date: Wed,  8 Oct 2025 14:45:25 -0700
+Message-Id: <20251008214532.3442967-28-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,255 +66,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_gt_recovery_pending helper.
+A queue must be in the submission backend's tracking state before the
+LRC is created to avoid a race condition where the LRC's GGTT addresses
+are not properly fixed up during VF post-migration recovery.
 
-This helper serves as the singular point to determine whether a GT
-recovery is currently in progress. Expected callers include the GuC CT
-layer and the GuC submission layer. Atomically visable as soon as vCPU
-are unhalted until VF recovery completes.
+Move the queue initialization—which adds the queue to the submission
+backend's tracking state—before LRC creation.
 
-v3:
- - Add GT layer xe_gt_recovery_inprogress (Michal)
- - Don't blow up in memirq not enabled (CI)
- - Add __memirq_received with clear argument (Michal)
- - xe_memirq_sw_int_0_irq_pending rename (Michal)
- - Use offset in xe_memirq_sw_int_0_irq_pending (Michal)
-v4:
- - Refactor xe_gt_recovery_inprogress logic around memirq (Michal)
+Also wait on pending GGTT fixups before allocating LRCs to avoid racing
+with fixups.
+
+v2:
+ - Wait on VF GGTT fixes before creating LRC (testing)
 v5:
- - s/inprogress/pending (Michal)
+ - Adjust comment in code (Tomasz)
+ - Reduce race window
 v7:
- - Fix typos, adjust comment (Michal)
+ - Only wakeup waiters in recovery path (CI)
+ - Wakeup waiters on abort
+ - Use GT warn on (Michal)
+ - Fix kernel doc for LRC ring size function (Tomasz)
+v8:
+ - Guard against migration not supported or no memirq (CI)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.h                | 13 ++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 28 +++++++++++++
+ drivers/gpu/drm/xe/xe_exec_queue.c        | 45 ++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 45 ++++++++++++++++++++++-
  drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h | 10 +++++
- drivers/gpu/drm/xe/xe_memirq.c            | 48 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_memirq.h            |  2 +
- 6 files changed, 99 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  5 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.h               | 10 +++++
+ 7 files changed, 98 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 41880979f4de..5df2ffe3ff83 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -12,6 +12,7 @@
- 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 7621089a47fe..90cbc95f8e2e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -15,6 +15,7 @@
+ #include "xe_dep_scheduler.h"
  #include "xe_device.h"
- #include "xe_device_types.h"
+ #include "xe_gt.h"
 +#include "xe_gt_sriov_vf.h"
- #include "xe_hw_engine.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hw_fence.h"
+@@ -205,17 +206,34 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+ 		flags |= XE_LRC_CREATE_USER_CTX;
  
- #define for_each_hw_engine(hwe__, gt__, id__) \
-@@ -124,4 +125,16 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
- 		hwe->instance == gt->usm.reserved_bcs_instance;
- }
- 
-+/**
-+ * xe_gt_recovery_pending() - GT recovery pending
-+ * @gt: the &xe_gt
-+ *
-+ * Return: True if GT recovery in pending, False otherwise
-+ */
-+static inline bool xe_gt_recovery_pending(struct xe_gt *gt)
-+{
-+	return IS_SRIOV_VF(gt_to_xe(gt)) &&
-+		xe_gt_sriov_vf_recovery_pending(gt);
-+}
++	err = q->ops->init(q);
++	if (err)
++		return err;
 +
- #endif
++	/*
++	 * This must occur after q->ops->init to avoid race conditions during VF
++	 * post-migration recovery, as the fixups for the LRC GGTT addresses
++	 * depend on the queue being present in the backend tracking structure.
++	 *
++	 * In addition to above, we must wait on inflight GGTT changes to avoid
++	 * writing out stale values here. Such wait provides a solid solution
++	 * (without a race) only if the function can detect migration instantly
++	 * from the moment vCPU resumes execution.
++	 */
+ 	for (i = 0; i < q->width; ++i) {
+-		q->lrc[i] = xe_lrc_create(q->hwe, q->vm, SZ_16K, q->msix_vec, flags);
+-		if (IS_ERR(q->lrc[i])) {
+-			err = PTR_ERR(q->lrc[i]);
++		struct xe_lrc *lrc;
++
++		xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
++		lrc = xe_lrc_create(q->hwe, q->vm, xe_lrc_ring_size(),
++				    q->msix_vec, flags);
++		if (IS_ERR(lrc)) {
++			err = PTR_ERR(lrc);
+ 			goto err_lrc;
+ 		}
+-	}
+ 
+-	err = q->ops->init(q);
+-	if (err)
+-		goto err_lrc;
++		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
++		WRITE_ONCE(q->lrc[i], lrc);
++	}
+ 
+ 	return 0;
+ 
+@@ -1121,9 +1139,16 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	int err = 0;
+ 
+ 	for (i = 0; i < q->width; ++i) {
+-		xe_lrc_update_memirq_regs_with_address(q->lrc[i], q->hwe, scratch);
+-		xe_lrc_update_hwctx_regs_with_address(q->lrc[i]);
+-		err = xe_lrc_setup_wa_bb_with_scratch(q->lrc[i], q->hwe, scratch);
++		struct xe_lrc *lrc;
++
++		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
++		lrc = READ_ONCE(q->lrc[i]);
++		if (!lrc)
++			continue;
++
++		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
++		xe_lrc_update_hwctx_regs_with_address(lrc);
++		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+ 		if (err)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index f83d421ac9d3..769d05517f93 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -339,7 +339,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &drm_sched_ops,
+ 		.num_rqs = 1,
+-		.credit_limit = q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES,
++		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
+ 		.hang_limit = XE_SCHED_HANG_LIMIT,
+ 		.timeout = XE_SCHED_JOB_TIMEOUT,
+ 		.name = q->hwe->name,
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 0461d5513487..43cb5fd7b222 100644
+index ced4884d11c3..edd98a4da306 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -26,6 +26,7 @@
- #include "xe_guc_hxg_helpers.h"
- #include "xe_guc_relay.h"
- #include "xe_lrc.h"
-+#include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_sriov_vf.h"
-@@ -776,6 +777,7 @@ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
+@@ -482,6 +482,12 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+ 		xe_tile_sriov_vf_fixup_ggtt_nodes_locked(gt_to_tile(gt), shift);
+ 	}
  
- 	xe_gt_assert(gt, IS_SRIOV_VF(xe));
-+	xe_gt_assert(gt, xe_gt_sriov_vf_recovery_pending(gt));
++	if (xe_sriov_vf_migration_supported(gt_to_xe(gt))) {
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
++		smp_wmb();	/* Ensure above write visible before wake */
++		wake_up_all(&gt->sriov.vf.migration.wq);
++	}
++
+ 	return 0;
+ }
  
- 	set_bit(gt->info.id, &xe->sriov.vf.migration.gt_flags);
- 	/*
-@@ -1118,3 +1120,29 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 	drm_printf(p, "\thandshake:\t%u.%u\n",
- 		   pf_version->major, pf_version->minor);
+@@ -731,7 +737,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+ 	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+-		smp_wmb();	/* Ensure above write visable before wake */
++		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
++		smp_wmb();	/* Ensure above writes visable before wake */
+ 
+ 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
+ 
+@@ -1149,8 +1156,11 @@ static void vf_post_migration_abort(struct xe_gt *gt)
+ {
+ 	spin_lock_irq(&gt->sriov.vf.migration.lock);
+ 	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+ 	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+ 
++	wake_up_all(&gt->sriov.vf.migration.wq);
++
+ 	xe_guc_submit_pause_abort(&gt->uc.guc);
+ }
+ 
+@@ -1259,6 +1269,7 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 	gt->sriov.vf.migration.scratch = buf;
+ 	spin_lock_init(&gt->sriov.vf.migration.lock);
+ 	INIT_WORK(&gt->sriov.vf.migration.worker, migration_worker_func);
++	init_waitqueue_head(&gt->sriov.vf.migration.wq);
+ 
+ 	return 0;
+ }
+@@ -1308,3 +1319,35 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
+ 
+ 	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
  }
 +
-+/**
-+ * xe_gt_sriov_vf_recovery_pending() - VF post migration recovery pending
-+ * @gt: the &xe_gt
-+ *
-+ * The return value of this function must be immediately visible upon vCPU
-+ * unhalt and must persist until RESFIX_DONE is issued. This guarantee is
-+ * currently implemented only for platforms that support memirq. If non-memirq
-+ * platforms begin to support VF migration, this function will need to be
-+ * updated accordingly.
-+ *
-+ * Return: True if VF post migration recovery is pending, False otherwise
-+ */
-+bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
++static bool vf_valid_ggtt(struct xe_gt *gt)
 +{
 +	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
++	bool irq_pending = xe_device_uses_memirq(gt_to_xe(gt)) &&
++		xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc);
 +
 +	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
 +
-+	/* early detection until recovery starts */
-+	if (xe_device_uses_memirq(gt_to_xe(gt)) &&
-+	    xe_memirq_guc_sw_int_0_irq_pending(memirq, &gt->uc.guc))
-+		return true;
++	if (irq_pending || READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
++		return false;
 +
-+	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
++	return true;
++}
++
++/**
++ * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
++ * @gt: the &xe_gt
++ */
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
++{
++	int ret;
++
++	if (!IS_SRIOV_VF(gt_to_xe(gt)) ||
++	    !xe_sriov_vf_migration_supported(gt_to_xe(gt)))
++		return;
++
++	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
++					       vf_valid_ggtt(gt),
++					       HZ * 5);
++	xe_gt_WARN_ON(gt, !ret);
 +}
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-index 0af1dc769fe0..b91ae857e983 100644
+index 1d2eaa52f804..af40276790fa 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
-@@ -25,6 +25,8 @@ void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt);
- int xe_gt_sriov_vf_notify_resfix_done(struct xe_gt *gt);
- void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+@@ -38,4 +38,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
  
-+bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
++void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
 +
- u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
- u16 xe_gt_sriov_vf_guc_ids(struct xe_gt *gt);
- u64 xe_gt_sriov_vf_lmem(struct xe_gt *gt);
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 298dedf4b009..1dfef60ec044 100644
+index bdd9b968f204..420b0e6089de 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -46,6 +46,14 @@ struct xe_gt_sriov_vf_runtime {
- 	} *regs;
+@@ -7,6 +7,7 @@
+ #define _XE_GT_SRIOV_VF_TYPES_H_
+ 
+ #include <linux/types.h>
++#include <linux/wait.h>
+ #include <linux/workqueue.h>
+ #include "xe_uc_fw_types.h"
+ 
+@@ -47,6 +48,8 @@ struct xe_gt_sriov_vf_migration {
+ 	struct work_struct worker;
+ 	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
++	/** @wq: wait queue for migration fixes */
++	wait_queue_head_t wq;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
+ 	/** @recovery_teardown: VF post migration recovery is being torn down */
+@@ -55,6 +58,8 @@ struct xe_gt_sriov_vf_migration {
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
+ 	bool recovery_inprogress;
++	/** @ggtt_need_fixes: VF GGTT needs fixes */
++	bool ggtt_need_fixes;
  };
  
-+/**
-+ * xe_gt_sriov_vf_migration - VF migration data.
-+ */
-+struct xe_gt_sriov_vf_migration {
-+	/** @recovery_inprogress: VF post migration recovery in progress */
-+	bool recovery_inprogress;
-+};
-+
  /**
-  * struct xe_gt_sriov_vf - GT level VF virtualization data.
-  */
-@@ -58,6 +66,8 @@ struct xe_gt_sriov_vf {
- 	struct xe_gt_sriov_vf_selfconfig self_config;
- 	/** @runtime: runtime data retrieved from the PF. */
- 	struct xe_gt_sriov_vf_runtime runtime;
-+	/** @migration: migration data for the VF. */
-+	struct xe_gt_sriov_vf_migration migration;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 0affede05820..2ef9d9aab264 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -397,8 +397,9 @@ void xe_memirq_postinstall(struct xe_memirq *memirq)
- 		memirq_set_enable(memirq, true);
- }
- 
--static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
--			    u16 offset, const char *name)
-+static bool __memirq_received(struct xe_memirq *memirq,
-+			      struct iosys_map *vector, u16 offset,
-+			      const char *name, bool clear)
- {
- 	u8 value;
- 
-@@ -408,12 +409,26 @@ static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
- 			memirq_err_ratelimited(memirq,
- 					       "Unexpected memirq value %#x from %s at %u\n",
- 					       value, name, offset);
--		iosys_map_wr(vector, offset, u8, 0x00);
-+		if (clear)
-+			iosys_map_wr(vector, offset, u8, 0x00);
- 	}
- 
- 	return value;
- }
- 
-+static bool memirq_received_noclear(struct xe_memirq *memirq,
-+				    struct iosys_map *vector,
-+				    u16 offset, const char *name)
-+{
-+	return __memirq_received(memirq, vector, offset, name, false);
-+}
-+
-+static bool memirq_received(struct xe_memirq *memirq, struct iosys_map *vector,
-+			    u16 offset, const char *name)
-+{
-+	return __memirq_received(memirq, vector, offset, name, true);
-+}
-+
- static void memirq_dispatch_engine(struct xe_memirq *memirq, struct iosys_map *status,
- 				   struct xe_hw_engine *hwe)
- {
-@@ -433,8 +448,16 @@ static void memirq_dispatch_guc(struct xe_memirq *memirq, struct iosys_map *stat
- 	if (memirq_received(memirq, status, ilog2(GUC_INTR_GUC2HOST), name))
- 		xe_guc_irq_handler(guc, GUC_INTR_GUC2HOST);
- 
--	if (memirq_received(memirq, status, ilog2(GUC_INTR_SW_INT_0), name))
-+	/*
-+	 * This is a software interrupt that must be cleared after it's consumed
-+	 * to avoid race conditions where xe_gt_sriov_vf_recovery_pending()
-+	 * returns false.
-+	 */
-+	if (memirq_received_noclear(memirq, status, ilog2(GUC_INTR_SW_INT_0),
-+				    name)) {
- 		xe_guc_irq_handler(guc, GUC_INTR_SW_INT_0);
-+		iosys_map_wr(status, ilog2(GUC_INTR_SW_INT_0), u8, 0x00);
-+	}
- }
- 
- /**
-@@ -459,6 +482,23 @@ void xe_memirq_hwe_handler(struct xe_memirq *memirq, struct xe_hw_engine *hwe)
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 0a9080bba50b..b4c09604c5ea 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1670,7 +1670,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	timeout = (q->vm && xe_vm_in_lr_mode(q->vm)) ? MAX_SCHEDULE_TIMEOUT :
+ 		  msecs_to_jiffies(q->sched_props.job_timeout_ms);
+ 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+-			    NULL, q->lrc[0]->ring.size / MAX_JOB_SIZE_BYTES, 64,
++			    NULL, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+ 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			    q->name, gt_to_xe(q->gt)->drm.dev);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 21a3daab0154..2fb628da5c43 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -76,6 +76,16 @@ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
  }
  
 +/**
-+ * xe_memirq_guc_sw_int_0_irq_pending() - SW_INT_0 IRQ is pending
-+ * @memirq: the &xe_memirq
-+ * @guc: the &xe_guc to check for IRQ
++ * xe_lrc_ring_size() - Xe LRC ring size
 + *
-+ * Return: True if SW_INT_0 IRQ is pending on @guc, False otherwise
++ * Return: Size of LRC ring buffer
 + */
-+bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc)
++static inline size_t xe_lrc_ring_size(void)
 +{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 offset = xe_gt_is_media_type(gt) ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
-+	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&memirq->status, offset * SZ_16);
-+
-+	return memirq_received_noclear(memirq, &map, ilog2(GUC_INTR_SW_INT_0),
-+				       guc_name(guc));
++	return SZ_16K;
 +}
 +
- /**
-  * xe_memirq_handler - The `Memory Based Interrupts`_ Handler.
-  * @memirq: the &xe_memirq
-diff --git a/drivers/gpu/drm/xe/xe_memirq.h b/drivers/gpu/drm/xe/xe_memirq.h
-index 06130650e9d6..e25d2234ab87 100644
---- a/drivers/gpu/drm/xe/xe_memirq.h
-+++ b/drivers/gpu/drm/xe/xe_memirq.h
-@@ -25,4 +25,6 @@ void xe_memirq_handler(struct xe_memirq *memirq);
- 
- int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc);
- 
-+bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc *guc);
-+
- #endif
+ size_t xe_gt_lrc_size(struct xe_gt *gt, enum xe_engine_class class);
+ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc);
+ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
 -- 
 2.34.1
 
