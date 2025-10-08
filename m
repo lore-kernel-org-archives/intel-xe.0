@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30E97CCD190
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E49F0CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:45:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D9F10E8F8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5DF10E8F6;
 	Wed,  8 Oct 2025 21:45:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q7MGh9wu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lALE4PC/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7159610E89B
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98A1910E89D
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759959941; x=1791495941;
+ t=1759959942; x=1791495942;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xf/V92XwtRk1SA2w74BRoAP1Cioc4CR0QnEpxaomIuY=;
- b=Q7MGh9wuZ5XYgc9AYKrfNO3I+vixJpSocgMNci4uKt9Ju29P9INLvt+M
- joDra9/mWCWMWYNLVXkopJNDz1xQM/dqhzlbdbGWXKVyr6AltglhU+83K
- gDLrRzzomuQu5qL12CQgcbCDwrSexK7wWwdREFS7cTnIExIkrZ5dAdJuk
- MoGO93w0MfYg6pcJZgyuyzIQlexvm8edMHuCKCBaj2MIvI2+ssQj2dEtP
- pPyZdkpSxGOZPyR1GiviEsjM1lS8CCP8kn7Qsyc3e48uHR88eaAnm4nz8
- YUE3pCd2lED0iGK9wZlpJ6lWzS9vp6mDCDXjCpP5wkOqqs+RvunolKQ4f A==;
-X-CSE-ConnectionGUID: VBQi+mYeRYacDGvHvA8Bpw==
-X-CSE-MsgGUID: QwixMih1SZmCIJ4BIbBSzA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726848"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726848"
+ bh=OPLVQSZaBQGuMhmtmRCaF9A9UgXThx9kJWENuvBLCH4=;
+ b=lALE4PC/b85P9dCFFzHtq+ACvIXgN0Q9uHTGFoq/nf0ZDoLwYakXMcLk
+ ur0ddKW4n8bUPOnxyUKILPppXSm4bmFzXnNi8bZnqA/eY4+4D1MqKco1x
+ YAcZPrGGm3ikvioSAoH8kalgcvvWX94aXDYevVClmpDXzlIAG7+2lOloD
+ mev51qgAFuil876as/dF8sBHMzP9kReH5XCLeeJiWmsBS+73hlH80plmX
+ rQqWvQKYj/cbFWsHbtmRtD4952EZ9foIAR0rmbI/lrmQ6ySk98PHliVce
+ i3GCQ4vod0Q3ef+aMGhfI3AZDJBzEKix4sdAKXYZXlo6Lq83oBa1u9kpW w==;
+X-CSE-ConnectionGUID: ptSqjCGQQ++Wb0lcllDbDg==
+X-CSE-MsgGUID: eYgCBesjTuS98zyyKhSQuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726860"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726860"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:40 -0700
-X-CSE-ConnectionGUID: eEhHiO6ITgqgSfx6mXaymQ==
-X-CSE-MsgGUID: i+JWt5N5T4+HURRPt/VY3w==
+ 08 Oct 2025 14:45:41 -0700
+X-CSE-ConnectionGUID: ZWePMWBSSQCr/v1ug624oA==
+X-CSE-MsgGUID: 9qbgcLNST/mtFNOJKuiFeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635185"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635195"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:36 -0700
+ 08 Oct 2025 14:45:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 06/34] drm/xe: Don't change LRC ring head on job
- resubmission
-Date: Wed,  8 Oct 2025 14:45:04 -0700
-Message-Id: <20251008214532.3442967-7-matthew.brost@intel.com>
+Subject: [PATCH v10 15/34] drm/xe/vf: Teardown VF post migration worker on
+ driver unload
+Date: Wed,  8 Oct 2025 14:45:13 -0700
+Message-Id: <20251008214532.3442967-16-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
@@ -66,58 +66,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we save the job's head during submission, it's no longer
-necessary to adjust the LRC ring head during resubmission. Instead, a
-software-based adjustment of the tail will overwrite the old jobs in
-place. For some odd reason, adjusting the LRC ring head didn't work on
-parallel queues, which was causing issues in our CI.
+Be cautious and ensure the VF post-migration worker is not running
+during driver unload.
 
-v5:
- - Add comment in guc_exec_queue_start explaning why the function works
-   (Auld)
-v7:
- - Only adjust first state on first unsignaled job (Auld)
-v8:
- - Break unsignaled job handling to separate patch (Auld)
+v3:
+ - More teardown later in driver init, use devm (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c                |  6 ++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 34 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 ++-
+ 4 files changed, 43 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 3a534d93505f..d123bdb63369 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2008,11 +2008,25 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
- 	struct xe_gpu_scheduler *sched = &q->guc->sched;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 2bdc1cdf24a5..d713b649447b 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -651,6 +651,12 @@ int xe_gt_init(struct xe_gt *gt)
+ 	if (err)
+ 		return err;
  
- 	if (!exec_queue_killed_or_banned_or_wedged(q)) {
-+		struct xe_sched_job *job = xe_sched_first_pending_job(sched);
- 		int i;
++	if (IS_SRIOV_VF(gt_to_xe(gt))) {
++		err = xe_gt_sriov_vf_init(gt);
++		if (err)
++			return err;
++	}
++
+ 	return 0;
+ }
  
- 		trace_xe_exec_queue_resubmit(q);
--		for (i = 0; i < q->width; ++i)
--			xe_lrc_set_ring_head(q->lrc[i], q->lrc[i]->ring.tail);
-+		if (job) {
-+			for (i = 0; i < q->width; ++i) {
-+				/*
-+				 * The GuC context is unregistered at this point
-+				 * time, adjusting software ring tail ensures
-+				 * jobs are rewritten in original placement,
-+				 * adjusting LRC tail ensures the newly loaded
-+				 * GuC / contexts only view the LRC tail
-+				 * increasing as jobs are written out.
-+				 */
-+				q->lrc[i]->ring.tail = job->ptrs[i].head;
-+				xe_lrc_set_ring_tail(q->lrc[i],
-+						     xe_lrc_ring_head(q->lrc[i]));
-+			}
-+		}
- 		xe_sched_resubmit_jobs(sched);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index a16f33fea4fc..1aae4e40a366 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -725,7 +725,8 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
  
+ 	spin_lock(&gt->sriov.vf.migration.lock);
+ 
+-	if (!gt->sriov.vf.migration.recovery_queued) {
++	if (!gt->sriov.vf.migration.recovery_queued ||
++	    !gt->sriov.vf.migration.recovery_teardown) {
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+ 
+@@ -1206,6 +1207,17 @@ static void migration_worker_func(struct work_struct *w)
+ 	vf_post_migration_recovery(gt);
+ }
+ 
++static void vf_migration_fini(void *arg)
++{
++	struct xe_gt *gt = arg;
++
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	gt->sriov.vf.migration.recovery_teardown = true;
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	cancel_work_sync(&gt->sriov.vf.migration.worker);
++}
++
+ /**
+  * xe_gt_sriov_vf_init_early() - GT VF init early
+  * @gt: the &xe_gt
+@@ -1232,6 +1244,26 @@ int xe_gt_sriov_vf_init_early(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++/**
++ * xe_gt_sriov_vf_init() - GT VF init
++ * @gt: the &xe_gt
++ *
++ * Return 0 on success, errno on failure
++ */
++int xe_gt_sriov_vf_init(struct xe_gt *gt)
++{
++	if (!xe_sriov_vf_migration_supported(gt_to_xe(gt)))
++		return 0;
++
++	/*
++	 * We want to tear down the VF post-migration early during driver
++	 * unload; therefore, we add this finalization action later during
++	 * driver load.
++	 */
++	return devm_add_action_or_reset(gt_to_xe(gt)->drm.dev,
++					vf_migration_fini, gt);
++}
++
+ /**
+  * xe_gt_sriov_vf_recovery_pending() - VF post migration recovery pending
+  * @gt: the &xe_gt
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+index 2eb793a2d8ba..1d2eaa52f804 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+@@ -24,6 +24,7 @@ int xe_gt_sriov_vf_query_runtime(struct xe_gt *gt);
+ void xe_gt_sriov_vf_migrated_event_handler(struct xe_gt *gt);
+ 
+ int xe_gt_sriov_vf_init_early(struct xe_gt *gt);
++int xe_gt_sriov_vf_init(struct xe_gt *gt);
+ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt);
+ 
+ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+index 0d9e217989af..bdd9b968f204 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+@@ -45,10 +45,12 @@ struct xe_gt_sriov_vf_runtime {
+ struct xe_gt_sriov_vf_migration {
+ 	/** @migration: VF migration recovery worker */
+ 	struct work_struct worker;
+-	/** @lock: Protects recovery_queued */
++	/** @lock: Protects recovery_queued, teardown */
+ 	spinlock_t lock;
+ 	/** @scratch: Scratch memory for VF recovery */
+ 	void *scratch;
++	/** @recovery_teardown: VF post migration recovery is being torn down */
++	bool recovery_teardown;
+ 	/** @recovery_queued: VF post migration recovery in queued */
+ 	bool recovery_queued;
+ 	/** @recovery_inprogress: VF post migration recovery in progress */
 -- 
 2.34.1
 
