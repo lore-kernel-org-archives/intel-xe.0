@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844B2CCA470
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 11:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E7FDCAC5BB
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 11:11:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEBD10E0EE;
-	Wed,  8 Oct 2025 11:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03B6A10E30D;
+	Wed,  8 Oct 2025 11:11:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M+BnSxBn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dF0OZ+Bv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 860BE10E0EE
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 11:11:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FDAE10E30D
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 11:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759921872; x=1791457872;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5yqtfouQ+OrWEKf1g4xXHPeJOZjzy0EflOYcc9cOBUc=;
- b=M+BnSxBnXARHHsrS/mNA8pmPES4ED3V0NUqFPw++/QUp1qjxDZHaPA1B
- cOGludwFb8rYnU0DYikJTfVTM0W/zUUv9EpgSYo+BfBfOofxkrSwKjBj7
- rv8laLNS0Q2SNKITznB+1czL11vo2WlGMQHg3UU1Llt16CHi3rHJcFiGz
- esMqZ+td4j2KVQ1UEsLj0GHXzWi8lZ0jCp42BfHFn8H3+15nW63PVSwXR
- tc0gUlLEtdHxy8rVwekzfpgK6eBfG9IltMuxaQMNxvwkBlux677G/VY9A
- +4CxZHOOZY+qcdA8c9iXopf2SUwFROavRTpg9upGhHfu0Mz2Nrv4mjLeO Q==;
-X-CSE-ConnectionGUID: FFIrIZBiQSmjKf2ROXUx2g==
-X-CSE-MsgGUID: 4PV99ADmTlKVLMeWpJmNRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62154434"
-X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="62154434"
+ t=1759921873; x=1791457873;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=n/cIJtId66b5NFwru5ZPadg6Ij5eTi04mCC2MNNU4ZE=;
+ b=dF0OZ+BvLSlkG8rkKfcLGzMV3S2PN0+kEXVH/GOsqkvq5vgH/1V/0v7C
+ AAFmQepXz6Dd1vRbQFTybdZHPGWdUfz72L+uIHUnsZvD1Wzu6RqRAC2Rb
+ Yd6Fcq6u2dHUtbnZqUK6uCcm0oe+ckkWgJwaXx1aGPVbNzwjrJKGcHmFx
+ O9i3b2EgW45/M1x1UTGXer/Vohdx9EmqcK+qd+WOYl6sZ8T4l8s5pCwjy
+ rf4juvlYvDLRE/8ARiBfsQBQLBG1SJQALG9a6wDsYSejFbYK/YeL9FNd3
+ Wj+7pVWKmFyU+wdXCMHEE8dlBR4DlCkf0j6xqmmZzW1sHXwvzoJz/Larc w==;
+X-CSE-ConnectionGUID: Tw7RrMaSQ3ilwrVJ2UD34g==
+X-CSE-MsgGUID: Od6wiheZTGWefRwfmhSsSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="62154436"
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="62154436"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 04:11:12 -0700
-X-CSE-ConnectionGUID: c4V6lGP8Q6CW3sNPdOqDcQ==
-X-CSE-MsgGUID: Fu07C0xlT4SxjhUr/aGcPA==
+ 08 Oct 2025 04:11:13 -0700
+X-CSE-ConnectionGUID: XBSBQhVDTxCKnvJwQThkyw==
+X-CSE-MsgGUID: B2F+kLsYSeKMzA1lCBgIrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="211358684"
+X-IronPort-AV: E=Sophos;i="6.19,323,1754982000"; d="scan'208";a="211358689"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
  ([10.245.244.126])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 04:11:10 -0700
+ 08 Oct 2025 04:11:12 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH 0/2] SVM migration fixes
-Date: Wed,  8 Oct 2025 13:10:48 +0200
-Message-ID: <20251008111050.293151-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 1/2] drm/xe/svm: Ensure data will be migrated to system if
+ indicated by madvise.
+Date: Wed,  8 Oct 2025 13:10:49 +0200
+Message-ID: <20251008111050.293151-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251008111050.293151-1-thomas.hellstrom@linux.intel.com>
+References: <20251008111050.293151-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,27 +72,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Two small migration fixes. The first patch ensures
-data is migrated to system on faults when there is
-an madvise for the system location.
+If the location madvise() is set to
+DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM, the drm_pagemap in the
+SVM gpu fault handler will be set to NULL. However there is nothing
+that explicitly migrates the data to system if it is already present
+in device memory.
 
-The second allows userptr data that was put in VRAM
-by SVM migration to remain in VRAM also for
-userptr maps.
+In that case, set the device memory owner to NULL to ensure
+data gets properly migrated to system on page-fault.
 
-Matthew Brost (1):
-  drm/xe: Allow mixed mappings for userptr
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_svm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thomas Hellström (1):
-  drm/xe/svm: Ensure data will be migrated to system if indicated by
-    madvise.
-
- drivers/gpu/drm/drm_gpusvm.c    | 6 ++++--
- drivers/gpu/drm/xe/xe_svm.c     | 3 +++
- drivers/gpu/drm/xe/xe_userptr.c | 4 +++-
- include/drm/drm_gpusvm.h        | 4 ++++
- 4 files changed, 14 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 7e2db71ff34e..fd906eb03d71 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1034,6 +1034,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (err)
+ 		return err;
+ 
++	dpagemap = xe_vma_resolve_pagemap(vma, tile);
++	if (!dpagemap && !ctx.devmem_only)
++		ctx.device_private_page_owner = NULL;
+ 	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
+ 
+ 	if (IS_ERR(range))
 -- 
 2.51.0
 
