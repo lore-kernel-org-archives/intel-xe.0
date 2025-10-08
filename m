@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEEEECCD187
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7844ACCD184
 	for <intel-xe@archiver.kernel.org>; Wed,  8 Oct 2025 21:46:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8154510E8A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1E310E916;
 	Wed,  8 Oct 2025 21:46:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qi/gPhJI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L+6pZFPN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55E3910E8E7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF4310E8E7
  for <intel-xe@lists.freedesktop.org>; Wed,  8 Oct 2025 21:45:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1759959943; x=1791495943;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=8LWKFMg9LfYFmBSq6AT5f/H9MBQ76h+V+cJ51WWXoNI=;
- b=Qi/gPhJIyXJXd5fwIw6IxsMbDiMVZDyRLzOxVsyWXfqTqV17RCkwLiW5
- J1430R12GRyiarlNUWGjJ/1LFPffj54ZQ+BY6bV6DzFoSTMuJGhbWdEsB
- laEwHfBuvGAxFej5Nqg71wxEtFMYjXiGfQ+eVm5z3bEuv8DF+9mxKPPoN
- Sb006almwvRSiN7IuPU6/mkC9ZtZ42TLeU42oITgvJSd7jCIKpgdhLvEB
- O1xT5ubOsp5pr26wo1adtieYqK1Aghmut1izO/gsvt0oTPBz2BeEaxIWu
- dQ0fGcYC+QF6X5O+vBDHxubPut4Cii4qqhwgd1Zia+1rmeLu2Fhoive66 A==;
-X-CSE-ConnectionGUID: zYPSINfjSR6M8f9Sul+Iuw==
-X-CSE-MsgGUID: x6b+ag+mRiGcNz+mm6vVtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726866"
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726866"
+ bh=ZnqH/kvjny3xYhd0UkKq9nblomzhaJcONY8Q0lK2V+M=;
+ b=L+6pZFPNiexyraTUZ1vbvNQulAkYoALybHg5VPpY1rExxwMKdlTae7kT
+ lyPOLmHsfBEXllgeHoKAtOyqgRg1vFyLfq3j5RUYN+vF+GCbCwRY//MB8
+ J2pjh/F8jBkEIpha/KJ9wYNwXjZMNXYAExrUkMkSp2zRt8ivcXWb2+V5A
+ 3nvKCNrtFgc0vFVZ4wYY9LVXJpNoZFBXbSFueGNaaAFjFVfVw12oz5Ezs
+ AdJmusvGlcx5WWzAYb895CH6fUnhCS9A8THACYLj63NVM2ViO0POc6ewl
+ sr2rWLju4KKvgDZBE4/P4PrsAGNMjLYXpTIW78wTqXgfzG2t66ztt9pKw w==;
+X-CSE-ConnectionGUID: Ci/Hnzo2SNyTowYm9cOsQw==
+X-CSE-MsgGUID: MQDZffK6QLSnUpPkDjQGuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="49726870"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="49726870"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2025 14:45:41 -0700
-X-CSE-ConnectionGUID: 2I8JYkFKRu21JMuMcbsZTA==
-X-CSE-MsgGUID: 6+Iaqle/Q1+QJW5/PHd6uQ==
+ 08 Oct 2025 14:45:42 -0700
+X-CSE-ConnectionGUID: r0UyV2XBQyu76EsD+gv0Ug==
+X-CSE-MsgGUID: rNdE6IrNRsWR1+HPLFApXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635202"
+X-IronPort-AV: E=Sophos;i="6.19,214,1754982000"; d="scan'208";a="217635207"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2025 14:45:37 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v10 21/34] drm/xe/vf: Reset TLB invalidations during VF post
- migration recovery
-Date: Wed,  8 Oct 2025 14:45:19 -0700
-Message-Id: <20251008214532.3442967-22-matthew.brost@intel.com>
+Subject: [PATCH v10 25/34] drm/xe/vf: Abort VF post migration recovery on
+ failure
+Date: Wed,  8 Oct 2025 14:45:23 -0700
+Message-Id: <20251008214532.3442967-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251008214532.3442967-1-matthew.brost@intel.com>
 References: <20251008214532.3442967-1-matthew.brost@intel.com>
@@ -66,43 +66,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TLB invalidations requests can be lost during VF post-migration
-recovery. Since the VF has migrated, these invalidations are no longer
-needed.
-
-Reset the TLB invalidation frontend, which will signal all pending
-fences.
+If VF post-migration recovery fails, the device is wedged. However,
+submission queues still need to be enabled for proper cleanup. In such
+cases, call into the GuC submission backend to restart all queues that
+were previously paused.
 
 v3:
- - Move TLB invalidation reset after pausing submission (Tomasz)
- - Adjust commit message (Michal)
+ - s/Avort/Abort (Tomasz)
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h  |  1 +
+ 3 files changed, 31 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index e6f6a5c8ef1b..75a20de71d8b 100644
+index 321178b6022a..3b6f56062e21 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -35,6 +35,7 @@
- #include "xe_sriov.h"
- #include "xe_sriov_vf.h"
- #include "xe_tile_sriov_vf.h"
-+#include "xe_tlb_inval.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
- 
-@@ -1107,6 +1108,7 @@ static void vf_post_migration_shutdown(struct xe_gt *gt)
- 
- 	xe_guc_ct_flush_and_stop(&gt->uc.guc.ct);
- 	xe_guc_submit_pause(&gt->uc.guc);
-+	xe_tlb_inval_reset(&gt->tlb_inval);
+@@ -1144,6 +1144,15 @@ static void vf_post_migration_kickstart(struct xe_gt *gt)
+ 	xe_guc_submit_unpause(&gt->uc.guc);
  }
  
- static size_t post_migration_scratch_size(struct xe_device *xe)
++static void vf_post_migration_abort(struct xe_gt *gt)
++{
++	spin_lock_irq(&gt->sriov.vf.migration.lock);
++	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
++	spin_unlock_irq(&gt->sriov.vf.migration.lock);
++
++	xe_guc_submit_pause_abort(&gt->uc.guc);
++}
++
+ static int vf_post_migration_notify_resfix_done(struct xe_gt *gt)
+ {
+ 	bool skip_resfix = false;
+@@ -1202,6 +1211,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
+ 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
+ 	return;
+ fail:
++	vf_post_migration_abort(gt);
+ 	xe_pm_runtime_put(xe);
+ 	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+ 	xe_device_declare_wedged(xe);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7f0ea35f4f0a..be410a7126c7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2098,6 +2098,26 @@ void xe_guc_submit_unpause(struct xe_guc *guc)
+ 	wake_up_all(&guc->ct.wq);
+ }
+ 
++/**
++ * xe_guc_submit_pause_abort - Abort all paused submission task on given GuC.
++ * @guc: the &xe_guc struct instance whose scheduler is to be aborted
++ */
++void xe_guc_submit_pause_abort(struct xe_guc *guc)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++
++	mutex_lock(&guc->submission_state.lock);
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_submission_start(sched);
++		if (exec_queue_killed_or_banned_or_wedged(q))
++			xe_guc_exec_queue_trigger_cleanup(q);
++	}
++	mutex_unlock(&guc->submission_state.lock);
++}
++
+ static struct xe_exec_queue *
+ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index f535fe3895e5..fe82c317048e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -22,6 +22,7 @@ void xe_guc_submit_stop(struct xe_guc *guc);
+ int xe_guc_submit_start(struct xe_guc *guc);
+ void xe_guc_submit_pause(struct xe_guc *guc);
+ void xe_guc_submit_unpause(struct xe_guc *guc);
++void xe_guc_submit_pause_abort(struct xe_guc *guc);
+ void xe_guc_submit_wedge(struct xe_guc *guc);
+ 
+ int xe_guc_read_stopped(struct xe_guc *guc);
 -- 
 2.34.1
 
