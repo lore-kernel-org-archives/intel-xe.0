@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73260CCD184
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 18:52:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98148CCD184
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 18:57:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3826B10EAF5;
-	Thu,  9 Oct 2025 18:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5269810EAEF;
+	Thu,  9 Oct 2025 18:57:57 +0000 (UTC)
 Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B78BD10EAF5;
- Thu,  9 Oct 2025 18:52:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3963556843948091021=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAC0910EAEF;
+ Thu,  9 Oct 2025 18:57:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Refresh_RPe_f?=
- =?utf-8?q?requency_while_setting_min_frequency?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Enable_media_sa?=
+ =?utf-8?q?mpler_power_gating_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sk Anirban" <sk.anirban@intel.com>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Oct 2025 18:52:53 -0000
-Message-ID: <176003597374.25093.6382111993899388343@6aec98b87f92>
+Date: Thu, 09 Oct 2025 18:57:55 -0000
+Message-ID: <176003627589.25094.11881316631738052175@6aec98b87f92>
 X-Patchwork-Hint: ignore
-References: <20251009180853.578184-2-sk.anirban@intel.com>
-In-Reply-To: <20251009180853.578184-2-sk.anirban@intel.com>
+References: <20251009184235.1929975-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20251009184235.1929975-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,45 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3963556843948091021==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Refresh RPe frequency while setting min frequency
-URL   : https://patchwork.freedesktop.org/series/155699/
-State : success
+Series: drm/xe: Enable media sampler power gating (rev3)
+URL   : https://patchwork.freedesktop.org/series/155564/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3892-7896357960ab49751bdda502f7838b51730f9b51_BAT -> xe-pw-155699v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 259f44e938236aabb12df7951ca47b1dfb954815
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Thu Oct 9 11:42:35 2025 -0700
 
-Summary
--------
+    drm/xe: Enable media sampler power gating
+    
+    Where applicable, enable media sampler power gating. Also, add
+    it to the powergate_info debugfs.
+    
+    v2: Remove the sampler powergate status since it is cleared quickly anyway.
+    v3: Use vcs mask (Rodrigo) and fix the version check for media
+    
+    Fixes: 38e8c4184ea0 ("drm/xe: Enable Coarse Power Gating")
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 23e7752f903fec07634c72b778a733cf4ed17656 drm-intel
+259f44e93823 drm/xe: Enable media sampler power gating
+-:46: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#46: FILE: drivers/gpu/drm/xe/xe_gt_idle.c:130:
+ 
++
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3892-7896357960ab49751bdda502f7838b51730f9b51 -> xe-pw-155699v1
-
-  IGT_8581: 8581
-  xe-3892-7896357960ab49751bdda502f7838b51730f9b51: 7896357960ab49751bdda502f7838b51730f9b51
-  xe-pw-155699v1: 155699v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155699v1/index.html
-
---===============3963556843948091021==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 36 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Refresh RPe frequency while setting min frequency</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155699/">https://patchwork.freedesktop.org/series/155699/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155699v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155699v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3892-7896357960ab49751bdda502f7838b51730f9b51_BAT -&gt; xe-pw-155699v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3892-7896357960ab49751bdda502f7838b51730f9b51 -&gt; xe-pw-155699v1</li>
-</ul>
-<p>IGT_8581: 8581<br />
-  xe-3892-7896357960ab49751bdda502f7838b51730f9b51: 7896357960ab49751bdda502f7838b51730f9b51<br />
-  xe-pw-155699v1: 155699v1</p>
-
-</body>
-</html>
-
---===============3963556843948091021==--
