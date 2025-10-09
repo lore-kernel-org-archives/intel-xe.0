@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03FF9CCD184
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 21:57:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B416CCD183
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 21:57:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAE4F10E24B;
-	Thu,  9 Oct 2025 21:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C03210EB2C;
+	Thu,  9 Oct 2025 21:57:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iV5WWK6r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1qlV56g";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D35010E24B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38C8310EB2C
  for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 21:57:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760047071; x=1791583071;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zR2EU9mB7DLVecmx1NRNcDR8M3Ix0fil9mE6OI0yvrk=;
- b=iV5WWK6rMMlf4OI5Xz0yvs2MdZdRM6JWb9o1kv0OzDlA8GkgoB5/8s9t
- RQnKqTlAgARSfL6glxsdcS3mmd50kNzciH2amC4oAJLTYPMZjldlMC/Ea
- Q7Qmu8qaDjelt95qg5sPoOHePA2hg4wqJB+ENKvTAEZ5Z66wzOY2fy7Ra
- bhzNjNKxOQm9ruB64BNXZJEfZcfMvPOnLWS5kLkqviX4quRJrVxiy0o7n
- mURR02ONkzHz9dRc/eUh12xkxUtbF4QNLzv2RS+9r0SP2tTPzp8ji4Tbo
- lLnH26aRIlVoOQ0+SC5BdTeWO1BSy8IadOxwHIFQS16qlfTp8aBUN8l07 Q==;
-X-CSE-ConnectionGUID: JXslosIPTNCau5MpPqX22g==
-X-CSE-MsgGUID: V5jqvwa1T1G9tItWfpzU0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="64889885"
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="64889885"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Tz2LanOmHXkZZtmuDAa7CgNdJNsE50yoZgW+6KOPoNQ=;
+ b=b1qlV56gXZBL7mVaQGv0FuubIitROsEPaAKGIFbobzyu4NQGhFVG2bfY
+ MTRS6BH3RgXA706wqGwwpOHylQhVxYtFSPVSXG0VGlrn5/OBk0EOP3QCQ
+ o7uzwuGjx3yb2mguH/6z9M1B+7BRjVndmOhC4l6OfZe8kKOUwRPZ+E2Cs
+ ++xFi41bxa3fpev9A5sNoCcIagHJOdiHyeckSy7yvvWckuXrVkQf94D4p
+ pzaMl5zTxOREpDd0F89IbONVQqBm4MX/Sg/UFGbGR6/9tRD40gIBe99/f
+ p5Y0Bh4Y0ZW5FPWBT5haKkj01eQ+FfK1sR3andCZxVe7Z1kljMOi/3GnY A==;
+X-CSE-ConnectionGUID: /2o9quGNR72eN3hYrZk3nw==
+X-CSE-MsgGUID: MnRLCU24T1itCY2OQFkwoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="64889887"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="64889887"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Oct 2025 14:57:51 -0700
-X-CSE-ConnectionGUID: 77xqd4rWQNeVK+wYHr5+UQ==
-X-CSE-MsgGUID: /PICHzhwRtOgvEiI1rg9Lg==
+X-CSE-ConnectionGUID: ajsrYLR9Sh653f2OAJCS8g==
+X-CSE-MsgGUID: jR+H0WLpSeiSflHhDSiY7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185199879"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="185199882"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
  by fmviesa005.fm.intel.com with ESMTP; 09 Oct 2025 14:57:51 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, Zhanjun Dong <zhanjun.dong@intel.com>,
- michal.wajdeczko@intel.com
-Subject: [PATCH v5 0/2] drm/xe/guc: Cleanup GuC log buffer macros and helpers
-Date: Thu,  9 Oct 2025 17:57:47 -0400
-Message-Id: <20251009215749.378905-1-zhanjun.dong@intel.com>
+Cc: lucas.demarchi@intel.com,
+	Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v5 1/2]  drm/xe/guc: Update GuC log buffer type value
+Date: Thu,  9 Oct 2025 17:57:48 -0400
+Message-Id: <20251009215749.378905-2-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251009215749.378905-1-zhanjun.dong@intel.com>
+References: <20251009215749.378905-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,34 +66,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cleanup GuC log buffer macros and helpers, add Xe style macro prefix.
-Update buffer type values to align with the GuC specification
+Update GuC log buffer type value, to align with the GuC specification.
+Update buffer offset calulation.
+
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
-Cc: michal.wajdeczko@intel.com
----
-Change list:
-v5: Change patch order
-    Sync macro names across buffer type, size and GUC_CTL_LOG_PARAMS
-    Replace guc_log_size with macro
-    Update log buffer layout comments
-v4: Replace helper functions with macros
-    Rename log type xxx_DEBUG to xxx_EVENT_LOG
-v3: Update comments
-v2: Use SZ_4K, instead of PAGE_SIZE
-    Expand for loop with switch and fallthrough
+ drivers/gpu/drm/xe/abi/guc_log_abi.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c      | 13 +++++++++----
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-Zhanjun Dong (2):
-  drm/xe/guc: Update GuC log buffer type value
-  drm/xe/guc: Add prefix to guc log buffer macros
-
- drivers/gpu/drm/xe/abi/guc_log_abi.h |   4 +-
- drivers/gpu/drm/xe/xe_guc.c          |  23 ++---
- drivers/gpu/drm/xe/xe_guc_capture.c  |  16 ++--
- drivers/gpu/drm/xe/xe_guc_fwif.h     |   6 +-
- drivers/gpu/drm/xe/xe_guc_log.c      | 126 +++++++++++----------------
- drivers/gpu/drm/xe/xe_guc_log.h      |  14 ++-
- 6 files changed, 80 insertions(+), 109 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+index 554630b7ccd9..b1819679fa35 100644
+--- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -10,8 +10,8 @@
+ 
+ /* GuC logging buffer types */
+ enum guc_log_buffer_type {
+-	GUC_LOG_BUFFER_CRASH_DUMP,
+ 	GUC_LOG_BUFFER_DEBUG,
++	GUC_LOG_BUFFER_CRASH_DUMP,
+ 	GUC_LOG_BUFFER_CAPTURE,
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index c01ccb35dc75..b5d837efaf74 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -330,10 +330,15 @@ u32 xe_guc_get_log_buffer_offset(struct xe_guc_log *log, enum guc_log_buffer_typ
+ 	enum guc_log_buffer_type i;
+ 	u32 offset = PAGE_SIZE;/* for the log_buffer_states */
+ 
+-	for (i = GUC_LOG_BUFFER_CRASH_DUMP; i < GUC_LOG_BUFFER_TYPE_MAX; ++i) {
+-		if (i == type)
+-			break;
+-		offset += xe_guc_get_log_buffer_size(log, i);
++	switch (type) {
++	case GUC_LOG_BUFFER_CAPTURE:
++		offset += XE_GUC_LOG_CRASH_BUFFER_SIZE;
++		fallthrough;
++	case GUC_LOG_BUFFER_CRASH_DUMP:
++		offset += XE_GUC_LOG_EVENT_LOG_BUFFER_SIZE;
++		fallthrough;
++	case GUC_LOG_BUFFER_EVENT_LOG:
++		break;
+ 	}
+ 
+ 	return offset;
 -- 
 2.34.1
 
