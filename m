@@ -4,186 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B5A6CCD184
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 20:35:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3988CCCD183
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 20:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B7710EB0C;
-	Thu,  9 Oct 2025 20:35:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE30710E20D;
+	Thu,  9 Oct 2025 20:47:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OPON7AVM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvRKxkzc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2200210EB0C
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 20:35:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73A9210EB18
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 20:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760042105; x=1791578105;
+ t=1760042879; x=1791578879;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=/wzdDU2oMcQvmepVUanbC8AUlE8gPZjqTrfSNxRHj/w=;
- b=OPON7AVMjs4fOsDfWfyBpzgmBsQa/dLs+gwPDD4M+eIO0ICcSp2ESuOR
- c6m11L96So1ChmDHjE0sHuiCZpyOqpJf1yrmwiTXINMOQHsJYusD93B5K
- hP1/IgL95blz8cziLKyxYjohosKMWVlsscjZ4CDlRzzY8RHl76RrNAG8H
- nOD04pvqFwK7XcUP61d3lZzw2zb5q4/4hhChZq6Wjo3lA2pOiTIqvagte
- ld7Igi78ej8a6xc3WcTpt9GzPFoJeLvtilhiz/KDpdleavVUPVGBjYBGM
- IkiNB8uvJ0QNY0fLaS3imiWwOUSwQB9xlysyRe4rTyNJujJzvi4Pt2SSf Q==;
-X-CSE-ConnectionGUID: +OnNdakHQ0yQCPeB4BxqYg==
-X-CSE-MsgGUID: jN1Mz6HeQtCJ5Pjap9QlCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="66093663"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="66093663"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 13:35:05 -0700
-X-CSE-ConnectionGUID: wg1aKJ7tQTqp7WGcwygNew==
-X-CSE-MsgGUID: 8/fMYavVS6S1dLY8p+Q3xQ==
+ bh=Dt4iP/MvAsaWTZ96CftESqFshc5Mt59Sq3/lExw7V0E=;
+ b=BvRKxkzcAY+iNAeFvctnwLLMWEfPXmcLP0ja55QXJm5dSEMbvpR4N1bC
+ VVuo9rPuGHByuA+3VRGBaNjldKV6wItpIslJ9/ncmy3SjfqAEGiz7QHko
+ 8T921/MdGMjzhO21Fb8ONej+7eEMHxwx56dXT5ZSkyUADL7XjmzbFMPqN
+ PAF90p4iXzARkNRoJoKtIo3S0l+L7XcH23WB1YQrU0vfB6CKB85Lecqdu
+ WIE4nD98IuGVQheFw+QvRQhIfyh3jhaF+fx76iJYkIyGVL1OypCwvn/F3
+ naWWAmDv8Hj8dhsWsqkE2rE+QYF+3W3rNkW2Q4b403DkZNLtkkhlQOgfT Q==;
+X-CSE-ConnectionGUID: 6mlylNzwRGyoC/48jsk82Q==
+X-CSE-MsgGUID: qegSdFz5TPCjYqJfs1HZKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="84885763"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="84885763"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 13:47:59 -0700
+X-CSE-ConnectionGUID: FTtjkebISWWyxNfYP+sQ3g==
+X-CSE-MsgGUID: PAtU1nqcQaSv7PRAnC1zOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="181579434"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 13:35:04 -0700
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="180758054"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 13:47:57 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 9 Oct 2025 13:35:04 -0700
+ 15.2.2562.27; Thu, 9 Oct 2025 13:47:56 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 9 Oct 2025 13:35:04 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.26) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 9 Oct 2025 13:47:56 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.25)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 9 Oct 2025 13:35:03 -0700
+ 15.2.2562.27; Thu, 9 Oct 2025 13:47:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VTznTCTB1+/qgPR2OlGC/3+/hJK7zPWk3fgi4+QAdkmbDL74VNawuKteFxi3R5cj7MYd/MSj4FQnxzpKZ63aJHpWOmBDyiLc4oIFECWw2aaGUu6vxH6cqyundfyxXOj2t88zYVS4CH7qKBrOn1gf2Df54fcWbo0zea7oNP+wFYyPyaB6+mAE18geM/RTyMyj9T3eqt9MAMW/Us8EgbSnzAAFrCU4PfG2zUTCHVkyQ2WV6Ak1qHnMKrMAe84PV+jJkKK2+bU6Mx79FPom/T31oKGFy5rAof3LCRhWjLBHtScS45+BgyDVGHtfkQlUPAXSbY8W6bdB6/uaJDElViRTCQ==
+ b=Vlj3G9HaFRHLDtaWKYWby8HHebFJTewlwZFwTLRGxlApV2Xp+WHaC5h1FXXaS5udt30WFStuUPIg8ZX0GphVj+sojknXzMRr+t7IjGCEqzlQhYdycfGjA7sxDw74S8UdWugDjxDfyAO/Wew84/CNo0mqC70R6dILUgdsx4AS0ud/c3y5Qw7yCbaCGQJbp5styNg3j9vBixwitZyL06b6kDYtN7/s9glKgR+wJZexKw3yaiCulQldVwGQGlT6wGw0V5wIgcZtMDU1qQ6x3hOWKWbvIgowHJkkJRFzdtRT8QXAxQ+7b0mi/gYBmfNPOvxwtLXZcUdkuZcbhgG2FaShBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rWy0NbRFHhudvq6tLWc96/OcrFRBpyWtZJ9UJM/aAmY=;
- b=aSFSc+5KlIna+Wfis/10fvg3TQ2XCqFzMIEVf1JnHVUhmhY9ACDh4leCuBzA0jzmBXqKQ8MnCmmmuwJdb3dpf2ZtS4b+A3kMF6+MT3/Nqs8gthnzDTliWsNvLfYLGI0ZxoPm7ZJTy9YfsHUMm035OirG1SobqMOs8AuWTB6Ut44LNqlnx4fSFRredHAsbc3pI3x1EOaL5tdQO6hQy6ci7XQ84RzY/pLlbUKPoAeyRp501OGOMsXrwki50/zGeuepCX9HmLfXS42topsOn7FqkWWAG+M7qIRlcG6Bw8TYB2vrHBli8Sy//f9Xnae27/yu9Na4TBVuVI4fdHJxAEidAw==
+ bh=8AykJdRXO7MyYl25H7aGoKs7bbDTjjXbBj34DVIbMnk=;
+ b=eLZ5vXjK40SQmZtB/Hgod5K4WDGsq3CJ4Yqu4C1RGtErGktpBPMBamYaOaMO/1xAIzlCE+1o8HVzyprxdRkMH1fdtWOUyRLOVn6xHwumErvNZbVa3lXbs5vzS28BUYD2XkFr+ikCQ3cdzDxed/Gy1uWXxDm2LzsCtJMfV9oCv8P127Ai1MxrPBVI5be8UNUQVWAmwWGfDjrj9WvManbvC5ijvLtY7fzlPPdZsbJ4JVkEkFgp+wT9kZVJEl8U5AhrOanwfQIA1NZd2jwEg2AuSV1rrx4/l0XQyDi6H6jVdV2Thw58wVSDr9bWqhglEH0d8dV7SWT22z010Y2wyWKemg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SN7PR11MB6922.namprd11.prod.outlook.com (2603:10b6:806:2a9::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Thu, 9 Oct
- 2025 20:35:01 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9203.009; Thu, 9 Oct 2025
- 20:35:01 +0000
-Message-ID: <4ab4fda5-ae59-4370-9947-020ff1b3133c@intel.com>
-Date: Thu, 9 Oct 2025 22:34:57 +0200
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
+ by DM3PR11MB8760.namprd11.prod.outlook.com (2603:10b6:0:4b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Thu, 9 Oct
+ 2025 20:47:54 +0000
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::60c9:10e5:60f0:13a1]) by DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::60c9:10e5:60f0:13a1%2]) with mapi id 15.20.9160.018; Thu, 9 Oct 2025
+ 20:47:53 +0000
+Message-ID: <694610a1-6735-4875-978f-c626e9300050@intel.com>
+Date: Thu, 9 Oct 2025 13:47:50 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] drm/xe/migrate: Atomicize CCS copy command setup
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-CC: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>
-References: <20251008101145.11506-5-satyanarayana.k.v.p@intel.com>
- <20251008101145.11506-6-satyanarayana.k.v.p@intel.com>
- <aObsmCaIbrSgHrvd@lstrano-desk.jf.intel.com> <aOex-1E8yBlGFbwI@intel.com>
- <aOfeoWV87W+Gt6HH@lstrano-desk.jf.intel.com> <aOgAXul_Az3JLC0V@intel.com>
- <aOgDrJhtrEqgpAJk@lstrano-desk.jf.intel.com> <aOgRzyimIIPmLdW0@intel.com>
+Subject: Re: [PATCH] drm/xe/guc: Refresh RPe frequency while setting min
+ frequency
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Sk Anirban <sk.anirban@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
+ <mallesh.koujalagi@intel.com>
+References: <20251009180853.578184-2-sk.anirban@intel.com>
+ <aOgTgFc_-FgrV9wJ@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <aOgRzyimIIPmLdW0@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA2P291CA0007.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::10) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <aOgTgFc_-FgrV9wJ@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CY8PR10CA0022.namprd10.prod.outlook.com
+ (2603:10b6:930:4f::23) To DM4PR11MB7757.namprd11.prod.outlook.com
+ (2603:10b6:8:103::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SN7PR11MB6922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e780a33-75c0-4e3b-ade5-08de07735233
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|DM3PR11MB8760:EE_
+X-MS-Office365-Filtering-Correlation-Id: d2fd22c3-525d-4000-19cc-08de07751df8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YmpyQWhqUEduNXZqZGowWmFRclltMVl1UmdrTTJBb2EwUytmM21VbDRUQjNX?=
- =?utf-8?B?QllFTDgrRUQxcDlGYVczbzMxbmhHL2JiUDdmZVlBQ2UwOWpkSFRXclJUQzZJ?=
- =?utf-8?B?ZWxldS9kVDBMSVUwU3ZmSVVKcnUwU2tpMVErcGFZY3NLbXh4aWtYakh5VG1U?=
- =?utf-8?B?S3lvVzE4SzhZbDhwcUE4TEtJaGZ2Y1IyS3VYNU8wQzIvUzFGSXozdTFHWExZ?=
- =?utf-8?B?REkvR2pUT0ZLN0k0Rm5ZLzlIT3F2MDFOZytqZk8zYmsrQWV3WGhBS2VEekJK?=
- =?utf-8?B?Y295Wk9pK2NJWFI5SHJyb1U2YVRXb1lsVkc3V29DczBvTis5eW9JQmpTVWZq?=
- =?utf-8?B?aVFHZGY2U3VKZ2pQMGQ1emp5RjhLWjc4L2lnMVpmcVl1ZnMvQXlZUm9UeDZM?=
- =?utf-8?B?aXh0SzR0V1BZeGFrRS95S2dSR2loY0YwSU9GUHRMaTZyV09kY1k1NmE1NURR?=
- =?utf-8?B?U2FnVExLQlM5dmlHSXIwQVhKcnZQNkkvRW1YU2FVOHlQV2pnamxFUnREOE1J?=
- =?utf-8?B?QjU4WkxpbG44WGgrTVdOVExYbS9DbmRmS2NWZGVsWldjQlRkZlM1NWc0WVll?=
- =?utf-8?B?UFF1aDhjUlNvVm1yWFI3cUd0NkpKaWZJZlVFZkxwUkQ2YkNRcnpMOXJ3R3hY?=
- =?utf-8?B?UFNveDVGMFNQaDZNWE1xOVhXRGZ3RUViY3YzUTNjaEk5SGYvdE8zdFlzUGFo?=
- =?utf-8?B?WUJUWVNWN3NPbE9GTmZWV0J2K2dsQytiOUNZYWNiamplei9uN3dlbERrTUFH?=
- =?utf-8?B?Z3NXWTJKZTVEY3BwMU94SnFNcklJMHpEVzZZRVZaZThQZGlUL09IcHlGV3I4?=
- =?utf-8?B?MFF5YWN2Um0wbnE1TTNjVVdGNzAxaWd6d2VJUWNLdTBFSzc0SDVSZlNkY0lZ?=
- =?utf-8?B?eVJ3L1ErN2s1QjBvOU5rU3FKbzVDcUNibmJZTGVBOURRVVFHN21pT0pTbC9P?=
- =?utf-8?B?M0VmSXhtMUpmKzBOSXo5aDZ0TTFoaE5YV1lyUG9HMGErZ3hIcjhPbjkzeXc5?=
- =?utf-8?B?RUpROWZ6VWR2WUZtZE5pOWZuTUhIYjFFQ0xBdVF5NXozL1BXbkF5SnEwV1Bp?=
- =?utf-8?B?eVdOWlErTHhMeWhjK0YxbklLS1BvS2hTcHlIcWIyZThRZjhWck9TL1JUOEpP?=
- =?utf-8?B?dnY4SFp3TGRYc3lwRXhXaWh3bFFCUTg5NGJpWVNCUCs2RmxFVGM5b3N2cklD?=
- =?utf-8?B?WkdRRDU1aTFsTnZCMVd0ZnRmRktqYkJZQjhtOTNzNmpXdmpLTXdNVDh4bWh2?=
- =?utf-8?B?dWxlM2FvYW5hajR2aFV0R0RtT1R5bGw1emRJVkJsdjRnV0I1NmxKc3NiblhJ?=
- =?utf-8?B?K3E0TGNZaVRtNmFnMmhvSDVmOExLODNURHNRbVVqNHZ5MllsOUNMUTZTSDBq?=
- =?utf-8?B?U1lQN0kxTW9zcjBOYlZ1dUowQmFrb2J0MVlRWkhHUktTV2JHaUNyVjBGeU8y?=
- =?utf-8?B?N3ZCQU5MelJtVU5PN2N0aVhlRzVEZmJCcFpMeXhPdmhuUk8vd2YrNVdJdENR?=
- =?utf-8?B?Z1FsRnZPbkRlaWNMck16aXAwTCtGayt6ekVyQWc1NTlOdDlZWmQwUlJFdWY2?=
- =?utf-8?B?ZWlSWFBOOVFBS2UvRW5XcXZ4aFNMSk1sVldyMWY2NHdVOUtoenhhOUd3Sm9a?=
- =?utf-8?B?L05TbjMzOW9yeG5pcEFFNDdlNDgrNzdmYXViRjF5aWhWN29IN1Y3MzVSVWcy?=
- =?utf-8?B?bkF3RDRWMzNuUTArNHo5RFFmbmF5UjJlbVZTNEd3dnZoUmY4bHJlVkRJTHJO?=
- =?utf-8?B?VEs0L0xlZUlKWVlqaDBsNDNPYzBZWWs3T09sMlVSaTdHRjdtZmpjWWJIY2ZV?=
- =?utf-8?B?YnJXQUtVWXdNYStvV0MwVUF6VXpDcnR4VW53a2FlMW91RGtYWmJ1dUZjQlJa?=
- =?utf-8?B?V0FmRU5wYmNoS2dLb0FtNlJtNkFsZ0RnQXpsNnF4aU5LUWc9PQ==?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?N0w5VkVScmVBbm0rcXR5S2JtN0YxbEl0Sm5mSE1VcTB2Y3JDM2hYN1IzWk43?=
+ =?utf-8?B?L2xUTXlJcUtiOWhzN096SElyczNBZHFjd3o1RW91NzNtcGg4ZlF5NXQvOGUv?=
+ =?utf-8?B?YzB3dWNRUkNIelFvM0drQ2FUOGlsdmJqaXlOMnA5YkwxYmZ6aXR5RjNuaGNE?=
+ =?utf-8?B?VmxhUmo1OGo4Q0x5MjZsdU9NUEJTdzJ3K0gwSktHa0U2Q29nbjZjUldQUjFj?=
+ =?utf-8?B?Zm05T1N5aXZUdU9hWXlEbzFjUXYya3UwUSt1TElUQVRsZ2ZyMkFlQ3BZWnhm?=
+ =?utf-8?B?S29YNVZqUEZueGNtMGpMT0RlOWN2QWNZRHlLOEU0eUFwTlpEb0ZEbkQ5Z2Ez?=
+ =?utf-8?B?SFdDRkh5VldXSHdIU0FnVm5SZjVlRFFFeXptallyeGVBZnhGL1krSm0zalE4?=
+ =?utf-8?B?blZlMFhzZU9zS0tYN0hiUDAvR0hBYlRNZlc1Sm9GT2Z3N0Y1dWtRam5rbkdj?=
+ =?utf-8?B?dU9meTRtbjhCSFF4TDVUdW5uZTdJUWh3N1dmUVdBQVJqUnZaemNsRE9ZR3RO?=
+ =?utf-8?B?YW81SVZnQ1VyMXRaVDNoZVZjWXZnY3Bibzc1S3JJbmUvMzg2UHRRajZxT2Fn?=
+ =?utf-8?B?QnpzbzFlOE1oWi90YWk1eXYrRFBYaVRzUXNDbVRybk1BMlNPR2JLc0ovb1ZH?=
+ =?utf-8?B?Si9WUHU5OTNvL0xOUkxQR2I2czc5V1VyYUxOZE00U0dnN3RSMGF5SDFJM210?=
+ =?utf-8?B?NmN5Tlp5c2RoMXpiNW1lWk0vTGtBNGwyc0hpUmw4WW5VckVISmowdUhsMFc4?=
+ =?utf-8?B?azVrU1h0S0hqTEpNamhzdVBhZWd3SjkrcVY3ZmEvWGlwZGd3dlcvQ3Y1YmZv?=
+ =?utf-8?B?ZDdkZSs0dWN5M1FqUnhRRzN0RmdDTU5QWVM5Qjd6NGtqbEZmZVdsa3NzSEkw?=
+ =?utf-8?B?cGF4SzAwdThxWmZSc0NLekJLcTg0UlJHS1RSRFlocWNsbGhzUHc1djBZN2FO?=
+ =?utf-8?B?WElDZ3RERldseXVTZ1puNDlBUncwSVlUNzJZNzZkMnVOcGRQNCsxN1BWbDdG?=
+ =?utf-8?B?cnYzaFF5dkRDdDdESHQxaDdSRmo3ekZ1UW84MStDV3FFdGJtOGRVRDZZN1pT?=
+ =?utf-8?B?eDVOQjZERnlFcnVnWW4rN0NNem5IdWpDSU4xcjZpa3lGYk9XVEd2VUVsSDdQ?=
+ =?utf-8?B?V01iRGtHL3pjSlpVWHZGeVduYk1icXZibkV6ZVRqR0JHeE45ai9wbUNrYk51?=
+ =?utf-8?B?bnBYTm1kdFl4bUtPbG5UVlN2QnNjcW1qZ2wrdzFYOW9GcWNmSEk3M21NYzBh?=
+ =?utf-8?B?RFhoYk1MVVFOd1o3cWFjYU9RTVRuNitLWDVNK3Z5VVRtQmliRnRnS3BHd3dm?=
+ =?utf-8?B?Q3hOU0FJdmtwc3JibTkvZlR6dHdlTFlBemphZ1JzOC9kTjR4SU4zbnF1MkpL?=
+ =?utf-8?B?b1VrUVRmVHNvQWtuMVlaWjBjUk9FWVI4K3lmSVI4NHZjbkEvMlpsS2hOenkx?=
+ =?utf-8?B?WVZucnpEQmwxcUJhVzZLNmk5SEVidkRKdVZnMFFSMC9NOEN4S1FuVnZZQjBO?=
+ =?utf-8?B?U1ArVXY5eHpESnZhNXFwQnozYllNbGRCZWR3MXdLNVJHejJuZ0hFRUhxbUZ2?=
+ =?utf-8?B?SjM2aFY0eWlFcDA0UG0yL01TOEdzMnNiTjZaOTN6cDEwbWlQOUxNZU1QYWN1?=
+ =?utf-8?B?VThqOHNCcXdndENQMlpUVjFnVEVzL1ZKY05DcWZ0UXpTTVAvWkVJNHo2UzZ0?=
+ =?utf-8?B?VTY2WExjdmJ2dkNMNE42R1BScVI4dDZKcDV0YVk0bFlDVVJKcExKNnZ2bmVa?=
+ =?utf-8?B?eVF4TWd5OFVyWG1uU2xtb1ErWjVRVW5PVm5EeVNsS1c5RGk1bzR2eWk0bldu?=
+ =?utf-8?B?ekNXeDkybkxrOFNzd25ILzJvQkFaNHJPWW5veml0bUM2V2N2ME91OWFxUDBJ?=
+ =?utf-8?B?QnFSL1M2ck4wYk13V2p1N1lBcXN4RCtHMTVMcXN0RzdQWVE9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmczS3JCaVg2ZjVzTEZMbHJUVHdvZnhIUEFUM05QVHRPaVVpRHY3RHVwaXl4?=
- =?utf-8?B?eGNvMU9jak1LRU9lU2JNeWNDRHh2VVpUSlRldExyQmZBa0FCUWVZOExWamQy?=
- =?utf-8?B?OUtYOEVsT2hwOHlTdUlpcERjZEV6ckZMZG4xUzgvTjJjN1RqWHBFQkhOOTVr?=
- =?utf-8?B?V1FhajdIbnl4cDNXL1dyUjMzWXYybXBJOUpscE9qRm5ZNUVZTEVzY3Vyc1Vt?=
- =?utf-8?B?VGsxOTlodDBKRWRsRHBZUWZQOTAzQ2krSlJiZmwwT3RlYjlKVnoyZ29VWkdT?=
- =?utf-8?B?RUV5Rk9WYWlaZnU1UHYyVVZGdk5KRXlvcTVaZkNjMHRESnBpSlQxSU5CWm9P?=
- =?utf-8?B?ZUNMTTJiaUFTTzlneVQrdlBSRzRQckd2N3pwak5SWGx6azNEbjVXWEhjYllL?=
- =?utf-8?B?amtsV0NFdXkrYW5zQmZQU3ozbzl6dGg0ejBmamw0WHpHQStiM2RpYlZaaGxR?=
- =?utf-8?B?aTJzMUJ3a1Bzd0JDd3ZzQ1NENTJJcHVLMkNlNWowVXZPbWRpTVBVa0N2WTBp?=
- =?utf-8?B?VlhCeS9lMUY1TzBiakVQR2NXUnhKclEyVUlYSE1ycnd5YW9jbXk1YUdPMzRN?=
- =?utf-8?B?aWx4dUxrNjE3SlFNUXJpSkVNYjFiSmJ3bEhIeWlwbVErdEJCTXc0RXRXS2xI?=
- =?utf-8?B?S3ZQQUp2eGxrVWJ0ZjJSY0Y4cmsySWlBU3NPb1g5YXNqY3E0NU04clRXT2xB?=
- =?utf-8?B?alNxMGZoUmcrZWsxaTViN1hITm1QcDFyS0FzdEUxSFpVOWdCWWZEblRTL21p?=
- =?utf-8?B?WE5TbFB6UnVGSXNOTjN6TE8vUndtbGtjSkdtcENFbTB1SWo1cFhYT1hYVE1Q?=
- =?utf-8?B?YTV4TWlUSHZCSFh2TzAwU1cxSnpLeWhHQ2N1cEJOUm94Z1NtOGhpOEd1SUtD?=
- =?utf-8?B?VGoxTnhIS0RMbWNhWTAwcWlHMkZTNWFtNFdyN1Z3RGdsZGRSRkFlZ0YvMzNC?=
- =?utf-8?B?YVY2UFdocno2bkxOdG5reVpIUGpKVUVaNDN6NXR4RDFYQUtUa1V0WUVPbmNt?=
- =?utf-8?B?N2UwK2FBaENidEpzZkhVODJHSGtManZPSVdlNkR2SFgvZTFJSGRIZGtQSGtv?=
- =?utf-8?B?eW11VHljbjNTN2Q3QnVnaEhGUWp2em10MGZZSVp2dDJNQXRFTFEwekNzZVlS?=
- =?utf-8?B?TVZyWFJ6VDBjRUV5OUFpN3dIUFpRSnJabWR6dEVZL25zYm1UdVZEQ3kzM2FV?=
- =?utf-8?B?NG12a1JHVEZINHV3WjZTOHVybllYVFBOTHlCYm5kU2hPMlN4a3NpdExWNlVa?=
- =?utf-8?B?Z0JSV1JQcWdqYnNHWU9CRkhjR3lMZytSZG5sZnM3N0xFYzB0N0p2UjJobU5q?=
- =?utf-8?B?MVZxaVNyZVBOMHByR3g5SCtvMU1xZllHVEU3QzZKNXdXU29BSk8rL1YzdlhP?=
- =?utf-8?B?L1l0Q0czRFlvb1JZZy81YzdqL2psQ3BFTm5wMnQ4a0h3TlBiR3BRYUVtUW1S?=
- =?utf-8?B?YVUyOXJZdVYvZHVWamR2U0tPWVZaQXRyNnp3Z2FrSDZvM2JySlUxRUxPZmpF?=
- =?utf-8?B?YytVTktaRm5hQ0JqZkxsdksxV013OFB5WGlLQXBUVGZFZmFObm43SkdRWjIz?=
- =?utf-8?B?UHdRSzIxSkFpOGkxUXp4ZzdwVzFyUVJrZ0ZmNGkycHlickI3RVQ3dVJQV1FC?=
- =?utf-8?B?OG5xUmN5SElIUVVoWTQ1V2ZHWm44ZjFrQnNIQzJQL1owOW1NQ3BYbmM5THpG?=
- =?utf-8?B?ODdHVTBMcXR1NkszWDBOamdWNEhBTG4zN1FrNE5naVNPc256OGVLNmlRekVa?=
- =?utf-8?B?K1FjcVZoaWVjNHN2SXJibUZNQkFJcHhDRFR6WGt0MnBBQW5iQWJhT3RCbVpR?=
- =?utf-8?B?N3lacUhqS3FwZitWT1BNUlNDdmVLUU1ndlRhSGIzajJLVm8zdHVNc0FITWMw?=
- =?utf-8?B?YW91MWlybkNBb0p1K0p5NTFQbklqOG4yV2h1SytVL0EvU0UwN3hROFJ1eHB4?=
- =?utf-8?B?dVlURzA4RHpIMU5DdEdSUTlIK3ZFL0o2WVVWK3RwbXdwbTZmdFRmUG1pamIx?=
- =?utf-8?B?MCtub1ArVlJ1YUV1SnhqVDhNSlpCQ09raGhjejJYWWgvNUZheGZwTjNXcXFr?=
- =?utf-8?B?RmFuYWxXSm1ZcXY5ajk0MVlGZEtvdGd0V2ROWk5GTDg3OHBFZFZIbVA1b1Iy?=
- =?utf-8?B?WTgwRzlrYUFROE9xUDlWZGpHZFIvd2JsUW8yc3h1b2haWC9wTVJDWjdWRFpo?=
- =?utf-8?B?VXc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e780a33-75c0-4e3b-ade5-08de07735233
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHE2SktuWjFGZk9jRk9ESm5nTlVoYlhEbWNSdmhoaGdCVjliQm9jdXJHY0lv?=
+ =?utf-8?B?VHRoMTBkMHJXVGFQb1d4b3lURUNrVjB0Q1IxckdPc04wdGYxYWpIeGo0UVBP?=
+ =?utf-8?B?Ri9RTW5lZGdXYnl5SFBDRHJBR3Q3NnZERGEvQlF0MVpSOEUrbk5HMHpPbzBo?=
+ =?utf-8?B?MjR1dllReGpaWENZVWVLa2poaHYzcVBrbzhzNmhLRldVSE9LK0NSUUhCSjJ6?=
+ =?utf-8?B?OWN5bDI5a0xDZGVrNllkNDEySGR4eHRReTdBaVllSEZBOUs3NWluYnNnbSth?=
+ =?utf-8?B?aFhNM3MzdXppWkNlK0dsTENuY3ZXTVFCalZjdEd2WUlXUjRUSmgzY0FoWkRl?=
+ =?utf-8?B?aUhuQnhJWm5mWk5mSG1mNHk0UDRkanRPOGdGYXpPRzdxczlVNHl1ODVLOVEv?=
+ =?utf-8?B?YWhZU1BRemxDTGo3TEZ4UmkzdWExM2M4R3B3UFJNT3JMSmZiOUVZWDJHeXZC?=
+ =?utf-8?B?YnIvWlZKaUMzSG1EYmRQdjZtVnU3VDloSjdVL081R25XUXZpVTQ0NXYxNXo2?=
+ =?utf-8?B?d0ZqbWR3bUovT01uMWhEb2cxbC9aR0dEc0RHWVpNaGpIZEdQQnovbzl4ZU16?=
+ =?utf-8?B?VXN0UXlhVjc4RHV4R0VkSitUY21YTE9vajNFcjRab1hTYXFNaG9JOHZEb05X?=
+ =?utf-8?B?ZHVKWFY5QWh4VHU4bGVUNXo2RzNaRlpzMWZWamlQQk1LR1VNRXFrTTNKVlJB?=
+ =?utf-8?B?K3pQdVBLK0JIVGtmRllqL2VzUk9TNGQvSngxd2RRZHZMZEljRHNFNmhnSldK?=
+ =?utf-8?B?elVrQTF3SEIvRHVhQWo2TFpEc1lQVHdoMlpxOTlvWEhPa3lQZm9penlhSVcy?=
+ =?utf-8?B?Q1RKOHJzSzY4Qzk1YmJNWGdEUm85T3VtTFVsS1l1RzdGMXU3QjArbWZvSjdE?=
+ =?utf-8?B?Y1pWS1RGdjZBNVJseHFkQzBoK2ZZYThkaUtGRDE2NkM0S281am9MSU1nS1Na?=
+ =?utf-8?B?Wkw4WVpkV0lITUdQUEY4M0lRakdaN1VaYWJ6NjM3L1NEQXkrSTBzTEdUeGlr?=
+ =?utf-8?B?ZG1CYXptQk9NK0d5OE1ydEF2Y1JDdlhtbFBzbnJ4SnZ2aFhuZENjRU9qQ1Y2?=
+ =?utf-8?B?M25PcEo4V1pubzk5QVBqaGNNNkdmdlFpd0dmUXdLTUJQd3hZOG14dnFxYjR0?=
+ =?utf-8?B?ZFRERmtuUjVJMmljTUc3dWFsWkVGZ2tROHFnTWFlTTRTWUxzY1AxODh0SjVI?=
+ =?utf-8?B?b05TNEdzR1pPcTByZ3RkRWVaK0tROUR3Rk5YM21qZmQwUW5USS9tclNQQjdQ?=
+ =?utf-8?B?dlh1eDkyT3dlZEQ2LzdkRzcvZGRUMlRJQ2tsbjBHNU9MdloyMG8yUDNMUjZl?=
+ =?utf-8?B?ekxrWmNqZWhIOTFodU5YL3Q1VWRiak9pK0FvYlZNaVByNEtaNFBCQ3hTc3Yx?=
+ =?utf-8?B?MkZjSUhteG94TUpWTlVUVDQxU2FaVk5oQnN0UXRiNFgxWFY5YVVvNll2OElF?=
+ =?utf-8?B?RVZJSHBlM0Uvdi9JckZSN0xzM3ZZZFlsaCtjVERjSHdmSXhNQnlSTVJKVjJt?=
+ =?utf-8?B?MldNTXlNNzVkdWZqYmg0N1RzOEdYRWd4SkNldzF1NXMxa3dCV1ljV0VjSVJU?=
+ =?utf-8?B?M1B4cm5jek5QTUpHdFVUZ2RwV29rNG1mNjVHaHAySHFqS2RXNEFLeVF4WW9N?=
+ =?utf-8?B?NmlkaitkOWhSUjBwVmtJQWV4Y0dlRG0yVUl4OEIwUklnd2dTLzlWanRiRmRL?=
+ =?utf-8?B?QU11cnNKbzZ4NnA2aUhzcHBtcDJHbDBmeDMrczIzT1JNbVMzcmVsaDRRM1o2?=
+ =?utf-8?B?U2hWMlFSckVmK3poNnBsa3Izd2YzL3VCbW1TV3NMSEo5cU9wSnlPdXBSMDRW?=
+ =?utf-8?B?VzRKVk1PZWlBbnBzSDVvU3JadkM3bWk2SjRYSUxoRDJyZjlhNnBna1Axblhn?=
+ =?utf-8?B?OHlVNkFteFBGNEwrWEh0Y0Q2SVovVVJDWDNhWWt2QkNPazBLeW4yMkUzLzBG?=
+ =?utf-8?B?SmZaTGw4UDBqbmpGbE5pczBkNjRLRDJXbTBVNUo3MlNxTElWeDFvdm5nYzF6?=
+ =?utf-8?B?dmx6bDVvOGlzaWxNSHBmM1hCQkNLb0NQSEpqYkVmRm5ETCtvbTZwUGRxZk1R?=
+ =?utf-8?B?enZiNm1GMnNCNnc2aWpGOXNvdVRTeTFnNVRvNit2MWU2Q2VTVEx2QzhxSWlz?=
+ =?utf-8?B?RS95bmZNQStic2s3UmZqbFBFS2JYdzRWb09TbW5vZ25ETk1DSWR4Mm5peXBj?=
+ =?utf-8?B?bkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2fd22c3-525d-4000-19cc-08de07751df8
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 20:35:01.6989 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 20:47:53.0566 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uvLTL8sWTm0j1DJ9Wo/Ca12cKAH6h2v5gWSpQZdhxmJzvXTD1hsRvkY2ibnWp2ZVMfrNVxFdi1QE7A8CYUArXcvmiRErZ+IeeSeQjYPN3hE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6922
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2HWEc+A9nO4cG0duYW/q3SuiLE3aBhTSMvw3g7maWXt55xwimproyaVvDcGHLg/RKA4H3PtcnP1toEXq3to/Uo76IytV45ypY+tKCyFZgjs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8760
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,327 +199,46 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 10/9/2025 12:56 PM, Rodrigo Vivi wrote:
+> On Thu, Oct 09, 2025 at 11:38:54PM +0530, Sk Anirban wrote:
+>> Replace cached pc->rpe_freq with xe_guc_pc_get_rpe_freq() call to ensure
+>> current RPe values are used when setting
+>> SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY.
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166
+>> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_pc.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index 3c0feb50a1e2..ea1ff96bec32 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -330,7 +330,7 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
+>>   	 * Our goal is to have the admin choices respected.
+>>   	 */
+>>   	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+>> -			    freq < pc->rpe_freq);
+>> +			    freq < xe_guc_pc_get_rpe_freq(pc));
+> I believe this is correct... But wondering if we should entirely kill the
+> pc->rpe_freq ?!
+>
+> Vinay, thoughts?
 
-On 10/9/2025 9:49 PM, Rodrigo Vivi wrote:
-> On Thu, Oct 09, 2025 at 11:49:16AM -0700, Matthew Brost wrote:
->> On Thu, Oct 09, 2025 at 02:35:10PM -0400, Rodrigo Vivi wrote:
->>> On Thu, Oct 09, 2025 at 09:11:13AM -0700, Matthew Brost wrote:
->>>> On Thu, Oct 09, 2025 at 09:00:43AM -0400, Rodrigo Vivi wrote:
->>>>> On Wed, Oct 08, 2025 at 03:58:32PM -0700, Matthew Brost wrote:
->>>>>> On Wed, Oct 08, 2025 at 03:41:47PM +0530, Satyanarayana K V P wrote:
->>>>>>> The CCS copy command is a 5-dword sequence. If the vCPU halts during
->>>>>>> save/restore while this sequence is being programmed, partial writes may
->>>>>>> trigger page faults when saving IGPU CCS metadata. Use the VMOVDQU
->>>>>>> instruction to write the sequence atomically.
->>>>>>>
->>>>>>> Since VMOVDQU operates on 256-bit chunks, update EMIT_COPY_CCS_DW to emit
->>>>>>> 8 dwords instead of 5 dwords.
->>>>>>>
->>>>>>> Update emit_flush_invalidate() to use VMOVDQU operating with 128-bit
->>>>>>> chunks.
->>>>>>>
->>>>>>> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
->>>>>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>>>>>
->>>>>>> ---
->>>>>>> V4 -> V5:
->>>>>>> - Fixed review comments. (Matt B)
->>>>>>>
->>>>>>> V3 -> V4:
->>>>>>> - Fixed review comments. (Wajdeczko)
->>>>>>> - Fix issues reported by patchworks.
->>>>>>>
->>>>>>> V2 -> V3:
->>>>>>> - Added support for 128 bit and 256 bit instructions with memcpy_vmovdqu
->>>>>>> - Updated emit_flush_invalidate() to use vmovdqu instruction.
->>>>>>>
->>>>>>> V1 -> V2:
->>>>>>> - Use memcpy_vmovdqu only for x86 arch and for VF. Else use memcpy
->>>>>>>   (Auld, Matthew)
->>>>>>> - Fix issues reported by patchworks.
->>>>>>> ---
->>>>>>>  drivers/gpu/drm/xe/xe_migrate.c | 93 +++++++++++++++++++++++++--------
->>>>>>>  1 file changed, 72 insertions(+), 21 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> index c39c3b423d05..b629072956ee 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>>>>>> @@ -5,7 +5,9 @@
->>>>>>>  
->>>>>>>  #include "xe_migrate.h"
->>>>>>>  
->>>>>>> +#include <asm/fpu/api.h>
->>>>>>>  #include <linux/bitfield.h>
->>>>>>> +#include <linux/cpufeature.h>
->>>>>>>  #include <linux/sizes.h>
->>>>>>>  
->>>>>>>  #include <drm/drm_managed.h>
->>>>>>> @@ -33,6 +35,7 @@
->>>>>>>  #include "xe_res_cursor.h"
->>>>>>>  #include "xe_sa.h"
->>>>>>>  #include "xe_sched_job.h"
->>>>>>> +#include "xe_sriov_vf_ccs.h"
->>>>>>>  #include "xe_sync.h"
->>>>>>>  #include "xe_trace_bo.h"
->>>>>>>  #include "xe_validation.h"
->>>>>>> @@ -644,18 +647,49 @@ static void emit_pte(struct xe_migrate *m,
->>>>>>>  	}
->>>>>>>  }
->>>>>>>  
->>>>>>> -#define EMIT_COPY_CCS_DW 5
->>>>>>> +static void memcpy_vmovdqu(void *dst, const void *src, u32 size)
->>>>>>> +{
->>>>>>> +#ifdef CONFIG_X86
->>>>>>> +	kernel_fpu_begin();
->>>>>>> +	if (size == SZ_128) {
->>>>>>> +		asm("vmovdqu (%0), %%xmm0\n"
->>>>>>> +		    "vmovups %%xmm0,   (%1)\n"
->>>>>>> +		    :: "r" (src), "r" (dst) : "memory");
->>>>>>> +	} else if (size == SZ_256) {
->>>>>>> +		asm("vmovdqu (%0), %%ymm0\n"
->>>>>>> +		    "vmovups %%ymm0,   (%1)\n"
->>>>>>> +		    :: "r" (src), "r" (dst) : "memory");
->>>>>>> +	}
->>>>>>> +	kernel_fpu_end();
->>>>>>> +#endif
->>>>>>
->>>>>> Everything in this patch LGTM but I think we maintainer input to ensure
->>>>>> we are breaking some rules about inlined asm code in a driver (no idea
->>>>>> if this exists) or if a better place would be somewhere common. Can you
->>>>>> ping Lucas, Thomas, or Rodrigo and ask them about this?
->>>>>
->>>>> Well, it is possible and we have asm code in i915 for instance (i915_memcpy.c)
->>>>>
->>>>> But the rule does exist:
->>>>> https://www.kernel.org/doc/html/latest/process/coding-style.html#inline-assembly
->>>>>
->>>>> "don’t use inline assembly gratuitously when C can do the job. You can and should
->>>>> poke hardware from C when possible"
->>>>>
->>>>> In this case here, please explain why exactly memcpy with smp_wmb barriers and
->>>>> or WRITE_ONCE code combined couldn't solve it.
->>>>>
->>>>> Also, please explain how exactly vmovdqu guarantees the atomicity promised by
->>>>> the commit message. On a quick search here my take is that for this 128 or 256
->>>>> bits, atomicity is not guaranteed.
->>>>
->>>> I don't think cache atomicity is what we're after here—rather, it's vCPU
->>>> halting atomicity.
->>>>
->>>> Consider the following case:
->>>> b++ = XY_CTRL_SURF_COPY_BLT;
->>>> b++ = addr;
->>>>
->>>> If the vCPU is halted during the instruction that stores
->>>> XY_CTRL_SURF_COPY_BLT, the address will be invalid. The GuC executes the
->>>> batch buffer (BB) that is being programmed as part of the VF save. This
->>>> will clearly cause the BB to hang due to a page fault on the copy
->>>> command.
->>>
->>> okay, perhaps this is what is getting me confused most
->>> what I don't understand in the flow is: why GuC is already
->>> executing it or going to execute it while you are going to a halt when
->>> writing the command to the buffer?  and not writing to the buffer first
->>> and then sending it to the exec queue?
->>>
->>
->> It how this feature was architected, will send over SaS link of the list.
-> 
-> It probably deserves some comments around the code on how that works and
-> why we are doing that.
-> 
->>
->>>>
->>>> If the entire XY_CTRL_SURF_COPY_BLT is stored via an AVX instruction,
->>>> then either the GPU entire instruction is written or none of it is. I
->>>> believe vCPU halting guarantees that a CPU instruction is either fully
->>>> executed or not at all—regardless of how many micro-operations (uOPs) it
->>>> decodes into. If this guarantee does not hold, then the entire
->>>> architecture of CCS save/restore on PTL is fundamentally broken which is
->>>> always possible.
->>>
->>> Okay, this is guaranteed. I mean, the vCPU won't get halted in the middle
->>> of the vmovdqu nor vmovups. only before, between, or after them.
->>>
->>> But is this uncached and/or coherent? isn't there really any possibility that
->>> the command finished, but GuC mid-flight executing things aren't still
->>> seeing different cachelines?
->>>
->>
->> The GuC won't start executing until vCPU unpause on the save flow.
->> Restore flow is bit more tricky as vCPU are live when this happens but
->> we can W/A that race in software I think. That part is not in this
->> series.
->>
->>>>
->>>>>
->>>>> So, imho this patch is introducing a unmaintainable, complex, and fragile code
->>>>> that is not even doing what it is claiming to do. But I will be glad if someone
->>>>> can challenge this and prove me wrong.
->>>>>
->>>>
->>>> Let me know if the above makes any sense.
->>>
->>> Okay. But how to handle cases where AVX might not be available? really not needed?
->>>
->>
->> This iGPU feature for PTL so shouldn't be an issue as PTL has AVX
->> instructions.
-> 
-> Some comments around the code about that to be clear that we don't try to
-> reuse this later in any discrete.
-> and perhaps an assert ! dgfx?!
+Makes sense. No point caching something that can change based on thermal 
+conditions.
 
-this was already suggested offline to make checks for all prerequisites when declaring readiness for the full migration support,
-and then just add xe_asserts here without any misleading runtime checks
-> 
->>
->> Matt
->>
->>>>
->>>> Matt
->>>>
->>>>> Thanks,
->>>>> Rodrigo.
->>>>>
->>>>>>
->>>>>> Matt 
->>>>>>
->>>>>>> +}
->>>>>>> +
->>>>>>> +static void emit_atomic(struct xe_gt *gt, void *dst, const void *src, u32 size)
->>>>>>> +{
->>>>>>> +	u32 instr_size = size * BITS_PER_BYTE;
->>>>>>> +
->>>>>>> +	xe_gt_assert(gt, instr_size == SZ_128 || instr_size == SZ_256);
->>>>>>> +
->>>>>>> +	if (IS_VF_CCS_READY(gt_to_xe(gt)) && static_cpu_has(X86_FEATURE_AVX))
->>>>>>> +		memcpy_vmovdqu(dst, src, instr_size);
->>>>>>> +	else
->>>>>>> +		memcpy(dst, src, size);
->>>>>>> +}
->>>>>>> +
->>>>>>> +#define EMIT_COPY_CCS_DW 8
->>>>>>>  static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
->>>>>>>  			  u64 dst_ofs, bool dst_is_indirect,
->>>>>>>  			  u64 src_ofs, bool src_is_indirect,
->>>>>>>  			  u32 size)
->>>>>>>  {
->>>>>>> +	u32 dw[EMIT_COPY_CCS_DW] = {MI_NOOP};
->>>>>>>  	struct xe_device *xe = gt_to_xe(gt);
->>>>>>>  	u32 *cs = bb->cs + bb->len;
->>>>>>>  	u32 num_ccs_blks;
->>>>>>>  	u32 num_pages;
->>>>>>>  	u32 ccs_copy_size;
->>>>>>>  	u32 mocs;
->>>>>>> +	u32 i = 0;
->>>>>>>  
->>>>>>>  	if (GRAPHICS_VERx100(xe) >= 2000) {
->>>>>>>  		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
->>>>>>> @@ -673,15 +707,23 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
->>>>>>>  		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
->>>>>>>  	}
->>>>>>>  
->>>>>>> -	*cs++ = XY_CTRL_SURF_COPY_BLT |
->>>>>>> -		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
->>>>>>> -		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
->>>>>>> -		ccs_copy_size;
->>>>>>> -	*cs++ = lower_32_bits(src_ofs);
->>>>>>> -	*cs++ = upper_32_bits(src_ofs) | mocs;
->>>>>>> -	*cs++ = lower_32_bits(dst_ofs);
->>>>>>> -	*cs++ = upper_32_bits(dst_ofs) | mocs;
->>>>>>> +	dw[i++] = XY_CTRL_SURF_COPY_BLT |
->>>>>>> +		  (src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
->>>>>>> +		  (dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
->>>>>>> +		  ccs_copy_size;
->>>>>>> +	dw[i++] = lower_32_bits(src_ofs);
->>>>>>> +	dw[i++] = upper_32_bits(src_ofs) | mocs;
->>>>>>> +	dw[i++] = lower_32_bits(dst_ofs);
->>>>>>> +	dw[i++] = upper_32_bits(dst_ofs) | mocs;
->>>>>>>  
->>>>>>> +	/*
->>>>>>> +	 * The CCS copy command is a 5-dword sequence. If the vCPU halts during
->>>>>>> +	 * save/restore while this sequence is being issued, partial writes may trigger
->>>>>>> +	 * page faults when saving iGPU CCS metadata. Use the VMOVDQU instruction to
->>>>>>> +	 * write the sequence atomically.
->>>>>>> +	 */
->>>>>>> +	emit_atomic(gt, cs, dw, sizeof(dw));
->>>>>>> +	cs += EMIT_COPY_CCS_DW;
->>>>>>>  	bb->len = cs - bb->cs;
->>>>>>>  }
->>>>>>>  
->>>>>>> @@ -993,18 +1035,27 @@ static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
->>>>>>>  	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
->>>>>>>  }
->>>>>>>  
->>>>>>> -static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
->>>>>>> +/*
->>>>>>> + * The MI_FLUSH_DW command is a 4-dword sequence. If the vCPU halts during
->>>>>>> + * save/restore while this sequence is being issued, partial writes may
->>>>>>> + * trigger page faults when saving iGPU CCS metadata. Use
->>>>>>> + * emit_atomic() to write the sequence atomically.
->>>>>>> + */
->>>>>>> +#define EMIT_FLUSH_INVALIDATE_DW 4
->>>>>>> +static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *cs, int i, u32 flags)
->>>>>>>  {
->>>>>>>  	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
->>>>>>> +	u32 dw[EMIT_FLUSH_INVALIDATE_DW] = {MI_NOOP}, j = 0;
->>>>>>> +
->>>>>>> +	dw[j++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
->>>>>>> +		      MI_FLUSH_IMM_DW | flags;
->>>>>>> +	dw[j++] = lower_32_bits(addr);
->>>>>>> +	dw[j++] = upper_32_bits(addr);
->>>>>>> +	dw[j++] = MI_NOOP;
->>>>>>>  
->>>>>>> -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
->>>>>>> -		  MI_FLUSH_IMM_DW | flags;
->>>>>>> -	dw[i++] = lower_32_bits(addr);
->>>>>>> -	dw[i++] = upper_32_bits(addr);
->>>>>>> -	dw[i++] = MI_NOOP;
->>>>>>> -	dw[i++] = MI_NOOP;
->>>>>>> +	emit_atomic(q->gt, &cs[i], dw, sizeof(dw));
->>>>>>>  
->>>>>>> -	return i;
->>>>>>> +	return i + j;
->>>>>>>  }
->>>>>>>  
->>>>>>>  /**
->>>>>>> @@ -1049,7 +1100,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
->>>>>>>  	/* Calculate Batch buffer size */
->>>>>>>  	batch_size = 0;
->>>>>>>  	while (size) {
->>>>>>> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
->>>>>>> +		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
->>>>>>>  		u64 ccs_ofs, ccs_size;
->>>>>>>  		u32 ccs_pt;
->>>>>>>  
->>>>>>> @@ -1090,7 +1141,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
->>>>>>>  	 * sizes here again before copy command is emitted.
->>>>>>>  	 */
->>>>>>>  	while (size) {
->>>>>>> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
->>>>>>> +		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
->>>>>>>  		u32 flush_flags = 0;
->>>>>>>  		u64 ccs_ofs, ccs_size;
->>>>>>>  		u32 ccs_pt;
->>>>>>> @@ -1113,11 +1164,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
->>>>>>>  
->>>>>>>  		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
->>>>>>>  
->>>>>>> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->>>>>>> +		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
->>>>>>>  		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
->>>>>>>  						  src_L0_ofs, dst_is_pltt,
->>>>>>>  						  src_L0, ccs_ofs, true);
->>>>>>> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->>>>>>> +		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
->>>>>>>  
->>>>>>>  		size -= src_L0;
->>>>>>>  	}
->>>>>>> -- 
->>>>>>> 2.51.0
->>>>>>>
+Thanks,
 
+Vinay.
+
+>
+>>   
+>>   	return pc_action_set_param(pc,
+>>   				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+>> -- 
+>> 2.43.0
+>>
