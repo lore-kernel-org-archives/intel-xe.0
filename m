@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F1BECCD183
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 07:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88A6CCCD183
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 07:53:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5233C10E94B;
-	Thu,  9 Oct 2025 07:31:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l2XNXpYq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD48210E947;
- Thu,  9 Oct 2025 07:31:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1759995062; x=1791531062;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=24cfM/3/o8WjgwXkInWoaXRUq/STalaVRBYSOf464YU=;
- b=l2XNXpYqLpjXWYeosOJZB6WegZLPtL67IYnuCLUOYSZun+GQ1uZLWmKU
- JrQTcs9sXnKfRGnLprT7Pvw6WL019cxEXebKbdTrKo8K6ITiDC+ytdOaX
- 2NbwvKi3p7m/om7DhOmiNTAUc4ctrrDw+u3wO5pHQ+yAyAJbSndedKDK/
- PYS2M49Ky0xJbWYUFbOOh44MCS8T8DAvrTCstAu2VuFGGW2bG9GFXAADg
- SpfC5tyz3XcRkqKNs/KF9Z/QQV255QddEKHFgOEV0IRzsEYW1mwcDRjsz
- nNVaOiDur22yvDK9zeZTeciBBVE0+aWXTIENcnoVT4hnniG3Owwv+D1QR g==;
-X-CSE-ConnectionGUID: sOBuKdTZTpavf1p0/iNaog==
-X-CSE-MsgGUID: kWSITVmsRNaxusOJHHA7JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="66050845"
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="66050845"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 00:31:02 -0700
-X-CSE-ConnectionGUID: bCLez5RHRj62qRhSeICGhQ==
-X-CSE-MsgGUID: FVoRd5WlSWeYSLdz6kxKyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,215,1754982000"; d="scan'208";a="181073566"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 00:31:01 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 8/8] drm/i915/display: Prepare for vblank_delay for LRR
-Date: Thu,  9 Oct 2025 12:47:36 +0530
-Message-ID: <20251009071736.800248-9-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
-References: <20251009071736.800248-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 210A010E94D;
+	Thu,  9 Oct 2025 07:53:58 +0000 (UTC)
+Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0B5510E94D;
+ Thu,  9 Oct 2025 07:53:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2512145402229698504=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Wire_up_reset/postinstall_f?=
+ =?utf-8?q?or_I2C_IRQ_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 09 Oct 2025 07:53:56 -0000
+Message-ID: <175999643678.21440.14578178692950610043@6aec98b87f92>
+X-Patchwork-Hint: ignore
+References: <20251009070304.3210101-1-raag.jadav@intel.com>
+In-Reply-To: <20251009070304.3210101-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update allow_vblank_delay_fastset() to permit vblank delay adjustments
-during with LRR when VRR TG is always active.
+--===============2512145402229698504==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cd499e58bed3..1426218c01d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4958,9 +4958,15 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	 * Allow fastboot to fix up vblank delay (handled via LRR
- 	 * codepaths), a bit dodgy as the registers aren't
- 	 * double buffered but seems to be working more or less...
-+	 *
-+	 * Also allow this when the VRR timing generator is always on,
-+	 * and optimized guardband is used. In such cases,
-+	 * vblank delay may vary even without inherited state, but it's
-+	 * still safe as VRR guardband is still same.
- 	 */
--	return HAS_LRR(display) && old_crtc_state->inherited &&
--		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
-+	return HAS_LRR(display) &&
-+	       (old_crtc_state->inherited || intel_vrr_always_use_vrr_tg(display)) &&
-+	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
- }
- 
- bool
--- 
-2.45.2
+Series: Wire up reset/postinstall for I2C IRQ (rev2)
+URL   : https://patchwork.freedesktop.org/series/154993/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc_BAT -> xe-pw-154993v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8579 -> IGT_8580
+  * Linux: xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc -> xe-pw-154993v2
+
+  IGT_8579: 8579
+  IGT_8580: 8580
+  xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc: a7101e35f29e03562f24ce1220f08350260fc0fc
+  xe-pw-154993v2: 154993v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v2/index.html
+
+--===============2512145402229698504==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Wire up reset/postinstall for I2C IRQ (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154993/">https://patchwork.freedesktop.org/series/154993/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154993v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc_BAT -&gt; xe-pw-154993v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8579 -&gt; IGT_8580</li>
+<li>Linux: xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc -&gt; xe-pw-154993v2</li>
+</ul>
+<p>IGT_8579: 8579<br />
+  IGT_8580: 8580<br />
+  xe-3887-a7101e35f29e03562f24ce1220f08350260fc0fc: a7101e35f29e03562f24ce1220f08350260fc0fc<br />
+  xe-pw-154993v2: 154993v2</p>
+
+</body>
+</html>
+
+--===============2512145402229698504==--
