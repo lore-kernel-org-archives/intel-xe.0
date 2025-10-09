@@ -4,168 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50E19CCD187
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 10:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D38CCD187
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 10:51:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0480410E209;
-	Thu,  9 Oct 2025 10:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 505C310E21A;
+	Thu,  9 Oct 2025 10:51:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S32R48j+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IlZtEigW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7193C10E209
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 10:48:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F22010E20E;
+ Thu,  9 Oct 2025 10:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760006909; x=1791542909;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=f6sNSi5SpYSFyRXncp9lO8+JKs0bcWN3ybbLhUE+Onk=;
- b=S32R48j+Yk9dgb4iCTm4jCZSycrwWO8ZEVhR47bkhkKaeemhRc5ufGES
- 7CUoH4B1x4WZst4AH/xm108spGbPpP3hbAQyK8Oux+li9ZRAFp7ykEHdx
- cB/r9jPSv2pidNpy/CWpdweGbijGFX7hMj3AjPoWAmCU5j2YCUpNUZ8/B
- oPpd1ws8C4lUSQ0WM2Mw2txB4JDuufxi3GSEcSs86TW1wGXiZ7X/q9I5l
- 5yNkbkpEAtmCej3dKzkX1IrhjEkbG/aR8h7AEMsXqcHJ3LEETpVec5D1g
- qvdk7EeYZR839u3P94CefxaLIqq32RPXQhSew7zYYOr/xDD3NtOmqN+xH w==;
-X-CSE-ConnectionGUID: ICjNGGqKSTu7Lj90kEnb9w==
-X-CSE-MsgGUID: rGfMJWwtSbasu3H13ztPkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="79858521"
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="79858521"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 03:48:01 -0700
-X-CSE-ConnectionGUID: 2zAGg9M+RBWof93naGx+ug==
-X-CSE-MsgGUID: IrnB0B32Th6e5n6eLARbbQ==
+ t=1760007090; x=1791543090;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Yh68UrqEtmHpBmjtUixsfYP/flpfGe4xTG1qzLG3JKY=;
+ b=IlZtEigWhw2SYpSC3WONybwMPRk0gAhXB2LwerPklWMCCTSpDGBUneSl
+ D0dhb1gebimyxGKOzzVSJ6QZ9Bv6wePBAu4l7tEKc3j+IqyyavdLGHENO
+ yk5newkorVrVntBHLLD1jSXdoA27z4FKaZhSQMXIXuqMTjltPomZPK33g
+ e5q9vDf6EurAFxuoIWx4VtuuMgCTt1acT0zaUFUxCEt4IhGQyN5WbG843
+ 0YIIidmZ921P9CnB23CBYotT4UWkYuFwZrD6eXuScNz67BVMDNp8Srrur
+ x+p4CnAZJhfbObyPbQdbmCvtlTSC8zu+vtaTaD1DIJjt0dYsVFJ5odPHO Q==;
+X-CSE-ConnectionGUID: 16WYhZpmQdiTS7JzCUlEIg==
+X-CSE-MsgGUID: dFTA4wW6Ryq8xqJ1RF650A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="73558727"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="73558727"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 03:51:30 -0700
+X-CSE-ConnectionGUID: S63cbywdSMyEFUcD9ENMmQ==
+X-CSE-MsgGUID: OoW0Z9QkTI2C1dujZBcrUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="181110028"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 03:48:01 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="181450985"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 03:51:30 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 9 Oct 2025 03:48:00 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Thu, 9 Oct 2025 03:51:29 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 9 Oct 2025 03:48:00 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.61)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 9 Oct 2025 03:51:29 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.41) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 9 Oct 2025 03:48:00 -0700
+ 15.2.2562.27; Thu, 9 Oct 2025 03:51:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dGKOR0Fd6A5dBRna3VZOc+eTcT+J4DrKxw8vpSIT/yrgCbBsrv5g6nZRkNkvsbdAb9LDrmJ16apmZjlsc3yFQoRY+7blRI6n4knl+WhVayoNBuLeKo+izm44QSFk6hg1oDbeaBqSS3Q2y3RCWpFI5MUD7uBB3CX+fWDUE5GFl1udw8A9Sr0HV8FLLqpui+dqpm7q+bisaK+neaxmxEKwwdYqTXdV8V2g4EEBrH22m87XwiXa3X6RVG5Xht51cQ0MsCBv3tog31DvtlEbALkUxkvudoK3DLsTqMMncii8Jurltt1YduI+DllSQVvu829JGSDMgKTIxlnMqFFzJc0goA==
+ b=ETn0gGNBDBOJsHmL9uISxXkbxZAcXU72bM3ALryfjQzgBzzovuvH0ltgwYxrYlXcbOxYPUEY3K6gfvx7q/Xrx2lZYYB0mWIVcLONKNMv2juO/+x4t0f3o0QwFgm/cm5vEmdhRr37+Xg3iasJZUc0PWlTZk6eiP8orkhY5rhYKafTxjFQq1d9AS7HXTT/ZKqs3YW2S/BtW5oZW64xz29G54CeWT1JDvaQDLjH/94IJDmJMR7Q10JYWlvf3sg63vII3CNsD+mqUE3/d3cI47NW1dBUwsmT43lUuczI+G+qv7VXypP6g9uH+eXTLR9w87+ZFTHUDquUzVk7tu0d+2W3MQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WouzRuNtOFEpA2xg0wJmT+CCGoMHdOsecYXyLUP3zYQ=;
- b=s8nTCb7rgcNklUWEphCF7FDuRac77zbOSO6B6oh7hwO68iE545/mV7+6oLV0IBRh96aXhvtbMfUIHtBSU+vxE183/qm+LOfPzriNAraEd6hFnIwJkPjNHj4FL1mLEiMzpwWir4iO3XKhvmHAebLsOpGhKjsac7ktkYzjsVfdmQlRAmfF+J/0V8x2v222GkpS7977MPIe53ULuHhn8P+5LjgiUh1l3j030XMgEM3xrZhTLtwFDKgc+wV00NIF8nMEPZmihgGBcQsrIBMu2SKHNP3Ls/71sDVtIakZFhKPRqLPEUYzKKr4IF81UKvLNZmv6HBQMOOu7pvSH5/lnYb+rQ==
+ bh=lzUQzLQhJfmHZU3XOGBnxR9KJk8dMjfBAHNQ5a1Ar8A=;
+ b=CVE9PIG/CkKJ/ilTmVUI9Un8O1E1HTnPYWl8zU5vgpQi6gja1XPWZ9C8yA21tGPrHhe+D2tcrY8kKvY0YkpApL8Fb2F7+NA2AaV4JLpAr3gMpN5u0AGanRkc1HXNu3Ldt6yNIvVfPbVns138QZit+AJZSNsgsIR1ShlrJc3b5/rVPweZr5znboCPy7lvFdQSiFTd0N/Z9q4zd4KUGKPsi1XLR9NRRM56lIJhIXDqpLmuEqohvgC40AJOezJ7GS+m2B4OILRhhUt2zCY6yg+VKHwbPkW1px55Y5Wjo573kbWaIxtXuYZX8hA07eAZ1sas+iTujT966YDeF5kdpJ+Nww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM6PR11MB4625.namprd11.prod.outlook.com (2603:10b6:5:2a8::24) with
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by BL3PR11MB6316.namprd11.prod.outlook.com (2603:10b6:208:3b3::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Thu, 9 Oct
- 2025 10:47:54 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%4]) with mapi id 15.20.9182.017; Thu, 9 Oct 2025
- 10:47:54 +0000
-Date: Thu, 9 Oct 2025 03:47:52 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Don't allow evicting of BOs in same VM in array
- of VM binds
-Message-ID: <aOeS2J8pDof0Pzeb@lstrano-desk.jf.intel.com>
-References: <20251008200051.3423684-1-matthew.brost@intel.com>
- <5f3936a32079971fa490b1dccfd69d2558df7aaf.camel@intel.com>
- <68a5d384d2c1bfca3cd6fb11a31cd0e19b62cb19.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ 2025 10:51:27 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9203.009; Thu, 9 Oct 2025
+ 10:51:26 +0000
+Message-ID: <525d42c8-2811-4168-bef6-b0704b99433c@intel.com>
+Date: Thu, 9 Oct 2025 16:21:19 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/10] drm/i915/display: Add CASF strength and winsize
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20251001063500.1259687-1-nemesa.garg@intel.com>
+ <20251001063500.1259687-4-nemesa.garg@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251001063500.1259687-4-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <68a5d384d2c1bfca3cd6fb11a31cd0e19b62cb19.camel@linux.intel.com>
-X-ClientProxiedBy: BYAPR11CA0076.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::17) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-ClientProxiedBy: MA0PR01CA0011.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::9) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM6PR11MB4625:EE_
-X-MS-Office365-Filtering-Correlation-Id: 395530bb-5dca-4bb8-523b-08de07214d0a
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|BL3PR11MB6316:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0715c573-c440-4cf8-40b8-08de0721cb94
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?QRnZsE5FPJY6O+E1GuQddsR0OXycRK69EnDca52adtDEtur1SBnFp3OT7E?=
- =?iso-8859-1?Q?/0K7oWYUaD7q+qKiuh6jV8M8F48Fs08NPVPtxdXkxXy45A6ZToT22d9HKV?=
- =?iso-8859-1?Q?nLGf0F7h1IXYA/RsLcGXugc44aSGoB6cnVeNIx0/Oc/MB56bvdkeB7rg98?=
- =?iso-8859-1?Q?bX6pfWHEYsBeVPyQ5LfEtQ3qr8HRhLjEH9CrFChoA508jiG2Y2yWc+LmzX?=
- =?iso-8859-1?Q?WHOltuYPDiA5JJR3/arEIhc5sTloEtcQS2mDhzfMsx4CaF5sugoI7QCuNb?=
- =?iso-8859-1?Q?bLnUtqORjl1lpCVZFoE50MG3ktoU/3mkogVqESKal9388/MFvyfRjSHUQ7?=
- =?iso-8859-1?Q?l/PSwbDdJ+sJZi13zS7zRdQgsPeKIIqCVTqr0WfJkevxDOWcyvKCBJGwGQ?=
- =?iso-8859-1?Q?VzKBizb+rXDsX8agGFP+4PwufW6apyisPU/v5I0nppk1D5TyfeoTjCu/HH?=
- =?iso-8859-1?Q?3Yv7R/sM1G/FBVnbYaH96Dr7S+dJEyj4aCSdm6kV67nZzoV4Db2ihOt5Le?=
- =?iso-8859-1?Q?8vg7LsViqlQVdgBiKFcZtOH+f4sRFzXDkBMQmQ72d5h78lExS0IYgEFrCe?=
- =?iso-8859-1?Q?0T+H3bEiRgXMXcX5OPMggkEmw6dv6m+tAZO3xqoqw+qLfvCXk3nQPZITuO?=
- =?iso-8859-1?Q?Ofr0nbPUP1WS1TAmwEYv8mkiQXtW2OPBPpOaqBHqGsEvhMnfCQiRLr9MyF?=
- =?iso-8859-1?Q?GBmvnrDILZVnJ2+jdVBLfK8Nq50JaqSrEE4XqUBM399m7RMM4eAUa6f05l?=
- =?iso-8859-1?Q?tqEa+yQB4JFWipbPhb3BxvgfO13TLZ2MV0M1YRg7RHqz7XCJbUHgyycHNX?=
- =?iso-8859-1?Q?b/+ajMzT7KHFon3F6i4jvkuy34HvIr4Mjo24PH/3y+sdKNcGlyJR/OIL5B?=
- =?iso-8859-1?Q?+O+8xy1emaDiRCSj7HaveNxZ2OHXs62WvYLq99bo1Lwbao0PNZ/43LdyRk?=
- =?iso-8859-1?Q?eE/u5Hb4WRqzTEseMxIRF5mw0SFMlm2opQIvF9XjAnOXbDanH1xAFrLfmd?=
- =?iso-8859-1?Q?lYln4yzDqNBD6mXA/7CGCZBCn5GNbL/WCbvF+I6aAO9NW+Zx8ko45LRg+T?=
- =?iso-8859-1?Q?hMuHJrQbNX3Md0uUbqD7IGwWW6FL2apBre1AVzyWHYkOzj/kEczkBN2UkT?=
- =?iso-8859-1?Q?cUcZHXtIFvUHJwpiDu7bMPX98tXU4BYJLCxL0JonynOxD5sqduplyxWAeC?=
- =?iso-8859-1?Q?pNYFefNWW9y41ra35P76NQwdjaJiZVoybLCXUMImtMs5u4UikK7oT5T2At?=
- =?iso-8859-1?Q?yGfh2PPm5gPANRmloGtfCEcpu7UW5HNrdu/vPSZ3ym7F6Jlhvmg9gUnZaw?=
- =?iso-8859-1?Q?Phl2bS0czFsmSrn4utPlg4m3mV38TO02HuW59CldD0BuiF6EVFoIbpR+LT?=
- =?iso-8859-1?Q?IQtPx7tcGboXulr8rQlVdzLyx3sNRQT1GZifn0lpMVAK6eChX4bLMRgAoF?=
- =?iso-8859-1?Q?SOC4hSFz3dPICWh5DL2stOlQQL5EEMK9hpAF1Q=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SjlqQ3A3dmV0ZmNSVndkUUdkQXB6YTdaTVd3K1hXZXNOaVdWNWkxZ3daajQr?=
+ =?utf-8?B?dzFHWWxMaGVxREpQRE1IOVUzeHQwM0t1L3QvVGpSaTNjSDdYcWlsM2t4TFZz?=
+ =?utf-8?B?K2I2VmZXeXZsZzZCenNhSGlETktmMjJjanlrWHlsMThoNkdSYWxROUcyT3VC?=
+ =?utf-8?B?OTN4eGRTQ1l3TVIvZjNtMlVJNTR3a0RINjQxT3lzZko3NU84WGRtd2JxUERE?=
+ =?utf-8?B?UjhoSlpKL2VhT3MwcnE1eE5FNGFPYkNjeGJ6UGU0Q09sMzNqdnpRNldpTEo3?=
+ =?utf-8?B?cXZSSHZzeEE4b2NseGhia3JBZmtvbXNNU3drWDRXUWhCN0czQmRqU1U3MDJx?=
+ =?utf-8?B?bnJkRE9zZFgvQjlJQ3FFYStjMXViUTZENGR6MjZ6bFJVa0RINWtrZThKRHZL?=
+ =?utf-8?B?dS9CSmxhK2dkN1VCVW92MFhpMi9scjlIMGZUUERaU1JOY2hSajZRbFJkT2po?=
+ =?utf-8?B?WnlsT3JFaUFXQmZZQ0F5aU1zd0dQc3BBR0VnT283dmJWVmNJUlVTUTdGTlFY?=
+ =?utf-8?B?a3BMZnYvOCsrdzZpbEdvMUdvY002N1YrY2tST1FncDZyV0VySXVPS2RkZkxQ?=
+ =?utf-8?B?WnJWS0FwM3JaSXVTK2tXczJsSDdtUS9GU0RmTVE5T3BhdUVIK2N2Q1ZyWFBG?=
+ =?utf-8?B?N2ZTYWpseHJsM3NacUprNnI5YkpSYTJLK3p5YVpXN3YreTZMeEl4eEU4bGNs?=
+ =?utf-8?B?WTFhaElqT0xVZllYNjMzU2NyTjVpUktJK21JQm5PT0I4eHZ4cU5EQ2gwZmxZ?=
+ =?utf-8?B?QndPKzlTYjNRVitkM2taQVNUSUx3dWVvbE5Ed01malhLK2EzbDZyekhubVBw?=
+ =?utf-8?B?UFgyV0RpSVh6R1JzMloxMXIvYlJHUytnSVZzaVlRYnRyeUVCN0N2L2hPTkRC?=
+ =?utf-8?B?L09CVStqdlJ5RlFKWWY4anRIYURJTEI0eURBZnR5a2ExNHRjQ1pLVEduS2tV?=
+ =?utf-8?B?dWMzUEZiRU9HRWdnZTMzZGkvOENGaTFJTFppZ3lvdmt1WmgrckNwWVR0Vnhj?=
+ =?utf-8?B?dE5FcEc0QzY4OXJINktEc3k0VnFHT2hpVnVLWGN1RkFYNldMYUJqOUtjbmkr?=
+ =?utf-8?B?V0RlekduWWhYZXRtK2hRbTZFSllZOFBibllDRE5KQmFZcXhhOHgyR1BhaU1R?=
+ =?utf-8?B?cUtFSUk4ZEdGZlQ1bTVtSHRid1dCcVdhVU1OdGMvUFJJd3g4OGNnMjZHL255?=
+ =?utf-8?B?VWVEb2NFNGlSejNtUUYxeXpGV1gxdnlGb1BPR0plbXZaRUFHRFQ2eHpBcHlN?=
+ =?utf-8?B?UEF0YlVkZmU1TmpRNC82NE9vV05mODFDYnNtQlNic2dEWnhrVlAzb0h5N0ZS?=
+ =?utf-8?B?UmFXaC9sSU1yVnNMdlY3elVKRDArc0h5RHVINEdaWFJpVVRCOXo3UHoxN1ZE?=
+ =?utf-8?B?VHNMS2EycWFYZkVvekIzQlVJMmpwK0N1T0NWUExwV1d4Mm9RQXZPbjVHdXlp?=
+ =?utf-8?B?ZW1Jc0hxNnRMYkpFN3VjT3hUcWZuYjgzUTNyV1M5Q3FBWlJHSWxqVDkvWmRK?=
+ =?utf-8?B?aENlTU5CeGZuZzVOTG9FYlhiby9pN2N1MmZGclc1azhxWnZXWHRYcVR1dmlE?=
+ =?utf-8?B?UVltZmttemhET0pXUjY1UXZNU0VZU3hCOXZWelhBL2ZBL2E1bTN3cUZzenk4?=
+ =?utf-8?B?a1Q5Tkt3eXltLzZiSGFPTUpXR3krcFk4YmJnWWpYSzJZRHNQNHlvNjJwVnlO?=
+ =?utf-8?B?V2M0WlpkaS8xcGlCQ3hLcXdpT3h3Umt2eEhDNm5ZaHVFVGFmenlOamU3TUdB?=
+ =?utf-8?B?UllmaGFyWTl0VnJFZmVMOVVyYUwxY2l6R2txRzlTL0pNaCt3azZyOVpTcXo3?=
+ =?utf-8?B?bnZ3S0VvWWdDVnFzWWcrRDZMOFQyQmM0aVUvdklIcnJhU1IzYlc3bVhVaitw?=
+ =?utf-8?B?Qmt4cDJPdEdDcWhwSmhVUGNVTTBOZk1ncDVld3JJZ29JNFBaNnFVVDJlM1Ro?=
+ =?utf-8?Q?u95NCBtC/Cw0xvp/5o1OczDKEUKdz9Mu?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?MHhYJsBJU3r6gJfZyA97Wdkk3EP50jsPYWbRFYi+C+mjcf8Pl19ndoTVes?=
- =?iso-8859-1?Q?PiZP3Y56w3h7AXgllKDMjWxJQyXqJUbsq9MJ0Fy/zJdJJrJqgEp6PGnJ5Z?=
- =?iso-8859-1?Q?FvA4j6yjrbsg2gA//Jmv9l+ykcPPN7pGkgVbVmmRjeC7IAw9IF+KIGpGKO?=
- =?iso-8859-1?Q?3YpFWRcuIsfYRwO3pQyZLcteeco1AXiYLfY/jzya12bbixk7pHJ/sUc3ev?=
- =?iso-8859-1?Q?mIsF20s6SHjizvAkhfT/Mz3uRZI+pxqnVbtgr7rT/Y+BfZT7kJG4s1yRTl?=
- =?iso-8859-1?Q?selbXo2+G1klP9jXQ9PdeRIjWfKmaBq5+9KeZeS7B2WDyTWFBpO8Y1pe5u?=
- =?iso-8859-1?Q?iJn8LXT+4P9Xyz8XPYiCF3IoooulhZBUaMikucvvqGFLejj7aLN+/YDKrI?=
- =?iso-8859-1?Q?YHrELmGv11YLcrFv4FhIbXYOPuVFmpqC2Nu6eMhsXwU8wpUL4mW+DyOVJI?=
- =?iso-8859-1?Q?XtEFtQYrXOWluCN5ljV6kuEysEBDYXdqJUsZaHuuf1oYeTMAEC6+hVBOgY?=
- =?iso-8859-1?Q?7aVJMXoq4hHJr4Dup/1kAi68mDJLGYKwrNK8sOctEM9BQcTXQsjdz+0Qkc?=
- =?iso-8859-1?Q?cDUpVlJnov/Mf63npy6eN9KRX2lRylFGDhrX0v07Mt1gYDMpUemzAZ/CVO?=
- =?iso-8859-1?Q?vcYJlThtHai3IKGYRc94LtS51/9SoPdANK+W12ukc4n1CohXdQj22Z/ru/?=
- =?iso-8859-1?Q?CceQ2IsxQQ353q28uqbJFlgcQWndXTeJXci37MyNyv2j2+v4i0nFa3bFWr?=
- =?iso-8859-1?Q?qciE95mXHITEqnzblZYDl4jJCEX6tXQ7h1oBgarn1ziRIxkudMDVNHLb39?=
- =?iso-8859-1?Q?h8wzywN4rfxW72GD2vgO17IM3rV1kQhryPaXHN5aNDGkZJFTpzElS2B8OP?=
- =?iso-8859-1?Q?jFIKNKtLpea5Uh72WFlZzuE9lf9ve6AQcL2m/lQ/Vqmw7neXPJaQHCemAn?=
- =?iso-8859-1?Q?SVGmizU70zWaBwVyC1KgdgIxYpgeLh69icd4xX10h2JgkrspTPIV7UrYxT?=
- =?iso-8859-1?Q?u2Z/b1VUg/hLyvxksIe4Rp7jDqQ8wvql/eR3zH3g4eR1oSxVxTDQB67zm7?=
- =?iso-8859-1?Q?Gfz6nX/4aaZiGER4yMvbXua1xK9xECRuVUPGMRFB8oaOZF/cAnNICr3W9q?=
- =?iso-8859-1?Q?sIf90nlpFwyfAmiUKRbLsHynUsd3KVduvuioEyLx+eoIZ9XMxjaw+3bZpp?=
- =?iso-8859-1?Q?2ptdjzxsB5xMlcmqHmh3WEQm0z66gIvcn8KbTjFjgopxPLXkZJk6VDbAyi?=
- =?iso-8859-1?Q?ExKSwiF1C7w6vQlTPSivBR2/rOTokQ6rbuoL4VRbf182WUbBu9WffxPD1Z?=
- =?iso-8859-1?Q?Fz132PExxCk/NC8Fm7aNoDb/10vuspM3mKGoCOmBxndSnv2Z29cbAUyOEY?=
- =?iso-8859-1?Q?0rB6+QFlS9jRguQ3WbHgCbRf+os7iCQ0eOXygTVmWWhbJGxMhHbpUb8K5Q?=
- =?iso-8859-1?Q?qo1BSrEsp6MmaQ/Cp66fdIKoE53MEgDAQRI+5tFYIzD+9r7HjI78RmZ2U1?=
- =?iso-8859-1?Q?7ZwCvEfx14oI46+YT+ZxlhDV5LLoy0c8DeTvx8zDfK+NeGlEiuCsEKhy9V?=
- =?iso-8859-1?Q?mj5iImUy6bpTfbXMIywVmPD13B1dfGCOpXBLSirQm5W3oXidHOdG4yYE2t?=
- =?iso-8859-1?Q?Oz3s+lzhY1a4yV2c3VtbgfbZKcTo5r0/aU9TK6we+GrbZk8DEERL/HKg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 395530bb-5dca-4bb8-523b-08de07214d0a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bzRUY3Y5QzA2R3EyY0lBN0hkeTZwZzBML0JjQ0RQaGl0WExTQUxFNFRuR1Vt?=
+ =?utf-8?B?V1h1TEZiaHZwYTkwK1pEYlFjOXhJWXpVWEE2dGhUYkR2YmV5dldUUFByUDcr?=
+ =?utf-8?B?RHh1Y0VJdER5WVduM1lNeHhWdkNFSGxwbjB5aHRLS0RmeWdENWVtU2JBelZB?=
+ =?utf-8?B?U3N5YnZMS0RkVzJkQ1FkNGNGRzFkeGlCOHZnSVBHY05sZ1YvR0VIVG45QVBN?=
+ =?utf-8?B?Y0kxODc1VHYrZytvL0tmeEM0OXhLOU9XUXdKcHd0QzdDQzBoTk1yMVZ2N1ZQ?=
+ =?utf-8?B?NFdralV1L2ZXV0NMZEJ0Z0FqUndjWHd1bWV5SVM1ZmVXdnA1cmJQelJMV0Vx?=
+ =?utf-8?B?RnEzV2x1bW9YekE4ZEZtVlJpYjVDb0xSUkdVU0hRZnlvSjdSOUZPd0prTW5F?=
+ =?utf-8?B?ZldjeTYySDl5bXh4L1pvSVNENmhNYTNtZ1NLcUxSVXhJQmh4MCtlMXVhZFRL?=
+ =?utf-8?B?WERRTVA1OHh6OC9GbVpTTjVlUllvQ1BKdWdVRjRPb2lWNDRKb1JwdFNmdEQz?=
+ =?utf-8?B?cTNUVEcxMTVGUWYwd005QkdDZXl0SnAzNVRMRFA0NXo3KzdKbXBlM3praTVS?=
+ =?utf-8?B?Zk43bEpUUFhySGgrNE9LcmVSSStmZXBqcFFtd1B0eXlLQy9UK3dsUlJMTk12?=
+ =?utf-8?B?RzBjc0ZxOVZweGtYTXk3Ti94bUU2OGdhbFNTeC9UY2VhMDhsbGszdXNCWVVq?=
+ =?utf-8?B?YTMwbWtBV2VEVy9mNVdOVjB6VTZqWFlJSHNtZVpxdGFiZGExeUczN2I0ZWhB?=
+ =?utf-8?B?UGRyMVcwRDNzN21ySG9nYkZKdHhJN0xqL2Fqd1RjNXhuSFVaSE04cjBLV0Rm?=
+ =?utf-8?B?WUJrQnNodWRmSmJ4SmxabEpZb0lMdlZJY0xhSzFqZ1R5VHZjdWJ1N1dXVHIz?=
+ =?utf-8?B?TVpmTUxCMmxXNWF2WUlNSzJhREtuSWpOaTBBOTd6VHEyWmVFQjVOeFBKWGph?=
+ =?utf-8?B?eGtFOVN4dFgvTXpPVndTQndYUURDUTJKSnhqWFU4bTFTT3VRUEdaT3VqYnpt?=
+ =?utf-8?B?dnhNWjdLb2xKWjZZSHEzaGlGV2dkSFJ2TnJaU2xlZVhWdEY0V09obitoaVNU?=
+ =?utf-8?B?d2l0VFdCaVZGV3U0Z2d0NWVITjk2c1p4Q1BNZ0M4eldHUnJTRDRDMld1bTlx?=
+ =?utf-8?B?OG9CN3N5UXVwRnY0a0FNYUhPVk1XUU5YK2Z5ZkMzQStkWVp1ZjlWdnRFQ3Bz?=
+ =?utf-8?B?c2NuVkRyb3MrTWJWMlRUbWRabm8zL003SmZONzNmNzdGRDRMY0M3WHBxVjVP?=
+ =?utf-8?B?TjRkNThWN3hqaEdiWnlwbFhCbTV6OTc2anlRMnI2WjZvME51YUhpQXcvc3Zt?=
+ =?utf-8?B?ck1QZVVHa2lRUFVqZVVXRWcxcDExci9wY3dPaWRVM0JtMlNCOFY3OWZTeVBW?=
+ =?utf-8?B?R2ZqM3FSOENJblhQWC92M2kwSGc0UWFjcjVUMklDR2xzemprRnMyclZlU1F5?=
+ =?utf-8?B?YUVIYk5oK1hyL2x3K0RSQ0YvM1Y5WW96eTB3UytLYXlEWlpVT2pNNDV3azM4?=
+ =?utf-8?B?OE12Wkd5OTJrSDlMZTRXdmUyaDlCdDlueERtVEtHcVVFbDZKdmJJbkxuSDVm?=
+ =?utf-8?B?Q1NUbkJWZyswbTJHeUFwcmRKcHpDWkFRWEJOcURyV1pBWi9KRmF2TUNvRXFw?=
+ =?utf-8?B?S2d6dU1xd3R1clZMNzNEaDlPZVJ1WnRZaThKNnlUNVk2dVNnOHZBNm5FS1VN?=
+ =?utf-8?B?VERaVE1LUytmRC9RUzZnQWI2OFFLU0MxN0JxQXk0OU9pcjdHRHBpbDJXcVdD?=
+ =?utf-8?B?REkxL0hjQzJteGR3RlNxWGttRERzTzFFRjNlTjBhSUIxT3duMExxMmp2ZEls?=
+ =?utf-8?B?eWVpVTh6b3lvTGVwMXpYS1BPZitrdWFRY25CWVJNcWxiTVZ2c296N1dTK1Nu?=
+ =?utf-8?B?TThiem9xcmlBODYvUTZQekpjZnphc2JCQURWVklMb2NjMGU0Zjk3NFZrc1Qw?=
+ =?utf-8?B?bjBjMmVRd1pWbkpHdjdkRGtHOW5KN0xYNU1KUzZaRDN6ZmpVMmw0YjliK2pn?=
+ =?utf-8?B?RVg2RUZveFJEL2E3ZSs0SzVNVGV2c1NMV1MvUGhlQWIrWnJsMmJtcTVzYlBk?=
+ =?utf-8?B?V3JZR01uRXZoRERzSmd4UGJodDZRaXJJSk9Ib3NtVmdzVnRENnhlajNsNDMw?=
+ =?utf-8?B?dEFOWWJYMjB2QkpVQW5WNmIrSGVZS3RVTnB2ODBkRXNWSHFEUWEvemt2MFNu?=
+ =?utf-8?B?QWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0715c573-c440-4cf8-40b8-08de0721cb94
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 10:47:54.2912 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 10:51:26.8467 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Z/9qM89GChz+PLrdBW5sfNoPT2o+HrWiaMazUEG88WUD1Cwva3Y/JOiHpbEKiXMQmN6nfDLlnA9SEaZ4ICDNCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4625
+X-MS-Exchange-CrossTenant-UserPrincipalName: OdSiXYtNPwPP/7PR+IftetQnoufByp2nflTSW8d/QIgMTMZegGOh4t5JHDzYOCQfeyj0maHOtIMJ1JCC/6RaGwye+URKTmbkMsU3uSIFb8Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6316
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,210 +195,313 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 09, 2025 at 11:49:10AM +0200, Thomas Hellström wrote:
-> On Wed, 2025-10-08 at 22:52 +0000, Zanoni, Paulo R wrote:
-> > On Wed, 2025-10-08 at 13:00 -0700, Matthew Brost wrote:
-> > > An array of VM binds can potentially evict other buffer objects
-> > > (BOs)
-> > > within the same VM under certain conditions, which may lead to NULL
-> > > pointer dereferences later in the bind pipeline. To prevent this,
-> > > clear
-> > > the allow_res_evict flag in the xe_bo_validate call.
-> > > 
-> > > Cc: stable@vger.kernel.org
-> > > Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6268
-> > 
-> > I can confirm it fixes the issue for me. Thanks!!
-> > 
-> > I did some quick testing, but everything still seems to work, so feel
-> > free to add:
-> > Tested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-> > 
-> > 
-> > > Fixes: 774b5fa509a9 ("drm/xe: Avoid evicting object of the same vm
-> > > in none fault mode")
-> > > Fixes: 77f2ef3f16f5 ("drm/xe: Lock all gpuva ops during VM bind
-> > > IOCTL")
-> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
-> > > GPUs")
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_vm.c       | 25 ++++++++++++++++---------
-> > >  drivers/gpu/drm/xe/xe_vm_types.h |  1 +
-> > >  2 files changed, 17 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index 4e914928e0a9..468176cf901e 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -2834,7 +2834,7 @@ static void vm_bind_ioctl_ops_unwind(struct
-> > > xe_vm *vm,
-> > >  }
-> > >  
-> > >  static int vma_lock_and_validate(struct drm_exec *exec, struct
-> > > xe_vma *vma,
-> > > -				 bool validate)
-> > > +				 bool no_res_evict, bool validate)
-> 
-> Perhaps call this allow_res_evict to avoid negating later.
-> 
 
-Sure.
+On 10/1/2025 12:04 PM, Nemesa Garg wrote:
+> Add register definitions for sharpness strength and
+> filter window size used by CASF. Provide functions to
+> read and write these fields.
+>
+> The sharpness strength value is determined by user input,
+> while the winsize is based on the resolution. The casf_enable
+> flag should be set if the platform supports sharpness adjustments
+> and the user API strength is not zero. Once sharpness is
+> enabled, update the strength bit of the register whenever
+> the user changes the strength value, as the enable bit and
+> winsize bit remain constant.
+>
+> Introduce helper to enable, disable and update strength.
+> Add relavant strength and winsize in both enable and disable.
+>
+> v2: Introduce get_config for casf[Ankit]
+> v3: Replace 0 with FILTER_STRENGTH_MASK[Ankit]
+> v4: After updating strength add win_sz register
+> v5: Replace u16 with u32 for total_pixel
+> v6: Add casf logging
+> v7: Add helper for enable and disable casf
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 
-> > >  {
-> > >  	struct xe_bo *bo = xe_vma_bo(vma);
-> > >  	struct xe_vm *vm = xe_vma_vm(vma);
-> > > @@ -2845,7 +2845,8 @@ static int vma_lock_and_validate(struct
-> > > drm_exec *exec, struct xe_vma *vma,
-> > >  			err = drm_exec_lock_obj(exec, &bo-
-> > > >ttm.base);
-> > >  		if (!err && validate)
-> > >  			err = xe_bo_validate(bo, vm,
-> > > -					    
-> > > !xe_vm_in_preempt_fence_mode(vm), exec);
-> > > +					    
-> > > !xe_vm_in_preempt_fence_mode(vm) &&
-> > > +					     !no_res_evict, exec);
-> > >  	}
-> > >  
-> > >  	return err;
-> > > @@ -2915,14 +2916,16 @@ static int prefetch_ranges(struct xe_vm
-> > > *vm, struct xe_vma_op *op)
-> > >  }
-> > >  
-> > >  static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm
-> > > *vm,
-> > > -			    struct xe_vma_op *op)
-> > > +			    struct xe_vma_ops *vops, struct
-> > > xe_vma_op *op)
-> > >  {
-> > >  	int err = 0;
-> > > +	bool no_res_evict = vops->flags &
-> > > XE_VMA_OPS_ARRAY_OF_BINDS;
-> 
-> For a future reader it may not be clear why this restriction is done.
-> Can you add a short description for future reference?
-> 
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Will do.
 
-> Otherwise LGTM.
-> 
-> Moving forward, we should find time to change the blocking of same-vm
-> evictions to take place in eviction_valuable(). Because at least in
-> exec we'd want to be able to evict local bos that are not bound to the
-> VM, but in that case still need to figure out how to handle bos about
-> to be bound.
-> 
-
-Yes, I think see the current problem with execs.
-
-- An exec IOCTL evicts a BO that doesn't share the VM lock
-- Subsequently while validating the VM, the BO evicted is found to
-  mapped in VM and it has to moved back a valid placement 
-
-Is this what are suggesting to fix? eviction_valuable() would seem to be
-logical place to fix this.
-
-Matt
-
-> /Thomas
-> 
-> 
-> > >  
-> > >  	switch (op->base.op) {
-> > >  	case DRM_GPUVA_OP_MAP:
-> > >  		if (!op->map.invalidate_on_bind)
-> > >  			err = vma_lock_and_validate(exec, op-
-> > > >map.vma,
-> > > +						    no_res_evict,
-> > >  						   
-> > > !xe_vm_in_fault_mode(vm) ||
-> > >  						    op-
-> > > >map.immediate);
-> > >  		break;
-> > > @@ -2933,11 +2936,13 @@ static int op_lock_and_prep(struct drm_exec
-> > > *exec, struct xe_vm *vm,
-> > >  
-> > >  		err = vma_lock_and_validate(exec,
-> > >  					    gpuva_to_vma(op-
-> > > >base.remap.unmap->va),
-> > > -					    false);
-> > > +					    no_res_evict, false);
-> > >  		if (!err && op->remap.prev)
-> > > -			err = vma_lock_and_validate(exec, op-
-> > > >remap.prev, true);
-> > > +			err = vma_lock_and_validate(exec, op-
-> > > >remap.prev,
-> > > +						    no_res_evict,
-> > > true);
-> > >  		if (!err && op->remap.next)
-> > > -			err = vma_lock_and_validate(exec, op-
-> > > >remap.next, true);
-> > > +			err = vma_lock_and_validate(exec, op-
-> > > >remap.next,
-> > > +						    no_res_evict,
-> > > true);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_UNMAP:
-> > >  		err = check_ufence(gpuva_to_vma(op-
-> > > >base.unmap.va));
-> > > @@ -2946,7 +2951,7 @@ static int op_lock_and_prep(struct drm_exec
-> > > *exec, struct xe_vm *vm,
-> > >  
-> > >  		err = vma_lock_and_validate(exec,
-> > >  					    gpuva_to_vma(op-
-> > > >base.unmap.va),
-> > > -					    false);
-> > > +					    no_res_evict, false);
-> > >  		break;
-> > >  	case DRM_GPUVA_OP_PREFETCH:
-> > >  	{
-> > > @@ -2961,7 +2966,7 @@ static int op_lock_and_prep(struct drm_exec
-> > > *exec, struct xe_vm *vm,
-> > >  
-> > >  		err = vma_lock_and_validate(exec,
-> > >  					    gpuva_to_vma(op-
-> > > >base.prefetch.va),
-> > > -					    false);
-> > > +					    no_res_evict, false);
-> > >  		if (!err && !xe_vma_has_no_bo(vma))
-> > >  			err = xe_bo_migrate(xe_vma_bo(vma),
-> > >  					   
-> > > region_to_mem_type[region],
-> > > @@ -3007,7 +3012,7 @@ static int
-> > > vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
-> > >  		return err;
-> > >  
-> > >  	list_for_each_entry(op, &vops->list, link) {
-> > > -		err = op_lock_and_prep(exec, vm, op);
-> > > +		err = op_lock_and_prep(exec, vm, vops, op);
-> > >  		if (err)
-> > >  			return err;
-> > >  	}
-> > > @@ -3640,6 +3645,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev,
-> > > void *data, struct drm_file *file)
-> > >  	}
-> > >  
-> > >  	xe_vma_ops_init(&vops, vm, q, syncs, num_syncs);
-> > > +	if (args->num_binds > 1)
-> > > +		vops.flags |= XE_VMA_OPS_ARRAY_OF_BINDS;
-> > >  	for (i = 0; i < args->num_binds; ++i) {
-> > >  		u64 range = bind_ops[i].range;
-> > >  		u64 addr = bind_ops[i].addr;
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > index da39940501d8..413353e1c225 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > > @@ -476,6 +476,7 @@ struct xe_vma_ops {
-> > >  	/** @flag: signify the properties within xe_vma_ops*/
-> > >  #define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
-> > >  #define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
-> > > +#define XE_VMA_OPS_ARRAY_OF_BINDS	 BIT(2)
-> > >  	u32 flags;
-> > >  #ifdef TEST_VM_OPS_ERROR
-> > >  	/** @inject_error: inject error to test error handling */
-> 
+> ---
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   drivers/gpu/drm/i915/display/intel_casf.c     | 131 ++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_casf.h     |  19 +++
+>   .../gpu/drm/i915/display/intel_casf_regs.h    |  22 +++
+>   .../drm/i915/display/intel_crtc_state_dump.c  |   5 +
+>   .../drm/i915/display/intel_display_types.h    |   7 +
+>   drivers/gpu/drm/i915/display/skl_scaler.c     |   1 +
+>   drivers/gpu/drm/xe/Makefile                   |   1 +
+>   8 files changed, 187 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 78a45a6681df..2aeb1da455d7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -228,6 +228,7 @@ i915-y += \
+>   	display/intel_bios.o \
+>   	display/intel_bo.o \
+>   	display/intel_bw.o \
+> +	display/intel_casf.o \
+>   	display/intel_cdclk.o \
+>   	display/intel_cmtg.o \
+>   	display/intel_color.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> new file mode 100644
+> index 000000000000..ad2faed5c1b3
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -0,0 +1,131 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright Â© 2025 Intel Corporation
+> + *
+> + */
+> +
+> +#include <drm/drm_print.h>
+> +
+> +#include "i915_reg.h"
+> +#include "intel_casf.h"
+> +#include "intel_casf_regs.h"
+> +#include "intel_de.h"
+> +#include "intel_display_regs.h"
+> +#include "intel_display_types.h"
+> +
+> +#define MAX_PIXELS_FOR_3_TAP_FILTER (1920 * 1080)
+> +#define MAX_PIXELS_FOR_5_TAP_FILTER (3840 * 2160)
+> +
+> +/**
+> + * DOC: Content Adaptive Sharpness Filter (CASF)
+> + *
+> + * Starting from LNL the display engine supports an
+> + * adaptive sharpening filter, enhancing the image
+> + * quality. The display hardware utilizes the second
+> + * pipe scaler for implementing CASF.
+> + * If sharpness is being enabled then pipe scaling
+> + * cannot be used.
+> + * This filter operates on a region of pixels based
+> + * on the tap size. Coefficients are used to generate
+> + * an alpha value which blends the sharpened image to
+> + * original image.
+> + */
+> +
+> +void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	int win_size;
+> +
+> +	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
+> +		     FILTER_STRENGTH(crtc_state->hw.casf_params.strength));
+> +
+> +	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
+> +
+> +	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, 1), win_size);
+> +}
+> +
+> +static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+> +{
+> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> +	u32 total_pixels = mode->hdisplay * mode->vdisplay;
+> +
+> +	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
+> +	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
+> +	else
+> +		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
+> +}
+> +
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +
+> +	if (!HAS_CASF(display))
+> +		return 0;
+> +
+> +	if (crtc_state->uapi.sharpness_strength == 0) {
+> +		crtc_state->hw.casf_params.casf_enable = false;
+> +		crtc_state->hw.casf_params.strength = 0;
+> +		return 0;
+> +	}
+> +
+> +	crtc_state->hw.casf_params.casf_enable = true;
+> +
+> +	/*
+> +	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
+> +	 * Strength is from 0.0-14.9375 ie from 0-239.
+> +	 * User can give value from 0-255 but is clamped to 239.
+> +	 * Ex. User gives 85 which is 5.3125 and adding 1.0 gives 6.3125.
+> +	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
+> +	 * Also 85 + 16 = 101.
+> +	 */
+> +	crtc_state->hw.casf_params.strength =
+> +		min(crtc_state->uapi.sharpness_strength, 0xEF) + 0x10;
+> +
+> +	intel_casf_compute_win_size(crtc_state);
+> +
+> +	return 0;
+> +}
+> +
+> +void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 sharp;
+> +
+> +	sharp = intel_de_read(display, SHARPNESS_CTL(crtc->pipe));
+> +	if (sharp & FILTER_EN) {
+> +		if (drm_WARN_ON(display->drm,
+> +				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) < 16))
+> +			crtc_state->hw.casf_params.strength = 0;
+> +		else
+> +			crtc_state->hw.casf_params.strength =
+> +				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp);
+> +		crtc_state->hw.casf_params.casf_enable = true;
+> +		crtc_state->hw.casf_params.win_size =
+> +			REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
+> +	}
+> +}
+> +
+> +void intel_casf_enable(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 sharpness_ctl;
+> +
+> +	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
+> +
+> +	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
+> +
+> +	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
+> +}
+> +
+> +void intel_casf_disable(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> new file mode 100644
+> index 000000000000..753871880279
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright Â© 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_CASF_H__
+> +#define __INTEL_CASF_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_crtc_state;
+> +
+> +int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
+> +void intel_casf_update_strength(struct intel_crtc_state *new_crtc_state);
+> +void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
+> +void intel_casf_enable(struct intel_crtc_state *crtc_state);
+> +void intel_casf_disable(const struct intel_crtc_state *crtc_state);
+> +
+> +#endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf_regs.h b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> new file mode 100644
+> index 000000000000..bd763efe5c1b
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright Â© 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_CASF_REGS_H__
+> +#define __INTEL_CASF_REGS_H__
+> +
+> +#include "intel_display_reg_defs.h"
+> +
+> +#define _SHARPNESS_CTL_A		0x682B0
+> +#define _SHARPNESS_CTL_B		0x68AB0
+> +#define SHARPNESS_CTL(pipe)		_MMIO_PIPE(pipe, _SHARPNESS_CTL_A, _SHARPNESS_CTL_B)
+> +#define   FILTER_EN			REG_BIT(31)
+> +#define   FILTER_STRENGTH_MASK		REG_GENMASK(15, 8)
+> +#define   FILTER_STRENGTH(x)		REG_FIELD_PREP(FILTER_STRENGTH_MASK, (x))
+> +#define   FILTER_SIZE_MASK		REG_GENMASK(1, 0)
+> +#define   SHARPNESS_FILTER_SIZE_3X3	REG_FIELD_PREP(FILTER_SIZE_MASK, 0)
+> +#define   SHARPNESS_FILTER_SIZE_5X5	REG_FIELD_PREP(FILTER_SIZE_MASK, 1)
+> +#define   SHARPNESS_FILTER_SIZE_7X7	REG_FIELD_PREP(FILTER_SIZE_MASK, 2)
+> +
+> +#endif /* __INTEL_CASF_REGS__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index a14bcda4446c..1e309e7e7947 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -374,6 +374,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>   
+>   	intel_vdsc_state_dump(&p, 0, pipe_config);
+>   
+> +	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
+> +		   pipe_config->hw.casf_params.strength,
+> +		   pipe_config->hw.casf_params.win_size,
+> +		   pipe_config->hw.casf_params.casf_enable);
+> +
+>   dump_planes:
+>   	if (!state)
+>   		return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 029c47743f8b..771026f788d8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -946,6 +946,12 @@ struct intel_csc_matrix {
+>   	u16 postoff[3];
+>   };
+>   
+> +struct intel_casf {
+> +	u8 strength;
+> +	u8 win_size;
+> +	bool casf_enable;
+> +};
+> +
+>   struct intel_crtc_state {
+>   	/*
+>   	 * uapi (drm) state. This is the software state shown to userspace.
+> @@ -982,6 +988,7 @@ struct intel_crtc_state {
+>   		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+>   		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>   		enum drm_scaling_filter scaling_filter;
+> +		struct intel_casf casf_params;
+>   	} hw;
+>   
+>   	/* actual state of LUTs */
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index c6cccf170ff1..19aeb8d5b79c 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -6,6 +6,7 @@
+>   #include <drm/drm_print.h>
+>   
+>   #include "i915_utils.h"
+> +#include "intel_casf_regs.h"
+>   #include "intel_de.h"
+>   #include "intel_display_regs.h"
+>   #include "intel_display_trace.h"
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 3c5d2388997d..457aff1cf095 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -233,6 +233,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>   	i915-display/intel_backlight.o \
+>   	i915-display/intel_bios.o \
+>   	i915-display/intel_bw.o \
+> +	i915-display/intel_casf.o \
+>   	i915-display/intel_cdclk.o \
+>   	i915-display/intel_cmtg.o \
+>   	i915-display/intel_color.o \
