@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E25F5CCD187
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 10:14:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA40CCD187
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 10:19:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844BA10E1FE;
-	Thu,  9 Oct 2025 10:14:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2B310E1FE;
+	Thu,  9 Oct 2025 10:19:32 +0000 (UTC)
 Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D222A10E1FE;
- Thu,  9 Oct 2025 10:14:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3392659673204612032=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBEC10E1FE;
+ Thu,  9 Oct 2025 10:19:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Preparatory_patches_for_gua?=
- =?utf-8?q?rdband_optimization_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_User_readable_error_codes?=
+ =?utf-8?q?_on_atomic=5Fioctl_failure_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Oct 2025 10:14:23 -0000
-Message-ID: <176000486385.22768.14764500779962190732@6aec98b87f92>
+Date: Thu, 09 Oct 2025 10:19:31 -0000
+Message-ID: <176000517137.22793.18417741236973198062@6aec98b87f92>
 X-Patchwork-Hint: ignore
-References: <20251009090102.850344-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251009090102.850344-1-ankit.k.nautiyal@intel.com>
+References: <20251009-atomic-v6-0-d209709cc3ba@intel.com>
+In-Reply-To: <20251009-atomic-v6-0-d209709cc3ba@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,43 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3392659673204612032==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Preparatory patches for guardband optimization (rev2)
-URL   : https://patchwork.freedesktop.org/series/155662/
-State : success
+Series: User readable error codes on atomic_ioctl failure (rev5)
+URL   : https://patchwork.freedesktop.org/series/152277/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b_BAT -> xe-pw-155662v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b5ff4defdb483f6b0c7d5a81e45ec1786fbdc31d
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Thu Oct 9 15:02:53 2025 +0530
 
-Summary
--------
+    drm/i915/display: Error codes for async flip failures
+    
+    For failures in async flip atomic check/commit path return user readable
+    error codes in struct drm_atomic_state.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
++ /mt/dim checkpatch e4621fd776939016f32f5585b188429d68e5ae5b drm-intel
+4953fc14019b drm: Define user readable error codes for atomic ioctl
+bda674cd6c39 drm/atomic: Add error_code element in atomic_state
+352b5cf2b9ad drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+f0e6bdd44359 drm/atomic: Return user readable error in atomic_ioctl
+-:47: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1110:
++								      DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b -> xe-pw-155662v2
-
-  IGT_8580: 8580
-  xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b: e4621fd776939016f32f5585b188429d68e5ae5b
-  xe-pw-155662v2: 155662v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v2/index.html
-
---===============3392659673204612032==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 131 lines checked
+b5ff4defdb48 drm/i915/display: Error codes for async flip failures
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Preparatory patches for guardband optimization (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155662/">https://patchwork.freedesktop.org/series/155662/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b_BAT -&gt; xe-pw-155662v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b -&gt; xe-pw-155662v2</li>
-</ul>
-<p>IGT_8580: 8580<br />
-  xe-3888-e4621fd776939016f32f5585b188429d68e5ae5b: e4621fd776939016f32f5585b188429d68e5ae5b<br />
-  xe-pw-155662v2: 155662v2</p>
-
-</body>
-</html>
-
---===============3392659673204612032==--
