@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02BD1CCD184
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 21:30:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2446FCCD183
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 21:31:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEA710E22D;
-	Thu,  9 Oct 2025 21:30:53 +0000 (UTC)
-Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2289010E22D;
- Thu,  9 Oct 2025 21:30:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3409481881005755983=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC49310E22D;
+	Thu,  9 Oct 2025 21:31:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aga7wiu+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B66C10E22D
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 21:31:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760045515; x=1791581515;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rgbCxPhYM0PrS3L9gcHdulQ954kXr/GURpRZE1s4mt4=;
+ b=aga7wiu+d9r11/oLRVux5p0f8yJS1ej0aO+VlzsagMNc4/Pwqhi9r+zM
+ GrxV2OJIUUFg+5+Q/F4a5viTYYLY+munh0IZFAKWUIbzubatVxS1Sc9Mo
+ Eo5SFnnKead8xZbVRyvMFwbD243Tmkh2B4Y+LMuENNSVsmKRIqBnMKFuY
+ DghhMaYPLru+k8bNcu+cNWjLmVUeoP3Z6ju5nLu42MMGyVBmQMgapbetj
+ 0K7W+f8NOOCnSD8q4jZBZFQwvpa+vkZrtoUzaVXmJ6Oa+q2LXbYkonpVh
+ ulT3DPn+k82OYOuicsOKHfwMaiCMaZ4GHmIzYjGf0Ih35ZtNrKCwzOBWq w==;
+X-CSE-ConnectionGUID: h+/7Jx7ZQESRe5ZKRTHrOA==
+X-CSE-MsgGUID: iCQ0N6sZTm+9Qg92zzWliQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62186250"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62186250"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:31:55 -0700
+X-CSE-ConnectionGUID: wF69S1cKStyECDw7UT7+RQ==
+X-CSE-MsgGUID: t0ziy6hRSm+BYwvsDYoYxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="180503547"
+Received: from iglushko-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.94.249.98])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 14:31:54 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Pavel E Popov <pavel.e.popov@intel.com>
+Subject: [PATCH] drm/xe: Make printk macros more robust
+Date: Thu,  9 Oct 2025 23:31:06 +0200
+Message-ID: <20251009213106.6395-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Enable_media_samp?=
- =?utf-8?q?ler_power_gating_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 09 Oct 2025 21:30:52 -0000
-Message-ID: <176004545213.25581.2920324033954631473@6aec98b87f92>
-X-Patchwork-Hint: ignore
-References: <20251009204749.1950689-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20251009204749.1950689-1-vinay.belgaumkar@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +63,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3409481881005755983==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We should make sure that our formatting macro is expanded prior
+to invoking final drm_printk macro as we don't control it and
+in case of changes in its implementation we may get wrong order
+of the parameters.
 
-== Series Details ==
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Pavel E Popov <pavel.e.popov@intel.com>
+---
+ drivers/gpu/drm/xe/xe_printk.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Series: drm/xe: Enable media sampler power gating (rev4)
-URL   : https://patchwork.freedesktop.org/series/155564/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_printk.h b/drivers/gpu/drm/xe/xe_printk.h
+index c5be2385aa95..16d851b2118a 100644
+--- a/drivers/gpu/drm/xe/xe_printk.h
++++ b/drivers/gpu/drm/xe/xe_printk.h
+@@ -12,8 +12,11 @@
+ 
+ #define __XE_PRINTK_FMT(_xe, _fmt, _args...)	_fmt, ##_args
+ 
++#define __xe_printk(_xe, _level, _fmt, ...) \
++	drm_##_level(&(_xe)->drm, _fmt, ## __VA_ARGS__)
++
+ #define xe_printk(_xe, _level, _fmt, ...) \
+-	drm_##_level(&(_xe)->drm, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
++	__xe_printk((_xe), _level, __XE_PRINTK_FMT((_xe), _fmt, ## __VA_ARGS__))
+ 
+ #define xe_err(_xe, _fmt, ...) \
+ 	xe_printk((_xe), err, _fmt, ##__VA_ARGS__)
+-- 
+2.47.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-3893-23e7752f903fec07634c72b778a733cf4ed17656_BAT -> xe-pw-155564v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3893-23e7752f903fec07634c72b778a733cf4ed17656 -> xe-pw-155564v4
-
-  IGT_8581: 8581
-  xe-3893-23e7752f903fec07634c72b778a733cf4ed17656: 23e7752f903fec07634c72b778a733cf4ed17656
-  xe-pw-155564v4: 155564v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v4/index.html
-
---===============3409481881005755983==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Enable media sampler power gating (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155564/">https://patchwork.freedesktop.org/series/155564/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155564v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3893-23e7752f903fec07634c72b778a733cf4ed17656_BAT -&gt; xe-pw-155564v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3893-23e7752f903fec07634c72b778a733cf4ed17656 -&gt; xe-pw-155564v4</li>
-</ul>
-<p>IGT_8581: 8581<br />
-  xe-3893-23e7752f903fec07634c72b778a733cf4ed17656: 23e7752f903fec07634c72b778a733cf4ed17656<br />
-  xe-pw-155564v4: 155564v4</p>
-
-</body>
-</html>
-
---===============3409481881005755983==--
