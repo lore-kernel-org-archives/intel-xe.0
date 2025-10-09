@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82092CCD185
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 13:06:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A1E6CCD184
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Oct 2025 13:06:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4908510EA3D;
-	Thu,  9 Oct 2025 13:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB3E10EA3D;
+	Thu,  9 Oct 2025 13:06:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGQNelhs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U3m3cpBS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E707910EA3D
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 13:06:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B01B610EA3D
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Oct 2025 13:06:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760015174; x=1791551174;
+ t=1760015194; x=1791551194;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=8SPtjt3RiQd2Da55NICybvDJNn4ur480L5GWpuO6B68=;
- b=BGQNelhs+JhL7hbtlQCojYKrv22i2+BlErHguAqTgi1WAf2BR6EoZSON
- 1jfpfkmGAsmlf6QZhMHWIGY19MOshQGnP40+6MrOm0RVaqcgD+5edFqBm
- imUY+GiCknuizCorjJEBcfvwk2Qo6n9zsVl15HheTifxcN8pPawLtSABc
- Wsbrjepe5x1q1VFm4iFjTKouCe6B1j+eB5mSxlnOx0Msap9Oi1QBwpCIi
- o/zHygxOmaFgSxxmuFycd+gF6r6V+nw9cUClEt2U4Ybn7sryGwTydX2Hh
- AzYj/hB+S4S17ybp/GsdiuYGNEHFcrczayCtMqKis9Ts9Q02PZl/CKisU Q==;
-X-CSE-ConnectionGUID: 3h7P0FWfTeyaVNs0SbjVSw==
-X-CSE-MsgGUID: KWc0LeFlQgCgxnEqCFcabQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62265169"
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="62265169"
+ bh=1Nb1UrgImVIUG1zfYuLdOHWhP17ztMJiM3tUP/ENfuY=;
+ b=U3m3cpBSjttTb7jTNU/J21O5ADzwXn94lCt4tsFmg072/t9rjxn0HYr8
+ GYo7EDR2VBV+LrJW+aliqEX+dSOq8I6QMQjrNeYFtraZ61+CtWHwO74P3
+ VIqY8bFtTPRwfybmpzsDGUXOLUD/dChY8nQojlG05RyjgrEKD4KuQijQB
+ BJ5508iOyUWA6CQRz4nthnIgKbNRRy/7I/thDMYJkHZUJPThcKMEUKsms
+ nIKkj/ftAsv4CuH2IQGC2NjAS/7oZKFfR3A5xNwhaJye7W6C2cduwNHs1
+ zEwWmQ2+m9YoQzI8ZdpHsoXFFN7sIbsxWXycVkYZhTwTPVW48I5mNepDl w==;
+X-CSE-ConnectionGUID: htFaCoQuTVqurYSNU1uJpw==
+X-CSE-MsgGUID: 52i0XhyGTb+hFsZOd4INdw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="62265249"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="62265249"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 06:06:13 -0700
-X-CSE-ConnectionGUID: g6IxoamdQ1y6PfGXyeIoKw==
-X-CSE-MsgGUID: FVv4tZzwTWC8nWibsmzheg==
+ 09 Oct 2025 06:06:34 -0700
+X-CSE-ConnectionGUID: h6r7SwIORhWCyO6ddpSKVw==
+X-CSE-MsgGUID: lV1rup4YToKXHXvs8t+tCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="180733963"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; d="scan'208";a="180734009"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2025 06:06:13 -0700
+ 09 Oct 2025 06:06:34 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com
-Subject: [PATCH v2] drm/xe: Don't allow evicting of BOs in same VM in array of
- VM binds
-Date: Thu,  9 Oct 2025 06:06:08 -0700
-Message-Id: <20251009130608.3531936-1-matthew.brost@intel.com>
+Subject: [PATCH] drm/xe: Handle mixed mappings and existing VRAM on atomic
+ faults
+Date: Thu,  9 Oct 2025 06:06:29 -0700
+Message-Id: <20251009130629.3531962-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,142 +65,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-An array of VM binds can potentially evict other buffer objects (BOs)
-within the same VM under certain conditions, which may lead to NULL
-pointer dereferences later in the bind pipeline. To prevent this, clear
-the allow_res_evict flag in the xe_bo_validate call.
+Moving to VRAM will fail if mixed mappings are present or if the page is
+already located in VRAM. Atomic faults that require a move to VRAM
+currently retry without attempting to evict mixed mappings or locate
+existing VRAM mappings.
 
-v2:
- - Invert polarity of no_res_evict (Thomas)
- - Add comment in code explaining issue (Thomas)
+This patch fixes the issue by attempting to evict mixed mappings or find
+existing VRAM pages when a move to VRAM fails during atomic fault
+handling.
 
-Cc: stable@vger.kernel.org
-Reported-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6268
-Fixes: 774b5fa509a9 ("drm/xe: Avoid evicting object of the same vm in none fault mode")
-Fixes: 77f2ef3f16f5 ("drm/xe: Lock all gpuva ops during VM bind IOCTL")
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Fixes: a9ac0fa455b0 ("drm/xe: Strict migration policy for atomic SVM faults")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Tested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 33 +++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_vm_types.h |  1 +
- 2 files changed, 25 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index faca626702b8..ede9cc6ff079 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2858,7 +2858,7 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
- }
- 
- static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
--				 bool validate)
-+				 bool res_evict, bool validate)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -2869,7 +2869,8 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
- 		if (!err && validate)
- 			err = xe_bo_validate(bo, vm,
--					     !xe_vm_in_preempt_fence_mode(vm), exec);
-+					     !xe_vm_in_preempt_fence_mode(vm) &&
-+					     res_evict, exec);
- 	}
- 
- 	return err;
-@@ -2939,14 +2940,24 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
- }
- 
- static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
--			    struct xe_vma_op *op)
-+			    struct xe_vma_ops *vops, struct xe_vma_op *op)
- {
- 	int err = 0;
-+	bool res_evict;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 7e2db71ff34e..b268ee0d2271 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1073,7 +1073,17 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 				drm_dbg(&vm->xe->drm,
+ 					"VRAM allocation failed, falling back to retrying fault, asid=%u, errno=%pe\n",
+ 					vm->usm.asid, ERR_PTR(err));
+-				goto retry;
 +
-+
-+	/*
-+	 * We only allow evicting a BO within the VM if it is not part of an
-+	 * array of binds, as an array of binds can evict another BO within the
-+	 * bind.
-+	 */
-+	res_evict = !(vops->flags & XE_VMA_OPS_ARRAY_OF_BINDS);
- 
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
- 		if (!op->map.invalidate_on_bind)
- 			err = vma_lock_and_validate(exec, op->map.vma,
-+						    res_evict,
- 						    !xe_vm_in_fault_mode(vm) ||
- 						    op->map.immediate);
- 		break;
-@@ -2957,11 +2968,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.remap.unmap->va),
--					    false);
-+					    res_evict, false);
- 		if (!err && op->remap.prev)
--			err = vma_lock_and_validate(exec, op->remap.prev, true);
-+			err = vma_lock_and_validate(exec, op->remap.prev,
-+						    res_evict, true);
- 		if (!err && op->remap.next)
--			err = vma_lock_and_validate(exec, op->remap.next, true);
-+			err = vma_lock_and_validate(exec, op->remap.next,
-+						    res_evict, true);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
-@@ -2970,7 +2983,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.unmap.va),
--					    false);
-+					    res_evict, false);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 	{
-@@ -2985,7 +2998,7 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.prefetch.va),
--					    false);
-+					    res_evict, false);
- 		if (!err && !xe_vma_has_no_bo(vma))
- 			err = xe_bo_migrate(xe_vma_bo(vma),
- 					    region_to_mem_type[region],
-@@ -3031,7 +3044,7 @@ static int vm_bind_ioctl_ops_lock_and_prep(struct drm_exec *exec,
- 		return err;
- 
- 	list_for_each_entry(op, &vops->list, link) {
--		err = op_lock_and_prep(exec, vm, op);
-+		err = op_lock_and_prep(exec, vm, vops, op);
- 		if (err)
- 			return err;
- 	}
-@@ -3664,6 +3677,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
++				/*
++				 * In the devmem-only case, mixed mappings may
++				 * be found. The get_pages function will fix
++				 * these up to a single location, allowing the
++				 * page fault handler to make forward progress.
++				 */
++				if (ctx.devmem_only)
++					goto get_pages;
++				else
++					goto retry;
+ 			} else {
+ 				drm_err(&vm->xe->drm,
+ 					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
+@@ -1083,6 +1093,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		}
  	}
  
- 	xe_vma_ops_init(&vops, vm, q, syncs, num_syncs);
-+	if (args->num_binds > 1)
-+		vops.flags |= XE_VMA_OPS_ARRAY_OF_BINDS;
- 	for (i = 0; i < args->num_binds; ++i) {
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index da39940501d8..413353e1c225 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -476,6 +476,7 @@ struct xe_vma_ops {
- 	/** @flag: signify the properties within xe_vma_ops*/
- #define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
- #define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
-+#define XE_VMA_OPS_ARRAY_OF_BINDS	 BIT(2)
- 	u32 flags;
- #ifdef TEST_VM_OPS_ERROR
- 	/** @inject_error: inject error to test error handling */
++get_pages:
+ 	get_pages_start = xe_svm_stats_ktime_get();
+ 
+ 	range_debug(range, "GET PAGES");
 -- 
 2.34.1
 
