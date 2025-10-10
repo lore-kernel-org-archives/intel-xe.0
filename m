@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38F6CCCD185
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 18:01:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EECA5CCD185
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 18:02:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9D7F10EC6B;
-	Fri, 10 Oct 2025 18:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84DAC10EC6C;
+	Fri, 10 Oct 2025 18:02:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mN9d+RCg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvV9sT3v";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6812F10EC6B
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Oct 2025 18:01:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54F7010EC6B
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Oct 2025 18:02:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760119314; x=1791655314;
+ t=1760119373; x=1791655373;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=sOt2miwXOfswK87v9UTiZIIPJgsO8o9giaBY2AuE8Ks=;
- b=mN9d+RCg+krxUTsA2dH1BS8DnTUVd63Vw82agFaR0JhezpRymEPiiZcm
- vj98lsWyNYQ8uUY9Rvfp5SbOb7rnDWmRYnw9pmM0Nt8D7dyvOxeppSelv
- rT7IySlAZxbCMSofeCWYCDtV4pIcKZS/Nt7oxxRmgnlXzloZOm0qLKSCD
- zKuyS6BP08jcmY6DnWksNG5PzNMyQjG/BPIhoGID/nVAGo0DSP0DoVJpP
- rWWO5m94ePNbYfsewkTNVmMy2BtB9VK93rZP1F7zlCaeGmrQy/6MKCrT8
- WH9+8e6Q5tqTYlErfFfc2K6vfJ5MtycjIqj1HjCfb6D9N5lwd+cDK1h1N Q==;
-X-CSE-ConnectionGUID: WMyn3v4+Qpiu8PEqxdMDsQ==
-X-CSE-MsgGUID: KGMKjoQ4SVybJOou1+obSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="84968068"
-X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="84968068"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 11:01:54 -0700
-X-CSE-ConnectionGUID: 3YblDyNERqu7E8tpb/nA2Q==
-X-CSE-MsgGUID: fvdRxS3RRau+FdKogjpnzQ==
+ bh=1b5xFTXI32frQL7nDT53O7BeXqYE4KrhZd1i16Z582c=;
+ b=fvV9sT3vyGOitbpHvBsdsW7pF1ulifHqqyb6NJQorRJTTiXZvrEjza7G
+ /Ipwbrrr9l71CvozPMiOKvi5Z6Jcxy/2NPuwYlpat5QfZBVR9jTDN1zFl
+ n13f5764MV2OUe1i/CYW6dnriDrKWMktjeq3TwLeraGWyv9vubjpTARXv
+ kwKgqX8CqUwxbqJvaoeGpjgqBhw8mUd6u0qLsLqO9S109sSQG+t78OhKR
+ 5kSbMBVZS8VZUbfaakTSQUJjr5VTHBv7FUQHARU6C4tQzxK86T8aTTf9c
+ xWcQSA7v8UlgBNQEjYCxJXMUJPKkvaidIyXpdY6jbUisOjZ9i47g/i0Xd A==;
+X-CSE-ConnectionGUID: Alf8nZluTf2uEzacYZhIrw==
+X-CSE-MsgGUID: yKo7svSJTuq/bHflaOok7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="62045774"
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="62045774"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 11:02:53 -0700
+X-CSE-ConnectionGUID: rCRcVIvIRI+BN84Kzmsdtw==
+X-CSE-MsgGUID: X1vZkn48RXWHZOizg1U0mQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="185058164"
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="185419776"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.124.221.150])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 11:01:53 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 11:02:52 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] [CI] drm/i915/dmc: Test Xe2LPD DMC v2.29
-Date: Fri, 10 Oct 2025 15:01:26 -0300
-Message-ID: <20251010180138.1032250-1-gustavo.sousa@intel.com>
+Subject: [PATCH] [CI] drm/i915/dmc: Test Xe3LPD DMC v2.32
+Date: Fri, 10 Oct 2025 15:02:36 -0300
+Message-ID: <20251010180240.1032699-1-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -74,18 +74,18 @@ Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 517bebb0b4aa..32c7525df152 100644
+index 517bebb0b4aa..16ddb64ff7f4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -130,7 +130,7 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
- #define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
+@@ -127,7 +127,7 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
+ #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+ #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+ 
+-#define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
++#define XE3LPD_DMC_PATH			"i915/xe3lpd_dmc_ver2_32.bin"
  MODULE_FIRMWARE(XE3LPD_DMC_PATH);
  
--#define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
-+#define XE2LPD_DMC_PATH			"i915/xe2lpd_dmc_ver2_29.bin"
- MODULE_FIRMWARE(XE2LPD_DMC_PATH);
- 
- #define BMG_DMC_PATH			DMC_PATH(bmg)
+ #define XE2LPD_DMC_PATH			DMC_PATH(xe2lpd)
 -- 
 2.51.0
 
