@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A28CCD185
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 14:01:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60CF3CCD185
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 14:14:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4258610E0BA;
-	Fri, 10 Oct 2025 14:01:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amfTeXfA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74EFC10E0BA;
- Fri, 10 Oct 2025 14:01:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760104866; x=1791640866;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FCNZ4OZw9pCj0KMOljeb6PI4QXveLlJcb42lbqFqwwg=;
- b=amfTeXfATjBTru2j0iPi7wJpHN479qmBkoidapI5JMe+NMSy/hYleLB+
- nqiNUqXU+gNqZlRflo/LfzpQgb+5TghyxNkuo6c8nkL65bYNGeBDPc/+0
- bUqnQMmUqigrT6VY0FB9FQd2WjzmqiCpT7xEsNWbHb2hG5zP3rFgw/2Jx
- hexsmglz7K8W6Y+iYnJQ5kvPjY0hA9fmVMHD6LlCrLYi+IzAcyXXaaQ1L
- OAumFCAqhiXDXWmp8MPs5m8PDHUbhjJpZjUFaeJ5zXp9IVsOeA+Bqcnth
- W7uFcP/lWJaPWeB4dZ/JqpKCCd3yh0uwffFnzgear/+2WwDDVW7R7bIrB g==;
-X-CSE-ConnectionGUID: svgnsUImQ8CyQGxLno49XA==
-X-CSE-MsgGUID: C8kPuSPnQCu6czGWCw16lQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62242791"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62242791"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 07:01:05 -0700
-X-CSE-ConnectionGUID: Y2ml8esSTL6z2BJbVJ1YuQ==
-X-CSE-MsgGUID: FdbofpaiTVS45CE+CdpW7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="180236435"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.174])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2025 07:01:03 -0700
-Date: Fri, 10 Oct 2025 17:01:00 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/display: duplicate 128-byte Y-tiling
- feature check
-Message-ID: <aOkRnFsaCeaGW_xq@intel.com>
-References: <cover.1760094361.git.jani.nikula@intel.com>
- <2a7877f8f1d11114c1a17869bd24d83e13b1fac2.1760094361.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E4A910EC14;
+	Fri, 10 Oct 2025 14:14:07 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE39910EC14;
+ Fri, 10 Oct 2025 14:14:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4839885704366737758=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a7877f8f1d11114c1a17869bd24d83e13b1fac2.1760094361.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Make_struct_xe=5F?=
+ =?utf-8?q?ggtt_private=2E_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Oct 2025 14:14:05 -0000
+Message-ID: <176010564583.294.3139528501414500821@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251010120655.1046007-8-dev@lankhorst.se>
+In-Reply-To: <20251010120655.1046007-8-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,79 +36,194 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 10, 2025 at 02:07:52PM +0300, Jani Nikula wrote:
-> We should try to get rid of checks that depend on struct
-> drm_i915_private (or struct xe_device) in display
-> code. HAS_128_BYTE_Y_TILING() is one of them. In the interest of
-> simplicity, just duplicate the check as HAS_128B_Y_TILING() in display.
-> 
-> v2: gen2 also has 128-byte Y-tile
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
->  drivers/gpu/drm/i915/display/intel_fb.c             | 3 +--
->  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 1 -
->  3 files changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 0e062753cf9b..9960ac13a6dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -142,6 +142,7 @@ struct intel_display_platforms {
->  	func(overlay_needs_physical); \
->  	func(supports_tv);
->  
-> +#define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
->  #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
->  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
->  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 3bfd211d64ba..7388791dfde0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -777,7 +777,6 @@ unsigned int
->  intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
->  {
->  	struct intel_display *display = to_intel_display(fb->dev);
-> -	struct drm_i915_private *i915 = to_i915(display->drm);
->  	unsigned int cpp = fb->format->cpp[color_plane];
->  
->  	switch (fb->modifier) {
-> @@ -814,7 +813,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
->  			return 64;
->  		fallthrough;
->  	case I915_FORMAT_MOD_Y_TILED:
-> -		if (HAS_128_BYTE_Y_TILING(i915))
-> +		if (HAS_128B_Y_TILING(display))
->  			return 128;
->  		else
->  			return 512;
+--===============4839885704366737758==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I suppose we could just assume 128 byte Y-tile in the display
-code since Y-tiled scanout wasn't even a thing before skl.
-Ie. the else branch here should be dead code in reality.
+== Series Details ==
 
-But this isn't incorrect, so
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/xe: Make struct xe_ggtt private. (rev5)
+URL   : https://patchwork.freedesktop.org/series/139778/
+State : failure
 
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> index b8269391bc69..be3edf20de22 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-> @@ -36,6 +36,5 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
->  #define IS_MOBILE(xe) (xe && 0)
->  
->  #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
-> -#define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
->  
->  #endif
-> -- 
-> 2.47.3
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165_BAT -> xe-pw-139778v5_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-139778v5_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-139778v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-139778v5_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-dg2-oem2/igt@xe_module_load@load.html
+    - bat-atsm-2:         [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-atsm-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-adlp-vm:        [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-adlp-vm/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-adlp-vm/igt@xe_module_load@load.html
+    - bat-lnl-1:          [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-lnl-1/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-lnl-1/igt@xe_module_load@load.html
+    - bat-bmg-2:          [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-bmg-2/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-bmg-1:          [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-bmg-1/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-bmg-1/igt@xe_module_load@load.html
+    - bat-adlp-7:         [PASS][13] -> [ABORT][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-adlp-7/igt@xe_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-adlp-7/igt@xe_module_load@load.html
+    - bat-lnl-2:          [PASS][15] -> [ABORT][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-lnl-2/igt@xe_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-lnl-2/igt@xe_module_load@load.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@xe_module_load@load:
+    - {bat-ptl-2}:        [PASS][17] -> [ABORT][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-2/igt@xe_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-2/igt@xe_module_load@load.html
+    - {bat-ptl-1}:        [PASS][19] -> [ABORT][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-1/igt@xe_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-1/igt@xe_module_load@load.html
+    - {bat-ptl-vm}:       [PASS][21] -> [ABORT][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-vm/igt@xe_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-vm/igt@xe_module_load@load.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Build changes
+-------------
+
+  * Linux: xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165 -> xe-pw-139778v5
+
+  IGT_8581: 8581
+  xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165: a83c7590b57a56cfc1f4d9e1c07948643c9ed165
+  xe-pw-139778v5: 139778v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/index.html
+
+--===============4839885704366737758==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Make struct xe_ggtt private. (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139778/">https://patchwork.freedesktop.org/series/139778/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165_BAT -&gt; xe-pw-139778v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-139778v5_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-139778v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-139778v5_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-atsm-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-adlp-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-adlp-vm/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>{bat-ptl-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>{bat-ptl-1}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-139778v5/bat-ptl-vm/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165 -&gt; xe-pw-139778v5</li>
+</ul>
+<p>IGT_8581: 8581<br />
+  xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165: a83c7590b57a56cfc1f4d9e1c07948643c9ed165<br />
+  xe-pw-139778v5: 139778v5</p>
+
+</body>
+</html>
+
+--===============4839885704366737758==--
