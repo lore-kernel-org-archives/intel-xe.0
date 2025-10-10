@@ -4,27 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAEC4CCD185
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:01:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E64CCD185
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83C3110EBFF;
-	Fri, 10 Oct 2025 13:01:55 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33C8E10EBFF;
- Fri, 10 Oct 2025 13:01:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 972BD10EBFF;
+	Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ABFF10EBFF
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
+Message-ID: <4e068bf5-c3ef-47d4-963b-ba032cdeee8c@lankhorst.se>
+Date: Fri, 10 Oct 2025 15:15:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] drm/xe: Only have a single drmm release action.
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20251010120655.1046007-8-dev@lankhorst.se>
+ <20251010120655.1046007-9-dev@lankhorst.se>
+ <cf28a7e3-5924-4d34-a8cd-6908dca5fe6f@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <cf28a7e3-5924-4d34-a8cd-6908dca5fe6f@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_128-?=
- =?utf-8?q?byte_Y-tiling_and_flat_CCS_feature_checks?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Oct 2025 13:01:54 -0000
-Message-ID: <176010131420.293.15085903211704763364@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <cover.1760094361.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1760094361.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,74 +39,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hey,
 
-Series: drm/i915/display: 128-byte Y-tiling and flat CCS feature checks
-URL   : https://patchwork.freedesktop.org/series/155739/
-State : warning
+Den 2025-10-10 kl. 14:14, skrev Michal Wajdeczko:
+> 
+> 
+> On 10/10/2025 2:06 PM, Maarten Lankhorst wrote:
+>> The broken action happened after ggtt_early_fini, so
+>> it's safe to put the drain_workqueue in there instead of
+>> creating a new place.
+>>
+>> Fixes: 89d2835c3680 ("drm/xe: Process deferred GGTT node removals on device unwind")
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+>> ---
+>>  drivers/gpu/drm/xe/xe_ggtt.c | 12 +-----------
+>>  1 file changed, 1 insertion(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>> index aca7ae5489b91..33b09737ccba8 100644
+>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>> @@ -199,6 +199,7 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
+>>  {
+>>  	struct xe_ggtt *ggtt = arg;
+>>  
+>> +	drain_workqueue(ggtt->wq);
+> 
+> as said earlier, drain() will be implicitly called by the below destroy() so moving it here is a nop 
+> 
+> and in some cases (at least in the past) the draining here, in "drmm" action, was just too late,
+> and that's why drain() was moved to separate "devm" action that was called while required devm data was still available
+> 
+> if this is broken now, please attach dmesg/crash log to better understand the case 
 
-== Summary ==
+In that case, would it make more sense to put the the entire operation in devm instead?
+If we cannot accurately handle this case after dev is finished, I don't see any reason to delay this otherwise.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a83c7590b57a56cfc1f4d9e1c07948643c9ed165
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
-+drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_wakeref.c:146:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Best regards,
+~Maarten Lankhorst
