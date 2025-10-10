@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E559CCA476
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:50:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 202C8CCA476
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:53:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA83610E0BA;
-	Fri, 10 Oct 2025 13:50:03 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E0A710E0BA;
- Fri, 10 Oct 2025 13:50:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D6510E0BA;
+	Fri, 10 Oct 2025 13:53:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CtQFnq7F";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5FB610E0BA;
+ Fri, 10 Oct 2025 13:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760104412; x=1791640412;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=J4g0fJpSSi08MKRkNf1NXigi5Q2BfZ+wTpdZlcIyWkM=;
+ b=CtQFnq7FkMrt82JGmA91vtOlNj2+KU+56k/nUAM3rFw8qeixU4pQp3xa
+ rYukTZKgcdsbl+t9X60WSL8HATRNqSlkIR144htsLc0WmaoxDv3GkOvA2
+ DaJtocLthnXWRt1ABfQr9hZIDsvtZNDfmBRzWHaUGEkxw27aEPB4BttWJ
+ Wa2Rpp775wC/PEyve4wW9zZW6RfnQwifa1AveifdKLcrDOYZhHMijMa/n
+ OlVMoBRLJHSn7Uu2/DBLfCkku9BLdin5bWb3AX+QXn820MF0j9fNZwRFA
+ OJWleKZ6/4cOSDaeGHhVcSAHbaxwds7DDT70VffLPGU5rCQRwsHeMx2P2 A==;
+X-CSE-ConnectionGUID: IH0JFPPfTSy6looE+sfo2g==
+X-CSE-MsgGUID: NBpwWqtzTTqZTjl4xRlbxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="61532679"
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="61532679"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 06:53:31 -0700
+X-CSE-ConnectionGUID: 2CMtW7wRR+KzdyFIDFYyyg==
+X-CSE-MsgGUID: VVzW47GNTwCv3NKnWEP63w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; d="scan'208";a="186115906"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.174])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2025 06:53:29 -0700
+Date: Fri, 10 Oct 2025 16:53:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/3] drm/i915/display: add HAS_AUX_CCS() feature check
+Message-ID: <aOkP1mRjU-Ckfr6L@intel.com>
+References: <cover.1760094361.git.jani.nikula@intel.com>
+ <f3839c6a87796d087b944720248d39462521d20b.1760094361.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/xe=3A_Make_struct_xe?=
- =?utf-8?q?=5Fggtt_private=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Oct 2025 13:50:02 -0000
-Message-ID: <176010420237.294.11311087775676518966@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251010120655.1046007-8-dev@lankhorst.se>
-In-Reply-To: <20251010120655.1046007-8-dev@lankhorst.se>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f3839c6a87796d087b944720248d39462521d20b.1760094361.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Oct 10, 2025 at 02:07:53PM +0300, Jani Nikula wrote:
+> We should try to get rid of checks that depend on struct
+> drm_i915_private (or struct xe_device) in display code. HAS_FLAT_CCS()
+> is one of them. In the interest of simplicity, add a reversed
+> HAS_AUX_CCS() feature check macro, as that's we mostly use it for in
+> display.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> ---
+> 
+> Is "display < 13 || mtl" good enough?
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_fb.c             | 4 +---
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c  | 4 ++--
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 2 --
+>  4 files changed, 4 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 9960ac13a6dd..3ceecfe3b1b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -144,6 +144,7 @@ struct intel_display_platforms {
+>  
+>  #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
+>  #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+> +#define HAS_AUX_CCS(__display)		(DISPLAY_VER(__display) < 13 || (__display)->platform.meteorlake)
 
-Series: drm/xe: Make struct xe_ggtt private. (rev5)
-URL   : https://patchwork.freedesktop.org/series/139778/
-State : warning
+That is missing ADL.
 
-== Summary ==
+I think we'd need
+ IS_DISPLAY_VER(9, 12) || adl || mtl
+or
+ IS_DISPLAY_VER(9, 14) && !dg2 && !bmg
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a83c7590b57a56cfc1f4d9e1c07948643c9ed165
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
-+drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:146:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/ttm/ttm_bo.c:1198:31: warning: symbol 'ttm_swap_ops' was not declared. Should it be static?
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:329:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:332:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    expected void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38:    got void [noderef] __iomem *
-+drivers/gpu/drm/ttm/ttm_bo_util.c:335:38: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    expected void volatile [noderef] __iomem *addr
-+drivers/gpu/drm/ttm/ttm_bo_util.c:467:28:    got void *virtual
-+drivers/gpu/drm/ttm/ttm_bo_util.c:467:28: warning: incorrect type in argument 1 (different address spaces)
+Dunno which is uglier.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I was first thinking the latter could just be 
+'IS_DISPLAY_VER(9, 14) && !IS_DGFX' but looks like we don't have
+IS_DFGX in the display code anymore, and also that would be wrong
+for DG1 (assuming we'd say IS_DGFX==true for it).
 
+>  #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
+>  #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
+>  #define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 7388791dfde0..9c256a2805e4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -547,8 +547,6 @@ static bool plane_has_modifier(struct intel_display *display,
+>  			       u8 plane_caps,
+>  			       const struct intel_modifier_desc *md)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	if (!IS_DISPLAY_VER(display, md->display_ver.from, md->display_ver.until))
+>  		return false;
+>  
+> @@ -560,7 +558,7 @@ static bool plane_has_modifier(struct intel_display *display,
+>  	 * where supported.
+>  	 */
+>  	if (intel_fb_is_ccs_modifier(md->modifier) &&
+> -	    HAS_FLAT_CCS(i915) != !md->ccs.packed_aux_planes)
+> +	    HAS_AUX_CCS(display) != !!md->ccs.packed_aux_planes)
+>  		return false;
+>  
+>  	if (md->modifier == I915_FORMAT_MOD_4_TILED_BMG_CCS &&
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index e13fb781e7b2..0319174adf95 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -1572,7 +1572,7 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+>  	}
+>  
+>  	/* FLAT CCS doesn't need to program AUX_DIST */
+> -	if (!HAS_FLAT_CCS(to_i915(display->drm)) && DISPLAY_VER(display) < 20)
+> +	if (HAS_AUX_CCS(display))
+>  		intel_de_write_dsb(display, dsb, PLANE_AUX_DIST(pipe, plane_id),
+>  				   skl_plane_aux_dist(plane_state, color_plane));
+>  
+> @@ -2930,7 +2930,7 @@ skl_universal_plane_create(struct intel_display *display,
+>  		caps = skl_plane_caps(display, pipe, plane_id);
+>  
+>  	/* FIXME: xe has problems with AUX */
+> -	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(to_i915(display->drm)))
+> +	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
+>  		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+>  			  INTEL_PLANE_CAP_CCS_RC_CC |
+>  			  INTEL_PLANE_CAP_CCS_MC);
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index be3edf20de22..7c657ea98a44 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -35,6 +35,4 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+>  
+>  #define IS_MOBILE(xe) (xe && 0)
+>  
+> -#define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+> -
+>  #endif
+> -- 
+> 2.47.3
 
+-- 
+Ville Syrjälä
+Intel
