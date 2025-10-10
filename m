@@ -4,26 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F04C2CCD184
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 01:05:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE696CCD183
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 01:12:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9EB810E253;
-	Fri, 10 Oct 2025 01:05:04 +0000 (UTC)
-Received: from 6aec98b87f92 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDB4C10E253;
- Fri, 10 Oct 2025 01:05:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1842757509561448980=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FE0910E253;
+	Fri, 10 Oct 2025 01:12:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTGZcVOh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F1810E253
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Oct 2025 01:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760058770; x=1791594770;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s7DvB2zbVoGXQArWXNXdATTl2M7ae6Fm0c8Nt8uS4p0=;
+ b=kTGZcVOhJYtrlTWsO4lHUQFFvP3KUG7xon7VNC1oRvJ58nyee/GbYnd1
+ cCNkmY8WbZa6+zJVbDVAIgVChWubx8DauiStirSknYyBKts0flCncJi3C
+ mEoOI9DKXjBQCj+YGXu7/znkbiRbNKNxGOEvCsginxvyVLA6MCaOCxfE6
+ +FsSaQS/Gzp3BTXs2RvEn+qQdJZpIH8/txreNyoN24vqSlxulXQNWXPGT
+ 2pt0N8YWzErXsw/rVaojYsgMilBNc1UeTcVaz4+WxlRgpuoGkBRjKvswj
+ oVHx7z0w031JVfwQaHuT0OKFz6WShxH09ZzafQ+a2nMIJ9zUFVBcrxx5o A==;
+X-CSE-ConnectionGUID: khl43+H0QNeQLrJfeU+1yw==
+X-CSE-MsgGUID: BZIq/byMTfCs9wtY/FVGDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="79721876"
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="79721876"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2025 18:12:50 -0700
+X-CSE-ConnectionGUID: YcnV9g0xQUe6HfFYOJz3WQ==
+X-CSE-MsgGUID: fEapvjSlSA2It5zslZOTKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,217,1754982000"; d="scan'208";a="180446798"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
+ by orviesa009.jf.intel.com with ESMTP; 09 Oct 2025 18:12:50 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v5] drm/xe: Enable media sampler power gating
+Date: Thu,  9 Oct 2025 18:10:47 -0700
+Message-Id: <20251010011047.2047584-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_copyright_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Oct 2025 01:05:03 -0000
-Message-ID: <176005830396.25588.11615092370083215915@6aec98b87f92>
-X-Patchwork-Hint: ignore
-References: <20251009230239.2830207-5-shuicheng.lin@intel.com>
-In-Reply-To: <20251009230239.2830207-5-shuicheng.lin@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,125 +62,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1842757509561448980==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Where applicable, enable media sampler power gating. Also, add
+it to the powergate_info debugfs.
 
-== Series Details ==
+v2: Remove the sampler powergate status since it is cleared quickly anyway.
+v3: Use vcs mask (Rodrigo) and fix the version check for media
+v4: Remove extra spaces
+v5: Media samplers are independent of vcs mask,
+    use Media version 1255 (Matt Roper)
 
-Series: Fix copyright (rev2)
-URL   : https://patchwork.freedesktop.org/series/155476/
-State : success
+Fixes: 38e8c4184ea0 ("drm/xe: Enable Coarse Power Gating")
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_gt_idle.c      | 8 ++++++++
+ 2 files changed, 9 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 06cb6b02ec64..51f2a03847f9 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -342,6 +342,7 @@
+ #define POWERGATE_ENABLE			XE_REG(0xa210)
+ #define   RENDER_POWERGATE_ENABLE		REG_BIT(0)
+ #define   MEDIA_POWERGATE_ENABLE		REG_BIT(1)
++#define   MEDIA_SAMPLERS_POWERGATE_ENABLE	REG_BIT(2)
+ #define   VDN_HCP_POWERGATE_ENABLE(n)		REG_BIT(3 + 2 * (n))
+ #define   VDN_MFXVDENC_POWERGATE_ENABLE(n)	REG_BIT(4 + 2 * (n))
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index f8950a52d0a4..bdc9d9877ec4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -124,6 +124,9 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt)
+ 	if (xe_gt_is_main_type(gt))
+ 		gtidle->powergate_enable |= RENDER_POWERGATE_ENABLE;
+ 
++	if (MEDIA_VERx100(xe) >= 1100 && MEDIA_VERx100(xe) < 1255)
++		gtidle->powergate_enable |= MEDIA_SAMPLERS_POWERGATE_ENABLE;
++
+ 	if (xe->info.platform != XE_DG1) {
+ 		for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, ++j) {
+ 			if ((gt->info.engine_mask & BIT(i)))
+@@ -246,6 +249,11 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
+ 				drm_printf(p, "Media Slice%d Power Gate Status: %s\n", n,
+ 					   str_up_down(pg_status & media_slices[n].status_bit));
+ 	}
++
++	if (MEDIA_VERx100(xe) >= 1100 && MEDIA_VERx100(xe) < 1255)
++		drm_printf(p, "Media Samplers Power Gating Enabled: %s\n",
++			   str_yes_no(pg_enabled & MEDIA_SAMPLERS_POWERGATE_ENABLE));
++
+ 	return 0;
+ }
+ 
+-- 
+2.38.1
 
-CI Bug Log - changes from xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f_BAT -> xe-pw-155476v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155476v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155476v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f -> xe-pw-155476v2
-
-  IGT_8581: 8581
-  xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f: ac65b2261663d50cc761c94a40b6093ee714e62f
-  xe-pw-155476v2: 155476v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155476v2/index.html
-
---===============1842757509561448980==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix copyright (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155476/">https://patchwork.freedesktop.org/series/155476/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155476v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155476v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f_BAT -&gt; xe-pw-155476v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155476v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155476v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f -&gt; xe-pw-155476v2</li>
-</ul>
-<p>IGT_8581: 8581<br />
-  xe-3894-ac65b2261663d50cc761c94a40b6093ee714e62f: ac65b2261663d50cc761c94a40b6093ee714e62f<br />
-  xe-pw-155476v2: 155476v2</p>
-
-</body>
-</html>
-
---===============1842757509561448980==--
