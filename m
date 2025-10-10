@@ -4,30 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02E64CCD185
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96CF4CCA476
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Oct 2025 13:25:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 972BD10EBFF;
-	Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ABFF10EBFF
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Oct 2025 13:15:33 +0000 (UTC)
-Message-ID: <4e068bf5-c3ef-47d4-963b-ba032cdeee8c@lankhorst.se>
-Date: Fri, 10 Oct 2025 15:15:30 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E97110E295;
+	Fri, 10 Oct 2025 13:25:40 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59EB10E295;
+ Fri, 10 Oct 2025 13:25:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0958982212044831451=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/6] drm/xe: Only have a single drmm release action.
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20251010120655.1046007-8-dev@lankhorst.se>
- <20251010120655.1046007-9-dev@lankhorst.se>
- <cf28a7e3-5924-4d34-a8cd-6908dca5fe6f@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <cf28a7e3-5924-4d34-a8cd-6908dca5fe6f@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_128-byt?=
+ =?utf-8?q?e_Y-tiling_and_flat_CCS_feature_checks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Oct 2025 13:25:38 -0000
+Message-ID: <176010273893.294.13542067942165426891@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <cover.1760094361.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1760094361.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,47 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============0958982212044831451==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2025-10-10 kl. 14:14, skrev Michal Wajdeczko:
-> 
-> 
-> On 10/10/2025 2:06 PM, Maarten Lankhorst wrote:
->> The broken action happened after ggtt_early_fini, so
->> it's safe to put the drain_workqueue in there instead of
->> creating a new place.
->>
->> Fixes: 89d2835c3680 ("drm/xe: Process deferred GGTT node removals on device unwind")
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/xe_ggtt.c | 12 +-----------
->>  1 file changed, 1 insertion(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index aca7ae5489b91..33b09737ccba8 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -199,6 +199,7 @@ static void ggtt_fini_early(struct drm_device *drm, void *arg)
->>  {
->>  	struct xe_ggtt *ggtt = arg;
->>  
->> +	drain_workqueue(ggtt->wq);
-> 
-> as said earlier, drain() will be implicitly called by the below destroy() so moving it here is a nop 
-> 
-> and in some cases (at least in the past) the draining here, in "drmm" action, was just too late,
-> and that's why drain() was moved to separate "devm" action that was called while required devm data was still available
-> 
-> if this is broken now, please attach dmesg/crash log to better understand the case 
+== Series Details ==
 
-In that case, would it make more sense to put the the entire operation in devm instead?
-If we cannot accurately handle this case after dev is finished, I don't see any reason to delay this otherwise.
+Series: drm/i915/display: 128-byte Y-tiling and flat CCS feature checks
+URL   : https://patchwork.freedesktop.org/series/155739/
+State : success
 
-Best regards,
-~Maarten Lankhorst
+== Summary ==
+
+CI Bug Log - changes from xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165_BAT -> xe-pw-155739v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165 -> xe-pw-155739v1
+
+  IGT_8581: 8581
+  xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165: a83c7590b57a56cfc1f4d9e1c07948643c9ed165
+  xe-pw-155739v1: 155739v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155739v1/index.html
+
+--===============0958982212044831451==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: 128-byte Y-tiling and flat CCS feature checks</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155739/">https://patchwork.freedesktop.org/series/155739/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155739v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155739v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165_BAT -&gt; xe-pw-155739v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165 -&gt; xe-pw-155739v1</li>
+</ul>
+<p>IGT_8581: 8581<br />
+  xe-3897-a83c7590b57a56cfc1f4d9e1c07948643c9ed165: a83c7590b57a56cfc1f4d9e1c07948643c9ed165<br />
+  xe-pw-155739v1: 155739v1</p>
+
+</body>
+</html>
+
+--===============0958982212044831451==--
