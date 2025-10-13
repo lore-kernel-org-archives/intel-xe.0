@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49CA5CCD184
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 02:50:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4685CCCD187
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 03:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0065B10E36A;
-	Mon, 13 Oct 2025 02:50:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE1A210E36D;
+	Mon, 13 Oct 2025 03:17:37 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5903010E36A;
- Mon, 13 Oct 2025 02:50:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AC6610E047;
+ Mon, 13 Oct 2025 03:17:37 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============9175609836455741371=="
+ boundary="===============6534399384626369968=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Different_page_size_handle_?=
- =?utf-8?q?in_migrate_layer?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFull=3A_success_for_Different_page_size_handle?=
+ =?utf-8?q?_in_migrate_layer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Oct 2025 02:50:22 -0000
-Message-ID: <176032382235.3958.15660998380498268994@97596180aaec>
+Date: Mon, 13 Oct 2025 03:17:37 -0000
+Message-ID: <176032545736.3958.7459118082960997306@97596180aaec>
 X-Patchwork-Hint: ignore
 References: <20251013015620.4115242-1-matthew.brost@intel.com>
 In-Reply-To: <20251013015620.4115242-1-matthew.brost@intel.com>
@@ -40,7 +40,7 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9175609836455741371==
+--===============6534399384626369968==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -53,7 +53,7 @@ State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-3904-085518a4da5bcf9b68ef798e27ef71d64443aad7_BAT -> xe-pw-155794v1_BAT
+CI Bug Log - changes from xe-3904-085518a4da5bcf9b68ef798e27ef71d64443aad7_FULL -> xe-pw-155794v1_FULL
 ====================================================
 
 Summary
@@ -65,7 +65,7 @@ Summary
 
   
 
-Participating hosts (11 -> 11)
+Participating hosts (4 -> 4)
 ------------------------------
 
   No changes in participating hosts
@@ -90,7 +90,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155794v1/index.html
 
---===============9175609836455741371==
+--===============6534399384626369968==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,11 +119,11 @@ Content-Transfer-Encoding: 7bit
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-3904-085518a4da5bcf9b68ef798e27ef71d64443aad7_BAT -&gt; xe-pw-155794v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-3904-085518a4da5bcf9b68ef798e27ef71d64443aad7_FULL -&gt; xe-pw-155794v1_FULL</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
+<h2>Participating hosts (4 -&gt; 4)</h2>
 <p>No changes in participating hosts</p>
 <h2>Changes</h2>
 <p>No changes found</p>
@@ -138,4 +138,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============9175609836455741371==--
+--===============6534399384626369968==--
