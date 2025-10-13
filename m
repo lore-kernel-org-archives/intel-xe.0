@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D45DCCCD185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 09:59:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8BFECCA476
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 10:01:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93E7C10E087;
-	Mon, 13 Oct 2025 09:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14F2C10E087;
+	Mon, 13 Oct 2025 10:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VL72sZv+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SDAyAiNE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92E1D10E087
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 09:59:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8BFD10E087;
+ Mon, 13 Oct 2025 10:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760349595; x=1791885595;
+ t=1760349688; x=1791885688;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=eVQJKALZWXHbeeAIM15A+5stL3VX8kOnW9SLzoaLUSQ=;
- b=VL72sZv+5cevaOQysQe0aUz7QMrILiv1FqBZbgpU4w5LjRCjlEVRMcA7
- Q1Y0enQHWOQOOEm5eHLUyt6dMAZ7Dqm/xP+8Uw4QxCuE4yoNp0Ri4OJYI
- 4mfdHK0wp/4/R4kExMZpfd1SaW0LtsXx6o3WXPGDhncMrFPwan8JSsxPi
- y5fVqlycKbiCDWVVVB7tALWVJ5OhvvWzKG8nX+ycDuMYEvHwzFuBBzFaG
- U56r+X44yuUZmliullUnnG7/zKai5FUe4spTu2gJloolbVFeOdDsX3uBO
- WmaxVgcd9Wn9JDJZjNiM5uMj6KEumoyW1EDW51PfSy2V1zNkk536efLZA w==;
-X-CSE-ConnectionGUID: cNovOOnOTkSYHP13/aGSoA==
-X-CSE-MsgGUID: dRPkNIvlR/ekV/gZJSsNfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="66337698"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="66337698"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 02:59:54 -0700
-X-CSE-ConnectionGUID: UZJu4OydStqCz2BXcsgYXg==
-X-CSE-MsgGUID: MbRJkizuRomwz1BoKSDrkA==
+ bh=CoDN9qz8mLPLNzQPVY36dl2wnqbqV4zs9CgPrsfNG2g=;
+ b=SDAyAiNE1upwATInxcjQyl3ktbyQV44VqcPzbZQ9MOdMOrDkd+eHvgk9
+ WlDJSb+jY8Jg8EDFrFdBCY+nlR9NRU9DcEdKJ7eCrK8cx7H688zGzL9MM
+ O+m/vb+1uGtPGh9WLSZLDj6dSEnS293Xx0ma21rqGqhDtMDY7RScdzzTV
+ oHGEPUxPAFfcdeyiFYkwrKQs0BNtKxfq55XbnIVz/mP+HplKK7jk4sQAy
+ ZL6iq7unYLOS0eP/qyzOwA2/FI3lkxB+X8+79XuIevLkz4nY8vEfihLcG
+ ZVWSqLuLqwa5trlrUHhAOMTEmTA0oCz89PEhJBdZuY0PyX/2ZDmQs0zOU Q==;
+X-CSE-ConnectionGUID: 6xdfjiudR8CxO3ZDkn+0gA==
+X-CSE-MsgGUID: LdxdFiGYQ2mMMIk2+Gsvlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126160"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126160"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 03:01:28 -0700
+X-CSE-ConnectionGUID: chl1NhfbQo2cYkvJOpvzPA==
+X-CSE-MsgGUID: eNLg6brOQV6h2y+e4GWRMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212514915"
-Received: from abhishek-optiplex-5060.iind.intel.com ([10.190.216.58])
- by fmviesa001.fm.intel.com with ESMTP; 13 Oct 2025 02:59:52 -0700
-From: Arun Abhishek Chowhan <arun.abhishek.chowhan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: arun.abhishek.chowhan@intel.com,
-	nitin.r.gote@intel.com
-Subject: [PATCH] [PATCH] drm/xe: Sort include files alphabetically.
-Date: Mon, 13 Oct 2025 15:29:14 +0530
-Message-ID: <20251013095914.3742505-1-arun.abhishek.chowhan@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212186987"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:27 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 0/7] drm/i915/display: Fix C20 PHY PLL DP/HDMI mode programming
+Date: Mon, 13 Oct 2025 12:50:38 +0300
+Message-Id: <20251013095045.3658871-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,64 +64,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sort the include lines alphabetically, no impact on code behavior.
+This patchset fixes the DP/HDMI mode programming for C20 PHY PLLs. While at it,
+it also adds the missing port clock HW readout for C10 PHY PLLs.
+ 
+ 
+These patches were originally part of the RFC PLL rework patch series [1],
+now resent separately since they include a fix, which as such should be
+tested/merged separately.
+ 
+[1] https://lore.kernel.org/all/20251001082839.2585559-1-mika.kahola@intel.com
 
-Signed-off-by: Arun Abhishek Chowhan <arun.abhishek.chowhan@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c | 2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c | 2 +-
- drivers/gpu/drm/xe/xe_tile.c    | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Imre Deak (7):
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/DP_RATE
+    field macros
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_DP flag
+    macro
+  drm/i915/display: Sanitize
+    PHY_C20_VDR_CUSTOM_SERDES_RATE/CONTEXT_TOGGLE flag macro
+  drm/i915/display: Sanitize PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_HDMI_FRL
+    flag macro
+  drm/i915/display: Fix PHY_C20_VDR_CUSTOM_SERDES_RATE programming
+  drm/i915/display: Fix PHY_C20_VDR_HDMI_RATE programming
+  drm/i915/display: Add missing clock to C10 PHY state compute/HW
+    readout
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 34f622bef3e0..1c3c9557a9bd 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -27,8 +27,8 @@
- #include "xe_sriov_vf.h"
- #include "xe_step.h"
- #include "xe_tile_debugfs.h"
--#include "xe_wa.h"
- #include "xe_vsec.h"
-+#include "xe_wa.h"
- 
- #ifdef CONFIG_DRM_XE_DEBUG
- #include "xe_bo_evict.h"
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 58e0b0294a5b..22ac2a8b74c8 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -18,6 +18,7 @@
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_gt_ccs_mode.h"
-+#include "xe_gt_mcr.h"
- #include "xe_gt_printk.h"
- #include "xe_guc.h"
- #include "xe_guc_buf.h"
-@@ -30,7 +31,6 @@
- #include "xe_platform_types.h"
- #include "xe_uc_fw.h"
- #include "xe_wa.h"
--#include "xe_gt_mcr.h"
- 
- /* Slack of a few additional entries per engine */
- #define ADS_REGSET_EXTRA_MAX	8
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 6edb5062c1da..8fd6ee990d14 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -19,9 +19,9 @@
- #include "xe_tile.h"
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
--#include "xe_wa.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
-+#include "xe_wa.h"
- 
- /**
-  * DOC: Multi-tile Design
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 43 ++++++++++++-------
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 10 +++--
+ .../drm/i915/display/intel_snps_hdmi_pll.c    |  2 +
+ 3 files changed, 36 insertions(+), 19 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
