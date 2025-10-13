@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91E9CCCD183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 14:19:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB2B7CCD18D
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 14:19:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CEC110E0D7;
-	Mon, 13 Oct 2025 14:19:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5362910E399;
+	Mon, 13 Oct 2025 14:19:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c8+Di9ZX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIFVV9dT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3D810E0D7
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 14:19:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFC010E111
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 14:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760365170; x=1791901170;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CcTKT4VSSfaQZ/x4OB3ptUPyauY9fB0MTjK6Hxga9L0=;
- b=c8+Di9ZX+Mxs76PSSwyjsnDbEfWvguGtqsjMIEnp3AFWo4gJ3aGGJuC/
- kGg6PVkBtUsaYsIVcGIfQWzU2b/aK/Jm9Tx21goD6EAvGIEcu6tpbHQqw
- loYb273kcfrikXVEgFYlrBZXAQEtlwgLjorVvxlOqi/Yn4Cvji1KvCFrR
- wxsuAe5yyO8wmu0J4V77tCdHfJD6dK60Lt0vFtAluH2FW9CMc3uQWt4+6
- +ngX2x8dk6zF+DC5NRgglIk8IdZNA04EMhgRIgll4ZNhYRCHToHYbDc9H
- zEYJTiajdxL54TAZ+sWd/kvoEpO6v0rUm0W/IHac3oC0NY1lPegBvA1yD Q==;
-X-CSE-ConnectionGUID: a0mq5PovQBa3fJ3LpCEIkQ==
-X-CSE-MsgGUID: lsA3tvTBR6ibxYEpm7IipQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73185536"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="73185536"
+ t=1760365172; x=1791901172;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=pjhbHtiruAHsUOp2QihIvCxyY8mT3Kxa3J9/cAfTDi8=;
+ b=dIFVV9dTEqYdntAi22lWdvpQ16+V6dn7c6Q6w+IcNrLkzmaNSv22FBS4
+ 8gw/LSIlhnxqlRta2g4AP9VGW2ayWlXLdZdLaGBAfj8/UqW5JE974/wNU
+ t9giqVHG4h+LQlm0ARNGX8eG1TP3a59nhRiRZmcYiPmOk1xUXiBfh0INv
+ k2hyG3cUQg7tBob7w90LFXLAQM3i5Py8lXL9ZY+e+5Hcoy/3S5dEnF9no
+ a+Wb8d8qXRPeG17Y4TrqaXSZUYHpX21PbGB6sza9Ylnx/9zExinIoZAL2
+ X+g7sOSfcf7DqJprBS6WzgrbIXK2HTJRTeAEpzqHYC6dCe982BvKrEdba Q==;
+X-CSE-ConnectionGUID: 0l4+yy6iR7iowK60k7xv8Q==
+X-CSE-MsgGUID: 9DUsBpzLTyGEM6nZ/Q2P9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73185538"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="73185538"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 07:19:30 -0700
-X-CSE-ConnectionGUID: KYx730Q4T2OmZzbdFUjgTA==
-X-CSE-MsgGUID: Q0U/uIRuQPeAPwAst5DMYA==
+ 13 Oct 2025 07:19:32 -0700
+X-CSE-ConnectionGUID: vyRhu4wcRcGdFlQXsSbNqw==
+X-CSE-MsgGUID: j679Si1SSbKrtSlp0f2Wgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="218726146"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="218726157"
 Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by orviesa001.jf.intel.com with ESMTP; 13 Oct 2025 07:19:28 -0700
+ by orviesa001.jf.intel.com with ESMTP; 13 Oct 2025 07:19:30 -0700
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, matthew.auld@intel.com,
  thomas.hellstrom@intel.com, Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v2 0/3] drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression
-Date: Mon, 13 Oct 2025 20:18:47 +0530
-Message-Id: <20251013144850.757438-1-nitin.r.gote@intel.com>
+Subject: [PATCH v2 1/3] drm/xe: add VM_BIND DECOMPRESS uapi flag
+Date: Mon, 13 Oct 2025 20:18:48 +0530
+Message-Id: <20251013144850.757438-2-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251013144850.757438-1-nitin.r.gote@intel.com>
+References: <20251013144850.757438-1-nitin.r.gote@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,35 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series implements VM_BIND decompression support in the XE driver
-for both non-fault mode and fault mode.
+Add a new VM_BIND flag, DRM_XE_VM_BIND_FLAG_DECOMPRESS, that lets userspace
+express intent for the driver to perform on-device in-place decompression
+for the GPU mapping created by a MAP bind operation.
 
-Tested with https://patchwork.freedesktop.org/series/154711/
-which validates basic VM_BIND DECOMPRESS behavior for both
-regular and FAULT_MODE VMs.
+This flag is used by subsequent driver changes to trigger scheduling of
+GPU work that resolves compressed VRAM pages into an uncompressed PAT
+VM mapping.
 
-v2: 
-   - Add kernel doc (Matt)
-   - Move decompression work out of vm_bind ioctl. (Matt)
-   - Put that work in a small helper at the BO/migrate layer invoke it
-     from vma_lock_and_validate which already runs under drm_exec.
-   - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
+Behavior and semantics:
+- Valid only for DRM_XE_VM_BIND_OP_MAP. IOCTLs using this flag on other ops
+  are rejected (-EINVAL).
+- The bind's pat_index must select the device "no-compression" PAT entry;
+  otherwise the ioctl is rejected (-EINVAL).
+- Only meaningful for VRAM-backed BOs on devices that support Flat CCS and
+  the required hardware generation (driver will return -EOPNOTSUPP if not).
+- On success the driver schedules a migrate/resolve and installs the
+  returned dma_fence into the BO's kernel reservation
+  (DMA_RESV_USAGE_KERNEL).
 
+v2: Add kernel doc (Matt)
 
-Nitin Gote (3):
-  drm/xe: add VM_BIND DECOMPRESS uapi flag
-  drm/xe: add xe_migrate_resolve wrapper and is_vram_resolve support
-  drm/xe: implement VM_BIND decompression in vm_bind_ioctl
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- drivers/gpu/drm/xe/xe_bo.c       | 53 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h       |  3 ++
- drivers/gpu/drm/xe/xe_migrate.c  | 90 ++++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_migrate.h  |  7 +++
- drivers/gpu/drm/xe/xe_vm.c       | 48 ++++++++++++-----
- drivers/gpu/drm/xe/xe_vm_types.h |  2 +
- include/uapi/drm/xe_drm.h        |  8 +++
- 7 files changed, 170 insertions(+), 41 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 40ff19f52a8d..07bd63651a7e 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1013,6 +1013,13 @@ struct drm_xe_vm_destroy {
+  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
+  *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+  *    handle MBZ, and the BO offset MBZ.
++ *  - DRM_XE_VM_BIND_FLAG_DECOMPRESS - Request on-device decompression for a MAP.
++ *    When set on a MAP bind operation, request the driver schedule an on-device
++ *    in-place decompression (via the migrate/resolve path) for the GPU mapping
++ *    created by this bind. Only valid for DRM_XE_VM_BIND_OP_MAP; usage on
++ *    other ops is rejected. The bind's pat_index must select the device's
++ *    "no-compression" PAT. Only meaningful for VRAM-backed BOs on devices that
++ *    support Flat CCS and the required HW generation XE2+.
+  *
+  * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
+  *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
+@@ -1119,6 +1126,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+ #define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+ #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
++#define DRM_XE_VM_BIND_FLAG_DECOMPRESS	(1 << 6)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.25.1
 
