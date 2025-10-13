@@ -4,72 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 236CACCD183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 17:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6AE9CCD183
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 17:20:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F39D910E12A;
-	Mon, 13 Oct 2025 17:19:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MpH0SiOT";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9188E10E0A2;
- Mon, 13 Oct 2025 17:19:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760375963; x=1791911963;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=d5yntMWubaY2pHM4QP+zNiwJMlVYEJMFLfu1vJMivyM=;
- b=MpH0SiOTYZtylZ964aP05znoHUjbarHHostpIlB6AQF+09TGINeJVrmU
- TwjSR5iiyI5n4KoX8eybaIcwuQ1ktWJsCd1DHkmDSz+NyLTAZSpDJi/sO
- OoTu1KjqP4vuGancLRuDaTlduiowihyUTk5TUj/88+Q08UOsX1+bUEPnm
- avpFbz35ltNGQxWtzkh6rI9vzhNsx0/pqfacwu8dGXxDHZ3fEKGwEv7G1
- i3NhWTh6ol5qUDVCki9ojIkU4BpcHNKnQmQKTBAAzAnqksmiT2JouTJvh
- 4vqdum1+ctuBLBR5YQsppDooPKik5HeS6jtY/UYhs+NPmF/hI3oqcGybR A==;
-X-CSE-ConnectionGUID: wyS8uXIOQTa8DZzHEhyfqQ==
-X-CSE-MsgGUID: AJtJfqJGQ8+pLXlMkmu6Ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62415596"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="62415596"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 10:19:23 -0700
-X-CSE-ConnectionGUID: OpCbmG/sQWeFaLE9amUMdg==
-X-CSE-MsgGUID: tMqduKj+SJi3/ZRGoFBSZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="186062167"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.105])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 10:19:20 -0700
-Date: Mon, 13 Oct 2025 20:19:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Vinod Govindapillai <vinod.govindapillai@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>
-Subject: Re: [PATCH 2/9] drm/{i915, xe}/fbdev: add intel_fbdev_fb_pitch_align()
-Message-ID: <aO00lQvvlyKUX9_N@intel.com>
-References: <ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com>
- <aLqsC87Ol_zCXOkN@intel.com>
- <48e0a14d67ba84d64f6589bbdd0090e86be4fd4f@intel.com>
- <7cs3dirtgrypn7xjzmv7rxmkgbrtfxxjmtth576kfwerlydcgx@6zelewdmaukb>
- <fdcc32f2-c36b-439f-8d15-14b3fb7bd5dc@lankhorst.se>
- <aL8D_dRE5nslOAUi@intel.com>
- <86c6dd41fba3bc78b82a0f0343c7be770126a4e4@intel.com>
- <aMm4UfqnlZ4RfMDm@intel.com>
- <0f9e52f66a126ca0d446015539018e29219d4b13@intel.com>
- <179b10ce04e0e0d5f08fd8e2eaeae4cf689ba2ea@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 714A710E496;
+	Mon, 13 Oct 2025 17:20:12 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 439C610E13C;
+ Mon, 13 Oct 2025 17:20:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <179b10ce04e0e0d5f08fd8e2eaeae4cf689ba2ea@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/kunit=3A_Fix_kerne?=
+ =?utf-8?q?ldoc_for_parameterized_tests?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Oct 2025 17:20:11 -0000
+Message-ID: <176037601127.7102.11284382592162911840@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251013153014.2362879-2-matthew.d.roper@intel.com>
+In-Reply-To: <20251013153014.2362879-2-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,32 +36,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 13, 2025 at 04:52:04PM +0300, Jani Nikula wrote:
-> On Thu, 18 Sep 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Tue, 16 Sep 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
-> >> For now I'd be happy if someone just nukes that bogus page alignemnt
-> >> of the stride on xe, allowing i915 and xe to use the same code here.
-> >
-> > I hope just [1] is enough for this.
-> >
-> > [1] https://lore.kernel.org/r/7f4972104de8b179d5724ae83892ee294d3f3fd3.1758184771.git.jani.nikula@intel.com
-> 
-> So that regressed [2]. (Bisected internally, unfortunately not reported
-> on the gitlab issue.) Any ideas, before I go on and resurrect this patch
-> adding different strides for i915 and xe?
+== Series Details ==
 
-That bisect doesn't make any real sense to me unless there's an existing
-bug in the xe code where it fails to pin (and somehow the smaller stride
-alignment makes it fail) but it still reports success to the caller. 
+Series: drm/xe/kunit: Fix kerneldoc for parameterized tests
+URL   : https://patchwork.freedesktop.org/series/155840/
+State : warning
 
-Unfortunately that code in xe is completely illegible due the scoped
-guard mess. So it's darn near impossible to see with a visual inspection
-where it might silently fail. I think someone will need to sprinkle
-debugs all over that code to track what is happening to the pin count.
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bf5c631db601050f98b114b3d930aa547ac9ac03
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Mon Oct 13 08:30:15 2025 -0700
+
+    drm/xe/kunit: Fix kerneldoc for parameterized tests
+    
+    Kunit's generate_params() was recently updated to take an additional
+    test context parameter.  Xe's IP and platform parameter generators were
+    updated accordingly at the same time, but the new parameter was not
+    added to the functions' kerneldoc, resulting in the following warnings:
+    
+       Warning: drivers/gpu/drm/xe/tests/xe_pci.c:78 function parameter 'test' not described in 'xe_pci_fake_data_gen_params'
+       Warning: drivers/gpu/drm/xe/tests/xe_pci.c:254 function parameter 'test' not described in 'xe_pci_graphics_ip_gen_param'
+       Warning: drivers/gpu/drm/xe/tests/xe_pci.c:278 function parameter 'test' not described in 'xe_pci_media_ip_gen_param'
+       Warning: drivers/gpu/drm/xe/tests/xe_pci.c:302 function parameter 'test' not described in 'xe_pci_id_gen_param'
+       Warning: drivers/gpu/drm/xe/tests/xe_pci.c:390 function parameter 'test' not described in 'xe_pci_live_device_gen_param'
+       5 warnings as errors
+    
+    Document the new parameter to eliminate the warnings and make CI happy.
+    
+    Fixes: b9a214b5f6aa ("kunit: Pass parameterized test context to generate_params()")
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 61b16793c3bbb8e740cf9afb36258dee61346626 drm-intel
+bf5c631db601 drm/xe/kunit: Fix kerneldoc for parameterized tests
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+   Warning: drivers/gpu/drm/xe/tests/xe_pci.c:78 function parameter 'test' not described in 'xe_pci_fake_data_gen_params'
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+
+
