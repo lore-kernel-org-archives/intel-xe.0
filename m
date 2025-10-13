@@ -4,196 +4,188 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05E52CCA476
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 12:18:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC37ACCA476
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 12:29:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A813910E11A;
-	Mon, 13 Oct 2025 12:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7992610E04F;
+	Mon, 13 Oct 2025 12:29:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSSik9s4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HSOw64J6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8CF510E11A;
- Mon, 13 Oct 2025 12:18:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07AA910E04F;
+ Mon, 13 Oct 2025 12:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760357887; x=1791893887;
+ t=1760358578; x=1791894578;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=tGm1I8DSdxUIqn2CJpK9uu9Ycm7NZwOoZpGfIpvuQd0=;
- b=QSSik9s49cBrJSqLgs6K4BZR0oC3UYGfzKy83LZxDxRw9kIC9wpPPshs
- N7huDJv7bIwnNld9TEix4+hYafci4tbyr0g7oenqph03IoeAbWcixXRDq
- sdO7b4GJx/N9XuYPqJQ/AaQpUMQ8+5xU30dbIau90kEwIuA4nZMjX6jwn
- VMN6eHOmG3I41XzDdAe5lEO0i7xedZAwgDeBazJvhDhY7KNT2qfoJg0vT
- 7VVxesqG+Tk0OyY+BD/XTjbdnPOWSo7L8/MN9t0ALcBW60yp5RpMdI4JV
- LkYUmOtlDcKFmHqF7DHhHRhnZcJMot24UqJtkRacsWdB2JenCa9qlF6cH A==;
-X-CSE-ConnectionGUID: A9wxZDCXTl67QXs4KrsAgA==
-X-CSE-MsgGUID: 9hIp3SLrTIKwESc+GSJeMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="72752797"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="72752797"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ bh=/APFmbdwZVfV+UjvLuZ3+VWbwJDruZiLGAgnnAH2Bqg=;
+ b=HSOw64J6uhesiuOX6rZZbCF9N5oP+Oyx6YGcSDrJ4ErK6B3tH68a5cII
+ jijE02Ht4EKOa06wrQgiLyyrTmxgODk/PTcrbhDX1WBWv6gMe8+Qv6k/q
+ +kcGXFSaSF2LeypV1oN6cI5vVkxjYJQT3A5EOFZXtfBX3khf1TF3nc0Jl
+ FbEa+PX9TSmX1KcGT7nfHA0Ah+wBwBhZSeBYpeMEv0DEpmpJbGzTejwhO
+ /TuK1TrdUqaoJfrR3xK/tY9S13CGniNNEi59I85XGXS1Y9xXqpTuGyU2G
+ WgoX8UioIcwGPSksiOGEoYcVSOINsjjQbHeVt0Vz7WFzV8LdcBlIfZ2HP A==;
+X-CSE-ConnectionGUID: GEDi3KCQQ5ysQWP6UpfZYQ==
+X-CSE-MsgGUID: b6XfMnpDQqORLu1gnsmvjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="72754022"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="72754022"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 05:18:06 -0700
-X-CSE-ConnectionGUID: XQ9a8dmITt2t7gdknQEH6A==
-X-CSE-MsgGUID: FHHG/8ZdTcChRk28YZeB9Q==
+ 13 Oct 2025 05:29:38 -0700
+X-CSE-ConnectionGUID: vn9A3uRtRgeyTJNPKjgPdg==
+X-CSE-MsgGUID: b4NhDRFCR2O4GopQW0dOyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="185597179"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 05:18:05 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="180831640"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 05:29:38 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 13 Oct 2025 05:18:05 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.27; Mon, 13 Oct 2025 05:29:37 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 13 Oct 2025 05:18:05 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.62) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Mon, 13 Oct 2025 05:29:37 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.18) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 13 Oct 2025 05:18:05 -0700
+ 15.2.2562.27; Mon, 13 Oct 2025 05:29:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZVM7KRFu2tiWCZdz5c9Y7k0CUlk2cTlm/sX/l3U2i+U2Qq6BpuGp8ieKdffsI7AVh4J/84wBr4cm9+c/HNFpwtG3QVzxYl5DU4skRCgFi09I+KmULozc3/jEacJ2Mv5jw+sRD3wdh1uzeez675jTl/uCosKWHkBc7buRLo5Ct2xj2K1jYAbtK4/5CCQKQVnhUjxi8WtYUvMwfQtcX5qmWg7OXo8R/FDqn1a5TO397qExxzbVmwNrkG+ZM5SQabiRjDgohJkKZyIglYrtCrSbrCIgCwQBMv1XK/yzSgPQz0/tVejr9i/mzWH7tUNNDuArqfdABws1HWdhMWQrgKHcjw==
+ b=hKVwMf371icKHvkTOvDsI9TNWlyBMdR0qS9QoWhz2vAF38lOAhqQtjSNuPhp1kSrSJM9CkThSkN+wLyutPVcKlzkWrsmmxDwdgkd5Sq5z793EbMaxOatgGqoxb+3YJiJ2mDn2SlUC71OKO0tPpsubVdTRN1IoO6cY7zWuKxdxam21NMcHgaqWaycXd2mhpnc2CXmIDG5sPT9Bjroi6P/nSJWT/bItuEv10QFV2av/qkgiQTxlvz1G7mtT+TQxRTQZgHtElKKDZwAe9vvXcsIBmixnns+l7Fx2sP8tIpt28DpYucwrCtFz/ghbLNNXOyorcpMZZm50azgEOrSomgimQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ReTAbn1Tojdg3hZy9QMHWk4nWKiexM373G/vNbH9LE4=;
- b=EZo16SMkPVgL+z+GLD10hbCm0BiUSiH7QuoczHDPZ+EACWwGIwtesGoCo7Ztcht6DWz81tkj5FhjLvn3Or1P5YEqMKwqzJF2DE3EfpANOyaTpRguAPRTQWbDrefkrz9Tbf4qJo6HsEBqbmvZa5Nd8PTfhUkrpCEi4ARSNiDf0fH02LAHN7M3Fkt5ygbxHVRvQIP8XMUR8+5y6M2OHqLxy5PZHszd8iQC1n34TKwZjlG7ILFOOS+dQifkkV0qy4s5ewbfJsqjmfxqej+Gsm2UlCXuv6TY00/kXZbtGyqCmx1YDnj56Qv63qOPkOGarGgoZ+MNVk0lvrtEUr4CIYuJsg==
+ bh=FwG3Bch7MRjTTEgIL2Egex/3/tgI/XesmPiaJCx/hzM=;
+ b=qH4GwOL2Q8HwFAfnjOI9RRWyItOm3Ai6XEItT3NA7VCf/5wNbUpENj+qQNyJicdrsfc9pf98Tgq061fTtu8ajKRjWshggewpltXji9AOT2c/4rEHbF/9Pvb761ALka0dPPyQixiXrzjfyNMnKEOKbSEhg5SnyHNuoN4n9r9AUxWvEiGIhKCyNIXf+JQSi0s2UCbk0K6WCt9SIfQ4G84BQ7RpDx1B5+nUZRo6fPaPfXvdNVKQaARB2Yi5fhpeRyND8W01Ah8uoj+wHzCKSpjJfg2CJZSuPyGsKqFBBGvbx4D+W4nqYsj97YB8KrUYDo2uqKKPbMBLYZzTZ5c1eFBFSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SJ0PR11MB7704.namprd11.prod.outlook.com (2603:10b6:a03:4e7::5)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH3PPF1AF044E07.namprd11.prod.outlook.com (2603:10b6:518:1::d0c) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
- 2025 12:18:03 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 12:18:03 +0000
-Message-ID: <83f83d86-a89d-4315-aa01-9c48e782bd60@intel.com>
-Date: Mon, 13 Oct 2025 14:17:56 +0200
+ 2025 12:29:35 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
+ 12:29:34 +0000
+Message-ID: <ad9c4d4c-527c-4876-b25c-ea56049d2baf@intel.com>
+Date: Mon, 13 Oct 2025 17:59:27 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/26] drm/xe/pf: Add helpers for VF GGTT migration data
- handling
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Alex
- Williamson" <alex.williamson@redhat.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>, Kevin Tian
- <kevin.tian@intel.com>, Shameer Kolothum
- <shameerali.kolothum.thodi@huawei.com>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, Matthew Brost
- <matthew.brost@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, "Joonas
- Lahtinen" <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Lukasz Laguna <lukasz.laguna@intel.com>
-References: <20251011193847.1836454-1-michal.winiarski@intel.com>
- <20251011193847.1836454-18-michal.winiarski@intel.com>
+Subject: Re: [PATCH 5/8] drm/i915/display: Check if final vblank is sufficient
+ for PSR features
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Manna,
+ Animesh" <animesh.manna@intel.com>
+References: <20251009090102.850344-1-ankit.k.nautiyal@intel.com>
+ <20251009090102.850344-6-ankit.k.nautiyal@intel.com>
+ <9178808c08ec3e7dd1e7bc7cd36d8b4f977a2711.camel@intel.com>
+ <fd862250-06ea-4026-94e5-64af7684d925@intel.com>
+ <d7031ee74d4e215caee725edb8baef813f0ea36b.camel@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20251011193847.1836454-18-michal.winiarski@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <d7031ee74d4e215caee725edb8baef813f0ea36b.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BE0P281CA0008.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:a::18) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-ClientProxiedBy: MA5P287CA0084.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d8::8) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ0PR11MB7704:EE_
-X-MS-Office365-Filtering-Correlation-Id: 732e383f-8d15-4904-e296-08de0a528e84
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH3PPF1AF044E07:EE_
+X-MS-Office365-Filtering-Correlation-Id: d903c1e3-2096-424f-241e-08de0a542ac0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RHJkRG91bmpoby9LN21sdEY3TDAwamdzZ1JXKzFPeElDbld3ZzhvTzIzWjFz?=
- =?utf-8?B?RzY2VFo1T2tPMDRYRlpoeVBDY0hDamJKM2Vsbzl5VlVuVmVmNHVkMFEvVml0?=
- =?utf-8?B?WHlYZWhPeUd3NHVjclF6TUR5eGhhczZrNGFYM2YxME4xRE5UOVpreWVMbjNw?=
- =?utf-8?B?SktuN0JJTndWb0hFOEZOMEpqc1hwU3VWWEFTREdab3dxeW52cE9RY0NTUXM4?=
- =?utf-8?B?bEZXdk15WWd0aS9WOU5WVXBuczN5NFg1bFhydkxxWm1sSlFWRmVPbmZuekxG?=
- =?utf-8?B?OFRZcWdNYklDa2dQV3dPbzh2OHNtNkMxaVEzYkJhaE90UnVEVEdFbC9BNUVR?=
- =?utf-8?B?NFp5dmZaU2ROWU4yVGZZUXNJS1o3dDkyWTN4TlFpMU9MQzNDTkVJSE1SaTYz?=
- =?utf-8?B?TFp5MDlGZXlxWHNqbHlJNXEvczlJeTlLMHVocEx0YTlrUC9RaXZWakxMQlk2?=
- =?utf-8?B?TEY5OFp6eTFoa095V3RKZDhzVUY1d2I0ajV6OW9LTWpRRnBEU3RFS28zbXB6?=
- =?utf-8?B?OGx6SGRnQ3JuZDZSOXVNT2lnVHplbVNYZmhoRXYyOGNneFVlYUZKaEtmS2xx?=
- =?utf-8?B?ejZQbW1ZV0dXWUdYM0lLSmRvVzZJblY1bVMxRTV0a0dvTXRvREFSOEZQNUtU?=
- =?utf-8?B?R3A0eDgxd3k5U0V1TVcvZTU1dlVLZW91QXNQRUJEYVNwK3Y4SlYxL05JSWFy?=
- =?utf-8?B?NkU0b1pTNTUwck11OFp0ZXE4Qks3c3ovbXM5RTBVZ2g5QnNuYmZsUUptb0Rl?=
- =?utf-8?B?blAwMnlnYUJrRkN6L3VVU1BBZDh6L2RSVlhpOFJwREJIalBjMVdtMDFWeWdh?=
- =?utf-8?B?emp6WUhHSmRVSFoxVmxBdGZTdlpkd05wSHV5STQ2Q3JaazIrUUdiUVZPbFps?=
- =?utf-8?B?elExR3d0cEVYdG5ma3hwclFKU3o3M2FNYTIrbnFuSHdYaFZGWXRRbWF3amZ6?=
- =?utf-8?B?azVudi94ZWROb3BTUENZQzlSR3RVQVZERUxJUHpBZmd5WEtqZjhOV1VLUlpL?=
- =?utf-8?B?RkcrVEg5b3NVZXFPQ0RkNStjZE1FbmNBZllvVTRQY2RIL0d3dXJkQXBqRFFB?=
- =?utf-8?B?OTkxY2IvbHJ3aGFJSjM3QkRPMDlidTd6b29tdlRRb3dWcUlJb21VVGdVdkRT?=
- =?utf-8?B?TUZxUWFsR2ZpY0ZDZDRFZmU4cStFMGtIUkpmVHRtWmFacGZwakM2NzYrdHhi?=
- =?utf-8?B?eXBtck44OVVsWk9FZjhjTURDZzBUaUJ6bGpUQ1JaWUFBcTYxRklqYkovVlFk?=
- =?utf-8?B?VEZ4NVR1MDlOQngxaHFoTG1JOURXNk4vOU5GNzdlOFgydEx5UmNzcS91RHR2?=
- =?utf-8?B?ZjZIc2FPZUZyQUtBOERKYk1iMFRGbGtNUmVRNklHZWJpZ3lZbEVzY1lvN3U1?=
- =?utf-8?B?Z204Tk53ZWpVSlFHbE5YOTY2MzluWlVmaFhlWDMwS3pRSE9PQkJlTXlUZnJ6?=
- =?utf-8?B?R21BWEJhTy9paVFKTlhqVU5wUU5DSkhwR1VWRlpSWHN5TUpuYlpIV1d6MjNj?=
- =?utf-8?B?RkRua2djbkx1UldYNXZkMVNSekNFUDFncytnVitmQ2xyWGZSU1Rrdlg2WGoy?=
- =?utf-8?B?eWVoV3pSb2pWRkJhWXZuTVE5RjJrUHV5MTQ5ajlXWUxUOVZhQWMveHo3eS85?=
- =?utf-8?B?dEt5SFFwUUJPT2V1eUZvL2RqMHpGWnZ5V05JZGJzNThzZzgwTGtVQzFnOTBG?=
- =?utf-8?B?VlNZU3k0aXlvNzdQVVY1U3V2cUNqazVGZFEybnF4bG5RZHVNQmtCbWVQbE51?=
- =?utf-8?B?OTRvTDVheHNHdDhSVzZUKzFJd0M4b2RTU2lCemdpNEZoTUpaMmN4b1l6Rk9E?=
- =?utf-8?B?RUhzY1ZINGxWU2YwZ2MweXB2T2VTTWZRVk1DV3M4NmxzQS9TN29tU2EwSFBE?=
- =?utf-8?B?Umlxdmp4VWJOcFhUYU1ITTBoSkVQUnpoTTgxU1BqYk10WE0wemdIU1JZVUJF?=
- =?utf-8?B?aTdCU2NWWnpNZXlOa0UxaTREZ1FPZjRmblhZV1FWRTc5R1dRTU1hcit2bVdH?=
- =?utf-8?Q?VHVi95a1WI/pNH+BnCK6R8jpEaQBJM=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?YXdRQUFFMTVFRkpjWFljOFMweXZuWFJHUmpuVUEzcDNwQXlDNVZ1U0k1K1NZ?=
+ =?utf-8?B?MTlRaVlhL1JTOUxSMHlucnBhVlpObDVra0hFa0xFZFhoMmo1N01udnlvRVcw?=
+ =?utf-8?B?ODBzOWZSVWpiMkFiZ1Vzd3piY0FYbFZKaWN1UVJsbnpib0NyL2I4MzZoWlJB?=
+ =?utf-8?B?WENXTnNpcUI0ZTVyUWVibDA3UmJudER5cnl4RW9RaVFKdzZ3czRBUVA0V0lz?=
+ =?utf-8?B?bWc1KytjUDFCbXlIdWNkd1lzbFEyTjlCaFhXbUZmbkpGRXBWdDMwZHM2RVFi?=
+ =?utf-8?B?V3RLcERvSVZSQTc4aDkxQkxHTnpOdWxjYmgwVFI2LzJZdUc0SzN5RldJQzdr?=
+ =?utf-8?B?MUNzNUttOU9LYXBxaWJGVytTUmVTY0o5YjJOZ3JMWGwxdWJ2UnlPMDI3bDhR?=
+ =?utf-8?B?U0dORjlNKzRTSWUzVlRJbGU2UXBEeGdKNDg0ekJxK09tencwd05rWXNtUlp6?=
+ =?utf-8?B?UHlIUU5KbzBEdmZVNlR6ajRaR2U5VUU4aC9WOUt4ZEd0YkVHTDc4ZWhFVEs1?=
+ =?utf-8?B?ZjFMci94OW1zbmtONm1nRlVISHVxdnlRLzdEaDBrbmE0bkNIMG1kUTRRR284?=
+ =?utf-8?B?aEZwOFBMZzQxN2RoazFrc1VXa0VleSswak80TWtkcldORDZSOHFCaCs4SDNm?=
+ =?utf-8?B?bTk3TXVlRVQ3QXBPZUh1SEZiaDVlVlAyc0tGWmZ4MFF4TVRtTjZxVUFUc3Zn?=
+ =?utf-8?B?aWMvSXZ4NmovdkRUaGhvbVdEM2o1R0hDTzBNTUs1aEdua3krT0FOK29NVmYv?=
+ =?utf-8?B?cjZXU1ZOd3pnK01CSG5kb3JSMC9lSVdlZytYVWNYMmk2OFV6NVc0NWFtNUVz?=
+ =?utf-8?B?eml4NFQ4eldtbURYR0Uwdm5KMjlLdWc2b25DQmlNQnlpak1zUTI5NEJXNU10?=
+ =?utf-8?B?Q29hRTgzNVNaVzdoYzc4Y2gwanpsa2c2d3RTWU90bytOR3ZwRGFtYjQ4V2tp?=
+ =?utf-8?B?TmpBSC9XLzYwTlU4RlRMRmp6b2FGai9OUkJsaE9zMmtSNHdLenh5YU9VQ09Z?=
+ =?utf-8?B?eVROcXdnZ1hZZ3AvajlrTXVveHVxR24wcjFiOVpPTHZmVS9Pd0RUVnVZUFZv?=
+ =?utf-8?B?cnZWc3dzSXRUaTBtZ0RIMW51eFNZZkplQlhoaS9DQktOeEZITW1sZitHdVNE?=
+ =?utf-8?B?QStsK0hmSmErUTBKNFZqK0ZSeGJIeXFhVDZZcE0wTWJIYjl3Q2N1U0JkQ2Iw?=
+ =?utf-8?B?QXl6NE1UbVFGRDZVdDNZYjdHSGVaOXZQQ0hLdmx2S0d3WnEvTHNlQ3RhUnN4?=
+ =?utf-8?B?TkZ0dHF5a29SZm5LSi9pMFVnWEkrRTg5alJCeUVwZkc4WVFCeHovc29MdzBj?=
+ =?utf-8?B?TmRSOGxFTkhyV2kvN2lvbFJweDl5a1pjRUV4SDIwK3pyS1BNZUpJb2hkWHhT?=
+ =?utf-8?B?SDBXZ0hBelpvRk9wY0kyc2Vpc2xib2grMTRKYXVreE1JWVVHTzFQWElZb2xm?=
+ =?utf-8?B?d25EemxDYTZMN3p1Rlg2QU1kK0VlV2g5Nkx1ekMyZjEyOWtxcFh1d2MrWDho?=
+ =?utf-8?B?WXN2cGMrclRUa0NsZmpwOFFvNEl2QnVjbDF1cENCWUYrWlJTMGZIUUt5SERB?=
+ =?utf-8?B?TVhvNDBVTXRPMVMzTThnY0lmcEYzbG5hcFd2RDZBbDMrb1l6MHVDZUNqazZo?=
+ =?utf-8?B?TlE1SGFZOXc5alBPOGM0Q3Uya0hGNlRrYnJwOWZESS9kc1lhbzVYL1pDTHJQ?=
+ =?utf-8?B?aERESjBWdXpKd21OYXZQV1QxZi9VYU9zS0Nrc0cvc1d0RHpOREF6MUkxd0dx?=
+ =?utf-8?B?WnllWUVEdktRY3BMaW9WVi90M0VxU1JrTGFodS9DWU83N0UvVjMwdmFrQTky?=
+ =?utf-8?B?Sk1aSDE2K2VsMzhoRkRjdWxxclBrTVNNNE42YXlRdWdtMXpzZlZSRjRlczlQ?=
+ =?utf-8?B?b0E1MXNzY1lEVGswSW1VcHRqdTdjMTVQQXA0UkFpVXBYZ3c9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020); DIR:OUT; SFP:1101;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkFXZVNNdUhWcTNBZTFET1Fscm1YbTMvbjkzSWhoWTZtb0F2dC9ZS0hlRGlm?=
- =?utf-8?B?RTNIZGNFZjRIelFqSEZKWUI3ZGErRDl5ZWVTS1pVeHR2cWhXRU9uS0ZsOTFr?=
- =?utf-8?B?bm0xcURQd0tVMk5uY3EwcWJaNWIvV2V6Z3Rlelc5aHNIYjFKazVYU05iZDJW?=
- =?utf-8?B?dlQ3dXo4eVpmMkRIaFNZekVpZCsyWFlOaUk0UXZUK2t3WXM2TVBRMzFFdm44?=
- =?utf-8?B?ZGFvOU5FeVZpWHJPSG56MzBkT2pwMDJpQVhkTHZ1RVZVY2xQVEo1RStscGpk?=
- =?utf-8?B?M3RwdXR1N3o1QkRPbWFqUU9QNTJCSUdNT3piWUkzV1R6bG0vbXA1UUFRa280?=
- =?utf-8?B?aUhFLzJJYkpkSmgrZVpnUHBlcFMwNmpkb2hFZWRWbVlLY3pDNEV3MlFrWkJz?=
- =?utf-8?B?cDhjbk5icExoYmRyclBCeDQ3QStXb2FnOE9iTmZDY0liZmwyMnVINHRxQTBP?=
- =?utf-8?B?eEFLQlV4Yjl3ajV0dmFIQTJUWGd4QjVUdndqZmpDczA3UkhsV2hYbWIyRmZS?=
- =?utf-8?B?OFRFV1hPb2tWRmV4OERHL0FTdEJ4MjdDSWJ1b2JiTVI0RHRVRGlzM2hsZ2JW?=
- =?utf-8?B?QlJFSEJKWHdqNXd2NVJxNEtSZVdBMTM4eEo1WkFRMGlXdG5YVXNlMU4ybnhD?=
- =?utf-8?B?SzFoVWd1QUNiOExYdlNNZXVVZFRHRlZ1bGdMa2F6WlVFKzB0SHRKSFg0YlJQ?=
- =?utf-8?B?azJqTGlQeGxFblUrczlKeUhJYkZ0aG9Bbk1YVy9GQnR6ejdsTVJLdTFTZFlp?=
- =?utf-8?B?V0tYekd3bUxyTitwTWdUeUkzODIwZnpaSGF6NEszdVUrYVlVQWZHNHlDQUdr?=
- =?utf-8?B?QzdMZUJQVEJFbHhLWVdQMHRndmtyV0svVVA2VXdjR2EzUnhDNmR4OFlPV29L?=
- =?utf-8?B?b0ZFbVA4bEVROTNCM0hoS2RZd2oxM0hlNWc5aDNrK3J6Q1BmTzluRGtmVUNm?=
- =?utf-8?B?YTUxU3lPMS9YencvaWI3UzZ4TVF1NGJwOUQ3dXpiL3hHMWZUT1FnVmFhWHpF?=
- =?utf-8?B?ditXSHhSclRLS1Z1ek9Kam1HYThYcDQ3QWQ0cWlPZTkwWlo3V21NeVVUamlF?=
- =?utf-8?B?UVZHY3ZydTJpZndKWHhteVg2cnVOSHJDMGNFK1lrbWtHQlNuYjM1MGZ2anZM?=
- =?utf-8?B?SVNEdUFIYitUdjYyb1dHZUdJMGdDRHJSNkdSN1FtMUxMY2t4QUVwL2xWZ0ZU?=
- =?utf-8?B?M1poQVJBbDMzWHBBUGxSdWY0SENUeWxtN1gvN1FCc2MrUGtTak5PNzBrNGRE?=
- =?utf-8?B?TnVwRnF0cERhRVB3d2ErdVo4NEpKMDVtOFUycGkyNTdIMGZ4VUJ4OVVuOEl5?=
- =?utf-8?B?MHFQQkZBOGNxU0w1bmgzcFVaa0FOS0VhN3g5aEgzQTI0dnduMmhFZm9OZUVP?=
- =?utf-8?B?S2d1ZVpZeUdhNythRWY4NEF3d2pUcVdoZk9hR3BnTVJFZUQyanVWYTVQZHB6?=
- =?utf-8?B?NnVLdGVaeEJnd0dySmN6UlVWSStKbDQ2OVhQYzZ1dVp3YVVVNm1pZk1EZDBB?=
- =?utf-8?B?UUxRNDhybTFGbWNEQ2JucWMwTGEwekpnQlY0WFBxVHJYeEhFSGJCTkRtTzVz?=
- =?utf-8?B?OHNPUDhNdVZ4dkVUZkUrWVVDcVJOQWJRSGtvbkx0aFBtNmttbldsbWxCNllG?=
- =?utf-8?B?aFpGU0lVTENqZDhMOFVWYkxzdGJPWEZUSUlyNnJJZ2daNlcxaXIyOWVJM2Z5?=
- =?utf-8?B?eWJTNzVhN3dWZ2hnaXpOZTJ0RTQ0UFBXWWNLbGlTck56THhPK0pXRzFxNncr?=
- =?utf-8?B?Zm5zbGFyME41TEVOaHlYK1ltWnBmL2tWdlhESEtDUnVzYUJwZ3FxSDE1Y2hJ?=
- =?utf-8?B?czE4ejhzSmdNT21HTFBVVWNjTnRoRXM1TUNlWW1IVUFRRkRIRWxVQ3NsbVpv?=
- =?utf-8?B?SnphSkVZMmVnL1doVmRuNVVFMkEwWUVWYmxHcFZxOFVsL0JMcWFnckZ1T014?=
- =?utf-8?B?eSt4eVl3NWx3R1Jza05GcDh6Zko4eGZPWWxWczE5bnZLcWE1NTRvb0RQd2l5?=
- =?utf-8?B?OUdRY1lVb2ptcTdwYnRCTWM0NExscmtDNENpeW9iWnk4bGlTYzFwOUZRZENG?=
- =?utf-8?B?cEJVaFRPcjVHczlGUXJ1d1F0RWRMNlBQSFlLQ0g2RWMyaVEwS2IrM3lRbVF0?=
- =?utf-8?B?Q0NVT3cyUnpWc2dubGNhSGp6R1REWmpiYUgzSlNYaU5GWVNIL2NZLzlKb2Uz?=
- =?utf-8?B?bGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 732e383f-8d15-4904-e296-08de0a528e84
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0NhaHozblpVZi9udHJnWFlROHVVVDFHOXVCQ1RwbVFOQWFubXd5cUt4aW5D?=
+ =?utf-8?B?Y3B0TUVnanhYRzVnZlZCMFE1SFFxZHVZY0VENndGTlFXcW9mRUtZL01PbnFF?=
+ =?utf-8?B?cXZOb1czTDZ6TTQ1eDFlUWJHbDJIcmNIZ3Qrby9raldRWmRqdk9YRXpBTE5X?=
+ =?utf-8?B?bS9GRHBkNVBGRjVBWTBwNkRRSWFJQjcrNGdxQzdPYXVFZkwzdGxSSzJoT3dH?=
+ =?utf-8?B?VW0zdndrRVhTSW4wVEZaMFdyNUZ3a3loK1g5VzE5UDA0ZTI1K1dWNEdYZGN5?=
+ =?utf-8?B?M2JFcXpYWDdQeWg1SDFLVVdvZ0xoMzM4MU5EaWNiU2hZTGRXYjB2WFAyOVUw?=
+ =?utf-8?B?aFNSWDZsUHVJa0hiSDZJcGtsYm1GU25vdjFybnRnanR5TVdvelk0MkZMNDdk?=
+ =?utf-8?B?S1A0Sk05Z0I5UnpQMWJnYktrVHppVzlWdGFlM0RnbDZSL3d1d3hoR2orUEli?=
+ =?utf-8?B?aTM0TENoMVpHN0hFZXNINE1kLzVKUURURENaeVVHTEZGWmlmblpiMzROODE4?=
+ =?utf-8?B?NGFWK204ejhoaUZoUzNuN2YyK0JZYVFPTmgrMy83ZmlISWUxVzhZSkNIOWhV?=
+ =?utf-8?B?QmN2UnFEREhqVW5rTGxLa29VQ0E3RjhJd0JTNDV1VGdOMWV1SDBsTmUzNThy?=
+ =?utf-8?B?aG9qNjJVaEptdzVKckZBd3FMbXMxYk1Sa1Y0d2ZUWDJEOFlTZ25mK29pSXhj?=
+ =?utf-8?B?b0lXMFAxM1R2SmRXY2lGYk1VdGo2NFB1b3ZTMjVsZHV1NUU1b3RYVmVIWHh5?=
+ =?utf-8?B?UXNpWXhvUC92eWJBSUl0UzE1dyt6cGJEYnNzYnpLRTV4c0h1c1dBSjlWc29n?=
+ =?utf-8?B?MFU1cVZaTExFUnF1aG56cnRBQmdaODRFVzU1MU1OSFlGb1hyc2ZpN3F1S05R?=
+ =?utf-8?B?N1N3ZkFGTFBzZU1sNVlOZXNnNHQrb1dOeFlVL1lON1FaTXdyaW5udXZBbVFP?=
+ =?utf-8?B?U2I4dkZ6bUtqODdvUjhyUnJiQUQyVzMwUTV6U2hVUHc4UXdIWnA5THFpR25n?=
+ =?utf-8?B?K3B0ZUdSUzczRnJ4Q3hRNWdoWitoU1IybTZ1L3pXRjZxYU1oaEI5SXI0Mmln?=
+ =?utf-8?B?WDdWVVVVU0RPQzRZZzFmYjVrQjNYWHpmTSttTlN1YXNGSjM0L1Byb3VyR1pN?=
+ =?utf-8?B?NXFDUjdYMlhQNmlkTXB4WFN4M21HK3hQalYybDBmdGZ6WWJNdzdIeW42ZUhB?=
+ =?utf-8?B?WUN1bGhDa2wrMk9JL25xTHgzZW1nbFRoRnR5MmFteGNTZVFaNDVzZFVrdnVV?=
+ =?utf-8?B?NFhyV01VTXVXMlNydmR4U2RoQXFzMXdjT1c0MUNmZGZOK1BLYmFKVjZKU1Mz?=
+ =?utf-8?B?MFk2RzV4bDR6MmJZUjZHakQySWhROUxDWkNNNjdleWsrUUMzZDQraU4xb1R4?=
+ =?utf-8?B?aWlMUFlwcGxnbnFvU0hmRjhRUXpVc3M2SEpXalRlVXFQQWpEMFgreDZLUmR5?=
+ =?utf-8?B?dHN4QVRNR01Ndm1zcDNLdGV4SG0rRTBybUYzd0NIWi9EYWc4aW1XblowczQy?=
+ =?utf-8?B?WWZ4bDRvL0xNMXl5Yzc4djVsSitscVAxckMvSy9ZeE1Dd21nVkZZSmlxNmRv?=
+ =?utf-8?B?U1htWktxZzMwQWZrc3pRMkUrRnhzRFREYll6aUROOUVsZlArRloreVZuNzBK?=
+ =?utf-8?B?NHU5WFptQ29kdkxITUpVRUh0YTFNYllIM2duQnpqZVNjdnQ5VTRSeW0yM2U0?=
+ =?utf-8?B?OE40aWtncVpMK0tOcG10Rzg0Zk8vQ1REK1hINElzdFJ0ZVZIaFMvSXo2NndL?=
+ =?utf-8?B?ZG9Sd1NBUVdaWnR0ZVlOZ214SG5iUEVzOWZaUnNxeGN3dlZLMUJyM2VUK0U2?=
+ =?utf-8?B?UXpUS2NKRXhzMHdSSjAvODdzODRMeFU4cnJhS3k4Yms3WHZIeks1Y0R0KzFa?=
+ =?utf-8?B?Y3Q1eDhQbmZsWmtvUGs1SkV6U3MxMEx6ZUZlMzlmeFNRVzQxVnZzSHFuYUdO?=
+ =?utf-8?B?VWpoMDVoNENCSXZzTVlWNzFuYmF2L094cHRPRGp0cHVHNloyQm8vbG9FRXJV?=
+ =?utf-8?B?T0ZkdWVVaUVUSzkvdlFkclVhMC96NVhmMVU2Y25jQllkU1pNTVdBeS85cTZr?=
+ =?utf-8?B?MVBBSXVnKys0dzZVSjBDaFh6Z0oyQUxvcWZUNTM5N3dFRnJSaTZzaHBYZGQ2?=
+ =?utf-8?B?WDdtY1ljQ2FVV1l6azRLWVFpamJQa2VUemgxM3ZvQk8ySTBqK2NsRVlkWEhF?=
+ =?utf-8?B?VWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d903c1e3-2096-424f-241e-08de0a542ac0
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 12:18:02.9542 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 12:29:34.8033 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: abx30jOOKjppoTyKpxws91XzTn+F2UXedcBVU/sQynAXaDBQomUMXMnXPCbCsVRiPUO/zIq1OhLNzCR++tdYKiktXp1iFux7nQ2bhUrGeoU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7704
+X-MS-Exchange-CrossTenant-UserPrincipalName: r6Cgj31j4dWvmFm5veoqm4+SCcbVqMxyc1ldIphYWbEjNh6yYetizh/VHqBLXYSyvK1Xw4X5eP8IezVbZ/uc3m7AVLqVf9rAoaFjuOX5pJQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF1AF044E07
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -210,298 +202,332 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 10/13/2025 4:27 PM, Hogander, Jouni wrote:
+> On Fri, 2025-10-10 at 19:12 +0530, Nautiyal, Ankit K wrote:
+>> On 10/10/2025 12:23 PM, Hogander, Jouni wrote:
+>>> On Thu, 2025-10-09 at 14:30 +0530, Ankit Nautiyal wrote:
+>>>> Currently, wake line latency checks rely on the vblank length,
+>>>> which does not account for either the extra vblank delay for
+>>>> icl/tgl
+>>>> or for
+>>>> the optimized guardband which will come into picture later at
+>>>> some
+>>>> point.
+>>>>
+>>>> Introduce intel_dp_compute_config_late() to handle late-stage
+>>>> configuration checks for DP/eDP features. For now, it validates
+>>>> whether the
+>>>> final vblank (with extra vblank delay) or guardband is sufficient
+>>>> to
+>>>> support wake line latencies required by Panel Replay and PSR2
+>>>> selective
+>>>> update.
+>>>>
+>>>> Check if vblank is sufficient for PSR features, and disable them
+>>>> if
+>>>> their
+>>>> wake requirements cannot be accomodated.
+>>> Now as we are adding this: Can't we just drop checks made earlier
+>>> and
+>>> rely on psr_compute_config_late checking the vblank?
+>>
+>> You're right to raise this question. The key point is that there are
+>> dependencies between the PSR configuration, the VRR guardband, and
+>> SCL
+>> that influence the sequence of checks.
+>>
+>> Here’s how the flow works:
+>>
+>>
+>> 1. psr_compute_config()
+>> This is called first to determine if PSR is possible.
+>> At this stage:
+>>
+>> -> We check if the vblank is long enough to accommodate wake lines.
+>> -> However, we don’t yet know the actual guardband or whether SCL
+>> lines
+>> need to be accounted for.
+>> -> So, we can only establish whether the vblank length is sufficient
+>> in
+>> a general sense.
+>> -> On platforms like ICL/TGL (with extra vblank delay) or with
+>> optimized
+>> guardband, the actual lines may be fewer than the full vblank length.
+> Please add a comment into psr_compute_config that it is roughly
+> checking if PSR is possible with current understanding of vblank
+> length. It will be checked later in psr_compute_config_late against
+> optimized vblank length.
 
-On 10/11/2025 9:38 PM, Michał Winiarski wrote:
-> In an upcoming change, the VF GGTT migration data will be handled as
-> part of VF control state machine. Add the necessary helpers to allow the
-> migration data transfer to/from the HW GGTT resource.
-> 
-> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c               | 92 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_ggtt.h               |  2 +
->  drivers/gpu/drm/xe/xe_ggtt_types.h         |  2 +
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 64 +++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  5 ++
->  5 files changed, 165 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index aca7ae5489b91..89c0ad56c6a8a 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -138,6 +138,14 @@ static void xe_ggtt_set_pte_and_flush(struct xe_ggtt *ggtt, u64 addr, u64 pte)
->  	ggtt_update_access_counter(ggtt);
->  }
->  
-> +static u64 xe_ggtt_get_pte(struct xe_ggtt *ggtt, u64 addr)
-> +{
-> +	xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
-> +	xe_tile_assert(ggtt->tile, addr < ggtt->size);
-> +
-> +	return readq(&ggtt->gsm[addr >> XE_PTE_SHIFT]);
-> +}
-> +
->  static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
->  {
->  	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
-> @@ -220,16 +228,19 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
->  static const struct xe_ggtt_pt_ops xelp_pt_ops = {
->  	.pte_encode_flags = xelp_ggtt_pte_flags,
->  	.ggtt_set_pte = xe_ggtt_set_pte,
-> +	.ggtt_get_pte = xe_ggtt_get_pte,
->  };
->  
->  static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
->  	.pte_encode_flags = xelpg_ggtt_pte_flags,
->  	.ggtt_set_pte = xe_ggtt_set_pte,
-> +	.ggtt_get_pte = xe_ggtt_get_pte,
->  };
->  
->  static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
->  	.pte_encode_flags = xelpg_ggtt_pte_flags,
->  	.ggtt_set_pte = xe_ggtt_set_pte_and_flush,
-> +	.ggtt_get_pte = xe_ggtt_get_pte,
->  };
->  
->  static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u32 reserved)
-> @@ -914,6 +925,87 @@ void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid)
->  	xe_ggtt_assign_locked(node->ggtt, &node->base, vfid);
->  	mutex_unlock(&node->ggtt->lock);
->  }
-> +
-> +/**
-> + * xe_ggtt_node_save - Save a &struct xe_ggtt_node to a buffer
-> + * @node: the &struct xe_ggtt_node to be saved
-> + * @dst: destination buffer
+Makes sense. Will add the appropriate comment.
 
-correct me: this is buffer for the PTEs
 
-> + * @size: destination buffer size in bytes
+>>
+>> 2. compute_scl()
+>>
+>> -> This computes the SCL.
+>> -> If PSR was not enabled earlier, SCL will be 0 at this point.
+>> -> The vblank_start is adjusted to accommodate the SCL lines.
+>>
+>>
+>> 3. vrr_compute_guardband()
+>>
+>> -> This sets the guardband.
+>> -> With optimized guardband, we consider max PSR requirements and
+>> other
+>> prefill latencies.
+>> -> On platforms where VRR TG is always active, the guardband cannot
+>> be
+>> changed dynamically and any change in guardband triggers a full
+>> modeset.
+>> -> So, the goal is to set a guardband during modeset that works
+>> across
+>> most scenarios.
+>>
+>>
+>> 4. psr_compute_config_late()
+>>
+>> -> This is where we re-check if the guardband is sufficient for PSR
+>> wake
+>> time latencies.
+>> -> If not, we disable PSR features that can’t be supported with the
+>> current timing.
+> Add comment into psr_compute_config_late about SCL being left untouched
+> and containing intel_psr_set_context_latency if PSR was possible after
+> intel_psr_compute_config.
 
-and this is size of above buffer
+Hmm sure can add rationale for not re-setting SCL.
 
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_ggtt_node_save(struct xe_ggtt_node *node, void *dst, size_t size)
-> +{
-> +	struct xe_ggtt *ggtt;
-> +	u64 start, end;
-> +	u64 *buf = dst;
-> +
-> +	if (!node || !node->ggtt)
-> +		return -ENOENT;
+Thanks & Regards,
 
-hmm, non-NULL node must be initialized by xe_ggtt_node_init() which sets the .ggtt so this second check is redundant
+Ankit
 
-> +
-> +	mutex_lock(&node->ggtt->lock);
-
-	guard(mutex)(&node->ggtt->lock);
-
-> +
-> +	ggtt = node->ggtt;
-> +	start = node->base.start;
-> +	end = start + node->base.size - 1;
-> +
-> +	if (node->base.size < size) {
-
-so that's looks wrong, we are about to save 64bit PTEs of that node
-
-we should compare size of all PTEs not the size of address space allocated by this node
-
-> +		mutex_unlock(&node->ggtt->lock);
-> +		return -EINVAL;
-> +	}
-> +
-> +	while (start < end) {
-> +		*buf++ = ggtt->pt_ops->ggtt_get_pte(ggtt, start) & ~GGTT_PTE_VFID;
-> +		start += XE_PAGE_SIZE;
-> +	}
-> +
-> +	mutex_unlock(&node->ggtt->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * xe_ggtt_node_load - Load a &struct xe_ggtt_node from a buffer
-> + * @node: the &struct xe_ggtt_node to be loaded
-> + * @src: source buffer
-> + * @size: source buffer size in bytes
-> + * @vfid: VF identifier
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_ggtt_node_load(struct xe_ggtt_node *node, const void *src, size_t size, u16 vfid)
-> +{
-> +	struct xe_ggtt *ggtt;
-> +	u64 start, end;
-> +	const u64 *buf = src;
-> +	u64 vfid_pte = xe_encode_vfid_pte(vfid);
-
-try to define vars in reverse xmas tree order
-
-> +
-> +	if (!node || !node->ggtt)
-> +		return -ENOENT;
-> +
-> +	mutex_lock(&node->ggtt->lock);
-
-use guard(mutex)
-
-> +
-> +	ggtt = node->ggtt;
-> +	start = node->base.start;
-> +	end = start + size - 1;
-> +
-> +	if (node->base.size != size) {
-> +		mutex_unlock(&node->ggtt->lock);
-> +		return -EINVAL;
-> +	}
-> +
-> +	while (start < end) {
-> +		ggtt->pt_ops->ggtt_set_pte(ggtt, start, (*buf & ~GGTT_PTE_VFID) | vfid_pte);
-> +		start += XE_PAGE_SIZE;
-> +		buf++;
-> +	}
-> +	xe_ggtt_invalidate(ggtt);
-> +
-> +	mutex_unlock(&node->ggtt->lock);
-> +
-> +	return 0;
-> +}
-> +
->  #endif
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index 75fc7a1efea76..469b3a6ca14b4 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -43,6 +43,8 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
->  
->  #ifdef CONFIG_PCI_IOV
->  void xe_ggtt_assign(const struct xe_ggtt_node *node, u16 vfid);
-> +int xe_ggtt_node_save(struct xe_ggtt_node *node, void *dst, size_t size);
-> +int xe_ggtt_node_load(struct xe_ggtt_node *node, const void *src, size_t size, u16 vfid);
->  #endif
->  
->  #ifndef CONFIG_LOCKDEP
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> index c5e999d58ff2a..dacd796f81844 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> @@ -78,6 +78,8 @@ struct xe_ggtt_pt_ops {
->  	u64 (*pte_encode_flags)(struct xe_bo *bo, u16 pat_index);
->  	/** @ggtt_set_pte: Directly write into GGTT's PTE */
->  	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
-> +	/** @ggtt_get_pte: Directly read from GGTT's PTE */
-> +	u64 (*ggtt_get_pte)(struct xe_ggtt *ggtt, u64 addr);
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> index b2e5c52978e6a..51027921b2988 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -726,6 +726,70 @@ int xe_gt_sriov_pf_config_set_fair_ggtt(struct xe_gt *gt, unsigned int vfid,
->  	return xe_gt_sriov_pf_config_bulk_set_ggtt(gt, vfid, num_vfs, fair);
->  }
->  
-> +/**
-> + * xe_gt_sriov_pf_config_ggtt_save - Save a VF provisioned GGTT data into a buffer.
-> + * @gt: the &struct xe_gt
-> + * @vfid: VF identifier
-> + * @buf: the GGTT data destination buffer
-> + * @size: the size of the buffer
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_config_ggtt_save(struct xe_gt *gt, unsigned int vfid,
-> +				    void *buf, size_t size)
-> +{
-> +	struct xe_gt_sriov_config *config;
-> +	ssize_t ret;
-
-int
-
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	xe_gt_assert(gt, vfid);
-> +	xe_gt_assert(gt, !(!buf ^ !size));
-
-there seems to be no "query" option for this call, so both buf & size must be valid
-
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	config = pf_pick_vf_config(gt, vfid);
-> +	size = size / sizeof(u64) * XE_PAGE_SIZE;
-
-?? something is wrong here - why do we have to change the size of the buf?
-
-> +
-> +	ret = xe_ggtt_node_save(config->ggtt_region, buf, size);
-> +
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * xe_gt_sriov_pf_config_ggtt_restore - Restore a VF provisioned GGTT data from a buffer.
-> + * @gt: the &struct xe_gt
-> + * @vfid: VF identifier
-> + * @buf: the GGTT data source buffer
-> + * @size: the size of the buffer
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_gt_sriov_pf_config_ggtt_restore(struct xe_gt *gt, unsigned int vfid,
-> +				       const void *buf, size_t size)
-> +{
-> +	struct xe_gt_sriov_config *config;
-> +	ssize_t ret;
-> +
-> +	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> +	xe_gt_assert(gt, vfid);
-> +	xe_gt_assert(gt, !(!buf ^ !size));
-> +
-> +	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-> +	config = pf_pick_vf_config(gt, vfid);
-> +	size = size / sizeof(u64) * XE_PAGE_SIZE;
-> +
-> +	ret = xe_ggtt_node_load(config->ggtt_region, buf, size, vfid);
-> +
-> +	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-> +
-> +	return ret;
-> +}
-
-ditto
-
-> +
->  static u32 pf_get_min_spare_ctxs(struct xe_gt *gt)
->  {
->  	/* XXX: preliminary */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> index 513e6512a575b..6916b8f58ebf2 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-> @@ -61,6 +61,11 @@ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *bu
->  int xe_gt_sriov_pf_config_restore(struct xe_gt *gt, unsigned int vfid,
->  				  const void *buf, size_t size);
->  
-> +int xe_gt_sriov_pf_config_ggtt_save(struct xe_gt *gt, unsigned int vfid,
-> +				    void *buf, size_t size);
-> +int xe_gt_sriov_pf_config_ggtt_restore(struct xe_gt *gt, unsigned int vfid,
-> +				       const void *buf, size_t size);
-> +
->  bool xe_gt_sriov_pf_config_is_empty(struct xe_gt *gt, unsigned int vfid);
->  
->  int xe_gt_sriov_pf_config_init(struct xe_gt *gt);
-
+>
+>>
+>> As mentioned in the earlier comment, more details are available in
+>> the
+>> following references:
+>> [1] https://lore.kernel.org/all/aOVOJp2zeN1eCp7O@intel.com/
+>> [2]
+>> https://patchwork.freedesktop.org/patch/678520/?series=151245&rev=13
+>>
+>> So to answer your question: We can't entirely drop the early checks
+>> in
+>> psr_compute_config(), as it helps to filter PSR early based on vblank
+>> length, and also helps to get the SCL adjustments. By the time we
+>> reach
+>> psr_compute_config_late() we have more accurate picture to take a
+>> call
+>> to disable specific PSR features.
+>>
+>>
+>> That said, do you see any issues if we disable these later?
+>> Also, are there other parts or logic that depend on
+>> crtc_state->has_panel_replay and crtc_state->has_sel_update that you
+>> think could be moved to psr_compute_config_late()?
+> I don't see other need for psr_compute_config_late ATM.
+>
+> BR,
+>
+> Jouni Högander
+>> Regards,
+>>
+>> Ankit
+>>
+>>> BR,
+>>>
+>>> Jouni Högander
+>>>
+>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>>> Cc: Animesh Manna <animesh.manna@intel.com>
+>>>> Cc: Jouni Högander <jouni.hogander@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/intel_ddi.c |  3 ++
+>>>>    drivers/gpu/drm/i915/display/intel_dp.c  |  9 +++++
+>>>>    drivers/gpu/drm/i915/display/intel_dp.h  |  3 ++
+>>>>    drivers/gpu/drm/i915/display/intel_psr.c | 51
+>>>> ++++++++++++++++++++--
+>>>> --
+>>>>    drivers/gpu/drm/i915/display/intel_psr.h |  2 +
+>>>>    5 files changed, 60 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> index c09aa759f4d4..94c593bbedf4 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> @@ -4560,6 +4560,9 @@ static int
+>>>> intel_ddi_compute_config_late(struct
+>>>> intel_encoder *encoder,
+>>>>    	struct drm_connector *connector = conn_state->connector;
+>>>>    	u8 port_sync_transcoders = 0;
+>>>>    
+>>>> +	if (intel_crtc_has_dp_encoder(crtc_state))
+>>>> +		intel_dp_compute_config_late(encoder,
+>>>> crtc_state,
+>>>> conn_state);
+>>>> +
+>>>>    	drm_dbg_kms(display->drm, "[ENCODER:%d:%s]
+>>>> [CRTC:%d:%s]\n",
+>>>>    		    encoder->base.base.id, encoder->base.name,
+>>>>    		    crtc_state->uapi.crtc->base.id, crtc_state-
+>>>>> uapi.crtc->name);
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> index a723e846321f..e481ff4c4959 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> @@ -6979,3 +6979,12 @@ void intel_dp_mst_resume(struct
+>>>> intel_display
+>>>> *display)
+>>>>    		}
+>>>>    	}
+>>>>    }
+>>>> +
+>>>> +void intel_dp_compute_config_late(struct intel_encoder *encoder,
+>>>> +				  struct intel_crtc_state
+>>>> *crtc_state,
+>>>> +				  struct drm_connector_state
+>>>> *conn_state)
+>>>> +{
+>>>> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>>>> +
+>>>> +	intel_psr_compute_config_late(intel_dp, crtc_state);
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> b/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> index b379443e0211..0d9573ca44cb 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> @@ -218,5 +218,8 @@ int intel_dp_compute_min_hblank(struct
+>>>> intel_crtc_state *crtc_state,
+>>>>    int intel_dp_dsc_bpp_step_x16(const struct intel_connector
+>>>> *connector);
+>>>>    void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool
+>>>> force_on_external);
+>>>>    bool intel_dp_in_hdr_mode(const struct drm_connector_state
+>>>> *conn_state);
+>>>> +void intel_dp_compute_config_late(struct intel_encoder *encoder,
+>>>> +				  struct intel_crtc_state
+>>>> *crtc_state,
+>>>> +				  struct drm_connector_state
+>>>> *conn_state);
+>>>>    
+>>>>    #endif /* __INTEL_DP_H__ */
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>>>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>>>> index 212bd244beed..dcab4127b399 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>>>> @@ -1405,6 +1405,20 @@ int
+>>>> _intel_psr_min_set_context_latency(const
+>>>> struct intel_crtc_state *crtc_state
+>>>>    		return 1;
+>>>>    }
+>>>>    
+>>>> +static bool _wake_lines_fit_into_vblank(const struct
+>>>> intel_crtc_state *crtc_state,
+>>>> +					int vblank,
+>>>> +					int wake_lines)
+>>>> +{
+>>>> +	if (crtc_state->req_psr2_sdp_prior_scanline)
+>>>> +		vblank -= 1;
+>>>> +
+>>>> +	/* Vblank >= PSR2_CTL Block Count Number maximum line
+>>>> count
+>>>> */
+>>>> +	if (vblank < wake_lines)
+>>>> +		return false;
+>>>> +
+>>>> +	return true;
+>>>> +}
+>>>> +
+>>>>    static bool wake_lines_fit_into_vblank(struct intel_dp
+>>>> *intel_dp,
+>>>>    				       const struct
+>>>> intel_crtc_state
+>>>> *crtc_state,
+>>>>    				       bool aux_less,
+>>>> @@ -1428,14 +1442,7 @@ static bool
+>>>> wake_lines_fit_into_vblank(struct
+>>>> intel_dp *intel_dp,
+>>>>    					       crtc_state-
+>>>>> alpm_state.fast_wake_lines) :
+>>>>    			crtc_state->alpm_state.io_wake_lines;
+>>>>    
+>>>> -	if (crtc_state->req_psr2_sdp_prior_scanline)
+>>>> -		vblank -= 1;
+>>>> -
+>>>> -	/* Vblank >= PSR2_CTL Block Count Number maximum line
+>>>> count
+>>>> */
+>>>> -	if (vblank < wake_lines)
+>>>> -		return false;
+>>>> -
+>>>> -	return true;
+>>>> +	return _wake_lines_fit_into_vblank(crtc_state, vblank,
+>>>> wake_lines);
+>>>>    }
+>>>>    
+>>>>    static bool alpm_config_valid(struct intel_dp *intel_dp,
+>>>> @@ -4346,3 +4353,31 @@ bool intel_psr_needs_alpm_aux_less(struct
+>>>> intel_dp *intel_dp,
+>>>>    {
+>>>>    	return intel_dp_is_edp(intel_dp) && crtc_state-
+>>>>> has_panel_replay;
+>>>>    }
+>>>> +
+>>>> +void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+>>>> +				   struct intel_crtc_state
+>>>> *crtc_state)
+>>>> +{
+>>>> +	struct intel_display *display =
+>>>> to_intel_display(intel_dp);
+>>>> +	int vblank = intel_crtc_vblank_length(crtc_state);
+>>>> +	int aux_less_wake_lines = crtc_state-
+>>>>> alpm_state.aux_less_wake_lines;
+>>>> +	int wake_lines = DISPLAY_VER(display) < 20 ?
+>>>> +			 psr2_block_count_lines(crtc_state-
+>>>>> alpm_state.io_wake_lines,
+>>>> +						crtc_state-
+>>>>> alpm_state.fast_wake_lines) :
+>>>> +			 crtc_state->alpm_state.io_wake_lines;
+>>>> +
+>>>> +	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state)
+>>>> &&
+>>>> +	    !_wake_lines_fit_into_vblank(crtc_state, vblank,
+>>>> aux_less_wake_lines)) {
+>>>> +		drm_dbg_kms(display->drm,
+>>>> +			    "Disabling Panel replay: vblank
+>>>> insufficient for wakelines = %d\n",
+>>>> +			    aux_less_wake_lines);
+>>>> +		crtc_state->has_panel_replay = false;
+>>>> +	}
+>>>> +
+>>>> +	if (crtc_state->has_sel_update &&
+>>>> +	    !_wake_lines_fit_into_vblank(crtc_state, vblank,
+>>>> wake_lines)) {
+>>>> +		drm_dbg_kms(display->drm,
+>>>> +			    "Disabling Selective Update: vblank
+>>>> insufficient for wakelines = %d\n",
+>>>> +			    wake_lines);
+>>>> +		crtc_state->has_sel_update = false;
+>>>> +	}
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h
+>>>> b/drivers/gpu/drm/i915/display/intel_psr.h
+>>>> index 9147996d6c9e..b17ce312dc37 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+>>>> @@ -83,5 +83,7 @@ void intel_psr_debugfs_register(struct
+>>>> intel_display *display);
+>>>>    bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const
+>>>> struct
+>>>> intel_crtc_state *crtc_state);
+>>>>    bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
+>>>>    				   const struct intel_crtc_state
+>>>> *crtc_state);
+>>>> +void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+>>>> +				   struct intel_crtc_state
+>>>> *crtc_state);
+>>>>    
+>>>>    #endif /* __INTEL_PSR_H__ */
