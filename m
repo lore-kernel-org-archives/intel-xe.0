@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0CDFCCD183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 22:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0CF7CCD185
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 22:31:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F0910E503;
-	Mon, 13 Oct 2025 22:31:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8F510E0D3;
+	Mon, 13 Oct 2025 22:31:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XhX/+A0F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7MPEs6m";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A076810E502
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C2110E13A
  for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 22:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760394698; x=1791930698;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ussF/W66/C3ODSapbGOrg1cZOfRvYmViJlBJ5MXFGz8=;
- b=XhX/+A0F41V68496CFlTB824F2fozJeRMGp2EOMbTKqdmwFoK3JPxMpB
- gGhJcwiWdIJHgNw107P71wfFV1klCWXNWyT+A1S4cUHr5yozBxABndjWw
- nAkS3LofUrGKRxyt/zVeLJVV+a0Cwi6Ij0C+Y31MPiaei7IwbzAPy6CKD
- SbRrAZdNbx0ytXnl+zzsCetAMXv9GB/vWxxfsb76TjGS2yKYMbVviusvk
- 9lR9QxlHyUR7rIoeZFPfSFwxQZQsDIxKyUrfF8JCWYIQyep7zIieRvAon
- ip7TGYNc4pU3hkFKyd8tiOLvfylV5HTZ9P6QXG+k6quVzcpGKiHpN0+Nm A==;
-X-CSE-ConnectionGUID: eH4i0whDQv+OVdWDKAmWFQ==
-X-CSE-MsgGUID: OKw3T801RY29yq5OI+/z6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="79987313"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="79987313"
+ bh=g6wQHDqM/l1n16EmnhJ3NJnEajkPhM0hz4bpTTQa0jo=;
+ b=P7MPEs6mm25lrSW0D2+lWoJDLhbMqhzZNHlpCH/xwdFIPAVapHENXCzG
+ 05QlqNfBU2Tz3teKDLxTzkDfMLSGFzOF+JpZgBABHEC3tMbImESi0ThEG
+ KdeeeS43N2BjOx4+Ecbx+9D7o3PZAqp2/wMV8nlkK3wVLSsGuCSw1NtG9
+ Ly2TbdD5FGSaKhfwqY2xy7ONDIr52PzLUDevpHijlOvrZDrxTN1XTiHUg
+ 5i0Q4NsqbNcQ7hoOZ6Y5AZ6A1yT1bZtDId9byVfMTh7eGxrx/rdz+FGJt
+ ZusGAwiPT8jwzrNYYCyqKBiVlLySCrIog+nQc7WqicEl24b29ox2lwqVy A==;
+X-CSE-ConnectionGUID: jWSPSWQYSgWTAFNEj8LqrQ==
+X-CSE-MsgGUID: Rl5fRFY5QGq4OrAMYyShPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="79987308"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="79987308"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 15:31:38 -0700
-X-CSE-ConnectionGUID: ON6P2uS/R9ypbEW9rMQRAw==
-X-CSE-MsgGUID: wWOkqBUeRBKSd0Virg+BsQ==
+ 13 Oct 2025 15:31:37 -0700
+X-CSE-ConnectionGUID: 1ckns+l/QNeRjHTNvi90/Q==
+X-CSE-MsgGUID: LdrMkmpfQJOhnbuHdNjiDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="212677593"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="212677582"
 Received: from dut4084arlh.fm.intel.com ([10.105.10.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2025 15:31:37 -0700
@@ -45,9 +45,9 @@ From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 7/7] drm/xe: Check for GuC responses on disabling scheduling
-Date: Mon, 13 Oct 2025 22:31:35 +0000
-Message-Id: <20251013223135.189357-8-stuart.summers@intel.com>
+Subject: [PATCH 3/7] drm/xe: Add the BO pointer info to the BO trace
+Date: Mon, 13 Oct 2025 22:31:31 +0000
+Message-Id: <20251013223135.189357-4-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251013223135.189357-1-stuart.summers@intel.com>
 References: <20251013223135.189357-1-stuart.summers@intel.com>
@@ -67,59 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently if the GuC becomes unresponsive during a schedule
-disable event, after we send the CT request, the driver
-doesn't have a good way to recover. In most other cases,
-we explicitly wait for GuC to respond by checking either
-pending_enable, pending_disable, or some other state change
-that we expect to be set after the response from GuC is
-received for that particular request. Add a similar check
-on the schedule disable side and make sure the queue state
-for the queue being disabled is reset properly in that case.
-
-v2: Only call the deregistration sequence since in this
-    case the scheduling handler should be reset during
-    the GT reset.
-    By doing that, we don't need a way to track the scheduling
-    disable request handler for that queue, making this sequence
-    simpler. As a result, don't mark the queue as banned.
+Just a little extra detail to make BOs easier to track
+through the trace event log.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index c923f13a13ef..ca37c7a8c5ed 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -924,6 +924,8 @@ int xe_guc_read_stopped(struct xe_guc *guc)
- 		GUC_CONTEXT_##enable_disable,				\
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 238311cfb816..0d795733e0f0 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -27,6 +27,7 @@ DECLARE_EVENT_CLASS(xe_bo,
  
-+static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q);
-+
- static void disable_scheduling_deregister(struct xe_guc *guc,
- 					  struct xe_exec_queue *q)
- {
-@@ -961,6 +963,17 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
- 		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET +
- 		       G2H_LEN_DW_DEREGISTER_CONTEXT, 2);
-+
-+	ret = wait_event_timeout(guc->ct.wq,
-+				 !exec_queue_pending_disable(q) ||
-+				 xe_guc_read_stopped(guc),
-+				 HZ * 5);
-+	if (!ret || xe_guc_read_stopped(guc)) {
-+		xe_gt_warn(guc_to_gt(guc), "Schedule disable failed to respond");
-+		handle_deregister_done(guc, q);
-+		xe_gt_reset_async(q->gt);
-+	}
-+
- }
+ 		    TP_STRUCT__entry(
+ 			     __string(dev, __dev_name_bo(bo))
++			     __field(struct xe_bo *, bo)
+ 			     __field(size_t, size)
+ 			     __field(u32, flags)
+ 			     __field(struct xe_vm *, vm)
+@@ -34,13 +35,14 @@ DECLARE_EVENT_CLASS(xe_bo,
  
- static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+ 		    TP_fast_assign(
+ 			   __assign_str(dev);
++			   __entry->bo = bo;
+ 			   __entry->size = xe_bo_size(bo);
+ 			   __entry->flags = bo->flags;
+ 			   __entry->vm = bo->vm;
+ 			   ),
+ 
+-		    TP_printk("dev=%s, size=%zu, flags=0x%02x, vm=%p",
+-			      __get_str(dev), __entry->size,
++		    TP_printk("dev=%s, %p, size=%zu, flags=0x%02x, vm=%p",
++			      __get_str(dev), __entry->bo, __entry->size,
+ 			      __entry->flags, __entry->vm)
+ );
+ 
 -- 
 2.34.1
 
