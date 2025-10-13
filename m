@@ -4,182 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80640CCD185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F285CCD185
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:35:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432C310E509;
-	Mon, 13 Oct 2025 20:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6561110E55D;
+	Mon, 13 Oct 2025 20:35:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ap4zzyop";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aWDxGl+H";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47ABA10E509
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 20:25:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D814310E560;
+ Mon, 13 Oct 2025 20:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760387141; x=1791923141;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=zYtF3aBzjad+PuP80C8xIxJlPuaQrTPVEcP4QHdMWwc=;
- b=ap4zzyopiz6DVPc2KA92ByQwBj5xpNeNv+6pW3IgywJ0KsEfruo7SDE4
- 46rEAyhsWMrhFhW1j+lCRclhRQrHr5Mx2AyKM88Ph33jxM2+v1kLZ/os1
- BXLKriLtBYQOa6wk2gnHF28i8FBThXDpIYaTaAdrWQGC1PELQj8dWDWuJ
- pBwusoc8VrlutvGjo2H10dBpW5o462/KTZI0hbfcoYjEUM63noI/XlE7w
- lBtiim4JbXOlOENam5IwQlYEaEiGXFCUJO+IAGVIRu1ytM10aKWgKGcXR
- 1V38wThJTNhq47AdgFdFqZZ10F7xSf6OL0oox/ervBzMTU7fRiK/s9z51 w==;
-X-CSE-ConnectionGUID: 8vo4sORxQA+09VZPAby8pQ==
-X-CSE-MsgGUID: TDPZfTgqQYe9glPblolpSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="85160210"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="85160210"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:25:41 -0700
-X-CSE-ConnectionGUID: C5jEF7BrRYyWyiDJ7uzFeg==
-X-CSE-MsgGUID: hLxV+F5oQROpuk0t8qky5A==
+ t=1760387727; x=1791923727;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=h3aA3GMdcF/pFQU0CJDB9tdNRnZDhrAr8vsKG00lsBg=;
+ b=aWDxGl+Hfkw+iaDjWtgO5ahTHFiQav16wTvw99f78mfLsILELCy6H4D0
+ oj21SBcY1QslS6N24VoxlG7hQqKdaa/RqLqFU3eUnoN7g0RzZLImRYe5G
+ VFOnj2FJfzeQgnfEECGPZJmCSH/VaB6mEWazYyVJBMoBX0oTV74qhj4cP
+ YOmxQ3iYfJ38gA8pxHDBG4X6TY93JtGmKl0rGgoIlqIrUnCEz/CRz03vZ
+ hZck5t9CCuZDDKmGsathGtJ/0qNgBDJuzOdQ4Ql/yNy1TCqnkIN23l20P
+ P5+Wkhsjz4HmLuIpbkmWhfIBJPND4H2u2nzuy1UDdUTTjfshzsRLYrO1+ Q==;
+X-CSE-ConnectionGUID: 2tOHBkhyQCmZUQ76Zgq/pQ==
+X-CSE-MsgGUID: +ATMAI+QQfSh2VcU2pnTjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="72802245"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="72802245"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 13:35:27 -0700
+X-CSE-ConnectionGUID: 0eSDbwd+SyiHGq2ujE7S3A==
+X-CSE-MsgGUID: v1v8TjW0Tki7hjTW2vcycg==
 X-ExtLoop1: 1
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:25:40 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 13 Oct 2025 13:25:39 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 13 Oct 2025 13:25:39 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.56) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 13 Oct 2025 13:25:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P3RdT8EFqTI+/RXB9oqp/MXiSwc8XGyhdgwWZk4AIGhJqwO3AS8/xO2qs8P2MBOsqkyR18J6H5GC0zv0XiLbzOG9CuGlk348/cqAemGFwAR4D6ahCWkYzM1YFf9Eu1fM2PIOiZp/ClNmd9925VapItj12yMyiL34MwCANKzJAgtKogJ6YZWFa9oz4he4wUu0i+y6cCBGqFJZrnVxrf8MKhKfaRwPfEpKHWCgKP0sE+Xh1f9lGSv0zFjmNIHfnfpaWJWVYJ8Jx3qA6AQv8nGJ6sH6h74Xx9s5PVRMk7OliSl77QMG+caFOT8j0K7op+aF3rh8yPdDI9ps/SgMvWX75w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jhw9ZvSG3RoOoPtPKuPwLiegeUEkVlM6h4Za/D/6UJI=;
- b=kJmMZmae9XwpEL+AlEAg/iTFhteoiphhLvZjcd0HwQNMY0ul4kKuw8LoVldrvJDl+sKPS3GjSQ39N/X8jjrH/mmsGL/v8g/RrYsuB3gC5CvV3cy9zbfdk5TUcAn36oOIZ0Q2fQts4erjC/3M80Ny6aDLG802Tt/E3StXwUVvxBSdN7WPW0bHjxQDrkR+lg8iOHJjGE1NAtHHK7YX7gjt011zZW38RSwdm3hV3WzGi/CV4xCW2QWCjDyx+Oan9K2bDddIdzlw9u9UEwWuKb+cUWBMHy5X+WQTzK/AqVrAsejuGn8KeHub5YT5Xlkj9kUJ58Vv5+PL/1Ww2ugIPdDvpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by MW4PR11MB7005.namprd11.prod.outlook.com (2603:10b6:303:22e::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.13; Mon, 13 Oct
- 2025 20:25:37 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 20:25:37 +0000
-Message-ID: <f72f8b30-61e5-487e-ab75-3c0965b2b5d0@intel.com>
-Date: Mon, 13 Oct 2025 22:25:33 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 23/23] drm/xe/sriov: Disable SR-IOV if primary GT is
- disabled via configfs
-To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20251013200944.2499947-25-matthew.d.roper@intel.com>
- <20251013200944.2499947-48-matthew.d.roper@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20251013200944.2499947-48-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0202CA0026.eurprd02.prod.outlook.com
- (2603:10a6:803:14::39) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="181254368"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.105])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 13:35:25 -0700
+Date: Mon, 13 Oct 2025 23:35:22 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [RFC][PATCH 07/11] drm/i915: Introduce
+ intel_compute_global_watermarks_late()
+Message-ID: <aO1iikBS2VJait84@intel.com>
+References: <20251008182559.20615-1-ville.syrjala@linux.intel.com>
+ <20251008182559.20615-8-ville.syrjala@linux.intel.com>
+ <DM4PR11MB63602F44FE09479C15AF92EFF4EAA@DM4PR11MB6360.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|MW4PR11MB7005:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4e920c4-990d-44ce-c760-08de0a96ab94
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?QU9Wd0g1WkRneExxNlNIWFNqQkwzUGlmUldueHdYZTlIbDdaYThvNGFLaGN2?=
- =?utf-8?B?MnZLdG8wQVJUc3ZmZ2N0ZWtGeTJSQ2Z3K3dicHJ4L3drVFhEbHhPc1NSa1Zp?=
- =?utf-8?B?bkZaNERBQjNKWVFzdnVUZmx3UEdWSTBJZ3RMeEhCWWVjMWdlNHhpUmRlZy95?=
- =?utf-8?B?NnRnUmdEUTROajhMbFY1NUJiNWU5djFiRFYycGVVU2tUL3JsVDZwK05vd1VQ?=
- =?utf-8?B?QWdmSGtOWnRadVVBK1pWMkFNS1A0UkZEWldiKzFaUTYyT2NabmxQMU9qRWhu?=
- =?utf-8?B?UDBGTWZuU0ZrOUNCYmp3d3BZYXBDeG1JV0JtSEU1YktqODBUYlZVMWc0K3BE?=
- =?utf-8?B?R3dLbmFsQi80eEtaWnhHaC90NXB5RXJYQkNjOWhwenc0VWlzWDU5MWxNenAr?=
- =?utf-8?B?aUxBc05DN0V5THlTeEZOZUJsaDIxUlN5RWNUWGFmdkVBQUh3OUxpVjN6eHpZ?=
- =?utf-8?B?WElJdnZKYVRRWHlQSitPNllGUXVmUkJ1UkNkUVR4SlUrNXJDYlNzZUJsZExi?=
- =?utf-8?B?V0VzR0FOa3Qxa1BoaG9uWFVoTThUdys0d3NJSzJnNUsyeDlkZWZWUXcvMHpm?=
- =?utf-8?B?WXZzd2RoVGc1YVZZSytYalY0SEUwSlVXNnVNTE9qb0ZMNENBVEczMVdUR3Zq?=
- =?utf-8?B?ZWxFK0xENFdzbVRJVE9XOFRiUVRBOVh0eDNGKzZzU1dhdU5hcG1zNHZrNjRm?=
- =?utf-8?B?NXBDOFlpa1Rkem5PbDN0ayszVGFZdjRaVGpYQm9MU2oyZENQbjF0bHhheCtW?=
- =?utf-8?B?T2VEaCtKV3lTS1B6QW5sSDVlano0VFRac29JQjZGWDUvbVVXRmxyN3dnRXZv?=
- =?utf-8?B?Y1BWcFc3ZXlVTFd4WlZtRTRsRDMvMGRENUpGcHlYeVlQSDVYS2J1ektzWkNz?=
- =?utf-8?B?K01Ya1JuOXJ1MURrZW5Xa3hJVlEvZDRJVElManVvcE83NHBialRHRkIxdU1T?=
- =?utf-8?B?anNHckZ2VlQ1M0ZwNXd0MlhHU0RjdGVTSWhnV3RvZ1pCSGg4eHN1TnFCVU4x?=
- =?utf-8?B?Q21GSVk4cjdyZVdiT09TdkZjTVBBMm1PRy9pb1JCZXRLY0dIaHUwTjJZdm9x?=
- =?utf-8?B?L1lMaThJSnNjV2tLa1NuUlNGRXd0MjVZZGUyRGhyaE1rOHRXV3RVWUdWRGhH?=
- =?utf-8?B?MXM5NEVIS1BpclFyZlRqWkY3dU1tTEJ3ak42RW56L1lCdWRZVEM1eldHQWNR?=
- =?utf-8?B?OVBIKytxVGRESzhIZkhmK1J4eHdYTENNSkMrVlhlOWxsWXV2Tm8vV3Ixc3pB?=
- =?utf-8?B?OHlYMDQ2cUpUajdzTmpOY3N2WHp4S3N4WFUyTngvOFo1K2pLbFNqUHJERnN1?=
- =?utf-8?B?di95UDViVW9EOHVvQmljaWpYYzQ1TmRJMW11S1BjRStSYzdHSWkyOE1DR24r?=
- =?utf-8?B?MWZ5Zk1nQ25hRXJpU2hPUThBQVo0bTZaTUJzYzZ4MDJ0ck8wU1EzZmUzK0Fl?=
- =?utf-8?B?Z2Z1RzM2WVJrVG1jbzZOai9hYWJ1c2ZvaHhLNkhxZGNjNUpXMzdXUXhYUGMr?=
- =?utf-8?B?dzRlY0k1V2VKeW91NjAvNGlOaGlzU1paT0wramtQU1VjNFEvcStpb1BScGR5?=
- =?utf-8?B?bEFvVGVScGFTWjgvUE85cUxuM2tja0VDa0tCYVp3bERPRjh0RktlTDJQNUJ5?=
- =?utf-8?B?d1Z3ZHNVRVdaVmpYQnVPTUNTRTl2R0pmbXNBNHVwamIzeGV3TUZ4ek5ka2dF?=
- =?utf-8?B?STJ3MnljZkc3cjVkU1ZYdnFrVWtsTHpxUnh4dW8vN1JGZGpIU1B5MjhQMDl0?=
- =?utf-8?B?UXdLd1crMlRmcUxrNWFCMStvbloyN0FkV05LNC9PK0kvYU1JODFiVzNzeEZK?=
- =?utf-8?B?clJxa2drMHB5Y0NPYVowWU9tTjhnMXp1Y2V3UkdOWXJXMG5yb3FmNGpobVhN?=
- =?utf-8?B?QWsxOGZtSWN5NkFhWjRkczBqTFJUL3FqNGtwYlcwQ2NOSHhhandERkpDZXB0?=
- =?utf-8?Q?YnpahUb9l4DlT2pjO0N800dJan9E2TQq?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WVp4YUhLSlZVSDNJV1E0YXFmUFVrTFFIaHBWWXFQbUJEZ2xTc244ZkQrWG0r?=
- =?utf-8?B?bkk4ZWI1Y2ppV1J2VFJsYm9yL2JVRUFYb1FwVG5PNnFXeUxZUHJtc29pa1lQ?=
- =?utf-8?B?ZjZuZC9KUGFtbzNndHF5eTYwS1VMaXpUMUM1eFJxbWVocDdyaWdDTlp2V1c2?=
- =?utf-8?B?OUh3d2Q0YWlGT1E0MkwxVlNQNnRPYnpwNWFjbkhDVGFIRDltN3luZjR0STEw?=
- =?utf-8?B?b2NSZU5GRW82ajdmVEdmU0djdU8yRmt4Yk95aXZDL2xxbUszSkxUQmg0ZEdI?=
- =?utf-8?B?WHVJZFhUMVJNQnU5bVpQdnQzam1WM1hTU2ZwRE80aGVQcjNDcEIvTW5LY3BX?=
- =?utf-8?B?K01qa3FlZjZBK2VtODM1elNKK0xNQTdoYkx5UCtEOFVOTkVNTUxPTks0eFN4?=
- =?utf-8?B?dXc3R2grYTFobFZkSzhtMUVibGNXL3pQS3lvYUpnaEZlTTdNaFBLSExwRURJ?=
- =?utf-8?B?WUI4K3dWMDJWdnlUQWZMa0dwMG81K3VjK2FEbWJEbElkay9yRHl0SWgwWnMw?=
- =?utf-8?B?ZmdhZTJZRTRlSUdqcFZYMTJrYi95NEtla0d4WlBJSGd5Tm5mYXlpSndudWVl?=
- =?utf-8?B?UW4xWmxWUVdWZ0VjdTNEa3JOd2cyYWZBYkFoVnQ0clNnaUNpd0taVmxnVFdE?=
- =?utf-8?B?OWI0RzJxcVcvc3IrRWNxMjBqT2FDMmNDUGkvdUYrd2dNQ1FVUWRtV1JsZlFh?=
- =?utf-8?B?M0tzZlBUNTN0SGFucGRzK210T2dkYnVzeFpSWDJlVU9nOTFIK2xXc2Z5OG8z?=
- =?utf-8?B?SEp3VGgyRnpXZlZIVnZBcGhRZGgra3oralpBcnIwZmZ1M1NndkZhV1BVMjMw?=
- =?utf-8?B?RUJrdFRPNmNiMTdXQTQzNys0R0VNZWd1dFlrZVdZb0tmNyt0djZMUGo2ZTEv?=
- =?utf-8?B?WVRCNlMxM3U4V0QzSytXangycmgwZThYMFIyOGcweEU3WjZHbXlydHprMndi?=
- =?utf-8?B?ckdWK3o0KzRvN3N0MTVvMGQ5MnJnOUJpYVZrZFlCZUdXaWUyTzZkTlVuTUY1?=
- =?utf-8?B?SFR0d0hiSndMMUFNbUthWjRVMFdseVR4ZEF2Z0FJdnZqOGFhMHhIeFhzVGhu?=
- =?utf-8?B?N1RCR000Yk5mTjdVT3l1WmwyL3l4M041dE5yd3NCMmY4VlRUTk4wNUxLWWhr?=
- =?utf-8?B?ei9UWkhkQjRBR1h2aXhGbXhJc3ZOV3h2RVNXVllORUhub1Q1aU1VRlBVL3d3?=
- =?utf-8?B?d2pERlI0WWRGYVJ1eVo1NXNOd3V4Lzcxbk5BdWI2ejlJQXhTUzh3YlphWmwv?=
- =?utf-8?B?NjV4elE1MWtRMDVZNHFlR2FaeFB3RDdBS3FoT3FtcDk3YzhpQ3kyeUU4MTFz?=
- =?utf-8?B?dituREd2VTdqVTJjaFdWYlp3Nk9lQ2hwM3lXVTM3UXNMaCsrUkRuaUNRa2F2?=
- =?utf-8?B?NGgvMUY1MDMraGhMRStSaFVyaEROY0U4Ukwwb2tRMTBjMm00Vk9saXpzOUxn?=
- =?utf-8?B?dUZuTEZ6eVpNSDkxbjJpcnhHek9XTmtxYVFCUE92Yk53RGxnNXVIaS9ucHpa?=
- =?utf-8?B?RHV3V2J1ODBkelo5UER2WHhNU1g0QXZHUWtGRGp4NHZlemUrUGRNcExpdVQv?=
- =?utf-8?B?ZWsrZHJXRzlKVFpnWnU3M1Jxd1JVTWs3dGI4STBRU0xhaDdEVU9YQUVJTjFO?=
- =?utf-8?B?NGFMekx4eDNuNlRrRUowMitQaTVjYjQyWnc5Y0JiMGhqT2RzRXByU01ubnlH?=
- =?utf-8?B?TGEzTENEcWMwQ1R5V0RLZmVIWTUyM3ljWGhrbmVqMHhMQ0VSanNwdWpob3cz?=
- =?utf-8?B?YTdHZG1LV1B4MGZaNUp5V1NaNHlJaTNKVXdxWlNUZmZweEJhOE1XT3lOZHNS?=
- =?utf-8?B?OC9QaEVlVTIydXMvUS9Dd3VaN0JiTFJnQ2xhNGh4QVBnVWdyQlBZeUR1YkVv?=
- =?utf-8?B?OWZ3N0lIUzBoMzVsaGpGSGU5bElYN3V1QzVMSlVLTW5DVXFDdTJwNkkvQzdH?=
- =?utf-8?B?b0FYSHAzMmhOM2huU3Y1Z0ZRbERHMTlOQWJkclcxY3MvNjhxSW50akVCZnBw?=
- =?utf-8?B?dmZ2RmRSTStJalRZSkZVM25HRFBvS1VwZ1JuY3pOSGFrblpISlRuQU5iTEln?=
- =?utf-8?B?Nkkxc09EZjFTVXZNR3QyZ2Z5a2FnZVBWTGVRTWpTcGZpZEJQZ3IxdG9JMUth?=
- =?utf-8?B?dHRDU1VnVnhyRGZYcDRjbEhsdlVGK2U2RmxRNGluMDNpbWU1dWVRRVlnb1RY?=
- =?utf-8?B?Q2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4e920c4-990d-44ce-c760-08de0a96ab94
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 20:25:37.5468 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ojn+AyUxlRDJcxQYcTxYXXZqVj9v6rdvK17ymvb/CKpo1fhPjULCi1Bfhifd9A2kuCiWvUGK/bRkEcr94VApEJgAEDxzRZjQrF5LJ1Xdnsc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7005
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM4PR11MB63602F44FE09479C15AF92EFF4EAA@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,54 +74,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 10/13/2025 10:10 PM, Matt Roper wrote:
-> SR-IOV operation relies on the primary GT's GuC to operate (in both PF
-> and VF mode).  If the primary GT is disabled in VF mode, fail the probe.
-> If the primary GT is disabled in PF mode, force the device back to
-> native (non-sriov) mode.
-
-I guess we should update this msg to the latest approach:
-
-"Don't enable .has_sriov flag if the primary-GT was disabled by configfs."
-
-and then we can keep the change log under ---
-
+On Mon, Oct 13, 2025 at 06:36:07PM +0000, Shankar, Uma wrote:
 > 
-> v2:
->  - Move handling to xe_info_init().  (Michal)
 > 
-> v3:
->  - Just update the .has_sriov flag in xe_info_init_early().  (Michal)
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Wednesday, October 8, 2025 11:56 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: intel-xe@lists.freedesktop.org
+> > Subject: [RFC][PATCH 07/11] drm/i915: Introduce
+> > intel_compute_global_watermarks_late()
+> > 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Add a late watermarks computation stage for skl+. Need this (temporarily
+> > perhaps) to get the final cdclk values into skl_wm_check_vblank().
+> > 
+> > But the order is actually wrong now for SAGV. For SAGV we want to first do
+> > skl_wm_check_vblank(), then copute crttc_state->use_sagv_wm, and then do
 > 
-> v4:
->  - Drop unnecessary comment.  (Michal)
->  - Flip condition order for consistency with other checks.  (Michal)
+> Nit: Typo in crtc
 > 
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pci.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> > intel_bw_atomic_check().
+> > 
+> > Scalers are completely borked as far as skl_wm_check_vblank() goes as well.
+> > 
+> > TODO: just a hack really, need to figure out the correct order
+> >       for real
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index ef559a79c5ba..24a38904bb50 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -631,7 +631,8 @@ static int xe_info_init_early(struct xe_device *xe,
->  	xe->info.has_late_bind = desc->has_late_bind;
->  	xe->info.has_llc = desc->has_llc;
->  	xe->info.has_pxp = desc->has_pxp;
-> -	xe->info.has_sriov = desc->has_sriov;
-> +	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
-> +		desc->has_sriov;
+> We can go with hack for now and take up the re-factoring later to sort out the correct order.
 
-but this part should work, so
+I just send a series that should solve this particular problem
+as far as the cdclk goes:
+https://patchwork.freedesktop.org/series/155860/
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+I still need to rebase this prefill stuff on top of it, at
+which point I should know for sure whether it really fixes
+the order or not.
 
->  	xe->info.skip_guc_pc = desc->skip_guc_pc;
->  	xe->info.skip_mtcfg = desc->skip_mtcfg;
->  	xe->info.skip_pcode = desc->skip_pcode;
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
+> > .../gpu/drm/i915/display/intel_display_core.h |  1 +
+> >  drivers/gpu/drm/i915/display/intel_wm.c       | 10 +++++
+> >  drivers/gpu/drm/i915/display/intel_wm.h       |  1 +
+> >  drivers/gpu/drm/i915/display/skl_watermark.c  | 38 ++++++++++++++++---
+> >  5 files changed, 48 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index afa78774eaeb..54ed36183ebe 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -6455,6 +6455,10 @@ int intel_atomic_check(struct drm_device *dev,
+> >  			return ret;
+> >  	}
+> > 
+> > +	ret = intel_compute_global_watermarks_late(state);
+> > +	if (ret)
+> > +		goto fail;
+> > +
+> >  	ret = intel_pmdemand_atomic_check(state);
+> >  	if (ret)
+> >  		goto fail;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
+> > b/drivers/gpu/drm/i915/display/intel_display_core.h
+> > index df4da52cbdb3..62bd894a72f9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> > @@ -89,6 +89,7 @@ struct intel_wm_funcs {
+> >  	void (*optimize_watermarks)(struct intel_atomic_state *state,
+> >  				    struct intel_crtc *crtc);
+> >  	int (*compute_global_watermarks)(struct intel_atomic_state *state);
+> > +	int (*compute_global_watermarks_late)(struct intel_atomic_state
+> > +*state);
+> >  	void (*get_hw_state)(struct intel_display *display);
+> >  	void (*sanitize)(struct intel_display *display);  }; diff --git
+> > a/drivers/gpu/drm/i915/display/intel_wm.c
+> > b/drivers/gpu/drm/i915/display/intel_wm.c
+> > index f887a664fe22..3035d9879d83 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_wm.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_wm.c
+> > @@ -104,6 +104,16 @@ int intel_compute_global_watermarks(struct
+> > intel_atomic_state *state)
+> >  	return 0;
+> >  }
+> > 
+> > +int intel_compute_global_watermarks_late(struct intel_atomic_state
+> > +*state) {
+> > +	struct intel_display *display = to_intel_display(state);
+> > +
+> > +	if (display->funcs.wm->compute_global_watermarks_late)
+> > +		return display->funcs.wm-
+> > >compute_global_watermarks_late(state);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  void intel_wm_get_hw_state(struct intel_display *display)  {
+> >  	if (display->funcs.wm->get_hw_state)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_wm.h
+> > b/drivers/gpu/drm/i915/display/intel_wm.h
+> > index 9ad4e9eae5ca..9f69dc5dfda5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_wm.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_wm.h
+> > @@ -24,6 +24,7 @@ void intel_atomic_update_watermarks(struct
+> > intel_atomic_state *state,  void intel_optimize_watermarks(struct
+> > intel_atomic_state *state,
+> >  			       struct intel_crtc *crtc);
+> >  int intel_compute_global_watermarks(struct intel_atomic_state *state);
+> > +int intel_compute_global_watermarks_late(struct intel_atomic_state
+> > +*state);
+> >  void intel_wm_get_hw_state(struct intel_display *display);  void
+> > intel_wm_sanitize(struct intel_display *display);  bool
+> > intel_wm_plane_visible(const struct intel_crtc_state *crtc_state, diff --git
+> > a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > index aac3ca8f6c0f..5c18fe9a5237 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> > @@ -2433,7 +2433,7 @@ static int skl_build_pipe_wm(struct intel_atomic_state
+> > *state,
+> > 
+> >  	crtc_state->wm.skl.optimal = crtc_state->wm.skl.raw;
+> > 
+> > -	return skl_wm_check_vblank(crtc_state);
+> > +	return 0;
+> >  }
+> > 
+> >  static bool skl_wm_level_equals(const struct skl_wm_level *l1, @@ -3002,11
+> > +3002,6 @@ skl_compute_wm(struct intel_atomic_state *state)
+> >  	if (ret)
+> >  		return ret;
+> > 
+> > -	/*
+> > -	 * skl_compute_ddb() will have adjusted the final watermarks
+> > -	 * based on how much ddb is available. Now we can actually
+> > -	 * check if the final watermarks changed.
+> > -	 */
+> >  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> >  		struct skl_pipe_wm *pipe_wm = &new_crtc_state-
+> > >wm.skl.optimal;
+> > 
+> > @@ -3030,6 +3025,36 @@ skl_compute_wm(struct intel_atomic_state *state)
+> >  		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(display) &&
+> >  			DISPLAY_VER(display) >= 12 &&
+> >  			intel_crtc_can_enable_sagv(new_crtc_state);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +skl_compute_wm_late(struct intel_atomic_state *state) {
+> > +	struct intel_crtc *crtc;
+> > +	struct intel_crtc_state __maybe_unused *new_crtc_state;
+> > +	int i;
+> > +
+> > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > +		int ret;
+> > +
+> > +		/*
+> > +		 * FIXME we need something along the lins of the following order:
+> > +		 * 1. intel_atomic_setup_scalers() (needed by
+> > skl_wm_check_vblank())
+> > +		 * 2. intel_modeset_calc_cdclk() (needed by
+> > skl_wm_check_vblank())
+> > +		 * 3. skl_compute_wm() (skl_wm_check_vblank() + update
+> > use_sagv_wm)
+> > +		 * 4. intel_bw_atomic_check() (needs use_sagv_wm)
+> > +		 * but shuffling all that needs a lot more work...
+> > +		 *
+> > +		 * For now hack it by deferreing skl_wm_check_vblank() until
+> > +		 * intel_modeset_calc_cdclk() has been done. Scalers are still
+> > +		 * completely broken wrt. skl_wm_check_vblank().
+> > +		 */
+> > +		ret = skl_wm_check_vblank(new_crtc_state);
+> > +		if (ret)
+> > +			return ret;
+> > 
+> >  		ret = skl_wm_add_affected_planes(state, crtc);
+> >  		if (ret)
+> > @@ -4060,6 +4085,7 @@ void intel_wm_state_verify(struct intel_atomic_state
+> > *state,
+> > 
+> >  static const struct intel_wm_funcs skl_wm_funcs = {
+> >  	.compute_global_watermarks = skl_compute_wm,
+> > +	.compute_global_watermarks_late = skl_compute_wm_late,
+> >  	.get_hw_state = skl_wm_get_hw_state,
+> >  	.sanitize = skl_wm_sanitize,
+> >  };
+> > --
+> > 2.49.1
+> 
 
+-- 
+Ville Syrjälä
+Intel
