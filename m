@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 557F6CCD185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 22:14:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98B87CCD185
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 22:31:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1A2510E503;
-	Mon, 13 Oct 2025 22:14:07 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4165C10E503;
- Mon, 13 Oct 2025 22:14:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0579296044303208833=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4886010E13A;
+	Mon, 13 Oct 2025 22:31:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cF0sHKtW";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2E9910E0D3
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 22:31:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760394697; x=1791930697;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/iIt5KRVmYXuAxml8Id7Q06K6o7o12/+wSjAQFc33sg=;
+ b=cF0sHKtWuXqfKrSO4j7Ivm+ECYc6ZgiF0bpIgtyIr/xb02NGsVriF/Ro
+ 68tXGixit+f6aMPTjcDun3rnBJClVED3PsXm4GGG85XfDPuVkYSBz6lve
+ /0g5trnjKtbDYpk9QeSosaDP8d4BagIKqxw1T8OskNt2xynrhal4GcpXI
+ xYskfAyCMCg0NuZXiEQXwnKS/YQw3GTU7eqh9uREVc9bLgWOuddCBpHGw
+ 7gbldflQUtVjxNiwqAqvEiQ6VNLLA7L8n+nO+pgd1OpC32UdN/0Z+THrD
+ IHDV6vKWKYuRDt03IUCYy7oNcO2L5P9HdIjqm5k9a1MVTEWKoR6mG0S7h g==;
+X-CSE-ConnectionGUID: Fqy3solyS86xImYEFyi3lw==
+X-CSE-MsgGUID: 1AKZWb8oT3C1uGeI5kzOVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="79987305"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="79987305"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 15:31:37 -0700
+X-CSE-ConnectionGUID: 9Nkb3YfZSZevwVlJaesB0w==
+X-CSE-MsgGUID: wwL8ICWzRbuwt3PfYTDJfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="212677573"
+Received: from dut4084arlh.fm.intel.com ([10.105.10.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 15:31:37 -0700
+From: Stuart Summers <stuart.summers@intel.com>
+To: 
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 0/7] Fix a couple of wedge corner-case memory leaks
+Date: Mon, 13 Oct 2025 22:31:28 +0000
+Message-Id: <20251013223135.189357-1-stuart.summers@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Retain_vma_flags_?=
- =?utf-8?q?when_recreating_and_splitting_vmas_for_madvise?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Oct 2025 22:14:07 -0000
-Message-ID: <176039364725.7451.12729601519661703764@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251013185348.88033-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20251013185348.88033-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0579296044303208833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Most of the patches in this series are just adding
+some debug hints to help track these down. I split
+these up in case we want to pick and choose which ones
+to include in the tree. I found them useful.
 
-== Series Details ==
+The main two interesting patches are the last two in the
+series which are fixing some corner cases when the
+driver becomes wedged in the middle of either communication
+with the DRM scheduler or in the event the GuC becomes
+unresponsive. In both of these cases there is a chance
+we could leak memory around the exec queue members
+like the LRC and the LRC BO. These patches fix those
+scenarios.
 
-Series: drm/xe: Retain vma flags when recreating and splitting vmas for madvise
-URL   : https://patchwork.freedesktop.org/series/155852/
-State : success
+v2: Address feedback from Matt:
+    - Let the DRM scheduler handle pausing/unpausing
+    - Still do the wait after scheduling disable/deregister
+      as with the previous patch, but skip the intermediate
+      software-based schedule disable using the "banned"
+      flag and instead just jump straight to the deregister
+      handling which will fully reset the queue state.
+      Note that for this case I am seeing a hardware failure
+      after submitting to GuC but before receiving the
+      response from GuC. So even if we wedge in this case
+      (monitoring the hardware state change), the queue
+      itself is not wedged because of the active GuC
+      submission (CT is not stalled at that point).
+v3: Add back in the xe pause checks and instead just kickstart
+    message handling in the guc_submi_fini() routine before
+    doing the async wait there.
 
-== Summary ==
+Stuart Summers (7):
+  drm/xe: Add additional trace points for LRCs
+  drm/xe: Add a trace point for VM close
+  drm/xe: Add the BO pointer info to the BO trace
+  drm/xe: Add new exec queue trace points
+  drm/xe: Correct migration VM teardown order
+  drm/xe: Kick start GPU scheduler on teardown
+  drm/xe: Check for GuC responses on disabling scheduling
 
-CI Bug Log - changes from xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c_BAT -> xe-pw-155852v1_BAT
-====================================================
+ drivers/gpu/drm/xe/xe_exec_queue.c |  4 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 30 ++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_lrc.c        |  4 +++
+ drivers/gpu/drm/xe/xe_lrc.h        |  3 +++
+ drivers/gpu/drm/xe/xe_migrate.c    |  2 +-
+ drivers/gpu/drm/xe/xe_trace.h      | 22 ++++++++++++++--
+ drivers/gpu/drm/xe/xe_trace_bo.h   | 12 +++++++--
+ drivers/gpu/drm/xe/xe_trace_lrc.h  | 42 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c         |  2 ++
+ 9 files changed, 111 insertions(+), 10 deletions(-)
 
-Summary
--------
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c -> xe-pw-155852v1
-
-  IGT_8582: 8582
-  xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c: f33ccc63d84c30ee59454b6c4e9303ef36c41c0c
-  xe-pw-155852v1: 155852v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155852v1/index.html
-
---===============0579296044303208833==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Retain vma flags when recreating and splitting vmas for madvise</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155852/">https://patchwork.freedesktop.org/series/155852/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155852v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155852v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c_BAT -&gt; xe-pw-155852v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c -&gt; xe-pw-155852v1</li>
-</ul>
-<p>IGT_8582: 8582<br />
-  xe-3910-f33ccc63d84c30ee59454b6c4e9303ef36c41c0c: f33ccc63d84c30ee59454b6c4e9303ef36c41c0c<br />
-  xe-pw-155852v1: 155852v1</p>
-
-</body>
-</html>
-
---===============0579296044303208833==--
