@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91593CCD18F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91614CCD193
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:10:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D30710E502;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502E410E503;
 	Mon, 13 Oct 2025 20:10:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fnj7km7x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jm9xn5lv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D62B910E507
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 20:10:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6992F10E500
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 20:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760386204; x=1791922204;
+ t=1760386202; x=1791922202;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tyxLl+ijl0BKlq/pr2uYEsVHvC8UsbQB4ucvCrZLkso=;
- b=Fnj7km7x+oZL1hux3SqcaiHoueJoCZJNDnrmGK4XO/Dp9swaBhFY2caJ
- HiaxKYi+b4NPog9tujYPzSoiMr/ztXgpQb5MLiQwheKnZGkPrARlsYnKQ
- FfwHglv91t6VYRvGhoni7zwiT8CFyVVvhF4sjyp/e+XxT2FCLkqEpHst8
- kbLRuZauSaHBFZdYa3ipnWPjk/fSxjoIyb54PSVinOTKkN+kB+pMIHdwz
- EYqBmrxHhQMq4RhlsCr/1QCoz5fCMXwwd5C+HuzfeOITys+O07pQTDg6i
- bq7q2ayyeht8AxudkjfOB4pHzX6Qi4YJPmc6ufkzKdK8nCSUvxGaVKBKy A==;
-X-CSE-ConnectionGUID: F7sa70KqTROBR+f4L7rSOQ==
-X-CSE-MsgGUID: tb+gL4uMS4mdFsv3fxiCJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="72800556"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="72800556"
+ bh=VrF9XpraS3aFZw2HSVe9xd89oDNU9RWBCZJS6abMcMI=;
+ b=jm9xn5lvGSRRasg0Oye7tH+OY/wUL6fJPlQFcNEbBhJg9CihGnOzPZ+y
+ HRx1JPPU4NJAlc4UfDnH1eGqkkN75PDjdqj80fHJ2bWWf+uUVU4n1xbSq
+ TtHu94aP/vvYATd2LNUwJQOBnvy/K+I9pie9du3fKChBt4F9xj+8JFKak
+ RD8paIXxxKAj830+a1YAEu/85KqCLbtNiZ+uj/FvjHivLhj2Tuq8k7cff
+ BOE7WCDP4s/1Mkuj1d+/kt0/Ex5kLxh2Bb+5ytEnbHHrOo12/VOtZRUTl
+ EoXlN2zEI8ZdrW2He5m1Co1T9h2ckgkrx3Sp5jrHCyBmPyoFCpdmRu/L9 g==;
+X-CSE-ConnectionGUID: qz5FgjIpSlSm5axsYMgQ0w==
+X-CSE-MsgGUID: kkelQUxrTBuZoky0FyPYlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="72800540"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="72800540"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:10:03 -0700
-X-CSE-ConnectionGUID: gc7iD7+ZSQaZcOzDnP+qiQ==
-X-CSE-MsgGUID: hXPAm9KZSUOxd/6jwkFIdA==
+ 13 Oct 2025 13:10:02 -0700
+X-CSE-ConnectionGUID: zC9ykybhTUmHP4wND6/R7Q==
+X-CSE-MsgGUID: EhLGrAtVStK9Y65YuGe7gA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185707615"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185707560"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:10:03 -0700
+ 13 Oct 2025 13:10:02 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v5 19/23] drm/xe: Check that GT is not NULL before testing
- Wa_16023588340
-Date: Mon, 13 Oct 2025 13:10:02 -0700
-Message-ID: <20251013200944.2499947-44-matthew.d.roper@intel.com>
+	Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH v5 11/23] drm/xe/pmu: Initialize PMU event types based on
+ first available GT
+Date: Mon, 13 Oct 2025 13:09:54 -0700
+Message-ID: <20251013200944.2499947-36-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251013200944.2499947-25-matthew.d.roper@intel.com>
 References: <20251013200944.2499947-25-matthew.d.roper@intel.com>
@@ -68,28 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the primary GT is disabled, skip the check for this workaround (which
-only applies to dgpu platforms where the primary GT cannot be NULL).
+GT ID#0 (primary GT on tile 0) may not always be available if the
+primary GT has been disabled via configfs.  Instead use the first
+available GT when determining which PMU events are supported.  If there
+are no GTs, then don't advertise any GT-related events.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display_wa.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pmu.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display_wa.c b/drivers/gpu/drm/xe/display/xe_display_wa.c
-index 8ada1cbcb16c..2aa1b8c03411 100644
---- a/drivers/gpu/drm/xe/display/xe_display_wa.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_wa.c
-@@ -13,6 +13,7 @@
- bool intel_display_needs_wa_16023588340(struct intel_display *display)
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index cab51d826345..c63335eb69e5 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -497,7 +497,12 @@ static const struct attribute_group *pmu_events_attr_update[] = {
+ static void set_supported_events(struct xe_pmu *pmu)
  {
- 	struct xe_device *xe = to_xe_device(display->drm);
-+	struct xe_gt *wa_gt = xe_root_mmio_gt(xe);
+ 	struct xe_device *xe = container_of(pmu, typeof(*xe), pmu);
+-	struct xe_gt *gt = xe_device_get_gt(xe, 0);
++	struct xe_gt *gt;
++	int id;
++
++	/* If there are no GTs, don't support any GT-related events */
++	if (xe->info.gt_count == 0)
++		return;
  
--	return XE_GT_WA(xe_root_mmio_gt(xe), 16023588340);
-+	return wa_gt && XE_GT_WA(wa_gt, 16023588340);
- }
+ 	if (!xe->info.skip_guc_pc) {
+ 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_C6_RESIDENCY);
+@@ -505,6 +510,10 @@ static void set_supported_events(struct xe_pmu *pmu)
+ 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_GT_REQUESTED_FREQUENCY);
+ 	}
+ 
++	/* Find the first available GT to query engine event capabilities */
++	for_each_gt(gt, xe, id)
++		break;
++
+ 	if (xe_guc_engine_activity_supported(&gt->uc.guc)) {
+ 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_ACTIVE_TICKS);
+ 		pmu->supported_events |= BIT_ULL(XE_PMU_EVENT_ENGINE_TOTAL_TICKS);
 -- 
 2.51.0
 
