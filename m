@@ -4,31 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C171CCD18D
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 16:12:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC70ECCD183
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 16:25:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 103F610E466;
-	Mon, 13 Oct 2025 16:12:57 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71B310E443;
- Mon, 13 Oct 2025 16:12:55 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 44B9D3F0F9;
- Mon, 13 Oct 2025 18:12:53 +0200 (CEST)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH v3] drm/ttm: Avoid NULL pointer deref for evicted BOs
-Date: Tue, 14 Oct 2025 01:11:33 +0900
-Message-ID: <20251013161241.709916-1-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251013160311.548207-1-Simon.Richter@hogyros.de>
-References: <20251013160311.548207-1-Simon.Richter@hogyros.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB33A10E4A8;
+	Mon, 13 Oct 2025 16:25:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="npHs9AM7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A01E710E4A6
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 16:25:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760372712; x=1791908712;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ApzGEXphjvlwlZH3j6dOmuiJhwPoo758VWhghBYAtEY=;
+ b=npHs9AM7xhe61gFv4dCXb97cjjovuT7JKkJ4Y28m9uFAddYvGfzPfNRr
+ X/PuRCt12V2ehiGg7s5p9sr8WayjvPGms+7IpNHj/LsNVcbv+8GIl+ErX
+ y8TRj/3JiuRBrNqjX3MOJsPhdDubi8/Q97pJGptyXaO9dCQZWtW5H3s7z
+ A/MC1fXjqequ4/473t/7ZcGFRbqCuqMtxj3ABqJ4z/CJqb0LXyKvUU4Vb
+ TnRDEjt9ZxXe5Gyq9dp9PjQqSQvRob0B+2BIUiX4k62mkJ9IlCcwqj6g6
+ SXD/Ad3YtO+AzyznF5CkaoVWxq0KNCmtBHy7aT5qXGif12V0qtWVzazCk Q==;
+X-CSE-ConnectionGUID: /Vwjhw0fREmHawCRaTcMxQ==
+X-CSE-MsgGUID: LTdUrIKCQeqGGknjUvgkvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73963495"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="73963495"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 09:25:12 -0700
+X-CSE-ConnectionGUID: TmWEOduiTkCI3mD3BCmAyw==
+X-CSE-MsgGUID: DcBvxBq/SmydBRowLxVHBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="185651401"
+Received: from dut4084arlh.fm.intel.com ([10.105.10.71])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 09:25:11 -0700
+From: Stuart Summers <stuart.summers@intel.com>
+To: 
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH 2/7] drm/xe: Add a trace point for VM close
+Date: Mon, 13 Oct 2025 16:24:59 +0000
+Message-Id: <20251013162504.7768-3-stuart.summers@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251013162504.7768-1-stuart.summers@intel.com>
+References: <20251013162504.7768-1-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -45,43 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It is possible for a BO to exist that is not currently associated with a
-resource, e.g. because it has been evicted.
+All better tracking of error cases when calling through
+xe_vm_close_and_put().
 
-When devcoredump tries to read the contents of all BOs for dumping, we need
-to expect this as well -- in this case, ENODATA is recorded instead of the
-buffer contents.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6271
-Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_vm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_vm.c       | 2 ++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-index b47020fca199..a101ff95b234 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-@@ -434,6 +434,11 @@ int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 86323cf3be2c..238311cfb816 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -14,6 +14,7 @@
  
-+	if (!bo->resource) {
-+		ret = -ENODATA;
-+		goto unlock;
-+	}
+ #include "xe_bo.h"
+ #include "xe_bo_types.h"
++#include "xe_exec_queue_types.h"
+ #include "xe_vm.h"
+ 
+ #define __dev_name_bo(bo)	dev_name(xe_bo_device(bo)->drm.dev)
+@@ -223,6 +224,11 @@ DEFINE_EVENT(xe_vm, xe_vm_free,
+ 	     TP_ARGS(vm)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_close,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
 +
- 	switch (bo->resource->mem_type) {
- 	case TTM_PL_SYSTEM:
- 		fallthrough;
-@@ -448,6 +453,7 @@ int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
- 			ret = -EIO;
- 	}
+ DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
+ 	     TP_PROTO(struct xe_vm *vm),
+ 	     TP_ARGS(vm)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 179758ca7cb8..64b8a170efcf 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1681,6 +1681,8 @@ static void xe_vm_close(struct xe_vm *vm)
+ 	bool bound;
+ 	int idx;
  
-+unlock:
- 	ttm_bo_unreserve(bo);
++	trace_xe_vm_close(vm);
++
+ 	bound = drm_dev_enter(&xe->drm, &idx);
  
- 	return ret;
+ 	down_write(&vm->lock);
 -- 
-2.47.3
+2.34.1
 
