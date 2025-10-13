@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88CD5CCD185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:13:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2DABCCD185
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3C210E52E;
-	Mon, 13 Oct 2025 20:13:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5HwgcuV";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E673410E526;
- Mon, 13 Oct 2025 20:13:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760386397; x=1791922397;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DCX+m6dP+yJsYc7dskwDpeeXUW/S9ctiJFlR+2xvHzg=;
- b=K5HwgcuVff3uLlb9Lwlf4YNRlLAJpMVc4b3whiWBvFy1XEYgpYADMS7S
- y8Kuog790WFobSuLWY3t7biKE30+gT1uXqtdUbeEl76hglaakOkluXIWt
- Me3GPFLZ6+XLwTxXbMEQmshKXQj+bPozqLdmdbOyVAoKpiuVMBLCx1jKa
- aIpM0yQouMtzQfkR3LulidtpJGPZBM3sIef6pdlkoTZjXKwSnNLFiyBmo
- I//ovupi66UiD6PE0GEvfNQxkN/3pI14K60djdFqtoLb67onhT14pbvvX
- dwQHIEQh85PBJlvUoHiPBJCKjTX6LPKb7SnlLPkYwjQC2KK5wxczvqo9m w==;
-X-CSE-ConnectionGUID: Inmquq0pTK2Ag08E7ch+QA==
-X-CSE-MsgGUID: GszFLJCLSO2b8srMJQkVRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="61746187"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="61746187"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:13:16 -0700
-X-CSE-ConnectionGUID: A59oTpq+Q3iSXHgX7jzr2Q==
-X-CSE-MsgGUID: xgzUOc5WTI6PQo1Bjoor9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="186099322"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.105])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:13:15 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 9/9] drm/i915: Neuter cdclk_prefill_adjustment()
-Date: Mon, 13 Oct 2025 23:12:36 +0300
-Message-ID: <20251013201236.30084-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20251013201236.30084-1-ville.syrjala@linux.intel.com>
-References: <20251013201236.30084-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 883CE10E526;
+	Mon, 13 Oct 2025 20:14:57 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6672110E523;
+ Mon, 13 Oct 2025 20:14:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6734461998735657825=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Test_Xe3LPD?=
+ =?utf-8?q?_3002_DMC_v2=2E27_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 13 Oct 2025 20:14:56 -0000
+Message-ID: <176038649640.7451.7939756117737264244@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251011122835.1040745-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20251011122835.1040745-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,56 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============6734461998735657825==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-cdclk_prefill_adjustment() currently uses a stale cdclk
-value. And even if it was using the correct value it'd
-still just 'return 1' because the ratio that it's
-calculating is always <= 1.0, and it just rounds the ratio
-into an integer (and clamps the result to a maximum of 1).
-So for the moment, let's just 'return 1' since that's what
-the code ends up doing anyway.
+== Series Details ==
 
-This is actually safe because 1.0 is the worst case (ie. slowest
-prefill) and thus the actual prefill is always guaranteed to be
-at least as fast as what we assumed during the check.
+Series: drm/i915/dmc: Test Xe3LPD 3002 DMC v2.27 (rev3)
+URL   : https://patchwork.freedesktop.org/series/155778/
+State : success
 
-We'll replace this soon with something that gives more accurate
-estimates.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 14 +-------------
- 1 file changed, 1 insertion(+), 13 deletions(-)
+CI Bug Log - changes from xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626_BAT -> xe-pw-155778v3_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 9df9ee137bf9..1b062c6c0e03 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2148,19 +2148,7 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
- static int
- cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_atomic_state *state =
--		to_intel_atomic_state(crtc_state->uapi.state);
--	const struct intel_cdclk_state *cdclk_state;
--
--	cdclk_state = intel_atomic_get_cdclk_state(state);
--	if (IS_ERR(cdclk_state)) {
--		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
--		return 1;
--	}
--
--	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
--				   2 * intel_cdclk_logical(cdclk_state)));
-+	return 1;
- }
- 
- static int
--- 
-2.49.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155778v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  * igt@xe_exec_threads@threads-mixed-shared-vm-basic:
+    - {bat-ptl-vm}:       [DMESG-WARN][3] ([Intel XE#6288]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626/bat-ptl-vm/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/bat-ptl-vm/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+  [Intel XE#6288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6288
+
+
+Build changes
+-------------
+
+  * Linux: xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626 -> xe-pw-155778v3
+
+  IGT_8582: 8582
+  xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626: 61b16793c3bbb8e740cf9afb36258dee61346626
+  xe-pw-155778v3: 155778v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/index.html
+
+--===============6734461998735657825==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: Test Xe3LPD 3002 DMC v2.27 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155778/">https://patchwork.freedesktop.org/series/155778/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626_BAT -&gt; xe-pw-155778v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155778v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-plain-flip@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-shared-vm-basic:</p>
+<ul>
+<li>{bat-ptl-vm}:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626/bat-ptl-vm/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6288">Intel XE#6288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155778v3/bat-ptl-vm/igt@xe_exec_threads@threads-mixed-shared-vm-basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626 -&gt; xe-pw-155778v3</li>
+</ul>
+<p>IGT_8582: 8582<br />
+  xe-3908-61b16793c3bbb8e740cf9afb36258dee61346626: 61b16793c3bbb8e740cf9afb36258dee61346626<br />
+  xe-pw-155778v3: 155778v3</p>
+
+</body>
+</html>
+
+--===============6734461998735657825==--
