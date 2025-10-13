@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF779CCD185
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:10:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AB59CCD192
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 20:10:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 622B110E501;
-	Mon, 13 Oct 2025 20:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB3610E509;
+	Mon, 13 Oct 2025 20:10:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nXuYrrql";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jaozljG8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72BF810E501
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 20:10:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E9410E503
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Oct 2025 20:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760386200; x=1791922200;
+ t=1760386202; x=1791922202;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fvFSzSDAsomW3Ecy3xfK+RqKpWckHMimbcbLOP/HFv0=;
- b=nXuYrrql+VaNqZFqlKmlk/3nf5csZHqrXYJ4DajHtsxsFvxAUd77E7ij
- YRiDPof3m55/OJPONj8xZf246tutG7EbIAY1P4ynjANTEGMRyG6TAd2hb
- 4WQJnSMvftXuiOu7ljZUBBwCSRm5HuiYM2cmVSxj2Q9EGCeFqg3oS+YLe
- 3frZSs9W56L6oE/E+wxRmTAyMHkhYuktqpKhFhzGwmtHo9GaD5bamn1Lf
- Kdk507pVRPks0FzDfeQLn9QnpoV3/WB/GLEkN5p7fA6lFuF6oP5isopRs
- 3cwU4bvpboFh/tZNlo2tOE824r4IJHZZiGyWxDOUnqAgeycop/2x/3xOs g==;
-X-CSE-ConnectionGUID: 9b7soX4bTqap3xgVvU05Dw==
-X-CSE-MsgGUID: ezsaTkD1SwOMYdZ6nSqxPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="72800525"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="72800525"
+ bh=FTyPbQL/8B5MBpAWrY3a29agP1Rfy6NlkwX8qtBHACc=;
+ b=jaozljG8w+PuZHx45nrucyNbY9nEfipOWxQ51SmLEtrjgmtdQQxwB7L9
+ EFQDyAMGjgRkjj4SDE6YXjIxPCD/Xm3SIvBQDIPTU4tQwPRjUG000ED4i
+ KtpoxdpGjmRPSfYc4cfRB6t4w4lirA/d2c/owYhpH9aeCW4v21tAlRD61
+ itAHUNKjZ6/ktGMFtm3eHoD77m3ck+NxpfHI76Mlnq7Oh1AeKrOZP4Qhu
+ M4TNjpVd2yYRfht3g0YGNfIk/lyu83G4yDITHDPnICgSg+0/7bRKDo22R
+ jps6cEk+XptK3x/Cf2BPM5pJ22aB6l9D9eHpTLCsnlRNIycbXtT6h8xU/ A==;
+X-CSE-ConnectionGUID: V1n2jL24QDun+EnPe68qHQ==
+X-CSE-MsgGUID: ilvd9siJSVidD7z8QWxDlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="72800538"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="72800538"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:10:00 -0700
-X-CSE-ConnectionGUID: rHXFa2XXTP2yztbifPcdBg==
-X-CSE-MsgGUID: xNYfftAJQxi5FWWi3S73BA==
+ 13 Oct 2025 13:10:02 -0700
+X-CSE-ConnectionGUID: cv+9d1UcTpWhOvihnFqlig==
+X-CSE-MsgGUID: rbh79A/VT5+2/k5PvHkpvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185707520"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185707556"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 13:10:00 -0700
+ 13 Oct 2025 13:10:01 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com,
-	Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v5 02/23] drm/xe: Drop GT parameter to
- xe_display_irq_postinstall()
-Date: Mon, 13 Oct 2025 13:09:45 -0700
-Message-ID: <20251013200944.2499947-27-matthew.d.roper@intel.com>
+	Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v5 10/23] drm/xe/query: Report hwconfig size as 0 if primary
+ GT is disabled
+Date: Mon, 13 Oct 2025 13:09:53 -0700
+Message-ID: <20251013200944.2499947-35-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251013200944.2499947-25-matthew.d.roper@intel.com>
 References: <20251013200944.2499947-25-matthew.d.roper@intel.com>
@@ -68,77 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Display interrupt handling has no relation to GT(s) on the platforms
-supported by the Xe driver.  We only call xe_display_irq_postinstall
-with the first tile's primary GT, so the single condition that uses the
-GT pointer within the function always evaluates to true.  Drop the
-unnecessary parameter and the condition.
+The hwconfig table is part of the primary GT's GuC firmware.  If the
+primary GT is disabled, the hwconfig is unavailable and should be
+reported to userspace as having size 0.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 5 ++---
- drivers/gpu/drm/xe/display/xe_display.h | 4 ++--
- drivers/gpu/drm/xe/xe_irq.c             | 2 +-
- 3 files changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 5f4044e63185..47619bb8dc10 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -227,15 +227,14 @@ void xe_display_irq_reset(struct xe_device *xe)
- 	gen11_display_irq_reset(display);
- }
- 
--void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
-+void xe_display_irq_postinstall(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 2e9ff33ed2fe..1c0915e2cc16 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -436,7 +436,7 @@ static int query_hwconfig(struct xe_device *xe,
+ 			  struct drm_xe_device_query *query)
  {
- 	struct intel_display *display = xe->display;
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-	size_t size = xe_guc_hwconfig_size(&gt->uc.guc);
++	size_t size = gt ? xe_guc_hwconfig_size(&gt->uc.guc) : 0;
+ 	void __user *query_ptr = u64_to_user_ptr(query->data);
+ 	void *hwconfig;
  
- 	if (!xe->info.probe_display)
- 		return;
- 
--	if (gt->info.id == XE_GT0)
--		gen11_de_irq_postinstall(display);
-+	gen11_de_irq_postinstall(display);
- }
- 
- static bool suspend_to_idle(void)
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index e533aa4750bc..76db95c25f7e 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -26,7 +26,7 @@ void xe_display_unregister(struct xe_device *xe);
- void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
- void xe_display_irq_reset(struct xe_device *xe);
--void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
-+void xe_display_irq_postinstall(struct xe_device *xe);
- 
- void xe_display_pm_suspend(struct xe_device *xe);
- void xe_display_pm_shutdown(struct xe_device *xe);
-@@ -55,7 +55,7 @@ static inline void xe_display_unregister(struct xe_device *xe) {}
- static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {}
- static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir) {}
- static inline void xe_display_irq_reset(struct xe_device *xe) {}
--static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {}
-+static inline void xe_display_irq_postinstall(struct xe_device *xe) {}
- 
- static inline void xe_display_pm_suspend(struct xe_device *xe) {}
- static inline void xe_display_pm_shutdown(struct xe_device *xe) {}
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index af519414a429..9b938f1edaf5 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -657,7 +657,7 @@ static void xe_irq_postinstall(struct xe_device *xe)
- 			xe_memirq_postinstall(&tile->memirq);
- 	}
- 
--	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
-+	xe_display_irq_postinstall(xe);
- 	xe_i2c_irq_postinstall(xe);
- 
- 	/*
 -- 
 2.51.0
 
