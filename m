@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3C32CCA476
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 10:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3863CCCD18E
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 10:02:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 686C110E425;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C00E710E421;
 	Mon, 13 Oct 2025 10:02:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nccmYaP3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+hIlB8A";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6157C10E420;
- Mon, 13 Oct 2025 10:01:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A954510E419;
+ Mon, 13 Oct 2025 10:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760349696; x=1791885696;
+ t=1760349689; x=1791885689;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xyomUgFIkWVFIy2o5uqkVIiA/NHEdpAb9vgpvJwMu/g=;
- b=nccmYaP3vnPUVUWtspWepMAZq85gqiXrtmunFcoIPGO6W7WL9FjyRTcT
- ASWyLluVPs4tZ8ZIYTPgUcAexo2+FXLgvXdr2lrrgbHhHi24WmfbbR4Fv
- egsXb7L/0lq87iDOjdyYMxFNFYXLdSfCFMT9w9U34wvl46RHFM7yd3wvQ
- qqiDO1DaeVQCH1kogDkpHsfHrZoDIcD9srFJTNQdi69PrpQjc+7SIggxn
- juiBA6mgXvx74766xrxin5YRx9gvbY9U7MjJaDpMVYHvEihx8Gq6FjQEx
- RePaFZMuBtIU2wKoNeE8QIHsyefXHxczBWWV2oGz5qaCczZeyz0/l/fhY g==;
-X-CSE-ConnectionGUID: GE0izn9dS5WFblSxbSIr9g==
-X-CSE-MsgGUID: TrwBdmYgSeKiwqXf7JVJNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126176"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126176"
+ bh=omCRPyl09KaRVGFpZp4vuJPF4/3qUsdjmfsHzZQHT1w=;
+ b=i+hIlB8A+5/RUTr9idqF1SnZo7fTo1eTFfT4z4q2gbHn4jfoL3DPFpWl
+ CNWkDLw2xNhgLrETaYaJiCrme5c8a6kCMzALtBcqYXeXQdIca65pKJ410
+ EADPF3FZuSDmRLnpg6Yx2qnk4su+c0zEyWSY8C7Hiwu3P/HIHW82oRfre
+ or4SXGQSAuySOLdmUIVYx59cNQEPwvOZ4RDuMQOCw4S6oD3iSVh6VMwq1
+ lTcyc7oOqevbq3obD4+LGbYViQj+oYuGoHGO6jpbFswcqC6hvBogxHPnA
+ kEmRxA+8VLXD0BdNaEh4fjFG3lL9qKEEu3HUmkNaRqL7wi07RNt9w2Ibm w==;
+X-CSE-ConnectionGUID: EL1CRVgqSEyAWpvxjk2ywA==
+X-CSE-MsgGUID: Nt3N4t0ARGeDYoLikOWjTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126164"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126164"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 03:01:36 -0700
-X-CSE-ConnectionGUID: jnNKYYf2Qk+la3K+4EygpQ==
-X-CSE-MsgGUID: kSy+DpQVRhG8ekU/s91R4g==
+ 13 Oct 2025 03:01:29 -0700
+X-CSE-ConnectionGUID: H6u0um6PQO+qM9Zrzb7CUg==
+X-CSE-MsgGUID: 5UNoMQrLThGhQ51VbTzyZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212187008"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212186992"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:35 -0700
+ by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:28 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@intel.com>,
 	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 5/7] drm/i915/display: Fix PHY_C20_VDR_CUSTOM_SERDES_RATE
- programming
-Date: Mon, 13 Oct 2025 12:50:43 +0300
-Message-Id: <20251013095045.3658871-6-mika.kahola@intel.com>
+Subject: [PATCH 1/7] drm/i915/display: Sanitize
+ PHY_C20_VDR_CUSTOM_SERDES_RATE/DP_RATE field macros
+Date: Mon, 13 Oct 2025 12:50:39 +0300
+Message-Id: <20251013095045.3658871-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251013095045.3658871-1-mika.kahola@intel.com>
 References: <20251013095045.3658871-1-mika.kahola@intel.com>
@@ -70,72 +70,54 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-Make sure all the DP/HDMI/HDMI-FRL flags are programmed in all the modes
-the PLL is configured.
-
-Atm the DP mode flag is not programmed in case the PLL is configured for
-HDMI mode for instance. This is incorrect after HW reset, since the DP
-mode flag is asserted after reset, hence would need to be cleared for
-HDMI, but also incorrect because of the same reason after configuring
-the PLL to HDMI mode after it was used in DP mode (for instance on a
-DP++ connector).
-
-There is a similar issue with the HDMI-FRL flag, potentially remaining
-set when configuring the PLL in DP mode.
+Rename the PHY_C20_CUSTOM_SERDES / PHY_C20_CUSTOM_SERDES_MASK register
+field names to PHY_C20_DP_RATE / PHY_C20_DP_RATE_MASK, and move the
+definitions under the actual register containing the fields.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 25 +++++++++++---------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 6 +++---
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9be7e155a584..6e49659d2f17 100644
+index a2d2cecf7121..0d83145eff41 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2624,6 +2624,7 @@ static void intel_c20_pll_program(struct intel_display *display,
- 				  bool is_dp, int port_clock)
- {
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
-+	u8 serdes;
- 	bool cntx;
- 	int i;
- 
-@@ -2699,21 +2700,23 @@ static void intel_c20_pll_program(struct intel_display *display,
- 		      MB_WRITE_COMMITTED);
- 
+@@ -2700,12 +2700,12 @@ static void intel_c20_pll_program(struct intel_display *display,
  	/* 5. For DP or 6. For HDMI */
--	if (is_dp) {
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
--			      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK,
--			      PHY_C20_IS_DP | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
--			      MB_WRITE_COMMITTED);
--	} else {
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
--			      PHY_C20_IS_HDMI_FRL | PHY_C20_DP_RATE_MASK,
--			      is_hdmi_frl(port_clock) ? PHY_C20_IS_HDMI_FRL : 0,
--			      MB_WRITE_COMMITTED);
-+	serdes = 0;
-+
-+	if (is_dp)
-+		serdes = PHY_C20_IS_DP |
-+			 PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
-+	else if (is_hdmi_frl(port_clock))
-+		serdes = PHY_C20_IS_HDMI_FRL;
+ 	if (is_dp) {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+-			      BIT(6) | PHY_C20_CUSTOM_SERDES_MASK,
+-			      BIT(6) | PHY_C20_CUSTOM_SERDES(intel_c20_get_dp_rate(port_clock)),
++			      BIT(6) | PHY_C20_DP_RATE_MASK,
++			      BIT(6) | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
+ 			      MB_WRITE_COMMITTED);
+ 	} else {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+-			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
++			      BIT(7) | PHY_C20_DP_RATE_MASK,
+ 			      is_hdmi_frl(port_clock) ? BIT(7) : 0,
+ 			      MB_WRITE_COMMITTED);
  
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+		      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL,
-+		      serdes,
-+		      MB_WRITE_COMMITTED);
-+
-+	if (!is_dp)
- 		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
- 				intel_c20_get_hdmi_rate(port_clock),
- 				MB_WRITE_COMMITTED);
--	}
- 
- 	/*
- 	 * 7. Write Vendor specific registers to toggle context setting to load
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 77eae1d845f7..25ab8808e548 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -298,10 +298,10 @@
+ #define PHY_C20_RD_DATA_L		0xC08
+ #define PHY_C20_RD_DATA_H		0xC09
+ #define PHY_C20_VDR_CUSTOM_SERDES_RATE	0xD00
++#define   PHY_C20_DP_RATE_MASK		REG_GENMASK8(4, 1)
++#define   PHY_C20_DP_RATE(val)		REG_FIELD_PREP8(PHY_C20_DP_RATE_MASK, val)
+ #define PHY_C20_VDR_HDMI_RATE		0xD01
+ #define   PHY_C20_CONTEXT_TOGGLE	REG_BIT8(0)
+-#define   PHY_C20_CUSTOM_SERDES_MASK	REG_GENMASK8(4, 1)
+-#define   PHY_C20_CUSTOM_SERDES(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_SERDES_MASK, val)
+ #define PHY_C20_VDR_CUSTOM_WIDTH	0xD02
+ #define   PHY_C20_CUSTOM_WIDTH_MASK	REG_GENMASK(1, 0)
+ #define   PHY_C20_CUSTOM_WIDTH(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_WIDTH_MASK, val)
 -- 
 2.34.1
 
