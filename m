@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC33CCCD183
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 10:02:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01D94CCA476
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Oct 2025 10:02:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 180C510E427;
-	Mon, 13 Oct 2025 10:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F5010E10F;
+	Mon, 13 Oct 2025 10:02:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jh1E6j0F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzhzdK+K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A58BB10E424;
- Mon, 13 Oct 2025 10:01:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44D5B10E087;
+ Mon, 13 Oct 2025 10:01:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760349709; x=1791885709;
+ t=1760349691; x=1791885691;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UNF+a+RtUSlYbxf3txike7lnHr9HtKNL8oNDfvB73aU=;
- b=Jh1E6j0FHwoM/j/CInK6b43msH7bfuYSV21nypzOcXlYiZXYMvEa7Xed
- JPlb7EAE7lRNm23LqYGWi1iIywTV4yNQAsBoPIKfHD7EYx3wCouV3H3e1
- 0NGKexbCwEzzI/+RjCq82HaELD1SMhWkb/V2as3I29cNPTHkqT2X8Euis
- vnWL1TU+hNGHCPZ1Ln8Nq5/wPU1X5DltC549g6FljucVhkgsRN0vkvmC7
- ybmMaknbglRFvezF6tp2OQgKBZyHperGA/Jp5F/+5+vRMoqd6njT5WHB0
- 5mi8aAvrlcJ3YfKjG82bxJqEwicRTPpyJOpncN/Ve+lR9VSTB02edNIk3 w==;
-X-CSE-ConnectionGUID: wKdgpOq1RMKhMdvjGvzrsg==
-X-CSE-MsgGUID: YOrWFeQoQhO2nto6Yn8mzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126205"
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126205"
+ bh=z+v2U22yzfkmOCyzvfLaAa8/zzXqsjnZvlXBwuuwCi4=;
+ b=SzhzdK+KJFi+50AEj4rAPNs+BPzk8DqwM01cA8USgsyrIGE8JHE5r6Hp
+ N6YVBQZICdHnsAHijMd5+eFcsw9cWB2moI6psNfl3qts26hBMCiYx50Aa
+ bJTm36oT9OmlS20JTU0mMtbpj93aZWEy44PDkN6xUqs8Xfeg85g/FVTnK
+ 6senBRHZ/fk6X8xA9e8q2tRi2AxQfipyQmI53ASIVeih+hFHlxLgdoDAe
+ PO6iL3eQ8t9V3Az/bX+PBX7Uv2eeEmexo9bPxKOWNgYXFk9G+/TTePb1J
+ gMatJ+rScphZjWIrsqfVyLV1hbELAe+BYd+6WlakhpQ3987EPJrYOiwMR A==;
+X-CSE-ConnectionGUID: em5dLZvSTqO19k1hBlWyPg==
+X-CSE-MsgGUID: 3Nwlm9v2TN6Ya5lDF6Y3DA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11580"; a="80126168"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="80126168"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 03:01:48 -0700
-X-CSE-ConnectionGUID: HYiDvTkZRDiQarzwUusTFw==
-X-CSE-MsgGUID: KRr8QqdtQHOyn4UNW9ZpMg==
+ 13 Oct 2025 03:01:31 -0700
+X-CSE-ConnectionGUID: qVoVeoywQYa+9G3dzthQdQ==
+X-CSE-MsgGUID: 5USlcsCPR+yKIiZC3SMJfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212187016"
+X-IronPort-AV: E=Sophos;i="6.19,225,1754982000"; d="scan'208";a="212186996"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:43 -0700
+ by orviesa002.jf.intel.com with ESMTP; 13 Oct 2025 03:01:30 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@intel.com>,
 	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 7/7] drm/i915/display: Add missing clock to C10 PHY state
- compute/HW readout
-Date: Mon, 13 Oct 2025 12:50:45 +0300
-Message-Id: <20251013095045.3658871-8-mika.kahola@intel.com>
+Subject: [PATCH 2/7] drm/i915/display: Sanitize
+ PHY_C20_VDR_CUSTOM_SERDES_RATE/IS_DP flag macro
+Date: Mon, 13 Oct 2025 12:50:40 +0300
+Message-Id: <20251013095045.3658871-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251013095045.3658871-1-mika.kahola@intel.com>
 References: <20251013095045.3658871-1-mika.kahola@intel.com>
@@ -70,51 +70,42 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-Clock value is missing from C10 hw readout stage. Let's fix this.
+Define PHY_C20_IS_DP, so it can be used instead of the plain bit number.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 5 +++++
- drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 2 ++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 4 ++--
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index f8c1338f9053..a74c1be225ac 100644
+index 0d83145eff41..9492661f1645 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2103,6 +2103,9 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
-+static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
-+					const struct intel_c10pll_state *pll_state);
-+
- static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 					  struct intel_c10pll_state *pll_state)
- {
-@@ -2127,6 +2130,8 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- 	pll_state->tx = intel_cx0_read(encoder, lane, PHY_C10_VDR_TX(0));
- 
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
-+
-+	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
- }
- 
- static void intel_c10_pll_program(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-index 7fe6b4a18213..a201edceee10 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-@@ -332,6 +332,8 @@ void intel_snps_hdmi_pll_compute_c10pll(struct intel_c10pll_state *pll_state, u6
- 			      c10_curve_1, c10_curve_2, prescaler_divider,
- 			      &pll_params);
- 
-+	pll_state->clock = pixel_clock;
-+
- 	pll_state->tx = 0x10;
- 	pll_state->cmn = 0x1;
- 	pll_state->pll[0] = REG_FIELD_PREP(C10_PLL0_DIV5CLK_EN, pll_params.mpll_div5_en) |
+@@ -2700,8 +2700,8 @@ static void intel_c20_pll_program(struct intel_display *display,
+ 	/* 5. For DP or 6. For HDMI */
+ 	if (is_dp) {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+-			      BIT(6) | PHY_C20_DP_RATE_MASK,
+-			      BIT(6) | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
++			      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK,
++			      PHY_C20_IS_DP | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
+ 			      MB_WRITE_COMMITTED);
+ 	} else {
+ 		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index 25ab8808e548..ad2f7fb3beae 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -298,6 +298,7 @@
+ #define PHY_C20_RD_DATA_L		0xC08
+ #define PHY_C20_RD_DATA_H		0xC09
+ #define PHY_C20_VDR_CUSTOM_SERDES_RATE	0xD00
++#define   PHY_C20_IS_DP			REG_BIT8(6)
+ #define   PHY_C20_DP_RATE_MASK		REG_GENMASK8(4, 1)
+ #define   PHY_C20_DP_RATE(val)		REG_FIELD_PREP8(PHY_C20_DP_RATE_MASK, val)
+ #define PHY_C20_VDR_HDMI_RATE		0xD01
 -- 
 2.34.1
 
