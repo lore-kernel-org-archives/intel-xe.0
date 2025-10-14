@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D4CBCCD195
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 18:09:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A594CCD196
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 18:09:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138AD10E67B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2A6910E67E;
 	Tue, 14 Oct 2025 18:09:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GHcrkoGA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hapy7oDL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BBEB10E67A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064C710E67A
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 18:09:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760465369; x=1792001369;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7cYT3m9pdKeEdqMqybQDK9IJYCp95QfmTgU0Dxt5BRc=;
- b=GHcrkoGAApulqOzHLI9QIq4qMiCOVgoeEa/mNNlCFADacVG2KdbDt06K
- wm4+11fXdNoKzYksHcQe5aPwEFhO4JZUEU7pXQnCkPBEvhUzvLYnLodjJ
- a9Rwt9NJ5B9SifwOZ02z0KMYkDgt4h9pGz7OrRVc3UvHdwEFvKIL3UaO+
- J4cYrV8kFfiQ6DddHUqqyeaLpQroNuTfnmvg6FzxxDOV170XC01+5uDd9
- 9EGzUGeH7Me7wtqxNVWFchYo647JQ51c3uDvWrZaxQ6R7qfehqyZu1vg7
- FZlHrbvX2fv7tcUb1NMRyiHMYePDbRjguP8KEz987osc2lWqlEvSkN7Qj A==;
-X-CSE-ConnectionGUID: 0zkpCMJFRWaUDVZLRCOTpg==
-X-CSE-MsgGUID: 8EEom7oORVWnzcXDtH7Geg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66285420"
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="66285420"
+ bh=tL64BQJ3gnuKfcXJLjCoDrEJ430riC/rIk1umwH1t5Q=;
+ b=hapy7oDLcBxHkqcBUMteGeqx0WPMVeZaoNrScbLZoBBBtAutXkRLZNQ5
+ SJ8XL62rgvuYD/Adl7MtYF3RguWZ8F+ErD9uXw1A9xpGCDTnlGmjCB4v9
+ Vtk2aF/Fr5KnGXh3xJ7TtRbud4yHb+8j8iTJ6OpzZ7F5XwjQtLSwMoIv3
+ fKAtIa6/Fus4kCYFARTnWYEs4FzCgWfKRyFDpZ8KDXLpwYls29acdg7Jv
+ WtA0HNtOi05r9nLiXwIYk5F3Oaoj1cza5zooVXyzFMfKQcJnTyOhrjWM1
+ r9Qiu8Z1whbQu6h5CEk+wtZeMCo9AteZ6U0p9DwgKYLqI2xHZscNRE1gb Q==;
+X-CSE-ConnectionGUID: 0/FEYCvvSLybklOBuFxCow==
+X-CSE-MsgGUID: ZILkOnnzSqWx62pLYZrEiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="66285416"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="66285416"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 11:09:29 -0700
-X-CSE-ConnectionGUID: mZ8/18V6SgKFGuFSqXmFEg==
-X-CSE-MsgGUID: 03bdjK/9Qp25Tjz4VIAJ+Q==
+ 14 Oct 2025 11:09:28 -0700
+X-CSE-ConnectionGUID: pGZMqfE2Sp20enjLSVDJ3Q==
+X-CSE-MsgGUID: 12OBIRvJQuS4LLUAJNY9AQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="212570177"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="212570165"
 Received: from dut4084arlh.fm.intel.com ([10.105.10.163])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 11:09:29 -0700
@@ -45,9 +45,9 @@ From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 5/6] drm/xe: Correct migration VM teardown order
-Date: Tue, 14 Oct 2025 18:09:26 +0000
-Message-Id: <20251014180927.105077-6-stuart.summers@intel.com>
+Subject: [PATCH 1/6] drm/xe: Add additional trace points for LRCs
+Date: Tue, 14 Oct 2025 18:09:22 +0000
+Message-Id: <20251014180927.105077-2-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251014180927.105077-1-stuart.summers@intel.com>
 References: <20251014180927.105077-1-stuart.summers@intel.com>
@@ -67,28 +67,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Adjust the sequence of the migration teardown to match what
-is happening in the init() function.
+Add trace points to indicate when an LRC has been
+created and destroyed or get and put.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_lrc.c       |  4 +++
+ drivers/gpu/drm/xe/xe_lrc.h       |  3 +++
+ drivers/gpu/drm/xe/xe_trace_lrc.h | 42 ++++++++++++++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 7345a5b65169..b1747e442a7b 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -100,8 +100,8 @@ static void xe_migrate_fini(void *arg)
- 	xe_bo_put(m->pt_bo);
- 	drm_suballoc_manager_fini(&m->vm_update_sa);
- 	mutex_destroy(&m->job_mutex);
--	xe_vm_close_and_put(m->q->vm);
- 	xe_exec_queue_put(m->q);
-+	xe_vm_close_and_put(m->q->vm);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index b5083c99dd50..42d1c861fe18 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1575,6 +1575,8 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 		return ERR_PTR(err);
+ 	}
+ 
++	trace_xe_lrc_create(lrc);
++
+ 	return lrc;
  }
  
- static u64 xe_migrate_vm_addr(u64 slot, u32 level)
+@@ -1589,6 +1591,8 @@ void xe_lrc_destroy(struct kref *ref)
+ {
+ 	struct xe_lrc *lrc = container_of(ref, struct xe_lrc, refcount);
+ 
++	trace_xe_lrc_destroy(lrc);
++
+ 	xe_lrc_finish(lrc);
+ 	kfree(lrc);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 2fb628da5c43..fd67810f9812 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -8,6 +8,7 @@
+ #include <linux/types.h>
+ 
+ #include "xe_lrc_types.h"
++#include "xe_trace_lrc.h"
+ 
+ struct drm_printer;
+ struct xe_bb;
+@@ -61,6 +62,7 @@ void xe_lrc_destroy(struct kref *ref);
+ static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
+ {
+ 	kref_get(&lrc->refcount);
++	trace_xe_lrc_get(lrc);
+ 	return lrc;
+ }
+ 
+@@ -73,6 +75,7 @@ static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
+  */
+ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ {
++	trace_xe_lrc_put(lrc);
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+index d525cbee1e34..e8daa5d323e7 100644
+--- a/drivers/gpu/drm/xe/xe_trace_lrc.h
++++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+@@ -13,7 +13,6 @@
+ #include <linux/types.h>
+ 
+ #include "xe_gt_types.h"
+-#include "xe_lrc.h"
+ #include "xe_lrc_types.h"
+ 
+ #define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
+@@ -42,6 +41,47 @@ TRACE_EVENT(xe_lrc_update_timestamp,
+ 		      __get_str(device_id))
+ );
+ 
++DECLARE_EVENT_CLASS(xe_lrc,
++	    TP_PROTO(struct xe_lrc *lrc),
++	    TP_ARGS(lrc),
++
++	    TP_STRUCT__entry(
++		     __field(struct xe_lrc *, lrc)
++		     __string(name, lrc->fence_ctx.name)
++		     __string(device_id, __dev_name_lrc(lrc))
++	    ),
++
++	    TP_fast_assign(
++		   __entry->lrc	= lrc;
++		   __assign_str(name);
++		   __assign_str(device_id);
++		   ),
++
++	    TP_printk("lrc=:%p lrc->name=%s device_id:%s",
++		      __entry->lrc, __get_str(name),
++		      __get_str(device_id))
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_create,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_destroy,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_get,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_put,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.34.1
 
