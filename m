@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25423CCD194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4C9CCD187
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E266B10E568;
-	Tue, 14 Oct 2025 07:14:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35B3A10E569;
+	Tue, 14 Oct 2025 07:14:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a28iVxT7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K79XS+vb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C17C010E556;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8259710E556;
  Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760426040; x=1791962040;
+ t=1760426039; x=1791962039;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ieEvSJqbDmNfjTwrrLAWK98z4h+TuffhyYkWmricG8=;
- b=a28iVxT7kwU2ZQo/cljcRlJaN71gFg4ygC4GNJWcyItPLcXaKRpAaUdN
- RiXGEeQvJnEx+p03L1lz9P8mNOIryLBY0srYbD+j6QsCvS/e26LlO6u3j
- Z+9z/OIC+jfYsMt36/QLbJl+G6AoIwAgzB+hIMYaRMECvASvHrtPTAqDG
- wlOiuic577s4VeZp1DIqxmTvXDvmfOzpn5wtXU45ZvDtTFWcU3VjTDOc7
- 57adMK2PPlyTw6cBYJeaDkIdTfreGpu/KHyg4D9R9VI8in/Qks1G78Cx0
- CYptnD1sRXt7Kso39UMV6eENCDh3IiQ/pAen4bOOZ5XA1Hh6O18hJ0NXK Q==;
-X-CSE-ConnectionGUID: UM46mv2dSlap/C0F6swlSQ==
-X-CSE-MsgGUID: X+9BE326SxO3sqaYhU3vXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257149"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257149"
+ bh=yIboQlk5tTaUI55jQ3YOqfrmnwFIGE4cxawB+2dEVu4=;
+ b=K79XS+vbLtWz6lSaLKPZyueRZVwkshw1k8MEkAwOC4yAkJpvLtNVDJUT
+ v7OXDEYOL/yP8Q+hrmXAeLMxH1fjCFJ7sfgSuPQDLns77qMAW+4Utghb4
+ lry5lRlQY5X8cs17xiufbbWJNznF8LPquSuA9tFx/vHSS9AqvJIGpsQ2/
+ 8uLFLstDZdbxjWtbdYlBe0WWyp2SwxvqN5+N4AAVHgzOFULMwzkMVj3BL
+ 54/WxOQ0z46XbFm+CbwQzx3M5rb6743zUVYzcV51RcjwdzOjcnjSQcuYb
+ b9nXjt+b1FWNMd6XXJiUPKqMpTyqVIdSx3U2I+jZ0bIvPW5+Ms3cFSjsE w==;
+X-CSE-ConnectionGUID: ZVtgDrSoRzeZ3jakKI601w==
+X-CSE-MsgGUID: dC+sL3DnRxu4ZlJuPUmbpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257139"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257139"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:59 -0700
-X-CSE-ConnectionGUID: xnweO6cwRoGzNDVsuvCsww==
-X-CSE-MsgGUID: lSI1OuOZTWyCtTPEuj01Bw==
+ 14 Oct 2025 00:13:57 -0700
+X-CSE-ConnectionGUID: Qj9972weSA2T1fz3qDmX2A==
+X-CSE-MsgGUID: HUAh1kp1Sk2NRbxj6t2KWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369859"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369866"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 00:13:57 -0700
@@ -50,9 +50,9 @@ Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
  Sumit Semwal <sumit.semwal@linaro.org>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Simona Vetter <simona.vetter@ffwll.ch>
-Subject: [RFC 3/8] dma-buf: Add support for IOV interconnect
-Date: Tue, 14 Oct 2025 00:08:53 -0700
-Message-ID: <20251014071243.811884-4-vivek.kasireddy@intel.com>
+Subject: [RFC 5/8] drm/xe/dma_buf: Add support for IOV interconnect
+Date: Tue, 14 Oct 2025 00:08:55 -0700
+Message-ID: <20251014071243.811884-6-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
@@ -73,10 +73,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The IOV interconnect is a virtual interconnect between an SRIOV
-physical function (PF) and its virtual functions (VFs). In order
-for negotiation (or match) to succeed, the exporter is expected
-to be a VF while the importer is expected to be the PF.
+Provide an op for supports_interconnects() to indicate to the
+dma-buf core and to the exporter that Xe supports interconnects.
+Note that Xe would support IOV interconnect only if the buffer
+is located in LMEM region.
 
 Cc: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Christian Koenig <christian.koenig@amd.com>
@@ -85,52 +85,48 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Simona Vetter <simona.vetter@ffwll.ch>
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- include/linux/dma-buf-interconnect.h | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/dma-buf-interconnect.h b/include/linux/dma-buf-interconnect.h
-index a72f65ed4806..b569dcab86ce 100644
---- a/include/linux/dma-buf-interconnect.h
-+++ b/include/linux/dma-buf-interconnect.h
-@@ -3,8 +3,17 @@
- #ifndef __DMA_BUF_INTERCONNECT_H__
- #define __DMA_BUF_INTERCONNECT_H__
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index a7d67725c3ee..2d63dd86a249 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -13,6 +13,7 @@
+ #include <drm/drm_prime.h>
+ #include <drm/ttm/ttm_tt.h>
  
-+#include <linux/pci.h>
- #include <linux/xarray.h>
++#include "regs/xe_bars.h"
+ #include "tests/xe_test.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -274,9 +275,25 @@ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
+ 	XE_WARN_ON(xe_bo_evict(bo, exec));
+ }
  
-+#define CREATE_IOV_INTERCONNECT(pdev, bar) {		\
-+	&(const struct dma_buf_iov_interconnect) {	\
-+		.base.type = DMA_BUF_INTERCONNECT_IOV,	\
-+		.pdev = (pdev),				\
-+		.bar = (bar),				\
-+	}.base						\
++static bool
++xe_dma_buf_supports_interconnects(struct dma_buf_attachment *attach,
++				  const struct dma_buf_interconnect_match *exp,
++				  unsigned int exp_ics)
++{
++	struct pci_dev *pdev = to_pci_dev(attach->dev);
++	unsigned int bar = LMEM_BAR;
++	const struct dma_buf_interconnect_match supports_ics[] = {
++		CREATE_IOV_INTERCONNECT(pdev, bar),
++	};
++
++	return dma_buf_match_interconnects(attach, exp, exp_ics, supports_ics,
++					   ARRAY_SIZE(supports_ics));
 +}
 +
- struct dma_buf_attachment;
- 
- struct dma_buf_ranges {
-@@ -14,6 +23,7 @@ struct dma_buf_ranges {
- 
- enum dma_buf_interconnect_type {
- 	DMA_BUF_INTERCONNECT_NONE = 0,
-+	DMA_BUF_INTERCONNECT_IOV,
+ static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
+ 	.allow_peer2peer = true,
+-	.move_notify = xe_dma_buf_move_notify
++	.move_notify = xe_dma_buf_move_notify,
++	.supports_interconnects = xe_dma_buf_supports_interconnects,
  };
  
- struct dma_buf_interconnect {
-@@ -24,6 +34,12 @@ struct dma_buf_interconnect_match {
- 	const struct dma_buf_interconnect *interconnect;
- };
- 
-+struct dma_buf_iov_interconnect {
-+	struct dma_buf_interconnect base;
-+	struct pci_dev *pdev;
-+	unsigned int bar;
-+};
-+
- struct dma_buf_interconnect_ops {
- 	int (*map_interconnect)(struct dma_buf_attachment *attach,
- 				struct dma_buf_ranges *ranges);
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
 -- 
 2.50.1
 
