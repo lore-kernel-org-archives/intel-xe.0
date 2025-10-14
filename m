@@ -4,59 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C2BCCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:25:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C383CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:39:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A78310E53C;
-	Tue, 14 Oct 2025 03:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A7D10E1A5;
+	Tue, 14 Oct 2025 03:39:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W/xjOAjt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TkzoIL1k";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0F3E10E1BF
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 03:25:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4DE10E1A5
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 03:39:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760412330; x=1791948330;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=a7iVf3RVjdRyAczRtF8ovbzO3poS5XEvN5YEZEv3514=;
- b=W/xjOAjtcJCRYTgthlvdrCWNUBIjwOd7V1p5qrS2NRx9NossAopWIR3I
- Pa/AQblk8W/pZ6Mmf6EfGdTDpW2GNc/vM9C8oyOJN2vSvQjDTNZuX7vmS
- y1/68Sxs6l0/eQvtyBaBhWzboM2PlKO4LqtC7QfxrsCPT+C9wbtSfdAy1
- 728yOFZpMl7FnPTDh1YzD2wxzztRcyaddYkaHFGTdkcRQxF9RbfoNC0je
- 6L/Zxc+4GnhVLGn0SkSzXRue+LO63zsadoaXy1lGv05HTK6Ka119PdrwD
- 3uL5KtYOnw2LS8a4GOPjO6vVmZWJ4sLxwhTFGIp4TPubzLMz4Hl8cDNRG Q==;
-X-CSE-ConnectionGUID: EtLxwzeWQ5y1byGXyPkwhg==
-X-CSE-MsgGUID: bcthQ35tT3u6dqNKwe85sQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="66414874"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="66414874"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 20:25:29 -0700
-X-CSE-ConnectionGUID: vfNqDf7HT22M7y+WkcpoEw==
-X-CSE-MsgGUID: ipzgi7ebT4mTL/tgYIURjg==
+ t=1760413146; x=1791949146;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=y2Gi1C/F+WFnMWsIdQWUP7A100PbJJznfI+UV7g5Tv8=;
+ b=TkzoIL1kIGYnwJSz4tiDFk9hjD+iFC1/BnWSQAM8n3pwW4gwZq334GSs
+ AiXU55IIoWONYToAdc3tzO0AUZn0NzNpxzohSkqvWe57xp/ldvAwtekqK
+ GTHTnOBvakrXsVITeo18YS1EOdyIHGwHxXUmUlP0ywu1tykMTie9FTbd+
+ No9wz8gbHsHbmJ5k63G/176s+1fGUkk8srz29kJgcUBYQxNL9h1wr3oDr
+ i9+N0Z0sUwJvP6ObAeEq7h4NC8eOijKdBFKbCax4mp1cl9xux8bFjhBae
+ CyQjOCaovEGuaOu7vBI2ai/8iUHsBXcLSzIPUGYvqXTAGfVi5NIHv4S+Y A==;
+X-CSE-ConnectionGUID: BB++betYQGO96lrpjMtTSw==
+X-CSE-MsgGUID: ezhTw2PiQYG5GoQPc6f8Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="80004753"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="80004753"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2025 20:39:06 -0700
+X-CSE-ConnectionGUID: JHXkHfa9T66xvF2d7EN+tA==
+X-CSE-MsgGUID: A4Edb+WESAmA7Y3Hv4BPOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181567294"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 20:25:29 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="180923170"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa006.jf.intel.com with ESMTP; 13 Oct 2025 20:39:05 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 10/23] drm/xe/xe3p: Skip TD flush
-Date: Mon, 13 Oct 2025 20:24:42 -0700
-Message-ID: <20251013-xe3p-v1-10-bfb74f038215@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
-References: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe/guc: Destroy LR exec queue directly if GuC is not
+ running
+Date: Tue, 14 Oct 2025 03:36:47 +0000
+Message-ID: <20251014033646.1619865-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-bd47d
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,38 +65,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+During LR exec queue cleanup, if the GuC firmware is not running,
+the driver cannot communicate with the GuC to properly deregister
+the exec queue. In this case, directly destroy the exec queue
+instead of attempting deregistration.
 
-Xe3p has HW ability to do transient display flush so the xe driver can
-enable this HW feature by default and skip the software TD flush.
+This prevents schedule disable failure and GuC ID resource leaks as
+below dmesg log:
+"
+[   50.242564] pci 0000:03:00.0: [drm] GT0: Schedule disable failed to respond, guc_id=2
+[   50.242568] ------------[ cut here ]------------
+[   50.242584] pci 0000:03:00.0: [drm] Assertion `ret` failed!
+...
+[   50.244942] pci 0000:03:00.0: [drm] *ERROR* GT0: GUC ID manager unclean (1/65535)
+[   50.244970] pci 0000:03:00.0: [drm] GT0:     total 65535
+[   50.245002] pci 0000:03:00.0: [drm] GT0:     used 1
+[   50.245032] pci 0000:03:00.0: [drm] GT0:     range 2..2 (1)
+"
 
-Bspec: 60002
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Fixes: 8ae8a2e8dd21 ("drm/xe: Long running job update")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6f8f72fd1b133..7efa8da9e1069 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1103,6 +1103,14 @@ void xe_device_td_flush(struct xe_device *xe)
- {
- 	struct xe_gt *root_gt;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 0ef67d3523a7..d2dfbdc82920 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -47,6 +47,8 @@
+ #include "xe_uc_fw.h"
+ #include "xe_vm.h"
  
-+	/*
-+	 * From Xe3p onward the HW takes care of flush of TD entries also along
-+	 * with flushing XA entries, which will be at the usual sync points,
-+	 * like at the end of submission, so no manual flush is needed here.
-+	 */
-+	if (GRAPHICS_VER(xe) >= 35)
-+		return;
++static void __guc_exec_queue_destroy(struct xe_guc *guc, struct xe_exec_queue *q);
 +
- 	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) < 20)
- 		return;
+ static struct xe_guc *
+ exec_queue_to_guc(struct xe_exec_queue *q)
+ {
+@@ -1060,10 +1062,15 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 	 * state.
+ 	 */
+ 	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
+-		struct xe_guc *guc = exec_queue_to_guc(q);
+ 		int ret;
  
-
+ 		set_exec_queue_banned(q);
++		/* If GuC is not running, just destroy the exec queue as we can't communicate with it */
++		if (!xe_uc_fw_is_running(&guc->fw)) {
++			__guc_exec_queue_destroy(guc, q);
++			goto skip_deregister;
++		}
++
+ 		disable_scheduling_deregister(guc, q);
+ 
+ 		/*
+@@ -1088,6 +1095,7 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
+ 		}
+ 	}
+ 
++skip_deregister:
+ 	if (!exec_queue_killed(q) && !xe_lrc_ring_is_idle(q->lrc[0]))
+ 		xe_devcoredump(q, NULL, "LR job cleanup, guc_id=%d", q->guc->id);
+ 
 -- 
-2.51.0
+2.49.0
 
