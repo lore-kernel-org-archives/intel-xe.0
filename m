@@ -4,185 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E57B4CCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:34:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22532CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:34:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D3510E565;
-	Tue, 14 Oct 2025 07:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D68BD10E565;
+	Tue, 14 Oct 2025 07:34:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eq5uSpXz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzFFdL26";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2CD10E565
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 07:34:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 577D910E565
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 07:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760427259; x=1791963259;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/aFyHK0C0vZsoz0x+TTlqTE9kb0hhrJ3Jm/0r/pT59E=;
- b=Eq5uSpXzLMb3SMnB9tOqb4EM2T8E1pK2ek/yl/mu76mnnLCcBrnnKmgb
- kWpEN81Qnm1uh7axxux+e6/HyF3KK/HwG9ci+eHp4V25+tRhffpCVxASi
- iWVFfLCk9PK0GDvakqdwfyWTiVzP3UIuJjrLKIIhxR3EhWDGiVbaqrfh2
- fo/uRphii5hL+DZjRloTIDCcsn7eWaS6aKl1LZhHu5wLNkOZ+X9Km1yeH
- EC/qiNOXjbdkpNgtCCRkdwdDUUDpmcYnKRE9xLSrG0MBn5peKsJ93rWFp
- E25VqwMt2GL3PO8BLLF3o1BIyeQzb5vZo79whN/jyVnURKYPSbJvhHLNU A==;
-X-CSE-ConnectionGUID: PBefI3bBQUe8h35J+44n8w==
-X-CSE-MsgGUID: I9D7ZCiFScWA4/dyYYhcTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="61616937"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="61616937"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:34:19 -0700
-X-CSE-ConnectionGUID: 9GzBLUxzTuGv3lJoGNwOHw==
-X-CSE-MsgGUID: 5jDHSuk7RYO+8BSaPXt0Gw==
+ t=1760427273; x=1791963273;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=/7rfaJJ+mjrQq1630gkZUGE2OTEocKKwHDf5gdDLFFI=;
+ b=DzFFdL26bwEey5U3YFmPnUhzN9uBUAesa8FFdBbCGXGxT++nxU+wizT7
+ znzhtYXf7/EMhLLeN+w8zeMWyBt8tLK+8qn8shMWpYpeNs+GdsOPMv9iQ
+ nStz8NQIvTgvK1TK2IC1n3N46kQ0hQR6mqHcMIcXZL3VYt0gnIL908jFR
+ GHPwUP4OTRniagPezu2XGNIuVJqfnc9xr0daz+kwW7ZeOrU6dpcP2TGcW
+ w3/9ifw8ie23ciO2ayB3y2bevZtBmBYdIeus+9TDxtk9pXMp9O1q8N2iz
+ FC3kzHButQ932wv9w8sKcQBoBNXjTEYGrZlL0f1HsVv6hWkcK96QULIXM Q==;
+X-CSE-ConnectionGUID: Sct0ZRVrQlSlPCEq74c8fA==
+X-CSE-MsgGUID: b6LNJvjfTvCfe57+43Eqgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="80018301"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="80018301"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 00:34:32 -0700
+X-CSE-ConnectionGUID: S2ougH0bSeiPWK8/Vami0Q==
+X-CSE-MsgGUID: UtJR3pXmSky8+nh+x3vgGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="182260036"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:34:18 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 14 Oct 2025 00:34:18 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 14 Oct 2025 00:34:18 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.58) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 14 Oct 2025 00:34:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L80XOj+qwh/QzBqOXegvRjX42jfl4bk0bHwcF6me/7feedCdS/gpJavui6Q20vlMaPVtczkKPDvXiAA4FNthd8SLbqpU0pIpVGBMNtuZl9QigVLU2cObckNPvqQcGrguEfqNr3xj22Q4zJSZoyPyFQScXCSX8ERqElZc+tFl4412w8hiB+pywNMkZZFfv591vIkuYOOkpnukaBVcIWzBE8k+qK1pjoTDYyHLqkqNoNdTEuWotqCVp2yQNC6ireHIaSa0giFXDKd3oG8eHF+XmXeJAMefUCZhiPzPSNb0Oyz7a98oDvX1xNyMBT/osz2acP8LiqpCOkcmdM7yZEjdzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iNKxAB55Ley/mS377+ZdH9iydo3i1Cq2qmvYd01NywY=;
- b=FaKunI8fVcixmfutkUKtKfAnk/Osgx/3gCFpcTU74SqdlQTQDvLlEWoObsUg9ibLCr4HxcKCbC9vA5NkVbOWKipbJc+M0VKu4EJzbOgtOPzY4celif5g/iUJj8bu0tSbBzfvVt4CCDXEVHBc66U6/BoSDixmPzMrkPH6rjAL2eGhe0AOQQD8na6QBtPwd8/klSNARoWlfSofC7q9quMqWvPkHwkWMOVEBl1kO/VqtuyZbX/KrW8Iq3QjZKObcLzw7EPKMIlu7/gFMWD2fEQ/OCEDoa9J1nXXx8JaVdcMXEjGIGaWAigWroALQrkm0NGTW/OdrHCEfUNCYt58ruJ97g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com (2603:10b6:408:1ec::18)
- by SA1PR11MB8840.namprd11.prod.outlook.com (2603:10b6:806:469::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Tue, 14 Oct
- 2025 07:34:15 +0000
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::55b1:592:df13:a9f3]) by LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::55b1:592:df13:a9f3%5]) with mapi id 15.20.9203.009; Tue, 14 Oct 2025
- 07:34:15 +0000
-Message-ID: <a8d6ecba-4e87-4835-a294-23302bf3ee98@intel.com>
-Date: Tue, 14 Oct 2025 13:04:06 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/23] drm/xe/nvl: Define NVL-S platform
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>, "Matt
- Roper" <matthew.d.roper@intel.com>, Tejas Upadhyay <tejas.upadhyay@intel.com>
-References: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
- <20251013-xe3p-v1-14-bfb74f038215@intel.com>
-Content-Language: en-US
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-In-Reply-To: <20251013-xe3p-v1-14-bfb74f038215@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0121.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::19) To LV8PR11MB8607.namprd11.prod.outlook.com
- (2603:10b6:408:1ec::18)
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181612486"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.172])
+ ([10.245.244.172])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 00:34:30 -0700
+Message-ID: <3050bab3718e825ea622fc3e3954e7f3f69eda3f.camel@linux.intel.com>
+Subject: Re: [RFC PATCH] drm/xe: Retain vma flags when recreating and
+ splitting vmas for madvise
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>
+Date: Tue, 14 Oct 2025 09:34:28 +0200
+In-Reply-To: <aO3bczENGyIIQJDS@lstrano-desk.jf.intel.com>
+References: <20251013185348.88033-1-thomas.hellstrom@linux.intel.com>
+ <aO3bczENGyIIQJDS@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-2.fc41) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR11MB8607:EE_|SA1PR11MB8840:EE_
-X-MS-Office365-Filtering-Correlation-Id: e0679cab-b845-4243-4067-08de0af4135b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZEZwRjJVQVpWTU1hYm5HL2haRjNtRHJnNnp0TDlyWGJCZGFpRUdzSi83SmdZ?=
- =?utf-8?B?TUhsSEZuTUdCRjJNQTdKQWdVNm4yUkQrSmFuN01aeWJuTDJkU0VNYjgwSUY2?=
- =?utf-8?B?V2NPMlI5RjM2SzBFUmdQWTJoaHdBZnRlWUs2UlBHWVFJNTBEZDAxMzdvcVox?=
- =?utf-8?B?ZWFaTURNRUxHeS9hc3dLUUF2RlFLL29zZEp5dFBuTkNBYlI0SiswQlVER3Rk?=
- =?utf-8?B?Q3NiOWJtYy84OHZ2eUJNM00xZVFyUUxScXdIa3hkUy9oQ0V3SncrTVFxSVZC?=
- =?utf-8?B?aTFDWHo3ZXBmZGJFOFBxUTdlMms3SXF5K0pMUk1RZ1crQXJPd1NUb3ZkQzRL?=
- =?utf-8?B?Mmw1WHlmNUt2U25mT0VQZ1JXSHpuY2VQdUdWMEFKTFpobG1NaVpnTldWQ0s4?=
- =?utf-8?B?SldDaWlQR2x4c2xtdVB3NjgreFhPMzRhWFlndUpGcThoRkJKQ3BoaVZkRnRl?=
- =?utf-8?B?dmN1WlNXaWJ2MnZoR3o2U2NGdU1uNUJNbjRjZXdVUWF0RUVLZ0hjbWFTL0FF?=
- =?utf-8?B?RmR3T2NGaG5GbE5vc2Z3VnNrWUozNlAzSFdJVjk2ZDRvWWppUFFodGtJbVRy?=
- =?utf-8?B?OHZJUDZRNXh3a2EvQlJWV0xPbko4TkNaZWQ0b2dUbHFXYkJhNVgwajlqbTBp?=
- =?utf-8?B?eTRScG4vbXNwRVVBMDdoemNCTkYwNEZaakgvOHBDZVpacDBiQ29ZZnZObGRL?=
- =?utf-8?B?YnZTdEhhV1phUUVRSVJ4S3lYZkpuWmw3cFlXN3VhR2E4M2RxUEtROXI0MFdE?=
- =?utf-8?B?QXlNNWtGcFlEK05yN0t6TEVYRDJpMFkyeFpNSTh0RU5iYVhyOXdON3ZqaUJG?=
- =?utf-8?B?SS9pWVkweXFoK2tHTjg1Uk5IOFFkY3dUSTNhTTlseU1KSFpORmkzd1dIUWd2?=
- =?utf-8?B?VUVoa2JITnVlOXV5dHJQOTF4aWJlTG0zNEpHZGhmRjh0L2g1ZktzQjJQWExB?=
- =?utf-8?B?WnBsYTZXRVJVRGc5Q1lHMWhuWFpFMVhXcXAwc241SDNFZHRNNzFmdlBxT1E0?=
- =?utf-8?B?SVUwNE1Ya0FkZkg0UHhTdFc5My9udkdCTjdPaWM5SUsycEcvZHBIaWhTOWJK?=
- =?utf-8?B?Q2x2RERzdnplcWh0dGJFcm94VVdFRmlPaVNFK2MyS1lteTVhSlFUYUZSc2Z5?=
- =?utf-8?B?ZlRQRTZPV21VT1BPZzVRby8wZmUvOEFaY21UaVZ3QnUzMFl5eGNxY1UxS1hJ?=
- =?utf-8?B?SXFKRFFVNkFOQnNJYUlSdlg3VW56bVQycVJIUy9jdWZQVFNIUlpOODk4aFc3?=
- =?utf-8?B?KytWaCtQYit5ZXdQYi9LOTIySXJ4YmJjWWxtUXpxM3lpa0p1VTRhbXJYRk5Q?=
- =?utf-8?B?a3NtbVU3SkJQTko5TGVLZVhXdisxdHpUaVRpaXdCZGE3ZDhEUmh2MkEvbnVk?=
- =?utf-8?B?TlBqeGN0L01LV3RMRXhZbjloUEFOSm9EeU13d3YrNFlGRlBQU09haHBZY2g0?=
- =?utf-8?B?VXlHWFFTSmt2eXd4WExsTkRmMlVUaUExNnNmaFlSaEI4VGlVTHYyY3UwNm5u?=
- =?utf-8?B?NUJiNnBKNUpMMEVDQTh2S1BaS1YwUVJqUWs2VGlmSUtWekdxYU5nZVJRbE5N?=
- =?utf-8?B?a3RISzFzSlVteDYvR2sxalhYbGhzc0phZG9zYWJkc0NjbTlTOEpZMjgwMzNZ?=
- =?utf-8?B?ckNWOEF1ZEtWZTd1Sk00THQ0VTQ5RW5sbmd1SG8rbnRFN2hZSzVwbEtiY1k2?=
- =?utf-8?B?NjNpMm9UdE1kWkZUVFcxZ1hoQ0RiRS9KKy9DNUVzM3dIMkpONm52eStpZHVC?=
- =?utf-8?B?ODAxQ3NIN2g5TkdqS1FOSWhIUWxKbHNzdGZhTjVPdHNpaFljQ0JFNFFCZG5h?=
- =?utf-8?B?MGhzUks2N1VsTFZiVU5LV2tmOUZTTTFBNkZMSVY0S2JYNnJFeHlGbkNvOXBq?=
- =?utf-8?B?aldVQTdhb01uNnV5dk0rMm4zQklVUnBFTkRET2E2WGFWbFVyT3dPR0RyaXV1?=
- =?utf-8?Q?K+i7CfcBngwjlNIk+qnNHS9mraRPeyj7?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR11MB8607.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXZtTDh3cm9QSHJUSXM5WWJMMGhiWFk5MGdKT2VHdHQrV1lPdnVWUkhUUDBz?=
- =?utf-8?B?UjhwTlZyckpCMzhwd24vQkJadDJVTVhVSGRKSU83MnNCcEwra1RoSWcxQUlj?=
- =?utf-8?B?L2h3MGJnd29Sb1FsYVhpTkRJb1p1TEhEcElDT1pzWDIwTGVxYk91NUdSVmJQ?=
- =?utf-8?B?OCs0VjJteElZWHR5Y0RqTytpR3FLMG0wV1ZWb2JRQThZVG9ZcUIwaHdnZGlv?=
- =?utf-8?B?c0R6SzFTVjJZdG9wdk9hY0pFbXJVNWMyM3Q3ZU0zSWwzemRHeWdSNmJMTGZz?=
- =?utf-8?B?UTdLS2E0a3diY0dRQTFmTGkzVXJEWkJCNVV5bndOS1Qycm1jcmxLaDJsODRi?=
- =?utf-8?B?YTM2SlVQZ2RQeUpvZ1VUQ2pucHorM09zYi9TZmJoNmNtSDhPSWp6eVJmaGpB?=
- =?utf-8?B?cXB6QXp2Y0RzUVgzTkIxVVlmSmV2NTlha2ZlWk1EejE5VGt6R3FoMEs3TlM0?=
- =?utf-8?B?SHVDZnB1eGtUaWJsNHgvWlVjbkp3ZytDN0xXY3NtYlJoSUUwOWZmLzRaSE42?=
- =?utf-8?B?TXNJRmRtRjhsS01mc2JCb3F2QUlxTWFKRlN5cnc1ZjFoUXE4Wm5JSmNjZEVl?=
- =?utf-8?B?aUZzNGdQVFpxQ2JMQXFDVm02KzlDNzZ3TU41aVBTWVF0RXpZMVBaMU0yQ3Bq?=
- =?utf-8?B?OERTNW5pbFRUUkszQ3lrekpqQk0zOHR3ZFRSQUxLZ1JQUlEwc1hZM0o1MkF4?=
- =?utf-8?B?dDJUTksrYTNHa2Q5OHg2dFlmVUtzdFpxdll1dDljc1J5NkRwUk4weTZ6UC82?=
- =?utf-8?B?cHgzQWNoYks1WkdZRklyOFhIT01iblRGK25nN2NyU1BsRkVJYUpiUkswMlJB?=
- =?utf-8?B?bHRYT0o0NGx0SXllNmo0d3RhNDVodjl1T2l0bGhudW9tMmExT21GVHRzUnJT?=
- =?utf-8?B?WlI5aVh3TkVxaU5zS01nOCtGTDd2UkJMQ1E2WlZuUE1JdWY0RWt4R0J5em0v?=
- =?utf-8?B?RXRNWlI5cnFGV2pjV2RDcDE1d2FBSndIRHZXQzd2dnlZVXRIY004Zy9OMHc4?=
- =?utf-8?B?MlZlbGU0WFdVRERmQ3c3K0tSSVArQ3NvU3JGZEdvT3E2LzBxWjZKOGw1TnRU?=
- =?utf-8?B?TldlY09UZXc0aXBid1R5V2NsYUY1SkpDTERKNjVEc0pSVjkxRjBDTHpGZG45?=
- =?utf-8?B?MExheU5WZDhCOENnUGpMU0J2dzFyb2duTGlwVVVvaUxhcnlqQmwzcCtmQVVu?=
- =?utf-8?B?U2x2YmNqT0g5aXN4aGRNVUljY0ZpL2UxRHNZMnpacVZ2a3Uvekx5VmZtTDJO?=
- =?utf-8?B?end2Z09wdmloYThqUkkvdDJkK0NGWUNvblJ3aVE4R0d5Y3BpUDFSek1sU0hI?=
- =?utf-8?B?eGpwdGQrS3ZtMVlqQXU0UXBqZ0hsdDFmZTdPUTNCK0hrbHovb2hZVGNXUzM0?=
- =?utf-8?B?WndzbGhUVFVFR1lzYlJvTGNwdXg5eVNkSTllTUUxTDhGMmF6a0thTFQ0ZFZv?=
- =?utf-8?B?eGJ4dHR3SHBIWTBjYmtnMkNyQ1dFZUlUZ3A1V1grY0VDV2J6Rk9wdVNNWkpa?=
- =?utf-8?B?UUZDNVJhNDQ0WnlTeTZ5TkNoN3Zsb1dkMUdyT1RmdEpUWDQ3cWhBSUlwdXJy?=
- =?utf-8?B?cGhEZGFaZnNoZ2pBdEpNU1dmQ25aM25pOWhhdFhtUDhaQnB5MnpKcVZUM3Bu?=
- =?utf-8?B?U3d0OHlad2tUWlpCbzFMa1JuUERlR2JMQkZOd0U2ZVVyZ3dnRmNNcmhCRnk1?=
- =?utf-8?B?TWhlV2hiMTY0YlBoZC9FNmpZY0JpcWlIODNQYzJRRW80UHhBS3RpZ0RSakFQ?=
- =?utf-8?B?aXNtcmRPcWx6cXpubjBzLzFtcDduUVcrbmRzRW1veW5JTXFBRFl3MWc5aUFX?=
- =?utf-8?B?WFRSLzNiWkRIRHN6YzRvcWVzejdXK0Uxbk9CNWNSRStCVG5zQk44ZURJaHds?=
- =?utf-8?B?UVF4OW9jWEN2dlkrK2R1NU44TlhaYWdyZzZ5MXkwRjE0TER2Z1VFTFdYbnVn?=
- =?utf-8?B?VHBZelBuNlAxMlgrU2FCNm9KUkEyTnNnS09IK2xsZzVGamRabU9PTm9qOW05?=
- =?utf-8?B?d3d6elNLKzQvelIvRmo4RUFiL1VpbDd5MXZYejNsQ3g5eGhDZjBsbHlOZ1dJ?=
- =?utf-8?B?ZzNsWnBLanM2bjdTK1Y0ZElrMXhyMDNTS1JaODgxcUhqL01SWW91c1oySGhP?=
- =?utf-8?B?c3ZwMUEvbFlTd1dOYThkN1E1YXYrZGozSnlCbFVvT0FxenRUcHdES2svMmZJ?=
- =?utf-8?B?Qnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0679cab-b845-4243-4067-08de0af4135b
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR11MB8607.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 07:34:15.0281 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PLBJrwFui13PBftyQ+zDx67qqASQS3E98XqewpDhMXKEhgpwO2LIZqF32q2wASkufFxjPi8RVrBPv4lKyWyxDlHThYPN3Dz4VTwzYzYGuaE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8840
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,80 +72,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 2025-10-13 at 22:11 -0700, Matthew Brost wrote:
+> On Mon, Oct 13, 2025 at 08:53:48PM +0200, Thomas Hellstr=C3=B6m wrote:
+> > When splitting and restoring vmas for madvise, we only copied the
+> > XE_VMA_SYSTEM_ALLOCATOR flag. That meant we lost flags for
+> > read_only,
+> > dumpable and sparse (in case anyone would call madvise for the
+> > latter).
+> >=20
+>=20
+> I don't think the above flags should be possible to set / needed to
+> be
+> retained upon split / restore but non the less a good cleanup.
 
-On 10/14/2025 8:54, Lucas De Marchi wrote:
-> From: Matt Roper <matthew.d.roper@intel.com>
->
-> Provide the basic platform definitions and PCI IDs for NVL-S.
->
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+OK, I wasn't really sure of the scope of the current madvise
+implementation, but at least for userptr we'd want to retain the
+readonly and dumpable flags? Also we'd probably for consistency want to
+honor readonly for svm vmas as well?
 
-LGTM,
+/Thomas
 
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-> ---
->   drivers/gpu/drm/xe/xe_pci.c            | 9 +++++++++
->   drivers/gpu/drm/xe/xe_platform_types.h | 1 +
->   include/drm/intel/pciids.h             | 9 +++++++++
->   3 files changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 8480e53990031..aa8359a4c5594 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -354,6 +354,14 @@ static const struct xe_device_desc ptl_desc = {
->   	.needs_shared_vf_gt_wq = true,
->   };
->   
-> +static const struct xe_device_desc nvls_desc = {
-> +	PLATFORM(NOVALAKE_S),
-> +	.dma_mask_size = 46,
-> +	.has_display = true,
-> +	.max_gt_per_tile = 2,
-> +	.require_force_probe = true,
-> +};
-> +
->   #undef PLATFORM
->   __diag_pop();
->   
-> @@ -382,6 +390,7 @@ static const struct pci_device_id pciidlist[] = {
->   	INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
->   	INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
->   	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
-> +	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(pci, pciidlist);
-> diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-> index d08574c4cdb8b..f5140a244daf3 100644
-> --- a/drivers/gpu/drm/xe/xe_platform_types.h
-> +++ b/drivers/gpu/drm/xe/xe_platform_types.h
-> @@ -24,6 +24,7 @@ enum xe_platform {
->   	XE_LUNARLAKE,
->   	XE_BATTLEMAGE,
->   	XE_PANTHERLAKE,
-> +	XE_NOVALAKE_S,
->   };
->   
->   enum xe_subplatform {
-> diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-> index 69d4ae92d822a..00dd007f538ff 100644
-> --- a/include/drm/intel/pciids.h
-> +++ b/include/drm/intel/pciids.h
-> @@ -884,4 +884,13 @@
->   	MACRO__(0xFD80, ## __VA_ARGS__), \
->   	MACRO__(0xFD81, ## __VA_ARGS__)
->   
-> +/* NVL-S */
-> +#define INTEL_NVLS_IDS(MACRO__, ...) \
-> +	MACRO__(0xD740, ## __VA_ARGS__), \
-> +	MACRO__(0xD741, ## __VA_ARGS__), \
-> +	MACRO__(0xD742, ## __VA_ARGS__), \
-> +	MACRO__(0xD743, ## __VA_ARGS__), \
-> +	MACRO__(0xD744, ## __VA_ARGS__), \
-> +	MACRO__(0xD745, ## __VA_ARGS__)
-> +
->   #endif /* __PCIIDS_H__ */
->
+>=20
+> > Instead, define a mask of relevant flags and ensure all are
+> > replicated,
+> > To simplify this and make the code a bit less fragile, remove the
+> > conversion to VMA_CREATE flags and instead just pass around the
+> > gpuva flags after initial conversion from user-space.
+>=20
+> Also a good cleanup. So if CI is clean:
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+Thanks, I'll build the autoreset on this one then and add Fixes: on
+both.
+
+/Thomas
+
+
+>=20
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 4 +-
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
+86 +++++++++++-----------------
+> > ----
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 9 +---
+> > =C2=A03 files changed, 32 insertions(+), 67 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c
+> > b/drivers/gpu/drm/xe/xe_pt.c
+> > index e39da95f3a05..d22fd1ccc0ba 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -2022,7 +2022,7 @@ static int op_prepare(struct xe_vm *vm,
+> > =C2=A0	case DRM_GPUVA_OP_MAP:
+> > =C2=A0		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)
+> > &&
+> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 !op->map.invalidate_on_bind) ||
+> > -		=C2=A0=C2=A0=C2=A0 op->map.is_cpu_addr_mirror)
+> > +		=C2=A0=C2=A0=C2=A0 (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
+> > =C2=A0			break;
+> > =C2=A0
+> > =C2=A0		err =3D bind_op_prepare(vm, tile, pt_update_ops, op-
+> > >map.vma,
+> > @@ -2252,7 +2252,7 @@ static void op_commit(struct xe_vm *vm,
+> > =C2=A0	switch (op->base.op) {
+> > =C2=A0	case DRM_GPUVA_OP_MAP:
+> > =C2=A0		if ((!op->map.immediate &&
+> > xe_vm_in_fault_mode(vm)) ||
+> > -		=C2=A0=C2=A0=C2=A0 op->map.is_cpu_addr_mirror)
+> > +		=C2=A0=C2=A0=C2=A0 (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
+> > =C2=A0			break;
+> > =C2=A0
+> > =C2=A0		bind_op_commit(vm, tile, pt_update_ops, op-
+> > >map.vma, fence,
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index 179758ca7cb8..9c29608aa3bc 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -642,6 +642,12 @@ static void
+> > xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8
+> > tile_mask,
+> > =C2=A0			vops->pt_update_ops[i].num_ops +=3D inc_val;
+> > =C2=A0}
+> > =C2=A0
+> > +#define XE_VMA_CREATE_MASK (		=C2=A0=C2=A0=C2=A0 \
+> > +	XE_VMA_READ_ONLY |		=C2=A0=C2=A0=C2=A0 \
+> > +	XE_VMA_DUMPABLE |		=C2=A0=C2=A0=C2=A0 \
+> > +	XE_VMA_SYSTEM_ALLOCATOR |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 \
+> > +	DRM_GPUVA_SPARSE)
+> > +
+> > =C2=A0static void xe_vm_populate_rebind(struct xe_vma_op *op, struct
+> > xe_vma *vma,
+> > =C2=A0				=C2=A0 u8 tile_mask)
+> > =C2=A0{
+> > @@ -654,8 +660,7 @@ static void xe_vm_populate_rebind(struct
+> > xe_vma_op *op, struct xe_vma *vma,
+> > =C2=A0	op->base.map.gem.offset =3D vma->gpuva.gem.offset;
+> > =C2=A0	op->map.vma =3D vma;
+> > =C2=A0	op->map.immediate =3D true;
+> > -	op->map.dumpable =3D vma->gpuva.flags & XE_VMA_DUMPABLE;
+> > -	op->map.is_null =3D xe_vma_is_null(vma);
+> > +	op->map.vma_flags =3D vma->gpuva.flags & XE_VMA_CREATE_MASK;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct
+> > xe_vma *vma,
+> > @@ -958,11 +963,6 @@ static void xe_vma_free(struct xe_vma *vma)
+> > =C2=A0		kfree(vma);
+> > =C2=A0}
+> > =C2=A0
+> > -#define VMA_CREATE_FLAG_READ_ONLY		BIT(0)
+> > -#define VMA_CREATE_FLAG_IS_NULL			BIT(1)
+> > -#define VMA_CREATE_FLAG_DUMPABLE		BIT(2)
+> > -#define VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR	BIT(3)
+> > -
+> > =C2=A0static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0 struct xe_bo *bo,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0 u64 bo_offset_or_userptr,
+> > @@ -973,11 +973,8 @@ static struct xe_vma *xe_vma_create(struct
+> > xe_vm *vm,
+> > =C2=A0	struct xe_vma *vma;
+> > =C2=A0	struct xe_tile *tile;
+> > =C2=A0	u8 id;
+> > -	bool read_only =3D (flags & VMA_CREATE_FLAG_READ_ONLY);
+> > -	bool is_null =3D (flags & VMA_CREATE_FLAG_IS_NULL);
+> > -	bool dumpable =3D (flags & VMA_CREATE_FLAG_DUMPABLE);
+> > -	bool is_cpu_addr_mirror =3D
+> > -		(flags & VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR);
+> > +	bool is_null =3D (flags & DRM_GPUVA_SPARSE);
+> > +	bool is_cpu_addr_mirror =3D (flags &
+> > XE_VMA_SYSTEM_ALLOCATOR);
+> > =C2=A0
+> > =C2=A0	xe_assert(vm->xe, start < end);
+> > =C2=A0	xe_assert(vm->xe, end < vm->size);
+> > @@ -998,10 +995,6 @@ static struct xe_vma *xe_vma_create(struct
+> > xe_vm *vm,
+> > =C2=A0		if (!vma)
+> > =C2=A0			return ERR_PTR(-ENOMEM);
+> > =C2=A0
+> > -		if (is_cpu_addr_mirror)
+> > -			vma->gpuva.flags |=3D
+> > XE_VMA_SYSTEM_ALLOCATOR;
+> > -		if (is_null)
+> > -			vma->gpuva.flags |=3D DRM_GPUVA_SPARSE;
+> > =C2=A0		if (bo)
+> > =C2=A0			vma->gpuva.gem.obj =3D &bo->ttm.base;
+> > =C2=A0	}
+> > @@ -1012,10 +1005,7 @@ static struct xe_vma *xe_vma_create(struct
+> > xe_vm *vm,
+> > =C2=A0	vma->gpuva.vm =3D &vm->gpuvm;
+> > =C2=A0	vma->gpuva.va.addr =3D start;
+> > =C2=A0	vma->gpuva.va.range =3D end - start + 1;
+> > -	if (read_only)
+> > -		vma->gpuva.flags |=3D XE_VMA_READ_ONLY;
+> > -	if (dumpable)
+> > -		vma->gpuva.flags |=3D XE_VMA_DUMPABLE;
+> > +	vma->gpuva.flags =3D flags;
+> > =C2=A0
+> > =C2=A0	for_each_tile(tile, vm->xe, id)
+> > =C2=A0		vma->tile_mask |=3D 0x1 << id;
+> > @@ -2298,12 +2288,14 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
+> > struct xe_vma_ops *vops,
+> > =C2=A0		if (__op->op =3D=3D DRM_GPUVA_OP_MAP) {
+> > =C2=A0			op->map.immediate =3D
+> > =C2=A0				flags &
+> > DRM_XE_VM_BIND_FLAG_IMMEDIATE;
+> > -			op->map.read_only =3D
+> > -				flags &
+> > DRM_XE_VM_BIND_FLAG_READONLY;
+> > -			op->map.is_null =3D flags &
+> > DRM_XE_VM_BIND_FLAG_NULL;
+> > -			op->map.is_cpu_addr_mirror =3D flags &
+> > -
+> > 				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+> > -			op->map.dumpable =3D flags &
+> > DRM_XE_VM_BIND_FLAG_DUMPABLE;
+> > +			if (flags & DRM_XE_VM_BIND_FLAG_READONLY)
+> > +				op->map.vma_flags |=3D
+> > XE_VMA_READ_ONLY;
+> > +			if (flags & DRM_XE_VM_BIND_FLAG_NULL)
+> > +				op->map.vma_flags |=3D
+> > DRM_GPUVA_SPARSE;
+> > +			if (flags &
+> > DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR)
+> > +				op->map.vma_flags |=3D
+> > XE_VMA_SYSTEM_ALLOCATOR;
+> > +			if (flags & DRM_XE_VM_BIND_FLAG_DUMPABLE)
+> > +				op->map.vma_flags |=3D
+> > XE_VMA_DUMPABLE;
+> > =C2=A0			op->map.pat_index =3D pat_index;
+> > =C2=A0			op->map.invalidate_on_bind =3D
+> > =C2=A0				__xe_vm_needs_clear_scratch_pages(
+> > vm, flags);
+> > @@ -2616,14 +2608,7 @@ static int vm_bind_ioctl_ops_parse(struct
+> > xe_vm *vm, struct drm_gpuva_ops *ops,
+> > =C2=A0				.pat_index =3D op->map.pat_index,
+> > =C2=A0			};
+> > =C2=A0
+> > -			flags |=3D op->map.read_only ?
+> > -				VMA_CREATE_FLAG_READ_ONLY : 0;
+> > -			flags |=3D op->map.is_null ?
+> > -				VMA_CREATE_FLAG_IS_NULL : 0;
+> > -			flags |=3D op->map.dumpable ?
+> > -				VMA_CREATE_FLAG_DUMPABLE : 0;
+> > -			flags |=3D op->map.is_cpu_addr_mirror ?
+> > -
+> > 				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
+> > +			flags |=3D op->map.vma_flags &
+> > XE_VMA_CREATE_MASK;
+> > =C2=A0
+> > =C2=A0			vma =3D new_vma(vm, &op->base.map,
+> > &default_attr,
+> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flags);
+> > @@ -2632,7 +2617,7 @@ static int vm_bind_ioctl_ops_parse(struct
+> > xe_vm *vm, struct drm_gpuva_ops *ops,
+> > =C2=A0
+> > =C2=A0			op->map.vma =3D vma;
+> > =C2=A0			if (((op->map.immediate ||
+> > !xe_vm_in_fault_mode(vm)) &&
+> > -			=C2=A0=C2=A0=C2=A0=C2=A0 !op->map.is_cpu_addr_mirror) ||
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 !(op->map.vma_flags &
+> > XE_VMA_SYSTEM_ALLOCATOR)) ||
+> > =C2=A0			=C2=A0=C2=A0=C2=A0 op->map.invalidate_on_bind)
+> > =C2=A0				xe_vma_ops_incr_pt_update_ops(vops
+> > ,
+> > =C2=A0							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 op-
+> > >tile_mask, 1);
+> > @@ -2663,18 +2648,7 @@ static int vm_bind_ioctl_ops_parse(struct
+> > xe_vm *vm, struct drm_gpuva_ops *ops,
+> > =C2=A0			op->remap.start =3D xe_vma_start(old);
+> > =C2=A0			op->remap.range =3D xe_vma_size(old);
+> > =C2=A0
+> > -			flags |=3D op->base.remap.unmap->va->flags &
+> > -				XE_VMA_READ_ONLY ?
+> > -				VMA_CREATE_FLAG_READ_ONLY : 0;
+> > -			flags |=3D op->base.remap.unmap->va->flags &
+> > -				DRM_GPUVA_SPARSE ?
+> > -				VMA_CREATE_FLAG_IS_NULL : 0;
+> > -			flags |=3D op->base.remap.unmap->va->flags &
+> > -				XE_VMA_DUMPABLE ?
+> > -				VMA_CREATE_FLAG_DUMPABLE : 0;
+> > -			flags |=3D xe_vma_is_cpu_addr_mirror(old) ?
+> > -
+> > 				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
+> > -
+> > +			flags |=3D op->base.remap.unmap->va->flags &
+> > XE_VMA_CREATE_MASK;
+> > =C2=A0			if (op->base.remap.prev) {
+> > =C2=A0				vma =3D new_vma(vm, op-
+> > >base.remap.prev,
+> > =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &old->attr, flags);
+> > @@ -4238,7 +4212,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+> > =C2=A0	struct xe_vma_ops vops;
+> > =C2=A0	struct drm_gpuva_ops *ops =3D NULL;
+> > =C2=A0	struct drm_gpuva_op *__op;
+> > -	bool is_cpu_addr_mirror =3D false;
+> > +	unsigned int vma_flags =3D 0;
+> > =C2=A0	bool remap_op =3D false;
+> > =C2=A0	struct xe_vma_mem_attr tmp_attr;
+> > =C2=A0	u16 default_pat;
+> > @@ -4268,15 +4242,17 @@ static int xe_vm_alloc_vma(struct xe_vm
+> > *vm,
+> > =C2=A0				vma =3D gpuva_to_vma(op-
+> > >base.unmap.va);
+> > =C2=A0				XE_WARN_ON(!xe_vma_has_default_mem
+> > _attrs(vma));
+> > =C2=A0				default_pat =3D vma-
+> > >attr.default_pat_index;
+> > +				vma_flags =3D vma->gpuva.flags;
+> > =C2=A0			}
+> > =C2=A0
+> > =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_REMAP) {
+> > =C2=A0				vma =3D gpuva_to_vma(op-
+> > >base.remap.unmap->va);
+> > =C2=A0				default_pat =3D vma-
+> > >attr.default_pat_index;
+> > +				vma_flags =3D vma->gpuva.flags;
+> > =C2=A0			}
+> > =C2=A0
+> > =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_MAP) {
+> > -				op->map.is_cpu_addr_mirror =3D true;
+> > +				op->map.vma_flags |=3D vma_flags &
+> > XE_VMA_CREATE_MASK;
+> > =C2=A0				op->map.pat_index =3D default_pat;
+> > =C2=A0			}
+> > =C2=A0		} else {
+> > @@ -4285,11 +4261,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+> > =C2=A0				xe_assert(vm->xe, !remap_op);
+> > =C2=A0				xe_assert(vm->xe,
+> > xe_vma_has_no_bo(vma));
+> > =C2=A0				remap_op =3D true;
+> > -
+> > -				if
+> > (xe_vma_is_cpu_addr_mirror(vma))
+> > -					is_cpu_addr_mirror =3D true;
+> > -				else
+> > -					is_cpu_addr_mirror =3D
+> > false;
+> > +				vma_flags =3D vma->gpuva.flags;
+> > =C2=A0			}
+> > =C2=A0
+> > =C2=A0			if (__op->op =3D=3D DRM_GPUVA_OP_MAP) {
+> > @@ -4298,10 +4270,10 @@ static int xe_vm_alloc_vma(struct xe_vm
+> > *vm,
+> > =C2=A0				/*
+> > =C2=A0				 * In case of madvise ops
+> > DRM_GPUVA_OP_MAP is
+> > =C2=A0				 * always after
+> > DRM_GPUVA_OP_REMAP, so ensure
+> > -				 * we assign op-
+> > >map.is_cpu_addr_mirror true
+> > -				 * if REMAP is for
+> > xe_vma_is_cpu_addr_mirror vma
+> > +				 * to propagate the flags from the
+> > vma we're
+> > +				 * unmapping.
+> > =C2=A0				 */
+> > -				op->map.is_cpu_addr_mirror =3D
+> > is_cpu_addr_mirror;
+> > +				op->map.vma_flags |=3D vma_flags &
+> > XE_VMA_CREATE_MASK;
+> > =C2=A0			}
+> > =C2=A0		}
+> > =C2=A0		print_op(vm->xe, __op);
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 413353e1c225..a3b422b27ae8 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -345,17 +345,10 @@ struct xe_vm {
+> > =C2=A0struct xe_vma_op_map {
+> > =C2=A0	/** @vma: VMA to map */
+> > =C2=A0	struct xe_vma *vma;
+> > +	unsigned int vma_flags;
+> > =C2=A0	/** @immediate: Immediate bind */
+> > =C2=A0	bool immediate;
+> > =C2=A0	/** @read_only: Read only */
+> > -	bool read_only;
+> > -	/** @is_null: is NULL binding */
+> > -	bool is_null;
+> > -	/** @is_cpu_addr_mirror: is CPU address mirror binding */
+> > -	bool is_cpu_addr_mirror;
+> > -	/** @dumpable: whether BO is dumped on GPU hang */
+> > -	bool dumpable;
+> > -	/** @invalidate: invalidate the VMA before bind */
+> > =C2=A0	bool invalidate_on_bind;
+> > =C2=A0	/** @pat_index: The pat index to use for this operation.
+> > */
+> > =C2=A0	u16 pat_index;
+> > --=20
+> > 2.51.0
+> >=20
+
