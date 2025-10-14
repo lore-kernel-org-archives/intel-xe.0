@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE4C9CCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B870CCD187
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:31:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B3A10E569;
-	Tue, 14 Oct 2025 07:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2035310E55F;
+	Tue, 14 Oct 2025 07:31:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K79XS+vb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MJN4ncAu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8259710E556;
- Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7238C10E55F
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 07:31:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760426039; x=1791962039;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yIboQlk5tTaUI55jQ3YOqfrmnwFIGE4cxawB+2dEVu4=;
- b=K79XS+vbLtWz6lSaLKPZyueRZVwkshw1k8MEkAwOC4yAkJpvLtNVDJUT
- v7OXDEYOL/yP8Q+hrmXAeLMxH1fjCFJ7sfgSuPQDLns77qMAW+4Utghb4
- lry5lRlQY5X8cs17xiufbbWJNznF8LPquSuA9tFx/vHSS9AqvJIGpsQ2/
- 8uLFLstDZdbxjWtbdYlBe0WWyp2SwxvqN5+N4AAVHgzOFULMwzkMVj3BL
- 54/WxOQ0z46XbFm+CbwQzx3M5rb6743zUVYzcV51RcjwdzOjcnjSQcuYb
- b9nXjt+b1FWNMd6XXJiUPKqMpTyqVIdSx3U2I+jZ0bIvPW5+Ms3cFSjsE w==;
-X-CSE-ConnectionGUID: ZVtgDrSoRzeZ3jakKI601w==
-X-CSE-MsgGUID: dC+sL3DnRxu4ZlJuPUmbpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257139"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257139"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:57 -0700
-X-CSE-ConnectionGUID: Qj9972weSA2T1fz3qDmX2A==
-X-CSE-MsgGUID: HUAh1kp1Sk2NRbxj6t2KWw==
+ t=1760427087; x=1791963087;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6kmEbICjJJ8Br5NCnpdGKJ9BdN6umCW/DXMP7aIf9TQ=;
+ b=MJN4ncAuYXO4AzJXB9fsIohZm2epwaRQe1tfypkZ+DYwu4VsfdpQBJ1l
+ yWG8thSyDI/3IjwRnGxpZauz0v6TkCDj9/mljUQ5dhLIipWVR4OLJRQYe
+ Cj7hBFIRbbX/rGACkP7A3dnVZD+k5zuK6zPmTuTNOGLsrxyAsFcFVD/P6
+ Ar2DlzCkdyx9yqXi1MbZMgx1Eg6DYjEqaRBZ9kWxSmANWZqDLYAhBlB5X
+ 7DTvz+Lo/YLH6jzOyOhz8cYceXSPP3rbmWbApA76d+E347OLwXbw0lgpX
+ OvQZyBA4Sf2zkR5dRgt3pP9kRqnExZ1dXqUALvi2/mI/AzvcHTxE0jJVx w==;
+X-CSE-ConnectionGUID: /gxU87TjRPGjpi7a/ZNmQQ==
+X-CSE-MsgGUID: kbVJxXJUSvO+iS4RtAM8MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62474471"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="62474471"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 00:31:26 -0700
+X-CSE-ConnectionGUID: eoturQ9ASBeM0M1KXP869g==
+X-CSE-MsgGUID: Jn17JLG9SMebTcMhbrwyRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369866"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:57 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Jason Gunthorpe <jgg@nvidia.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: [RFC 5/8] drm/xe/dma_buf: Add support for IOV interconnect
-Date: Tue, 14 Oct 2025 00:08:55 -0700
-Message-ID: <20251014071243.811884-6-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
-References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181826219"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa008.jf.intel.com with ESMTP; 14 Oct 2025 00:31:23 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: lucas.demarchi@intel.com,
+	rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v5 0/2] Introduce GT runtime suspend/resume
+Date: Tue, 14 Oct 2025 13:00:34 +0530
+Message-Id: <20251014073036.3282329-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,60 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Provide an op for supports_interconnects() to indicate to the
-dma-buf core and to the exporter that Xe supports interconnects.
-Note that Xe would support IOV interconnect only if the buffer
-is located in LMEM region.
+v2: Drop redundant xe_gt_sanitize() and xe_guc_ct_stop() (Daniele)
+    Use runtime naming for guc helpers (Daniele)
+    Split xe_guc_ct_enable() (Daniele)
 
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+v3: Drop redundant logging, add kernel doc (Michal)
+    Use runtime naming for ct helpers (Michal)
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index a7d67725c3ee..2d63dd86a249 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_prime.h>
- #include <drm/ttm/ttm_tt.h>
- 
-+#include "regs/xe_bars.h"
- #include "tests/xe_test.h"
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -274,9 +275,25 @@ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
- 	XE_WARN_ON(xe_bo_evict(bo, exec));
- }
- 
-+static bool
-+xe_dma_buf_supports_interconnects(struct dma_buf_attachment *attach,
-+				  const struct dma_buf_interconnect_match *exp,
-+				  unsigned int exp_ics)
-+{
-+	struct pci_dev *pdev = to_pci_dev(attach->dev);
-+	unsigned int bar = LMEM_BAR;
-+	const struct dma_buf_interconnect_match supports_ics[] = {
-+		CREATE_IOV_INTERCONNECT(pdev, bar),
-+	};
-+
-+	return dma_buf_match_interconnects(attach, exp, exp_ics, supports_ics,
-+					   ARRAY_SIZE(supports_ics));
-+}
-+
- static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
- 	.allow_peer2peer = true,
--	.move_notify = xe_dma_buf_move_notify
-+	.move_notify = xe_dma_buf_move_notify,
-+	.supports_interconnects = xe_dma_buf_supports_interconnects,
- };
- 
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+v4: Split xe_guc_ct_enable() patch (Rodrigo)
+    Fix tags (Rodrigo)
+
+v5: Include host_l2_vram workaround (Daniele)
+    Reuse xe_guc_submit_enable/disable() helpers (Daniele)
+
+Raag Jadav (2):
+  drm/xe/guc: Make xe_guc_submit_pause() available for non-VF cases
+  drm/xe/gt: Introduce runtime suspend/resume
+
+ drivers/gpu/drm/xe/xe_gt.c         | 60 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h         |  2 +
+ drivers/gpu/drm/xe/xe_guc.c        | 34 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h        |  2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c     | 27 ++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h     |  2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c |  2 -
+ drivers/gpu/drm/xe/xe_pm.c         | 10 ++---
+ drivers/gpu/drm/xe/xe_uc.c         | 28 ++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.h         |  2 +
+ 10 files changed, 162 insertions(+), 7 deletions(-)
+
 -- 
-2.50.1
+2.34.1
 
