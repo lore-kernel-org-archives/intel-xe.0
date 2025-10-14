@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF42CCD195
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43FC2CCD196
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 16:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A3B10E66B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCECA10E66C;
 	Tue, 14 Oct 2025 16:48:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ses/43Bb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WIMhSz77";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99D2610E203
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5BAE10E203
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 16:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760460482; x=1791996482;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UJY0dUlDYc8GA3tyKMmKtl+aO76mdNkJ6GUEwU9OzX4=;
- b=Ses/43BblHmsoiw9wXJwz5O58rN7KpKN9XduFsTfdDY0Jgj6nxgL6DAM
- lstB/BuZL7hFhhSnS46eaJnvsAmFxWOKF9mFx3Axs4ne7B3D28qykZ1wo
- qNEPX0crPVQgwApiqoGJEuMvdFy2G6Ceej87JlwUY9xrvhwyhsikknoEi
- pP5NQVC3QIUMWx8XCbPkWIaRjgA/1PAJ1K4TYMM86XX/3n+sw1WgknYcp
- 6ItbPaw/dqdOIKplww11lTrWBF3DMY4TXEWOWsG1HlOFRfOvFgoG//KK1
- YZoJB4QBLVgY8j66MXg3+D5cSOr2wkAhKR+d/s+e1G71IMBaA7uO0E+IE w==;
-X-CSE-ConnectionGUID: C2u9mFUtQRO6gdyvDw18Fg==
-X-CSE-MsgGUID: 0z5ctJGlTg6Y0JZ89x8f+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="80063044"
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="80063044"
+ bh=PwmiX+MuMonqZJG96+eTyEQXzhqInq7NdQimIfhWZB0=;
+ b=WIMhSz7775YbpnidMRYqJU5NeYZznIo11K8JW2LnYcuYZjsQyHJZlqM1
+ P88w2XK5d0t5PB0ShWdGF2jMAbn7H2DRCI6JJTmWi6FKOi6rA49vYbCCO
+ cV6aNpy1FnuiJ6FyWPlCGs3pTDE1JL96xA///cl8zLc0yKRD6vA/UHYwr
+ P7wfw5XIao9X2y3op4VgzTqXM3vPKZJaDsG6/pCRO2ssYABALHr/oMIUP
+ cj35BHkPgHLYMfAPJT5UfGFeG/zpSJdByq6oheNxiqgPKwSelqIfGXUvj
+ SGCh367xdf8xDnFilZTS6tO3griCcYr4dgBT0kCwkwpULdWFYjUsgAaPZ g==;
+X-CSE-ConnectionGUID: OcypH0j0Q86TGfo0FSZz7Q==
+X-CSE-MsgGUID: l4zS1NKNRNOpmEMhvZu91Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="80063046"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="80063046"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 09:48:01 -0700
-X-CSE-ConnectionGUID: FuGatJykRQ2wVOP9JiNn9w==
-X-CSE-MsgGUID: S1XUJeu/SEuZmFhqQwm4vA==
+ 14 Oct 2025 09:48:02 -0700
+X-CSE-ConnectionGUID: HDMSoktzSYm1rM7Q+mLLcw==
+X-CSE-MsgGUID: t/oaoRoPR/iP2bKbYwU49w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="186184684"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="186184690"
 Received: from dut4443lnl.fm.intel.com ([10.105.8.76])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 09:48:01 -0700
@@ -46,10 +46,9 @@ To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
  rodrigo.vivi@intel.com, tejas.upadhyay@intel.com
-Subject: [PATCH v3 2/7] drm/xe: Don't call xe_device_lookup_gt twice in
- xe_hw_engine_lookup
-Date: Tue, 14 Oct 2025 16:48:01 +0000
-Message-ID: <20251014164758.125598-11-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 4/7] drm/xe: Guard against NULL GT in xe_sriov_vf.c
+Date: Tue, 14 Oct 2025 16:48:03 +0000
+Message-ID: <20251014164758.125598-13-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251014164758.125598-9-jonathan.cavitt@intel.com>
 References: <20251014164758.125598-9-jonathan.cavitt@intel.com>
@@ -69,32 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already initialize a
-struct xe_gt *gt = xe_device_lookup_gt(xe, eci.gt_id)
-in xe_hw_engine_lookup to ensure the given gt_id is valid.
-We don't need to call xe_device_lookup_gt again to pass the same
-gt to xe_gt_hw_engine in xe_hw_engine_lookup.
+Static analysis reveals the following issue:
+xe_device_lookup_gt is theoretically able to return NULL in some cases,
+but several use cases don't check the return value before performing a
+dereference, resulting in a NULL pointer dereference.
+
+Use xe_device_get_gt in places where this is a relevant issue.
+
+v2:
+ - Use xe_assert in vf_post_migration_recovery (Michal)
+v3:
+ - Rebase
+ - Use xe_device_get_gt
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_sriov_vf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index d00cd37c0c5c..db66708ca386 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -1073,7 +1073,6 @@ xe_hw_engine_lookup(struct xe_device *xe,
- 	idx = array_index_nospec(eci.engine_class,
- 				 ARRAY_SIZE(user_to_xe_engine_class));
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
+index 189b307901a3..911d5720917b 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
+@@ -166,7 +166,7 @@ static void vf_migration_init_early(struct xe_device *xe)
+ 	if (!IS_DGFX(xe)) {
+ 		struct xe_uc_fw_version guc_version;
  
--	return xe_gt_hw_engine(xe_device_lookup_gt(xe, eci.gt_id),
--			       user_to_xe_engine_class[idx],
-+	return xe_gt_hw_engine(gt, user_to_xe_engine_class[idx],
- 			       eci.engine_instance, true);
- }
+-		xe_gt_sriov_vf_guc_versions(xe_device_lookup_gt(xe, 0), NULL, &guc_version);
++		xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
+ 		if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 23, 0))
+ 			return vf_disable_migration(xe,
+ 						    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
 -- 
 2.43.0
 
