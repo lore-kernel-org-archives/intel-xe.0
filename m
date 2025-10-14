@@ -4,55 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C42CCD190
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25423CCD194
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48A4310E566;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E266B10E568;
 	Tue, 14 Oct 2025 07:14:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1Y8Cj5I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a28iVxT7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13BB610E556;
- Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17C010E556;
+ Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760426040; x=1791962040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=El6NYrXPZJg2JthYHW5V9bH56p5bvPHuTCM1ObR1r+c=;
- b=P1Y8Cj5IogElRnDIdhPMMg2luWGZ3yL7QaSXOptDyQN4ohJFoNbgrBxZ
- Xi2ANO0iC+XJ0nYMfWGtiTlB2tn4fJWgFV5hqYZzZfk7jdMeA46Gw+T7M
- eJO8NIvlVZYcHtdgr3yLo5Nek+DVyi+2MxGm6vRfUEdW7HpR0T+8+QDqI
- sq4gw80gaHaZ1tKLelp1EUKH2pm74SES1pdZKsntQPytctIIZmnrwmUIr
- QE+c44646yAp0OAx4Mcy3Y3hcKEw3aFdT78rp7khOR1JHUyJDLiXUkdle
- +YT4DDGwrVqSBw8O1a14R8qufrIT4NC2cW1iv3RoBFPs8GBih0JVO7UuB Q==;
-X-CSE-ConnectionGUID: zSnn666qRGqrQiqzBmJMSA==
-X-CSE-MsgGUID: 33aHEPThQu2t1uv7MqhARQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257155"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257155"
+ bh=5ieEvSJqbDmNfjTwrrLAWK98z4h+TuffhyYkWmricG8=;
+ b=a28iVxT7kwU2ZQo/cljcRlJaN71gFg4ygC4GNJWcyItPLcXaKRpAaUdN
+ RiXGEeQvJnEx+p03L1lz9P8mNOIryLBY0srYbD+j6QsCvS/e26LlO6u3j
+ Z+9z/OIC+jfYsMt36/QLbJl+G6AoIwAgzB+hIMYaRMECvASvHrtPTAqDG
+ wlOiuic577s4VeZp1DIqxmTvXDvmfOzpn5wtXU45ZvDtTFWcU3VjTDOc7
+ 57adMK2PPlyTw6cBYJeaDkIdTfreGpu/KHyg4D9R9VI8in/Qks1G78Cx0
+ CYptnD1sRXt7Kso39UMV6eENCDh3IiQ/pAen4bOOZ5XA1Hh6O18hJ0NXK Q==;
+X-CSE-ConnectionGUID: UM46mv2dSlap/C0F6swlSQ==
+X-CSE-MsgGUID: X+9BE326SxO3sqaYhU3vXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257149"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257149"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 00:13:59 -0700
-X-CSE-ConnectionGUID: QuIWljbRRoa26hMH3wExPA==
-X-CSE-MsgGUID: 6uDrOax0QDiuA8AXvcj37w==
+X-CSE-ConnectionGUID: xnweO6cwRoGzNDVsuvCsww==
+X-CSE-MsgGUID: lSI1OuOZTWyCtTPEuj01Bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369878"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369859"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:58 -0700
+ 14 Oct 2025 00:13:57 -0700
 From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Subject: [RFC 8/8] drm/xe/pt: Add an additional check for dmabuf BOs while
- doing bind
-Date: Tue, 14 Oct 2025 00:08:58 -0700
-Message-ID: <20251014071243.811884-9-vivek.kasireddy@intel.com>
+Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ Jason Gunthorpe <jgg@nvidia.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: [RFC 3/8] dma-buf: Add support for IOV interconnect
+Date: Tue, 14 Oct 2025 00:08:53 -0700
+Message-ID: <20251014071243.811884-4-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,49 +73,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a BO's is_devmem_external flag is set, it means that it is an
-imported dmabuf BO that has a backing store in VRAM. Therefore, in
-this case, need to iterate over its dma_addr array.
+The IOV interconnect is a virtual interconnect between an SRIOV
+physical function (PF) and its virtual functions (VFs). In order
+for negotiation (or match) to succeed, the exporter is expected
+to be a VF while the importer is expected to be the PF.
 
-v2:
-- Use a cursor to iterate over the entries in the dma_addr array
-  instead of relying on SG iterator (Matt)
-
-v3:
-- Since XE_PPGTT_PTE_DM is added to the PTE flags in all cases,
-  remove the bo->is_devmem_external check added in v2
-
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Christian Koenig <christian.koenig@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ include/linux/dma-buf-interconnect.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index a1c88f9a6c76..5cc3775a3a12 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -759,6 +759,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+diff --git a/include/linux/dma-buf-interconnect.h b/include/linux/dma-buf-interconnect.h
+index a72f65ed4806..b569dcab86ce 100644
+--- a/include/linux/dma-buf-interconnect.h
++++ b/include/linux/dma-buf-interconnect.h
+@@ -3,8 +3,17 @@
+ #ifndef __DMA_BUF_INTERCONNECT_H__
+ #define __DMA_BUF_INTERCONNECT_H__
  
- 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
- 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
-+
-+	if (bo && bo->is_devmem_external)
-+		xe_walk.dma_offset = 0;
-+
- 	if (!range)
- 		xe_bo_assert_held(bo);
++#include <linux/pci.h>
+ #include <linux/xarray.h>
  
-@@ -769,6 +773,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
- 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
- 				     xe_vma_size(vma), &curs);
-+		else if (bo && bo->is_devmem_external)
-+			xe_res_first_dma(bo->dma_data.dma_addr,
-+					 xe_vma_bo_offset(vma),
-+					 xe_vma_size(vma), &curs);
- 		else
- 			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
- 					xe_vma_size(vma), &curs);
++#define CREATE_IOV_INTERCONNECT(pdev, bar) {		\
++	&(const struct dma_buf_iov_interconnect) {	\
++		.base.type = DMA_BUF_INTERCONNECT_IOV,	\
++		.pdev = (pdev),				\
++		.bar = (bar),				\
++	}.base						\
++}
++
+ struct dma_buf_attachment;
+ 
+ struct dma_buf_ranges {
+@@ -14,6 +23,7 @@ struct dma_buf_ranges {
+ 
+ enum dma_buf_interconnect_type {
+ 	DMA_BUF_INTERCONNECT_NONE = 0,
++	DMA_BUF_INTERCONNECT_IOV,
+ };
+ 
+ struct dma_buf_interconnect {
+@@ -24,6 +34,12 @@ struct dma_buf_interconnect_match {
+ 	const struct dma_buf_interconnect *interconnect;
+ };
+ 
++struct dma_buf_iov_interconnect {
++	struct dma_buf_interconnect base;
++	struct pci_dev *pdev;
++	unsigned int bar;
++};
++
+ struct dma_buf_interconnect_ops {
+ 	int (*map_interconnect)(struct dma_buf_attachment *attach,
+ 				struct dma_buf_ranges *ranges);
 -- 
 2.50.1
 
