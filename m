@@ -4,40 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F55ECCD190
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 02:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1AACCD183
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 02:26:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C519110E04A;
-	Tue, 14 Oct 2025 02:18:06 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F0A10E04A
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 02:18:05 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id D2A763F116;
- Tue, 14 Oct 2025 04:18:02 +0200 (CEST)
-Message-ID: <7b89fed3-3b8f-4787-8ef4-17f24477d829@hogyros.de>
-Date: Tue, 14 Oct 2025 11:17:59 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8310E04A;
+	Tue, 14 Oct 2025 02:26:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="fyFGhwJW";
+	dkim-atps=neutral
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A379510E04A;
+ Tue, 14 Oct 2025 02:26:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=0W7I+dl8DSQnGqmj60m9MouHseze8cJzELVYWnnCpck=; b=fyFGhwJWKeaMWloZ6aKJi7zS1X
+ 5kwXYznOeKHxCx0ieLGqPVcCGOR6SiaWWpvIGR20azRC/fXkZ/gq8iiDdbbv+cLCK/mBkyW1a+LcM
+ 4p7h3zyt909nD7TPUtWzGQjseHGvhy5qSrswlJa/mA9t7JJm9KFtjhNsGe6nDd2rY0rVJ/gfiH4sX
+ otNKI+yW4Aa5SWX7Y2T+frEPgBpQjBol9Xh2J3wUXMMzSt1P3sXigxiiK81aOmojoysLCwB/S8bzg
+ lARTRZ1rZ83ELAsJUoLiPTXuC0pB8EVQKD13CimOergJDpR7KVC0Kc1kPWo+qd+DcyK1MkdHnmkHW
+ T9/wfgJQ==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1v8UkB-0000000EyRP-0ns0; Tue, 14 Oct 2025 02:26:31 +0000
+Message-ID: <00e1ffa0-1576-43da-9c65-38f2d912d28e@infradead.org>
+Date: Mon, 13 Oct 2025 19:26:30 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] drm/xe: Enable 2M pages in xe_migrate_vram
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Auld, Matthew" <matthew.auld@intel.com>
-References: <20251013034555.4121168-1-matthew.brost@intel.com>
- <20251013034555.4121168-3-matthew.brost@intel.com>
- <a435a2a974b8627c945471e75c4dc21b835e9d22.camel@intel.com>
- <aO0zhM9xAMlnUDea@lstrano-desk.jf.intel.com>
- <acdd0cfc8e700710ee5b43c816cdf7de3f57b374.camel@intel.com>
+Subject: Re: [PATCH] drm/xe: xe_guc_pc.c: fix DOC underlines
+From: Randy Dunlap <rdunlap@infradead.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Linux Documentation <linux-doc@vger.kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+References: <20251013182827.733781-1-rdunlap@infradead.org>
+ <aO1aCNMPKTNZta4V@intel.com>
+ <a9226ec9-d98b-49ea-a589-c1c2880cfbfb@infradead.org>
 Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <acdd0cfc8e700710ee5b43c816cdf7de3f57b374.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <a9226ec9-d98b-49ea-a589-c1c2880cfbfb@infradead.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,23 +66,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+[correction]
 
-On 10/14/25 2:22 AM, Summers, Stuart wrote:
+On 10/13/25 7:08 PM, Randy Dunlap wrote:
+> Hi,
+> 
+> On 10/13/25 12:59 PM, Rodrigo Vivi wrote:
+>> On Mon, Oct 13, 2025 at 11:28:26AM -0700, Randy Dunlap wrote:
+>>> Apparently a recent change in docutils has made checking of section
+>>> heading levels (underline style) be more careful.
+>>>
+>>> There are 2 heading underline style errors reported here. Repair them by
+>>> changing the underline style from Chapter (using '=') to Section (using
+>>> '-') since they are used within a Chapter already (in xe_firmware.rst).
+>>>
+>>> """
+>>> Documentation/gpu/xe/xe_firmware.rst:31: drivers/gpu/drm/xe/xe_guc_pc.c:75: ERROR: A level 2 section cannot be used here.
+>>>
+>>> Frequency management:
+>>> =====================
+>>>
+>>> Established title styles: =/= =
+>>>
+>>> The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+>>> One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+>>> (up to Docutils 0.21, these sections were silently dropped). [docutils]
+>>> Documentation/gpu/xe/xe_firmware:31: ../drivers/gpu/drm/xe/xe_guc_pc.c:86: ERROR: A level 2 section cannot be used here.
+>>>
+>>> Render-C States:
+>>> ================
+>>>
+>>> Established title styles: =/= =
+>>>
+>>> The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+>>> One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+>>> (up to Docutils 0.21, these sections were silently dropped). [docutils]
+>>
+>> Nothing against this change, but I'd like to understand more on what has
+>> actually changed. I have docutils 0.21.2 here and I cannot see this error.
+>>
+> 
+> Hm, I now have Docutils 0.22.2 and I also cannot reproduce this issue.
+> 
 
-> So according to https://docs.kernel.org/admin-guide/mm/hugetlbpage.html
-> we can potentially get 4M-256M pages on some architectures.
+I cannot reproduce it with my patch applied!  :(
+Without the patch applied, I do see still see this.
 
-These exist but will not be the finest granularity on those 
-architectures, so these should never appear as PAGE_SIZE.
+>> Perhaps it was a temporary bug in docutils 0.21.0 or 0.21.1 ?
+> 
+> Yes, maybe.
+> 
+> I suggest that we drop this patch.
+> Thanks for your assistance.
+I am now copying linux-doc, which I should have done to begin with.
 
-The kernel is unable to load executables that have a smaller alignment 
-than PAGE_SIZE for their loadable segments, so that gives a nice upper 
-bound for what we need to expect.
+@linux-doc: I am seeing the above (2) docs build errors, reportedlyfrom docutils (v0.22.2).
 
-There might be places that make the assumption that if there is a 
-hugetlb size that the host supports, it will be 2M, but the worst thing 
-that can happen there is a fallback to PAGE_SIZE and slightly degraded 
-performance.
+Rodrigo (DRM XE maintainer) cannot reproduce the docs build error.
 
-    Simon
+Does anyone have any ideas about this?
+[patch copied below] [also:
+https://lore.kernel.org/dri-devel/a9226ec9-d98b-49ea-a589-c1c2880cfbfb@infradead.org/T/#m4e3005311d19eef3d24fc7a4c7129de0ff322f9c]
+
+
+Thanks.
+
+-- 
+From: Randy Dunlap <rdunlap@infradead.org>
+Subject: [PATCH] drm/xe: xe_guc_pc.c: fix DOC underlines
+
+Apparently a recent change in docutils has made checking of section
+heading levels (underline style) be more careful.
+
+There are 2 heading underline style errors reported here. Repair them by
+changing the underline style from Chapter (using '=') to Section (using
+'-') since they are used within a Chapter already (in xe_firmware.rst).
+
+"""
+Documentation/gpu/xe/xe_firmware.rst:31: drivers/gpu/drm/xe/xe_guc_pc.c:75: ERROR: A level 2 section cannot be used here.
+
+Frequency management:
+=====================
+
+Established title styles: =/= =
+
+The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+(up to Docutils 0.21, these sections were silently dropped). [docutils]
+Documentation/gpu/xe/xe_firmware:31: ../drivers/gpu/drm/xe/xe_guc_pc.c:86: ERROR: A level 2 section cannot be used here.
+
+Render-C States:
+================
+
+Established title styles: =/= =
+
+The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+(up to Docutils 0.21, these sections were silently dropped). [docutils]
+"""
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+---
+Sorry for the resend. I didn't have .gitconfig present so parts of
+this didn't work as intended.
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- linux-next-20251013.orig/drivers/gpu/drm/xe/xe_guc_pc.c
++++ linux-next-20251013/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -74,8 +74,8 @@
+  * connected power conservation features in the GuC firmware. The firmware
+  * exposes a programming interface to the host for the control of SLPC.
+  *
+- * Frequency management:
+- * =====================
++ * Frequency management
++ * --------------------
+  *
+  * Xe driver enables SLPC with all of its defaults features and frequency
+  * selection, which varies per platform.
+@@ -85,8 +85,8 @@
+  * thus saving power. Base profile is default and ensures balanced performance
+  * for any workload.
+  *
+- * Render-C States:
+- * ================
++ * Render-C States
++ * ---------------
+  *
+  * Render-C states is also a GuC PC feature that is now enabled in Xe for
+  * all platforms.
