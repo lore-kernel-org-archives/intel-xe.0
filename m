@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D581ACCD193
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 16:48:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF42CCD195
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 16:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7169610E203;
-	Tue, 14 Oct 2025 16:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6A3B10E66B;
+	Tue, 14 Oct 2025 16:48:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="loeezLQm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ses/43Bb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C413410E668
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D2610E203
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 16:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760460482; x=1791996482;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BE4zIUOQtl4jvLoSVADAEl2NfRFNO85z7rlNBhYd8Cw=;
- b=loeezLQmaKAL1L67h5jYAkgR6vGA4idHTzjMyxZjLLwdszO6wHjZq4+b
- 7O/WzmtNLYCWr5kWpCRugctoJ9NqlpWW6GASnz1soG5cRus6Fkp6P3o2C
- ivtHYEJUiAFbsk4Wbh0LXXjo5K17tqV1VOAFrgK1clpfpNqGDE24DinpW
- 6s0TabR940JZWFCBxyd5dBNbift8cIYrxPPIlUoPMyDjqNdAbOFp5G5EY
- cHfKEWEw8MIPjNVphTQFr1Cb1EIm2L3RKxWMx+Y1KXvN8fuDLNTcjwEi3
- ciIL2tRz3Zts4DdUIr56dnSfodILQUmRlRvODqHnGoHIpjcZ9KXLNxqA7 A==;
-X-CSE-ConnectionGUID: 46HSLTsWT2ujFeR++0cxrQ==
-X-CSE-MsgGUID: WQdJFneaTZidpq/tYis4Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="80063045"
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="80063045"
+ bh=UJY0dUlDYc8GA3tyKMmKtl+aO76mdNkJ6GUEwU9OzX4=;
+ b=Ses/43BblHmsoiw9wXJwz5O58rN7KpKN9XduFsTfdDY0Jgj6nxgL6DAM
+ lstB/BuZL7hFhhSnS46eaJnvsAmFxWOKF9mFx3Axs4ne7B3D28qykZ1wo
+ qNEPX0crPVQgwApiqoGJEuMvdFy2G6Ceej87JlwUY9xrvhwyhsikknoEi
+ pP5NQVC3QIUMWx8XCbPkWIaRjgA/1PAJ1K4TYMM86XX/3n+sw1WgknYcp
+ 6ItbPaw/dqdOIKplww11lTrWBF3DMY4TXEWOWsG1HlOFRfOvFgoG//KK1
+ YZoJB4QBLVgY8j66MXg3+D5cSOr2wkAhKR+d/s+e1G71IMBaA7uO0E+IE w==;
+X-CSE-ConnectionGUID: C2u9mFUtQRO6gdyvDw18Fg==
+X-CSE-MsgGUID: 0z5ctJGlTg6Y0JZ89x8f+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="80063044"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="80063044"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 09:48:01 -0700
-X-CSE-ConnectionGUID: a+SWAHSFQW2Y+wOGs4lDmA==
-X-CSE-MsgGUID: /gf8ApCCSUWcn7ejRTtLfg==
+X-CSE-ConnectionGUID: FuGatJykRQ2wVOP9JiNn9w==
+X-CSE-MsgGUID: S1XUJeu/SEuZmFhqQwm4vA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="186184687"
+X-IronPort-AV: E=Sophos;i="6.19,228,1754982000"; d="scan'208";a="186184684"
 Received: from dut4443lnl.fm.intel.com ([10.105.8.76])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 09:48:01 -0700
@@ -46,9 +46,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
  rodrigo.vivi@intel.com, tejas.upadhyay@intel.com
-Subject: [PATCH v3 3/7] drm/xe/xe_device: Reintroduce xe_device_get_gt
-Date: Tue, 14 Oct 2025 16:48:02 +0000
-Message-ID: <20251014164758.125598-12-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 2/7] drm/xe: Don't call xe_device_lookup_gt twice in
+ xe_hw_engine_lookup
+Date: Tue, 14 Oct 2025 16:48:01 +0000
+Message-ID: <20251014164758.125598-11-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251014164758.125598-9-jonathan.cavitt@intel.com>
 References: <20251014164758.125598-9-jonathan.cavitt@intel.com>
@@ -68,44 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reintroduce the function xe_device_get_gt, as it was earlier renamed to
-xe_device_lookup_gt.  It performs the same functionality as
-xe_device_lookup_gt, but it guarantees the xe_gt pointer returned is not
-NULL using an assertion.
+We already initialize a
+struct xe_gt *gt = xe_device_lookup_gt(xe, eci.gt_id)
+in xe_hw_engine_lookup to ensure the given gt_id is valid.
+We don't need to call xe_device_lookup_gt again to pass the same
+gt to xe_gt_hw_engine in xe_hw_engine_lookup.
 
-Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 807db49a5306..af9476879454 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -97,6 +97,21 @@ static inline struct xe_gt *xe_device_lookup_gt(struct xe_device *xe, u8 gt_id)
- 	return gt;
- }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index d00cd37c0c5c..db66708ca386 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -1073,7 +1073,6 @@ xe_hw_engine_lookup(struct xe_device *xe,
+ 	idx = array_index_nospec(eci.engine_class,
+ 				 ARRAY_SIZE(user_to_xe_engine_class));
  
-+/**
-+ * xe_device_get_gt() - Same as xe_device_lookup_gt, but return must not be NULL
-+ * @xe: The XE device to search
-+ * @gt_id: The ID of the GT to search for
-+ *
-+ * Returns a pointer to the xe_gt struct with the given gt_id.
-+ */
-+static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
-+{
-+	struct xe_gt *gt = xe_device_lookup_gt(xe, gt_id);
-+
-+	xe_assert(xe, gt);
-+	return gt;
-+}
-+
- /*
-  * Provide a GT structure suitable for performing non-GT MMIO operations against
-  * the primary tile.  Primarily intended for early tile initialization, display
+-	return xe_gt_hw_engine(xe_device_lookup_gt(xe, eci.gt_id),
+-			       user_to_xe_engine_class[idx],
++	return xe_gt_hw_engine(gt, user_to_xe_engine_class[idx],
+ 			       eci.engine_instance, true);
+ }
 -- 
 2.43.0
 
