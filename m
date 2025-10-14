@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A459CCD185
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 02:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86377CCD185
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 02:45:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1005A10E526;
-	Tue, 14 Oct 2025 02:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3663110E526;
+	Tue, 14 Oct 2025 02:45:58 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D27710E526;
- Tue, 14 Oct 2025 02:40:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4785638569631025590=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4510D10E526;
+ Tue, 14 Oct 2025 02:45:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/vf=3A_Minor_fixes_to?=
- =?utf-8?q?_post-migration_recovery?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_xe=5Fguc=5Fpc?=
+ =?utf-8?q?=2Ec=3A_fix_DOC_underlines_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
+To: "Randy Dunlap" <rdunlap@infradead.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Oct 2025 02:40:45 -0000
-Message-ID: <176040964511.9061.1465237591558974562@97596180aaec>
+Date: Tue, 14 Oct 2025 02:45:56 -0000
+Message-ID: <176040995627.9061.13544569090880694308@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251014004418.378928-1-tomasz.lis@intel.com>
-In-Reply-To: <20251014004418.378928-1-tomasz.lis@intel.com>
+References: <20251013182827.733781-1-rdunlap@infradead.org>
+In-Reply-To: <20251013182827.733781-1-rdunlap@infradead.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,168 +40,120 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4785638569631025590==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/vf: Minor fixes to post-migration recovery
-URL   : https://patchwork.freedesktop.org/series/155865/
-State : failure
+Series: drm/xe: xe_guc_pc.c: fix DOC underlines (rev2)
+URL   : https://patchwork.freedesktop.org/series/155851/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -> xe-pw-155865v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1d98815b14fd8ffe1daeae51d54bc8c412f66566
+Author: Randy Dunlap <rdunlap@infradead.org>
+Date:   Mon Oct 13 19:26:30 2025 -0700
 
-Summary
--------
+    drm/xe: xe_guc_pc.c: fix DOC underlines
+    
+    [correction]
+    
+    On 10/13/25 7:08 PM, Randy Dunlap wrote:
+    > Hi,
+    >
+    > On 10/13/25 12:59 PM, Rodrigo Vivi wrote:
+    >> On Mon, Oct 13, 2025 at 11:28:26AM -0700, Randy Dunlap wrote:
+    >>> Apparently a recent change in docutils has made checking of section
+    >>> heading levels (underline style) be more careful.
+    >>>
+    >>> There are 2 heading underline style errors reported here. Repair them by
+    >>> changing the underline style from Chapter (using '=') to Section (using
+    >>> '-') since they are used within a Chapter already (in xe_firmware.rst).
+    >>>
+    >>> """
+    >>> Documentation/gpu/xe/xe_firmware.rst:31: drivers/gpu/drm/xe/xe_guc_pc.c:75: ERROR: A level 2 section cannot be used here.
+    >>>
+    >>> Frequency management:
+    >>> =====================
+    >>>
+    >>> Established title styles: =/= =
+    >>>
+    >>> The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+    >>> One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+    >>> (up to Docutils 0.21, these sections were silently dropped). [docutils]
+    >>> Documentation/gpu/xe/xe_firmware:31: ../drivers/gpu/drm/xe/xe_guc_pc.c:86: ERROR: A level 2 section cannot be used here.
+    >>>
+    >>> Render-C States:
+    >>> ================
+    >>>
+    >>> Established title styles: =/= =
+    >>>
+    >>> The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+    >>> One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+    >>> (up to Docutils 0.21, these sections were silently dropped). [docutils]
+    >>
+    >> Nothing against this change, but I'd like to understand more on what has
+    >> actually changed. I have docutils 0.21.2 here and I cannot see this error.
+    >>
+    >
+    > Hm, I now have Docutils 0.22.2 and I also cannot reproduce this issue.
+    >
+    
+    I cannot reproduce it with my patch applied!  :(
+    Without the patch applied, I do see still see this.
+    
+    >> Perhaps it was a temporary bug in docutils 0.21.0 or 0.21.1 ?
+    >
+    > Yes, maybe.
+    >
+    > I suggest that we drop this patch.
+    > Thanks for your assistance.
+    I am now copying linux-doc, which I should have done to begin with.
+    
+    @linux-doc: I am seeing the above (2) docs build errors, reportedlyfrom docutils (v0.22.2).
+    
+    Rodrigo (DRM XE maintainer) cannot reproduce the docs build error.
+    
+    Does anyone have any ideas about this?
+    [patch copied below] [also:
+    https://lore.kernel.org/dri-devel/a9226ec9-d98b-49ea-a589-c1c2880cfbfb@infradead.org/T/#m4e3005311d19eef3d24fc7a4c7129de0ff322f9c]
+    
+    Thanks.
+    
+    =====================
+    
+    Established title styles: =/= =
+    
+    The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+    One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+    (up to Docutils 0.21, these sections were silently dropped). [docutils]
+    Documentation/gpu/xe/xe_firmware:31: ../drivers/gpu/drm/xe/xe_guc_pc.c:86: ERROR: A level 2 section cannot be used here.
+    
+    Render-C States:
+    ================
+    
+    Established title styles: =/= =
+    
+    The parent of level 2 sections cannot be reached. The parser is at section level 2 but the current node has only 0 parent section(s).
+    One reason may be a high level section used in a directive that parses its content into a base node not attached to the document
+    (up to Docutils 0.21, these sections were silently dropped). [docutils]
+    """
+    
+    Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+    Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
++ /mt/dim checkpatch c917f7d11493984be9f381ca0a7667bd3e587ada drm-intel
+1d98815b14fd drm/xe: xe_guc_pc.c: fix DOC underlines
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+>>> There are 2 heading underline style errors reported here. Repair them by
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-155865v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-155865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-155865v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@xe_module_load@load:
-    - bat-adlp-vm:        [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-vm/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-vm/igt@xe_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155865v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [PASS][5] -> [DMESG-WARN][6] ([Intel XE#4543]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -> xe-pw-155865v1
-
-  IGT_8582: 8582
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada
-  xe-pw-155865v1: 155865v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/index.html
-
---===============4785638569631025590==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Minor fixes to post-migration recovery</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155865/">https://patchwork.freedesktop.org/series/155865/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -&gt; xe-pw-155865v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-155865v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-155865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-155865v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-vm/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155865v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155865v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -&gt; xe-pw-155865v1</li>
-</ul>
-<p>IGT_8582: 8582<br />
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada<br />
-  xe-pw-155865v1: 155865v1</p>
-
-</body>
-</html>
-
---===============4785638569631025590==--
