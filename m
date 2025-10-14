@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94ADFCCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 04:22:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADB0CCCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 04:28:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52AE910E1B2;
-	Tue, 14 Oct 2025 04:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E17C10E52C;
+	Tue, 14 Oct 2025 04:28:05 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6BBE10E1B2;
- Tue, 14 Oct 2025 04:22:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0361872654536902602=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33B5A10E535;
+ Tue, 14 Oct 2025 04:28:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_Xe3p_support?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Destroy_LR_?=
+ =?utf-8?q?exec_queue_directly_if_GuC_is_not_running?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Oct 2025 04:22:48 -0000
-Message-ID: <176041576867.9061.2578613122807271625@97596180aaec>
+Date: Tue, 14 Oct 2025 04:28:04 -0000
+Message-ID: <176041608420.9061.16871550552342977423@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
-In-Reply-To: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
+References: <20251014033646.1619865-2-shuicheng.lin@intel.com>
+In-Reply-To: <20251014033646.1619865-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,121 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0361872654536902602==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Add Xe3p support
-URL   : https://patchwork.freedesktop.org/series/155866/
-State : success
+Series: drm/xe/guc: Destroy LR exec queue directly if GuC is not running
+URL   : https://patchwork.freedesktop.org/series/155867/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -> xe-pw-155866v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ea3fd31ee1e3dd4c70d67f90b7fc36e748ff4a7
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Tue Oct 14 03:36:47 2025 +0000
 
-Summary
--------
+    drm/xe/guc: Destroy LR exec queue directly if GuC is not running
+    
+    During LR exec queue cleanup, if the GuC firmware is not running,
+    the driver cannot communicate with the GuC to properly deregister
+    the exec queue. In this case, directly destroy the exec queue
+    instead of attempting deregistration.
+    
+    This prevents schedule disable failure and GuC ID resource leaks as
+    below dmesg log:
+    "
+    [   50.242564] pci 0000:03:00.0: [drm] GT0: Schedule disable failed to respond, guc_id=2
+    [   50.242568] ------------[ cut here ]------------
+    [   50.242584] pci 0000:03:00.0: [drm] Assertion `ret` failed!
+    ...
+    [   50.244942] pci 0000:03:00.0: [drm] *ERROR* GT0: GUC ID manager unclean (1/65535)
+    [   50.244970] pci 0000:03:00.0: [drm] GT0:     total 65535
+    [   50.245002] pci 0000:03:00.0: [drm] GT0:     used 1
+    [   50.245032] pci 0000:03:00.0: [drm] GT0:     range 2..2 (1)
+    "
+    
+    Fixes: 8ae8a2e8dd21 ("drm/xe: Long running job update")
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch c917f7d11493984be9f381ca0a7667bd3e587ada drm-intel
+4ea3fd31ee1e drm/xe/guc: Destroy LR exec queue directly if GuC is not running
+-:50: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:1068:
++		/* If GuC is not running, just destroy the exec queue as we can't communicate with it */
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155866v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@b-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155866v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -> xe-pw-155866v1
-
-  IGT_8582: 8582
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada
-  xe-pw-155866v1: 155866v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155866v1/index.html
-
---===============0361872654536902602==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 31 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add Xe3p support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155866/">https://patchwork.freedesktop.org/series/155866/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155866v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155866v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -&gt; xe-pw-155866v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155866v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155866v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -&gt; xe-pw-155866v1</li>
-</ul>
-<p>IGT_8582: 8582<br />
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada<br />
-  xe-pw-155866v1: 155866v1</p>
-
-</body>
-</html>
-
---===============0361872654536902602==--
