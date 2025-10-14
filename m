@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3DE6CCD183
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 00:58:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BF1CCD185
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 01:04:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7949310E511;
-	Tue, 14 Oct 2025 00:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EA110E179;
+	Tue, 14 Oct 2025 01:04:05 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 395C710E511;
- Tue, 14 Oct 2025 00:58:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6340458505231159625=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B2410E179;
+ Tue, 14 Oct 2025 01:04:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Reorder_cdclk_s?=
- =?utf-8?q?tuff_for_vblank/guardband_length_checks?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_a_couple_of_wedge_cor?=
+ =?utf-8?q?ner-case_memory_leaks_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Oct 2025 00:58:45 -0000
-Message-ID: <176040352521.8914.11882445288018337061@97596180aaec>
+Date: Tue, 14 Oct 2025 01:04:03 -0000
+Message-ID: <176040384400.8914.4397635277246739114@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251013201236.30084-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20251013201236.30084-1-ville.syrjala@linux.intel.com>
+References: <20251013223135.189357-1-stuart.summers@intel.com>
+In-Reply-To: <20251013223135.189357-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,68 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6340458505231159625==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Reorder cdclk stuff for vblank/guardband length checks
-URL   : https://patchwork.freedesktop.org/series/155859/
-State : success
+Series: Fix a couple of wedge corner-case memory leaks (rev3)
+URL   : https://patchwork.freedesktop.org/series/155352/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -> xe-pw-155859v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 69f5300c9f271ba5369dae362ed165bb72423162
+Author: Stuart Summers <stuart.summers@intel.com>
+Date:   Mon Oct 13 22:31:35 2025 +0000
 
-Summary
--------
+    drm/xe: Check for GuC responses on disabling scheduling
+    
+    Currently if the GuC becomes unresponsive during a schedule
+    disable event, after we send the CT request, the driver
+    doesn't have a good way to recover. In most other cases,
+    we explicitly wait for GuC to respond by checking either
+    pending_enable, pending_disable, or some other state change
+    that we expect to be set after the response from GuC is
+    received for that particular request. Add a similar check
+    on the schedule disable side and make sure the queue state
+    for the queue being disabled is reset properly in that case.
+    
+    v2: Only call the deregistration sequence since in this
+        case the scheduling handler should be reset during
+        the GT reset.
+        By doing that, we don't need a way to track the scheduling
+        disable request handler for that queue, making this sequence
+        simpler. As a result, don't mark the queue as banned.
+    
+    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
++ /mt/dim checkpatch c917f7d11493984be9f381ca0a7667bd3e587ada drm-intel
+ee6969f4a46f drm/xe: Add additional trace points for LRCs
+-:78: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#78: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:45:
++DECLARE_EVENT_CLASS(xe_lrc,
++	    TP_PROTO(struct xe_lrc *lrc),
 
-  **SUCCESS**
+-:81: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#81: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:48:
++	    TP_STRUCT__entry(
 
-  No regressions found.
+-:87: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#87: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:54:
++	    TP_fast_assign(
 
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -> xe-pw-155859v1
-
-  IGT_8582: 8582
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada
-  xe-pw-155859v1: 155859v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155859v1/index.html
-
---===============6340458505231159625==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reorder cdclk stuff for vblank/guardband length checks</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155859/">https://patchwork.freedesktop.org/series/155859/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155859v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155859v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 3 checks, 91 lines checked
+bd2cf772c9c8 drm/xe: Add a trace point for VM close
+227f27fcd6b8 drm/xe: Add the BO pointer info to the BO trace
+c273a5d1d3e9 drm/xe: Add new exec queue trace points
+e577b27aead0 drm/xe: Correct migration VM teardown order
+d1adf34919a6 drm/xe: Kick start GPU scheduler on teardown
+69f5300c9f27 drm/xe: Check for GuC responses on disabling scheduling
 
 
-    <h1>CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -&gt; xe-pw-155859v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -&gt; xe-pw-155859v1</li>
-</ul>
-<p>IGT_8582: 8582<br />
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada<br />
-  xe-pw-155859v1: 155859v1</p>
-
-</body>
-</html>
-
---===============6340458505231159625==--
