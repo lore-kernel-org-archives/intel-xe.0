@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0A71CCD190
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55105CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C9F810E555;
-	Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA0910E559;
+	Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LysmJff3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QoHr8uyp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8A8310E553;
- Tue, 14 Oct 2025 07:13:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24F5710E556;
+ Tue, 14 Oct 2025 07:13:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760426038; x=1791962038;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yh1xtuPzPIYwf/mvsxOCmqZavj42ErFHrTFWR7mOTeI=;
- b=LysmJff3wV8xg4CsVSCjrHmxmj+WUBFTM6sEcvbs35JaADPV/kP6iDmo
- yOP7aFyDOubr28k3TUUoQdS6vqEOfQSm0sFSZd21Agj7r7+7aIylVYoIQ
- VISzc+MzVa3cthlI/zXRrlglGJcaeg8tUAn+/ni3YwxCGebrJoIjA8kwI
- OAtk7K2+LL3xpdgSsf0pLAuWCg2yGGTGgwKEPeUpvIVZH3GxAPZY3ohUv
- JRmWDfEosjJSGqgR/O70Z7Vdk7Rz8oJxuRCboDwj6LCyrRY9S++gzRR8f
- 4I1thjmpgOfdX54c4MqEoj7IUYp95ZZ0SXAeyvl5nz+HvpK+n3jELaFk1 w==;
-X-CSE-ConnectionGUID: dJhTh38RSlGl+nR5BthR4A==
-X-CSE-MsgGUID: ItKirdGpSPajOk6hd2IebQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257116"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257116"
+ bh=P2QNcAZ3rhlX78cop+t4GkPvosjyx5jbrk1Mytyg8YM=;
+ b=QoHr8uypTtBjBNdr9MLwik84btLYA9Y4hNac/xcwhEP0eA3FGV/hWcZM
+ 5FK0BugZjcr4GlCUFUHq17iH2fPN8bKJkQnGrVS58ABss9jiPWgM7VdW+
+ XkBu8GWrBgGShILuZ2nJ8f03XeB/2qpQ/zgaTXU6z4lj39+U8YmzA2M3P
+ L7ykOHSf8CVFuOmH8v9lNWLMdwH5Qjrn2h5p7RcqozqXD6swiaKjTumMg
+ ycha5bS9NICfbUe7JyZQ8+oRNlpI9qO/wcx5IatRnR4wCZ4aIHFmoKjty
+ hBo2DzyAj9md0lqrCnjYpT5rL0i4/F5sBXTQhOblyBdrMzFKa06ybvaP/ w==;
+X-CSE-ConnectionGUID: IVX3wBmRTsuNgpbnq03f7w==
+X-CSE-MsgGUID: VLJuUD7jRqWVKF3Upnn+9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257126"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257126"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 00:13:57 -0700
-X-CSE-ConnectionGUID: oGfti8sAQ5+vzaf8oPTL4A==
-X-CSE-MsgGUID: ZE8b/suBRJK8pUA3alJ+8A==
+X-CSE-ConnectionGUID: jTwE0LiySvOx6bnamqAdRA==
+X-CSE-MsgGUID: Yd7pHC4xRtebR/1YVwDa3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369856"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369862"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 00:13:57 -0700
@@ -50,10 +50,9 @@ Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
  Sumit Semwal <sumit.semwal@linaro.org>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Simona Vetter <simona.vetter@ffwll.ch>
-Subject: [RFC 2/8] dma-buf: Add a helper to match interconnects between
- exporter/importer
-Date: Tue, 14 Oct 2025 00:08:52 -0700
-Message-ID: <20251014071243.811884-3-vivek.kasireddy@intel.com>
+Subject: [RFC 4/8] vfio/pci/dmabuf: Add support for IOV interconnect
+Date: Tue, 14 Oct 2025 00:08:54 -0700
+Message-ID: <20251014071243.811884-5-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
@@ -74,15 +73,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the importer provides an op for supports_interconnects(), the
-exporter starts the matching (or negotiation) process (during
-attach) by invoking the supports_interconnects() which would then
-call this helper to identify the first common interconnect
-supported by both exporter and importer.
-
-Note that whether an interconnect is supported between an
-exporter/importer is ultimately determined by the exporter via
-the match op it is expected to provide.
+Add support for IOV interconnect by provding ops for map/unmap and
+match interconnect. Note that the xarray is populated with entries
+of type struct range. The range struct contains the start and end
+address of the memory region.
 
 Cc: Jason Gunthorpe <jgg@nvidia.com>
 Cc: Christian Koenig <christian.koenig@amd.com>
@@ -91,123 +85,221 @@ Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Simona Vetter <simona.vetter@ffwll.ch>
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/dma-buf/dma-buf.c            | 45 +++++++++++++++++++++++++++-
- include/linux/dma-buf-interconnect.h |  6 ++++
- include/linux/dma-buf.h              |  9 ++++++
- 3 files changed, 59 insertions(+), 1 deletion(-)
+ drivers/vfio/pci/vfio_pci_dmabuf.c | 141 ++++++++++++++++++++++++++++-
+ 1 file changed, 140 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index 162642bd53e8..ed48540d1c1d 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -965,8 +965,11 @@ dma_buf_dynamic_attach(struct dma_buf *dmabuf, struct device *dev,
+diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
+index eaba010777f3..c45c1a7923f8 100644
+--- a/drivers/vfio/pci/vfio_pci_dmabuf.c
++++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
+@@ -4,6 +4,7 @@
+ #include <linux/dma-buf.h>
+ #include <linux/pci-p2pdma.h>
+ #include <linux/dma-resv.h>
++#include <linux/range.h>
  
- 	attach->dev = dev;
- 	attach->dmabuf = dmabuf;
--	if (importer_ops)
-+	if (importer_ops) {
- 		attach->peer2peer = importer_ops->allow_peer2peer;
-+		if (importer_ops->supports_interconnects)
-+			attach->allow_ic = true;
-+	}
- 	attach->importer_ops = importer_ops;
- 	attach->importer_priv = importer_priv;
+ #include "vfio_pci_priv.h"
  
-@@ -1680,6 +1683,46 @@ void dma_buf_unmap_interconnect(struct dma_buf_attachment *attach,
- }
- EXPORT_SYMBOL_NS_GPL(dma_buf_unmap_interconnect, "DMA_BUF");
+@@ -16,15 +17,138 @@ struct vfio_pci_dma_buf {
+ 	size_t size;
+ 	struct phys_vec *phys_vec;
+ 	struct p2pdma_provider *provider;
++	struct dma_buf_iov_interconnect *iov_ic;
+ 	u32 nr_ranges;
+ 	u8 revoked : 1;
+ };
  
-+bool dma_buf_match_interconnects(struct dma_buf_attachment *attach,
-+				 const struct dma_buf_interconnect_match *exp,
-+				 unsigned int exp_ics,
-+				 const struct dma_buf_interconnect_match *imp,
-+				 unsigned int imp_ics)
++static int
++vfio_pci_create_iov_match(struct vfio_pci_dma_buf *priv,
++			  struct vfio_device_feature_dma_buf *dma_buf)
 +{
-+	const struct dma_buf_interconnect *exp_ic, *imp_ic;
-+	const struct dma_buf_interconnect_ops *ic_ops;
-+	struct dma_buf *dmabuf = attach->dmabuf;
-+	unsigned int i, j;
++	struct dma_buf_iov_interconnect *iov_ic;
 +
-+	if (!exp || !imp)
-+		return false;
++	iov_ic = kzalloc(sizeof(*iov_ic), GFP_KERNEL);
++	if (!iov_ic)
++		return -ENOMEM;
 +
-+	if (!attach->allow_ic)
-+		return false;
++	iov_ic->base.type = DMA_BUF_INTERCONNECT_IOV;
++	iov_ic->pdev = priv->vdev->pdev;
++	iov_ic->bar = dma_buf->region_index;
 +
-+	ic_ops = dmabuf->ops->interconnect_ops;
-+	if (!ic_ops || !ic_ops->match_interconnect)
-+		return false;
++	priv->iov_ic = iov_ic;
++	return 0;
++}
 +
-+	for (i = 0; i < exp_ics; i++) {
-+		for (j = 0; j < imp_ics; j++) {
-+			exp_ic = exp[i].interconnect;
-+			imp_ic = imp[j].interconnect;
++static int vfio_pci_map_iov_interconnect(struct vfio_pci_dma_buf *priv,
++					 struct xarray *ranges)
++{
++	struct phys_vec *phys_vec = priv->phys_vec;
++	struct range *range;
++	unsigned long i;
++	void *entry;
++	int ret;
 +
-+			if (exp_ic->type == imp_ic->type) {
-+				if (ic_ops->match_interconnect(exp_ic, imp_ic)) {
-+					attach->interconnect.type = exp_ic->type;
-+					return true;
-+				}
-+			}
++	range = kmalloc_array(priv->nr_ranges, sizeof(*range), GFP_KERNEL);
++	if (!range)
++		return -ENOMEM;
++
++	for (i = 0; i < priv->nr_ranges; i++) {
++		entry = &range[i];
++		range[i].start = phys_vec[i].paddr;
++		range[i].end = phys_vec[i].paddr + phys_vec[i].len - 1;
++
++		entry = xa_store(ranges, i, entry, GFP_KERNEL);
++		if (xa_is_err(entry)) {
++			ret = xa_err(entry);
++			goto err_free_range;
 +		}
 +	}
++	return 0;
 +
-+	attach->allow_ic = false;
++err_free_range:
++	kfree(range);
++	return ret;
++}
++
++static int vfio_pci_map_interconnect(struct dma_buf_attachment *attachment,
++				     struct dma_buf_ranges *ranges)
++{
++	enum dma_buf_interconnect_type type = attachment->interconnect.type;
++	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
++	int ret = -EINVAL;
++
++	ranges->nranges = priv->nr_ranges;
++
++	if (type == DMA_BUF_INTERCONNECT_IOV)
++		ret = vfio_pci_map_iov_interconnect(priv, &ranges->ranges);
++	return ret;
++}
++
++static void vfio_pci_unmap_interconnect(struct dma_buf_attachment *attachment,
++					struct dma_buf_ranges *ranges)
++{
++	void *entry;
++
++	entry = xa_load(&ranges->ranges, 0);
++	kfree(entry);
++}
++
++static bool
++vfio_pci_match_iov_interconnect(const struct dma_buf_interconnect *exp,
++				const struct dma_buf_interconnect *imp)
++{
++	const struct dma_buf_iov_interconnect *exp_ic =
++		container_of(exp, struct dma_buf_iov_interconnect, base);
++	const struct dma_buf_iov_interconnect *imp_ic =
++		container_of(imp, struct dma_buf_iov_interconnect, base);
++
++	return imp_ic->pdev == pci_physfn(exp_ic->pdev) &&
++	       imp_ic->bar == exp_ic->bar;
++}
++
++static bool
++vfio_pci_match_interconnect(const struct dma_buf_interconnect *exp,
++			    const struct dma_buf_interconnect *imp)
++{
++	enum dma_buf_interconnect_type type = exp->type;
++
++	switch (type) {
++	case DMA_BUF_INTERCONNECT_IOV:
++		return vfio_pci_match_iov_interconnect(exp, imp);
++	default:
++		return false;
++	}
++}
++
++static bool
++vfio_pci_match_interconnects(struct vfio_pci_dma_buf *priv,
++			     struct dma_buf_attachment *attachment)
++{
++	const struct dma_buf_attach_ops *aops = attachment->importer_ops;
++	struct pci_dev *pdev = priv->vdev->pdev;
++	unsigned int bar = priv->iov_ic->bar;
++	const struct dma_buf_interconnect_match supports_ics[] = {
++		CREATE_IOV_INTERCONNECT(pdev, bar),
++	};
++
++	if (attachment->allow_ic) {
++		if (aops->supports_interconnects(attachment, supports_ics,
++						 ARRAY_SIZE(supports_ics)))
++			return true;
++	}
 +	return false;
 +}
-+EXPORT_SYMBOL_NS_GPL(dma_buf_match_interconnects, "DMA_BUF");
 +
- #ifdef CONFIG_DEBUG_FS
- static int dma_buf_debug_show(struct seq_file *s, void *unused)
+ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+ 				   struct dma_buf_attachment *attachment)
  {
-diff --git a/include/linux/dma-buf-interconnect.h b/include/linux/dma-buf-interconnect.h
-index 17504dea9691..a72f65ed4806 100644
---- a/include/linux/dma-buf-interconnect.h
-+++ b/include/linux/dma-buf-interconnect.h
-@@ -20,10 +20,16 @@ struct dma_buf_interconnect {
- 	enum dma_buf_interconnect_type type;
- };
+ 	struct vfio_pci_dma_buf *priv = dmabuf->priv;
  
-+struct dma_buf_interconnect_match {
-+	const struct dma_buf_interconnect *interconnect;
++	if (vfio_pci_match_interconnects(priv, attachment)) {
++		return 0;
++	}
++
+ 	if (!attachment->peer2peer)
+ 		return -EOPNOTSUPP;
+ 
+@@ -189,6 +313,7 @@ vfio_pci_dma_buf_map(struct dma_buf_attachment *attachment,
+ 	return ERR_PTR(ret);
+ }
+ 
++
+ static void vfio_pci_dma_buf_unmap(struct dma_buf_attachment *attachment,
+ 				   struct sg_table *sgt,
+ 				   enum dma_data_direction dir)
+@@ -228,15 +353,23 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
+ 		vfio_device_put_registration(&priv->vdev->vdev);
+ 	}
+ 	kfree(priv->phys_vec);
++	kfree(priv->iov_ic);
+ 	kfree(priv);
+ }
+ 
++static const struct dma_buf_interconnect_ops vfio_pci_interconnect_ops = {
++	.match_interconnect = vfio_pci_match_interconnect,
++	.map_interconnect = vfio_pci_map_interconnect,
++	.unmap_interconnect = vfio_pci_unmap_interconnect,
 +};
 +
- struct dma_buf_interconnect_ops {
- 	int (*map_interconnect)(struct dma_buf_attachment *attach,
- 				struct dma_buf_ranges *ranges);
- 	void (*unmap_interconnect)(struct dma_buf_attachment *attach,
- 				   struct dma_buf_ranges *ranges);
-+	bool (*match_interconnect)(const struct dma_buf_interconnect *exp_ic,
-+				   const struct dma_buf_interconnect *imp_ic);
+ static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
+ 	.attach = vfio_pci_dma_buf_attach,
+ 	.detach = vfio_pci_dma_buf_detach,
+ 	.map_dma_buf = vfio_pci_dma_buf_map,
+ 	.release = vfio_pci_dma_buf_release,
+ 	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
++	.interconnect_ops = &vfio_pci_interconnect_ops,
  };
- #endif
-diff --git a/include/linux/dma-buf.h b/include/linux/dma-buf.h
-index db91c67c00d6..3e6124387f3c 100644
---- a/include/linux/dma-buf.h
-+++ b/include/linux/dma-buf.h
-@@ -479,6 +479,10 @@ struct dma_buf_attach_ops {
- 	 * point to the new location of the DMA-buf.
- 	 */
- 	void (*move_notify)(struct dma_buf_attachment *attach);
+ 
+ static void dma_ranges_to_p2p_phys(struct vfio_pci_dma_buf *priv,
+@@ -365,6 +498,10 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
+ 		goto err_free_phys;
+ 	}
+ 
++	ret = vfio_pci_create_iov_match(priv, &get_dma_buf);
++	if (ret)
++		goto err_dev_put;
 +
-+	bool (*supports_interconnects)(struct dma_buf_attachment *attach,
-+				       const struct dma_buf_interconnect_match *,
-+				       unsigned int num_ics);
- };
+ 	exp_info.ops = &vfio_pci_dmabuf_ops;
+ 	exp_info.size = priv->size;
+ 	exp_info.flags = get_dma_buf.open_flags;
+@@ -373,7 +510,7 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
+ 	priv->dmabuf = dma_buf_export(&exp_info);
+ 	if (IS_ERR(priv->dmabuf)) {
+ 		ret = PTR_ERR(priv->dmabuf);
+-		goto err_dev_put;
++		goto err_free_iov;
+ 	}
  
- /**
-@@ -599,6 +603,11 @@ void dma_buf_unmap_attachment(struct dma_buf_attachment *, struct sg_table *,
- struct dma_buf_ranges *dma_buf_map_interconnect(struct dma_buf_attachment *);
- void dma_buf_unmap_interconnect(struct dma_buf_attachment *,
- 				struct dma_buf_ranges *);
-+bool dma_buf_match_interconnects(struct dma_buf_attachment *attach,
-+				 const struct dma_buf_interconnect_match *,
-+				 unsigned int exp_ics,
-+				 const struct dma_buf_interconnect_match *,
-+				 unsigned int imp_ics);
+ 	/* dma_buf_put() now frees priv */
+@@ -391,6 +528,8 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
+ 	 */
+ 	return dma_buf_fd(priv->dmabuf, get_dma_buf.open_flags);
  
- void dma_buf_move_notify(struct dma_buf *dma_buf);
- int dma_buf_begin_cpu_access(struct dma_buf *dma_buf,
++err_free_iov:
++	kfree(priv->iov_ic);
+ err_dev_put:
+ 	vfio_device_put_registration(&vdev->vdev);
+ err_free_phys:
 -- 
 2.50.1
 
