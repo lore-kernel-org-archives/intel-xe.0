@@ -4,56 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BEC3CCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:31:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37BBBCCD190
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:33:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FBB10E561;
-	Tue, 14 Oct 2025 07:31:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A50DE10E566;
+	Tue, 14 Oct 2025 07:33:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VEpPJzZY";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="OilukKMS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEA2B10E561
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 07:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760427092; x=1791963092;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=22jNdggd/DhtEwCiaXkLNA1ifx9mcyBuVN4z6z2t0Qk=;
- b=VEpPJzZYHL3auCLuhc+a+50RzBlHkkdeutQk4M6sAfB+jus2aRxcn6k9
- UhgieOlNQlt/ucWsNQAmdYBIc/OrBjViMQQLCZ0FiNvPFz7bPcUIDhycS
- RBDkGsF4aJ/hgnmRT0i3OxGVQe4ZbEMHfPQb6jaixNYMfWQx/8xhJZa9B
- aAODCu8HxKAuTAzV+J/aR5DakdRhUX3bgUx0yFOpmo01BCGA/uRmQLq0/
- woWeFOhNGBR83eMR/YmzAg+jfCYmXQwt3TD17LMSFomubPP91PoPJpfpx
- E+6r4ac3a3Im+wjxDgoxKCvyGnA7McGwXi8Z9744d9D37of5921OaVrPV w==;
-X-CSE-ConnectionGUID: yItVMH1vS86KphMTKvPGzg==
-X-CSE-MsgGUID: TeEo2yZ2SqKnyaQJepuNyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62474480"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="62474480"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:31:31 -0700
-X-CSE-ConnectionGUID: J/kRvjUvQRiNCnk5VLJvvg==
-X-CSE-MsgGUID: /EGd3cwbQSuNZg1YF1zv3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181826232"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa008.jf.intel.com with ESMTP; 14 Oct 2025 00:31:28 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: lucas.demarchi@intel.com,
-	rodrigo.vivi@intel.com
-Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
- daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
- michal.wajdeczko@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v5 2/2] drm/xe/gt: Introduce runtime suspend/resume
-Date: Tue, 14 Oct 2025 13:00:36 +0530
-Message-Id: <20251014073036.3282329-3-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251014073036.3282329-1-raag.jadav@intel.com>
-References: <20251014073036.3282329-1-raag.jadav@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5274510E565
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 07:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1760427235;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=G2f+TEVmNHcIZWSH2C31Ng9eliwbtMBD5xTQThZ/PZk=;
+ b=OilukKMSu42pV46NBFqbnT70tAnBSPt39yYIoREjDrDjti0kgBDOh0yIV/nOnfvaMkI0Uh
+ ajmf39v7pWsGLFvz51N1b/n0KAF1fHu23RMdqf6Y4/uN25JS5dU9AieDfJV9B7EwGtce8L
+ Bhuwi0MSeep25QnW19JUqRvEGOeF3IQ=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-518-JSAn7THyNXicKmW-QG5sag-1; Tue, 14 Oct 2025 03:33:54 -0400
+X-MC-Unique: JSAn7THyNXicKmW-QG5sag-1
+X-Mimecast-MFC-AGG-ID: JSAn7THyNXicKmW-QG5sag_1760427233
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-46e3ed6540fso33512125e9.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 00:33:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760427233; x=1761032033;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=G2f+TEVmNHcIZWSH2C31Ng9eliwbtMBD5xTQThZ/PZk=;
+ b=bNXNUvjueEOdsGp1gkkHGlI7PtTLfrrrWjSqCKXIA4YCRKQOiB+rhnSR0j/yBNn1qU
+ YuTpKJ+3Xcwt7txYQMEwepIK+NL7/xAfttqNYfFeUU+2NAwKlEzEsd53oQ0qoZDxg+u3
+ 36IevmHymQcLJT3qhQW7KtZL3nSsBbN/k3zRRifiKM5U3iRdjDgw2aFRubHsP6aO4H9C
+ zWHnge3Z/9CQm3/e8UuuaSsVm0dQfF4jZjxOvdo1x3i9C69UesLu++K9bvQQWEnjrK/s
+ leV79etKiMc3I6upAOGSQLzbAuVGfrCuSDS3e+CSXPIe5EUBfxzvKadmJPYx6HpVFIJ9
+ jFqQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVv1IbyuTiN9jDC0JFpZTm3TanBiRwjGmRlZ36tulpZnYNuo9ylI7+on9eHwxl1HtgMz7O39gwhmQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyIKfvY9hgvTXorI8BGQu3woaIBvE6CkxEAv+dT8XBZE4eoeKJ5
+ N/bVLhFhWgcZP7RQaPQOEYxUvyCQnSGSERiQsS7Hn/Uv0WTPBAaiUB+cpJfv9U8bMlrZ64WjFMg
+ nccyanCnwAZykcChT2xtkyS//HlhUtQFGoWsrOk3R4KAx+OOdj/vEkqHF53xYbQvgmpm0
+X-Gm-Gg: ASbGnctGRS205ELJl4xnnpIKdg+TXmch7ImRUeSJlYyjBKT8NlmSYpOgZ+4WSvwpdni
+ 97NpxknCpgAyXK0LeiMi0Usly4DbnzYJTNIvOezvfb/rgyi7I4zeEf4uEjoMRHhp0sebHSutRTc
+ 1DZ0h6MR1HUZ359w1/L/y+H2ofKaDtnGK9JbaCMomZ2X0bPYBsDrAzPrptv8vZpxEk2Pe8C9z0e
+ 2mRJkaPe/OcnprEJnc6zgnupuvNdLtZ36bYWhKR+BubioVa0AVDTz7yfaLaHUQYoe7GeZXbMOy/
+ naHzRMLt983eKsGc+jCSqJzMKbZe4mN5MCdEZVhT6LRDEv9dByEl2Ji1ZvDPyzwdCHIYRtU9E+N
+ M1Dr+
+X-Received: by 2002:a05:600c:1277:b0:46c:adf8:cd82 with SMTP id
+ 5b1f17b1804b1-46fa2952c02mr135681055e9.3.1760427232807; 
+ Tue, 14 Oct 2025 00:33:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGBeNo7ZlnJvZO+4tdhdDmG+vIUKT7nCznXOA5q9opUrokbPvd9TwG1AFWjfUcvv1KmWXVDOA==
+X-Received: by 2002:a05:600c:1277:b0:46c:adf8:cd82 with SMTP id
+ 5b1f17b1804b1-46fa2952c02mr135680875e9.3.1760427232370; 
+ Tue, 14 Oct 2025 00:33:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
+ ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-46fb489ac60sm230694605e9.16.2025.10.14.00.33.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 14 Oct 2025 00:33:51 -0700 (PDT)
+Message-ID: <335fdb74-6d43-41e0-9774-eb57f425313d@redhat.com>
+Date: Tue, 14 Oct 2025 09:33:48 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/client: Remove holds_console_lock parameter from
+ suspend/resume
+To: Thomas Zimmermann <tzimmermann@suse.de>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ tursulin@ursulin.net, lyude@redhat.com, dakr@kernel.org,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+References: <20251001143709.419736-1-tzimmermann@suse.de>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <20251001143709.419736-1-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: aoD5sT0CU_PsgjDp-14Kh8IgKubfB0UAqxPn8_lukcA_1760427233
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,314 +109,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If power state is retained between suspend/resume cycle, we don't need
-to perform full GT re-initialization. Introduce runtime helpers for GT
-which greatly reduce suspend/resume delay.
+On 01/10/2025 16:37, Thomas Zimmermann wrote:
+> No caller of the client resume/suspend helpers holds the console
+> lock. The last such cases were removed from radeon in the patch
+> series at [1]. Now remove the related parameter and the TODO items.
+> 
+> v2:
+> - update placeholders for CONFIG_DRM_CLIENT=n
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Link: https://patchwork.freedesktop.org/series/151624/ # [1]
 
-v2: Drop redundant xe_gt_sanitize() and xe_guc_ct_stop() (Daniele)
-    Use runtime naming for guc helpers (Daniele)
-v3: Drop redundant logging, add kernel doc (Michal)
-    Use runtime naming for ct helpers (Michal)
-v4: Fix tags (Rodrigo)
-v5: Include host_l2_vram workaround (Daniele)
-    Reuse xe_guc_submit_enable/disable() helpers (Daniele)
-
-Co-developed-by: Riana Tauro <riana.tauro@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c     | 60 ++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt.h     |  2 ++
- drivers/gpu/drm/xe/xe_guc.c    | 34 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc.h    |  2 ++
- drivers/gpu/drm/xe/xe_guc_ct.c | 27 +++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h |  2 ++
- drivers/gpu/drm/xe/xe_pm.c     | 10 +++---
- drivers/gpu/drm/xe/xe_uc.c     | 28 ++++++++++++++++
- drivers/gpu/drm/xe/xe_uc.h     |  2 ++
- 9 files changed, 162 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index d8e94fb8b9bd..0eacca14ccbb 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -1003,6 +1003,66 @@ int xe_gt_resume(struct xe_gt *gt)
- 	return err;
- }
- 
-+/**
-+ * xe_gt_runtime_suspend() - GT runtime suspend
-+ * @gt: the GT object
-+ *
-+ * Return: 0 on success, negative error code otherwise.
-+ */
-+int xe_gt_runtime_suspend(struct xe_gt *gt)
-+{
-+	unsigned int fw_ref;
-+	int err = -ETIMEDOUT;
-+
-+	xe_gt_dbg(gt, "runtime suspending\n");
-+
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
-+		goto err_force_wake;
-+
-+	xe_uc_runtime_suspend(&gt->uc);
-+	xe_gt_disable_host_l2_vram(gt);
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_gt_dbg(gt, "runtime suspended\n");
-+
-+	return 0;
-+
-+err_force_wake:
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	return err;
-+}
-+
-+/**
-+ * xe_gt_runtime_resume() - GT runtime resume
-+ * @gt: the GT object
-+ *
-+ * Return: 0 on success, negative error code otherwise.
-+ */
-+int xe_gt_runtime_resume(struct xe_gt *gt)
-+{
-+	unsigned int fw_ref;
-+	int err = -ETIMEDOUT;
-+
-+	xe_gt_dbg(gt, "runtime resuming\n");
-+
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
-+		goto err_force_wake;
-+
-+	xe_gt_enable_host_l2_vram(gt);
-+	xe_uc_runtime_resume(&gt->uc);
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	xe_gt_dbg(gt, "runtime resumed\n");
-+
-+	return 0;
-+
-+err_force_wake:
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	return err;
-+}
-+
- struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
- 				     enum xe_engine_class class,
- 				     u16 instance, bool logical)
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 5df2ffe3ff83..ceb633ec22d0 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -52,6 +52,8 @@ int xe_gt_suspend(struct xe_gt *gt);
- void xe_gt_shutdown(struct xe_gt *gt);
- int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
-+int xe_gt_runtime_resume(struct xe_gt *gt);
-+int xe_gt_runtime_suspend(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
- int xe_gt_sanitize_freq(struct xe_gt *gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index d94490979adc..6262ca1c1d42 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1599,6 +1599,40 @@ int xe_guc_start(struct xe_guc *guc)
- 	return xe_guc_submit_start(guc);
- }
- 
-+/**
-+ * xe_guc_runtime_suspend() - GuC runtime suspend
-+ * @guc: The GuC object
-+ *
-+ * Stop further runs of submission tasks on given GuC and runtime suspend
-+ * GuC CT.
-+ */
-+void xe_guc_runtime_suspend(struct xe_guc *guc)
-+{
-+	xe_guc_submit_pause(guc);
-+	xe_guc_submit_disable(guc);
-+	xe_guc_ct_runtime_suspend(&guc->ct);
-+}
-+
-+/**
-+ * xe_guc_runtime_resume() - GuC runtime resume
-+ * @guc: The GuC object
-+ *
-+ * Runtime resume GuC CT and allow further runs of submission tasks on
-+ * given GuC.
-+ */
-+void xe_guc_runtime_resume(struct xe_guc *guc)
-+{
-+	/*
-+	 * Runtime PM flows are not applicable for VFs, so it's safe to
-+	 * directly enable IRQ.
-+	 */
-+	guc_enable_irq(guc);
-+
-+	xe_guc_ct_runtime_resume(&guc->ct);
-+	xe_guc_submit_enable(guc);
-+	xe_guc_submit_unpause(guc);
-+}
-+
- void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 1cca05967e62..0165e941a352 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -35,6 +35,8 @@ int xe_guc_upload(struct xe_guc *guc);
- int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
- int xe_guc_enable_communication(struct xe_guc *guc);
- int xe_guc_opt_in_features_enable(struct xe_guc *guc);
-+void xe_guc_runtime_suspend(struct xe_guc *guc);
-+void xe_guc_runtime_resume(struct xe_guc *guc);
- int xe_guc_suspend(struct xe_guc *guc);
- void xe_guc_notify(struct xe_guc *guc);
- int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 3ae1e8db143a..2232e872dbd6 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -634,6 +634,33 @@ void xe_guc_ct_stop(struct xe_guc_ct *ct)
- 	stop_g2h_handler(ct);
- }
- 
-+/**
-+ * xe_guc_ct_runtime_suspend() - GuC CT runtime suspend
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Set GuC CT to disabled state.
-+ */
-+void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct)
-+{
-+	/*
-+	 * Since we're already in runtime suspend path, we shouldn't have pending
-+	 * messages. But if there happen to be any, we'd probably want them to be
-+	 * thrown as errors for further investigation.
-+	 */
-+	xe_guc_ct_disable(ct);
-+}
-+
-+/**
-+ * xe_guc_ct_runtime_resume() - GuC CT runtime resume
-+ * @ct: the &xe_guc_ct
-+ *
-+ * Restart GuC CT and set it to enabled state.
-+ */
-+void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct)
-+{
-+	xe_guc_ct_restart(ct);
-+}
-+
- static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
- {
- 	struct guc_ctb *h2g = &ct->ctbs.h2g;
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index ca1ce2b3c354..5599939f8fe1 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -17,6 +17,8 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
- int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
-+void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct);
-+void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 53507e09f7bc..403a61e98ad8 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -591,7 +591,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	}
- 
- 	for_each_gt(gt, xe, id) {
--		err = xe_gt_suspend(gt);
-+		err = xe->d3cold.allowed ? xe_gt_suspend(gt) : xe_gt_runtime_suspend(gt);
- 		if (err)
- 			goto out_resume;
- 	}
-@@ -633,10 +633,10 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 
- 	xe_rpm_lockmap_acquire(xe);
- 
--	for_each_gt(gt, xe, id)
--		xe_gt_idle_disable_c6(gt);
--
- 	if (xe->d3cold.allowed) {
-+		for_each_gt(gt, xe, id)
-+			xe_gt_idle_disable_c6(gt);
-+
- 		err = xe_pcode_ready(xe, true);
- 		if (err)
- 			goto out;
-@@ -657,7 +657,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id)
--		xe_gt_resume(gt);
-+		xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
- 
- 	xe_display_pm_runtime_resume(xe);
- 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 465bda355443..6a58b33248f5 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -301,6 +301,34 @@ int xe_uc_suspend(struct xe_uc *uc)
- 	return xe_guc_suspend(&uc->guc);
- }
- 
-+/**
-+ * xe_uc_runtime_suspend() - UC runtime suspend
-+ * @uc: the UC object
-+ *
-+ * Runtime suspend all UCs.
-+ */
-+void xe_uc_runtime_suspend(struct xe_uc *uc)
-+{
-+	if (!xe_device_uc_enabled(uc_to_xe(uc)))
-+		return;
-+
-+	xe_guc_runtime_suspend(&uc->guc);
-+}
-+
-+/**
-+ * xe_uc_runtime_resume() - UC runtime resume
-+ * @uc: the UC object
-+ *
-+ * Runtime resume all UCs.
-+ */
-+void xe_uc_runtime_resume(struct xe_uc *uc)
-+{
-+	if (!xe_device_uc_enabled(uc_to_xe(uc)))
-+		return;
-+
-+	xe_guc_runtime_resume(&uc->guc);
-+}
-+
- /**
-  * xe_uc_declare_wedged() - Declare UC wedged
-  * @uc: the UC object
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 21c9306098cf..5398da1a8097 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -14,6 +14,8 @@ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
- int xe_uc_load_hw(struct xe_uc *uc);
- void xe_uc_gucrc_disable(struct xe_uc *uc);
- int xe_uc_reset_prepare(struct xe_uc *uc);
-+void xe_uc_runtime_resume(struct xe_uc *uc);
-+void xe_uc_runtime_suspend(struct xe_uc *uc);
- void xe_uc_stop_prepare(struct xe_uc *uc);
- void xe_uc_stop(struct xe_uc *uc);
- int xe_uc_start(struct xe_uc *uc);
--- 
-2.34.1
+For drm_log:
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
 
