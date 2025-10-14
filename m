@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20275CCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C42CCD190
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 444BE10E564;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48A4310E566;
 	Tue, 14 Oct 2025 07:14:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vwzsc9nc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1Y8Cj5I";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A15F710E558;
- Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13BB610E556;
+ Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760426039; x=1791962039;
+ t=1760426040; x=1791962040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=564ThLf/UCzV5nHA0gyyvac/BSQi8sYIEH/FTx2//WU=;
- b=Vwzsc9ncnE4E9FoC50FGZgwyGECTSLpMyXmEGE1pGo9aTW9QzN6YcDhA
- F1Ia/V7ic58/34MclO1bKLKgGVundohpePMPockCRbMGHWgUt9pzxoGXJ
- Cp1Vx/WiQl20KN0axUIOVg7SW+5irlCZjm6egTp81gfpjKF4kIgT62ME6
- LjmQ2SnRr7FDJa1gIZ7i23tAr7DuYSbkPT25Lu6my3CqP/LYW4K92ybUj
- B0carZeSzi/FXWSpyWZ7lII407NkyQpaGxQzfbEZQRABF3Gfy9NgKiprO
- BBtad7NASkb8paLj1F67ZV4vzXFDcDzOlisuJeE1u/AaY1FW2Wm9Re/KD w==;
-X-CSE-ConnectionGUID: AlwgbrfpSG6awSpS7lgFng==
-X-CSE-MsgGUID: oLzvr+dvRqW9GyZPcsmJ1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257141"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257141"
+ bh=El6NYrXPZJg2JthYHW5V9bH56p5bvPHuTCM1ObR1r+c=;
+ b=P1Y8Cj5IogElRnDIdhPMMg2luWGZ3yL7QaSXOptDyQN4ohJFoNbgrBxZ
+ Xi2ANO0iC+XJ0nYMfWGtiTlB2tn4fJWgFV5hqYZzZfk7jdMeA46Gw+T7M
+ eJO8NIvlVZYcHtdgr3yLo5Nek+DVyi+2MxGm6vRfUEdW7HpR0T+8+QDqI
+ sq4gw80gaHaZ1tKLelp1EUKH2pm74SES1pdZKsntQPytctIIZmnrwmUIr
+ QE+c44646yAp0OAx4Mcy3Y3hcKEw3aFdT78rp7khOR1JHUyJDLiXUkdle
+ +YT4DDGwrVqSBw8O1a14R8qufrIT4NC2cW1iv3RoBFPs8GBih0JVO7UuB Q==;
+X-CSE-ConnectionGUID: zSnn666qRGqrQiqzBmJMSA==
+X-CSE-MsgGUID: 33aHEPThQu2t1uv7MqhARQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257155"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257155"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:57 -0700
-X-CSE-ConnectionGUID: VKBx21v8R2ySyBUJQz07OA==
-X-CSE-MsgGUID: O+Cn5x74Qz6uPFhnvFLCtQ==
+ 14 Oct 2025 00:13:59 -0700
+X-CSE-ConnectionGUID: QuIWljbRRoa26hMH3wExPA==
+X-CSE-MsgGUID: 6uDrOax0QDiuA8AXvcj37w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369869"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369878"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2025 00:13:58 -0700
@@ -45,10 +45,10 @@ From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
 Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Subject: [RFC 6/8] drm/xe/pf: Add a helper function to get a VF's backing
- object in LMEM
-Date: Tue, 14 Oct 2025 00:08:56 -0700
-Message-ID: <20251014071243.811884-7-vivek.kasireddy@intel.com>
+Subject: [RFC 8/8] drm/xe/pt: Add an additional check for dmabuf BOs while
+ doing bind
+Date: Tue, 14 Oct 2025 00:08:58 -0700
+Message-ID: <20251014071243.811884-9-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
@@ -68,69 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To properly import a dmabuf that is associated with a VF (or that
-originates in a Guest VM that includes a VF), we need to know where
-in LMEM the VF's allocated regions exist. Therefore, introduce a
-new helper to return the object that backs the VF's regions in LMEM.
+If a BO's is_devmem_external flag is set, it means that it is an
+imported dmabuf BO that has a backing store in VRAM. Therefore, in
+this case, need to iterate over its dma_addr array.
 
 v2:
-- Make the helper return the LMEM object instead of the start address
+- Use a cursor to iterate over the entries in the dma_addr array
+  instead of relying on SG iterator (Matt)
 
 v3:
-- Move the declaration of the helper under other lmem helpers (Michal)
+- Since XE_PPGTT_PTE_DM is added to the PTE flags in all cases,
+  remove the bo->is_devmem_external check added in v2
 
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
- 2 files changed, 24 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 6344b5205c08..1bfcd35cc8ef 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1535,6 +1535,29 @@ u64 xe_gt_sriov_pf_config_get_lmem(struct xe_gt *gt, unsigned int vfid)
- 	return size;
- }
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index a1c88f9a6c76..5cc3775a3a12 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -759,6 +759,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
  
-+/**
-+ * xe_gt_sriov_pf_config_get_lmem_obj - Get VF's LMEM BO.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: BO that is backing VF's quota in LMEM.
-+ */
-+struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt,
-+						 unsigned int vfid)
-+{
-+	struct xe_gt_sriov_config *config;
-+	struct xe_bo *lmem_obj;
+ 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
+ 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
 +
-+	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-+	config = pf_pick_vf_config(gt, vfid);
-+	lmem_obj = config->lmem_obj;
-+	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
++	if (bo && bo->is_devmem_external)
++		xe_walk.dma_offset = 0;
 +
-+	return lmem_obj;
-+}
-+
- /**
-  * xe_gt_sriov_pf_config_set_lmem - Provision VF with LMEM.
-  * @gt: the &xe_gt (can't be media)
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index 513e6512a575..bbc5c238cbf6 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -36,6 +36,7 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size
- int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
- int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs,
- 					u64 size);
-+struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt, unsigned int vfid);
+ 	if (!range)
+ 		xe_bo_assert_held(bo);
  
- u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid);
- int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid, u32 exec_quantum);
+@@ -769,6 +773,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+ 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
+ 				     xe_vma_size(vma), &curs);
++		else if (bo && bo->is_devmem_external)
++			xe_res_first_dma(bo->dma_data.dma_addr,
++					 xe_vma_bo_offset(vma),
++					 xe_vma_size(vma), &curs);
+ 		else
+ 			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
+ 					xe_vma_size(vma), &curs);
 -- 
 2.50.1
 
