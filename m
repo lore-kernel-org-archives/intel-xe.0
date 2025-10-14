@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55105CCD184
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93B03CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 07:14:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA0910E559;
-	Tue, 14 Oct 2025 07:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4681A10E565;
+	Tue, 14 Oct 2025 07:14:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QoHr8uyp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C3eTuBZF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F5710E556;
- Tue, 14 Oct 2025 07:13:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF5EA10E558;
+ Tue, 14 Oct 2025 07:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760426038; x=1791962038;
+ t=1760426040; x=1791962040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P2QNcAZ3rhlX78cop+t4GkPvosjyx5jbrk1Mytyg8YM=;
- b=QoHr8uypTtBjBNdr9MLwik84btLYA9Y4hNac/xcwhEP0eA3FGV/hWcZM
- 5FK0BugZjcr4GlCUFUHq17iH2fPN8bKJkQnGrVS58ABss9jiPWgM7VdW+
- XkBu8GWrBgGShILuZ2nJ8f03XeB/2qpQ/zgaTXU6z4lj39+U8YmzA2M3P
- L7ykOHSf8CVFuOmH8v9lNWLMdwH5Qjrn2h5p7RcqozqXD6swiaKjTumMg
- ycha5bS9NICfbUe7JyZQ8+oRNlpI9qO/wcx5IatRnR4wCZ4aIHFmoKjty
- hBo2DzyAj9md0lqrCnjYpT5rL0i4/F5sBXTQhOblyBdrMzFKa06ybvaP/ w==;
-X-CSE-ConnectionGUID: IVX3wBmRTsuNgpbnq03f7w==
-X-CSE-MsgGUID: VLJuUD7jRqWVKF3Upnn+9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257126"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257126"
+ bh=ZF3X5n2FzlNn2F5vM0ngy+Ho0TpDqPUMViAzvDQVV0s=;
+ b=C3eTuBZF2JB3hX5b9NMKTQnPtTrDUuaqupl/JFOuebxsiZILycuYsHP2
+ LJy6SObYHnIHEzfFfBRGTdj+AiRVZQJigTEDggeDJ70Ye1Un8VVxrcXIZ
+ +6l3sFys0dj2AwHqt5aqh9yVN37YcI95PL3DNEWCqmpnkBEq6yNEipggt
+ qLXiNW3xu1KLOanhaJ7nkilTd0akD5ah4775lwTLsXlsYN/SP3k25RIQB
+ 8kS4cM9902ubSn5JkVyDrHICRecd+cti84IIJOiDvn+4lTEaH4eN6wjFt
+ LIpSIS0j99upIDi+kXN/nRHOYZcXbFWm8VeJZs/vFmHpyeselQr9Y/HJw A==;
+X-CSE-ConnectionGUID: jln/b7qGQ2+e67HMQcgwLA==
+X-CSE-MsgGUID: n1+w1nXpTvivg9FhSUP8Yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="73257150"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="73257150"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:57 -0700
-X-CSE-ConnectionGUID: jTwE0LiySvOx6bnamqAdRA==
-X-CSE-MsgGUID: Yd7pHC4xRtebR/1YVwDa3Q==
+ 14 Oct 2025 00:13:59 -0700
+X-CSE-ConnectionGUID: s0v5UnaIRvqET5mcE+KEbA==
+X-CSE-MsgGUID: R33pIPa2QPasPgcAMzulSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369862"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181369874"
 Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2025 00:13:57 -0700
+ 14 Oct 2025 00:13:58 -0700
 From: Vivek Kasireddy <vivek.kasireddy@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
 Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Jason Gunthorpe <jgg@nvidia.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: [RFC 4/8] vfio/pci/dmabuf: Add support for IOV interconnect
-Date: Tue, 14 Oct 2025 00:08:54 -0700
-Message-ID: <20251014071243.811884-5-vivek.kasireddy@intel.com>
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [RFC 7/8] drm/xe/bo: Create new dma_addr array for dmabuf BOs
+ associated with VFs
+Date: Tue, 14 Oct 2025 00:08:57 -0700
+Message-ID: <20251014071243.811884-8-vivek.kasireddy@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251014071243.811884-1-vivek.kasireddy@intel.com>
 References: <20251014071243.811884-1-vivek.kasireddy@intel.com>
@@ -73,233 +71,309 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for IOV interconnect by provding ops for map/unmap and
-match interconnect. Note that the xarray is populated with entries
-of type struct range. The range struct contains the start and end
-address of the memory region.
+For BOs of type ttm_bo_type_sg, that are backed by PCI BAR addresses
+associated with a VF, we need to adjust and translate these addresses
+to LMEM addresses to make the BOs usable by the PF. Otherwise, the
+BOs (i.e, PCI BAR addresses) are only accessible by the CPU and not
+by the GPU.
 
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>
+In order to do the above, we first need to identify if the addresses
+associated with an imported BO (type ttm_bo_type_sg) belong to System
+RAM or a VF or other PCI devices. After we confirm that they belong to
+a VF, we convert the BAR addresses to DPAs and create a new dma_addr
+array (of type drm_pagemap_dma_addr) and populate it with the new
+addresses along with the segment sizes.
+
+Note that, all the above is only done if we are able to map the
+dmabuf via the IOV interconnect. If not, we fallback to the legacy
+mapping route using the sg table.
+
+v2:
+- Use dma_addr array instead of sg table to store translated addresses
+  (Matt)
+
+v3:
+- Remove the usage of iommu_iova_to_phys() as the imported BO would no
+  longer contain IOVAs and would instead have BAR addresses.
+
+v4:
+- Take a reference on the VF's backing object in LMEM (Michal)
+- Create a new type for storing dma data
+
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
 Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
 ---
- drivers/vfio/pci/vfio_pci_dmabuf.c | 141 ++++++++++++++++++++++++++++-
- 1 file changed, 140 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c             | 148 +++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_bo_types.h       |  12 ++
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h |  19 ++++
+ 3 files changed, 167 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-index eaba010777f3..c45c1a7923f8 100644
---- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-+++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-@@ -4,6 +4,7 @@
- #include <linux/dma-buf.h>
- #include <linux/pci-p2pdma.h>
- #include <linux/dma-resv.h>
-+#include <linux/range.h>
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 4410e28dee54..e05b7eace784 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -21,11 +21,13 @@
  
- #include "vfio_pci_priv.h"
+ #include <trace/events/gpu_mem.h>
  
-@@ -16,15 +17,138 @@ struct vfio_pci_dma_buf {
- 	size_t size;
- 	struct phys_vec *phys_vec;
- 	struct p2pdma_provider *provider;
-+	struct dma_buf_iov_interconnect *iov_ic;
- 	u32 nr_ranges;
- 	u8 revoked : 1;
- };
++#include "regs/xe_bars.h"
+ #include "xe_device.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drm_client.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_gt_sriov_pf_config.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
+ #include "xe_pm.h"
+@@ -34,6 +36,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_shrinker.h"
+ #include "xe_sriov_vf_ccs.h"
++#include "xe_sriov_pf_helpers.h"
+ #include "xe_trace_bo.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
+@@ -679,6 +682,99 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 	return ret;
+ }
  
-+static int
-+vfio_pci_create_iov_match(struct vfio_pci_dma_buf *priv,
-+			  struct vfio_device_feature_dma_buf *dma_buf)
++static struct pci_dev *xe_find_vf_dev(struct xe_device *xe,
++				      phys_addr_t phys)
 +{
-+	struct dma_buf_iov_interconnect *iov_ic;
++	struct pci_dev *pdev, *pf_pdev = to_pci_dev(xe->drm.dev);
++	resource_size_t io_start, io_size;
 +
-+	iov_ic = kzalloc(sizeof(*iov_ic), GFP_KERNEL);
-+	if (!iov_ic)
-+		return -ENOMEM;
++	list_for_each_entry(pdev, &pf_pdev->bus->devices, bus_list) {
++		if (pdev->is_physfn)
++			continue;
 +
-+	iov_ic->base.type = DMA_BUF_INTERCONNECT_IOV;
-+	iov_ic->pdev = priv->vdev->pdev;
-+	iov_ic->bar = dma_buf->region_index;
++		io_start = pci_resource_start(pdev, LMEM_BAR);
++		io_size = pci_resource_len(pdev, LMEM_BAR);
 +
-+	priv->iov_ic = iov_ic;
-+	return 0;
-+}
-+
-+static int vfio_pci_map_iov_interconnect(struct vfio_pci_dma_buf *priv,
-+					 struct xarray *ranges)
-+{
-+	struct phys_vec *phys_vec = priv->phys_vec;
-+	struct range *range;
-+	unsigned long i;
-+	void *entry;
-+	int ret;
-+
-+	range = kmalloc_array(priv->nr_ranges, sizeof(*range), GFP_KERNEL);
-+	if (!range)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < priv->nr_ranges; i++) {
-+		entry = &range[i];
-+		range[i].start = phys_vec[i].paddr;
-+		range[i].end = phys_vec[i].paddr + phys_vec[i].len - 1;
-+
-+		entry = xa_store(ranges, i, entry, GFP_KERNEL);
-+		if (xa_is_err(entry)) {
-+			ret = xa_err(entry);
-+			goto err_free_range;
-+		}
++		if (phys >= io_start &&
++		    phys < (io_start + io_size - PAGE_SIZE))
++			return pdev;
 +	}
-+	return 0;
 +
-+err_free_range:
-+	kfree(range);
-+	return ret;
++	return NULL;
 +}
 +
-+static int vfio_pci_map_interconnect(struct dma_buf_attachment *attachment,
-+				     struct dma_buf_ranges *ranges)
++static void xe_bo_translate_io_xarray_to_dpa(struct xe_bo *bo,
++					     struct xarray *ranges,
++					     resource_size_t io_start,
++					     int vfid)
 +{
-+	enum dma_buf_interconnect_type type = attachment->interconnect.type;
-+	struct vfio_pci_dma_buf *priv = attachment->dmabuf->priv;
-+	int ret = -EINVAL;
-+
-+	ranges->nranges = priv->nr_ranges;
-+
-+	if (type == DMA_BUF_INTERCONNECT_IOV)
-+		ret = vfio_pci_map_iov_interconnect(priv, &ranges->ranges);
-+	return ret;
-+}
-+
-+static void vfio_pci_unmap_interconnect(struct dma_buf_attachment *attachment,
-+					struct dma_buf_ranges *ranges)
-+{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_bo *lmem_obj;
++	struct range *range;
++	phys_addr_t phys;
++	unsigned long i;
++	dma_addr_t addr;
++	u64 offset;
 +	void *entry;
++
++	lmem_obj = xe_gt_sriov_pf_config_get_lmem_obj(gt, ++vfid);
++	bo->dma_data.lmem_obj = xe_bo_get(lmem_obj);
++
++	xa_for_each(ranges, i, entry) {
++		range = entry;
++		phys = range->start;
++		offset = phys - io_start;
++		addr = xe_bo_addr(lmem_obj, offset, range_len(range));
++
++		bo->dma_data.dma_addr[i] = drm_pagemap_addr_encode(addr,
++						DRM_INTERCONNECT_DRIVER,
++						get_order(range_len(range)),
++						DMA_BIDIRECTIONAL);
++	}
++}
++
++
++static int xe_bo_xarray_to_dma_addr(struct dma_buf_ranges *ranges,
++				    struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct drm_pagemap_addr *dma_addr;
++	resource_size_t io_start;
++	struct pci_dev *pdev;
++	struct range *range;
++	void *entry;
++	int vfid;
++
++	if (!IS_SRIOV_PF(xe))
++		return 0;
 +
 +	entry = xa_load(&ranges->ranges, 0);
-+	kfree(entry);
-+}
-+
-+static bool
-+vfio_pci_match_iov_interconnect(const struct dma_buf_interconnect *exp,
-+				const struct dma_buf_interconnect *imp)
-+{
-+	const struct dma_buf_iov_interconnect *exp_ic =
-+		container_of(exp, struct dma_buf_iov_interconnect, base);
-+	const struct dma_buf_iov_interconnect *imp_ic =
-+		container_of(imp, struct dma_buf_iov_interconnect, base);
-+
-+	return imp_ic->pdev == pci_physfn(exp_ic->pdev) &&
-+	       imp_ic->bar == exp_ic->bar;
-+}
-+
-+static bool
-+vfio_pci_match_interconnect(const struct dma_buf_interconnect *exp,
-+			    const struct dma_buf_interconnect *imp)
-+{
-+	enum dma_buf_interconnect_type type = exp->type;
-+
-+	switch (type) {
-+	case DMA_BUF_INTERCONNECT_IOV:
-+		return vfio_pci_match_iov_interconnect(exp, imp);
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool
-+vfio_pci_match_interconnects(struct vfio_pci_dma_buf *priv,
-+			     struct dma_buf_attachment *attachment)
-+{
-+	const struct dma_buf_attach_ops *aops = attachment->importer_ops;
-+	struct pci_dev *pdev = priv->vdev->pdev;
-+	unsigned int bar = priv->iov_ic->bar;
-+	const struct dma_buf_interconnect_match supports_ics[] = {
-+		CREATE_IOV_INTERCONNECT(pdev, bar),
-+	};
-+
-+	if (attachment->allow_ic) {
-+		if (aops->supports_interconnects(attachment, supports_ics,
-+						 ARRAY_SIZE(supports_ics)))
-+			return true;
-+	}
-+	return false;
-+}
-+
- static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
- 				   struct dma_buf_attachment *attachment)
- {
- 	struct vfio_pci_dma_buf *priv = dmabuf->priv;
- 
-+	if (vfio_pci_match_interconnects(priv, attachment)) {
++	range = entry;
++	if (page_is_ram(PFN_DOWN(range->start)))
 +		return 0;
-+	}
 +
- 	if (!attachment->peer2peer)
- 		return -EOPNOTSUPP;
- 
-@@ -189,6 +313,7 @@ vfio_pci_dma_buf_map(struct dma_buf_attachment *attachment,
- 	return ERR_PTR(ret);
- }
- 
++	pdev = xe_find_vf_dev(xe, range->start);
++	if (!pdev)
++		return 0;
 +
- static void vfio_pci_dma_buf_unmap(struct dma_buf_attachment *attachment,
- 				   struct sg_table *sgt,
- 				   enum dma_data_direction dir)
-@@ -228,15 +353,23 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
- 		vfio_device_put_registration(&priv->vdev->vdev);
++	vfid = pci_iov_vf_id(pdev);
++	if (vfid < 0)
++		return 0;
++
++	dma_addr = kmalloc_array(ranges->nranges, sizeof(*dma_addr),
++				 GFP_KERNEL);
++	if (!dma_addr)
++		return -ENOMEM;
++
++	bo->is_devmem_external = true;
++	bo->dma_data.dma_addr = dma_addr;
++	io_start = pci_resource_start(pdev, LMEM_BAR);
++	xe_bo_translate_io_xarray_to_dpa(bo, &ranges->ranges, io_start, vfid);
++
++	return 0;
++}
++
+ /*
+  * The dma-buf map_attachment() / unmap_attachment() is hooked up here.
+  * Note that unmapping the attachment is deferred to the next
+@@ -696,7 +792,10 @@ static int xe_bo_move_dmabuf(struct ttm_buffer_object *ttm_bo,
+ 					       ttm);
+ 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
+ 	bool device_unplugged = drm_dev_is_unplugged(&xe->drm);
+-	struct sg_table *sg;
++	struct dma_buf_ranges *ranges;
++	struct sg_table *sg = NULL;
++	bool allow_ic = false;
++	int ret = 0;
+ 
+ 	xe_assert(xe, attach);
+ 	xe_assert(xe, ttm_bo->ttm);
+@@ -717,9 +816,27 @@ static int xe_bo_move_dmabuf(struct ttm_buffer_object *ttm_bo,
+ 		ttm_bo->sg = NULL;
  	}
- 	kfree(priv->phys_vec);
-+	kfree(priv->iov_ic);
- 	kfree(priv);
+ 
+-	sg = dma_buf_map_attachment(attach, DMA_BIDIRECTIONAL);
+-	if (IS_ERR(sg))
+-		return PTR_ERR(sg);
++	if (attach->allow_ic &&
++	    attach->interconnect.type == DMA_BUF_INTERCONNECT_IOV) {
++		allow_ic = true;
++
++		ranges = dma_buf_map_interconnect(attach);
++		if (IS_ERR(ranges)) {
++			allow_ic = false;
++		} else {
++			if (xe_bo_xarray_to_dma_addr(ranges,
++						     ttm_to_xe_bo(ttm_bo))) {
++				dma_buf_unmap_interconnect(attach, ranges);
++				allow_ic = false;
++			}
++		}
++		attach->allow_ic = allow_ic;
++	}
++	if (!allow_ic) {
++		sg = dma_buf_map_attachment(attach, DMA_BIDIRECTIONAL);
++		if (IS_ERR(sg))
++			return PTR_ERR(sg);
++	}
+ 
+ 	ttm_bo->sg = sg;
+ 	xe_tt->sg = sg;
+@@ -727,7 +844,7 @@ static int xe_bo_move_dmabuf(struct ttm_buffer_object *ttm_bo,
+ out:
+ 	ttm_bo_move_null(ttm_bo, new_res);
+ 
+-	return 0;
++	return ret;
  }
  
-+static const struct dma_buf_interconnect_ops vfio_pci_interconnect_ops = {
-+	.match_interconnect = vfio_pci_match_interconnect,
-+	.map_interconnect = vfio_pci_map_interconnect,
-+	.unmap_interconnect = vfio_pci_unmap_interconnect,
-+};
+ /**
+@@ -1548,14 +1665,21 @@ static void xe_ttm_bo_delete_mem_notify(struct ttm_buffer_object *ttm_bo)
+ 	 * Object is idle and about to be destroyed. Release the
+ 	 * dma-buf attachment.
+ 	 */
+-	if (ttm_bo->type == ttm_bo_type_sg && ttm_bo->sg) {
+-		struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm,
+-						       struct xe_ttm_tt, ttm);
++	if (ttm_bo->type == ttm_bo_type_sg) {
++		if (ttm_bo->sg) {
++			struct xe_ttm_tt *xe_tt = container_of(ttm_bo->ttm,
++							       struct xe_ttm_tt,
++							       ttm);
+ 
+-		dma_buf_unmap_attachment(ttm_bo->base.import_attach, ttm_bo->sg,
+-					 DMA_BIDIRECTIONAL);
+-		ttm_bo->sg = NULL;
+-		xe_tt->sg = NULL;
++			dma_buf_unmap_attachment(ttm_bo->base.import_attach,
++						 ttm_bo->sg, DMA_BIDIRECTIONAL);
++			ttm_bo->sg = NULL;
++			xe_tt->sg = NULL;
++		}
++		if (bo->is_devmem_external) {
++			xe_bo_put(bo->dma_data.lmem_obj);
++			kfree(bo->dma_data.dma_addr);
++		}
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index d4fe3c8dca5b..8e416c4ffbca 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -108,6 +108,18 @@ struct xe_bo {
+ 	 * from default
+ 	 */
+ 	u64 min_align;
 +
- static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
- 	.attach = vfio_pci_dma_buf_attach,
- 	.detach = vfio_pci_dma_buf_detach,
- 	.map_dma_buf = vfio_pci_dma_buf_map,
- 	.release = vfio_pci_dma_buf_release,
- 	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-+	.interconnect_ops = &vfio_pci_interconnect_ops,
++	/**
++	 * @is_devmem_external: Whether this BO is an imported dma-buf that
++	 * is LMEM based.
++	 */
++	bool is_devmem_external;
++
++	/**
++	 * @dma_data: DMA related data for an imported dmabuf BO that is LMEM
++	 * based.
++	 */
++	struct xe_sriov_dma_data dma_data;
  };
  
- static void dma_ranges_to_p2p_phys(struct vfio_pci_dma_buf *priv,
-@@ -365,6 +498,10 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
- 		goto err_free_phys;
- 	}
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+index 956a88f9f213..6d5f923f7fc4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+@@ -11,6 +11,8 @@
  
-+	ret = vfio_pci_create_iov_match(priv, &get_dma_buf);
-+	if (ret)
-+		goto err_dev_put;
+ #include "xe_sriov_pf_service_types.h"
+ 
++struct xe_bo;
 +
- 	exp_info.ops = &vfio_pci_dmabuf_ops;
- 	exp_info.size = priv->size;
- 	exp_info.flags = get_dma_buf.open_flags;
-@@ -373,7 +510,7 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
- 	priv->dmabuf = dma_buf_export(&exp_info);
- 	if (IS_ERR(priv->dmabuf)) {
- 		ret = PTR_ERR(priv->dmabuf);
--		goto err_dev_put;
-+		goto err_free_iov;
- 	}
+ /**
+  * struct xe_sriov_metadata - per-VF device level metadata
+  */
+@@ -42,4 +44,21 @@ struct xe_device_pf {
+ 	struct xe_sriov_metadata *vfs;
+ };
  
- 	/* dma_buf_put() now frees priv */
-@@ -391,6 +528,8 @@ int vfio_pci_core_feature_dma_buf(struct vfio_pci_core_device *vdev, u32 flags,
- 	 */
- 	return dma_buf_fd(priv->dmabuf, get_dma_buf.open_flags);
- 
-+err_free_iov:
-+	kfree(priv->iov_ic);
- err_dev_put:
- 	vfio_device_put_registration(&vdev->vdev);
- err_free_phys:
++/**
++ * struct xe_sriov_dma_data - DMA related data for LMEM based imported dmabuf
++ * BOs that are associated with a sriov VF.
++ *
++ * The data in this structure is valid only if driver is running in the
++ * @XE_SRIOV_MODE_PF mode.
++ */
++struct xe_sriov_dma_data {
++	/**
++	 * @dma_addr: An array to store DMA addresses (DPAs) for imported
++	 * dmabuf BOs that are LMEM based.
++	 */
++	struct drm_pagemap_addr *dma_addr;
++
++	/** @lmem_obj: Ref taken on the LMEM obj that backs a VF's quota */
++	struct xe_bo *lmem_obj;
++};
+ #endif
 -- 
 2.50.1
 
