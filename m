@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F045CCD193
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:25:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16F02CCD197
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:25:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1839A10E537;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA2B510E53A;
 	Tue, 14 Oct 2025 03:25:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZ7vs5Ot";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lq/2FpHS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE9210E1BF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69C6210E1A5
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 03:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760412330; x=1791948330;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s9sh4qYBW1guTbN/3Vp+gXJXvuSy6XcJP5Fgd/nXbm8=;
- b=UZ7vs5OtxIEOp7NyDsCcLjTxs0R+c5YqSj/nJWK0FnRsPPZUdD6biE4c
- xYyUs3qMJAHqG4tMD1dQxAYzeR2JBDWJejGFhQIsb3JGf7W+B1rSRqFX/
- n+b5KuwoF6HqMcwJknSQgLmbTDWSZZrMe6HwclSOsrEwRAolOnLW2L21A
- 8VOYczhxlrEXbTtZvfPfz9gPSVvHaTz9lFPYYup/BbknfdW/9CV6x12LE
- z8SjWObugl+5bqRsNmPm+P8yPFDCf54ratRDj3sdIALqJSeoUNzyo+Xib
- Q1iUv+W1eD/V6c7sNmZ8WRKpLzd1XBEK27JKRjQsDlXg+BYaG22to/zfI g==;
-X-CSE-ConnectionGUID: hJdXGtHQSzSG9PpUdf3mqw==
-X-CSE-MsgGUID: FWUuL1qaTIaHZ9tfSma9OQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="66414878"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="66414878"
+ bh=wAshuMjF195lJJaNpCSjvUWbPPfzvRMkm/iStR4wKLE=;
+ b=Lq/2FpHS2suQ34FE6cO97tyVXLnVVJdKdh72F71B3WvCJGGEbdguiKqE
+ hMBjivJe1lPmJlPJOOiTjqPUQV1ZDwxSJB/NLnMEfL9XcWGNY6EZKQGIe
+ CxN5J0p7sT/dEgn8mOQ3WG6Z16dgv8YaH+LIKpilAU82nDilZktv5jnQM
+ nDXi15n5hrebTJSnsp+JKPGXpDa24joNNl5RoYW/YRbZ19yDK6h6FX5Vy
+ vF/6blP/p22kq+MiplHXAs5Sxwj7XMOQNnEQC+kMNrDC173Pf7J/ZL6KN
+ 8FFFlRTupg+IeaKqrgpK5+DF3MpuaU3BL0J3BoDewJOplOWO7EgBfhIRV g==;
+X-CSE-ConnectionGUID: EcTxVhi0TEKHW926SsVzjw==
+X-CSE-MsgGUID: hP4w5FQgQeKfYX77nIPi5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="66414879"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="66414879"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 20:25:29 -0700
-X-CSE-ConnectionGUID: 7LCZH5FwQEyd0mjk3c/vFw==
-X-CSE-MsgGUID: hHz3a9UdQNmFcmfc6D8FTw==
+ 13 Oct 2025 20:25:30 -0700
+X-CSE-ConnectionGUID: V9j8N3w/QmuVIgQgWxnDdQ==
+X-CSE-MsgGUID: +WVetVfIQy2im6cHPU/yJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181567308"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181567311"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2025 20:25:29 -0700
@@ -48,9 +48,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 14/23] drm/xe/nvl: Define NVL-S platform
-Date: Mon, 13 Oct 2025 20:24:46 -0700
-Message-ID: <20251013-xe3p-v1-14-bfb74f038215@intel.com>
+Subject: [PATCH 15/23] drm/xe/nvls: Define GuC firmware for NVL-S
+Date: Mon, 13 Oct 2025 20:24:47 -0700
+Message-ID: <20251013-xe3p-v1-15-bfb74f038215@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
 References: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
@@ -74,73 +74,27 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-Provide the basic platform definitions and PCI IDs for NVL-S.
+Although NVL-S has a similar Xe3 to PTL/WCL, it requires a unique GuC
+firmware.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c            | 9 +++++++++
- drivers/gpu/drm/xe/xe_platform_types.h | 1 +
- include/drm/intel/pciids.h             | 9 +++++++++
- 3 files changed, 19 insertions(+)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 8480e53990031..aa8359a4c5594 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -354,6 +354,14 @@ static const struct xe_device_desc ptl_desc = {
- 	.needs_shared_vf_gt_wq = true,
- };
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 6056ecd0b92f5..e589c7e38f125 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -115,6 +115,7 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
  
-+static const struct xe_device_desc nvls_desc = {
-+	PLATFORM(NOVALAKE_S),
-+	.dma_mask_size = 46,
-+	.has_display = true,
-+	.max_gt_per_tile = 2,
-+	.require_force_probe = true,
-+};
-+
- #undef PLATFORM
- __diag_pop();
- 
-@@ -382,6 +390,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
- 	INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
-+	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
- 	{ }
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index d08574c4cdb8b..f5140a244daf3 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -24,6 +24,7 @@ enum xe_platform {
- 	XE_LUNARLAKE,
- 	XE_BATTLEMAGE,
- 	XE_PANTHERLAKE,
-+	XE_NOVALAKE_S,
- };
- 
- enum xe_subplatform {
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 69d4ae92d822a..00dd007f538ff 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -884,4 +884,13 @@
- 	MACRO__(0xFD80, ## __VA_ARGS__), \
- 	MACRO__(0xFD81, ## __VA_ARGS__)
- 
-+/* NVL-S */
-+#define INTEL_NVLS_IDS(MACRO__, ...) \
-+	MACRO__(0xD740, ## __VA_ARGS__), \
-+	MACRO__(0xD741, ## __VA_ARGS__), \
-+	MACRO__(0xD742, ## __VA_ARGS__), \
-+	MACRO__(0xD743, ## __VA_ARGS__), \
-+	MACRO__(0xD744, ## __VA_ARGS__), \
-+	MACRO__(0xD745, ## __VA_ARGS__)
-+
- #endif /* __PCIIDS_H__ */
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
++	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 49, 4))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 49, 4))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 49, 4))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	lnl,	70, 45, 2))	\
 
 -- 
 2.51.0
