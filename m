@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE76FCCD187
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 08:19:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 083C6CCD187
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 08:28:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BB010E152;
-	Tue, 14 Oct 2025 08:19:44 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7848910E152;
- Tue, 14 Oct 2025 08:19:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3234128260819139530=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C35AA10E577;
+	Tue, 14 Oct 2025 08:28:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WjnimCS2";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAD410E57A
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 08:28:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760430504; x=1791966504;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YrmFRY1XjOZK/AV7o0dt8SLbHgI7H3WNfFQkRVN5gkE=;
+ b=WjnimCS2jH//COqEZoK0mH18bKN52rvucMV1g0yQ4NKpiivoUBMMHMT8
+ Hr4wvfaYNsG05U8x4BWhjHR0Yd1ZWIwBEW2CmgU9iOW2G2DvbZsnRgqIf
+ jKjbGo6y28AKmdSnOuXVSH81CZFxA6GVu+ErLJGlguDtNCQJdW9lAuQlA
+ PHWUK2FiPdgrsoYphyaVgtISpSp4C4JkGF4bjyZ8cmVcu/BAvHAiGG6+R
+ OXs9AHbN+ZctHeFCLMjWIPhu4WJeMLTVnd/USK9AyvjxtH2odDBvlLtLd
+ /GJTeoalALnxDIrohEiuyGX34F6J0KgV74qeCBkYaWCSbm/IMMDVhOYus A==;
+X-CSE-ConnectionGUID: SblMPCFDT66YT29Va1IXFw==
+X-CSE-MsgGUID: mn/jOdiAR8KpW3OatiKfEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="62619586"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="62619586"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 01:28:24 -0700
+X-CSE-ConnectionGUID: XxyMd1R2RKiNg5smTNpNnA==
+X-CSE-MsgGUID: zmE+w4NqR2uitYhfpeCvZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="218966747"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.172])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2025 01:28:23 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 1/2] drm/xe: Retain vma flags when recreating and splitting
+ vmas for madvise
+Date: Tue, 14 Oct 2025 10:27:55 +0200
+Message-ID: <20251014082756.6858-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_GT_runtime_suspen?=
- =?utf-8?q?d/resume_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Oct 2025 08:19:43 -0000
-Message-ID: <176042998348.10163.3039158155301915024@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251014073036.3282329-1-raag.jadav@intel.com>
-In-Reply-To: <20251014073036.3282329-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +66,271 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3234128260819139530==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When splitting and restoring vmas for madvise, we only copied the
+XE_VMA_SYSTEM_ALLOCATOR flag. That meant we lost flags for read_only,
+dumpable and sparse (in case anyone would call madvise for the latter).
 
-== Series Details ==
+Instead, define a mask of relevant flags and ensure all are replicated,
+To simplify this and make the code a bit less fragile, remove the
+conversion to VMA_CREATE flags and instead just pass around the
+gpuva flags after initial conversion from user-space.
 
-Series: Introduce GT runtime suspend/resume (rev2)
-URL   : https://patchwork.freedesktop.org/series/154017/
-State : success
+Fixes: a2eb8aec3ebe ("drm/xe: Reset VMA attributes to default in SVM garbage collector")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c       |  4 +-
+ drivers/gpu/drm/xe/xe_vm.c       | 86 +++++++++++---------------------
+ drivers/gpu/drm/xe/xe_vm_types.h |  9 +---
+ 3 files changed, 32 insertions(+), 67 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index e39da95f3a05..d22fd1ccc0ba 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -2022,7 +2022,7 @@ static int op_prepare(struct xe_vm *vm,
+ 	case DRM_GPUVA_OP_MAP:
+ 		if ((!op->map.immediate && xe_vm_in_fault_mode(vm) &&
+ 		     !op->map.invalidate_on_bind) ||
+-		    op->map.is_cpu_addr_mirror)
++		    (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
+ 			break;
+ 
+ 		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma,
+@@ -2252,7 +2252,7 @@ static void op_commit(struct xe_vm *vm,
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+ 		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)) ||
+-		    op->map.is_cpu_addr_mirror)
++		    (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
+ 			break;
+ 
+ 		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence,
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 179758ca7cb8..9c29608aa3bc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -642,6 +642,12 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
+ 			vops->pt_update_ops[i].num_ops += inc_val;
+ }
+ 
++#define XE_VMA_CREATE_MASK (		    \
++	XE_VMA_READ_ONLY |		    \
++	XE_VMA_DUMPABLE |		    \
++	XE_VMA_SYSTEM_ALLOCATOR |           \
++	DRM_GPUVA_SPARSE)
++
+ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+ 				  u8 tile_mask)
+ {
+@@ -654,8 +660,7 @@ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+ 	op->base.map.gem.offset = vma->gpuva.gem.offset;
+ 	op->map.vma = vma;
+ 	op->map.immediate = true;
+-	op->map.dumpable = vma->gpuva.flags & XE_VMA_DUMPABLE;
+-	op->map.is_null = xe_vma_is_null(vma);
++	op->map.vma_flags = vma->gpuva.flags & XE_VMA_CREATE_MASK;
+ }
+ 
+ static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
+@@ -958,11 +963,6 @@ static void xe_vma_free(struct xe_vma *vma)
+ 		kfree(vma);
+ }
+ 
+-#define VMA_CREATE_FLAG_READ_ONLY		BIT(0)
+-#define VMA_CREATE_FLAG_IS_NULL			BIT(1)
+-#define VMA_CREATE_FLAG_DUMPABLE		BIT(2)
+-#define VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR	BIT(3)
+-
+ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 				    struct xe_bo *bo,
+ 				    u64 bo_offset_or_userptr,
+@@ -973,11 +973,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	struct xe_vma *vma;
+ 	struct xe_tile *tile;
+ 	u8 id;
+-	bool read_only = (flags & VMA_CREATE_FLAG_READ_ONLY);
+-	bool is_null = (flags & VMA_CREATE_FLAG_IS_NULL);
+-	bool dumpable = (flags & VMA_CREATE_FLAG_DUMPABLE);
+-	bool is_cpu_addr_mirror =
+-		(flags & VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR);
++	bool is_null = (flags & DRM_GPUVA_SPARSE);
++	bool is_cpu_addr_mirror = (flags & XE_VMA_SYSTEM_ALLOCATOR);
+ 
+ 	xe_assert(vm->xe, start < end);
+ 	xe_assert(vm->xe, end < vm->size);
+@@ -998,10 +995,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 		if (!vma)
+ 			return ERR_PTR(-ENOMEM);
+ 
+-		if (is_cpu_addr_mirror)
+-			vma->gpuva.flags |= XE_VMA_SYSTEM_ALLOCATOR;
+-		if (is_null)
+-			vma->gpuva.flags |= DRM_GPUVA_SPARSE;
+ 		if (bo)
+ 			vma->gpuva.gem.obj = &bo->ttm.base;
+ 	}
+@@ -1012,10 +1005,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	vma->gpuva.vm = &vm->gpuvm;
+ 	vma->gpuva.va.addr = start;
+ 	vma->gpuva.va.range = end - start + 1;
+-	if (read_only)
+-		vma->gpuva.flags |= XE_VMA_READ_ONLY;
+-	if (dumpable)
+-		vma->gpuva.flags |= XE_VMA_DUMPABLE;
++	vma->gpuva.flags = flags;
+ 
+ 	for_each_tile(tile, vm->xe, id)
+ 		vma->tile_mask |= 0x1 << id;
+@@ -2298,12 +2288,14 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 		if (__op->op == DRM_GPUVA_OP_MAP) {
+ 			op->map.immediate =
+ 				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
+-			op->map.read_only =
+-				flags & DRM_XE_VM_BIND_FLAG_READONLY;
+-			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+-			op->map.is_cpu_addr_mirror = flags &
+-				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
+-			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
++			if (flags & DRM_XE_VM_BIND_FLAG_READONLY)
++				op->map.vma_flags |= XE_VMA_READ_ONLY;
++			if (flags & DRM_XE_VM_BIND_FLAG_NULL)
++				op->map.vma_flags |= DRM_GPUVA_SPARSE;
++			if (flags & DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR)
++				op->map.vma_flags |= XE_VMA_SYSTEM_ALLOCATOR;
++			if (flags & DRM_XE_VM_BIND_FLAG_DUMPABLE)
++				op->map.vma_flags |= XE_VMA_DUMPABLE;
+ 			op->map.pat_index = pat_index;
+ 			op->map.invalidate_on_bind =
+ 				__xe_vm_needs_clear_scratch_pages(vm, flags);
+@@ -2616,14 +2608,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				.pat_index = op->map.pat_index,
+ 			};
+ 
+-			flags |= op->map.read_only ?
+-				VMA_CREATE_FLAG_READ_ONLY : 0;
+-			flags |= op->map.is_null ?
+-				VMA_CREATE_FLAG_IS_NULL : 0;
+-			flags |= op->map.dumpable ?
+-				VMA_CREATE_FLAG_DUMPABLE : 0;
+-			flags |= op->map.is_cpu_addr_mirror ?
+-				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
++			flags |= op->map.vma_flags & XE_VMA_CREATE_MASK;
+ 
+ 			vma = new_vma(vm, &op->base.map, &default_attr,
+ 				      flags);
+@@ -2632,7 +2617,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 
+ 			op->map.vma = vma;
+ 			if (((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
+-			     !op->map.is_cpu_addr_mirror) ||
++			     !(op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR)) ||
+ 			    op->map.invalidate_on_bind)
+ 				xe_vma_ops_incr_pt_update_ops(vops,
+ 							      op->tile_mask, 1);
+@@ -2663,18 +2648,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 			op->remap.start = xe_vma_start(old);
+ 			op->remap.range = xe_vma_size(old);
+ 
+-			flags |= op->base.remap.unmap->va->flags &
+-				XE_VMA_READ_ONLY ?
+-				VMA_CREATE_FLAG_READ_ONLY : 0;
+-			flags |= op->base.remap.unmap->va->flags &
+-				DRM_GPUVA_SPARSE ?
+-				VMA_CREATE_FLAG_IS_NULL : 0;
+-			flags |= op->base.remap.unmap->va->flags &
+-				XE_VMA_DUMPABLE ?
+-				VMA_CREATE_FLAG_DUMPABLE : 0;
+-			flags |= xe_vma_is_cpu_addr_mirror(old) ?
+-				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
+-
++			flags |= op->base.remap.unmap->va->flags & XE_VMA_CREATE_MASK;
+ 			if (op->base.remap.prev) {
+ 				vma = new_vma(vm, op->base.remap.prev,
+ 					      &old->attr, flags);
+@@ -4238,7 +4212,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+ 	struct xe_vma_ops vops;
+ 	struct drm_gpuva_ops *ops = NULL;
+ 	struct drm_gpuva_op *__op;
+-	bool is_cpu_addr_mirror = false;
++	unsigned int vma_flags = 0;
+ 	bool remap_op = false;
+ 	struct xe_vma_mem_attr tmp_attr;
+ 	u16 default_pat;
+@@ -4268,15 +4242,17 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+ 				vma = gpuva_to_vma(op->base.unmap.va);
+ 				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
+ 				default_pat = vma->attr.default_pat_index;
++				vma_flags = vma->gpuva.flags;
+ 			}
+ 
+ 			if (__op->op == DRM_GPUVA_OP_REMAP) {
+ 				vma = gpuva_to_vma(op->base.remap.unmap->va);
+ 				default_pat = vma->attr.default_pat_index;
++				vma_flags = vma->gpuva.flags;
+ 			}
+ 
+ 			if (__op->op == DRM_GPUVA_OP_MAP) {
+-				op->map.is_cpu_addr_mirror = true;
++				op->map.vma_flags |= vma_flags & XE_VMA_CREATE_MASK;
+ 				op->map.pat_index = default_pat;
+ 			}
+ 		} else {
+@@ -4285,11 +4261,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+ 				xe_assert(vm->xe, !remap_op);
+ 				xe_assert(vm->xe, xe_vma_has_no_bo(vma));
+ 				remap_op = true;
+-
+-				if (xe_vma_is_cpu_addr_mirror(vma))
+-					is_cpu_addr_mirror = true;
+-				else
+-					is_cpu_addr_mirror = false;
++				vma_flags = vma->gpuva.flags;
+ 			}
+ 
+ 			if (__op->op == DRM_GPUVA_OP_MAP) {
+@@ -4298,10 +4270,10 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+ 				/*
+ 				 * In case of madvise ops DRM_GPUVA_OP_MAP is
+ 				 * always after DRM_GPUVA_OP_REMAP, so ensure
+-				 * we assign op->map.is_cpu_addr_mirror true
+-				 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
++				 * to propagate the flags from the vma we're
++				 * unmapping.
+ 				 */
+-				op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
++				op->map.vma_flags |= vma_flags & XE_VMA_CREATE_MASK;
+ 			}
+ 		}
+ 		print_op(vm->xe, __op);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 413353e1c225..a3b422b27ae8 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -345,17 +345,10 @@ struct xe_vm {
+ struct xe_vma_op_map {
+ 	/** @vma: VMA to map */
+ 	struct xe_vma *vma;
++	unsigned int vma_flags;
+ 	/** @immediate: Immediate bind */
+ 	bool immediate;
+ 	/** @read_only: Read only */
+-	bool read_only;
+-	/** @is_null: is NULL binding */
+-	bool is_null;
+-	/** @is_cpu_addr_mirror: is CPU address mirror binding */
+-	bool is_cpu_addr_mirror;
+-	/** @dumpable: whether BO is dumped on GPU hang */
+-	bool dumpable;
+-	/** @invalidate: invalidate the VMA before bind */
+ 	bool invalidate_on_bind;
+ 	/** @pat_index: The pat index to use for this operation. */
+ 	u16 pat_index;
+-- 
+2.51.0
 
-CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -> xe-pw-154017v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 10)
-------------------------------
-
-  Missing    (1): bat-dg2-oem2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -> xe-pw-154017v2
-
-  IGT_8582: 8582
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada
-  xe-pw-154017v2: 154017v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v2/index.html
-
---===============3234128260819139530==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce GT runtime suspend/resume (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154017/">https://patchwork.freedesktop.org/series/154017/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada_BAT -&gt; xe-pw-154017v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 10)</h2>
-<p>Missing    (1): bat-dg2-oem2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada -&gt; xe-pw-154017v2</li>
-</ul>
-<p>IGT_8582: 8582<br />
-  xe-3911-c917f7d11493984be9f381ca0a7667bd3e587ada: c917f7d11493984be9f381ca0a7667bd3e587ada<br />
-  xe-pw-154017v2: 154017v2</p>
-
-</body>
-</html>
-
---===============3234128260819139530==--
