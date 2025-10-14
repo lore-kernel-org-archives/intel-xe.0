@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6B6CCD190
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 544D5CCD187
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 03:25:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B46810E533;
-	Tue, 14 Oct 2025 03:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1870D10E1A5;
+	Tue, 14 Oct 2025 03:25:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLY9JB5U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ew8bFAgs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 309D110E1A5
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 03:25:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D81D110E1B0
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 03:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760412330; x=1791948330;
+ t=1760412329; x=1791948329;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oFFLcJP8CuECAjV2WAd+5XTUuB3l/fVnDWclsTTOKwQ=;
- b=GLY9JB5Ukti/cQNC5D8ZgoID8vaYZM1NI3kknl4ujss6U+twc+YC8IQs
- Il0diNQakQBLYYiCnWe+pL3kN+AauEL8lIYoOf9V0YL87luwxE+Vv7ja/
- zOcgnCFr2Qw6qFVI+r1n49GRPXA1c1Leim4ZY0stqnElcfBWKcl826Iv1
- AnysmkrD0jTgXRVI3DY84fZVE2HXfwMPp4xmTXM74oar8+3sKextHP/L/
- n86JqslZAu6jTnqUrZOPdQA6OoYndngAx/g1KULqRyECjMGw+4154ZB/J
- Ct/3kJ0sscpQxWcu7/B35rNTpAtrWKUqGIwq1fzACc8/nOvAFxb5zcLPT A==;
-X-CSE-ConnectionGUID: Rh21DCUHQj+H1/eSuX1Dug==
-X-CSE-MsgGUID: FfhibqMpQXC2s4wbsvKHBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="66414875"
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="66414875"
+ bh=7A32jcDw3qMn7eaDeZtPBbiiN0FFx0H0L/Ly7B6Dg34=;
+ b=ew8bFAgs5kIgFemZpPvDcPl3Za/FNt26vkH+KKMmi/mWz6kBZSK42fvY
+ mjTCZ0Mg9nMI6nbUuXSL0CQ0fE/Txa5LoNBNgdrwTCsBdluOzUgsq3fYS
+ BY3LhBi6/9pCWTudm864D0LyUn4BhgdOEK4FYZmg4SayunHZsNO/Tpo+t
+ F/1V+Y+6/NsUEsnGNbKJLhwOTt98tm9WiCcxK5IlEqChsjMXYB2hX3cYy
+ tOeVvsRrTRrvnueF0Ab3eP8xbNlltJs7JEB2oAI9Y2E1c+bFs+lI9voZz
+ viiz2LOQojqZLHCZxEZEmDHw+TeebzuAynualwETwCTK1D3O4lc2EYEz4 w==;
+X-CSE-ConnectionGUID: oGTsIcW0Sze42wFKq7ltWg==
+X-CSE-MsgGUID: cfPk1NZZQeCSTvmIr3WaZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="66414871"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="66414871"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2025 20:25:29 -0700
-X-CSE-ConnectionGUID: Uc5n8A5vRFKx91QprlUdzA==
-X-CSE-MsgGUID: FqzXx/LySWabCs4hZatepw==
+X-CSE-ConnectionGUID: DVtmV087Tu+OPOb7+5lR7g==
+X-CSE-MsgGUID: imi1RfahQGqyame86dP2mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181567302"
+X-IronPort-AV: E=Sophos;i="6.19,227,1754982000"; d="scan'208";a="181567280"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2025 20:25:29 -0700
@@ -48,10 +48,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 12/23] drm/xe/xe3p: Flush userptr/shrinker bo cachelines
- manually
-Date: Mon, 13 Oct 2025 20:24:44 -0700
-Message-ID: <20251013-xe3p-v1-12-bfb74f038215@intel.com>
+Subject: [PATCH 06/23] drm/xe/xe3p_lpm: Skip disabling NOA on unsupported IPs
+Date: Mon, 13 Oct 2025 20:24:38 -0700
+Message-ID: <20251013-xe3p-v1-6-bfb74f038215@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
 References: <20251013-xe3p-v1-0-bfb74f038215@intel.com>
@@ -73,98 +72,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Starting with Xe3p, HW will flush cachelines marked with XA only when
-media is off. We have few cases where kernel will have non-XA cachelines
-which needs manual flush as we postpone the invalidation.
+IP version 35 has removed "NOA Enable Signal" bit from RPM_CONFIG1
+register. Skip clearing that bit on unsupported IPs.
 
-Flush asap from correctness POV to ensure non accelerated CPU copy to
-swap/shmem file will see coherent view of memory, but also from security
-POV where later flush can't corrupt the next user of those pages.
-
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-[ TODO: xe_device_needs_cache_flush() seems a bad name that doesn't
-  really review the context - it may need to be renamed/localized ]
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c      |  3 ++-
- drivers/gpu/drm/xe/xe_device.c  | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device.h  |  1 +
- drivers/gpu/drm/xe/xe_userptr.c |  3 ++-
- 4 files changed, 25 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 7b65020818738..05bc61d9e37cf 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -673,7 +673,8 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a4894eb0d7f3f..f901ba52b4032 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -837,7 +837,8 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ 		xe_oa_configure_oa_context(stream, false);
  
- 		if (!xe_vm_in_fault_mode(vm)) {
- 			drm_gpuvm_bo_evict(vm_bo, true);
--			continue;
-+			if (!xe_device_needs_cache_flush(xe))
-+				continue;
- 		}
+ 	/* Make sure we disable noa to save power. */
+-	xe_mmio_rmw32(mmio, RPM_CONFIG1, GT_NOA_ENABLE, 0);
++	if (GT_VER(stream->gt) < 35)
++		xe_mmio_rmw32(mmio, RPM_CONFIG1, GT_NOA_ENABLE, 0);
  
- 		if (!idle) {
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 7efa8da9e1069..168a45fe36838 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1081,6 +1081,26 @@ void xe_device_l2_flush(struct xe_device *xe)
- 	xe_force_wake_put(gt_to_fw(gt), fw_ref);
- }
- 
-+/**
-+ * xe_device_needs_cache_flush - Whether the cache needs to be flushed
-+ * @xe: The device to check.
-+ *
-+ * Return: true if the device needs cache flush, false otherwise.
-+ */
-+bool xe_device_needs_cache_flush(struct xe_device *xe)
-+{
-+	/*
-+	 * Xe3p will flush cachelines marked with XA only when media is off. We
-+	 * have few cases where kernel will have non-XA cachelines which needs
-+	 * manual flush and this is one of them as we postpone the
-+	 * invalidation. Flush asap from correctness POV to ensure non
-+	 * accelerated CPU copy to swap/shmem file will see coherent view of
-+	 * memory, but also from security POV where later flush can't corrupt
-+	 * the next user of those pages.
-+	 */
-+	return GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe);
-+}
-+
- /**
-  * xe_device_td_flush() - Flush transient L3 cache entries
-  * @xe: The device
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 32cc6323b7f64..15e67db44b56c 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -179,6 +179,7 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
- u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
- u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
- 
-+bool xe_device_needs_cache_flush(struct xe_device *xe);
- void xe_device_td_flush(struct xe_device *xe);
- void xe_device_l2_flush(struct xe_device *xe);
- 
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index f16e92cd80904..86ce1c3ef41aa 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -112,7 +112,8 @@ static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uv
- 				    false, MAX_SCHEDULE_TIMEOUT);
- 	XE_WARN_ON(err <= 0);
- 
--	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-+	if ((xe_vm_in_fault_mode(vm) || xe_device_needs_cache_flush(vm->xe)) &&
-+	    userptr->initial_bind) {
- 		err = xe_vm_invalidate_vma(vma);
- 		XE_WARN_ON(err);
- 	}
+ 	sqcnt1 = SQCNT1_PMON_ENABLE |
+ 		 (HAS_OA_BPC_REPORTING(stream->oa->xe) ? SQCNT1_OABPC : 0);
 
 -- 
 2.51.0
