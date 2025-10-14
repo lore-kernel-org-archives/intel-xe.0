@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E96ECCD18F
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 00:43:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FB8CCCD183
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Oct 2025 00:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E6710E104;
-	Tue, 14 Oct 2025 00:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 252D910E514;
+	Tue, 14 Oct 2025 00:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aRpXC0iO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGP3nX/z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0BB10E104
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 00:43:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7917810E104
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Oct 2025 00:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760402591; x=1791938591;
+ t=1760402593; x=1791938593;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QH3qPepVQDt6nIhQ91Jm+M5xPuiIeuUZrfq/6uEexfM=;
- b=aRpXC0iOV9vvpEbzFtaQBoIOhQG7X5vIHcTd42NcEiZBhuQrMkU4KCVU
- hpJUmq+z2yVuO2AiWVAheAXrGdvSW38cJx9j3niMaiYcvbOy8uluiq760
- Cz5EB9+aDf16dJcb43w75LxkEwq9yOoWVW4+crnM5cBCRZ1nIxUd0Q8+g
- dRFIr8Jnhvm6yJnjKR8elgapOK+rpjZpy+XJqmzpJIf47Gpte6LinslXc
- RwTxvPx4O6v484wGbewT2VY2K7cs4YKW+lJSAAFn7B82GrQmd5ZYsOMwz
- WeUJltHRNcqW+UM6yWPhhp2TiOZKw8pRYxpjr+xsQ7uavQ15hxkQ1Za8B A==;
-X-CSE-ConnectionGUID: hSiv8uVgT4uGbGoYWOjikQ==
-X-CSE-MsgGUID: 2VECw2k2TRWFqBmwuB5qqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="80191836"
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="80191836"
+ bh=wT3+fNfP/wvNe3cIxVgQG49xfXK6r422oiybfhTdvQk=;
+ b=ZGP3nX/zzSTPDOJFpasSP0NPaZIZJEIjdNP/DOYgFDR1LtpDJ79/EwCX
+ JROWwpBAok39KYdPerscNDC0JqDiTg/cfgd9IgYO3KMNronSQZ57pB3+F
+ 3j07/MWMr/w7eBWfRnbtc8dxa66dTz2KAovoXhIUb0/sf9eDytwtiPquP
+ o/iMOZJCCbJqAiul2PEu+WUXyse7jWCZbEoCCJkkQTq7fGMk4aC+Vmhmm
+ QQCC+rsP5w56Q8ydMEHknzDe1cjl+lkz+CtxemX2i9INNo+lsetrfymXf
+ 4pT3H7WVaX3X0SoDEPabWhpeXVru7EOT4Tv3qEARGsiINWzICqgL8Odhh Q==;
+X-CSE-ConnectionGUID: dMmWIYTFQT+n5oUIRqLi7w==
+X-CSE-MsgGUID: sX7P/p0MTn2Z2F55tup62g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11581"; a="80191838"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="80191838"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2025 17:43:11 -0700
-X-CSE-ConnectionGUID: c/5+GoXhRXSJtn+lzkcbvA==
-X-CSE-MsgGUID: UP7COM1BQee4Eg6ONLfZvw==
+ 13 Oct 2025 17:43:12 -0700
+X-CSE-ConnectionGUID: 4BI6nyYISWmkuTNDybaqqw==
+X-CSE-MsgGUID: H+qbxzcjSVGVE2b5atTPBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185994723"
+X-IronPort-AV: E=Sophos;i="6.19,226,1754982000"; d="scan'208";a="185994727"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa004.jf.intel.com with ESMTP; 13 Oct 2025 17:43:09 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 Oct 2025 17:43:11 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v1 1/3] drm/xe/vf: Skip fixups on VF migration before getting
- GGTT info
-Date: Tue, 14 Oct 2025 02:44:16 +0200
-Message-Id: <20251014004418.378928-2-tomasz.lis@intel.com>
+Subject: [PATCH v1 2/3] drm/xe: Assert that VF will never use fixed placement
+ of BOs
+Date: Tue, 14 Oct 2025 02:44:17 +0200
+Message-Id: <20251014004418.378928-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20251014004418.378928-1-tomasz.lis@intel.com>
 References: <20251014004418.378928-1-tomasz.lis@intel.com>
@@ -69,71 +69,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC RESFIX state should be achievable only after a successful
-handshake. If VF KMD has no GGTT configuration yet and we still got
-into RESFIX state, then either we're dealing with unclean initial
-state due to unusual actions before probe, or the migration
-happened while xe init (started by probe) was running.
+Most BOs do not care at which offset they will be accessed within
+GGTT or PPGTT. The few which do care, should be only created
+on PF, and mapped within GGTT. On VFs, mapping at fixed offset
+would be problematic, as each VF is granted access to a range of
+GGTT address space.
 
-In 1st case (VF migration before probe), we should just skip migration.
-Init procedure will ensure exit from RESFIX state as it starts GuC
-handshake with a reset.
+So, since fixed addresses of GGTT mapping can only be used on PF,
+we can add an assert which makes sure no attempt of fixed placement
+will happen for a driver probed on a VF.
 
-In 2nd case (VF migration during xe init), the migration procedure
-should execute normally if GGTT configuration was already acquired
-from GuC, and can be skipped if it was not acquired.
-
-This solution will avoid crashes due to the VF migration running
-on non-initialized xe sub-structures. But it is not enough to allow
-fully reliable migration during driver probe. In particular, the
-situation where the probe might not end successfully, is:
-
-* The VF is paused and migrated after GuC reset (vf_bootstrap) but
-before config is acquired (vf_query_config). In such case, GuC may
-remain in RESFIX state, leading to timeouting requests.
+The assert will also ensure that VF migration can be properly
+performed without a need for special handling of the fixed placement
+addresses.
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 46518e629ba3..6d9bffe25acc 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1108,6 +1108,12 @@ void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p)
- 		   pf_version->major, pf_version->minor);
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7b6502081873..8e826a4aa574 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2259,6 +2259,12 @@ static int __xe_bo_fixed_placement(struct xe_device *xe,
+ 	struct ttm_place *place = bo->placements;
+ 	u32 vram_flag, vram_stolen_flags;
  
-+static bool vf_ggtt_queried(struct xe_tile *tile)
-+{
-+	guard(mutex)(&tile->mem.ggtt->lock);
-+	return xe_tile_sriov_vf_ggtt(tile) != 0;
-+}
++	/*
++	 * to allow fixed placement in GGTT of a VF, post-migration fixups
++	 * would have to include shifting the page ranges
++	 */
++	xe_assert(xe, !IS_SRIOV_VF(xe) || !(bo->flags & XE_BO_FLAG_GGTT));
 +
- static bool vf_post_migration_shutdown(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -1219,6 +1225,11 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	xe_gt_sriov_dbg(gt, "migration recovery in progress\n");
+ 	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
+ 		return -EINVAL;
  
- 	xe_pm_runtime_get(xe);
-+
-+	/* If during init and before GGTT configuration, skip the procedure. */
-+	if (!vf_ggtt_queried(gt_to_tile(gt)))
-+		goto skip;
-+
- 	retry = vf_post_migration_shutdown(gt);
- 	if (retry)
- 		goto queue;
-@@ -1241,6 +1252,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 
- 	vf_post_migration_kickstart(gt);
- 
-+skip:
- 	xe_pm_runtime_put(xe);
- 	xe_gt_sriov_notice(gt, "migration recovery ended\n");
- 	return;
 -- 
 2.25.1
 
