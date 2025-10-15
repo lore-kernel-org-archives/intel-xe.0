@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A281CCD190
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6605ACCD185
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:35:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0732110E276;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD0410E277;
 	Wed, 15 Oct 2025 07:35:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IsIryb00";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xuljq8xj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF57710E276;
- Wed, 15 Oct 2025 07:35:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44C9A10E276;
+ Wed, 15 Oct 2025 07:35:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760513733; x=1792049733;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rfmvwdGLjoLFu9zj9rb4kbFVM1Rc5b4WuJKzslXyPaw=;
- b=IsIryb00rUQz5kAN/GHfjLLjHJGpE9WgxdgPt3fRGybKSGYpG5CLulcP
- Fk1phQmIuFCl610o8vkcwlxjKDc+lqlZM8ljSUDjy5FvaQha4ZUYtm0Qa
- nkcayjNnZGY+i/Q8zqNgebzFml4135Yp6IDKv4rnlukSxAxzADvzKzHvk
- cTiordJHLCy7O9tVcJK+1JOlhfyjsV7Up3RqiGN820qdHXcbvnve1Aw1t
- 2y4bNILVGU8Et2EM+OrZUgTjIGuuMtOOlgRudcKsO2z+4oSFsQv7qanG/
- lOx5lWON5wg76OlW/fhGCKws0MGawgvaD4UqfNrYpDcoOiiaVjRwXyuPP w==;
-X-CSE-ConnectionGUID: QnOy6Ii/Q/K9YVJfqXx06g==
-X-CSE-MsgGUID: OD/fkEnSRTSAs2T8hrPhrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="62573604"
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="62573604"
+ t=1760513734; x=1792049734;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=715oGfJB38+wK0yJcyc3/aceR5UJgDLH7/W4Ow0Et5k=;
+ b=Xuljq8xjEZw8VNGA+XW7qormXKR+XRxAN/2iAOfYIDlkvoN9GX1fj3GR
+ N7AEik/74X25eSnffAj1tO1uE0/VUEPO8HA2ynjrcVPioyPZp1vjsTUyY
+ Kef1dJLnOmvhAM6lIFZ+9PtvtrSwrd/6egO2gFvMqzC+fuOJTBuQ8y//v
+ toRpErcSGSdkxOpWSeFUaT3j4trnMGoJITEJYCiUrhVYb1BLtx5pD3geq
+ NnZBMayTTbaEu9EsSX3EDcmeSXV0M9pU8pb90CYIC+Zl6j0WqiJWuROmA
+ 1UQ+PhIh4zdaZ4OTQGHs961Qj1LWPQEZV/FCtzRvelTmPOqLC43UWnn0o w==;
+X-CSE-ConnectionGUID: WZrlfzTeTvCCJICTP0bAXA==
+X-CSE-MsgGUID: ivmXZJ9rTLq4iuNcyc1NSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="62573617"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="62573617"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 00:35:24 -0700
-X-CSE-ConnectionGUID: pTjO3YCSSZCcnkprHV30FQ==
-X-CSE-MsgGUID: DC6tDtARQ7ePDaZtfda+SQ==
+ 15 Oct 2025 00:35:33 -0700
+X-CSE-ConnectionGUID: aJ23f+PkRuCioNinCh/VSw==
+X-CSE-MsgGUID: Eam07EvMQJyarnbbIHX4Nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="182882170"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="182882265"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 00:35:23 -0700
+ 15 Oct 2025 00:35:32 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 00/10] Preparatory patches for guardband optimization
-Date: Wed, 15 Oct 2025 12:52:07 +0530
-Message-ID: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 04/10] drm/i915/vblank: Add helper to get correct vblank length
+Date: Wed, 15 Oct 2025 12:52:11 +0530
+Message-ID: <20251015072217.1710717-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
+References: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,65 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Handle few cases which will need changes when guardband will no longer
-be matched to vblank length.
-- Fix the vblank_start evaluation.
-- Fix PSR wake latency checks wrt to guradband.
+Currently crtc_vblank_start is assumed to be the vblank_start for the fixed
+refresh rate case. That value can be different from the variable refresh
+rate case whenever always_use_vrr_tg()==false. On icl/tgl it's always
+different due to the extra vblank delay, and also on adl+ it could be
+different if we were to use an optimized guardband.
 
-Rev 2: PSR went through some changes recently, rebase the patches on latest
-PSR changes.
+So places where crtc_vblank_start is used to compute vblank length needs
+change so as to account for cases where vrr is enabled. Specifically
+with vrr.enable the effective vblank length is actually guardband.
 
-Rev 3: Address comments from Ville and Jouni:
-- Add a patch to move intel_dpll_crtc_compute_clock() early in the
-  function.
-- Merge patch to adjust vblank_start and the readout changes.
-- Fix agument to alpm_config_valid()
-- Add documentation for retionale behind PSR late-stage configuration.
+Add a helper to get the correct vblank length for both vrr and fixed
+refresh rate cases. Use this helper where vblank_start is used to
+compute the vblank length.
 
-Rev 4:
-- Update pipe_mode->vblank_start and actually merge patch to adjust
-  vblank_start and readout changes.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vblank.c  | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_vblank.h  |  2 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c |  3 ++-
+ 3 files changed, 14 insertions(+), 1 deletion(-)
 
-Rev 5:
-- Reset other psr flags based on features that are dropped.
-
-Rev 6:
-- Make the order of panel_replay/sel_update flags consistent in Patch#5
-- Add a patch to have separate function for
-  intel_psr_set_non_psr_pipes()
-- Split patch to introduce intel_psr_compute_config_late() from patch to
-  check final vblank. Move Wa_18037818876 and
-  intel_psr_set_non_psr_pipes() to intel_psr_compute_config_late().
-
-Ankit Nautiyal (10):
-  drm/i915/vrr: Use crtc_vsync_start/end for computing
-    vrr.vsync_start/end
-  drm/i915/display: Move intel_dpll_crtc_compute_clock early
-  drm/i915/vrr:
-    s/intel_vrr_compute_config_late/intel_vrr_compute_guardband
-  drm/i915/vblank: Add helper to get correct vblank length
-  drm/i915/psr: Consider SCL lines when validating vblank for wake
-    latency
-  drm/i915/psr: Introduce helper intel_psr_set_non_psr_pipes
-  drm/i915/display: Introduce dp/psr_compute_config_late()
-  drm/i915/psr: Check if final vblank is sufficient for PSR features
-  drm/i915/display: Add vblank_start adjustment logic for always-on VRR
-    TG
-  drm/i915/display: Prepare for vblank_delay for LRR
-
- drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +
- drivers/gpu/drm/i915/display/intel_display.c |  18 +-
- drivers/gpu/drm/i915/display/intel_dp.c      |   9 +
- drivers/gpu/drm/i915/display/intel_dp.h      |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 251 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h     |   2 +
- drivers/gpu/drm/i915/display/intel_vblank.c  |  10 +
- drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
- drivers/gpu/drm/i915/display/intel_vrr.c     |  29 ++-
- drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c |   3 +-
- 11 files changed, 243 insertions(+), 89 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 0b7fcc05e64c..2fc0c1c0bb87 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -767,3 +767,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 
+ 	return scanline;
+ }
++
++int intel_crtc_vblank_length(const struct intel_crtc_state *crtc_state)
++{
++	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++
++	if (crtc_state->vrr.enable)
++		return crtc_state->vrr.guardband;
++	else
++		return adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
+index 21fbb08d61d5..98d04cacd65f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.h
++++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+@@ -48,4 +48,6 @@ const struct intel_crtc_state *
+ intel_pre_commit_crtc_state(struct intel_atomic_state *state,
+ 			    struct intel_crtc *crtc);
+ 
++int intel_crtc_vblank_length(const struct intel_crtc_state *crtc_state);
++
+ #endif /* __INTEL_VBLANK_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 9df9ee137bf9..06e5e6c77d2e 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -28,6 +28,7 @@
+ #include "intel_flipq.h"
+ #include "intel_pcode.h"
+ #include "intel_plane.h"
++#include "intel_vblank.h"
+ #include "intel_wm.h"
+ #include "skl_universal_plane_regs.h"
+ #include "skl_watermark.h"
+@@ -2241,7 +2242,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+ 		scaler_prefill_latency(crtc_state) +
+ 		dsc_prefill_latency(crtc_state) +
+ 		wm0_lines >
+-		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
++		intel_crtc_vblank_length(crtc_state);
+ }
+ 
+ static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
 -- 
 2.45.2
 
