@@ -4,78 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAB5ACCD185
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:52:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C8FCCCD185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:53:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1F5A10E733;
-	Wed, 15 Oct 2025 07:52:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 328C510E750;
+	Wed, 15 Oct 2025 07:53:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KU1ZYWOy";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YK/ErJOe";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB1F10E748
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 07:52:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D204910E754
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 07:53:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1760514765;
+ s=mimecast20190719; t=1760514802;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=MHykXUHzy3P15VrWtRxCqfqVXwzZ2Ylga+RWIrK7dZE=;
- b=KU1ZYWOyDIwp4S0YN5O9G5v4PiTcyS4tN2OQ/zFd0tL87xUu7N5utJO4rRX6rfjM5Tep26
- Bu+ls5UIsYWtXP0m1ccwoy7RBnvhQu42i7X6UWwHXKRfzSKKL01F0/My/kbWlUsQI+uqgl
- mdqwvQiqrlRTGWgul8yBE/ZqBjORHc8=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=t+HZgDzRdpaVTxvZqJl2rTn2R8LelhY8vbHUCgBN35M=;
+ b=YK/ErJOe4ySVCbEZDx7t4Rrs+YpkmUaM7i5Nz8Y2h+86ClpnfCycAlli2dCvg0nT/gT/JJ
+ JBDBMlxp2hivbyqDWvU/75CgrhsccnHK+b3Xj3G3Jc+4XlwhYzO99y2bT356rpLEV9g9et
+ FVX3f1NwA3XVu1jQxknmOcCO4r1UFG8=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-408-LHTYIpD1PgGylmY5KK9VzQ-1; Wed, 15 Oct 2025 03:52:44 -0400
-X-MC-Unique: LHTYIpD1PgGylmY5KK9VzQ-1
-X-Mimecast-MFC-AGG-ID: LHTYIpD1PgGylmY5KK9VzQ_1760514763
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-470fd92ad57so5978325e9.3
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 00:52:44 -0700 (PDT)
+ us-mta-18-q2HKLXSyN62LGlKa9x3Vpw-1; Wed, 15 Oct 2025 03:53:21 -0400
+X-MC-Unique: q2HKLXSyN62LGlKa9x3Vpw-1
+X-Mimecast-MFC-AGG-ID: q2HKLXSyN62LGlKa9x3Vpw_1760514800
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-46e509374dcso27163465e9.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 00:53:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760514763; x=1761119563;
+ d=1e100.net; s=20230601; t=1760514799; x=1761119599;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=MHykXUHzy3P15VrWtRxCqfqVXwzZ2Ylga+RWIrK7dZE=;
- b=KR5kvHzHf1pmHBnoiB5UTH14PdEElkqK+OcNlCRRHhqPRy3rxvMjdRCeu148Fx1iR+
- W/mtjY1eTYsjjHmy9BdjtKH5sMQq41fjZJspoo7fPef5ebgNoIwlztgSrswYjNZJgOgu
- NZcIqyQaJATEtf1dSfXC9QrSjFmWAmIy5Te7aOo8KKWyuYoShmCoIjYzGr1UdkjlGm62
- TsjS1xIkWpHNMM8xzvTce0Oruwt9aFWTRLh2ZXK8/rtnZ4PhF1QROePyuw4qCSnDWrtR
- Sav35JF5Oi8hBayEMbByDgUOEZnprYhlhweKZx+ex+h4bg+WyDTJRnzsqPgJyl1jmQGn
- 2q5w==
+ bh=t+HZgDzRdpaVTxvZqJl2rTn2R8LelhY8vbHUCgBN35M=;
+ b=Tsndbo3BiLA3gVyTgayLg5S5T4RaAa4kUqa4IPyXgbTEdWr+EhJly7dJmZXDQpn6EE
+ lYhLdEslKjEZe7ZK9VYAEDC79m/x4ca9Y3uQU861qsIt71FfpMji8fRa1v7SAwr0bd6W
+ UBw/WMrM6bIFjEk6ii5NcT4/UYWQjpw37Mbvy2nTzNuV8fUMp874j+BQHYZWE30wbKyB
+ GWA+aI0eokDTXsstbfW0Sm5zVaY3I5a0M5HVCfEhdok+/sv0c5gn2ksKIHJmYE9Pre8J
+ WKQnHQIR52fCYD+9/53UUIpuA6xx4Dfim2oz5LR7YNrSWLDCmEYBOk9/JVaOVDgseBiC
+ h9XA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUO+rZfvmovb/ErbSYHO3cRBpxGdlY13IP1q6wAJ/UPJQsPDbIjKBbqXFeBeDnorO5tV2arI67SJA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyYjbwkmA0s//mgYhsiRPqtG03Z2pURO9QNyzdKGg/8sHjMajKu
- blir0G8+hSzlxp6wa8eFGJD9ZfEBpdDRa0JUNiHLHke7+UX0iG4DBmkEhnZ/sV7unyLX0LM9aj4
- nvZ55ScpA6fo2EormTCTQBpjF5OFbpOJGtFq4B9E5eL/+x13qv42hoDlw6xxCBjQrApoD
-X-Gm-Gg: ASbGncs0wpkGKFDkAjatMg3pcOLx+EZvF0wBbBfgBgMiVw7pN+ZAQE/sNNWll4kk62p
- P9gtZPvVfwiJM+8ZgLpXgcRN9yCKWlx/F3IYo+Ib00w02bXD7ImDmhEdLuxMbi+Hy+F4S6SdgXr
- o5rbAUNxHuwArMX0VenSOGVXePwdu5TSR8BKqftMKJERSmmkwuDqDWnDeflLh3kuNdqvUmjf8E6
- 14p/oPKish6bsH1lKaaUNafzeC/vgaITfuU36BRBW0bH4iEOkFIpvoHSshQOve032lRCmAKQkrk
- sOADAbFNLOj7aVD8riiWhSvv0xvmll+AO6lVbQ8RWdudvX6eYZsitgIJHquGRr93XZXQT2Re93q
- cwLkb
-X-Received: by 2002:a05:600c:34cc:b0:46e:59dd:1b4d with SMTP id
- 5b1f17b1804b1-46fa9aa2076mr211303495e9.16.1760514763146; 
- Wed, 15 Oct 2025 00:52:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHW2ZDBPJxUfYCX0H6nLEKOLye2i61674dJQY/ZLYYwFVcv5Uohdp1HeQRReQYkGVWqF+Eh1g==
-X-Received: by 2002:a05:600c:34cc:b0:46e:59dd:1b4d with SMTP id
- 5b1f17b1804b1-46fa9aa2076mr211303305e9.16.1760514762767; 
- Wed, 15 Oct 2025 00:52:42 -0700 (PDT)
+ AJvYcCWPMBy8+vHeO2oWErWfP8q1MStQaORUPOxzqyLQJGQkrRHvoiy7N9+i8tj0oP/s1S2/M1OyMznAmA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwvYWg8qEL8dctxtgcXZitUrknDjNhJUSI99FGNUDYm3vYtTlY9
+ KFYfhnhTqKe+bcwE3j4sCImbZn53SwndKhzD6mARv+gYMyzn70wNrwOPKrI+ue/Y1iWDIOJQPvG
+ MIR/RCEdGVz2gkRCvOEXNs+5iUNmaFbr8SqnRromaw9x7l1X5m4UsvA2kAFJeqlMBFWjGWfs1Wl
+ s0Pwg=
+X-Gm-Gg: ASbGncs8IWePjz95RvNtVW5wXdULFa24/VBR3vNhe2oWXxx7fLWilYDoiJa1W5V5rPy
+ NCSVuXdAjJe1rH/0LV+XwpoWGYj/1552+FibV3g9J9UhrOQXJ5z4imlF9zr191A3FW63D+holnn
+ 5LcfmSx4MGGm0UliJeQ4vPwVw4M9nZpfstLMpKg6+OhqswGuRbmfWpJeyyH1DcvG55bamEf2Brr
+ EFt/KbY5GtWQC4faPeBag3dV1oEA7x0Ptsu1l3dDoQL3X1B6K2yXhgWHNReSkD9mXsEVAQucg3d
+ HU/wlcth++yI2xmtUTH5Xq9vgj4W/VH1IKkP9bOWOgDyFDK58a36nlypnEUba1/hRTQgWqqeLby
+ 9mhxT
+X-Received: by 2002:a05:600c:1e28:b0:45b:47e1:ef6d with SMTP id
+ 5b1f17b1804b1-46fa9b11746mr202661485e9.36.1760514799495; 
+ Wed, 15 Oct 2025 00:53:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEZf7d9TK63edfjPsh4LrX74Y6wRlhtOgKLsjlyk6mKGtY9U4BbM1bQ2mcLbjosAJUslcGWjg==
+X-Received: by 2002:a05:600c:1e28:b0:45b:47e1:ef6d with SMTP id
+ 5b1f17b1804b1-46fa9b11746mr202661265e9.36.1760514799084; 
+ Wed, 15 Oct 2025 00:53:19 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
  ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47106fc97adsm2155395e9.9.2025.10.15.00.52.41
+ 5b1f17b1804b1-47101c21805sm14875785e9.10.2025.10.15.00.53.18
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Oct 2025 00:52:42 -0700 (PDT)
-Message-ID: <3d07c6ba-02d6-4d3f-8684-65a41b128539@redhat.com>
-Date: Wed, 15 Oct 2025 09:52:36 +0200
+ Wed, 15 Oct 2025 00:53:18 -0700 (PDT)
+Message-ID: <c256b8d9-ec9e-4841-9136-1198ad2d590a@redhat.com>
+Date: Wed, 15 Oct 2025 09:53:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/log: Do not hold lock across drm_client_release()
+Subject: Re: [PATCH 3/4] drm/log: Add free callback
 To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
  mripard@kernel.org, maarten.lankhorst@linux.intel.com
 Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
@@ -84,11 +85,11 @@ Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
  freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-tegra@vger.kernel.org
 References: <20251009132006.45834-1-tzimmermann@suse.de>
- <20251009132006.45834-3-tzimmermann@suse.de>
+ <20251009132006.45834-4-tzimmermann@suse.de>
 From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20251009132006.45834-3-tzimmermann@suse.de>
+In-Reply-To: <20251009132006.45834-4-tzimmermann@suse.de>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: pTmUGWdhrdC49RuaV3I6zF8g7NfQRPUHEBrLU5MmW6E_1760514763
+X-Mimecast-MFC-PROC-ID: oPi-3kqphZeDTyNYcuEO01NLh3Q3yVvwN18JDVc2RGU_1760514800
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US, fr
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -108,38 +109,59 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On 09/10/2025 15:16, Thomas Zimmermann wrote:
-> When calling drm_client_release(), the client is already quiescent.
-> Internal locks should therefore be dropped before the caller releases
-> the client.
-> 
-> In the case of the DRM log, concurrency originates from the console or
-> from client events. The console has been unregistered in the previous
-> line. The caller of the unregister callback, drm_log_client_unregister(),
-> holds clientlist_mutex from struct drm_device to protect against concurrent
-> client events. It is therefore safe to release the client without holding
-> locks.
+> Free the client memory in the client free callback. Also move the
+> debugging output into the free callback: drm_client_release() puts
+> the reference on the DRM device, so pointers to the device should
+> be considered dangling afterwards.
 
-Thanks, I agree, it should be safe to move drm_client_release() after 
-the lock.
+Thanks, it looks good to me.
 
 Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>>
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > ---
->   drivers/gpu/drm/clients/drm_log.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/gpu/drm/clients/drm_log.c | 14 +++++++++++---
+>   1 file changed, 11 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/clients/drm_log.c b/drivers/gpu/drm/clients/drm_log.c
-> index d239f1e3c456..116e0ef9ae5d 100644
+> index 116e0ef9ae5d..470df4148e96 100644
 > --- a/drivers/gpu/drm/clients/drm_log.c
 > +++ b/drivers/gpu/drm/clients/drm_log.c
-> @@ -302,8 +302,8 @@ static void drm_log_client_unregister(struct drm_client_dev *client)
+> @@ -293,19 +293,26 @@ static void drm_log_free_scanout(struct drm_client_dev *client)
+>   	}
+>   }
+>   
+> -static void drm_log_client_unregister(struct drm_client_dev *client)
+> +static void drm_log_client_free(struct drm_client_dev *client)
+>   {
+>   	struct drm_log *dlog = client_to_drm_log(client);
+>   	struct drm_device *dev = client->dev;
+>   
+> +	kfree(dlog);
+> +
+> +	drm_dbg(dev, "Unregistered with drm log\n");
+> +}
+> +
+> +static void drm_log_client_unregister(struct drm_client_dev *client)
+> +{
+> +	struct drm_log *dlog = client_to_drm_log(client);
+> +
+>   	unregister_console(&dlog->con);
 >   
 >   	mutex_lock(&dlog->lock);
 >   	drm_log_free_scanout(client);
-> -	drm_client_release(client);
 >   	mutex_unlock(&dlog->lock);
-> +	drm_client_release(client);
->   	kfree(dlog);
->   	drm_dbg(dev, "Unregistered with drm log\n");
+>   	drm_client_release(client);
+> -	kfree(dlog);
+> -	drm_dbg(dev, "Unregistered with drm log\n");
 >   }
+>   
+>   static int drm_log_client_hotplug(struct drm_client_dev *client)
+> @@ -339,6 +346,7 @@ static int drm_log_client_resume(struct drm_client_dev *client, bool _console_lo
+>   
+>   static const struct drm_client_funcs drm_log_client_funcs = {
+>   	.owner		= THIS_MODULE,
+> +	.free		= drm_log_client_free,
+>   	.unregister	= drm_log_client_unregister,
+>   	.hotplug	= drm_log_client_hotplug,
+>   	.suspend	= drm_log_client_suspend,
 
