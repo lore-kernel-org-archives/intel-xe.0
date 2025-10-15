@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31B0DCCD18E
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 10:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B70A8CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 11:03:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E989110E774;
-	Wed, 15 Oct 2025 10:36:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ewLRCnKN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BABDA10E781;
- Wed, 15 Oct 2025 10:36:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760524561; x=1792060561;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=y3qWR/3rKsV74t+DODtD9Z4EvP0tdPYH8AKwXsC2bzQ=;
- b=ewLRCnKN+XAkGXZsY1q7kFu9SBQUElSpMVPexN0XR+nfZnuizfTosMML
- tpJLoSjVQvqLqxpK/M2qJWxl92Sk/UEJjfbfJfDkuT1HR0sKXtpKN/EZ5
- fQcdoGOgmG334J5UNoWHc4beTpAt+RHRYdAda8lY/2VkYquXGUA65gKEy
- F5G4qKBp9UF8vurfADLXaNjHawwnLcFGlROwY0QwjGlLW4z6fOBJeX+o8
- JPydzHPlRakZO/0wY8m9PPwnmCHuhDsiAHJvvSMsuJ+IcvDWYLb97+Wfl
- tViahwP4E+8w+jW0ZZrLexBbej4ppg5WguKqn+1J3wLqe5xG0OGFYCmKL A==;
-X-CSE-ConnectionGUID: MwIo025NR0akiTxinFgArg==
-X-CSE-MsgGUID: xCKwe5TASbWTPIi7P44SNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50262617"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="50262617"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 03:36:01 -0700
-X-CSE-ConnectionGUID: tHxszXPCRfuJ7+BsvxEDpA==
-X-CSE-MsgGUID: Gr0H3bj1S3yGcfBj25eOlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205842588"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 03:35:59 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 6/6] drm/i915/vrr: Use the min static optimized guardband
-Date: Wed, 15 Oct 2025 15:52:41 +0530
-Message-ID: <20251015102241.1797828-7-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
-References: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2D110E77E;
+	Wed, 15 Oct 2025 11:03:29 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8636710E29A;
+ Wed, 15 Oct 2025 11:03:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1495648685120897519=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Make_all_xe=5Fggt?=
+ =?utf-8?q?t_structs_private=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Oct 2025 11:03:28 -0000
+Message-ID: <176052620854.15860.3700447230173894100@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251015074708.1654014-14-dev@lankhorst.se>
+In-Reply-To: <20251015074708.1654014-14-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,135 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the current VRR implementation, vrr.vmin and vrr.guardband are set such
-that they do not need to change when switching from fixed refresh rate to
-variable refresh rate. Specifically, vrr.guardband is always set to match
-the vblank length. This approach works for most cases, but not for LRR,
-where the guardband would need to change while the VRR timing generator is
-still active.
+--===============1495648685120897519==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With the VRR TG always active, live updates to guardband are unsafe and not
-recommended. To ensure hardware safety, guardband was moved out of the
-!fastset block, meaning any change now requires a full modeset.
-This breaks seamless LRR switching, which was previously supported.
+== Series Details ==
 
-Since the problem arises from guardband being matched to the vblank length,
-solution is to use a minimal, sufficient static value, instead. So we use a
-static guardband defined during mode-set that fits within the smallest
-expected vblank and remains unchanged in case of features like LRR where
-vtotal changes. To compute this minimum guardband we take into account
-latencies/delays due to different features as mentioned in the Bspec.
+Series: drm/xe: Make all xe_ggtt structs private. (rev2)
+URL   : https://patchwork.freedesktop.org/series/155941/
+State : success
 
-Introduce a helper to compute the minimal sufficient guardband.
-On platforms where the VRR timing generator is always ON, we optimize the
-guardband regardless of whether the display is operating in fixed or
-variable refresh rate mode.
-On platforms where the VRR timing generator is not always ON, we optimize
-the guardband only when VRR is enabled.
+== Summary ==
 
-Bspec: 70151
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 61 +++++++++++++++++++++++-
- 1 file changed, 59 insertions(+), 2 deletions(-)
+CI Bug Log - changes from xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10_BAT -> xe-pw-155941v2_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 1cfcc31bd899..4d96aad93dba 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -6,12 +6,16 @@
- 
- #include <drm/drm_print.h>
- 
-+#include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
-+#include "intel_psr.h"
- #include "intel_vrr.h"
- #include "intel_vrr_regs.h"
-+#include "skl_prefill.h"
-+#include "skl_watermark.h"
- 
- #define FIXED_POINT_PRECISION		100
- #define CMRR_PRECISION_TOLERANCE	10
-@@ -433,17 +437,70 @@ intel_vrr_max_guardband(struct intel_crtc_state *crtc_state)
- 		   intel_vrr_max_vblank_guardband(crtc_state));
- }
- 
-+static
-+int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	struct skl_prefill_ctx prefill_ctx;
-+	int prefill_framestart_delay = 1;
-+	int prefill_min_guardband;
-+	int prefill_latency_us;
-+	int prefill_wm0_lines;
-+	int prefill_sagv_us;
-+	int psr_latency = 0;
-+	int sdp_latency = 0;
-+	int guardband;
-+
-+	skl_prefill_init_worst(&prefill_ctx, crtc_state);
-+	prefill_wm0_lines = skl_wm0_prefill_lines_worst(crtc_state);
-+	prefill_sagv_us = display->sagv.block_time_us;
-+
-+	prefill_latency_us = prefill_sagv_us +
-+			     intel_scanlines_to_usecs(adjusted_mode,
-+						      prefill_framestart_delay +
-+						      prefill_wm0_lines);
-+	prefill_min_guardband =
-+		skl_prefill_min_guardband(&prefill_ctx,
-+					  crtc_state,
-+					  prefill_latency_us);
-+
-+	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+		psr_latency = intel_psr_max_link_wake_latency(crtc_state);
-+		sdp_latency = intel_dp_compute_sdp_latency(crtc_state);
-+	}
-+
-+	guardband = max(sdp_latency, psr_latency);
-+
-+	guardband = max(guardband, prefill_min_guardband);
-+
-+	return guardband;
-+}
-+
-+static bool intel_vrr_use_optimized_guardband(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return intel_vrr_always_use_vrr_tg(display) || crtc_state->vrr.enable;
-+}
-+
- void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
-+	int guardband;
- 
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
--	crtc_state->vrr.guardband = min(crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay,
--					intel_vrr_max_guardband(crtc_state));
-+	if (intel_vrr_use_optimized_guardband(crtc_state))
-+		guardband = intel_vrr_compute_optimized_guardband(crtc_state);
-+	else
-+		guardband = crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay;
-+
-+	crtc_state->vrr.guardband = min(guardband, intel_vrr_max_guardband(crtc_state));
- 
- 	if (intel_vrr_always_use_vrr_tg(display)) {
- 		adjusted_mode->crtc_vblank_start  =
--- 
-2.45.2
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10 -> xe-pw-155941v2
+
+  IGT_8585: 8585
+  xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10: 5338aee4a6d5ef0d735cabbb3cd939ec10d0da10
+  xe-pw-155941v2: 155941v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155941v2/index.html
+
+--===============1495648685120897519==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Make all xe_ggtt structs private. (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155941/">https://patchwork.freedesktop.org/series/155941/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155941v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155941v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10_BAT -&gt; xe-pw-155941v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 10)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10 -&gt; xe-pw-155941v2</li>
+</ul>
+<p>IGT_8585: 8585<br />
+  xe-3923-5338aee4a6d5ef0d735cabbb3cd939ec10d0da10: 5338aee4a6d5ef0d735cabbb3cd939ec10d0da10<br />
+  xe-pw-155941v2: 155941v2</p>
+
+</body>
+</html>
+
+--===============1495648685120897519==--
