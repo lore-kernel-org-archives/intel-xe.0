@@ -4,21 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0C9FCCD193
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:47:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D25B1CCD185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6303810E707;
-	Wed, 15 Oct 2025 07:47:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90AD110E269;
+	Wed, 15 Oct 2025 07:47:29 +0000 (UTC)
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37A1010E262
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEBA610E262
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 07:47:25 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 03/12] drm/xe: Add xe_ggtt_node_addr() to avoid
- dereferencing xe_ggtt_node
-Date: Wed, 15 Oct 2025 09:47:12 +0200
-Message-ID: <20251015074708.1654014-17-dev@lankhorst.se>
+Subject: [PATCH v7 04/12] drm/xe/display: Avoid dereferencing xe_ggtt_node
+Date: Wed, 15 Oct 2025 09:47:13 +0200
+Message-ID: <20251015074708.1654014-18-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015074708.1654014-14-dev@lankhorst.se>
 References: <20251015074708.1654014-14-dev@lankhorst.se>
@@ -38,76 +37,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This function makes it possible to add an offset that is applied to
-all xe_ggtt_node's, and hides the internals from all its users.
+Start using xe_ggtt_node_addr, and avoid comparing the base offset
+as vma->node is dynamically allocated.
+
+Also sneak in a xe_bo_size() for stolen, too small to put as separate commit.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.h   |  8 +++++---
- drivers/gpu/drm/xe/xe_ggtt.c | 11 +++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
- 3 files changed, 18 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 4 ++--
+ drivers/gpu/drm/xe/display/xe_fb_pin.c            | 4 ++--
+ drivers/gpu/drm/xe/display/xe_stolen.c            | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 353d607d301da..dd67a6f40a16d 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -9,6 +9,7 @@
- #include <drm/ttm/ttm_tt.h>
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index 4465c40f81341..1c599963169a0 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -8,7 +8,7 @@
  
- #include "xe_bo_types.h"
+ #include <uapi/drm/i915_drm.h>
+ 
+-#include "xe_ggtt_types.h"
 +#include "xe_ggtt.h"
- #include "xe_macros.h"
- #include "xe_validation.h"
- #include "xe_vm_types.h"
-@@ -251,13 +252,14 @@ static inline u32
- __xe_bo_ggtt_addr(struct xe_bo *bo, u8 tile_id)
+ 
+ #include <linux/refcount.h>
+ 
+@@ -32,7 +32,7 @@ struct i915_vma {
+ 
+ static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
  {
- 	struct xe_ggtt_node *ggtt_node = bo->ggtt_node[tile_id];
-+	u64 offset;
- 
- 	if (XE_WARN_ON(!ggtt_node))
- 		return 0;
- 
--	XE_WARN_ON(ggtt_node->base.size > xe_bo_size(bo));
--	XE_WARN_ON(ggtt_node->base.start + ggtt_node->base.size > (1ull << 32));
--	return ggtt_node->base.start;
-+	offset = xe_ggtt_node_addr(ggtt_node);
-+	XE_WARN_ON(offset + xe_bo_size(bo) > (1ull << 32));
-+	return offset;
+-	return vma->node->base.start;
++	return xe_ggtt_node_addr(vma->node);
  }
  
- static inline u32
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 42e3caa3a6d9c..05515037e2d6a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -1079,3 +1079,14 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
- {
- 	return ioread64(ggtt->gsm + (offset / XE_PAGE_SIZE));
- }
-+
-+/**
-+ * xe_ggtt_node_addr - Get @node offset in GGTT.
-+ * @node: &xe_ggtt_node
-+ *
-+ * Get the GGTT offset for allocated node.
-+ */
-+u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
-+{
-+	return node->base.start;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index d54a2ae2b4aa8..4a8ef1b824156 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -58,4 +58,6 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
- u64 xe_ggtt_encode_pte_flags(struct xe_ggtt *ggtt, struct xe_bo *bo, u16 pat_index);
- u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
- 
-+u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node);
-+
  #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d2e4903de0977..784d2db5fd0db 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -206,7 +206,7 @@ static void write_ggtt_rotated_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *n
+ 	struct fb_rotate_args *args = data;
+ 	struct xe_bo *bo = args->bo;
+ 	const struct intel_rotation_info *rot_info = &args->view->rotated;
+-	u32 ggtt_ofs = node->base.start;
++	u32 ggtt_ofs = xe_ggtt_node_addr(node);
+ 
+ 	for (u32 i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+ 		write_ggtt_rotated(ggtt, &ggtt_ofs, pte_flags, write_pte,
+@@ -351,7 +351,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+ 	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
+-		 vma->bo->ggtt_node[tile_id]->base.start != vma->node->base.start)
++		 vma->bo->ggtt_node[tile_id] != vma->node)
+ 		xe_ggtt_node_remove(vma->node, false);
+ 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
+index 9f04ba36e930b..ef5ef5aa8d847 100644
+--- a/drivers/gpu/drm/xe/display/xe_stolen.c
++++ b/drivers/gpu/drm/xe/display/xe_stolen.c
+@@ -100,7 +100,7 @@ u64 i915_gem_stolen_node_address(struct intel_stolen_node *node)
+ 
+ u64 i915_gem_stolen_node_size(const struct intel_stolen_node *node)
+ {
+-	return node->bo->ttm.base.size;
++	return xe_bo_size(node->bo);
+ }
+ 
+ struct intel_stolen_node *i915_gem_stolen_node_alloc(struct drm_device *drm)
 -- 
 2.51.0
 
