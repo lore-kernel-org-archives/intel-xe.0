@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 801CCCCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84267CCD19E
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A0510E90C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E5E10E90D;
 	Wed, 15 Oct 2025 22:07:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZzUUk4ZJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jgnzBdgX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3096610E903
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD7010E901
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760566032; x=1792102032;
+ t=1760566031; x=1792102031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0Sn89GohKl/TRLcLk/89V/abwhFATDOFBQnXbufQWE8=;
- b=ZzUUk4ZJRAJCiJCk1o3ObPPlpjDV6fDSY2XZkCdfyd4fUEvJVRnJczuz
- dWCsJ43ngfRZgRUgiFUYFe0X3BTTjmnV2poT/RLvOtygsDEPDsbsaRnar
- WMQmrzMYcsQWS0OSK8ATwc6SIgEXW88PD2WQzNWEQAsXBK4+immWF9nUo
- qezqZ+oziJa/Cz5Jl1QYv4HshL3VY8PmFezaatSPj8PePc/NvZb37V4Oi
- cUpUwJmQpSfsKXdT4BS1NttgRkk2ffKJ2GEtIhRZKvIl6zz9RqdC+iQa9
- lrNrmainj/8VWP+GHNUhIGfa1IAzjnEOW3RpIv297AOWnTaItOB1u01K4 Q==;
-X-CSE-ConnectionGUID: P+Cpyid0TMm9wyXsD4e88g==
-X-CSE-MsgGUID: s0wFILgYRTWfvftBiRqYwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794067"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794067"
+ bh=sezfMhKbNLQwFVfaa8UXAJyAFgVQ5dXi71mu25jAyPs=;
+ b=jgnzBdgX96obxLA7NeK9cS52L7VbDa2Q3zixplJwsoeh4v7QbhJMYPFa
+ dXZc92YaQaNg8gKYO5lVWJpV2yGAEgULWEsJ/fG1ItksTA8gcFMgiFexm
+ eHnd663ulZxib3jpV3WQzVVsYruE2gvTo3VG2aFEcb/DLj9spcryuITdi
+ Nso51Y4pz8XjfdM7wAL3SYYl0omDGx4dlY+kGSAFJw1E8MB2rQncX2ueV
+ Y2JmYVa54iWuM9hLt0DAJEwIXmnlqdX5d4wT0k6dGD5b0FZEKuz2pmrfs
+ zfsApUMPBUIHzr1mv+9uf7K7iPA7+ZXyD14WQuUmvwfQcQNOcxnuEOz9c g==;
+X-CSE-ConnectionGUID: SVSbpanKQNWme1T5ooLHug==
+X-CSE-MsgGUID: 2fVwlW0xSwWR63Je628+pA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794051"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794051"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: EbxTVCXISAS9x/Q/BGYvKg==
-X-CSE-MsgGUID: SF5KBv+bR8SusSZjeUs5ng==
+X-CSE-ConnectionGUID: qhbhKAY7T+m1LDBam8JrJg==
+X-CSE-MsgGUID: lHyVMJ7/QVCnQhs28Mts1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298330"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298277"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
@@ -47,12 +47,10 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Harish Chegondi <harish.chegondi@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH v2 22/22] drm/xe/xe3p: Add xe3p EU stall data format
-Date: Wed, 15 Oct 2025 15:06:37 -0700
-Message-ID: <20251015-xe3p-v2-22-b9189b3056a2@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v2 06/22] drm/xe/xe3p_lpm: Handle MCR steering
+Date: Wed, 15 Oct 2025 15:06:21 -0700
+Message-ID: <20251015-xe3p-v2-6-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
@@ -74,71 +72,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Harish Chegondi <harish.chegondi@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Starting with Xe3p, IP address in EU stall data increases to 61 bits.
-While at it, re-order the if-else ladder so the officially supported
-platforms come before PVC.
+Xe3p_LPM's MCR steering has the same ranges and behavior as Xe3_LPM.
+However one register range that was reserved on Xe3_LPM has now become a
+unicast range (0x384200-0x38427F), so we need to stop consolidating the
+adjacent MCR ranges into a single table entry in the table.  With this
+change to the Xe3_LPM table, we can continue to use the same table for
+both IP families.
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+While we're touching this table, take the opportunity to fix a
+whitespace mistake and clarify that one of the other consolidated range
+entries includes a reserved range.
+
+Bspec: 76445
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: reorder the if-else ladder so PVC is the last (Lucas)
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-TODO: double check data format as it's missing from bspec
----
- drivers/gpu/drm/xe/xe_eu_stall.c | 28 ++++++++++++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index f5cfdf29fde34..650e45f6a7c7e 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -124,6 +124,27 @@ struct xe_eu_stall_data_xe2 {
- 	__u64 unused[6];
- } __packed;
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 8fb1cae917244..e1a2b38fc2a86 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -236,12 +236,13 @@ static const struct xe_mmio_range xe2lpm_instance0_steering_table[] = {
+ };
  
-+/*
-+ * EU stall data format for Xe3p arch GPUs.
-+ */
-+struct xe_eu_stall_data_xe3p {
-+	__u64 ip_addr:61;	  /* Bits 0  to 60  */
-+	__u64 tdr_count:8;	  /* Bits 61 to 68  */
-+	__u64 other_count:8;	  /* Bits 69 to 76  */
-+	__u64 control_count:8;	  /* Bits 77 to 84  */
-+	__u64 pipestall_count:8;  /* Bits 85 to 92  */
-+	__u64 send_count:8;	  /* Bits 93 to 100 */
-+	__u64 dist_acc_count:8;   /* Bits 101 to 108 */
-+	__u64 sbid_count:8;	  /* Bits 109 to 116 */
-+	__u64 sync_count:8;	  /* Bits 117 to 124 */
-+	__u64 inst_fetch_count:8; /* Bits 125 to 132 */
-+	__u64 active_count:8;	  /* Bits 133 to 140 */
-+	__u64 ex_id:3;		  /* Bits 141 to 143 */
-+	__u64 end_flag:1;	  /* Bit  144 */
-+	__u64 unused_bits:47;
-+	__u64 unused[5];
-+} __packed;
-+
- const u64 eu_stall_sampling_rates[] = {251, 251 * 2, 251 * 3, 251 * 4, 251 * 5, 251 * 6, 251 * 7};
- 
- /**
-@@ -167,10 +188,13 @@ size_t xe_eu_stall_data_record_size(struct xe_device *xe)
- {
- 	size_t record_size = 0;
- 
--	if (xe->info.platform == XE_PVC)
--		record_size = sizeof(struct xe_eu_stall_data_pvc);
-+	if (GRAPHICS_VER(xe) >= 35)
-+		record_size = sizeof(struct xe_eu_stall_data_xe3p);
- 	else if (GRAPHICS_VER(xe) >= 20)
- 		record_size = sizeof(struct xe_eu_stall_data_xe2);
-+	else if (xe->info.platform == XE_PVC)
-+		record_size = sizeof(struct xe_eu_stall_data_pvc);
-+
- 
- 	xe_assert(xe, is_power_of_2(record_size));
- 
+ static const struct xe_mmio_range xe3lpm_instance0_steering_table[] = {
+-	{ 0x384000, 0x3847DF },         /* GAM, rsvd, GAM */
++	{ 0x384000, 0x3841FF },         /* GAM */
++	{ 0x384400, 0x3847DF },         /* GAM */
+ 	{ 0x384900, 0x384AFF },         /* GAM */
+ 	{ 0x389560, 0x3895FF },         /* MEDIAINF */
+ 	{ 0x38B600, 0x38B8FF },         /* L3BANK */
+ 	{ 0x38C800, 0x38D07F },         /* GAM, MEDIAINF */
+-	{ 0x38D0D0, 0x38F0FF },		/* MEDIAINF, GAM */
++	{ 0x38D0D0, 0x38F0FF },         /* MEDIAINF, rsvd, GAM */
+ 	{ 0x393C00, 0x393C7F },         /* MEDIAINF */
+ 	{},
+ };
 
 -- 
 2.51.0
