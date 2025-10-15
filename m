@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 868E3CCD18E
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:04:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 883A8CCD193
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:05:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1864510E791;
-	Wed, 15 Oct 2025 12:04:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FuG2pK/e";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9CA10E791;
- Wed, 15 Oct 2025 12:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760529848; x=1792065848;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=774ra5ixELvYNVL72Jv0sh4TrUY6YNRZC71+fQanYm8=;
- b=FuG2pK/eyCiSAYxn/idOstu5lO4Y41givRP9ZM7cU5frgfrVZc1K6kTL
- qN/Th4NFaeJbPSiCGVO45CKhOhKxIi4xdWkRhnp0i/oZJOztm07GSjAgx
- 11s/DAFhm7ZewzzTlmVxf4ICxH88qY0OU0WTd3K+2c9nfWdSmtNeaaZGf
- kAn60qPL32Ym81VllmpFRof/2Hjyl9iZINdcohHfPs92gsLCwYkSoNqSb
- tK0/YS4jmNEdQcciuV2IRUscxnLc8jq2wWf4CNIJSpaSuHgahpV7qHgm3
- j7jTnNU7SD9cPUR3/TnZL70aYaWKa13Y+CAIOKkS5rLrittWEV3vUZCkx g==;
-X-CSE-ConnectionGUID: Z42zFERjSoqT59Hs4YNQKQ==
-X-CSE-MsgGUID: Fq7+43yBQem0OOhwqQll8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="88169116"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="88169116"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 05:04:08 -0700
-X-CSE-ConnectionGUID: 3Giz+jJWQV2ZAW87hiZ8Cg==
-X-CSE-MsgGUID: FYTT+REUS0qQPZHCz4AVPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182567808"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.73])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 05:04:06 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@intel.com>,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v4] drm/gpusvm, drm/xe: Allow mixed mappings for userptr
-Date: Wed, 15 Oct 2025 14:03:20 +0200
-Message-ID: <20251015120320.176338-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4477310E79D;
+	Wed, 15 Oct 2025 12:05:20 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E30E10E79D;
+ Wed, 15 Oct 2025 12:05:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6827284337556776519=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_VRAM_Self_Refresh_=28rev5?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Oct 2025 12:05:18 -0000
+Message-ID: <176052991837.16661.5609363671464746331@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251015080710.1468409-1-badal.nilawar@intel.com>
+In-Reply-To: <20251015080710.1468409-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,109 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+--===============6827284337556776519==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Compute kernels often issue memory copies immediately after completion.
-If the memory being copied is an SVM pointer that was faulted into the
-device and then bound via userptr, it is undesirable to move that
-memory. Worse, if userptr is mixed between system and device memory, the
-bind operation may be rejected.
+== Series Details ==
 
-Xe already has the necessary plumbing to support userptr with mixed
-mappings. This update modifies GPUSVM's get_pages to correctly locate
-pages in such mixed mapping scenarios.
+Series: VRAM Self Refresh (rev5)
+URL   : https://patchwork.freedesktop.org/series/145342/
+State : success
 
-v2:
-- Rebase (Thomas Hellström)
-v3:
-- Remove Fixes tag.
-v4:
-- Break out from series since the other patch was merged.
-- Update patch subject, ensure dri-devel and Maarten are CC'd.
+== Summary ==
 
-Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/drm_gpusvm.c    | 6 ++++--
- drivers/gpu/drm/xe/xe_userptr.c | 4 +++-
- include/drm/drm_gpusvm.h        | 4 ++++
- 3 files changed, 11 insertions(+), 3 deletions(-)
+CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -> xe-pw-145342v5_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index cb906765897e..73e550c8ff8c 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1363,7 +1363,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
- 		if (is_device_private_page(page) ||
- 		    is_device_coherent_page(page)) {
--			if (zdd != page->zone_device_data && i > 0) {
-+			if (!ctx->allow_mixed &&
-+			    zdd != page->zone_device_data && i > 0) {
- 				err = -EOPNOTSUPP;
- 				goto err_unmap;
- 			}
-@@ -1399,7 +1400,8 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 		} else {
- 			dma_addr_t addr;
- 
--			if (is_zone_device_page(page) || pagemap) {
-+			if (is_zone_device_page(page) ||
-+			    (pagemap && !ctx->allow_mixed)) {
- 				err = -EOPNOTSUPP;
- 				goto err_unmap;
- 			}
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index f16e92cd8090..0d9130b1958a 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2025 Intel Corporation
-  */
- 
-+#include "xe_svm.h"
- #include "xe_userptr.h"
- 
- #include <linux/mm.h>
-@@ -54,7 +55,8 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
- 	struct xe_device *xe = vm->xe;
- 	struct drm_gpusvm_ctx ctx = {
- 		.read_only = xe_vma_read_only(vma),
--		.device_private_page_owner = NULL,
-+		.device_private_page_owner = xe_svm_devm_owner(xe),
-+		.allow_mixed = true,
- 	};
- 
- 	lockdep_assert_held(&vm->lock);
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index b92faa9a26b2..632e100e6efb 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -235,6 +235,9 @@ struct drm_gpusvm {
-  * @read_only: operating on read-only memory
-  * @devmem_possible: possible to use device memory
-  * @devmem_only: use only device memory
-+ * @allow_mixed: Allow mixed mappings in get pages. Mixing between system and
-+ *               single dpagemap is supported, mixing between multiple dpagemap
-+ *               is unsupported.
-  *
-  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
-  */
-@@ -246,6 +249,7 @@ struct drm_gpusvm_ctx {
- 	unsigned int read_only :1;
- 	unsigned int devmem_possible :1;
- 	unsigned int devmem_only :1;
-+	unsigned int allow_mixed :1;
- };
- 
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
--- 
-2.51.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 9)
+------------------------------
+
+  Missing    (2): bat-dg2-oem2 bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-145342v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -> xe-pw-145342v5
+
+  IGT_8585: 8585
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a
+  xe-pw-145342v5: 145342v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html
+
+--===============6827284337556776519==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>VRAM Self Refresh (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145342/">https://patchwork.freedesktop.org/series/145342/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -&gt; xe-pw-145342v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): bat-dg2-oem2 bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-145342v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -&gt; xe-pw-145342v5</li>
+</ul>
+<p>IGT_8585: 8585<br />
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a<br />
+  xe-pw-145342v5: 145342v5</p>
+
+</body>
+</html>
+
+--===============6827284337556776519==--
