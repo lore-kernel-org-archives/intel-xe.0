@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54379CCD18E
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 09:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BCF4CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 09:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1B210E769;
-	Wed, 15 Oct 2025 09:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA2B10E779;
+	Wed, 15 Oct 2025 09:47:50 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6952410E767;
- Wed, 15 Oct 2025 09:42:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2502875445777642438=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1130910E76E;
+ Wed, 15 Oct 2025 09:47:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Preparatory_patches_for_gua?=
- =?utf-8?q?rdband_optimization_=28rev6=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Make_all_xe=5Fg?=
+ =?utf-8?q?gtt_structs_private=2E_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Oct 2025 09:42:18 -0000
-Message-ID: <176052133842.15860.5124773718668380311@97596180aaec>
+Date: Wed, 15 Oct 2025 09:47:49 -0000
+Message-ID: <176052166906.15142.6744351609124070686@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251015072217.1710717-1-ankit.k.nautiyal@intel.com>
+References: <20251015074708.1654014-14-dev@lankhorst.se>
+In-Reply-To: <20251015074708.1654014-14-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,86 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2502875445777642438==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Preparatory patches for guardband optimization (rev6)
-URL   : https://patchwork.freedesktop.org/series/155662/
-State : success
+Series: drm/xe: Make all xe_ggtt structs private. (rev2)
+URL   : https://patchwork.freedesktop.org/series/155941/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811_BAT -> xe-pw-155662v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bf945dfb55549bc0586aa960fe978a4744284ec6
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Oct 15 09:47:21 2025 +0200
 
-Summary
--------
+    drm/xe: Remove xe_ggtt_node_allocated
+    
+    With the intermediate state gone, no longer useful. Just check against
+    NULL.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch 6a9cafb6723c47062cc4d593804d5bb69155d81a drm-intel
+e2ac055293d1 drm/xe: Start using ggtt->start in preparation of balloon removal
+-:102: CHECK:SPACING: No space is necessary after a cast
+#102: FILE: drivers/gpu/drm/xe/xe_ggtt.c:320:
++		ggtt_size = (gsm_size / 8) * (u64) XE_PAGE_SIZE - ggtt_start;
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 179 lines checked
+4986a82bc462 drm/xe: Convert xe_fb_pin to use a callback for insertion into GGTT
+-:195: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#195: FILE: drivers/gpu/drm/xe/xe_ggtt.c:627:
++static int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags)
 
-  No regressions found.
+-:208: WARNING:LONG_LINE_COMMENT: line length of 120 exceeds 100 columns
+#208: FILE: drivers/gpu/drm/xe/xe_ggtt.c:668:
++ * xe_ggtt_node_insert_transform(), or xe_ggtt_node_insert_balloon_locked() will ensure the node is inserted or reserved
 
-  
+total: 0 errors, 1 warnings, 1 checks, 317 lines checked
+3eafecb516ab drm/xe: Add xe_ggtt_node_addr() to avoid dereferencing xe_ggtt_node
+f5f1fbaf3211 drm/xe/display: Avoid dereferencing xe_ggtt_node
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+Also sneak in a xe_bo_size() for stolen, too small to put as separate commit.
 
-Participating hosts (10 -> 10)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+8f7880b96411 drm/xe: Do not dereference ggtt_node in xe_bo.c
+724d34bf8f3f drm/xe: Improve xe_gt_sriov_pf_config GGTT handling
+54851a9de3ad drm/xe: Privatize xe_ggtt_node
+d0b26246ff1b drm/xe: Make xe_ggtt_node offset relative to starting offset
+-:53: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/xe/xe_ggtt.c:570:
++			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155662v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811 -> xe-pw-155662v6
-
-  IGT_8585: 8585
-  xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811: 79cdb6e848f54057c336b7b9f8289b32801fe811
-  xe-pw-155662v6: 155662v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v6/index.html
-
---===============2502875445777642438==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+1c469275aace drm/xe: Rewrite GGTT VF initialisation
+-:18: WARNING:BAD_SIGN_OFF: Co-developed-by: must be immediately followed by Signed-off-by:
+#18: 
+Co-developed-by: Matthew Brost <matthew.brost@intel.com>
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Preparatory patches for guardband optimization (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155662/">https://patchwork.freedesktop.org/series/155662/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-:74: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#74: FILE: drivers/gpu/drm/xe/xe_ggtt.c:346:
++			xe_tile_err(ggtt->tile, "tile%u: Invalid GGTT configuration: %#llx-%#llx\n",
++				     ggtt->tile->id, ggtt_start, ggtt_start + ggtt_size - 1);
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v6/index.html</a></td></tr>
+total: 0 errors, 1 warnings, 1 checks, 548 lines checked
+4e630b89fe28 drm/xe: Move struct xe_ggtt to xe_ggtt.c
+-:43: ERROR:CODE_INDENT: code indent should use tabs where possible
+#43: FILE: drivers/gpu/drm/xe/xe_ggtt.c:109:
++        /** @start: Start offset of GGTT */$
 
-</table>
+total: 1 errors, 0 warnings, 0 checks, 136 lines checked
+67fb8f8d62a9 drm/xe: Make xe_ggtt_node_insert return a node
+bf945dfb5554 drm/xe: Remove xe_ggtt_node_allocated
 
 
-    <h1>CI Bug Log - changes from xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811_BAT -&gt; xe-pw-155662v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155662v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v6/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811 -&gt; xe-pw-155662v6</li>
-</ul>
-<p>IGT_8585: 8585<br />
-  xe-3922-79cdb6e848f54057c336b7b9f8289b32801fe811: 79cdb6e848f54057c336b7b9f8289b32801fe811<br />
-  xe-pw-155662v6: 155662v6</p>
-
-</body>
-</html>
-
---===============2502875445777642438==--
