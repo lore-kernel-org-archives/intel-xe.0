@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 883A8CCD193
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4327CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:10:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4477310E79D;
-	Wed, 15 Oct 2025 12:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A84E10E28C;
+	Wed, 15 Oct 2025 12:10:40 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E30E10E79D;
- Wed, 15 Oct 2025 12:05:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6827284337556776519=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16BA510E28C;
+ Wed, 15 Oct 2025 12:10:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_VRAM_Self_Refresh_=28rev5?=
- =?utf-8?q?=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PF=3A_Update_auto-provisi?=
+ =?utf-8?q?oning?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Oct 2025 12:05:18 -0000
-Message-ID: <176052991837.16661.5609363671464746331@97596180aaec>
+Date: Wed, 15 Oct 2025 12:10:39 -0000
+Message-ID: <176053023908.16680.2658261578794185851@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251015080710.1468409-1-badal.nilawar@intel.com>
-In-Reply-To: <20251015080710.1468409-1-badal.nilawar@intel.com>
+References: <20251015091211.592-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251015091211.592-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,53 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6827284337556776519==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: VRAM Self Refresh (rev5)
-URL   : https://patchwork.freedesktop.org/series/145342/
-State : success
+Series: PF: Update auto-provisioning
+URL   : https://patchwork.freedesktop.org/series/155971/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -> xe-pw-145342v5_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d055e7b39769b433dc0a931fbba0a372e937b100
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Oct 15 11:12:09 2025 +0200
 
-Summary
--------
+    drm/xe/pf: Allow to restore auto-provisioning mode
+    
+    After doing tweaks to the VFs provisioning we may want to restore
+    back the auto-provisioning mode. Allow that unless VFs are still
+    enabled. This can be also used to release all VFs resources.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 6a9cafb6723c47062cc4d593804d5bb69155d81a drm-intel
+5447c799f763 drm/xe/pf: Promote VFs provisioning helpers
+-:103: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#103: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 175 lines checked
+1440b156c542 drm/xe/pf: Automatically provision VFs only in auto-mode
+-:60: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#60: 
+new file mode 100644
 
-  No regressions found.
+-:86: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#86: FILE: drivers/gpu/drm/xe/xe_sriov_pf_provision_types.h:22:
++};
++static_assert(XE_SRIOV_PROVISIONING_MODE_AUTO == 0);
 
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): bat-dg2-oem2 bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-145342v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -> xe-pw-145342v5
-
-  IGT_8585: 8585
-  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a
-  xe-pw-145342v5: 145342v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html
-
---===============6827284337556776519==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 1 checks, 88 lines checked
+f4d0d7ec4587 drm/xe/pf: Disable auto-provisioning if changed using debugfs
+d055e7b39769 drm/xe/pf: Allow to restore auto-provisioning mode
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>VRAM Self Refresh (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145342/">https://patchwork.freedesktop.org/series/145342/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -&gt; xe-pw-145342v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): bat-dg2-oem2 bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-145342v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-145342v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -&gt; xe-pw-145342v5</li>
-</ul>
-<p>IGT_8585: 8585<br />
-  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a<br />
-  xe-pw-145342v5: 145342v5</p>
-
-</body>
-</html>
-
---===============6827284337556776519==--
