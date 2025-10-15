@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33AC8CCD185
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 15:29:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B4B2CCD194
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 15:33:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E52A210E829;
-	Wed, 15 Oct 2025 15:29:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0CD10E84F;
+	Wed, 15 Oct 2025 15:33:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QJntI8r0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i1ZnBeA6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECE4C10E829;
- Wed, 15 Oct 2025 15:29:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF0510E84F;
+ Wed, 15 Oct 2025 15:33:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760542149; x=1792078149;
+ t=1760542421; x=1792078421;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=IHZSkKLCLTDWl+VDMKgkksUA6ZkzR8e2DAevbI39CC4=;
- b=QJntI8r0YB7lzDMwQWwvUGjGp/E8TgXU9d6eDZOxiaF4W5JQ8MVeBGIm
- IBIZx84K9TqIaMF8W16L2S0fqqK/Xgj0GuEeFjT6xUDUtM1YPLu6SNfKn
- DmvnylvwaqlkiS3+nAyazhewiZCMaTorWSxSqdoyFGffqNDacQ60c/iL/
- knfzBMq1argXqM2sj6C4bN5KV/dh0R2CptuaJV7nHR7uaXY2x2vbGo/Cq
- E6RNMAIFZ7RdrdH1KlfF24QWxsJeFbbevf1bXnrYYjdP4Ce2eR7nlMWSB
- vvWFcleKvwSPBFNWHND0ZJiAZN9VApDzFRjerYkhUjeqA9XIZDwBaZmkY A==;
-X-CSE-ConnectionGUID: IAi/zS/7QBeOOP1DErS70g==
-X-CSE-MsgGUID: ro05We+tQSucTDPhaSSlpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73321671"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="73321671"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:29:08 -0700
-X-CSE-ConnectionGUID: cqO8qA2mSjaB9F9L3JQb4g==
-X-CSE-MsgGUID: l2338CsgQa+DIaULgsJrvA==
+ bh=z9CkWZZdQFnYfBut6M2K2YlAJSOzAxGgJ5wAZRHYSkU=;
+ b=i1ZnBeA6d9dVjzAWx8c5Cj6bhkZIwZ2Nunf5l8qEibJecTsUkSnl+ZF9
+ oBGh0lQvzhueg7OOsUzCbCMnIji4JN3LxyysUtBF8JLUV8aOShmGLFdqk
+ f4cz2YNGw4KWHVKeBN+YVkI54pytJBThONkTrIUoFWzQIyBw7SOvDVzl/
+ NzkTWQyjQ64qt/DnSMBZU3OFnHnLig6KYBxqanZIdJVkxubj9Pn/9wtc6
+ GO08qwx5c6tYezwQ+1p0GZnzhrFIFvcW/oBTTiQE3f0xRMLZ8I3zIKUOw
+ wnZBcjQ5eaVA0Z8iQ2dqV1Rw/dnDBsYW5DPRY98mpRaWnDn8CMMWSWzhZ A==;
+X-CSE-ConnectionGUID: 7hRBiJwMT1Ks4BP6wlUCTQ==
+X-CSE-MsgGUID: 9WY2C/NFRcmf33fTs8S5oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62871943"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62871943"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:33:40 -0700
+X-CSE-ConnectionGUID: /HyojC6CR4e4jiB+mifn6g==
+X-CSE-MsgGUID: 5x3rVhjgSRa7DUeocPUJ6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="181872778"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205907165"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.100])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:29:03 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 08:33:35 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
@@ -56,14 +56,14 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
  <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
  <shekhar.chauhan@intel.com>, Vinod Govindapillai
  <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 27/32] drm/i915/vbt: Add fields dedicated_external and
- dyn_port_over_tc
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
+Subject: Re: [PATCH 29/32] drm/i915/display: Handle dedicated external ports
+ in intel_encoder_is_tc()
+In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-29-d2d1e26520aa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 18:29:00 +0300
-Message-ID: <d02b6f306e3b503066dcb4cf7d1a8c1fdf626e30@intel.com>
+ <20251015-xe3p_lpd-basic-enabling-v1-29-d2d1e26520aa@intel.com>
+Date: Wed, 15 Oct 2025 18:33:31 +0300
+Message-ID: <bc0b111384b7c28187aa5e7fef1cd39718ab1f75@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -81,116 +81,111 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> VBT version 264 adds new fields associated to Xe3p_LPD's new ways of
-> configuring SoC for TC ports and PHYs.  Update the code to match the
-> updates in VBT.
+> Starting with Xe3p_LPD, the VBT has a new field, called in the driver
+> "dedicated_external", which tells that a Type-C capable port is
+> physically connected to a PHY outside of the Type-C subsystem.  When
+> that's the case, the driver must not do the extra Type-C programming for
+> that port.  Update intel_encoder_is_tc() to check for that case.
 >
-> The new field dedicated_external is used to represent TC ports that are
-> connected to PHYs outside of the Type-C subsystem, meaning that they
-> behave like dedicated ports and don't require the extra Type-C
-> programming.  In an upcoming change, we will update the driver to take
-> this field into consideration when detecting the type of port.
+> While at it, add a note to intel_phy_is_tc() to remind us that it is
+> about whether the respective port is a Type-C capable port rather than
+> the PHY itself.
 >
-> The new field dyn_port_over_tc is used to inform that the TC port can be
-> dynamically allocated for a legacy connector in the Type-C subsystem,
-> which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
-> that field in order to handle the IOM resource management programming
-> required for that.
-
-We probably want to add the info to print_ddi_port().
-
+> (Maybe it would be a nice idea to rename intel_phy_is_tc()?)
 >
-> Note that, when dedicated_external is set, the fields dp_usb_type_c and
-> tbt are tagged as "don't care" in the spec, so they should be ignored in
-> that case, so also make sure to update the accessor functions to take
-> that into consideration.
+> Note that this was handled with a new bool member added to struct
+> intel_digital_port instead of having querying the VBT directly because
+> VBT memory is freed (intel_bios_driver_remove) before encoder cleanup
+> (intel_ddi_encoder_destroy), which would cause an oops to happen when
+> the latter calls intel_encoder_is_tc().  This could be fixed by keeping
+> VBT data around longer, but that's left for a follow-up work, if deemed
+> necessary.
 >
-> Bspec: 20124, 68954, 74304
 > Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_bios.h     |  2 ++
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 ++++++-
->  3 files changed, 27 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c           |  7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display.c       | 19 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>  3 files changed, 26 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 3596dce84c28..e466728ced0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2777,7 +2777,7 @@ static int child_device_expected_size(u16 version)
->  {
->  	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index c09aa759f4d4..6fcbebb81263 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -5343,6 +5343,13 @@ void intel_ddi_init(struct intel_display *display,
+>  			goto err;
+>  	}
 >  
-> -	if (version > 263)
-> +	if (version > 264)
->  		return -ENOENT;
->  	else if (version >= 263)
->  		return 44;
-> @@ -3714,14 +3714,32 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
->  
->  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
->  {
-> +	if (intel_bios_encoder_is_dedicated_external(devdata))
-> +		return false;
+> +	if (intel_bios_encoder_is_dedicated_external(devdata)) {
+> +		dig_port->dedicated_external = true;
+> +		drm_dbg_kms(display->drm,
+> +			    "Port %c is dedicated external\n",
+> +			    port_name(port));
+> +	}
+
+With the information print added in parse_ddi_port(), the printing here
+becomes redundant.
+
 > +
->  	return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
+>  	if (intel_encoder_is_tc(encoder)) {
+>  		bool is_legacy =
+>  			!intel_bios_encoder_supports_typec_usb(devdata) &&
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6ac718192e1c..46474199d1ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1778,7 +1778,17 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
+>  		return false;
 >  }
 >  
->  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata)
+> -/* Prefer intel_encoder_is_tc() */
+> +/*
+> + * This function returns true if the DDI port respective to the PHY enumeration
+> + * is a Type-C capable port.
+> + *
+> + * Depending on the VBT, the port might be configured
+> + * as a "dedicated external" port, meaning that actual physical PHY is outside
+> + * of the Type-C subsystem and, as such, not really a "Type-C PHY".
+> + *
+> + * Prefer intel_encoder_is_tc(), especially if you really need to know if we
+> + * are dealing with Type-C connections.
+> + */
+>  bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
 >  {
-> +	if (intel_bios_encoder_is_dedicated_external(devdata))
-> +		return false;
+>  	/*
+> @@ -1863,6 +1873,13 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder)
+>  {
+>  	struct intel_display *display = to_intel_display(encoder);
+>  
+> +	if (intel_encoder_is_dig_port(encoder)) {
+> +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
 > +
->  	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
+> +		if (dig_port->dedicated_external)
+
+Why go through all the trouble of duplicating the "decicated external"
+information in the digital port, when you already have encoder
+available, and can just use intel_bios_encoder_is_dedicated_external()
+right here?
+
+> +			return false;
+> +	}
+> +
+>  	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
 >  }
 >  
-> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
-> +{
-> +	return devdata->display->vbt.version >= 264 &&
-> +		devdata->child.dedicated_external;
-> +}
-> +
-> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata)
-> +{
-> +	return devdata->display->vbt.version >= 264 &&
-> +		devdata->child.dyn_port_over_tc;
-> +}
-> +
->  bool intel_bios_encoder_lane_reversal(const struct intel_bios_encoder_data *devdata)
->  {
->  	return devdata && devdata->child.lane_reversal;
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-> index f9e438b2787b..75dff27b4228 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> @@ -79,6 +79,8 @@ bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdat
->  bool intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata);
-> +bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata);
-> +bool intel_bios_encoder_supports_dyn_port_over_tc(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_dsi(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata);
->  bool intel_bios_encoder_is_lspcon(const struct intel_bios_encoder_data *devdata);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> index 70e31520c560..f07ab64a8d97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> @@ -554,7 +554,12 @@ struct child_device_config {
->  	u8 dvo_function;
->  	u8 dp_usb_type_c:1;					/* 195+ */
->  	u8 tbt:1;						/* 209+ */
-> -	u8 flags2_reserved:2;					/* 195+ */
-> +	/*
-> +	 * Fields dp_usb_type_c and tbt must be ignored when
-> +	 * dedicated_external is set.
-> +	 */
-> +	u8 dedicated_external:1;				/* 264+ */
-> +	u8 dyn_port_over_tc:1;					/* 264+ */
->  	u8 dp_port_trace_length:4;				/* 209+ */
->  	u8 dp_gpio_index;					/* 195+ */
->  	u16 dp_gpio_pin_num;					/* 195+ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 13652e2996a4..b5b9351501b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1909,6 +1909,7 @@ struct intel_digital_port {
+>  	bool lane_reversal;
+>  	bool ddi_a_4_lanes;
+>  	bool release_cl2_override;
+> +	bool dedicated_external;
+>  	u8 max_lanes;
+>  	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
+>  	enum aux_ch aux_ch;
 
 -- 
 Jani Nikula, Intel
