@@ -4,54 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03EE7CCD194
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 17:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF31BCCD185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 17:07:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B655C10E892;
-	Wed, 15 Oct 2025 17:07:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDC310E895;
+	Wed, 15 Oct 2025 17:07:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9Lbvfv9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FWvBmymH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECC0A10E892
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 17:07:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E3FC10E892
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 17:07:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760548068; x=1792084068;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LJElteA7PjLTkp9ei7VAWM/D0e/sVG9wJOdvFJgnr8Q=;
- b=B9Lbvfv93Lk2yy7qYURwq+8gkXN/sLst1+wynX48cYOOFxytBxsWnzUf
- JZCRE7tK046VXC3fc7sYfLbr9gu8vM+P3lhGvmZuRSox+oimAPEKRlSaA
- RRk0ilVQuHzHKhspX7uaHlWhpbmt5wtjsksvIrWzVWPE8q/QOd4LUexWX
- GzbQUd8jdaR2gNvT5o4Kyu2GVd6aR8sw05RQgAKKyAoiHkzTebAmMTB0E
- OIf9SthcnloM5pOxfKL3LI6KJ5+PtqBPS4kiKzmwBWskJ14QRb25Vn4gF
- Xsee/kYqPMAhf6iWv3q/aUsHVD8UD9Lb+WDUEAfmt+HkOzrB37Zdt/FNi w==;
-X-CSE-ConnectionGUID: JV+ZAgtSRP+rtXRNAmLVsw==
-X-CSE-MsgGUID: /DHEhgtjSMSve/AZdFJVSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73842251"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="73842251"
+ t=1760548069; x=1792084069;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=na03UbqsvtAqT9o2wmh0Em3/INvWV5+wnBe+SDMJLKY=;
+ b=FWvBmymHFgme8RRMXwQoHIJCHNclPyQc5Cwzq9drfN+ZxtQ7UBlkHYzJ
+ Ld/qRre9dppk/EzAiIpXKiukawamLanBrPqjzBL4mIOVkUyJmcDAbub2C
+ gNl3pGlCimgsHNNvrfW91X6G0GW0yJEIGmWwqWW+dlWUOEMj0YB2cVFBc
+ n7TuUZwX2l3Wt2s4Yc4SclzNOey0470GjOeKWXb5xtZgdg8KDbMdUlqcb
+ /KrCF16sIcQREKHopI5/o2E7npg/YP6MM1ZGvJnj7fSYN2rL27J6ezFIv
+ RuMQwC5/oQHeBBWvAEbR0kTWBG2ud8/MvuxfPZN33kj5xqWlxJO7X/N5B g==;
+X-CSE-ConnectionGUID: t57ZAblLRMOyQoqoyQPlog==
+X-CSE-MsgGUID: 9Qq8TjIwSRGC2rj0I5jihg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73842252"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="73842252"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 10:07:47 -0700
-X-CSE-ConnectionGUID: xFd9pYFkSUSQ71NYWfHhVw==
-X-CSE-MsgGUID: 4l7HJ8mSTPqUrwfzitwfpA==
+ 15 Oct 2025 10:07:49 -0700
+X-CSE-ConnectionGUID: cKtXYRQJQW+lQIREyZc64A==
+X-CSE-MsgGUID: TO/dW/1ATAOrapef3U0Krg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182175605"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182175608"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.245.73])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 10:07:46 -0700
+ 15 Oct 2025 10:07:47 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Retain vma flags when recreating and splitting
- vmas for madvise
-Date: Wed, 15 Oct 2025 19:07:25 +0200
-Message-ID: <20251015170726.178685-1-thomas.hellstrom@linux.intel.com>
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ "Falkowski, John" <john.falkowski@intel.com>,
+ "Mrozek, Michal" <michal.mrozek@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/uapi: Hide the madvise autoreset behind a
+ VM_BIND flag
+Date: Wed, 15 Oct 2025 19:07:26 +0200
+Message-ID: <20251015170726.178685-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251015170726.178685-1-thomas.hellstrom@linux.intel.com>
+References: <20251015170726.178685-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,268 +73,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When splitting and restoring vmas for madvise, we only copied the
-XE_VMA_SYSTEM_ALLOCATOR flag. That meant we lost flags for read_only,
-dumpable and sparse (in case anyone would call madvise for the latter).
+The madvise implementation currently resets the SVM madvise if the
+underlying CPU map is unmapped. This is in an attempt to mimic the
+CPU madvise behaviour. However, it's not clear that this is a desired
+behaviour since if the end app user relies on it for malloc()ed
+objects or stack objects, it may not work as intended.
 
-Instead, define a mask of relevant flags and ensure all are replicated,
-To simplify this and make the code a bit less fragile, remove the
-conversion to VMA_CREATE flags and instead just pass around the
-gpuva flags after initial conversion from user-space.
+Instead of having the autoreset functionality being a direct
+application-facing implicit UAPI, make the UMD explicitly choose
+this behaviour if it wants to expose it by introducing
+DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET, and add a semantics
+description.
+
+v2:
+- Kerneldoc fixes. Fix a commit log message.
 
 Fixes: a2eb8aec3ebe ("drm/xe: Reset VMA attributes to default in SVM garbage collector")
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: "Falkowski, John" <john.falkowski@intel.com>
+Cc: "Mrozek, Michal" <michal.mrozek@intel.com>
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c       |  4 +-
- drivers/gpu/drm/xe/xe_vm.c       | 86 +++++++++++---------------------
- drivers/gpu/drm/xe/xe_vm_types.h |  9 +---
- 3 files changed, 32 insertions(+), 67 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c      |  5 +++++
+ drivers/gpu/drm/xe/xe_vm.c       | 12 +++++++++---
+ drivers/gpu/drm/xe/xe_vm_types.h |  1 +
+ include/uapi/drm/xe_drm.h        | 15 +++++++++++++++
+ 4 files changed, 30 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index e39da95f3a05..d22fd1ccc0ba 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -2022,7 +2022,7 @@ static int op_prepare(struct xe_vm *vm,
- 	case DRM_GPUVA_OP_MAP:
- 		if ((!op->map.immediate && xe_vm_in_fault_mode(vm) &&
- 		     !op->map.invalidate_on_bind) ||
--		    op->map.is_cpu_addr_mirror)
-+		    (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
- 			break;
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index da2a412f80c0..129e7818565c 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -302,6 +302,11 @@ static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 range_start, u64
+ 	if (!vma)
+ 		return -EINVAL;
  
- 		err = bind_op_prepare(vm, tile, pt_update_ops, op->map.vma,
-@@ -2252,7 +2252,7 @@ static void op_commit(struct xe_vm *vm,
- 	switch (op->base.op) {
- 	case DRM_GPUVA_OP_MAP:
- 		if ((!op->map.immediate && xe_vm_in_fault_mode(vm)) ||
--		    op->map.is_cpu_addr_mirror)
-+		    (op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR))
- 			break;
++	if (!(vma->gpuva.flags & XE_VMA_MADV_AUTORESET)) {
++		drm_dbg(&vm->xe->drm, "Skipping madvise reset for vma.\n");
++		return 0;
++	}
++
+ 	if (xe_vma_has_default_mem_attrs(vma))
+ 		return 0;
  
- 		bind_op_commit(vm, tile, pt_update_ops, op->map.vma, fence,
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 08bc55bd91d7..c3230d3f9e6f 100644
+index c3230d3f9e6f..10d77666a425 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -642,6 +642,12 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
- 			vops->pt_update_ops[i].num_ops += inc_val;
- }
+@@ -646,7 +646,8 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
+ 	XE_VMA_READ_ONLY |		    \
+ 	XE_VMA_DUMPABLE |		    \
+ 	XE_VMA_SYSTEM_ALLOCATOR |           \
+-	DRM_GPUVA_SPARSE)
++	DRM_GPUVA_SPARSE |		    \
++	XE_VMA_MADV_AUTORESET)
  
-+#define XE_VMA_CREATE_MASK (		    \
-+	XE_VMA_READ_ONLY |		    \
-+	XE_VMA_DUMPABLE |		    \
-+	XE_VMA_SYSTEM_ALLOCATOR |           \
-+	DRM_GPUVA_SPARSE)
-+
  static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
  				  u8 tile_mask)
- {
-@@ -654,8 +660,7 @@ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
- 	op->base.map.gem.offset = vma->gpuva.gem.offset;
- 	op->map.vma = vma;
- 	op->map.immediate = true;
--	op->map.dumpable = vma->gpuva.flags & XE_VMA_DUMPABLE;
--	op->map.is_null = xe_vma_is_null(vma);
-+	op->map.vma_flags = vma->gpuva.flags & XE_VMA_CREATE_MASK;
- }
- 
- static int xe_vm_ops_add_rebind(struct xe_vma_ops *vops, struct xe_vma *vma,
-@@ -958,11 +963,6 @@ static void xe_vma_free(struct xe_vma *vma)
- 		kfree(vma);
- }
- 
--#define VMA_CREATE_FLAG_READ_ONLY		BIT(0)
--#define VMA_CREATE_FLAG_IS_NULL			BIT(1)
--#define VMA_CREATE_FLAG_DUMPABLE		BIT(2)
--#define VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR	BIT(3)
--
- static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    struct xe_bo *bo,
- 				    u64 bo_offset_or_userptr,
-@@ -973,11 +973,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	struct xe_vma *vma;
- 	struct xe_tile *tile;
- 	u8 id;
--	bool read_only = (flags & VMA_CREATE_FLAG_READ_ONLY);
--	bool is_null = (flags & VMA_CREATE_FLAG_IS_NULL);
--	bool dumpable = (flags & VMA_CREATE_FLAG_DUMPABLE);
--	bool is_cpu_addr_mirror =
--		(flags & VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR);
-+	bool is_null = (flags & DRM_GPUVA_SPARSE);
-+	bool is_cpu_addr_mirror = (flags & XE_VMA_SYSTEM_ALLOCATOR);
- 
- 	xe_assert(vm->xe, start < end);
- 	xe_assert(vm->xe, end < vm->size);
-@@ -998,10 +995,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 		if (!vma)
- 			return ERR_PTR(-ENOMEM);
- 
--		if (is_cpu_addr_mirror)
--			vma->gpuva.flags |= XE_VMA_SYSTEM_ALLOCATOR;
--		if (is_null)
--			vma->gpuva.flags |= DRM_GPUVA_SPARSE;
- 		if (bo)
- 			vma->gpuva.gem.obj = &bo->ttm.base;
- 	}
-@@ -1012,10 +1005,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	vma->gpuva.vm = &vm->gpuvm;
- 	vma->gpuva.va.addr = start;
- 	vma->gpuva.va.range = end - start + 1;
--	if (read_only)
--		vma->gpuva.flags |= XE_VMA_READ_ONLY;
--	if (dumpable)
--		vma->gpuva.flags |= XE_VMA_DUMPABLE;
-+	vma->gpuva.flags = flags;
- 
- 	for_each_tile(tile, vm->xe, id)
- 		vma->tile_mask |= 0x1 << id;
-@@ -2299,12 +2289,14 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
- 		if (__op->op == DRM_GPUVA_OP_MAP) {
- 			op->map.immediate =
- 				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
--			op->map.read_only =
--				flags & DRM_XE_VM_BIND_FLAG_READONLY;
--			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
--			op->map.is_cpu_addr_mirror = flags &
--				DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR;
--			op->map.dumpable = flags & DRM_XE_VM_BIND_FLAG_DUMPABLE;
-+			if (flags & DRM_XE_VM_BIND_FLAG_READONLY)
-+				op->map.vma_flags |= XE_VMA_READ_ONLY;
-+			if (flags & DRM_XE_VM_BIND_FLAG_NULL)
-+				op->map.vma_flags |= DRM_GPUVA_SPARSE;
-+			if (flags & DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR)
-+				op->map.vma_flags |= XE_VMA_SYSTEM_ALLOCATOR;
-+			if (flags & DRM_XE_VM_BIND_FLAG_DUMPABLE)
-+				op->map.vma_flags |= XE_VMA_DUMPABLE;
+@@ -2297,6 +2298,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				op->map.vma_flags |= XE_VMA_SYSTEM_ALLOCATOR;
+ 			if (flags & DRM_XE_VM_BIND_FLAG_DUMPABLE)
+ 				op->map.vma_flags |= XE_VMA_DUMPABLE;
++			if (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
++				op->map.vma_flags |= XE_VMA_MADV_AUTORESET;
  			op->map.pat_index = pat_index;
  			op->map.invalidate_on_bind =
  				__xe_vm_needs_clear_scratch_pages(vm, flags);
-@@ -2617,14 +2609,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 				.pat_index = op->map.pat_index,
- 			};
+@@ -3280,7 +3283,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
+ 	 DRM_XE_VM_BIND_FLAG_NULL | \
+ 	 DRM_XE_VM_BIND_FLAG_DUMPABLE | \
+ 	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
+-	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR)
++	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
++	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
  
--			flags |= op->map.read_only ?
--				VMA_CREATE_FLAG_READ_ONLY : 0;
--			flags |= op->map.is_null ?
--				VMA_CREATE_FLAG_IS_NULL : 0;
--			flags |= op->map.dumpable ?
--				VMA_CREATE_FLAG_DUMPABLE : 0;
--			flags |= op->map.is_cpu_addr_mirror ?
--				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
-+			flags |= op->map.vma_flags & XE_VMA_CREATE_MASK;
- 
- 			vma = new_vma(vm, &op->base.map, &default_attr,
- 				      flags);
-@@ -2633,7 +2618,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 
- 			op->map.vma = vma;
- 			if (((op->map.immediate || !xe_vm_in_fault_mode(vm)) &&
--			     !op->map.is_cpu_addr_mirror) ||
-+			     !(op->map.vma_flags & XE_VMA_SYSTEM_ALLOCATOR)) ||
- 			    op->map.invalidate_on_bind)
- 				xe_vma_ops_incr_pt_update_ops(vops,
- 							      op->tile_mask, 1);
-@@ -2664,18 +2649,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
- 
--			flags |= op->base.remap.unmap->va->flags &
--				XE_VMA_READ_ONLY ?
--				VMA_CREATE_FLAG_READ_ONLY : 0;
--			flags |= op->base.remap.unmap->va->flags &
--				DRM_GPUVA_SPARSE ?
--				VMA_CREATE_FLAG_IS_NULL : 0;
--			flags |= op->base.remap.unmap->va->flags &
--				XE_VMA_DUMPABLE ?
--				VMA_CREATE_FLAG_DUMPABLE : 0;
--			flags |= xe_vma_is_cpu_addr_mirror(old) ?
--				VMA_CREATE_FLAG_IS_SYSTEM_ALLOCATOR : 0;
--
-+			flags |= op->base.remap.unmap->va->flags & XE_VMA_CREATE_MASK;
- 			if (op->base.remap.prev) {
- 				vma = new_vma(vm, op->base.remap.prev,
- 					      &old->attr, flags);
-@@ -4239,7 +4213,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
- 	struct xe_vma_ops vops;
- 	struct drm_gpuva_ops *ops = NULL;
- 	struct drm_gpuva_op *__op;
--	bool is_cpu_addr_mirror = false;
-+	unsigned int vma_flags = 0;
- 	bool remap_op = false;
- 	struct xe_vma_mem_attr tmp_attr;
- 	u16 default_pat;
-@@ -4269,15 +4243,17 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
- 				vma = gpuva_to_vma(op->base.unmap.va);
- 				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
- 				default_pat = vma->attr.default_pat_index;
-+				vma_flags = vma->gpuva.flags;
- 			}
- 
- 			if (__op->op == DRM_GPUVA_OP_REMAP) {
- 				vma = gpuva_to_vma(op->base.remap.unmap->va);
- 				default_pat = vma->attr.default_pat_index;
-+				vma_flags = vma->gpuva.flags;
- 			}
- 
- 			if (__op->op == DRM_GPUVA_OP_MAP) {
--				op->map.is_cpu_addr_mirror = true;
-+				op->map.vma_flags |= vma_flags & XE_VMA_CREATE_MASK;
- 				op->map.pat_index = default_pat;
- 			}
- 		} else {
-@@ -4286,11 +4262,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
- 				xe_assert(vm->xe, !remap_op);
- 				xe_assert(vm->xe, xe_vma_has_no_bo(vma));
- 				remap_op = true;
--
--				if (xe_vma_is_cpu_addr_mirror(vma))
--					is_cpu_addr_mirror = true;
--				else
--					is_cpu_addr_mirror = false;
-+				vma_flags = vma->gpuva.flags;
- 			}
- 
- 			if (__op->op == DRM_GPUVA_OP_MAP) {
-@@ -4299,10 +4271,10 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
- 				/*
- 				 * In case of madvise ops DRM_GPUVA_OP_MAP is
- 				 * always after DRM_GPUVA_OP_REMAP, so ensure
--				 * we assign op->map.is_cpu_addr_mirror true
--				 * if REMAP is for xe_vma_is_cpu_addr_mirror vma
-+				 * to propagate the flags from the vma we're
-+				 * unmapping.
- 				 */
--				op->map.is_cpu_addr_mirror = is_cpu_addr_mirror;
-+				op->map.vma_flags |= vma_flags & XE_VMA_CREATE_MASK;
- 			}
+ #ifdef TEST_VM_OPS_ERROR
+ #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+@@ -3395,7 +3399,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 		    XE_IOCTL_DBG(xe,  (prefetch_region != DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC &&
+ 				       !(BIT(prefetch_region) & xe->info.mem_region_mask))) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
++				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
++		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
++				 (!is_cpu_addr_mirror || op != DRM_XE_VM_BIND_OP_MAP))) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
  		}
- 		print_op(vm->xe, __op);
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 413353e1c225..a3b422b27ae8 100644
+index a3b422b27ae8..d6e2a0fdd4b3 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -345,17 +345,10 @@ struct xe_vm {
- struct xe_vma_op_map {
- 	/** @vma: VMA to map */
- 	struct xe_vma *vma;
-+	unsigned int vma_flags;
- 	/** @immediate: Immediate bind */
- 	bool immediate;
- 	/** @read_only: Read only */
--	bool read_only;
--	/** @is_null: is NULL binding */
--	bool is_null;
--	/** @is_cpu_addr_mirror: is CPU address mirror binding */
--	bool is_cpu_addr_mirror;
--	/** @dumpable: whether BO is dumped on GPU hang */
--	bool dumpable;
--	/** @invalidate: invalidate the VMA before bind */
- 	bool invalidate_on_bind;
- 	/** @pat_index: The pat index to use for this operation. */
- 	u16 pat_index;
+@@ -46,6 +46,7 @@ struct xe_vm_pgtable_update_op;
+ #define XE_VMA_PTE_COMPACT	(DRM_GPUVA_USERBITS << 7)
+ #define XE_VMA_DUMPABLE		(DRM_GPUVA_USERBITS << 8)
+ #define XE_VMA_SYSTEM_ALLOCATOR	(DRM_GPUVA_USERBITS << 9)
++#define XE_VMA_MADV_AUTORESET	(DRM_GPUVA_USERBITS << 10)
+ 
+ /**
+  * struct xe_vma_mem_attr - memory attributes associated with vma
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 40ff19f52a8d..517489a7ec60 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1013,6 +1013,20 @@ struct drm_xe_vm_destroy {
+  *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
+  *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+  *    handle MBZ, and the BO offset MBZ.
++ *  - %DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET - Can be used in combination with
++ *    %DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR to reset madvises when the underlying
++ *    CPU address space range is unmapped (typically with munmap(2) or brk(2)).
++ *    The madvise values set with &DRM_IOCTL_XE_MADVISE are reset to the values
++ *    that were present immediately after the &DRM_IOCTL_XE_VM_BIND.
++ *    The reset GPU virtual address range is the intersection of the range bound
++ *    using &DRM_IOCTL_XE_VM_BIND and the virtual CPU address space range
++ *    unmapped.
++ *    This functionality is present to mimic the behaviour of CPU address space
++ *    madvises set using madvise(2), which are typically reset on unmap.
++ *    Note: free(3) may or may not call munmap(2) and/or brk(2), and may thus
++ *    not invoke autoreset. Neither will stack variables going out of scope.
++ *    Therefore it's recommended to always explicitly reset the madvises when
++ *    freeing the memory backing a region used in a &DRM_IOCTL_XE_MADVISE call.
+  *
+  * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
+  *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
+@@ -1119,6 +1133,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+ #define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+ #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
++#define DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET	(1 << 6)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.51.0
 
