@@ -4,26 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC117CCD185
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 18:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACE26CCD199
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 18:12:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B7E010E131;
-	Wed, 15 Oct 2025 18:11:33 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0400610E131;
- Wed, 15 Oct 2025 18:11:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1487632621593422663=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC6810E131;
+	Wed, 15 Oct 2025 18:12:02 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JDf1NF5s";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087E510E131
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 18:12:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760551921; x=1792087921;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=i81gRpSs8YlnxsID1XbyRR5CqhCldol4ZdpD/iCTH1c=;
+ b=JDf1NF5sk5AEcyL9gL7Cat8oyUxAMrkV68Yq4ATwym793cNlVr8QTVhJ
+ /z5PGGtTBn+Rc944mW9pA83c5QxpbTfBRdEY31IadljIoN1NhlcCi8iMD
+ gvjpjRFcRcDDLA6OU9QFVOp1vhjzkKXaFcUMtUnCxWbcLcxTGnTE1YSwi
+ Uv1wvVvH/FXNTQXjlkO/A0hypsnvGcLfEUfehXDMyQR9VzB2DqmeqEqZD
+ hw7M/uYbqH5n8tuNf6jP571mhzmOlZp41enl3r4Q091dLGIgSnFM07YdE
+ kaNbPsjEhr0xTY1YNlbFJZIHsalurlk9CglPAq3l2kYzKImqOqGdxJJ22 g==;
+X-CSE-ConnectionGUID: WOzULNnPShS27Lkz9yGjtQ==
+X-CSE-MsgGUID: AmUQBH9ZQsK0H01zPPy+tw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62631364"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62631364"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 11:12:01 -0700
+X-CSE-ConnectionGUID: oXNIhkKTTkWU4NdxFsLHMw==
+X-CSE-MsgGUID: XGLKcgAhQMqtSd7v0YKt5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="182700733"
+Received: from dut4443lnl.fm.intel.com ([10.105.8.76])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 11:12:01 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ daniele.ceraolospurio@intel.com
+Subject: [PATCH] drm/xe/xe_guc: Dynamically decide g2g buffer owner
+Date: Wed, 15 Oct 2025 18:12:00 +0000
+Message-ID: <20251015181159.92509-2-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Optimize_vrr=2Eguardband?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Oct 2025 18:11:32 -0000
-Message-ID: <176055189200.19017.9512355780095000981@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,208 +63,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1487632621593422663==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On today's driver, xe_device_get_gt(xe, 0); can never return NULL.
+Hardware-wise there's always at least one tile, and every tilie has a
+primary GT.  If something went wrong during init of tile or GT and we
+couldn't create/initialize the structures, then we already aborted the
+device probe immediately and we'll never get further on to places in the
+code that would be chasing a NULL pointer.
 
-== Series Details ==
+However, there's currently ongoing work to allow the primary GT to be
+disabled via configfs for debugging purposes.  Once that lands, it will
+be possible for this query to return a NULL pointer.  This can cause
+problems in guc_g2g_alloc, as this process currently relies on the
+primary GT always being present.
 
-Series: Optimize vrr.guardband
-URL   : https://patchwork.freedesktop.org/series/155979/
-State : failure
+Instead of making the primary GT the g2g buffer owner, make the first
+GuC passed to guc_g2g_alloc the g2g buffer owner.  This requires keeping
+track of the g2g buffer owner in the xe device so each GuC can know if
+it's the owner or not during initialization.
 
-== Summary ==
+Note that the associated kunit testing code does not need to be updated
+to reflect this change because
+1. The kunit testing code always runs with the primary GT enabled, and
+2. Tracking the g2g buffer owner in the xe device is unnecessary to
+   perform the functions of the tests.
 
-CI Bug Log - changes from xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554_BAT -> xe-pw-155979v1_BAT
-====================================================
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 4 ++++
+ drivers/gpu/drm/xe/xe_guc.c          | 9 ++++++---
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 02c04ad7296e..e17f8b84b8d4 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -38,6 +38,7 @@ struct dram_info;
+ struct intel_display;
+ struct intel_dg_nvm_dev;
+ struct xe_ggtt;
++struct xe_guc;
+ struct xe_i2c;
+ struct xe_pat_ops;
+ struct xe_pxp;
+@@ -626,6 +627,9 @@ struct xe_device {
+ 	atomic_t g2g_test_count;
+ #endif
+ 
++	/** @g2g_owner: Pointer to the GuC that is the owner of the g2g buffer */
++	struct xe_guc *g2g_owner;
++
+ 	/* private: */
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index d94490979adc..9790ddad606a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -465,9 +465,8 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+ 	if (guc->g2g.bo)
+ 		return 0;
+ 
+-	if (gt->info.id != 0) {
+-		struct xe_gt *root_gt = xe_device_get_gt(xe, 0);
+-		struct xe_guc *root_guc = &root_gt->uc.guc;
++	if (xe->g2g_owner) {
++		struct xe_guc *root_guc = xe->g2g_owner;
+ 		struct xe_bo *bo;
+ 
+ 		bo = xe_bo_get(root_guc->g2g.bo);
+@@ -492,6 +491,7 @@ static int guc_g2g_alloc(struct xe_guc *guc)
+ 	xe_map_memset(xe, &bo->vmap, 0, 0, g2g_size);
+ 	guc->g2g.bo = bo;
+ 	guc->g2g.owned = true;
++	xe->g2g_owner = guc;
+ 
+ 	return 0;
+ }
+@@ -504,6 +504,9 @@ static void guc_g2g_fini(struct xe_guc *guc)
+ 	/* Unpinning the owned object is handled by generic shutdown */
+ 	if (!guc->g2g.owned)
+ 		xe_bo_put(guc->g2g.bo);
++	/* g2g owner is no longer valid.  Mark as NULL in xe device */
++	else
++		guc_to_xe(guc)->g2g_owner = NULL;
+ 
+ 	guc->g2g.bo = NULL;
+ }
+-- 
+2.43.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-155979v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-155979v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 10)
-------------------------------
-
-  Missing    (1): bat-adlp-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-155979v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-ptl-1:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-ptl-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-ptl-1/igt@xe_module_load@load.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@core_debugfs@read-all-entries}:
-    - bat-adlp-7:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-adlp-7/igt@core_debugfs@read-all-entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-adlp-7/igt@core_debugfs@read-all-entries.html
-    - bat-bmg-1:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-bmg-1/igt@core_debugfs@read-all-entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-bmg-1/igt@core_debugfs@read-all-entries.html
-    - bat-ptl-2:          [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-ptl-2/igt@core_debugfs@read-all-entries.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-ptl-2/igt@core_debugfs@read-all-entries.html
-    - bat-dg2-oem2:       [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-dg2-oem2/igt@core_debugfs@read-all-entries.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-dg2-oem2/igt@core_debugfs@read-all-entries.html
-    - bat-lnl-1:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-lnl-1/igt@core_debugfs@read-all-entries.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-lnl-1/igt@core_debugfs@read-all-entries.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155979v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_module_load@load:
-    - bat-bmg-2:          [PASS][13] -> [ABORT][14] ([Intel XE#5087])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-bmg-2/igt@xe_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-bmg-2/igt@xe_module_load@load.html
-    - bat-lnl-2:          [PASS][15] -> [ABORT][16] ([Intel XE#5087])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-lnl-2/igt@xe_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-lnl-2/igt@xe_module_load@load.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#5087]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5087
-
-
-Build changes
--------------
-
-  * IGT: IGT_8585 -> IGT_8586
-  * Linux: xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554 -> xe-pw-155979v1
-
-  IGT_8585: 8585
-  IGT_8586: dbda1336c5c99d0faa88397d5c312be72301cd94 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554: ed00bdb0008276b3497a4c811e160f18d1218554
-  xe-pw-155979v1: 155979v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/index.html
-
---===============1487632621593422663==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Optimize vrr.guardband</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155979/">https://patchwork.freedesktop.org/series/155979/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554_BAT -&gt; xe-pw-155979v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-155979v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-155979v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 10)</h2>
-<p>Missing    (1): bat-adlp-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-155979v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-ptl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-ptl-1/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>{igt@core_debugfs@read-all-entries}:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-adlp-7/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-adlp-7/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-bmg-1/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-bmg-1/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-ptl-2/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-ptl-2/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-dg2-oem2/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-dg2-oem2/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-lnl-1/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-lnl-1/igt@core_debugfs@read-all-entries.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155979v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5087">Intel XE#5087</a>)</li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155979v1/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5087">Intel XE#5087</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8585 -&gt; IGT_8586</li>
-<li>Linux: xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554 -&gt; xe-pw-155979v1</li>
-</ul>
-<p>IGT_8585: 8585<br />
-  IGT_8586: dbda1336c5c99d0faa88397d5c312be72301cd94 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554: ed00bdb0008276b3497a4c811e160f18d1218554<br />
-  xe-pw-155979v1: 155979v1</p>
-
-</body>
-</html>
-
---===============1487632621593422663==--
