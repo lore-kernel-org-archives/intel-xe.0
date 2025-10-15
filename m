@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F32E3CCD190
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:47:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A77E3CCD193
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 07:47:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6C0D10E71E;
-	Wed, 15 Oct 2025 07:47:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6373510E72A;
+	Wed, 15 Oct 2025 07:47:30 +0000 (UTC)
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C23F710E269
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 07:47:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69D2910E269
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 07:47:28 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 07/12] drm/xe: Privatize xe_ggtt_node
-Date: Wed, 15 Oct 2025 09:47:16 +0200
-Message-ID: <20251015074708.1654014-21-dev@lankhorst.se>
+Subject: [PATCH v7 08/12] drm/xe: Make xe_ggtt_node offset relative to
+ starting offset
+Date: Wed, 15 Oct 2025 09:47:17 +0200
+Message-ID: <20251015074708.1654014-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015074708.1654014-14-dev@lankhorst.se>
 References: <20251015074708.1654014-14-dev@lankhorst.se>
@@ -37,80 +38,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Nothing requires it any more, make the member private.
+This will make node shifting in the next commit a one-liner.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c       | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt_types.h | 19 +------------------
- 2 files changed, 19 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 05515037e2d6a..5c07d63189ab1 100644
+index 5c07d63189ab1..1c97a06424b5c 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -34,6 +34,24 @@
- #include "xe_wa.h"
- #include "xe_wopcm.h"
+@@ -289,7 +289,7 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
+ {
+ 	ggtt->start = start;
+ 	ggtt->size = size;
+-	drm_mm_init(&ggtt->mm, start, size);
++	drm_mm_init(&ggtt->mm, 0, size - start);
+ }
  
-+/**
-+ * struct xe_ggtt_node - A node in GGTT.
-+ *
-+ * This struct needs to be initialized (only-once) with xe_ggtt_node_init() before any node
-+ * insertion, reservation, or 'ballooning'.
-+ * It will, then, be finalized by either xe_ggtt_node_remove() or xe_ggtt_node_deballoon().
-+ */
-+struct xe_ggtt_node {
-+	/** @ggtt: Back pointer to xe_ggtt where this region will be inserted at */
-+	struct xe_ggtt *ggtt;
-+	/** @base: A drm_mm_node */
-+	struct drm_mm_node base;
-+	/** @delayed_removal_work: The work struct for the delayed removal */
-+	struct work_struct delayed_removal_work;
-+	/** @invalidate_on_remove: If it needs invalidation upon removal */
-+	bool invalidate_on_remove;
-+};
+ int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+@@ -388,7 +388,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	/* Display may have allocated inside ggtt, so be careful with clearing here */
+ 	mutex_lock(&ggtt->lock);
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+-		xe_ggtt_clear(ggtt, start, end - start);
++		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
+ 
+ 	xe_ggtt_invalidate(ggtt);
+ 	mutex_unlock(&ggtt->lock);
+@@ -405,7 +405,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ 
+ 	mutex_lock(&ggtt->lock);
+ 	if (bound)
+-		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
++		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), node->base.size);
+ 	drm_mm_remove_node(&node->base);
+ 	node->base.size = 0;
+ 	mutex_unlock(&ggtt->lock);
+@@ -561,13 +561,13 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
+ 	lockdep_assert_held(&ggtt->lock);
+ 
+ 	node->base.color = 0;
+-	node->base.start = start;
++	node->base.start = start - ggtt->start;
+ 	node->base.size = end - start;
+ 
+ 	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
+ 
+ 	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
+-			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
++			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
+ 		return err;
+ 
+ 	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
+@@ -744,7 +744,7 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
+ 	if (XE_WARN_ON(!node))
+ 		return;
+ 
+-	start = node->base.start;
++	start = xe_ggtt_node_addr(node);
+ 	end = start + xe_bo_size(bo);
+ 
+ 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
+@@ -865,6 +865,13 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	}
+ 
+ 	mutex_lock(&ggtt->lock);
++	if (start >= ggtt->start)
++		start -= ggtt->start;
++	else
++		start = 0;
 +
- /**
-  * DOC: Global Graphics Translation Table (GGTT)
-  *
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index f4aa5671cb3e3..31054e00daa6b 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -11,6 +11,7 @@
- #include "xe_pt_types.h"
- 
- struct xe_bo;
-+struct xe_ggtt_node;
- struct xe_gt;
- 
- /**
-@@ -53,24 +54,6 @@ struct xe_ggtt {
- 	struct workqueue_struct *wq;
- };
- 
--/**
-- * struct xe_ggtt_node - A node in GGTT.
-- *
-- * This struct needs to be initialized (only-once) with xe_ggtt_node_init() before any node
-- * insertion, reservation, or 'ballooning'.
-- * It will, then, be finalized by either xe_ggtt_node_remove() or xe_ggtt_node_deballoon().
-- */
--struct xe_ggtt_node {
--	/** @ggtt: Back pointer to xe_ggtt where this region will be inserted at */
--	struct xe_ggtt *ggtt;
--	/** @base: A drm_mm_node */
--	struct drm_mm_node base;
--	/** @delayed_removal_work: The work struct for the delayed removal */
--	struct work_struct delayed_removal_work;
--	/** @invalidate_on_remove: If it needs invalidation upon removal */
--	bool invalidate_on_remove;
--};
--
- typedef void (*xe_ggtt_set_pte_fn)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
- typedef void (*xe_ggtt_transform_cb)(struct xe_ggtt *ggtt,
- 				     struct xe_ggtt_node *node,
++	end -= ggtt->start;
++
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
+ 					  xe_bo_size(bo), alignment, 0, start, end, 0);
+ 	if (err) {
+@@ -1106,5 +1113,5 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
+  */
+ u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
+ {
+-	return node->base.start;
++	return node->base.start + READ_ONCE(node->ggtt->start);
+ }
 -- 
 2.51.0
 
