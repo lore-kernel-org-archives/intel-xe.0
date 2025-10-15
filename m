@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11C0CCD193
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 10:17:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 765B4CCD193
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 10:35:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B204D10E773;
-	Wed, 15 Oct 2025 10:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C9AF10E770;
+	Wed, 15 Oct 2025 10:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U7w2Cq3Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqiHiyyp";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 573AF10E773
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 10:17:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7834B10E036;
+ Wed, 15 Oct 2025 10:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760523449; x=1792059449;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0pw3c4td4Nd5ttcFVODEhVlb8wrTNUSd1Y2OhlD1OOk=;
- b=U7w2Cq3ZgA+6E+j8zWfgtO/+ItvPsSoFhZGFpAaO9Wyt+Q35XlAIt8Gl
- PFTXvCS9mRRcZWHiLhnaMUM8JPPMyClW19QbGKXaAXdcUXTEjSvkiVoN0
- eaSj/nyuYvsgP67NUtGBv57rh8KDlS/YvZhk37oaPrqwUQKbqd7UAPTVo
- N1wfJ2EqGIXgM1GWZ2Uon7KWlOAiSsEusz5cz+RO8VKWDSzdqnHNThz2G
- dRetd1jv5RjeT5TJBUcH8AkhwASzFTh7R/7mpUV9i1+b41sT3Ag04JzND
- VW6sXmGkSr93aXrfjnyFQQJdT0T9jcyzEQrcPdIpzx3uAUPogpShTlIku g==;
-X-CSE-ConnectionGUID: grNOhgCNQSuQTkzWkEi23A==
-X-CSE-MsgGUID: KHQu6Y3RR6Cd8KgbLgDKHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="62733049"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="62733049"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 03:17:28 -0700
-X-CSE-ConnectionGUID: L4VuV4WGQNKaFuUqDKVNIQ==
-X-CSE-MsgGUID: krJRdD30Qji43z9TrIJhIQ==
+ t=1760524549; x=1792060549;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pyRWpTx+28daC29UG018S9EhdB7zpr3ZhIcda/aayBQ=;
+ b=mqiHiyypsLiuLraBWh+ft9ysBB5l1aZlIjyO/nyU/ltKOSFEjyi/U4jh
+ Lkq0BQgSvXknzrTO+BKI/q2CJJMPukjYr5wozqBYSEcRmxl8L2CMMStIy
+ JIlhfBziDHPoSLRrzNJmexW0eB8eMpU1yG6nJPyS6KIF1ZT7EkTvXp0XL
+ XxhUAuIuj1yBmqaly+9WTPAApaDesZlu7hy6DermkbTmBdrDxq4bhMxR1
+ /q+/8t1D07bhWctvRHiLWe09ppJ6rOryY6gnJXovuC7MC+CYXiolRhNmE
+ +ImjyfrJ9JlinZJ35mEX1wNo1z3tsFti4sce9l50H6qir4qj0aeFX0Fvf Q==;
+X-CSE-ConnectionGUID: WvMv0R3yR6+iU/mOV2JReQ==
+X-CSE-MsgGUID: pgvs7qrCTry1+b/NyMKckQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="50262599"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="50262599"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 03:35:48 -0700
+X-CSE-ConnectionGUID: a0L2ifNuQjycgPddEnY3SQ==
+X-CSE-MsgGUID: S+bklzjcR3eLwUV5s0e1Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="187437770"
-Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
- by fmviesa004.fm.intel.com with ESMTP; 15 Oct 2025 03:17:26 -0700
-From: Nitin Gote <nitin.r.gote@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, matthew.auld@intel.com,
- Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v3 2/3] drm/xe: add xe_migrate_resolve wrapper and
- is_vram_resolve support
-Date: Wed, 15 Oct 2025 16:17:08 +0530
-Message-Id: <20251015104709.44476-3-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251015104709.44476-1-nitin.r.gote@intel.com>
-References: <20251015104709.44476-1-nitin.r.gote@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="205842517"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 03:35:46 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/6] Optimize vrr.guardband
+Date: Wed, 15 Oct 2025 15:52:35 +0530
+Message-ID: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,156 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce an internal __xe_migrate_copy(..., is_vram_resolve) path and
-expose a small wrapper xe_migrate_resolve() that calls it with
-is_vram_resolve=true.
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-For resolve/decompression operations we must ensure the copy code uses
-the compression PAT index when appropriate; this change centralizes that
-behavior and allows callers to schedule a resolve (decompress) operation
-via the migrate API.
+-Patch [1-2] are squashed from series [1] and [2] and are not meant for
+ review.
+-Patch [3-6] are patches to check the guardband for prefill+PSR+SDP
+ latencies and to use a static optimized guardband.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c | 90 +++++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_migrate.h |  7 +++
- 2 files changed, 70 insertions(+), 27 deletions(-)
+[1] "Preparatory patches for guardband optimization"
+https://patchwork.freedesktop.org/series/155661/#rev7
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 4ca48dd1cfd8..1ab649c1e4e0 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -777,31 +777,13 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 	return flush_flags;
- }
- 
--/**
-- * xe_migrate_copy() - Copy content of TTM resources.
-- * @m: The migration context.
-- * @src_bo: The buffer object @src is currently bound to.
-- * @dst_bo: If copying between resources created for the same bo, set this to
-- * the same value as @src_bo. If copying between buffer objects, set it to
-- * the buffer object @dst is currently bound to.
-- * @src: The source TTM resource.
-- * @dst: The dst TTM resource.
-- * @copy_only_ccs: If true copy only CCS metadata
-- *
-- * Copies the contents of @src to @dst: On flat CCS devices,
-- * the CCS metadata is copied as well if needed, or if not present,
-- * the CCS metadata of @dst is cleared for security reasons.
-- *
-- * Return: Pointer to a dma_fence representing the last copy batch, or
-- * an error pointer on failure. If there is a failure, any copy operation
-- * started by the function call has been synced.
-- */
--struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
--				  struct xe_bo *src_bo,
--				  struct xe_bo *dst_bo,
--				  struct ttm_resource *src,
--				  struct ttm_resource *dst,
--				  bool copy_only_ccs)
-+static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
-+					   struct xe_bo *src_bo,
-+					   struct xe_bo *dst_bo,
-+					   struct ttm_resource *src,
-+					   struct ttm_resource *dst,
-+					   bool copy_only_ccs,
-+					   bool is_vram_resolve)
- {
- 	struct xe_gt *gt = m->tile->primary_gt;
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -822,8 +804,19 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
- 		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
- 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
--	bool use_comp_pat = type_device && xe_device_has_flat_ccs(xe) &&
--		GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram;
-+	bool use_comp_pat;
-+
-+	/*
-+	 * For decompression operation, always use the compression PAT index.
-+	 * Otherwise, only use the compression PAT index for device memory
-+	 * when copying from VRAM to system memory.
-+	 */
-+	if (is_vram_resolve) {
-+		use_comp_pat = true;
-+	} else {
-+		use_comp_pat = type_device && xe_device_has_flat_ccs(xe) &&
-+			GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram;
-+	}
- 
- 	/* Copying CCS between two different BOs is not supported yet. */
- 	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
-@@ -982,6 +975,49 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 	return fence;
- }
- 
-+/**
-+ * xe_migrate_copy() - Copy content of TTM resources.
-+ * @m: The migration context.
-+ * @src_bo: The buffer object @src is currently bound to.
-+ * @dst_bo: If copying between resources created for the same bo, set this to
-+ * the same value as @src_bo. If copying between buffer objects, set it to
-+ * the buffer object @dst is currently bound to.
-+ * @src: The source TTM resource.
-+ * @dst: The dst TTM resource.
-+ * @copy_only_ccs: If true copy only CCS metadata
-+ *
-+ * Copies the contents of @src to @dst: On flat CCS devices,
-+ * the CCS metadata is copied as well if needed, or if not present,
-+ * the CCS metadata of @dst is cleared for security reasons.
-+ *
-+ * Return: Pointer to a dma_fence representing the last copy batch, or
-+ * an error pointer on failure. If there is a failure, any copy operation
-+ * started by the function call has been synced.
-+ */
-+struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
-+				  struct xe_bo *src_bo,
-+				  struct xe_bo *dst_bo,
-+				  struct ttm_resource *src,
-+				  struct ttm_resource *dst,
-+				  bool copy_only_ccs)
-+{
-+	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, copy_only_ccs, false);
-+}
-+
-+/**
-+ * xe_migrate_resolve() - Resolve and decompress a buffer object if required.
-+ * This wrapper forwards to __xe_migrate_copy() with is_vram_resolve=true.
-+ */
-+struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
-+				     struct xe_bo *src_bo,
-+				     struct xe_bo *dst_bo,
-+				     struct ttm_resource *src,
-+				     struct ttm_resource *dst,
-+				     bool copy_only_ccs)
-+{
-+	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, copy_only_ccs, true);
-+}
-+
- /**
-  * xe_migrate_lrc() - Get the LRC from migrate context.
-  * @migrate: Migrate context.
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 4fad324b6253..ade68ab32a71 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -125,6 +125,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 				  struct ttm_resource *dst,
- 				  bool copy_only_ccs);
- 
-+struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
-+				     struct xe_bo *src_bo,
-+				     struct xe_bo *dst_bo,
-+				     struct ttm_resource *src,
-+				     struct ttm_resource *dst,
-+				     bool copy_only_ccs);
-+
- int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 			   struct xe_bo *src_bo,
- 			   enum xe_sriov_vf_ccs_rw_ctxs read_write);
+[2] "Introduce helpers for prefill latency calculations"
+https://patchwork.freedesktop.org/series/155629/#rev2
+
+Ankit Nautiyal (5):
+  [NOT FOR REVIEW] drm/i915/vrr: prep patches for guardband optimization
+    squashed
+  drm/i915/dp: Add SDP latency computation helper
+  drm/i915/psr: Add function to compute max link-wake latency
+  drm/i915/display: Add guardband check for feature latencies
+  drm/i915/vrr: Use the min static optimized guardband
+
+Ville Syrjälä (1):
+  [NOT FOR REVIEW] drm/i915/prefill: Prefill latency calculations series
+    squashed
+
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  80 +++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |   6 +
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c |  82 +++++-
+ drivers/gpu/drm/i915/display/intel_dp.c      |  42 +++
+ drivers/gpu/drm/i915/display/intel_dp.h      |   4 +
+ drivers/gpu/drm/i915/display/intel_psr.c     | 257 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_psr.h     |   3 +
+ drivers/gpu/drm/i915/display/intel_vblank.c  |  10 +
+ drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     |  90 ++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
+ drivers/gpu/drm/i915/display/skl_prefill.c   | 157 +++++++++++
+ drivers/gpu/drm/i915/display/skl_prefill.h   |  46 ++++
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 198 ++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h    |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 156 +++++------
+ drivers/gpu/drm/i915/display/skl_watermark.h |   3 +
+ drivers/gpu/drm/xe/Makefile                  |   1 +
+ 22 files changed, 983 insertions(+), 184 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.h
+
 -- 
-2.25.1
+2.45.2
 
