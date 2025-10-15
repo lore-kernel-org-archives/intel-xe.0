@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F0A8CCD193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B68BDCCD19F
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FAF610E16D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5227310E901;
 	Wed, 15 Oct 2025 22:07:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hnzo6mYW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfUQJECs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77F2F10E0DA
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A477210E903
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760566030; x=1792102030;
+ t=1760566031; x=1792102031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TlvADS57r27sXPkVqLTh+VKbI+/0DTs/OLSzwJ7X3CA=;
- b=Hnzo6mYWLPW4tQuqGXXXRFwqzmHWXktaXA86gmaRmN2HSmXq6GSl8sC2
- 4gjnNHU0tnsnFkAzFkMpushqC/yrFNkBjRQa2HsYn6+itUwyItmqY1MSX
- 2DGP+Se+z5Uk0C2PO87ny1Ol9OYT0Wb5J/UwZeM9T+ZQ10xj1qRX7uwCc
- AosVCZ+eN7rxZ6Sx4dqf4KsJ0mTbH/TEJou/ddC/rilf1O+RhfWMf630g
- o+3VEZl042O3NnP0mvC8mRxhWMqPav8uR8OEd0NKyTk6OZlxg9VWonmQM
- ZEmmL5SOyG+xWgPkxEAVDiWuP6uDleM6RE1JEQeSXvW7p+DMPcSb1FgVV A==;
-X-CSE-ConnectionGUID: 7KgKx29oQKemspdNxlYwag==
-X-CSE-MsgGUID: Gi5nl5pxTiWkq6EsXkCScw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794047"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794047"
+ bh=4j5dYhLzjKRPZV4iwdeYpYy9JWd6OWSPBwugQV0XG3Q=;
+ b=WfUQJECs0mT/LgghPbaYFnqM3zdUUD9p/fLCvkwA9J+dAkz2YObx21pz
+ 5EnK9FjTWSQu5+ARnyGLmNM7C4M6FJCmusfYDpg4YA/RsYnaFQ60LPKcE
+ akL7Y8SqIioeElzxwp3BoHlRyAr+im8GsyiwbmorZgWuliJo4JaEQr7Tx
+ oaK7nNTG4EMkqatynXGL2Nb3w8WJcciwr1D/9yhFs0Kd6q4oqUAtD8rqZ
+ +hhrXQFIt2jqCo2+hDGxpY2nfbC+k+KLxNbw0AGZa54JHTJk4BBJfNjCU
+ RlSZONQlb4OfXXCfm4yCC0AnMwnoZ4RbRNhyKI5wxbJvB+ecbJY7Su5B3 w==;
+X-CSE-ConnectionGUID: ULYphUysR6a84ILUO2NZGQ==
+X-CSE-MsgGUID: NX8CqVAeRE65TpVvDB19oQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794058"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794058"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: 636WdGPrS2aEbII1io2Wkw==
-X-CSE-MsgGUID: 7lW1HQZyTNmB5JwmrvsQ9g==
+X-CSE-ConnectionGUID: /T3J14ZHQ3CTRL+N/1Ps0A==
+X-CSE-MsgGUID: vEfZYxIBQS2YePmFiaJyEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298264"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298300"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
@@ -47,11 +47,11 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 02/22] drm/xe/xe3p_lpm: Add support for media IP versions
- 35.00 & 35.03
-Date: Wed, 15 Oct 2025 15:06:17 -0700
-Message-ID: <20251015-xe3p-v2-2-b9189b3056a2@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v2 13/22] drm/xe/nvls: Attach MOCS table for NVL-S
+Date: Wed, 15 Oct 2025 15:06:28 -0700
+Message-ID: <20251015-xe3p-v2-13-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
@@ -73,33 +73,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-Xe3p_LPM is very similar to Xe3_LPM on the kmd interface, so it can use
-the same descriptor structure. Add both 35.00 and 35.03 IP versions.
+The MOCS table for NVL-S is the same as that of
+Xe2.
 
-BSpec: 74201, 74202, 77977, 77979
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_mocs.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3ea8ccfcbca55..b72f71b0f52c9 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -151,6 +151,8 @@ static const struct xe_ip media_ips[] = {
- 	{ 2000, "Xe2_LPM", &media_xelpmp },
- 	{ 3000, "Xe3_LPM", &media_xelpmp },
- 	{ 3002, "Xe3_LPM", &media_xelpmp },
-+	{ 3500, "Xe3p_LPM", &media_xelpmp },
-+	{ 3503, "Xe3p_LPM", &media_xelpmp },
- };
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 7b68c22ff7bbc..e8ec4114302e5 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -576,6 +576,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 	memset(info, 0, sizeof(struct xe_mocs_info));
  
- static const struct xe_device_desc tgl_desc = {
+ 	switch (xe->info.platform) {
++	case XE_NOVALAKE_S:
+ 	case XE_PANTHERLAKE:
+ 	case XE_LUNARLAKE:
+ 	case XE_BATTLEMAGE:
 
 -- 
 2.51.0
