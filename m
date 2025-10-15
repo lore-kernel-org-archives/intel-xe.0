@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 496FECCD193
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1E7DCCD193
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13A3C10E902;
-	Wed, 15 Oct 2025 22:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D60C10E90B;
+	Wed, 15 Oct 2025 22:07:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="drUutNXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrFIocZl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1342310E902
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47F2B10E902
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760566032; x=1792102032;
+ t=1760566031; x=1792102031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2NJDTdLFdew2GpiYkL1+XLpbkqhg1cKvUxw9e673Vrg=;
- b=drUutNXM04nJ7A4kXmUSgmfA/SAhzIlET9d3rzO4hZshckDQ7mR+Yl6r
- V7lfLkfPS0glY1j8AXfa+yD0QIRuBbX6mDjVJxx2z3EeMFnJRFNhH3B6o
- V3dScdsyOgRB+wf4nUXORoNWaiiXdyE6K2mQmVK/ELrcPG0jBB7OZjFyb
- eopzTMGudD9U/7lBAWlMoZZQXn48Hr0pmzQRS24mQtfRgyOvr6wX2Naeh
- iufz+Wa3XtZBgt7UGGxBNEiRvzo57k7OhEqx2Tdr2Qx82DiST8Y6xBDNv
- tyS5ARuPL6SN3hRlLtk/G3gFeqM8YKaJnywsJISXY2QwFWxwlqMOMvz3A Q==;
-X-CSE-ConnectionGUID: P5Ot0w9hTQaP5xGKj1XLyQ==
-X-CSE-MsgGUID: 3nCLimGMTy2EpEhQ2/GXww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794065"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794065"
+ bh=yHXQpBkBfnm/9pD510AriQb/4gDJE4y0UcVHNl8cbIU=;
+ b=nrFIocZlTyB73WB1Ux3EseFH7QmtKCdwtcaweq0v4CaJynWSjzSNypj0
+ nOLkLKqVU7UEJdMoZ1evgPD6sNUUO2k8gfU5e060V/6Xw6pjOO3qgmrBz
+ t3CwA8l2msY/FtkgFa3e7YFvTP904PQA5jpHF38Kb4RPCOsMM0er1MMfJ
+ rv2ASAGGQgAUY8wqHAc9stoBisDHzazrmPF7jlppWo54N/ywGYg6vsF4v
+ DBX2vv58YRm4s6M5zBPgFyrXJ5fU+EzAMNgKMsC76jAU8U55cywsajXou
+ ZBxfwlGZCXWDj9pvJ1n5FqLHKKCZzbmTzIoSPCws+Ds83SwFfVoByVtj1 w==;
+X-CSE-ConnectionGUID: GoTy7cdQSzGF6VNbEhX3GA==
+X-CSE-MsgGUID: 2OjB/07JR4SaAMFMfJvOnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794053"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794053"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: o9WstSphSESTbKWc8berlg==
-X-CSE-MsgGUID: EZrkYzPxQkKshLy3Xd30wg==
+X-CSE-ConnectionGUID: /xTU7668TY2Hxa1+7GDM+A==
+X-CSE-MsgGUID: LI+YUSYoRh+KDXf8aMH+Gw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298323"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298283"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
@@ -47,11 +47,12 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 20/22] drm/xe/xe3p_xpc: Skip compression tuning on
- platforms without flatccs
-Date: Wed, 15 Oct 2025 15:06:35 -0700
-Message-ID: <20251015-xe3p-v2-20-b9189b3056a2@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v2 08/22] drm/xe/xe3p: Determine service copy availability
+ from fuse
+Date: Wed, 15 Oct 2025 15:06:23 -0700
+Message-ID: <20251015-xe3p-v2-8-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
@@ -75,95 +76,98 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-The compression overfetch tuning settings only apply to platforms that
-support FlatCCS.  In Xe3p_XPC (and any future IPs that also lack
-compression) some of the registers being adjusted by this tuning will
-not exist or may have been repurposed for something else, so we should
-take care not to try to program them.
+Xe3p introduces a dedicated SERVICE_COPY_ENABLE fuse register to reflect
+the availability of the service copy engines (BCS1-BCS8).
 
-Note that our xe_rtp_match_has_flatccs() function will also return false
-on platforms that do have FlatCCS in the hardware design, but have
-compression manually disabled in the BIOS.  On such platforms the
-registers still exist (and it would be fine to continue programming
-them), but they would have no effect, so skipping that tuning is also
-safe.
-
+Bspec: 74624
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_rtp.c    |  7 +++++++
- drivers/gpu/drm/xe/xe_rtp.h    | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_tuning.c |  9 ++++++---
- 3 files changed, 25 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_hw_engine.c    | 43 ++++++++++++++++++++++++++++--------
+ 2 files changed, 37 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 66707cc89ec97..ed509b1c8cfcd 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -378,3 +378,10 @@ bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
- {
- 	return xe_gt_has_discontiguous_dss_groups(gt);
- }
-+
-+bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
-+			       const struct xe_hw_engine *hwe)
-+{
-+	return xe->info.has_flat_ccs;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index e5b8a9452e29e..ba5f940c0a961 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -491,4 +491,16 @@ bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
- 						  const struct xe_gt *gt,
- 						  const struct xe_hw_engine *hwe);
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 21c15441c4537..228de47c0f3f5 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -239,6 +239,9 @@
+ #define XE2_GT_GEOMETRY_DSS_1			XE_REG(0x9150)
+ #define XE2_GT_GEOMETRY_DSS_2			XE_REG(0x9154)
  
-+/**
-+ * xe_rtp_match_has_flat_ccs - Match when platform has FlatCCS compression
-+ * @xe: Device structure
-+ * @gt: GT structure
-+ * @hwe: Engine instance
-+ *
-+ * Returns: true if platform has FlatCCS compression, false otherwise
-+ */
-+bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
-+			       const struct xe_gt *gt,
-+			       const struct xe_hw_engine *hwe);
++#define SERVICE_COPY_ENABLE			XE_REG(0x9170)
++#define   FUSE_SERVICE_COPY_ENABLE_MASK		REG_GENMASK(7, 0)
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index fd58ea5e78bf6..7c140d8cb1e07 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -40,7 +40,8 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
- 	},
- 	{ XE_RTP_NAME("Tuning: Compression Overfetch"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED),
-+		       FUNC(xe_rtp_match_has_flat_ccs)),
- 	  XE_RTP_ACTIONS(CLR(CCCHKNREG1, ENCOMPPERFFIX),
- 			 SET(CCCHKNREG1, L3CMPCTRL))
- 	},
-@@ -58,12 +59,14 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG3, COMPPWOVERFETCHEN))
- 	},
- 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED),
-+		       FUNC(xe_rtp_match_has_flat_ccs)),
- 	  XE_RTP_ACTIONS(SET(L3SQCREG2,
- 			     COMPMEMRD256BOVRFETCHEN))
- 	},
- 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only - media"),
--	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
-+	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
-+		       FUNC(xe_rtp_match_has_flat_ccs)),
- 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG2,
- 			     COMPMEMRD256BOVRFETCHEN))
- 	},
+ #define GDRST					XE_REG(0x941c)
+ #define   GRDOM_GUC				REG_BIT(3)
+ #define   GRDOM_FULL				REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index b08a6d42c8ffc..073ecd263e543 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -718,27 +718,52 @@ static void read_media_fuses(struct xe_gt *gt)
+ 	}
+ }
+ 
++static u32 infer_svccopy_from_meml3(struct xe_gt *gt)
++{
++	u32 meml3 = REG_FIELD_GET(MEML3_EN_MASK,
++				  xe_mmio_read32(&gt->mmio, MIRROR_FUSE3));
++	u32 svccopy_mask = 0;
++
++	/*
++	 * Each of the four meml3 bits determines the fusing of two service
++	 * copy engines.
++	 */
++	for (int i = 0; i < 4; i++)
++		svccopy_mask |= (meml3 & BIT(i)) ? 0b11 << 2 * i : 0;
++
++	return svccopy_mask;
++}
++
++static u32 read_svccopy_fuses(struct xe_gt *gt)
++{
++	return REG_FIELD_GET(FUSE_SERVICE_COPY_ENABLE_MASK,
++			     xe_mmio_read32(&gt->mmio, SERVICE_COPY_ENABLE));
++}
++
+ static void read_copy_fuses(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 bcs_mask;
+ 
+-	if (GRAPHICS_VERx100(xe) < 1260 || GRAPHICS_VERx100(xe) >= 1270)
+-		return;
+-
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ 
+-	bcs_mask = xe_mmio_read32(&gt->mmio, MIRROR_FUSE3);
+-	bcs_mask = REG_FIELD_GET(MEML3_EN_MASK, bcs_mask);
++	if (GRAPHICS_VER(xe) >= 35)
++		bcs_mask = read_svccopy_fuses(gt);
++	else if (GRAPHICS_VERx100(xe) == 1260)
++		bcs_mask = infer_svccopy_from_meml3(gt);
++	else
++		return;
+ 
+-	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
+-	for (int i = XE_HW_ENGINE_BCS1, j = 0; i <= XE_HW_ENGINE_BCS8; ++i, ++j) {
++	/* Only BCS1-BCS8 may be fused off */
++	bcs_mask <<= XE_HW_ENGINE_BCS1;
++	for (int i = XE_HW_ENGINE_BCS1; i <= XE_HW_ENGINE_BCS8; ++i) {
+ 		if (!(gt->info.engine_mask & BIT(i)))
+ 			continue;
+ 
+-		if (!(BIT(j / 2) & bcs_mask)) {
++		if (!(bcs_mask & BIT(i))) {
+ 			gt->info.engine_mask &= ~BIT(i);
+-			xe_gt_info(gt, "bcs%u fused off\n", j);
++			xe_gt_info(gt, "bcs%u fused off\n",
++				   i - XE_HW_ENGINE_BCS0);
+ 		}
+ 	}
+ }
 
 -- 
 2.51.0
