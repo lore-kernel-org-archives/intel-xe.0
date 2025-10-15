@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EE34CCD18E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43DADCCD195
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 09:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F071710E765;
-	Wed, 15 Oct 2025 09:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 045DD10E766;
+	Wed, 15 Oct 2025 09:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WdEChH+d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CYfkWCcF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60B4E10E763
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 09:12:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614BE10E763
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 09:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760519579; x=1792055579;
+ t=1760519581; x=1792055581;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fcEh2X6IWa515LwE3H4ZneaxDmr9cp/i7gh2Q8et2HQ=;
- b=WdEChH+dibyrQO22qYllp9oAHOOt3TRP0jgQLBagzMmMwGIzyWmFsFU7
- Ex1z5ec1Czo2twc0MgRexwbNkNSqwPyUUxbjHwRgOXafEEYRmpLGiUAgg
- mnnY3oaOTy9zr0RPSwiFYB1NEEGRZK9+y2//lVYMhDBVsDR6VdDPmnM/t
- la4LePRUWLNUY2L2LeGl9abD/vrkKtZ9/Id3ups7y0wi+MYYK3RVs1n64
- loQlCCYTdWMBVGbeAYM5TlSU0IKemNHEgOTzouBUecoHvNJlstNkszviA
- +avem0AUbgzUt9rVcw6oiiQ1bYrr1L0ign7u5X4tD+InvbZ3pPwvroYyT A==;
-X-CSE-ConnectionGUID: bkY5po8hTViig09uDGsknQ==
-X-CSE-MsgGUID: D2SniMsGQUGsytPER+Ig/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="66515814"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="66515814"
+ bh=aF9m65EKEtKlxYwaV1vcrPlOJ3Ecevb8mW04yYcHZ5w=;
+ b=CYfkWCcF0Mncyjg69HqceG5157p8cwvGVYK2baK1RjBhfYNjfoT0dMkk
+ Ti+u2Z1aC8iU2k3GrFR7H1kLGr4WcbQpPFJkiheyXSMjUROsQm/bpjiBr
+ 7DHxSCvq1UUiDRmzBwU1uovP1O/nM50EsMk1+1d3IiEANm8opjrN/nGBf
+ gHX+v2cZ08d/XRoCIIE7HPaHS/wtkdxEP9r1Bq6IwZCzpq741zEkCvAg4
+ K9ya0KXdplCPqvEd8CJQVwpD26VFuMER/4AiM/g4ZEDdl0IFpXQKtoqhP
+ xNZQdgwbfYEYuHyNEaDFh4waDrMKzbGOJx0Hqh6mea8k5pPMkIES4IZ/5 A==;
+X-CSE-ConnectionGUID: ZmrVmQ8IRsKPB/TW7jDuEg==
+X-CSE-MsgGUID: EAiOc8FjTpmriPDxkL3ogQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="66515816"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="66515816"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:12:59 -0700
-X-CSE-ConnectionGUID: /HjOunC3QaavmgiQdOqMXw==
-X-CSE-MsgGUID: qdV0BVtaR+GYMUUfbuQ9ZQ==
+ 15 Oct 2025 02:13:01 -0700
+X-CSE-ConnectionGUID: SNScPIAVTD2BSRSt9d8WlQ==
+X-CSE-MsgGUID: ETIX/nObR7mThodF0xbJIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="213065736"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="213065746"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 02:12:58 -0700
+ 15 Oct 2025 02:12:59 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/4] drm/xe/pf: Disable auto-provisioning if changed using
- debugfs
-Date: Wed, 15 Oct 2025 11:12:08 +0200
-Message-ID: <20251015091211.592-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/4] drm/xe/pf: Allow to restore auto-provisioning mode
+Date: Wed, 15 Oct 2025 11:12:09 +0200
+Message-ID: <20251015091211.592-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251015091211.592-1-michal.wajdeczko@intel.com>
 References: <20251015091211.592-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,181 +68,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we attempt to tweak VFs configurations using debugfs, stop
-assuming that VFs need auto-(un)provisioning.
+After doing tweaks to the VFs provisioning we may want to restore
+back the auto-provisioning mode. Allow that unless VFs are still
+enabled. This can be also used to release all VFs resources.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  7 ++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c    | 39 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h    | 17 ++++++++
- .../gpu/drm/xe/xe_sriov_pf_provision_types.h  |  4 ++
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c |  3 ++
- 5 files changed, 70 insertions(+)
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c   | 63 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h   | 11 ++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 18 +++++++
+ 3 files changed, 92 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index c026a3910e7e..838beb7f6327 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -23,6 +23,7 @@
- #include "xe_gt_sriov_pf_service.h"
- #include "xe_pm.h"
- #include "xe_sriov_pf.h"
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+index 97636ed86fb8..a81aa05c5532 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
+@@ -13,6 +13,7 @@
+ #include "xe_sriov_pf_control.h"
+ #include "xe_sriov_pf_debugfs.h"
+ #include "xe_sriov_pf_helpers.h"
 +#include "xe_sriov_pf_provision.h"
+ #include "xe_sriov_pf_service.h"
+ #include "xe_sriov_printk.h"
+ #include "xe_tile_sriov_pf_debugfs.h"
+@@ -43,6 +44,66 @@ static unsigned int extract_vfid(struct dentry *d)
+ 	return p == extract_xe(d) ? PFID : (uintptr_t)p;
+ }
  
- /*
-  *      /sys/kernel/debug/dri/BDF/
-@@ -124,6 +125,8 @@ static int POLICY##_set(void *data, u64 val)					\
- 										\
- 	xe_pm_runtime_get(xe);							\
- 	err = xe_gt_sriov_pf_policy_set_##POLICY(gt, val);			\
-+	if (!err)								\
-+		xe_sriov_pf_provision_set_custom_mode(xe);			\
- 	xe_pm_runtime_put(xe);							\
- 										\
- 	return err;								\
-@@ -189,6 +192,8 @@ static int CONFIG##_set(void *data, u64 val)					\
- 	xe_pm_runtime_get(xe);							\
- 	err = xe_sriov_pf_wait_ready(xe) ?:					\
- 	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
-+	if (!err)								\
-+		xe_sriov_pf_provision_set_custom_mode(xe);			\
- 	xe_pm_runtime_put(xe);							\
- 										\
- 	return err;								\
-@@ -246,6 +251,8 @@ static int set_threshold(void *data, u64 val, enum xe_guc_klv_threshold_index in
++/*
++ *      /sys/kernel/debug/dri/BDF/
++ *      ├── sriov
++ *      │   ├── restore_auto_provisioning
++ *      │   :
++ *      │   ├── pf/
++ *      │   ├── vf1
++ *      │   │   ├── ...
++ */
++
++static ssize_t from_file_write_to_xe_call(struct file *file, const char __user *userbuf,
++					  size_t count, loff_t *ppos,
++					  int (*call)(struct xe_device *))
++{
++	struct dentry *dent = file_dentry(file);
++	struct xe_device *xe = extract_xe(dent);
++	bool yes;
++	int ret;
++
++	if (*ppos)
++		return -EINVAL;
++	ret = kstrtobool_from_user(userbuf, count, &yes);
++	if (ret < 0)
++		return ret;
++	if (yes) {
++		xe_pm_runtime_get(xe);
++		ret = call(xe);
++		xe_pm_runtime_put(xe);
++	}
++	if (ret < 0)
++		return ret;
++	return count;
++}
++
++#define DEFINE_SRIOV_ATTRIBUTE(OP)						\
++static int OP##_show(struct seq_file *s, void *unused)				\
++{										\
++	return 0;								\
++}										\
++static ssize_t OP##_write(struct file *file, const char __user *userbuf,	\
++			  size_t count, loff_t *ppos)				\
++{										\
++	return from_file_write_to_xe_call(file, userbuf, count, ppos,		\
++					  xe_sriov_pf_##OP);			\
++}										\
++DEFINE_SHOW_STORE_ATTRIBUTE(OP)
++
++static inline int xe_sriov_pf_restore_auto_provisioning(struct xe_device *xe)
++{
++	return xe_sriov_pf_provision_set_mode(xe, XE_SRIOV_PROVISIONING_MODE_AUTO);
++}
++
++DEFINE_SRIOV_ATTRIBUTE(restore_auto_provisioning);
++
++static void pf_populate_root(struct xe_device *xe, struct dentry *dent)
++{
++	debugfs_create_file("restore_auto_provisioning", 0200, dent, xe,
++			    &restore_auto_provisioning_fops);
++}
++
+ static int simple_show(struct seq_file *m, void *data)
+ {
+ 	struct drm_printer p = drm_seq_file_printer(m);
+@@ -167,6 +228,8 @@ void xe_sriov_pf_debugfs_register(struct xe_device *xe, struct dentry *root)
+ 		return;
+ 	dent->d_inode->i_private = xe;
  
- 	xe_pm_runtime_get(xe);
- 	err = xe_gt_sriov_pf_config_set_threshold(gt, vfid, index, val);
-+	if (!err)
-+		xe_sriov_pf_provision_set_custom_mode(xe);
- 	xe_pm_runtime_put(xe);
++	pf_populate_root(xe, dent);
++
+ 	/*
+ 	 *      /sys/kernel/debug/dri/BDF/
+ 	 *      ├── sriov		# d_inode->i_private = (xe_device*)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+index dd1df950b021..4a4340fb633a 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+@@ -37,6 +37,17 @@ static inline int xe_sriov_pf_get_totalvfs(struct xe_device *xe)
+ 	return xe->sriov.pf.driver_max_vfs;
+ }
  
- 	return err;
++/**
++ * xe_sriov_pf_num_vfs() - Number of enabled VFs on the PF.
++ * @xe: the PF &xe_device
++ *
++ * Return: Number of enabled VFs on the PF.
++ */
++static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
++{
++	return pci_num_vf(to_pci_dev(xe->drm.dev));
++}
++
+ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+ {
+ 	xe_assert(xe, IS_SRIOV_PF(xe));
 diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index de7d925a110d..7e74175db972 100644
+index 7e74175db972..32c281c1dc5d 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -10,6 +10,19 @@
- #include "xe_sriov_pf_helpers.h"
- #include "xe_sriov_pf_provision.h"
- #include "xe_sriov_pf_provision_types.h"
-+#include "xe_sriov_printk.h"
-+
-+static const char *mode_to_string(enum xe_sriov_provisioning_mode mode)
-+{
-+	switch (mode) {
-+	case XE_SRIOV_PROVISIONING_MODE_AUTO:
-+		return "auto";
-+	case XE_SRIOV_PROVISIONING_MODE_CUSTOM:
-+		return "custom";
-+	default:
-+		return "<invalid>";
-+	}
-+}
- 
- static bool pf_auto_provisioning_mode(struct xe_device *xe)
- {
-@@ -95,3 +108,29 @@ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
- 	pf_unprovision_vfs(xe, num_vfs);
- 	return 0;
+@@ -70,6 +70,11 @@ static void pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 			xe_gt_sriov_pf_config_release(gt, n, true);
  }
-+
-+/**
-+ * xe_sriov_pf_provision_set_mode() - Change VFs provision mode.
-+ * @xe: the PF &xe_device
-+ * @mode: the new VFs provisioning mode
-+ *
-+ * When changing from AUTO to CUSTOM mode, any already allocated VFs resources
-+ * will remain allocated and will not be released upon VFs disabling.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provisioning_mode mode)
+ 
++static void pf_unprovision_all_vfs(struct xe_device *xe)
 +{
-+	xe_assert(xe, IS_SRIOV_PF(xe));
-+
-+	if (mode == xe->sriov.pf.provision.mode)
-+		return 0;
-+
-+	xe_sriov_dbg(xe, "mode %s changed to %s by %ps\n",
-+		     mode_to_string(xe->sriov.pf.provision.mode),
-+		     mode_to_string(mode), __builtin_return_address(0));
-+	xe->sriov.pf.provision.mode = mode;
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-index f6a902190ad7..cf3657a32e90 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-@@ -6,9 +6,26 @@
- #ifndef _XE_SRIOV_PF_PROVISION_H_
- #define _XE_SRIOV_PF_PROVISION_H_
- 
-+#include "xe_sriov_pf_provision_types.h"
-+
- struct xe_device;
- 
- int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
- int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
- 
-+int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provisioning_mode mode);
-+
-+/**
-+ * xe_sriov_pf_provision_set_custom_mode() - Change VFs provision mode to custom.
-+ * @xe: the PF &xe_device
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+static inline int xe_sriov_pf_provision_set_custom_mode(struct xe_device *xe)
-+{
-+	return xe_sriov_pf_provision_set_mode(xe, XE_SRIOV_PROVISIONING_MODE_CUSTOM);
++	pf_unprovision_vfs(xe, xe_sriov_pf_get_totalvfs(xe));
 +}
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision_types.h
-index f72bc5db3a60..a847b8a4c4da 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision_types.h
-@@ -15,9 +15,13 @@
-  *                                   Any allocated resources to the VFs will be
-  *                                   automatically released when disabling VFs.
-  *                                   This is a default mode.
-+ * @XE_SRIOV_PROVISIONING_MODE_CUSTOM: Explicit VFs provisioning using uABI interfaces.
-+ *                                     VFs resources remains allocated regardless if
-+ *                                     VFs are enabled or not.
-  */
- enum xe_sriov_provisioning_mode {
- 	XE_SRIOV_PROVISIONING_MODE_AUTO,
-+	XE_SRIOV_PROVISIONING_MODE_CUSTOM,
- };
- static_assert(XE_SRIOV_PROVISIONING_MODE_AUTO == 0);
+ /**
+  * xe_sriov_pf_provision_vfs() - Provision VFs in auto-mode.
+  * @xe: the PF &xe_device
+@@ -117,6 +122,10 @@ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
+  * When changing from AUTO to CUSTOM mode, any already allocated VFs resources
+  * will remain allocated and will not be released upon VFs disabling.
+  *
++ * When changing back to AUTO mode, if VFs are not enabled, already allocated
++ * VFs resources will be immediately released. If VFs are still enabled, such
++ * mode change is rejected.
++ *
+  * This function can only be called on PF.
+  *
+  * Return: 0 on success or a negative error code on failure.
+@@ -128,6 +137,15 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
+ 	if (mode == xe->sriov.pf.provision.mode)
+ 		return 0;
  
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-index c8df18af4d00..931df8a6eaf4 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-@@ -15,6 +15,7 @@
- #include "xe_tile_sriov_pf_debugfs.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf.h"
-+#include "xe_sriov_pf_provision.h"
- 
- /*
-  *      /sys/kernel/debug/dri/BDF/
-@@ -143,6 +144,8 @@ static int NAME##_set(void *data, u64 val)					\
- 	xe_pm_runtime_get(xe);							\
- 	err = xe_sriov_pf_wait_ready(xe) ?:					\
- 	      xe_gt_sriov_pf_config_set_##CONFIG(gt, vfid, val);		\
-+	if (!err)								\
-+		xe_sriov_pf_provision_set_custom_mode(xe);			\
- 	xe_pm_runtime_put(xe);							\
- 										\
- 	return err;								\
++	if (mode == XE_SRIOV_PROVISIONING_MODE_AUTO) {
++		if (xe_sriov_pf_num_vfs(xe)) {
++			xe_sriov_dbg(xe, "can't restore %s: VFs must be disabled!\n",
++				     mode_to_string(mode));
++			return -EBUSY;
++		}
++		pf_unprovision_all_vfs(xe);
++	}
++
+ 	xe_sriov_dbg(xe, "mode %s changed to %s by %ps\n",
+ 		     mode_to_string(xe->sriov.pf.provision.mode),
+ 		     mode_to_string(mode), __builtin_return_address(0));
 -- 
 2.47.1
 
