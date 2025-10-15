@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BDCECCD19E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC0F1CCD1A2
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E71C10E900;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98A4910E90A;
 	Wed, 15 Oct 2025 22:07:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N4GIjzRl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lz7+sHgn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AD5C10E901
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DED410E901
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760566032; x=1792102032;
+ t=1760566031; x=1792102031;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gPZjnMI2Mk0ytpKs7Kyy9FuHfpmYqb+MsvA4pz8WpUE=;
- b=N4GIjzRljfJaIa0Z6DrNgMWT9aETHjfkFalO8uqn3r3IC8VdC7wjW2Ev
- JdfuKPVVnbRq7PUYwxqlcCpvhkJsZlV3ard6p5giLIeJ3WhCdNdBS9Q5/
- 7OEx3Chy2VPKz0WkDl9qJe3HZBMLx2r0f4mr+LvrGZdG/FbJC0Z9oUO9x
- XQSeQYpmfJKRsUDZRVj93b3X7b0gDYnqebGBobMpLjY21Pd8iKCHVe8ua
- 4igBkaE3ZFxFpIKgOZY1gnR8AdOXoRikNYGYFvmYDzOeD10MPwhtp1sJF
- pcAXMqPoEO8zEX3BCiAj+1uQajChPu58LzoI65lI82BlsIqkyFeh7l0n+ g==;
-X-CSE-ConnectionGUID: GflX/f54SUCRhhxqpHYD6A==
-X-CSE-MsgGUID: mrQ5xtiJRCaeJ/XXu+JCsA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794066"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794066"
+ bh=k0Wzy9O5/iGJW035E2f7UpFu7fsKGMczueOiF3YVd0s=;
+ b=Lz7+sHgn9XTZ9uH0wKLTwzUdpjn7pgdCS29Mc/XR2xxccfkf6uAfJAAR
+ pRNTPMEDaBilaXU38AKI10sIMWu9W9XRLtfpPRCCQSSiAuy5YFdGUL/CH
+ oru5qxSxOEf72FAMbuDOI8xc3UmL2+5VJXWjYQw91GlAU/BqKFsqujErS
+ uqZDgEMcc846Qen2mw98/rUxu+hthXS+q/ai9YnoDSHBfl0s0XkDngT3h
+ 6M1c5WMv3iwvSk6pl69uHdr8mRqSM/ErpiKOoffyGsWJdPt5iQIrfMQw1
+ Dc8mFg5HRljHl+eUAKESjWo6GZTgvasI2ua1uvKjswt6e/WojSSJ06XxV A==;
+X-CSE-ConnectionGUID: hF90Z+dPT1edJpdBYMxzLw==
+X-CSE-MsgGUID: ianD56mkSbWKwBpNTw5OOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794054"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794054"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: il7MUaZsTROeEyUv0ZXDww==
-X-CSE-MsgGUID: wnSX3AyGSmSC3+sZE42IpQ==
+X-CSE-ConnectionGUID: t73jtcF1QBefvl5Roe9gOg==
+X-CSE-MsgGUID: 0U20F6zsRy6yymX80aYNWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298327"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298287"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
@@ -47,10 +47,11 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 21/22] drm/xe/xe3p_xpc: Setup PAT table
-Date: Wed, 15 Oct 2025 15:06:36 -0700
-Message-ID: <20251015-xe3p-v2-21-b9189b3056a2@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, Wang Xin <x.wang@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v2 09/22] drm/xe: Dump CURRENT_LRCA register
+Date: Wed, 15 Oct 2025 15:06:24 -0700
+Message-ID: <20251015-xe3p-v2-9-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
@@ -72,136 +73,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Wang Xin <x.wang@intel.com>
 
-Xe3p_XPC IP requires a new PAT table; note that this table has one fewer
-column than the Xe2/Xe3 tables since compression is not supported.
-There's also no "WT" entry (which we wouldn't have used on a platform
-without display anyway).
+Add CURRENT_LRCA to register dump to help debugging.
 
-Bspec: 71582
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Wang Xin <x.wang@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 96 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 95 insertions(+), 1 deletion(-)
+v2: Extract CURRENT_LRCA from other patch dumping xe3p-specific register
+    (Matt Roper)
+---
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 3 +++
+ drivers/gpu/drm/xe/xe_guc_capture.c      | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 6e48ff84ad0a0..7649b554942aa 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -154,6 +154,41 @@ static const struct xe_pat_table_entry xe2_pat_table[] = {
- static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
- static const struct xe_pat_table_entry xe2_pat_pta = XE2_PAT( 0, 0, 0, 0, 3, 0 );
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index f4c3e1187a00a..3c05d85902c69 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -141,6 +141,9 @@
+ #define   INHIBIT_SWITCH_UNTIL_PREEMPTED	REG_BIT(31)
+ #define   IDLE_DELAY				REG_GENMASK(20, 0)
  
-+/*
-+ * Xe3p_XPC PAT table uses the same layout as Xe2/Xe3, except that there's no
-+ * option for compression.  Also note that the "L3" and "L4" register fields
-+ * actually control L2 and L3 cache respectively on this platform.
-+ */
-+#define XE3P_XPC_PAT(no_promote, l3clos, l3_policy, l4_policy, __coh_mode) \
-+	XE2_PAT(no_promote, 0, l3clos, l3_policy, l4_policy, __coh_mode)
++#define RING_CURRENT_LRCA(base)			XE_REG((base) + 0x240)
++#define   CURRENT_LRCA_VALID			REG_BIT(0)
 +
-+static const struct xe_pat_table_entry xe3p_xpc_pat_ats = XE3P_XPC_PAT( 0, 0, 0, 0, 3 );
-+static const struct xe_pat_table_entry xe3p_xpc_pat_pta = XE3P_XPC_PAT( 0, 0, 0, 0, 0 );
-+
-+static const struct xe_pat_table_entry xe3p_xpc_pat_table[] = {
-+	[ 0] = XE3P_XPC_PAT( 0, 0, 0, 0, 0 ),
-+	[ 1] = XE3P_XPC_PAT( 0, 0, 0, 0, 2 ),
-+	[ 2] = XE3P_XPC_PAT( 0, 0, 0, 0, 3 ),
-+	[ 3] = XE3P_XPC_PAT( 0, 0, 3, 3, 0 ),
-+	[ 4] = XE3P_XPC_PAT( 0, 0, 3, 3, 2 ),
-+	[ 5] = XE3P_XPC_PAT( 0, 0, 3, 0, 0 ),
-+	[ 6] = XE3P_XPC_PAT( 0, 0, 3, 0, 2 ),
-+	[ 7] = XE3P_XPC_PAT( 0, 0, 3, 0, 3 ),
-+	[ 8] = XE3P_XPC_PAT( 0, 0, 0, 3, 0 ),
-+	[ 9] = XE3P_XPC_PAT( 0, 0, 0, 3, 2 ),
-+	[10] = XE3P_XPC_PAT( 0, 0, 0, 3, 3 ),
-+	/* 11..22 are reserved; leave set to all 0's */
-+	[23] = XE3P_XPC_PAT( 0, 1, 0, 0, 0 ),
-+	[24] = XE3P_XPC_PAT( 0, 1, 0, 0, 2 ),
-+	[25] = XE3P_XPC_PAT( 0, 1, 0, 0, 3 ),
-+	[26] = XE3P_XPC_PAT( 0, 2, 0, 0, 0 ),
-+	[27] = XE3P_XPC_PAT( 0, 2, 0, 0, 2 ),
-+	[28] = XE3P_XPC_PAT( 0, 2, 0, 0, 3 ),
-+	[29] = XE3P_XPC_PAT( 0, 3, 0, 0, 0 ),
-+	[30] = XE3P_XPC_PAT( 0, 3, 0, 0, 2 ),
-+	[31] = XE3P_XPC_PAT( 0, 3, 0, 0, 3 ),
-+};
-+
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- {
- 	WARN_ON(pat_index >= xe->pat.n_entries);
-@@ -380,9 +415,68 @@ static const struct xe_pat_ops xe2_pat_ops = {
- 	.dump = xe2_dump,
- };
- 
-+static int xe3p_xpc_dump(struct xe_gt *gt, struct drm_printer *p)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	unsigned int fw_ref;
-+	u32 pat;
-+	int i;
-+
-+	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (!fw_ref)
-+		return -ETIMEDOUT;
-+
-+	drm_printf(p, "PAT table:\n");
-+
-+	for (i = 0; i < xe->pat.n_entries; i++) {
-+		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
-+
-+		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u ]  (%#8x)\n", i,
-+			   !!(pat & XE2_NO_PROMOTE),
-+			   REG_FIELD_GET(XE2_L3_CLOS, pat),
-+			   REG_FIELD_GET(XE2_L3_POLICY, pat),
-+			   REG_FIELD_GET(XE2_L4_POLICY, pat),
-+			   REG_FIELD_GET(XE2_COH_MODE, pat),
-+			   pat);
-+	}
-+
-+	/*
-+	 * Also print PTA_MODE, which describes how the hardware accesses
-+	 * PPGTT entries.
-+	 */
-+	pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_PTA));
-+
-+	drm_printf(p, "Page Table Access:\n");
-+	drm_printf(p, "PTA_MODE= [ %u, %u, %u, %u, %u ]  (%#8x)\n",
-+		   !!(pat & XE2_NO_PROMOTE),
-+		   REG_FIELD_GET(XE2_L3_CLOS, pat),
-+		   REG_FIELD_GET(XE2_L3_POLICY, pat),
-+		   REG_FIELD_GET(XE2_L4_POLICY, pat),
-+		   REG_FIELD_GET(XE2_COH_MODE, pat),
-+		   pat);
-+
-+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
-+	return 0;
-+}
-+
-+static const struct xe_pat_ops xe3p_xpc_pat_ops = {
-+	.program_graphics = program_pat_mcr,
-+	.program_media = program_pat,
-+	.dump = xe3p_xpc_dump,
-+};
-+
- void xe_pat_init_early(struct xe_device *xe)
- {
--	if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
-+	if (GRAPHICS_VERx100(xe) == 3511) {
-+		xe->pat.ops = &xe3p_xpc_pat_ops;
-+		xe->pat.table = xe3p_xpc_pat_table;
-+		xe->pat.pat_ats = &xe3p_xpc_pat_ats;
-+		xe->pat.pat_pta = &xe3p_xpc_pat_pta;
-+		xe->pat.n_entries = ARRAY_SIZE(xe3p_xpc_pat_table);
-+		xe->pat.idx[XE_CACHE_NONE] = 3;
-+		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
-+		xe->pat.idx[XE_CACHE_WB] = 2;
-+	} else if (GRAPHICS_VER(xe) == 30 || GRAPHICS_VER(xe) == 20) {
- 		xe->pat.ops = &xe2_pat_ops;
- 		xe->pat.table = xe2_pat_table;
- 		xe->pat.pat_ats = &xe2_pat_ats;
+ #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244, XE_REG_OPTION_MASKED)
+ #define	  CTX_CTRL_PXP_ENABLE			REG_BIT(10)
+ #define	  CTX_CTRL_OAC_CONTEXT_ENABLE		REG_BIT(8)
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 243dad3e24185..8d1bfa2cdb151 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -122,6 +122,7 @@ struct __guc_capture_parsed_output {
+ 	{ RING_IPEHR(0),		REG_32BIT,	0,	0,	0,	"IPEHR"}, \
+ 	{ RING_INSTDONE(0),		REG_32BIT,	0,	0,	0,	"RING_INSTDONE"}, \
+ 	{ INDIRECT_RING_STATE(0),	REG_32BIT,	0,	0,	0,	"INDIRECT_RING_STATE"}, \
++	{ RING_CURRENT_LRCA(0),		REG_32BIT,	0,	0,	0,	"CURRENT_LRCA"}, \
+ 	{ RING_ACTHD(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
+ 	{ RING_ACTHD_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"ACTHD"}, \
+ 	{ RING_BBADDR(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
 
 -- 
 2.51.0
