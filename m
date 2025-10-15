@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 911AFCCD1A3
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08311CCD185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5264310E907;
-	Wed, 15 Oct 2025 22:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE99B10E0DA;
+	Wed, 15 Oct 2025 22:07:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J4PipEjd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cllHGkay";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8E010E902
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA44810E903
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760566032; x=1792102032;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9Wh/XT1Dg2xPPJpdoq1vT54TS22d0amwR6vxBwOIK3E=;
- b=J4PipEjdT/LbJ0+Whu4jl+hPfk+UqCCPIpXSeNGJSj0S9gxHQqsndxia
- ovBUC4I75HSlAMpYaS/FKybsDI/ay8kzLYXvcHrZt4v1UccB66E/D7o6t
- vnzLkTsLNDvmhTnI0Qcc+lg4xUbtKj3bASd4JufEkQjsyb6FTQg4SJBPz
- nBtBw6KLlOB/8YzE+smkysJ1a+uiG6faT5OgqtdQMalHtRn5nhtIDhFlo
- OU3tO4S6WGNWBHitG6aWEKSlTZsm9bTKiRPK9iTdbvpiyibWoYudyhfS0
- vMZT2xwKKFBLhpB9QtOjj+ymI9yzhUAljtDY7FMbkbwdCyUD9fg81tDKf g==;
-X-CSE-ConnectionGUID: LCQqU+8tTfS2lF2ne124Cg==
-X-CSE-MsgGUID: tl4M3/7RQfGa7mb2bpQ8GQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794061"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794061"
+ bh=cRq3Y+zwS3y4XjHLfK++CQFFQ/7G1CCL2pqLJUiQ2g8=;
+ b=cllHGkayZ59rn+zKvtnRgZsJODDeqxAtO03SRqto3lgYvmmgf5GkpdLD
+ s45M4XpndFKjG+r4doY1OK49SdzJKN8zP0ppnWz/rA0j2vWOHjzDWuoZp
+ vU6rC3maJPxj4/dotVxxHgfeuRnahuFg/zaZ2OQlHmRKpSgBa44u/M3/x
+ UA1xD1sNwgfhrLwlPMbqCYUyJSDBSIJIExSVmx49GlrZAzuCgw+O3qL9v
+ Vwxo82VAoTVTpN4UBynJ1NSXVvm8MjUQ2l5sNgvzz/mm7/0i8QCC1Xl3u
+ lKLM2UmqFLcEgfwmkcGmQBoGOcVZPfjqUxEA2fmHLdHoEi97rxodHAtQQ g==;
+X-CSE-ConnectionGUID: aGEbjFoMQxSEfrP/4w94Qw==
+X-CSE-MsgGUID: OdMUGccASnCaGnaxCyfbCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794063"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794063"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: 0XVGK2VyRi+XdnzVR6NXcA==
-X-CSE-MsgGUID: 5ER3WYMhSlqbPfciak0aAw==
+X-CSE-ConnectionGUID: kdNaYEjESQ2Fu8BcaXPTqw==
+X-CSE-MsgGUID: pAwrx6clRB6yihXhvaqTjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298310"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298316"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
@@ -48,9 +48,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 16/22] drm/xe/xe3p_xpc: Add MCR steering
-Date: Wed, 15 Oct 2025 15:06:31 -0700
-Message-ID: <20251015-xe3p-v2-16-b9189b3056a2@intel.com>
+Subject: [PATCH v2 18/22] drm/xe/irq: Split irq mask per engine class
+Date: Wed, 15 Oct 2025 15:06:33 -0700
+Message-ID: <20251015-xe3p-v2-18-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
@@ -72,151 +72,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Each engine class has a different bitfield structure in the hw. We've
+been just using a common mask for all of them, but this means that we
+could inadvertently set a wrong bit in one class while enabling
+something in another. Split them to make it more future proof.
 
-Xe3p_XPC's steering has a few changes from Xe3.  Aside from
-minor changes to the XeCore (the new name for what used to be "DSS") and
-INSTANCE0 tables, different rules apply to different subranges of type
-"GAM."  Certain GAM subranges require steering to grp/instance (0,0)
-(and thus use the INSTANCE0 table), while others require special
-steering to (1,0) instead.  Similarly, there are multiple classes of
-"PSMI" steering, with some requiring steering to (0,0) while others
-require (19,0).
-
-FIXME: There's an "L3BANK" range listed in the bspec that needs
-clarification.
-
-Bspec: 74418
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c   | 56 ++++++++++++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_types.h | 15 +++++++++++
- 2 files changed, 69 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 73 +++++++++++++++++++++++++++++----------------
+ 1 file changed, 47 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index e1a2b38fc2a86..e5506ec28e147 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -169,6 +169,15 @@ static const struct xe_mmio_range xelpg_dss_steering_table[] = {
- 	{},
- };
- 
-+static const struct xe_mmio_range xe3p_xpc_xecore_steering_table[] = {
-+	{ 0x008140, 0x00817F },         /* SLICE, XeCore, SLICE */
-+	{ 0x009480, 0x00955F },         /* SLICE, XeCore */
-+	{ 0x00D800, 0x00D87F },		/* SLICE */
-+	{ 0x00DC00, 0x00E9FF },         /* SLICE, rsvd, XeCore, rsvd, XeCore, rsvd, XeCore */
-+	{ 0x013000, 0x0135FF },         /* XeCore, SLICE */
-+	{},
-+};
-+
- static const struct xe_mmio_range xelpmp_oaddrm_steering_table[] = {
- 	{ 0x393200, 0x39323F },
- 	{ 0x393400, 0x3934FF },
-@@ -247,6 +256,30 @@ static const struct xe_mmio_range xe3lpm_instance0_steering_table[] = {
- 	{},
- };
- 
-+/*
-+ * Different "GAM" ranges have different rules; GAMWKRS, STLB, and GAMREQSTRM
-+ * range subtypes need to be steered to (1,0), while all other GAM subtypes
-+ * are steered to (0,0) and are included in the "INSTANCE0" table farther
-+ * down.
-+ */
-+static const struct xe_mmio_range xe3p_xpc_gam_grp1_steering_table[] = {
-+	{ 0x004000, 0x004AFF },		/* GAMREQSTRM, rsvd, STLB, GAMWKRS, GAMREQSTRM */
-+	{ 0x00F100, 0x00FFFF },		/* GAMWKRS */
-+	{},
-+};
-+
-+static const struct xe_mmio_range xe3p_xpc_psmi_grp19_steering_table[] = {
-+	{ 0x00B500, 0x00B5FF },
-+	{},
-+};
-+
-+static const struct xe_mmio_range xe3p_xpc_instance0_steering_table[] = {
-+	{ 0x00B600, 0x00B6FF },		/* PSMI0 */
-+	{ 0x00C800, 0x00CFFF },		/* GAMCTRL */
-+	{ 0x00F000, 0x00F0FF },		/* GAMCTRL */
-+	{},
-+};
-+
- static void init_steering_l3bank(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 9c3a85c4585ed..103804546b280 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -139,25 +139,28 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
  {
+ 	struct xe_device *xe = gt_to_xe(gt);
  	struct xe_mmio *mmio = &gt->mmio;
-@@ -419,6 +452,18 @@ static void init_steering_sqidi_psmi(struct xe_gt *gt)
- 	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
- }
+-	u32 irqs, dmask, smask;
+-	u32 gsc_mask = 0;
+-	u32 heci_mask = 0;
++	u32 common_mask, val, gsc_mask = 0, heci_mask = 0,
++	    rcs_mask = 0, bcs_mask = 0, vcs_mask = 0, vecs_mask = 0,
++	    ccs_mask = 0;
  
-+static void init_steering_psmi(struct xe_gt *gt)
-+{
-+	gt->steering[PSMI19].group_target = 19;
-+	gt->steering[PSMI19].instance_target = 0;
-+}
-+
-+static void init_steering_gam1(struct xe_gt *gt)
-+{
-+	gt->steering[GAM1].group_target = 1;
-+	gt->steering[GAM1].instance_target = 0;
-+}
-+
- static const struct {
- 	const char *name;
- 	void (*init)(struct xe_gt *gt);
-@@ -426,9 +471,11 @@ static const struct {
- 	[L3BANK] =	{ "L3BANK",	init_steering_l3bank },
- 	[MSLICE] =	{ "MSLICE",	init_steering_mslice },
- 	[LNCF] =	{ "LNCF",	NULL }, /* initialized by mslice init */
--	[DSS] =		{ "DSS",	init_steering_dss },
-+	[DSS] =		{ "DSS / XeCore", init_steering_dss },
- 	[OADDRM] =	{ "OADDRM / GPMXMT", init_steering_oaddrm },
- 	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
-+	[PSMI19] =	{ "PSMI[19]",	init_steering_psmi },
-+	[GAM1] =	{ "GAMWKRS / STLB / GAMREQSTRM", init_steering_gam1 },
- 	[INSTANCE0] =	{ "INSTANCE 0",	NULL },
- 	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
- };
-@@ -467,7 +514,12 @@ void xe_gt_mcr_init_early(struct xe_gt *gt)
- 			gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
- 		}
+ 	if (xe_device_uses_memirq(xe))
+ 		return;
+ 
+ 	if (xe_device_uc_enabled(xe)) {
+-		irqs = GT_RENDER_USER_INTERRUPT |
+-			GT_RENDER_PIPECTL_NOTIFY_INTERRUPT;
++		common_mask = GT_RENDER_USER_INTERRUPT |
++			      GT_RENDER_PIPECTL_NOTIFY_INTERRUPT;
  	} else {
--		if (GRAPHICS_VER(xe) >= 20) {
-+		if (GRAPHICS_VERx100(xe) == 3511) {
-+			gt->steering[DSS].ranges = xe3p_xpc_xecore_steering_table;
-+			gt->steering[GAM1].ranges = xe3p_xpc_gam_grp1_steering_table;
-+			gt->steering[INSTANCE0].ranges = xe3p_xpc_instance0_steering_table;
-+			gt->steering[PSMI19].ranges = xe3p_xpc_psmi_grp19_steering_table;
-+		} else if (GRAPHICS_VER(xe) >= 20) {
- 			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
- 			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
- 			gt->steering[INSTANCE0].ranges = xe2lpg_instance0_steering_table;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 8b5f604d7883a..d93faa1eedef8 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -72,6 +72,21 @@ enum xe_steering_type {
- 	OADDRM,
- 	SQIDI_PSMI,
+-		irqs = GT_RENDER_USER_INTERRUPT |
+-		       GT_CS_MASTER_ERROR_INTERRUPT |
+-		       GT_CONTEXT_SWITCH_INTERRUPT |
+-		       GT_WAIT_SEMAPHORE_INTERRUPT;
++		common_mask = GT_RENDER_USER_INTERRUPT |
++			      GT_CS_MASTER_ERROR_INTERRUPT |
++			      GT_CONTEXT_SWITCH_INTERRUPT |
++			      GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	}
  
-+	/*
-+	 * The bspec lists multiple ranges as "PSMI," but the different
-+	 * ranges with that label have different grpid steering values so we
-+	 * treat them independently in code.  Note that the ranges with grpid=0
-+	 * are included in the INSTANCE0 group above.
-+	 */
-+	PSMI19,
+-	dmask = irqs << 16 | irqs;
+-	smask = irqs << 16;
++	rcs_mask |= common_mask;
++	bcs_mask |= common_mask;
++	vcs_mask |= common_mask;
++	vecs_mask |= common_mask;
++	ccs_mask |= common_mask;
+ 
+ 	if (xe_gt_is_main_type(gt)) {
+ 		/*
+@@ -169,44 +172,62 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		u32 bcs_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
+ 
+ 		/* Enable interrupts for each engine class */
+-		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
++		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE,
++				REG_FIELD_PREP(ENGINE1_MASK, rcs_mask) |
++				REG_FIELD_PREP(ENGINE0_MASK, bcs_mask));
+ 		if (ccs_fuse_mask)
+-			xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
++			xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE,
++					REG_FIELD_PREP(ENGINE1_MASK, ccs_mask));
+ 
+ 		/* Unmask interrupts for each engine instance */
+-		xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
+-		xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
++		val = ~REG_FIELD_PREP(ENGINE1_MASK, rcs_mask);
++		xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, val);
++		val = ~REG_FIELD_PREP(ENGINE1_MASK, bcs_mask);
++		xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, val);
 +
-+	/*
-+	 * Although most GAM ranges must be steered to (0,0) and thus use the
-+	 * INSTANCE0 type farther down, some platforms have special rules
-+	 * for specific subtypes that require steering to (1,0) instead.
-+	 */
-+	GAM1,
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, bcs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, bcs_mask));
+ 		if (bcs_fuse_mask & (BIT(1)|BIT(2)))
+-			xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(3)|BIT(4)))
+-			xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(5)|BIT(6)))
+-			xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(7)|BIT(8)))
+-			xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, val);
 +
- 	/*
- 	 * On some platforms there are multiple types of MCR registers that
- 	 * will always return a non-terminated value at instance (0, 0).  We'll
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, ccs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, ccs_mask));
+ 		if (ccs_fuse_mask & (BIT(0)|BIT(1)))
+-			xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, val);
+ 		if (ccs_fuse_mask & (BIT(2)|BIT(3)))
+-			xe_mmio_write32(mmio, CCS2_CCS3_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, CCS2_CCS3_INTR_MASK, val);
+ 	}
+ 
+ 	if (xe_gt_is_media_type(gt) || MEDIA_VER(xe) < 13) {
+ 		u32 other_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER);
+ 
+ 		/* Enable interrupts for each engine class */
+-		xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
++		xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE,
++				REG_FIELD_PREP(ENGINE1_MASK, vcs_mask) |
++				REG_FIELD_PREP(ENGINE1_MASK, vecs_mask));
+ 
+ 		/* Unmask interrupts for each engine instance */
+-		xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
+-		xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
+-		xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, vcs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, vcs_mask));
++		xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, val);
++		xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, val);
++
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, vcs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, vcs_mask));
++		xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, val);
+ 
+ 		/*
+ 		 * the heci2 interrupt is enabled via the same register as the
+ 		 * GSCCS interrupts, but it has its own mask register.
+ 		 */
+ 		if (other_fuse_mask) {
+-			gsc_mask = irqs | GSC_ER_COMPLETE;
++			gsc_mask = common_mask | GSC_ER_COMPLETE;
+ 			heci_mask = GSC_IRQ_INTF(1);
+ 		} else if (xe->info.has_heci_gscfi) {
+ 			gsc_mask = GSC_IRQ_INTF(1);
 
 -- 
 2.51.0
