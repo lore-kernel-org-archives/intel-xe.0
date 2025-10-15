@@ -4,27 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3684ACCD194
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 16:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2A0CCD194
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 17:00:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE54710E892;
-	Wed, 15 Oct 2025 16:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB6910E89D;
+	Wed, 15 Oct 2025 17:00:44 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AFF210E892;
- Wed, 15 Oct 2025 16:55:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0107373589042818464=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5068E10E892;
+ Wed, 15 Oct 2025 17:00:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_add_VM=5FBIND_DEC?=
- =?utf-8?q?OMPRESS_support_and_on=E2=80=91demand_decompression_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Optimize_vrr=2Eguardband?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Oct 2025 16:55:14 -0000
-Message-ID: <176054731442.17708.4049606062421115009@97596180aaec>
+Date: Wed, 15 Oct 2025 17:00:43 -0000
+Message-ID: <176054764332.17707.12226340789323527187@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251015104709.44476-1-nitin.r.gote@intel.com>
-In-Reply-To: <20251015104709.44476-1-nitin.r.gote@intel.com>
+References: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251015102241.1797828-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +39,68 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0107373589042818464==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-
 == Series Details ==
 
-Series: drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression (rev3)
-URL   : https://patchwork.freedesktop.org/series/154714/
-State : success
+Series: Optimize vrr.guardband
+URL   : https://patchwork.freedesktop.org/series/155979/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554_BAT -> xe-pw-154714v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d3c12cc7e1fb4aa72226d5be2da3f96c2fdcbef8
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Wed Oct 15 15:52:41 2025 +0530
 
-Summary
--------
+    drm/i915/vrr: Use the min static optimized guardband
+    
+    In the current VRR implementation, vrr.vmin and vrr.guardband are set such
+    that they do not need to change when switching from fixed refresh rate to
+    variable refresh rate. Specifically, vrr.guardband is always set to match
+    the vblank length. This approach works for most cases, but not for LRR,
+    where the guardband would need to change while the VRR timing generator is
+    still active.
+    
+    With the VRR TG always active, live updates to guardband are unsafe and not
+    recommended. To ensure hardware safety, guardband was moved out of the
+    !fastset block, meaning any change now requires a full modeset.
+    This breaks seamless LRR switching, which was previously supported.
+    
+    Since the problem arises from guardband being matched to the vblank length,
+    solution is to use a minimal, sufficient static value, instead. So we use a
+    static guardband defined during mode-set that fits within the smallest
+    expected vblank and remains unchanged in case of features like LRR where
+    vtotal changes. To compute this minimum guardband we take into account
+    latencies/delays due to different features as mentioned in the Bspec.
+    
+    Introduce a helper to compute the minimal sufficient guardband.
+    On platforms where the VRR timing generator is always ON, we optimize the
+    guardband regardless of whether the display is operating in fixed or
+    variable refresh rate mode.
+    On platforms where the VRR timing generator is not always ON, we optimize
+    the guardband only when VRR is enabled.
+    
+    Bspec: 70151
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 69ca30df000b382e7657f300148be505083377f2 drm-intel
+a991e98bae14 drm/i915/vrr: prep patches for guardband optimization squashed
+44a5d7e8af0f drm/i915/prefill: Prefill latency calculations series squashed
+-:204: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#204: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154714v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154714v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554 -> xe-pw-154714v3
-
-  IGT_8585: 8585
-  xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554: ed00bdb0008276b3497a4c811e160f18d1218554
-  xe-pw-154714v3: 154714v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154714v3/index.html
-
---===============0107373589042818464==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 808 lines checked
+ef0af6f6f6ee drm/i915/dp: Add SDP latency computation helper
+826fcefc1eaa drm/i915/psr: Add function to compute max link-wake latency
+987af8fe93fd drm/i915/display: Add guardband check for feature latencies
+d3c12cc7e1fb drm/i915/vrr: Use the min static optimized guardband
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154714/">https://patchwork.freedesktop.org/series/154714/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154714v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154714v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554_BAT -&gt; xe-pw-154714v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154714v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154714v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554 -&gt; xe-pw-154714v3</li>
-</ul>
-<p>IGT_8585: 8585<br />
-  xe-3925-ed00bdb0008276b3497a4c811e160f18d1218554: ed00bdb0008276b3497a4c811e160f18d1218554<br />
-  xe-pw-154714v3: 154714v3</p>
-
-</body>
-</html>
-
---===============0107373589042818464==--
