@@ -4,68 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C294ECCD185
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 15:15:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3008ECCD185
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 15:20:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2B210E827;
-	Wed, 15 Oct 2025 15:15:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+yHd0To";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECBCE10E824;
- Wed, 15 Oct 2025 15:15:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760541343; x=1792077343;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=4NcEdckshK7UGL1mGkxhEwa9Hx4kNkI98fsj8lG35rc=;
- b=Y+yHd0TovcYIK94yybXV4TA66GvYUz2Ze/7/awKpQC3mDihsUKW/83wd
- XhDb33cDHpvzOdKeuSEAgVGurr5aNUEsazUSpFpPIzkr/6q+uuNFOFKaf
- AShmFjke3wa0QAAmw/Qz/Z5JRSVAidfO59W4lBXlJwAXTMrYtmA77XDLK
- ZYOiZX0ecgRcYs41cCGHWHU4o+iREO+PrZ2qYN22ixJYqY3jOpW7XSIC9
- i1oGwfLnEzqn0SThoktXyIboMQlrjSH6DgmWA4uPq9YoFyyW3HoFNhuzN
- olGBTLb0Ee4i6i1j99HWeROoV8CkCS6mN8SDTM8q845ISKs3r3+SGT0kB Q==;
-X-CSE-ConnectionGUID: jU0AoJ+8R8qDdi1EEChAVA==
-X-CSE-MsgGUID: d0LtIJKfSXytiKBEPEMSOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="61750421"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="61750421"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:15:42 -0700
-X-CSE-ConnectionGUID: T5Peom97Sgm2lBafS7N+sg==
-X-CSE-MsgGUID: RkWXNZiRRuWPTq/T8tgnFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="212810061"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.100])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 08:15:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>,
- Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>, Juha-pekka
- Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
- Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Sai Teja Pottumuttu
- <sai.teja.pottumuttu@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 26/32] drm/i915/xe3p_lpd: Enable pixel normalizer for
- fp16 formats for FBC
-In-Reply-To: <20251015-xe3p_lpd-basic-enabling-v1-26-d2d1e26520aa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-26-d2d1e26520aa@intel.com>
-Date: Wed, 15 Oct 2025 18:15:34 +0300
-Message-ID: <5dadb6bb5aa99400dbc6da05523d6979b2c9b099@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E689010E089;
+	Wed, 15 Oct 2025 15:20:58 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13BE610E089;
+ Wed, 15 Oct 2025 15:20:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3182737192351069300=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Prevent_runtime_P?=
+ =?utf-8?q?M_wake_while_reading_rp0_frequency?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Oct 2025 15:20:58 -0000
+Message-ID: <176054165807.17707.6936102192747641613@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251015094611.1468939-1-badal.nilawar@intel.com>
+In-Reply-To: <20251015094611.1468939-1-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,120 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> From: Vinod Govindapillai <vinod.govindapillai@intel.com>
->
-> There is a hw restriction that we could enable the FBC for FP16
-> formats only if the pixel normalization block is enabled. Hence
-> enable the pixel normalizer block with normalzation factor as
-> 1.0 for the supported FP16 formats to get the FBC enabled. Two
-> existing helper function definitions are moved up to avoid the
-> forward declarations as part of this patch as well.
->
-> Bspec: 69863, 68881
-> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 50 ++++++++++++++--------
->  .../drm/i915/display/skl_universal_plane_regs.h    |  1 +
->  2 files changed, 33 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 16a9c141281b..ae1bf6beac95 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -486,6 +486,23 @@ static int skl_plane_max_height(const struct drm_framebuffer *fb,
->  	return 4096;
->  }
->  
-> +static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
-> +{
-> +	return pipe - PIPE_A + INTEL_FBC_A;
-> +}
-> +
-> +static bool skl_plane_has_fbc(struct intel_display *display,
-> +			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
-> +{
-> +	if ((DISPLAY_RUNTIME_INFO(display)->fbc_mask & BIT(fbc_id)) == 0)
-> +		return false;
-> +
-> +	if (DISPLAY_VER(display) >= 20)
-> +		return icl_is_hdr_plane(display, plane_id);
-> +	else
-> +		return plane_id == PLANE_1;
-> +}
-> +
->  static int icl_plane_max_height(const struct drm_framebuffer *fb,
->  				int color_plane,
->  				unsigned int rotation)
-> @@ -896,7 +913,21 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
->  static void
->  xe3p_lpd_plane_check_pixel_normalizer(struct intel_plane_state *plane_state)
->  {
-> -	plane_state->pixel_normalizer = 0;
-> +	struct intel_display *display = to_intel_display(plane_state);
-> +	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-> +	enum intel_fbc_id fbc_id = skl_fbc_id_for_pipe(plane->pipe);
-> +	u32 reg = 0;
-> +
-> +	/*
-> +	 * To enable FBC for FP16 formats, enable pixel normalizer with
-> +	 * normalization factor as 1.0
-> +	 */
-> +	if (skl_plane_has_fbc(display, fbc_id, plane->id) &&
-> +	    intel_fbc_is_fp16_format_supported(plane_state))
-> +		reg = PLANE_PIXEL_NORMALIZE_NORM_FACTOR(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0) |
-> +		      PLANE_PIXEL_NORMALIZE_ENABLE;
+--===============3182737192351069300==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Again, this functions should be about software state, and shouldn't have
-to concern itself with the register macros.
+== Series Details ==
 
-The function name still doesn't make sense.
+Series: drm/xe: Prevent runtime PM wake while reading rp0 frequency
+URL   : https://patchwork.freedesktop.org/series/155973/
+State : success
 
-> +
-> +	plane_state->pixel_normalizer = reg;
->  }
->  
->  static void
-> @@ -2449,23 +2480,6 @@ void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
->  	}
->  }
->  
-> -static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
-> -{
-> -	return pipe - PIPE_A + INTEL_FBC_A;
-> -}
-> -
-> -static bool skl_plane_has_fbc(struct intel_display *display,
-> -			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
-> -{
-> -	if ((DISPLAY_RUNTIME_INFO(display)->fbc_mask & BIT(fbc_id)) == 0)
-> -		return false;
-> -
-> -	if (DISPLAY_VER(display) >= 20)
-> -		return icl_is_hdr_plane(display, plane_id);
-> -	else
-> -		return plane_id == PLANE_1;
-> -}
-> -
->  static struct intel_fbc *skl_plane_fbc(struct intel_display *display,
->  				       enum pipe pipe, enum plane_id plane_id)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> index 11c713f9b237..eb25de5d1778 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
-> @@ -466,5 +466,6 @@
->  #define   PLANE_PIXEL_NORMALIZE_ENABLE			REG_BIT(31)
->  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK	REG_GENMASK(15, 0)
->  #define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR(val)	REG_FIELD_PREP(PLANE_PIXEL_NORMALIZE_NORM_FACTOR_MASK, (val))
-> +#define   PLANE_PIXEL_NORMALIZE_NORM_FACTOR_1_0		0x3c00
->  
->  #endif /* __SKL_UNIVERSAL_PLANE_REGS_H__ */
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -> xe-pw-155973v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 10)
+------------------------------
+
+  Missing    (1): bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -> xe-pw-155973v1
+
+  IGT_8585: 8585
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a
+  xe-pw-155973v1: 155973v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155973v1/index.html
+
+--===============3182737192351069300==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Prevent runtime PM wake while reading rp0 frequency</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155973/">https://patchwork.freedesktop.org/series/155973/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155973v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155973v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -&gt; xe-pw-155973v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 10)</h2>
+<p>Missing    (1): bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -&gt; xe-pw-155973v1</li>
+</ul>
+<p>IGT_8585: 8585<br />
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a<br />
+  xe-pw-155973v1: 155973v1</p>
+
+</body>
+</html>
+
+--===============3182737192351069300==--
