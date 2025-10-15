@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 320F5CCD196
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 13:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 639D0CCD192
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 13:05:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E32EC10E7DC;
-	Wed, 15 Oct 2025 13:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CDAE10E7DE;
+	Wed, 15 Oct 2025 13:05:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CkGnrz2W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Os6M6z5T";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 599E510E7DC;
- Wed, 15 Oct 2025 13:05:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4156B10E7DF;
+ Wed, 15 Oct 2025 13:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760533544; x=1792069544;
+ t=1760533547; x=1792069547;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cTzWBS8nTs74kWg3BWGiryqQkC+wMScI91mFyi3ovT4=;
- b=CkGnrz2WTjZ5cOIM50roOeOTIPgsUK3PHB8kIG6Iwke4fqB7r06bEXjf
- LemjxfLqX+q/n1JM1WAQ21ho0rcTb+axWRM7gToStG7wXPyYsV2RlOebm
- +S78TaMsmx+ZXBKGFJ4OT9cexjs72EHPklIvZJJqiRuNPKYFw1EzXRBag
- MajPBn88w8f7FMmpfrkfD0ekyaOHdEiQQtP2ulsUQyose9QhcTR7Xe+7S
- 2m6LpOiSpgmf1JVRazLtw5Qf4FihcXAJJttf5YiwRdQsgbHwHOU1GCAAG
- Yw0y3uFVRnRJXarslg7f3Zw4TcLjJ00mo12wRj8nwh2jp9otUoqPoC9xt w==;
-X-CSE-ConnectionGUID: rs77DLI2ROmYaJU8IZQbaA==
-X-CSE-MsgGUID: mHYjTuhXTua2JraMiKX0xA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="80341329"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="80341329"
+ bh=FaAwTVponfNIPRV4n6cNstJvEYTuienQ+ANhogLgr64=;
+ b=Os6M6z5T5D7MHo341USk1kUeQO5YAhOpuDaGpsDpFVFZaACkAaU6uItT
+ Kl8RZooYMO+V+hBB7ijGI9n7he5NCVgD9bFe9G0ZRcztrD0xBJ1erczoX
+ 4s/zjD6kYRiyl7BvrX5Y/frALHS8HB5Mxm7fu9PIfBXkeBPMLLPdDhSqb
+ QThTyLxYBLZ0bt4v9Kff+mywgfZjzyzgVYzirIba695D24A7WQ0i9DwbV
+ 1gKoVddpJagE0udvfLZ4QHr1wnN+lyvkHy1aJTC6quLQN+2nk96UzcqZw
+ CwdOHbsjgPjE6FWHqXyJCjsYZ/dn3Y/7bQ1vXqsmKITjG8J8LsudO6g9R g==;
+X-CSE-ConnectionGUID: R7LBSdzMQ6mpeCvQa0WJOg==
+X-CSE-MsgGUID: YuTE+HCFTOqF4+rEb2vvmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="80341331"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="80341331"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 06:05:44 -0700
-X-CSE-ConnectionGUID: eiGkCCxDTYiBAztQUuhwRQ==
-X-CSE-MsgGUID: EofU+FIFT/iR3p+y5FC7gg==
+ 15 Oct 2025 06:05:47 -0700
+X-CSE-ConnectionGUID: 26RXKL4/SASeAJv/ehMfOg==
+X-CSE-MsgGUID: AHOYmii5T1K06/YMMz0JnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="186586993"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="186587003"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa005.fm.intel.com with ESMTP; 15 Oct 2025 06:05:43 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Oct 2025 06:05:46 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
  Mika Kahola <mika.kahola@intel.com>
-Subject: [CI 5/7] drm/i915/display: Fix PHY_C20_VDR_CUSTOM_SERDES_RATE
- programming
-Date: Wed, 15 Oct 2025 15:54:44 +0300
-Message-Id: <20251015125446.3931198-6-mika.kahola@intel.com>
+Subject: [CI 7/7] drm/i915/display: Add missing clock to C10 PHY state
+ compute/HW readout
+Date: Wed, 15 Oct 2025 15:54:46 +0300
+Message-Id: <20251015125446.3931198-8-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251015125446.3931198-1-mika.kahola@intel.com>
 References: <20251015125446.3931198-1-mika.kahola@intel.com>
@@ -70,73 +70,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-Make sure all the DP/HDMI/HDMI-FRL flags are programmed in all the modes
-the PLL is configured.
-
-Atm the DP mode flag is not programmed in case the PLL is configured for
-HDMI mode for instance. This is incorrect after HW reset, since the DP
-mode flag is asserted after reset, hence would need to be cleared for
-HDMI, but also incorrect because of the same reason after configuring
-the PLL to HDMI mode after it was used in DP mode (for instance on a
-DP++ connector).
-
-There is a similar issue with the HDMI-FRL flag, potentially remaining
-set when configuring the PLL in DP mode.
+Clock value is missing from C10 hw readout stage. Let's fix this.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 25 +++++++++++---------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 5 +++++
+ drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 2 ++
+ 2 files changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 9be7e155a584..6e49659d2f17 100644
+index f8c1338f9053..a74c1be225ac 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2624,6 +2624,7 @@ static void intel_c20_pll_program(struct intel_display *display,
- 				  bool is_dp, int port_clock)
+@@ -2103,6 +2103,9 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	return 0;
+ }
+ 
++static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
++					const struct intel_c10pll_state *pll_state);
++
+ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 					  struct intel_c10pll_state *pll_state)
  {
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
-+	u8 serdes;
- 	bool cntx;
- 	int i;
+@@ -2127,6 +2130,8 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	pll_state->tx = intel_cx0_read(encoder, lane, PHY_C10_VDR_TX(0));
  
-@@ -2699,21 +2700,23 @@ static void intel_c20_pll_program(struct intel_display *display,
- 		      MB_WRITE_COMMITTED);
- 
- 	/* 5. For DP or 6. For HDMI */
--	if (is_dp) {
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
--			      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK,
--			      PHY_C20_IS_DP | PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock)),
--			      MB_WRITE_COMMITTED);
--	} else {
--		intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
--			      PHY_C20_IS_HDMI_FRL | PHY_C20_DP_RATE_MASK,
--			      is_hdmi_frl(port_clock) ? PHY_C20_IS_HDMI_FRL : 0,
--			      MB_WRITE_COMMITTED);
-+	serdes = 0;
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
 +
-+	if (is_dp)
-+		serdes = PHY_C20_IS_DP |
-+			 PHY_C20_DP_RATE(intel_c20_get_dp_rate(port_clock));
-+	else if (is_hdmi_frl(port_clock))
-+		serdes = PHY_C20_IS_HDMI_FRL;
++	pll_state->clock = intel_c10pll_calc_port_clock(encoder, pll_state);
+ }
  
-+	intel_cx0_rmw(encoder, owned_lane_mask, PHY_C20_VDR_CUSTOM_SERDES_RATE,
-+		      PHY_C20_IS_DP | PHY_C20_DP_RATE_MASK | PHY_C20_IS_HDMI_FRL,
-+		      serdes,
-+		      MB_WRITE_COMMITTED);
+ static void intel_c10_pll_program(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+index 7fe6b4a18213..a201edceee10 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
+@@ -332,6 +332,8 @@ void intel_snps_hdmi_pll_compute_c10pll(struct intel_c10pll_state *pll_state, u6
+ 			      c10_curve_1, c10_curve_2, prescaler_divider,
+ 			      &pll_params);
+ 
++	pll_state->clock = pixel_clock;
 +
-+	if (!is_dp)
- 		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
- 				intel_c20_get_hdmi_rate(port_clock),
- 				MB_WRITE_COMMITTED);
--	}
- 
- 	/*
- 	 * 7. Write Vendor specific registers to toggle context setting to load
+ 	pll_state->tx = 0x10;
+ 	pll_state->cmn = 0x1;
+ 	pll_state->pll[0] = REG_FIELD_PREP(C10_PLL0_DIV5CLK_EN, pll_params.mpll_div5_en) |
 -- 
 2.34.1
 
