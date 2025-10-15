@@ -4,91 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DC5ACCD192
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:54:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BC1CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 12:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E43E610E7B5;
-	Wed, 15 Oct 2025 12:54:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E8710E7B6;
+	Wed, 15 Oct 2025 12:56:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Kg1lf13t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mscoTBbc";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 637B810E7B6
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 12:54:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1760532849;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=atGKcZC3sNvpACe/RaQhIJlYHUow16Jp47bgsa9EQHc=;
- b=Kg1lf13tTcB2rGQX5TFLSepfPgfXd6dwuYnu+Q7DHjQ7Lp1SVZXiywWd5x+MGtkVzJO4u/
- gbAsRUna4iEoiMwCTL8WFVgZQL/+iqHsEfuYQ4qclp/Pbihsi+P65uBelMhVxDCJZVcRqm
- Cz5VyjuFX8aCKqeXzP+LQzbVycJqqK0=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-570-0qbPUjkNNT6jMoVHV84ONg-1; Wed, 15 Oct 2025 08:54:08 -0400
-X-MC-Unique: 0qbPUjkNNT6jMoVHV84ONg-1
-X-Mimecast-MFC-AGG-ID: 0qbPUjkNNT6jMoVHV84ONg_1760532847
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-46e509374dcso28746215e9.1
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 05:54:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760532847; x=1761137647;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=atGKcZC3sNvpACe/RaQhIJlYHUow16Jp47bgsa9EQHc=;
- b=Zkm6CyHOBX0EsP+dCJptTeRInYHBFIHyICYIH8bcFg06fu6zr1q5ghgUgK8mOljpiW
- 1TCWbyqBDqdJ7aBUgYW/TzgbdQshUdING7r4GSvfIP9hEJif/0MNU3AMdlqChlqekLtR
- EWLQmchQ1YzzufOqT7FmtGN+iUWRCBzqWAtFB1Km24zZwPEWWLdNzeaETbTeZIFFvmwW
- /LeSWhvAGbQT0cugGGdDgFLKTC+6NWmSMKN0Jxzh7clRW1DuYhg6pvsrfc+SmXLFOME0
- xQ1tQh0uRHmfLFmpk3ci1OV9BTVNhWziXR1yLeQhdS9LZB3509BsEZRMTDGzlz4hzonE
- 6BYg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVjtlVcsiS2PTrlaFerEfu60kAirBWBHWCiIiX+zJn7oj1wH/QP+4/FETRwopmd+X6FVvpLjeDsBg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwiwaexRCQXZvJJGJDxtrSTAvMCVUViDEO3s8AlfEjfCavaMZLK
- MPrmPjqKkckuq/TzJLjPiIalc8ThvegufWiH9AUuzBSUrtNac+rFtelmZR9q1ur9+JvFw/TDuqN
- Of0D71BhNWn2mkHadYfnVWjrt8cwkNEOzo9U7kxEyyyPU90+cCjTXic86WSLvb/8RIrDk
-X-Gm-Gg: ASbGncvbGQKGrRkXFr+t0QEo6qug+r2UcYpd9tIhQ8mFBTG8wIORNDtm+bV02yitCCu
- vAFVp+AoYoyPEgn31CiEg8u+1o7KgNcR6+x5XW/OD5ONBfH4nWFvOphjTjUS94f0/0MSDYGIlxr
- GGzoRIT4xNqM6kor5fmUwruxpMdFCK3aqevqgKcpfzcdAKtlRM8Vtn/LLKXWz9iEl3PwXAe+Pit
- 9zcfIz5TdKr2omlVkdsm8zFwvKds0hE/iGN6AAEdr5+vSECWX3ANoXhHZayFas7d0wrezR+ehqi
- cCP4DXncqH1zZ9GFVKvhulr4V0gwpT4hlMGiboD3BOrvtW8BEmqMIjVi1Gy57TPt/frMHhvzB7H
- aiAit
-X-Received: by 2002:a05:600c:820a:b0:46e:4704:b01e with SMTP id
- 5b1f17b1804b1-46fa9a8631fmr196980285e9.8.1760532846862; 
- Wed, 15 Oct 2025 05:54:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFxoQhcABpT7E2xZX9M7ox7u7XqoMo6Q53VzGvuf10iEypikfE6GqHbt2GJa2fYRv+qbquU9w==
-X-Received: by 2002:a05:600c:820a:b0:46e:4704:b01e with SMTP id
- 5b1f17b1804b1-46fa9a8631fmr196980125e9.8.1760532846438; 
- Wed, 15 Oct 2025 05:54:06 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:c:37e0:8998:e0cf:68cc:1b62?
- ([2a01:e0a:c:37e0:8998:e0cf:68cc:1b62])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-471092a2b1dsm620805e9.1.2025.10.15.05.54.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Oct 2025 05:54:05 -0700 (PDT)
-Message-ID: <7e48cc48-564f-486e-b6b3-8fa95068387a@redhat.com>
-Date: Wed, 15 Oct 2025 14:54:02 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACC210E7B1;
+ Wed, 15 Oct 2025 12:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760533009; x=1792069009;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Tm4CYRWgWDmrMifap4hI+WSIFNqahwyP8lewau7itVc=;
+ b=mscoTBbcYLnsUu79K9Mm06Hw5d2oAlX31niFdNEVr7w/OOGCOTP3bv2H
+ dr3E8+BcJBrv7vZygzqjozM65T+B6I3DEbM12ehTjzeeBEKsWHrwJQDbZ
+ 7odpXDPoqNBiUWgNua9o+pklQebek734JfbxmQ7n6XQ0tKeymiss1/gPL
+ YWWbvch4f78MJ9MiZor7stvM24Fh8nwBOtbtOZZkSUGVE3c9m5H5y/36t
+ VWxOLyzTdB9ENbs65tqn56RDqIFsjrxJI5K95F4TO0ZFjr3fRA1mBXlUC
+ q6FuJtTLY7LiiMuijKuDqYXzoZM9a5jUMO4gqlnxPzUt9a7vBLnW3VwAX Q==;
+X-CSE-ConnectionGUID: /m8Jn5AxTH6FjZzXXet0ag==
+X-CSE-MsgGUID: Gs3LhPvSRzuYd5JtMgXgSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="88173843"
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="88173843"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 05:56:49 -0700
+X-CSE-ConnectionGUID: FgJFvPjGQDaicSvTCt7TPw==
+X-CSE-MsgGUID: XiKhigc7TfGVI/uwCdKc3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="182955194"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.116])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2025 05:56:48 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v3 6/9] drm/i915/scaler: Add scaler prefill helpers
+Date: Wed, 15 Oct 2025 15:56:45 +0300
+Message-ID: <20251015125645.11230-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20251014191808.12326-7-ville.syrjala@linux.intel.com>
+References: <20251014191808.12326-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915/panic: fix panic structure allocation memory
- leak
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Maarten Lankhorst <dev@lankhorst.se>,
- =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-References: <20251015095135.2183415-1-jani.nikula@intel.com>
-From: Jocelyn Falempe <jfalempe@redhat.com>
-In-Reply-To: <20251015095135.2183415-1-jani.nikula@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 4Zo4b2TQSb3QoZSufXYBWoFo7wQPLHljz7S5qiAyqtM_1760532847
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, fr
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,102 +70,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 15/10/2025 11:51, Jani Nikula wrote:
-> Separating the panic allocation from framebuffer allocation in commit
-> 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it
-> belongs") failed to deallocate the panic structure anywhere.
-> 
-> The fix is two-fold. First, free the panic structure in
-> intel_user_framebuffer_destroy() in the general case. Second, move the
-> panic allocation later to intel_framebuffer_init() to not leak the panic
-> structure in error paths (if any, now or later) between
-> intel_framebuffer_alloc() and intel_framebuffer_init().
-> 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Thanks, it looks good to me.
+Add helpers to compute the required prefill line count and
+adjustment factors for the scalers.
 
-Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+The "1st" variants hand out numbers for the first scaler stage
+in the pipeline (pipe scaler if no plane scalers are enabled,
+or the max from all the plane scaler). The "2nd" variants deal
+with second scaler stage (pipe scaler when plane scaling is also
+enabled, otherwise there is no second stage).
 
-> v2: Rebase
-> 
-> Fixes: 729c5f7ffa83 ("drm/{i915,xe}/panic: move framebuffer allocation where it belongs")
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Maarten Lankhorst <dev@lankhorst.se>
-> Reported-by: Michał Grzelak <michal.grzelak@intel.com>
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Tested-by: Michał Grzelak <michal.grzelak@intel.com> # v1
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_fb.c | 25 +++++++++++++------------
->   1 file changed, 13 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 9c256a2805e4..3958628c73e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2114,6 +2114,7 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
->   
->   	intel_frontbuffer_put(intel_fb->frontbuffer);
->   
-> +	kfree(intel_fb->panic);
->   	kfree(intel_fb);
->   }
->   
-> @@ -2212,16 +2213,22 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
->   	struct intel_display *display = to_intel_display(obj->dev);
->   	struct drm_framebuffer *fb = &intel_fb->base;
->   	u32 max_stride;
-> -	int ret = -EINVAL;
-> +	int ret;
->   	int i;
->   
-> +	intel_fb->panic = intel_panic_alloc();
-> +	if (!intel_fb->panic)
-> +		return -ENOMEM;
-> +
->   	/*
->   	 * intel_frontbuffer_get() must be done before
->   	 * intel_fb_bo_framebuffer_init() to avoid set_tiling vs. addfb race.
->   	 */
->   	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
-> -	if (!intel_fb->frontbuffer)
-> -		return -ENOMEM;
-> +	if (!intel_fb->frontbuffer) {
-> +		ret = -ENOMEM;
-> +		goto err_free_panic;
-> +	}
->   
->   	ret = intel_fb_bo_framebuffer_init(obj, mode_cmd);
->   	if (ret)
-> @@ -2320,6 +2327,9 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
->   	intel_fb_bo_framebuffer_fini(obj);
->   err_frontbuffer_put:
->   	intel_frontbuffer_put(intel_fb->frontbuffer);
-> +err_free_panic:
-> +	kfree(intel_fb->panic);
-> +
->   	return ret;
->   }
->   
-> @@ -2346,20 +2356,11 @@ intel_user_framebuffer_create(struct drm_device *dev,
->   struct intel_framebuffer *intel_framebuffer_alloc(void)
->   {
->   	struct intel_framebuffer *intel_fb;
-> -	struct intel_panic *panic;
->   
->   	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
->   	if (!intel_fb)
->   		return NULL;
->   
-> -	panic = intel_panic_alloc();
-> -	if (!panic) {
-> -		kfree(intel_fb);
-> -		return NULL;
-> -	}
-> -
-> -	intel_fb->panic = panic;
-> -
->   	return intel_fb;
->   }
->   
+The _worst() variants give out worst case estimates, meant for
+guardband sizing. The other variants are meant for the actual
+vblank/guardband length check vs. prefill+pkgc/sagv latency.
+
+The returned numbers are in .16 binary fixed point.
+
+TODO: pretty rough, should check the actual scaler max scaling
+      factors instead of just assuming 3x everywhere
+TODO: Reorder scaler assignment vs. vblank length check to get
+      the actual scale factors
+
+v2: Drop debugs
+v3: Ignore scale factors for the vblank length check for now
+    since we don't have the scalers assigned yet
+
+Reviewed-by: Uma Shankar <uma.shankar@intel.com> #v1
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 111 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h |  11 +++
+ 2 files changed, 122 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index c6cccf170ff1..630fcf1cb9ac 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -968,3 +968,114 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+ 			  1);
+ 	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
+ }
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	/*
++	 * FIXME don't have scalers assigned yet
++	 * so can't look up the scale factors
++	 */
++	return 0x10000;
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state)
++{
++	/*
++	 * FIXME don't have scalers assigned yet
++	 * so can't look up the scale factors
++	 */
++	return 0x10000;
++}
++
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 0)
++		return 4 << 16;
++
++	return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state)
++{
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int num_scalers = hweight32(scaler_state->scaler_users);
++
++	if (num_scalers > 1 && crtc_state->pch_pfit.enabled)
++		return 4 << 16;
++
++	return 0;
++}
++
++static unsigned int _skl_scaler_max_scale(const struct intel_crtc_state *crtc_state,
++					  unsigned int max_scale)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	/*
++	 * Downscaling requires increasing cdclk, so max scale
++	 * factor is limited to the max_dotclock/dotclock ratio.
++	 *
++	 * FIXME find out the max downscale factors properly
++	 */
++	return min(max_scale, DIV_ROUND_UP_ULL((u64)display->cdclk.max_dotclk_freq << 16,
++					       crtc_state->hw.pipe_mode.crtc_clock));
++}
++
++static unsigned int skl_scaler_max_scale(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned int max_scale;
++
++	if (crtc->num_scalers < 1)
++		return 0x10000;
++
++	/* FIXME find out the max downscale factors properly */
++	max_scale = 9 << 16;
++
++	return _skl_scaler_max_scale(crtc_state, max_scale);
++}
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return skl_scaler_max_scale(crtc_state);
++	else
++		return 0x10000;
++}
++
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 0)
++		return 4 << 16;
++	else
++		return 0;
++}
++
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++
++	if (crtc->num_scalers > 1)
++		return 4 << 16;
++	else
++		return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 12a19016c5f6..6fab40d2b4ee 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -45,4 +45,15 @@ skl_scaler_mode_valid(struct intel_display *display,
+ void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
+ 
+ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines_worst(const struct intel_crtc_state *crtc_state);
++
++unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state *crtc_state);
++unsigned int skl_scaler_2nd_prefill_lines(const struct intel_crtc_state *crtc_state);
++
+ #endif
+-- 
+2.49.1
 
