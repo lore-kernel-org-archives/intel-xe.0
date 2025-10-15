@@ -4,59 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F71FCCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3204ACCD193
 	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 22:07:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E91EC10E900;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D861410E16D;
 	Wed, 15 Oct 2025 22:07:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2rsfIav";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aORourWT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9652710E16D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A85E10E0DA
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 22:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760566030; x=1792102030;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CLI2Ajfofv0mSMaRRwglJUA1dYh11Hi47v16xIC8cPw=;
- b=L2rsfIavC3gNGtooFOOYnVJhBEfkvFA/NIGxS3EWMmy8tqWnfA/E6Hih
- wjAwPyEJ9sB36DRx1VO537L+JISSB8nwCkIu7nwCjIaS8VggBADTnosbT
- DpAF3JDwRz02KEC0x5Wv84CZ9cBcAxeyy3kZeoScFaRMLwAFGI4w5RbaF
- pkMaJPux8z+dxzrqn+gl0Q5Xyi+z1Pi8Z9g3ePWMUiOOjbRAV14FkxuyC
- DKDtDAsPneRHbS3wU1bxUlccCjakvdEaJ4b9RYas3U0sq+S3dCN04W7oN
- V3I2QNMgI28kesf3+WGABdYxTgD4AHY2A2g+YhACINRTGV06a88dtOgDz Q==;
-X-CSE-ConnectionGUID: 8RRT/pk4Ru20rkKlmnJ/pw==
-X-CSE-MsgGUID: s6Y14GSjRd6kpUr64y3GBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794048"
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794048"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SUnd/v/P7wSDOrZefcNgfi/eJbGuzoOVYz4yohGXW9M=;
+ b=aORourWTvoKOu5c+aTDfY2A2vhNXEbvkTsy2O6OShSW1bJrstx3YBKKa
+ R0SkYMK34wNzwLInVh5Y2sgxb08AJ2dXb3Vy9BO7UNQyxGJr1Zf0Qifek
+ UnRUXhMAQL+LXP8MLA1mJZ+9WIauZ+SQBh4CLFmbQIZw5BPnRz2YBXSel
+ GhgpOwKqIrC2d89rJQeJLfZHsK1kSH7WCZno5kI1wRDPmnxFQ5j/H1O3U
+ mNnm+iLtarJDH72qCdyC1FL2FRA9zTWkab9Y5ZI4VI2pK1l1A+OAiyLye
+ SZP+D1EL/O4AXCYOTrMzBn5uEN8RICWx20Vf1sZm8d/METUel2Mvz+IZM w==;
+X-CSE-ConnectionGUID: Krb5wFX6RP+qW5C8hmdsPw==
+X-CSE-MsgGUID: 9/lowcyJSoaZHoh74fmTkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62794045"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="62794045"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Oct 2025 15:07:10 -0700
-X-CSE-ConnectionGUID: 8VB+/0sWQMCA7o/1Div9cQ==
-X-CSE-MsgGUID: e3QPL2ORTbuAcEaU6maucQ==
+X-CSE-ConnectionGUID: ifdbGsLwSzWZJUJYQ8nTkQ==
+X-CSE-MsgGUID: 7GBeHBJWSymv9wyXXLXLYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298270"
+X-IronPort-AV: E=Sophos;i="6.19,232,1754982000"; d="scan'208";a="186298257"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 15:07:10 -0700
+ 15 Oct 2025 15:07:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 04/22] drm/xe: Add GT_VER() to check version specific to gt
- type
-Date: Wed, 15 Oct 2025 15:06:19 -0700
-Message-ID: <20251015-xe3p-v2-4-b9189b3056a2@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>, Wang Xin <x.wang@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Fei Yang <fei.yang@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ S A Muqthyar Ahmed <syed.abdul.muqthyar.ahmed@intel.com>,
+ Harish Chegondi <harish.chegondi@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: [PATCH v2 00/22] drm/xe: Add Xe3p support
+Date: Wed, 15 Oct 2025 15:06:15 -0700
+Message-ID: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
-References: <20251015-xe3p-v2-0-b9189b3056a2@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251013-xe3p-81bb749e9de0
 X-Mailer: b4 0.15-dev-bd47d
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,37 +79,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In some situations we will need to check the version of the specific gt
-being passed as argument, not if the device has a certain graphics/media
-version.
+This begins the support for the Xe3p arch - it contains generic support
+for graphics version 35 and the Xe3p_xpc IP, the Xe3p_LPM IP for media
+and support for Nova Lake S (NVL-S), that uses a mix of IPs - the
+display side for NVL-S will be submitted separately.
 
-This is extracted from a patch by Balasubramani Vivekanandan that
-may need some rework, but this helper is still useful for other enabling
-parts of Xe3p.
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v2:
+- Rebase on latest drm-tip as some interfaces changed like the device
+  flags location and RTP helper signature
+- Drop patches to handle app transient and additional flushes as they
+  are not currently used
+- Drop patches to handle main gam control - they are actually correct,
+  but having a spec reference to embed in the commit message is
+  preferred
+- Add 2 patches to refactor irq enabling on hw engines so we don blindly
+  set bits intended for one engine class in another.
+- Some other changes, mentioned in the individual commits
+- Link to v1: https://lore.kernel.org/r/20251013-xe3p-v1-0-bfb74f038215@intel.com
+---
+Balasubramani Vivekanandan (3):
+      drm/xe: Drop CTC_MODE register read
+      drm/xe/xe3p_lpm: Skip disabling NOA on unsupported IPs
+      drm/xe/xe3p_xpc: Add Xe3p_XPC IP definition
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 5df2ffe3ff838..9d710049da455 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -22,6 +22,12 @@
- 
- #define CCS_MASK(gt) (((gt)->info.engine_mask & XE_HW_ENGINE_CCS_MASK) >> XE_HW_ENGINE_CCS0)
- 
-+#define GT_VER(gt) ({ \
-+	typeof(gt) gt_ = (gt); \
-+	struct xe_device *xe = gt_to_xe(gt_); \
-+	xe_gt_is_media_type(gt_) ? MEDIA_VER(xe) : GRAPHICS_VER(xe); \
-+})
-+
- extern struct fault_attr gt_reset_failure;
- static inline bool xe_fault_inject_gt_reset(void)
- {
+Dnyaneshwar Bhadane (1):
+      drm/xe/nvls: Attach MOCS table for NVL-S
 
--- 
-2.51.0
+Fei Yang (1):
+      drm/xe/xe3p_xpc: Add L3 bank mask
+
+Harish Chegondi (1):
+      drm/xe/xe3p: Add xe3p EU stall data format
+
+Lucas De Marchi (4):
+      drm/xe: Add GT_VER() to check version specific to gt type
+      drm/xe/irq: Rename fuse mask variables
+      drm/xe/irq: Split irq mask per engine class
+      drm/xe/xe3p_xpc: Add support for compute walker for non-MSIx
+
+Matt Roper (8):
+      drm/xe/xe3p_lpm: Handle MCR steering
+      drm/xe/xe3p: Stop programming RCU_MODE's fixed slice mode setting
+      drm/xe/xe3p: Determine service copy availability from fuse
+      drm/xe/nvl: Define NVL-S platform
+      drm/xe/nvls: Define GuC firmware for NVL-S
+      drm/xe/xe3p_xpc: Add MCR steering
+      drm/xe/xe3p_xpc: Skip compression tuning on platforms without flatccs
+      drm/xe/xe3p_xpc: Setup PAT table
+
+Shekhar Chauhan (2):
+      drm/xe/xe3: Add support for graphics IP versions 30.04 & 30.05
+      drm/xe/xe3p_lpm: Add support for media IP versions 35.00 & 35.03
+
+Wang Xin (2):
+      drm/xe: Dump CURRENT_LRCA register
+      drm/xe/xe3p: Dump CSMQDEBUG register
+
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |   5 ++
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   7 +-
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h    |   1 +
+ drivers/gpu/drm/xe/xe_eu_stall.c         |  28 +++++++-
+ drivers/gpu/drm/xe/xe_gt.h               |   6 ++
+ drivers/gpu/drm/xe/xe_gt_clock.c         |  19 ------
+ drivers/gpu/drm/xe/xe_gt_mcr.c           |  61 +++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_topology.c      |   6 +-
+ drivers/gpu/drm/xe/xe_gt_types.h         |  15 +++++
+ drivers/gpu/drm/xe/xe_guc_capture.c      |  49 +++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_engine.c        |  50 +++++++++++---
+ drivers/gpu/drm/xe/xe_irq.c              | 109 ++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_mocs.c             |   1 +
+ drivers/gpu/drm/xe/xe_oa.c               |   3 +-
+ drivers/gpu/drm/xe/xe_pat.c              |  96 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pci.c              |  21 ++++++
+ drivers/gpu/drm/xe/xe_platform_types.h   |   1 +
+ drivers/gpu/drm/xe/xe_rtp.c              |   7 ++
+ drivers/gpu/drm/xe/xe_rtp.h              |  12 ++++
+ drivers/gpu/drm/xe/xe_tuning.c           |   9 ++-
+ drivers/gpu/drm/xe/xe_uc_fw.c            |   1 +
+ drivers/gpu/drm/xe/xe_wa.c               |   6 +-
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |   9 +--
+ include/drm/intel/pciids.h               |   9 +++
+ 24 files changed, 441 insertions(+), 90 deletions(-)
+
+base-commit: f019aaad58112f89234f7b68557c831846437008
+change-id: 20251013-xe3p-81bb749e9de0
+
+Lucas De Marchi
 
