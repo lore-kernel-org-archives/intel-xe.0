@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69812CCD18E
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 08:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC7D4CCD18E
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 08:03:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3BE10E74C;
-	Wed, 15 Oct 2025 08:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80C0310E74E;
+	Wed, 15 Oct 2025 08:03:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j3S6nPeE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LDeAu3SA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C105310E755
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 08:03:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A398F10E74E
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Oct 2025 08:03:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760515383; x=1792051383;
+ t=1760515387; x=1792051387;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RCJDPC3KKO3McUyWYl+T4hKLPNTUO5NjLHbVV8W3fOk=;
- b=j3S6nPeEPvQsM8OooWde7Zw0V6IRtsarvPq3khO1APXfVf85416T9t0p
- M7K09b8RIiwTMunSlIO44XG+qsCCSU6PzIqIgtt6pH/Yo8wNTYdt2mzNH
- dmBJT8h1hKa6RD9g0TMNqUikr/xWWcnOAkxkKToDVBUiAR9doYvy1ABTm
- rgOYXsb2X+CBs5OOJIJCeL911D5QNp4C6DCRIGzQQeHvypGshQd/fdelp
- q9SQOcZQc1/lIeNqcF1kUsVBpX0t+ACBd7DhGeQkbmdCZNUnQZ9Clnn2x
- MUKNCEIX9MrW48xbrFvRwtKADxrNE/OQnU3gTktF6hgl/gW6xx1jdGqnS A==;
-X-CSE-ConnectionGUID: Q/PY1V/8SomARIKiKesYZQ==
-X-CSE-MsgGUID: BE0pVg9qQ+iRUWltaX8ENg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="61891515"
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="61891515"
+ bh=JZ3qIsSovrFdFJs/dNlHB06AYAyshWfRv7BOvxYpBV8=;
+ b=LDeAu3SAVdQQXBpR8GLg658sI1X2uK/kGW2FcVBOPUR2WldrKFWVweLg
+ rAtQbfB5YJh+6tTu6P7c/dvBftPjBoxZGpmeV8dKa410L2fVv83TkBOuq
+ Qv/dVzlr6yxLSX0tw7gGbgNOOH6FWWg5CSKbNx372xLdbzepz7OuEAa9F
+ OiO1t+eLZGCjHpnkltAv+jE5Yn7S1O3g0UkfiNH1I51pk8I6eB+7kcdYd
+ 4I3878J+TpE2pSkc+ppuMYEz41a04w+lHj5sdFenLTfJt8kY52TdoSq4f
+ nsqQluGrxqebA8q6heQE8FsEBjXjmsz4qPNWkY3lYFKfM2zsfz5IM7Z/j Q==;
+X-CSE-ConnectionGUID: 2Cqa4wrARNy5xP+7dwSgtw==
+X-CSE-MsgGUID: sIoaxbFeS8q4VQGf7TwdcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11582"; a="61891522"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="61891522"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 01:03:03 -0700
-X-CSE-ConnectionGUID: 1f7ZIKrISBSCkSgAP1S9PQ==
-X-CSE-MsgGUID: /BiNBmYoS8ikkdXOTmLNOQ==
+ 15 Oct 2025 01:03:07 -0700
+X-CSE-ConnectionGUID: 46o1+FC0R5+xae4AH8ZY/w==
+X-CSE-MsgGUID: ZgEYaXuPSlS9nZsH5ar5sA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="205805474"
+X-IronPort-AV: E=Sophos;i="6.19,230,1754982000"; d="scan'208";a="205805541"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 01:02:59 -0700
+ 15 Oct 2025 01:03:02 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org, linux-acpi@vger.kernel.org,
  linux-pci@vger.kernel.org
@@ -49,9 +49,9 @@ Cc: anshuman.gupta@intel.com, rafael@kernel.org, lenb@kernel.org,
  lucas.demarchi@intel.com, rodrigo.vivi@intel.com, varun.gupta@intel.com,
  ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  karthik.poosa@intel.com
-Subject: [PATCH v5 09/12] drm/xe/pm: D3cold target state
-Date: Wed, 15 Oct 2025 13:37:07 +0530
-Message-Id: <20251015080710.1468409-10-badal.nilawar@intel.com>
+Subject: [PATCH v5 10/12] drm/xe/vrsr: Enable VRSR
+Date: Wed, 15 Oct 2025 13:37:08 +0530
+Message-Id: <20251015080710.1468409-11-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251015080710.1468409-1-badal.nilawar@intel.com>
 References: <20251015080710.1468409-1-badal.nilawar@intel.com>
@@ -73,60 +73,160 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 
-Trade-off D3cold target state based upon current vram usage.
-If vram usage is greater than vram_d3cold_threshold and GPU
-is VRSR capable target D3cold state is D3cold-VRSR
-otherwise target state is D3cold-Off.
+Enable VRSR in runtime suspend and also in System wide suspend.
+Also fix couple of typo in xe_pm.c.
+
+V2: Disable VRSR in runtime/system resume path
 
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+Acked-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pm.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c |  4 +--
+ drivers/gpu/drm/xe/xe_pm.c  | 52 ++++++++++++++++++++++++++++---------
+ 2 files changed, 42 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index eb60cf44c1d7..2f1b6d52514c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1067,7 +1067,7 @@ static int xe_pci_suspend(struct device *dev)
+ 
+ 	/*
+ 	 * Enabling D3Cold is needed for S2Idle/S0ix.
+-	 * It is save to allow here since xe_pm_suspend has evicted
++	 * It is safe to allow here since xe_pm_suspend has evicted
+ 	 * the local memory and the direct complete optimization is disabled.
+ 	 */
+ 	d3cold_toggle(pdev, D3COLD_ENABLE);
+@@ -1084,7 +1084,7 @@ static int xe_pci_resume(struct device *dev)
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	int err;
+ 
+-	/* Give back the D3Cold decision to the runtime P M*/
++	/* Give back the D3Cold decision to the runtime PM */
+ 	d3cold_toggle(pdev, D3COLD_DISABLE);
+ 
+ 	err = pci_set_power_state(pdev, PCI_D0);
 diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index aa38dbe1e368..f599513edca6 100644
+index f599513edca6..84cd9e84f548 100644
 --- a/drivers/gpu/drm/xe/xe_pm.c
 +++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -167,6 +167,14 @@ static void xe_rpm_lockmap_release(const struct xe_device *xe)
- 			 &xe_pm_runtime_d3cold_map);
- }
+@@ -204,10 +204,12 @@ int xe_pm_suspend(struct xe_device *xe)
  
-+static void xe_pm_suspend_prepare(struct xe_device *xe)
-+{
-+	if (pm_suspend_target_state == PM_SUSPEND_TO_IDLE)
-+		xe_pm_d3cold_target_state_toggle(xe);
-+	else
-+		xe->d3cold.target_state = XE_D3COLD_OFF;
-+}
-+
- /**
-  * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
-  * @xe: xe device instance
-@@ -183,6 +191,8 @@ int xe_pm_suspend(struct xe_device *xe)
- 	xe_pm_block_begin_signalling();
- 	trace_xe_pm_suspend(xe, __builtin_return_address(0));
+ 	xe_display_pm_suspend(xe);
  
-+	xe_pm_suspend_prepare(xe);
+-	/* FIXME: Super racey... */
+-	err = xe_bo_evict_all(xe);
+-	if (err)
+-		goto err_display;
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
++		/* FIXME: Super racey... */
++		err = xe_bo_evict_all(xe);
++		if (err)
++			goto err;
++	}
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_suspend(gt);
+@@ -221,6 +223,12 @@ int xe_pm_suspend(struct xe_device *xe)
+ 
+ 	xe_i2c_pm_suspend(xe);
+ 
++	if (xe->d3cold.target_state == XE_D3COLD_VRSR) {
++		err = xe_pm_vrsr_enable(xe);
++			if (err)
++				goto err_display;
++	}
 +
- 	err = xe_pxp_pm_suspend(xe->pxp);
+ 	drm_dbg(&xe->drm, "Device suspended\n");
+ 	xe_pm_block_end_signalling();
+ 
+@@ -262,15 +270,20 @@ int xe_pm_resume(struct xe_device *xe)
  	if (err)
- 		goto err;
-@@ -1077,10 +1087,14 @@ void xe_pm_d3cold_target_state_toggle(struct xe_device *xe)
+ 		return err;
  
- 	if (total_vram_used_mb < xe->d3cold.vram_threshold)
- 		xe->d3cold.target_state = XE_D3COLD_OFF;
-+	else if (xe->d3cold.vrsr_capable)
-+		xe->d3cold.target_state = XE_D3COLD_VRSR;
- 	else
- 		xe->d3cold.target_state = XE_D3HOT;
- 
- 	mutex_unlock(&xe->d3cold.lock);
++	if (xe->d3cold.target_state == XE_D3COLD_VRSR)
++		xe_pm_vrsr_disable(xe);
 +
-+	drm_dbg(&xe->drm, "Xe D3cold target state %d\n", xe->d3cold.target_state);
- }
+ 	xe_display_pm_resume_early(xe);
  
- /**
+ 	/*
+ 	 * This only restores pinned memory which is the memory required for the
+ 	 * GT(s) to resume.
+ 	 */
+-	err = xe_bo_restore_early(xe);
+-	if (err)
+-		goto err;
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
++		err = xe_bo_restore_early(xe);
++		if (err)
++			goto err;
++	}
+ 
+ 	xe_i2c_pm_resume(xe, true);
+ 
+@@ -281,9 +294,11 @@ int xe_pm_resume(struct xe_device *xe)
+ 
+ 	xe_display_pm_resume(xe);
+ 
+-	err = xe_bo_restore_late(xe);
+-	if (err)
+-		goto err;
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
++		err = xe_bo_restore_late(xe);
++		if (err)
++			goto err;
++	}
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
+@@ -729,7 +744,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 
+ 	xe_display_pm_runtime_suspend(xe);
+ 
+-	if (xe->d3cold.target_state) {
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
+ 		err = xe_bo_evict_all(xe);
+ 		if (err)
+ 			goto out_resume;
+@@ -747,6 +762,14 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 
+ 	xe_i2c_pm_suspend(xe);
+ 
++	if (xe->d3cold.target_state == XE_D3COLD_VRSR) {
++		err = xe_pm_vrsr_enable(xe);
++			if (err) {
++				drm_err(&xe->drm, "Failed to enable VRSR: %d\n", err);
++				goto out_resume;
++			}
++	}
++
+ 	xe_rpm_lockmap_release(xe);
+ 	xe_pm_write_callback_task(xe, NULL);
+ 	return 0;
+@@ -787,7 +810,12 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 			goto out;
+ 
+ 		xe_display_pm_resume_early(xe);
++	}
+ 
++	if (xe->d3cold.target_state == XE_D3COLD_VRSR)
++		xe_pm_vrsr_disable(xe);
++
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
+ 		/*
+ 		 * This only restores pinned memory which is the memory
+ 		 * required for the GT(s) to resume.
+@@ -807,7 +835,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_display_pm_runtime_resume(xe);
+ 
+-	if (xe->d3cold.target_state) {
++	if (xe->d3cold.target_state == XE_D3COLD_OFF) {
+ 		err = xe_bo_restore_late(xe);
+ 		if (err)
+ 			goto out;
 -- 
 2.34.1
 
