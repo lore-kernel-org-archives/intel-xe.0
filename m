@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCCDBCCD192
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 13:05:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69B7FCCD192
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Oct 2025 13:07:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F14F10E7D3;
-	Wed, 15 Oct 2025 13:05:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOeYgHoM";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0BD810E7DA;
- Wed, 15 Oct 2025 13:05:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760533546; x=1792069546;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0ltXJVCIYM6FB9khtvGsntlxP1l2xCaktuz4TsHLWSk=;
- b=IOeYgHoMgdSkv3IlEK/QA6bEKjX7Dj+nbXFtIM0SkBdIabI3K80/ZZyT
- sRPZBNCqzuTPJHGHP+HbYuopkEdR7yiDuvGSRDoeVaZRAURSu4h/EzRWN
- ouy9kvMcksbTCPBe+VqtYaCYxQOn5XCQRLJ2YxWWWVYiMPcVcZg8XaOIk
- Co13FFHnW2JoOewiWdBNzbsVIS41KXPu1FOYafLoBechEZSGc92op5HwL
- e2zNsLT1Enwig8QtlhSOnL8r20Q71Dpz7J97Cbuw6BdyFpfCcW5Ry2kXT
- qlKV/RIOViU/CVnRP15uMXD0LeTVRrBcdwbpgi/NuXEHeo1rxJoNhg0Mn A==;
-X-CSE-ConnectionGUID: yOxA/FhBToCYzXEPUv2JKw==
-X-CSE-MsgGUID: D+JKDlK6STW+sPwafCPhSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="80341330"
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="80341330"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2025 06:05:45 -0700
-X-CSE-ConnectionGUID: KEzerePzTVao9D4U/p+GxQ==
-X-CSE-MsgGUID: 6ttg0N+nQ9a1uhsQVU33iA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,231,1754982000"; d="scan'208";a="186586998"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa005.fm.intel.com with ESMTP; 15 Oct 2025 06:05:44 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [CI 6/7] drm/i915/display: Fix PHY_C20_VDR_HDMI_RATE programming
-Date: Wed, 15 Oct 2025 15:54:45 +0300
-Message-Id: <20251015125446.3931198-7-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251015125446.3931198-1-mika.kahola@intel.com>
-References: <20251015125446.3931198-1-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2932410E7DD;
+	Wed, 15 Oct 2025 13:07:37 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98DB810E184;
+ Wed, 15 Oct 2025 13:07:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6972536976620872116=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PF=3A_Update_auto-provision?=
+ =?utf-8?q?ing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Oct 2025 13:07:35 -0000
+Message-ID: <176053365561.16661.6772211080997682127@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251015091211.592-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20251015091211.592-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@intel.com>
+--===============6972536976620872116==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The PHY_C20_VDR_HDMI_RATE registers 7:2 bits are reserved and they are
-not specified as a must-be-zero field. Accordingly this reserved field
-shouldn't be zeroed; to ensure that use an RMW to update the
-PHY_C20_HDMI_RATE field (which is bits 1:0 of the register).
+== Series Details ==
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 7 ++++---
- drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 2 ++
- 2 files changed, 6 insertions(+), 3 deletions(-)
+Series: PF: Update auto-provisioning
+URL   : https://patchwork.freedesktop.org/series/155971/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 6e49659d2f17..f8c1338f9053 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2714,9 +2714,10 @@ static void intel_c20_pll_program(struct intel_display *display,
- 		      MB_WRITE_COMMITTED);
- 
- 	if (!is_dp)
--		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
--				intel_c20_get_hdmi_rate(port_clock),
--				MB_WRITE_COMMITTED);
-+		intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C20_VDR_HDMI_RATE,
-+			      PHY_C20_HDMI_RATE_MASK,
-+			      intel_c20_get_hdmi_rate(port_clock),
-+			      MB_WRITE_COMMITTED);
- 
- 	/*
- 	 * 7. Write Vendor specific registers to toggle context setting to load
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 0743a3e2d15f..86e2e1c7babf 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -304,6 +304,8 @@
- #define   PHY_C20_DP_RATE(val)		REG_FIELD_PREP8(PHY_C20_DP_RATE_MASK, val)
- #define   PHY_C20_CONTEXT_TOGGLE	REG_BIT8(0)
- #define PHY_C20_VDR_HDMI_RATE		0xD01
-+#define   PHY_C20_HDMI_RATE_MASK	REG_GENMASK8(1, 0)
-+#define   PHY_C20_HDMI_RATE(val)	REG_FIELD_PREP8(PHY_C20_HDMI_RATE_MASK, val)
- #define PHY_C20_VDR_CUSTOM_WIDTH	0xD02
- #define   PHY_C20_CUSTOM_WIDTH_MASK	REG_GENMASK(1, 0)
- #define   PHY_C20_CUSTOM_WIDTH(val)	REG_FIELD_PREP8(PHY_C20_CUSTOM_WIDTH_MASK, val)
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -> xe-pw-155971v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 10)
+------------------------------
+
+  Missing    (1): bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -> xe-pw-155971v1
+
+  IGT_8585: 8585
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a
+  xe-pw-155971v1: 155971v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/index.html
+
+--===============6972536976620872116==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PF: Update auto-provisioning</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155971/">https://patchwork.freedesktop.org/series/155971/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_BAT -&gt; xe-pw-155971v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 10)</h2>
+<p>Missing    (1): bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a -&gt; xe-pw-155971v1</li>
+</ul>
+<p>IGT_8585: 8585<br />
+  xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a: 6a9cafb6723c47062cc4d593804d5bb69155d81a<br />
+  xe-pw-155971v1: 155971v1</p>
+
+</body>
+</html>
+
+--===============6972536976620872116==--
