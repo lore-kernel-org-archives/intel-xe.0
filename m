@@ -4,30 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047F5CCD195
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 06:40:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32701CCD183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 06:44:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC07F10E963;
-	Thu, 16 Oct 2025 06:40:05 +0000 (UTC)
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D2810E963
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 06:40:04 +0000 (UTC)
-Message-ID: <764b9a47-d490-4558-9d0d-0ea1931d0419@lankhorst.se>
-Date: Thu, 16 Oct 2025 08:40:02 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8D210E966;
+	Thu, 16 Oct 2025 06:44:31 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E21D910E959;
+ Thu, 16 Oct 2025 06:44:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5342049885156718016=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 08/12] drm/xe: Make xe_ggtt_node offset relative to
- starting offset
-To: Matthew Brost <matthew.brost@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mei=3A_intel=5Flb=5Fmei=5Fi?=
+ =?utf-8?q?nterface=2Eh=3A_mark_struct_member_with_kernel-doc?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Randy Dunlap" <rdunlap@infradead.org>
 Cc: intel-xe@lists.freedesktop.org
-References: <20251015074708.1654014-14-dev@lankhorst.se>
- <20251015074708.1654014-22-dev@lankhorst.se>
- <aPAiapLgXihvfKES@lstrano-desk.jf.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <aPAiapLgXihvfKES@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 16 Oct 2025 06:44:30 -0000
+Message-ID: <176059707091.20573.12518450791334856602@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251016035942.1148176-1-rdunlap@infradead.org>
+In-Reply-To: <20251016035942.1148176-1-rdunlap@infradead.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,115 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============5342049885156718016==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2025-10-16 kl. 00:38, skrev Matthew Brost:
-> On Wed, Oct 15, 2025 at 09:47:17AM +0200, Maarten Lankhorst wrote:
->> This will make node shifting in the next commit a one-liner.
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/xe_ggtt.c | 21 ++++++++++++++-------
->>  1 file changed, 14 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 5c07d63189ab1..1c97a06424b5c 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -289,7 +289,7 @@ static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
->>  {
->>  	ggtt->start = start;
->>  	ggtt->size = size;
->> -	drm_mm_init(&ggtt->mm, start, size);
->> +	drm_mm_init(&ggtt->mm, 0, size - start);
-> 
-> We should probably fix the drm_mm_init function signature so the last
-> argument is called 'end' rather than 'size'. Can be done in a follow up
-> though.
-> 
->>  }
->>  
->>  int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
->> @@ -388,7 +388,7 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
->>  	/* Display may have allocated inside ggtt, so be careful with clearing here */
->>  	mutex_lock(&ggtt->lock);
->>  	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
->> -		xe_ggtt_clear(ggtt, start, end - start);
->> +		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
->>  
->>  	xe_ggtt_invalidate(ggtt);
->>  	mutex_unlock(&ggtt->lock);
->> @@ -405,7 +405,7 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
->>  
->>  	mutex_lock(&ggtt->lock);
->>  	if (bound)
->> -		xe_ggtt_clear(ggtt, node->base.start, node->base.size);
->> +		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), node->base.size);
->>  	drm_mm_remove_node(&node->base);
->>  	node->base.size = 0;
->>  	mutex_unlock(&ggtt->lock);
->> @@ -561,13 +561,13 @@ int xe_ggtt_node_insert_balloon_locked(struct xe_ggtt_node *node, u64 start, u64
->>  	lockdep_assert_held(&ggtt->lock);
->>  
->>  	node->base.color = 0;
->> -	node->base.start = start;
->> +	node->base.start = start - ggtt->start;
->>  	node->base.size = end - start;
->>  
->>  	err = drm_mm_reserve_node(&ggtt->mm, &node->base);
->>  
->>  	if (xe_tile_WARN(ggtt->tile, err, "Failed to balloon GGTT %#llx-%#llx (%pe)\n",
->> -			 node->base.start, node->base.start + node->base.size, ERR_PTR(err)))
->> +			 xe_ggtt_node_addr(node), xe_ggtt_node_addr(node) + node->base.size, ERR_PTR(err)))
->>  		return err;
->>  
->>  	xe_ggtt_dump_node(ggtt, &node->base, "balloon");
->> @@ -744,7 +744,7 @@ static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_ggtt_node *node,
->>  	if (XE_WARN_ON(!node))
->>  		return;
->>  
->> -	start = node->base.start;
->> +	start = xe_ggtt_node_addr(node);
->>  	end = start + xe_bo_size(bo);
->>  
->>  	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
->> @@ -865,6 +865,13 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
->>  	}
->>  
->>  	mutex_lock(&ggtt->lock);
->> +	if (start >= ggtt->start)
->> +		start -= ggtt->start;
->> +	else
->> +		start = 0;
-> 
-> Does this logic work if let's say start == 0x1000 and ggtt->start ==
-> 0x2000. It seems like that is caller bug which we should assert 'start
->> = ggtt->start', right?
+== Series Details ==
 
-This is to handle the special case start = 0 with end = UINT_MAX, and then being permissive
-and allowing all values < ggtt->start as well.
+Series: mei: intel_lb_mei_interface.h: mark struct member with kernel-doc
+URL   : https://patchwork.freedesktop.org/series/156033/
+State : success
 
-Specifying start = 0 is valid.
+== Summary ==
 
->> +
->> +	end -= ggtt->start;
->> +
->>  	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
->>  					  xe_bo_size(bo), alignment, 0, start, end, 0);
->>  	if (err) {
->> @@ -1106,5 +1113,5 @@ u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset)
->>   */
->>  u64 xe_ggtt_node_addr(const struct xe_ggtt_node *node)
->>  {
->> -	return node->base.start;
->> +	return node->base.start + READ_ONCE(node->ggtt->start);
-> 
-> Why the READ_ONCE here?
+CI Bug Log - changes from xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_BAT -> xe-pw-156033v1_BAT
+====================================================
 
-Will be paired with a WRITE_ONCE in shift_nodes() in the next couple of patches.
+Summary
+-------
 
-Best regards,
-~Maarten Lankhorst
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8 -> xe-pw-156033v1
+
+  IGT_8587: 8587
+  xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8: 7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8
+  xe-pw-156033v1: 156033v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156033v1/index.html
+
+--===============5342049885156718016==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>mei: intel_lb_mei_interface.h: mark struct member with kernel-doc</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156033/">https://patchwork.freedesktop.org/series/156033/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156033v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156033v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_BAT -&gt; xe-pw-156033v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8 -&gt; xe-pw-156033v1</li>
+</ul>
+<p>IGT_8587: 8587<br />
+  xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8: 7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8<br />
+  xe-pw-156033v1: 156033v1</p>
+
+</body>
+</html>
+
+--===============5342049885156718016==--
