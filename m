@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A35CCCD183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 07:50:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0B8DCCD19A
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 07:57:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC50910E97F;
-	Thu, 16 Oct 2025 07:50:56 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D19310E97A;
- Thu, 16 Oct 2025 07:50:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5707864639853065290=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A72E10E02B;
+	Thu, 16 Oct 2025 07:57:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LVBPDd9b";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E39C10E02B
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 07:57:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1760601433;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=8uJq1+mbd0Eu6wZtPg1VPcwNGlZLkg6XwSfxKx35dwM=;
+ b=LVBPDd9bYP9m4YgkG43cwoD6om3GCHaq1/L/sEUQr/Ui2XplBzJKDhacy6YUxylwS3taA7
+ Z6M+4S8r7+VbJxDfEc8gY8pOr6Ec8306TZbCsbUWUPKzNpbc+H+YgR3ptDR4DLZX0Wz9zD
+ vUerICNmb9jmmfBSbC4gxtWtfdTZkRI=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-662-TqN6ilhvPImZTTuHKWHoug-1; Thu,
+ 16 Oct 2025 03:57:09 -0400
+X-MC-Unique: TqN6ilhvPImZTTuHKWHoug-1
+X-Mimecast-MFC-AGG-ID: TqN6ilhvPImZTTuHKWHoug_1760601428
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 744C81800654; Thu, 16 Oct 2025 07:57:08 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.45.225.133])
+ by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 795A1300019F; Thu, 16 Oct 2025 07:57:06 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v3 0/2] drm/xe/display: Make panic support work on vram.
+Date: Thu, 16 Oct 2025 09:52:29 +0200
+Message-ID: <20251016075701.379023-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Preparatory_patches_for_gua?=
- =?utf-8?q?rdband_optimization_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Oct 2025 07:50:55 -0000
-Message-ID: <176060105524.20799.3674269901015737501@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: cX37xuoaELfsnWEMAhvroyyWYATLWagLpufQOGj01Oc_1760601428
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5707864639853065290==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+With panic support merged, enable on vram too.
+I've only rebased the v2 on top of intel-drm-next.
 
-== Series Details ==
+v2:
+- Add kerneldoc to xe_bo_is_visible_vram,
+- reduce amount of members in xe_panic_data to minimum.
 
-Series: Preparatory patches for guardband optimization (rev8)
-URL   : https://patchwork.freedesktop.org/series/155662/
-State : success
+v3:
+- Rebase, and take care of the code moved from intel_bo.c to
+  xe_panic.c
 
-== Summary ==
+Maarten Lankhorst (2):
+  drm/xe: Extract xe_bo_is_visible_vram
+  drm/xe/display: Make panic support work on vram.
 
-CI Bug Log - changes from xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_BAT -> xe-pw-155662v8_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
+ drivers/gpu/drm/xe/display/xe_panic.c | 50 +++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_bo.c            | 19 +++++++++-
+ drivers/gpu/drm/xe/xe_bo.h            |  1 +
+ 3 files changed, 55 insertions(+), 15 deletions(-)
 
 
-Changes
--------
+base-commit: 56d9d03450f065fd31e56de5fafa7d498b318531
+-- 
+2.51.0
 
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8 -> xe-pw-155662v8
-
-  IGT_8587: 8587
-  xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8: 7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8
-  xe-pw-155662v8: 155662v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html
-
---===============5707864639853065290==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Preparatory patches for guardband optimization (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155662/">https://patchwork.freedesktop.org/series/155662/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_BAT -&gt; xe-pw-155662v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8 -&gt; xe-pw-155662v8</li>
-</ul>
-<p>IGT_8587: 8587<br />
-  xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8: 7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8<br />
-  xe-pw-155662v8: 155662v8</p>
-
-</body>
-</html>
-
---===============5707864639853065290==--
