@@ -4,52 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95CACCD19A
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 13:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7418CCD195
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 13:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75CCD10E9E2;
-	Thu, 16 Oct 2025 13:15:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IpBGXTRf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AECA10E9E1;
- Thu, 16 Oct 2025 13:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760620521; x=1792156521;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FJ+HgCodfUjxCe4K3ZTD3MHyjBcDhSb9KVYFY8oYxhg=;
- b=IpBGXTRfu8dLxEFsOwV1fApt/hmiXfnvJw6rOuE00qx7ntJ07Wjdsl8N
- pjSV05MCPKNP2q6S9URgZjrc1D0ylcVZdBWxuDFzwxf8F71pFeBVBQw65
- eGEK+OuDApi45Qzqh/qlYIeATn6bH2qPrdgpFCtTBvgKBNlZvjt/u7+4v
- jisaqaIHdfrI4ccFIF5QZMjcwqr6BmKQs/k+MY8PrzAcE/0O7aZeNIsUo
- GDGggDBuVdBZAUAYR9UTpeBg6cLamsN72RDmj1XA2dwFV62RHWkazRbuv
- uhC59Ye2ANao2+JwtDtsBPK5wu5RB2FlDZH6wNjWhlWv/qXxB8ggltRiK g==;
-X-CSE-ConnectionGUID: CVRWKDcIR2e2Ky4XDCDDWw==
-X-CSE-MsgGUID: dHPbpcIQTM+kVzxOPcixyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="50377881"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="50377881"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 06:15:21 -0700
-X-CSE-ConnectionGUID: OHtnDEBxSJ6uHwHYJ4r33A==
-X-CSE-MsgGUID: R7hw8DilQa6smRUcsrXDrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="186852371"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa005.fm.intel.com with ESMTP; 16 Oct 2025 06:15:20 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH] drm/i915/xe3lpd: Load DMC for xe3lpd 3002
-Date: Thu, 16 Oct 2025 18:45:17 +0530
-Message-ID: <20251016131517.2032684-1-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6292510E307;
+	Thu, 16 Oct 2025 13:42:35 +0000 (UTC)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22F3810E307;
+ Thu, 16 Oct 2025 13:42:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="------------ME950IcmIjfYPADbPW8m13FR"
+Message-ID: <c7412925-3ea5-4541-9397-0d8c84f747c4@lankhorst.se>
+Date: Thu, 16 Oct 2025 15:42:31 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/{i915,xe}/fbdev: add intel_fbdev_fb_pitch_align()
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+References: <20251015111922.2194539-1-jani.nikula@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten@lankhorst.se>
+In-Reply-To: <20251015111922.2194539-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +41,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Load the DMC for Xe3LPD for display version 3002.
+This is a multi-part message in MIME format.
+--------------ME950IcmIjfYPADbPW8m13FR
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Hey,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 77a0199f9ea5..f3f10f97a573 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -127,6 +127,9 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
- #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
- #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
- 
-+#define XE3LPD_3002_DMC_PATH		DMC_PATH(xe3lpd_3002)
-+MODULE_FIRMWARE(XE3LPD_3002_DMC_PATH);
-+
- #define XE3LPD_DMC_PATH			DMC_PATH(xe3lpd)
- MODULE_FIRMWARE(XE3LPD_DMC_PATH);
- 
-@@ -183,9 +186,10 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
- {
- 	const char *fw_path = NULL;
- 	u32 max_fw_size = 0;
--
--	if (DISPLAY_VERx100(display) == 3002 ||
--	    DISPLAY_VERx100(display) == 3000) {
-+	if (DISPLAY_VERx100(display) == 3002) {
-+		fw_path = XE3LPD_3002_DMC_PATH;
-+		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
-+	} else if (DISPLAY_VERx100(display) == 3000) {
- 		fw_path = XE3LPD_DMC_PATH;
- 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VERx100(display) == 2000) {
--- 
-2.51.0
+Den 2025-10-15 kl. 13:19, skrev Jani Nikula:
+> For reasons still unknown, xe appears to require a stride alignment of
+> XE_PAGE_SIZE, and using 64 leads to sporadic failures. Go back to having
+> separate stride alignment for i915 and xe, until the issue is root
+> caused.
+>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Jouni Högander <jouni.hogander@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220
+> Fixes: 4a36b339a14a ("drm/xe/fbdev: use the same 64-byte stride alignment as i915")
+> Link: https://lore.kernel.org/r/ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+Seems to me like this should be fixed at the xe level, not worked around at the display level?
 
+It shouldn't be too hard to look at what's going wrong and fix it at the right level instead of not even attempting to look at it.
+
+Best regards,
+~Maarten Lankhorst
+--------------ME950IcmIjfYPADbPW8m13FR
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <font face="monospace">Hey,</font><br>
+    <br>
+    <div class="moz-cite-prefix">Den 2025-10-15 kl. 13:19, skrev Jani
+      Nikula:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20251015111922.2194539-1-jani.nikula@intel.com">
+      <pre wrap="" class="moz-quote-pre">For reasons still unknown, xe appears to require a stride alignment of
+XE_PAGE_SIZE, and using 64 leads to sporadic failures. Go back to having
+separate stride alignment for i915 and xe, until the issue is root
+caused.
+
+Cc: Ville Syrjälä <a class="moz-txt-link-rfc2396E" href="mailto:ville.syrjala@linux.intel.com">&lt;ville.syrjala@linux.intel.com&gt;</a>
+Cc: Jouni Högander <a class="moz-txt-link-rfc2396E" href="mailto:jouni.hogander@intel.com">&lt;jouni.hogander@intel.com&gt;</a>
+Closes: <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220">https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220</a>
+Fixes: 4a36b339a14a ("drm/xe/fbdev: use the same 64-byte stride alignment as i915")
+Link: <a class="moz-txt-link-freetext" href="https://lore.kernel.org/r/ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com">https://lore.kernel.org/r/ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com</a>
+Signed-off-by: Jani Nikula <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a>
+
+</pre>
+    </blockquote>
+    Seems to me like this should be fixed at the xe level, not worked
+    around at the display level?<br>
+    <br>
+    It shouldn't be too hard to look at what's going wrong and fix it at
+    the right level instead of not even attempting to look at it.<br>
+    <br>
+    Best regards,<br>
+    ~Maarten Lankhorst<br>
+  </body>
+</html>
+
+--------------ME950IcmIjfYPADbPW8m13FR--
