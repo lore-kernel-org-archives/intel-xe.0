@@ -4,50 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC999CCD183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 03:59:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D960CCD185
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 04:06:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A7410E080;
-	Thu, 16 Oct 2025 03:59:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="T4jCgUGx";
-	dkim-atps=neutral
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1532E10E080;
- Thu, 16 Oct 2025 03:59:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
- :MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=vrYy6nu4I9KDvT5FqjGOiyRNpY2GNSHvkw08M/PmfjE=; b=T4jCgUGxkqDBal8GYtmso1JbXm
- l5pAppKDwBznXpNR1iBi8DgZK3Qh72/cYClMkPtoUnSFDsAX95hLUAhUlo+Mxwc9vvbyQupvi1EdQ
- u+5UMwb8dSVjHKbkXGhIm1W2tGQaCst9KdH/3Y3fSdK3vYcQP1pcE5j1gywIOpkdZTJzjKQywkewj
- 2wL4aaej5F8HCcyQR41YRh/1Um+AWBNdDXJYwgD3mnlqOOQJQ1fWimLfBe/YWmm6FTiDQzN6Jtc9a
- ioe8YHvRRdmVZt/i8kL4WfG3reyWlO6DBfVMO6DIo8APh+qzKaN1qYYSe/3YtoLe+bg2utXFW2vRo
- iox52bWw==;
-Received: from [50.53.43.113] (helo=smtpauth.infradead.org)
- by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1v9F9Y-00000006TG4-0wer; Thu, 16 Oct 2025 03:59:49 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: dri-devel@lists.freedesktop.org
-Cc: Randy Dunlap <rdunlap@infradead.org>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH] mei: intel_lb_mei_interface.h: mark struct member with
- kernel-doc
-Date: Wed, 15 Oct 2025 20:59:41 -0700
-Message-ID: <20251016035942.1148176-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0232110E080;
+	Thu, 16 Oct 2025 04:06:29 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF6110E080;
+ Thu, 16 Oct 2025 04:06:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8103843788017056486=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fguc=3A_Dynamica?=
+ =?utf-8?q?lly_decide_g2g_buffer_owner?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Oct 2025 04:06:28 -0000
+Message-ID: <176058758803.20009.11518066355119507480@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251015181159.92509-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20251015181159.92509-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,44 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use correct kernel-doc notation to prevent 3 kernel-doc warnings.
-@push_payload is a struct member here, not a function, so use '@'
-and ':' in its description.
+--===============8103843788017056486==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Warning: intel_lb_mei_interface.h:55 Incorrect use of kernel-doc format:          * push_payload - Sends a payload to the authentication firmware
-Warning: intel_lb_mei_interface.h:67 Invalid param: * @dev: Device struct corresponding to the mei device * @type: Payload type (see &enum intel_lb_type) * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT) * @payload: Pointer to payload buffer * @payload_size: Payload buffer size in bytes * * Return: 0 success, negative errno value on transport failure, *         positive status returned by firmware */ int (*push_payload)(struct device *dev, u32 type, u32 flags, const void *payload, size_t payload_size)
-Warning: intel_lb_mei_interface.h:67 struct member '* @dev: Device struct corresponding to the mei device * @type: Payload type (see &enum intel_lb_type' not described in 'intel_lb_component_ops'
+== Series Details ==
 
-Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
----
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
----
- include/drm/intel/intel_lb_mei_interface.h |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/xe/xe_guc: Dynamically decide g2g buffer owner
+URL   : https://patchwork.freedesktop.org/series/156014/
+State : success
 
---- linux-next-20251013.orig/include/drm/intel/intel_lb_mei_interface.h
-+++ linux-next-20251013/include/drm/intel/intel_lb_mei_interface.h
-@@ -53,7 +53,7 @@ enum intel_lb_status {
-  */
- struct intel_lb_component_ops {
- 	/**
--	 * push_payload - Sends a payload to the authentication firmware
-+	 * @push_payload: Sends a payload to the authentication firmware
- 	 * @dev: Device struct corresponding to the mei device
- 	 * @type: Payload type (see &enum intel_lb_type)
- 	 * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
+== Summary ==
+
+CI Bug Log - changes from xe-3928-f019aaad58112f89234f7b68557c831846437008_BAT -> xe-pw-156014v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3928-f019aaad58112f89234f7b68557c831846437008 -> xe-pw-156014v1
+
+  IGT_8587: 8587
+  xe-3928-f019aaad58112f89234f7b68557c831846437008: f019aaad58112f89234f7b68557c831846437008
+  xe-pw-156014v1: 156014v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156014v1/index.html
+
+--===============8103843788017056486==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_guc: Dynamically decide g2g buffer owner</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156014/">https://patchwork.freedesktop.org/series/156014/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156014v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156014v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3928-f019aaad58112f89234f7b68557c831846437008_BAT -&gt; xe-pw-156014v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3928-f019aaad58112f89234f7b68557c831846437008 -&gt; xe-pw-156014v1</li>
+</ul>
+<p>IGT_8587: 8587<br />
+  xe-3928-f019aaad58112f89234f7b68557c831846437008: f019aaad58112f89234f7b68557c831846437008<br />
+  xe-pw-156014v1: 156014v1</p>
+
+</body>
+</html>
+
+--===============8103843788017056486==--
