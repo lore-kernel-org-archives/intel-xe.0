@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79551CCD183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 09:55:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEEC2CCD183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 09:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E72F10E98E;
-	Thu, 16 Oct 2025 09:55:38 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A68710E98D;
- Thu, 16 Oct 2025 09:55:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3269494089174394896=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8428710E98D;
+	Thu, 16 Oct 2025 09:57:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIpkW7Xx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC34D10E98D
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 09:57:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760608665; x=1792144665;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=+KP8QFtH928S0lWilv95cGubAYZCSmXyVh/Y9aHepgc=;
+ b=KIpkW7Xx2QPQXjOqV/bpZ8XTs0NJ8tLASXTI5mmGdyd566j9JZkAyrM4
+ Bpq60Crl3W21fY4bHcC/LqV79uJoIXvhKfl+cK9Qro6OTDYBjVHcwPgNX
+ YllHEdpX50rZDE1ImslX5RSat6OcUeY9qe0xXqp4nnb9FD+R8E55Zvpk+
+ VwrnCgWX2D9pdkU20WOdSrgWcCncrJAUHQ9Pq6rA93rJeuKMVb6+dTeUx
+ r6s0zMIg85DPyneqwRnYPSg5NlWFdYaz1hryOfgwWgoux87LNFp8vMbeZ
+ pSvMpK+Z49DxtCei8T6HDgz8of0sKbe+k3dThk0sGTYvXpl70vGLR//cv g==;
+X-CSE-ConnectionGUID: lUHxMirLTrmiPH5Me9HzOQ==
+X-CSE-MsgGUID: l4ayCUzmT0O/uKjHgzZCrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="62006455"
+X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="62006455"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 02:57:45 -0700
+X-CSE-ConnectionGUID: U0Chu0qiRm6DbfvrZ22wBw==
+X-CSE-MsgGUID: tJqCEfy/RPy4tcC+6atmXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="181975410"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.245.227])
+ ([10.245.245.227])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 02:57:43 -0700
+Message-ID: <d177de7d-a98a-43ea-88ff-f52d8349d22a@intel.com>
+Date: Thu, 16 Oct 2025 10:57:40 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_Preparatory_patches_for_gu?=
- =?utf-8?q?ardband_optimization_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Oct 2025 09:55:37 -0000
-Message-ID: <176060853736.21516.7545241764716105462@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251016055415.2101347-1-ankit.k.nautiyal@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/xe: Change return type of detect_bar2_dgfx()
+ from s64 to u64
+To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20251009230239.2830207-5-shuicheng.lin@intel.com>
+ <20251009230239.2830207-8-shuicheng.lin@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20251009230239.2830207-8-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +68,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3269494089174394896==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 10/10/2025 00:02, Shuicheng Lin wrote:
+> The function never returns a negative value, and the return value is
+> assigned to a u64 variable. Use u64 for better type correctness
+> and clarity.
+> 
+> v2: add assert to catch theoretical negative or zero stolen size. (Rodrigo)
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> index 9b00bdc8ef1a..e368b2a36bac 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> @@ -81,7 +81,7 @@ static u32 get_wopcm_size(struct xe_device *xe)
+>   	return wopcm_size;
+>   }
+>   
+> -static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+> +static u64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>   {
+>   	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram;
+>   	resource_size_t tile_io_start = xe_vram_region_io_start(tile_vram);
+> @@ -105,6 +105,8 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+>   		return 0;
+>   
+>   	stolen_size = tile_size - mgr->stolen_base;
+> +
+> +	xe_assert(xe, stolen_size > wopcm_size);
 
-== Series Details ==
+This looks to be triggering:
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6359
 
-Series: Preparatory patches for guardband optimization (rev8)
-URL   : https://patchwork.freedesktop.org/series/155662/
-State : failure
+>   	stolen_size -= wopcm_size;
+>   
+>   	/* Verify usage fits in the actual resource available */
 
-== Summary ==
-
-ERROR: The runconfig 'xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_FULL' does not exist in the database
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html
-
---===============3269494089174394896==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Preparatory patches for guardband optimization (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155662/">https://patchwork.freedesktop.org/series/155662/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155662v8/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-3929-7ba235d0e0cf055008e2f28b3b3bea6673bfc6c8_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============3269494089174394896==--
