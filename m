@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 984F6CCD199
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 19:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 034AECCD199
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 19:17:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8B310E33D;
-	Thu, 16 Oct 2025 19:09:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="qPVLdQgQ";
-	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC9F10E33D;
- Thu, 16 Oct 2025 19:09:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=pbuY1HU0wdS06tBZAO3RvcBZ+maZX3BYDu2PnETeCdM=; b=qPVLdQgQ3SZP/kf7E/N3FVtQdh
- zhpZ56qukJVuSLc+HazUKU660DAW03PdCSowLG7S2aJqlHvgd0UCRSrUZWye+nz/4RfFzM+yqYoyp
- LRrqtYtbmZy64Vlsw3UwWUu1VM1gPewiJU1pHVQ3oElxxP+YZe9gMMn4rMbUtv/JwWjq3hUpJs7VK
- 5HNiZovEdUAm16Fr+Db39bE/XNYrawMw4UtrU6BaU1uG4AWJDhORlE2j88+39wB0T70wnRMdVWMOq
- DxPt1pgymJiyRyCLOg+lt07ev3ZnUh4U5cr2UoAb1vToWfEC7sb7qA4Jxs+DgVJZZke40/F4SO0Du
- zvqhMf6Q==;
-Received: from [50.53.43.113] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1v9TM5-00000005mFe-46yK; Thu, 16 Oct 2025 19:09:42 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: dri-devel@lists.freedesktop.org
-Cc: Randy Dunlap <rdunlap@infradead.org>, Petr Vorel <pvorel@suse.cz>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v2] mei: intel_lb_mei_interface.h: mark struct member with
- kernel-doc
-Date: Thu, 16 Oct 2025 12:09:39 -0700
-Message-ID: <20251016190941.1306157-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 981FA10E0B4;
+	Thu, 16 Oct 2025 19:17:05 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0280410E0B4;
+ Thu, 16 Oct 2025 19:17:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/frontbuffer=3A_?=
+ =?utf-8?q?Fix_the_intel=5Ffrontbuffer_lifetime_mess_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Oct 2025 19:17:05 -0000
+Message-ID: <176064222500.23602.13956876158489766765@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251016185408.22735-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,60 +36,111 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use correct kernel-doc notation to prevent 3 kernel-doc warnings.
-@push_payload is a struct member here, not a function, so use '@'
-and ':' in its description.
+== Series Details ==
 
-Warning: intel_lb_mei_interface.h:55 Incorrect use of kernel-doc format:
- * push_payload - Sends a payload to the authentication firmware
-Warning: intel_lb_mei_interface.h:67 Invalid param:
- * @dev: Device struct corresponding to the mei device
- * @type: Payload type (see &enum intel_lb_type)
- * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
- * @payload: Pointer to payload buffer
- * @payload_size: Payload buffer size in bytes
- * * Return: 0 success, negative errno value on transport failure,
- *         positive status returned by firmware */
- int (*push_payload)(struct device *dev, u32 type, u32 flags, const void
- *payload, size_t payload_size)
-Warning: intel_lb_mei_interface.h:67 struct member '* @dev: Device struct
- corresponding to the mei device * @type: Payload type (see &enum
- intel_lb_type' not described in 'intel_lb_component_ops'
+Series: drm/i915/frontbuffer: Fix the intel_frontbuffer lifetime mess (rev2)
+URL   : https://patchwork.freedesktop.org/series/155471/
+State : warning
 
-Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Reviewed-by: Petr Vorel <pvorel@suse.cz>
-Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
----
-v2: reformat long kernel-doc warning lines to <= 75 chars. (Nitin)
+== Summary ==
 
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
----
- include/drm/intel/intel_lb_mei_interface.h |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast e919806d9a23ee1c2611792492289a170be4cf9d
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2042:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2055:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2055:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2055:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
++drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
++drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1928:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1996:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2018:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_wakeref.c:146:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
 
---- linux-next-20251013.orig/include/drm/intel/intel_lb_mei_interface.h
-+++ linux-next-20251013/include/drm/intel/intel_lb_mei_interface.h
-@@ -53,7 +53,7 @@ enum intel_lb_status {
-  */
- struct intel_lb_component_ops {
- 	/**
--	 * push_payload - Sends a payload to the authentication firmware
-+	 * @push_payload: Sends a payload to the authentication firmware
- 	 * @dev: Device struct corresponding to the mei device
- 	 * @type: Payload type (see &enum intel_lb_type)
- 	 * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
