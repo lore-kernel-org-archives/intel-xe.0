@@ -4,183 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFC5FCCD183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 21:26:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B3AECCD183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 21:28:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1BC910EA99;
-	Thu, 16 Oct 2025 21:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5637310EA99;
+	Thu, 16 Oct 2025 21:28:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GgJzIe+k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QYCD409f";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FADB10EA99
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 21:26:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3E210EA99
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 21:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760649985; x=1792185985;
+ t=1760650098; x=1792186098;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=i/ZrcNteodXDSfbLsAFLy10CsVgdnaZOksfG8+uKCW4=;
- b=GgJzIe+k9ssFohFL3zq3T4IWJ0pF4laXz/HgAhjiDdIbQ3kM09j1jmVO
- 6iYQYcYSHyAp2keWfVHsUuZUaJgePT93O7YO8XvzXC/F+fGWxclntwlNc
- QCrtTWIgR4HXReRmm3cAQ7LewXPmZIZIMRWcEDjQtW+pSYV+dilhPy3/J
- 2AfQ51K+0RvE+A70NigUOGBW7kYBYBfIsj+0L8RuBHt0RMhtLkzZZaYvA
- i2NJ6EUh3iVfAtIwgTZuWpKYdJmZrA6Spo3KWHmRAsJDQdOQmlb9xlR+f
- xuu7d9+M6+1CLbxvEF0FPvNY5pQ46xysthMkB2V+Pv6aQ68Ywt2jjZR5k w==;
-X-CSE-ConnectionGUID: HqXOLN2kTcuWq49ZZBSadQ==
-X-CSE-MsgGUID: CJTbCDJfQHKiQb2lqF2JkQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="62067427"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="62067427"
+ in-reply-to:mime-version;
+ bh=ZTztUcxK0QJRi8qZvsNvoW8HGZZ5A3AXPhe0MX8cBBs=;
+ b=QYCD409fFHQ/K7fWVdJWtOJfTVbU7NIsyJFWRCqyTKUGoehg0JEYyOoV
+ ByFt2kcnGVA9kjtHmBFWJnYlOzT17ZQrNzITpvBJznM6Xc2z7cSuj/yzW
+ Y2H8F8d34otbTlWMsUjGmYFdm8Qy75FovK4230QmbIRSR2Oo5dvTuzKTP
+ BSQdVNlj6vDy1wvX7KgftCrT1PIlbExECwCOMEGE20+P7tCuIa5yRX8ZU
+ OvxZTBKwRti/uZ8cej3QqLvZz6oc+zxxpApiuiyLe30IjVkuv9b8DD9ez
+ 0Pe94y9HSsEw/wNWEe6MC4xyHJ2O9kb9vf8h5fsFNYGr4qX+w0iNcVtOf A==;
+X-CSE-ConnectionGUID: AduqUuuRTh+xfR7H96z0mg==
+X-CSE-MsgGUID: tTp+qgGqR/yCdR1NVi/9+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="62067548"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="62067548"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 14:26:24 -0700
-X-CSE-ConnectionGUID: AQjSIox7RdiR0xOVVdwjWQ==
-X-CSE-MsgGUID: BQTByQAPQbuio9/1wRXUkg==
+ 16 Oct 2025 14:28:18 -0700
+X-CSE-ConnectionGUID: TivKyG90TCGV//YhJS4FhA==
+X-CSE-MsgGUID: 0BtmlUe3QH21Q7BHpmsy7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="181701572"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="181701796"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 14:26:24 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ 16 Oct 2025 14:28:18 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 16 Oct 2025 14:26:23 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.27; Thu, 16 Oct 2025 14:28:17 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Thu, 16 Oct 2025 14:26:23 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.30) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Thu, 16 Oct 2025 14:28:17 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.29) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Thu, 16 Oct 2025 14:26:23 -0700
+ 15.2.2562.27; Thu, 16 Oct 2025 14:28:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EMHlomfdFSkg1avWfpBWvu4O6aqqBrKW42LsUvVql4sKuXGOZfUdP8ib6RGq2TgRmkgZvVIx7W2Ud1+dZJ1ZN2zf7A4WXULipvC3OH5BMP6Ul20/7fGqKeZvPl8lzf8iQkqtLMjqh4K7cZD4O0/I8n3q/lXA1feWU0uvePwJFTK7iwiGvgEfm9xJw9W6pmp0mzGiKg/ezYiESI05zsbZ/CGRF/eJjRsiL6JRQuMMR7WXbTwlI69p2/1QRsvnm/NnZqzq0O+JPzKlAWZSesoUbe+MhD1tO3bklsoCVzQX+q/wjAZhrXaJrlEl5aTiUvomIm3hdqqgAGpm6NmM3SG4qQ==
+ b=LGosCSh7SV71bvrug0b2WxHzBvcuB3U8YtKxL5WeiWruIA5Xl7/Tz4whUvL5vlVFzmVCSP2g0YMYHbRO2uIhi6iM03lk+ZHhC2FgMJ7T4y+4R+UwOD6xHUvaxeHuPZdh6RdbIxL2+VUBF1uTUUj3J9oQqAOuMwNwAg2gufn+PRvwxPPHn/5U4Ypt8c52hbZ7UjjPRk5hWnkg5liaOddYsajXZhlKfkM5FaxuewwJ32jw3znJVOqh7EAnH0B/4m7aAUk45gT6zx33bgcN1H5J8n2ksf68WutLviuSf3qQgcaE67Qa0MqMcTobppGeb333U8DVk7/tNfECMIF5RBmRag==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6av4E20RNSJsMt8/ohL7MBXu/B1Hv1ncn4gNDWeUlCs=;
- b=JZs4E8YMlG4X0MuYBKphKKpgfx66cy1XLgmHGazfqtUc8Wg6bPaRYm4cwHaO3Pbxkrmg/PKopV9TDwQIeAUIttP4xZiR9K7WbVFUruhRkNohcWOWj8WVFaLl3ptUpHIEH+Y9+NjbBHsoWNzs3jkVvPXYJfaR/1NND22YAsIFGYaFMyWDGFl/nSaQ8OfhaUihZXhCX+dqZsNAE/+a1O3IeX+oJVa4vwe8c+/UMHwPx2i79rHYv7Z9D1DyipMvj510Y5wgeC6JFT461LvskSRkOMmfTxgp3uY7IXMdn++dvpNDtI6lTpcoNcNgIfPbR02x4nudN/fB1ZUgVzFKA8BNpg==
+ bh=TSy6wWcPaM0GfaLdPOoUteRd6IF84LnfnkrNGOmJTuE=;
+ b=ftPuI9BKMrZYl3+3Kqs9ttXCT1mT3LZV/+PFQQ0zmtrB2oEfRaAndZz7zGVEUkWXso/7YsM+BM+0v3hg2lyn1oWeno8T3rd5+Rjpi7vutf51bL7cxF9y/Fs7HtC7XaSGaysUvCM+xSIKSKXbykSuF9kb1u6l3FGwufrsij6v2SECYMb0ufTyLFLGyzu7GS9CQYhtXHDJTNqNeHVimF+gpBraUX3MmRa5E9Y12TplEVGFMoennLxkiXh+9PFjY5hWHHBHxgWFDVnIT4b2eKncv8vugd0NRO7uEU4mxBqkh53zVogz1w0njHrj8Vbl0ar7cC6MX8KjbBCzMMs5CkWV4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CH3PR11MB7938.namprd11.prod.outlook.com (2603:10b6:610:12f::19)
+ by BL1PR11MB5978.namprd11.prod.outlook.com (2603:10b6:208:385::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Thu, 16 Oct
- 2025 21:26:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Thu, 16 Oct
+ 2025 21:28:15 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9228.009; Thu, 16 Oct 2025
- 21:26:20 +0000
-Date: Thu, 16 Oct 2025 14:26:18 -0700
+ 21:28:14 +0000
+Date: Thu, 16 Oct 2025 14:28:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: Matthew Auld <matthew.auld@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/6] drm/xe/migrate: support MEM_COPY instruction
-Message-ID: <aPFi+mThPIgY27Us@lstrano-desk.jf.intel.com>
+Subject: Re: [PATCH 6/6] drm/xe/migrate: skip bounce buffer path on xe2
+Message-ID: <aPFja3rmfhb/TtfQ@lstrano-desk.jf.intel.com>
 References: <20251015141929.123637-8-matthew.auld@intel.com>
- <20251015141929.123637-13-matthew.auld@intel.com>
- <aPBDTh2RA33TPaM8@lstrano-desk.jf.intel.com>
- <3950cf17-a681-4541-98af-c03ce8d64ce5@intel.com>
- <aPE9jWAlrUfmb4ve@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset="utf-8"
+ <20251015141929.123637-14-matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aPE9jWAlrUfmb4ve@lstrano-desk.jf.intel.com>
-X-ClientProxiedBy: MW4PR04CA0134.namprd04.prod.outlook.com
- (2603:10b6:303:84::19) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20251015141929.123637-14-matthew.auld@intel.com>
+X-ClientProxiedBy: MW4P220CA0016.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::21) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH3PR11MB7938:EE_
-X-MS-Office365-Filtering-Correlation-Id: 626c3d92-a3e6-468b-3552-08de0cfaa64f
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BL1PR11MB5978:EE_
+X-MS-Office365-Filtering-Correlation-Id: 253c2fef-e692-492c-c23e-08de0cfaea23
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VVJNZVR0VEE1T1dKcmtQbnhsbUJNZFNxVjN4OW1HYkdJajNlUHFFVm1ndWxn?=
- =?utf-8?B?NUxFcVdZc216VkVXWE83ZThISTgwa2Riam02YVRkMWhvZWpkdFNMcTVydjc0?=
- =?utf-8?B?OVFFQU1rcUl1RDlYQmtRT2ZuTHE0dVVkbVB3a1hhdFpPdWRyQ2o5WitQK3RT?=
- =?utf-8?B?MHNNVXFUTCtsOWF6NElGdFBZb3VHUnUvei9SYlFpSHM5cC9jRHFGbmZNS3Bx?=
- =?utf-8?B?YldxQm1HODBTNlBzT0R5dVRYYnlGT2hNb1ViRzRIelBkMDMrUm9mb2E5ZXJU?=
- =?utf-8?B?QWIvRjFuYlZ3YUQvM25ONXBEZHZ3N3FScGRRRG5seFRLV01JL1F3R1Y2dEtn?=
- =?utf-8?B?djBkamx4bXhrMGNYelR6RnNldTF3aE4zWWszQ0s4YnpweEJrbmFyeGRRNm5J?=
- =?utf-8?B?M1A2QnJTK0h2SHRZRmpleTJSeHlzME4vMzdsZUE0QWI4dnMreUZac05YYUt1?=
- =?utf-8?B?T3E4ZUJRdHdKdHAyU2VaYVRvdVJTQ2hEU2l2clkxRCtBV0FBdlBQQVhLTWVM?=
- =?utf-8?B?S2doSHM0WnY2K3NncW9WdHYwYWpzM0xjL0VaU056THY1bzhILzZ1S3UxSk5Q?=
- =?utf-8?B?ODl2RTcvMDhmZGl1SFRjaDl1aHNaV0UzdGROQStrMkRnRG9tczZrampUMnhJ?=
- =?utf-8?B?aGJZQkNvOTVtYjA1eENEUndBcTZ6bkFNSVFzQXVEUWZRbXJDdHY2cGZ5Yzl6?=
- =?utf-8?B?a21odStNVFNORi9zZmhKaHBqNk5nUlFCdjBXajEvZkRCMzBFT1ptRlhsMi9w?=
- =?utf-8?B?dmxXcTZWUm9uMDUxdS9NZ1hkclNJSEloQ25BUW5ubkpXdHdWdWtGN1FTYURz?=
- =?utf-8?B?aWR0Ull0TnFBTjREbnBwOWltdDhxRDhaT3plZThxV0svR0dJZ0xKditJSk4x?=
- =?utf-8?B?YVhtRzVKVHY2WGEwNllZU2xDc25aMXkyUEkvd1VSczNUZEtqdThzdXAvQXR5?=
- =?utf-8?B?KzRRRjc3WHFaZUJpU1lSWUx2NkQwS05GeHRsN255dTUvOUxLbXp4ZUozZzFU?=
- =?utf-8?B?ZER4WGUvaHduaHJVZ2VGUEVCMzRsd0Z6QzBaNjJaUnZZMkZZdnNldUliT3o4?=
- =?utf-8?B?NlhOUlFzWVlLbGR1QlJ2RUxYeEFaeFZOSnkxaGdPbUsxd2ZMVkNiU1ZLcjk3?=
- =?utf-8?B?UWdUbXY5cWJTSDlTdm5MNXBreXVoUjJHamJIdFkyWkYwN2ovbFNsbEhFOU5S?=
- =?utf-8?B?a3l4RXRtQTkreCtoOCt5Wkt5eWpjUnRZekZxT0szclVacDFORUJzenIrSGZD?=
- =?utf-8?B?bEhTaTVmZ2cxMzJiWjQ4OTd6M3BpRG82WEhPdHFZbERjdEQwRTN5NEREdEEz?=
- =?utf-8?B?UmVDek42YWE0a2tVQmpDU1RPT1p4cnN1TklQek9heWZ0Smdwd3hkUDFsYW5W?=
- =?utf-8?B?eUlMVFJhMlZYa0JPakNYZm9Jd3NQakNNQU1PZ0tmSWIwU0prd1YybUV6WUxa?=
- =?utf-8?B?V1l4REdScUpxandIRnU3YjdHSHh6V0dtZ3ljQ0RjODNSWGlWdXJ4ZlYyMlZ3?=
- =?utf-8?B?eXkwUjd4bW9HRTZKditHb29JMEt1a2w0dE1IU1pYdE1WQVZsTXVWSlNncTFz?=
- =?utf-8?B?ZUkxNFAvTVgyVHM1UVlXb0Z6bHJFRllMb3ppbjJtdUk5RDZxekE2WExzZGZo?=
- =?utf-8?B?MEZJQndEWmFaemtUd3ZySDlNUjdyOWN6UEFuZXBFZSt1MDMrUUVQSE9TOElh?=
- =?utf-8?B?Z2tTMitNdXozQUs3VmRyWERzajNpQVZXME9Pcml3eHEraXdhUy9OTVFjdXhw?=
- =?utf-8?B?M01zRzlFSy9ucVU0NlgyQktwZFJnak9xUXV3bkk1L1FMY2E2cmxHVzJMNHQw?=
- =?utf-8?B?Q0FuS052S3c5QlgwaCs5TVdUZGpqcGdYWStETmlhL0VWajZOVHJ6TjROS3dF?=
- =?utf-8?B?Qk5jWkp0dkN2RzFKRVRqbmZDc2REczlzb1dacndVczYzbFE9PQ==?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?t0a44PyQtgn+s4c0haRbbHOdHzr8/877jTtjsRlpHebIPo0ppskjp/ilQb7H?=
+ =?us-ascii?Q?BCKAYxmy95jpGibSxbv/6hoQpMuok12jkwRWiyNE5kfVnXp+m6d/HmAM4h5U?=
+ =?us-ascii?Q?JLBu2nHxEXWtgfU0CbIBd6wOMSEM7IYAPAjrs2oMKm0kajoarNJdyIKphbr+?=
+ =?us-ascii?Q?Q0yoZNpIKJLJYA7vJDWYVwVgFGAApb2mIQcm5clgpi3znIMlIgDSdJLm9ipQ?=
+ =?us-ascii?Q?mX/9S0tQOxuqcJVS/IpXQv3T0wNwdPBgi8+6VEbNGy/Rls+AJl/O8r/Sk+ha?=
+ =?us-ascii?Q?3UTxdpKOmc7zvxJ4E8PorCgCniTXKAAgTT8R1gLqLELJ0T3D47WDrUDvLtPd?=
+ =?us-ascii?Q?bgEy9DVSH7nIJYBV+H5xmqiLz32uerwQsB/iqqxnXKceNS61bil30HHt9OVH?=
+ =?us-ascii?Q?gaWAM2HOVqJWJKak7uqITezNXbphcswCyq5zVebNzuOLvgczYstRguHKsJNQ?=
+ =?us-ascii?Q?OlkewFOfkllLdF4KvgUy1xRz7JrC75Lpy1UC40OVNfKB1izC9uFCKzVkLrXL?=
+ =?us-ascii?Q?4549Cq1z7zuWNpsu4F/pAfttaSUDiYP72Kn/f22HiiUPpKrb0au8U837QCWF?=
+ =?us-ascii?Q?We7Y5kFphGkoNJn+QSGWQgcW5ahkX0x4267w+KbouUYOWnJIptGxuLYSUznX?=
+ =?us-ascii?Q?H8DB+8M+Hky+vSXmIlthb3TvhhbGAPjUbnlRUHsQ7Pv7pdGRQggVdsA20y1r?=
+ =?us-ascii?Q?pb18SnJZm+KW3Fejeiyj8iHf2OJpJFP5xI3NlnfNdf6Af4fMKB1pAHxddfKf?=
+ =?us-ascii?Q?Ds9s/szujo935gCQ1xY0GeS/U6c5jtdwZE2MgWhqs5JmSKgRxzJgSJb+h1+V?=
+ =?us-ascii?Q?j4B0I2wGl1ojqpBSxfG+RDs9k31iZ9dBrdSgTu5VqIF6CEdiNDgpcPvRFaLP?=
+ =?us-ascii?Q?yJSFxHUr/XJ1l2OCPMgHx0lMFiA74F1acuRZ1hOFgKtPR4arlIoJSN5oZzc3?=
+ =?us-ascii?Q?pDcrexyBtXtGyDnh9YIbHf/bje6pPu8mi84WRBztr7gPzHr9VxAsW45nEqRB?=
+ =?us-ascii?Q?1oN5FVk9K6QtNI8CSp3O2AUczhHCdSyoNV+xrMtIjZPcMjHVUqJ7HSvHVpok?=
+ =?us-ascii?Q?OeE34kqcNMEpjAFrm4mldoWoiWKmUWkTCeVm5ffQJ+mulgEnYSdUbejvaLaK?=
+ =?us-ascii?Q?AmuuXt1h48pEP/qUDj3irO4duBBnBC6lGw86NCVJoa+vmkzMzyWe0xwh0KDA?=
+ =?us-ascii?Q?2OrewFhK8/pkh1B0Cu3KzWEe+re573QGOF3YDGm1uHJhl5/YK7rsMwTct4J2?=
+ =?us-ascii?Q?uFx3z9MB4ZllA1cCkpjgO7DJmjjCsew1nXiSjI71YtI2374QODPAYfEefzSX?=
+ =?us-ascii?Q?qOga2DLBeQAgblXEsdmegEEuHmDTwpByMAV+4T7xIXWjrJbphZOCe23poges?=
+ =?us-ascii?Q?008KXzp3Pzg3dFXWGxe+bOp3oYudC/eArJpkLUtKCVSyYWGs1Iq4skpZF4cN?=
+ =?us-ascii?Q?kIKBV5p33Ik+z9mm/EV0iCcxpoU8DUs5?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qi9yOHdMWnFVeHk4WGtqTjhyNU5XMVpuYjlKdldvai9SOHoxUDBMYkJDc1BO?=
- =?utf-8?B?VTA2T0k1NzJLMUFoNWJCWW9iUzdPKzdjRjhNTWlpOVlhazhXVFFMWEZwOWxZ?=
- =?utf-8?B?ZHhVR2RWWCtLY1RSM244T0ZJUnlNeFJ4WlFXblk4bHI4cCtVQzJEMjlYYlVZ?=
- =?utf-8?B?OVVqdWNlRzFUdjNxNUlEdU5OWStSRmZDM3IyNFdFbkZiSVRmZ0wyNEhTbExn?=
- =?utf-8?B?ZzUrR2ZtdENuaWhPQTQxRlVBQjViRU9Fb240ak54cW9CSUQ5YTErRXRVYjBj?=
- =?utf-8?B?NUdRK0g2RlErN1BsWVBzYTZUQjV3ajFnNHhUU3ZXWTFIZVJ6MWhZMVJGeFpV?=
- =?utf-8?B?ZTVKMFEvWm51MlpqdXRORnVNWVkzZE1ZNkp3SnFrRmNsYXg2WVpyUFd0K1JI?=
- =?utf-8?B?VENpUFV4anlreTdxL1pXeFEyMWpUTzNxdTd3OGhIZHZ4d3QzN0hOY0F2N0lr?=
- =?utf-8?B?ZU5NL0E3N2szMFVPaTBvcWljZ0tjbzRReDQ1N0lObjEwclNwV3ZVajlJeWlC?=
- =?utf-8?B?TDRHRWNsMksvTElMOSt6ZGV0ZTVIM20vRzdYbFNYalpvdlVhSzlHdk45dGVU?=
- =?utf-8?B?Y1Y3UWpsRFZGZDk0dHFybnovbDZHRWF0dnJzandScXRVZGU0WWtXRUlaWERs?=
- =?utf-8?B?UTI1amxnOEl3UzdwV0Q4NE9oOEs0QWFJVnJILzMwYTVTQkhIeXpaTUh2YmVN?=
- =?utf-8?B?SXVWVTkvbE1mbEhKODAvUytqVG1yMFk4TGtKMFdta0JHelFEOTVXeGU3eVpz?=
- =?utf-8?B?Sjg4MWFzZzRaclo1Qy9LZnJKMUNYNmZyd0ZpaXBPejBSV00wb2Q2L3BsOS9z?=
- =?utf-8?B?cHFBaDhDSlgya044QXFBa3QzeGsyNWRWMWlLS002ZTd4ZWg1NHhJS3NHblNW?=
- =?utf-8?B?dDhpVmtoZTNJeGpjS3JibTNNUEMrdHA3NlhOOHNFb05GaGxpYzkzRVJwYzV5?=
- =?utf-8?B?bm9DdzJqbFRJRGVHOHlXb25BVjNKS2xacTE2SFVrWVBlWXVZb2MrZUEwZ0JS?=
- =?utf-8?B?Y01waEo3eDRtRGFKOEV0S1lra3AvOHRNLzllSTlnaGlVOTREN3dNNTdDSkE5?=
- =?utf-8?B?cEMxcXNLRHhJbTJlN3hMejRZSUhQeE9LRlpwWFN5bmhCOEZJZ0hYWVlCcUx6?=
- =?utf-8?B?MkpTaDlTUGgzK2FiQWh1c1lxK1Q2R0lnazFzcUpBbm5OdnZvb1BjVTNwQlI3?=
- =?utf-8?B?RDJHVUNsYVY1SFNhdTJwOWs2cHg5cVkvbTZ3YU4vQms4MlZ4T05Pd2Q2R0Mx?=
- =?utf-8?B?eFZHNElmWnNkUW5zRW9HaU95dzk3cnhzOW8rN0xWZGE5c2d6UHNoMFJnWUFU?=
- =?utf-8?B?WHNYNEl0dGo2Nk5Ya1ZKazVtRVVZM2JUdkp3QTNJV1duV2ZSQmRObkN6bnZ0?=
- =?utf-8?B?NEVJbSs0clgvelRiT0dWUmE3Sjlmcy9NSE1na3htc1YydXNybml3UXk0NjhP?=
- =?utf-8?B?RUJNL25sQlNUQ0VvT3FvUkgwM1lFUzdyODJEVER6OCs1RUhKeGZzS0VyZVVV?=
- =?utf-8?B?MnhGd0VRNFRYcmJsQU0yNzJtMlF1QzNuSzhXbmYwMGdraklSUnRqZS9IWnlF?=
- =?utf-8?B?b3dReW52NFhNOXNNNlBOZndtRmtRS200RTloLzVXZTd0dTRlN09TR2I3QkQ0?=
- =?utf-8?B?TldlajJ5MGQ4TFNoUmxEc3ZkZVVUOGtENEFoaDVOVUxkYUh6cHR4Zk13MVVD?=
- =?utf-8?B?aHZ2dmwrS2ZScElZbEJzb3pUeDZHd3hwQy9MZC92VzUxVkc5Zi9FSi9EWkM2?=
- =?utf-8?B?NG1ScWhIdTFlcDF2QzRxOGZFUmlJa3NieFdsaHE5am1PM2xWQzcvTzExUjY2?=
- =?utf-8?B?Q1dBbjdSK1FOU25KRi9Wa1NSalhQdDMvYWhkM3pxRTduMGhpRFpGREEycXVo?=
- =?utf-8?B?b2RTM0tqeFpFVWltQzN6dE43MHV0ekVHYW9xbW10UUlXaGkwdlA3QTF6emxl?=
- =?utf-8?B?OEFXZlRpejR3RjdKcG9oUUU5YTQrbWhsbU9rVWw5M1MzVUZqeVkyQW9Ba09Z?=
- =?utf-8?B?clNRQUZKWkNkekhhOEp2NkwrOGkvWGdKcHR1eHprV1RNUzNiWXNBYmNIQi9n?=
- =?utf-8?B?Nm9SRnNxQUJFS0hDOG1rN3YrOGQ3VlR6d1lhZlQ1b0NwSXY4c2pab05BUUpw?=
- =?utf-8?B?MWZUdmZkdGpUZWlIekhVM29hNG5mcWplSUgzdW9wK1p6ZXY4c2FhN2d5Ukxr?=
- =?utf-8?B?V1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 626c3d92-a3e6-468b-3552-08de0cfaa64f
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QvCDSnmNKyqrlGQ5PWYDirbYeavkJsbmr53EhvscZIgEXobBr1xd3zPEuAgK?=
+ =?us-ascii?Q?imLJmHdMijRNTeW6WorHc5MdF1aZWtxYGA3VYKvZ8vwCdfaGGpAIxPn+YKI/?=
+ =?us-ascii?Q?RfMlGCv8UOZ43QLI06QpJoSJwF1t8pwqoeLtYdS9tZg3m2qT3uoDe83J/RnN?=
+ =?us-ascii?Q?SF8J6BdEvEmrZo04cjT0a+FZXhecRLaxY8mYChUKJq6dDuLHWIGwurMAn6KW?=
+ =?us-ascii?Q?1cqIVj3EW5TMSIJYUyZdWoBR1L0TD6SXezj0yFjWsmZZGqc7j/Wi++tRSN0l?=
+ =?us-ascii?Q?kg3fZhhg2NC1imd7J2llLMyvEzDqsgTbl+YwvjmBUKZHgzpbdcR3W4wnDHX0?=
+ =?us-ascii?Q?iMFEzilYHZmO+A2NHGj5SWnMGvBWs3wSO2paJ3jV5qVRxuh8tnTuFoHYwCUK?=
+ =?us-ascii?Q?rh8SbNKuLZQR5kYt4QKq9G0mSXcMCtQNowUlWy+T4OiQ9Vo4pVBJ59gDPURb?=
+ =?us-ascii?Q?2OpeSzLPcqFdzcFaDUwuADE2B0gp5NrTBk7cxY8svbjK8Ol5pbxg8UydqoUC?=
+ =?us-ascii?Q?ozP1VPfbUqqDbNlVKZFT6UIG9Gpa80zohyDPgoiJM32JqzMjqVITzHipMrlX?=
+ =?us-ascii?Q?mf9M932iYvFKrEzL7rspmBJERtUjztsO+kmCQhesfPvoP5W2oXToH/itgin8?=
+ =?us-ascii?Q?xd3UeLdfA8w1QCTZA+JHIJfQ9r5mDhzBQ6TBVsYWsMwzGbhlFrqQEX5GbJA0?=
+ =?us-ascii?Q?JbEuHjgTp3ndIbNFZMr9Q98QdU4pLIjXmxNeiZPLEGy2B7rQPR9/OIVDm+mY?=
+ =?us-ascii?Q?U7S8gW/tRd4rUOdBgZqD/crxFieESKu6X8XeiJYREfpx+n+TKUYZwWw23gvc?=
+ =?us-ascii?Q?j/cnX2BAUV7DdKC+ucXacYOswlobJm0L3IF6Qw8Ty7l8wAPB8fSETPSCQvTh?=
+ =?us-ascii?Q?H1Vo8cEFZlpIWFkNIX1WU4DGCr8k+nfhdoiOLJmqlBfKBcIDPuT+j6GVDc60?=
+ =?us-ascii?Q?6FV5JXZV1dwdqgWSbuPjpjMQE9oXSmqRq7WELGKdeYtpezNTn8BQKh4DE7Hf?=
+ =?us-ascii?Q?2yj9mwGVKeVS8/Rb+T+apgw1FYauw4It1XRiv9PiqIsuEruFt1jRqoEDOf8b?=
+ =?us-ascii?Q?W4fWy4PxsjGbDiPXPXuE/OytYvlOhS/R5eqRg/6SwtC2wrhNfdYUabmy60lt?=
+ =?us-ascii?Q?L+bqHH08NTH/zqsAwJL+5HQnhG2HicfkwrMua60wqjyA5G9kvOF3GmwPPnqm?=
+ =?us-ascii?Q?fUlLhoBbUFVYUO6vewT8P5hS1HqriSl0cWKv6QUmiPmmq08JWsxOggkFE1x8?=
+ =?us-ascii?Q?CzMrl4h8+SfMm9VTyr3azoY8OiadgTEUPt23JCOkBGzBhiCaywF2YVuvDblx?=
+ =?us-ascii?Q?B6r/q5x0+UM4KNtafv15xK9HY6qWOCcwDu3ExPXBrkgI+u3Z1gFF4utxqRJ4?=
+ =?us-ascii?Q?5042A1gsq7iY+1CWoYftc/MhEeVr0ResgYdsQ1RZ1DP9u43tg1oICaRiwRf1?=
+ =?us-ascii?Q?MiIsXtVUVL0DhL6bImf9nnaR4T8QYtWir+uBeftgG+pFkz8qJsXANGi2Q207?=
+ =?us-ascii?Q?Nu/yPzmng1/quGbkDhnC0xQJca+IvBYc9//sIpfdbWbmLOGyBPIKer2TYqdL?=
+ =?us-ascii?Q?VGVvHXqptKDj8aeeXIKY0BNo1aospwRvAnRFHjFzMGd7egq00WpYCoqBLwl/?=
+ =?us-ascii?Q?WQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 253c2fef-e692-492c-c23e-08de0cfaea23
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 21:26:20.6253 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 21:28:14.4382 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /Xa+ErS3BErlzmTg/F0NOccQnHy/uiOSJgXDD1qwdHBTc+6d5A7TcSq4wMyECGJk2jYRFmXZayQJGJ8ehLU+Lg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7938
+X-MS-Exchange-CrossTenant-UserPrincipalName: i3TssufZXqFGKAOGmVqliOBMDoDshDosoZXB1iFktLsGYYncsCzh01cMjvHdtYqwQR5qArDuP2tTCAjy6XSgQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5978
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,204 +176,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 16, 2025 at 11:46:37AM -0700, Matthew Brost wrote:
-> On Thu, Oct 16, 2025 at 10:41:33AM +0100, Matthew Auld wrote:
-> > On 16/10/2025 01:58, Matthew Brost wrote:
-> > > On Wed, Oct 15, 2025 at 03:19:35PM +0100, Matthew Auld wrote:
-> > > > Make this the default on xe2+ when doing a copy. This has a few
-> > > > advantages over the exiting copy instruction:
-> > > > 
-> > > > 1) It has a special PAGE_COPY mode that claims to be optimised for
-> > > >     page-in/page-out, which is the vast majority of current users.
-> > > > 
-> > > > 2) It also has a simple BYTE_COPY mode that supports byte granularity
-> > > >     copying without any restrictions.
-> > > > 
-> > > > With 2) we can now easily skip the bounce buffer flow when copying
-> > > > buffers with strange sizing/alignment, like for memory_access. But that
-> > > > is left for the next patch.
-> > > > 
-> > > 
-> > > How you tested if this series has an affect on bandwidth of copies?
-> > 
-> > I only tested it from functionaly pov. Main interest for this series was
-> > with 2) atm.
-> > 
-> > > 
-> > > We have some SVM tests which can measure this bandwidth rather
-> > > effectively. I can give these tests a try a but it may take a few days.
-> > > 
-> > > With that, feel free to breakout the first 4 patches into an individual
-> > > series while we explore the affects on bandwidth for th last two
-> > > patches.
-> > 
-> > Sounds good. Can you point me to those SVM tests? I see some fault and
-> > pre-fetch benchmarks in IGT, is it those? I can try them.
-> > 
+On Wed, Oct 15, 2025 at 03:19:36PM +0100, Matthew Auld wrote:
+> Now that we support MEM_COPY we should be able to use the PAGE_COPY
+> mode, otherwise falling back to BYTE_COPY mode when we have odd
+> sizing/alignment.
 > 
-> Yes, the prefetch benchmark test is a good one but it is software
-> limited atm so might not give the best view.
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_migrate.c | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
 > 
-> Running 'xe_exec_system_allocator --r many-large-malloc' and then
-> looking at the GT stats the copy bandwidth can be derived. I have
-> scripts that do this, I believe Francios uploaded these somewhere
-> internally but here is a public link to a script which parses these [1].
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index da1fefb96070..8bd8e8179313 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -1933,9 +1933,11 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+>  	int err;
+>  	unsigned long i, j;
+>  	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
+> +	bool has_byte_copy = GRAPHICS_VER(xe) >= 20;
+
+See my comment in previous patch about maybe storing this in xe_device.info.
+
+Whatever we land on there, absorb into this patch.
+
+With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  
+> -	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
+> -			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
+> +	if (!has_byte_copy &&
+> +	    drm_WARN_ON(&xe->drm,
+> +			(len & XE_CACHELINE_MASK) || (sram_offset | vram_addr) & XE_CACHELINE_MASK))
+>  		return ERR_PTR(-EOPNOTSUPP);
+>  
+>  	xe_assert(xe, npages * PAGE_SIZE <= MAX_PREEMPTDISABLE_TRANSFER);
+> @@ -2149,13 +2151,14 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+>  	struct drm_pagemap_addr *pagemap_addr;
+>  	unsigned long page_offset = (unsigned long)buf & ~PAGE_MASK;
+>  	int bytes_left = len, current_page = 0;
+> +	bool has_byte_copy = GRAPHICS_VER(xe) >= 20;
+>  	void *orig_buf = buf;
+>  
+>  	xe_bo_assert_held(bo);
+>  
+>  	/* Use bounce buffer for small access and unaligned access */
+> -	if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+> -	    !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {
+> +	if (!has_byte_copy && (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+> +			       !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES))) {
+>  		int buf_offset = 0;
+>  		void *bounce;
+>  		int err;
+> -- 
+> 2.51.0
 > 
-> I can try to find time to see the bandwidth before / after this series
-> today and report back.
-> 
-
-I didn’t observe a noticeable performance drop when using MEM_COPY_CMD
-in the SVM tests. However, for various reasons, this path is still
-software-limited in the KMD. Once we land additional software
-optimizations to accelerate the copies, switching between commands will
-be straightforward. So, there’s no performance concern with these
-changes.
-
-> Matt
-> 
-> [1] https://pastebin.com/rZZN5sgh
-> 
-> > > 
-> > > Matt
-> > > 
-> > > > BSpec: 57561
-> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >   .../gpu/drm/xe/instructions/xe_gpu_commands.h |  6 ++
-> > > >   drivers/gpu/drm/xe/xe_migrate.c               | 64 ++++++++++++++++---
-> > > >   2 files changed, 61 insertions(+), 9 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > > > index 8cfcd3360896..5d41ca297447 100644
-> > > > --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > > > +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> > > > @@ -31,6 +31,12 @@
-> > > >   #define   XY_FAST_COPY_BLT_D1_DST_TILE4	REG_BIT(30)
-> > > >   #define   XE2_XY_FAST_COPY_BLT_MOCS_INDEX_MASK	GENMASK(23, 20)
-> > > > +#define MEM_COPY_CMD (2 << 29 | 0x5a << 22 | 0x8)
-> > > > +#define   MEM_COPY_PAGE_COPY_MODE REG_BIT(19)
-> > > > +#define   MEM_COPY_MATRIX_COPY REG_BIT(17)
-> > > > +#define   MEM_COPY_SRC_MOCS_INDEX_MASK	GENMASK(31, 28)
-> > > > +#define   MEM_COPY_DST_MOCS_INDEX_MASK	GENMASK(6, 3)
-> > > > +
-> > > >   #define	PVC_MEM_SET_CMD		(2 << 29 | 0x5b << 22)
-> > > >   #define   PVC_MEM_SET_CMD_LEN_DW	7
-> > > >   #define   PVC_MEM_SET_MATRIX		REG_BIT(17)
-> > > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > index 3801152b7f8f..da1fefb96070 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > > @@ -699,37 +699,83 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
-> > > >   }
-> > > >   #define EMIT_COPY_DW 10
-> > > > -static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
-> > > > -		      u64 src_ofs, u64 dst_ofs, unsigned int size,
-> > > > -		      unsigned int pitch)
-> > > > +static void emit_xy_fast_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
-> > > > +			      u64 dst_ofs, unsigned int size,
-> > > > +			      unsigned int pitch)
-> > > >   {
-> > > >   	struct xe_device *xe = gt_to_xe(gt);
-> > > > -	u32 mocs = 0;
-> > > >   	u32 tile_y = 0;
-> > > > +	xe_gt_assert(gt, GRAPHICS_VER(xe) < 20);
-> > > >   	xe_gt_assert(gt, !(pitch & 3));
-> > > >   	xe_gt_assert(gt, size / pitch <= S16_MAX);
-> > > >   	xe_gt_assert(gt, pitch / 4 <= S16_MAX);
-> > > >   	xe_gt_assert(gt, pitch <= U16_MAX);
-> > > > -	if (GRAPHICS_VER(xe) >= 20)
-> > > > -		mocs = FIELD_PREP(XE2_XY_FAST_COPY_BLT_MOCS_INDEX_MASK, gt->mocs.uc_index);
-> > > > -
-
-Can we keep this part in case we want to experiment with switching
-between commands on Xe2+? It isn't a huge amount of code to carry in
-emit_xy_fast_copy to support Xe2+.
-
-> > > >   	if (GRAPHICS_VERx100(xe) >= 1250)
-> > > >   		tile_y = XY_FAST_COPY_BLT_D1_SRC_TILE4 | XY_FAST_COPY_BLT_D1_DST_TILE4;
-> > > >   	bb->cs[bb->len++] = XY_FAST_COPY_BLT_CMD | (10 - 2);
-> > > > -	bb->cs[bb->len++] = XY_FAST_COPY_BLT_DEPTH_32 | pitch | tile_y | mocs;
-> > > > +	bb->cs[bb->len++] = XY_FAST_COPY_BLT_DEPTH_32 | pitch | tile_y;
-> > > >   	bb->cs[bb->len++] = 0;
-> > > >   	bb->cs[bb->len++] = (size / pitch) << 16 | pitch / 4;
-> > > >   	bb->cs[bb->len++] = lower_32_bits(dst_ofs);
-> > > >   	bb->cs[bb->len++] = upper_32_bits(dst_ofs);
-> > > >   	bb->cs[bb->len++] = 0;
-> > > > -	bb->cs[bb->len++] = pitch | mocs;
-> > > > +	bb->cs[bb->len++] = pitch;
-> > > >   	bb->cs[bb->len++] = lower_32_bits(src_ofs);
-> > > >   	bb->cs[bb->len++] = upper_32_bits(src_ofs);
-> > > >   }
-> > > > +static void emit_mem_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
-> > > > +			  u64 dst_ofs, unsigned int size, unsigned int pitch)
-> > > > +{
-> > > > +	u32 mode, copy_type, width;
-> > > > +
-> > > > +	xe_gt_assert(gt, IS_ALIGNED(size, pitch));
-> > > > +	xe_gt_assert(gt, pitch <= U16_MAX);
-> > > > +	xe_gt_assert(gt, size);
-> > > > +
-> > > > +	if (IS_ALIGNED(size, 256) &&
-> > > > +	    IS_ALIGNED(lower_32_bits(src_ofs), 256) &&
-> > > > +	    IS_ALIGNED(lower_32_bits(dst_ofs), 256)) {
-
-s/256/SZ_256 or perhaps a define for page copy mode alignment
-requirements?
-
-Nits aside, everything LGTM.
-Matt
-
-> > > > +		mode = MEM_COPY_PAGE_COPY_MODE;
-> > > > +		copy_type = 0; /* linear copy */
-> > > > +		width = size / 256;
-> > > > +	} else {
-> > > > +		xe_gt_assert(gt, size / pitch <= U16_MAX);
-> > > > +		mode = 0; /* BYTE_COPY */
-> > > > +		copy_type = MEM_COPY_MATRIX_COPY;
-> > > > +		width = pitch;
-> > > > +	}
-> > > > +
-> > > > +	xe_gt_assert(gt, width <= U16_MAX);
-> > > > +
-> > > > +	bb->cs[bb->len++] = MEM_COPY_CMD | mode | copy_type;
-> > > > +	bb->cs[bb->len++] = width - 1;
-> > > > +	bb->cs[bb->len++] = size / pitch - 1; /* ignored by hw for page copy above */
-> > > > +	bb->cs[bb->len++] = pitch - 1;
-> > > > +	bb->cs[bb->len++] = pitch - 1;
-> > > > +	bb->cs[bb->len++] = lower_32_bits(src_ofs);
-> > > > +	bb->cs[bb->len++] = upper_32_bits(src_ofs);
-> > > > +	bb->cs[bb->len++] = lower_32_bits(dst_ofs);
-> > > > +	bb->cs[bb->len++] = upper_32_bits(dst_ofs);
-> > > > +	bb->cs[bb->len++] = FIELD_PREP(MEM_COPY_SRC_MOCS_INDEX_MASK, gt->mocs.uc_index) |
-> > > > +			    FIELD_PREP(MEM_COPY_DST_MOCS_INDEX_MASK, gt->mocs.uc_index);
-> > > > +}
-> > > > +
-> > > > +static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
-> > > > +		      u64 src_ofs, u64 dst_ofs, unsigned int size,
-> > > > +		      unsigned int pitch)
-> > > > +{
-> > > > +	struct xe_device *xe = gt_to_xe(gt);
-> > > > +
-> > > > +	if (GRAPHICS_VER(xe) >= 20)
-
-Would it be better to stick this in xe_pci.c / xe_device.info rather
-than inline IP version check?
-
-Nits aside, patch looks correct.
-
-Matt
-
-> > > > +		emit_mem_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
-> > > > +	else
-> > > > +		emit_xy_fast_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
-> > > > +}
-> > > > +
-> > > >   static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
-> > > >   {
-> > > >   	return usm ? m->usm_batch_base_ofs : m->batch_base_ofs;
-> > > > -- 
-> > > > 2.51.0
-> > > > 
-> > 
