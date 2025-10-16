@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AC12CCD183
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 09:41:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AAACCCD194
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 09:43:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4211910E2EF;
-	Thu, 16 Oct 2025 09:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5ABD10E98E;
+	Thu, 16 Oct 2025 09:43:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQYRdMmK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lkav30t+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A9810E2EF
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Oct 2025 09:41:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE1F410E2EF;
+ Thu, 16 Oct 2025 09:43:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760607697; x=1792143697;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Z8tn7kPiBQ8KEX3IIuezMHoqJGZfZeBcNK0wA2gb42Q=;
- b=jQYRdMmKUo4aV8XhpR6CZopgv/NWFrUGVLh1cQrkSuJELX6Cy9E3UAFx
- y3cSLwQgiALG4Lklj53bhYONNDxYVLtHi0Qmd5hMcaLmerX6ouJGhYyX+
- G+9BKFdRHgiYza8QgmmEBTP9/29uj+folbatMJf/DnVVWUQYWPQuUUdwW
- SlgZLPikQQlqjTd4c36FixB6ofVaEuomkVc2Zn88s5P5x0DqjEESt5rUS
- RChlEMF/1NSRq9S1WNG58+YEQkiB8a8v8fX/w2sXvPn+UV+ahGtzURQlW
- uuO2Q+qsO2KAf37Z7/1p2tLDeokEIzEQcPLekikBODd2H34BA4trsPEox Q==;
-X-CSE-ConnectionGUID: 8P6nhPpRSqy6NJIyEMbhFQ==
-X-CSE-MsgGUID: non7BnA1RjONwKq2SzCiVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11583"; a="73079437"
-X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="73079437"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 02:41:37 -0700
-X-CSE-ConnectionGUID: O4VyjLagSISskjSGeeOjNA==
-X-CSE-MsgGUID: nuGVx8p0SIq2tNufx175OA==
+ t=1760607795; x=1792143795;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ajBIfGW4h1StUWT4MMDwAtpbLkPsF4Tpp9jEfwCIbg0=;
+ b=lkav30t+VFyYOt8odh939sP2PbHacwYO/fBQLHk3Q+OgvT6hTPhnbnfJ
+ eUNTcLpWWvPjC38ol7Ptt9eX6bFasSjTCwqLIWTZFFvVD/Sffe7uE6Boa
+ OOjjYKiFeqycMzbTqSRamfSSdXX1k8WimnZjWDOxO2qhbF6DcaEHRUcOF
+ ps5/EsaxOVIKF8uzLh3NBM6thFAU772Xp5owAbMnx4PaOefKWjxfBq0hN
+ vom5M7vYtIT6BFX8JCZPTDPs8CgRXozQmgi0mhH9gP4Cts9TYTb378Ha/
+ IPKlwzxJyMDP8Xus2zInWsLrd+Izb2ajHcaYAYKD28uZ6C2+vQBGIjdtz g==;
+X-CSE-ConnectionGUID: zQvEufkCQSqA1Vj1+FZ8PQ==
+X-CSE-MsgGUID: A0S4k4EURyq5GdMCrNSRzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62725250"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62725250"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 02:43:14 -0700
+X-CSE-ConnectionGUID: iJBtxy3jSfuBq7Jv+lZ/uQ==
+X-CSE-MsgGUID: 9j+XE8SMQ2mi+hIRk73d0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="182815944"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO [10.245.245.227])
- ([10.245.245.227])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 02:41:35 -0700
-Message-ID: <3950cf17-a681-4541-98af-c03ce8d64ce5@intel.com>
-Date: Thu, 16 Oct 2025 10:41:33 +0100
+X-IronPort-AV: E=Sophos;i="6.19,233,1754982000"; d="scan'208";a="219570789"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 02:43:12 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/6] Optimize vrr.guardband
+Date: Thu, 16 Oct 2025 15:00:03 +0530
+Message-ID: <20251016093009.2139105-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] drm/xe/migrate: support MEM_COPY instruction
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20251015141929.123637-8-matthew.auld@intel.com>
- <20251015141929.123637-13-matthew.auld@intel.com>
- <aPBDTh2RA33TPaM8@lstrano-desk.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <aPBDTh2RA33TPaM8@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,164 +66,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 16/10/2025 01:58, Matthew Brost wrote:
-> On Wed, Oct 15, 2025 at 03:19:35PM +0100, Matthew Auld wrote:
->> Make this the default on xe2+ when doing a copy. This has a few
->> advantages over the exiting copy instruction:
->>
->> 1) It has a special PAGE_COPY mode that claims to be optimised for
->>     page-in/page-out, which is the vast majority of current users.
->>
->> 2) It also has a simple BYTE_COPY mode that supports byte granularity
->>     copying without any restrictions.
->>
->> With 2) we can now easily skip the bounce buffer flow when copying
->> buffers with strange sizing/alignment, like for memory_access. But that
->> is left for the next patch.
->>
-> 
-> How you tested if this series has an affect on bandwidth of copies?
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-I only tested it from functionaly pov. Main interest for this series was 
-with 2) atm.
+-Patch [1-2] are squashed from series [1] and [2] and are not meant for
+ review.
+-Patch [3-6] are patches to check the guardband for prefill+PSR+SDP
+ latencies and to use a static optimized guardband.
 
-> 
-> We have some SVM tests which can measure this bandwidth rather
-> effectively. I can give these tests a try a but it may take a few days.
-> 
-> With that, feel free to breakout the first 4 patches into an individual
-> series while we explore the affects on bandwidth for th last two
-> patches.
+[1] "Preparatory patches for guardband optimization"
+https://patchwork.freedesktop.org/series/155661/#rev8
 
-Sounds good. Can you point me to those SVM tests? I see some fault and 
-pre-fetch benchmarks in IGT, is it those? I can try them.
+[2] "Introduce helpers for prefill latency calculations"
+https://patchwork.freedesktop.org/series/155629/#rev3
 
-> 
-> Matt
-> 
->> BSpec: 57561
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   .../gpu/drm/xe/instructions/xe_gpu_commands.h |  6 ++
->>   drivers/gpu/drm/xe/xe_migrate.c               | 64 ++++++++++++++++---
->>   2 files changed, 61 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->> index 8cfcd3360896..5d41ca297447 100644
->> --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->> +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
->> @@ -31,6 +31,12 @@
->>   #define   XY_FAST_COPY_BLT_D1_DST_TILE4	REG_BIT(30)
->>   #define   XE2_XY_FAST_COPY_BLT_MOCS_INDEX_MASK	GENMASK(23, 20)
->>   
->> +#define MEM_COPY_CMD (2 << 29 | 0x5a << 22 | 0x8)
->> +#define   MEM_COPY_PAGE_COPY_MODE REG_BIT(19)
->> +#define   MEM_COPY_MATRIX_COPY REG_BIT(17)
->> +#define   MEM_COPY_SRC_MOCS_INDEX_MASK	GENMASK(31, 28)
->> +#define   MEM_COPY_DST_MOCS_INDEX_MASK	GENMASK(6, 3)
->> +
->>   #define	PVC_MEM_SET_CMD		(2 << 29 | 0x5b << 22)
->>   #define   PVC_MEM_SET_CMD_LEN_DW	7
->>   #define   PVC_MEM_SET_MATRIX		REG_BIT(17)
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index 3801152b7f8f..da1fefb96070 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -699,37 +699,83 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
->>   }
->>   
->>   #define EMIT_COPY_DW 10
->> -static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
->> -		      u64 src_ofs, u64 dst_ofs, unsigned int size,
->> -		      unsigned int pitch)
->> +static void emit_xy_fast_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
->> +			      u64 dst_ofs, unsigned int size,
->> +			      unsigned int pitch)
->>   {
->>   	struct xe_device *xe = gt_to_xe(gt);
->> -	u32 mocs = 0;
->>   	u32 tile_y = 0;
->>   
->> +	xe_gt_assert(gt, GRAPHICS_VER(xe) < 20);
->>   	xe_gt_assert(gt, !(pitch & 3));
->>   	xe_gt_assert(gt, size / pitch <= S16_MAX);
->>   	xe_gt_assert(gt, pitch / 4 <= S16_MAX);
->>   	xe_gt_assert(gt, pitch <= U16_MAX);
->>   
->> -	if (GRAPHICS_VER(xe) >= 20)
->> -		mocs = FIELD_PREP(XE2_XY_FAST_COPY_BLT_MOCS_INDEX_MASK, gt->mocs.uc_index);
->> -
->>   	if (GRAPHICS_VERx100(xe) >= 1250)
->>   		tile_y = XY_FAST_COPY_BLT_D1_SRC_TILE4 | XY_FAST_COPY_BLT_D1_DST_TILE4;
->>   
->>   	bb->cs[bb->len++] = XY_FAST_COPY_BLT_CMD | (10 - 2);
->> -	bb->cs[bb->len++] = XY_FAST_COPY_BLT_DEPTH_32 | pitch | tile_y | mocs;
->> +	bb->cs[bb->len++] = XY_FAST_COPY_BLT_DEPTH_32 | pitch | tile_y;
->>   	bb->cs[bb->len++] = 0;
->>   	bb->cs[bb->len++] = (size / pitch) << 16 | pitch / 4;
->>   	bb->cs[bb->len++] = lower_32_bits(dst_ofs);
->>   	bb->cs[bb->len++] = upper_32_bits(dst_ofs);
->>   	bb->cs[bb->len++] = 0;
->> -	bb->cs[bb->len++] = pitch | mocs;
->> +	bb->cs[bb->len++] = pitch;
->>   	bb->cs[bb->len++] = lower_32_bits(src_ofs);
->>   	bb->cs[bb->len++] = upper_32_bits(src_ofs);
->>   }
->>   
->> +static void emit_mem_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
->> +			  u64 dst_ofs, unsigned int size, unsigned int pitch)
->> +{
->> +	u32 mode, copy_type, width;
->> +
->> +	xe_gt_assert(gt, IS_ALIGNED(size, pitch));
->> +	xe_gt_assert(gt, pitch <= U16_MAX);
->> +	xe_gt_assert(gt, size);
->> +
->> +	if (IS_ALIGNED(size, 256) &&
->> +	    IS_ALIGNED(lower_32_bits(src_ofs), 256) &&
->> +	    IS_ALIGNED(lower_32_bits(dst_ofs), 256)) {
->> +		mode = MEM_COPY_PAGE_COPY_MODE;
->> +		copy_type = 0; /* linear copy */
->> +		width = size / 256;
->> +	} else {
->> +		xe_gt_assert(gt, size / pitch <= U16_MAX);
->> +		mode = 0; /* BYTE_COPY */
->> +		copy_type = MEM_COPY_MATRIX_COPY;
->> +		width = pitch;
->> +	}
->> +
->> +	xe_gt_assert(gt, width <= U16_MAX);
->> +
->> +	bb->cs[bb->len++] = MEM_COPY_CMD | mode | copy_type;
->> +	bb->cs[bb->len++] = width - 1;
->> +	bb->cs[bb->len++] = size / pitch - 1; /* ignored by hw for page copy above */
->> +	bb->cs[bb->len++] = pitch - 1;
->> +	bb->cs[bb->len++] = pitch - 1;
->> +	bb->cs[bb->len++] = lower_32_bits(src_ofs);
->> +	bb->cs[bb->len++] = upper_32_bits(src_ofs);
->> +	bb->cs[bb->len++] = lower_32_bits(dst_ofs);
->> +	bb->cs[bb->len++] = upper_32_bits(dst_ofs);
->> +	bb->cs[bb->len++] = FIELD_PREP(MEM_COPY_SRC_MOCS_INDEX_MASK, gt->mocs.uc_index) |
->> +			    FIELD_PREP(MEM_COPY_DST_MOCS_INDEX_MASK, gt->mocs.uc_index);
->> +}
->> +
->> +static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
->> +		      u64 src_ofs, u64 dst_ofs, unsigned int size,
->> +		      unsigned int pitch)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +
->> +	if (GRAPHICS_VER(xe) >= 20)
->> +		emit_mem_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
->> +	else
->> +		emit_xy_fast_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
->> +}
->> +
->>   static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
->>   {
->>   	return usm ? m->usm_batch_base_ofs : m->batch_base_ofs;
->> -- 
->> 2.51.0
->>
+Rev2:
+- Drop patch to check guardband in crtc_check phase, instead check
+  guardband for SDP in compute_config_late.
+- Modify the helper to get the min sdp guardband if all SDPs are assumed
+  to be enabled.
+- Rename the helpers to get min guardband for sdp and psr.
+
+Ankit Nautiyal (5):
+  [NOT FOR REVIEW] drm/i915/vrr: prep patches for guardband optimization
+    squashed
+  drm/i915/psr: Add helper to get min psr guardband
+  drm/i915/dp: Add helper to get min sdp guardband
+  drm/i915/dp: Check if guardband can accommodate sdp latencies
+  drm/i915/vrr: Use the min static optimized guardband
+
+Ville Syrjälä (1):
+  [NOT FOR REVIEW] drm/i915/prefill: Prefill latency calculations series
+    squashed
+
+ drivers/gpu/drm/i915/Makefile                |   1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c   |  80 +++++-
+ drivers/gpu/drm/i915/display/intel_cdclk.h   |   6 +
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c |  26 +-
+ drivers/gpu/drm/i915/display/intel_dp.c      |  69 +++++
+ drivers/gpu/drm/i915/display/intel_dp.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_psr.c     | 256 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_psr.h     |   3 +
+ drivers/gpu/drm/i915/display/intel_vblank.c  |  10 +
+ drivers/gpu/drm/i915/display/intel_vblank.h  |   2 +
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   8 +
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     |  83 +++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h     |   2 +-
+ drivers/gpu/drm/i915/display/skl_prefill.c   | 157 ++++++++++++
+ drivers/gpu/drm/i915/display/skl_prefill.h   |  46 ++++
+ drivers/gpu/drm/i915/display/skl_scaler.c    | 141 ++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h    |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 156 +++++------
+ drivers/gpu/drm/i915/display/skl_watermark.h |   3 +
+ drivers/gpu/drm/xe/Makefile                  |   1 +
+ 22 files changed, 894 insertions(+), 184 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.c
+ create mode 100644 drivers/gpu/drm/i915/display/skl_prefill.h
+
+-- 
+2.45.2
 
