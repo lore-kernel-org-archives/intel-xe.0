@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B3CCCCD1A4
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 20:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24219CCD183
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Oct 2025 20:48:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC8C10E361;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF4B10E382;
 	Thu, 16 Oct 2025 20:48:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TWcvjWeg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S6XSmt9R";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD43610E34A;
- Thu, 16 Oct 2025 20:48:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32DCB10E34E;
+ Thu, 16 Oct 2025 20:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760647711; x=1792183711;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OGvyvowFB1zrrkLTak2iNN5tf8cSg/TfSowmVzqYyW8=;
- b=TWcvjWeg9Lgl20QVmVwgxjX7AsN41Z5qh51PZr5DK8aCOjWxxoeX2vF3
- b7hUI9w8zdFCUZbkVsE7uhutPcAA0DDWI/1QqiPd8edhVf6yj1EIdZVEd
- h+bJymkY5YVggAn56q4T/nH4IqsvVg7aalTC4IXL5W2aBTXyVg1JixyHw
- KW+pDPt+ptdyp2njLXl+r8QpEEN3X5gBToIROsAIxrFRQLk2drFo6AyF3
- K2Ps2TiGksbQLHBsNcPC0/XjEJ3DWjCtjD7C85ma7bgRjvRhE2o3djKL5
- 3jax94opd9MS8iLiG9gZLJ16hB2erFd/KnDyvOuRl7Qq/HI4q5IITdF1D A==;
-X-CSE-ConnectionGUID: Pu3sTSHoSDu7p74meIC7CA==
-X-CSE-MsgGUID: 5Mz9oGUnT9OniIJIgE7oXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="65472186"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="65472186"
+ bh=OdKv5bOLuS4Sqi0Al1pvB4/PJ3qRcH+11DZzBVMHUlI=;
+ b=S6XSmt9RKAiy1r6RQBV0dXWQtt5ne2YlTU0kUQlaMcMJ+kpk+Z6wU2FG
+ x1WvWTi8U9/nLaeLaWTu+aH5ppKTPowH0NSI5cNA0XJNeuGN9MRMcYj/p
+ zUhUgCyN99GkecGhx/OXcniJZ0Mzrmjja5USRpNAfXVR15aUtBl0EUVL6
+ 3Bj0hJqIPXF0u5kZGKaFIhKL4m9DtQqWxk+wQxyt2AWqwXGs8q87t8kxp
+ QbsYXu/tCmKRYeaee9b/Aym4UVdbtl7d6e5JFpYSaPkjKILfsBjrD/KPG
+ 02uzHXPwbruXru6ZcGASEW/+WInvzsITtG/y6Dru00sD7p6wgPtnAq60l g==;
+X-CSE-ConnectionGUID: tmDxb7FPTJeRLRaFgt+gxw==
+X-CSE-MsgGUID: w7/Kj5cmTYac3e1F/d2GEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="65472198"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="65472198"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 13:48:30 -0700
-X-CSE-ConnectionGUID: YxHwakvgS+SViA12sXo8Lg==
-X-CSE-MsgGUID: 25iNYEA0RsuVU2Jw0vgu+w==
+ 16 Oct 2025 13:48:31 -0700
+X-CSE-ConnectionGUID: muEkKp6BRw2jtdtQ6u+YWg==
+X-CSE-MsgGUID: yJhRG1btS++YoWQWN8aLrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="186572839"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="186572842"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 13:48:30 -0700
+ 16 Oct 2025 13:48:31 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com,
 	pstanner@redhat.com,
 	dakr@kernel.org
-Subject: [PATCH v3 2/7] drm/sched: Add several job helpers to avoid drivers
- touching scheduler state
-Date: Thu, 16 Oct 2025 13:48:21 -0700
-Message-Id: <20251016204826.284077-3-matthew.brost@intel.com>
+Subject: [PATCH v3 5/7] drm/xe: Do not deregister queues in TDR
+Date: Thu, 16 Oct 2025 13:48:24 -0700
+Message-Id: <20251016204826.284077-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251016204826.284077-1-matthew.brost@intel.com>
 References: <20251016204826.284077-1-matthew.brost@intel.com>
@@ -70,99 +69,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helpers to see if scheduler is stopped and a jobs signaled state.
-Expected to be used driver side on recovery and debug flows.
+Deregistering queues in the TDR introduces unnecessary complexity,
+requiring reference counting tricks to function correctly. All that's
+needed in the TDR is to kick the queue off the hardware, which is
+achieved by disabling scheduling. Queue deregistration should be handled
+in a single, well-defined point in the cleanup path, tied to the queue's
+reference count.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/scheduler/sched_main.c |  4 ++--
- include/drm/gpu_scheduler.h            | 32 ++++++++++++++++++++++++--
- 2 files changed, 32 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 57 +++---------------------------
+ 1 file changed, 5 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 46119aacb809..69bd6e482268 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -344,7 +344,7 @@ drm_sched_rq_select_entity_fifo(struct drm_gpu_scheduler *sched,
-  */
- static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 680696efc434..ab0f1a2d4871 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -69,9 +69,8 @@ exec_queue_to_guc(struct xe_exec_queue *q)
+ #define EXEC_QUEUE_STATE_WEDGED			(1 << 8)
+ #define EXEC_QUEUE_STATE_BANNED			(1 << 9)
+ #define EXEC_QUEUE_STATE_CHECK_TIMEOUT		(1 << 10)
+-#define EXEC_QUEUE_STATE_EXTRA_REF		(1 << 11)
+-#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 12)
+-#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 13)
++#define EXEC_QUEUE_STATE_PENDING_RESUME		(1 << 11)
++#define EXEC_QUEUE_STATE_PENDING_TDR_EXIT	(1 << 12)
+ 
+ static bool exec_queue_registered(struct xe_exec_queue *q)
  {
--	if (!READ_ONCE(sched->pause_submit))
-+	if (!drm_sched_is_stopped(sched))
- 		queue_work(sched->submit_wq, &sched->work_run_job);
+@@ -218,21 +217,6 @@ static void clear_exec_queue_check_timeout(struct xe_exec_queue *q)
+ 	atomic_and(~EXEC_QUEUE_STATE_CHECK_TIMEOUT, &q->guc->state);
  }
  
-@@ -354,7 +354,7 @@ static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
-  */
- static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+-static bool exec_queue_extra_ref(struct xe_exec_queue *q)
+-{
+-	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_EXTRA_REF;
+-}
+-
+-static void set_exec_queue_extra_ref(struct xe_exec_queue *q)
+-{
+-	atomic_or(EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+-}
+-
+-static void clear_exec_queue_extra_ref(struct xe_exec_queue *q)
+-{
+-	atomic_and(~EXEC_QUEUE_STATE_EXTRA_REF, &q->guc->state);
+-}
+-
+ static bool exec_queue_pending_resume(struct xe_exec_queue *q)
  {
--	if (!READ_ONCE(sched->pause_submit))
-+	if (!drm_sched_is_stopped(sched))
- 		queue_work(sched->submit_wq, &sched->work_free_job);
+ 	return atomic_read(&q->guc->state) & EXEC_QUEUE_STATE_PENDING_RESUME;
+@@ -1190,25 +1174,6 @@ static void disable_scheduling(struct xe_exec_queue *q, bool immediate)
+ 		       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
  }
  
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 7f31eba3bd61..d1a2d7f61c1d 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -700,6 +700,17 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
- 
- /* Inlines */
- 
-+/**
-+ * drm_sched_is_stopped() - DRM is stopped
-+ * @sched: DRM scheduler
-+ *
-+ * Return: True if sched is stopped, False otherwise
-+ */
-+static inline bool drm_sched_is_stopped(struct drm_gpu_scheduler *sched)
-+{
-+	return READ_ONCE(sched->pause_submit);
-+}
-+
- /**
-  * struct drm_sched_pending_job_iter - DRM scheduler pending job iterator state
-  * @sched: DRM scheduler associated with pending job iterator
-@@ -716,7 +727,7 @@ __drm_sched_pending_job_iter_begin(struct drm_gpu_scheduler *sched)
- 		.sched = sched,
- 	};
- 
--	WARN_ON(!READ_ONCE(sched->pause_submit));
-+	WARN_ON(!drm_sched_is_stopped(sched));
- 	return iter;
- }
- 
-@@ -724,7 +735,7 @@ __drm_sched_pending_job_iter_begin(struct drm_gpu_scheduler *sched)
- static inline void
- __drm_sched_pending_job_iter_end(const struct drm_sched_pending_job_iter iter)
+-static void __deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+-{
+-	u32 action[] = {
+-		XE_GUC_ACTION_DEREGISTER_CONTEXT,
+-		q->guc->id,
+-	};
+-
+-	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
+-	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+-	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_enable(q));
+-	xe_gt_assert(guc_to_gt(guc), !exec_queue_pending_disable(q));
+-
+-	set_exec_queue_destroyed(q);
+-	trace_xe_exec_queue_deregister(q);
+-
+-	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
+-		       G2H_LEN_DW_DEREGISTER_CONTEXT, 1);
+-}
+-
+ static enum drm_gpu_sched_stat
+ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
  {
--	WARN_ON(!READ_ONCE(iter.sched->pause_submit));
-+	WARN_ON(!drm_sched_is_stopped(iter.sched));
- }
+@@ -1326,8 +1291,6 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 			xe_devcoredump(q, job,
+ 				       "Schedule disable failed to respond, guc_id=%d, ret=%d, guc_read=%d",
+ 				       q->guc->id, ret, xe_guc_read_stopped(guc));
+-			set_exec_queue_extra_ref(q);
+-			xe_exec_queue_get(q);	/* GT reset owns this */
+ 			set_exec_queue_banned(q);
+ 			xe_gt_reset_async(q->gt);
+ 			xe_sched_tdr_queue_imm(sched);
+@@ -1380,13 +1343,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		}
+ 	}
  
- DEFINE_CLASS(drm_sched_pending_job_iter, struct drm_sched_pending_job_iter,
-@@ -750,4 +761,21 @@ class_drm_sched_pending_job_iter_lock_ptr(class_drm_sched_pending_job_iter_t *_T
- 		list_for_each_entry((__job), &(__sched)->pending_list, list)	\
- 			for_each_if(!(__entity) || (__job)->entity == (__entity))
+-	/* Finish cleaning up exec queue via deregister */
+ 	set_exec_queue_banned(q);
+-	if (!wedged && exec_queue_registered(q) && !exec_queue_destroyed(q)) {
+-		set_exec_queue_extra_ref(q);
+-		xe_exec_queue_get(q);
+-		__deregister_exec_queue(guc, q);
+-	}
  
-+/**
-+ * drm_sched_job_is_signaled() - DRM scheduler job is signaled
-+ * @job: DRM scheduler job
-+ *
-+ * Determine if DRM scheduler job is signaled. DRM scheduler should be stopped
-+ * to obtain a stable snapshot of state.
-+ *
-+ * Return: True if job is signaled, False otherwise
-+ */
-+static inline bool drm_sched_job_is_signaled(struct drm_sched_job *job)
-+{
-+	struct drm_sched_fence *s_fence = job->s_fence;
-+
-+	WARN_ON(!drm_sched_is_stopped(job->sched));
-+	return dma_fence_is_signaled(&s_fence->finished);
-+}
-+
- #endif
+ 	/* Mark all outstanding jobs as bad, thus completing them */
+ 	xe_sched_job_set_error(job, err);
+@@ -1928,7 +1885,7 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 
+ 	/* Clean up lost G2H + reset engine state */
+ 	if (exec_queue_registered(q)) {
+-		if (exec_queue_extra_ref(q) || xe_exec_queue_is_lr(q))
++		if (xe_exec_queue_is_lr(q))
+ 			xe_exec_queue_put(q);
+ 		else if (exec_queue_destroyed(q))
+ 			__guc_exec_queue_destroy(guc, q);
+@@ -2062,11 +2019,7 @@ static void guc_exec_queue_revert_pending_state_change(struct xe_guc *guc,
+ 
+ 	if (exec_queue_destroyed(q) && exec_queue_registered(q)) {
+ 		clear_exec_queue_destroyed(q);
+-		if (exec_queue_extra_ref(q))
+-			xe_exec_queue_put(q);
+-		else
+-			q->guc->needs_cleanup = true;
+-		clear_exec_queue_extra_ref(q);
++		q->guc->needs_cleanup = true;
+ 		xe_gt_dbg(guc_to_gt(guc), "Replay CLEANUP - guc_id=%d",
+ 			  q->guc->id);
+ 	}
+@@ -2483,7 +2436,7 @@ static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q)
+ 
+ 	clear_exec_queue_registered(q);
+ 
+-	if (exec_queue_extra_ref(q) || xe_exec_queue_is_lr(q))
++	if (xe_exec_queue_is_lr(q))
+ 		xe_exec_queue_put(q);
+ 	else
+ 		__guc_exec_queue_destroy(guc, q);
 -- 
 2.34.1
 
