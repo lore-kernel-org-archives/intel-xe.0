@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5163CCD183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F28CCCD1A3
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8334C10EAE3;
-	Fri, 17 Oct 2025 02:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E78810EAEC;
+	Fri, 17 Oct 2025 02:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JeBvQM7C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ax9Ul74A";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0122310EAE3
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 714F110EAE3
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760668038; x=1792204038;
+ t=1760668039; x=1792204039;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=goVIo301tCi1agTwINTpIrRLttf3uC6yuGvrBTzcI4o=;
- b=JeBvQM7C1WDLMzAe5q0vHmAwnDniy/74mcCf/2uG+y2a4SJGGZ4p4AaB
- L0hzObh9j2SS+mLLOJEWYnf208vp34kabD6b+H4lWa+EgGxgrgfUVO7LP
- BBZnZvFuE5YoIlgEL1ZwsoLR6RWaXI8le7iFqETPgozOTOI4w+WVi7uGF
- 5joccw6mb3KxcvDsEp2yyEJPegntOIYBaGOWLI+0HsS+DqSlS189JjcrY
- g/P9nPj0O/ygjYjEeAGATjTLWXgsMrtFMUksTryfkCW55YEqZICQgG+nS
- YbDOwkXV9g9+syNjcgujhBVieYG7iFBub0YJmBlA7kbgVjLfw7ggJWdOs Q==;
-X-CSE-ConnectionGUID: vtXLbtHwSdqZjrxatEchGA==
-X-CSE-MsgGUID: INKMK0aMSu6mXQ71R2l2ow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739213"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739213"
+ bh=PYzq+/Fb3Ulkt1qtiKDn+kap9h8ropNDxF4lXZx2bbs=;
+ b=Ax9Ul74ArUsd18eHRxKp/SbzWGfWpr3pH7Op508Hoh+fX8W+WRNOWfm7
+ 9taF6B8OlhjMMIajO9TH8P0gS74QUP6i42uNC5iPGrNR79XJzRE+VyU5G
+ uTZ5vkiZSmjzhrVEwYbnaz3nyt6rHgYOvOjy0+2aoVQUPCRD7Wg4+HLaR
+ tMYcXfdB3hdV4YjZNXDf0BAJ/7Uxz3aTi4yCjgPoilNtpWbgClgk+GJ78
+ Jool0tJNjy0RpuqXRJJL/piDIBzAPrZdwUMlN8cZ2+N6esx77Q+lQvPIC
+ kuQrK2XTmYrmzPSXcIqviE2KYIjAx3qi50UjMJGEy7nUCb5pu+X76xWYn w==;
+X-CSE-ConnectionGUID: vq68ZTSARvCmTEhmR665PA==
+X-CSE-MsgGUID: 93VH8XVJSZO/ZPD+N49r3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739221"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739221"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:17 -0700
-X-CSE-ConnectionGUID: C+vBpH6FRJiaj7y1JZUPLQ==
-X-CSE-MsgGUID: IsAjuZorQkehqLVJVPnpzw==
+ 16 Oct 2025 19:27:19 -0700
+X-CSE-ConnectionGUID: nLaMj5NZQ3GHd5EqzB/Uxg==
+X-CSE-MsgGUID: w9RFRvNTSuiZUsZOWOdShw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089186"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089211"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:17 -0700
+ 16 Oct 2025 19:27:19 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>, Wang Xin <x.wang@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: [PATCH v3 10/24] drm/xe/xe3p: Dump CSMQDEBUG register
-Date: Thu, 16 Oct 2025 19:26:29 -0700
-Message-ID: <20251016-xe3p-v3-10-3dd173a3097a@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 18/24] drm/xe/irq: Split irq mask per engine class
+Date: Thu, 16 Oct 2025 19:26:37 -0700
+Message-ID: <20251016-xe3p-v3-18-3dd173a3097a@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
 References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
@@ -73,102 +72,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Wang Xin <x.wang@intel.com>
+Each engine class has a different bitfield structure in the hw. We've
+been just using a common mask for all of them, but this means that we
+could inadvertently set a wrong bit in one class while enabling
+something in another. Split them to make it more future proof.
 
-The CSMQDEBUG is useful for the development of MQ feature. Start dumping
-the debug register.
-
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Wang Xin <x.wang@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2:
- - Extract CSMQDEBUG from other patch dumping multiple register (Matt
-   Roper)
- - Simplify version check (Matt Roper)
- - Do not dump CSMQDEBUG for engines that do not support MQ (Matt Roper)
-v3:
- - Drop desc structs not needed anymore, just use the one for previous
-   platform (Matt Roper)
+v2: Fix copy paste mistake: s/vcs/vecs/ (Matt Roper)
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 ++
- drivers/gpu/drm/xe/xe_guc_capture.c      | 28 +++++++++++++++++++++++++++-
- 2 files changed, 29 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_irq.c | 73 +++++++++++++++++++++++++++++----------------
+ 1 file changed, 47 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 0c02d0fe55315..68172b0248a6e 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -155,6 +155,8 @@
- #define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
- #define   GFX_MSIX_INTERRUPT_ENABLE		REG_BIT(13)
- 
-+#define RING_CSMQDEBUG(base)			XE_REG((base) + 0x2b0)
-+
- #define RING_TIMESTAMP(base)			XE_REG((base) + 0x358)
- 
- #define RING_TIMESTAMP_UDW(base)		XE_REG((base) + 0x358 + 4)
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 8d1bfa2cdb151..0c1fbe97b8bf2 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -150,6 +150,9 @@ struct __guc_capture_parsed_output {
- 	{ SFC_DONE(2),			0,	0,	0,	0,	"SFC_DONE[2]"}, \
- 	{ SFC_DONE(3),			0,	0,	0,	0,	"SFC_DONE[3]"}
- 
-+#define XE3P_BASE_ENGINE_INSTANCE \
-+	{ RING_CSMQDEBUG(0),		REG_32BIT,	0,	0,	0,	"CSMQDEBUG"}
-+
- /* XE_LP Global */
- static const struct __guc_mmio_reg_descr xe_lp_global_regs[] = {
- 	COMMON_XELP_BASE_GLOBAL,
-@@ -196,6 +199,12 @@ static const struct __guc_mmio_reg_descr xe_lp_gsc_inst_regs[] = {
- 	COMMON_BASE_ENGINE_INSTANCE,
- };
- 
-+/* Render / Compute Per-Engine-Instance */
-+static const struct __guc_mmio_reg_descr xe3p_rc_inst_regs[] = {
-+	COMMON_BASE_ENGINE_INSTANCE,
-+	XE3P_BASE_ENGINE_INSTANCE,
-+};
-+
- /*
-  * Empty list to prevent warnings about unknown class/instance types
-  * as not all class/instance types have entries on all platforms.
-@@ -246,6 +255,21 @@ static const struct __guc_mmio_reg_descr_group xe_hpg_lists[] = {
- 	{}
- };
- 
-+ /* List of lists for Xe3p and beyond */
-+static const struct __guc_mmio_reg_descr_group xe3p_lists[] = {
-+	MAKE_REGLIST(xe_lp_global_regs, PF, GLOBAL, 0),
-+	MAKE_REGLIST(xe_hpg_rc_class_regs, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE),
-+	MAKE_REGLIST(xe3p_rc_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE),
-+	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_VIDEO),
-+	MAKE_REGLIST(xe_vd_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_VIDEO),
-+	MAKE_REGLIST(xe_vec_class_regs, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE),
-+	MAKE_REGLIST(xe_vec_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_VIDEOENHANCE),
-+	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_BLITTER),
-+	MAKE_REGLIST(xe_blt_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_BLITTER),
-+	MAKE_REGLIST(empty_regs_list, PF, ENGINE_CLASS, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
-+	MAKE_REGLIST(xe_lp_gsc_inst_regs, PF, ENGINE_INSTANCE, GUC_CAPTURE_LIST_CLASS_GSC_OTHER),
-+	{}
-+};
- static const char * const capture_list_type_names[] = {
- 	"Global",
- 	"Class",
-@@ -293,7 +317,9 @@ guc_capture_remove_stale_matches_from_list(struct xe_guc_state_capture *gc,
- static const struct __guc_mmio_reg_descr_group *
- guc_capture_get_device_reglist(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 9c3a85c4585ed..142f422a5d97e 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -139,25 +139,28 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
  {
--	if (GRAPHICS_VERx100(xe) >= 1255)
-+	if (GRAPHICS_VER(xe) >= 35)
-+		return xe3p_lists;
-+	else if (GRAPHICS_VERx100(xe) >= 1255)
- 		return xe_hpg_lists;
- 	else
- 		return xe_lp_lists;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_mmio *mmio = &gt->mmio;
+-	u32 irqs, dmask, smask;
+-	u32 gsc_mask = 0;
+-	u32 heci_mask = 0;
++	u32 common_mask, val, gsc_mask = 0, heci_mask = 0,
++	    rcs_mask = 0, bcs_mask = 0, vcs_mask = 0, vecs_mask = 0,
++	    ccs_mask = 0;
+ 
+ 	if (xe_device_uses_memirq(xe))
+ 		return;
+ 
+ 	if (xe_device_uc_enabled(xe)) {
+-		irqs = GT_RENDER_USER_INTERRUPT |
+-			GT_RENDER_PIPECTL_NOTIFY_INTERRUPT;
++		common_mask = GT_RENDER_USER_INTERRUPT |
++			      GT_RENDER_PIPECTL_NOTIFY_INTERRUPT;
+ 	} else {
+-		irqs = GT_RENDER_USER_INTERRUPT |
+-		       GT_CS_MASTER_ERROR_INTERRUPT |
+-		       GT_CONTEXT_SWITCH_INTERRUPT |
+-		       GT_WAIT_SEMAPHORE_INTERRUPT;
++		common_mask = GT_RENDER_USER_INTERRUPT |
++			      GT_CS_MASTER_ERROR_INTERRUPT |
++			      GT_CONTEXT_SWITCH_INTERRUPT |
++			      GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	}
+ 
+-	dmask = irqs << 16 | irqs;
+-	smask = irqs << 16;
++	rcs_mask |= common_mask;
++	bcs_mask |= common_mask;
++	vcs_mask |= common_mask;
++	vecs_mask |= common_mask;
++	ccs_mask |= common_mask;
+ 
+ 	if (xe_gt_is_main_type(gt)) {
+ 		/*
+@@ -169,44 +172,62 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		u32 bcs_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
+ 
+ 		/* Enable interrupts for each engine class */
+-		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
++		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE,
++				REG_FIELD_PREP(ENGINE1_MASK, rcs_mask) |
++				REG_FIELD_PREP(ENGINE0_MASK, bcs_mask));
+ 		if (ccs_fuse_mask)
+-			xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
++			xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE,
++					REG_FIELD_PREP(ENGINE1_MASK, ccs_mask));
+ 
+ 		/* Unmask interrupts for each engine instance */
+-		xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
+-		xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
++		val = ~REG_FIELD_PREP(ENGINE1_MASK, rcs_mask);
++		xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, val);
++		val = ~REG_FIELD_PREP(ENGINE1_MASK, bcs_mask);
++		xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, val);
++
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, bcs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, bcs_mask));
+ 		if (bcs_fuse_mask & (BIT(1)|BIT(2)))
+-			xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(3)|BIT(4)))
+-			xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(5)|BIT(6)))
+-			xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, val);
+ 		if (bcs_fuse_mask & (BIT(7)|BIT(8)))
+-			xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, val);
++
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, ccs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, ccs_mask));
+ 		if (ccs_fuse_mask & (BIT(0)|BIT(1)))
+-			xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, val);
+ 		if (ccs_fuse_mask & (BIT(2)|BIT(3)))
+-			xe_mmio_write32(mmio, CCS2_CCS3_INTR_MASK, ~dmask);
++			xe_mmio_write32(mmio, CCS2_CCS3_INTR_MASK, val);
+ 	}
+ 
+ 	if (xe_gt_is_media_type(gt) || MEDIA_VER(xe) < 13) {
+ 		u32 other_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER);
+ 
+ 		/* Enable interrupts for each engine class */
+-		xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
++		xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE,
++				REG_FIELD_PREP(ENGINE1_MASK, vcs_mask) |
++				REG_FIELD_PREP(ENGINE0_MASK, vecs_mask));
+ 
+ 		/* Unmask interrupts for each engine instance */
+-		xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
+-		xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
+-		xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, vcs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, vcs_mask));
++		xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, val);
++		xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, val);
++
++		val = ~(REG_FIELD_PREP(ENGINE1_MASK, vecs_mask) |
++			REG_FIELD_PREP(ENGINE0_MASK, vecs_mask));
++		xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, val);
+ 
+ 		/*
+ 		 * the heci2 interrupt is enabled via the same register as the
+ 		 * GSCCS interrupts, but it has its own mask register.
+ 		 */
+ 		if (other_fuse_mask) {
+-			gsc_mask = irqs | GSC_ER_COMPLETE;
++			gsc_mask = common_mask | GSC_ER_COMPLETE;
+ 			heci_mask = GSC_IRQ_INTF(1);
+ 		} else if (xe->info.has_heci_gscfi) {
+ 			gsc_mask = GSC_IRQ_INTF(1);
 
 -- 
 2.51.0
