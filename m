@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF969CCD1A5
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 05:15:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B42B7CCD184
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 05:15:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6094910EB04;
-	Fri, 17 Oct 2025 05:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75F2E10EAFB;
+	Fri, 17 Oct 2025 05:15:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oGwwrN2b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="itf+i9CQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD96E10EAFB;
- Fri, 17 Oct 2025 05:15:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5E4910EB09;
+ Fri, 17 Oct 2025 05:15:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760678109; x=1792214109;
+ t=1760678113; x=1792214113;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Lriz6LA0xBjVKPsyuaHUkN2urbx+Q43A+A2LhVtnzdM=;
- b=oGwwrN2bynx4gCcnoi7u0XSabs3eDt//+cnJwlWDNE/VqdUl+grexLF/
- zL4QQ/lO84gIHI9TW2rZ9ILXi23js5DpyN5dPpYhgbpuzlfI6nfgLRSK0
- LKySOi/id1dE0souILh0FyzyVYwnf/DVUk7Rk2pjy8phEdgMwoQazsFef
- sbZHyflPhr3ClE9KDH9bhJ0daVGvCq+WpBTlpxTjaWlGXgle50eLuPB4r
- B7Q8wXG+oKTZ/DkS9AKS0sHw4IO5uB8FSwHb79JLwhSrc2yetdDSx3QkN
- sRsVW+tcuvt5T7EmmTz/XEkHErp1RK2zb5ZhpwBEdhJD9mAQsnLw+x7/W Q==;
-X-CSE-ConnectionGUID: DKrQk43hSMyhhYgCXXni0w==
-X-CSE-MsgGUID: rCUJ/9yGSBuNuogZmOFG4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="88352605"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="88352605"
+ bh=GjyF8+HL6YDHWU/1kc3VDDf6aBymPu9kirKOxGbdkwk=;
+ b=itf+i9CQbK1BSzFGggghbOyqSmlISS4fB/htbgf4qVXN7+IzKBzlpU7N
+ IC/9WVNKaOhs3zSisrDNAfWCEcq8WJ6subQvMx62qHI3Y40FFKmp2ipyM
+ vcvLD9JqCfM93ZWFn8jhO9vLdSYHwBsLIfvofRZfZJz9dchG4/HtBWRce
+ MrzAuMSoe+SLgD5m2LTbsZfjkGC4oqzbLhFVqQvwUoIvWXSRY/bS4QMvP
+ uAPr8Z5DrDedkpIly4Cn/WGYSGPPiPMtxiTxFHWj27kckyP9Dt8hZo2C6
+ FP3A65p/jxRlWusGF2mZBTNDwyiqfqBkiDNeFFVCRKwp5LcsOdaU+59Go g==;
+X-CSE-ConnectionGUID: VaPdmagLSlmAySB6vLvreg==
+X-CSE-MsgGUID: HXfftEzkSDC/tsTmfi1RkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="88352613"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="88352613"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 22:15:09 -0700
-X-CSE-ConnectionGUID: biLRE+nOQOmLqcR1NWhGrw==
-X-CSE-MsgGUID: upyms2dxR9iY/EHE5yl9Zg==
+ 16 Oct 2025 22:15:13 -0700
+X-CSE-ConnectionGUID: /mPNw0B/RtCtC8c4gPOBdg==
+X-CSE-MsgGUID: R3GqVxzhTxSIR9KSUWDzsQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="182576535"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="182576572"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 22:15:07 -0700
+ 16 Oct 2025 22:15:11 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/5] drm/i915/psr: Add helper to get min psr guardband
-Date: Fri, 17 Oct 2025 10:31:58 +0530
-Message-ID: <20251017050202.2211985-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 3/5] drm/i915/dp: Check if guardband can accommodate sdp
+ latencies
+Date: Fri, 17 Oct 2025 10:32:00 +0530
+Message-ID: <20251017050202.2211985-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251017050202.2211985-1-ankit.k.nautiyal@intel.com>
 References: <20251017050202.2211985-1-ankit.k.nautiyal@intel.com>
@@ -67,51 +68,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a helper to compute the max link wake latency when using
-Auxless/Aux wake mechanism for PSR/Panel Replay/LOBF features.
+Check if guardband is sufficient for all DP SDP latencies.
+If its not, fail .compute_config_late().
 
-This will be used to compute the minimum guardband so that the link wake
-latencies are accounted and these features work smoothly for higher
-refresh rate panels.
-
-Bspec: 70151, 71477
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h |  1 +
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 703e5f6af04c..a8303b669853 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4416,3 +4416,15 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 3f2c319e3d6f..8ae99cee79d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -93,6 +93,7 @@
+ #include "intel_psr.h"
+ #include "intel_quirks.h"
+ #include "intel_tc.h"
++#include "intel_vblank.h"
+ #include "intel_vdsc.h"
+ #include "intel_vrr.h"
  
- 	intel_psr_set_non_psr_pipes(intel_dp, crtc_state);
+@@ -6980,14 +6981,35 @@ void intel_dp_mst_resume(struct intel_display *display)
+ 	}
  }
-+
-+int intel_psr_min_guardband(struct intel_crtc_state *crtc_state)
+ 
++static
++int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
-+	int auxless_wake_lines = crtc_state->alpm_state.aux_less_wake_lines;
-+	int wake_lines = DISPLAY_VER(display) < 20 ?
-+			 psr2_block_count_lines(crtc_state->alpm_state.io_wake_lines,
-+						crtc_state->alpm_state.fast_wake_lines) :
-+			 crtc_state->alpm_state.io_wake_lines;
++	int guardband = intel_crtc_vblank_length(crtc_state);
++	int min_sdp_guardband = intel_dp_sdp_min_guardband(crtc_state, false);
 +
-+	return max(auxless_wake_lines, wake_lines);
++	if (guardband < min_sdp_guardband) {
++		drm_dbg_kms(display->drm, "guardband %d < min sdp guardband %d\n",
++			    guardband, min_sdp_guardband);
++		return -EINVAL;
++	}
++
++	return 0;
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index b17ce312dc37..620b35928832 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -85,5 +85,6 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 				   const struct intel_crtc_state *crtc_state);
- void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state);
-+int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
++
+ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+ 				 struct intel_crtc_state *crtc_state,
+ 				 struct drm_connector_state *conn_state)
+ {
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	int ret;
  
- #endif /* __INTEL_PSR_H__ */
+ 	intel_psr_compute_config_late(intel_dp, crtc_state);
+ 
++	ret = intel_dp_sdp_compute_config_late(crtc_state);
++	if (ret)
++		return ret;
++
+ 	return 0;
+ }
+ 
 -- 
 2.45.2
 
