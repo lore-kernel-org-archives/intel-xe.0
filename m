@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02B9ECCD195
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 12:13:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4633DCCD199
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 12:37:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78F010EBCD;
-	Fri, 17 Oct 2025 12:13:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ULQEzrGk";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F26B10EBCD;
- Fri, 17 Oct 2025 12:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760703204; x=1792239204;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=6801RoHQCOAsOLOS5HjZP5I6QbORXRyzW3dz0hYTyzU=;
- b=ULQEzrGkVvYIdjV0jJBty0IG0VDro4O4FpyEC4P0yiOBNHC5JMDH+YPb
- aamjJbN4/KWeqc7MKPiC5oj5Je1HBsYYkjQZCmNIwndiueRrLnx64UnXD
- 2W6VyjCoG/JGhQdFvIe9tykAjQj82enYmjV06xkMs6euy2K/2UAaeX5bK
- F9CFmsMbCtX2GjPBn3fqk4XyI7w1XeI7hRjy1a9Yy2oIMirdC9r+q1vrE
- cTKJfTW7QvMJ0Yvpno4bCKPuXIB2mPCBNJdERo4L9oQML3jhdmNN+wO7p
- nqCBDeg5bsWIxZ4CXYamlvqsyaGYewBxpdYKTM5WfHqh+gdPGsiAkAaH/ Q==;
-X-CSE-ConnectionGUID: PPTgnJ03QHqmkNOc2tjN+g==
-X-CSE-MsgGUID: w1Ao2TlAT9G8zLZrOoZKag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="74257011"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="74257011"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 05:13:24 -0700
-X-CSE-ConnectionGUID: 6V39nP8vRiSR3WSfWOpIww==
-X-CSE-MsgGUID: 89Oahgw9TNCxKc2LUQnfQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="206432804"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.129])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 05:13:22 -0700
-Date: Fri, 17 Oct 2025 15:13:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/i915/vrr: Use optimized guardband whenever VRR
- TG is active
-Message-ID: <aPIy3zwAwJxA0PtA@intel.com>
-References: <20251017050202.2211985-1-ankit.k.nautiyal@intel.com>
- <20251017050202.2211985-6-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAA810EBD2;
+	Fri, 17 Oct 2025 12:37:26 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCC910EBD3;
+ Fri, 17 Oct 2025 12:37:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8054248335347051300=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251017050202.2211985-6-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Add_fallback_fo?=
+ =?utf-8?q?r_CDCLK_selection_when_min=5Fcdclk_is_too_high?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Naladala Ramanaidu" <ramanaidu.naladala@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Oct 2025 12:37:25 -0000
+Message-ID: <176070464530.26882.3838846450610867936@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251017114821.780466-1-ramanaidu.naladala@intel.com>
+In-Reply-To: <20251017114821.780466-1-ramanaidu.naladala@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,47 +36,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 17, 2025 at 10:32:02AM +0530, Ankit Nautiyal wrote:
-> Currently the guardband is optimized only for platforms where the
-> VRR timing generator is always ON.
-> 
-> Extend the usage of optimized guardband to other platforms only when the
-> VRR is enabled.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index cd7bed358984..eb5aa0d7fc49 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -483,7 +483,7 @@ static bool intel_vrr_use_optimized_guardband(const struct intel_crtc_state *crt
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
->  		return false;
->  
-> -	return intel_vrr_always_use_vrr_tg(display);
-> +	return intel_vrr_always_use_vrr_tg(display) || crtc_state->vrr.enable;
+--===============8054248335347051300==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I was going to say this is fine, and I guess it kinda is because
-intel_pipe_config_compare() will allow fastsets with a change in
-guardband on !intel_vrr_always_use_vrr_tg() platforms. But I
-don't think there's any real reason to compute the guardband
-differently between vrr.enable==true vs. vrr.enable==false.
+== Series Details ==
 
-So I'm thinking we should just 'return true' unconditionally
-here.
+Series: drm/i915: Add fallback for CDCLK selection when min_cdclk is too high
+URL   : https://patchwork.freedesktop.org/series/156114/
+State : failure
 
->  }
->  
->  void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -> xe-pw-156114v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-156114v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-156114v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-156114v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156114v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#4543]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8589 -> IGT_8591
+  * Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -> xe-pw-156114v1
+
+  IGT_8589: 8589
+  IGT_8591: 8591
+  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4
+  xe-pw-156114v1: 156114v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/index.html
+
+--===============8054248335347051300==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add fallback for CDCLK selection when min_cdclk is too high</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156114/">https://patchwork.freedesktop.org/series/156114/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -&gt; xe-pw-156114v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-156114v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-156114v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-156114v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156114v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156114v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8589 -&gt; IGT_8591</li>
+<li>Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -&gt; xe-pw-156114v1</li>
+</ul>
+<p>IGT_8589: 8589<br />
+  IGT_8591: 8591<br />
+  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4<br />
+  xe-pw-156114v1: 156114v1</p>
+
+</body>
+</html>
+
+--===============8054248335347051300==--
