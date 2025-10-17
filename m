@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBA0CCD1A4
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:24:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 832CACCD199
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:26:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500E510EBEF;
-	Fri, 17 Oct 2025 13:24:27 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C73CE10EBEF;
- Fri, 17 Oct 2025 13:24:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1246520545670523879=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F7D510EBF3;
+	Fri, 17 Oct 2025 13:26:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a4qR/USj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E7E10EBF0;
+ Fri, 17 Oct 2025 13:26:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760707592; x=1792243592;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mfIJLq2RYRyQJi/I/BqBdaWZ/tysD3D2wG2gCMKP40I=;
+ b=a4qR/USjuueVFpJqg19dZGC5RCmSmMQb1u0Mmsg47M3DnD28qsyzL7JT
+ OW3qA5rPgZ/HtMZdW+J37MPufT/t/DW/0R1Ea5cbygl/vRH99aZfjSoWG
+ H+X8zNMVGt3tt5WVMpM0KFn198oyHaZVLIYPAZBbaUg3Vhik1MKUcJ/OV
+ e4OmgrAcUmhki0Jr9yZzIqlLsKE6dI129nE+RDELcIHC2T1wq2ao5x4Qb
+ sSGmM4+PcaqIY4jgnFAoMg6yPY1lEn2hFV7EpSJy5FX+vlaWz7tdRIcKV
+ FujmZnLD3KCbbkFGmxGnx/B3gTOi+L928T/A5I1RDRIMuj5ZlNRBfMY4n g==;
+X-CSE-ConnectionGUID: OPeKkv3vQfScQY37jKiozg==
+X-CSE-MsgGUID: EjInrnZySNmykkmgmEV77Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="63064078"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="63064078"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 06:26:31 -0700
+X-CSE-ConnectionGUID: HKHwRIYcRLmcbUwJzyAr3Q==
+X-CSE-MsgGUID: IpIBf20ZQQihKEtQYr9weQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="181924297"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.129])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 06:26:30 -0700
+Date: Fri, 17 Oct 2025 16:26:27 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com
+Subject: Re: [PATCH 5/5] drm/i915/vrr: Use optimized guardband whenever VRR
+ TG is active
+Message-ID: <aPJEAzXnYI1V1ARg@intel.com>
+References: <20251017123504.2247954-1-ankit.k.nautiyal@intel.com>
+ <20251017123504.2247954-6-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_share_USM_BCS_eng?=
- =?utf-8?q?ine_via_root-tile_helper?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Oct 2025 13:24:25 -0000
-Message-ID: <176070746580.27103.12434680656577524388@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251017122253.149187-1-nitin.r.gote@intel.com>
-In-Reply-To: <20251017122253.149187-1-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251017123504.2247954-6-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +70,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1246520545670523879==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Oct 17, 2025 at 06:05:04PM +0530, Ankit Nautiyal wrote:
+> Currently the guardband is optimized only for platforms where the
+> VRR timing generator is always ON.
+> 
+> Extend the usage of optimized guardband to all VRR supporting platforms.
+> 
+> v2: Drop check for `crtc_state->vrr.enable` and just return true
+>     unconditionally from intel_vrr_use_optimized_guardband(). (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-== Series Details ==
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/xe: share USM BCS engine via root-tile helper
-URL   : https://patchwork.freedesktop.org/series/156117/
-State : success
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 3da84a247193..92fb72b56f16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -468,8 +468,6 @@ int intel_vrr_compute_optimized_guardband(struct intel_crtc_state *crtc_state)
+>  
+>  static bool intel_vrr_use_optimized_guardband(const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct intel_display *display = to_intel_display(crtc_state);
+> -
+>  	/*
+>  	 * #TODO: Enable optimized guardband for HDMI
+>  	 * For HDMI lot of infoframes are transmitted a line or two after vsync.
+> @@ -479,7 +477,7 @@ static bool intel_vrr_use_optimized_guardband(const struct intel_crtc_state *crt
+>  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>  		return false;
+>  
+> -	return intel_vrr_always_use_vrr_tg(display);
+> +	return true;
+>  }
+>  
+>  void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
+> -- 
+> 2.45.2
 
-== Summary ==
-
-CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -> xe-pw-156117v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156117v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8589 -> IGT_8591
-  * Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -> xe-pw-156117v1
-
-  IGT_8589: 8589
-  IGT_8591: 8591
-  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4
-  xe-pw-156117v1: 156117v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html
-
---===============1246520545670523879==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: share USM BCS engine via root-tile helper</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156117/">https://patchwork.freedesktop.org/series/156117/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -&gt; xe-pw-156117v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156117v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8589 -&gt; IGT_8591</li>
-<li>Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -&gt; xe-pw-156117v1</li>
-</ul>
-<p>IGT_8589: 8589<br />
-  IGT_8591: 8591<br />
-  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4<br />
-  xe-pw-156117v1: 156117v1</p>
-
-</body>
-</html>
-
---===============1246520545670523879==--
+-- 
+Ville Syrjälä
+Intel
