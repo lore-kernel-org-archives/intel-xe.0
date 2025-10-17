@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA66CCCD1AF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537F8CCD1AB
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD25E10EAF4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BA8B10EAF1;
 	Fri, 17 Oct 2025 02:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lkG8H0ei";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ari2jAht";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0415F10EAE3
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D46410EAE3
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760668040; x=1792204040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VoT9dc+RC43DFBJ0V/VPheh90UzZkCjJvkMQBahSx/8=;
- b=lkG8H0eiYONs8QdmzKJ9sIiglCg10AquqQJwlWtlOplB1s5WgQj1Jafl
- wSf6GRun/oF2zDHoGZcAm3jX8xK/ZY5gkYyH5m/SZinO3d3XvG0aNuD5l
- k0ObnLhZW9fagwGK3du0HWVP/7ll/vVujg6q+aTfRh/mKT0Jk2XJE8fs7
- q+ve0ZJggWX5CO9nfU1pb5+cPHsqhI+BULzGULRR3OTuJKq7UVXZBcPrP
- 1h+PLUhPAh8L4qsoUf/Y2cKqi61vrCeWEZ0xouyGJJ572ywpKxM9Vr//2
- WjNjH7xrvNAUdtZ3R7PzUALbziTLOcjjYcRmurW88zygtWnf6CDAOCEgo w==;
-X-CSE-ConnectionGUID: NvGKXbVwTGGlMPzDfI98WQ==
-X-CSE-MsgGUID: F+2pNbdPSIaxTyjwMJXLnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739225"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739225"
+ bh=2NJDTdLFdew2GpiYkL1+XLpbkqhg1cKvUxw9e673Vrg=;
+ b=Ari2jAhtuoK7zFIMVftSikpcIU7XW9s/mpla9ENs0hZu58I1vzKDNykj
+ AV/VL2d0LvB7aSk/6k8xS7FfyQ/F54S3AVoQ+PnYH0Whh4TjryK/DfRWN
+ lBbWhEz7aYrcoaMuWtYE5UJGDsSgE059vdmcfUG0cF9qLDM4KluBEhRQC
+ 5UWHlTNACDiMFekicgIpo+sN5f483hmOWGu9lsThXmnG/uUt8QjcN8pim
+ HH/V42AWguArhiU6kBInl49W6pDRLoipPkLXHLdTjHPNSMgOtZ4pMfvy0
+ t14BeebKT+qAlpSqslbmqoCuBBO4Ps8SnuDWd8UQUdfSwmD0edaybTclv g==;
+X-CSE-ConnectionGUID: UWQz0qjUTf23yIP3SXQPHg==
+X-CSE-MsgGUID: vKBDtkckS9KckbQVCWkocg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739226"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739226"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:19 -0700
-X-CSE-ConnectionGUID: 9RsCqOVmSOuHyJnt8HDruA==
-X-CSE-MsgGUID: /2KyCparScqgm1fTTQo7Og==
+ 16 Oct 2025 19:27:20 -0700
+X-CSE-ConnectionGUID: mVUDi4PNRhSVkMWukM4aZg==
+X-CSE-MsgGUID: w5eOELYGTRyJtB6sXUKobA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089220"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089223"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:19 -0700
+ 16 Oct 2025 19:27:20 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Shekhar Chauhan <shekhar.chauhan@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- S A Muqthyar Ahmed <syed.abdul.muqthyar.ahmed@intel.com>
-Subject: [PATCH v3 21/24] drm/xe/xe3p_xpc: Add support for compute walker for
- non-MSIx
-Date: Thu, 16 Oct 2025 19:26:40 -0700
-Message-ID: <20251016-xe3p-v3-21-3dd173a3097a@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 22/24] drm/xe/xe3p_xpc: Skip compression tuning on
+ platforms without flatccs
+Date: Thu, 16 Oct 2025 19:26:41 -0700
+Message-ID: <20251016-xe3p-v3-22-3dd173a3097a@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
 References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
@@ -75,57 +73,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Current implementation of compute walker has dependency on GPU/SW Stack
-which requires SW/UMD to wait for event from KMD to indicate
-PIPE_CONTROL interrupt was done. This created latency on SW stack.
+From: Matt Roper <matthew.d.roper@intel.com>
 
-This feature adds support to generate completion interrupt from GPGPU
-walker which does not support MSIx and avoid software using Pipe control
-drain/idle latency.
+The compression overfetch tuning settings only apply to platforms that
+support FlatCCS.  In Xe3p_XPC (and any future IPs that also lack
+compression) some of the registers being adjusted by this tuning will
+not exist or may have been repurposed for something else, so we should
+take care not to try to program them.
 
-The only thing needed for the kernel driver to do here is to wakeup the
-thread waiting on the ufence, which is already handled by the irq
-handler.
+Note that our xe_rtp_match_has_flatccs() function will also return false
+on platforms that do have FlatCCS in the hardware design, but have
+compression manually disabled in the BIOS.  On such platforms the
+registers still exist (and it would be fine to continue programming
+them), but they would have no effect, so skipping that tuning is also
+safe.
 
-Suggested-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: S A Muqthyar Ahmed <syed.abdul.muqthyar.ahmed@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: Rebase on split mask per engine class
----
- drivers/gpu/drm/xe/regs/xe_irq_regs.h | 1 +
- drivers/gpu/drm/xe/xe_irq.c           | 6 ++++++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_rtp.c    |  7 +++++++
+ drivers/gpu/drm/xe/xe_rtp.h    | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_tuning.c |  9 ++++++---
+ 3 files changed, 25 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_irq_regs.h b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-index 815d5e3d22099..2f97662d958de 100644
---- a/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_irq_regs.h
-@@ -85,6 +85,7 @@
- #define   GSC_ER_COMPLETE			REG_BIT(5)
- #define   GT_FLUSH_COMPLETE_INTERRUPT	REG_BIT(4)
- #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
-+#define   GT_COMPUTE_WALKER_INTERRUPT		REG_BIT(2)
- #define   GT_MI_USER_INTERRUPT			REG_BIT(0)
- 
- /* irqs for OTHER_KCR_INSTANCE */
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 8f2c8d3ae5f8a..e5ed0242f7b1d 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -149,6 +149,12 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
- 	if (xe_device_uc_enabled(xe)) {
- 		common_mask = GT_MI_USER_INTERRUPT |
- 			      GT_FLUSH_COMPLETE_INTERRUPT;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 66707cc89ec97..ed509b1c8cfcd 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -378,3 +378,10 @@ bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
+ {
+ 	return xe_gt_has_discontiguous_dss_groups(gt);
+ }
 +
-+		/* Enable Compute Walker Interrupt for non-MSIX platforms */
-+		if (GRAPHICS_VERx100(xe) >= 3511 && !xe_device_has_msix(xe)) {
-+			rcs_mask |= GT_COMPUTE_WALKER_INTERRUPT;
-+			ccs_mask |= GT_COMPUTE_WALKER_INTERRUPT;
-+		}
- 	} else {
- 		common_mask = GT_MI_USER_INTERRUPT |
- 			      GT_CS_MASTER_ERROR_INTERRUPT |
++bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
++			       const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe)
++{
++	return xe->info.has_flat_ccs;
++}
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index e5b8a9452e29e..ba5f940c0a961 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -491,4 +491,16 @@ bool xe_rtp_match_gt_has_discontiguous_dss_groups(const struct xe_device *xe,
+ 						  const struct xe_gt *gt,
+ 						  const struct xe_hw_engine *hwe);
+ 
++/**
++ * xe_rtp_match_has_flat_ccs - Match when platform has FlatCCS compression
++ * @xe: Device structure
++ * @gt: GT structure
++ * @hwe: Engine instance
++ *
++ * Returns: true if platform has FlatCCS compression, false otherwise
++ */
++bool xe_rtp_match_has_flat_ccs(const struct xe_device *xe,
++			       const struct xe_gt *gt,
++			       const struct xe_hw_engine *hwe);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index fd58ea5e78bf6..7c140d8cb1e07 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -40,7 +40,8 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
+ 	},
+ 	{ XE_RTP_NAME("Tuning: Compression Overfetch"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED),
++		       FUNC(xe_rtp_match_has_flat_ccs)),
+ 	  XE_RTP_ACTIONS(CLR(CCCHKNREG1, ENCOMPPERFFIX),
+ 			 SET(CCCHKNREG1, L3CMPCTRL))
+ 	},
+@@ -58,12 +59,14 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG3, COMPPWOVERFETCHEN))
+ 	},
+ 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, XE_RTP_END_VERSION_UNDEFINED),
++		       FUNC(xe_rtp_match_has_flat_ccs)),
+ 	  XE_RTP_ACTIONS(SET(L3SQCREG2,
+ 			     COMPMEMRD256BOVRFETCHEN))
+ 	},
+ 	{ XE_RTP_NAME("Tuning: L2 Overfetch Compressible Only - media"),
+-	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED)),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
++		       FUNC(xe_rtp_match_has_flat_ccs)),
+ 	  XE_RTP_ACTIONS(SET(XE2LPM_L3SQCREG2,
+ 			     COMPMEMRD256BOVRFETCHEN))
+ 	},
 
 -- 
 2.51.0
