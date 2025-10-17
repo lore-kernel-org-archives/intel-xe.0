@@ -4,174 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 038BBCCD199
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Oct 2025 02:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B98ECCD199
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Oct 2025 02:45:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD29410E2E9;
-	Sat, 18 Oct 2025 02:44:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AFBA10E1DC;
+	Sat, 18 Oct 2025 02:45:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="De9VTmzE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bCl64vjq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3A810E2E9
- for <intel-xe@lists.freedesktop.org>; Sat, 18 Oct 2025 02:44:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54FC710E1DC
+ for <intel-xe@lists.freedesktop.org>; Sat, 18 Oct 2025 02:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760755467; x=1792291467;
+ t=1760755499; x=1792291499;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=sFtNlFQvKTkK6sNFuaEl8gRawrH9x2pMUC9xoOqF2x4=;
- b=De9VTmzEcho01vdARSLyEjr/bLWNhyexRZjzMJC600r3gC2qwe6HP34q
- rWgG9qiKG6KsqSWzKFoGJ/8FI6Ay+qc2WH0bDnlgfXCmMU+wEJl4hEuFe
- 9YvrR9Zwn/7mcQQXpQ16rIdW2bcJ0ySb8tgAnQ7O2FFiSTMsAhuruhIPD
- NA+hghAqorQ0U6Sw12D0yXgHKtcS2Iwjo7wLW7f9MwVGu3Nb8S+c+FWbJ
- luxZiGYP6UIzil09OSy5YHr0hqyLG1A9WkoKoeOWTZOspzjlrVzoJ5dIG
- j7azgQhSwSaDABha2Z9SRDn0rmr7+DbqVXobFGJ9+Edm2KTKSav8C882F A==;
-X-CSE-ConnectionGUID: JqtrMhzMTjOzmyY52wSpaA==
-X-CSE-MsgGUID: vHzQHUSGS1qoi689EsR6PQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="62180221"
-X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; d="scan'208";a="62180221"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 19:44:27 -0700
-X-CSE-ConnectionGUID: /+fTa1p+RriFwTD+d0ZdEA==
-X-CSE-MsgGUID: A3Er9wriRVuzYdJloV1DRg==
+ in-reply-to:mime-version;
+ bh=Y+LxwofS2+b24Bt9x9gRuO0adEcmE15D/SPuKZTU9ZQ=;
+ b=bCl64vjqYfgizhLVlvGkOVdacGvdEtC48+5Zyi0sxb0V3zmb6Nv/dVtr
+ X9WVK3u6UZmV4YAhn5ExRvkbwiyuUPGnAQQtuml3XId8SazhNLMOmJ58U
+ ggc08DXWFOx+mggYHvMyyv0P93bVO1DYbk/WKmC2wztYnD66CtfxO5fEt
+ aerIiQitE5xO/TNPjS//jTKeNnoqwZ8YGQUbxzr5wT5Ol78pFM+M6vPSg
+ D+jkDzn1WZlzHQrA/cYH8m33BdM4jYq2tEp6Gp1PmRgmcDyiF1VCWkJHp
+ p+D0sgr/danDmCYPKbqFipanR9o7k3cZEcsS9AFcpXB0BdR3QucSjW5RI A==;
+X-CSE-ConnectionGUID: QUqEsWO/R8qVYCd0WVud1Q==
+X-CSE-MsgGUID: JYprpBjATjiylL7ho9RlUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="85588739"
+X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; d="scan'208";a="85588739"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 19:44:59 -0700
+X-CSE-ConnectionGUID: YC2M1kFKQRO/zSTW9TlY5Q==
+X-CSE-MsgGUID: RlfIFcwJTWK7Saa+bOv22Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; d="scan'208";a="182567541"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 19:44:23 -0700
+X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; d="scan'208";a="206581816"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2025 19:40:21 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 17 Oct 2025 11:22:06 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ 15.2.2562.27; Fri, 17 Oct 2025 14:54:37 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 17 Oct 2025 11:22:06 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.41) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.27 via Frontend Transport; Fri, 17 Oct 2025 14:54:37 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.18) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 17 Oct 2025 11:22:06 -0700
+ 15.2.2562.27; Fri, 17 Oct 2025 14:54:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hc/WbPkVviAaFrYiF/bYR75tHieEiR6URhU4Ib3jk56j3g9EFaz8coTrVOeq7JNRYYMJu7AxGj7oCpkstdXlcl+Em8+XHlQSjSElNFm9SsMHHIzgNbKukblDrqJCyH2b2JM5NvHJsElV56SV+3ECSKmZry5CNLgMoGaRDM019h3AboGFgmLl93onPQ706A0XOof1Qb+zkcc2dH84up6A46rdAXbRXTNwKJp9M87DeI9AJ2Gl4R8jN7hoDEgeoHweiexsWELu3M/NJ5lddYxbkcLkidfPvdgxQbrLVzJEDgM4sdj0HCnql0OHScTOOhJZvIoyFNA4KcecOJ8V2ipx+g==
+ b=SpAvJFv2wI7/Ns7nNvv66IzvUMNJnvxPNCgQQKDpsKxA79etYnqPsKDOKJWvCgWr2LUiu9XvIGzPK+NVnO62cPmXtnNEBD/rM4wMOCfRxgkD+C9WJk5TswSQDvLKha9WAgn9EHbqLcrtROB95zdtvzY29yjwmfKlCOFX9S6XRL6DNqGH8h5NdHdSBdGeNai5ba5y/x35WKaPGIQp+W26VRMqL8YgLzoxlKgxEAnC2c2IxZ0Rtwp4yCtZ8WTGzjsfhI/5fKMPmwHpPe/Ucl+NyATzpJ1K1Ww3oURW68hbTfHz+flEUjNmnPMN/MkG65lk4/5wqcSmxLlbQQeGe8/Krw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z7WnRoy2vPsX87+CDk7sN1VuvnX+stwnl90nmBJdAJw=;
- b=RTOntyhmIIDrjoB+8B+FvY+BAmJ2rN2/oP1tZCAS2tIEWx9qgx7nzrtv//Amvgb59TIsFQJSo+mL485JZoqhHqw7paS8eAOSOEUApeeCxkPoBrQryBZlRxlZZSP7bmbZ4nvv3qRXNI0dW3RUvkZu83tb52Jl1UyEwbm5qdR7uY6XWHyTGw80PFhwgOmVC/ljkM3fqLh0UBAVMQT/b/6AHwSjrYKa30zAph0Db6CwtCk48KaBnfXdIBLFfr2gKCR9ALpmvhhlWIRwyPq4TUeCm4L6n5mobr7gftkh7C16OMoBDITRpp9rCBY0O+9YWcGK1NuXXelt4aQGYR/IQDVr8w==
+ bh=5gBmT8BIMJ92zwu7n4p8hBewcNz9ITrHW+1y51MsFfA=;
+ b=qwvbS0KajWzyrgqhe0iTbtw1qwFX8H6NBriewytxB75IdYsOvr2fdkg4FUxbk1EdWb2upmSVFyehQpstcnHBNu5SFoxbBZdyGs5ApSWEwRWRIErQzz00cgVIpzRVI2zPJzT5uRckqrl09zxyaXFfocA3SK51kuUkqGjXDPbXUQdry8RH0bFdLwHOxGHfKrkJJjAzfchmTE2v5a6xIikW5jFr8aoFBxQkPXZfVh2DYXAx5XuNcMvbsStJlvJ0q4d6CjmFn4tvBCmh76zPXYO8Od0gStCdWy94oylGJYmAgkcQzMq/gEqJGunK3e0W6pPj/PjpxBPwBV3UqN3KcF771A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by DS0PR11MB7360.namprd11.prod.outlook.com (2603:10b6:8:136::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.12; Fri, 17 Oct
- 2025 18:22:04 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9228.010; Fri, 17 Oct 2025
- 18:22:03 +0000
-Date: Fri, 17 Oct 2025 14:21:59 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-CC: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v7 1/3] drm/xe/migrate: Atomicize CCS copy command setup
-Message-ID: <aPKJRxvJzdvEZ69f@intel.com>
-References: <20251017141226.924-5-satyanarayana.k.v.p@intel.com>
- <20251017141226.924-6-satyanarayana.k.v.p@intel.com>
- <aPJSNo8XM3cpGZCb@intel.com>
- <78cc87ee-6d2d-4a85-9e42-7836b97ea435@intel.com>
- <aPJgP9ShLrvSeXzU@intel.com>
- <34f2d811-6d95-450b-978f-e4fa2d21c986@intel.com>
- <aPJ0I7V4srCj6qo4@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB7704.namprd11.prod.outlook.com (2603:10b6:a03:4e7::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
+ 2025 21:54:36 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9228.009; Fri, 17 Oct 2025
+ 21:54:36 +0000
+Date: Fri, 17 Oct 2025 14:54:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Nitin Gote <nitin.r.gote@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>
+Subject: Re: [PATCH v3 1/3] drm/xe: add VM_BIND DECOMPRESS uapi flag
+Message-ID: <aPK7GcLm5nYVHUy/@lstrano-desk.jf.intel.com>
+References: <20251015104709.44476-1-nitin.r.gote@intel.com>
+ <20251015104709.44476-2-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aPJ0I7V4srCj6qo4@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0110.namprd03.prod.outlook.com
- (2603:10b6:a03:333::25) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+In-Reply-To: <20251015104709.44476-2-nitin.r.gote@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0275.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::10) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DS0PR11MB7360:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32b680d7-f927-4cbf-22ba-08de0daa121c
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB7704:EE_
+X-MS-Office365-Filtering-Correlation-Id: 009c9b78-f19e-4007-0019-08de0dc7c33e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?O7MvAP3m4Slv4mcdHAOtnexaG8tvw9acEGsZr68fTfduMtcYCJEEKm+8lg?=
- =?iso-8859-1?Q?FPxlp0lanLGpQWby6Deo9F209Pl/cczAnFjDv7EsrIk+MTusvx+N0Tm2o8?=
- =?iso-8859-1?Q?cZuIvO3fa7EDRydvQ6yuwKSTWuh3zrrgIk6RW1FNApxL+J3UDJs60el9l0?=
- =?iso-8859-1?Q?QQnEjHiNLe4gUlmB1ZmDCMVy3N3ENaG6WJust0UStu/dQ5ZR3xYODecOgz?=
- =?iso-8859-1?Q?YIZ8OpEIFSYh5VX6n2xpKMflQ3AA9sH3Vm/PpKz4LqqtQv0/Jfm65vPfDv?=
- =?iso-8859-1?Q?XmG4AfuHXItjMyBPV6VmnGA26c35okx+/W4A0PFbu4FZzxH3LolMx63FLj?=
- =?iso-8859-1?Q?2a1g6urRu54BrgZRNBcXbE4o2BkyjVcOlTYrbq/bA+P9jF6FINPbG6J7rZ?=
- =?iso-8859-1?Q?PJInH8bhIhtNG151oXOHlHqj5PA5JDb0mhZ1atMlazKEliiTIM2NyRKl2p?=
- =?iso-8859-1?Q?wEn6/TiKoBOXwhHkB9qm2pepRbiuc6M2/BTVokzkvrXMRPl4rSN+xjPg3l?=
- =?iso-8859-1?Q?jcPcpKOKCznOVaHbkUGRnNV70r4PEzJ4e5pM476PFIWiYTTOxSazbk/nYb?=
- =?iso-8859-1?Q?N3xlYSZozl+R/d6npCYZZT6YRz3wevVmp6LYWN1UVrsl3IeaO0IdasMnuI?=
- =?iso-8859-1?Q?WBJS94YJLxy/uRt69PHq0mIauwGmb260SesEIiNwdag2RnBK2m2md6hoEj?=
- =?iso-8859-1?Q?1Adac/531wTxVHwRvCkwTuASHCn2QzWAb9YALU2onrqt4VZUWK7avADWk+?=
- =?iso-8859-1?Q?Q/TRYS954s+W0FnVo11h6YfLWYEcDjZ9kj/qO4DLCy3+T/tIYMaczlK3Vv?=
- =?iso-8859-1?Q?5ljniqROgciZEo/tr9FhA9jnNZ8Qym4KhhrSOUIDE4tDco7vmJ80SlwS5T?=
- =?iso-8859-1?Q?DQTqrnZMax2RhltuzowPXdjUYEdD+3Gyu6U/iTrK6HM7tqCDM9gX7gZaEv?=
- =?iso-8859-1?Q?SEtQRfGrzQKkzJ6Idwxc+3C2fRch9P4eKjbTtKEwXIThD4DI/OVcV1S3g3?=
- =?iso-8859-1?Q?l1/E8n7zrXAnJUriWwlj4S2vMSsKcyAx6gDKXsHNt61VN5LoTh+YRTfBVI?=
- =?iso-8859-1?Q?M+FNvOyCFxYvxz0Ge/uEDH9RQcmV/qqcsPC8UO42bFiPeV/6qMBzmqmLmB?=
- =?iso-8859-1?Q?fHDtIouAxWwva6rEPcuXvywQYQjftnP4OvHpEiVGfkBJrNkzVNEHB+mbrN?=
- =?iso-8859-1?Q?zuaRUgyKhi5LtJKM+erT9w4ASzCDeENXlvTPDHuSprzuX4tS9NdF7B/PA4?=
- =?iso-8859-1?Q?mSCt62d5/s+z3qo3L70FzzLuDWpUC0iYDvaTadG0qiHjXvEdAgMNwSxmg6?=
- =?iso-8859-1?Q?g/lfds7uAoud0qAUsOAoLTFbXrjjW/h7FhlkYP5IuJE629tnqVXKB6NXQl?=
- =?iso-8859-1?Q?AidtukVpvC9h5K3hcFzDX4xGUgJWfNvq90mVJzFoO9tcuXo2NZUbPu5Xnv?=
- =?iso-8859-1?Q?1gD+jMXCN6Ex4HU4T5XfRmu194/j3kK3hlau7ZSrJoJt1uCcL3/NraO1dY?=
- =?iso-8859-1?Q?7B+tcula4jQMkBy//1BU3O?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?HGkO3C/oT1l89CWGzJegueKCu84G1RjaKbkThYgkPcR4vKdGzWNdfLaSbfyY?=
+ =?us-ascii?Q?85j8QwalZZ47+YCmHJDclQqnWKkSLqmbdloqYRsUWqYrbCPt65mpd8OEjXRw?=
+ =?us-ascii?Q?OaY2FBG+4oBmliJ6Tz2MD8VmWfjQmbCnrwhioOqCk/X+tvwZ9+XLFtvmHJry?=
+ =?us-ascii?Q?SFInkXo7O4xzvh08He/4Su1z2/qWyKG0oXPWR9CA1K6K1gWceC6E0XKRHXns?=
+ =?us-ascii?Q?hmh0s3ceNHnFbTYTLw1FSrdPJX8nOh6E0rJ4fqdWd6qBpST82DYgQOqkZAsl?=
+ =?us-ascii?Q?Ochq9zFD/zwIitwMX8q8Rvuzon2krGWQee14rJ7VBqhk6mqbcWDpp7DXwvqV?=
+ =?us-ascii?Q?ciu8anV2F7OUFUJrs6qBtzPWgOiyK6kzM25NctemF99dIf2Gc/m4DYL3rIPu?=
+ =?us-ascii?Q?DAGtr5m62lVHZ+Lc3F9WD5n4lG7RXCjK0vwtWw6hfEEwzF7yxKrWspD00JCp?=
+ =?us-ascii?Q?Nnqy7yOGV7/EWTYkhLE4MHhjk0ZG3tC1SjNwGLmiHqerVAl0nxhsR7qibo+c?=
+ =?us-ascii?Q?24LqnpYRDvlUiBnXNDjLsXQuxo2WVWkMK8WDbQWPHE+fU99KkJW75bQQkWRs?=
+ =?us-ascii?Q?n42ZzvAJlmaLFDf4qqEkHY5Xl/L6y/7JJFK7TtmfUThQO8v5jBPYqnAl2O/S?=
+ =?us-ascii?Q?JfBIJ+uDQ+HCUUcffHI9RKJamgy8Zak0nh4IERxCaaD7WatgJxlbjeN+N101?=
+ =?us-ascii?Q?abKGsOpvJ9a/HO2sM2ebyIg1LUncvCQRudi0IROsT2wpGDOrpa8vKF/0SR4c?=
+ =?us-ascii?Q?vujQPrhEGTpPdCddCWLqmza1xgovbkJdrFLrZiqxaMsCdK0G+4ZlzFMfNvWh?=
+ =?us-ascii?Q?cPh1GoJYIDpU3+a/t8qy94CKGSHNTZ0bbHlzJmBzkN8rERI8gGFVLORK6028?=
+ =?us-ascii?Q?5Q1a1MxKZGIZl+rsYC1+toSeCX/DH1gpSyIl8z+I7nWghdw5hLlo81NQPw+Q?=
+ =?us-ascii?Q?dxAY10KoTdkQDZVJ84+sIk1HHswLstM0ukkdZCSoLXwg2VtRbbDhN4T5T1nS?=
+ =?us-ascii?Q?2Bb4RTAJPEmAmkCZwZRZYiIGAgOA27OyuUbMmZtaGVy8SaPNv0jBde7fRmCX?=
+ =?us-ascii?Q?1DjBKI7LyUHdVzR98XMmBdB7UOGgEYisN4EqVUlvXLM0xEm5GWjz8kBhqoyN?=
+ =?us-ascii?Q?P1na+hq+eoasCLl72854iVoulPTLxq0vzgTeXD4EEb8i+UIKhbQFT/v89W+3?=
+ =?us-ascii?Q?6hzFlC8zuyHViu0el49Wk411mNV0QSjKilChtsN0uQ36z3jNGjqWWpriPReS?=
+ =?us-ascii?Q?BE6tXDWJbW6f4CvjNSuVqtRrljVcjBLD/Np4XM5d6SO9+RqctpilIybOK0mv?=
+ =?us-ascii?Q?M+aTl56NMGyytnFpe1Ga7ut0HAX4pkoETynCSFjedqEh5C0732sNPUkTrJXg?=
+ =?us-ascii?Q?Mi7v8lxaN6V7j9IQ0gXdj3VtQnslAlamMLUstMY7Fm6FrWkzulfSFEJje8uH?=
+ =?us-ascii?Q?+FycvtDOROq8RcFVAsJ5Cao/3Zthv6hJ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?p6SJDUCy+WLa4gZXIqhHiCqi2ttq4aW0QAD6auYucZiVqG4dLTwl5G7lwQ?=
- =?iso-8859-1?Q?jJYheVUYLLc8tHF5Hm+UsedkdFBGIb3zPo03NV5Tm/+wtuIhJWOZ67x7of?=
- =?iso-8859-1?Q?FSZDZO2y0fqnV6Rgt9lAABgLtltAXw0aDgcyendityGeYUcpk5GHmHLt3W?=
- =?iso-8859-1?Q?UWL8bcWdblF57fUHotmi2XcqUS5ogwfABdJb+HX/FuA5J3BeVxYLpjr2/z?=
- =?iso-8859-1?Q?tUflOKVLASzpAvrJpjO98nS6gG8yTtzQOE8SPSdxPLWe3ne+/Rp/xB0bQO?=
- =?iso-8859-1?Q?rvbf0XKdiZs3mVjL/CzG6tBJMq9VQJuCih422iKYrRjrEp/eHvhDzlkwpQ?=
- =?iso-8859-1?Q?aJIHEwkLruDjiQokxfANKznAPaaBLos8/NyW1OkGAECwpEbBneuijSNTY4?=
- =?iso-8859-1?Q?Yc2EfYNZURjv7nZ/Oy6gjNMQYb6e9HFnXnpysqtBW6dx42zmcJ98annhE7?=
- =?iso-8859-1?Q?I3/DcuRut9NS3afK6GAG6XH0cAclMUiTAaqLgOzvajVRblPH7rVyYlxZ5T?=
- =?iso-8859-1?Q?WilPbzq1iUuEj1RaS75/LpCFhy4H6qh6KbqdL/CikC+mpqXZkAPmvys8Px?=
- =?iso-8859-1?Q?0FZsYVD8X1kGfZWZadU0dFkBC8jHN0ml2pqlwjoHC6BZ8duZ5JzDSv5p5M?=
- =?iso-8859-1?Q?x1ib+TirQ119kS3km8Hj8KU5mcXqLnoimGIIx9Z1RRRwLWT0H/DyFcbBAt?=
- =?iso-8859-1?Q?1MTmGlLf2DQbTPOnaSULX+WzZyFOopfilovDx4RwO26L43WTZ93/w3yFgC?=
- =?iso-8859-1?Q?nqtked89hNFkze8Dw05fm7DOhNM3CwUGY+bSbqfNJATbq3QzQpwn26OKlr?=
- =?iso-8859-1?Q?PuLKvGyk4k1TNWLfpmpGikr4dLa1eZF9P7ZZ9BgtiFcsv+6NZjhYccBD0R?=
- =?iso-8859-1?Q?ayy+6kJddHgFLElobk02EvT6ckRwpvE8XcxWZwwu63rApk/Kw1GnCdzZ+G?=
- =?iso-8859-1?Q?7VuVzbukyuXDjzuyuZCIag6m9ieCdY2+ZnMZp5NCO83OZsfoyvLOja1wPL?=
- =?iso-8859-1?Q?fRZm5W8MyzLtz8wCvDt/QI5bRo4ZkSUFuCCHJ3diQnER0hGLeqU+Odkn1q?=
- =?iso-8859-1?Q?yWFOUkn6TykaRV1wNDBTQcqSDavOOKAMRKDEXYrXjPY/UrOQb+P3uMPqhf?=
- =?iso-8859-1?Q?mc+oWf3vouJMnhkXOutT6K1MwVnHsmrGQhwPdoP8rVZuhpJ3P+7DYuwXlU?=
- =?iso-8859-1?Q?OGE62BiiuyUnHdqXTvKDSNpQMvbR0hNhLapLTmeWjpr/uf14cQACOc8DkJ?=
- =?iso-8859-1?Q?yQtmLABMmobR+BX0wSQR8cpqseSw16x9I93E3ModFUK3xxfRPbDr+2QngI?=
- =?iso-8859-1?Q?DO37hFyz8lOpYQU/VSJn9PoZpxBvWeu4rS0Uy7CzCe0R31w5SUYnauroS7?=
- =?iso-8859-1?Q?JcrpTFEiua1ZccOkwq9XRp5yF3DaLuhSQreXGYSRZzBjs4JejnHSSTKbMc?=
- =?iso-8859-1?Q?fkfVKrfd2x9QtzpzRrISZfQRReW08SC7z6Jsr9PpF9w3QUCJLNAPIZREd/?=
- =?iso-8859-1?Q?PGg64aKpF6xfr1FCJ/YOQhLFVZQyVAvUDD/tpEzdDBmnbpgmKdoE6gqnVe?=
- =?iso-8859-1?Q?8byGtWqne0w5Up8Rz9e9mTS8gBDJZ7Hgf7ypu6B6U7TZ1tTJiZ6plSYdX7?=
- =?iso-8859-1?Q?tRJhBOn6DfR57HgCv4bX/pH1ovlAvzOI/k?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32b680d7-f927-4cbf-22ba-08de0daa121c
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3nWDeeazSIzPute6vTYJp7zekxByctBur0BNR2Rv/bj8XJew0ZK/mOJnbziA?=
+ =?us-ascii?Q?8I84wTMxblqW5CHIyXwG48B1Gke6Q1xm2Gxqlg5NTP3APmwZB76gK+sfY0FX?=
+ =?us-ascii?Q?XK3PRMWop+PUcZ04viSrDRjAvXPxZHZag0E+o2Nv7SKY2rDyraFtuTJQcbMa?=
+ =?us-ascii?Q?ZQJLiX55mN1cPK94bmqdDmCep8I1Fx7My5DHttris4et/57SpIM8LVoLUzHa?=
+ =?us-ascii?Q?Q4YXk+QHCvE5pmc7DtUmHDv/uMRvfjdizKbsetDOYv+pWLLEFA5x4T3D9BIi?=
+ =?us-ascii?Q?9t5xUGcdISD4DAylvhqOwq0zbHIpMKu8fBGW8mfr5v5xx5Dhym1+8DvLUg6E?=
+ =?us-ascii?Q?gwTU31pzTcG/0yrbKvvYpPErPdvbAjsK3THNDTI7qRsuwCtUKCsuTquP01NS?=
+ =?us-ascii?Q?G9FMXTduUjBnsAXrPHj5rM8ZqHs5E94Ff+B8izWf9FRoStJGQqaqaf8HvHNT?=
+ =?us-ascii?Q?8SKRAFlMkUc96JI5YMNK7IecpwLgwRQpOV5MVn1P+9OV2QCZCyVLeGUKrcs4?=
+ =?us-ascii?Q?+3Xgfu61vUF1Qf+vGEE3rkmctbCjZEXdzw9lrRVaRmUJSDzAN+tB+HRzk3zy?=
+ =?us-ascii?Q?jL5QOku2DwtnSjWVaaSOz8HDZ7vXtSZM2nXa9Ddt+6v5va3Yx8nx8FtpSUF1?=
+ =?us-ascii?Q?N+F1euz3PZGtmCvRePTkb1jqfxLr3ZuetsiEoQfYHepbbSRHtd9BfTEX6o1l?=
+ =?us-ascii?Q?sQem3A6pHZ/yMzRnqcujKWZgI4V9WMNgPHzIk6DJDKhC1gOhtQ36dF6/B65e?=
+ =?us-ascii?Q?OGoXTtoT1u0zp1LddEtQM0vKkQfcQ0VEu0Mw35B/lFmkh/Mt4lIui1sfc6MD?=
+ =?us-ascii?Q?NTc7JhEm318REGnI0NJDYwOggBgyEo6LIx9lEGIuhBzY7SAueXSqSjR70Vkx?=
+ =?us-ascii?Q?WIRF2x+8194chyS+OwL0Bn20vafzZfrtNYZMA4F4J1ws3Axs9XJNn891B+hz?=
+ =?us-ascii?Q?y4wjytVXMvJiYNchwGMzUs6et0nnIhxur26/dyVG2s6yg2RODxejdNMtIPaW?=
+ =?us-ascii?Q?yT/gEcAMlquKqWL29IBul505F0g7BDXGnO49okdvEIDq27wmjKIZ6dOcbift?=
+ =?us-ascii?Q?8i6d1ctXg5/9HG/MMsmac3bj2KTmpvaW2EBnnK2URnv86ehvI2MIpKigYooF?=
+ =?us-ascii?Q?bmfH6SihIF2mstm3F7ui6auJPCcVOxafVA68QoBIQUwi5RJho1p8BtEjI39k?=
+ =?us-ascii?Q?6hsZKZOVyQlvnNzgH6LipvwxzREIscfST1bOij+fffq7WkRJVUvzYrw+jt8i?=
+ =?us-ascii?Q?CGOpQf9cf8/Hss/DPfeb3apP9m/B5CowEMivEI2L//NB+PUV6+6opFmwwJCo?=
+ =?us-ascii?Q?hF/+x3NzgjZagB0CLpamc2oOGiTrnFkpr65FkTuFJeV5NPLigrWB2Cx4bCPh?=
+ =?us-ascii?Q?aPCYv/UC2u2r+HSVtN/i0EnVfG/MzOWkCDy00kBKJbW+99/kZrYDlPrHsdyC?=
+ =?us-ascii?Q?k1n7b6w/Cie98f+Kl/rXH42ghS1X9rSoQ2JcqnBqfgB3lRUMToMqVQbRzlze?=
+ =?us-ascii?Q?4XH/mv8+Un80nnehuX1TNA8oQcme9J2xZ/rGDTgOihfkWY/Pqgl98CYs9aCi?=
+ =?us-ascii?Q?xzMRY0fDNILAZeJuJHU/rML9rwcI3mrKpCLBNZiWGPEe8/GLSDKbyuJZkpe8?=
+ =?us-ascii?Q?vg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 009c9b78-f19e-4007-0019-08de0dc7c33e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 18:22:03.5036 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 21:54:35.9613 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k6WoKATGhpLXwcdt3r7meK7H/mGkVTv1y6Rrc4Y9lOwpM1z5wkgiYwQaZ4ohc9eueHXxy7mRun8Rn3gQZEJkQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7360
+X-MS-Exchange-CrossTenant-UserPrincipalName: cLgDXuWclWMD1Ji7NokDry2jt3St17+q7VH61HVHf4gaBaRoYRbrfbhCKukC8FGm1GgK6Ky9tlV4GdrV7hnPeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB7704
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -187,313 +176,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 17, 2025 at 07:51:47PM +0300, Ville Syrjälä wrote:
-> On Fri, Oct 17, 2025 at 09:59:48PM +0530, K V P, Satyanarayana wrote:
-> > 
-> > 
-> > On 17-10-2025 20:56, Ville Syrjälä wrote:
-> > > On Fri, Oct 17, 2025 at 08:46:37PM +0530, K V P, Satyanarayana wrote:
-> > >>
-> > >>
-> > >> On 17-10-2025 19:57, Ville Syrjälä wrote:
-> > >>> On Fri, Oct 17, 2025 at 07:42:28PM +0530, Satyanarayana K V P wrote:
-> > >>>> The CCS copy command is a 5-dword sequence. If the vCPU halts during
-> > >>>> save/restore while this sequence is being programmed, partial writes may
-> > >>>> trigger page faults when saving IGPU CCS metadata. Use the VMOVDQU
-> > >>>> instruction to write the sequence atomically.
-> > >>>
-> > >>> If this whole thing is so racy why don't you always add a new
-> > >>> BB_END after new commands, and only replace the previous BB_END
-> > >>> with NOOP _after_ the new commands have been fully written?
-> > >>>
-> > >> We maintain a suballocator for batch buffer management, with size
-> > >> proportional to system memory (e.g., 16MB suballocator for 8GB SMEM).
-> > >> Batch buffers are dynamically allocated from this pool based on the
-> > >> number of active workloads. The entire suballocator region is submitted
-> > >> to hardware for CCS metadata copy operations.
-> > >>
-> > >> We cannot insert BB_END commands after each individual instruction
-> > >> sequence because additional GPU instructions may be appended later.
-> > > 
-> > > You *overwrite* the previous BB_END after the new commands have been
-> > > appended.
-> > We do not know where the new BB allocation will be. It may not be 
-> > sequential and every BO has a BB. BBs are allocated and freed so often 
-> > based on BOs getting created and destroyed. So, we can't use that approach.
+On Wed, Oct 15, 2025 at 04:17:07PM +0530, Nitin Gote wrote:
+> Add a new VM_BIND flag, DRM_XE_VM_BIND_FLAG_DECOMPRESS, that lets userspace
+> express intent for the driver to perform on-device in-place decompression
+> for the GPU mapping created by a MAP bind operation.
 > 
-> Hmm, could perhaps use second level batches then. Each BO would gets
-> its own second level batch, and the first level would just call them
-> in sequence. Or is this already running as a second level batch?
-
-This I'm not sure...
-
-Matt, do you know?
-
+> This flag is used by subsequent driver changes to trigger scheduling of
+> GPU work that resolves compressed VRAM pages into an uncompressed PAT
+> VM mapping.
 > 
-> It might also be getting a bit complicated I guess, but at least it
-> wouldn't have all obvious problems of the SIMD stuff:
-> - looks like it will explode on non-AVX capable x86
-> - will be broken on other arches until someone implements the equivalent
->   code (assuming the arch has such an atomic copy instruction
->   and supports in kernel SIMD stuff sufficiently to use it)
-
-This is Pantherlake only. And the reason why I asked to add a
-check with error/warn for IS_DGFX()...
-
-which by the way is an assert... I still don't believe it is enough.
-I believe a return with warn_on seems more appropriate to really
-never try to run that code in case of a big future mistake.
-
+> Behavior and semantics:
+> - Valid only for DRM_XE_VM_BIND_OP_MAP. IOCTLs using this flag on other ops
+>   are rejected (-EINVAL).
+> - The bind's pat_index must select the device "no-compression" PAT entry;
+>   otherwise the ioctl is rejected (-EINVAL).
+> - Only meaningful for VRAM-backed BOs on devices that support Flat CCS and
+>   the required hardware generation (driver will return -EOPNOTSUPP if not).
+> - On success the driver schedules a migrate/resolve and installs the
+>   returned dma_fence into the BO's kernel reservation
+>   (DMA_RESV_USAGE_KERNEL).
 > 
-> > 
-> > -Satya.>
-> > >> Instead, a single BB_END marker is placed at the suballocator's end to
-> > >> terminate execution.
-> > >>
-> > >> This patch ensures race-condition-safe CCS metadata save/restore
-> > >> operations by guaranteeing atomic writes to the batch buffer, preventing
-> > >> corruption regardless of when save/restore operations are triggered.
-> > >>
-> > >> -Satya.>>
-> > >>>> Since VMOVDQU operates on 256-bit chunks, update EMIT_COPY_CCS_DW to emit
-> > >>>> 8 dwords instead of 5 dwords.
-> > >>>>
-> > >>>> Update emit_flush_invalidate() to use VMOVDQU operating with 128-bit
-> > >>>> chunks.
-> > >>>>
-> > >>>> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> > >>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > >>>> Cc: Matthew Brost <matthew.brost@intel.com>
-> > >>>> Cc: Matthew Auld <matthew.auld@intel.com>
-> > >>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > >>>> Cc: Matt Roper <matthew.d.roper@intel.com>
-> > >>>>
-> > >>>> ---
-> > >>>> V6 -> V7:
-> > >>>> - Added description explaining why to use assembly instructions for
-> > >>>> atomicity.
-> > >>>> - Assert if DGFX tries to use memcpy_vmovdqu(). (Rodrigo)
-> > >>>> - Include <asm/cpufeature.h> though checkpatch complains. With
-> > >>>> <linux/cpufeature.h> KUnit is throwing errors.
-> > >>>>
-> > >>>> V5 -> V6:
-> > >>>> - Fixed review comments (Rodrigo)
-> > >>>>
-> > >>>> V4 -> V5:
-> > >>>> - Fixed review comments. (Matt B)
-> > >>>>
-> > >>>> V3 -> V4:
-> > >>>> - Fixed review comments. (Wajdeczko)
-> > >>>> - Fix issues reported by patchworks.
-> > >>>>
-> > >>>> V2 -> V3:
-> > >>>> - Added support for 128 bit and 256 bit instructions with memcpy_vmovdqu
-> > >>>> - Updated emit_flush_invalidate() to use vmovdqu instruction.
-> > >>>>
-> > >>>> V1 -> V2:
-> > >>>> - Use memcpy_vmovdqu only for x86 arch and for VF. Else use memcpy
-> > >>>>     (Auld, Matthew)
-> > >>>>     - Fix issues reported by patchworks.
-> > >>>> ---
-> > >>>>    drivers/gpu/drm/xe/xe_migrate.c | 112 ++++++++++++++++++++++++++------
-> > >>>>    1 file changed, 91 insertions(+), 21 deletions(-)
-> > >>>>
-> > >>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > >>>> index 3112c966c67d..e0be7396a0ab 100644
-> > >>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > >>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > >>>> @@ -5,6 +5,8 @@
-> > >>>>    
-> > >>>>    #include "xe_migrate.h"
-> > >>>>    
-> > >>>> +#include <asm/fpu/api.h>
-> > >>>> +#include <asm/cpufeature.h>
-> > >>>>    #include <linux/bitfield.h>
-> > >>>>    #include <linux/sizes.h>
-> > >>>>    
-> > >>>> @@ -33,6 +35,7 @@
-> > >>>>    #include "xe_res_cursor.h"
-> > >>>>    #include "xe_sa.h"
-> > >>>>    #include "xe_sched_job.h"
-> > >>>> +#include "xe_sriov_vf_ccs.h"
-> > >>>>    #include "xe_sync.h"
-> > >>>>    #include "xe_trace_bo.h"
-> > >>>>    #include "xe_validation.h"
-> > >>>> @@ -657,18 +660,68 @@ static void emit_pte(struct xe_migrate *m,
-> > >>>>    	}
-> > >>>>    }
-> > >>>>    
-> > >>>> -#define EMIT_COPY_CCS_DW 5
-> > >>>> +/*
-> > >>>> + * VF KMD registers two specialized LRCs with the GuC to handle save/restore
-> > >>>> + * operations for CCS metadata on IGPU. The GuC executes these LRCAs during
-> > >>>> + * VF state/restore operations.
-> > >>>> + *
-> > >>>> + * Each LRC contains a batch buffer pool that GuC submits to hardware during
-> > >>>> + * VF state save/restore operations. Since these operations can occur
-> > >>>> + * asynchronously at any time, we must ensure GPU instructions in the batch
-> > >>>> + * buffer are written atomically to prevent corruption from incomplete writes.
-> > >>>> + *
-> > >>>> + * To guarantee atomic instruction writes, we use x86 SIMD instructions
-> > >>>> + * (128-bit XMM and 256-bit YMM) within kernel_fpu_begin()/kernel_fpu_end()
-> > >>>> + * sections. This prevents vCPU preemption during instruction generation,
-> > >>>> + * ensuring complete GPU commands are written to the batch buffer.
-> > >>>> + */
-> > >>>> +
-> > >>>> +static void memcpy_vmovdqu(struct xe_device *xe, void *dst, const void *src, u32 size)
-> > >>>> +{
-> > >>>> +	xe_assert(xe, !IS_DGFX(xe));
-> > >>>> +#ifdef CONFIG_X86
-> > >>>> +	kernel_fpu_begin();
-> > >>>> +	if (size == SZ_128) {
-> > >>>> +		asm("vmovdqu (%0), %%xmm0\n"
-> > >>>> +		    "vmovups %%xmm0,   (%1)\n"
-> > >>>> +		    :: "r" (src), "r" (dst) : "memory");
-> > >>>> +	} else if (size == SZ_256) {
-> > >>>> +		asm("vmovdqu (%0), %%ymm0\n"
-> > >>>> +		    "vmovups %%ymm0,   (%1)\n"
-> > >>>> +		    :: "r" (src), "r" (dst) : "memory");
-> > >>>> +	}
-> > >>>> +	kernel_fpu_end();
-> > >>>> +#endif
-> > >>>> +}
-> > >>>> +
-> > >>>> +static void emit_atomic(struct xe_gt *gt, void *dst, const void *src, u32 size)
-> > >>>> +{
-> > >>>> +	u32 instr_size = size * BITS_PER_BYTE;
-> > >>>> +
-> > >>>> +	xe_gt_assert(gt, instr_size == SZ_128 || instr_size == SZ_256);
-> > >>>> +
-> > >>>> +	if (IS_VF_CCS_READY(gt_to_xe(gt))) {
-> > >>>> +		xe_gt_assert(gt, static_cpu_has(X86_FEATURE_AVX));
-> > >>>> +		memcpy_vmovdqu(gt_to_xe(gt), dst, src, instr_size);
-> > >>>> +	} else {
-> > >>>> +		memcpy(dst, src, size);
-> > >>>> +	}
-> > >>>> +}
-> > >>>> +
-> > >>>> +#define EMIT_COPY_CCS_DW 8
-> > >>>>    static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
-> > >>>>    			  u64 dst_ofs, bool dst_is_indirect,
-> > >>>>    			  u64 src_ofs, bool src_is_indirect,
-> > >>>>    			  u32 size)
-> > >>>>    {
-> > >>>> +	u32 dw[EMIT_COPY_CCS_DW] = {MI_NOOP};
-> > >>>>    	struct xe_device *xe = gt_to_xe(gt);
-> > >>>>    	u32 *cs = bb->cs + bb->len;
-> > >>>>    	u32 num_ccs_blks;
-> > >>>>    	u32 num_pages;
-> > >>>>    	u32 ccs_copy_size;
-> > >>>>    	u32 mocs;
-> > >>>> +	u32 i = 0;
-> > >>>>    
-> > >>>>    	if (GRAPHICS_VERx100(xe) >= 2000) {
-> > >>>>    		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-> > >>>> @@ -686,15 +739,23 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
-> > >>>>    		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
-> > >>>>    	}
-> > >>>>    
-> > >>>> -	*cs++ = XY_CTRL_SURF_COPY_BLT |
-> > >>>> -		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
-> > >>>> -		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
-> > >>>> -		ccs_copy_size;
-> > >>>> -	*cs++ = lower_32_bits(src_ofs);
-> > >>>> -	*cs++ = upper_32_bits(src_ofs) | mocs;
-> > >>>> -	*cs++ = lower_32_bits(dst_ofs);
-> > >>>> -	*cs++ = upper_32_bits(dst_ofs) | mocs;
-> > >>>> +	dw[i++] = XY_CTRL_SURF_COPY_BLT |
-> > >>>> +		  (src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
-> > >>>> +		  (dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
-> > >>>> +		  ccs_copy_size;
-> > >>>> +	dw[i++] = lower_32_bits(src_ofs);
-> > >>>> +	dw[i++] = upper_32_bits(src_ofs) | mocs;
-> > >>>> +	dw[i++] = lower_32_bits(dst_ofs);
-> > >>>> +	dw[i++] = upper_32_bits(dst_ofs) | mocs;
-> > >>>>    
-> > >>>> +	/*
-> > >>>> +	 * The CCS copy command is a 5-dword sequence. If the vCPU halts during
-> > >>>> +	 * save/restore while this sequence is being issued, partial writes may trigger
-> > >>>> +	 * page faults when saving iGPU CCS metadata. Use the VMOVDQU instruction to
-> > >>>> +	 * write the sequence atomically.
-> > >>>> +	 */
-> > >>>> +	emit_atomic(gt, cs, dw, sizeof(dw));
-> > >>>> +	cs += EMIT_COPY_CCS_DW;
-> > >>>>    	bb->len = cs - bb->cs;
-> > >>>>    }
-> > >>>>    
-> > >>>> @@ -1006,18 +1067,27 @@ static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
-> > >>>>    	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
-> > >>>>    }
-> > >>>>    
-> > >>>> -static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-> > >>>> +/*
-> > >>>> + * The MI_FLUSH_DW command is a 4-dword sequence. If the vCPU halts during
-> > >>>> + * save/restore while this sequence is being issued, partial writes may
-> > >>>> + * trigger page faults when saving iGPU CCS metadata. Use
-> > >>>> + * emit_atomic() to write the sequence atomically.
-> > >>>> + */
-> > >>>> +#define EMIT_FLUSH_INVALIDATE_DW 4
-> > >>>> +static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *cs, int i, u32 flags)
-> > >>>>    {
-> > >>>>    	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
-> > >>>> +	u32 dw[EMIT_FLUSH_INVALIDATE_DW] = {MI_NOOP}, j = 0;
-> > >>>> +
-> > >>>> +	dw[j++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-> > >>>> +		      MI_FLUSH_IMM_DW | flags;
-> > >>>> +	dw[j++] = lower_32_bits(addr);
-> > >>>> +	dw[j++] = upper_32_bits(addr);
-> > >>>> +	dw[j++] = MI_NOOP;
-> > >>>>    
-> > >>>> -	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-> > >>>> -		  MI_FLUSH_IMM_DW | flags;
-> > >>>> -	dw[i++] = lower_32_bits(addr);
-> > >>>> -	dw[i++] = upper_32_bits(addr);
-> > >>>> -	dw[i++] = MI_NOOP;
-> > >>>> -	dw[i++] = MI_NOOP;
-> > >>>> +	emit_atomic(q->gt, &cs[i], dw, sizeof(dw));
-> > >>>>    
-> > >>>> -	return i;
-> > >>>> +	return i + j;
-> > >>>>    }
-> > >>>>    
-> > >>>>    /**
-> > >>>> @@ -1062,7 +1132,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
-> > >>>>    	/* Calculate Batch buffer size */
-> > >>>>    	batch_size = 0;
-> > >>>>    	while (size) {
-> > >>>> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-> > >>>> +		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
-> > >>>>    		u64 ccs_ofs, ccs_size;
-> > >>>>    		u32 ccs_pt;
-> > >>>>    
-> > >>>> @@ -1103,7 +1173,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
-> > >>>>    	 * sizes here again before copy command is emitted.
-> > >>>>    	 */
-> > >>>>    	while (size) {
-> > >>>> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-> > >>>> +		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
-> > >>>>    		u32 flush_flags = 0;
-> > >>>>    		u64 ccs_ofs, ccs_size;
-> > >>>>    		u32 ccs_pt;
-> > >>>> @@ -1126,11 +1196,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
-> > >>>>    
-> > >>>>    		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-> > >>>>    
-> > >>>> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-> > >>>> +		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-> > >>>>    		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-> > >>>>    						  src_L0_ofs, dst_is_pltt,
-> > >>>>    						  src_L0, ccs_ofs, true);
-> > >>>> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-> > >>>> +		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
-> > >>>>    
-> > >>>>    		size -= src_L0;
-> > >>>>    	}
-> > >>>> -- 
-> > >>>> 2.51.0
-> > >>>
-> > > 
+> v2: Add kernel doc (Matt)
 > 
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+> ---
+>  include/uapi/drm/xe_drm.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 40ff19f52a8d..07bd63651a7e 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1013,6 +1013,13 @@ struct drm_xe_vm_destroy {
+>   *    valid on VMs with DRM_XE_VM_CREATE_FLAG_FAULT_MODE set. The CPU address
+>   *    mirror flag are only valid for DRM_XE_VM_BIND_OP_MAP operations, the BO
+>   *    handle MBZ, and the BO offset MBZ.
+> + *  - DRM_XE_VM_BIND_FLAG_DECOMPRESS - Request on-device decompression for a MAP.
+> + *    When set on a MAP bind operation, request the driver schedule an on-device
+> + *    in-place decompression (via the migrate/resolve path) for the GPU mapping
+> + *    created by this bind. Only valid for DRM_XE_VM_BIND_OP_MAP; usage on
+> + *    other ops is rejected. The bind's pat_index must select the device's
+> + *    "no-compression" PAT. Only meaningful for VRAM-backed BOs on devices that
+> + *    support Flat CCS and the required HW generation XE2+.
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+Since this uAPI, I believe we should get a UMD ack here too ahead or merging.
+
+Matt
+
+>   *
+>   * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
+>   *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
+> @@ -1119,6 +1126,7 @@ struct drm_xe_vm_bind_op {
+>  #define DRM_XE_VM_BIND_FLAG_DUMPABLE	(1 << 3)
+>  #define DRM_XE_VM_BIND_FLAG_CHECK_PXP	(1 << 4)
+>  #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
+> +#define DRM_XE_VM_BIND_FLAG_DECOMPRESS	(1 << 6)
+>  	/** @flags: Bind flags */
+>  	__u32 flags;
+>  
 > -- 
-> Ville Syrjälä
-> Intel
+> 2.25.1
+> 
