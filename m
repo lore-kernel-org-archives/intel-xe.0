@@ -4,36 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D985FCCD199
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 15:36:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BF04CCD195
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 15:37:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF3F310EC6B;
-	Fri, 17 Oct 2025 15:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D03710EC62;
+	Fri, 17 Oct 2025 15:37:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="K7BydhQz";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="SkNIgHuQ";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71D1910EC68
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 15:36:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3DCF10EC62
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 15:37:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1760715360;
- bh=oGg2WvZ0Zmdh/NwOHM0WiFbf+HRBxnlQJSGs+UvcTe0=;
- h=From:To:Subject:Date:In-Reply-To:References:From;
- b=K7BydhQz116g+6kWSPpt+fKSAvKLmDuq4ONpK+NvVKo3QTk2FiGQNbeP5Gx5oDUUR
- g4DlKvdjej24BfIP5VQegJWx/CZmQaZsEFgZsL9RVLUNoYlGgjQDWTXvd9SRnQy1UZ
- HJLdGCRbY/bXHuroJD1J+9oM5xDj/+z4Sj8Svp7tB6FmRqcTaRyClTiKYrBsqVVLZy
- ti1XCbHZMzl9qDVaUcnmDo/EYgCovyqQdtKVwD9TZKUkWE+hBBFZgJ7da1OS09a4MB
- dNWy7x5FFxvGkwKUkL/LeP2YC8g2sfXeLytI81oupjO8RFAkNPcfFw3w65a7Te3Gce
- yqB6zGzyks6Xw==
+ s=default; t=1760715439;
+ bh=xFDLedbM6hvfz8uTJfsm3zKpA0cbMpEEaLbEuzgJR28=;
+ h=From:To:Subject:Date:From;
+ b=SkNIgHuQGuJeQVmpNOY3cLPR9ixAjqe+e8TJ7Z5SVh9DBp71b/o/12B/5yKBELYvT
+ 0n84bspiSG8vECZSrVeyblD7+eQc7w5MAHwCVW1Z4Ucyc62Yz5R8SEjbSQyPyWjl4Z
+ 5VuJCAxnQWzW5AJiUY+KXFZjA6NaHH649tCPo3kgKcGt6Uvwy2kdUFnn4W396dqe0V
+ oEpGbbrp9pDb1lzzO1DxAdS6IdF1SwoQ8QSR+hkNZ+5YCnHRRQupWoNaAKdVVnf19O
+ Leztz2c957erqDu2b+RPnHruFKI1LeXBteAtON7/kJtvl2lKRMdVKxvZN5/GO4ydQl
+ WHX3PqqATgcQw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 3/5] drm/i915: Don't disable interrupts on PREEMPT_RT during
- atomic updates
-Date: Fri, 17 Oct 2025 13:57:49 +0200
-Message-ID: <20251017115752.398805-4-dev@lankhorst.se>
+Subject: [FOR CI 0/5] Testing PREEMPT_RT with disabling interrupts in the most
+ critical section.
+Date: Fri, 17 Oct 2025 17:37:43 +0200
+Message-ID: <20251017153748.26059-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251017115752.398805-1-dev@lankhorst.se>
-References: <20251017115752.398805-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -50,128 +48,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mike Galbraith <umgwanakikbuti@gmail.com>
+*** BLURB HERE ***
 
-Commit
-   8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
+Maarten Lankhorst (3):
+  drm/xe: Bump xe_device_l2_flush even higher
+  drm/i915/display: Disable interrupts on xe for realtime preemption
+  [FOR-CI] PREEMPT_RT injection
 
-started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
-because within this section the code attempt to acquire spinlock_t locks which
-are sleeping locks on PREEMPT_RT.
+Mike Galbraith (2):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
+  drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
 
-According to the comment the interrupts are disabled to avoid random delays and
-not required for protection or synchronisation.
-If this needs to happen with disabled interrupts on PREEMPT_RT, and the
-whole section is restricted to register access then all sleeping locks
-need to be acquired before interrupts are disabled and some function
-maybe moved after enabling interrupts again.
-This includes:
-- prepare_to_wait() + finish_wait() due its wake queue.
-- drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
-- skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
-  maybe others due to intel_uncore::lock
-- drm_crtc_arm_vblank_event() due to drm_device::event_lock and
-  drm_device::vblank_time_lock.
+ drivers/gpu/drm/i915/Kconfig.debug          | 15 -------
+ drivers/gpu/drm/i915/display/intel_crtc.c   | 13 ++++--
+ drivers/gpu/drm/i915/display/intel_cursor.c |  9 ++--
+ drivers/gpu/drm/i915/display/intel_vblank.c | 49 ++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_vblank.h |  9 ++++
+ drivers/gpu/drm/xe/Kconfig.debug            |  5 +++
+ drivers/gpu/drm/xe/xe_device.c              |  4 +-
+ kernel/Kconfig.preempt                      |  3 +-
+ 8 files changed, 69 insertions(+), 38 deletions(-)
 
-Don't disable interrupts on PREEMPT_RT during atomic updates.
-
-[bigeasy: drop local locks, commit message]
-
-Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/display/intel_crtc.c   | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_cursor.c | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_vblank.c | 6 ++++--
- 3 files changed, 16 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index d300ba1dcd2c4..f34745b5ea497 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -567,7 +567,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	 */
- 	intel_psr_wait_for_idle_locked(new_crtc_state);
- 
--	local_irq_disable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_disable();
- 
- 	crtc->debug.min_vbl = evade.min;
- 	crtc->debug.max_vbl = evade.max;
-@@ -585,7 +586,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	return;
- 
- irq_disable:
--	local_irq_disable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_disable();
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
-@@ -731,7 +733,8 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	if (!state->base.legacy_cursor_update)
- 		intel_vrr_send_push(NULL, new_crtc_state);
- 
--	local_irq_enable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_enable();
- 
- 	if (intel_vgpu_active(dev_priv))
- 		goto out;
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index c47c849358714..780fcae77a984 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -919,13 +919,15 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		 */
- 		intel_psr_wait_for_idle_locked(crtc_state);
- 
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 
- 		intel_vblank_evade(&evade);
- 
- 		drm_crtc_vblank_put(&crtc->base);
- 	} else {
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 	}
- 
- 	if (new_plane_state->uapi.visible) {
-@@ -935,7 +937,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
- 	}
- 
--	local_irq_enable();
-+	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+		local_irq_enable();
- 
- 	intel_psr_unlock(crtc_state);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 5206a81f85554..7826f29619a14 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -761,11 +761,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 			break;
- 		}
- 
--		local_irq_enable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_enable();
- 
- 		timeout = schedule_timeout(timeout);
- 
--		local_irq_disable();
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
- 	}
- 
- 	finish_wait(wq, &wait);
 -- 
 2.51.0
 
