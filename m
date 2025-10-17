@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C3F9CCD183
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07421CCD183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:35:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1221D10EAE9;
-	Fri, 17 Oct 2025 02:27:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EmtMr26F";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5D610EAE3
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760668039; x=1792204039;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RYPKKzpcj8RiR7lBzA4i4GbZhnHZqjwWBynPxb6G96o=;
- b=EmtMr26FxtbUCeOTPOXGRHB3L09DlKUrnSFtU3unU9A7K/7Ydzq5KWDD
- HmwwZym5q09dZ8pYOfApvwLwZ0avvDqDATiCpzDoeHcOIywJYlr11iiM5
- uwNvs0ibpu/wmJO20XR9BAg2fn4LkkXUNBt9uAXEbs9TrLuj0jv/syXgx
- lUCG+3R0uUyLwkY4uIoq2+vcuQv3mmvWKvIzvt4PFGqts5PLlziz9oIUX
- NrN5gAKU/GlFLgAOu/Uag+Q/n10rcnsopXvt1tWtHmbSHXkqsgV68zMqE
- zd2da2LiyiWnwAXSeJV2wJyJvvhISS7K56jDq4+XnVaQD28qYs0N+95YE w==;
-X-CSE-ConnectionGUID: cNUs/1spTpOhFzXAE9noFQ==
-X-CSE-MsgGUID: I/+M8s4KRpmjGjjON0WttQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739219"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739219"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:19 -0700
-X-CSE-ConnectionGUID: 8G8s/ioPTb+3lbqMapZtPQ==
-X-CSE-MsgGUID: KEYet6eZS1OeJrcPBJHTag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089205"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:18 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v3 16/24] drm/xe/xe3p_xpc: Add MCR steering
-Date: Thu, 16 Oct 2025 19:26:35 -0700
-Message-ID: <20251016-xe3p-v3-16-3dd173a3097a@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
-References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A78C10EAE3;
+	Fri, 17 Oct 2025 02:35:40 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF1E10E2FB;
+ Fri, 17 Oct 2025 02:35:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-bd47d
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_Xe3p_suppor?=
+ =?utf-8?q?t_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Oct 2025 02:35:40 -0000
+Message-ID: <176066854015.24656.15286829009770669704@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
+In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,165 +36,362 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+== Series Details ==
 
-Xe3p_XPC's steering has a few changes from Xe3.  Aside from
-minor changes to the XeCore (the new name for what used to be "DSS") and
-INSTANCE0 tables, different rules apply to different subranges of type
-"GAM."  Certain GAM subranges require steering to grp/instance (0,0)
-(and thus use the INSTANCE0 table), while others require special
-steering to (1,0) instead.  Similarly, there are multiple classes of
-"PSMI" steering, with some requiring steering to (0,0) while others
-require (19,0).
+Series: drm/xe: Add Xe3p support (rev3)
+URL   : https://patchwork.freedesktop.org/series/155866/
+State : warning
 
-There are some ranges in Bspec missing the termination. Add a TODO
-comment so they can eventually be updated.
+== Summary ==
 
-Bspec: 74418
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
-v2: Move TODO to a comment in the code so it can be revisited later,
-    before force_probe removal (Gustavo)
----
- drivers/gpu/drm/xe/xe_gt_mcr.c   | 62 ++++++++++++++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_types.h | 15 ++++++++++
- 2 files changed, 75 insertions(+), 2 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e1a80fa10ae2bf2125632f4336b8fb939b51fb07
+Author: Harish Chegondi <harish.chegondi@intel.com>
+Date:   Thu Oct 16 19:26:43 2025 -0700
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index e1a2b38fc2a86..81ecd93826350 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -169,6 +169,15 @@ static const struct xe_mmio_range xelpg_dss_steering_table[] = {
- 	{},
- };
- 
-+static const struct xe_mmio_range xe3p_xpc_xecore_steering_table[] = {
-+	{ 0x008140, 0x00817F },         /* SLICE, XeCore, SLICE */
-+	{ 0x009480, 0x00955F },         /* SLICE, XeCore */
-+	{ 0x00D800, 0x00D87F },		/* SLICE */
-+	{ 0x00DC00, 0x00E9FF },         /* SLICE, rsvd, XeCore, rsvd, XeCore, rsvd, XeCore */
-+	{ 0x013000, 0x0135FF },         /* XeCore, SLICE */
-+	{},
-+};
-+
- static const struct xe_mmio_range xelpmp_oaddrm_steering_table[] = {
- 	{ 0x393200, 0x39323F },
- 	{ 0x393400, 0x3934FF },
-@@ -247,6 +256,30 @@ static const struct xe_mmio_range xe3lpm_instance0_steering_table[] = {
- 	{},
- };
- 
-+/*
-+ * Different "GAM" ranges have different rules; GAMWKRS, STLB, and GAMREQSTRM
-+ * range subtypes need to be steered to (1,0), while all other GAM subtypes
-+ * are steered to (0,0) and are included in the "INSTANCE0" table farther
-+ * down.
-+ */
-+static const struct xe_mmio_range xe3p_xpc_gam_grp1_steering_table[] = {
-+	{ 0x004000, 0x004AFF },		/* GAMREQSTRM, rsvd, STLB, GAMWKRS, GAMREQSTRM */
-+	{ 0x00F100, 0x00FFFF },		/* GAMWKRS */
-+	{},
-+};
-+
-+static const struct xe_mmio_range xe3p_xpc_psmi_grp19_steering_table[] = {
-+	{ 0x00B500, 0x00B5FF },
-+	{},
-+};
-+
-+static const struct xe_mmio_range xe3p_xpc_instance0_steering_table[] = {
-+	{ 0x00B600, 0x00B6FF },		/* PSMI0 */
-+	{ 0x00C800, 0x00CFFF },		/* GAMCTRL */
-+	{ 0x00F000, 0x00F0FF },		/* GAMCTRL */
-+	{},
-+};
-+
- static void init_steering_l3bank(struct xe_gt *gt)
- {
- 	struct xe_mmio *mmio = &gt->mmio;
-@@ -419,6 +452,18 @@ static void init_steering_sqidi_psmi(struct xe_gt *gt)
- 	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
- }
- 
-+static void init_steering_psmi(struct xe_gt *gt)
-+{
-+	gt->steering[PSMI19].group_target = 19;
-+	gt->steering[PSMI19].instance_target = 0;
-+}
-+
-+static void init_steering_gam1(struct xe_gt *gt)
-+{
-+	gt->steering[GAM1].group_target = 1;
-+	gt->steering[GAM1].instance_target = 0;
-+}
-+
- static const struct {
- 	const char *name;
- 	void (*init)(struct xe_gt *gt);
-@@ -426,9 +471,11 @@ static const struct {
- 	[L3BANK] =	{ "L3BANK",	init_steering_l3bank },
- 	[MSLICE] =	{ "MSLICE",	init_steering_mslice },
- 	[LNCF] =	{ "LNCF",	NULL }, /* initialized by mslice init */
--	[DSS] =		{ "DSS",	init_steering_dss },
-+	[DSS] =		{ "DSS / XeCore", init_steering_dss },
- 	[OADDRM] =	{ "OADDRM / GPMXMT", init_steering_oaddrm },
- 	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
-+	[PSMI19] =	{ "PSMI[19]",	init_steering_psmi },
-+	[GAM1] =	{ "GAMWKRS / STLB / GAMREQSTRM", init_steering_gam1 },
- 	[INSTANCE0] =	{ "INSTANCE 0",	NULL },
- 	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
- };
-@@ -467,7 +514,18 @@ void xe_gt_mcr_init_early(struct xe_gt *gt)
- 			gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
- 		}
- 	} else {
--		if (GRAPHICS_VER(xe) >= 20) {
-+		if (GRAPHICS_VERx100(xe) == 3511) {
-+			/*
-+			 * TODO: there are some ranges in bspec with missing
-+			 * termination: [0x00B000, 0x00B0FF] and
-+			 * [0x00D880, 0x00D8FF] (NODE); [0x00B100, 0x00B3FF]
-+			 * (L3BANK). Update them here once bspec is updated.
-+			 */
-+			gt->steering[DSS].ranges = xe3p_xpc_xecore_steering_table;
-+			gt->steering[GAM1].ranges = xe3p_xpc_gam_grp1_steering_table;
-+			gt->steering[INSTANCE0].ranges = xe3p_xpc_instance0_steering_table;
-+			gt->steering[PSMI19].ranges = xe3p_xpc_psmi_grp19_steering_table;
-+		} else if (GRAPHICS_VER(xe) >= 20) {
- 			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
- 			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
- 			gt->steering[INSTANCE0].ranges = xe2lpg_instance0_steering_table;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 8b5f604d7883a..d93faa1eedef8 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -72,6 +72,21 @@ enum xe_steering_type {
- 	OADDRM,
- 	SQIDI_PSMI,
- 
-+	/*
-+	 * The bspec lists multiple ranges as "PSMI," but the different
-+	 * ranges with that label have different grpid steering values so we
-+	 * treat them independently in code.  Note that the ranges with grpid=0
-+	 * are included in the INSTANCE0 group above.
-+	 */
-+	PSMI19,
-+
-+	/*
-+	 * Although most GAM ranges must be steered to (0,0) and thus use the
-+	 * INSTANCE0 type farther down, some platforms have special rules
-+	 * for specific subtypes that require steering to (1,0) instead.
-+	 */
-+	GAM1,
-+
- 	/*
- 	 * On some platforms there are multiple types of MCR registers that
- 	 * will always return a non-terminated value at instance (0, 0).  We'll
+    drm/xe/xe3p: Add xe3p EU stall data format
+    
+    Starting with Xe3p, IP address in EU stall data increases to 61 bits.
+    While at it, re-order the if-else ladder so the officially supported
+    platforms come before PVC.
+    
+    Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+    Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch b4f191dddaee9ae1871344e3dabcc40f2f14d2cb drm-intel
+736395592c93 drm/xe/xe3: Add support for graphics IP versions 30.04 & 30.05
+-:46: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/xe/xe_wa.c:698:
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3003, 3005), FUNC(xe_rtp_match_first_render_or_compute)),
 
--- 
-2.51.0
+total: 0 errors, 1 warnings, 0 checks, 62 lines checked
+07053f5d333d drm/xe/xe3p: Add support for media IP versions 35.00 & 35.03
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Xe3p_LPM/Xe3p_HPM are very similar to Xe3_LPM on the kmd interface, so it can use
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+b21feb2bdfcb drm/xe: Drop CTC_MODE register read
+58549871124d drm/xe: Add GT_VER() to check version specific to gt type
+be927915701b drm/xe/xe3p_lpm: Skip disabling NOA on unsupported IPs
+2e528beab1b7 drm/xe/xe3p_lpm: Handle MCR steering
+c03378c50cf3 drm/xe/xe3p: Stop programming RCU_MODE's fixed slice mode setting
+e16717c916f2 drm/xe/xe3p: Determine service copy availability from fuse
+0c6c87e70b45 drm/xe: Dump CURRENT_LRCA register
+2f087f3536f8 drm/xe/xe3p: Dump CSMQDEBUG register
+9d2d4262261d drm/xe/nvl: Define NVL-S platform
+-:63: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#63: FILE: include/drm/intel/pciids.h:891:
++#define INTEL_NVLS_IDS(MACRO__, ...) \
++	MACRO__(0xD740, ## __VA_ARGS__), \
++	MACRO__(0xD741, ## __VA_ARGS__), \
++	MACRO__(0xD742, ## __VA_ARGS__), \
++	MACRO__(0xD743, ## __VA_ARGS__), \
++	MACRO__(0xD744, ## __VA_ARGS__), \
++	MACRO__(0xD745, ## __VA_ARGS__)
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#63: FILE: include/drm/intel/pciids.h:891:
++#define INTEL_NVLS_IDS(MACRO__, ...) \
++	MACRO__(0xD740, ## __VA_ARGS__), \
++	MACRO__(0xD741, ## __VA_ARGS__), \
++	MACRO__(0xD742, ## __VA_ARGS__), \
++	MACRO__(0xD743, ## __VA_ARGS__), \
++	MACRO__(0xD744, ## __VA_ARGS__), \
++	MACRO__(0xD745, ## __VA_ARGS__)
+
+total: 1 errors, 0 warnings, 1 checks, 44 lines checked
+7dc3e9ccff16 drm/xe/nvls: Define GuC firmware for NVL-S
+9d3ec48a50ff drm/xe/nvls: Attach MOCS table for NVL-S
+7d25e77357b9 drm/xe/xe3p_xpc: Add Xe3p_XPC IP definition
+2887a725ff61 drm/xe/xe3p_xpc: Add L3 bank mask
+003f6cafac76 drm/xe/xe3p_xpc: Add MCR steering
+2514dfb8c450 drm/xe/irq: Rename fuse mask variables
+-:59: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#59: FILE: drivers/gpu/drm/xe/xe_irq.c:179:
++		if (bcs_fuse_mask & (BIT(1)|BIT(2)))
+ 		                           ^
+
+-:62: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#62: FILE: drivers/gpu/drm/xe/xe_irq.c:181:
++		if (bcs_fuse_mask & (BIT(3)|BIT(4)))
+ 		                           ^
+
+-:65: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#65: FILE: drivers/gpu/drm/xe/xe_irq.c:183:
++		if (bcs_fuse_mask & (BIT(5)|BIT(6)))
+ 		                           ^
+
+-:68: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#68: FILE: drivers/gpu/drm/xe/xe_irq.c:185:
++		if (bcs_fuse_mask & (BIT(7)|BIT(8)))
+ 		                           ^
+
+-:71: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#71: FILE: drivers/gpu/drm/xe/xe_irq.c:187:
++		if (ccs_fuse_mask & (BIT(0)|BIT(1)))
+ 		                           ^
+
+-:74: CHECK:SPACING: spaces preferred around that '|' (ctx:VxV)
+#74: FILE: drivers/gpu/drm/xe/xe_irq.c:189:
++		if (ccs_fuse_mask & (BIT(2)|BIT(3)))
+ 		                           ^
+
+total: 0 errors, 0 warnings, 6 checks, 68 lines checked
+25ab6c9292c8 drm/xe/irq: Split irq mask per engine class
+5d4ce85c32c7 drm/xe/irq: Rename bits used with all engines
+36d49abe0386 drm/xe/irq: Check fuse mask for media engines
+bc0099ddda99 drm/xe/xe3p_xpc: Add support for compute walker for non-MSIx
+91e540f76b8a drm/xe/xe3p_xpc: Skip compression tuning on platforms without flatccs
+00a3dcec2d2d drm/xe/xe3p_xpc: Setup PAT table
+-:31: ERROR:SPACING: space prohibited after that open parenthesis '('
+#31: FILE: drivers/gpu/drm/xe/xe_pat.c:165:
++static const struct xe_pat_table_entry xe3p_xpc_pat_ats = XE3P_XPC_PAT( 0, 0, 0, 0, 3 );
+
+-:31: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#31: FILE: drivers/gpu/drm/xe/xe_pat.c:165:
++static const struct xe_pat_table_entry xe3p_xpc_pat_ats = XE3P_XPC_PAT( 0, 0, 0, 0, 3 );
+
+-:32: ERROR:SPACING: space prohibited after that open parenthesis '('
+#32: FILE: drivers/gpu/drm/xe/xe_pat.c:166:
++static const struct xe_pat_table_entry xe3p_xpc_pat_pta = XE3P_XPC_PAT( 0, 0, 0, 0, 0 );
+
+-:32: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#32: FILE: drivers/gpu/drm/xe/xe_pat.c:166:
++static const struct xe_pat_table_entry xe3p_xpc_pat_pta = XE3P_XPC_PAT( 0, 0, 0, 0, 0 );
+
+-:35: ERROR:SPACING: space prohibited after that open square bracket '['
+#35: FILE: drivers/gpu/drm/xe/xe_pat.c:169:
++	[ 0] = XE3P_XPC_PAT( 0, 0, 0, 0, 0 ),
+
+-:35: ERROR:SPACING: space prohibited after that open parenthesis '('
+#35: FILE: drivers/gpu/drm/xe/xe_pat.c:169:
++	[ 0] = XE3P_XPC_PAT( 0, 0, 0, 0, 0 ),
+
+-:35: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#35: FILE: drivers/gpu/drm/xe/xe_pat.c:169:
++	[ 0] = XE3P_XPC_PAT( 0, 0, 0, 0, 0 ),
+
+-:36: ERROR:SPACING: space prohibited after that open square bracket '['
+#36: FILE: drivers/gpu/drm/xe/xe_pat.c:170:
++	[ 1] = XE3P_XPC_PAT( 0, 0, 0, 0, 2 ),
+
+-:36: ERROR:SPACING: space prohibited after that open parenthesis '('
+#36: FILE: drivers/gpu/drm/xe/xe_pat.c:170:
++	[ 1] = XE3P_XPC_PAT( 0, 0, 0, 0, 2 ),
+
+-:36: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#36: FILE: drivers/gpu/drm/xe/xe_pat.c:170:
++	[ 1] = XE3P_XPC_PAT( 0, 0, 0, 0, 2 ),
+
+-:37: ERROR:SPACING: space prohibited after that open square bracket '['
+#37: FILE: drivers/gpu/drm/xe/xe_pat.c:171:
++	[ 2] = XE3P_XPC_PAT( 0, 0, 0, 0, 3 ),
+
+-:37: ERROR:SPACING: space prohibited after that open parenthesis '('
+#37: FILE: drivers/gpu/drm/xe/xe_pat.c:171:
++	[ 2] = XE3P_XPC_PAT( 0, 0, 0, 0, 3 ),
+
+-:37: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#37: FILE: drivers/gpu/drm/xe/xe_pat.c:171:
++	[ 2] = XE3P_XPC_PAT( 0, 0, 0, 0, 3 ),
+
+-:38: ERROR:SPACING: space prohibited after that open square bracket '['
+#38: FILE: drivers/gpu/drm/xe/xe_pat.c:172:
++	[ 3] = XE3P_XPC_PAT( 0, 0, 3, 3, 0 ),
+
+-:38: ERROR:SPACING: space prohibited after that open parenthesis '('
+#38: FILE: drivers/gpu/drm/xe/xe_pat.c:172:
++	[ 3] = XE3P_XPC_PAT( 0, 0, 3, 3, 0 ),
+
+-:38: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#38: FILE: drivers/gpu/drm/xe/xe_pat.c:172:
++	[ 3] = XE3P_XPC_PAT( 0, 0, 3, 3, 0 ),
+
+-:39: ERROR:SPACING: space prohibited after that open square bracket '['
+#39: FILE: drivers/gpu/drm/xe/xe_pat.c:173:
++	[ 4] = XE3P_XPC_PAT( 0, 0, 3, 3, 2 ),
+
+-:39: ERROR:SPACING: space prohibited after that open parenthesis '('
+#39: FILE: drivers/gpu/drm/xe/xe_pat.c:173:
++	[ 4] = XE3P_XPC_PAT( 0, 0, 3, 3, 2 ),
+
+-:39: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#39: FILE: drivers/gpu/drm/xe/xe_pat.c:173:
++	[ 4] = XE3P_XPC_PAT( 0, 0, 3, 3, 2 ),
+
+-:40: ERROR:SPACING: space prohibited after that open square bracket '['
+#40: FILE: drivers/gpu/drm/xe/xe_pat.c:174:
++	[ 5] = XE3P_XPC_PAT( 0, 0, 3, 0, 0 ),
+
+-:40: ERROR:SPACING: space prohibited after that open parenthesis '('
+#40: FILE: drivers/gpu/drm/xe/xe_pat.c:174:
++	[ 5] = XE3P_XPC_PAT( 0, 0, 3, 0, 0 ),
+
+-:40: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#40: FILE: drivers/gpu/drm/xe/xe_pat.c:174:
++	[ 5] = XE3P_XPC_PAT( 0, 0, 3, 0, 0 ),
+
+-:41: ERROR:SPACING: space prohibited after that open square bracket '['
+#41: FILE: drivers/gpu/drm/xe/xe_pat.c:175:
++	[ 6] = XE3P_XPC_PAT( 0, 0, 3, 0, 2 ),
+
+-:41: ERROR:SPACING: space prohibited after that open parenthesis '('
+#41: FILE: drivers/gpu/drm/xe/xe_pat.c:175:
++	[ 6] = XE3P_XPC_PAT( 0, 0, 3, 0, 2 ),
+
+-:41: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#41: FILE: drivers/gpu/drm/xe/xe_pat.c:175:
++	[ 6] = XE3P_XPC_PAT( 0, 0, 3, 0, 2 ),
+
+-:42: ERROR:SPACING: space prohibited after that open square bracket '['
+#42: FILE: drivers/gpu/drm/xe/xe_pat.c:176:
++	[ 7] = XE3P_XPC_PAT( 0, 0, 3, 0, 3 ),
+
+-:42: ERROR:SPACING: space prohibited after that open parenthesis '('
+#42: FILE: drivers/gpu/drm/xe/xe_pat.c:176:
++	[ 7] = XE3P_XPC_PAT( 0, 0, 3, 0, 3 ),
+
+-:42: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#42: FILE: drivers/gpu/drm/xe/xe_pat.c:176:
++	[ 7] = XE3P_XPC_PAT( 0, 0, 3, 0, 3 ),
+
+-:43: ERROR:SPACING: space prohibited after that open square bracket '['
+#43: FILE: drivers/gpu/drm/xe/xe_pat.c:177:
++	[ 8] = XE3P_XPC_PAT( 0, 0, 0, 3, 0 ),
+
+-:43: ERROR:SPACING: space prohibited after that open parenthesis '('
+#43: FILE: drivers/gpu/drm/xe/xe_pat.c:177:
++	[ 8] = XE3P_XPC_PAT( 0, 0, 0, 3, 0 ),
+
+-:43: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#43: FILE: drivers/gpu/drm/xe/xe_pat.c:177:
++	[ 8] = XE3P_XPC_PAT( 0, 0, 0, 3, 0 ),
+
+-:44: ERROR:SPACING: space prohibited after that open square bracket '['
+#44: FILE: drivers/gpu/drm/xe/xe_pat.c:178:
++	[ 9] = XE3P_XPC_PAT( 0, 0, 0, 3, 2 ),
+
+-:44: ERROR:SPACING: space prohibited after that open parenthesis '('
+#44: FILE: drivers/gpu/drm/xe/xe_pat.c:178:
++	[ 9] = XE3P_XPC_PAT( 0, 0, 0, 3, 2 ),
+
+-:44: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#44: FILE: drivers/gpu/drm/xe/xe_pat.c:178:
++	[ 9] = XE3P_XPC_PAT( 0, 0, 0, 3, 2 ),
+
+-:45: ERROR:SPACING: space prohibited after that open parenthesis '('
+#45: FILE: drivers/gpu/drm/xe/xe_pat.c:179:
++	[10] = XE3P_XPC_PAT( 0, 0, 0, 3, 3 ),
+
+-:45: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#45: FILE: drivers/gpu/drm/xe/xe_pat.c:179:
++	[10] = XE3P_XPC_PAT( 0, 0, 0, 3, 3 ),
+
+-:47: ERROR:SPACING: space prohibited after that open parenthesis '('
+#47: FILE: drivers/gpu/drm/xe/xe_pat.c:181:
++	[23] = XE3P_XPC_PAT( 0, 1, 0, 0, 0 ),
+
+-:47: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#47: FILE: drivers/gpu/drm/xe/xe_pat.c:181:
++	[23] = XE3P_XPC_PAT( 0, 1, 0, 0, 0 ),
+
+-:48: ERROR:SPACING: space prohibited after that open parenthesis '('
+#48: FILE: drivers/gpu/drm/xe/xe_pat.c:182:
++	[24] = XE3P_XPC_PAT( 0, 1, 0, 0, 2 ),
+
+-:48: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#48: FILE: drivers/gpu/drm/xe/xe_pat.c:182:
++	[24] = XE3P_XPC_PAT( 0, 1, 0, 0, 2 ),
+
+-:49: ERROR:SPACING: space prohibited after that open parenthesis '('
+#49: FILE: drivers/gpu/drm/xe/xe_pat.c:183:
++	[25] = XE3P_XPC_PAT( 0, 1, 0, 0, 3 ),
+
+-:49: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#49: FILE: drivers/gpu/drm/xe/xe_pat.c:183:
++	[25] = XE3P_XPC_PAT( 0, 1, 0, 0, 3 ),
+
+-:50: ERROR:SPACING: space prohibited after that open parenthesis '('
+#50: FILE: drivers/gpu/drm/xe/xe_pat.c:184:
++	[26] = XE3P_XPC_PAT( 0, 2, 0, 0, 0 ),
+
+-:50: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#50: FILE: drivers/gpu/drm/xe/xe_pat.c:184:
++	[26] = XE3P_XPC_PAT( 0, 2, 0, 0, 0 ),
+
+-:51: ERROR:SPACING: space prohibited after that open parenthesis '('
+#51: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[27] = XE3P_XPC_PAT( 0, 2, 0, 0, 2 ),
+
+-:51: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#51: FILE: drivers/gpu/drm/xe/xe_pat.c:185:
++	[27] = XE3P_XPC_PAT( 0, 2, 0, 0, 2 ),
+
+-:52: ERROR:SPACING: space prohibited after that open parenthesis '('
+#52: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[28] = XE3P_XPC_PAT( 0, 2, 0, 0, 3 ),
+
+-:52: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#52: FILE: drivers/gpu/drm/xe/xe_pat.c:186:
++	[28] = XE3P_XPC_PAT( 0, 2, 0, 0, 3 ),
+
+-:53: ERROR:SPACING: space prohibited after that open parenthesis '('
+#53: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[29] = XE3P_XPC_PAT( 0, 3, 0, 0, 0 ),
+
+-:53: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#53: FILE: drivers/gpu/drm/xe/xe_pat.c:187:
++	[29] = XE3P_XPC_PAT( 0, 3, 0, 0, 0 ),
+
+-:54: ERROR:SPACING: space prohibited after that open parenthesis '('
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[30] = XE3P_XPC_PAT( 0, 3, 0, 0, 2 ),
+
+-:54: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:188:
++	[30] = XE3P_XPC_PAT( 0, 3, 0, 0, 2 ),
+
+-:55: ERROR:SPACING: space prohibited after that open parenthesis '('
+#55: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[31] = XE3P_XPC_PAT( 0, 3, 0, 0, 3 ),
+
+-:55: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#55: FILE: drivers/gpu/drm/xe/xe_pat.c:189:
++	[31] = XE3P_XPC_PAT( 0, 3, 0, 0, 3 ),
+
+total: 54 errors, 0 warnings, 0 checks, 110 lines checked
+e1a80fa10ae2 drm/xe/xe3p: Add xe3p EU stall data format
+
 
