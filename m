@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D37FCCD199
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 01:38:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FECBCCD183
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2011E10EADA;
-	Fri, 17 Oct 2025 01:38:12 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4306A10EADA;
- Fri, 17 Oct 2025 01:38:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5701354774518103228=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F29710EAE7;
+	Fri, 17 Oct 2025 02:27:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdJur0w4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEFEF10EAE3
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760668037; x=1792204037;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qeIjeiW9FqpAy6oBl/hK4dZMLmlWsKAoAQ/XtmPRGo4=;
+ b=GdJur0w4q3GyDYpq14xFb83gHZc6fICVIBnSc9EBGDXj67Bz6qFDhkC9
+ gtWfvHM02iOZ/Uxk1QMuPI7DfcXe9+R2Q4I1k+DSQpECfrLWmBtzz8RMM
+ s8/cUPyHHhbrivkSyx+6emnbtpoVJ+7qEz9YbBAJcBoQLiVQekdwp7B2s
+ 1Rt9tMCSTAbtlVwlAq2awow1UKaY3+p6sMcVmOtYSr+ItHOJm6b4tlEHD
+ llQPJpvpP1K7gFUHRrNMA8wOD7LMp08bK1SDnLK6fjCqgN7y/VuPC6VhS
+ 6XFGLxS9ZrtIY+W4vzI4YJ7UzRfBG32L7AV4bTXH+0sSa4AbQDmXPpgOE g==;
+X-CSE-ConnectionGUID: dyiMS0Q/RbGNHalxTHE8bA==
+X-CSE-MsgGUID: BVyWjae3THqDESjwKtKiEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739205"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739205"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 19:27:16 -0700
+X-CSE-ConnectionGUID: LyAAjFIPSpGUeOf56Ypj7g==
+X-CSE-MsgGUID: HBnyZ31ST++AfZFOXFPYug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089162"
+Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2025 19:27:16 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v3 02/24] drm/xe/xe3p: Add support for media IP versions 35.00
+ & 35.03
+Date: Thu, 16 Oct 2025 19:26:21 -0700
+Message-ID: <20251016-xe3p-v3-2-3dd173a3097a@intel.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
+References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Change_outsta?=
- =?utf-8?q?nding_assertion_to_error?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Oct 2025 01:38:10 -0000
-Message-ID: <176066509026.23602.2023522556604798856@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251017004654.1490644-1-zhanjun.dong@intel.com>
-In-Reply-To: <20251017004654.1490644-1-zhanjun.dong@intel.com>
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.15-dev-bd47d
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +70,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5701354774518103228==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-== Series Details ==
+Xe3p_LPM/Xe3p_HPM are very similar to Xe3_LPM on the kmd interface, so it can use
+the same descriptor structure. Add both 35.00 and 35.03 IP versions.
 
-Series: drm/xe/guc: Change outstanding assertion to error
-URL   : https://patchwork.freedesktop.org/series/156096/
-State : success
+BSpec: 74201, 74202, 77977, 77979
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+v2: Fix 35.03 IP name (Gustavo)
+---
+ drivers/gpu/drm/xe/xe_pci.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 3ea8ccfcbca55..fac46178cebba 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -151,6 +151,8 @@ static const struct xe_ip media_ips[] = {
+ 	{ 2000, "Xe2_LPM", &media_xelpmp },
+ 	{ 3000, "Xe3_LPM", &media_xelpmp },
+ 	{ 3002, "Xe3_LPM", &media_xelpmp },
++	{ 3500, "Xe3p_LPM", &media_xelpmp },
++	{ 3503, "Xe3p_HPM", &media_xelpmp },
+ };
+ 
+ static const struct xe_device_desc tgl_desc = {
 
-CI Bug Log - changes from xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57_BAT -> xe-pw-156096v1_BAT
-====================================================
+-- 
+2.51.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8588 -> IGT_8589
-  * Linux: xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57 -> xe-pw-156096v1
-
-  IGT_8588: 8588
-  IGT_8589: 8589
-  xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57: 4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57
-  xe-pw-156096v1: 156096v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156096v1/index.html
-
---===============5701354774518103228==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Change outstanding assertion to error</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156096/">https://patchwork.freedesktop.org/series/156096/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156096v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156096v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57_BAT -&gt; xe-pw-156096v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8588 -&gt; IGT_8589</li>
-<li>Linux: xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57 -&gt; xe-pw-156096v1</li>
-</ul>
-<p>IGT_8588: 8588<br />
-  IGT_8589: 8589<br />
-  xe-3937-4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57: 4d42fb4c5d6e5b335f7e5356cf8b615da4e20d57<br />
-  xe-pw-156096v1: 156096v1</p>
-
-</body>
-</html>
-
---===============5701354774518103228==--
