@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 877E6CCD199
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:55:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E4CCCD195
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:55:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E98F10EBF7;
-	Fri, 17 Oct 2025 13:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2393810EC3D;
+	Fri, 17 Oct 2025 13:55:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HhpsELbX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mX0c4JlM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC8AD10EBF7
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 13:55:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCAE410EC3C
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 13:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760709311; x=1792245311;
+ t=1760709313; x=1792245313;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wQ9K26bpTJVPEadTtfc1xkSZlFPyGumM/tdjxoVYn9c=;
- b=HhpsELbXAJCqZWmicrE/mtG6MAo85liuxXzlv4gXJmZS7dQazHcQlOrZ
- 0vUf+BqHTcRDDVGUaJvZtUCt9lTtBbVh99txLXfhnBJpmKuvEWe8QdCEM
- FKxLmsUL79GX+BgMq0ND2NoedjFL16ZReXTtBHxU1ppqg2Dbk9ZQqFxO+
- rJz7wIEW+c7APQvZV5L7P11Sr79O8OD0ucA/wGXVyAHhzvBHB0Uqdb6uq
- ZIWlhyJrgXv3TZQF9Ft4KMWS1dsgYG7tH7VbhY9R4A2tqJGfLs3NZT7HC
- eR9SpVH6y5xD1jD+LWVGQNACdC/YpB+BhbLOGeMombIaj/pdSX4Yw0EGU g==;
-X-CSE-ConnectionGUID: hQFSTnVqSAOAtXqTqccxIA==
-X-CSE-MsgGUID: zWfeWc0kRIe4T+vFU+ALBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="80549758"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="80549758"
+ bh=VbPg5zqgmHw7n21Z6hPr76XGFW2nbBA+XkBPMeyMrBw=;
+ b=mX0c4JlMJYX1MkUobBDQ0mUX/nwGsluiCXJgbyOR5CUjLRdmx/JVlDbC
+ YRiVXKMrhoWHGG6j6P4vjvhVfP2vGaMrKcjyhrTRGHoIeAYcFG7b8aY+1
+ ocCJ1NrUPh0tLuM0mm89HldwzsxsnmjZDfrXGPU0H+SrH/HDB5fj3/vra
+ 9azp/UXgUkyat4P24raSMUrEsFYqflCY41ZNCOZCxChbp63w35L81AY+o
+ XBV3rMzxxkfCJQwj7CS0EFidyJcNWi7Gvgxj4ZYkeL/37C9eZ0V6tZFSc
+ 7qZwJFsjAWs8T+oYu5m4EzzPpzHVZvTVt+mLf252L1EZF+7WbMWbqBqzn w==;
+X-CSE-ConnectionGUID: Km9NFyyAQvCHo87RKsrR5g==
+X-CSE-MsgGUID: SsZGyUyYSY6SxDfKNjVlLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="80549759"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="80549759"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 06:55:11 -0700
-X-CSE-ConnectionGUID: E/O5ngsUSdWuy22YxkswSA==
-X-CSE-MsgGUID: 2qUYvH3eRvmSsQze9Xp7JA==
+ 17 Oct 2025 06:55:12 -0700
+X-CSE-ConnectionGUID: ixwJbU8jTJSQjFzCtyHXew==
+X-CSE-MsgGUID: cylXiB/eRgabL3R2Z5H6aA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="213338057"
+X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="213338060"
 Received: from labhost1.iind.intel.com ([10.190.230.69])
- by orviesa002.jf.intel.com with ESMTP; 17 Oct 2025 06:55:09 -0700
+ by orviesa002.jf.intel.com with ESMTP; 17 Oct 2025 06:55:12 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v7 1/3] drm/xe/migrate: Atomicize CCS copy command setup
-Date: Fri, 17 Oct 2025 19:42:28 +0530
-Message-ID: <20251017141226.924-6-satyanarayana.k.v.p@intel.com>
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v7 2/3] drm/xe/migrate: Make emit_pte() header write atomic
+Date: Fri, 17 Oct 2025 19:42:29 +0530
+Message-ID: <20251017141226.924-7-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251017141226.924-5-satyanarayana.k.v.p@intel.com>
 References: <20251017141226.924-5-satyanarayana.k.v.p@intel.com>
@@ -70,245 +68,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The CCS copy command is a 5-dword sequence. If the vCPU halts during
-save/restore while this sequence is being programmed, partial writes may
-trigger page faults when saving IGPU CCS metadata. Use the VMOVDQU
-instruction to write the sequence atomically.
-
-Since VMOVDQU operates on 256-bit chunks, update EMIT_COPY_CCS_DW to emit
-8 dwords instead of 5 dwords.
-
-Update emit_flush_invalidate() to use VMOVDQU operating with 128-bit
-chunks.
+The MI_STORE_DATA_IMM instruction header is quad dword in size. If the
+vCPU halts during save/restore while this sequence is being programmed,
+partial writes may trigger page faults when saving IGPU CCS metadata.
+Update instruction header atomically.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 
 ---
 V6 -> V7:
-- Added description explaining why to use assembly instructions for
-atomicity.
-- Assert if DGFX tries to use memcpy_vmovdqu(). (Rodrigo)
-- Include <asm/cpufeature.h> though checkpatch complains. With
-<linux/cpufeature.h> KUnit is throwing errors.
+-None.
 
 V5 -> V6:
-- Fixed review comments (Rodrigo)
+- Use emit_atomic() function to write MI_STORE_DATA_IMM instruction
+(Matt B).
 
 V4 -> V5:
-- Fixed review comments. (Matt B)
+- Fixed review comments (Matt B).
 
 V3 -> V4:
-- Fixed review comments. (Wajdeczko)
-- Fix issues reported by patchworks.
+- New commit added.
 
 V2 -> V3:
-- Added support for 128 bit and 256 bit instructions with memcpy_vmovdqu
-- Updated emit_flush_invalidate() to use vmovdqu instruction.
+- None
 
 V1 -> V2:
-- Use memcpy_vmovdqu only for x86 arch and for VF. Else use memcpy
-  (Auld, Matthew)
-  - Fix issues reported by patchworks.
+- None
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 112 ++++++++++++++++++++++++++------
- 1 file changed, 91 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 3112c966c67d..e0be7396a0ab 100644
+index e0be7396a0ab..88634a26ebf5 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -5,6 +5,8 @@
+@@ -89,6 +89,8 @@ struct xe_migrate {
+ #define MAX_NUM_PTE 512
+ #define IDENTITY_OFFSET 256ULL
  
- #include "xe_migrate.h"
- 
-+#include <asm/fpu/api.h>
-+#include <asm/cpufeature.h>
- #include <linux/bitfield.h>
- #include <linux/sizes.h>
- 
-@@ -33,6 +35,7 @@
- #include "xe_res_cursor.h"
- #include "xe_sa.h"
- #include "xe_sched_job.h"
-+#include "xe_sriov_vf_ccs.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
- #include "xe_validation.h"
-@@ -657,18 +660,68 @@ static void emit_pte(struct xe_migrate *m,
- 	}
++static void emit_atomic(struct xe_gt *gt, void *dst, const void *src, u32 size);
++
+ /*
+  * Although MI_STORE_DATA_IMM's "length" field is 10-bits, 0x3FE is the largest
+  * legal value accepted.  Since that instruction field is always stored in
+@@ -596,6 +598,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	return cmds;
  }
  
--#define EMIT_COPY_CCS_DW 5
-+/*
-+ * VF KMD registers two specialized LRCs with the GuC to handle save/restore
-+ * operations for CCS metadata on IGPU. The GuC executes these LRCAs during
-+ * VF state/restore operations.
-+ *
-+ * Each LRC contains a batch buffer pool that GuC submits to hardware during
-+ * VF state save/restore operations. Since these operations can occur
-+ * asynchronously at any time, we must ensure GPU instructions in the batch
-+ * buffer are written atomically to prevent corruption from incomplete writes.
-+ *
-+ * To guarantee atomic instruction writes, we use x86 SIMD instructions
-+ * (128-bit XMM and 256-bit YMM) within kernel_fpu_begin()/kernel_fpu_end()
-+ * sections. This prevents vCPU preemption during instruction generation,
-+ * ensuring complete GPU commands are written to the batch buffer.
-+ */
++#define EMIT_STORE_DATA_IMM_DW 4
+ static void emit_pte(struct xe_migrate *m,
+ 		     struct xe_bb *bb, u32 at_pt,
+ 		     bool is_vram, bool is_comp_pte,
+@@ -619,11 +622,16 @@ static void emit_pte(struct xe_migrate *m,
+ 	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 	while (ptes) {
++		u32 dw[EMIT_STORE_DATA_IMM_DW] = {MI_NOOP}, i = 0;
+ 		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
+ 
+-		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+-		bb->cs[bb->len++] = ofs;
+-		bb->cs[bb->len++] = 0;
++		dw[i++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
++		dw[i++] = ofs;
++		dw[i++] = 0;
 +
-+static void memcpy_vmovdqu(struct xe_device *xe, void *dst, const void *src, u32 size)
-+{
-+	xe_assert(xe, !IS_DGFX(xe));
-+#ifdef CONFIG_X86
-+	kernel_fpu_begin();
-+	if (size == SZ_128) {
-+		asm("vmovdqu (%0), %%xmm0\n"
-+		    "vmovups %%xmm0,   (%1)\n"
-+		    :: "r" (src), "r" (dst) : "memory");
-+	} else if (size == SZ_256) {
-+		asm("vmovdqu (%0), %%ymm0\n"
-+		    "vmovups %%ymm0,   (%1)\n"
-+		    :: "r" (src), "r" (dst) : "memory");
-+	}
-+	kernel_fpu_end();
-+#endif
-+}
++		emit_atomic(m->q->gt, &bb->cs[bb->len], dw, sizeof(dw));
 +
-+static void emit_atomic(struct xe_gt *gt, void *dst, const void *src, u32 size)
-+{
-+	u32 instr_size = size * BITS_PER_BYTE;
-+
-+	xe_gt_assert(gt, instr_size == SZ_128 || instr_size == SZ_256);
-+
-+	if (IS_VF_CCS_READY(gt_to_xe(gt))) {
-+		xe_gt_assert(gt, static_cpu_has(X86_FEATURE_AVX));
-+		memcpy_vmovdqu(gt_to_xe(gt), dst, src, instr_size);
-+	} else {
-+		memcpy(dst, src, size);
-+	}
-+}
-+
-+#define EMIT_COPY_CCS_DW 8
- static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
- 			  u64 dst_ofs, bool dst_is_indirect,
- 			  u64 src_ofs, bool src_is_indirect,
- 			  u32 size)
- {
-+	u32 dw[EMIT_COPY_CCS_DW] = {MI_NOOP};
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 *cs = bb->cs + bb->len;
- 	u32 num_ccs_blks;
- 	u32 num_pages;
- 	u32 ccs_copy_size;
- 	u32 mocs;
-+	u32 i = 0;
++		bb->len += i;
  
- 	if (GRAPHICS_VERx100(xe) >= 2000) {
- 		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-@@ -686,15 +739,23 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
- 		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
- 	}
- 
--	*cs++ = XY_CTRL_SURF_COPY_BLT |
--		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
--		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
--		ccs_copy_size;
--	*cs++ = lower_32_bits(src_ofs);
--	*cs++ = upper_32_bits(src_ofs) | mocs;
--	*cs++ = lower_32_bits(dst_ofs);
--	*cs++ = upper_32_bits(dst_ofs) | mocs;
-+	dw[i++] = XY_CTRL_SURF_COPY_BLT |
-+		  (src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
-+		  (dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
-+		  ccs_copy_size;
-+	dw[i++] = lower_32_bits(src_ofs);
-+	dw[i++] = upper_32_bits(src_ofs) | mocs;
-+	dw[i++] = lower_32_bits(dst_ofs);
-+	dw[i++] = upper_32_bits(dst_ofs) | mocs;
- 
-+	/*
-+	 * The CCS copy command is a 5-dword sequence. If the vCPU halts during
-+	 * save/restore while this sequence is being issued, partial writes may trigger
-+	 * page faults when saving iGPU CCS metadata. Use the VMOVDQU instruction to
-+	 * write the sequence atomically.
-+	 */
-+	emit_atomic(gt, cs, dw, sizeof(dw));
-+	cs += EMIT_COPY_CCS_DW;
- 	bb->len = cs - bb->cs;
- }
- 
-@@ -1006,18 +1067,27 @@ static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
- 	return (NUM_KERNEL_PDE - 2) * XE_PAGE_SIZE;
- }
- 
--static int emit_flush_invalidate(u32 *dw, int i, u32 flags)
-+/*
-+ * The MI_FLUSH_DW command is a 4-dword sequence. If the vCPU halts during
-+ * save/restore while this sequence is being issued, partial writes may
-+ * trigger page faults when saving iGPU CCS metadata. Use
-+ * emit_atomic() to write the sequence atomically.
-+ */
-+#define EMIT_FLUSH_INVALIDATE_DW 4
-+static int emit_flush_invalidate(struct xe_exec_queue *q, u32 *cs, int i, u32 flags)
- {
- 	u64 addr = migrate_vm_ppgtt_addr_tlb_inval();
-+	u32 dw[EMIT_FLUSH_INVALIDATE_DW] = {MI_NOOP}, j = 0;
-+
-+	dw[j++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
-+		      MI_FLUSH_IMM_DW | flags;
-+	dw[j++] = lower_32_bits(addr);
-+	dw[j++] = upper_32_bits(addr);
-+	dw[j++] = MI_NOOP;
- 
--	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
--		  MI_FLUSH_IMM_DW | flags;
--	dw[i++] = lower_32_bits(addr);
--	dw[i++] = upper_32_bits(addr);
--	dw[i++] = MI_NOOP;
--	dw[i++] = MI_NOOP;
-+	emit_atomic(q->gt, &cs[i], dw, sizeof(dw));
- 
--	return i;
-+	return i + j;
- }
- 
- /**
-@@ -1062,7 +1132,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	/* Calculate Batch buffer size */
- 	batch_size = 0;
- 	while (size) {
--		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-+		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
- 		u64 ccs_ofs, ccs_size;
- 		u32 ccs_pt;
- 
-@@ -1103,7 +1173,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	 * sizes here again before copy command is emitted.
- 	 */
- 	while (size) {
--		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-+		batch_size += EMIT_FLUSH_INVALIDATE_DW * 2; /* Flush + ggtt addr + 1 NOP */
- 		u32 flush_flags = 0;
- 		u64 ccs_ofs, ccs_size;
- 		u32 ccs_pt;
-@@ -1126,11 +1196,11 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 
- 		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
- 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
- 						  src_L0_ofs, dst_is_pltt,
- 						  src_L0, ccs_ofs, true);
--		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-+		bb->len = emit_flush_invalidate(q, bb->cs, bb->len, flush_flags);
- 
- 		size -= src_L0;
- 	}
+ 		cur_ofs = ofs;
+ 		ofs += chunk * 8;
 -- 
 2.51.0
 
