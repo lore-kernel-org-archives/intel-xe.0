@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A688CCD183
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35A23CCD199
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 02:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C339710EAEA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDEEA10EAF6;
 	Fri, 17 Oct 2025 02:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OiafXmf1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PT/UhJNb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E68B10EAE3
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4034310EAE9
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Oct 2025 02:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760668038; x=1792204038;
+ t=1760668039; x=1792204039;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RSyXjz7lIP3Cb4O1FRiy5CmtoavrhJKlHgM2iudbxqc=;
- b=OiafXmf1HezpbWAtbHbl2F3CaPSmb73MI+6Xhs2C6XVjGzVCykQZeAUu
- ln06Eml4caqj8/H6XQ8SI6qk2P13GlTa//v8PItJNzN/plwpd384CfozO
- eWY7KG6zzDk0iJtGXKKLh7MjSEDHuHejWBv4KrsMtztwWMwzz5rQRRDEb
- AmN5amrzWiejh7G8Fuj95uhAsDIynWZzM76u+CLw4WSvmva59B19nl576
- gZyavmcrw2JxA/cyOTmSk0uveEw1gurwpT3p+pXJFaHstwf3SW1RLtVbz
- KLF5w8KaaNx5eRUV3bpcykekQoQZtJ1Hf2zSS8091CRVSvE9qgOxHpiqj Q==;
-X-CSE-ConnectionGUID: KixqCCO9TfyAhs9cHV4VsA==
-X-CSE-MsgGUID: 3CE0wTXmSaG+ckWdOEbW5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739214"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739214"
+ bh=ZSKeu79w4YOZasltzgEDdUP93Gbj9GriSKtCHaQ2RWM=;
+ b=PT/UhJNbguutw6D5cFF3oIdLkcIdGDI/t0CK/H1IANqun801Pvwv52cw
+ G7opApP80WYv3BPhOqKK7ygw7ZNEIh1tPgYvzwSqbmPGE2LrRWC87w79A
+ uI4RiJFKgBQkJFiFOhHzNl8YPIR/JRvAjvZjUeI6shbw08+XnAWFbR4hR
+ YmdytuFm7h4I0/FQqXzQjcYyOiKSVniWlJ5PHKAsELVsfWI+bUdGhwvbH
+ 2zug4NrtnFGOHytu/bJJY+V8AzDOk+4P+dcmsmfykoBlx39AV9lSO2rcO
+ L8KVSDh5pmmTZ9v4wian3HbjuD2sxWAweknc06/jLnXLYqRo3oF9umHM0 g==;
+X-CSE-ConnectionGUID: 8sJKbCKcQG+Z6i2kbU2hSQ==
+X-CSE-MsgGUID: jZJpN+C3TRCyjrmqfmu+rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="66739220"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="66739220"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:18 -0700
-X-CSE-ConnectionGUID: M2hqDXSFSlacjpJ1SO4Z4w==
-X-CSE-MsgGUID: zchBnUuoQSm+WamVj2El/Q==
+ 16 Oct 2025 19:27:19 -0700
+X-CSE-ConnectionGUID: uqsqsVYuS5KPCqGNK8fYyA==
+X-CSE-MsgGUID: yzkn76bURR23pBKv7Cu5YA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089189"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; d="scan'208";a="183089208"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2025 19:27:17 -0700
+ 16 Oct 2025 19:27:19 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -48,9 +48,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v3 11/24] drm/xe/nvl: Define NVL-S platform
-Date: Thu, 16 Oct 2025 19:26:30 -0700
-Message-ID: <20251016-xe3p-v3-11-3dd173a3097a@intel.com>
+Subject: [PATCH v3 17/24] drm/xe/irq: Rename fuse mask variables
+Date: Thu, 16 Oct 2025 19:26:36 -0700
+Message-ID: <20251016-xe3p-v3-17-3dd173a3097a@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
 References: <20251016-xe3p-v3-0-3dd173a3097a@intel.com>
@@ -72,81 +72,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+It's confusing to refer to some masks as the interrupt masks and others
+as the fuse masks. Rename the fuse one to make it clearer.
 
-Provide the basic platform definitions and PCI IDs for NVL-S.
+Note that the most important role they play here is that the call
+to xe_hw_engine_mask_per_class() will not only limit the engines
+according to the fuses, but also by what is available in the specific
+architecture - the latter is more important information to know what
+interrupts should be enabled. Add a comment about that.
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
-v2: Fix rebase on flags moving to the device descriptor (Gustavo)
----
- drivers/gpu/drm/xe/xe_pci.c            | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_platform_types.h |  1 +
- include/drm/intel/pciids.h             |  9 +++++++++
- 3 files changed, 22 insertions(+)
+ drivers/gpu/drm/xe/xe_irq.c | 30 ++++++++++++++++++------------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index fac46178cebba..0546442e2a631 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -377,6 +377,17 @@ static const struct xe_device_desc ptl_desc = {
- 	.vm_max_level = 4,
- };
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 838fb512b7779..9c3a85c4585ed 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -139,7 +139,6 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_mmio *mmio = &gt->mmio;
+-	u32 ccs_mask, bcs_mask;
+ 	u32 irqs, dmask, smask;
+ 	u32 gsc_mask = 0;
+ 	u32 heci_mask = 0;
+@@ -157,36 +156,43 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		       GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	}
  
-+static const struct xe_device_desc nvls_desc = {
-+	PLATFORM(NOVALAKE_S),
-+	.dma_mask_size = 46,
-+	.has_display = true,
-+	.has_flat_ccs = 1,
-+	.max_gt_per_tile = 2,
-+	.require_force_probe = true,
-+	.va_bits = 48,
-+	.vm_max_level = 4,
-+};
+-	ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
+-	bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
+-
+ 	dmask = irqs << 16 | irqs;
+ 	smask = irqs << 16;
+ 
+ 	if (xe_gt_is_main_type(gt)) {
++		/*
++		 * For enabling the interrupts, the information about fused off
++		 * engines doesn't matter much, but this also allows to check if
++		 * the engine is available architecturally in the platform
++		 */
++		u32 ccs_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
++		u32 bcs_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
 +
- #undef PLATFORM
- __diag_pop();
+ 		/* Enable interrupts for each engine class */
+ 		xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
+-		if (ccs_mask)
++		if (ccs_fuse_mask)
+ 			xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
  
-@@ -405,6 +416,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
- 	INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
-+	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
- 	{ }
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index 3e332214c7bb4..78286285c2495 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -24,6 +24,7 @@ enum xe_platform {
- 	XE_LUNARLAKE,
- 	XE_BATTLEMAGE,
- 	XE_PANTHERLAKE,
-+	XE_NOVALAKE_S,
- };
+ 		/* Unmask interrupts for each engine instance */
+ 		xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
+ 		xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
+-		if (bcs_mask & (BIT(1)|BIT(2)))
++		if (bcs_fuse_mask & (BIT(1)|BIT(2)))
+ 			xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
+-		if (bcs_mask & (BIT(3)|BIT(4)))
++		if (bcs_fuse_mask & (BIT(3)|BIT(4)))
+ 			xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
+-		if (bcs_mask & (BIT(5)|BIT(6)))
++		if (bcs_fuse_mask & (BIT(5)|BIT(6)))
+ 			xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
+-		if (bcs_mask & (BIT(7)|BIT(8)))
++		if (bcs_fuse_mask & (BIT(7)|BIT(8)))
+ 			xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
+-		if (ccs_mask & (BIT(0)|BIT(1)))
++		if (ccs_fuse_mask & (BIT(0)|BIT(1)))
+ 			xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
+-		if (ccs_mask & (BIT(2)|BIT(3)))
++		if (ccs_fuse_mask & (BIT(2)|BIT(3)))
+ 			xe_mmio_write32(mmio, CCS2_CCS3_INTR_MASK, ~dmask);
+ 	}
  
- enum xe_subplatform {
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 452c1de606ff2..13c592e1a28c7 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -887,4 +887,13 @@
- 	MACRO__(0xFD80, ## __VA_ARGS__), \
- 	MACRO__(0xFD81, ## __VA_ARGS__)
- 
-+/* NVL-S */
-+#define INTEL_NVLS_IDS(MACRO__, ...) \
-+	MACRO__(0xD740, ## __VA_ARGS__), \
-+	MACRO__(0xD741, ## __VA_ARGS__), \
-+	MACRO__(0xD742, ## __VA_ARGS__), \
-+	MACRO__(0xD743, ## __VA_ARGS__), \
-+	MACRO__(0xD744, ## __VA_ARGS__), \
-+	MACRO__(0xD745, ## __VA_ARGS__)
+ 	if (xe_gt_is_media_type(gt) || MEDIA_VER(xe) < 13) {
++		u32 other_fuse_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER);
 +
- #endif /* __PCIIDS_H__ */
+ 		/* Enable interrupts for each engine class */
+ 		xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
+ 
+@@ -199,7 +205,7 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+ 		 * the heci2 interrupt is enabled via the same register as the
+ 		 * GSCCS interrupts, but it has its own mask register.
+ 		 */
+-		if (xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER)) {
++		if (other_fuse_mask) {
+ 			gsc_mask = irqs | GSC_ER_COMPLETE;
+ 			heci_mask = GSC_IRQ_INTF(1);
+ 		} else if (xe->info.has_heci_gscfi) {
 
 -- 
 2.51.0
