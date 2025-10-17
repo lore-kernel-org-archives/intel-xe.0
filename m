@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07C16CCD199
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D22DFCCD199
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:45:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B6110EC33;
-	Fri, 17 Oct 2025 13:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 818C210EC33;
+	Fri, 17 Oct 2025 13:45:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CQ+EJPH9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CivVvQuM";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 156F310EC25;
- Fri, 17 Oct 2025 13:37:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7F210EC30;
+ Fri, 17 Oct 2025 13:45:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=XLGhddYrNF73n9+KmE9UqwxrQKqRyw8glkS2FCep6MM=; b=CQ+EJPH9neDJap7dL1TUxJrsrJ
- f6+020ECu56G+647IT8jo4JPwFG0QiKRTTLSevl2bPxIpSQWAKvHsSZEYddUwfE1mbuxLHvcOya15
- nRE5rKoOn5Wr7G1ELzTE73td/JjnBBec+3q16w6YP3fxNHDSAEscYJet4E731ynWeA+28kgfk1SJZ
- Wutf7MdU8HyLheIWC6Y595a4gYHhNo1sgZY30uCrZ1DfNMEFiKpLv/vqyKEJ1uoIK8E5Qq8f1vtMq
- +1VDvfiIinR6U9lt3TfVADlIl0ilCcTTkayHQuZeeMHMPKj6AG/cE0N/Ul7iJ+uDs/dMovok7YI3I
- XPZLxCpg==;
-Received: from [90.242.12.242] (helo=localhost)
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lcjd8+No4rveh6Q9al6ByXu6XrQxSlVQ3KtON1G7nWA=; b=CivVvQuM7mdRsKwXBRy3fbQbJD
+ a9PIkChHG6yyI5PYNPZOXKRjX3kvKWk/1aoSdm4SnZMAPUdwDO6yskWNeiDXBUbTvKyWbCISGt12A
+ pOSi53ZurZckI6tEbiW0V0EB6x/Sf2IkouX2x1s/SNaNBMWNowcjgXO3pxgfyYii1RcMB5YdSgLmq
+ mxo/5EQJ5YWUxEzyELbHoNbbsR3VmANUtvR60erBef/mq7/FFDTNqY4N4e3kWfXI29FzRjsEwVruc
+ 3XOjahqi829gNF5/nmKU3DE8NTy5CASPRYsUBVOD8lQv6qcSc6TLq/OvHZor5RWK0US/V9vU8rvHs
+ z6/haBVw==;
+Received: from [90.242.12.242] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1v9kdl-00B3z0-P3; Fri, 17 Oct 2025 15:37:05 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 26/27] drm/xe: Remove drm_sched_init_args->num_rqs usage
-Date: Fri, 17 Oct 2025 14:36:43 +0100
-Message-ID: <20251017133644.44747-27-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20251017133644.44747-1-tvrtko.ursulin@igalia.com>
-References: <20251017133644.44747-1-tvrtko.ursulin@igalia.com>
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1v9klO-00B4Ds-Gn; Fri, 17 Oct 2025 15:44:58 +0200
+Message-ID: <bb5ec076-5399-442b-a905-f908ae401404@igalia.com>
+Date: Fri, 17 Oct 2025 14:44:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t v2] lib/igt_fb/intel: Use correct MOCS for
+ displayable surfaces
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ igt-dev@lists.freedesktop.org
+References: <20251003130517.40414-1-tvrtko.ursulin@igalia.com>
+ <aPIooUoKzt6ilFsW@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <aPIooUoKzt6ilFsW@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,55 +62,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove member no longer used by the scheduler core.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
----
- drivers/gpu/drm/xe/xe_dep_scheduler.c | 1 -
- drivers/gpu/drm/xe/xe_execlist.c      | 1 -
- drivers/gpu/drm/xe/xe_gpu_scheduler.c | 1 -
- 3 files changed, 3 deletions(-)
+On 17/10/2025 12:29, Ville Syrjälä wrote:
+> On Fri, Oct 03, 2025 at 02:05:17PM +0100, Tvrtko Ursulin wrote:
+>> Using the uncached MOCS for displayable surfaces is not always correct,
+>> especially when CCS compression is used with which some platforms require
+>> a special uncached entry, otherwise writes get unexpectedly cached.
+>>
+>> Lets copy the knowledge of what is the correct MOCS for displayable
+>> surfaces from Mesa and add some new helpers to get it.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> The numbers looked all right to me.
+> 
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_dep_scheduler.c b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-index 9bd3bfd2e526..2c7f43e61069 100644
---- a/drivers/gpu/drm/xe/xe_dep_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-@@ -78,7 +78,6 @@ xe_dep_scheduler_create(struct xe_device *xe,
- 	const struct drm_sched_init_args args = {
- 		.ops = &sched_ops,
- 		.submit_wq = submit_wq,
--		.num_rqs = 1,
- 		.credit_limit = job_limit,
- 		.timeout = MAX_SCHEDULE_TIMEOUT,
- 		.name = name,
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 769d05517f93..84a46b919221 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -338,7 +338,6 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	struct drm_gpu_scheduler *sched;
- 	const struct drm_sched_init_args args = {
- 		.ops = &drm_sched_ops,
--		.num_rqs = 1,
- 		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
- 		.hang_limit = XE_SCHED_HANG_LIMIT,
- 		.timeout = XE_SCHED_JOB_TIMEOUT,
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index f91e06d03511..cdd70e32cdb3 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -66,7 +66,6 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 	const struct drm_sched_init_args args = {
- 		.ops = ops,
- 		.submit_wq = submit_wq,
--		.num_rqs = 1,
- 		.credit_limit = hw_submission,
- 		.hang_limit = hang_limit,
- 		.timeout = timeout,
--- 
-2.48.0
+Thanks! I've pushed it and will keep an eye on the results.
+> There's a bunch of other MOCS stuff under tests/ and I'm not sure
+> the chosen numbers there make complete sense. Someone might want
+> to have a good look at those at some point. A few examples:
+> 
+> - kms_ccs uses UC MOCS for some flat CCS stuff even though it
+>    needs to deal with display coherency, but I'm not sure if there's
+>    any significant difference between the UC vs. displayable MOCS
+>    entry on flat CCS platforms
+> 
+> - gem_ccs uses UC even though the data is only accessed by the CPU,
+>    but then again I'm not sure what the deal is these days with the
+>    whole LLC/L4 vs. L3 vs. snooping stuff on new platforms
+
+I'll have a brief look in case I spot something obvious. But as flat ccs 
+is something I haven't worked with so far, likewise the new platforms, 
+it may not be a very effective look.
+
+Regards,
+
+Tvrtko
+>> ---
+>> v2:
+>>   * Renamed external_index to displayable_index. (Ville)
+>> ---
+>>   lib/igt_fb.c       |  2 +-
+>>   lib/intel_bufops.c |  2 ++
+>>   lib/intel_mocs.c   | 21 +++++++++++++++++++--
+>>   lib/intel_mocs.h   |  2 ++
+>>   4 files changed, 24 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/lib/igt_fb.c b/lib/igt_fb.c
+>> index 03ede3a6fa20..b5a16f9cbe90 100644
+>> --- a/lib/igt_fb.c
+>> +++ b/lib/igt_fb.c
+>> @@ -2712,7 +2712,7 @@ igt_fb_create_intel_buf(int fd, struct buf_ops *bops,
+>>   				    fb->strides[0],
+>>   				    region,
+>>   				    intel_get_pat_idx_uc(fd),
+>> -				    DEFAULT_MOCS_INDEX);
+>> +				    DISPLAYABLE_MOCS_INDEX);
+>>   	intel_buf_set_name(buf, name);
+>>   
+>>   	/* only really needed for proper CCS handling */
+>> diff --git a/lib/intel_bufops.c b/lib/intel_bufops.c
+>> index 475b0d1f7b10..1196069a500f 100644
+>> --- a/lib/intel_bufops.c
+>> +++ b/lib/intel_bufops.c
+>> @@ -1008,6 +1008,8 @@ static void __intel_buf_init(struct buf_ops *bops,
+>>   	buf->pat_index = pat_index;
+>>   	if (mocs_index == DEFAULT_MOCS_INDEX)
+>>   		mocs_index = intel_get_uc_mocs_index(bops->fd);
+>> +	else if (mocs_index == DISPLAYABLE_MOCS_INDEX)
+>> +		mocs_index = intel_get_displayable_mocs_index(bops->fd);
+>>   	buf->mocs_index = mocs_index;
+>>   	IGT_INIT_LIST_HEAD(&buf->link);
+>>   
+>> diff --git a/lib/intel_mocs.c b/lib/intel_mocs.c
+>> index e0c33c31c088..9809e32113eb 100644
+>> --- a/lib/intel_mocs.c
+>> +++ b/lib/intel_mocs.c
+>> @@ -9,12 +9,14 @@
+>>   struct drm_intel_mocs_index {
+>>   	uint8_t uc_index;
+>>   	uint8_t wb_index;
+>> +	uint8_t displayable_index;
+>>   	uint8_t defer_to_pat_index;
+>>   };
+>>   
+>>   static void get_mocs_index(int fd, struct drm_intel_mocs_index *mocs)
+>>   {
+>>   	uint16_t devid = intel_get_drm_devid(fd);
+>> +	unsigned int ip_ver = intel_graphics_ver(devid);
+>>   
+>>   	/*
+>>   	 * Gen >= 12 onwards don't have a setting for PTE,
+>> @@ -23,25 +25,31 @@ static void get_mocs_index(int fd, struct drm_intel_mocs_index *mocs)
+>>   	 * This helper function is providing current UC as well
+>>   	 * as WB MOCS index based on platform.
+>>   	 */
+>> -	if (intel_graphics_ver(devid) >= IP_VER(20, 0)) {
+>> +	if (ip_ver >= IP_VER(20, 0)) {
+>>   		mocs->uc_index = 3;
+>>   		mocs->wb_index = 4;
+>> +		mocs->displayable_index = 1;
+>>   		mocs->defer_to_pat_index = 0;
+>>   	} else if (IS_METEORLAKE(devid)) {
+>>   		mocs->uc_index = 5;
+>>   		mocs->wb_index = 1;
+>> +		mocs->displayable_index = 14;
+>>   	} else if (IS_DG2(devid)) {
+>>   		mocs->uc_index = 1;
+>>   		mocs->wb_index = 3;
+>> +		mocs->displayable_index = 3;
+>>   	} else if (IS_DG1(devid)) {
+>>   		mocs->uc_index = 1;
+>>   		mocs->wb_index = 5;
+>> -	} else if (IS_GEN12(devid)) {
+>> +		mocs->displayable_index = 5;
+>> +	} else if (ip_ver >= IP_VER(12, 0)) {
+>>   		mocs->uc_index = 3;
+>>   		mocs->wb_index = 2;
+>> +		mocs->displayable_index = 61;
+>>   	} else {
+>>   		mocs->uc_index = I915_MOCS_PTE;
+>>   		mocs->wb_index = I915_MOCS_CACHED;
+>> +		mocs->displayable_index = I915_MOCS_PTE;
+>>   	}
+>>   }
+>>   
+>> @@ -63,6 +71,15 @@ uint8_t intel_get_uc_mocs_index(int fd)
+>>   	return mocs.uc_index;
+>>   }
+>>   
+>> +uint8_t intel_get_displayable_mocs_index(int fd)
+>> +{
+>> +	struct drm_intel_mocs_index mocs;
+>> +
+>> +	get_mocs_index(fd, &mocs);
+>> +
+>> +	return mocs.displayable_index;
+>> +}
+>> +
+>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd)
+>>   {
+>>   	struct drm_intel_mocs_index mocs;
+>> diff --git a/lib/intel_mocs.h b/lib/intel_mocs.h
+>> index 8597286d259d..394bb41be042 100644
+>> --- a/lib/intel_mocs.h
+>> +++ b/lib/intel_mocs.h
+>> @@ -9,9 +9,11 @@
+>>   #include <stdint.h>
+>>   
+>>   #define DEFAULT_MOCS_INDEX ((uint8_t)-1)
+>> +#define DISPLAYABLE_MOCS_INDEX ((uint8_t)-2)
+>>   
+>>   uint8_t intel_get_wb_mocs_index(int fd);
+>>   uint8_t intel_get_uc_mocs_index(int fd);
+>> +uint8_t intel_get_displayable_mocs_index(int fd);
+>>   uint8_t intel_get_defer_to_pat_mocs_index(int fd);
+>>   
+>>   #endif /* _INTEL_MOCS_H */
+>> -- 
+>> 2.48.0
+> 
 
