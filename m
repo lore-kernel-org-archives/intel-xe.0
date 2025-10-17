@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97F26CCD195
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:22:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBA0CCD1A4
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Oct 2025 13:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596A210EBEC;
-	Fri, 17 Oct 2025 13:22:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UCktup4l";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1E910EBEC;
- Fri, 17 Oct 2025 13:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760707373; x=1792243373;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cNKfd2OUhLSNkBfbedo5lNbJ54QKExpQFHuoqCnG25E=;
- b=UCktup4lr7RPxtw9k85Y2kYm0KnagDa7yo7ZFMPW/p0y8WHHtJiW+1YP
- smm9B8o9XAnSoWkQMu0NryyPJ+TWrb/O4heMJfhNNiUmIjJEuNsAfPirU
- n3j8K7Jix1My+raTXZoWcTSjtP3qUjzhzvDIR3MbwgkLZTwJmvRZT/A8v
- HnqaWJSP5oPD8pgGkYYdaK03X9KN2APGyfa6DYBvp6a0u+F7IcId8P6I0
- Nw72qg/ZoM/SgG97rr/13iC/jjt3B9qn82wM2OQIOBpg2mnJhM2drTROU
- pKRaS6BGEaFQxg7kg25wLrGT8OL/6CRjdq+gbbgfovYw3CHAhVevo1IIz g==;
-X-CSE-ConnectionGUID: dkQDxv7GR02O4+ndxK7Z8g==
-X-CSE-MsgGUID: PLoGNFfmTsKmhYVi3E1q0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="66780572"
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="66780572"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 06:22:53 -0700
-X-CSE-ConnectionGUID: ZuR8LekdTl+FxwIPoSOdaA==
-X-CSE-MsgGUID: nyyAMjW4R8K0HvUCj9F6Wg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,236,1754982000"; d="scan'208";a="183143474"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.129])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2025 06:22:52 -0700
-Date: Fri, 17 Oct 2025 16:22:48 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com
-Subject: Re: [PATCH v1] drm/i915: Add fallback for CDCLK selection when
- min_cdclk is too high
-Message-ID: <aPJDKDuuUWfL6FaU@intel.com>
-References: <20251017114821.780466-1-ramanaidu.naladala@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 500E510EBEF;
+	Fri, 17 Oct 2025 13:24:27 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C73CE10EBEF;
+ Fri, 17 Oct 2025 13:24:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1246520545670523879=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251017114821.780466-1-ramanaidu.naladala@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_share_USM_BCS_eng?=
+ =?utf-8?q?ine_via_root-tile_helper?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Oct 2025 13:24:25 -0000
+Message-ID: <176070746580.27103.12434680656577524388@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251017122253.149187-1-nitin.r.gote@intel.com>
+In-Reply-To: <20251017122253.149187-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,77 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 17, 2025 at 05:18:21PM +0530, Naladala Ramanaidu wrote:
-> In cases where the requested minimum CDCLK exceeds all available
-> values for the current reference clock, the CDCLK selection logic
-> previously returned 0. This could result coverity division or
-> modulo by zero issue.
-> 
-> This change introduces a fallback mechanism that selects the last
-> valid CDCLK value associated with the current reference clock. A
-> warning is logged to indicate that the minimum requirement could
-> not be satisfied, and a safe fallback value is used instead.
-> 
-> Fixes: Coverity CID 2628056
-> 
-> Signed-off-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 14 +++++++++-----
->  1 file changed, 9 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index e92e7fd9fd13..a90b602a40c4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1551,17 +1551,21 @@ static int cdclk_divider(int cdclk, int vco, u16 waveform)
->  static int bxt_calc_cdclk(struct intel_display *display, int min_cdclk)
->  {
->  	const struct intel_cdclk_vals *table = display->cdclk.table;
-> -	int i;
-> +	int i, last_valid_cdclk = 0;
->  
-> -	for (i = 0; table[i].refclk; i++)
-> +	for (i = 0; table[i].refclk; i++) {
->  		if (table[i].refclk == display->cdclk.hw.ref &&
->  		    table[i].cdclk >= min_cdclk)
->  			return table[i].cdclk;
->  
-> +		if (table[i].refclk == display->cdclk.hw.ref)
-> +			last_valid_cdclk = table[i].cdclk;
-> +	}
-> +
->  	drm_WARN(display->drm, 1,
-> -		 "Cannot satisfy minimum cdclk %d with refclk %u\n",
-> -		 min_cdclk, display->cdclk.hw.ref);
-> -	return 0;
+--===============1246520545670523879==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Will never happen because we never pass in a min_cdclk that
-high into this function.
+== Series Details ==
 
-At some point I was thinking of determining the max cdclk via
-'calc_cdclk(INT_MAX)' to get rid of some of the magic numbers
-in intel_update_max_cdclk(). But I think in some cases the table
-will contain values >max_cdclk anyway, so that probably is
-not going to fly anyway.
+Series: drm/xe: share USM BCS engine via root-tile helper
+URL   : https://patchwork.freedesktop.org/series/156117/
+State : success
 
-So without that I don't think we really need this much
-complexity and you could just do:
+== Summary ==
 
-- return 0;
-+ return display->cdclk.max_cdclk_freq;
+CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -> xe-pw-156117v1_BAT
+====================================================
 
-> +		 "Cannot satisfy minimum cdclk %d with refclk %u, falling back to %d\n",
-> +		 min_cdclk, display->cdclk.hw.ref, last_valid_cdclk);
-> +	return last_valid_cdclk;
->  }
->  
->  static int bxt_calc_cdclk_pll_vco(struct intel_display *display, int cdclk)
-> -- 
-> 2.43.0
+Summary
+-------
 
--- 
-Ville Syrjälä
-Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156117v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8589 -> IGT_8591
+  * Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -> xe-pw-156117v1
+
+  IGT_8589: 8589
+  IGT_8591: 8591
+  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4
+  xe-pw-156117v1: 156117v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html
+
+--===============1246520545670523879==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: share USM BCS engine via root-tile helper</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156117/">https://patchwork.freedesktop.org/series/156117/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4_BAT -&gt; xe-pw-156117v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156117v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156117v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8589 -&gt; IGT_8591</li>
+<li>Linux: xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4 -&gt; xe-pw-156117v1</li>
+</ul>
+<p>IGT_8589: 8589<br />
+  IGT_8591: 8591<br />
+  xe-3939-c061afbce5f67a014cf06a8aabe27a13c242fbd4: c061afbce5f67a014cf06a8aabe27a13c242fbd4<br />
+  xe-pw-156117v1: 156117v1</p>
+
+</body>
+</html>
+
+--===============1246520545670523879==--
