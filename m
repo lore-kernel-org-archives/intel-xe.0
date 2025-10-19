@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0315CCD184
-	for <intel-xe@archiver.kernel.org>; Sun, 19 Oct 2025 20:00:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571DACCD195
+	for <intel-xe@archiver.kernel.org>; Sun, 19 Oct 2025 23:41:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1D010E05F;
-	Sun, 19 Oct 2025 20:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02CC10E068;
+	Sun, 19 Oct 2025 23:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XyFTofnR";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="Kxv3o1fo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8845B10E05F
- for <intel-xe@lists.freedesktop.org>; Sun, 19 Oct 2025 19:59:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760903998; x=1792439998;
- h=date:from:to:cc:subject:message-id;
- bh=fuvk96NT27Rw8hQh6W+ZL0h7NyLuECfOK+pPdXX5ukY=;
- b=XyFTofnRiEDr8JxXNPUIGI6tYLcipxACM8wIcMQwQIjCZpOZWS+8jeWR
- yj+odSwDF3Vvue/4HHfJu2nnIgRkAOJuPKs/7RkMidXAPHN9qJjWS8kY+
- ghI4GvgmWPdnxSAVLR7x649eDk32ypfEp+yLnyRuqp25JYOt5+nqj/Go/
- fDQ/8PiGjCZNVOThDBgUmsW68GMS4WPUW87TMTEJ2nosRedUHO5e/xyo4
- ExE2gSjw5KBusJ1Hbz3uJ7F00z8aksd8tPveE24VVlXjj3744mo5VkGmb
- p9YtJvR4Jk31mNS4/FQM3NPwXjkkWuc6kb5/GWcLzHHmMVQUYfA2fo51+ w==;
-X-CSE-ConnectionGUID: 7/reJqKwS7+N81exMyOAaQ==
-X-CSE-MsgGUID: KXrsEbfVReakm+ka4owF6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="66870839"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="66870839"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2025 12:59:58 -0700
-X-CSE-ConnectionGUID: YEfISvP7QJmW/uR+0xlgOg==
-X-CSE-MsgGUID: kV5DK0rHRtSZnkx7bpNr8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,241,1754982000"; d="scan'208";a="183587519"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
- by fmviesa008.fm.intel.com with ESMTP; 19 Oct 2025 12:59:56 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1vAZZK-0009IP-1I;
- Sun, 19 Oct 2025 19:59:54 +0000
-Date: Mon, 20 Oct 2025 03:59:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- d104d7ea864c1b9d8ffb3d93a58d49f9395be670
-Message-ID: <202510200330.0xUw5VJ3-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-Greylist: delayed 604 seconds by postgrey-1.36 at gabe;
+ Sun, 19 Oct 2025 23:41:28 UTC
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 881D110E068;
+ Sun, 19 Oct 2025 23:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1760916681;
+ bh=UoGToMhmBvEkGtFCZAK2Hfm8FjJbcOJcRKBGQzSH3uk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Kxv3o1forkHd7Kw9IxA6kAr7BphZdpSx4oj/w9NqLMQXh15veMVaN37hr18BZkidr
+ oKVtEL/8Rp9K/Z3kUQ6loa8g0e7aD/GtuQpTfWs27JA+zmS1s3rmB07TeK1hKaJZUG
+ 8kT1mVj+IOhplw+PPoJ6ZAlPWorg1UIRXSkkrgTx4DivJ/waafhJhWIQLKF2qLWY5p
+ 3ticRZ8Ul9i3+c9CLl+QOK0UQfrdepO3lBN3mmhTR1267iCc9JmFnPidFuzGwbQew4
+ 0GDlnBKt3EjZQxjd/2G+U7QdXIm+7tuhLS+ccsjKtRZA7rzXprO8u0Jn60rag/J+LO
+ MBj6L70PkItCw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4cqZZJ1QW7z4w9Q;
+ Mon, 20 Oct 2025 10:31:19 +1100 (AEDT)
+Date: Mon, 20 Oct 2025 10:31:19 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0?=
+ =?UTF-8?B?csO2bQ==?= <thomas.hellstrom@linux.intel.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>, Linux
+ Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ DRM XE List <intel-xe@lists.freedesktop.org>
+Subject: linux-next: manual merge of the drm-xe tree with the drm-intel tree
+Message-ID: <20251020103119.3215fa25@canb.auug.org.au>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/zoF=3JrYD9.aAWKh3I7OTaC";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,147 +65,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: d104d7ea864c1b9d8ffb3d93a58d49f9395be670  drm/xe/xe3p: Add xe3p EU stall data format
+--Sig_/zoF=3JrYD9.aAWKh3I7OTaC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-elapsed time: 1002m
+Hi all,
 
-configs tested: 128
-configs skipped: 5
+Today's linux-next merge of the drm-xe tree got a conflict in:
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+  drivers/gpu/drm/xe/xe_pci.c
 
-tested configs:
-alpha                             allnoconfig    gcc-15.1.0
-alpha                            allyesconfig    gcc-15.1.0
-alpha                               defconfig    gcc-15.1.0
-arc                              alldefconfig    gcc-15.1.0
-arc                              allmodconfig    gcc-15.1.0
-arc                               allnoconfig    gcc-15.1.0
-arc                              allyesconfig    gcc-15.1.0
-arc                                 defconfig    gcc-15.1.0
-arc                   randconfig-001-20251019    gcc-8.5.0
-arc                   randconfig-002-20251019    gcc-13.4.0
-arc                           tb10x_defconfig    gcc-15.1.0
-arm                              allmodconfig    gcc-15.1.0
-arm                               allnoconfig    clang-22
-arm                              allyesconfig    gcc-15.1.0
-arm                         axm55xx_defconfig    clang-22
-arm                          exynos_defconfig    clang-22
-arm                        multi_v7_defconfig    gcc-15.1.0
-arm                       omap2plus_defconfig    gcc-15.1.0
-arm                   randconfig-001-20251019    clang-22
-arm                   randconfig-002-20251019    gcc-11.5.0
-arm                   randconfig-003-20251019    clang-22
-arm                   randconfig-004-20251019    clang-22
-arm                         vf610m4_defconfig    gcc-15.1.0
-arm64                            allmodconfig    clang-19
-arm64                             allnoconfig    gcc-15.1.0
-arm64                 randconfig-001-20251019    gcc-13.4.0
-arm64                 randconfig-002-20251019    clang-18
-arm64                 randconfig-003-20251019    gcc-13.4.0
-arm64                 randconfig-004-20251019    clang-22
-csky                              allnoconfig    gcc-15.1.0
-csky                  randconfig-001-20251019    gcc-13.4.0
-csky                  randconfig-002-20251019    gcc-15.1.0
-hexagon                          allmodconfig    clang-17
-hexagon                           allnoconfig    clang-22
-hexagon                          allyesconfig    clang-22
-hexagon               randconfig-001-20251019    clang-20
-hexagon               randconfig-002-20251019    clang-17
-i386                             allmodconfig    gcc-14
-i386                              allnoconfig    gcc-14
-i386                             allyesconfig    gcc-14
-i386        buildonly-randconfig-001-20251019    clang-20
-i386        buildonly-randconfig-002-20251019    gcc-14
-i386        buildonly-randconfig-003-20251019    gcc-14
-i386        buildonly-randconfig-004-20251019    clang-20
-i386        buildonly-randconfig-005-20251019    gcc-13
-i386        buildonly-randconfig-006-20251019    gcc-14
-i386                                defconfig    clang-20
-loongarch                        allmodconfig    clang-19
-loongarch                         allnoconfig    clang-22
-loongarch             randconfig-001-20251019    clang-18
-loongarch             randconfig-002-20251019    clang-22
-m68k                             allmodconfig    gcc-15.1.0
-m68k                              allnoconfig    gcc-15.1.0
-m68k                             allyesconfig    gcc-15.1.0
-microblaze                       allmodconfig    gcc-15.1.0
-microblaze                        allnoconfig    gcc-15.1.0
-microblaze                       allyesconfig    gcc-15.1.0
-microblaze                          defconfig    gcc-15.1.0
-mips                              allnoconfig    gcc-15.1.0
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    gcc-11.5.0
-nios2                 randconfig-001-20251019    gcc-8.5.0
-nios2                 randconfig-002-20251019    gcc-11.5.0
-openrisc                          allnoconfig    gcc-15.1.0
-openrisc                         allyesconfig    gcc-15.1.0
-openrisc                            defconfig    gcc-15.1.0
-parisc                           allmodconfig    gcc-15.1.0
-parisc                            allnoconfig    gcc-15.1.0
-parisc                           allyesconfig    gcc-15.1.0
-parisc                              defconfig    gcc-15.1.0
-parisc                randconfig-001-20251019    gcc-15.1.0
-parisc                randconfig-002-20251019    gcc-8.5.0
-parisc64                            defconfig    gcc-15.1.0
-powerpc                          allmodconfig    gcc-15.1.0
-powerpc                           allnoconfig    gcc-15.1.0
-powerpc                          allyesconfig    clang-22
-powerpc               randconfig-001-20251019    clang-17
-powerpc               randconfig-002-20251019    gcc-10.5.0
-powerpc               randconfig-003-20251019    gcc-11.5.0
-powerpc64             randconfig-002-20251019    clang-16
-riscv                            allmodconfig    clang-22
-riscv                             allnoconfig    gcc-15.1.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-22
-riscv                 randconfig-001-20251019    clang-19
-riscv                 randconfig-002-20251019    gcc-11.5.0
-s390                             allmodconfig    clang-18
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.1.0
-s390                                defconfig    clang-22
-s390                  randconfig-001-20251019    gcc-8.5.0
-s390                  randconfig-002-20251019    clang-22
-sh                               allmodconfig    gcc-15.1.0
-sh                                allnoconfig    gcc-15.1.0
-sh                               allyesconfig    gcc-15.1.0
-sh                                  defconfig    gcc-15.1.0
-sh                    randconfig-001-20251019    gcc-15.1.0
-sh                    randconfig-002-20251019    gcc-15.1.0
-sparc                            allmodconfig    gcc-15.1.0
-sparc                             allnoconfig    gcc-15.1.0
-sparc                               defconfig    gcc-15.1.0
-sparc                 randconfig-001-20251019    gcc-11.5.0
-sparc                 randconfig-002-20251019    gcc-13.4.0
-sparc64                             defconfig    clang-20
-sparc64               randconfig-001-20251019    gcc-8.5.0
-sparc64               randconfig-002-20251019    gcc-14.3.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-14
-um                                  defconfig    clang-22
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20251019    gcc-13
-um                    randconfig-002-20251019    clang-22
-um                           x86_64_defconfig    clang-22
-x86_64                            allnoconfig    clang-20
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20251019    clang-20
-x86_64      buildonly-randconfig-002-20251019    gcc-13
-x86_64      buildonly-randconfig-003-20251019    clang-20
-x86_64      buildonly-randconfig-004-20251019    gcc-14
-x86_64      buildonly-randconfig-005-20251019    clang-20
-x86_64      buildonly-randconfig-006-20251019    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    gcc-15.1.0
-xtensa                          iss_defconfig    gcc-15.1.0
-xtensa                randconfig-001-20251019    gcc-14.3.0
-xtensa                randconfig-002-20251019    gcc-8.5.0
+between commit:
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  32620e176443 ("drm/pcids: Split PTL pciids group to make wcl subplatform")
+
+from the drm-intel tree and commit:
+
+  c002b1764e7b ("drm/xe/nvl: Define NVL-S platform")
+
+from the drm-xe tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/xe/xe_pci.c
+index 89cc6d32f041,c326430e75b5..000000000000
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@@ -375,7 -422,7 +422,8 @@@ static const struct pci_device_id pciid
+  	INTEL_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
+  	INTEL_BMG_IDS(INTEL_VGA_DEVICE, &bmg_desc),
+  	INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
+ +	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
++ 	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
+  	{ }
+  };
+  MODULE_DEVICE_TABLE(pci, pciidlist);
+
+--Sig_/zoF=3JrYD9.aAWKh3I7OTaC
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmj1dMcACgkQAVBC80lX
+0GyPMQf/ToOBFxvQNw2oteVkjpM/0z+8iG8ISnM1FvDa21g72UesBZhT4EX04u6/
+wOYpD1n3q4MTzjViVsfRE0Y2v457Z7897w+szt4y2tV67EJrIhVeDouhIVwFLsbM
+UqR2NQnVImkMFvcz6MraNxohiduykQx1CH91F2BMJ+4wl7kpSV7zE8hfJTM5OQhK
+byDBmHn1VY8ZSLse5pLmfGvdZmivDv2BWFyjL0a48GloJR0nj6+Stq3+n0rb0eSf
+0Aypbhz0qTuxtPvPhWMWv2uhMXqnc6e3Ku9nY9mHvakDWjQWttZK7lB12UwIFZkC
+TlnzJBchDkPZn3iL6UyqNOCHvJDKiw==
+=m7WL
+-----END PGP SIGNATURE-----
+
+--Sig_/zoF=3JrYD9.aAWKh3I7OTaC--
