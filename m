@@ -4,68 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3396ACCD193
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 07:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1991ACCD199
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 07:58:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D7910E2A8;
-	Mon, 20 Oct 2025 07:45:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8E2A10E299;
+	Mon, 20 Oct 2025 07:58:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GILX5kmj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fZphR+lE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 316E710E2A8;
- Mon, 20 Oct 2025 07:45:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760946348; x=1792482348;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=dP7WdDjnj41i+21kagRbIpMkFCKSnBP1KMDTiZc7PEc=;
- b=GILX5kmjxotaE8DKAFfA17JPtDsxkhtSR4g4YRUxpik99BJ8N2sz/s2v
- D6iYy7Mctf70secVqr4RFYhps9IC5GZ7krncYMyYWFHDjRoJ0KSyxv2OK
- UMEP5z6aFar2DRfla02wSNGiUILjYuutgxnXOMCdrthfgn2UCVsjYj8zu
- YeWJt2PdNuWxMhJ9k/LLDB9vqY5eHDLjf/5B5AXEBL2f8ZP36L/aCO3ny
- sop/P0Z3o6E15Q7qwow9gDyyJN/TS3M3FRcWZ0HFdEK/IpwbFQu+Jr/Hy
- A0CC5Zzq8JkKZuiPohPIboBxcodiSgceXhn5v4ys/RCx0N3QKX0kIuToX g==;
-X-CSE-ConnectionGUID: 5GU8dnfnQcao0E7eCZffDg==
-X-CSE-MsgGUID: oncdaduMTCe3LaRWmliH4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11587"; a="63101314"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="63101314"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 00:45:47 -0700
-X-CSE-ConnectionGUID: X6kcKNI1QaCzhQciOUgikA==
-X-CSE-MsgGUID: UoFkrbkfRmSiSgVFLHfBeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="213887598"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.7])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 00:45:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, Ravi
- Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, Shekhar Chauhan
- <shekhar.chauhan@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH 27/32] drm/i915/vbt: Add fields dedicated_external and
- dyn_port_over_tc
-In-Reply-To: <176073074493.2362.9794630315303321450@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251015-xe3p_lpd-basic-enabling-v1-0-d2d1e26520aa@intel.com>
- <20251015-xe3p_lpd-basic-enabling-v1-27-d2d1e26520aa@intel.com>
- <d04fa666b1ab4737aa2a927c897e0ee7062482d9@intel.com>
- <176073074493.2362.9794630315303321450@intel.com>
-Date: Mon, 20 Oct 2025 10:45:40 +0300
-Message-ID: <ccc5c9391875afe2075553568b4beed20f0956f8@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1008F10E2F0
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 07:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=N8qW01gcObppz5RhuM2b47JIdiYeKYxOdoDZkFQErE4=; b=fZphR+lE/zVkbA6xl6S08ZBDM/
+ nPiWjrUoW8jwTV18PIqfZC//vHhVd5Lo6hR0yx8m8qRWhRia4WfMKK2PbI/yQz8Pqwfk3BKcmieNZ
+ mM0DNrZXIHSQOsrpxVKfWoddhc0giT/07FbgQOC9lM7gzqt8mKvjAgmDxZLFtdmEDECJkVLQ6W8HA
+ e4uoMY1RsZFdhUkQbYJerXFQ0OOu5k8sNdrPWJ4spNV5ubP6oBTBjf9RBRMqBm02ecFXfagqkyCeO
+ 3tBvCfDPYk2ATtVOcHSyom0uGeo049HVytxzTPuj21n37unqpfq49dX8qHl2SZqeLeM1ZtD5Snt3a
+ U2Qm8Z5Q==;
+Received: from [90.242.12.242] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vAkmr-00C0x6-9r; Mon, 20 Oct 2025 09:58:37 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v13 04/12] drm/xe/xelp: Support auxccs invalidation on blitter
+Date: Mon, 20 Oct 2025 08:58:22 +0100
+Message-ID: <20251020075831.32818-5-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
+References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,102 +58,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 17 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2025-10-15 12:24:12-03:00)
->>On Wed, 15 Oct 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> VBT version 264 adds new fields associated to Xe3p_LPD's new ways of
->>> configuring SoC for TC ports and PHYs.  Update the code to match the
->>> updates in VBT.
->>>
->>> The new field dedicated_external is used to represent TC ports that are
->>> connected to PHYs outside of the Type-C subsystem, meaning that they
->>> behave like dedicated ports and don't require the extra Type-C
->>> programming.  In an upcoming change, we will update the driver to take
->>> this field into consideration when detecting the type of port.
->>>
->>> The new field dyn_port_over_tc is used to inform that the TC port can be
->>> dynamically allocated for a legacy connector in the Type-C subsystem,
->>> which is a new feature in Xe3p_LPD.  In upcoming changes, we will use
->>> that field in order to handle the IOM resource management programming
->>> required for that.
->>>
->>> Note that, when dedicated_external is set, the fields dp_usb_type_c and
->>> tbt are tagged as "don't care" in the spec, so they should be ignored in
->>> that case, so also make sure to update the accessor functions to take
->>> that into consideration.
->>>
->>> Bspec: 20124, 68954, 74304
->>> Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
->>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/display/intel_bios.c     | 20 +++++++++++++++++++-
->>>  drivers/gpu/drm/i915/display/intel_bios.h     |  2 ++
->>>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  7 ++++++-
->>>  3 files changed, 27 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->>> index 3596dce84c28..e466728ced0f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->>> @@ -2777,7 +2777,7 @@ static int child_device_expected_size(u16 version)
->>>  {
->>>          BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
->>>  
->>> -        if (version > 263)
->>> +        if (version > 264)
->>>                  return -ENOENT;
->>>          else if (version >= 263)
->>>                  return 44;
->>> @@ -3714,14 +3714,32 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
->>>  
->>>  bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
->>>  {
->>> +        if (intel_bios_encoder_is_dedicated_external(devdata))
->>> +                return false;
->>> +
->>
->>We already have mechanisms for this. Please don't pollute the functions.
->>
->>dp_usb_type_c should just be set to 0 in a new sanitize_something()
->>function at the end of parse_ddi_port()
->>
->>>          return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
->>>  }
->>>  
->>>  bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devdata)
->>>  {
->>> +        if (intel_bios_encoder_is_dedicated_external(devdata))
->>> +                return false;
->>> +
->>
->>Ditto.
->>
->>tbt should just be set to 0 in a new sanitize_something() function at
->>the end of parse_ddi_port()
->
-> Aren't sanitize_*() functions, at least in the context of intel_bios.c,
-> for actually fixing bogus information reported by the VBT?
+Auxccs platforms need to be able to invalidate auxccs on the blitter
+engine.
 
-Yes.
+Add the relevant mmio register and enable this by refactoring the ring
+emission a bit to consolidate all non-render engines.
 
-> Arguably, that wouldn't be the case for dedicated_external and the
-> related fields, since it is actually about a new way to interpret bits
-> for the new version of the VBT.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c     | 118 ++++++++++-----------------
+ 2 files changed, 46 insertions(+), 73 deletions(-)
 
-Well, if the spec says you shouln't have some bits set in combination
-with something else, then having those set is bogus, no?
-
-> One of my concerns with the sanitize approach would be gotchas with
-> anything that tries to use the fields before they are sanitized (e.g.
-> another sanitization function gets added in the future that would use
-> one of the sanitized fields).  Perhaps that's never gonna happen?
-
-The sanitization part should be careful about that, obviously.
-
-BR,
-Jani.
-
-
-
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 228de47c0f3f..12a7d7c73158 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -88,6 +88,7 @@
+ #define CCS_AUX_INV				XE_REG(0x4208)
+ 
+ #define VD0_AUX_INV				XE_REG(0x4218)
++#define BCS_AUX_INV				XE_REG(0x4248)
+ #define VE0_AUX_INV				XE_REG(0x4238)
+ 
+ #define VE1_AUX_INV				XE_REG(0x42b8)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index f384c9968859..87e467972070 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -248,46 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
+ 	return i;
+ }
+ 
+-/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+-static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 *head, u32 seqno)
+-{
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
+-	struct xe_gt *gt = job->q->gt;
+-
+-	*head = lrc->ring.tail;
+-
+-	i = emit_copy_timestamp(lrc, dw, i);
+-
+-	if (job->ring_ops_flush_tlb) {
+-		dw[i++] = preparser_disable(true);
+-		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
+-		dw[i++] = preparser_disable(false);
+-	} else {
+-		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, dw, i);
+-	}
+-
+-	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
+-
+-	if (job->user_fence.used) {
+-		i = emit_flush_dw(dw, i);
+-		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
+-						job->user_fence.value,
+-						dw, i);
+-	}
+-
+-	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
+-
+-	i = emit_user_interrupt(dw, i);
+-
+-	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+-
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+-}
+-
+ static bool has_aux_ccs(struct xe_device *xe)
+ {
+ 	/*
+@@ -302,40 +262,52 @@ static bool has_aux_ccs(struct xe_device *xe)
+ 	return !xe->info.has_flat_ccs;
+ }
+ 
+-static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 *head, u32 seqno)
++static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
++				 u64 batch_addr, u32 *head, u32 seqno)
+ {
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
++	const unsigned int class = job->q->class;
+ 	struct xe_gt *gt = job->q->gt;
+-	struct xe_device *xe = gt_to_xe(gt);
+-	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
++	const bool aux_ccs = has_aux_ccs(gt_to_xe(gt)) &&
++			     (class == XE_ENGINE_CLASS_COPY ||
++			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
++	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
++	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+ 
+ 	*head = lrc->ring.tail;
+ 
+ 	i = emit_copy_timestamp(lrc, dw, i);
+ 
+-	dw[i++] = preparser_disable(true);
+-
+-	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe)) {
+-		if (decode)
+-			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
+-		else
+-			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
+-	}
+-
+-	if (job->ring_ops_flush_tlb)
++	if (invalidate_tlb) {
++		dw[i++] = preparser_disable(true);
+ 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
++					seqno,
++					MI_INVALIDATE_TLB,
++					dw, i);
++		/* hsdes: 1809175790 */
++		if (aux_ccs) {
++			struct xe_reg reg;
+ 
+-	dw[i++] = preparser_disable(false);
++			switch (job->q->class) {
++			case XE_ENGINE_CLASS_COPY:
++				reg = BCS_AUX_INV;
++				break;
++			case XE_ENGINE_CLASS_VIDEO_DECODE:
++				reg = VD0_AUX_INV;
++				break;
++			default:
++				reg = VE0_AUX_INV;
++			};
+ 
+-	if (!job->ring_ops_flush_tlb)
++			i = emit_aux_table_inv(gt, reg, dw, i);
++		}
++		dw[i++] = preparser_disable(false);
++	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+ 					seqno, dw, i);
++	}
+ 
+-	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
++	i = emit_bb_start(batch_addr, get_ppgtt_flag(job), dw, i);
+ 
+ 	if (job->user_fence.used) {
+ 		i = emit_flush_dw(dw, i);
+@@ -455,10 +427,10 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
+ 
+ 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
+ 
+-	__emit_job_gen12_simple(job, job->q->lrc[0],
+-				job->ptrs[0].batch_addr,
+-				&job->ptrs[0].head,
+-				xe_sched_job_lrc_seqno(job));
++	__emit_job_gen12_xcs(job, job->q->lrc[0],
++			     job->ptrs[0].batch_addr,
++			     &job->ptrs[0].head,
++			     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_copy(struct xe_sched_job *job)
+@@ -473,10 +445,10 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
+ 	}
+ 
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_simple(job, job->q->lrc[i],
+-					job->ptrs[i].batch_addr,
+-					&job->ptrs[i].head,
+-					xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     &job->ptrs[0].head,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_video(struct xe_sched_job *job)
+@@ -485,10 +457,10 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
+ 
+ 	/* FIXME: Not doing parallel handshake for now */
+ 	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_video(job, job->q->lrc[i],
+-				       job->ptrs[i].batch_addr,
+-				       &job->ptrs[i].head,
+-				       xe_sched_job_lrc_seqno(job));
++		__emit_job_gen12_xcs(job, job->q->lrc[i],
++				     job->ptrs[i].batch_addr,
++				     &job->ptrs[0].head,
++				     xe_sched_job_lrc_seqno(job));
+ }
+ 
+ static void emit_job_gen12_render_compute(struct xe_sched_job *job)
 -- 
-Jani Nikula, Intel
+2.48.0
+
