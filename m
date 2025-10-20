@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4693BCCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:27:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06706CCD199
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAD1610E29A;
-	Mon, 20 Oct 2025 11:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD02610E41C;
+	Mon, 20 Oct 2025 11:31:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkai5TWL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHwZOIUU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD2F10E29A
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 11:27:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D7710E29D
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 11:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760959643; x=1792495643;
+ t=1760959900; x=1792495900;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=pAr0ZXZSnmRnB1ZfVJlAgChBBZmXuNXUY6DyLhHvQtg=;
- b=bkai5TWLyV7wAu4M2/xQ7upRCx7Hhy8KLEQggYjIp0XAJwKNqbFjyBLW
- Cl4lqywhIOXGmuiedwk55BOtH3yVGCj9UmkwTWHCMftw+RRcCiQ4Nh81J
- 5PKUj+ydu2/ufoBWmzGqWKTz2B+Shp+VV5wV5eQ3AyFGVzKywv8oaDaV9
- Db4ScIKId96vR6ie23m9TOoFOwdN6SspgqYE66iQNzmkEfAfHctfQcvwi
- jkwkUatTsF1gIbGwlHq0hZ0WtpptOERDCgAoMAt+w4NRq+FzzHEnnl7v6
- rIPTrnyq6i4hihojqgixuVBGuBXeP1BL1qHbO/+D6DBSF3hpfutllTcO6 A==;
-X-CSE-ConnectionGUID: Ke9RpEAxS3uKAg1/Wyf2UQ==
-X-CSE-MsgGUID: s+0mT0rBSVmPBHZMbRpnEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74192880"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="74192880"
+ bh=9mEq6y4NZjkiv/dVDQdc59NiJordmnytNx++mLuGgmY=;
+ b=MHwZOIUUB5o+ieTs02FKoL+UT6jtbU/354XODkTvOy/n2KvjiPCpaVUz
+ tqFhZcSNz0Fl/XQCpVMclby16rpVrKB+dc+MWwLdWGFTVulTvoGlhwLgC
+ Fl+z7kGPpmWMtJlgl/1PA3LZm+LfpOtIUh1IvXZ+LdtwncXR0zzO+vVQJ
+ f6WY+cCu7sUr/wzN+vBf1p4mBnOFTsiZgWxwERgJM7vpekVg4ekurvkA4
+ DC3h7T1gIpBBTNM8rsIntTkoUuXzrxsLC/ip0ACmD8875hSGR9suq3hml
+ RnsI47NSmXD4dtPwnUBExfmSXsxXlv3UUyC8/GNuYakpFi5P13TlOvA6b g==;
+X-CSE-ConnectionGUID: 2Plb9RICRQGzNW3pvmbd8g==
+X-CSE-MsgGUID: Oq0xZSFASlSu5tkEPlQl+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="65687670"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="65687670"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:27:23 -0700
-X-CSE-ConnectionGUID: XCW61d9fRm22JFqSTZ7gug==
-X-CSE-MsgGUID: 4JVDL0ETRGy1ZL/Diru2XA==
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 04:31:40 -0700
+X-CSE-ConnectionGUID: lshRlvoCSUi6FJJDA9NcUw==
+X-CSE-MsgGUID: 1G3Bnqa+QQ2RdqeVcK6wSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="187323323"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="187324217"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.245.58])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:27:21 -0700
-Date: Mon, 20 Oct 2025 14:27:18 +0300
+ 20 Oct 2025 04:31:39 -0700
+Date: Mon, 20 Oct 2025 14:31:35 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v13 02/12] drm/xe/xelpg: Flush CCS when flushing caches
-Message-ID: <aPYclqwPnyeSRIOY@intel.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v13 08/12] drm/xe/xelp: Add AuxCCS invalidation to the
+ indirect context workarounds
+Message-ID: <aPYdlzzeMLg4bQuJ@intel.com>
 References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
- <20251020075831.32818-3-tvrtko.ursulin@igalia.com>
+ <20251020075831.32818-9-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251020075831.32818-3-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251020075831.32818-9-tvrtko.ursulin@igalia.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,69 +72,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 20, 2025 at 08:58:20AM +0100, Tvrtko Ursulin wrote:
-> According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
-> render caches on gfx ip 12.70+.
+On Mon, Oct 20, 2025 at 08:58:26AM +0100, Tvrtko Ursulin wrote:
+> Following from the i915 reference implementation, we add the AuxCCS
+> invalidation to the indirect context workarounds page.
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
->  drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
->  2 files changed, 7 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/xe/xe_lrc.c | 38 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> index 8cfcd3360896..78c0e87dbd37 100644
-> --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-> @@ -43,6 +43,7 @@
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index b5083c99dd50..c77a166a2742 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -27,6 +27,7 @@
+>  #include "xe_map.h"
+>  #include "xe_memirq.h"
+>  #include "xe_mmio.h"
+> +#include "xe_ring_ops.h"
+>  #include "xe_sriov.h"
+>  #include "xe_trace_lrc.h"
+>  #include "xe_vm.h"
+> @@ -88,6 +89,16 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+>  					       class, NULL))
+>  		return true;
 >  
->  #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
->  #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
-> +#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
-
-IIRC that thing exists already on dg2, but we don't use there for
-whatever unknown reason.
-
-It also doesn't help that bsepc calls DG2 12.7 as well, but for us
-someone has invented the of 12.55 number that's never mentioned
-in bspec AFAICS.
-
->  
->  #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
->  #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index ac0c6dcffe15..15fc4010a710 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
->  static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
->  {
->  	struct xe_gt *gt = job->q->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
->  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-> +	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
->  	u32 flags;
->  
->  	if (XE_GT_WA(gt, 14016712196))
->  		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
->  				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
->  
-> +	if (GRAPHICS_VERx100(xe) >= 1270)
-> +		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
+> +	/* AuxCCS invalidation */
+> +	if (GRAPHICS_VERx100(xe) >= 1200 &&
+> +	    GRAPHICS_VERx100(xe) <= 1210 &&
+> +	    (class == XE_ENGINE_CLASS_RENDER ||
+> +	     class == XE_ENGINE_CLASS_COMPUTE ||
+> +	     class == XE_ENGINE_CLASS_COPY ||
+> +	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+> +	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
+> +		return true;
 > +
->  	flags = (PIPE_CONTROL_CS_STALL |
->  		 PIPE_CONTROL_TILE_CACHE_FLUSH |
->  		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-> @@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
->  	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
->  		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
->  
-> -	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-> +	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+>  	return false;
 >  }
 >  
->  static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+> @@ -1188,6 +1199,31 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+>  	return cmd - batch;
+>  }
+>  
+> +static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
+> +					  struct xe_hw_engine *hwe,
+> +					  u32 *batch, size_t max_len)
+> +{
+> +	struct xe_gt *gt = lrc->gt;
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	const unsigned int class = hwe->class;
+> +	u32 *cmd;
+> +
+> +	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
+> +	    !(class == XE_ENGINE_CLASS_RENDER ||
+> +	      class == XE_ENGINE_CLASS_COMPUTE ||
+> +	      class == XE_ENGINE_CLASS_COPY ||
+> +	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+> +	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
+> +		return 0;
+
+I would extract that into a function instead of repeating it twice.
+
+> +
+> +	if (xe_gt_WARN_ON(gt, max_len < 8))
+> +		return -ENOSPC;
+> +
+> +	cmd = xe_emit_aux_table_inv(hwe, batch);
+> +
+> +	return cmd - batch;
+> +}
+> +
+>  struct bo_setup {
+>  	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  			 u32 *batch, size_t max_size);
+> @@ -1320,9 +1356,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+>  {
+>  	static const struct bo_setup rcs_funcs[] = {
+>  		{ .setup = setup_timestamp_wa },
+> +		{ .setup = setup_invalidate_auxccs_wa },
+>  		{ .setup = setup_configfs_mid_ctx_restore_bb },
+>  	};
+>  	static const struct bo_setup xcs_funcs[] = {
+> +		{ .setup = setup_invalidate_auxccs_wa },
+>  		{ .setup = setup_configfs_mid_ctx_restore_bb },
+>  	};
+>  	struct bo_setup_state state = {
 > -- 
 > 2.48.0
 
