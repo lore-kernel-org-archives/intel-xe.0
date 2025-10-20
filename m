@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDD42CCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 10:51:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3258ECCD193
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:08:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFC1810E413;
-	Mon, 20 Oct 2025 10:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E65A710E2A7;
+	Mon, 20 Oct 2025 11:08:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FyCDIbTB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WFbGcAB2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4BA310E413;
- Mon, 20 Oct 2025 10:51:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8372A10E2A7
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 11:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760957490; x=1792493490;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=nRLBHNFzaN0+VD23GN/iDS8njxRIE5DGCa8iay8g1e8=;
- b=FyCDIbTBygTSSDxwPPPFfVowWZRNwxVb/FvevBER/B9Jpc2b+eXNEV0E
- /ak0j6S85rC5/YEiL/KpuwSqWm/DnyHnG8183CaT8KvJEGB65FiO8v0S6
- EM4NQA1DdI/HxN5+KKXX2Lw+0wiKTMOtQT/7wzo4rI/fcpKekQ/LbsHhK
- KdGK9/Mjnko9ZLft2pPZhZVwQmOEaAiBgEovdM8NEuT1QNdTboRH/UbXs
- vz9lmIEjlwI+SGakdi8SUMNBgcEIMKMm0z2ndGc5ZuARicOcFDGhCKlVM
- jMJ+Y65EyWfeax2q+Oc4OpceloRHEAYHgAm4ElpgS+KWBPkP3SxJ6PGaF w==;
-X-CSE-ConnectionGUID: kcg2IBXdQ9GXRmLyJWSgyA==
-X-CSE-MsgGUID: YVwSwft1TzSAUaJCHpXGHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62772739"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="62772739"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 03:51:30 -0700
-X-CSE-ConnectionGUID: Rf88mz6BTuWLYQji3/4QTg==
-X-CSE-MsgGUID: EOJtB1moTz6cU4kkC4VQzQ==
+ t=1760958506; x=1792494506;
+ h=message-id:date:mime-version:subject:from:to:references:
+ in-reply-to:content-transfer-encoding;
+ bh=mM+WDRziCx3lKeqNlMPYrT1TPQ0bVhbpzj/pzu4nKXE=;
+ b=WFbGcAB2tkEGmO7B/+RCYP6cjFN49iSfJTw1YnU/BRZFSbl5ba996nEF
+ goOo4lGMK9cU2nEIDPbX2X23MhuGGIrwd6T2j6+V/A2v+NfzpqnZGrTSf
+ OEOquJfL4Zvf3nahs7mauoHdsguZ3lR0N5zhbETgjv2fHsHHJqcHEk3Jb
+ PwDn0Ocszd/Iume7q3Pazy9ub+orvbX8Cj15YgkivGNytpsrSdhseGWeu
+ bo2naVtFGInk44lCN0VtAZO3mcTmpRYJhnrfNBCcEPhaaf2AdRoEbCHie
+ VtFpOcW/1gIzLt/hYhf/8hiyOa4n1PERaJfe5xQnkUH5s8nddV9Y8+jQR A==;
+X-CSE-ConnectionGUID: OWi7B257SYSxjCaKs4qP+A==
+X-CSE-MsgGUID: y0bHMOBJTlKyrVj5RDYicA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73742924"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="73742924"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 04:08:26 -0700
+X-CSE-ConnectionGUID: yWOZRrxfSxmcv3jmn/9+Rw==
+X-CSE-MsgGUID: uCiyHSNxSh65UF0cW6yT6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="187316113"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.7])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 03:51:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Imre Deak <imre.deak@intel.com>
-Subject: Re: [RFC PATCH 18/39] drm/i915/display: Determine Cx0 PLL DP mode
- from PLL state
-In-Reply-To: <aPEzkHAVpYKl-GcC@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251001082839.2585559-1-mika.kahola@intel.com>
- <20251001082839.2585559-19-mika.kahola@intel.com>
- <6e0a3d761178ff4901ad81e3c2fa84b75a0d7dfe@intel.com>
- <aPEzkHAVpYKl-GcC@intel.com>
-Date: Mon, 20 Oct 2025 13:51:24 +0300
-Message-ID: <c13d2c12759bb25e7a70dd803c3511fb38feca4f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="220452956"
+Received: from soc-5cg43972f8.clients.intel.com (HELO [172.28.182.166])
+ ([172.28.182.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 04:08:25 -0700
+Message-ID: <8a475b7a-b2c6-44ba-89e1-bbc805a505e7@linux.intel.com>
+Date: Mon, 20 Oct 2025 13:08:23 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GdWxsOiBmYWlsdXJlIGZvciBQRjogVXBkYXRl?=
+ =?UTF-8?Q?_auto-provisioning?=
+From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20251015091211.592-1-michal.wajdeczko@intel.com>
+ <176056635246.19067.3887030686772278274@97596180aaec>
+ <2e239734-4b93-4beb-9d6e-ffe688ec10bc@intel.com>
+ <ba4aaf73-3890-4f20-9ea2-82fe47510d4e@linux.intel.com>
+Content-Language: en-US
+In-Reply-To: <ba4aaf73-3890-4f20-9ea2-82fe47510d4e@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,89 +73,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 16 Oct 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Oct 01, 2025 at 12:16:57PM +0300, Jani Nikula wrote:
->> On Wed, 01 Oct 2025, Mika Kahola <mika.kahola@intel.com> wrote:
->> > From: Imre Deak <imre.deak@intel.com>
->> >
->> > The Cx0 PLL enable programming needs to know if the PLL is in DP or HD=
-MI
->> > mode. The PLL manager framework doesn't pass the CRTC state to the PLL=
-'s
->> > enable hook, so prepare here for the conversion to use the PLL manager
->> > for Cx0 PHY PLLs by determining the DP/HDMI mode from the PLL state.
->> >
->> > For C10 PHYs use the fact that the HDMI divider value in the PLL
->> > registers are set if and only if the PLL is in HDMI mode.
->> >
->> > For C20 PHYs use the DP mode flag programmed to the VDR SERDES registe=
-r,
->> > which is set if and only if the PLL is in DP mode.
->> >
->> > Assert that the above PLL/VDR SERDES register values match the DP/HDMI
->> > mode being configured already during state computation.
->> >
->> > This also allows dropping the is_dp param from the
->> > __intel_cx0pll_enable() function, since it can retrieve this now from
->> > the PLL state.
->> >
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 43 ++++++++++++++++----
->> >  1 file changed, 36 insertions(+), 7 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gp=
-u/drm/i915/display/intel_cx0_phy.c
->> > index 93e37b7ac3d9..f2fd766343d5 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > @@ -2090,6 +2090,24 @@ static void intel_c10pll_update_pll(struct inte=
-l_encoder *encoder,
->> >  		pll_state->c10.pll[i] =3D 0;
->> >  }
->> >=20=20
->> > +static bool c10pll_state_is_dp(const struct intel_c10pll_state *pll_s=
-tate)
->> > +{
->> > +	return !REG_FIELD_GET8(C10_PLL15_HDMIDIV_MASK, pll_state->pll[15]);
->> > +}
->> > +
->> > +static bool c20pll_state_is_dp(const struct intel_c20pll_state *pll_s=
-tate)
->> > +{
->> > +	return pll_state->vdr.serdes_rate & PHY_C20_IS_DP;
->>=20
->> Wouldn't need this if software state was the logical state instead of
->> hardware state that you need to mask. It could be just
->> pll_state->vdr.is_dp, and no function needed.
+
+On 10/20/2025 11:49 AM, Bernatowicz, Marcin wrote:
 >
-> I think for now we want the PLL states to be raw registers. That's how
-> it all worked so far, except that snps/cx0 screwed that up by adding
-> some non-register stuff in there. It looks to me like one of the reasons
-> why the cx0 code is a bit of a mess is exactly because it hasn't fully
-> committed to either representation.
+> On 10/16/2025 12:55 PM, Michal Wajdeczko wrote:
+>>
+>> On 10/16/2025 12:12 AM, Patchwork wrote:
+>>> *Patch Details*
+>>> *Series:*    PF: Update auto-provisioning
+>>> *URL:*    https://patchwork.freedesktop.org/series/155971/ 
+>>> <https://patchwork.freedesktop.org/series/155971/>
+>>> *State:*    failure
+>>> *Details:* 
+>>> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/index.html 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/index.html>
+>>>
+>>>
+>>>    CI Bug Log - changes from 
+>>> xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a_FULL -> 
+>>> xe-pw-155971v1_FULL
+>>>
+>>>
+>>>      Summary
+>>>
+>>> *FAILURE*
+>>>
+>>> Serious unknown changes coming with xe-pw-155971v1_FULL absolutely 
+>>> need to be
+>>> verified manually.
+>>>
+>>> If you think the reported changes have nothing to do with the changes
+>>> introduced in xe-pw-155971v1_FULL, please notify your bug team 
+>>> (I915-ci-infra@lists.freedesktop.org) to allow them
+>>> to document this new failure mode, which will reduce false positives 
+>>> in CI.
+>>>
+>>>
+>>>      Participating hosts (4 -> 4)
+>>>
+>>> No changes in participating hosts
+>>>
+>>>
+>>>      Possible new issues
+>>>
+>>> Here are the unknown changes that may have been introduced in 
+>>> xe-pw-155971v1_FULL:
+>>>
+>>>
+>>>        IGT changes
+>>>
+>>>
+>>>          Possible regressions
+>>>
+>>>    *
+>>>
+>>>      igt@kms_big_fb@linear-8bpp-rotate-180:
+>>>
+>>>        o shard-bmg: PASS 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/shard-bmg-3/igt@kms_big_fb@linear-8bpp-rotate-180.html> 
+>>> -> FAIL 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-8/igt@kms_big_fb@linear-8bpp-rotate-180.html> 
+>>> +22 other tests fail
+>> unrelated
+>>
+>> (kms_big_fb:12070) igt_fb-DEBUG: 
+>> igt_create_fb_with_bo_size(width=16384, height=16384, format=C8 
+>> (0x20203843), modifier=0x0, size=0)
+>> (kms_big_fb:12070) igt_kms-CRITICAL: Test assertion failure function 
+>> kmstest_dumb_create, file ../lib/igt_kms.c:1316:
+>> (kms_big_fb:12070) igt_kms-CRITICAL: Failed assertion: 
+>> igt_ioctl((fd), ((((2U|1U) << (((0+8)+8)+14)) | ((('d')) << (0+8)) | 
+>> (((0xB2)) << 0) | ((((sizeof(struct drm_mode_create_dumb)))) << 
+>> ((0+8)+8)))), (&create)) == 0
+>> (kms_big_fb:12070) igt_kms-CRITICAL: Last errno: 12, Cannot allocate 
+>> memory
+>>
+>>
+>>>    *
+>>>
+>>>      igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-0:
+>>>
+>>>        o shard-bmg: NOTRUN -> FAIL 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-4/igt@kms_big_fb@linear-max-hw-stride-64bpp-rotate-0.html> 
+>>> +4 other tests fail
+>>>    *
+>>>
+>>>      igt@kms_color@legacy-gamma@pipe-a-dp-2:
+>>>
+>>>        o shard-bmg: PASS 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/shard-bmg-1/igt@kms_color@legacy-gamma@pipe-a-dp-2.html> 
+>>> -> SKIP 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-6/igt@kms_color@legacy-gamma@pipe-a-dp-2.html>
+>>>    *
+>>>
+>>> igt@kms_cursor_legacy@cursor-vs-flip-atomic-transitions-varying-size:
+>>>
+>>>        o shard-adlp: NOTRUN -> FAIL 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-adlp-6/igt@kms_cursor_legacy@cursor-vs-flip-atomic-transitions-varying-size.html> 
+>>> +1 other test fail
+>> unrelated
+>>
+>> (kms_cursor_legacy:2966) CRITICAL: Test assertion failure function 
+>> cursor_vs_flip, file ../tests/kms_cursor_legacy.c:1387:
+>> (kms_cursor_legacy:2966) CRITICAL: Failed assertion: 
+>> igt_ioctl((display->drm_fd), ((((2U|1U) << (((0+8)+8)+14)) | ((('d')) 
+>> << (0+8)) | (((0xA3)) << 0) | ((((sizeof(struct drm_mode_cursor)))) 
+>> << ((0+8)+8)))), (&arg[i & 1])) == 0
+>> (kms_cursor_legacy:2966) CRITICAL: Last errno: 28, No space left on 
+>> device
+>>
+>>
+>>>    *
+>>>
+>>>      igt@kms_vblank@ts-continuation-dpms-suspend@pipe-a-dp-2:
+>>>
+>>>        o shard-bmg: NOTRUN -> ABORT 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-3/igt@kms_vblank@ts-continuation-dpms-suspend@pipe-a-dp-2.html> 
+>>> +1 other test abort
+>> unrelated
+>>
+>> <4> [462.803151] xe 0000:03:00.0: [drm] Assertion `!(bo->flags & 
+>> ((((1UL))) << (19))) || !iosys_map_is_null(&bo->vmap)` failed!
+>> platform: BATTLEMAGE subplatform: 7
+>> graphics: Xe2_HPG 20.01 step A0
+>> media: Xe2_HPM 13.01 step A1
+>> <4> [462.803185] WARNING: CPU: 1 PID: 3847 at 
+>> drivers/gpu/drm/xe/xe_bo_evict.c:217 
+>> xe_bo_restore_and_map_ggtt+0x22c/0x260 [xe]
+>> <4> [462.803496] RIP: 0010:xe_bo_restore_and_map_ggtt+0x22c/0x260 [xe]
+>> <4> [462.803633] Call Trace:
+>> <4> [462.803635]  <TASK>
+>> <4> [462.803648]  xe_bo_apply_to_pinned+0xdf/0x220 [xe]
+>> <4> [462.803748]  ? __pfx_xe_bo_restore_and_map_ggtt+0x10/0x10 [xe]
+>> <4> [462.803848]  xe_bo_restore_late+0x2d/0x130 [xe]
+>> <4> [462.803943]  xe_pm_resume+0x21d/0x440 [xe]
+>> <4> [462.804117]  ? pci_read_config_word+0x27/0x50
+>> <4> [462.804126]  ? __pci_set_master+0x33/0xe0
+>> <4> [462.804141]  xe_pci_resume+0x60/0x70 [xe]
+>>
+>>
+>>
+>>>    *
+>>>
+>>>      igt@xe_compute_preempt@compute-preempt-many-all-ram:
+>>>
+>>>        o shard-dg2-set2: NOTRUN -> SKIP 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-dg2-436/igt@xe_compute_preempt@compute-preempt-many-all-ram.html>
+>> unrelated
+>>
+>> <4> [388.734979] xe 0000:03:00.0: [drm] VM worker error: -12
+>>
+>>
+>>>    *
+>>>
+>>>      igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+>>>
+>>>        o shard-bmg: PASS 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/shard-bmg-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html> 
+>>> -> DMESG-FAIL 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html>
+>>>    *
+>>>
+>>> igt@xe_evict_ccs@evict-overcommit-parallel-instantfree-samefd:
+>>>
+>>>        o shard-bmg: PASS 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/shard-bmg-5/igt@xe_evict_ccs@evict-overcommit-parallel-instantfree-samefd.html> 
+>>> -> ABORT 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-bmg-7/igt@xe_evict_ccs@evict-overcommit-parallel-instantfree-samefd.html> 
+>>> +6 other tests abort
+>>
+>> unrelated
+>>
+>> <1> [331.175806] BUG: kernel NULL pointer dereference, address: 
+>> 0000000000000001
+>> <1> [331.175819] #PF: supervisor read access in kernel mode
+>> <1> [331.175824] #PF: error_code(0x0000) - not-present page
+>> <4> [331.175857] RIP: 0010:xe_vm_insert_vma+0x1c/0x1b0 [xe]
+>> <4> [331.176097] Call Trace:
+>> <4> [331.176100]  <TASK>
+>> <4> [331.176103]  ? vm_bind_ioctl_ops_create+0xa9/0x8d0 [xe]
+>> <4> [331.176361]  ? lock_is_held_type+0xa3/0x130
+>> <4> [331.176371]  vm_bind_ioctl_ops_parse+0x709/0xa00 [xe]
+>> <4> [331.176541]  xe_vm_bind_ioctl+0x1103/0x1850 [xe]
+>> <4> [331.176728]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>> <4> [331.176950]  drm_ioctl_kernel+0xb3/0x120
+>> <4> [331.176958]  ? drm_ioctl_kernel+0xb3/0x120
+>> <4> [331.176965]  drm_ioctl+0x2d4/0x5a0
+>> <4> [331.176970]  ? __pfx_xe_vm_bind_ioctl+0x10/0x10 [xe]
+>> <4> [331.177144]  ? trace_hardirqs_on+0x1e/0xd0
+>> <4> [331.177150]  ? _raw_spin_unlock_irqrestore+0x51/0x80
+>> <4> [331.177156]  ? __pm_runtime_resume+0x5b/0x90
+>> <4> [331.177163]  ? xe_pm_runtime_get_ioctl+0x61/0x150 [xe]
+>> <4> [331.177249]  xe_drm_ioctl+0x53/0x80 [xe]
+>>
+>>
+>>>    *
+>>>
+>>>      igt@xe_sriov_auto_provisioning@fair-allocation:
+>>>
+>>>        o shard-adlp: PASS 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-3924-6a9cafb6723c47062cc4d593804d5bb69155d81a/shard-adlp-2/igt@xe_sriov_auto_provisioning@fair-allocation.html> 
+>>> -> SKIP 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-adlp-8/igt@xe_sriov_auto_provisioning@fair-allocation.html>
+>> but
+>>
+>> Test requirement not met in function __igt_unique____real_main316, 
+>> file ../tests/intel/xe_sriov_auto_provisioning.c:343:
+>> Test requirement: !(ret)
+>> contexts_provisioned: Failed ranges check on gt0 (-34)
+>>
+>> this is now somehow expected, as it looks that some earlier test did 
+>> some tweaks in the VFs provisioning causing 'auto' mode to be disabled:
+>>
+>> <7>[  344.422273] xe 0000:00:02.0: [drm:pf_update_policy_bool [xe]] 
+>> PF: Tile0: GT0: policy key 0x8001 'sched_if_idle' updated to 'disabled'
+>> <7>[  344.422465] xe 0000:00:02.0: 
+>> [drm:xe_sriov_pf_provision_set_mode [xe]] PF: mode auto changed to 
+>> custom by sched_if_idle_set [xe]
+>>
+>> so there is no more VFs auto-unprovisioning, and some of VFs 
+>> resources may remain allocated and must be explicitly released by the 
+>> test
+>>
+>> FYI: @Marcin
 >
-> I think for now we should generally nuke that abstract stuff from
-> cx0/snps and go for pure register values to keep the design consistent.=20
+> There are two tests, xe_pmu and xe_sriov_scheduling, which switch to 
+> custom mode due to scheduling parameter modifications. These are 
+> addressed by the series.
+https://patchwork.freedesktop.org/series/156164/
 >
-> In the future we might want to change things to track the PLL state
-> in some common abstract form in high level code, and just convert
-> to/from the register based representation inside the specific PLL
-> implementation.
->
-> For that we would need to come up with some abstract PLL state
-> that covers all the important aspects across all the platforms,
-> but doesn't delve into the super low level hw details because
-> there's just far too much of that in PLLs.
-
-Okay, yuck, but acceptable for consistency in the *PLL* state. As long
-as we're careful to not let that leak to crtc state.
-
-BR,
-Jani.
-
-
-
---=20
-Jani Nikula, Intel
+>>>    *
+>>>
+>>> igt@xe_sriov_auto_provisioning@resources-released-on-vfs-disabling:
+>>>
+>>>        o shard-adlp: NOTRUN -> SKIP 
+>>> <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155971v1/shard-adlp-6/igt@xe_sriov_auto_provisioning@resources-released-on-vfs-disabling.html>
+>>>
+>>>
