@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E92E9CCD1A2
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 20:56:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1107FCCD1A2
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 20:56:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A117510E510;
-	Mon, 20 Oct 2025 20:56:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B285C10E511;
+	Mon, 20 Oct 2025 20:56:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X/ciU0gn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZlhC+xk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEF6910E511
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 20:56:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33C7F10E510
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 20:56:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760993809; x=1792529809;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xqmhA2RJchVAPVmY7DF8DS4lVndPIAFTTQonTKVIgZM=;
- b=X/ciU0gn6ODWYsmIpAVIsHSbc3yLkhZYoRgUTD3xQ3ar/wJbDHBYZ8+S
- JfHimO8sGsN8OTwi77Ei0NQZI1vteQGBuVRZk/Jlf+vcJxyvRtFnqwzDq
- DQDPog6XVofpCZWCDxu+GWSHk8L0eFd3TCVCKfyWEPu8TXdBWJmo98Hfw
- kzp7JgxD+LJ8YqZDrOrdS87aJxWEvIZM4lWP3yTXUMZ+zFdzju83YZ25Y
- bVv5XrDUkxA1+z4nRet2uAZLQZiU61Cj1E9UBudTBNdnhjws64lII9pZA
- KEO8py54GI5D4F+c7zGmaZpwhh6GF0gfal2hwJHkRT20qLKqERkUs4lgU A==;
-X-CSE-ConnectionGUID: Mi7PZPikTX+kPTqB5Is8PA==
-X-CSE-MsgGUID: 5+eLFV7EQnWWlQrBgi6Z2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63036081"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63036081"
+ t=1760993810; x=1792529810;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uQuz4ZcTWGqb2aD6IAjiOESnkjQ/XNjM3M8Gp/RmJJQ=;
+ b=PZlhC+xklCRS1nR7ut82vPV7aLDFB4tETkZfAuZ6QN5t02InzfljEKhe
+ xhkNIusc1ScsE1R926A/l5CX/0AE1tbK2QnUvtFYopITyTxdHw/39WQGj
+ Liepa9AbKcHGDsRmlvIhG3UCdVTyTU1CtpjLCy5oexgIPt337IzCbkO/M
+ BY/y1EgNvpkt1rgmPHHqTVVGGiNkz2DSSd3+BqygJDQuQ6Z6MT8AwE6b+
+ 7bCs9H033dtaxqbNYocm6q6jEc755atqFHQ8ZogMAWu63mJ0QzDpHY8hZ
+ FnsK3MAI5IRzRzZtuUR2pKVvIcwLQOzrMzErbWHp3jx+JbX/X0PJfv1+a A==;
+X-CSE-ConnectionGUID: Ff76rFFiQXGECNNqOl0IUw==
+X-CSE-MsgGUID: skN420XIQhihg8dk50pz/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63036084"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63036084"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 13:56:48 -0700
-X-CSE-ConnectionGUID: zZ2rvWBtQ+eZhhUSiD138w==
-X-CSE-MsgGUID: sCwt09BvT6CIX1AILpUlnw==
+ 20 Oct 2025 13:56:50 -0700
+X-CSE-ConnectionGUID: 11HjcGAQSgG/heZIF/FzBg==
+X-CSE-MsgGUID: e3MFBV8jQ7+rXI4ijXmnQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="184196579"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="184196584"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa010.fm.intel.com with ESMTP; 20 Oct 2025 13:56:46 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 20 Oct 2025 13:56:48 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,10 +47,13 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v4 0/4] drm/xe/vf: Minor fixes to post-migration recovery
-Date: Mon, 20 Oct 2025 22:58:04 +0200
-Message-Id: <20251020205808.1187308-1-tomasz.lis@intel.com>
+Subject: [PATCH v4 1/4] drm/xe/vf: Helper for telling whether CCS migration
+ BBs are needed
+Date: Mon, 20 Oct 2025 22:58:05 +0200
+Message-Id: <20251020205808.1187308-2-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251020205808.1187308-1-tomasz.lis@intel.com>
+References: <20251020205808.1187308-1-tomasz.lis@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,30 +70,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The series contains few minor fixes, mostly related to VF driver probe.
+To avoid having duplicated checks, and also provide clear
+documentation of what are we checking for, the conditions
+for initing CCS BBs for VF migration are closed into a function.
 
-The fixes are not strictly related, but all go under VF migration category.
+v2: shuffled words in the name
 
-v2: Add fixing the currently broken GuC ABI check
+Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  2 ++
+ 2 files changed, 18 insertions(+), 1 deletion(-)
 
-v3: Add separation of xe_sriov_vf_ccs_migration_bb_needed()
-
-v4: Remove platform version check, discard early MIGRATED ignore patch,
- move and rename CCS BB check functions
-
-Tomasz Lis (4):
-  drm/xe/vf: Helper for telling whether CCS migration BBs are needed
-  drm/xe/vf: Fix GuC FW check for VF migration support
-  drm/xe: Assert that VF will never use fixed placement of BOs
-  drm/xe/vf: Do not disable VF migration on ATS-M
-
- drivers/gpu/drm/xe/xe_bo.c           |  6 ++++
- drivers/gpu/drm/xe/xe_sriov_vf.c     | 24 +++++-----------
- drivers/gpu/drm/xe/xe_sriov_vf.h     |  1 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 42 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  3 ++
- 5 files changed, 58 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index 790249801364..a2d61b37ff21 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -260,6 +260,21 @@ int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
+ 	return err;
+ }
+ 
++/**
++ * xe_sriov_vf_migration_ccs_bb_needed - Whether GuC requires CCS copy BBs for VF migration.
++ * @xe: the &xe_device instance.
++ *
++ * Only selected platforms require VF KMD to maintain CCS copy BBs and linked LRCAs.
++ *
++ * Return: true if VF driver must participate in the CCS migration, false otherwise.
++ */
++bool xe_sriov_vf_migration_ccs_bb_needed(struct xe_device *xe)
++{
++	xe_assert(xe, IS_SRIOV_VF(xe));
++
++	return !IS_DGFX(xe) && xe_device_has_flat_ccs(xe);
++}
++
+ static void xe_sriov_vf_ccs_fini(void *arg)
+ {
+ 	struct xe_sriov_vf_ccs_ctx *ctx = arg;
+@@ -294,7 +309,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ 	xe_assert(xe, IS_SRIOV_VF(xe));
+ 	xe_assert(xe, xe_sriov_vf_migration_supported(xe));
+ 
+-	if (IS_DGFX(xe) || !xe_device_has_flat_ccs(xe))
++	if (!xe_sriov_vf_migration_ccs_bb_needed(xe))
+ 		return 0;
+ 
+ 	for_each_ccs_rw_ctx(ctx_id) {
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+index f8ca6efce9ee..0e6b27016dac 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
+@@ -14,6 +14,8 @@ struct drm_printer;
+ struct xe_device;
+ struct xe_bo;
+ 
++bool xe_sriov_vf_migration_ccs_bb_needed(struct xe_device *xe);
++
+ int xe_sriov_vf_ccs_init(struct xe_device *xe);
+ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
+ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
 -- 
 2.25.1
 
