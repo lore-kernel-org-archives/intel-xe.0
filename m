@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06706CCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:31:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED6E9CCD193
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD02610E41C;
-	Mon, 20 Oct 2025 11:31:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHwZOIUU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2D7710E29D
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 11:31:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760959900; x=1792495900;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=9mEq6y4NZjkiv/dVDQdc59NiJordmnytNx++mLuGgmY=;
- b=MHwZOIUUB5o+ieTs02FKoL+UT6jtbU/354XODkTvOy/n2KvjiPCpaVUz
- tqFhZcSNz0Fl/XQCpVMclby16rpVrKB+dc+MWwLdWGFTVulTvoGlhwLgC
- Fl+z7kGPpmWMtJlgl/1PA3LZm+LfpOtIUh1IvXZ+LdtwncXR0zzO+vVQJ
- f6WY+cCu7sUr/wzN+vBf1p4mBnOFTsiZgWxwERgJM7vpekVg4ekurvkA4
- DC3h7T1gIpBBTNM8rsIntTkoUuXzrxsLC/ip0ACmD8875hSGR9suq3hml
- RnsI47NSmXD4dtPwnUBExfmSXsxXlv3UUyC8/GNuYakpFi5P13TlOvA6b g==;
-X-CSE-ConnectionGUID: 2Plb9RICRQGzNW3pvmbd8g==
-X-CSE-MsgGUID: Oq0xZSFASlSu5tkEPlQl+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="65687670"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="65687670"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:31:40 -0700
-X-CSE-ConnectionGUID: lshRlvoCSUi6FJJDA9NcUw==
-X-CSE-MsgGUID: 1G3Bnqa+QQ2RdqeVcK6wSw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="187324217"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.58])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:31:39 -0700
-Date: Mon, 20 Oct 2025 14:31:35 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v13 08/12] drm/xe/xelp: Add AuxCCS invalidation to the
- indirect context workarounds
-Message-ID: <aPYdlzzeMLg4bQuJ@intel.com>
-References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
- <20251020075831.32818-9-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B248E10E420;
+	Mon, 20 Oct 2025 11:46:26 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB7710E29A;
+ Mon, 20 Oct 2025 11:46:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251020075831.32818-9-tvrtko.ursulin@igalia.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 Oct 2025 11:46:25 -0000
+Message-ID: <176096078551.32745.3596179907030395675@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,97 +36,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 20, 2025 at 08:58:26AM +0100, Tvrtko Ursulin wrote:
-> Following from the i915 reference implementation, we add the AuxCCS
-> invalidation to the indirect context workarounds page.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> ---
->  drivers/gpu/drm/xe/xe_lrc.c | 38 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index b5083c99dd50..c77a166a2742 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -27,6 +27,7 @@
->  #include "xe_map.h"
->  #include "xe_memirq.h"
->  #include "xe_mmio.h"
-> +#include "xe_ring_ops.h"
->  #include "xe_sriov.h"
->  #include "xe_trace_lrc.h"
->  #include "xe_vm.h"
-> @@ -88,6 +89,16 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
->  					       class, NULL))
->  		return true;
->  
-> +	/* AuxCCS invalidation */
-> +	if (GRAPHICS_VERx100(xe) >= 1200 &&
-> +	    GRAPHICS_VERx100(xe) <= 1210 &&
-> +	    (class == XE_ENGINE_CLASS_RENDER ||
-> +	     class == XE_ENGINE_CLASS_COMPUTE ||
-> +	     class == XE_ENGINE_CLASS_COPY ||
-> +	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-> +	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-> +		return true;
-> +
->  	return false;
->  }
->  
-> @@ -1188,6 +1199,31 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
->  	return cmd - batch;
->  }
->  
-> +static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-> +					  struct xe_hw_engine *hwe,
-> +					  u32 *batch, size_t max_len)
-> +{
-> +	struct xe_gt *gt = lrc->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	const unsigned int class = hwe->class;
-> +	u32 *cmd;
-> +
-> +	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
-> +	    !(class == XE_ENGINE_CLASS_RENDER ||
-> +	      class == XE_ENGINE_CLASS_COMPUTE ||
-> +	      class == XE_ENGINE_CLASS_COPY ||
-> +	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-> +	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-> +		return 0;
+== Series Details ==
 
-I would extract that into a function instead of repeating it twice.
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/156189/
+State : warning
 
-> +
-> +	if (xe_gt_WARN_ON(gt, max_len < 8))
-> +		return -ENOSPC;
-> +
-> +	cmd = xe_emit_aux_table_inv(hwe, batch);
-> +
-> +	return cmd - batch;
-> +}
-> +
->  struct bo_setup {
->  	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  			 u32 *batch, size_t max_size);
-> @@ -1320,9 +1356,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
->  {
->  	static const struct bo_setup rcs_funcs[] = {
->  		{ .setup = setup_timestamp_wa },
-> +		{ .setup = setup_invalidate_auxccs_wa },
->  		{ .setup = setup_configfs_mid_ctx_restore_bb },
->  	};
->  	static const struct bo_setup xcs_funcs[] = {
-> +		{ .setup = setup_invalidate_auxccs_wa },
->  		{ .setup = setup_configfs_mid_ctx_restore_bb },
->  	};
->  	struct bo_setup_state state = {
-> -- 
-> 2.48.0
+== Summary ==
 
--- 
-Ville Syrj‰l‰
-Intel
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b5193d617e61af21371689dc4e1f3ac775f6df06
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Mon Oct 20 08:58:30 2025 +0100
+
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: Jos√© Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 115d1683ee417174f6ccb99dcb542002ac93bda2 drm-intel
+24b6a4b1c439 drm/xe: Fix ggtt fb alignment
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+eccc4b4d8a1c drm/xe/xelpg: Flush CCS when flushing caches
+7323f132e79e drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+7a3aaaf1658f drm/xe/xelp: Support auxccs invalidation on blitter
+fe0b724b98ae drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+fbfc9d1ffe69 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+4693a113cf32 drm/xe: Export xe_emit_aux_table_inv
+0c0f81c14e6f drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+010a1a7af63e drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+970e82728af6 drm/xe: Handle DPT in system memory
+36a58a286d20 drm/xe/display: Add support for AuxCCS
+b5193d617e61 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+
+
