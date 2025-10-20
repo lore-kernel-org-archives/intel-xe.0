@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0634BCCD1A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42CB5CCD19F
 	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 21:45:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7A0F10E52B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61CB10E52C;
 	Mon, 20 Oct 2025 21:45:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dpE0CBrj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9bK6QmA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5821010E52B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E04C210E52B
  for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 21:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760996732; x=1792532732;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=468xImGwSrdAiXNJ1lm5XpXz5KH/6Kc1GwYn3gCmh60=;
- b=dpE0CBrjglXV+gptg5Uk6wHfF2YkR0e8k2jC62GpS2ja3jiHaaeQ6gxu
- PA9agLarFCjUnS44RU3bEXm0ClK/Kmx60Y/yIjlpfrC0tsKquo/Vq9AMO
- ixsAS/TBpDYi4IiDditKk8LKXJU8ArXW31VcdngUlYt9H2RVldfvRo52y
- 2TaKvK33dC7uwPiOWyc44irzn4zVjqR2oVhhJcSeNv8scam0YSxwKH0eG
- 7ea0RvqwlbQ+CfpI/BfeHUxKbN/S4v9A1Sc7MyJ5CawgNQOMkZrvCBav/
- z1ZveIqcyYEZopvMnKIfYiqBcJFZj6DQZIhyz5aa7S4UxE6w1UU/lM8lg Q==;
-X-CSE-ConnectionGUID: AREvjxFsS5CA3A9JP/dGSA==
-X-CSE-MsgGUID: eEl/fwsrSVWEvOjVBzYhEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63160721"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63160721"
+ t=1760996733; x=1792532733;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tL64BQJ3gnuKfcXJLjCoDrEJ430riC/rIk1umwH1t5Q=;
+ b=g9bK6QmARqGwrYocesLx8OQocQqmXA+G9tBD318wE9sCs2Ewg+8qzGMd
+ 5luJG370w6apFefbFYr9tXdDwCK9S6laquReJ1vKeJYNfoylyy5P14hq7
+ 59A5vDNaHVto2G/uYteepZqcDURKcbVJYhoHNHR+OVpEZwZvOEQv4ETDr
+ NeHS7nzhWbi1my7BVWe8N0zf2zjpgP/n1pgis41ouPIG42bE9y0qCQ9mJ
+ AM/UNHZxTUXwF8790zvrdrfgtxRNDIJHTDG7Xritt2VMi/tmEdkWMUpDi
+ sOQeoqI/E2YzL6DCMOZ0elgO+GFVkdU7FoqD19/NSH6puKsu4i7+jMvIw Q==;
+X-CSE-ConnectionGUID: C4VgddXwR8GlFt/5/n6maQ==
+X-CSE-MsgGUID: A+HfxeeUTxiQooiIlWMqbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63160722"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63160722"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2025 14:45:32 -0700
-X-CSE-ConnectionGUID: DNy/PfVsTB64gbaVPyfEiA==
-X-CSE-MsgGUID: eO2iGTN7SYGWsp8yEcULMA==
+X-CSE-ConnectionGUID: DAxNViMXRGSy/HXGd04Hpw==
+X-CSE-MsgGUID: +IjId761SYa9VIidv20l0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451174"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451177"
 Received: from dut4084arlh.fm.intel.com ([10.105.10.142])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 14:45:31 -0700
+ 20 Oct 2025 14:45:32 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  niranjana.vishwanathapura@intel.com, zhanjun.dong@intel.com,
  shuicheng.lin@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 0/7] Fix a couple of wedge corner-case memory leaks
-Date: Mon, 20 Oct 2025 21:45:22 +0000
-Message-Id: <20251020214529.354365-1-stuart.summers@intel.com>
+Subject: [PATCH 1/7] drm/xe: Add additional trace points for LRCs
+Date: Mon, 20 Oct 2025 21:45:23 +0000
+Message-Id: <20251020214529.354365-2-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251020214529.354365-1-stuart.summers@intel.com>
+References: <20251020214529.354365-1-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,76 +68,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Most of the patches in this series are just adding
-some debug hints to help track these down. I split
-these up in case we want to pick and choose which ones
-to include in the tree. I found them useful.
+Add trace points to indicate when an LRC has been
+created and destroyed or get and put.
 
-Also add a little documentation on the various stages
-handled within the GuC exec queue submission path.
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c       |  4 +++
+ drivers/gpu/drm/xe/xe_lrc.h       |  3 +++
+ drivers/gpu/drm/xe/xe_trace_lrc.h | 42 ++++++++++++++++++++++++++++++-
+ 3 files changed, 48 insertions(+), 1 deletion(-)
 
-The main interesting patch is the last one in the
-series which fixes some corner cases when the
-driver becomes wedged in the middle of either communication
-with the DRM scheduler or in the event the GuC becomes
-unresponsive. In both of these cases there is a chance
-we could leak memory around the exec queue members
-like the LRC and the LRC BO. This patch fixes those
-scenarios.
-
-v2: Address feedback from Matt:
-    - Let the DRM scheduler handle pausing/unpausing
-    - Still do the wait after scheduling disable/deregister
-      as with the previous patch, but skip the intermediate
-      software-based schedule disable using the "banned"
-      flag and instead just jump straight to the deregister
-      handling which will fully reset the queue state.
-      Note that for this case I am seeing a hardware failure
-      after submitting to GuC but before receiving the
-      response from GuC. So even if we wedge in this case
-      (monitoring the hardware state change), the queue
-      itself is not wedged because of the active GuC
-      submission (CT is not stalled at that point).
-v3: Add back in the xe pause checks and instead just kickstart
-    message handling in the guc_submi_fini() routine before
-    doing the async wait there.
-v4: Handle the CT communication loss during wedge asynchronously
-    Also combine those last two patches into one to handle
-    wedge cleanup generally.
-v5: Add a new patch with a little documentation on the GuC
-    submission handling stages.
-    Move the scheduler kickstart and destruction call on the
-    dangling queues into the wedged_fini() callback. These
-    only get called now for queues which are in an error
-    state - wedge was called, but these weren't fully
-    cleaned up as seen by the lack of exec_queue reference
-    at the time of wedging.
-    Also fix the migration ordering teardown reference mistake
-    pointed by Matt in the previous series rev.
-
-Stuart Summers (7):
-  drm/xe: Add additional trace points for LRCs
-  drm/xe: Add a trace point for VM close
-  drm/xe: Add the BO pointer info to the BO trace
-  drm/xe: Add new exec queue trace points
-  drm/xe: Correct migration VM teardown order
-  drm/xe: Clean up GuC software state after a wedge
-  drm/xe/doc: Add GuC submission kernel-doc
-
- Documentation/gpu/xe/index.rst         |  1 +
- Documentation/gpu/xe/xe_guc_submit.rst |  8 +++
- drivers/gpu/drm/xe/xe_exec_queue.c     |  4 ++
- drivers/gpu/drm/xe/xe_guc_submit.c     | 93 ++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_lrc.c            |  4 ++
- drivers/gpu/drm/xe/xe_lrc.h            |  3 +
- drivers/gpu/drm/xe/xe_migrate.c        |  9 +--
- drivers/gpu/drm/xe/xe_trace.h          | 22 +++++-
- drivers/gpu/drm/xe/xe_trace_bo.h       | 12 +++-
- drivers/gpu/drm/xe/xe_trace_lrc.h      | 42 +++++++++++-
- drivers/gpu/drm/xe/xe_vm.c             |  2 +
- 11 files changed, 187 insertions(+), 13 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_guc_submit.rst
-
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index b5083c99dd50..42d1c861fe18 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1575,6 +1575,8 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 		return ERR_PTR(err);
+ 	}
+ 
++	trace_xe_lrc_create(lrc);
++
+ 	return lrc;
+ }
+ 
+@@ -1589,6 +1591,8 @@ void xe_lrc_destroy(struct kref *ref)
+ {
+ 	struct xe_lrc *lrc = container_of(ref, struct xe_lrc, refcount);
+ 
++	trace_xe_lrc_destroy(lrc);
++
+ 	xe_lrc_finish(lrc);
+ 	kfree(lrc);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 2fb628da5c43..fd67810f9812 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -8,6 +8,7 @@
+ #include <linux/types.h>
+ 
+ #include "xe_lrc_types.h"
++#include "xe_trace_lrc.h"
+ 
+ struct drm_printer;
+ struct xe_bb;
+@@ -61,6 +62,7 @@ void xe_lrc_destroy(struct kref *ref);
+ static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
+ {
+ 	kref_get(&lrc->refcount);
++	trace_xe_lrc_get(lrc);
+ 	return lrc;
+ }
+ 
+@@ -73,6 +75,7 @@ static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
+  */
+ static inline void xe_lrc_put(struct xe_lrc *lrc)
+ {
++	trace_xe_lrc_put(lrc);
+ 	kref_put(&lrc->refcount, xe_lrc_destroy);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+index d525cbee1e34..e8daa5d323e7 100644
+--- a/drivers/gpu/drm/xe/xe_trace_lrc.h
++++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+@@ -13,7 +13,6 @@
+ #include <linux/types.h>
+ 
+ #include "xe_gt_types.h"
+-#include "xe_lrc.h"
+ #include "xe_lrc_types.h"
+ 
+ #define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
+@@ -42,6 +41,47 @@ TRACE_EVENT(xe_lrc_update_timestamp,
+ 		      __get_str(device_id))
+ );
+ 
++DECLARE_EVENT_CLASS(xe_lrc,
++	    TP_PROTO(struct xe_lrc *lrc),
++	    TP_ARGS(lrc),
++
++	    TP_STRUCT__entry(
++		     __field(struct xe_lrc *, lrc)
++		     __string(name, lrc->fence_ctx.name)
++		     __string(device_id, __dev_name_lrc(lrc))
++	    ),
++
++	    TP_fast_assign(
++		   __entry->lrc	= lrc;
++		   __assign_str(name);
++		   __assign_str(device_id);
++		   ),
++
++	    TP_printk("lrc=:%p lrc->name=%s device_id:%s",
++		      __entry->lrc, __get_str(name),
++		      __get_str(device_id))
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_create,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_destroy,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_get,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
++DEFINE_EVENT(xe_lrc, xe_lrc_put,
++	     TP_PROTO(struct xe_lrc *lrc),
++	     TP_ARGS(lrc)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
 -- 
 2.34.1
 
