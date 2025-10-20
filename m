@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DD86CCD195
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 00:38:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BD0FCCD184
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 02:06:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD47E10E118;
-	Mon, 20 Oct 2025 00:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6E910E238;
+	Mon, 20 Oct 2025 02:06:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="chbihm9i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e7EhmZY1";
 	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7A810E045;
- Mon, 20 Oct 2025 00:38:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=GpAV/VMY9yx3kzxtCkfBCxjEDydMOc4ro6VHFxkqJFE=; b=chbihm9iGw7tLsnTA4HX8e1Lk4
- 4mXInwKV99SnKp3PMSubLDTcEAbar5itv3gbc1ZDqoq5Nkhy8ts9vr/flEh16X9i+UWVLfvUDFTrC
- /q0PUnRDDN99lCZ6nyT3US6UTRIez8QIMg1uPLnx+kY/fFk6bh8X3oI2kvMwUeYm9ovcKgPy9rgVF
- HEfx8qFPTzMLlGoGlG//XHmB5TA1RdilHajP92tzjC91yDu4vq4wFh7TIjUdgdjZOAPc0Sf7dCF5j
- qpg2IAL9NEzwyvQzZnZKKyc0dixIMQdiuuiss+wDzRC0Bz2uCmo8UQZGHtC6jp8vtCM9Vgxmv70pp
- IY0SC0Lg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1vAdua-0000000BZ1w-1mIz; Mon, 20 Oct 2025 00:38:08 +0000
-Message-ID: <f6e3c761-a676-4351-902c-5fbff9f8db6f@infradead.org>
-Date: Sun, 19 Oct 2025 17:38:06 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C305510E238
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 02:06:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1760925985; x=1792461985;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mnJ7TRP8rOtz4ySdAq5KerAY//+ORMXg/Fs7XI29FUM=;
+ b=e7EhmZY1fYk4FVHmJxeU5ha64dHGwZi2hYX/nemc/j8niX40V7TejvG3
+ tb3qfKoSG08LW+4ycw/11vrFMUNdlTYXGTfMjtBxXUXjc6zTQFjsXX8mi
+ r4NxY2hCpQtgPiBRbg5A7Y8dTaQXbF92I/npgE8f9LYi3xNgMSaU59nRv
+ cfFenOY55RlbjUpk6sPr0gobDNXlDzYCj9+IKw1ywQfC1C4dSYIj6OkNf
+ O2Sku9Lls8OMuSUSgKO2k2GttIS8ybsYOmadbqqPGohsWZFQeqam24Vu6
+ EqW0cwb9x24bI4KX5mhx0g2Lno5GcRuc7eC6iOEYwrNJZLsTZhKYvHJzS A==;
+X-CSE-ConnectionGUID: 39DdygqjQa6kNUBxiwC/SA==
+X-CSE-MsgGUID: lDhps7o5Tg+CXDUmU8JpQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11587"; a="66909992"
+X-IronPort-AV: E=Sophos;i="6.19,241,1754982000"; d="scan'208";a="66909992"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2025 19:06:24 -0700
+X-CSE-ConnectionGUID: QfCFqqEcRxi7oz74fTyURA==
+X-CSE-MsgGUID: 2y5QVYV4Rt61y8eNGSEYEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,241,1754982000"; d="scan'208";a="183705657"
+Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2025 19:06:25 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH 2/2] drm/xe/xe3p_lpm: Add special check in Media GT for Main
+ GAMCTRL
+Date: Sun, 19 Oct 2025 19:05:47 -0700
+Message-ID: <20251019-xe3p-gamctrl-v1-2-ad66d3c1908f@intel.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251019-xe3p-gamctrl-v1-0-ad66d3c1908f@intel.com>
+References: <20251019-xe3p-gamctrl-v1-0-ad66d3c1908f@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] mei: intel_lb_mei_interface.h: mark struct member with
- kernel-doc
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: Petr Vorel <pvorel@suse.cz>, "Gote, Nitin R" <nitin.r.gote@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-References: <20251016190941.1306157-1-rdunlap@infradead.org>
- <CY5PR11MB6366AC1589B2FE4E054ED6CCEDF4A@CY5PR11MB6366.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <CY5PR11MB6366AC1589B2FE4E054ED6CCEDF4A@CY5PR11MB6366.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.15-dev-bd47d
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,82 +71,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
+For Xe3p arch some subunits of an IP may be different. The GMD_ID
+register returns the Xe3p arch and dedicates the reserved field to mark
+possible subunit differences. Generally this is an under-the-hood
+implementation detail that drivers don't need to worry about, but the
+new Main_GAMCTRL may be enabled or not depending on those.
 
-On 10/19/25 12:30 AM, Usyskin, Alexander wrote:
->> Subject: [PATCH v2] mei: intel_lb_mei_interface.h: mark struct member with
->> kernel-doc
->>
->> Use correct kernel-doc notation to prevent 3 kernel-doc warnings.
->> @push_payload is a struct member here, not a function, so use '@'
->> and ':' in its description.
->>
->> Warning: intel_lb_mei_interface.h:55 Incorrect use of kernel-doc format:
->>  * push_payload - Sends a payload to the authentication firmware
->> Warning: intel_lb_mei_interface.h:67 Invalid param:
->>  * @dev: Device struct corresponding to the mei device
->>  * @type: Payload type (see &enum intel_lb_type)
->>  * @flags: Payload flags bitmap (e.g. %INTEL_LB_FLAGS_IS_PERSISTENT)
->>  * @payload: Pointer to payload buffer
->>  * @payload_size: Payload buffer size in bytes
->>  * * Return: 0 success, negative errno value on transport failure,
->>  *         positive status returned by firmware */
->>  int (*push_payload)(struct device *dev, u32 type, u32 flags, const void
->>  *payload, size_t payload_size)
->> Warning: intel_lb_mei_interface.h:67 struct member '* @dev: Device struct
->>  corresponding to the mei device * @type: Payload type (see &enum
->>  intel_lb_type' not described in 'intel_lb_component_ops'
->>
-> 
-> Not sure about the right format here but this patch makes things better.
+Those reserved bits are described for Xe3p as: "If Zero, No special case
+to be handled. If Non-Zero, special case to be handled by Software
+agent.". That special case is defined per Arch. So if media version is
+35, also check the additional reserved bits. To avoid confusion with the
+usual meaning of "reserved", define them as GMD_ID_SUBIP_FLAG_MASK.
 
-Yeah, we don't have a way to document callbacks in kernel-doc.
+Bspec: 74201
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_guc.c          | 19 +++++++++++++++++++
+ 2 files changed, 25 insertions(+)
 
-@push_payload is just a struct member here, not a function.
-And the callback parameters aren't struct members. I just
-didn't remove them since it's nice to have them documented
-and this is the most logical/central place to do that
-(most of this IMO).
-
-
-> Acked-by: Alexander Usyskin <alexander.usyskin@intel.com>
-> 
->> Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
->> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
->> Reviewed-by: Petr Vorel <pvorel@suse.cz>
->> Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
->> ---
->> v2: reformat long kernel-doc warning lines to <= 75 chars. (Nitin)
->>
->> Cc: Alexander Usyskin <alexander.usyskin@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
->> Cc: intel-gfx@lists.freedesktop.org
->> Cc: intel-xe@lists.freedesktop.org
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Simona Vetter <simona@ffwll.ch>
->> Cc: dri-devel@lists.freedesktop.org
->> ---
->>  include/drm/intel/intel_lb_mei_interface.h |    2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> --- linux-next-20251013.orig/include/drm/intel/intel_lb_mei_interface.h
->> +++ linux-next-20251013/include/drm/intel/intel_lb_mei_interface.h
->> @@ -53,7 +53,7 @@ enum intel_lb_status {
->>   */
->>  struct intel_lb_component_ops {
->>  	/**
->> -	 * push_payload - Sends a payload to the authentication firmware
->> +	 * @push_payload: Sends a payload to the authentication firmware
->>  	 * @dev: Device struct corresponding to the mei device
->>  	 * @type: Payload type (see &enum intel_lb_type)
->>  	 * @flags: Payload flags bitmap (e.g.
->> %INTEL_LB_FLAGS_IS_PERSISTENT)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 1876f2957c6df..3545e0be06dae 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -37,6 +37,12 @@
+ #define GMD_ID					XE_REG(0xd8c)
+ #define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+ #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
++/*
++ * Spec defines these bits as "Reserved", but then make them assume some
++ * meaning that depends on the ARCH. To avoid any confusion, call them
++ * SUBIP_FLAG_MASK.
++ */
++#define   GMD_ID_SUBIP_FLAG_MASK		REG_GENMASK(13, 6)
+ #define   GMD_ID_REVID				REG_GENMASK(5, 0)
+ 
+ #define FORCEWAKE_ACK_GSC			XE_REG(0xdf8)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 37e3735f34e63..ecc3e091b89e6 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1681,6 +1681,25 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 
++	/*
++	 * For Xe3p media gt (35), the GuC and the CS subunits may be still Xe3
++	 * that lacks the Main GAMCTRL support. Reserved bits from the GMD_ID
++	 * inform the IP version of the subunits.
++	 */
++	if (xe_gt_is_media_type(gt) && MEDIA_VER(gt_to_xe(gt)) == 35) {
++		u32 val = xe_mmio_read32(&gt->mmio, GMD_ID);
++		u32 subip = REG_FIELD_GET(GMD_ID_SUBIP_FLAG_MASK, val);
++
++		if (!subip)
++			return true;
++
++		xe_gt_WARN(gt, subip != 1,
++			   "GMD_ID has unknown value in the SUBIP_FLAG field - 0x%x\n",
++			   subip);
++
++		return false;
++	}
++
+ 	return GT_VER(gt) >= 35;
+ }
+ 
 
 -- 
-~Randy
+2.51.0
 
