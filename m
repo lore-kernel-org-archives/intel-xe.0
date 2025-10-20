@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93567CCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 18:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A1D4CCD199
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 18:24:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58D7910E4AE;
-	Mon, 20 Oct 2025 18:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 108B110E4B1;
+	Mon, 20 Oct 2025 18:24:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CE4BU4sd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="euHCeBxD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1BCC10E4AC
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 18:24:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 063A010E4AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 18:24:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760984686; x=1792520686;
+ t=1760984689; x=1792520689;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1zcXypHpI4t9YNVc82c9X+uk3EulpxPGlxl/SMvugZI=;
- b=CE4BU4sd3HhSHaa9v+WfVX2+WoBUaYbjRlgKpcKCk+PBScniFeGPfeX4
- mrb1nPnpspkXGni8Oz+Nj4ToAWHIaPr+JfizjfvYK5WvKgDFJj8AKrN0e
- dwjsRV8QNRTI8ilgrBrNDR2D3Kb3KaAfJ1RK5podbIdP5vaAG/9t32/YI
- UWHAvj42VbZ4C57IQMbU13eoKwhym+e9hrkucozC32wE9PKzPN1UZspJJ
- mAdjsfR1W1qavw/u9ogvRiSboeQpm1o0gygbiz+Ej0Snc2/W8jc36KoNe
- zXf+kZFFgrdNUXo84pgzSrgfPpMivyltGlmtk2shl0cMrGH8n5KRiylOH g==;
-X-CSE-ConnectionGUID: 89rfb7AsSfC0ZGod9x+sQQ==
-X-CSE-MsgGUID: 8ZgJvVHpRPaAYx8i55UC8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63013075"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63013075"
+ bh=e6sbCpM0fJHBIjKvWCk2oX8YsYeUBC0aGWXMVMBNgtw=;
+ b=euHCeBxDH4mgSE0bJl4DCY6bchypxFKDtF+O2/eOTreD8MiXOrDFdM/O
+ cbq9Ospc67lWj4H5x5Wc20qlNxjxjPRAbu+Y0mihye/QS3dEhGVYILacw
+ VJ2yd6Ijf9uH+mHHx5ADJGVRzcKLT1U5/m0+4sNpsBQRhSF6FGORysba/
+ bA1G1w2bVaET+ODPJ72m1G+DxJ4vLTaJNRE6wxmxJaOJVr6/l6oJiDL3k
+ 3xMwh8ZQJyXf56XHtzYImzKP+iWNiCg3wGdZ5UZ8yFcpHqUU20oIFiauC
+ xatNNr54GOXvh7Mpvek1JtycyYQortLwyZ53MPNfDF/NgTZC7nx+WA6y7 A==;
+X-CSE-ConnectionGUID: l7DDk7sOR3Kj0DYHUCMoWw==
+X-CSE-MsgGUID: oT4Mx1ozSquigpMT5j3bwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63013078"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63013078"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:24:46 -0700
-X-CSE-ConnectionGUID: 5CVfYkShQJiJ1DFl9gsxIQ==
-X-CSE-MsgGUID: cALWxVgATamq0NnEeIXGQg==
+ 20 Oct 2025 11:24:49 -0700
+X-CSE-ConnectionGUID: zFImAKMQSJuHjlhUBVBMgg==
+X-CSE-MsgGUID: 4UxT4KHKRCavIAteUtN1FQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183802137"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183802143"
 Received: from vthervee-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.249.135])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:24:45 -0700
+ 20 Oct 2025 11:24:46 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 08/14] drm/xe/pf: Add functions to provision scheduling
- priority
-Date: Mon, 20 Oct 2025 20:24:08 +0200
-Message-ID: <20251020182414.576-9-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 09/14] drm/xe/pf: Allow bulk change all VFs priority using
+ sysfs
+Date: Mon, 20 Oct 2025 20:24:09 +0200
+Message-ID: <20251020182414.576-10-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251020182414.576-1-michal.wajdeczko@intel.com>
 References: <20251020182414.576-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,136 +71,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have function to configure PF (or VF) scheduling priority
-on single GT, but we also need function that will cover all tiles/GTs.
+It is expected to be a common practice to configure the same level
+of scheduling priority across all VFs and PF (at least as starting
+point). Due to current GuC FW limitations it is also the only way
+to change VFs priority.
 
-However, due to the current GuC FW limitation, we can't always rely
-on per-GT function as it actually only works for the PF case. The
-only way to change VFs scheduling priority is to use 'sched_if_idle'
-policy KLV that will change priorities for all VFs (and the PF).
+Add write-only sysfs attribute that will apply required priority
+level to all VFs and PF at once.
 
-We will all these new functions in the upcoming patches.
+  /sys/bus/pci/drivers/xe/BDF/
+  ├── sriov_admin/
+      ├── .bulk_profile
+      │   └── sched_priority		[WO] low, normal
+
+Writing "low" to this write-only attribute will change PF and
+VFs scheduling priority on all tiles/GTs to LOW (function will
+be scheduled only if it has work submitted). Similarly, writing
+"normal" will change functions priority to NORMAL (functions will
+be scheduled irrespective of whether there is a work or not).
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 92 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h |  4 +
- 2 files changed, 96 insertions(+)
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c |  1 +
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c     | 42 +++++++++++++++++++++-
+ 2 files changed, 42 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index 44c52c7e241f..3a3806055616 100644
+index 3a3806055616..89b2feb43b77 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -320,3 +320,95 @@ int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u
+@@ -6,6 +6,7 @@
+ #include "xe_assert.h"
+ #include "xe_device.h"
+ #include "xe_gt_sriov_pf_config.h"
++#include "xe_gt_sriov_pf_policy.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf_helpers.h"
+ #include "xe_sriov_pf_provision.h"
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index 5c445094e223..26ba9a2efec9 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -24,7 +24,8 @@
+  *     ├── ...
+  *     ├── .bulk_profile
+  *     │   ├── exec_quantum_ms
+- *     │   └── preempt_timeout_us
++ *     │   ├── preempt_timeout_us
++ *     │   └── sched_priority
+  *     ├── pf/
+  *     │   ├── ...
+  *     │   └── profile
+@@ -108,9 +109,48 @@ static XE_SRIOV_DEV_ATTR_WO(NAME)
+ DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(exec_quantum_ms, eq, u32);
+ DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(preempt_timeout_us, pt, u32);
  
- 	return !count ? -ENODATA : 0;
- }
++static const char * const sched_priority_names[] = {
++	[GUC_SCHED_PRIORITY_LOW] = "low",
++	[GUC_SCHED_PRIORITY_NORMAL] = "normal",
++	[GUC_SCHED_PRIORITY_HIGH] = "high",
++};
 +
-+/**
-+ * xe_sriov_pf_provision_bulk_apply_priority() - Change scheduling priority of all VFs and PF.
-+ * @xe: the PF &xe_device
-+ * @prio: scheduling priority to set
-+ *
-+ * Change scheduling priority provisioning on all tiles/GTs.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio)
++static bool sched_priority_high_allowed(unsigned int vfid)
 +{
-+	bool sched_if_idle;
-+	struct xe_gt *gt;
-+	unsigned int id;
-+	int result = 0;
++	/* As of today GuC FW allows to select 'high' priority only for the PF. */
++	return vfid == PFID;
++}
++
++static bool sched_priority_bulk_high_allowed(struct xe_device *xe)
++{
++	/* all VFs are equal - it's sufficient to check VF1 only */
++	return sched_priority_high_allowed(VFID(1));
++}
++
++static ssize_t xe_sriov_dev_attr_sched_priority_store(struct xe_device *xe,
++						      const char *buf, size_t count)
++{
++	size_t num_priorities = ARRAY_SIZE(sched_priority_names);
++	int match;
 +	int err;
 +
-+	/*
-+	 * Currently, priority changes that involves VFs are only allowed using
-+	 * the 'sched_if_idle' policy KLV, so only LOW and NORMAL are supported.
-+	 */
-+	xe_assert(xe, prio < GUC_SCHED_PRIORITY_HIGH);
-+	sched_if_idle = prio == GUC_SCHED_PRIORITY_NORMAL;
++	if (!sched_priority_bulk_high_allowed(xe))
++		num_priorities--;
 +
-+	for_each_gt(gt, xe, id) {
-+		err = xe_gt_sriov_pf_policy_set_sched_if_idle(gt, sched_if_idle);
-+		result = result ?: err;
-+	}
++	match = __sysfs_match_string(sched_priority_names, num_priorities, buf);
++	if (match < 0)
++		return -EINVAL;
 +
-+	return result;
++	err = xe_sriov_pf_provision_bulk_apply_priority(xe, match);
++	return err ?: count;
 +}
 +
-+/**
-+ * xe_sriov_pf_provision_apply_vf_priority() - Change VF's scheduling priority.
-+ * @xe: the PF &xe_device
-+ * @vfid: the VF identifier
-+ * @prio: scheduling priority to set
-+ *
-+ * Change VF's scheduling priority provisioning on all tiles/GTs.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_apply_vf_priority(struct xe_device *xe, unsigned int vfid, u32 prio)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+	int result = 0;
-+	int err;
++static XE_SRIOV_DEV_ATTR_WO(sched_priority);
 +
-+	for_each_gt(gt, xe, id) {
-+		err = xe_gt_sriov_pf_config_set_sched_priority(gt, vfid, prio);
-+		result = result ?: err;
-+	}
-+
-+	return result;
-+}
-+
-+/**
-+ * xe_sriov_pf_provision_query_vf_priority() - Query VF's scheduling priority.
-+ * @xe: the PF &xe_device
-+ * @vfid: the VF identifier
-+ * @prio: placeholder for the returned scheduling priority
-+ *
-+ * Query VF's scheduling priority provisioning from all tiles/GTs.
-+ * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_query_vf_priority(struct xe_device *xe, unsigned int vfid, u32 *prio)
-+{
-+	struct xe_gt *gt;
-+	unsigned int id;
-+	int count = 0;
-+	u32 value;
-+
-+	for_each_gt(gt, xe, id) {
-+		value = xe_gt_sriov_pf_config_get_sched_priority(gt, vfid);
-+		if (!count++)
-+			*prio = value;
-+		else if (value != *prio)
-+			return -EUCLEAN;
-+	}
-+
-+	return !count ? -ENODATA : 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-index aa8a95b1c0be..bccf23d51396 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-@@ -20,6 +20,10 @@ int xe_sriov_pf_provision_bulk_apply_pt(struct xe_device *xe, u32 pt);
- int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt);
- int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt);
- 
-+int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio);
-+int xe_sriov_pf_provision_apply_vf_priority(struct xe_device *xe, unsigned int vfid, u32 prio);
-+int xe_sriov_pf_provision_query_vf_priority(struct xe_device *xe, unsigned int vfid, u32 *prio);
-+
- int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
- int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
+ static struct attribute *bulk_profile_dev_attrs[] = {
+ 	&xe_sriov_dev_attr_exec_quantum_ms.attr,
+ 	&xe_sriov_dev_attr_preempt_timeout_us.attr,
++	&xe_sriov_dev_attr_sched_priority.attr,
+ 	NULL
+ };
  
 -- 
 2.47.1
