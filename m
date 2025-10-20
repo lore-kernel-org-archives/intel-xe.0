@@ -4,57 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61C2CCCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 18:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9AC7CCD193
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 18:24:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 209EE10E4AC;
-	Mon, 20 Oct 2025 18:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D68810E4AD;
+	Mon, 20 Oct 2025 18:24:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FAkARFgn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZSrcGSUZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE84010E4AC
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 18:24:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0AD10E4AD
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 18:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760984670; x=1792520670;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1e9n8H4tgbiWr+QanxO9tS3gCU5fu+oVZW3arTf5ab4=;
- b=FAkARFgnxYy2g2Y4o/7IKvqCztZzads7Xjcb7HPJ9WCFJbC2yqfn4fvF
- Zg4bbcFWw4RVu9GHYo7NPF8PYcC3F3o/F9NG3iOg9r0RW5Vq1tfL2UKyr
- KNhrCTJrTu7Qvo3Y+04h1GrDljY3eKt6pZ4YvC/NtDCUvoNPM0NffyyBP
- CxyeFAM0MQQj+ljNt2aM088K070nQlhRkdqvrJEDDJSi5iYS3Rdgww2hj
- H6iD9qhTV82W0+CsUTR2mUKD6D1b12mkvZ1cS6n0t+kaX6lTbc0k1xpOU
- QL9nkAOBGM/bUcgQXGTJ7++sFHIFPcRGD09yTDoccjBLOgQ470K4jOFCu g==;
-X-CSE-ConnectionGUID: LuPzWJJURn++P3EL+058eA==
-X-CSE-MsgGUID: xzT8y6csTbSEsJaBNGNJjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63013050"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63013050"
+ t=1760984674; x=1792520674;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZHLN3tMnZlR1ezMe2PDAqMXwYcXUR/zWp/xg9bwqmCc=;
+ b=ZSrcGSUZL1XVKUulk8PDJox/9mYw2Mw/F/YDr2+s5zSKnyuC+/cfqxla
+ fMqP/UB6AKkZxvo5PtOd8SxL14Y4IcF4348DWwrCIjAX1V3zB+v7DX/oC
+ DHi6K0tdvak6Dp083WQdY8xQdtGNx7qPrppsmVzpJImyWmLTa/fYaiaxR
+ etAPoR34uNlnFbm9wLh8gD2omJtpH18c3IUjXY4lhUss3pqe1vGHZN9SM
+ VH/a1XbZHPwXFrdAWYMyYBYb46oFOJm//rXRMa3fa2n4Nwz2y3+PPm0JJ
+ FRjsjDn9xjxW2ScXnDrF2G4KgdH7x6A8nE/xY+SvWtO3bNHb5O/dIk+Y2 A==;
+X-CSE-ConnectionGUID: MhZZj4ZSReSpjhnYeEx4Sg==
+X-CSE-MsgGUID: dV3qIO0fQPebQFaFPfLXBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63013057"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63013057"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:24:29 -0700
-X-CSE-ConnectionGUID: b+HktfyxTtGinCZ2zAfyZw==
-X-CSE-MsgGUID: L6lce0NFT2ujoEbNeEKJsw==
+ 20 Oct 2025 11:24:34 -0700
+X-CSE-ConnectionGUID: O9uRabnUSSao+kpqpr96LA==
+X-CSE-MsgGUID: 8z30KLD+TOekawZKweq2Bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183802063"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183802084"
 Received: from vthervee-mobl2.amr.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.94.249.135])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 11:24:25 -0700
+ 20 Oct 2025 11:24:32 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 00/14] PF: Add sriov_admin sysfs tree
-Date: Mon, 20 Oct 2025 20:24:00 +0200
-Message-ID: <20251020182414.576-1-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH 02/14] drm/xe/pf: Take RPM during calls to SR-IOV attr.store()
+Date: Mon, 20 Oct 2025 20:24:02 +0200
+Message-ID: <20251020182414.576-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251020182414.576-1-michal.wajdeczko@intel.com>
+References: <20251020182414.576-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,92 +67,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To allow the admin to provision VFs using production quality vGPU
-profiles, we need to expose some of the SR-IOV knobs at the sysfs
-level as existing debugfs entries may not be available.
+We expect that all SR-IOV attr.store() handlers will require active
+runtime PM reference. To simplify implementation of those handlers,
+take an implicit RPM reference on their behalf. Also wait until PF
+completes its restart.
 
-Start with some basic scheduling parameters and apply them to all
-tiles/GTs where VF can be running. Provisioning of the other hard
-resources (like GGTT, VRAM) is still fully done by the PF, which
-uses fair auto-provisioning, but soon we will try to expose that
-to the admin too (after this series).
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-Below is an example of the new sysfs attributes tree on the PF
-with 2 of 3 VFs enabled (VFs were limited by max_vfs config):
-
-  /sys/bus/pci/drivers/xe/0000:00:02.0/sriov_admin
-  ├── .bulk_profile
-  │   ├── exec_quantum_ms
-  │   ├── preempt_timeout_us
-  │   └── sched_priority
-  ├── pf
-  │   ├── device -> ../../../0000:00:02.0
-  │   └── profile
-  │       ├── exec_quantum_ms
-  │       ├── preempt_timeout_us
-  │       └── sched_priority
-  ├── vf1
-  │   ├── device -> ../../../0000:00:02.1
-  │   ├── profile
-  │   │   ├── exec_quantum_ms
-  │   │   ├── preempt_timeout_us
-  │   │   └── sched_priority
-  │   ├── reset
-  │   └── stop
-  ├── vf2
-  │   ├── device -> ../../../0000:00:02.2
-  │   ├── profile
-  │   │   ├── exec_quantum_ms
-  │   │   ├── preempt_timeout_us
-  │   │   └── sched_priority
-  │   ├── reset
-  │   └── stop
-  └── vf3
-      ├── profile
-      │   ├── exec_quantum_ms
-      │   ├── preempt_timeout_us
-      │   └── sched_priority
-      ├── reset
-      └── stop
-
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-
-Michal Wajdeczko (14):
-  drm/xe/pf: Prepare sysfs for SR-IOV admin attributes
-  drm/xe/pf: Take RPM during calls to SR-IOV attr.store()
-  drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
-  drm/xe/pf: Relax report helper to accept PF in bulk configs
-  drm/xe/pf: Add functions to bulk configure EQ/PT on GT
-  drm/xe/pf: Add functions to bulk provision EQ/PT
-  drm/xe/pf: Allow bulk change all VFs EQ/PT using sysfs
-  drm/xe/pf: Add functions to provision scheduling priority
-  drm/xe/pf: Allow bulk change all VFs priority using sysfs
-  drm/xe/pf: Allow change PF scheduling priority using sysfs
-  drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
-  drm/xe/pf: Add sysfs device symlinks to enabled VFs
-  drm/xe/pf: Allow to stop and reset VF using sysfs
-  drm/xe/pf: Add documentation for sriov_admin attributes
-
- .../ABI/testing/sysfs-driver-intel-xe-sriov   | 164 +++++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |  69 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |   2 +
- drivers/gpu/drm/xe/xe_pci_sriov.c             |  42 +-
- drivers/gpu/drm/xe/xe_pci_sriov.h             |   1 +
- drivers/gpu/drm/xe/xe_sriov_pf.c              |   5 +
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c    | 261 +++++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h    |  14 +
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        | 658 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h        |  16 +
- drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  11 +
- 12 files changed, 1226 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
-
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index 91962155f80b..15072779be7d 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -9,7 +9,9 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_assert.h"
++#include "xe_pm.h"
+ #include "xe_sriov.h"
++#include "xe_sriov_pf.h"
+ #include "xe_sriov_pf_helpers.h"
+ #include "xe_sriov_pf_sysfs.h"
+ #include "xe_sriov_printk.h"
+@@ -131,13 +133,19 @@ static ssize_t xe_sriov_dev_attr_store(struct kobject *kobj, struct attribute *a
+ 	struct xe_sriov_dev_attr *vattr = to_xe_sriov_dev_attr(attr);
+ 	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
+ 	struct xe_device *xe = vkobj->xe;
++	ssize_t ret;
+ 
+ 	if (!vattr->store) {
+ 		xe_sriov_dbg(xe, "attribute '%s' was not intended to be %s\n",
+ 			     attr->name, "writable");
+ 		return -EPERM;
+ 	}
+-	return vattr->store(xe, buf, count);
++
++	xe_pm_runtime_get(xe);
++	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, buf, count);
++	xe_pm_runtime_put(xe);
++
++	return ret;
+ }
+ 
+ static ssize_t xe_sriov_vf_attr_show(struct kobject *kobj, struct attribute *attr, char *buf)
+@@ -164,6 +172,7 @@ static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *at
+ 	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
+ 	struct xe_device *xe = vkobj->xe;
+ 	unsigned int vfid = vkobj->vfid;
++	ssize_t ret;
+ 
+ 	xe_sriov_pf_assert_vfid(xe, vfid);
+ 
+@@ -172,7 +181,12 @@ static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *at
+ 			     attr->name, "writable");
+ 		return -EPERM;
+ 	}
+-	return vattr->store(xe, vfid, buf, count);
++
++	xe_pm_runtime_get(xe);
++	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, vfid, buf, count);
++	xe_pm_runtime_get(xe);
++
++	return ret;
+ }
+ 
+ static const struct sysfs_ops xe_sriov_dev_sysfs_ops = {
 -- 
 2.47.1
 
