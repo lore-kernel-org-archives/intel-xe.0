@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C148CCD1A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38D50CCD19F
 	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 21:45:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1716710E52D;
-	Mon, 20 Oct 2025 21:45:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F20E510E52B;
+	Mon, 20 Oct 2025 21:45:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UAy2jx4T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQcV9G1i";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 255C810E52B
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3321510E52D
  for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 21:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760996733; x=1792532733;
+ t=1760996734; x=1792532734;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g6wQHDqM/l1n16EmnhJ3NJnEajkPhM0hz4bpTTQa0jo=;
- b=UAy2jx4TV5GvdDLiBqiTRzjXUUBg0OL1MhvuM6bJyQxa76yfGUTH9aV4
- NgLC6GNyggSBG673nUSRKV567ECYDNVWDF6x/CRFFYn6obTruQKaW1M4T
- 26jDKvvChvko5w/iu6RxrnLkaERPPdyfrxlDp2TIe5LogYI1K0Ob1VLyV
- /ODfbZz6nDeptc7woTdjl2dhYRJtwAVjQcnwCGIgu0YfJOJL1dLuiC6nj
- 6KUH3NQcXHaXlFLIYReX2994pqLw0RK+P5d6oyxSR2t6ZZcTpeeDeGZ8A
- +7RftyFiinEYcOD1ZfBEcb/e+pUjcfYdtXrRtP5ReULK8zLzy/krChmcl Q==;
-X-CSE-ConnectionGUID: a0N4uMvOSO+4bv1WmXv7tw==
-X-CSE-MsgGUID: FUtJ2V6qRFOO4uK5ASYSyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63160724"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63160724"
+ bh=3lqme8qTFvrZC2p3jEy907wAltZy70wzM65RdKYvpXY=;
+ b=XQcV9G1iHdixhKiSJUH9mlGcYtJXxLFIpeGj+1qx/rDnJA3xzihi/c9Y
+ 85/h+LGzJHc4HtGMwy4Wz6Lncj84tFu6BLBYxZ8BFcroBSJT4qrHXqcrX
+ omdZN35ykD3FPzZM+dphvA1TpIrGBRszhXEa2e13t25kQwU0y9wm70EBK
+ yI7/q5U9Rrn18ZdH6lucV//tFC83/74yDSd+43VOv/7bUecrFNBFCqEbj
+ RDnuz9JAph6NiQRh0jAPU6uSfDeBuzxwiUloXwd8pnzPUl3NMRiK3Ebuf
+ qO9lUAjJJMjv2b67i5cmT4j7ViilPzSCrYaNjIJ7h3cIiEp8rYz+K0aU5 g==;
+X-CSE-ConnectionGUID: eSD1HJRoQ/2M88AOTyb4LA==
+X-CSE-MsgGUID: M9PdlV7ZSluR57hScHm7cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63025948"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63025948"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 14:45:32 -0700
-X-CSE-ConnectionGUID: tAHqD1SlTRGEo2uWHUGT8Q==
-X-CSE-MsgGUID: ikgkGlRmQT6HEY76rilRfQ==
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 14:45:33 -0700
+X-CSE-ConnectionGUID: agM9gXDdQXm59in6+m2rtg==
+X-CSE-MsgGUID: IEwpFnYlRne1qQ5THE9mJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451183"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451195"
 Received: from dut4084arlh.fm.intel.com ([10.105.10.142])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2025 14:45:32 -0700
@@ -46,9 +46,9 @@ To:
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  niranjana.vishwanathapura@intel.com, zhanjun.dong@intel.com,
  shuicheng.lin@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 3/7] drm/xe: Add the BO pointer info to the BO trace
-Date: Mon, 20 Oct 2025 21:45:25 +0000
-Message-Id: <20251020214529.354365-4-stuart.summers@intel.com>
+Subject: [PATCH 7/7] drm/xe/doc: Add GuC submission kernel-doc
+Date: Mon, 20 Oct 2025 21:45:29 +0000
+Message-Id: <20251020214529.354365-8-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251020214529.354365-1-stuart.summers@intel.com>
 References: <20251020214529.354365-1-stuart.summers@intel.com>
@@ -68,43 +68,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just a little extra detail to make BOs easier to track
-through the trace event log.
+Add some documentation for the different roles played by the XeKMD
+in communication with the GuC through exec queue management and
+the DRM scheduler.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ Documentation/gpu/xe/index.rst         |  1 +
+ Documentation/gpu/xe/xe_guc_submit.rst |  8 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c     | 70 ++++++++++++++++++++++++++
+ 3 files changed, 79 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_guc_submit.rst
 
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-index 238311cfb816..0d795733e0f0 100644
---- a/drivers/gpu/drm/xe/xe_trace_bo.h
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-@@ -27,6 +27,7 @@ DECLARE_EVENT_CLASS(xe_bo,
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index bc432c95d1a3..030268ddba87 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -15,6 +15,7 @@ DG2, etc is provided to prototype the driver.
+    xe_map
+    xe_migrate
+    xe_exec_queue
++   xe_guc_submit
+    xe_cs
+    xe_pm
+    xe_gt_freq
+diff --git a/Documentation/gpu/xe/xe_guc_submit.rst b/Documentation/gpu/xe/xe_guc_submit.rst
+new file mode 100644
+index 000000000000..a82b5d57ee6a
+--- /dev/null
++++ b/Documentation/gpu/xe/xe_guc_submit.rst
+@@ -0,0 +1,8 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++==============
++GuC Submission
++==============
++
++.. kernel-doc:: drivers/gpu/drm/xe/xe_guc_submit.c
++   :doc: GuC Submission
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index a11ae4e70809..fd05f73cd96b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -46,6 +46,76 @@
+ #include "xe_trace.h"
+ #include "xe_vm.h"
  
- 		    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_bo(bo))
-+			     __field(struct xe_bo *, bo)
- 			     __field(size_t, size)
- 			     __field(u32, flags)
- 			     __field(struct xe_vm *, vm)
-@@ -34,13 +35,14 @@ DECLARE_EVENT_CLASS(xe_bo,
- 
- 		    TP_fast_assign(
- 			   __assign_str(dev);
-+			   __entry->bo = bo;
- 			   __entry->size = xe_bo_size(bo);
- 			   __entry->flags = bo->flags;
- 			   __entry->vm = bo->vm;
- 			   ),
- 
--		    TP_printk("dev=%s, size=%zu, flags=0x%02x, vm=%p",
--			      __get_str(dev), __entry->size,
-+		    TP_printk("dev=%s, %p, size=%zu, flags=0x%02x, vm=%p",
-+			      __get_str(dev), __entry->bo, __entry->size,
- 			      __entry->flags, __entry->vm)
- );
- 
++/**
++ * DOC: GuC Submission
++ *
++ * The primary submission vehicle for the XeKMD is the GuC firmware.
++ * This includes creating, registering, and submitting exec queues
++ * (see :ref:`execution-queue`). Once submitted, actual hardware scheduling
++ * is handled fully by the GuC.
++ *
++ * To facilitate these operations, XeKMD makes use of the DRM scheduler
++ * to handle state changes and determine when jobs should be scheduled
++ * with the GuC.
++ *
++ * Queue Registration
++ * ==================
++ *
++ * Registration and deregistration of exec queues with the GuC involves
++ * creation of the ring (LRC) for that context. These are asynchronous
++ * actions by the XeKMD which completes that registration/deregistration
++ * process once the GuC responds that the hardware registration has
++ * completed.
++ *
++ * Queue Submission
++ * ================
++ *
++ * The GuC has a parameter for each context indicating whether that
++ * context can be scheduled with the associated engine. After registration
++ * has completed, the KMD, typically as a reaction to a request from
++ * the user exec IOCTL call, will issue a schedule request with the
++ * GuC. The GuC will then add that to its schedule for contexts
++ * and will in turn schedule this with the command streamer based
++ * on time slice availability.
++ *
++ * Queue Destruction
++ * =================
++ *
++ * As mentioned above, before destroying a queue, it must first be
++ * deregistered. In the typical case, this happens first by sending
++ * a schedule disable request, then on confirmation from the GuC,
++ * a deregistration request. Only after that deregistration response
++ * will the XeKMD free resources associated with that queue such as
++ * the LRC.
++ *
++ * Engine Resets
++ * =============
++ *
++ * Any time more than one context is being scheduled by the GuC, the GuC
++ * will give each context a certain configurable time slice. If a context
++ * exceeds this time slice, the GuC will reset the engine and notify the XeKMD
++ * along with an engine state at the time of the reset. The XeKMD will then
++ * resubmit any outstanding jobs to that engine. If a particular job has been
++ * resubmitted in this way more than once, the associated exec queue will be
++ * marked banned and will no longer be schedulable on that engine.
++ *
++ * Queue Wedging
++ * =============
++ *
++ * On device wedging (see :ref:`device-wedging`), each exec queue is also marked
++ * as wedged. This includes taking a reference to that device and adding a
++ * dereference on driver teardown. This additional reference allows a user
++ * to collect certain debug information about the exec queue prior to driver
++ * unbind.
++ *
++ * There are some instances where the device wedge might not take a reference
++ * in this way, for instance, if the context is in the process of being
++ * deregistered with the GuC at the time of the wedge. In this case, a
++ * reference to that exec queue should already be available and any
++ * associated data structures will be cleaned up later in the teardown
++ * sequence.
++ */
++
+ static struct xe_guc *
+ exec_queue_to_guc(struct xe_exec_queue *q)
+ {
 -- 
 2.34.1
 
