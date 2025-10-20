@@ -4,182 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DD87CCD19F
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 16:32:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 692A5CCD193
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 16:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBF110E2AF;
-	Mon, 20 Oct 2025 16:32:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3xI8Ug5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB8510E2AF;
- Mon, 20 Oct 2025 16:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760977929; x=1792513929;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=eVWbKccUDKKcVfkkBQ2ERi7zboGdOvDHXxggRZ7RrGE=;
- b=l3xI8Ug5gJcWDBw//+fGXGDFjiCfrbLkigVy19TU1yONvfjvs6+pupvb
- j6+6KKbGEkaS9VMVrdPBpYZHewfIfN2Yivo+NIrT8m8x7CypZYSpN2NZN
- nl1HN0J+GZ9qqKC7Pp3/AG3DAfPRnR9pRDdCSggG0QkE63JMCX6d21PC9
- gt9nhyugH9IaHVeNTAYyD1wdJP89Xg3vgk2xsCM6fj/dXHH1botbjFyzS
- 8j3hny7sh0UNbJybWMo35VQnlnw/Z4MMS51HiuFp+pG+sY7oN7+TK0Leq
- 22STIGppIeDzswKncoaFhY8N78sdMd1NxD6gEGC5bxtQTknC4HCl9ZnS+ A==;
-X-CSE-ConnectionGUID: vQwZbHdJQpWGFUzyRbQ7pQ==
-X-CSE-MsgGUID: DvcsgrCfQeuyWlRwMioD7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="65711833"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="65711833"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 09:32:08 -0700
-X-CSE-ConnectionGUID: UpRdUmbRTF+a5vrVGDtgOQ==
-X-CSE-MsgGUID: Nf2m9ITLRF2NdGjuZzRfuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="184139901"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 09:32:07 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 20 Oct 2025 09:32:07 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 20 Oct 2025 09:32:07 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.56) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 20 Oct 2025 09:32:07 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QXmkdRwGtCKuXwLPPZY8IxUDGoql9qa+xvshJfdBQ4Ptw677th36PpkuOR71TElYxjb6RKKPWnxAdGL7s0vhdkHkdbtUDbsCxDhOtvLXRWbgJFYskoK5L6R7f4plnXDR1xiYoQ8VTLZNjBg4llsh4fdfnueq245KMo+jN/eRX8rFoYXgrTn6eYn3TPkWEDQ9Tr2XJMezeDkqAXaS3BolVAjPybXjfSVdCobVC5vfK1IDuKqZWAaGyKHvBcphnz1UscI6oHl9imc3UneLne5d+GewCkFhBStjuAsDj0hMRDebZxtPiioyPbMc+9561kXd3bBM9Np+/ECyj5NhR8mYFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rTHrR3kvBIRfMQMAV4AsJOjOKmD4JLtHadcVrZyYJNU=;
- b=N96aFFTMNUHnJJX0XkPV2fqd7IN9VjgZDxPHDE75G2UP+ssDkYy3XFLsVadrPjr8RHtZCuSKXbbUuVpPzwqr1PMK3PS1+nQi+l09xnpAeJZTYqXWPfmksfLozPkIYIg65fYQzsuhDk+OF1t71vOSBPPkC/XMiIfeTuaGXbhXYvdHX4Su93JhafuXCL+/ozn33yFXrv53dkoY/UWmmpmx/y5r/Y6yOp5DWEba+S3FQqWgFHTDL+daUxa33/T2G7YZ5UTHPYUOOjx7HT/rDH4JFs5cEHMz3XQT+cJ+rAqK+vhYXvxAntqPr2ZKUVKyFggU0n2ShiQuw31BB4SVZUiS3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by CY8PR11MB7134.namprd11.prod.outlook.com (2603:10b6:930:62::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.16; Mon, 20 Oct
- 2025 16:32:04 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.9228.015; Mon, 20 Oct 2025
- 16:32:04 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA7710E480;
+	Mon, 20 Oct 2025 16:35:48 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99AAB10E2B9;
+ Mon, 20 Oct 2025 16:35:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251016131517.2032684-1-dnyaneshwar.bhadane@intel.com>
-References: <20251016131517.2032684-1-dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH] drm/i915/xe3lpd: Load DMC for xe3lpd 3002
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Date: Mon, 20 Oct 2025 13:32:00 -0300
-Message-ID: <176097792051.3231.1938203199334716073@intel.com>
-User-Agent: alot/0.12.dev22+g972188619
-X-ClientProxiedBy: SJ0PR05CA0124.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::9) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CY8PR11MB7134:EE_
-X-MS-Office365-Filtering-Correlation-Id: b20c63d3-a73b-4314-67af-08de0ff63431
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Q0I2OXAxcXd0OTYxTlE1bHp6NGY5MXk2cDhPSHNKeTZmQUptQkkzdldCdmlW?=
- =?utf-8?B?SkIwM3gvTU8wVFdERlBraTVOQklWUEtOM0tUUTNNU2dFRzJBeHB5UWF6WEJm?=
- =?utf-8?B?Nnk2UFY5RHBCT1ZndzI3L0FxcmlQUUtDZTd4RWZ6bmsyTTduWlhLenBham54?=
- =?utf-8?B?bTBMcXRBY2JrdWdHN3RjRDFmMUZoSERjN1NhRjJ6elI3djJNN0dsbU1STTZU?=
- =?utf-8?B?WkJWTFZjN1ROVlU3cjFhRTcvNE8vMy9OTW1wN2RqN09ZajFVYkVXNFIwbWVO?=
- =?utf-8?B?clN4VncxcUU2bmFCdFFyMURia21xbnQwektpenl4MDdiRGdVTU9YazJpRGRS?=
- =?utf-8?B?VWRKbVdWd3B1L3N4Tm1hUWlvNmZ4UVFFUXhrdHVSVnBUdUgyYzBpVjlkZGlB?=
- =?utf-8?B?SWZ3eE96K2lkQXp0VHFOL1c5Q21qaGVmZEx4b01QUUxWaFljcHdZdk5QVGdR?=
- =?utf-8?B?VmMrNUpnMnBSUHg5dllwZDduZXIxU3lienVmbkZySm43OWt6VE5vOVZ1TEk1?=
- =?utf-8?B?SXZaQ0x0bXRLS1JzWWk5Y25pZmFBOGwxeUFkZSswYTl2K0YxQm5HTDEwd0hK?=
- =?utf-8?B?Y0VpNDJlTzcyeHpQZGpGcjhhNHhyek1LM0hLanViYTViM0hKbWwzZi9VK0hP?=
- =?utf-8?B?cFhqTGE4VlpINlMyd2Zqd2N3VkxCTjdmZlhscjZuQ2ZoVGx1Z2F6aktHb3Iv?=
- =?utf-8?B?UVdyakM2NitjWWEvbzVSMkxXelNlanNjUVRxTUlxSnpVZGYyMU1rbHlHREpC?=
- =?utf-8?B?K1I5YUplWGhKREljYnViV0tpRTRycWRCS0JZOW95d1lrcUw1bFRoR2V4QlU0?=
- =?utf-8?B?WVdQMXZQWFpsNnI1Q3JPeXVYRW9wQ1VORWQ0aEUyRENjM2s1TkN5QU13cU9R?=
- =?utf-8?B?bnh1Y1FhZkZJUTRVZ1JqSFY1ZDk2aHd3ai9rNGx1Wm1FYWF5NG9sN3dHa2NG?=
- =?utf-8?B?RW9jWjJWMFUyckFjSWxOK1lKR1V2RVFYMzBYQU9Ha2lLTjFoa0ErS1FadTds?=
- =?utf-8?B?TEpNQ2R2WGh4Q013SUJGUDVORnRyYjd5RFQwZlN0SDd1Z05FOXRWYmYzK0Rn?=
- =?utf-8?B?aWJWSjdOR3daV2MwUXFhMWNxQmtsVGZFZHorT0dPRnZ0K2kzaVlyS1huRWw0?=
- =?utf-8?B?enZGYk90cmljUDZIM2FvbkRoK1dOYnExa1FFeG1yYVlEdmFaYjhKV0ZjdEZq?=
- =?utf-8?B?cEFsVWRXQmUxU040Uzlqa2FpN3MzR3JmTVQzTGpoNmxtN0MvQ3VYYUlubHZI?=
- =?utf-8?B?aEFZTzlmWW1kL0VRZCtsSzJCZ29OcWNpNUx0M3hPTFF4QnNRekhXN1RaRmVX?=
- =?utf-8?B?Q2NET3NGeWlpVHdjektWWHF2STdqRklGT1dacG95ZVkyTUtMRVowSjJmb2k5?=
- =?utf-8?B?Z1h4N3pBb1lFWm5PS0dXTU5DcHphQzA2SlVEdXd5WFhXQ2hkZEhxblFJSzNY?=
- =?utf-8?B?cnl0eU1lTUVvYTlJdUpvVU5RMk1wWGphdFBCWldPWDVpL0x1Smx1d2tTRVpx?=
- =?utf-8?B?Q3QvOC9CTy9HUVplUlVzQ0lGUEVhN0V3Sm05Q05XMmYvOGdxVllSOEx5VGhK?=
- =?utf-8?B?WGtPUURESGpjeGdMSW5RNkc4bU5WeUNnSEx1SFNleGlOVmcrVm1qbWFZMExG?=
- =?utf-8?B?WWtIVkJhem5VMkliY3dYYytZa0ZPUlYrY3JxOXJuM2dqLzZwaGQzZ25xZEZ5?=
- =?utf-8?B?VVFycTAyTjRNbmd6Szgwb083MHpPV0lJOXEvSURiNWl1QkllbW9Idi9MRHBs?=
- =?utf-8?B?cTQ5VVpraDNsUTBkNG1iZVdhVHFlNDhlQjJNLzhBZGFieUxpNjdjOTJ4MEVL?=
- =?utf-8?B?WEtpZ0NiV2E5ZUlVOVFWMzZxQ3lTRVU0WWxEbkEvN3RoZU1GOXZmRmcwL0xV?=
- =?utf-8?B?NnpJTUR1OGRveXVpRkxnaWVFVTZtOUcwQlBDTDZCNTRpd3ltR3lDQWlrUkls?=
- =?utf-8?Q?oaFQTYKESuwrlTsMpiXd2MsbOB8WtZKh?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2dPSnRmZi9QdG1jN3pWczRnbjZSNjlWTnc3Y0IvTzdBNFhwVS9qQllDQWdG?=
- =?utf-8?B?cXgvWFU5MmhYdWpLQXBFQ1k1VTlPOHoyMlE3OFZ6TkVudzhBOW9vcFc1dWlN?=
- =?utf-8?B?cEQyQk9selA4UkFpem5TR01yLzAvcXZLalllcnhQa1BSOXk0cjVOUGxPSHoz?=
- =?utf-8?B?cE5zWmdQZFVab3ZraVVmaHZyaExtK3RTcWlGcUVTYWZTd2x6V2c3QStWSlEy?=
- =?utf-8?B?M3NrVHlGVUhaNWM5blhTU3BqbUpTN2N2QkJCR0lmYW9MNFB0bzJoakF1M0Vn?=
- =?utf-8?B?VGpxMWNCOU1OQnN1b0RvbTZ0SkdDSmlKUi9ETVVxdkxoVGlVS3lGRnllNWU1?=
- =?utf-8?B?ZUtKRThNZ0ZkQjNZMU11QmVEc2tQcnlXZVcyYlZQOWg3MENGZjJLRDZXU2VM?=
- =?utf-8?B?Z1lFWnA2c1BTbmJJRjg2Q0QyRTlHRzU4RVlTYzNheGhvbWVSTW1QYzlVSm1r?=
- =?utf-8?B?Ykx4T25SRWtDUjlQTTlESnM2cWFYaDlHNlZhMDR2U1NCY0xzRnFaQjRZdE9X?=
- =?utf-8?B?UXZ2NDFBdWF0Wm91bjVJM3VEY1ZUejZtUGtVb1VCT3ByN3NwNklMVkFnelJL?=
- =?utf-8?B?eUlMbnJNQkdEcUVtVG9QUFRZMVdyejhxeTY4dUJpRENTclovekRLcEhoOW55?=
- =?utf-8?B?ZFU4Z21XMC9aTHI2eGdwNHZDMVhVNzJoMnBHU2FubHdCVTFtekRMSGdNaC83?=
- =?utf-8?B?aVRKTEJRczN3akVRTlpiVFh0bWMrMXU5VEtpZ1NDeVdzeVhsSXNiUFoxSjVj?=
- =?utf-8?B?d0t4aEFrZEJlVXFEMGxoV2poWFJzRXNqdlZ4NkRwM01UQUNqVm1FdTlHTkFL?=
- =?utf-8?B?MVBrWHNJMU8xTEtSMEhGL1FoaVNtbUtuYTZZNmprYXhLTlRCOFpkNnZPbDYr?=
- =?utf-8?B?Y0lEUVVleHVwdGRBSi84b2dIMmJZb0hUM0RUQmI4bFRHWWhxbmlaOUJTaFdE?=
- =?utf-8?B?cjNEY3o3VUUzN3pvbWt5blpVblRLeGJhQmZFSUhLQ2xJSkNySWRVemZTc0NI?=
- =?utf-8?B?NXdCZG5yTmZiSVFwRXBZZ3F3eVpxQnd0QWFvaHRPNUxJV1FtNUlJTkhTTFRo?=
- =?utf-8?B?NkZNOXNjMUFGMTdOREZTYlU2ZldjSEZkdk5YNzgyZHc4R3RvRzlwQUowRlVT?=
- =?utf-8?B?YUJ2RXJvK3F5UG1RNm4wdEJFY0gwNEpVYnYxYkhONzJMU2tFN3lueHVmTS9H?=
- =?utf-8?B?MXo2bDk1Ykg4UEloUnZXZWRzbWZiZHJuUjdKK2pkS1VxYSs5YzlkNk8xZURM?=
- =?utf-8?B?RVVCK0JaclBOMlgvalFZSHZEdnRSWUtrbmFUNFNNSFRJNlhTaTNXNW4ralN0?=
- =?utf-8?B?bGFFUmdMRkFmZWpjRUQ0b0ZQdUpFVkVvZWYyM1RqSzd1a3ZRS2FVK1N4Slgy?=
- =?utf-8?B?cnJZOXBpY3VXZ2YreEhtSVkrWHRES3plUTNyNDcxYnRFY1ZFdHRnVDFIM3Rs?=
- =?utf-8?B?QmRqVG1zRmNrVDBHUVJTSUdsckhSU05GcTNHN1paTFBNcmxJK2hxbVY5RzNj?=
- =?utf-8?B?SSt2cGtTUWRneFdmYTl2SVhpcjFyQ2k5WkFJS3IxbjV3enpvWEFPTC9pZEQv?=
- =?utf-8?B?VVBIWHFGenJmcUpodWx2VkRybVoxcEcxNG9ZNDdMQ21KQVNKL1M0amNWRGRv?=
- =?utf-8?B?anhkU01BOTlLWTVxcE02SXR6RzdMOHVjU3grTzYrVUZvclFXOUkrVjg4NWpx?=
- =?utf-8?B?bUFXaFlQUFNNZlVsV2s0d2pmTHFsb2dWSkVtVmpudVNMYVdsQzhNUXFNV0lJ?=
- =?utf-8?B?OUExTHZkTk5TVWJTM1BkYS9TdmVRTXVGWHRsQjFiTUIrbnNMazB3eTlWR1di?=
- =?utf-8?B?c3V3MWdOcXlFQUp6ZkkrZjdydkpEdGFRZWExS1RWRFE4OEs1YlBNUXoxc0lj?=
- =?utf-8?B?cEJ5Z0Y1S1FjYXg1azBuUHo4VUFTcUZpd25VcjA1ZnMxTFUvREhMTDUvZ1Fh?=
- =?utf-8?B?ZG1BYTNKUEN3c2hGd2ovSWdRVzhvWHExNisveGpvL3ZyNmttVWh5RGM1b3dQ?=
- =?utf-8?B?dFhERFJDT3RTcFJxTERWemR0dU9McEYxYzBxWW5RaVk1RU9LSWpNZDZuQlFZ?=
- =?utf-8?B?Q3pHZDlxVG5Mc3c2SzdzMTFySWNYRHBIRWk1TEFVY2Iyek5zYUEySXp1cld0?=
- =?utf-8?B?NzFCWGQ1VmRaQXlKc3pzVWZqM2hFcm5Qd3NibTA1R3NxRDNQQWtGaFQzQnc0?=
- =?utf-8?B?aFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b20c63d3-a73b-4314-67af-08de0ff63431
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 16:32:04.7052 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rlwy8/icgPrDlfxqNsGWCB64+ysOERrBpad8KRbRGJROx7RAAdrW+Rq9NJRBSwz3kIiyYiHBuUGeQhG8zgVudQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7134
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 20 Oct 2025 16:35:46 -0000
+Message-ID: <176097814662.32873.17253299297647781249@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -191,55 +36,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Dnyaneshwar Bhadane (2025-10-16 10:15:17-03:00)
->Load the DMC for Xe3LPD for display version 3002.
->
+== Series Details ==
 
-I think it would be better to use the dotted syntax for the IP version
-in commit messages, i.e. 30.02. I'll reword the commit message and
-apply.
+Series: AuxCCS handling and render compression modifiers (rev2)
+URL   : https://patchwork.freedesktop.org/series/156189/
+State : warning
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+== Summary ==
 
->Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_dmc.c | 10 +++++++---
-> 1 file changed, 7 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i9=
-15/display/intel_dmc.c
->index 77a0199f9ea5..f3f10f97a573 100644
->--- a/drivers/gpu/drm/i915/display/intel_dmc.c
->+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
->@@ -127,6 +127,9 @@ static bool dmc_firmware_param_disabled(struct intel_d=
-isplay *display)
-> #define DISPLAY_VER13_DMC_MAX_FW_SIZE        0x20000
-> #define DISPLAY_VER12_DMC_MAX_FW_SIZE        ICL_DMC_MAX_FW_SIZE
->=20
->+#define XE3LPD_3002_DMC_PATH                DMC_PATH(xe3lpd_3002)
->+MODULE_FIRMWARE(XE3LPD_3002_DMC_PATH);
->+
-> #define XE3LPD_DMC_PATH                        DMC_PATH(xe3lpd)
-> MODULE_FIRMWARE(XE3LPD_DMC_PATH);
->=20
->@@ -183,9 +186,10 @@ static const char *dmc_firmware_default(struct intel_=
-display *display, u32 *size
-> {
->         const char *fw_path =3D NULL;
->         u32 max_fw_size =3D 0;
->-
->-        if (DISPLAY_VERx100(display) =3D=3D 3002 ||
->-            DISPLAY_VERx100(display) =3D=3D 3000) {
->+        if (DISPLAY_VERx100(display) =3D=3D 3002) {
->+                fw_path =3D XE3LPD_3002_DMC_PATH;
->+                max_fw_size =3D XE2LPD_DMC_MAX_FW_SIZE;
->+        } else if (DISPLAY_VERx100(display) =3D=3D 3000) {
->                 fw_path =3D XE3LPD_DMC_PATH;
->                 max_fw_size =3D XE2LPD_DMC_MAX_FW_SIZE;
->         } else if (DISPLAY_VERx100(display) =3D=3D 2000) {
->--=20
->2.51.0
->
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+fbd08a78c3a3bb17964db2a326514c69c1dca660
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4dedb4675c77bccc4ae157d608b90a973d07b3da
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Mon Oct 20 08:58:30 2025 +0100
+
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 2d88bbb094f9470f286f4a360dfad89245c9d0d7 drm-intel
+cd892a02ff64 drm/xe: Fix ggtt fb alignment
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+fba7e8d641cc drm/xe/xelpg: Flush CCS when flushing caches
+afeda6b60a98 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+71154dad8fe7 drm/xe/xelp: Support auxccs invalidation on blitter
+982d4b518524 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+db567dcdcd59 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+50e26fd0f017 drm/xe: Export xe_emit_aux_table_inv
+221d2e139cfe drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+ab324f37af4c drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+ddf572eed6ce drm/xe: Handle DPT in system memory
+c42dbba38765 drm/xe/display: Add support for AuxCCS
+4dedb4675c77 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+
+
