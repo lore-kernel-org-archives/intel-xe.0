@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42CB5CCD19F
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 21:45:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C148CCD1A2
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 21:45:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D61CB10E52C;
-	Mon, 20 Oct 2025 21:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1716710E52D;
+	Mon, 20 Oct 2025 21:45:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9bK6QmA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UAy2jx4T";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E04C210E52B
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 21:45:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 255C810E52B
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 21:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1760996733; x=1792532733;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tL64BQJ3gnuKfcXJLjCoDrEJ430riC/rIk1umwH1t5Q=;
- b=g9bK6QmARqGwrYocesLx8OQocQqmXA+G9tBD318wE9sCs2Ewg+8qzGMd
- 5luJG370w6apFefbFYr9tXdDwCK9S6laquReJ1vKeJYNfoylyy5P14hq7
- 59A5vDNaHVto2G/uYteepZqcDURKcbVJYhoHNHR+OVpEZwZvOEQv4ETDr
- NeHS7nzhWbi1my7BVWe8N0zf2zjpgP/n1pgis41ouPIG42bE9y0qCQ9mJ
- AM/UNHZxTUXwF8790zvrdrfgtxRNDIJHTDG7Xritt2VMi/tmEdkWMUpDi
- sOQeoqI/E2YzL6DCMOZ0elgO+GFVkdU7FoqD19/NSH6puKsu4i7+jMvIw Q==;
-X-CSE-ConnectionGUID: C4VgddXwR8GlFt/5/n6maQ==
-X-CSE-MsgGUID: A+HfxeeUTxiQooiIlWMqbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63160722"
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63160722"
+ bh=g6wQHDqM/l1n16EmnhJ3NJnEajkPhM0hz4bpTTQa0jo=;
+ b=UAy2jx4TV5GvdDLiBqiTRzjXUUBg0OL1MhvuM6bJyQxa76yfGUTH9aV4
+ NgLC6GNyggSBG673nUSRKV567ECYDNVWDF6x/CRFFYn6obTruQKaW1M4T
+ 26jDKvvChvko5w/iu6RxrnLkaERPPdyfrxlDp2TIe5LogYI1K0Ob1VLyV
+ /ODfbZz6nDeptc7woTdjl2dhYRJtwAVjQcnwCGIgu0YfJOJL1dLuiC6nj
+ 6KUH3NQcXHaXlFLIYReX2994pqLw0RK+P5d6oyxSR2t6ZZcTpeeDeGZ8A
+ +7RftyFiinEYcOD1ZfBEcb/e+pUjcfYdtXrRtP5ReULK8zLzy/krChmcl Q==;
+X-CSE-ConnectionGUID: a0N4uMvOSO+4bv1WmXv7tw==
+X-CSE-MsgGUID: FUtJ2V6qRFOO4uK5ASYSyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63160724"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="63160724"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2025 14:45:32 -0700
-X-CSE-ConnectionGUID: DAxNViMXRGSy/HXGd04Hpw==
-X-CSE-MsgGUID: +IjId761SYa9VIidv20l0Q==
+X-CSE-ConnectionGUID: tAHqD1SlTRGEo2uWHUGT8Q==
+X-CSE-MsgGUID: ikgkGlRmQT6HEY76rilRfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451177"
+X-IronPort-AV: E=Sophos;i="6.19,243,1754982000"; d="scan'208";a="183451183"
 Received: from dut4084arlh.fm.intel.com ([10.105.10.142])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2025 14:45:32 -0700
@@ -46,9 +46,9 @@ To:
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  niranjana.vishwanathapura@intel.com, zhanjun.dong@intel.com,
  shuicheng.lin@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 1/7] drm/xe: Add additional trace points for LRCs
-Date: Mon, 20 Oct 2025 21:45:23 +0000
-Message-Id: <20251020214529.354365-2-stuart.summers@intel.com>
+Subject: [PATCH 3/7] drm/xe: Add the BO pointer info to the BO trace
+Date: Mon, 20 Oct 2025 21:45:25 +0000
+Message-Id: <20251020214529.354365-4-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251020214529.354365-1-stuart.summers@intel.com>
 References: <20251020214529.354365-1-stuart.summers@intel.com>
@@ -68,126 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add trace points to indicate when an LRC has been
-created and destroyed or get and put.
+Just a little extra detail to make BOs easier to track
+through the trace event log.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       |  4 +++
- drivers/gpu/drm/xe/xe_lrc.h       |  3 +++
- drivers/gpu/drm/xe/xe_trace_lrc.h | 42 ++++++++++++++++++++++++++++++-
- 3 files changed, 48 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index b5083c99dd50..42d1c861fe18 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1575,6 +1575,8 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 		return ERR_PTR(err);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 238311cfb816..0d795733e0f0 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -27,6 +27,7 @@ DECLARE_EVENT_CLASS(xe_bo,
  
-+	trace_xe_lrc_create(lrc);
-+
- 	return lrc;
- }
+ 		    TP_STRUCT__entry(
+ 			     __string(dev, __dev_name_bo(bo))
++			     __field(struct xe_bo *, bo)
+ 			     __field(size_t, size)
+ 			     __field(u32, flags)
+ 			     __field(struct xe_vm *, vm)
+@@ -34,13 +35,14 @@ DECLARE_EVENT_CLASS(xe_bo,
  
-@@ -1589,6 +1591,8 @@ void xe_lrc_destroy(struct kref *ref)
- {
- 	struct xe_lrc *lrc = container_of(ref, struct xe_lrc, refcount);
+ 		    TP_fast_assign(
+ 			   __assign_str(dev);
++			   __entry->bo = bo;
+ 			   __entry->size = xe_bo_size(bo);
+ 			   __entry->flags = bo->flags;
+ 			   __entry->vm = bo->vm;
+ 			   ),
  
-+	trace_xe_lrc_destroy(lrc);
-+
- 	xe_lrc_finish(lrc);
- 	kfree(lrc);
- }
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 2fb628da5c43..fd67810f9812 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -8,6 +8,7 @@
- #include <linux/types.h>
- 
- #include "xe_lrc_types.h"
-+#include "xe_trace_lrc.h"
- 
- struct drm_printer;
- struct xe_bb;
-@@ -61,6 +62,7 @@ void xe_lrc_destroy(struct kref *ref);
- static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
- {
- 	kref_get(&lrc->refcount);
-+	trace_xe_lrc_get(lrc);
- 	return lrc;
- }
- 
-@@ -73,6 +75,7 @@ static inline struct xe_lrc *xe_lrc_get(struct xe_lrc *lrc)
-  */
- static inline void xe_lrc_put(struct xe_lrc *lrc)
- {
-+	trace_xe_lrc_put(lrc);
- 	kref_put(&lrc->refcount, xe_lrc_destroy);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-index d525cbee1e34..e8daa5d323e7 100644
---- a/drivers/gpu/drm/xe/xe_trace_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-@@ -13,7 +13,6 @@
- #include <linux/types.h>
- 
- #include "xe_gt_types.h"
--#include "xe_lrc.h"
- #include "xe_lrc_types.h"
- 
- #define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
-@@ -42,6 +41,47 @@ TRACE_EVENT(xe_lrc_update_timestamp,
- 		      __get_str(device_id))
+-		    TP_printk("dev=%s, size=%zu, flags=0x%02x, vm=%p",
+-			      __get_str(dev), __entry->size,
++		    TP_printk("dev=%s, %p, size=%zu, flags=0x%02x, vm=%p",
++			      __get_str(dev), __entry->bo, __entry->size,
+ 			      __entry->flags, __entry->vm)
  );
  
-+DECLARE_EVENT_CLASS(xe_lrc,
-+	    TP_PROTO(struct xe_lrc *lrc),
-+	    TP_ARGS(lrc),
-+
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_lrc *, lrc)
-+		     __string(name, lrc->fence_ctx.name)
-+		     __string(device_id, __dev_name_lrc(lrc))
-+	    ),
-+
-+	    TP_fast_assign(
-+		   __entry->lrc	= lrc;
-+		   __assign_str(name);
-+		   __assign_str(device_id);
-+		   ),
-+
-+	    TP_printk("lrc=:%p lrc->name=%s device_id:%s",
-+		      __entry->lrc, __get_str(name),
-+		      __get_str(device_id))
-+);
-+
-+DEFINE_EVENT(xe_lrc, xe_lrc_create,
-+	     TP_PROTO(struct xe_lrc *lrc),
-+	     TP_ARGS(lrc)
-+);
-+
-+DEFINE_EVENT(xe_lrc, xe_lrc_destroy,
-+	     TP_PROTO(struct xe_lrc *lrc),
-+	     TP_ARGS(lrc)
-+);
-+
-+DEFINE_EVENT(xe_lrc, xe_lrc_get,
-+	     TP_PROTO(struct xe_lrc *lrc),
-+	     TP_ARGS(lrc)
-+);
-+
-+DEFINE_EVENT(xe_lrc, xe_lrc_put,
-+	     TP_PROTO(struct xe_lrc *lrc),
-+	     TP_ARGS(lrc)
-+);
-+
- #endif
- 
- /* This part must be outside protection */
 -- 
 2.34.1
 
