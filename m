@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C229CCD199
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:10:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4693BCCD199
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 11:27:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45E5410E2A7;
-	Mon, 20 Oct 2025 11:10:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAD1610E29A;
+	Mon, 20 Oct 2025 11:27:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZWHFFZOb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkai5TWL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D9C10E2A7;
- Mon, 20 Oct 2025 11:10:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD2F10E29A
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 11:27:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760958619; x=1792494619;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=mVCOL9nJo89i1wTkm3ohfd5WA3hJuRFSDcSOrtTDxKI=;
- b=ZWHFFZObKvmnUkUSS5wB0g4WNnqOcN4cjGIeO1HdZjqtgFws7uPTL0Sn
- qm4i3FdonaMTsfgxZ7c/ppsWORpCcJlUlCreRz5mpOAPb/Lt3Lhbljk5f
- 8yOqCBUwlxSpQSAi80V0G3Ri8DKK0BF1YP+sW3J016Rt+dokeMvo5H6VK
- X1k0rgzxPCvDR6pkROgkNZW5MaA5/ALJLRchh2bYeXuV1s2ZzGflMW7+h
- FgMLvwlIubwB0Xv9Xfhme4VBVt2CX+rcawksNoTwJ9Z3d7XP8wd6sTyGu
- uHg68fKYJE1mvVd1cn59Ggai3Ny6fRcOLtJ+NlWkd3OOecGSC7xFLcU+Y g==;
-X-CSE-ConnectionGUID: HbVfSPFqQaulSR4Gvm+GUQ==
-X-CSE-MsgGUID: 8JZ3/b2NSPKr2Gkx7QaPaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80510601"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="80510601"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:10:19 -0700
-X-CSE-ConnectionGUID: n2eKv8l+RlC6kZWpc53wiA==
-X-CSE-MsgGUID: F/Znd7LYQd6D3tjtsgSLZQ==
+ t=1760959643; x=1792495643;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=pAr0ZXZSnmRnB1ZfVJlAgChBBZmXuNXUY6DyLhHvQtg=;
+ b=bkai5TWLyV7wAu4M2/xQ7upRCx7Hhy8KLEQggYjIp0XAJwKNqbFjyBLW
+ Cl4lqywhIOXGmuiedwk55BOtH3yVGCj9UmkwTWHCMftw+RRcCiQ4Nh81J
+ 5PKUj+ydu2/ufoBWmzGqWKTz2B+Shp+VV5wV5eQ3AyFGVzKywv8oaDaV9
+ Db4ScIKId96vR6ie23m9TOoFOwdN6SspgqYE66iQNzmkEfAfHctfQcvwi
+ jkwkUatTsF1gIbGwlHq0hZ0WtpptOERDCgAoMAt+w4NRq+FzzHEnnl7v6
+ rIPTrnyq6i4hihojqgixuVBGuBXeP1BL1qHbO/+D6DBSF3hpfutllTcO6 A==;
+X-CSE-ConnectionGUID: Ke9RpEAxS3uKAg1/Wyf2UQ==
+X-CSE-MsgGUID: s+0mT0rBSVmPBHZMbRpnEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74192880"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="74192880"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 04:27:23 -0700
+X-CSE-ConnectionGUID: XCW61d9fRm22JFqSTZ7gug==
+X-CSE-MsgGUID: 4JVDL0ETRGy1ZL/Diru2XA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="183320092"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.7])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 04:10:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- uma.shankar@intel.com, gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 01/25] drm/i915/ltphy: Add LT Phy related VDR and Pipe
- Registers
-In-Reply-To: <20251015040817.3431297-2-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
- <20251015040817.3431297-2-suraj.kandpal@intel.com>
-Date: Mon, 20 Oct 2025 14:10:12 +0300
-Message-ID: <61325376f82149d4baf73ea0a4bb2a1dfc378033@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="187323323"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.58])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2025 04:27:21 -0700
+Date: Mon, 20 Oct 2025 14:27:18 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v13 02/12] drm/xe/xelpg: Flush CCS when flushing caches
+Message-ID: <aPYclqwPnyeSRIOY@intel.com>
+References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
+ <20251020075831.32818-3-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251020075831.32818-3-tvrtko.ursulin@igalia.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,53 +72,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 15 Oct 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Add LT Phy related VDR and pipe registers into its own new file.
->
-> Bspec: 74500
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+On Mon, Oct 20, 2025 at 08:58:20AM +0100, Tvrtko Ursulin wrote:
+> According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
+> render caches on gfx ip 12.70+.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_lt_phy_regs.h  | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/g=
-pu/drm/i915/display/intel_lt_phy_regs.h
-> new file mode 100644
-> index 000000000000..499acb1975d1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: MIT
-> + *
-> + * Copyright =C2=A9 2025 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_LT_PHY_REGS_H__
-> +#define __INTEL_LT_PHY_REGS_H__
-> +
-> +#include "i915_reg_defs.h"
-> +#include "intel_display_limits.h"
+>  drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
+>  drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
+>  2 files changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> index 8cfcd3360896..78c0e87dbd37 100644
+> --- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> +++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+> @@ -43,6 +43,7 @@
+>  
+>  #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+>  #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+> +#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
 
-Unnecessary.
+IIRC that thing exists already on dg2, but we don't use there for
+whatever unknown reason.
 
-> +
-> +/* LT Phy Vendor Register */
-> +#define LT_PHY_VDR_0_CONFIG	0xC02
-> +#define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-> +#define LT_PHY_VDR_1_CONFIG	0xC03
-> +#define  LT_PHY_VDR_RATE_ENCODING_MASK	REG_GENMASK8(6, 3)
-> +#define  LT_PHY_VDR_MODE_ENCODING_MASK	REG_GENMASK8(2, 0)
-> +#define LT_PHY_VDR_2_CONFIG	0xCC3
-> +
-> +#define LT_PHY_VDR_X_ADDR_MSB(idx)	(0xC04 + 0x6 * (idx))
-> +#define LT_PHY_VDR_X_ADDR_LSB(idx)	(0xC05 + 0x6 * (idx))
-> +
-> +#define LT_PHY_VDR_X_DATAY(idx, y)	((0xC06 + (3 - (y))) + 0x6 * (idx))
-> +
-> +#define LT_PHY_RATE_UPDATE		0xCC4
-> +
-> +#endif /* __INTEL_LT_PHY_REGS_H__ */
+It also doesn't help that bsepc calls DG2 12.7 as well, but for us
+someone has invented the of 12.55 number that's never mentioned
+in bspec AFAICS.
 
---=20
-Jani Nikula, Intel
+>  
+>  #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+>  #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index ac0c6dcffe15..15fc4010a710 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+>  static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+>  {
+>  	struct xe_gt *gt = job->q->gt;
+> +	struct xe_device *xe = gt_to_xe(gt);
+>  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+> +	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
+>  	u32 flags;
+>  
+>  	if (XE_GT_WA(gt, 14016712196))
+>  		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
+>  				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+>  
+> +	if (GRAPHICS_VERx100(xe) >= 1270)
+> +		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
+> +
+>  	flags = (PIPE_CONTROL_CS_STALL |
+>  		 PIPE_CONTROL_TILE_CACHE_FLUSH |
+>  		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+> @@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+>  	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+>  		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+>  
+> -	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
+> +	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+>  }
+>  
+>  static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+> -- 
+> 2.48.0
+
+-- 
+Ville Syrjälä
+Intel
