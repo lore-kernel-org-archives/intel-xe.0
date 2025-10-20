@@ -4,49 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B79CCD193
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1962CCD199
 	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 07:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA35A10E30C;
-	Mon, 20 Oct 2025 07:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D28210E30D;
+	Mon, 20 Oct 2025 07:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ia4qeT9e";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Vu7fLg+h";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C89D610E2F0
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 07:58:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E99B610E2F0
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 07:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=GNZUDaVJCMpiEPGS/RKEhpM1nHHp+AB4POcS62QqPzw=; b=ia4qeT9e9cpm3PP7iJmJNzfX8D
- SajE/Ij4rJKSHdOpvJ8wtfV/FbBOytjNwPKoITCY8lHs1WSj4KaahBUWQBKWlFmVh2j8z3ShnALhn
- jsTmxhvCKX7iAMNiZ8JWNz1UHp8vzvbkrBW1tQDAB23dnZe8VG/gQ0wH9BlBWxfZty4udexNwMGQc
- Q188nWNixlpLYA7Rye00WkAgYBARPVYTR9pg4PP8DY0RjpXQMOq2NQrid84Lt2ZA5WvuOAoST5o5l
- atT9zSSouN5WL29ftzYHrGdwXPk1g7h+v6Xe1rzREJa4N0retkeNsDEc4FuS3i0wEKEz6ZKl1Drtr
- JPfFZinw==;
+ bh=heZZKbjPg7iD+voHGS4NuB2T9xROUMM6pvGF6fNR2Rc=; b=Vu7fLg+hp0ilZwkSptks5Ftkdz
+ XZ77JKvbHpDU1YtbONmfWY7c822g2l4d1JHnVsVCq/9jZbDEOITk5Tx9SFZAB+LO/2a403haRLfqc
+ GwqDB3bBJE0ICGDeQGJEMx9vib5Mts31eBaJLXQTf+NKunU9mD/DFlTHSXNUWAQzAvCOA0xzdhyXE
+ CYK4Km1mpxnnaiOllcAadFIEmfe/k51Tc9lRIa35RFbvxJrrxQ9IdT8J9XyHeccweE5LACi+eP/UV
+ vr54V/NZiwynbBp4l/P2BReGkloeKRlB5pkkZ32IdSTivIOJXywXRZvE8ZbYhVoIrHsNrhlxPBe1U
+ GjapmJ0A==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vAkmx-00C0yE-2U; Mon, 20 Oct 2025 09:58:43 +0200
+ id 1vAkmu-00C0xX-83; Mon, 20 Oct 2025 09:58:40 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v13 12/12] drm/i915/display: Expose AuxCCS frame buffer
- modifiers for Xe
-Date: Mon, 20 Oct 2025 08:58:30 +0100
-Message-ID: <20251020075831.32818-13-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v13 08/12] drm/xe/xelp: Add AuxCCS invalidation to the
+ indirect context workarounds
+Date: Mon, 20 Oct 2025 08:58:26 +0100
+Message-ID: <20251020075831.32818-9-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
 References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,48 +59,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have fixed the DPT handling we can undo the nerf which was
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-built for Xe").
-
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-
-	[PLANE:32:plane 1A]: type=PRI
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-Display working fine - no artefacts, no DMAR/PIPE faults.
-
-v2:
- * Adjust patch title. (Rodrigo)
+Following from the i915 reference implementation, we add the AuxCCS
+invalidation to the indirect context workarounds page.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 38 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 0319174adf95..d3ccd3c837e1 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2929,12 +2929,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index b5083c99dd50..c77a166a2742 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -27,6 +27,7 @@
+ #include "xe_map.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
++#include "xe_ring_ops.h"
+ #include "xe_sriov.h"
+ #include "xe_trace_lrc.h"
+ #include "xe_vm.h"
+@@ -88,6 +89,16 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+ 					       class, NULL))
+ 		return true;
  
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
--
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
++	/* AuxCCS invalidation */
++	if (GRAPHICS_VERx100(xe) >= 1200 &&
++	    GRAPHICS_VERx100(xe) <= 1210 &&
++	    (class == XE_ENGINE_CLASS_RENDER ||
++	     class == XE_ENGINE_CLASS_COMPUTE ||
++	     class == XE_ENGINE_CLASS_COPY ||
++	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
++		return true;
++
+ 	return false;
+ }
  
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
+@@ -1188,6 +1199,31 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+ 	return cmd - batch;
+ }
+ 
++static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
++					  struct xe_hw_engine *hwe,
++					  u32 *batch, size_t max_len)
++{
++	struct xe_gt *gt = lrc->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	const unsigned int class = hwe->class;
++	u32 *cmd;
++
++	if (GRAPHICS_VERx100(xe) < 1200 || GRAPHICS_VERx100(xe) > 1210 ||
++	    !(class == XE_ENGINE_CLASS_RENDER ||
++	      class == XE_ENGINE_CLASS_COMPUTE ||
++	      class == XE_ENGINE_CLASS_COPY ||
++	      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	      class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
++		return 0;
++
++	if (xe_gt_WARN_ON(gt, max_len < 8))
++		return -ENOSPC;
++
++	cmd = xe_emit_aux_table_inv(hwe, batch);
++
++	return cmd - batch;
++}
++
+ struct bo_setup {
+ 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 			 u32 *batch, size_t max_size);
+@@ -1320,9 +1356,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+ {
+ 	static const struct bo_setup rcs_funcs[] = {
+ 		{ .setup = setup_timestamp_wa },
++		{ .setup = setup_invalidate_auxccs_wa },
+ 		{ .setup = setup_configfs_mid_ctx_restore_bb },
+ 	};
+ 	static const struct bo_setup xcs_funcs[] = {
++		{ .setup = setup_invalidate_auxccs_wa },
+ 		{ .setup = setup_configfs_mid_ctx_restore_bb },
+ 	};
+ 	struct bo_setup_state state = {
 -- 
 2.48.0
 
