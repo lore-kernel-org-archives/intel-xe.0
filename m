@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2973CCD199
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC938CCD1A7
 	for <intel-xe@archiver.kernel.org>; Mon, 20 Oct 2025 12:54:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B1310E432;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2CC10E434;
 	Mon, 20 Oct 2025 12:54:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4+D1oHd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSLauK1+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F8AE10E32F
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 12:54:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 809D410E32F
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Oct 2025 12:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1760964887; x=1792500887;
+ t=1760964882; x=1792500882;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rJGWfAufUl9kXsNEJKEDtBtHXCGV+jePSwx3NirW8FM=;
- b=C4+D1oHdB2DrAA//FM+LkCw828aBvXeFbgfdYg4ZSXpFpd9la5PSxaNC
- YeeH08qi1vEYgIHgbZJwSFUi9MYOPy092sRi9xuLvrnzhMovqY34lHPD7
- lWtAMXPqojE3tcJzfeqYva2tvb4JRAcD8uNF2sFOWSFMzRJPpeGnCoXU8
- Qs9KhtNx4qGeMw7SAIL6To388UI16U6A6AMM1uYyEKIF0hPQNSJzMYFkw
- jzy0hcpybF7r71FAkjWYNqW7Npt2TbOU/YhxIswmlOaHV2c+dY8s5Yw+5
- 01wJUCHFnmJzMsGiDgI8MosxT6c2POKKjoLlIHPMXKsH4UJvTLHgFTOji w==;
-X-CSE-ConnectionGUID: S3Iw2RtGSLSI4pZp3OMvYw==
-X-CSE-MsgGUID: AoYYHWRdT9GMe5f1V6SLRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74422399"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="74422399"
+ bh=LdXWSwMNHbL8in1m3F+Gi1A287C12lTaPo82rB+7Sas=;
+ b=DSLauK1+Bdla9ECPgUYD/4SYxddDo4BkBcq4TpiVtFyLgHCcv3FX6zKp
+ 4IaKiFaNqcbdayJkxnq4szVjGOwMnpDjkfgrdbz+Aa2svk4O21ep8a3E1
+ eXJPcxfYV2497nx89OzjbiA029IeWDN2nosXG93Wgp7uN4GWBtJDwXVgd
+ QW2zsXaa+3BE2uo80chvH/S7DIqrQiyFYPaL5o91oH2kT0DUWpcPYnEtw
+ X2JbZlE7LaLWs2leLD+h9aOM5tcIzdgaAs7/QfByp3XpizIyZ/vCdVqPN
+ ZVSOJKQY6jphcwZcVbMNg+YJEUMNu/ZBF3ud6mO24s5X3bXI5qmCLtDYw g==;
+X-CSE-ConnectionGUID: 74tiJZ74TiOA487S92zO5A==
+X-CSE-MsgGUID: TC0fb9s0ReSiC6T03ii1VA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74422389"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="74422389"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 05:54:47 -0700
-X-CSE-ConnectionGUID: /NqOFn/2T5KocP+uQkuqjw==
-X-CSE-MsgGUID: xObMX9BHQyq1f2JKmBc3PQ==
+ 20 Oct 2025 05:54:41 -0700
+X-CSE-ConnectionGUID: 9VyEtgycTUOwUG2Z33wqRA==
+X-CSE-MsgGUID: GGy7IH6pQleMLa6x9otnRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="182512902"
+X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; d="scan'208";a="182512876"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.44])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2025 05:54:47 -0700
+ 20 Oct 2025 05:54:41 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 6/7] drm/xe/migrate: skip bounce buffer path on xe2
-Date: Mon, 20 Oct 2025 13:54:38 +0100
-Message-ID: <20251020125431.41153-15-matthew.auld@intel.com>
+Subject: [PATCH v2 1/7] drm/xe/migrate: rework size restrictions for sram pte
+ emit
+Date: Mon, 20 Oct 2025 13:54:33 +0100
+Message-ID: <20251020125431.41153-10-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251020125431.41153-9-matthew.auld@intel.com>
 References: <20251020125431.41153-9-matthew.auld@intel.com>
@@ -67,64 +68,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we support MEM_COPY we should be able to use the PAGE_COPY
-mode, otherwise falling back to BYTE_COPY mode when we have odd
-sizing/alignment.
-
-v2:
- - Use info.has_mem_copy_instr
- - Rebase on latest changes.
+We allow the input size to not be aligned to PAGE_SIZE, which leads to
+various bugs in build_pt_update_batch_sram() for PAGE_SIZE > 4K systems.
+For example if ptes is exactly one gpu_page_size then the chunk size is
+rounded down to zero.  The simplest fix looks to be forcing PAGE_SIZE
+aligned inputs.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 14ade32b8b69..7819a168ed17 100644
+index 3112c966c67d..8ff2d3b98e7f 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1938,8 +1938,9 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
- 	unsigned long i, j;
- 	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
+@@ -1798,6 +1798,8 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
+ 	u32 ptes;
+ 	int i = 0;
  
--	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
--			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
-+	if (!xe->info.has_mem_copy_instr &&
-+	    drm_WARN_ON(&xe->drm,
-+			(len & XE_CACHELINE_MASK) || (sram_offset | vram_addr) & XE_CACHELINE_MASK))
- 		return ERR_PTR(-EOPNOTSUPP);
++	xe_tile_assert(m->tile, PAGE_ALIGNED(size));
++
+ 	ptes = DIV_ROUND_UP(size, gpu_page_size);
+ 	while (ptes) {
+ 		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
+@@ -1811,12 +1813,13 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
+ 		ptes -= chunk;
  
- 	xe_assert(xe, npages * PAGE_SIZE <= MAX_PREEMPTDISABLE_TRANSFER);
-@@ -2158,8 +2159,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_bo_assert_held(bo);
+ 		while (chunk--) {
+-			u64 addr = sram_addr[i].addr & ~(gpu_page_size - 1);
+-			u64 pte, orig_addr = addr;
++			u64 addr = sram_addr[i].addr;
++			u64 pte;
  
- 	/* Use bounce buffer for small access and unaligned access */
--	if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
--	    !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {
-+	if (!xe->info.has_mem_copy_instr &&
-+	    (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
-+	     !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES))) {
- 		int buf_offset = 0;
- 		void *bounce;
- 		int err;
-@@ -2231,9 +2233,12 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 		if (current_bytes & ~PAGE_MASK) {
- 			int pitch = 4;
+ 			xe_tile_assert(m->tile, sram_addr[i].proto ==
+ 				       DRM_INTERCONNECT_SYSTEM);
+ 			xe_tile_assert(m->tile, addr);
++			xe_tile_assert(m->tile, PAGE_ALIGNED(addr));
  
--			current_bytes = min_t(int, current_bytes,
--					      round_down(S16_MAX * pitch,
--							 XE_CACHELINE_BYTES));
-+			if (xe->info.has_mem_copy_instr)
-+				current_bytes = min_t(int, current_bytes, U16_MAX * pitch);
-+			else
-+				current_bytes =
-+					min_t(int, current_bytes,
-+					      round_down(S16_MAX * pitch, XE_CACHELINE_BYTES));
- 		}
+ again:
+ 			pte = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
+@@ -1827,7 +1830,7 @@ static void build_pt_update_batch_sram(struct xe_migrate *m,
  
- 		__fence = xe_migrate_vram(m, current_bytes,
+ 			if (gpu_page_size < PAGE_SIZE) {
+ 				addr += XE_PAGE_SIZE;
+-				if (orig_addr + PAGE_SIZE != addr) {
++				if (!PAGE_ALIGNED(addr)) {
+ 					chunk--;
+ 					goto again;
+ 				}
+@@ -1918,10 +1921,10 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 
+ 	if (use_pde)
+ 		build_pt_update_batch_sram(m, bb, m->large_page_copy_pdes,
+-					   sram_addr, len + sram_offset, 1);
++					   sram_addr, npages << PAGE_SHIFT, 1);
+ 	else
+ 		build_pt_update_batch_sram(m, bb, pt_slot * XE_PAGE_SIZE,
+-					   sram_addr, len + sram_offset, 0);
++					   sram_addr, npages << PAGE_SHIFT, 0);
+ 
+ 	if (dir == XE_MIGRATE_COPY_TO_VRAM) {
+ 		if (use_pde)
 -- 
 2.51.0
 
