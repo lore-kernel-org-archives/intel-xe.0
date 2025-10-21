@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 621A1CCD1A5
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 09:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19D17CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 09:23:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D23510E5A1;
-	Tue, 21 Oct 2025 09:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B706110E270;
+	Tue, 21 Oct 2025 09:23:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mC4lB4Ep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NQnPbBXD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8741510E5A1
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 09:06:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1146810E270
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 09:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761037588; x=1792573588;
+ t=1761038606; x=1792574606;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=vl091y6rMQf9tI+vgVy5VmG/3DiYqZZxUh+iUqXlnp0=;
- b=mC4lB4Epb6q59IdGPfIqC4M9py/p3Qt2uftugFCpAzA3R/3PrY9lPnFm
- mQyOvrhRiUeUTPzRJcTTKioPgb82qvB67R/HC9X9c9ClKz6bwScly6Ry7
- ZesA8NCxHyietyj1AB71zqmrI62J7OfynXlcOQvbrD8+1ARqhMnb+bMH8
- jjN3qNC6zzb01jMFpZV1qrGM7Q/2NlXA6WiZKkmpJtWAVWkjsFny4xDuU
- 8l/eOSr5tozomQxKnBiau1UcGY/58fcAHGFqf8wqkQHmuNOR2vjEtaJeK
- kDYUA0paWah1lIJ8emTAz+vdBM/RW+AY3yMdXzIRpP97YOaOYvydZdpxr A==;
-X-CSE-ConnectionGUID: vgkddzZGTBus4H+TTMGGig==
-X-CSE-MsgGUID: j2d7ypqdSFOaJy5Bw32d5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62191282"
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="62191282"
+ bh=8Ouq0pvuHAu836XkdLbq6W0ZQyLKyt0NzaTt5qZDMwg=;
+ b=NQnPbBXDAnVY5OyXHeWFy/7JHQ9kxdMWPnT25gSEBhyVLjXntvqEPWEt
+ ol9vltryRGRBhuHIHtE4aHeV617OxTVWyVOE3oMAJ2ghw9RCOpk7uAkOy
+ YlT5Qvauxi/aZiv/qN+4BhPZyFKyETTxNDfWB+G+BHFhTZVyvipxRTOIr
+ R0YRDdf/9ytHJIQF1U8CaCUsSkGO9QreXYG7GsgZpY5mJMaK3xXCf+TON
+ fedqB4dX4CoFZ1aAFg/gvG621817AkRpovYpglH/s1iZpwZe1GzOzofxJ
+ uoVYAGbx584Ijf4vf7oES+vl5MtJTt0UVtYmGNL10PTTzEMu5rxFMO2Lb Q==;
+X-CSE-ConnectionGUID: L/xTJj10QMCeRS8D9nXizg==
+X-CSE-MsgGUID: MQdO3XTNQu24ESaA7HMw4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73451396"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="73451396"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 02:06:27 -0700
-X-CSE-ConnectionGUID: D5/yEpIFQgS37HkYAfk0Jw==
-X-CSE-MsgGUID: vRhMbK6CT++depZQpe387g==
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 02:23:26 -0700
+X-CSE-ConnectionGUID: H4Y1sF6zSqeDFx4+o4WOHg==
+X-CSE-MsgGUID: xagTeNeeSD2CiVDtHEJutQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="214503367"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="214506164"
 Received: from opintica-mobl1 (HELO [10.245.245.172]) ([10.245.245.172])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 02:06:26 -0700
-Message-ID: <92540c50-58ee-4234-bf03-d089c4f35953@intel.com>
-Date: Tue, 21 Oct 2025 10:06:24 +0100
+ 21 Oct 2025 02:23:24 -0700
+Message-ID: <36b2ca0b-a576-4990-8971-7c43aa4a5296@intel.com>
+Date: Tue, 21 Oct 2025 10:23:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/7] drm/xe/configfs: add disable_mem_copy knob
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
+Subject: Re: [PATCH v2 6/7] drm/xe/migrate: skip bounce buffer path on xe2
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 References: <20251020125431.41153-9-matthew.auld@intel.com>
- <20251020125431.41153-16-matthew.auld@intel.com>
- <jvvrjixujx5hz2o7x7szsqhjvgbze6a5wtzbifclltsffg72ir@rm243p6z4zlo>
+ <20251020125431.41153-15-matthew.auld@intel.com>
+ <aPaE5T23Z1ZG7N/I@lstrano-desk.jf.intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <jvvrjixujx5hz2o7x7szsqhjvgbze6a5wtzbifclltsffg72ir@rm243p6z4zlo>
+In-Reply-To: <aPaE5T23Z1ZG7N/I@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,76 +70,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/10/2025 03:18, Lucas De Marchi wrote:
-> On Mon, Oct 20, 2025 at 01:54:39PM +0100, Matthew Auld wrote:
->> For easier experimentation/comparison allow turning off the newer
->> MEM_COPY path, without needing to apply manual hacks and build a new
->> kernel. This needs to be configured before fully probing the device.
+On 20/10/2025 19:52, Matthew Brost wrote:
+> On Mon, Oct 20, 2025 at 01:54:38PM +0100, Matthew Auld wrote:
+>> Now that we support MEM_COPY we should be able to use the PAGE_COPY
+>> mode, otherwise falling back to BYTE_COPY mode when we have odd
+>> sizing/alignment.
+>>
+>> v2:
+>>   - Use info.has_mem_copy_instr
+>>   - Rebase on latest changes.
 >>
 >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 >> Cc: Matthew Brost <matthew.brost@intel.com>
 >> ---
->> drivers/gpu/drm/xe/xe_configfs.c | 65 ++++++++++++++++++++++++++++++++
->> drivers/gpu/drm/xe/xe_configfs.h |  2 +
->> drivers/gpu/drm/xe/xe_pci.c      |  4 +-
->> 3 files changed, 70 insertions(+), 1 deletion(-)
+>>   drivers/gpu/drm/xe/xe_migrate.c | 19 ++++++++++++-------
+>>   1 file changed, 12 insertions(+), 7 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/ 
->> xe_configfs.c
->> index c1419a270fa4..df459daa0f07 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -236,6 +236,15 @@
->>  *
->>  * This setting only takes effect when probing the device.
->>  *
->> + * Disable MEM_COPY path
->> + * -----------------------------------------------------
->> + * This config will force the use of the older XY_FAST_COPY 
->> instruction in the migration code.
->> + * Intended only for experimentation.
->> + *
->> + *    # echo 1 > /sys/kernel/config/xe/0000:03:00.0/disable_mem_copy
->> + *
->> + * This setting only takes effect when probing the device.
->> + *
->>  * Remove devices
->>  * ==============
->>  *
->> @@ -264,6 +273,9 @@ struct xe_config_group_device {
->>         struct {
->>             unsigned int max_vfs;
->>         } sriov;
->> +        struct {
->> +            bool disable_mem_copy;
->> +        } migrate;
+>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>> index 14ade32b8b69..7819a168ed17 100644
+>> --- a/drivers/gpu/drm/xe/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+>> @@ -1938,8 +1938,9 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+>>   	unsigned long i, j;
+>>   	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
+>>   
+>> -	if (drm_WARN_ON(&xe->drm, (len & XE_CACHELINE_MASK) ||
+>> -			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
+>> +	if (!xe->info.has_mem_copy_instr &&
+>> +	    drm_WARN_ON(&xe->drm,
+>> +			(len & XE_CACHELINE_MASK) || (sram_offset | vram_addr) & XE_CACHELINE_MASK))
+>>   		return ERR_PTR(-EOPNOTSUPP);
+>>   
+>>   	xe_assert(xe, npages * PAGE_SIZE <= MAX_PREEMPTDISABLE_TRANSFER);
+>> @@ -2158,8 +2159,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+>>   	xe_bo_assert_held(bo);
+>>   
+>>   	/* Use bounce buffer for small access and unaligned access */
+>> -	if (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+>> -	    !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES)) {
+>> +	if (!xe->info.has_mem_copy_instr &&
+>> +	    (!IS_ALIGNED(len, XE_CACHELINE_BYTES) ||
+>> +	     !IS_ALIGNED((unsigned long)buf + offset, XE_CACHELINE_BYTES))) {
+>>   		int buf_offset = 0;
+>>   		void *bounce;
+>>   		int err;
+>> @@ -2231,9 +2233,12 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+>>   		if (current_bytes & ~PAGE_MASK) {
+>>   			int pitch = 4;
 > 
-> so this is migrate.disable_mem_copy
-> 
-> ...
-> 
->> CONFIGFS_ATTR(, ctx_restore_mid_bb);
->> CONFIGFS_ATTR(, ctx_restore_post_bb);
->> +CONFIGFS_ATTR(, disable_mem_copy);
-> 
-> but the attribute is a misleading "disable_mem_copy".
+> Shouldn't the pitch be 1 for info.has_mem_copy_instr and / or we use
+> linear copy mode for non-256 byte aligned copies?
 
-I was just trying to group the migrate related knobs under one struct 
-since there could potentially be more in the future. Should that be 
-reflected in the attribute? Should we do migrate_disable_mem_copy or did 
-you mean something else here?
+Ah yes, this is indeed wrong. Thanks for catching that.
 
 > 
-> Note that configfs is not a place for hacks so if it's generally useful
-> we need to think of a name that is not misleading and will be
-> future-proof. This seems more like "the MEM_COPY for migration is a new
-> path and we may have bugs or we want to compare them in the short term".
-> Did I misunderstand the purpose of the patch?
-
-Yeah, it's likely more a short/medium term thing. Although I did also 
-use it to quickly test both paths on one machine. Happy to drop this 
-one, if this is not a good fit.
-
+> Matt
 > 
-> Lucas De Marchi
+>>   
+>> -			current_bytes = min_t(int, current_bytes,
+>> -					      round_down(S16_MAX * pitch,
+>> -							 XE_CACHELINE_BYTES));
+>> +			if (xe->info.has_mem_copy_instr)
+>> +				current_bytes = min_t(int, current_bytes, U16_MAX * pitch);
+>> +			else
+>> +				current_bytes =
+>> +					min_t(int, current_bytes,
+>> +					      round_down(S16_MAX * pitch, XE_CACHELINE_BYTES));
+>>   		}
+>>   
+>>   		__fence = xe_migrate_vram(m, current_bytes,
+>> -- 
+>> 2.51.0
+>>
 
