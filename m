@@ -4,185 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D625ACCD184
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 16:09:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301E0CCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 16:29:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804FB10E610;
-	Tue, 21 Oct 2025 16:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2085D10E618;
+	Tue, 21 Oct 2025 16:29:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLfuV5Qy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cM5vu+k2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8AE10E610
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 16:09:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F12AF10E615;
+ Tue, 21 Oct 2025 16:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761062990; x=1792598990;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QPN5Oo3e5sZvsjHmuR5woiBlKRvUsbjFQsawyzf6vdI=;
- b=kLfuV5QyYXGOjaPbWSOBQP3CPtVFuvFzqd3+1uJXz4nkVHX6TNhwoCy1
- P+FLgHf1ZfzswRcsS1Tvw/TmT7Xh7BTFmaElfRGn+McS6wSi7LTSAYk6U
- IEcVm/24Y4G8DTIXoRnxHRmAI7zi4BKjtjk+aeVrfL9uv28Hr4/y1xm2Z
- Q+JgMvMcyonrWjS5wx09XMYxlts8m8eTImaAj0l5oa8YXo2GqhI7JbDAf
- AYC6976hNlVk3GYJX5yT4ZuxJPH6htXr+HcW20OJF97NHvRwh4vNQWX4r
- DkmHuSE3dJABGUmzMXArO/TbHmFG5nd6Bn0yv8ufCVjDNPK0Y1vN6a5vB w==;
-X-CSE-ConnectionGUID: 17zrNz5UTBa15hg9gVgtRA==
-X-CSE-MsgGUID: LpTcWLkkRXChQr9/RhhHeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="65811234"
-X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; d="scan'208";a="65811234"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 09:09:50 -0700
-X-CSE-ConnectionGUID: eY1GcK92SmyVib4tM58X2A==
-X-CSE-MsgGUID: sr3m73SxQpum+CFm3s73hQ==
+ t=1761064179; x=1792600179;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qHAsz5QA8FKtbpVY+ubCXf9cFxO/qswtvnEHW1egz2I=;
+ b=cM5vu+k2B8gB084CdEjvReqQwwC71CjGHZ/Ut/bMo0AswZirrIBxHQN5
+ E3PDqs1N6x/zs8lFbVj6AKyTciqwd2oJAbSBr9C9lQnShZyXpUG72kwtZ
+ 9YHfzijBs/23tJNYRp0uquQRXn9BjqKsT90lCGj3X4gwkvbreRsIfjBQZ
+ uupUTSZjgTpqziFlLoG5pd7xytnA1hy7HVKfPbB5bT5Cwd6rlZ+lYsxAM
+ idMgqSgZnIdx/bbMWziUKp68YtvQQ3X4DfhhcxIn5NKDyX8CSGJc5tA3C
+ 57Y3An+fb8XGFvR4pJF4UFoIbz+tzqH1hba3DIpZxX8qn9uLQGLsAQ9a9 Q==;
+X-CSE-ConnectionGUID: ABdn3IyiQoOTV35tbvgJdg==
+X-CSE-MsgGUID: ZtSy852ySc6WR3ZUlpIXAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63093753"
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; d="scan'208";a="63093753"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 09:29:38 -0700
+X-CSE-ConnectionGUID: KBNslEyJTMGoK0XMHq4cOA==
+X-CSE-MsgGUID: qz+6Mu8TSpGR9Px0annruw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; d="scan'208";a="183486187"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 09:09:50 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 21 Oct 2025 09:09:48 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 21 Oct 2025 09:09:48 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.59) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 21 Oct 2025 09:09:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xv5SSv43s0/7tW5nJ6UeHbZE54yzv0hLskNHtmJCOKnv+ZBfuZG7THf4MyrWygiGwtTtOvyh8Bm88U9/yQSC3eSmnZVfkfgJM6wdTIXGWBrrkx27KgVq1RnonV2tql4AHTlerz4EVlbGfIAGWrgNCL17QXCw6vyaNbbIB0+A4bQ6ldOLGqCXgyphS3/+xl8Iy2coKJ9yOLodXF08B2HsXya7mQFJkJ4JNJQBVvDJTPjn++WNAB8gWjcd+dplhoSiIsRrYjmWozdth4IB0pugIRnCWG+/+WxzmlFiX/tdptN28MJKXgJfeTqYto3ZkgX8AYJ4i4Ydgk+t/4XXpbtU6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QPN5Oo3e5sZvsjHmuR5woiBlKRvUsbjFQsawyzf6vdI=;
- b=QhgB3APNGqlkAJuJRVvbvUYCmZ/fwSpMlE8NYqG5OQ+OH9Rw02XoHIWjFIycojE+9rByMXOiLez/umCnhdZFVEumS7J5vSK0w5DfSgSY6htzMXKGXRAm2Se6mwjQAvfQFTFuxA/YMmbdYY7H4ynGUKBayyXYZv4mLL2tmu4y7mC2YLgw0g0wbYm/opBsYuH7CqePdaeT4b5QhsNRldRpEFUfWJN9N3URGSnsf9y24beUMWnHF+smNYMNXA+91ysCnZoZEtHu0CBQEtdxlRAFueS+KYo4Q6A59yZW8eEgLjCBfmqcFcaxHl1HQEQlLV8G47bz3uhD3Ptkd5xlxzqfQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL1PR11MB5447.namprd11.prod.outlook.com (2603:10b6:208:315::17)
- by SA1PR11MB6709.namprd11.prod.outlook.com (2603:10b6:806:259::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.16; Tue, 21 Oct
- 2025 16:09:45 +0000
-Received: from BL1PR11MB5447.namprd11.prod.outlook.com
- ([fe80::ad51:b35d:1aca:726e]) by BL1PR11MB5447.namprd11.prod.outlook.com
- ([fe80::ad51:b35d:1aca:726e%6]) with mapi id 15.20.9253.011; Tue, 21 Oct 2025
- 16:09:45 +0000
-From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-To: "Auld, Matthew" <matthew.auld@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Subject: RE: [PATCH] drm/xe: Fix stolen size check to allow equal WOPCM size
-Thread-Topic: [PATCH] drm/xe: Fix stolen size check to allow equal WOPCM size
-Thread-Index: AQHcPvBCMW8REWmds0iwCVLgCFUGe7TGCYeAgAbCK5A=
-Date: Tue, 21 Oct 2025 16:09:44 +0000
-Message-ID: <BL1PR11MB5447E7EA697902D7F6925F35EAF2A@BL1PR11MB5447.namprd11.prod.outlook.com>
-References: <20251016225506.2256127-2-shuicheng.lin@intel.com>
- <466c6ba9-7bdc-44b0-bdcc-89fd51150f03@intel.com>
-In-Reply-To: <466c6ba9-7bdc-44b0-bdcc-89fd51150f03@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR11MB5447:EE_|SA1PR11MB6709:EE_
-x-ms-office365-filtering-correlation-id: 4ef85205-3da3-4719-f37c-08de10bc403c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?VXd1VTZLa2JkSGlpeU1nb0hyVW03UlVLTTZSUTVlRWd2R3FsOGlnejdkUkxr?=
- =?utf-8?B?Skd3TUdlc0NGaVBMenJuWGYvTVJIMi9wK2hkNis1b0xKZElCS1ZCQVBhOG5X?=
- =?utf-8?B?azFMb3U1dlVpSmNONnlsTWovdi96MUVPbkRPYWEzaFpDc1pIVXMvYjNXNGty?=
- =?utf-8?B?eHMxV1JPNW1PWHVGV0xPQlFjM05mN1lJSnpIdHRCTzkyQVBmc1FPbWdJL2tE?=
- =?utf-8?B?ZllCS1g4b3ZXQ3E0bUF1OThxdjcwTDJpNG1lV3ZHRzM2K2VKTkIwUzlnNVFM?=
- =?utf-8?B?WXhVZ1VTekhxUDVFcFV2V3l4akpkTlZCVmhDZXNHQjBvdmgzcVJEWEtzaldh?=
- =?utf-8?B?VFc2TTdmQk1Ub0FIT2tUeXJxL2RLOVo2OEhYK1ZCdFY0aVlBVjhWaUR2a1N3?=
- =?utf-8?B?blkrM25TbWZ2Y2hvZHVpaVR4bEZCZWp2akc2RTR1UVNBYStqeFQrZitDRGEz?=
- =?utf-8?B?OGl1Z2dNYmx2M3NjYURlbWtzM2M3RXpmUGgzalhiTE9VaThaQ1MxdjV2QWVN?=
- =?utf-8?B?V0JTMzYrSEpHTmxFNnE5dWpDOGRManJZN1k1Vm9nNmtSWjNjL3kzWFJDSFRy?=
- =?utf-8?B?Wm9xdVVSeGtIaGlvQTQ0R3pHZkhNeWtUaml0Y0RvUEhqMEdwZkZRaXJFbG9j?=
- =?utf-8?B?UW1mR3JpODlWNFVKVVd5WXRtc09rZS9WN0twZzNqUnpzNjVVWEkvU3htOUQr?=
- =?utf-8?B?WGY0MDE0emFvQXl3QnBHNVJrNStYSDVYMmMrYUdIeGZRUUZaWUJHTWhiMXQz?=
- =?utf-8?B?U3kzOTdnbDE1b2xHbk5kUFFCaFhXL0lpR0ZpZUN4VlpRRmJaZERsdlRRSVQv?=
- =?utf-8?B?WDdjMUFoclBmWlpyUlk1UzFhVW8rNUtFQjZPbjhNcDZNaUxQaTBDVnRIeEZu?=
- =?utf-8?B?cmVBckx2Skg3OWVuL053SGpYZ0taQjlLellCQ2l3aCtUWlhtT3RHU216aTNv?=
- =?utf-8?B?cXExKzgyN1o2RjB1elZLWlZRMkpWN3lxN3ljNWRtR3ljZHBkV0pCcXh3NG80?=
- =?utf-8?B?emM0UFZOc2piNDdXQ3ZzWm5ja0p0NDdaU2g5UC9oNldnWmFYVG8wdnZibXhi?=
- =?utf-8?B?SSswTXkzaWRaU3p5RkhyY2QwbWtFZm5wM1hINnNDc0JmcXF4MDg5S2dzSGpQ?=
- =?utf-8?B?RFFOZTNYaW93a2RJRUZhM0pDZTM5Wnl2V3UvNTQvSnd2NXRTTzlrTHNCR0xV?=
- =?utf-8?B?Z3ZYU295RTBDZTJpeFZwdjJQdEFpNWZqMHB2aXVoYnRqTGYxN0VBRHpMZlA0?=
- =?utf-8?B?ekhlTFcyQ2p5ZlFFK2R3QUhVYUF4MmlKbWtzZHorNml4SFhLT2J2MUJvazRj?=
- =?utf-8?B?dklYQ1ZBQ3dLTkYrMmVuRUhqTCtEKy9USFM4QU5JNVNBVGNGM2duckFmYjFk?=
- =?utf-8?B?MjlxWUxFVEJFakZIVE9TOGJsOCtrdVVpeGJhZThSblV2M0FKdXMvQ3FKcndD?=
- =?utf-8?B?NGhMaXc1NFNLajdIWmc2Z21XOGsyL29KUU44Uk94U3JXNS9qeDFqTDNaMjJY?=
- =?utf-8?B?RGlQdHM4blc2Y1NGcnpURWhEaTBxdEhYL3h2L1JKRFRsN211djNlUFp0ZDMx?=
- =?utf-8?B?L2NTSU5FNlVFZEtYSXNCSnYwOEovZW1BYnZFZWVFbVNLZ3FFSkFZeWJnYzNC?=
- =?utf-8?B?V0o4M3ZsSVJueEVVUVlmbGtlWTl0VXhsUzB4LzBwcmN4bENtQjZZTDRFb3VS?=
- =?utf-8?B?dW9FdmVYTmRLSFJHSzVoSHo4NXVLVkQ1VVRWSGdDS0ZWUk9lR2E0VTkrcEJL?=
- =?utf-8?B?cGk4TUpmQTU4TDhWdGk1RVFFWm1UUENmNDlUNlNmVXFPMXJWdzZVakx3T1Jw?=
- =?utf-8?B?allDakNXeGNVbWFlWDZ0d2xuWjVzYnFFd3J1Y1dwTjlsa0IrZE92KzBabWRQ?=
- =?utf-8?B?MkU4Z1hBbFZ4YVpxejZnRm9tc09SL3F4RFl3RHlIWkxPSURhUFhQa1d0R0VS?=
- =?utf-8?B?c0lEaDdxS21zWGtjb2ZnS3ZUbjFsSzlXS0hqY1JtTm1wUVN1NzI3YUw2dVZT?=
- =?utf-8?B?M3JhSU9FbFpnPT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR11MB5447.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OHFuNjFXejd1TCtOakR6Wm9lUS9waTI2a1pwMWdwZ1hGcFVzUHVEaVBjbE5z?=
- =?utf-8?B?S2hWYXJJb1FlWk4veG5FdTJTa3hYSTg4OVRuK1FYUFFVek0vdW4yZDB3SC9W?=
- =?utf-8?B?MVRwRkROeWcwa01MWDd0Sjduc0VRUXN5S2I4QzZjUVo2Yi80RzdlMGxLMVRy?=
- =?utf-8?B?U1ZFL0E0V3pzSTdhb1FXSFlzTmtVdnFCRGNaUTBYS3I0d2NheTJvQ0llR2E2?=
- =?utf-8?B?TEs5cnppTm84UExER2lycUZjQ3FLZnNOb2pIMkQraS9iY0xNUHFVT2c3Tm9v?=
- =?utf-8?B?dDB3eXptZ1JuQTJVWEJhVDd6b1dPZ1RrbDlMS0EyeUJSS0tNS0pNcS91M3lT?=
- =?utf-8?B?aC9LQkc0OVJEeVF6bGFTWWZ4Y0JvRDVzZXN5eGZrdnJIa3VoUWVVWVZ5RzdF?=
- =?utf-8?B?by9zMnpMRnBLVlhhbjJDNzFvVTJwUXk5WVJuM2hNMTN6b3Yyc2FBSXlwdDd0?=
- =?utf-8?B?dEhkZFVLRi8vNlQ5S3doQWFIcEUvM1AyN3RPNmNPeE1pNjVzcHVoTGlqM1E0?=
- =?utf-8?B?bG44NnBmbHJ2ZFlkNmdTTFBPend5SjdqeWlTTTBnS1ZEMGJTS000M2NLNWdy?=
- =?utf-8?B?YmdZUExqejNNS3A3OENKcDlENGtuMlNRWlBQbk1tQStoekR6cFNHbDA5Tkl5?=
- =?utf-8?B?SzZDNERkcHNpM0kwZnc3OE9WVVZQSFQ5a1BiaUh5bEhjZXA2QUFPbmZ5RlFy?=
- =?utf-8?B?MjVBVzdiTStwTUZRbDA0YXhTNzJXcElNUmx1T3o0dnpnQ3hkYkxreGlieTRM?=
- =?utf-8?B?MTg2V2FSSU5hZWlqWHlBZFFXT01QOWRFR21BOUdHTjVQK002RHk1OWtDVVE2?=
- =?utf-8?B?bk5NMnBLeXNTSDZNZEZsZktMMmVCOVFzSzRkM3BsRjNOU0gzRDRuNVI4aVA1?=
- =?utf-8?B?OFFzNTRIRUFnM0VDRGoxWExUcnQ4WW5lRkQvdlh6YURva2ZpUUhqaWpVMVBV?=
- =?utf-8?B?UFB3STZLY3hGNFYwdUsvMTJVQnQ4akJMV2J1WC80K0ZaN3dUTFNXZk9kUjNP?=
- =?utf-8?B?RlVpMklJSnRlMUNDMW8rWUxadk9Ba2E3aDhMaVMxcEpUcmpqY1M2b1A5MGY0?=
- =?utf-8?B?R1dYSmlDZHVoVTFDSHZWQWwwbm13R0RxWm50dVpYR1IvYWduSUFaYXJzcmRq?=
- =?utf-8?B?eGRrd0lBR1R2OWxDMTZ4Zm9QblNqdXpCMXhhU0hOL3QzanhvbEx1SUJJYnNy?=
- =?utf-8?B?MWhlcDBDK085OVZlNzFIZWJNejU0QzFjWDBmM1N1TmxydnAxb3liQW5BT01O?=
- =?utf-8?B?SFNnVUtLeGJhQTZIdXlRUFd2aWhIL00yaWZ2eGdqeURGcWc3NmdmNjRRMUpo?=
- =?utf-8?B?clZ4RDFpME8ydkM2SDM2aXlQMXlKTHF3Q1o0dUM1N05uWkFZZVlrenNsSmNJ?=
- =?utf-8?B?c2wrK2Z6bklYOVpFQW80OFUrVE9YVEFYSU0yYXhvZzl6bEZYbXVmUkh1cW1D?=
- =?utf-8?B?cXU0SEFsbXY4VXRxKzMrRGNnQVZFdGFVMzUxYnZ3OGluL01EYjVkajQxUHJ5?=
- =?utf-8?B?b0FYR0hrVXRSUzhLenloaFcxMWRwZmx3ck5wY0pGaWM0K3ZhVTY4OG15TENX?=
- =?utf-8?B?SS9YelkvQWxZUXUxc0M0bUdlYjhZV3F2NmtGT2tPS095NTJTVGxPRElzZlNp?=
- =?utf-8?B?dUpmYkJObm84UGR0YnRDWjdsV2JETnJBRlpyS0NrNmlNc0NBWHg5cEVZM1pN?=
- =?utf-8?B?RlJSM2hwVFlTUk5YL1FTODBsTUgydmp5WFV5d1llZVJiNHJ3UkZRQlJWNzcr?=
- =?utf-8?B?aDdnVUhlMnZmbEdza3dNQmpnVllyU3ZEdS9HYnUwRGV4VjlQNXl4REcyNFdC?=
- =?utf-8?B?Z1NvdWVlMTA0ZTJpMTFEUWNWY1M5RmprSVV4K2JTS1FuWU9uSUhIcVQxUFBs?=
- =?utf-8?B?blk5SEtzZjJvekJQRlhwczNQL3gzMGVXZytOYlIwbkZtN2tYMFRvRER1WHRV?=
- =?utf-8?B?bnVYUGVEc1BkdTkvTzI5ZXZNN0RsbS8xL3B1c3ExeXlod0diWjNQZVBvdTBJ?=
- =?utf-8?B?ZUhaeEdlaStWU2tIMnh3OUFvaEFkdjJQRG1HaUlDQjFHLzhxcTVtUkx2U0d5?=
- =?utf-8?B?MUNydTZiaXZKYnIwUE5aRlVITlplMHYxeExhWE11cVBhLzhmSHNUcWxSMEtD?=
- =?utf-8?Q?RJLKVMTGuOdaazXJJKz3WYrSy?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; d="scan'208";a="214265603"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.52])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 09:29:36 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@redhat.com>,
+ simona.vetter@ffwll.ch
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm: replace drm_print.h includes from headers with a
+ forward declaration
+Date: Tue, 21 Oct 2025 19:29:25 +0300
+Message-ID: <cover.1761063757.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5447.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ef85205-3da3-4719-f37c-08de10bc403c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2025 16:09:45.0542 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 14KRstRax77NHUUrlQ07A7KNpC274PMGmmR9k8SG+zXYVwKEXKXYXb5QgKU2wa+af8oIbVETfSF+l9b/qiq4MQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6709
-X-OriginatorOrg: intel.com
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,35 +71,358 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VGhhbmtzIE1hdHRoZXcgZm9yIHRoZSByZXZpZXcuDQoNCkhpIHhlIG1haW50YWluZXJzLA0KQ291
-bGQgeW91IHBsZWFzZSBoZWxwIG1lIHJldmlldyBhbmQgbWVyZ2UgaXQ/DQpUaGFua3MgaW4gYWR2
-YW5jZSBmb3IgeW91ciBzdXBwb3J0Lg0KDQpCZXN0IFJlZ2FyZHMNClNodWljaGVuZw0KDQpPbiBG
-cmksIE9jdCAxNywgMjAyNSAxOjU1IEFNIE1hdHRoZXcgQXVsZCB3cm90ZToNCj4gT24gMTYvMTAv
-MjAyNSAyMzo1NSwgU2h1aWNoZW5nIExpbiB3cm90ZToNCj4gPiBPbiBzb21lIHBsYXRmb3JtcyB3
-aXRob3V0IGRlZGljYXRlZCBzdG9sZW4gbWVtb3J5LCB0aGUgY2FsY3VsYXRlZA0KPiA+IHN0b2xl
-biBzaXplIG1heSBiZSBleGFjdGx5IGVxdWFsIHRvIHRoZSBXT1BDTSBzaXplLiBUaGUgY3VycmVu
-dA0KPiA+IGFzc2VydGlvbiBpbmNvcnJlY3RseSByZXF1aXJlcyBpdCB0byBiZSBzdHJpY3RseSBn
-cmVhdGVyLCBjYXVzaW5nIGENCj4gPiBmYWxzZSBmYWlsdXJlLiBSZWxheCB0aGUgY2hlY2sgdG8g
-YWxsb3cgZXF1YWxpdHkuDQo+ID4NCj4gPiBGaXhlczogNjUzNjliOGUyOTYxICgiZHJtL3hlOiBD
-aGFuZ2UgcmV0dXJuIHR5cGUgb2YgZGV0ZWN0X2JhcjJfZGdmeCgpDQo+ID4gZnJvbSBzNjQgdG8g
-dTY0IikNCj4gPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0veGUv
-a2VybmVsLy0vaXNzdWVzLzYzNTkNCj4gPiBDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRA
-aW50ZWwuY29tPg0KPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+
-DQo+ID4gU2lnbmVkLW9mZi1ieTogU2h1aWNoZW5nIExpbiA8c2h1aWNoZW5nLmxpbkBpbnRlbC5j
-b20+DQo+IA0KPiBMb29raW5nIGF0IHRoZSBsb2dzIGZvciBQVkMgaXQgaGFzIHByZXZpb3VzbHkg
-bmV2ZXIgYmVlbiBwcm9iZWQgd2l0aCBhbiBhY3R1YWwNCj4gdXNhYmxlIHN0b2xlbiBhcmVhIGl0
-IHNlZW1zLCBzbyB0aGlzIGxvb2tzIGNvcnJlY3QgdG8gbWUuDQo+IA0KPiBSZXZpZXdlZC1ieTog
-TWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPg0KPiANCj4gPiAtLS0NCj4gPiAg
-IGRyaXZlcnMvZ3B1L2RybS94ZS94ZV90dG1fc3RvbGVuX21nci5jIHwgMiArLQ0KPiA+ICAgMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4NCj4gPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV9zdG9sZW5fbWdyLmMNCj4gPiBiL2Ry
-aXZlcnMvZ3B1L2RybS94ZS94ZV90dG1fc3RvbGVuX21nci5jDQo+ID4gaW5kZXggZTM2OGIyYTM2
-YmFjLi4xYmRkZWNmYjcyM2EgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hl
-X3R0bV9zdG9sZW5fbWdyLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdHRtX3N0
-b2xlbl9tZ3IuYw0KPiA+IEBAIC0xMDYsNyArMTA2LDcgQEAgc3RhdGljIHU2NCBkZXRlY3RfYmFy
-Ml9kZ2Z4KHN0cnVjdCB4ZV9kZXZpY2UgKnhlLA0KPiA+IHN0cnVjdCB4ZV90dG1fc3RvbGVuX21n
-ciAqbWdyKQ0KPiA+DQo+ID4gICAJc3RvbGVuX3NpemUgPSB0aWxlX3NpemUgLSBtZ3ItPnN0b2xl
-bl9iYXNlOw0KPiA+DQo+ID4gLQl4ZV9hc3NlcnQoeGUsIHN0b2xlbl9zaXplID4gd29wY21fc2l6
-ZSk7DQo+ID4gKwl4ZV9hc3NlcnQoeGUsIHN0b2xlbl9zaXplID49IHdvcGNtX3NpemUpOw0KPiA+
-ICAgCXN0b2xlbl9zaXplIC09IHdvcGNtX3NpemU7DQo+ID4NCj4gPiAgIAkvKiBWZXJpZnkgdXNh
-Z2UgZml0cyBpbiB0aGUgYWN0dWFsIHJlc291cmNlIGF2YWlsYWJsZSAqLw0KDQo=
+Include what you use.
+
+The drm_print.h is included in drm_mm.h, drm_buddy.h and
+ttm/ttm_resource.h even though it's not really required. Converting them
+to forward declarations exposes massive amounts of transitive
+dependencies on drm_print.h via those headers. Add the includes where
+needed.
+
+I'm not even trying to add the maintainers of all the drivers here,
+there are too many. I think the only viable way is to merge this via
+drm-misc with drm or drm-misc maintainer acks.
+
+
+BR,
+Jani.
+
+
+Jani Nikula (3):
+  drm/mm: replace drm_print.h include with a forward declaration
+  drm/buddy: replace drm_print.h include with a forward declaration
+  drm/ttm: replace drm_print.h include with a forward declaration
+
+ drivers/accel/amdxdna/amdxdna_gem.c                       | 1 +
+ drivers/accel/rocket/rocket_gem.c                         | 1 +
+ drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c   | 1 +
+ drivers/gpu/drm/arm/hdlcd_crtc.c                          | 1 +
+ drivers/gpu/drm/arm/hdlcd_drv.c                           | 1 +
+ drivers/gpu/drm/arm/malidp_drv.c                          | 1 +
+ drivers/gpu/drm/arm/malidp_mw.c                           | 1 +
+ drivers/gpu/drm/armada/armada_crtc.c                      | 1 +
+ drivers/gpu/drm/armada/armada_debugfs.c                   | 1 +
+ drivers/gpu/drm/armada/armada_fb.c                        | 1 +
+ drivers/gpu/drm/armada/armada_fbdev.c                     | 1 +
+ drivers/gpu/drm/armada/armada_gem.c                       | 1 +
+ drivers/gpu/drm/armada/armada_overlay.c                   | 1 +
+ drivers/gpu/drm/armada/armada_plane.c                     | 1 +
+ drivers/gpu/drm/ast/ast_mode.c                            | 1 +
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c              | 1 +
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c           | 1 +
+ drivers/gpu/drm/drm_buddy.c                               | 1 +
+ drivers/gpu/drm/drm_dumb_buffers.c                        | 1 +
+ drivers/gpu/drm/drm_fbdev_dma.c                           | 1 +
+ drivers/gpu/drm/drm_fbdev_shmem.c                         | 1 +
+ drivers/gpu/drm/drm_gem_dma_helper.c                      | 1 +
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c              | 1 +
+ drivers/gpu/drm/drm_gem_ttm_helper.c                      | 1 +
+ drivers/gpu/drm/drm_gem_vram_helper.c                     | 1 +
+ drivers/gpu/drm/drm_gpuvm.c                               | 1 +
+ drivers/gpu/drm/drm_mipi_dbi.c                            | 1 +
+ drivers/gpu/drm/drm_mm.c                                  | 1 +
+ drivers/gpu/drm/drm_prime.c                               | 1 +
+ drivers/gpu/drm/etnaviv/etnaviv_buffer.c                  | 1 +
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c                     | 1 +
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c                     | 1 +
+ drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c              | 1 +
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c                     | 2 ++
+ drivers/gpu/drm/etnaviv/etnaviv_mmu.c                     | 2 ++
+ drivers/gpu/drm/exynos/exynos5433_drm_decon.c             | 1 +
+ drivers/gpu/drm/exynos/exynos7_drm_decon.c                | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_fb.c                    | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c                 | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_fimd.c                  | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_g2d.c                   | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_gem.c                   | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_ipp.c                   | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_plane.c                 | 1 +
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c                  | 1 +
+ drivers/gpu/drm/exynos/exynos_mixer.c                     | 1 +
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c               | 1 +
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c           | 1 +
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c           | 1 +
+ drivers/gpu/drm/i915/display/i9xx_wm.c                    | 2 ++
+ drivers/gpu/drm/i915/display/intel_bios.c                 | 1 +
+ drivers/gpu/drm/i915/display/intel_bw.c                   | 2 ++
+ drivers/gpu/drm/i915/display/intel_cdclk.c                | 1 +
+ drivers/gpu/drm/i915/display/intel_connector.c            | 1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c                 | 1 +
+ drivers/gpu/drm/i915/display/intel_display.c              | 1 +
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c      | 1 +
+ drivers/gpu/drm/i915/display/intel_display_driver.c       | 1 +
+ drivers/gpu/drm/i915/display/intel_display_irq.c          | 1 +
+ drivers/gpu/drm/i915/display/intel_display_power.c        | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_power_well.c   | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_reset.c        | 1 +
+ drivers/gpu/drm/i915/display/intel_dpt.c                  | 2 ++
+ drivers/gpu/drm/i915/display/intel_fb.c                   | 1 +
+ drivers/gpu/drm/i915/display/intel_fb_bo.c                | 1 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c               | 2 ++
+ drivers/gpu/drm/i915/display/intel_fbc.c                  | 1 +
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c             | 2 ++
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c          | 1 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c                | 1 +
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c             | 1 +
+ drivers/gpu/drm/i915/display/intel_hotplug.c              | 1 +
+ drivers/gpu/drm/i915/display/intel_overlay.c              | 1 +
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c             | 2 ++
+ drivers/gpu/drm/i915/display/intel_plane.c                | 1 +
+ drivers/gpu/drm/i915/display/intel_plane_initial.c        | 2 ++
+ drivers/gpu/drm/i915/display/intel_psr.c                  | 1 +
+ drivers/gpu/drm/i915/display/intel_vblank.c               | 1 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c        | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context.c               | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c                | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c            | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c                | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c                 | 4 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c                  | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c              | 2 ++
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c                | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c                   | 3 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.c                | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c               | 2 ++
+ drivers/gpu/drm/i915/gem/i915_gemfs.c                     | 2 ++
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c  | 2 ++
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c        | 2 ++
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c                  | 2 ++
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c               | 2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c          | 2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_user.c               | 2 ++
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c      | 2 ++
+ drivers/gpu/drm/i915/gt/intel_ggtt.c                      | 1 +
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c              | 2 ++
+ drivers/gpu/drm/i915/gt/intel_ggtt_gmch.c                 | 1 +
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.c                | 2 ++
+ drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c             | 2 ++
+ drivers/gpu/drm/i915/gt/intel_lrc.c                       | 2 ++
+ drivers/gpu/drm/i915/gt/intel_mocs.c                      | 2 ++
+ drivers/gpu/drm/i915/gt/intel_rc6.c                       | 2 ++
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c               | 2 ++
+ drivers/gpu/drm/i915/gt/intel_renderstate.c               | 2 ++
+ drivers/gpu/drm/i915/gt/intel_sa_media.c                  | 1 +
+ drivers/gpu/drm/i915/gt/intel_sseu.c                      | 2 ++
+ drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c              | 2 ++
+ drivers/gpu/drm/i915/gt/intel_timeline.c                  | 1 +
+ drivers/gpu/drm/i915/gt/intel_wopcm.c                     | 2 ++
+ drivers/gpu/drm/i915/gt/selftest_context.c                | 2 ++
+ drivers/gpu/drm/i915/gt/selftest_execlists.c              | 2 ++
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.c | 2 ++
+ drivers/gpu/drm/i915/gvt/aperture_gm.c                    | 2 ++
+ drivers/gpu/drm/i915/gvt/cfg_space.c                      | 2 ++
+ drivers/gpu/drm/i915/gvt/cmd_parser.c                     | 2 ++
+ drivers/gpu/drm/i915/gvt/display.c                        | 1 +
+ drivers/gpu/drm/i915/gvt/dmabuf.c                         | 1 +
+ drivers/gpu/drm/i915/gvt/edid.c                           | 1 +
+ drivers/gpu/drm/i915/gvt/gtt.c                            | 2 ++
+ drivers/gpu/drm/i915/gvt/handlers.c                       | 1 +
+ drivers/gpu/drm/i915/gvt/interrupt.c                      | 2 ++
+ drivers/gpu/drm/i915/gvt/kvmgt.c                          | 1 +
+ drivers/gpu/drm/i915/gvt/mmio.c                           | 3 +++
+ drivers/gpu/drm/i915/gvt/mmio_context.c                   | 2 ++
+ drivers/gpu/drm/i915/gvt/scheduler.c                      | 2 ++
+ drivers/gpu/drm/i915/gvt/vgpu.c                           | 2 ++
+ drivers/gpu/drm/i915/i915_cmd_parser.c                    | 1 +
+ drivers/gpu/drm/i915/i915_debugfs.c                       | 1 +
+ drivers/gpu/drm/i915/i915_gem.c                           | 1 +
+ drivers/gpu/drm/i915/i915_getparam.c                      | 2 ++
+ drivers/gpu/drm/i915/i915_irq.c                           | 1 +
+ drivers/gpu/drm/i915/i915_module.c                        | 1 +
+ drivers/gpu/drm/i915/i915_pmu.c                           | 2 ++
+ drivers/gpu/drm/i915/i915_query.c                         | 2 ++
+ drivers/gpu/drm/i915/i915_request.c                       | 2 ++
+ drivers/gpu/drm/i915/i915_switcheroo.c                    | 2 ++
+ drivers/gpu/drm/i915/i915_sysfs.c                         | 2 ++
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c             | 4 ++--
+ drivers/gpu/drm/i915/i915_utils.c                         | 1 +
+ drivers/gpu/drm/i915/i915_vgpu.c                          | 2 ++
+ drivers/gpu/drm/i915/i915_vma.c                           | 2 ++
+ drivers/gpu/drm/i915/intel_clock_gating.c                 | 2 ++
+ drivers/gpu/drm/i915/intel_gvt.c                          | 2 ++
+ drivers/gpu/drm/i915/intel_memory_region.c                | 1 +
+ drivers/gpu/drm/i915/intel_pcode.c                        | 2 ++
+ drivers/gpu/drm/i915/intel_step.c                         | 2 ++
+ drivers/gpu/drm/i915/intel_uncore.c                       | 1 +
+ drivers/gpu/drm/i915/intel_wakeref.c                      | 2 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp.c                      | 2 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.c                | 2 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_huc.c                  | 2 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c              | 2 ++
+ drivers/gpu/drm/i915/selftests/i915_active.c              | 2 ++
+ drivers/gpu/drm/i915/selftests/i915_request.c             | 2 ++
+ drivers/gpu/drm/i915/soc/intel_dram.c                     | 1 +
+ drivers/gpu/drm/i915/soc/intel_gmch.c                     | 1 +
+ drivers/gpu/drm/i915/vlv_iosf_sb.c                        | 2 ++
+ drivers/gpu/drm/imagination/pvr_ccb.c                     | 1 +
+ drivers/gpu/drm/imagination/pvr_fw.c                      | 1 +
+ drivers/gpu/drm/imagination/pvr_fw_meta.c                 | 2 ++
+ drivers/gpu/drm/imagination/pvr_fw_trace.c                | 1 +
+ drivers/gpu/drm/imagination/pvr_power.c                   | 1 +
+ drivers/gpu/drm/imagination/pvr_vm.c                      | 1 +
+ drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c                   | 1 +
+ drivers/gpu/drm/kmb/kmb_drv.c                             | 1 +
+ drivers/gpu/drm/kmb/kmb_plane.c                           | 1 +
+ drivers/gpu/drm/lima/lima_sched.c                         | 2 ++
+ drivers/gpu/drm/mcde/mcde_display.c                       | 1 +
+ drivers/gpu/drm/mediatek/mtk_crtc.c                       | 1 +
+ drivers/gpu/drm/mediatek/mtk_gem.c                        | 1 +
+ drivers/gpu/drm/mediatek/mtk_plane.c                      | 1 +
+ drivers/gpu/drm/meson/meson_overlay.c                     | 1 +
+ drivers/gpu/drm/meson/meson_plane.c                       | 1 +
+ drivers/gpu/drm/mgag200/mgag200_drv.c                     | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200.c                    | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200eh.c                  | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200eh3.c                 | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200eh5.c                 | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200er.c                  | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200ev.c                  | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200ew3.c                 | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200se.c                  | 1 +
+ drivers/gpu/drm/mgag200/mgag200_g200wb.c                  | 1 +
+ drivers/gpu/drm/mgag200/mgag200_vga.c                     | 1 +
+ drivers/gpu/drm/mgag200/mgag200_vga_bmc.c                 | 1 +
+ drivers/gpu/drm/mxsfb/lcdif_kms.c                         | 1 +
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c                         | 1 +
+ drivers/gpu/drm/nouveau/nouveau_drv.h                     | 1 +
+ drivers/gpu/drm/omapdrm/omap_crtc.c                       | 1 +
+ drivers/gpu/drm/omapdrm/omap_debugfs.c                    | 1 +
+ drivers/gpu/drm/omapdrm/omap_dmm_tiler.c                  | 2 ++
+ drivers/gpu/drm/omapdrm/omap_drv.c                        | 1 +
+ drivers/gpu/drm/omapdrm/omap_fb.c                         | 1 +
+ drivers/gpu/drm/omapdrm/omap_fbdev.c                      | 1 +
+ drivers/gpu/drm/omapdrm/omap_gem.c                        | 1 +
+ drivers/gpu/drm/omapdrm/omap_irq.c                        | 1 +
+ drivers/gpu/drm/omapdrm/omap_overlay.c                    | 1 +
+ drivers/gpu/drm/omapdrm/omap_plane.c                      | 1 +
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c               | 2 ++
+ drivers/gpu/drm/panfrost/panfrost_drv.c                   | 1 +
+ drivers/gpu/drm/panfrost/panfrost_gem.c                   | 1 +
+ drivers/gpu/drm/panfrost/panfrost_gpu.c                   | 2 ++
+ drivers/gpu/drm/panfrost/panfrost_mmu.c                   | 1 +
+ drivers/gpu/drm/pl111/pl111_display.c                     | 1 +
+ drivers/gpu/drm/qxl/qxl_cmd.c                             | 1 +
+ drivers/gpu/drm/qxl/qxl_debugfs.c                         | 1 +
+ drivers/gpu/drm/qxl/qxl_display.c                         | 1 +
+ drivers/gpu/drm/qxl/qxl_drv.c                             | 1 +
+ drivers/gpu/drm/qxl/qxl_gem.c                             | 1 +
+ drivers/gpu/drm/qxl/qxl_image.c                           | 2 ++
+ drivers/gpu/drm/qxl/qxl_ioctl.c                           | 2 ++
+ drivers/gpu/drm/qxl/qxl_irq.c                             | 1 +
+ drivers/gpu/drm/qxl/qxl_kms.c                             | 1 +
+ drivers/gpu/drm/qxl/qxl_release.c                         | 2 ++
+ drivers/gpu/drm/qxl/qxl_ttm.c                             | 1 +
+ drivers/gpu/drm/radeon/radeon.h                           | 1 +
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.c            | 1 +
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c             | 1 +
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c           | 1 +
+ drivers/gpu/drm/rockchip/cdn-dp-core.c                    | 1 +
+ drivers/gpu/drm/rockchip/cdn-dp-reg.c                     | 2 ++
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c           | 1 +
+ drivers/gpu/drm/rockchip/inno_hdmi.c                      | 1 +
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c                    | 1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c               | 1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c               | 1 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c               | 1 +
+ drivers/gpu/drm/rockchip/rockchip_lvds.c                  | 1 +
+ drivers/gpu/drm/rockchip/rockchip_rgb.c                   | 1 +
+ drivers/gpu/drm/sitronix/st7586.c                         | 1 +
+ drivers/gpu/drm/sitronix/st7735r.c                        | 1 +
+ drivers/gpu/drm/solomon/ssd130x.c                         | 1 +
+ drivers/gpu/drm/sti/sti_cursor.c                          | 1 +
+ drivers/gpu/drm/sti/sti_drv.c                             | 1 +
+ drivers/gpu/drm/sti/sti_gdp.c                             | 1 +
+ drivers/gpu/drm/sti/sti_hqvdp.c                           | 1 +
+ drivers/gpu/drm/sti/sti_plane.c                           | 1 +
+ drivers/gpu/drm/stm/drv.c                                 | 1 +
+ drivers/gpu/drm/stm/ltdc.c                                | 1 +
+ drivers/gpu/drm/sun4i/sun4i_backend.c                     | 1 +
+ drivers/gpu/drm/sun4i/sun4i_drv.c                         | 1 +
+ drivers/gpu/drm/sun4i/sun4i_frontend.c                    | 1 +
+ drivers/gpu/drm/sun4i/sun8i_mixer.c                       | 1 +
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c                    | 1 +
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c                    | 1 +
+ drivers/gpu/drm/sysfb/efidrm.c                            | 1 +
+ drivers/gpu/drm/sysfb/ofdrm.c                             | 1 +
+ drivers/gpu/drm/sysfb/simpledrm.c                         | 1 +
+ drivers/gpu/drm/sysfb/vesadrm.c                           | 1 +
+ drivers/gpu/drm/tegra/dc.c                                | 1 +
+ drivers/gpu/drm/tegra/drm.c                               | 1 +
+ drivers/gpu/drm/tegra/dsi.c                               | 1 +
+ drivers/gpu/drm/tegra/fb.c                                | 1 +
+ drivers/gpu/drm/tegra/hdmi.c                              | 1 +
+ drivers/gpu/drm/tegra/hub.c                               | 1 +
+ drivers/gpu/drm/tegra/sor.c                               | 1 +
+ drivers/gpu/drm/tests/drm_mm_test.c                       | 1 +
+ drivers/gpu/drm/tidss/tidss_crtc.c                        | 1 +
+ drivers/gpu/drm/tidss/tidss_dispc.c                       | 1 +
+ drivers/gpu/drm/tiny/bochs.c                              | 1 +
+ drivers/gpu/drm/tiny/cirrus-qemu.c                        | 1 +
+ drivers/gpu/drm/tiny/gm12u320.c                           | 1 +
+ drivers/gpu/drm/tiny/hx8357d.c                            | 1 +
+ drivers/gpu/drm/tiny/ili9163.c                            | 1 +
+ drivers/gpu/drm/tiny/ili9225.c                            | 1 +
+ drivers/gpu/drm/tiny/ili9341.c                            | 1 +
+ drivers/gpu/drm/tiny/ili9486.c                            | 1 +
+ drivers/gpu/drm/tiny/mi0283qt.c                           | 1 +
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c                     | 1 +
+ drivers/gpu/drm/tiny/pixpaper.c                           | 1 +
+ drivers/gpu/drm/tiny/repaper.c                            | 1 +
+ drivers/gpu/drm/ttm/ttm_bo.c                              | 1 +
+ drivers/gpu/drm/ttm/ttm_resource.c                        | 1 +
+ drivers/gpu/drm/ttm/ttm_tt.c                              | 1 +
+ drivers/gpu/drm/tve200/tve200_display.c                   | 1 +
+ drivers/gpu/drm/udl/udl_edid.c                            | 1 +
+ drivers/gpu/drm/v3d/v3d_bo.c                              | 2 ++
+ drivers/gpu/drm/v3d/v3d_debugfs.c                         | 1 +
+ drivers/gpu/drm/v3d/v3d_drv.c                             | 1 +
+ drivers/gpu/drm/v3d/v3d_gem.c                             | 1 +
+ drivers/gpu/drm/v3d/v3d_gemfs.c                           | 2 ++
+ drivers/gpu/drm/v3d/v3d_irq.c                             | 2 ++
+ drivers/gpu/drm/v3d/v3d_sched.c                           | 1 +
+ drivers/gpu/drm/v3d/v3d_submit.c                          | 1 +
+ drivers/gpu/drm/vc4/vc4_bo.c                              | 1 +
+ drivers/gpu/drm/vc4/vc4_debugfs.c                         | 1 +
+ drivers/gpu/drm/vc4/vc4_dpi.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_drv.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_dsi.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_gem.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_hdmi.c                            | 1 +
+ drivers/gpu/drm/vc4/vc4_hvs.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_irq.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_kms.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_perfmon.c                         | 2 ++
+ drivers/gpu/drm/vc4/vc4_plane.c                           | 1 +
+ drivers/gpu/drm/vc4/vc4_render_cl.c                       | 2 ++
+ drivers/gpu/drm/vc4/vc4_txp.c                             | 1 +
+ drivers/gpu/drm/vc4/vc4_v3d.c                             | 2 ++
+ drivers/gpu/drm/vc4/vc4_validate.c                        | 2 ++
+ drivers/gpu/drm/vc4/vc4_validate_shaders.c                | 2 ++
+ drivers/gpu/drm/vc4/vc4_vec.c                             | 1 +
+ drivers/gpu/drm/virtio/virtgpu_debugfs.c                  | 1 +
+ drivers/gpu/drm/virtio/virtgpu_display.c                  | 1 +
+ drivers/gpu/drm/virtio/virtgpu_drv.c                      | 1 +
+ drivers/gpu/drm/virtio/virtgpu_kms.c                      | 1 +
+ drivers/gpu/drm/virtio/virtgpu_object.c                   | 2 ++
+ drivers/gpu/drm/virtio/virtgpu_plane.c                    | 1 +
+ drivers/gpu/drm/virtio/virtgpu_vq.c                       | 1 +
+ drivers/gpu/drm/vkms/vkms_composer.c                      | 1 +
+ drivers/gpu/drm/vkms/vkms_crtc.c                          | 1 +
+ drivers/gpu/drm/vkms/vkms_drv.c                           | 1 +
+ drivers/gpu/drm/vkms/vkms_output.c                        | 1 +
+ drivers/gpu/drm/vkms/vkms_plane.c                         | 1 +
+ drivers/gpu/drm/vkms/vkms_writeback.c                     | 1 +
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                       | 1 +
+ drivers/gpu/drm/xe/xe_heci_gsc.c                          | 2 ++
+ drivers/gpu/drm/xe/xe_tuning.c                            | 1 +
+ drivers/gpu/drm/xen/xen_drm_front.c                       | 1 +
+ drivers/gpu/drm/xen/xen_drm_front_gem.c                   | 1 +
+ drivers/gpu/drm/xen/xen_drm_front_kms.c                   | 1 +
+ include/drm/drm_buddy.h                                   | 2 +-
+ include/drm/drm_mm.h                                      | 2 +-
+ include/drm/ttm/ttm_resource.h                            | 3 ++-
+ 328 files changed, 417 insertions(+), 7 deletions(-)
+
+-- 
+2.47.3
+
