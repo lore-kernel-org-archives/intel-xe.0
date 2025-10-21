@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18EFECCD1A5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC165CCD1BC
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 22:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D000510E665;
-	Tue, 21 Oct 2025 22:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A47AA10E666;
+	Tue, 21 Oct 2025 22:46:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lW03ZPKv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQvuBcB2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2338110E665
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 22:46:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767CB10E665
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 22:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761086766; x=1792622766;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jKkUhVUCbOIskeOgB904tk/o/YvaY1HylIVgV4LmY4k=;
- b=lW03ZPKvj3Xg3tPYq7m1oPgk6gB937Hz0dF4eNvfuW+gs9JirbaM2fSn
- xa/wD5i/Rfnf/dpi41IIAPn26MkZ3TE5ILOmHAZQxHozQ0RApPg8ypYCX
- OZCPzuh49EK7t0s36AoLnO0E8ZiU9pxz3ZsJqePmSIbxl7kFYRrtqnPZo
- ZNMXlnMwvcBcyBdHg/7+LjcOxW4BblzZyUwv5eviu1eCn9mD2avna5i6r
- +r84rvWHt0u+9dgqOYmdVco8LNCKU1m/+Quv/F376YE3YcpUS0vZ3yEQZ
- NTvKc5Q60B4sijwubgWKVIhe+cAaw1QX4WODjph/YPt7SbSipNCXZFOQE A==;
-X-CSE-ConnectionGUID: NsO+PD8nQyGLac1quj3E5Q==
-X-CSE-MsgGUID: YChyEZIQSSiiOiKdWpWgHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63128909"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63128909"
+ bh=ywZ7p3gEf75nefTxxjDIyY9XE3BR3out5ND8y3oICS4=;
+ b=WQvuBcB2GhbGIgqXHURlKpJObaZvDe6lH40C8yYZ8eOFXIJaLG8+wRO4
+ iGfImIRUWXJKE9nsrnAxbu6zZ2OXQuskx9jWBdWoO8/ppCYL2G09BeQPC
+ bjr8T5hkJ9uZgBP6+ZGaAmvcdU9/jBg+AzWqxRHPViqnDk8dqbasTNpvU
+ HlY5KbzjDEug7crYUooxleUgkV6Pc1I5/gIuss8SqBukTbFQ4OfQiRAUq
+ lH7TXF/x3WWi9iGFnZqhpZ4bsk575Tes/LUQb7k6aohhl6GMWIsI6P9FX
+ Bb+jwjmMFcA8rQwkasOmGRZJPFcVSeW1nucbQMuZy/AHnlnzOkHlwwELk w==;
+X-CSE-ConnectionGUID: TrNrDhv8SkilwIiuItiawg==
+X-CSE-MsgGUID: ZUOPVxEVTYKX0FGW18jx4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63128906"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63128906"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 15:46:06 -0700
-X-CSE-ConnectionGUID: z75mHB5TRB+2g1nkvZf6Ew==
-X-CSE-MsgGUID: 0Yiz/EQJQ52aVHqfi25+Tg==
+X-CSE-ConnectionGUID: WKXhtCFFS4mpTJy4f9xfHw==
+X-CSE-MsgGUID: CjoE3gVpQGaiDa/FUcib8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="187982627"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="187982618"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 15:46:06 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 2/2] drm/xe/xe3p_xpc: Add MCR steering for NODE and L3BANK
- ranges
-Date: Tue, 21 Oct 2025 15:45:56 -0700
-Message-ID: <20251021224556.437970-3-matthew.d.roper@intel.com>
+Subject: [PATCH 1/2] drm/xe/xe3p_xpc: Treat all PSMI MCR ranges as "INSTANCE0"
+Date: Tue, 21 Oct 2025 15:45:55 -0700
+Message-ID: <20251021224556.437970-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251021224556.437970-1-matthew.d.roper@intel.com>
 References: <20251021224556.437970-1-matthew.d.roper@intel.com>
@@ -67,133 +66,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The bspec was originally missing the information related to steering of
-L3-related ranges.  Now that a late-breaking spec update has added the
-necessary information, implement the steering rules in the code.  Note
-that the sole L3BANK range is the same as the one used on Xe_LPG, so we
-can re-use the existing table for that MCR type.
+Early versions of the B-spec originally indicated that Xe3p_XPC had two
+ranges of PSMI registers requiring MCR steering (one starting at 0xB500,
+one starting at 0xB600), and that reads of registers in these ranges
+required different grpid values to ensure that a non-terminated value is
+obtained.  A late-breaking spec update has simplified this; both ranges
+can be safely steered to grpid=0 for reads.
+
+Drop the "PSMI19" replication type and related code, and consolidate
+both register ranges into a single entry in the "INSTANCE0" steering
+table.
 
 Bspec: 74418
 Fixes: be614ea19dad ("drm/xe/xe3p_xpc: Add MCR steering")
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_mcr.c      | 27 +++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_topology.c |  7 +++++++
- drivers/gpu/drm/xe/xe_gt_topology.h |  2 ++
- drivers/gpu/drm/xe/xe_gt_types.h    |  1 +
- 4 files changed, 35 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c   | 15 +--------------
+ drivers/gpu/drm/xe/xe_gt_types.h |  8 --------
+ 2 files changed, 1 insertion(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 0b4b617d413b..42e764564ee3 100644
+index 81ecd9382635..0b4b617d413b 100644
 --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
 +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -268,6 +268,12 @@ static const struct xe_mmio_range xe3p_xpc_gam_grp1_steering_table[] = {
+@@ -268,13 +268,8 @@ static const struct xe_mmio_range xe3p_xpc_gam_grp1_steering_table[] = {
  	{},
  };
  
-+static const struct xe_mmio_range xe3p_xpc_node_steering_table[] = {
-+	{ 0x00B000, 0x00B0FF },
-+	{ 0x00D880, 0x00D8FF },
-+	{},
-+};
-+
+-static const struct xe_mmio_range xe3p_xpc_psmi_grp19_steering_table[] = {
+-	{ 0x00B500, 0x00B5FF },
+-	{},
+-};
+-
  static const struct xe_mmio_range xe3p_xpc_instance0_steering_table[] = {
- 	{ 0x00B500, 0x00B6FF },		/* PSMI */
+-	{ 0x00B600, 0x00B6FF },		/* PSMI0 */
++	{ 0x00B500, 0x00B6FF },		/* PSMI */
  	{ 0x00C800, 0x00CFFF },		/* GAMCTRL */
-@@ -277,9 +283,23 @@ static const struct xe_mmio_range xe3p_xpc_instance0_steering_table[] = {
+ 	{ 0x00F000, 0x00F0FF },		/* GAMCTRL */
+ 	{},
+@@ -452,12 +447,6 @@ static void init_steering_sqidi_psmi(struct xe_gt *gt)
+ 	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
+ }
  
- static void init_steering_l3bank(struct xe_gt *gt)
+-static void init_steering_psmi(struct xe_gt *gt)
+-{
+-	gt->steering[PSMI19].group_target = 19;
+-	gt->steering[PSMI19].instance_target = 0;
+-}
+-
+ static void init_steering_gam1(struct xe_gt *gt)
  {
-+	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_mmio *mmio = &gt->mmio;
- 
--	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
-+	if (GRAPHICS_VER(xe) >= 35) {
-+		unsigned int first_bank = xe_l3_bank_mask_ffs(gt->fuse_topo.l3_bank_mask);
-+		const int banks_per_node = 4;
-+		const int nodes_per_grp = 2;
-+		unsigned int node = first_bank / banks_per_node;
-+
-+		/* L3BANK ranges place node in grpID, bank in instanceid */
-+		gt->steering[L3BANK].group_target = node;
-+		gt->steering[L3BANK].instance_target = first_bank % banks_per_node;
-+
-+		/* NODE ranges split the node across grpid and instanceid */
-+		gt->steering[NODE].group_target = node / nodes_per_grp;
-+		gt->steering[NODE].instance_target = node % nodes_per_grp;
-+	} else if (GRAPHICS_VERx100(xe) >= 1270) {
- 		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
- 						xe_mmio_read32(mmio, MIRROR_FUSE3));
- 		u32 bank_mask = REG_FIELD_GET(GT_L3_EXC_MASK,
-@@ -292,7 +312,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
- 		gt->steering[L3BANK].group_target = __ffs(mslice_mask);
- 		gt->steering[L3BANK].instance_target =
- 			bank_mask & BIT(0) ? 0 : 2;
--	} else if (gt_to_xe(gt)->info.platform == XE_DG2) {
-+	} else if (xe->info.platform == XE_DG2) {
- 		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
- 						xe_mmio_read32(mmio, MIRROR_FUSE3));
- 		u32 bank = __ffs(mslice_mask) * 8;
-@@ -458,6 +478,7 @@ static const struct {
- 	void (*init)(struct xe_gt *gt);
- } xe_steering_types[] = {
- 	[L3BANK] =	{ "L3BANK",	init_steering_l3bank },
-+	[NODE] =	{ "NODE",	NULL }, /* initialized by l3bank init */
- 	[MSLICE] =	{ "MSLICE",	init_steering_mslice },
- 	[LNCF] =	{ "LNCF",	NULL }, /* initialized by mslice init */
+ 	gt->steering[GAM1].group_target = 1;
+@@ -474,7 +463,6 @@ static const struct {
  	[DSS] =		{ "DSS / XeCore", init_steering_dss },
-@@ -512,6 +533,8 @@ void xe_gt_mcr_init_early(struct xe_gt *gt)
+ 	[OADDRM] =	{ "OADDRM / GPMXMT", init_steering_oaddrm },
+ 	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
+-	[PSMI19] =	{ "PSMI[19]",	init_steering_psmi },
+ 	[GAM1] =	{ "GAMWKRS / STLB / GAMREQSTRM", init_steering_gam1 },
+ 	[INSTANCE0] =	{ "INSTANCE 0",	NULL },
+ 	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
+@@ -524,7 +512,6 @@ void xe_gt_mcr_init_early(struct xe_gt *gt)
  			gt->steering[DSS].ranges = xe3p_xpc_xecore_steering_table;
  			gt->steering[GAM1].ranges = xe3p_xpc_gam_grp1_steering_table;
  			gt->steering[INSTANCE0].ranges = xe3p_xpc_instance0_steering_table;
-+			gt->steering[L3BANK].ranges = xelpg_l3bank_steering_table;
-+			gt->steering[NODE].ranges = xe3p_xpc_node_steering_table;
+-			gt->steering[PSMI19].ranges = xe3p_xpc_psmi_grp19_steering_table;
  		} else if (GRAPHICS_VER(xe) >= 20) {
  			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
  			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 1e0516ba7422..bd5260221d8d 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -309,6 +309,13 @@ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum)
- 	return find_next_bit(mask, XE_MAX_DSS_FUSE_BITS, groupnum * groupsize);
- }
- 
-+/* Used to obtain the index of the first L3 bank. */
-+unsigned int
-+xe_l3_bank_mask_ffs(const xe_l3_bank_mask_t mask)
-+{
-+	return find_first_bit(mask, XE_MAX_L3_BANK_MASK_BITS);
-+}
-+
- /**
-  * xe_gt_topology_has_dss_in_quadrant - check fusing of DSS in GT quadrant
-  * @gt: GT to check
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-index 3ff40f44bf2a..162d603c9b81 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.h
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-@@ -40,6 +40,8 @@ xe_gt_topology_mask_last_dss(const xe_dss_mask_t mask)
- 
- unsigned int
- xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
-+unsigned int
-+xe_l3_bank_mask_ffs(const xe_l3_bank_mask_t mask);
- 
- bool
- xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
 diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 6e9c84b33b60..0b525643a048 100644
+index d93faa1eedef..6e9c84b33b60 100644
 --- a/drivers/gpu/drm/xe/xe_gt_types.h
 +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -66,6 +66,7 @@ struct xe_mmio_range {
-  */
- enum xe_steering_type {
- 	L3BANK,
-+	NODE,
- 	MSLICE,
- 	LNCF,
- 	DSS,
+@@ -72,14 +72,6 @@ enum xe_steering_type {
+ 	OADDRM,
+ 	SQIDI_PSMI,
+ 
+-	/*
+-	 * The bspec lists multiple ranges as "PSMI," but the different
+-	 * ranges with that label have different grpid steering values so we
+-	 * treat them independently in code.  Note that the ranges with grpid=0
+-	 * are included in the INSTANCE0 group above.
+-	 */
+-	PSMI19,
+-
+ 	/*
+ 	 * Although most GAM ranges must be steered to (0,0) and thus use the
+ 	 * INSTANCE0 type farther down, some platforms have special rules
 -- 
 2.51.0
 
