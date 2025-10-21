@@ -4,37 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2217BCCD1AB
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 12:18:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C316ACCD184
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 12:38:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAE7310E5D6;
-	Tue, 21 Oct 2025 12:18:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87C6310E5D7;
+	Tue, 21 Oct 2025 12:38:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="J5N6TcrG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QP+5SRsT";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3D2A10E5D7
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 12:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761049107;
- bh=/FmSwV/CfwtxlUNe0nyziFi3cvIentsEyeEoYEPnhpg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=J5N6TcrGckcazKHqzpapedHGaf2eS6F+iNsVFKivqjnL8oS69Uh/rMg6pM0D9u/ar
- JuczPw1cj/mi7+u0gGRizLGUF5ptPkyS8xsNW6MZ0A32oLg4cdXesH30sh86ImpkBD
- bUzryKM3cmi2CDf07nbyiJKVe2dODWTAzSjIowC4BulBFR0AWBdDQtCIwcNSohqlEp
- 1C9mYqo2PBHxoYsXTvxfDn/o3YKBFWG2WaANhah5q21ZHaDserSK25qkKPG4ggEw6G
- amtLrAkHCURzyZibEVr/v70tQygVvYCZ4s6Sbg8cMTF4mTfXBoBO9F55u0Rh0vAuI2
- TPg2z+oButGkg==
-From: Maarten Lankhorst <dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBD2D10E5D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 12:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761050302; x=1792586302;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N6tBPjJAKYTKih4pqgMlKyNFE3NmNnDDWCxKvaLtUb4=;
+ b=QP+5SRsT4wf5LmTIS1Vem569Dh1m/V0kmP4mkKKtoWV6WNVpkOyD9D6F
+ 2VV1VhQ0xrhVxjEzpHqa3O8HJm/4pH2m9h/jMK5IMmIGhf/zFJMSao/s2
+ m9ML9TzWI+ijHF4JDzTqs2Ukx7Nh4bOouMHeTfXSQ+RjLf7vH7Y+pRROY
+ 2Ay4A/N4Tw08Jb4X6GODovSMJQoInZFW85FsrDCXwn4G1A3A3mXljheYR
+ szmbrHw4bTPJf2mkpV4ajdqmwPsr7qzdA2DYLzty79Uee6G1VH5hYm4AH
+ RagyIssvez+suA4KBVwvAYkrpw/TgxeWT97LwZPc7rtQeepoaIMTPqaNC Q==;
+X-CSE-ConnectionGUID: gcAFdiPhTVGWwW0SdCWPxg==
+X-CSE-MsgGUID: HxwPNWvRTe69uqp+MBinLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50747432"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="50747432"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2025 05:38:21 -0700
+X-CSE-ConnectionGUID: 2BdcyjICQnaXOtqRHu4uSQ==
+X-CSE-MsgGUID: FbrUVoQaSoCW4FH09M4Y8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="187850336"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by orviesa004.jf.intel.com with ESMTP; 21 Oct 2025 05:38:20 -0700
+From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 4/7] drm/xe/display: Avoid dereferencing xe_ggtt_node
-Date: Tue, 21 Oct 2025 14:18:18 +0200
-Message-ID: <20251021121814.2193153-13-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251021121814.2193153-9-dev@lankhorst.se>
-References: <20251021121814.2193153-9-dev@lankhorst.se>
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v5 0/5] drm/xe/vf: Minor fixes to post-migration recovery
+Date: Tue, 21 Oct 2025 14:39:38 +0200
+Message-Id: <20251021123943.1436375-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -51,77 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start using xe_ggtt_node_addr, and avoid comparing the base offset
-as vma->node is dynamically allocated.
+The series contains few minor fixes, mostly related to VF driver probe.
 
-Also sneak in a xe_bo_size() for stolen, too small to put as separate commit.
+The fixes are not strictly related, but all go under VF migration category.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 4 ++--
- drivers/gpu/drm/xe/display/xe_fb_pin.c            | 4 ++--
- drivers/gpu/drm/xe/display/xe_stolen.c            | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+v2: Add fixing the currently broken GuC ABI check
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index 4465c40f81341..1c599963169a0 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -8,7 +8,7 @@
- 
- #include <uapi/drm/i915_drm.h>
- 
--#include "xe_ggtt_types.h"
-+#include "xe_ggtt.h"
- 
- #include <linux/refcount.h>
- 
-@@ -32,7 +32,7 @@ struct i915_vma {
- 
- static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
- {
--	return vma->node->base.start;
-+	return xe_ggtt_node_addr(vma->node);
- }
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d2e4903de0977..784d2db5fd0db 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -206,7 +206,7 @@ static void write_ggtt_rotated_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *n
- 	struct fb_rotate_args *args = data;
- 	struct xe_bo *bo = args->bo;
- 	const struct intel_rotation_info *rot_info = &args->view->rotated;
--	u32 ggtt_ofs = node->base.start;
-+	u32 ggtt_ofs = xe_ggtt_node_addr(node);
- 
- 	for (u32 i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
- 		write_ggtt_rotated(ggtt, &ggtt_ofs, pte_flags, write_pte,
-@@ -351,7 +351,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
- 	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id]->base.start != vma->node->base.start)
-+		 vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/display/xe_stolen.c b/drivers/gpu/drm/xe/display/xe_stolen.c
-index 9f04ba36e930b..ef5ef5aa8d847 100644
---- a/drivers/gpu/drm/xe/display/xe_stolen.c
-+++ b/drivers/gpu/drm/xe/display/xe_stolen.c
-@@ -100,7 +100,7 @@ u64 i915_gem_stolen_node_address(struct intel_stolen_node *node)
- 
- u64 i915_gem_stolen_node_size(const struct intel_stolen_node *node)
- {
--	return node->bo->ttm.base.size;
-+	return xe_bo_size(node->bo);
- }
- 
- struct intel_stolen_node *i915_gem_stolen_node_alloc(struct drm_device *drm)
+v3: Add separation of xe_sriov_vf_ccs_migration_bb_needed()
+
+v4: Remove platform version check, discard early MIGRATED ignore patch,
+ move and rename CCS BB check functions, switch target of "Fixes" tag
+
+Tomasz Lis (5):
+  drm/xe/vf: Helper for telling whether CCS migration BBs are needed
+  drm/xe/vf: Revert logic of vf.migration.enabled
+  drm/xe/vf: Fix GuC FW check for VF migration support
+  drm/xe: Assert that VF will never use fixed placement of BOs
+  drm/xe/vf: Do not disable VF migration on ATS-M
+
+ drivers/gpu/drm/xe/xe_bo.c             |  6 ++++
+ drivers/gpu/drm/xe/xe_sriov_vf.c       | 35 +++++---------------
+ drivers/gpu/drm/xe/xe_sriov_vf.h       |  1 +
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c   | 46 ++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h |  6 ++--
+ 5 files changed, 63 insertions(+), 31 deletions(-)
+
 -- 
-2.51.0
+2.25.1
 
