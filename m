@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C77FCCD1A5
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 21:51:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4112FCCD1AA
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 21:56:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB53F10E356;
-	Tue, 21 Oct 2025 21:51:42 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F4410E356;
- Tue, 21 Oct 2025 21:51:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0351824758912904785=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C7F10E356;
+	Tue, 21 Oct 2025 21:56:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eRd9u+dC";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71F610E356;
+ Tue, 21 Oct 2025 21:56:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4590143792;
+ Tue, 21 Oct 2025 21:56:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0691BC4CEF1;
+ Tue, 21 Oct 2025 21:56:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1761083791;
+ bh=tn/a6WHLadou31z535LBNqrmC7LbXls2FWTKbAvQB44=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=eRd9u+dCJ/osx7ugH9jA/vgDMJ4qfg7fLSAVYvCd02joXklysuKX78fnWaQV+vgk4
+ t/r3vZXaPeXgKlMWM60T1InzHb8BD6S703rZmfcSUVHcVvNiDBf4MJj9oxgJqEMBTg
+ 33Hhhs7drXxn7juiKlXZqUofsXzMjboGC0W99Ie87RllxdUIf7j2mm9JUW4nJQA435
+ riMSAIbQp5RYlnyuy6mgEAWJiH0/IN/8/6X6kxDY9QC2jS2dDvU+tAohh2vEbig0kQ
+ E2WDbYVcpjXF/cI1QwlOZFF+p2LYuobBGhlkYLaZLkOuW3yiKevc/ItnxNvbbnqJ5y
+ 1Tj9wI0zMt3uQ==
+Date: Tue, 21 Oct 2025 11:56:30 -1000
+From: Tejun Heo <tj@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, jiangshanlai@gmail.com,
+ simona.vetter@ffwll.ch, christian.koenig@amd.com,
+ pstanner@redhat.com, dakr@kernel.org
+Subject: Re: [RFC PATCH 1/3] workqueue: Add an interface to taint workqueue
+ lockdep with reclaim
+Message-ID: <aPgBjmIm6n9H-R_u@slm.duckdns.org>
+References: <20251021213952.746900-1-matthew.brost@intel.com>
+ <20251021213952.746900-2-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Make_sched=5Fi?=
- =?utf-8?q?f=5Fidle_debugfs_attribute_write-only?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Oct 2025 21:51:41 -0000
-Message-ID: <176108350194.37900.2724421606658136917@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251021210549.2114-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20251021210549.2114-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251021213952.746900-2-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +57,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0351824758912904785==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello,
 
-== Series Details ==
+On Tue, Oct 21, 2025 at 02:39:50PM -0700, Matthew Brost wrote:
+> Drivers often use workqueues that are in the reclaim path (e.g., DRM
+> scheduler workqueues). It is useful to teach lockdep that memory cannot
+> be allocated on these workqueues. Add an interface to taint workqueue
+> lockdep with reclaim.
 
-Series: drm/xe/pf: Make sched_if_idle debugfs attribute write-only
-URL   : https://patchwork.freedesktop.org/series/156282/
-State : success
+Given that it's about reclaim, "memory cannot be allocated" may be a bit
+misleading. Can you make the description more accurate? Also, it'd be great
+if you can include an example lockdep splat for reference.
 
-== Summary ==
+> Cc: Tejun Heo <tj@kernel.org>
+> Cc: Lai Jiangshan <jiangshanlai@gmail.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  include/linux/workqueue.h | 19 +++++++++++++++++++
+>  kernel/workqueue.c        |  9 +++++++++
+>  2 files changed, 28 insertions(+)
+> 
+> diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
+> index dabc351cc127..954c7eb7e225 100644
+> --- a/include/linux/workqueue.h
+> +++ b/include/linux/workqueue.h
+> @@ -553,6 +553,25 @@ alloc_workqueue_lockdep_map(const char *fmt, unsigned int flags, int max_active,
+>  						1, lockdep_map, ##args))
+>  #endif
+>  
+> +
+> +#ifdef CONFIG_LOCKDEP
+> +/**
+> + * taint_reclaim_workqueue - taint workqueue lockdep map with reclaim
+> + * @wq: workqueue to taint with reclaim
+> + * gfp: gfp taint
+      ^@
 
-CI Bug Log - changes from xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9_BAT -> xe-pw-156282v1_BAT
-====================================================
+> + *
+> + * Drivers often use workqueues that are in the reclaim path (e.g., DRM
+> + * scheduler workqueues). It is useful to teach lockdep that memory cannot be
+> + * allocated on these workqueues.
+> + */
+> +extern void taint_reclaim_workqueue(struct workqueue_struct *wq, gfp_t gfp);
+> +#else
+> +static inline void taint_reclaim_workqueue(struct workqueue_struct *wq,
+> +					   gfp_t gfp)
 
-Summary
--------
+Would a more direct name work better, maybe something like
+workqueue_warn_on_reclaim()?
 
-  **SUCCESS**
+Hmm... would it make sense to tie this to WQ_MEM_RECLAIM - ie. enable it
+implicitly on workqueues w/ the flag set?
 
-  No regressions found.
+Thanks.
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9 -> xe-pw-156282v1
-
-  IGT_8594: 8594
-  xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9: 5acc066ba12429f73a2ab0fa61202499f21176e9
-  xe-pw-156282v1: 156282v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156282v1/index.html
-
---===============0351824758912904785==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Make sched_if_idle debugfs attribute write-only</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156282/">https://patchwork.freedesktop.org/series/156282/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156282v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156282v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9_BAT -&gt; xe-pw-156282v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9 -&gt; xe-pw-156282v1</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  xe-3960-5acc066ba12429f73a2ab0fa61202499f21176e9: 5acc066ba12429f73a2ab0fa61202499f21176e9<br />
-  xe-pw-156282v1: 156282v1</p>
-
-</body>
-</html>
-
---===============0351824758912904785==--
+-- 
+tejun
