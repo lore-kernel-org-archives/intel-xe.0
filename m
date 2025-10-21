@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22A46CCD1A5
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 10:19:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74268CCD1A5
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 10:44:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DABB810E2EA;
-	Tue, 21 Oct 2025 10:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D82AD10E303;
+	Tue, 21 Oct 2025 10:44:54 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92A2110E2EA;
- Tue, 21 Oct 2025 10:19:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 199BD10E303;
+ Tue, 21 Oct 2025 10:44:54 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2375869012828294481=="
+ boundary="===============8417713625592728018=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_PF=3A_Add_sriov=5Fadmin_sy?=
- =?utf-8?q?sfs_tree?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/vrr=3A_A_few_fixes?=
+ =?utf-8?q?_and_a_bunch_of_cleanup?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Oct 2025 10:19:56 -0000
-Message-ID: <176104199659.36252.10132609767275995012@97596180aaec>
+Date: Tue, 21 Oct 2025 10:44:54 -0000
+Message-ID: <176104349409.36332.13096482356019167893@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251020182414.576-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20251020182414.576-1-michal.wajdeczko@intel.com>
+References: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251020185038.4272-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +40,68 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2375869012828294481==
+--===============8417713625592728018==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: PF: Add sriov_admin sysfs tree
-URL   : https://patchwork.freedesktop.org/series/156220/
-State : failure
+Series: drm/i915/vrr: A few fixes and a bunch of cleanup
+URL   : https://patchwork.freedesktop.org/series/156222/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a_FULL' does not exist in the database
+CI Bug Log - changes from xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a_BAT -> xe-pw-156222v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156222v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156222v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a -> xe-pw-156222v1
+
+  IGT_8594: 8594
+  xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a: aae2e4df375e567f00c8d494004cf6a34a73d75a
+  xe-pw-156222v1: 156222v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156220v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156222v1/index.html
 
---===============2375869012828294481==
+--===============8417713625592728018==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +121,40 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>PF: Add sriov_admin sysfs tree</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156220/">https://patchwork.freedesktop.org/series/156220/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/vrr: A few fixes and a bunch of cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156222/">https://patchwork.freedesktop.org/series/156222/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156220v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156220v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156222v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156222v1/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a_FULL' does not exist in the database</p>
+    <h1>CI Bug Log - changes from xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a_BAT -&gt; xe-pw-156222v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156222v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156222v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a -&gt; xe-pw-156222v1</li>
+</ul>
+<p>IGT_8594: 8594<br />
+  xe-3951-aae2e4df375e567f00c8d494004cf6a34a73d75a: aae2e4df375e567f00c8d494004cf6a34a73d75a<br />
+  xe-pw-156222v1: 156222v1</p>
 
 </body>
 </html>
 
---===============2375869012828294481==--
+--===============8417713625592728018==--
