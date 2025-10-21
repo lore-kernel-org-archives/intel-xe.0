@@ -4,83 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28FFFCCD1BE
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 12:46:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC94CCD1BE
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 12:56:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E00CE10E408;
-	Thu, 23 Oct 2025 12:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B8C10E0EA;
+	Thu, 23 Oct 2025 12:56:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="Tvh6ZnD+";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TLmFnjHZ";
 	dkim-atps=neutral
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC9A10E401
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 12:46:29 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-4711825a02bso6418545e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 05:46:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1761223588; x=1761828388;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=iB1/PHTynWWQSwUib5CQUaKSICfkQAV9+f4SXtrGOZo=;
- b=Tvh6ZnD+JAvSpmXsThtInclOEYbmIBflXNjkJx0+Wq2sJAsyPoDEGqp+ZfqzUAlWsN
- HXrbeS0G9T+Y0kEQOb8vnfwJy3FN166wHytj2ZIW09Y0U/yvgfPI3YyrNLwky0Hlkvjs
- PUSN+RHUj4se6fDDM4HlnV0vNV/7+XPDhMvbRZrkJCE3o7kNfKRJtFkKBbJhcRafrWIG
- DdJEtwrWqGgS6n0x1oVhn16dLRoQZuiaZP3mVJe7Zw1y0TjadKbQt3xL50mYgWiopKc0
- e7ikbMyxJQrJY6Hij6sQ6TQuYAgjTYeNJnki6bn9lQBrPuFAnGTKabMrmfNjLBjPBPaz
- yqOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761223588; x=1761828388;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=iB1/PHTynWWQSwUib5CQUaKSICfkQAV9+f4SXtrGOZo=;
- b=dS8/0TJoXqq5QbKvrU5QNol0d41Qqoy4397xTyFY6dodDMJ0WHWkwwBsNPrXKerAw+
- 984GI0VaWhBH9BMLjMcdKCxUe7zr3fAtO3bHFt1dEr5BP/zmqxyOe6IPNOZjxkKup9zo
- ZjtgEi0VtLMUjRbE2NOsIIo3E51RR9pFJqXY1Vw/Sd2DbN50gOgw2cz4vdh80k6D1pwV
- kyjYNBFuMghN07DUSlLnrCC5Phej0Aizk0Kh1R+DJuavb6qMnloUPbZNepHzotwv5Ilt
- jKxBOdVB3uhOhkIfrdnSkJhqvWtSAwD2s64QE9Flzv9l+txJ37vkiG8oKxsClArIpjd5
- J3Uw==
-X-Gm-Message-State: AOJu0YytP9ZsXf286dK2078OLspflf6PfnRVNliv98Vhrspt6bwcauc0
- ngqdN9JTupiWHtC8S5H6iAr/tsr3y/31hrT1VUEueS1A+gUCq7cL11Z2ynWEKltjcm6KdSSjY8R
- fU1WS
-X-Gm-Gg: ASbGncsts8pgSys5IYyl+kwM2AnayrjV6+F4Ioyak06Af89NnxNPlMqDXS7mUaLH8Ws
- X9oe3m2dp3iyDq4zrgdskzH+5eTR2Gn94YgIQ8jP8yPHnap2hKeVwooinJRBCtl4VbTX/IbmCmY
- npr17RWeyMuJ7NkKGohf2rQ69QaeUiHoJn5XQB192iRXaBh92AKQhLwUtdVGjFEBOWR+rAl6vhc
- GK7RUX3LvGH+SuKrQgH9aiHpxBJQegvcmlDq1UVWPyuoUmEaEIArzSHyaJOGNrl4NDwgrZ/BGA1
- jhPaUJ+BIlhDK3g4V5snyg/XCBRdrt85V9rkE43+etSwDa2GwdMg4cX+KTzVbbUl+OqIn/I6Y6R
- idF2hLvSU/LjVKy3z7eq6ICZTN8SFDMhzD3TgG0hDmLThK/6rTERfHY0mlhxBNlqgqPCV1C4fZg
- 2QjmpS4cqTvV20b6t4U88cge8f0g==
-X-Google-Smtp-Source: AGHT+IFLAoLnDjRO9HSnmVcg9P/PLFNzXKC0A+P6Wi6dwPdWGyf9Jete5iuUrMsKqLP4bYeTkSB62w==
-X-Received: by 2002:a05:600c:444d:b0:471:1306:aa0f with SMTP id
- 5b1f17b1804b1-4711791fa1amr151656445e9.38.1761223587481; 
- Thu, 23 Oct 2025 05:46:27 -0700 (PDT)
-Received: from [192.168.0.101] ([90.242.12.242])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-47496c2c9dasm60184995e9.4.2025.10.23.05.46.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 Oct 2025 05:46:26 -0700 (PDT)
-Message-ID: <24e3535c-6729-4c48-a350-d32421688bc6@ursulin.net>
-Date: Thu, 23 Oct 2025 13:46:26 +0100
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD5B910E5EA;
+ Tue, 21 Oct 2025 13:29:12 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id A6D036A6;
+ Tue, 21 Oct 2025 15:27:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1761053248;
+ bh=TdmnHYraVLXyq2KpB8KKjs8nVP++3l4uw6Cj2Qx6icU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TLmFnjHZ7QGrJGGch1/PS5cm/SEPmEHLgfnRuKGU633tUbrafTejahnxqwDqb8WUA
+ BzvQIu/AKRvUSlGdmWCAqjQjW9PUt5VL1fWjA2Ktkz5YhQDUq8+cEhbqslGSWERmTI
+ Acn2+DbnOn3ka05kWMPm1BmHMJcyPmrIx4Z+WbUg=
+Message-ID: <5ae8b52a-ff6c-4ab6-b2e6-83bd858b206a@ideasonboard.com>
+Date: Tue, 21 Oct 2025 16:29:08 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/xe: Avoid serializing unbind jobs on prior TLB
- invalidations
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, carlos.santa@intel.com,
- thomas.hellstrom@linux.intel.com, Philipp Stanner <phasta@kernel.org>
-References: <20251017165217.493595-1-matthew.brost@intel.com>
- <20251017165217.493595-2-matthew.brost@intel.com>
- <f7f83835-adaa-426a-94a5-21ad3bb240ff@ursulin.net>
- <aPjz5BHrNbUBUk8L@lstrano-desk.jf.intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <aPjz5BHrNbUBUk8L@lstrano-desk.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/4] drm/client: Add client free callback to unprepare
+ fb_helper
+To: Thomas Zimmermann <tzimmermann@suse.de>, jfalempe@redhat.com,
+ javierm@redhat.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org
+References: <20251009132006.45834-1-tzimmermann@suse.de>
+ <20251009132006.45834-2-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251009132006.45834-2-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 23 Oct 2025 12:56:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,336 +105,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 22/10/2025 16:10, Matthew Brost wrote:
-> On Wed, Oct 22, 2025 at 09:00:47AM +0100, Tvrtko Ursulin wrote:
->>
->> On 17/10/2025 17:52, Matthew Brost wrote:
->>> When a burst of unbind jobs is issued, a dependency chain can form
->>> between the TLB invalidation of a previous unbind job and the current
->>> one. This leads to undesirable serialization, causing current jobs to
->>> wait unnecessarily for prior TLB invalidations, execute on the GPU when
->>> not needed, and significantly slow down the unbind burst—resulting in up
->>> to a 4× slowdown.
->>>
->>> To break this chain, mask the last bind queue dependency if the last
->>> fence's DMA context matches the TLB invalidation context. This allows
->>> full pipelining of unbinds and TLB invalidations while preserving
->>> correct dma-fence signaling semantics.
->>>
->>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6047
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_exec.c          |  3 +-
->>>    drivers/gpu/drm/xe/xe_exec_queue.c    | 18 +++++++++--
->>>    drivers/gpu/drm/xe/xe_exec_queue.h    |  3 +-
->>>    drivers/gpu/drm/xe/xe_pt.c            | 15 +++++++--
->>>    drivers/gpu/drm/xe/xe_sched_job.c     | 44 ++++++++++++++++++++++++++-
->>>    drivers/gpu/drm/xe/xe_sched_job.h     |  7 ++++-
->>>    drivers/gpu/drm/xe/xe_tlb_inval_job.c | 14 +++++++++
->>>    drivers/gpu/drm/xe/xe_tlb_inval_job.h |  2 ++
->>>    8 files changed, 98 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
->>> index 0dc27476832b..6034cfc8be06 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec.c
->>> @@ -294,7 +294,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>>    		goto err_put_job;
->>>    	if (!xe_vm_in_lr_mode(vm)) {
->>> -		err = xe_sched_job_last_fence_add_dep(job, vm);
->>> +		err = xe_sched_job_last_fence_add_dep(job, vm, NO_MASK_DEP,
->>> +						      NO_MASK_DEP);
->>>    		if (err)
->>>    			goto err_put_job;
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> index 90cbc95f8e2e..d6f69d9bccba 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->>> @@ -25,6 +25,7 @@
->>>    #include "xe_migrate.h"
->>>    #include "xe_pm.h"
->>>    #include "xe_ring_ops_types.h"
->>> +#include "xe_sched_job.h"
->>>    #include "xe_trace.h"
->>>    #include "xe_vm.h"
->>>    #include "xe_pxp.h"
->>> @@ -1106,11 +1107,17 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
->>>     * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
->>>     * @q: The exec queue
->>>     * @vm: The VM the engine does a bind or exec for
->>> + * @mask_ctx0: Mask dma-fence context0
->>> + * @mask_ctx1: Mask dma-fence context1
->>> + *
->>> + * Test last fence dependency of queue, skipping masked dma fence contexts.
->>>     *
->>>     * Returns:
->>> - * -ETIME if there exists an unsignalled last fence dependency, zero otherwise.
->>> + * -ETIME if there exists an unsignalled and unmasked last fence dependency,
->>> + * zero otherwise.
->>>     */
->>> -int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
->>> +int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm,
->>> +				      u64 mask_ctx0, u64 mask_ctx1)
->>>    {
->>>    	struct dma_fence *fence;
->>>    	int err = 0;
->>> @@ -1119,6 +1126,13 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
->>>    	if (fence) {
->>>    		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
->>>    			0 : -ETIME;
->>> +
->>> +		if (err == -ETIME) {
->>> +			if (xe_sched_job_mask_dependency(fence, mask_ctx0,
->>> +							 mask_ctx1))
->>> +				err = 0;
->>> +		}
->>> +
->>>    		dma_fence_put(fence);
->>>    	}
->>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
->>> index a4dfbe858bda..99a35b22a46c 100644
->>> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
->>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
->>> @@ -85,7 +85,8 @@ struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *
->>>    void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
->>>    				  struct dma_fence *fence);
->>>    int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
->>> -				      struct xe_vm *vm);
->>> +				      struct xe_vm *vm, u64 mask_ctx0,
->>> +				      u64 mask_ctx1);
->>>    void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
->>>    int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
->>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->>> index d22fd1ccc0ba..bba9ae559f57 100644
->>> --- a/drivers/gpu/drm/xe/xe_pt.c
->>> +++ b/drivers/gpu/drm/xe/xe_pt.c
->>> @@ -1341,10 +1341,21 @@ static int xe_pt_vm_dependencies(struct xe_sched_job *job,
->>>    	}
->>>    	if (!(pt_update_ops->q->flags & EXEC_QUEUE_FLAG_KERNEL)) {
->>> +		u64 mask_ctx0 = NO_MASK_DEP, mask_ctx1 = NO_MASK_DEP;
->>> +
->>> +		if (ijob)
->>> +			mask_ctx0 = xe_tlb_inval_job_fence_context(ijob);
->>> +		if (mjob)
->>> +			mask_ctx1 = xe_tlb_inval_job_fence_context(mjob);
->>> +
->>>    		if (job)
->>> -			err = xe_sched_job_last_fence_add_dep(job, vm);
->>> +			err = xe_sched_job_last_fence_add_dep(job, vm,
->>> +							      mask_ctx0,
->>> +							      mask_ctx1);
->>>    		else
->>> -			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q, vm);
->>> +			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q,
->>> +								vm, mask_ctx0,
->>> +								mask_ctx1);
->>>    	}
->>>    	for (i = 0; job && !err && i < vops->num_syncs; i++)
->>> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
->>> index d21bf8f26964..7cbdd87904c6 100644
->>> --- a/drivers/gpu/drm/xe/xe_sched_job.c
->>> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
->>> @@ -6,6 +6,7 @@
->>>    #include "xe_sched_job.h"
->>>    #include <uapi/drm/xe_drm.h>
->>> +#include <linux/dma-fence-array.h>
->>>    #include <linux/dma-fence-chain.h>
->>>    #include <linux/slab.h>
->>> @@ -295,19 +296,60 @@ void xe_sched_job_push(struct xe_sched_job *job)
->>>    	xe_sched_job_put(job);
->>>    }
->>> +/**
->>> + * xe_sched_job_mask_dependency() - Determine if a dma-fence dependency can be masked
->>> + * @fence: The dma-fence to check
->>> + * @mask_ctx0: First context to compare against the fence's context
->>> + * @mask_ctx1: Second context to compare against the fence's context
->>> + *
->>> + * This function checks whether the context of the given dma-fence matches
->>> + * either of the provided mask contexts. If a match is found, the dependency
->>> + * represented by the fence can be skipped. If the fence is a dma-fence-array,
->>> + * its individual fences are unwound and checked.
->>> + *
->>> + * Return: true if the fence can be masked (i.e., skipped), false otherwise.
->>> + */
->>> +bool xe_sched_job_mask_dependency(struct dma_fence *fence, u64 mask_ctx0,
->>> +				  u64 mask_ctx1)
->>> +{
->>> +	if (dma_fence_is_array(fence)) {
->>> +		struct dma_fence *__fence;
->>> +		int index;
->>> +
->>> +		dma_fence_array_for_each(__fence, index, fence)
->>> +			if (__fence->context == mask_ctx0 ||
->>> +			    __fence->context == mask_ctx1)
->>> +				return true;
->>> +	} else if (fence->context == mask_ctx0 ||
->>> +		   fence->context == mask_ctx1) {
->>> +		return true;
->>> +	}
->>> +
->>> +	return false;
->>> +}
->>> +
->>>    /**
->>>     * xe_sched_job_last_fence_add_dep - Add last fence dependency to job
->>>     * @job:job to add the last fence dependency to
->>>     * @vm: virtual memory job belongs to
->>> + * @mask_ctx0: Mask dma-fence context0
->>> + * @mask_ctx1: Mask dma-fence context1
->>> + *
->>> + * Add last fence dependency to job, skipping masked dma fence contexts.
->>>     *
->>>     * Returns:
->>>     * 0 on success, or an error on failing to expand the array.
->>>     */
->>> -int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
->>> +int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm,
->>> +				    u64 mask_ctx0, u64 mask_ctx1)
->>>    {
->>>    	struct dma_fence *fence;
->>>    	fence = xe_exec_queue_last_fence_get(job->q, vm);
->>> +	if (xe_sched_job_mask_dependency(fence, mask_ctx0, mask_ctx1)) {
->>> +		dma_fence_put(fence);
->>> +		return 0;
->>> +	}
->>>    	return drm_sched_job_add_dependency(&job->drm, fence);
->>>    }
->>> diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
->>> index 3dc72c5c1f13..81d8e848e605 100644
->>> --- a/drivers/gpu/drm/xe/xe_sched_job.h
->>> +++ b/drivers/gpu/drm/xe/xe_sched_job.h
->>> @@ -58,7 +58,8 @@ bool xe_sched_job_completed(struct xe_sched_job *job);
->>>    void xe_sched_job_arm(struct xe_sched_job *job);
->>>    void xe_sched_job_push(struct xe_sched_job *job);
->>> -int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm);
->>> +int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm,
->>> +				    u64 mask_ctx0, u64 mask_ctx1);
->>>    void xe_sched_job_init_user_fence(struct xe_sched_job *job,
->>>    				  struct xe_sync_entry *sync);
->>> @@ -93,4 +94,8 @@ void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct
->>>    int xe_sched_job_add_deps(struct xe_sched_job *job, struct dma_resv *resv,
->>>    			  enum dma_resv_usage usage);
->>> +#define NO_MASK_DEP	(~0x0ull)
->>> +bool xe_sched_job_mask_dependency(struct dma_fence *fence, u64 mask_ctx0,
->>> +				  u64 mask_ctx1);
->>> +
->>>    #endif
->>> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.c b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
->>> index 492def04a559..f2fe7f9fbb22 100644
->>> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
->>> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
->>> @@ -32,6 +32,8 @@ struct xe_tlb_inval_job {
->>>    	u64 start;
->>>    	/** @end: End address to invalidate */
->>>    	u64 end;
->>> +	/** @fence_context: Fence context for job */
->>> +	u64 fence_context;
->>>    	/** @asid: Address space ID to invalidate */
->>>    	u32 asid;
->>>    	/** @fence_armed: Fence has been armed */
->>> @@ -101,6 +103,7 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, struct xe_tlb_inval *tlb_inval,
->>>    	job->asid = asid;
->>>    	job->fence_armed = false;
->>>    	job->dep.ops = &dep_job_ops;
->>> +	job->fence_context = entity->fence_context + 1;
->>
->> As a side note, hardcoding the assumption on how scheduler allocates
->> contexts is not great given recent efforts to make drivers know less of the
->> scheduler internals.
->>
+On 09/10/2025 16:16, Thomas Zimmermann wrote:
+> Add free callback to struct drm_client_funcs. Invoke function to
+> free the client memory as part of the release process. Implement
+> free for fbdev emulation.
 > 
-> Yes, we should probably have a helper here — maybe
-> drm_sched_job_finished_context?
+> Fbdev emulation allocates and prepares client memory in
+> drm_fbdev_client_setup(). The release happens in fb_destroy from
+> struct fb_ops. Multiple implementations of this callback exist in
+> the various drivers that provide fbdev implementation. Each of them
+> needs to follow the implementation details of the fbdev setup code.
 > 
-> I was planning to roll this change into [1], but that series hasn’t
-> gained much traction, and fixing this is a fairly high-priority issue
-> for customers.
+> Adding a free callback for the client puts the unprepare and release
+> of the fbdev client in a single place.
 > 
-> This is documented in the DRM scheduler kernel docs:
-> entity->fence_context + 1 is the job's finished context.
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+>  drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/drm_client.c               |  4 ++++
+>  drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+>  drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+>  drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+>  drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+>  drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+>  drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+
+For omapdrm:
+
+Acked-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+
+ Tomi
+
+>  drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+>  drivers/gpu/drm/tegra/fbdev.c              |  2 --
+>  include/drm/drm_client.h                   | 10 ++++++++++
+>  14 files changed, 29 insertions(+), 27 deletions(-)
 > 
-> [1] https://patchwork.freedesktop.org/series/155314/
-> 
->> But what I really wanted to ask is, having only glanced the patch briefly,
->> could xe performance problem here also be solved by unwrapping the container
->> fences at the DRM scheduler dependency tracking level?
->>
-> 
-> This is primarily about preventing TLB fences — which originate from a
-> different context than the bind queue but are still ordered on the queue
-> — from becoming dependencies. The process involves two passes: in the
-> first pass, we detect dependencies. If none are found, we immediately
-> complete the bind via the CPU. If dependencies are present, we defer the
-> bind to the GPU.
-
-Interesting, I saw fence unwrapping and context number checking and 
-thought it was maybe the same problem. I do not fully understand what xe 
-is doing to comment strongly but it does raise a question on whether 
-there could be a more elegant solution (ie not a hack).
-
-Could the two entities be shared and would that solve the problem? I 
-mean the TLB invalidation and the bind queue entities, do they need to 
-be separate if the assumption and guarantee is to execute in order?
-
->> I am asking because amdgpu recently posted a patch to unwrap in their code
->> for potentially similar performance reasons, and if now xe wants something
->> similar, or even the same, it is an interesting question where to do it.
->>
->> Also, I have a patch (not sure if I posted it so far) which unwraps in
->> drm_sched_job_add_dependency() and converst the dependency xarray to
->> unwrapped dma-fence-array. Initial idea there was to allow scheduler worker
->> to only be woken up once, once all deps are signaled, but now if two drivers
->> seems to be unwrapping fences maybe there is a case to be made for doing it
->> in the core.
->>
-> 
-> I don't think this is the same problem as the one above, but it's an
-> interesting idea in general. CC me if you post this one.
-
-Okay, but since it sounds it would not be helping here it will not be 
-priority to clean it up and send so might be a while.
-
-Regards,
-
-Tvrtko
-
-> 
-> Matt
-> 
->> Regards,
->>
->> Tvrtko
->>
->>>    	kref_init(&job->refcount);
->>>    	xe_exec_queue_get(q);	/* Pairs with put in xe_tlb_inval_job_destroy */
->>> @@ -266,3 +269,14 @@ void xe_tlb_inval_job_put(struct xe_tlb_inval_job *job)
->>>    	if (!IS_ERR_OR_NULL(job))
->>>    		kref_put(&job->refcount, xe_tlb_inval_job_destroy);
->>>    }
->>> +
->>> +/**
->>> + * xe_tlb_inval_job_fence_context() - TLB invalidation job fence context
->>> + * @job: TLB invalidation job object
->>> + *
->>> + * Return: TLB invalidation job fence context
->>> + */
->>> +u64 xe_tlb_inval_job_fence_context(struct xe_tlb_inval_job *job)
->>> +{
->>> +	return job->fence_context;
->>> +}
->>> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.h b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
->>> index e63edcb26b50..2576165c2228 100644
->>> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
->>> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
->>> @@ -30,4 +30,6 @@ void xe_tlb_inval_job_get(struct xe_tlb_inval_job *job);
->>>    void xe_tlb_inval_job_put(struct xe_tlb_inval_job *job);
->>> +u64 xe_tlb_inval_job_fence_context(struct xe_tlb_inval_job *job);
->>> +
->>>    #endif
->>
-
-
-
-
+> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
+> index cb53cc91bafb..22e2081bfa04 100644
+> --- a/drivers/gpu/drm/armada/armada_fbdev.c
+> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
+> @@ -28,8 +28,6 @@ static void armada_fbdev_fb_destroy(struct fb_info *info)
+>  	fbh->fb->funcs->destroy(fbh->fb);
+>  
+>  	drm_client_release(&fbh->client);
+> -	drm_fb_helper_unprepare(fbh);
+> -	kfree(fbh);
+>  }
+>  
+>  static const struct fb_ops armada_fb_ops = {
+> diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
+> index f894ba52bdb5..5336accab1b6 100644
+> --- a/drivers/gpu/drm/clients/drm_fbdev_client.c
+> +++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
+> @@ -13,16 +13,28 @@
+>   * struct drm_client_funcs
+>   */
+>  
+> +static void drm_fbdev_client_free(struct drm_client_dev *client)
+> +{
+> +	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> +
+> +	drm_fb_helper_unprepare(fb_helper);
+> +	kfree(fb_helper);
+> +}
+> +
+>  static void drm_fbdev_client_unregister(struct drm_client_dev *client)
+>  {
+>  	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+>  
+>  	if (fb_helper->info) {
+> +		/*
+> +		 * Fully probed framebuffer device
+> +		 */
+>  		drm_fb_helper_unregister_info(fb_helper);
+>  	} else {
+> +		/*
+> +		 * Partially initialized client, no framebuffer device yet
+> +		 */
+>  		drm_client_release(&fb_helper->client);
+> -		drm_fb_helper_unprepare(fb_helper);
+> -		kfree(fb_helper);
+>  	}
+>  }
+>  
+> @@ -88,6 +100,7 @@ static int drm_fbdev_client_resume(struct drm_client_dev *client, bool holds_con
+>  
+>  static const struct drm_client_funcs drm_fbdev_client_funcs = {
+>  	.owner		= THIS_MODULE,
+> +	.free		= drm_fbdev_client_free,
+>  	.unregister	= drm_fbdev_client_unregister,
+>  	.restore	= drm_fbdev_client_restore,
+>  	.hotplug	= drm_fbdev_client_hotplug,
+> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+> index 3fa38d4ac70b..fe9c6d7083ea 100644
+> --- a/drivers/gpu/drm/drm_client.c
+> +++ b/drivers/gpu/drm/drm_client.c
+> @@ -168,6 +168,10 @@ void drm_client_release(struct drm_client_dev *client)
+>  
+>  	drm_client_modeset_free(client);
+>  	drm_client_close(client);
+> +
+> +	if (client->funcs && client->funcs->free)
+> +		client->funcs->free(client);
+> +
+>  	drm_dev_put(dev);
+>  }
+>  EXPORT_SYMBOL(drm_client_release);
+> diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_dma.c
+> index 8bd626ef16c7..c6196293e424 100644
+> --- a/drivers/gpu/drm/drm_fbdev_dma.c
+> +++ b/drivers/gpu/drm/drm_fbdev_dma.c
+> @@ -57,8 +57,6 @@ static void drm_fbdev_dma_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_dma_fb_ops = {
+> @@ -92,8 +90,6 @@ static void drm_fbdev_dma_shadowed_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_dma_shadowed_fb_ops = {
+> diff --git a/drivers/gpu/drm/drm_fbdev_shmem.c b/drivers/gpu/drm/drm_fbdev_shmem.c
+> index 1e827bf8b815..51573058df6f 100644
+> --- a/drivers/gpu/drm/drm_fbdev_shmem.c
+> +++ b/drivers/gpu/drm/drm_fbdev_shmem.c
+> @@ -65,8 +65,6 @@ static void drm_fbdev_shmem_fb_destroy(struct fb_info *info)
+>  	drm_client_buffer_vunmap(fb_helper->buffer);
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_shmem_fb_ops = {
+> diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
+> index 85feb55bba11..ccf460fbc1f0 100644
+> --- a/drivers/gpu/drm/drm_fbdev_ttm.c
+> +++ b/drivers/gpu/drm/drm_fbdev_ttm.c
+> @@ -53,8 +53,6 @@ static void drm_fbdev_ttm_fb_destroy(struct fb_info *info)
+>  	drm_client_framebuffer_delete(fb_helper->buffer);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops drm_fbdev_ttm_fb_ops = {
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> index 93de25b77e68..a3bd21a827ad 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> @@ -42,8 +42,6 @@ static void exynos_drm_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops exynos_drm_fb_ops = {
+> diff --git a/drivers/gpu/drm/gma500/fbdev.c b/drivers/gpu/drm/gma500/fbdev.c
+> index a6af21514cff..bc92fa24a1e2 100644
+> --- a/drivers/gpu/drm/gma500/fbdev.c
+> +++ b/drivers/gpu/drm/gma500/fbdev.c
+> @@ -84,9 +84,6 @@ static void psb_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_gem_object_put(obj);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops psb_fbdev_fb_ops = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index 3fbdf75415cc..d5f26c8bb102 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -146,8 +146,6 @@ static void intel_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb_helper->fb);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  __diag_push();
+> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+> index b5969374d53f..aad6fb77f0de 100644
+> --- a/drivers/gpu/drm/msm/msm_fbdev.c
+> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
+> @@ -52,8 +52,6 @@ static void msm_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  static const struct fb_ops msm_fb_ops = {
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> index 948af7ec1130..b5df2923d2a6 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> @@ -103,8 +103,6 @@ static void omap_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  /*
+> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> index dc81b0c2dbff..4df6c9167bf0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> @@ -184,8 +184,6 @@ static void radeon_fbdev_fb_destroy(struct fb_info *info)
+>  	radeon_fbdev_destroy_pinned_object(gobj);
+>  
+>  	drm_client_release(&fb_helper->client);
+> -	drm_fb_helper_unprepare(fb_helper);
+> -	kfree(fb_helper);
+>  }
+>  
+>  static const struct fb_ops radeon_fbdev_fb_ops = {
+> diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.c
+> index 1b70f5e164af..91aece6f34e0 100644
+> --- a/drivers/gpu/drm/tegra/fbdev.c
+> +++ b/drivers/gpu/drm/tegra/fbdev.c
+> @@ -53,8 +53,6 @@ static void tegra_fbdev_fb_destroy(struct fb_info *info)
+>  	drm_framebuffer_remove(fb);
+>  
+>  	drm_client_release(&helper->client);
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+>  }
+>  
+>  static const struct fb_ops tegra_fb_ops = {
+> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
+> index bdd845e383ef..eecb8d6e15c7 100644
+> --- a/include/drm/drm_client.h
+> +++ b/include/drm/drm_client.h
+> @@ -28,6 +28,16 @@ struct drm_client_funcs {
+>  	 */
+>  	struct module *owner;
+>  
+> +	/**
+> +	 * @free:
+> +	 *
+> +	 * Called when the client gets unregistered. Implementations should
+> +	 * release all client-specific data and free the memory.
+> +	 *
+> +	 * This callback is optional.
+> +	 */
+> +	void (*free)(struct drm_client_dev *client);
+> +
+>  	/**
+>  	 * @unregister:
+>  	 *
 
