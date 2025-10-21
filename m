@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12540CCD1AB
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 12:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4FE2CCD1AA
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 12:38:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C14A910E5DE;
-	Tue, 21 Oct 2025 12:38:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68B6210E5D7;
+	Tue, 21 Oct 2025 12:38:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CM0otRmv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8AXXyox";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D060710E5DD
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 12:38:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89EAB10E5DD
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 12:38:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761050307; x=1792586307;
+ t=1761050309; x=1792586309;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AxKtZqy8I7lSVtphp6QmmZKDdS/MoATaTgDelvWHpOM=;
- b=CM0otRmvuGAtw750bCM16DfyiUVWSfS6LykFmcb2xDVK9cI7KFMajvD2
- 0z2KP+VkNufEc0L27QI/z3f97A8IoTlKehWCUHAPuGo2sFbjB7nFpuFve
- 52En0Oh84uxE2utY1LiUG3nFrmn3qEckw/syZPPyYHbcRUBWObbkRXnLn
- jKV8c/bivuU+ENOvz7DUkS9xmzzOTY7f5uJErXYpIvzuctczoo08Ic05G
- sNHjw21NOi8/onJG6gicJwrfZZH5IEBFYlCcYcuiVdKJFv9XBkTVDn4u3
- dgIUzkjMAxwTSiUQMaC4MvT83zMeUP2nUdn+lphH5SjbI/HJborx73sus Q==;
-X-CSE-ConnectionGUID: 4Q5YCeo7S4SwgjeeAD37nw==
-X-CSE-MsgGUID: L1fN8E6ISwiwaYfckzQIFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50747436"
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="50747436"
+ bh=H3roKcbFz8ijS1+nSmLd0U3zvYLkK8ubljVk4PSv4qU=;
+ b=I8AXXyoxUw+I3CAO+7D/C6Cm5xQqJ5fNmAJWojep+oqrP8DYvhwva4qc
+ 9yPcyk6KLLcs9mznMCq8cbWncfAFL+ESrGzcqaev/5wdZdKuE5hdeRGTa
+ ug6TdxrHmMdA4ZeQZHyeeKtfgC7tQ8NO+1k6GVLi9hZIcbvgezN/YIeew
+ ++r/uXLcQtqBbhmgAy/Cq+tvzEki52Akb2It+0xAJAIBeIjFEqmsWTHJo
+ hjLVJMnSJEugYTjaeCda4iFZumHakspfJXgEiKp/M4hTJ1FzteYhbwBcW
+ doWgCsqtAczG/D4+ehnX15goYG+ORErQlXLZ0iACbzWiORONASe/LXHNP Q==;
+X-CSE-ConnectionGUID: SqjAMPk+Rh6Xw/pbfGcV0Q==
+X-CSE-MsgGUID: FVd5UbO6TGu6gNqw6/IRwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50747438"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="50747438"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 05:38:27 -0700
-X-CSE-ConnectionGUID: SeWPG3eJThGIXY2fBcYqrg==
-X-CSE-MsgGUID: ENroJGyEQ6mpfXkp3Fq3IA==
+ 21 Oct 2025 05:38:28 -0700
+X-CSE-ConnectionGUID: te9oIzrgQ8yQI7WFj7uGRg==
+X-CSE-MsgGUID: FIeNEcphTfOal340ICSOMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="187850354"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; d="scan'208";a="187850360"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa004.jf.intel.com with ESMTP; 21 Oct 2025 05:38:25 -0700
+ by orviesa004.jf.intel.com with ESMTP; 21 Oct 2025 05:38:27 -0700
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,9 +47,10 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v5 3/5] drm/xe/vf: Fix GuC FW check for VF migration support
-Date: Tue, 21 Oct 2025 14:39:41 +0200
-Message-Id: <20251021123943.1436375-4-tomasz.lis@intel.com>
+Subject: [PATCH v5 4/5] drm/xe: Assert that VF will never use fixed placement
+ of BOs
+Date: Tue, 21 Oct 2025 14:39:42 +0200
+Message-Id: <20251021123943.1436375-5-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20251021123943.1436375-1-tomasz.lis@intel.com>
 References: <20251021123943.1436375-1-tomasz.lis@intel.com>
@@ -69,193 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The check whether GuC ABI version meets requirements shall be
-performed after said version is received from GuC.
+Most BOs do not care at which offset they will be accessed within
+GGTT or PPGTT. The few which do care, should be only created
+on PF, and mapped within GGTT. On VFs, mapping at fixed offset
+is prohibited, as each VF is granted access to a range of
+GGTT address space.
 
-Doing it in wrong order was triggering a warning:
-xe 0000:00:02.1: [drm] Assertion `gt->sriov.vf.guc_version.major` failed!
+Since fixed addresses of GGTT mapping can only be used on PF,
+add an assert which makes sure no attempt of fixed placement
+will happen for a driver probed on a VF.
 
-With this change, dislodge part of the VF migration support check
-and moved it to after GuC handshake.
-
-v2: Use xe_sriov_vf_ccs_migration_bb_needed()
-
-v3: Update commit message, move check funct to ccs module (Michal),
- rename xe_sriov_vf_migration_disable(), remove its duplicate
-
-v4: Limit scope of some functions to xe_sriov_vf_ccs file,
- switched 'Fixes:' tag to a different commit (Michal)
-
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Tested-by: Matthew Brost <matthew.brost@intel.com> #v1
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6349
-Fixes: ff1d2b5e3d28 ("drm/xe: Read VF GMD_ID with a specifically-allocated dummy GT")
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_vf.c     | 29 ++++++----------------
- drivers/gpu/drm/xe/xe_sriov_vf.h     |  1 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c | 37 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.h |  2 --
- 4 files changed, 40 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 5ad39e315cb5..0a1331db2a9a 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -133,7 +133,7 @@ bool xe_sriov_vf_migration_supported(struct xe_device *xe)
- 	return !xe->sriov.vf.migration.disabled;
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index cbc3ee157218..8a4010294e39 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2276,6 +2276,12 @@ static int __xe_bo_fixed_placement(struct xe_device *xe,
+ 	struct ttm_place *place = bo->placements;
+ 	u32 vram_flag, vram_stolen_flags;
  
--static void vf_disable_migration(struct xe_device *xe, const char *fmt, ...)
-+void xe_sriov_vf_migration_disable(struct xe_device *xe, const char *fmt, ...)
- {
- 	struct va_format vaf;
- 	va_list va_args;
-@@ -156,25 +156,15 @@ static void vf_migration_init_early(struct xe_device *xe)
- 	 * supported at production quality.
- 	 */
- 	if (!IS_ENABLED(CONFIG_DRM_XE_DEBUG))
--		return vf_disable_migration(xe,
--					    "experimental feature not available on production builds");
-+		return xe_sriov_vf_migration_disable(xe,
-+				"experimental feature not available on production builds");
- 
- 	if (GRAPHICS_VER(xe) < 20)
--		return vf_disable_migration(xe, "requires gfx version >= 20, but only %u found",
--					    GRAPHICS_VER(xe));
--
--	if (!IS_DGFX(xe)) {
--		struct xe_uc_fw_version guc_version;
--
--		xe_gt_sriov_vf_guc_versions(xe_device_get_gt(xe, 0), NULL, &guc_version);
--		if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 23, 0))
--			return vf_disable_migration(xe,
--						    "CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
--						    guc_version.major, guc_version.minor);
--	}
-+		return xe_sriov_vf_migration_disable(xe,
-+				"requires gfx version >= 20, but only %u found",
-+				GRAPHICS_VER(xe));
- 
- 	xe->sriov.vf.migration.disabled = false;
--	xe_sriov_dbg(xe, "migration support enabled\n");
- }
- 
- /**
-@@ -196,12 +186,7 @@ void xe_sriov_vf_init_early(struct xe_device *xe)
-  */
- int xe_sriov_vf_init_late(struct xe_device *xe)
- {
--	int err = 0;
--
--	if (xe_sriov_vf_migration_supported(xe))
--		err = xe_sriov_vf_ccs_init(xe);
--
--	return err;
-+	return xe_sriov_vf_ccs_init(xe);
- }
- 
- static int sa_info_vf_ccs(struct seq_file *m, void *data)
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.h b/drivers/gpu/drm/xe/xe_sriov_vf.h
-index 4df95266b261..e967d4166a43 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.h
-@@ -14,6 +14,7 @@ struct xe_device;
- void xe_sriov_vf_init_early(struct xe_device *xe);
- int xe_sriov_vf_init_late(struct xe_device *xe);
- bool xe_sriov_vf_migration_supported(struct xe_device *xe);
-+void xe_sriov_vf_migration_disable(struct xe_device *xe, const char *fmt, ...);
- void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index a2d61b37ff21..11851c18513b 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -10,6 +10,8 @@
- #include "xe_device.h"
- #include "xe_exec_queue.h"
- #include "xe_exec_queue_types.h"
-+#include "xe_gt_sriov_vf.h"
-+#include "xe_guc.h"
- #include "xe_guc_submit.h"
- #include "xe_lrc.h"
- #include "xe_migrate.h"
-@@ -260,21 +262,44 @@ int xe_sriov_vf_ccs_register_context(struct xe_device *xe)
- 	return err;
- }
- 
--/**
-- * xe_sriov_vf_migration_ccs_bb_needed - Whether GuC requires CCS copy BBs for VF migration.
-+/*
-+ * Whether GuC requires CCS copy BBs for VF migration.
-  * @xe: the &xe_device instance.
-  *
-  * Only selected platforms require VF KMD to maintain CCS copy BBs and linked LRCAs.
-  *
-  * Return: true if VF driver must participate in the CCS migration, false otherwise.
-  */
--bool xe_sriov_vf_migration_ccs_bb_needed(struct xe_device *xe)
-+static bool vf_migration_ccs_bb_needed(struct xe_device *xe)
- {
- 	xe_assert(xe, IS_SRIOV_VF(xe));
- 
- 	return !IS_DGFX(xe) && xe_device_has_flat_ccs(xe);
- }
- 
-+/*
-+ * Check for disable migration due to no CCS BBs support in GuC FW.
-+ * @xe: the &xe_device instance.
-+ *
-+ * Performs late disable of VF migration feature in case GuC FW cannot support it.
-+ */
-+static void vf_migration_ccs_bb_support_check(struct xe_device *xe)
-+{
-+	if (!xe_sriov_vf_migration_supported(xe))
-+		return;
++	/*
++	 * to allow fixed placement in GGTT of a VF, post-migration fixups would have to
++	 * include selecting a new fixed offset and shifting the page ranges for it
++	 */
++	xe_assert(xe, !IS_SRIOV_VF(xe) || !(bo->flags & XE_BO_FLAG_GGTT));
 +
-+	if (vf_migration_ccs_bb_needed(xe)) {
-+		struct xe_gt *gt = xe_device_get_gt(xe, 0);
-+		struct xe_uc_fw_version guc_version;
-+
-+		xe_gt_sriov_vf_guc_versions(gt, NULL, &guc_version);
-+		if (MAKE_GUC_VER_STRUCT(guc_version) < MAKE_GUC_VER(1, 23, 0))
-+			return xe_sriov_vf_migration_disable(xe,
-+				"CCS migration requires GuC ABI >= 1.23 but only %u.%u found",
-+				guc_version.major, guc_version.minor);
-+	}
-+}
-+
- static void xe_sriov_vf_ccs_fini(void *arg)
- {
- 	struct xe_sriov_vf_ccs_ctx *ctx = arg;
-@@ -307,9 +332,11 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- 	int err;
+ 	if (flags & (XE_BO_FLAG_USER | XE_BO_FLAG_SYSTEM))
+ 		return -EINVAL;
  
- 	xe_assert(xe, IS_SRIOV_VF(xe));
--	xe_assert(xe, xe_sriov_vf_migration_supported(xe));
- 
--	if (!xe_sriov_vf_migration_ccs_bb_needed(xe))
-+	vf_migration_ccs_bb_support_check(xe);
-+
-+	if (!xe_sriov_vf_migration_supported(xe) ||
-+	    !vf_migration_ccs_bb_needed(xe))
- 		return 0;
- 
- 	for_each_ccs_rw_ctx(ctx_id) {
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-index 0e6b27016dac..f8ca6efce9ee 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.h
-@@ -14,8 +14,6 @@ struct drm_printer;
- struct xe_device;
- struct xe_bo;
- 
--bool xe_sriov_vf_migration_ccs_bb_needed(struct xe_device *xe);
--
- int xe_sriov_vf_ccs_init(struct xe_device *xe);
- int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo);
- int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo);
 -- 
 2.25.1
 
