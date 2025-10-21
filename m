@@ -4,27 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35581CCD1A7
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 13:50:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32674CCD1A7
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 13:54:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0D610E5FD;
-	Tue, 21 Oct 2025 13:50:05 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9A7810E5F7;
- Tue, 21 Oct 2025 13:50:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE67210E08A;
+	Tue, 21 Oct 2025 13:54:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bm/uGYTI";
+	dkim-atps=neutral
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com
+ [209.85.161.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B86F10E5FC
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 13:54:23 +0000 (UTC)
+Received: by mail-oo1-f48.google.com with SMTP id
+ 006d021491bc7-651c521980cso2872241eaf.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Oct 2025 06:54:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1761054862; x=1761659662; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7zRCoVsDUrAKkHnPzEPaybWLTpv8PSDVhOpYhyOZPuA=;
+ b=Bm/uGYTIea1TxCtKGtp+y699qvdNuQHI5lfDZebz1zW96chxPbnGNALYq+n5q6s2/p
+ AOLU2++maKKcDtuguieqav32Cb2w8Z+pV8/g0hFIly7lwfwURZ9hUktHIu0LyOVcbwHe
+ 2Z5/5pRVfzDV/IudXdUUH7G+mBHYc13ZbGeTPq7T9B0EFyXBhujsIy6MawGryGlt34JL
+ nlgiFkhUVZzjEQCqG1nW/vktI+Wgya2uHfUKI9LkzSJUYlsszC9L3zozZmLStG2vwgIw
+ kM8IelY8Tk4WhFR6No5kupGSlQAvnaWSKVSgXk2Q6+/UYs4KOe2X3GzUlrXBWoI0EApy
+ D54Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761054862; x=1761659662;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7zRCoVsDUrAKkHnPzEPaybWLTpv8PSDVhOpYhyOZPuA=;
+ b=Xba1/GziN42OH/+FCUChWT7dqiX3Ab1mxnk3nJ1fGIMxZFefqMi/WswCgNU1J46wE5
+ YL7cJJP9BOZneydFwkkLtT38m768O6spd236Xh9OwRUFxfjTgkkkliR3VrP7cqlHHDOo
+ 9yHzoziHLihP1tGrHO76o6mr89Dx2BPPbvdOt5+pL85rGnczZMHYHizLRrYFV4ss399/
+ P2fXLDzcPhtE8JKX22TXdNJJgoHjG9gyh2YLrPSpoXA1czRoYQTEKrN4GaNPBJxvd44f
+ swAyS9ORsj8zNCnrcyuW28AwO64kMa20VSXy6Vy+o0PnovhLBZ9hq4O698LnaTnxtg2U
+ CFAQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUgHuPWmBaIuYt3Ln8Muq9VMJ912JIUj/U3vxzA7Q+6pQN2J+tYnyXy9wvH1Fwtt+he0YHVDUmXBQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyQlpKiRglOB6l/4P6Fv+haUOyeD2dampma0Zr12AR7nga/Wd4q
+ jutNB0wvbrCg2aJX5UvctrtDXtlUXz1vVZec6qCczzJwKnrYkHIJ1vdxajbtxg33wpAZ1L9npCg
+ Cc1DOt8hENvvM7AhuP+T3aYi+8MQ3iHY=
+X-Gm-Gg: ASbGncssz6ukV3HDgF3KBj0K75BLthnQeERwPUD1i24Ye5MnSnVPs5R0XD0AiEWWPSV
+ bv2RcaFIp4YxpQDCZAUARupDogfe+e7dqBWynZGoX1pm2wtTU+PjFt2tF/pEJ6ktbt9bhj+NneV
+ WCT2UwUAsdB2YC6ergpjmSsE/m/e/D7rIuvINHkL2uLBKp7fVwvzS1FtVKPX8OQvxyGM9jR69QM
+ oa6EG2AdYj0vECN1boyGc59nQZOE0WlwFT5rGDLiI8AWv3ZcrFxd/1w7JeVSfLMytvqqp4Lby3I
+ 8lHT
+X-Google-Smtp-Source: AGHT+IEEJhV+7HDnd1rLWzRKPuVeGqK0sxHNPjpMcz5TApDVHa18O8uA1yfTw5iWk/coCiGbH7jCRQhrN34RTrEXqCE=
+X-Received: by 2002:a05:6808:1889:b0:43c:afd4:646d with SMTP id
+ 5614622812f47-443a2ed23f8mr6546477b6e.14.1761054862105; Tue, 21 Oct 2025
+ 06:54:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Privatize_struct_xe?=
- =?utf-8?q?=5Fggtt=5Fnode=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Oct 2025 13:50:04 -0000
-Message-ID: <176105460488.37279.602442075969923002@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251021121814.2193153-9-dev@lankhorst.se>
-In-Reply-To: <20251021121814.2193153-9-dev@lankhorst.se>
+References: <20251009132006.45834-1-tzimmermann@suse.de>
+ <20251009132006.45834-2-tzimmermann@suse.de>
+In-Reply-To: <20251009132006.45834-2-tzimmermann@suse.de>
+From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Date: Tue, 21 Oct 2025 15:54:11 +0200
+X-Gm-Features: AS18NWD9WGUNOjZaiHNhwA1jJulHFlj-NuelchpaG-8PGVgNFP5jcKmCav4IxoA
+Message-ID: <CAMeQTsbLQcUbFvDMgMoA2EZqO-f5j1fkjtBKWKQmKdMBeJ7Yzw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] drm/client: Add client free callback to unprepare
+ fb_helper
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: jfalempe@redhat.com, javierm@redhat.com, mripard@kernel.org, 
+ maarten.lankhorst@linux.intel.com, dri-devel@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,449 +87,306 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Oct 9, 2025 at 3:31=E2=80=AFPM Thomas Zimmermann <tzimmermann@suse.=
+de> wrote:
+>
+> Add free callback to struct drm_client_funcs. Invoke function to
+> free the client memory as part of the release process. Implement
+> free for fbdev emulation.
+>
+> Fbdev emulation allocates and prepares client memory in
+> drm_fbdev_client_setup(). The release happens in fb_destroy from
+> struct fb_ops. Multiple implementations of this callback exist in
+> the various drivers that provide fbdev implementation. Each of them
+> needs to follow the implementation details of the fbdev setup code.
+>
+> Adding a free callback for the client puts the unprepare and release
+> of the fbdev client in a single place.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Series: drm/xe: Privatize struct xe_ggtt_node.
-URL   : https://patchwork.freedesktop.org/series/156258/
-State : failure
+For gma500:
+Acked-by: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[13:49:16] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[13:49:20] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=25
-[13:49:57] Starting KUnit Kernel (1/1)...
-[13:49:57] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[13:49:58] ================== guc_buf (11 subtests) ===================
-[13:49:58] stackdepot: allocating hash table of 65536 entries via kvcalloc
-[13:49:58] stackdepot: allocating space for 8192 stack pools via kvcalloc
-[13:49:58]     # test_smallest: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c:91
-[13:49:58]     Expected 0x00100000 + 0x00200000 > xe_guc_buf_gpu_addr(buf), but
-[13:49:58]         0x00100000 + 0x00200000 == 3145728 (0x300000)
-[13:49:58]         xe_guc_buf_gpu_addr(buf) == 4186112 (0x3fe000)
-[13:49:58] [FAILED] test_smallest
-[13:49:58] # test_largest: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c:105
-[13:49:58] Expected 0x00100000 + 0x00200000 > xe_guc_buf_gpu_addr(buf), but
-[13:49:58]     0x00100000 + 0x00200000 == 3145728 (0x300000)
-[13:49:58]     xe_guc_buf_gpu_addr(buf) == 4186112 (0x3fe000)
-[13:49:58] [FAILED] test_largest
-[13:49:58] [PASSED] test_granular
-[13:49:58] [PASSED] test_unique
-[13:49:58] [PASSED] test_overlap
-[13:49:58] [PASSED] test_reusable
-[13:49:58] [PASSED] test_too_big
-[13:49:58] [PASSED] test_flush
-[13:49:58] [PASSED] test_lookup
-[13:49:58] [PASSED] test_data
-[13:49:58] # test_class: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c:299
-[13:49:58] Expected 0x00100000 + 0x00200000 > xe_guc_buf_gpu_addr(buf), but
-[13:49:58]     0x00100000 + 0x00200000 == 3145728 (0x300000)
-[13:49:58]     xe_guc_buf_gpu_addr(buf) == 4186112 (0x3fe000)
-[13:49:58] # test_class: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c:308
-[13:49:58] Expected 0x00100000 + 0x00200000 > xe_guc_buf_gpu_addr(buf), but
-[13:49:58]     0x00100000 + 0x00200000 == 3145728 (0x300000)
-[13:49:58]     xe_guc_buf_gpu_addr(buf) == 4186112 (0x3fe000)
-[13:49:58] [FAILED] test_class
-[13:49:58]     # module: xe
-[13:49:58] # guc_buf: pass:8 fail:3 skip:0 total:11
-[13:49:58] # Totals: pass:8 fail:3 skip:0 total:11
-[13:49:58] ===================== [FAILED] guc_buf =====================
-[13:49:58] =================== guc_dbm (7 subtests) ===================
-[13:49:58] [PASSED] test_empty
-[13:49:58] [PASSED] test_default
-[13:49:58] ======================== test_size  ========================
-[13:49:58] [PASSED] 4
-[13:49:58] [PASSED] 8
-[13:49:58] [PASSED] 32
-[13:49:58] [PASSED] 256
-[13:49:58] ==================== [PASSED] test_size ====================
-[13:49:58] ======================= test_reuse  ========================
-[13:49:58] [PASSED] 4
-[13:49:58] [PASSED] 8
-[13:49:58] [PASSED] 32
-[13:49:58] [PASSED] 256
-[13:49:58] =================== [PASSED] test_reuse ====================
-[13:49:58] =================== test_range_overlap  ====================
-[13:49:58] [PASSED] 4
-[13:49:58] [PASSED] 8
-[13:49:58] [PASSED] 32
-[13:49:58] [PASSED] 256
-[13:49:58] =============== [PASSED] test_range_overlap ================
-[13:49:58] =================== test_range_compact  ====================
-[13:49:58] [PASSED] 4
-[13:49:58] [PASSED] 8
-[13:49:58] [PASSED] 32
-[13:49:58] [PASSED] 256
-[13:49:58] =============== [PASSED] test_range_compact ================
-[13:49:58] ==================== test_range_spare  =====================
-[13:49:58] [PASSED] 4
-[13:49:58] [PASSED] 8
-[13:49:58] [PASSED] 32
-[13:49:58] [PASSED] 256
-[13:49:58] ================ [PASSED] test_range_spare =================
-[13:49:58] ===================== [PASSED] guc_dbm =====================
-[13:49:58] =================== guc_idm (6 subtests) ===================
-[13:49:58] [PASSED] bad_init
-[13:49:58] [PASSED] no_init
-[13:49:58] [PASSED] init_fini
-[13:49:58] [PASSED] check_used
-[13:49:58] [PASSED] check_quota
-[13:49:58] [PASSED] check_all
-[13:49:58] ===================== [PASSED] guc_idm =====================
-[13:49:58] ================== no_relay (3 subtests) ===================
-[13:49:58] [PASSED] xe_drops_guc2pf_if_not_ready
-[13:49:58] [PASSED] xe_drops_guc2vf_if_not_ready
-[13:49:58] [PASSED] xe_rejects_send_if_not_ready
-[13:49:58] ==================== [PASSED] no_relay =====================
-[13:49:58] ================== pf_relay (14 subtests) ==================
-[13:49:58] [PASSED] pf_rejects_guc2pf_too_short
-[13:49:58] [PASSED] pf_rejects_guc2pf_too_long
-[13:49:58] [PASSED] pf_rejects_guc2pf_no_payload
-[13:49:58] [PASSED] pf_fails_no_payload
-[13:49:58] [PASSED] pf_fails_bad_origin
-[13:49:58] [PASSED] pf_fails_bad_type
-[13:49:58] [PASSED] pf_txn_reports_error
-[13:49:58] [PASSED] pf_txn_sends_pf2guc
-[13:49:58] [PASSED] pf_sends_pf2guc
-[13:49:58] [SKIPPED] pf_loopback_nop
-[13:49:58] [SKIPPED] pf_loopback_echo
-[13:49:58] [SKIPPED] pf_loopback_fail
-[13:49:58] [SKIPPED] pf_loopback_busy
-[13:49:58] [SKIPPED] pf_loopback_retry
-[13:49:58] ==================== [PASSED] pf_relay =====================
-[13:49:58] ================== vf_relay (3 subtests) ===================
-[13:49:58] [PASSED] vf_rejects_guc2vf_too_short
-[13:49:58] [PASSED] vf_rejects_guc2vf_too_long
-[13:49:58] [PASSED] vf_rejects_guc2vf_no_payload
-[13:49:58] ==================== [PASSED] vf_relay =====================
-[13:49:58] ===================== lmtt (1 subtest) =====================
-[13:49:58] ======================== test_ops  =========================
-[13:49:58] [PASSED] 2-level
-[13:49:58] [PASSED] multi-level
-[13:49:58] ==================== [PASSED] test_ops =====================
-[13:49:58] ====================== [PASSED] lmtt =======================
-[13:49:58] ================= pf_service (11 subtests) =================
-[13:49:58] [PASSED] pf_negotiate_any
-[13:49:58] [PASSED] pf_negotiate_base_match
-[13:49:58] [PASSED] pf_negotiate_base_newer
-[13:49:58] [PASSED] pf_negotiate_base_next
-[13:49:58] [SKIPPED] pf_negotiate_base_older
-[13:49:58] [PASSED] pf_negotiate_base_prev
-[13:49:58] [PASSED] pf_negotiate_latest_match
-[13:49:58] [PASSED] pf_negotiate_latest_newer
-[13:49:58] [PASSED] pf_negotiate_latest_next
-[13:49:58] [SKIPPED] pf_negotiate_latest_older
-[13:49:58] [SKIPPED] pf_negotiate_latest_prev
-[13:49:58] =================== [PASSED] pf_service ====================
-[13:49:58] ================= xe_guc_g2g (2 subtests) ==================
-[13:49:58] ============== xe_live_guc_g2g_kunit_default  ==============
-[13:49:58] ========= [SKIPPED] xe_live_guc_g2g_kunit_default ==========
-[13:49:58] ============== xe_live_guc_g2g_kunit_allmem  ===============
-[13:49:58] ========== [SKIPPED] xe_live_guc_g2g_kunit_allmem ==========
-[13:49:58] =================== [SKIPPED] xe_guc_g2g ===================
-[13:49:58] =================== xe_mocs (2 subtests) ===================
-[13:49:58] ================ xe_live_mocs_kernel_kunit  ================
-[13:49:58] =========== [SKIPPED] xe_live_mocs_kernel_kunit ============
-[13:49:58] ================ xe_live_mocs_reset_kunit  =================
-[13:49:58] ============ [SKIPPED] xe_live_mocs_reset_kunit ============
-[13:49:58] ==================== [SKIPPED] xe_mocs =====================
-[13:49:58] ================= xe_migrate (2 subtests) ==================
-[13:49:58] ================= xe_migrate_sanity_kunit  =================
-[13:49:58] ============ [SKIPPED] xe_migrate_sanity_kunit =============
-[13:49:58] ================== xe_validate_ccs_kunit  ==================
-[13:49:58] ============= [SKIPPED] xe_validate_ccs_kunit ==============
-[13:49:58] =================== [SKIPPED] xe_migrate ===================
-[13:49:58] ================== xe_dma_buf (1 subtest) ==================
-[13:49:58] ==================== xe_dma_buf_kunit  =====================
-[13:49:58] ================ [SKIPPED] xe_dma_buf_kunit ================
-[13:49:58] =================== [SKIPPED] xe_dma_buf ===================
-[13:49:58] ================= xe_bo_shrink (1 subtest) =================
-[13:49:58] =================== xe_bo_shrink_kunit  ====================
-[13:49:58] =============== [SKIPPED] xe_bo_shrink_kunit ===============
-[13:49:58] ================== [SKIPPED] xe_bo_shrink ==================
-[13:49:58] ==================== xe_bo (2 subtests) ====================
-[13:49:58] ================== xe_ccs_migrate_kunit  ===================
-[13:49:58] ============== [SKIPPED] xe_ccs_migrate_kunit ==============
-[13:49:58] ==================== xe_bo_evict_kunit  ====================
-[13:49:58] =============== [SKIPPED] xe_bo_evict_kunit ================
-[13:49:58] ===================== [SKIPPED] xe_bo ======================
-[13:49:58] ==================== args (11 subtests) ====================
-[13:49:58] [PASSED] count_args_test
-[13:49:58] [PASSED] call_args_example
-[13:49:58] [PASSED] call_args_test
-[13:49:58] [PASSED] drop_first_arg_example
-[13:49:58] [PASSED] drop_first_arg_test
-[13:49:58] [PASSED] first_arg_example
-[13:49:58] [PASSED] first_arg_test
-[13:49:58] [PASSED] last_arg_example
-[13:49:58] [PASSED] last_arg_test
-[13:49:58] [PASSED] pick_arg_example
-[13:49:58] [PASSED] sep_comma_example
-[13:49:58] ====================== [PASSED] args =======================
-[13:49:58] =================== xe_pci (3 subtests) ====================
-[13:49:58] ==================== check_graphics_ip  ====================
-[13:49:58] [PASSED] 12.00 Xe_LP
-[13:49:58] [PASSED] 12.10 Xe_LP+
-[13:49:58] [PASSED] 12.55 Xe_HPG
-[13:49:58] [PASSED] 12.60 Xe_HPC
-[13:49:58] [PASSED] 12.70 Xe_LPG
-[13:49:58] [PASSED] 12.71 Xe_LPG
-[13:49:58] [PASSED] 12.74 Xe_LPG+
-[13:49:58] [PASSED] 20.01 Xe2_HPG
-[13:49:58] [PASSED] 20.02 Xe2_HPG
-[13:49:58] [PASSED] 20.04 Xe2_LPG
-[13:49:58] [PASSED] 30.00 Xe3_LPG
-[13:49:58] [PASSED] 30.01 Xe3_LPG
-[13:49:58] [PASSED] 30.03 Xe3_LPG
-[13:49:58] [PASSED] 30.04 Xe3_LPG
-[13:49:58] [PASSED] 30.05 Xe3_LPG
-[13:49:58] [PASSED] 35.11 Xe3p_XPC
-[13:49:58] ================ [PASSED] check_graphics_ip ================
-[13:49:58] ===================== check_media_ip  ======================
-[13:49:58] [PASSED] 12.00 Xe_M
-[13:49:58] [PASSED] 12.55 Xe_HPM
-[13:49:58] [PASSED] 13.00 Xe_LPM+
-[13:49:58] [PASSED] 13.01 Xe2_HPM
-[13:49:58] [PASSED] 20.00 Xe2_LPM
-[13:49:58] [PASSED] 30.00 Xe3_LPM
-[13:49:58] [PASSED] 30.02 Xe3_LPM
-[13:49:58] [PASSED] 35.00 Xe3p_LPM
-[13:49:58] [PASSED] 35.03 Xe3p_HPM
-[13:49:58] ================= [PASSED] check_media_ip ==================
-[13:49:58] ================= check_platform_gt_count  =================
-[13:49:58] [PASSED] 0x9A60 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A68 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A70 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A40 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A49 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A59 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9A78 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9AC0 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9AC9 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9AD9 (TIGERLAKE)
-[13:49:58] [PASSED] 0x9AF8 (TIGERLAKE)
-[13:49:58] [PASSED] 0x4C80 (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4C8A (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4C8B (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4C8C (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4C90 (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4C9A (ROCKETLAKE)
-[13:49:58] [PASSED] 0x4680 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4682 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4688 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x468A (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x468B (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4690 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4692 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4693 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x46A0 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46A1 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46A2 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46A3 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46A6 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46A8 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46AA (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x462A (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x4626 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x4628 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46B0 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46B1 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46B2 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46B3 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46C0 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46C1 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46C2 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46C3 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0x46D0 (ALDERLAKE_N)
-[13:49:58] [PASSED] 0x46D1 (ALDERLAKE_N)
-[13:49:58] [PASSED] 0x46D2 (ALDERLAKE_N)
-[13:49:58] [PASSED] 0x46D3 (ALDERLAKE_N)
-[13:49:58] [PASSED] 0x46D4 (ALDERLAKE_N)
-[13:49:58] [PASSED] 0xA721 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7A1 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7A9 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7AC (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7AD (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA720 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7A0 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7A8 (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7AA (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA7AB (ALDERLAKE_P)
-[13:49:58] [PASSED] 0xA780 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA781 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA782 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA783 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA788 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA789 (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA78A (ALDERLAKE_S)
-[13:49:58] [PASSED] 0xA78B (ALDERLAKE_S)
-[13:49:58] [PASSED] 0x4905 (DG1)
-[13:49:58] [PASSED] 0x4906 (DG1)
-[13:49:58] [PASSED] 0x4907 (DG1)
-[13:49:58] [PASSED] 0x4908 (DG1)
-[13:49:58] [PASSED] 0x4909 (DG1)
-[13:49:58] [PASSED] 0x56C0 (DG2)
-[13:49:58] [PASSED] 0x56C2 (DG2)
-[13:49:58] [PASSED] 0x56C1 (DG2)
-[13:49:58] [PASSED] 0x7D51 (METEORLAKE)
-[13:49:58] [PASSED] 0x7DD1 (METEORLAKE)
-[13:49:58] [PASSED] 0x7D41 (METEORLAKE)
-[13:49:58] [PASSED] 0x7D67 (METEORLAKE)
-[13:49:58] [PASSED] 0xB640 (METEORLAKE)
-[13:49:58] [PASSED] 0x56A0 (DG2)
-[13:49:58] [PASSED] 0x56A1 (DG2)
-[13:49:58] [PASSED] 0x56A2 (DG2)
-[13:49:58] [PASSED] 0x56BE (DG2)
-[13:49:58] [PASSED] 0x56BF (DG2)
-[13:49:58] [PASSED] 0x5690 (DG2)
-[13:49:58] [PASSED] 0x5691 (DG2)
-[13:49:58] [PASSED] 0x5692 (DG2)
-[13:49:58] [PASSED] 0x56A5 (DG2)
-[13:49:58] [PASSED] 0x56A6 (DG2)
-[13:49:58] [PASSED] 0x56B0 (DG2)
-[13:49:58] [PASSED] 0x56B1 (DG2)
-[13:49:58] [PASSED] 0x56BA (DG2)
-[13:49:58] [PASSED] 0x56BB (DG2)
-[13:49:58] [PASSED] 0x56BC (DG2)
-[13:49:58] [PASSED] 0x56BD (DG2)
-[13:49:58] [PASSED] 0x5693 (DG2)
-[13:49:58] [PASSED] 0x5694 (DG2)
-[13:49:58] [PASSED] 0x5695 (DG2)
-[13:49:58] [PASSED] 0x56A3 (DG2)
-[13:49:58] [PASSED] 0x56A4 (DG2)
-[13:49:58] [PASSED] 0x56B2 (DG2)
-[13:49:58] [PASSED] 0x56B3 (DG2)
-[13:49:58] [PASSED] 0x5696 (DG2)
-[13:49:58] [PASSED] 0x5697 (DG2)
-[13:49:58] [PASSED] 0xB69 (PVC)
-[13:49:58] [PASSED] 0xB6E (PVC)
-[13:49:58] [PASSED] 0xBD4 (PVC)
-[13:49:58] [PASSED] 0xBD5 (PVC)
-[13:49:58] [PASSED] 0xBD6 (PVC)
-[13:49:58] [PASSED] 0xBD7 (PVC)
-[13:49:58] [PASSED] 0xBD8 (PVC)
-[13:49:58] [PASSED] 0xBD9 (PVC)
-[13:49:58] [PASSED] 0xBDA (PVC)
-[13:49:58] [PASSED] 0xBDB (PVC)
-[13:49:58] [PASSED] 0xBE0 (PVC)
-[13:49:58] [PASSED] 0xBE1 (PVC)
-[13:49:58] [PASSED] 0xBE5 (PVC)
-[13:49:58] [PASSED] 0x7D40 (METEORLAKE)
-[13:49:58] [PASSED] 0x7D45 (METEORLAKE)
-[13:49:58] [PASSED] 0x7D55 (METEORLAKE)
-[13:49:58] [PASSED] 0x7D60 (METEORLAKE)
-[13:49:58] [PASSED] 0x7DD5 (METEORLAKE)
-[13:49:58] [PASSED] 0x6420 (LUNARLAKE)
-[13:49:58] [PASSED] 0x64A0 (LUNARLAKE)
-[13:49:58] [PASSED] 0x64B0 (LUNARLAKE)
-[13:49:58] [PASSED] 0xE202 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE209 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE20B (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE20C (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE20D (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE210 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE211 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE212 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE216 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE220 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE221 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE222 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xE223 (BATTLEMAGE)
-[13:49:58] [PASSED] 0xB080 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB081 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB082 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB083 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB084 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB085 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB086 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB087 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB08F (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB090 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB0A0 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xB0B0 (PANTHERLAKE)
-stty: 'standard input': Inappropriate ioctl for device
-[13:49:58] [PASSED] 0xFD80 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xFD81 (PANTHERLAKE)
-[13:49:58] [PASSED] 0xD740 (NOVALAKE_S)
-[13:49:58] [PASSED] 0xD741 (NOVALAKE_S)
-[13:49:58] [PASSED] 0xD742 (NOVALAKE_S)
-[13:49:58] [PASSED] 0xD743 (NOVALAKE_S)
-[13:49:58] [PASSED] 0xD744 (NOVALAKE_S)
-[13:49:58] [PASSED] 0xD745 (NOVALAKE_S)
-[13:49:58] ============= [PASSED] check_platform_gt_count =============
-[13:49:58] ===================== [PASSED] xe_pci ======================
-[13:49:58] =================== xe_rtp (2 subtests) ====================
-[13:49:58] =============== xe_rtp_process_to_sr_tests  ================
-[13:49:58] [PASSED] coalesce-same-reg
-[13:49:58] [PASSED] no-match-no-add
-[13:49:58] [PASSED] match-or
-[13:49:58] [PASSED] match-or-xfail
-[13:49:58] [PASSED] no-match-no-add-multiple-rules
-[13:49:58] [PASSED] two-regs-two-entries
-[13:49:58] [PASSED] clr-one-set-other
-[13:49:58] [PASSED] set-field
-[13:49:58] [PASSED] conflict-duplicate
-[13:49:58] [PASSED] conflict-not-disjoint
-[13:49:58] [PASSED] conflict-reg-type
-[13:49:58] =========== [PASSED] xe_rtp_process_to_sr_tests ============
-[13:49:58] ================== xe_rtp_process_tests  ===================
-[13:49:58] [PASSED] active1
-[13:49:58] [PASSED] active2
-[13:49:58] [PASSED] active-inactive
-[13:49:58] [PASSED] inactive-active
-[13:49:58] [PASSED] inactive-1st_or_active-inactive
-[13:49:58] [PASSED] inactive-2nd_or_active-inactive
-[13:49:58] [PASSED] inactive-last_or_active-inactive
-[13:49:58] [PASSED] inactive-no_or_active-inactive
-[13:49:58] ============== [PASSED] xe_rtp_process_tests ===============
-[13:49:58] ===================== [PASSED] xe_rtp ======================
-[13:49:58] ==================== xe_wa (1 subtest) =====================
-[13:49:58] ======================== xe_wa_gt  =========================
-[13:49:58] [PASSED] TIGERLAKE B0
-[13:49:58] [PASSED] DG1 A0
-[13:49:58] [PASSED] DG1 B0
-[13:49:58] [PASSED] ALDERLAKE_S A0
-[13:49:58] [PASSED] ALDERLAKE_S B0
-[13:49:58] [PASSED] ALDERLAKE_S C0
-[13:49:58] [PASSED] ALDERLAKE_S D0
-[13:49:58] [PASSED] ALDERLAKE_P A0
-[13:49:58] [PASSED] ALDERLAKE_P B0
-[13:49:58] [PASSED] ALDERLAKE_P C0
-[13:49:58] [PASSED] ALDERLAKE_S RPLS D0
-[13:49:58] [PASSED] ALDERLAKE_P RPLU E0
-[13:49:58] [PASSED] DG2 G10 C0
-[13:49:58] [PASSED] DG2 G11 B1
-[13:49:58] [PASSED] DG2 G12 A1
-[13:49:58] [PASSED] METEORLAKE 12.70(Xe_LPG) A0 13.00(Xe_LPM+) A0
-[13:49:58] [PASSED] METEORLAKE 12.71(Xe_LPG) A0 13.00(Xe_LPM+) A0
-[13:49:58] [PASSED] METEORLAKE 12.74(Xe_LPG+) A0 13.00(Xe_LPM+) A0
-[13:49:58] [PASSED] LUNARLAKE 20.04(Xe2_LPG) A0 20.00(Xe2_LPM) A0
-[13:49:58] [PASSED] LUNARLAKE 20.04(Xe2_LPG) B0 20.00(Xe2_LPM) A0
-[13:49:58] [PASSED] BATTLEMAGE 20.01(Xe2_HPG) A0 13.01(Xe2_HPM) A1
-[13:49:58] [PASSED] PANTHERLAKE 30.00(Xe3_LPG) A0 30.00(Xe3_LPM) A0
-[13:49:58] ==================== [PASSED] xe_wa_gt =====================
-[13:49:58] ====================== [PASSED] xe_wa ======================
-[13:49:58] ============================================================
-[13:49:58] Testing complete. Ran 317 tests: passed: 296, failed: 3, skipped: 18
-[13:49:58] Failures: guc_buf.test_smallest, guc_buf.test_largest, guc_buf.test_class
-[13:49:58] Elapsed time: 41.961s total, 4.334s configuring, 37.210s building, 0.400s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+> ---
+>  drivers/gpu/drm/armada/armada_fbdev.c      |  2 --
+>  drivers/gpu/drm/clients/drm_fbdev_client.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/drm_client.c               |  4 ++++
+>  drivers/gpu/drm/drm_fbdev_dma.c            |  4 ----
+>  drivers/gpu/drm/drm_fbdev_shmem.c          |  2 --
+>  drivers/gpu/drm/drm_fbdev_ttm.c            |  2 --
+>  drivers/gpu/drm/exynos/exynos_drm_fbdev.c  |  2 --
+>  drivers/gpu/drm/gma500/fbdev.c             |  3 ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c |  2 --
+>  drivers/gpu/drm/msm/msm_fbdev.c            |  2 --
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c       |  2 --
+>  drivers/gpu/drm/radeon/radeon_fbdev.c      |  2 --
+>  drivers/gpu/drm/tegra/fbdev.c              |  2 --
+>  include/drm/drm_client.h                   | 10 ++++++++++
+>  14 files changed, 29 insertions(+), 27 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/arma=
+da/armada_fbdev.c
+> index cb53cc91bafb..22e2081bfa04 100644
+> --- a/drivers/gpu/drm/armada/armada_fbdev.c
+> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
+> @@ -28,8 +28,6 @@ static void armada_fbdev_fb_destroy(struct fb_info *inf=
+o)
+>         fbh->fb->funcs->destroy(fbh->fb);
+>
+>         drm_client_release(&fbh->client);
+> -       drm_fb_helper_unprepare(fbh);
+> -       kfree(fbh);
+>  }
+>
+>  static const struct fb_ops armada_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm=
+/clients/drm_fbdev_client.c
+> index f894ba52bdb5..5336accab1b6 100644
+> --- a/drivers/gpu/drm/clients/drm_fbdev_client.c
+> +++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
+> @@ -13,16 +13,28 @@
+>   * struct drm_client_funcs
+>   */
+>
+> +static void drm_fbdev_client_free(struct drm_client_dev *client)
+> +{
+> +       struct drm_fb_helper *fb_helper =3D drm_fb_helper_from_client(cli=
+ent);
+> +
+> +       drm_fb_helper_unprepare(fb_helper);
+> +       kfree(fb_helper);
+> +}
+> +
+>  static void drm_fbdev_client_unregister(struct drm_client_dev *client)
+>  {
+>         struct drm_fb_helper *fb_helper =3D drm_fb_helper_from_client(cli=
+ent);
+>
+>         if (fb_helper->info) {
+> +               /*
+> +                * Fully probed framebuffer device
+> +                */
+>                 drm_fb_helper_unregister_info(fb_helper);
+>         } else {
+> +               /*
+> +                * Partially initialized client, no framebuffer device ye=
+t
+> +                */
+>                 drm_client_release(&fb_helper->client);
+> -               drm_fb_helper_unprepare(fb_helper);
+> -               kfree(fb_helper);
+>         }
+>  }
+>
+> @@ -88,6 +100,7 @@ static int drm_fbdev_client_resume(struct drm_client_d=
+ev *client, bool holds_con
+>
+>  static const struct drm_client_funcs drm_fbdev_client_funcs =3D {
+>         .owner          =3D THIS_MODULE,
+> +       .free           =3D drm_fbdev_client_free,
+>         .unregister     =3D drm_fbdev_client_unregister,
+>         .restore        =3D drm_fbdev_client_restore,
+>         .hotplug        =3D drm_fbdev_client_hotplug,
+> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+> index 3fa38d4ac70b..fe9c6d7083ea 100644
+> --- a/drivers/gpu/drm/drm_client.c
+> +++ b/drivers/gpu/drm/drm_client.c
+> @@ -168,6 +168,10 @@ void drm_client_release(struct drm_client_dev *clien=
+t)
+>
+>         drm_client_modeset_free(client);
+>         drm_client_close(client);
+> +
+> +       if (client->funcs && client->funcs->free)
+> +               client->funcs->free(client);
+> +
+>         drm_dev_put(dev);
+>  }
+>  EXPORT_SYMBOL(drm_client_release);
+> diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_=
+dma.c
+> index 8bd626ef16c7..c6196293e424 100644
+> --- a/drivers/gpu/drm/drm_fbdev_dma.c
+> +++ b/drivers/gpu/drm/drm_fbdev_dma.c
+> @@ -57,8 +57,6 @@ static void drm_fbdev_dma_fb_destroy(struct fb_info *in=
+fo)
+>         drm_client_buffer_vunmap(fb_helper->buffer);
+>         drm_client_framebuffer_delete(fb_helper->buffer);
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops drm_fbdev_dma_fb_ops =3D {
+> @@ -92,8 +90,6 @@ static void drm_fbdev_dma_shadowed_fb_destroy(struct fb=
+_info *info)
+>         drm_client_buffer_vunmap(fb_helper->buffer);
+>         drm_client_framebuffer_delete(fb_helper->buffer);
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops drm_fbdev_dma_shadowed_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/drm_fbdev_shmem.c b/drivers/gpu/drm/drm_fbde=
+v_shmem.c
+> index 1e827bf8b815..51573058df6f 100644
+> --- a/drivers/gpu/drm/drm_fbdev_shmem.c
+> +++ b/drivers/gpu/drm/drm_fbdev_shmem.c
+> @@ -65,8 +65,6 @@ static void drm_fbdev_shmem_fb_destroy(struct fb_info *=
+info)
+>         drm_client_buffer_vunmap(fb_helper->buffer);
+>         drm_client_framebuffer_delete(fb_helper->buffer);
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops drm_fbdev_shmem_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_=
+ttm.c
+> index 85feb55bba11..ccf460fbc1f0 100644
+> --- a/drivers/gpu/drm/drm_fbdev_ttm.c
+> +++ b/drivers/gpu/drm/drm_fbdev_ttm.c
+> @@ -53,8 +53,6 @@ static void drm_fbdev_ttm_fb_destroy(struct fb_info *in=
+fo)
+>         drm_client_framebuffer_delete(fb_helper->buffer);
+>
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops drm_fbdev_ttm_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/=
+exynos/exynos_drm_fbdev.c
+> index 93de25b77e68..a3bd21a827ad 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> @@ -42,8 +42,6 @@ static void exynos_drm_fb_destroy(struct fb_info *info)
+>         drm_framebuffer_remove(fb);
+>
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops exynos_drm_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/gma500/fbdev.c b/drivers/gpu/drm/gma500/fbde=
+v.c
+> index a6af21514cff..bc92fa24a1e2 100644
+> --- a/drivers/gpu/drm/gma500/fbdev.c
+> +++ b/drivers/gpu/drm/gma500/fbdev.c
+> @@ -84,9 +84,6 @@ static void psb_fbdev_fb_destroy(struct fb_info *info)
+>         drm_gem_object_put(obj);
+>
+>         drm_client_release(&fb_helper->client);
+> -
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops psb_fbdev_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
+/i915/display/intel_fbdev.c
+> index 3fbdf75415cc..d5f26c8bb102 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -146,8 +146,6 @@ static void intel_fbdev_fb_destroy(struct fb_info *in=
+fo)
+>         drm_framebuffer_remove(fb_helper->fb);
+>
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  __diag_push();
+> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fb=
+dev.c
+> index b5969374d53f..aad6fb77f0de 100644
+> --- a/drivers/gpu/drm/msm/msm_fbdev.c
+> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
+> @@ -52,8 +52,6 @@ static void msm_fbdev_fb_destroy(struct fb_info *info)
+>         drm_framebuffer_remove(fb);
+>
+>         drm_client_release(&helper->client);
+> -       drm_fb_helper_unprepare(helper);
+> -       kfree(helper);
+>  }
+>
+>  static const struct fb_ops msm_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapd=
+rm/omap_fbdev.c
+> index 948af7ec1130..b5df2923d2a6 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> @@ -103,8 +103,6 @@ static void omap_fbdev_fb_destroy(struct fb_info *inf=
+o)
+>         drm_framebuffer_remove(fb);
+>
+>         drm_client_release(&helper->client);
+> -       drm_fb_helper_unprepare(helper);
+> -       kfree(helper);
+>  }
+>
+>  /*
+> diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/rade=
+on/radeon_fbdev.c
+> index dc81b0c2dbff..4df6c9167bf0 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+> @@ -184,8 +184,6 @@ static void radeon_fbdev_fb_destroy(struct fb_info *i=
+nfo)
+>         radeon_fbdev_destroy_pinned_object(gobj);
+>
+>         drm_client_release(&fb_helper->client);
+> -       drm_fb_helper_unprepare(fb_helper);
+> -       kfree(fb_helper);
+>  }
+>
+>  static const struct fb_ops radeon_fbdev_fb_ops =3D {
+> diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.=
+c
+> index 1b70f5e164af..91aece6f34e0 100644
+> --- a/drivers/gpu/drm/tegra/fbdev.c
+> +++ b/drivers/gpu/drm/tegra/fbdev.c
+> @@ -53,8 +53,6 @@ static void tegra_fbdev_fb_destroy(struct fb_info *info=
+)
+>         drm_framebuffer_remove(fb);
+>
+>         drm_client_release(&helper->client);
+> -       drm_fb_helper_unprepare(helper);
+> -       kfree(helper);
+>  }
+>
+>  static const struct fb_ops tegra_fb_ops =3D {
+> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
+> index bdd845e383ef..eecb8d6e15c7 100644
+> --- a/include/drm/drm_client.h
+> +++ b/include/drm/drm_client.h
+> @@ -28,6 +28,16 @@ struct drm_client_funcs {
+>          */
+>         struct module *owner;
+>
+> +       /**
+> +        * @free:
+> +        *
+> +        * Called when the client gets unregistered. Implementations shou=
+ld
+> +        * release all client-specific data and free the memory.
+> +        *
+> +        * This callback is optional.
+> +        */
+> +       void (*free)(struct drm_client_dev *client);
+> +
+>         /**
+>          * @unregister:
+>          *
+> --
+> 2.51.0
+>
