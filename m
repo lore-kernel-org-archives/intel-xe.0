@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C4DBCCD1A5
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 23:28:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F21DCCCD1A5
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Oct 2025 23:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DCE310E35D;
-	Tue, 21 Oct 2025 23:28:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KFtLUaQM";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2B210E058;
- Tue, 21 Oct 2025 23:28:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8DB4860489;
- Tue, 21 Oct 2025 23:28:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1108BC4CEF1;
- Tue, 21 Oct 2025 23:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761089312;
- bh=yLUPTfQ0fOP6q5PaV+LDloE5TD4E7DwDV7LaIqrcPSg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=KFtLUaQMOWo3d76/lTJ9Tect9Ec+1Rgy0s5sznhblE6CqzqeBEEIkhVn2yHdYo0Ye
- 7RiFzJnGfcKEy2irBmH4lmtIo6ZTMztgNrnilGQoqgJlzYeaztDVweFbYsdvqxHXHs
- dgq40r4UMHBDGpZ0xefp3NhkcewNtcPqTQLuotkaYql2T23nUk9xZ3iOpooeeUo7bh
- qhhhOsf0ezVALtKc2JkPRjcqV6MPyXkwTSf3aiYqGmmiGsfTrVLXYMBJwMq18Z2qLB
- S6dpeoaHd3cSkvXjWxJPoJmMQc5TcolvDGooBsOuBg7G5iN9ZDtbCOnhSp4VBYrjqZ
- IbWawI7Hk9f4g==
-Date: Tue, 21 Oct 2025 13:28:31 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jiangshanlai@gmail.com,
- simona.vetter@ffwll.ch, christian.koenig@amd.com,
- pstanner@redhat.com, dakr@kernel.org
-Subject: Re: [RFC PATCH 1/3] workqueue: Add an interface to taint workqueue
- lockdep with reclaim
-Message-ID: <aPgXH_JjkmKO5_a_@slm.duckdns.org>
-References: <20251021213952.746900-1-matthew.brost@intel.com>
- <20251021213952.746900-2-matthew.brost@intel.com>
- <aPgBjmIm6n9H-R_u@slm.duckdns.org>
- <aPgDXsQY5qAfU0Tv@lstrano-desk.jf.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A615F10E35D;
+	Tue, 21 Oct 2025 23:31:43 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6D5610E35D;
+ Tue, 21 Oct 2025 23:31:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7828215313469976474=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aPgDXsQY5qAfU0Tv@lstrano-desk.jf.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_vfio/xe=3A_Add_driver_varia?=
+ =?utf-8?q?nt_for_Xe_VF_migration_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Oct 2025 23:31:42 -0000
+Message-ID: <176108950267.37893.7399748492757373172@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251021224133.577765-1-michal.winiarski@intel.com>
+In-Reply-To: <20251021224133.577765-1-michal.winiarski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,31 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hello,
+--===============7828215313469976474==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 21, 2025 at 03:04:14PM -0700, Matthew Brost wrote:
-> > Hmm... would it make sense to tie this to WQ_MEM_RECLAIM - ie. enable it
-> > implicitly on workqueues w/ the flag set?
-> 
-> I had considered this, and for a while I thought WQ_MEM_RECLAIM already
-> did what I'm suggesting—especially since I’ve spotted bugs in drivers
-> where I would have expected lockdep to catch them.
-> 
-> In my opinion, this approach is better, but it has a broader kernel-wide
-> scope and could potentially break some things. My subsequent patches
-> will likely break one or two DRM drivers, so it might not be a concern
-> to fix everything that breaks across the kernel. It's up to you which
-> route we want to take here.
+== Series Details ==
 
-Yeah, it is bothersome that WQ_MEM_RECLAIM doesn't currently have a way to
-ensure compliance. I just didn't know about the lockdep mechanism. Can you
-please update the patch so that WQ_MEM_RECLAIM implicitly enables the
-checking?
+Series: vfio/xe: Add driver variant for Xe VF migration (rev2)
+URL   : https://patchwork.freedesktop.org/series/155785/
+State : success
 
-Thanks.
+== Summary ==
 
--- 
-tejun
+CI Bug Log - changes from xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687_BAT -> xe-pw-155785v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-155785v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155785v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687 -> xe-pw-155785v2
+
+  IGT_8594: 8594
+  xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687: fb0f56ad8a2c9953c57c3337a72ccbf9c5050687
+  xe-pw-155785v2: 155785v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155785v2/index.html
+
+--===============7828215313469976474==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>vfio/xe: Add driver variant for Xe VF migration (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155785/">https://patchwork.freedesktop.org/series/155785/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155785v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155785v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687_BAT -&gt; xe-pw-155785v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-155785v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155785v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687 -&gt; xe-pw-155785v2</li>
+</ul>
+<p>IGT_8594: 8594<br />
+  xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687: fb0f56ad8a2c9953c57c3337a72ccbf9c5050687<br />
+  xe-pw-155785v2: 155785v2</p>
+
+</body>
+</html>
+
+--===============7828215313469976474==--
