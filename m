@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB593CCD1BE
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 23:21:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8503FCCF9E2
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 23:27:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4B288A3E;
-	Wed, 22 Oct 2025 23:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3898C10E1C2;
+	Wed, 22 Oct 2025 23:27:31 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F367010E1C2;
- Wed, 22 Oct 2025 23:21:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2989795172791185307=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6D3E10E1C2;
+ Wed, 22 Oct 2025 23:27:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D/dsb=3A_?=
- =?utf-8?q?refactor_DSB_buffer_allocation_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?b?4pyXIENJLmNoZWNrcGF0Y2g6IHdhcm5pbmcgZm9yIGRybS97aTkxNSx4ZX0vZmJk?=
+ =?utf-8?b?ZXY6IGFkZCBpbnRlbF9mYmRldl9mYl9waXRjaF9hbGlnbigpIChyZXYyKQ==?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Oct 2025 23:21:49 -0000
-Message-ID: <176117530998.44373.8070310462834288817@97596180aaec>
+Date: Wed, 22 Oct 2025 23:27:29 -0000
+Message-ID: <176117564993.44373.9397642183702441510@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <cover.1761147363.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1761147363.git.jani.nikula@intel.com>
+References: <20251022161054.708388-1-jani.nikula@intel.com>
+In-Reply-To: <20251022161054.708388-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,50 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2989795172791185307==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev2)
-URL   : https://patchwork.freedesktop.org/series/154592/
-State : success
+Series: drm/{i915,xe}/fbdev: add intel_fbdev_fb_pitch_align() (rev2)
+URL   : https://patchwork.freedesktop.org/series/155982/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -> xe-pw-154592v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 96ef6f9ace3e452aa6aadadc022dad08308e6dfa
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Oct 22 19:10:54 2025 +0300
 
-Summary
--------
+    drm/{i915,xe}/fbdev: add intel_fbdev_fb_pitch_align()
+    
+    For reasons still unknown, xe appears to require a stride alignment of
+    XE_PAGE_SIZE, and using 64 leads to sporadic failures. Go back to having
+    separate stride alignment for i915 and xe, until the issue is root
+    caused.
+    
+    v2: Add FIXME comment, reference issue with Link (Ville)
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: Jouni Högander <jouni.hogander@intel.com>
+    Cc: Maarten Lankhorst <maarten@lankhorst.se>
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220
+    Fixes: 4a36b339a14a ("drm/xe/fbdev: use the same 64-byte stride alignment as i915")
+    Link: https://lore.kernel.org/r/ae51d1e224048bdc87bf7a56d8f5ebd0fbb6a383.1756931441.git.jani.nikula@intel.com
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 71929a54e8bb5da291d41a931d80c6c9160073dd drm-intel
+96ef6f9ace3e drm/{i915,xe}/fbdev: add intel_fbdev_fb_pitch_align()
+-:34: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#34: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:221:
++	mode_cmd->pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd->width * DIV_ROUND_UP(sizes->surface_bpp, 8));
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8594 -> IGT_8595
-  * Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -> xe-pw-154592v2
-
-  IGT_8594: 8594
-  IGT_8595: 8595
-  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd
-  xe-pw-154592v2: 154592v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v2/index.html
-
---===============2989795172791185307==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}/dsb: refactor DSB buffer allocation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154592/">https://patchwork.freedesktop.org/series/154592/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154592v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -&gt; xe-pw-154592v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8594 -&gt; IGT_8595</li>
-<li>Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -&gt; xe-pw-154592v2</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  IGT_8595: 8595<br />
-  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd<br />
-  xe-pw-154592v2: 154592v2</p>
-
-</body>
-</html>
-
---===============2989795172791185307==--
