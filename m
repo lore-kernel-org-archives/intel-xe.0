@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D23AFCCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 00:55:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E41D7CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 00:55:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96F8510E677;
-	Wed, 22 Oct 2025 00:55:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B5810E67A;
+	Wed, 22 Oct 2025 00:55:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kSTMpPga";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bWnhX9UT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F92B10E66A
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 00:55:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F21D610E66A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 00:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761094543; x=1792630543;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=v3b6TVIo2okc2P7tpm87txenr2ZR/n2tssAddFV3pjo=;
- b=kSTMpPgaqnKkW5re3rsnBQVG28tdv9x2VEWDRCrjw+pomQOJsXgv5R7D
- D4B44CMXxJaEMBSAUEGCMDtT9aJzQj44q8YPlhylnjV8UkdQ4yGQRYJZF
- Cg6+9KevYDR0vb1Wd0LVtK/yOl8WtGdfGdronL3cXMCsggkLWRSEQYOG8
- 6Az1AtOAlo1ucb7Ro3s9PUtTW9vszjFKXsm+avpvFqvnl42wpWnyPyLsm
- HW1ASAbn9Hn1PUaarV13d8go6EzMqZ/3eRXBlYGoeENbe4YYpaNAhe7uE
- jH7tRjR5XlpyKA5hAodRcnarP5/7ob+ryXOW9B4OPqOw8kXrMLhYjTZBo Q==;
-X-CSE-ConnectionGUID: 1ftJpAklRJK0DC6c5THCdA==
-X-CSE-MsgGUID: 5YIgrGk/Q9CWUBCm6qiSxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50807413"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="50807413"
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=x+JIaZEoge6CI6tJNqslT66YfmZU/ZOnHUbLEvHHxJI=;
+ b=bWnhX9UTHCH2XIGEGPJbTt6IZfiZhWidkLb06S+xwGGFLzw4YbcZXJ4O
+ 8whv1EUB9CeT2pWSRxuhxt87W3W6wF2kw4lwCkiKwst5+yaBQdyLKJqGL
+ vC5NhXLLoGIxzqshVM8vYR8Pf2XlaKQJ+bVlz378v7FoCOnDg3GJ3Z6tU
+ z3ViTBPhdOSkhubwbxdQ0kDmLdTZI0Ph9x1Qih00Wrew+EYKlWatpqnzo
+ lXN3RL8d7GD212zN/cZi7jDYag6JxUu+65BH2DtRjmZ12XoEOJAlZQvQ0
+ nwOHM0c74nyLItzYM9cHMGYG29eAcfgvfESu5cQqieaJGPnIlfE9QaB/a A==;
+X-CSE-ConnectionGUID: Jc0kfhm+R0OaV0XR02JfUQ==
+X-CSE-MsgGUID: lWzmi93HQcuss4FAia39mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50807411"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="50807411"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 17:55:42 -0700
-X-CSE-ConnectionGUID: Rdmvdw79S6yEzYj2DLQG+g==
-X-CSE-MsgGUID: 6fWauR7cRPi7dCpTpGuEbQ==
+X-CSE-ConnectionGUID: 2/1ntbB5TKu2ENx89oxJgA==
+X-CSE-MsgGUID: i0kPhyaKRYuZmnPU/syQOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="182938777"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="182938775"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 17:55:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/xe: Do not wake device during a GT reset
-Date: Tue, 21 Oct 2025 17:55:37 -0700
-Message-Id: <20251022005538.828980-3-matthew.brost@intel.com>
+Subject: [PATCH 0/3] Fix low hanging workqueue / reclaim issues 
+Date: Tue, 21 Oct 2025 17:55:35 -0700
+Message-Id: <20251022005538.828980-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251022005538.828980-1-matthew.brost@intel.com>
-References: <20251022005538.828980-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,66 +64,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Waking the device during a GT reset can lead to unintended memory
-allocation, which is not allowed since GT resets occur in the reclaim
-path. Prevent this by holding a PM reference while a reset is in flight.
+While working on [1], noticed a couple in Xe related to workqueue /
+reclaim. Pretty low hanging, let's get this fixed.
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+Matt
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index d8e94fb8b9bd..89808b33d0a8 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -818,17 +818,19 @@ static int gt_reset(struct xe_gt *gt)
- 	unsigned int fw_ref;
- 	int err;
- 
--	if (xe_device_wedged(gt_to_xe(gt)))
--		return -ECANCELED;
-+	if (xe_device_wedged(gt_to_xe(gt))) {
-+		err = -ECANCELED;
-+		goto err_pm_put;
-+	}
- 
- 	/* We only support GT resets with GuC submission */
--	if (!xe_device_uc_enabled(gt_to_xe(gt)))
--		return -ENODEV;
-+	if (!xe_device_uc_enabled(gt_to_xe(gt))) {
-+		err = -ENODEV;
-+		goto err_pm_put;
-+	}
- 
- 	xe_gt_info(gt, "reset started\n");
- 
--	xe_pm_runtime_get(gt_to_xe(gt));
--
- 	if (xe_fault_inject_gt_reset()) {
- 		err = -ECANCELED;
- 		goto err_fail;
-@@ -875,6 +877,7 @@ static int gt_reset(struct xe_gt *gt)
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
- 
- 	xe_device_declare_wedged(gt_to_xe(gt));
-+err_pm_put:
- 	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return err;
-@@ -896,7 +899,9 @@ void xe_gt_reset_async(struct xe_gt *gt)
- 		return;
- 
- 	xe_gt_info(gt, "reset queued\n");
--	queue_work(gt->ordered_wq, &gt->reset.worker);
-+	xe_pm_runtime_get_noresume(gt_to_xe(gt));
-+	if (!queue_work(gt->ordered_wq, &gt->reset.worker))
-+		xe_pm_runtime_put(gt_to_xe(gt));
- }
- 
- void xe_gt_suspend_prepare(struct xe_gt *gt)
+[1] https://patchwork.freedesktop.org/series/156283/
+
+Matthew Brost (3):
+  drm/xe: Check return value of GGTT workqueue allocation
+  drm/xe: Do not wake device during a GT reset
+  drm/xe: Avoid PM wake reference during VF migration
+
+ drivers/gpu/drm/xe/xe_ggtt.c        |  3 +++
+ drivers/gpu/drm/xe/xe_gt.c          | 19 ++++++++++++-------
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  5 -----
+ 3 files changed, 15 insertions(+), 12 deletions(-)
+
 -- 
 2.34.1
 
