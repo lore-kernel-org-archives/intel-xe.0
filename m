@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37564CCD1BC
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 00:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 584E0CCD1BC
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 00:32:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB98E10E68D;
-	Wed, 22 Oct 2025 00:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BDF10E694;
+	Wed, 22 Oct 2025 00:32:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ALutpHmu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IQUDquiZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF0510E68A;
- Wed, 22 Oct 2025 00:32:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5A6110E690;
+ Wed, 22 Oct 2025 00:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761093131; x=1792629131;
+ t=1761093135; x=1792629135;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=7dudOjZtK6RJSVyMvb0HmH+2YylMfxzsdLI0SjzZP6k=;
- b=ALutpHmuXO4+6ZvjqYW5x3lRXK8wy8cHHigFY4MnEXaAgQR2frZBry5L
- DI1Bgd7Fo4yMCbN/AlYG3x70jguzGe6qUGFgrGvXP0AOQpUMKWEE1tEpb
- enKZT/0fTGrD4f04dbKgdSS8iqf1DY3etTsNYP0EzN5g+3c6vdwJ6oHp3
- liylyFX9Fjfr3FZ736DRhrWNfoApSummh4Jo4XdLKMTG/JjEFA0mCmQVj
- 6Z0Pk04nstsetpeTkjzfaMo+wOes4Jvk4eTxRNnsak5Nvs253UWDsa16F
- q40jcyiWU9GQvz+CWneCMJ31CIIGB9Md2uf6Yr9w4MIs6+mCcCcuEHAVR w==;
-X-CSE-ConnectionGUID: nujtDh+eQmGDsmvEnxqVmg==
-X-CSE-MsgGUID: L4kZW5qVRxy2T7JhCuFftw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855776"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855776"
+ bh=x+j816Jt8gvQ49GnEeZNHVbf0cRAJsUH4JvfAUxsbOM=;
+ b=IQUDquiZq2CIL70V24hLwdq6s+nkXe3/GBP4suNLtT5WJd6HEoxXDC+l
+ ci4FXVfm1agWc//exZ/cFurGcAM0o5bPFdPRrTFMnCE/agqzxOCOW9TeZ
+ sm18Knyy88j5lyTn4HosFbKPZQmloLAXnWxKTblAHScSD0NQbgeoJEZOc
+ 8czhhmrgdVvWmIAWLwPnPzEuk8b83mgk0slPUmXDsCxcuTiW2yopL0sIZ
+ c3HPODpFyS5/qte5B4Kg7DG8KuG00gM+FqSjsJY/MwiJtVJkEBmFxkUkQ
+ yfAhImVUgZQ9jc5cxRb9ZOwGR1xtBt/2uz9ZX59c4fvWx1ZPuSH1PjTzN A==;
+X-CSE-ConnectionGUID: Yc03j80VRJC+t2lSiQuMjg==
+X-CSE-MsgGUID: J8CjH+JyQXSG2xwWj1q7lA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="85855789"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="85855789"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:08 -0700
-X-CSE-ConnectionGUID: QGS9zeFxQ/WyujCnHs0QOQ==
-X-CSE-MsgGUID: /xUx4N5HSLicHjfCRYUBSw==
+ 21 Oct 2025 17:32:14 -0700
+X-CSE-ConnectionGUID: 12c4i+p/QYeM9tCv7E/Gyw==
+X-CSE-MsgGUID: zplc6QgeQJ6vLUhgXZydvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132461"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="188132480"
 Received: from gpacheco-mobl.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.26])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 17:32:04 -0700
+ 21 Oct 2025 17:32:11 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Tue, 21 Oct 2025 21:28:44 -0300
-Subject: [PATCH v2 19/32] drm/i915/xe3p_lpd: PSR SU minimum lines is 4
+Date: Tue, 21 Oct 2025 21:28:46 -0300
+Subject: [PATCH v2 21/32] drm/i915/xe3p_lpd: Extend Wa_16025573575
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-19-10eae6d655b8@intel.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251021-xe3p_lpd-basic-enabling-v2-21-10eae6d655b8@intel.com>
 References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
@@ -63,8 +63,7 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, 
  Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>, 
  Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Vinod Govindapillai <vinod.govindapillai@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,66 +79,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jouni Högander <jouni.hogander@intel.com>
+Wa_16025573575 also applies to Xe3p_LPD, so let's include it in the IP
+version checks.
 
-Ensure the minimum selective update line count is 4 in case of display
-version 35 and onwards.
-
-v2:
-  - Fix style by dropping extra spaces after assignment operator.
-    (Jani).
-
-Bspec: 69887
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_wa.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index cfc8b04f98fa..a23519b9b388 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2804,6 +2804,29 @@ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
- 		intel_psr_apply_pr_link_on_su_wa(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index c528aaa679ca..e38e5e87877c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -49,7 +49,8 @@ void intel_display_wa_apply(struct intel_display *display)
+  */
+ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
+ {
+-	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
++	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002 ||
++		DISPLAY_VERx100(display) == 3500;
  }
  
-+static void intel_psr_su_area_min_lines(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct drm_rect damaged_area;
-+
-+	/*
-+	 * Bspec mentions 4 being minimum lines in SU for display version
-+	 * 35 and onwards.
-+	 */
-+	if (DISPLAY_VER(display) < 35 || drm_rect_height(&crtc_state->psr2_su_area) >= 4)
-+		return;
-+
-+	damaged_area.x1 = crtc_state->psr2_su_area.x1;
-+	damaged_area.y1 = crtc_state->psr2_su_area.y1;
-+	damaged_area.x2 = crtc_state->psr2_su_area.x2;
-+	damaged_area.y2 = crtc_state->psr2_su_area.y2;
-+
-+	damaged_area.y2 += 4 - drm_rect_height(&damaged_area);
-+	drm_rect_intersect(&damaged_area, &crtc_state->pipe_src);
-+	damaged_area.y1 -= 4 - drm_rect_height(&damaged_area);
-+	clip_area_update(&crtc_state->psr2_su_area, &damaged_area, &crtc_state->pipe_src);
-+}
-+
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
- {
-@@ -2912,6 +2935,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if (full_update)
- 		goto skip_sel_fetch_set_loop;
- 
-+	intel_psr_su_area_min_lines(crtc_state);
-+
- 	intel_psr_apply_su_area_workarounds(crtc_state);
- 
- 	ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
+ /*
 
 -- 
 2.51.0
