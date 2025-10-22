@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87B08CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:17:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACDDCCD1BB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA8310E7F2;
-	Wed, 22 Oct 2025 15:17:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k+wXEE2e";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCDC010E7F5;
- Wed, 22 Oct 2025 15:17:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761146267; x=1792682267;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZdW3Xq0HabYroOad4fM6z8OdM7PUeG971ermjlT0Ud8=;
- b=k+wXEE2ezqWfjd816sf6AHfuBPj2Q/qMfqZBi5EleSRpglxQmVTsd0Z2
- HhRvQ0Jy/v7ulbSJU0xh2+OWunlSJBzKjze14V9LW17MsIC7iPA7c3Q9c
- B5u0Yb6E6AOItx8olWujkOitDtMdtmZYYmIGYCqnO2Aa7Gc4paKJsQfss
- Qy+odXvl335x+wPbFq1cPUaeUL3W0DVfza5Jtu3+Lxo0Nw6jn3eihfGSG
- FP+pMFOVAsUXw41zkGUHrI8MyQxwMFj29cqjX/w1EsjEzD5cKhw86v0og
- SV6PAMUoc5Fw6pCt3+jniGNbF3FMQ1Lmxmv14EMGRffAIVToo6dJgu92/ w==;
-X-CSE-ConnectionGUID: U+F5WgaRTDK6jGwpPiHiYQ==
-X-CSE-MsgGUID: fD+vbGaTTCSB//7poC6W7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73903568"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="73903568"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:17:47 -0700
-X-CSE-ConnectionGUID: MkQrcMvXQpOavCmXIdz7RQ==
-X-CSE-MsgGUID: 0nzPu6GnRP+Wrt8EkAjRrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="183113744"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.104])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:17:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 6/6] drm/xe/compat: reduce i915_utils.[ch]
-Date: Wed, 22 Oct 2025 18:17:14 +0300
-Message-ID: <c02f82e45f31caf95bd1339080b9099c3b7190be.1761146196.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1761146196.git.jani.nikula@intel.com>
-References: <cover.1761146196.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EE610E7ED;
+	Wed, 22 Oct 2025 15:18:58 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D203F10E15F;
+ Wed, 22 Oct 2025 15:18:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dmc=3A_Event_han?=
+ =?utf-8?q?dler_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 15:18:56 -0000
+Message-ID: <176114633685.42825.4166421142905078907@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251022100718.24803-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20251022100718.24803-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,76 +36,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reduce the compat i915_utils.h to only cover the requirements of
-MISSING_CASE() in soc/ and the few i915_inject_probe_failure()
-instances, instead of including the entire i915_utils.h from i915. This
-prevents new users for the utilities from cropping up.
+== Series Details ==
 
-With this, we can remove the xe/display/ext/i915_utils.c altogether.
+Series: drm/i915/dmc: Event handler fixes
+URL   : https://patchwork.freedesktop.org/series/156319/
+State : warning
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/Makefile                     |  1 -
- .../gpu/drm/xe/compat-i915-headers/i915_utils.h |  9 ++++++++-
- drivers/gpu/drm/xe/display/ext/i915_utils.c     | 17 -----------------
- 3 files changed, 8 insertions(+), 19 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_utils.c
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index feb8225d4d79..a7bcc3948a31 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -205,7 +205,6 @@ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
- # Display code specific to xe
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/ext/i915_irq.o \
--	display/ext/i915_utils.o \
- 	display/intel_bo.o \
- 	display/intel_fb_bo.o \
- 	display/intel_fbdev_fb.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-index 1d7c4360e5c0..bcd441dc0fce 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-@@ -3,4 +3,11 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
--#include "../../i915/i915_utils.h"
-+/* for soc/ */
-+#ifndef MISSING_CASE
-+#define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
-+			     __stringify(x), (long)(x))
-+#endif
-+
-+/* for a couple of users under i915/display */
-+#define i915_inject_probe_failure(unused) ((unused) && 0)
-diff --git a/drivers/gpu/drm/xe/display/ext/i915_utils.c b/drivers/gpu/drm/xe/display/ext/i915_utils.c
-deleted file mode 100644
-index af9ec2abbaa1..000000000000
---- a/drivers/gpu/drm/xe/display/ext/i915_utils.c
-+++ /dev/null
-@@ -1,17 +0,0 @@
--// SPDX-License-Identifier: MIT
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#include "i915_utils.h"
--
--#if IS_ENABLED(CONFIG_DRM_I915_DEBUG)
--
--/* i915 specific, just put here for shutting it up */
--int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
--			      const char *func, int line)
--{
--	return 0;
--}
--
--#endif
--- 
-2.47.3
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 95624966af24b6283d8fc86f51a852134af0cb4d
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Wed Oct 22 13:07:18 2025 +0300
+
+    drm/i915/dmc: Set DMC_EVT_CTL_ENABLE for disabled event handlers as well
+    
+    DMC_EVT_CTL_ENABLE cannot be cleared once set. So currently
+    any event we never enable will have DMC_EVT_CTL_ENABLE cleared,
+    whereas any event which has been enabled even once will have
+    DMC_EVT_CTL_ENABLE set. For that reason assert_dmc_loaded() has
+    a special case to ignore any mismatches in DMC_EVT_CTL_ENABLE.
+    
+    Eliminate the special case by always configuring DMC_EVT_CTL_ENABLE
+    based on the original firmware event definition. Now all
+    event handlers will have DMC_EVT_CTL_ENABLE set, whether or
+    not the event has been enabled in the past.
+    
+    All disabled event handlers will still have the event type set
+    to DMC_EVENT_FALSE so they will not actually trigger despite
+    DMC_EVT_CTL_ENABLE being set.
+    
+    Tested-by: Petr Vorel <pvorel@suse.cz>
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Reviewed-by: Petr Vorel <pvorel@suse.cz>
++ /mt/dim checkpatch 602d56f809ae2450a720a0fbedcfe84ff38ffb98 drm-intel
+8dea60b74887 drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S
+-:81: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#81: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1106:
++			dmc_info->mmiodata[i+1],
+ 			                    ^
+
+-:86: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#86: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1111:
++				   dmc_info->mmioaddr[i+1], &dmc_info->mmiodata[i+1]))
+ 				                       ^
+
+-:86: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#86: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1111:
++				   dmc_info->mmioaddr[i+1], &dmc_info->mmiodata[i+1]))
+ 				                                                 ^
+
+-:95: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#95: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1120:
++			    i+1, i915_mmio_reg_offset(dmc_info->mmioaddr[i+1]),
+ 			     ^
+
+-:95: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#95: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1120:
++			    i+1, i915_mmio_reg_offset(dmc_info->mmioaddr[i+1]),
+ 			                                                  ^
+
+-:96: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#96: FILE: drivers/gpu/drm/i915/display/intel_dmc.c:1121:
++			    orig_mmiodata[1], dmc_info->mmiodata[i+1]);
+ 			                                          ^
+
+total: 0 errors, 0 warnings, 6 checks, 69 lines checked
+f7b1d398d5d5 drm/i915/dmc: Fixup TGL/ADL-S HRR event handler type
+95624966af24 drm/i915/dmc: Set DMC_EVT_CTL_ENABLE for disabled event handlers as well
+
 
