@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75F8ACCD195
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:54:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8AD0CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 10:00:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E28510E725;
-	Wed, 22 Oct 2025 09:54:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWGf8UEx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A89FC10E725
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761126849; x=1792662849;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=eqmyfdiN9+3jL4GpRhkyPC986QttdaaB4JVEJk3MfOw=;
- b=NWGf8UExKbepaNclU4rrmbH8+dKjwRugJ+g1k6MXsQ2kHrcX4hM3hVJr
- wLZ0kmnn771skBg1Ia8bZBYmgQ2ECICtY+SxIdX9JdReM8Mp6wvify/wX
- NWKCHCPw41Mi1FB7oZR1tjD0TKUzavFANf0MF0BlXoMfit5e59znp8Ki7
- BQb0jKrHFPnIb2OllccOmWgcZ982oDJR8hfR4OvqtxaixeZBZAQ3CcxGZ
- Aj460FfnzsCREafGKPfw1L2YHHd7bWY941JbVss4lQ9fPUrSTN2FoioLD
- C8fe25eAy5bjRRdBmq6eXJuwt+mzx7ASrHNmR7z4G6MVOfm+mrIlDp7WI w==;
-X-CSE-ConnectionGUID: 1drIXSDSSrayrt9HGB4d7Q==
-X-CSE-MsgGUID: RoNytudXQx2dZ3MjmkizIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74388551"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="74388551"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 02:54:09 -0700
-X-CSE-ConnectionGUID: af9h+CFfQCahm55rPBefOQ==
-X-CSE-MsgGUID: GeKzlLkQSfKkdeMVXGF/sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="187869187"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.244.63])
- ([10.245.244.63])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 02:54:08 -0700
-Message-ID: <8b1b8d13-581e-4692-a1b1-7e77b1c73a89@intel.com>
-Date: Wed, 22 Oct 2025 10:54:05 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D98510E02D;
+	Wed, 22 Oct 2025 10:00:46 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A84810E02D;
+ Wed, 22 Oct 2025 10:00:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Check return value of GGTT workqueue
- allocation
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20251022005538.828980-1-matthew.brost@intel.com>
- <20251022005538.828980-2-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20251022005538.828980-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Use_display_parent_inter?=
+ =?utf-8?q?face_for_runtime_pm?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 10:00:45 -0000
+Message-ID: <176112724523.41040.14552798697341006204@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251022085548.876150-1-jouni.hogander@intel.com>
+In-Reply-To: <20251022085548.876150-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,37 +36,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/10/2025 01:55, Matthew Brost wrote:
-> Workqueue allocation can fail, so check the return value of the GGTT
-> workqueue allocation and fail driver initialization if the allocation
-> fails.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+== Series Details ==
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: Use display parent interface for runtime pm
+URL   : https://patchwork.freedesktop.org/series/156308/
+State : warning
 
+== Summary ==
 
-> ---
->   drivers/gpu/drm/xe/xe_ggtt.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 40680f0c49a1..20d226d90c50 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -312,6 +312,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
->   		ggtt->pt_ops = &xelp_pt_ops;
->   
->   	ggtt->wq = alloc_workqueue("xe-ggtt-wq", 0, WQ_MEM_RECLAIM);
-> +	if (!ggtt->wq)
-> +		return -ENOMEM;
-> +
->   	__xe_ggtt_init_early(ggtt, xe_wopcm_size(xe));
->   
->   	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 126bfe822b7fa02f01008cf6f712bd777b1d625b
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
+-
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
++drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
++drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
