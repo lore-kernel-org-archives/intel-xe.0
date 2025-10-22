@@ -4,37 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BB6CCCD1BB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 12:13:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 200B7CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 12:14:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4BC610E768;
-	Wed, 22 Oct 2025 12:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB79C10E768;
+	Wed, 22 Oct 2025 12:14:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hA2m7nCi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOfKnT+F";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 704B910E76F
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 12:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761135193;
- bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hA2m7nCimBLIgWIG0FrQ1ThVUtxSUBvrXYSnpcoYdUmOE0lMtt5AgA68ERkvx+rvP
- 5bPiItKuFnkpDCaqv1Z5JjbIKqRgRiI5+pgZig9B/qq47N+Ve570bQabkSh3sQb4Cs
- rf3e2dn4+Y5AeIYQj1YhdA2sYrOguthmrXcbBEwX8PpVBahifFfTmoUiDpxCxk4BMM
- YByYKZ+8aEHQ8EpcFe2G/ai2iYTtOvImowEnQZcozny87nUAHAOWnXyZfzUHmCI4AB
- Roa3XZ0rU4GSrYDjj0EBViefGO8GVQZzOFBarNsRmWRmjNvhiIx2OMz6vLaaoXfAoz
- w2sXHgzk+saAQ==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [FOR CI 5/5] PREEMPT_RT injection
-Date: Wed, 22 Oct 2025 14:13:07 +0200
-Message-ID: <20251022121301.18166-12-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251022121301.18166-7-dev@lankhorst.se>
-References: <20251022121301.18166-7-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D60BB10E768;
+ Wed, 22 Oct 2025 12:14:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761135296; x=1792671296;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V1KCMkUrQZz7PtKox6e702RfbV8ycbn/E6qgMKBBXiE=;
+ b=IOfKnT+FqRrcJXYaJ78grg/oH9KPlmfypNNlhXDFV/Yx5m7Uy9xjKJ2J
+ NqKuL5BBfedOe0DCzIXslNqP8uolt80uBF46MlEi+wsdBxrrS5XYuhi+F
+ 5z08lyRh74Z+9++2vzWORDzzpIiYevr7TldiGF9zfiPdw73H+q5a57zJV
+ vPcDGceEnWmovZP8eYGHWmg91aHg4a60ZCd6IEb5mNnscCzQFlfdOQUHw
+ WhHLlRKEgTnNBjorFEqWTh8pqd4svfCgv6FRO+20fS5tBbuAyIRJUD8B+
+ YKzeicpUwdyJRjodiQWp8/gxJtWwlF4gK9lEmygjFMQ8r6p9zHBvIL4lk g==;
+X-CSE-ConnectionGUID: IJH5JATeTiOzsqnfnIwj0Q==
+X-CSE-MsgGUID: bBwdofADTIaUlBrWZQjyWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80909085"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="80909085"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:14:56 -0700
+X-CSE-ConnectionGUID: DYHvc2swSIClGsVsRUu+jg==
+X-CSE-MsgGUID: LzV2EriSR7CL5bN09JLBkg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="183028280"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.104])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:14:54 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/i915/display: drop a few unnecessary i915_drv.h
+ includes
+Date: Wed, 22 Oct 2025 15:14:49 +0300
+Message-ID: <20251022121450.452649-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,71 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
- drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
- kernel/Kconfig.preempt             |  4 ++--
- 3 files changed, 7 insertions(+), 17 deletions(-)
+We've stopped using struct drm_i915_private in intel_fb.c and
+skl_universal_plane.c, so we can drop the i915_drv.h includes.
 
-diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-index 3562a02ef7adc..0ab10ff41e38d 100644
---- a/drivers/gpu/drm/i915/Kconfig.debug
-+++ b/drivers/gpu/drm/i915/Kconfig.debug
-@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c            | 1 -
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 3958628c73e9..6ade38198f39 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -10,7 +10,6 @@
+ #include <drm/drm_gem.h>
+ #include <drm/drm_modeset_helper.h>
  
- 	  If in doubt, say "N".
+-#include "i915_drv.h"
+ #include "i915_utils.h"
+ #include "intel_bo.h"
+ #include "intel_display.h"
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 0319174adf95..765d288cce2b 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -7,9 +7,9 @@
+ #include <drm/drm_blend.h>
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_print.h>
  
--config DRM_I915_DEBUG_VBLANK_EVADE
--	bool "Enable extra debug warnings for vblank evasion"
--	depends on DRM_I915
--	default n
--	help
--	  Choose this option to turn on extra debug warnings for the
--	  vblank evade mechanism. This gives a warning every time the
--	  the deadline allotted for the vblank evade critical section
--	  is exceeded, even if there isn't an actual risk of missing
--	  the vblank.
--
--	  Recommended for driver developers only.
--
--	  If in doubt, say "N".
--
- config DRM_I915_DEBUG_RUNTIME_PM
- 	bool "Enable extra state checking for runtime PM"
- 	depends on DRM_I915
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 01227c77f6d70..1d5f11c6e88f3 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
- 
- 	  If in doubt, say "N".
- 
-+config DRM_I915_DEBUG_VBLANK_EVADE
-+        def_bool y
-+        depends on DRM_XE
-+
-+
- config DRM_XE_DEBUG_VM
- 	bool "Enable extra VM debugging info"
- 	default n
-diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
-index da326800c1c9b..68a6d42c55abe 100644
---- a/kernel/Kconfig.preempt
-+++ b/kernel/Kconfig.preempt
-@@ -87,9 +87,9 @@ config PREEMPT_LAZY
- endchoice
- 
- config PREEMPT_RT
--	bool "Fully Preemptible Kernel (Real-Time)"
--	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
-+	def_bool y
- 	select PREEMPTION
-+	depends on ARCH_SUPPORTS_RT
- 	help
- 	  This option turns the kernel into a real-time kernel by replacing
- 	  various locking primitives (spinlocks, rwlocks, etc.) with
+ #include "pxp/intel_pxp.h"
+-#include "i915_drv.h"
+ #include "i915_utils.h"
+ #include "intel_bo.h"
+ #include "intel_de.h"
+@@ -24,6 +24,7 @@
+ #include "intel_plane.h"
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
++#include "intel_step.h"
+ #include "skl_scaler.h"
+ #include "skl_universal_plane.h"
+ #include "skl_universal_plane_regs.h"
 -- 
-2.51.0
+2.47.3
 
