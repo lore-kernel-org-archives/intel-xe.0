@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22E5BCCD195
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0853CCCF9E1
 	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D339F10E6CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F7810E6C9;
 	Wed, 22 Oct 2025 07:30:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SSeWfqXx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pi22rPlb";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ACAF10E6D0
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 207C810E6D4
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=263vrCNeTRdF52xr0d6yMDxIer3ZTpCX/1troP02Hg4=; b=SSeWfqXxpFH0HfzVY1yMN3jYD0
- UbuDp+cVhYC2n6fY2ghLHJRHdLtGlVAT5IPzwJKVC5mSgSAmV0oXeWsAyTQTsEOZTpYk1AVb6i/Ni
- V4WZqGo0ah6tfXlCGvRXB78D/srDK5w/hV5iuYBhUhd+q39oxTx341fPgp6wf7Ik9loGjVzVRFvbN
- v5hYT6e6sqmIJjknK/74EMbcPYVvrF7cxiAH0/7NeTsdxnDPzODPiaXI3mgAymBlimZGWryNpIsk7
- oN/oSOudJTvH90U4UXDDVLWcQ22cmuphs4an57fDnbl4SE5eCy9IDDUCvcT9o6sxIWtQmfU8zWKFm
- 1KN7hYVw==;
+ bh=GNZUDaVJCMpiEPGS/RKEhpM1nHHp+AB4POcS62QqPzw=; b=pi22rPlbtaDxpFnO41yKbPXnS8
+ aXKlykdfZgfrgRWz/penwEg6yo1ZVenfqSZ0X/A5uxgBus7q4Zizqzq6nJ3Zt4F+fv8iCBEpFTMxc
+ Prc5n9xqGDGFLnzIk1aJIqFVQf84F+eovUn6L9ZgMcwgPVgZh2tTgBsZKuZGAzBjqQfqDHjRB4seG
+ 3TXeehalR+9SkVwHenWn4qDXQQPq0DfFrLbioRLIb1XguGyWcZ3XEAvUzegPhvryYlXn1arbK/7qR
+ 9bB4WtRQeW7OnlBR9zIaHploQduUF9URRWz5iCC34M1L378/1g9jJGV9zPMHRCQS1FkOo+qJGM7WW
+ EYBmO/kA==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTIY-00CswU-VN
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:19 +0200
+ id 1vBTIa-00Cswc-Ew
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:20 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 11/13] drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
-Date: Wed, 22 Oct 2025 08:30:03 +0100
-Message-ID: <20251022073010.71285-12-tvrtko.ursulin@igalia.com>
+Subject: [CI 13/13] drm/i915/display: Expose AuxCCS frame buffer modifiers for
+ Xe
+Date: Wed, 22 Oct 2025 08:30:05 +0100
+Message-ID: <20251022073010.71285-14-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,58 +59,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With DPT in stolen memory there are occasional pipe crc IGT failures in
-tests such as kms_flip_tiling. Allocate a normal system memory object
-instead.
+Now that we have fixed the DPT handling we can undo the nerf which was
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+built for Xe").
+
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+	[PLANE:32:plane 1A]: type=PRI
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index af691eee398a..8217abc3a20d 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -122,6 +122,20 @@ static void ggtt_flush_writes(struct xe_ggtt *ggtt)
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 0319174adf95..d3ccd3c837e1 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2929,12 +2929,6 @@ skl_universal_plane_create(struct intel_display *display,
+ 	else
+ 		caps = skl_plane_caps(display, pipe, plane_id);
  
-+static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
-+{
-+	/*
-+	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
-+	 * suffers from occasional pipe crc IGT failures in tests such as
-+	 * kms_flip_tiling.
-+	 */
-+	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
-+	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+		return false;
-+
-+	return true;
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -131,7 +145,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
--	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
-+	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
- 	u32 dpt_size, size = bo->ttm.base.size;
+-	/* FIXME: xe has problems with AUX */
+-	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
+-		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+-			  INTEL_PLANE_CAP_CCS_RC_CC |
+-			  INTEL_PLANE_CAP_CCS_MC);
+-
+ 	modifiers = intel_fb_plane_get_modifiers(display, caps);
  
- 	if (view->type == I915_GTT_VIEW_NORMAL)
-@@ -152,7 +166,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   XE_BO_FLAG_GGTT |
- 						   XE_BO_FLAG_PAGETABLE,
- 						   alignment, false);
--	else
-+	else if (try_dpt_stolen(fb, bo))
- 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
- 						   dpt_size,  ~0ull,
- 						   ttm_bo_type_kernel,
+ 	ret = drm_universal_plane_init(display->drm, &plane->base,
 -- 
 2.48.0
 
