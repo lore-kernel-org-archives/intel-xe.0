@@ -4,49 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 539E2CCD195
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BCD6CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:36:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11B4810E70A;
-	Wed, 22 Oct 2025 07:36:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bJEWi8jm";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7CC210E70A
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:36:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7Dv2ilzP4nbddt6ohHIQdp6W+FwBHWd24OhbMHqsi4E=; b=bJEWi8jmvqdjUA/1YTAJFQ3zUi
- RWp33aR0EYPv/hc5e78jIbG8IQ0lQadrOQW51nq6c8o2vd1NNpi6TC2GfL4Yvy8hnmZtNgOl/IDX6
- jfz71Z4xCkyhO9nPODYbrpTZNtaObS6wwC4AYwFiHRKAyOchuvD0SBasZ5Qv+TEao/vSrAouHkft5
- 8zpo/KQ9bTSh0EJKw9EleTsk00k+Vm8Qyq19g226qt6sTI7WvvVJdj3OmuuajILsXUipF+Vkf1d8q
- ZqQzEf2idc5Ju4cd2D4GL3/DSLGmLiMZqz10Yvm+nENT+xUJkbieOlkYWvCuKfxMWoSFQ9yC9eHJi
- tQkpVzQw==;
-Received: from [90.242.12.242] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1vBTOJ-00Ct73-6s; Wed, 22 Oct 2025 09:36:15 +0200
-Message-ID: <026c65a3-f634-4731-85ee-c12bab73fcf7@igalia.com>
-Date: Wed, 22 Oct 2025 08:36:14 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 526B410E70B;
+	Wed, 22 Oct 2025 07:36:22 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8DC10E70B;
+ Wed, 22 Oct 2025 07:36:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_AuxCCS_hand?=
- =?UTF-8?Q?ling_and_render_compression_modifiers_=28rev3=29?=
-To: intel-xe@lists.freedesktop.org,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
- <176107557828.37900.10286789424054330329@97596180aaec>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <176107557828.37900.10286789424054330329@97596180aaec>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_auxccs_ci_run_no_stolen?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 07:36:19 -0000
+Message-ID: <176111857911.40388.8818300868192016144@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +35,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 21/10/2025 20:39, Patchwork wrote:
+Series: auxccs ci run no stolen
+URL   : https://patchwork.freedesktop.org/series/156302/
+State : warning
 
-8><
+== Summary ==
 
-> Here are the unknown changes that may have been introduced in xe- 
-> pw-156189v3_FULL:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   *
-> 
->     igt@kms_flip_tiling@flip-change-tiling@pipe-d-hdmi-a-1-y-rc-ccs-cc-to-x:
-> 
->       o shard-adlp: NOTRUN -> FAIL <https://intel-gfx-ci.01.org/tree/
->         intel-xe/xe-pw-156189v3/shard-adlp-4/igt@kms_flip_tiling@flip-
->         change-tiling@pipe-d-hdmi-a-1-y-rc-ccs-cc-to-x.html> +1 other
->         test fail
-So MOCS 61 did not fully fix it. It remains to be a stuborn one. :(
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c96cebd6a04b707efc8ee0f549994dcf28a76274
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Wed Oct 22 08:30:05 2025 +0100
 
-I sent some CI runs with stolen avoidance and also extra clflush on top. 
-The last one was the only combination which ever got multiple clean 
-shard runs.
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8 drm-intel
+98f735587a19 drm/xe: Fix ggtt fb alignment
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-Have you received any clarifications from the hardware people in the 
-meantime?
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+bdd6b5483af2 drm/xe/xelpg: Flush CCS when flushing caches
+dc48e81088b2 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+c4618f72d6b3 drm/xe/xelp: Support auxccs invalidation on blitter
+a2a117d47c36 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+7ed5e6c70f91 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+870826173eb5 drm/xe: Export xe_emit_aux_table_inv
+48213f017d3a drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+34b790dbaeb9 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+0a26b42c94dd drm/xe: Handle DPT in system memory
+3a6b06911325 drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+34eafff6bce7 drm/xe/display: Add support for AuxCCS
+c96cebd6a04b drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
 
-Tvrtko
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+
 
