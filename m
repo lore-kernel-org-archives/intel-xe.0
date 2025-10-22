@@ -4,190 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63914CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B104CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:08:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1609C10E718;
-	Wed, 22 Oct 2025 09:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44EC510E15B;
+	Wed, 22 Oct 2025 09:08:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CtcKIGcq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YD6u3CB8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4242E10E717;
- Wed, 22 Oct 2025 09:06:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD2CA10E15B
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761123987; x=1792659987;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=A6RW8Kn9zpBqa9Xfw9omExI2td0ix+W8qYCJV8YxO5A=;
- b=CtcKIGcqVR3r4ilwEy7HXTv1QVk9lqL7JBBvtjbrQhXZSWiB+E23soPY
- kP4OcHB6D9mTEU+Y+uT26Y0B6Z8Xtc3E41I1lUjtIO+tXRWOA0A+JjdNJ
- BZrz1B5SuX8vYT9f21Q80JLA+fSd9jBQYwRahslMmRh796PAttGoyeZxX
- MsIAA6Hb3b7mptOo4a/vB+OZQDHPBEH3RVpyQRoZ7y0ZEyCiZwN6dcaT9
- n8V/bLLb58eeoYNZQyT1xDsd5n2xhYp5gOKAg9jQm1ubVRqJC/sOV6ryY
- /bnkhtznDVh3jODVHZ440BK6qEyzEDfOVSa0qrtbO85f+kP7A8wDHjKQr A==;
-X-CSE-ConnectionGUID: 5CtUSNcUSu+PWuE7cWUigQ==
-X-CSE-MsgGUID: xCTdzAb9Te6ckDrAiabpQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63303059"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="63303059"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 02:06:26 -0700
-X-CSE-ConnectionGUID: yM57bggQTWqPrd/sakcaQQ==
-X-CSE-MsgGUID: slxIvNC5QcS9qAPCm6g7fA==
+ t=1761124117; x=1792660117;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W93a+k8H7JJQ0XEclOJwOAJKwM1G2TxbCFHHiDkKJeE=;
+ b=YD6u3CB8aUGCodvuknBmLM8/ocCW3QH0BC/MjcVBfSsirnctIBPA4WiH
+ oDd2mX1tJse2lSjG/w51rNiroh3/H0Nfe96JrPpARMVT6XY6TPW7r2wuW
+ tJw87M4jx8Q0znCLp7+a0A0JFDdtvlcn5N7UJxrIjrp55jnOLkp1UVQR7
+ 4p8Rq/Fs7owh7qYANUnSYibB36kzRPkU7dlS9NYrhppF4paXQYgWD/sCY
+ aiD2HxGJ58mCwk60S6PEykb2X39EOVS2BBkXoQv5WkxRMZIfsDuLDgl/v
+ ScVPFfMuAaECp4n9V9O3TLOwaO2gmU0uCMyZ1/IMgZBwkwWico4veIpMI g==;
+X-CSE-ConnectionGUID: NMUmjtDrRpakI3jhpzopmg==
+X-CSE-MsgGUID: 7ioZNUb/ShuVTu0eVIAVXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74609670"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="74609670"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 02:08:37 -0700
+X-CSE-ConnectionGUID: YhqPawLpT0+pSNoqjLsKoQ==
+X-CSE-MsgGUID: YbJNOdjTS729Q8MK1zJrxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="214463839"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 02:06:27 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 02:06:26 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 22 Oct 2025 02:06:26 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.46) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 02:06:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ErGQsJnYQj4AhjP+KfckdO9zF2reecAj/fxdqdzKplCDrxj/zdZZ1jhKap30lVAAso1MPTK+sp0IwtBBzqx2Gv2P2gYghw4MTSTOuhAzrAVGNMJ42rDtZ5wwjrmc6fLVi22+x+BUwkLKbbnqrHI89NgqREkum3dlCH/BYo3BJNQkRaEHPKkHn1lx8ig+xtD9Nb5dWA/ZMDmtslAmmqQ1kv8NLPuluBzYBDPwTJTfsWSOsIw6xynV6r2qoh9DNL5eIaMmmaLi1v0id5wN/b5x4E7huS/qwa9exGvD6K1ZaXmMNtzpeekhV+SXnlMcsDPJmsm0aH5Zv9vHQRFebYVLoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kbW1Ji4Ub2PNfTlJRzQXLW2QmNsmCJM/S/LPvUB48Tw=;
- b=NVWXUCnVqZNtIwgAq7uk6dUj321uhhIl9GQIouMnsKpCe8QjaAn0Zi8OHFcIJKqMIW3okKxazBqv2dZnhFeaPWDav97NH7tnBQbyXP5pFs/1EGk9bMJfd9LRdXYn/qMBGFwCqaZMZH2gIpDvKkvonrmduVvcvz/rJ13jslNR4vJSsrimsyBStmBO4ZrgZfjLJnuAndk9HStUBti1EaM6qamZMAUCJKxIIMCFLrghgT5UxcoNwrp52xmkkdt/Dtb6KEdgysCEvyEyIerT7llaYjhgiwp4UKWEDHWnThW0SvCWUyyXeAuEMhCksQ7w+BEZIgY5u4dmV0uVeSxe3BJwfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com (2603:10b6:610:150::21)
- by CY8PR11MB6916.namprd11.prod.outlook.com (2603:10b6:930:58::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.16; Wed, 22 Oct
- 2025 09:06:24 +0000
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::cfdc:6323:1353:350d]) by CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::cfdc:6323:1353:350d%4]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
- 09:06:23 +0000
-Message-ID: <cdb4d233-87a9-4a04-b9b6-fc3c6154419e@intel.com>
-Date: Wed, 22 Oct 2025 14:36:16 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/25] drm/i915/ltphy: Program sequence for PORT_CLOCK_CTL
- for LT Phy
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Shankar, Uma"
- <uma.shankar@intel.com>, "Sousa, Gustavo" <gustavo.sousa@intel.com>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>
-References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
- <20251015040817.3431297-5-suraj.kandpal@intel.com>
- <e7e2172b-1daa-4161-825b-ca3363a6ff12@intel.com>
- <DM3PPF208195D8DA97B08782D935568B15EE3F3A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <DM3PPF208195D8DA97B08782D935568B15EE3F3A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0066.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b7::14) To CH3PR11MB7300.namprd11.prod.outlook.com
- (2603:10b6:610:150::21)
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="183031578"
+Received: from sanjay-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 02:08:35 -0700
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, matthew.brost@intel.com, michael.j.ruhl@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH v2] drm/xe: Fix spelling and typos across Xe driver files
+Date: Wed, 22 Oct 2025 14:33:45 +0530
+Message-ID: <20251022090344.934584-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB7300:EE_|CY8PR11MB6916:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8dfe4b77-d045-4a2d-86a7-08de114a4610
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eThodGt2alBUMWtKUWR0Vlc1VHJhZzd3eW5zK2orTklYQWxnNlJLTTRmL2x3?=
- =?utf-8?B?R3ZJRFo4OWtQL0txRFMxVFRKalZhRndoa3hURi9sVUp0K0h1MjdIUVBZdVlJ?=
- =?utf-8?B?d1VxQ1lnMmdEajhpQS95UVFvWFgvdy82NXVzQTMydFAyN1FVSkQ2RXE4N3NB?=
- =?utf-8?B?QmhCYkdqUkJoc0I1a2NNZXJLUDJ2TGhBR0JyelJ6RGY1clVrV2FqMGxvMjhn?=
- =?utf-8?B?QktPc0tSa3NBYVVUb1RLZ3ZWeUlodUZSSVBGLzZrQWlDdGltazdtZE1lcENk?=
- =?utf-8?B?Qnp5ajRnUHlROTNiVWRDR0wxOG5mdVN1Q0VKaTNTb0VxNzZpSFlHY1lyM0RC?=
- =?utf-8?B?Y3RydUVVYXZxRTV0VW55V0ZnQjdqNjJreSsweExqSGVXb2pQTktueEM1eHZV?=
- =?utf-8?B?M3ZaNUd1NUNpb016TnkrTzFFMjQ4L2xBZ2RZSWQyVTN0OGF0eTdMc2lkOEda?=
- =?utf-8?B?V1FKZnV0NGYyM09XcGR3aGNoV21rZ2tYWGlVdGdsejI3cWN4Q1hOTGFFc2pv?=
- =?utf-8?B?NnEzcEZwN3I4STMvbUxFajlUdHB4Q0NpOU1KWkVsWmI5Y0RjbjQ5MEExaTN0?=
- =?utf-8?B?QkREQlRzTlQ2b1c2NTAvbTcyYWYwaEgvRkJ3L0FNS3pDSi9PeERCVHZVbWRp?=
- =?utf-8?B?N1RET3luL1RJakZZblhuRERwbG9hbDQ2eGVOSzAxbUF2Unh5TmdtamU4SS8r?=
- =?utf-8?B?RE4zbHUyK3N4clAyWE5oL2xkb2NPUXFNOTlzZjFPK0pzRVYzYzNyZVJSMC94?=
- =?utf-8?B?aUd6TmQ0R09xeTErcDJTeGoxeUgwMGJyc1RUcUNFSFlYNUp4ekZ3WlFhZlI5?=
- =?utf-8?B?S1ZHdmYwV0dYMFQwaHVudjVReGhDSkwyaTQrZHRiVlk2bHRVZ1FDVkFTVVd5?=
- =?utf-8?B?akE5ZmJDdnRUMTNickVCbVhMRGN5OVM2cEhya0tFQlpWekJTbndCN1NaYStF?=
- =?utf-8?B?NUh3aWx6RHd6cFhqVnVTVWVkUmkyRU80cEJGMDE4akxhcElpYy9BVHl5RG14?=
- =?utf-8?B?VU80T2E0OXNCbEgzWkJwQk9Bb0hpa3VKakdndS91Q29hV3NVQU1JZkRROWVI?=
- =?utf-8?B?eDhzZ3E4SlpOSGtOUEdNVFRpTlc0b3lWTFlKVGZheDVrWTJ2dmY5ZjJldGI4?=
- =?utf-8?B?Q0xyQ2lIdUQvUmR4NFpOVm1ZS3VEbUJyeFVPUzlmbjg3elZtY2RLY3dTQnRD?=
- =?utf-8?B?YzVmS0ViVkt3MFNWbGdKRWxnRlF3VkM0RVJ5WkRDdjhlNFJkMHBxeEpxTmR6?=
- =?utf-8?B?M0tkV3hseVVCOEZ0N3B3VXk0K3hnT3dwakdRbW1WdkFGMktRVThMQkxMV04z?=
- =?utf-8?B?TnA5UVU5Y2pzSU1vaFdNWVlxUEoweW9GaGNpLy9lektmdXdtSGZkY2praHB3?=
- =?utf-8?B?RXcrQ0JHMSt0VTI1a0o1L2oxaGlyMm9hQUYxWnVlVGliZWJSZ05iNGJpZW9Y?=
- =?utf-8?B?d2tkWjRheFBpNlQ2ekEwUStmenR5NVBEcytHc3dBNUZ5ZmNhK05HMmdJVVBD?=
- =?utf-8?B?MzJvVjhBRjNTUk9NUkZYSzhYZ0piQkVvcndDZVA0RlVBOWxUK1dMTXp3S0xn?=
- =?utf-8?B?WFF0YU91MHYxVWEzbE9nN0U3NUJZaXZZSjZiaXh6dHpYVEtuQUd5enowRUdR?=
- =?utf-8?B?RGVSdjRoZ3B2d01Db0tJbEVIVFV4M0JYYjh0cjNob25QMW9hcGRDYUEvMTBa?=
- =?utf-8?B?MHd6NG5xZUEvdStHQWloc0UyZWFtVHJ6SFFtOXVlZlp5MDRLd0hYR1MvUVFJ?=
- =?utf-8?B?R2FJMGI5NlZOTHdHZGpEd0NoOUQxNWRsMlFla2gyZEg4UDFDNEZZb044L2Zl?=
- =?utf-8?B?Nk1IaEQrcWZ3MGR1TXVnbktzN1ZnZjByUXBxV3BWRmVkSFhkWS9qek04clVG?=
- =?utf-8?B?ejA2bGtwOHIvekJhYi9HZkpWRDlzNVlKWExObFNUeFBTRGhVM0xiYWREaUhu?=
- =?utf-8?Q?I5O8/x1WbZONBpONktiZxL5xzKcERTZl?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB7300.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3M0SWxNQjZnZHdPNWlNd1E3MDZoaUZGOWgzWnExYzcwdTM5ZjJPVmtDYWdG?=
- =?utf-8?B?cC9oa3hmTFJXMjN6dW5zWHkxYnQ1bDAzUmJxcmp6U09ldVFmeksvL3NXWXZJ?=
- =?utf-8?B?c1dSU3ZaQ2dXQitxMTNwN2hsOGk3cmw3SnJFM2V3YjNEdERqbUVsUmZraG1U?=
- =?utf-8?B?NEFIUFdIcWJTRlRLUkw1eFEvWStqV3gvTmlZTm8zUXo0eTZIdXAxZXZtNGZI?=
- =?utf-8?B?Nkw1d3k4bnFkeDNTZkVyK1R6YmFMYTBrcGJEU0x1RWdRVFRpbGFDT2hoUUEw?=
- =?utf-8?B?eW1HTFloRU03N3ZRTS9yenZ5RXZWQlF0UmlqdzBJaWxpL3ZEZGJMb0JPYXdM?=
- =?utf-8?B?Q0NJYTFPNU5lVmRRejJxb1RIam44WlRmemdLeFhtdmtQTStKUzFZdDlYemVu?=
- =?utf-8?B?WTlpZnhuYWJnQ1RvQUVYU29LVmQ4MWlIekE2dUtNVE5DNzFaN1A4SGZoRTNQ?=
- =?utf-8?B?UTlVMXpTbjR5Y3hRVm9aT0RobXE1OThia1FFWmd4U3ByUUNSbStwM28wT21I?=
- =?utf-8?B?dmlhdXdPOXNEVndiYjVVenFKNHBNamczYk8zdHZPQ21nbllmNmV1VWdiZ2Uy?=
- =?utf-8?B?SHJBUnhxa0JORy8vdklZQW1mdklmQTZvaVQ4UEx3a2QwT2dSREZEMnVIUm05?=
- =?utf-8?B?czhjV1pMSEJTczBkS2E1YWNQV0lsMFBveURCWHg0WEV6djNpUlUwUU5iaks3?=
- =?utf-8?B?WXdvd1E2Y29ERDlhanQ1TTVaQVozelMwaWtrRk0zUmNwQnVhT2ZtQitlRWNr?=
- =?utf-8?B?N2tIVHhGL1lMMEN6OXNadHpncVRVNWJyT21RVmJmWGY3MS9TOWlTVFZYVDhO?=
- =?utf-8?B?WVFQMVhiUXdWclR5YkpMWjcwQXlPL3JkbnMzaTVMZUVRVVdqSmZJZmhwRUMw?=
- =?utf-8?B?LzNSWkxVYk80a3dkaU1GTTNHcnU4QWpVeXYwQ0pQUWExTFVXQjZ1Y2p0a3pD?=
- =?utf-8?B?bWRrdUJ0dXF0UzJmSWtTZEFLM3hWdm5UQjFFVUFhRkx6cHhUT1Y1a0FRcXF2?=
- =?utf-8?B?NVNXaUFRRGZ6OG1tWjc4N3oreENMclN1eWZtWXpyWGRQYlNDRmZoWGE0UEhk?=
- =?utf-8?B?SlI0THo1SFpzSFNmbndwdTljTUpVckFaL3FoNFY4cXpMK3lNTWs3MkttUnFI?=
- =?utf-8?B?TnlRYXpxSFhBWEx6R09IWG5rM3VYaDVwajFxRVJWdmxPZXhkbHhZMWpUS25i?=
- =?utf-8?B?UDBNSGNsUUNpMHdOb0theDdvMmNqdlg2MjRITG8wUE4rU2tVQ1QvUExOdDc0?=
- =?utf-8?B?YXpQL1RlejVGRjFmbzR1M3RaSTZQdVlXM0VnNWUzTWlzZkdKdHkzZEZYeUFB?=
- =?utf-8?B?ZlVaUDFHcDhicWhBemVJaElPd1IzNXNDTHdEallvWWtXeUNJS2JKZjN4WHJt?=
- =?utf-8?B?RjFXcXNab1lpN01IYjJKK0xSdjNmcUltaVZTUWo0UU93YmtMVSt2bVZCc2RK?=
- =?utf-8?B?YUQ1NWhzWUc0dlA5Skc3RG1zVW51YzFvN1BiemZBdHh2WWNtRXVSQVBCdDJa?=
- =?utf-8?B?R1hEeUhzWTltbmN1bmQvcjRON0Mzcyt2UHJKaTRaNDVlSFZiY0I3Qll5d25T?=
- =?utf-8?B?OFMwK1pFMGRCUUpwN0JPSktMVjFrSjNXNHRMdU83ZWdrOUI2bUxQcnJETU8r?=
- =?utf-8?B?UTYwN2E4K0pEK3o4VTNPeHRUTG8yMis4SEhwdE44K3Foamc2TUZ5N0lRL0NT?=
- =?utf-8?B?SzBzeHJtNElNNFQ4K3hwKy81ek5EeDJuYnl4ZjBmZURxWGdLYW5wdmo4VFph?=
- =?utf-8?B?NHlFOHNnWi9rTDhTRXNzbC9xRlNrQVluT1pkaGI5Tm8vcklUSkdVVjZhZHVu?=
- =?utf-8?B?QXQybXpJWUduQzVMMnA5akEzT2ZDUGg2NEFBNXl3N2J6ckhaU3dXK0lzZVE2?=
- =?utf-8?B?V3lmeUhwMkZXY21kVnRTZExLaVlwUmYyMm5OQy9aeXFJcm53S25jK2xoNlZ0?=
- =?utf-8?B?ZGRSVUI2WDdJTENidjZDOW1KNHd4dmVhNTJydkRrRk5oWTd5Yk5hM2s3aFFa?=
- =?utf-8?B?d2xKT3djM283YnA5cmliek4zYzlManJUQTdwTGNWUzRESlJYbTR3ejJFblJM?=
- =?utf-8?B?cWZvYko4bG96OW5EdVZIT1d0MVJwT0RTVHBUZTQwVXZTWDliS0k3Z3ZReFpI?=
- =?utf-8?B?dWNYQjdZUzNieDZOM0VjZ2svUnUyVUZLVVFFRGppVWJsL20rV2ZGNFR3OXBL?=
- =?utf-8?B?OUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dfe4b77-d045-4a2d-86a7-08de114a4610
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7300.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 09:06:23.7988 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sMJg9BpDCXmYf48gGU/roLpGlyoaaDtE3bHSVopHTCnU0RyyEXJnX3UpD5aHVOq2loFqI6aStcbCiL9O51WjYQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6916
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,161 +65,706 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Corrected various spelling mistakes and typos in multiple
+files under the Xe directory. These fixes improve clarity
+and maintain consistency in documentation.
 
-On 22-10-2025 14:28, Kandpal, Suraj wrote:
->> Subject: Re: [PATCH 04/25] drm/i915/ltphy: Program sequence for
->> PORT_CLOCK_CTL for LT Phy
->>
->> On 15-10-2025 09:37, Suraj Kandpal wrote:
->>> Program sequence from port clock ctl except for the SSC enablement
->>> part which will be taken care of later.
->>>
->>> Bspec: 74492
->>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_cx0_phy.c |  8 ++---
->>>    drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
->>>    drivers/gpu/drm/i915/display/intel_lt_phy.c  | 36 ++++++++++++++++++++
->>>    3 files changed, 41 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> index db2b05521c62..eab49c08d7ff 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> @@ -2585,7 +2585,7 @@ static bool is_dp2(u32 clock)
->>>    	return false;
->>>    }
->>>
->>> -static bool is_hdmi_frl(u32 clock)
->>> +bool intel_cx0_is_hdmi_frl(u32 clock)
->>>    {
->>>    	switch (clock) {
->>>    	case 300000: /* 3 Gbps */
->>> @@ -2612,7 +2612,7 @@ static int intel_get_c20_custom_width(u32 clock,
->> bool dp)
->>>    {
->>>    	if (dp && is_dp2(clock))
->>>    		return 2;
->>> -	else if (is_hdmi_frl(clock))
->>> +	else if (intel_cx0_is_hdmi_frl(clock))
->>>    		return 1;
->>>    	else
->>>    		return 0;
->>> @@ -2706,7 +2706,7 @@ static void intel_c20_pll_program(struct
->> intel_display *display,
->>>    	} else {
->>>    		intel_cx0_rmw(encoder, owned_lane_mask,
->> PHY_C20_VDR_CUSTOM_SERDES_RATE,
->>>    			      BIT(7) | PHY_C20_CUSTOM_SERDES_MASK,
->>> -			      is_hdmi_frl(port_clock) ? BIT(7) : 0,
->>> +			      intel_cx0_is_hdmi_frl(port_clock) ? BIT(7) : 0,
->>>    			      MB_WRITE_COMMITTED);
->>>
->>>    		intel_cx0_write(encoder, INTEL_CX0_BOTH_LANES,
->>> PHY_C20_VDR_HDMI_RATE, @@ -2766,7 +2766,7 @@ static void
->>> intel_program_port_clock_ctl(struct intel_encoder *encoder,
->>>
->>>    	val |= XELPDP_FORWARD_CLOCK_UNGATE;
->>>
->>> -	if (!is_dp && is_hdmi_frl(port_clock))
->>> +	if (!is_dp && intel_cx0_is_hdmi_frl(port_clock))
->> Would it be better to move this to a different patch?
-> I can move it to a separate patch I was also thinking of having this function inside intel_hdmi then,
-> What do you say?
+v2
+- Replaced all instances of "XE" with "Xe"
+- of -> for
+- Typical -> Typically
 
-Sounds better to me!
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_args.h                |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |  4 ++--
+ drivers/gpu/drm/xe/xe_bo_doc.h              |  8 ++++----
+ drivers/gpu/drm/xe/xe_configfs.c            |  2 +-
+ drivers/gpu/drm/xe/xe_device.c              |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |  8 ++++----
+ drivers/gpu/drm/xe/xe_exec.c                |  2 +-
+ drivers/gpu/drm/xe/xe_force_wake_types.h    |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_freq.c             |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |  2 +-
+ drivers/gpu/drm/xe/xe_guc_ads_types.h       |  2 +-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h        |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log_types.h       |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  2 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |  2 +-
+ drivers/gpu/drm/xe/xe_map.h                 |  4 ++--
+ drivers/gpu/drm/xe/xe_migrate.c             |  4 ++--
+ drivers/gpu/drm/xe/xe_migrate_doc.h         |  2 +-
+ drivers/gpu/drm/xe/xe_pm.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_preempt_fence_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_range_fence.h         |  4 ++--
+ drivers/gpu/drm/xe/xe_sched_job.c           |  6 +++---
+ drivers/gpu/drm/xe/xe_sched_job.h           | 12 ++++++------
+ drivers/gpu/drm/xe/xe_sched_job_types.h     |  2 +-
+ drivers/gpu/drm/xe/xe_svm.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.h           |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h  |  4 ++--
+ drivers/gpu/drm/xe/xe_uc_fw_types.h         |  6 +++---
+ drivers/gpu/drm/xe/xe_uc_types.h            |  2 +-
+ drivers/gpu/drm/xe/xe_validation.h          |  6 +++---
+ drivers/gpu/drm/xe/xe_vm.c                  | 10 +++++-----
+ drivers/gpu/drm/xe/xe_vm_doc.h              |  8 ++++----
+ drivers/gpu/drm/xe/xe_vm_types.h            |  4 ++--
+ 33 files changed, 64 insertions(+), 64 deletions(-)
 
-Thanks and Regards,
-Arun R Murthy
---------------------
+diff --git a/drivers/gpu/drm/xe/xe_args.h b/drivers/gpu/drm/xe/xe_args.h
+index 4dbc7e53c624..84488f527d9a 100644
+--- a/drivers/gpu/drm/xe/xe_args.h
++++ b/drivers/gpu/drm/xe/xe_args.h
+@@ -9,7 +9,7 @@
+ #include <linux/args.h>
+ 
+ /*
+- * Why don't the following macros have the XE prefix?
++ * Why don't the following macros have the Xe prefix?
+  *
+  * Once we find more potential users outside of the Xe driver, we plan to move
+  * all of the following macros unchanged to linux/args.h.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7b6502081873..e4378b4dfcc7 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2105,7 +2105,7 @@ void xe_bo_free(struct xe_bo *bo)
+  * if the function should allocate a new one.
+  * @tile: The tile to select for migration of this bo, and the tile used for
+  * GGTT binding if any. Only to be non-NULL for ttm_bo_type_kernel bos.
+- * @resv: Pointer to a locked shared reservation object to use fo this bo,
++ * @resv: Pointer to a locked shared reservation object to use for this bo,
+  * or NULL for the xe_bo to use its own.
+  * @bulk: The bulk move to use for LRU bumping, or NULL for external bos.
+  * @size: The storage size to use for the bo.
+@@ -2629,7 +2629,7 @@ struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+  * @size: The storage size to use for the bo.
+  * @type: The TTM buffer object type.
+  * @flags: XE_BO_FLAG_ flags.
+- * @intr: Whether to execut any waits for backing store interruptible.
++ * @intr: Whether to execute any waits for backing store interruptible.
+  *
+  * Create a pinned and mapped bo. The bo will be external and not associated
+  * with a VM.
+diff --git a/drivers/gpu/drm/xe/xe_bo_doc.h b/drivers/gpu/drm/xe/xe_bo_doc.h
+index 25a884c64bf1..401e7dd26ef3 100644
+--- a/drivers/gpu/drm/xe/xe_bo_doc.h
++++ b/drivers/gpu/drm/xe/xe_bo_doc.h
+@@ -12,7 +12,7 @@
+  * BO management
+  * =============
+  *
+- * TTM manages (placement, eviction, etc...) all BOs in XE.
++ * TTM manages (placement, eviction, etc...) all BOs in Xe.
+  *
+  * BO creation
+  * ===========
+@@ -29,7 +29,7 @@
+  * a kernel BO (e.g. engine state, memory for page tables, etc...). These BOs
+  * are typically mapped in the GGTT (any kernel BOs aside memory for page tables
+  * are in the GGTT), are pinned (can't move or be evicted at runtime), have a
+- * vmap (XE can access the memory via xe_map layer) and have contiguous physical
++ * vmap (Xe can access the memory via xe_map layer) and have contiguous physical
+  * memory.
+  *
+  * More details of why kernel BOs are pinned and contiguous below.
+@@ -40,7 +40,7 @@
+  * A user BO is created via the DRM_IOCTL_XE_GEM_CREATE IOCTL. Once it is
+  * created the BO can be mmap'd (via DRM_IOCTL_XE_GEM_MMAP_OFFSET) for user
+  * access and it can be bound for GPU access (via DRM_IOCTL_XE_VM_BIND). All
+- * user BOs are evictable and user BOs are never pinned by XE. The allocation of
++ * user BOs are evictable and user BOs are never pinned by Xe. The allocation of
+  * the backing store can be deferred from creation time until first use which is
+  * either mmap, bind, or pagefault.
+  *
+@@ -84,7 +84,7 @@
+  * ====================
+  *
+  * All eviction (or in other words, moving a BO from one memory location to
+- * another) is routed through TTM with a callback into XE.
++ * another) is routed through TTM with a callback into Xe.
+  *
+  * Runtime eviction
+  * ----------------
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index c1419a270fa4..1b86f5d505f6 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -27,7 +27,7 @@
+  * Overview
+  * ========
+  *
+- * Configfs is a filesystem-based manager of kernel objects. XE KMD registers a
++ * Configfs is a filesystem-based manager of kernel objects. Xe KMD registers a
+  * configfs subsystem called ``xe`` that creates a directory in the mounted
+  * configfs directory. The user can create devices under this directory and
+  * configure them as necessary. See Documentation/filesystems/configfs.rst for
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 5f6a412b571c..47f5391ad8e9 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1217,7 +1217,7 @@ static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+  *
+  *   /sys/bus/pci/devices/<device>/survivability_mode
+  *
+- * - Admin/userpsace consumer can use firmware flashing tools like fwupd to flash
++ * - Admin/userspace consumer can use firmware flashing tools like fwupd to flash
+  *   firmware and restore device to normal operation.
+  */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 02c04ad7296e..2a817ba1882d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -222,7 +222,7 @@ struct xe_tile {
+ };
+ 
+ /**
+- * struct xe_device - Top level struct of XE device
++ * struct xe_device - Top level struct of Xe device
+  */
+ struct xe_device {
+ 	/** @drm: drm device */
+@@ -250,9 +250,9 @@ struct xe_device {
+ 		u32 media_verx100;
+ 		/** @info.mem_region_mask: mask of valid memory regions */
+ 		u32 mem_region_mask;
+-		/** @info.platform: XE platform enum */
++		/** @info.platform: Xe platform enum */
+ 		enum xe_platform platform;
+-		/** @info.subplatform: XE subplatform enum */
++		/** @info.subplatform: Xe subplatform enum */
+ 		enum xe_subplatform subplatform;
+ 		/** @info.devid: device ID */
+ 		u16 devid;
+@@ -653,7 +653,7 @@ struct xe_device {
+ };
+ 
+ /**
+- * struct xe_file - file handle for XE driver
++ * struct xe_file - file handle for Xe driver
+  */
+ struct xe_file {
+ 	/** @xe: xe DEVICE **/
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 0dc27476832b..521467d976f7 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -33,7 +33,7 @@
+  * - Binding at exec time
+  * - Flow controlling the ring at exec time
+  *
+- * In XE we avoid all of this complication by not allowing a BO list to be
++ * In Xe we avoid all of this complication by not allowing a BO list to be
+  * passed into an exec, using the dma-buf implicit sync uAPI, have binds as
+  * separate operations, and using the DRM scheduler to flow control the ring.
+  * Let's deep dive on each of these.
+diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
+index 899fbbcb3ea9..12d6e2367455 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake_types.h
++++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
+@@ -52,7 +52,7 @@ enum xe_force_wake_domains {
+ };
+ 
+ /**
+- * struct xe_force_wake_domain - XE force wake domains
++ * struct xe_force_wake_domain - Xe force wake domains
+  */
+ struct xe_force_wake_domain {
+ 	/** @id: domain force wake id */
+@@ -70,7 +70,7 @@ struct xe_force_wake_domain {
+ };
+ 
+ /**
+- * struct xe_force_wake - XE force wake
++ * struct xe_force_wake - Xe force wake
+  */
+ struct xe_force_wake {
+ 	/** @gt: back pointers to GT */
+diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
+index 701349251bbc..e88f113226bc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_freq.c
++++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+@@ -36,7 +36,7 @@
+  * - act_freq: The actual resolved frequency decided by PCODE.
+  * - cur_freq: The current one requested by GuC PC to the PCODE.
+  * - rpn_freq: The Render Performance (RP) N level, which is the minimal one.
+- * - rpa_freq: The Render Performance (RP) A level, which is the achiveable one.
++ * - rpa_freq: The Render Performance (RP) A level, which is the achievable one.
+  *   Calculated by PCODE at runtime based on multiple running conditions
+  * - rpe_freq: The Render Performance (RP) E level, which is the efficient one.
+  *   Calculated by PCODE at runtime based on multiple running conditions
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 46518e629ba3..382083675021 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -739,7 +739,7 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+ 		gt->sriov.vf.migration.recovery_queued = true;
+ 		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+ 		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
+-		smp_wmb();	/* Ensure above writes visable before wake */
++		smp_wmb();	/* Ensure above writes visible before wake */
+ 
+ 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads_types.h b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+index 70c132458ac3..48a8e092023f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ads_types.h
+@@ -14,7 +14,7 @@ struct xe_bo;
+  * struct xe_guc_ads - GuC additional data structures (ADS)
+  */
+ struct xe_guc_ads {
+-	/** @bo: XE BO for GuC ads blob */
++	/** @bo: Xe BO for GuC ads blob */
+ 	struct xe_bo *bo;
+ 	/** @golden_lrc_size: golden LRC size */
+ 	size_t golden_lrc_size;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index 8b03b50313d9..09d7ff1ef42a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -126,7 +126,7 @@ struct xe_fast_req_fence {
+  * for the H2G and G2H requests sent and received through the buffers.
+  */
+ struct xe_guc_ct {
+-	/** @bo: XE BO for CT */
++	/** @bo: Xe BO for CT */
+ 	struct xe_bo *bo;
+ 	/** @lock: protects everything in CT layer */
+ 	struct mutex lock;
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index b3d5c72ac752..02851b924aa4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -44,7 +44,7 @@ struct xe_guc_log_snapshot {
+ struct xe_guc_log {
+ 	/** @level: GuC log level */
+ 	u32 level;
+-	/** @bo: XE BO for GuC log */
++	/** @bo: Xe BO for GuC log */
+ 	struct xe_bo *bo;
+ 	/** @stats: logging related stats */
+ 	struct {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 0ef67d3523a7..d4ffdb71ef3d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1920,7 +1920,7 @@ static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+ }
+ 
+ /*
+- * All of these functions are an abstraction layer which other parts of XE can
++ * All of these functions are an abstraction layer which other parts of Xe can
+  * use to trap into the GuC backend. All of these functions, aside from init,
+  * really shouldn't do much other than trap into the DRM scheduler which
+  * synchronizes these operations.
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index 6bf2103602f8..a80175c7c478 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -207,7 +207,7 @@ static const struct xe_tlb_inval_ops guc_tlb_inval_ops = {
+  * @guc: GuC object
+  * @tlb_inval: TLB invalidation client
+  *
+- * Inititialize GuC TLB invalidation by setting back pointer in TLB invalidation
++ * Initialize GuC TLB invalidation by setting back pointer in TLB invalidation
+  * client to the GuC and setting GuC backend ops.
+  */
+ void xe_guc_tlb_inval_init_early(struct xe_guc *guc,
+diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+index f62e0c8b67ab..c44777125691 100644
+--- a/drivers/gpu/drm/xe/xe_map.h
++++ b/drivers/gpu/drm/xe/xe_map.h
+@@ -14,9 +14,9 @@
+  * DOC: Map layer
+  *
+  * All access to any memory shared with a device (both sysmem and vram) in the
+- * XE driver should go through this layer (xe_map). This layer is built on top
++ * Xe driver should go through this layer (xe_map). This layer is built on top
+  * of :ref:`driver-api/device-io:Generalizing Access to System and I/O Memory`
+- * and with extra hooks into the XE driver that allows adding asserts to memory
++ * and with extra hooks into the Xe driver that allows adding asserts to memory
+  * accesses (e.g. for blocking runtime_pm D3Cold on Discrete Graphics).
+  */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 3112c966c67d..7d60c7c09f33 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1981,7 +1981,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+  *
+  * Copy from an array dma addresses to a VRAM device physical address
+  *
+- * Return: dma fence for migrate to signal completion on succees, ERR_PTR on
++ * Return: dma fence for migrate to signal completion on success, ERR_PTR on
+  * failure
+  */
+ struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
+@@ -2002,7 +2002,7 @@ struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
+  *
+  * Copy from a VRAM device physical address to an array dma addresses
+  *
+- * Return: dma fence for migrate to signal completion on succees, ERR_PTR on
++ * Return: dma fence for migrate to signal completion on success, ERR_PTR on
+  * failure
+  */
+ struct dma_fence *xe_migrate_from_vram(struct xe_migrate *m,
+diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
+index 63c7d67b5b62..c082bc0b7068 100644
+--- a/drivers/gpu/drm/xe/xe_migrate_doc.h
++++ b/drivers/gpu/drm/xe/xe_migrate_doc.h
+@@ -9,7 +9,7 @@
+ /**
+  * DOC: Migrate Layer
+  *
+- * The XE migrate layer is used generate jobs which can copy memory (eviction),
++ * The Xe migrate layer is used generate jobs which can copy memory (eviction),
+  * clear memory, or program tables (binds). This layer exists in every GT, has
+  * a migrate engine, and uses a special VM for all generated jobs.
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 210298c4bcb1..4f8688fd3f00 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -102,7 +102,7 @@ static void xe_pm_block_end_signalling(void)
+ /**
+  * xe_pm_might_block_on_suspend() - Annotate that the code might block on suspend
+  *
+- * Annotation to use where the code might block or sieze to make
++ * Annotation to use where the code might block or seize to make
+  * progress pending resume completion.
+  */
+ void xe_pm_might_block_on_suspend(void)
+diff --git a/drivers/gpu/drm/xe/xe_preempt_fence_types.h b/drivers/gpu/drm/xe/xe_preempt_fence_types.h
+index 312c3372a49f..ac125c697a41 100644
+--- a/drivers/gpu/drm/xe/xe_preempt_fence_types.h
++++ b/drivers/gpu/drm/xe/xe_preempt_fence_types.h
+@@ -12,7 +12,7 @@
+ struct xe_exec_queue;
+ 
+ /**
+- * struct xe_preempt_fence - XE preempt fence
++ * struct xe_preempt_fence - Xe preempt fence
+  *
+  * hardware and triggers a callback once the xe_engine is complete.
+  */
+diff --git a/drivers/gpu/drm/xe/xe_range_fence.h b/drivers/gpu/drm/xe/xe_range_fence.h
+index edd58b34f5c0..4934729dd904 100644
+--- a/drivers/gpu/drm/xe/xe_range_fence.h
++++ b/drivers/gpu/drm/xe/xe_range_fence.h
+@@ -13,13 +13,13 @@
+ struct xe_range_fence_tree;
+ struct xe_range_fence;
+ 
+-/** struct xe_range_fence_ops - XE range fence ops */
++/** struct xe_range_fence_ops - Xe range fence ops */
+ struct xe_range_fence_ops {
+ 	/** @free: free range fence op */
+ 	void (*free)(struct xe_range_fence *rfence);
+ };
+ 
+-/** struct xe_range_fence - XE range fence (address conflict tracking) */
++/** struct xe_range_fence - Xe range fence (address conflict tracking) */
+ struct xe_range_fence {
+ 	/** @rb: RB tree node inserted into interval tree */
+ 	struct rb_node rb;
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index d21bf8f26964..6ae4cc6a3802 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -160,11 +160,11 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ }
+ 
+ /**
+- * xe_sched_job_destroy - Destroy XE schedule job
+- * @ref: reference to XE schedule job
++ * xe_sched_job_destroy - Destroy Xe schedule job
++ * @ref: reference to Xe schedule job
+  *
+  * Called when ref == 0, drop a reference to job's xe_engine + fence, cleanup
+- * base DRM schedule job, and free memory for XE schedule job.
++ * base DRM schedule job, and free memory for Xe schedule job.
+  */
+ void xe_sched_job_destroy(struct kref *ref)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
+index 3dc72c5c1f13..b467131b6d5f 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.h
++++ b/drivers/gpu/drm/xe/xe_sched_job.h
+@@ -23,10 +23,10 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ void xe_sched_job_destroy(struct kref *ref);
+ 
+ /**
+- * xe_sched_job_get - get reference to XE schedule job
+- * @job: XE schedule job object
++ * xe_sched_job_get - get reference to Xe schedule job
++ * @job: Xe schedule job object
+  *
+- * Increment XE schedule job's reference count
++ * Increment Xe schedule job's reference count
+  */
+ static inline struct xe_sched_job *xe_sched_job_get(struct xe_sched_job *job)
+ {
+@@ -35,10 +35,10 @@ static inline struct xe_sched_job *xe_sched_job_get(struct xe_sched_job *job)
+ }
+ 
+ /**
+- * xe_sched_job_put - put reference to XE schedule job
+- * @job: XE schedule job object
++ * xe_sched_job_put - put reference to Xe schedule job
++ * @job: Xe schedule job object
+  *
+- * Decrement XE schedule job's reference count, call xe_sched_job_destroy when
++ * Decrement Xe schedule job's reference count, call xe_sched_job_destroy when
+  * reference count == 0.
+  */
+ static inline void xe_sched_job_put(struct xe_sched_job *job)
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 13e7a12b03ad..d26612abb4ca 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -32,7 +32,7 @@ struct xe_job_ptrs {
+ };
+ 
+ /**
+- * struct xe_sched_job - XE schedule job (batch buffer tracking)
++ * struct xe_sched_job - Xe schedule job (batch buffer tracking)
+  */
+ struct xe_sched_job {
+ 	/** @drm: base DRM scheduler job */
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 129e7818565c..13af589715a7 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -633,7 +633,7 @@ static int xe_svm_copy(struct page **pages,
+ 
+ 	/*
+ 	 * XXX: We can't derive the GT here (or anywhere in this functions, but
+-	 * compute always uses the primary GT so accumlate stats on the likely
++	 * compute always uses the primary GT so accumulate stats on the likely
+ 	 * GT of the fault.
+ 	 */
+ 	if (gt)
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
+index 554634dfd4e2..05614915463a 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.h
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
+@@ -33,7 +33,7 @@ void xe_tlb_inval_fence_init(struct xe_tlb_inval *tlb_inval,
+  * xe_tlb_inval_fence_wait() - TLB invalidiation fence wait
+  * @fence: TLB invalidation fence to wait on
+  *
+- * Wait on a TLB invalidiation fence until it signals, non interruptable
++ * Wait on a TLB invalidiation fence until it signals, non interruptible
+  */
+ static inline void
+ xe_tlb_inval_fence_wait(struct xe_tlb_inval_fence *fence)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 1144f9232ebb..a71e14818ec2 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -10,7 +10,7 @@
+ #include <drm/ttm/ttm_device.h>
+ 
+ /**
+- * struct xe_ttm_vram_mgr - XE TTM VRAM manager
++ * struct xe_ttm_vram_mgr - Xe TTM VRAM manager
+  *
+  * Manages placement of TTM resource in VRAM.
+  */
+@@ -32,7 +32,7 @@ struct xe_ttm_vram_mgr {
+ };
+ 
+ /**
+- * struct xe_ttm_vram_mgr_resource - XE TTM VRAM resource
++ * struct xe_ttm_vram_mgr_resource - Xe TTM VRAM resource
+  */
+ struct xe_ttm_vram_mgr_resource {
+ 	/** @base: Base TTM resource */
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index 77a1dcf8b4ed..2ebe8c9db6ce 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -62,7 +62,7 @@ enum xe_uc_fw_type {
+ };
+ 
+ /**
+- * struct xe_uc_fw_version - Version for XE micro controller firmware
++ * struct xe_uc_fw_version - Version for Xe micro controller firmware
+  */
+ struct xe_uc_fw_version {
+ 	/** @branch: branch version of the FW (not always available) */
+@@ -84,7 +84,7 @@ enum xe_uc_fw_version_types {
+ };
+ 
+ /**
+- * struct xe_uc_fw - XE micro controller firmware
++ * struct xe_uc_fw - Xe micro controller firmware
+  */
+ struct xe_uc_fw {
+ 	/** @type: type uC firmware */
+@@ -112,7 +112,7 @@ struct xe_uc_fw {
+ 	/** @size: size of uC firmware including css header */
+ 	size_t size;
+ 
+-	/** @bo: XE BO for uC firmware */
++	/** @bo: Xe BO for uC firmware */
+ 	struct xe_bo *bo;
+ 
+ 	/** @has_gsc_headers: whether the FW image starts with GSC headers */
+diff --git a/drivers/gpu/drm/xe/xe_uc_types.h b/drivers/gpu/drm/xe/xe_uc_types.h
+index 9924e4484866..1708379dc834 100644
+--- a/drivers/gpu/drm/xe/xe_uc_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_types.h
+@@ -12,7 +12,7 @@
+ #include "xe_wopcm_types.h"
+ 
+ /**
+- * struct xe_uc - XE micro controllers
++ * struct xe_uc - Xe micro controllers
+  */
+ struct xe_uc {
+ 	/** @guc: Graphics micro controller */
+diff --git a/drivers/gpu/drm/xe/xe_validation.h b/drivers/gpu/drm/xe/xe_validation.h
+index fec331d791e7..1ef181c90434 100644
+--- a/drivers/gpu/drm/xe/xe_validation.h
++++ b/drivers/gpu/drm/xe/xe_validation.h
+@@ -108,7 +108,7 @@ struct xe_val_flags {
+  * @request_exclusive: Whether to lock exclusively (write mode) the next time
+  * the domain lock is locked.
+  * @exec_flags: The drm_exec flags used for drm_exec (re-)initialization.
+- * @nr: The drm_exec nr parameter used for drm_exec (re-)initializaiton.
++ * @nr: The drm_exec nr parameter used for drm_exec (re-)initialization.
+  */
+ struct xe_validation_ctx {
+ 	struct drm_exec *exec;
+@@ -137,7 +137,7 @@ bool xe_validation_should_retry(struct xe_validation_ctx *ctx, int *ret);
+  * @_ret: The current error value possibly holding -ENOMEM
+  *
+  * Use this in way similar to drm_exec_retry_on_contention().
+- * If @_ret contains -ENOMEM the tranaction is restarted once in a way that
++ * If @_ret contains -ENOMEM the transaction is restarted once in a way that
+  * blocks other transactions and allows exhastive eviction. If the transaction
+  * was already restarted once, Just return the -ENOMEM. May also set
+  * _ret to -EINTR if not retrying and waits are interruptible.
+@@ -180,7 +180,7 @@ static inline void *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
+  * @_val: The xe_validation_device.
+  * @_exec: The struct drm_exec object
+  * @_flags: Flags for the xe_validation_ctx initialization.
+- * @_ret: Return in / out parameter. May be set by this macro. Typicall 0 when called.
++ * @_ret: Return in / out parameter. May be set by this macro. Typically 0 when called.
+  *
+  * This macro is will initiate a drm_exec transaction with additional support for
+  * exhaustive eviction.
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 10d77666a425..00f3520dec38 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -824,7 +824,7 @@ xe_vm_ops_add_range_rebind(struct xe_vma_ops *vops,
+  *
+  * (re)bind SVM range setting up GPU page tables for the range.
+  *
+- * Return: dma fence for rebind to signal completion on succees, ERR_PTR on
++ * Return: dma fence for rebind to signal completion on success, ERR_PTR on
+  * failure
+  */
+ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+@@ -907,7 +907,7 @@ xe_vm_ops_add_range_unbind(struct xe_vma_ops *vops,
+  *
+  * Unbind SVM range removing the GPU page tables for the range.
+  *
+- * Return: dma fence for unbind to signal completion on succees, ERR_PTR on
++ * Return: dma fence for unbind to signal completion on success, ERR_PTR on
+  * failure
+  */
+ struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+@@ -1291,7 +1291,7 @@ static u16 pde_pat_index(struct xe_bo *bo)
+ 	 * selection of options. The user PAT index is only for encoding leaf
+ 	 * nodes, where we have use of more bits to do the encoding. The
+ 	 * non-leaf nodes are instead under driver control so the chosen index
+-	 * here should be distict from the user PAT index. Also the
++	 * here should be distinct from the user PAT index. Also the
+ 	 * corresponding coherency of the PAT index should be tied to the
+ 	 * allocation type of the page table (or at least we should pick
+ 	 * something which is always safe).
+@@ -4172,7 +4172,7 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+ 
+ /**
+  * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
+- * @xe: Pointer to the XE device structure
++ * @xe: Pointer to the Xe device structure
+  * @vma: Pointer to the virtual memory area (VMA) structure
+  * @is_atomic: In pagefault path and atomic operation
+  *
+@@ -4319,7 +4319,7 @@ static int xe_vm_alloc_vma(struct xe_vm *vm,
+ 			xe_vma_destroy(gpuva_to_vma(op->base.remap.unmap->va), NULL);
+ 		} else if (__op->op == DRM_GPUVA_OP_MAP) {
+ 			vma = op->map.vma;
+-			/* In case of madvise call, MAP will always be follwed by REMAP.
++			/* In case of madvise call, MAP will always be followed by REMAP.
+ 			 * Therefore temp_attr will always have sane values, making it safe to
+ 			 * copy them to new vma.
+ 			 */
+diff --git a/drivers/gpu/drm/xe/xe_vm_doc.h b/drivers/gpu/drm/xe/xe_vm_doc.h
+index 1030ce214032..02e5288373c9 100644
+--- a/drivers/gpu/drm/xe/xe_vm_doc.h
++++ b/drivers/gpu/drm/xe/xe_vm_doc.h
+@@ -7,7 +7,7 @@
+ #define _XE_VM_DOC_H_
+ 
+ /**
+- * DOC: XE VM (user address space)
++ * DOC: Xe VM (user address space)
+  *
+  * VM creation
+  * ===========
+@@ -202,13 +202,13 @@
+  * User pointers are user allocated memory (malloc'd, mmap'd, etc..) for which the
+  * user wants to create a GPU mapping. Typically in other DRM drivers a dummy BO
+  * was created and then a binding was created. We bypass creating a dummy BO in
+- * XE and simply create a binding directly from the userptr.
++ * Xe and simply create a binding directly from the userptr.
+  *
+  * Invalidation
+  * ------------
+  *
+  * Since this a core kernel managed memory the kernel can move this memory
+- * whenever it wants. We register an invalidation MMU notifier to alert XE when
++ * whenever it wants. We register an invalidation MMU notifier to alert Xe when
+  * a user pointer is about to move. The invalidation notifier needs to block
+  * until all pending users (jobs or compute mode engines) of the userptr are
+  * idle to ensure no faults. This done by waiting on all of VM's dma-resv slots.
+@@ -419,7 +419,7 @@
+  * =======
+  *
+  * VM locking protects all of the core data paths (bind operations, execs,
+- * evictions, and compute mode rebind worker) in XE.
++ * evictions, and compute mode rebind worker) in Xe.
+  *
+  * Locks
+  * -----
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index d6e2a0fdd4b3..830ed7b05c27 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -52,7 +52,7 @@ struct xe_vm_pgtable_update_op;
+  * struct xe_vma_mem_attr - memory attributes associated with vma
+  */
+ struct xe_vma_mem_attr {
+-	/** @preferred_loc: perferred memory_location */
++	/** @preferred_loc: preferred memory_location */
+ 	struct {
+ 		/** @preferred_loc.migration_policy: Pages migration policy */
+ 		u32 migration_policy;
+@@ -338,7 +338,7 @@ struct xe_vm {
+ 	u64 tlb_flush_seqno;
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
+-	/** @xef: XE file handle for tracking this VM's drm client */
++	/** @xef: Xe file handle for tracking this VM's drm client */
+ 	struct xe_file *xef;
+ };
+ 
+-- 
+2.43.0
 
-> Regards,
-> Suraj Kandpal
->
->>>    		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display,
->> XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
->>>    	else
->>>    		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display,
->>> XELPDP_DDI_CLOCK_SELECT_MAXPCLK); diff --git
->>> a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->>> b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->>> index c92026fe7b8f..b111a893b428 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->>> @@ -43,6 +43,7 @@ void intel_cx0_phy_set_signal_levels(struct
->> intel_encoder *encoder,
->>>    				     const struct intel_crtc_state *crtc_state);
->>>    int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
->>>    void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
->>> +bool intel_cx0_is_hdmi_frl(u32 clock);
->>>    int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
->>>    void intel_cx0_pll_power_save_wa(struct intel_display *display);
->>>    void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder, diff
->>> --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
->>> b/drivers/gpu/drm/i915/display/intel_lt_phy.c
->>> index c65333cc9494..8c6f60d9e0ac 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
->>> @@ -108,13 +108,49 @@ intel_lt_phy_lane_reset(struct intel_encoder
->> *encoder,
->>>    	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
->> lane_phy_pulse_status, 0);
->>>    }
->>>
->>> +static void
->>> +intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
->>> +				    const struct intel_crtc_state *crtc_state,
->>> +				    bool lane_reversal)
->>> +{
->>> +	struct intel_display *display = to_intel_display(encoder);
->>> +	u32 val = 0;
->>> +
->>> +	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, encoder-
->>> port),
->>> +		     XELPDP_PORT_REVERSAL,
->>> +		     lane_reversal ? XELPDP_PORT_REVERSAL : 0);
->>> +
->>> +	val |= XELPDP_FORWARD_CLOCK_UNGATE;
->>> +
->>> +	/*
->>> +	 * We actually mean MACCLK here and not MAXPCLK when using LT
->> Phy
->>> +	 * but since the register bits still remain the same we use
->>> +	 * the same definition
->>> +	 */
->>> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
->>> +	    intel_cx0_is_hdmi_frl(crtc_state->port_clock))
->>> +		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display,
->> XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
->>> +	else
->>> +		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display,
->>> +XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
->>> +
->>> +	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder-
->>> port),
->>> +		     XELPDP_LANE1_PHY_CLOCK_SELECT |
->> XELPDP_FORWARD_CLOCK_UNGATE |
->>> +		     XELPDP_DDI_CLOCK_SELECT_MASK(display) |
->> XELPDP_SSC_ENABLE_PLLA |
->>> +		     XELPDP_SSC_ENABLE_PLLB, val);
->>> +}
->>> +
->>>    void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
->>>    			     const struct intel_crtc_state *crtc_state)
->>>    {
->>> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->>> +	bool lane_reversal = dig_port->lane_reversal;
->>> +
->>>    	/* 1. Enable MacCLK at default 162 MHz frequency. */
->>>    	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
->>>
->>>    	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes,
->>> gating, and SSC. */
->>> +	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state,
->>> +lane_reversal);
->>> +
->>>    	/* 3. Change owned PHY lanes power to Ready state. */
->>>    	/*
->>>    	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check
->>> enabled PLL type,
