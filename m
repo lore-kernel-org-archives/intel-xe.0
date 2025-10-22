@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 140B8CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 10:03:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CC72CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 10:07:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94CC10E02D;
-	Wed, 22 Oct 2025 10:03:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D716410E725;
+	Wed, 22 Oct 2025 10:07:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="esySoNG/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pq4dhlZt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D205710E02D
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 10:03:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62EAF10E02D;
+ Wed, 22 Oct 2025 10:07:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761127421; x=1792663421;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=sDaUHCu+dy20hjw3Hf3Gd0N09vs3G3UjAWodIN+TU0o=;
- b=esySoNG/+tsSVI2S5g4UwIrGQZgVV0IlSy5i8wb4eh/o562WxXIdE5QG
- I/rOlP2T+N/ygEySBrxHpB5R18ld0OCV9SDBX+gzv5scBEfVwk81G368j
- Vb0Up2Y3Todv5OSX2pgezmOpr9+707ORQKTgxlgYqgibfKzi8sifhsMpL
- V2xEqWszKiwNgIU3rdoD3EtgPMf5e0aN//MqSc5mnZV9vTyyr3inZVUC3
- Wbb2s86MHqpR0udHLoQwBZbUOEXXtNq7gbiZ/0HUQ3Y//pxdzcob7TyLv
- swuknVD6ncrAg6yMjuCh+5oAaGtTNMsOPP5/3YyEm2OQTPR7KRK6BoN0G Q==;
-X-CSE-ConnectionGUID: or0bebxtRMure8yj70qw4Q==
-X-CSE-MsgGUID: HHGCLxk2SmS7gobPfZRIow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63418285"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="63418285"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 03:03:41 -0700
-X-CSE-ConnectionGUID: vmV1JOs9Q8CltzSWV9+FQw==
-X-CSE-MsgGUID: qoZYXNbiSDO3/lGtZYDRZg==
+ t=1761127642; x=1792663642;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PR9sDkqUd+S3bgCHe+7FBtxlUjiw3vkoATZkxebFrwI=;
+ b=Pq4dhlZtK0yDGrRsefse9wJyFtARC4Ka1ZAd5IxAXJGzjzBEZZnsLQwE
+ A9HPhsQ6ZOW8H9yU7kt1taNnqwuoRsUqRFIPSKj5CWWxfNDRq1LSVADva
+ 9YYQxpPRr1fqWHhBD8h2oapJv1LXa22OmyY5iE1VA0tM2OStliF+ocisa
+ S510dwJdO3P86CNRZ/eBOYMLAS83ZonJzn2ietWRSZT2ewB2zD9uXyhLW
+ rbZ9Q8oVpPDBGT8jbcAu98d5wPcFpikCc3VDArRRyCmcUhvaBLUuux86N
+ RQdOB03Vbj45IMAuwCS1F3wqvzc49wSLjmnY5W+eUJBo0nNX/oJ7fMmX3 Q==;
+X-CSE-ConnectionGUID: 8TTPPXrmTeCfd4M3ethddg==
+X-CSE-MsgGUID: eao/Pi3RSySqmb7dBx8gJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="65886684"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="65886684"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 03:07:22 -0700
+X-CSE-ConnectionGUID: yprWs7GlQdCe7Mt4eO5QUg==
+X-CSE-MsgGUID: PCjmoEDNQVmZ/exLluDlWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="187870674"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO [10.245.244.63])
- ([10.245.244.63])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 03:03:41 -0700
-Message-ID: <ff2a8329-3c4d-4e58-b146-82242c4d549c@intel.com>
-Date: Wed, 22 Oct 2025 11:03:37 +0100
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="183535836"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.74])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 03:07:21 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/i915/dmc: Event handler fixes
+Date: Wed, 22 Oct 2025 13:07:15 +0300
+Message-ID: <20251022100718.24803-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/xe: Do not wake device during a GT reset
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20251022005538.828980-1-matthew.brost@intel.com>
- <20251022005538.828980-3-matthew.brost@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20251022005538.828980-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,69 +67,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 22/10/2025 01:55, Matthew Brost wrote:
-> Waking the device during a GT reset can lead to unintended memory
-> allocation, which is not allowed since GT resets occur in the reclaim
-> path. Prevent this by holding a PM reference while a reset is in flight.
-> 
-> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Workaround some firmware issues related to DMC event handlers.
 
+Ville Syrjälä (3):
+  drm/i915/dmc: Clear HRR EVT_CTL/HTP to zero on ADL-S
+  drm/i915/dmc: Fixup TGL/ADL-S HRR event handler type
+  drm/i915/dmc: Set DMC_EVT_CTL_ENABLE for disabled event handlers as
+    well
 
-> ---
->   drivers/gpu/drm/xe/xe_gt.c | 19 ++++++++++++-------
->   1 file changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index d8e94fb8b9bd..89808b33d0a8 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -818,17 +818,19 @@ static int gt_reset(struct xe_gt *gt)
->   	unsigned int fw_ref;
->   	int err;
->   
-> -	if (xe_device_wedged(gt_to_xe(gt)))
-> -		return -ECANCELED;
-> +	if (xe_device_wedged(gt_to_xe(gt))) {
-> +		err = -ECANCELED;
-> +		goto err_pm_put;
-> +	}
->   
->   	/* We only support GT resets with GuC submission */
-> -	if (!xe_device_uc_enabled(gt_to_xe(gt)))
-> -		return -ENODEV;
-> +	if (!xe_device_uc_enabled(gt_to_xe(gt))) {
-> +		err = -ENODEV;
-> +		goto err_pm_put;
-> +	}
->   
->   	xe_gt_info(gt, "reset started\n");
->   
-> -	xe_pm_runtime_get(gt_to_xe(gt));
-> -
->   	if (xe_fault_inject_gt_reset()) {
->   		err = -ECANCELED;
->   		goto err_fail;
-> @@ -875,6 +877,7 @@ static int gt_reset(struct xe_gt *gt)
->   	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
->   
->   	xe_device_declare_wedged(gt_to_xe(gt));
-> +err_pm_put:
->   	xe_pm_runtime_put(gt_to_xe(gt));
->   
->   	return err;
-> @@ -896,7 +899,9 @@ void xe_gt_reset_async(struct xe_gt *gt)
->   		return;
->   
->   	xe_gt_info(gt, "reset queued\n");
-> -	queue_work(gt->ordered_wq, &gt->reset.worker);
-> +	xe_pm_runtime_get_noresume(gt_to_xe(gt));
-> +	if (!queue_work(gt->ordered_wq, &gt->reset.worker))
-> +		xe_pm_runtime_put(gt_to_xe(gt));
->   }
->   
->   void xe_gt_suspend_prepare(struct xe_gt *gt)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 94 ++++++++++++++++++++----
+ 1 file changed, 81 insertions(+), 13 deletions(-)
+
+-- 
+2.49.1
 
