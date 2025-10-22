@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA696CCD195
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:43:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2CE8CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:43:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91E6B10E726;
-	Wed, 22 Oct 2025 09:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBBC510E027;
+	Wed, 22 Oct 2025 09:43:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jB8c7KHn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KzF3dkdJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D18610E726
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:43:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E27910E728
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761126194; x=1792662194;
+ t=1761126198; x=1792662198;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gvFW9sXDSfFX3I6wKo+PDCRF7ttP/lLxyH3pdmYoI+A=;
- b=jB8c7KHnyqdETINd9VsWUrxSNAsNjlL1tjAFGPO4tGcgTeGgoAJ7JBki
- +0atKBfNZzt1rkVjKzAER/oCmMY7fEmAfzBrkcAjbIWIE+Dlo0q4FmD0a
- 3a+YpPocOVzJvsByrYqjCoLGf+cWnP926vmklRnKLmTWMsUW79mVkrpUJ
- UXthH89OWTFI7/iA+4xQd7BdYXE0BSgQjfk+a7kb5pKe4NNe84yPSW9mv
- oKD2FKlhldrorURxopDzdMomuUWreyg6/6J0xYv0KX+17QBVeqhf9X1xv
- N8NrzYF+w3MMg2rfaEpa27Y/aPGyKWeDZT+aCS3qF+3E28I4hS8Uphqh1 g==;
-X-CSE-ConnectionGUID: moBxxGICSU6+8V6wVxpWTQ==
-X-CSE-MsgGUID: 0rz5tCZDS1OtbXkAzdGccA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63363957"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="63363957"
+ bh=tJfqwoOqU62DS7qKub819X6IhmkYrhUdPXCbPi4B8a0=;
+ b=KzF3dkdJekNuEdN95faeuEEbQXIsCsZ6Cw30QNqLCWYZmyHLgcvf2XRt
+ k/6tJoWreOaJYneWcxOLY0n4CKwl2IV+AnFlJPgmPdWsZf7X9P3bjf9tO
+ HGGh9+5B9OahTeN3TUY/2cWxThY+G9/vhBVyt6ztG02gw3pakRrAau7Sv
+ zQV8syhii0pBedOTKwo9pulqAynOtAvnKsnAMiT1Hoih8Zx94Y5wHmBwg
+ luOKvkwEbzwWq/yQ86dMW6Ny19nLPutk2DL9JBQBcBThAJ7V5PDwtkBXb
+ JbrnWionIHl7Qk+D74s4XH4UHAnMwqrR7uac/rAFQKgR84yMW//Ik7DIU Q==;
+X-CSE-ConnectionGUID: 9JbXJ3QCSS6SSfB/mlPprg==
+X-CSE-MsgGUID: Ev0CVwQKTd6gUFjKYHkWHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63363959"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="63363959"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 02:43:14 -0700
-X-CSE-ConnectionGUID: KyXycgPuS6mAE+ucwAEoQA==
-X-CSE-MsgGUID: nSwmmJxNRJeFhgAwp4ss6g==
+ 22 Oct 2025 02:43:18 -0700
+X-CSE-ConnectionGUID: kmFaypVTSqmQgEhZm3Mbow==
+X-CSE-MsgGUID: SAO+fXvOSvuR5deYDXvBsA==
 X-ExtLoop1: 1
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa003.fm.intel.com with ESMTP; 22 Oct 2025 02:43:12 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 22 Oct 2025 02:43:15 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
@@ -46,9 +46,9 @@ Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
  michal.wajdeczko@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v6 3/4] drm/xe/pm: Assert on runtime suspend if VFs are enabled
-Date: Wed, 22 Oct 2025 15:12:45 +0530
-Message-Id: <20251022094246.3584785-4-raag.jadav@intel.com>
+Subject: [PATCH v6 4/4] drm/xe/gt: Introduce runtime suspend/resume
+Date: Wed, 22 Oct 2025 15:12:46 +0530
+Message-Id: <20251022094246.3584785-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251022094246.3584785-1-raag.jadav@intel.com>
 References: <20251022094246.3584785-1-raag.jadav@intel.com>
@@ -68,36 +68,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We hold an additional reference to the runtime PM to keep PF in D0
-during VFs lifetime, as our VFs do not implement the PM capability.
-This means we should never be runtime suspending as long as VFs are
-enabled.
+If power state is retained between suspend/resume cycle, we don't need
+to perform full GT re-initialization. Introduce runtime helpers for GT
+which greatly reduce suspend/resume delay.
 
-Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+v2: Drop redundant xe_gt_sanitize() and xe_guc_ct_stop() (Daniele)
+    Use runtime naming for guc helpers (Daniele)
+v3: Drop redundant logging, add kernel doc (Michal)
+    Use runtime naming for ct helpers (Michal)
+v4: Fix tags (Rodrigo)
+v5: Include host_l2_vram workaround (Daniele)
+    Reuse xe_guc_submit_enable/disable() helpers (Daniele)
+
+Co-developed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_gt.c     | 60 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h     |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c    | 34 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h    |  2 ++
+ drivers/gpu/drm/xe/xe_guc_ct.c | 27 +++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.h |  2 ++
+ drivers/gpu/drm/xe/xe_pm.c     | 10 +++---
+ drivers/gpu/drm/xe/xe_uc.c     | 28 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.h     |  2 ++
+ 9 files changed, 162 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index c326430e75b5..c2939faa2296 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1132,6 +1132,14 @@ static int xe_pci_runtime_suspend(struct device *dev)
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
- 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index d8e94fb8b9bd..0eacca14ccbb 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -1003,6 +1003,66 @@ int xe_gt_resume(struct xe_gt *gt)
+ 	return err;
+ }
  
-+	/*
-+	 * We hold an additional reference to the runtime PM to keep PF in D0
-+	 * during VFs lifetime, as our VFs do not implement the PM capability.
-+	 * This means we should never be runtime suspending as long as VFs are
-+	 * enabled.
-+	 */
-+	xe_assert(xe, !pci_num_vf(pdev));
++/**
++ * xe_gt_runtime_suspend() - GT runtime suspend
++ * @gt: the GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_gt_runtime_suspend(struct xe_gt *gt)
++{
++	unsigned int fw_ref;
++	int err = -ETIMEDOUT;
 +
- 	err = xe_pm_runtime_suspend(xe);
- 	if (err)
- 		return err;
++	xe_gt_dbg(gt, "runtime suspending\n");
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
++		goto err_force_wake;
++
++	xe_uc_runtime_suspend(&gt->uc);
++	xe_gt_disable_host_l2_vram(gt);
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	xe_gt_dbg(gt, "runtime suspended\n");
++
++	return 0;
++
++err_force_wake:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return err;
++}
++
++/**
++ * xe_gt_runtime_resume() - GT runtime resume
++ * @gt: the GT object
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_gt_runtime_resume(struct xe_gt *gt)
++{
++	unsigned int fw_ref;
++	int err = -ETIMEDOUT;
++
++	xe_gt_dbg(gt, "runtime resuming\n");
++
++	fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL))
++		goto err_force_wake;
++
++	xe_gt_enable_host_l2_vram(gt);
++	xe_uc_runtime_resume(&gt->uc);
++
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	xe_gt_dbg(gt, "runtime resumed\n");
++
++	return 0;
++
++err_force_wake:
++	xe_force_wake_put(gt_to_fw(gt), fw_ref);
++	return err;
++}
++
+ struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
+ 				     enum xe_engine_class class,
+ 				     u16 instance, bool logical)
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 9d710049da45..94969ddd9d88 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -58,6 +58,8 @@ int xe_gt_suspend(struct xe_gt *gt);
+ void xe_gt_shutdown(struct xe_gt *gt);
+ int xe_gt_resume(struct xe_gt *gt);
+ void xe_gt_reset_async(struct xe_gt *gt);
++int xe_gt_runtime_resume(struct xe_gt *gt);
++int xe_gt_runtime_suspend(struct xe_gt *gt);
+ void xe_gt_sanitize(struct xe_gt *gt);
+ int xe_gt_sanitize_freq(struct xe_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index ecc3e091b89e..ee35f1d8c21b 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1607,6 +1607,40 @@ int xe_guc_start(struct xe_guc *guc)
+ 	return xe_guc_submit_start(guc);
+ }
+ 
++/**
++ * xe_guc_runtime_suspend() - GuC runtime suspend
++ * @guc: The GuC object
++ *
++ * Stop further runs of submission tasks on given GuC and runtime suspend
++ * GuC CT.
++ */
++void xe_guc_runtime_suspend(struct xe_guc *guc)
++{
++	xe_guc_submit_pause(guc);
++	xe_guc_submit_disable(guc);
++	xe_guc_ct_runtime_suspend(&guc->ct);
++}
++
++/**
++ * xe_guc_runtime_resume() - GuC runtime resume
++ * @guc: The GuC object
++ *
++ * Runtime resume GuC CT and allow further runs of submission tasks on
++ * given GuC.
++ */
++void xe_guc_runtime_resume(struct xe_guc *guc)
++{
++	/*
++	 * Runtime PM flows are not applicable for VFs, so it's safe to
++	 * directly enable IRQ.
++	 */
++	guc_enable_irq(guc);
++
++	xe_guc_ct_runtime_resume(&guc->ct);
++	xe_guc_submit_enable(guc);
++	xe_guc_submit_unpause(guc);
++}
++
+ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index e2d4c5f44ae3..fdb08658d05a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -35,6 +35,8 @@ int xe_guc_upload(struct xe_guc *guc);
+ int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+ int xe_guc_enable_communication(struct xe_guc *guc);
+ int xe_guc_opt_in_features_enable(struct xe_guc *guc);
++void xe_guc_runtime_suspend(struct xe_guc *guc);
++void xe_guc_runtime_resume(struct xe_guc *guc);
+ int xe_guc_suspend(struct xe_guc *guc);
+ void xe_guc_notify(struct xe_guc *guc);
+ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index e68953ef3a00..a7b8d16d4041 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -634,6 +634,33 @@ void xe_guc_ct_stop(struct xe_guc_ct *ct)
+ 	stop_g2h_handler(ct);
+ }
+ 
++/**
++ * xe_guc_ct_runtime_suspend() - GuC CT runtime suspend
++ * @ct: the &xe_guc_ct
++ *
++ * Set GuC CT to disabled state.
++ */
++void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct)
++{
++	/*
++	 * Since we're already in runtime suspend path, we shouldn't have pending
++	 * messages. But if there happen to be any, we'd probably want them to be
++	 * thrown as errors for further investigation.
++	 */
++	xe_guc_ct_disable(ct);
++}
++
++/**
++ * xe_guc_ct_runtime_resume() - GuC CT runtime resume
++ * @ct: the &xe_guc_ct
++ *
++ * Restart GuC CT and set it to enabled state.
++ */
++void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct)
++{
++	xe_guc_ct_restart(ct);
++}
++
+ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+ {
+ 	struct guc_ctb *h2g = &ct->ctbs.h2g;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index ca1ce2b3c354..5599939f8fe1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -17,6 +17,8 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ int xe_guc_ct_restart(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
++void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct);
++void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
+ void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 53507e09f7bc..403a61e98ad8 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -591,7 +591,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 	}
+ 
+ 	for_each_gt(gt, xe, id) {
+-		err = xe_gt_suspend(gt);
++		err = xe->d3cold.allowed ? xe_gt_suspend(gt) : xe_gt_runtime_suspend(gt);
+ 		if (err)
+ 			goto out_resume;
+ 	}
+@@ -633,10 +633,10 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_rpm_lockmap_acquire(xe);
+ 
+-	for_each_gt(gt, xe, id)
+-		xe_gt_idle_disable_c6(gt);
+-
+ 	if (xe->d3cold.allowed) {
++		for_each_gt(gt, xe, id)
++			xe_gt_idle_disable_c6(gt);
++
+ 		err = xe_pcode_ready(xe, true);
+ 		if (err)
+ 			goto out;
+@@ -657,7 +657,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 	xe_irq_resume(xe);
+ 
+ 	for_each_gt(gt, xe, id)
+-		xe_gt_resume(gt);
++		xe->d3cold.allowed ? xe_gt_resume(gt) : xe_gt_runtime_resume(gt);
+ 
+ 	xe_display_pm_runtime_resume(xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 465bda355443..6a58b33248f5 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -301,6 +301,34 @@ int xe_uc_suspend(struct xe_uc *uc)
+ 	return xe_guc_suspend(&uc->guc);
+ }
+ 
++/**
++ * xe_uc_runtime_suspend() - UC runtime suspend
++ * @uc: the UC object
++ *
++ * Runtime suspend all UCs.
++ */
++void xe_uc_runtime_suspend(struct xe_uc *uc)
++{
++	if (!xe_device_uc_enabled(uc_to_xe(uc)))
++		return;
++
++	xe_guc_runtime_suspend(&uc->guc);
++}
++
++/**
++ * xe_uc_runtime_resume() - UC runtime resume
++ * @uc: the UC object
++ *
++ * Runtime resume all UCs.
++ */
++void xe_uc_runtime_resume(struct xe_uc *uc)
++{
++	if (!xe_device_uc_enabled(uc_to_xe(uc)))
++		return;
++
++	xe_guc_runtime_resume(&uc->guc);
++}
++
+ /**
+  * xe_uc_declare_wedged() - Declare UC wedged
+  * @uc: the UC object
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 21c9306098cf..5398da1a8097 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -14,6 +14,8 @@ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
+ int xe_uc_load_hw(struct xe_uc *uc);
+ void xe_uc_gucrc_disable(struct xe_uc *uc);
+ int xe_uc_reset_prepare(struct xe_uc *uc);
++void xe_uc_runtime_resume(struct xe_uc *uc);
++void xe_uc_runtime_suspend(struct xe_uc *uc);
+ void xe_uc_stop_prepare(struct xe_uc *uc);
+ void xe_uc_stop(struct xe_uc *uc);
+ int xe_uc_start(struct xe_uc *uc);
 -- 
 2.34.1
 
