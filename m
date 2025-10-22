@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D46EACCD195
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE9DCCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:32:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92BF510E6E7;
-	Wed, 22 Oct 2025 07:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E747210E6E9;
+	Wed, 22 Oct 2025 07:32:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="X+cQdA43";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XidtKA0m";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B91BE10E6E7
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:32:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510CF10E6E9
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=c/GuzWf88a8qpLh/ovVFIIUIXGTSQo6ekk35ZcMMHNA=; b=X+cQdA43jWOLU+F7ewhE2FdxPC
- tJuJhdnIUKeB78fiDg+/kFbagMkGp61qjZKCBK8a5cv983aGx91RF37o2idEc6UcQVUbHgX89gaVH
- pkSh3HVoeSklUUFLiDUb/idYnq16YZs1U/pStbKD7Ci2P/QQE/rTMSvU9Oogr2qD9e6AUUamF80gr
- Gl8cDdzyzirnAuKP0rwCtc1ipkzsXRUXGXtSM2FAhBFnNczzFXGZiLhPjkmogQVYOXxAFwL/7ngIH
- ypPePKplGs8+4DGHJ0EZvoljul4rYqmZoOoiJgbvxaKcrnbH5vhOIuPxnGhNSLQcNRpNCfQ1SVdGB
- pC+ulpCQ==;
+ bh=K0lq6iu8T9br07IYs5goxJqt50RBGe2ydLqwxizXw9Q=; b=XidtKA0mFVhT3QyCcX5kr4I9Xz
+ 2imp14YuATu9rt2VB4oSwXeJ3koNgy+zizlYJc40MJqFZMRejSzN3Smjp68d00xhurGtDrncjlwUr
+ av1pm5cpD3e4CQo9xKNH1vPUF5mEBJeAmK5GjPuulps+AIKAykfbKB05Valuv8s9ikcXTQifYWH4N
+ vLpHfPqyxgQZmJFRBY3XnnpWswJNSc4EOo97+ONOzPXTnJsW6s6v+YKUh8RRyq25nZAAPr4PesK8p
+ OYvozuFl0Gs8+WrrEGsYiXQOTLHvW5QrBXISWA/RA0DIL/blKgnsZ6Ta3GOGhZT73vyNmWDeIY+Y/
+ bxwg9QNw==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTKs-00Ct0a-Ux
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:32:43 +0200
+ id 1vBTL0-00Ct1G-Hb
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:32:50 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 01/14] drm/xe: Fix ggtt fb alignment
-Date: Wed, 22 Oct 2025 08:32:26 +0100
-Message-ID: <20251022073241.71401-2-tvrtko.ursulin@igalia.com>
+Subject: [CI 10/14] drm/xe: Handle DPT in system memory
+Date: Wed, 22 Oct 2025 08:32:35 +0100
+Message-ID: <20251022073241.71401-11-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
 References: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
@@ -58,30 +58,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pass the correct alignment from intel_fb_pin_to_ggtt() down to
-__xe_pin_fb_vma().
+If DPT is allocated from system memory it will be created in the default
+write-back cached mode. This means we need to flush it after populating
+otherwise nothing works.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 1fd4a815e784..b18d15cc3c53 100644
+index eb21eeae9d17..af691eee398a 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -378,7 +378,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
- {
- 	*out_flags = 0;
+@@ -3,6 +3,7 @@
+  * Copyright © 2021 Intel Corporation
+  */
  
--	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, phys_alignment);
-+	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, alignment);
- }
++#include <drm/drm_cache.h>
+ #include <drm/ttm/ttm_bo.h>
  
- void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+ #include "i915_vma.h"
+@@ -206,6 +207,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 
+ 	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
+ 		ggtt_flush_writes(tile0->mem.ggtt);
++	else if (!xe_bo_is_vram(dpt) && !xe_bo_is_stolen(dpt))
++		drm_clflush_virt_range(dpt->vmap.vaddr, dpt_size);
+ 
+ 	vma->dpt = dpt;
+ 	vma->node = dpt->ggtt_node[tile0->id];
 -- 
 2.48.0
 
