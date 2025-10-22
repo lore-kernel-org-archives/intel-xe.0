@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A6AECCF9E0
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22E5BCCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B665910E155;
-	Wed, 22 Oct 2025 07:30:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D339F10E6CF;
+	Wed, 22 Oct 2025 07:30:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OvGkU4iX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SSeWfqXx";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6A510E6D0
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ACAF10E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,23 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vgy7e21UDRkTYMl8oiyWdjhTflqybbqrMYH9HTO+GZU=; b=OvGkU4iXTQk6TXUtLETO4e+QSD
- ocXmrMpAY0Va5Tpwp/8hqSnnc+zYNQsyqToPHzAtJieng89rO7gR87F1CvPJxzPgOEWGuPvNqbEID
- wQ6UGppjfCodmEWKF1fHY2GAU7ZzPaRaf1pFv5nrSaFgooMJOzT6nkrT7NVTuUlPLZXuwcY/Sb7BE
- B8TSMRo2Qo5ywh234mtA2vgvc3wnPnZlf3xj7QSb+7s5zhJGvLPh3YVzMW3/7d2nvOSiNPbZlqnHK
- JV8qZrU8gwl+Ii9Oo/CHSRmfIQ4YYMcrhwJsI9Hx2cxZcMsymDWe6u5awU6rSrDN4gVYr8sK7/TEc
- rd78rbPQ==;
+ bh=263vrCNeTRdF52xr0d6yMDxIer3ZTpCX/1troP02Hg4=; b=SSeWfqXxpFH0HfzVY1yMN3jYD0
+ UbuDp+cVhYC2n6fY2ghLHJRHdLtGlVAT5IPzwJKVC5mSgSAmV0oXeWsAyTQTsEOZTpYk1AVb6i/Ni
+ V4WZqGo0ah6tfXlCGvRXB78D/srDK5w/hV5iuYBhUhd+q39oxTx341fPgp6wf7Ik9loGjVzVRFvbN
+ v5hYT6e6sqmIJjknK/74EMbcPYVvrF7cxiAH0/7NeTsdxnDPzODPiaXI3mgAymBlimZGWryNpIsk7
+ oN/oSOudJTvH90U4UXDDVLWcQ22cmuphs4an57fDnbl4SE5eCy9IDDUCvcT9o6sxIWtQmfU8zWKFm
+ 1KN7hYVw==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTIW-00CswI-QF
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:16 +0200
+ id 1vBTIY-00CswU-VN
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:19 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 08/13] drm/xe/xelp: Add AuxCCS invalidation to the indirect
- context workarounds
-Date: Wed, 22 Oct 2025 08:30:00 +0100
-Message-ID: <20251022073010.71285-9-tvrtko.ursulin@igalia.com>
+Subject: [CI 11/13] drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+Date: Wed, 22 Oct 2025 08:30:03 +0100
+Message-ID: <20251022073010.71285-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
@@ -58,98 +57,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Following from the i915 reference implementation, we add the AuxCCS
-invalidation to the indirect context workarounds page.
+With DPT in stolen memory there are occasional pipe crc IGT failures in
+tests such as kms_flip_tiling. Allocate a normal system memory object
+instead.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 42 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index b5083c99dd50..7543df0160dd 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -27,6 +27,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_mmio.h"
-+#include "xe_ring_ops.h"
- #include "xe_sriov.h"
- #include "xe_trace_lrc.h"
- #include "xe_vm.h"
-@@ -74,6 +75,21 @@ lrc_to_xe(struct xe_lrc *lrc)
- 	return gt_to_xe(lrc->fence_ctx.gt);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index af691eee398a..8217abc3a20d 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -122,6 +122,20 @@ static void ggtt_flush_writes(struct xe_ggtt *ggtt)
+ 	}
  }
  
-+static bool
-+xe_engine_supports_auxccs(struct xe_device *xe, enum xe_engine_class class)
++static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
 +{
-+	if (GRAPHICS_VERx100(xe) >= 1200 &&
-+	    GRAPHICS_VERx100(xe) <= 1210 &&
-+	    (class == XE_ENGINE_CLASS_RENDER ||
-+	     class == XE_ENGINE_CLASS_COMPUTE ||
-+	     class == XE_ENGINE_CLASS_COPY ||
-+	     class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	     class == XE_ENGINE_CLASS_VIDEO_ENHANCE))
-+		return true;
++	/*
++	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
++	 * suffers from occasional pipe crc IGT failures in tests such as
++	 * kms_flip_tiling.
++	 */
++	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
++	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
++		return false;
 +
-+	return false;
++	return true;
 +}
 +
- static bool
- gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- {
-@@ -88,6 +104,10 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- 					       class, NULL))
- 		return true;
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma,
+@@ -131,7 +145,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+-	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
++	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
+ 	u32 dpt_size, size = bo->ttm.base.size;
  
-+	/* For AuxCCS invalidation */
-+	if (xe_engine_supports_auxccs(xe, class))
-+		return true;
-+
- 	return false;
- }
- 
-@@ -1188,6 +1208,26 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
- 	return cmd - batch;
- }
- 
-+static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
-+					  struct xe_hw_engine *hwe,
-+					  u32 *batch, size_t max_len)
-+{
-+	struct xe_gt *gt = lrc->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const unsigned int class = hwe->class;
-+	u32 *cmd;
-+
-+	if (!xe_engine_supports_auxccs(xe, class))
-+		return 0;
-+
-+	if (xe_gt_WARN_ON(gt, max_len < 8))
-+		return -ENOSPC;
-+
-+	cmd = xe_emit_aux_table_inv(hwe, batch);
-+
-+	return cmd - batch;
-+}
-+
- struct bo_setup {
- 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 			 u32 *batch, size_t max_size);
-@@ -1320,9 +1360,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
- {
- 	static const struct bo_setup rcs_funcs[] = {
- 		{ .setup = setup_timestamp_wa },
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	static const struct bo_setup xcs_funcs[] = {
-+		{ .setup = setup_invalidate_auxccs_wa },
- 		{ .setup = setup_configfs_mid_ctx_restore_bb },
- 	};
- 	struct bo_setup_state state = {
+ 	if (view->type == I915_GTT_VIEW_NORMAL)
+@@ -152,7 +166,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						   XE_BO_FLAG_GGTT |
+ 						   XE_BO_FLAG_PAGETABLE,
+ 						   alignment, false);
+-	else
++	else if (try_dpt_stolen(fb, bo))
+ 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+ 						   dpt_size,  ~0ull,
+ 						   ttm_bo_type_kernel,
 -- 
 2.48.0
 
