@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23301CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:33:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 539E2CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:36:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D47C110E6F6;
-	Wed, 22 Oct 2025 07:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B4810E70A;
+	Wed, 22 Oct 2025 07:36:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mlbrnozl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bJEWi8jm";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D55B010E6F0
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:32:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7CC210E70A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=EHC+NU/2hXLqaVNyDwXpk6z9//EwS7gAjWtOqAAGOGo=; b=mlbrnozlYm6KCrbJzfP72NJQAJ
- nOAYGJffG1AUJcK3EuyDMxcAhLwh15ecDX9VEVoVdwTQY8hRpaLyWio580OutfSX4+olaDksYBtc3
- Bi17XMhwSodfCkP2jrSUSXWANbieHpBqS3Jw5Ggoe0HpP3hEvpIh1utk9P1eflZ00WjfK2MDV9aPF
- 1x7tYX2asE0YLXM02J4adrRL+AuAAIXC7NqP+b0Bsg6vvVolUSk0CdSOb4958nN1jwpFVn8KRG9Y9
- tkpBltGwz9CXaSXhqVJkdUbkYB1IKHw/Fi9x3RJ8VU7fTrdWEo6PMh6wzxqNuMOZJ+3fCNZI+VywR
- ECsKVOWA==;
-Received: from [90.242.12.242] (helo=localhost)
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7Dv2ilzP4nbddt6ohHIQdp6W+FwBHWd24OhbMHqsi4E=; b=bJEWi8jmvqdjUA/1YTAJFQ3zUi
+ RWp33aR0EYPv/hc5e78jIbG8IQ0lQadrOQW51nq6c8o2vd1NNpi6TC2GfL4Yvy8hnmZtNgOl/IDX6
+ jfz71Z4xCkyhO9nPODYbrpTZNtaObS6wwC4AYwFiHRKAyOchuvD0SBasZ5Qv+TEao/vSrAouHkft5
+ 8zpo/KQ9bTSh0EJKw9EleTsk00k+Vm8Qyq19g226qt6sTI7WvvVJdj3OmuuajILsXUipF+Vkf1d8q
+ ZqQzEf2idc5Ju4cd2D4GL3/DSLGmLiMZqz10Yvm+nENT+xUJkbieOlkYWvCuKfxMWoSFQ9yC9eHJi
+ tQkpVzQw==;
+Received: from [90.242.12.242] (helo=[192.168.0.101])
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTL2-00Ct1T-1k
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:32:52 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI 12/14] drm/xe: Force flush system memory AuxCCS framebuffers
- before scan out
-Date: Wed, 22 Oct 2025 08:32:37 +0100
-Message-ID: <20251022073241.71401-13-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
-References: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1vBTOJ-00Ct73-6s; Wed, 22 Oct 2025 09:36:15 +0200
+Message-ID: <026c65a3-f634-4731-85ee-c12bab73fcf7@igalia.com>
+Date: Wed, 22 Oct 2025 08:36:14 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_AuxCCS_hand?=
+ =?UTF-8?Q?ling_and_render_compression_modifiers_=28rev3=29?=
+To: intel-xe@lists.freedesktop.org,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20251020075831.32818-1-tvrtko.ursulin@igalia.com>
+ <176107557828.37900.10286789424054330329@97596180aaec>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <176107557828.37900.10286789424054330329@97596180aaec>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,101 +61,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Even though frame buffer objects are created as write-combined, in
-practice, on top of all the ring buffer flushing, an additional clflush
-seems to be needed before display engine can coherently scan out the
-AuxCCS compressed data without transient artifacts.
 
-If for comparison we look at how i915 handles things (where AuxCCS works
-fine), as it happens it has this same clflush before a frame buffer is
-pinned for display for the first time, courtesy the dynamic tracking of
-the buffer cache mode and setting the latter to uncached before handing
-to display.
+On 21/10/2025 20:39, Patchwork wrote:
 
-Since xe considers the buffer object caching mode as static we can
-implement the same approach by adding a flag telling us if the buffer
-was ever pinned for display and flush on the first pin. Subsequent re-pins
-will not repeat the clflush but so far I have not observed any glitching
-after the first pin.
+8><
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++++++++-
- drivers/gpu/drm/xe/xe_bo_types.h       | 14 +++++++++-----
- 2 files changed, 22 insertions(+), 6 deletions(-)
+> Here are the unknown changes that may have been introduced in xe- 
+> pw-156189v3_FULL:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   *
+> 
+>     igt@kms_flip_tiling@flip-change-tiling@pipe-d-hdmi-a-1-y-rc-ccs-cc-to-x:
+> 
+>       o shard-adlp: NOTRUN -> FAIL <https://intel-gfx-ci.01.org/tree/
+>         intel-xe/xe-pw-156189v3/shard-adlp-4/igt@kms_flip_tiling@flip-
+>         change-tiling@pipe-d-hdmi-a-1-y-rc-ccs-cc-to-x.html> +1 other
+>         test fail
+So MOCS 61 did not fully fix it. It remains to be a stuborn one. :(
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 8217abc3a20d..02e069df5b73 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -345,6 +345,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_validation_ctx ctx;
- 	struct drm_exec exec;
-+	bool first_pin;
- 	int ret = 0;
- 
- 	if (!vma)
-@@ -385,8 +386,11 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 			ret = xe_bo_validate(bo, NULL, true, &exec);
- 		drm_exec_retry_on_contention(&exec);
- 		xe_validation_retry_on_oom(&ctx, &ret);
--		if (!ret)
-+		if (!ret) {
- 			ttm_bo_pin(&bo->ttm);
-+			first_pin = !bo->display_pin;
-+			bo->display_pin = true;
-+		}
- 	}
- 	if (ret)
- 		goto err;
-@@ -399,6 +403,14 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
- 	if (ret)
- 		goto err_unpin;
- 
-+	/*
-+	 * Force flush frame buffer data for non-coherent display access when
-+	 * AuxCCS formats are used.
-+	 */
-+	if (first_pin && !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo) &&
-+	    intel_fb_is_ccs_modifier(fb->base.modifier))
-+		drm_clflush_sg(xe_bo_sg(bo));
-+
- 	return vma;
- 
- err_unpin:
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index d4fe3c8dca5b..8ebe14a76cee 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -81,11 +81,6 @@ struct xe_bo {
- 	struct llist_node freed;
- 	/** @update_index: Update index if PT BO */
- 	int update_index;
--	/** @created: Whether the bo has passed initial creation */
--	bool created;
--
--	/** @ccs_cleared: true means that CCS region of BO is already cleared */
--	bool ccs_cleared;
- 
- 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
- 	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-@@ -97,6 +92,15 @@ struct xe_bo {
- 	 */
- 	u16 cpu_caching;
- 
-+	/** @created: Whether the bo has passed initial creation */
-+	bool created : 1;
-+
-+	/** @ccs_cleared: true means that CCS region of BO is already cleared */
-+	bool ccs_cleared : 1;
-+
-+	/** @display_pin: Was it ever pinned to display */
-+	bool display_pin : 1;
-+
- 	/** @devmem_allocation: SVM device memory allocation */
- 	struct drm_pagemap_devmem devmem_allocation;
- 
--- 
-2.48.0
+I sent some CI runs with stolen avoidance and also extra clflush on top. 
+The last one was the only combination which ever got multiple clean 
+shard runs.
+
+Have you received any clarifications from the hardware people in the 
+meantime?
+
+Regards,
+
+Tvrtko
 
