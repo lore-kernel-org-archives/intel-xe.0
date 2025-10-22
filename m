@@ -4,192 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1636BCCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:12:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21F24CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:13:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA62C10E7E5;
-	Wed, 22 Oct 2025 15:12:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ORfyG/K8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7F410E7D7;
- Wed, 22 Oct 2025 15:12:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761145940; x=1792681940;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jyt1pyquB1ApzWbfxuoKebyAXaL8SCKUSm4nLPtCTCs=;
- b=ORfyG/K8GJTY1SDjkgsH1+L06mm2L2O1T6vRdChd6Zup7cjZOOogNlBO
- QEmJggFam39MUd1WTm3CsRrLSZqblJ72xfN38q3RVd79buvebZvXO4MN9
- v65LJ1GospkK+OC355VJ+WtirXjmOl8wqqY+VM82XNoIY20ny5AD/bIpO
- H8liIVqaGNhZjTSEunWtWPueJ3ZMg5Z4fuBtn9w/7mjEtYnnUzembwHcE
- XZPAvMspBmyuISNkEMiwaDbLHdeHXkm44xNPMynkxc/ygfS5RcDXp0LmB
- GJZ1A5Uy6KgeG+gpz1eyWUPEVJmDCd/d72p31aVku6WBhsp+fMpz0KP6n Q==;
-X-CSE-ConnectionGUID: vFdk3nhNRcCRII1vPWI+cA==
-X-CSE-MsgGUID: E4MW5yfBRE+AwvyrQzo6JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80735442"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="80735442"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:12:19 -0700
-X-CSE-ConnectionGUID: fBKlUTb4TiiSKQjXzt/pew==
-X-CSE-MsgGUID: vb/4nKwxROarEgWaYxuPIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="214840666"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 08:12:19 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 08:12:19 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 22 Oct 2025 08:12:19 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.43) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 08:12:18 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZgNPBBamstNQusrizgvqG111LvlMfvGYPUqTWMDDp+5wG/c7AXPyNjEQh51rJdo3FbP5xl1JPJUJOBljdSK09PKOdAaxVqhE/VGQnTSLVwlcAffsRjrmfUIi/oVmpXqG8HQy4hqvT/dOSLL0xBenKouhnRfTRHaTfcqLhrZCaVOtNqfuzFni9a2tWcMyHDj7IHNDhppnEtfduB4VDT7SHgJiVIqXwhiaYHjZbvMDw3mExPx9hYaDCSqw49f+i4+PJW0gAUBXbVvGHQGIoZGqG/BkncV8ILDJLsibltiX+9eZSE0O+zset2xD/VZFZ0DU0omSfncxmrTc4q4EArir0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AtJrv48zf5RaVE1ltX8Cb1Pi9Hh3w2ogNOyK3eytH1k=;
- b=SSVBHEbwRTos+abm/Gipo6B8SYJs6ZYDHrGRPTXOzZpMG6QGnBD3EFA09uDrmkE22L5A9NbZpCuMNC1lv/5mmFJM9dseM+3JfiDjCZC004Oubprtlw0yNp1qBH89oFbTFew2YydH1EYe//JOPPJ+9mUi9GnJP4RWzMmLcu9ZaOHtDCiSkI2DAUtKPG+SpUw0f/Mc360YXEjTbzLx03cwSTCHmp4Gq5lB1+q8ow1WX6CEUfHKwnA7D012a3vLiCdX5Vqm3HFlK53BiE3djSLhc/o4RXXa/bOH/qNMN5SLH7q/QXhoGXHXL2n5ZmQ+PIYeRUCrHFClbZVVpH7Xf91Olw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com (2603:10b6:408:1ec::18)
- by SA2PR11MB4940.namprd11.prod.outlook.com (2603:10b6:806:fa::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
- 2025 15:12:16 +0000
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::55b1:592:df13:a9f3]) by LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::55b1:592:df13:a9f3%5]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
- 15:12:16 +0000
-Message-ID: <13a302ac-dadb-44af-9edf-8e15df5b0a35@intel.com>
-Date: Wed, 22 Oct 2025 20:42:06 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 32/32] drm/i915/nvls: Add NVL-S display support
-To: Gustavo Sousa <gustavo.sousa@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>, =?UTF-8?Q?Jouni_H=C3=B6gander?=
- <jouni.hogander@intel.com>, Juha-pekka Heikkila
- <juha-pekka.heikkila@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>, Matt Roper <matthew.d.roper@intel.com>, "Ravi
- Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>, Vinod Govindapillai
- <vinod.govindapillai@intel.com>, Sai Teja Pottumuttu
- <sai.teja.pottumuttu@intel.com>
-References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
- <20251021-xe3p_lpd-basic-enabling-v2-32-10eae6d655b8@intel.com>
-Content-Language: en-US
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-32-10eae6d655b8@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0021.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:177::13) To LV8PR11MB8607.namprd11.prod.outlook.com
- (2603:10b6:408:1ec::18)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DED4510E7E8;
+	Wed, 22 Oct 2025 15:13:37 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15F1110E7E7;
+ Wed, 22 Oct 2025 15:13:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3752831765597208857=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR11MB8607:EE_|SA2PR11MB4940:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81429e58-27d4-45fd-e5f2-08de117d62cd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cW00YldaMDF5bk1YSGdBMHh0SG13S3I1RWhqSjVZeUNLZkd2a3JnbXExdTJT?=
- =?utf-8?B?OVQ1RjRXRUtUTzFQRnNSS0ZhUFBIZE1aMTByd2ZuRVU4NGZaZTIwNDh0dkRL?=
- =?utf-8?B?RVRkM1pxbDRSSmpUVFgraUFFSlZORjNjaHRHWENrZnVLbitWQzQ1anFmaGpn?=
- =?utf-8?B?WEd3YndNbWNwVmE4OTNKTFNQVzRmTEJTMXB4ZlJtcmdBemRRa2I3Q2hhbXR4?=
- =?utf-8?B?T1ZYZWdVOGI2VUhucHZ4bmhUMHRtNENBK3JXVFVDK1B0QVAyc2MxbkJEM1dr?=
- =?utf-8?B?TklIRU5ia1BCZk9zUHorMmhhbll6M1pMMWNrMDNXNUFHdUl3T3dZY1NlQlFK?=
- =?utf-8?B?b1JKb0ZLZGowYi9HZkh6SjdKeHZMLzNSdUxNSmpXdkhSY0hFRjlkeVpVemJJ?=
- =?utf-8?B?K2MrdDU1VXB6enRsOUZXQmxXR0hzUERTL1ozTDFhQ0hIRzM5TUJkcUl4Zll1?=
- =?utf-8?B?NTg0M25FRjZKcktyYVFrdWFscjlrMjRsUTJJbDRaL1pBeGtObmpqT3dybytJ?=
- =?utf-8?B?Z2xySlpteUY5ZHRJZDlOVjhCWHUyU2dmRG5kY1NId1ZreHFOeUV4eTJXQmhk?=
- =?utf-8?B?ck1NZkZJWFJodnVSOGI0b3Z1cjZ2eUdwSWJ3NHljZUtMa3dIUGhoS0d3ZlZn?=
- =?utf-8?B?RWd5T2IrYmZPMUx1SmpiMXBYL01QZEd6RzlBQk5pOVZaK2F3ZEczZElzM3ZH?=
- =?utf-8?B?Mlp6OG5wZmp2ZXBSUWFUSjY4VE9RRjU3TDVrREJ1NmtCR2lIL3BobWVSekhq?=
- =?utf-8?B?ZDgyelhMcDBtQm84Z1RySjg3T04vcUovWGhuTWd6dlc1T0FER0xLQ2dKQVJY?=
- =?utf-8?B?S1B1eU9mSU5pYTUvcGs3UzhUNVFFclEvZlpGTExGWE11VWMzTTQ0aU5FZlBF?=
- =?utf-8?B?Q2t6OW1ZemtaUjcxekozcldDN2pteDE2QVE1Zm5NWEpOVjJUOEE1eVRQd0E2?=
- =?utf-8?B?M0o3Y3h5MHZjYjR3T0FscmJpQ0cvU1VGellOc2JhdDFkWFVZcElFTEYzRTRu?=
- =?utf-8?B?WW15MUhtMlhjSmdrSFFZcysrbUw0WXowaVdEcHh6UE14VHJ6QWVjWU1sUm9W?=
- =?utf-8?B?Mi85a29PbUROZEVjSWoyVGloQmE4Zms0dURMTXVJQjg3cFhhNTNaODcwaGgv?=
- =?utf-8?B?MndneC9WNHkrNE84eTNOY3NWcm8wazRDTXlaNGdSM083RFNlYmJnWExodFFT?=
- =?utf-8?B?NWNoM2FMdzkzZHQyZkNCenlObEpLOFJMNmg4aXdRUFJoMWtvWUluVE1kS2ky?=
- =?utf-8?B?VXBmVkVuckJuUUVEaW9hQnZxOUtEOU1RZHB3eDh2anREMHpNSkZBcUxzY0x4?=
- =?utf-8?B?OERtbWIvb3dGRWZ0dTNRVFdDZjlYbjB6ZGtqalRPQ3prdmE4RUZjQzExQytw?=
- =?utf-8?B?Tm5BeTFzWnI1by9YNVZSdE01VmZaalRPZXgrQy9nNmhZOGlHVTI3L3Q3UGhT?=
- =?utf-8?B?YkVMaXpPWXBWazkrd3V5WEZGRVNiTDdOQnUrZWlLNXozRkk0MW5vZ1hoNXJq?=
- =?utf-8?B?dk82QWpnY1NnMmpZcmFBbjR2bzk1VmtNaHFlc3ZHZjBqWnY0Tkg4SEY1anJl?=
- =?utf-8?B?dWREQmlVellORFJZSG9HaWtReCt3b2R3UmFHTGllcWU5MG5uNHZzZTkyK3Vt?=
- =?utf-8?B?QnhPVUxCTTE1eDNzSUIyZGtMcUNCYUNHbE95NVNiQ3YrVEVla0NyZ09jMm8z?=
- =?utf-8?B?YnRZMmMvT21xaUhJU2VDUjJvVUhMSHlqNXdaU0Nyb1o2MlcxeG5BckN2SlU0?=
- =?utf-8?B?bTNtK0szN25uQTBUTU40dG1hN0dCeFQxd0tGcit3MUZ3U252NUpXWHlGRXdX?=
- =?utf-8?B?WEpZZjVockpIYnJPVmpCWTVXa0NPZnY2b3BBbjB2VlBJb05sUkI3SHU3Vkhp?=
- =?utf-8?B?cjhlQTBRMnR5Y3JXN1B1K1luZi85TEdNbUVUdU9ZSWJCdVYrNnQxMkY3dnN4?=
- =?utf-8?Q?yL4AujuwF6Lim2+FdudCkcFuQFutH9p9?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR11MB8607.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3dzYWQyTE5iVWE3OWllSlM1RGNwTm1sbmZuN2R4em0zSjRjK1Q4NkVlL3g0?=
- =?utf-8?B?VHNJMGFvTE5weTVLZFZIQ2gvRFdJWTJDRmxaKzdvTktYb1BhVVRKSWNlYlR1?=
- =?utf-8?B?YnN5TThGS1orc0p5c3NWM1ZIZndCSVBMYW4xREZGT0dFWGhDN1dBSVlKcU00?=
- =?utf-8?B?YXdQVmNDdTRuS0hVbzgrTTduczhoQ2pOa0pGbGtCRFlDTTRtOG5PQTd2aXRI?=
- =?utf-8?B?Skl5RmZIdDFBZ1VtN2I4enB5RW8wVWpHUW9GNS9BNTNodnd2SHhpQi80L2tU?=
- =?utf-8?B?NlBZQzZiUHkyMGVSaUg1RFZhNUpFcm9tK0t4WDE4clMrVGpJU1FHckluNksy?=
- =?utf-8?B?UGpFR2orSXZWSWlFNncvK1dHK0tUWUxtQnArb1A4SGdXc0xjamkrN0dRN0hw?=
- =?utf-8?B?VlF3TG0ybUdNY0s5Y0Z3WXhCR1FiRlp6T1F5K1pNWDZBeFU5dUxuc0xxemJy?=
- =?utf-8?B?bks0TWd5SENKdFAzRzZnQ3lEbmFVK3pQQUhsdWk2am5MWjRRNmlDZTNOSU5G?=
- =?utf-8?B?eWMwNEJMejAwMHZqTG1ZS0JwVklKYitVWlZVVi9ldnBEMTVuOXVxbGZNb3E3?=
- =?utf-8?B?OFRTT0dlOWZTUlZjWUUyaVBuSTh3K3ZNSWdBTUJKOVNVcWczZWxrZGN2eWVs?=
- =?utf-8?B?dVlGTXZXeGRPQmZhMGNueGk2bklqS2RCN2dDZFNTOHpxT1NRZjJyZTMxdWc1?=
- =?utf-8?B?ZThtOFYzZ0p5cGxKeW1tdXpZb3ArRllUek01NWRMR0pDeklVOEhFUjVEUHI5?=
- =?utf-8?B?SENFOXBVOHdxb3N5YlB4WGFhODNFOTJ3ck0yTWpQZ2U0WXZPTEtPTkZWSC94?=
- =?utf-8?B?N3RCWllubTVpQWxMaWhWNmxPTWZ1YjZRalhaazBKR0RQMGxPdG5DR3JEYzlL?=
- =?utf-8?B?Sk9Hb2dMZ0JKZ2ZBampwNStpL09WSFA4V0EvQm9VSnlPbG50TnJrY2lKSFpG?=
- =?utf-8?B?MnhpTE4zSm5uRjlQYWlPOFp0VGlITmFwS0VSMHJLVDdBQUYyYmxQdlZBeHlW?=
- =?utf-8?B?dnZkTnpaaGlJaGg4UERLNG5LSEZVUFlVOFY4Ujg2SkRraStrK0g4SUdKVHN4?=
- =?utf-8?B?ZGZFZWE3TUk5c0pKSVpnT1hlUkg1MVJ6a0lNOFA4SWJiZ0JieXJzYnMwU00v?=
- =?utf-8?B?RkN3Rk5BdVFKS0xZbkF1MUFaOHVBWkc3UktjSGFYeVlNb2JoWE51TGFLOTlF?=
- =?utf-8?B?SmVSV2IvYXp1K01xS2o3c1dUaW5jUG1MQUY3SHZqb0pmbXljallQQ2JVazJ0?=
- =?utf-8?B?M2FZbWNVNmJtalJTeThHMUdyREozbFVLZzdRL04rcjZHeVV5Z2JaYllPR1Zw?=
- =?utf-8?B?bDQySmU2SnRuTUtrZlhibVVISER2LzRCOWNLMzZ2ZFE1U3NRU1ljdWhyYmht?=
- =?utf-8?B?U1pPWncvNi9QZWQ4RW1XODZNUkJBYjRrNFBoYXBBUTFJY0p2TER2RG1DTWdK?=
- =?utf-8?B?TTRxOEl6UmlDK2JiSkcxc1N5Qy9GTlcvTTBNNUdqNHcramNEQTlTTFY0a3Y5?=
- =?utf-8?B?eFR3N1FKSitueXlEQXdXZlZpeU56RVNPT1dGSUVZZGVkOEhRTm4wdGNJWGVi?=
- =?utf-8?B?VlJaL296Y0ZxVEZIcHVERkc4VFF5NDdxU21Qb3dCeDJJSUxja0pLSFYxN2lT?=
- =?utf-8?B?Sm1iazlKbWZtaDdwM3pyNjZCUFh4bnd0VDdJUXpYbi9aNTBkT3J2MzFzQjVV?=
- =?utf-8?B?dTYxZTJPL29DM0JYUnI0WUp6YStJM1V2b1ZPVzc2QlJjaEFIWE42dm1NQkFa?=
- =?utf-8?B?dVIxVnNCeXdKZUdmVlBVSENXVHY1aHhEdWt1VkZMT1VydGNRdXlYODlWRzh2?=
- =?utf-8?B?RGpjREQ5TGRwZXQ2OVFiT1VqVTMyOHNhSWNmVzRtNFFRTGtYM1ZiczRhM1h2?=
- =?utf-8?B?NkJTcDJSd2s4Wnd1djJsc3NxQjY2RDVhUEZvbHZ2aTVUMlpvK2xnY3JyeVpS?=
- =?utf-8?B?alp6VWFBemgvdVQ2Ynl4WjRuekVUYUEzN2tmZ2x1dzZVZEZpdWpHOFN0TitG?=
- =?utf-8?B?R1p1Y3FzSkVJN0RaN3NReS9kelVuSFhoTEJSMXo1QmlGRVZWQnRRRVpwNWxM?=
- =?utf-8?B?aDArMDdxcnA3dFVPU1FaRU5ySzJTcVNJQVpHSkFOVVdha3B6VkxFRnZCTVJF?=
- =?utf-8?B?Z29kWm8wRnlQdWE3Z2Y3dzFGV2JvYm5pMnhwMVl2YUVRcXA4cUwwMWh2MDFo?=
- =?utf-8?B?L1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81429e58-27d4-45fd-e5f2-08de117d62cd
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR11MB8607.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 15:12:16.3840 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kHIE5qf/zDn1LRaC64gbVFsPOFL3isWbiWxEDCmI3NFwOUfPb5qwCR4xpmSCql0hXkb6eqOfTCpkO6RZpaweuS5KVveARC8EEZmIZyEGiyQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4940
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm=3A_replace_drm=5Fprint?=
+ =?utf-8?q?=2Eh_includes_from_headers_with_a_forward_declaration_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 15:13:37 -0000
+Message-ID: <176114601707.42904.3583126129223174384@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <cover.1761126446.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1761126446.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,64 +36,233 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3752831765597208857==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/22/2025 5:58, Gustavo Sousa wrote:
-> From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
->
-> Add platform description and PCI IDs for NVL-S.
->
-> BSpec: 74201
-> Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+== Series Details ==
 
-LGTM,
+Series: drm: replace drm_print.h includes from headers with a forward declaration (rev2)
+URL   : https://patchwork.freedesktop.org/series/156268/
+State : failure
 
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+== Summary ==
 
-> ---
->   drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
->   drivers/gpu/drm/i915/display/intel_display_device.h | 4 +++-
->   2 files changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> index a38de39ed98c..2350ade1419c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -1420,6 +1420,10 @@ static const struct platform_desc ptl_desc = {
->   	}
->   };
->   
-> +static const struct platform_desc nvl_desc = {
-> +	PLATFORM(novalake),
-> +};
-> +
->   __diag_pop();
->   
->   /*
-> @@ -1495,6 +1499,7 @@ static const struct {
->   	INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
->   	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
->   	INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
-> +	INTEL_NVLS_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
->   };
->   
->   static const struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 8fdb8a0a4282..ed03630f9dcc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -102,7 +102,9 @@ struct pci_dev;
->   	func(battlemage) \
->   	/* Display ver 30 (based on GMD ID) */ \
->   	func(pantherlake) \
-> -	func(pantherlake_wildcatlake)
-> +	func(pantherlake_wildcatlake) \
-> +	/* Display ver 35 (based on GMD ID) */ \
-> +	func(novalake)
->   
->   
->   #define __MEMBER(name) unsigned long name:1;
->
+CI Bug Log - changes from xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT -> xe-pw-156268v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-156268v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-156268v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (11 -> 12)
+------------------------------
+
+  Additional (1): bat-bmg-3 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-156268v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * {igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):
+    - bat-bmg-3:          NOTRUN -> [FAIL][1] +5 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT and xe-pw-156268v2_BAT:
+
+### New IGT tests (4) ###
+
+  * igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.24] s
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.05] s
+
+  * igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.24] s
+
+  * igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.03] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156268v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_create@multigpu-create-massive-size:
+    - bat-bmg-3:          NOTRUN -> [SKIP][2] ([Intel XE#2504])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+
+  * igt@xe_eudebug@multigpu-basic-client:
+    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#4837]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#2504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504
+  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
+
+
+Build changes
+-------------
+
+  * Linux: xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700 -> xe-pw-156268v2
+
+  IGT_8594: 8594
+  xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700: b3696aee36c443dbea93e1068b9c3c765bc8e700
+  xe-pw-156268v2: 156268v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html
+
+--===============3752831765597208857==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: replace drm_print.h includes from headers with a forward declaration (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156268/">https://patchwork.freedesktop.org/series/156268/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT -&gt; xe-pw-156268v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-156268v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-156268v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (11 -&gt; 12)</h2>
+<p>Additional (1): bat-bmg-3 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-156268v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>{igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">FAIL</a> +5 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT and xe-pw-156268v2_BAT:</p>
+<h3>New IGT tests (4)</h3>
+<ul>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.24] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.05] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.24] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:</p>
+<ul>
+<li>Statuses : 1 fail(s)</li>
+<li>Exec time: [0.03] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156268v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_create@multigpu-create-massive-size:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504">Intel XE#2504</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_eudebug@multigpu-basic-client:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700 -&gt; xe-pw-156268v2</li>
+</ul>
+<p>IGT_8594: 8594<br />
+  xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700: b3696aee36c443dbea93e1068b9c3c765bc8e700<br />
+  xe-pw-156268v2: 156268v2</p>
+
+</body>
+</html>
+
+--===============3752831765597208857==--
