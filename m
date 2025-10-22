@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21F24CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:13:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E747CCD1BC
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 15:17:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DED4510E7E8;
-	Wed, 22 Oct 2025 15:13:37 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15F1110E7E7;
- Wed, 22 Oct 2025 15:13:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3752831765597208857=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B425410E7E8;
+	Wed, 22 Oct 2025 15:17:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQiWeSL8";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 624F710E7D7;
+ Wed, 22 Oct 2025 15:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761146240; x=1792682240;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WvLYdSuKw9NElHWSWnQmSbwHzMUTFZbyiW+tEo/VeN4=;
+ b=WQiWeSL8UTL6IWZslFxNw9P0bFoQ/BQZypAcDwy/KoIkKezWXunhSgmB
+ BZ6iIXKOk4wyEnKt9uqrCiD/Y0ZtozgEsDVFUipEK6lQTtTcVfk3u/5Wc
+ 314NMgk04gFrcfGSnjwwS5K5HFf5oyj6MRGx1ar112QXdYPlENiIiiWva
+ d/9lYWD6HgxZ7nd5CkuwJUD2Fr81om8zHQwZy7QmWkAPa0WDZm4D/YmoP
+ /Ko1/KTX6WLNiiyOcCVRD3xFMB8A2kSsf5jW32SfL+cfzfNnkC/S2UcO8
+ ZSEbM0QyuVO7NN3K3kyv12/09in55u6jDl3UTkgPswa9cDMcHEcglNqMf A==;
+X-CSE-ConnectionGUID: NOazb+XHRl2paPcCWi+Dpg==
+X-CSE-MsgGUID: ub1RJlccQt6UHZellmhMsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67134279"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67134279"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 08:17:20 -0700
+X-CSE-ConnectionGUID: UItIiciLSGewhHoJGFPefA==
+X-CSE-MsgGUID: xLalZauDQ2CC6GaTKRryQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="184296886"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.104])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 08:17:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/i915: i915_utils.h refactoring
+Date: Wed, 22 Oct 2025 18:17:08 +0300
+Message-ID: <cover.1761146196.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm=3A_replace_drm=5Fprint?=
- =?utf-8?q?=2Eh_includes_from_headers_with_a_forward_declaration_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Oct 2025 15:13:37 -0000
-Message-ID: <176114601707.42904.3583126129223174384@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <cover.1761126446.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1761126446.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,233 +64,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3752831765597208857==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Jani Nikula (6):
+  drm/i915: split out separate files for jiffies timeout and wait
+    helpers
+  drm/i915/display: create intel_display_utils.h
+  drm/i915/display: add intel_display_run_as_guest()
+  drm/i915/display: add intel_display_vtd_active()
+  drm/i915/display: switch to intel_display_utils.h
+  drm/xe/compat: reduce i915_utils.[ch]
 
-Series: drm: replace drm_print.h includes from headers with a forward declaration (rev2)
-URL   : https://patchwork.freedesktop.org/series/156268/
-State : failure
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
+ drivers/gpu/drm/i915/display/intel_acpi.c     |  2 +-
+ .../gpu/drm/i915/display/intel_backlight.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  5 +--
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |  2 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  2 +-
+ .../gpu/drm/i915/display/intel_connector.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  9 ++--
+ .../drm/i915/display/intel_display_driver.c   |  3 +-
+ .../drm/i915/display/intel_display_jiffies.h  | 43 +++++++++++++++++++
+ .../drm/i915/display/intel_display_power.c    |  2 +-
+ .../drm/i915/display/intel_display_utils.c    | 32 ++++++++++++++
+ .../drm/i915/display/intel_display_utils.h    | 31 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  2 +-
+ .../drm/i915/display/intel_dp_link_training.c |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  5 ++-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c    |  6 +--
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  1 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  4 +-
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_pch.c      |  4 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_pfit.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  3 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  3 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
+ .../gpu/drm/i915/display/intel_qp_tables.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |  2 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  5 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |  1 +
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  1 +
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  1 +
+ drivers/gpu/drm/i915/i915_config.c            |  2 +-
+ drivers/gpu/drm/i915/i915_jiffies.h           | 16 +++++++
+ drivers/gpu/drm/i915/i915_utils.h             | 41 ++----------------
+ .../gpu/drm/i915/selftests/i915_selftest.c    |  1 +
+ drivers/gpu/drm/xe/Makefile                   |  2 +-
+ .../drm/xe/compat-i915-headers/i915_utils.h   |  9 +++-
+ drivers/gpu/drm/xe/display/ext/i915_utils.c   | 27 ------------
+ 68 files changed, 211 insertions(+), 134 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_jiffies.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_utils.h
+ create mode 100644 drivers/gpu/drm/i915/i915_jiffies.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_utils.c
 
-== Summary ==
+-- 
+2.47.3
 
-CI Bug Log - changes from xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT -> xe-pw-156268v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-156268v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156268v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (11 -> 12)
-------------------------------
-
-  Additional (1): bat-bmg-3 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-156268v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * {igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):
-    - bat-bmg-3:          NOTRUN -> [FAIL][1] +5 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
-
-  
-New tests
----------
-
-  New tests have been introduced between xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT and xe-pw-156268v2_BAT:
-
-### New IGT tests (4) ###
-
-  * igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.24] s
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:
-    - Statuses : 1 fail(s)
-    - Exec time: [0.05] s
-
-  * igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.24] s
-
-  * igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:
-    - Statuses : 1 fail(s)
-    - Exec time: [0.03] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156268v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_create@multigpu-create-massive-size:
-    - bat-bmg-3:          NOTRUN -> [SKIP][2] ([Intel XE#2504])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
-
-  * igt@xe_eudebug@multigpu-basic-client:
-    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#4837]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504
-  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
-
-
-Build changes
--------------
-
-  * Linux: xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700 -> xe-pw-156268v2
-
-  IGT_8594: 8594
-  xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700: b3696aee36c443dbea93e1068b9c3c765bc8e700
-  xe-pw-156268v2: 156268v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html
-
---===============3752831765597208857==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: replace drm_print.h includes from headers with a forward declaration (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156268/">https://patchwork.freedesktop.org/series/156268/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT -&gt; xe-pw-156268v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156268v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156268v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 12)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156268v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>{igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">FAIL</a> +5 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700_BAT and xe-pw-156268v2_BAT:</p>
-<h3>New IGT tests (4)</h3>
-<ul>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 fail(s)</li>
-<li>Exec time: [0.05] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 fail(s)</li>
-<li>Exec time: [0.03] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156268v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_create@multigpu-create-massive-size:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504">Intel XE#2504</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@multigpu-basic-client:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156268v2/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700 -&gt; xe-pw-156268v2</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  xe-3964-b3696aee36c443dbea93e1068b9c3c765bc8e700: b3696aee36c443dbea93e1068b9c3c765bc8e700<br />
-  xe-pw-156268v2: 156268v2</p>
-
-</body>
-</html>
-
---===============3752831765597208857==--
