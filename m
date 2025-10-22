@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F33CCF9E2
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:32:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F294CCCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:33:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5505310E6EE;
-	Wed, 22 Oct 2025 07:32:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFEEA10E6F4;
+	Wed, 22 Oct 2025 07:33:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QQajiRnG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DYIk7AIV";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0522E10E6E7
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:32:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6105F10E6F0
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:32:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/+PDpon3hvyXsTV7S9hTN5YypneDeL3VF2NMgfXZeiY=; b=QQajiRnGm+vEHM+Y/O8bYfNuNE
- tNhnYc2C0ot1F1tZWYEB7HIfYseyHmUOCqp8zz6yTpo71pgtkUVxaLpaQAysTq8iq+cSdqSaog4UL
- g2BpU+LKH3vtMzFVN5g50UJjY6gHK+x+LSRl36Qd+8t7eIS0of7L76APEgtP6AiwlDO/iBHXTMlr+
- KRCv5TdcpGhAQdCTBv/m0sZgj6jCXfkMqc+QdUDg32OrctXVRkF0u9AVt4PVRWftoZj37AJSknNEW
- 0GKIhpwM0O1Rdp8mo+mP87Tv2sGcCT+leo4dhGf6nkKM/n++4+zy3zyixCQuJWVnhjJkItNCQGCQb
- T5n3GVUw==;
+ bh=GNZUDaVJCMpiEPGS/RKEhpM1nHHp+AB4POcS62QqPzw=; b=DYIk7AIVGfmaTPucCYiyrRkc+0
+ 9YlRU83tcbG5O2A4I1rwH40mzqX7K3xbXkkP7DH8DcCkG2KTmsYz9P6mOFtt2Y9meEDXkM01l0go7
+ RGn0kZH1lMn+ILhAU1AuWnnPJzFk6YRNsTBLXkMcskiKnPIK5oF0/dhIPFz22QRZgehL4nA0pxGHO
+ pOootcPP0SxCYpiCwj1F8pafGRLw2OrA6MjlYiKncpXmAS0bu4Mewcbr2E7nVv/Plp0BLO5pNkC3c
+ I56/V7fapNbAQp8MtHfQPBL0ggCF9tIBX5C6x+tOTXAq1QGDAjicm4M/SlplJ9U/zFwHMiCysL/h3
+ At0ewgsA==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTKv-00Ct0o-8r
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:32:45 +0200
+ id 1vBTL3-00Ct1b-IC
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:32:53 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 04/14] drm/xe/xelp: Support auxccs invalidation on blitter
-Date: Wed, 22 Oct 2025 08:32:29 +0100
-Message-ID: <20251022073241.71401-5-tvrtko.ursulin@igalia.com>
+Subject: [CI 14/14] drm/i915/display: Expose AuxCCS frame buffer modifiers for
+ Xe
+Date: Wed, 22 Oct 2025 08:32:39 +0100
+Message-ID: <20251022073241.71401-15-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
 References: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,200 +59,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Auxccs platforms need to be able to invalidate auxccs on the blitter
-engine.
+Now that we have fixed the DPT handling we can undo the nerf which was
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+built for Xe").
 
-Add the relevant mmio register and enable this by refactoring the ring
-emission a bit to consolidate all non-render engines.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+	[PLANE:32:plane 1A]: type=PRI
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |   1 +
- drivers/gpu/drm/xe/xe_ring_ops.c     | 118 ++++++++++-----------------
- 2 files changed, 46 insertions(+), 73 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 3545e0be06da..f3bc2abf678c 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -94,6 +94,7 @@
- #define CCS_AUX_INV				XE_REG(0x4208)
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 0319174adf95..d3ccd3c837e1 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2929,12 +2929,6 @@ skl_universal_plane_create(struct intel_display *display,
+ 	else
+ 		caps = skl_plane_caps(display, pipe, plane_id);
  
- #define VD0_AUX_INV				XE_REG(0x4218)
-+#define BCS_AUX_INV				XE_REG(0x4248)
- #define VE0_AUX_INV				XE_REG(0x4238)
- 
- #define VE1_AUX_INV				XE_REG(0x42b8)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index f384c9968859..87e467972070 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -248,46 +248,6 @@ static int emit_copy_timestamp(struct xe_lrc *lrc, u32 *dw, int i)
- 	return i;
- }
- 
--/* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
--static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
--				    u64 batch_addr, u32 *head, u32 seqno)
--{
--	u32 dw[MAX_JOB_SIZE_DW], i = 0;
--	u32 ppgtt_flag = get_ppgtt_flag(job);
--	struct xe_gt *gt = job->q->gt;
+-	/* FIXME: xe has problems with AUX */
+-	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
+-		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
+-			  INTEL_PLANE_CAP_CCS_RC_CC |
+-			  INTEL_PLANE_CAP_CCS_MC);
 -
--	*head = lrc->ring.tail;
--
--	i = emit_copy_timestamp(lrc, dw, i);
--
--	if (job->ring_ops_flush_tlb) {
--		dw[i++] = preparser_disable(true);
--		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
--		dw[i++] = preparser_disable(false);
--	} else {
--		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, dw, i);
--	}
--
--	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
--
--	if (job->user_fence.used) {
--		i = emit_flush_dw(dw, i);
--		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
--						job->user_fence.value,
--						dw, i);
--	}
--
--	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, 0, dw, i);
--
--	i = emit_user_interrupt(dw, i);
--
--	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
--
--	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
--}
--
- static bool has_aux_ccs(struct xe_device *xe)
- {
- 	/*
-@@ -302,40 +262,52 @@ static bool has_aux_ccs(struct xe_device *xe)
- 	return !xe->info.has_flat_ccs;
- }
+ 	modifiers = intel_fb_plane_get_modifiers(display, caps);
  
--static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
--				   u64 batch_addr, u32 *head, u32 seqno)
-+static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
-+				 u64 batch_addr, u32 *head, u32 seqno)
- {
--	u32 dw[MAX_JOB_SIZE_DW], i = 0;
--	u32 ppgtt_flag = get_ppgtt_flag(job);
-+	const unsigned int class = job->q->class;
- 	struct xe_gt *gt = job->q->gt;
--	struct xe_device *xe = gt_to_xe(gt);
--	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
-+	const bool aux_ccs = has_aux_ccs(gt_to_xe(gt)) &&
-+			     (class == XE_ENGINE_CLASS_COPY ||
-+			      class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+			      class == XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+	const bool invalidate_tlb = aux_ccs || job->ring_ops_flush_tlb;
-+	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 
- 	*head = lrc->ring.tail;
- 
- 	i = emit_copy_timestamp(lrc, dw, i);
- 
--	dw[i++] = preparser_disable(true);
--
--	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe)) {
--		if (decode)
--			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
--		else
--			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
--	}
--
--	if (job->ring_ops_flush_tlb)
-+	if (invalidate_tlb) {
-+		dw[i++] = preparser_disable(true);
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
--					seqno, MI_INVALIDATE_TLB, dw, i);
-+					seqno,
-+					MI_INVALIDATE_TLB,
-+					dw, i);
-+		/* hsdes: 1809175790 */
-+		if (aux_ccs) {
-+			struct xe_reg reg;
- 
--	dw[i++] = preparser_disable(false);
-+			switch (job->q->class) {
-+			case XE_ENGINE_CLASS_COPY:
-+				reg = BCS_AUX_INV;
-+				break;
-+			case XE_ENGINE_CLASS_VIDEO_DECODE:
-+				reg = VD0_AUX_INV;
-+				break;
-+			default:
-+				reg = VE0_AUX_INV;
-+			};
- 
--	if (!job->ring_ops_flush_tlb)
-+			i = emit_aux_table_inv(gt, reg, dw, i);
-+		}
-+		dw[i++] = preparser_disable(false);
-+	} else {
- 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 					seqno, dw, i);
-+	}
- 
--	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-+	i = emit_bb_start(batch_addr, get_ppgtt_flag(job), dw, i);
- 
- 	if (job->user_fence.used) {
- 		i = emit_flush_dw(dw, i);
-@@ -455,10 +427,10 @@ static void emit_job_gen12_gsc(struct xe_sched_job *job)
- 
- 	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
- 
--	__emit_job_gen12_simple(job, job->q->lrc[0],
--				job->ptrs[0].batch_addr,
--				&job->ptrs[0].head,
--				xe_sched_job_lrc_seqno(job));
-+	__emit_job_gen12_xcs(job, job->q->lrc[0],
-+			     job->ptrs[0].batch_addr,
-+			     &job->ptrs[0].head,
-+			     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_copy(struct xe_sched_job *job)
-@@ -473,10 +445,10 @@ static void emit_job_gen12_copy(struct xe_sched_job *job)
- 	}
- 
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_simple(job, job->q->lrc[i],
--					job->ptrs[i].batch_addr,
--					&job->ptrs[i].head,
--					xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     &job->ptrs[0].head,
-+				     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_video(struct xe_sched_job *job)
-@@ -485,10 +457,10 @@ static void emit_job_gen12_video(struct xe_sched_job *job)
- 
- 	/* FIXME: Not doing parallel handshake for now */
- 	for (i = 0; i < job->q->width; ++i)
--		__emit_job_gen12_video(job, job->q->lrc[i],
--				       job->ptrs[i].batch_addr,
--				       &job->ptrs[i].head,
--				       xe_sched_job_lrc_seqno(job));
-+		__emit_job_gen12_xcs(job, job->q->lrc[i],
-+				     job->ptrs[i].batch_addr,
-+				     &job->ptrs[0].head,
-+				     xe_sched_job_lrc_seqno(job));
- }
- 
- static void emit_job_gen12_render_compute(struct xe_sched_job *job)
+ 	ret = drm_universal_plane_init(display->drm, &plane->base,
 -- 
 2.48.0
 
