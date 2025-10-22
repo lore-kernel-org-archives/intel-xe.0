@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0D8ACCD195
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:36:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C196CCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 09:36:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8274A10E723;
-	Wed, 22 Oct 2025 09:36:22 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF3310E720;
- Wed, 22 Oct 2025 09:36:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0038429358689551858=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA65B10E723;
+	Wed, 22 Oct 2025 09:36:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DY2VoN8D";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3748710E720;
+ Wed, 22 Oct 2025 09:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761125800; x=1792661800;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=KDVjSeb5PtTm9T2CfUhPoorRK6bHTrrhTSCkFC9JXvI=;
+ b=DY2VoN8DyQh1Zj7J4lm+dDuAUmWQgnmUfgKxVeRdh5RnsdTFZB7LOSB8
+ 6cKM1/TzGE2noLmtxGww1oqODEgljEmsR/987nKjGta7zgsXlFPfLSGp7
+ SgC6rgmW3z8awAFOezwQHynm8fnLDa/CP8rITWDVw3+I5hWpw8nIXWn5k
+ PX3Z57BG7xMXuHGYZ6QTtr+EtTQfvY6xljmoCnVokbaHpUUSc0wfQmMKZ
+ MSKU3V97znNBDjrw2HGVC2zwqKgqistjkmhNbqzUPNJ61smRjFYwt4gfT
+ K4ddHf7NrTgj6sal+EmrIAzy3SZLEYIVVF1uiP9LzM57z7x3Ulpng43eT g==;
+X-CSE-ConnectionGUID: RoQxbseFSQelDd/tUaaHPQ==
+X-CSE-MsgGUID: Ynp9gBN/TcuWAb3AuQSvLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62297558"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="62297558"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 02:36:40 -0700
+X-CSE-ConnectionGUID: RbBvdUT0R8W6NKpXcDzeNQ==
+X-CSE-MsgGUID: qm6vf3ZdTiCy8tB9Y90v+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="183413915"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.104])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 02:36:38 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH 6/6] drm/xe/display: Use display parent interface for xe
+ runtime pm
+In-Reply-To: <20251022085548.876150-7-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251022085548.876150-1-jouni.hogander@intel.com>
+ <20251022085548.876150-7-jouni.hogander@intel.com>
+Date: Wed, 22 Oct 2025 12:36:35 +0300
+Message-ID: <d3b1311c9b67f55854f9934ab921f318571ed119@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_ci_run_no_stolen_wit?=
- =?utf-8?q?h_flush?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Oct 2025 09:36:21 -0000
-Message-ID: <176112578149.41039.4220226835434138524@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251022073241.71401-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +68,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0038429358689551858==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 22 Oct 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Start using display parent interface for xe runtime pm.
 
-== Series Details ==
+Nice, this is a good reason to keep the wrappers in the previous patch.
 
-Series: auxccs ci run no stolen with flush
-URL   : https://patchwork.freedesktop.org/series/156304/
-State : success
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile                 |  2 +-
+>  drivers/gpu/drm/xe/display/xe_display_rpm.c | 73 ---------------------
+>  2 files changed, 1 insertion(+), 74 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/xe/display/xe_display_rpm.c
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 82c6b3d296769..4559fb770bf75 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -211,7 +211,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	display/intel_fbdev_fb.o \
+>  	display/xe_display.o \
+>  	display/xe_display_misc.o \
+> -	display/xe_display_rpm.o \
+>  	display/xe_display_wa.o \
+>  	display/xe_dsb_buffer.o \
+>  	display/xe_fb_pin.o \
+> @@ -256,6 +255,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-display/intel_display_power.o \
+>  	i915-display/intel_display_power_map.o \
+>  	i915-display/intel_display_power_well.o \
+> +	i915-display/intel_display_rpm.o \
+>  	i915-display/intel_display_trace.o \
+>  	i915-display/intel_display_wa.o \
+>  	i915-display/intel_dkl_phy.o \
+> diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/dr=
+m/xe/display/xe_display_rpm.c
+> deleted file mode 100644
+> index 3825376e98ccd..0000000000000
+> --- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -// SPDX-License-Identifier: MIT
+> -/* Copyright =C2=A9 2025 Intel Corporation */
+> -
+> -#include "intel_display_core.h"
+> -#include "intel_display_rpm.h"
+> -#include "xe_device.h"
+> -#include "xe_device_types.h"
+> -#include "xe_pm.h"
+> -
+> -static struct xe_device *display_to_xe(struct intel_display *display)
+> -{
+> -	return to_xe_device(display->drm);
+> -}
+> -
+> -struct ref_tracker *intel_display_rpm_get_raw(struct intel_display *disp=
+lay)
+> -{
+> -	return intel_display_rpm_get(display);
+> -}
+> -
+> -void intel_display_rpm_put_raw(struct intel_display *display, struct ref=
+_tracker *wakeref)
+> -{
+> -	intel_display_rpm_put(display, wakeref);
+> -}
+> -
+> -struct ref_tracker *intel_display_rpm_get(struct intel_display *display)
+> -{
+> -	return xe_pm_runtime_resume_and_get(display_to_xe(display)) ? INTEL_WAK=
+EREF_DEF : NULL;
+> -}
+> -
+> -struct ref_tracker *intel_display_rpm_get_if_in_use(struct intel_display=
+ *display)
+> -{
+> -	return xe_pm_runtime_get_if_in_use(display_to_xe(display)) ? INTEL_WAKE=
+REF_DEF : NULL;
+> -}
+> -
+> -struct ref_tracker *intel_display_rpm_get_noresume(struct intel_display =
+*display)
+> -{
+> -	xe_pm_runtime_get_noresume(display_to_xe(display));
+> -
+> -	return INTEL_WAKEREF_DEF;
+> -}
+> -
+> -void intel_display_rpm_put(struct intel_display *display, struct ref_tra=
+cker *wakeref)
+> -{
+> -	if (wakeref)
+> -		xe_pm_runtime_put(display_to_xe(display));
+> -}
+> -
+> -void intel_display_rpm_put_unchecked(struct intel_display *display)
+> -{
+> -	xe_pm_runtime_put(display_to_xe(display));
+> -}
+> -
+> -bool intel_display_rpm_suspended(struct intel_display *display)
+> -{
+> -	struct xe_device *xe =3D display_to_xe(display);
+> -
+> -	return pm_runtime_suspended(xe->drm.dev);
+> -}
+> -
+> -void assert_display_rpm_held(struct intel_display *display)
+> -{
+> -	/* FIXME */
+> -}
+> -
+> -void intel_display_rpm_assert_block(struct intel_display *display)
+> -{
+> -	/* FIXME */
+> -}
+> -
+> -void intel_display_rpm_assert_unblock(struct intel_display *display)
+> -{
+> -	/* FIXME */
+> -}
 
-== Summary ==
-
-CI Bug Log - changes from xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8_BAT -> xe-pw-156304v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156304v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156304v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8 -> xe-pw-156304v1
-
-  IGT_8594: 8594
-  xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8: fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8
-  xe-pw-156304v1: 156304v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156304v1/index.html
-
---===============0038429358689551858==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs ci run no stolen with flush</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156304/">https://patchwork.freedesktop.org/series/156304/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156304v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156304v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8_BAT -&gt; xe-pw-156304v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156304v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156304v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8 -&gt; xe-pw-156304v1</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  xe-3962-fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8: fe52d75436e2fa1aa5d91d2c8de58fde54aa78d8<br />
-  xe-pw-156304v1: 156304v1</p>
-
-</body>
-</html>
-
---===============0038429358689551858==--
+--=20
+Jani Nikula, Intel
