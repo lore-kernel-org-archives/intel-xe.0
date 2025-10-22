@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3EE1CCD1BF
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 05:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BD2CCF9E3
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 05:18:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64C7910E6A4;
-	Wed, 22 Oct 2025 05:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE4810E6AE;
+	Wed, 22 Oct 2025 05:18:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S4ORLjoL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lQ+zSfrd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0D710E6A6
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 05:18:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6321A10E6A4
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 05:18:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761110317; x=1792646317;
+ t=1761110318; x=1792646318;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pbl8dq9oH3nWCaz2YYunZJgElvGF5mdAT7rvx36lFkc=;
- b=S4ORLjoL3QyA44/N6FyVx1fRFjszhErpEW1VguhVDah1TvFv7SwLWYOy
- 4TWeKmAlbKGvcQQtiRdHO3QLbtdvipZErMEwKfW6V46wThJbyQOCqAHg1
- tpdlnswz+k/6tPak88feIM4BVxF5mOuL61dqQdcVk9RbBHZoaJx8ylhuE
- zXkOLwFBMNoL2j5ys5XbVVPhC6yloJNscJuYcaX0wBlI8M1TcagVhP4pX
- q4Oj0aV3ezw+VHUeV1iVJoBVxv0ZHWIpGKYYEh8jAnjFYppoKIqN3SgUt
- snRHoplg2e919FiUkDPt2UmAlwWP8Fme+CRl8dobLdgoT9yTdyfDLqck8 w==;
-X-CSE-ConnectionGUID: gIx7cQXuSk+6brPCEjRBbA==
-X-CSE-MsgGUID: A8aAoaL/T06StPF3gh3Hbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67083971"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67083971"
+ bh=NWO2nj0fnmRfHrUG3nbZlPqH3wCJwE25SEjwOC32NsM=;
+ b=lQ+zSfrdIW/ugkR0BPcnDSHS+Uve2Y8cLJoGZ5BXQw6VJ5IXot/9jewZ
+ Cu/gEiiRTEf+1L/dDW5Fd0IxTp8CyHFPtthhXd67MmA/S8fAtC/UzHTiu
+ kOU6yory0hvV2glAt9wqfv+gNJ/+ZPkS2rOmljPI/vUFmPNGIDZECVMmi
+ pzBCsCBOy21bkUUuLPUGBG5JPw1BcHEa2jpjbFsXzkkUuEp7A49O/+0ie
+ Hi65erD5cjOKoTRlsjc0uKi+WRZCd7xZgKHBzRaugjeQqtxt1x+kxOuVo
+ GIPUgJDDqLTae/+S0ASIHkRG79vpkAHGyBcq/jPodqBoORuiEeo2It3Dk A==;
+X-CSE-ConnectionGUID: 1NsIN3mzQm+uP9WGb6YzZw==
+X-CSE-MsgGUID: 5sWaVCLzSjyjVXJ8Oj41zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67083975"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67083975"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 22:18:37 -0700
-X-CSE-ConnectionGUID: j2c7/VLyS5uwdVaCKNB9XA==
-X-CSE-MsgGUID: kymdtzOzRNCIZFcUNeGplQ==
+X-CSE-ConnectionGUID: cCiDnwdQQseeS1sjy16Q3w==
+X-CSE-MsgGUID: CWfR0ln+RfKYFpTY8S4TsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="220959681"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="220959694"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Oct 2025 22:18:37 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: [PATCH 01/12] drm/xe/cri: Add CRI platform definition
-Date: Tue, 21 Oct 2025 22:17:33 -0700
-Message-ID: <20251021-cri-v1-1-bf11e61d9f49@intel.com>
+ Soham Purkait <soham.purkait@intel.com>
+Subject: [PATCH 05/12] drm/xe/cri: Add check to verify if CSC is a PCIe
+ endpoint
+Date: Tue, 21 Oct 2025 22:17:37 -0700
+Message-ID: <20251021-cri-v1-5-bf11e61d9f49@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251021-cri-v1-0-bf11e61d9f49@intel.com>
 References: <20251021-cri-v1-0-bf11e61d9f49@intel.com>
@@ -69,80 +70,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+From: Soham Purkait <soham.purkait@intel.com>
 
-Add platform definition and PCI IDs for Crescent Island.
+Add check to verify if CSC is a PCIe endpoint via pcode mailbox
+during xe modprobe. If this mode is not supported, an auxiliary
+child device for the MEI driver is created as a fallback flow.
 
-Other platforms use INTEL_VGA_DEVICE since they have a
-PCI_BASE_CLASS_DISPLAY class.  This is not the case for CRI, so just
-match on devid, which should be sufficient.
-
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Soham Purkait <soham.purkait@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c            | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_platform_types.h |  1 +
- include/drm/intel/pciids.h             |  4 ++++
- 3 files changed, 20 insertions(+)
+ drivers/gpu/drm/xe/xe_heci_gsc.c  | 30 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pcode_api.h |  1 +
+ 2 files changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index c3136141a9536..000bb30b97712 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -396,6 +396,20 @@ static const struct xe_device_desc nvls_desc = {
- 	.vm_max_level = 4,
- };
+diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
+index a415ca4887914..c2a365b7e0f6f 100644
+--- a/drivers/gpu/drm/xe/xe_heci_gsc.c
++++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
+@@ -8,11 +8,15 @@
+ #include <linux/pci.h>
+ #include <linux/sizes.h>
  
-+static const struct xe_device_desc cri_desc = {
-+	DGFX_FEATURES,
-+	PLATFORM(CRESCENTISLAND),
-+	.dma_mask_size = 52,
-+	.has_display = false,
-+	.has_flat_ccs = false,
-+	.has_mbx_power_limits = true,
-+	.has_sriov = true,
-+	.max_gt_per_tile = 2,
-+	.require_force_probe = true,
-+	.va_bits = 57,
-+	.vm_max_level = 4,
-+};
++#include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_drv.h"
+ #include "xe_heci_gsc.h"
+ #include "regs/xe_gsc_regs.h"
++#include "xe_pcode.h"
++#include "xe_pcode_api.h"
+ #include "xe_platform_types.h"
++#include "xe_pm.h"
+ #include "xe_survivability_mode.h"
+ 
+ #define GSC_BAR_LENGTH  0x00000FFC
+@@ -41,6 +45,25 @@ static int heci_gsc_irq_init(int irq)
+ 	return irq_set_chip_data(irq, NULL);
+ }
+ 
++/*
++ * is_csc_pci_ep - Check whether CSC is exposed as a PCIe endpoint through
++ * pcode mailbox sub-command PCODE_STATUS_SUBCOMMAND_CSC_PCIE_DEVICE_STATUS.
++ */
++static bool is_csc_pci_ep(struct xe_device *xe)
++{
++	int ret = 0;
++	u32 val;
 +
- #undef PLATFORM
- __diag_pop();
- 
-@@ -425,6 +439,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_PTL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
-+	INTEL_CRI_IDS(INTEL_PCI_DEVICE, &cri_desc),
- 	{ }
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index 78286285c2495..f516dbddfd882 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -25,6 +25,7 @@ enum xe_platform {
- 	XE_BATTLEMAGE,
- 	XE_PANTHERLAKE,
- 	XE_NOVALAKE_S,
-+	XE_CRESCENTISLAND,
- };
- 
- enum xe_subplatform {
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 13c592e1a28c7..b258e79b437ac 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -896,4 +896,8 @@
- 	MACRO__(0xD744, ## __VA_ARGS__), \
- 	MACRO__(0xD745, ## __VA_ARGS__)
- 
-+/* CRI */
-+#define INTEL_CRI_IDS(MACRO__, ...) \
-+	MACRO__(0x674C, ## __VA_ARGS__)
++	xe_pm_runtime_get(xe);
++	ret = xe_pcode_read(xe_device_get_root_tile(xe),
++			    PCODE_MBOX(DGFX_PCODE_STATUS,
++				       DGFX_CSC_PCIE_DEVICE_STATUS, 0),
++				       &val, NULL);
++	xe_pm_runtime_put(xe);
 +
- #endif /* __PCIIDS_H__ */
++	return !ret && (val & 0x1U);
++}
++
+ /**
+  * struct heci_gsc_def - graphics security controller heci interface definitions
+  *
+@@ -178,7 +201,12 @@ int xe_heci_gsc_init(struct xe_device *xe)
+ 
+ 	heci_gsc->irq = -1;
+ 
+-	if (xe->info.platform == XE_BATTLEMAGE) {
++	if (xe->info.platform == XE_CRESCENTISLAND) {
++		if (is_csc_pci_ep(xe))
++			return 0;
++
++		def = &heci_gsc_def_dg2;
++	} else if (xe->info.platform == XE_BATTLEMAGE) {
+ 		def = &heci_gsc_def_dg2;
+ 	} else if (xe->info.platform == XE_PVC) {
+ 		def = &heci_gsc_def_pvc;
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 92bfcba51e199..bd32af0b5a23f 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -35,6 +35,7 @@
+ #define     DGFX_GET_INIT_STATUS	0x0
+ #define     DGFX_INIT_STATUS_COMPLETE	0x1
+ #define     DGFX_LINK_DOWNGRADE_STATUS	REG_BIT(31)
++#define     DGFX_CSC_PCIE_DEVICE_STATUS 0x3
+ 
+ #define   PCODE_POWER_SETUP			0x7C
+ #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
 
 -- 
 2.51.0
