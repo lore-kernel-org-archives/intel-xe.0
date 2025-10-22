@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B76F9CCD1BF
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 05:19:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7D91CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 05:34:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D47910E6AC;
-	Wed, 22 Oct 2025 05:19:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sqyh4+CY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB5F310E6AB
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 05:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761110318; x=1792646318;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BrWff0cWu1rdy/VSHJGsGGR7T0vfyvQaqMzezRvoKkA=;
- b=Sqyh4+CY2EjhIvZhoU7z7jfTeKHqsQRmQ+G4mrbhZuflXDwARUwz/YUD
- 7fkiCJ+3Wkn+zdcrYqvrW9guF90UFjQVx7y4gX8LHTejVjyXmh1D4+tET
- iGXmwNSMNLJVljUTk3+j3iHd9MFwW8sXHjgM0kibd0p0kv3UHrDpt5+pw
- GjehtBh4l9nWLbpi7pnrK0PfJM8/1MIYlL/Qc1ih+C3Kx6faZb9JApHSU
- UHvizQSgr4U3USdWFLsqmakCczra5YhIOuvWt8bvh5LVV/KcwrfhTSbCU
- hUEkjcV41EjGX/Mes9Z3cWa4H2Yxubuqg8XBUDGabwFZdGKeIdXuY1S+f A==;
-X-CSE-ConnectionGUID: X38w4C7xSzSQuiTqKcLqYg==
-X-CSE-MsgGUID: /FyooTMVThyKbi/vcLP6sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67083978"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67083978"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 22:18:37 -0700
-X-CSE-ConnectionGUID: ON9vRh2+R0aZ9qU6SRd/Cw==
-X-CSE-MsgGUID: 7HIlA0bmTlmvlqxQm7VnkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="220959704"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2025 22:18:37 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: [PATCH 08/12] drm/xe/oa/uapi: Expose MERT OA unit
-Date: Tue, 21 Oct 2025 22:17:40 -0700
-Message-ID: <20251021-cri-v1-8-bf11e61d9f49@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251021-cri-v1-0-bf11e61d9f49@intel.com>
-References: <20251021-cri-v1-0-bf11e61d9f49@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9251810E6AC;
+	Wed, 22 Oct 2025 05:34:51 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD9510E6A7;
+ Wed, 22 Oct 2025 05:34:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0975870082115606683=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-bd47d
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Improve_VMA_merging_for_CPU?=
+ =?utf-8?q?-address-mirrored_mappings_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 05:34:50 -0000
+Message-ID: <176111129048.40104.7224697737714278641@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251022041649.626645-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20251022041649.626645-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,132 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+--===============0975870082115606683==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-A MERT OA unit is available in the SoC on some platforms. Add support
-for this OA unit and expose it to userspace. The MERT OA unit does not
-have any HW engines attached, but is otherwise similar to an OAM unit.
+== Series Details ==
 
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_oa_regs.h |  9 +++++++++
- drivers/gpu/drm/xe/xe_oa.c           | 36 +++++++++++++++++++++++++++++++++---
- include/uapi/drm/xe_drm.h            |  3 +++
- 3 files changed, 45 insertions(+), 3 deletions(-)
+Series: Improve VMA merging for CPU-address-mirrored mappings (rev2)
+URL   : https://patchwork.freedesktop.org/series/154832/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-index e693a50706f84..72334bd660751 100644
---- a/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
-@@ -100,4 +100,13 @@
- #define OAM_COMPRESSION_T3_CONTROL		XE_REG(0x1c2e00)
- #define  OAM_LAT_MEASURE_ENABLE			REG_BIT(4)
- 
-+#define OAMERT_CONTROL				XE_REG(0x1453a0)
-+#define OAMERT_DEBUG				XE_REG(0x1453a4)
-+#define OAMERT_STATUS				XE_REG(0x1453a8)
-+#define OAMERT_HEAD_POINTER			XE_REG(0x1453ac)
-+#define OAMERT_TAIL_POINTER			XE_REG(0x1453b0)
-+#define OAMERT_BUFFER				XE_REG(0x1453b4)
-+#define OAMERT_CONTEXT_CONTROL			XE_REG(0x1453c8)
-+#define OAMERT_MMIO_TRG				XE_REG(0x1453cc)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index f901ba52b4032..4aea94d438d40 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1915,6 +1915,7 @@ static bool oa_unit_supports_oa_format(struct xe_oa_open_param *param, int type)
- 			type == DRM_XE_OA_FMT_TYPE_OAC || type == DRM_XE_OA_FMT_TYPE_PEC;
- 	case DRM_XE_OA_UNIT_TYPE_OAM:
- 	case DRM_XE_OA_UNIT_TYPE_OAM_SAG:
-+	case DRM_XE_OA_UNIT_TYPE_MERT:
- 		return type == DRM_XE_OA_FMT_TYPE_OAM || type == DRM_XE_OA_FMT_TYPE_OAM_MPEC;
- 	default:
- 		return false;
-@@ -2206,6 +2207,8 @@ static const struct xe_mmio_range xe2_oa_mux_regs[] = {
- 	{ .start = 0xE18C, .end = 0xE18C },	/* SAMPLER_MODE */
- 	{ .start = 0xE590, .end = 0xE590 },	/* TDL_LSC_LAT_MEASURE_TDL_GFX */
- 	{ .start = 0x13000, .end = 0x137FC },	/* PES_0_PESL0 - PES_63_UPPER_PESL3 */
-+	{ .start = 0x145194, .end = 0x145194 },	/* SYS_MEM_LAT_MEASURE */
-+	{ .start = 0x145340, .end = 0x14537C },	/* MERTSS_PES_0 - MERTSS_PES_7 */
- 	{},
- };
- 
-@@ -2495,7 +2498,12 @@ int xe_oa_register(struct xe_device *xe)
- static u32 num_oa_units_per_gt(struct xe_gt *gt)
- {
- 	if (xe_gt_is_main_type(gt) || GRAPHICS_VER(gt_to_xe(gt)) < 20)
--		return 1;
-+		/*
-+		 * Mert OA unit belongs to the SoC, not a gt, so should be accessed using
-+		 * xe_root_tile_mmio(). However, for all known platforms this is the same as
-+		 * accessing via xe_root_mmio_gt()->mmio.
-+		 */
-+		return xe_device_has_mert(gt_to_xe(gt)) ? 2 : 1;
- 	else if (!IS_DGFX(gt_to_xe(gt)))
- 		return XE_OAM_UNIT_SCMI_0 + 1; /* SAG + SCMI_0 */
- 	else
-@@ -2577,6 +2585,21 @@ static struct xe_oa_regs __oag_regs(void)
- 	};
- }
- 
-+static struct xe_oa_regs __oamert_regs(void)
-+{
-+	return (struct xe_oa_regs) {
-+		0,
-+		OAMERT_HEAD_POINTER,
-+		OAMERT_TAIL_POINTER,
-+		OAMERT_BUFFER,
-+		OAMERT_CONTEXT_CONTROL,
-+		OAMERT_CONTROL,
-+		OAMERT_DEBUG,
-+		OAMERT_STATUS,
-+		OAM_CONTROL_COUNTER_SEL_MASK,
-+	};
-+}
-+
- static void __xe_oa_init_oa_units(struct xe_gt *gt)
- {
- 	/* Actual address is MEDIA_GT_GSI_OFFSET + oam_base_addr[i] */
-@@ -2591,8 +2614,15 @@ static void __xe_oa_init_oa_units(struct xe_gt *gt)
- 		struct xe_oa_unit *u = &gt->oa.oa_unit[i];
- 
- 		if (xe_gt_is_main_type(gt)) {
--			u->regs = __oag_regs();
--			u->type = DRM_XE_OA_UNIT_TYPE_OAG;
-+			if (!i) {
-+				u->regs = __oag_regs();
-+				u->type = DRM_XE_OA_UNIT_TYPE_OAG;
-+			} else {
-+				xe_gt_assert(gt, xe_device_has_mert(gt_to_xe(gt)));
-+				xe_gt_assert(gt, gt == xe_root_mmio_gt(gt_to_xe(gt)));
-+				u->regs = __oamert_regs();
-+				u->type = DRM_XE_OA_UNIT_TYPE_MERT;
-+			}
- 		} else {
- 			xe_gt_assert(gt, GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270);
- 			u->regs = __oam_regs(oam_base_addr[i]);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 47853659a705e..09599dcc816d6 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1654,6 +1654,9 @@ enum drm_xe_oa_unit_type {
- 
- 	/** @DRM_XE_OA_UNIT_TYPE_OAM_SAG: OAM_SAG OA unit */
- 	DRM_XE_OA_UNIT_TYPE_OAM_SAG,
-+
-+	/** @DRM_XE_OA_UNIT_TYPE_MERT: MERT OA unit */
-+	DRM_XE_OA_UNIT_TYPE_MERT,
- };
- 
- /**
+== Summary ==
 
--- 
-2.51.0
+CI Bug Log - changes from xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687_BAT -> xe-pw-154832v2_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 11)
+------------------------------
+
+  Missing    (1): bat-pvc-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154832v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687 -> xe-pw-154832v2
+
+  IGT_8594: 8594
+  xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687: fb0f56ad8a2c9953c57c3337a72ccbf9c5050687
+  xe-pw-154832v2: 154832v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v2/index.html
+
+--===============0975870082115606683==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Improve VMA merging for CPU-address-mirrored mappings (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154832/">https://patchwork.freedesktop.org/series/154832/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687_BAT -&gt; xe-pw-154832v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 11)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154832v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154832v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687 -&gt; xe-pw-154832v2</li>
+</ul>
+<p>IGT_8594: 8594<br />
+  xe-3961-fb0f56ad8a2c9953c57c3337a72ccbf9c5050687: fb0f56ad8a2c9953c57c3337a72ccbf9c5050687<br />
+  xe-pw-154832v2: 154832v2</p>
+
+</body>
+</html>
+
+--===============0975870082115606683==--
