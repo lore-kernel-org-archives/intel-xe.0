@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BCB8CCD1A5
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 01:51:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD0B0CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 01:55:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E61110E0C4;
-	Wed, 22 Oct 2025 01:51:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YUChTIFK";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC7AD10E0C4;
- Wed, 22 Oct 2025 01:51:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 318B3627C4;
- Wed, 22 Oct 2025 01:51:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EC1C4CEF1;
- Wed, 22 Oct 2025 01:51:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761097869;
- bh=M6c8HbksTy9YaQrooyjRe4bq+q1w4ySMC3x/H0yPBFQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YUChTIFK+sL3dyNfeemA8WRYJ74gjM8V4MWxPhiGYGZPxYH9PSu8WebtjCC6Hp8Us
- XNRqEM474sk5siDtcmM3tidhfix3D/2vovlZ8wnFekJt+FZMnvVa/k9zeTspxuFlgA
- 7tIZnL0WGPktlhF94bGJxHyR0UOY0TQWIE5PXmv2e0i+oe8+1zu3vcB8DHfGpTw/WZ
- HGwhurx6ht5ZlqSxudLqL0zIiJT3REm3DwWE+kHffFf+S9Hje6DXnTpdnsrc/CJRQ8
- PJnNx9LoCb9sSlae60SFwyOlGZtVW6WDbgOOsSNXzfW5hZg+6lBCxmirVcGG4d9t9p
- SL0MnpWNH/gAQ==
-Date: Tue, 21 Oct 2025 15:51:08 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jiangshanlai@gmail.com,
- simona.vetter@ffwll.ch, christian.koenig@amd.com,
- pstanner@redhat.com, dakr@kernel.org
-Subject: Re: [RFC PATCH 1/3] workqueue: Add an interface to taint workqueue
- lockdep with reclaim
-Message-ID: <aPg4jKrlYajO7jd_@slm.duckdns.org>
-References: <20251021213952.746900-1-matthew.brost@intel.com>
- <20251021213952.746900-2-matthew.brost@intel.com>
- <aPgBjmIm6n9H-R_u@slm.duckdns.org>
- <aPgDXsQY5qAfU0Tv@lstrano-desk.jf.intel.com>
- <aPgXH_JjkmKO5_a_@slm.duckdns.org>
- <aPgxy3lIqW1rUGsx@lstrano-desk.jf.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848E410E0C4;
+	Wed, 22 Oct 2025 01:55:10 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE8610E0C4;
+ Wed, 22 Oct 2025 01:55:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aPgxy3lIqW1rUGsx@lstrano-desk.jf.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_Add_?=
+ =?utf-8?q?initial_support_for_Xe3p=5FLPD_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 22 Oct 2025 01:55:09 -0000
+Message-ID: <176109810923.39670.3050978090943370209@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
+In-Reply-To: <20251021-xe3p_lpd-basic-enabling-v2-0-10eae6d655b8@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,23 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 21, 2025 at 06:22:19PM -0700, Matthew Brost wrote:
-> > please update the patch so that WQ_MEM_RECLAIM implicitly enables the
-> > checking?
-> 
-> Sure, but a bunch of things immediately break—including a convoluted
-> case in my driver. I can fix the kernel to the extent that my CI catches
-> issues, and fix any obvious cases through manual inspection. However,
-> I suspect that if we merge this, we'll be dealing with fallout
-> throughout a kernel RC cycle.
+== Series Details ==
 
-Sure, we're still early in this cycle and can try to resolve as much as
-possible and if there's just too much, we can make it optional and so on.
+Series: drm/i915/display: Add initial support for Xe3p_LPD (rev2)
+URL   : https://patchwork.freedesktop.org/series/155951/
+State : warning
 
-Thanks.
+== Summary ==
 
--- 
-tejun
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast fb0f56ad8a2c9953c57c3337a72ccbf9c5050687
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
++drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
++drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
+
