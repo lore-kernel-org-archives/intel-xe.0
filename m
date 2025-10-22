@@ -4,56 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE06CCD1BB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 12:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4FB8CCD1BB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 12:21:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E84CA10E76A;
-	Wed, 22 Oct 2025 12:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5316210E76A;
+	Wed, 22 Oct 2025 12:21:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AZaLj3bg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b7hqlL0m";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEEE10E76E;
- Wed, 22 Oct 2025 12:15:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 511DD10E76A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 12:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761135300; x=1792671300;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/2cIdzqXu/jNKAxty3QMbMKgy4rLctn3f2eZyz0EJHI=;
- b=AZaLj3bg4yyZkt5gU89WHWISOyEzmdWVzGkcy7DFdze2rSSdHtPg+X/2
- INZZhyhEaXqoKFh/EQ0kmnuV65KAnmW52RVwbaevWhRvGosylEtZbbYwI
- yeBaSWRpV9cqvyla2OMsQgdpjIP2jDi0WxdX6cfZwG6IoLpl7T/tCifMu
- escw2Ol6EXFYRZGgu6AVTEXl5m8ZE4W6aB+vhTE87yKxSX2/N84O0f0Sd
- ehNBCTxhaAmdvCyh2XR61VmqS/p+3l90oSNdvCSIDQsb7FYHIsLYLNPkT
- HoJys0pE/a0/Zi7tjNv18Zr1GPznR5JvxvbqKKMhLldjpjFGmQrSYpqqo Q==;
-X-CSE-ConnectionGUID: nLEgi1WgQx2KjdEhAAao8Q==
-X-CSE-MsgGUID: RE4WwRdXSdCokSgy1+8C5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63187864"
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="63187864"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:15:00 -0700
-X-CSE-ConnectionGUID: 3qDtgMIwQq2Y44TCgmFagg==
-X-CSE-MsgGUID: JpTfE7u0TpeNjufwPAWNCg==
+ t=1761135670; x=1792671670;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GjRXxPOE7QvYH4vCksX42M59Kzngt+hTjrE7hKosIx8=;
+ b=b7hqlL0m6isA9Z4IiqXINLs1wPDdiYjEt2KtDPvm0+zInbtOYdOmvLaH
+ xFBrwRTSoprY9yCJehJvVIQRCbvDB+ETDEaz0J2GdP849/R0ErU/5b4UD
+ XyKL/hph7cG8pUe+0Y7VVg4g0ZbY+JErcqpVbGmU1PROfe3p+KW0Gwfi4
+ 3IPrH+I5YWToAaTgvnDRNWj85R064ayoUdJsIZ/SPC5dzrb+tAlbmbUDz
+ hNRC8y/C1oXQiHsF3OPruzwu0gQeWheD3usE0UdMvAKQKac/S0JNiNi+K
+ 9mQffWpdwj/KjqTkbm4ll8scABzJh3wmdU01vyI82PH/Xdtl+cO1Gz7iI w==;
+X-CSE-ConnectionGUID: E/DdUpGtRnibJGvH1Mq8yw==
+X-CSE-MsgGUID: i8vcOEM8R4SmAjmrtBD4cg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63176444"
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="63176444"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 05:21:10 -0700
+X-CSE-ConnectionGUID: bAgJPIEsTaGfKoKKXKV5dg==
+X-CSE-MsgGUID: GUETpQMASHW9mt62GRzs0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="188983242"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.104])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 05:14:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/xe/compat: drop include xe_device.h from i915_drv.h
-Date: Wed, 22 Oct 2025 15:14:50 +0300
-Message-ID: <20251022121450.452649-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251022121450.452649-1-jani.nikula@intel.com>
-References: <20251022121450.452649-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,247,1754982000"; d="scan'208";a="187900345"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by orviesa003.jf.intel.com with ESMTP; 22 Oct 2025 05:21:10 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 0/2] VF double migration
+Date: Wed, 22 Oct 2025 18:08:08 +0530
+Message-ID: <20251022123822.3747-4-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,27 +63,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_device.h and xe_device_has_flat_ccs() are no longer needed since
-commit 3a5c5c472c0e ("drm/i915/display: add HAS_AUX_CCS() feature
-check").
+In scenarios involving double migration, the VF KMD may encounter
+situations where it is instructed to re-migrate before having the
+opportunity to send RESFIX_DONE for the initial migration. This can occur
+when the fix-up for the prior migration is still underway, but the VF KMD
+is migrated again.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 -
- 1 file changed, 1 deletion(-)
+Consequently, this may lead to the possibility of sending two migration
+notifications (i.e., pending fix-up for the first migration and a second
+notification for the new migration). Upon receiving the first RES_FIX
+notification, the GuC will resume VF submission on the GPU, potentially
+resulting in undefined behavior, such as system hangs or crashes.
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 7c657ea98a44..3e79a74ff7de 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -12,7 +12,6 @@
- 
- #include <drm/drm_drv.h>
- 
--#include "xe_device.h" /* for xe_device_has_flat_ccs() */
- #include "xe_device_types.h"
- 
- static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+To avoid these hangs, a new VF2GUC action `VF2GUC_NOTIFY_RESFIX_START` is
+sent along with marker and when GUC receives the same marker with
+`VF2GUC_NOTIFY_RESFIX_DONE`action, it starts scheduling work loads from VF.
+
+Satyanarayana K V P (2):
+  drm/xe/vf: Introduce RESFIX start marker support
+  drm/xe/vf: Enable RESFIX start marker only on supported GUC versions
+
+ .../gpu/drm/xe/abi/guc_actions_sriov_abi.h    | 38 ++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 87 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h     |  5 ++
+ drivers/gpu/drm/xe/xe_sriov_vf.c              | 42 ++++++++-
+ drivers/gpu/drm/xe/xe_sriov_vf_types.h        |  5 ++
+ 5 files changed, 169 insertions(+), 8 deletions(-)
+
 -- 
-2.47.3
+2.51.0
 
