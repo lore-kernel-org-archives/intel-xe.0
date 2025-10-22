@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ECB8CCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 14:00:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17D40CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 14:08:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43F7C10E7A7;
-	Wed, 22 Oct 2025 14:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA64910E7A9;
+	Wed, 22 Oct 2025 14:07:59 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1A410E7A7;
- Wed, 22 Oct 2025 14:00:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3766772530293890005=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D80610E7A9;
+ Wed, 22 Oct 2025 14:07:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Introduce_GT_runtime_suspen?=
- =?utf-8?q?d/resume_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_replace_drm=5Fprin?=
+ =?utf-8?q?t=2Eh_includes_from_headers_with_a_forward_declaration_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Oct 2025 14:00:56 -0000
-Message-ID: <176114165664.42825.458655787382876553@97596180aaec>
+Date: Wed, 22 Oct 2025 14:07:58 -0000
+Message-ID: <176114207850.42825.4327188468530536086@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251022094246.3584785-1-raag.jadav@intel.com>
-In-Reply-To: <20251022094246.3584785-1-raag.jadav@intel.com>
+References: <cover.1761126446.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1761126446.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,241 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3766772530293890005==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce GT runtime suspend/resume (rev4)
-URL   : https://patchwork.freedesktop.org/series/154017/
-State : failure
+Series: drm: replace drm_print.h includes from headers with a forward declaration (rev2)
+URL   : https://patchwork.freedesktop.org/series/156268/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b_BAT -> xe-pw-154017v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f0d1c7d636367ba23b84f6012d013435e12f15fa
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Oct 22 12:48:33 2025 +0300
 
-Summary
--------
+    drm/ttm: replace drm_print.h include with a forward declaration
+    
+    The ttm/ttm_resource.h header does not really need anything from
+    drm_print.h. A simple forward declaration for struct drm_printer is
+    sufficient.
+    
+    Alas, a gazillion files depend on that indirect include, and need the
+    explicit drm_print.h include. Add them all over the place.
+    
+    v2: Fix loongson, ttm tests, vboxvideo (kernel test robot, Intel Graphics CI)
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 59df9bfae7b629576bba2dcf0caacc1e144a6bde drm-intel
+4bcf2032b323 drm/mm: replace drm_print.h include with a forward declaration
+-:2108: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus-qemu.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  **FAILURE**
+-:2111: WARNING:OBSOLETE: drivers/gpu/drm/tiny/cirrus-qemu.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  Serious unknown changes coming with xe-pw-154017v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-154017v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 0 errors, 2 warnings, 0 checks, 1628 lines checked
+750de8876476 drm/buddy: replace drm_print.h include with a forward declaration
+f0d1c7d63636 drm/ttm: replace drm_print.h include with a forward declaration
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+v2: Fix loongson, ttm tests, vboxvideo (kernel test robot, Intel Graphics CI)
 
-  
+-:1059: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#1059: FILE: drivers/gpu/drm/i915/i915_getparam.c:2:
+  * SPDX-License-Identifier: MIT
 
-Participating hosts (11 -> 12)
-------------------------------
-
-  Additional (1): bat-bmg-3 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-154017v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * {igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):
-    - bat-bmg-3:          NOTRUN -> [FAIL][1] +5 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
-
-  
-New tests
----------
-
-  New tests have been introduced between xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b_BAT and xe-pw-154017v4_BAT:
-
-### New IGT tests (4) ###
-
-  * igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.24] s
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:
-    - Statuses : 1 fail(s)
-    - Exec time: [0.03] s
-
-  * igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.24] s
-
-  * igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:
-    - Statuses : 1 fail(s)
-    - Exec time: [0.03] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154017v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [PASS][2] -> [DMESG-WARN][3] ([Intel XE#4543]) +1 other test dmesg-warn
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  * igt@xe_create@multigpu-create-massive-size:
-    - bat-bmg-3:          NOTRUN -> [SKIP][4] ([Intel XE#2504])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
-
-  * igt@xe_eudebug@multigpu-basic-client:
-    - bat-bmg-3:          NOTRUN -> [SKIP][5] ([Intel XE#4837]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#2504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-  [Intel XE#4837]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837
+total: 0 errors, 2 warnings, 0 checks, 1121 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b -> xe-pw-154017v4
-
-  IGT_8594: 8594
-  xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b: 126bfe822b7fa02f01008cf6f712bd777b1d625b
-  xe-pw-154017v4: 154017v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/index.html
-
---===============3766772530293890005==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce GT runtime suspend/resume (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154017/">https://patchwork.freedesktop.org/series/154017/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b_BAT -&gt; xe-pw-154017v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-154017v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-154017v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (11 -&gt; 12)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-154017v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>{igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p} (NEW):<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">FAIL</a> +5 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b_BAT and xe-pw-154017v4_BAT:</p>
-<h3>New IGT tests (4)</h3>
-<ul>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-system-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 fail(s)</li>
-<li>Exec time: [0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@write@write-gpua-system-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@write@write-gpua-vram01-gpub-vram01-p2p:</p>
-<ul>
-<li>Statuses : 1 fail(s)</li>
-<li>Exec time: [0.03] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154017v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_create@multigpu-create-massive-size:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504">Intel XE#2504</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@multigpu-basic-client:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v4/bat-bmg-3/igt@xe_eudebug@multigpu-basic-client.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4837">Intel XE#4837</a>) +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b -&gt; xe-pw-154017v4</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  xe-3963-126bfe822b7fa02f01008cf6f712bd777b1d625b: 126bfe822b7fa02f01008cf6f712bd777b1d625b<br />
-  xe-pw-154017v4: 154017v4</p>
-
-</body>
-</html>
-
---===============3766772530293890005==--
