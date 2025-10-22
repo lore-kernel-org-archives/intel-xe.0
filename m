@@ -4,59 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C647CCD1BF
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:12:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF2DFCCD195
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55A210E6C5;
-	Wed, 22 Oct 2025 07:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 884A910E030;
+	Wed, 22 Oct 2025 07:30:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="VVVhrgk9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HQnosmtm";
 	dkim-atps=neutral
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A221010E6C5;
- Wed, 22 Oct 2025 07:12:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=woGYKU0fhDHlWGrEhCb0BMjPqCEf4r2LEen6eiYVH84=; b=VVVhrgk9hNUn21m1hiz7lbBuWA
- MansmTq4UMuIT1Zf1WbZiNJh+Du4uinvv1ec2hE8njqBAJdE55EDqXLj24iKTALEgZaU045dxuhhN
- 05usKMhlfFTyMeVa3H2E/q23GPLoIiF5KRlcJjbFWEE+wrycbVEBZnJ1byJUQFfbKezeY1fCdsSBI
- P+n1phj70znd1yndi6JHLoRNGzEGjydBgB7jvlHCm4Ycp/YuFYPRhphGyy8l7jXHj8J1PvfIuHZnz
- K1Hy73en/3GcJeRIG8e67BO/HBw2Km5FKi8nSRfdm+UR2pDON2nshZ1GTU2VWVmyRcOVV5HE67yfa
- wY8Sj8pQ==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1vBT0r-00000001ouG-0hr8;
- Wed, 22 Oct 2025 07:12:01 +0000
-Date: Wed, 22 Oct 2025 00:12:01 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-Cc: Alex Williamson <alex.williamson@redhat.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lukasz Laguna <lukasz.laguna@intel.com>
-Subject: Re: [PATCH v2 26/26] vfio/xe: Add vendor-specific vfio_pci driver
- for Intel graphics
-Message-ID: <aPiDwUn-D2_oyx2T@infradead.org>
-References: <20251021224133.577765-1-michal.winiarski@intel.com>
- <20251021224133.577765-27-michal.winiarski@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B6310E030
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=8Mf5vzPcN376Cj1G+4/Bxw7cx9ybI4zmlZIJFbZMTak=; b=HQnosmtmnDFwvCn9CpF178zEON
+ XTAco8uC4aZPKpLL17olf2gytLk2sSF3nkhUySfSJzYe3gGgK8vMxJKpIXY8u2m1hhN7WBhIcYkj2
+ qc5TPQiNYm2SDQ5onH2akOQ+FzK09GYCx2J8dVvDl9lkewSz//2WfioWW5gTcaTcIk2cuWFeu7/jh
+ isW8Iw4eP4RpL/8n7SJ1xEPb1D0w3040eltKAdLGYmB2Ki2qiGWj5vEA0BHDrtHL52c0SF7zGngFj
+ kZuS+bZjWf109tGSItWyxvKnG6Ar/H5BI0dOzDwUijCyf0EI+gZyiEvsC3gEEdGc8fp7/7PWD4A00
+ bVJtOqsg==;
+Received: from [90.242.12.242] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vBTIQ-00Csvp-VF
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:11 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 00/13] auxccs ci run no stolen
+Date: Wed, 22 Oct 2025 08:29:52 +0100
+Message-ID: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251021224133.577765-27-michal.winiarski@intel.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,12 +56,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is absolutely nothing vendor-specific here, it is a device variant
-driver.  In fact in Linux basically nothing is ever vendor specific,
-because vendor is not a concept that does matter in any practical sense
-except for tiny details like the vendor ID as one of the IDs to match
-on in device probing.
+...
 
-I have no idea why people keep trying to inject this term again and
-again.
+Tvrtko Ursulin (13):
+  drm/xe: Fix ggtt fb alignment
+  drm/xe/xelpg: Flush CCS when flushing caches
+  drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+  drm/xe/xelp: Support auxccs invalidation on blitter
+  drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Export xe_emit_aux_table_inv
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe: Flush GGTT writes after populating DPT
+  drm/xe: Handle DPT in system memory
+  drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+  drm/xe/display: Add support for AuxCCS
+  drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+
+ .../drm/i915/display/skl_universal_plane.c    |   6 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 177 +++++++++++++----
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h |   1 +
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c                   |  42 +++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 178 +++++++++---------
+ drivers/gpu/drm/xe/xe_ring_ops.h              |   3 +
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   2 +-
+ 9 files changed, 292 insertions(+), 124 deletions(-)
+
+-- 
+2.48.0
 
