@@ -4,186 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD77CCCD1AB
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:58:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4DF6CCD1AB
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 08:00:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4783E10E6C9;
-	Wed, 22 Oct 2025 07:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F72C10E6D0;
+	Wed, 22 Oct 2025 08:00:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2iZNyCQ";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="lcOm/+nh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A88E810E115;
- Wed, 22 Oct 2025 07:58:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761119888; x=1792655888;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=FaBI6T2eA6QuIzixJJhbJLamjidzy8dyaPfIpr8nwCw=;
- b=E2iZNyCQ37NtNuUaXFbQbfT1wHpGrI6lgwcTkba4XEINM6sErDoHG1TT
- Nrnas4jaIJGsSrY4UJ6HYub+nszYLvJ6EZWIMRGzM8GpV5ZJqFm1PKRA5
- wC2bIwtV/quQAZ86l35nEgv58BNOWger5GyqTUMrEQRraAEMvHEWPnAgw
- JFN5YaxiJP7/ik0OvdqDdypZb3ldB+/lBf6QkDWySnzMO5+/nbPbFkAdB
- jBJ+eaRxhcy4WDXQEzUIi79HN8c4xDUXurwlAVo63a6ZkFGsPTNKmXZAE
- euNEpdjd1b18q2mPM0C8Bhf5UySnvJc8g6cwoUoRaOvPeZi8w328GZ8kG A==;
-X-CSE-ConnectionGUID: Nems90CMQBmBtafZ23foMw==
-X-CSE-MsgGUID: Horbi0f/QA2DcPy78WTtfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="66900568"
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="66900568"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 00:58:08 -0700
-X-CSE-ConnectionGUID: /ip3s7SwTNWDXqycyHQlYQ==
-X-CSE-MsgGUID: 9h0Ali/JTAmd0SpPAfTFXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; d="scan'208";a="220996752"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 00:58:08 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 00:58:07 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 22 Oct 2025 00:58:07 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.36) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 00:58:07 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LqMq3HfYMP6z19Zk37D1eJeZy40FGXvZ7uZQVRt3JglS482o3fivSkCbnLP+Hk9BHHdyrWaGIawOv7DcwjvDpQjtdOIA4888wTuhYVVQIMUIjSDr79Gjn3o37Us0ex7D49S2KVmAswKusWd8u0A8IIj0nb5BXiiVabSEoJEVgbKH/Anx6OenoZFi7y+Sv9H0Wci6VM3wCPBzaCYHIGBvqEFPj/WyzzJO/k+cAxXCRepCN9D0Lwn+av0iJSsKun45kiZjuRLQ+ariXv4LdArWBUHYdS0wR9e7SZy1G1wI/fTm4SBnEPZoswDtc9qVEEEWp7YX1oe1tBJhddwkB6QRRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0H9Br9l/2y0mVeu2E9NbpsQvS2Fhyq7P9x5fVi2/yKY=;
- b=TgN4Zr8B0KiRN5+9Lc0nexE9hQodadvH+4LhKO52Po7tgdnVkAqyofmSf+UnQ9nDM2XMtueqHCCLeLQ6uyVCHu0Q8l+JoW2nXjTmHo3f5jY1VU165aTrf9xrBMMi8uVFUJ5SfplI8i2hgbEOxvVCIPJTMTbZyf8EwR7OwjXfscWeGetQ7MpdhwjVZ8+5F5KEzzKCCQRAsdiq0GUMYeb5Odj+PtUTR5IJuUR34O604QOmz5aPDvAPyUsG2D+PKPZ6EQhs9UcEkNGv7rwEBVSdvnbATb7xnsdN4MT8ogCpVs6qX6SMAaYFUbuDEj5mMb2FcwKr6VWFrimbnPZoV0lorQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com (2603:10b6:610:150::21)
- by SA0PR11MB4592.namprd11.prod.outlook.com (2603:10b6:806:98::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
- 2025 07:58:06 +0000
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::cfdc:6323:1353:350d]) by CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::cfdc:6323:1353:350d%4]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
- 07:58:06 +0000
-Message-ID: <40ee3418-b75a-44f5-aea8-0dca5fff755b@intel.com>
-Date: Wed, 22 Oct 2025 13:27:57 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/25] drm/i915/ltphy: Add LT Phy related VDR and Pipe
- Registers
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: <ankit.k.nautiyal@intel.com>, <uma.shankar@intel.com>,
- <gustavo.sousa@intel.com>, <lucas.demarchi@intel.com>
-References: <20251015040817.3431297-1-suraj.kandpal@intel.com>
- <20251015040817.3431297-2-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <20251015040817.3431297-2-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0179.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1af::11) To CH3PR11MB7300.namprd11.prod.outlook.com
- (2603:10b6:610:150::21)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC91F10E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 08:00:50 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-46e542196c7so3786355e9.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 01:00:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1761120049; x=1761724849;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=IpadlxGWTcZyNHTa6t9ZquNgO1DjXNpj7hPliLlbiBk=;
+ b=lcOm/+nhJEHGfrrXdzgj2JiCd7a0+vvLvK5FJJjRx5DTT+J3VctDw9tWMz1LmgkAFj
+ TV5m/urTJAK51/MjdFzuV1w6pkaH+Svc2+jSLM+tP/ijKDCCYfgGh+H/hGGvCXNhx78z
+ zxN3uYivhWFqTAlusUEU1N2+cKwNSe0D/F8FR3Dg8bjKTN2ISMdckMEudPShaP5mNecB
+ kxdoZ0aCroqplcyD7VD2bjaU5CPeVzBjHUHBtIl4M+7MKAcCGjM0IBazrIXqHHLptCR6
+ 4GYXjmtlYr5r4xswTMOyZ+0NajgDjX0hiOxxdjeVvMGBcy1y+1YhHB3s7tIhpjN0JHdu
+ K8cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761120049; x=1761724849;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=IpadlxGWTcZyNHTa6t9ZquNgO1DjXNpj7hPliLlbiBk=;
+ b=Fh6IsC7A19FylvQ1SBz0njIigNjFZBdlBdA3iEpFXIt0Zy/LZ+sK9YcVZxWVQOFxPi
+ 9+Y8unq/wCe1MS5Menxoyc7a11piUU8dfLpWKFL5vvCYTfj7iEmWpLR6bJKhT/QIFhls
+ emsvFlE+3Rp251MgLDdg6iAgVa7piHcEXawtnkq8ODzvlxBZn/AaeST+eVb0k3Mey62r
+ boAOUxkx2AI0P3q09LUvJD8DNvszw5u836+l2oblWnTEN2QLYd60B7iUU4wGBtSBgvXs
+ 5Qy8D+5lI0MRmcSLvcg780fkakd39t4EacvnxfDyaVu2cD47c9EDgpo+tU6srVlVyePZ
+ oJvg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW7ZnKbp0jIBY12anUfa9KQw6g9ySKpxv4N/3djGt5JP4TP11orLHEpvwwce8wTWfAkBHrupofgLw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YynXzpEDv0AflWZp4DWWg0TGJrvvCdrYQK6n3g8ZHbq5hRsJz/3
+ NwnRY9lkjEnpI/zdECdJgvDyHEc3uYehRwZe5M9MEjcFc3T4GnQsVpHAoZaOViHXY4o=
+X-Gm-Gg: ASbGnctyGTvv6R7f6sg/uxGpHVaBPwFVG/DdyKf4KCsX7speqxP7lYHG1rGyo2BOY3H
+ 6q5ZTiD5sZaV+VI+rok4QnLFM/M7SzQ41RyVCtUlU73hokXT2QCAprq1bz0XmjcH9q303jcmh8S
+ cmk8PWbGL1RAHHWqJUhDCEKTlnPtfvKxPK4oQ8Z+Q4cXpX++0PKXoPOORt1Fh8TahQ4ZXzrt6KO
+ 5PjodH8TBvEpsihtK6RaFTtnedQ7ikt+AcLaYgdtvSwfVjCwnUzbKQE8fpQ1IEn932IttQu8Ubw
+ amJeGg7Qsth8RXUXFPAubMjr9N6+fFHwIK4GDCz+BjbJJB6rfIMw5sBxPguofg4AN+WxED+yHFE
+ U2vydWzNkBlgOYq9QzKFsdxGPd3eEcuYZQaXkPPJYboREWsT/vibj8Tppm1D7yIjOLsGHvyTrV1
+ gh5s0k4sj9E12mlBnLqfllhE6z/PPxjZMp0zSe
+X-Google-Smtp-Source: AGHT+IEgONFEaUlAi/3lXbK0Nu1pZcVdrcKVFRyIIPWnEpBiW4S6p3gLXARYvn0/veweJwIravEsZA==
+X-Received: by 2002:a7b:cb04:0:b0:471:ea1:a460 with SMTP id
+ 5b1f17b1804b1-475c6f5d7c1mr3258855e9.11.1761120048840; 
+ Wed, 22 Oct 2025 01:00:48 -0700 (PDT)
+Received: from [192.168.0.101] ([90.242.12.242])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-427ea5bbc50sm24217059f8f.21.2025.10.22.01.00.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 22 Oct 2025 01:00:48 -0700 (PDT)
+Message-ID: <f7f83835-adaa-426a-94a5-21ad3bb240ff@ursulin.net>
+Date: Wed, 22 Oct 2025 09:00:47 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB7300:EE_|SA0PR11MB4592:EE_
-X-MS-Office365-Filtering-Correlation-Id: fab8a010-1aff-4388-1857-08de1140bb98
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?US95Yy9xdUk0dHAwMEtKYUtia1NtUHNrbldOek00UFc4VEZSdUJFcTI4a21v?=
- =?utf-8?B?NDJnL2FUKzQzbHhxd3phSi9oalVvNEUzR1ozY2RIMGhRRHAxNFBRN2o3eTJG?=
- =?utf-8?B?cFZsdmo5V1o3UFVtTFpUOURxTGdCeGJLbVB2S0l4YjNUcHNBdUtzS1NzdUFE?=
- =?utf-8?B?UkFDRHd6eTBwaWYrYnhtVVVNYXZRcTNRRzV1UjZ6bkVwWHZXMjN1RDdmakpZ?=
- =?utf-8?B?V2UxUUdBeHZGK2c2VVFRalBWSnRSMUN4RWY2UUJTbkZsVHJxYjdxQXp6V0U4?=
- =?utf-8?B?b2pMQ0k0YTJ6Y1VsZUtHV05iNjNsSTZTMjNKTWFsSk9GaEdvdHhtZ0FNVW9S?=
- =?utf-8?B?bC9TQXZBLzlYY3hiQ3g2cjFaZ3pSZGltUWRwTCsyM2t5blphWWc0MjNHVWdD?=
- =?utf-8?B?V05FSDZOOUpUNnk2c2p0Qy9POHdQanV5ampQbzRSZ2ZMYklSUmtqTE90KzdD?=
- =?utf-8?B?SjdobDRsSHNpOVF3TlZrUWNBNVVqWWg0ZS9ZMlZUbGRJTXBkalBtNnFoZmEw?=
- =?utf-8?B?d3lucnFpV2ZTN3krc2VRVTRvRmpJNUFPM21Wc0NSSC9yMVp1ZW5YNHdJVXpq?=
- =?utf-8?B?L1FidStHSm9GV3RXQ1lLc0hKUXlVR3ZIaDk0WGt6TlFZQmNhdWd0TmZZakEz?=
- =?utf-8?B?eWRwT2dMQXNKSEZBbmpXV2M5R3p6UzQyRFd3aHNjcng5cmtnU2lzNXlabldC?=
- =?utf-8?B?am5wN213enJhWjdIUitEY2FNNWFxbkJpbUtnSFp6Y1FzZXQzVWtyQlViT3Uz?=
- =?utf-8?B?cjNRR0RmVHJFS2E3cWZtRUFFR1o1TXY0YzZpKzFiYU1IcnJCWGh0ZVJGT0g1?=
- =?utf-8?B?UTF4bG9VUWJYaG5JSEM3b0tGVkd0Y2xOOEppTGowS2VKMnRDRDRsbW5GSTZk?=
- =?utf-8?B?UEFwUHNJMFp2bXZBaTVDUFFBd1hHOHBiT0Rib0dKVXlucUMyWmcyVm1la0E5?=
- =?utf-8?B?UWpSOStCL0lCWEZXbHMraDZhdW1STXhZeTQ3MXIrUyttQVJNeU5lWEFiZml2?=
- =?utf-8?B?NEVGMnViSWNnQ09qVE90TDI3bkxGdWZxZGxEanFBTndDcTlob2hiQ0F6RHdQ?=
- =?utf-8?B?bzJwWjZCVEwrSFp0S1l3UzVTTGh5TDdWc0dIRGJaeEltME9rZHdEQ2xmUlNu?=
- =?utf-8?B?NGUxRVhGbnZWc004ZkVjVVRDeTZoOUp5NmU5V3pQQk53MmtFKzZtUmlQeERU?=
- =?utf-8?B?TzNUNWthREpTVVMrRk4vQ3NsdEpqaVJVQlF0eFF6ZElNcjlONFZiNVpQeHBL?=
- =?utf-8?B?VW0yTUNQTVl1aTNneTZWdkQwWFlUQWtNaVlSQWplOUpKcXBqU2MxUWpNMmYx?=
- =?utf-8?B?NnpkMVliU0RMaVpzSVRMVnNreFhtRythMnNSMGdJUVgzNGNVbFo5Yk9FRTBy?=
- =?utf-8?B?QjRza3oxUlM4WDJzbTZFdjNHOUt4RHFjald0S3JKOStpVEJJRG9DNWhWN3Bj?=
- =?utf-8?B?VjNheityYVR6WTVremFrRmZUa09lUTlKazBLbmZ4SGN5Yis2VXJpTkFoVDQx?=
- =?utf-8?B?NStJbTJYNE1vcDhaZEE1UlJmTlN6czZXZmZneHg0ZUlwbjF4MzF5RnVPVGl4?=
- =?utf-8?B?QUxKYTZLeU9QN09oQ2hTdURSd3RLbjNPUUtvZWtNU2ZBakkvMkNUZ0dxYTZV?=
- =?utf-8?B?UDFzeDdkZmdGVmx2MWdjOUdoemJkdm9uMnVNZXk4bWhhdXFVSi92cXlydUt0?=
- =?utf-8?B?bGlSbTZEYTdtWUxmQ3dBYUdrSXg5OUxQRTB2dnJ6UXA3YTdRODU5Qm1MOUd3?=
- =?utf-8?B?UC9qcjZQemFEVFNTWGR1UGt4RGhaWm5Hd0l6MU1YTEdTcEtzOGJ4QjBhV0NK?=
- =?utf-8?B?Nno3YzRuOW1HYVd3eDU5aWJoalpQaDlLbDhaNE8zR2hoT0ROYTRVSDg4MG1y?=
- =?utf-8?B?R2E5cGdLU0pWdVpiS05iNHhCOTZLc0JQSXgwM0toeDVvY1NKcWlGMTNjV05E?=
- =?utf-8?Q?gtMQ6RCQmhy6OodinHQnnGhCpaD4DnJV?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB7300.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z3dHQjVZaHcveklkZlQrKzVhTmF4RkRNQ2NXRDV6bk9WdHJYOHQ2S3l3b0ZC?=
- =?utf-8?B?N2ROcjRGQ2tYWlgrYTR5S0kwVWV4MDRHZCtUZXhKTk9vVmt5VWp3Z0UwcG5D?=
- =?utf-8?B?SE9aOUFLYWVQMWwzZHAreUR2anNIZHpQR2VrbWVOaWU3QjdUUG5HTGFqQldK?=
- =?utf-8?B?T2dNNDg3STV3Q2hFQW5XREYrQUpmelViZHNnaGdrZjErUUtFWkgvNDFpZFNK?=
- =?utf-8?B?d1M4MGhFRmVVV3EzRDZvWnNlZEFraGFqNUQ3eGg4dmJRcldwejB0NDAzUmxs?=
- =?utf-8?B?ZkovWTBJampDdGxNanVJSVQ4RjhjYXdDb2JxcDFsb1pWcnludDUvQVFVS2lz?=
- =?utf-8?B?OFp5K0Z2cGxVejMwN3MwdUtLWGNJdUJNOGI1S0hOL3BqRmgrMkhMMEJ3dnNa?=
- =?utf-8?B?aVhUeUhNZDNOdU9vcm52VEZZSkRPblRBV3hmaUNqblB3NHhoWmNJbUlseHlu?=
- =?utf-8?B?cExnbEdQb0t1VURKbWZKSThDSFhQZC9VdjdGckM2MW9wY2xyemw0V2xzR3ll?=
- =?utf-8?B?MmFVZ0ozK0dtTWwxcUR3bms4MVgzZWN6dm4wUCsya1ZTdFhycWlBbmhlNTVO?=
- =?utf-8?B?M0VGOW5SMXBaRFNHcUpyZ3hTeVU4bFhiRzIvWGpsbWNsSDlsUVU4TFBlaFho?=
- =?utf-8?B?NEJWTDA0WkQwQTdxOS9FMzBGRlA1V3Q5QmtOQnRTK3lVM3I4dDZCemVyYXRo?=
- =?utf-8?B?VDA1c3RBdzZXZFFWUmlVN1pOUDhzcmF6MnpQMmFDamZxeE45eGRwaStFRE1p?=
- =?utf-8?B?TVZpaEo3VTlQV1JmZTduaWdvakVENVBDSmI3U0M3VFgxdGRYY0RLaDZPekww?=
- =?utf-8?B?RzM5d1pMdGZMSTF6MzVqYnNBTnJ0cy9rdDFSUE5oVmtSVW50YmVES2xxdjMv?=
- =?utf-8?B?ZW5TUkVjSHRnQU5jR1k0bHQ0SWdFVVdJaDRSNjE2MzNwanU2RWgxcnY0UCta?=
- =?utf-8?B?SHhHdHhVOEdpZzN4UVZkUVhubm5ENjlGZWxJSmVvblVmYlY3S0lKM2tJVG55?=
- =?utf-8?B?WGxrRFhRVUpZaEtNT1NZK0dOa0VEUDgyeGRkaTFUbnlIb05QTDg3RC8yeVNJ?=
- =?utf-8?B?SENTYSt4VWwyZExXNmJnQS9xNWFrNjhrajJJQWdLOGhXQUZiYm4zSDVqd1dH?=
- =?utf-8?B?Q3FmaHJKdzlaSjVTR3dmT09RVUVMN3hxQS9paHFWR1UwUVRuVGdXWDl5OVgy?=
- =?utf-8?B?Rk9oQlYwS0dNcWNrQXNRemNDWEh3YW5MUnduYUZnUnVDYmtBT3N3ekphQTRp?=
- =?utf-8?B?YUJnc3JqOXpZdUJwRFVBckY0UGxwa092dWhva0pLMHUybEM2NmtTMEhQZ0ZH?=
- =?utf-8?B?QXVyL2pUUkFaQmR0WlJLK2wwdFZuaXJMZXQrUit1TVY2WENtRXREcGo3TkVx?=
- =?utf-8?B?KzEreXZGeFcwZE5pZ2ZqWGgvdFc5UDljRDlTNUdiOE9DQ2lWT2RaNm1UMzZH?=
- =?utf-8?B?K0lxSlFyMzNaTVMxUk9aYUVtWTZiQUpTN0VkL05LNS9HYkt5V3l4QXhRRnNG?=
- =?utf-8?B?a3BTZHo0L2RRcTY4TUdpSGV5VWNsOUREV2E0d0ZHOUZhcUdZN2k0MUsybERp?=
- =?utf-8?B?SGVjdllLSHhFdkpKTU5YVFRTdHpnVG1ieXEvOFVNa0E1bkNadWJnczhvYVVv?=
- =?utf-8?B?VktKT0xsZ3AwUVc5VW5Wc2VoclFUVzNuWnh6QmdSVUErY25KbGs2WExoUGVU?=
- =?utf-8?B?eUxQNHVjbTh0Z2VHSnBObHkzQWZ6KzZSRHc4MjhTbG1pNW1xYmxQUThoNzYw?=
- =?utf-8?B?bEM1aG9QaXBCRHF3bjJ5eDhOTnUxSkNZMm9BUWlzT09hVHBBUVYrUC9FTWVj?=
- =?utf-8?B?bFJrZ3dzSndlcVlIYmt2djAzclVwUUc3MmxOTTBOelpwd3lwWkFXYjB5MG5L?=
- =?utf-8?B?QWVtZ3c0UUZWeHJJd1NsbEVFeE9rclk1c3JJUk5sUWNOVGdIOXV1QlR5LzN5?=
- =?utf-8?B?dmhvbi9kRGU1dWdWVUZpTWZ3Y2oxRWRaSlZjWjhvOVFCQVhaaEhJdzBGZ2dY?=
- =?utf-8?B?S2dQcTljOEZ1WGFZMHJ4Y3dnYzBEdEdtNVR6Z3NrNzVacjFPTVhpUmdLVUNE?=
- =?utf-8?B?WlB2d2xPNnFKc21ldVVBTTFHS0lSeEtFckoyNlhSa3pqMUVlOGVqNDIrZUdD?=
- =?utf-8?B?OVFBMVM5M0RybGlGVFBVVlFlS0k3NHZncS9LbW9aVFBvUTNFOWgwMU5TOVdW?=
- =?utf-8?B?WWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fab8a010-1aff-4388-1857-08de1140bb98
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7300.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 07:58:06.0010 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CE6aDY2rI2u837cM4lEvXdPZWxuBjs8BxkcixBAVf+SOqVGrJ5+jBbLLLFmtwDBgXlAimHV/3M1FfjqouV/5Gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4592
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/xe: Avoid serializing unbind jobs on prior TLB
+ invalidations
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: carlos.santa@intel.com, thomas.hellstrom@linux.intel.com,
+ Philipp Stanner <phasta@kernel.org>
+References: <20251017165217.493595-1-matthew.brost@intel.com>
+ <20251017165217.493595-2-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20251017165217.493595-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,54 +94,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 15-10-2025 09:37, Suraj Kandpal wrote:
-> Add LT Phy related VDR and pipe registers into its own new file.
->
-> Bspec: 74500
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+On 17/10/2025 17:52, Matthew Brost wrote:
+> When a burst of unbind jobs is issued, a dependency chain can form
+> between the TLB invalidation of a previous unbind job and the current
+> one. This leads to undesirable serialization, causing current jobs to
+> wait unnecessarily for prior TLB invalidations, execute on the GPU when
+> not needed, and significantly slow down the unbind burst—resulting in up
+> to a 4× slowdown.
+> 
+> To break this chain, mask the last bind queue dependency if the last
+> fence's DMA context matches the TLB invalidation context. This allows
+> full pipelining of unbinds and TLB invalidations while preserving
+> correct dma-fence signaling semantics.
+> 
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6047
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   .../gpu/drm/i915/display/intel_lt_phy_regs.h  | 27 +++++++++++++++++++
->   1 file changed, 27 insertions(+)
->   create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> new file mode 100644
-> index 000000000000..499acb1975d1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: MIT
+>   drivers/gpu/drm/xe/xe_exec.c          |  3 +-
+>   drivers/gpu/drm/xe/xe_exec_queue.c    | 18 +++++++++--
+>   drivers/gpu/drm/xe/xe_exec_queue.h    |  3 +-
+>   drivers/gpu/drm/xe/xe_pt.c            | 15 +++++++--
+>   drivers/gpu/drm/xe/xe_sched_job.c     | 44 ++++++++++++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_sched_job.h     |  7 ++++-
+>   drivers/gpu/drm/xe/xe_tlb_inval_job.c | 14 +++++++++
+>   drivers/gpu/drm/xe/xe_tlb_inval_job.h |  2 ++
+>   8 files changed, 98 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index 0dc27476832b..6034cfc8be06 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -294,7 +294,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		goto err_put_job;
+>   
+>   	if (!xe_vm_in_lr_mode(vm)) {
+> -		err = xe_sched_job_last_fence_add_dep(job, vm);
+> +		err = xe_sched_job_last_fence_add_dep(job, vm, NO_MASK_DEP,
+> +						      NO_MASK_DEP);
+>   		if (err)
+>   			goto err_put_job;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 90cbc95f8e2e..d6f69d9bccba 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -25,6 +25,7 @@
+>   #include "xe_migrate.h"
+>   #include "xe_pm.h"
+>   #include "xe_ring_ops_types.h"
+> +#include "xe_sched_job.h"
+>   #include "xe_trace.h"
+>   #include "xe_vm.h"
+>   #include "xe_pxp.h"
+> @@ -1106,11 +1107,17 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
+>    * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
+>    * @q: The exec queue
+>    * @vm: The VM the engine does a bind or exec for
+> + * @mask_ctx0: Mask dma-fence context0
+> + * @mask_ctx1: Mask dma-fence context1
 > + *
-> + * Copyright © 2025 Intel Corporation
+> + * Test last fence dependency of queue, skipping masked dma fence contexts.
+>    *
+>    * Returns:
+> - * -ETIME if there exists an unsignalled last fence dependency, zero otherwise.
+> + * -ETIME if there exists an unsignalled and unmasked last fence dependency,
+> + * zero otherwise.
+>    */
+> -int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+> +int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm,
+> +				      u64 mask_ctx0, u64 mask_ctx1)
+>   {
+>   	struct dma_fence *fence;
+>   	int err = 0;
+> @@ -1119,6 +1126,13 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+>   	if (fence) {
+>   		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
+>   			0 : -ETIME;
+> +
+> +		if (err == -ETIME) {
+> +			if (xe_sched_job_mask_dependency(fence, mask_ctx0,
+> +							 mask_ctx1))
+> +				err = 0;
+> +		}
+> +
+>   		dma_fence_put(fence);
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index a4dfbe858bda..99a35b22a46c 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -85,7 +85,8 @@ struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *
+>   void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
+>   				  struct dma_fence *fence);
+>   int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+> -				      struct xe_vm *vm);
+> +				      struct xe_vm *vm, u64 mask_ctx0,
+> +				      u64 mask_ctx1);
+>   void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+>   
+>   int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index d22fd1ccc0ba..bba9ae559f57 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1341,10 +1341,21 @@ static int xe_pt_vm_dependencies(struct xe_sched_job *job,
+>   	}
+>   
+>   	if (!(pt_update_ops->q->flags & EXEC_QUEUE_FLAG_KERNEL)) {
+> +		u64 mask_ctx0 = NO_MASK_DEP, mask_ctx1 = NO_MASK_DEP;
+> +
+> +		if (ijob)
+> +			mask_ctx0 = xe_tlb_inval_job_fence_context(ijob);
+> +		if (mjob)
+> +			mask_ctx1 = xe_tlb_inval_job_fence_context(mjob);
+> +
+>   		if (job)
+> -			err = xe_sched_job_last_fence_add_dep(job, vm);
+> +			err = xe_sched_job_last_fence_add_dep(job, vm,
+> +							      mask_ctx0,
+> +							      mask_ctx1);
+>   		else
+> -			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q, vm);
+> +			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q,
+> +								vm, mask_ctx0,
+> +								mask_ctx1);
+>   	}
+>   
+>   	for (i = 0; job && !err && i < vops->num_syncs; i++)
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+> index d21bf8f26964..7cbdd87904c6 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> @@ -6,6 +6,7 @@
+>   #include "xe_sched_job.h"
+>   
+>   #include <uapi/drm/xe_drm.h>
+> +#include <linux/dma-fence-array.h>
+>   #include <linux/dma-fence-chain.h>
+>   #include <linux/slab.h>
+>   
+> @@ -295,19 +296,60 @@ void xe_sched_job_push(struct xe_sched_job *job)
+>   	xe_sched_job_put(job);
+>   }
+>   
+> +/**
+> + * xe_sched_job_mask_dependency() - Determine if a dma-fence dependency can be masked
+> + * @fence: The dma-fence to check
+> + * @mask_ctx0: First context to compare against the fence's context
+> + * @mask_ctx1: Second context to compare against the fence's context
+> + *
+> + * This function checks whether the context of the given dma-fence matches
+> + * either of the provided mask contexts. If a match is found, the dependency
+> + * represented by the fence can be skipped. If the fence is a dma-fence-array,
+> + * its individual fences are unwound and checked.
+> + *
+> + * Return: true if the fence can be masked (i.e., skipped), false otherwise.
 > + */
+> +bool xe_sched_job_mask_dependency(struct dma_fence *fence, u64 mask_ctx0,
+> +				  u64 mask_ctx1)
+> +{
+> +	if (dma_fence_is_array(fence)) {
+> +		struct dma_fence *__fence;
+> +		int index;
 > +
-> +#ifndef __INTEL_LT_PHY_REGS_H__
-> +#define __INTEL_LT_PHY_REGS_H__
+> +		dma_fence_array_for_each(__fence, index, fence)
+> +			if (__fence->context == mask_ctx0 ||
+> +			    __fence->context == mask_ctx1)
+> +				return true;
+> +	} else if (fence->context == mask_ctx0 ||
+> +		   fence->context == mask_ctx1) {
+> +		return true;
+> +	}
 > +
-> +#include "i915_reg_defs.h"
-> +#include "intel_display_limits.h"
+> +	return false;
+> +}
 > +
-This may not be required!
-Upon removal of this
+>   /**
+>    * xe_sched_job_last_fence_add_dep - Add last fence dependency to job
+>    * @job:job to add the last fence dependency to
+>    * @vm: virtual memory job belongs to
+> + * @mask_ctx0: Mask dma-fence context0
+> + * @mask_ctx1: Mask dma-fence context1
+> + *
+> + * Add last fence dependency to job, skipping masked dma fence contexts.
+>    *
+>    * Returns:
+>    * 0 on success, or an error on failing to expand the array.
+>    */
+> -int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm)
+> +int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm,
+> +				    u64 mask_ctx0, u64 mask_ctx1)
+>   {
+>   	struct dma_fence *fence;
+>   
+>   	fence = xe_exec_queue_last_fence_get(job->q, vm);
+> +	if (xe_sched_job_mask_dependency(fence, mask_ctx0, mask_ctx1)) {
+> +		dma_fence_put(fence);
+> +		return 0;
+> +	}
+>   
+>   	return drm_sched_job_add_dependency(&job->drm, fence);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.h b/drivers/gpu/drm/xe/xe_sched_job.h
+> index 3dc72c5c1f13..81d8e848e605 100644
+> --- a/drivers/gpu/drm/xe/xe_sched_job.h
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.h
+> @@ -58,7 +58,8 @@ bool xe_sched_job_completed(struct xe_sched_job *job);
+>   void xe_sched_job_arm(struct xe_sched_job *job);
+>   void xe_sched_job_push(struct xe_sched_job *job);
+>   
+> -int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm);
+> +int xe_sched_job_last_fence_add_dep(struct xe_sched_job *job, struct xe_vm *vm,
+> +				    u64 mask_ctx0, u64 mask_ctx1);
+>   void xe_sched_job_init_user_fence(struct xe_sched_job *job,
+>   				  struct xe_sync_entry *sync);
+>   
+> @@ -93,4 +94,8 @@ void xe_sched_job_snapshot_print(struct xe_sched_job_snapshot *snapshot, struct
+>   int xe_sched_job_add_deps(struct xe_sched_job *job, struct dma_resv *resv,
+>   			  enum dma_resv_usage usage);
+>   
+> +#define NO_MASK_DEP	(~0x0ull)
+> +bool xe_sched_job_mask_dependency(struct dma_fence *fence, u64 mask_ctx0,
+> +				  u64 mask_ctx1);
+> +
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.c b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> index 492def04a559..f2fe7f9fbb22 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> @@ -32,6 +32,8 @@ struct xe_tlb_inval_job {
+>   	u64 start;
+>   	/** @end: End address to invalidate */
+>   	u64 end;
+> +	/** @fence_context: Fence context for job */
+> +	u64 fence_context;
+>   	/** @asid: Address space ID to invalidate */
+>   	u32 asid;
+>   	/** @fence_armed: Fence has been armed */
+> @@ -101,6 +103,7 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q, struct xe_tlb_inval *tlb_inval,
+>   	job->asid = asid;
+>   	job->fence_armed = false;
+>   	job->dep.ops = &dep_job_ops;
+> +	job->fence_context = entity->fence_context + 1;
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+As a side note, hardcoding the assumption on how scheduler allocates 
+contexts is not great given recent efforts to make drivers know less of 
+the scheduler internals.
 
-Thanks and Regards,
-Arun R Murthy
---------------------
-> +/* LT Phy Vendor Register */
-> +#define LT_PHY_VDR_0_CONFIG	0xC02
-> +#define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
-> +#define LT_PHY_VDR_1_CONFIG	0xC03
-> +#define  LT_PHY_VDR_RATE_ENCODING_MASK	REG_GENMASK8(6, 3)
-> +#define  LT_PHY_VDR_MODE_ENCODING_MASK	REG_GENMASK8(2, 0)
-> +#define LT_PHY_VDR_2_CONFIG	0xCC3
+But what I really wanted to ask is, having only glanced the patch 
+briefly, could xe performance problem here also be solved by unwrapping 
+the container fences at the DRM scheduler dependency tracking level?
+
+I am asking because amdgpu recently posted a patch to unwrap in their 
+code for potentially similar performance reasons, and if now xe wants 
+something similar, or even the same, it is an interesting question where 
+to do it.
+
+Also, I have a patch (not sure if I posted it so far) which unwraps in 
+drm_sched_job_add_dependency() and converst the dependency xarray to 
+unwrapped dma-fence-array. Initial idea there was to allow scheduler 
+worker to only be woken up once, once all deps are signaled, but now if 
+two drivers seems to be unwrapping fences maybe there is a case to be 
+made for doing it in the core.
+
+Regards,
+
+Tvrtko
+
+>   	kref_init(&job->refcount);
+>   	xe_exec_queue_get(q);	/* Pairs with put in xe_tlb_inval_job_destroy */
+>   
+> @@ -266,3 +269,14 @@ void xe_tlb_inval_job_put(struct xe_tlb_inval_job *job)
+>   	if (!IS_ERR_OR_NULL(job))
+>   		kref_put(&job->refcount, xe_tlb_inval_job_destroy);
+>   }
 > +
-> +#define LT_PHY_VDR_X_ADDR_MSB(idx)	(0xC04 + 0x6 * (idx))
-> +#define LT_PHY_VDR_X_ADDR_LSB(idx)	(0xC05 + 0x6 * (idx))
+> +/**
+> + * xe_tlb_inval_job_fence_context() - TLB invalidation job fence context
+> + * @job: TLB invalidation job object
+> + *
+> + * Return: TLB invalidation job fence context
+> + */
+> +u64 xe_tlb_inval_job_fence_context(struct xe_tlb_inval_job *job)
+> +{
+> +	return job->fence_context;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.h b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> index e63edcb26b50..2576165c2228 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> @@ -30,4 +30,6 @@ void xe_tlb_inval_job_get(struct xe_tlb_inval_job *job);
+>   
+>   void xe_tlb_inval_job_put(struct xe_tlb_inval_job *job);
+>   
+> +u64 xe_tlb_inval_job_fence_context(struct xe_tlb_inval_job *job);
 > +
-> +#define LT_PHY_VDR_X_DATAY(idx, y)	((0xC06 + (3 - (y))) + 0x6 * (idx))
-> +
-> +#define LT_PHY_RATE_UPDATE		0xCC4
-> +
-> +#endif /* __INTEL_LT_PHY_REGS_H__ */
+>   #endif
+
