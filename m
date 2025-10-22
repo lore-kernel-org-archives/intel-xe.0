@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0853CCCF9E1
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A671CCD1BC
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Oct 2025 07:30:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8F7810E6C9;
-	Wed, 22 Oct 2025 07:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81FE10E6CD;
+	Wed, 22 Oct 2025 07:30:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pi22rPlb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="maUCZa0W";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 207C810E6D4
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB79E10E6D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 07:30:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=GNZUDaVJCMpiEPGS/RKEhpM1nHHp+AB4POcS62QqPzw=; b=pi22rPlbtaDxpFnO41yKbPXnS8
- aXKlykdfZgfrgRWz/penwEg6yo1ZVenfqSZ0X/A5uxgBus7q4Zizqzq6nJ3Zt4F+fv8iCBEpFTMxc
- Prc5n9xqGDGFLnzIk1aJIqFVQf84F+eovUn6L9ZgMcwgPVgZh2tTgBsZKuZGAzBjqQfqDHjRB4seG
- 3TXeehalR+9SkVwHenWn4qDXQQPq0DfFrLbioRLIb1XguGyWcZ3XEAvUzegPhvryYlXn1arbK/7qR
- 9bB4WtRQeW7OnlBR9zIaHploQduUF9URRWz5iCC34M1L378/1g9jJGV9zPMHRCQS1FkOo+qJGM7WW
- EYBmO/kA==;
+ bh=rWt5qYnaIEUwXceZpB7h1drK+H29f1fwiH+xn+2Ypmc=; b=maUCZa0WATPYWeEjeoPrhaf3J8
+ YjeKzN8mpYX2Sb5+EBuKmrjaJ3i3RWUcLQbTZuSsDjrO5nVkGaOyHzwSK0cDcn4wiInyEiqzW1qcj
+ iuWOAUGA00bGlSVLq86jxnaxpOdD67aooZ5M0u8QilBvEyQYe8TNRph5aACPrxB/iE56COj5wv1wp
+ pGoGcaoTIGqVxXCPHJrxf+GxVps2GiKMv9/503ydbH816XS84KvwNu3cCf7qsyNfs3crbJMoH2wDt
+ 5pgA8zctcfhXi44ITbCdYK6/Xe7TLlwI0+rMDsSRcN+CmZ1XIxb8XhNmblkeh/0V2eqs6LahOmYEz
+ gM4CZwyQ==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vBTIa-00Cswc-Ew
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:20 +0200
+ id 1vBTIW-00CswE-2N
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Oct 2025 09:30:16 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 13/13] drm/i915/display: Expose AuxCCS frame buffer modifiers for
- Xe
-Date: Wed, 22 Oct 2025 08:30:05 +0100
-Message-ID: <20251022073010.71285-14-tvrtko.ursulin@igalia.com>
+Subject: [CI 07/13] drm/xe: Export xe_emit_aux_table_inv
+Date: Wed, 22 Oct 2025 08:29:59 +0100
+Message-ID: <20251022073010.71285-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,48 +57,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have fixed the DPT handling we can undo the nerf which was
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-built for Xe").
-
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-
-	[PLANE:32:plane 1A]: type=PRI
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-		hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-Display working fine - no artefacts, no DMAR/PIPE faults.
-
-v2:
- * Adjust patch title. (Rodrigo)
+Export the existing AuxCCS invalidation ring buffer programming helper
+which we will need to use to setup the indirect context workaround in the
+next patch.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 77 +++++++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_ring_ops.h |  3 ++
+ 2 files changed, 49 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 0319174adf95..d3ccd3c837e1 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2929,12 +2929,6 @@ skl_universal_plane_create(struct intel_display *display,
- 	else
- 		caps = skl_plane_caps(display, pipe, plane_id);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 071c45abda2a..3cbd192df0c4 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -50,22 +50,51 @@ static u32 preparser_disable(bool state)
+ 	return MI_ARB_CHECK | BIT(8) | state;
+ }
  
--	/* FIXME: xe has problems with AUX */
--	if (!IS_ENABLED(I915) && HAS_AUX_CCS(display))
--		caps &= ~(INTEL_PLANE_CAP_CCS_RC |
--			  INTEL_PLANE_CAP_CCS_RC_CC |
--			  INTEL_PLANE_CAP_CCS_MC);
+-static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+-			      u32 *dw, int i)
++u32 *xe_emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *cmd)
+ {
+-	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+-	dw[i++] = reg.addr + gt->mmio.adj_offset;
+-	dw[i++] = AUX_INV;
+-	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
+-		  MI_SEMAPHORE_REGISTER_POLL |
+-		  MI_SEMAPHORE_POLL |
+-		  MI_SEMAPHORE_SAD_EQ_SDD;
+-	dw[i++] = 0;
+-	dw[i++] = reg.addr + gt->mmio.adj_offset;
+-	dw[i++] = 0;
+-	dw[i++] = 0;
++	struct xe_gt *gt = hwe->gt;
++	struct xe_reg reg;
+ 
+-	return i;
++	switch (hwe->class) {
++	case XE_ENGINE_CLASS_RENDER:
++	case XE_ENGINE_CLASS_COMPUTE:
++		reg = CCS_AUX_INV;
++		break;
++	case XE_ENGINE_CLASS_COPY:
++		reg = BCS_AUX_INV;
++		break;
++	case XE_ENGINE_CLASS_VIDEO_DECODE:
++		reg = VD0_AUX_INV;
++		break;
++	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++		reg = VE0_AUX_INV;
++		break;
++	default:
++		return cmd;
++	};
++
++	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) |
++		 MI_LRI_MMIO_REMAP_EN;
++	*cmd++ = reg.addr + gt->mmio.adj_offset;
++	*cmd++ = AUX_INV;
++	*cmd++ = MI_SEMAPHORE_WAIT_TOKEN | MI_SEMAPHORE_REGISTER_POLL |
++		 MI_SEMAPHORE_POLL | MI_SEMAPHORE_SAD_EQ_SDD;
++	*cmd++ = 0;
++	*cmd++ = reg.addr + gt->mmio.adj_offset;
++	*cmd++ = 0;
++	*cmd++ = 0;
++
++	return cmd;
++}
++
++static int emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *dw, int i)
++{
++	u32 *start, *end;
++
++	start = dw + i;
++	end = xe_emit_aux_table_inv(hwe, start);
++
++	return i + (end - start);
+ }
+ 
+ static int emit_user_interrupt(u32 *dw, int i)
+@@ -293,22 +322,8 @@ static void __emit_job_gen12_xcs(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 					seqno, MI_INVALIDATE_TLB | flags, dw,
+ 					i);
+ 		/* hsdes: 1809175790 */
+-		if (aux_ccs) {
+-			struct xe_reg reg;
 -
- 	modifiers = intel_fb_plane_get_modifiers(display, caps);
+-			switch (job->q->class) {
+-			case XE_ENGINE_CLASS_COPY:
+-				reg = BCS_AUX_INV;
+-				break;
+-			case XE_ENGINE_CLASS_VIDEO_DECODE:
+-				reg = VD0_AUX_INV;
+-				break;
+-			default:
+-				reg = VE0_AUX_INV;
+-			};
+-
+-			i = emit_aux_table_inv(gt, reg, dw, i);
+-		}
++		if (aux_ccs)
++			i = emit_aux_table_inv(job->q->hwe, dw, i);
+ 		dw[i++] = preparser_disable(false);
+ 	} else {
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+@@ -368,7 +383,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
  
- 	ret = drm_universal_plane_init(display->drm, &plane->base,
+ 	/* hsdes: 1809175790 */
+ 	if (aux_ccs)
+-		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
++		i = emit_aux_table_inv(job->q->hwe, dw, i);
+ 
+ 	dw[i++] = preparser_disable(false);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.h b/drivers/gpu/drm/xe/xe_ring_ops.h
+index e942735d76a6..5a2d32f9bb25 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops.h
+@@ -10,8 +10,11 @@
+ #include "xe_ring_ops_types.h"
+ 
+ struct xe_gt;
++struct xe_hw_engine;
+ 
+ const struct xe_ring_ops *
+ xe_ring_ops_get(struct xe_gt *gt, enum xe_engine_class class);
+ 
++u32 *xe_emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *cmd);
++
+ #endif
 -- 
 2.48.0
 
