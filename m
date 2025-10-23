@@ -4,33 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CB08CCD1BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA269CCF9E2
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 15:34:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3250510E91C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B92E10E921;
 	Thu, 23 Oct 2025 15:34:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ijrGihXc";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="fvX+ps7Y";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615F210E91C
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 15:34:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE53310E91C
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 15:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761233651;
- bh=+YB4AM18eG9EacqrOL/5AyRAkecqNXyF0Sj7+aBKzxY=;
+ s=default; t=1761233650;
+ bh=oGg2WvZ0Zmdh/NwOHM0WiFbf+HRBxnlQJSGs+UvcTe0=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=ijrGihXc37FKvyrEqhdn0YtTb//c81HITqWQj4MQ4ntfh0c6TaU1P+4gIMdmyw+Nm
- +00/2cR6j3DaaKZgWZGw1Po7OuLqKTwRQbFQBifq4/l7cOd2oa5r+Hu6WLcByDXyuD
- gwtf+BET7N51/f6/ARDYsHfj2gWk2vSfw1NkXyDR25du2U+ny1GAsskcyMDIRoBVo5
- M0jM7WQ2cEHMS8qNlww1PXA6NA386LHNieUMc2410bA/r/qFN13KlY/4N4W83Ou3l2
- lSJXKQMvrTkIttqIFLI/IM0/m1bQM9s+XQ9/taqA38HgMRguQ2JvMR7gq1yYzA/K8q
- 3fz71fenjWNvg==
+ b=fvX+ps7YPwvqVkMtgDtXhA6Dpvj0pmAmLSOYZUs5TYsCFTJGVeoHlLbYh5veRGFG9
+ 7rt8Z0eNrt2PQ01GLVgd3CeBfDQ2cH0MjMZ5Mn4mxboGKbUTZYx3feAEpQiRmugDNM
+ mUUXLwsxqAdKlk1LFpfrhOeJntO2YkiWyk7jv/dQLbz8AZ2Xfw6wbe4tD9sgT9Aq2Y
+ 2YkfWdCnGDn3HI36jKOUn/5eP/ModkoZk3xLWx4ZwUF3tGn5Rb35newKfJqRFBEPrd
+ St1CU0TpYMt0QSGXdIbjjf4HTL01so3gXadXznIQ0+1lfc+nAe1TXVjBNpiOUD4VlV
+ 2WnQPnXUmrpPA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 4/5] drm/xe/display: Disable preemption in the most critical
- section
-Date: Thu, 23 Oct 2025 17:34:05 +0200
-Message-ID: <20251023153407.7547-5-dev@lankhorst.se>
+Subject: [FOR CI 3/5] drm/i915: Don't disable interrupts on PREEMPT_RT during
+ atomic updates
+Date: Thu, 23 Oct 2025 17:34:04 +0200
+Message-ID: <20251023153407.7547-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251023153407.7547-1-dev@lankhorst.se>
 References: <20251023153407.7547-1-dev@lankhorst.se>
@@ -50,202 +50,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lets see what happens if we only disable preemption in the critical
-section to ensure we do run as fast as possible without disabling
-too much.
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
 
-Second attempt: Disable preemption, but keep interrupts enabled.
+Commit
+   8d7849db3eab7 ("drm/i915: Make sprite updates atomic")
 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
+because within this section the code attempt to acquire spinlock_t locks which
+are sleeping locks on PREEMPT_RT.
+
+According to the comment the interrupts are disabled to avoid random delays and
+not required for protection or synchronisation.
+If this needs to happen with disabled interrupts on PREEMPT_RT, and the
+whole section is restricted to register access then all sleeping locks
+need to be acquired before interrupts are disabled and some function
+maybe moved after enabling interrupts again.
+This includes:
+- prepare_to_wait() + finish_wait() due its wake queue.
+- drm_crtc_vblank_put() -> vblank_disable_fn() drm_device::vbl_lock.
+- skl_pfit_enable(), intel_update_plane(), vlv_atomic_update_fifo() and
+  maybe others due to intel_uncore::lock
+- drm_crtc_arm_vblank_event() due to drm_device::event_lock and
+  drm_device::vblank_time_lock.
+
+Don't disable interrupts on PREEMPT_RT during atomic updates.
+
+[bigeasy: drop local locks, commit message]
+
+Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c   | 14 ++++++
- drivers/gpu/drm/i915/display/intel_cursor.c | 18 +++++++-
- drivers/gpu/drm/i915/display/intel_vblank.c | 47 ++++++++++++---------
- 3 files changed, 58 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c   | 9 ++++++---
+ drivers/gpu/drm/i915/display/intel_cursor.c | 9 ++++++---
+ drivers/gpu/drm/i915/display/intel_vblank.c | 6 ++++--
+ 3 files changed, 16 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index f34745b5ea497..939ef48859f16 100644
+index d300ba1dcd2c4..f34745b5ea497 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -569,6 +569,10 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+@@ -567,7 +567,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	 */
+ 	intel_psr_wait_for_idle_locked(new_crtc_state);
  
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 		local_irq_disable();
-+#ifndef I915
-+	else
-+		preempt_disable();
-+#endif
+-	local_irq_disable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_disable();
  
  	crtc->debug.min_vbl = evade.min;
  	crtc->debug.max_vbl = evade.max;
-@@ -588,6 +592,11 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+@@ -585,7 +586,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 	return;
+ 
  irq_disable:
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 		local_irq_disable();
-+#ifndef I915
-+	else
-+		preempt_disable();
-+#endif
-+
+-	local_irq_disable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_disable();
  }
  
  #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
-@@ -686,6 +695,10 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
- 		icl_dsi_frame_update(new_crtc_state);
- 
-+#if !defined(I915) && IS_ENABLED(CONFIG_PREEMPT_RT)
-+	preempt_enable();
-+#endif
-+
- 	/* We're still in the vblank-evade critical section, this can't race.
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
-@@ -733,6 +746,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+@@ -731,7 +733,8 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
  	if (!state->base.legacy_cursor_update)
  		intel_vrr_send_push(NULL, new_crtc_state);
  
-+	/* Re-enable irqs here for !RT */
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 		local_irq_enable();
+-	local_irq_enable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_enable();
  
+ 	if (intel_vgpu_active(dev_priv))
+ 		goto out;
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 780fcae77a984..50ca39eb09145 100644
+index c47c849358714..780fcae77a984 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -912,6 +912,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+@@ -919,13 +919,15 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		 */
+ 		intel_psr_wait_for_idle_locked(crtc_state);
  
- 	intel_psr_lock(crtc_state);
- 
-+	bool vblanked = false;
- 	if (!drm_WARN_ON(display->drm, drm_crtc_vblank_get(&crtc->base))) {
- 		/*
- 		 * TODO: maybe check if we're still in PSR
-@@ -921,13 +922,21 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 
- 		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 			local_irq_disable();
-+#ifndef I915
-+		else
-+			preempt_disable();
-+#endif
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
  
  		intel_vblank_evade(&evade);
  
--		drm_crtc_vblank_put(&crtc->base);
-+		vblanked = true;
+ 		drm_crtc_vblank_put(&crtc->base);
  	} else {
- 		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 			local_irq_disable();
-+#ifndef I915
-+		else
-+			preempt_disable();
-+#endif
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
  	}
  
  	if (new_plane_state->uapi.visible) {
-@@ -939,6 +948,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+@@ -935,7 +937,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		intel_plane_disable_arm(NULL, plane, crtc_state);
+ 	}
  
- 	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
- 		local_irq_enable();
-+#ifndef I915
-+	else
-+		preempt_enable();
-+#endif
+-	local_irq_enable();
++	if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++		local_irq_enable();
  
  	intel_psr_unlock(crtc_state);
  
-@@ -955,6 +968,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_unpin_fb(old_plane_state);
- 	}
- 
-+	if (vblanked)
-+		drm_crtc_vblank_put(&crtc->base);
-+
- out_free:
- 	if (new_crtc_state)
- 		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
 diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 7826f29619a14..448ae8e5b6e90 100644
+index 5206a81f85554..7826f29619a14 100644
 --- a/drivers/gpu/drm/i915/display/intel_vblank.c
 +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -729,6 +729,13 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 		evade->min -= vblank_delay;
- }
- 
-+static inline int vblank_evadable(struct intel_vblank_evade_ctx *evade, int *scanline)
-+{
-+	*scanline = intel_get_crtc_scanline(evade->crtc);
-+
-+	return *scanline < evade->min || *scanline > evade->max;
-+}
-+
- /* must be called with vblank interrupt already enabled! */
- int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- {
-@@ -736,23 +743,33 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 	struct intel_display *display = to_intel_display(crtc);
- 	long timeout = msecs_to_jiffies_timeout(1);
- 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
--	DEFINE_WAIT(wait);
- 	int scanline;
- 
- 	if (evade->min <= 0 || evade->max <= 0)
- 		return 0;
- 
--	for (;;) {
--		/*
--		 * prepare_to_wait() has a memory barrier, which guarantees
--		 * other CPUs can see the task state update by the time we
--		 * read the scanline.
--		 */
-+	while (!vblank_evadable(evade, &scanline)) {
-+		DEFINE_WAIT(wait);
-+
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_enable();
-+#ifndef I915
-+		else
-+			preempt_enable();
-+#endif
-+
- 		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
-+		if (!vblank_evadable(evade, &scanline))
-+			timeout = schedule_timeout(timeout);
- 
--		scanline = intel_get_crtc_scanline(crtc);
--		if (scanline < evade->min || scanline > evade->max)
--			break;
-+		finish_wait(wq, &wait);
-+
-+		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
-+			local_irq_disable();
-+#ifndef I915
-+		else
-+			preempt_disable();
-+#endif
- 
- 		if (!timeout) {
- 			drm_dbg_kms(display->drm,
-@@ -760,18 +777,8 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 				    pipe_name(crtc->pipe));
+@@ -761,11 +761,13 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
  			break;
  		}
--
--		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--			local_irq_enable();
--
--		timeout = schedule_timeout(timeout);
--
--		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
--			local_irq_disable();
+ 
+-		local_irq_enable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_enable();
+ 
+ 		timeout = schedule_timeout(timeout);
+ 
+-		local_irq_disable();
++		if (!IS_ENABLED(CONFIG_PREEMPT_RT))
++			local_irq_disable();
  	}
  
--	finish_wait(wq, &wait);
--
- 	/*
- 	 * On VLV/CHV DSI the scanline counter would appear to
- 	 * increment approx. 1/3 of a scanline before start of vblank.
+ 	finish_wait(wq, &wait);
 -- 
 2.51.0
 
