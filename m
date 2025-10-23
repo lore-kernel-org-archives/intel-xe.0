@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 254F3CCD1BC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2853CCF9E0
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:44:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEC7D10E86A;
-	Thu, 23 Oct 2025 04:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F042B10E86D;
+	Thu, 23 Oct 2025 04:44:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYBF5sCC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TAOhtg8y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB1510E86A
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 04:40:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6503D10E86C
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 04:44:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761194457; x=1792730457;
+ t=1761194696; x=1792730696;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=M2mCIwLXZu8E9ecWfFmlN4/sdbQO9+S2/jH2+mp/q3c=;
- b=VYBF5sCCSlbrcs2V/34aj0q1KSoOB5oSmWpzKuLgktgBb6RjZ8yjvslk
- wgr1jlmsbd1T2JeRDQJovXO9cqjP1+WVfbPo256puwhp1IOkpw+Y5lwp5
- dGu9H51NujtcPaI4IS4OA9/3J/tPoCGJd7IPfZV87dJhkb+JVYt+leu8w
- i7URdfPlbkQoq58A3lwi5JW3JM6sXslHeQQmNVyIeAswnDzP8vaa7xd/u
- pXKpoBxMSOIKeB48TjUzIxF1J1ujo/yTbdbcsk2OpgXPvJptgoh21SEZD
- 20Uu2dCCSqycWnhJOEeH2yRSJDAnBhNC68L0I7l/shORxvm1RGAuDb93v w==;
-X-CSE-ConnectionGUID: VV5gVr/YRhCKOttzkat4ng==
-X-CSE-MsgGUID: 0MEZh+q0Rs2JnMbfMK/dGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="88819899"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="88819899"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 21:40:56 -0700
-X-CSE-ConnectionGUID: BweK4cn3Q0CMowB3UoacvA==
-X-CSE-MsgGUID: 3puiXAzWSmapDAA5Xj4Veg==
+ bh=3xF57tDEcG2YbOrleTm+xiZlQtMao+K5fkDYpyTXDF0=;
+ b=TAOhtg8ycvkwxWWbCUpwn7H6MfxgFjPV5kwui62jxbAL+Jpmkej3viQh
+ NjWSWTRcB1n5rbIgDEsYeGnVzOONh4RcL9gzZ+LzjaSwq8CCL0LvoVlVf
+ N0nxvB8+Qr6p8XzsJkkt0vUXa2vI23v02A1taDBPZy3w+MM8KcSsmeFsy
+ a0Yfpl0mVK/u0XqoB6oA5mtIb2Bh6WGhh0xUbNOGrsG73Bw70xJvtLTLY
+ yH1GMiDJc8A8sp3+0wGPRIbkX9kfYqr4X5ogTHHqaUcmLi8lb5jMPaeml
+ 7wHnDkUvwuEDXMsLClcsLgNwkbCE2pJjbE2VF2BRRvCIpqIO3Tp2f+IsD w==;
+X-CSE-ConnectionGUID: zieAhUUvRDGj5lGHE4oGvg==
+X-CSE-MsgGUID: zUBOU52JS9Kxd9bgLPA3qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73959395"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="73959395"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 21:44:56 -0700
+X-CSE-ConnectionGUID: zY+ooXexSPOKxFRV2tcUSQ==
+X-CSE-MsgGUID: IwwhFC0jQoexLUZAvocRKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="183273148"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO tpalli-mobl3.intel.com)
- ([10.245.244.140])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 21:40:55 -0700
-From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="183949323"
+Received: from hchegond-ivm1.jf.intel.com ([10.88.27.163])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2025 21:44:56 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, tilak.tirumalesh.tangudu@intel.com,
- =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
-Subject: [PATCH] drm/xe/xe3: Apply wa_14024997852
-Date: Thu, 23 Oct 2025 07:40:41 +0300
-Message-ID: <20251023044041.13731-1-tapani.palli@intel.com>
+Cc: gustavo.sousa@intel.com, lucas.demarchi@intel.com,
+ Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH 1/1] drm/xe/xe3: Extend Wa_18041344222 to graphics IP version
+ 30.05
+Date: Wed, 22 Oct 2025 21:44:49 -0700
+Message-ID: <e7274c1ca6463600c03e9a989f4aa54aa1fa0994.1761193711.git.harish.chegondi@intel.com>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,31 +66,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Whitelist registers needed for userspace to control autostrip on xe3.
+Apply WA 18041344222 to Xe3 LPG graphics IP version 30.05 too.
 
-Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
+Bspec: 56024
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 690bc327a363..fab56673153b 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -89,6 +89,13 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
- 				   RING_FORCE_TO_NONPRIV_ACCESS_RD |
- 				   RING_FORCE_TO_NONPRIV_RANGE_4))
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index b6dcd9827354..e3dee5b36ba6 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -700,6 +700,10 @@ static const struct xe_rtp_entry_sr engine_was[] = {
  	},
-+	{ XE_RTP_NAME("14024997852"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(3500), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(WHITELIST(FF_MODE,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW),
-+			 WHITELIST(VFLSKPD,
-+				   RING_FORCE_TO_NONPRIV_ACCESS_RW))
-+	},
- };
- 
- static void whitelist_apply_to_hwe(struct xe_hw_engine *hwe)
+ 	{ XE_RTP_NAME("18041344222"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
++		       FUNC(xe_rtp_match_first_render_or_compute),
++		       FUNC(xe_rtp_match_not_sriov_vf),
++		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups), OR,
++		       GRAPHICS_VERSION(3005),
+ 		       FUNC(xe_rtp_match_first_render_or_compute),
+ 		       FUNC(xe_rtp_match_not_sriov_vf),
+ 		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
 -- 
 2.51.0
 
