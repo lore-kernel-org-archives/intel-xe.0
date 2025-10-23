@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52E7DCCF9E5
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 289A6CCD193
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB11D10E87E;
-	Thu, 23 Oct 2025 04:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5814910E87F;
+	Thu, 23 Oct 2025 04:08:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="alLeHITu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ewh+coeh";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4B6410E865;
- Thu, 23 Oct 2025 04:08:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FFA710E863;
+ Thu, 23 Oct 2025 04:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761192486; x=1792728486;
+ t=1761192487; x=1792728487;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Om4/3PkWm7JgZOXFAdBj3q1v/3+ns3ZZZaKOiDYjAaw=;
- b=alLeHITuBy9LEmM76ohLNshl4kbIQf2MClyFn+YzQbVvD4cjsJLffT+S
- FFgLojUyS+qi5hkzOti+qGyBfx21d8bw4S0UYEvHO16+FUCd2IAX9UjVs
- Kwm5bKIymRdmzLT2ECfG5eWDSwHjLQbhxHpkwKSemYjjeraG7VfsIIehO
- pzGkEXcWmyvjSfIF3/6v2rIX4e78NwgCG60cE10mf13MvbCPvebmZjYY5
- OJKQBaOOy8KrZWPPC9IwbEZaqXrMkXeY9UawgjeWFllmNppXtp41PD2ab
- NJUbH+KpQxV71DnMgplmo9e/inkfyAYxhk2bcTiqKnvLX46dgSZiKcS1z A==;
-X-CSE-ConnectionGUID: mCdJ0YO/SXeTGqS+R408IA==
-X-CSE-MsgGUID: 1GYZddyJR26eQ0k5EtD2kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391284"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391284"
+ bh=RzlSix5U7cqr5sfhOpvHMow72ZIMMD1wJfU49juUbRM=;
+ b=ewh+coehk6ZMs5NVYyZmy946Ibcetlhz/tE96OvT8jmCJ3JMQJY/o2bt
+ anQlqm+nvSrvQzL77ci0CsnlTVazkCY5ESlXpuATV2oLVX9YQx2gw96rw
+ jni7y7Ux/7GiL9qY7wZIN9DDQ48Cpmqy3hUBR2VjBqRQFRRpA5eS7eqV1
+ 9v9j7JF3H5LMGHRayU1b/y/Zj/49l25Td2h1o8RCtglrFoX/Y8bdTkDVG
+ K0soNiqQYLZK2Q0voe428nLwOzkrpwiPJmxtfo6DpUnBA8F0P8Tz4kbdh
+ 69h6vd5ggeLgi6T/CnwrL9jqjby8K6U5rJEN/7geI9P9m1HKxJUgxaVwJ A==;
+X-CSE-ConnectionGUID: llZl+yp3Sj+9ckpuHG+Ftw==
+X-CSE-MsgGUID: LfqklAeES1O82NyF5kKfyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391286"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391286"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
-X-CSE-ConnectionGUID: paWckcCMRkme+Hb8LRbWyg==
-X-CSE-MsgGUID: g2fCELBGTF6dXnPFlRtW2g==
+X-CSE-ConnectionGUID: 7CY2gwZvQwSKkrkLp/w/XA==
+X-CSE-MsgGUID: rMGINYbkR5mna45JTZkwUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175755"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175758"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
@@ -45,14 +45,13 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com
-Subject: [RFC PATCH 07/14] dma-buf: use inline lock for the dma-fence-array
-Date: Wed, 22 Oct 2025 21:07:53 -0700
-Message-Id: <20251023040800.970283-8-matthew.brost@intel.com>
+Subject: [RFC PATCH 10/14] dma-fence: Fix selftest
+Date: Wed, 22 Oct 2025 21:07:56 -0700
+Message-Id: <20251023040800.970283-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251023040800.970283-1-matthew.brost@intel.com>
 References: <20251023040800.970283-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,44 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christian König <ckoenig.leichtzumerken@gmail.com>
+Fix compile error.
 
-Just as proof of concept and minor cleanup.
-
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/dma-buf/dma-fence-array.c | 5 ++---
- include/linux/dma-fence-array.h   | 1 -
- 2 files changed, 2 insertions(+), 4 deletions(-)
+ drivers/dma-buf/st-dma-fence.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-buf/dma-fence-array.c
-index 6657d4b30af9..c2119a8049fe 100644
---- a/drivers/dma-buf/dma-fence-array.c
-+++ b/drivers/dma-buf/dma-fence-array.c
-@@ -204,9 +204,8 @@ void dma_fence_array_init(struct dma_fence_array *array,
+diff --git a/drivers/dma-buf/st-dma-fence.c b/drivers/dma-buf/st-dma-fence.c
+index 27a36045410b..bf82981f4259 100644
+--- a/drivers/dma-buf/st-dma-fence.c
++++ b/drivers/dma-buf/st-dma-fence.c
+@@ -451,8 +451,8 @@ struct race_thread {
  
- 	array->num_fences = num_fences;
+ static void __wait_for_callbacks(struct dma_fence *f)
+ {
+-	spin_lock_irq(f->lock);
+-	spin_unlock_irq(f->lock);
++	spin_lock_irq(f->extern_lock);
++	spin_unlock_irq(f->extern_lock);
+ }
  
--	spin_lock_init(&array->lock);
--	dma_fence_init(&array->base, &dma_fence_array_ops, &array->lock,
--		       context, seqno);
-+	dma_fence_init(&array->base, &dma_fence_array_ops, NULL, context,
-+		       seqno);
- 	init_irq_work(&array->work, irq_dma_fence_array_work);
- 
- 	atomic_set(&array->num_pending, signal_on_any ? 1 : num_fences);
-diff --git a/include/linux/dma-fence-array.h b/include/linux/dma-fence-array.h
-index 079b3dec0a16..370b3d2bba37 100644
---- a/include/linux/dma-fence-array.h
-+++ b/include/linux/dma-fence-array.h
-@@ -38,7 +38,6 @@ struct dma_fence_array_cb {
- struct dma_fence_array {
- 	struct dma_fence base;
- 
--	spinlock_t lock;
- 	unsigned num_fences;
- 	atomic_t num_pending;
- 	struct dma_fence **fences;
+ static int thread_signal_callback(void *arg)
 -- 
 2.34.1
 
