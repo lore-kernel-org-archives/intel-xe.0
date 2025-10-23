@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15F18CCD1BF
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 09:09:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D127CCD193
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 09:15:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5EAD10E38E;
-	Thu, 23 Oct 2025 09:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFBE10E39B;
+	Thu, 23 Oct 2025 09:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvqlZMRp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8hXX5Wu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 891C910E375;
- Thu, 23 Oct 2025 09:09:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D8910E39B;
+ Thu, 23 Oct 2025 09:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761210553; x=1792746553;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3pHRuTt954iCUGc2C6ONJ+TdLdzlfnXNM2pTaVMezTI=;
- b=BvqlZMRpAUrmz56ydUIouyX8tPdoSMm4LMPix7yc9LJmeOuVyHLSPl2W
- /YsTUfKuQmNJkCubNyczNquV3PGO8mr77gkb4BWpR6wu/17v1QqF45MMe
- nR8EYLLKB4KNh6jBTc4T78ToFYA0Kngwt4f0Gwc0FNqyM2OzHC9ucj0+r
- qQiUh903ntG4oPRyJ988wh48RNOHgkMOWGjE4INNRvtgQNrmHPJ5FMhOq
- 51gtCPyFcsj++LNCbP7vdVPWZ4EY1nzAyxZ96TFLo2eczTfhTXvMuYZhW
- OuGrvHyyGSTq1l3kZv7w9DyDtiFqtHLbqztfgKLZJz07GWqbeO2n1A3Of Q==;
-X-CSE-ConnectionGUID: dZ/OC1dBQMeSTIQVjmyHmA==
-X-CSE-MsgGUID: NRNjXhwNRvC1rzBl6/LM1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67020686"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="67020686"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 02:09:13 -0700
-X-CSE-ConnectionGUID: nvA7ypI4RymBOe5To1BWGQ==
-X-CSE-MsgGUID: EfTav1BERv2I95zXk/vpyg==
+ t=1761210899; x=1792746899;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Vqadwd1I2CeWoBVNMzKv6Z1Yupb4AHkaifFRp8uiRYM=;
+ b=B8hXX5WuNDErhv/oZubAoaPLBJ4iwRg3NN5LuFIdsf1rs32cxo8vpWPH
+ YQDfVyipYgbr+dMsKCmI9NU0qlIImrgm8DHV3/JIeU3ev+L4EmGDrjLMK
+ LPBuUjeOcG+1XeeeAQEHTxmxorIUs53Z0D/znFGJXTlCxUaTA0woeJUNV
+ FolpEUm9ZZEosdGCrubDcP+AEaPYO8w3nlmd6SnTr9AWNOriFf1KPNQfe
+ bj8Goti7XWjDG0VCRyTfyXRJRWvs+vmdlwZ57D6zAXg12IOE+gmgsG2Es
+ cuk9wkNdgSJlCh2CgooziJw7PXLElAeqgb35U4wkWquDEm3qnmzjgHUoF A==;
+X-CSE-ConnectionGUID: 1TxN3bRHTyGXVbQ5dKqiuw==
+X-CSE-MsgGUID: IfnzNf0lRdK6k3GcGjM5yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63470404"
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="63470404"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2025 02:14:58 -0700
+X-CSE-ConnectionGUID: VANhW/4JTwC/iSVr31uJJg==
+X-CSE-MsgGUID: LjsW2HyGQuyOI/7p7XWBQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="183329477"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa010.jf.intel.com with ESMTP; 23 Oct 2025 02:09:11 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="183281702"
+Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.158])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2025 02:14:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 8/8] drm/i915/alpm: Program lttpr count for DP 2.1 alpm
-Date: Thu, 23 Oct 2025 14:11:47 +0530
-Message-Id: <20251023084147.572535-9-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20251023084147.572535-1-animesh.manna@intel.com>
+Cc: Animesh Manna <animesh.manna@intel.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>
+Subject: Re: [PATCH 2/8] drm/i915/alpm: alpm_init() for DP2.1
+In-Reply-To: <20251023084147.572535-3-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20251023084147.572535-1-animesh.manna@intel.com>
+ <20251023084147.572535-3-animesh.manna@intel.com>
+Date: Thu, 23 Oct 2025 12:14:53 +0300
+Message-ID: <fe6a48ba86619b390cc44f187bd00ccf976ec3df@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,45 +72,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Issue a aux write transaction to dpcd 0xf000a with total number of lttpr
-before link traning.
+On Thu, 23 Oct 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> Initialize mutex for DP2.1 alpm.
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_link_training.c    | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Let's not do that for every detect cycle.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 27f3716bdc1f..b1e3ab3f8efc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1623,6 +1623,16 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
- 	return passed;
- }
- 
-+static void intel_dp_update_lttpr_count(struct intel_dp *intel_dp,
-+					int lttpr_count)
-+{
-+	if (!intel_dp_is_edp(intel_dp) ||
-+	    intel_dp->lttpr_common_caps[0] <= 0x20)
-+		return;
-+
-+	drm_dp_dpcd_writeb(&intel_dp->aux, DP_TOTAL_LTTPR_CNT, lttpr_count);
-+}
-+
- /**
-  * intel_dp_start_link_train - start link training
-  * @state: Atomic state
-@@ -1659,6 +1669,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 
- 	intel_dp_prepare_link_train(intel_dp, crtc_state);
- 
-+	intel_dp_update_lttpr_count(intel_dp, lttpr_count);
-+
- 	if (intel_dp_is_uhbr(crtc_state))
- 		passed = intel_dp_128b132b_link_train(intel_dp, crtc_state, lttpr_count);
- 	else
--- 
-2.29.0
+Perhaps intel_alpm_init() needs to be split to one-time init and sink
+specific init.
 
+BR,
+Jani.
+
+
+>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 475518b4048b..3f9cbeb215ed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6073,8 +6073,12 @@ intel_dp_detect(struct drm_connector *_connector,
+>  	if (ret =3D=3D 1)
+>  		connector->base.epoch_counter++;
+>=20=20
+> -	if (!intel_dp_is_edp(intel_dp))
+> +	if (!intel_dp_is_edp(intel_dp)) {
+> +		if (DISPLAY_VER(display) >=3D 35)
+> +			intel_alpm_init(intel_dp);
+> +
+>  		intel_psr_init_dpcd(intel_dp);
+> +	}
+>=20=20
+>  	intel_dp_detect_dsc_caps(intel_dp, connector);
+
+--=20
+Jani Nikula, Intel
