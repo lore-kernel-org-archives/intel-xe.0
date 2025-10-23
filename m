@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13EF9CCF9E6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3012ECCF9E7
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0124B10E86C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0196810E86E;
 	Thu, 23 Oct 2025 04:08:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J7CBC4fW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQCsGlBH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A13C10E867;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E83E10E867;
  Thu, 23 Oct 2025 04:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761192487; x=1792728487;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5HByt2RSGX3nFaPP2chNYdtpe1GGzwX9GN98hYZFnZU=;
- b=J7CBC4fWiQYtY0P/61KB7lZkvIwbYwenQXp9pxMUjUH29IPYa84zT+zQ
- Yzk/27TJmYiGDT+wZQ2BbdsMICGNi1ZHHZYDZF9pK72uwDs5OMTfOjLQ2
- WeEUT+zZstKpbIqaLaaYtjg1RAWaiHDP+dPxhNjYrE3SKJBRsJnpmhxre
- uyLt+l5QpqHFa8k7cBZTJDbkIVpVXhMcrQ8xMz+Vk8OzpfciSHcSIwm5j
- e2YqRv7um62RQaQBmyw9xCN8Kqd87gbRn8NkzpCGcizS13+RrIT6YwWVz
- 4ygaCrV9rasXW83MbGfj28SMEBl6SD41MDpUvcaO8Tmrh8Gg0Kwi9UreW w==;
-X-CSE-ConnectionGUID: UG0PXXzbT/mKiKE8VjlFVQ==
-X-CSE-MsgGUID: 3hfkTYL7QIOCM3ZfUCzu0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391287"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391287"
+ bh=HJ83nfz36gneRRHygtBx1DeusGRSvbwXJ2dujXNY7jM=;
+ b=PQCsGlBHlnlmoJoZfMPwsJrciU16/Uo92KV09cew8KuWkMJ0WDs+QPJK
+ Ew4FzH6oXAw+JQBeIXlUnQ18e+vfk1EohCbz/w9W1HZD3IWsLBU4pWNSX
+ mqb9faiZSkDWNBThOW3WI18GJMmvsSWLr/qkchfOeRD+qCf8jYYdVgP7j
+ gXnUgDeRMx4aXGVG61ljOrOb2oPO/j+GuPk87mvYN4uMDS+NpZeFPlZYL
+ CNXwubj5fIeeY+DzXDcEqswVH3WiS2/tEvo8NDX8Az+6p9SDPCYivN8vM
+ Kv6DpW0CRSM8egIw04Of7kZSnxe9qoeOkZzdCAtNO+e50i3ZDPsvI2NS6 w==;
+X-CSE-ConnectionGUID: qZQPXNzkSIG/e20AdyYNAQ==
+X-CSE-MsgGUID: Bf6okDLkSuun2Q1ZIME6mA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391291"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391291"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
-X-CSE-ConnectionGUID: NQvOJ7pmQk+mR8OlBg8ZMw==
-X-CSE-MsgGUID: iQna4UQ/SxaWYPzzxyBCGQ==
+X-CSE-ConnectionGUID: HjV165xLRp+oOM5DRxFmOA==
+X-CSE-MsgGUID: 8YaLWwMQTxa/l9R0Awvm1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175757"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175762"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
@@ -45,14 +45,13 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com
-Subject: [RFC PATCH 09/14] drm/sched: use inline locks for the drm-sched-fence
-Date: Wed, 22 Oct 2025 21:07:55 -0700
-Message-Id: <20251023040800.970283-10-matthew.brost@intel.com>
+Subject: [RFC PATCH 14/14] drm/xe: Finish disconnect HW fences from module
+Date: Wed, 22 Oct 2025 21:08:00 -0700
+Message-Id: <20251023040800.970283-15-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251023040800.970283-1-matthew.brost@intel.com>
 References: <20251023040800.970283-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,78 +67,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christian König <ckoenig.leichtzumerken@gmail.com>
+Be safe when dereferencing fence->xe.
 
-Just as proof of concept and minor cleanup.
-
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/scheduler/sched_fence.c | 11 +++++------
- include/drm/gpu_scheduler.h             |  4 ----
- 2 files changed, 5 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_fence.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/scheduler/sched_fence.c b/drivers/gpu/drm/scheduler/sched_fence.c
-index 9391d6f0dc01..7a94e03341cb 100644
---- a/drivers/gpu/drm/scheduler/sched_fence.c
-+++ b/drivers/gpu/drm/scheduler/sched_fence.c
-@@ -156,19 +156,19 @@ static void drm_sched_fence_set_deadline_finished(struct dma_fence *f,
- 	struct dma_fence *parent;
- 	unsigned long flags;
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index f5fad4426729..8181dfc628e4 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -159,9 +159,7 @@ static struct xe_hw_fence_irq *xe_hw_fence_irq(struct xe_hw_fence *fence)
  
--	spin_lock_irqsave(&fence->lock, flags);
-+	dma_fence_lock(f, flags);
- 
- 	/* If we already have an earlier deadline, keep it: */
- 	if (test_bit(DRM_SCHED_FENCE_FLAG_HAS_DEADLINE_BIT, &f->flags) &&
- 	    ktime_before(fence->deadline, deadline)) {
--		spin_unlock_irqrestore(&fence->lock, flags);
-+		dma_fence_unlock(f, flags);
- 		return;
- 	}
- 
- 	fence->deadline = deadline;
- 	set_bit(DRM_SCHED_FENCE_FLAG_HAS_DEADLINE_BIT, &f->flags);
- 
--	spin_unlock_irqrestore(&fence->lock, flags);
-+	dma_fence_unlock(f, flags);
- 
- 	/*
- 	 * smp_load_aquire() to ensure that if we are racing another
-@@ -217,7 +217,6 @@ struct drm_sched_fence *drm_sched_fence_alloc(struct drm_sched_entity *entity,
- 
- 	fence->owner = owner;
- 	fence->drm_client_id = drm_client_id;
--	spin_lock_init(&fence->lock);
- 
- 	return fence;
- }
-@@ -230,9 +229,9 @@ void drm_sched_fence_init(struct drm_sched_fence *fence,
- 	fence->sched = entity->rq->sched;
- 	seq = atomic_inc_return(&entity->fence_seq);
- 	dma_fence_init(&fence->scheduled, &drm_sched_fence_ops_scheduled,
--		       &fence->lock, entity->fence_context, seq);
-+		       NULL, entity->fence_context, seq);
- 	dma_fence_init(&fence->finished, &drm_sched_fence_ops_finished,
--		       &fence->lock, entity->fence_context + 1, seq);
-+		       NULL, entity->fence_context + 1, seq);
+ static const char *xe_hw_fence_get_driver_name(struct dma_fence *dma_fence)
+ {
+-	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
+-
+-	return dev_name(fence->xe->drm.dev);
++	return "xe";
  }
  
- module_init(drm_sched_fence_slab_init);
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index fb88301b3c45..b77f24a783e3 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -297,10 +297,6 @@ struct drm_sched_fence {
-          * belongs to.
-          */
- 	struct drm_gpu_scheduler	*sched;
--        /**
--         * @lock: the lock used by the scheduled and the finished fences.
--         */
--	spinlock_t			lock;
-         /**
-          * @owner: job owner for debugging
-          */
+ static const char *xe_hw_fence_get_timeline_name(struct dma_fence *dma_fence)
+@@ -175,10 +173,13 @@ static bool xe_hw_fence_signaled(struct dma_fence *dma_fence)
+ {
+ 	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
+ 	struct xe_device *xe = fence->xe;
+-	u32 seqno = xe_map_rd(xe, &fence->seqno_map, 0, u32);
++	u32 seqno;
++
++	if (dma_fence->error)
++		return true;
+ 
+-	return dma_fence->error ||
+-		!__dma_fence_is_later(dma_fence, dma_fence->seqno, seqno);
++	seqno = xe_map_rd(xe, &fence->seqno_map, 0, u32);
++	return !__dma_fence_is_later(dma_fence, dma_fence->seqno, seqno);
+ }
+ 
+ static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
 -- 
 2.34.1
 
