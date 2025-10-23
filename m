@@ -4,97 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AE45CCD193
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 08:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 050C4CCD1BC
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 08:37:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46E4C10E8E8;
-	Thu, 23 Oct 2025 08:35:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="riq8hxsT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="X/rOuZnd";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="RCKld9Jn";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="q0A2v1ap";
-	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA4AE10E8E3
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 08:35:00 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 36EAE211ED;
- Thu, 23 Oct 2025 08:34:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761208495; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=PXjmOd0YWA5Xmr/E/bRTf/H7nG1Q+Rh6/BQzsuAmK+4=;
- b=riq8hxsT3kaPc/pDdc1zyoaTZJsIxHaV87LlP7SbXciwAqjAgByvm9mBvWdqyEEvcCZ4Q0
- zOn9cLPKpCOxOztGT6Oggx7vAa9x+oE414LhZNj2Y0ohbU6nHLqVFSd0B7qiaLVJTQoxeJ
- l0V4iAkfHQ+XYZOj13s7jwd4fjSzcnc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761208495;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=PXjmOd0YWA5Xmr/E/bRTf/H7nG1Q+Rh6/BQzsuAmK+4=;
- b=X/rOuZndqKFh8Xi6MTGCQCxD5iTQfEK1Eze8X7zvxuQv/QhU6DTKgzGYdhLZD5NwYJCnyV
- VwwsbqjimMlU6XCA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1761208491; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=PXjmOd0YWA5Xmr/E/bRTf/H7nG1Q+Rh6/BQzsuAmK+4=;
- b=RCKld9JnAS15NhuJA/ccnCnlk+UOQSxUhiA50+MArA2XoPN4ebncNOE1kUVsPTALSQslVD
- mqe8UtsNM012/2lV8exl3Nd0c4kgv5Y4958FfKxzwefYIAH7VhfU7Z1wx27IuE8oYAFT3b
- NrMq+YYqY5uiqRCT20FVv9VAuKTidF0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1761208491;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=PXjmOd0YWA5Xmr/E/bRTf/H7nG1Q+Rh6/BQzsuAmK+4=;
- b=q0A2v1apcllaKyoBI15P9LmRJ4HQRr32usI2qo4G7id1U+xNVtskpSfYXEvjJ0l4Pst8FY
- 5kYBwRf+b2JUXuDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C9905136CF;
- Thu, 23 Oct 2025 08:34:50 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id M3YCMKro+WikDAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 23 Oct 2025 08:34:50 +0000
-Date: Thu, 23 Oct 2025 10:34:49 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20251023083449.GA13190@linux-2.fritz.box>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B886D10E8E3;
+	Thu, 23 Oct 2025 08:37:33 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 370AA10E8D6;
+ Thu, 23 Oct 2025 08:37:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- ARC_NA(0.00)[]; MISSING_XM_UA(0.00)[]; MIME_TRACE(0.00)[0:+];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_auxccs_ci_run_no_stolen_?=
+ =?utf-8?q?=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Oct 2025 08:37:32 -0000
+Message-ID: <176120865221.45572.12102916959057468681@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,75 +36,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+== Series Details ==
 
-here is this week's the PR for drm-misc-fixes.
+Series: auxccs ci run no stolen (rev3)
+URL   : https://patchwork.freedesktop.org/series/156302/
+State : warning
 
-Best regards
-Thomas
+== Summary ==
 
-drm-misc-fixes-2025-10-23:
-Short summary of fixes pull:
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1f071f721cf76b1eb10bc8a9fd60e9cfdb8b4ec8
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Wed Oct 22 08:30:05 2025 +0100
 
-panic:
-- Fix several issues in size calculations
+    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+    
+    Now that we have fixed the DPT handling we can undo the nerf which was
+    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
+    built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+    
+    Display working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 71929a54e8bb5da291d41a931d80c6c9160073dd drm-intel
+7fc0775ef681 drm/xe: Fix ggtt fb alignment
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-panthor:
-- Fix kernel panic on partial unmap of GPU VA region
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+c1ca7d70ea70 drm/xe/xelpg: Flush CCS when flushing caches
+03832fe4635d drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+ca642e2d2b5d drm/xe/xelp: Support auxccs invalidation on blitter
+323490d03577 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
+49e727a4e87f drm/xe/xelp: Wait for AuxCCS invalidation to complete
+7129f2ea80b6 drm/xe: Export xe_emit_aux_table_inv
+82bc771f1aa9 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+8774892521d9 drm/xe: Flush GGTT writes after populating DPT
+-:72: WARNING:MEMORY_BARRIER: memory barrier without comment
+#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
++	wmb();
 
-rockchip:
-- hdmi: Fix HDP setup
-The following changes since commit 5801e65206b065b0b2af032f7f1eef222aa2fd83:
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+e7e87dea05b1 drm/xe: Handle DPT in system memory
+2980a678bdde drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
+bd38c3a97025 drm/xe/display: Add support for AuxCCS
+1f071f721cf7 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#10: 
+done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
 
-  drm/sched: Fix potential double free in drm_sched_job_add_resv_dependencies (2025-10-16 14:26:05 +0200)
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
-are available in the Git repository at:
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-10-23
 
-for you to fetch changes up to 23437509a69476d4f896891032d62ac868731668:
-
-  drm/panic: Fix 24bit pixel crossing page boundaries (2025-10-21 11:28:03 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-panic:
-- Fix several issues in size calculations
-
-panthor:
-- Fix kernel panic on partial unmap of GPU VA region
-
-rockchip:
-- hdmi: Fix HDP setup
-
-----------------------------------------------------------------
-Akash Goel (1):
-      drm/panthor: Fix kernel panic on partial unmap of a GPU VA region
-
-Alok Tiwari (1):
-      drm/rockchip: dw_hdmi: use correct SCLIN mask for RK3228
-
-Jocelyn Falempe (6):
-      drm/panic: Fix drawing the logo on a small narrow screen
-      drm/panic: Fix overlap between qr code and logo
-      drm/panic: Fix qr_code, ensure vmargin is positive
-      drm/panic: Fix kmsg text drawing rectangle
-      drm/panic: Fix divide by 0 if the screen width < font width
-      drm/panic: Fix 24bit pixel crossing page boundaries
-
- drivers/gpu/drm/drm_panic.c                 | 60 ++++++++++++++++++++++++++---
- drivers/gpu/drm/panthor/panthor_mmu.c       | 10 +++--
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c |  2 +-
- 3 files changed, 62 insertions(+), 10 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
