@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA6ADCCD1BE
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 16:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF48CCCF9E8
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 16:52:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60BAE10E932;
-	Thu, 23 Oct 2025 16:50:40 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45CBF10E932;
- Thu, 23 Oct 2025 16:50:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0490737960325709004=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F25510E932;
+	Thu, 23 Oct 2025 16:52:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aPZIU8bO";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F22010E932
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 16:52:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 2DF2840538;
+ Thu, 23 Oct 2025 16:52:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2891BC4CEFF;
+ Thu, 23 Oct 2025 16:52:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1761238330;
+ bh=+xRBkG3Yznei7bfa+btKlosF8EF6f3qzPwRiGCSSb3Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=aPZIU8bOdrBTvimBJyVcMU+/In0iMQ5P6Wj1bUu6miPgDBd9Wxsh6puE7gYTDffOw
+ nxEnXqPhPjTuqFKE1gy+JqJ39OaiR6S29lmQg6ObvZjqylBQqwflQr1W7aVsBPpKbC
+ zmOI3B7yYIULLT+yKh5u3c4KHY39ii3TK0XBkKniaqNocgyofHO6F7l4BNp0341j3Y
+ Bv6LxLxdS/hwvz0cTRy5kgLblQVjuC+VdOhoCKNSfOkkzFkdumst3nIbPTjtNACNjV
+ N2MmGRVQEZwecoUIsmnYHVf4NHHjHg4U4ySR3cNE72dhB6tPuie/V5Og4uNTxEpD8T
+ 5bTLIfjc9ZSvA==
+Date: Thu, 23 Oct 2025 18:52:05 +0200
+From: Nathan Chancellor <nathan@kernel.org>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] mei: late_bind: Fix
+ -Wincompatible-function-pointer-types-strict
+Message-ID: <20251023165205.GD2090923@ax162>
+References: <20250920-drm-xe-fix-wifpts-v1-1-c89b5357c7ba@kernel.org>
+ <qxvmx7nawbqjj5luzzken3psdei7pvgliieiv4vdxgumb2wpkx@p4ckdsds66ak>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_spelling_and_?=
- =?utf-8?q?typos_across_XE_driver_files_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Oct 2025 16:50:39 -0000
-Message-ID: <176123823927.47613.11482193530349074976@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251023121453.1182035-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20251023121453.1182035-2-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <qxvmx7nawbqjj5luzzken3psdei7pvgliieiv4vdxgumb2wpkx@p4ckdsds66ak>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +60,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0490737960325709004==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Oct 23, 2025 at 09:27:03AM -0500, Lucas De Marchi wrote:
+> On Sat, Sep 20, 2025 at 04:17:50PM -0700, Nathan Chancellor wrote:
+> > When building with -Wincompatible-function-pointer-types-strict, a
+> > warning designed to catch kernel control flow integrity (kCFI) issues at
+> > build time, there is an instance in the new mei late binding code
+> > originating from the type parameter of mei_lb_push_payload():
+> > 
+> >  drivers/misc/mei/mei_lb.c:211:18: error: incompatible function pointer types initializing 'int (*)(struct device *, u32, u32, const void *, size_t)' (aka 'int (*)(struct device *, unsigned int, unsigned int, const void *, unsigned long)') with an expression of type 'int (struct device *, enum intel_lb_type, u32, const void *, size_t)' (aka 'int (struct device *, enum intel_lb_type, unsigned int, const void *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types-strict]
+> >    211 |         .push_payload = mei_lb_push_payload,
+> >        |                         ^~~~~~~~~~~~~~~~~~~
+> > 
+> > While 'unsigned int' and 'enum intel_lb_type' are ABI compatible, hence
+> > no regular warning from -Wincompatible-function-pointer-types, the
+> > mismatch will trigger a kCFI violation when mei_lb_push_payload() is
+> > called indirectly.
+> > 
+> > Update the type parameter of mei_lb_push_payload() to be 'u32' to match
+> > the prototype in 'struct intel_lb_component_ops', clearing up the
+> > warning and kCFI violation.
+> > 
+> > Fixes: 741eeabb7c78 ("mei: late_bind: add late binding component driver")
+> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+> 
+> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> Sasha, is this fix something you are taking through char-misc since the
+> commits that added it already propagated through the 6.18-rc?
 
-== Series Details ==
+It looks like Greg already took this via char-misc-linus:
 
-Series: drm/xe: Fix spelling and typos across XE driver files (rev3)
-URL   : https://patchwork.freedesktop.org/series/156263/
-State : success
+https://git.kernel.org/gregkh/char-misc/c/98718e80af0bb1cd80f4bfe565dd60c57debad51
 
-== Summary ==
-
-CI Bug Log - changes from xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4_BAT -> xe-pw-156263v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156263v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156263v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * IGT: IGT_8595 -> IGT_8596
-  * Linux: xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4 -> xe-pw-156263v3
-
-  IGT_8595: 8595
-  IGT_8596: 8596
-  xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4: e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4
-  xe-pw-156263v3: 156263v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156263v3/index.html
-
---===============0490737960325709004==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix spelling and typos across XE driver files (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156263/">https://patchwork.freedesktop.org/series/156263/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156263v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156263v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4_BAT -&gt; xe-pw-156263v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156263v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156263v3/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8595 -&gt; IGT_8596</li>
-<li>Linux: xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4 -&gt; xe-pw-156263v3</li>
-</ul>
-<p>IGT_8595: 8595<br />
-  IGT_8596: 8596<br />
-  xe-3973-e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4: e5409e1beaa3a7a89c5b5d90fd3a616ecacb1df4<br />
-  xe-pw-156263v3: 156263v3</p>
-
-</body>
-</html>
-
---===============0490737960325709004==--
+Cheers,
+Nathan
