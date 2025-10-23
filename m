@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3C7ACCD193
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 08:29:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C14CCCCD1BC
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 08:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B511410E8DF;
-	Thu, 23 Oct 2025 08:29:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jBbEqImG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8EAE10E8DF;
- Thu, 23 Oct 2025 08:29:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761208155; x=1792744155;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E37QXafukE70l8MrWmXV6hWV09rvucnXBIcp/Q4UjkA=;
- b=jBbEqImGROAqLesIc21fOtNntyqu92Gf1YEjT/x5+ANsw7MbPzV19TZX
- SSbw2Yv/JvlRNELxlhaRZG5NdZkOTkPqdj3PTndr1kGxFYn78ZUyq5/Rx
- 6m1tDI6wI6qrmZImCOoCTaFUco0x4q7kNVkl6CkN+FqniH7Vqr/CR5/5j
- ImMXu8LFXWrrQTLX4FbntJh+pEZ6ucowYYIpwPnkZI/I1bmRmAzeNkCQ0
- EXPWc7D5rnBt72dVgO+wAWq+DTWMX9Jtmz6flWcHSK8dgcG+bhLoYObCj
- cX/pX7QEnbIBrqSPKIz1KT+OY690NJanJqpT2AoftZKxXtKvulHzJjwkd A==;
-X-CSE-ConnectionGUID: /FbQPTTBTsO2JVwa1FHpRA==
-X-CSE-MsgGUID: 9j0KkvgIRdiKWRtwBvsCcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74808952"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="74808952"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 01:29:14 -0700
-X-CSE-ConnectionGUID: e1BvGCSgQw66V6Jcbd27PA==
-X-CSE-MsgGUID: B90e2hN1RkCReISfxvow1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="184163027"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 01:29:12 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/vrr: Fix transmission line for Adaptive Sync SDP
-Date: Thu, 23 Oct 2025 13:46:14 +0530
-Message-ID: <20251023081614.2645242-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881B910E8D6;
+	Thu, 23 Oct 2025 08:32:07 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B045410E37B;
+ Thu, 23 Oct 2025 08:32:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6473243537757878936=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/rom=3A_convert_int?=
+ =?utf-8?q?el=5From_interfaces_to_struct_drm=5Fdevice?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Oct 2025 08:32:06 -0000
+Message-ID: <176120832671.45220.1496223683632235113@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251023073525.842004-1-jani.nikula@intel.com>
+In-Reply-To: <20251023073525.842004-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently the EMP_AS_SDP_TL is set to vrr.vsync_start which is
-incorrect.
+--===============6473243537757878936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-As per Bspec:71197 the transmission line must be within the SCL +
-guardband region. Before guardband optimization, guradband was same as
-vblank length so EMP_AS_SDP_TL set with vrr.sync_start was falling in
-this region and it was not giving an issue.
+== Series Details ==
 
-Now with optimized guardband, this is falling outside the SCL +
-guardband region and since the same transmission line is used by VSC SDP
-also, this results in PSR timeout issues.
+Series: drm/i915/rom: convert intel_rom interfaces to struct drm_device
+URL   : https://patchwork.freedesktop.org/series/156401/
+State : success
 
-Further restrictions on the position of the transmission line:
-For DP/eDP, if there is a set context latency (SCL) window, then it
-cannot be the first line of SCL
-For DP/eDP, if there is no SCL window, then it cannot be the first line of
-the Delayed V. Blank
+== Summary ==
 
-Fix the EMP_AS_SDP_TL to VTOTAL - (delayed vblank_start - SCL + 1)
-Internally the HW computes the value as VTOTAL - EMP_AS_SDP_TL.
+CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -> xe-pw-156401v1_BAT
+====================================================
 
-Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 92fb72b56f16..dd81d2133aba 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -655,18 +655,24 @@ void intel_vrr_set_db_point_and_transmission_line(const struct intel_crtc_state
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int transmission_line;
- 
- 	/*
- 	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
- 	 * double buffering point and transmission line for VRR packets for
- 	 * HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
- 	 * Since currently we support VRR only for DP/eDP, so this is programmed
--	 * to for Adaptive Sync SDP to Vsync start.
-+	 * for Adaptive Sync SDP.
- 	 */
--	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
-+	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20) {
-+		transmission_line = adjusted_mode->crtc_vtotal - (adjusted_mode->crtc_vblank_start -
-+								  crtc_state->set_context_latency +
-+								  1);
- 		intel_de_write(display,
- 			       EMP_AS_SDP_TL(display, cpu_transcoder),
--			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
-+			       EMP_AS_SDP_DB_TL(transmission_line));
-+	}
- }
- 
- static int intel_vrr_hw_vmin(const struct intel_crtc_state *crtc_state)
--- 
-2.45.2
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156401v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8594 -> IGT_8595
+  * Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -> xe-pw-156401v1
+
+  IGT_8594: 8594
+  IGT_8595: 8595
+  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd
+  xe-pw-156401v1: 156401v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v1/index.html
+
+--===============6473243537757878936==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/rom: convert intel_rom interfaces to struct drm_device</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156401/">https://patchwork.freedesktop.org/series/156401/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -&gt; xe-pw-156401v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156401v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156401v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8594 -&gt; IGT_8595</li>
+<li>Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -&gt; xe-pw-156401v1</li>
+</ul>
+<p>IGT_8594: 8594<br />
+  IGT_8595: 8595<br />
+  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd<br />
+  xe-pw-156401v1: 156401v1</p>
+
+</body>
+</html>
+
+--===============6473243537757878936==--
