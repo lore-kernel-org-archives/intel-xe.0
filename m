@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B29BBCCF9E3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6335CCF9E6
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 16:57:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7017710E93D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8DC10E93C;
 	Thu, 23 Oct 2025 16:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LnojrB11";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jJA4IQBD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 706CA10E939
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B77010E939
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 16:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761238658; x=1792774658;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E7lHGflP57Q/4MvLtdPBb5Qizv/GzRjwq7iuJtqXwAQ=;
- b=LnojrB11Ch7XfusibKRMSIjU7zvbjGomNjtiiI5OOm7MjIujutc2fw8s
- HpPPG6jKlhJJ7qEulCSvAtZaoRUe1HLaVTrLFIB2ZjW95fwS2J4R95kXt
- ib4pGlbaJtdN8BiSkynpcekGZjCUT5BxDlPKZe+MXj9cMz/9jRcI0/Szp
- 6BE/q7LrEF4XcOq/3UKOyFIP+9cdWwa18l5reMUS7ZQNgSWDy+LQJhb8w
- 93mghOJUUaVlI1KmY8PuVG0rPp+By/LWpVTK4r+H4C+HUbpdAlGUiAcLM
- tcS0O/Ekho3Oxt7SYc2cYpW3phM91StfqLVE0xGcvy7e29aOsMeOamOAD g==;
-X-CSE-ConnectionGUID: LrPyPBGRSsqzm39GJfOGvw==
-X-CSE-MsgGUID: pUZPo8CgQF2n/8HDdiiKUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74085668"
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; d="scan'208";a="74085668"
+ bh=nKXTyWz/wNEPOQ00qLoGCRKmt64ASRBD82w7tERD49Q=;
+ b=jJA4IQBD+9P49drvcwoOAVcr+S7fnkHj6iCggcTGEqNSd76TjGZ6/Rf0
+ QOyMDIe0lzuHGiOpEmeis4dHI/vNj/Z5xq4mlNZm+CF7EaOK3YoUJ8rCV
+ MVyqI1j2nhy+rTTywcOzp85ab+1z4WLg9CEN3KlCCMq97nTWVwvVkWjon
+ 9sX0dv/EvpxgmOy/4kKnd1DGNeyEfkgA0ej81KxHRypwLZg6IRUVlxhdy
+ 82Yj9wktFVfTGr3wIl0J8wBWwwTbaNAIdPb/rsA1Rp8ClN+muccN1HuRA
+ gGJ6scifQAJnwRk1T6ZPCWCTj05Sf7zDwJkAxFGHA97tNwSZQ9YL72mIU Q==;
+X-CSE-ConnectionGUID: MCYpIpwsS22UCtdSOWLLuQ==
+X-CSE-MsgGUID: TWoGcOtZQuiij6cdi7xGDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74085666"
+X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; d="scan'208";a="74085666"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2025 09:57:38 -0700
-X-CSE-ConnectionGUID: KZAlYplvQtWB5oYHrVFwsg==
-X-CSE-MsgGUID: X9yYb+JoT8a9y8WtJWtfZQ==
+ 23 Oct 2025 09:57:37 -0700
+X-CSE-ConnectionGUID: 55ZiesthTzOBncu6G0Y4cQ==
+X-CSE-MsgGUID: irABh08HQIiH/M1kdG+r8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; d="scan'208";a="184277023"
+X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; d="scan'208";a="184277017"
 Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2025 09:57:38 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH 3/5] drm/xe/gt_throttle: Always read and mask
-Date: Thu, 23 Oct 2025 09:56:56 -0700
-Message-ID: <20251023-gt-throttle-cri-v1-3-9f36f3c8861c@intel.com>
+ Raag Jadav <raag.jadav@intel.com>, Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH 1/5] drm/xe/cri: Add new performance limit reasons bits
+Date: Thu, 23 Oct 2025 09:56:54 -0700
+Message-ID: <20251023-gt-throttle-cri-v1-1-9f36f3c8861c@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251023-gt-throttle-cri-v1-0-9f36f3c8861c@intel.com>
 References: <20251023-gt-throttle-cri-v1-0-9f36f3c8861c@intel.com>
@@ -69,77 +69,395 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use a single function to read and mask the value the callers will be
-interested in. This reduces the risk of a caller using a plain call to
-xe_gt_throttle_get_limit_reasons() without applying any mask, which can
-return unexpected bits for future platforms.
+From: Sk Anirban <sk.anirban@intel.com>
 
-Select which reg and mask it's going to be used according to the
-platform and gt type and always use that one function.
+Add support for additional performance limit reasons in
+GT0_PERF_LIMIT_REASONS register.
 
-There was an odd xe_gt_dbg() when reading the status, which is not done
-for any other throttle/* sysfs file, so just make the status be as
-special as everybody else.
-
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_throttle.c | 27 ++++++++++-----------------
- 1 file changed, 10 insertions(+), 17 deletions(-)
+v2:
+ - Tidy up read_status() and register definition
+ - s/throttle_cri_specific_attrs/cri_throttle_attrs/
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  13 ++
+ drivers/gpu/drm/xe/xe_gt_throttle.c  | 251 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 261 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 3545e0be06dae..c316a4e8165b1 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -589,6 +589,7 @@
+ #define GT_GFX_RC6				XE_REG(0x138108)
+ 
+ #define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
++/* Common performance limit reason bits - available on all platforms */
+ #define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
+ #define   PROCHOT_MASK				REG_BIT(0)
+ #define   THERMAL_LIMIT_MASK			REG_BIT(1)
+@@ -598,6 +599,18 @@
+ #define   POWER_LIMIT_4_MASK			REG_BIT(8)
+ #define   POWER_LIMIT_1_MASK			REG_BIT(10)
+ #define   POWER_LIMIT_2_MASK			REG_BIT(11)
++/* Platform-specific performance limit reason bits - for Crescent Island */
++#define   CRI_PERF_LIMIT_REASONS_MASK		0xfdff
++#define   SOC_THERMAL_LIMIT_MASK		REG_BIT(1)
++#define   MEM_THERMAL_MASK			REG_BIT(2)
++#define   VR_THERMAL_MASK			REG_BIT(3)
++#define   ICCMAX_MASK				REG_BIT(4)
++#define   SOC_AVG_THERMAL_MASK			REG_BIT(6)
++#define   FASTVMODE_MASK			REG_BIT(7)
++#define   PSYS_PL1_MASK				REG_BIT(12)
++#define   PSYS_PL2_MASK				REG_BIT(13)
++#define   P0_FREQ_MASK				REG_BIT(14)
++#define   PSYS_CRIT_MASK			REG_BIT(15)
+ 
+ #define GT_PERF_STATUS				XE_REG(0x1381b4)
+ #define   VOLTAGE_MASK				REG_GENMASK(10, 0)
 diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-index c69710f2dbeb5..21da290709fa8 100644
+index aa962c783cdf7..a4fe43f4663dd 100644
 --- a/drivers/gpu/drm/xe/xe_gt_throttle.c
 +++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-@@ -57,32 +57,25 @@ dev_to_gt(struct device *dev)
+@@ -12,6 +12,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_gt_throttle.h"
+ #include "xe_mmio.h"
++#include "xe_platform_types.h"
+ #include "xe_pm.h"
  
- u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ /**
+@@ -28,6 +29,24 @@
+  * device/gt#/freq0/throttle/reason_ratl - Frequency throttle due to RATL
+  * device/gt#/freq0/throttle/reason_vr_thermalert - Frequency throttle due to VR THERMALERT
+  * device/gt#/freq0/throttle/reason_vr_tdc -  Frequency throttle due to VR TDC
++ *
++ * The following attributes are available on Crescent Island platform:
++ * device/gt#/freq0/throttle/status - Overall throttle status
++ * device/gt#/freq0/throttle/reason_pl1 - Frequency throttle due to package PL1
++ * device/gt#/freq0/throttle/reason_pl2 - Frequency throttle due to package PL2
++ * device/gt#/freq0/throttle/reason_pl4 - Frequency throttle due to PL4
++ * device/gt#/freq0/throttle/reason_prochot - Frequency throttle due to prochot
++ * device/gt#/freq0/throttle/reason_soc_thermal - Frequency throttle due to SoC thermal
++ * device/gt#/freq0/throttle/reason_mem_thermal - Frequency throttle due to memory thermal
++ * device/gt#/freq0/throttle/reason_vr_thermal - Frequency throttle due to VR thermal
++ * device/gt#/freq0/throttle/reason_iccmax - Frequency throttle due to ICCMAX
++ * device/gt#/freq0/throttle/reason_ratl - Frequency throttle due to RATL thermal algorithm
++ * device/gt#/freq0/throttle/reason_soc_avg_thermal - Frequency throttle due to SoC average temp
++ * device/gt#/freq0/throttle/reason_fastvmode - Frequency throttle due to VR is hitting FastVMode
++ * device/gt#/freq0/throttle/reason_psys_pl1 - Frequency throttle due to PSYS PL1
++ * device/gt#/freq0/throttle/reason_psys_pl2 - Frequency throttle due to PSYS PL2
++ * device/gt#/freq0/throttle/reason_p0_freq - Frequency throttle due to P0 frequency
++ * device/gt#/freq0/throttle/reason_psys_crit - Frequency throttle due to PSYS critical
+  */
+ 
+ static struct xe_gt *
+@@ -52,9 +71,17 @@ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ 
+ static u32 read_status(struct xe_gt *gt)
  {
--	u32 reg;
+-	u32 status = xe_gt_throttle_get_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
 +	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_reg reg;
-+	u32 val, mask;
++	u32 status, mask;
++
++	if (xe->info.platform == XE_CRESCENTISLAND)
++		mask = CRI_PERF_LIMIT_REASONS_MASK;
++	else
++		mask = GT0_PERF_LIMIT_REASONS_MASK;
  
--	xe_pm_runtime_get(gt_to_xe(gt));
- 	if (xe_gt_is_media_type(gt))
--		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
-+		reg = MTL_MEDIA_PERF_LIMIT_REASONS;
- 	else
--		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
--	xe_pm_runtime_put(gt_to_xe(gt));
--
--	return reg;
--}
--
--static u32 read_status(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	u32 status, mask;
-+		reg = GT0_PERF_LIMIT_REASONS;
- 
- 	if (xe->info.platform == XE_CRESCENTISLAND)
- 		mask = CRI_PERF_LIMIT_REASONS_MASK;
- 	else
- 		mask = GT0_PERF_LIMIT_REASONS_MASK;
- 
--	status = xe_gt_throttle_get_limit_reasons(gt) & mask;
--	xe_gt_dbg(gt, "throttle reasons: 0x%08x\n", status);
-+	xe_pm_runtime_get(xe);
-+	val = xe_mmio_read32(&gt->mmio, reg) & mask;
-+	xe_pm_runtime_put(xe);
- 
--	return status;
-+	return val;
++	status = xe_gt_throttle_get_limit_reasons(gt) & mask;
+ 	xe_gt_dbg(gt, "throttle reasons: 0x%08x\n", status);
++
+ 	return status;
  }
  
- static bool is_throttled_by(struct xe_gt *gt, u32 mask)
-@@ -96,7 +89,7 @@ static ssize_t status_show(struct kobject *kobj,
- 	struct device *dev = kobj_to_dev(kobj);
- 	struct xe_gt *gt = dev_to_gt(dev);
- 
--	return sysfs_emit(buff, "%u\n", !!read_status(gt));
-+	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, U32_MAX));
+@@ -86,6 +113,13 @@ static u32 read_reason_thermal(struct xe_gt *gt)
+ 	return thermal;
  }
- static struct kobj_attribute attr_status = __ATTR_RO(status);
+ 
++static u32 read_reason_soc_thermal(struct xe_gt *gt)
++{
++	u32 thermal = xe_gt_throttle_get_limit_reasons(gt) & SOC_THERMAL_LIMIT_MASK;
++
++	return thermal;
++}
++
+ static u32 read_reason_prochot(struct xe_gt *gt)
+ {
+ 	u32 prochot = xe_gt_throttle_get_limit_reasons(gt) & PROCHOT_MASK;
+@@ -107,6 +141,13 @@ static u32 read_reason_vr_thermalert(struct xe_gt *gt)
+ 	return thermalert;
+ }
+ 
++static u32 read_reason_soc_avg_thermal(struct xe_gt *gt)
++{
++	u32 soc_avg_thermal = xe_gt_throttle_get_limit_reasons(gt) & SOC_AVG_THERMAL_MASK;
++
++	return soc_avg_thermal;
++}
++
+ static u32 read_reason_vr_tdc(struct xe_gt *gt)
+ {
+ 	u32 tdc = xe_gt_throttle_get_limit_reasons(gt) & VR_TDC_MASK;
+@@ -114,6 +155,62 @@ static u32 read_reason_vr_tdc(struct xe_gt *gt)
+ 	return tdc;
+ }
+ 
++static u32 read_reason_fastvmode(struct xe_gt *gt)
++{
++	u32 fastvmode = xe_gt_throttle_get_limit_reasons(gt) & FASTVMODE_MASK;
++
++	return fastvmode;
++}
++
++static u32 read_reason_mem_thermal(struct xe_gt *gt)
++{
++	u32 mem_thermal = xe_gt_throttle_get_limit_reasons(gt) & MEM_THERMAL_MASK;
++
++	return mem_thermal;
++}
++
++static u32 read_reason_vr_thermal(struct xe_gt *gt)
++{
++	u32 vr_thermal = xe_gt_throttle_get_limit_reasons(gt) & VR_THERMAL_MASK;
++
++	return vr_thermal;
++}
++
++static u32 read_reason_iccmax(struct xe_gt *gt)
++{
++	u32 iccmax = xe_gt_throttle_get_limit_reasons(gt) & ICCMAX_MASK;
++
++	return iccmax;
++}
++
++static u32 read_reason_psys_pl1(struct xe_gt *gt)
++{
++	u32 psys_pl1 = xe_gt_throttle_get_limit_reasons(gt) & PSYS_PL1_MASK;
++
++	return psys_pl1;
++}
++
++static u32 read_reason_psys_pl2(struct xe_gt *gt)
++{
++	u32 psys_pl2 = xe_gt_throttle_get_limit_reasons(gt) & PSYS_PL2_MASK;
++
++	return psys_pl2;
++}
++
++static u32 read_reason_p0_freq(struct xe_gt *gt)
++{
++	u32 p0_freq = xe_gt_throttle_get_limit_reasons(gt) & P0_FREQ_MASK;
++
++	return p0_freq;
++}
++
++static u32 read_reason_psys_crit(struct xe_gt *gt)
++{
++	u32 psys_crit = xe_gt_throttle_get_limit_reasons(gt) & PSYS_CRIT_MASK;
++
++	return psys_crit;
++}
++
+ static ssize_t status_show(struct kobject *kobj,
+ 			   struct kobj_attribute *attr, char *buff)
+ {
+@@ -169,6 +266,17 @@ static ssize_t reason_thermal_show(struct kobject *kobj,
+ }
+ static struct kobj_attribute attr_reason_thermal = __ATTR_RO(reason_thermal);
+ 
++static ssize_t reason_soc_thermal_show(struct kobject *kobj,
++				       struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool thermal = !!read_reason_soc_thermal(gt);
++
++	return sysfs_emit(buff, "%u\n", thermal);
++}
++static struct kobj_attribute attr_reason_soc_thermal = __ATTR_RO(reason_soc_thermal);
++
+ static ssize_t reason_prochot_show(struct kobject *kobj,
+ 				   struct kobj_attribute *attr, char *buff)
+ {
+@@ -202,6 +310,17 @@ static ssize_t reason_vr_thermalert_show(struct kobject *kobj,
+ }
+ static struct kobj_attribute attr_reason_vr_thermalert = __ATTR_RO(reason_vr_thermalert);
+ 
++static ssize_t reason_soc_avg_thermal_show(struct kobject *kobj,
++					   struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool avg_thermalert = !!read_reason_soc_avg_thermal(gt);
++
++	return sysfs_emit(buff, "%u\n", avg_thermalert);
++}
++static struct kobj_attribute attr_reason_soc_avg_thermal = __ATTR_RO(reason_soc_avg_thermal);
++
+ static ssize_t reason_vr_tdc_show(struct kobject *kobj,
+ 				  struct kobj_attribute *attr, char *buff)
+ {
+@@ -213,6 +332,94 @@ static ssize_t reason_vr_tdc_show(struct kobject *kobj,
+ }
+ static struct kobj_attribute attr_reason_vr_tdc = __ATTR_RO(reason_vr_tdc);
+ 
++static ssize_t reason_fastvmode_show(struct kobject *kobj,
++				     struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool fastvmode = !!read_reason_fastvmode(gt);
++
++	return sysfs_emit(buff, "%u\n", fastvmode);
++}
++static struct kobj_attribute attr_reason_fastvmode = __ATTR_RO(reason_fastvmode);
++
++static ssize_t reason_mem_thermal_show(struct kobject *kobj,
++				       struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool mem_thermal = !!read_reason_mem_thermal(gt);
++
++	return sysfs_emit(buff, "%u\n", mem_thermal);
++}
++static struct kobj_attribute attr_reason_mem_thermal = __ATTR_RO(reason_mem_thermal);
++
++static ssize_t reason_vr_thermal_show(struct kobject *kobj,
++				      struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool vr_thermal = !!read_reason_vr_thermal(gt);
++
++	return sysfs_emit(buff, "%u\n", vr_thermal);
++}
++static struct kobj_attribute attr_reason_vr_thermal = __ATTR_RO(reason_vr_thermal);
++
++static ssize_t reason_iccmax_show(struct kobject *kobj,
++				  struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool iccmax = !!read_reason_iccmax(gt);
++
++	return sysfs_emit(buff, "%u\n", iccmax);
++}
++static struct kobj_attribute attr_reason_iccmax = __ATTR_RO(reason_iccmax);
++
++static ssize_t reason_psys_pl1_show(struct kobject *kobj,
++				    struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool psys_pl1 = !!read_reason_psys_pl1(gt);
++
++	return sysfs_emit(buff, "%u\n", psys_pl1);
++}
++static struct kobj_attribute attr_reason_psys_pl1 = __ATTR_RO(reason_psys_pl1);
++
++static ssize_t reason_psys_pl2_show(struct kobject *kobj,
++				    struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool psys_pl2 = !!read_reason_psys_pl2(gt);
++
++	return sysfs_emit(buff, "%u\n", psys_pl2);
++}
++static struct kobj_attribute attr_reason_psys_pl2 = __ATTR_RO(reason_psys_pl2);
++
++static ssize_t reason_p0_freq_show(struct kobject *kobj,
++				   struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool p0_freq = !!read_reason_p0_freq(gt);
++
++	return sysfs_emit(buff, "%u\n", p0_freq);
++}
++static struct kobj_attribute attr_reason_p0_freq = __ATTR_RO(reason_p0_freq);
++
++static ssize_t reason_psys_crit_show(struct kobject *kobj,
++				     struct kobj_attribute *attr, char *buff)
++{
++	struct device *dev = kobj_to_dev(kobj);
++	struct xe_gt *gt = dev_to_gt(dev);
++	bool psys_crit = !!read_reason_psys_crit(gt);
++
++	return sysfs_emit(buff, "%u\n", psys_crit);
++}
++static struct kobj_attribute attr_reason_psys_crit = __ATTR_RO(reason_psys_crit);
++
+ static struct attribute *throttle_attrs[] = {
+ 	&attr_status.attr,
+ 	&attr_reason_pl1.attr,
+@@ -226,24 +433,62 @@ static struct attribute *throttle_attrs[] = {
+ 	NULL
+ };
+ 
++static struct attribute *cri_throttle_attrs[] = {
++	&attr_status.attr,
++	&attr_reason_prochot.attr,
++	&attr_reason_soc_thermal.attr,
++	&attr_reason_mem_thermal.attr,
++	&attr_reason_vr_thermal.attr,
++	&attr_reason_iccmax.attr,
++	&attr_reason_ratl.attr,
++	&attr_reason_soc_avg_thermal.attr,
++	&attr_reason_fastvmode.attr,
++	&attr_reason_pl4.attr,
++	&attr_reason_pl1.attr,
++	&attr_reason_pl2.attr,
++	&attr_reason_psys_pl1.attr,
++	&attr_reason_psys_pl2.attr,
++	&attr_reason_p0_freq.attr,
++	&attr_reason_psys_crit.attr,
++	NULL
++};
++
+ static const struct attribute_group throttle_group_attrs = {
+ 	.name = "throttle",
+ 	.attrs = throttle_attrs,
+ };
+ 
++static const struct attribute_group cri_throttle_group_attrs = {
++	.name = "throttle",
++	.attrs = cri_throttle_attrs,
++};
++
++static const struct attribute_group *get_platform_throttle_group(struct xe_device *xe)
++{
++	switch (xe->info.platform) {
++	case XE_CRESCENTISLAND:
++		return &cri_throttle_group_attrs;
++	default:
++		return &throttle_group_attrs;
++	}
++}
++
+ static void gt_throttle_sysfs_fini(void *arg)
+ {
+ 	struct xe_gt *gt = arg;
++	struct xe_device *xe = gt_to_xe(gt);
++	const struct attribute_group *group = get_platform_throttle_group(xe);
+ 
+-	sysfs_remove_group(gt->freq, &throttle_group_attrs);
++	sysfs_remove_group(gt->freq, group);
+ }
+ 
+ int xe_gt_throttle_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
++	const struct attribute_group *group = get_platform_throttle_group(xe);
+ 	int err;
+ 
+-	err = sysfs_create_group(gt->freq, &throttle_group_attrs);
++	err = sysfs_create_group(gt->freq, group);
+ 	if (err)
+ 		return err;
  
 
 -- 
