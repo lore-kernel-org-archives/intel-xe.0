@@ -4,34 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B55D4CCD1BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7778CCD1BC
 	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 15:34:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B25C10E91E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6619D10E91D;
 	Thu, 23 Oct 2025 15:34:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YPTl+4eO";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="buwn2IBU";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E67F10E91C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6DB10E91D
  for <intel-xe@lists.freedesktop.org>; Thu, 23 Oct 2025 15:34:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761233648;
- bh=XgW40rUjj/Y4wzugh/lvQR94z2UgkifJfW7r/K2VBfM=;
- h=From:To:Subject:Date:From;
- b=YPTl+4eOz3oxItypx2w6scluQ0O74POBmfwzuJrrbw7yoZdLqm7o0FWzsYR41A72x
- heHNNB5II3I1VvCbDzmjam4oFej4ew+ocrJ3z9NwH8Wq94dXT7xilmTCTGAPV9wgo8
- ZdMSBdl/X7xyfcCIX5E3PyONNNjpdaSonUu9y8AXWxE7B5kGVktOHl1XGXBsSqfgt6
- o7JCrB7FIpTyG7UnTEQry70bu946f2mQR5mbO+D/IkY07QUs+RJfiNJ8I1obSRqpUb
- OyR0M/wy7i1mheiVNcX5KGq29PxCKpRHLtFPUly723LNG2c2EpqvB0P8a0vZjGeYmQ
- brebM991nenOg==
+ s=default; t=1761233649;
+ bh=upuwLmCSgPoNTInTlpVvIpw9JFl8b4p+vbmK4DmjNsw=;
+ h=From:To:Subject:Date:In-Reply-To:References:From;
+ b=buwn2IBUl+LeLBMCcsKkna37xxb8af3nK9KYv870V2DfJ+R5wZqYWf541Evb3pdRK
+ xFptdzYCa7M/PwodSu8s4QKKb3MvL4BSD9ncKxgux+UEhwj+8746CWhixMaqm835FX
+ xFZ4/ojPhri1I0Z2qF9m/ICGkWXkv0vkt8ExMd9fO5k4Og7ejXJMPdKYvDg/SDp6E4
+ CKC0FD/V3OffQyA3bYYvNwce5X6t53P5l1BgGR19O2n+qFxAufQ+VfcHy1t8eQcVRI
+ wipDAQyzo138yac9jkEeqy4H4vQqYcMpXcNAlKy+uODs6ga9cciR50dQkO7V4rLUo3
+ +NZ6Pt5Gq2s+A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Subject: [FOR CI 0/5] drm/xe/display: Test series with PREEMPT_RT and
- preemption disable.
-Date: Thu, 23 Oct 2025 17:34:01 +0200
-Message-ID: <20251023153407.7547-1-dev@lankhorst.se>
+Subject: [FOR CI 1/5] drm/xe: Bump xe_device_l2_flush even higher
+Date: Thu, 23 Oct 2025 17:34:02 +0200
+Message-ID: <20251023153407.7547-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251023153407.7547-1-dev@lankhorst.se>
+References: <20251023153407.7547-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -48,26 +49,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixing the issues with waiting from the previous version.
+It turns out for some applications 1 ms is not enough, and 2 ms is
+needed.
 
-Maarten Lankhorst (3):
-  drm/xe: Bump xe_device_l2_flush even higher
-  drm/xe/display: Disable preemption in the most critical section
-  PREEMPT_RT injection
+Failing to flush causes a catastrophic display update failure,
+so we should prevent it if possible.
 
-Mike Galbraith (2):
-  drm/i915: Use preempt_disable/enable_rt() where recommended
-  drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+Add an even bigger margin of 5 ms, and complain loudly if we ever exceed
+it.
 
- drivers/gpu/drm/i915/Kconfig.debug          | 15 ----
- drivers/gpu/drm/i915/display/intel_crtc.c   | 23 +++++-
- drivers/gpu/drm/i915/display/intel_cursor.c | 27 ++++++-
- drivers/gpu/drm/i915/display/intel_vblank.c | 88 ++++++++++++++-------
- drivers/gpu/drm/xe/Kconfig.debug            |  5 ++
- drivers/gpu/drm/xe/xe_device.c              |  4 +-
- kernel/Kconfig.preempt                      |  4 +-
- 7 files changed, 112 insertions(+), 54 deletions(-)
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6097
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 5f6a412b571c7..f6704c57e87ca 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1077,8 +1077,8 @@ void xe_device_l2_flush(struct xe_device *xe)
+ 	spin_lock(&gt->global_invl_lock);
+ 
+ 	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
+-	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 1000, NULL, true))
+-		xe_gt_err_once(gt, "Global invalidation timeout\n");
++	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 5000, NULL, true))
++		xe_gt_err(gt, "Global invalidation timeout\n");
+ 
+ 	spin_unlock(&gt->global_invl_lock);
+ 
 -- 
 2.51.0
 
