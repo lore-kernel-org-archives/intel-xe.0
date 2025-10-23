@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B10DFCCD1BC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 09:26:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB281CCD193
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 09:29:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77AFC10E38D;
-	Thu, 23 Oct 2025 09:26:12 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 006A610E38C;
- Thu, 23 Oct 2025 09:26:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7635017382005949595=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A91910E37C;
+	Thu, 23 Oct 2025 09:29:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNgi5Xwx";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 154EE10E370;
+ Thu, 23 Oct 2025 09:29:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761211781; x=1792747781;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=EufZLqUhN2qqOip0QWOC/yCO/eu8CO+amcAzmDK0VVE=;
+ b=cNgi5XwxCCp20zyqhzhTEc3kssJFU+agC637EHmoHHiVU9Hph3z0c3NP
+ h8gMYc2Ib2XN0YWPBtp4Y9W6fl3qFeaeE1F4PPp2sceUWVjNiNM8Kdnwi
+ dbx6Ty5lw1TJb6uNCdjR5euoOC3NgqpiqlNtZJ3O1Vs9DmGvua5vXHwX1
+ 24MN9jR7/KvM4aUIeKL9ZKO/slxvsvFH3+kql1QxS89pCi7oVrbifj6XX
+ 3cDUWAdQ7NW9UsdLAmsnLj9EuRRRMrU74fACE8E0L9RiZYBRvu5t/pTHF
+ tLWkPb2hfwOtq65ooaQmahZhj5B7PLYvnEDXih2KsEkBMspo8bs4d02I+ A==;
+X-CSE-ConnectionGUID: eIiYbVpCS9S5QA5jtBMbxw==
+X-CSE-MsgGUID: VxNvLaFtSTuGITopXsq/6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63280103"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63280103"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2025 02:29:41 -0700
+X-CSE-ConnectionGUID: gCK84nzFRmqXC8ONWxrK1A==
+X-CSE-MsgGUID: HcstKMOZR3mADgoSBr/kjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; d="scan'208";a="188164007"
+Received: from mwiniars-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.158])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2025 02:29:38 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>
+Subject: Re: [PATCH 5/8] drm/i915/alpm: Auxless wake time calculation for Xe3p
+In-Reply-To: <20251023084147.572535-6-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251023084147.572535-1-animesh.manna@intel.com>
+ <20251023084147.572535-6-animesh.manna@intel.com>
+Date: Thu, 23 Oct 2025 12:29:34 +0300
+Message-ID: <7c4d73597e6b68ea08a1eb0c1e4b81cea2f30440@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_auxccs_ci_run_no_stolen_=28?=
- =?utf-8?q?rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Oct 2025 09:26:10 -0000
-Message-ID: <176121157099.45220.4345728495414683022@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251022073010.71285-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +69,150 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7635017382005949595==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 23 Oct 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> Add support for auxless waketime calculation for DP2.1 ALPM
+> as dependent parameter got changed.
+>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_alpm.c | 78 +++++++++++++++++++----
+>  1 file changed, 67 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
+i915/display/intel_alpm.c
+> index 0f6b15bca3be..ee5b1e3d79d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -96,6 +96,66 @@ static int get_lfps_half_cycle_clocks(const struct int=
+el_crtc_state *crtc_state)
+>  		1000 / (2 * LFPS_CYCLE_COUNT);
+>  }
+>=20=20
+> +static int get_tphy2_p2_to_p0(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +
+> +	return DISPLAY_VER(display) >=3D 35 ? (40 * 1000) : (12 * 1000);
+> +}
+> +
+> +static int get_establishment_period(struct intel_dp *intel_dp,
+> +				    const struct intel_crtc_state *crtc_state)
+> +{
+> +	int port_clock =3D crtc_state->port_clock;
+> +	int t1 =3D 50 * 1000;
+> +	int tps4 =3D (port_clock >=3D 1000000) ? (396 * 32) : (252 * 10);
 
-== Series Details ==
+intel_dp_is_uhbr()
 
-Series: auxccs ci run no stolen (rev3)
-URL   : https://patchwork.freedesktop.org/series/156302/
-State : success
+> +	int tml_phy_lock =3D 1000 * 1000 * tps4 / port_clock / 10;
 
-== Summary ==
+That would overflow 32 bits.
 
-CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -> xe-pw-156302v3_BAT
-====================================================
+> +	int lttpr_count =3D 0;
+> +	int establishment_period;
+> +	int tcds;
+> +
+> +	if (!intel_dp_is_edp(intel_dp)) {
 
-Summary
--------
+Please turn the branches around to not have the !.
 
-  **SUCCESS**
+> +		lttpr_count =3D drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+> +		tcds =3D 7 * tml_phy_lock;
+> +	} else {
+> +		tcds =3D (7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1) * tml_phy_lock;
+> +	}
+> +
+> +	if (lttpr_count) {
+> +		int tlw =3D 13000;
+> +		int tcs =3D 10000;
+> +		int tlfps_period =3D get_lfps_cycle_time(crtc_state);
+> +		int tdcs =3D (SILENCE_PERIOD_TIME + t1 + tcs +
+> +			    (lttpr_count - 1) * (tlw + tlfps_period));
+> +		int tacds =3D 70000;
+> +		int tds =3D (lttpr_count - 1) * 7 * tml_phy_lock;
+> +
+> +		/* tdrl is same as tcds*/
+> +		establishment_period =3D tlw + tlfps_period + tdcs + tacds + tds + tcd=
+s;
+> +	} else {
+> +		/* TODO: Add a check for data realign by DPCD 0x116[3] */
+> +
+> +		establishment_period =3D (SILENCE_PERIOD_TIME + t1 + tcds);
+> +	}
+> +
+> +	return establishment_period;
+> +}
+> +
+> +static int get_switch_to_active(int port_clock)
+> +{
+> +	int switch_to_active;
+> +
+> +	if (port_clock >=3D 1000000) {
 
-  No regressions found.
+Again, there are uhbr helpers.
 
-  
+> +		int symbol_clock =3D port_clock / intel_dp_link_symbol_size(port_clock=
+);
+> +
+> +		switch_to_active =3D 32 * DIV_ROUND_UP((396 + 3 + 64), symbol_clock);
+> +	} else {
+> +		switch_to_active =3D 0;
+> +	}
+> +
+> +	return switch_to_active;
+> +}
+> +
+>  /*
+>   * AUX-Less Wake Time =3D CEILING( ((PHY P2 to P0) + tLFPS_Period, Max+
+>   * tSilence, Max+ tPHY Establishment + tCDS) / tline)
+> @@ -115,19 +175,15 @@ static int get_lfps_half_cycle_clocks(const struct =
+intel_crtc_state *crtc_state)
+>   * tML_PHY_LOCK =3D TPS4 Length * ( 10 / (Link Rate in MHz) )
+>   * TPS4 Length =3D 252 Symbols
+>   */
+> -static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state=
+ *crtc_state)
+> +static int _lnl_compute_aux_less_wake_time(struct intel_dp *intel_dp,
+> +					   const struct intel_crtc_state *crtc_state)
+>  {
+> -	int tphy2_p2_to_p0 =3D 12 * 1000;
+> -	int t1 =3D 50 * 1000;
+> -	int tps4 =3D 252;
+> -	/* port_clock is link rate in 10kbit/s units */
+> -	int tml_phy_lock =3D 1000 * 1000 * tps4 / crtc_state->port_clock;
+> -	int num_ml_phy_lock =3D 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
+> -	int t2 =3D num_ml_phy_lock * tml_phy_lock;
+> -	int tcds =3D 1 * t2;
+> +	int tphy2_p2_to_p0 =3D get_tphy2_p2_to_p0(intel_dp);
+> +	int establishment_period =3D get_establishment_period(intel_dp, crtc_st=
+ate);
+> +	int switch_to_active =3D get_switch_to_active(crtc_state->port_clock);
+>=20=20
+>  	return DIV_ROUND_UP(tphy2_p2_to_p0 + get_lfps_cycle_time(crtc_state) +
+> -			    SILENCE_PERIOD_TIME + t1 + tcds, 1000);
+> +			    establishment_period + switch_to_active, 1000);
 
-Participating hosts (13 -> 12)
-------------------------------
+Looks like you should *first* refactor this to separate functions,
+before adding functionality.
 
-  Missing    (1): bat-ptl-vm 
+>  }
+>=20=20
+>  static int
+> @@ -139,7 +195,7 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *in=
+tel_dp,
+>  		lfps_half_cycle;
+>=20=20
+>  	aux_less_wake_time =3D
+> -		_lnl_compute_aux_less_wake_time(crtc_state);
+> +		_lnl_compute_aux_less_wake_time(intel_dp, crtc_state);
+>  	aux_less_wake_lines =3D intel_usecs_to_scanlines(&crtc_state->hw.adjust=
+ed_mode,
+>  						       aux_less_wake_time);
+>  	silence_period =3D get_silence_period_symbols(crtc_state);
 
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8594 -> IGT_8595
-  * Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -> xe-pw-156302v3
-
-  IGT_8594: 8594
-  IGT_8595: 8595
-  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd
-  xe-pw-156302v3: 156302v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156302v3/index.html
-
---===============7635017382005949595==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>auxccs ci run no stolen (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156302/">https://patchwork.freedesktop.org/series/156302/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156302v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156302v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd_BAT -&gt; xe-pw-156302v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8594 -&gt; IGT_8595</li>
-<li>Linux: xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd -&gt; xe-pw-156302v3</li>
-</ul>
-<p>IGT_8594: 8594<br />
-  IGT_8595: 8595<br />
-  xe-3969-71929a54e8bb5da291d41a931d80c6c9160073dd: 71929a54e8bb5da291d41a931d80c6c9160073dd<br />
-  xe-pw-156302v3: 156302v3</p>
-
-</body>
-</html>
-
---===============7635017382005949595==--
+--=20
+Jani Nikula, Intel
