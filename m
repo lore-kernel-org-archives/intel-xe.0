@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4DE4CCD1BC
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C53FCCF9E4
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D0110E865;
-	Thu, 23 Oct 2025 04:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04D3D10E867;
+	Thu, 23 Oct 2025 04:08:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="adzwMEUZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jo566jaZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3895210E863;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF14C10E864;
  Thu, 23 Oct 2025 04:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761192486; x=1792728486;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k6gZmzZ88p2BOCA1aiTVo/nz/gFj7de9c5S/JVNhRYM=;
- b=adzwMEUZtjbUYCCJ8cQ29upFL9gBiN4fQDjIt//740E0TEj3pAzfzx0Z
- xsYlSF0VFnrWR2DRfQH8fmHSdufPOT8GBIecJF39yBnPn69+PcIvpydZy
- csVLqKyOvCXypjV2Nx3gqRoAH3l43ic9pTNbmAX9BLzR2MozXB1Qf9pPr
- 1UTtdcakbsWMQ96Wd33OVnZOyXU7Bm2XJIjeRPdtLpPbm47PoQuYqfy4P
- 4Wlb4uPDVdAEgYnrH/UNrKmyXQ+1YB3atW7+DzGaqYcGrhRfT1jOse1Y7
- 1z2Yq/EbjOtjWXNPK78+WSCyoH5ShNsjSo4sCRplLl37dgiHhsISHI8J8 Q==;
-X-CSE-ConnectionGUID: ncqffmGVQYupgdG05NZ65Q==
-X-CSE-MsgGUID: MZj6V3bWTTCourRoDeFobQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391278"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391278"
+ bh=VahvpDWk1t93nMsNtIfz84NqcIjYxoxetcN6dyK4Kfc=;
+ b=Jo566jaZ16xLlDhaMc2FFnyfW8Um7smPFCGtXR/zuoKsR27SQQXKbIdi
+ LJlkGKztyEs6DNC0PMsa102QRfkmI3fcatyjCNGGh+RHQ8Z/XQ3wB24s/
+ 1ln3/MvykRXvzGU0dDp/oAcwHymn53m/W/g4EhxhmD8Y42124mlgM1dYc
+ wSQDnoexzreeUtlJS0bCGCcSn6DySOuRztcSaolyFpGaRSYE1GgHMq9l7
+ bA6+Dhn5OPPXBCoqdAkZpM+jxlCW6gpy62SxuLEUNRVjqBF1C+gzYB+Mc
+ BbHjcgXH5OmM1BO0Bo6D4gkcOMsbdJh6Su82jdAHSMpqKsdWWmSsHordA g==;
+X-CSE-ConnectionGUID: D9YzGRAaQzSa3/E93XIbow==
+X-CSE-MsgGUID: AzoMuO0XQqGCmUY6i+gJlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391283"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391283"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
-X-CSE-ConnectionGUID: IcBdpNlbRkeYWREFS5crGQ==
-X-CSE-MsgGUID: S30+OM+QRsu+pfxFENVoWA==
+X-CSE-ConnectionGUID: UJiKyLGgSAOjJs037Z0c/Q==
+X-CSE-MsgGUID: ABzAdxT/QgS25y7It3b9Bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175749"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175754"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 21:08:04 -0700
+ 22 Oct 2025 21:08:05 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com
-Subject: [RFC PATCH 01/14] dma-buf: cleanup dma_fence_describe
-Date: Wed, 22 Oct 2025 21:07:47 -0700
-Message-Id: <20251023040800.970283-2-matthew.brost@intel.com>
+Subject: [RFC PATCH 06/14] dma-buf: use inline lock for the stub fence
+Date: Wed, 22 Oct 2025 21:07:52 -0700
+Message-Id: <20251023040800.970283-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251023040800.970283-1-matthew.brost@intel.com>
 References: <20251023040800.970283-1-matthew.brost@intel.com>
@@ -70,43 +70,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Christian König <ckoenig.leichtzumerken@gmail.com>
 
-The driver and timeline name are meaningless for signaled fences.
-
-Drop them and also print the context number.
+Just as proof of concept and minor cleanup.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/dma-buf/dma-fence.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/dma-buf/dma-fence.c | 20 ++++----------------
+ 1 file changed, 4 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-index 3f78c56b58dc..f0539c73ed57 100644
+index a0b328fdd90d..a41ff8e8cd25 100644
 --- a/drivers/dma-buf/dma-fence.c
 +++ b/drivers/dma-buf/dma-fence.c
-@@ -1001,17 +1001,18 @@ void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+@@ -24,7 +24,6 @@ EXPORT_TRACEPOINT_SYMBOL(dma_fence_emit);
+ EXPORT_TRACEPOINT_SYMBOL(dma_fence_enable_signal);
+ EXPORT_TRACEPOINT_SYMBOL(dma_fence_signaled);
+ 
+-static DEFINE_SPINLOCK(dma_fence_stub_lock);
+ static struct dma_fence dma_fence_stub;
+ 
+ /*
+@@ -123,12 +122,8 @@ static const struct dma_fence_ops dma_fence_stub_ops = {
+ 
+ static int __init dma_fence_init_stub(void)
  {
- 	const char __rcu *timeline;
- 	const char __rcu *driver;
-+	const char *signaled = "un";
- 
- 	rcu_read_lock();
- 
- 	timeline = dma_fence_timeline_name(fence);
- 	driver = dma_fence_driver_name(fence);
- 
--	seq_printf(seq, "%s %s seq %llu %ssignalled\n",
--		   rcu_dereference(driver),
--		   rcu_dereference(timeline),
--		   fence->seqno,
--		   dma_fence_is_signaled(fence) ? "" : "un");
-+	if (dma_fence_is_signaled(fence))
-+		timeline = driver = signaled = "";
-+
-+	seq_printf(seq, "%llu %s %s seq %llu %ssignalled\n", fence->context,
-+		   timeline, driver, fence->seqno, signaled);
- 
- 	rcu_read_unlock();
+-	dma_fence_init(&dma_fence_stub, &dma_fence_stub_ops,
+-		       &dma_fence_stub_lock, 0, 0);
+-
+-	set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-		&dma_fence_stub.flags);
+-
++	dma_fence_init(&dma_fence_stub, &dma_fence_stub_ops, NULL, 0, 0);
++	set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &dma_fence_stub.flags);
+ 	dma_fence_signal_locked(&dma_fence_stub);
+ 	return 0;
  }
+@@ -160,16 +155,9 @@ struct dma_fence *dma_fence_allocate_private_stub(ktime_t timestamp)
+ 	if (fence == NULL)
+ 		return NULL;
+ 
+-	dma_fence_init(fence,
+-		       &dma_fence_stub_ops,
+-		       &dma_fence_stub_lock,
+-		       0, 0);
+-
+-	set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
+-		&fence->flags);
+-
++	dma_fence_init(fence, &dma_fence_stub_ops, NULL, 0, 0);
++	set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &fence->flags);
+ 	dma_fence_signal_timestamp(fence, timestamp);
+-
+ 	return fence;
+ }
+ EXPORT_SYMBOL(dma_fence_allocate_private_stub);
 -- 
 2.34.1
 
