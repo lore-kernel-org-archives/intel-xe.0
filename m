@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC89CCF9E0
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D1EACCF9E3
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Oct 2025 04:08:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7954110E869;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2CCD10E863;
 	Thu, 23 Oct 2025 04:08:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i648NmAG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JV8visnG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B918110E862;
- Thu, 23 Oct 2025 04:08:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B1C10E863;
+ Thu, 23 Oct 2025 04:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761192485; x=1792728485;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BRleY8vdYxe0XY+XKzUI90e//WSpjN7iyXSBgpO+ito=;
- b=i648NmAGYJC2gkxKFdcp6UAPtGo70UsmdeOnQGLHE5IiS1JccbZX6H6v
- DLsx5Io66JB0LmilhhPWgvnQpinxKpoIksbVDB60XH2FdQTM2Iw4UR+eM
- RSX3g4iMig/aZrgHI0TjXE8J6yFBDtEnOzX6pk5ZcVod74rdPLFv7h2Ae
- h0VMBcVeTDjKqOgzbIzDCIKSlTPXK3Y0WN/ck9D8jREjvNPGkZ64/xJbG
- yj6XxZULO3pqMSy2eZwILtAN43iQt27YKXz5+04DKiVdPsQ3WwWR5V6Jd
- Jo/EjR+DlSvyfZNsuYNsZ0Xjsk0lzKpXbZcvykwxLmouU1Yf4Hu3FyRRJ g==;
-X-CSE-ConnectionGUID: jJS4b1j6RJGc4teGkysxvg==
-X-CSE-MsgGUID: nb04Km9kT96hHHMdc4UFmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391277"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391277"
+ t=1761192486; x=1792728486;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=GXAdVTjG2yJcescxkRZ6gK2f/H6F1nw8C+CWSnyy4yU=;
+ b=JV8visnGUnAREXTyrCzJqqteboYR1Rt5jxUKcdNoGYunlC0G6xHfbC6n
+ RmMAi3OY6dtI5o55xVGderAFK0S37TCRj8wuNwYuALeP4peNxYXaLfoD6
+ 9h9IJAY3ihcVTlDOYubcTYDBogV+HCxhXUriB+7U7f0azkUDBUtlZtXKA
+ VFJQULWF9OCkWQg3YNdvG0OPfgu7BHunD1nXU8HlT0ILeYz3qRIEt64Fl
+ j2E5zGVYkj6VpUXxdASKzXtKPdilsNowP4cnktsl3LVIrBCke0t2fMUdt
+ dTNzlDlDfLDfEwhwI1j5OE5wY8A8pbp+ji9bbFlPuXeTtdSVRDrB5Wxzi A==;
+X-CSE-ConnectionGUID: jSXEV+LnSQ2ugcPDdLm0XA==
+X-CSE-MsgGUID: gSDKHJ5DTH65GIKSZcm00Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63391281"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="63391281"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 Oct 2025 21:08:05 -0700
-X-CSE-ConnectionGUID: lQCANRBtRgWT4Vlmci8iow==
-X-CSE-MsgGUID: CHq46pXXQUOu3qv/EJx5Fg==
+X-CSE-ConnectionGUID: tHp7YEj1Qimmd2sj9Y806g==
+X-CSE-MsgGUID: IT4rJmKVTj6aZaHff2lKFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175748"
+X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; d="scan'208";a="189175752"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2025 21:08:04 -0700
+ 22 Oct 2025 21:08:05 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: christian.koenig@amd.com
-Subject: [RFC PATCH 00/14] Disconnect fences from Xe module 
-Date: Wed, 22 Oct 2025 21:07:46 -0700
-Message-Id: <20251023040800.970283-1-matthew.brost@intel.com>
+Subject: [RFC PATCH 04/14] dma-buf: detach fence ops on signal
+Date: Wed, 22 Oct 2025 21:07:50 -0700
+Message-Id: <20251023040800.970283-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251023040800.970283-1-matthew.brost@intel.com>
+References: <20251023040800.970283-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,67 +68,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Mainly for CI and as a proof concept, built on top of Christian's work
-[1].
+From: Christian König <ckoenig.leichtzumerken@gmail.com>
 
-Matt
+When neither a release nor a wait operation is specified it is possible
+to let the dma_fence live on independent of the module who issued it.
 
-[1] https://patchwork.freedesktop.org/series/155836/
+This makes it possible to unload drivers and only wait for all their
+fences to signal.
 
-Christian König (9):
-  dma-buf: cleanup dma_fence_describe
-  dma-buf: rework stub fence initialisation
-  dma-buf: protected fence ops by RCU
-  dma-buf: detach fence ops on signal
-  dma-buf: inline spinlock for fence protection
-  dma-buf: use inline lock for the stub fence
-  dma-buf: use inline lock for the dma-fence-array
-  dma-buf: use inline lock for the dma-fence-chain
-  drm/sched: use inline locks for the drm-sched-fence
+Signed-off-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/dma-buf/dma-fence.c | 16 ++++++++++++----
+ include/linux/dma-fence.h   |  4 ++--
+ 2 files changed, 14 insertions(+), 6 deletions(-)
 
-Matthew Brost (5):
-  dma-fence: Fix selftest
-  drm/xe: Disconnect the low hanging fences from Xe module
-  drm/xe: Drop HW fence slab
-  drm/xe: Promote xe_hw_fence_irq to an ref counted object
-  drm/xe: Finish disconnect HW fences from module
-
- drivers/dma-buf/dma-fence-array.c           |   5 +-
- drivers/dma-buf/dma-fence-chain.c           |   3 +-
- drivers/dma-buf/dma-fence.c                 | 178 +++++++++++---------
- drivers/dma-buf/st-dma-fence.c              |   4 +-
- drivers/dma-buf/sw_sync.c                   |  14 +-
- drivers/dma-buf/sync_debug.h                |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h      |  12 +-
- drivers/gpu/drm/drm_crtc.c                  |   2 +-
- drivers/gpu/drm/drm_writeback.c             |   2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c       |   5 +-
- drivers/gpu/drm/nouveau/nouveau_fence.c     |   3 +-
- drivers/gpu/drm/qxl/qxl_release.c           |   3 +-
- drivers/gpu/drm/scheduler/sched_fence.c     |  11 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_fence.c       |   3 +-
- drivers/gpu/drm/xe/xe_exec_queue.c          |   2 +-
- drivers/gpu/drm/xe/xe_gt.c                  |   7 +-
- drivers/gpu/drm/xe/xe_gt_types.h            |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c           |   2 +-
- drivers/gpu/drm/xe/xe_hw_fence.c            |  62 ++++---
- drivers/gpu/drm/xe/xe_hw_fence.h            |   5 +-
- drivers/gpu/drm/xe/xe_hw_fence_types.h      |   4 +
- drivers/gpu/drm/xe/xe_module.c              |   5 -
- drivers/gpu/drm/xe/xe_oa.c                  |   5 +-
- drivers/gpu/drm/xe/xe_preempt_fence.c       |   3 +-
- drivers/gpu/drm/xe/xe_preempt_fence_types.h |   2 -
- drivers/gpu/drm/xe/xe_sched_job.c           |   4 +-
- drivers/gpu/drm/xe/xe_tlb_inval.c           |   5 +-
- drivers/gpu/drm/xe/xe_tlb_inval_types.h     |   2 -
- include/drm/gpu_scheduler.h                 |   4 -
- include/linux/dma-fence-array.h             |   1 -
- include/linux/dma-fence-chain.h             |   1 -
- include/linux/dma-fence.h                   |  60 ++++++-
- 34 files changed, 249 insertions(+), 182 deletions(-)
-
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index 982f2b2a62c0..39f73edf3a33 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -374,6 +374,14 @@ int dma_fence_signal_timestamp_locked(struct dma_fence *fence,
+ 				      &fence->flags)))
+ 		return -EINVAL;
+ 
++	/*
++	 * When neither a release nor a wait operation is specified set the ops
++	 * pointer to NULL to allow the fence structure to become independent
++	 * who originally issued it.
++	 */
++	if (!fence->ops->release && !fence->ops->wait)
++		RCU_INIT_POINTER(fence->ops, NULL);
++
+ 	/* Stash the cb_list before replacing it with the timestamp */
+ 	list_replace(&fence->cb_list, &cb_list);
+ 
+@@ -513,7 +521,7 @@ dma_fence_wait_timeout(struct dma_fence *fence, bool intr, signed long timeout)
+ 	rcu_read_lock();
+ 	ops = rcu_dereference(fence->ops);
+ 	trace_dma_fence_wait_start(fence);
+-	if (ops->wait) {
++	if (ops && ops->wait) {
+ 		/*
+ 		 * Implementing the wait ops is deprecated and not supported for
+ 		 * issuer independent fences, so it is ok to use the ops outside
+@@ -578,7 +586,7 @@ void dma_fence_release(struct kref *kref)
+ 	}
+ 
+ 	ops = rcu_dereference(fence->ops);
+-	if (ops->release)
++	if (ops && ops->release)
+ 		ops->release(fence);
+ 	else
+ 		dma_fence_free(fence);
+@@ -614,7 +622,7 @@ static bool __dma_fence_enable_signaling(struct dma_fence *fence)
+ 
+ 	rcu_read_lock();
+ 	ops = rcu_dereference(fence->ops);
+-	if (!was_set && ops->enable_signaling) {
++	if (!was_set && ops && ops->enable_signaling) {
+ 		trace_dma_fence_enable_signal(fence);
+ 
+ 		if (!ops->enable_signaling(fence)) {
+@@ -1000,7 +1008,7 @@ void dma_fence_set_deadline(struct dma_fence *fence, ktime_t deadline)
+ 
+ 	rcu_read_lock();
+ 	ops = rcu_dereference(fence->ops);
+-	if (ops->set_deadline && !dma_fence_is_signaled(fence))
++	if (ops && ops->set_deadline && !dma_fence_is_signaled(fence))
+ 		ops->set_deadline(fence, deadline);
+ 	rcu_read_unlock();
+ }
+diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+index 38421a0c7c5b..e1ba1d53de88 100644
+--- a/include/linux/dma-fence.h
++++ b/include/linux/dma-fence.h
+@@ -425,7 +425,7 @@ dma_fence_is_signaled_locked(struct dma_fence *fence)
+ 
+ 	rcu_read_lock();
+ 	ops = rcu_dereference(fence->ops);
+-	if (ops->signaled && ops->signaled(fence)) {
++	if (ops && ops->signaled && ops->signaled(fence)) {
+ 		rcu_read_unlock();
+ 		dma_fence_signal_locked(fence);
+ 		return true;
+@@ -461,7 +461,7 @@ dma_fence_is_signaled(struct dma_fence *fence)
+ 
+ 	rcu_read_lock();
+ 	ops = rcu_dereference(fence->ops);
+-	if (ops->signaled && ops->signaled(fence)) {
++	if (ops && ops->signaled && ops->signaled(fence)) {
+ 		rcu_read_unlock();
+ 		dma_fence_signal(fence);
+ 		return true;
 -- 
 2.34.1
 
