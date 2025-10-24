@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22F15CCF9E0
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 650D3CCD1A5
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:18:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7DBB10EA49;
-	Fri, 24 Oct 2025 10:08:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6g1Sgji";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 295BE10EA45;
- Fri, 24 Oct 2025 10:08:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300508; x=1792836508;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hX7gWUuqWGUYweANl90TTEi18JMfCw+JEMyen6lWchs=;
- b=d6g1Sgjiid8PW3HYQVhothVO80dQYJKfxzNj598IH3koLbLcece2BKp6
- VxEK8EpSPkjjBnN9VMynjUiTOgcgx2cNN8p2IdFbIcumJBjzHT685ydXY
- 3FTdivcj2cTGKs3X3BPFpwKyHATsiFjFk9GZzANvyUKSRZOvN+pPx4Q5c
- WObWn/glTVzyvpo3I6EboL/IUEf6TgZhkX0W8AKeQPQRl2Biw3cQiPajj
- bvupmQ6Usyzy7P8usdDL+uYmKdAujZd2Uw6GR6rFM5dbOP43I2vbcZCPG
- rKfBUalpJztCjWPmLxZjIQ/0I2N01UrYsnaxHnAVjoGM5r/Uf+FtyAImd w==;
-X-CSE-ConnectionGUID: qyNUTuz4RH6tF9StKfWpAg==
-X-CSE-MsgGUID: ulEf3BhvS7yOyvs4+RhkdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346869"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208,223";a="67346869"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:08:28 -0700
-X-CSE-ConnectionGUID: XGmLNXNtSj2vuWFOR79fEQ==
-X-CSE-MsgGUID: 1hy7q690T9OjIL1rqN5/sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
- d="scan'208,223";a="208039340"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:25 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
- gustavo.sousa@intel.com, lucas.demarchi@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 24/26] drm/i915/display: Aux Enable and Display powerwell
- timeouts
-Date: Fri, 24 Oct 2025 15:37:10 +0530
-Message-Id: <20251024100712.3776261-25-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
-References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24D7110EA2C;
+	Fri, 24 Oct 2025 10:18:26 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DEEB10EA24;
+ Fri, 24 Oct 2025 10:18:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2370231080277952029=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Use_display_parent_interfac?=
+ =?utf-8?q?e_for_runtime_pm_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Oct 2025 10:18:25 -0000
+Message-ID: <176130110505.50821.6750811928042805736@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251024093113.1119070-1-jouni.hogander@intel.com>
+In-Reply-To: <20251024093113.1119070-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From XE3P we can now poll if the AUX power is up or down define the
-timeouts for each respectively.
+--===============2370231080277952029==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 68967
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
-V1 -> V2: Remove the extra blank line added (Arun)
----
- .../i915/display/intel_display_power_well.c   | 22 +++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 5e88b930f5aa..e1d45ef0eedd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1864,18 +1864,36 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
- 	 * expected to just wait a fixed 600us after raising the request
- 	 * bit.
- 	 */
--	usleep_range(600, 1200);
-+	if (DISPLAY_VER(display) >= 35) {
-+		if (intel_de_wait_for_set(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
-+					  XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 2))
-+			drm_warn(display->drm,
-+				 "Timeout waiting for PHY %c AUX channel power to be up\n",
-+				 phy_name(phy));
-+	} else {
-+		usleep_range(600, 1200);
-+	}
- }
- 
- static void xelpdp_aux_power_well_disable(struct intel_display *display,
- 					  struct i915_power_well *power_well)
- {
- 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
-+	enum phy phy = icl_aux_pw_to_phy(display, power_well);
- 
- 	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
- 		     0);
--	usleep_range(10, 30);
-+
-+	if (DISPLAY_VER(display) >= 35) {
-+		if (intel_de_wait_for_clear(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
-+					    XELPDP_DP_AUX_CH_CTL_POWER_STATUS, 1))
-+			drm_warn(display->drm,
-+				 "Timeout waiting for PHY %c AUX channel to powerdown\n",
-+				 phy_name(phy));
-+	} else {
-+		usleep_range(10, 30);
-+	}
- }
- 
- static bool xelpdp_aux_power_well_enabled(struct intel_display *display,
--- 
-2.34.1
+Series: Use display parent interface for runtime pm (rev2)
+URL   : https://patchwork.freedesktop.org/series/156308/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7_BAT -> xe-pw-156308v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156308v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@b-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156308v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7 -> xe-pw-156308v2
+
+  IGT_8596: 8596
+  xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7: 413d17c6dcb8f50d17083bd1b15258f97282cdd7
+  xe-pw-156308v2: 156308v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156308v2/index.html
+
+--===============2370231080277952029==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use display parent interface for runtime pm (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156308/">https://patchwork.freedesktop.org/series/156308/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156308v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156308v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7_BAT -&gt; xe-pw-156308v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156308v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@b-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156308v2/bat-adlp-7/igt@kms_flip@basic-plain-flip@b-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7 -&gt; xe-pw-156308v2</li>
+</ul>
+<p>IGT_8596: 8596<br />
+  xe-3979-413d17c6dcb8f50d17083bd1b15258f97282cdd7: 413d17c6dcb8f50d17083bd1b15258f97282cdd7<br />
+  xe-pw-156308v2: 156308v2</p>
+
+</body>
+</html>
+
+--===============2370231080277952029==--
