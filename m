@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7AA2CCD1BF
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 15:48:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C41CCD1BF
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 15:53:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB51610E20A;
-	Fri, 24 Oct 2025 15:48:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aXEPMt8R";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D87310E20A
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 15:48:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761320917; x=1792856917;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WrAhdD6Vbja5fsSZ3uClqWB7PBNwD3KfdFdk2jQD6JU=;
- b=aXEPMt8R8rIzHwAxUR4xBRaovGPi8wW8IL2JFfgnjc12WBFWzb3N+FFZ
- mlrQtsDZU8Kd4z8qxj40TOYgrFczav52epVgMQZTyNIgxgu0+JQ+qyowX
- q9nObVUmrTLAPqkfpdwkpT0RMf9quV6z6Nr0+rJpXSNVINP6O1QPt+1DF
- LMkHMW9v1oW6Los2xvF1YS7IB93/5j6hhAiW7/M6meF6yblIU5z+tnXVe
- VAf6PkdJeT3r/6DAPUf5QLxP9Zt/SGGTFbTdfkAHy0LdJbCVhU1nVyaxr
- 1wmYFh7zv78p3K9n7ETtvUsqcR38stO30EhJ2Y+ZsRAB0b4RcOgu7xhg8 A==;
-X-CSE-ConnectionGUID: zAU0vs7hSEOtPOQgyqM/FQ==
-X-CSE-MsgGUID: ZB7xrlnFQ0mCNdKfsxm0Jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63396112"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="63396112"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 08:48:36 -0700
-X-CSE-ConnectionGUID: hfB0+OC2Tfufuf1v+/ekJQ==
-X-CSE-MsgGUID: g2M8Wd7wSYmkLqBSBB004A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="188752836"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.97])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 08:48:36 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v2] verbose p2p
-Date: Fri, 24 Oct 2025 16:48:27 +0100
-Message-ID: <20251024154826.75043-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B32B10E207;
+	Fri, 24 Oct 2025 15:53:12 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3A0E10E207;
+ Fri, 24 Oct 2025 15:53:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_serialization_on_burs?=
+ =?utf-8?q?t_of_unbinds_-_v2?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Oct 2025 15:53:10 -0000
+Message-ID: <176132119092.51928.1437223744487222757@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251024152323.1281242-1-matthew.brost@intel.com>
+In-Reply-To: <20251024152323.1281242-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,42 +36,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- drivers/pci/p2pdma.c            | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Series: Fix serialization on burst of unbinds - v2
+URL   : https://patchwork.freedesktop.org/series/156486/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 54e42960daad..b047251674ea 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -28,7 +28,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
- 
- 	if (attach->peer2peer &&
--	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
-+	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, true) < 0)
- 		attach->peer2peer = false;
- 
- 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
-diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-index 78e108e47254..e4d81d4ab393 100644
---- a/drivers/pci/p2pdma.c
-+++ b/drivers/pci/p2pdma.c
-@@ -451,6 +451,7 @@ static const struct pci_p2pdma_whitelist_entry {
- 	{PCI_VENDOR_ID_INTEL,	0x2033, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x2020, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x09a2, 0},
-+	{PCI_VENDOR_ID_INTEL,	0x7a30, 0},
- 	{}
- };
- 
--- 
-2.51.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f7a2c7d6dddf73fa4de9a55b6b939a5570df2a5d
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Oct 24 08:23:23 2025 -0700
+
+    drm/xe: Decouple bind queue last fence from TLB invalidations
+    
+    Separate the bind queue's last fence to apply only to the bind job,
+    rather than combining it with associated TLB invalidation jobs. This
+    avoids unnecessary serialization of bind jobs on prior TLB
+    invalidations.
+    
+    Since user fence signaling depends on the completion of both bind and
+    TLB invalidation jobs, their fences are merged later in the bind
+    pipeline to preserve correct signaling order.
+    
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6047
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 60a51825a1d699df170dfa797b099112e3a02de4 drm-intel
+3fd8a17f0ea7 drm/xe: Add last fence attachment to TLB invalidation job queues
+-:150: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#150: FILE: drivers/gpu/drm/xe/xe_exec_queue.h:17:
++#define for_each_tlb_inval(__i)	\
++	for (__i = XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
++	     __i <= XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
+
+total: 0 errors, 0 warnings, 1 checks, 172 lines checked
+f7a2c7d6dddf drm/xe: Decouple bind queue last fence from TLB invalidations
+-:220: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#220: FILE: drivers/gpu/drm/xe/xe_sync.c:339:
++			return &cf->base;
++		} else {
+
+total: 0 errors, 1 warnings, 0 checks, 301 lines checked
+
 
