@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A78ACCF9E0
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 246EBCCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:08:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A76E10EA34;
-	Fri, 24 Oct 2025 10:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD3C210EA38;
+	Fri, 24 Oct 2025 10:08:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iD616mbt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3fRtrNl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECA0B10EA2D;
- Fri, 24 Oct 2025 10:07:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF8010EA36;
+ Fri, 24 Oct 2025 10:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761300480; x=1792836480;
+ t=1761300491; x=1792836491;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5wT9VWm3I4CvrTLJcV8sZE0+ym0XjAlNQ1tOGhdZB5E=;
- b=iD616mbtDGroLNliH52RAs70Yvk8+xFfIrT0RsN7j9RUAJ8PvLEuDuPW
- T5ve6454nVfGUm/HEwSMZ9LFBfnqQ+PPssW4LiaGO1fVeDb0Q4gJcWTuq
- p5ZPaGnj1CnPpQe8gZ+2qqJGxjRgTtFPbtMXvoQ43TN57/7ND9oQh/MWs
- Zctw5t1dDcJ0S4ldJFWjH9VlgG0WE3qAjabXZ8EPOka/bw8MG1zXVB3t/
- 1JHvHkDz77Gwz8ni4Z1CaL14I40U2neTXMOdJE+y19Q9JRA6OYmqcNLXA
- GE8t5B7uhb8mZizKn0qf5pWFNrSucifCTpXXJl1B3LQkGb2+Y2KbHSKRq Q==;
-X-CSE-ConnectionGUID: pjt6DAy9S+asz6nZXNbW+Q==
-X-CSE-MsgGUID: +qUz4xwLSF+qOON4k0YTTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346826"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346826"
+ bh=lXErV8h5Z9kB/cMMWCpuw5wu0Qf+4aeNxOHiE12B8cw=;
+ b=k3fRtrNlmuqU9kMaba84I7gJ8Yh+zY8UNpZmfoKoURBJYeJfoasnr+/p
+ /iFjG6d/Us4o0jp/u6grNIT9Fj6zpY7UzoC2ZNBsejueQJgqDN6nCBqIO
+ TsUecSKsnjdsMZTjjHC8DY/1SjsScvAVFKnyVJQSpU/GQOk8TiorbVJ2z
+ Ibbgr5k9VphxO3ewvkSZpIKBImbq7tHm5V99QhpWwEm2luM81c96tRgN2
+ 7JEvvH+OviYtrzjD7h4yFQBuHv6RvBGZzv1vkrb2DzmWEzccBof0D6sSk
+ I3nMckG2Q5OIjq2VNrj0iRH5DhGyfSR+73bJ/vCJv16hD7gvcwp8hNh4U A==;
+X-CSE-ConnectionGUID: 2LIchZYdTaC3kGxYZ5DRzg==
+X-CSE-MsgGUID: 1zS93iAZQSeVkI0m+0bptQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67346844"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="67346844"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 03:07:59 -0700
-X-CSE-ConnectionGUID: 8p/6JqZaSj2qrWyDXOuEmQ==
-X-CSE-MsgGUID: /UTTQ0peQHqzNxWglqBbDg==
+ 24 Oct 2025 03:08:11 -0700
+X-CSE-ConnectionGUID: 0c26yORIQMa0VTfhOFRI3g==
+X-CSE-MsgGUID: Yi2JBLQPTjyX8LIo5EdYmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039276"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="208039301"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:57 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:08:08 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
  gustavo.sousa@intel.com, lucas.demarchi@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 14/26] drm/i915/ltphy: Program the rest of the
- PORT_CLOCK_CTL steps
-Date: Fri, 24 Oct 2025 15:37:00 +0530
-Message-Id: <20251024100712.3776261-15-suraj.kandpal@intel.com>
+Subject: [PATCH v2 18/26] drm/i915/ddi: Define LT Phy Swing tables
+Date: Fri, 24 Oct 2025 15:37:04 +0530
+Message-Id: <20251024100712.3776261-19-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251024100712.3776261-1-suraj.kandpal@intel.com>
 References: <20251024100712.3776261-1-suraj.kandpal@intel.com>
@@ -69,84 +68,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Program the rest of the steps with regards to PORT_CLOCK_CTL in
-Non-TBT PLL enable sequence.
+Define and initialize LT Phy Swing tables for DP 1.4, 2.1 and eDp.
+HDMI TMDS is not needed since LT Phy H/w handles that.
 
+Bspec: 74493
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 25 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  1 +
- 2 files changed, 26 insertions(+)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 81 ++++++++++++++++++-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |  9 +++
+ 2 files changed, 89 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 281f4c5eb4a1..1b2d373e05ba 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1489,6 +1489,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	bool lane_reversal = dig_port->lane_reversal;
- 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+	enum phy phy = intel_encoder_to_phy(encoder);
-+	enum port port = encoder->port;
- 	intel_wakeref_t wakeref = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index a238be5bc455..f39e690e9ed2 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -10,6 +10,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_dp.h"
++#include "intel_lt_phy.h"
  
- 	wakeref = intel_lt_phy_transaction_begin(encoder);
-@@ -1529,19 +1531,42 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 				       LT_PHY_PCLKIN_GATE);
+ /* HDMI/DVI modes ignore everything but the last 2 items. So we share
+  * them for both DP and FDI transports, allowing those ports to
+@@ -1115,6 +1116,69 @@ static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
+ 	.num_entries = ARRAY_SIZE(_mtl_c20_trans_uhbr),
+ };
  
- 		/* 7. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 0. */
-+		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+			     XELPDP_LANE_PCLK_PLL_REQUEST(0), 0);
++/* DP1.4 */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
++	{ .lt = { 1, 0, 0, 21, 0  } },
++	{ .lt = { 1, 1, 0, 24, 3  } },
++	{ .lt = { 1, 2, 0, 28, 7  } },
++	{ .lt = { 0, 3, 0, 35, 13 } },
++	{ .lt = { 1, 1, 0, 27, 0  } },
++	{ .lt = { 1, 2, 0, 31, 4  } },
++	{ .lt = { 0, 3, 0, 39, 9  } },
++	{ .lt = { 1, 2, 0, 35, 0  } },
++	{ .lt = { 0, 3, 0, 41, 7  } },
++	{ .lt = { 0, 3, 0, 48, 0  } },
++};
 +
- 		/* 8. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 0. */
-+		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+					 XELPDP_LANE_PCLK_PLL_ACK(0), 0,
-+					 XE3PLPD_MACCLK_TURNOFF_LATENCY_US, 0, NULL))
-+			drm_warn(display->drm, "PHY %c PLL MacCLK Ack deassertion Timeout after %dus.\n",
-+				 phy_name(phy), XE3PLPD_MACCLK_TURNOFF_LATENCY_US);
++/* DP2.1 */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_uhbr[] = {
++	{ .lt = { 0, 0, 0, 48, 0  } },
++	{ .lt = { 0, 0, 0, 43, 5  } },
++	{ .lt = { 0, 0, 0, 40, 8  } },
++	{ .lt = { 0, 0, 0, 37, 11 } },
++	{ .lt = { 0, 0, 0, 33, 15 } },
++	{ .lt = { 0, 0, 2, 46, 0  } },
++	{ .lt = { 0, 0, 2, 42, 4  } },
++	{ .lt = { 0, 0, 2, 38, 8  } },
++	{ .lt = { 0, 0, 2, 35, 11 } },
++	{ .lt = { 0, 0, 2, 33, 13 } },
++	{ .lt = { 0, 0, 4, 44, 0  } },
++	{ .lt = { 0, 0, 4, 40, 4  } },
++	{ .lt = { 0, 0, 4, 37, 7  } },
++	{ .lt = { 0, 0, 4, 33, 11 } },
++	{ .lt = { 0, 0, 8, 40, 0  } },
++	{ .lt = { 1, 0, 2, 26, 2  } },
++};
 +
- 		/*
- 		 * 9. Follow the Display Voltage Frequency Switching - Sequence Before Frequency
- 		 * Change. We handle this step in bxt_set_cdclk().
- 		 */
- 		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock frequency. */
- 		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] = 1. */
-+		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+			     XELPDP_LANE_PCLK_PLL_REQUEST(0),
-+			     XELPDP_LANE_PCLK_PLL_REQUEST(0));
++/* eDp */
++static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
++	{ .lt = { 1, 0, 0, 12, 0 } },
++	{ .lt = { 1, 1, 0, 13, 1 } },
++	{ .lt = { 1, 2, 0, 15, 3 } },
++	{ .lt = { 1, 3, 0, 19, 7 } },
++	{ .lt = { 1, 1, 0, 14, 0 } },
++	{ .lt = { 1, 2, 0, 16, 2 } },
++	{ .lt = { 1, 3, 0, 21, 5 } },
++	{ .lt = { 1, 2, 0, 18, 0 } },
++	{ .lt = { 1, 3, 0, 22, 4 } },
++	{ .lt = { 1, 3, 0, 26, 0 } },
++};
 +
- 		/* 12. Poll for PORT_CLOCK_CTL[PCLK PLL Ack LN0]= 1. */
-+		if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+					 XELPDP_LANE_PCLK_PLL_ACK(0),
-+					 XELPDP_LANE_PCLK_PLL_ACK(0),
-+					 XE3PLPD_MACCLK_TURNON_LATENCY_US, 2, NULL))
-+			drm_warn(display->drm, "PHY %c PLL MacCLK Ack assertion Timeout after %dus.\n",
-+				 phy_name(phy), XE3PLPD_MACCLK_TURNON_LATENCY_US);
- 	} else {
- 		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), crtc_state->port_clock);
- 	}
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
++	.entries = _xe3plpd_lt_trans_dp14,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_dp14),
++};
++
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_uhbr = {
++	.entries = _xe3plpd_lt_trans_uhbr,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_uhbr),
++};
++
++static const struct intel_ddi_buf_trans xe3plpd_lt_trans_edp = {
++	.entries = _xe3plpd_lt_trans_edp,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_edp),
++};
++
+ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+ {
+ 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+@@ -1707,11 +1771,26 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
+ }
  
- 	/* 13. Ungate the forward clock by setting PORT_CLOCK_CTL[Forward Clock Ungate] = 1. */
-+	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
-+		     XELPDP_FORWARD_CLOCK_UNGATE,
-+		     XELPDP_FORWARD_CLOCK_UNGATE);
++static const struct intel_ddi_buf_trans *
++xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
++			 const struct intel_crtc_state *crtc_state,
++			 int *n_entries)
++{
++	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
++		return intel_get_buf_trans(&xe3plpd_lt_trans_uhbr, n_entries);
++	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++		return intel_get_buf_trans(&xe3plpd_lt_trans_edp, n_entries);
++	else
++		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
++}
 +
- 	/* 14. SW clears PORT_BUF_CTL2 [PHY Pulse Status]. */
- 	/*
- 	 * 15. Clear the PHY VDR register 0xCC4[Rate Control VDR Update] over PHY message bus for
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index eb3a3dd53ab8..06829ab28b7c 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -9,6 +9,7 @@
- #define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
- #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	1
- #define XE3PLPD_MACCLK_TURNON_LATENCY_US	21
-+#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
- #define XE3PLPD_RATE_CALIB_DONE_LATENCY_US	50
- #define XE3PLPD_RESET_START_LATENCY_US	10
- #define XE3PLPD_RESET_END_LATENCY_US		200
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 
+-	if (DISPLAY_VER(display) >= 14) {
++	if (HAS_LT_PHY(display)) {
++		encoder->get_buf_trans = xe3plpd_get_lt_buf_trans;
++	} else if (DISPLAY_VER(display) >= 14) {
+ 		if (intel_encoder_is_c10phy(encoder))
+ 			encoder->get_buf_trans = mtl_get_c10_buf_trans;
+ 		else
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+index 29a190390192..cec332090a20 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+@@ -50,6 +50,14 @@ struct dg2_snps_phy_buf_trans {
+ 	u8 post_cursor;
+ };
+ 
++struct xe3plpd_lt_phy_buf_trans {
++	u8 txswing;
++	u8 txswing_level;
++	u8 pre_cursor;
++	u8 main_cursor;
++	u8 post_cursor;
++};
++
+ union intel_ddi_buf_trans_entry {
+ 	struct hsw_ddi_buf_trans hsw;
+ 	struct bxt_ddi_buf_trans bxt;
+@@ -57,6 +65,7 @@ union intel_ddi_buf_trans_entry {
+ 	struct icl_mg_phy_ddi_buf_trans mg;
+ 	struct tgl_dkl_phy_ddi_buf_trans dkl;
+ 	struct dg2_snps_phy_buf_trans snps;
++	struct xe3plpd_lt_phy_buf_trans lt;
+ };
+ 
+ struct intel_ddi_buf_trans {
 -- 
 2.34.1
 
