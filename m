@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71A6CCF9E0
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 13:03:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61612CCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 13:18:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7775510E1E0;
-	Fri, 24 Oct 2025 13:03:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CbEhWjDo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54E4510E1E0
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 13:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761311019; x=1792847019;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xSUPV9p0rkzwVct7LHWMMcQvk72QbwU5vo4+w5Gun6k=;
- b=CbEhWjDoOerkogVGp8RRqr54kWIV/TeujYAgOK2kfThziKjsu+uqZqs6
- 1jUL3C2hY8+STNt4MgvbdbN6w1HXSSWzDYuQtn7v99/hY7DtBPCTsOcKU
- uQPMbf1C85IcXJjhMSN6cUtGvHmhOqqv96H7hCWP03f/iL8Pvoh+tDqGG
- 2gqVU+KgAP/r/RQ3If8nP6UeT8i4SApZaj5ygRQJFsmqqE4cgYBtcxY7D
- d3QSdYnJkAS/wdMVhTwGjFE0PGcY7fpitF/3YP76QmvlryjjfW2VZbA5w
- 90tuz0cloucuba7D7Y5JVm+xZX/ltNjXgnfzcF8wn3Fpo8VJI2Uw1yJCu w==;
-X-CSE-ConnectionGUID: RdEwWb7KSuGNM6Zd+yuSuA==
-X-CSE-MsgGUID: sFQoG+4fS6GSSC+EhXVzzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74612221"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="74612221"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 06:03:39 -0700
-X-CSE-ConnectionGUID: U4+xkbtDQKiG7icxQYHkqQ==
-X-CSE-MsgGUID: AC2jcJzIQ1CkXU+Wn4fMkg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="189551272"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.97])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 06:03:38 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI] verbose p2p
-Date: Fri, 24 Oct 2025 14:03:30 +0100
-Message-ID: <20251024130329.61392-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA9F10EA87;
+	Fri, 24 Oct 2025 13:18:42 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D10FE10EA86;
+ Fri, 24 Oct 2025 13:18:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8924499023507727275=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_AuxCCS_handling_and_render_?=
+ =?utf-8?q?compression_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Oct 2025 13:18:40 -0000
+Message-ID: <176131192084.51928.14420577387847172504@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review.
+--===============8924499023507727275==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 54e42960daad..b047251674ea 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -28,7 +28,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
- 
- 	if (attach->peer2peer &&
--	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
-+	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, true) < 0)
- 		attach->peer2peer = false;
- 
- 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
--- 
-2.51.0
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/156472/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3980-c840596036111afb71465977a49618cd19ca6e8b_BAT -> xe-pw-156472v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156472v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-plain-flip@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3980-c840596036111afb71465977a49618cd19ca6e8b/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3980-c840596036111afb71465977a49618cd19ca6e8b -> xe-pw-156472v1
+
+  IGT_8596: 8596
+  xe-3980-c840596036111afb71465977a49618cd19ca6e8b: c840596036111afb71465977a49618cd19ca6e8b
+  xe-pw-156472v1: 156472v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html
+
+--===============8924499023507727275==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>AuxCCS handling and render compression modifiers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156472/">https://patchwork.freedesktop.org/series/156472/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3980-c840596036111afb71465977a49618cd19ca6e8b_BAT -&gt; xe-pw-156472v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156472v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3980-c840596036111afb71465977a49618cd19ca6e8b/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3980-c840596036111afb71465977a49618cd19ca6e8b -&gt; xe-pw-156472v1</li>
+</ul>
+<p>IGT_8596: 8596<br />
+  xe-3980-c840596036111afb71465977a49618cd19ca6e8b: c840596036111afb71465977a49618cd19ca6e8b<br />
+  xe-pw-156472v1: 156472v1</p>
+
+</body>
+</html>
+
+--===============8924499023507727275==--
