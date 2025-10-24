@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8C6CCCD1AB
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 12:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA05CCD1A5
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 12:32:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9175010EA7F;
-	Fri, 24 Oct 2025 12:31:38 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E900D10EA7E;
- Fri, 24 Oct 2025 12:31:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0BC10EA7E;
+	Fri, 24 Oct 2025 12:32:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TOcI2TAa";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7AE510EA70;
+ Fri, 24 Oct 2025 12:32:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761309121; x=1792845121;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=cjQaVauCBGy7brCbhA12bo6so85vJE5TmMIcfgSOkMc=;
+ b=TOcI2TAajg50RdudmY/rP7Rc/FdNBup/tBO/24QTClEEyr9oCxDYRRNB
+ 5fRdq4vD0RtjGozK88Pm1+nOe7dkb5im4lUW4WfuDNVE9530+S6dlDtFK
+ NOwdo8Jnmv7seIgzG4G6lm414gsJYCR6DpzwFLpB/a0yptxSDrwhqd/xq
+ oyK07zBp83VoOV/d4oBwWI/Ea7bls9NbVkhmMV1STl9u9hddl+uvU1+N7
+ NpJPCfZ4supaPAlV9WfKRrwEGYvk03cJ3eFWNpj6LVfSDYgs8qOiyBKq+
+ GXTI4Q65YFV9t25SUN4/o59giH3q4bFyJDaFXAXoTZC+YxRlIquEgKUsA g==;
+X-CSE-ConnectionGUID: sJxxdMfESb6ktdD5h/LqnA==
+X-CSE-MsgGUID: an87iN2ESrmrBTcQ8bepvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63396529"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="63396529"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 05:32:01 -0700
+X-CSE-ConnectionGUID: Ul3oh0PdR4e1u3psgYdyYw==
+X-CSE-MsgGUID: Ka7ah5RcQS+opXW8tbaCKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="184492879"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.230])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 05:31:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH v2 4/6] drm/xe/display: Runtime pm wrappers for display
+ parent interface
+In-Reply-To: <20251024093113.1119070-5-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251024093113.1119070-1-jouni.hogander@intel.com>
+ <20251024093113.1119070-5-jouni.hogander@intel.com>
+Date: Fri, 24 Oct 2025 15:31:56 +0300
+Message-ID: <8f4bb6d726a6363f125f2ea8bda7c44afe51ee7c@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
- =?utf-8?q?r_compression_modifiers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Oct 2025 12:31:37 -0000
-Message-ID: <176130909794.51928.3270420565697533630@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,87 +68,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 24 Oct 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Implement runtime pm wrappers for xe driver and add them into display
+> parent interface.
+>
+> v2:
+>   - move xe_display_rpm_interface code into xe_display_rpm.c
+>   - rename xe_rpm as xe_display_rpm
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/xe_display.c     |  3 +
+>  drivers/gpu/drm/xe/display/xe_display_rpm.c | 76 +++++++++++++++++++++
+>  drivers/gpu/drm/xe/display/xe_display_rpm.h | 11 +++
+>  3 files changed, 90 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/display/xe_display_rpm.h
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
+/display/xe_display.c
+> index 0e38c96eb6def..be7f3c7ef5c3f 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -35,7 +35,9 @@
+>  #include "intel_hotplug.h"
+>  #include "intel_opregion.h"
+>  #include "skl_watermark.h"
+> +#include "xe_display_rpm.h"
+>  #include "xe_module.h"
+> +#include "xe_pm.h"
+>=20=20
+>  /* Ensure drm and display members are placed properly. */
+>  INTEL_DISPLAY_MEMBER_STATIC_ASSERT(struct xe_device, drm, display);
+> @@ -516,6 +518,7 @@ static void display_device_remove(struct drm_device *=
+dev, void *arg)
+>  }
+>=20=20
+>  static const struct intel_display_parent_interface parent =3D {
+> +	.rpm =3D &xe_display_rpm_interface,
+>  };
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/dr=
+m/xe/display/xe_display_rpm.c
+> index 3825376e98ccd..72a351e26a008 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
+> @@ -1,6 +1,8 @@
+>  // SPDX-License-Identifier: MIT
+>  /* Copyright =C2=A9 2025 Intel Corporation */
+>=20=20
+> +#include <drm/intel/display_parent_interface.h>
+> +
+>  #include "intel_display_core.h"
+>  #include "intel_display_rpm.h"
+>  #include "xe_device.h"
+> @@ -71,3 +73,77 @@ void intel_display_rpm_assert_unblock(struct intel_dis=
+play *display)
+>  {
+>  	/* FIXME */
+>  }
+> +
+> +static struct ref_tracker *xe_display_rpm_get(const struct drm_device *d=
+rm)
+> +{
+> +	return xe_pm_runtime_resume_and_get(to_xe_device(drm)) ? INTEL_WAKEREF_=
+DEF : NULL;
+> +}
+> +
+> +static struct ref_tracker *xe_display_rpm_get_raw(const struct drm_devic=
+e *drm)
+> +{
+> +	return xe_display_rpm_get(drm);
 
-Series: AuxCCS handling and render compression modifiers
-URL   : https://patchwork.freedesktop.org/series/156472/
-State : warning
+Oh, just an observation, you could also just point both .get and
+.get_raw at xe_display_rpm_get in the struct initialization. Dunno
+what's easier on the reader. *shrug*
 
-== Summary ==
+Ditto for put.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-8677d3b99d5fd579c143b22605d99121e2482e8a
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit fb8e617e9e71fc0b5d6aa1d68a999e0bc6aa9d39
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Date:   Fri Oct 24 11:47:26 2025 +0100
+BR,
+Jani.
 
-    drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
-    
-    Now that we have fixed the DPT handling we can undo the nerf which was
-    done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-    built for Xe").
-    
-    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-    
-            [PLANE:32:plane 1A]: type=PRI
-                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-    
-    Display working fine - no artefacts, no DMAR/PIPE faults.
-    
-    v2:
-     * Adjust patch title. (Rodrigo)
-    
-    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-    Cc: José Roberto de Souza <jose.souza@intel.com>
-    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch 1e54d2c469a91e00a39ff7f6b98c31d290245ecf drm-intel
-ed7aefab22a5 drm/xe: Fix ggtt fb alignment
--:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#13: 
-Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> +}
+> +
+> +static struct ref_tracker *xe_display_rpm_get_if_in_use(const struct drm=
+_device *drm)
+> +{
+> +	return xe_pm_runtime_get_if_in_use(to_xe_device(drm)) ? INTEL_WAKEREF_D=
+EF : NULL;
+> +}
+> +
+> +static struct ref_tracker *xe_display_rpm_get_noresume(const struct drm_=
+device *drm)
+> +{
+> +	xe_pm_runtime_get_noresume(to_xe_device(drm));
+> +
+> +	return INTEL_WAKEREF_DEF;
+> +}
+> +
+> +static void xe_display_rpm_put(const struct drm_device *drm, struct ref_=
+tracker *wakeref)
+> +{
+> +	if (wakeref)
+> +		xe_pm_runtime_put(to_xe_device(drm));
+> +}
+> +
+> +static void xe_display_rpm_put_raw(const struct drm_device *drm, struct =
+ref_tracker *wakeref)
+> +{
+> +	xe_display_rpm_put(drm, wakeref);
+> +}
+> +
+> +static void xe_display_rpm_put_unchecked(const struct drm_device *drm)
+> +{
+> +	xe_pm_runtime_put(to_xe_device(drm));
+> +}
+> +
+> +static bool xe_display_rpm_suspended(const struct drm_device *drm)
+> +{
+> +	struct xe_device *xe =3D to_xe_device(drm);
+> +
+> +	return pm_runtime_suspended(xe->drm.dev);
+> +}
+> +
+> +static void xe_display_rpm_assert_held(const struct drm_device *drm)
+> +{
+> +	/* FIXME */
+> +}
+> +
+> +static void xe_display_rpm_assert_block(const struct drm_device *drm)
+> +{
+> +	/* FIXME */
+> +}
+> +
+> +static void xe_display_rpm_assert_unblock(const struct drm_device *drm)
+> +{
+> +	/* FIXME */
+> +}
+> +
+> +const struct intel_display_rpm_interface xe_display_rpm_interface =3D {
+> +	.get =3D xe_display_rpm_get,
+> +	.get_raw =3D xe_display_rpm_get_raw,
+> +	.get_if_in_use =3D xe_display_rpm_get_if_in_use,
+> +	.get_noresume =3D xe_display_rpm_get_noresume,
+> +	.put =3D xe_display_rpm_put,
+> +	.put_raw =3D xe_display_rpm_put_raw,
+> +	.put_unchecked =3D xe_display_rpm_put_unchecked,
+> +	.suspended =3D xe_display_rpm_suspended,
+> +	.assert_held =3D xe_display_rpm_assert_held,
+> +	.assert_block =3D xe_display_rpm_assert_block,
+> +	.assert_unblock =3D xe_display_rpm_assert_unblock
+> +};
+> diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.h b/drivers/gpu/dr=
+m/xe/display/xe_display_rpm.h
+> new file mode 100644
+> index 0000000000000..0bf9d31e87c17
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/display/xe_display_rpm.h
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2025 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_DISPLAY_RPM_H_
+> +#define _XE_DISPLAY_RPM_H_
+> +
+> +extern const struct intel_display_rpm_interface xe_display_rpm_interface;
+> +
+> +#endif /* _XE_DISPLAY_RPM_H_ */
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-62b308b04515 drm/xe/xelpg: Flush CCS when flushing caches
-a6f65adbd34f drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
-0ed24b9fe9e7 drm/xe/xelp: Support auxccs invalidation on blitter
-62d9a2753e18 drm/xe/xelp: Use MI_FLUSH_DW_CCS on auxccs platforms
-c4f63a7f8e0e drm/xe/xelp: Wait for AuxCCS invalidation to complete
-a694e19fe3d6 drm/xe: Export xe_emit_aux_table_inv
-54a887e28256 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
-b7e4c2436280 drm/xe: Flush GGTT writes after populating DPT
--:72: WARNING:MEMORY_BARRIER: memory barrier without comment
-#72: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:115:
-+	wmb();
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-be3c059dfd1a drm/xe: Handle DPT in system memory
-04a195065537 drm/xe: Do not use stolen memory for DPT on IGFX and AuxCCS
-199a52bc453f drm/xe/display: Add support for AuxCCS
-fb8e617e9e71 drm/i915/display: Expose AuxCCS frame buffer modifiers for Xe
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
-#10: 
-done in cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if
-
--:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#16: 
-		uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-total: 1 errors, 1 warnings, 0 checks, 12 lines checked
-
-
+--=20
+Jani Nikula, Intel
