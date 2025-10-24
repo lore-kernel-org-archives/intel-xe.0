@@ -4,181 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A48C3CCD1BF
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 19:43:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D59E6CCF9E0
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 19:45:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F1110E00D;
-	Fri, 24 Oct 2025 19:43:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8033010EB37;
+	Fri, 24 Oct 2025 19:45:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l01ti9iX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aYQP0Z8L";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8405510E00D
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 19:43:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D0A10EB4B
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 19:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761334999; x=1792870999;
+ t=1761335122; x=1792871122;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=UHBExQhCKHoOEZ/8hJPYssLtpPbHLoJ5E2Q4sHx6f3A=;
- b=l01ti9iXiOVOjUlpcrzt2yrcBWg8ZZvbtNpy3J6K5O9GGLZSsnoVNLGH
- nzUjAJr942Nls2NWirBlEIziLdvzODDiyErjTYQAk2tUoGR9Z2BshfZRw
- cVVwOraWX8hk6jOgQ5LXOivlCTNjd9VvfsIRSBJ9rTTTg4HTnhVnxGSBE
- 7MASov7Y+zol7I+GjyzWRz9hqtS51vIfF5Wmbw3MCHuCyvdZ+riyCVp8x
- n3iNxk9KfuPt/JoEhaiWkJXok216BzW761TUTcuPD4g1K3t0U0Xl3MGYq
- NuTrF4cEEaq+wsYa7eAGfbjg0fATKDc8VC4puevta5hVneXW5hRHZMb8v g==;
-X-CSE-ConnectionGUID: xlAXBEowQ3qi1MW73CPdUQ==
-X-CSE-MsgGUID: tb+PW3aTQPuZy8GeQYWJkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63615194"
-X-IronPort-AV: E=Sophos;i="6.19,253,1754982000"; d="scan'208";a="63615194"
+ bh=ZtDbiXKO7sAJppOk8TpWwBsE4gp4F6ibBSu9/wJ59OE=;
+ b=aYQP0Z8LP2+reHTMALoK3itUED/sfiNOoCl+Ht0/hF98+Ph5NP7EO7cO
+ mkBdtxq2e7UqrQmYHuGIsZiKtRpWXtTXl5aWRkGsi5P2sv/3+UDE5nVqY
+ Gm3lMfL29uKEx7TykYng7Zi9lMk0599Qw+tn9Uq9jgmpA3/5LwGm9jGj0
+ qBcoFwUaaXXHVWCON7MuXjYI8PmXico7Ds/uxC2Lr92KIJF74SxvjUZ3G
+ BtXIw7dPBnL6X/C/Y9HAKxf0Y7Ly0+KtPPYL9nuq9pfmyHQhf75BD8s0h
+ zGK5n45uJb/QMIoayNXbvYyEyfTKMpBevIXMycHeHXwfqh02gHy/usRyC g==;
+X-CSE-ConnectionGUID: R9qQ/BZwSn+2Cikq2whroA==
+X-CSE-MsgGUID: 4brHFCf4SqOb3GyfxV+YYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74866875"
+X-IronPort-AV: E=Sophos;i="6.19,253,1754982000"; d="scan'208";a="74866875"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 12:43:19 -0700
-X-CSE-ConnectionGUID: m5h3Ki1MRByLT2exkJujXQ==
-X-CSE-MsgGUID: /xx7iUEbQ3WGXp30WMsTvw==
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 12:45:21 -0700
+X-CSE-ConnectionGUID: r+eINjk4R7Wzd+u+pZAVWA==
+X-CSE-MsgGUID: RTufJz2RQlO7ZkI0rpReIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,253,1754982000"; d="scan'208";a="215164634"
+X-IronPort-AV: E=Sophos;i="6.19,253,1754982000"; d="scan'208";a="215165061"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 12:43:18 -0700
+ 24 Oct 2025 12:45:21 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 24 Oct 2025 12:43:18 -0700
+ 15.2.2562.27; Fri, 24 Oct 2025 12:45:20 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Fri, 24 Oct 2025 12:43:18 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.17) by
+ 15.2.2562.27 via Frontend Transport; Fri, 24 Oct 2025 12:45:20 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.1) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Fri, 24 Oct 2025 12:43:17 -0700
+ 15.2.2562.27; Fri, 24 Oct 2025 12:45:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NrYzRnrfY3wU0qGCYW/RcqAWiIXnfmmTsNUtI+DEJWQoLYWMoXXBqEQ2Gkz4JV/D2qDR7yhNdNHHFigK01jedcnpKCCiWAqy0czrYgAqUCVvWzUSaWbVDqkrsWnfNMpnd3PwLtJ9PECrD/1E6rwFRc9kyWjnXsjWyp3LlN/3Id5MormwU9lc8zUvKNqmejAE+JWcCQvf7pbelubY9tugVEj8z/dSP3BOpCnWBS1FzM/AeenGH8M6zfbZ4VOTVWMifwNkLqsbT8ahd9G9FfEH00aAWOa+1FnO6GrmtM8x1QIQN3jxzSAgg18idQqQOBZ7kNGHUOpmEfscC5w/qhVq5Q==
+ b=NvNRpC8u9Xl5xutrfyqQLF73CeIGIhD/rsi/1V9d48Gl6dkbBSHzTUP9ntt7eTRF38uRORAoMffklkBjcckm3zrpbyEHb5Xn4UzsiqIZckCAlyxZn0vfct9ecImEXtR9uh7mSkpcqqxMl68tP7cJbvqQjmvHHHgfLzTVG85bEyN66OwAwnHge8j5SzmEyJeqvr5L9NOqkQ3P4WFXBjei3sjc4s6eYItlvtl/T1EGwYfxarL6K7egzZKR2UdBfTt0XuWdcyxHbTj+FOxc1f/0bvS42nVl3udfRnjuO9ETRQe5yRwUyXIR0zSwnMzyxWFFlKMsIJ8jnzuBy8FvJPqHCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zW0A/KD5egwHIHF9XsFyz+Z4NCxaPd684LsRLs9vmzw=;
- b=p+5NOAmhdbMo9Zg+JK0mxZYK/rBZGIeFmMaZZCNbqf4xMXrwEuvfeXO0mY+dvVp+tzSq98EiLwQHVBsAsqnZ1vqV025zXLnrZ4qlnYulox6jlgny9ue7NinThi6EE/F4CrmZkBs6NDqJuNUk6Onqleeo1Elo1u2HRUfpbidgN/Pr7Dy9fj83UTx2NVp5mwFU+pb+NIstNp6WZeap6h2Mw3FHjCqhg4PKnIRAfM19aSuwvCOfXIBGnm7K/RZv5Bl2VuYHhfcCgqS2I4LczaC0zooy7fhbIHDNsrbtwklxhM1OdBlgvRmSXVzhY5271/URlB7/mwXLisqXUOspiSKfow==
+ bh=datmVV73K9Gwz/ZPS3XnY/KZMU81L5HPTKhCtyfWvIE=;
+ b=S6nX+sp84nkxD3TLFrFCRndnQ9m8tlP72pvz2ZBwY4uhhcljRX7Ip8zIJZPk3R9zYnN/e8PLUHQinZwqRMusqs4RVcjB+zlt3R4D67H6SJaNQil8O2c8+1wSRWyDWPt7aueVK/nZOThvhqxyyg53AQYs7ppg90Ge5rb8ggxKRhkep0cYUw9PUCpYwZ4uW8gPiNp0ahWrHYuV7Zg/8JaH3aWpAhCWklyHO53AWloZQcj/kYXJEE4Oq7whIC2LIoPgQ8k4Hr9my8y3ZTye7iqBZnXfvWQT5pjfrSf63R4JYVGEw7+N0H6kmRmqrvUQBFlcnmZrdomqD0JwRY4aghe5mg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH0PR11MB5128.namprd11.prod.outlook.com (2603:10b6:510:39::17)
+ by CY8PR11MB6841.namprd11.prod.outlook.com (2603:10b6:930:62::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
- 2025 19:43:16 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Fri, 24 Oct
+ 2025 19:45:15 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
- 19:43:16 +0000
-Date: Fri, 24 Oct 2025 15:43:13 -0400
+ 19:45:15 +0000
+Date: Fri, 24 Oct 2025 15:45:12 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, Lucas De Marchi
  <lucas.demarchi@intel.com>
-Subject: Re: [PATCH 01/14] drm/xe/pf: Prepare sysfs for SR-IOV admin attributes
-Message-ID: <aPvW0UGS5Mas8Xj4@intel.com>
+Subject: Re: [PATCH 03/14] drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
+Message-ID: <aPvXSE6q_QXdvoHj@intel.com>
 References: <20251020182414.576-1-michal.wajdeczko@intel.com>
- <20251020182414.576-2-michal.wajdeczko@intel.com>
+ <20251020182414.576-4-michal.wajdeczko@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251020182414.576-2-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: BY1P220CA0018.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::8) To CYYPR11MB8430.namprd11.prod.outlook.com
+In-Reply-To: <20251020182414.576-4-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: BYAPR02CA0050.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::27) To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH0PR11MB5128:EE_
-X-MS-Office365-Filtering-Correlation-Id: afa01f7f-b16f-4dd2-9ef6-08de13359354
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|CY8PR11MB6841:EE_
+X-MS-Office365-Filtering-Correlation-Id: f47617d7-6d05-48bf-df13-08de1335daa6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?T3R4cVlub2hkMTA1Q0VncXlqVURVVzV1eE9uSExQYThDcDJ4Q3phMTlJSFpN?=
- =?utf-8?B?ejJSK0tsRkdiaVRpanFDRDhTV093YUdwcW43bzlSNzlBbS9ySCt6MkMxbXcx?=
- =?utf-8?B?OTB2VkFlMFZLK0s3Qjh1QW01TllyOE9PdjBmLzFRejQzWHZOWkd2VFhnZmNs?=
- =?utf-8?B?KzFldlo1Zk9vM2lDZGlHSHhrTnh2enY1RDJuZ2xtbk9jNXlZRzI2bW8zYWY0?=
- =?utf-8?B?bDB4VXlQbFRlQm5kZzYyS292SWpGNzhtdURFQllwMjl6WUFucVg3UE0yMFFZ?=
- =?utf-8?B?UWNXRTNtQ05nOW4wSFNKYjUrenVqTng2L29NdWQxVUI5SmFTMFh5RkhCOXNU?=
- =?utf-8?B?SlYvT3BCdytDc0M3T1pMOEVENjQzc0FNUHZxMFpURWVBdnlvRFBEYlVzTzNj?=
- =?utf-8?B?Mmh6K1dxVUdDcmZsb2RFazhtRTZmdCtQODBoVDh6NE10S1diOUl1VkpyUFMr?=
- =?utf-8?B?dUhxMVJjcUxXN0U1ZTI4VTBkUVpuaFdGaVh5aTNMVmJvNmxGRDI2dkRSRTFM?=
- =?utf-8?B?UUtFa0F2bHdJSUoxL1BJNzZlcm8xWmFGUWNUNk9lNm94M1MxRjFlQTk2U2g0?=
- =?utf-8?B?L1dBQXBpSzdzczZWK2FwMWtYc2R5KzBxK2xjSDUzY3J6Tld4VFd5NSt4K09N?=
- =?utf-8?B?dHNmSitiTEczbG1iMWo3MlRLRHBvcWcwU3laaGtzU3FwWWpJcHhvTEhJZU9P?=
- =?utf-8?B?OG0wN3RiUy9USWx5QU41aWc4N1RDcWxFMGZ0b3cyYU44UktqWlFtM2orcWE2?=
- =?utf-8?B?bW4yQUhvdkpMSmFqa0RzYVB6MUpDRXFHTUs4WmRTVlBzckxSMFR6Y081WmdE?=
- =?utf-8?B?azcyR1hPSWpXNzdIQUVrZ1NpNDZEMTFkK0tUeUZXT3N2dCs0N0JrMXFnaHpv?=
- =?utf-8?B?azNtdHBWcmpOY0dQSkNJMVBsbGx3QWJZUEVqdFJQZGlOT01DOUtwdzQ5cXd5?=
- =?utf-8?B?dnhNVlJWczU1bEloTE8vK2tnaUdzK1NPdW5vbkNTN0RCQnJkUW8wVHJ4Qkhm?=
- =?utf-8?B?bzY3U3RHN2U5RDd3S2ovMGFTMmhUSzVRQTgwWDFTRDJNN01PMmNhRlhmMGxm?=
- =?utf-8?B?REFFbDVEUnlHWHVLT3dVZXVjT1Q5OElDUlNUVzA2S2JmUFBJQWltYkFZRjNR?=
- =?utf-8?B?QlRrdDgweDcyVlZzZEpqeXdpRkVidUhRT1RSVHBnVkNVY1poaHJveUw1b25s?=
- =?utf-8?B?YnJ5RTZEV3plcHBodHZza1plNHp5cWFIZjFBNXoyTnExa1ZFRGlvK2R1ZVpN?=
- =?utf-8?B?Wk9LcWQ2VlZJbW1OVkFBdEdBOG4yMCtxdEVoSHhDK3RvMDhQRWprOWZNa2N0?=
- =?utf-8?B?T2xyZXJBbUFHeVB2Nno4SlcwYWp1aGtVVExGbUtWbEhSb2puS3VmZ0U4ZXNH?=
- =?utf-8?B?RUQ5ak0xSVpMUkl4U1l4ckx2Z3ZKS1VXZnA5bnhPenYzOGw0M21JYkxDYXY1?=
- =?utf-8?B?dnV3Uyt1MFZIN3hRZldZRTdXenk1dnJoWTlHdzhSUjRHT0tFTWd1K1Zpb0pQ?=
- =?utf-8?B?SXVnaEZ6MnZrODlEMGxVa3NCenJJcS9KSEVySit4a2tuS1U4ZFNqd3FuVHph?=
- =?utf-8?B?VjBCVzJ3N3dHaVZJWGR2bU01T0VEWEMrZlJaUlNJSTllandpSHB6QzczTmNP?=
- =?utf-8?B?S08rZWxVcXNoT3pyRmtiNFBUYTQ1c0I0dEpQL0k2NHE4T0QzcUtlTzV6WnE4?=
- =?utf-8?B?U1U2TjRHVDdWcjdKYlN1ckdXQlFqSldFR3dtRlBPbm1sRm1pM09RTGl4OW91?=
- =?utf-8?B?YzZuN3VNTE0zekpmT2g3cm5YcDk1SXlmMHFkaGpvOVNxdlRQbDVCS2VUUzNC?=
- =?utf-8?B?ZWdiNG83TUNlZDVWR1pYejhjTHdmL0c1NlJBYnNDRThmQ2xCQ3ZmU1VLSnhu?=
- =?utf-8?B?YlI5NUxHZkF4QzYvdkdYVExRWThkendEQ2cwTldvRmdEb0RvRkFiNHlDWG5L?=
- =?utf-8?Q?DIMKZ5TTd/xgDDZ0ZjL8Xmtomhsirrcm?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VlVvbklFQ2RaTFdBV1ZXL1FuVmlhdkZRMXJzMzdtRlkxSzB1NXAyY2VqMlRE?=
+ =?utf-8?B?aTFOeE9CVThjVmU0ZVM4K05UdTA2U0NRWDltelQrTUJQU2hVU3ZreU44SkIr?=
+ =?utf-8?B?WlZZQm40dWtVVlJYcDQvUkNxY1B4WDJxZExmVTZnVXJ2eVFNUzE2VUxIeG5I?=
+ =?utf-8?B?ZmZVTVNzZ2RqTGd3Ni83ZGU1ZlZNVzAxcHhNMVRxOWIvbFl3bjFVYmhVc1Fk?=
+ =?utf-8?B?WFFxb0NOMkJ6ejc3VzRVRXlpM2RQZ3d3dHBsaUtxamFvQ1RyR0ozZUNiTWto?=
+ =?utf-8?B?VTg4M0NKTlpLRHJ1Ukt1OTVzUDdhWXg1TDIzRjZrUGtRZ1dVcllTcEVjbzhu?=
+ =?utf-8?B?NjNJK2p3c1NNZHJVdWRxTVVoVWZRSitIekZJUTlWc20vQUQ1Y09ZUzN6c0hq?=
+ =?utf-8?B?SkRFV2JSVWFxa3NZd2NaZ2dydzZSWXVqNFB3eUpmL29jdkxaSm9MUUVodnVI?=
+ =?utf-8?B?bE5XWWwwRnFYRzhtOWdCRy9kYXE5OXA3WFZSRmtKYnVCUkRSMVJWYUJkVmFL?=
+ =?utf-8?B?MmpDN0ErVitJemJvWlNXYW04TkZTdS95ZVppTDduNnJtRUdTUFd3VnFUV1hV?=
+ =?utf-8?B?UkZCdG5mVUowcGExNDVFVmdESy9mRWVCZksxYTIyTVVONU9BOWxOR1p4cUZh?=
+ =?utf-8?B?MlpIUlplNDdjZ08wMThuS2UwYnAzQkVMVGRRbDh0ZG5ISHFPS1FmMUhtSzMv?=
+ =?utf-8?B?bU9zRE5yMlNsWUNFbTVwcm83QWlWczQyYTVNYUFwYVJZejUwUnlpR2F2TlJW?=
+ =?utf-8?B?RTIvZjZWTkZiSFdmbWVRRTloaXNwWUE1QXJVRjRIMXhaWmNnTzJNc2xJdXVE?=
+ =?utf-8?B?QWRKb3RsMkdoTUZZMENxd1hDbld3dUNwOGU4Sm95WnFWRDJTTzhmQ3VheGhF?=
+ =?utf-8?B?YTBpZUkvYzYzYWdEbm9KM3RNTFJSV2VoVGV5SEYzMVFTMlBtTk45WEdxclRr?=
+ =?utf-8?B?TWpwelhEQ1hXM3dCcDBDYzNMWnFab0JGTXJGTWx3b2FKR0xhNU5DUjZzSkta?=
+ =?utf-8?B?TTBFT3F2R1FCT25PUnovcG5uTW9YUWdVYlFReGczb0NSdDF1OG1WSXN2RTk3?=
+ =?utf-8?B?WVEwYyt1TmpTNzhyL0Fqd1MrVVorSlpVb3p5d1diTEZZZThJSHhRT1JVWWxw?=
+ =?utf-8?B?UHlFT01CcFVqYmVHYUdETGpHTWdTVDR0cWdxa0RLOE5McFBoOXVDUzVQbEc0?=
+ =?utf-8?B?VmRDUjRNdExxUGhjcnI4d2VDYmtQOERxV3p2dzdrb3FZeDFlQzZkTUtXK1N4?=
+ =?utf-8?B?UllaTWlrNkQxa0lWTFZCYWxhWFBrT2g1SE8zQWVIaXBPSk9aY0dOaThET0ti?=
+ =?utf-8?B?cWpRZ3l2WWZTT0xFTU1vaitWN0I3OFg5QVQyTGwzZzkxYm5qeWNoQWtMV1A5?=
+ =?utf-8?B?N1lUbFhrT2xZSkNtSm9QOG8wYzdJbmIrVjFOQXR4VEJtTHE3ZC93RUZsOGZN?=
+ =?utf-8?B?ci81STB6Y2FXRllsZHZKREpzU1pzREhrZXdIcHRSY1IveDJ0Qk0xWTNRZEht?=
+ =?utf-8?B?M3l0R3R1QVJlRFI0bzMzV0Q1aXV1MEw1V3BVQUpON1lkWXE0cmxNejdNaFJq?=
+ =?utf-8?B?ek1zSGhhTmZCa0JManNmOE9WbEZ4MUtXb3RXWTQ4SUY1dkJDYTBGUFVNVlhQ?=
+ =?utf-8?B?UllRNTQvTHBFRmdwSFV0SHFQZktyODVQNUZYTytUSVd1VTF4d2JhSGlka1NT?=
+ =?utf-8?B?SGdFd0xuTHd2bXNDb1ZJVmgxRzNTMkYrNERONWUzMnpaQWRuN1d0eTRHRm9m?=
+ =?utf-8?B?azRwS1UyYldhNFkyMS95MVpNanBYd3NGTG44U0lrYkJ0eEJpU0xPazFGLy9j?=
+ =?utf-8?B?RjY5anJtbTRsc2M1Vmx5NVZJYktWeU56YkpkcjlXakh2MDJrRU9SSUtWUWx5?=
+ =?utf-8?B?Yy9CZm81NFV5YTlDTldONTA4SG1wdGdJTkVmeUlHaHRVaXBwYnFzYW1VNkhs?=
+ =?utf-8?Q?CnaKRQ2GzrYPRpGsmjq4OUlp9/yyqzEp?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUt2L3BLbnpWVVQ1ZklZa21rWjNkYTlKOWpWZndxSmhMd0ViYTBMWFU2ODR0?=
- =?utf-8?B?VTU1K1lIRHQrcnArUmR4WGtLWXpRcnNTSWh3QWpkTURyNHY2cTRWanJ1V2pH?=
- =?utf-8?B?eHA0dEx0R3FUR2JxZ3J0ZFJjbVBFU3hlMXRQNFZ3MDZsQnBBaTFtVXAxcjFG?=
- =?utf-8?B?b1BwM0NjODJoZExCNEJYY2lKTFR0ckhpa0c2amVrY0p5ZytraDlXb2xCR3Y5?=
- =?utf-8?B?eG5nZlFuWUEwTUNUNmUxZ2hjVmRYOVlINHJzOTBnSlpJQWRldEhIeE5kYk83?=
- =?utf-8?B?YXVEcHgxT3ZSc2p3bHNQSGVwVTM1amdmNjlWb2NBOHpESnVyTXozOXhNbG5P?=
- =?utf-8?B?b2tZd0lKR2t4c0dDakI1bEtjMk0wSzhSQndjY0F4bHpYZmpaSkZPdkdUSnpM?=
- =?utf-8?B?MTFCblA5NXhHWms1SmZFckRQaFZjUm9reWdMS1c5THg4Vmo5cndIK2QwVXhN?=
- =?utf-8?B?L2FCOFpRUzB1V00rdkltb0p3OFE5UXk1SnlYQUxLMktWenRmZU92d1kvZjhM?=
- =?utf-8?B?K3BTcmJoT1BnaUd0Z0VyZ3RtcjVNaUtRR253WEVRTWJTT3YzeHF2WWRodU1C?=
- =?utf-8?B?eEEyd3BpTThoNzFOUEF4VXdkWnFsVVVDSzZoZFhkaXBad21PSUt0a0Y2akg0?=
- =?utf-8?B?dmY2S1ZlMlEyekZRdGRLdGR4SENGL2VvVjlQdVlNY2VuM21DeE5nWG9KMjFI?=
- =?utf-8?B?c0RUQVFMTHc2S2FNNkFnV3hKZmdEckNkbE5VV0hlM1QvYVFpazAxOFBqZTA1?=
- =?utf-8?B?YlQ5QnYyOWdQRUNLVWRUNU9TZzFUc0l5VlZJazdzQkZZMmc0Y1VvTzJCc0tv?=
- =?utf-8?B?VEJuN0RieFpta0NpeG9kUWJuSnVuU0ZjQzlRNWsvQXJQakJUVGVYN0M5UGU0?=
- =?utf-8?B?N0R0QUJrQTI5WVA4Z0JuRkR6Q2J6SEIzRG9nNGFnOU4zM2F1UmlWaUdncTV6?=
- =?utf-8?B?WlBmeHdMZUNjM2o2bWZVb0MwbEdsMktYOXUraW00NktTZ0svQi9xY1dkVFhD?=
- =?utf-8?B?TkplakNFaXZ4cGliZVdKT1VUbzUwMkpjVXVaS3pYRlpJdEhLSll1bUNGWndZ?=
- =?utf-8?B?czNQampQTk9zRjlxWlVzalNEU21HVGZ6eks3WFQxaW1KQ1RYYjlEOU5RUE9i?=
- =?utf-8?B?Vjk3aElseCszbDZ3Rm9HMWJvc2Jud1ZhUlFUZ2FrT0tRMEljWmJmY1ZCYnlW?=
- =?utf-8?B?QVYvekZpQUkwMW54Rk5TRkxYb0xVYUh5RUlmT0dYMVpGb2Izbk1ET1I5amJm?=
- =?utf-8?B?VHFYVVhsVmFBS05OV3N1N2t0d1VKTVlUTjNaOWZvT29QdExPSDFrQjFVUDBP?=
- =?utf-8?B?ZU5xUjgzTGNSVkpzWEprYWxib0kvTmJvR3BnZ0xhVFEvd01WLzEwQjcxRHZI?=
- =?utf-8?B?QzZxdUM0dDJKMWV6Q3hNWUhRbEpWSXlnQzNhMXU4L04wdkVYckJsTSs0MHpu?=
- =?utf-8?B?cWtQKzNWTncvU0RqeHFYQ2ZEK3NZajMyalhiU2VodTdHN29oUXdDT0xFUjhE?=
- =?utf-8?B?bjllSEp1QVJWK0xUc283TG9CSW56bGo0SXVyTkVGOUMvYTJ3blVuWW0xK25X?=
- =?utf-8?B?eTJsYmlFUmx6KytnYjJhbjByRCtqaGJlUER1TEwzVHIrSlUrakJMcHZ0Rmpv?=
- =?utf-8?B?ckRhbkJNNFl0ckp0ckZtK0oyS1Ryd3dTSmlMSWl0ckR1REczMnlPWFpaUWlv?=
- =?utf-8?B?M0ZjeW1DdUNrcnhpS2ZoZERyZTBab2lZU2xBb0dKdlZ1TWN4V0liaVN4VW9K?=
- =?utf-8?B?MCsralIya01CNVBpV0UvdEdPZFVnbXNKSlYvRjJiM09wUXQ3dHFUVmkwMDk5?=
- =?utf-8?B?Njdib1lXTU9WZk1XcjAxN2I0b2VwQ0FlM0RvVGdWaWhCaXZYT2Y4SEpBelY2?=
- =?utf-8?B?Ykt5QWg3SEtsM3ZxOS90RU9uNDVXYmRMSG01SEtrdDlaWjhKV0xvQkxJMEpR?=
- =?utf-8?B?ZENweDJERzBFNXowbVVBK0lodVdmaEFyaXdXajBkQVZMNmExL25RTzdUcEM1?=
- =?utf-8?B?c3NIaUhOWFBHTWdDbGtzTFBFbEQvSmpQQ2o4L0FYTTVyQmkvZFlHR1EzR1kw?=
- =?utf-8?B?RmRldDdmeVVCcmw0YmMrWVdmV3VJd2FRWXpPbk0xbHZwSFZJamM4S3NjTnQ2?=
- =?utf-8?Q?eJyy6K+XWUr1ErzTw704oJMZZ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: afa01f7f-b16f-4dd2-9ef6-08de13359354
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OG9xcS9vOEVNemN3b3lXaGJ0Y0orUmgyMTZUZzdQU0d3Yks4S1ZIazBuUnNK?=
+ =?utf-8?B?cDFmKzZrT3B6dzBPV3JISldySEpZRkQ5aHN2SmZ1QlRuZTNDSTVJY0d4Mjhl?=
+ =?utf-8?B?Vm8rYUFyTWlrL0dQWHpibGd0UzhDS2xSdmR0dThwU253VGRMbFFPY0xNSDJi?=
+ =?utf-8?B?SGtKTmVZK2xrejVWekY1aWR5b2tqVElIcnBtQk5JOXorRGUrWFVINUV6ZnRt?=
+ =?utf-8?B?Yk9YQnNVUzViSDRhTjVpM0Z6dEJtYWFPOUZ0Y1psZG9GN0dRL0VwMm1aY3k4?=
+ =?utf-8?B?T2I0TW5FeGwxd3JEdGNTczg2TkluaVN6bERSejRDZXZab2Zzai9IaG1ydGk4?=
+ =?utf-8?B?cnkwZ2cvUEpCcXRFbzVVdnFMcDhvNUwxTWgzdGFCbW1vSnVIYzNvSE1wN2VK?=
+ =?utf-8?B?bDFRYitFSklIa1EwTXdsbCtkb1RSVEhnMElKcEllT2lXMGJ1aG5qNlBMTGVs?=
+ =?utf-8?B?bHhERE1BR0FSWGhPMDZORmFEVlIwb0wrZHhoZmJzdUpodFJVWmFTMVFWcHlp?=
+ =?utf-8?B?L1VzOTBscFZwTGFHbnR1UnpHYzN3eHUyNHRGTE5jSEVKZEQrSEJ1SUd4djhI?=
+ =?utf-8?B?cUkvMUZnTUJjelBtZDVVbkFBdjZnMmNOWXQwc2gvcDJaZFVHOEJXUFJXZlkv?=
+ =?utf-8?B?L1Z0ZkpMODdVUkprK0NSY2VlZjErMjhFRmoyWk5HZnJpdUhYMW1XLytlT3Nv?=
+ =?utf-8?B?UWZKL3JlQUpOVWszMFBQb2lsdVN3bmx1YTAxVTl5MHg3NmhMVWQxTmthOXdV?=
+ =?utf-8?B?ZjJRay9Mb3NtVXVQYVoxdnIyRkkvYk9OTURTMUhKbHF3VUM5ZmdqeUNTSXRC?=
+ =?utf-8?B?MW5TYTE3di82TlN3WEtTUWllSXJWOFM0N1ArczVLdldKbnVFYzlKdHo4enQw?=
+ =?utf-8?B?b3dSU3dkTXhCa0VtSGhIdklubDZraU9WblNwSVF4dG54NkhqWG1nMWl6ajd2?=
+ =?utf-8?B?UFplL0JGQWVMTDVkb05xUU5mdTVlMHhjOU13WFUwUDdQb0hBMDd4Y1d4eTVG?=
+ =?utf-8?B?Lzc4czNCWnZYd3ZuQW4xb2xhdUhYWW53RmVMY0dqM3BOcnJEdnB0MHZBRTM2?=
+ =?utf-8?B?VEVGaTdzMjB1b2JSUmduNlg3cFBaU1MvMDhvMEx2OFU4TjkrbHhXRTBHcGd4?=
+ =?utf-8?B?bk03aWhZTUdLMXdxNTNwa051YWIrbVhkV2pXZUFlVjdFMXNPeE90SDRab0RC?=
+ =?utf-8?B?NUx2V1o2K05nenlVV2M3NFRMN25nbVRYdStVTDV5cCs4eHFOaEZnbnJLN2hS?=
+ =?utf-8?B?dDB0bDMzV0RzRmZWWXYwOHFCQ0lRUUE4cUpBTkxyV1J3cFAybFFyMHl1OXJU?=
+ =?utf-8?B?RHRYdEpabHA5OGo5aUV1cDZVeklxNjltdi9SVW83Y0RWR2ZpSTRDRW0rQUx1?=
+ =?utf-8?B?Uk9GTW1WaExNdnlIN05ESHRGSSswcHlVNFlBOXBNR3FBbXdlcnpNdmFzZlpB?=
+ =?utf-8?B?Ly9Ldk5JSXZjUWVNS0oyQ2huV2F3a3hrczFueGlJOHNtOGZ5aTBBcWZMajlL?=
+ =?utf-8?B?VGFabDU3K3d4cUNMQlZoZ254eHBYdDA0cUpkYUZxRHBrVnlROU91SXpUQ1Rs?=
+ =?utf-8?B?NjJZWEEzMXZCU3Fic2JhKy9SbmJ1SHg5MFJGRmZqcGxLOW1ia2NFblNRQU4x?=
+ =?utf-8?B?VU9zY1lodFJVK05DVXpLRDArT1dCWGxMczZWV2xJcWRoNkovWVJmYXBUNXFx?=
+ =?utf-8?B?cDFmNlVzVytyMUNlNFpzVmZZTFdDLytjY3BoUG1OZjN4RnczaGdONFUvcnk5?=
+ =?utf-8?B?Q3h1T3NiWmcwMElOcWlOdmRUVHdwbGt6RVBtSWtZOFlNWE5OQWpJTytJZGtO?=
+ =?utf-8?B?YStXZ3JCMjdOekF0bkUxdVBVcmt2cC9ubkw3RVRzVERobDU5RXRkZUFMSGVH?=
+ =?utf-8?B?eU9XNkYydkxxR2RvM1N6OVdPV2c3OC81am5OdFlsSHViNkVXNHZmRkhRQlA0?=
+ =?utf-8?B?VEpyRitZYVc5Sko3YVRadWZUOUVDbmhNN3ZwQi9RS2p4RWlxREdlSi8yRXBl?=
+ =?utf-8?B?WFl5MmR5Q2dMRWp3OTJBL1djaFdoMHB5UVh2b3JOcktSZEpLUDlFb1JVUTlS?=
+ =?utf-8?B?eEJVRHlRUEt6STNiUXkra0VyRWdaUS9hVXB1ZUttYm9xVm9ZT3g3MVNNeExS?=
+ =?utf-8?Q?5q6NL/HFi4qPmua6fSwjB9MLL?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f47617d7-6d05-48bf-df13-08de1335daa6
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2025 19:43:16.1626 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2025 19:45:15.7360 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l6T+b1Bq4LDV8u5KXucseYVHsKxJGY0Z/K58HS+nGUWJ+aiy8W405YCoWfBca6tQNYFIG1AtlfjEKHL4ZiyL0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5128
+X-MS-Exchange-CrossTenant-UserPrincipalName: rjJ3TwhLCsUPqyyrkU2e/yMrPFJIKnWt/T8C8GynmJmpLFLzuUzQ5YbHoxoJE3vYzgfDCrEJDbyDLrM5xAiTCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6841
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,431 +194,280 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 20, 2025 at 08:24:01PM +0200, Michal Wajdeczko wrote:
-> We already have some SR-IOV specific knobs exposed as debugfs
-> files to allow low level tuning of the SR-IOV configurations,
-> but those files are mainly for the use by the developers and
-> debugfs might not be available on the production builds.
+On Mon, Oct 20, 2025 at 08:24:03PM +0200, Michal Wajdeczko wrote:
+> On current platforms, in SR-IOV virtualization, the GPU is shared
+> between VFs on the time-slice basis. The 'execution quantum' (EQ)
+> and 'preemption timeout' (PT) are two main scheduling parameters
+> that could be set individually per each VF.
 > 
-> Start building dedicated sysfs sub-tree under xe device, where
-> in upcoming patches we will add selected attributes that will
-> help provision and manage PF and all VFs:
+> Add EQ/PT read-write attributes for the PF and all VFs.
 > 
->   /sys/bus/pci/drivers/xe/BDF/
->   ├── sriov_admin/
->       ├── pf/
->       ├── vf1/
->       ├── vf2/
->       :
->       └── vfN/
+> By exposing those two parameters over sysfs, the admin can change
+> their default values (infinity) and let the GuC scheduler enforce
+> that settings.
+> 
+>  /sys/bus/pci/drivers/xe/BDF/
+>  ├── sriov_admin/
+>      ├── pf/
+>      │   └── profile
+>      │       ├── exec_quantum_ms	[RW] unsigned integer
+>      │       └── preempt_timeout_us	[RW] unsigned integer
+>      ├── vf1/
+>      │   └── profile
+>      │       ├── exec_quantum_ms	[RW] unsigned integer
+>      │       └── preempt_timeout_us	[RW] unsigned integer
 
 Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > 
-> Add all required data types and helper macros that will be used
-> by upcoming patches to define actual attributes.
+> Writing 0 to these files will set infinity EQ/PT for the VF on all
+> tiles/GTs. This is a default value. Writing non-zero integers to
+> these files will change EQ/PT to new value (in their respective
+> units: msec or usec).
+> 
+> Reading from these files will return EQ/PT as previously set on
+> all tiles/GTs. In case of inconsistent values detected, due to
+> errors or low-level configuration done using debugfs, -EUCLEAN
+> error will be returned.
 > 
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile            |   1 +
->  drivers/gpu/drm/xe/xe_sriov_pf.c       |   5 +
->  drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 295 +++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h |  13 ++
->  drivers/gpu/drm/xe/xe_sriov_pf_types.h |  11 +
->  5 files changed, 325 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
->  create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
+>  drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 116 +++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sriov_pf_provision.h |   8 ++
+>  drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c     |  54 +++++++++-
+>  3 files changed, 176 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 82c6b3d29676..e84811783115 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -178,6 +178,7 @@ xe-$(CONFIG_PCI_IOV) += \
->  	xe_sriov_pf_debugfs.o \
->  	xe_sriov_pf_provision.o \
->  	xe_sriov_pf_service.o \
-> +	xe_sriov_pf_sysfs.o \
->  	xe_tile_sriov_pf_debugfs.o
->  
->  # include helpers for tests even when XE is built-in
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> index bc1ab9ee31d9..b8af93eb5b5f 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> @@ -16,6 +16,7 @@
->  #include "xe_sriov_pf.h"
->  #include "xe_sriov_pf_helpers.h"
->  #include "xe_sriov_pf_service.h"
-> +#include "xe_sriov_pf_sysfs.h"
->  #include "xe_sriov_printk.h"
->  
->  static unsigned int wanted_max_vfs(struct xe_device *xe)
-> @@ -128,6 +129,10 @@ int xe_sriov_pf_init_late(struct xe_device *xe)
->  			return err;
->  	}
->  
-> +	err = xe_sriov_pf_sysfs_init(xe);
-> +	if (err)
-> +		return err;
-> +
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> index 663fb0c045e9..f2e14103c9aa 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+> @@ -152,3 +152,119 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
+>  	xe->sriov.pf.provision.mode = mode;
 >  	return 0;
 >  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-> new file mode 100644
-> index 000000000000..91962155f80b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-> @@ -0,0 +1,295 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2025 Intel Corporation
-> + */
-> +
-> +#include <linux/kobject.h>
-> +#include <linux/sysfs.h>
-> +
-> +#include <drm/drm_managed.h>
-> +
-> +#include "xe_assert.h"
-> +#include "xe_sriov.h"
-> +#include "xe_sriov_pf_helpers.h"
-> +#include "xe_sriov_pf_sysfs.h"
-> +#include "xe_sriov_printk.h"
-> +
-> +/*
-> + * /sys/bus/pci/drivers/xe/BDF/
-> + * :
-> + * ├── sriov_admin/
-> + *     ├── ...
-> + *     ├── pf/
-> + *     │   ├── ...
-> + *     │   └── ...
-> + *     ├── vf1/
-> + *     │   ├── ...
-> + *     │   └── ...
-> + *     ├── vf2/
-> + *     :
-> + *     └── vfN/
-> + */
-> +
-> +struct xe_sriov_kobj {
-> +	struct kobject base;
-> +	struct xe_device *xe;
-> +	unsigned int vfid;
-> +};
-> +#define to_xe_sriov_kobj(p) container_of_const((p), struct xe_sriov_kobj, base)
-> +
-> +struct xe_sriov_dev_attr {
-> +	struct attribute attr;
-> +	ssize_t (*show)(struct xe_device *xe, char *buf);
-> +	ssize_t (*store)(struct xe_device *xe, const char *buf, size_t count);
-> +};
-> +#define to_xe_sriov_dev_attr(p) container_of_const((p), struct xe_sriov_dev_attr, attr)
-> +
-> +#define XE_SRIOV_DEV_ATTR(NAME) \
-> +struct xe_sriov_dev_attr xe_sriov_dev_attr_##NAME = \
-> +	__ATTR(NAME, 0644, xe_sriov_dev_attr_##NAME##_show, xe_sriov_dev_attr_##NAME##_store)
-> +
-> +#define XE_SRIOV_DEV_ATTR_RO(NAME) \
-> +struct xe_sriov_dev_attr xe_sriov_dev_attr_##NAME = \
-> +	__ATTR(NAME, 0444, xe_sriov_dev_attr_##NAME##_show, NULL)
-> +
-> +#define XE_SRIOV_DEV_ATTR_WO(NAME) \
-> +struct xe_sriov_dev_attr xe_sriov_dev_attr_##NAME = \
-> +	__ATTR(NAME, 0200, NULL, xe_sriov_dev_attr_##NAME##_store)
-> +
-> +struct xe_sriov_vf_attr {
-> +	struct attribute attr;
-> +	ssize_t (*show)(struct xe_device *xe, unsigned int vfid, char *buf);
-> +	ssize_t (*store)(struct xe_device *xe, unsigned int vfid, const char *buf, size_t count);
-> +};
-> +#define to_xe_sriov_vf_attr(p) container_of_const((p), struct xe_sriov_vf_attr, attr)
-> +
-> +#define XE_SRIOV_VF_ATTR(NAME) \
-> +struct xe_sriov_vf_attr xe_sriov_vf_attr_##NAME = \
-> +	__ATTR(NAME, 0644, xe_sriov_vf_attr_##NAME##_show, xe_sriov_vf_attr_##NAME##_store)
-> +
-> +#define XE_SRIOV_VF_ATTR_RO(NAME) \
-> +struct xe_sriov_vf_attr xe_sriov_vf_attr_##NAME = \
-> +	__ATTR(NAME, 0444, xe_sriov_vf_attr_##NAME##_show, NULL)
-> +
-> +#define XE_SRIOV_VF_ATTR_WO(NAME) \
-> +struct xe_sriov_vf_attr xe_sriov_vf_attr_##NAME = \
-> +	__ATTR(NAME, 0200, NULL, xe_sriov_vf_attr_##NAME##_store)
-> +
-> +/* device level attributes go here */
-> +
-> +static const struct attribute_group *xe_sriov_dev_attr_groups[] = {
-> +	NULL
-> +};
-> +
-> +/* and VF-level attributes go here */
-> +
-> +static const struct attribute_group *xe_sriov_vf_attr_groups[] = {
-> +	NULL
-> +};
-> +
-> +/* no user serviceable parts below */
-> +
-> +static struct kobject *new_xe_sriov_kobj(struct xe_device *xe, unsigned int vfid)
-> +{
-> +	struct xe_sriov_kobj *vkobj;
-> +
-> +	xe_sriov_pf_assert_vfid(xe, vfid);
-> +
-> +	vkobj = kzalloc(sizeof(*vkobj), GFP_KERNEL);
-> +	if (!vkobj)
-> +		return NULL;
-> +
-> +	vkobj->xe = xe;
-> +	vkobj->vfid = vfid;
-> +	return &vkobj->base;
-> +}
-> +
-> +static void release_xe_sriov_kobj(struct kobject *kobj)
-> +{
-> +	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
-> +
-> +	kfree(vkobj);
-> +}
-> +
-> +static ssize_t xe_sriov_dev_attr_show(struct kobject *kobj, struct attribute *attr, char *buf)
-> +{
-> +	struct xe_sriov_dev_attr *vattr  = to_xe_sriov_dev_attr(attr);
-> +	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
-> +	struct xe_device *xe = vkobj->xe;
-> +
-> +	if (!vattr->show) {
-> +		xe_sriov_dbg(xe, "attribute '%s' was not intended to be %s\n",
-> +			     attr->name, "readable");
-> +		return -EPERM;
-> +	}
-> +	return vattr->show(xe, buf);
-> +}
-> +
-> +static ssize_t xe_sriov_dev_attr_store(struct kobject *kobj, struct attribute *attr,
-> +				       const char *buf, size_t count)
-> +{
-> +	struct xe_sriov_dev_attr *vattr = to_xe_sriov_dev_attr(attr);
-> +	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
-> +	struct xe_device *xe = vkobj->xe;
-> +
-> +	if (!vattr->store) {
-> +		xe_sriov_dbg(xe, "attribute '%s' was not intended to be %s\n",
-> +			     attr->name, "writable");
-> +		return -EPERM;
-> +	}
-> +	return vattr->store(xe, buf, count);
-> +}
-> +
-> +static ssize_t xe_sriov_vf_attr_show(struct kobject *kobj, struct attribute *attr, char *buf)
-> +{
-> +	struct xe_sriov_vf_attr *vattr = to_xe_sriov_vf_attr(attr);
-> +	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
-> +	struct xe_device *xe = vkobj->xe;
-> +	unsigned int vfid = vkobj->vfid;
-> +
-> +	xe_sriov_pf_assert_vfid(xe, vfid);
-> +
-> +	if (!vattr->show) {
-> +		xe_sriov_dbg(xe, "attribute '%s' was not intended to be %s\n",
-> +			     attr->name, "readable");
-> +		return -EPERM;
-> +	}
-> +	return vattr->show(xe, vfid, buf);
-> +}
-> +
-> +static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *attr,
-> +				      const char *buf, size_t count)
-> +{
-> +	struct xe_sriov_vf_attr *vattr = to_xe_sriov_vf_attr(attr);
-> +	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
-> +	struct xe_device *xe = vkobj->xe;
-> +	unsigned int vfid = vkobj->vfid;
-> +
-> +	xe_sriov_pf_assert_vfid(xe, vfid);
-> +
-> +	if (!vattr->store) {
-> +		xe_sriov_dbg(xe, "attribute '%s' was not intended to be %s\n",
-> +			     attr->name, "writable");
-> +		return -EPERM;
-> +	}
-> +	return vattr->store(xe, vfid, buf, count);
-> +}
-> +
-> +static const struct sysfs_ops xe_sriov_dev_sysfs_ops = {
-> +	.show = xe_sriov_dev_attr_show,
-> +	.store = xe_sriov_dev_attr_store,
-> +};
-> +
-> +static const struct sysfs_ops xe_sriov_vf_sysfs_ops = {
-> +	.show = xe_sriov_vf_attr_show,
-> +	.store = xe_sriov_vf_attr_store,
-> +};
-> +
-> +static const struct kobj_type xe_sriov_dev_ktype = {
-> +	.release = release_xe_sriov_kobj,
-> +	.sysfs_ops = &xe_sriov_dev_sysfs_ops,
-> +	.default_groups = xe_sriov_dev_attr_groups,
-> +};
-> +
-> +static const struct kobj_type xe_sriov_vf_ktype = {
-> +	.release = release_xe_sriov_kobj,
-> +	.sysfs_ops = &xe_sriov_vf_sysfs_ops,
-> +	.default_groups = xe_sriov_vf_attr_groups,
-> +};
-> +
-> +static int pf_sysfs_error(struct xe_device *xe, int err, const char *what)
-> +{
-> +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))
-> +		xe_sriov_dbg(xe, "Failed to setup sysfs %s (%pe)\n", what, ERR_PTR(err));
-> +	return err;
-> +}
-> +
-> +static void action_put_kobject(void *arg)
-> +{
-> +	struct kobject *kobj = arg;
-> +
-> +	kobject_put(kobj);
-> +}
-> +
-> +static int pf_setup_root(struct xe_device *xe)
-> +{
-> +	struct kobject *parent = &xe->drm.dev->kobj;
-> +	struct kobject *root;
-> +	int err;
-> +
-> +	root = new_xe_sriov_kobj(xe, PFID);
-> +	if (!root)
-> +		return pf_sysfs_error(xe, -ENOMEM, "root obj");
-> +
-> +	err = devm_add_action_or_reset(xe->drm.dev, action_put_kobject, root);
-> +	if (err)
-> +		return pf_sysfs_error(xe, err, "root action");
-> +
-> +	err = kobject_init_and_add(root, &xe_sriov_dev_ktype, parent, "sriov_admin");
-> +	if (err)
-> +		return pf_sysfs_error(xe, err, "root init");
-> +
-> +	xe_assert(xe, IS_SRIOV_PF(xe));
-> +	xe_assert(xe, !xe->sriov.pf.sysfs.root);
-> +	xe->sriov.pf.sysfs.root = root;
-> +	return 0;
-> +}
-> +
-> +static int pf_setup_tree(struct xe_device *xe)
-> +{
-> +	unsigned int totalvfs = xe_sriov_pf_get_totalvfs(xe);
-> +	struct kobject *root, *kobj;
-> +	unsigned int n;
-> +	int err;
-> +
-> +	xe_assert(xe, IS_SRIOV_PF(xe));
-> +	root = xe->sriov.pf.sysfs.root;
-> +
-> +	for (n = 0; n <= totalvfs; n++) {
-> +		kobj = new_xe_sriov_kobj(xe, VFID(n));
-> +		if (!kobj)
-> +			return pf_sysfs_error(xe, -ENOMEM, "tree obj");
-> +
-> +		err = devm_add_action_or_reset(xe->drm.dev, action_put_kobject, root);
-> +		if (err)
-> +			return pf_sysfs_error(xe, err, "tree action");
-> +
-> +		if (n)
-> +			err = kobject_init_and_add(kobj, &xe_sriov_vf_ktype,
-> +						   root, "vf%u", n);
-> +		else
-> +			err = kobject_init_and_add(kobj, &xe_sriov_vf_ktype,
-> +						   root, "pf");
-> +		if (err)
-> +			return pf_sysfs_error(xe, err, "tree init");
-> +
-> +		xe_assert(xe, !xe->sriov.pf.vfs[n].kobj);
-> +		xe->sriov.pf.vfs[n].kobj = kobj;
-> +	}
-> +
-> +	return 0;
-> +}
 > +
 > +/**
-> + * xe_sriov_pf_sysfs_init() - Setup PF's SR-IOV sysfs tree.
-> + * @xe: the PF &xe_device to setup sysfs
+> + * xe_sriov_pf_provision_apply_vf_eq() - Change VF's execution quantum.
+> + * @xe: the PF &xe_device
+> + * @vfid: the VF identifier
+> + * @eq: execution quantum in [ms] to set
 > + *
-> + * This function will create additional nodes that will represent PF and VFs
-> + * devices, each populated with SR-IOV Xe specific attributes.
+> + * Change VF's execution quantum (EQ) provisioning on all tiles/GTs.
+> + *
+> + * This function can only be called on PF.
 > + *
 > + * Return: 0 on success or a negative error code on failure.
 > + */
-> +int xe_sriov_pf_sysfs_init(struct xe_device *xe)
+> +int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq)
 > +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +	int result = 0;
 > +	int err;
 > +
-> +	err = pf_setup_root(xe);
-> +	if (err)
-> +		return err;
+> +	for_each_gt(gt, xe, id) {
+> +		err = xe_gt_sriov_pf_config_set_exec_quantum(gt, vfid, eq);
+> +		result = result ?: err;
+> +	}
 > +
-> +	err = pf_setup_tree(xe);
-> +	if (err)
-> +		return err;
-> +
-> +	return 0;
+> +	return result;
 > +}
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
-> new file mode 100644
-> index 000000000000..1e6698cc29d3
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2025 Intel Corporation
+> +
+> +/**
+> + * xe_sriov_pf_provision_query_vf_eq() - Query VF's execution quantum.
+> + * @xe: the PF &xe_device
+> + * @vfid: the VF identifier
+> + * @eq: placeholder for the returned execution quantum in [ms]
+> + *
+> + * Query VF's execution quantum (EQ) provisioning from all tiles/GTs.
+> + * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
 > + */
+> +int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u32 *eq)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +	int count = 0;
+> +	u32 value;
 > +
-> +#ifndef _XE_SRIOV_PF_SYSFS_H_
-> +#define _XE_SRIOV_PF_SYSFS_H_
+> +	for_each_gt(gt, xe, id) {
+> +		value = xe_gt_sriov_pf_config_get_exec_quantum(gt, vfid);
+> +		if (!count++)
+> +			*eq = value;
+> +		else if (value != *eq)
+> +			return -EUCLEAN;
+> +	}
 > +
-> +struct xe_device;
+> +	return !count ? -ENODATA : 0;
+> +}
 > +
-> +int xe_sriov_pf_sysfs_init(struct xe_device *xe);
+> +/**
+> + * xe_sriov_pf_provision_apply_vf_pt() - Change VF's preemption timeout.
+> + * @xe: the PF &xe_device
+> + * @vfid: the VF identifier
+> + * @pt: preemption timeout in [us] to set
+> + *
+> + * Change VF's preemption timeout (PT) provisioning on all tiles/GTs.
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +	int result = 0;
+> +	int err;
 > +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-> index c753cd59aed2..b3cd9797194b 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
-> @@ -12,10 +12,15 @@
+> +	for_each_gt(gt, xe, id) {
+> +		err = xe_gt_sriov_pf_config_set_preempt_timeout(gt, vfid, pt);
+> +		result = result ?: err;
+> +	}
+> +
+> +	return result;
+> +}
+> +
+> +/**
+> + * xe_sriov_pf_provision_query_vf_pt() - Query VF's preemption timeout.
+> + * @xe: the PF &xe_device
+> + * @vfid: the VF identifier
+> + * @pt: placeholder for the returned preemption timeout in [us]
+> + *
+> + * Query VF's preemption timeout (PT) provisioning from all tiles/GTs.
+> + * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
+> + *
+> + * This function can only be called on PF.
+> + *
+> + * Return: 0 on success or a negative error code on failure.
+> + */
+> +int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt)
+> +{
+> +	struct xe_gt *gt;
+> +	unsigned int id;
+> +	int count = 0;
+> +	u32 value;
+> +
+> +	for_each_gt(gt, xe, id) {
+> +		value = xe_gt_sriov_pf_config_get_preempt_timeout(gt, vfid);
+> +		if (!count++)
+> +			*pt = value;
+> +		else if (value != *pt)
+> +			return -EUCLEAN;
+> +	}
+> +
+> +	return !count ? -ENODATA : 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+> index cf3657a32e90..cb81b5880930 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+> @@ -6,10 +6,18 @@
+>  #ifndef _XE_SRIOV_PF_PROVISION_H_
+>  #define _XE_SRIOV_PF_PROVISION_H_
+>  
+> +#include <linux/types.h>
+> +
 >  #include "xe_sriov_pf_provision_types.h"
->  #include "xe_sriov_pf_service_types.h"
 >  
-> +struct kobject;
-> +
->  /**
->   * struct xe_sriov_metadata - per-VF device level metadata
->   */
->  struct xe_sriov_metadata {
-> +	/** @kobj: kobject representing VF in PF's SR-IOV sysfs tree. */
-> +	struct kobject *kobj;
-> +
->  	/** @version: negotiated VF/PF ABI version */
->  	struct xe_sriov_pf_service_version version;
->  };
-> @@ -42,6 +47,12 @@ struct xe_device_pf {
->  	/** @service: device level service data. */
->  	struct xe_sriov_pf_service service;
+>  struct xe_device;
 >  
-> +	/** @sysfs: device level sysfs data. */
-> +	struct {
-> +		/** @sysfs.root: the root kobject for all SR-IOV entries in sysfs. */
-> +		struct kobject *root;
-> +	} sysfs;
+> +int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq);
+> +int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u32 *eq);
 > +
->  	/** @vfs: metadata for all VFs. */
->  	struct xe_sriov_metadata *vfs;
+> +int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt);
+> +int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt);
+> +
+>  int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
+>  int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+> index 15072779be7d..d5ad7aa7a899 100644
+> --- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+> @@ -13,6 +13,7 @@
+>  #include "xe_sriov.h"
+>  #include "xe_sriov_pf.h"
+>  #include "xe_sriov_pf_helpers.h"
+> +#include "xe_sriov_pf_provision.h"
+>  #include "xe_sriov_pf_sysfs.h"
+>  #include "xe_sriov_printk.h"
+>  
+> @@ -23,10 +24,14 @@
+>   *     ├── ...
+>   *     ├── pf/
+>   *     │   ├── ...
+> - *     │   └── ...
+> + *     │   └── profile
+> + *     │       ├── exec_quantum_ms
+> + *     │       └── preempt_timeout_us
+>   *     ├── vf1/
+>   *     │   ├── ...
+> - *     │   └── ...
+> + *     │   └── profile
+> + *     │       ├── exec_quantum_ms
+> + *     │       └── preempt_timeout_us
+>   *     ├── vf2/
+>   *     :
+>   *     └── vfN/
+> @@ -85,7 +90,52 @@ static const struct attribute_group *xe_sriov_dev_attr_groups[] = {
+>  
+>  /* and VF-level attributes go here */
+>  
+> +#define DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(NAME, ITEM, TYPE, FORMAT)		\
+> +static ssize_t xe_sriov_vf_attr_##NAME##_show(struct xe_device *xe, unsigned int vfid,	\
+> +					      char *buf)				\
+> +{											\
+> +	TYPE value = 0;									\
+> +	int err;									\
+> +											\
+> +	err = xe_sriov_pf_provision_query_vf_##ITEM(xe, vfid, &value);			\
+> +	if (err)									\
+> +		return err;								\
+> +											\
+> +	return sysfs_emit(buf, FORMAT, value);						\
+> +}											\
+> +											\
+> +static ssize_t xe_sriov_vf_attr_##NAME##_store(struct xe_device *xe, unsigned int vfid,	\
+> +					       const char *buf, size_t count)		\
+> +{											\
+> +	TYPE value;									\
+> +	int err;									\
+> +											\
+> +	err = kstrto##TYPE(buf, 0, &value);						\
+> +	if (err)									\
+> +		return err;								\
+> +											\
+> +	err = xe_sriov_pf_provision_apply_vf_##ITEM(xe, vfid, value);			\
+> +	return err ?: count;								\
+> +}											\
+> +											\
+> +static XE_SRIOV_VF_ATTR(NAME)
+> +
+> +DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(exec_quantum_ms, eq, u32, "%u\n");
+> +DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(preempt_timeout_us, pt, u32, "%u\n");
+> +
+> +static struct attribute *profile_vf_attrs[] = {
+> +	&xe_sriov_vf_attr_exec_quantum_ms.attr,
+> +	&xe_sriov_vf_attr_preempt_timeout_us.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group profile_vf_attr_group = {
+> +	.name = "profile",
+> +	.attrs = profile_vf_attrs,
+> +};
+> +
+>  static const struct attribute_group *xe_sriov_vf_attr_groups[] = {
+> +	&profile_vf_attr_group,
+>  	NULL
 >  };
+>  
 > -- 
 > 2.47.1
 > 
