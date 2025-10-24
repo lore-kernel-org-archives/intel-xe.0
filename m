@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61612CCF9E3
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 13:18:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509D2CCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 13:19:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA9F10EA87;
-	Fri, 24 Oct 2025 13:18:42 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D10FE10EA86;
- Fri, 24 Oct 2025 13:18:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8924499023507727275=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC1410EA86;
+	Fri, 24 Oct 2025 13:19:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G64olu+q";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04F5110EA86
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 13:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761311967; x=1792847967;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NESMVRSx2n58Hlh476Qh4Wsvthyiruw2MEmx02W7uYQ=;
+ b=G64olu+qnJuxC6t+w7wWpjiQ95RkoT/RBT5+ejvo6POlbdCCfFZqgb1y
+ rWQV/hNy+Bo1MLzVQp/DyMFBsLAJa/nBfawn8tWc4fw7i+gNJc6VvSrJY
+ BvSPL9xpDw6HcP4e7NiRBmz/XWGdvpRMUjlXoNDhk1ZT39AlKVGH1swKx
+ 5TqWNVNxagKf5FekdWoOQhtXTu3N1f6jyfLEYwTVCcuePM21nnEwb3IOM
+ Olx/oUdvzVZcFTXfFJXnfmO9ypyH9KUlNArPF2MLBwJ2vOix0wwQNzOdQ
+ FTubPWtQhDMTiWpl81GNTAzbPtTbD+qO4S7rk4RyWfg+GUp1vb6tpJURg w==;
+X-CSE-ConnectionGUID: hXAGUrlHTVyH5qDSbbn19g==
+X-CSE-MsgGUID: ooN8KxFeROKKKu5QCKca0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74613276"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="74613276"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 06:19:27 -0700
+X-CSE-ConnectionGUID: 429DfEUxT6ycbliPb+eGTg==
+X-CSE-MsgGUID: GTaC48Z0SgmtQ4GJmlg7Uw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="185200723"
+Received: from labhost1.iind.intel.com ([10.190.230.69])
+ by fmviesa010.fm.intel.com with ESMTP; 24 Oct 2025 06:19:25 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v8 0/3] drm/xe/migrate: Atomicize CCS copy command setup
+Date: Fri, 24 Oct 2025 19:05:23 +0530
+Message-ID: <20251024133522.16970-5-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_AuxCCS_handling_and_render_?=
- =?utf-8?q?compression_modifiers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Oct 2025 13:18:40 -0000
-Message-ID: <176131192084.51928.14420577387847172504@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +61,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8924499023507727275==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The CCS copy command is a 5-dword sequence. If the vCPU halts during
+save/restore while this sequence is being programmed, partial writes may
+trigger page faults when saving IGPU CCS metadata. Use the VMOVDQU
+instruction to write the sequence atomically. Since VMOVDQU operates on
+256-bit chunks, update EMIT_COPY_CCS_DW to emit 8 dwords instead of 5
+dwords. Update emit_flush_invalidate() to use VMOVDQU operating	with
+128-bit chunks.
 
-== Series Details ==
+The MI_STORE_DATA_IMM instruction header is quad dword in size. If the
+vCPU halts during save/restore while this sequence is being programmed,
+partial writes may trigger page faults when saving IGPU CCS metadata.
+Update instruction header atomically.
 
-Series: AuxCCS handling and render compression modifiers
-URL   : https://patchwork.freedesktop.org/series/156472/
-State : success
+Clear the contents of the CCS read/write batch buffer, ensuring no page
+faults / GPU hang occur if migration happens midway.
 
-== Summary ==
+---
+V7 -> V8:
+- Updated commit title and message.
 
-CI Bug Log - changes from xe-3980-c840596036111afb71465977a49618cd19ca6e8b_BAT -> xe-pw-156472v1_BAT
-====================================================
+V6 -> V7:
+- Added description explaining why to use assembly instructions for
+atomicity.
+- Assert if DGFX tries to use memcpy_vmovdqu(). (Rodrigo)
+- Include <asm/cpufeature.h> though checkpatch complains. With
+<linux/cpufeature.h> KUnit is throwing errors.
 
-Summary
--------
+V5 -> V6:
+- Used xe_gt_assert() instead of xe_assert() (Matt B).
+- Use emit_atomic() function to write MI_STORE_DATA_IMM instruction
+(Matt B).
+- Fixed review comments (Rodrigo)
 
-  **SUCCESS**
+V4 -> V5:
+- Fixed review comments (Matt B)
 
-  No regressions found.
+V3 -> V4:
+- Fixed review comments (Wajdeczko)
+- Fix issues reported by patchworks.
 
-  
+V2 -> V3:
+- Added support for 128 bit and 256 bit instructions with memcpy_vmovdqu
+- Updated emit_flush_invalidate() to use vmovdqu instruction.
 
-Participating hosts (13 -> 13)
-------------------------------
+V1 -> V2:
+- Use memcpy_vmovdqu only for x86 arch and for VF. Else use memcpy
+(Auld, Matthew)
+- Fix issues reported by patchworks.
 
-  No changes in participating hosts
+Satyanarayana K V P (3):
+  drm/xe/migrate: Use AVX instructions to prevent partial writes during
+    VF migration CCS batch buffer updates
+  drm/xe/migrate: Make emit_pte() header write atomic
+  drm/xe/vf: Clear CCS read/write buffers in atomic way
 
-Known issues
-------------
+ drivers/gpu/drm/xe/xe_migrate.c      | 262 ++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_migrate.h      |   3 +
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |   5 +-
+ 3 files changed, 245 insertions(+), 25 deletions(-)
 
-  Here are the changes found in xe-pw-156472v1_BAT that come from known issues:
+-- 
+2.51.0
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3980-c840596036111afb71465977a49618cd19ca6e8b/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3980-c840596036111afb71465977a49618cd19ca6e8b -> xe-pw-156472v1
-
-  IGT_8596: 8596
-  xe-3980-c840596036111afb71465977a49618cd19ca6e8b: c840596036111afb71465977a49618cd19ca6e8b
-  xe-pw-156472v1: 156472v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html
-
---===============8924499023507727275==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>AuxCCS handling and render compression modifiers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156472/">https://patchwork.freedesktop.org/series/156472/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3980-c840596036111afb71465977a49618cd19ca6e8b_BAT -&gt; xe-pw-156472v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156472v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3980-c840596036111afb71465977a49618cd19ca6e8b/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156472v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3980-c840596036111afb71465977a49618cd19ca6e8b -&gt; xe-pw-156472v1</li>
-</ul>
-<p>IGT_8596: 8596<br />
-  xe-3980-c840596036111afb71465977a49618cd19ca6e8b: c840596036111afb71465977a49618cd19ca6e8b<br />
-  xe-pw-156472v1: 156472v1</p>
-
-</body>
-</html>
-
---===============8924499023507727275==--
