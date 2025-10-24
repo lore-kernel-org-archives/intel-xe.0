@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 351ADCCD1A5
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 09:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52382CCF9E0
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 09:31:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A682E10EA0F;
-	Fri, 24 Oct 2025 09:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFBC10EA0A;
+	Fri, 24 Oct 2025 09:31:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JSaNw8rp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFWvMS7X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD8B10EA06;
- Fri, 24 Oct 2025 09:31:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34C7710EA0D;
+ Fri, 24 Oct 2025 09:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761298295; x=1792834295;
+ t=1761298298; x=1792834298;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=h5/WcHT/LJJRDhYulHgr/cIGME6ynkCdJKGFRG9zvB8=;
- b=JSaNw8rp3i20YPHsVbce/M1SXjAdCptQmQ8Scf8SrVaxr1Ru1jX7Vc7M
- 5xC9MME6Y8hNCETn2BpWW0VgDzJ82uCgUCCXXHhqLsxq/gDt+1l5IqeMA
- T7Zr6ek0v3nMTD9JLjICdtXwK24xKtohycjZ3ymheJAGMqpTwHAw+A0KC
- 8UdqutVAOk+1MAnvUrCZr1h+kOGt9nCf/QNrZmi8JSSI00c2dDc/2kdMT
- jtNl0ftQwK0fC/HhBjEL9kZI0kbGhoeut5uWEcNEa5dV7wMVo6EODra5Z
- B6O/N9LKA0K8617vENNJjH9FpTwV1U7agy2g6Iopz43BXvFehE3wqCG4I w==;
-X-CSE-ConnectionGUID: 4xa4AJZlTemwumySE7raYA==
-X-CSE-MsgGUID: G3rusRMbTbWJrFqevn158Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74823416"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="74823416"
+ bh=If6+MxNY/rJOUV5fZ/4KGDze+fQYJMK7v5QZ4GzVb0Y=;
+ b=jFWvMS7X/I6TUw2u/cJ4VbrK+oOc6Rz8vPR89YJy2ajCdBJBUVVL+J5b
+ amgpaoo7tEVQp/pjUEs8aU8cbZTx1EEzMhKEUH6CX2iwqkMCqNnDDLGLs
+ FCO/h/WTJ8NZDRH7VMvlabPanIh4Inm07HvZ4iCSmPWOV0eWfnenA/A/1
+ xqPB7pMxXPylbHjLRo1YfUv7MboXS7EdP0937ol+isxa78+9/5e+XN05g
+ Drr3VeJwFkB/rob+pNJ8LOqcEr9FpYWiBjxZvcv59+xQP7GfAO2y2pwjv
+ mUhP3TwG0H/10JzgNEQHT+fCmYpSG8oTuZb5k/7hVImTRTxH2XWXRQskq A==;
+X-CSE-ConnectionGUID: Skv4XKltQDeonfZOf565MQ==
+X-CSE-MsgGUID: 9klzxs4JSZGn3M7dEWcDhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="66094775"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="66094775"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 02:31:35 -0700
-X-CSE-ConnectionGUID: mw01Xs+3SH6D0FYgjbXweg==
-X-CSE-MsgGUID: LWuuB55pRsKOoyB73dhEBQ==
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 02:31:38 -0700
+X-CSE-ConnectionGUID: Bny9dFoiQAyKd3otUXy93Q==
+X-CSE-MsgGUID: 8dqcICT+Q3ua/KbZAHCqCg==
 X-ExtLoop1: 1
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl3..)
  ([10.245.245.40])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 02:31:32 -0700
+ 24 Oct 2025 02:31:36 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v2 1/6] drm/{i915,
- xe}/display: pass parent interface to display probe
-Date: Fri, 24 Oct 2025 12:31:08 +0300
-Message-ID: <20251024093113.1119070-2-jouni.hogander@intel.com>
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 3/6] drm/i915/display: Runtime pm wrappers for display
+ parent interface
+Date: Fri, 24 Oct 2025 12:31:10 +0300
+Message-ID: <20251024093113.1119070-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251024093113.1119070-1-jouni.hogander@intel.com>
 References: <20251024093113.1119070-1-jouni.hogander@intel.com>
@@ -74,282 +71,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jani Nikula <jani.nikula@intel.com>
+Implement runtime pm wrappers for i915 driver and add them into display
+parent interface.
 
-Let's gradually start calling i915 and xe parent, or core, drivers from
-display via function pointers passed at display probe.
+v2:
+  - move i915 display rpm interface implementation to intel_runtime_pm.c
+  - rename intel_display as i915_display
 
-Going forward, the struct intel_display_parent_interface is expected to
-include const pointers to sub-structs by functionality, for example:
-
-struct intel_display_rpm {
-	struct ref_tracker *(*get)(struct drm_device *drm);
-	/* ... */
-};
-
-struct intel_display_parent_interface {
-	/* ... */
-	const struct intel_display_rpm *rpm;
-};
-
-This is a baby step towards not building display as part of both i915
-and xe drivers, but rather making it an independent driver interfacing
-with the two.
-
-v2: unrelated include removal dropped
-
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |  4 +++
- .../drm/i915/display/intel_display_device.c   |  5 +++-
- .../drm/i915/display/intel_display_device.h   |  4 ++-
- drivers/gpu/drm/i915/display/intel_fb.c       |  1 +
- .../drm/i915/display/skl_universal_plane.c    |  1 +
- drivers/gpu/drm/i915/i915_driver.c            | 11 +++++++-
- drivers/gpu/drm/i915/i915_driver.h            |  2 ++
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  4 ++-
- drivers/gpu/drm/xe/display/xe_display.c       |  6 ++++-
- include/drm/intel/display_parent_interface.h  | 26 +++++++++++++++++++
- 10 files changed, 59 insertions(+), 5 deletions(-)
- create mode 100644 include/drm/intel/display_parent_interface.h
+ drivers/gpu/drm/i915/i915_driver.c      |  1 +
+ drivers/gpu/drm/i915/intel_runtime_pm.c | 77 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_runtime_pm.h |  3 +
+ 3 files changed, 81 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 32664098b4078..893279be84091 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -41,6 +41,7 @@ struct intel_cdclk_vals;
- struct intel_color_funcs;
- struct intel_crtc;
- struct intel_crtc_state;
-+struct intel_display_parent_interface;
- struct intel_dmc;
- struct intel_dpll_global_funcs;
- struct intel_dpll_mgr;
-@@ -291,6 +292,9 @@ struct intel_display {
- 	/* Intel PCH: where the south display engine lives */
- 	enum intel_pch pch_type;
- 
-+	/* Parent, or core, driver functions exposed to display */
-+	const struct intel_display_parent_interface *parent;
-+
- 	/* Display functions */
- 	struct {
- 		/* Top level crtc-ish functions */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index f3f1f25b0f383..328447a5e5e8c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1647,7 +1647,8 @@ static void display_platforms_or(struct intel_display_platforms *dst,
- 	bitmap_or(dst->bitmap, dst->bitmap, src->bitmap, display_platforms_num_bits());
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index b295326eb4331..c97b767719176 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -740,6 +740,7 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
  }
  
--struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
-+struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
-+						 const struct intel_display_parent_interface *parent)
- {
- 	struct intel_display *display;
- 	const struct intel_display_device_info *info;
-@@ -1663,6 +1664,8 @@ struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
- 	/* Add drm device backpointer as early as possible. */
- 	display->drm = pci_get_drvdata(pdev);
+ static const struct intel_display_parent_interface parent = {
++	.rpm = &i915_display_rpm_interface,
+ };
  
-+	display->parent = parent;
-+
- 	intel_display_params_copy(&display->params);
+ const struct intel_display_parent_interface *i915_driver_parent_interface(void)
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 7ce3e6de0c197..d11c2814b787b 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -29,6 +29,7 @@
+ #include <linux/pm_runtime.h>
  
- 	if (has_no_display(pdev)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 8fdb8a0a42821..a009082e3107b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -13,6 +13,7 @@
- 
- struct drm_printer;
- struct intel_display;
-+struct intel_display_parent_interface;
- struct pci_dev;
- 
- /*
-@@ -312,7 +313,8 @@ struct intel_display_device_info {
- 
- bool intel_display_device_present(struct intel_display *display);
- bool intel_display_device_enabled(struct intel_display *display);
--struct intel_display *intel_display_device_probe(struct pci_dev *pdev);
-+struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
-+						 const struct intel_display_parent_interface *parent);
- void intel_display_device_remove(struct intel_display *display);
- void intel_display_device_info_runtime_init(struct intel_display *display);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 6ade38198f396..f4512fb38a778 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_blend.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_modeset_helper.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "i915_utils.h"
- #include "intel_bo.h"
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 765d288cce2b0..c70bde90b9a9e 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_fourcc.h>
  #include <drm/drm_print.h>
 +#include <drm/intel/display_parent_interface.h>
  
- #include "pxp/intel_pxp.h"
- #include "i915_utils.h"
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index e19a08893b998..b295326eb4331 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -47,6 +47,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/intel/display_member.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "display/i9xx_display_sr.h"
- #include "display/intel_bw.h"
-@@ -738,6 +739,14 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 			 "DRM_I915_DEBUG_RUNTIME_PM enabled\n");
+ #include "i915_drv.h"
+ #include "i915_trace.h"
+@@ -177,6 +178,82 @@ static intel_wakeref_t __intel_runtime_pm_get(struct intel_runtime_pm *rpm,
+ 	return track_intel_runtime_pm_wakeref(rpm);
  }
  
-+static const struct intel_display_parent_interface parent = {
-+};
-+
-+const struct intel_display_parent_interface *i915_driver_parent_interface(void)
++static struct intel_runtime_pm *drm_to_rpm(const struct drm_device *drm)
 +{
-+	return &parent;
++	struct drm_i915_private *i915 = to_i915(drm);
++
++	return &i915->runtime_pm;
 +}
 +
- /* Ensure drm and display members are placed properly. */
- INTEL_DISPLAY_MEMBER_STATIC_ASSERT(struct drm_i915_private, drm, display);
- 
-@@ -762,7 +771,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, match_info);
- 
--	display = intel_display_device_probe(pdev);
-+	display = intel_display_device_probe(pdev, &parent);
- 	if (IS_ERR(display))
- 		return ERR_CAST(display);
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
-index 1e95ecb2a163f..9551519ab4297 100644
---- a/drivers/gpu/drm/i915/i915_driver.h
-+++ b/drivers/gpu/drm/i915/i915_driver.h
-@@ -12,6 +12,7 @@ struct pci_dev;
- struct pci_device_id;
- struct drm_i915_private;
- struct drm_printer;
-+struct intel_display_parent_interface;
- 
- #define DRIVER_NAME		"i915"
- #define DRIVER_DESC		"Intel Graphics"
-@@ -24,6 +25,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915);
- 
- int i915_driver_resume_switcheroo(struct drm_i915_private *i915);
- int i915_driver_suspend_switcheroo(struct drm_i915_private *i915, pm_message_t state);
-+const struct intel_display_parent_interface *i915_driver_parent_interface(void);
- 
- void
- i915_print_iommu_status(struct drm_i915_private *i915, struct drm_printer *p);
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index fb8751bd5df0a..b59626c4994cb 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -33,6 +33,7 @@
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_requests.h"
- #include "gt/mock_engine.h"
-+#include "i915_driver.h"
- #include "intel_memory_region.h"
- #include "intel_region_ttm.h"
- 
-@@ -183,7 +184,8 @@ struct drm_i915_private *mock_gem_device(void)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, &mock_info);
- 
--	display = intel_display_device_probe(pdev);
-+	/* FIXME: Can we run selftests using a mock device without display? */
-+	display = intel_display_device_probe(pdev, i915_driver_parent_interface());
- 	if (IS_ERR(display))
- 		goto err_device;
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 5a02754d0610e..0e38c96eb6def 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -14,6 +14,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/intel/display_member.h>
-+#include <drm/intel/display_parent_interface.h>
- #include <uapi/drm/xe_drm.h>
- 
- #include "soc/intel_dram.h"
-@@ -514,6 +515,9 @@ static void display_device_remove(struct drm_device *dev, void *arg)
- 	intel_display_device_remove(display);
- }
- 
-+static const struct intel_display_parent_interface parent = {
++static struct ref_tracker *i915_display_rpm_get(const struct drm_device *drm)
++{
++	return intel_runtime_pm_get(drm_to_rpm(drm));
++}
++
++static struct ref_tracker *i915_display_rpm_get_raw(const struct drm_device *drm)
++{
++	return intel_runtime_pm_get_raw(drm_to_rpm(drm));
++}
++
++static struct ref_tracker *i915_display_rpm_get_if_in_use(const struct drm_device *drm)
++{
++	return intel_runtime_pm_get_if_in_use(drm_to_rpm(drm));
++}
++
++static struct ref_tracker *i915_display_rpm_get_noresume(const struct drm_device *drm)
++{
++	return intel_runtime_pm_get_noresume(drm_to_rpm(drm));
++}
++
++static void i915_display_rpm_put(const struct drm_device *drm, struct ref_tracker *wakeref)
++{
++	intel_runtime_pm_put(drm_to_rpm(drm), wakeref);
++}
++
++static void i915_display_rpm_put_raw(const struct drm_device *drm, struct ref_tracker *wakeref)
++{
++	intel_runtime_pm_put_raw(drm_to_rpm(drm), wakeref);
++}
++
++static void i915_display_rpm_put_unchecked(const struct drm_device *drm)
++{
++	intel_runtime_pm_put_unchecked(drm_to_rpm(drm));
++}
++
++static bool i915_display_rpm_suspended(const struct drm_device *drm)
++{
++	return intel_runtime_pm_suspended(drm_to_rpm(drm));
++}
++
++static void i915_display_rpm_assert_held(const struct drm_device *drm)
++{
++	assert_rpm_wakelock_held(drm_to_rpm(drm));
++}
++
++static void i915_display_rpm_assert_block(const struct drm_device *drm)
++{
++	disable_rpm_wakeref_asserts(drm_to_rpm(drm));
++}
++
++static void i915_display_rpm_assert_unblock(const struct drm_device *drm)
++{
++	enable_rpm_wakeref_asserts(drm_to_rpm(drm));
++}
++
++const struct intel_display_rpm_interface i915_display_rpm_interface = {
++	.get = i915_display_rpm_get,
++	.get_raw = i915_display_rpm_get_raw,
++	.get_if_in_use = i915_display_rpm_get_if_in_use,
++	.get_noresume = i915_display_rpm_get_noresume,
++	.put = i915_display_rpm_put,
++	.put_raw = i915_display_rpm_put_raw,
++	.put_unchecked = i915_display_rpm_put_unchecked,
++	.suspended = i915_display_rpm_suspended,
++	.assert_held = i915_display_rpm_assert_held,
++	.assert_block = i915_display_rpm_assert_block,
++	.assert_unblock = i915_display_rpm_assert_unblock
 +};
 +
  /**
-  * xe_display_probe - probe display and create display struct
-  * @xe: XE device instance
-@@ -534,7 +538,7 @@ int xe_display_probe(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		goto no_display;
+  * intel_runtime_pm_get_raw - grab a raw runtime pm reference
+  * @rpm: the intel_runtime_pm structure
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+index 7428bd8fa67f4..ed6c43b17f9ae 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.h
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+@@ -14,6 +14,7 @@
+ struct device;
+ struct drm_i915_private;
+ struct drm_printer;
++struct intel_display_rpm_interface;
  
--	display = intel_display_device_probe(pdev);
-+	display = intel_display_device_probe(pdev, &parent);
- 	if (IS_ERR(display))
- 		return PTR_ERR(display);
+ /*
+  * This struct helps tracking the state needed for runtime PM, which puts the
+@@ -226,4 +227,6 @@ static inline void print_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
+ }
+ #endif
  
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-new file mode 100644
-index 0000000000000..28c976815327a
---- /dev/null
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation x*/
++extern const struct intel_display_rpm_interface i915_display_rpm_interface;
 +
-+#ifndef __DISPLAY_PARENT_INTERFACE_H__
-+#define __DISPLAY_PARENT_INTERFACE_H__
-+
-+#include <linux/types.h>
-+
-+struct drm_device;
-+
-+/**
-+ * struct intel_display_parent_interface - services parent driver provides to display
-+ *
-+ * The parent, or core, driver provides a pointer to this structure to display
-+ * driver when calling intel_display_device_probe(). The display driver uses it
-+ * to access services provided by the parent driver. The structure may contain
-+ * sub-struct pointers to group function pointers by functionality.
-+ *
-+ * All function and sub-struct pointers must be initialized and callable unless
-+ * explicitly marked as "optional" below. The display driver will only NULL
-+ * check the optional pointers.
-+ */
-+struct intel_display_parent_interface {
-+};
-+
-+#endif
+ #endif /* __INTEL_RUNTIME_PM_H__ */
 -- 
 2.43.0
 
