@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6F3DCCD1A5
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05FB4CCF9E3
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:47:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4F910EA55;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E51510EA56;
 	Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bFRni8MY";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="sA4gRrfn";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6014810E0E6
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BEB410E0E6
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,23 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fMyJ28GRYTKbhUohTZ3HXWmS5z5/iy6Sj8vXxmt1a5k=; b=bFRni8MYmJB0t96J51H/9YLXdx
- L2fNRC/6ziTxRSc3wTy73WX3pZKuuMK1W/a9/CoSi8aY1gyHROxL8R3XD7KwSKgf1OoiBSO7jh1gy
- j0QsqEleVuLsSzWX/l3Pse2oK2yl3wMIQmP4Ry1E2sYOqjBzba9xM4r2FhdZlY709v9GSbpUHgRZp
- BXbAFZ/h88rQemtnorf9dWPGamM+zk4XqXZYy+yFb5h9FAphYtv7f46DmhfdJ+u6oySlXp0cvAEmA
- EkY3prnI4C27RDEVAfGdMFxO8IC4D5rJf3rk10eRCjpOmkJuHhb1wvHZ5s7uPRSfTR9IyJ0yJvtUm
- FKHF3h7A==;
+ bh=K0lq6iu8T9br07IYs5goxJqt50RBGe2ydLqwxizXw9Q=; b=sA4gRrfnEBolxOAw3lmO8pxksq
+ tQr93V6yMDXqhxuGcH/BTTX1Umg2s19+tVoH4ygv2vtCjGVZcC3v6jUIaSvXBSkM7/WYufdKSTLIJ
+ yppMUf40OD3oVN4R9GpwkzT9hHV3t/bZbb44h3zaswwDHLj4XgR/iYg80TjmaaBb9rCXuDiqwYTbL
+ fvexNlEAeMi9zWSCsgZC9MsWBmAlN4qq/v62xTvxD7mx+ROEHxJJgQBgtT60QwBwYMAxtOvlpUHnz
+ kGF9sphl7PsIDm097hpxjH6Vs7oyXIBy9eemD44USOqSlirvz+6X7CkckB/32lwdw9c9M6qj+0ZUo
+ Tb9NFlGQ==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vCFKa-00EidM-Ml; Fri, 24 Oct 2025 12:47:36 +0200
+ id 1vCFKb-00EidS-Du; Fri, 24 Oct 2025 12:47:37 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v14 09/13] drm/xe: Flush GGTT writes after populating DPT
-Date: Fri, 24 Oct 2025 11:47:22 +0100
-Message-ID: <20251024104727.74886-10-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH v14 10/13] drm/xe: Handle DPT in system memory
+Date: Fri, 24 Oct 2025 11:47:23 +0100
+Message-ID: <20251024104727.74886-11-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
 References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
@@ -59,94 +59,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
-
-I915 has established that on modern platforms a small flush and delay is
-required for those writes to reliably land so lets add the same logic
-(simplified by removing impossible platforms) to xe as well.
-
-v2:
- * Do it only for system memory buffers.
+If DPT is allocated from system memory it will be created in the default
+write-back cached mode. This means we need to flush it after populating
+otherwise nothing works.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b18d15cc3c53..eb21eeae9d17 100644
+index eb21eeae9d17..af691eee398a 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -12,9 +12,11 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
-+#include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_vram_types.h"
+@@ -3,6 +3,7 @@
+  * Copyright © 2021 Intel Corporation
+  */
  
-@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
- }
++#include <drm/drm_cache.h>
+ #include <drm/ttm/ttm_bo.h>
  
-+static void gt_flush_ggtt_writes(struct xe_gt *gt)
-+{
-+	if (!gt)
-+		return;
-+
-+	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
-+}
-+
-+static void ggtt_flush_writes(struct xe_ggtt *ggtt)
-+{
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+
-+	/*
-+	 * No actual flushing is required for the GTT write domain for reads
-+	 * from the GTT domain. Writes to it "immediately" go to main memory
-+	 * as far as we know, so there's no chipset flush. It also doesn't
-+	 * land in the GPU render cache.
-+	 *
-+	 * However, we do have to enforce the order so that all writes through
-+	 * the GTT land before any writes to the device, such as updates to
-+	 * the GATT itself.
-+	 *
-+	 * We also have to wait a bit for the writes to land from the GTT.
-+	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
-+	 * timing. This issue has only been observed when switching quickly
-+	 * between GTT writes and CPU reads from inside the kernel on recent hw,
-+	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
-+	 * system agents we cannot reproduce this behaviour, until Cannonlake
-+	 * that was!).
-+	 */
-+
-+	wmb();
-+
-+	if (xe_pm_runtime_get_if_active(xe)) {
-+		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
-+		gt_flush_ggtt_writes(ggtt->tile->media_gt);
-+		xe_pm_runtime_put(xe);
-+	}
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 					  rot_info->plane[i].dst_stride);
- 	}
+ #include "i915_vma.h"
+@@ -206,6 +207,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
  
-+	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
-+		ggtt_flush_writes(tile0->mem.ggtt);
-+
+ 	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
+ 		ggtt_flush_writes(tile0->mem.ggtt);
++	else if (!xe_bo_is_vram(dpt) && !xe_bo_is_stolen(dpt))
++		drm_clflush_virt_range(dpt->vmap.vaddr, dpt_size);
+ 
  	vma->dpt = dpt;
  	vma->node = dpt->ggtt_node[tile0->id];
- 
 -- 
 2.48.0
 
