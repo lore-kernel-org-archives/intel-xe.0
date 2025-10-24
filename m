@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 807F7CCD1A5
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 09:55:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6252ECCD1A5
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:07:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF5210EA17;
-	Fri, 24 Oct 2025 09:55:05 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E6A10EA0C;
- Fri, 24 Oct 2025 09:55:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC8E10EA06;
+	Fri, 24 Oct 2025 10:07:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHajUH6F";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F34A10EA06;
+ Fri, 24 Oct 2025 10:07:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761300439; x=1792836439;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NOhA75w/aLyB8xojAyDLOfEhiCpyR30iq5n9J3JmVTg=;
+ b=bHajUH6FqsIl1Oq4OmGqI1Brx8Gh8Aki71kBc4ukmD+OeuIrZsynL58U
+ /jdSS1cUrB/RE6JJRakymRz3PTaUvAySlZ/mToa3X05f85nXaJkGX9iLS
+ iPjkfN0BS4cZ08bcF2rkejvPoeXkuV9aB93Sr0KJmrYJny0GMgfeRHOFm
+ Da1qxKmVKzD6Thlzmr3HzCo+X1o9tYL8EDOhgKuSx0KuMdyxjO/FPttJo
+ VAXil0bxDhJUkCfXPAQa0P4dKKo70ekKXEerPCsMW5mbtaM+QqqQdE3gQ
+ CWmr1WC6wQ7kXC9zwGHo5at4Vk2+VEwJw9CpxCOS7ZT0en0aRvHVJa89W w==;
+X-CSE-ConnectionGUID: 3KyXEKAKSa25l0/aMruBJA==
+X-CSE-MsgGUID: nuUWkkFqQPex76UVxsx9/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63372086"
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208,223";a="63372086"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2025 03:07:19 -0700
+X-CSE-ConnectionGUID: dWQK8MHeTRa1Qwn7J+6wGg==
+X-CSE-MsgGUID: sen3HsiTTc6eOAzbqRiiXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
+ d="scan'208,223";a="208039088"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa002.fm.intel.com with ESMTP; 24 Oct 2025 03:07:16 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
+ gustavo.sousa@intel.com, lucas.demarchi@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 00/26] Enable LT PHY
+Date: Fri, 24 Oct 2025 15:36:46 +0530
+Message-Id: <20251024100712.3776261-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Use_display_parent_inter?=
- =?utf-8?q?face_for_runtime_pm_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Oct 2025 09:55:03 -0000
-Message-ID: <176129970351.50821.3181249154421493221@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251024093113.1119070-1-jouni.hogander@intel.com>
-In-Reply-To: <20251024093113.1119070-1-jouni.hogander@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,111 +64,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From Xe3p we move on to LT PHY from CX0 PHY. This series implements
+all the required enable/disable sequences, DP/HDMI PLL state calculation
+using tables, HDMI Algorithm to calculate PLL state and the reverse Algo
+where we use the state to calculate the portclock, new Vswing tables and
+programming required to get everything up and running.
 
-Series: Use display parent interface for runtime pm (rev2)
-URL   : https://patchwork.freedesktop.org/series/156308/
-State : warning
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-== Summary ==
+Suraj Kandpal (26):
+  drm/i915/ltphy: Add LT Phy related VDR and Pipe Registers
+  drm/i915/cx0: Change register bit naming for powerdown values
+  drm/i915/ltphy: Phy lane reset for LT Phy
+  drm/i915/cx0: Move the HDMI FRL function to intel_hdmi
+  drm/i915/ltphy: Program sequence for PORT_CLOCK_CTL for LT Phy
+  drm/i915/ltphy: Add a wrapper for LT Phy powerdown change sequence
+  drm/i915/ltphy: Read PHY_VDR_0_CONFIG register
+  drm/i915/ltphy: Add LT Phy Programming recipe tables
+  drm/i915/ltphy: Program the VDR PLL registers for LT PHY
+  drm/i915/ltphy: Update the ltpll config table value for eDP
+  drm/i915/ltphy: Enable SSC during port clock programming
+  drm/i915/ltphy: Add function to calculate LT PHY port clock
+  drm/i915/ltphy: Program the P2P Transaction flow for LT Phy
+  drm/i915/ltphy: Program the rest of the PORT_CLOCK_CTL steps
+  drm/i915/ltphy: Program the rest of the LT Phy Enable sequence
+  drm/i915/ltphy: Program LT Phy Non-TBT PLL disable sequence
+  drm/i915/ltphy: Hook up LT Phy Enable & Disable sequences
+  drm/i915/ddi: Define LT Phy Swing tables
+  drm/i915/ltphy: Program LT Phy Voltage Swing
+  drm/i915/ltphy: Enable/Disable Tx after Non TBT Enable sequence
+  drm/i915/ltphy: Define the LT Phy state compare function
+  drm/i915/ltphy: Define function to readout LT Phy PLL state
+  drm/i915/ltphy: Define LT PHY PLL state verify function
+  drm/i915/display: Aux Enable and Display powerwell timeouts
+  drm/i915/ltphy: Modify the step that need to be skipped
+  drm/i915/ltphy: Implement HDMI Algo for Pll state
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast c840596036111afb71465977a49618cd19ca6e8b
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2058:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_display_types.h:2071:24: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file:
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file:
-+drivers/gpu/drm/i915/gt/intel_reset.c:1569:12: warning: context imbalance in '_intel_gt_reset_lock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_sseu.c:598:17: error: too long token expansion
-+drivers/gpu/drm/i915/i915_active.c:1062:16: warning: context imbalance in '__i915_active_fence_set' - different lock contexts for basic block
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    expected struct list_head const *list
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    got struct list_head [noderef] __rcu *pos
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9:    struct list_head [noderef] __rcu *
-+drivers/gpu/drm/i915/i915_drm_client.c:92:9: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_gpu_error.c:692:3: warning: symbol 'guc_hw_reg_state' was not declared. Should it be static?
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:465:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:473:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:478:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:516:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:524:16: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:529:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:573:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:576:15: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:580:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/i915_irq.c:587:9: warning: unreplaced symbol '<noident>'
-+drivers/gpu/drm/i915/intel_uncore.c:1929:1: warning: context imbalance in 'fwtable_read8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1930:1: warning: context imbalance in 'fwtable_read16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1931:1: warning: context imbalance in 'fwtable_read32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1932:1: warning: context imbalance in 'fwtable_read64' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1997:1: warning: context imbalance in 'gen6_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1998:1: warning: context imbalance in 'gen6_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:1999:1: warning: context imbalance in 'gen6_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2019:1: warning: context imbalance in 'fwtable_write8' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2020:1: warning: context imbalance in 'fwtable_write16' - unexpected unlock
-+drivers/gpu/drm/i915/intel_uncore.c:2021:1: warning: context imbalance in 'fwtable_write32' - unexpected unlock
-+drivers/gpu/drm/i915/intel_wakeref.c:146:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
+ drivers/gpu/drm/i915/Makefile                 |    1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   77 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   22 +
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   15 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   34 +-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |   81 +-
+ .../drm/i915/display/intel_ddi_buf_trans.h    |    9 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   33 +-
+ .../i915/display/intel_display_power_well.c   |   22 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |   31 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   11 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   14 +
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |    1 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 2299 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   47 +
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |   75 +
+ .../drm/i915/display/intel_modeset_verify.c   |    2 +
+ drivers/gpu/drm/xe/Makefile                   |    1 +
+ 18 files changed, 2714 insertions(+), 61 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.34.1
 
