@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B203CCD1A5
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 09:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 062DBCCD1A5
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 09:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D04D810EA06;
-	Fri, 24 Oct 2025 09:31:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lF8vE9CJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17B5F10EA13;
- Fri, 24 Oct 2025 09:31:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761298303; x=1792834303;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0wG0sPddA7faNBPhxOZPio6gi1uCLN5KK3UOY7Aeug0=;
- b=lF8vE9CJKzgSpMRhsEp19ZQUkCDg19WvRGmWEbAdr4aJyTdu+UiZifGM
- b6LKm8qThZ90/2337oba9LYkfuAzfh1EcIG8BsJoRDINfgrjRJIWElYiD
- EapRUeV/2pJE7Tm8f5qiJ9/r6ern/kVgPcGPg102GxlBZddfBBOx+nCZ1
- SHUC69+Fcafsp+WCcn87fkFtchbrRKb2IRwCRQa92OzFMgf3zOferGWRC
- +wS2AxQ6/bXIV9CD02nEqRLNPmuSj3DGyQZIq8HE+a74SoqtgCqJpNtdI
- 7rjblsXKeF6FX+X9dYYW9p20PYk3VeUJRT98g5jO/SBp7va7JvuBz/y8h w==;
-X-CSE-ConnectionGUID: 9wP1j/yUT6SZpFst+wIbfw==
-X-CSE-MsgGUID: 0MIEP0XdT7SYm0fWOjN4iQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63384367"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; d="scan'208";a="63384367"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 02:31:42 -0700
-X-CSE-ConnectionGUID: gPjgDLiwQxWHpQ0e3jIS0w==
-X-CSE-MsgGUID: eDqBRqvBRJerTRhkYe5i4Q==
-X-ExtLoop1: 1
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl3..)
- ([10.245.245.40])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2025 02:31:41 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 6/6] drm/xe/display: Use display parent interface for xe
- runtime pm
-Date: Fri, 24 Oct 2025 12:31:13 +0300
-Message-ID: <20251024093113.1119070-7-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251024093113.1119070-1-jouni.hogander@intel.com>
-References: <20251024093113.1119070-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C8710EA15;
+	Fri, 24 Oct 2025 09:38:23 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8517210EA0F;
+ Fri, 24 Oct 2025 09:38:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_display_parent_interf?=
+ =?utf-8?q?ace_for_runtime_pm_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Oct 2025 09:38:22 -0000
+Message-ID: <176129870254.50995.13992183120672986019@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251024093113.1119070-1-jouni.hogander@intel.com>
+In-Reply-To: <20251024093113.1119070-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,107 +36,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start using display parent interface for xe runtime pm.
+== Series Details ==
 
-v2: keep xe_display_rpm.c
+Series: Use display parent interface for runtime pm (rev2)
+URL   : https://patchwork.freedesktop.org/series/156308/
+State : warning
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/xe/Makefile                 |  1 +
- drivers/gpu/drm/xe/display/xe_display_rpm.c | 65 ---------------------
- 2 files changed, 1 insertion(+), 65 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 82c6b3d296769..a39caed9f3d35 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -256,6 +256,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_display_power.o \
- 	i915-display/intel_display_power_map.o \
- 	i915-display/intel_display_power_well.o \
-+	i915-display/intel_display_rpm.o \
- 	i915-display/intel_display_trace.o \
- 	i915-display/intel_display_wa.o \
- 	i915-display/intel_dkl_phy.o \
-diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-index 72a351e26a008..977f1dafdde07 100644
---- a/drivers/gpu/drm/xe/display/xe_display_rpm.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-@@ -9,71 +9,6 @@
- #include "xe_device_types.h"
- #include "xe_pm.h"
- 
--static struct xe_device *display_to_xe(struct intel_display *display)
--{
--	return to_xe_device(display->drm);
--}
--
--struct ref_tracker *intel_display_rpm_get_raw(struct intel_display *display)
--{
--	return intel_display_rpm_get(display);
--}
--
--void intel_display_rpm_put_raw(struct intel_display *display, struct ref_tracker *wakeref)
--{
--	intel_display_rpm_put(display, wakeref);
--}
--
--struct ref_tracker *intel_display_rpm_get(struct intel_display *display)
--{
--	return xe_pm_runtime_resume_and_get(display_to_xe(display)) ? INTEL_WAKEREF_DEF : NULL;
--}
--
--struct ref_tracker *intel_display_rpm_get_if_in_use(struct intel_display *display)
--{
--	return xe_pm_runtime_get_if_in_use(display_to_xe(display)) ? INTEL_WAKEREF_DEF : NULL;
--}
--
--struct ref_tracker *intel_display_rpm_get_noresume(struct intel_display *display)
--{
--	xe_pm_runtime_get_noresume(display_to_xe(display));
--
--	return INTEL_WAKEREF_DEF;
--}
--
--void intel_display_rpm_put(struct intel_display *display, struct ref_tracker *wakeref)
--{
--	if (wakeref)
--		xe_pm_runtime_put(display_to_xe(display));
--}
--
--void intel_display_rpm_put_unchecked(struct intel_display *display)
--{
--	xe_pm_runtime_put(display_to_xe(display));
--}
--
--bool intel_display_rpm_suspended(struct intel_display *display)
--{
--	struct xe_device *xe = display_to_xe(display);
--
--	return pm_runtime_suspended(xe->drm.dev);
--}
--
--void assert_display_rpm_held(struct intel_display *display)
--{
--	/* FIXME */
--}
--
--void intel_display_rpm_assert_block(struct intel_display *display)
--{
--	/* FIXME */
--}
--
--void intel_display_rpm_assert_unblock(struct intel_display *display)
--{
--	/* FIXME */
--}
--
- static struct ref_tracker *xe_display_rpm_get(const struct drm_device *drm)
- {
- 	return xe_pm_runtime_resume_and_get(to_xe_device(drm)) ? INTEL_WAKEREF_DEF : NULL;
--- 
-2.43.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+8677d3b99d5fd579c143b22605d99121e2482e8a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 55d659e6c69c0c3becd412a64b551ff79f1832e7
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Fri Oct 24 12:31:13 2025 +0300
+
+    drm/xe/display: Use display parent interface for xe runtime pm
+    
+    Start using display parent interface for xe runtime pm.
+    
+    v2: keep xe_display_rpm.c
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch c840596036111afb71465977a49618cd19ca6e8b drm-intel
+e3dad29e1781 drm/{i915, xe}/display: pass parent interface to display probe
+-:71: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1651:
++						 const struct intel_display_parent_interface *parent)
+
+-:102: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#102: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:317:
++						 const struct intel_display_parent_interface *parent);
+
+-:240: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#240: 
+new file mode 100644
+
+total: 0 errors, 3 warnings, 0 checks, 172 lines checked
+9867b024bc59 drm/{i915, xe}/display: Add display runtime pm parent interface
+01492eb2bf16 drm/i915/display: Runtime pm wrappers for display parent interface
+22fc676daaf3 drm/xe/display: Runtime pm wrappers for display parent interface
+-:133: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#133: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 112 lines checked
+eadcab23d6fb drm/i915/display: Use display parent interface for i915 runtime pm
+55d659e6c69c drm/xe/display: Use display parent interface for xe runtime pm
+
 
