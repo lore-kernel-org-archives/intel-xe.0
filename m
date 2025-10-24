@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C57E5CCF9E0
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 649DBCCF9EC
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:47:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D32F10EA50;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71CC110EA5A;
 	Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="krUL1UxZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="WjtLnd5+";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D247B10E0E6
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42EF810E0E6
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=263vrCNeTRdF52xr0d6yMDxIer3ZTpCX/1troP02Hg4=; b=krUL1UxZ/yIQuuDfgW7UK+nsBf
- ZINk1D4WZBHiIXXXclodBB0WJ4dxgBuz2FHEVtSC347bI0Ag6U6Q4n4YsxhGsa0SO4JvCOm/SqSbL
- jxqkT5h2j83eTLAlfvgY+tP7HAmaQLN3fCM/ojCHcJn7CSfpleukdO2yQYexkAjcOB5+R8jJMbJIk
- m7F/x2gelTIZvDrSCTMt6NEBCzXZ/yqcSUPwVd45PUeEFJwSWVH83nJOY/QajWJJ9Z8Hto0yW+jED
- eVJew45a8Hi8Eg2t6uPuLq39aNOcVOQtrchIyrOnNIGTEZa9Jwk+iuhmFBWhG/7gpi3YLFQaMjgrs
- XB+0t6YA==;
+ bh=/Y1aWTt3mPIP9zMLV9pBBgbVyAodYrqGKGPzwsonOT0=; b=WjtLnd5+BMNgpnujXjei3xP+Qj
+ 64pgEtCH3p6UXccmQotYwPW9UsAyNA1gCwDn1rA1YDo91hLjBRKaYAEYcyQpuZmhdU9nPO2ux3bzM
+ jWE4+yRHf/f7u1sReWWbTEhvx9/SvIOJXutYu6hSyQa3d1ZQ3uHlJzPoZL3lhNAtv30fZgcjx1cZR
+ OKNQXQFQD0ca0i065Y3WGk1dggurp4W4YDnmg6oJzyTN3VCDWw5vO8RqOtl52AZCGOTS5Gh4IAZpN
+ zBBWcPjovjrWDbxmTYL2lbxRK1yGF2bbUR3pMN2vvmYjtOpSzx4DIGuux0N9bn8oMXQCUWkPet4pN
+ javvIpDA==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vCFKc-00Eide-5R; Fri, 24 Oct 2025 12:47:38 +0200
+ id 1vCFKY-00Eict-Gk; Fri, 24 Oct 2025 12:47:34 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com,
-	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v14 11/13] drm/xe: Do not use stolen memory for DPT on IGFX
- and AuxCCS
-Date: Fri, 24 Oct 2025 11:47:24 +0100
-Message-ID: <20251024104727.74886-12-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v14 06/13] drm/xe/xelp: Wait for AuxCCS invalidation to
+ complete
+Date: Fri, 24 Oct 2025 11:47:19 +0100
+Message-ID: <20251024104727.74886-7-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
 References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
@@ -59,58 +59,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With DPT in stolen memory there are occasional pipe crc IGT failures in
-tests such as kms_flip_tiling. Allocate a normal system memory object
-instead.
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index af691eee398a..8217abc3a20d 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -122,6 +122,20 @@ static void ggtt_flush_writes(struct xe_ggtt *ggtt)
- 	}
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..49d8ffd026d5 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -81,4 +81,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
+ 
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 4670af7cdf31..cbce4d435a50 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -56,7 +56,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
+ 
+ 	return i;
  }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
  
-+static bool try_dpt_stolen(const struct intel_framebuffer *fb, struct xe_bo *bo)
-+{
-+	/*
-+	 * XXX: DPT in stolen memory on IGFX platforms (at least Alderlake)
-+	 * suffers from occasional pipe crc IGT failures in tests such as
-+	 * kms_flip_tiling.
-+	 */
-+	if (intel_fb_is_ccs_modifier(fb->base.modifier) &&
-+	    !xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo))
-+		return false;
-+
-+	return true;
-+}
-+
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			       const struct i915_gtt_view *view,
- 			       struct i915_vma *vma,
-@@ -131,7 +145,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
--	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
-+	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt = ERR_PTR(-EINVAL);
- 	u32 dpt_size, size = bo->ttm.base.size;
+ struct xe_sched_job;
  
- 	if (view->type == I915_GTT_VIEW_NORMAL)
-@@ -152,7 +166,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   XE_BO_FLAG_GGTT |
- 						   XE_BO_FLAG_PAGETABLE,
- 						   alignment, false);
--	else
-+	else if (try_dpt_stolen(fb, bo))
- 		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
- 						   dpt_size,  ~0ull,
- 						   ttm_bo_type_kernel,
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.48.0
 
