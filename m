@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7087BCCD1AB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6F3DCCD1A5
 	for <intel-xe@archiver.kernel.org>; Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7E910E0E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4F910EA55;
 	Fri, 24 Oct 2025 10:47:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="k8iS2lQP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bFRni8MY";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E55F710EA29
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6014810E0E6
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Oct 2025 10:47:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=u+7OvAjmoaZ2t2zw22XA2z96/r8pADZhFne54qpPli4=; b=k8iS2lQPkSK3wwgu1hkU6FPIFg
- MJkHY5618SJNoWGzhT/MMtC1ItHrE1a3Ih6vpO36pHu6RhGBc1A6zfrIvEZ+kEUuWyhssco6uGjiK
- wdDQpDxenJoZztpR8RZHoD7LcqOqh3gM/ydkKMhnsmEiT3prN4ZYM37Eb0mf64RsZ2d/Y46QeW/2h
- pzUf7zPPSJGMghQ9uoE0OhGk7JHKhIZWgiHEuoah1ApjknH39az9jDVVDCe67BNQtIjYkxlaSXKQ3
- m311OwyrAxcIzO2HZWokGx+DgId4Ta54qk8p1EqeWMXWbO2nCDY2HWUwQyBuPOi1K4dTApVD/6rRP
- g3Nn0AAw==;
+ bh=fMyJ28GRYTKbhUohTZ3HXWmS5z5/iy6Sj8vXxmt1a5k=; b=bFRni8MYmJB0t96J51H/9YLXdx
+ L2fNRC/6ziTxRSc3wTy73WX3pZKuuMK1W/a9/CoSi8aY1gyHROxL8R3XD7KwSKgf1OoiBSO7jh1gy
+ j0QsqEleVuLsSzWX/l3Pse2oK2yl3wMIQmP4Ry1E2sYOqjBzba9xM4r2FhdZlY709v9GSbpUHgRZp
+ BXbAFZ/h88rQemtnorf9dWPGamM+zk4XqXZYy+yFb5h9FAphYtv7f46DmhfdJ+u6oySlXp0cvAEmA
+ EkY3prnI4C27RDEVAfGdMFxO8IC4D5rJf3rk10eRCjpOmkJuHhb1wvHZ5s7uPRSfTR9IyJ0yJvtUm
+ FKHF3h7A==;
 Received: from [90.242.12.242] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vCFKV-00Eica-Jw; Fri, 24 Oct 2025 12:47:31 +0200
+ id 1vCFKa-00EidM-Ml; Fri, 24 Oct 2025 12:47:36 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v14 02/13] drm/xe/xelpg: Flush CCS when flushing caches
-Date: Fri, 24 Oct 2025 11:47:15 +0100
-Message-ID: <20251024104727.74886-3-tvrtko.ursulin@igalia.com>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v14 09/13] drm/xe: Flush GGTT writes after populating DPT
+Date: Fri, 24 Oct 2025 11:47:22 +0100
+Message-ID: <20251024104727.74886-10-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
 References: <20251024104727.74886-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,60 +59,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-According to i915 PIPE_CONTROL0_CCS_FLUSH needs to be set when flushing
-render caches on gfx ip 12.70+.
+When DPT is placed in stolen it is populated using ioremap_wc() via GGTT.
+
+I915 has established that on modern platforms a small flush and delay is
+required for those writes to reliably land so lets add the same logic
+(simplified by removing impossible platforms) to xe as well.
+
+v2:
+ * Do it only for system memory buffers.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h | 1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                  | 7 ++++++-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 45 ++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index 5d41ca297447..d07646b0310a 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -49,6 +49,7 @@
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index b18d15cc3c53..eb21eeae9d17 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -12,9 +12,11 @@
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+ #include "intel_fbdev.h"
++#include "regs/xe_engine_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
++#include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_vram_types.h"
  
- #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
-+#define   PIPE_CONTROL0_CCS_FLUSH                       BIT(13) /* MTL+ */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index ac0c6dcffe15..15fc4010a710 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -176,13 +176,18 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- {
- 	struct xe_gt *gt = job->q->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
-+	u32 bit_group_0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
- 	u32 flags;
- 
- 	if (XE_GT_WA(gt, 14016712196))
- 		i = emit_pipe_control(dw, i, 0, PIPE_CONTROL_DEPTH_CACHE_FLUSH,
- 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
- 
-+	if (GRAPHICS_VERx100(xe) >= 1270)
-+		bit_group_0 |= PIPE_CONTROL0_CCS_FLUSH;
-+
- 	flags = (PIPE_CONTROL_CS_STALL |
- 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
- 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -198,7 +203,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
--	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-+	return emit_pipe_control(dw, i, bit_group_0, flags, 0, 0);
+@@ -79,6 +81,46 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
- static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
++static void gt_flush_ggtt_writes(struct xe_gt *gt)
++{
++	if (!gt)
++		return;
++
++	xe_mmio_read32(&gt->mmio, RING_TAIL(RENDER_RING_BASE));
++}
++
++static void ggtt_flush_writes(struct xe_ggtt *ggtt)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++
++	/*
++	 * No actual flushing is required for the GTT write domain for reads
++	 * from the GTT domain. Writes to it "immediately" go to main memory
++	 * as far as we know, so there's no chipset flush. It also doesn't
++	 * land in the GPU render cache.
++	 *
++	 * However, we do have to enforce the order so that all writes through
++	 * the GTT land before any writes to the device, such as updates to
++	 * the GATT itself.
++	 *
++	 * We also have to wait a bit for the writes to land from the GTT.
++	 * An uncached read (i.e. mmio) seems to be ideal for the round-trip
++	 * timing. This issue has only been observed when switching quickly
++	 * between GTT writes and CPU reads from inside the kernel on recent hw,
++	 * and it appears to only affect discrete GTT blocks (i.e. on LLC
++	 * system agents we cannot reproduce this behaviour, until Cannonlake
++	 * that was!).
++	 */
++
++	wmb();
++
++	if (xe_pm_runtime_get_if_active(xe)) {
++		gt_flush_ggtt_writes(ggtt->tile->primary_gt);
++		gt_flush_ggtt_writes(ggtt->tile->media_gt);
++		xe_pm_runtime_put(xe);
++	}
++}
++
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma,
+@@ -162,6 +204,9 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 					  rot_info->plane[i].dst_stride);
+ 	}
+ 
++	if (dpt->vmap.is_iomem && !xe_bo_is_vram(dpt))
++		ggtt_flush_writes(tile0->mem.ggtt);
++
+ 	vma->dpt = dpt;
+ 	vma->node = dpt->ggtt_node[tile0->id];
+ 
 -- 
 2.48.0
 
