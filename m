@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 314A9CCF9EA
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 12:05:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EE27CCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 12:05:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84A7210E280;
-	Sat, 25 Oct 2025 12:05:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2292D10E266;
+	Sat, 25 Oct 2025 12:05:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GIpnX3XT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJNa9ske";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F7A410E278;
- Sat, 25 Oct 2025 12:05:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4860C10E285;
+ Sat, 25 Oct 2025 12:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761393900; x=1792929900;
+ t=1761393909; x=1792929909;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CRDMYFHSFfBxR7yOnupNnGpyQDIPLj8qNONnqjZhkMg=;
- b=GIpnX3XTfPJrHw2GOwdidA4LZFltRXf2IRA62eIjy3UmIgeQUD/oH6GQ
- ipD/JWDosNxYDIorl2zGYAvd5i45f+RK7DG4jcTGayBNW1CJKcOTHo5Cj
- 43gyXc8txq0VzUx1sbDKL6TQGbJvQSgEYWJ/V394x1ymh+hmMu/9QYrok
- QhhukkG/8p3YNtCEX+mkRadBDrc/KGO53RYsO/UDQFhfBMChOI1z+TkKl
- GWXERspGpFtPgbqDjTq/k0nVQQgUdoSsc/98K/VZ4rdJcI3ruSbYzTd4C
- c4RtTIqItkvnUsBjxhPFFb/1nCjxx0uDp2DoT6EIT8GiEGetHEufSftm9 g==;
-X-CSE-ConnectionGUID: 68hjrS5wSr2q1MYySaxmlw==
-X-CSE-MsgGUID: 1KsRvGtsQaOd/7iNjRCbnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63590381"
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="63590381"
+ bh=OCpvNBcmA/iGVwlu41MEcZ+SMzdyXq6PIRCc3Tt/wXE=;
+ b=cJNa9ske/AV/md4j/4S5/Pm8qDYeuLxEGmWA9QGG1TjN+YAj3UI1EpXP
+ ybQA9DgpUu2urnOY+NsbssbNlbwYGJBqJBu86BhULqjMDPXAL0tQAnaX2
+ PmePQo0Y2HueSH9xKWJyphfo8GqSlr/a09+zyYhQ5Vt5VEV6a+/OB6KBi
+ D9VQ6WgE5FdsajKoGzQOsvTUh8YVl4hwUafee7jf9P+F44XBme6ltLfUR
+ SaZJvcm/siTIhlxWLCF32GuEQHAulyDNtAe36J5GhndVroV86h1siHe5I
+ +6hp1unxvhhFb1R5bG1mmidj09zUcmQ+iLQgrF6pPWJN2iMC/CUVhYWlB Q==;
+X-CSE-ConnectionGUID: TfdigOCHSXGxZkkm+izZ/Q==
+X-CSE-MsgGUID: IivOQkkESmGZ2KWT0fIzQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63590390"
+X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="63590390"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:05:00 -0700
-X-CSE-ConnectionGUID: tzogCvWfS7adRm24WrMJHQ==
-X-CSE-MsgGUID: G9fNVcwDSuuq85gUYeSruw==
+ 25 Oct 2025 05:05:09 -0700
+X-CSE-ConnectionGUID: WVyUnkV3Q+GsHaiASABmtg==
+X-CSE-MsgGUID: ejfXEb3rQCiEx9PFPVBzjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="189023748"
+X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="189023797"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.245.168])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:04:57 -0700
+ 25 Oct 2025 05:05:06 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -52,10 +52,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH 08/15] drm/xe: Use the drm_pagemap_util helper to get a svm
- pagemap owner
-Date: Sat, 25 Oct 2025 14:04:05 +0200
-Message-ID: <20251025120412.12262-9-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 11/15] drm/xe: Simplify madvise_preferred_mem_loc()
+Date: Sat, 25 Oct 2025 14:04:08 +0200
+Message-ID: <20251025120412.12262-12-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
 References: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
@@ -76,282 +75,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register a driver-wide owner list, provide a callback to identify
-fast interconnects and use the drm_pagemap_util helper to allocate
-or reuse a suitable owner struct. For now we consider pagemaps on
-different tiles on the same device as having fast interconnect and
-thus the same owner.
+Simplify madvise_preferred_mem_loc by removing repetitive patterns
+in favour of local variables.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c      | 57 ++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_svm.h      | 24 ++++++--------
- drivers/gpu/drm/xe/xe_userptr.c  |  2 +-
- drivers/gpu/drm/xe/xe_vm.c       |  2 +-
- drivers/gpu/drm/xe/xe_vm_types.h |  3 ++
- 5 files changed, 66 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 21 +++++++++++----------
+ drivers/gpu/drm/xe/xe_vm_types.h   |  2 +-
+ 2 files changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 8aced064c83f..d27e366f8e14 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -22,8 +22,17 @@
- #include "xe_vm_types.h"
- #include "xe_vram_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 9553008409d1..d6f47c8e146d 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -81,21 +81,22 @@ static void madvise_preferred_mem_loc(struct xe_device *xe, struct xe_vm *vm,
+ 	xe_assert(vm->xe, op->type == DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC);
  
-+/* Identifies subclasses of struct drm_pagemap_peer */
-+#define XE_PEER_PAGEMAP ((void *)0ul)
-+#define XE_PEER_VM ((void *)1ul)
+ 	for (i = 0; i < num_vmas; i++) {
++		struct xe_vma *vma = vmas[i];
++		struct xe_vma_preferred_loc *loc = &vma->attr.preferred_loc;
 +
- static int xe_svm_get_pagemaps(struct xe_vm *vm);
- 
-+void *xe_svm_private_page_owner(struct xe_vm *vm, bool force_smem)
-+{
-+	return force_smem ? NULL : vm->svm.peer.owner;
-+}
-+
- static bool xe_svm_range_in_vram(struct xe_svm_range *range)
- {
- 	/*
-@@ -770,6 +779,25 @@ static void xe_svm_put_pagemaps(struct xe_vm *vm)
- 	}
- }
- 
-+static struct device *xe_peer_to_dev(struct drm_pagemap_peer *peer)
-+{
-+	if (peer->private == XE_PEER_PAGEMAP)
-+		return container_of(peer, struct xe_pagemap, peer)->dpagemap.drm->dev;
-+
-+	return container_of(peer, struct xe_vm, svm.peer)->xe->drm.dev;
-+}
-+
-+static bool xe_has_interconnect(struct drm_pagemap_peer *peer1,
-+				struct drm_pagemap_peer *peer2)
-+{
-+	struct device *dev1 = xe_peer_to_dev(peer1);
-+	struct device *dev2 = xe_peer_to_dev(peer2);
-+
-+	return dev1 == dev2;
-+}
-+
-+static DRM_PAGEMAP_OWNER_LIST_DEFINE(xe_owner_list);
-+
- /**
-  * xe_svm_init() - SVM initialize
-  * @vm: The VM.
-@@ -788,10 +816,18 @@ int xe_svm_init(struct xe_vm *vm)
- 		INIT_WORK(&vm->svm.garbage_collector.work,
- 			  xe_svm_garbage_collector_work_func);
- 
--		err = xe_svm_get_pagemaps(vm);
-+		vm->svm.peer.private = XE_PEER_VM;
-+		err = drm_pagemap_acquire_owner(&vm->svm.peer, &xe_owner_list,
-+						xe_has_interconnect);
- 		if (err)
- 			return err;
- 
-+		err = xe_svm_get_pagemaps(vm);
-+		if (err) {
-+			drm_pagemap_release_owner(&vm->svm.peer);
-+			return err;
-+		}
-+
- 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
- 				      current->mm, 0, vm->size,
- 				      xe_modparam.svm_notifier_size * SZ_1M,
-@@ -801,6 +837,7 @@ int xe_svm_init(struct xe_vm *vm)
- 
- 		if (err) {
- 			xe_svm_put_pagemaps(vm);
-+			drm_pagemap_release_owner(&vm->svm.peer);
- 			return err;
+ 		/*TODO: Extend attributes to bo based vmas */
+-		if ((vmas[i]->attr.preferred_loc.devmem_fd == op->preferred_mem_loc.devmem_fd &&
+-		     vmas[i]->attr.preferred_loc.migration_policy ==
+-		     op->preferred_mem_loc.migration_policy) ||
+-		    !xe_vma_is_cpu_addr_mirror(vmas[i])) {
+-			vmas[i]->skip_invalidation = true;
++		if ((loc->devmem_fd == op->preferred_mem_loc.devmem_fd &&
++		     loc->migration_policy == op->preferred_mem_loc.migration_policy) ||
++		    !xe_vma_is_cpu_addr_mirror(vma)) {
++			vma->skip_invalidation = true;
+ 		} else {
+-			vmas[i]->skip_invalidation = false;
+-			vmas[i]->attr.preferred_loc.devmem_fd = op->preferred_mem_loc.devmem_fd;
++			vma->skip_invalidation = false;
++			loc->devmem_fd = op->preferred_mem_loc.devmem_fd;
+ 			/* Till multi-device support is not added migration_policy
+ 			 * is of no use and can be ignored.
+ 			 */
+-			vmas[i]->attr.preferred_loc.migration_policy =
+-						op->preferred_mem_loc.migration_policy;
+-			vmas[i]->attr.preferred_loc.dpagemap = NULL;
++			loc->migration_policy = op->preferred_mem_loc.migration_policy;
++			loc->dpagemap = NULL;
  		}
- 	} else {
-@@ -823,6 +860,7 @@ void xe_svm_close(struct xe_vm *vm)
- 	xe_assert(vm->xe, xe_vm_is_closed(vm));
- 	flush_work(&vm->svm.garbage_collector.work);
- 	xe_svm_put_pagemaps(vm);
-+	drm_pagemap_release_owner(&vm->svm.peer);
- }
- 
- /**
-@@ -957,7 +995,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 		xe_pm_runtime_get_noresume(xe);
- 		err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
- 						    start, end, timeslice_ms,
--						    xe_svm_devm_owner(xe));
-+						    xpagemap->pagemap.owner);
- 		if (err)
- 			xe_svm_devmem_release(&bo->devmem_allocation);
- 		xe_bo_unlock(bo);
-@@ -1072,7 +1110,6 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 		.devmem_only = need_vram && devmem_possible,
- 		.timeslice_ms = need_vram && devmem_possible ?
- 			vm->xe->atomic_svm_timeslice_ms : 0,
--		.device_private_page_owner = xe_svm_devm_owner(vm->xe),
- 	};
- 	struct xe_validation_ctx vctx;
- 	struct drm_exec exec;
-@@ -1096,8 +1133,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 		return err;
- 
- 	dpagemap = xe_vma_resolve_pagemap(vma, tile);
--	if (!dpagemap && !ctx.devmem_only)
--		ctx.device_private_page_owner = NULL;
-+	ctx.device_private_page_owner =
-+		xe_svm_private_page_owner(vm, !dpagemap && !ctx.devmem_only);
- 	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
- 
- 	if (IS_ERR(range))
-@@ -1521,6 +1558,8 @@ static void xe_pagemap_destroy_work(struct work_struct *work)
- 					pagemap->range.end - pagemap->range.start + 1);
- 		drm_dev_exit(idx);
  	}
-+
-+	drm_pagemap_release_owner(&xpagemap->peer);
- 	kfree(xpagemap);
  }
- 
-@@ -1571,6 +1610,7 @@ static struct xe_pagemap *xe_pagemap_create(struct xe_device *xe, struct xe_vram
- 	dpagemap = &xpagemap->dpagemap;
- 	INIT_WORK(&xpagemap->destroy_work, xe_pagemap_destroy_work);
- 	xpagemap->vr = vr;
-+	xpagemap->peer.private = XE_PEER_PAGEMAP;
- 
- 	err = drm_pagemap_init(dpagemap, pagemap, &xe->drm, &xe_drm_pagemap_ops);
- 	if (err)
-@@ -1583,11 +1623,16 @@ static struct xe_pagemap *xe_pagemap_create(struct xe_device *xe, struct xe_vram
- 		goto out_err;
- 	}
- 
-+	err = drm_pagemap_acquire_owner(&xpagemap->peer, &xe_owner_list,
-+					xe_has_interconnect);
-+	if (err)
-+		goto out_err;
-+
- 	pagemap->type = MEMORY_DEVICE_PRIVATE;
- 	pagemap->range.start = res->start;
- 	pagemap->range.end = res->end;
- 	pagemap->nr_range = 1;
--	pagemap->owner = xe_svm_devm_owner(xe);
-+	pagemap->owner = xpagemap->peer.owner;
- 	pagemap->ops = drm_pagemap_pagemap_ops_get();
- 	addr = devm_memremap_pages(dev, pagemap);
- 	if (IS_ERR(addr)) {
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 8a49ff17ef0c..5adce108f7eb 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -6,24 +6,11 @@
- #ifndef _XE_SVM_H_
- #define _XE_SVM_H_
- 
--struct xe_device;
--
--/**
-- * xe_svm_devm_owner() - Return the owner of device private memory
-- * @xe: The xe device.
-- *
-- * Return: The owner of this device's device private memory to use in
-- * hmm_range_fault()-
-- */
--static inline void *xe_svm_devm_owner(struct xe_device *xe)
--{
--	return xe;
--}
--
- #if IS_ENABLED(CONFIG_DRM_XE_GPUSVM)
- 
- #include <drm/drm_pagemap.h>
- #include <drm/drm_gpusvm.h>
-+#include <drm/drm_pagemap_util.h>
- 
- #define XE_INTERCONNECT_VRAM DRM_INTERCONNECT_DRIVER
- 
-@@ -65,6 +52,7 @@ struct xe_svm_range {
-  * @pagemap: The struct dev_pagemap providing the struct pages.
-  * @dpagemap: The drm_pagemap managing allocation and migration.
-  * @destroy_work: Handles asnynchronous destruction and caching.
-+ * @peer: Used for pagemap owner computation.
-  * @hpa_base: The host physical address base for the managemd memory.
-  * @vr: Backpointer to the xe_vram region.
-  */
-@@ -72,6 +60,7 @@ struct xe_pagemap {
- 	struct dev_pagemap pagemap;
- 	struct drm_pagemap dpagemap;
- 	struct work_struct destroy_work;
-+	struct drm_pagemap_peer peer;
- 	resource_size_t hpa_base;
- 	struct xe_vram_region *vr;
- };
-@@ -131,6 +120,8 @@ u8 xe_svm_ranges_zap_ptes_in_range(struct xe_vm *vm, u64 start, u64 end);
- 
- struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *tile);
- 
-+void *xe_svm_private_page_owner(struct xe_vm *vm, bool force_smem);
-+
- /**
-  * xe_svm_range_has_dma_mapping() - SVM range has DMA mapping
-  * @range: SVM range
-@@ -368,6 +359,11 @@ struct drm_pagemap *xe_vma_resolve_pagemap(struct xe_vma *vma, struct xe_tile *t
- 	return NULL;
- }
- 
-+static inline void *xe_svm_private_page_owner(struct xe_vm *vm, bool force_smem)
-+{
-+	return NULL;
-+}
-+
- static inline void xe_svm_flush(struct xe_vm *vm)
- {
- }
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 0d9130b1958a..e120323c43bc 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -55,7 +55,7 @@ int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma)
- 	struct xe_device *xe = vm->xe;
- 	struct drm_gpusvm_ctx ctx = {
- 		.read_only = xe_vma_read_only(vma),
--		.device_private_page_owner = xe_svm_devm_owner(xe),
-+		.device_private_page_owner = xe_svm_private_page_owner(vm, false),
- 		.allow_mixed = true,
- 	};
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 10d77666a425..1dffcd9ab61b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2886,7 +2886,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
- 	ctx.read_only = xe_vma_read_only(vma);
- 	ctx.devmem_possible = devmem_possible;
- 	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
--	ctx.device_private_page_owner = xe_svm_devm_owner(vm->xe);
-+	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !tile);
- 
- 	/* TODO: Threading the migration */
- 	xa_for_each(&op->prefetch_range.range, i, svm_range) {
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 9f0d8bf1af4f..4f9a6cdb5d02 100644
+index 5313bf2afa54..a83a0bda6861 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -8,6 +8,7 @@
+@@ -56,7 +56,7 @@ struct xe_vm_pgtable_update_op;
+  */
+ struct xe_vma_mem_attr {
+ 	/** @preferred_loc: perferred memory_location */
+-	struct {
++	struct xe_vma_preferred_loc {
+ 		/** @preferred_loc.migration_policy: Pages migration policy */
+ 		u32 migration_policy;
  
- #include <drm/drm_gpusvm.h>
- #include <drm/drm_gpuvm.h>
-+#include <drm/drm_pagemap_util.h>
- 
- #include <linux/dma-resv.h>
- #include <linux/kref.h>
-@@ -192,6 +193,8 @@ struct xe_vm {
- 			struct work_struct work;
- 		} garbage_collector;
- 		struct xe_pagemap *pagemaps[XE_MAX_TILES_PER_DEVICE];
-+		/** @svm.peer: Used for pagemap connectivity computations. */
-+		struct drm_pagemap_peer peer;
- 	} svm;
- 
- 	struct xe_device *xe;
 -- 
 2.51.0
 
