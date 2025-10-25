@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E4ECCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:12:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8472DCCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:12:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B090510E29B;
-	Sat, 25 Oct 2025 16:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49BC410E29B;
+	Sat, 25 Oct 2025 16:12:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="egrus4nY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k+7h3jbL";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C21B10E29B
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:12:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CAE10E29B
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:12:56 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 56400602AD;
- Sat, 25 Oct 2025 16:12:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD58EC4CEFB;
- Sat, 25 Oct 2025 16:11:59 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 14E33604FA;
+ Sat, 25 Oct 2025 16:12:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60188C4CEF5;
+ Sat, 25 Oct 2025 16:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408721;
- bh=cw2E9WfvKRErIt2tmUnxebsySKme/KCmOZt2LmsU7Vc=;
+ s=k20201202; t=1761408775;
+ bh=lQP2wYT1hsHH43gq+DZzG3vBY0LhtN1Ub/HdZD/NUIQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=egrus4nY6soyzjiHlvgiZidRkAk9ECJhFXll+BmBnu7EwYKjtuTAg+oqw9F5fhAw+
- M1TVe5zqayeSkXJrmEB7OnPh3MIcaG0+9v0Ig9YEZ0cEupo6KoaYNiU4Mu/o6J0/A2
- fre3NxLkagoWRjluc4S4DBhILuvyXHRLHNVCBiOouWiFdajhUmSwzBu9eHOAJIcIhD
- uxom2MDSG1+xFsEIMpwYbE5CFHNiYjMcm3aMjnsLVm911D2smtulFLxl0qDrDluTiR
- ocAQBNf+cJQrB7zTLUoMh5Z6inLCKPYrwlIH1Zc1SWHOn0X16zm3hfj9Pd3Al/1quk
- 1xP2Z0JmSEhdA==
+ b=k+7h3jbL/d1p2B34Fmc9wQxtjCBIRHnC6yFeXWLqlzv8TdIA0ph/OUQNtrYqLTfj1
+ yFbftAvq1OfCV8FZnvuQ/d98ukZbAwTpszg0YiTaNwLkaHE5Y1Sz+ovGH/dfAEnXDj
+ eHrEvmOxdc0tWZwo+5vZCYUBrKKW5X7lEMjIvRvByjy84ml809uaMrEuLq1a3DbuaG
+ Xf6/FLSWM7vYLrwlllYlxDf8cRyCgcAG2hTc2Cwjj+E8Uq25MxJFqGFFWqLf1DYeEV
+ WZ5IyEKOcFVXjt0WlkovOwalwg6B1Ap9IY7RTepTldAqsvhNPj6YgO0ghe6ZFwJch/
+ mgOqyXTI9tjiQ==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>, Sasha Levin <sashal@kernel.org>,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+Cc: Sk Anirban <sk.anirban@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, John.C.Harrison@Intel.com, badal.nilawar@intel.com,
+ nitin.r.gote@intel.com, alexandre.f.demers@gmail.com,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: Extend wa_13012615864 to additional Xe2
- and Xe3 platforms
-Date: Sat, 25 Oct 2025 11:54:44 -0400
-Message-ID: <20251025160905.3857885-53-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe/ptl: Apply Wa_16026007364
+Date: Sat, 25 Oct 2025 11:54:57 -0400
+Message-ID: <20251025160905.3857885-66-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -68,21 +66,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+From: Sk Anirban <sk.anirban@intel.com>
 
-[ Upstream commit bcddb12c027434fdf0491c1a05a3fe4fd2263d71 ]
+[ Upstream commit d72779c29d82c6e371cea8b427550bd6923c2577 ]
 
-Extend WA 13012615864 to Graphics Versions 20.01,20.02,20.04
-and 30.03.
+As part of this WA GuC will save and restore value of two XE3_Media
+control registers that were not included in the HW power context.
 
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Link: https://lore.kernel.org/r/20250731220143.72942-2-jonathan.cavitt@intel.com
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Link: https://lore.kernel.org/r/20250716101622.3421480-2-sk.anirban@intel.com
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -90,112 +84,158 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What changed
-  - Adds WA 13012615864 (sets `TDL_TSL_CHICKEN` bit `RES_CHK_SPR_DIS`)
-    to Xe2 platforms:
-    - New entry for `GRAPHICS_VERSION(2004)` with
-      `xe_rtp_match_first_render_or_compute` in
-      `drivers/gpu/drm/xe/xe_wa.c` (adds a single masked register write
-      on first render/compute engine).
-    - New entry for `GRAPHICS_VERSION_RANGE(2001, 2002)` with
-      `xe_rtp_match_first_render_or_compute` in
-      `drivers/gpu/drm/xe/xe_wa.c`.
-  - Extends the existing Xe3 entry to also match
-    `GRAPHICS_VERSION(3003)` in `drivers/gpu/drm/xe/xe_wa.c` (previously
-    limited to `3000–3001`).
-  - The bit being set is defined in
-    `drivers/gpu/drm/xe/regs/xe_gt_regs.h:494-497` (`TDL_TSL_CHICKEN`
-    with `RES_CHK_SPR_DIS`).
+- What changed (files and specifics)
+  - drivers/gpu/drm/xe/abi/guc_klvs_abi.h: Adds a new GuC WA KLV key
+    enum, `GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG = 0x900c` (near
+    existing WA keys at drivers/gpu/drm/xe/abi/guc_klvs_abi.h:350). This
+    is a pure additive identifier so existing paths are unaffected.
+  - drivers/gpu/drm/xe/xe_guc_ads.c: Introduces
+    `guc_waklv_enable_two_word(...)`, a helper to emit a KLV with LEN=2
+    and two 32‑bit payload values, mirroring the existing one‑word and
+    simple (LEN=0) helpers (see the existing one‑word helper at
+    drivers/gpu/drm/xe/xe_guc_ads.c:288 and `guc_waklv_init` at
+    drivers/gpu/drm/xe/xe_guc_ads.c:338).
+    - In `guc_waklv_init`, it conditionally emits the new WA KLV only
+      when both conditions hold:
+      - GuC firmware release version is >= `MAKE_GUC_VER(70, 47, 0)`.
+      - Platform WA bit `XE_WA(gt, 16026007364)` is set.
+    - The KLV is sent with two dwords `0x0` and `0xF`, via
+      `guc_waklv_enable_two_word(...)`, and appended into the existing
+      ADS WA KLV buffer using the same offset/remain logic and
+      `xe_map_memcpy_to(...)` used by other KLV helpers; on insufficient
+      space it only `drm_warn(...)`, matching style already used for
+      other entries.
+  - drivers/gpu/drm/xe/xe_wa_oob.rules: Adds WA rule `16026007364
+    MEDIA_VERSION(3000)`, causing the build to generate
+    `XE_WA_OOB_16026007364` for Xe3 Media in `<generated/xe_wa_oob.h>`,
+    which then makes `XE_WA(gt, 16026007364)` true on the intended
+    hardware.
 
-- Why this is a bugfix
-  - WA 13012615864 disables a TDL/TSL resource check (`RES_CHK_SPR_DIS`)
-    known to be problematic; it was already applied to Xe3 LPG
-    (`GRAPHICS_VERSION_RANGE(3000, 3001)`) via the earlier upstream
-    commit (see existing entry at `drivers/gpu/drm/xe/xe_wa.c:649-653`
-    in this tree). This change recognizes the same hardware issue exists
-    on additional Xe2/Xe3 SKUs and applies the same single-bit
-    mitigation there.
-  - This is not a feature; it’s standard errata programming (a hardware
-    workaround) that prevents potential functional issues like
-    stalls/hangs or incorrect behavior on affected SKUs.
+- Why it matters (bug impact)
+  - Commit message: “As part of this WA GuC will save and restore value
+    of two XE3_Media control registers that were not included in the HW
+    power context.” That means state for two critical media control
+    registers is lost across power context save/restore without this WA.
+    On affected Xe3 Media platforms, this can cause functional issues on
+    power transitions (e.g., RC6 exit, power-gating), impacting users
+    running media workloads.
 
 - Scope and risk
-  - Minimal, contained change:
-    - Only modifies the workaround tables in
-      `drivers/gpu/drm/xe/xe_wa.c`.
-    - Uses `XE_RTP_RULES(...,
-      FUNC(xe_rtp_match_first_render_or_compute))` so it programs once
-      per GT via the first render/compute engine, consistent with
-      neighboring WAs.
-    - The write is masked (`XE_REG_OPTION_MASKED`) to set only the
-      intended bit, per `drivers/gpu/drm/xe/regs/xe_gt_regs.h:494-497`.
-  - Consistency with existing code:
-    - The same register (`TDL_TSL_CHICKEN`) is already used for other
-      WAs on Xe2/Xe3 (e.g., `STK_ID_RESTRICT` at
-      `drivers/gpu/drm/xe/xe_wa.c:600-604`), so combining bits in that
-      register is expected.
-    - Extending the existing Xe3 WA to include `GRAPHICS_VERSION(3003)`
-      matches how other XE3 WAs are handled (see
-      `drivers/gpu/drm/xe/xe_wa.c:660-663` for other 3003-specific
-      entries).
-  - No architectural changes, no user-visible API changes, and no cross-
-    subsystem impact.
+  - Small and contained: One enum addition, one helper function, one
+    gated call in `guc_waklv_init`, and one WA rule line. No
+    architectural changes; no ABI/uAPI changes.
+  - Proper gating minimizes regression risk:
+    - Firmware gating: The KLV is only sent when
+      `GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 47, 0)`, so
+      older GuC releases won’t see unknown keys.
+    - Hardware gating: The WA is enabled only when `XE_WA(gt,
+      16026007364)` is set by the generated OOB WA database for
+      `MEDIA_VERSION(3000)`. Other platforms remain untouched.
+  - Buffering safety: The WA KLV blob is sized to a full page
+    (`guc_ads_waklv_size` returns `SZ_4K`), and the helper checks
+    `remain` before writing; failure cases only warn and do not corrupt
+    data.
+  - Consistency: The new two‑word helper mirrors existing
+    one‑word/simple KLV emission patterns
+    (drivers/gpu/drm/xe/xe_guc_ads.c:288, 315), and the KLV header
+    fields (`GUC_KLV_0_KEY`, `GUC_KLV_0_LEN`) are used consistently with
+    other KLV users across the driver.
 
-- Stable criteria
-  - Fixes a hardware erratum affecting real users on supported hardware.
-  - Very small and straightforward: a few table entries and one rule
-    expansion.
-  - Already precedent in stable: the original addition of WA 13012615864
-    for Xe3 (`3000–3001`) has been queued and carried in stable (e.g.,
-    6.14.5 stable queue), indicating stable acceptability for this WA
-    pattern.
-  - Harmless on trees lacking those hardware IDs: the rules are version-
-    gated and do nothing if the platform doesn’t match.
+- Stable backport criteria
+  - Fixes a real, user‑visible hardware/firmware interaction bug (lost
+    register state on Xe3 Media power transitions).
+  - Minimal, localized change within DRM/Xe; no core kernel or
+    cross‑subsystem impact.
+  - No new features; it only enables a firmware WA when present and
+    applicable.
+  - Low regression risk due to strict firmware and platform gating.
+  - Even if the deployed firmware is older than 70.47.0, the change is
+    inert (the KLV is not sent), so it cannot regress those systems and
+    transparently benefits systems once they pick up newer GuC firmware.
 
-Given the above, this commit is a low-risk, targeted bugfix that aligns
-with stable backport rules and should be backported.
+Given the above, this is a good candidate for stable backport to improve
+reliability on affected Xe3 Media platforms with appropriate GuC
+firmware.
 
- drivers/gpu/drm/xe/xe_wa.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  1 +
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 35 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+ 3 files changed, 37 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 22a98600fd8f2..535067e7fb0c9 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -538,6 +538,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
- 	},
-+	{ XE_RTP_NAME("13012615864"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
-+	},
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index d7719d0e36ca7..45a321d0099f1 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -421,6 +421,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WORKAROUND_KLV_ID_BACK_TO_BACK_RCS_ENGINE_RESET				= 0x9009,
+ 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
+ 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
++	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
+ };
  
- 	/* Xe2_HPG */
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 131cfc56be00a..8ff8626227ae4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -284,6 +284,35 @@ static size_t calculate_golden_lrc_size(struct xe_guc_ads *ads)
+ 	return total_size;
+ }
  
-@@ -602,6 +607,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, STK_ID_RESTRICT))
- 	},
-+	{ XE_RTP_NAME("13012615864"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
-+	},
++static void guc_waklv_enable_two_word(struct xe_guc_ads *ads,
++				      enum xe_guc_klv_ids klv_id,
++				      u32 value1,
++				      u32 value2,
++				      u32 *offset, u32 *remain)
++{
++	u32 size;
++	u32 klv_entry[] = {
++			/* 16:16 key/length */
++			FIELD_PREP(GUC_KLV_0_KEY, klv_id) |
++			FIELD_PREP(GUC_KLV_0_LEN, 2),
++			value1,
++			value2,
++			/* 2 dword data */
++	};
++
++	size = sizeof(klv_entry);
++
++	if (*remain < size) {
++		drm_warn(&ads_to_xe(ads)->drm,
++			 "w/a klv buffer too small to add klv id %d\n", klv_id);
++	} else {
++		xe_map_memcpy_to(ads_to_xe(ads), ads_to_map(ads), *offset,
++				 klv_entry, size);
++		*offset += size;
++		*remain -= size;
++	}
++}
++
+ static void guc_waklv_enable_one_word(struct xe_guc_ads *ads,
+ 				      enum xe_guc_klv_ids klv_id,
+ 				      u32 value,
+@@ -381,6 +410,12 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 		guc_waklv_enable_simple(ads,
+ 					GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH,
+ 					&offset, &remain);
++	if (GUC_FIRMWARE_VER(&gt->uc.guc) >= MAKE_GUC_VER(70, 47, 0) && XE_WA(gt, 16026007364))
++		guc_waklv_enable_two_word(ads,
++					  GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG,
++					  0x0,
++					  0xF,
++					  &offset, &remain);
  
- 	/* Xe2_LPM */
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 710f4423726c9..48c7a42e2fcad 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -73,3 +73,4 @@ no_media_l3	MEDIA_VERSION(3000)
+ 14022085890	GRAPHICS_VERSION(2001)
  
-@@ -647,7 +657,8 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
- 	},
- 	{ XE_RTP_NAME("13012615864"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001), OR,
-+		       GRAPHICS_VERSION(3003),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
- 	},
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
++16026007364    MEDIA_VERSION(3000)
 -- 
 2.51.0
 
