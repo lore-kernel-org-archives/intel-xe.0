@@ -4,42 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FDACCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D73B7CCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:19:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28AB910E2B2;
-	Sat, 25 Oct 2025 16:19:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E24110E2DF;
+	Sat, 25 Oct 2025 16:19:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BpzdtX/1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Dgv+KdNo";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3982510E2B2
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:19:23 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1CA10E2DF
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:19:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8577D6062F;
- Sat, 25 Oct 2025 16:19:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E295C4CEF5;
- Sat, 25 Oct 2025 16:19:21 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 727E9416D6;
+ Sat, 25 Oct 2025 16:19:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C679C4CEF5;
+ Sat, 25 Oct 2025 16:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761409162;
- bh=sYzqJpSR0UKf+ZA4yygS6qyiCwwd5ncMbcASSPXfctc=;
+ s=k20201202; t=1761409185;
+ bh=WgYIwV2KeVONWXyJp4I5bJQyfVFMcbdbebE2gsjQuSI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=BpzdtX/1J2Q7eFVJysqeW2u4Fbu6Lt1DTEiOuU4qRjEPYLbqFo4kLaBETNkMiOhmm
- 9/++QGjwLvlZYtNpP+lApKHdn41NkIUcY9nTM1wZqL8NIQt23u74vWQGdudNzJzXbm
- WcV0SvtLoThJcse6Gfb3wd1i/VaObqW72NuA9X30RvsUHNEBM4+mVVVyaF+GvRVSbx
- TRU5gWTyjxkTUms7eFYQn77S7LUafXO/y9f4CfnibeEsmFGu7bTmN8YuK6mMbQaEuQ
- eNWUMvAWqhL2YAgkPwSpMurlXHjfB5jb0VeoZmbUU4BUt9v4Bgz2u24SlM8QHt/yiB
- OP1ILKqzYNiXg==
+ b=Dgv+KdNoPO45UlCzcVtusrE2Cu1hHW2ZJOOd5b1V3xfecWJIOM94FAv69a8OCfsi5
+ LEceWh6c+Jd3QZ2HpHmASM6L/p6G/G7FoKDWG326wi0IapZhOls7OI9fDlqD57//eu
+ E30F9VNjJ4yfzcTSWSatDXrNx8WqIZKrpU+lWYAy09lqLiBGzJ2g2jpcLkxLH07zXx
+ meDDrHfNUcQ9xgwFFMg6oZqYFE9YXEdG+hO/fTLgLsijcDyJ0qmjPJFNiSWwMUj+eH
+ 9Ilw8uBNEUQYiahF0pSBTAbm9Fb8/U26xQZMuhoKW1GRu6KQ78inBr7qShalXQ7N3K
+ A7y3YoP8OBaeg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>,
- Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Summers Stuart <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: Make page size consistent in loop
-Date: Sat, 25 Oct 2025 11:57:36 -0400
-Message-ID: <20251025160905.3857885-225-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe/guc: Add devm release action to safely
+ tear down CT
+Date: Sat, 25 Oct 2025 11:57:44 -0400
+Message-ID: <20251025160905.3857885-233-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -63,20 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Simon Richter <Simon.Richter@hogyros.de>
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-[ Upstream commit b85bb2d677153d990924d31be9416166d22382eb ]
+[ Upstream commit ee4b32220a6b41e71512e8804585325e685456ba ]
 
-If PAGE_SIZE != XE_PAGE_SIZE (which is currently locked behind
-CONFIG_BROKEN), this would generate the wrong number of PDEs.
+When a buffer object (BO) is allocated with the XE_BO_FLAG_GGTT_INVALIDATE
+flag, the driver initiates TLB invalidation requests via the CTB mechanism
+while releasing the BO. However a premature release of the CTB BO can lead
+to system crashes, as observed in:
 
-Since these PDEs are consumed by the GPU, the GPU page size needs to be
-used.
+Oops: Oops: 0000 [#1] SMP NOPTI
+RIP: 0010:h2g_write+0x2f3/0x7c0 [xe]
+Call Trace:
+ guc_ct_send_locked+0x8b/0x670 [xe]
+ xe_guc_ct_send_locked+0x19/0x60 [xe]
+ send_tlb_invalidation+0xb4/0x460 [xe]
+ xe_gt_tlb_invalidation_ggtt+0x15e/0x2e0 [xe]
+ ggtt_invalidate_gt_tlb.part.0+0x16/0x90 [xe]
+ ggtt_node_remove+0x110/0x140 [xe]
+ xe_ggtt_node_remove+0x40/0xa0 [xe]
+ xe_ggtt_remove_bo+0x87/0x250 [xe]
 
-Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://lore.kernel.org/r/20250818064806.2835-1-Simon.Richter@hogyros.de
+Introduce a devm-managed release action during xe_guc_ct_init() and
+xe_guc_ct_init_post_hwconfig() to ensure proper CTB disablement before
+resource deallocation, preventing the use-after-free scenario.
+
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Summers Stuart <stuart.summers@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Link: https://lore.kernel.org/r/20250901072541.31461-1-satyanarayana.k.v.p@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -84,81 +107,190 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What it fixes
-  - The loop that writes PDEs uses the host `PAGE_SIZE` instead of the
-    GPU page size `XE_PAGE_SIZE`, causing an incorrect PDE count when
-    they differ. In 6.17.1, this is at
-    drivers/gpu/drm/xe/xe_migrate.c:292:
-    - Current: for (i = 0; i < map_ofs / PAGE_SIZE; i++) {
-    - Intended: for (i = 0; i < map_ofs / XE_PAGE_SIZE; i++) {
-  - The PDEs are consumed by the GPU and the offsets encoded for each
-    entry already use `XE_PAGE_SIZE`
-    (drivers/gpu/drm/xe/xe_migrate.c:293–297), so the loop bound must
-    match that unit.
+- Fixes a real crash/UAF: The commit addresses a use-after-free when BOs
+  allocated with `XE_BO_FLAG_GGTT_INVALIDATE` trigger GGTT TLB
+  invalidations during teardown via the GuC CTB path, while the CTB BO
+  may have already been released. The reported call trace shows the GuC
+  CT send path being used during BO removal, leading to a crash if CT
+  resources are torn down too early (h2g_write → guc_ct_send_locked →
+  send_tlb_invalidation → ggtt_* → xe_ggtt_remove_bo).
 
-- Why it matters
-  - When `PAGE_SIZE != XE_PAGE_SIZE` (e.g., 64K host pages vs 4K GPU
-    pages), the loop iterates too few times (by a factor of `PAGE_SIZE /
-    XE_PAGE_SIZE`), leaving a large portion of PDEs unwritten. That
-    results in incomplete page table coverage and GPU faults/hangs when
-    accessing those unmapped regions. The fix enforces GPU page
-    granularity for the loop count, which is the only correct
-    interpretation since the GPU page tables and the offsets (i *
-    XE_PAGE_SIZE) are in GPU page units.
-  - The rest of the function already treats `map_ofs` in GPU page units:
-    - PDE setup for upper levels uses `XE_PAGE_SIZE`
-      (drivers/gpu/drm/xe/xe_migrate.c:285–288).
-    - The VM suballocator capacity is computed with `map_ofs /
-      XE_PAGE_SIZE` (drivers/gpu/drm/xe/xe_migrate.c:356–357).
-  - This change removes an inconsistency within the same function and
-    aligns the loop with how `map_ofs` is used elsewhere.
+- Core fix (devm-managed CT disable): A devm release action is added so
+  CT is transitioned to the disabled state during device-managed
+  teardown before dependent resources are freed. This is implemented by
+  registering a managed action that calls `guc_ct_change_state(ct,
+  XE_GUC_CT_STATE_DISABLED)`:
+  - New action: `guc_action_disable_ct()` calls the internal state
+    change to disabled, canceling fences, quiescing paths and preventing
+    further CT traffic (drivers/gpu/drm/xe/xe_guc_ct.c:257).
+  - Action registration in init: `devm_add_action_or_reset(xe->drm.dev,
+    guc_action_disable_ct, ct)` ensures the disable runs during teardown
+    (drivers/gpu/drm/xe/xe_guc_ct.c:281).
+  - This is small, contained, and only affects the XE GuC CT teardown
+    behavior.
 
-- Scope and risk
-  - One-line change, confined to xe migrate VM setup
-    (`xe_migrate_prepare_vm()`), no API or architectural changes.
-  - On the common 4K-host-page configurations, `PAGE_SIZE ==
-    XE_PAGE_SIZE`, so behavior is identical. Risk of regression on
-    mainstream builds is effectively zero.
-  - On kernels where `PAGE_SIZE != XE_PAGE_SIZE`, it fixes real
-    misprogramming of PDEs that can manifest as GPU page faults/hangs.
+- Ensures correct teardown ordering across reinit: The CT buffer is
+  reallocated into VRAM post-hwconfig for dGFX, which changes devres
+  ordering. To keep the “disable CT” action running before releasing the
+  (new) CT BO, the patch removes and re-adds the devm action after the
+  VRAM reinit so the disable action is the last registered and runs
+  first (LIFO) during teardown:
+  - CT VRAM reinit helper: `xe_guc_ct_init_post_hwconfig()` performs
+    `xe_managed_bo_reinit_in_vram()` for `ct->bo` and then removes and
+    re-adds the devm action to fix ordering
+    (drivers/gpu/drm/xe/xe_guc_ct.c:294-311).
+  - The GuC-level post-hwconfig flow calls this new helper after generic
+    reallocations (drivers/gpu/drm/xe/xe_guc.c:833,
+    drivers/gpu/drm/xe/xe_guc.c:837-839). This also removes the previous
+    attempt to reinit `guc->ct.bo` in the generic realloc function to
+    avoid ordering issues.
 
-- Current gating and impact
-  - `DRM_XE` Kconfig currently depends on `PAGE_SIZE_4KB || COMPILE_TEST
-    || BROKEN` (drivers/gpu/drm/xe/Kconfig: depends on PAGE_SIZE_4KB ||
-    COMPILE_TEST || BROKEN). The commit message notes this path is
-    presently behind `CONFIG_BROKEN`. Even so, this is a correctness bug
-    that becomes user-visible as soon as non-4K is enabled, and it is
-    harmless on 4K systems.
+- Prevents the UAF in practice: TLB invalidation uses the CT path only
+  if CT is enabled; otherwise it falls back to a safe MMIO path:
+  - The GGTT invalidation path checks `xe_guc_ct_enabled(&guc->ct)` and
+    submission state; if disabled, it uses MMIO-based invalidation
+    instead (drivers/gpu/drm/xe/xe_guc_tlb_inval.c:64-72,
+    drivers/gpu/drm/xe/xe_guc_tlb_inval.c:72-90).
+  - By setting CT state to disabled via the devm action before CT BO or
+    other resources are freed, teardown-time invalidations avoid the CT
+    path, eliminating the use-after-free.
 
-- Stable criteria
-  - Fixes a clear bug in page table programming that can affect users
-    when the constraint is relaxed or under non-4K configurations.
-  - Minimal, well-contained change with no feature additions, and no
-    architectural rewrites.
-  - No adverse side effects; only enforces correct unit semantics.
-  - Reviewed by xe maintainers according to the commit tags.
+- Scope and risk:
+  - Driver-only fix confined to the XE GuC/CT code paths
+    (drivers/gpu/drm/xe/*).
+  - No ABI changes, no feature additions, no architectural refactor.
+  - The devm action calls the same internal state transition used by
+    existing disable flows, with proper locking and fence cancelation.
+    The change is minimal and low risk.
 
-Summary: Replace `map_ofs / PAGE_SIZE` with `map_ofs / XE_PAGE_SIZE` in
-the PDE emission loop (drivers/gpu/drm/xe/xe_migrate.c:292) to make the
-loop’s unit consistent with GPU page size and the rest of the function’s
-logic. This is an obvious, low-risk bugfix suitable for stable backport.
+- Stable suitability:
+  - Clearly fixes an important, user-affecting crash (Oops/UAF) during
+    teardown.
+  - Small, self-contained, and limited to the XE GuC CT
+    initialization/teardown ordering.
+  - Aligns with stable rules: bugfix, minimal risk, no new features,
+    confined to a subsystem.
+  - Note: Depending on stable branch, the helper used to drop/re-add the
+    devm action may be `devm_remove_action` vs `devm_release_action`;
+    trivial adaptation may be required, but the logic remains the same.
 
- drivers/gpu/drm/xe/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Given the crash it prevents, the minimal and targeted nature of the
+changes, and the clear correctness rationale tied to teardown ordering
+and the CT-enabled check in TLB invalidation, this is a strong candidate
+for backporting to stable.
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 9b1e3dce1aea3..2a627ed64b8f8 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -291,7 +291,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	}
+ drivers/gpu/drm/xe/xe_guc.c    |  8 +++----
+ drivers/gpu/drm/xe/xe_guc_ct.c | 41 +++++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_ct.h |  1 +
+ 3 files changed, 45 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 9e0ed8fabcd54..62c76760fd26f 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -701,10 +701,6 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
  
- 	/* Write PDE's that point to our BO. */
--	for (i = 0; i < map_ofs / PAGE_SIZE; i++) {
-+	for (i = 0; i < map_ofs / XE_PAGE_SIZE; i++) {
- 		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE);
+-	ret = xe_managed_bo_reinit_in_vram(xe, tile, &guc->ct.bo);
+-	if (ret)
+-		return ret;
+-
+ 	return 0;
+ }
  
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
+@@ -839,6 +835,10 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = xe_guc_ct_init_post_hwconfig(&guc->ct);
++	if (ret)
++		return ret;
++
+ 	guc_init_params_post_hwconfig(guc);
+ 
+ 	ret = xe_guc_submit_init(guc, ~0);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 3f4e6a46ff163..6d70dd1c106d4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -39,6 +39,8 @@ static void receive_g2h(struct xe_guc_ct *ct);
+ static void g2h_worker_func(struct work_struct *w);
+ static void safe_mode_worker_func(struct work_struct *w);
+ static void ct_exit_safe_mode(struct xe_guc_ct *ct);
++static void guc_ct_change_state(struct xe_guc_ct *ct,
++				enum xe_guc_ct_state state);
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+ enum {
+@@ -252,6 +254,13 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+ }
+ ALLOW_ERROR_INJECTION(xe_guc_ct_init_noalloc, ERRNO); /* See xe_pci_probe() */
+ 
++static void guc_action_disable_ct(void *arg)
++{
++	struct xe_guc_ct *ct = arg;
++
++	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
++}
++
+ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+@@ -268,10 +277,40 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 		return PTR_ERR(bo);
+ 
+ 	ct->bo = bo;
+-	return 0;
++
++	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
+ }
+ ALLOW_ERROR_INJECTION(xe_guc_ct_init, ERRNO); /* See xe_pci_probe() */
+ 
++/**
++ * xe_guc_ct_init_post_hwconfig - Reinitialize the GuC CTB in VRAM
++ * @ct: the &xe_guc_ct
++ *
++ * Allocate a new BO in VRAM and free the previous BO that was allocated
++ * in system memory (SMEM). Applicable only for DGFX products.
++ *
++ * Return: 0 on success, or a negative errno on failure.
++ */
++int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
++{
++	struct xe_device *xe = ct_to_xe(ct);
++	struct xe_gt *gt = ct_to_gt(ct);
++	struct xe_tile *tile = gt_to_tile(gt);
++	int ret;
++
++	xe_assert(xe, !xe_guc_ct_enabled(ct));
++
++	if (!IS_DGFX(xe))
++		return 0;
++
++	ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
++	if (ret)
++		return ret;
++
++	devm_release_action(xe->drm.dev, guc_action_disable_ct, ct);
++	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
++}
++
+ #define desc_read(xe_, guc_ctb__, field_)			\
+ 	xe_map_rd_field(xe_, &guc_ctb__->desc, 0,		\
+ 			struct guc_ct_buffer_desc, field_)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+index 18d4225e65024..cf41210ab30ae 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+@@ -13,6 +13,7 @@ struct xe_device;
+ 
+ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
+ int xe_guc_ct_init(struct xe_guc_ct *ct);
++int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
+ int xe_guc_ct_enable(struct xe_guc_ct *ct);
+ void xe_guc_ct_disable(struct xe_guc_ct *ct);
+ void xe_guc_ct_stop(struct xe_guc_ct *ct);
 -- 
 2.51.0
 
