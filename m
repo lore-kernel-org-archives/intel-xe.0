@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC441CCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:15:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7947DCCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:15:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CFF210E2E4;
-	Sat, 25 Oct 2025 16:15:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D53710E320;
+	Sat, 25 Oct 2025 16:15:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kKJxoybF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XvywC38T";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D12DD10E2AD
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:15:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2141A10E2A9
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:15:52 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4DCB16059F;
- Sat, 25 Oct 2025 16:15:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8D8BC4CEFB;
- Sat, 25 Oct 2025 16:15:33 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 55687605A9;
+ Sat, 25 Oct 2025 16:15:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB6B4C4CEFB;
+ Sat, 25 Oct 2025 16:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408935;
- bh=GAaRdhjLbKcn9UBDw2uagmBAExBiN/VBCRLC1HffS5Q=;
+ s=k20201202; t=1761408951;
+ bh=yLH21nXkh1y4o3R5/b47gV+bd7YewWXUICb4cZZM5x0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kKJxoybFQY6v+nX/LgX8aVlemaaI3R0bTQsX2DYYG8ZGCZTfEIKGuCVnnx6shbmGp
- 3/mOS7ByHmkjeG3i3H8lrf44lWN7Jx4PPVx8fOQNo8A1TRrBSCWjLflROfji7QO9LA
- oV1zn4k/4jjdCAoi2j9tOivPyMW4U3JJUhfK84BPJa2tKiLyWHAOPHc2tpAEec5tKv
- wyGr/T2OxnjOf1apTtIfRenvvlIbTSZLMSNfYPLiAbVa6V0nH/6IcNvdSVZE6kINGN
- 3skYUm3tymnc5GxjVbAmvOBVATr8d3wGSO7/M+iH3mUqF6OzKJQrCW5hENftzeX9ja
- goGdz8HLdFt5w==
+ b=XvywC38TtDUFmoCNqFWVTPZ6RvAZsjmwBsBq6j4BCKbMex8j9/OYNfRCLmFV/XfLt
+ KN2ryBn1hVGrcXCEFlzx4LGRPRwCAkARfu8NTnBhzey+bEShoVTKq/yE2zzAAlVjj9
+ HZtMGUDsHJYBAF8lBaAv7Xk+bb4xactdpkKArOxcBpzG/FR6sPjpFzzdhcBxsdJ8ak
+ ATX0teYrdk5Ro18gP/N5sB+uylA5m4NrPKFz8Em8tdzQMiEz7ujAk4N1B9lUBgs5yk
+ JQtERP9dE765onAKLPFhgq2MEBd5XKyD6Qx5lZ+e/ch+lLvODASRcD6Enk+6CSyhkz
+ 5MSdHApI1l88g==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
+Cc: Stuart Summers <stuart.summers@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: Extend Wa_22021007897 to Xe3 platforms
-Date: Sat, 25 Oct 2025 11:56:10 -0400
-Message-ID: <20251025160905.3857885-139-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe: Cancel pending TLB inval workers on
+ teardown
+Date: Sat, 25 Oct 2025 11:56:18 -0400
+Message-ID: <20251025160905.3857885-147-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -65,21 +64,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+From: Stuart Summers <stuart.summers@intel.com>
 
-[ Upstream commit 8d6f16f1f082881aa50ea7ae537b604dec647ed6 ]
+[ Upstream commit 76186a253a4b9eb41c5a83224c14efdf30960a71 ]
 
-WA 22021007897 should also be applied to Graphics Versions 30.00, 30.01
-and 30.03. To make it simple, simply use the range [3000, 3003] that
-should be ok as there isn't a 3002 and if it's added, the WA list would
-need to be revisited anyway.
+Add a new _fini() routine on the GT TLB invalidation
+side to handle this worker cleanup on driver teardown.
 
-Cc: Matt Atwood <matthew.s.atwood@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-Link: https://lore.kernel.org/r/20250827-wa-22021007897-v1-1-96922eb52af4@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+v2: Move the TLB teardown to the gt fini() routine called during
+    gt_init rather than in gt_alloc. This way the GT structure stays
+    alive for while we reset the TLB state.
+
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://lore.kernel.org/r/20250826182911.392550-3-stuart.summers@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -87,73 +86,135 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- The change extends an existing hardware workaround (WA 22021007897) to
-  Xe3 platforms by adding a single, gated entry to the LRC workaround
-  table. Specifically, it adds a new rule to set
-  `COMMON_SLICE_CHICKEN4:SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` for render
-  engines on graphics versions 30.00–30.03:
-  - New entry: `drivers/gpu/drm/xe/xe_wa.c:915` (name "22021007897")
-  - Rule gating: `drivers/gpu/drm/xe/xe_wa.c:916` uses
-    `GRAPHICS_VERSION_RANGE(3000, 3003)` with `ENGINE_CLASS(RENDER)`
-  - Action: `drivers/gpu/drm/xe/xe_wa.c:917` sets
-    `SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` in `COMMON_SLICE_CHICKEN4`
-- This mirrors the already-present use of the same WA on Xe2 (graphics
-  versions 2001–2002), demonstrating consistency across generations:
-  - Existing Xe2 entry: `drivers/gpu/drm/xe/xe_wa.c:895` (name
-    "22021007897")
-  - Rule gating: `drivers/gpu/drm/xe/xe_wa.c:896` with
-    `GRAPHICS_VERSION_RANGE(2001, 2002)` and `ENGINE_CLASS(RENDER)`
-  - Action: `drivers/gpu/drm/xe/xe_wa.c:897` sets the same bit
-- The register and bit are well-defined in-tree, ensuring build safety
-  and clarity of intent:
-  - `drivers/gpu/drm/xe/regs/xe_gt_regs.h:158` defines
-    `COMMON_SLICE_CHICKEN4`
-  - `drivers/gpu/drm/xe/regs/xe_gt_regs.h:159` defines
-    `SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` (bit 12)
-- The WA is applied at context-restore time via the LRC path, which is
-  the correct, minimal-impact location for such state programming:
-  - LRC table processing call site: `drivers/gpu/drm/xe/xe_gt.c:329`
-    calls `xe_wa_process_lrc(hwe)`
-- Scope and risk assessment:
-  - Minimal and contained: a single new table entry; no API or
-    architectural change; no behavior change outside Xe3 render engines.
-  - Gated by hardware version and engine class, so it has no effect on
-    other platforms.
-  - Safe even with the version range approach: there is no 3002 today,
-    and if a new graphics version appears, WA lists are regularly
-    revisited as noted in the commit message.
-- User impact:
-  - Workarounds address known hardware issues; enabling this WA on Xe3
-    likely prevents rendering corruption or instability on affected
-    hardware. Without it, Xe3 users may encounter functional bugs.
-- While the commit message does not include an explicit “Cc: stable”,
-  the change aligns with stable policy:
-  - It is a small, targeted fix to ensure correct operation on supported
-    hardware.
-  - It carries low regression risk and is confined to the DRM xe
-    driver’s WA tables.
+- What it fixes
+  - Prevents use-after-free/hangs on driver teardown by cancelling
+    pending TLB-invalidation workers/fences before GT resources are
+    dismantled. The reset path already handles this during GT resets;
+    this commit ensures the same cleanup occurs on teardown.
 
-Given the above, this is a good, low-risk bugfix candidate for
-backporting to stable trees that support the Xe driver and Xe3 hardware.
+- Key changes and why they matter
+  - drivers/gpu/drm/xe/xe_gt.c: `xe_gt_fini()` now calls
+    `xe_gt_tlb_invalidation_fini(gt)` first. This ensures TLB
+    invalidation workers/fences are cancelled while the GT is still
+    alive, avoiding races/UAF during teardown.
+  - drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c: Adds
+    `xe_gt_tlb_invalidation_fini(struct xe_gt *gt)` which simply calls
+    `xe_gt_tlb_invalidation_reset(gt)`. The reset routine:
+    - Computes a “pending” seqno and updates `seqno_recv` so waiters see
+      all prior invalidations as complete.
+    - Iterates `pending_fences` and signals them, waking any kworkers
+      waiting for TLB flush completion.
+    - This mirrors the existing reset behavior (cancel delayed work,
+      advance seqno, signal fences) used during GT resets to guarantee
+      no waiter is left behind.
+  - drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h: Adds the prototype for
+    the new fini, keeping the API consistent.
 
- drivers/gpu/drm/xe/xe_wa.c | 4 ++++
- 1 file changed, 4 insertions(+)
+- Concrete evidence in the code changes
+  - The commit places `xe_gt_tlb_invalidation_fini(gt)` at the start of
+    GT teardown (xe_gt.c: in `xe_gt_fini()`), so TLB/worker cleanup runs
+    before `xe_hw_fence_irq_finish()` and
+    `xe_gt_disable_host_l2_vram()`. This ordering minimizes races with
+    IRQ/fence infrastructure and other GT resources during teardown.
+  - The finish routine calls into the reset path which explicitly:
+    - Sets `seqno_recv` to a value covering all outstanding requests.
+    - Signals all pending invalidation fences via
+      `list_for_each_entry_safe(... pending_fences ...)`, ensuring
+      waiters are released.
+    - This matches the comment in the reset path about kworkers not
+      tracked by explicit TLB fences and the need to wake them assuming
+      a full GT reset.
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 535067e7fb0c9..f14bdaac674bb 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -879,6 +879,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 			     DIS_PARTIAL_AUTOSTRIP |
- 			     DIS_AUTOSTRIP))
- 	},
-+	{ XE_RTP_NAME("22021007897"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3003), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
-+	},
- };
+- Mapping to current tree (for context/impact assessment)
+  - In this tree, the corresponding logic lives under the “tlb_inval”
+    names:
+    - The reset path is implemented in
+      `drivers/gpu/drm/xe/xe_tlb_inval.c:156` (`xe_tlb_inval_reset()`),
+      which cancels the delayed timeout work, updates `seqno_recv`, and
+      signals all `pending_fences`.
+    - This path is already invoked during GT reset flows (e.g.,
+      `drivers/gpu/drm/xe/xe_gt.c:853, 1067, 1139`), proving the
+      approach is safe and battle-tested during runtime resets.
+    - A drmm-managed teardown hook exists
+      (`drivers/gpu/drm/xe/xe_tlb_inval.c:114`), but that operates at
+      DRM device teardown. If GT devm teardown runs earlier, there is a
+      window where TLB invalidation workers could outlive GT, risking
+      UAF. Moving the cleanup into `xe_gt_fini()` (devm action, see
+      `drivers/gpu/drm/xe/xe_gt.c:624`) closes that gap, which is
+      exactly what this commit does in its codebase.
+
+- Stable backport criteria
+  - Important bugfix: avoids teardown-time UAF/hangs/leaks by cancelling
+    and signalling all pending TLB invalidation work.
+  - Small and contained: touches only the xe GT/TLB invalidation
+    teardown path; adds one call-site and a thin wrapper.
+  - No feature or architectural change: purely lifecycle/cleanup
+    ordering.
+  - Low regression risk: uses the same reset logic already exercised in
+    GT reset paths.
+  - Driver subsystem only (DRM xe), not core kernel.
+
+- Conclusion
+  - This is a clear, low-risk correctness fix for teardown-time resource
+    and worker cleanup in the xe driver. It should be backported to
+    stable trees where the xe driver and TLB invalidation workers exist,
+    adapting symbol/file names as needed (e.g., calling
+    `xe_tlb_inval_reset(&gt->tlb_inval)` from `xe_gt_fini()` in trees
+    with the older naming).
+
+ drivers/gpu/drm/xe/xe_gt.c                  |  2 ++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  1 +
+ 3 files changed, 15 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 17634195cdc26..6f63c658c341f 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -605,6 +605,8 @@ static void xe_gt_fini(void *arg)
+ 	struct xe_gt *gt = arg;
+ 	int i;
  
- static __maybe_unused const struct xe_rtp_entry oob_was[] = {
++	xe_gt_tlb_invalidation_fini(gt);
++
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+ 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 086c12ee3d9de..64cd6cf0ab8df 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -173,6 +173,18 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
+ 	mutex_unlock(&gt->uc.guc.ct.lock);
+ }
+ 
++/**
++ *
++ * xe_gt_tlb_invalidation_fini - Clean up GT TLB invalidation state
++ *
++ * Cancel pending fence workers and clean up any additional
++ * GT TLB invalidation state.
++ */
++void xe_gt_tlb_invalidation_fini(struct xe_gt *gt)
++{
++	xe_gt_tlb_invalidation_reset(gt);
++}
++
+ static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
+ {
+ 	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index f7f0f2eaf4b59..3e4cff3922d6f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -16,6 +16,7 @@ struct xe_vm;
+ struct xe_vma;
+ 
+ int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
++void xe_gt_tlb_invalidation_fini(struct xe_gt *gt);
+ 
+ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
 -- 
 2.51.0
 
