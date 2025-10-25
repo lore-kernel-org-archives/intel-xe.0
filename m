@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B02BBCCF9EA
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 12:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3ADBCCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 12:04:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6557810E266;
-	Sat, 25 Oct 2025 12:04:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B21E610E26B;
+	Sat, 25 Oct 2025 12:04:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mW7DQJhD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H+DZqX/p";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1A9910E266;
- Sat, 25 Oct 2025 12:04:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37D5810E26B;
+ Sat, 25 Oct 2025 12:04:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761393882; x=1792929882;
+ t=1761393888; x=1792929888;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2TjLEPKYMXodeV5eqatLZyGvUKihrSdW7WVutuXMHpA=;
- b=mW7DQJhD55z4ND+sODdZO0LvBRoZMvFR/rz/8uEXV2Bq7mYTLHRg1jk5
- EY5e016bDxEqFzNkK/9lbp96vONZMBIe2rBD7rG4tdaVx3MVQ5WZJ6C2l
- T66aLUSuk/PbW0Z+r6aevGOE+mS/UJqIwwtr9fzk6VsG/jlW+U7t2qu+z
- xBs3nnraOHp+rtDT3f2kfBSc4IaoxLzD37KpDBqwdkby02mOhTaCgaw0h
- Ofuc975tEPSWMHd9MyymD0HeLHmjjcg0ynNJW+AetJbJ2S8ef8KeoMdKY
- V2oJ4Jqk2QSAF81xnroZPTHCN2a/hbc3wIHa6FjAodq9v87yZqjiUMgfx A==;
-X-CSE-ConnectionGUID: ldFTNjsZTkasUk5HcUdK2Q==
-X-CSE-MsgGUID: KZJZB+tKTsSYdZF7A45MTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63590372"
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="63590372"
+ bh=+EF6/o6tUYvW413obvfQsFT0qphfHQ+bWTU28rtQsIg=;
+ b=H+DZqX/pFzNHJm08Hsz2t9nTAi/o8uG6xQtV961S5c2Z/TVvTCSXpjYj
+ /iKYmGxzdJOc8muNVJOxcsEONdQZfuwcDeBdO/vH7LxAFCh8o+mrohR+d
+ TklJCUKqjqt3cA4SnptBx41enDzb76xEveB/T12anam9iaCINAGpRk0MY
+ G5mEO8Wx9unpthTpgTX6VRTB3qPkJtuahXA+P1ytU2esUvclbCYBucIC8
+ eIIQ+MFTgDKKRX3Z2Xn71nnykJ2Q2McYrB85vgB9OpQHKsKjb28VrSeo5
+ /4LvhaVadfHApgvnDUJ22Wcq7zDcSPjBodbuWqT1+5WzmzHwOZfsMJVOC w==;
+X-CSE-ConnectionGUID: hRiOLA3gSE29PDN9sZAwOw==
+X-CSE-MsgGUID: YNcrmoWVRYCLPw9WjR0WxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63590376"
+X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="63590376"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:04:42 -0700
-X-CSE-ConnectionGUID: SvHcXAQSSq+7FWBn3ZBzWQ==
-X-CSE-MsgGUID: yWkfm9viThSpCttW4NVaog==
+ 25 Oct 2025 05:04:48 -0700
+X-CSE-ConnectionGUID: c70sBdO9TfuaPQgvFciIew==
+X-CSE-MsgGUID: c+4mED3XS72PyXJUjjaJVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="189023677"
+X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="189023699"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
  ([10.245.245.168])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:04:39 -0700
+ 25 Oct 2025 05:04:45 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
@@ -52,10 +52,9 @@ Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  dakr@kernel.org, "Mrozek, Michal" <michal.mrozek@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: [PATCH 02/15] drm/pagemap: Add a refcounted drm_pagemap backpointer
- to struct drm_pagemap_zdd
-Date: Sat, 25 Oct 2025 14:03:59 +0200
-Message-ID: <20251025120412.12262-3-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 04/15] drm/pagemap: Add a drm_pagemap cache and shrinker
+Date: Sat, 25 Oct 2025 14:04:01 +0200
+Message-ID: <20251025120412.12262-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
 References: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
@@ -76,84 +75,740 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To be able to keep track of drm_pagemap usage, add a refcounted
-backpointer to struct drm_pagemap_zdd. This will keep the drm_pagemap
-reference count from dropping to zero as long as there are drm_pagemap
-pages present in a CPU address space.
+Pagemaps are costly to set up and tear down, and they consume a lot
+of system memory for the struct pages. Ideally they should be
+created only when needed.
+
+Add a caching mechanism to allow doing just that: Create the drm_pagemaps
+when needed for migration. Keep them around to avoid destruction and
+re-creation latencies and destroy inactive/unused drm_pagemaps on memory
+pressure using a shrinker.
+
+Only add the helper functions. They will be hooked up to the xe driver
+in the upcoming patch.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_pagemap.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/Makefile           |   3 +-
+ drivers/gpu/drm/drm_pagemap.c      |  79 +++++-
+ drivers/gpu/drm/drm_pagemap_util.c | 426 +++++++++++++++++++++++++++++
+ include/drm/drm_pagemap.h          |  53 +++-
+ include/drm/drm_pagemap_util.h     |  25 ++
+ 5 files changed, 569 insertions(+), 17 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_pagemap_util.c
+ create mode 100644 include/drm/drm_pagemap_util.h
 
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index c2672f369aed..cdca68fd9f23 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -107,7 +107,8 @@ obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
+ 
+ drm_gpusvm_helper-y := \
+ 	drm_gpusvm.o\
+-	drm_pagemap.o
++	drm_pagemap.o\
++	drm_pagemap_util.o
+ obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm_helper.o
+ 
+ obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
 diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 4b8692f0b2a2..173b3ecb07d5 100644
+index fb18a80d6a1c..5ca5b2b53bc1 100644
 --- a/drivers/gpu/drm/drm_pagemap.c
 +++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -62,6 +62,7 @@
-  *
-  * @refcount: Reference count for the zdd
-  * @devmem_allocation: device memory allocation
-+ * @dpagemap: Refcounted pointer to the underlying struct drm_pagemap.
-  * @device_private_page_owner: Device private pages owner
-  *
-  * This structure serves as a generic wrapper installed in
-@@ -74,11 +75,13 @@
- struct drm_pagemap_zdd {
- 	struct kref refcount;
- 	struct drm_pagemap_devmem *devmem_allocation;
+@@ -8,6 +8,7 @@
+ #include <linux/pagemap.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_pagemap.h>
++#include <drm/drm_pagemap_util.h>
+ #include <drm/drm_print.h>
+ 
+ /**
+@@ -578,7 +579,7 @@ static void drm_pagemap_release(struct kref *ref)
+ 	 * pagemap provider drm_device and its module.
+ 	 */
+ 	dpagemap->dev_hold = NULL;
+-	kfree(dpagemap);
++	drm_pagemap_shrinker_add(dpagemap);
+ 	llist_add(&dev_hold->link, &drm_pagemap_unhold_list);
+ 	schedule_work(&drm_pagemap_work);
+ 	/*
+@@ -628,6 +629,58 @@ drm_pagemap_dev_hold(struct drm_pagemap *dpagemap)
+ 	return dev_hold;
+ }
+ 
++/**
++ * drm_pagemap_reinit() - Reinitialize a drm_pagemap
++ * @dpagemap: The drm_pagemap to reinitialize
++ *
++ * Reinitialize a drm_pagemap, for which drm_pagemap_release
++ * has already been called. This interface is intended for the
++ * situation where the driver caches a destroyed drm_pagemap.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int drm_pagemap_reinit(struct drm_pagemap *dpagemap)
++{
++	dpagemap->dev_hold = drm_pagemap_dev_hold(dpagemap);
++	if (IS_ERR(dpagemap->dev_hold))
++		return PTR_ERR(dpagemap->dev_hold);
++
++	kref_init(&dpagemap->ref);
++	return 0;
++}
++EXPORT_SYMBOL(drm_pagemap_reinit);
++
++/**
++ * drm_pagemap_init() - Initialize a pre-allocated drm_pagemap
++ * @dpagemap: The drm_pagemap to initialize.
++ * @pagemap: The associated dev_pagemap providing the device
++ * private pages.
++ * @drm: The drm device. The drm_pagemap holds a reference on the
++ * drm_device and the module owning the drm_device until
++ * drm_pagemap_release(). This facilitates drm_pagemap exporting.
++ * @ops: The drm_pagemap ops.
++ *
++ * Initialize and take an initial reference on a drm_pagemap.
++ * After successful return, use drm_pagemap_put() to destroy.
++ *
++ ** Return: 0 on success, negative error code on error.
++ */
++int drm_pagemap_init(struct drm_pagemap *dpagemap,
++		     struct dev_pagemap *pagemap,
++		     struct drm_device *drm,
++		     const struct drm_pagemap_ops *ops)
++{
++	kref_init(&dpagemap->ref);
++	dpagemap->ops = ops;
++	dpagemap->pagemap = pagemap;
++	dpagemap->drm = drm;
++	dpagemap->cache = NULL;
++	INIT_LIST_HEAD(&dpagemap->shrink_link);
++
++	return drm_pagemap_reinit(dpagemap);
++}
++EXPORT_SYMBOL(drm_pagemap_init);
++
+ /**
+  * drm_pagemap_create() - Create a struct drm_pagemap.
+  * @drm: Pointer to a struct drm_device providing the device-private memory.
+@@ -645,22 +698,14 @@ drm_pagemap_create(struct drm_device *drm,
+ 		   const struct drm_pagemap_ops *ops)
+ {
+ 	struct drm_pagemap *dpagemap = kzalloc(sizeof(*dpagemap), GFP_KERNEL);
+-	struct drm_pagemap_dev_hold *dev_hold;
++	int err;
+ 
+ 	if (!dpagemap)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	kref_init(&dpagemap->ref);
+-	dpagemap->drm = drm;
+-	dpagemap->ops = ops;
+-	dpagemap->pagemap = pagemap;
+-
+-	dev_hold = drm_pagemap_dev_hold(dpagemap);
+-	if (IS_ERR(dev_hold)) {
+-		kfree(dpagemap);
+-		return ERR_CAST(dev_hold);
+-	}
+-	dpagemap->dev_hold = dev_hold;
++	err = drm_pagemap_init(dpagemap, pagemap, drm, ops);
++	if (err)
++		return ERR_PTR(err);
+ 
+ 	return dpagemap;
+ }
+@@ -1023,6 +1068,14 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ }
+ EXPORT_SYMBOL(drm_pagemap_populate_mm);
+ 
++void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim)
++{
++	if (dpagemap->ops->destroy)
++		dpagemap->ops->destroy(dpagemap, is_atomic_or_reclaim);
++	else
++		kfree(dpagemap);
++}
++
+ static void drm_pagemap_exit(void)
+ {
+ 	flush_work(&drm_pagemap_work);
+diff --git a/drivers/gpu/drm/drm_pagemap_util.c b/drivers/gpu/drm/drm_pagemap_util.c
+new file mode 100644
+index 000000000000..e1a1d6bf25f4
+--- /dev/null
++++ b/drivers/gpu/drm/drm_pagemap_util.c
+@@ -0,0 +1,426 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#include <drm/drm_drv.h>
++#include <drm/drm_managed.h>
++#include <drm/drm_pagemap.h>
++#include <drm/drm_pagemap_util.h>
++#include <drm/drm_print.h>
++
++/**
++ * struct drm_pagemap_cache - Lookup structure for pagemaps
++ *
++ * Structure to keep track of active (refcount > 1) and inactive
++ * (refcount == 0) pagemaps. Inactive pagemaps can be made active
++ * again by waiting for the @queued completion (indicating that the
++ * pagemap has been put on the @shrinker's list of shrinkable
++ * pagemaps, and then successfully removing it from @shrinker's
++ * list. The latter may fail if the shrinker is already in the
++ * process of freeing the pagemap. A struct drm_pagemap_cache can
++ * hold a single struct drm_pagemap.
++ */
++struct drm_pagemap_cache {
++	/** @lookup_mutex: Mutex making the lookup process atomic */
++	struct mutex lookup_mutex;
++	/** @lock: Lock protecting the @dpagemap pointer */
++	spinlock_t lock;
++	/** @shrinker: Pointer to the shrinker used for this cache. Immutable. */
++	struct drm_pagemap_shrinker *shrinker;
++	/** @dpagemap: Non-refcounted pointer to the drm_pagemap */
 +	struct drm_pagemap *dpagemap;
- 	void *device_private_page_owner;
++	/**
++	 * @queued: Signals when an inactive drm_pagemap has been put on
++	 * @shrinker's list.
++	 */
++	struct completion queued;
++};
++
++/**
++ * struct drm_pagemap_shrinker - Shrinker to remove unused pagemaps
++ */
++struct drm_pagemap_shrinker {
++	/** @drm: Pointer to the drm device. */
++	struct drm_device *drm;
++	/** @lock: Spinlock to protect the @dpagemaps list. */
++	spinlock_t lock;
++	/** @dpagemaps: List of unused dpagemaps. */
++	struct list_head dpagemaps;
++	/** @num_dpagemaps: Number of unused dpagemaps in @dpagemaps. */
++	atomic_t num_dpagemaps;
++	/** @shrink: Pointer to the struct shrinker. */
++	struct shrinker *shrink;
++};
++
++static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap);
++
++static void drm_pagemap_cache_fini(void *arg)
++{
++	struct drm_pagemap_cache *cache = arg;
++	struct drm_pagemap *dpagemap;
++
++	drm_dbg(cache->shrinker->drm, "Destroying dpagemap cache.\n");
++	spin_lock(&cache->lock);
++	dpagemap = cache->dpagemap;
++	if (!dpagemap) {
++		spin_unlock(&cache->lock);
++		goto out;
++	}
++
++	if (drm_pagemap_shrinker_cancel(dpagemap)) {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		drm_pagemap_destroy(dpagemap, false);
++	}
++
++out:
++	mutex_destroy(&cache->lookup_mutex);
++	kfree(cache);
++}
++
++/**
++ * drm_pagemap_cache_create_devm() - Create a drm_pagemap_cache
++ * @shrinker: Pointer to a struct drm_pagemap_shrinker.
++ *
++ * Create a device-managed drm_pagemap cache. The cache is automatically
++ * destroyed on struct device removal, at which point any *inactive*
++ * drm_pagemap's are destroyed.
++ *
++ * Return: Pointer to a struct drm_pagemap_cache on success. Error pointer
++ * on failure.
++ */
++struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker)
++{
++	struct drm_pagemap_cache *cache = kzalloc(sizeof(*cache), GFP_KERNEL);
++	int err;
++
++	if (!cache)
++		return ERR_PTR(-ENOMEM);
++
++	mutex_init(&cache->lookup_mutex);
++	spin_lock_init(&cache->lock);
++	cache->shrinker = shrinker;
++	init_completion(&cache->queued);
++	err = devm_add_action_or_reset(shrinker->drm->dev, drm_pagemap_cache_fini, cache);
++	if (err)
++		return ERR_PTR(err);
++
++	return cache;
++}
++EXPORT_SYMBOL(drm_pagemap_cache_create_devm);
++
++/**
++ * DOC: Cache lookup
++ *
++ * Cache lookup should be done under a locked mutex, so that a
++ * failed drm_pagemap_get_from_cache() and a following
++ * drm_pagemap_cache_setpagemap() are carried out as an atomic
++ * operation WRT other lookups. Otherwise, racing lookups may
++ * unnecessarily concurrently create pagemaps to fulfill a
++ * failed lookup. The API provides two functions to perform this lock,
++ * drm_pagemap_lock_lookup() and drm_pagemap_unlock_lookup() and they
++ * should be used in the following way:
++ *
++ * .. code-block:: c
++ *
++ *		drm_pagemap_lock_lookup(cache);
++ *		dpagemap = drm_pagemap_get_from_cache(cache);
++ *		if (dpagemap)
++ *			goto out_unlock;
++ *
++ *		dpagemap = driver_create_new_dpagemap();
++ *		if (!IS_ERR(dpagemap))
++ *			drm_pagemap_cache_set_pagemap(cache, dpagemap);
++ *
++ *     out_unlock:
++ *		drm_pagemap_unlock_lookup(cache);
++ */
++
++/**
++ * drm_pagemap_cache_lock_lookup() Lock a drm_pagemap_cache for lookup
++ * @cache: The drm_pagemap_cache to lock.
++ *
++ * Return: %-EINTR if interrupted while blocking. %0 otherwise.
++ */
++int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache)
++{
++	return mutex_lock_interruptible(&cache->lookup_mutex);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_lock_lookup);
++
++/**
++ * drm_pagemap_cache_unlock_lookup() Unlock a drm_pagemap_cache after lookup
++ * @cache: The drm_pagemap_cache to unlock.
++ */
++void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache)
++{
++	mutex_unlock(&cache->lookup_mutex);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_unlock_lookup);
++
++/**
++ * drm_pagemap_get_from_cache() -  Lookup of drm_pagemaps.
++ * @cache: The cache used for lookup.
++ *
++ * If an active pagemap is present in the cache, it is immediately returned.
++ * If an inactive pagemap is present, it's removed from the shrinker list and
++ * an attempt is made to make it active.
++ * If no pagemap present or the attempt to make it active failed, %NULL is returned
++ * to indicate to the caller to create a new drm_pagemap and insert it into
++ * the cache.
++ *
++ * Return: A reference-counted pointer to a drm_pagemap if successful. An error
++ * pointer if an error occurred, or %NULL if no drm_pagemap was found and
++ * the caller should insert a new one.
++ */
++struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache)
++{
++	struct drm_pagemap *dpagemap;
++	int err;
++
++	lockdep_assert_held(&cache->lookup_mutex);
++retry:
++	spin_lock(&cache->lock);
++	dpagemap = cache->dpagemap;
++	if (drm_pagemap_get_unless_zero(dpagemap)) {
++		spin_unlock(&cache->lock);
++		return dpagemap;
++	}
++
++	if (!dpagemap) {
++		spin_unlock(&cache->lock);
++		return NULL;
++	}
++
++	if (!try_wait_for_completion(&cache->queued)) {
++		spin_unlock(&cache->lock);
++		err = wait_for_completion_interruptible(&cache->queued);
++		if (err)
++			return ERR_PTR(err);
++		goto retry;
++	}
++
++	if (drm_pagemap_shrinker_cancel(dpagemap)) {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		err = drm_pagemap_reinit(dpagemap);
++		if (err) {
++			drm_pagemap_destroy(dpagemap, false);
++			return ERR_PTR(err);
++		}
++		drm_pagemap_cache_set_pagemap(cache, dpagemap);
++	} else {
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++		dpagemap = NULL;
++	}
++
++	return dpagemap;
++}
++EXPORT_SYMBOL(drm_pagemap_get_from_cache);
++
++/**
++ * drm_pagemap_cache_set_pagemap() - Assign a drm_pagemap to a drm_pagemap_cache
++ * @cache: The cache to assign the drm_pagemap to.
++ * @dpagemap: The drm_pagemap to assign.
++ *
++ * The function must be called to populate a drm_pagemap_cache only
++ * after a call to drm_pagemap_get_from_cache() returns NULL.
++ */
++void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap)
++{
++	struct drm_device *drm = dpagemap->drm;
++
++	lockdep_assert_held(&cache->lookup_mutex);
++	spin_lock(&cache->lock);
++	dpagemap->cache = cache;
++	swap(cache->dpagemap, dpagemap);
++	reinit_completion(&cache->queued);
++	spin_unlock(&cache->lock);
++	drm_WARN_ON(drm, !!dpagemap);
++}
++EXPORT_SYMBOL(drm_pagemap_cache_set_pagemap);
++
++/**
++ * drm_pagemap_get_from_cache_if_active() - Quick lookup of active drm_pagemaps
++ * @cache: The cache to lookup from.
++ *
++ * Function that should be used to lookup a drm_pagemap that is already active.
++ * (refcount > 0).
++ *
++ * Return: A pointer to the cache's drm_pagemap if it's active; %NULL otherwise.
++ */
++struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache)
++{
++	struct drm_pagemap *dpagemap;
++
++	spin_lock(&cache->lock);
++	dpagemap = drm_pagemap_get_unless_zero(cache->dpagemap);
++	spin_unlock(&cache->lock);
++
++	return dpagemap;
++}
++EXPORT_SYMBOL(drm_pagemap_get_from_cache_if_active);
++
++static bool drm_pagemap_shrinker_cancel(struct drm_pagemap *dpagemap)
++{
++	struct drm_pagemap_cache *cache = dpagemap->cache;
++	struct drm_pagemap_shrinker *shrinker = cache->shrinker;
++
++	spin_lock(&shrinker->lock);
++	if (list_empty(&dpagemap->shrink_link)) {
++		spin_unlock(&shrinker->lock);
++		return false;
++	}
++
++	list_del_init(&dpagemap->shrink_link);
++	atomic_dec(&shrinker->num_dpagemaps);
++	spin_unlock(&shrinker->lock);
++	return true;
++}
++
++/**
++ * drm_pagemap_shrinker_add() - Add a drm_pagemap to the shrinker list or destroy
++ * @dpagemap: The drm_pagemap.
++ *
++ * If @dpagemap is associated with a &struct drm_pagemap_cache AND the
++ * struct device backing the drm device is still alive, add @dpagemap to
++ * the &struct drm_pagemap_shrinker list of shrinkable drm_pagemaps.
++ *
++ * Otherwise destroy the pagemap directly using drm_pagemap_destroy().
++ *
++ * This is an internal function which is not intended to be exposed to drivers.
++ */
++void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap)
++{
++	struct drm_pagemap_cache *cache;
++	struct drm_pagemap_shrinker *shrinker;
++	int idx;
++
++	/*
++	 * The pagemap cache and shrinker are disabled at
++	 * pci device remove time. After that, dpagemaps
++	 * are freed directly.
++	 */
++	if (!drm_dev_enter(dpagemap->drm, &idx))
++		goto out_no_cache;
++
++	cache = dpagemap->cache;
++	if (!cache) {
++		drm_dev_exit(idx);
++		goto out_no_cache;
++	}
++
++	shrinker = cache->shrinker;
++	spin_lock(&shrinker->lock);
++	list_add_tail(&dpagemap->shrink_link, &shrinker->dpagemaps);
++	atomic_inc(&shrinker->num_dpagemaps);
++	spin_unlock(&shrinker->lock);
++	complete_all(&cache->queued);
++	drm_dev_exit(idx);
++	return;
++
++out_no_cache:
++	drm_pagemap_destroy(dpagemap, true);
++}
++
++static unsigned long
++drm_pagemap_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
++	unsigned long count = atomic_read(&shrinker->num_dpagemaps);
++
++	return count ? : SHRINK_EMPTY;
++}
++
++static unsigned long
++drm_pagemap_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
++{
++	struct drm_pagemap_shrinker *shrinker = shrink->private_data;
++	struct drm_pagemap *dpagemap;
++	struct drm_pagemap_cache *cache;
++	unsigned long nr_freed = 0;
++
++	sc->nr_scanned = 0;
++	spin_lock(&shrinker->lock);
++	do {
++		dpagemap = list_first_entry_or_null(&shrinker->dpagemaps, typeof(*dpagemap),
++						    shrink_link);
++		if (!dpagemap)
++			break;
++
++		atomic_dec(&shrinker->num_dpagemaps);
++		list_del_init(&dpagemap->shrink_link);
++		spin_unlock(&shrinker->lock);
++
++		sc->nr_scanned++;
++		nr_freed++;
++
++		cache = dpagemap->cache;
++		spin_lock(&cache->lock);
++		cache->dpagemap = NULL;
++		spin_unlock(&cache->lock);
++
++		drm_dbg(dpagemap->drm, "Shrinking dpagemap %p.\n", dpagemap);
++		drm_pagemap_destroy(dpagemap, true);
++		spin_lock(&shrinker->lock);
++	} while (sc->nr_scanned < sc->nr_to_scan);
++	spin_unlock(&shrinker->lock);
++
++	return sc->nr_scanned ? nr_freed : SHRINK_STOP;
++}
++
++static void drm_pagemap_shrinker_fini(void *arg)
++{
++	struct drm_pagemap_shrinker *shrinker = arg;
++
++	drm_dbg(shrinker->drm, "Destroying dpagemap shrinker.\n");
++	drm_WARN_ON(shrinker->drm, !!atomic_read(&shrinker->num_dpagemaps));
++	shrinker_free(shrinker->shrink);
++	kfree(shrinker);
++}
++
++/**
++ * drm_pagemap_shrinker_create_devm() - Create and register a pagemap shrinker
++ * @drm: The drm device
++ *
++ * Create and register a pagemap shrinker that shrinks unused pagemaps
++ * and thereby reduces memory footprint.
++ * The shrinker is drm_device managed and unregisters itself when
++ * the drm device is removed.
++ *
++ * Return: %0 on success, negative error code on failure.
++ */
++struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm)
++{
++	struct drm_pagemap_shrinker *shrinker;
++	struct shrinker *shrink;
++	int err;
++
++	shrinker = kzalloc(sizeof(*shrinker), GFP_KERNEL);
++	if (!shrinker)
++		return ERR_PTR(-ENOMEM);
++
++	shrink = shrinker_alloc(0, "drm-drm_pagemap:%s", drm->unique);
++	if (!shrink) {
++		kfree(shrinker);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	spin_lock_init(&shrinker->lock);
++	INIT_LIST_HEAD(&shrinker->dpagemaps);
++	shrinker->drm = drm;
++	shrinker->shrink = shrink;
++	shrink->count_objects = drm_pagemap_shrinker_count;
++	shrink->scan_objects = drm_pagemap_shrinker_scan;
++	shrink->private_data = shrinker;
++	shrinker_register(shrink);
++
++	err = devm_add_action_or_reset(drm->dev, drm_pagemap_shrinker_fini, shrinker);
++	if (err)
++		return ERR_PTR(err);
++
++	return shrinker;
++}
++EXPORT_SYMBOL(drm_pagemap_shrinker_create_devm);
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index 5cfe54331ba7..4b9af5e785c6 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -9,6 +9,7 @@
+ #define NR_PAGES(order) (1U << (order))
+ 
+ struct drm_pagemap;
++struct drm_pagemap_cache;
+ struct drm_pagemap_dev_hold;
+ struct drm_pagemap_zdd;
+ struct device;
+@@ -124,6 +125,25 @@ struct drm_pagemap_ops {
+ 			   unsigned long start, unsigned long end,
+ 			   struct mm_struct *mm,
+ 			   unsigned long timeslice_ms);
++	/**
++	 * @destroy: Destroy the drm_pagemap and associated resources.
++	 * @dpagemap: The drm_pagemap to destroy.
++	 * @is_atomic_or_reclaim: The function may be called from
++	 * atomic- or reclaim context.
++	 *
++	 * The implementation should take care not to attempt to
++	 * destroy resources that may already have been destroyed
++	 * using devm_ callbacks, since this function may be called
++	 * after the underlying struct device has been unbound.
++	 * If the implementation defers the execution to a work item
++	 * to avoid locking issues, then it must make sure the work
++	 * items are flushed before module exit. If the destroy call
++	 * happens after the provider's pci_remove() callback has
++	 * been executed, a module reference and drm device reference is
++	 * held across the destroy callback.
++	 */
++	void (*destroy)(struct drm_pagemap *dpagemap,
++			bool is_atomic_or_reclaim);
  };
  
  /**
-  * drm_pagemap_zdd_alloc() - Allocate a zdd structure.
-+ * @dpagemap: Pointer to the underlying struct drm_pagemap.
-  * @device_private_page_owner: Device private pages owner
-  *
-  * This function allocates and initializes a new zdd structure. It sets up the
-@@ -87,7 +90,7 @@ struct drm_pagemap_zdd {
-  * Return: Pointer to the allocated zdd on success, ERR_PTR() on failure.
+@@ -135,6 +155,10 @@ struct drm_pagemap_ops {
+  * @pagemap: Pointer to the underlying dev_pagemap.
+  * @dev_hold: Pointer to a struct drm_pagemap_dev_hold for
+  * device referencing.
++ * @cache: Back-pointer to the &struct drm_pagemap_cache used for this
++ * &struct drm_pagemap. May be NULL if no cache is used.
++ * @shrink_link: Link into the shrinker's list of drm_pagemaps. Only
++ * used if also using a pagemap cache.
   */
- static struct drm_pagemap_zdd *
--drm_pagemap_zdd_alloc(void *device_private_page_owner)
-+drm_pagemap_zdd_alloc(struct drm_pagemap *dpagemap, void *device_private_page_owner)
- {
- 	struct drm_pagemap_zdd *zdd;
+ struct drm_pagemap {
+ 	const struct drm_pagemap_ops *ops;
+@@ -142,6 +166,8 @@ struct drm_pagemap {
+ 	struct drm_device *drm;
+ 	struct dev_pagemap *pagemap;
+ 	struct drm_pagemap_dev_hold *dev_hold;
++	struct drm_pagemap_cache *cache;
++	struct list_head shrink_link;
+ };
  
-@@ -98,6 +101,7 @@ drm_pagemap_zdd_alloc(void *device_private_page_owner)
- 	kref_init(&zdd->refcount);
- 	zdd->devmem_allocation = NULL;
- 	zdd->device_private_page_owner = device_private_page_owner;
-+	zdd->dpagemap = drm_pagemap_get(dpagemap);
+ struct drm_pagemap_devmem;
+@@ -210,6 +236,11 @@ struct drm_pagemap_devmem_ops {
+ 			   unsigned long npages);
+ };
  
- 	return zdd;
- }
-@@ -127,6 +131,7 @@ static void drm_pagemap_zdd_destroy(struct kref *ref)
- 	struct drm_pagemap_zdd *zdd =
- 		container_of(ref, struct drm_pagemap_zdd, refcount);
- 	struct drm_pagemap_devmem *devmem = zdd->devmem_allocation;
-+	struct drm_pagemap *dpagemap = zdd->dpagemap;
- 
- 	if (devmem) {
- 		complete_all(&devmem->detached);
-@@ -134,6 +139,7 @@ static void drm_pagemap_zdd_destroy(struct kref *ref)
- 			devmem->ops->devmem_release(devmem);
- 	}
- 	kfree(zdd);
-+	drm_pagemap_put(dpagemap);
- }
++int drm_pagemap_init(struct drm_pagemap *dpagemap,
++		     struct dev_pagemap *pagemap,
++		     struct drm_device *drm,
++		     const struct drm_pagemap_ops *ops);
++
+ struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+ 				       struct dev_pagemap *pagemap,
+ 				       const struct drm_pagemap_ops *ops);
+@@ -228,9 +259,9 @@ static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
  
  /**
-@@ -366,7 +372,7 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
- 	pagemap_addr = buf + (2 * sizeof(*migrate.src) * npages);
- 	pages = buf + (2 * sizeof(*migrate.src) + sizeof(*pagemap_addr)) * npages;
+  * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
+- * @dpagemap: Pointer to the struct drm_pagemap.
++ * @dpagemap: Pointer to the struct drm_pagemap, or NULL.
+  *
+- * Return: Pointer to the struct drm_pagemap.
++ * Return: Pointer to the struct drm_pagemap, or NULL.
+  */
+ static inline struct drm_pagemap *
+ drm_pagemap_get(struct drm_pagemap *dpagemap)
+@@ -241,6 +272,20 @@ drm_pagemap_get(struct drm_pagemap *dpagemap)
+ 	return dpagemap;
+ }
  
--	zdd = drm_pagemap_zdd_alloc(pgmap_owner);
-+	zdd = drm_pagemap_zdd_alloc(devmem_allocation->dpagemap, pgmap_owner);
- 	if (!zdd) {
- 		err = -ENOMEM;
- 		goto err_free;
++/**
++ * drm_pagemap_get_unless_zero() - Obtain a reference on a struct drm_pagemap
++ * unless the current reference count is zero.
++ * @dpagemap: Pointer to the drm_pagemap or NULL.
++ *
++ * Return: A pointer to @dpagemap if the reference count was successfully
++ * incremented. NULL if @dpagemap was NULL, or its refcount was 0.
++ */
++static inline struct drm_pagemap * __must_check
++drm_pagemap_get_unless_zero(struct drm_pagemap *dpagemap)
++{
++	return (dpagemap && kref_get_unless_zero(&dpagemap->ref)) ? dpagemap : NULL;
++}
++
+ /**
+  * struct drm_pagemap_devmem - Structure representing a GPU SVM device memory allocation
+  *
+@@ -284,5 +329,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 			    struct mm_struct *mm,
+ 			    unsigned long timeslice_ms);
+ 
+-#endif
++void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim);
+ 
++int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
++#endif
+diff --git a/include/drm/drm_pagemap_util.h b/include/drm/drm_pagemap_util.h
+new file mode 100644
+index 000000000000..292244d429ee
+--- /dev/null
++++ b/include/drm/drm_pagemap_util.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: MIT */
++#ifndef _DRM_PAGEMAP_UTIL_H_
++#define _DRM_PAGEMAP_UTIL_H_
++
++struct drm_device;
++struct drm_pagemap;
++struct drm_pagemap_cache;
++struct drm_pagemap_shrinker;
++
++void drm_pagemap_shrinker_add(struct drm_pagemap *dpagemap);
++
++int drm_pagemap_cache_lock_lookup(struct drm_pagemap_cache *cache);
++
++void drm_pagemap_cache_unlock_lookup(struct drm_pagemap_cache *cache);
++
++struct drm_pagemap_shrinker *drm_pagemap_shrinker_create_devm(struct drm_device *drm);
++
++struct drm_pagemap_cache *drm_pagemap_cache_create_devm(struct drm_pagemap_shrinker *shrinker);
++
++struct drm_pagemap *drm_pagemap_get_from_cache(struct drm_pagemap_cache *cache);
++
++void drm_pagemap_cache_set_pagemap(struct drm_pagemap_cache *cache, struct drm_pagemap *dpagemap);
++
++struct drm_pagemap *drm_pagemap_get_from_cache_if_active(struct drm_pagemap_cache *cache);
++#endif
 -- 
 2.51.0
 
