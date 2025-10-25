@@ -4,43 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7515CCCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:24:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC07ACCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:29:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C40610E31E;
-	Sat, 25 Oct 2025 16:24:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 922AD10E326;
+	Sat, 25 Oct 2025 16:29:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VzWMdEpJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s1sot9w4";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 587EE10E31E
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:24:45 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0CC610E326
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:29:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5917A61188;
- Sat, 25 Oct 2025 16:24:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0CDBC4CEFF;
- Sat, 25 Oct 2025 16:24:42 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A7366452F9;
+ Sat, 25 Oct 2025 16:29:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41CCAC4CEF5;
+ Sat, 25 Oct 2025 16:29:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761409484;
- bh=DvjHgIqTUYUSmQLZ6UrLNKfbIO2pBoyCIPtCmAEGx/M=;
+ s=k20201202; t=1761409741;
+ bh=gtB4My9xNPJe49k+2kiGNFIt+E+DTr869ijIgZM1dvo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VzWMdEpJm+ZTkBKfHjwOx+e/Z6y0fe58PSXhCzLeg9WZDiIDdsjY2QYdic/fJwvpO
- vUhw5/7s+37ascTeC+upCdqEXE4ND1QTOljdc7q0la0jeCn2e7txqYrjhgVAMM4L7S
- 2UpCN3igKxf/iHRIx5SoC0o0acq+Cadc84i05nT0ryaCn1OaXDmvzPsW6bjEiruNxn
- 1K4J8eYFjl6XmIbFNBY18in5ReYC3Sydl9g7LO2cg0Kbc29d2eF63Z6IZHRzeVlCvS
- FzCa03BedyocbUBU0qdTaSRiQpX5KHVSnxdEtJRmJz6+EMwzL2Ln08sNnythyNTTIs
- UeVwZaNw1M1qw==
+ b=s1sot9w45aNf8GJ9FlEAUq/o8Va4kJfrKvcgKYLZMTN0zFqiTRWv0umgblMQClsD/
+ IYXogTpgXPCiTmuvHZCtlkop6353C72ZgN2IvzTrerI0iKx6ANY6Edyom7+JqVV93H
+ fnxzXYqUs5CPYPkLlSQZ41Gk3lNaF9SN3EktVvhyzyK92RLPsevEMkOFch9khSTqT4
+ BcvNnuT7MglucIK27WfVkvSNWTerdWo5YhcHqPCqp73hTF8A1pnHWbu7tZZW1GxAcC
+ g0nP9judjMtAMjfSBfEG/fTzeP7vQncotD1ru3CmWdveXtNNFCtsuq9kfTyP/FanBu
+ Tz4z7XzMwDe4Q==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Stuart Summers <stuart.summers@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: John Harrison <John.C.Harrison@Intel.com>,
+ Stuart Summers <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: rework PDE PAT index selection
-Date: Sat, 25 Oct 2025 11:59:35 -0400
-Message-ID: <20251025160905.3857885-344-sashal@kernel.org>
+ rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
+ alexandre.f.demers@gmail.com, alexander.deucher@amd.com,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.17-6.12] drm/xe/guc: Add more GuC load error status
+ codes
+Date: Sat, 25 Oct 2025 12:01:16 -0400
+Message-ID: <20251025160905.3857885-445-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -64,37 +66,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
 
-[ Upstream commit 17593a69b75f098280ad88b625f2d8c5bfe4c6a1 ]
+[ Upstream commit 45fbb51050e72723c2bdcedc1ce32305256c70ed ]
 
-For non-leaf paging structures we end up selecting a random index
-between [0, 3], depending on the first user if the page-table is shared,
-since non-leaf structures only have two bits in the HW for encoding the
-PAT index, and here we are just passing along the full user provided
-index, which can be an index as large as ~31 on xe2+. The user provided
-index is meant for the leaf node, which maps the actual BO pages where
-we have more PAT bits, and not the non-leaf nodes which are only mapping
-other paging structures, and so only needs a minimal PAT index range.
-Also the chosen index might need to consider how the driver mapped the
-paging structures on the host side, like wc vs wb, which is separate
-from the user provided index.
+The GuC load process will abort if certain status codes (which are
+indicative of a fatal error) are reported. Otherwise, it keeps waiting
+until the 'success' code is returned. New error codes have been added
+in recent GuC releases, so add support for aborting on those as well.
 
-With that move the PDE PAT index selection under driver control. For now
-just use a coherent index on platforms with page-tables that are cached
-on host side, and incoherent otherwise. Using a coherent index could
-potentially be expensive, and would be overkill if we know the page-table
-is always uncached on host side.
+v2: Shuffle HWCONFIG_START to the front of the switch to keep the
+ordering as per the enum define for clarity (review feedback by
+Jonathan). Also add a description for the basic 'invalid init data'
+code which was missing.
 
-v2 (Stuart):
-  - Add some documentation and split into separate helper.
-
-BSpec: 59510
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Link: https://lore.kernel.org/r/20250808103455.462424-2-matthew.auld@intel.com
+Link: https://lore.kernel.org/r/20250726024337.4056272-1-John.C.Harrison@Intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -102,234 +90,176 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What it fixes
-  - Non-leaf page-table entries (PDE/PDPE) have only two PAT bits in HW,
-    but the driver was passing the full user-provided PAT index (which
-    can be up to ~31 on xe2+). This meant the effective index was just
-    the low 2 bits and could vary “randomly” depending on the first VMA
-    that created a shared page-table level. That is a
-    correctness/coherency bug for non-leaf page-table levels that only
-    point to paging structures and must reflect how those paging
-    structures are mapped on the host.
-  - Commit moves PDE PAT index selection under driver control and ties
-    it to the page-table BO’s actual host-side caching/coherency rather
-    than the user PAT for leaf mappings.
+Why this is a good stable backport
+- Fixes real-world hangs/timeouts: New GuC firmware versions can report
+  additional fatal load status codes. Without this patch, the Xe driver
+  may continue waiting until the generic timeout, causing long delays
+  and poorer diagnostics. Recognizing these as terminal failures is a
+  correctness and robustness fix, not a feature.
+- Small and contained: Changes are limited to two Xe files, only
+  touching enums and switch cases that read GuC status. No architectural
+  changes, no API/UAPI changes, no behavior change unless the new error
+  codes are actually returned.
+- Forward-compatibility with newer GuC: Distros often update GuC via
+  linux-firmware independently of the kernel. This patch keeps older
+  kernels robust when paired with newer GuC blobs.
+- Low regression risk: Older GuC won’t emit the new codes, so behavior
+  is unchanged there. New codes are explicitly fatal, so aborting
+  earlier is the correct action. Additional logging improves triage.
 
-- Evidence in current code
-  - PDE encoding currently uses the caller’s `pat_index`:
-    - `drivers/gpu/drm/xe/xe_vm.c:1550` (`xelp_pde_encode_bo(...,
-      pat_index)`) sets only PAT0/PAT1 via `pde_encode_pat_index()`
-      despite callers passing broader user PATs (including bit4 on
-      xe2+).
-    - PDE is fed the user’s PAT in multiple places:
-      - `drivers/gpu/drm/xe/xe_pt.c:619` (stage-bind:
-        `pde_encode_bo(xe_child->bo, 0, pat_index)`)
-      - `drivers/gpu/drm/xe/xe_migrate.c:212, 303, 314` (migration
-        identity and pagetable setup paths)
-      - `drivers/gpu/drm/xe/xe_pt.c:71-73` (scratch PT path)
-      - `drivers/gpu/drm/xe/xe_vm.c:2088-2091` (PDP descriptor)
-  - PAT encoding functions show the mismatch explicitly:
-    - `drivers/gpu/drm/xe/xe_vm.c:1499-1510` encodes only two bits for
-      PDE/PDPE in `pde_encode_pat_index()`, while leaf PTE path
-      (`pte_encode_pat_index()`, `drivers/gpu/drm/xe/xe_vm.c:1512-1536`)
-      supports more bits (incl. `PAT4` on xe2+), reinforcing that the
-      user PAT applies to leaf entries, not PDEs.
+What changes and why they matter
+- Add new GuC load error codes in the ABI header
+  - drivers/gpu/drm/xe/abi/guc_errors_abi.h:49 defines `enum
+    xe_guc_load_status`. This patch adds:
+    - `XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH = 0x08` (fatal)
+    - `XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR = 0x75` (fatal)
+    - `XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG = 0x76` (fatal)
+  - In current tree, the relevant region is at
+    drivers/gpu/drm/xe/abi/guc_errors_abi.h:49–72. Adding these entries
+    fills previously unused values (0x08, 0x75, 0x76) and keeps them in
+    the “invalid init data” range where appropriate, preserving ordering
+    and ABI clarity.
 
-- What the patch changes
-  - Drops `pat_index` from the PDE encoder vfunc
-    (`drivers/gpu/drm/xe/xe_pt_types.h:48-50`).
-  - Adds a new helper to choose a PDE PAT index based on the BO’s
-    placement and host-side caching (WB for cached system-memory page
-    tables; NONE if VRAM or WC/uncached) and asserts it fits the 2-bit
-    range.
-  - Updates all PDE call sites to the new signature (e.g.,
-    `drivers/gpu/drm/xe/xe_pt.c:619`, `drivers/gpu/drm/xe/xe_migrate.c`
-    call sites, `drivers/gpu/drm/xe/xe_vm.c:2088-2091`).
-  - Leaf PTE encoding remains unchanged and continues to honor the user-
-    provided PAT index (`drivers/gpu/drm/xe/xe_pt.c:544-555`,
-    `drivers/gpu/drm/xe/xe_vm.c:1562-1585`).
+- Treat the new codes as terminal failures in the load state machine
+  - drivers/gpu/drm/xe/xe_guc.c:517 `guc_load_done()` is the terminal-
+    state detector for the load loop.
+  - Existing fatal cases are in the switch at
+    drivers/gpu/drm/xe/xe_guc.c:526–535.
+  - The patch adds the new codes to this fatal set, so `guc_load_done()`
+    returns -1 immediately instead of waiting for a timeout. This
+    prevents long waits and aligns behavior with the intended semantics
+    of these GuC codes.
 
-- Why the new policy is correct and safe
-  - Non-leaf entries only point to other page tables, so they need a
-    small, fixed PAT selection tied to how those page tables are
-    accessed by host/GPU, not the VMA’s user PAT intended for leaf
-    pages. The new helper encodes this explicitly.
-  - The chosen indices are guaranteed to fit the 2-bit encoding:
-    platform PAT tables assign WB/NONE indices in the [0..3] range
-    across platforms (see `drivers/gpu/drm/xe/xe_pat.c:392-396` for xe2,
-    `drivers/gpu/drm/xe/xe_pat.c:401-403` for MTL,
-    `drivers/gpu/drm/xe/xe_pat.c:427-429` for DG2/XeLP).
-  - The policy aligns with how the driver sets page-table BO caching:
-    - For iGPU/Xe_LPG+ page tables use CPU:WC (`ttm_write_combined`)
-      (`drivers/gpu/drm/xe/xe_bo.c:472-496` when
-      `XE_BO_FLAG_PAGETABLE`), which the new code maps to an incoherent
-      PDE PAT (NONE).
-    - For DGFX system memory page tables, CPU caching is WB
-      (`ttm_cached`), and the new code uses a coherent PDE PAT (WB).
-  - The change is localized to the XE driver, does not alter ABI or
-    user-visible uAPI, and keeps leaf PTE behavior intact.
+- Improve diagnostics for new failure modes during load
+  - drivers/gpu/drm/xe/xe_guc.c:593 `guc_wait_ucode()` logs the reason
+    for failure.
+  - New message cases are added to the `ukernel` switch (today at
+    drivers/gpu/drm/xe/xe_guc.c:672–685):
+    - A logging case for `HWCONFIG_START` was reordered to the front for
+      clarity (still “still extracting hwconfig table.”)
+    - New diagnostics for:
+      - `INIT_DATA_INVALID`: “illegal init/ADS data”
+      - `KLV_WORKAROUND_INIT_ERROR`: “illegal workaround KLV data”
+      - `INVALID_FTR_FLAG`: “illegal feature flag specified”
+  - These improve visibility into what went wrong without altering
+    control flow beyond early abort on fatal codes.
 
-- Stable backport criteria
-  - Fixes a real and subtle bug that can lead to non-deterministic PDE
-    PAT selection and potential coherency/performance issues in shared
-    page-table levels.
-  - Small, self-contained change within `drivers/gpu/drm/xe`, with
-    mechanical signature updates and a new helper.
-  - No architectural changes; no cross-subsystem effects.
-  - Leaf-page behavior remains unchanged; regression risk is low.
+Cross-check with i915 (parity and precedent)
+- i915 already handles one of these newer codes:
+  - `INTEL_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR` is defined and
+    handled in i915 (drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h:24
+    and :39; drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c:118, 245),
+    confirming this class of additions is standard and low risk.
+- Bringing Xe up to parity on load error handling is consistent with
+  upstream direction and improves stability for GuC firmware evolution.
 
-- Potential side effects and risk
-  - PDE PAT is no longer implicitly influenced by the first VMA’s user
-    PAT, removing non-determinism. Any workload that accidentally relied
-    on that non-determinism gains correctness, not a regression.
-  - The assert that the chosen PAT index ≤ 3 is valid given current PAT
-    table assignments and acts as a safeguard.
+Stable criteria assessment
+- Bug fix that affects users: Yes — avoids long waits and wedges with
+  clearer diagnostics when GuC reports new fatal statuses.
+- Minimal and contained: Yes — a handful of enum entries and switch
+  cases in two Xe files.
+- No architectural changes: Correct — only error-code recognition and
+  messaging.
+- Critical subsystem: It’s a GPU driver; impact is localized to GuC
+  bring-up, not core kernel.
+- Explicit stable tags: Not present, but the change is a standard, low-
+  risk, forward-compat fix consistent with stable rules.
+- Dependencies: None apparent; the new constants are self-contained.
+  Note: in some branches the header’s response enum is named
+  `xe_guc_response_status` (drivers/gpu/drm/xe/abi/guc_errors_abi.h:9),
+  not `xe_guc_response` as in the posted diff context. This patch does
+  not alter that enum and the backport simply adds entries to
+  `xe_guc_load_status`, so this naming difference does not block the
+  backport.
 
-Conclusion: This is a targeted correctness fix to avoid misusing the
-user PAT in non-leaf entries and to align PDE PAT with the page-table
-BO’s coherency model. It is small, contained, and low risk. It should be
-backported.
+Potential risks and why they’re acceptable
+- Earlier abort on these statuses vs. timing out: That is intended;
+  these codes are designated fatal by GuC. For older GuC which never
+  emit them, behavior is unchanged.
+- No ABI or userspace exposure: The enums are internal to the
+  driver/firmware interface.
 
- drivers/gpu/drm/xe/xe_migrate.c  | 10 ++++------
- drivers/gpu/drm/xe/xe_pt.c       |  4 ++--
- drivers/gpu/drm/xe/xe_pt_types.h |  3 +--
- drivers/gpu/drm/xe/xe_vm.c       | 34 +++++++++++++++++++++++++++-----
- 4 files changed, 36 insertions(+), 15 deletions(-)
+Conclusion
+- This is a targeted robustness fix for GuC load error handling,
+  consistent with established patterns in i915, with minimal risk and
+  clear user benefit. It should be backported to stable.
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 13e287e037096..9b1e3dce1aea3 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -163,8 +163,7 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
- 	for (pos = dpa_base; pos < vram_limit;
- 	     pos += SZ_1G, ofs += 8) {
- 		if (pos + SZ_1G >= vram_limit) {
--			entry = vm->pt_ops->pde_encode_bo(bo, pt_2m_ofs,
--							  pat_index);
-+			entry = vm->pt_ops->pde_encode_bo(bo, pt_2m_ofs);
- 			xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
+ drivers/gpu/drm/xe/abi/guc_errors_abi.h |  3 +++
+ drivers/gpu/drm/xe/xe_guc.c             | 19 +++++++++++++++++--
+ 2 files changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+index ecf748fd87df3..ad76b4baf42e9 100644
+--- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
+@@ -63,6 +63,7 @@ enum xe_guc_load_status {
+ 	XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
+ 	XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
+ 	XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
++	XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH         = 0x08,
+ 	XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
+ 	XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
+ 	XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
+@@ -75,6 +76,8 @@ enum xe_guc_load_status {
+ 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_START,
+ 	XE_GUC_LOAD_STATUS_MPU_DATA_INVALID                 = 0x73,
+ 	XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID   = 0x74,
++	XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR        = 0x75,
++	XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG                 = 0x76,
+ 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_END,
  
- 			flags = vm->pt_ops->pte_encode_addr(xe, 0,
-@@ -218,7 +217,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 
- 	/* PT30 & PT31 reserved for 2M identity map */
- 	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
--	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs, pat_index);
-+	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
- 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
- 
- 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
-@@ -286,15 +285,14 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 			flags = XE_PDE_64K;
- 
- 		entry = vm->pt_ops->pde_encode_bo(bo, map_ofs + (u64)(level - 1) *
--						  XE_PAGE_SIZE, pat_index);
-+						  XE_PAGE_SIZE);
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
- 			  entry | flags);
+ 	XE_GUC_LOAD_STATUS_READY                            = 0xF0,
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 270fc37924936..9e0ed8fabcd54 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -990,11 +990,14 @@ static int guc_load_done(u32 status)
+ 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
+ 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
+ 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
++	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
+ 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
+ 	case XE_GUC_LOAD_STATUS_EXCEPTION:
+ 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
++	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
++	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
+ 		return -1;
  	}
  
- 	/* Write PDE's that point to our BO. */
- 	for (i = 0; i < map_ofs / PAGE_SIZE; i++) {
--		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE,
--						  pat_index);
-+		entry = vm->pt_ops->pde_encode_bo(bo, (u64)i * XE_PAGE_SIZE);
- 
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
- 			  (i + 1) * 8, u64, entry);
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c8e63bd23300e..eb9774a8f683c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -69,7 +69,7 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 
- 	if (level > MAX_HUGEPTE_LEVEL)
- 		return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level - 1]->bo,
--						 0, pat_index);
-+						 0);
- 
- 	return vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level, IS_DGFX(xe), 0) |
- 		XE_PTE_NULL;
-@@ -616,7 +616,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 			xe_child->is_compact = true;
+@@ -1134,17 +1137,29 @@ static void guc_wait_ucode(struct xe_guc *guc)
  		}
  
--		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0, pat_index) | flags;
-+		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0) | flags;
- 		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, xe_child,
- 					 pte);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 69eab6f37cfe6..17cdd7c7e9f5e 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -45,8 +45,7 @@ struct xe_pt_ops {
- 	u64 (*pte_encode_addr)(struct xe_device *xe, u64 addr,
- 			       u16 pat_index,
- 			       u32 pt_level, bool devmem, u64 flags);
--	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset,
--			     u16 pat_index);
-+	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset);
- };
- 
- struct xe_pt_entry {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index bf44cd5bf49c0..30c32717a980e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1547,14 +1547,39 @@ static u64 pte_encode_ps(u32 pt_level)
- 	return 0;
- }
- 
--static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset,
--			      const u16 pat_index)
-+static u16 pde_pat_index(struct xe_bo *bo)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	u16 pat_index;
+ 		switch (ukernel) {
++		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
++			xe_gt_err(gt, "still extracting hwconfig table.\n");
++			break;
 +
-+	/*
-+	 * We only have two bits to encode the PAT index in non-leaf nodes, but
-+	 * these only point to other paging structures so we only need a minimal
-+	 * selection of options. The user PAT index is only for encoding leaf
-+	 * nodes, where we have use of more bits to do the encoding. The
-+	 * non-leaf nodes are instead under driver control so the chosen index
-+	 * here should be distict from the user PAT index. Also the
-+	 * corresponding coherency of the PAT index should be tied to the
-+	 * allocation type of the page table (or at least we should pick
-+	 * something which is always safe).
-+	 */
-+	if (!xe_bo_is_vram(bo) && bo->ttm.ttm->caching == ttm_cached)
-+		pat_index = xe->pat.idx[XE_CACHE_WB];
-+	else
-+		pat_index = xe->pat.idx[XE_CACHE_NONE];
+ 		case XE_GUC_LOAD_STATUS_EXCEPTION:
+ 			xe_gt_err(gt, "firmware exception. EIP: %#x\n",
+ 				  xe_mmio_read32(mmio, SOFT_SCRATCH(13)));
+ 			break;
+ 
++		case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
++			xe_gt_err(gt, "illegal init/ADS data\n");
++			break;
 +
-+	xe_assert(xe, pat_index <= 3);
+ 		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+ 			xe_gt_err(gt, "illegal register in save/restore workaround list\n");
+ 			break;
+ 
+-		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
+-			xe_gt_err(gt, "still extracting hwconfig table.\n");
++		case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
++			xe_gt_err(gt, "illegal workaround KLV data\n");
++			break;
 +
-+	return pat_index;
-+}
-+
-+static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset)
- {
- 	u64 pde;
++		case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
++			xe_gt_err(gt, "illegal feature flag specified\n");
+ 			break;
+ 		}
  
- 	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
- 	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pde |= pde_encode_pat_index(pat_index);
-+	pde |= pde_encode_pat_index(pde_pat_index(bo));
- 
- 	return pde;
- }
-@@ -2085,8 +2110,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
- 
- u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
- {
--	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0,
--					 tile_to_xe(tile)->pat.idx[XE_CACHE_WB]);
-+	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0);
- }
- 
- static struct xe_exec_queue *
 -- 
 2.51.0
 
