@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC418CCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:14:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC441CCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:15:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6FB10E2A0;
-	Sat, 25 Oct 2025 16:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CFF210E2E4;
+	Sat, 25 Oct 2025 16:15:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pCHcA7QC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kKJxoybF";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9F8D10E2A0
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:14:55 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D12DD10E2AD
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:15:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 7AA0F44F73;
- Sat, 25 Oct 2025 16:14:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7011CC4CEF5;
- Sat, 25 Oct 2025 16:14:54 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 4DCB16059F;
+ Sat, 25 Oct 2025 16:15:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8D8BC4CEFB;
+ Sat, 25 Oct 2025 16:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408895;
- bh=tcamB+9hatZ3BmRnUV96afch00ZCkk8rlOOhM3ZXNxU=;
+ s=k20201202; t=1761408935;
+ bh=GAaRdhjLbKcn9UBDw2uagmBAExBiN/VBCRLC1HffS5Q=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pCHcA7QC+gp8bSpjXrus9WkOzZhG8/EnQETYqQqSmnynbPRlVvDL+K6CbPRpMW03a
- HPijPD2jMd0ypvqTzZHyfFeBTTfjwefDvL24qo57yBTSF33k9AGeCE5FAOa8U1I8Ql
- /TuStSl1NhDft1A8WbXiEgBzyajX4rC4XdexolGX4K3xd+qlap1ArDwLkRwFCe9z0D
- 9/6ilexuVtVfIYg5WUmuQ0lBDcnRXy06S5YZ6Ncc9xLkUeMoMOARwg6lHTICmx8RvK
- vMdgqlJhstJ9ABMZZa9+bKSEP/00zDJNy69rawK7Sm/oP8TuQvEPXKP3M9qU/qXws4
- dLuYnf4K6XegA==
+ b=kKJxoybFQY6v+nX/LgX8aVlemaaI3R0bTQsX2DYYG8ZGCZTfEIKGuCVnnx6shbmGp
+ 3/mOS7ByHmkjeG3i3H8lrf44lWN7Jx4PPVx8fOQNo8A1TRrBSCWjLflROfji7QO9LA
+ oV1zn4k/4jjdCAoi2j9tOivPyMW4U3JJUhfK84BPJa2tKiLyWHAOPHc2tpAEec5tKv
+ wyGr/T2OxnjOf1apTtIfRenvvlIbTSZLMSNfYPLiAbVa6V0nH/6IcNvdSVZE6kINGN
+ 3skYUm3tymnc5GxjVbAmvOBVATr8d3wGSO7/M+iH3mUqF6OzKJQrCW5hENftzeX9ja
+ goGdz8HLdFt5w==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>,
+ Matt Atwood <matthew.s.atwood@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe/configfs: Enforce canonical device names
-Date: Sat, 25 Oct 2025 11:55:50 -0400
-Message-ID: <20251025160905.3857885-119-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe: Extend Wa_22021007897 to Xe3 platforms
+Date: Sat, 25 Oct 2025 11:56:10 -0400
+Message-ID: <20251025160905.3857885-139-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.17.5
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,34 +65,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-[ Upstream commit 400a6da1e967c4f117e4757412df06dcfaea0e6a ]
+[ Upstream commit 8d6f16f1f082881aa50ea7ae537b604dec647ed6 ]
 
-While we expect config directory names to match PCI device name,
-currently we are only scanning provided names for domain, bus,
-device and function numbers, without checking their format.
-This would pass slightly broken entries like:
+WA 22021007897 should also be applied to Graphics Versions 30.00, 30.01
+and 30.03. To make it simple, simply use the range [3000, 3003] that
+should be ok as there isn't a 3002 and if it's added, the WA list would
+need to be revisited anyway.
 
-  /sys/kernel/config/xe/
-  ├── 0000:00:02.0000000000000
-  │   └── ...
-  ├── 0000:00:02.0x
-  │   └── ...
-  ├──  0: 0: 2. 0
-  │   └── ...
-  └── 0:0:2.0
-      └── ...
-
-To avoid such mistakes, check if the name provided exactly matches
-the canonical PCI device address format, which we recreated from
-the parsed BDF data. Also simplify scanf format as it can't really
-catch all formatting errors.
-
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://lore.kernel.org/r/20250722141059.30707-3-michal.wajdeczko@intel.com
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Link: https://lore.kernel.org/r/20250827-wa-22021007897-v1-1-96922eb52af4@intel.com
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
@@ -99,95 +87,73 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-**Why It’s A Bug**
-- Current code accepts any string that scans into
-  domain/bus/slot/function, even if not in canonical PCI BDF format. See
-  parsing in drivers/gpu/drm/xe/xe_configfs.c:264.
-- The driver later looks up the configfs group by constructing the
-  canonical BDF name, so a misnamed directory cannot be found and
-  settings silently don’t apply. See lookup formatting in
-  drivers/gpu/drm/xe/xe_configfs.c:310-311.
-- The in-file docs already prescribe canonical names (for example
-  0000:03:00.0), reinforcing that non-canonical input is unintended; see
-  example path in drivers/gpu/drm/xe/xe_configfs.c:41.
+- The change extends an existing hardware workaround (WA 22021007897) to
+  Xe3 platforms by adding a single, gated entry to the LRC workaround
+  table. Specifically, it adds a new rule to set
+  `COMMON_SLICE_CHICKEN4:SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` for render
+  engines on graphics versions 30.00–30.03:
+  - New entry: `drivers/gpu/drm/xe/xe_wa.c:915` (name "22021007897")
+  - Rule gating: `drivers/gpu/drm/xe/xe_wa.c:916` uses
+    `GRAPHICS_VERSION_RANGE(3000, 3003)` with `ENGINE_CLASS(RENDER)`
+  - Action: `drivers/gpu/drm/xe/xe_wa.c:917` sets
+    `SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` in `COMMON_SLICE_CHICKEN4`
+- This mirrors the already-present use of the same WA on Xe2 (graphics
+  versions 2001–2002), demonstrating consistency across generations:
+  - Existing Xe2 entry: `drivers/gpu/drm/xe/xe_wa.c:895` (name
+    "22021007897")
+  - Rule gating: `drivers/gpu/drm/xe/xe_wa.c:896` with
+    `GRAPHICS_VERSION_RANGE(2001, 2002)` and `ENGINE_CLASS(RENDER)`
+  - Action: `drivers/gpu/drm/xe/xe_wa.c:897` sets the same bit
+- The register and bit are well-defined in-tree, ensuring build safety
+  and clarity of intent:
+  - `drivers/gpu/drm/xe/regs/xe_gt_regs.h:158` defines
+    `COMMON_SLICE_CHICKEN4`
+  - `drivers/gpu/drm/xe/regs/xe_gt_regs.h:159` defines
+    `SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE` (bit 12)
+- The WA is applied at context-restore time via the LRC path, which is
+  the correct, minimal-impact location for such state programming:
+  - LRC table processing call site: `drivers/gpu/drm/xe/xe_gt.c:329`
+    calls `xe_wa_process_lrc(hwe)`
+- Scope and risk assessment:
+  - Minimal and contained: a single new table entry; no API or
+    architectural change; no behavior change outside Xe3 render engines.
+  - Gated by hardware version and engine class, so it has no effect on
+    other platforms.
+  - Safe even with the version range approach: there is no 3002 today,
+    and if a new graphics version appears, WA lists are regularly
+    revisited as noted in the commit message.
+- User impact:
+  - Workarounds address known hardware issues; enabling this WA on Xe3
+    likely prevents rendering corruption or instability on affected
+    hardware. Without it, Xe3 users may encounter functional bugs.
+- While the commit message does not include an explicit “Cc: stable”,
+  the change aligns with stable policy:
+  - It is a small, targeted fix to ensure correct operation on supported
+    hardware.
+  - It carries low regression risk and is confined to the DRM xe
+    driver’s WA tables.
 
-**Fix Details**
-- Parsing is relaxed to read numbers generically, then the code
-  synthesizes the canonical BDF string and requires an exact match:
-  - Replace strict-width `sscanf(name, "%04x:%02x:%02x.%x", ...)` with
-    `sscanf(name, "%x:%x:%x.%x", ...)` to get the values.
-  - Build the canonical name and enforce exact equality via
-    `scnprintf(canonical, ..., "%04x:%02x:%02x.%d", ...)` and
-    `strcmp(name, canonical) == 0`. Returns `-EINVAL` if it differs.
-- The canonical composition uses `PCI_SLOT(PCI_DEVFN(slot, function))`
-  and `PCI_FUNC(...)`, implicitly constraining slot/function to valid
-  bit widths and preventing odd encodings from slipping through.
-- The change is localized to group creation in
-  drivers/gpu/drm/xe/xe_configfs.c:256 (the function where the new
-  `canonical` buffer, `scnprintf`, and `strcmp` checks are added).
+Given the above, this is a good, low-risk bugfix candidate for
+backporting to stable trees that support the Xe driver and Xe3 hardware.
 
-**User Impact Fixed**
-- Prevents creating “broken” directories like 0000:00:02.0000000000000,
-  0000:00:02.0x, 0:0:2.0, or with spaces/uppercase hex. Previously these
-  were accepted, but the driver’s later lookup (by canonical name) would
-  not find them, so configfs settings were ignored.
-- With this patch, such inputs fail fast with `-EINVAL` instead of
-  failing silently later.
+ drivers/gpu/drm/xe/xe_wa.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-**Risk and Scope**
-- Small, contained change to a single function in the Xe configfs code;
-  no architectural changes or core subsystem impact.
-- Maintains existing error behavior for non-existent devices (`-ENODEV`
-  remains).
-- Behavior change is strictly tighter validation; correct canonical
-  names continue to work. Scripts relying on non-canonical names would
-  not have worked reliably anyway (lookups failed), so rejecting them is
-  safer.
-
-**Stable Backport Considerations**
-- Meets stable criteria: fixes a real user-visible misbehavior (silent
-  no-op config), minimal patch size, confined to the Xe driver’s
-  configfs path, no API/ABI changes.
-- No dependency on other features; headers used (`string.h`, PCI macros)
-  are already present. Applies cleanly around
-  drivers/gpu/drm/xe/xe_configfs.c:256-266.
-- Applicable to stable series that include Xe configfs (the file and
-  functions present in this tree: drivers/gpu/drm/xe/xe_configfs.c:256
-  and drivers/gpu/drm/xe/xe_configfs.c:310).
-
-In summary, this is a low-risk input validation fix that prevents silent
-misconfiguration and aligns behavior with documented usage. It is
-suitable for backporting to stable kernels that ship the Xe configfs
-interface.
-
- drivers/gpu/drm/xe/xe_configfs.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 58c1f397c68c9..797508cc6eb17 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -259,12 +259,19 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
- 	unsigned int domain, bus, slot, function;
- 	struct xe_config_device *dev;
- 	struct pci_dev *pdev;
-+	char canonical[16];
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 535067e7fb0c9..f14bdaac674bb 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -879,6 +879,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 			     DIS_PARTIAL_AUTOSTRIP |
+ 			     DIS_AUTOSTRIP))
+ 	},
++	{ XE_RTP_NAME("22021007897"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3003), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, SBE_PUSH_CONSTANT_BEHIND_FIX_ENABLE))
++	},
+ };
  
--	ret = sscanf(name, "%04x:%02x:%02x.%x", &domain, &bus, &slot, &function);
-+	ret = sscanf(name, "%x:%x:%x.%x", &domain, &bus, &slot, &function);
- 	if (ret != 4)
- 		return ERR_PTR(-EINVAL);
- 
-+	ret = scnprintf(canonical, sizeof(canonical), "%04x:%02x:%02x.%d", domain, bus,
-+			PCI_SLOT(PCI_DEVFN(slot, function)),
-+			PCI_FUNC(PCI_DEVFN(slot, function)));
-+	if (ret != 12 || strcmp(name, canonical))
-+		return ERR_PTR(-EINVAL);
-+
- 	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
- 	if (!pdev)
- 		return ERR_PTR(-ENODEV);
+ static __maybe_unused const struct xe_rtp_entry oob_was[] = {
 -- 
 2.51.0
 
