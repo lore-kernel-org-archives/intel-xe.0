@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67162CCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 12:49:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52BC9CCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 13:06:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 137C210E0A1;
-	Sat, 25 Oct 2025 12:49:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iGiBintQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE1010E0A1
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 12:49:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761396558; x=1792932558;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=f21WHjECj6RoyPCO14FnhbADyFcHLPkr3Cb6/yAKEZI=;
- b=iGiBintQgBlbLVUdLKC99ZG1pAEIJznEldCrGPz3vwxGnm5gKmCzq9oM
- WUK0eoCvhbuZFIA3M6FRAS2fQRK6ztvpn4SuBGs0btVkkr7puVCQ3DAv2
- V5lSYb4IIwGDVfGuz48hDPv7HboRKHvl4yz2QE156m+Ll3ui1YH/19prd
- nPwaPxD7QTbgE6l3zq0Or+BbEZHKeWU+5Om66wsm5JDKDj2QWMtOhCFQF
- gVOzNp9J+f/CTkfqjmTU08NUlTAKgGNSSaRCueO0gY2k/orZcfDtmQUpu
- lvAAF9twnLnDbvyDuY9osr4fhoBa5o/4uig1AQ0g5WXDBaomomkKGni5m A==;
-X-CSE-ConnectionGUID: UkiO36FTTd+ll2seHDPPQg==
-X-CSE-MsgGUID: 09QUR0RtQ6yxUKpUGDiraA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63587032"
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="63587032"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:49:18 -0700
-X-CSE-ConnectionGUID: n/mJswqZQUqfrNNEbBrQLg==
-X-CSE-MsgGUID: EkVKCQl6SzSUMR+/H1agnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,254,1754982000"; d="scan'208";a="183824804"
-Received: from ngusev-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.98.92])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2025 05:49:17 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH] drm/xe/pf: Fix VF FLR synchronization between all GTs
-Date: Sat, 25 Oct 2025 14:49:05 +0200
-Message-ID: <20251025124906.5264-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEEAD10E0A1;
+	Sat, 25 Oct 2025 13:06:38 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A523510E0A1;
+ Sat, 25 Oct 2025 13:06:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6167232649257630931=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Dynamic_drm=5Fpagemaps_and_?=
+ =?utf-8?q?Initial_multi-device_SVM?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 25 Oct 2025 13:06:37 -0000
+Message-ID: <176139759766.54804.7080066820569546092@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20251025120412.12262-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If subsequent VF FLR request is triggered when previous VF FLR
-sequence is still being processed, we ignore it as not needed.
+--===============6167232649257630931==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-But in case of the multi-GT platforms, one GT may already finish
-its VF FLR processing and will start a new sequence, which includes
-new cross-GT synchronization point.  However, since other GT may
-be still busy with post-sync cleanup steps, this will put on hold
-this new FLR sequence, which might never finish due to lack of any
-future synchronization checkouts.
+== Series Details ==
 
-Add additional cross-GT FLR synchronization point when each GT
-ends processing its own FLR sequence.  This should also help to
-cover the case when one GT fails FLR processing before reaching
-the first synchronization point.
+Series: Dynamic drm_pagemaps and Initial multi-device SVM
+URL   : https://patchwork.freedesktop.org/series/156525/
+State : success
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6287
-Fixes: 2a8fcf7cc950 ("drm/xe/pf: Synchronize VF FLR between all GTs")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-index 2e6bd3d1fe1d..9de05db1f090 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-@@ -997,6 +997,8 @@ static void pf_exit_vf_flr_wip(struct xe_gt *gt, unsigned int vfid)
- 		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_FLR_GUC_DONE);
- 		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_FLR_WAIT_GUC);
- 		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_FLR_SEND_START);
-+
-+		xe_sriov_pf_control_sync_flr(gt_to_xe(gt), vfid);
- 	}
- }
- 
--- 
-2.47.1
+CI Bug Log - changes from xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a_BAT -> xe-pw-156525v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a -> xe-pw-156525v1
+
+  IGT_8596: 8596
+  xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a: d827507f9c3c65785556819d50eb5131b2bf6a3a
+  xe-pw-156525v1: 156525v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v1/index.html
+
+--===============6167232649257630931==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Dynamic drm_pagemaps and Initial multi-device SVM</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156525/">https://patchwork.freedesktop.org/series/156525/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156525v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a_BAT -&gt; xe-pw-156525v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a -&gt; xe-pw-156525v1</li>
+</ul>
+<p>IGT_8596: 8596<br />
+  xe-3986-d827507f9c3c65785556819d50eb5131b2bf6a3a: d827507f9c3c65785556819d50eb5131b2bf6a3a<br />
+  xe-pw-156525v1: 156525v1</p>
+
+</body>
+</html>
+
+--===============6167232649257630931==--
