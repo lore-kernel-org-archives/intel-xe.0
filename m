@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E18CCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC418CCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:14:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F22D610E29E;
-	Sat, 25 Oct 2025 16:13:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6FB10E2A0;
+	Sat, 25 Oct 2025 16:14:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DPStTKk3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pCHcA7QC";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7162410E29E
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:13:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9F8D10E2A0
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:14:55 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 5506144E72;
- Sat, 25 Oct 2025 16:13:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D4E2C4CEFB;
- Sat, 25 Oct 2025 16:13:49 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 7AA0F44F73;
+ Sat, 25 Oct 2025 16:14:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7011CC4CEF5;
+ Sat, 25 Oct 2025 16:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408830;
- bh=CaneOkXDJT6KOXWLrhAjOi9tQ11poenGyRk3xfDJWbE=;
+ s=k20201202; t=1761408895;
+ bh=tcamB+9hatZ3BmRnUV96afch00ZCkk8rlOOhM3ZXNxU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DPStTKk3rxzTKkIFB5unlq5fkYkoIuCnvij8K3o8KQ/HyT+5Qd+K82L75smoF7Djk
- 2M1VXPDVrEXNtsxjkdzh3FVtyOl+zE4hqJQ+MZlt1tltU+WDOjwehS2LDD3RSDP0r+
- aSsRz7FQAeJDwKLizuUOWsPSJx64fZKYsmzzlPh/Tcyvm9yavijhxGI7dO5cp75mxI
- jsQzW/UHFGgvtQeJJsCeeLA9fxo/FGIWvWYkEe8TkapX5KR+IJORa+N6fguGg2IRn0
- 77w0VFTUK7lK7aPzIVK4jJPdWNYsQVySM3cbesrZsV+N82lNVJ3XvLRrwb5tE1Is9r
- BS6Uc/AkVO94w==
+ b=pCHcA7QC+gp8bSpjXrus9WkOzZhG8/EnQETYqQqSmnynbPRlVvDL+K6CbPRpMW03a
+ HPijPD2jMd0ypvqTzZHyfFeBTTfjwefDvL24qo57yBTSF33k9AGeCE5FAOa8U1I8Ql
+ /TuStSl1NhDft1A8WbXiEgBzyajX4rC4XdexolGX4K3xd+qlap1ArDwLkRwFCe9z0D
+ 9/6ilexuVtVfIYg5WUmuQ0lBDcnRXy06S5YZ6Ncc9xLkUeMoMOARwg6lHTICmx8RvK
+ vMdgqlJhstJ9ABMZZa9+bKSEP/00zDJNy69rawK7Sm/oP8TuQvEPXKP3M9qU/qXws4
+ dLuYnf4K6XegA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Raag Jadav <raag.jadav@intel.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe/i2c: Enable bus mastering
-Date: Sat, 25 Oct 2025 11:55:22 -0400
-Message-ID: <20251025160905.3857885-91-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe/configfs: Enforce canonical device names
+Date: Sat, 25 Oct 2025 11:55:50 -0400
+Message-ID: <20251025160905.3857885-119-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.17.5
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,16 +63,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Raag Jadav <raag.jadav@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit fce99326c9cf5a0e57c4283a61c6b622ef5b0de8 ]
+[ Upstream commit 400a6da1e967c4f117e4757412df06dcfaea0e6a ]
 
-Enable bus mastering for I2C controller to support device initiated
-in-band transactions.
+While we expect config directory names to match PCI device name,
+currently we are only scanning provided names for domain, bus,
+device and function numbers, without checking their format.
+This would pass slightly broken entries like:
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Link: https://lore.kernel.org/r/20250908055320.2549722-1-raag.jadav@intel.com
+  /sys/kernel/config/xe/
+  ├── 0000:00:02.0000000000000
+  │   └── ...
+  ├── 0000:00:02.0x
+  │   └── ...
+  ├──  0: 0: 2. 0
+  │   └── ...
+  └── 0:0:2.0
+      └── ...
+
+To avoid such mistakes, check if the name provided exactly matches
+the canonical PCI device address format, which we recreated from
+the parsed BDF data. Also simplify scanf format as it can't really
+catch all formatting errors.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Link: https://lore.kernel.org/r/20250722141059.30707-3-michal.wajdeczko@intel.com
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
@@ -82,78 +99,95 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-Explanation
+**Why It’s A Bug**
+- Current code accepts any string that scans into
+  domain/bus/slot/function, even if not in canonical PCI BDF format. See
+  parsing in drivers/gpu/drm/xe/xe_configfs.c:264.
+- The driver later looks up the configfs group by constructing the
+  canonical BDF name, so a misnamed directory cannot be found and
+  settings silently don’t apply. See lookup formatting in
+  drivers/gpu/drm/xe/xe_configfs.c:310-311.
+- The in-file docs already prescribe canonical names (for example
+  0000:03:00.0), reinforcing that non-canonical input is unintended; see
+  example path in drivers/gpu/drm/xe/xe_configfs.c:41.
 
-- What changed: In `xe_i2c_pm_resume()` the code now sets the PCI bus
-  master enable bit for the Xe I2C controller when resuming from D3cold:
-  - `drivers/gpu/drm/xe/xe_i2c.c:262` sets `PCI_COMMAND_MEMORY |
-    PCI_COMMAND_MASTER` into the I2C controller’s pseudo PCI command
-    register (`I2C_CONFIG_CMD`) instead of only `PCI_COMMAND_MEMORY`.
-  - The target register is defined as the controller’s PCI Command
-    aperture: `drivers/gpu/drm/xe/regs/xe_i2c_regs.h:17` (`#define
-    I2C_CONFIG_CMD ... + PCI_COMMAND`), confirming this is the correct
-    place to enable bus mastering.
+**Fix Details**
+- Parsing is relaxed to read numbers generically, then the code
+  synthesizes the canonical BDF string and requires an exact match:
+  - Replace strict-width `sscanf(name, "%04x:%02x:%02x.%x", ...)` with
+    `sscanf(name, "%x:%x:%x.%x", ...)` to get the values.
+  - Build the canonical name and enforce exact equality via
+    `scnprintf(canonical, ..., "%04x:%02x:%02x.%d", ...)` and
+    `strcmp(name, canonical) == 0`. Returns `-EINVAL` if it differs.
+- The canonical composition uses `PCI_SLOT(PCI_DEVFN(slot, function))`
+  and `PCI_FUNC(...)`, implicitly constraining slot/function to valid
+  bit widths and preventing odd encodings from slipping through.
+- The change is localized to group creation in
+  drivers/gpu/drm/xe/xe_configfs.c:256 (the function where the new
+  `canonical` buffer, `scnprintf`, and `strcmp` checks are added).
 
-- Why it matters: The commit message states the purpose clearly:
-  enabling bus mastering is required “to support device initiated in-
-  band transactions.” For DMA-capable controllers, PCI bus mastering
-  must be enabled for the device to perform DMA. Without this bit set
-  after D3cold, device-initiated I2C transactions that rely on DMA can
-  fail or be unreliable. This is a functional bug for platforms using
-  this path (e.g., Battlemage), not a feature add.
+**User Impact Fixed**
+- Prevents creating “broken” directories like 0000:00:02.0000000000000,
+  0000:00:02.0x, 0:0:2.0, or with spaces/uppercase hex. Previously these
+  were accepted, but the driver’s later lookup (by canonical name) would
+  not find them, so configfs settings were ignored.
+- With this patch, such inputs fail fast with `-EINVAL` instead of
+  failing silently later.
 
-- Scope and containment:
-  - Change is a single-line modification in one function, gated on
-    `d3cold` and only executed when the controller is present
-    (`xe_i2c_present()` guards the PM functions).
-    - Presence check path: `drivers/gpu/drm/xe/xe_i2c.c:243` (suspend)
-      and `drivers/gpu/drm/xe/xe_i2c.c:254` (resume) both early-return
-      if the I2C endpoint isn’t valid.
-  - The resume path is called from both probe and system resume:
-    - Probe explicitly brings the controller up via
-      `xe_i2c_pm_resume(xe, true);` so the bus master bit needs to be
-      set there as well: `drivers/gpu/drm/xe/xe_i2c.c:318`.
-    - System resume calls `xe_i2c_pm_resume(xe, xe->d3cold.allowed);`,
-      so the bit is set only when returning from D3cold, which is when
-      the bit would be lost: `drivers/gpu/drm/xe/xe_pm.c:204`.
+**Risk and Scope**
+- Small, contained change to a single function in the Xe configfs code;
+  no architectural changes or core subsystem impact.
+- Maintains existing error behavior for non-existent devices (`-ENODEV`
+  remains).
+- Behavior change is strictly tighter validation; correct canonical
+  names continue to work. Scripts relying on non-canonical names would
+  not have worked reliably anyway (lookups failed), so rejecting them is
+  safer.
 
-- Risk and side effects:
-  - Enabling `PCI_COMMAND_MASTER` is standard practice for DMA-capable
-    devices and is required for correct operation of DMA paths. The
-    change does not alter architecture or interfaces and is limited to
-    the Xe I2C controller’s PM resume path after D3cold.
-  - The write only happens if the controller is present and only on
-    D3cold resume, minimizing exposure. There are no ABI or UAPI
-    changes, and no wider subsystem impact.
+**Stable Backport Considerations**
+- Meets stable criteria: fixes a real user-visible misbehavior (silent
+  no-op config), minimal patch size, confined to the Xe driver’s
+  configfs path, no API/ABI changes.
+- No dependency on other features; headers used (`string.h`, PCI macros)
+  are already present. Applies cleanly around
+  drivers/gpu/drm/xe/xe_configfs.c:256-266.
+- Applicable to stable series that include Xe configfs (the file and
+  functions present in this tree: drivers/gpu/drm/xe/xe_configfs.c:256
+  and drivers/gpu/drm/xe/xe_configfs.c:310).
 
-- Stable backport criteria:
-  - Fixes a real functional issue affecting users (device-initiated in-
-    band I2C transactions fail without bus mastering).
-  - Small, contained, and low risk (one line, single driver file, gated
-    by presence and D3cold state).
-  - No architectural changes or new features; this corrects an
-    initialization oversight.
-  - Touches DRM/xe I2C code only; no cross-subsystem churn.
+In summary, this is a low-risk input validation fix that prevents silent
+misconfiguration and aligns behavior with documented usage. It is
+suitable for backporting to stable kernels that ship the Xe configfs
+interface.
 
-Given the above, this is a clear, minimal bugfix that restores intended
-functionality and is appropriate for stable backporting.
+ drivers/gpu/drm/xe/xe_configfs.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/xe/xe_i2c.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index bc7dc2099470c..983e8e08e4739 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -245,7 +245,7 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 58c1f397c68c9..797508cc6eb17 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -259,12 +259,19 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
+ 	unsigned int domain, bus, slot, function;
+ 	struct xe_config_device *dev;
+ 	struct pci_dev *pdev;
++	char canonical[16];
+ 	int ret;
  
- 	if (d3cold)
--		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY);
-+		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY | PCI_COMMAND_MASTER);
+-	ret = sscanf(name, "%04x:%02x:%02x.%x", &domain, &bus, &slot, &function);
++	ret = sscanf(name, "%x:%x:%x.%x", &domain, &bus, &slot, &function);
+ 	if (ret != 4)
+ 		return ERR_PTR(-EINVAL);
  
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, (__force u32)PCI_D0);
- 	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
++	ret = scnprintf(canonical, sizeof(canonical), "%04x:%02x:%02x.%d", domain, bus,
++			PCI_SLOT(PCI_DEVFN(slot, function)),
++			PCI_FUNC(PCI_DEVFN(slot, function)));
++	if (ret != 12 || strcmp(name, canonical))
++		return ERR_PTR(-EINVAL);
++
+ 	pdev = pci_get_domain_bus_and_slot(domain, bus, PCI_DEVFN(slot, function));
+ 	if (!pdev)
+ 		return ERR_PTR(-ENODEV);
 -- 
 2.51.0
 
