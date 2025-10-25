@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DBD6CCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B709CCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:21:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC2010E2E0;
-	Sat, 25 Oct 2025 16:19:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC26610E2F0;
+	Sat, 25 Oct 2025 16:21:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QOseBbtq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ArFpiZLF";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703D810E2E0
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:19:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B90410E2F0
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:21:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3D705450E8;
- Sat, 25 Oct 2025 16:19:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3FE0C4CEFB;
- Sat, 25 Oct 2025 16:19:54 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id DE79A61124;
+ Sat, 25 Oct 2025 16:21:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F184C2BC9E;
+ Sat, 25 Oct 2025 16:21:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761409196;
- bh=801gx182FAvGt5ByVBL+5SMT1XgfvkwP9xzhTqQFJcY=;
+ s=k20201202; t=1761409304;
+ bh=aD9oYzwsg7RI70oVAmJ7ZuirpQru5RwbcwHaGSh0OS8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QOseBbtqOypEpqS8XVS2chuBKlNZIr6aR1/DqMeHWGULtshYYolu9A3rYqWUpvaS9
- ZaHTrEuntvQZ6DRcQIwx0mREEmXel7WXJjqe0QLVwQXHmksSoZ339YE3bJddIhPYVl
- BZuTa2caOQc7iSWqYNgtPe2bwIUVhYF4PjhIlWRJ3dE+JDP+g4ymuJEbnyW+nhpRnp
- 0eSwwu0gm8onUf5/gsI5XvLp+t3NrOSGvCanJRICMwgEp/6M95SOs0ytOwwINdvXzT
- KKZm2fg0L+8lkDLKQwj63WfwKCLzbGMCt0g4m/sxzPu62oUTa8Eqsi1uLUGjUmnc9z
- v9PnTLvL+o3yg==
+ b=ArFpiZLFuvyQ9wkBNZfl3/0xknjxyxFz+9YfOKmPhVXHmXnho+VTvFoeu7xYouYhF
+ 1w93zinfQ9X9RLvzZmRDWXu01vf+Fyp1cVCGaozGZnNZWXjvX1GmixH8Ud0n0lNI1D
+ gMAv22Wgoc6AUG7cNAmf5x3actXyhTsg5IdEUkkZtUzLx6vcy6zK1kDx5mdT+Z1Iid
+ lA9oLo/HNjtVru2HSdrfHTpWWHnK/k2gFqbAl3mgS7h6b/9e7hw4KVrlKaCpb2GMWl
+ nzHIvV2hwEwd7eosLPNkEbdZGmnLTQMAoM4idRaxKs35AN02k2gXcQiSe5PTR3i4S9
+ yiO6DGYoRDigA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Stuart Summers <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe/pf: Program LMTT directory pointer on all
- GTs within a tile
-Date: Sat, 25 Oct 2025 11:57:50 -0400
-Message-ID: <20251025160905.3857885-239-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17] drm/xe/guc: Always add CT disable action during
+ second init step
+Date: Sat, 25 Oct 2025 11:58:22 -0400
+Message-ID: <20251025160905.3857885-271-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.17.5
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,24 +65,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit ad69d62588cd6bf8cddaff5e3e2eb1b8dd876d35 ]
+[ Upstream commit 955f3bc4af440bb950c7a1567197aaf6aa2213ae ]
 
-Previously, the LMTT directory pointer was only programmed for primary GT
-within a tile. However, to ensure correct Local Memory access by VFs,
-the LMTT configuration must be programmed on all GTs within the tile.
-Lets program the LMTT directory pointer on every GT of the tile
-to guarantee proper LMEM access across all GTs on VFs.
+On DGFX, during init_post_hwconfig() step, we are reinitializing
+CTB BO in VRAM and we have to replace cleanup action to disable CT
+communication prior to release of underlying BO.
 
-HSD: 18042797646
-Bspec: 67468
-Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Link: https://lore.kernel.org/r/20250805091850.1508240-1-piotr.piorkowski@intel.com
-Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+But that introduces some discrepancy between DGFX and iGFX, as for
+iGFX we keep previously added disable CT action that would be called
+during unwind much later.
+
+To keep the same flow on both types of platforms, always replace old
+cleanup action and register new one.
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Link: https://lore.kernel.org/r/20250908102053.539-2-michal.wajdeczko@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -91,115 +92,106 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What it fixes
-  - The current code only programs the LMTT directory pointer for the
-    primary GT of a tile, leaving any additional GTs (e.g., media GT)
-    unconfigured. In this tree, that single write is at
-    drivers/gpu/drm/xe/xe_lmtt.c:202 where it calls
-    xe_mmio_write32(tile->primary_gt, ...).
-  - Since LMTT governs LMEM access for VFs, failing to program
-    LMEM_CFG/LMTT_DIR_PTR for all GTs can break VF access to LMEM on
-    non-primary GTs. The commit message aligns with this: “to ensure
-    correct Local Memory access by VFs, the LMTT configuration must be
-    programmed on all GTs within the tile.”
+- What changed
+  - The second-stage init `xe_guc_ct_init_post_hwconfig` now always
+    rebinds the device-managed cleanup for disabling CT, not only on
+    dGFX.
+  - Before: early return on non-dGFX skipped cleanup rebind, leaving the
+    original `guc_action_disable_ct` action in its earlier position in
+    the devres stack.
+    - Reference: previous flow in `drivers/gpu/drm/xe/xe_guc_ct.c` where
+      a `return 0` occurred for non-dGFX after the `!IS_DGFX(xe)` check.
+  - After: `IS_DGFX(xe)` gates only the VRAM reinit, but the function
+    always removes/releases the existing disable action and re-adds it.
+    - Reference (current code structure):
+      `drivers/gpu/drm/xe/xe_guc_ct.c:294` definition; VRAM reinit in
+      `drivers/gpu/drm/xe/xe_guc_ct.c:303` and rebind sequence at
+      `drivers/gpu/drm/xe/xe_guc_ct.c:309` (remove) and
+      `drivers/gpu/drm/xe/xe_guc_ct.c:310` (re-add).
 
-- Why the current behavior is insufficient
-  - LMTT_DIR_PTR and LMEM_EN are defined in GT register space
-    (drivers/gpu/drm/xe/regs/xe_gt_regs.h:429–431), and the comment in
-    that header explains the GSI range is replicated for the media GT.
-    Writing the LMEM_CFG pointer for only the primary GT does not
-    automatically configure the same register instance for the media GT.
-  - xe_lmtt_init_hw() is only invoked from the primary (non-media) GT
-    init path (drivers/gpu/drm/xe/xe_gt.c:531). With the current single
-    write in lmtt_setup_dir_ptr(), the media GT’s instance of LMEM_CFG
-    remains unprogrammed.
+- Why it matters (ordering bug/consistency)
+  - `guc_action_disable_ct` is first registered in the initial init path
+    so CT is disabled before CTB BO teardown during managed cleanup.
+    - Reference: first registration in `xe_guc_ct_init` at
+      `drivers/gpu/drm/xe/xe_guc_ct.c:281`.
+  - In the dGFX path, `xe_managed_bo_reinit_in_vram` replaces the SMEM
+    BO with a VRAM BO and executes the old BO’s managed action
+    immediately.
+    - Reference: `drivers/gpu/drm/xe/xe_bo.c:2679` uses
+      `devm_release_action(...)` to release the old BO pin/map action
+      during reinit.
+  - Without re-registering `guc_action_disable_ct` after the new BO is
+    created, the devres LIFO order can invert: the new BO’s cleanup runs
+    before CT is disabled, risking CT activity referencing a BO that is
+    being torn down. This was corrected for dGFX and is now made
+    consistent for iGFX by always re-registering.
+  - The function asserts CT is not enabled at this stage, so
+    removing/re-adding (or releasing/re-adding) the disable action is
+    safe and purely affects future cleanup ordering, not current state.
+    - Reference: `drivers/gpu/drm/xe/xe_guc_ct.c:301` `xe_assert(xe,
+      !xe_guc_ct_enabled(ct));`
 
-- What the change does
-  - The patch replaces the single write with a loop to program
-    LMEM_CFG/LMTT_DIR_PTR for every GT on the tile, ensuring both
-    primary and media GTs are configured. In older codebases (as in your
-    tree), this maps to performing the same write for `tile->primary_gt`
-    and, if present, also for `tile->media_gt`. In newer codebases it
-    shows up as for_each_gt_on_tile(...) followed by
-    xe_mmio_write32(&gt->mmio, ...).
+- Impact scope and risk
+  - Scope: one function in the Xe GuC CT path,
+    `drivers/gpu/drm/xe/xe_guc_ct.c:294`.
+  - Behavior change: only the devres cleanup ordering for
+    `guc_action_disable_ct` relative to resources registered around the
+    post-hwconfig phase. No API/ABI changes, no functional changes at
+    runtime beyond safer teardown/unwind ordering.
+  - Low regression risk: re-registering the same action is idempotent
+    with respect to runtime, and improves consistency between dGFX and
+    iGFX flows. If `devm_release_action` is used (as in the patch text),
+    `guc_action_disable_ct` executes immediately; this is safe because
+    CT is asserted disabled at this point and the action is a no-op
+    state transition to DISABLED.
+    - Reference: `guc_action_disable_ct` body at
+      `drivers/gpu/drm/xe/xe_guc_ct.c:257` sets `ct->state =
+      XE_GUC_CT_STATE_DISABLED`.
 
-- Containment and risk
-  - Scope is a single helper: lmtt_setup_dir_ptr(). No ABI/UAPI changes,
-    no architectural refactoring.
-  - The write is guarded by sanity checks (VRAM BO, 64K alignment) and
-    performed during PF GT initialization after reset
-    (xe_lmtt_init_hw()), i.e., early and in a controlled sequence.
-  - Side effects are limited to programming the same register on
-    additional GTs. On single-GT tiles, the loop degenerates to one
-    write.
-  - The register selection already handles platform differences
-    (GRAPHICS_VER(xe) >= 20 ? XE2_LMEM_CFG : LMEM_CFG) within the same
-    helper (drivers/gpu/drm/xe/xe_lmtt.c:203–204), so no new platform-
-    specific branches are introduced.
+- Stable backport criteria
+  - Fixes a real (if timing-dependent) bug class: mismatched cleanup
+    ordering between platform variants that could allow CT communication
+    to outlive its buffer during teardown/error-unwind.
+  - Minimal, contained change in a driver subsystem; no architectural
+    changes.
+  - No new features; improves correctness and consistency.
+  - Touches only DRM Xe GuC control transport; not a core subsystem.
 
-- User impact and severity
-  - Misprogramming LMTT on multi-GT tiles can break LMEM access for VFs
-    using media engines, resulting in functional failures or GPU faults
-    in SR-IOV scenarios. This is a practical, user-visible bug in
-    virtualization setups, not a feature change.
+- Additional context
+  - This function is invoked during the post-hwconfig phase:
+    `drivers/gpu/drm/xe/xe_guc.c:837`. Ensuring the disable action is
+    re-registered here makes its cleanup ordering correct relative to
+    the newly created VRAM BO (on dGFX) and consistent on iGFX as
+    further managed resources are registered after this step.
 
-- Backport considerations
-  - Applicable stable series: Only those that include the Xe driver and
-    SR-IOV PF LMTT support (e.g., v6.8.y and v6.9.y). The XE driver (and
-    xe_lmtt.c) is not present in v6.6.y or older, so those are out of
-    scope.
-  - Minimal adaptation: Older trees (like v6.8/v6.9) do not have
-    for_each_gt_on_tile(). The equivalent stable backport is to perform
-    the existing write for `tile->primary_gt` and additionally, if non-
-    NULL, for `tile->media_gt`. The existing code already uses
-    xe_mmio_write32(gt, ...), so the change is straightforward and
-    localized.
-  - Invocation context: xe_lmtt_init_hw() is called from the primary GT
-    init only (drivers/gpu/drm/xe/xe_gt.c:531), so programming all GTs
-    inside lmtt_setup_dir_ptr() is the correct place to ensure media GT
-    gets configured too.
+Given the low risk, small scope, and correctness benefit (unified and
+safe cleanup ordering), this is a good candidate for stable backporting.
 
-- Stable rules fit
-  - Important bugfix affecting real users (SR-IOV VFs on multi-GT
-    tiles).
-  - Small and contained patch touching only the Xe PF LMTT
-    initialization routine.
-  - No new features, no ABI changes, and minimal regression risk.
-  - Clear intent and references in the commit message (HSD: 18042797646,
-    Bspec: 67468), plus Reviewed-by and lore link.
+ drivers/gpu/drm/xe/xe_guc_ct.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-Conclusion: This is a solid, low-risk bugfix that should be backported
-to stable kernels that have the Xe driver and SR-IOV PF LMTT code (e.g.,
-6.8.y and 6.9.y).
-
- drivers/gpu/drm/xe/xe_lmtt.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index a2000307d5bf9..a78c9d474a6ef 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -195,14 +195,17 @@ static void lmtt_setup_dir_ptr(struct xe_lmtt *lmtt)
- 	struct xe_tile *tile = lmtt_to_tile(lmtt);
- 	struct xe_device *xe = tile_to_xe(tile);
- 	dma_addr_t offset = xe_bo_main_addr(lmtt->pd->bo, XE_PAGE_SIZE);
-+	struct xe_gt *gt;
-+	u8 id;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index ff622628d823f..22eff8476ad48 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -300,12 +300,11 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
  
- 	lmtt_debug(lmtt, "DIR offset %pad\n", &offset);
- 	lmtt_assert(lmtt, xe_bo_is_vram(lmtt->pd->bo));
- 	lmtt_assert(lmtt, IS_ALIGNED(offset, SZ_64K));
+ 	xe_assert(xe, !xe_guc_ct_enabled(ct));
  
--	xe_mmio_write32(&tile->mmio,
--			GRAPHICS_VER(xe) >= 20 ? XE2_LMEM_CFG : LMEM_CFG,
--			LMEM_EN | REG_FIELD_PREP(LMTT_DIR_PTR, offset / SZ_64K));
-+	for_each_gt_on_tile(gt, tile, id)
-+		xe_mmio_write32(&gt->mmio,
-+				GRAPHICS_VER(xe) >= 20 ? XE2_LMEM_CFG : LMEM_CFG,
-+				LMEM_EN | REG_FIELD_PREP(LMTT_DIR_PTR, offset / SZ_64K));
- }
+-	if (!IS_DGFX(xe))
+-		return 0;
+-
+-	ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
+-	if (ret)
+-		return ret;
++	if (IS_DGFX(xe)) {
++		ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
++		if (ret)
++			return ret;
++	}
  
- /**
+ 	devm_release_action(xe->drm.dev, guc_action_disable_ct, ct);
+ 	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
 -- 
 2.51.0
 
