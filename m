@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DEFECCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:10:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E4ECCD1BF
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:12:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C400810E29B;
-	Sat, 25 Oct 2025 16:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B090510E29B;
+	Sat, 25 Oct 2025 16:12:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PQArbhm3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="egrus4nY";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5233910E29B;
- Sat, 25 Oct 2025 16:10:15 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C21B10E29B
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:12:02 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 385CC44B4D;
- Sat, 25 Oct 2025 16:10:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE34C4CEFF;
- Sat, 25 Oct 2025 16:10:13 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 56400602AD;
+ Sat, 25 Oct 2025 16:12:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD58EC4CEFB;
+ Sat, 25 Oct 2025 16:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408615;
- bh=RVIKXVH5UErh0acqJO/K+Fvyk5QKptR9ypjhsRzx8vg=;
+ s=k20201202; t=1761408721;
+ bh=cw2E9WfvKRErIt2tmUnxebsySKme/KCmOZt2LmsU7Vc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=PQArbhm3tGtHhTQPz/C0noOHEp5R2lU6qYTestsaOPrZsXcemEwY4G9zSKm+cH8+4
- Y6FTUibImLYh3lwDE8qnqiM7eIdg3/yFNC0KLVlWcD9rmYooOXyzVv0bagl/E4vywk
- 5JFLfYEEd5JSMZ/rRvVvALD0kvdFBY1fbXPU6ILc76/tftrmkkz6ISUr0p0fd+TR1I
- i4vwai6MwwVy9iHVkH1c/TT4nUzzTeT+KF6Gi922ly9mSJ/RvCIM4lJEDtSw9+v1UD
- Dzz/nUV1ikDkZWOviQ0GntjDup2bb0vNU7fF+nU9DJs9rlOcTPJnluIF/E81qppDoD
- wO/g+X7a2bL/A==
+ b=egrus4nY6soyzjiHlvgiZidRkAk9ECJhFXll+BmBnu7EwYKjtuTAg+oqw9F5fhAw+
+ M1TVe5zqayeSkXJrmEB7OnPh3MIcaG0+9v0Ig9YEZ0cEupo6KoaYNiU4Mu/o6J0/A2
+ fre3NxLkagoWRjluc4S4DBhILuvyXHRLHNVCBiOouWiFdajhUmSwzBu9eHOAJIcIhD
+ uxom2MDSG1+xFsEIMpwYbE5CFHNiYjMcm3aMjnsLVm911D2smtulFLxl0qDrDluTiR
+ ocAQBNf+cJQrB7zTLUoMh5Z6inLCKPYrwlIH1Zc1SWHOn0X16zm3hfj9Pd3Al/1quk
+ 1xP2Z0JmSEhdA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
+Cc: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>,
  Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, sumit.semwal@linaro.org, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: improve dma-resv handling for backup
- object
-Date: Sat, 25 Oct 2025 11:54:16 -0400
-Message-ID: <20251025160905.3857885-25-sashal@kernel.org>
+ Matt Roper <matthew.d.roper@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>, Sasha Levin <sashal@kernel.org>,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.17] drm/xe: Extend wa_13012615864 to additional Xe2
+ and Xe3 platforms
+Date: Sat, 25 Oct 2025 11:54:44 -0400
+Message-ID: <20251025160905.3857885-53-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.17.5
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,19 +68,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-[ Upstream commit edb1745fc618ba8ef63a45ce3ae60de1bdf29231 ]
+[ Upstream commit bcddb12c027434fdf0491c1a05a3fe4fd2263d71 ]
 
-Since the dma-resv is shared we don't need to reserve and add a fence
-slot fence twice, plus no need to loop through the dependencies.
+Extend WA 13012615864 to Graphics Versions 20.01,20.02,20.04
+and 30.03.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Link: https://lore.kernel.org/r/20250829164715.720735-2-matthew.auld@intel.com
+Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Link: https://lore.kernel.org/r/20250731220143.72942-2-jonathan.cavitt@intel.com
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -88,159 +90,112 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-Explanation
+- What changed
+  - Adds WA 13012615864 (sets `TDL_TSL_CHICKEN` bit `RES_CHK_SPR_DIS`)
+    to Xe2 platforms:
+    - New entry for `GRAPHICS_VERSION(2004)` with
+      `xe_rtp_match_first_render_or_compute` in
+      `drivers/gpu/drm/xe/xe_wa.c` (adds a single masked register write
+      on first render/compute engine).
+    - New entry for `GRAPHICS_VERSION_RANGE(2001, 2002)` with
+      `xe_rtp_match_first_render_or_compute` in
+      `drivers/gpu/drm/xe/xe_wa.c`.
+  - Extends the existing Xe3 entry to also match
+    `GRAPHICS_VERSION(3003)` in `drivers/gpu/drm/xe/xe_wa.c` (previously
+    limited to `3000–3001`).
+  - The bit being set is defined in
+    `drivers/gpu/drm/xe/regs/xe_gt_regs.h:494-497` (`TDL_TSL_CHICKEN`
+    with `RES_CHK_SPR_DIS`).
 
-- What it fixes
-  - Removes redundant dma-resv operations when a backup BO shares the
-    same reservation object as the original BO, preventing the same
-    fence from being reserved/added twice to the same `dma_resv`.
-  - Avoids scanning the same dependency set twice when source and
-    destination BOs share the same `dma_resv`.
-
-- Why the change is correct
-  - The backup object is created to share the parent’s reservation
-    object, so a single reserve/add is sufficient:
-    - The backup BO is initialized with the parent’s resv:
-      `drivers/gpu/drm/xe/xe_bo.c:1309` (`xe_bo_init_locked(...,
-      bo->ttm.base.resv, ...)`), ensuring `bo->ttm.base.resv ==
-      backup->ttm.base.resv`.
-    - The patch adds an explicit invariant check to document and enforce
-      this: `drivers/gpu/drm/xe/xe_bo.c:1225` (`xe_assert(xe,
-      bo->ttm.base.resv == backup->ttm.base.resv)`).
-  - With shared `dma_resv`, adding the same fence twice is at best
-    redundant (wasting fence slots and memory) and at worst error-prone.
-    Reserving fence slots only once and adding the fence once is the
-    correct behavior.
-
-- Specific code changes and effects
-  - Evict path (GPU migration copy case):
-    - Before: reserves and adds fence on both `bo->ttm.base.resv` and
-      `backup->ttm.base.resv`.
-    - After: reserves and adds exactly once, guarded by the shared-resv
-      assertion.
-    - See single reserve and add: `drivers/gpu/drm/xe/xe_bo.c:1226`
-      (reserve) and `drivers/gpu/drm/xe/xe_bo.c:1237` (add fence). This
-      is the core fix; the removed second reserve/add on the backup is
-      the redundant part eliminated.
-  - Restore path (migration copy back):
-    - Same simplification: reserve once, add once on the shared
-      `dma_resv`.
-    - See single reserve and add: `drivers/gpu/drm/xe/xe_bo.c:1375`
-      (reserve) and `drivers/gpu/drm/xe/xe_bo.c:1387` (add fence).
-  - Dependency handling in migrate:
-    - Before: added deps for both src and dst based only on `src_bo !=
-      dst_bo`.
-    - After: only add dst deps if the resv objects differ, avoiding
-      double-walking the same `dma_resv`.
-    - See updated condition: `drivers/gpu/drm/xe/xe_migrate.c:932`
-      (`src_bo->ttm.base.resv != dst_bo->ttm.base.resv`).
-
-- User-visible impact without the patch
-  - Duplicate `dma_resv_add_fence()` calls on the same reservation
-    object can:
-    - Consume extra shared-fence slots and memory.
-    - Inflate dependency lists, causing unnecessary scheduler waits and
-      overhead.
-    - Increase failure likelihood of `dma_resv_reserve_fences()` under
-      memory pressure.
-  - These paths are exercised during suspend/resume flows of pinned VRAM
-    BOs (evict/restore), so reliability and performance in power
-    transitions can be affected.
+- Why this is a bugfix
+  - WA 13012615864 disables a TDL/TSL resource check (`RES_CHK_SPR_DIS`)
+    known to be problematic; it was already applied to Xe3 LPG
+    (`GRAPHICS_VERSION_RANGE(3000, 3001)`) via the earlier upstream
+    commit (see existing entry at `drivers/gpu/drm/xe/xe_wa.c:649-653`
+    in this tree). This change recognizes the same hardware issue exists
+    on additional Xe2/Xe3 SKUs and applies the same single-bit
+    mitigation there.
+  - This is not a feature; it’s standard errata programming (a hardware
+    workaround) that prevents potential functional issues like
+    stalls/hangs or incorrect behavior on affected SKUs.
 
 - Scope and risk
-  - Small, focused changes localized to the Intel Xe driver
-    migration/evict/restore paths:
-    - Files: `drivers/gpu/drm/xe/xe_bo.c`,
-      `drivers/gpu/drm/xe/xe_migrate.c`.
-  - No API changes or architectural refactors; logic strictly reduces
-    redundant operations.
-  - The `xe_assert` acts as a safety net to catch unexpected non-shared
-    `resv` usage; normal runtime behavior is unchanged when the
-    invariant holds.
-  - The CPU copy fallback paths are untouched.
+  - Minimal, contained change:
+    - Only modifies the workaround tables in
+      `drivers/gpu/drm/xe/xe_wa.c`.
+    - Uses `XE_RTP_RULES(...,
+      FUNC(xe_rtp_match_first_render_or_compute))` so it programs once
+      per GT via the first render/compute engine, consistent with
+      neighboring WAs.
+    - The write is masked (`XE_REG_OPTION_MASKED`) to set only the
+      intended bit, per `drivers/gpu/drm/xe/regs/xe_gt_regs.h:494-497`.
+  - Consistency with existing code:
+    - The same register (`TDL_TSL_CHICKEN`) is already used for other
+      WAs on Xe2/Xe3 (e.g., `STK_ID_RESTRICT` at
+      `drivers/gpu/drm/xe/xe_wa.c:600-604`), so combining bits in that
+      register is expected.
+    - Extending the existing Xe3 WA to include `GRAPHICS_VERSION(3003)`
+      matches how other XE3 WAs are handled (see
+      `drivers/gpu/drm/xe/xe_wa.c:660-663` for other 3003-specific
+      entries).
+  - No architectural changes, no user-visible API changes, and no cross-
+    subsystem impact.
 
-- Stable backport considerations
-  - This is a clear correctness and robustness fix, not a feature.
-  - Low regression risk if the stable branch also creates the backup BO
-    with the parent’s `dma_resv` (as shown by the use of
-    `xe_bo_init_locked(..., bo->ttm.base.resv, ...)` in
-    `drivers/gpu/drm/xe/xe_bo.c:1309`).
-  - If a stable branch diverges and the backup BO does not share the
-    resv, this patch would need adjustment (i.e., keep dual reserve/add
-    in that case). The added `xe_assert` helps surface such mismatches
-    during testing.
+- Stable criteria
+  - Fixes a hardware erratum affecting real users on supported hardware.
+  - Very small and straightforward: a few table entries and one rule
+    expansion.
+  - Already precedent in stable: the original addition of WA 13012615864
+    for Xe3 (`3000–3001`) has been queued and carried in stable (e.g.,
+    6.14.5 stable queue), indicating stable acceptability for this WA
+    pattern.
+  - Harmless on trees lacking those hardware IDs: the rules are version-
+    gated and do nothing if the platform doesn’t match.
 
-Conclusion: This commit fixes a real bug (duplicate fence reserve/add
-and duplicate dependency scanning on a shared `dma_resv`) with a
-minimal, well-scoped change. It aligns with stable rules (important
-bugfix, low risk, contained), so it should be backported.
+Given the above, this commit is a low-risk, targeted bugfix that aligns
+with stable backport rules and should be backported.
 
- drivers/gpu/drm/xe/xe_bo.c      | 13 +------------
- drivers/gpu/drm/xe/xe_migrate.c |  2 +-
- 2 files changed, 2 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index d07e23eb1a54d..5a61441d68af5 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1242,14 +1242,11 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
- 		else
- 			migrate = mem_type_to_migrate(xe, bo->ttm.resource->mem_type);
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 22a98600fd8f2..535067e7fb0c9 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -538,6 +538,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7, CLEAR_OPTIMIZATION_DISABLE))
+ 	},
++	{ XE_RTP_NAME("13012615864"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
++	},
  
-+		xe_assert(xe, bo->ttm.base.resv == backup->ttm.base.resv);
- 		ret = dma_resv_reserve_fences(bo->ttm.base.resv, 1);
- 		if (ret)
- 			goto out_backup;
+ 	/* Xe2_HPG */
  
--		ret = dma_resv_reserve_fences(backup->ttm.base.resv, 1);
--		if (ret)
--			goto out_backup;
--
- 		fence = xe_migrate_copy(migrate, bo, backup, bo->ttm.resource,
- 					backup->ttm.resource, false);
- 		if (IS_ERR(fence)) {
-@@ -1259,8 +1256,6 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+@@ -602,6 +607,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, STK_ID_RESTRICT))
+ 	},
++	{ XE_RTP_NAME("13012615864"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002),
++		       FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
++	},
  
- 		dma_resv_add_fence(bo->ttm.base.resv, fence,
- 				   DMA_RESV_USAGE_KERNEL);
--		dma_resv_add_fence(backup->ttm.base.resv, fence,
--				   DMA_RESV_USAGE_KERNEL);
- 		dma_fence_put(fence);
- 	} else {
- 		ret = xe_bo_vmap(backup);
-@@ -1338,10 +1333,6 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
- 		if (ret)
- 			goto out_unlock_bo;
+ 	/* Xe2_LPM */
  
--		ret = dma_resv_reserve_fences(backup->ttm.base.resv, 1);
--		if (ret)
--			goto out_unlock_bo;
--
- 		fence = xe_migrate_copy(migrate, backup, bo,
- 					backup->ttm.resource, bo->ttm.resource,
- 					false);
-@@ -1352,8 +1343,6 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
- 
- 		dma_resv_add_fence(bo->ttm.base.resv, fence,
- 				   DMA_RESV_USAGE_KERNEL);
--		dma_resv_add_fence(backup->ttm.base.resv, fence,
--				   DMA_RESV_USAGE_KERNEL);
- 		dma_fence_put(fence);
- 	} else {
- 		ret = xe_bo_vmap(backup);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 2a627ed64b8f8..ba9b8590eccb2 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -901,7 +901,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		if (!fence) {
- 			err = xe_sched_job_add_deps(job, src_bo->ttm.base.resv,
- 						    DMA_RESV_USAGE_BOOKKEEP);
--			if (!err && src_bo != dst_bo)
-+			if (!err && src_bo->ttm.base.resv != dst_bo->ttm.base.resv)
- 				err = xe_sched_job_add_deps(job, dst_bo->ttm.base.resv,
- 							    DMA_RESV_USAGE_BOOKKEEP);
- 			if (err)
+@@ -647,7 +657,8 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("13012615864"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3001), OR,
++		       GRAPHICS_VERSION(3003),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
+ 	},
 -- 
 2.51.0
 
