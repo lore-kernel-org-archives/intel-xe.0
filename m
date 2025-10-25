@@ -4,45 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC07ACCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:29:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D410DCCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:29:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 922AD10E326;
-	Sat, 25 Oct 2025 16:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 973C710E324;
+	Sat, 25 Oct 2025 16:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s1sot9w4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="flyR8vLp";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0CC610E326
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:29:01 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 391DC10E324
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:29:26 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A7366452F9;
- Sat, 25 Oct 2025 16:29:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41CCAC4CEF5;
- Sat, 25 Oct 2025 16:29:00 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 47BF060618;
+ Sat, 25 Oct 2025 16:29:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E17ABC4CEFF;
+ Sat, 25 Oct 2025 16:29:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761409741;
- bh=gtB4My9xNPJe49k+2kiGNFIt+E+DTr869ijIgZM1dvo=;
+ s=k20201202; t=1761409764;
+ bh=iLEjOrePrnNCcm+EriPerBRSpxFZ8k2d7rPiTVXus0M=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=s1sot9w45aNf8GJ9FlEAUq/o8Va4kJfrKvcgKYLZMTN0zFqiTRWv0umgblMQClsD/
- IYXogTpgXPCiTmuvHZCtlkop6353C72ZgN2IvzTrerI0iKx6ANY6Edyom7+JqVV93H
- fnxzXYqUs5CPYPkLlSQZ41Gk3lNaF9SN3EktVvhyzyK92RLPsevEMkOFch9khSTqT4
- BcvNnuT7MglucIK27WfVkvSNWTerdWo5YhcHqPCqp73hTF8A1pnHWbu7tZZW1GxAcC
- g0nP9judjMtAMjfSBfEG/fTzeP7vQncotD1ru3CmWdveXtNNFCtsuq9kfTyP/FanBu
- Tz4z7XzMwDe4Q==
+ b=flyR8vLp+RDRauEjneDWysDC2Wsl1IU4GejFHxvp6UrsDgZ2SDLSk0ECfTyU/Pukp
+ YUa+bemjeT5bFvtsEL2OyVdPnH5JaNn5V3IzApCXaxuT/sunOTU7PzzpHLU/9j/5Gc
+ 3sxK5GiYfclKyHakNBXmahRRLlS74HeVnS87u+rlVXfB4p3eA5raiwQS8YmaJa4RO8
+ QJ542F6WVkL8HMAT8tF3SFQs6xICIan6bck0NZEwoFI10LvPXMtZsYDPZ+2IKrlKsM
+ 9RTPUolGkkWqAelVAY/9aDo7NKC/Iylq9hvSvM2oY+8dBZ/HORwNaB7IOXx3LRNdsR
+ 9Bn44ECoP6ZmQ==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: John Harrison <John.C.Harrison@Intel.com>,
- Stuart Summers <stuart.summers@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Maarten Lankhorst <dev@lankhorst.se>,
+ Matthew Auld <matthew.auld@intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
- alexandre.f.demers@gmail.com, alexander.deucher@amd.com,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17-6.12] drm/xe/guc: Add more GuC load error status
- codes
-Date: Sat, 25 Oct 2025 12:01:16 -0400
-Message-ID: <20251025160905.3857885-445-sashal@kernel.org>
+ rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.17-6.12] drm/xe: Fix oops in xe_gem_fault when
+ running core_hotunplug test.
+Date: Sat, 25 Oct 2025 12:01:25 -0400
+Message-ID: <20251025160905.3857885-454-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -66,23 +64,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-[ Upstream commit 45fbb51050e72723c2bdcedc1ce32305256c70ed ]
+[ Upstream commit 1cda3c755bb7770be07d75949bb0f45fb88651f6 ]
 
-The GuC load process will abort if certain status codes (which are
-indicative of a fatal error) are reported. Otherwise, it keeps waiting
-until the 'success' code is returned. New error codes have been added
-in recent GuC releases, so add support for aborting on those as well.
+I saw an oops in xe_gem_fault when running the xe-fast-feedback
+testlist against the realtime kernel without debug options enabled.
 
-v2: Shuffle HWCONFIG_START to the front of the switch to keep the
-ordering as per the enum define for clarity (review feedback by
-Jonathan). Also add a description for the basic 'invalid init data'
-code which was missing.
+The panic happens after core_hotunplug unbind-rebind finishes.
+Presumably what happens is that a process mmaps, unlocks because
+of the FAULT_FLAG_RETRY_NOWAIT logic, has no process memory left,
+causing ttm_bo_vm_dummy_page() to return VM_FAULT_NOPAGE, since
+there was nothing left to populate, and then oopses in
+"mem_type_is_vram(tbo->resource->mem_type)" because tbo->resource
+is NULL.
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-Link: https://lore.kernel.org/r/20250726024337.4056272-1-John.C.Harrison@Intel.com
+It's convoluted, but fits the data and explains the oops after
+the test exits.
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://lore.kernel.org/r/20250715152057.23254-2-dev@lankhorst.se
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -90,176 +92,145 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-Why this is a good stable backport
-- Fixes real-world hangs/timeouts: New GuC firmware versions can report
-  additional fatal load status codes. Without this patch, the Xe driver
-  may continue waiting until the generic timeout, causing long delays
-  and poorer diagnostics. Recognizing these as terminal failures is a
-  correctness and robustness fix, not a feature.
-- Small and contained: Changes are limited to two Xe files, only
-  touching enums and switch cases that read GuC status. No architectural
-  changes, no API/UAPI changes, no behavior change unless the new error
-  codes are actually returned.
-- Forward-compatibility with newer GuC: Distros often update GuC via
-  linux-firmware independently of the kernel. This patch keeps older
-  kernels robust when paired with newer GuC blobs.
-- Low regression risk: Older GuC won’t emit the new codes, so behavior
-  is unchanged there. New codes are explicitly fatal, so aborting
-  earlier is the correct action. Additional logging improves triage.
+**What It Fixes**
+- Prevents a NULL pointer dereference in `xe_gem_fault()` that can
+  trigger after a device unbind/rebind (core_hotunplug) when the VM
+  fault path takes the “device absent” branch and later tries to access
+  `tbo->resource->mem_type`.
+- Matches the failure described in the commit message: after hot-unplug
+  test, a process faults with `FAULT_FLAG_RETRY_NOWAIT`, the fallback
+  `ttm_bo_vm_dummy_page()` returns `VM_FAULT_NOPAGE`, and the code
+  oopses at `mem_type_is_vram(tbo->resource->mem_type)` because
+  `tbo->resource` is NULL.
 
-What changes and why they matter
-- Add new GuC load error codes in the ABI header
-  - drivers/gpu/drm/xe/abi/guc_errors_abi.h:49 defines `enum
-    xe_guc_load_status`. This patch adds:
-    - `XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH = 0x08` (fatal)
-    - `XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR = 0x75` (fatal)
-    - `XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG = 0x76` (fatal)
-  - In current tree, the relevant region is at
-    drivers/gpu/drm/xe/abi/guc_errors_abi.h:49–72. Adding these entries
-    fills previously unused values (0x08, 0x75, 0x76) and keeps them in
-    the “invalid init data” range where appropriate, preserving ordering
-    and ABI clarity.
+**Code-Level Analysis**
+- Current code (pre-fix) in `xe_gem_fault`:
+  - Calls the reserved fault path when the device is present, else uses
+    the dummy-page fallback:
+    - `drivers/gpu/drm/xe/xe_bo.c:1218` calls
+      `ttm_bo_vm_fault_reserved(...)` under `drm_dev_enter`.
+    - `drivers/gpu/drm/xe/xe_bo.c:1222` calls
+      `ttm_bo_vm_dummy_page(...)` when `drm_dev_enter` fails (device not
+      present).
+  - After that, it unconditionally evaluates:
+    - `if (ret == VM_FAULT_RETRY && !(vmf->flags &
+      FAULT_FLAG_RETRY_NOWAIT)) goto out;` at
+      `drivers/gpu/drm/xe/xe_bo.c:1225`.
+    - And crucially, `if (ret == VM_FAULT_NOPAGE &&
+      mem_type_is_vram(tbo->resource->mem_type)) { ... }` at
+      `drivers/gpu/drm/xe/xe_bo.c:1230`.
+  - This latter check runs even when `ret` came from the dummy-page
+    path, where the BO’s `resource` may be NULL (device unbound),
+    causing a NULL deref.
+- The proposed patch moves:
+  - The `VM_FAULT_RETRY` early-exit and the `VM_FAULT_NOPAGE` VRAM-
+    userfault list insert into the `drm_dev_enter` branch, i.e., only
+    after a successful `ttm_bo_vm_fault_reserved(...)`.
+  - This prevents dereferencing `tbo->resource` in the dummy-page path
+    (device absent case), eliminating the oops.
+- Supporting detail: `ttm_bo_vm_dummy_page()` implementation shows it
+  can return fault codes without involving BO resources, e.g.,
+  `VM_FAULT_OOM/NOPAGE` paths tied to `vmf_insert_pfn_prot` prefault
+  behavior, reinforcing that the post-fault `resource`-based logic must
+  not run in the dummy-page branch:
+  - See `drivers/gpu/drm/ttm/ttm_bo_vm.c:291` (function body around
+    291–340).
+- The VRAM userfault list is used on RPM suspend to release mmap offsets
+  for VRAM BOs (so it’s only meaningful when the device is present and
+  the BO is bound):
+  - See use in `drivers/gpu/drm/xe/xe_pm.c:404`.
 
-- Treat the new codes as terminal failures in the load state machine
-  - drivers/gpu/drm/xe/xe_guc.c:517 `guc_load_done()` is the terminal-
-    state detector for the load loop.
-  - Existing fatal cases are in the switch at
-    drivers/gpu/drm/xe/xe_guc.c:526–535.
-  - The patch adds the new codes to this fatal set, so `guc_load_done()`
-    returns -1 immediately instead of waiting for a timeout. This
-    prevents long waits and aligns behavior with the intended semantics
-    of these GuC codes.
+**Why This Is a Bugfix Suitable for Stable**
+- User-visible crash: This is a kernel oops/NULL deref triggered by
+  realistic sequences (hot-unplug + mmap + memory pressure), i.e.,
+  affects users and CI (“xe-fast-feedback core_hotunplug”).
+- Small, localized change: Only `xe_gem_fault()` is touched; logic is
+  refined to run VRAM/userfault tracking only when the device is present
+  and the reserved fault path was used.
+- No architectural changes: No ABI/UAPI or subsystem redesign; behavior
+  is strictly a correctness fix.
+- Low regression risk:
+  - The `VM_FAULT_RETRY` early-return remains aligned with TTM’s
+    reservation-lock semantics, now gated to the only path that can
+    actually return `RETRY` in practice (the reserved path). The dummy-
+    page path does not reasonably return `RETRY`.
+  - The VRAM userfault list manipulation is unchanged, just constrained
+    to valid context (device present, `resource` reliably valid).
+- Clear root cause: Unconditional deref of `tbo->resource->mem_type`
+  after a dummy-page fallback when device is absent. The patch removes
+  that invalid deref path.
 
-- Improve diagnostics for new failure modes during load
-  - drivers/gpu/drm/xe/xe_guc.c:593 `guc_wait_ucode()` logs the reason
-    for failure.
-  - New message cases are added to the `ukernel` switch (today at
-    drivers/gpu/drm/xe/xe_guc.c:672–685):
-    - A logging case for `HWCONFIG_START` was reordered to the front for
-      clarity (still “still extracting hwconfig table.”)
-    - New diagnostics for:
-      - `INIT_DATA_INVALID`: “illegal init/ADS data”
-      - `KLV_WORKAROUND_INIT_ERROR`: “illegal workaround KLV data”
-      - `INVALID_FTR_FLAG`: “illegal feature flag specified”
-  - These improve visibility into what went wrong without altering
-    control flow beyond early abort on fatal codes.
+**Historical Context**
+- The problematic post-fault VRAM/userfault logic was introduced when
+  adding RPM suspend handling for mmap offsets:
+  - `drivers/gpu/drm/xe/xe_bo.c:1230` is attributed to commit
+    “drm/xe/dgfx: Release mmap mappings on rpm suspend”
+    (`fa78e188d8d1d`, 2024-01), per blame.
+- The fix cleanly corrects that regression by scoping the check
+  appropriately.
 
-Cross-check with i915 (parity and precedent)
-- i915 already handles one of these newer codes:
-  - `INTEL_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR` is defined and
-    handled in i915 (drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h:24
-    and :39; drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c:118, 245),
-    confirming this class of additions is standard and low risk.
-- Bringing Xe up to parity on load error handling is consistent with
-  upstream direction and improves stability for GuC firmware evolution.
+**Security/Impact**
+- NULL pointer deref → kernel panic/DoS; user processes that mmap BOs
+  can trigger the faulty path under hot-unplug and low-memory
+  conditions. Fixing this improves system robustness and reliability.
 
-Stable criteria assessment
-- Bug fix that affects users: Yes — avoids long waits and wedges with
-  clearer diagnostics when GuC reports new fatal statuses.
-- Minimal and contained: Yes — a handful of enum entries and switch
-  cases in two Xe files.
-- No architectural changes: Correct — only error-code recognition and
-  messaging.
-- Critical subsystem: It’s a GPU driver; impact is localized to GuC
-  bring-up, not core kernel.
-- Explicit stable tags: Not present, but the change is a standard, low-
-  risk, forward-compat fix consistent with stable rules.
-- Dependencies: None apparent; the new constants are self-contained.
-  Note: in some branches the header’s response enum is named
-  `xe_guc_response_status` (drivers/gpu/drm/xe/abi/guc_errors_abi.h:9),
-  not `xe_guc_response` as in the posted diff context. This patch does
-  not alter that enum and the backport simply adds entries to
-  `xe_guc_load_status`, so this naming difference does not block the
-  backport.
+**Backport Considerations**
+- Patch is self-contained to `drivers/gpu/drm/xe/xe_bo.c`.
+- Dependencies are already present (e.g., `vram_userfault`
+  struct/lock/list, `mem_type_is_vram`, `ttm_bo_vm_*` helpers).
+- Applies to stable series that include the Xe driver and the RPM/mmap
+  suspend changes (post early 2024). Older LTS without Xe or without
+  that change are unaffected.
 
-Potential risks and why they’re acceptable
-- Earlier abort on these statuses vs. timing out: That is intended;
-  these codes are designated fatal by GuC. For older GuC which never
-  emit them, behavior is unchanged.
-- No ABI or userspace exposure: The enums are internal to the
-  driver/firmware interface.
+Given it fixes a real crash with minimal, targeted changes and no
+feature additions, this is a strong candidate for stable backport.
 
-Conclusion
-- This is a targeted robustness fix for GuC load error handling,
-  consistent with established patterns in i915, with minimal risk and
-  clear user benefit. It should be backported to stable.
+ drivers/gpu/drm/xe/xe_bo.c | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
 
- drivers/gpu/drm/xe/abi/guc_errors_abi.h |  3 +++
- drivers/gpu/drm/xe/xe_guc.c             | 19 +++++++++++++++++--
- 2 files changed, 20 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/abi/guc_errors_abi.h b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-index ecf748fd87df3..ad76b4baf42e9 100644
---- a/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_errors_abi.h
-@@ -63,6 +63,7 @@ enum xe_guc_load_status {
- 	XE_GUC_LOAD_STATUS_HWCONFIG_START                   = 0x05,
- 	XE_GUC_LOAD_STATUS_HWCONFIG_DONE                    = 0x06,
- 	XE_GUC_LOAD_STATUS_HWCONFIG_ERROR                   = 0x07,
-+	XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH         = 0x08,
- 	XE_GUC_LOAD_STATUS_GDT_DONE                         = 0x10,
- 	XE_GUC_LOAD_STATUS_IDT_DONE                         = 0x20,
- 	XE_GUC_LOAD_STATUS_LAPIC_DONE                       = 0x30,
-@@ -75,6 +76,8 @@ enum xe_guc_load_status {
- 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_START,
- 	XE_GUC_LOAD_STATUS_MPU_DATA_INVALID                 = 0x73,
- 	XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID   = 0x74,
-+	XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR        = 0x75,
-+	XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG                 = 0x76,
- 	XE_GUC_LOAD_STATUS_INVALID_INIT_DATA_RANGE_END,
- 
- 	XE_GUC_LOAD_STATUS_READY                            = 0xF0,
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 270fc37924936..9e0ed8fabcd54 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -990,11 +990,14 @@ static int guc_load_done(u32 status)
- 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
- 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
-+	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
- 	case XE_GUC_LOAD_STATUS_EXCEPTION:
- 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
-+	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
- 		return -1;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 50c79049ccea0..d07e23eb1a54d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1711,22 +1711,26 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 		ret = ttm_bo_vm_fault_reserved(vmf, vmf->vma->vm_page_prot,
+ 					       TTM_BO_VM_NUM_PREFAULT);
+ 		drm_dev_exit(idx);
++
++		if (ret == VM_FAULT_RETRY &&
++		    !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
++			goto out;
++
++		/*
++		 * ttm_bo_vm_reserve() already has dma_resv_lock.
++		 */
++		if (ret == VM_FAULT_NOPAGE &&
++		    mem_type_is_vram(tbo->resource->mem_type)) {
++			mutex_lock(&xe->mem_access.vram_userfault.lock);
++			if (list_empty(&bo->vram_userfault_link))
++				list_add(&bo->vram_userfault_link,
++					 &xe->mem_access.vram_userfault.list);
++			mutex_unlock(&xe->mem_access.vram_userfault.lock);
++		}
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
  	}
  
-@@ -1134,17 +1137,29 @@ static void guc_wait_ucode(struct xe_guc *guc)
- 		}
- 
- 		switch (ukernel) {
-+		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
-+			xe_gt_err(gt, "still extracting hwconfig table.\n");
-+			break;
-+
- 		case XE_GUC_LOAD_STATUS_EXCEPTION:
- 			xe_gt_err(gt, "firmware exception. EIP: %#x\n",
- 				  xe_mmio_read32(mmio, SOFT_SCRATCH(13)));
- 			break;
- 
-+		case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
-+			xe_gt_err(gt, "illegal init/ADS data\n");
-+			break;
-+
- 		case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
- 			xe_gt_err(gt, "illegal register in save/restore workaround list\n");
- 			break;
- 
--		case XE_GUC_LOAD_STATUS_HWCONFIG_START:
--			xe_gt_err(gt, "still extracting hwconfig table.\n");
-+		case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
-+			xe_gt_err(gt, "illegal workaround KLV data\n");
-+			break;
-+
-+		case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-+			xe_gt_err(gt, "illegal feature flag specified\n");
- 			break;
- 		}
- 
+-	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+-		goto out;
+-	/*
+-	 * ttm_bo_vm_reserve() already has dma_resv_lock.
+-	 */
+-	if (ret == VM_FAULT_NOPAGE && mem_type_is_vram(tbo->resource->mem_type)) {
+-		mutex_lock(&xe->mem_access.vram_userfault.lock);
+-		if (list_empty(&bo->vram_userfault_link))
+-			list_add(&bo->vram_userfault_link, &xe->mem_access.vram_userfault.list);
+-		mutex_unlock(&xe->mem_access.vram_userfault.lock);
+-	}
+-
+ 	dma_resv_unlock(tbo->base.resv);
+ out:
+ 	if (needs_rpm)
 -- 
 2.51.0
 
