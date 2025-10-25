@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7947DCCF9E3
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:15:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B54CCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:18:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D53710E320;
-	Sat, 25 Oct 2025 16:15:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9490610E2B3;
+	Sat, 25 Oct 2025 16:18:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XvywC38T";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UO4OH+pp";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2141A10E2A9
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:15:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A64910E2B2
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:18:10 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 55687605A9;
- Sat, 25 Oct 2025 16:15:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB6B4C4CEFB;
- Sat, 25 Oct 2025 16:15:49 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 79BF8604F9;
+ Sat, 25 Oct 2025 16:18:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CFBFC4CEFF;
+ Sat, 25 Oct 2025 16:18:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761408951;
- bh=yLH21nXkh1y4o3R5/b47gV+bd7YewWXUICb4cZZM5x0=;
+ s=k20201202; t=1761409089;
+ bh=bcy/FNX2nM3rn9uGT7sz0nsEClOAEsUqgREQBxMDHZE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XvywC38TtDUFmoCNqFWVTPZ6RvAZsjmwBsBq6j4BCKbMex8j9/OYNfRCLmFV/XfLt
- KN2ryBn1hVGrcXCEFlzx4LGRPRwCAkARfu8NTnBhzey+bEShoVTKq/yE2zzAAlVjj9
- HZtMGUDsHJYBAF8lBaAv7Xk+bb4xactdpkKArOxcBpzG/FR6sPjpFzzdhcBxsdJ8ak
- ATX0teYrdk5Ro18gP/N5sB+uylA5m4NrPKFz8Em8tdzQMiEz7ujAk4N1B9lUBgs5yk
- JQtERP9dE765onAKLPFhgq2MEBd5XKyD6Qx5lZ+e/ch+lLvODASRcD6Enk+6CSyhkz
- 5MSdHApI1l88g==
+ b=UO4OH+ppx7Twhxgtd0pGwxlOBpCZPLs75312G5UHIbi4WYj9u/Burlf6IkqhHdzM1
+ r/SYdxKW6xxNC/qxgQRPUX3kfpT6ft8fV9tIN3KyzdHwqRY2MJHWmZWLdrOSQxcuhV
+ +BICj4T30/2hfVnxEZmVMP8RpmhOevTwoSfeg56GuDUDF5tAjRUAjFRVnuh8dIjWgY
+ FxZJr4QyQd8oLQxyy05EMdO0/9AbCtEQU+1wX37mU5RRmLsWoxH4HA3Qck2+KKmCzg
+ i/lzRat0uf1aG/UNgzG6VLeUgCLDT3kjTNUQvVED7r15Iam/oZSL1Tn3FTmbt7jzzo
+ XvBvOW4uw8xNg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Stuart Summers <stuart.summers@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>, Sasha Levin <sashal@kernel.org>,
  lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
  rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe: Cancel pending TLB inval workers on
- teardown
-Date: Sat, 25 Oct 2025 11:56:18 -0400
-Message-ID: <20251025160905.3857885-147-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.17-6.12] drm/xe/guc: Increase GuC crash dump buffer
+ size
+Date: Sat, 25 Oct 2025 11:57:10 -0400
+Message-ID: <20251025160905.3857885-199-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
@@ -64,21 +65,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stuart Summers <stuart.summers@intel.com>
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 
-[ Upstream commit 76186a253a4b9eb41c5a83224c14efdf30960a71 ]
+[ Upstream commit ad83b1da5b786ee2d245e41ce55cb1c71fed7c22 ]
 
-Add a new _fini() routine on the GT TLB invalidation
-side to handle this worker cleanup on driver teardown.
+There are platforms already have a maximum dump size of 12KB, to avoid
+data truncating, increase GuC crash dump buffer size to 16KB.
 
-v2: Move the TLB teardown to the gt fini() routine called during
-    gt_init rather than in gt_alloc. This way the GT structure stays
-    alive for while we reset the TLB state.
-
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://lore.kernel.org/r/20250826182911.392550-3-stuart.summers@intel.com
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Link: https://lore.kernel.org/r/20250829160427.1245732-1-zhanjun.dong@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -86,135 +83,72 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What it fixes
-  - Prevents use-after-free/hangs on driver teardown by cancelling
-    pending TLB-invalidation workers/fences before GT resources are
-    dismantled. The reset path already handles this during GT resets;
-    this commit ensures the same cleanup occurs on teardown.
+- What changed
+  - The non-debug GuC crash log buffer was doubled from 8 KB to 16 KB by
+    changing `CRASH_BUFFER_SIZE` from `SZ_8K` to `SZ_16K` in
+    drivers/gpu/drm/xe/xe_guc_log.h:20. Debug builds remain unchanged at
+    1 MB (drivers/gpu/drm/xe/xe_guc_log.h:16).
 
-- Key changes and why they matter
-  - drivers/gpu/drm/xe/xe_gt.c: `xe_gt_fini()` now calls
-    `xe_gt_tlb_invalidation_fini(gt)` first. This ensures TLB
-    invalidation workers/fences are cancelled while the GT is still
-    alive, avoiding races/UAF during teardown.
-  - drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c: Adds
-    `xe_gt_tlb_invalidation_fini(struct xe_gt *gt)` which simply calls
-    `xe_gt_tlb_invalidation_reset(gt)`. The reset routine:
-    - Computes a “pending” seqno and updates `seqno_recv` so waiters see
-      all prior invalidations as complete.
-    - Iterates `pending_fences` and signals them, waking any kworkers
-      waiting for TLB flush completion.
-    - This mirrors the existing reset behavior (cancel delayed work,
-      advance seqno, signal fences) used during GT resets to guarantee
-      no waiter is left behind.
-  - drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h: Adds the prototype for
-    the new fini, keeping the API consistent.
+- Why it matters (bugfix, not a feature)
+  - Commit message states some platforms produce up to 12 KB crash
+    dumps; with an 8 KB buffer this causes truncation. That’s a
+    functional defect in diagnostics: incomplete crash logs hinder
+    debugging and postmortem analysis. Increasing to 16 KB fixes this
+    truncation.
 
-- Concrete evidence in the code changes
-  - The commit places `xe_gt_tlb_invalidation_fini(gt)` at the start of
-    GT teardown (xe_gt.c: in `xe_gt_fini()`), so TLB/worker cleanup runs
-    before `xe_hw_fence_irq_finish()` and
-    `xe_gt_disable_host_l2_vram()`. This ordering minimizes races with
-    IRQ/fence infrastructure and other GT resources during teardown.
-  - The finish routine calls into the reset path which explicitly:
-    - Sets `seqno_recv` to a value covering all outstanding requests.
-    - Signals all pending invalidation fences via
-      `list_for_each_entry_safe(... pending_fences ...)`, ensuring
-      waiters are released.
-    - This matches the comment in the reset path about kworkers not
-      tracked by explicit TLB fences and the need to wake them assuming
-      a full GT reset.
+- Containment and safety
+  - The size is consumed by the GuC CTL log parameter field using 4 KB
+    units unless the size is a multiple of 1 MB. With 16 KB, the unit
+    remains 4 KB and the value is encoded via `FIELD_PREP(GUC_LOG_CRASH,
+    CRASH_BUFFER_SIZE / LOG_UNIT - 1)` in
+    drivers/gpu/drm/xe/xe_guc.c:128, with `LOG_UNIT` set to `SZ_4K` for
+    this case (drivers/gpu/drm/xe/xe_guc.c:101-107).
+  - The GuC register field for the crash buffer size is 2 bits
+    (`GUC_LOG_CRASH` is `REG_GENMASK(5, 4)`,
+    drivers/gpu/drm/xe/xe_guc_fwif.h:94), encoding sizes of 4 KB, 8 KB,
+    12 KB, and 16 KB. Setting 16 KB is the maximum representable and
+    safely covers platforms needing 12 KB without truncation.
+  - Compile-time checks enforce correctness and alignment:
+    `BUILD_BUG_ON(!IS_ALIGNED(CRASH_BUFFER_SIZE, LOG_UNIT));` in
+    drivers/gpu/drm/xe/xe_guc.c:118. 16 KB is aligned to 4 KB, so it
+    passes.
+  - The total BO allocation for logs increases by only 8 KB via
+    `guc_log_size()` (drivers/gpu/drm/xe/xe_guc_log.c:61), which is
+    negligible and localized to this driver. No ABI/API changes.
+  - The change does not affect debug builds (`CONFIG_DRM_XE_DEBUG_GUC`),
+    which already use 1 MB (drivers/gpu/drm/xe/xe_guc_log.h:16).
 
-- Mapping to current tree (for context/impact assessment)
-  - In this tree, the corresponding logic lives under the “tlb_inval”
-    names:
-    - The reset path is implemented in
-      `drivers/gpu/drm/xe/xe_tlb_inval.c:156` (`xe_tlb_inval_reset()`),
-      which cancels the delayed timeout work, updates `seqno_recv`, and
-      signals all `pending_fences`.
-    - This path is already invoked during GT reset flows (e.g.,
-      `drivers/gpu/drm/xe/xe_gt.c:853, 1067, 1139`), proving the
-      approach is safe and battle-tested during runtime resets.
-    - A drmm-managed teardown hook exists
-      (`drivers/gpu/drm/xe/xe_tlb_inval.c:114`), but that operates at
-      DRM device teardown. If GT devm teardown runs earlier, there is a
-      window where TLB invalidation workers could outlive GT, risking
-      UAF. Moving the cleanup into `xe_gt_fini()` (devm action, see
-      `drivers/gpu/drm/xe/xe_gt.c:624`) closes that gap, which is
-      exactly what this commit does in its codebase.
+- Impact scope
+  - Only the Intel Xe driver’s GuC logging path is affected. No
+    architectural changes, no critical core subsystems touched. Memory
+    impact is minimal and bounded per GT/tile.
 
-- Stable backport criteria
-  - Important bugfix: avoids teardown-time UAF/hangs/leaks by cancelling
-    and signalling all pending TLB invalidation work.
-  - Small and contained: touches only the xe GT/TLB invalidation
-    teardown path; adds one call-site and a thin wrapper.
-  - No feature or architectural change: purely lifecycle/cleanup
-    ordering.
-  - Low regression risk: uses the same reset logic already exercised in
-    GT reset paths.
-  - Driver subsystem only (DRM xe), not core kernel.
+- Stable criteria assessment
+  - Fixes a real user-facing issue (truncated GuC crash dumps) that
+    impairs diagnostics.
+  - Small, contained change to a single constant; low regression risk.
+  - No new features; no behavioral change beyond preventing truncation.
+  - Aligns with hardware encodings and existing compile-time guards.
 
-- Conclusion
-  - This is a clear, low-risk correctness fix for teardown-time resource
-    and worker cleanup in the xe driver. It should be backported to
-    stable trees where the xe driver and TLB invalidation workers exist,
-    adapting symbol/file names as needed (e.g., calling
-    `xe_tlb_inval_reset(&gt->tlb_inval)` from `xe_gt_fini()` in trees
-    with the older naming).
+Given the clear bugfix nature, minimal risk, and confined scope, this is
+a good candidate for stable backporting.
 
- drivers/gpu/drm/xe/xe_gt.c                  |  2 ++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++++++++++++
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  1 +
- 3 files changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_log.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 17634195cdc26..6f63c658c341f 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -605,6 +605,8 @@ static void xe_gt_fini(void *arg)
- 	struct xe_gt *gt = arg;
- 	int i;
- 
-+	xe_gt_tlb_invalidation_fini(gt);
-+
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
- 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 086c12ee3d9de..64cd6cf0ab8df 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -173,6 +173,18 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	mutex_unlock(&gt->uc.guc.ct.lock);
- }
- 
-+/**
-+ *
-+ * xe_gt_tlb_invalidation_fini - Clean up GT TLB invalidation state
-+ *
-+ * Cancel pending fence workers and clean up any additional
-+ * GT TLB invalidation state.
-+ */
-+void xe_gt_tlb_invalidation_fini(struct xe_gt *gt)
-+{
-+	xe_gt_tlb_invalidation_reset(gt);
-+}
-+
- static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
- {
- 	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-index f7f0f2eaf4b59..3e4cff3922d6f 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-@@ -16,6 +16,7 @@ struct xe_vm;
- struct xe_vma;
- 
- int xe_gt_tlb_invalidation_init_early(struct xe_gt *gt);
-+void xe_gt_tlb_invalidation_fini(struct xe_gt *gt);
- 
- void xe_gt_tlb_invalidation_reset(struct xe_gt *gt);
- int xe_gt_tlb_invalidation_ggtt(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
+index f1e2b0be90a9f..98a47ac42b08f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.h
++++ b/drivers/gpu/drm/xe/xe_guc_log.h
+@@ -17,7 +17,7 @@ struct xe_device;
+ #define DEBUG_BUFFER_SIZE       SZ_8M
+ #define CAPTURE_BUFFER_SIZE     SZ_2M
+ #else
+-#define CRASH_BUFFER_SIZE	SZ_8K
++#define CRASH_BUFFER_SIZE	SZ_16K
+ #define DEBUG_BUFFER_SIZE	SZ_64K
+ #define CAPTURE_BUFFER_SIZE	SZ_1M
+ #endif
 -- 
 2.51.0
 
