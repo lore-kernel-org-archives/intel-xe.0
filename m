@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B709CCD1BF
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:21:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65394CCF9E3
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Oct 2025 16:23:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC26610E2F0;
-	Sat, 25 Oct 2025 16:21:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28DE010E2F0;
+	Sat, 25 Oct 2025 16:23:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ArFpiZLF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="E0UHd1GN";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B90410E2F0
- for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:21:45 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44EB710E2F0
+ for <intel-xe@lists.freedesktop.org>; Sat, 25 Oct 2025 16:23:05 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id DE79A61124;
- Sat, 25 Oct 2025 16:21:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F184C2BC9E;
- Sat, 25 Oct 2025 16:21:43 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id F3E444328D;
+ Sat, 25 Oct 2025 16:23:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B80E5C4CEF5;
+ Sat, 25 Oct 2025 16:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1761409304;
- bh=aD9oYzwsg7RI70oVAmJ7ZuirpQru5RwbcwHaGSh0OS8=;
+ s=k20201202; t=1761409384;
+ bh=h5wu0F/GDcGy7Kk3KFaZYd8l3/8csZ5h7fH9LksjW2k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ArFpiZLFuvyQ9wkBNZfl3/0xknjxyxFz+9YfOKmPhVXHmXnho+VTvFoeu7xYouYhF
- 1w93zinfQ9X9RLvzZmRDWXu01vf+Fyp1cVCGaozGZnNZWXjvX1GmixH8Ud0n0lNI1D
- gMAv22Wgoc6AUG7cNAmf5x3actXyhTsg5IdEUkkZtUzLx6vcy6zK1kDx5mdT+Z1Iid
- lA9oLo/HNjtVru2HSdrfHTpWWHnK/k2gFqbAl3mgS7h6b/9e7hw4KVrlKaCpb2GMWl
- nzHIvV2hwEwd7eosLPNkEbdZGmnLTQMAoM4idRaxKs35AN02k2gXcQiSe5PTR3i4S9
- yiO6DGYoRDigA==
+ b=E0UHd1GNdPO2fxcEPeuW0rTCjeRx1sWuzDdxI0DjqywH/ZzWGDYRE7zH//hgxQljq
+ RZ+EPv0LXIAeDeydRPEVHWBRN7gJ91VxBaTmdgK682soKS6oTHtFC4c3qhBd+KvHfX
+ Ujp/cBwM6tiycDPBzBDMO9mliboZWWrg++sOBSYwoiyCwM6FO7UyNZzt++rWTfVtaz
+ WjvbmOWTLO1zz92FhQJczCqzrxKo4aZefB/likqlrGcVbiSVl7z2ib80pct/ufpmBw
+ /vzTRctGmEQsPi+M1xdktmVulh10O29xVCb2J1CdRY2Mi9TpxIoXklCnu0CK+0awi4
+ 8va4Dry98CDUg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.17] drm/xe/guc: Always add CT disable action during
- second init step
-Date: Sat, 25 Oct 2025 11:58:22 -0400
-Message-ID: <20251025160905.3857885-271-sashal@kernel.org>
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.17] drm/xe/pf: Don't resume device from restart
+ worker
+Date: Sat, 25 Oct 2025 11:58:50 -0400
+Message-ID: <20251025160905.3857885-299-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251025160905.3857885-1-sashal@kernel.org>
 References: <20251025160905.3857885-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.17.5
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,24 +68,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[ Upstream commit 955f3bc4af440bb950c7a1567197aaf6aa2213ae ]
+[ Upstream commit 9fd9f221440024b7451678898facfb34af054310 ]
 
-On DGFX, during init_post_hwconfig() step, we are reinitializing
-CTB BO in VRAM and we have to replace cleanup action to disable CT
-communication prior to release of underlying BO.
-
-But that introduces some discrepancy between DGFX and iGFX, as for
-iGFX we keep previously added disable CT action that would be called
-during unwind much later.
-
-To keep the same flow on both types of platforms, always replace old
-cleanup action and register new one.
+The PF's restart worker shouldn't attempt to resume the device on
+its own, since its goal is to finish PF and VFs reprovisioning on
+the recently reset GuC. Take extra RPM reference while scheduling
+a work and release it from the worker or when we cancel a work.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Link: https://lore.kernel.org/r/20250908102053.539-2-michal.wajdeczko@intel.com
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Link: https://lore.kernel.org/r/20250801142822.180530-4-michal.wajdeczko@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
@@ -92,106 +86,137 @@ LLM Generated explanations, may be completely bogus:
 
 YES
 
-- What changed
-  - The second-stage init `xe_guc_ct_init_post_hwconfig` now always
-    rebinds the device-managed cleanup for disabling CT, not only on
-    dGFX.
-  - Before: early return on non-dGFX skipped cleanup rebind, leaving the
-    original `guc_action_disable_ct` action in its earlier position in
-    the devres stack.
-    - Reference: previous flow in `drivers/gpu/drm/xe/xe_guc_ct.c` where
-      a `return 0` occurred for non-dGFX after the `!IS_DGFX(xe)` check.
-  - After: `IS_DGFX(xe)` gates only the VRAM reinit, but the function
-    always removes/releases the existing disable action and re-adds it.
-    - Reference (current code structure):
-      `drivers/gpu/drm/xe/xe_guc_ct.c:294` definition; VRAM reinit in
-      `drivers/gpu/drm/xe/xe_guc_ct.c:303` and rebind sequence at
-      `drivers/gpu/drm/xe/xe_guc_ct.c:309` (remove) and
-      `drivers/gpu/drm/xe/xe_guc_ct.c:310` (re-add).
+- Bug fixed: Prevents the PF SR-IOV restart worker from forcing a
+  runtime PM resume, which can violate PM expectations, cause unwanted
+  wakeups, and race with suspend/resume. The worker’s role is to finish
+  PF/VF reprovisioning after a GuC reset, not to wake the device.
 
-- Why it matters (ordering bug/consistency)
-  - `guc_action_disable_ct` is first registered in the initial init path
-    so CT is disabled before CTB BO teardown during managed cleanup.
-    - Reference: first registration in `xe_guc_ct_init` at
-      `drivers/gpu/drm/xe/xe_guc_ct.c:281`.
-  - In the dGFX path, `xe_managed_bo_reinit_in_vram` replaces the SMEM
-    BO with a VRAM BO and executes the old BO’s managed action
-    immediately.
-    - Reference: `drivers/gpu/drm/xe/xe_bo.c:2679` uses
-      `devm_release_action(...)` to release the old BO pin/map action
-      during reinit.
-  - Without re-registering `guc_action_disable_ct` after the new BO is
-    created, the devres LIFO order can invert: the new BO’s cleanup runs
-    before CT is disabled, risking CT activity referencing a BO that is
-    being torn down. This was corrected for dGFX and is now made
-    consistent for iGFX by always re-registering.
-  - The function asserts CT is not enabled at this stage, so
-    removing/re-adding (or releasing/re-adding) the disable action is
-    safe and purely affects future cleanup ordering, not current state.
-    - Reference: `drivers/gpu/drm/xe/xe_guc_ct.c:301` `xe_assert(xe,
-      !xe_guc_ct_enabled(ct));`
+- Core change: Move the runtime PM ref from the worker body to the
+  queueing point.
+  - Before: Worker resumes device via `xe_pm_runtime_get(xe)` and later
+    `xe_pm_runtime_put(xe)` in `pf_restart()`
+    (drivers/gpu/drm/xe/xe_gt_sriov_pf.c:229).
+  - After: `pf_queue_restart()` takes a non-resuming RPM reference via
+    `xe_pm_runtime_get_noresume(xe)` before `queue_work()`, and only
+    drops it either in the worker on completion or if the work is
+    canceled/disabled.
+    - New get: `pf_queue_restart()` adds
+      `xe_pm_runtime_get_noresume(xe)` and if `queue_work()` returns
+      false (already queued), it immediately `xe_pm_runtime_put(xe)` to
+      avoid leaks (drivers/gpu/drm/xe/xe_gt_sriov_pf.c:244).
+    - New put on cancel/disable: If `cancel_work_sync()` or
+      `disable_work_sync()` returns true, drop the worker’s RPM ref
+      (drivers/gpu/drm/xe/xe_gt_sriov_pf.c:206,
+      drivers/gpu/drm/xe/xe_gt_sriov_pf.c:55).
+    - Worker body: `pf_restart()` no longer resumes; it asserts device
+      is not suspended and only does the final `xe_pm_runtime_put(xe)`
+      to drop the ref held “on its behalf”
+      (drivers/gpu/drm/xe/xe_gt_sriov_pf.c:229).
 
-- Impact scope and risk
-  - Scope: one function in the Xe GuC CT path,
-    `drivers/gpu/drm/xe/xe_guc_ct.c:294`.
-  - Behavior change: only the devres cleanup ordering for
-    `guc_action_disable_ct` relative to resources registered around the
-    post-hwconfig phase. No API/ABI changes, no functional changes at
-    runtime beyond safer teardown/unwind ordering.
-  - Low regression risk: re-registering the same action is idempotent
-    with respect to runtime, and improves consistency between dGFX and
-    iGFX flows. If `devm_release_action` is used (as in the patch text),
-    `guc_action_disable_ct` executes immediately; this is safe because
-    CT is asserted disabled at this point and the action is a no-op
-    state transition to DISABLED.
-    - Reference: `guc_action_disable_ct` body at
-      `drivers/gpu/drm/xe/xe_guc_ct.c:257` sets `ct->state =
-      XE_GUC_CT_STATE_DISABLED`.
+- Correct PM lifetime: This pattern matches established XE usage for
+  async work (e.g., `xe_vm.c:1751`, `xe_sched_job.c:149`,
+  `xe_mocs.c:785`, `xe_pci_sriov.c:171`), where async paths use
+  `xe_pm_runtime_get_noresume()` to keep the device from autosuspending
+  without performing a resume from the inner worker.
 
-- Stable backport criteria
-  - Fixes a real (if timing-dependent) bug class: mismatched cleanup
-    ordering between platform variants that could allow CT communication
-    to outlive its buffer during teardown/error-unwind.
-  - Minimal, contained change in a driver subsystem; no architectural
-    changes.
-  - No new features; improves correctness and consistency.
-  - Touches only DRM Xe GuC control transport; not a core subsystem.
+- Rationale and safety:
+  - `gt_reset()` already holds a runtime PM ref across reset and restart
+    scheduling (`drivers/gpu/drm/xe/xe_gt.c:822` get,
+    `drivers/gpu/drm/xe/xe_gt.c:857` put). Taking an additional
+    `get_noresume()` before queuing guarantees the device won’t
+    autosuspend before the worker executes, but crucially avoids an
+    unsolicited resume from the worker itself.
+  - The assert in `pf_restart()` (`!xe_pm_runtime_suspended(xe)`) is a
+    correctness guard ensuring the worker only runs with the device
+    awake; the RPM ref taken at queue time enforces this in practice.
+  - The cancellation/disable paths now correctly drop the worker’s PM
+    ref, preventing leaks when a pending restart is canceled because a
+    subsequent reset is about to happen (synergizes with the already
+    backported reset-cancellation change in this file).
 
-- Additional context
-  - This function is invoked during the post-hwconfig phase:
-    `drivers/gpu/drm/xe/xe_guc.c:837`. Ensuring the disable action is
-    re-registered here makes its cleanup ordering correct relative to
-    the newly created VRAM BO (on dGFX) and consistent on iGFX as
-    further managed resources are registered after this step.
+- Scope and risk:
+  - Change is small, self-contained, and limited to SR-IOV PF code in
+    `drivers/gpu/drm/xe/xe_gt_sriov_pf.c`.
+  - No API/ABI or architectural change; just corrects RPM reference
+    placement and balances puts on cancel/disable.
+  - Reduces risk of unintended device resumes and PM races; aligns with
+    driver PM policy.
 
-Given the low risk, small scope, and correctness benefit (unified and
-safe cleanup ordering), this is a good candidate for stable backporting.
+- Stable backport fit:
+  - Fixes a real PM semantics bug affecting SR-IOV PF restart handling
+    after GT resets.
+  - Minimal, contained, and follows existing patterns; low regression
+    risk.
+  - Depends only on existing helpers (e.g.,
+    `xe_pm_runtime_get_noresume`, `xe_pm_runtime_suspended`), which are
+    present in stable branches already carrying the async restart worker
+    (see prior “Move VFs reprovisioning to worker” backport).
 
- drivers/gpu/drm/xe/xe_guc_ct.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+Given the above, this is a good candidate for stable backport.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index ff622628d823f..22eff8476ad48 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -300,12 +300,11 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
- 
- 	xe_assert(xe, !xe_guc_ct_enabled(ct));
- 
--	if (!IS_DGFX(xe))
--		return 0;
--
--	ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
--	if (ret)
--		return ret;
-+	if (IS_DGFX(xe)) {
-+		ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
-+		if (ret)
-+			return ret;
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index bdbd15f3afe38..c4dda87b47cc8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -55,7 +55,12 @@ static void pf_init_workers(struct xe_gt *gt)
+ static void pf_fini_workers(struct xe_gt *gt)
+ {
+ 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+-	disable_work_sync(&gt->sriov.pf.workers.restart);
++
++	if (disable_work_sync(&gt->sriov.pf.workers.restart)) {
++		xe_gt_sriov_dbg_verbose(gt, "pending restart disabled!\n");
++		/* release an rpm reference taken on the worker's behalf */
++		xe_pm_runtime_put(gt_to_xe(gt));
 +	}
+ }
  
- 	devm_release_action(xe->drm.dev, guc_action_disable_ct, ct);
- 	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
+ /**
+@@ -207,8 +212,11 @@ static void pf_cancel_restart(struct xe_gt *gt)
+ {
+ 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+ 
+-	if (cancel_work_sync(&gt->sriov.pf.workers.restart))
++	if (cancel_work_sync(&gt->sriov.pf.workers.restart)) {
+ 		xe_gt_sriov_dbg_verbose(gt, "pending restart canceled!\n");
++		/* release an rpm reference taken on the worker's behalf */
++		xe_pm_runtime_put(gt_to_xe(gt));
++	}
+ }
+ 
+ /**
+@@ -226,9 +234,12 @@ static void pf_restart(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	xe_pm_runtime_get(xe);
++	xe_gt_assert(gt, !xe_pm_runtime_suspended(xe));
++
+ 	xe_gt_sriov_pf_config_restart(gt);
+ 	xe_gt_sriov_pf_control_restart(gt);
++
++	/* release an rpm reference taken on our behalf */
+ 	xe_pm_runtime_put(xe);
+ 
+ 	xe_gt_sriov_dbg(gt, "restart completed\n");
+@@ -247,8 +258,13 @@ static void pf_queue_restart(struct xe_gt *gt)
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_PF(xe));
+ 
+-	if (!queue_work(xe->sriov.wq, &gt->sriov.pf.workers.restart))
++	/* take an rpm reference on behalf of the worker */
++	xe_pm_runtime_get_noresume(xe);
++
++	if (!queue_work(xe->sriov.wq, &gt->sriov.pf.workers.restart)) {
+ 		xe_gt_sriov_dbg(gt, "restart already in queue!\n");
++		xe_pm_runtime_put(xe);
++	}
+ }
+ 
+ /**
 -- 
 2.51.0
 
