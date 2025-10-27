@@ -4,184 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 976A4CCF9E0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:09:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D68CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:16:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 589C210E541;
-	Mon, 27 Oct 2025 18:09:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hgXzNMok";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A337910E541
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 18:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761588554; x=1793124554;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=kZflJiHKbs4T2KJp75RJmVVqFI0aQBtlq4+pbeEDmvc=;
- b=hgXzNMokJadF9kF8XnJ4jw+y1E3uZt3lx6St5IOZnauYk9H7Ectd/0hE
- t6s/pLGsUE7D7SG7cDND9dsHXHv19RNaZHDd2ljE5REpjH6Q4ggBkN9tW
- GHv99h8p/l40VLODRdzKT9xgQdCoaFOgY6QciyZd/J50RPz1BfK+nrSGQ
- H5CfXIYavyFAjr/RTAyfoud6Ab0eJz6/gOaSBqpdX1NqkBryP9sgM/Zf3
- F80zhQrXv9SwVfVjpLuJU94seFk0AxOytgeI1X/wszfSeeZt2XuLZDiI0
- d04jolQ7pmkCU38nnZ18gOjVKLZXsjpFIdtofqwbjB6r14nO/p7I1Z2t4 w==;
-X-CSE-ConnectionGUID: F954JycWTcqFzL2hbLRBWQ==
-X-CSE-MsgGUID: OVfX9rIPTSOV5B6SxucHCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67514319"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67514319"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 11:09:13 -0700
-X-CSE-ConnectionGUID: rPb2WkQfTauZ54u8hRx6rg==
-X-CSE-MsgGUID: nHjfjmX3QwSnnTr3y9lCEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="185580703"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 11:09:13 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 11:09:12 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 11:09:12 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.25) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 11:09:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dX14x/TnCYkdB1csCtTG67ZbUy0cxQXTedOaf/KLqy9d6ZjpY8e60BZnqQUKdItkwJWAKN3z/ShfpZae2ofwEgFSobH0/WU4WyPxInHjbLSuj3wqaoJOednuRRMZNUGu4a7q4F9p6aR9nh6bbsZ8pvAjz09Vc63VyP5ZA/c8YUSYik3UrGuXk08Xv1plQ78ZM5iK6FZvL/ht8LDPsiOlYYP/SjsnZGGLKzhx5QZsAlyU38FNJj1gZ+gbPz4z58LMgU5e8/NJyWmPIgAy4eWV0w+LVMcTjviWXoddRhoir1YtdU+n34mIQMe4AZxuuDfwQcYN5lS1XdZ4MbLHFHEFXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Vfek4AESyyKsMdlPyyCMUL9mBmybv52p+55VVZAxWyI=;
- b=nS2Ltfr5F71rrAPjA46XTOR/z9gAArwbbkgXTCzLp255r17ikP4fllqEPRZPDfcNCLjRQh8eKTFJkGkEw9jiyCQyB6987fHBPYJq5zr42j7oNvFypzJDTnHsUO4FA5kzxQ43unc8jkbXAa51KhEVlgwfBY3MeWMkVmQc3t3ly+FNScdLTYhL4DxTwvkyNuegGnHhGU7prBAC9Pj071xjk9EjfVcpJ4qKtYQtEBbBb9AbKIVW+pPRqrw0wY9rN3gwQH64IN82zvD5HEjbV/UiF/ODNiN05XlW78g8FKtkr4CJtGoIZoEd65h1AJwzD/RwnsBlWvd3JBLo1skxuvZ9iQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SN7PR11MB7591.namprd11.prod.outlook.com (2603:10b6:806:32b::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Mon, 27 Oct
- 2025 18:09:10 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::bbbc:5368:4433:4267%6]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
- 18:09:10 +0000
-Message-ID: <fceef34b-0124-431d-98f1-fcf3149ae333@intel.com>
-Date: Mon, 27 Oct 2025 19:09:07 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/14] drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20251020182414.576-1-michal.wajdeczko@intel.com>
- <20251020182414.576-4-michal.wajdeczko@intel.com>
- <ztlryvb6mschuesh5k77i2ldehaa3ed7asriokgnqkajrxzcij@j6lezpryhquk>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <ztlryvb6mschuesh5k77i2ldehaa3ed7asriokgnqkajrxzcij@j6lezpryhquk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BE1P281CA0280.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:84::20) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F3510E546;
+	Mon, 27 Oct 2025 18:16:47 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1937B10E546;
+ Mon, 27 Oct 2025 18:16:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SN7PR11MB7591:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1937d29d-ccf5-4d80-b5db-08de1583ed7e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?K1lNMXA2V3AwQngzbDRSUFMwWnhaZVcwa2wwVW5MSzJNck1sdjZoSGlRNXNY?=
- =?utf-8?B?WVFSOXluSEJFR1hDYnVWeTRVMXV6MnNMS051N2prN3VIRWdTdFB0WWlZaThT?=
- =?utf-8?B?S3ppMStpYm5vQUhEZEY2WWQ3ZGU2a0hLWU52RkpsNytPM1ViT1V5ZnNZWEpS?=
- =?utf-8?B?Qlc3NVo5RG9WeDhDdlRScTFqVFZiS3hLVzNLOGlFeXJ3T0x6dlFXMjEvNVdl?=
- =?utf-8?B?VU82YXU0MHVJWVVVZExsOU1PTmE5NEN5dmVYS242T3MxUFJUMkFJS3gwSXZx?=
- =?utf-8?B?QWxrUDdscCsvbVpSV1NmRXU3VHB2NDdyb0FNbTJJb0VNdjY1YStiWGxacnls?=
- =?utf-8?B?eFlPdU1VelEybG5EdDZmWTVkdWJNdWtrcUE0V1FCbGNIU1FvQVdSOGgwdW9Q?=
- =?utf-8?B?MTlnNjRBclRpVWljOVFLUWlxTDlrWm16aUxxSGt6dmNEeG5jenNjNENBVHVY?=
- =?utf-8?B?SmlrRGZoSUU3bmtmRk9YdCtxbTlQWWh3WTlaemZ4ZENiazV1MFlFdG1Rais4?=
- =?utf-8?B?bWNjVTRaZkY4bE1lcnU3RXF4blhaUTFWbUhMaHBtT29aajdxY0RROHRrdXhs?=
- =?utf-8?B?OFdhRDNmQ3ZYdUE5UTYvT1hpVFlHa1ViSGNKTHQ5ODB2S3lMNWtNTzhoak1j?=
- =?utf-8?B?MzRmWFFFMzRYci9Uam12bGx0WkJsVitRSjYwdTNTZU03VzB5ZmdlK3ZzZjJH?=
- =?utf-8?B?aVIwMzZTS1FTK3RIZEI2MWt6QUVlekhhVVN6SEFIU2F4aFBwUWtaNHFBMkk3?=
- =?utf-8?B?cTRVTTNRdVJKbUJrUVo2QU84ZkxVaW4yVm5HeDZ3NEJrYW1nMlBxdG5OZ1dS?=
- =?utf-8?B?ZWx4MGlaWXZGUmZpYVNJelRURFZXYmVIaDlGL3lkWmlGTkVjVjlyOVNwN2Fh?=
- =?utf-8?B?MklFSFFaSGg3a0FzTlZWTm9ROG15Mi9zbm5SVHNpQjJLblZqRy9INUZ2dFZG?=
- =?utf-8?B?RlRNUDVSSWhpb3FjM0wwcW9xUlNMcjh1UVlZbjYrMVIrdTRKMldCQjlWRlF0?=
- =?utf-8?B?TkVHOHlKMnAyZjRvOWwyU3ErUGZEVVRiZi9Wb21scFkzcDVxVzhhRlpPUzlC?=
- =?utf-8?B?OHU2MGFMNnNIRnhrTWtZMW5hRUxtRlAyZnJUOUVJZG83MW94V3ArNkgrdkVq?=
- =?utf-8?B?K1NmOENNcjBGZTcvVERMUmxNSnVTczJwVkh6TGVOeER3ZkF6YVBNU2RmeVBu?=
- =?utf-8?B?SG9KZGEwUHFoc1RaSi9GVmRCOTgwbEhZbjEyQTRpLzBMVFlJamh1MXVid0VW?=
- =?utf-8?B?dng2amhXT3h0M29CaWhYc1pXMURlaDFBY1cxSnhOVlpIUFp5YS9yYmlzNHZs?=
- =?utf-8?B?UzQxV3puM01MbndueUdiaC82VjBGQ0ZJd0tCeTNuZWJDc0YvWHVMTnk2ZExQ?=
- =?utf-8?B?QlZDdFNDZUN1QURPZDc3YzlOT2hhQ1crZEtaekhVWlpnR3pIekVlb3pXUkNT?=
- =?utf-8?B?SFV2TEpRUGJ0dzhoTmtOMDd4NDVaQUN6amg4N00vWEJMV3NkaFkrZm5DYW4w?=
- =?utf-8?B?dkRvQnl5OVVWblhJZzhHeVU5TTJBUXVZYW45VG9DOUN3aFZhUDlzREVpNS8y?=
- =?utf-8?B?a0ZQUExFWXFjNVlWNXBYZkhCbzNneWtOSkIxYXgyY3NhOU1WUTBoTXRzeVlJ?=
- =?utf-8?B?SEpzQ2RyYlBPVEZwUDZzeFZJUm1xaHhGeG5rNEN0N3FPdlBkSWlSQjFpaGVr?=
- =?utf-8?B?WFM0Y3FyYUtUdjIwclhJT2xGVEVtQ200VG1IS01PbU9tZ2pkdzVUelhteDM1?=
- =?utf-8?B?ZzZmLzhQS3I2cGVjaXhZNjREcG9DQ0lVY1Z5NkE0dC9VS2Y4aHQ1MkJURGhR?=
- =?utf-8?B?YlRYYzJtRFp4Rk9iTEF2Y0xNdVRmbFlWZ2xvQmtoKzZsRVUzdWhsengvNFNY?=
- =?utf-8?B?ZXRhN0Zyci9rNFcyS1VlUnRFclV0a1YyN1piUS9LY2MwOS82V0lNUUhvWmhK?=
- =?utf-8?Q?dFDFNN+Zg5Rc6tteq6E93vlO4mlgVadx?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eW1QRHlXdCsxQTZGK2VVbHYxNUxaZ3hFT0gxYnZxTzBiL1ozWWQzUFRqWk83?=
- =?utf-8?B?Z252U052VXJFS1I3Rk1pMmNNL1hSZXhKN1dXb3ZKRDFyeTQyM3JRRWVISmhN?=
- =?utf-8?B?bVVkb0toS2NsR24vR2RWRVQvOWtIcy9pYkFIK291aGswbUJIYS9pVnFmNmhn?=
- =?utf-8?B?MDQ1MEFlQWc4eTNESXR6NHJGWnQyM3YwRVhlajByOUVwek91UGczczRraDdn?=
- =?utf-8?B?dUpRVDVKZ2hvV3pLZGhkcnd3Tm5ZYUtjempyUXBLNEVkT0VSNlBqV2tzWStD?=
- =?utf-8?B?M1JrUkIwY1dycU0yZk10c3F3TFFMUmkzamU4d01ObFN5RXU4bDB4NHN0VHFR?=
- =?utf-8?B?QkJiYWJhWkpzWXZwa1ZkNXhLVlVsWGZyT1l0SFpyVjVudnNXVkhIMjJZUkdz?=
- =?utf-8?B?UEkzbTU2M1dkS3pEMCt2bmtWYlNsYmFBRnJrb2U4WXhuL0JoYVJQN1BkS3Fi?=
- =?utf-8?B?YSsvYks4UzBaSm1mOGxaVnhJRG53aWhXRjUxdWE3Y3RFMjU1TlJqd0Q4azRU?=
- =?utf-8?B?Ny96bTFObGpQM0c0YVVKeVdQeVJDRXBVREdnY2hJNmhMNkpRY1V6OGErVklP?=
- =?utf-8?B?SGVCVHkwS3ZwUEZvM1R1KzI2NDRCU1N0ZDZNNTd2VlB3YWNXWWI3Mk1oZ2U4?=
- =?utf-8?B?VCtTbGxhWDBuTTdjck1maGExL3hhaUN5Tnl6Y203NU44OEJ0TThIMDBvZ1dB?=
- =?utf-8?B?K1JEMTRibC9CQ1FxTG1CTFZoQzVMS3VaVW5aZmo4QmFQaTZQbEVzWUcyVStj?=
- =?utf-8?B?NVoyZ2xXampWdkM2Tlh6NjhvbG84cDNpQWFLUk5ReXh6Y2FLSUVMTlAyMTZx?=
- =?utf-8?B?cGx1L2F5dmFYeU1uQVg0eXA2WDVYdGhaOWNGbm9aQ3FudVFWa05NaHBZc2pM?=
- =?utf-8?B?K2VIV01WamxVb0VSNWdDMWdnVkk3ZkpKeUpvdFZmYmZwelMxUFZObHlXeFdw?=
- =?utf-8?B?bFJBYWx4MEo5VHBVNFY3UGdKYnF5T2EreWVyU05DUjEzVE83SHE5ZitnNGF2?=
- =?utf-8?B?ZVlnUmh0MmlTUjBOTXNhZjVzakNCeHhrRlNkSDFocG14c0hlbW5xOEcrejh2?=
- =?utf-8?B?alJ5a3dna1VubFlsSldTT2dhd3JkSWVlSG41KzFjclJoWmd3Y3Yyd3V2RG1K?=
- =?utf-8?B?RjRIMWxvQTRTUUZnanlwZ2Fhc2hIM2JEY1NHbnl3UjVsNXQ4OTkyV1NVSVE1?=
- =?utf-8?B?RlZBQXFMN05hd0pJMHVFQzg4aXo2dUVxRXZRbHQ4K1RqTHBLT1VBZFI2RmVv?=
- =?utf-8?B?WkpWZFRKcGhDSVF2c2wvK25Rbk1DRlE2emYzTEV4Nkg5WGNLbnR4SEIybE9D?=
- =?utf-8?B?UTdWMGVwM3o5bHVZamplNEV0NVg2TEgxVnlIMTVHN2pRQVpMYTZYcE5rQ0NJ?=
- =?utf-8?B?TGZLVUlRVzNHeE9uNnNPQ1lGYkhSTWIyZ1RVS3NLTU9lZ3BIU0Vjc1ZDMGFq?=
- =?utf-8?B?RGxaaS9mc203Q0UxV0ZzSTVQaTRpNksrVlYrNm5QN09vMXpBdHlrU21ERkFI?=
- =?utf-8?B?aUkzSFBNMnZNSWdLdWZxTXpOQU1Da3dIUzIxa1BoSDRmWmZKeHNnWFRmbTFZ?=
- =?utf-8?B?S0VmSHJwZnZoSHNybHdXbnV0a0xMRVpsa0Y0ZDI1TDIxemFOVFdjdGVsakhY?=
- =?utf-8?B?SEhTaEVkTTFyUVR1SGhpdTZTRXZhcTFVdmNqaGpNdUVjSmQxK1FWc1Z6Yk9r?=
- =?utf-8?B?UnczSS96UXBmUzl2K3hqRGdSdUV4RjJXSTd0dDRsTkJkQWtZSURWV1Qxdjh1?=
- =?utf-8?B?cVBJaWdlZnBPOFB3MDlwMXNaNnR6YVVoL0R5WlM2amZOWWVDVm1sakdXM1Fv?=
- =?utf-8?B?ZXZhWlFhQ3dycVdpanZhc2VkYXJObHIwYWxuK3h2N1IwTUN2OHE0L2ZFWm8z?=
- =?utf-8?B?NUxTbHNORlVXS2FXZFFBOWdkdjBFZDhZRFhKeGtnTDVFcEZ6bzVXbnZDZTgy?=
- =?utf-8?B?QlBOTUpuRlcvTk1BUEl3Z3ZFenJFZloxdkphUW81WnZlRXBKUTdDR0plRzZt?=
- =?utf-8?B?bUg1UlI1M3BpTy85T3dnZ2R0L3Rra09melRBRXd4cHdaTDFzV2Y2VE85VFVD?=
- =?utf-8?B?U2FaYkEwSjlWY2gwN1lBNnRjMzlXeTUyNnRmblpVV0RHT1FKYytFcERWK0RF?=
- =?utf-8?B?V2ozMmRHOTMwdDU1R3Bnd0h3RVMyMVlSNnJBSUJ3WWNUdk0rMzc2YURiMXZ3?=
- =?utf-8?B?eFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1937d29d-ccf5-4d80-b5db-08de1583ed7e
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 18:09:10.5685 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1cfiSMiqeJZzFw65c1f236666Mq+wvDFG375Mubx0bX1IZ0dx0bWCUcEO47VJ/Ubza5ZYpk3Ag9bxSRrNhtYVI/gNPfbt262zcml4eq9Ry4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7591
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_a_couple_of_wedge_cor?=
+ =?utf-8?q?ner-case_memory_leaks_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stuart Summers" <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Oct 2025 18:16:46 -0000
+Message-ID: <176158900609.59673.14649439211452939934@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251027180412.63743-1-stuart.summers@intel.com>
+In-Reply-To: <20251027180412.63743-1-stuart.summers@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,118 +36,137 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: Fix a couple of wedge corner-case memory leaks (rev6)
+URL   : https://patchwork.freedesktop.org/series/155352/
+State : warning
 
-On 10/27/2025 6:27 PM, Lucas De Marchi wrote:
-> On Mon, Oct 20, 2025 at 08:24:03PM +0200, Michal Wajdeczko wrote:
->> On current platforms, in SR-IOV virtualization, the GPU is shared
->> between VFs on the time-slice basis. The 'execution quantum' (EQ)
->> and 'preemption timeout' (PT) are two main scheduling parameters
->> that could be set individually per each VF.
->>
->> Add EQ/PT read-write attributes for the PF and all VFs.
->>
->> By exposing those two parameters over sysfs, the admin can change
->> their default values (infinity) and let the GuC scheduler enforce
->> that settings.
->>
->> /sys/bus/pci/drivers/xe/BDF/
->> ├── sriov_admin/
->>     ├── pf/
->>     │   └── profile
->>     │       ├── exec_quantum_ms    [RW] unsigned integer
->>     │       └── preempt_timeout_us    [RW] unsigned integer
->>     ├── vf1/
->>     │   └── profile
->>     │       ├── exec_quantum_ms    [RW] unsigned integer
->>     │       └── preempt_timeout_us    [RW] unsigned integer
->>
->> Writing 0 to these files will set infinity EQ/PT for the VF on all
->> tiles/GTs. This is a default value. Writing non-zero integers to
->> these files will change EQ/PT to new value (in their respective
->> units: msec or usec).
->>
->> Reading from these files will return EQ/PT as previously set on
->> all tiles/GTs. In case of inconsistent values detected, due to
->> errors or low-level configuration done using debugfs, -EUCLEAN
->> error will be returned.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->> drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 116 +++++++++++++++++++++
->> drivers/gpu/drm/xe/xe_sriov_pf_provision.h |   8 ++
->> drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c     |  54 +++++++++-
->> 3 files changed, 176 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
->> index 663fb0c045e9..f2e14103c9aa 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
->> +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
->> @@ -152,3 +152,119 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
->>     xe->sriov.pf.provision.mode = mode;
->>     return 0;
->> }
->> +
->> +/**
->> + * xe_sriov_pf_provision_apply_vf_eq() - Change VF's execution quantum.
->> + * @xe: the PF &xe_device
->> + * @vfid: the VF identifier
->> + * @eq: execution quantum in [ms] to set
->> + *
->> + * Change VF's execution quantum (EQ) provisioning on all tiles/GTs.
->> + *
->> + * This function can only be called on PF.
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq)
->> +{
->> +    struct xe_gt *gt;
->> +    unsigned int id;
->> +    int result = 0;
->> +    int err;
->> +
->> +    for_each_gt(gt, xe, id) {
->> +        err = xe_gt_sriov_pf_config_set_exec_quantum(gt, vfid, eq);
-> 
-> 
-> I find it weird that a race on multiple writes would basically give
-> undeterministic results for the device. We are locking/releaseing
-> xe_gt_sriov_pf_master_mutex on the gt, but shouldn't we syncronize
-> multiple writes at the device level?
+== Summary ==
 
-but we still expose more granular attributes over debugfs, so even if
-we would be successful in this protected round here, the actual
-configuration could became "unclean" soon anyway, so I'm not sure there
-is any benefit trying to add this extra protection
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c0b9b8ebd244f28b48397d561698ee61161b2d59
+Author: Stuart Summers <stuart.summers@intel.com>
+Date:   Mon Oct 27 18:04:12 2025 +0000
 
-> 
->> +        result = result ?: err;
->> +    }
->> +
->> +    return result;
->> +}
->> +
->> +/**
->> + * xe_sriov_pf_provision_query_vf_eq() - Query VF's execution quantum.
->> + * @xe: the PF &xe_device
->> + * @vfid: the VF identifier
->> + * @eq: placeholder for the returned execution quantum in [ms]
->> + *
->> + * Query VF's execution quantum (EQ) provisioning from all tiles/GTs.
->> + * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
-> 
-> or if you had multiple userspace components trying to set the value
-> creating the race above.
+    drm/xe: Clean up GuC software state after a wedge
+    
+    When the driver is wedged during a hardware failure, there
+    is a chance the queue kill coming from those events can
+    race with either the scheduler teardown or the queue
+    deregistration with GuC. Basically the following two
+    scenarios can occur (from event trace):
+    
+    Scheduler start missing:
+      xe_exec_queue_create
+      xe_exec_queue_kill
+      xe_guc_exec_queue_kill
+      xe_exec_queue_destroy
+    
+    GuC CT response missing:
+      xe_exec_queue_create
+      xe_exec_queue_register
+      xe_exec_queue_scheduling_enable
+      xe_exec_queue_scheduling_done
+      xe_exec_queue_kill
+      xe_guc_exec_queue_kill
+      xe_exec_queue_close
+      xe_exec_queue_destroy
+      xe_exec_queue_cleanup_entity
+      xe_exec_queue_scheduling_disable
+    
+    The above traces depend also on inclusion of [1].
+    
+    In the first scenario, the queue is created, but killed
+    prior to completing the message cleanup. In the second,
+    we go through a full registration before killing. The
+    CT communication happens in that last call to
+    xe_exec_queue_scheduling_disable.
+    
+    We expect to then get a call to xe_guc_exec_queue_destroy
+    in both cases if the aforementioned scheduler/GuC CT communication
+    had happened, which we are missing here, hence missing any
+    LRC/BO cleanup in the exec queues in question.
+    
+    Once the scheduler rework in [2] is available, simply ensure
+    all queues are either marked as wedged or cleaned up
+    explicitly by destroying any remaining registered queues.
+    
+    Without this change, if we inject wedges in the above scenarios
+    we can expect the following when the DRM memory tracking is
+    enabled (see CONFIG_DRM_DEBUG_MM):
+    [  129.600285] [drm:drm_mm_takedown] *ERROR* node [00647000 + 00008000]: inserted at
+                    drm_mm_insert_node_in_range+0x2ec/0x4b0
+                    __xe_ggtt_insert_bo_at+0x10f/0x360 [xe]
+                    __xe_bo_create_locked+0x184/0x520 [xe]
+                    xe_bo_create_pin_map_at_aligned+0x3b/0x180 [xe]
+                    xe_bo_create_pin_map+0x13/0x20 [xe]
+                    xe_lrc_create+0x139/0x18e0 [xe]
+                    xe_exec_queue_create+0x22f/0x3e0 [xe]
+                    xe_exec_queue_create_ioctl+0x4e9/0xbf0 [xe]
+                    drm_ioctl_kernel+0x9f/0xf0
+                    drm_ioctl+0x20f/0x440
+                    xe_drm_ioctl+0x121/0x150 [xe]
+                    __x64_sys_ioctl+0x8c/0xe0
+                    do_syscall_64+0x4c/0x1d0
+                    entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    [  129.601966] [drm:drm_mm_takedown] *ERROR* node [0064f000 + 00008000]: inserted at
+                    drm_mm_insert_node_in_range+0x2ec/0x4b0
+                    __xe_ggtt_insert_bo_at+0x10f/0x360 [xe]
+                    __xe_bo_create_locked+0x184/0x520 [xe]
+                    xe_bo_create_pin_map_at_aligned+0x3b/0x180 [xe]
+                    xe_bo_create_pin_map+0x13/0x20 [xe]
+                    xe_lrc_create+0x139/0x18e0 [xe]
+                    xe_exec_queue_create+0x22f/0x3e0 [xe]
+                    xe_exec_queue_create_bind+0x7f/0xd0 [xe]
+                    xe_vm_create+0x4aa/0x8b0 [xe]
+                    xe_vm_create_ioctl+0x17b/0x420 [xe]
+                    drm_ioctl_kernel+0x9f/0xf0
+                    drm_ioctl+0x20f/0x440
+                    xe_drm_ioctl+0x121/0x150 [xe]
+                    __x64_sys_ioctl+0x8c/0xe0
+                    do_syscall_64+0x4c/0x1d0
+                    entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    
+    v2: Pulled in [2] as suggested by Matt and used his recommendation
+        of destroying registered queues at the time of wedging.
+    
+    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+    
+    [1] https://patchwork.freedesktop.org/patch/680852/?series=155352&rev=4
+    [2] https://patchwork.freedesktop.org/series/155315/
++ /mt/dim checkpatch a8f3783a2ccf78b04e48cf235f03629b80ffa3e0 drm-intel
+70d334d19aff drm/xe: Add additional trace points for LRCs
+-:78: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#78: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:45:
++DECLARE_EVENT_CLASS(xe_lrc,
++	    TP_PROTO(struct xe_lrc *lrc),
 
-yes, this "inconsistency" can be mostly introduced by the userspace and
-concurrency / race is not only sysfs vs sysfs but also sysfs vs debugfs
+-:81: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#81: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:48:
++	    TP_STRUCT__entry(
 
-> 
-> Lucas De Marchi
+-:87: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#87: FILE: drivers/gpu/drm/xe/xe_trace_lrc.h:54:
++	    TP_fast_assign(
+
+total: 0 errors, 0 warnings, 3 checks, 91 lines checked
+a71482bd2861 drm/xe: Add a trace point for VM close
+53265f817012 drm/xe: Add the BO pointer info to the BO trace
+1c2eb0f97314 drm/xe: Add new exec queue trace points
+b98f6625fd40 drm/xe: Correct migration VM teardown order
+c0b9b8ebd244 drm/xe: Clean up GuC software state after a wedge
+
 
