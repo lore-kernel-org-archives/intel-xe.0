@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC2DDCCF9EA
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 11:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6FBECCF9E5
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 11:50:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8154410E07F;
-	Mon, 27 Oct 2025 11:43:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F9310E451;
+	Mon, 27 Oct 2025 11:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHCeqIw2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDPCBYCL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B718310E07F
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 11:43:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C602610E448
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 11:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761565430; x=1793101430;
+ t=1761565847; x=1793101847;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=op/Ny16WSm8HXs66KIJ3XQMm1uyUomUbRZ4eaJIstTM=;
- b=hHCeqIw2kBgUzDyeUteqQn3jXkGgn37ztx4LfRxNDkUd2dXbCYAbETwz
- 2JXwv2AZFyEX0UxWbVJgYyD4YOEaZCRtTtRuyb2baAILGEAwDBTh0q4fQ
- YaBPRdjVwRLatuQE02DdwaUdL7D8Aba2AAbzU0YlYphPUZVY0feEJLZkx
- ZO+hFMW0+hYzm92nkznkVPwpm0T2Ba3tb0/jZ4dnftLj5PjP8J2cXtwxV
- aC+h2yZxFq+lYfKK6cnAxtFWemtkPLeHtAePCex5uVk/yfDjs6XOP+fvx
- o30+UbVKAX7scsn9zWVR67oxI8oKhd1gaUQOByicZoktYIV2Pa++1xBx6 A==;
-X-CSE-ConnectionGUID: 3Fal0fMnRJ2qvvfkQyR5qA==
-X-CSE-MsgGUID: DO034S74RhS1R3Hc0tsr0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="75087677"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="75087677"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 04:43:49 -0700
-X-CSE-ConnectionGUID: SE1bQItuQgawgnEdB47aaQ==
-X-CSE-MsgGUID: FiqRKGGYTUSzd8wMucDnZA==
+ bh=HMWB6M1TlKbtS3/Nmofvn6oqLiCClyE4xawPdgEwTBE=;
+ b=CDPCBYCL+MvWVCh0v7KEIK8dHDvtuVIK4PjeBiVtONRFySDgJgyUIQFH
+ 09/q/tJz5OlUWrA1srdDeDB/TiyfrCAFQEIlYvKssXITu0wmCMY2NI3xK
+ O2epL5/Pfi7Y7AC/BgkVRDTGwM5I2L1LWwmHxLfR3UBIAQoeKJTLhiiJ3
+ l1ivmdDwUwdXgF1qtyUlB/ctr+IMFkRDpnKcFVnSyz+R4CxgG33AV9Ew+
+ YjHPrbGFWQxWaRoiKjAVAwvho5tM8qPvanYKkJNezNP5EQk9mEunQgzvk
+ 0WvKd061bViv4EQxP5rF1cc3JkAv7f9U3HK3BkfwtoRx03KkItmT++RgL A==;
+X-CSE-ConnectionGUID: 9HlTnHO/QaS7QXXGul/IUQ==
+X-CSE-MsgGUID: ZC/d+96MS7igncaoA0uLyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74984949"
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="74984949"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 04:50:47 -0700
+X-CSE-ConnectionGUID: xlgkszGARLKPkmkKpa21Kw==
+X-CSE-MsgGUID: Vkvt/T9cSZ2Gk4J0aGFK1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="185780944"
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="208639419"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 04:43:48 -0700
-Date: Mon, 27 Oct 2025 12:43:45 +0100
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 04:50:45 -0700
+Date: Mon, 27 Oct 2025 12:50:43 +0100
 From: Raag Jadav <raag.jadav@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 6/8] drm/xe: Improve freq and throttle documentation
-Message-ID: <aP9a8duiit7MXIEQ@black.igk.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 8/8] drm/xe/gt_throttle: Avoid TOCTOU when monitoring
+ reasons
+Message-ID: <aP9ckwuSMtXlzSpd@black.igk.intel.com>
 References: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
- <20251026-gt-throttle-cri-v2-6-41f8288a71a7@intel.com>
+ <20251026-gt-throttle-cri-v2-8-41f8288a71a7@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251026-gt-throttle-cri-v2-6-41f8288a71a7@intel.com>
+In-Reply-To: <20251026-gt-throttle-cri-v2-8-41f8288a71a7@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,13 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Oct 26, 2025 at 10:57:18PM -0700, Lucas De Marchi wrote:
-> Add xe_gt_throttle under the "GT Frequency Management" and improve the
-> narrative making sure the documentation for both *_freq and throttle/*
-> attributes follow the same style.
+On Sun, Oct 26, 2025 at 10:57:20PM -0700, Lucas De Marchi wrote:
+> It's currently not possible to safely monitor if there's throttling
+> happening and what are the reasons. The approach of reading the status
+> and then reading the reasons is not reliable as by the time sysadmin
+> reads the reason, the throttling could not be happening anymore.
 > 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Previous tentative to fix that[1] was breaking the ABI and potentially
+> sysadmin's scripts. This takes a different approach of adding and
+> documenting the additional attribute. It's still valuable, though
+> redundant, to provide the simpler 0/1 interface.
+> 
+> In order to avoid userspace knowledge on the bitmask meaning and to be
+> able to maintain the kernel side in sync with possible changes in
+> future, just walk the attribute group and check what are the masks that
+> match the value read.
+> 
+> [1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@intel.com/
 
-I've not checked htmldocs but trusting you did.
+Thanks for looking into this, but following the recent developments on [2]
+I'm beginning to have my doubts about this.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+I don't have any strong opinions but we can probably hold on to this one
+until we reach some conclusion on the matter.
+
+[2] https://lore.kernel.org/intel-xe/20251014053257.3417575-2-riana.tauro@intel.com/
+
+Raag
