@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35987CCF9F0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:04:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 816BECCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E70E210E546;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C61410E544;
 	Mon, 27 Oct 2025 18:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dR7+Yu8z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CE+npwV9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A862710E541
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFF710E541
  for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 18:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761588255; x=1793124255;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=g6wQHDqM/l1n16EmnhJ3NJnEajkPhM0hz4bpTTQa0jo=;
- b=dR7+Yu8z6o8CxGi0KLJow64xIPABH7uJEiZ2IIKHC8zIC8pbznJtqYlS
- J7DrfrVG64mvIHTWuZugzZjCRnRALxgexQN6F9zVrGk5KnH22jyl0rLSi
- XpN0Kz7+gvpsXrQ+ZA6ah02ombdysEJZuH9YlZICENj+kSgAG0MmqPsxU
- VtY2FKqN6VvW+Lo8hqhXpDNM1dvnSWFE0nQi2BXOw9FbRPRidWAjeILX7
- dMqqDzpiIPKU+lTvzAgqPh4HWWcuaf06X6LoTc5wYzeop1tzh9+mydWdl
- +VU9r9rSrIeCQ7Wgc1QL/f2rVTjzvaEZQJ8B02QKzj1ciq9tJ2jueCAyV w==;
-X-CSE-ConnectionGUID: 3KpvEGNUQOCjP4Cavm7XxA==
-X-CSE-MsgGUID: cuJS86Z6SYWQOJdB7X5Pvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63575705"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63575705"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zndWpwZ041GZjAvddglG9N1TQMJRlIOwC+rXOpLKJsg=;
+ b=CE+npwV9mcTl9ele5l9xmO5ZecpxYmCNm4RJCGGwRXrwfsBrpn3fLeyf
+ 59NFjYzZGjzDIje0mK+pywNWyFcvIGxCLhdP0gfKXaFy9tKRPYelqXr9t
+ 7HjxruNqvWESXA7ISUJ3jRhTfn0wLd4s+2Ij+3jwya5H0RQM5oBuE+yR5
+ saGXM4zsxlbkGKnCyyDsUUU9bXQ05EnST9NNaWqC6W3CqAx/+BVYdkaiH
+ LsGxyNbgMYMeW2m93y7wNuB/0X30t2Zgeow+3hIqyrwFHvi+gDIxMJ5gO
+ N+8wwNOr36a0GeW0iYitVv8w62HXGOiQ3PpQYsYF1gy0dXloSIogGoN+T w==;
+X-CSE-ConnectionGUID: wrTAzTUkQXG0VOarf5laow==
+X-CSE-MsgGUID: xlfjgfBKQnWdSm4u/fjJqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63575700"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63575700"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 11:04:14 -0700
-X-CSE-ConnectionGUID: pR5+DUr/QZOKvLnqkH/5eg==
-X-CSE-MsgGUID: nIWjhtnoRrqQw1ndbrEfow==
+X-CSE-ConnectionGUID: 1rS0bs2mSXiTIHdfX/dL5Q==
+X-CSE-MsgGUID: Kb4MBso0R6OIpBlB5haUig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184291140"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184291131"
 Received: from dut4396arlh.fm.intel.com ([10.105.10.137])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 11:04:14 -0700
+ 27 Oct 2025 11:04:13 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  niranjana.vishwanathapura@intel.com, zhanjun.dong@intel.com,
  shuicheng.lin@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 3/6] drm/xe: Add the BO pointer info to the BO trace
-Date: Mon, 27 Oct 2025 18:04:09 +0000
-Message-Id: <20251027180412.63743-4-stuart.summers@intel.com>
+Subject: [PATCH 0/6] Fix a couple of wedge corner-case memory leaks
+Date: Mon, 27 Oct 2025 18:04:06 +0000
+Message-Id: <20251027180412.63743-1-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251027180412.63743-1-stuart.summers@intel.com>
-References: <20251027180412.63743-1-stuart.summers@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,43 +66,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just a little extra detail to make BOs easier to track
-through the trace event log.
+Most of the patches in this series are just adding
+some debug hints to help track these down. I split
+these up in case we want to pick and choose which ones
+to include in the tree. I found them useful.
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+The main interesting patch is the last one in the
+series which fixes some corner cases when the
+driver becomes wedged in the middle of either communication
+with the DRM scheduler or in the event the GuC becomes
+unresponsive. In both of these cases there is a chance
+we could leak memory around the exec queue members
+like the LRC and the LRC BO. This patch fixes those
+scenarios.
 
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-index 238311cfb816..0d795733e0f0 100644
---- a/drivers/gpu/drm/xe/xe_trace_bo.h
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-@@ -27,6 +27,7 @@ DECLARE_EVENT_CLASS(xe_bo,
- 
- 		    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_bo(bo))
-+			     __field(struct xe_bo *, bo)
- 			     __field(size_t, size)
- 			     __field(u32, flags)
- 			     __field(struct xe_vm *, vm)
-@@ -34,13 +35,14 @@ DECLARE_EVENT_CLASS(xe_bo,
- 
- 		    TP_fast_assign(
- 			   __assign_str(dev);
-+			   __entry->bo = bo;
- 			   __entry->size = xe_bo_size(bo);
- 			   __entry->flags = bo->flags;
- 			   __entry->vm = bo->vm;
- 			   ),
- 
--		    TP_printk("dev=%s, size=%zu, flags=0x%02x, vm=%p",
--			      __get_str(dev), __entry->size,
-+		    TP_printk("dev=%s, %p, size=%zu, flags=0x%02x, vm=%p",
-+			      __get_str(dev), __entry->bo, __entry->size,
- 			      __entry->flags, __entry->vm)
- );
- 
+This series depends on [1].
+
+v2: Address feedback from Matt:
+    - Let the DRM scheduler handle pausing/unpausing
+    - Still do the wait after scheduling disable/deregister
+      as with the previous patch, but skip the intermediate
+      software-based schedule disable using the "banned"
+      flag and instead just jump straight to the deregister
+      handling which will fully reset the queue state.
+      Note that for this case I am seeing a hardware failure
+      after submitting to GuC but before receiving the
+      response from GuC. So even if we wedge in this case
+      (monitoring the hardware state change), the queue
+      itself is not wedged because of the active GuC
+      submission (CT is not stalled at that point).
+v3: Add back in the xe pause checks and instead just kickstart
+    message handling in the guc_submi_fini() routine before
+    doing the async wait there.
+v4: Handle the CT communication loss during wedge asynchronously
+    Also combine those last two patches into one to handle
+    wedge cleanup generally.
+v5: Add a new patch with a little documentation on the GuC
+    submission handling stages.
+    Move the scheduler kickstart and destruction call on the
+    dangling queues into the wedged_fini() callback. These
+    only get called now for queues which are in an error
+    state - wedge was called, but these weren't fully
+    cleaned up as seen by the lack of exec_queue reference
+    at the time of wedging.
+    Also fix the migration ordering teardown reference mistake
+    pointed by Matt in the previous series rev.
+v6: Implement and test against [1] with the changes Matt suggested.
+
+[1]: https://patchwork.freedesktop.org/series/155315/
+
+Stuart Summers (6):
+  drm/xe: Add additional trace points for LRCs
+  drm/xe: Add a trace point for VM close
+  drm/xe: Add the BO pointer info to the BO trace
+  drm/xe: Add new exec queue trace points
+  drm/xe: Correct migration VM teardown order
+  drm/xe: Clean up GuC software state after a wedge
+
+ drivers/gpu/drm/xe/xe_exec_queue.c |  4 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 17 +++++++++---
+ drivers/gpu/drm/xe/xe_lrc.c        |  4 +++
+ drivers/gpu/drm/xe/xe_lrc.h        |  3 +++
+ drivers/gpu/drm/xe/xe_migrate.c    |  7 ++---
+ drivers/gpu/drm/xe/xe_trace.h      | 22 ++++++++++++++--
+ drivers/gpu/drm/xe/xe_trace_bo.h   | 12 +++++++--
+ drivers/gpu/drm/xe/xe_trace_lrc.h  | 42 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c         |  2 ++
+ 9 files changed, 101 insertions(+), 12 deletions(-)
+
 -- 
 2.34.1
 
