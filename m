@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E02BCCF9E0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 09:52:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66FF8CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 10:03:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C07D10E42A;
-	Mon, 27 Oct 2025 09:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3268E10E430;
+	Mon, 27 Oct 2025 10:03:10 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D94310E42A;
- Mon, 27 Oct 2025 09:52:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5420637221190293519=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70E5210E430;
+ Mon, 27 Oct 2025 10:03:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe3=3A_Add_WA=5F1402?=
- =?utf-8?q?4681466_for_Xe3=5FLPG_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Testing_PREEMPT=5FRT_with?=
+ =?utf-8?q?_disabling_interrupts_in_the_most_critical_section=2E_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Oct 2025 09:52:05 -0000
-Message-ID: <176155872548.57205.4577845519396697976@97596180aaec>
+Date: Mon, 27 Oct 2025 10:03:08 -0000
+Message-ID: <176155938845.57213.12404105674156067679@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251027092643.335904-1-nitin.r.gote@intel.com>
-In-Reply-To: <20251027092643.335904-1-nitin.r.gote@intel.com>
+References: <20251023085601.90831-1-dev@lankhorst.se>
+In-Reply-To: <20251023085601.90831-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5420637221190293519==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe3: Add WA_14024681466 for Xe3_LPG (rev2)
-URL   : https://patchwork.freedesktop.org/series/155961/
-State : success
+Series: Testing PREEMPT_RT with disabling interrupts in the most critical section. (rev3)
+URL   : https://patchwork.freedesktop.org/series/156134/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -> xe-pw-155961v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 72ba882007852aaca07a6d527a588635df4dc45f
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Thu Oct 23 10:56:01 2025 +0200
 
-Summary
--------
+    PREEMPT_RT injection
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch c03916cb446b6eefe91538599775bb54bf98238c drm-intel
+3f0d649057b2 drm/xe: Bump xe_device_l2_flush even higher
+e5da2c1eef49 drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
-  **SUCCESS**
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:323:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_lock_irqsave(&i915->uncore.lock, *flags);
 
-  No regressions found.
+-:52: WARNING:LINE_SPACING: Missing a blank line after declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:330:
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	spin_unlock_irqrestore(&i915->uncore.lock, flags);
 
-  
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+1decd7d7dc1e drm/i915: Don't disable interrupts on PREEMPT_RT during atomic updates
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+started disabling interrupts across atomic updates. This breaks on PREEMPT_RT
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+13e9c44ab8ae drm/xe/display: Disable preemption in the most critical section
+72ba88200785 PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-155961v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_module_load@load:
-    - bat-ptl-vm:         [PASS][1] -> [ABORT][2] ([Intel XE#6287])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-vm/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155961v2/bat-ptl-vm/igt@xe_module_load@load.html
-
-  
-  [Intel XE#6287]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6287
-
-
-Build changes
--------------
-
-  * Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -> xe-pw-155961v2
-
-  IGT_8596: 8596
-  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c
-  xe-pw-155961v2: 155961v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155961v2/index.html
-
---===============5420637221190293519==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe3: Add WA_14024681466 for Xe3_LPG (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/155961/">https://patchwork.freedesktop.org/series/155961/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155961v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155961v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -&gt; xe-pw-155961v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-155961v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-155961v2/bat-ptl-vm/igt@xe_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6287">Intel XE#6287</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -&gt; xe-pw-155961v2</li>
-</ul>
-<p>IGT_8596: 8596<br />
-  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c<br />
-  xe-pw-155961v2: 155961v2</p>
-
-</body>
-</html>
-
---===============5420637221190293519==--
