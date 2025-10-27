@@ -4,165 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 545BFCCF9EB
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 19:46:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FBF2CCF9EB
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 19:52:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12EEE10E09C;
-	Mon, 27 Oct 2025 19:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C619110E193;
+	Mon, 27 Oct 2025 19:52:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5iPeiFP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OH6FXLmD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52ABD10E09C
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 19:46:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92CC810E193;
+ Mon, 27 Oct 2025 19:52:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761594410; x=1793130410;
+ t=1761594749; x=1793130749;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=XQIDb6LLiKuWQLZq9Wr7VUtN/EfHJRXNvUraHH5yBwE=;
- b=a5iPeiFPwVjXwelU2q6wl8eH9lwMBtFy7n7RwqHbD1z3ZAEsLv7I2aJF
- bQrFuZup+ECUTLTQ0pJyxy5IMPHRHs8QdtJoUwXzSLjdb4bB983cZABpe
- elA5kl1E6OfnmPtwv12F/zimuszb/HU+AE2EMRczJZPPOv2srw3Dmg66o
- kkCc5eYUhZPh2HdZ6Hk2231E113LncpvJyCXW7Zpb/Sd1Kw94RbMfBz9l
- utLLOi7tiJ/g927lV0CnU5ZjW1lueqUbYd+rDbGjH9gX1Y5QV9HW6aEZJ
- 2VOJvpPouo8P5eQvZVhS6Go6qYRVi+YQfGiLtgD4WMwF+vlda5OQ5xHup g==;
-X-CSE-ConnectionGUID: PQk+sNtNRquUZAdYX7xSxw==
-X-CSE-MsgGUID: Y16Mw7GrSsOK58R5mrlY1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74360993"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74360993"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 12:46:50 -0700
-X-CSE-ConnectionGUID: 7042KBrORi+hP3BN3isrFg==
-X-CSE-MsgGUID: tA7sRdneRI+KSmunWTtt5g==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Fs4EGxVHvLWjFnZ5wv6psyxeI2TYN6+cHE3HTa23z5s=;
+ b=OH6FXLmDC9jOeu/qYw7z1HdXWs3+LhmQhxQq9QizuKmf+KvWpl81rCVQ
+ pdXmJb6Z0HA40nwLnRf59JS4n2zrCsA9zFX76AApEUp/6JHMT/4AszAGs
+ p6qzplvYqBnqGZdln6XJzLf/RT07IT3IDZ06pqX/1qqcbr5GBP+1VFaqX
+ N73L3mvdoXoWxiNFj/lLDEBqa1j3Ec7qaNfZpXRxV7GOngYu7b1yWphlL
+ tr55DklWsk7EWK0TUG8oxlIPRS73qILQmJXsXJW4lS/3osbUcd5NhweA1
+ HdjgqGnudAXXymg0zJOV/Kv1ctqlxWYhhj66GlfeTWHkPvimDoTLnigQO A==;
+X-CSE-ConnectionGUID: +C1PD0XERQWC0llCjFkzjg==
+X-CSE-MsgGUID: KWe+4zdpSR+jf0E2+A3J/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63780113"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63780113"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 12:52:28 -0700
+X-CSE-ConnectionGUID: mb9YMrZ+Qaa/VPaJawRyow==
+X-CSE-MsgGUID: jIpiWLthSFyvluomxc772g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="185034579"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 12:46:49 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 12:46:49 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 12:46:49 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.69) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Mon, 27 Oct 2025 12:46:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vgykjMxCQvM6Gc8ftCHQZC5HGx75oqJsWT90agvd2A8n2hGFi5UF5Go83yijXFuvts6vhi3v8qRnEBZdfTg+CJic1CTe5QIZcIqfFk2vEwHhlobxuReTyNTN0oC+L+OerLgOZKkQUrquqcP44gO7TS1vgs3O5fDEIMwEn67rFTUJRiPfn4N9TRToAVLlp0L4YCqtUTERDA0LUo6Ar981Iy2ZAJevPSp9ezmLbFWtx99un28eOuqYJEGd88bGNE1VBniHEUHwbtTWUQDOSqyoG7Bee8T/VhK9WSLjJ4F3q+B4ySwiV8SEq2m7S2yGDid34eBWtNaxjUblcIVFD5FJvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OqGqlYTMFzI4Mpb3WZ1Pl0ED/rWTh8H4Q/ehC76x5oE=;
- b=VA2UeW7qbRmx7GYdnf+Y+uB8YiKIHi5s8z8Fl+UrnVrb2ql3cnifnMHUaJ3KcNXeEXqaqEOBtXzKHaWfO6C8cb9zDT+WpQfn3vgDb36yOFKHOl3Ek5zWJB9iVg+RNw4oAp/oeNGcsB00Cz04raUg6ofS+OVCsAnRnYQf3oVda9YU+84C1x+XD8xmH0RHzJO5ZbupG0mqqYgglEV3SpOvzdBlH7sqTG+53hJ11bL0xdYepzPS3+lh3zV0Ow25tzIpq0actkuY4XR6Jn06uvL+QuKhuRr2UBqZTo+umFHeGoODqnd6fQKnZw2WVnCEDHhL5UA7tEsnYGUph+5fm4JdQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB9496.namprd11.prod.outlook.com (2603:10b6:208:5b3::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Mon, 27 Oct
- 2025 19:46:47 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
- 19:46:47 +0000
-Date: Mon, 27 Oct 2025 12:46:44 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <niranjana.vishwanathapura@intel.com>,
- <zhanjun.dong@intel.com>, <shuicheng.lin@intel.com>
-Subject: Re: [PATCH 5/6] drm/xe: Correct migration VM teardown order
-Message-ID: <aP/MJCGuf1/x2hrV@lstrano-desk.jf.intel.com>
-References: <20251027180412.63743-1-stuart.summers@intel.com>
- <20251027180412.63743-6-stuart.summers@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20251027180412.63743-6-stuart.summers@intel.com>
-X-ClientProxiedBy: MW4PR04CA0287.namprd04.prod.outlook.com
- (2603:10b6:303:89::22) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="189170404"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+ by orviesa003.jf.intel.com with ESMTP; 27 Oct 2025 12:52:25 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1vDTGQ-000IOr-1i;
+ Mon, 27 Oct 2025 19:52:22 +0000
+Date: Tue, 28 Oct 2025 03:51:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
+ uma.shankar@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC
+ Balance Possible
+Message-ID: <202510280310.FHuwVpY6-lkp@intel.com>
+References: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB9496:EE_
-X-MS-Office365-Filtering-Correlation-Id: 529a545a-f384-4009-8a55-08de15919069
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?crCOA04RU56I4SrPEFcbHOsQofuN3QTl3b5l7kCd215uqL39Bt9nCitS5/7y?=
- =?us-ascii?Q?ddh+8sj92MVKo/ttxK3vewsAz7YswuiRctOONtYjOmwp3wSWAKlJM+jNICD/?=
- =?us-ascii?Q?WzKmZc+I7e0pljbz3RyK2wZypwH0IthjUPr7NaBpUJTGA/ieXqEPeWDHcks9?=
- =?us-ascii?Q?8ChLHYQwKjUy8NXy5HcUfRe5YYN63UsPFi9Xh1/YFeYf2r0pUky6y74GmLGW?=
- =?us-ascii?Q?t7KIy+l+X22971GMbtNPOUUa/S8TRoc9hhBnm1bJLL+vGNjCEH27hEWi8zgR?=
- =?us-ascii?Q?DdbEP4x6ll6Q7selHKw8jOtTpLeEbLfbat7vbNbMZUCLt8ZUBim5gbEL2Lk+?=
- =?us-ascii?Q?XQZdq94qDYJ5nbvOLp5+gErfnB2zbE03qsaY3MBMEJ9QizyAIrdDEf7iHgjC?=
- =?us-ascii?Q?//rT+YAoFVPjiwSHpTMmZeWICLH8kk0FjG5YeSdEQmcQpbN19uj7UeCG50w5?=
- =?us-ascii?Q?n391YedoCg+qAFPMRp7S64Zi4JDq1vJu6VPS9FWkXWJArK4GbKL8rKCOwiak?=
- =?us-ascii?Q?lTkuVCleo0YJRa1tbeayAg3eOz3ENnprYdLxdlJN9zXDQ5q+wjj6HCEAs1dZ?=
- =?us-ascii?Q?xa9HN0ytCM9dCvrBW7spnOMV8kuHrqhhAmaN4iYOjsDp1ZIx5P5iHKBkfEY4?=
- =?us-ascii?Q?Pbm6QwgBhoOG36ZxWFW9DUpQM6QiHwtjRUbe8O86e/9XG7eS3wRX+cxnyNF7?=
- =?us-ascii?Q?CRJcZups50HDcc/JjuvDI6qklFJWvSmxN/ls0uQopmamtJwN+VApW5SGp36Y?=
- =?us-ascii?Q?wsrKjuLUeL0Cs+k7V3UgGxuH2dwDnmpogSQsong3jALv/3Ze+gI6dqAzK524?=
- =?us-ascii?Q?3wunm8B0RWCeEsv1dWTkB/O1IbUDJV97ASX8t61fl7v/vTNpwm7s6PL+Ci7k?=
- =?us-ascii?Q?iSq39oTOQ15BrWr4eCG8L6CDKyMAOm2jZof478mwVbfm95nvuRZYGeAZwMew?=
- =?us-ascii?Q?k68wbMXno44nA3YGJFAXeuYXBgsMEI39rM4wa2L78ty3zplA7yXWCaWwcuXl?=
- =?us-ascii?Q?wzAQixNKCvN03wlHhFd/w9DoWjzvQIlVjl65iK9LxDWHd2t7bTViY5HfoWoS?=
- =?us-ascii?Q?XfVFZ+ptTOGdiV7pQdT4Lmfnte0KPdQeTREy85ljEpLmx2z4vWPQJCrTs/9G?=
- =?us-ascii?Q?Bs7e940vS/zdqZvfSMpdCs7jwohPb6hcm8yp9NwcgYNmiIFXQ7j5b3nkpJ44?=
- =?us-ascii?Q?YoB6OP3UpHDJOoMLACetC7TSYkYEalFFOLf2nLfZjpUa80EY00j3RqZf/Icy?=
- =?us-ascii?Q?GmsOJ9wN34fu5LrErZXmnvoMdW4PFxW3D8rGcGRQFG0N3zAi76FtbtH9JJVm?=
- =?us-ascii?Q?HAdZJGq3x6sFGjKHyTz3kbPqLK8ANMDex2gsfXiyYJFiz3j8dJewOYhfmXtD?=
- =?us-ascii?Q?blQDHo9kO9ZAzVg42tf7/xDWw4QSLdOBLqavSJ0u7BqSy2T35gl5hRIhXPpb?=
- =?us-ascii?Q?JOlC7KDRcu6GllFWlI4LeBLJluqZXrWT?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a0aOW81nt0LgcieMkxSLFnVFV/nPGoayL7FAzEKCMOBwXreGcTG6WFerZ4jI?=
- =?us-ascii?Q?u6h5qDRqMg25+/paam4/HUpK5TiJzTroO44WwgANz2zf1DbB/Hou62t47OgZ?=
- =?us-ascii?Q?TZ+b/Nu/m6ZjxK1+6kogI3+MzS/jK3NAs5XwpncY3Z341K4hPJw0niGg89+E?=
- =?us-ascii?Q?65fImJXYNoP0Q5nbcvddaPRh0aAO/HF6Zq78GwL7ozbFZy7iB0qby10/b9GS?=
- =?us-ascii?Q?J37cnt0VERZwo+nkXlamqKzV6HkbjwlQTnexxCZHTKKYDcqJM3x7ylDR4T19?=
- =?us-ascii?Q?Ft+TbVge+o7PLhritZPIKYepdST8B9ZU3RZ7cL/g7bI18FOVMuVDOTf1So5U?=
- =?us-ascii?Q?LMzOHrFt21OCGA8fiwUvlloOtZUtroJiu9Y3PfEjVtF/3DgHXKphzbHTewPO?=
- =?us-ascii?Q?OuAaA6KUCiVB1RAGmstHqb4bmjIJs3C3A9JpwX2L6lOk57DBYwnoHNCpGwKb?=
- =?us-ascii?Q?Q8dReCMQaTsa+NgwzML5gJYC8aywTLagbV01IfQnSOu7I6lgveujlw7lYlqU?=
- =?us-ascii?Q?Bz3C6ZvOIKXol6L290fUozUWNWEyTFdGw/VKUER5Hc3MD0qMUWAk1uDbb1N0?=
- =?us-ascii?Q?9ewt6nLAuC4jglV8v4XZ/zT3oBhA4mASONhf9ld6kbtB711z44Gtk2d0N74G?=
- =?us-ascii?Q?xYY47CjOK2Dl9vwOBFX2twmhZo76gxl21M+8hmXX2EuOzOUIjn7WRkDBbAM9?=
- =?us-ascii?Q?0nczbVPAmm7xQWWB5TNQoFDHSb3EOE4UJ3NIpFyM0qdJvYCF4FB6iT/45DOD?=
- =?us-ascii?Q?74b690UcwUDJR8I9DhZAPB/4koxduFab2qvmBRNq4xUvdS9AL4yt0fBB/yHL?=
- =?us-ascii?Q?A/JdYozX7fq/wKaAfuk8Fse+/QtpiPBkiZ80m+3FcDLnCZ6YmLS31iiyuGN/?=
- =?us-ascii?Q?DB/IN5T5h7dVbmCFo8BWm7SffHirZXiMRyDHh091tkBE2tK+URFCtNJRO4bu?=
- =?us-ascii?Q?ViBj88pS6K7rCfVMzbDTWDzbxQAdRGXsz616ZEs5s0W+4bG0MdE1y20S79Df?=
- =?us-ascii?Q?NFe60htjSr3gumbUlFBUD9mJ8DMDeQ9zxt7lr5RdK9yt03NFvazywIR/Fr8s?=
- =?us-ascii?Q?NIZEz0PuZIzHSRmb907FpDBxR1+Yhtb9BW4uwsiZqOIhQC7csHW2R/SkZFqr?=
- =?us-ascii?Q?McAf8sE6ctQWXl84QCgxGTZWRc0XRt+sFTxlimV88eolBuhjiN/hcvFXuFrz?=
- =?us-ascii?Q?sYc8MER8+WjA8SJWlz9f6cr8kvQIMFZclaZ0Dgyp6mmM6B2FbWl6NcEojfMr?=
- =?us-ascii?Q?OwpxTMlvK7YW0gZ8YpeWSeKNRxRw4f3vghI3DsRQ+f7VXuHe3Oha7vIpaSQt?=
- =?us-ascii?Q?KJYNTqP/r77fY5R9VAk0i6qhqV77rmfaEm/qEXwEJq+IskxWAtzmc9yyi8oj?=
- =?us-ascii?Q?PhxMkxQ0Y74iQlD3yYmtyGGFWQ0w0Js/GlxPu5DeV+ZawOPlpmOiAdswdWLR?=
- =?us-ascii?Q?Ly+jCiH48gIlB5OBxmC4WfXGmvOcMn0SwTy87TkIu+QyAfFRJxu+BQKYmW/W?=
- =?us-ascii?Q?0U9Qr+4V9xN4+0E38F039ABuLaVYxECYcDmepx49sia82OapJm7vKNOTiur5?=
- =?us-ascii?Q?J1z8lmZ7fJ5xLwy6omkoHyzm1gfprC1sruh6KcYX/j3/j1mtGXyE2uxvrFIv?=
- =?us-ascii?Q?Bg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 529a545a-f384-4009-8a55-08de15919069
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 19:46:47.2758 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bwg68pBkFLGOShKK8ePcLUVeeiG8Z3niCURrII1EvDCGxGA74ftzyY6CBqQcOa26HuX57Lh2hBXrYygYEIxF/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB9496
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,46 +73,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 27, 2025 at 06:04:11PM +0000, Stuart Summers wrote:
-> Adjust the sequence of the migration teardown to match what
-> is happening in the init() function.
-> 
-> v2: Take a reference to the migrate queue before put (Matt)
-> 
-> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Hi Mitul,
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+kernel test robot noticed the following build warnings:
 
-> ---
->  drivers/gpu/drm/xe/xe_migrate.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 56a5804726e9..9d60bc2b57e4 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -98,17 +98,18 @@ struct xe_migrate {
->  static void xe_migrate_fini(void *arg)
->  {
->  	struct xe_migrate *m = arg;
-> +	struct xe_vm *vm = m->q->vm;
->  
-> -	xe_vm_lock(m->q->vm, false);
-> +	xe_vm_lock(vm, false);
->  	xe_bo_unpin(m->pt_bo);
-> -	xe_vm_unlock(m->q->vm);
-> +	xe_vm_unlock(vm);
->  
->  	dma_fence_put(m->fence);
->  	xe_bo_put(m->pt_bo);
->  	drm_suballoc_manager_fini(&m->vm_update_sa);
->  	mutex_destroy(&m->job_mutex);
-> -	xe_vm_close_and_put(m->q->vm);
->  	xe_exec_queue_put(m->q);
-> +	xe_vm_close_and_put(vm);
->  }
->  
->  static u64 xe_migrate_vm_addr(u64 slot, u32 level)
-> -- 
-> 2.34.1
-> 
+[auto build test WARNING on next-20251027]
+[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18-rc3 v6.18-rc2 v6.18-rc1 linus/master v6.18-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-i915-display-Add-source-param-for-dc-balance/20251028-011354
+base:   next-20251027
+patch link:    https://lore.kernel.org/r/20251027162927.2655581-23-mitulkumar.ajitkumar.golani%40intel.com
+patch subject: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC Balance Possible
+config: i386-buildonly-randconfig-003-20251028 (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/config)
+compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510280310.FHuwVpY6-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/i915/display/intel_vrr.c: In function 'intel_vrr_compute_vrr_timings':
+>> drivers/gpu/drm/i915/display/intel_vrr.c:259:31: warning: unused variable 'display' [-Wunused-variable]
+     259 |         struct intel_display *display = to_intel_display(crtc_state);
+         |                               ^~~~~~~
+
+
+vim +/display +259 drivers/gpu/drm/i915/display/intel_vrr.c
+
+e098418ea9f1ca Mitul Golani   2025-10-27  254  
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  255  static
+8a553374db132e Ville Syrjälä  2025-10-20  256  void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
+8a553374db132e Ville Syrjälä  2025-10-20  257  				   int vmin, int vmax)
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  258  {
+5de4c2be73f248 Mitul Golani   2025-10-27 @259  	struct intel_display *display = to_intel_display(crtc_state);
+5de4c2be73f248 Mitul Golani   2025-10-27  260  
+8a553374db132e Ville Syrjälä  2025-10-20  261  	crtc_state->vrr.vmax = vmax;
+8a553374db132e Ville Syrjälä  2025-10-20  262  	crtc_state->vrr.vmin = vmin;
+8a553374db132e Ville Syrjälä  2025-10-20  263  	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+8a553374db132e Ville Syrjälä  2025-10-20  264  
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  265  	crtc_state->vrr.enable = true;
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  266  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+5de4c2be73f248 Mitul Golani   2025-10-27  267  
+e098418ea9f1ca Mitul Golani   2025-10-27  268  	if (intel_vrr_dc_balance_possible(crtc_state))
+5de4c2be73f248 Mitul Golani   2025-10-27  269  		crtc_state->vrr.dc_balance.enable = true;
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  270  }
+58f9466c8292f8 Ankit Nautiyal 2025-03-11  271  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
