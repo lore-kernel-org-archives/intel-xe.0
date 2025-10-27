@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9515ACCF9EB
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7DECCCF9F1
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:43:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58A5C10E563;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0AB910E567;
 	Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgBk1d2i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zhf7sHYW";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C76410E55D
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 21:42:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B913D10E55D
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 21:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761601377; x=1793137377;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZutDNs5K2o0jiAXE0G/vqgAHWs6smMd4I+fBWFcWmwo=;
- b=NgBk1d2iinBd5B0pOnuzxmY4WeeohdoMmbo6KKiIY/6iiuvphsJKfPNz
- huuCP7I/XeiB4akhKqVTstjc0loxSjT6C3tbfnwOqkBtIN91jYNw9N4qd
- rhwy5SPLYzE0LS8c4kNrKkt7PccrQf7i072MjjoiNVzj5FBnte2/HfaAn
- PW1u1tKrBBvu0A5uR8scm0ImUezfK5rnPrslnUHTkdlw3FGShlDQDUm5J
- nagF+W4UP7Uo2Ymn5xkgD90CIwsKOZxYCXNO9xdsvVloMakxqbN/SQANm
- qTogtSbdzVAYmKbU/AwgMAF9XDESk8AnOhCKHKN97w3EJ0r9hjS0Hq3Wd A==;
-X-CSE-ConnectionGUID: 33B+a2r6Q1yTRcID0VAlMw==
-X-CSE-MsgGUID: f5uxOfXzQYGqFesbfqZ4ow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368847"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368847"
+ bh=YIVxz9Bmla8xplUsEHVPD64M8l8GEhngPc6p2LvGkCc=;
+ b=Zhf7sHYW+QjmrftFQ/ymsNWdLUwgKxJGKvPElh0R+5xgL76pXfRvVgUT
+ nPDG+5u9VXJgSFsjTyEBnpQ8J/VcB3WGRC//pZUHS8EbuHQSeZxvnJ6dg
+ eIGNjMoMHxd+t5kSLydEA08vQ2mqpDBw14Ev9QIN8epDDVNxCbAdRd6/A
+ rCymPpuBrish5cbnGzc7FUiqMQi2S9wK0iFa8pm2fsalBouicCQrZokZO
+ KPJujs89QH+q2FOIdWTeIrfhg3LHqgrbPVE5QDscSrED7uF84I004GSOH
+ ydiJ5lA2gkPdNUDb3IwaHObbBEO7vcm48feEA4B1uqG+ijd69Bu+PKdk3 w==;
+X-CSE-ConnectionGUID: 37OEZtAfTlGtQhN/GCNzkg==
+X-CSE-MsgGUID: 4292MxmUTwiucaT+4mR22Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368843"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368843"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 14:42:57 -0700
-X-CSE-ConnectionGUID: IDJEoe8TSaOiP0cGd7XhiA==
-X-CSE-MsgGUID: RaiihziGT1mCqUysLyq2oA==
+ 27 Oct 2025 14:42:56 -0700
+X-CSE-ConnectionGUID: yGiYp3VmQVSY3s+xVLSJnQ==
+X-CSE-MsgGUID: 42cvSUL5SYiWXM7TGyMhxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782347"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782343"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 14:42:56 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 5/8] drm/xe: Remove last fence dependecy check from binds
-Date: Mon, 27 Oct 2025 14:42:49 -0700
-Message-Id: <20251027214252.2455093-6-matthew.brost@intel.com>
+Subject: [CI 1/8] drm/xe: Add last fence attachment to TLB invalidation job
+ queues
+Date: Mon, 27 Oct 2025 14:42:45 -0700
+Message-Id: <20251027214252.2455093-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251027214252.2455093-1-matthew.brost@intel.com>
 References: <20251027214252.2455093-1-matthew.brost@intel.com>
@@ -65,80 +66,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The last fence dependency check for binds is now equivalent to
-xe_exec_queue_is_idle and is redundant, so remove this dead code.
+To address serialization issues with bursts of unbind jobs, this patch
+adds support for attaching the last fence to TLB invalidation job
+queues. The idea is that user fence signaling for a bind job reflects
+both the bind job itself and the last fences of all related TLB
+invalidations. The submission order of bind jobs and TLB invalidations
+depends solely on the state of their respective queues.
+
+This patch only introduces support functions for last fence attachment
+to TLB invalidation queues.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 23 -----------------------
- drivers/gpu/drm/xe/xe_exec_queue.h |  2 --
- drivers/gpu/drm/xe/xe_pt.c         |  7 -------
- 3 files changed, 32 deletions(-)
+v3:
+ - Fix assert in xe_exec_queue_tlb_inval_last_fence_set (CI)
+ - Ensure migrate lock held for migrate queues (Testing)
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 105 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  18 ++++
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   5 ++
+ drivers/gpu/drm/xe/xe_migrate.c          |  14 +++
+ drivers/gpu/drm/xe/xe_migrate.h          |   8 ++
+ drivers/gpu/drm/xe/xe_vm.c               |   7 +-
+ 6 files changed, 155 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index d7d00d4de93c..efcdfdb0cc3f 100644
+index 90cbc95f8e2e..d7d00d4de93c 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1109,29 +1109,6 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
+@@ -376,11 +376,15 @@ void xe_exec_queue_destroy(struct kref *ref)
+ {
+ 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
+ 	struct xe_exec_queue *eq, *next;
++	int i;
+ 
+ 	if (xe_exec_queue_uses_pxp(q))
+ 		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
+ 
+ 	xe_exec_queue_last_fence_put_unlocked(q);
++	for_each_tlb_inval(i)
++		xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, i);
++
+ 	if (!(q->flags & EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD)) {
+ 		list_for_each_entry_safe(eq, next, &q->multi_gt_list,
+ 					 multi_gt_link)
+@@ -998,7 +1002,9 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
+ 						    struct xe_vm *vm)
+ {
+-	if (q->flags & EXEC_QUEUE_FLAG_VM) {
++	if (q->flags & EXEC_QUEUE_FLAG_MIGRATE) {
++		xe_migrate_job_lock_assert(q);
++	} else if (q->flags & EXEC_QUEUE_FLAG_VM) {
+ 		lockdep_assert_held(&vm->lock);
+ 	} else {
+ 		xe_vm_assert_held(vm);
+@@ -1097,6 +1103,7 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
+ 				  struct dma_fence *fence)
+ {
+ 	xe_exec_queue_last_fence_lockdep_assert(q, vm);
++	xe_assert(vm->xe, !dma_fence_is_container(fence));
+ 
+ 	xe_exec_queue_last_fence_put(q, vm);
  	q->last_fence = dma_fence_get(fence);
+@@ -1125,6 +1132,102 @@ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+ 	return err;
  }
  
--/**
-- * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
-- * @q: The exec queue
-- * @vm: The VM the engine does a bind or exec for
-- *
-- * Returns:
-- * -ETIME if there exists an unsignalled last fence dependency, zero otherwise.
-- */
--int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
--{
--	struct dma_fence *fence;
--	int err = 0;
--
--	fence = xe_exec_queue_last_fence_get(q, vm);
--	if (fence) {
--		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
--			0 : -ETIME;
--		dma_fence_put(fence);
--	}
--
--	return err;
--}
--
++/**
++ * xe_exec_queue_tlb_inval_last_fence_put() - Drop ref to last TLB invalidation fence
++ * @q: The exec queue
++ * @vm: The VM the engine does a bind for
++ * @type: Either primary or media GT
++ */
++void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
++					    struct xe_vm *vm,
++					    unsigned int type)
++{
++	xe_exec_queue_last_fence_lockdep_assert(q, vm);
++	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
++		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++
++	xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, type);
++}
++
++/**
++ * xe_exec_queue_tlb_inval_last_fence_put_unlocked() - Drop ref to last TLB
++ * invalidation fence unlocked
++ * @q: The exec queue
++ * @type: Either primary or media GT
++ *
++ * Only safe to be called from xe_exec_queue_destroy().
++ */
++void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct xe_exec_queue *q,
++						     unsigned int type)
++{
++	xe_assert(q->vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
++		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++
++	if (q->tlb_inval[type].last_fence) {
++		dma_fence_put(q->tlb_inval[type].last_fence);
++		q->tlb_inval[type].last_fence = NULL;
++	}
++}
++
++/**
++ * xe_exec_queue_tlb_inval_last_fence_get() - Get last fence for TLB invalidation
++ * @q: The exec queue
++ * @vm: The VM the engine does a bind for
++ * @type: Either primary or media GT
++ *
++ * Get last fence, takes a ref
++ *
++ * Returns: last fence if not signaled, dma fence stub if signaled
++ */
++struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct xe_exec_queue *q,
++							 struct xe_vm *vm,
++							 unsigned int type)
++{
++	struct dma_fence *fence;
++
++	xe_exec_queue_last_fence_lockdep_assert(q, vm);
++	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
++		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
++				      EXEC_QUEUE_FLAG_MIGRATE));
++
++	if (q->tlb_inval[type].last_fence &&
++	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
++		     &q->tlb_inval[type].last_fence->flags))
++		xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
++
++	fence = q->tlb_inval[type].last_fence ?: dma_fence_get_stub();
++	dma_fence_get(fence);
++	return fence;
++}
++
++/**
++ * xe_exec_queue_tlb_inval_last_fence_set() - Set last fence for TLB invalidation
++ * @q: The exec queue
++ * @vm: The VM the engine does a bind for
++ * @fence: The fence
++ * @type: Either primary or media GT
++ *
++ * Set the last fence for the tlb invalidation type on the queue. Increases
++ * reference count for fence, when closing queue
++ * xe_exec_queue_tlb_inval_last_fence_put should be called.
++ */
++void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
++					    struct xe_vm *vm,
++					    struct dma_fence *fence,
++					    unsigned int type)
++{
++	xe_exec_queue_last_fence_lockdep_assert(q, vm);
++	xe_assert(vm->xe, type == XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
++		  type == XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
++	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
++				      EXEC_QUEUE_FLAG_MIGRATE));
++	xe_assert(vm->xe, !dma_fence_is_container(fence));
++
++	xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
++	q->tlb_inval[type].last_fence = dma_fence_get(fence);
++}
++
  /**
-  * xe_exec_queue_tlb_inval_last_fence_put() - Drop ref to last TLB invalidation fence
-  * @q: The exec queue
+  * xe_exec_queue_contexts_hwsp_rebase - Re-compute GGTT references
+  * within all LRCs of a queue.
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index c4b95fad93f1..839e9880a598 100644
+index a4dfbe858bda..c4b95fad93f1 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.h
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -88,8 +88,6 @@ struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *
- 							  struct xe_vm *vm);
- void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
+@@ -14,6 +14,10 @@ struct drm_file;
+ struct xe_device;
+ struct xe_file;
+ 
++#define for_each_tlb_inval(__i)	\
++	for (__i = XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
++	     __i <= XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
++
+ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *vm,
+ 					   u32 logical_mask, u16 width,
+ 					   struct xe_hw_engine *hw_engine, u32 flags,
+@@ -86,6 +90,20 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
  				  struct dma_fence *fence);
--int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
--				      struct xe_vm *vm);
+ int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+ 				      struct xe_vm *vm);
++
++void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
++					    struct xe_vm *vm,
++					    unsigned int type);
++void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct xe_exec_queue *q,
++						     unsigned int type);
++struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct xe_exec_queue *q,
++							 struct xe_vm *vm,
++							 unsigned int type);
++void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
++					    struct xe_vm *vm,
++					    struct dma_fence *fence,
++					    unsigned int type);
++
+ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
  
- void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
- 					    struct xe_vm *vm,
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index a4b9cdf016d9..01056b51ac9f 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1338,13 +1338,6 @@ static int xe_pt_vm_dependencies(struct xe_sched_job *job,
- 			return err;
+ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 282505fa1377..b4185fee54e1 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -145,6 +145,11 @@ struct xe_exec_queue {
+ 		 * dependency scheduler
+ 		 */
+ 		struct xe_dep_scheduler *dep_scheduler;
++		/**
++		 * @last_fence: last fence for tlb invalidation, protected by
++		 * vm->lock in write mode
++		 */
++		struct dma_fence *last_fence;
+ 	} tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_COUNT];
+ 
+ 	/** @pxp: PXP info tracking */
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 921c9c1ea41f..4567bc88a8ec 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -2333,6 +2333,20 @@ void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q)
+ 		xe_vm_assert_held(q->vm);	/* User queues VM's should be locked */
+ }
+ 
++#if IS_ENABLED(CONFIG_PROVE_LOCKING)
++/**
++ * xe_migrate_job_lock_assert() - Assert migrate job lock held of queue
++ * @q: Migrate queue
++ */
++void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
++{
++	struct xe_migrate *m = gt_to_tile(q->gt)->migrate;
++
++	xe_gt_assert(q->gt, q == m->q);
++	lockdep_assert_held(&m->job_mutex);
++}
++#endif
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_migrate.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 4fad324b6253..9b5791617f5e 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -152,6 +152,14 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 
+ void xe_migrate_wait(struct xe_migrate *m);
+ 
++#if IS_ENABLED(CONFIG_PROVE_LOCKING)
++void xe_migrate_job_lock_assert(struct xe_exec_queue *q);
++#else
++static inline void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
++{
++}
++#endif
++
+ void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q);
+ void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 10d77666a425..d2a2f823f1b3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1731,8 +1731,13 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 
+ 	down_write(&vm->lock);
+ 	for_each_tile(tile, xe, id) {
+-		if (vm->q[id])
++		if (vm->q[id]) {
++			int i;
++
+ 			xe_exec_queue_last_fence_put(vm->q[id], vm);
++			for_each_tlb_inval(i)
++				xe_exec_queue_tlb_inval_last_fence_put(vm->q[id], vm, i);
++		}
  	}
- 
--	if (!(pt_update_ops->q->flags & EXEC_QUEUE_FLAG_KERNEL)) {
--		if (job)
--			err = xe_sched_job_last_fence_add_dep(job, vm);
--		else
--			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q, vm);
--	}
--
- 	for (i = 0; job && !err && i < vops->num_syncs; i++)
- 		err = xe_sync_entry_add_deps(&vops->syncs[i], job);
+ 	up_write(&vm->lock);
  
 -- 
 2.34.1
