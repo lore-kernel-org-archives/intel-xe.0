@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7711CCCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 13:12:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 808BDCCF9E5
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 13:20:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 392DD10E48A;
-	Mon, 27 Oct 2025 13:12:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hIJgCD6l";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83CE410E48A
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 13:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761570767; x=1793106767;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kOxSMP3Sp7AjUyuTXFBkZoSvJ0M4gXf/g1ePxNUPnd8=;
- b=hIJgCD6lXgVfstHMFu3T3H2gXekv2IYyv38H2CZRI4V9EyK4Dc1Ir5Tn
- quQxuPVVT/Fyf+w5Ob49KVJBCFLabUvTKh/ohQlKeC2glBwiARa90KJIS
- SOWjQYf2mor1QfH/4ojYYTR1MO1i0/5Rj6ykA/fgVU8x+fkrJxPvfiClY
- YeVpZzhTeXa7INS+Vef5ouk7udYgWV2sWxfGKO9TO4Kmol39nNZ8NeyZF
- jaCmSpu95w5vVGE5IRlfYvAn2h+fyMoH6NTO0b3x3hHaxpvod/wtIOgCK
- mDnSgHqxnseyEcsVD5h9Iby9ZB8tOOWBc2QgnmvPdQ4n26Kl9zt9NaQBa Q==;
-X-CSE-ConnectionGUID: reGCicA4TVqb+ZfUucw91A==
-X-CSE-MsgGUID: l3dtOIGjRx+tA5ZiiGfbMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62853728"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="62853728"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 06:12:47 -0700
-X-CSE-ConnectionGUID: zRb1kYHqTrGBe2/UUOaQmA==
-X-CSE-MsgGUID: hTeDpgWlQneeMcdvTO0lbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="184265816"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora) ([10.245.244.2])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 06:12:45 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Fix uninitialized return value from
- xe_validation_guard()
-Date: Mon, 27 Oct 2025 14:12:28 +0100
-Message-ID: <20251027131228.12098-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F73010E4A6;
+	Mon, 27 Oct 2025 13:20:25 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F370010E49A;
+ Mon, 27 Oct 2025 13:20:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0010096492520604288=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_GT_runtime_suspen?=
+ =?utf-8?q?d/resume_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Oct 2025 13:20:23 -0000
+Message-ID: <176157122398.57213.15697298884291137769@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251027123057.3738059-1-raag.jadav@intel.com>
+In-Reply-To: <20251027123057.3738059-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,52 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The parameter _ret is assigned in xe_validation_guard() not
-realizing we're assigning a parameter in a function rather than
-in a macro. That means it's value is not propagated to the caller.
+--===============0010096492520604288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fix this by making the _ret parameter a pointer.
+== Series Details ==
 
-Fixes: c460bc2311df ("drm/xe: Introduce an xe_validation wrapper around drm_exec")
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6220
-Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_validation.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Series: Introduce GT runtime suspend/resume (rev5)
+URL   : https://patchwork.freedesktop.org/series/154017/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_validation.h b/drivers/gpu/drm/xe/xe_validation.h
-index fec331d791e7..b2d09c596714 100644
---- a/drivers/gpu/drm/xe/xe_validation.h
-+++ b/drivers/gpu/drm/xe/xe_validation.h
-@@ -166,10 +166,10 @@ xe_validation_device_init(struct xe_validation_device *val)
-  */
- DEFINE_CLASS(xe_validation, struct xe_validation_ctx *,
- 	     if (_T) xe_validation_ctx_fini(_T);,
--	     ({_ret = xe_validation_ctx_init(_ctx, _val, _exec, _flags);
--	       _ret ? NULL : _ctx; }),
-+	     ({*_ret = xe_validation_ctx_init(_ctx, _val, _exec, _flags);
-+	       *_ret ? NULL : _ctx; }),
- 	     struct xe_validation_ctx *_ctx, struct xe_validation_device *_val,
--	     struct drm_exec *_exec, const struct xe_val_flags _flags, int _ret);
-+	     struct drm_exec *_exec, const struct xe_val_flags _flags, int *_ret);
- static inline void *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
- {return *_T; }
- #define class_xe_validation_is_conditional true
-@@ -186,7 +186,7 @@ static inline void *class_xe_validation_lock_ptr(class_xe_validation_t *_T)
-  * exhaustive eviction.
-  */
- #define xe_validation_guard(_ctx, _val, _exec, _flags, _ret)		\
--	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, _ret) \
-+	scoped_guard(xe_validation, _ctx, _val, _exec, _flags, &_ret) \
- 	drm_exec_until_all_locked(_exec)
- 
- #endif
--- 
-2.51.0
+== Summary ==
 
+CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -> xe-pw-154017v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154017v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_create@multigpu-create-massive-size:
+    - bat-bmg-3:          [SKIP][1] ([Intel XE#2504]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v5/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html
+
+  
+  [Intel XE#2504]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8596 -> IGT_8597
+  * Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -> xe-pw-154017v5
+
+  IGT_8596: 8596
+  IGT_8597: 8597
+  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c
+  xe-pw-154017v5: 154017v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v5/index.html
+
+--===============0010096492520604288==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce GT runtime suspend/resume (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154017/">https://patchwork.freedesktop.org/series/154017/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -&gt; xe-pw-154017v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154017v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_create@multigpu-create-massive-size:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2504">Intel XE#2504</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154017v5/bat-bmg-3/igt@xe_create@multigpu-create-massive-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8596 -&gt; IGT_8597</li>
+<li>Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -&gt; xe-pw-154017v5</li>
+</ul>
+<p>IGT_8596: 8596<br />
+  IGT_8597: 8597<br />
+  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c<br />
+  xe-pw-154017v5: 154017v5</p>
+
+</body>
+</html>
+
+--===============0010096492520604288==--
