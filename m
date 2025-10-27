@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CF75CCF9E0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 04:48:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E221CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 05:58:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C107510E358;
-	Mon, 27 Oct 2025 04:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34AB10E0F6;
+	Mon, 27 Oct 2025 05:58:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZsgaPc7Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T5AMlUNg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE08D10E343;
- Mon, 27 Oct 2025 04:48:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3944710E0F6
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 05:58:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761540518; x=1793076518;
+ t=1761544681; x=1793080681;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zpNpP4igbgJE1ENVyl0vrsAZY8ZQDHHa5vxQ6v2GkUA=;
- b=ZsgaPc7YzKUbOuldKcp8/t0dc1HG9xqyBE24aouNstOWm0SJKLdrvlTp
- Csa9j7oJ/xZVIqt5pQhHy/WnOkJiXr9tKDdVjfNQwv4tFmBv4GuWkO9WH
- GwVlMPhOQmdsrEtUQtmb7Uw7r/E5jm3wekMAVTtnZ7FeRGRGwVbs+lh5F
- pRUmEtX+tBlOQzG1f78aSfOniglxMcP/lRnqv5HduJXdBKIl6UsYknWwg
- r4HhEfjXErjo8QDuoIvSR/rXXDpTjwhVk3YJGe4JVcWw0Ot6tnauaEfYh
- 9URc0AUUGXZxumhaoJ5rRnX7MA4BvVyaaE0anhkv+SXV84HJOtTVe30EP g==;
-X-CSE-ConnectionGUID: f/cZugjDQgGeDhbA06gbmA==
-X-CSE-MsgGUID: 3uxM+/2IS7yxQasXc8amPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63515636"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63515636"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2025 21:48:38 -0700
-X-CSE-ConnectionGUID: Lko4oLJ9S+Kh+PdIAj6/MA==
-X-CSE-MsgGUID: ktT8FzxXTZGiGU51hjHpcg==
+ bh=fjrqf2WTj8eT6tX3TnCxHYBZ05EH1REKTCuRGYmTm44=;
+ b=T5AMlUNgrNdiCwt2j+nkz/JSDBXllQJniPvn/rs2srzTxxtDPdmilf27
+ 6O+gpt1ctjSufHmMF3AodomRsaE38gl5VlQIqlFduK/fAVPGCkjciSndI
+ n+9OIEiOX51cSo1XL0DIAsrIDEtDWYHmr2xBIKajQghbiuz2zF2DN0kvW
+ NcY3x51x+WqmUUZmcAmrbDMfQ9bE8mqgujhJzFlBiYaIIWG1VPPQF5j4a
+ oC4zK4blQ3ZKuzqz6R90Yu6ReNFMj43nIsoyo8L4WTujqipaMmFbejjyW
+ U7vZhf2Uc5npUZeQYqS8gCQoUcpa6DjDXUDKPBXyYhQHyWtAdRz1vZaNt A==;
+X-CSE-ConnectionGUID: ZQLcuqjpRumisNNKg42txQ==
+X-CSE-MsgGUID: ikbOLELuSeykBM49m/qE6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73905949"
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="73905949"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2025 22:58:00 -0700
+X-CSE-ConnectionGUID: jtUF5b8JRqmf+1eFleNa7g==
+X-CSE-MsgGUID: 5facPmvdRh2QWlg/WejGAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="188993000"
-Received: from vkasired-desk2.fm.intel.com ([10.105.128.132])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2025 21:48:38 -0700
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [RFC v2 8/8] drm/xe/pt: Add an additional check for dmabuf BOs while
- doing bind
-Date: Sun, 26 Oct 2025 21:44:20 -0700
-Message-ID: <20251027044712.1676175-9-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251027044712.1676175-1-vivek.kasireddy@intel.com>
-References: <20251027044712.1676175-1-vivek.kasireddy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="185308459"
+Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2025 22:58:00 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2 3/8] drm/xe/gt_throttle: Always read and mask
+Date: Sun, 26 Oct 2025 22:57:15 -0700
+Message-ID: <20251026-gt-throttle-cri-v2-3-41f8288a71a7@intel.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
+References: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.15-dev-50d74
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,54 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a BO's dma_data.dma_addr pointer is valid, it means that it is
-an imported dmabuf BO that has a backing store in VRAM. Therefore,
-in this case, we need to iterate over its dma_addr array.
+Use a single function to read and mask the value the callers will be
+interested in. This reduces the risk of a caller using a plain call to
+xe_gt_throttle_get_limit_reasons() without applying any mask, which can
+return unexpected bits for future platforms.
 
-v2:
-- Use a cursor to iterate over the entries in the dma_addr array
-  instead of relying on SG iterator (Matt)
+Select which reg and mask it's going to be used according to the
+platform and gt type and always use that one function.
 
-v3:
-- Since XE_PPGTT_PTE_DM is added to the PTE flags in all cases,
-  remove the bo->is_devmem_external check added in v2
+There was an odd xe_gt_dbg() when reading the status, which is not done
+for any other throttle/* sysfs file, so just make the status be as
+special as everybody else.
 
-v4:
-- Drop is_devmem_external and instead rely on bo->dma_data.dma_addr
-  to check for imported VRAM BOs (Matt)
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_throttle.c | 28 ++++++++++------------------
+ 1 file changed, 10 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index a1c88f9a6c76..18f959247e8d 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -759,6 +759,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
+index c69710f2dbeb5..f743444f641a8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_throttle.c
++++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
+@@ -8,7 +8,6 @@
+ #include <regs/xe_gt_regs.h>
+ #include "xe_device.h"
+ #include "xe_gt.h"
+-#include "xe_gt_printk.h"
+ #include "xe_gt_sysfs.h"
+ #include "xe_gt_throttle.h"
+ #include "xe_mmio.h"
+@@ -57,32 +56,25 @@ dev_to_gt(struct device *dev)
  
- 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
- 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
-+
-+	if (bo && bo->dma_data.dma_addr)
-+		xe_walk.dma_offset = 0;
-+
- 	if (!range)
- 		xe_bo_assert_held(bo);
+ u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
+ {
+-	u32 reg;
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_reg reg;
++	u32 val, mask;
  
-@@ -769,6 +773,10 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
- 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
- 				     xe_vma_size(vma), &curs);
-+		else if (bo && bo->dma_data.dma_addr)
-+			xe_res_first_dma(bo->dma_data.dma_addr,
-+					 xe_vma_bo_offset(vma),
-+					 xe_vma_size(vma), &curs);
- 		else
- 			xe_res_first_sg(xe_bo_sg(bo), xe_vma_bo_offset(vma),
- 					xe_vma_size(vma), &curs);
+-	xe_pm_runtime_get(gt_to_xe(gt));
+ 	if (xe_gt_is_media_type(gt))
+-		reg = xe_mmio_read32(&gt->mmio, MTL_MEDIA_PERF_LIMIT_REASONS);
++		reg = MTL_MEDIA_PERF_LIMIT_REASONS;
+ 	else
+-		reg = xe_mmio_read32(&gt->mmio, GT0_PERF_LIMIT_REASONS);
+-	xe_pm_runtime_put(gt_to_xe(gt));
+-
+-	return reg;
+-}
+-
+-static u32 read_status(struct xe_gt *gt)
+-{
+-	struct xe_device *xe = gt_to_xe(gt);
+-	u32 status, mask;
++		reg = GT0_PERF_LIMIT_REASONS;
+ 
+ 	if (xe->info.platform == XE_CRESCENTISLAND)
+ 		mask = CRI_PERF_LIMIT_REASONS_MASK;
+ 	else
+ 		mask = GT0_PERF_LIMIT_REASONS_MASK;
+ 
+-	status = xe_gt_throttle_get_limit_reasons(gt) & mask;
+-	xe_gt_dbg(gt, "throttle reasons: 0x%08x\n", status);
++	xe_pm_runtime_get(xe);
++	val = xe_mmio_read32(&gt->mmio, reg) & mask;
++	xe_pm_runtime_put(xe);
+ 
+-	return status;
++	return val;
+ }
+ 
+ static bool is_throttled_by(struct xe_gt *gt, u32 mask)
+@@ -96,7 +88,7 @@ static ssize_t status_show(struct kobject *kobj,
+ 	struct device *dev = kobj_to_dev(kobj);
+ 	struct xe_gt *gt = dev_to_gt(dev);
+ 
+-	return sysfs_emit(buff, "%u\n", !!read_status(gt));
++	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, U32_MAX));
+ }
+ static struct kobj_attribute attr_status = __ATTR_RO(status);
+ 
+
 -- 
-2.50.1
+2.51.0
 
