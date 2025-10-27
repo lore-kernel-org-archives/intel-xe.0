@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FC96CCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:52:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 620A9CCF9F1
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:57:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2242210E191;
-	Mon, 27 Oct 2025 21:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F422D10E194;
+	Mon, 27 Oct 2025 21:57:15 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED2A610E191;
- Mon, 27 Oct 2025 21:52:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8714858316595552559=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD8810E194;
+ Mon, 27 Oct 2025 21:57:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Limit_number_of_j?=
- =?utf-8?q?obs_per_exec_queue_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Exten?=
+ =?utf-8?q?d_i915=5Fdisplay=5Finfo_with_Type-C_port_details_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Oct 2025 21:52:06 -0000
-Message-ID: <176160192696.59660.10085684736497038864@97596180aaec>
+Date: Mon, 27 Oct 2025 21:57:15 -0000
+Message-ID: <176160223536.60401.10682693364666316678@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251022181036.2868787-2-shuicheng.lin@intel.com>
-In-Reply-To: <20251022181036.2868787-2-shuicheng.lin@intel.com>
+References: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+In-Reply-To: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,63 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8714858316595552559==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Limit number of jobs per exec queue (rev3)
-URL   : https://patchwork.freedesktop.org/series/156371/
-State : success
+Series: drm/i915/display: Extend i915_display_info with Type-C port details (rev5)
+URL   : https://patchwork.freedesktop.org/series/155066/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0_BAT -> xe-pw-156371v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ec04362581d400e6087779b8efa6266dcf891974
+Author: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Date:   Mon Oct 27 13:56:28 2025 -0700
 
-Summary
--------
+    drm/i915/display: Extend i915_display_info with Type-C port details
+    
+    Expose key Type-C port data in i915_display_info to make it easier to
+    understand the port configuration and active mode, especially whether
+    the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+    
+    Tested in DP-Alt, TBT-Alt, SST, and MST.
+    
+    Expected output:
+    
+    [CONNECTOR:290:DP-2]: status: connected
+            TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+            physical dimensions: 600x340mm
+    ...
+    [CONNECTOR:263:DP-5]: status: connected
+            TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+            physical dimensions: 610x350mm
+    
+    v2: Use drm_printer (Ville)
+        Lock/Unlock around the printf (Imre)
+    v3: Forward Declaration drm_printer struct (Jani)
+    v4: Handle MST connector with no active encoder (Imre)
+        Add a delimiter between fields and ":" after the port name (Imre)
+    v5: Init dig_port and use it in intel_encorder_is_tc and tc_info (Imre)
+        Move tc->port_name to a newline (Imre)
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: Imre Deak <imre.deak@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
++ /mt/dim checkpatch de43fe70c436c359e7478a5532d873f87357cb4e drm-intel
+ec04362581d4 drm/i915/display: Extend i915_display_info with Type-C port details
+-:74: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "dig_port"
+#74: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:284:
++	if (dig_port != NULL && intel_encoder_is_tc(&dig_port->base))
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0 -> xe-pw-156371v3
-
-  IGT_8597: 8597
-  xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0: a8f3783a2ccf78b04e48cf235f03629b80ffa3e0
-  xe-pw-156371v3: 156371v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156371v3/index.html
-
---===============8714858316595552559==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Limit number of jobs per exec queue (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156371/">https://patchwork.freedesktop.org/series/156371/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156371v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156371v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0_BAT -&gt; xe-pw-156371v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0 -&gt; xe-pw-156371v3</li>
-</ul>
-<p>IGT_8597: 8597<br />
-  xe-3993-a8f3783a2ccf78b04e48cf235f03629b80ffa3e0: a8f3783a2ccf78b04e48cf235f03629b80ffa3e0<br />
-  xe-pw-156371v3: 156371v3</p>
-
-</body>
-</html>
-
---===============8714858316595552559==--
