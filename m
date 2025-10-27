@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DECF7CCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 20:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6725CCF9EB
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 20:09:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA24110E18C;
-	Mon, 27 Oct 2025 20:03:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9MoAyhU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D102E10E09C;
- Mon, 27 Oct 2025 20:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761595382; x=1793131382;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=koNz2UOA85aVG+97G6eYD9tEXDuGl2PlnydndY6KwyI=;
- b=f9MoAyhU6gNpihhIUvoGs2y/LwUAkJbwFYRio7lxgvdWmOOpFtu2gzG7
- LtQOGVjuuoR94uAk5pma+lTjkMon5Q8fa05xkTCqxYaVykdJ7TY6A2+Lf
- jPTvr336z0JFO+vp6UN7W9NNCFEO6PMw0JuFkkuQeA2LlVnI/BTlwhlRs
- Q9x2ZqWeU5zPKMiQoaZs0EakfOQbl2cCpVQVKmjUYRv50Trd2EAtPIbCy
- QZczmEPlwvaR8k+fmesPek56jRSu1uHWcYNvEkaqmXvZxZTERabP2gzQ3
- bF8mW7uHJAzQLxWjaMzztzSJBrQKefEYKmF0qD1IKMRZTNKJ3+7yEjskz A==;
-X-CSE-ConnectionGUID: pH0diEWGTcKHhTaPK3Q2aw==
-X-CSE-MsgGUID: qJFFizuTSS+ObEDpmrs5sQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63593493"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63593493"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 13:03:01 -0700
-X-CSE-ConnectionGUID: q2qqXaQaQyavDJ5glGSkWw==
-X-CSE-MsgGUID: 5LLKd+5/Td+lm63OQkxhQw==
-X-ExtLoop1: 1
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by fmviesa003.fm.intel.com with ESMTP; 27 Oct 2025 13:03:01 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4] drm/i915/display: Extend i915_display_info with Type-C
- port details
-Date: Mon, 27 Oct 2025 13:02:56 -0700
-Message-ID: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73DD510E17D;
+	Mon, 27 Oct 2025 20:09:10 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 943F210E17D;
+ Mon, 27 Oct 2025 20:09:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Exten?=
+ =?utf-8?q?d_i915=5Fdisplay=5Finfo_with_Type-C_port_details_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Oct 2025 20:09:09 -0000
+Message-ID: <176159574960.60242.11257079448915921409@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+In-Reply-To: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,125 +36,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose key Type-C port data in i915_display_info to make it easier to
-understand the port configuration and active mode, especially whether
-the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+== Series Details ==
 
-Tested in DP-Alt, TBT-Alt, SST, and MST.
+Series: drm/i915/display: Extend i915_display_info with Type-C port details (rev4)
+URL   : https://patchwork.freedesktop.org/series/155066/
+State : warning
 
-Expected output:
+== Summary ==
 
-[CONNECTOR:290:DP-2]: status: connected
-	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
-	physical dimensions: 600x340mm
-...
-[CONNECTOR:263:DP-5]: status: connected
-	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
-	physical dimensions: 610x350mm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 67ab6532fc00b1f2b1d725f5bda44afbd2d4bda7
+Author: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Date:   Mon Oct 27 13:02:56 2025 -0700
 
-v2: Use drm_printer (Ville)
-    Lock/Unlock around the printf (Imre)
-v3: Forward Declaration drm_printer struct (Jani)
-v4: Handle MST connector with no active encoder (Imre)
-    Add a delimiter between fields and ":" after the port name (Imre)
-
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c |  9 +++++++++
- drivers/gpu/drm/i915/display/intel_tc.c              | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
- 3 files changed, 24 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 10dddec3796f..4d931e4bef81 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -47,6 +47,7 @@
- #include "intel_psr_regs.h"
- #include "intel_vdsc.h"
- #include "intel_wm.h"
-+#include "intel_tc.h"
- 
- static struct intel_display *node_to_intel_display(struct drm_info_node *node)
- {
-@@ -246,6 +247,8 @@ static void intel_connector_info(struct seq_file *m,
- {
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	const struct drm_display_mode *mode;
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct intel_digital_port *dig_port;
- 
- 	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
- 		   connector->base.id, connector->name,
-@@ -268,14 +271,20 @@ static void intel_connector_info(struct seq_file *m,
- 			intel_dp_mst_info(m, intel_connector);
- 		else
- 			intel_dp_info(m, intel_connector);
-+		dig_port = dp_to_dig_port(intel_attached_dp(intel_connector));
- 		break;
- 	case DRM_MODE_CONNECTOR_HDMIA:
- 		intel_hdmi_info(m, intel_connector);
-+		dig_port = hdmi_to_dig_port(intel_attached_hdmi(intel_connector));
- 		break;
- 	default:
- 		break;
- 	}
- 
+    drm/i915/display: Extend i915_display_info with Type-C port details
+    
+    Expose key Type-C port data in i915_display_info to make it easier to
+    understand the port configuration and active mode, especially whether
+    the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+    
+    Tested in DP-Alt, TBT-Alt, SST, and MST.
+    
+    Expected output:
+    
+    [CONNECTOR:290:DP-2]: status: connected
+            TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+            physical dimensions: 600x340mm
+    ...
+    [CONNECTOR:263:DP-5]: status: connected
+            TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+            physical dimensions: 610x350mm
+    
+    v2: Use drm_printer (Ville)
+        Lock/Unlock around the printf (Imre)
+    v3: Forward Declaration drm_printer struct (Jani)
+    v4: Handle MST connector with no active encoder (Imre)
+        Add a delimiter between fields and ":" after the port name (Imre)
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: Imre Deak <imre.deak@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
++ /mt/dim checkpatch a8f3783a2ccf78b04e48cf235f03629b80ffa3e0 drm-intel
+67ab6532fc00 drm/i915/display: Extend i915_display_info with Type-C port details
+-:72: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "dig_port"
+#72: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:284:
 +	if (dig_port != NULL  &&
-+	    intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
-+		intel_tc_info(&p, intel_attached_dig_port(intel_connector));
-+
- 	intel_hdcp_info(m, intel_connector);
- 
- 	seq_printf(m, "\tmax bpc: %u\n", connector->display_info.bpc);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index c4a5601c5107..ef38d8483b46 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1703,6 +1703,18 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
- 	mutex_unlock(&tc->lock);
- }
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port)
-+{
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+
-+	mutex_lock(&tc->lock);
-+	drm_printf(p, "\tTC Port %s: mode: %s, pin assignment: %c, max lanes: %d\n", tc->port_name,
-+		   tc_port_mode_name(tc->mode),
-+		   pin_assignment_name(tc->pin_assignment),
-+		   tc->max_lane_count);
-+	mutex_unlock(&tc->lock);
-+}
-+
- /*
-  * The type-C ports are different because even when they are connected, they may
-  * not be available/usable by the graphics driver: see the comment on
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index fff8b96e4972..6719aea5bd58 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/types.h>
- 
-+struct drm_printer;
- struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_encoder;
-@@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
- 
- bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
- 
-+void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port);
-+
- #endif /* __INTEL_TC_H__ */
--- 
-2.43.0
+
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
+
 
