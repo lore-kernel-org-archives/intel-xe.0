@@ -4,137 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31282CCF9EB
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 17:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65FF1CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 17:53:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E45A410E50C;
-	Mon, 27 Oct 2025 17:47:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205C110E539;
+	Mon, 27 Oct 2025 17:53:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="NECCMqgV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hBagCWMY";
 	dkim-atps=neutral
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010014.outbound.protection.outlook.com [52.101.56.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B07110E50C;
- Mon, 27 Oct 2025 17:47:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE35210E539;
+ Mon, 27 Oct 2025 17:53:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761587593; x=1793123593;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=qomLk6jYETxliB65ZSnhLSpQCOdp/OBhU+0lU+RDX+s=;
+ b=hBagCWMYqyKUACxfg5zv1Zqe2vjHIpeBHS/9Iqiy13lU3+Mdu1+dInzt
+ GxWGcCVdY6k1Evd7CBepJ7idO4XfizpiCVSUWUDd5ucn2DkPvfbSP68SR
+ nopnnuIncdhWzcdsOpoijn+aWlUEva7SfEMlEWF54ccH1lIGAU6yH5A/+
+ YZXrUlnI9AvxF7Ws9++t3PbT7ijA2ympepxXWHeZKa6lEilFGn76Gppoe
+ ELcFRn1vhZHdM0nYQXZJcGcgdcm7gEkVcSpne0iy/rYpLVYc1DRFmpry2
+ 8vz0bhkuPFiDak5nQ1qnVYZ42qvNcMXg7hZn1dl90OFoz2dQNOe3jN02r w==;
+X-CSE-ConnectionGUID: mBRM93EdRMuDAb5gwkZ4LQ==
+X-CSE-MsgGUID: zt/RNiY5Q4mX7uNSRZ9HYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63714557"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63714557"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 10:53:12 -0700
+X-CSE-ConnectionGUID: 4w/oSsgUS9qh1CLKTRj8EA==
+X-CSE-MsgGUID: 6N0aZeKpRtCP9OiQjvCqjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="185876395"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 10:53:12 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 10:53:11 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 10:53:11 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.30) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 10:53:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oRdKXe7F4QJG8UlmzD4kdjTILiXA6hXEmciWHLGjFDOlbmopGigdVZRj/Ulx59f2dAzhnkFJMrUHiFBBYk1wDlRlQvTqNDA+3DEbjUvZtRhy6crtVofxp0f4ao1+vc19ptPWnAbjwHvTvt+xOeO3UkqleAIY4mATGFeboER8X60KDExmP/i+/2yaZPj0BZX7fG1jV6HVi/Trd2MqLi2fNEbfVjrB4EIYDY+Z5TC+SzF+4RucIB4WrPfK2GlPia2ilY9qj5ZNdOXkIKGyDnbbzJ+IphoGnEAi7LbxTKSwDOAh+uMSWMsV6eki4ZB/BzrLgZZqG/7VZoIaWVdfDoQwjA==
+ b=ofo4h767vR2s9FIAnwCdr2Ry3NO2O5b9Y1sTInZHqzf4pnDfp+XbDaOamDylmf4Sdy3niyXByh8oKITsj7HDpcfyK1ZcECubbEorrrgp4W2TTZVnoID5M57H4ZtZfUVnsQUQDHLgI8g6m/qxbI+RoCojBdih4K/ktao8KDWjHKZQkG4Vf460c9nzf+ymMO1AyFR1mR8c9q3dfU1hnJF+/KUAHLnhk8D19NtqObud8PqSvuAzpepAgoc8Yu50WP8wYS5aQTWIPWZGv8y7Nz+4o1T3VUgEL6s/Q4AIdKt1rV84dL9iNaU1vOB33YjXSUl+iw6DrrpffJuatwUnFWzJFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4krFBzPsFpV6pLov/ll7JYDmQskZIAPmeddOjUQ0VLU=;
- b=bGSKLDQCtUJaR/Px1ZjdqQihleaXhtwNmA0AzneFPyjFq6O+zZMtz781+nS5Dvjb3JoRfXMFr04huJOvciGoyTFjmKlrpsXrogLjvb0wRB4Uux5B1BCAFx12fL5l6QZxE5l1D8Th6hrHvECQFrQRM5SL/7gzfS0lbrljUbi1wGgZnbVktENuR58dCOG9is0OMXdERAgyQffYD9Q2arZP1nv1HZ0yyRzmvGHSG/hkgYW6QltzPKcvMNYwWiM1xm0G+/VHxicM1Rutn8Ij6Ia8BER8Izd9VwkNhrsNklbUIUMOsbby8grAXxtDtcekc+O/mubG4WEu0gGp3x5W+jpFbQ==
+ bh=1ikvWUApv0NZIAnRlgXOBEeikhnBer0bjQTAFc5go2U=;
+ b=T2B+GeIoFdoEK1+4RUHslDMi7EsHCcxqM9c5/umgfMjzs3UKQKJ5qWTLpVmitKnxnuwZLe7+KxHLfCdaiKbhF0gBlc31lIlxzWY1WcT2FbY7W1CcelTmJmpUm9/4nEESua0XFPSLl6whuwtYzYiu6/aq1jclnNR+w2Na4bQ79gY4HXbvVQbZ/HnXVW23zeNnZ0aVouseN9UWSseyx2HKu70ipTWKZFcixvttc7naIx+5swWCw//IX6iHB3iJcdaKvUWZRKRB5fXsfGmqN4dlCNvm7LneYm1IQ0wjn6IFvTryxQdYhL63fxEJsGgTXYRsf67itmsRT4MrEebMPJVJdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4krFBzPsFpV6pLov/ll7JYDmQskZIAPmeddOjUQ0VLU=;
- b=NECCMqgVrQFpw8SSMIF0xSleoQst36F6Kws3DpWDGY1bHQkCsznm4MhnT4vPMfz+8fFTqGEciEKB3/Drog206qNLkLN3IjJD0n4628i6XQqIB8pKEImBidBi8BSqWJxiwv3sApWed7MD0oEca+b0OKuhVBi6Vm930GP3SdPUL73M56qGWzMYlpdpUE1zVTWX1b+LnY+ZzmyzGfzRdbJY7C38VFXEt1sAL06NnVBj0MiLIArkciVexHGZTZ2lw5FbjM0ZSYbNb67zeq72fd7SmQ2Qx4XNGezCN9oCi4v7+ExFMNQTC+rObomNkDCFZ2hL+zsHF/YhcN5DsBwTLBibMw==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from MN2PR12MB3613.namprd12.prod.outlook.com (2603:10b6:208:c1::17)
- by MN0PR12MB5931.namprd12.prod.outlook.com (2603:10b6:208:37e::7)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by LV1PR11MB8790.namprd11.prod.outlook.com (2603:10b6:408:2b1::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.17; Mon, 27 Oct
- 2025 17:47:25 +0000
-Received: from MN2PR12MB3613.namprd12.prod.outlook.com
- ([fe80::1b3b:64f5:9211:608b]) by MN2PR12MB3613.namprd12.prod.outlook.com
- ([fe80::1b3b:64f5:9211:608b%4]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
- 17:47:24 +0000
-Date: Mon, 27 Oct 2025 14:47:23 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- Christian Koenig <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [RFC v2 1/8] dma-buf: Add support for map/unmap APIs for
- interconnects
-Message-ID: <20251027174723.GB1018328@nvidia.com>
-References: <20251027044712.1676175-1-vivek.kasireddy@intel.com>
- <20251027044712.1676175-2-vivek.kasireddy@intel.com>
-Content-Type: text/plain; charset=us-ascii
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Mon, 27 Oct
+ 2025 17:53:08 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%3]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
+ 17:53:07 +0000
+Date: Mon, 27 Oct 2025 19:53:02 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Jani Nikula
+ <jani.nikula@intel.com>
+Subject: Re: [PATCH v3] drm/i915/display: Extend i915_display_info with
+ Type-C port details
+Message-ID: <aP-xfhVAaqYW0xLW@ideak-desk>
+References: <20251001225051.2258284-1-khaled.almahallawy@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20251027044712.1676175-2-vivek.kasireddy@intel.com>
-X-ClientProxiedBy: MN0P220CA0025.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:52e::33) To MN2PR12MB3613.namprd12.prod.outlook.com
- (2603:10b6:208:c1::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251001225051.2258284-1-khaled.almahallawy@intel.com>
+X-ClientProxiedBy: DU2PR04CA0283.eurprd04.prod.outlook.com
+ (2603:10a6:10:28c::18) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3613:EE_|MN0PR12MB5931:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06206041-0d64-4064-5d7f-08de1580e2eb
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|LV1PR11MB8790:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c5d00d6-1a50-48af-8da4-08de1581af95
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xyil4kC3SXf/ACaJWD/zlMjG7ukNRVLTWUA0FYPYKcf+QU9/xJuQcFFrO0Bo?=
- =?us-ascii?Q?8vJ42GwKjjhobEYpkPxdL9b2cmJq19yFH3qa2tlommuznAPo/cD2NdTicKMu?=
- =?us-ascii?Q?hiKuw/eHyt5HRlaz5OJ7Kek+BJlGSisrK+VvtIAuRYFuCxKyYPEwNylIxlKW?=
- =?us-ascii?Q?y2JzVcjVxgEQ5yEkasVBxapAjRxtnQ8MkJjt+2Z6ATiMVKzvoRvbDvd6qKSW?=
- =?us-ascii?Q?FiilRevcif6SZJgOlb3s7zHWkQyZ1RjvxMTBgO7whthxs/FEs+o7GDzhybYH?=
- =?us-ascii?Q?K5Auvu/JLSAMXAkweQloR+lU9OKrlnuddh29ScRvz5B9sinGgyP8XDpwMryc?=
- =?us-ascii?Q?hDMqGsIfqlkx06VJKpHLFQie3PxWqL5/WEBoX/0IL4BYXqlUtjQOAEtAmCRm?=
- =?us-ascii?Q?kziTgqsfyBxWEBKxxTQ6XnybQlN0+orjIUNLL/mYsTaUvK2+ok9iIsQdaAJC?=
- =?us-ascii?Q?MvBWqL/ZhNQpkMdY1zKhKh8qK4w3psCVYZo9DRI+8/aDq4P1AHBcTt5rS4Tm?=
- =?us-ascii?Q?pP3StvMkvTP7A1uh3+ePoJTfeaVyBUAJeEap0CVMApsOgrsBdoLHB5BdXZP5?=
- =?us-ascii?Q?Tx2HTDfbP30m3/ChjAh4f4ApKyQkAGD4CM0BbhH9M+PtHtzCb3KdZj01YWlv?=
- =?us-ascii?Q?D988OqGuzQnhM7kEvYrM1tgJsYgsX3x42VhnJg+TLF3Y25JFF1yzrT5Zqc4p?=
- =?us-ascii?Q?cMgnDaw000InOHoVr+wIod3k55bW/zfH5CW65ZlqVqPxirP5K3KO99Db93eN?=
- =?us-ascii?Q?vRvkZGvg1ZBeDMvSOM1qeEi5D2yuK1T2AB+qN3xsgCo+hIUtservFdYOKX5J?=
- =?us-ascii?Q?QBke9Uo6mYKSTjz5nFu9Dmx/YnAAvdV3Danimh/ier1gLMsN3sa1bBBhFinZ?=
- =?us-ascii?Q?crBPUDR2h2znKbZsG5V6KeMZ72G3RgMNkRA633g1yN6dqg8dGSfWGXQhyBb3?=
- =?us-ascii?Q?1CMQceUNHLtXBnWHqp+NFmCMu2LNxOeQpoghN7DIBxySknNTXKH83ZU9oQAJ?=
- =?us-ascii?Q?GxDZCruc58V5KdhBANI0sdaZijFrl8g83JChq9lI4Iug28t+q65g6q740o5U?=
- =?us-ascii?Q?XG7ZvGSEa5KF7ZnlIPX6Lsdo9H7+a26m/ZPaLY+1dk/D8xtpiXKjfpCnemAa?=
- =?us-ascii?Q?YdhRLtGQspMQ7SBq6x/X5U2D2efvUTsgZrKMU3R3UxoNs9B4tOrXzokuzm/y?=
- =?us-ascii?Q?x6vVzly/bo8zJ042udWRdyg5E8Nc2dTbmN3SnD931ojMa5DfaW6QtuF8SEt7?=
- =?us-ascii?Q?tlmyMpZLszaMcdkOX/BoVLU3nABftEXQJ7oiJ8Lad2H5GWS1wymRRdxxN9C5?=
- =?us-ascii?Q?n7XvXzjfxS/X/WyoDlxLifZ0hQL9bcF9FmngpGy4zRHOKiMGqhcYcfApmnYE?=
- =?us-ascii?Q?YdTxugy9uVWgKLB42l+vNgvAa6HH6QmtCbampoLf8Xbi1Mb3pDU1RkU4eNhZ?=
- =?us-ascii?Q?qA8oS5drP5ecCxN9fRmu/VOOSRk3xo40?=
+X-Microsoft-Antispam: BCL:0; ARA:13230040|376014|366016|10070799003|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?H/bow3sz53J0KE1NMutAElzyaI0NaeoF+Gysqm9F1+kUnHlXXfBdjsUWmu?=
+ =?iso-8859-1?Q?nZS+S26a3a1BlEJcHfDbMjAbPworUM1g+BQRdOxpvQo/ZWG8wi9t4h8FfG?=
+ =?iso-8859-1?Q?P8oQOZlUIBLUKQ1gYP2xBoFxTJI3f0zqTkf5WDItIIOVCi0U1FsEGylK+V?=
+ =?iso-8859-1?Q?bPN71bhQjF53h9ajr3+F/XnXneWS9HFzCYoXXkKCenH/q0MhZUjTeChJN3?=
+ =?iso-8859-1?Q?+/eDtBZDYB3k+svT5Yla62NuhQdd5W4vdWfviklhWdk3zvC/4Wxye5Y+cE?=
+ =?iso-8859-1?Q?qFQ+jJTOA4+T1BKsq/Jo8vC3ZK/2dgDLiBRgwWZq66uceWuWqVYTvc2e0N?=
+ =?iso-8859-1?Q?2nv2J2/hSxQrRbyVi/rjOAaCy/I9zw5aI2cSwiMGfi1fE9wDDL76Lqu6MB?=
+ =?iso-8859-1?Q?z8Y9bfRXaS81CqyyV6slFZIvmH7JDdNxg2e7bkDQ98jmextjSU3dGm4Juh?=
+ =?iso-8859-1?Q?4BPS1Y6h8TeOmaco66/6sLXQnaa5bmca/xVAROl6YG6VmvJ1SW44L25z2L?=
+ =?iso-8859-1?Q?nwsqc0r81vohuIAb3xloop9NEeI3S5OJqjHVV6HECy/V82wSS7w+Ij3NNx?=
+ =?iso-8859-1?Q?rzJ/JhKdZlA5R3sgJGRwQA62/D6h9zPRhEdXfrLNcxX9SQqA94vJVTqFTX?=
+ =?iso-8859-1?Q?2V5eybd//wrLhtD8G7nycSmpxCMhMCHv8Z8eM+9vS/ckAPoiMMA8v5VOgf?=
+ =?iso-8859-1?Q?f2xsuEZ+6f2/11Uem2LwGQQa15j7AZFgVkdaH7CrYV7TJq9cXb4A5edecc?=
+ =?iso-8859-1?Q?t9vucafMCdjZwCCZGuyzHpWYcVk+yDqX1BxwwvsEyN0Whs0xHtc4o12v0o?=
+ =?iso-8859-1?Q?XtbkCqVQ4FFDxrnGI9VzC1ZxpVcSo6sCQgRFAy32yY2AWhKkoUp65JFCqw?=
+ =?iso-8859-1?Q?xrkNpxucYDCE7Ju1ifRdF7V1IqwJUGpBuvs3QXmQiDnYVEFY6dbw1I9XdB?=
+ =?iso-8859-1?Q?mzTD0FX6M8LR6qOPFuOG2KDdsJ3QQRULMmeLeIL/RoR++gq9DzMs/UF9oA?=
+ =?iso-8859-1?Q?gP6w/r2BsUwzyUCNq82kTsz4+moSKpArCKqqpNdOS49v67FmkYAfjKK/Ry?=
+ =?iso-8859-1?Q?nJdnwYqirnlxEeLTV7Nhy3qFotkT+tX/kaOANjmn4DNsimnHnTZCByr5/m?=
+ =?iso-8859-1?Q?b8WzASvAOamlYC3s/XtKetzlNFOfcbhj5o2I2pgSB5tKeQahTH3mbx9HDo?=
+ =?iso-8859-1?Q?B9wWeh90oPPlgfwY5wxpMTS6JRbBUI1u9RUwUhrDENZT5K2uCJfgOlB0GU?=
+ =?iso-8859-1?Q?W3UrRwrBn8INa7JhvGa2HmRo2UhvaP7Y4f585RVJERvtOlbZA4cbL71X0s?=
+ =?iso-8859-1?Q?FUtpJYqqQgXtmWRftzapwF4YWCl6O3ra/cQJrX32YOMTwKFft0y3xSzIDb?=
+ =?iso-8859-1?Q?W1xH4TrUwIgDPVNUD/KzxP8sGPNLvgpMNH8pXJMItdBM8lRG8+rYdYhP/E?=
+ =?iso-8859-1?Q?Pslq1MZ0v/wVBue5DA9K1f8iIa0hVBlGR4TWYkxQQblWAWS0yzZc2M2LZ7?=
+ =?iso-8859-1?Q?y3bvx3yF1b2gVHL8iLjiGu?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3613.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(10070799003)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PQI2U8IghAKVHdIkHxpUIBWXURnpNrNy91n5eg6MTYNomUvypE0QOe0JkrhR?=
- =?us-ascii?Q?8HD7FxWLp05rl87K9TgeqI+E12nsqIllAH00hzNCdAFvGOMKSsj69QTePQ8q?=
- =?us-ascii?Q?mdV9os++y1ponWAuRE/R06FCMjGCAsy7ShptVY1slXonjEqthqAeUreL5Uc0?=
- =?us-ascii?Q?Y1Xy5zgGqq/lErfDmB9K1IoitifkWqWgJ3TamwifZLGKj5m1HnYOwPOYnPdn?=
- =?us-ascii?Q?YMgZmjYXqLrimYScc18Os36VRnRn6WNZr0nyK7WMYxMkfbtsk5Bxg0mBM3YC?=
- =?us-ascii?Q?in8AtOG1qwWdfUkVveVgVBJl+FqW1pp+540hxqyM2KcKv2LFLk6D6aUJZTyx?=
- =?us-ascii?Q?VI9xEw7fHed735punDDcifGpr/a2uEXVvMMl9tMPaxh+W7NeJFlTdjZojgL4?=
- =?us-ascii?Q?tPomj5y1NjKRjNyUW1z7vI5OeZWILEZudB5aC64stsOzxJ9RkO8P7DuQ0lP4?=
- =?us-ascii?Q?WAp63Y1G2VhqJHP2AemW/C57+eXVwFpN27LmOy1pumSuzSKZliri4JmE+WQV?=
- =?us-ascii?Q?MBX7YXX/1Mh7SUSxttmLf7xauz2hlGeA9J0OlMaUKjTMiDH617KGDn39TxCq?=
- =?us-ascii?Q?Q3AvcZNmGaG0qCmV7OCeEigekE/bweGUMKsbW8Jlsn21QXKOuj+LOyKWtdLY?=
- =?us-ascii?Q?EcTMOA0ffiIh0SxhDyfk3gqTP6I2u6vfrVW4UxicRl+SP42c+G0dcDhnR4eX?=
- =?us-ascii?Q?TSpoD7eyMUheqrJxZil8+0An5lthilXeH1y11W8ujzqjqQak8nCmPfevUC85?=
- =?us-ascii?Q?R/7akOsAJ3+VJGT2Vj5BOvxXHX+iYWujE8KOW1Ax5HvHYQW5pkZOk868CPuz?=
- =?us-ascii?Q?AzxnwCUbSbQkfTQmiOAhJVXxcEQQnqEIPIgEHpWZgjVA25/l2qdf7sJSW7ey?=
- =?us-ascii?Q?7c6z9u91qUFY3nqNiiPibyXo8vbuM/ADV8saIymlb+G6/3XyZRrVVg74LlSH?=
- =?us-ascii?Q?fHpvpMcIk8ks2eAD52p0cKhHp7O7zfNp5dJd+Ynrcc9OV3HJcNnB6G/9VE5t?=
- =?us-ascii?Q?Tt448E7du10N/ho1AMoaAhSZX/1TwUi5DQD6HEdzaMVKy8HgUtzmmho+oEkK?=
- =?us-ascii?Q?6OhjIXQjQt2ZU3Ow6VaUYT5eyN6oc4DeO5H/Z0VqxnSrnKZEL1ivBrYe2pYU?=
- =?us-ascii?Q?2aUsFSXlPQ+Gx1f5yJqR5I2yt/W1YIHurtwSe+M6Ia3jfp4Gell4btqsCpMV?=
- =?us-ascii?Q?a+PPqg9irtWIW9M+ogYS1aRDLr9kdUlqkJ3HGCfZDhBflqm26STuk/ISlK4Y?=
- =?us-ascii?Q?l3kkJWIVjbw/rC0shLeEiKob30FXYCdESLf9SWqiFFP2iQ0D5U26475ZViEA?=
- =?us-ascii?Q?h/vHuUihldwOUpinE+myc+cCdo2Iqcw8H/kay9HPoqirIpGPOKgXvroHviP6?=
- =?us-ascii?Q?X21o0OQPFuh3HkFKpVuZ0dyf153oitrhsWnB++hYA/c0gjSLSKjKq69tHEBD?=
- =?us-ascii?Q?Aq26UOqGSYcF1saGEyxVC3/dduHmBh8uVOSt3maP1g4TUgPr/y+I42CvVk0q?=
- =?us-ascii?Q?jf7WCMEkWQc1BWOBF1I5yzHDcvjkEZCGY6uXPjlCZ4uuzGcp/TChr7kRv3pU?=
- =?us-ascii?Q?gZl9Fol4d0QG+0Oi6F4=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06206041-0d64-4064-5d7f-08de1580e2eb
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3613.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ZFfq5WQRYI0odlx3BvytFQsh/xuakJOVUwR9IYFpZy67ItrMNBLLj47cjP?=
+ =?iso-8859-1?Q?Fzc9QZ+8UbRMkNiOmqBt95MYzqKqV98VVJJfQB2xwBI05u0YdGcRvKei+3?=
+ =?iso-8859-1?Q?AUm0lE5ZQF8NZT6WSBq34FftnOrCpBIr2jaXPux+bJJt6FEQnBnikmCoCw?=
+ =?iso-8859-1?Q?KUn//dXLAr/JPIoBhCFLWaumr/8xIUasHzteAnUtg4qMfDIujuj925/Ngv?=
+ =?iso-8859-1?Q?d5E2QLwLTFfc/DFp0Df6j1/XKvVgd+nFMLYs/3khBNi/gD2RcL16ETFJ3M?=
+ =?iso-8859-1?Q?DYuSUvWJOv3Bv3j5czRZBykybpGeN+lZ9rHxUT1bq7HjJmaPUjJ5D6TOpI?=
+ =?iso-8859-1?Q?HmIBJXLzjk685jY3ijkb/+Ak++F3SZFA/d8I0S0KBlGrpWgk04hZ19ErPQ?=
+ =?iso-8859-1?Q?yaPAdE5FzmPCoOiEPAzlz+gJT1b9EHHQuaiYsqhfN1dndqIz9kfPZ7/+wC?=
+ =?iso-8859-1?Q?XlvSOmKKRoLRUUpXpnN8GzeQ6uGOb586rPdSVZdFrgbZpMpAXgjbHCO8dW?=
+ =?iso-8859-1?Q?lF40yc9PmPp/8pfnWQOZPcFw9JTIr4YwS/K234Iwu7vb3OVrSt9ZAI+NBV?=
+ =?iso-8859-1?Q?NikKB/6ufncuIkRZawRvoVdi+kYhC05RTHgWR9Q0ZOT/3cRe1W4lFVyWyl?=
+ =?iso-8859-1?Q?p/aGZa2Dmoc8O+UFP2lWYeP8X8O63SqzQejeIxM88wbJ4SRSyfIv3yB8Zl?=
+ =?iso-8859-1?Q?fyDrsTQ0waSVeoK30l56iVQUyYpjY3/3lo/oS5tzcZ4I1osaFzMleI9h83?=
+ =?iso-8859-1?Q?Z2kbWuo3QV+ioW10negEC5MJoFNpTiu/mIj2cH4CGdgiIq0rEZw0sdcovN?=
+ =?iso-8859-1?Q?b4BQ5PW01k5Boe6GgBxlnx1JVY1ztz/N//JjXk+tfv9v8t+nX0yMwoTEuK?=
+ =?iso-8859-1?Q?NNL1KOcG0yHEGTLuqr/6gvCLExa7LR+UCYDuUASBLNnYy3g0z6gxCcaaZA?=
+ =?iso-8859-1?Q?3IWk1adjHXQK3kDF4rZe+L3y3r/DwIOIBbftYFFFD5i5sF78gH0eSF7laz?=
+ =?iso-8859-1?Q?dKFH2zT/+VAAX0ZgOo7/1wEIqBZM5Yy5NZnmRyIXl8izk4zrVc/97KG+e4?=
+ =?iso-8859-1?Q?vjJCZ13i2ohlCJBLeDrTTaW66ZGGGT5vnmVRMlnW05uiWtZd+P6ImAdouK?=
+ =?iso-8859-1?Q?Po7q05cr9dGGRLs+eBTbO+4NVuTSr0khqrCWZopk8tlU2TE2E4uKusZszv?=
+ =?iso-8859-1?Q?kUTWdq8k7uzgVGx1Knl7Xx2rB5NY6/PgYy09KAqFMhoE5yteXooNPdK6ad?=
+ =?iso-8859-1?Q?vfL7f4o3wrq+vhzTbAGKD6X3QcrzPSMrn6OtI2hQjLTDfL7kMz1aunRqzK?=
+ =?iso-8859-1?Q?ce+EHPjrft0Nv4eHup8A+fVmO/MHXNrs/nIgUIvLAbWeFIHgE2IL3lave+?=
+ =?iso-8859-1?Q?3IoCXlWVpcJAcfMIbi9B/E+mpj31/pzpl4tPl79oEq1A6B4h2jiIp1YMIT?=
+ =?iso-8859-1?Q?rfRUDDnUD+1xr66uFf/2IpNVzTsWyVkMB+XqU2xBmlOVgpwbXdlnKro8VG?=
+ =?iso-8859-1?Q?pyikaLMgnBLYJ5s1T2VQ9VfA2DlgxMmV3PeIa+vv+lMat4jqOrowcZpH+k?=
+ =?iso-8859-1?Q?WsVrxGK3r3n/oMkcpnrxRmoIUvkQRjyXPzm8VZcBZ7cWmOO/elMDwoNVQc?=
+ =?iso-8859-1?Q?IaRSzJG9p9ruoF0xRVjmmwqn306Bef/iZ+C5/1zhyjY6gCR11eOWniyzIc?=
+ =?iso-8859-1?Q?7Cj5vB2h2JWVo9ZGK9fp+MbibgVFMz2A3UnePscR?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c5d00d6-1a50-48af-8da4-08de1581af95
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 17:47:24.3230 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 17:53:07.6012 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zJ8WN9pBjBSwLLni8oSawo5SZddhxf2cvKcqzdPCQGpzlXQJu9ADtPxgZ2c/yM6V
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5931
+X-MS-Exchange-CrossTenant-UserPrincipalName: p01e/5LmQyjnfUCneWPSyYkvuIrOWmnQlPRUj04PXtfKT+cC0zMJl/vyliemuxiUc5mAzNwf1v/lKU28vCM6VA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR11MB8790
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,75 +178,123 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Oct 26, 2025 at 09:44:13PM -0700, Vivek Kasireddy wrote:
-> For the map operation, the dma-buf core will create an xarray but
-> the exporter needs to populate it with the interconnect specific
-> addresses. And, similarly for unmap, the exporter is expected to
-> cleanup the individual entries of the xarray.
+On Wed, Oct 01, 2025 at 03:50:51PM -0700, Khaled Almahallawy wrote:
+> Expose key Type-C port data in i915_display_info to make it easier to
+> understand the port configuration and active mode, especially whether
+> the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+> 
+> Tested in DP-Alt, TBT-Alt, SST, and MST.
+> 
+> Expected output:
+> 
+> [CONNECTOR:290:DP-2]: status: connected
+> 	TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+> 	physical dimensions: 600x340mm
+> ...
+> [CONNECTOR:263:DP-5]: status: connected
+> 	TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+> 	physical dimensions: 610x350mm
+> 
+> v2: Use drm_printer (Ville)
+>     Lock/Unlock around the printf (Imre)
+> v3: Forward Declaration drm_printer struct (Jani)
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c |  5 +++++
+>  drivers/gpu/drm/i915/display/intel_tc.c              | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_tc.h              |  3 +++
+>  3 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 10dddec3796f..5f5f1c50adfa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -47,6 +47,7 @@
+>  #include "intel_psr_regs.h"
+>  #include "intel_vdsc.h"
+>  #include "intel_wm.h"
+> +#include "intel_tc.h"
+>  
+>  static struct intel_display *node_to_intel_display(struct drm_info_node *node)
+>  {
+> @@ -246,6 +247,7 @@ static void intel_connector_info(struct seq_file *m,
+>  {
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  	const struct drm_display_mode *mode;
+> +	struct drm_printer p = drm_seq_file_printer(m);
+>  
+>  	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
+>  		   connector->base.id, connector->name,
+> @@ -254,6 +256,9 @@ static void intel_connector_info(struct seq_file *m,
+>  	if (connector->status == connector_status_disconnected)
+>  		return;
+>  
+> +	if (intel_encoder_is_tc(intel_attached_encoder(intel_connector)))
+> +		intel_tc_info(&p, intel_attached_dig_port(intel_connector));
 
-I don't think we should limit this to xarrays, nor do I think it is a
-great datastructure for what is usually needed here..
+An MST connector doesn't have an attached encoder if it's not enabled,
+so the above would lead to a NULL deref in that case.
 
-I just posted the patches showing what iommufd needs, and it wants
-something like
+Could you instead - in the connector_type switch below - get dig_port
+via dp_to_dig_port(intel_attached_dp()) for DP and eDP and
+hdmi_to_dig_port(intel_attached_hdmi()) for HDMI? You could print then
+the TC info after the switch block if dig_port != NULL and
+intel_encoder_is_tc(&dig_port->base).
 
-struct mapping {
-   struct p2p_provider *provider;
-   size_t nelms;
-   struct phys_vec *phys;
-};
-
-Which is not something that make sense as an xarray.
-
-I think the interconnect should have its own functions for map/unmap,
-ie instead of trying to have them as a commmon
-dma_buf_interconnect_ops do something like
-
-struct dma_buf_interconnect_ops {
-        const char *name;
-        bool (*supports_interconnects)(struct dma_buf_attachment *attach,
-                                      const struct dma_buf_interconnect_match *,
-                                      unsigned int num_ics);
-};
-
-struct dma_buf_iov_interconnect_ops {
-     struct dma_buf_interconnect_ops ic_ops;
-     struct xx *(*map)(struct dma_buf_attachment *attach,
-     	 		   unsigned int *bar_number,
-			   size_t *nelms);
-     // No unmap for iov
-};
-
-static inline struct xx *dma_buf_iov_map(struct dma_buf_attachment *attach,
-     	 		   unsigned int *bar_number,
-			   size_t *nelms)
-{
-     return container_of(attach->ic_ops, struct dma_buf_iov_interconnect_ops, ic_ops)->map(
-                 attach, bar_number, nelms));
-}
-
-> +/**
-> + * dma_buf_attachment_is_dynamic - check if the importer can handle move_notify.
-> + * @attach: the attachment to check
-> + *
-> + * Returns true if a DMA-buf importer has indicated that it can handle dmabuf
-> + * location changes through the move_notify callback.
-> + */
-> +static inline bool
-> +dma_buf_attachment_is_dynamic(struct dma_buf_attachment *attach)
+> +
+>  	seq_printf(m, "\tphysical dimensions: %dx%dmm\n",
+>  		   connector->display_info.width_mm,
+>  		   connector->display_info.height_mm);
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index c4a5601c5107..e666d25ea24a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -1703,6 +1703,18 @@ void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
+>  	mutex_unlock(&tc->lock);
+>  }
+>  
+> +void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port)
 > +{
-> +	return !!attach->importer_ops;
+> +	struct intel_tc_port *tc = to_tc_port(dig_port);
+> +
+> +	mutex_lock(&tc->lock);
+> +	drm_printf(p, "\tTC Port: %s mode: %s pin assignment: %c max lanes: %d\n", tc->port_name,
+> +		   tc_port_mode_name(tc->mode),
+> +		   pin_assignment_name(tc->pin_assignment),
+> +		   tc->max_lane_count);
+> +	mutex_unlock(&tc->lock);
 > +}
-
-Why is this in this patch?
-
-I also think this patch should be second in the series, it makes more
-sense to figure out how to attach with an interconnect then show how
-to map/unmap with that interconnect
-
-Like I'm not sure why this introduces allow_ic?
-
-Jason
+> +
+>  /*
+>   * The type-C ports are different because even when they are connected, they may
+>   * not be available/usable by the graphics driver: see the comment on
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
+> index fff8b96e4972..6719aea5bd58 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.h
+> @@ -8,6 +8,7 @@
+>  
+>  #include <linux/types.h>
+>  
+> +struct drm_printer;
+>  struct intel_crtc_state;
+>  struct intel_digital_port;
+>  struct intel_encoder;
+> @@ -113,4 +114,6 @@ void intel_tc_port_cleanup(struct intel_digital_port *dig_port);
+>  
+>  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port);
+>  
+> +void intel_tc_info(struct drm_printer *p,  struct intel_digital_port *dig_port);
+> +
+>  #endif /* __INTEL_TC_H__ */
+> -- 
+> 2.43.0
+> 
