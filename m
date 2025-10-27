@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 700F0CCD1A5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 05:58:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCBD9CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 06:04:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4A8710E346;
-	Mon, 27 Oct 2025 05:58:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WhWHhPlh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B77A610E13E
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 05:58:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761544681; x=1793080681;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=X/jJufsOb1FZ4I4BtVRxkOPnOmPj+uKQCN/zfxsSZCg=;
- b=WhWHhPlhKnDnbZU84CMejqTFZThRVL1FkMSoGwOUz2MddtoIrfpt26Ie
- ZDNWCApCJV5GKlBLLuJIicIb5K8W5J1Va80FNYOHx4uUBDl/inWRuG2B/
- MGS8USAN7kIzVXZVYeYrycbviw6g9bEk8Gq5fuaNO+KY4RKUnqkA3N3y5
- 43FmrKTfAtKW9vphOsnLyMPTBPFkj2jTuXz4KA6Uofqisvqs91hVg0NW1
- umDWIEcJY6rSn2D0aQh9hMXBk13cj/ZbYBDG3O+CfmYYosDnHJAT4SjIi
- 2ZsKm88iEM+Qb3i8wLtHNnNgv3eQBsF0xTmTkv5n77wzcNrsmeG0AZ9tK Q==;
-X-CSE-ConnectionGUID: 7WIepd29TbSRWvB+XT86Uw==
-X-CSE-MsgGUID: Esd52BeBSKS0RDeLBgkfeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73905953"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="73905953"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2025 22:58:01 -0700
-X-CSE-ConnectionGUID: QXNaTwoiSXCQIyTsblp3Xg==
-X-CSE-MsgGUID: iQyJ3rWzRq2lgHL0m6DlQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="185308486"
-Received: from lucas-s2600cw.jf.intel.com ([10.54.55.69])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2025 22:58:01 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2 7/8] drm/xe/gt_throttle: Drop individual show functions
-Date: Sun, 26 Oct 2025 22:57:19 -0700
-Message-ID: <20251026-gt-throttle-cri-v2-7-41f8288a71a7@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
-References: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7CA10E0CE;
+	Mon, 27 Oct 2025 06:04:27 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69EC010E0CE;
+ Mon, 27 Oct 2025 06:04:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-50d74
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_CRI_support_in_?=
+ =?utf-8?q?gt=5Fthrottle_+_refactors_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Oct 2025 06:04:26 -0000
+Message-ID: <176154506642.56453.8866932595811645243@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
+In-Reply-To: <20251026-gt-throttle-cri-v2-0-41f8288a71a7@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,318 +36,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-They are all doing the same thing with the mask being the param. Just
-declare our own attribute to store the mask and provide a single
-function.
+== Series Details ==
 
-Another common pattern is to define the show function in the macro,
-however on follow up work the mask may be used for returning more
-information, so it'd need to be stored in any case.
+Series: drm/xe: CRI support in gt_throttle + refactors (rev2)
+URL   : https://patchwork.freedesktop.org/series/156437/
+State : warning
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_throttle.c | 254 +++++++++---------------------------
- 1 file changed, 62 insertions(+), 192 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle.c b/drivers/gpu/drm/xe/xe_gt_throttle.c
-index 8647d2c997347..fa7068aac3344 100644
---- a/drivers/gpu/drm/xe/xe_gt_throttle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle.c
-@@ -54,6 +54,11 @@
-  * - ``reason_vr_tdc``: VR TDC
-  */
- 
-+struct throttle_attribute {
-+	struct kobj_attribute attr;
-+	u32 mask;
-+};
-+
- static struct xe_gt *dev_to_gt(struct device *dev)
- {
- 	return kobj_to_gt(dev->kobj.parent);
-@@ -64,6 +69,11 @@ static struct xe_gt *throttle_to_gt(struct kobject *kobj)
- 	return dev_to_gt(kobj_to_dev(kobj));
- }
- 
-+static struct throttle_attribute *kobj_attribute_to_throttle(struct kobj_attribute *attr)
-+{
-+	return container_of(attr, struct throttle_attribute, attr);
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 518e6112a32408998b8e7d9e62fe8c90bc46d747
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Sun Oct 26 22:57:20 2025 -0700
+
+    drm/xe/gt_throttle: Avoid TOCTOU when monitoring reasons
+    
+    It's currently not possible to safely monitor if there's throttling
+    happening and what are the reasons. The approach of reading the status
+    and then reading the reasons is not reliable as by the time sysadmin
+    reads the reason, the throttling could not be happening anymore.
+    
+    Previous tentative to fix that[1] was breaking the ABI and potentially
+    sysadmin's scripts. This takes a different approach of adding and
+    documenting the additional attribute. It's still valuable, though
+    redundant, to provide the simpler 0/1 interface.
+    
+    In order to avoid userspace knowledge on the bitmask meaning and to be
+    able to maintain the kernel side in sync with possible changes in
+    future, just walk the attribute group and check what are the masks that
+    match the value read.
+    
+    [1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@intel.com/
+    
+    Cc: Raag Jadav <raag.jadav@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch c03916cb446b6eefe91538599775bb54bf98238c drm-intel
+ed47bf0f340b drm/xe/cri: Add new performance limit reasons bits
+-:204: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#204: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:278:
 +}
-+
- u32 xe_gt_throttle_get_limit_reasons(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -92,214 +102,74 @@ static bool is_throttled_by(struct xe_gt *gt, u32 mask)
- 	return xe_gt_throttle_get_limit_reasons(gt) & mask;
- }
- 
--static ssize_t status_show(struct kobject *kobj,
-+static ssize_t reason_show(struct kobject *kobj,
- 			   struct kobj_attribute *attr, char *buff)
- {
-+	struct throttle_attribute *ta = kobj_attribute_to_throttle(attr);
- 	struct xe_gt *gt = throttle_to_gt(kobj);
- 
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, U32_MAX));
--}
--
--static ssize_t reason_pl1_show(struct kobject *kobj,
--			       struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_1_MASK));
--}
--
--static ssize_t reason_pl2_show(struct kobject *kobj,
--			       struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_2_MASK));
--}
--
--static ssize_t reason_pl4_show(struct kobject *kobj,
--			       struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, POWER_LIMIT_4_MASK));
--}
--
--static ssize_t reason_thermal_show(struct kobject *kobj,
--				   struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, THERMAL_LIMIT_MASK));
--}
--
--static ssize_t reason_soc_thermal_show(struct kobject *kobj,
--				       struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, SOC_THERMAL_LIMIT_MASK));
--}
--
--static ssize_t reason_prochot_show(struct kobject *kobj,
--				   struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PROCHOT_MASK));
--}
--
--static ssize_t reason_ratl_show(struct kobject *kobj,
--				struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, RATL_MASK));
--}
--
--static ssize_t reason_vr_thermalert_show(struct kobject *kobj,
--					 struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_THERMALERT_MASK));
--}
--
--static ssize_t reason_soc_avg_thermal_show(struct kobject *kobj,
--					   struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, SOC_AVG_THERMAL_MASK));
--}
--
--static ssize_t reason_vr_tdc_show(struct kobject *kobj,
--				  struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_TDC_MASK));
--}
--
--static ssize_t reason_fastvmode_show(struct kobject *kobj,
--				     struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, FASTVMODE_MASK));
--}
--
--static ssize_t reason_mem_thermal_show(struct kobject *kobj,
--				       struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, MEM_THERMAL_MASK));
--}
--
--static ssize_t reason_vr_thermal_show(struct kobject *kobj,
--				      struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, VR_THERMAL_MASK));
--}
--
--static ssize_t reason_iccmax_show(struct kobject *kobj,
--				  struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, ICCMAX_MASK));
--}
--
--static ssize_t reason_psys_pl1_show(struct kobject *kobj,
--				    struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_PL1_MASK));
--}
--
--static ssize_t reason_psys_pl2_show(struct kobject *kobj,
--				    struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_PL2_MASK));
--}
--
--static ssize_t reason_p0_freq_show(struct kobject *kobj,
--				   struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, P0_FREQ_MASK));
-+	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, ta->mask));
- }
- 
--static ssize_t reason_psys_crit_show(struct kobject *kobj,
--				     struct kobj_attribute *attr, char *buff)
--{
--	struct xe_gt *gt = throttle_to_gt(kobj);
--
--	return sysfs_emit(buff, "%u\n", is_throttled_by(gt, PSYS_CRIT_MASK));
--}
--
--#define THROTTLE_ATTR_RO(name) \
--	struct kobj_attribute attr_##name = __ATTR_RO(name)
-+#define THROTTLE_ATTR_RO(name, _mask)				\
-+	struct throttle_attribute attr_##name =	{		\
-+		.attr = __ATTR(name, 0444, reason_show, NULL),	\
-+		.mask = _mask,					\
-+	}
- 
--static THROTTLE_ATTR_RO(status);
--static THROTTLE_ATTR_RO(reason_pl1);
--static THROTTLE_ATTR_RO(reason_pl2);
--static THROTTLE_ATTR_RO(reason_pl4);
--static THROTTLE_ATTR_RO(reason_thermal);
--static THROTTLE_ATTR_RO(reason_prochot);
--static THROTTLE_ATTR_RO(reason_ratl);
--static THROTTLE_ATTR_RO(reason_vr_thermalert);
--static THROTTLE_ATTR_RO(reason_vr_tdc);
-+static THROTTLE_ATTR_RO(status, U32_MAX);
-+static THROTTLE_ATTR_RO(reason_pl1, POWER_LIMIT_1_MASK);
-+static THROTTLE_ATTR_RO(reason_pl2, POWER_LIMIT_2_MASK);
-+static THROTTLE_ATTR_RO(reason_pl4, POWER_LIMIT_4_MASK);
-+static THROTTLE_ATTR_RO(reason_thermal, THERMAL_LIMIT_MASK);
-+static THROTTLE_ATTR_RO(reason_prochot, PROCHOT_MASK);
-+static THROTTLE_ATTR_RO(reason_ratl, RATL_MASK);
-+static THROTTLE_ATTR_RO(reason_vr_thermalert, VR_THERMALERT_MASK);
-+static THROTTLE_ATTR_RO(reason_vr_tdc, VR_TDC_MASK);
- 
- static struct attribute *throttle_attrs[] = {
--	&attr_status.attr,
--	&attr_reason_pl1.attr,
--	&attr_reason_pl2.attr,
--	&attr_reason_pl4.attr,
--	&attr_reason_thermal.attr,
--	&attr_reason_prochot.attr,
--	&attr_reason_ratl.attr,
--	&attr_reason_vr_thermalert.attr,
--	&attr_reason_vr_tdc.attr,
-+	&attr_status.attr.attr,
-+	&attr_reason_pl1.attr.attr,
-+	&attr_reason_pl2.attr.attr,
-+	&attr_reason_pl4.attr.attr,
-+	&attr_reason_thermal.attr.attr,
-+	&attr_reason_prochot.attr.attr,
-+	&attr_reason_ratl.attr.attr,
-+	&attr_reason_vr_thermalert.attr.attr,
-+	&attr_reason_vr_tdc.attr.attr,
- 	NULL
- };
- 
--static THROTTLE_ATTR_RO(reason_vr_thermal);
--static THROTTLE_ATTR_RO(reason_soc_thermal);
--static THROTTLE_ATTR_RO(reason_mem_thermal);
--static THROTTLE_ATTR_RO(reason_iccmax);
--static THROTTLE_ATTR_RO(reason_soc_avg_thermal);
--static THROTTLE_ATTR_RO(reason_fastvmode);
--static THROTTLE_ATTR_RO(reason_psys_pl1);
--static THROTTLE_ATTR_RO(reason_psys_pl2);
--static THROTTLE_ATTR_RO(reason_p0_freq);
--static THROTTLE_ATTR_RO(reason_psys_crit);
-+static THROTTLE_ATTR_RO(reason_vr_thermal, VR_THERMAL_MASK);
-+static THROTTLE_ATTR_RO(reason_soc_thermal, SOC_THERMAL_LIMIT_MASK);
-+static THROTTLE_ATTR_RO(reason_mem_thermal, MEM_THERMAL_MASK);
-+static THROTTLE_ATTR_RO(reason_iccmax, ICCMAX_MASK);
-+static THROTTLE_ATTR_RO(reason_soc_avg_thermal, SOC_AVG_THERMAL_MASK);
-+static THROTTLE_ATTR_RO(reason_fastvmode, FASTVMODE_MASK);
-+static THROTTLE_ATTR_RO(reason_psys_pl1, PSYS_PL1_MASK);
-+static THROTTLE_ATTR_RO(reason_psys_pl2, PSYS_PL2_MASK);
-+static THROTTLE_ATTR_RO(reason_p0_freq, P0_FREQ_MASK);
-+static THROTTLE_ATTR_RO(reason_psys_crit, PSYS_CRIT_MASK);
- 
- static struct attribute *cri_throttle_attrs[] = {
- 	/* Common */
--	&attr_status.attr,
--	&attr_reason_pl1.attr,
--	&attr_reason_pl2.attr,
--	&attr_reason_pl4.attr,
--	&attr_reason_prochot.attr,
--	&attr_reason_ratl.attr,
-+	&attr_status.attr.attr,
-+	&attr_reason_pl1.attr.attr,
-+	&attr_reason_pl2.attr.attr,
-+	&attr_reason_pl4.attr.attr,
-+	&attr_reason_prochot.attr.attr,
-+	&attr_reason_ratl.attr.attr,
- 	/* CRI */
--	&attr_reason_vr_thermal.attr,
--	&attr_reason_soc_thermal.attr,
--	&attr_reason_mem_thermal.attr,
--	&attr_reason_iccmax.attr,
--	&attr_reason_soc_avg_thermal.attr,
--	&attr_reason_fastvmode.attr,
--	&attr_reason_psys_pl1.attr,
--	&attr_reason_psys_pl2.attr,
--	&attr_reason_p0_freq.attr,
--	&attr_reason_psys_crit.attr,
-+	&attr_reason_vr_thermal.attr.attr,
-+	&attr_reason_soc_thermal.attr.attr,
-+	&attr_reason_mem_thermal.attr.attr,
-+	&attr_reason_iccmax.attr.attr,
-+	&attr_reason_soc_avg_thermal.attr.attr,
-+	&attr_reason_fastvmode.attr.attr,
-+	&attr_reason_psys_pl1.attr.attr,
-+	&attr_reason_psys_pl2.attr.attr,
-+	&attr_reason_p0_freq.attr.attr,
-+	&attr_reason_psys_crit.attr.attr,
- 	NULL
- };
- 
++static struct kobj_attribute attr_reason_soc_thermal = __ATTR_RO(reason_soc_thermal);
 
--- 
-2.51.0
+-:222: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#222: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:322:
++}
++static struct kobj_attribute attr_reason_soc_avg_thermal = __ATTR_RO(reason_soc_avg_thermal);
+
+-:240: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#240: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:344:
++}
++static struct kobj_attribute attr_reason_fastvmode = __ATTR_RO(reason_fastvmode);
+
+-:251: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#251: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:355:
++}
++static struct kobj_attribute attr_reason_mem_thermal = __ATTR_RO(reason_mem_thermal);
+
+-:262: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#262: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:366:
++}
++static struct kobj_attribute attr_reason_vr_thermal = __ATTR_RO(reason_vr_thermal);
+
+-:273: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#273: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:377:
++}
++static struct kobj_attribute attr_reason_iccmax = __ATTR_RO(reason_iccmax);
+
+-:284: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#284: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:388:
++}
++static struct kobj_attribute attr_reason_psys_pl1 = __ATTR_RO(reason_psys_pl1);
+
+-:295: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#295: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:399:
++}
++static struct kobj_attribute attr_reason_psys_pl2 = __ATTR_RO(reason_psys_pl2);
+
+-:306: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#306: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:410:
++}
++static struct kobj_attribute attr_reason_p0_freq = __ATTR_RO(reason_p0_freq);
+
+-:317: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#317: FILE: drivers/gpu/drm/xe/xe_gt_throttle.c:421:
++}
++static struct kobj_attribute attr_reason_psys_crit = __ATTR_RO(reason_psys_crit);
+
+total: 0 errors, 0 warnings, 10 checks, 354 lines checked
+596215eac759 drm/xe/gt_throttle: Tidy up perf reasons reading
+3112c5a24b89 drm/xe/gt_throttle: Always read and mask
+137c111dcbb7 drm/xe/gt_throttle: Add throttle_to_gt()
+90c45b3abb40 drm/xe/gt_throttle: Tidy up attribute definition
+e34179d2e1fa drm/xe: Improve freq and throttle documentation
+6eb187106e7a drm/xe/gt_throttle: Drop individual show functions
+518e6112a324 drm/xe/gt_throttle: Avoid TOCTOU when monitoring reasons
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#21: 
+[1] https://lore.kernel.org/intel-xe/20241025092238.167042-1-raag.jadav@intel.com/
+
+total: 0 errors, 1 warnings, 0 checks, 84 lines checked
+
 
