@@ -4,27 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7A62CCF9EA
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 10:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0ED8CCF9E0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 11:03:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5BF10E438;
-	Mon, 27 Oct 2025 10:47:13 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE9910E069;
- Mon, 27 Oct 2025 10:47:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8964471863985502142=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67A2610E438;
+	Mon, 27 Oct 2025 11:03:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RwWC71/r";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B4610E069
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 11:03:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1761563019;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=hjJGd+xRluh8TvgBIIOUFgfphdYzFcE/H2vX7k9zbLs=;
+ b=RwWC71/rUtvY33zJ0vhpOjUJNzwDFpjg3dImhDjg+TvO/1BFkBsa3okxL6zWjALkOPI78L
+ aoRbktXaG1PUYdqybTGfnmw3mni3pRR+kEY/GdL3kteUmZEWUOSSpypfSjJL8OBaevROns
+ LSct+KlKUdqGtP9r0dNCxeMaqYSlpJA=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-416--zJdeFWRPUGakfdqlRAUmg-1; Mon, 27 Oct 2025 07:03:36 -0400
+X-MC-Unique: -zJdeFWRPUGakfdqlRAUmg-1
+X-Mimecast-MFC-AGG-ID: -zJdeFWRPUGakfdqlRAUmg_1761563015
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-b6d7ad47b58so231524266b.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 04:03:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761563015; x=1762167815;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3VOA8iwb+iUQs8ydqbBHXT4w/Fw9C+W1CtV9KYqI4ew=;
+ b=AYZ404efYCTZNewzmCBpE/shFhp0QPd/7xhXcAO+3UDax1KbeFYL0+FK2KiEADzTsv
+ 6AolX5znelBv3V0bZBu1QLDSDySlT+R0daVmK21vPjidhsCP/kchiYJm3PD0TXfzEKCd
+ R7R5p9QqoPabkpSEmPRkGga2CsBraU36F05Yl3s3t4Bmy7RSnFkcG6THdSsCuDHtyb6S
+ 4WsBtPaN7TZ5HGy/iswmWuFcvX8uPw3Z74fYN3InkNbnD+umTJ1EnyqlvbarhI6SiSAP
+ voT805oES3gI3AOUr6NvKSdYwVq7fHquqQDSgpBXx5QcdD5EP+JxKHz5NcpkG7RjtI6z
+ eCkw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW/2/8XtQPzEqK1QMUZhY9Rm8WpJnmi0gQACF44ShyoN2IUABSy+w2UxHYJQEwfhmse6AUCeBmC2g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyCmGU2ssOdLAHKj+4sz8RmtUElg/ZePydT1ciT3vm8g929fiLz
+ Jw2qghmW/7q//BZRrDvxwIT/Os9o703QX1jEmM9jMhieCN8o3IO6rvRgpF7rqQguwX/2BzZi50V
+ 1/Z6b0RzL5El0EVfm/9x2kscg8a7gNrERgDpLX7DdW2j83GtYJ/7Lhe255ck5y1txSPSR
+X-Gm-Gg: ASbGncvj9YFKucslTryA8jIxlHHpoS1Yx0O1WYHuWyk3hhB4v9j3LL0sUo5Gn/num/Y
+ P143ga1eRlEVtst52RYc3vwgCqYeFll60flSr2FPB8GJEMbpos0L/qh7LwDsqv1mcql4SLJbOym
+ UOcvgpcaXFYNTQHc1AavENGXBMAAQ4YkoQPd2/ao21CMyNWa4W/Wboox0zhWOwMDDTJZocjFfxa
+ 0ZSnE0ZcqDBMXg+f8vQwnK4b+vfJXGLAFWF+2NnpY8cUWaEZSQawW2xuXeQI/lvAIjrzKI48wgW
+ NLKK91AwRh2PgGn94g7odU0stUI5LxXFCp9riCp8Wa+HYictx8jF4rMDsF/ptr6tyGOhkab3df3
+ uZ3n8ew03u4mFi/jGBBk1l5LWDRJoYm5gkNpn4Lr9RIKGJw==
+X-Received: by 2002:a17:907:9481:b0:b6d:7231:3276 with SMTP id
+ a640c23a62f3a-b6d723137b3mr1153496866b.19.1761563015421; 
+ Mon, 27 Oct 2025 04:03:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHUFMg6uHtWQ6nsuokdIYUmtrDteINde4b5Wb2IzCEGU0OYXwFstexCQN3pMUgJ+f03YLyzNw==
+X-Received: by 2002:a17:907:9481:b0:b6d:7231:3276 with SMTP id
+ a640c23a62f3a-b6d723137b3mr1153494666b.19.1761563015048; 
+ Mon, 27 Oct 2025 04:03:35 -0700 (PDT)
+Received: from ?IPv6:2001:16b8:3d68:200:6e75:6a50:1d0f:8f29?
+ ([2001:16b8:3d68:200:6e75:6a50:1d0f:8f29])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b6d8533e7c6sm715209066b.16.2025.10.27.04.03.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Oct 2025 04:03:34 -0700 (PDT)
+Message-ID: <2336a1282aa6a44f23a9100d2553b8032f44f3bd.camel@redhat.com>
+Subject: Re: [RFC PATCH 2/3] drm/sched: Taint workqueues with reclaim
+From: Philipp Stanner <pstanner@redhat.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: jiangshanlai@gmail.com, tj@kernel.org, simona.vetter@ffwll.ch, 
+ christian.koenig@amd.com, dakr@kernel.org
+Date: Mon, 27 Oct 2025 12:03:33 +0100
+In-Reply-To: <20251021213952.746900-3-matthew.brost@intel.com>
+References: <20251021213952.746900-1-matthew.brost@intel.com>
+ <20251021213952.746900-3-matthew.brost@intel.com>
+User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Testing_PREEMPT=5FRT_with_d?=
- =?utf-8?q?isabling_interrupts_in_the_most_critical_section=2E_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Oct 2025 10:47:12 -0000
-Message-ID: <176156203225.57205.8126272397215806064@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251023085601.90831-1-dev@lankhorst.se>
-In-Reply-To: <20251023085601.90831-1-dev@lankhorst.se>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: UuedfIeUG65IcABAarDRfruq0M1CsHwsgFEgWE8AZoI_1761563015
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,157 +100,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8964471863985502142==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-10-21 at 14:39 -0700, Matthew Brost wrote:
+> Multiple drivers seemingly do not understand the role of DMA fences in
+> the reclaim path. As a result,=C2=A0
+>=20
 
-== Series Details ==
+result of what? The "role of DMA fences"?
 
-Series: Testing PREEMPT_RT with disabling interrupts in the most critical section. (rev3)
-URL   : https://patchwork.freedesktop.org/series/156134/
-State : failure
+> DRM scheduler workqueues, which are part
+> of the fence signaling path, must not allocate memory.
+>=20
 
-== Summary ==
+Should be phrased differently. The actual rule here is "The GPU
+scheduler's workqueues can be used for memory reclaim. Because of that,
+work items on these queues must not allocate memory."
 
-CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -> xe-pw-156134v3_BAT
-====================================================
+--
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-156134v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-156134v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-156134v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-ptl-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-1/igt@kms_force_connector_basic@force-connector-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-ptl-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@xe_module_load@load:
-    - bat-ptl-2:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-2/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-ptl-2/igt@xe_module_load@load.html
-
-  
+In general, I often read in commits or discussions about this or that
+"rule", especially "DMA fence rules", but they're often not detailed
+very much.
 
 
-Build changes
--------------
+P.
 
-  * Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -> xe-pw-156134v3
+>  This patch
+> teaches lockdep to recognize these rules in order to catch driver-side
+> bugs.
+>=20
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 3 +++
+> =C2=A01 file changed, 3 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/sch=
+eduler/sched_main.c
+> index c39f0245e3a9..676484dd3ea3 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -1368,6 +1368,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,=
+ const struct drm_sched_init_
+> =C2=A0=09atomic64_set(&sched->job_id_count, 0);
+> =C2=A0=09sched->pause_submit =3D false;
+> =C2=A0
+> +=09taint_reclaim_workqueue(sched->submit_wq, GFP_KERNEL);
+> +=09taint_reclaim_workqueue(sched->timeout_wq, GFP_KERNEL);
+> +
+> =C2=A0=09sched->ready =3D true;
+> =C2=A0=09return 0;
+> =C2=A0Out_unroll:
 
-  IGT_8596: 8596
-  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c
-  xe-pw-156134v3: 156134v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/index.html
-
---===============8964471863985502142==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Testing PREEMPT_RT with disabling interrupts in the most critical section. (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156134/">https://patchwork.freedesktop.org/series/156134/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -&gt; xe-pw-156134v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-156134v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-156134v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-156134v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-1/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-ptl-1/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3988-c03916cb446b6eefe91538599775bb54bf98238c/bat-ptl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156134v3/bat-ptl-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -&gt; xe-pw-156134v3</li>
-</ul>
-<p>IGT_8596: 8596<br />
-  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c<br />
-  xe-pw-156134v3: 156134v3</p>
-
-</body>
-</html>
-
---===============8964471863985502142==--
