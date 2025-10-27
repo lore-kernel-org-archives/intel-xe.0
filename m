@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C902CCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 23:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47960CCF9E5
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 23:48:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E9C710E1B9;
-	Mon, 27 Oct 2025 23:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC18910E1B9;
+	Mon, 27 Oct 2025 23:48:28 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C74110E1B9;
- Mon, 27 Oct 2025 23:43:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2074892205679058780=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 532B610E009;
+ Mon, 27 Oct 2025 23:48:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Change_asserti?=
- =?utf-8?q?on_to_error_on_huc_authentication_failure_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_dma-fence-array_order?=
+ =?utf-8?q?ing?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Oct 2025 23:43:11 -0000
-Message-ID: <176160859150.60401.7374597677940617956@97596180aaec>
+Date: Mon, 27 Oct 2025 23:48:28 -0000
+Message-ID: <176160890833.60401.13745528476847439050@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251027214212.2856903-1-zhanjun.dong@intel.com>
-In-Reply-To: <20251027214212.2856903-1-zhanjun.dong@intel.com>
+References: <20251027214252.2455093-1-matthew.brost@intel.com>
+In-Reply-To: <20251027214252.2455093-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,54 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2074892205679058780==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uc: Change assertion to error on huc authentication failure (rev3)
-URL   : https://patchwork.freedesktop.org/series/156439/
-State : success
+Series: Fix dma-fence-array ordering
+URL   : https://patchwork.freedesktop.org/series/156613/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e_BAT -> xe-pw-156439v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ee416b51f78162bdc823cc1a5a56e5769048a8b
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Oct 27 14:42:52 2025 -0700
 
-Summary
--------
+    dma-buf: Fix dma-fence-chain signaling ordering
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch de43fe70c436c359e7478a5532d873f87357cb4e drm-intel
+1e853e4c4f85 drm/xe: Add last fence attachment to TLB invalidation job queues
+-:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#169: FILE: drivers/gpu/drm/xe/xe_exec_queue.h:17:
++#define for_each_tlb_inval(__i)	\
++	for (__i = XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
++	     __i <= XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 223 lines checked
+80dcb8f64542 drm/xe: Decouple bind queue last fence from TLB invalidations
+6251657362c6 drm/xe: Do not wait on TLB invalidations in page fault binds
+98436b4b5657 drm/xe: Don't allow in fences on zero batch exec or zero binds
+1e9da770d2fa drm/xe: Remove last fence dependecy check from binds
+0927caca842d workqueue: Add ordered workqueue
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+8b911a8492ee dma-buf: Fix dma-fence-array signaling ordering
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-  
+total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+4ee416b51f78 dma-buf: Fix dma-fence-chain signaling ordering
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e -> xe-pw-156439v3
-
-  IGT_8597: 8597
-  xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e: de43fe70c436c359e7478a5532d873f87357cb4e
-  xe-pw-156439v3: 156439v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156439v3/index.html
-
---===============2074892205679058780==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uc: Change assertion to error on huc authentication failure (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156439/">https://patchwork.freedesktop.org/series/156439/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156439v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156439v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e_BAT -&gt; xe-pw-156439v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e -&gt; xe-pw-156439v3</li>
-</ul>
-<p>IGT_8597: 8597<br />
-  xe-3994-de43fe70c436c359e7478a5532d873f87357cb4e: de43fe70c436c359e7478a5532d873f87357cb4e<br />
-  xe-pw-156439v3: 156439v3</p>
-
-</body>
-</html>
-
---===============2074892205679058780==--
