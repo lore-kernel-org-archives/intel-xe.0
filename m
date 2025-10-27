@@ -4,61 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FBF2CCF9EB
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 19:52:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D32C4CCF9EB
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 19:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C619110E193;
-	Mon, 27 Oct 2025 19:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9352010E193;
+	Mon, 27 Oct 2025 19:53:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OH6FXLmD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nnibFxmP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92CC810E193;
- Mon, 27 Oct 2025 19:52:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB64110E193
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 19:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761594749; x=1793130749;
+ t=1761594814; x=1793130814;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Fs4EGxVHvLWjFnZ5wv6psyxeI2TYN6+cHE3HTa23z5s=;
- b=OH6FXLmDC9jOeu/qYw7z1HdXWs3+LhmQhxQq9QizuKmf+KvWpl81rCVQ
- pdXmJb6Z0HA40nwLnRf59JS4n2zrCsA9zFX76AApEUp/6JHMT/4AszAGs
- p6qzplvYqBnqGZdln6XJzLf/RT07IT3IDZ06pqX/1qqcbr5GBP+1VFaqX
- N73L3mvdoXoWxiNFj/lLDEBqa1j3Ec7qaNfZpXRxV7GOngYu7b1yWphlL
- tr55DklWsk7EWK0TUG8oxlIPRS73qILQmJXsXJW4lS/3osbUcd5NhweA1
- HdjgqGnudAXXymg0zJOV/Kv1ctqlxWYhhj66GlfeTWHkPvimDoTLnigQO A==;
-X-CSE-ConnectionGUID: +C1PD0XERQWC0llCjFkzjg==
-X-CSE-MsgGUID: KWe+4zdpSR+jf0E2+A3J/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63780113"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="63780113"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 12:52:28 -0700
-X-CSE-ConnectionGUID: mb9YMrZ+Qaa/VPaJawRyow==
-X-CSE-MsgGUID: jIpiWLthSFyvluomxc772g==
+ in-reply-to:mime-version;
+ bh=AZ9U8inkkVR+TWR6JS9Q2dCj6rHcqUVRYwMWlvhe5lo=;
+ b=nnibFxmPRK5Dp551zCvAngRL5zlfBDKdUzwpezhXNcAcI3JZuTDzD/xm
+ BRfxr47rbiKHQzHvr7kKmINEsWQruSetRChs4rAjq6wV4qInJJ+DDtK8P
+ 4EaRcjfijV+uCOviGKu46BBwuX58asIRUvHBSiPua9U1G74oDtyhwhwoJ
+ 1/wMek/5jIiknMdTvwMyGmCk+FvD6l8R2Frxpa0XNBsbApmlytwfysXLg
+ ejdvJWbcID3v+wZKYiGmhO+ru2NrK2Q/m7kWn2YCPzBazeqn5pvBl/mtg
+ mM8D4TZvow4eE8EyP7l+ndIQPL5RJoaEuUM1HuLWVxY02hohx8+WLTdUK w==;
+X-CSE-ConnectionGUID: 1QugGETTSQ+JQh9I6wjDKQ==
+X-CSE-MsgGUID: B1QyMqAzSKauuPiB2POs7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67550947"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="67550947"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 12:53:34 -0700
+X-CSE-ConnectionGUID: 76tg9lX2RMWZYfAzsUU0tw==
+X-CSE-MsgGUID: FJqcQs+8TuSl775wN+fzNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="189170404"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
- by orviesa003.jf.intel.com with ESMTP; 27 Oct 2025 12:52:25 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1vDTGQ-000IOr-1i;
- Mon, 27 Oct 2025 19:52:22 +0000
-Date: Tue, 28 Oct 2025 03:51:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
- uma.shankar@intel.com, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC
- Balance Possible
-Message-ID: <202510280310.FHuwVpY6-lkp@intel.com>
-References: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="185036245"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2025 12:53:33 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 12:53:33 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Mon, 27 Oct 2025 12:53:33 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.19) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Mon, 27 Oct 2025 12:53:32 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=igzJyDhesuL80+s2xM6ry0o4KbosPavDetJcT915k0anqpdI7NyNV9o9/6Ftp7fBNi268en4uPd93biggcQ93o0q4OWJaRvkp0s0vAM8ytMIZ0muWcEdJ5PZaTZgqntKVcfMTuu3NQuMkgSm21yyie5nZJuRgkZ4547/eEL0FvQy+qCQ+prTKZ7hOC4V5MUmV8KQB7ndipJ8c4yKibHvI3QcnHwIivOeGPXRBND7qZEaPxkayowy+JKB/OYy5AnOfFvrhzLVBcSwXVtKkNPtdPXYNkCeRZh2uXk+wa9Bc9OIyBOLuZLNkWKj1PnMr+eNzrpWGgU8/btLSkuV3tG/iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cyRyoXKfWyHblzgn2Qo2fBODQ48unjR8pX83AX1EWyE=;
+ b=CxsCZtv/39dCdONWtlU49LbBloeDgaPIUYLV8d+AXMy2xG3GYeo6b5Z+Bm9qhmfKhCftcxLYfatDFeBnvPL9AALAz155y61+R55OjY5tR1u26D/dChKg9n2D6yMS8HwLS6G5s80GSL4+f2CpxAMU4p9/Rx/6WbEvgPJOodfhSCnrjSlDdnGKJb6KQt64r1S0fQG9F3ARQVufMpfL4DlfOKCISz89dslpbH2Ju9vI5sUBDCOom6Fq7zCd539IOnGjd4VUDR2U0Ue8VH3tS43NPNbFe1QbnOK6FwFaXsQd4Xo1ZLWJGAv6C7A2Kuz4wvzZf6HD/pi9XNGgK/PY2yO4dA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA3PR11MB9228.namprd11.prod.outlook.com (2603:10b6:208:57a::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Mon, 27 Oct
+ 2025 19:53:30 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9253.017; Mon, 27 Oct 2025
+ 19:53:30 +0000
+Date: Mon, 27 Oct 2025 12:53:27 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Shuicheng Lin <shuicheng.lin@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <stuart.summers@intel.com>
+Subject: Re: [PATCH] drm/xe: Limit number of jobs per exec queue
+Message-ID: <aP/Nt8TKVfwhfoVn@lstrano-desk.jf.intel.com>
+References: <20251022181036.2868787-2-shuicheng.lin@intel.com>
+ <aP+evyn9qN1iVJDK@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251027162927.2655581-23-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <aP+evyn9qN1iVJDK@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: MW4PR04CA0329.namprd04.prod.outlook.com
+ (2603:10b6:303:82::34) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA3PR11MB9228:EE_
+X-MS-Office365-Filtering-Correlation-Id: 166ad086-04b4-4929-4cc4-08de159280df
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?AWyZepk+4rWPb3BB0xCxzSt90jjtwyBUEsT8yC4ZaB8Kga5LXmPwAGjNJJi3?=
+ =?us-ascii?Q?z7RZjPhBE/nNwVhYAU3Sl0Eqzho2WfuXzVTYVUN7ALlFODv/IWvpae5PunUb?=
+ =?us-ascii?Q?jOisvV1b5+IUzFFlwZX5eJjL+AkmgS9qBYWTNXQKl7aA+nZFdzUS0Ik2aQSi?=
+ =?us-ascii?Q?gi10DaalB2PHhgaDwAKpeNuOIEfNPGqDinwLOFdD9wd/XHJmJm/xtKbJ38Ad?=
+ =?us-ascii?Q?gIJ+4cl1BwIM736UqtydkNIxjjLjuP7OkfnLkUNJgtPLPJ2Ru/WHMnGb4GI5?=
+ =?us-ascii?Q?DDcn0Y21GkeyHSPb8nus94fMffm4jKY3rHVYTz8hHDm8wfl8ZBFv5JnMOfpX?=
+ =?us-ascii?Q?eX1+HGiojxujv6SOukzKuOdGd3H9xqOoydWh/MXYxByILa+BavX33dHCTQZk?=
+ =?us-ascii?Q?s2Dx9fGcXzvtiZ/VbmVE2Fo1WqNmqyGEOTT/WHwM2K3oq7FWKU7h40sw74ZR?=
+ =?us-ascii?Q?iDb7+zqCm/euwrTv5ZWVJ76pxfwH45ebk3ns4V2w9KHXgUT6I+E7G7D86siU?=
+ =?us-ascii?Q?5n1oAQY6IKg0/gEm1wU2qHl3CLPkINJvCsXvSjPvPnUxxoVs/AeEyxif+Q76?=
+ =?us-ascii?Q?vEHlofOOhSVgpC9JfZqXFJQBe5YFUu8ows2KZZuCypIE+V+PY6EC0N0+yGJM?=
+ =?us-ascii?Q?+BdfiW8KetuwTnrquRhTN+HzmZYJkVFRVmNadNWmlrBbrvP9C6PzPlY+7N0X?=
+ =?us-ascii?Q?XWJAaypykPYauUUzEbmXT8mGDfEcGoKqHTrnHp21zWnkmSC3z9Xry3MKINGC?=
+ =?us-ascii?Q?IUCGwUWnC5al4KAdQvBc5wYuUgAjGvwxuxqOIwQDZV/phuFPqH3d2Bbrb2bw?=
+ =?us-ascii?Q?7jkNasc429lYW2AfBEWSpFHXKgwt2tQPYZ8L3KnDNY/GK2x7evvitt0kjCVX?=
+ =?us-ascii?Q?Nsba31TeRxzibn7TmAHpZDHQA7ulkc+2jZHhHM+VtFDZdqLD1XKuAvMvaa8v?=
+ =?us-ascii?Q?wTsom1JYW9olgCYxdQDWI5Hf1dD2ZyrlNWWIvxS74I2rWXK0jvXoo7TQeJet?=
+ =?us-ascii?Q?0y6HtvQ5lQhM3iMOZSxn+YHQtcYFNDYXgHdJrWdVniSlI5t8ab9YINwIHW2p?=
+ =?us-ascii?Q?CgsF+NjMu0BVyK0LuoyzGazs3soY5Wc7dWj01ua/DK37LiWTS2UOqm4er4X2?=
+ =?us-ascii?Q?l4KHXWxS/+TDdGI4RFYiPYsVKzJBamax8CzBzRL4qptN0vTQkuelqDnn0QhV?=
+ =?us-ascii?Q?53PgrkJo201GwR+AUxRaYHsHtYCcWeVYhTgNkqXoD30wOwcADVZbxe4TAq52?=
+ =?us-ascii?Q?48z8odfO/qOIIBWSTZOYYouJ/Ry/lUtUWB6Xa467TllZahZa4F0xXxOgVyz1?=
+ =?us-ascii?Q?iKitIaHX+1jjzC+u0Ecbn7essIaSj9l/Wk5cq49NXOv39AymQWNfelcW8Ms7?=
+ =?us-ascii?Q?XTF3JB32HztYFphz9X6K3qz8TSusDW+z8gxNBP/rhA1/zUjmNatVm9gxSpQn?=
+ =?us-ascii?Q?SHeK9W/Y+ORTo/c99VwUZRMHs2Inrwod?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qf5U7TVTlENAYDdtEis7JZP5Gb3tcShmzMVCXfv3T4OOvKxboTthLqCwJEEH?=
+ =?us-ascii?Q?92yEiPlCgjnlu0tUB13EXXXMrc2S4TV/JAHVKWEVCSpx3H0oDLg/zboirkgS?=
+ =?us-ascii?Q?AbCQzsMlukJu9c62VO0VZRdKYyZVDTq/B43scCeaDQMK/Dora1kbsP3Orujn?=
+ =?us-ascii?Q?wGpdrN59fuc3Bk3DnLIFT8mD4yQszwrvXQqHnPxkYZwGonnV+bTJQy4ZwZVY?=
+ =?us-ascii?Q?5J93SPTyBUC0jxAHWpP/7gP4A8OGZbw8uo1Mv4WDvaV4gtSUXmH3EtHGrmq/?=
+ =?us-ascii?Q?eJMj7KSGRkVJQjx4be5DHAnUN9XefVtv3/LcuEiIkU+PA+ojMKbwNn1frHxf?=
+ =?us-ascii?Q?scm6hd9YnTWK16kDcBSoo8soSm2x6DfOmCMmxl2yvfjWy01Tayqb7vZx4LFg?=
+ =?us-ascii?Q?C1DFL4t37HAT9LecDPl2RviWFXghQaATK2IczOVTT1d8V+keukAEX4up39q9?=
+ =?us-ascii?Q?MTBMFecMKB+hsRkEGe/3Vcmtydcpa2UJeyX9g0QE+Z1hVUSr8B9OTEnoM+BK?=
+ =?us-ascii?Q?TdMktYXX4SNUrHLHlBIEWm1qTIIwU+ZysZ14UifralzMJAWXK6NcAigdyhPU?=
+ =?us-ascii?Q?TkOWT06sIgNY4V3VsJPrBKZ2qL/M69o1N7YlweKGvqsu4NAXW9l/YqboxAx4?=
+ =?us-ascii?Q?pz+kn9ENTttuqkNTuRMun2WUV96ATv33jFXg3wgl3Zh7I6Omvh8/TD7Q2jln?=
+ =?us-ascii?Q?KV1ADsDvzkc3P3HnrrK6r0zO122AtkElrrebOyHSlUQAViJVXMQToVkJCRty?=
+ =?us-ascii?Q?GzYBMr73pD+4kp5qf7iiGLCnpi+UeT02JzdsGyxlXH5rJ/ApXcGulI+heibl?=
+ =?us-ascii?Q?bN0t1cbU4aEEMTWhampPOpS8A7NRbIcTyRKIM65VMJpbmiB9cR3AWic7gCTU?=
+ =?us-ascii?Q?g07wjfbIXh27lQSnIqymsqhnhzZxRjgFSnL/WfLQdfsp/ms4YmFGrVhPpykJ?=
+ =?us-ascii?Q?MbfIgtOfjlwOxXUwh2i/K+vPONfw4hXAyLDtIE1G6EePo3MN4y7aEwbnvPqg?=
+ =?us-ascii?Q?QtKdtKbx2cR4OrAZ5GbZyNrv0mOA54q0U9pGX9jSgAbVHNexsTgI2lysnTRB?=
+ =?us-ascii?Q?KsQkzvFs01TLrQJuGoeVDqRIkotkZPNdgKqpt+d9KyPFBOWK42tTRnyY+SEp?=
+ =?us-ascii?Q?jk/UWXwezCNmPrKUZ3VsnvRrK/+vrOVKZGb9n7R8vnR/wJcbhV56QeeqUgLS?=
+ =?us-ascii?Q?2SlGpBhViYGUgolzocXTFHj/HZBnhGfa3k2fRwsbl+hwYEDx75yQYMAcL/e1?=
+ =?us-ascii?Q?GliAQSjGMKBaQp6WBXMFoOT6h57oPJLwYLbc+4mJRSktio2yWQT1VdN8R6Kx?=
+ =?us-ascii?Q?Uo2pvyVAg09cTR4GYzyX2OE8/TnfGYRjZr6wUXrnbeQlZ6gZlr+VKKl/HKFe?=
+ =?us-ascii?Q?VScMN0XN1cCm1QW3BabeGUNBH4mAgJ3STXwbfnDSvX5O0vgJUGZnvRQtlede?=
+ =?us-ascii?Q?M7/XQ9g3neCefR4lTa8vGfFsyDnB1cTwJVNEuBkZCpieKunIm4u0N+jIco9U?=
+ =?us-ascii?Q?vpvr+ItoxbKl6UNjGRzRs8qjr7R9p7ZkRHOetb7/qYYytdf5MjyWR6XNlPzr?=
+ =?us-ascii?Q?aSmifMjH4/bETF1jCVJJSK4eCgiUsntjpuDmfsi8x/xnkkRex1z+fU6TKRGN?=
+ =?us-ascii?Q?Uw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 166ad086-04b4-4929-4cc4-08de159280df
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2025 19:53:30.6976 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uvnJG/q4us8o89bmaZAyxu3fGYHWLDVI+nQqt/yv306SuRg5iUSuFDCqdgqP793lxshsAcxzxlwtkO6xZaSZpA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9228
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,58 +176,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Mitul,
+On Mon, Oct 27, 2025 at 09:33:03AM -0700, Matthew Brost wrote:
+> On Wed, Oct 22, 2025 at 06:10:37PM +0000, Shuicheng Lin wrote:
+> > Add a limit to the number of jobs that can be queued in a single
+> > exec queue to avoid potential resource exhaustion.
+> > 
+> > A new field `job_cnt` is introduced in `struct xe_exec_queue` to
+> > track the number of active DRM jobs, along with a maximum limit
+> > `XE_MAX_JOB_COUNT_PER_EXEC_QUEUE` set to 0x1000.
+> > 
+> > If the job count exceeds this threshold, `xe_exec_ioctl()` now
+> > returns `-EAGAIN` to signal that the caller should retry later.
+> > 
+> 
+> This patch looks correct. One extra suggestion - can we get an assert in
+> xe_exec_queue_destroy that q->job_cnt is zero?
+> 
 
-kernel test robot noticed the following build warnings:
+This was sent to wrong version.
 
-[auto build test WARNING on next-20251027]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.18-rc3 v6.18-rc2 v6.18-rc1 linus/master v6.18-rc3]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Matt
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mitul-Golani/drm-i915-display-Add-source-param-for-dc-balance/20251028-011354
-base:   next-20251027
-patch link:    https://lore.kernel.org/r/20251027162927.2655581-23-mitulkumar.ajitkumar.golani%40intel.com
-patch subject: [PATCH v8 22/22] drm/i915/vrr: Add function to check if DC Balance Possible
-config: i386-buildonly-randconfig-003-20251028 (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251028/202510280310.FHuwVpY6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510280310.FHuwVpY6-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/display/intel_vrr.c: In function 'intel_vrr_compute_vrr_timings':
->> drivers/gpu/drm/i915/display/intel_vrr.c:259:31: warning: unused variable 'display' [-Wunused-variable]
-     259 |         struct intel_display *display = to_intel_display(crtc_state);
-         |                               ^~~~~~~
-
-
-vim +/display +259 drivers/gpu/drm/i915/display/intel_vrr.c
-
-e098418ea9f1ca Mitul Golani   2025-10-27  254  
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  255  static
-8a553374db132e Ville Syrjälä  2025-10-20  256  void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
-8a553374db132e Ville Syrjälä  2025-10-20  257  				   int vmin, int vmax)
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  258  {
-5de4c2be73f248 Mitul Golani   2025-10-27 @259  	struct intel_display *display = to_intel_display(crtc_state);
-5de4c2be73f248 Mitul Golani   2025-10-27  260  
-8a553374db132e Ville Syrjälä  2025-10-20  261  	crtc_state->vrr.vmax = vmax;
-8a553374db132e Ville Syrjälä  2025-10-20  262  	crtc_state->vrr.vmin = vmin;
-8a553374db132e Ville Syrjälä  2025-10-20  263  	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
-8a553374db132e Ville Syrjälä  2025-10-20  264  
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  265  	crtc_state->vrr.enable = true;
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  266  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-5de4c2be73f248 Mitul Golani   2025-10-27  267  
-e098418ea9f1ca Mitul Golani   2025-10-27  268  	if (intel_vrr_dc_balance_possible(crtc_state))
-5de4c2be73f248 Mitul Golani   2025-10-27  269  		crtc_state->vrr.dc_balance.enable = true;
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  270  }
-58f9466c8292f8 Ankit Nautiyal 2025-03-11  271  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> > Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_exec.c             | 5 +++++
+> >  drivers/gpu/drm/xe/xe_exec_queue_types.h | 5 +++++
+> >  drivers/gpu/drm/xe/xe_sched_job.c        | 2 ++
+> >  3 files changed, 12 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> > index 0dc27476832b..722a5ac0200a 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec.c
+> > @@ -154,6 +154,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> >  		goto err_exec_queue;
+> >  	}
+> >  
+> > +	if (q->job_cnt >= XE_MAX_JOB_COUNT_PER_EXEC_QUEUE) {
+> > +		err = -EAGAIN;
+> > +		goto err_exec_queue;
+> > +	}
+> > +
+> >  	if (args->num_syncs) {
+> >  		syncs = kcalloc(args->num_syncs, sizeof(*syncs), GFP_KERNEL);
+> >  		if (!syncs) {
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > index 282505fa1377..5f3219acec3c 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > @@ -162,6 +162,11 @@ struct xe_exec_queue {
+> >  	const struct xe_ring_ops *ring_ops;
+> >  	/** @entity: DRM sched entity for this exec queue (1 to 1 relationship) */
+> >  	struct drm_sched_entity *entity;
+> > +
+> > +#define XE_MAX_JOB_COUNT_PER_EXEC_QUEUE	0x1000
+> > +
+> 
+> I'd lose newline here
+> 
+> > +	/** @job_cnt: number of drm jobs in this exec queue */
+> > +	u32 job_cnt;
+> 
+> And add one here.
+> 
+> Matt
+> 
+> >  	/**
+> >  	 * @tlb_flush_seqno: The seqno of the last rebind tlb flush performed
+> >  	 * Protected by @vm's resv. Unused if @vm == NULL.
+> > diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+> > index d21bf8f26964..37f58be7cbcc 100644
+> > --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> > +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> > @@ -146,6 +146,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+> >  	for (i = 0; i < width; ++i)
+> >  		job->ptrs[i].batch_addr = batch_addr[i];
+> >  
+> > +	q->job_cnt++;
+> >  	xe_pm_runtime_get_noresume(job_to_xe(job));
+> >  	trace_xe_sched_job_create(job);
+> >  	return job;
+> > @@ -177,6 +178,7 @@ void xe_sched_job_destroy(struct kref *ref)
+> >  	dma_fence_put(job->fence);
+> >  	drm_sched_job_cleanup(&job->drm);
+> >  	job_free(job);
+> > +	q->job_cnt--;
+> >  	xe_exec_queue_put(q);
+> >  	xe_pm_runtime_put(xe);
+> >  }
+> > -- 
+> > 2.49.0
+> > 
