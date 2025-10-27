@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1F84CCF9EF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9515ACCF9EB
 	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8354A10E55D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58A5C10E563;
 	Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kAvNJfud";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgBk1d2i";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0A910E55D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C76410E55D
  for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 21:42:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761601377; x=1793137377;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VFmyW2gZuASAJUQuDj6wV8gsZ84JsWN9qzlLXrWTrTE=;
- b=kAvNJfud9MMYjEbwrgeMvFqA8bcMnCCk7BriKsPcWEewZAGK4nCbone/
- 6YWw1alyG2TwbRs1aKHBMRe8Vg5MGvwAXkZoiU/BxjrDpggFf1rYAkPpo
- ivdF9xPO/LmI9irVnlKYNMdzPUCWIwayFkddn3AGWchnEDqh6TY/tSDXx
- iOBMcJxjLqODZsl9VKah1CBiY3eIYka4AqW9ekC9/AD7gDx7AiksibOcS
- T9slbFWW3je4bh1irO6Jdx0SDn7ZPSc8obie4Bid8vljzOlXKqEqhqy0Q
- lhfX/IEO/okH7qdzzSQpy1nfx4LBXtT0bJst2IdrNP1XHqjuBVXGzaEoA g==;
-X-CSE-ConnectionGUID: tCxBo8j/S5qwy4rVyxmaTw==
-X-CSE-MsgGUID: jye6LLbaSzWkZmoziMBnmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368849"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368849"
+ bh=ZutDNs5K2o0jiAXE0G/vqgAHWs6smMd4I+fBWFcWmwo=;
+ b=NgBk1d2iinBd5B0pOnuzxmY4WeeohdoMmbo6KKiIY/6iiuvphsJKfPNz
+ huuCP7I/XeiB4akhKqVTstjc0loxSjT6C3tbfnwOqkBtIN91jYNw9N4qd
+ rhwy5SPLYzE0LS8c4kNrKkt7PccrQf7i072MjjoiNVzj5FBnte2/HfaAn
+ PW1u1tKrBBvu0A5uR8scm0ImUezfK5rnPrslnUHTkdlw3FGShlDQDUm5J
+ nagF+W4UP7Uo2Ymn5xkgD90CIwsKOZxYCXNO9xdsvVloMakxqbN/SQANm
+ qTogtSbdzVAYmKbU/AwgMAF9XDESk8AnOhCKHKN97w3EJ0r9hjS0Hq3Wd A==;
+X-CSE-ConnectionGUID: 33B+a2r6Q1yTRcID0VAlMw==
+X-CSE-MsgGUID: f5uxOfXzQYGqFesbfqZ4ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368847"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368847"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 14:42:57 -0700
-X-CSE-ConnectionGUID: Jr7xplF/S8St2ivf4u3xZg==
-X-CSE-MsgGUID: NBn9GXGBTJWyX5vbxpE2bQ==
+X-CSE-ConnectionGUID: IDJEoe8TSaOiP0cGd7XhiA==
+X-CSE-MsgGUID: RaiihziGT1mCqUysLyq2oA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782349"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782347"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 14:42:56 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 7/8] dma-buf: Fix dma-fence-array signaling ordering
-Date: Mon, 27 Oct 2025 14:42:51 -0700
-Message-Id: <20251027214252.2455093-8-matthew.brost@intel.com>
+Subject: [CI 5/8] drm/xe: Remove last fence dependecy check from binds
+Date: Mon, 27 Oct 2025 14:42:49 -0700
+Message-Id: <20251027214252.2455093-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251027214252.2455093-1-matthew.brost@intel.com>
 References: <20251027214252.2455093-1-matthew.brost@intel.com>
@@ -65,74 +65,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The last fence dependency check for binds is now equivalent to
+xe_exec_queue_is_idle and is redundant, so remove this dead code.
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/dma-buf/dma-fence-array.c | 6 +++---
- include/linux/dma-fence-array.h   | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 23 -----------------------
+ drivers/gpu/drm/xe/xe_exec_queue.h |  2 --
+ drivers/gpu/drm/xe/xe_pt.c         |  7 -------
+ 3 files changed, 32 deletions(-)
 
-diff --git a/drivers/dma-buf/dma-fence-array.c b/drivers/dma-buf/dma-fence-array.c
-index 6657d4b30af9..ca78da5f0244 100644
---- a/drivers/dma-buf/dma-fence-array.c
-+++ b/drivers/dma-buf/dma-fence-array.c
-@@ -42,7 +42,7 @@ static void dma_fence_array_clear_pending_error(struct dma_fence_array *array)
- 	cmpxchg(&array->base.error, PENDING_ERROR, 0);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index d7d00d4de93c..efcdfdb0cc3f 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1109,29 +1109,6 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q, struct xe_vm *vm,
+ 	q->last_fence = dma_fence_get(fence);
  }
  
--static void irq_dma_fence_array_work(struct irq_work *wrk)
-+static void dma_fence_array_work(struct work_struct *wrk)
- {
- 	struct dma_fence_array *array = container_of(wrk, typeof(*array), work);
- 
-@@ -62,7 +62,7 @@ static void dma_fence_array_cb_func(struct dma_fence *f,
- 	dma_fence_array_set_pending_error(array, f->error);
- 
- 	if (atomic_dec_and_test(&array->num_pending))
--		irq_work_queue(&array->work);
-+		queue_work(system_ordered_wq, &array->work);
- 	else
- 		dma_fence_put(&array->base);
- }
-@@ -207,7 +207,7 @@ void dma_fence_array_init(struct dma_fence_array *array,
- 	spin_lock_init(&array->lock);
- 	dma_fence_init(&array->base, &dma_fence_array_ops, &array->lock,
- 		       context, seqno);
--	init_irq_work(&array->work, irq_dma_fence_array_work);
-+	INIT_WORK(&array->work, dma_fence_array_work);
- 
- 	atomic_set(&array->num_pending, signal_on_any ? 1 : num_fences);
- 	array->fences = fences;
-diff --git a/include/linux/dma-fence-array.h b/include/linux/dma-fence-array.h
-index 079b3dec0a16..a20b754cec72 100644
---- a/include/linux/dma-fence-array.h
-+++ b/include/linux/dma-fence-array.h
-@@ -13,7 +13,7 @@
- #define __LINUX_DMA_FENCE_ARRAY_H
- 
- #include <linux/dma-fence.h>
--#include <linux/irq_work.h>
-+#include <linux/workqueue.h>
- 
+-/**
+- * xe_exec_queue_last_fence_test_dep - Test last fence dependency of queue
+- * @q: The exec queue
+- * @vm: The VM the engine does a bind or exec for
+- *
+- * Returns:
+- * -ETIME if there exists an unsignalled last fence dependency, zero otherwise.
+- */
+-int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q, struct xe_vm *vm)
+-{
+-	struct dma_fence *fence;
+-	int err = 0;
+-
+-	fence = xe_exec_queue_last_fence_get(q, vm);
+-	if (fence) {
+-		err = test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) ?
+-			0 : -ETIME;
+-		dma_fence_put(fence);
+-	}
+-
+-	return err;
+-}
+-
  /**
-  * struct dma_fence_array_cb - callback helper for fence array
-@@ -32,7 +32,7 @@ struct dma_fence_array_cb {
-  * @num_fences: number of fences in the array
-  * @num_pending: fences in the array still pending
-  * @fences: array of the fences
-- * @work: internal irq_work function
-+ * @work: internal work_struct
-  * @callbacks: array of callback helpers
-  */
- struct dma_fence_array {
-@@ -43,7 +43,7 @@ struct dma_fence_array {
- 	atomic_t num_pending;
- 	struct dma_fence **fences;
+  * xe_exec_queue_tlb_inval_last_fence_put() - Drop ref to last TLB invalidation fence
+  * @q: The exec queue
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index c4b95fad93f1..839e9880a598 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -88,8 +88,6 @@ struct dma_fence *xe_exec_queue_last_fence_get_for_resume(struct xe_exec_queue *
+ 							  struct xe_vm *vm);
+ void xe_exec_queue_last_fence_set(struct xe_exec_queue *e, struct xe_vm *vm,
+ 				  struct dma_fence *fence);
+-int xe_exec_queue_last_fence_test_dep(struct xe_exec_queue *q,
+-				      struct xe_vm *vm);
  
--	struct irq_work work;
-+	struct work_struct work;
+ void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
+ 					    struct xe_vm *vm,
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index a4b9cdf016d9..01056b51ac9f 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1338,13 +1338,6 @@ static int xe_pt_vm_dependencies(struct xe_sched_job *job,
+ 			return err;
+ 	}
  
- 	struct dma_fence_array_cb callbacks[] __counted_by(num_fences);
- };
+-	if (!(pt_update_ops->q->flags & EXEC_QUEUE_FLAG_KERNEL)) {
+-		if (job)
+-			err = xe_sched_job_last_fence_add_dep(job, vm);
+-		else
+-			err = xe_exec_queue_last_fence_test_dep(pt_update_ops->q, vm);
+-	}
+-
+ 	for (i = 0; job && !err && i < vops->num_syncs; i++)
+ 		err = xe_sync_entry_add_deps(&vops->syncs[i], job);
+ 
 -- 
 2.34.1
 
