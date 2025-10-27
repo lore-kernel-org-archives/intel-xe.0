@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C7BCCCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:04:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35987CCF9F0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 18:04:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C86310E545;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E70E210E546;
 	Mon, 27 Oct 2025 18:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iM9Gho5V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dR7+Yu8z";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C639710E543
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A862710E541
  for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 18:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761588255; x=1793124255;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pTbLwtVOkVGQQE+RppY3ZhqnktOwEcDBbTtruDXOW50=;
- b=iM9Gho5VawK4bs53KyZDWdysjE9XB5vSyHwu48CB3OsULfVxojZ0bWdV
- HZPnABj8avbGnA/HAnGsF1KxpU3c5PtGGF4d0/7c2BNT3sMSOYXapHbgg
- aGt9qgf4/Cg2IPdm80JbpM8BR3vEJWzjSEpr1dsULVDyImdLkyohQiAia
- HhlwAt3DSGGgCdXbhJf+cdCoGHoNDpqRBxc/BHAX0e8S+1af/wb4dAdk0
- Xwq1JTJKjxlH80L0rrVcLsIYMRTn+wQ103OK23xHViZLt6d50ft2vsil0
- dZtaNxuTInHlgc5xtXWegXSYUiY2fcKReAg8CvstAGGTDhqtuItEK4A7c A==;
-X-CSE-ConnectionGUID: Ctd4NZUnT+uvW7UJYwQwGQ==
-X-CSE-MsgGUID: zit/DT9DQU66sAcjQ2Pwqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63575706"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63575706"
+ bh=g6wQHDqM/l1n16EmnhJ3NJnEajkPhM0hz4bpTTQa0jo=;
+ b=dR7+Yu8z6o8CxGi0KLJow64xIPABH7uJEiZ2IIKHC8zIC8pbznJtqYlS
+ J7DrfrVG64mvIHTWuZugzZjCRnRALxgexQN6F9zVrGk5KnH22jyl0rLSi
+ XpN0Kz7+gvpsXrQ+ZA6ah02ombdysEJZuH9YlZICENj+kSgAG0MmqPsxU
+ VtY2FKqN6VvW+Lo8hqhXpDNM1dvnSWFE0nQi2BXOw9FbRPRidWAjeILX7
+ dMqqDzpiIPKU+lTvzAgqPh4HWWcuaf06X6LoTc5wYzeop1tzh9+mydWdl
+ +VU9r9rSrIeCQ7Wgc1QL/f2rVTjzvaEZQJ8B02QKzj1ciq9tJ2jueCAyV w==;
+X-CSE-ConnectionGUID: 3KpvEGNUQOCjP4Cavm7XxA==
+X-CSE-MsgGUID: cuJS86Z6SYWQOJdB7X5Pvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63575705"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63575705"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 11:04:15 -0700
-X-CSE-ConnectionGUID: fCtp+X+gSnmrfulFLzGCtg==
-X-CSE-MsgGUID: 4UyNd+2wTmK1F9PyFeRXHg==
+ 27 Oct 2025 11:04:14 -0700
+X-CSE-ConnectionGUID: pR5+DUr/QZOKvLnqkH/5eg==
+X-CSE-MsgGUID: nIWjhtnoRrqQw1ndbrEfow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184291143"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184291140"
 Received: from dut4396arlh.fm.intel.com ([10.105.10.137])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 11:04:14 -0700
@@ -46,9 +46,9 @@ To:
 Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  niranjana.vishwanathapura@intel.com, zhanjun.dong@intel.com,
  shuicheng.lin@intel.com, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 4/6] drm/xe: Add new exec queue trace points
-Date: Mon, 27 Oct 2025 18:04:10 +0000
-Message-Id: <20251027180412.63743-5-stuart.summers@intel.com>
+Subject: [PATCH 3/6] drm/xe: Add the BO pointer info to the BO trace
+Date: Mon, 27 Oct 2025 18:04:09 +0000
+Message-Id: <20251027180412.63743-4-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251027180412.63743-1-stuart.summers@intel.com>
 References: <20251027180412.63743-1-stuart.summers@intel.com>
@@ -68,152 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add an exec queue and guc exec queue trace point
-to separate out which part of the stack is executing.
-
-This is helpful because several of the guc specific
-paths rely on responses from guc which is interesting
-to view separately in the event the guc stops responding
-in the middle of an operation that would expect a
-response from guc otherwise.
-
-Also add in the exec queue pointer information to
-the trace events for easier tracking. Contexts (guc_ids)
-can get re-used, so this just makes grepping a little
-easier in this type of debug.
+Just a little extra detail to make BOs easier to track
+through the trace event log.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c |  4 ++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 11 +++++++----
- drivers/gpu/drm/xe/xe_trace.h      | 22 ++++++++++++++++++++--
- 3 files changed, 31 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_trace_bo.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 90cbc95f8e2e..a2ef381cf6d9 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -377,6 +377,8 @@ void xe_exec_queue_destroy(struct kref *ref)
- 	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
- 	struct xe_exec_queue *eq, *next;
- 
-+	trace_xe_exec_queue_destroy(q);
-+
- 	if (xe_exec_queue_uses_pxp(q))
- 		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
- 
-@@ -953,6 +955,8 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
- {
- 	struct xe_exec_queue *eq = q, *next;
- 
-+	trace_xe_exec_queue_kill(q);
-+
- 	list_for_each_entry_safe(eq, next, &eq->multi_gt_list,
- 				 multi_gt_link) {
- 		q->ops->kill(eq);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index d4ffdb71ef3d..3f672355b3bb 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1004,9 +1004,12 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	}
- 
- 	mutex_lock(&guc->submission_state.lock);
--	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
--		if (xe_exec_queue_get_unless_zero(q))
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-+		if (xe_exec_queue_get_unless_zero(q)) {
- 			set_exec_queue_wedged(q);
-+			trace_xe_exec_queue_wedge(q);
-+		}
-+	}
- 	mutex_unlock(&guc->submission_state.lock);
- }
- 
-@@ -1456,7 +1459,7 @@ static void __guc_exec_queue_destroy_async(struct work_struct *w)
- 	struct xe_guc *guc = exec_queue_to_guc(q);
- 
- 	xe_pm_runtime_get(guc_to_xe(guc));
--	trace_xe_exec_queue_destroy(q);
-+	trace_xe_guc_exec_queue_destroy(q);
- 
- 	if (xe_exec_queue_is_lr(q))
- 		cancel_work_sync(&ge->lr_tdr);
-@@ -1727,7 +1730,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- static void guc_exec_queue_kill(struct xe_exec_queue *q)
- {
--	trace_xe_exec_queue_kill(q);
-+	trace_xe_guc_exec_queue_kill(q);
- 	set_exec_queue_killed(q);
- 	__suspend_fence_signal(q);
- 	xe_guc_exec_queue_trigger_cleanup(q);
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 314f42fcbcbd..a5dd0c48d894 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -71,6 +71,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 238311cfb816..0d795733e0f0 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -27,6 +27,7 @@ DECLARE_EVENT_CLASS(xe_bo,
  
  		    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_eq(q))
-+			     __field(struct xe_exec_queue *, q)
- 			     __field(enum xe_engine_class, class)
- 			     __field(u32, logical_mask)
- 			     __field(u8, gt_id)
-@@ -82,6 +83,7 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
+ 			     __string(dev, __dev_name_bo(bo))
++			     __field(struct xe_bo *, bo)
+ 			     __field(size_t, size)
+ 			     __field(u32, flags)
+ 			     __field(struct xe_vm *, vm)
+@@ -34,13 +35,14 @@ DECLARE_EVENT_CLASS(xe_bo,
  
  		    TP_fast_assign(
  			   __assign_str(dev);
-+			   __entry->q = q;
- 			   __entry->class = q->class;
- 			   __entry->logical_mask = q->logical_mask;
- 			   __entry->gt_id = q->gt->info.id;
-@@ -91,8 +93,9 @@ DECLARE_EVENT_CLASS(xe_exec_queue,
- 			   __entry->flags = q->flags;
++			   __entry->bo = bo;
+ 			   __entry->size = xe_bo_size(bo);
+ 			   __entry->flags = bo->flags;
+ 			   __entry->vm = bo->vm;
  			   ),
  
--		    TP_printk("dev=%s, %d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
--			      __get_str(dev), __entry->class, __entry->logical_mask,
-+		    TP_printk("dev=%s, %p, %d:0x%x, gt=%d, width=%d, guc_id=%d, guc_state=0x%x, flags=0x%x",
-+			      __get_str(dev), __entry->q,
-+			      __entry->class, __entry->logical_mask,
- 			      __entry->gt_id, __entry->width, __entry->guc_id,
- 			      __entry->guc_state, __entry->flags)
- );
-@@ -147,11 +150,21 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_close,
- 	     TP_ARGS(q)
+-		    TP_printk("dev=%s, size=%zu, flags=0x%02x, vm=%p",
+-			      __get_str(dev), __entry->size,
++		    TP_printk("dev=%s, %p, size=%zu, flags=0x%02x, vm=%p",
++			      __get_str(dev), __entry->bo, __entry->size,
+ 			      __entry->flags, __entry->vm)
  );
  
-+DEFINE_EVENT(xe_exec_queue, xe_exec_queue_wedge,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_kill,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_guc_exec_queue_kill,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cleanup_entity,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
-@@ -162,6 +175,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_destroy,
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_guc_exec_queue_destroy,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_reset,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
 -- 
 2.34.1
 
