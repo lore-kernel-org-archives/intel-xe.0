@@ -4,40 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50969CCF9E0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 09:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 934F1CCF9EA
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 09:07:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 008B910E405;
-	Mon, 27 Oct 2025 09:01:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ATG46iBt";
-	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD7A10E405
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 09:01:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761555714;
- bh=v29pRP/4CE3A1bJPmP6NUs+T+ixTYRkkfIZ4uchJum8=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=ATG46iBtbDEQIcE4ijXsCcpjmQ6hrtTkxLFmqUQ11EUpWuDnpBGMbVp+jSeMrDIhk
- bB7pAEOq07aN8F9ujDmVV1QgqtfRkrJb9MHxM5BX/GqeOCFWHp0HJdTL1mk9koKFIG
- NY4A/LrV+B03SAPgK7PyWeX8mIHksw9IulH6TerAqFowFKQBnejRrd3OXGKQ6utuNW
- da4inD6SlvEeOPEseb4jikAxWTeSODc9jXS1feD3xon2qckswpd0kzWZVOyBx1sJjq
- wWTM/C9Q+gGWLWgjZfLd2e5YV8Ctpe/XXgkYpIEFYKk31+64kgg/EV5E/VGua9CuFH
- t1joRljLESqEw==
-Message-ID: <542979eb-94f5-4fd6-ad82-3a708a3aecdd@lankhorst.se>
-Date: Mon, 27 Oct 2025 10:01:53 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5274910E161;
+	Mon, 27 Oct 2025 09:07:35 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E700510E161;
+ Mon, 27 Oct 2025 09:07:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6954443189405357609=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: VM modesetting
-To: Simon Richter <Simon.Richter@hogyros.de>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <f60e07f2-1325-4b78-9d1d-7a49d984222a@hogyros.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <f60e07f2-1325-4b78-9d1d-7a49d984222a@hogyros.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/fb-helper=3A_Allocate_a?=
+ =?utf-8?q?nd_release_fb=5Finfo_in_single_place_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 27 Oct 2025 09:07:33 -0000
+Message-ID: <176155605393.56588.7804435186253029739@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251027081245.80262-1-tzimmermann@suse.de>
+In-Reply-To: <20251027081245.80262-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,25 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============6954443189405357609==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2025-10-27 kl. 07:06, skrev Simon Richter:
-> Hi,
-> 
-> stupid question: when a VM starts up, how is it supposed to
-> 
-> 1. find out what virtual monitors are available
-> 2. indicate what buffers to use for these?
-> 
-> Slightly related: is there a way to expose a "ROM" from a VF, to allow firmware to do some early initialization?
+== Series Details ==
 
-Display is never exposed on a VF, instead only buffers are shared between the VF and the PF, which the host may choose
-to display on real hardware. The VF never touches any display register at all, so no need for a ROM.
+Series: drm/fb-helper: Allocate and release fb_info in single place (rev2)
+URL   : https://patchwork.freedesktop.org/series/156543/
+State : success
 
-Because of this it's entirely up to the virtualization software what a display is, and what buffer formats are used.
+== Summary ==
 
-Kind regards,
-~Maarten Lankhorst
+CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -> xe-pw-156543v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -> xe-pw-156543v2
+
+  IGT_8596: 8596
+  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c
+  xe-pw-156543v2: 156543v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156543v2/index.html
+
+--===============6954443189405357609==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/fb-helper: Allocate and release fb_info in single place (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156543/">https://patchwork.freedesktop.org/series/156543/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156543v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156543v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3988-c03916cb446b6eefe91538599775bb54bf98238c_BAT -&gt; xe-pw-156543v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3988-c03916cb446b6eefe91538599775bb54bf98238c -&gt; xe-pw-156543v2</li>
+</ul>
+<p>IGT_8596: 8596<br />
+  xe-3988-c03916cb446b6eefe91538599775bb54bf98238c: c03916cb446b6eefe91538599775bb54bf98238c<br />
+  xe-pw-156543v2: 156543v2</p>
+
+</body>
+</html>
+
+--===============6954443189405357609==--
