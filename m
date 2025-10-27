@@ -4,26 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29916CCF9E0
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 15:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16FC6CCF9EB
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 15:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D51F610E4D8;
-	Mon, 27 Oct 2025 15:38:55 +0000 (UTC)
-Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F2110E4D8;
- Mon, 27 Oct 2025 15:38:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7862060461130740407=="
-MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIFhlLkNJLkJBVDogc3VjY2VzcyBmb3IgdmVyYm9zZSBwMnAgKHJldjMp?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4D8810E4DB;
+	Mon, 27 Oct 2025 15:40:59 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEAC510E4DB;
+ Mon, 27 Oct 2025 15:40:58 +0000 (UTC)
+Received: from mobile-access-b04841-44.dhcp.inet.fi ([176.72.65.44]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vDPL4-00000001rsK-2fOp; Mon, 27 Oct 2025 17:40:55 +0200
+Message-ID: <55586417fd9fb8b6363d7e2be8b1ca5a12314658.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Oct 2025 15:38:54 -0000
-Message-ID: <176157953465.58440.14452086668508518862@97596180aaec>
-X-Patchwork-Hint: ignore
-References: <20251027125005.100121-2-matthew.auld@intel.com>
-In-Reply-To: <20251027125005.100121-2-matthew.auld@intel.com>
+Date: Mon, 27 Oct 2025 17:40:53 +0200
+In-Reply-To: <20251017161417.4399-10-ville.syrjala@linux.intel.com>
+References: <20251017161417.4399-1-ville.syrjala@linux.intel.com>
+ <20251017161417.4399-10-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-5 
+MIME-Version: 1.0
+Subject: Re: [PATCH 9/9] drm/i915/scaler: Use the actual scale factors for
+ vblank length check
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,106 +43,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7862060461130740407==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2025-10-17 at 19:14 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Now that the scaler assignment has been moved to an earlier point
+> we can start to use the actual scale factors in the prefill vs.
+> vblank length check.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
 
-== Series Details ==
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Series: verbose p2p (rev3)
-URL   : https://patchwork.freedesktop.org/series/156480/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0_BAT -> xe-pw-156480v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
+--
+Cheers,
+Luca.
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0 -> xe-pw-156480v3
-
-  IGT_8597: 8597
-  xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0: 2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0
-  xe-pw-156480v3: 156480v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v3/index.html
-
---===============7862060461130740407==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>verbose p2p (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156480/">https://patchwork.freedesktop.org/series/156480/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156480v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0_BAT -&gt; xe-pw-156480v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0 -&gt; xe-pw-156480v3</li>
-</ul>
-<p>IGT_8597: 8597<br />
-  xe-3989-2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0: 2e43855c9f1743fba7f7ad88b0951f0ed6c7edb0<br />
-  xe-pw-156480v3: 156480v3</p>
-
-</body>
-</html>
-
---===============7862060461130740407==--
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 77 ++++++++++++++++++++---
+>  1 file changed, 67 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index e8a8facdc300..53436c731cf1 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -978,22 +978,79 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_=
+state *crtc_state)
+>  	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
+>  }
+> =20
+> +static unsigned int skl_scaler_scale(const struct intel_crtc_state *crtc=
+_state, int i)
+> +{
+> +	const struct intel_crtc_scaler_state *scaler_state =3D
+> +		&crtc_state->scaler_state;
+> +
+> +	return DIV_ROUND_UP_ULL(mul_u32_u32(scaler_state->scalers[i].hscale,
+> +					    scaler_state->scalers[i].vscale),
+> +				0x10000);
+> +}
+> +
+> +static unsigned int skl_scaler_downscale(const struct intel_crtc_state *=
+crtc_state, int i)
+> +{
+> +	return max(0x10000, skl_scaler_scale(crtc_state, i));
+> +}
+> +
+> +static unsigned int skl_plane_scaler_downscale(const struct intel_crtc_s=
+tate *crtc_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	const struct intel_crtc_scaler_state *scaler_state =3D
+> +		&crtc_state->scaler_state;
+> +	unsigned int scale =3D 0x10000;
+> +	int i;
+> +
+> +	for (i =3D 0; i < crtc->num_scalers; i++) {
+> +		/* ignore pfit */
+> +		if (i =3D=3D scaler_state->scaler_id)
+> +			continue;
+> +
+> +		if (!scaler_state->scalers[i].in_use)
+> +			continue;
+> +
+> +		scale =3D max(scale, skl_scaler_downscale(crtc_state, i));
+> +	}
+> +
+> +	return scale;
+> +}
+> +
+> +static unsigned int skl_pipe_scaler_downscale(const struct intel_crtc_st=
+ate *crtc_state)
+> +{
+> +	const struct intel_crtc_scaler_state *scaler_state =3D
+> +		&crtc_state->scaler_state;
+> +
+> +	if (!crtc_state->pch_pfit.enabled)
+> +		return 0x10000;
+> +
+> +	return skl_scaler_downscale(crtc_state, scaler_state->scaler_id);
+> +}
+> +
+>  unsigned int skl_scaler_1st_prefill_adjustment(const struct intel_crtc_s=
+tate *crtc_state)
+>  {
+> -	/*
+> -	 * FIXME don't have scalers assigned yet
+> -	 * so can't look up the scale factors
+> -	 */
+> -	return 0x10000;
+> +	const struct intel_crtc_scaler_state *scaler_state =3D
+> +		&crtc_state->scaler_state;
+> +	int num_scalers =3D hweight32(scaler_state->scaler_users);
+> +
+> +	if (num_scalers < 1)
+> +		return 0x10000;
+> +
+> +	if (num_scalers =3D=3D 1 && crtc_state->pch_pfit.enabled)
+> +		return skl_pipe_scaler_downscale(crtc_state);
+> +	else
+> +		return skl_plane_scaler_downscale(crtc_state);
+>  }
+> =20
+>  unsigned int skl_scaler_2nd_prefill_adjustment(const struct intel_crtc_s=
+tate *crtc_state)
+>  {
+> -	/*
+> -	 * FIXME don't have scalers assigned yet
+> -	 * so can't look up the scale factors
+> -	 */
+> -	return 0x10000;
+> +	const struct intel_crtc_scaler_state *scaler_state =3D
+> +		&crtc_state->scaler_state;
+> +	int num_scalers =3D hweight32(scaler_state->scaler_users);
+> +
+> +	if (num_scalers < 2)
+> +		return 0x10000;
+> +
+> +	return skl_pipe_scaler_downscale(crtc_state);
+>  }
+> =20
+>  unsigned int skl_scaler_1st_prefill_lines(const struct intel_crtc_state =
+*crtc_state)
