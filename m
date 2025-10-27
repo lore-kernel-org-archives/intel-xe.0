@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93755CCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 12:32:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D25CCF9E5
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 12:32:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4928810E46A;
-	Mon, 27 Oct 2025 12:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCD7510E468;
+	Mon, 27 Oct 2025 12:32:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LD3zpzNQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bKt4UGv8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDA910E46A
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 12:32:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1725910E46B
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 12:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761568321; x=1793104321;
+ t=1761568324; x=1793104324;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J23BF6/RaRuG0y4mMZ2AbkgPgKWeKfylq0qhSUlq5oo=;
- b=LD3zpzNQTvim0CXGfDVMyGS4JVpLanyrYQ6WmF/VSuXMt1Xrj2dXjBIQ
- V8dN/njX1ufloqr6LbcduURFqumvJ9/5SuDIES+XeX4XUCgtrf/oJ3d+w
- 4SsJpm5Jz7QoCMTxIcSBPRcU9xvEg3MWXrNjmNuivc+CBRZzs8TxG+kcb
- p3vAI9aR1xyNveyZ2W/5fWsDvJxEOuu3wNGIsCiANgksns7zJZPBkVnc5
- e+7/GA/5FwdREWQodfUVekw6msKo414yLF3sI0qQJ2iWERFl2Mzy/iZFS
- pxS4MZiyXN58oRtMB4C4SYkuYB+kBf+XN9NZVVD09o/kYBcBLqxOKVYdJ w==;
-X-CSE-ConnectionGUID: U0k0RBtvTnu3ZjmTiRQfIw==
-X-CSE-MsgGUID: uhNxIeP+Rnup+JJjOBKwEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63678878"
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="63678878"
+ bh=lxhqCEM7uivECYLLIVmoD5hvhyU9SaFgCkzZjy17/mY=;
+ b=bKt4UGv8oqYDrHdITtpjw4rYzcbDkzH8N7z5ADhgCUBrbCs7t+pPHP4A
+ lH4slU15UfJ+YtY98mjJlG1Bv7z71UhAMTuJIhKeP0/4Lljm62xaXzKwB
+ 5Yg3r4ZLjGenKhjzYp8ebLxaGI+7QxaQd5dgih/lVxIECwZK5Uoj5wh4j
+ 8fBeD5yZ/EGiFJnVPNe5HWhUBkLY10hK2C2Yp45u1nKuuq06PN11gnsx2
+ BQWtkfX04l8qHBaHx2TjKT2yVJnWHZldJ3FIhUaadv8XQfGtulrcOs9nH
+ xBk1IG/gcnx8oov4NzRh1yI5onbUN9NrLgoNUSBPlzWppZCJVGzz1kyU7 Q==;
+X-CSE-ConnectionGUID: qbGjAf4fSAiTA/dU1UFQiA==
+X-CSE-MsgGUID: 0F/Q/nmPRma6shwXKMT8tA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63678882"
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="63678882"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 05:32:01 -0700
-X-CSE-ConnectionGUID: 8twtAJ/ZRcOyqFDPeVbe6w==
-X-CSE-MsgGUID: u5H7ejIQRk+6qzc7MXxbiA==
+ 27 Oct 2025 05:32:04 -0700
+X-CSE-ConnectionGUID: rscE/1L8TvqTDaVDauMtCw==
+X-CSE-MsgGUID: 45MynndnQ72dIP6QIDqlXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="184729535"
+X-IronPort-AV: E=Sophos;i="6.19,258,1754982000"; d="scan'208";a="184729554"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa007.fm.intel.com with ESMTP; 27 Oct 2025 05:31:58 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 27 Oct 2025 05:32:01 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com
@@ -47,10 +47,9 @@ Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
  daniele.ceraolospurio@intel.com, matthew.brost@intel.com,
  michal.wajdeczko@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v7 2/4] drm/xe/guc_submit: Introduce pause/unpause() helpers
- for PF
-Date: Mon, 27 Oct 2025 18:00:55 +0530
-Message-Id: <20251027123057.3738059-3-raag.jadav@intel.com>
+Subject: [PATCH v7 3/4] drm/xe/pm: Assert on runtime suspend if VFs are enabled
+Date: Mon, 27 Oct 2025 18:00:56 +0530
+Message-Id: <20251027123057.3738059-4-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251027123057.3738059-1-raag.jadav@intel.com>
 References: <20251027123057.3738059-1-raag.jadav@intel.com>
@@ -70,83 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce pause/unpause() helpers which stop/start further runs of
-submission tasks on given GuC and can be called from PF context. This
-is in preparation of usecases where we simply need to stop/start the
-scheduler without losing GuC state and don't require dealing with VF
-migration.
+We hold an additional reference to the runtime PM to keep PF in D0
+during VFs lifetime, as our VFs do not implement the PM capability.
+This means we should never be runtime suspending as long as VFs are
+enabled.
 
-v7: Reword commit message (Matthew Brost)
-
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 30 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h |  2 ++
- 2 files changed, 32 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 0cb83e5faceb..ebaaa0b6ddfb 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2161,6 +2161,21 @@ static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 6e59642e7820..ab4b8c48c86c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1152,6 +1152,14 @@ static int xe_pci_runtime_suspend(struct device *dev)
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	int err;
  
-+/**
-+ * xe_guc_submit_pause - Stop further runs of submission tasks on given GuC.
-+ * @guc: the &xe_guc struct instance whose scheduler is to be disabled
-+ */
-+void xe_guc_submit_pause(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
++	/*
++	 * We hold an additional reference to the runtime PM to keep PF in D0
++	 * during VFs lifetime, as our VFs do not implement the PM capability.
++	 * This means we should never be runtime suspending as long as VFs are
++	 * enabled.
++	 */
++	xe_assert(xe, !pci_num_vf(pdev));
 +
-+	mutex_lock(&guc->submission_state.lock);
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+		xe_sched_submission_stop(&q->guc->sched);
-+	mutex_unlock(&guc->submission_state.lock);
-+}
-+
- /**
-  * xe_guc_submit_pause_vf - Stop further runs of submission tasks for VF.
-  * @guc: the &xe_guc struct instance whose scheduler is to be disabled
-@@ -2335,6 +2350,21 @@ static void guc_exec_queue_unpause(struct xe_guc *guc, struct xe_exec_queue *q)
- 	xe_sched_submission_resume_tdr(sched);
- }
- 
-+/**
-+ * xe_guc_submit_unpause - Allow further runs of submission tasks on given GuC.
-+ * @guc: the &xe_guc struct instance whose scheduler is to be enabled
-+ */
-+void xe_guc_submit_unpause(struct xe_guc *guc)
-+{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
-+
-+	mutex_lock(&guc->submission_state.lock);
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+		xe_sched_submission_start(&q->guc->sched);
-+	mutex_unlock(&guc->submission_state.lock);
-+}
-+
- /**
-  * xe_guc_submit_unpause_vf - Allow further runs of submission tasks for VF.
-  * @guc: the &xe_guc struct instance whose scheduler is to be enabled
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 0e7996836131..100a7891b918 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -20,8 +20,10 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc);
- void xe_guc_submit_reset_wait(struct xe_guc *guc);
- void xe_guc_submit_stop(struct xe_guc *guc);
- int xe_guc_submit_start(struct xe_guc *guc);
-+void xe_guc_submit_pause(struct xe_guc *guc);
- void xe_guc_submit_pause_abort(struct xe_guc *guc);
- void xe_guc_submit_pause_vf(struct xe_guc *guc);
-+void xe_guc_submit_unpause(struct xe_guc *guc);
- void xe_guc_submit_unpause_vf(struct xe_guc *guc);
- void xe_guc_submit_unpause_prepare_vf(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
+ 	err = xe_pm_runtime_suspend(xe);
+ 	if (err)
+ 		return err;
 -- 
 2.34.1
 
