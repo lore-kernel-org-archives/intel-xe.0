@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 264AECCF9E5
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A191CCF9F0
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Oct 2025 21:43:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF4B410E562;
-	Mon, 27 Oct 2025 21:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBC610E565;
+	Mon, 27 Oct 2025 21:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kW7VGkzl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LDL+MfXK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86BF910E19A
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 21:42:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A083F10E19A
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Oct 2025 21:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761601378; x=1793137378;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=GyqWXQb5TLKsVpzZYFqaGSTkCysCXAJkrKF/ePuOin4=;
- b=kW7VGkzlCCRqDepRDYh/XnWDrTYP+kH05RHWMI6rY7/YVQr3C7yooeff
- 8RrwH+PRn88W00+Pwuxuz0g/bdhHBukpZuYP21khbcE4P4hrARcS+7GMW
- 2lqfOOBYT6EVQI/F7CbiUgRcNF8au35BLGV8swdoheChInYXgIcDJ9lsY
- Hb80fqJTYh79ab+30Dwd/7uw9ruP42m8Ge9FVfvpdQtiq29G+lqlqDjA0
- aMiZ4r3c6YXJ7rSC0opFUpZ3NuTeRkKJZuXpCKeXr8ha34uREmkawdo+A
- 1uzwbCznXcLbQnfm+yj+FrL0maCEAd9WILPPm30Ort6IqtU+pTgB7oslm w==;
-X-CSE-ConnectionGUID: rD/ajIJHRjmkE2+Ux1w6KA==
-X-CSE-MsgGUID: 3ncdWe9ETrSJeoFKLuB/QQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368850"
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368850"
+ t=1761601377; x=1793137377;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yoFT/JJsVWbv9l0Zr2hSjW6XPJrfXjDc+jCjwQ9HC+U=;
+ b=LDL+MfXKqBUQor//J884ReFCqEQKFXrGX7Obl8ErX+XpcC2N7AWO9PmW
+ BPHf9EhnBflHantEEdn3CnuJSZM3HbI7/HfYlN25durvv0GMcRFWcUusc
+ 9NdJpWZJ0DTM+gCVO63nYCwUxw+eQ47IFyH6CajPfn8vrTDNDRVbvWxX4
+ bcsmHESbR4q0bNteO4sTKJcMdG8Y1eLZM5ljW0UUWLlyHxbgB87zY1amM
+ 4hD9IiJXuMq7RB0TdAGcHCoZXL++Rq6uerC47zEVM8CK8N/iT6EyThzL7
+ 4M20WCCEx4qvDrClQN/aW3sb351bLFBUk3ueJ2Dx8BYzwEiWC2nPXiiZS g==;
+X-CSE-ConnectionGUID: NtID02oPQJyaSgFnK/iZnQ==
+X-CSE-MsgGUID: X3NaoOdcRoWG5/23PTcBpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74368842"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="74368842"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2025 14:42:57 -0700
-X-CSE-ConnectionGUID: g0WPhr+vTVWqgP7QbmDHew==
-X-CSE-MsgGUID: 2uVZVsQgS6C7CSG21H4ahQ==
+ 27 Oct 2025 14:42:56 -0700
+X-CSE-ConnectionGUID: 5Nf3G8EFQG6nBwsUx0UYwg==
+X-CSE-MsgGUID: ruIDGxSHTrKIsDUtTHerfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782350"
+X-IronPort-AV: E=Sophos;i="6.19,259,1754982000"; d="scan'208";a="184782342"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 14:42:56 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 8/8] dma-buf: Fix dma-fence-chain signaling ordering
-Date: Mon, 27 Oct 2025 14:42:52 -0700
-Message-Id: <20251027214252.2455093-9-matthew.brost@intel.com>
+Subject: [CI 0/8] Fix dma-fence-array ordering 
+Date: Mon, 27 Oct 2025 14:42:44 -0700
+Message-Id: <20251027214252.2455093-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251027214252.2455093-1-matthew.brost@intel.com>
-References: <20251027214252.2455093-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,73 +63,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/dma-buf/dma-fence-chain.c |  6 +++---
- include/linux/dma-fence-chain.h   | 10 +++++-----
- 2 files changed, 8 insertions(+), 8 deletions(-)
+For CI, only do not review.
 
-diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
-index a8a90acf4f34..23f5cf467dd1 100644
---- a/drivers/dma-buf/dma-fence-chain.c
-+++ b/drivers/dma-buf/dma-fence-chain.c
-@@ -119,7 +119,7 @@ static const char *dma_fence_chain_get_timeline_name(struct dma_fence *fence)
-         return "unbound";
- }
- 
--static void dma_fence_chain_irq_work(struct irq_work *work)
-+static void dma_fence_chain_work(struct work_struct *work)
- {
- 	struct dma_fence_chain *chain;
- 
-@@ -137,8 +137,8 @@ static void dma_fence_chain_cb(struct dma_fence *f, struct dma_fence_cb *cb)
- 	struct dma_fence_chain *chain;
- 
- 	chain = container_of(cb, typeof(*chain), cb);
--	init_irq_work(&chain->work, dma_fence_chain_irq_work);
--	irq_work_queue(&chain->work);
-+	INIT_WORK(&chain->work, dma_fence_chain_work);
-+	queue_work(system_ordered_wq, &chain->work);
- 	dma_fence_put(f);
- }
- 
-diff --git a/include/linux/dma-fence-chain.h b/include/linux/dma-fence-chain.h
-index 68c3c1e41014..8e88d3d01fe6 100644
---- a/include/linux/dma-fence-chain.h
-+++ b/include/linux/dma-fence-chain.h
-@@ -11,8 +11,8 @@
- #define __LINUX_DMA_FENCE_CHAIN_H
- 
- #include <linux/dma-fence.h>
--#include <linux/irq_work.h>
- #include <linux/slab.h>
-+#include <linux/workqueue.h>
- 
- /**
-  * struct dma_fence_chain - fence to represent an node of a fence chain
-@@ -33,18 +33,18 @@ struct dma_fence_chain {
- 		 *
- 		 * This is used to add the callback for signaling the
- 		 * complection of the fence chain. Never used at the same time
--		 * as the irq work.
-+		 * as the work.
- 		 */
- 		struct dma_fence_cb cb;
- 
- 		/**
--		 * @work: irq work item for signaling
-+		 * @work: work item for signaling
- 		 *
--		 * Irq work structure to allow us to add the callback without
-+		 * Work structure to allow us to add the callback without
- 		 * running into lock inversion. Never used at the same time as
- 		 * the callback.
- 		 */
--		struct irq_work work;
-+		struct work_struct work;
- 	};
- 	spinlock_t lock;
- };
+Matt
+
+Matthew Brost (8):
+  drm/xe: Add last fence attachment to TLB invalidation job queues
+  drm/xe: Decouple bind queue last fence from TLB invalidations
+  drm/xe: Do not wait on TLB invalidations in page fault binds
+  drm/xe: Don't allow in fences on zero batch exec or zero binds
+  drm/xe: Remove last fence dependecy check from binds
+  workqueue: Add ordered workqueue
+  dma-buf: Fix dma-fence-array signaling ordering
+  dma-buf: Fix dma-fence-chain signaling ordering
+
+ drivers/dma-buf/dma-fence-array.c        |   6 +-
+ drivers/dma-buf/dma-fence-chain.c        |   6 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 108 ++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  20 ++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   5 ++
+ drivers/gpu/drm/xe/xe_migrate.c          |  14 +++
+ drivers/gpu/drm/xe/xe_migrate.h          |   8 ++
+ drivers/gpu/drm/xe/xe_pt.c               |  80 ++++++-----------
+ drivers/gpu/drm/xe/xe_sync.c             |  74 +++++++++-------
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  31 +++++--
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   5 +-
+ drivers/gpu/drm/xe/xe_vm.c               |  93 +++++++++++--------
+ drivers/gpu/drm/xe/xe_vm_types.h         |   6 +-
+ include/linux/dma-fence-array.h          |   6 +-
+ include/linux/dma-fence-chain.h          |  10 +--
+ include/linux/workqueue.h                |   1 +
+ kernel/workqueue.c                       |   7 +-
+ 17 files changed, 311 insertions(+), 169 deletions(-)
+
 -- 
 2.34.1
 
