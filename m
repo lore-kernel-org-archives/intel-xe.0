@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED9E0CCF9E0
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 21:28:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28D3CCCF9F1
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 21:34:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC8C210E67A;
-	Tue, 28 Oct 2025 21:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B552410E67C;
+	Tue, 28 Oct 2025 21:33:59 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F3D510E1EB;
- Tue, 28 Oct 2025 21:28:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2143848003536821412=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 253FA10E671;
+ Tue, 28 Oct 2025 21:33:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_timeout_and_a?=
- =?utf-8?q?dd_cpu=5Frelax=28=29_in_gt=5Fengine=5Fidentity=28=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Exten?=
+ =?utf-8?q?d_i915=5Fdisplay=5Finfo_with_Type-C_port_details_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Oct 2025 21:28:44 -0000
-Message-ID: <176168692431.64511.9673069565879748770@97596180aaec>
+Date: Tue, 28 Oct 2025 21:33:58 -0000
+Message-ID: <176168723814.64512.13387633076159787031@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251028180454.3599689-2-shuicheng.lin@intel.com>
-In-Reply-To: <20251028180454.3599689-2-shuicheng.lin@intel.com>
+References: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
+In-Reply-To: <20251027200256.3058319-1-khaled.almahallawy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,64 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2143848003536821412==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix timeout and add cpu_relax() in gt_engine_identity()
-URL   : https://patchwork.freedesktop.org/series/156681/
-State : success
+Series: drm/i915/display: Extend i915_display_info with Type-C port details (rev6)
+URL   : https://patchwork.freedesktop.org/series/155066/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d_BAT -> xe-pw-156681v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ca0accd05cec522b39b87391a02a14b15a8eff72
+Author: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Date:   Tue Oct 28 12:07:53 2025 -0700
 
-Summary
--------
+    drm/i915/display: Extend i915_display_info with Type-C port details
+    
+    Expose key Type-C port data in i915_display_info to make it easier to
+    understand the port configuration and active mode, especially whether
+    the link is in DP-Alt or TBT-Alt, without having to scan kernel logs.
+    
+    Tested in DP-Alt, TBT-Alt, SST, and MST.
+    
+    Expected output:
+    
+    [CONNECTOR:290:DP-2]: status: connected
+            TC Port: E/TC#2 mode: tbt-alt pin assignment: - max lanes: 4
+            physical dimensions: 600x340mm
+    ...
+    [CONNECTOR:263:DP-5]: status: connected
+            TC Port: G/TC#4 mode: dp-alt pin assignment: C max lanes: 4
+            physical dimensions: 610x350mm
+    
+    v2: Use drm_printer (Ville)
+        Lock/Unlock around the printf (Imre)
+    v3: Forward Declaration drm_printer struct (Jani)
+    v4: Handle MST connector with no active encoder (Imre)
+        Add a delimiter between fields and ":" after the port name (Imre)
+    v5: Init dig_port and use it in intel_encorder_is_tc and tc_info (Imre)
+        Move tc->port_name to a newline (Imre)
+    v6: Use intel_tc_port_lock/Unlock (Imre)
+    
+    Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Cc: Imre Deak <imre.deak@intel.com>
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
++ /mt/dim checkpatch 820bcb3f052e15c3f9b42aa28344d0a9991ac044 drm-intel
+ca0accd05cec drm/i915/display: Extend i915_display_info with Type-C port details
+-:75: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "dig_port"
+#75: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:284:
++	if (dig_port != NULL && intel_encoder_is_tc(&dig_port->base))
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-156681v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-plain-flip@a-edp1:
-    - bat-adlp-7:         [DMESG-WARN][1] ([Intel XE#4543]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156681v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d -> xe-pw-156681v1
-
-  IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d: 5742fc7aea99a1326637a7106eeaeac383a1c76d
-  xe-pw-156681v1: 156681v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156681v1/index.html
-
---===============2143848003536821412==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 0 warnings, 1 checks, 66 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix timeout and add cpu_relax() in gt_engine_identity()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156681/">https://patchwork.freedesktop.org/series/156681/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156681v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156681v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d_BAT -&gt; xe-pw-156681v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156681v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156681v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d -&gt; xe-pw-156681v1</li>
-</ul>
-<p>IGT_8599: b22b9ca357de868f3848269e5eb7c4cc53b3f2d1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-3996-5742fc7aea99a1326637a7106eeaeac383a1c76d: 5742fc7aea99a1326637a7106eeaeac383a1c76d<br />
-  xe-pw-156681v1: 156681v1</p>
-
-</body>
-</html>
-
---===============2143848003536821412==--
