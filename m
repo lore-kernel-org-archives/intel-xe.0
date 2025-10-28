@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7871CCF9E0
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:15:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C7DCCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:16:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9529710E3E5;
-	Tue, 28 Oct 2025 13:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0747710E3EE;
+	Tue, 28 Oct 2025 13:16:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ba5GhCoT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAExuAS2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03EE210E3E5
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 13:15:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C617910E3EF
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 13:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761657352; x=1793193352;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1761657397; x=1793193397;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=c96vjxLI05HS+P90CHUS+o88h6EelyRfxSr4CNASLQc=;
- b=Ba5GhCoTMan1RkBryorChIahlLjWxOVRbFRA5nZjAuezaSRfPy7UI6Zk
- hhHdTTQobWp9V81ny+o4yKD9ywt+Cxp+3eZ4epViVurlKAZ4tP9XSUA8Y
- WsOTxUPT3zN8ZNiZa3/eapg2XWZbdoTHYjZMwRSuPFrdVnm0+WwB8VGlo
- 5E6LOji668DxXyZ84ZztmE9jwYzok1blNd24hzxRsw0SIZDuZRDttd9D4
- c/mSc/AOTQfN4unsQsDDOT6mq71kU8qXTqQoeNhcr/MjMRiv6AY8BBBuc
- 1a5/hU5vZ2zIyLXmkMKCBCMOhu5TxxQYud9/WHszaJFQWREoFgW57QJny A==;
-X-CSE-ConnectionGUID: U1qteTWZQ1SUdJ2P2NIvKw==
-X-CSE-MsgGUID: npELfi2SRF6xNDpw/HF4LQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74041793"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="74041793"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:15:51 -0700
-X-CSE-ConnectionGUID: MvKm2WlaSdKT/U4Gjefu7g==
-X-CSE-MsgGUID: DSbf78XaR/atSP4yr7/+MQ==
+ bh=DAx5GZBKEdTAMjoLGVwbEXt0+Ns0ZUUVaUJGfLfphK0=;
+ b=eAExuAS2y/nAZ8z9Z2HmLCPYQcAltSEUy1L851p8WZxv6QvU3DgnAyWF
+ k1qF33/5tpyNMwyoUOtcuGPcmjBAjdWUmFKCzhUMV1lDFyt1J28xeXFd1
+ vfQ7eakCTqB/I0QkvsPrk83iZZCcqFnmvuveFE4EEIw1oPPpkaxpU0o9a
+ /uOHIEx1QMNUyyPL6lBcYzcirkzuw8mUweoQ/VTpWsSNp63lEvijxwiZM
+ cfnrVj2iYzL/7TgjIpdjyVz0dtB6+qBs0u4BLaHi9BR8l0kcSaF58Wgrx
+ UrWxtFERXvyJhdXbswIv6hELpubH06sFkwKP5yhR94z1xarFX3AQKiTy9 A==;
+X-CSE-ConnectionGUID: zIpRDBiuSWiYJ5De3k3k1A==
+X-CSE-MsgGUID: OQWwoJOvRJ6zI74nkM9KCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="89226030"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="89226030"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 06:16:36 -0700
+X-CSE-ConnectionGUID: R9QP7oNnS4WWvFynQCHfXw==
+X-CSE-MsgGUID: HAsCxrjTTxas70+Doo7jTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189658380"
-Received: from sanjay-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:15:49 -0700
-From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185431681"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.244.159])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 06:16:36 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com,
-	jose.souza@intel.com
-Subject: [PATCH] drm/xe/uapi: Implement DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION
- flag
-Date: Tue, 28 Oct 2025 18:40:32 +0530
-Message-ID: <20251028131031.2052163-2-sanjay.kumar.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+Subject: [CI v4] verbose p2p
+Date: Tue, 28 Oct 2025 13:16:25 +0000
+Message-ID: <20251028131624.154276-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,181 +64,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Let userspace opt out of CCS compression on a per-BO basis. When set,
-the driver maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
-allocation/clearing, and rejects compressed PAT indices at vm_bind.
-This avoids extra memory ops and manual CCS state handling for buffer.
+Do not review.
 
-Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c  | 15 +++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h  |  1 +
- drivers/gpu/drm/xe/xe_pat.c |  9 ++++++++-
- drivers/gpu/drm/xe/xe_pat.h | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_vm.c  |  6 ++++++
- include/uapi/drm/xe_drm.h   | 13 +++++++++++++
- 6 files changed, 56 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
+ drivers/pci/p2pdma.c            | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 7b6502081873..1421537ef9fc 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3160,7 +3160,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, args->flags &
- 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
- 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
--			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
-+			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
-+			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 54e42960daad..b047251674ea 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -28,7 +28,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
+ 	struct drm_gem_object *obj = attach->dmabuf->priv;
  
- 	if (XE_IOCTL_DBG(xe, args->handle))
-@@ -3182,6 +3183,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
- 		bo_flags |= XE_BO_FLAG_SCANOUT;
+ 	if (attach->peer2peer &&
+-	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
++	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, true) < 0)
+ 		attach->peer2peer = false;
  
-+	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
-+		if (GRAPHICS_VER(xe) < 20)
-+			return -EINVAL;
-+		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
-+	}
-+
- 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
- 
- 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
-@@ -3503,8 +3510,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
- 	 * Compression implies coh_none, therefore we know for sure that WB
- 	 * memory can't currently use compression, which is likely one of the
- 	 * common cases.
-+	 * Additionally, userspace may explicitly request no compression via the
-+	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
-+	 * CCS usage.
- 	 */
--	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
-+	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
-+	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 353d607d301d..1217e386e697 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -50,6 +50,7 @@
- #define XE_BO_FLAG_GGTT3		BIT(23)
- #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
- #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
-+#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
- 
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 6e48ff84ad0a..991eeb551a72 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -115,7 +115,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
- 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
- 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
- 		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
--			XE_COH_AT_LEAST_1WAY : XE_COH_NONE \
-+			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
-+		.compressed = comp_en, \
- 	}
- 
- static const struct xe_pat_table_entry xe2_pat_table[] = {
-@@ -160,6 +161,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
- 	return xe->pat.table[pat_index].coh_mode;
- }
- 
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
-+{
-+	xe_assert(xe, pat_index < xe->pat.n_entries);
-+	return xe->pat.table[pat_index].compressed;
-+}
-+
- static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
- 			int n_entries)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 268c9a899f56..07319fca5f4c 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -29,6 +29,11 @@ struct xe_pat_table_entry {
- #define XE_COH_NONE          1
- #define XE_COH_AT_LEAST_1WAY 2
- 	u16 coh_mode;
-+
-+	/**
-+	 * @compressed: Whether compression is enabled or not with @value.
-+	 */
-+	bool compressed;
+ 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
+diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
+index 78e108e47254..630374711dee 100644
+--- a/drivers/pci/p2pdma.c
++++ b/drivers/pci/p2pdma.c
+@@ -451,6 +451,7 @@ static const struct pci_p2pdma_whitelist_entry {
+ 	{PCI_VENDOR_ID_INTEL,	0x2033, 0},
+ 	{PCI_VENDOR_ID_INTEL,	0x2020, 0},
+ 	{PCI_VENDOR_ID_INTEL,	0x09a2, 0},
++	{PCI_VENDOR_ID_INTEL,	0x4648, 0},
+ 	{}
  };
  
- /**
-@@ -53,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
-  */
- u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+@@ -503,7 +504,10 @@ static bool __host_bridge_whitelist(struct pci_host_bridge *host,
+ 	vendor = root->vendor;
+ 	device = root->device;
  
-+/**
-+ * xe_pat_index_has_compression - Check if the given pat_index enables
-+ * compression.
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ *
-+ * Note: Only applicable to Xe2+, where compression is part of the PAT index.
-+ */
-+bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
++	pr_info("root v:%x d:%x\n", vendor, device);
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 179758ca7cb8..98990ab14c85 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3486,6 +3486,12 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- {
- 	u16 coh_mode;
- 
-+	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
-+	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
-+	    xe_pat_index_has_compression(xe, pat_index))
-+		return -EINVAL;
-+
-+
- 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
- 	    XE_IOCTL_DBG(xe, obj_offset >
- 			 xe_bo_size(bo) - range)) {
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 40ff19f52a8d..07dea4a9dfd3 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -787,6 +787,18 @@ struct drm_xe_device_query {
-  *    need to use VRAM for display surfaces, therefore the kernel requires
-  *    setting this flag for such objects, otherwise an error is thrown on
-  *    small-bar systems.
-+ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
-+ *    hint that compression (CCS) should be disabled for the buffer being
-+ *    created. This can avoid unnecessary memory operations and CCS state
-+ *    management.
-+ *    On pre-Xe2 platforms, this flag is currently rejected as compression
-+ *    control is not supported via PAT index. On Xe2+ platforms, compression
-+ *    is controlled via PAT entries. If this flag is set, the driver will reject
-+ *    any VM bind that requests a PAT index enabling compression for this BO.
-+ *    Note: On dGPU platforms, there is currently no change in behavior with
-+ *    this flag, but future improvements may leverage it. The current benefit is
-+ *    primarily applicable to iGPU platforms.
-+
-  *
-  * @cpu_caching supports the following values:
-  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
-@@ -833,6 +845,7 @@ struct drm_xe_gem_create {
- #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
- #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
- #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
-+#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
- 	/**
- 	 * @flags: Flags, currently a mask of memory instances of where BO can
- 	 * be placed
+ 	for (entry = pci_p2pdma_whitelist; entry->vendor; entry++) {
++		pr_info("entry v:%x d:%x\n", entry->vendor, entry->device);
+ 		if (vendor != entry->vendor || device != entry->device)
+ 			continue;
+ 		if (entry->flags & REQ_SAME_HOST_BRIDGE && !same_host_bridge)
 -- 
-2.43.0
+2.51.0
 
