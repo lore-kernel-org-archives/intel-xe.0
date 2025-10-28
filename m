@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D66FCCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 16:38:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B1F7CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 16:54:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0215210E609;
-	Tue, 28 Oct 2025 16:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4963D10E0D7;
+	Tue, 28 Oct 2025 16:54:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mIO/Jbmk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fyBpcE+7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22AC710E605;
- Tue, 28 Oct 2025 16:38:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBA6110E0D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 16:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761669511; x=1793205511;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NBKNVxKzSchoFsDQZ+CIAYYpBzslSrxebBnbGoE2Ebs=;
- b=mIO/JbmkM7zLnCXwRPRMn2fiy2Lm/csMDR5xFEZagdKNkChVkJGkdE0d
- dgyKKqXpHWOgS09SfHRwVz2GfUw4nBghq5BRDdMRUEez5FJ3RlMojpK7E
- 1tLsqHLWER9yXj7YVlez895ffCl9nKUNg++njfu1uqBgwMAURcHP5zjV6
- z1DCK9dXmHprgmUEKYPakT1xmD/ilbfCyA/zbqDY7np3JCja2F9YFG4PT
- JBK3Vx9D2Efkjxvfsq1gWuA5F12q1CHEcVboCO56ogZ1zqfYY0FDhefe2
- Ljs/QeLQT1utuhv3jPbM26UJTjLaMNqS2EnGIgxxrfgrAGNIq3J8p3OAC w==;
-X-CSE-ConnectionGUID: kPHM8l1QRtqKzCyBdwvvDQ==
-X-CSE-MsgGUID: ak860GngTLWUXiR9xingKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="67418556"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="67418556"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 09:38:30 -0700
-X-CSE-ConnectionGUID: k4E1ZHFsRnmCv3mGZ+1Esw==
-X-CSE-MsgGUID: V/hE/SbzSviboF6X9SySvg==
+ t=1761670484; x=1793206484;
+ h=date:from:to:cc:subject:message-id;
+ bh=B/r6WRlVYQh0UFnpA4vrq4Y6n3PLjxh38S+DpwLTymQ=;
+ b=fyBpcE+7B0ra2Z679fc/nZAMNmjh8FK3lJb2E5wfqijaaYIHy1TjZ0sF
+ RC7aORQXayEYdZu5CCz3d5Bmyvgcq9jj/Q99bkrNg1nwF/Q4CRXer7OfZ
+ 5bay7RfIxONnIneWUZ1EsjV8f+eYAIB+3mS2sGvMNnaWZghS70E25u2qt
+ TjIDtyTlGtJclN0q/WfLUMpHFrjDrmMYTnxBSS9Q5S/lbLgemvbWedhun
+ FstT7GVl+SfVl8z2oS5RLZw7dRvLeyYq8DJZtHDaEKhnHztJJxIdeSNJk
+ mBM7E9ntXR1fV3gFOnXBYoLpvM+hCqchkngKUU9Xk5X9fa9mlA4AiH5q3 A==;
+X-CSE-ConnectionGUID: uS33jgHAR5qSXiEctHNrsw==
+X-CSE-MsgGUID: tAGuhkZZSyyFhzAiv/cwuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63664726"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="63664726"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 09:54:44 -0700
+X-CSE-ConnectionGUID: 0olHBbELTaGj+x3Si5CYZQ==
+X-CSE-MsgGUID: TRnUCLlRS0+h1Wz5QugZMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="216277329"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.169])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 09:38:28 -0700
-Date: Tue, 28 Oct 2025 18:38:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915/dsi: log send packet sequence errors
-Message-ID: <aQDxgg586x37nUUO@intel.com>
-References: <20251028155712.1824565-1-jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251028155712.1824565-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185324804"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+ by orviesa007.jf.intel.com with ESMTP; 28 Oct 2025 09:54:42 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1vDmxy-000JTQ-0E;
+ Tue, 28 Oct 2025 16:54:38 +0000
+Date: Wed, 29 Oct 2025 00:53:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 4504e780689245f01bee6ee4c19c74051bd87593
+Message-ID: <202510290053.WVO0iVM6-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,91 +64,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 05:57:11PM +0200, Jani Nikula wrote:
-> We might be getting send packet sequence errors and never know. Log
-> them.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 24 ++++++++++++--------
->  1 file changed, 15 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> index 23402408e172..748e5462bd95 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-> @@ -106,6 +106,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
->  	u8 type, flags, seq_port;
->  	u16 len;
->  	enum port port;
-> +	ssize_t ret;
->  
->  	drm_dbg_kms(display->drm, "\n");
->  
-> @@ -138,36 +139,41 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
->  
->  	switch (type) {
->  	case MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM:
-> -		mipi_dsi_generic_write(dsi_device, NULL, 0);
-> +		ret = mipi_dsi_generic_write(dsi_device, NULL, 0);
->  		break;
->  	case MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM:
-> -		mipi_dsi_generic_write(dsi_device, data, 1);
-> +		ret = mipi_dsi_generic_write(dsi_device, data, 1);
->  		break;
->  	case MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM:
-> -		mipi_dsi_generic_write(dsi_device, data, 2);
-> +		ret = mipi_dsi_generic_write(dsi_device, data, 2);
->  		break;
->  	case MIPI_DSI_GENERIC_READ_REQUEST_0_PARAM:
->  	case MIPI_DSI_GENERIC_READ_REQUEST_1_PARAM:
->  	case MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM:
-> -		drm_dbg_kms(display->drm, "Generic Read not yet implemented or used\n");
-> +		ret = -EOPNOTSUPP;
->  		break;
->  	case MIPI_DSI_GENERIC_LONG_WRITE:
-> -		mipi_dsi_generic_write(dsi_device, data, len);
-> +		ret = mipi_dsi_generic_write(dsi_device, data, len);
->  		break;
->  	case MIPI_DSI_DCS_SHORT_WRITE:
-> -		mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
-> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 1);
->  		break;
->  	case MIPI_DSI_DCS_SHORT_WRITE_PARAM:
-> -		mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
-> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
->  		break;
->  	case MIPI_DSI_DCS_READ:
-> -		drm_dbg_kms(display->drm, "DCS Read not yet implemented or used\n");
-> +		ret = -EOPNOTSUPP;
->  		break;
->  	case MIPI_DSI_DCS_LONG_WRITE:
-> -		mipi_dsi_dcs_write_buffer(dsi_device, data, len);
-> +		ret = mipi_dsi_dcs_write_buffer(dsi_device, data, len);
->  		break;
->  	}
->  
-> +	if (ret == -EOPNOTSUPP)
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 4504e780689245f01bee6ee4c19c74051bd87593  drm/xe/pf: Access VF's register using dedicated MMIO view
 
-Do we know that the write functions never return this value?
+elapsed time: 1451m
 
-> +		drm_dbg_kms(display->drm, "DSI read not supported\n");
+configs tested: 123
+configs skipped: 3
 
-Is there a reason you didn't make this a drm_err() as well?
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-We also have other debug messages related to unimplemented/unknown
-sequences/etc that I think should all be drm_err(). Otherwise we'll
-never find out if they're needed or not.
+tested configs:
+alpha                             allnoconfig    gcc-15.1.0
+alpha                            allyesconfig    gcc-15.1.0
+arc                              allmodconfig    gcc-15.1.0
+arc                               allnoconfig    gcc-15.1.0
+arc                              allyesconfig    gcc-15.1.0
+arc                        nsimosci_defconfig    clang-22
+arc                   randconfig-001-20251028    gcc-8.5.0
+arc                   randconfig-002-20251028    gcc-13.4.0
+arm                              allmodconfig    gcc-15.1.0
+arm                               allnoconfig    clang-22
+arm                              allyesconfig    gcc-15.1.0
+arm                      integrator_defconfig    clang-22
+arm                          pxa910_defconfig    gcc-15.1.0
+arm                   randconfig-001-20251028    clang-22
+arm                   randconfig-002-20251028    clang-22
+arm                   randconfig-003-20251028    clang-22
+arm                   randconfig-004-20251028    gcc-8.5.0
+arm                           tegra_defconfig    gcc-15.1.0
+arm                           u8500_defconfig    gcc-15.1.0
+arm64                             allnoconfig    gcc-15.1.0
+arm64                 randconfig-001-20251028    clang-22
+arm64                 randconfig-002-20251028    clang-22
+arm64                 randconfig-003-20251028    gcc-11.5.0
+arm64                 randconfig-004-20251028    gcc-8.5.0
+csky                             allmodconfig    gcc-15.1.0
+csky                              allnoconfig    gcc-15.1.0
+csky                             allyesconfig    gcc-15.1.0
+csky                  randconfig-001-20251028    gcc-15.1.0
+csky                  randconfig-002-20251028    gcc-15.1.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-22
+hexagon                          allyesconfig    clang-22
+hexagon               randconfig-001-20251028    clang-22
+hexagon               randconfig-002-20251028    clang-17
+i386                              allnoconfig    gcc-14
+i386        buildonly-randconfig-001-20251028    gcc-14
+i386        buildonly-randconfig-002-20251028    gcc-14
+i386        buildonly-randconfig-003-20251028    gcc-14
+i386        buildonly-randconfig-004-20251028    gcc-14
+i386        buildonly-randconfig-005-20251028    gcc-14
+i386        buildonly-randconfig-006-20251028    gcc-14
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-22
+loongarch             randconfig-001-20251028    gcc-12.5.0
+loongarch             randconfig-002-20251028    clang-22
+m68k                             allmodconfig    gcc-15.1.0
+m68k                              allnoconfig    gcc-15.1.0
+m68k                             allyesconfig    gcc-15.1.0
+m68k                           sun3_defconfig    clang-22
+microblaze                       allmodconfig    gcc-15.1.0
+microblaze                        allnoconfig    gcc-15.1.0
+microblaze                       allyesconfig    gcc-15.1.0
+mips                              allnoconfig    gcc-15.1.0
+mips                      maltaaprp_defconfig    clang-22
+nios2                             allnoconfig    gcc-11.5.0
+nios2                 randconfig-001-20251028    gcc-8.5.0
+nios2                 randconfig-002-20251028    gcc-9.5.0
+openrisc                          allnoconfig    clang-22
+openrisc                          allnoconfig    gcc-15.1.0
+openrisc                            defconfig    gcc-15.1.0
+parisc                            allnoconfig    clang-22
+parisc                            allnoconfig    gcc-15.1.0
+parisc                              defconfig    gcc-15.1.0
+parisc                randconfig-001-20251028    gcc-9.5.0
+parisc                randconfig-002-20251028    gcc-8.5.0
+powerpc                           allnoconfig    clang-22
+powerpc                           allnoconfig    gcc-15.1.0
+powerpc                 mpc8313_rdb_defconfig    clang-22
+powerpc                 mpc8315_rdb_defconfig    clang-22
+powerpc               randconfig-001-20251028    gcc-15.1.0
+powerpc               randconfig-002-20251028    gcc-11.5.0
+powerpc               randconfig-003-20251028    gcc-8.5.0
+powerpc                    socrates_defconfig    clang-22
+powerpc                     tqm8541_defconfig    clang-22
+powerpc64             randconfig-001-20251028    clang-22
+powerpc64             randconfig-002-20251028    clang-22
+powerpc64             randconfig-003-20251028    gcc-13.4.0
+riscv                             allnoconfig    clang-22
+riscv                             allnoconfig    gcc-15.1.0
+riscv                               defconfig    clang-22
+riscv                               defconfig    gcc-15.1.0
+riscv                    nommu_virt_defconfig    clang-22
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.1.0
+s390                                defconfig    clang-22
+s390                                defconfig    gcc-15.1.0
+sh                               allmodconfig    gcc-15.1.0
+sh                                allnoconfig    gcc-15.1.0
+sh                               allyesconfig    gcc-15.1.0
+sh                                  defconfig    gcc-14
+sh                          r7785rp_defconfig    clang-22
+sparc                            alldefconfig    clang-22
+sparc                            allmodconfig    gcc-15.1.0
+sparc                             allnoconfig    gcc-15.1.0
+sparc                               defconfig    gcc-15.1.0
+sparc64                             defconfig    gcc-14
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    gcc-14
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                           x86_64_defconfig    gcc-14
+x86_64                            allnoconfig    clang-20
+x86_64                            allnoconfig    clang-22
+x86_64      buildonly-randconfig-001-20251028    clang-20
+x86_64      buildonly-randconfig-001-20251028    gcc-14
+x86_64      buildonly-randconfig-002-20251028    clang-20
+x86_64      buildonly-randconfig-002-20251028    gcc-14
+x86_64      buildonly-randconfig-003-20251028    clang-20
+x86_64      buildonly-randconfig-004-20251028    clang-20
+x86_64      buildonly-randconfig-005-20251028    clang-20
+x86_64      buildonly-randconfig-006-20251028    clang-20
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+xtensa                            allnoconfig    clang-22
+xtensa                            allnoconfig    gcc-15.1.0
 
-> +	else if (ret < 0)
-> +		drm_err(display->drm, "DSI write failed with %pe\n", ERR_PTR(ret));
-> +
->  	if (DISPLAY_VER(display) < 11)
->  		vlv_dsi_wait_for_fifo_empty(intel_dsi, port);
->  
-> -- 
-> 2.47.3
-
--- 
-Ville Syrjälä
-Intel
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
