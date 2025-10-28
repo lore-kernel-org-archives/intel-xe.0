@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D51CCCF9F3
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:59:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80EBFCCF9F2
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:59:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E14F410E646;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B5A610E645;
 	Tue, 28 Oct 2025 17:59:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="afLUP1J2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DxbWCL9t";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F8DA10E642
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:59:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6821710E643
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761674357; x=1793210357;
+ t=1761674337; x=1793210337;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vRG1Gtl6bmTPyymwC2L428KMXP5gkDDPUq3y2BXhKbo=;
- b=afLUP1J2qZqbejxZtldeQ/axuycFOYEyL1TeATK/MGzBX/OzAUCeRo4G
- GEUJoWwudc13UTQMEhT7gHkfJiT8ACD4jmngW0cgg6a2KVxFXwTuUgd8b
- SBjCsmh1hUhKC/UjO7zFmziPAYZCu3dv8Lf011pZgbjq4CU9A1JI133jI
- EvVbQTVnb0o9DkGz8QfQ/O68O+1fJwUDAP1iKMa+e4DPUT2bv+9paqp+z
- 7BpiaC+vAqH3bDXMdwUCK51SoyBtKoApHTAsMHu07Q5kkHGPUbANYmwjH
- nOSzIzLLGlViju0Z8YMcoonhLcRcvwPED8SohTbUr05Vuv0VekmL33Vh7 Q==;
-X-CSE-ConnectionGUID: Qv2OisQURVWil2K3t9Kurw==
-X-CSE-MsgGUID: eB4w1Nj+S9G24pRSeHrVLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687872"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687872"
+ bh=qyaDZIC08cYWSqQJcPmt1/ovVAToaoFNU8Jdcdxqrog=;
+ b=DxbWCL9th8+VeMx6jP13YplTIWSXUiXWegYeEm7kP/LJLH6ATiAe2odx
+ ot/0PqfDXlWpogBdYIRilNHZsHOlne4k1+Ee1pSsUmr5gE8gP5qCDsXTl
+ SQhz/SkizrFnR8w3me4W0dCT3GBiQFDtkRE+KBNt3yZXfulyOmEYQyRtH
+ dYut6c9OKDzoz7+n6cfzoYjJ48JN2qTVVKMhBHUtGY3Szx3eKoYarPhLi
+ rM6Fb7OE4BTMCWmaQllNvCkxggXXkI4FRrZBRvh6WgCypibaqAV65R1vJ
+ KmXHcIdrd4HFgPb+osKRmHCIZkThVG3jlfddScl8eZ9J6umdesKjETZC0 g==;
+X-CSE-ConnectionGUID: Way8mWYdTsuk3ELusA8gHQ==
+X-CSE-MsgGUID: KM6tpvIFTJ2nLHgnIcP3kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687834"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687834"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:17 -0700
-X-CSE-ConnectionGUID: XiebmgP7QiWG3fMzHwEorA==
-X-CSE-MsgGUID: /l9wsX29SY+hh1c8DeeT8Q==
+ 28 Oct 2025 10:58:57 -0700
+X-CSE-ConnectionGUID: 7lhO4FDhQSiZ649nd1PWOQ==
+X-CSE-MsgGUID: hcEBe7q6SXqeXmuhCVKrBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469477"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469357"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:59:14 -0700
+ 28 Oct 2025 10:58:54 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 17/17] drm/xe/pf: Add documentation for sriov_admin
- attributes
-Date: Tue, 28 Oct 2025 18:58:31 +0100
-Message-ID: <20251028175832.184534-18-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 05/17] drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
+Date: Tue, 28 Oct 2025 18:58:19 +0100
+Message-ID: <20251028175832.184534-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,185 +70,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add initial documentation for all recently added Xe driver
-specific SR-IOV sysfs files located under device/sriov_admin.
+On current platforms, in SR-IOV virtualization, the GPU is shared
+between VFs on the time-slice basis. The 'execution quantum' (EQ)
+and 'preemption timeout' (PT) are two main scheduling parameters
+that could be set individually per each VF.
+
+Add EQ/PT read-write attributes for the PF and all VFs.
+
+By exposing those two parameters over sysfs, the admin can change
+their default values (infinity) and let the GuC scheduler enforce
+that settings.
+
+ /sys/bus/pci/drivers/xe/BDF/
+ ├── sriov_admin/
+     ├── pf/
+     │   └── profile
+     │       ├── exec_quantum_ms	[RW] unsigned integer
+     │       └── preempt_timeout_us	[RW] unsigned integer
+     ├── vf1/
+     │   └── profile
+     │       ├── exec_quantum_ms	[RW] unsigned integer
+     │       └── preempt_timeout_us	[RW] unsigned integer
+
+Writing 0 to these files will set infinity EQ/PT for the VF on all
+tiles/GTs. This is a default value. Writing non-zero integers to
+these files will change EQ/PT to new value (in their respective
+units: msec or usec).
+
+Reading from these files will return EQ/PT as previously set on
+all tiles/GTs. In case of inconsistent values detected, due to
+errors or low-level configuration done using debugfs, -EUCLEAN
+error will be returned.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-v2: update version (Rodrigo)
+v2: apply EQ/PT under single lock (Lucas)
 ---
- .../ABI/testing/sysfs-driver-intel-xe-sriov   | 160 ++++++++++++++++++
- 1 file changed, 160 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 124 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.h |   8 ++
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c     |  54 ++++++++-
+ 3 files changed, 184 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
-new file mode 100644
-index 000000000000..ac688a66bf36
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
-@@ -0,0 +1,160 @@
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		This directory appears for the particular Intel Xe device when:
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+index 663fb0c045e9..c5b3a6aa67f4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+@@ -152,3 +152,127 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
+ 	xe->sriov.pf.provision.mode = mode;
+ 	return 0;
+ }
 +
-+		 - device supports SR-IOV, and
-+		 - device is a Physical Function (PF), and
-+		 - driver support for the SR-IOV PF is enabled on given device.
++/**
++ * xe_sriov_pf_provision_apply_vf_eq() - Change VF's execution quantum.
++ * @xe: the PF &xe_device
++ * @vfid: the VF identifier
++ * @eq: execution quantum in [ms] to set
++ *
++ * Change VF's execution quantum (EQ) provisioning on all tiles/GTs.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0;
++	int err;
 +
-+		This directory is used as a root for all attributes required to
-+		manage both Physical Function (PF) and Virtual Functions (VFs).
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 +
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_set_exec_quantum_locked(gt, vfid, eq);
++		result = result ?: err;
++	}
 +
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/pf/
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		This directory holds attributes related to the SR-IOV Physical
-+		Function (PF).
++	return result;
++}
 +
++/**
++ * xe_sriov_pf_provision_query_vf_eq() - Query VF's execution quantum.
++ * @xe: the PF &xe_device
++ * @vfid: the VF identifier
++ * @eq: placeholder for the returned execution quantum in [ms]
++ *
++ * Query VF's execution quantum (EQ) provisioning from all tiles/GTs.
++ * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u32 *eq)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int count = 0;
++	u32 value;
 +
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf1/
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf2/
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<N>/
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		These directories hold attributes related to the SR-IOV Virtual
-+		Functions (VFs).
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 +
-+		Note that the VF number <N> is 1-based as described in PCI SR-IOV
-+		specification as the Xe driver follows that naming schema.
++	for_each_gt(gt, xe, id) {
++		value = xe_gt_sriov_pf_config_get_exec_quantum_locked(gt, vfid);
++		if (!count++)
++			*eq = value;
++		else if (value != *eq)
++			return -EUCLEAN;
++	}
 +
-+		There could be "vf1", "vf2" and so on, up to "vf<N>", where <N>
-+		matches value of the "sriov_totalvfs" attribute.
++	return !count ? -ENODATA : 0;
++}
 +
++/**
++ * xe_sriov_pf_provision_apply_vf_pt() - Change VF's preemption timeout.
++ * @xe: the PF &xe_device
++ * @vfid: the VF identifier
++ * @pt: preemption timeout in [us] to set
++ *
++ * Change VF's preemption timeout (PT) provisioning on all tiles/GTs.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int result = 0;
++	int err;
 +
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/pf/profile/exec_quantum_ms
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/pf/profile/preempt_timeout_us
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/pf/profile/sched_priority
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/profile/exec_quantum_ms
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/profile/preempt_timeout_us
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/profile/sched_priority
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		These files represent scheduling parameters of the PF or VFs and
-+		are available only for Intel Xe platforms with GPU sharing based
-+		on the time-slice basis. These scheduling parameters can be changed
-+		even if VFs are enabled and running. Those parameters reflects
-+		settings of all tiles/GTs assigned to the given function.
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 +
-+		exec_quantum_ms: (RW) unsigned integer
-+			The GT execution quantum (EQ) in [ms] of the given function.
-+			Actual quantum value might be aligned per HW/FW requirements.
++	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_set_preempt_timeout_locked(gt, vfid, pt);
++		result = result ?: err;
++	}
 +
-+			Default is 0 (unlimited).
++	return result;
++}
 +
-+		preempt_timeout_us: (RW) unsigned integer
-+			The GT preemption timeout in [us] of the given function.
-+			Actual timeout value might be aligned per HW/FW requirements.
++/**
++ * xe_sriov_pf_provision_query_vf_pt() - Query VF's preemption timeout.
++ * @xe: the PF &xe_device
++ * @vfid: the VF identifier
++ * @pt: placeholder for the returned preemption timeout in [us]
++ *
++ * Query VF's preemption timeout (PT) provisioning from all tiles/GTs.
++ * If values across tiles/GTs are inconsistent then -EUCLEAN error will be returned.
++ *
++ * This function can only be called on PF.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt)
++{
++	struct xe_gt *gt;
++	unsigned int id;
++	int count = 0;
++	u32 value;
 +
-+			Default is 0 (unlimited).
++	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 +
-+		sched_priority: (RW/RO) string
-+			The GT scheduling priority of the given function.
++	for_each_gt(gt, xe, id) {
++		value = xe_gt_sriov_pf_config_get_preempt_timeout_locked(gt, vfid);
++		if (!count++)
++			*pt = value;
++		else if (value != *pt)
++			return -EUCLEAN;
++	}
 +
-+			"low" - function will be scheduled on the GPU for its EQ/PT
-+				only if function has any work already submitted.
++	return !count ? -ENODATA : 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+index cf3657a32e90..cb81b5880930 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
+@@ -6,10 +6,18 @@
+ #ifndef _XE_SRIOV_PF_PROVISION_H_
+ #define _XE_SRIOV_PF_PROVISION_H_
+ 
++#include <linux/types.h>
 +
-+			"normal" - functions will be scheduled on the GPU for its EQ/PT
-+				irrespective of whether it has submitted a work or not.
+ #include "xe_sriov_pf_provision_types.h"
+ 
+ struct xe_device;
+ 
++int xe_sriov_pf_provision_apply_vf_eq(struct xe_device *xe, unsigned int vfid, u32 eq);
++int xe_sriov_pf_provision_query_vf_eq(struct xe_device *xe, unsigned int vfid, u32 *eq);
 +
-+			"high" - function will be scheduled on the GPU for its EQ/PT
-+				in the next time-slice after the current one completes
-+				and function has a work submitted.
++int xe_sriov_pf_provision_apply_vf_pt(struct xe_device *xe, unsigned int vfid, u32 pt);
++int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u32 *pt);
 +
-+			Default is "low".
+ int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
+ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index 439a0cd02a86..f12d6752e9f1 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -13,6 +13,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf.h"
+ #include "xe_sriov_pf_helpers.h"
++#include "xe_sriov_pf_provision.h"
+ #include "xe_sriov_pf_sysfs.h"
+ #include "xe_sriov_printk.h"
+ 
+@@ -23,10 +24,14 @@
+  *     ├── ...
+  *     ├── pf/
+  *     │   ├── ...
+- *     │   └── ...
++ *     │   └── profile
++ *     │       ├── exec_quantum_ms
++ *     │       └── preempt_timeout_us
+  *     ├── vf1/
+  *     │   ├── ...
+- *     │   └── ...
++ *     │   └── profile
++ *     │       ├── exec_quantum_ms
++ *     │       └── preempt_timeout_us
+  *     ├── vf2/
+  *     :
+  *     └── vfN/
+@@ -85,7 +90,52 @@ static const struct attribute_group *xe_sriov_dev_attr_groups[] = {
+ 
+ /* and VF-level attributes go here */
+ 
++#define DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(NAME, ITEM, TYPE, FORMAT)		\
++static ssize_t xe_sriov_vf_attr_##NAME##_show(struct xe_device *xe, unsigned int vfid,	\
++					      char *buf)				\
++{											\
++	TYPE value = 0;									\
++	int err;									\
++											\
++	err = xe_sriov_pf_provision_query_vf_##ITEM(xe, vfid, &value);			\
++	if (err)									\
++		return err;								\
++											\
++	return sysfs_emit(buf, FORMAT, value);						\
++}											\
++											\
++static ssize_t xe_sriov_vf_attr_##NAME##_store(struct xe_device *xe, unsigned int vfid,	\
++					       const char *buf, size_t count)		\
++{											\
++	TYPE value;									\
++	int err;									\
++											\
++	err = kstrto##TYPE(buf, 0, &value);						\
++	if (err)									\
++		return err;								\
++											\
++	err = xe_sriov_pf_provision_apply_vf_##ITEM(xe, vfid, value);			\
++	return err ?: count;								\
++}											\
++											\
++static XE_SRIOV_VF_ATTR(NAME)
 +
-+			When read, this file will display the current and available
-+			scheduling priorities. The currently active priority level will
-+			be enclosed in square brackets, like:
++DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(exec_quantum_ms, eq, u32, "%u\n");
++DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(preempt_timeout_us, pt, u32, "%u\n");
 +
-+				[low] normal high
++static struct attribute *profile_vf_attrs[] = {
++	&xe_sriov_vf_attr_exec_quantum_ms.attr,
++	&xe_sriov_vf_attr_preempt_timeout_us.attr,
++	NULL
++};
 +
-+			This file can be read-only if changing is currently not supported
-+			for given function due to any known HW/FW limitations.
++static const struct attribute_group profile_vf_attr_group = {
++	.name = "profile",
++	.attrs = profile_vf_attrs,
++};
 +
-+		Writes to these attributes may fail with errors like:
-+			-EINVAL if provided input is malformed or not recognized,
-+			-EPERM if change is not applicable on given HW/FW,
-+			-EIO if FW refuses to change the provisioning.
-+
-+		Reads from these attributes may fail with:
-+			-EUCLEAN if value is not consistent across all tiles/GTs.
-+
-+
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/.bulk_profile/exec_quantum_ms
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/.bulk_profile/preempt_timeout_us
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/.bulk_profile/sched_priority
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		These files allows bulk reconfiguration of the scheduling parameters
-+		of the PF or VFs and are available only for Intel Xe platforms with
-+		GPU sharing based on the time-slice basis. These scheduling parameters
-+		can be changed even if VFs are enabled and running.
-+
-+		exec_quantum_ms: (WO) unsigned integer
-+			The GT execution quantum (EQ) in [ms] to be applied to all functions.
-+			See sriov_admin/{pf,vf<N>}/profile/exec_quantum_ms for more details.
-+
-+		preempt_timeout_us: (WO) unsigned integer
-+			The GT preemption timeout (PT) in [us] to be applied to all functions.
-+			See sriov_admin/{pf,vf<N>}/profile/preempt_timeout_us for more details.
-+
-+		sched_priority: (RW/RO) string
-+			The GT scheduling priority to be applied for all functions.
-+			See sriov_admin/{pf,vf<N>}/profile/sched_priority for more details.
-+
-+		Writes to these attributes may fail with errors like:
-+			-EINVAL if provided input is malformed or not recognized,
-+			-EPERM if change is not applicable on given HW/FW,
-+			-EIO if FW refuses to change the provisioning.
-+
-+
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/stop
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		This file allows to control scheduling of the VF on the Intel Xe GPU
-+		platforms. It allows to implement custom policy mechanism in case VFs
-+		are misbehaving or triggering adverse events above defined thresholds.
-+
-+		stop: (WO) bool
-+			All GT executions of given function shall be immediately stopped.
-+			To allow scheduling this VF again, the VF FLR must be triggered.
-+
-+		Writes to this attribute may fail with errors like:
-+			-EINVAL if provided input is malformed or not recognized,
-+			-EPERM if change is not applicable on given HW/FW,
-+			-EIO if FW refuses to change the scheduling.
-+
-+
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/pf/device
-+What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/device
-+Date:		October 2025
-+KernelVersion:	6.19
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		These are symlinks to the underlying PCI device entry representing
-+		given Xe SR-IOV function. For the PF, this link is always present.
-+		For VFs, this link is present only for currently enabled VFs.
+ static const struct attribute_group *xe_sriov_vf_attr_groups[] = {
++	&profile_vf_attr_group,
+ 	NULL
+ };
+ 
 -- 
 2.47.1
 
