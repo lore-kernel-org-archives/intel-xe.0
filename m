@@ -4,181 +4,187 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D13F3CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 09:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BE74CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 10:00:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F50410E067;
-	Tue, 28 Oct 2025 09:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54A4010E067;
+	Tue, 28 Oct 2025 10:00:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLy7c8+Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zozz9MWf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940D710E067
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 09:57:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B844310E067
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 10:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761645461; x=1793181461;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=lez3P7lXQf1qx5H+EtU6twjUEpr1KyAfDSDayH5OhBM=;
- b=lLy7c8+ZXsYm82tvYOtY9SuVeNhRxSc0+x4/hS5My73GZI7lKaXoMgHb
- TudwMiW4zyPM8qVxs1w/GX/LNqfUcOgCx9uJWSz8VayVj0q8pMLudWwzC
- t16rTOZDvw1tVwLjMnOqtnkRtjPDbqZjrrCFKBjHKJXKatDwRE6OyYln1
- zBdtyTEZR4ubO+qbjOlnw7bmN5+cv3pi9h0Ga58Pg/RikZWr+7/51wGQ/
- B+qjtWNZaaysRBdgCKeakYs1NUtX2T3KfmniOB/Tx93VJeptekEeCVMBp
- 4VA2G6gcKclT4aPcL0b/PJIHN2/fyhzl5+JvsVpmyNcQaRy7q7LiRQeMK A==;
-X-CSE-ConnectionGUID: h7Y+QsUmRi6SrptIK6hU0w==
-X-CSE-MsgGUID: RgmHR2aPRNSgV/tt4XRd9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63777762"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="63777762"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 02:57:40 -0700
-X-CSE-ConnectionGUID: b/58FhmyRNWfAz7QpweN3A==
-X-CSE-MsgGUID: wAUVpEPSTJGJTatYVBn7qA==
+ t=1761645654; x=1793181654;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=owggNVkTHwyKUGBeIn19bvhr7uTUr3o8Jt1Og0E8W2s=;
+ b=Zozz9MWfKeZW2KpYIn+IhnPcR0VutHH1pW1rLKQGy1a8q2a/LZNGfvu2
+ jDUbPQU4REHtLwxV/89KeRZvqTknqk5VoQJe4CsMdC6K9keLs0AoJRvQw
+ 23vd1TjCVt8IsS6KfN1eIzrDrsSXNQ8eyoryT9UE+m6hldW401BcbHwhS
+ 1X2c21kTRfcUTJMcapveZjEH4iGW4psTDC/Xq+ykZSGmACKK+NEf/dTJF
+ rWY7Chnod+eWmO2EJx16PtHp4ocJKAQH7b5GbdCJ8ddvLZTTVUVOQVbFG
+ u4ainzgdD69nXbOhNBgueSez4O7PFeiQJIkb+y9GXGZWqTKI4sBJfnhLv A==;
+X-CSE-ConnectionGUID: 6sIHt6oARBeIwsPajohglg==
+X-CSE-MsgGUID: TNgkEerSRUexYCv+xUGdIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74342400"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208,217";a="74342400"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 03:00:53 -0700
+X-CSE-ConnectionGUID: cJAFmMoGShu7pTOZKmzfjQ==
+X-CSE-MsgGUID: Kv7nDS9tQJy5/9s3GG4Niw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185001558"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 02:57:40 -0700
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; 
+ d="scan'208,217";a="208902020"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 03:00:53 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 02:57:39 -0700
+ 15.2.2562.27; Tue, 28 Oct 2025 03:00:52 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 02:57:39 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.29) by
+ 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 03:00:52 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.11) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 02:57:39 -0700
+ 15.2.2562.27; Tue, 28 Oct 2025 03:00:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nusXCARXMShO0wLtspPmjgsVXvbHFXoXMQZrqlYjDAcdgWTteFARSZM7+PnCoucLo9NmPvEXZFj3FYLmPKtVmElm6BSitn0auSikD/A+8ss8caD0yRmlFO99Qge18MZuuwI3hECbVP4DGs+knDnRGKxrxHQbW2NK76YFQNU+/XaQ5Gs581gSihW7X98Q1/Js6CmvYNDGfuY02HxrySR97FaWSMTtvVA1XQxt+fcVmfjoqHyPiVRBg+X6oF079uFgdCYgc9d0izRtAczw+lXHJVvwffIFZY4RZMxNewP5+mshPW8M7kElZm0rG8b7g3lHS+rNIAS2px/HJ+NjFugtSw==
+ b=JPtTB6w4XqkyqwJOZ5Ia/gycfnpYjPNeUt16kTw/oww4EzkS97SrfFQAeni2XLFwOTxxGBTLEjhvSoSzhX2mrd9a6x9eCkTDgzA1A+QTM2xtrqSMCKVnHvfHnxOJVqNTHhqskKHqIgfgQlmxXI40TifCuYXb1CfMf+cWG6qg+dQFn4XVNmYa0gQxLC6mYLi1VdNC759fmIc4tRQQsDNGDDoVncj9NYjdVT5W598XsYRwl1G187bcLzupttb+Uqxg4r9vnQrsZrKmZquRCvwP2qkeTan8ZrgRSJclG0Ib5G6CNbfXNqnM2LspkbDpsq/89F4I8gxXq20l4Y5PJG6xcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n5958fYVH1iku5JtGh8ZavefyZwXmU4tkB+taxVyszo=;
- b=e6rfILsvVFGgcoF4JehVni3CwJz+2RZ34KuIsL85G6OrTK3ErfydG6BUEGL9EZBIw8BSIQHhHMFer544xzXb/D8CZNiG1can9NuaKFBuOpuJM8KARjjt3eEmdMwamFipdEy6XuOuyRPS4oharnf7jsBkhxEMoDIcEQoN69LvtoZUPAw8rtLkwAtcZzQx5DhbLrDeiuRJJsECrIKIWHTdtzPVWKI9MknzDJkzqm10WFb4tFOntVOuIF/s+Zvg6+cBYFXHym8yy5YZp+1y1RjRO73R4gkLFCsvM/uEb43q2a7LEZIz2u3J8lDXygfvsWUgJjR6/ILgpNtTKDmO2XSJIQ==
+ bh=MzuJ0NjWL+Ja3xBZTdn+HzuE2DV7lZMNW1YKH2jBl9I=;
+ b=Ha60oxcKs6i3gTc7GDVtY9HOLJjv0O9nBntjWqySu5VO7FYw+jv4JTYJx5z7ljzObzUjq6iHk+Tf3rDqfAKO6BeAScwX/gWHxR75LR8A99KhUx0Runv6Kr4FtWGOnOKu6IDC48bZGTtReqwATUs/vB3H22zaWCD4r+zCRCprXPD6U/00ZGRO587prhgjB2Aq373O62Q4Fs2W0iG2JqoqpQirmyAg9IkAeBNgaPLmMBVp4FSelzoy11fm5c9i11RqTwW4jGes9ZLPL3yGO6EyK29c0M1Z6BQxgAe5HUF4u5pN43BDyC8Wxpwh6/fFX3FNIiuDJTqlMyUvUXn7d4WR6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by PH7PR11MB7718.namprd11.prod.outlook.com (2603:10b6:510:2b6::22)
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
+ by MW3PR11MB4763.namprd11.prod.outlook.com (2603:10b6:303:2c::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.19; Tue, 28 Oct
- 2025 09:57:38 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::3225:d4ad:74a:6d7a%4]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
- 09:57:37 +0000
-Date: Tue, 28 Oct 2025 10:57:34 +0100
-From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 11/14] drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
-Message-ID: <20251028095734.yfyfszbo53xdlgeh@intel.com>
-References: <20251020182414.576-1-michal.wajdeczko@intel.com>
- <20251020182414.576-12-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251020182414.576-12-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: DUZPR01CA0307.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4ba::23) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Tue, 28 Oct
+ 2025 10:00:45 +0000
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::9f66:9d6f:3199:78b2]) by PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::9f66:9d6f:3199:78b2%5]) with mapi id 15.20.9253.017; Tue, 28 Oct 2025
+ 10:00:44 +0000
+Content-Type: multipart/alternative;
+ boundary="------------TGKy2hIstQu5EWQejLDNrbGw"
+Message-ID: <775178d5-c39e-4d6a-abea-22eaa3c7f6c4@intel.com>
+Date: Tue, 28 Oct 2025 15:30:37 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/xe/guc: Eliminate RPe caching for SLPC parameter
+ handling
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
+ <mallesh.koujalagi@intel.com>, <vinay.belgaumkar@intel.com>
+References: <20251016092536.1918086-2-sk.anirban@intel.com>
+ <aPootwV2Dugb70gq@intel.com>
+Content-Language: en-US
+From: "Anirban, Sk" <sk.anirban@intel.com>
+In-Reply-To: <aPootwV2Dugb70gq@intel.com>
+X-ClientProxiedBy: MA0PR01CA0096.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::12) To PH7PR11MB8252.namprd11.prod.outlook.com
+ (2603:10b6:510:1aa::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH7PR11MB7718:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2664c6b2-e4fb-4848-e3db-08de16086c85
+X-MS-TrafficTypeDiagnostic: PH7PR11MB8252:EE_|MW3PR11MB4763:EE_
+X-MS-Office365-Filtering-Correlation-Id: b057f141-087f-4ce2-4547-08de1608dc69
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WHBxeVBlTUcrZENpYnkva1p6UDgrZ3dKSmJmRWdXb0VTODQ2aUo3ajdMdDlE?=
- =?utf-8?B?Nm9PT0IvV3dBSzZmRGR1ektWazVnTWo4cVp6WW9oL1d6QjRWMnl1b1lyNjEr?=
- =?utf-8?B?REhYWlc4SXlUMmw3QlJxbTdrNUVOS2VRM3hQT3B2VW4xYXYrWkIwZVh5T0lx?=
- =?utf-8?B?L2s5ZzNuNUJ2b2hvRkNkd3FXYzdkclVoOVBTUWhKcXpKRTRzUmNGL1JyaFRx?=
- =?utf-8?B?dmplSk1FMmtoM1NVK3lzSFlzT3ZGYnJpUGkyZlI4dU5wVHl0YTkzdFAvcXhn?=
- =?utf-8?B?aWxXaVF5OHdVaHU3TDZvK2owUUJMMHVsY1JwSTkvdjl2QjdNcXBKTmV1Q3d6?=
- =?utf-8?B?RVNydTNxS0NBcStLN1VMY1NTT2R1Ykp4eGtsRHBBbGx4Yi8yVktwTUgxYkEv?=
- =?utf-8?B?a0tUMUJmMmZOWGpNc1R3bThIc1l6aEdDOXBZWXAxdmNyU0Q5dVFMRzdSWTZu?=
- =?utf-8?B?dWdmR2pUcGo5VUV4dXQ1MUorMjVGOHlxY05zeXdWWDhvb0MwZzVBNjU3RVFN?=
- =?utf-8?B?WFY4dXdNak93dVc4d1Q2WXEyb3JyRnI2ck5WSnpIbTJQZnRnSE9QSnF1RmZp?=
- =?utf-8?B?THAzbEFRVmNkQVRTRHlhR3ltangydXc5QnlodGZ3Lzk2d1NveXpkS25OdTl4?=
- =?utf-8?B?NUdSei8vTmU0dkpOYXY3cnAyaFIxUTdvRVJSVGZwd2I5MmJnMGdqc0ZUbkVs?=
- =?utf-8?B?TE0xbExVb2JKcGdyU29lS215amF3Z2RIdU9Tc3N0V0xNTmhYNWJRSk1RYlRD?=
- =?utf-8?B?T0xwSmMxWkkrOVRUdGZWK2xRTnlka1J4dW5oczFiMFlJbFN4b05xa0lZeU5P?=
- =?utf-8?B?aDZYSEZEUlhDVXdBQkI1RUZZdXlGeUthMEh5MXNjcjBhYndmUXUxTVc5SlNY?=
- =?utf-8?B?UHM2dCtmaHhqdXNVQ3lxekJBb0U2VWt1VGdLSEVUMS94MHVXTTdnQmlzVXBJ?=
- =?utf-8?B?ZlBYMmNLQ3FzS0t6bFp3WG5MYkVMY21wd01OWWQ4Z21ZUVpkZ2crWkw1SUZa?=
- =?utf-8?B?dFJXcnpzdU1yZytLc05VRHdMWHRNVDZveDZuOGdMbFB6c2dYODZpQTFQRHlq?=
- =?utf-8?B?UjNGSUF4cjhJaldncFNpRU1sclVuVEFxR1V3UHNScEVxZklOR2lTZGllcWV2?=
- =?utf-8?B?TmNSZ1ljcUpYN0htV0pqZEwzMTBWN1BYUXYvZjhsZHU3QkVLWW53dUdXdzlU?=
- =?utf-8?B?MmNjK1VxTWNnNXBDbFZSaVNrMGFwSnc4WG1lNU9qSFY2dVJaT1d0aHI3bTdw?=
- =?utf-8?B?SzFBc2JXUDdzUklvTzAxYU5HMnl4M0swM3JFNHR3VUltc1lkYXNrbHcyeTBK?=
- =?utf-8?B?eHBwQTFrLytxcVRmS3RIWTBlaFFtcEd4bXB4bGw3ajdINndxZk5XMUI3blhj?=
- =?utf-8?B?dWhHMElDZ2M1dU5TU2tvUzZLSklWT2MvbCtGYW5LSTJPT1BBOVNzSEhNK1Rm?=
- =?utf-8?B?YUZiR1JVNXJKQkR0NEJBWmx5cyt1THRVQUdrLzMxVEMxazkvTnlkM2Q2dEMx?=
- =?utf-8?B?RmcyRUxrN0dkM1g3cTl5UlFOWENYY0RJamNjRHFabExVY1lRcWswUGpNOWc3?=
- =?utf-8?B?Y2c4Zk0rWENRNk42SHFSQ0FmT2dVeEJ3R1k0ZDJTbnJ4Q2tVRmZrK2x2Sm5E?=
- =?utf-8?B?VmpKYk1GM2xvaEFnMldhWnIwZDdIWWdvUmduc2hDbUJPQ3EySWRHUVFVVUUr?=
- =?utf-8?B?S0ZTWXowZ1BxR09vVDJBZ3BWbXh1VGFFU09PSnE5N3lSY3JoSVNLclBpZ0p6?=
- =?utf-8?B?TnBvVzFuU2Z3dnowc0pGUVp6dWFNV2xuaHZBeVhWL2Yvb05xNnFia2dTRXBR?=
- =?utf-8?B?Vk1ITjNnSENvazI3ajlLdE1uN3pPTkxQSnlrb2ZjK3VrQnNkZ2VYVC90L2tY?=
- =?utf-8?B?NkpDdXIxZDFDVHdWT09qTW1ZN2pqaXAzTkVsMmJDOWxVWFI2c3BQN056ME9H?=
- =?utf-8?Q?B7ER/VbHuCv6rB7msnOmJ0VSQImn0nJR?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|13003099007|8096899003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZUt2RmhCWXRXVTZ4eWhIaHNpNVkvRit6Y2UzUWhHR3Npb0QwWDZQSC9jSU5j?=
+ =?utf-8?B?eWYvWWErQWFkQmRhY0VTSnVScjVuRndjMVZCSnVZQUZHT2p1eUpjQUE2TFFJ?=
+ =?utf-8?B?dXBiQ05zYWxQYis3a1hZUlIzZmJPRXgxbk12alRtdlBnTHh5SFFQV1JPWXNj?=
+ =?utf-8?B?ZWk2MHZHRDd5ZURReFUwLzhpd0VOaGVhUytnc2lqdFRPMGxpcC9td1RNclA5?=
+ =?utf-8?B?Q0lCVkt4NHpEeURDRlBBQzV4bDlXQS9KdzZBdUN2V1cyOGlLRVh5UW5QcEVI?=
+ =?utf-8?B?cTNHbVBrM0xyZ0swV1JMT1ZSa242aS96M1Y2S1E1WG13NTF0ckRleEpjUHY3?=
+ =?utf-8?B?Ylk0Syt2UzZZeGpCdFgrelRHTG1Tb3QvQmFHWHdHTzJIODBqNWFkeGZLcStL?=
+ =?utf-8?B?dk8zbUtvMUJ1dURqaGRzQjFtMlJtQUNhVnYxTjJUTEYwdjV2TC9RRUQ3NTM2?=
+ =?utf-8?B?SE4rZW1hYk1lSEVoNDMzNWR0WWZvckJNM0lrT3RrR3FDRi9tOXcvTmc1VGNr?=
+ =?utf-8?B?RmttY0QxSUU5L0VvNFZHaVFkZ0x3eDVQd1FGdzFwRVE0NnVSWEx3b1cxZHVL?=
+ =?utf-8?B?amJkSjcyd0tGK0k2YjgvcmgyOVlSaFo0Sm5rcnFZRXUwV1lDVGZvNFlSWnJC?=
+ =?utf-8?B?aEYzOU0vRDYxK1NuV2duNzN4S2lEYVQzVzZYZkR3MTdncWVMMzhMQjBDMkNS?=
+ =?utf-8?B?TUVQbXp4ZTZ0QkRSSjdTSi9yOUpsYnMyeGh4VG1PWlJ4clJoR09XaWcydGxK?=
+ =?utf-8?B?Wm83L0NwNzFFTnhqamdsSmV4RUI4RGJLMW80Q3hyNjZzdHBzVk1sYVBZNnQv?=
+ =?utf-8?B?OUVRQzFPdEZxNm84L0VVS0FIZjVIOGs0TFNSU0pTQ2J0cHBKaEVZWisvbTVE?=
+ =?utf-8?B?ckZsTE80U1BOVVZ2bmx6SzFWaXpYbnhCbGZETWFMNTBZdXdkZDAwTDRWcm9K?=
+ =?utf-8?B?VVQ4Wk9EZkRaT1JCWUxPMGFlektUMkY5alp3dCtYejVTZHBqRDVub3V5NThr?=
+ =?utf-8?B?Z0hVVE82MG15RUpkVGJLZ0g2VDZMa2J1emp1aFhuWHg4aWtrenhJSUZJWXpC?=
+ =?utf-8?B?bW9YSFlsdWZNM1lPTkZlbW1GNWJnaUlybkcvaXZKMWRiN1FjWWN0N1M0b2Rx?=
+ =?utf-8?B?YWE3eVJlUDRmTGZaVEtEZU9kUGVad05mcXc0bWp4NE45Rjl1VjRxTnhTRE1R?=
+ =?utf-8?B?RU5rekQ5R0hYNHBDbVBySXhWckhyaEtwbUhwNzZPVVpBaktGMXlma0phRTNR?=
+ =?utf-8?B?dkt4NEVUQ2ZEdlJHa2R4VU9zNHNVdE9wdUhCTGNaeEQwZEJuRVBtbFBYb3Zx?=
+ =?utf-8?B?dzV6ZFdDSVZrTUFkZ0V6ajZ4bHZsaGxWMWswalVYcDVNKzJEYUpzdDhWbVZa?=
+ =?utf-8?B?a1RPUUQrM29MNXJPRzVYR1pJTDlvSGNrZ3UwVnpuNDZBMW1WT2lUd0dFQjhZ?=
+ =?utf-8?B?UDNSSVNoaURFVVM2U1Zxdm1pSU9FYWwrM0lpK1RTMjcyYWNBYWROYzhlbUVt?=
+ =?utf-8?B?WWdpeXpORXJXaU1DVmltWG1veXhHSHlaam5GS3kzQWMrWjZKQkdMUUo0T0FU?=
+ =?utf-8?B?WHcyMitSR2FLaHBoYjdFNGVEUmxyTUpOQmtVMWtSM2RtWEkwWHhRb3Y3NnZX?=
+ =?utf-8?B?dzZINHJvK1RocWhLUDlSUFRVdVVaWGM2VGdwTzR5TTFLcXVPYlNRVGRxRWto?=
+ =?utf-8?B?dnZ2VU1sS3Q2SzdkRzZHR2hUVU5IM3JvNTZKK2VLUzdFeTJsNEFpWWhTSEho?=
+ =?utf-8?B?WWRTOE1vdzVjeXNFKzY1akZlTlFmN0xxOHJCakNjanB2U3BKaWVUQjEzSEZL?=
+ =?utf-8?B?UGZ5WjAxdFhsVUJpTlJ0UUVrOTRUMUU1UnBQODVLOTN1ZWNJS3JoT2duSWVS?=
+ =?utf-8?B?eUg5U1ozVExFMUo5R3d2Y3lBT3FJbUhpU3BLRlErVmV2VUE9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(13003099007)(8096899003); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGpMUnVGVk85aGhEdVRZRWN1NUQ1dE8vREFDZTcxUWZiWldpR0NGcHBobkFx?=
- =?utf-8?B?bEFuN1YxbVpMUkNOaXFwSURVVUVyZ1B2ZVpWRnZBTTF1RkJlOXlxV1haeFFv?=
- =?utf-8?B?eitOenNLRGdwalNCMXJ5RkhFeWJJRm42UVA3dEc5UU0rUjgzNUh0N2IrUFFC?=
- =?utf-8?B?WXNja1piYzZ1TG0wM1MvVVUvNlZrTFo1UGxjQW9BY3AveXhmTFIwVkFMSWlN?=
- =?utf-8?B?TTVldDVLZWtsQW9NWTRSOWFUZTR0Yk1TdTZLWFR3NXlrNmp3Z2xDeGIyT05Q?=
- =?utf-8?B?WVlONENYVlFjU1dMTXBrTHVvUlBORktndkx1K1NZNGVWVDhleXVsRWttWFlj?=
- =?utf-8?B?STFzQXZnSDErZVVqeWZPU3RWamphbis4cGdNUmdWM3RIUU5DaktMRDN2TFNo?=
- =?utf-8?B?elhJN3B4NmtvL0kwUXA2S3hJWmtoRjNEWjZLVDVLbTR5RTR5aVlPaVZPSW1a?=
- =?utf-8?B?ZFVGQnYvaEd5RnVyU2lPU1l2RGdmU2tSQitLUFdZNHNOb1dmZlhmWTJ0NmRw?=
- =?utf-8?B?cFdaaUZSa1RWVlVCVFBMN1BvSHMyUm43TnVDNFE2aGpER2pZbXl0TDUxWVBP?=
- =?utf-8?B?Z2F2dEFvQmZVekxlVjR4cU9yMVNXZGxHUnNtSStqRkpFU1VHdHJld3YyZW4w?=
- =?utf-8?B?Mmg2UFVvVWVYVzVuZlFoYm9OQ0pCUHRVZDRLWjhmWHJoZHJWVjZyT1k0bjNn?=
- =?utf-8?B?Y2NGMVhnMkJWU0RNUGVwKzF6bWRDMlk0bC9EWC9reVp2d2VBa3JHVHVsVjla?=
- =?utf-8?B?OFdBV2VDdXp6b2tmbkdDVFJtU2VlcnB1MGt5RzJVVFhQME52OEtwK1NLYnBs?=
- =?utf-8?B?RHpGOVRwb0M3cmlSZ24rcG9DU3lhd1BVM0ZHc3FEU01YMVIvV0t2MjNBWVdI?=
- =?utf-8?B?ZzJQMmNQQWxvNkQyTVg0Q2c2SjhJaEloKzVQc2dmRlVxbS8rQlJ3Z0JoSGJL?=
- =?utf-8?B?MysxOWlFNzU0WjU2eVU0SG02Zll4YnFJY0trTXBDbW56SS9HZ0hXNjUzdHZP?=
- =?utf-8?B?UkNIOEFCQ2FCVE16TlQ5WHBuVGlWM1BjNm9hVmJOUHQxTXR0dU5neHJ4Wllp?=
- =?utf-8?B?WUozbWRQdTZJckdnYTJ2OFNHY09TM3VVemQ0NnU2OGVGU1dZamtlOTQwcVRw?=
- =?utf-8?B?UnFpcUExTGtpQUtNSlI4UmFqRWVwc3UyR2lGOENqdkxaM0JLNjF6VVY1SnBT?=
- =?utf-8?B?MEdqRzE5TzlNVVhENGluRmhINGh5OGEya2N0QS9Edjd0aDlidk9yeWNSbDZr?=
- =?utf-8?B?Y2p2YWVCejVBS2R4aUNMUXpkOEFoMzJ0UUtPMVhxNUNxSmUxeU5maktkZFI5?=
- =?utf-8?B?WXdtbmN5TzdjREo2by83QXFhdjFZUTcxWjJFRXdvWDdtQzhHTitzQ0ZLVDI1?=
- =?utf-8?B?ZjhyUWhVM3ovaTh6YlkzQzBCd2pPZUkzYVZtajVQQUlQS1d2dVBUN3hSS1R2?=
- =?utf-8?B?dmE0TmNrY1Q3d0VzUnppWHBZb3NZeHZ6dmMxVTRGeVpHRHFzRnl2QVI2OG5W?=
- =?utf-8?B?WWtYNXFuMTcxU1JwMTBIbHRobEtrQkFiUXJkQ1FsN2tkTXdjeUdxcmNWRmVW?=
- =?utf-8?B?cHBxQjQ0bVdENW1HL1NpZmZma2JUeUdyNlRkd05hZHBkYU12RkwwSklWanY4?=
- =?utf-8?B?d3hnZWxKeWVTUkNOSldNUVdGd0l6bGNmYWFGcXAxVnZYMk5va0VwVEtMekpk?=
- =?utf-8?B?cm9rRW1uczJTeFRWc1ptcUFoY3FRS1NlSDIwaG9PRzhybG91Uit3NDR1OEcz?=
- =?utf-8?B?Tzc2SmJHQlZob3Z1SmFaa0NiVktweTBTYkx4RW4xYy8xVzE5VEdWVWpUd2tN?=
- =?utf-8?B?Zmd6Q1ZuV3dtUC9sVTEwNlpiM1AyZU5oLytwdXdvR01EZHJKUFpTMHpZYmNo?=
- =?utf-8?B?WHZDRmRzdzBOdTZpK0pTUUI0ZnVxc2QySW4xRjBoNlIvQTBrSDZmbytSYzln?=
- =?utf-8?B?cElwVDZqM3lRY3I2a284dmIyUDJndDgvMWl1MTR6L1kzVFFKRnJXOFJkdEdu?=
- =?utf-8?B?OHdRRlBuT0l2OWdYMzJBSVA0Wkx4ZEJzaTk2UDFuY3ZtK0lNNUI3dlVsVFpj?=
- =?utf-8?B?ZVZCM2NUVW9xRzR0WjlxL3hPYWJha1BxeGVIbk8ycllobnBxaitNajdya3Vr?=
- =?utf-8?B?VzNQaXEzZHBwZ3pFRXVEaWdRczBvTTkwQ2tWRG5aSFUyMC94RXRISUZlNGpp?=
- =?utf-8?B?ZGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2664c6b2-e4fb-4848-e3db-08de16086c85
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVBpRjZRYUdFczFSUmxqVG5BMG5aMG5GbEs1aXY0TTNjaG9jbC9iMmFMUllF?=
+ =?utf-8?B?TWVwN3hkLzViR1NJVjF6aUNLbkFwZ3VocTRNZHAxQnpzUzFoRnhtZkZPWHNZ?=
+ =?utf-8?B?U1NQRHlyZjhQZitLaUhPZ0pYcG1GTXVPdmNhSzlXT3dKS2UzUUkrK2wwTVpF?=
+ =?utf-8?B?S01nNzJRbElPSXZqZ0FvK2tBNmVOVmhpL051em5rNGxIOU13dE9hUjlrbDZs?=
+ =?utf-8?B?TDJPcFpZMGFtclZTbHZxTklmQXYrbUFOU2RkUUhlMjAvSlBPdEE2ajVJUVZM?=
+ =?utf-8?B?VWlVY1RHQnpTVzRsUmh4QjNKR0VnWkwyNzFwbTVXL0NTbWZnTGVHTTBmMU5r?=
+ =?utf-8?B?U3ExL1VsNitaRDBHOW1RQyt6UUdtVHRyQVhJQWJmOUhBSUtSUWNIcDFWVDVM?=
+ =?utf-8?B?QkRId0Q5L1JQNnQrOUNZRmR0TGxzanRjS3VSNGU2Nm1mUVVtM3JDYi9pd25F?=
+ =?utf-8?B?OEs0UWp4YXp6dEpkTG5IRE5nMjc4ek9ZU0pOWUdVbW9WaWJseTFmcTdaR21J?=
+ =?utf-8?B?YUhuZTlTekV5VEZJaFJTREQ5TlMrUTNVcTZSemdvV2NzbWpsZ3AxTDNYWDM1?=
+ =?utf-8?B?elNaOFJpOUVvRVBxc0Jxd21yMWplR2cwMVNBYzJJK3ZKRFgxY29XQkpyL3BD?=
+ =?utf-8?B?RExxTE1zc0RXV2YxTVgrTmQycTM0OGFGT0NhaGlQK2FudUJBMDlNdHUxQnI1?=
+ =?utf-8?B?cmMzV0VqUm9PMVF5VitoTU5VUkR0cGxmMGNnRjIzTmlyQ1FxcDV5ZVFGbWhi?=
+ =?utf-8?B?dTdTemVZOHNDeHFDVUpKVU5ZUzhtenkwNTRpQkYwc2tQc0hyZ2JFb01FNzBk?=
+ =?utf-8?B?eHlxVkRabWlNZFVPZ2lUZ0R5OS9CMm1EYTNYVVM1OVpuVzErRWk2ZFNZVlZX?=
+ =?utf-8?B?SnR5bkpTemljUGg1S2M3K0t0UzNvTHJvMytyWkV1NWs3MTdDSVZZSHZXS2dN?=
+ =?utf-8?B?bXovNGhINHcxWFZ0MUoxNTdMRndWL0ZLV2ZwSjRRU09IbEZlMUdvRG1WYUUv?=
+ =?utf-8?B?a1R1VWRpaTZRRzhFSzliUlFvN0pNcW40RXo3N3FrVjdsbGkvRSsxbk5HSHhG?=
+ =?utf-8?B?Wmk1N01GS3FqT3ZyUHlUL0YxVndVUEpHNDQ1MWhDMlJDeTROK2E0aWRwRXYx?=
+ =?utf-8?B?eVppZ0pCS29TcUVKUktmSFRydk5xSFV6VXlnbFgzV1hLQ3ZaNnFRS2pxOWxV?=
+ =?utf-8?B?VmhISExzLzFWV1hiWS9XZWd3bTZsbFRIN3IvLzViOXg4WTJnRllwRW1QeXNo?=
+ =?utf-8?B?MlQzZTJBUUEweEliaHdKLzZWaUIxQmYwK3haaVlKYkNjV01JazdBVnpWamZP?=
+ =?utf-8?B?R0JseVRiNVZ2dldiWHRVR25wcEhYRE5PcERsVlVXLzVNYzFUWFlVWGl0aVRC?=
+ =?utf-8?B?TE53bHZjZnE1NzFkeXJXcFB2RWNQejl1a1NoMmtqdnkrYTlzUCtIdGVxaUkr?=
+ =?utf-8?B?cUZRbzhUd1A0S2lrWlUzZzBUc0dlTFc2dzFiMCtVVnhwMWJlNjBmYlNNblBO?=
+ =?utf-8?B?NFFSbVRiRTh6U1VKZkFRWGFvenVzcHBiWDkzNzk1aVN6NURaU1R6eHFFL2tu?=
+ =?utf-8?B?TWdRV2kyN0EzUjNxelVLSXQ5TlhuNm5pWGpCUnF5NzFCa21TTm01aUpSR09u?=
+ =?utf-8?B?YjI1SmoyT28wTEJETmNRL29hNHhxYVpvWEtmQVRsQ2tTaGpCajNTekpyM3Zk?=
+ =?utf-8?B?aXE5U1Q5QmdvZDBjamhsK3dUVkxKN3RvZVJkdlFpcnUxRFcrcmFYVUNjTG5t?=
+ =?utf-8?B?TTB4VmlQa2ZWSUZFK0FlUDdiclB3cEpvR2tqc1pWcVRNQTdnZmlpaUxOcnN2?=
+ =?utf-8?B?TUxydm1JNVY4M1c2VENQczN2eFVtUFBrdU10aG02ZlZtdEp2ZE1hYWJIam5Z?=
+ =?utf-8?B?dGtlSlNnT3ZRNFBTNGYwUEJoZEtZY1RNclg5QTQycUl1RS9vcEErY1kxczVq?=
+ =?utf-8?B?MGovNDdESnhDMkl5QTR3eSszeWwxamdvTzlKTFIvRkE1TkhLYjU1VG8rbGJC?=
+ =?utf-8?B?NEgwUmJPcjYxeUpObktTYllKaXV0dEVpNGtMeW5GU3NnUklDSUFLR00rb1Bl?=
+ =?utf-8?B?QmdNY3hkM2JYMkk2VlZpb0V2aG5ObFYrQklOcnJaSW1MQW5EelE0Q1pscFRV?=
+ =?utf-8?Q?WFz2HF15mJd70MjgJdntnJQNy?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b057f141-087f-4ce2-4547-08de1608dc69
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 09:57:37.1190 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 10:00:44.8701 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TSqVrjUpgFDh3I6BJRKOAEHRhbrcmtDK9kf71RdN1B7NvVY5s0pJbtam+dIpWS/dk9+etF6dFTqVEEFj0rd+8FhJA+ss6RdS3DGBhavR7bo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7718
+X-MS-Exchange-CrossTenant-UserPrincipalName: QJtS1ovukihaqITPvSOEqtRYh8dyyvNNS9TDtcinabja+C8WU4htsmc3LCFxmoYNLnJp2iGwDuvmKutQ/n6QpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4763
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -194,96 +200,376 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pon [2025-paź-20 20:24:11 +0200]:
-> In the upcoming patch we would like to use this private helper
-> during preparation of the sysfs links. Promote it.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pci_sriov.c | 37 ++++++++++++++++++++-----------
->  drivers/gpu/drm/xe/xe_pci_sriov.h |  1 +
->  2 files changed, 25 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
-> index 735f51effc7a..678e76703cd8 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
-> @@ -30,18 +30,6 @@ static void pf_reset_vfs(struct xe_device *xe, unsigned int num_vfs)
->  		xe_sriov_pf_control_reset_vf(xe, n);
->  }
->  
-> -static struct pci_dev *xe_pci_pf_get_vf_dev(struct xe_device *xe, unsigned int vf_id)
-> -{
-> -	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> -
-> -	xe_assert(xe, IS_SRIOV_PF(xe));
-> -
-> -	/* caller must use pci_dev_put() */
-> -	return pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
-> -			pdev->bus->number,
-> -			pci_iov_virtfn_devfn(pdev, vf_id));
-> -}
-> -
->  static void pf_link_vfs(struct xe_device *xe, int num_vfs)
->  {
->  	struct pci_dev *pdev_pf = to_pci_dev(xe->drm.dev);
-> @@ -60,7 +48,7 @@ static void pf_link_vfs(struct xe_device *xe, int num_vfs)
->  	 * enforce correct resume order.
->  	 */
->  	for (n = 1; n <= num_vfs; n++) {
-> -		pdev_vf = xe_pci_pf_get_vf_dev(xe, n - 1);
-> +		pdev_vf = xe_pci_sriov_get_vf_pdev(pdev_pf, n);
->  
->  		/* unlikely, something weird is happening, abort */
->  		if (!pdev_vf) {
-> @@ -228,3 +216,26 @@ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
->  
->  	return ret;
->  }
-> +
-> +/**
-> + * xe_pci_sriov_get_vf_pdev() - Lookup the VF's PCI device using the VF identifier.
-> + * @pdev: the PF's &pci_dev
-> + * @vfid: VF identifier (1-based)
-> + *
-> + * The caller must decrement the reference count by calling pci_dev_put().
-> + *
-> + * Return: the VF's &pci_dev or NULL if the VF device was not found.
-> + */
-> +struct pci_dev *xe_pci_sriov_get_vf_pdev(struct pci_dev *pdev, unsigned int vfid)
-> +{
-> +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +
-> +	xe_assert(xe, dev_is_pf(&pdev->dev));
-> +	xe_assert(xe, vfid);
-> +	xe_assert(xe, vfid <= pci_sriov_get_totalvfs(pdev));
-> +
-NIT: You already mentioned this in the docs above. I don't see the point in repeating it here.
-> +	/* caller must use pci_dev_put() */
-> +	return pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
-> +					   pdev->bus->number,
-> +					   pci_iov_virtfn_devfn(pdev, vfid - 1));
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.h b/drivers/gpu/drm/xe/xe_pci_sriov.h
-> index c76dd0d90495..b9105d71dbb1 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_sriov.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.h
-> @@ -10,6 +10,7 @@ struct pci_dev;
->  
->  #ifdef CONFIG_PCI_IOV
->  int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs);
-> +struct pci_dev *xe_pci_sriov_get_vf_pdev(struct pci_dev *pdev, unsigned int vfid);
->  #else
->  static inline int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
->  {
+--------------TGKy2hIstQu5EWQejLDNrbGw
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Shouldn't you prepare a variant for case without CONFIG_PCI_IOV for the function
-xe_pci_sriov_get_vf_pdev ?
+Hi,
 
-Thanks
-Piotr
-> -- 
-> 2.47.1
-> 
+On 23-10-2025 18:38, Rodrigo Vivi wrote:
+> On Thu, Oct 16, 2025 at 02:55:37PM +0530, Sk Anirban wrote:
+>> RPe is runtime-determined by PCODE and caching it caused stale values,
+>> leading to incorrect GuC SLPC parameter settings.
+>> Drop the cached rpe_freq field and query fresh values from hardware
+>> on each use to ensure GuC SLPC parameters reflect current RPe.
+>>
+>> v2: Remove cached RPe frequency field (Rodrigo)
+>> v3: Remove extra variable (Vinay)
+>>      Modify function name (Vinay)
+>>
+>> Closes:https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166
+>> Signed-off-by: Sk Anirban<sk.anirban@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_pc.c       | 33 ++++++++++++++--------------
+>>   drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 --
+>>   2 files changed, 17 insertions(+), 18 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index 3c0feb50a1e2..20b2f36c94e0 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -330,7 +330,7 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
+>>   	 * Our goal is to have the admin choices respected.
+>>   	 */
+>>   	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+>> -			    freq < pc->rpe_freq);
+>> +			    freq < xe_guc_pc_get_rpe_freq(pc));
+>>   
+>>   	return pc_action_set_param(pc,
+>>   				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+>> @@ -375,7 +375,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
+>>   	pc->rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
+>>   }
+>>   
+>> -static void mtl_update_rpe_value(struct xe_guc_pc *pc)
+>> +static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
+>>   {
+>>   	struct xe_gt *gt = pc_to_gt(pc);
+>>   	u32 reg;
+>> @@ -385,7 +385,7 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
+>>   	else
+>>   		reg = xe_mmio_read32(&gt->mmio, MTL_GT_RPE_FREQUENCY);
+>>   
+>> -	pc->rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
+>> +	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
+>>   }
+>>   
+>>   static void tgl_update_rpa_value(struct xe_guc_pc *pc)
+>> @@ -408,7 +408,7 @@ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
+>>   	}
+>>   }
+>>   
+>> -static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+>> +static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
+>>   {
+>>   	struct xe_gt *gt = pc_to_gt(pc);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>> @@ -421,10 +421,10 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+>>   	 */
+>>   	if (xe->info.platform == XE_PVC) {
+>>   		reg = xe_mmio_read32(&gt->mmio, PVC_RP_STATE_CAP);
+>> -		pc->rpe_freq = REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+>> +		return REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+> please move the above block to a new function pvc_get_rpe_freq,
+> then use it's GRAPHICS_VER inside xe_guc_pc_get_rpe_freq
+>
+> or perhaps, kill these 2 functions and place all the code inside
+> xe_guc_pc_get_rpe_freq()
+Sure, I will fix this.
+>
+>>   	} else {
+>>   		reg = xe_mmio_read32(&gt->mmio, FREQ_INFO_REC);
+>> -		pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+>> +		return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+>>   	}
+>>   }
+>>   
+>> @@ -433,20 +433,17 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
+>>   	struct xe_gt *gt = pc_to_gt(pc);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   
+>> -	if (GRAPHICS_VERx100(xe) >= 1270) {
+>> +	if (GRAPHICS_VERx100(xe) >= 1270)
+>>   		mtl_update_rpa_value(pc);
+>> -		mtl_update_rpe_value(pc);
+>> -	} else {
+>> +	else
+>>   		tgl_update_rpa_value(pc);
+>> -		tgl_update_rpe_value(pc);
+>> -	}
+> please do the same for RPa in a separate patch and then
+> entirely kill this pc_update_rp_values values function.
+> The logic is the same.
+We could create a separate function for PVC. However, eliminating 
+|pc_update_rp_values| might introduce code duplication in places where 
+it's referenced.
+Also we are updating RPn here, imo we should consider keeping it. 
+Meanwhile I will continue the RPe fix patch.
 
+Thanks,
+Anirban
+>
+>>   
+>>   	/*
+>>   	 * RPe is decided at runtime by PCODE. In the rare case where that's
+>>   	 * smaller than the fused min, we will trust the PCODE and use that
+>>   	 * as our minimum one.
+>>   	 */
+>> -	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
+>> +	pc->rpn_freq = min(pc->rpn_freq, xe_guc_pc_get_rpe_freq(pc));
+>>   }
+>>   
+>>   /**
+>> @@ -560,9 +557,13 @@ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
+>>    */
+>>   u32 xe_guc_pc_get_rpe_freq(struct xe_guc_pc *pc)
+>>   {
+>> -	pc_update_rp_values(pc);
+>> +	struct xe_gt *gt = pc_to_gt(pc);
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>>   
+>> -	return pc->rpe_freq;
+>> +	if (GRAPHICS_VERx100(xe) >= 1270)
+>> +		return mtl_get_rpe_freq(pc);
+>> +	else
+>> +		return tgl_get_rpe_freq(pc);
+>>   }
+>>   
+>>   /**
+>> @@ -1021,7 +1022,7 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+>>   	/*
+>>   	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
+>>   	 */
+>> -	ret = pc_set_min_freq(pc, min(pc->rpe_freq, pc_max_freq_cap(pc)));
+>> +	ret = pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
+>>   	if (!ret)
+>>   		ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
+>>   
+>> @@ -1339,7 +1340,7 @@ static void xe_guc_pc_fini_hw(void *arg)
+>>   	XE_WARN_ON(xe_guc_pc_stop(pc));
+>>   
+>>   	/* Bind requested freq to mert_freq_cap before unload */
+>> -	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc->rpe_freq));
+>> +	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
+>>   
+>>   	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> index 5e4ea53fbee6..f27c05d81706 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> @@ -21,8 +21,6 @@ struct xe_guc_pc {
+>>   	u32 rp0_freq;
+>>   	/** @rpa_freq: HW RPa frequency - The Achievable one */
+>>   	u32 rpa_freq;
+>> -	/** @rpe_freq: HW RPe frequency - The Efficient one */
+>> -	u32 rpe_freq;
+>>   	/** @rpn_freq: HW RPN frequency - The Minimum one */
+>>   	u32 rpn_freq;
+>>   	/** @user_requested_min: Stash the minimum requested freq by user */
+>> -- 
+>> 2.43.0
+>>
+
+--------------TGKy2hIstQu5EWQejLDNrbGw
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    Hi,<br>
+    <br>
+    <div class="moz-cite-prefix">On 23-10-2025 18:38, Rodrigo Vivi
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:aPootwV2Dugb70gq@intel.com">
+      <pre wrap="" class="moz-quote-pre">On Thu, Oct 16, 2025 at 02:55:37PM +0530, Sk Anirban wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">RPe is runtime-determined by PCODE and caching it caused stale values,
+leading to incorrect GuC SLPC parameter settings.
+Drop the cached rpe_freq field and query fresh values from hardware
+on each use to ensure GuC SLPC parameters reflect current RPe.
+
+v2: Remove cached RPe frequency field (Rodrigo)
+v3: Remove extra variable (Vinay)
+    Modify function name (Vinay)
+
+Closes: <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166">https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5166</a>
+Signed-off-by: Sk Anirban <a class="moz-txt-link-rfc2396E" href="mailto:sk.anirban@intel.com">&lt;sk.anirban@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 33 ++++++++++++++--------------
+ drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 --
+ 2 files changed, 17 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 3c0feb50a1e2..20b2f36c94e0 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -330,7 +330,7 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
+ 	 * Our goal is to have the admin choices respected.
+ 	 */
+ 	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+-			    freq &lt; pc-&gt;rpe_freq);
++			    freq &lt; xe_guc_pc_get_rpe_freq(pc));
+ 
+ 	return pc_action_set_param(pc,
+ 				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+@@ -375,7 +375,7 @@ static void mtl_update_rpa_value(struct xe_guc_pc *pc)
+ 	pc-&gt;rpa_freq = decode_freq(REG_FIELD_GET(MTL_RPA_MASK, reg));
+ }
+ 
+-static void mtl_update_rpe_value(struct xe_guc_pc *pc)
++static u32 mtl_get_rpe_freq(struct xe_guc_pc *pc)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	u32 reg;
+@@ -385,7 +385,7 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
+ 	else
+ 		reg = xe_mmio_read32(&amp;gt-&gt;mmio, MTL_GT_RPE_FREQUENCY);
+ 
+-	pc-&gt;rpe_freq = decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
++	return decode_freq(REG_FIELD_GET(MTL_RPE_MASK, reg));
+ }
+ 
+ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
+@@ -408,7 +408,7 @@ static void tgl_update_rpa_value(struct xe_guc_pc *pc)
+ 	}
+ }
+ 
+-static void tgl_update_rpe_value(struct xe_guc_pc *pc)
++static u32 tgl_get_rpe_freq(struct xe_guc_pc *pc)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -421,10 +421,10 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+ 	 */
+ 	if (xe-&gt;info.platform == XE_PVC) {
+ 		reg = xe_mmio_read32(&amp;gt-&gt;mmio, PVC_RP_STATE_CAP);
+-		pc-&gt;rpe_freq = REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++		return REG_FIELD_GET(RP1_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+please move the above block to a new function pvc_get_rpe_freq,
+then use it's GRAPHICS_VER inside xe_guc_pc_get_rpe_freq
+
+or perhaps, kill these 2 functions and place all the code inside
+xe_guc_pc_get_rpe_freq()</pre>
+    </blockquote>
+    Sure, I will fix this.
+    <blockquote type="cite" cite="mid:aPootwV2Dugb70gq@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 	} else {
+ 		reg = xe_mmio_read32(&amp;gt-&gt;mmio, FREQ_INFO_REC);
+-		pc-&gt;rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++		return REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ 	}
+ }
+ 
+@@ -433,20 +433,17 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	if (GRAPHICS_VERx100(xe) &gt;= 1270) {
++	if (GRAPHICS_VERx100(xe) &gt;= 1270)
+ 		mtl_update_rpa_value(pc);
+-		mtl_update_rpe_value(pc);
+-	} else {
++	else
+ 		tgl_update_rpa_value(pc);
+-		tgl_update_rpe_value(pc);
+-	}
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+please do the same for RPa in a separate patch and then
+entirely kill this pc_update_rp_values values function.
+The logic is the same.</pre>
+    </blockquote>
+    We could create a separate function for PVC. However, eliminating <code>pc_update_rp_values</code>
+    might introduce code duplication in places where it's referenced.&nbsp;<br>
+    Also we are updating RPn here, imo we should consider keeping it.
+    Meanwhile I will continue the RPe fix patch.<br>
+    <br>
+    Thanks,<br>
+    Anirban
+    <blockquote type="cite" cite="mid:aPootwV2Dugb70gq@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> 
+ 	/*
+ 	 * RPe is decided at runtime by PCODE. In the rare case where that's
+ 	 * smaller than the fused min, we will trust the PCODE and use that
+ 	 * as our minimum one.
+ 	 */
+-	pc-&gt;rpn_freq = min(pc-&gt;rpn_freq, pc-&gt;rpe_freq);
++	pc-&gt;rpn_freq = min(pc-&gt;rpn_freq, xe_guc_pc_get_rpe_freq(pc));
+ }
+ 
+ /**
+@@ -560,9 +557,13 @@ u32 xe_guc_pc_get_rpa_freq(struct xe_guc_pc *pc)
+  */
+ u32 xe_guc_pc_get_rpe_freq(struct xe_guc_pc *pc)
+ {
+-	pc_update_rp_values(pc);
++	struct xe_gt *gt = pc_to_gt(pc);
++	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	return pc-&gt;rpe_freq;
++	if (GRAPHICS_VERx100(xe) &gt;= 1270)
++		return mtl_get_rpe_freq(pc);
++	else
++		return tgl_get_rpe_freq(pc);
+ }
+ 
+ /**
+@@ -1021,7 +1022,7 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+ 	/*
+ 	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
+ 	 */
+-	ret = pc_set_min_freq(pc, min(pc-&gt;rpe_freq, pc_max_freq_cap(pc)));
++	ret = pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
+ 	if (!ret)
+ 		ret = pc_set_max_freq(pc, min(pc-&gt;rp0_freq, pc_max_freq_cap(pc)));
+ 
+@@ -1339,7 +1340,7 @@ static void xe_guc_pc_fini_hw(void *arg)
+ 	XE_WARN_ON(xe_guc_pc_stop(pc));
+ 
+ 	/* Bind requested freq to mert_freq_cap before unload */
+-	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), pc-&gt;rpe_freq));
++	pc_set_cur_freq(pc, min(pc_max_freq_cap(pc), xe_guc_pc_get_rpe_freq(pc)));
+ 
+ 	xe_force_wake_put(gt_to_fw(pc_to_gt(pc)), fw_ref);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+index 5e4ea53fbee6..f27c05d81706 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+@@ -21,8 +21,6 @@ struct xe_guc_pc {
+ 	u32 rp0_freq;
+ 	/** @rpa_freq: HW RPa frequency - The Achievable one */
+ 	u32 rpa_freq;
+-	/** @rpe_freq: HW RPe frequency - The Efficient one */
+-	u32 rpe_freq;
+ 	/** @rpn_freq: HW RPN frequency - The Minimum one */
+ 	u32 rpn_freq;
+ 	/** @user_requested_min: Stash the minimum requested freq by user */
 -- 
+2.43.0
+
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------TGKy2hIstQu5EWQejLDNrbGw--
