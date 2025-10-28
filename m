@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02593CCF9EA
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 03:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C54F1CCF9F2
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 03:58:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0186410E27C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E405710E301;
 	Tue, 28 Oct 2025 03:58:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7QYgxWI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kh4w5sJC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B12C10E2AA
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 03:58:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB17A10E1E1
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 03:58:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1761623929; x=1793159929;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=flqjgyNLdq3o1ZC90oz5qulu/CL0DVD7fSArBBsY6o4=;
- b=g7QYgxWIaYnzZ+2822viL1ItTyyRlui255eqlMwWj+suVnj1m9Aaj3fu
- 2jlQrukd3nkV6Zyk7txL1rF5ZXzqRoMYhNzFaQVGERbLcV2NzA/WuA77O
- DdsCLKfQj+ESrSxep18hsV2t04rdlds1+fUPriETQ1enYTXjW2qCPrQSd
- g/KJK83OXMePkpVfxchYDJ4YdLOTlALdKcS5u1pqds1/7rmh9TtmzFDYB
- rdWfg3NV8F7Iw4cBy8BSRs3Y9YlkIa5sgjYvqcZar7lq9zXZXRjEDQaUx
- HEDtmq8bczLhhYaW1ri1yj8Gn7rplY/aiPe6NXiXHDjm7BQCt7vb7IqQr Q==;
-X-CSE-ConnectionGUID: wc88X4ORRQOyP/srjxVvVw==
-X-CSE-MsgGUID: xJVmiNSvR/Och0+I534ckA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67550956"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67550956"
+ bh=p7VaZcf0yIUlQAejEETPOAd3slRjuPrAPdcuFakfOAo=;
+ b=kh4w5sJCqFi+ZffQN3/ikieLNZ2jqb+BaNGeAu5Jvx8hNDpGZr1ES+Sc
+ RJx/j+1SpElUo8y/dnRGyz/mFrIOLych9YWQCnri7vu9cyFC96YzOOG+X
+ HFbIkkYLEIfgCw3UZhIb/XsRpJZVH/jIwKguGrdil2SS2QXHboyMOUY9I
+ KPfnUjbEvRvUf+6fyj6220oOmJIZJMst9kfYQ/6/YofQrFjSHA83x5z10
+ A2LYf0BVZ6WF0RcMAz8e5I/+Ol4qm+2A896kyqiJAvIZX9zBqGR5Aedps
+ c+BwfdhbZ1b/BoJcHCDyBz+HSbV/qyxBi01U5/vo7bRA+0u/V5LnxXc+v Q==;
+X-CSE-ConnectionGUID: xyuD5GE4RiOMezfQfn2Qaw==
+X-CSE-MsgGUID: TuHt2H5aS0OWzgFvGXxdcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67550952"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="67550952"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 20:58:47 -0700
-X-CSE-ConnectionGUID: mMnM/8VMQ++ETYVZ9i8XPQ==
-X-CSE-MsgGUID: hMDJZelLTOuifzotP1RuLw==
+X-CSE-ConnectionGUID: yxSF3edTRaaV1yYDblo/QA==
+X-CSE-MsgGUID: w3YqjQ+xStadT60VexkrBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="184461079"
+X-IronPort-AV: E=Sophos;i="6.19,260,1754982000"; d="scan'208";a="184461067"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2025 20:58:48 -0700
@@ -45,9 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com,
 	francois.dugast@intel.com
-Subject: [PATCH v3 6/7] drm/xe: Add xe_guc_pagefault layer
-Date: Mon, 27 Oct 2025 20:58:42 -0700
-Message-Id: <20251028035843.2488613-7-matthew.brost@intel.com>
+Subject: [PATCH v3 2/7] drm/xe: Implement xe_pagefault_init
+Date: Mon, 27 Oct 2025 20:58:38 -0700
+Message-Id: <20251028035843.2488613-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251028035843.2488613-1-matthew.brost@intel.com>
 References: <20251028035843.2488613-1-matthew.brost@intel.com>
@@ -68,253 +68,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add xe_guc_pagefault layer (producer) which parses G2H fault messages
-messages into struct xe_pagefault, forwards them to the page fault layer
-(consumer) for servicing, and provides a vfunc to acknowledge faults to
-the GuC upon completion. Replace the old (and incorrect) GT page fault
-layer with this new layer throughout the driver.
+Create pagefault queues and initialize them.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile           |  2 +-
- drivers/gpu/drm/xe/xe_gt.c            |  6 --
- drivers/gpu/drm/xe/xe_guc_ct.c        |  6 +-
- drivers/gpu/drm/xe/xe_guc_pagefault.c | 95 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_pagefault.h | 15 +++++
- drivers/gpu/drm/xe/xe_svm.c           |  3 +-
- drivers/gpu/drm/xe/xe_vm.c            |  1 -
- 7 files changed, 113 insertions(+), 15 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_pagefault.h
+ drivers/gpu/drm/xe/xe_device.c       |  5 ++
+ drivers/gpu/drm/xe/xe_device_types.h | 11 ++++
+ drivers/gpu/drm/xe/xe_pagefault.c    | 93 +++++++++++++++++++++++++++-
+ 3 files changed, 107 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index b35021e5b9eb..319f208eb19a 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -58,7 +58,6 @@ xe-y += xe_bb.o \
- 	xe_gt_freq.o \
- 	xe_gt_idle.o \
- 	xe_gt_mcr.o \
--	xe_gt_pagefault.o \
- 	xe_gt_sysfs.o \
- 	xe_gt_throttle.o \
- 	xe_gt_topology.o \
-@@ -73,6 +72,7 @@ xe-y += xe_bb.o \
- 	xe_guc_id_mgr.o \
- 	xe_guc_klv_helpers.o \
- 	xe_guc_log.o \
-+	xe_guc_pagefault.o \
- 	xe_guc_pc.o \
- 	xe_guc_submit.o \
- 	xe_guc_tlb_inval.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index e4852c4c90cd..44ed3202dfd1 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -32,7 +32,6 @@
- #include "xe_gt_freq.h"
- #include "xe_gt_idle.h"
- #include "xe_gt_mcr.h"
--#include "xe_gt_pagefault.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_pf.h"
- #include "xe_gt_sriov_vf.h"
-@@ -638,10 +637,6 @@ int xe_gt_init(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
--	err = xe_gt_pagefault_init(gt);
--	if (err)
--		return err;
--
- 	err = xe_gt_idle_init(&gt->gtidle);
- 	if (err)
- 		return err;
-@@ -851,7 +846,6 @@ static int gt_reset(struct xe_gt *gt)
- 	xe_uc_gucrc_disable(&gt->uc);
- 	xe_uc_stop_prepare(&gt->uc);
- 	xe_pagefault_reset(gt_to_xe(gt), gt);
--	xe_gt_pagefault_reset(gt);
- 
- 	xe_uc_stop(&gt->uc);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index e68953ef3a00..529d2b3bec21 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -21,12 +21,12 @@
- #include "xe_devcoredump.h"
- #include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_gt_pagefault.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_pf_control.h"
- #include "xe_gt_sriov_pf_monitor.h"
- #include "xe_guc.h"
- #include "xe_guc_log.h"
-+#include "xe_guc_pagefault.h"
- #include "xe_guc_relay.h"
- #include "xe_guc_submit.h"
- #include "xe_guc_tlb_inval.h"
-@@ -1545,10 +1545,6 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
- 		ret = xe_guc_tlb_inval_done_handler(guc, payload, adj_len);
- 		break;
--	case XE_GUC_ACTION_ACCESS_COUNTER_NOTIFY:
--		ret = xe_guc_access_counter_notify_handler(guc, payload,
--							   adj_len);
--		break;
- 	case XE_GUC_ACTION_GUC2PF_RELAY_FROM_VF:
- 		ret = xe_guc_relay_process_guc2pf(&guc->relay, hxg, hxg_len);
- 		break;
-diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-new file mode 100644
-index 000000000000..719a18187a31
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-@@ -0,0 +1,95 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include "abi/guc_actions_abi.h"
-+#include "xe_guc.h"
-+#include "xe_guc_ct.h"
-+#include "xe_guc_pagefault.h"
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 47f5391ad8e9..c17813c469fd 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -52,6 +52,7 @@
+ #include "xe_nvm.h"
+ #include "xe_oa.h"
+ #include "xe_observation.h"
 +#include "xe_pagefault.h"
+ #include "xe_pat.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+@@ -890,6 +891,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_pagefault_init(xe);
++	if (err)
++		return err;
 +
-+static void guc_ack_fault(struct xe_pagefault *pf, int err)
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_init(gt);
+ 		if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index af0ce275b032..7baf15f51575 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -18,6 +18,7 @@
+ #include "xe_lmtt_types.h"
+ #include "xe_memirq_types.h"
+ #include "xe_oa_types.h"
++#include "xe_pagefault_types.h"
+ #include "xe_platform_types.h"
+ #include "xe_pmu_types.h"
+ #include "xe_pt_types.h"
+@@ -418,6 +419,16 @@ struct xe_device {
+ 		u32 next_asid;
+ 		/** @usm.lock: protects UM state */
+ 		struct rw_semaphore lock;
++		/** @usm.pf_wq: page fault work queue, unbound, high priority */
++		struct workqueue_struct *pf_wq;
++		/*
++		 * We pick 4 here because, in the current implementation, it
++		 * yields the best bandwidth utilization of the kernel paging
++		 * engine.
++		 */
++#define XE_PAGEFAULT_QUEUE_COUNT	4
++		/** @usm.pf_queue: Page fault queues */
++		struct xe_pagefault_queue pf_queue[XE_PAGEFAULT_QUEUE_COUNT];
+ 	} usm;
+ 
+ 	/** @pinned: pinned BO state */
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index d509a80cb1f3..43b26e7d090a 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -3,6 +3,10 @@
+  * Copyright © 2025 Intel Corporation
+  */
+ 
++#include <drm/drm_managed.h>
++
++#include "xe_device.h"
++#include "xe_gt_types.h"
+ #include "xe_pagefault.h"
+ #include "xe_pagefault_types.h"
+ 
+@@ -21,6 +25,71 @@
+  * xe_pagefault.c implements the consumer layer.
+  */
+ 
++static int xe_pagefault_entry_size(void)
 +{
-+	u32 vfid = FIELD_GET(PFD_VFID, pf->producer.msg[2]);
-+	u32 engine_instance = FIELD_GET(PFD_ENG_INSTANCE, pf->producer.msg[0]);
-+	u32 engine_class = FIELD_GET(PFD_ENG_CLASS, pf->producer.msg[0]);
-+	u32 pdata = FIELD_GET(PFD_PDATA_LO, pf->producer.msg[0]) |
-+		(FIELD_GET(PFD_PDATA_HI, pf->producer.msg[1]) <<
-+		 PFD_PDATA_HI_SHIFT);
-+	u32 action[] = {
-+		XE_GUC_ACTION_PAGE_FAULT_RES_DESC,
-+
-+		FIELD_PREP(PFR_VALID, 1) |
-+		FIELD_PREP(PFR_SUCCESS, !!err) |
-+		FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
-+		FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
-+		FIELD_PREP(PFR_ASID, pf->consumer.asid),
-+
-+		FIELD_PREP(PFR_VFID, vfid) |
-+		FIELD_PREP(PFR_ENG_INSTANCE, engine_instance) |
-+		FIELD_PREP(PFR_ENG_CLASS, engine_class) |
-+		FIELD_PREP(PFR_PDATA, pdata),
-+	};
-+	struct xe_guc *guc = pf->producer.private;
-+
-+	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
++	return roundup_pow_of_two(sizeof(struct xe_pagefault));
 +}
 +
-+static const struct xe_pagefault_ops guc_pagefault_ops = {
-+	.ack_fault = guc_ack_fault,
-+};
-+
-+/**
-+ * xe_guc_pagefault_handler() - G2H page fault handler
-+ * @guc: GuC object
-+ * @msg: G2H message
-+ * @len: Length of G2H message
-+ *
-+ * Parse GuC to host (G2H) message into a struct xe_pagefault and forward onto
-+ * the Xe page fault layer.
-+ *
-+ * Return: 0 on success, errno on failure
-+ */
-+int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
++static void xe_pagefault_queue_work(struct work_struct *w)
 +{
-+	struct xe_pagefault pf;
-+	int i;
++	/* TODO: Implement */
++}
 +
-+#define GUC_PF_MSG_LEN_DW	\
-+	(sizeof(struct xe_guc_pagefault_desc) / sizeof(u32))
++static int xe_pagefault_queue_init(struct xe_device *xe,
++				   struct xe_pagefault_queue *pf_queue)
++{
++	struct xe_gt *gt;
++	int total_num_eus = 0;
++	u8 id;
 +
-+	BUILD_BUG_ON(GUC_PF_MSG_LEN_DW > XE_PAGEFAULT_PRODUCER_MSG_LEN_DW);
++	for_each_gt(gt, xe, id) {
++		xe_dss_mask_t all_dss;
++		int num_dss, num_eus;
 +
-+	if (len != GUC_PF_MSG_LEN_DW)
-+		return -EPROTO;
++		bitmap_or(all_dss, gt->fuse_topo.g_dss_mask,
++			  gt->fuse_topo.c_dss_mask, XE_MAX_DSS_FUSE_BITS);
 +
-+	pf.gt = guc_to_gt(guc);
++		num_dss = bitmap_weight(all_dss, XE_MAX_DSS_FUSE_BITS);
++		num_eus = bitmap_weight(gt->fuse_topo.eu_mask_per_dss,
++					XE_MAX_EU_FUSE_BITS) * num_dss;
++
++		total_num_eus += num_eus;
++	}
++
++	xe_assert(xe, total_num_eus);
 +
 +	/*
-+	 * XXX: These values happen to match the enum in xe_pagefault_types.h.
-+	 * If that changes, we’ll need to remap them here.
++	 * user can issue separate page faults per EU and per CS
++	 *
++	 * XXX: Multiplier required as compute UMD are getting PF queue errors
++	 * without it. Follow on why this multiplier is required.
 +	 */
-+	pf.consumer.page_addr = ((u64)FIELD_GET(PFD_VIRTUAL_ADDR_HI, msg[3])
-+				      << PFD_VIRTUAL_ADDR_HI_SHIFT) |
-+		(FIELD_GET(PFD_VIRTUAL_ADDR_LO, msg[2]) <<
-+		 PFD_VIRTUAL_ADDR_LO_SHIFT);
-+	pf.consumer.asid = FIELD_GET(PFD_ASID, msg[1]);
-+	pf.consumer.access_type = FIELD_GET(PFD_ACCESS_TYPE, msg[2]);
-+	pf.consumer.fault_type = FIELD_GET(PFD_FAULT_TYPE, msg[2]);
-+	if (FIELD_GET(XE2_PFD_TRVA_FAULT, msg[0]))
-+		pf.consumer.fault_level = XE_PAGEFAULT_LEVEL_NACK;
-+	else
-+		pf.consumer.fault_level = FIELD_GET(PFD_FAULT_LEVEL, msg[0]);
-+	pf.consumer.engine_class = FIELD_GET(PFD_ENG_CLASS, msg[0]);
-+	pf.consumer.engine_instance = FIELD_GET(PFD_ENG_INSTANCE, msg[0]);
++#define PF_MULTIPLIER	8
++	pf_queue->size = (total_num_eus + XE_NUM_HW_ENGINES) *
++		xe_pagefault_entry_size() * PF_MULTIPLIER;
++	pf_queue->size = roundup_pow_of_two(pf_queue->size);
++#undef PF_MULTIPLIER
 +
-+	pf.producer.private = guc;
-+	pf.producer.ops = &guc_pagefault_ops;
-+	for (i = 0; i < GUC_PF_MSG_LEN_DW; ++i)
-+		pf.producer.msg[i] = msg[i];
++	drm_dbg(&xe->drm, "xe_pagefault_entry_size=%d, total_num_eus=%d, pf_queue->size=%u",
++		xe_pagefault_entry_size(), total_num_eus, pf_queue->size);
 +
-+#undef GUC_PF_MSG_LEN_DW
++	spin_lock_init(&pf_queue->lock);
++	INIT_WORK(&pf_queue->worker, xe_pagefault_queue_work);
 +
-+	return xe_pagefault_handler(guc_to_xe(guc), &pf);
++	pf_queue->data = drmm_kzalloc(&xe->drm, pf_queue->size, GFP_KERNEL);
++	if (!pf_queue->data)
++		return -ENOMEM;
++
++	return 0;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.h b/drivers/gpu/drm/xe/xe_guc_pagefault.h
-new file mode 100644
-index 000000000000..3bd599e7207c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_pagefault.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
 +
-+#ifndef _XE_GUC_PAGEFAULT_H_
-+#define _XE_GUC_PAGEFAULT_H_
++static void xe_pagefault_fini(void *arg)
++{
++	struct xe_device *xe = arg;
 +
-+#include <linux/types.h>
++	destroy_workqueue(xe->usm.pf_wq);
++}
 +
-+struct xe_guc;
+ /**
+  * xe_pagefault_init() - Page fault init
+  * @xe: xe device instance
+@@ -31,8 +100,28 @@
+  */
+ int xe_pagefault_init(struct xe_device *xe)
+ {
+-	/* TODO - implement */
+-	return 0;
++	int err, i;
 +
-+int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len);
++	if (!xe->info.has_usm)
++		return 0;
 +
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 13af589715a7..55c5a0eb82e1 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -104,8 +104,7 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
- 			      &vm->svm.garbage_collector.range_list);
- 	spin_unlock(&vm->svm.garbage_collector.lock);
- 
--	queue_work(xe_device_get_root_tile(xe)->primary_gt->usm.pf_wq,
--		   &vm->svm.garbage_collector.work);
-+	queue_work(xe->usm.pf_wq, &vm->svm.garbage_collector.work);
++	xe->usm.pf_wq = alloc_workqueue("xe_page_fault_work_queue",
++					WQ_UNBOUND | WQ_HIGHPRI,
++					XE_PAGEFAULT_QUEUE_COUNT);
++	if (!xe->usm.pf_wq)
++		return -ENOMEM;
++
++	for (i = 0; i < XE_PAGEFAULT_QUEUE_COUNT; ++i) {
++		err = xe_pagefault_queue_init(xe, xe->usm.pf_queue + i);
++		if (err)
++			goto err_out;
++	}
++
++	return devm_add_action_or_reset(xe->drm.dev, xe_pagefault_fini, xe);
++
++err_out:
++	destroy_workqueue(xe->usm.pf_wq);
++	return err;
  }
  
- static void xe_svm_tlb_inval_count_stats_incr(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 00f3520dec38..aef9d4ae9511 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -27,7 +27,6 @@
- #include "xe_device.h"
- #include "xe_drm_client.h"
- #include "xe_exec_queue.h"
--#include "xe_gt_pagefault.h"
- #include "xe_migrate.h"
- #include "xe_pat.h"
- #include "xe_pm.h"
+ /**
 -- 
 2.34.1
 
