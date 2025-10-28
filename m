@@ -4,198 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25EB9CCF9E0
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37243CCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:14:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B659D10E3D7;
-	Tue, 28 Oct 2025 13:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA28010E3EA;
+	Tue, 28 Oct 2025 13:14:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eu4bx+OO";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="gYhOFWGE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2108E10E3D7;
- Tue, 28 Oct 2025 13:05:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761656704; x=1793192704;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=tSJmkNA+D0G7SmWEqFb0fBJQUM9ukapmHEcLxOhFXA4=;
- b=eu4bx+OOHDnGAW7dREQYggCZqCE6TuCTrrmYAPHLGG40Vmk5ydmcXPgY
- 2CZa/vM2rglsvZ45/6dE3w3twuEwyKZG78DUFKPaqsE3j+qOxBpfDgTU8
- HYa9WSE4jAdpBQVwemBDzyD+Ah+LUwWiimL1PVXmeHkV9ebqcQwpjUYVJ
- zTnKtsXq6xQEe6RhXReezfBNmUnIMIDQP21DjXJnqalX2Rwa8IOcGvpjY
- Bj1mEjVyojmhQ/7fGQsD7Wbfl4opp0HLwOf63uP8k1eoirLfiZtI/yKJ8
- /euktYIw14XJBlouX3/LRIeB9r9wCvIyb463AyTyeWUN3Kl6GaTIpi1tx w==;
-X-CSE-ConnectionGUID: QFaNWsIoR7uR+8YXtDI+Vg==
-X-CSE-MsgGUID: S1u+EFJZSQCyYMRavwIRtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63681438"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63681438"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:05:04 -0700
-X-CSE-ConnectionGUID: N61ZvtqDQP6SxuFu5VR6Aw==
-X-CSE-MsgGUID: QwVYNVbBQK2RBqDAvwrCxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="216000069"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:05:02 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 06:05:01 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Tue, 28 Oct 2025 06:05:01 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.58) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Tue, 28 Oct 2025 06:05:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QMMWoAVRHTps6d86QfG8DInQ86wr6PRBDAAo9FdpflXbq/Kfu8hhuyhZFJdQ0jEknOViB/3Xo20w9q09evXbzPVz6EnKBig25hq/l/DbZ2QA7KLq+cYap4fJWPWkmXv6BlttDLz89SRXkNcQTSKtDdZN9pwgIu0pZvjx6Nl1dNgjB3gZYvy/tlPIlPWD2AHxkhFRXizZ7bqLz6i2mNxVT4r/6K2VA7+9B/0EHIPU3gftpBN474suqbOgkX5fjQd60A5KFIyCYPeZM+cBp3CaaSX5HeseE03v/2hJOH7FgqCkS6khDcoXaCV7vMP0OSyWDBGDcBNBFRgNA8Wh3TwuTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IS0/uongaKU4BYgOh9gKpLPUdMcaaBbA7RYM49pbgW4=;
- b=vP5HXsYnJt5wXV3TrnTQDkiOMXm5nV4U9Cs/6Rv54lC75pJrKFyHSzPMvLEaa4D2mcrM3vYZZUbk0ENQapuOlxkvS+tcrpT/OZbgrtIfR9WfksAwm89sZS10bXp8XCxqQTQHrtfrgJigmwCbFN57I2OaEpCNpLJASJZKWGF8b/87rTOmd1BP8OdikFV77jmGMj8KnLa2dTwL2/GkR8vD3h9DdKq5E98N5/pQUgsGNvJwmauK/ijVKcsRNxRpff0sZNw27rZu8OM8eYcgmTOhwC027crhv8x94N89ctSX5HLcknGzFGtZi/Q8bdEIBJKNrB7JJIVq0dDb0wriHHU/ew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
- SN7PR11MB7601.namprd11.prod.outlook.com (2603:10b6:806:34a::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.18; Tue, 28 Oct
- 2025 13:04:58 +0000
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::927a:9c08:26f7:5b39]) by DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::927a:9c08:26f7:5b39%5]) with mapi id 15.20.9275.011; Tue, 28 Oct 2025
- 13:04:58 +0000
-Date: Tue, 28 Oct 2025 14:04:54 +0100
-From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: Alex Williamson <alex.williamson@redhat.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>, Kevin Tian
- <kevin.tian@intel.com>, <intel-xe@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>, Matthew Brost
- <matthew.brost@intel.com>, <dri-devel@lists.freedesktop.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Lukasz
- Laguna" <lukasz.laguna@intel.com>
-Subject: Re: [PATCH v2 15/26] drm/xe/pf: Handle GuC migration data as part of
- PF control
-Message-ID: <lpsgfkendbj3p3vuwy3ifjt63jqvfovuc4uc4qiv3rjiqqqhfb@owshpnxntkvt>
-References: <20251021224133.577765-1-michal.winiarski@intel.com>
- <20251021224133.577765-16-michal.winiarski@intel.com>
- <a8312322-8eb4-4262-b253-d598c819bc17@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a8312322-8eb4-4262-b253-d598c819bc17@intel.com>
-X-ClientProxiedBy: VI1PR0502CA0030.eurprd05.prod.outlook.com
- (2603:10a6:803:1::43) To DM4PR11MB5373.namprd11.prod.outlook.com
- (2603:10b6:5:394::7)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F01D10E3E5;
+ Tue, 28 Oct 2025 13:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1761657242;
+ bh=/M4/9Yyu88+dTA1oWie9zIheaF3dnHZcy0TUmkSaPv4=;
+ h=Date:From:To:Cc:Subject:From;
+ b=gYhOFWGEED/i4HP7XWS7YGSzSXogO6EYFbNydhlpM5AvjM6Q00wvVdutM2oKG5oBT
+ MU3+vc8kz72PVuQksdQpFnz84L9e1V7yYKg/hvaq3Z9CRfVO5Mg5aF6TyZhs1pdAHw
+ QbjqBWFr291nEBMIzVrcBy9S5LKPiCv+UitBgZYe3RL1DVEJCuQsXP6FKwiwEtBKRc
+ /cvAYzpNNWW5vrcGWKcUR8QKa1u4F07GjSsn6fKi/gMXFSTljfQMd9pZEQla3m1siA
+ R8lfPbhNtueHUWgD8a3/PvTP26OQoKaFq9aOY8mGut0BAqUJSudO3ku7lN0C3uw8dg
+ gjtN9y1MYy00g==
+Message-ID: <32b43261-3c99-49d9-92ee-615ada1d01e8@lankhorst.se>
+Date: Tue, 28 Oct 2025 14:14:00 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|SN7PR11MB7601:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03097401-7794-4c77-87b9-08de162298a8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|366016|27256017; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?N3B3QzdhV2dEbTlCMWpmQW9IT2E0UDdVUXJ3S0pzSXVnaDNVczZ6UmZ4QWsy?=
- =?utf-8?B?MzhHNnR0UVdYSk5GTjF1R1prZGpiOVhFT0xWL0ZUejltenptQmRlSjBkYzlZ?=
- =?utf-8?B?d05HOGM1eHBDUVFZV3FPeEh3SWJDVXFuTTl6anlzSkZFMnJpVXRLUEY2cUM3?=
- =?utf-8?B?OHVpVUxGblF4dzNpQTFjQytVbHlVV2x2dmdMRGtUalJYVm0wTm5FbUxkZ3Ux?=
- =?utf-8?B?YklNbVpJU3AvOC94bGtYeXhiVjNQNmlPaGRacWtCeEllRlJNbkJiTGtqQm1a?=
- =?utf-8?B?ZTkwV29COWxCZCtUN0hLKzZON29TRUNrVUJCZVUrVUFZL2VmY3hLNTZReTRD?=
- =?utf-8?B?WFlhdllORXI3K3p4MkEyNkJvOW5JMXlTN3ltOGRrNVFwSTB6QUM2bmtNWWZB?=
- =?utf-8?B?YTFlM3VUMXJLc1NheVhBR3VJeTA4TUtNc0ttN2RweUxxK082aXNTNk5nNVMz?=
- =?utf-8?B?UTA4NllvZlg4QVNjNG1MTFl3WHpGaTh0WWRzbU1LR00xOVZENnc5MmcyVHBk?=
- =?utf-8?B?amxaV0ZpN3NpT3NFSHFEZ2o2LzBncHNabVg0YXROZ0RZTlRvdnBuaXplZVll?=
- =?utf-8?B?ZHhRd0lEU25zR3YwZ1NkYkF0M01QaEdYR281WXRISks0clAxNjR4Yy9TL1Ri?=
- =?utf-8?B?cjFlQ3VwbS9FVTVUNDM1dlVQRElxbFpELzRGcnFmK2FvZC9qSjFTYVQzTzdW?=
- =?utf-8?B?dFB5NmMyaEVRb2FXcXU1UU0vTm1BRnVEdnB1Q2VWaTR4WjhKN29zL0llZXJU?=
- =?utf-8?B?UTgyVGpaT0VzY2I0YUx3aHdLVC80TlV0VmV1bGJJZkFaQ3ZndGpFN2ZFOEwr?=
- =?utf-8?B?RjByS1V6OTF6YUt6UGZTMmFvL0lOMTdDc2NOMGxGT1czM2pLU0dtMFk3a04r?=
- =?utf-8?B?MHhZRDJ3U0p5K0IwdndMOG5YSTRFMXEycVFEYTVCN2k2d1p6TzRoRXlvNUpT?=
- =?utf-8?B?aS9RRWxyM3NnWklPL3ZFQUJyQkxTRHY3KzRpdGFVby9LNThHWGZyemRBL0ty?=
- =?utf-8?B?T2ZPaHptamplY2tqVkVzOXU3RTFuQTE3dzRxVVNhNTBhYnlRYVdRYlk3MGNL?=
- =?utf-8?B?d3UrTXkxTXQvN2tyS01JbVRXRUUzdlZ6bkdXRWt3QjVRc1k5Y3J0OWdCdGpP?=
- =?utf-8?B?Ri8xNHY1Yit2VU8zT1VaRHhPckFRbk9hdW1TWitVTEwrbmJwdThHN3I2Wld0?=
- =?utf-8?B?Q1UrNGdZSWVmVUtGMU4vZWU2VjVhNzJiMDdGL09vQW50emNibzVQWE5XNTJP?=
- =?utf-8?B?bzBaMTh2RE5kbTdsUHVjUWRIV0N4aVZhblpzL0pOejgyakEwVlhxVDdqdWlV?=
- =?utf-8?B?VEFYK0tsMDBBa0UzeFNFS3lWM21sQTNBNVJvalI4QTcxNDZXcHczeHdrUnoz?=
- =?utf-8?B?S2doN3B0Vkx6Y1F1VHBwODJ2ZU1mdnhTMTdqN24rS2JSTG9BM01OeHdWYWNR?=
- =?utf-8?B?K05hSWpiTnE4V1Mrc2NhQ3daRnNVcmM1QWRsekd3UlNONXpFeStwTVZrNitG?=
- =?utf-8?B?aVIvZERhRisxcWQyUGdyVFNnY2hjSjBwaXRUS0M4aVpnL1dMd1orbWYzL1Z6?=
- =?utf-8?B?WFRMVDBXZmwxWXRyTmszZjUrbzY5amMzbkNVc1hmc3NLaHNJNDljMWdXTU9Y?=
- =?utf-8?B?cGswRHBNOEdQdWE5T0JZTXNMRm5DRmpqbjU3VnpFQWF5UEhlNndOaGdNVkdj?=
- =?utf-8?B?L3hPY0VDWFJhaGNGbGQ0dFgwL0UrRG8ybmw0SWRVdEttU0ZKeXBQOEFVQ29Z?=
- =?utf-8?B?a2U0QmIySGJWS2ViOWRhNGs4eU1oWExtSXBKUS9IQXEvUEw4RUVML2pEOHQ1?=
- =?utf-8?B?Q1kyYlR0SGdtM1Rkby83QStZR29kZFF0OW5ZRzJBZE1ENDVGYjhQOEhMWjhS?=
- =?utf-8?B?WHU1QXk4U09xMzNzRDlsZVJBbHU3bUhGZE15ZkdySWhUQWdIVDRTZklPYmpY?=
- =?utf-8?B?eFBYSWVXdEJ0TzJaSVhnVDJCOUUyckYxeUkvYy80czRlVHZxQnNobjE5VVdY?=
- =?utf-8?B?ZXg3MnQ3anZ1WFVjcjFNTGtZeWZKL0lXRUpHeEFVUDk2d3h3SENtOUl0Y2lQ?=
- =?utf-8?Q?c2K5fb?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016)(27256017); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDZYTmpFV211RjdTVjRtaWhWaE41aWJHQnZaS0ZGNVR3YlY5WktnRWVxSzZH?=
- =?utf-8?B?M2J3YWRHbVlHRk5wMXJzL0R0dEU4Y2toNWp1eUx2VmduMXVOZHBGaW9SWjZ1?=
- =?utf-8?B?VUt5RHRnTzVhTWtzcTQ3OFNCQmFFdkkrdUVvNjVsUlc0dkpNSHlTSTk1ajQv?=
- =?utf-8?B?aS9xaVhXUk44NDlLMDE5eG5tamJVaGp5TFd6S2FUU0R1dGJCaytoVFM2QmVW?=
- =?utf-8?B?VFRFYVJFNmFxUER0N0xzOElXTmo2dE1PSnZKWlh3cGNmY2Q0VXp6TWFGa3RV?=
- =?utf-8?B?ZFpPbE1CemQxVTlndlJqakRiUHUrK01hYTFlMWx1Nm5VdzhVMDBoYmJpSHpT?=
- =?utf-8?B?RFo3THVzTFRQeHB2MWdHemEvVEFpekhIOXJ6SHRqL1pMRklqK2hLUGlveER2?=
- =?utf-8?B?dHdlZDNDdFA2RWd6R2dYUjAybFJGck9LRXVQTTQydDBlZTNaYWJLSSs0dnF6?=
- =?utf-8?B?WTllYXByUVJPNDZwdmE3dG5sMmN3dktGWGMrTFZFOWxhV2x5ZEpES25JM3ph?=
- =?utf-8?B?b1Fid3JReklSYWxBRU40dTFCZFdGUE1xU1RCZ3Y4ZlE3SkNQdUR6em43bmV5?=
- =?utf-8?B?cmN3Z1dZbHRmWTVRdlJlS2xaMmxrWUhGUHB4VTZwdElzYjloc21VZ0xaUXc3?=
- =?utf-8?B?WVUwVnp5SDY5QW9JR3FiN3RHaVozb2YrL202dkhoUWgzemVncnprVFlMOEk5?=
- =?utf-8?B?aWMzdnpDL3dabW5uMTkzaHZOM1gvV3VzaWZMMG5HRlZWSWdVUm92Z1Iya0w3?=
- =?utf-8?B?T1d4QzMxay9LaER3c2lPVkNrUkVHbjU5ZXNkM1Z4VCt0ZmU3REhROGQxd21u?=
- =?utf-8?B?T2FhT0N2ckR3Zmg1aldwblBZL0lSbUxzSzJwR0RFQkIwNCtOVm5LRnorR1ht?=
- =?utf-8?B?eWxtWms0d2tGOUFYWXRIOFZyQjV1S3JDNjJ5Kzc5SWVMeUd1VFR2ZWRNR0NE?=
- =?utf-8?B?L3JyUFkwWTVhOXZhRjdrQTB6VkEybEN3UXFxNlA4Zm1acmRReWtQZmdZdXIx?=
- =?utf-8?B?Y3Zrei95SDdLRlBHVEd3cTRCSmRPRC9uVHR5UTRYNURUQktIRk5JdzJSMHFC?=
- =?utf-8?B?ZlBXbDI4V1Y5SmpGV2VKczhVMTlpbmFRbzVHeXVUL2MwUlRxSmVBYU5MTEdN?=
- =?utf-8?B?MlI5UzV6VnNuY0N5MFlFbVN3WHRtcjZwRWRSZFBsN2pmUVNJdXNKNG5JMlor?=
- =?utf-8?B?SElVcFhNZzZaR3o3MmsvKy9aNVdaaXkxSVNoOFFGZEViZFFJZFNOb25Ga3dt?=
- =?utf-8?B?VXMzVXpyTkFLbm9sclJDMnkweHRPTmI2STV3d2VScTA5OFNhSXZkZkVIWVl5?=
- =?utf-8?B?RGduREpCTTU5YUNsRk9BUUVhTmRIVUtrTDFNai9ZVmpYV1F6aHVBdk41QSsr?=
- =?utf-8?B?cmhGOVV5TEZMdHc3cC9mYmIvSEZ0SXNMQWFjN1VHcmw1YTYrWEh1NS9Vd3Vi?=
- =?utf-8?B?Sk1JSFBybnlBa0paVGFJRXJCR0J2MEpGRUJ3dVRBTWxheVh6d3d4T2VWU09T?=
- =?utf-8?B?QlJtRFdxYktXNm0yZkdvcDNQdWowZjcreEVNS3ZldnNhbWdDNUJrdVRHN3VB?=
- =?utf-8?B?cmtzdFR5blhtV0treWd3NytlZ0Z4MmZGRWVxVEFnTW13aFZ6OHpWdFNhZlhW?=
- =?utf-8?B?WkcvZ1FxcVdqa0dYR2JQR0tIVU9vUnRjWXRvb0xBN1NwNkVheC9tOEdCSk1a?=
- =?utf-8?B?aCtoWFhyOW1hSllaN3lLbHF5L2xtWmtpZzFQcUlXU0h1NWJvblZTNnFlcU4x?=
- =?utf-8?B?MnhDTnhaOGV4REdvR1kxQ1N6MVdWTEQvRjVoaW80bjBNZ2VYc3U2QjVsT1Jq?=
- =?utf-8?B?aEt0UjZwVWVPYUZjUGVQMDJ0bGU3Mm96NXhGU3hwMkNCOFp0Q29tWU9kVXdi?=
- =?utf-8?B?dGJuZXpJM2NqWjRLUDVxR29EejBBbjlhVElmNEdXQU00cnRRZ2xNZ1phZUdx?=
- =?utf-8?B?QzYzN2xpWVVncUZTNmZTU2NSQTVqeUkzdDVRNitnQ0pPVys4cXNHZG5nTVFL?=
- =?utf-8?B?RWowdXJlamdQQyttemRNejdoMHU5ZHdUVkdzTXpicmVPUUF5SmdzYTR5UVRt?=
- =?utf-8?B?bzNXa01KZ1QyQlVoZEJuSWhRckoyWlhTT1o4N2pyZ2RJQ2V5cDE4cWRJT0hw?=
- =?utf-8?B?TUl6QmZQbWFWVUFqREpNanRqSHNuT1BHVldudmR1UEoydWw2cmtOSTErUUFH?=
- =?utf-8?B?THc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03097401-7794-4c77-87b9-08de162298a8
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2025 13:04:58.2282 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lkagCgOgyokr32ziykyHCwdJePX7WJN1/K1/tih6QK9euW3W00fkwcxF+giN5qznaEHS7iAizXj1YJ3Y/AQlAYDQ9yNO6ioBH1tSSYJOTsc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7601
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -210,174 +59,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 23, 2025 at 10:39:12PM +0200, Michal Wajdeczko wrote:
-> 
-> 
-> On 10/22/2025 12:41 AM, Michał Winiarski wrote:
-> > Connect the helpers to allow save and restore of GuC migration data in
-> > stop_copy / resume device state.
-> > 
-> > Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c   | 26 +++++++++++++++++--
-> >  .../gpu/drm/xe/xe_gt_sriov_pf_control_types.h |  2 ++
-> >  drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  9 ++++++-
-> >  3 files changed, 34 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-> > index c159f35adcbe7..18f6e3028d4f0 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
-> > @@ -188,6 +188,7 @@ static const char *control_bit_to_string(enum xe_gt_sriov_control_bits bit)
-> >  	CASE2STR(SAVE_WIP);
-> >  	CASE2STR(SAVE_PROCESS_DATA);
-> >  	CASE2STR(SAVE_WAIT_DATA);
-> > +	CASE2STR(SAVE_DATA_GUC);
-> >  	CASE2STR(SAVE_DATA_DONE);
-> >  	CASE2STR(SAVE_FAILED);
-> >  	CASE2STR(SAVED);
-> > @@ -343,6 +344,7 @@ static void pf_exit_vf_mismatch(struct xe_gt *gt, unsigned int vfid)
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_STOP_FAILED);
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_PAUSE_FAILED);
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_RESUME_FAILED);
-> > +	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_FAILED);
-> 
-> this should be in one of the previous patch
+Hi Dave, Simona,
 
-It is - note that we're exiting this state twice :)
-It's a leftover from previous revisions (at some point we were
-introducing FAILED state here). I'll remove it.
+Next pull-request for v6.19-rc1!
 
-> 
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_FLR_FAILED);
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_FAILED);
-> >  	pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_RESTORE_FAILED);
-> > @@ -824,6 +826,7 @@ static void pf_exit_vf_save_wip(struct xe_gt *gt, unsigned int vfid)
-> >  
-> >  		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_PROCESS_DATA);
-> >  		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_WAIT_DATA);
-> > +		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_DATA_GUC);
-> >  		pf_escape_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_DATA_DONE);
-> >  	}
-> >  }
-> > @@ -848,6 +851,16 @@ static void pf_enter_vf_save_failed(struct xe_gt *gt, unsigned int vfid)
-> >  
-> >  static int pf_handle_vf_save_data(struct xe_gt *gt, unsigned int vfid)
-> >  {
-> > +	int ret;
-> > +
-> > +	if (pf_exit_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_DATA_GUC)) {
-> > +		xe_gt_assert(gt, xe_gt_sriov_pf_migration_guc_size(gt, vfid) > 0);
-> > +
-> > +		ret = xe_gt_sriov_pf_migration_guc_save(gt, vfid);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -881,6 +894,7 @@ static bool pf_enter_vf_save_wip(struct xe_gt *gt, unsigned int vfid)
-> >  {
-> >  	if (pf_enter_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_WIP)) {
-> >  		pf_enter_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_PROCESS_DATA);
-> > +		pf_enter_vf_state(gt, vfid, XE_GT_SRIOV_STATE_SAVE_DATA_GUC);
-> >  		pf_enter_vf_wip(gt, vfid);
-> >  		pf_queue_vf(gt, vfid);
-> >  		return true;
-> > @@ -1046,14 +1060,22 @@ static int
-> >  pf_handle_vf_restore_data(struct xe_gt *gt, unsigned int vfid)
-> >  {
-> >  	struct xe_sriov_migration_data *data = xe_gt_sriov_pf_migration_restore_consume(gt, vfid);
-> > +	int ret = 0;
-> >  
-> >  	xe_gt_assert(gt, data);
-> >  
-> > -	xe_gt_sriov_notice(gt, "Skipping VF%u unknown data type: %d\n", vfid, data->type);
-> > +	switch (data->type) {
-> > +	case XE_SRIOV_MIGRATION_DATA_TYPE_GUC:
-> > +		ret = xe_gt_sriov_pf_migration_guc_restore(gt, vfid, data);
-> > +		break;
-> > +	default:
-> > +		xe_gt_sriov_notice(gt, "Skipping VF%u unknown data type: %d\n", vfid, data->type);
-> > +		break;
-> > +	}
-> >  
-> >  	xe_sriov_migration_data_free(data);
-> >  
-> > -	return 0;
-> > +	return ret;
-> >  }
-> >  
-> >  static bool pf_handle_vf_restore(struct xe_gt *gt, unsigned int vfid)
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h
-> > index 35ceb2ff62110..8b951ee8a24fe 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control_types.h
-> > @@ -33,6 +33,7 @@
-> >   * @XE_GT_SRIOV_STATE_SAVE_WIP: indicates that VF save operation is in progress.
-> >   * @XE_GT_SRIOV_STATE_SAVE_PROCESS_DATA: indicates that VF migration data is being produced.
-> >   * @XE_GT_SRIOV_STATE_SAVE_WAIT_DATA: indicates that PF awaits for space in migration data ring.
-> > + * @XE_GT_SRIOV_STATE_SAVE_DATA_GUC: indicates PF needs to save VF GuC migration data.
-> >   * @XE_GT_SRIOV_STATE_SAVE_DATA_DONE: indicates that all migration data was produced by Xe.
-> >   * @XE_GT_SRIOV_STATE_SAVE_FAILED: indicates that VF save operation has failed.
-> >   * @XE_GT_SRIOV_STATE_SAVED: indicates that VF data is saved.
-> > @@ -76,6 +77,7 @@ enum xe_gt_sriov_control_bits {
-> >  	XE_GT_SRIOV_STATE_SAVE_WIP,
-> >  	XE_GT_SRIOV_STATE_SAVE_PROCESS_DATA,
-> >  	XE_GT_SRIOV_STATE_SAVE_WAIT_DATA,
-> > +	XE_GT_SRIOV_STATE_SAVE_DATA_GUC,
-> 
-> as DATA_GUC and introduced later DATA_GGTT/MMIO/VRAM are kind of sub-states of PROCESS_DATA,
-> better to keep them together
-> 
-> 	XE_GT_SRIOV_STATE_SAVE_PROCESS_DATA,
-> 	XE_GT_SRIOV_STATE_SAVE_DATA_GUC,
-> 	XE_GT_SRIOV_STATE_SAVE_DATA_GGTT,
-> 	XE_GT_SRIOV_STATE_SAVE_DATA_MMIO,
-> 	XE_GT_SRIOV_STATE_SAVE_DATA_VRAM,
-> 	XE_GT_SRIOV_STATE_SAVE_DATA_DONE,
-> 	XE_GT_SRIOV_STATE_SAVE_WAIT_CONSUME,
-> 
-> and at some point you need to update state diagram to include those DATA states
+Kind regards,
+~Maarten Lankhorst
 
-I'll extract this out from control state machine, as it's conceptually
-similar to save_vram_offset introduced later in the series.
+drm-misc-next-2025-10-28:
+drm-misc-next for v6.19-rc1:
 
-> 
-> >  	XE_GT_SRIOV_STATE_SAVE_DATA_DONE,
-> >  	XE_GT_SRIOV_STATE_SAVE_FAILED,
-> >  	XE_GT_SRIOV_STATE_SAVED,
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > index 127162e8c66e8..594178fbe36d0 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c
-> > @@ -279,10 +279,17 @@ int xe_gt_sriov_pf_migration_guc_restore(struct xe_gt *gt, unsigned int vfid,
-> >  ssize_t xe_gt_sriov_pf_migration_size(struct xe_gt *gt, unsigned int vfid)
-> >  {
-> >  	ssize_t total = 0;
-> > +	ssize_t size;
-> >  
-> >  	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-> >  
-> > -	/* Nothing to query yet - will be updated once per-GT migration data types are added */
-> > +	size = xe_gt_sriov_pf_migration_guc_size(gt, vfid);
-> > +	if (size < 0)
-> > +		return size;
-> > +	else if (size > 0)
-> 
-> "else" not needed
+UAPI Changes:
 
-Ok.
+Cross-subsystem Changes:
+- Update DT bindings for renesas and powervr-rogue.
+- Update MAINTAINERS email and add spsc_queue.
 
-Thanks,
--Michał
+Core Changes:
+- Allow ttm page protection flags on risc-v.
+- Move freeing of drm client memory to driver.
 
+Driver Changes:
+- Assorted small fixes and updates to qaic, ivpu, st7571-i2c, gud,
+  amdxdna.
+- Allow configuration of vkms' display through configfs.
+- Add Arm Ethos-U65/U85 accel driver.
+The following changes since commit 098456f3141bf9e0c0d8973695ca38a03465ccd6:
 
-> > +		size += sizeof(struct xe_sriov_pf_migration_hdr);
-> > +	total += size;
-> > +
-> >  	return total;
-> >  }
-> >  
-> 
+  Merge tag 'drm-misc-next-2025-10-21' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2025-10-24 13:25:20 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-10-28
+
+for you to fetch changes up to 4f9ffd2c80a2fa09dcc8dfa0482cb7e0fb6fcf6c:
+
+  drm/ttm: add pgprot handling for RISC-V (2025-10-28 09:19:46 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for v6.19-rc1:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+- Update DT bindings for renesas and powervr-rogue.
+- Update MAINTAINERS email and add spsc_queue.
+
+Core Changes:
+- Allow ttm page protection flags on risc-v.
+- Move freeing of drm client memory to driver.
+
+Driver Changes:
+- Assorted small fixes and updates to qaic, ivpu, st7571-i2c, gud,
+  amdxdna.
+- Allow configuration of vkms' display through configfs.
+- Add Arm Ethos-U65/U85 accel driver.
+
+----------------------------------------------------------------
+Aswin Venkatesan (1):
+      accel/qaic: Fix comment
+
+Chen-Yu Tsai (1):
+      MAINTAINERS: Update Chen-Yu's email address
+
+Icenowy Zheng (1):
+      drm/ttm: add pgprot handling for RISC-V
+
+José Expósito (6):
+      drm/vkms: Expose device creation and destruction
+      drm/vkms: Allow to configure the default device creation
+      drm/vkms: Remove completed task from the TODO list
+      drm/vkms: Allow to configure connector status
+      drm/vkms: Allow to update the connector status
+      drm/vkms: Allow to configure connector status via configfs
+
+Lizhi Hou (2):
+      accel/amdxdna: Fix incorrect return value in aie2_hwctx_sync_debug_bo()
+      accel/amdxdna: Fix uninitialized return value
+
+Louis Chauvet (10):
+      drm/vkms: Add and remove VKMS instances via configfs
+      drm/vkms: Allow to configure multiple planes via configfs
+      drm/vkms: Allow to configure the plane type via configfs
+      drm/vkms: Allow to configure multiple CRTCs via configfs
+      drm/vkms: Allow to configure CRTC writeback support via configfs
+      drm/vkms: Allow to attach planes and CRTCs via configfs
+      drm/vkms: Allow to configure multiple encoders via configfs
+      drm/vkms: Allow to attach encoders and CRTCs via configfs
+      drm/vkms: Allow to configure multiple connectors via configfs
+      drm/vkms: Allow to attach connectors and encoders via configfs
+
+Maciej Falkowski (1):
+      accel/ivpu: Add support for Nova Lake's NPU
+
+Marcus Folkesson (1):
+      drm/sitronix/st7571-i2c: remove unneeded semicolon
+
+Marek Vasut (4):
+      dt-bindings: gpu: img,powervr-rogue: Drop useless power domains items
+      dt-bindings: gpu: img,powervr-rogue: Rework the allOf section
+      dt-bindings: display: bridge: renesas,dsi-csi2-tx: Allow panel@ subnode
+      dt-bindings: gpu: img,powervr-rogue: Document GX6250 GPU in Renesas R-Car M3-W/M3-W+
+
+Philipp Stanner (1):
+      MAINTAINERS: Maintain spsc_queue through drm_sched
+
+Rob Herring (Arm) (2):
+      dt-bindings: npu: Add Arm Ethos-U65/U85
+      accel: Add Arm Ethos-U NPU driver
+
+Ruben Wauters (1):
+      drm/gud: rearrange gud_probe() to prepare for function splitting
+
+Thomas Zimmermann (7):
+      drm/sysfb: Use new CRTC state in begin_fb_access
+      drm/client: Add client free callback to unprepare fb_helper
+      drm/log: Do not hold lock across drm_client_release()
+      drm/log: Add free callback
+      drm/client: Do not free client memory by default
+      Merge drm/drm-next into drm-misc-next
+      drm/gem-atomic: Reset plane state to NULL if allocation failed
+
+Troy Hanson (1):
+      accel/qaic: Rename constant for clarity
+
+Youssef Samir (1):
+      accel/qaic: Update the sahara image table for AIC200
+
+ .mailmap                                           |   1 +
+ .../display/bridge/renesas,dsi-csi2-tx.yaml        |  53 +-
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  86 ++-
+ .../devicetree/bindings/npu/arm,ethos.yaml         |  79 ++
+ Documentation/gpu/vkms.rst                         | 100 ++-
+ MAINTAINERS                                        |  18 +-
+ drivers/accel/Kconfig                              |   1 +
+ drivers/accel/Makefile                             |   1 +
+ drivers/accel/amdxdna/aie2_ctx.c                   |   2 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |   4 +-
+ drivers/accel/ethosu/Kconfig                       |  11 +
+ drivers/accel/ethosu/Makefile                      |   4 +
+ drivers/accel/ethosu/ethosu_device.h               | 197 +++++
+ drivers/accel/ethosu/ethosu_drv.c                  | 403 ++++++++++
+ drivers/accel/ethosu/ethosu_drv.h                  |  15 +
+ drivers/accel/ethosu/ethosu_gem.c                  | 704 +++++++++++++++++
+ drivers/accel/ethosu/ethosu_gem.h                  |  46 ++
+ drivers/accel/ethosu/ethosu_job.c                  | 496 ++++++++++++
+ drivers/accel/ethosu/ethosu_job.h                  |  40 +
+ drivers/accel/ivpu/ivpu_drv.c                      |   1 +
+ drivers/accel/ivpu/ivpu_drv.h                      |   4 +
+ drivers/accel/ivpu/ivpu_fw.c                       |   2 +
+ drivers/accel/ivpu/ivpu_hw_ip.c                    |  10 +
+ drivers/accel/qaic/qaic_control.c                  |  14 +-
+ drivers/accel/qaic/qaic_data.c                     |   2 +-
+ drivers/accel/qaic/sahara.c                        |   5 +-
+ drivers/gpu/drm/armada/armada_fbdev.c              |   2 -
+ drivers/gpu/drm/clients/drm_fbdev_client.c         |  17 +-
+ drivers/gpu/drm/clients/drm_log.c                  |  16 +-
+ drivers/gpu/drm/drm_client.c                       |   4 +
+ drivers/gpu/drm/drm_client_event.c                 |   9 +-
+ drivers/gpu/drm/drm_fbdev_dma.c                    |   4 -
+ drivers/gpu/drm/drm_fbdev_shmem.c                  |   2 -
+ drivers/gpu/drm/drm_fbdev_ttm.c                    |   2 -
+ drivers/gpu/drm/drm_gem_atomic_helper.c            |   2 -
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   2 -
+ drivers/gpu/drm/gma500/fbdev.c                     |   3 -
+ drivers/gpu/drm/gud/gud_drv.c                      |  45 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c         |   2 -
+ drivers/gpu/drm/msm/msm_fbdev.c                    |   2 -
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |   2 -
+ drivers/gpu/drm/radeon/radeon_fbdev.c              |   2 -
+ drivers/gpu/drm/sitronix/st7571-i2c.c              |   2 +-
+ drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          |   2 +-
+ drivers/gpu/drm/tegra/fbdev.c                      |   2 -
+ drivers/gpu/drm/ttm/ttm_module.c                   |   3 +-
+ drivers/gpu/drm/vkms/Kconfig                       |   1 +
+ drivers/gpu/drm/vkms/Makefile                      |   3 +-
+ drivers/gpu/drm/vkms/tests/vkms_config_test.c      |  24 +
+ drivers/gpu/drm/vkms/vkms_config.c                 |   8 +-
+ drivers/gpu/drm/vkms/vkms_config.h                 |  26 +
+ drivers/gpu/drm/vkms/vkms_configfs.c               | 833 +++++++++++++++++++++
+ drivers/gpu/drm/vkms/vkms_configfs.h               |   8 +
+ drivers/gpu/drm/vkms/vkms_connector.c              |  35 +
+ drivers/gpu/drm/vkms/vkms_connector.h              |   9 +
+ drivers/gpu/drm/vkms/vkms_drv.c                    |  18 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |  20 +
+ include/drm/drm_client.h                           |  10 +
+ include/uapi/drm/ethosu_accel.h                    | 261 +++++++
+ 59 files changed, 3553 insertions(+), 127 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/npu/arm,ethos.yaml
+ create mode 100644 drivers/accel/ethosu/Kconfig
+ create mode 100644 drivers/accel/ethosu/Makefile
+ create mode 100644 drivers/accel/ethosu/ethosu_device.h
+ create mode 100644 drivers/accel/ethosu/ethosu_drv.c
+ create mode 100644 drivers/accel/ethosu/ethosu_drv.h
+ create mode 100644 drivers/accel/ethosu/ethosu_gem.c
+ create mode 100644 drivers/accel/ethosu/ethosu_gem.h
+ create mode 100644 drivers/accel/ethosu/ethosu_job.c
+ create mode 100644 drivers/accel/ethosu/ethosu_job.h
+ create mode 100644 drivers/gpu/drm/vkms/vkms_configfs.c
+ create mode 100644 drivers/gpu/drm/vkms/vkms_configfs.h
+ create mode 100644 include/uapi/drm/ethosu_accel.h
