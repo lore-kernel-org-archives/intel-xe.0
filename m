@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9DC4CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 12:25:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E7EFCCF9EE
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 12:25:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A72A310E0D2;
-	Tue, 28 Oct 2025 12:25:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E73E10E5C7;
+	Tue, 28 Oct 2025 12:25:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mlnlf0cH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fXoZwQhd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F36310E0D2
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43F7C10E3E8
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761654307; x=1793190307;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IHCgES0QroA+G7z+dUOB6iMBpF0TIs0RN57Vnat+bh4=;
- b=Mlnlf0cHY4BeNz387NktEGi7ZY1JPqhnJyOeWsif49nk4d1VMyhvoHlx
- riwu9lOXCaWdlUJUujBbUWClVFWhI66XGm0ENjFRXHXRQqesptBtl72L7
- mrrO7rZxcWV+D6fssFgPKYBDppKlvBJMtCQJy70zGc7YlbwFpD1/Rbbfn
- fmle7LzrTHtEXfhuFryUZcbOenRvfIz8N8zt1qBaXgvYUF+NNumyDUqcC
- iy3cqMvemzv0gE9uL+fOgWMNNfjRNoXX2D2IVNM938SKdAt4sTFGM7jFu
- HaEl/7hyqdK6A+oups4nP2yV5bWFRSXu9TmX1bj1mgyHzt/jA5adolJQI w==;
-X-CSE-ConnectionGUID: yrWtqkzERAqlf0B+cG3Sig==
-X-CSE-MsgGUID: 3bGiUx7oTMioEpdw3SOgKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956615"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956615"
+ t=1761654311; x=1793190311;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=iSg7YsET4jT8hcnLUddSYl82Lz8ouIfYqJzV/MPXyME=;
+ b=fXoZwQhd7JAyVsKaTnFqJLS6lPUjrpXP8z6hXcqzer/48uxQaATskGkr
+ pf5d0vH7J0oDpROHBxhCV6/cRH8YGduyrc/SqOOJ94wMXxI/2ylQecuC4
+ L5ltxbCAwjHbWClrVsvD5huWbaUopetByAy+FBZgMMq/BPFZ2Q2Sfj28g
+ 2EKp7DizJKM4PoyDDe98oQgWqqmNvIJgeCWj0w75rzhek6JziKSnpK0yh
+ amNFi29Ac4axtYl5ugXOTlbtrs3MsWHxGVafrVURcMj8nt9AdHjawPMN7
+ mdcF2tPSxiCuVBLzzWnYMmhZs/Bn0Wcp9/C4PykUXe8fDCQDrBD+5sUIS w==;
+X-CSE-ConnectionGUID: +bdA33RSR8+YcPaQRrPiEw==
+X-CSE-MsgGUID: rIzBr7u1QjSPl+uGowoIRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956630"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956630"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:02 -0700
-X-CSE-ConnectionGUID: s8lRTPiwTFerF/9q0p4cww==
-X-CSE-MsgGUID: 0fo63n0ORNCUAKljHd7zuA==
+ 28 Oct 2025 05:25:09 -0700
+X-CSE-ConnectionGUID: gle2mQreQmyC8fytZ1W7MA==
+X-CSE-MsgGUID: 1i94rNs1TJabzGsDdP9xSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524404"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524445"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:01 -0700
+ 28 Oct 2025 05:25:07 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 0/9] drm/xe/madvise: Add support for purgeable buffer
- objects
-Date: Tue, 28 Oct 2025 17:54:06 +0530
-Message-ID: <20251028122415.1136721-1-arvind.yadav@intel.com>
+Subject: [RFC PATCH 4/9] drm/xe/bo: Prevent purging of shared buffer objects
+Date: Tue, 28 Oct 2025 17:54:10 +0530
+Message-ID: <20251028122415.1136721-5-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251028122415.1136721-1-arvind.yadav@intel.com>
+References: <20251028122415.1136721-1-arvind.yadav@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,46 +68,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series introduces support for purgeable buffer objects (BOs) in the Xe driver. 
-This feature allows userspace applications to provide memory usage hints to the kernel,
-enabling more effective memory management, especially under system memory pressure.
+Introduce the `xe_bo_is_shared_locked()` inline helper to determine if a
+buffer object is shared across multiple clients or drivers. A buffer is
+considered shared if it is exported via dma-buf, imported, or has a
+handle count greater than one.
 
-When an application no longer needs the contents of a buffer, it can mark it as DONTNEED
-via the DRM_XE_MADVISE ioctl. This makes the BO a candidate for purging. If the kernel
-experiences memory pressure, it can reclaim the backing store of these BOs,
-freeing up GPU memory and helping to prevent Out-Of-Memory (OOM) situations.
+This check is critical for safely implementing purgeable memory. Purging
+a buffer that is shared would lead to data corruption for other clients
+that still hold a reference to it.
 
-The lifecycle of a purgeable BO is as follows:
+The new helper is used in two key locations:
 
-A BO starts in the default WILLNEED state.
-Userspace marks it as DONTNEED when its contents are discardable.
-Under memory pressure, the kernel may purge the BO, transitioning it to the PURGED state.
-Any attempt to use a purged BO (e.g., binding, mapping, or CPU access) will result in an error,
-signaling to the application that the contents are gone. The application can then re-validate
-the BO by marking it WILLNEED, at which point new backing store is allocated. To prevent data corruption,
-a critical safety check ensures that only non-shared buffers can be marked as purgeable. 
+1.  In `xe_vm_madvise_purgeable_bo()`, to prevent userspace from
+    successfully marking a shared buffer as `DONTNEED`. This is the
+    primary safeguard against incorrect usage.
 
-Arvind Yadav (7):
-  drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
-  drm/xe/madvise: Implement purgeable buffer object support
-  drm/xe/bo: Prevent purging of shared buffer objects
-  drm/xe/bo: Handle CPU faults on purged buffer objects
-  drm/xe/bo: Prevent mmap of purged buffer objects
-  drm/xe/vm: Prevent binding of purged buffer objects
-  drm/xe: Add support for querying purgeable BO states
+2.  In `xe_bo_move()`, as a final safety check before the kernel
+    initiates a purge during eviction. This ensures that even if a
+    shared buffer were somehow marked `DONTNEED`, it would not be
+    purged.
 
-Himal Prasad Ghimiray (2):
-  drm/xe/uapi: Add UAPI support for purgeable buffer objects
-  drm/xe/uapi: Add UAPI for purgeable bo state to madvise query response
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c         |  3 ++-
+ drivers/gpu/drm/xe/xe_bo.h         | 30 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
+ 3 files changed, 33 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/xe/xe_bo.c         | 91 ++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_bo.h         | 51 +++++++++++++++++
- drivers/gpu/drm/xe/xe_bo_types.h   |  3 +
- drivers/gpu/drm/xe/xe_vm.c         | 11 ++++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 67 ++++++++++++++++++++++
- include/uapi/drm/xe_drm.h          | 34 +++++++++++
- 6 files changed, 245 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 3b3eb83658cc..00d111d00e4a 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -910,7 +910,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	int state = atomic_read(&bo->madv_purgeable);
+ 	int ret = 0;
+ 
+-	if (evict && state == XE_MADV_PURGEABLE_DONTNEED) {
++	/* Purge only non-shared BOs explicitly marked DONTNEED by userspace. */
++	if (evict && state == XE_MADV_PURGEABLE_DONTNEED && !xe_bo_is_shared_locked(bo)) {
+ 		xe_ttm_bo_purge(ttm_bo, ctx);
+ 			return 0;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index d85c691d06e0..8bd219ce4271 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -473,4 +473,34 @@ static inline bool xe_bo_is_mem_type(struct xe_bo *bo, u32 mem_type)
+ 	xe_bo_assert_held(bo);
+ 	return bo->ttm.resource->mem_type == mem_type;
+ }
++
++/**
++ * xe_bo_is_shared_locked - Check if a buffer object is shared
++ * @bo: The buffer object to check
++ *
++ * Determines if a buffer object is considered shared, which includes:
++ * - Exported via dma-buf (obj->dma_buf is set)
++ * - Imported from another driver (obj->import_attach is set)
++ * - Referenced by multiple clients (handle_count > 1)
++ *
++ * This check is used to prevent data loss on shared content by avoiding
++ * certain operations like purging on buffers that other processes or
++ * drivers might still be using.
++ *
++ * Return: true if the buffer object is shared, false otherwise.
++ */
++static inline bool xe_bo_is_shared_locked(const struct xe_bo *bo)
++{
++	const struct drm_gem_object *obj = &bo->ttm.base;
++
++	dma_resv_assert_held(obj->resv);
++
++	if (obj->dma_buf || obj->import_attach)
++		return true;
++
++	if (obj->handle_count > 1)
++		return true;
++
++	return false;
++}
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 1f0356ea4403..49e159603d5d 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -195,7 +195,7 @@ static void xe_vm_madvise_purgeable_bo(struct xe_device *xe, struct xe_vm *vm,
+ 			break;
+ 		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
+ 			state = atomic_read(&bo->madv_purgeable);
+-			if (state != XE_MADV_PURGEABLE_PURGED)
++			if (state != XE_MADV_PURGEABLE_PURGED && !xe_bo_is_shared_locked(bo))
+ 				atomic_set(&bo->madv_purgeable, XE_MADV_PURGEABLE_DONTNEED);
+ 			break;
+ 		default:
 -- 
 2.43.0
 
