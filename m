@@ -4,66 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A527CCF9E0
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:38:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACA8ECCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:58:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38C7210E63F;
-	Tue, 28 Oct 2025 17:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7134610E641;
+	Tue, 28 Oct 2025 17:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="czcqHsvu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JXq5FDF8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D6110E63D;
- Tue, 28 Oct 2025 17:38:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5763A10E641
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:58:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761673083; x=1793209083;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rj0qgordGZNB+YdPjKDmtqTEG5yrczqeTMJCDVNmgm0=;
- b=czcqHsvuBt+Cd0uR/ZTJ2AxTRMMSPqWM7JyltnWkaww25r7Iy7p8xH6m
- w2LJJAPHSkbpNsDfOpdHV/Uls82kBh1e6d4vvgvhfLN5972U9a9whs9Jx
- 8UTV652d4ki/iKmBQXNzSoaV6T4oKUa2jV+qnaLKoHkF9POKlK5V5qkbC
- WoH/JYxyogM2J/nZFlBRnL/6AxxJUyMe9PyKmslpQiCpfqO53yDuJv5hO
- smgC5HDMG8wD3Ro+DQq/LWrVjetndd9PSDQTlNdaVPZLb3WWcTqbCJZFr
- 3DmskT1xk5uiatgkZkAXrZyotp44vWtf4X/lw5two5Mky0WGlNEYBEodi w==;
-X-CSE-ConnectionGUID: 34gN1EUdR+ew60r6H2C2eA==
-X-CSE-MsgGUID: iwieSlqSQB+oFYVrvghjBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="81413277"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="81413277"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:38:03 -0700
-X-CSE-ConnectionGUID: CNDiVW/JRC2hDk9azTLjtQ==
-X-CSE-MsgGUID: jG6aT9CEQn60hVk9anqSKQ==
+ t=1761674328; x=1793210328;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J0HPG/MxvvXoX/61fl114GqsIyGuuQ+JmTUgekJg1UU=;
+ b=JXq5FDF8WjAgvIyUFNM0wSfqbpZbPNxgoe4AQ7cHo4FaB48rvZsueMf9
+ WgSijRu0ENZo85UYH+AWwpYPJCFgSxRRbe61piH3r26nar8PGB+yGVrrh
+ NsyjdaHk/txieDM0fk1Az/OoWdRZum2BZlz1JsC2osZm2/0u2MvvpEnZr
+ zqc5zOQrCmibSj7emIgwuG3zqADKOH6Nzt/Xnuw412LJDqie/kaasta48
+ 6OeNeiy9jiI6kwuerDVFsjboTYh4NlSoN8+w6/06QiAzdOKul7oTMClvA
+ V19qqlwGq+CsVgRorVVeJtBd11ne+B0BJP6UFUnW3qHBoJgoWjl7Ih2hu g==;
+X-CSE-ConnectionGUID: e4mcEZ4mRbqgJtA9BieFAg==
+X-CSE-MsgGUID: Jw63MYCNSRCFvhIKp2uUhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687818"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687818"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 10:58:48 -0700
+X-CSE-ConnectionGUID: 4N02jJSJRuOwV7vokuYPjA==
+X-CSE-MsgGUID: d8atCxgsQHeWoMd/o16DyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185304310"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:37:56 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
- Simon Richter <Simon.Richter@hogyros.de>,
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469324"
+Received: from ngusev-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.98.92])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 10:58:44 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Bjorn Helgaas <bhelgaas@google.com>, David Airlie <airlied@gmail.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-pci@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH 9/9] PCI: Prevent restoring assigned resources
-Date: Tue, 28 Oct 2025 19:35:51 +0200
-Message-Id: <20251028173551.22578-10-ilpo.jarvinen@linux.intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
-References: <20251028173551.22578-1-ilpo.jarvinen@linux.intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2 00/17] PF: Add sriov_admin sysfs tree
+Date: Tue, 28 Oct 2025 18:58:14 +0100
+Message-ID: <20251028175832.184534-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -81,45 +70,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-restore_dev_resource() copies saved addresses and flags from the struct
-pci_dev_resource back to the struct resource, typically, during
-rollback from a failure or in preparation for a retry attempt.
+To allow the admin to provision VFs using production quality vGPU
+profiles, we need to expose some of the SR-IOV knobs at the sysfs
+level as existing debugfs entries may not be available.
 
-If the resource is within resource tree, the resource must not be
-modified as the resource tree could be corrupted. Thus, it's a bug to
-call restore_dev_resource() for assigned resources (which did happen
-due to logic flaws in the BAR resize rollback).
+Start with some basic scheduling parameters and apply them to all
+tiles/GTs where VF can be running. Provisioning of the other hard
+resources (like GGTT, VRAM) is still fully done by the PF, which
+uses fair auto-provisioning, but soon we will try to expose that
+to the admin too (after this series).
 
-Add WARN_ON_ONCE() into restore_dev_resource() to detect such bugs
-easily and return without altering the resource to prevent corruption.
+Below is an example of the new sysfs attributes tree on the PF
+with 2 of 3 VFs enabled (VFs were limited by max_vfs config):
 
-Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
----
- drivers/pci/setup-bus.c | 4 ++++
- 1 file changed, 4 insertions(+)
+  /sys/bus/pci/drivers/xe/0000:00:02.0/sriov_admin
+  ├── .bulk_profile
+  │   ├── exec_quantum_ms
+  │   ├── preempt_timeout_us
+  │   └── sched_priority
+  ├── pf
+  │   ├── device -> ../../../0000:00:02.0
+  │   └── profile
+  │       ├── exec_quantum_ms
+  │       ├── preempt_timeout_us
+  │       └── sched_priority
+  ├── vf1
+  │   ├── device -> ../../../0000:00:02.1
+  │   ├── profile
+  │   │   ├── exec_quantum_ms
+  │   │   ├── preempt_timeout_us
+  │   │   └── sched_priority
+  │   └── stop
+  ├── vf2
+  │   ├── device -> ../../../0000:00:02.2
+  │   ├── profile
+  │   │   ├── exec_quantum_ms
+  │   │   ├── preempt_timeout_us
+  │   │   └── sched_priority
+  │   └── stop
+  └── vf3
+      ├── profile
+      │   ├── exec_quantum_ms
+      │   ├── preempt_timeout_us
+      │   └── sched_priority
+      └── stop
 
-diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
-index 8da83b612c59..28d6ae822c0b 100644
---- a/drivers/pci/setup-bus.c
-+++ b/drivers/pci/setup-bus.c
-@@ -15,6 +15,7 @@
-  */
- 
- #include <linux/bitops.h>
-+#include <linux/bug.h>
- #include <linux/init.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-@@ -135,6 +136,9 @@ static void restore_dev_resource(struct pci_dev_resource *dev_res)
- {
- 	struct resource *res = dev_res->res;
- 
-+	if (WARN_ON_ONCE(res->parent))
-+		return;
-+
- 	res->start = dev_res->start;
- 	res->end = dev_res->end;
- 	res->flags = dev_res->flags;
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+
+v1: https://patchwork.freedesktop.org/series/156220/#rev1
+v2:
+    drop dbg messages about unexpected attr usage (Lucas)
+    use single lock while configuring all GTs (Lucas)
+    drop redundant comment (Piotr)
+    drop reset file (Rodrigo, Lucas)
+    update kernel version (Rodrigo)
+
+Michal Wajdeczko (17):
+  drm/xe/pf: Prepare sysfs for SR-IOV admin attributes
+  drm/xe/pf: Take RPM during calls to SR-IOV attr.store()
+  drm/xe/pf: Add _locked variants of the VF EQ config functions
+  drm/xe/pf: Add _locked variants of the VF PT config functions
+  drm/xe/pf: Allow change PF and VFs EQ/PT using sysfs
+  drm/xe/pf: Relax report helper to accept PF in bulk configs
+  drm/xe/pf: Fix signature of internal config helpers
+  drm/xe/pf: Add functions to bulk configure EQ/PT on GT
+  drm/xe/pf: Add functions to bulk provision EQ/PT
+  drm/xe/pf: Allow bulk change all VFs EQ/PT using sysfs
+  drm/xe/pf: Add functions to provision scheduling priority
+  drm/xe/pf: Allow bulk change all VFs priority using sysfs
+  drm/xe/pf: Allow change PF scheduling priority using sysfs
+  drm/xe/pf: Promote xe_pci_sriov_get_vf_pdev
+  drm/xe/pf: Add sysfs device symlinks to enabled VFs
+  drm/xe/pf: Allow to stop and reset VF using sysfs
+  drm/xe/pf: Add documentation for sriov_admin attributes
+
+ .../ABI/testing/sysfs-driver-intel-xe-sriov   | 160 +++++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 186 ++++-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h    |  10 +
+ drivers/gpu/drm/xe/xe_pci_sriov.c             |  41 +-
+ drivers/gpu/drm/xe/xe_pci_sriov.h             |   1 +
+ drivers/gpu/drm/xe/xe_sriov_pf.c              |   5 +
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c    | 273 ++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.h    |  14 +
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c        | 645 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h        |  16 +
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h        |  11 +
+ 12 files changed, 1318 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_pf_sysfs.h
+
 -- 
-2.39.5
+2.47.1
 
