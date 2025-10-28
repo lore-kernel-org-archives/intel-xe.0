@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4D1BCCF9F0
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4483CCCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 17:58:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 814FF10E645;
-	Tue, 28 Oct 2025 17:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0840810E642;
+	Tue, 28 Oct 2025 17:58:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YcN2/KOq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z5jx72xe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1E4A10E642
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:58:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 866E010E64D
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 17:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761674331; x=1793210331;
+ t=1761674333; x=1793210333;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KwsIB5G0enCTDOrFF+q3omlTwgmHD4cUitT7u/2SfF4=;
- b=YcN2/KOqPGtIhfP7+PO2eXcuUQKAWIpeKA7ctDCcRVTlUjtA5B5sH+TU
- f3HAjV9Stp0Xvwx2qIvSkdO5KNbMNsd7zfuKXasnKfgnrpaO7wd76DIC3
- zdg0th9e/6oiQVF/9UCKmLuKy1iSekZjpve7t9uwZD+tv/seY2ykNBsYn
- uvccd4fDL1Cje3/86MpPEuUjrjnrTOd4kF7xyi8f4HQEZKPRH9ZyY4F+0
- m2AeOtXi720iueJKwRVyW2CGTi9IhPaMbvjk2Hjb/v2l04kQGUpxG4ZZs
- xtHunUihx+E6dxb9Y3SYj6j0YOwlx2pqThSR0FAOtNEAskmbNI9BmTX63 Q==;
-X-CSE-ConnectionGUID: ZoZDtrXTT7W3jXBPpo/8Qw==
-X-CSE-MsgGUID: INDEZK05QaKIV/xICy/TFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687822"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687822"
+ bh=aupFtisvb9i+PzeZpK2QpS1le3EurED9p6/79r+63mQ=;
+ b=Z5jx72xeVxmXr8FT1shp2VmtuN5Ht4AXOAG+fpuKRsA6xqmubrpu7Lzq
+ QoCY+CW5YxFoCX/adICSzXoM1cQa/CSyyXssRdYUgNPjw3iQAmM5vI4s3
+ dRMF3ILLbFtPEeUdXceQXJTsGMK5ddHyASOYl98Xs9SDPe4X4JqBwneDY
+ EFn0u3YP3ZHEcDrvm1AGppcvGcweASwcrvkRRQglG8yBaEeSpr1F05uj1
+ xEMVZrgKw6im7RJ5kAErNn7Avf9L3Fj9hhIQBEaG1IDPEA0An2qoNFqbe
+ Nr/AR/f397I0LGo2iM+Olra/XguUGTKytqjh0LNvUHwT7YdYzf6OVW3e7 w==;
+X-CSE-ConnectionGUID: vMb8uYoAQ6yzU0fimHsycg==
+X-CSE-MsgGUID: VAlbccwQQF+2CIvNgp/5Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63687823"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="63687823"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:58:51 -0700
-X-CSE-ConnectionGUID: rLBZCPX7RL++nhR62niNaQ==
-X-CSE-MsgGUID: GrPZOABZRUWQrM+6ts9uVQ==
+ 28 Oct 2025 10:58:53 -0700
+X-CSE-ConnectionGUID: xHHVe3YuQWSUB6rwR4ZB9w==
+X-CSE-MsgGUID: AkJ2XIP0TWCinoERi1Y2Pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469340"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189469346"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 10:58:48 -0700
+ 28 Oct 2025 10:58:50 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2 02/17] drm/xe/pf: Take RPM during calls to SR-IOV
- attr.store()
-Date: Tue, 28 Oct 2025 18:58:16 +0100
-Message-ID: <20251028175832.184534-3-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 03/17] drm/xe/pf: Add _locked variants of the VF EQ config
+ functions
+Date: Tue, 28 Oct 2025 18:58:17 +0100
+Message-ID: <20251028175832.184534-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028175832.184534-1-michal.wajdeczko@intel.com>
 References: <20251028175832.184534-1-michal.wajdeczko@intel.com>
@@ -69,69 +69,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We expect that all SR-IOV attr.store() handlers will require active
-runtime PM reference. To simplify implementation of those handlers,
-take an implicit RPM reference on their behalf. Also wait until PF
-completes its restart.
+In upcoming patches we will want to configure VF's execution
+quantum (EQ) on all GTs under single lock to avoid potential
+races in parallel GT configuration attempts.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 58 +++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  4 ++
+ 2 files changed, 49 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-index 0f2b19ca873e..439a0cd02a86 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-@@ -9,7 +9,9 @@
- #include <drm/drm_managed.h>
- 
- #include "xe_assert.h"
-+#include "xe_pm.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf.h"
- #include "xe_sriov_pf_helpers.h"
- #include "xe_sriov_pf_sysfs.h"
- #include "xe_sriov_printk.h"
-@@ -129,11 +131,16 @@ static ssize_t xe_sriov_dev_attr_store(struct kobject *kobj, struct attribute *a
- 	struct xe_sriov_dev_attr *vattr = to_xe_sriov_dev_attr(attr);
- 	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
- 	struct xe_device *xe = vkobj->xe;
-+	ssize_t ret;
- 
- 	if (!vattr->store)
- 		return -EPERM;
- 
--	return vattr->store(xe, buf, count);
-+	xe_pm_runtime_get(xe);
-+	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, buf, count);
-+	xe_pm_runtime_put(xe);
-+
-+	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index c0c0215c0703..717f81e76b8c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1732,29 +1732,65 @@ static int pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
  }
  
- static ssize_t xe_sriov_vf_attr_show(struct kobject *kobj, struct attribute *attr, char *buf)
-@@ -158,13 +165,18 @@ static ssize_t xe_sriov_vf_attr_store(struct kobject *kobj, struct attribute *at
- 	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
- 	struct xe_device *xe = vkobj->xe;
- 	unsigned int vfid = vkobj->vfid;
-+	ssize_t ret;
+ /**
+- * xe_gt_sriov_pf_config_set_exec_quantum - Configure execution quantum for the VF.
++ * xe_gt_sriov_pf_config_set_exec_quantum_locked() - Configure execution quantum of the VF.
+  * @gt: the &xe_gt
+  * @vfid: the VF identifier
+  * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
+  *
+- * This function can only be called on PF.
++ * This function can only be called on PF with the master mutex hold.
++ * It will log the provisioned value or an error in case of the failure.
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+-					   u32 exec_quantum)
++int xe_gt_sriov_pf_config_set_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid,
++						  u32 exec_quantum)
+ {
+ 	int err;
  
- 	xe_sriov_pf_assert_vfid(xe, vfid);
- 
- 	if (!vattr->store)
- 		return -EPERM;
- 
--	return vattr->store(xe, vfid, buf, count);
-+	xe_pm_runtime_get(xe);
-+	ret = xe_sriov_pf_wait_ready(xe) ?: vattr->store(xe, vfid, buf, count);
-+	xe_pm_runtime_get(xe);
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
 +
-+	return ret;
+ 	err = pf_provision_exec_quantum(gt, vfid, exec_quantum);
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+ 
+ 	return pf_config_set_u32_done(gt, vfid, exec_quantum,
+-				      xe_gt_sriov_pf_config_get_exec_quantum(gt, vfid),
++				      pf_get_exec_quantum(gt, vfid),
+ 				      "execution quantum", exec_quantum_unit, err);
  }
  
- static const struct sysfs_ops xe_sriov_dev_sysfs_ops = {
++/**
++ * xe_gt_sriov_pf_config_set_exec_quantum - Configure execution quantum for the VF.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier
++ * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
++ *
++ * This function can only be called on PF.
++ * It will log the provisioned value or na error in case of the failure.
++ *
++ * Return: 0 on success or a negative error code on failure.
++ */
++int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
++					   u32 exec_quantum)
++{
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	return xe_gt_sriov_pf_config_set_exec_quantum_locked(gt, vfid, exec_quantum);
++}
++
++/**
++ * xe_gt_sriov_pf_config_get_exec_quantum_locked() - Get VF's execution quantum.
++ * @gt: the &xe_gt
++ * @vfid: the VF identifier
++ *
++ * This function can only be called on PF with the master mutex hold.
++ *
++ * Return: VF's (or PF's) execution quantum in milliseconds.
++ */
++u32 xe_gt_sriov_pf_config_get_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid)
++{
++	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
++
++	return pf_get_exec_quantum(gt, vfid);
++}
++
+ /**
+  * xe_gt_sriov_pf_config_get_exec_quantum - Get VF's execution quantum.
+  * @gt: the &xe_gt
+@@ -1766,13 +1802,9 @@ int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid,
+  */
+ u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
+ {
+-	u32 exec_quantum;
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
+ 
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+-	exec_quantum = pf_get_exec_quantum(gt, vfid);
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+-
+-	return exec_quantum;
++	return pf_get_exec_quantum(gt, vfid);
+ }
+ 
+ static const char *preempt_timeout_unit(u32 preempt_timeout)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index 513e6512a575..b4beb5a97031 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -40,6 +40,10 @@ int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid, uns
+ u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_exec_quantum(struct xe_gt *gt, unsigned int vfid, u32 exec_quantum);
+ 
++u32 xe_gt_sriov_pf_config_get_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid);
++int xe_gt_sriov_pf_config_set_exec_quantum_locked(struct xe_gt *gt, unsigned int vfid,
++						  u32 exec_quantum);
++
+ u32 xe_gt_sriov_pf_config_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid);
+ int xe_gt_sriov_pf_config_set_preempt_timeout(struct xe_gt *gt, unsigned int vfid,
+ 					      u32 preempt_timeout);
 -- 
 2.47.1
 
