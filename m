@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FA8CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:17:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FC16CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:23:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D040B10E3EE;
-	Tue, 28 Oct 2025 13:17:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0D7D10E3E1;
+	Tue, 28 Oct 2025 13:23:10 +0000 (UTC)
 Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E10F10E3FA;
- Tue, 28 Oct 2025 13:17:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4282106726839082721=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A48A10E3E1;
+ Tue, 28 Oct 2025 13:23:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_drm_sharpness_pro?=
- =?utf-8?q?perty?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/madvise=3A_Add_sup?=
+ =?utf-8?q?port_for_purgeable_buffer_objects?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Oct 2025 13:17:50 -0000
-Message-ID: <176165747050.62904.14597689460810988419@97596180aaec>
+Date: Tue, 28 Oct 2025 13:23:10 -0000
+Message-ID: <176165779030.62904.3507624869669913754@97596180aaec>
 X-Patchwork-Hint: ignore
-References: <20251028120747.3027332-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251028120747.3027332-1-ankit.k.nautiyal@intel.com>
+References: <20251028122415.1136721-1-arvind.yadav@intel.com>
+In-Reply-To: <20251028122415.1136721-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,85 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4282106726839082721==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce drm sharpness property
-URL   : https://patchwork.freedesktop.org/series/156648/
-State : success
+Series: drm/xe/madvise: Add support for purgeable buffer objects
+URL   : https://patchwork.freedesktop.org/series/156651/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc_BAT -> xe-pw-156648v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+f867e605613af1770f90c4b0afd4a8f06424d1f0
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4ecc8753e3a2aeb0ab91500f04c64ba39ff5ae7d
+Author: Arvind Yadav <arvind.yadav@intel.com>
+Date:   Tue Oct 28 17:54:15 2025 +0530
 
-Summary
--------
+    drm/xe: Add support for querying purgeable BO states
+    
+    Add support for querying purgeable buffer object states through the
+    XE_VM_QUERY_MEM_RANGE_ATTRS ioctl. This allows userspace to determine
+    the current purgeable state of BO:
+     - WILLNEED: BO is actively needed and re-validate if purged
+     - DONTNEED: BO is not currently needed and may be purged
+     - PURGED: BO has been purged by the kernel due to memory pressure
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
++ /mt/dim checkpatch 5742fc7aea99a1326637a7106eeaeac383a1c76d drm-intel
+e7575feffd11 drm/xe/uapi: Add UAPI support for purgeable buffer objects
+327a9d63b311 drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+  * XE_MADV_PURGEABLE_WILLNEED:  BO is actively needed, should not be purged
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 37 lines checked
+843e92c70085 drm/xe/madvise: Implement purgeable buffer object support
+-:82: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#82: FILE: drivers/gpu/drm/xe/xe_bo.c:888:
++
++			}
 
-  No regressions found.
+-:150: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#150: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:169:
++{
++
 
-  
+-:201: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val == DRM_XE_VMA_PURGEABLE_STATE_WILLNEED'
+#201: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:338:
++		if (XE_IOCTL_DBG(xe, !((val == DRM_XE_VMA_PURGEABLE_STATE_WILLNEED) ||
++				       (val == DRM_XE_VMA_PURGEABLE_STATE_DONTNEED))))
 
-Participating hosts (13 -> 13)
-------------------------------
+-:201: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val == DRM_XE_VMA_PURGEABLE_STATE_DONTNEED'
+#201: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:338:
++		if (XE_IOCTL_DBG(xe, !((val == DRM_XE_VMA_PURGEABLE_STATE_WILLNEED) ||
++				       (val == DRM_XE_VMA_PURGEABLE_STATE_DONTNEED))))
 
-  No changes in participating hosts
+-:222: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#222: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:471:
++
++		}
 
-Known issues
-------------
+total: 0 errors, 0 warnings, 5 checks, 186 lines checked
+eab5d3ea8147 drm/xe/bo: Prevent purging of shared buffer objects
+4e4b2b6e0afc drm/xe/bo: Handle CPU faults on purged buffer objects
+ff911f79f2a7 drm/xe/bo: Prevent mmap of purged buffer objects
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+the state is `XE_MADV_PURGEABLE_PURGED`, the ioctl now fails with `-EINVAL`.
 
-  Here are the changes found in xe-pw-156648v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-plain-flip@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
-
-  
-  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
-
-
-Build changes
--------------
-
-  * Linux: xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc -> xe-pw-156648v1
-
-  IGT_8598: 8598
-  xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc: 894bc3ad572262b3c29e8cf0352adaa07275dbfc
-  xe-pw-156648v1: 156648v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html
-
---===============4282106726839082721==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce drm sharpness property</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156648/">https://patchwork.freedesktop.org/series/156648/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+e6142517b5dc drm/xe/vm: Prevent binding of purged buffer objects
+769db942a6f1 drm/xe/uapi: Add UAPI for purgeable bo state to madvise query response
+4ecc8753e3a2 drm/xe: Add support for querying purgeable BO states
 
 
-    <h1>CI Bug Log - changes from xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc_BAT -&gt; xe-pw-156648v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-156648v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc -&gt; xe-pw-156648v1</li>
-</ul>
-<p>IGT_8598: 8598<br />
-  xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc: 894bc3ad572262b3c29e8cf0352adaa07275dbfc<br />
-  xe-pw-156648v1: 156648v1</p>
-
-</body>
-</html>
-
---===============4282106726839082721==--
