@@ -4,46 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37243CCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:14:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7871CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA28010E3EA;
-	Tue, 28 Oct 2025 13:14:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9529710E3E5;
+	Tue, 28 Oct 2025 13:15:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="gYhOFWGE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ba5GhCoT";
 	dkim-atps=neutral
-Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F01D10E3E5;
- Tue, 28 Oct 2025 13:14:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1761657242;
- bh=/M4/9Yyu88+dTA1oWie9zIheaF3dnHZcy0TUmkSaPv4=;
- h=Date:From:To:Cc:Subject:From;
- b=gYhOFWGEED/i4HP7XWS7YGSzSXogO6EYFbNydhlpM5AvjM6Q00wvVdutM2oKG5oBT
- MU3+vc8kz72PVuQksdQpFnz84L9e1V7yYKg/hvaq3Z9CRfVO5Mg5aF6TyZhs1pdAHw
- QbjqBWFr291nEBMIzVrcBy9S5LKPiCv+UitBgZYe3RL1DVEJCuQsXP6FKwiwEtBKRc
- /cvAYzpNNWW5vrcGWKcUR8QKa1u4F07GjSsn6fKi/gMXFSTljfQMd9pZEQla3m1siA
- R8lfPbhNtueHUWgD8a3/PvTP26OQoKaFq9aOY8mGut0BAqUJSudO3ku7lN0C3uw8dg
- gjtN9y1MYy00g==
-Message-ID: <32b43261-3c99-49d9-92ee-615ada1d01e8@lankhorst.se>
-Date: Tue, 28 Oct 2025 14:14:00 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03EE210E3E5
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 13:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1761657352; x=1793193352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=c96vjxLI05HS+P90CHUS+o88h6EelyRfxSr4CNASLQc=;
+ b=Ba5GhCoTMan1RkBryorChIahlLjWxOVRbFRA5nZjAuezaSRfPy7UI6Zk
+ hhHdTTQobWp9V81ny+o4yKD9ywt+Cxp+3eZ4epViVurlKAZ4tP9XSUA8Y
+ WsOTxUPT3zN8ZNiZa3/eapg2XWZbdoTHYjZMwRSuPFrdVnm0+WwB8VGlo
+ 5E6LOji668DxXyZ84ZztmE9jwYzok1blNd24hzxRsw0SIZDuZRDttd9D4
+ c/mSc/AOTQfN4unsQsDDOT6mq71kU8qXTqQoeNhcr/MjMRiv6AY8BBBuc
+ 1a5/hU5vZ2zIyLXmkMKCBCMOhu5TxxQYud9/WHszaJFQWREoFgW57QJny A==;
+X-CSE-ConnectionGUID: U1qteTWZQ1SUdJ2P2NIvKw==
+X-CSE-MsgGUID: npELfi2SRF6xNDpw/HF4LQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74041793"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="74041793"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 06:15:51 -0700
+X-CSE-ConnectionGUID: MvKm2WlaSdKT/U4Gjefu7g==
+X-CSE-MsgGUID: DSbf78XaR/atSP4yr7/+MQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="189658380"
+Received: from sanjay-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2025 06:15:49 -0700
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+	jose.souza@intel.com
+Subject: [PATCH] drm/xe/uapi: Implement DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION
+ flag
+Date: Tue, 28 Oct 2025 18:40:32 +0530
+Message-ID: <20251028131031.2052163-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,203 +66,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+Let userspace opt out of CCS compression on a per-BO basis. When set,
+the driver maps this to XE_BO_FLAG_NO_COMPRESSION, skips CCS metadata
+allocation/clearing, and rejects compressed PAT indices at vm_bind.
+This avoids extra memory ops and manual CCS state handling for buffer.
 
-Next pull-request for v6.19-rc1!
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c  | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h  |  1 +
+ drivers/gpu/drm/xe/xe_pat.c |  9 ++++++++-
+ drivers/gpu/drm/xe/xe_pat.h | 15 +++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c  |  6 ++++++
+ include/uapi/drm/xe_drm.h   | 13 +++++++++++++
+ 6 files changed, 56 insertions(+), 3 deletions(-)
 
-Kind regards,
-~Maarten Lankhorst
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7b6502081873..1421537ef9fc 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -3160,7 +3160,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
++			   DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -3182,6 +3183,12 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_FLAG_SCANOUT;
+ 
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
++		if (GRAPHICS_VER(xe) < 20)
++			return -EINVAL;
++		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
++	}
++
+ 	bo_flags |= args->placement << (ffs(XE_BO_FLAG_SYSTEM) - 1);
+ 
+ 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+@@ -3503,8 +3510,12 @@ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ 	 * Compression implies coh_none, therefore we know for sure that WB
+ 	 * memory can't currently use compression, which is likely one of the
+ 	 * common cases.
++	 * Additionally, userspace may explicitly request no compression via the
++	 * DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION flag, which should also disable
++	 * CCS usage.
+ 	 */
+-	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB)
++	if (bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB ||
++	    bo->flags & XE_BO_FLAG_NO_COMPRESSION)
+ 		return false;
+ 
+ 	return true;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 353d607d301d..1217e386e697 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -50,6 +50,7 @@
+ #define XE_BO_FLAG_GGTT3		BIT(23)
+ #define XE_BO_FLAG_CPU_ADDR_MIRROR	BIT(24)
+ #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
++#define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
+ 
+ /* this one is trigger internally only */
+ #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 6e48ff84ad0a..991eeb551a72 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -115,7 +115,8 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+ 		.coh_mode = (BUILD_BUG_ON_ZERO(__coh_mode && comp_en) || __coh_mode) ? \
+-			XE_COH_AT_LEAST_1WAY : XE_COH_NONE \
++			XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
++		.compressed = comp_en, \
+ 	}
+ 
+ static const struct xe_pat_table_entry xe2_pat_table[] = {
+@@ -160,6 +161,12 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ 	return xe->pat.table[pat_index].coh_mode;
+ }
+ 
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index)
++{
++	xe_assert(xe, pat_index < xe->pat.n_entries);
++	return xe->pat.table[pat_index].compressed;
++}
++
+ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+ 			int n_entries)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index 268c9a899f56..07319fca5f4c 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -29,6 +29,11 @@ struct xe_pat_table_entry {
+ #define XE_COH_NONE          1
+ #define XE_COH_AT_LEAST_1WAY 2
+ 	u16 coh_mode;
++
++	/**
++	 * @compressed: Whether compression is enabled or not with @value.
++	 */
++	bool compressed;
+ };
+ 
+ /**
+@@ -53,4 +58,14 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+  */
+ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
+ 
++/**
++ * xe_pat_index_has_compression - Check if the given pat_index enables
++ * compression.
++ * @xe: xe device
++ * @pat_index: The pat_index to query
++ *
++ * Note: Only applicable to Xe2+, where compression is part of the PAT index.
++ */
++bool xe_pat_index_has_compression(struct xe_device *xe, u16 pat_index);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 179758ca7cb8..98990ab14c85 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3486,6 +3486,12 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	u16 coh_mode;
+ 
++	/* Reject compressed PAT index for BO with NO_COMPRESSION flag */
++	if ((bo->flags & XE_BO_FLAG_NO_COMPRESSION) &&
++	    xe_pat_index_has_compression(xe, pat_index))
++		return -EINVAL;
++
++
+ 	if (XE_IOCTL_DBG(xe, range > xe_bo_size(bo)) ||
+ 	    XE_IOCTL_DBG(xe, obj_offset >
+ 			 xe_bo_size(bo) - range)) {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 40ff19f52a8d..07dea4a9dfd3 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -787,6 +787,18 @@ struct drm_xe_device_query {
+  *    need to use VRAM for display surfaces, therefore the kernel requires
+  *    setting this flag for such objects, otherwise an error is thrown on
+  *    small-bar systems.
++ *  - %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION - Allows userspace to
++ *    hint that compression (CCS) should be disabled for the buffer being
++ *    created. This can avoid unnecessary memory operations and CCS state
++ *    management.
++ *    On pre-Xe2 platforms, this flag is currently rejected as compression
++ *    control is not supported via PAT index. On Xe2+ platforms, compression
++ *    is controlled via PAT entries. If this flag is set, the driver will reject
++ *    any VM bind that requests a PAT index enabling compression for this BO.
++ *    Note: On dGPU platforms, there is currently no change in behavior with
++ *    this flag, but future improvements may leverage it. The current benefit is
++ *    primarily applicable to iGPU platforms.
++
+  *
+  * @cpu_caching supports the following values:
+  *  - %DRM_XE_GEM_CPU_CACHING_WB - Allocate the pages with write-back
+@@ -833,6 +845,7 @@ struct drm_xe_gem_create {
+ #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+ #define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ #define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
++#define DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION		(1 << 3)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
+-- 
+2.43.0
 
-drm-misc-next-2025-10-28:
-drm-misc-next for v6.19-rc1:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-- Update DT bindings for renesas and powervr-rogue.
-- Update MAINTAINERS email and add spsc_queue.
-
-Core Changes:
-- Allow ttm page protection flags on risc-v.
-- Move freeing of drm client memory to driver.
-
-Driver Changes:
-- Assorted small fixes and updates to qaic, ivpu, st7571-i2c, gud,
-  amdxdna.
-- Allow configuration of vkms' display through configfs.
-- Add Arm Ethos-U65/U85 accel driver.
-The following changes since commit 098456f3141bf9e0c0d8973695ca38a03465ccd6:
-
-  Merge tag 'drm-misc-next-2025-10-21' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2025-10-24 13:25:20 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-10-28
-
-for you to fetch changes up to 4f9ffd2c80a2fa09dcc8dfa0482cb7e0fb6fcf6c:
-
-  drm/ttm: add pgprot handling for RISC-V (2025-10-28 09:19:46 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for v6.19-rc1:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-- Update DT bindings for renesas and powervr-rogue.
-- Update MAINTAINERS email and add spsc_queue.
-
-Core Changes:
-- Allow ttm page protection flags on risc-v.
-- Move freeing of drm client memory to driver.
-
-Driver Changes:
-- Assorted small fixes and updates to qaic, ivpu, st7571-i2c, gud,
-  amdxdna.
-- Allow configuration of vkms' display through configfs.
-- Add Arm Ethos-U65/U85 accel driver.
-
-----------------------------------------------------------------
-Aswin Venkatesan (1):
-      accel/qaic: Fix comment
-
-Chen-Yu Tsai (1):
-      MAINTAINERS: Update Chen-Yu's email address
-
-Icenowy Zheng (1):
-      drm/ttm: add pgprot handling for RISC-V
-
-José Expósito (6):
-      drm/vkms: Expose device creation and destruction
-      drm/vkms: Allow to configure the default device creation
-      drm/vkms: Remove completed task from the TODO list
-      drm/vkms: Allow to configure connector status
-      drm/vkms: Allow to update the connector status
-      drm/vkms: Allow to configure connector status via configfs
-
-Lizhi Hou (2):
-      accel/amdxdna: Fix incorrect return value in aie2_hwctx_sync_debug_bo()
-      accel/amdxdna: Fix uninitialized return value
-
-Louis Chauvet (10):
-      drm/vkms: Add and remove VKMS instances via configfs
-      drm/vkms: Allow to configure multiple planes via configfs
-      drm/vkms: Allow to configure the plane type via configfs
-      drm/vkms: Allow to configure multiple CRTCs via configfs
-      drm/vkms: Allow to configure CRTC writeback support via configfs
-      drm/vkms: Allow to attach planes and CRTCs via configfs
-      drm/vkms: Allow to configure multiple encoders via configfs
-      drm/vkms: Allow to attach encoders and CRTCs via configfs
-      drm/vkms: Allow to configure multiple connectors via configfs
-      drm/vkms: Allow to attach connectors and encoders via configfs
-
-Maciej Falkowski (1):
-      accel/ivpu: Add support for Nova Lake's NPU
-
-Marcus Folkesson (1):
-      drm/sitronix/st7571-i2c: remove unneeded semicolon
-
-Marek Vasut (4):
-      dt-bindings: gpu: img,powervr-rogue: Drop useless power domains items
-      dt-bindings: gpu: img,powervr-rogue: Rework the allOf section
-      dt-bindings: display: bridge: renesas,dsi-csi2-tx: Allow panel@ subnode
-      dt-bindings: gpu: img,powervr-rogue: Document GX6250 GPU in Renesas R-Car M3-W/M3-W+
-
-Philipp Stanner (1):
-      MAINTAINERS: Maintain spsc_queue through drm_sched
-
-Rob Herring (Arm) (2):
-      dt-bindings: npu: Add Arm Ethos-U65/U85
-      accel: Add Arm Ethos-U NPU driver
-
-Ruben Wauters (1):
-      drm/gud: rearrange gud_probe() to prepare for function splitting
-
-Thomas Zimmermann (7):
-      drm/sysfb: Use new CRTC state in begin_fb_access
-      drm/client: Add client free callback to unprepare fb_helper
-      drm/log: Do not hold lock across drm_client_release()
-      drm/log: Add free callback
-      drm/client: Do not free client memory by default
-      Merge drm/drm-next into drm-misc-next
-      drm/gem-atomic: Reset plane state to NULL if allocation failed
-
-Troy Hanson (1):
-      accel/qaic: Rename constant for clarity
-
-Youssef Samir (1):
-      accel/qaic: Update the sahara image table for AIC200
-
- .mailmap                                           |   1 +
- .../display/bridge/renesas,dsi-csi2-tx.yaml        |  53 +-
- .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  86 ++-
- .../devicetree/bindings/npu/arm,ethos.yaml         |  79 ++
- Documentation/gpu/vkms.rst                         | 100 ++-
- MAINTAINERS                                        |  18 +-
- drivers/accel/Kconfig                              |   1 +
- drivers/accel/Makefile                             |   1 +
- drivers/accel/amdxdna/aie2_ctx.c                   |   2 +-
- drivers/accel/amdxdna/aie2_pci.c                   |   4 +-
- drivers/accel/ethosu/Kconfig                       |  11 +
- drivers/accel/ethosu/Makefile                      |   4 +
- drivers/accel/ethosu/ethosu_device.h               | 197 +++++
- drivers/accel/ethosu/ethosu_drv.c                  | 403 ++++++++++
- drivers/accel/ethosu/ethosu_drv.h                  |  15 +
- drivers/accel/ethosu/ethosu_gem.c                  | 704 +++++++++++++++++
- drivers/accel/ethosu/ethosu_gem.h                  |  46 ++
- drivers/accel/ethosu/ethosu_job.c                  | 496 ++++++++++++
- drivers/accel/ethosu/ethosu_job.h                  |  40 +
- drivers/accel/ivpu/ivpu_drv.c                      |   1 +
- drivers/accel/ivpu/ivpu_drv.h                      |   4 +
- drivers/accel/ivpu/ivpu_fw.c                       |   2 +
- drivers/accel/ivpu/ivpu_hw_ip.c                    |  10 +
- drivers/accel/qaic/qaic_control.c                  |  14 +-
- drivers/accel/qaic/qaic_data.c                     |   2 +-
- drivers/accel/qaic/sahara.c                        |   5 +-
- drivers/gpu/drm/armada/armada_fbdev.c              |   2 -
- drivers/gpu/drm/clients/drm_fbdev_client.c         |  17 +-
- drivers/gpu/drm/clients/drm_log.c                  |  16 +-
- drivers/gpu/drm/drm_client.c                       |   4 +
- drivers/gpu/drm/drm_client_event.c                 |   9 +-
- drivers/gpu/drm/drm_fbdev_dma.c                    |   4 -
- drivers/gpu/drm/drm_fbdev_shmem.c                  |   2 -
- drivers/gpu/drm/drm_fbdev_ttm.c                    |   2 -
- drivers/gpu/drm/drm_gem_atomic_helper.c            |   2 -
- drivers/gpu/drm/exynos/exynos_drm_fbdev.c          |   2 -
- drivers/gpu/drm/gma500/fbdev.c                     |   3 -
- drivers/gpu/drm/gud/gud_drv.c                      |  45 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c         |   2 -
- drivers/gpu/drm/msm/msm_fbdev.c                    |   2 -
- drivers/gpu/drm/omapdrm/omap_fbdev.c               |   2 -
- drivers/gpu/drm/radeon/radeon_fbdev.c              |   2 -
- drivers/gpu/drm/sitronix/st7571-i2c.c              |   2 +-
- drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          |   2 +-
- drivers/gpu/drm/tegra/fbdev.c                      |   2 -
- drivers/gpu/drm/ttm/ttm_module.c                   |   3 +-
- drivers/gpu/drm/vkms/Kconfig                       |   1 +
- drivers/gpu/drm/vkms/Makefile                      |   3 +-
- drivers/gpu/drm/vkms/tests/vkms_config_test.c      |  24 +
- drivers/gpu/drm/vkms/vkms_config.c                 |   8 +-
- drivers/gpu/drm/vkms/vkms_config.h                 |  26 +
- drivers/gpu/drm/vkms/vkms_configfs.c               | 833 +++++++++++++++++++++
- drivers/gpu/drm/vkms/vkms_configfs.h               |   8 +
- drivers/gpu/drm/vkms/vkms_connector.c              |  35 +
- drivers/gpu/drm/vkms/vkms_connector.h              |   9 +
- drivers/gpu/drm/vkms/vkms_drv.c                    |  18 +-
- drivers/gpu/drm/vkms/vkms_drv.h                    |  20 +
- include/drm/drm_client.h                           |  10 +
- include/uapi/drm/ethosu_accel.h                    | 261 +++++++
- 59 files changed, 3553 insertions(+), 127 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/npu/arm,ethos.yaml
- create mode 100644 drivers/accel/ethosu/Kconfig
- create mode 100644 drivers/accel/ethosu/Makefile
- create mode 100644 drivers/accel/ethosu/ethosu_device.h
- create mode 100644 drivers/accel/ethosu/ethosu_drv.c
- create mode 100644 drivers/accel/ethosu/ethosu_drv.h
- create mode 100644 drivers/accel/ethosu/ethosu_gem.c
- create mode 100644 drivers/accel/ethosu/ethosu_gem.h
- create mode 100644 drivers/accel/ethosu/ethosu_job.c
- create mode 100644 drivers/accel/ethosu/ethosu_job.h
- create mode 100644 drivers/gpu/drm/vkms/vkms_configfs.c
- create mode 100644 drivers/gpu/drm/vkms/vkms_configfs.h
- create mode 100644 include/uapi/drm/ethosu_accel.h
