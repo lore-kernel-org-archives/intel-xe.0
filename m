@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40C7DCCD1BF
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:16:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FA8CCD1BF
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 13:17:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0747710E3EE;
-	Tue, 28 Oct 2025 13:16:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAExuAS2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C617910E3EF
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 13:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761657397; x=1793193397;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DAx5GZBKEdTAMjoLGVwbEXt0+Ns0ZUUVaUJGfLfphK0=;
- b=eAExuAS2y/nAZ8z9Z2HmLCPYQcAltSEUy1L851p8WZxv6QvU3DgnAyWF
- k1qF33/5tpyNMwyoUOtcuGPcmjBAjdWUmFKCzhUMV1lDFyt1J28xeXFd1
- vfQ7eakCTqB/I0QkvsPrk83iZZCcqFnmvuveFE4EEIw1oPPpkaxpU0o9a
- /uOHIEx1QMNUyyPL6lBcYzcirkzuw8mUweoQ/VTpWsSNp63lEvijxwiZM
- cfnrVj2iYzL/7TgjIpdjyVz0dtB6+qBs0u4BLaHi9BR8l0kcSaF58Wgrx
- UrWxtFERXvyJhdXbswIv6hELpubH06sFkwKP5yhR94z1xarFX3AQKiTy9 A==;
-X-CSE-ConnectionGUID: zIpRDBiuSWiYJ5De3k3k1A==
-X-CSE-MsgGUID: OQWwoJOvRJ6zI74nkM9KCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="89226030"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="89226030"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:16:36 -0700
-X-CSE-ConnectionGUID: R9QP7oNnS4WWvFynQCHfXw==
-X-CSE-MsgGUID: HAsCxrjTTxas70+Doo7jTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="185431681"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.244.159])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 06:16:36 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI v4] verbose p2p
-Date: Tue, 28 Oct 2025 13:16:25 +0000
-Message-ID: <20251028131624.154276-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.51.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D040B10E3EE;
+	Tue, 28 Oct 2025 13:17:50 +0000 (UTC)
+Received: from 97596180aaec (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E10F10E3FA;
+ Tue, 28 Oct 2025 13:17:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4282106726839082721=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_drm_sharpness_pro?=
+ =?utf-8?q?perty?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Oct 2025 13:17:50 -0000
+Message-ID: <176165747050.62904.14597689460810988419@97596180aaec>
+X-Patchwork-Hint: ignore
+References: <20251028120747.3027332-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20251028120747.3027332-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,53 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Do not review.
+--===============4282106726839082721==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- drivers/pci/p2pdma.c            | 4 ++++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 54e42960daad..b047251674ea 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -28,7 +28,7 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
- 	struct drm_gem_object *obj = attach->dmabuf->priv;
- 
- 	if (attach->peer2peer &&
--	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
-+	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, true) < 0)
- 		attach->peer2peer = false;
- 
- 	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
-diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-index 78e108e47254..630374711dee 100644
---- a/drivers/pci/p2pdma.c
-+++ b/drivers/pci/p2pdma.c
-@@ -451,6 +451,7 @@ static const struct pci_p2pdma_whitelist_entry {
- 	{PCI_VENDOR_ID_INTEL,	0x2033, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x2020, 0},
- 	{PCI_VENDOR_ID_INTEL,	0x09a2, 0},
-+	{PCI_VENDOR_ID_INTEL,	0x4648, 0},
- 	{}
- };
- 
-@@ -503,7 +504,10 @@ static bool __host_bridge_whitelist(struct pci_host_bridge *host,
- 	vendor = root->vendor;
- 	device = root->device;
- 
-+	pr_info("root v:%x d:%x\n", vendor, device);
-+
- 	for (entry = pci_p2pdma_whitelist; entry->vendor; entry++) {
-+		pr_info("entry v:%x d:%x\n", entry->vendor, entry->device);
- 		if (vendor != entry->vendor || device != entry->device)
- 			continue;
- 		if (entry->flags & REQ_SAME_HOST_BRIDGE && !same_host_bridge)
--- 
-2.51.0
+Series: Introduce drm sharpness property
+URL   : https://patchwork.freedesktop.org/series/156648/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc_BAT -> xe-pw-156648v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156648v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-plain-flip@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#4543]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html
+
+  
+  [Intel XE#4543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543
+
+
+Build changes
+-------------
+
+  * Linux: xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc -> xe-pw-156648v1
+
+  IGT_8598: 8598
+  xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc: 894bc3ad572262b3c29e8cf0352adaa07275dbfc
+  xe-pw-156648v1: 156648v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html
+
+--===============4282106726839082721==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce drm sharpness property</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156648/">https://patchwork.freedesktop.org/series/156648/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc_BAT -&gt; xe-pw-156648v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156648v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-plain-flip@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156648v1/bat-adlp-7/igt@kms_flip@basic-plain-flip@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4543">Intel XE#4543</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc -&gt; xe-pw-156648v1</li>
+</ul>
+<p>IGT_8598: 8598<br />
+  xe-3995-894bc3ad572262b3c29e8cf0352adaa07275dbfc: 894bc3ad572262b3c29e8cf0352adaa07275dbfc<br />
+  xe-pw-156648v1: 156648v1</p>
+
+</body>
+</html>
+
+--===============4282106726839082721==--
