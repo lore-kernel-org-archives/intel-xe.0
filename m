@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89982CCF9EE
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 12:25:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 473A5CCF9E0
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Oct 2025 12:25:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46C7910E5D2;
-	Tue, 28 Oct 2025 12:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C54C10E5FB;
+	Tue, 28 Oct 2025 12:25:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4qcHw5W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fVKazhZB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CB3510E5D4
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D644D10E5CB
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Oct 2025 12:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1761654316; x=1793190316;
+ t=1761654318; x=1793190318;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3NLa2JjaSdKgRwghl/76oCFLOOhImARWg6nr1ZhUTgw=;
- b=j4qcHw5Wv7wxB5x9xtbQUwtlkjAt1vjs1+tFWt3DXoDvo54/c4x1d7YQ
- f0fwLYam1s3JDyzJrnV3c0Vs9fv3yExSnJquRoAVukyq4qdCkImOl9lnn
- xL1lTDN2s0WRJ3hBfO42cqF6ALITsrn1tlNAvDZwdPyIOkHlYRNkeU7iQ
- zNqAr9ozCz6UfoQvMl3ixzlm/wYRPiOL6kvxpG79uMWb0r6V8hnTxMXhS
- G8jMjCi6VFm9T+wA9YjDh6nXWTSLCegvMWvq6PgY6u9i4ieGb8GhFr+Jc
- oSLi7g/MzsO/+ss0Z+N87YRWd2TWFoyjLRfP09j5coCvJ+EIPW7PAnzRL w==;
-X-CSE-ConnectionGUID: gIADOZoMQ2ClLbDTFdJSKg==
-X-CSE-MsgGUID: I6dZfMIfToipDoxo7y7tfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956647"
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956647"
+ bh=jb9/yjmVH/ebvr9wJXmGp+iZ5pfcwwDVtMmUUMOJVyM=;
+ b=fVKazhZBoRMSQooXDcbpClSxkIe3JPpkz6zPHEnkfSztj6LJ7u7WrsCj
+ timtTeyoIQxCVtMGYZShNldhQ7RiqaTzmbgLbnwXmrXAPsxPA6DtmUQgZ
+ CFsB0mDMkVrZ5yFf5W82tbW6Bm6HPQUptVeben3Cm9pYiMMW7dZej4kvd
+ /OoT/VO7DsOn5WR2pr6mH9p7comQxExsQy56e05SSD9DZwRv+c5EigaGR
+ WjQV/MeE6pyGSt4OQNFAAZUqYGY+RBKC1hYa2QCnT0f3hZqX7JCQcbBUS
+ OvqKh4GmgKDxwn6CvepgT+7EFCRJcJ3AzcXPq9J3O41HWa0UwewOAElpm A==;
+X-CSE-ConnectionGUID: R5h8P/CxRzuk4fNdtcVEDA==
+X-CSE-MsgGUID: RtBQqlLbSAmzzqMzyTJgpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62956648"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="62956648"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:16 -0700
-X-CSE-ConnectionGUID: LvBGUpjYS6C6oBbdzFuPig==
-X-CSE-MsgGUID: /aXvQcXoSv6v1fnyZ+V+8A==
+ 28 Oct 2025 05:25:18 -0700
+X-CSE-ConnectionGUID: OpCWLaDkTLOyZL5aDEgJdg==
+X-CSE-MsgGUID: BlNNrSsmS36tvhr94r8cGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524476"
+X-IronPort-AV: E=Sophos;i="6.19,261,1754982000"; d="scan'208";a="190524486"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2025 05:25:14 -0700
+ 28 Oct 2025 05:25:16 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [RFC PATCH 8/9] drm/xe/uapi: Add UAPI for purgeable bo state to
- madvise query response
-Date: Tue, 28 Oct 2025 17:54:14 +0530
-Message-ID: <20251028122415.1136721-9-arvind.yadav@intel.com>
+Subject: [RFC PATCH 9/9] drm/xe: Add support for querying purgeable BO states
+Date: Tue, 28 Oct 2025 17:54:15 +0530
+Message-ID: <20251028122415.1136721-10-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251028122415.1136721-1-arvind.yadav@intel.com>
 References: <20251028122415.1136721-1-arvind.yadav@intel.com>
@@ -69,59 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-Complete the purgeable buffer object UAPI by adding the response
-structure to drm_xe_mem_range_attr for querying current purgeable
-state of buffer objects within a memory range.
-
-This allows userspace to determine the current state of BOs:
-- WILLNEED: BO is actively needed
-- DONTNEED: BO is marked as not currently needed
-- PURGED: BO has been purged by the kernel
+Add support for querying purgeable buffer object states through the
+XE_VM_QUERY_MEM_RANGE_ATTRS ioctl. This allows userspace to determine
+the current purgeable state of BO:
+ - WILLNEED: BO is actively needed and re-validate if purged
+ - DONTNEED: BO is not currently needed and may be purged
+ - PURGED: BO has been purged by the kernel due to memory pressure
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index e5345101a92a..0777e0b4dc63 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -2145,10 +2145,13 @@ struct drm_xe_madvise {
- 		 *    should not be purged by the kernel.
- 		 *  - DRM_XE_VMA_PURGEABLE_STATE_DONTNEED: BO is not currently needed,
- 		 *    kernel may purge it to free memory if under pressure.
-+		 *  - DRM_XE_VMA_PURGEABLE_STATE_PURGED: Read-only state indicating
-+		 *    the BO purge state.
- 		 */
- 		struct {
- #define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
- #define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
-+#define DRM_XE_VMA_PURGEABLE_STATE_PURGED	2
- 			/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
- 			__u32 val;
- 			/** @purge_state_val.reserved: Reserved */
-@@ -2214,6 +2217,15 @@ struct drm_xe_mem_range_attr {
- 		__u32 reserved;
- 	} pat_index;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index b8d60550c191..7d58f89dc415 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2014,6 +2014,7 @@ static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
  
-+	/** @purge_state_val: Purgeable state configuration */
-+	struct {
-+		/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
-+		__u32 val;
+ 	drm_gpuvm_for_each_va_range(gpuva, &vm->gpuvm, start, end) {
+ 		struct xe_vma *vma = gpuva_to_vma(gpuva);
++		struct xe_bo *bo;
+ 
+ 		if (i == *num_vmas)
+ 			return -ENOSPC;
+@@ -2026,6 +2027,10 @@ static int get_mem_attrs(struct xe_vm *vm, u32 *num_vmas, u64 start,
+ 		attrs[i].preferred_mem_loc.migration_policy =
+ 		vma->attr.preferred_loc.migration_policy;
+ 
++		bo = xe_vma_bo(vma);
++		if (bo)
++			attrs[i].purge_state_val.val = atomic_read(&bo->madv_purgeable);
 +
-+		/** @purge_state_val.reserved: Reserved */
-+		__u32 reserved;
-+	} purge_state_val;
-+
- 	/** @reserved: Reserved */
- 	__u64 reserved[2];
- };
+ 		i++;
+ 	}
+ 
 -- 
 2.43.0
 
